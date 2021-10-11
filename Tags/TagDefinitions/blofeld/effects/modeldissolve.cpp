@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -60,34 +60,34 @@ namespace blofeld
 	{
 		{ _field_byte_flags, "flags", &modelDissolveFlags },
 		{ _field_char_enum, "particle spawn position", &modelDissolveParticleSpawnPosition },
-		FIELD_PAD("graaag", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("graaag", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "particle spawn random radius" },
 		{ _field_tag_reference, "cheap particle emitter", &Tag::Reference<struct s_cheap_particle_emitter>::s_defaultDefinition },
 		{ _field_real, "cheap particle spawn distance threshold" },
-		FIELD_CUSTOM("particle velocity factors", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("particle velocity factors", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "velocity up" },
 		{ _field_real, "velocity toward dissolve point" },
 		{ _field_real, "velocity toward dissolve surface" },
 		{ _field_real, "velocity along dissolve surface" },
 		{ _field_real, "velocity random" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_real, "particle forced speed", "if non-zero, we normalize the speed to this value" },
 		{ _field_real, "duration" },
 		{ _field_real, "extra duration", "particularly for reverse dissolves, to prevent popping" },
 		{ _field_real, "particle spawn time offset", "particularly for reverse dissolves, to cause particles to arrive at the leading edge" },
 		{ _field_block, "per-region time offset", &modelDissolvePerRegionTimeOffsetBlock_block },
-		FIELD_CUSTOM("effects", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("effects", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_tag_reference, "dissolve point", &Tag::Reference<struct effect_definition>::s_defaultDefinition },
 		{ _field_tag_reference, "opposite dissolve point", &Tag::Reference<struct effect_definition>::s_defaultDefinition },
 		{ _field_tag_reference, "dissolve surface", &Tag::Reference<struct effect_definition>::s_defaultDefinition },
 		{ _field_tag_reference, "bounding sphere center", &Tag::Reference<struct effect_definition>::s_defaultDefinition },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_tag_reference, "finish effect", &Tag::Reference<struct effect_definition>::s_defaultDefinition },
 		{ _field_tag_reference, "knight taint crate", &Tag::Reference<struct crate_definition>::s_defaultDefinition },
-		FIELD_CUSTOM("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
+		FIELD_CUSTOM_EX("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual material?", &material_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 		{ _field_terminator }
 	};
 

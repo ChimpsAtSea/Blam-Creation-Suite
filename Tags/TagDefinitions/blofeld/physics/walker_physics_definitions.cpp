@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -16,7 +16,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WALKER_PHYSICS_LEG_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("walker physics", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("walker physics", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_char_enum, "leg group", &walker_physics_leg_group_enum },
 		{ _field_char_enum, "leg side", &walker_physics_leg_side_enum },
 		{ _field_char_integer, "leg side order", "for each side order the legs from 0-n where 0 is the most forward leg" },
@@ -25,9 +25,9 @@ namespace blofeld
 		{ _field_string_id, "hip node b name" },
 		{ _field_string_id, "knee node a name" },
 		{ _field_string_id, "knee node b name" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "foot marker name" },
-		FIELD_PAD("RLTGT", nullptr, FIELD_FLAG_NONE, 60),
+		FIELD_PAD_EX("RLTGT", nullptr, FIELD_FLAG_NONE, 60),
 		{ _field_long_flags, "flags", &walker_physics_leg_flags },
 		{ _field_real_vector_3d, "runtime initial origin to hip offset", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real_vector_3d, "runtime pivot center to hip offset", FIELD_FLAG_UNKNOWN0 },
@@ -42,7 +42,7 @@ namespace blofeld
 		{ _field_short_integer, "runtime hip node index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "runtime knee node index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real_vector_3d, "plant constraint position", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("GKX", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("GKX", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 

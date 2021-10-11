@@ -192,6 +192,9 @@
     <ClCompile Include="infinite\inf_tag_pageable_resource_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="field_id.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blamboozle_h1_guerilla.h">

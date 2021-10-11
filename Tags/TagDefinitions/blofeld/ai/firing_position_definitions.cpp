@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -16,7 +16,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		FIRING_POSITIONS_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("CONTROLS", nullptr, FIELD_FLAG_UNKNOWN3, "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
+		FIELD_EXPLANATION_EX("CONTROLS", nullptr, FIELD_FLAG_UNKNOWN3, "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
 		{ _field_real_point_3d, "position (local)" },
 		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
@@ -31,10 +31,10 @@ namespace blofeld
 		{ _field_legacy, _field_char_integer, "unknown" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		FIELD_PAD("PAD1", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("PAD1", nullptr, FIELD_FLAG_NONE, 1),
 
 		{ _field_real_euler_angles_2d, "normal" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_facing),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_facing),
 		{ _field_angle, "facing" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },

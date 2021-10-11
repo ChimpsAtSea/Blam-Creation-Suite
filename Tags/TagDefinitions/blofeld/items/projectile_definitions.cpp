@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -42,7 +42,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OLD_PROJECTILE_MATERIAL_RESPONSE_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("default result", nullptr, FIELD_FLAG_NONE, "(if the potential result, below, fails to happen)"),
+		FIELD_EXPLANATION_EX("default result", nullptr, FIELD_FLAG_NONE, "(if the potential result, below, fails to happen)"),
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach },
 		{ _field_legacy, _field_word_flags, "flags", &projectile_material_response_flags },
@@ -50,32 +50,32 @@ namespace blofeld
 		{ _field_enum, "default response", &material_response },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
-		FIELD_PAD("KJSH", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("KJSH", nullptr, FIELD_FLAG_NONE, 2),
 
 		{ _field_string_id, "material name" },
 		{ _field_short_integer, "runtime material index", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("JJHT", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("JJHT", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "" },
-		FIELD_EXPLANATION("potential result", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("potential result", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "potential response", &material_response },
 		{ _field_word_flags, "response flags", &material_possible_response_flags },
 		{ _field_real_fraction, "chance fraction", nullptr, nullptr, "[0,1]" },
 		{ _field_angle_bounds, "between", nullptr, "degrees" },
 		{ _field_real_bounds, "and", nullptr, "world units per second" },
 		{ _field_useless_pad, "" },
-		FIELD_EXPLANATION("misc", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("misc", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "scale effects by", &effect_scale_enum },
-		FIELD_PAD("BDFI", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("BDFI", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_angle, "angular noise", "the angle of incidence is randomly perturbed by at most this amount to simulate irregularity.", "degrees" },
 		{ _field_real, "velocity noise", "the velocity is randomly perturbed by at most this amount to simulate irregularity.", "world units per second" },
 		{ _field_useless_pad, "" },
-		FIELD_EXPLANATION("penetration", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("penetration", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "initial friction", "the fraction of the projectile's velocity lost on penetration" },
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach }, // Source?
 		{ _field_legacy, _field_real, "maximum distance" },
 
-		FIELD_EXPLANATION("reflection", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("reflection", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "parallel friction", "the fraction of the projectile's velocity parallel to the surface lost on impact" },
 		{ _field_real, "perpendicular friction", "the fraction of the projectile's velocity perpendicular to the surface lost on impact" },
 		{ _field_terminator }
@@ -98,22 +98,22 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROJECTILE_MATERIAL_RESPONSE_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("matching criteria", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("matching criteria", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_string_id, "material name" },
 		{ _field_short_integer, "runtime material index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_flags, "response flags", &material_possible_response_flags },
 		{ _field_real_fraction, "chance fraction", nullptr, nullptr, "[0,1]" },
 		{ _field_angle_bounds, "between", nullptr, "degrees" },
 		{ _field_real_bounds, "and", nullptr, "world units per second" },
-		FIELD_EXPLANATION("response", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("response", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "response", &material_response },
-		FIELD_EXPLANATION("misc", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("misc", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "scale effects by", &effect_scale_enum },
 		{ _field_angle, "angular noise", "the angle of incidence is randomly perturbed by at most this amount to simulate irregularity.", "degrees" },
 		{ _field_real, "velocity noise", "the velocity is randomly perturbed by at most this amount to simulate irregularity.", "world units per second" },
-		FIELD_EXPLANATION("overpenetration", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("overpenetration", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "initial friction", "the fraction of the projectile's velocity lost on penetration" },
-		FIELD_EXPLANATION("reflection", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("reflection", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "parallel friction", "the fraction of the projectile's velocity parallel to the surface lost on impact" },
 		{ _field_real, "perpendicular friction", "the fraction of the projectile's velocity perpendicular to the surface lost on impact" },
 		{ _field_terminator }
@@ -168,7 +168,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CONICAL_PROJECTION_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("conical_projection: AKA shotgun", nullptr, FIELD_FLAG_NONE, "projectile_count = yaw_count*pitch_count\nThis block has no effect if _projectile_disable_instantaneous_first_tick is set or projectile has not been fired from a weapon."),
+		FIELD_EXPLANATION_EX("conical_projection: AKA shotgun", nullptr, FIELD_FLAG_NONE, "projectile_count = yaw_count*pitch_count\nThis block has no effect if _projectile_disable_instantaneous_first_tick is set or projectile has not been fired from a weapon."),
 		{ _field_short_integer, "yaw count" },
 		{ _field_short_integer, "pitch count" },
 		{ _field_real, "distribution exponent", "exp==.5 even distribution, exp==1  halo2 distribution, exp>1== weighted towards center" },
@@ -219,7 +219,7 @@ namespace blofeld
 		PROJECTILE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		FIELD_CUSTOM("$$$ PROJECTILE $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("$$$ PROJECTILE $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &projectile_flags },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
@@ -233,7 +233,7 @@ namespace blofeld
 		{ _field_real, "max lifetime to detonate", "if >0, projectile will detonate regardless of other conditions after this total time", "seconds" },
 
 		{ _field_real, "collision radius", nullptr, "world units" },
-		FIELD_EXPLANATION("detonation", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("detonation", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "arming time", "won't detonate before this time elapses", "seconds" },
 		{ _field_real, "danger radius", nullptr, "world units" },
 
@@ -260,7 +260,7 @@ namespace blofeld
 		{ _field_tag_reference, "super det. behavior", "An equipment reference that is attached to the target upon super detonation", &behavior_object_reference },
 		{ _field_real, "tether release safety delay", "if the weapon the projectile is tethered to loses its owner, this amount of time will pass before detonation" },
 
-		FIELD_EXPLANATION("tethering", nullptr, FIELD_FLAG_NONE, "A detonating tethered projectile attached to an object will use the \'super\' versions of damage ie \'super attached detonation damage\' instead of \'attached detonation damage\'."),
+		FIELD_EXPLANATION_EX("tethering", nullptr, FIELD_FLAG_NONE, "A detonating tethered projectile attached to an object will use the \'super\' versions of damage ie \'super attached detonation damage\' instead of \'attached detonation damage\'."),
 		{ _field_tag_reference, "detonation started", "effect", &global_effect_reference },
 		{ _field_tag_reference, "detonation effect (airborne)", &global_effect_reference },
 		{ _field_tag_reference, "detonation effect (ground)", &global_effect_reference },
@@ -274,11 +274,11 @@ namespace blofeld
 		{ _field_struct, "your momma", &super_detonation_damage_struct },
 		{ _field_tag_reference, "detonation sound", &global_sound_reference },
 		{ _field_char_enum, "damage reporting type", &global_damage_reporting_enum_definition },
-		FIELD_PAD("UAQLONXGN", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("UAQLONXGN", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_word_flags, "super detonation object types", &object_type_enum_definition },
 		{ _field_tag_reference, "super attached detonation damage", &global_damage_reference },
 		{ _field_real, "material effect radius", "radius within we will generate material effects" },
-		FIELD_EXPLANATION("flyby/impact", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("flyby/impact", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "flyby sound", &global_sound_reference },
 		{ _field_tag_reference, "flyby damage response", &global_damage_response_definition_reference },
 
@@ -291,11 +291,11 @@ namespace blofeld
 		{ _field_tag_reference, "object impact effect", &global_effect_reference },
 
 		{ _field_tag_reference, "impact damage", &global_damage_reference },
-		FIELD_EXPLANATION("boarding fields", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("boarding fields", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "boarding detonation time" },
 		{ _field_tag_reference, "boarding detonation damage", &global_damage_reference },
 		{ _field_tag_reference, "boarding attached detonation damage", &global_damage_reference },
-		FIELD_EXPLANATION("physics", nullptr, FIELD_FLAG_NONE, "damage range low is unused unless \'distance based damage scaling uses damage range low bounds\' flag is true."),
+		FIELD_EXPLANATION_EX("physics", nullptr, FIELD_FLAG_NONE, "damage range low is unused unless \'distance based damage scaling uses damage range low bounds\' flag is true."),
 		{ _field_real, "air gravity scale", "the proportion of normal gravity applied to the projectile when in air." },
 		{ _field_real_bounds, "air damage range", "the range over which damage is scaled when the projectile is in air.", "world units" },
 		{ _field_real, "water gravity scale", "the proportion of normal gravity applied to the projectile when in water." },
@@ -335,7 +335,7 @@ namespace blofeld
 		{ _field_tag_reference, "killcam parameters", "if not present, first person will be used.", &Tag::Reference<struct KillCamCameraParameterDefinition>::s_defaultDefinition },
 		{ _field_block, "Sound RTPCs", &ProjectileSoundRTPCBlock_block },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end), //proj end
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end), //proj end
 		{ _field_terminator }
 	};
 

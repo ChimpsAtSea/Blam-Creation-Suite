@@ -330,6 +330,7 @@
     <ClCompile Include="tag_byteswap.cpp" />
     <ClCompile Include="tag_groups\tag_groups.cpp" />
     <ClCompile Include="tag_group_info.haloreach.cpp" />
+    <ClCompile Include="types\field_id.cpp" />
     <ClCompile Include="types\field_type.cpp" />
     <ClCompile Include="types\string_list_definitions.cpp" />
     <ClCompile Include="tagdefinitions-private-pch.cpp">
@@ -648,7 +649,6 @@
     <ClInclude Include="blofeld\weather\weather_definition.h" />
     <ClInclude Include="blofeld\__unknown\tag_references.h" />
     <ClInclude Include="slipspace\infinite.h" />
-    <ClInclude Include="macaque_field_type_override.h" />
     <ClInclude Include="slipspace\infinite_flight2.h" />
     <ClInclude Include="tagdefinitions-private-pch.h" />
     <ClInclude Include="blofeld.h" />
@@ -657,6 +657,7 @@
     <ClInclude Include="tag_byteswap.h" />
     <ClInclude Include="tag_groups\tag_groups.h" />
     <ClInclude Include="tag_group_info.h" />
+    <ClInclude Include="types\field_id.h" />
     <ClInclude Include="types\field_type.h" />
     <ClInclude Include="types\string_list_definition.h" />
     <ClInclude Include="types\tag_array_definition.h" />

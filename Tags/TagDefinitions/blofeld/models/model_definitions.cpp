@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -25,8 +25,8 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("MODEL", nullptr, FIELD_FLAG_NONE, ""),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_high_level_model_tag),
+		FIELD_EXPLANATION_EX("MODEL", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_high_level_model_tag),
 		{ _field_tag_reference, "render model", &render_model_reference$2 },
 		{ _field_tag_reference, "collision model", &collision_model_reference },
 		{ _field_tag_reference, "animation", &global_animation_graph_reference },
@@ -38,19 +38,19 @@ namespace blofeld
 		{ _field_long_integer, "runtime collision checksum", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
-		FIELD_EXPLANATION("Optional Static Lightmap", nullptr, FIELD_FLAG_NONE, "\n"),
+		FIELD_EXPLANATION_EX("Optional Static Lightmap", nullptr, FIELD_FLAG_NONE, "\n"),
 		{ _field_tag_reference, "Lighting Info", FIELD_FLAG_INDEX, &structure_lighting_bsp_reference },
 		{ _field_long_enum, "Size Class", &scenario_structure_size_enum },
 		{ _field_long_flags, "Lightmap Flags", MAKE_OLD_NAMES("PVS flags"), &model_lightmap_flags_definition },
 		{ _field_long_block_index, "Lightmap Variant", &model_variant_block },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
-		FIELD_EXPLANATION("PVS", nullptr, FIELD_FLAG_NONE, "\n"),
+		FIELD_EXPLANATION_EX("PVS", nullptr, FIELD_FLAG_NONE, "\n"),
 		{ _field_real, "PVS bounding box extension factor ", "How much we extend the PVS region around the objects AABB : [good initial value 2.5]" },
 		{ _field_real_vector_3d, "PVS block size ", "How big a single PVS block is, in world units : [good initial value (2.0,2.0,2.0)]" },
 		{ _field_long_integer, "PVS sampling subdivision per axis ", "How many sample subdivisions we perform per PVS block when generating the data : [good initial value 2]" },
 		{ _field_real, "PVS visibility threshold ", "Minimum amount we need to see of an individual part mesh to care about it : [good initial value 0.004]" },
-		FIELD_EXPLANATION("level of detail", nullptr, FIELD_FLAG_NONE, "\n"),
+		FIELD_EXPLANATION_EX("level of detail", nullptr, FIELD_FLAG_NONE, "\n"),
 		{ _field_real, "disappear distance", nullptr, "world units" },
 		{ _field_real, "begin fade distance", nullptr, "world units" },
 		{ _field_real, "animation lod distance", nullptr, "world units" },
@@ -107,7 +107,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_less, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "model object data", &model_object_data_block },
 
-		FIELD_EXPLANATION("more stuff", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("more stuff", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "default dialogue", "The default dialogue tag for this model (overriden by variants)", &dialogue_reference$3 },
 		{ _field_tag_reference, "default dialogue female", "The default FEMALE dialogue tag for this model (overriden by variants)", &dialogue_reference$3 },
 		{ _field_long_flags, "flags", &model_flags_definition },
@@ -127,14 +127,14 @@ namespace blofeld
 		{ _field_real, "shadow depth compare bias (dynamic lights)", "Default is 0.0008" },
 		{ _field_real, "shadow slope scale bias (dynamic lights)", "controls cutoff point for shadows around edges.  Default is 81 degrees", "degrees" },
 
-		FIELD_EXPLANATION("PRT Shadows (soft self-shadow)", nullptr, FIELD_FLAG_NONE, "By default, the shadows on each permutation are computed using the first permutation in\nevery other region as shadow casters.  You can override this behavior below by specifying\nwhich permutation to use as a shadow caster in a given region.\n\n  PRT shadow bounces:\n    the number of light bounces to use when computing the global illumination.\n    (0 bounces gets only direct light).  Increasing the number of bounces\n    increases the calculation time.  1 or 2 bounces should be good enough for\n    almost all models.\n"),
+		FIELD_EXPLANATION_EX("PRT Shadows (soft self-shadow)", nullptr, FIELD_FLAG_NONE, "By default, the shadows on each permutation are computed using the first permutation in\nevery other region as shadow casters.  You can override this behavior below by specifying\nwhich permutation to use as a shadow caster in a given region.\n\n  PRT shadow bounces:\n    the number of light bounces to use when computing the global illumination.\n    (0 bounces gets only direct light).  Increasing the number of bounces\n    increases the calculation time.  1 or 2 bounces should be good enough for\n    almost all models.\n"),
 		{ _field_char_enum, "PRT shadow detail", "how much information is recorded about different light directions", FIELD_FLAG_UNKNOWN0, &model_self_shadow_detail_definition },
 		{ _field_char_enum, "PRT shadow bounces", "0 means direct light only", &model_self_shadow_bounces_definition },
-		FIELD_PAD("NCFGBA", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("NCFGBA", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "shadow cast override", &model_self_shadow_region_cast_override_block },
 		{ _field_block, "shadow receive override", &model_self_shadow_region_receive_override_block },
 		{ _field_block, "occlusion spheres", &model_occlusion_sphere_block },
-		FIELD_EXPLANATION("Shield impact overrides", nullptr, FIELD_FLAG_UNKNOWN0, "Regular and 1st person shield impact effect overrides\n"),
+		FIELD_EXPLANATION_EX("Shield impact overrides", nullptr, FIELD_FLAG_UNKNOWN0, "Regular and 1st person shield impact effect overrides\n"),
 		{ _field_tag_reference, "shield impact parameter override", FIELD_FLAG_UNKNOWN0, &global_shield_parameters_reference },
 		{ _field_tag_reference, "1st person shield impact parameter override", FIELD_FLAG_UNKNOWN0, &global_shield_parameters_reference },
 
@@ -198,7 +198,7 @@ namespace blofeld
 		{ _field_short_block_index, "parent variant", &model_variant_block },
 		{ _field_block, "permutations", &model_variant_permutation_block },
 		{ _field_enum, "sort order", "negative values mean closer to the camera", &region_sort_enum },
-		FIELD_PAD("JO", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("JO", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -215,11 +215,11 @@ namespace blofeld
 		{ _field_string_id, "permutation name", FIELD_FLAG_INDEX },
 		{ _field_char_integer, "runtime permutation index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_byte_flags, "flags", &model_variant_permutation_flags_definition },
-		FIELD_PAD("KSJOSR", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("KSJOSR", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "probability", nullptr, "(0,+inf)" },
 		{ _field_block, "states", &model_variant_state_block },
 		{ _field_array, "runtime state permutation indices", FIELD_FLAG_UNKNOWN0, &model_state_permutation_index_array },
-		FIELD_PAD("LOOEL", nullptr, FIELD_FLAG_NONE, 7),
+		FIELD_PAD_EX("LOOEL", nullptr, FIELD_FLAG_NONE, 7),
 		{ _field_terminator }
 	};
 
@@ -256,13 +256,13 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_VARIANT_OBJECT_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "parent marker", FIELD_FLAG_INDEX },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_string_id, "parent controlling seat label", "the seat in my parent that will control me", FIELD_FLAG_INDEX },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "child marker" },
 		{ _field_string_id, "child variant name", "optional" },
 		{ _field_tag_reference, "child object", &object_reference$5 },
@@ -270,7 +270,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_short_block_index, "damage section", &new_global_damage_section_block },
 		{ _field_byte_flags, "flags", &ModelVariantObjectFlagsDefinition },
-		FIELD_PAD("MVOBP1", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("MVOBP1", nullptr, FIELD_FLAG_NONE, 1),
 
 		{ _field_terminator }
 	};
@@ -351,13 +351,13 @@ namespace blofeld
 		MODEL_MATERIAL_BLOCK_NEW_ID)
 	{
 		{ _field_string_id, "material name", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("unused flags", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("unused flags", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_block_index, "damage section", &new_global_damage_section_block },
 		{ _field_short_integer, "runtime collision material index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "runtime damager material index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_string_id, "global material name" },
 		{ _field_short_integer, "runtime global material index", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("SEWETKHRE", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("SEWETKHRE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -371,7 +371,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_TARGET_BLOCK_OLD_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker name", "multiple markers become multiple spheres of the same radius", FIELD_FLAG_INDEX },
 		{ _field_real, "size", "sphere radius" },
 		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker's x axis" },
@@ -394,8 +394,8 @@ namespace blofeld
 		MODEL_TARGET_BLOCK_NEW_ID)
 	{
 		{ _field_byte_flags, "flags", &model_target_flags_definition },
-		FIELD_PAD("MTBNP1", nullptr, FIELD_FLAG_NONE, 3),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_PAD_EX("MTBNP1", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker name", "multiple markers become multiple spheres of the same radius", FIELD_FLAG_INDEX },
 		{ _field_real, "size", "sphere radius" },
 		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker's x axis" },
@@ -420,7 +420,7 @@ namespace blofeld
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_char_integer, "collision region index", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "physics region index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("QDSJS", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("QDSJS", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "permutations", FIELD_FLAG_READ_ONLY, &model_permutation_block },
 		{ _field_terminator }
 	};
@@ -439,7 +439,7 @@ namespace blofeld
 		{ _field_byte_flags, "flags", FIELD_FLAG_READ_ONLY, &model_permutation_flags_definition },
 		{ _field_char_integer, "collision permutation index", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "physics permutation index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("AVZQS", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("AVZQS", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -457,7 +457,7 @@ namespace blofeld
 		{ _field_short_block_index, "parent node", FIELD_FLAG_READ_ONLY, &model_node_block },
 		{ _field_short_block_index, "first child node", FIELD_FLAG_READ_ONLY, &model_node_block },
 		{ _field_short_block_index, "next sibling node", FIELD_FLAG_READ_ONLY, &model_node_block },
-		FIELD_PAD("GHTI", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("GHTI", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "default translation", FIELD_FLAG_READ_ONLY },
 		{ _field_real_quaternion, "default rotation", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "default inverse scale", FIELD_FLAG_READ_ONLY },
@@ -479,7 +479,7 @@ namespace blofeld
 		MODEL_GAME_MODE_RENDER_MODEL_OVERRIDE_ID)
 	{
 		{ _field_enum, "game mode", FIELD_FLAG_INDEX, &model_game_mode_types },
-		FIELD_PAD("BL", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("BL", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "render model override", &render_model_reference$3 },
 		{ _field_terminator }
 	};
@@ -524,10 +524,10 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_OCCLUSION_SPHERE_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker 1 name" },
 		{ _field_long_integer, "marker 1 index" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker 2 name" },
 		{ _field_long_integer, "marker 2 index" },
 		{ _field_real, "radius" },
@@ -571,14 +571,14 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_TARGET_LOCK_ON_DATA_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("lock-on fields", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("lock-on fields", nullptr, FIELD_FLAG_NONE, ""),
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach },
 		{ _field_long_flags, "flags", &model_target_lock_on_flags_definition },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_byte_flags, "flags", &model_target_lock_on_flags_definition },
-		FIELD_PAD("SVLKJERAF", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("SVLKJERAF", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_real, "lock on distance" },
 

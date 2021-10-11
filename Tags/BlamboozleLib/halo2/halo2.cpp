@@ -331,7 +331,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 			ASSERT(!write_limits);
 			ASSERT(!write_units);
 
-			s << "\t\tFIELD_PAD(";
+			s << "\t\tFIELD_PAD_EX(";
 			if (!name.empty()) s << "\"" << name.c_str() << "\"";
 			else s << "nullptr";
 			if (!description.empty()) s << ", \"" << description.c_str() << "\"";
@@ -909,7 +909,7 @@ void h2_export_source(
 	h2_clear_exported_string_lists();
 
 	s << "#include <tagdefinitions-private-pch.h>" << std::endl;
-	s << "#include <macaque_field_type_override.h>" << std::endl;
+	s << "#include <blofeld_field_type_override.h>" << std::endl;
 	s << std::endl;
 	s << "namespace blofeld" << std::endl;
 	s << "{" << std::endl;

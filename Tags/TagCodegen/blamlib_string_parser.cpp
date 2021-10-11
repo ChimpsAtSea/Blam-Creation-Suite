@@ -367,11 +367,14 @@ void c_blamlib_string_parser_v2::setup_code_name()
 		code_name.format("_%s", temp.data);
 	}
 
-	code_index = ++(*string_list_value_unique_counter)[code_name.data];
-	if (code_index > 1)
+	if (string_list_value_unique_counter)
 	{
-		c_fixed_string_512 temp = code_name.data;
-		code_name.format("%s$%i", temp.data, code_index);
+		code_index = ++(*string_list_value_unique_counter)[code_name.data];
+		if (code_index > 1)
+		{
+			c_fixed_string_512 temp = code_name.data;
+			code_name.format("%s$%i", temp.data, code_index);
+		}
 	}
 }
 

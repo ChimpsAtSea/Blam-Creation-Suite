@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -18,10 +18,10 @@ namespace blofeld
 		AREAS_BLOCK_STRUCT_ID)
 	{
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 7 },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_pointer, "hkaiVolume vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_short_integer, "size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_short_integer, "count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
@@ -45,7 +45,7 @@ namespace blofeld
 		{ _field_array, "cluster occupancy", FIELD_FLAG_UNKNOWN0, &area_cluster_occupancy_bitvector_array },
 		{ _field_block, "flight_hints", &flight_reference_block },
 		{ _field_block, "points", FIELD_FLAG_INDEX, &area_sector_point_block },
-		FIELD_EXPLANATION("Generation Properties", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Generation Properties", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "preset", &generate_preset_enum, _field_id_ugpc },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
@@ -99,7 +99,7 @@ namespace blofeld
 		{ _field_short_integer, "flight hint index" },
 		{ _field_short_integer, "point index" },
 		{ _field_short_integer, "structure index" },
-		FIELD_PAD("post-structure-index-pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-structure-index-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -131,9 +131,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ZONE_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_word_flags, "flags", &zone_flags },
 		{ _field_short_block_index, "editor folder index", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },

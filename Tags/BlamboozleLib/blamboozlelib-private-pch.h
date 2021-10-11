@@ -1,5 +1,9 @@
 #pragma once
 
+#define BCS_DEBUG_API
+#include <Tags\TagDefinitions\types\field_id.h>
+#undef BCS_DEBUG_API
+
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include <DbgHelp.h>
@@ -35,3 +39,4 @@ using btag_group = bigendian_type<tag_group>;
 #include "halo4/halo4.h"
 #include "halo2/halo2.h"
 #include "halo1/halo1.h"
+

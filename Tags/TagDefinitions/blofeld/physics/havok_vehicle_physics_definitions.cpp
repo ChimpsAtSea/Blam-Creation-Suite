@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -16,14 +16,14 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANTI_GRAVITY_POINT_DEFINITION_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "flags", &anti_gravity_point_definition_flags },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_long_enum, "damping", &anti_gravity_point_definition_damping },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
 		{ _field_real, "antigrav strength" },
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach }, // Source?
@@ -50,7 +50,7 @@ namespace blofeld
 		{ _field_legacy, _field_short_integer, "runtime damage source region index" },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
 		{ _field_string_id, "collision global material name" },
 		{ _field_short_integer, "runtime global material index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "WU", FIELD_FLAG_UNKNOWN0 },
@@ -74,10 +74,10 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FRICTION_POINT_DEFINITION_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "flags", &friction_point_definition_flags },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
 		{ _field_real, "fraction of total mass", "(0.0-1.0) fraction of total vehicle mass" },
 		{ _field_real, "radius" },
 		{ _field_real, "damaged radius", "radius when the tire is blown off." },
@@ -109,10 +109,10 @@ namespace blofeld
 		{ _field_legacy, _field_long_integer, "unknown@" },
 		{ _field_legacy, _field_long_integer, "unknown@" },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
 		{ _field_string_id, "collision global material name" },
 		{ _field_short_integer, "runtime global material index", FIELD_FLAG_UNKNOWN0 },
-		FIELD_EXPLANATION("friction point destruction data", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("friction point destruction data", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "model state destroyed", "only need point can destroy flag set", &model_state_enum_definition },
 		{ _field_string_id, "region name", "only need point can destroy flag set" },
 		{ _field_long_integer, "runtime region index", FIELD_FLAG_UNKNOWN0 },
@@ -137,7 +137,7 @@ namespace blofeld
 		HAVOK_VEHICLE_PHYSICS_STRUCT_ID)
 	{
 		{ _field_long_flags, "flags", FIELD_FLAG_READ_ONLY, &havok_vehicle_physics_definition_flags },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
 		{ _field_real, "ground friction", "this sucks.  for friction based vehicles only" },
 		{ _field_real, "ground depth", "this sucks.  for friction based vehicles only" },
 		{ _field_real, "ground damp factor", "this sucks.  for friction based vehicles only" },
@@ -156,7 +156,7 @@ namespace blofeld
 		{ _field_real, "@unknown" },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 5 }, // rip field id end, fix this later #temp for UpgradeMacaque to continue
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
 		{ _field_enum, "maximum update period ticks", "ticks. 0 is default of 2", &physics_update_period_enum },
 		{ _field_enum, "maximum remote update period ticks", "ticks. when controlled by an ai or remote player. 0 defaults to 4", &physics_update_period_enum },
 		{ _field_long_integer, "iteration count", "0 defaults to 1.  Number of iterations per frame of physics" },

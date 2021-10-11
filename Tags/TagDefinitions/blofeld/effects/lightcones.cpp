@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -30,11 +30,11 @@ namespace blofeld
 		LIGHT_CONE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_byte_flags, "flags", &lightConeFlags },
-		FIELD_PAD("gosh", nullptr, FIELD_FLAG_NONE, 3),
-		FIELD_CUSTOM("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
+		FIELD_PAD_EX("gosh", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_CUSTOM_EX("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual material?", &material_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 		{ _field_real, "angle fade range", nullptr, "degrees" },
 		{ _field_real, "angle fade cutoff", nullptr, "degrees" },
 		{ _field_real, "far fade range", nullptr, "wus" },

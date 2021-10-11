@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -80,7 +80,7 @@ namespace blofeld
 		AI_SCENE_TRIGGER_BLOCK_ID)
 	{
 		{ _field_enum, "combination rule", &combination_rules_enum },
-		FIELD_PAD("NJBJMKU", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("NJBJMKU", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "triggers", &trigger_references_block },
 		{ _field_terminator }
 	};
@@ -97,7 +97,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_enum, "group", &role_group_enum },
-		FIELD_PAD("XZUW", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("XZUW", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "" },
 		{ _field_block, "role variants", &ai_scene_role_variants_block },
 		{ _field_terminator }

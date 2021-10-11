@@ -3,6 +3,7 @@
 #include "blofeld.h"
 #include "blofeld/constants.h"
 #include "types/field_type.h"
+#include "types/field_id.h"
 #include "types/tag_group.h"
 #include "types/tag_struct_definition.h"
 #include "types/tag_block_definition.h"

@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -77,7 +77,7 @@ namespace blofeld
 		{ _field_short_integer, "cluster index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "cluster bsp", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "bits and pad", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("PAD1", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("PAD1", nullptr, FIELD_FLAG_NONE, 1),
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "unknown" },
@@ -86,7 +86,7 @@ namespace blofeld
 		{ _field_angle, "facing", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "lastAbsoluteRejectionGameTime", FIELD_FLAG_UNKNOWN0 },
 		{ _field_enum, "preference", &combat_cue_preference_enum },
-		FIELD_PAD("post-preference", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-preference", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -109,13 +109,13 @@ namespace blofeld
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", nullptr, "degrees" },
 		{ _field_real, "roll" },
-		FIELD_CUSTOM("distribution", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("distribution", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "distribution", &cue_distribution_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("payload", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("payload", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "payload", &cue_payload_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_PAD("no-cue-definition-index", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_PAD_EX("no-cue-definition-index", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -146,7 +146,7 @@ namespace blofeld
 	{
 		{ _field_real, "radius" },
 		{ _field_short_integer, "travel time (ticks)" },
-		FIELD_PAD("post-travel-time", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-travel-time", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -176,7 +176,7 @@ namespace blofeld
 	{
 		{ _field_short_block_index, "character", &character_palette_block },
 		{ _field_byte_flags, "flags", &distribution_character_flags },
-		FIELD_PAD("post-flags", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("post-flags", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -191,7 +191,7 @@ namespace blofeld
 		WEAPON_DISTRIBUTION_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "weapon", &scenario_weapon_palette_block },
-		FIELD_PAD("post-weapon-palette-index", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-weapon-palette-index", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -244,14 +244,14 @@ namespace blofeld
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real_euler_angles_2d, "facing", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "roll", FIELD_FLAG_UNKNOWN0 },
-		FIELD_EXPLANATION("Distribution", nullptr, FIELD_FLAG_NONE, "The following blocks describe who will receive this cue."),
-		FIELD_CUSTOM("distribution", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_EXPLANATION_EX("Distribution", nullptr, FIELD_FLAG_NONE, "The following blocks describe who will receive this cue."),
+		FIELD_CUSTOM_EX("distribution", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "distribution", &cue_distribution_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_EXPLANATION("Payload", nullptr, FIELD_FLAG_NONE, "The following blocks describe the type of stimulus and related payload; you should only specify one."),
-		FIELD_CUSTOM("payload", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_EXPLANATION_EX("Payload", nullptr, FIELD_FLAG_NONE, "The following blocks describe the type of stimulus and related payload; you should only specify one."),
+		FIELD_CUSTOM_EX("payload", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "payload", &cue_payload_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_long_block_index, "cue definition index", FIELD_FLAG_UNKNOWN0, &ai_cue_block },
 		{ _field_terminator }
 	};
@@ -268,7 +268,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "flags", &quick_cue_flags },
-		FIELD_PAD("post-flags", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("post-flags", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
 		{ _field_real_point_3d, "position" },
 		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },

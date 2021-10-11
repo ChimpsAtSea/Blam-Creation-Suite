@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -62,7 +62,7 @@ namespace blofeld
 	{
 		{ _field_byte_integer, "declaration type", FIELD_FLAG_READ_ONLY },
 		{ _field_byte_integer, "stride", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("vertex buffer pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("vertex buffer pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_dword_integer, "count", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "d3d hardware format", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
@@ -79,7 +79,7 @@ namespace blofeld
 	{
 		{ _field_byte_integer, "declaration type", FIELD_FLAG_READ_ONLY },
 		{ _field_byte_integer, "stride", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("vertex buffer pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("vertex buffer pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_dword_integer, "count", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "d3d hardware format", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }

@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -28,35 +28,35 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_WATER_RIPPLE_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("TYPE FLAGS", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("TYPE FLAGS", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_flags, "flags", &ripple_behavior_flags },
-		FIELD_EXPLANATION("INITIAL SETTINGS", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("INITIAL SETTINGS", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "initial radius", MAKE_OLD_NAMES("radius") },
 		{ _field_real, "initial amplitude", MAKE_OLD_NAMES("amplitude") },
 		{ _field_real, "spread speed" },
 		{ _field_real, "speed bias" },
 		{ _field_real, "position random range" },
 		{ _field_real, "max visibility distance" },
-		FIELD_EXPLANATION("LIFE SETTINGS", nullptr, FIELD_FLAG_NONE, "what happens during the ripple life. damping should be always larger than 0."),
+		FIELD_EXPLANATION_EX("LIFE SETTINGS", nullptr, FIELD_FLAG_NONE, "what happens during the ripple life. damping should be always larger than 0."),
 		{ _field_real, "duration max" },
 		{ _field_real, "duration min" },
 		{ _field_real, "rise period ratio" },
 		{ _field_enum, "rise function", &transition_function_enum },
 		{ _field_enum, "descend function", &transition_function_enum },
-		FIELD_EXPLANATION("PENDULUM SETTINGS", nullptr, FIELD_FLAG_NONE, "Only valid in case of the predulum flag has been checked."),
+		FIELD_EXPLANATION_EX("PENDULUM SETTINGS", nullptr, FIELD_FLAG_NONE, "Only valid in case of the predulum flag has been checked."),
 		{ _field_real, "phase revolution speed" },
 		{ _field_real, "phase repeat along radius" },
-		FIELD_EXPLANATION("SHAPE TRANSITION", nullptr, FIELD_FLAG_NONE, "interpolate between shapes in ripple pattern array"),
+		FIELD_EXPLANATION_EX("SHAPE TRANSITION", nullptr, FIELD_FLAG_NONE, "interpolate between shapes in ripple pattern array"),
 		{ _field_real, "pattern start idx" },
 		{ _field_real, "pattern end idx" },
 		{ _field_enum, "pattern transition", &transition_function_enum },
-		FIELD_PAD("SexyPadding1", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_EXPLANATION("FOAM", nullptr, FIELD_FLAG_NONE, "quick flashed foam"),
+		FIELD_PAD_EX("SexyPadding1", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("FOAM", nullptr, FIELD_FLAG_NONE, "quick flashed foam"),
 		{ _field_real, "foam out radius" },
 		{ _field_real, "foam fade distance" },
 		{ _field_real, "foam duration" },
 		{ _field_enum, "foam fade function", &transition_function_enum },
-		FIELD_PAD("SexyPadding2", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("SexyPadding2", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

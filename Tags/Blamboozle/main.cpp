@@ -2,7 +2,12 @@
 
 int wmain(int argc, const wchar_t** argv)
 {
-	int result = blamboozle_run();
+	init_command_line();
+	init_console();
 
+	int result = blamboozle_run();
+	
+	deinit_console();
+	deinit_command_line();
 	return result;
 }

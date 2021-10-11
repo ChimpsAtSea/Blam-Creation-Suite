@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -20,7 +20,7 @@ namespace blofeld
 		{ _field_enum, "report type", FIELD_FLAG_READ_ONLY, &error_report_types },
 		{ _field_word_flags, "flags", FIELD_FLAG_READ_ONLY, &error_report_flags },
 		{ _field_short_integer, "runtime generation flags", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("WVTP", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("WVTP", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "runtime something", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_block, "reports", FIELD_FLAG_READ_ONLY, &error_reports_block },
 		{ _field_terminator }

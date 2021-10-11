@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -17,7 +17,7 @@ namespace blofeld
 		MIDNIGHT_LIGHT_STRUCT_ID)
 	{
 		{ _field_long_integer, "Version", FIELD_FLAG_UNKNOWN0 },
-		FIELD_EXPLANATION("Dynamic/Static Shared Light Parameters", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Dynamic/Static Shared Light Parameters", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_string_id, "haloLightNode", "Light node name in DCC.", FIELD_FLAG_INDEX },
 		{ _field_long_enum, "Light Type", "Geometry shape of light.", &midnight_light_type_enum_definition },
 		{ _field_real_rgb_color, "Light Color" },
@@ -29,11 +29,11 @@ namespace blofeld
 		{ _field_real, "Camera Distance Fade End", "Distance at which the light should be completely faded out and not seen" },
 		{ _field_real, "Specular Power", "For screen-space dynamic lights" },
 		{ _field_real, "Specular Intensity", "For screen-space dynamic lights" },
-		FIELD_EXPLANATION("Shared Spot Parameters", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Shared Spot Parameters", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "Inner Cone Angle", "Inner hotspot attenuation end.", nullptr, "[0-160 degrees]" },
 		{ _field_struct, "Outer Cone End", "Angle size of spotlight.", nullptr, "[0-160 degrees]", &light_scalar_function_struct },
 		{ _field_long_enum, "Cone Projection Shape", "Use cone in all cases unless you have a gobo you need to project, frustum uses the full clip area of the light", &midnight_projection_definition },
-		FIELD_EXPLANATION("Dynamic Only Parameters", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Dynamic Only Parameters", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "Shadow Near Clip Plane" },
 		{ _field_real, "Shadow Far Clip Plane" },
 		{ _field_real, "Shadow Bias Offset" },
@@ -45,10 +45,10 @@ namespace blofeld
 		{ _field_char_enum, "Cinema Objects Only", "This should only be turned on if you have light linking data correctly setup", &midnight_boolean_enum_definition },
 		{ _field_char_enum, "Cinema Only", &midnight_boolean_enum_definition },
 		{ _field_char_enum, "Cinema Exclude", &midnight_boolean_enum_definition },
-		FIELD_PAD("PADDING1", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("PADDING1", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_char_enum, "Specular Contribution", &midnight_boolean_enum_definition },
 		{ _field_char_enum, "Diffuse Contribution", &midnight_boolean_enum_definition },
-		FIELD_EXPLANATION("Dynamic Gobo", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Dynamic Gobo", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "Gobo Tag Path", "Bitmap file for spotlight. Cube map for point light. Gobo bitmap must be synced to xbox.", &bitmap_reference$8 },
 		{ _field_struct, "Rotation", nullptr, nullptr, "[0-360 degrees]", &light_scalar_function_struct },
 		{ _field_real, "Aspect Ratio", "Shape length and width of Gobo.", nullptr, "[-0-1+]" },
@@ -57,13 +57,13 @@ namespace blofeld
 		{ _field_real, "Repeat Y", "Tile Gobo.", nullptr, "[0-1+]" },
 		{ _field_struct, "Offset X", "Offset Gobo.", &light_scalar_function_struct },
 		{ _field_struct, "Offset Y", "Offset Gobo.", &light_scalar_function_struct },
-		FIELD_EXPLANATION("Color Change", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Color Change", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "Interpolation Function", &light_color_function_struct },
 		{ _field_real_rgb_color, "Target Color" },
-		FIELD_EXPLANATION("Channels", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Channels", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_flags, "Light Channels", &channelDefinitionFlags },
 		{ _field_long_flags, "Shadow Channels", &channelDefinitionFlags },
-		FIELD_EXPLANATION("Bungie Parameters", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Bungie Parameters", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_flags, "flags", &light_definition_flags },
 		{ _field_real, "destroy light after", "automatically destroys the light after it has existed this long (0 to disable)", "seconds" },
 		{ _field_tag_reference, "Lens Flare", &global_lens_flare_reference },

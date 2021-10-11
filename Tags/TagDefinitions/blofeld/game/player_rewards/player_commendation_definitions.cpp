@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -46,7 +46,7 @@ namespace blofeld
 		{ _field_string_id, "description text" },
 		{ _field_block, "rewards", &commendationRewardBlock_block },
 		{ _field_char_integer, "sequence index" },
-		FIELD_PAD("CA_PAD1", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("CA_PAD1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_short_integer, "medal sprite index" },
 		{ _field_short_integer, "game type sprite index" },
 		{ _field_block, "prerequisites", MAKE_OLD_NAMES("contributing commendations"), &commendationAggregatorDependent_block },
@@ -64,7 +64,7 @@ namespace blofeld
 		COMMENDATIONREWARDBLOCK_ID)
 	{
 		{ _field_char_enum, "currency type", "Type of currency given by this reward.", &currencyTypeEnumDefinition },
-		FIELD_PAD("CRB_PAD1", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("CRB_PAD1", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "reward value" },
 		{ _field_terminator }
 	};
@@ -113,16 +113,16 @@ namespace blofeld
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 12 },
 		{ _field_byte_flags, "flags", &commendationFlags },
-		FIELD_PAD("CB_PAD0", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("CB_PAD0", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_char_enum, "category", &commendationCategoryEnum },
 		{ _field_char_enum, "subcategory", &commendationSubcategoryEnum },
 		{ _field_char_integer, "sequence index" },
-		FIELD_PAD("CB_PAD1", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("CB_PAD1", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "medal sprite index" },
 		{ _field_short_integer, "game type sprite index" },
-		FIELD_CUSTOM("unlock prerequisites", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("unlock prerequisites", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "prerequisites", &PurchasePrerequisitesUnifiedDefinitionBlock },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_block, "levels", &commendationLevelBlock_block },
 
 		{ _field_terminator }
@@ -218,7 +218,7 @@ namespace blofeld
 		COMMENDATIONAGGREGATORDEPENDENT_STRUCT_ID)
 	{
 		{ _field_char_enum, "type", &aggregatorDependentTypeEnumDefinition },
-		FIELD_PAD("PAD1", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("PAD1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};

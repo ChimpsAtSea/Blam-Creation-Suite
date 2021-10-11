@@ -1475,6 +1475,8 @@ namespace infinite_f1 {
 
 	extern s_tag_block_definition collisionmodelbspblock_block;
 
+	extern s_tag_block_definition collisionmodelresourcebspblock_block;
+
 	extern s_tag_block_definition aihintsectorpoint_block;
 
 	extern s_tag_block_definition s_ai_sector_point_block;
@@ -1875,6 +1877,8 @@ namespace infinite_f1 {
 
 	extern s_tag_block_definition opportunityareadata_block;
 
+	extern s_tag_block_definition firingpointaabb_block;
+
 	extern s_tag_block_definition navmeshdata_block;
 
 	extern s_tag_block_definition mobilenavmeshdata_block;
@@ -1892,6 +1896,8 @@ namespace infinite_f1 {
 	extern s_tag_block_definition user_hint_jump_block;
 
 	extern s_tag_block_definition user_hint_data_block;
+
+	extern s_tag_block_definition s_firing_position_definition_block;
 
 	extern s_tag_block_definition response_block;
 
@@ -1987,6 +1993,14 @@ namespace infinite_f1 {
 
 	extern s_tag_block_definition zone_definition_block;
 
+	extern s_tag_block_definition s_frame_event_block;
+
+	extern s_tag_block_definition s_sound_event_block;
+
+	extern s_tag_block_definition s_effect_event_block;
+
+	extern s_tag_block_definition s_dialogue_event_block;
+
 	extern s_tag_block_definition c_model_animation_block;
 
 	extern s_tag_block_definition s_blend_screen_delaunay_triangle_block;
@@ -2032,6 +2046,14 @@ namespace infinite_f1 {
 	extern s_tag_block_definition s_animation_node_mask_block;
 
 	extern s_tag_block_definition s_animation_function_block;
+
+	extern s_tag_block_definition referencedata_block;
+
+	extern s_tag_block_definition s_object_space_node_data_block;
+
+	extern s_tag_block_definition s_object_space_offset_node_reference_block;
+
+	extern s_tag_block_definition s_fik_anchor_node_reference_block;
 
 	extern s_tag_block_definition animationinterpolator_block;
 
@@ -2123,6 +2145,10 @@ namespace infinite_f1 {
 
 	extern s_tag_block_definition s_function_driven_variant_block;
 
+	extern s_tag_block_definition animationkeyjointorientations_block;
+
+	extern s_tag_block_definition c_model_animation_tag_resource_member_block;
+
 	extern s_tag_block_definition animationtokenentry_block;
 
 	extern s_tag_block_definition overlaytokenentry_block;
@@ -2144,6 +2170,16 @@ namespace infinite_f1 {
 	extern s_tag_block_definition animationgraphparentdata_block;
 
 	extern s_tag_block_definition animationgraphuserparameter_block;
+
+	extern s_tag_block_definition s_animation_wrinkle_event_block;
+
+	extern s_tag_block_definition s_animation_extended_event_block;
+
+	extern s_tag_block_definition s_animation_object_function_block;
+
+	extern s_tag_block_definition s_animation_ik_chain_event_block;
+
+	extern s_tag_block_definition s_animation_ik_chain_proxy_block;
 
 	extern s_tag_block_definition animsettableentryvariantid_block;
 
@@ -2202,6 +2238,8 @@ namespace infinite_f1 {
 	extern s_tag_block_definition effectframeevent_block;
 
 	extern s_tag_block_definition effectframeevents_block;
+
+	extern s_tag_block_definition s_facial_animation_curve_block;
 
 	extern s_tag_block_definition subgraphreferenceexportedanimnodegraph_block;
 
@@ -2336,6 +2374,8 @@ namespace infinite_f1 {
 	extern s_tag_block_definition globalforceplacement_block;
 
 	extern s_tag_block_definition structure_external_instanced_geometry_reference_block;
+
+	extern s_tag_block_definition unicodestringlookupinfo_block;
 
 	extern s_tag_block_definition languagereference_block;
 
@@ -2688,6 +2728,12 @@ namespace infinite_f1 {
 	extern s_tag_block_definition hsweakreferencesblockwithvariant_block;
 
 	extern s_tag_block_definition hsremotefunctionblock_block;
+
+	extern s_tag_block_definition hsglobalvariable_block;
+
+	extern s_tag_block_definition hsglobalfunctionargument_block;
+
+	extern s_tag_block_definition hsglobalfunction_block;
 
 	extern s_tag_block_definition hssourceruntimeerrormessage_block;
 
@@ -5007,6 +5053,20 @@ namespace infinite_f1 {
 
 	extern s_tag_block_definition large_collision_bsp_block;
 
+	extern s_tag_block_definition s_collision_kd_hierarchy_static_node_block;
+
+	extern s_tag_block_definition s_collision_kd_hierarchy_static_header_block;
+
+	extern s_tag_block_definition s_super_node_mapping_block;
+
+	extern s_tag_block_definition s_cluster_table_block;
+
+	extern s_tag_block_definition collisionkdhierarchystatichashtabledata_block;
+
+	extern s_tag_block_definition collisionkdhierarchystatichashtableshort_block;
+
+	extern s_tag_block_definition collisionkdhierarchystaticinusemasks_block;
+
 	extern s_tag_block_definition collision_model_material_block;
 
 	extern s_tag_block_definition collision_model_region_block;
@@ -5102,6 +5162,10 @@ namespace infinite_f1 {
 	extern s_tag_block_definition bspclustertoroomindices_block;
 
 	extern s_tag_block_definition s_game_audibility_block;
+
+	extern s_tag_block_definition s_facial_animation_permutation_block;
+
+	extern s_tag_block_definition s_model_animation_permutation_block;
 
 	extern s_tag_block_definition s_facial_animation_language_block;
 
@@ -5203,6 +5267,28 @@ namespace infinite_f1 {
 
 	extern s_tag_block_definition lensflarecoloranimation_block;
 
+	extern s_tag_block_definition animatedmeshquantizedrigidtransform_block;
+
+	extern s_tag_block_definition animatedmeshrigidbodycsvertex_block;
+
+	extern s_tag_block_definition animatedmeshrigidbodyframebounds_block;
+
+	extern s_tag_block_definition animatedmeshrigidbodyframetransforms_block;
+
+	extern s_tag_block_definition animatedmeshrigidbodyrenderstats_block;
+
+	extern s_tag_block_definition animatedmeshrigidbodyframestats_block;
+
+	extern s_tag_block_definition referencedpartpermaterial_block;
+
+	extern s_tag_block_definition animatedmeshrigidbodymaterialstats_block;
+
+	extern s_tag_block_definition dwordindexbuffer_block;
+
+	extern s_tag_block_definition streaminggeometrychunk_block;
+
+	extern s_tag_block_definition streaminggeometrybuffer_block;
+
 	extern s_tag_block_definition instanceindex_block;
 
 	extern s_tag_block_definition s_part_block;
@@ -5222,6 +5308,10 @@ namespace infinite_f1 {
 	extern s_tag_block_definition s_positioning_block;
 
 	extern s_tag_block_definition materialstreamingscale_block;
+
+	extern s_tag_block_definition streamingchunklist_block;
+
+	extern s_tag_block_definition streaminggeometrymesh_block;
 
 	extern s_tag_block_definition wordindex_block;
 
@@ -5260,6 +5350,18 @@ namespace infinite_f1 {
 	extern s_tag_block_definition nodeindexstruct_block;
 
 	extern s_tag_block_definition indirectlightproberegion_block;
+
+	extern s_tag_block_definition dwsairprobesampleirradiance_block;
+
+	extern s_tag_block_definition dwsairprobesampledepth_block;
+
+	extern s_tag_block_definition dwsairprobesampleskyvisibility_block;
+
+	extern s_tag_block_definition dwsairprobesample_block;
+
+	extern s_tag_block_definition dwsairproberegion_block;
+
+	extern s_tag_block_definition bakedtodstate_block;
 
 	extern s_tag_block_definition goboanimationparameter_block;
 
@@ -5321,6 +5423,8 @@ namespace infinite_f1 {
 
 	extern s_tag_block_definition bitmappackagetexturegroup_block;
 
+	extern s_tag_block_definition streamingbitmapdata_block;
+
 	extern s_tag_block_definition bitmapdata_block;
 
 	extern s_tag_block_definition bitmapusage_block;
@@ -5328,6 +5432,10 @@ namespace infinite_f1 {
 	extern s_tag_block_definition color_table_color_block;
 
 	extern s_tag_block_definition i343graphicstexturegroupsettings_block;
+
+	extern s_tag_block_definition rasterizervertexbuffer_block;
+
+	extern s_tag_block_definition rasterizerindexbuffer_block;
 
 	extern s_tag_block_definition globalbitmaps_block;
 
@@ -5338,6 +5446,8 @@ namespace infinite_f1 {
 	extern s_tag_block_definition i343graphicsglobalmaterial_block;
 
 	extern s_tag_block_definition i343graphicsdisplayoutputtransform_block;
+
+	extern s_tag_block_definition rasterizervertexworld_block;
 
 	extern s_tag_block_definition rawvertex_block;
 
@@ -6529,9 +6639,17 @@ namespace infinite_f1 {
 
 	extern s_tag_array_definition havok_body_id_array;
 
+	extern s_tag_array_definition bsp_mask;
+
+	extern s_tag_array_definition indices;
+
 	extern s_tag_array_definition flags_for_nodes_driving_collision_geo;
 
 	extern s_tag_array_definition tail;
+
+	extern s_tag_array_definition compressed_quantized_rigid_transform;
+
+	extern s_tag_array_definition m_shareddxresourcetypedviews;
 
 	extern s_tag_array_definition node_indices$3;
 
@@ -7295,10 +7413,16 @@ namespace infinite_f1 {
 	extern s_string_list_definition opportunityareadatacombateffect;
 	extern s_string_list_definition opportunityareadataopportunitytype;
 
+	extern s_tag_struct_definition firingpointaabb;
+
+	extern s_tag_struct_definition navmeshresource;
+
 	extern s_tag_struct_definition navmeshdata;
 
 	extern s_tag_struct_definition mobilenavmeshdata;
 	extern s_string_list_definition mobilenavmeshflags;
+
+	extern s_tag_struct_definition navvolumeresource;
 
 	extern s_tag_struct_definition navvolumebucket;
 
@@ -7323,6 +7447,10 @@ namespace infinite_f1 {
 	extern s_string_list_definition userhintjumptypeflags;
 
 	extern s_tag_struct_definition user_hint_data;
+
+	extern s_tag_struct_definition s_firing_position_definition;
+	extern s_string_list_definition firingpositionflags;
+	extern s_string_list_definition firingpositionbunkertypeflags;
 
 	extern s_tag_struct_definition response;
 	extern s_string_list_definition responsetype;
@@ -7532,6 +7660,15 @@ namespace infinite_f1 {
 	extern s_tag_struct_definition zone_definition;
 	extern s_string_list_definition aizoneflags;
 
+	extern s_tag_struct_definition s_frame_event;
+	extern s_string_list_definition animationframeeventtype;
+
+	extern s_tag_struct_definition s_sound_event;
+
+	extern s_tag_struct_definition s_effect_event;
+
+	extern s_tag_struct_definition s_dialogue_event;
+
 	extern s_tag_struct_definition animationresourceindex;
 
 	extern s_tag_struct_definition c_model_animation;
@@ -7542,6 +7679,8 @@ namespace infinite_f1 {
 	extern s_string_list_definition c_animation_internal_flags;
 
 	extern s_tag_struct_definition s_blend_screen_delaunay_triangle;
+
+	extern s_tag_struct_definition c_animation_data_sizes;
 
 	extern s_tag_struct_definition soundeventreference;
 	extern s_tag_reference_definition sound_reference$29_tagref;
@@ -7565,7 +7704,6 @@ namespace infinite_f1 {
 	extern s_string_list_definition animationnodemodelflags;
 
 	extern s_tag_struct_definition s_import_frame_event;
-	extern s_string_list_definition animationframeeventtype;
 
 	extern s_tag_struct_definition s_sound_event_extended_deprecated;
 
@@ -7595,6 +7733,15 @@ namespace infinite_f1 {
 	extern s_string_list_definition nodemaskflags;
 
 	extern s_tag_struct_definition s_animation_function;
+
+	extern s_tag_struct_definition referencedata;
+
+	extern s_tag_struct_definition s_object_space_node_data;
+	extern s_string_list_definition c_object_space_node_flags;
+
+	extern s_tag_struct_definition s_object_space_offset_node_reference;
+
+	extern s_tag_struct_definition s_fik_anchor_node_reference;
 
 	extern s_tag_struct_definition animationinterpolator;
 
@@ -7697,6 +7844,8 @@ namespace infinite_f1 {
 
 	extern s_tag_struct_definition s_weapon_class_listing;
 
+	extern s_tag_struct_definition realorientationtagstruct;
+
 	extern s_tag_struct_definition s_additional_node_data;
 
 	extern s_tag_struct_definition s_animation_node_usage_entry;
@@ -7708,11 +7857,19 @@ namespace infinite_f1 {
 
 	extern s_tag_struct_definition s_function_driven_variant;
 
+	extern s_tag_struct_definition animationkeyjointorientations;
+
+	extern s_tag_struct_definition animationeventblocks;
+
+	extern s_tag_struct_definition c_model_animation_tag_resource_member;
+
 	extern s_tag_struct_definition animationtokenentry;
 
 	extern s_tag_struct_definition overlaytokenentry;
 
 	extern s_tag_struct_definition poseblendtokenentry;
+
+	extern s_tag_struct_definition c_model_animation_tag_animation_group_resource;
 
 	extern s_tag_struct_definition c_model_animation_tag_refrence_counted_resource;
 
@@ -7758,6 +7915,20 @@ namespace infinite_f1 {
 
 	extern s_tag_struct_definition s_model_animation_runtime_data;
 
+	extern s_tag_struct_definition s_animation_wrinkle_event;
+	extern s_string_list_definition c_animation_facial_wrinkle_region;
+
+	extern s_tag_struct_definition s_animation_extended_event;
+
+	extern s_tag_struct_definition s_animation_object_function;
+	extern s_string_list_definition c_animation_object_function_name;
+
+	extern s_tag_struct_definition s_animation_ik_chain_event;
+	extern s_string_list_definition c_animation_ik_chain_event_usage;
+	extern s_string_list_definition c_animation_ik_chain_event_type;
+
+	extern s_tag_struct_definition s_animation_ik_chain_proxy;
+
 	extern s_tag_struct_definition c_animation_frame_event_list_anim;
 
 	extern s_tag_struct_definition c_animation_frame_event_list_audio;
@@ -7796,6 +7967,8 @@ namespace infinite_f1 {
 	extern s_tag_reference_definition runtimeanimset_reference_tagref;
 
 	extern s_tag_struct_definition c_quantized_quaternion_8byte_revised;
+
+	extern s_tag_struct_definition c_quantized_orientation;
 
 	extern s_tag_struct_definition sharedstaticdatacodectranslation;
 
@@ -7876,6 +8049,9 @@ namespace infinite_f1 {
 	extern s_tag_struct_definition animationframeeventlisteffects_v0;
 	extern s_tag_reference_definition animationlibraryfx_reference$2_tagref;
 
+	extern s_tag_struct_definition s_facial_animation_curve;
+	extern s_string_list_definition facialanimationtracklist;
+
 	extern s_tag_struct_definition subgraphreferenceexportedanimnodegraph;
 	extern s_tag_reference_definition xanimnodegraph_reference_tagref;
 
@@ -7884,6 +8060,8 @@ namespace infinite_f1 {
 
 	extern s_tag_struct_definition subgraphreferencetransitionlogicgraph;
 	extern s_tag_reference_definition xtransitionlogicgraph_reference_tagref;
+
+	extern s_tag_struct_definition pcaimportedframedata;
 
 	extern s_tag_struct_definition pcaimportedframedataelement;
 
@@ -8280,6 +8458,10 @@ namespace infinite_f1 {
 	extern s_string_list_definition instancedgeometrystreamingpriority;
 	extern s_string_list_definition prefaboverrideflags;
 	extern s_string_list_definition staticgeotype;
+
+	extern s_tag_struct_definition unicodestringlookupinfo;
+
+	extern s_tag_struct_definition unicodestringlistresource;
 
 	extern s_tag_struct_definition languagereference;
 	extern s_string_list_definition e_language;
@@ -9204,6 +9386,8 @@ namespace infinite_f1 {
 
 	extern s_tag_struct_definition hsscriptcontainer;
 
+	extern s_tag_struct_definition hssource;
+
 	extern s_tag_struct_definition hstructfieldstringblock;
 
 	extern s_tag_struct_definition objectscriptdefinition;
@@ -9226,6 +9410,14 @@ namespace infinite_f1 {
 	extern s_tag_reference_definition _reference$76_tagref;
 
 	extern s_tag_struct_definition hsremotefunctionblock;
+
+	extern s_tag_struct_definition hsglobalvariable;
+
+	extern s_tag_struct_definition hsglobalfunctionargument;
+
+	extern s_tag_struct_definition hsglobalfunction;
+
+	extern s_tag_struct_definition hssymbol;
 
 	extern s_tag_struct_definition hssourceruntimeerrormessage;
 
@@ -9394,6 +9586,8 @@ namespace infinite_f1 {
 	extern s_tag_struct_definition i343scenariozonesetbakedpvssubregion;
 
 	extern s_tag_struct_definition i343scenariozonesetbakedpvsperbspdata;
+
+	extern s_tag_struct_definition i343scenariozonesetbakedpvsresource;
 
 	extern s_tag_struct_definition i343scenariozonesetbakedpvsbakedpvstag;
 
@@ -9610,6 +9804,8 @@ namespace infinite_f1 {
 
 	extern s_tag_struct_definition scenarioclusterpointsblock;
 
+	extern s_tag_struct_definition legacybspkdtree;
+
 	extern s_tag_struct_definition s_scenario_cluster_data;
 	extern s_tag_reference_definition scenario_structure_bsp_reference$18_tagref;
 
@@ -9755,6 +9951,8 @@ namespace infinite_f1 {
 
 	extern s_tag_struct_definition structurebsprawresources;
 
+	extern s_tag_struct_definition structurebsptagresources;
+
 	extern s_tag_struct_definition c_structure_bsp_resource_interface;
 
 	extern s_tag_struct_definition prefabmaterialoverridevariant;
@@ -9896,6 +10094,8 @@ namespace infinite_f1 {
 	extern s_tag_struct_definition s_basic_struct;
 
 	extern s_tag_struct_definition basicarray;
+
+	extern s_tag_struct_definition s_basic_resource;
 
 	extern s_tag_struct_definition s_block_with_struct;
 
@@ -14261,6 +14461,8 @@ namespace infinite_f1 {
 
 	extern s_tag_struct_definition antialiasdata;
 
+	extern s_tag_struct_definition wpffontfiledata;
+
 	extern s_tag_struct_definition wpffontdefinition;
 	extern s_string_list_definition efontrendermode;
 
@@ -14768,6 +14970,8 @@ namespace infinite_f1 {
 
 	extern s_tag_struct_definition i343physicsterraincollisioncellgeotag;
 
+	extern s_tag_struct_definition i343physicsterraincollisiongeodata;
+
 	extern s_tag_struct_definition i343physicsterraincollisiongeoresource;
 
 	extern s_tag_struct_definition i343physicsterraincollisiongeotag;
@@ -14832,6 +15036,25 @@ namespace infinite_f1 {
 
 	extern s_tag_struct_definition large_collision_bsp;
 
+	extern s_tag_struct_definition s_collision_kd_hierarchy_static_node;
+
+	extern s_tag_struct_definition s_collision_kd_hierarchy_static_header;
+	extern s_string_list_definition t_collision_instance_cull_flags;
+
+	extern s_tag_struct_definition supernodemappingindex;
+
+	extern s_tag_struct_definition s_super_node_mapping;
+
+	extern s_tag_struct_definition s_cluster_table;
+
+	extern s_tag_struct_definition collisionkdhierarchystatichashtabledata;
+
+	extern s_tag_struct_definition collisionkdhierarchystatichashtableshort;
+
+	extern s_tag_struct_definition collisionkdhierarchystaticinusemasks;
+
+	extern s_tag_struct_definition s_collision_kd_hierarchy_static;
+
 	extern s_tag_struct_definition collision_model_definition;
 	extern s_string_list_definition collisionmodelflags;
 
@@ -14848,6 +15071,8 @@ namespace infinite_f1 {
 
 	extern s_tag_struct_definition collision_model_pathfinding_sphere;
 	extern s_string_list_definition pathfindingsphereflags;
+
+	extern s_tag_struct_definition collisionmodelresource;
 
 	extern s_tag_struct_definition s_grounded_friction_definition;
 
@@ -14934,6 +15159,8 @@ namespace infinite_f1 {
 	extern s_tag_struct_definition acousticstagdata;
 
 	extern s_tag_struct_definition soundbankdatafiletag;
+
+	extern s_tag_struct_definition soundbankdataresource;
 
 	extern s_tag_struct_definition soundbankresourceblockdefinition;
 
@@ -15057,6 +15284,14 @@ namespace infinite_f1 {
 	extern s_tag_struct_definition bspclustertoroomindices;
 
 	extern s_tag_struct_definition s_game_audibility;
+
+	extern s_tag_struct_definition s_facial_animation_permutation;
+
+	extern s_tag_struct_definition s_facial_animation;
+
+	extern s_tag_struct_definition s_model_animation_permutation;
+
+	extern s_tag_struct_definition s_model_animations;
 
 	extern s_tag_struct_definition s_facial_animation_language;
 
@@ -15333,9 +15568,40 @@ namespace infinite_f1 {
 	extern s_string_list_definition lensflarerotationfunction;
 	extern s_string_list_definition lensflareanimationflags;
 
+	extern s_tag_struct_definition compressedquantizedrigidtransform;
+
+	extern s_tag_struct_definition animatedmeshquantizedrigidtransform;
+
+	extern s_tag_struct_definition animatedmeshrigidbodycsvertex;
+
+	extern s_tag_struct_definition animatedmeshrigidbodyframebounds;
+
+	extern s_tag_struct_definition animatedmeshrigidbodyframetransforms;
+
+	extern s_tag_struct_definition animatedmeshrigidbodyrenderstats;
+
+	extern s_tag_struct_definition animatedmeshrigidbodyframestats;
+
+	extern s_tag_struct_definition referencedpartpermaterial;
+
+	extern s_tag_struct_definition animatedmeshrigidbodymaterialstats;
+
+	extern s_tag_struct_definition dwordindexbuffer;
+
+	extern s_tag_struct_definition animatedmeshrigidbodyresouce;
+	extern s_string_list_definition animatedmeshtransformtype;
+
 	extern s_tag_struct_definition animatedmesh;
 
 	extern s_tag_struct_definition lodrenderdatavertexbufferindex;
+
+	extern s_tag_struct_definition streaminggeometrychunk;
+
+	extern s_tag_struct_definition iresourceviewpointer;
+
+	extern s_tag_struct_definition streaminggeometrybuffer;
+
+	extern s_tag_struct_definition s_render_geometry_api_resource;
 
 	extern s_tag_struct_definition instanceindex;
 
@@ -15363,6 +15629,10 @@ namespace infinite_f1 {
 	extern s_tag_struct_definition s_positioning;
 
 	extern s_tag_struct_definition materialstreamingscale;
+
+	extern s_tag_struct_definition streamingchunklist;
+
+	extern s_tag_struct_definition streaminggeometrymesh;
 
 	extern s_tag_struct_definition wordindex;
 
@@ -15413,6 +15683,20 @@ namespace infinite_f1 {
 	extern s_tag_struct_definition nodeindexstruct;
 
 	extern s_tag_struct_definition indirectlightproberegion;
+
+	extern s_tag_struct_definition dwsairprobesampleirradiance;
+
+	extern s_tag_struct_definition dwsairprobesampledepth;
+
+	extern s_tag_struct_definition dwsairprobesampleskyvisibility;
+
+	extern s_tag_struct_definition dwsairprobesample;
+
+	extern s_tag_struct_definition dwsairproberegion;
+
+	extern s_tag_struct_definition bakedtodstate;
+
+	extern s_tag_struct_definition bakeddwsirradianceresource;
 
 	extern s_tag_struct_definition structurelightmap;
 	extern s_tag_reference_definition bitmap_reference$71_tagref;
@@ -15549,6 +15833,11 @@ namespace infinite_f1 {
 
 	extern s_tag_struct_definition bitmappackagesettingstable;
 
+	extern s_tag_struct_definition streamingbitmapdata;
+
+	extern s_tag_struct_definition bitmapdataresource;
+	extern s_string_list_definition bitmapdataresourceflags;
+
 	extern s_tag_struct_definition bitmapdata;
 	extern s_string_list_definition bitmaptype;
 	extern s_string_list_definition bitmapformat;
@@ -15575,6 +15864,14 @@ namespace infinite_f1 {
 
 	extern s_tag_struct_definition i343graphicstexturegrouptable;
 	extern s_string_list_definition i343graphicstexturegroupflags;
+
+	extern s_tag_struct_definition d3dbufferdata;
+
+	extern s_tag_struct_definition rasterizervertexbuffer;
+	extern s_string_list_definition evertexbufferusage;
+	extern s_string_list_definition erasterizervertexformat;
+
+	extern s_tag_struct_definition rasterizerindexbuffer;
 
 	extern s_tag_struct_definition globalbitmaps;
 	extern s_tag_reference_definition bitmap_reference$60_tagref;
@@ -15607,6 +15904,8 @@ namespace infinite_f1 {
 	extern s_tag_reference_definition materialswatch_reference$5_tagref;
 	extern s_tag_reference_definition hair_reference_tagref;
 	extern s_tag_reference_definition psodictionary_reference_tagref;
+
+	extern s_tag_struct_definition rasterizervertexworld;
 
 	extern s_tag_struct_definition geometrynodeindex;
 

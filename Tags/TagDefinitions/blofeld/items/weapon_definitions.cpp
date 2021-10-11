@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -19,8 +19,8 @@ namespace blofeld
 		WEAPON_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "item", &item_struct_definition },
-		FIELD_CUSTOM("$$$ WEAPON $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
-		FIELD_EXPLANATION(nullptr, nullptr, FIELD_FLAG_NONE, "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'."),
+		FIELD_CUSTOM_EX("$$$ WEAPON $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_EXPLANATION_EX(nullptr, nullptr, FIELD_FLAG_NONE, "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'."),
 		{ _field_long_flags, "flags", &weapon_definition_flags },
 		{ _field_long_flags, "secondary flags", &weapon_definition_secondary_flags },
 		{ _field_old_string_id, "unused label", FIELD_FLAG_UNKNOWN0 },
@@ -29,15 +29,15 @@ namespace blofeld
 		{ _field_real, "turn on time", "how long after being readied it takes this weapon to switch its 'turned_on' attachment to 1.0" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
-		FIELD_EXPLANATION("weapon vision mode settings", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("weapon vision mode settings", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "vision mode", "activated when this weapon is charging", &Tag::Reference<struct VisionModeDefinition>::s_defaultDefinition },
 		{ _field_real, "vision cooldown time", nullptr, "seconds" },
 
-		FIELD_EXPLANATION("old obsolete export to functions", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("old obsolete export to functions", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "ready time", nullptr, "seconds" },
 		{ _field_tag_reference, "ready effect", &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "ready damage effect", &global_damage_effect_or_response_definition_reference },
-		FIELD_EXPLANATION("heat", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("heat", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_fraction, "heat recovery threshold", "the heat value a weapon must return to before leaving the overheated state, once it has become overheated in the first place", nullptr, "[0,1]" },
 		{ _field_real_fraction, "overheated threshold", "the heat value over which a weapon first becomes overheated (should be greater than the heat recovery threshold)", nullptr, "[0,1]" },
 		{ _field_real_fraction, "heat detonation threshold", "the heat value above which the weapon has a chance of exploding each time it is fired", nullptr, "[0,1]" },
@@ -77,17 +77,17 @@ namespace blofeld
 
 		{ _field_tag_reference, "clang effect", "effect that is played in the air between two players that clang with this weapon", &weapon_block_struct_ready_effect_reference },
 		{ _field_char_enum, "melee damage reporting type", &global_damage_reporting_enum_definition },
-		FIELD_PAD("FEOROBJE", nullptr, FIELD_FLAG_NONE, 1),
-		FIELD_EXPLANATION("zoom", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_PAD_EX("FEOROBJE", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_EXPLANATION_EX("zoom", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_short_integer, "magnification levels", "the number of magnification levels this weapon allows" },
 		{ _field_real_bounds, "magnification range" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_char_integer, "zoom effect ticks", "how often 'zoom effect' will be triggered (while zoomed)" },
-		FIELD_PAD("wzt", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("wzt", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "zoom effect", "effect that is played while zoomed", &weapon_block_struct_ready_effect_reference },
 
-		FIELD_EXPLANATION("weapon aim assist", "DEPRECATED -- this will go away in favor of aim assist modes below", FIELD_FLAG_UNKNOWN0, "DEPRECATED -- this will go away in favor of aim assist modes below"),
+		FIELD_EXPLANATION_EX("weapon aim assist", "DEPRECATED -- this will go away in favor of aim assist modes below", FIELD_FLAG_UNKNOWN0, "DEPRECATED -- this will go away in favor of aim assist modes below"),
 		{ _field_struct, "weapon aim assist", &aim_assist_struct },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
@@ -98,31 +98,31 @@ namespace blofeld
 		{ _field_block, "target tracking", &global_target_tracking_parameters_block },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
-		FIELD_EXPLANATION("aim swim indexing", nullptr, FIELD_FLAG_NONE, "swim index 0 used when unzoomed, index 1 is for first zoom level, index 2 is 2nd zoom, etc."),
+		FIELD_EXPLANATION_EX("aim swim indexing", nullptr, FIELD_FLAG_NONE, "swim index 0 used when unzoomed, index 1 is for first zoom level, index 2 is 2nd zoom, etc."),
 		{ _field_block, "aim swim", &globalAimSwimBlock_block },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
-		FIELD_EXPLANATION("ballistics", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("ballistics", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_bounds, "ballistic arcing firing bounds", "At the min range (or closer), the minimum ballistic arcing is used, at the max (or farther away), the maximum arcing is used", "world units" },
 		{ _field_real_bounds, "ballistic arcing fraction bounds", "Controls speed and degree of arc. 0 = low, fast, 1 = high, slow", nullptr, "[0-1]" },
 
-		FIELD_EXPLANATION("movement", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("movement", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "movement penalized", &movement_penalty_modes },
-		FIELD_PAD("GTIXVRPA", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("GTIXVRPA", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_fraction, "forward movement penalty", "percent slowdown to forward movement for units carrying this weapon" },
 		{ _field_real_fraction, "sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 6 },
 		{ _field_real_fraction, "gunner armor mod forward movement penalty", "percent slowdown to forward movement for units carrying this weapon with the gunner armor mod active" },
 		{ _field_real_fraction, "gunner armor mod sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon with the gunner armor mod active" },
-		FIELD_EXPLANATION("Aiming", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Aiming", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "Maximum pitch rate", "This will cap the speed at which the player can aim when holding this weapon, probably want to set something sensible for turrets etc", "degrees per second" },
-		FIELD_EXPLANATION("ArmorMod Parameters", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("ArmorMod Parameters", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "Ammopack power capacity", "Ammopack armormod - 0.2 would give 20% additional capacity to an energy weapon" },
 
-		FIELD_EXPLANATION("AI targeting parameters", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("AI targeting parameters", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "AI scariness" },
-		FIELD_EXPLANATION("miscellaneous", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("miscellaneous", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "weapon power-on time", nullptr, "seconds" },
 		{ _field_real, "weapon power-off time", nullptr, "seconds" },
 		{ _field_tag_reference, "weapon power-on effect", &weapon_block_struct_ready_effect_reference },
@@ -140,14 +140,14 @@ namespace blofeld
 		{ _field_legacy, _field_real, "active camo regrowth rate" }, // assembly
 
 		{ _field_string_id, "handle node", "the node that get's attached to the unit's hand" },
-		FIELD_EXPLANATION("weapon labels", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("weapon labels", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_string_id, "weapon class" },
 		{ _field_string_id, "weapon name" },
-		FIELD_EXPLANATION("more miscellaneous", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("more miscellaneous", nullptr, FIELD_FLAG_NONE, ""),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_char_enum, "first time pickup type", &first_time_pickup_types },
-		FIELD_PAD("PAD", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("PAD", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach },
 		{ _field_legacy, _field_enum, "multiplayer weapon type", &multiplayer_weapon_types },
@@ -165,13 +165,13 @@ namespace blofeld
 		{ _field_block, "barrels", &weapon_barrels_block },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
-		FIELD_EXPLANATION("scaleshot", nullptr, FIELD_FLAG_NONE, "Allows the weapon to scale up and fire different projectiles based upon how many hits you get etc."),
+		FIELD_EXPLANATION_EX("scaleshot", nullptr, FIELD_FLAG_NONE, "Allows the weapon to scale up and fire different projectiles based upon how many hits you get etc."),
 		{ _field_block, "scaleshot parameters", &weaponScaleshotStruct_block },
 
 		{ _field_real, "runtime weapon power on velocity", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "runtime weapon power off velocity", FIELD_FLAG_UNKNOWN0 },
 		{ _field_useless_pad, "" },
-		FIELD_EXPLANATION("first-person movement control", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("first-person movement control", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "max movement acceleration" },
 		{ _field_real, "max movement velocity" },
 		{ _field_real, "max turning acceleration" },
@@ -229,7 +229,7 @@ namespace blofeld
 		{ _field_block, "Sound Sweeteners", &WeaponSoundSweetenerBlock_block },
 		{ _field_string_id, "Locking Reticle Screen Name" },
 		{ _field_string_id, "Locked On Reticle Screen Name" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -250,7 +250,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MELEE_DAMAGE_PARAMETERS_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("melee damage parameters", nullptr, FIELD_FLAG_NONE, "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
+		FIELD_EXPLANATION_EX("melee damage parameters", nullptr, FIELD_FLAG_NONE, "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_halo3odst, 2 },
 		{ _field_legacy, _field_tag_reference, "player melee damage", &global_damage_reference }, // source: assembly
@@ -303,9 +303,9 @@ namespace blofeld
 		{ _field_real, "magnetism falloff range", "at what point magnetism starts falling off", "world units" },
 		{ _field_real, "magnetism near falloff range", "at what point magnetism reaches full power", "world units" },
 		{ _field_angle, "deviation angle", "the maximum angle that a projectile is allowed to deviate from the gun barrel due to autoaim OR network lead vector reconstruction", "degrees" },
-		FIELD_PAD("ZHV", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("CVYGPMLMX", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("UQXKLVAXI", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("ZHV", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("CVYGPMLMX", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("UQXKLVAXI", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -319,17 +319,17 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBALAIMSWIMBLOCK_ID)
 	{
-		FIELD_EXPLANATION("x axis curve", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("x axis curve", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "x period", nullptr, "seconds" },
 		{ _field_real, "x amplitude" },
-		FIELD_EXPLANATION("y axis curve", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("y axis curve", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "y period", nullptr, "seconds" },
 		{ _field_real, "y amplitude" },
-		FIELD_EXPLANATION("biped state scalers", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("biped state scalers", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "non-moving, crouched" },
 		{ _field_real, "non-moving, standing" },
 		{ _field_real, "moving" },
-		FIELD_EXPLANATION("biped state transition times", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("biped state transition times", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "to crouched", nullptr, "seconds" },
 		{ _field_real, "to standing", nullptr, "seconds" },
 		{ _field_terminator }
@@ -375,13 +375,13 @@ namespace blofeld
 		{ _field_short_integer, "Ammopack rounds total initial", "AmmoPack armormod - alternate total_initial value due to AmmoPack" },
 		{ _field_short_integer, "Ammopack rounds total maximum", "AmmoPack armormod - alternate total_maximum value due to armor mod AmmoPack" },
 
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "reload dialogue time", "the length of time we wait before saying the reload dialogue", "seconds" },
 		{ _field_short_integer, "rounds reloaded" },
-		FIELD_PAD("VJGZW", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("VJGZW", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "chamber time", "the length of time it takes to chamber the next round", "seconds - NOT USED", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("HPMIV", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("P", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("HPMIV", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("P", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_tag_reference, "reloading effect", &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "reloading damage effect", &global_damage_effect_or_response_definition_reference },
 		{ _field_tag_reference, "chambering effect", &weapon_block_struct_ready_effect_reference },
@@ -402,7 +402,7 @@ namespace blofeld
 		MAGAZINE_OBJECTS_ID)
 	{
 		{ _field_short_integer, "rounds" },
-		FIELD_PAD("DTDPY", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("DTDPY", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "equipment", FIELD_FLAG_INDEX, &global_equipment_reference },
 		{ _field_terminator }
 	};
@@ -423,7 +423,7 @@ namespace blofeld
 		{ _field_short_block_index, "primary barrel", &weapon_barrels_block },
 		{ _field_short_block_index, "secondary barrel", &weapon_barrels_block },
 		{ _field_enum, "prediction", &trigger_prediction_type_enum },
-		FIELD_PAD("GNFR", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("GNFR", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "" },
 		{ _field_struct, "autofire", &weapon_trigger_autofire_struct },
 		{ _field_struct, "charging", &weapon_trigger_charging_struct },
@@ -452,13 +452,13 @@ namespace blofeld
 		WEAPON_BARRELS_ID)
 	{
 		{ _field_long_flags, "flags", &weapon_barrel_flags },
-		FIELD_EXPLANATION("firing", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("firing", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "firing", &weapon_barrel_firing_parameters_struct },
 		{ _field_short_block_index, "magazine", "the magazine from which this trigger draws its ammunition", &magazines_block },
 		{ _field_short_integer, "rounds per shot", "the number of rounds expended to create a single firing effect" },
 		{ _field_short_integer, "minimum rounds loaded", "the minimum number of rounds necessary to fire the weapon" },
 		{ _field_short_integer, "rounds between tracers", "the number of non-tracer rounds fired between tracers" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "optional barrel marker name" },
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach, 3 },
@@ -473,9 +473,9 @@ namespace blofeld
 		{ _field_legacy, _field_real, "event_synchronized_projectiles_per_second#Valid only for barrels set to prediction type \"continuous\". Controls how many projectiles per second can be individually synchronized (use debug_projectiles to diagnose)." },
 		{ _field_legacy, _field_real, "maximum_barrel_error_for_event_synchronization#Valid only for barrels set to prediction type \"continuous\". If the barrel\'s current error level is over this value (zero to one scale), we will not consider synchronizing projectiles with individual events (use debug_projectiles to diagnose)." },
 
-		FIELD_EXPLANATION("firing error", nullptr, FIELD_FLAG_NONE, "full error look pitch rate controlls how fast you can turn \nwith full error, yaw is implied from pitch. 0==130.\nfor reference, profile sensitivities are set to:\n1: 40\n3: 60\n9: 130\n"),
+		FIELD_EXPLANATION_EX("firing error", nullptr, FIELD_FLAG_NONE, "full error look pitch rate controlls how fast you can turn \nwith full error, yaw is implied from pitch. 0==130.\nfor reference, profile sensitivities are set to:\n1: 40\n3: 60\n9: 130\n"),
 		{ _field_struct, "firing error", &weapon_barrel_firing_error_struct },
-		FIELD_EXPLANATION("projectile", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("projectile", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "distribution function", &weapon_barrel_distribution_functions },
 		{ _field_short_integer, "projectiles per shot" },
 
@@ -491,13 +491,13 @@ namespace blofeld
 
 		{ _field_block, "first person offset", &weapon_barrel_first_person_offset_block },
 		{ _field_char_enum, "damage effect reporting type", &global_damage_reporting_enum_definition },
-		FIELD_PAD("DGSXQ", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("DGSXQ", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "projectile", &Tag::Reference<struct projectile_definition>::s_defaultDefinition },
 		{ _field_tag_reference, "optional secondary projectile", &Tag::Reference<struct projectile_definition>::s_defaultDefinition },
 		{ _field_struct, "eh", &weapon_barrel_damage_effect_struct },
 		{ _field_tag_reference, "crate projectile", &crate_projectile_reference },
 		{ _field_real, "crate projectile speed" },
-		FIELD_EXPLANATION("misc", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("misc", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "ejection port recovery time", "the amount of time (in seconds) it takes for the ejection port to transition from 1.0 (open) to 0.0 (closed) after a shot has been fired" },
 		{ _field_real, "illumination recovery time", "the amount of time (in seconds) it takes the illumination function to transition from 1.0 (bright) to 0.0 (dark) after a shot has been fired" },
 		{ _field_real_fraction, "heat generated per round", "the amount of heat generated each time the barrel fires. Unlike the name suggests, this amount of heat is NOT applied per projectile created.", nullptr, "[0,1]" },
@@ -645,7 +645,7 @@ namespace blofeld
 		{ _field_real, "power per shot", "the amount of scaleshot power you get when this weapon is fired" },
 		{ _field_real, "power per hit", "the amount of scaleshot power you get when a projectile from this weapon hits an enemy" },
 		{ _field_real, "power change per second", "the change per second in power" },
-		FIELD_EXPLANATION("power levels", nullptr, FIELD_FLAG_NONE, "IMPORTANT: put these in increasing order, by \"minimum power level\".  I claim no responsibility for weird behavior if they\'re out of order."),
+		FIELD_EXPLANATION_EX("power levels", nullptr, FIELD_FLAG_NONE, "IMPORTANT: put these in increasing order, by \"minimum power level\".  I claim no responsibility for weird behavior if they\'re out of order."),
 		{ _field_block, "power levels", &weaponScaleshotLevelStruct_block },
 		{ _field_terminator }
 	};
@@ -680,7 +680,7 @@ namespace blofeld
 		WEAPON_SCREEN_EFFECT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &weapon_screen_effect_flags },
-		FIELD_PAD("LKSZJFSE", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("LKSZJFSE", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "screen effect", FIELD_FLAG_INDEX, &global_area_screen_effect_reference },
 		{ _field_terminator }
 	};
@@ -749,10 +749,10 @@ namespace blofeld
 		{ _field_angle, "deviation angle", "the maximum angle that a projectile is allowed to deviate from the gun barrel due to autoaim OR network lead vector reconstruction", "degrees", FIELD_FLAG_UNKNOWN0 },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
-		FIELD_PAD("ZHV", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("ZHV", nullptr, FIELD_FLAG_NONE, 4),
 
-		FIELD_PAD("CVYGPMLMX", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("UQXKLVAXI", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("CVYGPMLMX", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("UQXKLVAXI", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -781,7 +781,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_INTERFACE_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("interface", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("interface", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "shared interface", &weapon_shared_interface_struct },
 		{ _field_block, "first person", &weapon_first_person_interface_block },
 		{ _field_tag_reference, "hud screen reference", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
@@ -800,7 +800,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_SHARED_INTERFACE_STRUCT_ID)
 	{
-		FIELD_PAD("PWGUS", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("PWGUS", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_terminator }
 	};
 
@@ -884,19 +884,19 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_STRUCT_ID)
 	{
-		FIELD_CUSTOM("accuracy penalties", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("accuracy penalties", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "reload penalty", "percentage accuracy lost when reloading" },
 		{ _field_real, "switch penalty", "percentage accuracy lost when switching weapons" },
 		{ _field_real, "zoom penalty", "percentage accuracy lost when zooming in/out" },
 		{ _field_real, "jump penalty", "percentage accuracy lost when jumping" },
-		FIELD_EXPLANATION("barrel_error penalty functions", nullptr, FIELD_FLAG_NONE, "barrel_error = barrel_error + penaltyfunction(barrel_error)\nWhere input value \'X\' produces output value \'Y\'\n"),
-		FIELD_CUSTOM("single wield penalties", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_EXPLANATION_EX("barrel_error penalty functions", nullptr, FIELD_FLAG_NONE, "barrel_error = barrel_error + penaltyfunction(barrel_error)\nWhere input value \'X\' produces output value \'Y\'\n"),
+		FIELD_CUSTOM_EX("single wield penalties", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "single wield penalties", &weapon_barrel_projectile_accuracy_penalty_function_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("dual wield penalties", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("dual wield penalties", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "dual wield penalties", &weapon_barrel_projectile_accuracy_penalty_function_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -939,7 +939,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_TRIGGER_AUTOFIRE_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("AUTOFIRE", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("AUTOFIRE", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "autofire time" },
 		{ _field_real, "autofire throw" },
 		{ _field_enum, "secondary action", &weapon_trigger_autofire_actions },
@@ -956,7 +956,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_TRIGGER_CHARGING_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("CHARGING", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("CHARGING", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "charging time", "the amount of time it takes for this trigger to become fully charged", "seconds" },
 		{ _field_real, "charged time", "the amount of time this trigger can be charged before becoming overcharged", "seconds" },
 

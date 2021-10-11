@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -59,9 +59,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_VEHICLE_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "type", &scenario_vehicle_palette_block, _field_id_type },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -85,7 +85,7 @@ namespace blofeld
 		SCENARIO_OBJECT_NODE_ORIENTATIONS_BLOCK_ID)
 	{
 		{ _field_short_integer, "node count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("paddington", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("paddington", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "bit vector", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_object_node_orientations_bit_vector_block },
 		{ _field_block, "orientations", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_object_node_orientations_orientations_block },
 		{ _field_terminator }
@@ -177,9 +177,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_GIANT_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "type", &scenario_giant_palette_block, _field_id_type },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -213,9 +213,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_BIPED_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "type", &scenario_biped_palette_block, _field_id_type },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -392,9 +392,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_SCENERY_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "type", &scenario_scenery_palette_block, _field_id_type },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -414,9 +414,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_EQUIPMENT_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "type", &scenario_equipment_palette_block, _field_id_type },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "equipment data", &scenario_equipment_datum_struct },
@@ -435,9 +435,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_WEAPON_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "type", &scenario_weapon_palette_block, _field_id_type },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -460,7 +460,7 @@ namespace blofeld
 		{ _field_real, "initial value", nullptr, nullptr, "[0,1]" },
 		{ _field_long_flags, "flags", &device_group_flags },
 		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
-		FIELD_PAD("WAFNDIO", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("WAFNDIO", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -475,9 +475,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_MACHINE_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "type", &scenario_machine_palette_block, _field_id_type },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -498,9 +498,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_TERMINAL_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "type", &scenario_terminal_palette_block, _field_id_type },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -520,9 +520,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CONTROL_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "type", &scenario_control_palette_block, _field_id_type },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -543,9 +543,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIODISPENSERBLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "type", &ScenarioDispenserPaletteBlock_block, _field_id_type },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -566,9 +566,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_SOUND_SCENERY_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "type", &scenario_sound_scenery_palette_block, _field_id_type },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "sound_scenery", &sound_scenery_datum_struct },
@@ -586,9 +586,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_EFFECT_SCENERY_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "type", &scenario_effect_scenery_palette_block, _field_id_type },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 
@@ -610,9 +610,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_SPAWNER_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "type", &scenario_spawner_palette_block, _field_id_type },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -631,7 +631,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_REQUISITION_PALETTE_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("CUSTOM APPS", nullptr, FIELD_FLAG_NONE, "If you want the award to be a custom app, point at globals/custom_app_globals, and match one of the names from that tag for \"display_name\""),
+		FIELD_EXPLANATION_EX("CUSTOM APPS", nullptr, FIELD_FLAG_NONE, "If you want the award to be a custom app, point at globals/custom_app_globals, and match one of the names from that tag for \"display_name\""),
 		{ _field_tag_reference, "name", FIELD_FLAG_INDEX, &scenario_requisition_palette_block_name_reference },
 		{ _field_tag_reference, "second name", FIELD_FLAG_INDEX, &scenario_requisition_palette_block_name_reference },
 		{ _field_tag_reference, "third name", FIELD_FLAG_INDEX, &scenario_requisition_palette_block_name_reference },
@@ -653,7 +653,7 @@ namespace blofeld
 		{ _field_real, "price increase factor", "price = original-price x increase-factor to-the n_times_bought" },
 		{ _field_byte_integer, "maximum buy count", nullptr, "per player" },
 		{ _field_byte_integer, "total maximum buy count", nullptr, "per team" },
-		FIELD_PAD("SMYE", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("SMYE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -668,9 +668,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CRATE_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "type", &scenario_crate_palette_block, _field_id_type },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -690,9 +690,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CREATURE_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "type", &scenario_creature_palette_block, _field_id_type },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_terminator }
@@ -724,7 +724,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_OBJECT_DATUM_STRUCT_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_object_editor),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_object_editor),
 		{ _field_long_flags, "placement flags", &object_location_placement_flags },
 		{ _field_real_point_3d, "position", _field_id_point },
 		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
@@ -732,15 +732,15 @@ namespace blofeld
 		{ _field_block, "node orientations", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_object_node_orientations_block },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 4 },
-		FIELD_PAD("YEE", nullptr, FIELD_FLAG_NONE, 3), // #TODO: Poke around these values
+		FIELD_PAD_EX("YEE", nullptr, FIELD_FLAG_NONE, 3), // #TODO: Poke around these values
 		{ _field_char_enum, "bsp policy", &scenario_object_bsp_placement_policy_definition, _field_id_enum },
 		{ _field_legacy, _field_short_integer, "manual bsp flags*" },
-		FIELD_PAD("YEET", nullptr, FIELD_FLAG_NONE, 2), // #TODO: Poke around these values
+		FIELD_PAD_EX("YEET", nullptr, FIELD_FLAG_NONE, 2), // #TODO: Poke around these values
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 8 },
 		{ _field_real, "gravity override" },
 		{ _field_byte_flags, "gravity flags", &object_gravity_flags },
-		FIELD_PAD("ZEE", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("ZEE", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_char_enum, "bsp policy", &scenario_object_bsp_placement_policy_definition, _field_id_enum },
 		{ _field_byte_flags, "script flags", &scenarioObjectScriptFlagsDefinition },
 		{ _field_block, "force enabled scripts", &scriptListBlock_block },
@@ -752,7 +752,7 @@ namespace blofeld
 		{ _field_char_enum, "Nav Mesh Cutting", &NavMeshCuttingOverrideEnum },
 		{ _field_char_enum, "Nav Mesh Obstacle", &BooleanOverrideEnum },
 		{ _field_byte_flags, "Nav Mesh Flags", &object_navmesh_flags },
-		FIELD_PAD("ZEE2", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("ZEE2", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_string_id, "light airprobe name" },
 		{ _field_struct, "object id", &scenario_object_id_struct },
@@ -762,7 +762,7 @@ namespace blofeld
 		{ _field_non_cache_runtime_value, "runtimeObjectHandle", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 
 		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
-		FIELD_PAD("NCIUNE", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("NCIUNE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "parent id", &scenario_object_parent_struct },
 		{ _field_long_block_flags, "can attach to bsp flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_structure_bsp_reference_block },
 
@@ -782,10 +782,10 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_OBJECT_PARENT_STRUCT_ID)
 	{
-		FIELD_PAD("der", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("der", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_block_index, "parent object", "if an object with this name exists, we attach to it as a child", &scenario_object_names_block },
 		{ _field_string_id, "parent marker" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "connection marker" },
 		{ _field_terminator }
 	};
@@ -801,7 +801,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "variant name", _field_id_object_variant },
 		{ _field_byte_flags, "active change colors", &scenario_object_active_change_color_flags },
-		FIELD_PAD("SLCJNEROH", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("SLCJNEROH", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_rgb_color, "primary color" },
 		{ _field_rgb_color, "secondary color" },
 		{ _field_rgb_color, "tertiary color" },
@@ -858,7 +858,7 @@ namespace blofeld
 		{ _field_legacy, _field_pad, "unknown", 4 },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 27 },
-		FIELD_EXPLANATION("Multiplayer Data", nullptr, FIELD_FLAG_NONE, "object data for multiplayer game use"),
+		FIELD_EXPLANATION_EX("Multiplayer Data", nullptr, FIELD_FLAG_NONE, "object data for multiplayer game use"),
 		{ _field_string, "megalo label" },
 		{ _field_string, "megalo label 2" },
 		{ _field_string, "megalo label 3" },
@@ -880,7 +880,7 @@ namespace blofeld
 		{ _field_real, "boundary positive height" },
 		{ _field_real, "boundary negative height" },
 		{ _field_char_enum, "boundary shape", &multiplayer_goal_area_boundary_shape_enum },
-		FIELD_PAD("boundary_pad", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("boundary_pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_short_integer, "spawn time", nullptr, "seconds" },
 		{ _field_short_integer, "abandonment time", nullptr, "seconds" },
 		{ _field_string_id, "location name" },
@@ -899,7 +899,7 @@ namespace blofeld
 		SCENARIO_VEHICLE_DATUM_STRUCT_ID)
 	{
 		{ _field_enum, "Pathfinding policy", &pathfinding_policy_enum },
-		FIELD_PAD("post-pathfinding", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-pathfinding", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "pathfinding references", FIELD_FLAG_READ_ONLY, &pathfinding_object_index_list_block },
 		{ _field_terminator }
 	};
@@ -914,7 +914,7 @@ namespace blofeld
 		SCENARIO_GIANT_DATUM_STRUCT_ID)
 	{
 		{ _field_enum, "Pathfinding policy", &pathfinding_policy_enum },
-		FIELD_PAD("post-pathfinding", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-pathfinding", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "pathfinding references", FIELD_FLAG_READ_ONLY, &pathfinding_object_index_list_block },
 		{ _field_terminator }
 	};
@@ -942,7 +942,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_SCENERY_DATUM_STRUCT_V4_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_pathfinding),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_pathfinding),
 		{ _field_enum, "Pathfinding policy", &pathfinding_policy_enum },
 		{ _field_enum, "Lightmapping policy", &scenery_lightmap_policy_enum },
 		{ _field_block, "pathfinding references", FIELD_FLAG_READ_ONLY, &pathfinding_object_index_list_block },
@@ -1006,7 +1006,7 @@ namespace blofeld
 		{ _field_long_flags, "flags", &scenario_machine_flags },
 		{ _field_block, "pathfinding references", FIELD_FLAG_READ_ONLY, &pathfinding_object_index_list_block },
 		{ _field_enum, "pathfinding policy", &scenario_machine_pathfinding_policy_enum },
-		FIELD_PAD("post-pathfinding-policy", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-pathfinding-policy", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -1036,7 +1036,7 @@ namespace blofeld
 		{ _field_short_integer, "DON'T TOUCH THIS", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, _field_id_unknown_ugh },
 		{ _field_short_integer, "health station charges", "if this control is a health station, this sets the number of charges it contains.\nUse 0 for infinite" },
 		{ _field_enum, "allowed players", &scenario_control_character_types },
-		FIELD_PAD("SCSP1", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("SCSP1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -1050,7 +1050,7 @@ namespace blofeld
 		SCENARIODISPENSERSTRUCT_ID)
 	{
 		{ _field_byte_flags, "flags", &ScenarioDispenserFlags },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -1120,7 +1120,7 @@ namespace blofeld
 		SCENARIO_CRATE_DATUM_STRUCT_ID)
 	{
 		{ _field_enum, "Pathfinding policy", &pathfinding_policy_enum },
-		FIELD_PAD("post-path-policy", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-path-policy", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "pathfinding references", FIELD_FLAG_READ_ONLY, &pathfinding_object_index_list_block },
 		{ _field_terminator }
 	};

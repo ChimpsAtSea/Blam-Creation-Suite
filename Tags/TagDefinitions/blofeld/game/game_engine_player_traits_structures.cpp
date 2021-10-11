@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -46,7 +46,7 @@ namespace blofeld
 		{ _field_legacy, _field_char_enum, "shield recharge rate 2", &player_trait_shield_recharge_rate }, // #TODO: This could also be overshield recharge rate. Could be shield stun duration? Some research is required. 
 		
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 14 },
-		FIELD_EXPLANATION("damage resistance", nullptr, FIELD_FLAG_NONE, "Any damage taken is divided by this number.  If you put -1, that means \"invulnerable\"."),
+		FIELD_EXPLANATION_EX("damage resistance", nullptr, FIELD_FLAG_NONE, "Any damage taken is divided by this number.  If you put -1, that means \"invulnerable\"."),
 		{ _field_real, "damage resistance" },
 		{ _field_real, "shield multiplier" },
 		{ _field_real, "body multiplier" },
@@ -71,7 +71,7 @@ namespace blofeld
 		{ _field_char_enum, "powerup cancellation", &player_trait_powerup_cancellation_enum },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 3),
 		
 		{ _field_terminator }
 	};
@@ -148,9 +148,9 @@ namespace blofeld
 		{ _field_char_enum, "weapons resourceful", "grenade probabilities defined in grenade_list.game_globals_grenade_list", &player_trait_bool_enum },
 		{ _field_char_enum, "weapons well equipped", &player_trait_bool_enum },
 		{ _field_char_enum, "ordnance disabled", &player_trait_bool_enum },
-		FIELD_PAD("weapons_padding", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("weapons_padding", nullptr, FIELD_FLAG_NONE, 1),
 		
-		FIELD_EXPLANATION("initial weapons/equipment", nullptr, FIELD_FLAG_NONE, "Type any string from the relevant sections of multiplayer/globals.multiplayer_object_type_list."),
+		FIELD_EXPLANATION_EX("initial weapons/equipment", nullptr, FIELD_FLAG_NONE, "Type any string from the relevant sections of multiplayer/globals.multiplayer_object_type_list."),
 		{ _field_string_id, "initial primary weapon" },
 		{ _field_string_id, "initial secondary weapon" },
 		{ _field_string_id, "initial equipment" },
@@ -196,7 +196,7 @@ namespace blofeld
 		{ _field_char_enum, "automatic momentum usage", &player_trait_bool_enum },
 		{ _field_char_enum, "vaulting enabled", &player_trait_bool_enum },
 		{ _field_char_enum, "stealthy", &player_trait_bool_enum },
-		FIELD_PAD("grue", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("grue", nullptr, FIELD_FLAG_NONE, 2),
 		
 		{ _field_terminator }
 	};
@@ -225,7 +225,7 @@ namespace blofeld
 		{ _field_legacy, _field_char_integer, "unknown" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
-		FIELD_EXPLANATION("death effect/attached effect", nullptr, FIELD_FLAG_NONE, "Type any string from the relevant sections of multiplayer/megalo/multiplayer_effects.multiplayereffects."),
+		FIELD_EXPLANATION_EX("death effect/attached effect", nullptr, FIELD_FLAG_NONE, "Type any string from the relevant sections of multiplayer/megalo/multiplayer_effects.multiplayereffects."),
 		{ _field_string_id, "death effect" },
 		{ _field_string_id, "attached effect" },
 		

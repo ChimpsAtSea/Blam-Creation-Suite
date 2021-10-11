@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -30,7 +30,7 @@ namespace blofeld
 		GAME_ENGINE_LOADOUT_OPTIONS_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &loadout_flags_definition },
-		FIELD_PAD("DLVKJSER", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("DLVKJSER", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_block, "loadout palettes", &game_engine_loadout_palette_entry_block },
 		{ _field_terminator }
 	};
@@ -81,7 +81,7 @@ namespace blofeld
 		LOADOUT_INDEX_BLOCK_ID)
 	{
 		{ _field_short_block_index, "loadout", FIELD_FLAG_INDEX, &loadout_definition_block },
-		FIELD_PAD("padding0", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("padding0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -151,7 +151,7 @@ namespace blofeld
 
 		{ _field_string_id, "initial equipment", "see above" },
 		{ _field_char_enum, "initial grenade count", &player_trait_initial_grenade_count_enum },
-		FIELD_PAD("SDJCESLRN", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("SDJCESLRN", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 

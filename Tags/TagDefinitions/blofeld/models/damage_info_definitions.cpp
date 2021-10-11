@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -49,10 +49,10 @@ namespace blofeld
 		{ _field_long_flags, "flags", &new_damage_section_flags_definition },
 		{ _field_real_fraction, "vitality percentage", "percentage of total object vitality", nullptr, "[0.1]" },
 		{ _field_string_id, "shield material name", "set this to make this damage section a shield" },
-		FIELD_EXPLANATION("stun", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("stun", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "stun time", nullptr, "seconds" },
 		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object's health" },
-		FIELD_EXPLANATION("recharge", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("recharge", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "recharge time", nullptr, "seconds" },
 		{ _field_block, "recharge speed curve", &damage_section_recharge_speed_curve_block },
 		{ _field_block, "recharge fractions", &damage_section_segmented_recharge_fraction_block },
@@ -62,13 +62,13 @@ namespace blofeld
 		{ _field_string_id, "pre recharge effect marker", "(main shield only)" },
 		{ _field_tag_reference, "pre recharge abort effect", "(main shield only) if the pre-recharge effect is aborted before the actual recharge starts, this effect plays", &global_effect_reference },
 		{ _field_string_id, "pre recharge abort effect marker", "(main shield only)" },
-		FIELD_EXPLANATION("overcharge", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("overcharge", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "overcharge time", "time it takes to reach full \"overcharge fraction\"", "seconds" },
 		{ _field_real, "overcharge fraction", "fraction to which shields will automatically overcharge, values <= 1.0 are ignored" },
-		FIELD_EXPLANATION("decay", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("decay", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "pre decay time", "time for this section to be active before it will start to decay", "seconds" },
 		{ _field_real, "decay time", "time for need for this section to fully decay with full health.", "seconds" },
-		FIELD_EXPLANATION("resurrection", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("resurrection", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_string_id, "resurrection restored region name" },
 		{ _field_block, "instant responses", &new_instantaneous_damage_response_block },
 		{ _field_block, "section damage transfers", &damage_transfer_block },
@@ -95,7 +95,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_SECTION_RECHARGE_SPEED_CURVE_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};
@@ -152,7 +152,7 @@ namespace blofeld
 		{ _field_real_fraction, "total damage threshold", "scale on total damage section vitality" },
 		{ _field_string_id, "constraint/group name", "can specify a randomly-selected single constraint or the entire group of named constraints" },
 		{ _field_enum, "constraint damage type", &damage_response_constraint_damage_type_enum_definition },
-		FIELD_PAD("IDRBCDT", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("IDRBCDT", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -232,16 +232,16 @@ namespace blofeld
 		{ _field_long_flags, "flags", &model_damage_info_flags_definition },
 		{ _field_string_id, "global indirect material name", "absorbes AOE or child damage" },
 		{ _field_custom_short_block_index, "indirect damage section", "absorbes AOE or child damage" },
-		FIELD_PAD("XN", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("LPVYKO", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("XN", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("LPVYKO", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_char_enum, "collision damage reporting type", &global_damage_reporting_enum_definition },
 		{ _field_char_enum, "response damage reporting type", &global_damage_reporting_enum_definition },
-		FIELD_PAD("MQ", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("MYON", nullptr, FIELD_FLAG_NONE, 20),
-		FIELD_EXPLANATION("body", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_PAD_EX("MQ", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("MYON", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_EXPLANATION_EX("body", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "body", &damage_body_parameters_struct },
-		FIELD_PAD("IKEIDYSCX", nullptr, FIELD_FLAG_NONE, 64),
-		FIELD_EXPLANATION("shield", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_PAD_EX("IKEIDYSCX", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_EXPLANATION_EX("shield", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "shield", &damage_shield_parameters_struct },
 		{ _field_block, "damage sections", &global_damage_section_block },
 		{ _field_block, "nodes", FIELD_FLAG_READ_ONLY, &global_damage_nodes_block },
@@ -259,7 +259,7 @@ namespace blofeld
 
 		{ _field_block, "damage seats", &damage_seat_info_block },
 		{ _field_block, "damage constraints", &damage_constraint_info_block },
-		FIELD_EXPLANATION("overshield", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("overshield", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_terminator }
 	};
 
@@ -274,7 +274,7 @@ namespace blofeld
 		GLOBAL_DAMAGE_SECTION_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
-		FIELD_EXPLANATION("damage section flags", nullptr, FIELD_FLAG_NONE, "* absorbs body damage: damage to this section does not count against body vitality\n* headshottable: takes extra headshot damage when shot\n* ignores shields: damage to this section bypasses shields"),
+		FIELD_EXPLANATION_EX("damage section flags", nullptr, FIELD_FLAG_NONE, "* absorbs body damage: damage to this section does not count against body vitality\n* headshottable: takes extra headshot damage when shot\n* ignores shields: damage to this section bypasses shields"),
 		{ _field_long_flags, "flags", &damage_section_flags_definition },
 		{ _field_real_fraction, "vitality percentage", "percentage of total object vitality", nullptr, "[0.1]" },
 		{ _field_block, "instant responses", &instantaneous_damage_repsonse_block },
@@ -285,7 +285,7 @@ namespace blofeld
 		{ _field_real, "runtime recharge velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_string_id, "resurrection restored region name" },
 		{ _field_short_integer, "runtime resurrection restored region index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("AG", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("AG", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -300,11 +300,11 @@ namespace blofeld
 		INSTANTANEOUS_DAMAGE_REPSONSE_BLOCK_ID)
 	{
 		{ _field_enum, "response type", &damage_response_type_enum_definition },
-		FIELD_EXPLANATION("Constraint damage type", nullptr, FIELD_FLAG_NONE, "* if you specify a constraint group name (see lower section of this block)\n  you can specify a constraint damage\n* loosening a constraint takes it out of the rigid state - activates it\n* destroying a constraint sets the attached body free"),
+		FIELD_EXPLANATION_EX("Constraint damage type", nullptr, FIELD_FLAG_NONE, "* if you specify a constraint group name (see lower section of this block)\n  you can specify a constraint damage\n* loosening a constraint takes it out of the rigid state - activates it\n* destroying a constraint sets the attached body free"),
 		{ _field_enum, "constraint damage type", &damage_response_constraint_damage_type_enum_definition },
-		FIELD_EXPLANATION("Constraint destruction", nullptr, FIELD_FLAG_NONE, "- a response can destroy a single constraint by naming it explicitly.\n- alternatively it can randomly destroy a single constraint from a specified group if the \"destroy one group constraint\" flag is set\n- also it can destroy all constraints in a specified group if the \"destroy all group constraints\" flag is set\n"),
+		FIELD_EXPLANATION_EX("Constraint destruction", nullptr, FIELD_FLAG_NONE, "- a response can destroy a single constraint by naming it explicitly.\n- alternatively it can randomly destroy a single constraint from a specified group if the \"destroy one group constraint\" flag is set\n- also it can destroy all constraints in a specified group if the \"destroy all group constraints\" flag is set\n"),
 		{ _field_string_id, "constraint/group name" },
-		FIELD_EXPLANATION("Damage response flags", nullptr, FIELD_FLAG_NONE, "* kills object: when the response fires the object dies regardless of its current health\n* inhibits <x>: from halo 1 - disallows basic behaviors for a unit\n* forces drop weapon: from halo 1 - makes the unit drop its current weapon\n* kills weapon <x> trigger: destroys the <x> trigger on the unit\'s current weapon\n* destroys object: when the response fires the object is destroyed"),
+		FIELD_EXPLANATION_EX("Damage response flags", nullptr, FIELD_FLAG_NONE, "* kills object: when the response fires the object dies regardless of its current health\n* inhibits <x>: from halo 1 - disallows basic behaviors for a unit\n* forces drop weapon: from halo 1 - makes the unit drop its current weapon\n* kills weapon <x> trigger: destroys the <x> trigger on the unit\'s current weapon\n* destroys object: when the response fires the object is destroyed"),
 		{ _field_long_flags, "flags", &damage_response_set1, _field_id_dumb },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
@@ -330,7 +330,7 @@ namespace blofeld
 		{ _field_string_id, "custom response label" },
 		{ _field_string_id, "effect marker name" },
 		{ _field_struct, "damage effect marker", &instantaneous_response_damage_effect_marker_struct },
-		FIELD_EXPLANATION("Response delay", nullptr, FIELD_FLAG_NONE, "If desired, you can specify a delay until the response fires.This delay is pre-empted if another timed response for the same section fires.The delay effect plays while the timer is counting down.If the damage threshold is taken in a single hit while counting down, it will prematurely fire."),
+		FIELD_EXPLANATION_EX("Response delay", nullptr, FIELD_FLAG_NONE, "If desired, you can specify a delay until the response fires.This delay is pre-empted if another timed response for the same section fires.The delay effect plays while the timer is counting down.If the damage threshold is taken in a single hit while counting down, it will prematurely fire."),
 		{ _field_real, "response delay", "in seconds" },
 		{ _field_tag_reference, "delay effect", &global_effect_reference },
 		{ _field_string_id, "delay effect marker name" },
@@ -338,13 +338,13 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_real, "response delay premature damage threshold" },
 
-		FIELD_EXPLANATION("seat ejaculation", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("seat ejaculation", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_string_id, "ejecting seat label" },
-		FIELD_EXPLANATION("skip fraction", nullptr, FIELD_FLAG_NONE, "0.0 always fires, 1.0 never fires"),
+		FIELD_EXPLANATION_EX("skip fraction", nullptr, FIELD_FLAG_NONE, "0.0 always fires, 1.0 never fires"),
 		{ _field_real_fraction, "skip fraction" },
-		FIELD_EXPLANATION("destroyed child object marker name", nullptr, FIELD_FLAG_NONE, "when this response fires, any children objects created at the supplied marker name will be destroyed"),
+		FIELD_EXPLANATION_EX("destroyed child object marker name", nullptr, FIELD_FLAG_NONE, "when this response fires, any children objects created at the supplied marker name will be destroyed"),
 		{ _field_string_id, "destroyed child object marker name" },
-		FIELD_EXPLANATION("total damage threshold", nullptr, FIELD_FLAG_NONE, "scale on total damage section vitality"),
+		FIELD_EXPLANATION_EX("total damage threshold", nullptr, FIELD_FLAG_NONE, "scale on total damage section vitality"),
 		{ _field_real_fraction, "total damage threshold" },
 		{ _field_terminator }
 	};
@@ -360,8 +360,8 @@ namespace blofeld
 		GLOBAL_DAMAGE_NODES_BLOCK_ID)
 	{
 		{ _field_short_integer, "runtime damage part", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("EOT", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("SBFL", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("EOT", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("SBFL", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -394,10 +394,10 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_SEAT_REGION_SETTING_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("region-state-specific-damage", nullptr, FIELD_FLAG_NONE, "for fields below, 0.0==inherit from damage seat"),
+		FIELD_EXPLANATION_EX("region-state-specific-damage", nullptr, FIELD_FLAG_NONE, "for fields below, 0.0==inherit from damage seat"),
 		{ _field_string_id, "damage region name" },
 		{ _field_short_integer, "runtime damage region index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("EOQ", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("EOQ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "direct damage scale (minor)" },
 		{ _field_real, "Max. transfer scale (minor)" },
 		{ _field_real, "min. transfer scale (minor)" },
@@ -507,7 +507,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_DAMAGE_INFO_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("Damage Info", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Damage Info", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_flags, "flags", &new_model_damage_info_flags_definition },
 		{ _field_real, "maximum vitality", "value of zero implies 'damage sections' should be empty" },
 		{ _field_string_id, "indirect material name", "absorbes AOE or child damage" },
@@ -515,12 +515,12 @@ namespace blofeld
 		{ _field_short_block_index, "shielded state damage section", "the model's shielded/unshielded state reflects the depletion of this damage section", &new_global_damage_section_block },
 		{ _field_char_enum, "collision damage reporting type", &global_damage_reporting_enum_definition },
 		{ _field_char_enum, "response damage reporting type", &global_damage_reporting_enum_definition },
-		FIELD_PAD("MDIBP0", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("MDIBP0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "damage sections", &new_global_damage_section_block },
 		{ _field_block, "damage constraints", &damage_constraint_info_block },
 		{ _field_block, "nodes", FIELD_FLAG_READ_ONLY, &global_damage_nodes_block },
 		{ _field_short_integer, "runtime indirect material type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("MDIBP1", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("MDIBP1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

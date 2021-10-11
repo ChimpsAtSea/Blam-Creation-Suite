@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -45,7 +45,7 @@ namespace blofeld
 		{ _field_tag_reference, "squad template", FIELD_FLAG_INDEX, &squad_template_reference$2 },
 		{ _field_struct, "spawn conditions", &ai_spawn_conditions_struct },
 		{ _field_short_integer, "weight", "The relative weight given to this squad spawning" },
-		FIELD_EXPLANATION("MIN/MAX SPAWN COUNTS", nullptr, FIELD_FLAG_NONE, "When spawning a number of squads from this wave template, try and spawn at least the minimum number, and at most the maximum number. Once these min/max bounds have been met, probabilistic distribution will continue."),
+		FIELD_EXPLANATION_EX("MIN/MAX SPAWN COUNTS", nullptr, FIELD_FLAG_NONE, "When spawning a number of squads from this wave template, try and spawn at least the minimum number, and at most the maximum number. Once these min/max bounds have been met, probabilistic distribution will continue."),
 		{ _field_char_integer, "min spawn", "Spawn AT LEAST this number of squads. Value of 0 means \"no minimum\"" },
 		{ _field_char_integer, "max spawn", "Spawn NO MORE THAN this number of squads. Value of 0 means \"no maximum\"" },
 		{ _field_long_enum, "placement filter", "Filter where this squad specification can spawn by matching this value with the values in squad definitions in the scenario", &wave_placement_filter_enum },

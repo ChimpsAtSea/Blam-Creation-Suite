@@ -92,7 +92,7 @@ unsigned long c_bitfield_allocator::allocate()
 			}
 		}
 	}
-	return NULL;
+	return ULONG_MAX;
 }
 
 void c_bitfield_allocator::deallocate(unsigned long index)
@@ -139,7 +139,7 @@ unsigned long c_bitfield_allocator::allocate_unsafe(unsigned long count)
 			}
 		}
 	}
-	return -1;
+	return ULONG_MAX;
 }
 
 void c_bitfield_allocator::deallocate_unsafe(unsigned long index, unsigned long count)

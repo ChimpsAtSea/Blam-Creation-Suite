@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -77,7 +77,7 @@ namespace blofeld
 		{ _field_word_flags, "flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_flags_definition },
 		{ _field_word_flags, "content policy flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_content_policy_flag },
 		{ _field_word_flags, "failed content policy flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_content_policy_flag },
-		FIELD_PAD("faild policy pad", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, 2),
+		FIELD_PAD_EX("faild policy pad", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, 2),
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach },
 		{ _field_long_flags, "flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_flags_definition },
@@ -158,7 +158,7 @@ namespace blofeld
 		{ _field_block, "(DEPRECATED) environment object palette", FIELD_FLAG_READ_ONLY, &structure_bsp_environment_object_palette_block },
 		{ _field_block, "(DEPRECATED) environment objects", FIELD_FLAG_READ_ONLY, &structure_bsp_environment_object_block },
 
-		FIELD_PAD("IMISWXUG", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("IMISWXUG", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "leaf map leaves", FIELD_FLAG_READ_ONLY, &global_map_leaf_block },
 		{ _field_block, "leaf map connections", FIELD_FLAG_READ_ONLY, &global_leaf_connection_block },
 		{ _field_block, "errors", FIELD_FLAG_READ_ONLY, &global_error_report_categories_block },
@@ -179,17 +179,17 @@ namespace blofeld
 		{ _field_block, "instance imposter infos", &structure_instance_imposter_info_block },
 		{ _field_long_integer, "Instance Geometry Tag Instance Count", FIELD_FLAG_UNKNOWN0 },
 
-		FIELD_CUSTOM("decorator info", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("decorator info", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_block, "decorator sets", FIELD_FLAG_READ_ONLY, &runtime_decorator_set_block },
 		{ _field_struct, "decorator instance buffer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 5 },
-		FIELD_CUSTOM("decals info", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("decals info", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_block, "preplaced decal sets", FIELD_FLAG_READ_ONLY, &bsp_preplaced_decal_set_reference_block },
 		{ _field_block, "preplaced decals", FIELD_FLAG_READ_ONLY, &bsp_preplaced_decal_reference_block },
 		{ _field_struct, "preplaced decal geometry", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
 		{ _field_block, "acoustics sound clusters", FIELD_FLAG_UNKNOWN0, &structure_bsp_sound_cluster_block },
 
@@ -219,9 +219,9 @@ namespace blofeld
 		{ _field_legacy, _field_long_integer, "unknown@" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 9 },
-		FIELD_CUSTOM("Any Platform Temporary Storage", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Any Platform Temporary Storage", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_block, "Any Platform Temp Havok Data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structureIOHavokDataBlock_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_block, "external references", &structure_external_instanced_geometry_references_block },
 		{ _field_tag_reference, "dependencies", &Tag::Reference<struct s_dependency_list>::s_defaultDefinition },
 		{ _field_long_integer, "base material count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -348,7 +348,7 @@ namespace blofeld
 		{ _field_short_block_index, "first_aabb_index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_super_node_aabbs_block },
 		{ _field_long_integer, "aabb_mask", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_block_index, "non_terminal_traversal_geometry_index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_super_node_traversal_geometry_indices_block },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -475,8 +475,8 @@ namespace blofeld
 		{ _field_block, "instances", &global_detail_object_block },
 		{ _field_block, "counts", &global_detail_object_counts_block },
 		{ _field_block, "z reference vectors", &global_z_reference_vector_block },
-		FIELD_PAD("KXILLD", nullptr, FIELD_FLAG_NONE, 1),
-		FIELD_PAD("EDFPN", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("KXILLD", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("EDFPN", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -490,7 +490,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CLUSTER_BLOCK_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("CLUSTER INFO", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("CLUSTER INFO", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_bounds, "bounds x", FIELD_FLAG_READ_ONLY },
 		{ _field_real_bounds, "bounds y", FIELD_FLAG_READ_ONLY },
 		{ _field_real_bounds, "bounds z", FIELD_FLAG_READ_ONLY },
@@ -499,7 +499,7 @@ namespace blofeld
 		{ _field_legacy, _field_char_integer, "unknown" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		FIELD_PAD("DING", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("DING", nullptr, FIELD_FLAG_NONE, 1),
 
 		{ _field_char_integer, "atmosphere index", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "camera fx index", FIELD_FLAG_READ_ONLY },
@@ -519,7 +519,7 @@ namespace blofeld
 		{ _field_word_flags, "flags", &structure_cluster_flags },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 1 },
-		FIELD_PAD("ERERRFQ", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("ERERRFQ", nullptr, FIELD_FLAG_NONE, 2),
 
 		{ _field_block, "predicted resources", FIELD_FLAG_READ_ONLY, &g_null_block },
 		{ _field_block, "portals", FIELD_FLAG_READ_ONLY, &structure_bsp_cluster_portal_index_block },
@@ -612,7 +612,7 @@ namespace blofeld
 		CHEAP_LIGHT_MARKER_REF_BLOCK_ID)
 	{
 		{ _field_short_block_index, "cheap light reference reference", &cheap_light_reference_block },
-		FIELD_PAD("WHATIZZIT", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("WHATIZZIT", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -627,7 +627,7 @@ namespace blofeld
 		CHEAP_LIGHT_REFERENCE_BLOCK_ID)
 	{
 		{ _field_short_integer, "marker index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("ldajk", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("ldajk", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "cheap light", FIELD_FLAG_READ_ONLY, &cheap_light_reference },
 		{ _field_terminator }
 	};
@@ -708,9 +708,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_COOKIE_CUTTER_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("Cookie Cutter", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Cookie Cutter", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "collision model", &global_collision_bsp_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -725,7 +725,7 @@ namespace blofeld
 		STRUCTURE_BSP_MARKER_BLOCK_ID)
 	{
 		{ _field_char_enum, "marker type", FIELD_FLAG_READ_ONLY, &structure_marker_type_enum },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_string, "marker parameter", FIELD_FLAG_READ_ONLY },
 		{ _field_real_quaternion, "rotation" },
 		{ _field_real_point_3d, "position", FIELD_FLAG_READ_ONLY },
@@ -783,7 +783,7 @@ namespace blofeld
 		{ _field_legacy, _field_short_integer, "flags" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
-		FIELD_PAD("post-decal-palette-index-pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-decal-palette-index-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences },
 
 		{ _field_real_quaternion, "rotation", FIELD_FLAG_READ_ONLY },
@@ -834,7 +834,7 @@ namespace blofeld
 		{ _field_real, "scale" },
 		{ _field_short_block_index, "palette_index", &structure_bsp_environment_object_palette_block },
 		{ _field_byte_flags, "flags", &environmentObjectFlagsDefinition },
-		FIELD_PAD("QHUGQ", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("QHUGQ", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_long_integer, "unique id", FIELD_FLAG_READ_ONLY },
 		{ _field_tag, "exported object type" },
 
@@ -913,7 +913,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "name" },
 		{ _field_char_integer, "imposter policy" },
-		FIELD_PAD("parasdd", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("parasdd", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "transition distance" },
 		{ _field_terminator }
 	};
@@ -972,7 +972,7 @@ namespace blofeld
 		{ _field_short_integer, "vertex start" },
 		{ _field_short_integer, "vertex count" },
 		{ _field_short_integer, "definition block index" },
-		FIELD_PAD("paddddg", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("paddddg", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_2d, "spirit corner" },
 		{ _field_real_vector_2d, "spirit size" },
 		{ _field_terminator }
@@ -1004,7 +1004,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_DEBUG_INFO_BLOCK_ID)
 	{
-		FIELD_PAD("BRQYEF", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_PAD_EX("BRQYEF", nullptr, FIELD_FLAG_NONE, 64),
 		{ _field_block, "clusters", FIELD_FLAG_READ_ONLY, &structure_bsp_cluster_debug_info_block },
 		{ _field_block, "fog planes", FIELD_FLAG_READ_ONLY, &structure_bsp_fog_plane_debug_info_block },
 		{ _field_block, "fog zones", FIELD_FLAG_READ_ONLY, &structure_bsp_fog_zone_debug_info_block },
@@ -1023,7 +1023,7 @@ namespace blofeld
 	{
 		{ _field_word_flags, "errors", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_cluster_error_flags },
 		{ _field_word_flags, "warnings", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_cluster_warning_flags },
-		FIELD_PAD("KHWRB", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("KHWRB", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_block, "lines", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_render_line_block },
 		{ _field_block, "fog plane indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
 		{ _field_block, "visible fog plane indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
@@ -1045,7 +1045,7 @@ namespace blofeld
 		{ _field_enum, "type", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_render_line_type_enum },
 		{ _field_short_integer, "code", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "pad thai", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("BNQS", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("BNQS", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "point 0", FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "point 1", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
@@ -1076,7 +1076,7 @@ namespace blofeld
 		STRUCTURE_BSP_FOG_PLANE_DEBUG_INFO_BLOCK_ID)
 	{
 		{ _field_long_integer, "fog zone index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("WZGH", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("WZGH", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_long_integer, "connected plane designator", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "lines", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_render_line_block },
 		{ _field_block, "intersected cluster indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
@@ -1096,7 +1096,7 @@ namespace blofeld
 	{
 		{ _field_long_integer, "media index", nullptr, "scenario fog plane", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "base fog plane index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("RB", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("RB", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_block, "lines", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_render_line_block },
 		{ _field_block, "immersed cluster indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
 		{ _field_block, "bounding fog plane indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
@@ -1115,7 +1115,7 @@ namespace blofeld
 		WIDGET_REFERENCE_BLOCK_ID)
 	{
 		{ _field_short_integer, "marker index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("gnlao", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("gnlao", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "widget ref", FIELD_FLAG_READ_ONLY, &leaf_system_reference },
 		{ _field_terminator }
 	};
@@ -1158,7 +1158,7 @@ namespace blofeld
 		{ _field_short_integer, "dynamic object count", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "dynamic object block index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_flags, "override flags", &instanced_geometry_flags },
-		FIELD_PAD("SDFSDEE", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("SDFSDEE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_char_enum, "override pathfinding policy", &instanced_geometry_pathfinding_policy_enum },
 		{ _field_char_enum, "override lightmapping policy", &instanced_geometry_lightmapping_policy_enum },
 		{ _field_char_enum, "override imposter policy", &instanced_geometry_imposter_policy_enum },

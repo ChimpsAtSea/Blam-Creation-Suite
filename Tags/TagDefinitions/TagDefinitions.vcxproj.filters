@@ -954,6 +954,9 @@
     <ClCompile Include="tag_groups\tag_groups.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="types\field_id.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld.h">
@@ -998,7 +1001,7 @@
     <ClInclude Include="tag_group_info.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque_field_type_override.h">
+    <ClInclude Include="blofeld_field_type_override.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tag_byteswap.h">
@@ -1923,6 +1926,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tag_groups\tag_groups.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\field_id.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -116,10 +116,10 @@ namespace blofeld
 	{
 		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
-		{ _field_enum, "Output Modifier", FIELD_FLAG_UNKNOWN0, &output_mod_enum, _field_id_fnop },
-		FIELD_PAD("BVCG", nullptr, FIELD_FLAG_NONE, 2),
-		{ _field_string_id, "Output Modifier Input", FIELD_FLAG_UNKNOWN0, _field_id_function_output_modifier },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		{ _field_enum, "Output Modifier", FIELD_FLAG_UNKNOWN0, &output_mod_enum, _field_id_function_output_modifier },
+		FIELD_PAD_EX("BVCG", nullptr, FIELD_FLAG_NONE, 2),
+		{ _field_string_id, "Output Modifier Input", FIELD_FLAG_UNKNOWN0, _field_id_function_output_modifier_input },
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};
@@ -136,10 +136,10 @@ namespace blofeld
 	{
 		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
-		{ _field_enum, "Output Modifier", FIELD_FLAG_UNKNOWN0, &output_mod_enum, _field_id_fnop },
-		FIELD_PAD("BVCG", nullptr, FIELD_FLAG_NONE, 2),
-		{ _field_string_id, "Output Modifier Input", FIELD_FLAG_UNKNOWN0, _field_id_function_output_modifier },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		{ _field_enum, "Output Modifier", FIELD_FLAG_UNKNOWN0, &output_mod_enum, _field_id_function_output_modifier },
+		FIELD_PAD_EX("BVCG", nullptr, FIELD_FLAG_NONE, 2),
+		{ _field_string_id, "Output Modifier Input", FIELD_FLAG_UNKNOWN0, _field_id_function_output_modifier_input },
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};

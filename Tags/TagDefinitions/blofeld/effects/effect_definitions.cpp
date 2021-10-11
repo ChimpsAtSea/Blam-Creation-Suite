@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -30,7 +30,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_char_enum, "priority", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_effect_priority_enum },
 
-		FIELD_PAD("asdfsdf", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("asdfsdf", nullptr, FIELD_FLAG_NONE, 1),
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "unknown" },
@@ -70,12 +70,12 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_LOCATIONS_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("MARKER NAMES", nullptr, FIELD_FLAG_NONE, "In addition to the marker in the render model there are several special marker names:\n\nreplace\nReplace allows you to use the same effect with different markers. Damage transition effects support this for example.\n\ngravity, up\nThe direction of gravity (down) and the opposite direction (up).  Always supplied\n\nnormal\nVector pointing directly away from the surface you collided with. Supplied for effects from collision.\n\nforward\nThe \'negative incident\' vector i.e. the direction the object is moving in. Most commonly used to generated decals. Supplied for effects from collision.\n\nbackward\nThe \'incident\' vector i.e. the opposite of the direction the object is moving in. Supplied for effects from collision.\n\nreflection\nThe way the effect would reflect off the surface it hit. Supplied for effects from collision.\n\nroot\nThe object root (pivot). These can used for all effects which are associated with an object.\n\nimpact\nThe location of a havok impact.\n\nwater_surface\nPoint of the effect projected to the water surface above it. Otherwise it just returns the effect position.\n\nchild\nThe location of the last detonated projectile, in case the parent object is a weapon (tracers only)\n\n"),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_EXPLANATION_EX("MARKER NAMES", nullptr, FIELD_FLAG_NONE, "In addition to the marker in the render model there are several special marker names:\n\nreplace\nReplace allows you to use the same effect with different markers. Damage transition effects support this for example.\n\ngravity, up\nThe direction of gravity (down) and the opposite direction (up).  Always supplied\n\nnormal\nVector pointing directly away from the surface you collided with. Supplied for effects from collision.\n\nforward\nThe \'negative incident\' vector i.e. the direction the object is moving in. Most commonly used to generated decals. Supplied for effects from collision.\n\nbackward\nThe \'incident\' vector i.e. the opposite of the direction the object is moving in. Supplied for effects from collision.\n\nreflection\nThe way the effect would reflect off the surface it hit. Supplied for effects from collision.\n\nroot\nThe object root (pivot). These can used for all effects which are associated with an object.\n\nimpact\nThe location of a havok impact.\n\nwater_surface\nPoint of the effect projected to the water surface above it. Otherwise it just returns the effect position.\n\nchild\nThe location of the last detonated projectile, in case the parent object is a weapon (tracers only)\n\n"),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_old_string_id, "marker name", FIELD_FLAG_INDEX },
 		{ _field_word_flags, "flags", &effect_location_flags },
 		{ _field_char_enum, "priority", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_effect_priority_enum },
-		FIELD_PAD("RGEWNQIG", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("RGEWNQIG", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -92,15 +92,15 @@ namespace blofeld
 		{ _field_string_id, "event name", FIELD_FLAG_INDEX },
 		{ _field_word_flags, "flags", &event_flags },
 		{ _field_char_enum, "priority", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_effect_priority_enum },
-		FIELD_PAD("EVUIQSNDS", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("EVUIQSNDS", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_real_fraction, "skip fraction", "chance that this event will be skipped entirely" },
-		FIELD_CUSTOM("delay bounds", "delay before this event takes place", FIELD_FLAG_NONE, _field_id_unknown_mela),
+		FIELD_CUSTOM_EX("delay bounds", "delay before this event takes place", FIELD_FLAG_NONE, _field_id_unknown_mela),
 		{ _field_real_bounds, "delay bounds", "delay before this event takes place", "seconds" },
-		FIELD_CUSTOM("duration bounds", "duration of this event", FIELD_FLAG_NONE, _field_id_unknown_mela),
+		FIELD_CUSTOM_EX("duration bounds", "duration of this event", FIELD_FLAG_NONE, _field_id_unknown_mela),
 		{ _field_real_bounds, "duration bounds", "duration of this event", "seconds" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
-		FIELD_EXPLANATION("event age duration override", nullptr, FIELD_FLAG_NONE, "Parts and particle systems can take \"event age\" as a function input.  Typically that goes from 0 to 1 over the event duration.  If you want a different time, specify it here.  0 means use the duration bounds above."),
+		FIELD_EXPLANATION_EX("event age duration override", nullptr, FIELD_FLAG_NONE, "Parts and particle systems can take \"event age\" as a function input.  Typically that goes from 0 to 1 over the event duration.  If you want a different time, specify it here.  0 means use the duration bounds above."),
 		{ _field_real, "event age duration override", "the amount of time over which the \"event age\" function input goes from 0 to 1", "seconds" },
 
 		{ _field_block, "parts", &effect_part_block },
@@ -129,18 +129,18 @@ namespace blofeld
 		{ _field_tag, "runtime base group tag", FIELD_FLAG_UNKNOWN0 },
 		{ _field_char_enum, "game mode", &effectPartGameModeDefinition },
 		{ _field_char_enum, "damage reporting type", &global_damage_reporting_enum_definition },
-		FIELD_PAD("JCIOEHR", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("JCIOEHR", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "type", FIELD_FLAG_INDEX, &effect_part_block_type_reference },
-		FIELD_CUSTOM("velocity bounds", "initial velocity along the location's forward, for decals the distance at which decal is created (defaults to 0.5)", FIELD_FLAG_NONE, _field_id_unknown_mela),
+		FIELD_CUSTOM_EX("velocity bounds", "initial velocity along the location's forward, for decals the distance at which decal is created (defaults to 0.5)", FIELD_FLAG_NONE, _field_id_unknown_mela),
 		{ _field_real_bounds, "velocity bounds", "initial velocity along the location's forward, for decals the distance at which decal is created (defaults to 0.5)", "world units per second" },
 		{ _field_real_euler_angles_2d, "velocity orientation (yaw, pitch)", "NOT USED", FIELD_FLAG_UNKNOWN0 },
 		{ _field_angle, "velocity cone angle", "initial velocity will be inside the cone defined by this angle.", "degrees" },
 		{ _field_angle_bounds, "angular velocity bounds", nullptr, "degrees per second" },
-		FIELD_CUSTOM("radius modifier bounds", nullptr, FIELD_FLAG_NONE, _field_id_unknown_mela),
+		FIELD_CUSTOM_EX("radius modifier bounds", nullptr, FIELD_FLAG_NONE, _field_id_unknown_mela),
 		{ _field_real_bounds, "radius modifier bounds" },
 		{ _field_real_point_3d, "relative offset" },
 		{ _field_real_euler_angles_2d, "relative orientation (yaw, pitch)" },
-		FIELD_EXPLANATION("SCALE MODIFIERS", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("SCALE MODIFIERS", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_flags, "A scales values", &effect_part_scaleable_values },
 		{ _field_long_flags, "B scales values", &effect_part_scaleable_values },
 
@@ -163,7 +163,7 @@ namespace blofeld
 		{ _field_enum, "create in", &effect_environments },
 		{ _field_enum, "violence mode", &effect_dispositions },
 		{ _field_short_block_index, "location", &effect_locations_block },
-		FIELD_PAD("THY", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("THY", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "acceleration" },
 		{ _field_real, "inner cone angle", nullptr, "degrees" },
 		{ _field_real, "outer cone angle", nullptr, "degrees" },
@@ -196,7 +196,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_CONICAL_DISTRIBUTION_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("conical_projection: AKA shotgun", nullptr, FIELD_FLAG_NONE, "projectile_count = yaw_count*pitch_count"),
+		FIELD_EXPLANATION_EX("conical_projection: AKA shotgun", nullptr, FIELD_FLAG_NONE, "projectile_count = yaw_count*pitch_count"),
 		{ _field_short_integer, "yaw count" },
 		{ _field_short_integer, "pitch count" },
 		{ _field_real, "distribution exponent", "exp==.5 even distribution, exp>.5== tighter" },

@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -29,11 +29,11 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DESCRIPTION_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("net map info", nullptr, FIELD_FLAG_NONE, "these provide the info required by the UI to load a net map"),
+		FIELD_EXPLANATION_EX("net map info", nullptr, FIELD_FLAG_NONE, "these provide the info required by the UI to load a net map"),
 		{ _field_tag_reference, "descriptive bitmap", &global_bitmap_reference },
 		{ _field_tag_reference, "displayed map name", &global_multilingual_unicode_string_list_reference },
 		{ _field_string, "scenario tag directory path", "this is the path to the directory containing the scenario tag file of the same name" },
-		FIELD_PAD("RMNNQW", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("RMNNQW", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 

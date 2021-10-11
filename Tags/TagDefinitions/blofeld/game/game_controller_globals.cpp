@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -17,7 +17,7 @@ namespace blofeld
 		GAMEPAD_STICK_INFO_BLOCK_ID)
 	{
 		{ _field_char_enum, "input shape", &input_mapping_shape_enum },
-		FIELD_PAD("F", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("F", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real_fraction, "peg threshold", "magnitude of analog input for pegged acceleration to kick in" },
 		{ _field_real_point_2d, "pegged time", "time for a pegged look to reach maximum effect" },
 		{ _field_real_point_2d, "pegged scale", "the maximum effect achieved over the duration of the pegged time." },
@@ -74,22 +74,22 @@ namespace blofeld
 		{ _field_real_fraction, "magnetism friction", "how much the crosshair slows over enemies" },
 		{ _field_real_fraction, "magnetism adhesion", "how much the crosshair sticks to enemies" },
 		{ _field_real_fraction, "inconsequential target scale", "scales magnetism level for inconsequential targets like infection forms" },
-		FIELD_EXPLANATION("crosshair", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("crosshair", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_point_2d, "crosshair location", "-1..1, 0 is middle of the screen" },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_real, "unknown@" },
 		{ _field_legacy, _field_real, "unknown@" },
 
-		FIELD_EXPLANATION("fireteam", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("fireteam", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "fireteam command mode duration", "How long is command mode on after you initially attempt to issue an order", "seconds" },
-		FIELD_EXPLANATION("looking", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("looking", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "look autolevelling scale", "1 is fast, 0 is none, >1 will probably be really fast" },
 		{ _field_real, "gravity_scale" },
-		FIELD_PAD("VM", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("VM", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "minimum autolevelling ticks", "amount of time player needs to move and not look up or down for autolevelling to kick in" },
 		{ _field_angle, "minimum angle for vehicle flipping", "0 means the vehicle's up vector is along the ground, 90 means the up vector is pointing straight up:degrees" },
-		FIELD_EXPLANATION("weapons may optionally be set to require extra button hold time (e.g. ordnance power weapon drops)", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("weapons may optionally be set to require extra button hold time (e.g. ordnance power weapon drops)", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "minimum action hold time", "time that player needs to press ACTION to register as a HOLD", "seconds" },
 		{ _field_real, "minimum action hold time for teammates", "teammates of player who dropped/spawned weapon", "seconds" },
 		{ _field_real, "minimum action hold time for opponents", "opponents of player who dropped/spawned weapon", "seconds" },
@@ -97,12 +97,12 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_real, "pegged zoom supression threshold", "for spinny-shotgun goodness" },
 
-		FIELD_EXPLANATION("double/triple jump", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("double/triple jump", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "minimum vertical velocity", nullptr, "wu/s" },
 		{ _field_real, "cooldown time", nullptr, "seconds" },
 		{ _field_real_vector_2d, "double jump velocity", nullptr, "horizontal, vertical" },
 		{ _field_real_vector_2d, "triple jump velocity", nullptr, "aiming, vertical" },
-		FIELD_EXPLANATION("stick throws", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("stick throws", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "throw channel width", "how close to an axis you have to be" },
 		{ _field_real, "throw peg threshold", "how far from the center you have to be" },
 		{ _field_real, "throw centered min time", "how long the stick must be centered to start a throw", "s" },
@@ -113,7 +113,7 @@ namespace blofeld
 		{ _field_real, "double tap interval time", "to engage double-tap, user must press jump twice in this much time", "s" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 55 },
-		FIELD_EXPLANATION("Jump Assist", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Jump Assist", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "vault_speed_gain" },
 		{ _field_real, "vaultSprint_speed_gain" },
 		{ _field_real, "vault_height_high" },

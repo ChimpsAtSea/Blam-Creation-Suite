@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -30,7 +30,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SELF_ILLUMINATION_STATE_ID)
 	{
-		FIELD_EXPLANATION("Self-Illumination State", nullptr, FIELD_FLAG_NONE, "An animated self-illumination controller state."),
+		FIELD_EXPLANATION_EX("Self-Illumination State", nullptr, FIELD_FLAG_NONE, "An animated self-illumination controller state."),
 		{ _field_string_id, "Name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "Flags", &self_illumination_flags },
 		{ _field_real, "Length ", "Length of illumination animation in seconds." },

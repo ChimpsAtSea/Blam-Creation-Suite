@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -31,7 +31,7 @@ namespace blofeld
 		AI_RECORDING_REFERENCE_BLOCK_ID)
 	{
 		{ _field_string, "recording name", FIELD_FLAG_INDEX },
-		FIELD_PAD("INYRGOR", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("INYRGOR", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 

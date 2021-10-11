@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -34,7 +34,7 @@ namespace blofeld
 		{ _field_string_id, "commendation id", "This must match one of the commendation names.", FIELD_FLAG_INDEX },
 		{ _field_char_enum, "type", &aggregatorDependentTypeEnumDefinition },
 		{ _field_char_integer, "minimum level", "This field is ignored if 'type' is set to 'aggregator'." },
-		FIELD_PAD("PAD1", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("PAD1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -105,7 +105,7 @@ namespace blofeld
 		PURCHASE_PREREQUISITES_OFFER_DEFINITION_BLOCK_ID)
 	{
 		{ _field_char_enum, "offer type", FIELD_FLAG_INDEX, &MarketplaceOfferTypeEnum },
-		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -159,7 +159,7 @@ namespace blofeld
 		PURCHASEAPPEARANCEDEFINITIONREFERENCESTRUCT_ID)
 	{
 		{ _field_short_block_index, "item reference", FIELD_FLAG_INDEX, &CookiePurchaseAppearanceDefinitionBlock_block },
-		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -173,7 +173,7 @@ namespace blofeld
 		PURCHASELOADOUTDEFINITIONREFERENCESTRUCT_ID)
 	{
 		{ _field_short_block_index, "item reference", FIELD_FLAG_INDEX, &CookiePurchaseLoadoutDefinitionBlock_block },
-		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -187,7 +187,7 @@ namespace blofeld
 		PURCHASEORDNANCEDEFINITIONREFERENCESTRUCT_ID)
 	{
 		{ _field_short_block_index, "item reference", FIELD_FLAG_INDEX, &CookiePurchaseOrdnanceDefinitionBlock_block },
-		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

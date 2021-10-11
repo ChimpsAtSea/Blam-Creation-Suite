@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -35,7 +35,7 @@ namespace blofeld
 		{ _field_struct, "base", &havok_shape_collection_struct_2010_2 },
 
 		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc_64bit },
-		FIELD_PAD("foobar666", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("foobar666", nullptr, FIELD_FLAG_NONE, 8),
 
 		{ _field_real_vector_3d, "center", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "havok w center", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -53,7 +53,7 @@ namespace blofeld
 		{ _field_short_integer, "instance index", FIELD_FLAG_UNKNOWN0 },
 
 		{ _field_real, "scale", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("3 long pad", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("3 long pad", nullptr, FIELD_FLAG_NONE, 12),
 
 		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "8byte alignment", 4 },
@@ -72,8 +72,8 @@ namespace blofeld
 		4)
 	{
 		{ _field_struct, "mopp bv tree shape", &havok_shape_struct_2010_2 },
-		FIELD_PAD("m_bvTreeType", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3, 1),
-		FIELD_PAD("3 other bytes", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("m_bvTreeType", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3, 1),
+		FIELD_PAD_EX("3 other bytes", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "8byte alignment", 4 },
@@ -97,14 +97,14 @@ namespace blofeld
 		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "8byte alignment", 4 },
 
-		FIELD_PAD("mopp alignment", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, 4),
+		FIELD_PAD_EX("mopp alignment", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, 4),
 		{ _field_real, "mopp scale", FIELD_FLAG_READ_ONLY },
 
 		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "final pad", 16 },
 
 		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc_64bit },
-		FIELD_PAD("final pad", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("final pad", nullptr, FIELD_FLAG_NONE, 12),
 
 		{ _field_terminator }
 	};

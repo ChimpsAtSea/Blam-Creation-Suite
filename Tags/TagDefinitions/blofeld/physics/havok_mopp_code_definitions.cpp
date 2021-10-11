@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -25,11 +25,11 @@ namespace blofeld
 		{ _field_short_integer, "count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 
 		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
-		FIELD_PAD("total shit pad1", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("total shit pad1", nullptr, FIELD_FLAG_NONE, 4),
 
 		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc_64bit, 2 },
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
-		FIELD_PAD("total shit pad1", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("total shit pad1", nullptr, FIELD_FLAG_NONE, 8),
 
 		{ _field_legacy, _field_version_equal, _engine_type_haloreach }, // unknown. havok struct modified?? data was nuke?
 		{ _field_legacy, _field_pad, "unknown", 16 },
@@ -56,7 +56,7 @@ namespace blofeld
 
 		// kEnum<BuildType, hkInt8> m_buildType
 		{ _field_char_integer, "int8 m_buildType", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("total shit pad2", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("total shit pad2", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 4 },
 		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
@@ -66,11 +66,11 @@ namespace blofeld
 
 
 		// ## blam specific data below ##
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_block, "mopp data block ", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &mopp_code_data_definition_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 		{ _field_char_integer, "mopp build type", "they say it only matters for ps3", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("explicit alignment pad 3", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("explicit alignment pad 3", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 

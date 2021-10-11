@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -37,7 +37,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_pad, "presumed 8byte struct alignment", 4 },
 
-		FIELD_EXPLANATION("damping", nullptr, FIELD_FLAG_NONE, "feed velocity into this function and damp by the value that comes out"),
+		FIELD_EXPLANATION_EX("damping", nullptr, FIELD_FLAG_NONE, "feed velocity into this function and damp by the value that comes out"),
 		{ _field_struct, "spring damping", &scalar_function_named_struct },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
@@ -69,7 +69,7 @@ namespace blofeld
 		{ _field_short_block_index, "x-axis", &spring_linear_acceleration_block },
 		{ _field_short_block_index, "y-axis", &spring_linear_acceleration_block },
 		{ _field_short_block_index, "z-axis", &spring_linear_acceleration_block },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

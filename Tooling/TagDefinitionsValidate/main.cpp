@@ -38,14 +38,17 @@ int main()
 {
 	SetThreadErrorMode(SEM_NOGPFAULTERRORBOX, NULL);
 	SetErrorMode(SEM_NOGPFAULTERRORBOX);
-
+	
 	BCS_FAIL_RETURN(register_process_module_by_pointer(main));
 	void* process_module;
 	BCS_FAIL_RETURN(get_process_module(process_module));
 	BCS_FAIL_RETURN(init_command_line());
+	BCS_FAIL_RETURN(init_console());
+
 
 	BCS_RESULT rs = tag_defintions_validate();
 
+	BCS_FAIL_RETURN(deinit_console());
 	BCS_FAIL_RETURN(deinit_command_line());
 	
 	return rs;

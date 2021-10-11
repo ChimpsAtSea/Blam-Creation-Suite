@@ -1,5 +1,7 @@
 #include "blamboozlelib-private-pch.h"
 
+
+
 c_inf_tag_field::c_inf_tag_field(const char* guerilla_data, const s_inf_tag_field& field_definition) :
 	name(inf_pa_to_pointer(guerilla_data, field_definition.name_address)),
 	definition(inf_pa_to_pointer(guerilla_data, field_definition.definition_address)),
@@ -13,8 +15,13 @@ c_inf_tag_field::c_inf_tag_field(const char* guerilla_data, const s_inf_tag_fiel
 	string_list_definition(nullptr),
 	padding(0),
 	skip_length(0),
-	explanation(0)
+	explanation(0),
+	field_id(static_cast<blofeld::e_field_id>(field_definition.meta)),
+	field_id_string(field_id_to_string(field_id)),
+	_field_id_byteswap(_byteswap_ulong(field_definition.meta))
 {
+	ASSERT(field_id_string);
+
 	switch (field_type)
 	{
 	case _inf_field_type_char_block_index:

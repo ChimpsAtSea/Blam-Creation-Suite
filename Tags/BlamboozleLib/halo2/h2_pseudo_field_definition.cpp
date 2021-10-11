@@ -51,9 +51,9 @@ c_h2_pseudo_field_definition::c_h2_pseudo_field_definition(const char* guerilla_
 	case _h2_field_id_hide_end:
 	case _h2_field_id_function_input_scalar:
 	case _h2_field_id_function_input_range:
-	case _h2_field_id_function_output_modifier:
+	case _h2_field_id_function_output_modifier_input:
 	case _h2_field_id_function_unknown:
-	case _h2_field_id_fnop:
+	case _h2_field_id_function_output_modifier:
 	case _h2_field_id_halo_script_block:
 	case _h2_field_id_cfpf:
 	case _h2_field_id_cflt:

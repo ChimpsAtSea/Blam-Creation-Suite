@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -20,7 +20,7 @@ namespace blofeld
 		{ _field_char_enum, "activation type", &unit_trick_activation_type_enum },
 		{ _field_char_enum, "velocity preservation", "specifies how pre-trick velocity is maintained during and after the trick\nonly applies to vehicles", &unit_trick_velocity_preservation_mode_enum },
 		{ _field_byte_flags, "flags", &unit_trick_flags },
-		FIELD_PAD("XEKMVZ", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("XEKMVZ", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_real, "camera interpolation time", "sloppiness of the camera\nonly applies to vehicles", "s" },
 		{ _field_real, "trick exit time", "how long before the end of the trick we start using the below values", "s" },
 		{ _field_real_bounds, "trick exit camera interpolation time", "sloppiness of the camera when exiting the trick\nwe interpolate between these values depending on how far your camera was displaced from the ideal camera", "s" },

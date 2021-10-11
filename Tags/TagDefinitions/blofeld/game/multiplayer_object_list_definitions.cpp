@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -29,7 +29,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_OBJECT_TYPE_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("WARNING", nullptr, FIELD_FLAG_NONE, "This block is readonly because adding, removing, reordering, or renaming elements after we ship a map pack will completely break the game.  And I will punch you.  Hard.  In the face."),
+		FIELD_EXPLANATION_EX("WARNING", nullptr, FIELD_FLAG_NONE, "This block is readonly because adding, removing, reordering, or renaming elements after we ship a map pack will completely break the game.  And I will punch you.  Hard.  In the face."),
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "object", &object_reference$6 },
 		{ _field_terminator }
@@ -158,13 +158,13 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_OBJECT_TYPE_LIST_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("MEGALO", nullptr, FIELD_FLAG_NONE, "After changing this tag you will need to run the tool command multiplayer-generate-global-object-type-list (once) and rebuild the .mapinfo file for each multiplayer scenario in order to use the new objects in megalo"),
+		FIELD_EXPLANATION_EX("MEGALO", nullptr, FIELD_FLAG_NONE, "After changing this tag you will need to run the tool command multiplayer-generate-global-object-type-list (once) and rebuild the .mapinfo file for each multiplayer scenario in order to use the new objects in megalo"),
 		{ _field_block, "object types", &multiplayer_object_type_block },
 		{ _field_block, "weapons", &multiplayer_weapon_collection_block },
 		{ _field_block, "vehicles", &multiplayer_vehicle_collection_block },
 		{ _field_block, "grenades", &multiplayer_grenade_collection_block },
 		{ _field_block, "equipment", &multiplayer_equipment_collection_block },
-		FIELD_EXPLANATION("REMAPPING TABLES", nullptr, FIELD_FLAG_NONE, "Note - if a remap table has a single element whose \'from\' is NONE, then every object will be remapped to the \'to\' object"),
+		FIELD_EXPLANATION_EX("REMAPPING TABLES", nullptr, FIELD_FLAG_NONE, "Note - if a remap table has a single element whose \'from\' is NONE, then every object will be remapped to the \'to\' object"),
 		{ _field_block, "weapon remapping", &multiplayer_weapon_remap_table_block },
 		{ _field_block, "vehicle remapping", &multiplayer_vehicle_remap_table_block },
 

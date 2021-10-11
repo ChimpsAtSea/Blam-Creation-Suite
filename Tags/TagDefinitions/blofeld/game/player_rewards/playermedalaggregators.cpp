@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -112,9 +112,9 @@ namespace blofeld
 		MEDALAGGREGATOR_ID)
 	{
 		{ _field_string_id, "display name", FIELD_FLAG_INDEX },
-		FIELD_CUSTOM("allowed game modes", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("allowed game modes", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "allowed game modes", &game_mode_flags_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_block, "contributing medals", &medalAggregatorEntry_block },
 		{ _field_terminator }
 	};

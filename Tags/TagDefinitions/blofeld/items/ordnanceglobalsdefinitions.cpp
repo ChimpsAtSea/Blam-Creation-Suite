@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -50,7 +50,7 @@ namespace blofeld
 		{ _field_byte_integer, "sequence index" },
 		{ _field_byte_integer, "equipment count" },
 		{ _field_byte_flags, "premium flag", &GuiOrdnancePrimiumFlag },
-		FIELD_PAD("PAD", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("PAD", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_real_point_3d, "navpoint marker offset", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};

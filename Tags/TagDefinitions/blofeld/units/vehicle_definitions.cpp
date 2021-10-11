@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -43,7 +43,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "boat engine", &boat_engine_definition_block },
 
-		FIELD_EXPLANATION("wheel circumferance", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("wheel circumferance", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "wheel circumferance" },
 		{ _field_real, "gravity adjust", "0-1 fraction by which we scale gravity that is not along the ground plane" },
 
@@ -63,7 +63,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HUMAN_PLANE_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("velocity control variables", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("velocity control variables", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "maximum forward speed" },
 		{ _field_real, "maximum reverse speed" },
 		{ _field_real, "speed acceleration" },
@@ -91,7 +91,7 @@ namespace blofeld
 		{ _field_real, "rise accel against direction", "acceleration when trying to throttle against current rise direction" },
 		{ _field_real, "maximum rise speed during boost" },
 
-		FIELD_EXPLANATION("human plane tuning variables", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("human plane tuning variables", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "flying torque scale", "big vehicles need to scale this down.  0 defaults to 1, which is generally a good value." },
 		{ _field_real, "air friction deceleration", "human plane physics only. 0 is nothing.  1 is like thowing the engine to full reverse" },
 		{ _field_real, "thrust scale", "human plane physics only. 0 is default (1)" },
@@ -115,10 +115,10 @@ namespace blofeld
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct },
 		{ _field_struct, "engine", &global_vehicle_engine_struct },
-		FIELD_EXPLANATION("wheel circumferance", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("wheel circumferance", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "wheel circumferance" },
 		{ _field_real, "gravity adjust", "0-1 fraction by which we scale gravity that is not along the ground plane" },
-		FIELD_EXPLANATION("deployed mode", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("deployed mode", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "turret deployment time", "time it takes for turret and support legs to deploy", "seconds" },
 		{ _field_real, "turret holster time", "time it takes for turret and support legs to pack up", "seconds" },
 		{ _field_real, "runtime inverse turret deployment time", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -139,7 +139,7 @@ namespace blofeld
 		ALIEN_SCOUT_BLOCK_ID)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
-		FIELD_EXPLANATION("velocity control variables", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("velocity control variables", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "maximum forward speed" },
 		{ _field_real, "maximum reverse speed" },
 		{ _field_real, "speed acceleration" },
@@ -155,18 +155,18 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "slide speed at top speed", "the slide speeds are interpolated down to this value, reaching it when the vehicle is moving at its top speed", "wu/s" },
 
-		FIELD_EXPLANATION("specific types", nullptr, FIELD_FLAG_NONE, "different types are treated differently alien scout controller"),
+		FIELD_EXPLANATION_EX("specific types", nullptr, FIELD_FLAG_NONE, "different types are treated differently alien scout controller"),
 		{ _field_char_enum, "specific type", &alien_scout_specific_type_enum },
 		{ _field_byte_flags, "flags", &alien_scout_flags },
-		FIELD_PAD("NPBE", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("NPBE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "drag coeficient" },
 		{ _field_real, "constant deceleration" },
 		{ _field_real, "torque scale", "0 defaults to 1" },
-		FIELD_EXPLANATION("engine object function", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("engine object function", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "engine gravity function", &engine_function_struct },
-		FIELD_EXPLANATION("contrail object function", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("contrail object function", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "contrail gravity function", &engine_function_struct },
-		FIELD_EXPLANATION("engine rotation function", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("engine rotation function", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_bounds, "gear rotation speed", "cycles per second idle to full throttle" },
 		{ _field_struct, "steering animation", &steering_animation_struct },
 		{ _field_terminator }
@@ -184,7 +184,7 @@ namespace blofeld
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct },
-		FIELD_EXPLANATION("velocity control variables", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("velocity control variables", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "maximum forward speed" },
 		{ _field_real, "maximum reverse speed" },
 		{ _field_real, "speed acceleration" },
@@ -194,16 +194,16 @@ namespace blofeld
 		{ _field_real, "slide acceleration" },
 		{ _field_real, "slide deceleration" },
 		{ _field_real, "slide accel against direction", "acceleration when trying to throttle against current slide direction" },
-		FIELD_EXPLANATION("torque scale", nullptr, FIELD_FLAG_NONE, "how hard the vehicle trys to rotate to it\'s desired rotation"),
+		FIELD_EXPLANATION_EX("torque scale", nullptr, FIELD_FLAG_NONE, "how hard the vehicle trys to rotate to it\'s desired rotation"),
 		{ _field_real, "flying torque scale", "big vehicles need to scale this down.  0 defaults to 1, which is generally a good value." },
-		FIELD_EXPLANATION("fixed gun offset", nullptr, FIELD_FLAG_NONE, "this offset will be aligned to the units aiming vector instead of the vehicle forward vector"),
+		FIELD_EXPLANATION_EX("fixed gun offset", nullptr, FIELD_FLAG_NONE, "this offset will be aligned to the units aiming vector instead of the vehicle forward vector"),
 		{ _field_angle, "fixed gun yaw" },
 		{ _field_angle, "fixed gun pitch" },
-		FIELD_EXPLANATION("alien fighter trick variables", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("alien fighter trick variables", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "maximum trick frequency" },
 		{ _field_real, "loop trick duration" },
 		{ _field_real, "roll trick duration" },
-		FIELD_EXPLANATION("alien fighter fake flight control", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("alien fighter fake flight control", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "zero gravity speed" },
 		{ _field_real, "full gravity speed" },
 		{ _field_real, "strafe boost scale" },
@@ -224,7 +224,7 @@ namespace blofeld
 		TURRET_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &turret_flags },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "physical yaw node" },
 		{ _field_string_id, "physical pitch node" },
 		{ _field_string_id, "physical elevate node", "this is specificly for the wolverine which has a turret which pops up when you use it." },
@@ -244,7 +244,7 @@ namespace blofeld
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct },
-		FIELD_EXPLANATION("velocity control variables", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("velocity control variables", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "maximum forward speed" },
 		{ _field_real, "maximum reverse speed" },
 		{ _field_real, "speed acceleration" },
@@ -256,7 +256,7 @@ namespace blofeld
 		{ _field_struct, "walker physics", &walker_physics_struct },
 		{ _field_real, "walk cycle pause", "fraction of walkcycle at end for pause" },
 		{ _field_short_integer, "stable planted legs", "number of legs mantis needs planted to be considered stable." },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "time without plant buffer", "seconds" },
 		{ _field_real, "not along up gravity scale", "0-1" },
 		{ _field_real, "speed acceleration limit" },
@@ -265,7 +265,7 @@ namespace blofeld
 		{ _field_real, "slide acceleration match scale" },
 		{ _field_real, "turn acceleration limit" },
 		{ _field_real, "turn acceleration match scale" },
-		FIELD_EXPLANATION("jumping", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("jumping", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "jump set time", "seconds" },
 		{ _field_real, "jump set interpolation fraction", "0-1, portion of set time spent interpolating into neutral stance" },
 		{ _field_real, "jump leap time", "seconds" },
@@ -288,11 +288,11 @@ namespace blofeld
 		VTOL_BLOCK_ID)
 	{
 		{ _field_struct, "turning control", &vehicle_turning_control_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "left lift marker" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "right lift marker" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "thrust marker" },
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach, 19 }, // #TODO: vtol block needs research badly
@@ -320,18 +320,18 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 18 },
 		{ _field_struct, "trigger to throttle", &scalar_function_named_struct },
 		{ _field_struct, "descent to boost", &vtol_descent_function_struct },
-		FIELD_EXPLANATION("minimum and maximum up acceleration", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("minimum and maximum up acceleration", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "maximum up acceleration" },
 		{ _field_real, "maximum down acceleration" },
 		{ _field_real, "vertical deceleration time", "after accelerating vertically, take this long to bleed off the throttle", "seconds" },
-		FIELD_EXPLANATION("lift arm pivot", nullptr, FIELD_FLAG_NONE, "this simulates the engines being on a pivot like on an osprey.  This helps better cradle the center of mass."),
+		FIELD_EXPLANATION_EX("lift arm pivot", nullptr, FIELD_FLAG_NONE, "this simulates the engines being on a pivot like on an osprey.  This helps better cradle the center of mass."),
 		{ _field_real, "lift arm pivot length" },
-		FIELD_EXPLANATION("turn, left and forward accelerations", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("turn, left and forward accelerations", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "maximum turn acceleration" },
 		{ _field_real, "turn acceleration gain" },
-		FIELD_EXPLANATION("interpolation parameters", nullptr, FIELD_FLAG_NONE, "these parameters control the interpolation between the two elements in the speed interpolation block"),
+		FIELD_EXPLANATION_EX("interpolation parameters", nullptr, FIELD_FLAG_NONE, "these parameters control the interpolation between the two elements in the speed interpolation block"),
 		{ _field_real, "interpolation speed domain" },
-		FIELD_EXPLANATION("funciton explanation", nullptr, FIELD_FLAG_NONE, "acc= INTERPOLATION_ACC(ceiling(throttle, SPEED_TROTTLE_CEILING(speed))), speed+= acc, interpolation= A_B_INTERPOLATION(speed)"),
+		FIELD_EXPLANATION_EX("funciton explanation", nullptr, FIELD_FLAG_NONE, "acc= INTERPOLATION_ACC(ceiling(throttle, SPEED_TROTTLE_CEILING(speed))), speed+= acc, interpolation= A_B_INTERPOLATION(speed)"),
 		{ _field_struct, "SPEED_TROTTLE_CEILING()", &scalar_function_named_struct },
 		{ _field_struct, "INTERPOLATION_ACC()", &scalar_function_named_struct },
 		{ _field_struct, "A_B_INTERPOLATION() interpolation mapping", &scalar_function_named_struct },
@@ -347,9 +347,9 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 9 },
 		{ _field_real, "alt. lock offset coefficient", "scalar for altitude lock based on distance to target - higher numbers reach the target more quickly but may cause bounciness" },
 		{ _field_real, "alt. lock velocity coefficient", "scalar for altitude lock based on velocity.  Acts like friction, trying to remove vertical velocity from the system" },
-		FIELD_EXPLANATION("prop rotation", nullptr, FIELD_FLAG_NONE, "propeller speed data to drive propeller animations"),
+		FIELD_EXPLANATION_EX("prop rotation", nullptr, FIELD_FLAG_NONE, "propeller speed data to drive propeller animations"),
 		{ _field_real_bounds, "prop rotation speed", "cycles per second idle to full throttle" },
-		FIELD_EXPLANATION("landing", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("landing", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "landing time", "how long we must maintain the landing state in order to land", "s" },
 		{ _field_real, "takeoff time", "how long it takes to leave the landed state", "s" },
 		{ _field_real, "landing linear velocity", "must be under this linear velocity to enter/maintain landing state", "wu/s" },
@@ -393,9 +393,9 @@ namespace blofeld
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct },
 		{ _field_struct, "engine", &global_vehicle_engine_struct },
-		FIELD_EXPLANATION("wheel circumferance", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("wheel circumferance", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "wheel circumferance" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "rotation marker" },
 		{ _field_real, "magic turning scale", "scale up the magic force" },
 		{ _field_real, "magic turning acc", "(degrees/pow(sec,2))rate at which the turning tries to accelerate" },
@@ -448,7 +448,7 @@ namespace blofeld
 		JACKAL_GLIDER_BLOCK_ID)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
-		FIELD_EXPLANATION("velocity control variables", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("velocity control variables", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "maximum forward speed" },
 		{ _field_real, "maximum reverse speed" },
 		{ _field_real, "speed acceleration" },
@@ -458,9 +458,9 @@ namespace blofeld
 		{ _field_real, "slide acceleration" },
 		{ _field_real, "slide deceleration" },
 		{ _field_real, "torque scale", "0 defaults to 1" },
-		FIELD_EXPLANATION("engine object function", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("engine object function", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "engine object function", &engine_function_struct },
-		FIELD_EXPLANATION("contrail object function", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("contrail object function", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "contrail object function", &engine_function_struct },
 		{ _field_struct, "steering animation", &steering_animation_struct },
 		{ _field_real, "flying velocity threshold" },
@@ -470,29 +470,29 @@ namespace blofeld
 		{ _field_real, "landing grounded time" },
 		{ _field_angle, "ground turn radius", "degrees" },
 		{ _field_real, "ground acceleration", "wu/sec" },
-		FIELD_EXPLANATION("wing lift", nullptr, FIELD_FLAG_NONE, "lift_force= k*CEILING(SQR(q*forward_velocity), function_ceiling)"),
+		FIELD_EXPLANATION_EX("wing lift", nullptr, FIELD_FLAG_NONE, "lift_force= k*CEILING(SQR(q*forward_velocity), function_ceiling)"),
 		{ _field_real, "wing lift q" },
 		{ _field_real, "wing lift k" },
 		{ _field_real, "wing lift function ceiling" },
 		{ _field_real, "aileron to angular acceleartion scale" },
 		{ _field_angle, "aileron yaw tilt angle" },
-		FIELD_EXPLANATION("wing", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("wing", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "wing surface", &flight_surface_struct },
-		FIELD_EXPLANATION("ailerons", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("ailerons", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "aileron surface", &flight_surface_struct },
-		FIELD_EXPLANATION("elevator", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("elevator", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "elevator surface", &flight_surface_struct },
-		FIELD_EXPLANATION("tail", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("tail", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "tail surface", &flight_surface_struct },
-		FIELD_EXPLANATION("rudder", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("rudder", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "rudder surface", &flight_surface_struct },
-		FIELD_EXPLANATION("taxi", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("taxi", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "taxi surface", &flight_surface_struct },
-		FIELD_EXPLANATION("ground drag", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("ground drag", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "ground drag struct", &jackal_glider_drag_struct },
-		FIELD_EXPLANATION("air drag", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("air drag", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "air drag struct", &jackal_glider_drag_struct },
-		FIELD_EXPLANATION("takeoff drag", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("takeoff drag", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "takeoff drag struct", &jackal_glider_drag_struct },
 		{ _field_terminator }
 	};
@@ -509,14 +509,14 @@ namespace blofeld
 		BOAT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &boat_flags },
-		FIELD_PAD("blah", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("blah", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_angle, "tank control forward arc", "only used when 'use tank controls' is checked above", "degrees" },
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct },
 		{ _field_real, "gravity scale", "0 means 0.  How hard is it to type 1?" },
 		{ _field_struct, "engine", &global_vehicle_engine_struct },
 		{ _field_block, "boat engine", &boat_engine_definition_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "hull marker name", "the name of the hull surface used to spew effects along the hull of the vehicle." },
 		{ _field_terminator }
 	};
@@ -534,7 +534,7 @@ namespace blofeld
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct },
-		FIELD_EXPLANATION("velocity control variables", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("velocity control variables", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "full throttle speed", "maximum speed when throttle = 1.0", "wu/s" },
 		{ _field_real, "neutral throttle speed", "speed when throttle = 0.0", "wu/s" },
 		{ _field_real, "reverse throttle speed", "speed when throttle = -1.0", "wu/s" },
@@ -548,16 +548,16 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_real, "slide accel against direction", "acceleration when trying to throttle against current slide direction" },
 
-		FIELD_EXPLANATION("torque scale", nullptr, FIELD_FLAG_NONE, "how hard the vehicle trys to rotate to it\'s desired rotation"),
+		FIELD_EXPLANATION_EX("torque scale", nullptr, FIELD_FLAG_NONE, "how hard the vehicle trys to rotate to it\'s desired rotation"),
 		{ _field_real, "flying torque scale", "big vehicles need to scale this down.  0 defaults to 1, which is generally a good value." },
-		FIELD_EXPLANATION("fixed gun offset", nullptr, FIELD_FLAG_NONE, "this offset will be aligned to the units aiming vector instead of the vehicle forward vector"),
+		FIELD_EXPLANATION_EX("fixed gun offset", nullptr, FIELD_FLAG_NONE, "this offset will be aligned to the units aiming vector instead of the vehicle forward vector"),
 		{ _field_angle, "fixed gun yaw" },
 		{ _field_angle, "fixed gun pitch" },
-		FIELD_EXPLANATION("alien fighter trick variables", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("alien fighter trick variables", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "maximum trick frequency" },
 		{ _field_real, "loop trick duration" },
 		{ _field_real, "roll trick duration" },
-		FIELD_EXPLANATION("alien fighter fake flight control", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("alien fighter fake flight control", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "strafe boost scale" },
 		{ _field_real, "off stick deceleration scale" },
 		{ _field_real, "dive speed scale" },
@@ -565,7 +565,7 @@ namespace blofeld
 		{ _field_angle, "roll acceleration", "acceleration for user-input roll", "deg/sec/sec" },
 		{ _field_angle, "roll deceleration", "deceleration for user-input roll (when the user releases the stick)", "deg/sec/sec" },
 		{ _field_real_fraction, "roll smoothing fraction", "if non-zero, when the desired velocity change is less than this fraction of the acceleration, starts interpolating the maximum acceleration towards zero.\nYou can think of this as a time in seconds where if the velocity would reach its target in this amount of time or less, it will start taking longer." },
-		FIELD_EXPLANATION("autolevel", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("autolevel", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "autolevel time", "how long you must not rotate (roll, pitch, yaw) before autoleveling kicks in", "s" },
 		{ _field_angle, "autolevel pitch cutoff", "if the ship is pitched outside of this range, autoleveling will not happen.  The effect is also scaled as the pitch approaches this angle", "degrees" },
 		{ _field_angle, "autolevel max velocity", "maximum angular velocity for autoleveling", "degrees/sec" },
@@ -573,7 +573,7 @@ namespace blofeld
 		{ _field_angle, "autolevel max user ang. vel.", "autolevel can continue to happen if the user is desiring an angular velocity lower than this", "deg/sec" },
 		{ _field_real, "autolevel spring k", "controls relationship between displacement and acceleration - higher values mean faster acceleration when the desired position is far from current position" },
 		{ _field_real, "autolevel spring c", "controls relationship between velocity and friction - higher values will slow the system down, lower values may let the system oscillate" },
-		FIELD_EXPLANATION("cosmetic roll", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("cosmetic roll", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "cosmetic roll scale", "desired roll = delta yaw X scale" },
 		{ _field_angle, "cosmetic roll max bank", "maximum cosmetic roll angle", "degrees" },
 		{ _field_angle, "cosmetic roll max velocity", "maximum angular velocity that cosmetic roll can achieve", "deg/sec" },
@@ -582,7 +582,7 @@ namespace blofeld
 		{ _field_real, "cosmetic roll spring c", "controls relationship between velocity and friction - higher values will slow the system down, lower values may let the system oscillate" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 8 },
-		FIELD_EXPLANATION("new roll", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("new roll", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_flags, "roll flags", &space_fighter_roll_flags },
 		{ _field_angle, "maximum left stick roll angle" },
 		{ _field_real, "left stick rate smoothing" },
@@ -591,28 +591,28 @@ namespace blofeld
 		{ _field_real, "right stick rate smoothing" },
 		{ _field_real, "right stick trend smoothing" },
 
-		FIELD_EXPLANATION("turn deceleration", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("turn deceleration", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_angle, "turn deceleration threshold", "turn deceleration kicks in when turning faster than this", "deg/sec" },
 		{ _field_real_fraction, "turn deceleration fraction", "when turning at the maximum rate, throttle is limited to this value" },
-		FIELD_EXPLANATION("soft ceiling turn back", nullptr, FIELD_FLAG_NONE, "parameters for controlling turing back from soft ceilings"),
+		FIELD_EXPLANATION_EX("soft ceiling turn back", nullptr, FIELD_FLAG_NONE, "parameters for controlling turing back from soft ceilings"),
 		{ _field_long_flags, "turn back flags", &space_fighter_turn_back_flags },
 		{ _field_real, "turn back latched period" },
 		{ _field_struct, "turn back distance to turn rate", &scalar_function_named_struct },
-		FIELD_EXPLANATION("thrust params", nullptr, FIELD_FLAG_NONE, "change thrust lag"),
+		FIELD_EXPLANATION_EX("thrust params", nullptr, FIELD_FLAG_NONE, "change thrust lag"),
 		{ _field_real, "ideal thrust decay" },
 		{ _field_real, "ideal thrust increase" },
 		{ _field_real, "minimum thrust decay" },
 		{ _field_real, "minimum thrust increase" },
 		{ _field_real, "maximum thrust increase" },
-		FIELD_EXPLANATION("dive params", nullptr, FIELD_FLAG_NONE, "controls angles under which we change speed during dive"),
+		FIELD_EXPLANATION_EX("dive params", nullptr, FIELD_FLAG_NONE, "controls angles under which we change speed during dive"),
 		{ _field_real, "minimum dive angle" },
 		{ _field_real, "maximum dive angle" },
-		FIELD_EXPLANATION("strafe params", nullptr, FIELD_FLAG_NONE, "scale speed params while strafing"),
+		FIELD_EXPLANATION_EX("strafe params", nullptr, FIELD_FLAG_NONE, "scale speed params while strafing"),
 		{ _field_real, "strafe boost power" },
-		FIELD_EXPLANATION("wingtip params", nullptr, FIELD_FLAG_NONE, "wingtip"),
+		FIELD_EXPLANATION_EX("wingtip params", nullptr, FIELD_FLAG_NONE, "wingtip"),
 		{ _field_real, "wingtip contrail turn" },
 		{ _field_real, "wingtip min turn" },
-		FIELD_EXPLANATION("Safety", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Safety", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "dangerous trajectory prediction time", "How much the position is predicted by the velocity to check against potential collisions", "seconds" },
 		{ _field_terminator }
 	};
@@ -629,7 +629,7 @@ namespace blofeld
 		REVENANT_BLOCK_ID)
 	{
 		{ _field_struct, "tank block", &human_tank_struct },
-		FIELD_EXPLANATION("velocity control variables", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("velocity control variables", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "maximum forward speed" },
 		{ _field_real, "maximum reverse speed" },
 		{ _field_real, "speed acceleration" },
@@ -639,12 +639,12 @@ namespace blofeld
 		{ _field_real, "slide acceleration" },
 		{ _field_real, "slide deceleration" },
 		{ _field_struct, "steering animation", &steering_animation_struct },
-		FIELD_EXPLANATION("specific types", nullptr, FIELD_FLAG_NONE, "different types are treated differently alien scout controller"),
+		FIELD_EXPLANATION_EX("specific types", nullptr, FIELD_FLAG_NONE, "different types are treated differently alien scout controller"),
 		{ _field_char_enum, "specific type", &alien_scout_specific_type_enum },
 		{ _field_real, "drag coeficient" },
 		{ _field_real, "constant deceleration" },
 		{ _field_real, "torque scale", "0 defaults to 1" },
-		FIELD_PAD("BLURBY", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("BLURBY", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -697,7 +697,7 @@ namespace blofeld
 		{ _field_real, "transition throttle", "throttle input at which physics model transition occurs", "-1 to 1" },
 		{ _field_real, "throttle threshold side", "0 if throttle should be smaller than transition value, else 1", "0 or 1" },
 		{ _field_char_enum, "transition target vehicle type", "upon reaching transition velocity, act like this vehicle type", &vehicle_type_enum },
-		FIELD_PAD("pad after transition target vehicle type", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad after transition target vehicle type", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -966,11 +966,11 @@ namespace blofeld
 		VEHICLE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "unit", &unit_struct_definition },
-		FIELD_CUSTOM("$$$ VEHICLE $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("$$$ VEHICLE $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &vehicle_flags },
-		FIELD_EXPLANATION("physics type", nullptr, FIELD_FLAG_NONE, "define one of the following blocks for the type of physics you wish this vehicle to have."),
+		FIELD_EXPLANATION_EX("physics type", nullptr, FIELD_FLAG_NONE, "define one of the following blocks for the type of physics you wish this vehicle to have."),
 		{ _field_struct, "physics types", &vehicle_physics_types_struct },
-		FIELD_EXPLANATION("friction and antigravity points", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("friction and antigravity points", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "havok vehicle physics", &havok_vehicle_physics_struct },
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach },
@@ -982,7 +982,7 @@ namespace blofeld
 		{ _field_char_enum, "player training vehicle type", &player_training_vehicle_type_enum },
 		{ _field_char_enum, "vehicle size", "The size determine what kind of seats in larger vehicles it may occupy (i.e. small or large cargo seats)", &vehicle_size_enum },
 		{ _field_char_integer, "complex suspension sample count", "How many additional raycasts to perform per side of a tire." },
-		FIELD_PAD("VQWHV", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("VQWHV", nullptr, FIELD_FLAG_NONE, 1),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_angle, "complex suspension distribution angle", "0-90 degrees of the wedge portion of the wheel to test suspension", "degrees" },
@@ -1003,7 +1003,7 @@ namespace blofeld
 		{ _field_real, "flip time" }, // assembly #TODO: VALIDATE
 
 		{ _field_string_id, "flip message" },
-		FIELD_EXPLANATION("sounds and effects", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("sounds and effects", nullptr, FIELD_FLAG_NONE, ""),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "Player vehicle sound bank", "High quality player sound bank to be prefetched. Can be empty.", &global_soundbank_reference },
@@ -1026,7 +1026,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_string_id, "vehicle name" },
 		{ _field_block, "physics transitions", &physics_transitions_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
 		{ _field_terminator }
 	};
@@ -1040,7 +1040,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VEHICLE_PHYSICS_TYPES_STRUCT_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
 		{ _field_block, "type-human_tank", &human_tank_block },
 		{ _field_block, "type-human_jeep", &human_jeep_block },
 		{ _field_block, "type-human_plane", &human_plane_block },
@@ -1070,7 +1070,7 @@ namespace blofeld
 		{ _field_block, "type-space-fighter", &space_fighter_block },
 		{ _field_block, "type-revenant", &revenant_block },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
 		{ _field_terminator }
 	};
 
@@ -1096,25 +1096,25 @@ namespace blofeld
 		{ _field_real, "forward turn scale", "think of this as oversteer" },
 		{ _field_real, "reverse turn scale", "think of this as oversteer" },
 
-		FIELD_EXPLANATION("forward differential", nullptr, FIELD_FLAG_NONE, "how quickly the differential reaches it\'s target and what the ratio is"),
+		FIELD_EXPLANATION_EX("forward differential", nullptr, FIELD_FLAG_NONE, "how quickly the differential reaches it\'s target and what the ratio is"),
 		{ _field_real, "maximum left differential" },
 		{ _field_real, "maximum right differential" },
 		{ _field_real, "differential acceleration" },
 		{ _field_real, "differential deceleration" },
-		FIELD_EXPLANATION("reverse differential", nullptr, FIELD_FLAG_NONE, "how quickly the differential reaches it\'s target and what the ratio is"),
+		FIELD_EXPLANATION_EX("reverse differential", nullptr, FIELD_FLAG_NONE, "how quickly the differential reaches it\'s target and what the ratio is"),
 		{ _field_real, "maximum left reverse differential" },
 		{ _field_real, "maximum right reverse differential" },
 		{ _field_real, "differential reverse acceleration" },
 		{ _field_real, "differential reverse deceleration" },
 		{ _field_struct, "engine", &global_vehicle_engine_struct },
-		FIELD_EXPLANATION("wheel circumferance", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("wheel circumferance", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "wheel circumferance" },
 		{ _field_real, "gravity adjust", "0-1 fraction by which we scale gravity that is not along the ground plane" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 11 },
-		FIELD_EXPLANATION("New Tank Controls", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("New Tank Controls", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_byte_flags, "control flags", &tank_flags },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "at rest forward angle(purple)" },
 		{ _field_real, "at rest reverse angle(violet)" },
 		{ _field_real, "at rest side on reverse angle closest to front(green)", "first angle starting arc in which the control will cause the tank to reverse while at rest and facing side on" },
@@ -1136,7 +1136,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VEHICLE_STEERING_CONTROL_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("steering overdampening", nullptr, FIELD_FLAG_NONE, "when the steering is off by more than the cusp angle\nthe steering will overcompensate more and more.  when it\nis less, it overcompensates less and less.  the exponent\nshould be something in the neighborhood of 2.0\n"),
+		FIELD_EXPLANATION_EX("steering overdampening", nullptr, FIELD_FLAG_NONE, "when the steering is off by more than the cusp angle\nthe steering will overcompensate more and more.  when it\nis less, it overcompensates less and less.  the exponent\nshould be something in the neighborhood of 2.0\n"),
 		{ _field_real, "overdampen cusp angle", nullptr, "degrees" },
 		{ _field_real, "overdampen exponent" },
 		{ _field_terminator }
@@ -1151,7 +1151,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VEHICLE_TURNING_CONTROL_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("turning", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("turning", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "maximum left turn" },
 		{ _field_real, "maximum right turn (negative)" },
 		{ _field_real, "turn rate" },
@@ -1167,7 +1167,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STEERING_ANIMATION_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("steering animation and interpolation\n", nullptr, FIELD_FLAG_NONE, "This data controls the depiction of steering \nthrough animation - not the vehicles ability to turn\ninterpolation scale= how much we interpolate between steering poses.\nmax angle= max animated steering angle change allowed per tick.\n"),
+		FIELD_EXPLANATION_EX("steering animation and interpolation\n", nullptr, FIELD_FLAG_NONE, "This data controls the depiction of steering \nthrough animation - not the vehicles ability to turn\ninterpolation scale= how much we interpolate between steering poses.\nmax angle= max animated steering angle change allowed per tick.\n"),
 		{ _field_real, "interpolation scale", "1= heavy interp. of steering animations" },
 		{ _field_angle, "max angle", "non-zero= max angle delta per frame" },
 		{ _field_terminator }
@@ -1220,7 +1220,7 @@ namespace blofeld
 		{ _field_char_enum, "normal axis", &dimensions_enum },
 		{ _field_real, "offset distance" },
 		{ _field_real, "pivot distance" },
-		FIELD_EXPLANATION("normal force", nullptr, FIELD_FLAG_NONE, "force= k*CEILING(SQR(q*velocity), function_ceiling)"),
+		FIELD_EXPLANATION_EX("normal force", nullptr, FIELD_FLAG_NONE, "force= k*CEILING(SQR(q*velocity), function_ceiling)"),
 		{ _field_real, "q" },
 		{ _field_real, "k" },
 		{ _field_real, "function ceiling" },
@@ -1238,7 +1238,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		JACKAL_GLIDER_DRAG_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("drag", nullptr, FIELD_FLAG_NONE, "drag= k*SQR(q*velocity) + constant deceleration"),
+		FIELD_EXPLANATION_EX("drag", nullptr, FIELD_FLAG_NONE, "drag= k*SQR(q*velocity) + constant deceleration"),
 		{ _field_real, "q" },
 		{ _field_real, "k" },
 		{ _field_real, "constant deceleration" },

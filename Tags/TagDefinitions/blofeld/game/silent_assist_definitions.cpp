@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -36,9 +36,9 @@ namespace blofeld
 		{ _field_real, "headshot aim assist", "increases autoaim for headshot weapons", MAKE_OLD_NAMES("headshot magnetism") },
 		{ _field_real, "melee cone" },
 		{ _field_real, "aim assist", "unimplemented" },
-		FIELD_EXPLANATION("Level Change", nullptr, FIELD_FLAG_NONE, "These fields show how many kills/deaths it takes to move between levels"),
+		FIELD_EXPLANATION_EX("Level Change", nullptr, FIELD_FLAG_NONE, "These fields show how many kills/deaths it takes to move between levels"),
 		{ _field_byte_flags, "flags", &g_silentAssistFlags },
-		FIELD_PAD("SXIX", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("SXIX", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_long_integer, "kills to decrease level" },
 		{ _field_long_integer, "deaths to increase level" },
 		{ _field_terminator }

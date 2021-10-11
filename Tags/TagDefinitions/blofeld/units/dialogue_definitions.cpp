@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -57,7 +57,7 @@ namespace blofeld
 		VOCALIZATION_STIMULI_BLOCK_DEFINITION_ID)
 	{
 		{ _field_word_flags, "flags", &vocalization_stimulus_flags },
-		FIELD_PAD("AN", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("AN", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "stimulus", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "sound", &sound_reference$4 },
 		{ _field_terminator }

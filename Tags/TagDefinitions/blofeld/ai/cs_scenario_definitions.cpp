@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -21,7 +21,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "animation points", &cs_animation_point_block },
 
-		FIELD_PAD("TPHWNCUR", nullptr, FIELD_FLAG_NONE, 120),
+		FIELD_PAD_EX("TPHWNCUR", nullptr, FIELD_FLAG_NONE, 120),
 		{ _field_terminator }
 	};
 
@@ -43,7 +43,7 @@ namespace blofeld
 		{ _field_legacy, _field_short_block_index, "reference frame" }, // assembly
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		FIELD_PAD("PAD1", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("PAD1", nullptr, FIELD_FLAG_NONE, 2),
 
 		{ _field_long_flags, "flags", &point_set_flags },
 
@@ -51,7 +51,7 @@ namespace blofeld
 		{ _field_long_flags, "traversal flags", &point_set_traversal_flags },
 
 		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
-		FIELD_PAD("AJDEYNFD", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("AJDEYNFD", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

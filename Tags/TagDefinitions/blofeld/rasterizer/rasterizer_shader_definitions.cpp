@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -391,11 +391,11 @@ namespace blofeld
 		{ _field_legacy, _field_data, "dx11 compiled shader{..:dx11 compiled shader}" },
 		{ _field_legacy, _field_data, "durango compiled shader{..:durango compiled shader}" },
 
-		FIELD_EXPLANATION("Xenon constant table", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Xenon constant table", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "xenon rasterizer constant table", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_rasterizer_constant_table_struct },
 
 		{ _field_legacy, _field_version_equal, _engine_type_gen3_xbox360, 2 },
-		FIELD_EXPLANATION("DX9 constant table", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("DX9 constant table", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "dx9 rasterizer constant table", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_rasterizer_constant_table_struct },
 
 		{ _field_legacy, _field_version_not_equal, _engine_type_gen3_xbox360, 4 },

@@ -1,6 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <string>
 
+#pragma optimize("", off)
+
 #include <Platform\platform-public-pch.h>
 #include <SymbolsLib\symbolslib-public-pch.h>
 
@@ -254,7 +256,7 @@ int main()
 	{
 		if (BCS_FAILED(rs = resources_package_shaders()))
 		{
-			console_write_line("ResourcesPackager> resources_package_symbols failed");
+			console_write_line("ResourcesPackager> resources_package_shaders failed");
 			return rs;
 		}
 	}
@@ -263,7 +265,7 @@ int main()
 	{
 		if (BCS_FAILED(rs = resources_package_viewport_shaders()))
 		{
-			console_write_line("ResourcesPackager> resources_package_symbols failed");
+			console_write_line("ResourcesPackager> resources_package_viewport_shaders failed");
 			return rs;
 		}
 	}

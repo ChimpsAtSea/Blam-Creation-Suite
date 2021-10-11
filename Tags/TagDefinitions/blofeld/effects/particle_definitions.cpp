@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -46,7 +46,7 @@ namespace blofeld
 	{
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_byte_flags, "flags", &attachment_flags },
-		FIELD_PAD("gerrrrr", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("gerrrrr", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_tag_reference, "type", &attachment_block_type_reference },
 		{ _field_char_enum, "trigger", &attachment_type_enum },
@@ -95,13 +95,13 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
 		{ _field_long_flags, "main flags", &particle_main_flags },
 		{ _field_block, "attachments", &attachment_block },
-		FIELD_EXPLANATION("PARTICLE APPEARANCE", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("PARTICLE APPEARANCE", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_flags, "appearance flags", &particle_appearance_flags },
 		{ _field_enum, "particle billboard style", &particle_billboard_type_enum },
-		FIELD_PAD("NQCLLBQ", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("NQCLLBQ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "first sequence index" },
 		{ _field_short_integer, "sequence count" },
 		{ _field_real, "low res switch distance", "the distance at which we switch from low res (close) to high res (far)", "wu" },
@@ -118,8 +118,8 @@ namespace blofeld
 		{ _field_legacy, _field_struct, "render method", &render_method_struct_definition },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
-		FIELD_CUSTOM("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
+		FIELD_CUSTOM_EX("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual material?", &material_struct },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 10 },
@@ -134,8 +134,8 @@ namespace blofeld
 		{ _field_legacy, _field_real, "unknown@" },
 		{ _field_legacy, _field_tag_reference, "unknown@" },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
 		{ _field_struct, "aspect ratio", &particle_property_scalar_struct_new },
 		{ _field_struct, "color", "controls how the color of the particle changes as a function of its input", "RGB", &particle_property_color_struct_new },
 		{ _field_struct, "intensity", "multiplies color to give dynamic range outside [0,1]", &particle_property_scalar_struct_new },
@@ -144,22 +144,22 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_real, "tint factor", "switches between modulate (multiply) and tint(preserve whites)", "0=modulate, 1=tint" },
 
-		FIELD_EXPLANATION("PARTICLE ANIMATION", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("PARTICLE ANIMATION", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_flags, "animation flags", &particle_animation_flags },
 
 		{ _field_struct, "frame index", "0=first frame, 1=last frame", &particle_property_scalar_struct_new },
 		{ _field_struct, "animation rate", nullptr, "index cycles per second", &particle_property_scalar_struct_new },
 		{ _field_struct, "palette animation", nullptr, "v coord of palette", &particle_property_scalar_struct_new },
-		FIELD_EXPLANATION("Mesh data, if this is a mesh particle", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Mesh data, if this is a mesh particle", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "Model", &particle_model_reference$2 },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 6 },
-		FIELD_CUSTOM("OLD DEPRECATED shader definition", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
-		FIELD_CUSTOM("shader", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
+		FIELD_CUSTOM_EX("OLD DEPRECATED shader definition", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("shader", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual shader?", &shader_particle_struct_definition },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 
 		{ _field_dword_integer, "runtime m_used_particle_states", FIELD_FLAG_UNKNOWN0 },
 		{ _field_dword_integer, "runtime m_constant_per_particle_properties", FIELD_FLAG_UNKNOWN0 },

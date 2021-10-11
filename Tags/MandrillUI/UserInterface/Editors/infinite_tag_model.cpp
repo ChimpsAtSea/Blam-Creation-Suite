@@ -58,5 +58,8 @@ void c_infinite_tag_model::render()
 
 	render_instance_buffer->bind(1);
 
-	mesh->graphics_geometry->render_geometry();
+	if (mesh->graphics_geometry)
+	{
+		mesh->graphics_geometry->render_geometry();
+	}
 }

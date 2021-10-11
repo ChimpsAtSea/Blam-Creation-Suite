@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -30,7 +30,7 @@ namespace blofeld
 		GAMEGLOBALSGRENADEBLOCK_ID)
 	{
 		{ _field_short_integer, "maximum count" },
-		FIELD_PAD("CXVLKJE", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("CXVLKJE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "initial count (Campaign)" },
 		{ _field_short_integer, "initial count (Firefight)" },
 		{ _field_short_integer, "initial count (Multiplayer)" },

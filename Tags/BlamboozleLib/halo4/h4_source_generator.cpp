@@ -92,7 +92,7 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 
 		hs << "#pragma once" << std::endl << std::endl;
 		s << "#include <tagdefinitions-private-pch.h>" << std::endl;
-		s << "#include <macaque_field_type_override.h>" << std::endl << std::endl;
+		s << "#include <blofeld_field_type_override.h>" << std::endl << std::endl;
 
 		hs << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 		s << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
@@ -278,7 +278,7 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			std::stringstream s;
 
 			s << "#include <tagdefinitions-private-pch.h>" << std::endl;
-			s << "#include <macaque_field_type_override.h>" << std::endl << std::endl;
+			s << "#include <blofeld_field_type_override.h>" << std::endl << std::endl;
 			s << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 			s << "namespace macaque" << std::endl << "{" << std::endl << std::endl;
 			for (c_h4_tag_reference_container* reference_container : preprocessor.tag_reference_containers)
@@ -1221,7 +1221,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 			//ASSERT(!write_limits);
 			//ASSERT(!write_units);
 
-			s << "\t\tFIELD_CUSTOM(";
+			s << "\t\tFIELD_CUSTOM_EX(";
 			if (!name.empty()) s << "\"" << name.c_str() << "\"";
 			else s << "nullptr";
 			if (!description.empty()) s << ", \"" << description.c_str() << "\"";
@@ -1239,7 +1239,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 
 			c_h4_tag_field_pad* pad_field = dynamic_cast<c_h4_tag_field_pad*>(tag_field);
 
-			s << "\t\tFIELD_PAD(";
+			s << "\t\tFIELD_PAD_EX(";
 			if (!name.empty()) s << "\"" << name.c_str() << "\"";
 			else s << "nullptr";
 			if (!description.empty()) s << ", \"" << description.c_str() << "\"";

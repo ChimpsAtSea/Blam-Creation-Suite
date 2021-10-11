@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -152,7 +152,7 @@ namespace blofeld
 		{ _field_short_block_index, "final point0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_seam_final_points_block },
 		{ _field_short_block_index, "final point1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_seam_final_points_block },
 		{ _field_short_block_index, "final point2", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_seam_final_points_block },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -181,7 +181,7 @@ namespace blofeld
 		STRUCTURE_SEAMS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "structure manifest", FIELD_FLAG_READ_ONLY, &structure_manifest_struct },
-		FIELD_EXPLANATION("This tag defines the geometry between seam connected structures bsp.", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("This tag defines the geometry between seam connected structures bsp.", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_integer, "version", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_block, "errors", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_error_report_categories_block },
 		{ _field_block, "seams", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_seam_block },

@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -62,7 +62,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 7 },
 		{ _field_short_integer, "sequence index" },
 		{ _field_char_enum, "medal class", &medal_class_enum },
-		FIELD_PAD("PAD1", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("PAD1", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_long_integer, "ordnance points", "The number of ordnance points that are awarded to the player when they earn this medal." },
 		{ _field_byte_integer, "ordnance multiplier", "The ordnance multiplier to add to players ordnance multiplier when they earn this medal." },
 		{ _field_byte_integer, "tier index", "the tier that this medal belongs to" },

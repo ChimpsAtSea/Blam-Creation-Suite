@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -17,7 +17,7 @@ namespace blofeld
 		FORGE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "forge colors", &forge_color_block },
-		FIELD_EXPLANATION("Magnets", nullptr, FIELD_FLAG_NONE, "Forge magnet parameters"),
+		FIELD_EXPLANATION_EX("Magnets", nullptr, FIELD_FLAG_NONE, "Forge magnet parameters"),
 		{ _field_tag_reference, "magnet effect scenery", &effect_scenery_reference },
 		{ _field_string_id, "parent magnet marker name" },
 		{ _field_string_id, "child magnet marker name" },
@@ -29,7 +29,7 @@ namespace blofeld
 		{ _field_real, "v.high magnetism factor", "multiplied against selected object bounding sphere radius" },
 		{ _field_real, "magnetism angle", "degrees#multiplied against selected object bounding sphere radius" },
 		{ _field_real_fraction, "magnet offset influence", "influence of magnet selection based on selection center in forge" },
-		FIELD_EXPLANATION("Forge Camera Manipulation", nullptr, FIELD_FLAG_NONE, "Forge camera and manipulator parameters"),
+		FIELD_EXPLANATION_EX("Forge Camera Manipulation", nullptr, FIELD_FLAG_NONE, "Forge camera and manipulator parameters"),
 		{ _field_real, "object grab range", "how close you must be to an object in order to grab it for manipulation" },
 		{ _field_real, "default focal distance", "default manipulation camera distance" },
 		{ _field_real, "minimum focal distance", "minimum manipulation camera distance" },

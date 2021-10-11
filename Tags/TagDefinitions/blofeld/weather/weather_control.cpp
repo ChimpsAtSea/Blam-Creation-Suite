@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -42,10 +42,10 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEATHER_GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("global textures", nullptr, FIELD_FLAG_NONE, "0: ............... random noise\n"),
+		FIELD_EXPLANATION_EX("global textures", nullptr, FIELD_FLAG_NONE, "0: ............... random noise\n"),
 		{ _field_block, "global textures", &global_textures_refs_block },
 		{ _field_tag_reference, "default rain", &global_rain_definition_reference },
-		FIELD_EXPLANATION("ripple settings (TO BE REMOVED)", nullptr, FIELD_FLAG_NONE, "we are going to use a new method to render and control of ripple effects\n"),
+		FIELD_EXPLANATION_EX("ripple settings (TO BE REMOVED)", nullptr, FIELD_FLAG_NONE, "we are going to use a new method to render and control of ripple effects\n"),
 		{ _field_struct, "rain ripple setting", &rain_ripple_setting_block },
 		{ _field_terminator }
 	};

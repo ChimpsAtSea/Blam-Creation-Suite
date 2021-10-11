@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -55,7 +55,7 @@ namespace blofeld
 		{ _field_real_point_3d, "position" },
 		{ _field_short_integer, "imposter version" },
 		{ _field_char_integer, "imposter policy" },
-		FIELD_PAD("padefefrdapad", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("padefefrdapad", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_real, "bounding radius" },
 		{ _field_real, "transition distance" },
 		{ _field_terminator }
@@ -77,15 +77,15 @@ namespace blofeld
 		{ _field_string_id, "source metadata path" },
 		{ _field_block, "instances", &instance_imposter_block },
 		{ _field_block, "instance checksums", &instance_imposter_checksum_block },
-		FIELD_CUSTOM("atlas info", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("atlas info", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_short_integer, "atlas tile resolution" },
 		{ _field_char_integer, "atlas x tile count" },
 		{ _field_char_integer, "atlas y tile count" },
 		{ _field_tag_reference, "atlas texture", &global_bitmap_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("mesh data", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("mesh data", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "render geometry", &global_render_geometry_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

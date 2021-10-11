@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -16,7 +16,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GARBAGE_COLLECTION_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("Garbage Times", nullptr, FIELD_FLAG_NONE, "time before the game considers that following entities as garbage"),
+		FIELD_EXPLANATION_EX("Garbage Times", nullptr, FIELD_FLAG_NONE, "time before the game considers that following entities as garbage"),
 		{ _field_real, "Dropped item", nullptr, "seconds" },
 		{ _field_real, "Dropped item by player", nullptr, "seconds" },
 		{ _field_real, "Dropped item in multiplayer", nullptr, "seconds" },

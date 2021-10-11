@@ -168,9 +168,8 @@ void c_tag_project_configurator_tab::render_impl()
 
 	ImGui::SameLine();
 
-#ifdef _DEBUG
 	bool auto_proceed = false;
-	if (BCS_SUCCEEDED(command_line_has_argument("autoproject")))
+	if (BCS_SUCCEEDED(command_line_has_argument("autoprojectinit")))
 	{
 		if (step == _tag_project_configurator_step_cache_file_selection)
 		{
@@ -185,7 +184,6 @@ void c_tag_project_configurator_tab::render_impl()
 			static bool run_once = auto_proceed = true;
 		}
 	}
-#endif
 
 	bool disable_next_step = next_step == step;
 	if (disable_next_step)

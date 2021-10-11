@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -21,13 +21,13 @@ namespace blofeld
 		{ _field_struct, "parent build identifier", FIELD_FLAG_READ_ONLY, &structure_manifest_build_identifier_struct },
 		{ _field_struct, "physics", &global_structure_physics_design_struct },
 		{ _field_struct, "planar fog set", &planar_fog_set_definition_struct },
-		FIELD_CUSTOM("rain", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("rain", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "render geometry", FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
 		{ _field_block, "instanced geometries definitions", FIELD_FLAG_READ_ONLY, &structure_bsp_instanced_geometry_definition_block },
 		{ _field_block, "instanced geometry instances", FIELD_FLAG_READ_ONLY, &structure_bsp_instanced_geometry_instances_block },
 		{ _field_block, "materials", FIELD_FLAG_READ_ONLY, &global_geometry_material_block },
 		{ _field_block, "rain_blocker mopp code block", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &mopp_code_definition_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

@@ -174,6 +174,7 @@ void c_graphics_buffer_d3d12::deinit_buffer()
 void c_graphics_buffer_d3d12::init_descriptor_heap()
 {
 	shader_visible_descriptor_heap_index = graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->allocate();
+	ASSERT(shader_visible_descriptor_heap_index != ULONG_MAX);
 	D3D12_CPU_DESCRIPTOR_HANDLE cbv_srv_uav_cpu_descriptor_handle = graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->get_cpu_descriptor_handle(shader_visible_descriptor_heap_index);
 
 	switch (buffer_type)

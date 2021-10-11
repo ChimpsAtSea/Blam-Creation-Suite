@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -24,7 +24,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "name", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_string_id, "animation source", FIELD_FLAG_READ_ONLY },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_function),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_function),
 		{ _field_string_id, "input function" },
 		{ _field_real_bounds, "animation bounds" },
 		{ _field_real_bounds, "input bounds" },
@@ -73,7 +73,7 @@ namespace blofeld
 		{ _field_long_integer, "overridden", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "animIndex", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "slideAxis", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("PAD", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("PAD", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -111,7 +111,7 @@ namespace blofeld
 		{ _field_data, "example grid", FIELD_FLAG_READ_ONLY },
 		{ _field_real_bounds, "normalized bounds" },
 		{ _field_char_integer, "offset", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("PAD", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("PAD", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "timingAnimIndex", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
@@ -160,7 +160,7 @@ namespace blofeld
 		{ _field_block, "strings", FIELD_FLAG_READ_ONLY, &StringBlock_block },
 		{ _field_string_id, "timing source" },
 		{ _field_short_integer, "timingAnimIndex", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("PAD", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("PAD", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

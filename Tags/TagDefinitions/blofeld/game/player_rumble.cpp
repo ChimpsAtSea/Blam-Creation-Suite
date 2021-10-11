@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -43,9 +43,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RUMBLE_DEFINITION_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("low frequency rumble", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("low frequency rumble", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "low frequency rumble", &rumble_frequency_definition_struct },
-		FIELD_EXPLANATION("high frequency rumble", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("high frequency rumble", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "high frequency rumble", &rumble_frequency_definition_struct },
 		{ _field_terminator }
 	};
@@ -61,7 +61,7 @@ namespace blofeld
 		RUMBLE_FREQUENCY_DEFINITION_STRUCT_ID)
 	{
 		{ _field_real, "duration", nullptr, "seconds" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "dirty whore", &mapping_function },
 		{ _field_useless_pad, "" },
 		{ _field_terminator }

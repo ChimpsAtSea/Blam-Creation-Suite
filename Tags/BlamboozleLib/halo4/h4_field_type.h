@@ -264,8 +264,8 @@ enum e_h4_field_id_type
 	_h4_field_id_halo_script_block = 'hsbl',
 	_h4_field_id_unknown_facing = 'cfpf',
 
-	_h4_field_id_unknown_checksum_begin = 'dnc+',
-	_h4_field_id_unknown_checksum_end = 'dnc-',
+	_h4_field_id_dont_checksum_begin = 'dnc+',
+	_h4_field_id_dont_checksum_end = 'dnc-',
 
 	_h4_field_id_cinematic_playback = 'cnpb',
 	_h4_field_id_cinematic_scene_flags = 'csfs',
@@ -278,9 +278,9 @@ enum e_h4_field_id_type
 
 	_h4_field_id_function_input_scalar = 'fnin',
 	_h4_field_id_function_input_range = 'fnir',
-	_h4_field_id_function_output_modifier = 'fnom',
+	_h4_field_id_function_output_modifier_input = 'fnom',
 	_h4_field_id_function_unknown = 'fn**',
-	_h4_field_id_fnop = 'fnop',
+	_h4_field_id_function_output_modifier = 'fnop',
 
 	_h4_field_id_pathfinding = 'path',
 	_h4_field_id_object_id = 'obj#',
@@ -307,8 +307,8 @@ enum e_h4_field_id_type
 	_h4_field_id_text_unknown = 'tcwd',
 	_h4_field_id_unknown_ugh = 'ugh@',
 	_h4_field_id_unknown_mela = 'mela',
-	_h4_field_id_unknown_begin = 'ifp+',
-	_h4_field_id_unknown_end = 'ifp-',
+	_h4_field_id_ifp_begin = 'ifp+',
+	_h4_field_id_ifp_end = 'ifp-',
 
 	_h4_field_id_authored_light_probe = 'aulp',
 	_h4_field_id_particle_estimate_overdraw_unknown = 'eoci',
@@ -347,8 +347,8 @@ inline const char* h4_field_id_type_to_generic_field_id_type(e_h4_field_id_type 
 	case _h4_field_id_slider_editor:							return "_field_id_slider_editor";
 	case _h4_field_id_halo_script_block:						return "_field_id_halo_script_block";
 	case _h4_field_id_unknown_facing:						  	return "_field_id_unknown_facing";
-	case _h4_field_id_unknown_checksum_begin:				  	return "_field_id_unknown_checksum_begin";
-	case _h4_field_id_unknown_checksum_end:					  	return "_field_id_unknown_checksum_end";
+	case _h4_field_id_dont_checksum_begin:				  	return "_field_id_dont_checksum_begin";
+	case _h4_field_id_dont_checksum_end:					  	return "_field_id_dont_checksum_end";
 	case _h4_field_id_cinematic_playback:					  	return "_field_id_cinematic_playback";
 	case _h4_field_id_cinematic_scene_flags:					return "_field_id_cinematic_scene_flags";
 	case _h4_field_id_cinematic_frame_index:					return "_field_id_cinematic_frame_index";
@@ -359,7 +359,7 @@ inline const char* h4_field_id_type_to_generic_field_id_type(e_h4_field_id_type 
 	case _h4_field_id_loop_cinematic_scene:					  	return "_field_id_loop_cinematic_scene";
 	case _h4_field_id_function_input_scalar:					return "_field_id_function_input_scalar";
 	case _h4_field_id_function_input_range:					  	return "_field_id_function_input_range";
-	case _h4_field_id_function_output_modifier:				  	return "_field_id_function_output_modifier";
+	case _h4_field_id_function_output_modifier_input:				  	return "_field_id_function_output_modifier_input";
 	case _h4_field_id_function_unknown:						  	return "_field_id_function_unknown";
 	case _h4_field_id_pathfinding:							  	return "_field_id_pathfinding";
 	case _h4_field_id_object_id:								return "_field_id_object_id";
@@ -385,8 +385,8 @@ inline const char* h4_field_id_type_to_generic_field_id_type(e_h4_field_id_type 
 	case _h4_field_id_text_unknown:							  	return "_field_id_text_unknown";
 	case _h4_field_id_unknown_ugh:							  	return "_field_id_unknown_ugh";
 	case _h4_field_id_unknown_mela:							  	return "_field_id_unknown_mela";
-	case _h4_field_id_unknown_begin:							return "_field_id_unknown_begin";
-	case _h4_field_id_unknown_end:							  	return "_field_id_unknown_end";
+	case _h4_field_id_ifp_begin:							return "_field_id_ifp_begin";
+	case _h4_field_id_ifp_end:							  	return "_field_id_ifp_end";
 	case _h4_field_id_authored_light_probe:						return "_field_id_authored_light_probe";
 	case _h4_field_id_particle_estimate_overdraw_unknown:		return "_field_id_particle_estimate_overdraw_unknown";
 	case _h4_field_id_hologram_light:							return "_field_id_hologram_light";
@@ -395,7 +395,7 @@ inline const char* h4_field_id_type_to_generic_field_id_type(e_h4_field_id_type 
 	case _h4_field_id_sort:										return "_field_id_sort";
 	case _h4_field_id_slap:										return "_field_id_slap";
 	case _h4_field_id_wide:										return "_field_id_wide";
-	case _h4_field_id_fnop:										return "_field_id_fnop";
+	case _h4_field_id_function_output_modifier:										return "_field_id_function_output_modifier";
 	case _h4_field_id_dumb:										return "_field_id_dumb";
 	case _h4_field_id_ugpc:										return "_field_id_ugpc";
 	case _h4_field_id_enum:										return "_field_id_enum";

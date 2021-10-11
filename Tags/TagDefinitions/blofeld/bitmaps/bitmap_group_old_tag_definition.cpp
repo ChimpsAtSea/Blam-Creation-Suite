@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -19,7 +19,7 @@ namespace blofeld
 		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_short_integer, "first bitmap index", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "bitmap count", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("OTXYKQ", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("OTXYKQ", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_block, "sprites", FIELD_FLAG_READ_ONLY, &bitmap_group_sprite_block_def_block },
 		{ _field_terminator }
 	};
@@ -35,8 +35,8 @@ namespace blofeld
 		BITMAP_GROUP_SPRITE_BLOCK_DEF_ID)
 	{
 		{ _field_short_integer, "bitmap index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("D", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("GMLJPJIMC", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("D", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("GMLJPJIMC", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "left", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "right", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "top", FIELD_FLAG_READ_ONLY },

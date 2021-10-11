@@ -176,6 +176,7 @@
     <ClCompile Include="blamboozle_h2_guerilla.cpp" />
     <ClCompile Include="blamboozle_infinite.cpp" />
     <ClCompile Include="blamlib_string_parser.cpp" />
+    <ClCompile Include="field_id.cpp" />
     <ClCompile Include="halo1\h1_pseudo_field_definition.cpp" />
     <ClCompile Include="halo1\h1_pseudo_field_type.cpp" />
     <ClCompile Include="halo1\h1_pseudo_struct_definition.cpp" />

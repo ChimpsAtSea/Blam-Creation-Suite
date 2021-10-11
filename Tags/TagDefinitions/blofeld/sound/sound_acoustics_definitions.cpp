@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -75,7 +75,7 @@ namespace blofeld
 		{ _field_struct, "location 0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_acoustic_location_definition },
 		{ _field_struct, "location 1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_acoustic_location_definition },
 		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
-		FIELD_PAD("CKJEWRSDF", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("CKJEWRSDF", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -89,13 +89,13 @@ namespace blofeld
 		SCENARIO_ACOUSTICS_PALETTE_BLOCK_DEFINITION_STRUCT_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
-		FIELD_EXPLANATION("SOUND ENVIRONMENT", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("SOUND ENVIRONMENT", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "reverb", &scenario_acoustics_environment_definition },
-		FIELD_EXPLANATION("BACKGROUND SOUND", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("BACKGROUND SOUND", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "ambience", &scenario_acoustics_ambience_definition },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
-		FIELD_EXPLANATION("SOUND BANK", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("SOUND BANK", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "Sound bank tag", &global_soundbank_reference },
 		{ _field_tag_reference, "DVD Only sound bank tag", &global_soundbank_reference },
 

@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -30,13 +30,13 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRACERDEFINITIONBLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
 		{ _field_string_id, "tracer name", FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "flags", &tracerFlags },
-		FIELD_CUSTOM("Tracer Shape", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Tracer Shape", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_char_enum, "profile shape", &tracerProfileShapeEnum },
 		{ _field_byte_integer, "number of n-gon sides" },
-		FIELD_PAD("tracpad", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("tracpad", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_real, "origin fade range", "distance beyond cutoff over which tracers fade", "world units", MAKE_OLD_NAMES("origin fade distance") },
 		{ _field_real, "origin fade cutoff", "distance from tracer origin where fade begins", "world units" },
 		{ _field_real, "edge fade range", "degrees beyond cutoff over which tracers fade", "degrees" },
@@ -50,14 +50,14 @@ namespace blofeld
 		{ _field_struct, "profile offset", "world units", &tracerProperty_real_point2d_Struct },
 		{ _field_struct, "profile rotation", "degrees", &tracerProperty_real_Struct },
 		{ _field_struct, "profile rotation rate", "degrees per second", &tracerProperty_real_Struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("Tracer Appearance", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("Tracer Appearance", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_word_flags, "appearance flags", &tracerAppearanceFlags },
 		{ _field_short_integer, "sort bias", "use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
-		FIELD_CUSTOM("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
+		FIELD_CUSTOM_EX("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual material?", &material_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 		{ _field_real_vector_2d, "uv tiling", "u is tiles/world unit, v is absolute tiles", "u lengthwise, v crosswise" },
 		{ _field_real_vector_2d, "uv scrolling", nullptr, "tiles per second" },
 		{ _field_real, "angle fade range", "radial (from tracer axis) degrees beyond beginning angle over which tracer fades", "degrees" },
@@ -68,8 +68,8 @@ namespace blofeld
 		{ _field_struct, "profile black point", &tracerProperty_real_Struct },
 		{ _field_struct, "profile palette", &tracerProperty_real_Struct },
 		{ _field_struct, "profile intensity", &tracerProperty_real_Struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
 		{ _field_dword_integer, "runtime m_constantPerProfileProperties", FIELD_FLAG_UNKNOWN0 },
 		{ _field_dword_integer, "runtime m_usedStates", FIELD_FLAG_UNKNOWN0 },
 		{ _field_dword_integer, "runtime m_maxProfileCount", FIELD_FLAG_UNKNOWN0 },
@@ -87,7 +87,7 @@ namespace blofeld
 		TRACER_SYSTEM_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "tracer system flags", &tracerSystemFlags },
-		FIELD_EXPLANATION("far lod", nullptr, FIELD_FLAG_NONE, "These don\'t actually do anything unless you use \"tracer lod\" in one of your curves."),
+		FIELD_EXPLANATION_EX("far lod", nullptr, FIELD_FLAG_NONE, "These don\'t actually do anything unless you use \"tracer lod\" in one of your curves."),
 		{ _field_real, "far lod start" },
 		{ _field_real, "far lod end" },
 		{ _field_real, "far lod start value" },
@@ -108,13 +108,13 @@ namespace blofeld
 	{
 		{ _field_char_enum, "Input Variable", &tracerStateInputEnum, _field_id_function_input_scalar },
 		{ _field_char_enum, "Range Variable", &tracerStateInputEnum, _field_id_function_input_range },
-		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum, _field_id_fnop },
-		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum, _field_id_function_output_modifier },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum, _field_id_function_output_modifier },
+		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum, _field_id_function_output_modifier_input },
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("DSFDSGLKJ", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("DSFDSGLKJ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -130,13 +130,13 @@ namespace blofeld
 	{
 		{ _field_char_enum, "Input Variable", &tracerStateInputEnum, _field_id_function_input_scalar },
 		{ _field_char_enum, "Range Variable", &tracerStateInputEnum, _field_id_function_input_range },
-		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum, _field_id_fnop },
-		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum, _field_id_function_output_modifier },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum, _field_id_function_output_modifier },
+		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum, _field_id_function_output_modifier_input },
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("DSFDSGLKJ", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("DSFDSGLKJ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_vector_3d, "Starting interpolant" },
 		{ _field_real_vector_3d, "Ending interpolant" },
 		{ _field_terminator }
@@ -154,13 +154,13 @@ namespace blofeld
 	{
 		{ _field_char_enum, "Input Variable", &tracerStateInputEnum, _field_id_function_input_scalar },
 		{ _field_char_enum, "Range Variable", &tracerStateInputEnum, _field_id_function_input_range },
-		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum, _field_id_fnop },
-		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum, _field_id_function_output_modifier },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum, _field_id_function_output_modifier },
+		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum, _field_id_function_output_modifier_input },
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("DSFDSGLKJ", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("DSFDSGLKJ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_vector_2d, "Starting interpolant" },
 		{ _field_real_vector_2d, "Ending interpolant" },
 		{ _field_terminator }
@@ -178,13 +178,13 @@ namespace blofeld
 	{
 		{ _field_char_enum, "Input Variable", &tracerStateInputEnum, _field_id_function_input_scalar },
 		{ _field_char_enum, "Range Variable", &tracerStateInputEnum, _field_id_function_input_range },
-		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum, _field_id_fnop },
-		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum, _field_id_function_output_modifier },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum, _field_id_function_output_modifier },
+		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum, _field_id_function_output_modifier_input },
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("DSFDSGLKJ", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("DSFDSGLKJ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -17,9 +17,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_ENVIRONMENT_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("Reverb Settings", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Reverb Settings", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "reverb settings", &global_sound_reverb_block },
-		FIELD_EXPLANATION("Forced Lowpass", nullptr, FIELD_FLAG_NONE, "This will override obstruction and occlusion if you set the cutoff frequency to a non-zero value. Use the individual classes\' \"forced lowpass wet mix\" value to alter the mix."),
+		FIELD_EXPLANATION_EX("Forced Lowpass", nullptr, FIELD_FLAG_NONE, "This will override obstruction and occlusion if you set the cutoff frequency to a non-zero value. Use the individual classes\' \"forced lowpass wet mix\" value to alter the mix."),
 		{ _field_struct, "lowpass settings", &global_sound_lowpass_block },
 		{ _field_terminator }
 	};

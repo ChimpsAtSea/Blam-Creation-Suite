@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -33,18 +33,18 @@ namespace blofeld
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_word_flags, "flags", &area_screen_effect_flags_definition },
 		{ _field_word_flags, "hidden flags", FIELD_FLAG_UNKNOWN0, &area_screen_effect_hidden_flags_definition },
-		FIELD_EXPLANATION("DISTANCE FALLOFF", nullptr, FIELD_FLAG_NONE, "controls the maximum distance and the distance falloff of this effect\nNOTE: not used for scenario global effects"),
+		FIELD_EXPLANATION_EX("DISTANCE FALLOFF", nullptr, FIELD_FLAG_NONE, "controls the maximum distance and the distance falloff of this effect\nNOTE: not used for scenario global effects"),
 		{ _field_real, "maximum distance", "the maximum distance this screen effect will affect", "world units" },
 		{ _field_struct, "distance falloff", &screen_effect_scalar_function_struct },
-		FIELD_EXPLANATION("TIME EVOLUTION", nullptr, FIELD_FLAG_NONE, "controls the lifetime and time falloff of this effect\nNOTE: not used for scenario global effects"),
+		FIELD_EXPLANATION_EX("TIME EVOLUTION", nullptr, FIELD_FLAG_NONE, "controls the lifetime and time falloff of this effect\nNOTE: not used for scenario global effects"),
 		{ _field_real, "delay", "the effect will start after this many seconds (ignored if the play sequentially flag is set)", "seconds" },
 		{ _field_real, "lifetime", "the effect is destroyed after this many seconds (0 = never dies)", "seconds" },
 		{ _field_struct, "time falloff", &screen_effect_scalar_function_struct },
-		FIELD_EXPLANATION("ANGLE FALLOFF", nullptr, FIELD_FLAG_NONE, "controls the falloff of this effect based on how close you are to looking directly at it\nNOTE: not used for scenario global effects"),
+		FIELD_EXPLANATION_EX("ANGLE FALLOFF", nullptr, FIELD_FLAG_NONE, "controls the falloff of this effect based on how close you are to looking directly at it\nNOTE: not used for scenario global effects"),
 		{ _field_struct, "angle falloff", &screen_effect_scalar_function_struct },
-		FIELD_EXPLANATION("OBJECT FALLOFF", nullptr, FIELD_FLAG_NONE, "applies a falloff based on an object function - ignored if the effect is not attached to an object"),
+		FIELD_EXPLANATION_EX("OBJECT FALLOFF", nullptr, FIELD_FLAG_NONE, "applies a falloff based on an object function - ignored if the effect is not attached to an object"),
 		{ _field_struct, "object falloff", &screen_effect_scalar_object_function_struct },
-		FIELD_EXPLANATION("EFFECTS", nullptr, FIELD_FLAG_NONE, "a selection of effects to choose from\nin the case of overlapping effects, the maximum will be taken"),
+		FIELD_EXPLANATION_EX("EFFECTS", nullptr, FIELD_FLAG_NONE, "a selection of effects to choose from\nin the case of overlapping effects, the maximum will be taken"),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_tag_reference, "color grading look-up-texture", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
@@ -112,7 +112,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCREEN_EFFECT_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};
@@ -129,7 +129,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};

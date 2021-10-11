@@ -1,5 +1,9 @@
 #include "blamboozlelib-private-pch.h"
 
+ptr64 infinite_dump_base_address;
+ptr64 infinite_tag_layout_table_address;
+unsigned long infinite_num_tag_layouts;
+
 const char* inf_va_to_pointer(const char* data, ptr64 address)
 {
 	if (address == 0) return nullptr;
@@ -474,6 +478,9 @@ extern std::string escape_string(std::string str);
 
 void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& fields)
 {
+	const char* _namespace = "infinite";
+	command_line_get_argument("blamboozle-infinite-namespace", _namespace);
+
 	for (auto& tag_field : fields)
 	{
 		const char* field_generic_type_name = inf_field_type_to_generic_field_type(tag_field->field_type);
@@ -511,23 +518,130 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 			string_parser.flag_index ||
 			string_parser.flag_unknown3 ||
 			string_parser.flag_pointer;
-
 		bool write_pointer = false; // todo
+		bool write_tag = tag_field->field_id != 0;
 
 		switch (tag_field->field_type)
 		{
+		case _inf_field_type_custom:
+		{
+			ASSERT(!write_flags);
+
+			if (tag_field->field_id == blofeld::_field_id_field_group_begin)
+			{
+				ASSERT(!name.empty());
+				ASSERT(description.empty());
+				s << "\t\tFIELD_GROUP_BEGIN(";
+				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				s << ")," << std::endl;
+			}
+			else if (tag_field->field_id == blofeld::_field_id_field_group_end)
+			{
+				//ASSERT(name == "value" || name.empty());
+				ASSERT(description.empty());
+
+				if (name.empty() || strcmp(name, "value") == 0) // #TODO: improve this with function
+				{
+				s << "\t\tFIELD_GROUP_END()," << std::endl;
+				}
+				else
+				{
+				s << "\t\tFIELD_GROUP_END2(";
+				s << "\"" << name.c_str() << "\"";
+				s << ")," << std::endl;
+				}
+
+				//s << "\t\tFIELD_GROUP_END(";
+				//if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				//s << ")," << std::endl;
+			}
+			else if (tag_field->field_id == blofeld::_field_id_hide_begin)
+			{
+				ASSERT(name.empty() || strcmp(name, "value") == 0);
+				ASSERT(description.empty());
+				s << "\t\tFIELD_HIDE_BEGIN(";
+				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				s << ")," << std::endl;
+			}
+			else if (tag_field->field_id == blofeld::_field_id_hide_end)
+			{
+				ASSERT(name.empty() || strcmp(name, "value") == 0);
+				ASSERT(description.empty());
+				s << "\t\tFIELD_HIDE_END(";
+				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				s << ")," << std::endl;
+			}
+			else if (tag_field->field_id == blofeld::_field_id_ifp_begin)
+			{
+				ASSERT(name.empty() || strcmp(name, "value") == 0);
+				ASSERT(description.empty());
+				s << "\t\tFIELD_IFP_BEGIN(";
+				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				s << ")," << std::endl;
+			}
+			else if (tag_field->field_id == blofeld::_field_id_ifp_end)
+			{
+				ASSERT(name.empty() || strcmp(name, "value") == 0);
+				ASSERT(description.empty());
+				s << "\t\tFIELD_IFP_END(";
+				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				s << ")," << std::endl;
+			}
+			else if (tag_field->field_id == blofeld::_field_id_dont_checksum_begin)
+			{
+				ASSERT(name.empty() || strcmp(name, "value") == 0);
+				ASSERT(description.empty());
+				s << "\t\tFIELD_DONT_CHECKSUM_BEGIN(";
+				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				s << ")," << std::endl;
+			}
+			else if (tag_field->field_id == blofeld::_field_id_dont_checksum_end)
+			{
+				ASSERT(name.empty() || strcmp(name, "value") == 0);
+				ASSERT(description.empty());
+				s << "\t\tFIELD_DONT_CHECKSUM_END(";
+				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				s << ")," << std::endl;
+			}
+			else
+			{
+				s << "\t\tFIELD_CUSTOM(";
+				if (!name.empty())
+				{
+					if (!name.empty()) s << "\"" << name.c_str() << "\"";
+				}
+				if (!description.empty())
+				{
+					if (!description.empty()) s << ", \"" << description.c_str() << "\"";
+				}
+				s << ", " << (tag_field->field_id_string ? tag_field->field_id_string : "_field_id_default");
+				if (write_flags)
+				{
+					s << ", "; inf_generate_tag_field_flags(s, string_parser);
+				}
+				s << ")," << std::endl;
+			}
+			break;
+		}
 		case _inf_field_type_pad:
 		{
 			ASSERT(!write_limits);
 			ASSERT(!write_units);
 
 			s << "\t\tFIELD_PAD(";
-			if (!name.empty()) s << "\"" << name.c_str() << "\"";
-			else s << "nullptr";
-			if (!description.empty()) s << ", \"" << description.c_str() << "\"";
-			else s << ", nullptr";
-			s << ", "; inf_generate_tag_field_flags(s, string_parser);
+			if (!name.empty())
+			{
+				if (!name.empty()) s << "\"" << name.c_str() << "\"";
+			}
+			if (!description.empty())
+			{
+				if (!description.empty()) s << ", \"" << description.c_str() << "\"";
+			}
 			s << ", " << tag_field->padding;
+			if (write_flags)
+			{
+				s << ", "; inf_generate_tag_field_flags(s, string_parser);
+			}
 			s << ")," << std::endl;
 		}
 		break;
@@ -535,32 +649,47 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 		{
 			ASSERT(!write_limits);
 			ASSERT(!write_units);
+			ASSERT(!write_flags);
 
 			s << "\t\tFIELD_SKIP(";
-			if (!name.empty()) s << "\"" << name.c_str() << "\"";
-			else s << "nullptr";
-			if (!description.empty()) s << ", \"" << description.c_str() << "\"";
-			else s << ", nullptr";
-			s << ", "; inf_generate_tag_field_flags(s, string_parser);
+			if (!name.empty())
+			{
+				if (!name.empty()) s << "\"" << name.c_str() << "\"";
+			}
+			if (!description.empty())
+			{
+				if (!description.empty()) s << ", \"" << description.c_str() << "\"";
+			}
 			s << ", " << tag_field->skip_length;
+			if (write_flags)
+			{
+				s << ", "; inf_generate_tag_field_flags(s, string_parser);
+			}
 			s << ")," << std::endl;
 		}
 		break;
 		case _inf_field_type_explanation:
 		{
+
 			s << "\t\tFIELD_EXPLANATION(";
-			if (write_units) s << "\"" << tag_field->name << "\"";
-			else if (!name.empty()) s << "\"" << name.c_str() << "\"";
-			else s << "nullptr";
-			if (!description.empty()) s << ", \"" << description.c_str() << "\"";
-			else s << ", nullptr";
-			s << ", "; inf_generate_tag_field_flags(s, string_parser);
+			if (!name.empty())
+			{
+				if (!name.empty()) s << "\"" << name.c_str() << "\"";
+			}
+			if (!description.empty())
+			{
+				if (!description.empty()) s << ", \"" << description.c_str() << "\"";
+			}
 			if (tag_field->explanation != nullptr && *tag_field->explanation)
 			{
 				std::string explanation = escape_string(tag_field->explanation);
 				s << ", \"" << explanation << "\"";
 			}
 			else s << ", nullptr";
+			if (write_flags)
+			{
+				s << ", "; inf_generate_tag_field_flags(s, string_parser);
+			}
 			s << ")," << std::endl;
 		}
 		break;
@@ -593,8 +722,15 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 				s << ", ";
 				inf_generate_tag_field_flags(s, string_parser);
 			}
-
-			s << ", &blofeld::infinite::" << tag_field->array_definition->code_name;
+			ASSERT(tag_field->array_definition);
+			if (tag_field->array_definition)
+			{
+				s << ", &blofeld::" << _namespace << "::" << tag_field->array_definition->code_name;
+			}
+			if (write_tag)
+			{
+				s << ", " << tag_field->field_id_string;
+			}
 
 			s << " }," << std::endl;
 		}
@@ -632,11 +768,14 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 				s << ", ";
 				inf_generate_tag_field_flags(s, string_parser);
 			}
-
 			ASSERT(tag_field->block_definition);
 			if (tag_field->block_definition)
 			{
-				s << ", &blofeld::infinite::" << tag_field->block_definition->code_name;
+				s << ", &blofeld::" << _namespace << "::" << tag_field->block_definition->code_name;
+			}
+			if (write_tag)
+			{
+				s << ", " << tag_field->field_id_string;
 			}
 
 			s << " }," << std::endl;
@@ -671,11 +810,14 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 				s << ", ";
 				inf_generate_tag_field_flags(s, string_parser);
 			}
-
 			ASSERT(tag_field->struct_definition);
 			if (tag_field->struct_definition)
 			{
-				s << ", &blofeld::infinite::" << tag_field->struct_definition->code_name;
+				s << ", &blofeld::" << _namespace << "::" << tag_field->struct_definition->code_name;
+			}
+			if (write_tag)
+			{
+				s << ", " << tag_field->field_id_string;
 			}
 
 			s << " }," << std::endl;
@@ -711,11 +853,14 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 				s << ", ";
 				inf_generate_tag_field_flags(s, string_parser);
 			}
-
 			ASSERT(tag_field->pageable_resource_definition);
 			if (tag_field->pageable_resource_definition)
 			{
-				s << ", &blofeld::infinite::" << tag_field->pageable_resource_definition->struct_definition.code_name;
+				s << ", &blofeld::" << _namespace << "::" << tag_field->pageable_resource_definition->struct_definition.code_name;
+			}
+			if (write_tag)
+			{
+				s << ", " << tag_field->field_id_string;
 			}
 
 			s << " }," << std::endl;
@@ -752,11 +897,14 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 				s << ", ";
 				inf_generate_tag_field_flags(s, string_parser);
 			}
-
 			ASSERT(tag_field->tag_reference_definition);
 			if (tag_field->tag_reference_definition)
 			{
-				s << ", &blofeld::infinite::" << tag_field->tag_reference_definition->code_name;
+				s << ", &blofeld::" << _namespace << "::" << tag_field->tag_reference_definition->code_name;
+			}
+			if (write_tag)
+			{
+				s << ", " << tag_field->field_id_string;
 			}
 
 			s << " }," << std::endl;
@@ -800,11 +948,14 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 				s << ", ";
 				inf_generate_tag_field_flags(s, string_parser);
 			}
-
 			ASSERT(tag_field->string_list_definition);
 			if (tag_field->string_list_definition)
 			{
-				s << ", &blofeld::infinite::" << tag_field->string_list_definition->code_name;
+				s << ", &blofeld::" << _namespace << "::" << tag_field->string_list_definition->code_name;
+			}
+			if (write_tag)
+			{
+				s << ", " << tag_field->field_id_string;
 			}
 
 			s << " }," << std::endl;
@@ -839,6 +990,10 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 				inf_generate_tag_field_flags(s, string_parser);
 			}
 			if (write_pointer) s << ", " << "nullptr";
+			if (write_tag)
+			{
+				s << ", " << tag_field->field_id_string;
+			}
 			s << " }," << std::endl;
 		}
 		break;
@@ -1038,11 +1193,14 @@ void inf_export_header(
 	inf_clear_exported_tag_references();
 	inf_clear_exported_string_lists();
 
+	const char* _namespace = "infinite";
+	command_line_get_argument("blamboozle-infinite-namespace", _namespace);
+
 	s << "#pragma once" << std::endl;
 	s << std::endl;
 	s << "namespace blofeld" << std::endl;
 	s << "{" << std::endl;
-	s << "namespace infinite {" << std::endl;
+	s << "namespace " << _namespace << " {" << std::endl;
 	s << std::endl;
 
 	for (auto& group_definition : group_definitions)
@@ -1111,12 +1269,15 @@ void inf_export_source(
 	inf_clear_exported_tag_references();
 	inf_clear_exported_string_lists();
 
+	const char* _namespace = "infinite";
+	command_line_get_argument("blamboozle-infinite-namespace", _namespace);
+
 	s << "#include <tagdefinitions-private-pch.h>" << std::endl;
-	s << "#include <macaque_field_type_override.h>" << std::endl;
+	s << "#include <blofeld_field_type_override.h>" << std::endl;
 	s << std::endl;
 	s << "namespace blofeld" << std::endl;
 	s << "{" << std::endl;
-	s << "namespace infinite {" << std::endl;
+	s << "namespace " << _namespace << " {" << std::endl;
 	s << std::endl;
 
 	for (auto& group_definition : group_definitions)
@@ -1248,17 +1409,22 @@ void inf_export_code(
 	std::string header_string = header_stream.str();
 	std::string source_string = source_stream.str();
 
+	const char* header_filename = "infinite.h";
+	command_line_get_argument("blamboozle-infinite-header-filename", header_filename);
+
+	const char* source_filename = "infinite.cpp";
+	command_line_get_argument("blamboozle-infinite-source-filename", source_filename);
 
 	const char* output_directory;
 	ASSERT(BCS_SUCCEEDED(command_line_get_argument("blamboozle-output", output_directory)));
-	std::string source_output_filepath = std::string(output_directory) + "\\hinfinite.cpp";
-	std::string header_output_filepath = std::string(output_directory) + "\\hinfinite.h";
+	std::string source_output_filepath = std::string(output_directory) + source_filename;
+	std::string header_output_filepath = std::string(output_directory) + header_filename;
 
-	bool macaque_header_write_file_result = filesystem_write_file_from_memory(header_output_filepath.c_str(), header_string.c_str(), header_string.size());
-	ASSERT(macaque_header_write_file_result);
+	BCS_RESULT macaque_header_write_file_result = filesystem_write_file_from_memory(header_output_filepath.c_str(), header_string.c_str(), header_string.size());
+	ASSERT(BCS_SUCCEEDED(macaque_header_write_file_result));
 
-	bool macaque_header_write_file_result2 = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_string.c_str(), source_string.size());
-	ASSERT(macaque_header_write_file_result2);
+	BCS_RESULT macaque_header_write_file_result2 = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_string.c_str(), source_string.size());
+	ASSERT(BCS_SUCCEEDED(macaque_header_write_file_result2));
 }
 
 

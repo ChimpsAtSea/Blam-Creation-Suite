@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -44,7 +44,7 @@ namespace blofeld
 		CHEAP_PARTICLE_TYPE_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
-		FIELD_CUSTOM("physics", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("physics", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "drag" },
 		{ _field_real, "gravity" },
 		{ _field_real, "turbulence" },
@@ -52,8 +52,8 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_long_block_index, "turbulence type", "the type of turbulence this particle will experience", &cheapParticleTurbulenceTypeBlock_block },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("collision", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("collision", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "depth_range", "depth range over which the particle will collide" },
 		{ _field_real, "elasticity", "energy remaining after collision bounce" },
 		{ _field_real, "death", "percentage change [0-1] that the particle will die on collision" },
@@ -64,10 +64,10 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_long_block_index, "change type", "the type this particle will change into on collision", &cheap_particle_type_block },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("render", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("render", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_enum, "orientation", &cheap_particle_type_orientation },
-		FIELD_EXPLANATION("render parameters", nullptr, FIELD_FLAG_NONE, "cheap particles do not use alpha-blend transparency, they use multiply-and-add\nas such, an alpha of zero gives you additive particles, and an alpha of one gives you alpha-blend particles"),
+		FIELD_EXPLANATION_EX("render parameters", nullptr, FIELD_FLAG_NONE, "cheap particles do not use alpha-blend transparency, they use multiply-and-add\nas such, an alpha of zero gives you additive particles, and an alpha of one gives you alpha-blend particles"),
 		{ _field_real_argb_color, "color0" },
 		{ _field_real, "intensity0" },
 		{ _field_real, "fade start", "point in particles lifetime at which fade begins", nullptr, "[0,1]" },
@@ -75,7 +75,7 @@ namespace blofeld
 		{ _field_real, "motion blur stretch", "how much the particle stretches as it moves" },
 		{ _field_long_block_index, "texture", &cheap_particle_bitmap_reference_block },
 		{ _field_real, "texture y scale", "scales the texture in the y direction" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -125,13 +125,13 @@ namespace blofeld
 		{ _field_word_flags, "flags", &cheap_particle_emitter_flags },
 		{ _field_word_integer, "version", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "spawn rate", nullptr, "particles per second", FIELD_FLAG_UNKNOWN0 },
-		FIELD_EXPLANATION("SPAWN RATE", nullptr, FIELD_FLAG_NONE, "how many particles to spawn per second"),
+		FIELD_EXPLANATION_EX("SPAWN RATE", nullptr, FIELD_FLAG_NONE, "how many particles to spawn per second"),
 		{ _field_struct, "spawnrate", &cheap_particle_scalar_object_function_struct },
-		FIELD_EXPLANATION("LOD", nullptr, FIELD_FLAG_NONE, "reduces the number of particles at distance"),
+		FIELD_EXPLANATION_EX("LOD", nullptr, FIELD_FLAG_NONE, "reduces the number of particles at distance"),
 		{ _field_real, "distance fade start", "the distance where the number of spawned particles starts to be reduced", "world_units" },
 		{ _field_real, "distance fade end", "the distance where the number of spawned particles is zero", "world units" },
-		FIELD_EXPLANATION("TYPES", nullptr, FIELD_FLAG_NONE, "types of particles to spawn, from the global particle type library"),
-		FIELD_CUSTOM("types", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_EXPLANATION_EX("TYPES", nullptr, FIELD_FLAG_NONE, "types of particles to spawn, from the global particle type library"),
+		FIELD_CUSTOM_EX("types", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_string_id, "type 0" },
 		{ _field_real, "weight 0" },
 		{ _field_string_id, "type 1" },
@@ -140,10 +140,10 @@ namespace blofeld
 		{ _field_real, "weight 2" },
 		{ _field_string_id, "type 3" },
 		{ _field_real, "weight 3" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_EXPLANATION("LIFETIME", nullptr, FIELD_FLAG_NONE, "how long the spawned particles will last"),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_EXPLANATION_EX("LIFETIME", nullptr, FIELD_FLAG_NONE, "how long the spawned particles will last"),
 		{ _field_real_bounds, "lifetime", nullptr, "seconds" },
-		FIELD_EXPLANATION("EMITTER PARAMETERS", nullptr, FIELD_FLAG_NONE, "controls where a particle spawns, and its initial velocity"),
+		FIELD_EXPLANATION_EX("EMITTER PARAMETERS", nullptr, FIELD_FLAG_NONE, "controls where a particle spawns, and its initial velocity"),
 		{ _field_tag_reference, "position texture", &bitmap_reference$5 },
 		{ _field_real, "position scale" },
 		{ _field_real, "position flatten" },
@@ -151,10 +151,10 @@ namespace blofeld
 		{ _field_real_bounds, "directionality", "Blends between a random direction and the forward direction", nullptr, "[0-1]" },
 		{ _field_real_bounds, "speed scale", "scales the initial speed of the particle" },
 		{ _field_real_bounds, "subframe offset", "spawns particle at subframe time", "frames" },
-		FIELD_EXPLANATION("PARTICLE PARAMETERS", nullptr, FIELD_FLAG_NONE, "controls randomized rotation and size"),
+		FIELD_EXPLANATION_EX("PARTICLE PARAMETERS", nullptr, FIELD_FLAG_NONE, "controls randomized rotation and size"),
 		{ _field_real, "rotation randomness", "how much the particle is randomly rotated", nullptr, "[0-1]" },
 		{ _field_real, "particle scale modifier", "modifies the inherent scale of the particles", nullptr, "[0-2]" },
-		FIELD_EXPLANATION("LIGHTING PARAMETERS", nullptr, FIELD_FLAG_NONE, "controls the effects of lighting on this particle\nNOTE: only monochrome lighting is supported in neuticles"),
+		FIELD_EXPLANATION_EX("LIGHTING PARAMETERS", nullptr, FIELD_FLAG_NONE, "controls the effects of lighting on this particle\nNOTE: only monochrome lighting is supported in neuticles"),
 		{ _field_real, "lighting contrast", "increase or decrease contrast between bright and dark areas" },
 		{ _field_real, "lighting offset", "adjust overall brightness in all areas" },
 		{ _field_real, "lighting min", "clamps darkest particles to this exposure" },
@@ -177,7 +177,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAP_PARTICLE_TYPE_LIBRARY_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("compile", nullptr, FIELD_FLAG_NONE, _field_id_unknown_compile),
+		FIELD_CUSTOM_EX("compile", nullptr, FIELD_FLAG_NONE, _field_id_unknown_compile),
 		{ _field_block, "types", &cheap_particle_type_block },
 		{ _field_block, "textures", &cheap_particle_bitmap_reference_block },
 		{ _field_tag_reference, "random", nullptr, "texture used to generate random values per particle", &bitmap_reference$5 },
@@ -215,7 +215,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};

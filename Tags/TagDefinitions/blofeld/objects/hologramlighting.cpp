@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -16,18 +16,18 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HOLOGRAMLIGHTINGGLOBALSBLOCK_ID)
 	{
-		FIELD_CUSTOM("HOLOGRAM FUNCTIONS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("HOLOGRAM FUNCTIONS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_string_id, "Intensity" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("KEY LIGHT FUNCTIONS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("KEY LIGHT FUNCTIONS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "Key Light Functions", &hologramLightFunctions },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("FILL LIGHT FUNCTIONS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("FILL LIGHT FUNCTIONS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "Fill Light Functions", &hologramLightFunctions },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("RIM LIGHT FUNCTIONS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("RIM LIGHT FUNCTIONS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "Rim Light Functions", &hologramLightFunctions },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -62,22 +62,22 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HOLOGRAMLIGHTINGBLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM("HOLOGRAM", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
-		FIELD_CUSTOM("Intensity", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("HOLOGRAM", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Intensity", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Intensity", _field_id_slider_editor },
 		{ _field_real, "Intensity Input", FIELD_FLAG_UNKNOWN0 },
 		{ _field_char_enum, "Transparency Mode", &hologramTransparencyMode },
-		FIELD_PAD("PADDING1", nullptr, FIELD_FLAG_NONE, 3),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("KEY LIGHT", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_PAD_EX("PADDING1", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("KEY LIGHT", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "Key Light", &hologramLight },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("FILL LIGHT", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("FILL LIGHT", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "Fill Light", &hologramLight },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("RIM LIGHT", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("RIM LIGHT", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "Rim Light", &hologramLight },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -90,12 +90,12 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HOLOGRAMLIGHT_ID)
 	{
-		FIELD_CUSTOM("Hologram Light", nullptr, FIELD_FLAG_NONE, _field_id_hologram_light),
-		FIELD_CUSTOM("Direction", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Hologram Light", nullptr, FIELD_FLAG_NONE, _field_id_hologram_light),
+		FIELD_CUSTOM_EX("Direction", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Direction", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Front-Back", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Front-Back", _field_id_slider_editor },
-		FIELD_CUSTOM("Intensity", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Intensity", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Intensity", _field_id_slider_editor },
 		{ _field_real, "Intensity Input", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "Forward Input", FIELD_FLAG_UNKNOWN0 },

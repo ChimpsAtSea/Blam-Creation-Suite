@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -17,7 +17,7 @@ namespace blofeld
 		STRUCTURE_BSP_SOUND_CLUSTER_BLOCK_ID)
 	{
 		{ _field_short_integer, "palette index", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("HRSFKJT", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("HRSFKJT", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "enclosing portal designators", &structure_sound_cluster_portal_designators_block },
 		{ _field_block, "interior cluster indices", &structure_sound_cluster_interior_cluster_indices_block },
 		{ _field_terminator }

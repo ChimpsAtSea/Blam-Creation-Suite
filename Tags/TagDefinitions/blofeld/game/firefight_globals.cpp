@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -18,7 +18,7 @@ namespace blofeld
 	{
 		{ _field_block, "wave templates", &firefightWaveTemplatesBlock_block },
 		{ _field_tag_reference, "co-op spawning", &global_coop_spawning_globals_reference },
-		FIELD_EXPLANATION("PLAYER SPAWN INFLUENCERS", nullptr, FIELD_FLAG_NONE, "These are the default spawn influencer settings which can be overridden by scenario tags"),
+		FIELD_EXPLANATION_EX("PLAYER SPAWN INFLUENCERS", nullptr, FIELD_FLAG_NONE, "These are the default spawn influencer settings which can be overridden by scenario tags"),
 		{ _field_tag_reference, "Influencer default spawn settings", &g_spawnSettingsReference },
 		{ _field_terminator }
 	};

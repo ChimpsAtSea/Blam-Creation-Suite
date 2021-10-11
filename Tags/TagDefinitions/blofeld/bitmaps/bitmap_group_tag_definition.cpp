@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -17,8 +17,8 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("show bitmap", nullptr, FIELD_FLAG_NONE, _field_id_bitmap_show),
-		FIELD_EXPLANATION("IMPORT SETTINGS", nullptr, FIELD_FLAG_NONE, "The settings here affect how the bitmap is imported.\nAny changes you make will not take effect until you reimport the bitmap.\n"),
+		FIELD_CUSTOM_EX("show bitmap", nullptr, FIELD_FLAG_NONE, _field_id_bitmap_show),
+		FIELD_EXPLANATION_EX("IMPORT SETTINGS", nullptr, FIELD_FLAG_NONE, "The settings here affect how the bitmap is imported.\nAny changes you make will not take effect until you reimport the bitmap.\n"),
 		{ _field_long_enum, "Usage", "choose how you are using this bitmap", &bitmap_usage_global_enum },
 		{ _field_word_flags, "Flags", &bitmap_group_flags_def },
 		{ _field_short_integer, "sprite spacing", "number of pixels between adjacent sprites (0 uses default, negative numbers set no spacing)" },
@@ -34,7 +34,7 @@ namespace blofeld
 		{ _field_real, "tight bounds threshold", "This is the level cutoff for tight bounds.  0.0 is monochrome black, 1.0 is monochrome white", nullptr, "[0.0 - 1.0]" },
 		{ _field_block, "usage override", &bitmap_usage_block },
 		{ _field_block, "manual_sequences", FIELD_FLAG_READ_ONLY, &bitmap_group_sequence_block_def_block },
-		FIELD_EXPLANATION("IMPORT DATA", nullptr, FIELD_FLAG_NONE, "\n\n\n\n\n\n\n\n\n\n\n\n\n***************************************************************************************************************************\n\nEverything below this line is bitmap data.  It is updated when you reimport the bitmap.\n\nAny changes you make below will be lost in the next reimport, and may even cause \'bad things\' to happen.\n\n***************************************************************************************************************************\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"),
+		FIELD_EXPLANATION_EX("IMPORT DATA", nullptr, FIELD_FLAG_NONE, "\n\n\n\n\n\n\n\n\n\n\n\n\n***************************************************************************************************************************\n\nEverything below this line is bitmap data.  It is updated when you reimport the bitmap.\n\nAny changes you make below will be lost in the next reimport, and may even cause \'bad things\' to happen.\n\n***************************************************************************************************************************\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"),
 		{ _field_block, "tight bounds", &bitmap_tight_bounds_block_def_block },
 		{ _field_data, "source data", FIELD_FLAG_READ_ONLY },
 		{ _field_data, "processed pixel data", FIELD_FLAG_READ_ONLY },

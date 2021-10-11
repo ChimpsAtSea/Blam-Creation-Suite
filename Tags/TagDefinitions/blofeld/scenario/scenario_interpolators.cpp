@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -31,7 +31,7 @@ namespace blofeld
 		SCENARIO_INTERPOLATOR_DATA_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &scenario_interpolator_flags },
-		FIELD_PAD("SCBP1", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("SCBP1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_struct, "function", &scalar_function_named_struct },
 		{ _field_real, "duration", nullptr, "seconds" },

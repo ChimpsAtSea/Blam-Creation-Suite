@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -38,10 +38,10 @@ namespace blofeld
 		{ _field_legacy, _field_struct, "render method", &render_method_struct_definition },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
-		FIELD_CUSTOM("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
+		FIELD_CUSTOM_EX("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual material?", &material_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "unknown" }, 
@@ -55,10 +55,10 @@ namespace blofeld
 		{ _field_real, "cull angle", "Projections at greater than this angle will not be drawn", "degrees" },
 
 		{ _field_real, "depth bias" },
-		FIELD_CUSTOM("Decal Strip", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Decal Strip", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "strip U-coordinate tile length" },
 		{ _field_real, "strip max profile distance" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_real, "runtime bitmap aspect", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
@@ -87,7 +87,7 @@ namespace blofeld
 		{ _field_real_point_2d, "decal scale override", "NOTE - If set to non-zero, this will override manual scaling in Sapien and smash it with these values" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
-		FIELD_EXPLANATION("Decal bucket sharing", nullptr, FIELD_FLAG_NONE, "For the index bounds below, if non-zero, sprites will be chosen between low and high bounds, inclusive.\nUse this to keep multiple different decals in the same bucket.\nIf multiple decal systems use the same bitmap set and the same material definition, they will be combined at runtime and share their vertex bucket.\nThis is more efficient in memory and more performant to render."),
+		FIELD_EXPLANATION_EX("Decal bucket sharing", nullptr, FIELD_FLAG_NONE, "For the index bounds below, if non-zero, sprites will be chosen between low and high bounds, inclusive.\nUse this to keep multiple different decals in the same bucket.\nIf multiple decal systems use the same bitmap set and the same material definition, they will be combined at runtime and share their vertex bucket.\nThis is more efficient in memory and more performant to render."),
 		{ _field_short_bounds, "random sprite index bounds", "if zero, will use random sprite" },
 
 		{ _field_block, "decals", &decal_definition_block },

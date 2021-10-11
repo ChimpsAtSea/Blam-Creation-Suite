@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -19,7 +19,7 @@ namespace blofeld
 		{ _field_char_enum, "runtime flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &g_polyartAssetStateFlags },
 		{ _field_char_enum, "Polyart vertex type", &PolyartVertexFormatTypeEnum },
 		{ _field_char_integer, "uvSet index" },
-		FIELD_PAD("MERP", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("MERP", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_real, "antialiasing extent size" },
 		{ _field_block, "placement data", &polyartCameraBlock_block },
 		{ _field_block, "vertices", FIELD_FLAG_READ_ONLY, &polyartVertexBlock_block },

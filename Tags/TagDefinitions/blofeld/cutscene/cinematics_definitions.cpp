@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -17,12 +17,12 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("custom playback", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_playback),
+		FIELD_CUSTOM_EX("custom playback", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_playback),
 		{ _field_struct, "cinematic playback", FIELD_FLAG_UNKNOWN0, &cinematic_playback_data_block },
 		{ _field_struct, "scenario and zone set", &scenario_and_zone_set_struct },
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_enum, "channel type", &cinematic_channel_type_enum },
-		FIELD_PAD("PADDING", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("PADDING", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_flags, "flags", &cinematic_flags },
 		{ _field_real, "easing in time", "seconds" },
 		{ _field_real, "easing out time", "seconds" },
@@ -36,16 +36,16 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_string, "bink movie on disc" },
 
-		FIELD_CUSTOM("Header", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Header", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "header", &cinematic_custom_script_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_block, "scenes", &cinematic_scene_reference_block },
-		FIELD_CUSTOM("Footer", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Footer", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "footer", &cinematic_custom_script_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("If The Player Skips", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("If The Player Skips", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "early exit", &cinematic_custom_script_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -80,21 +80,21 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_TRANSITION_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("fade out from game", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("fade out from game", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "fade out from game struct", &cinematic_transition_element_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("fade in to cinematic", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("fade in to cinematic", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "fade in to cinematic struct", &cinematic_transition_element_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("fade out from cinematic", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("fade out from cinematic", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "fade out from cinematic struct", &cinematic_transition_element_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("fade post core load", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("fade post core load", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "fade post core load struct", &cinematic_transition_element_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("fade in to game", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("fade in to game", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "fade in to game struct", &cinematic_transition_element_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -177,13 +177,13 @@ namespace blofeld
 		{ _field_legacy, _field_array, "shots active flags*", &g_cinematicShotFlagArray_array },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
-		FIELD_CUSTOM("lightmap shadow flags", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_scene_flags),
+		FIELD_CUSTOM_EX("lightmap shadow flags", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_scene_flags),
 		{ _field_array, "lightmap shadow flags", &g_cinematicShotFlagArray_array, _field_id_cinematic_scene_flags },
-		FIELD_CUSTOM("high res flags", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_scene_flags),
+		FIELD_CUSTOM_EX("high res flags", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_scene_flags),
 		{ _field_array, "high res flags", &g_cinematicShotFlagArray_array, _field_id_cinematic_scene_flags },
 
 		{ _field_long_flags, "override creation flags", &cinematic_coop_type_flags },
-		FIELD_EXPLANATION("Custom override creation condition", nullptr, FIELD_FLAG_NONE, "Used in combination with the override creation flags above"),
+		FIELD_EXPLANATION_EX("Custom override creation condition", nullptr, FIELD_FLAG_NONE, "Used in combination with the override creation flags above"),
 		{ _field_struct, "custom don't create condition", &cinematic_custom_script_block },
 		{ _field_block, "attachments", &scene_object_attachment_block, _field_id_slap },
 		{ _field_terminator }
@@ -200,11 +200,11 @@ namespace blofeld
 		SCENE_OBJECT_ATTACHMENT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &scene_object_attachment_flags },
-		FIELD_PAD("VKJSLKHF", nullptr, FIELD_FLAG_NONE, 3),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_PAD_EX("VKJSLKHF", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "object marker name" },
 		{ _field_string_id, "attachment object name", FIELD_FLAG_INDEX },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "attachment marker name" },
 		{ _field_tag_reference, "attachment type", &scene_object_attachment_block_attachment_type_reference },
 		{ _field_terminator }
@@ -221,16 +221,16 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM("loop now", nullptr, FIELD_FLAG_NONE, _field_id_loop_cinematic_shot),
-		FIELD_CUSTOM("Header", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("loop now", nullptr, FIELD_FLAG_NONE, _field_id_loop_cinematic_shot),
+		FIELD_CUSTOM_EX("Header", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "header", &cinematic_custom_script_block },
 		{ _field_long_flags, "flags", &shot_flags_definition },
-		FIELD_CUSTOM("environment darken", "this works best with auto-exposure off", FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("environment darken", "this works best with auto-exposure off", FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "environment darken", "this works best with auto-exposure off", "0 - 1", _field_id_slider_editor },
-		FIELD_CUSTOM("forced exposure", "will disable auto-exposure", FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("forced exposure", "will disable auto-exposure", FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "forced exposure", "will disable auto-exposure", "stops", _field_id_slider_editor },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("Settings", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("Settings", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "settings flags", &sceneShotSettingsFlags },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
@@ -244,7 +244,7 @@ namespace blofeld
 		{ _field_tag_reference, "Camera Effects", &global_camera_fx_settings_reference },
 		{ _field_tag_reference, "Cubemap", &global_bitmap_reference },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_block, "lighting", &cinematic_shot_lighting_block, _field_id_slap },
 		{ _field_block, "clip", &cinematic_shot_clip_block, _field_id_slap },
 
@@ -268,7 +268,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "texture movies", &cinematicShotTextureMovieBlock_block, _field_id_slap },
 
-		FIELD_CUSTOM("Footer", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Footer", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "footer", &cinematic_custom_script_block },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 4 },// from H4 cisd
@@ -277,7 +277,7 @@ namespace blofeld
 		{ _field_legacy, _field_block, "dynamic frame data*!", &cinematic_shot_frame_dynamic_block },
 		{ _field_legacy, _field_block, "constant frame data*!", &cinematic_shot_frame_constant_block },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -294,7 +294,7 @@ namespace blofeld
 		{ _field_long_flags, "flags", &cinematic_shot_lighting_flags_definition },
 		{ _field_tag_reference, "lighting", &global_new_cinematic_lighting_reference },
 		{ _field_long_block_index, "subject", FIELD_FLAG_INDEX, &cinematic_scene_object_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker" },
 		{ _field_terminator }
 	};
@@ -311,9 +311,9 @@ namespace blofeld
 	{
 		{ _field_real_point_3d, "plane center" },
 		{ _field_real_point_3d, "plane direction" },
-		FIELD_CUSTOM("frame start", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
+		FIELD_CUSTOM_EX("frame start", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
 		{ _field_long_integer, "frame start", _field_id_cinematic_frame_index },
-		FIELD_CUSTOM("frame end", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
+		FIELD_CUSTOM_EX("frame end", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
 		{ _field_long_integer, "frame end", _field_id_cinematic_frame_index },
 		{ _field_block, "subject objects", &cinematic_shot_clip_subject_block, _field_id_slap },
 		{ _field_terminator }
@@ -345,7 +345,7 @@ namespace blofeld
 	{
 		{ _field_long_flags, "flags", &music_flags_enum },
 		{ _field_tag_reference, "music/foley", &global_sound_and_looping_sound_reference },
-		FIELD_CUSTOM("frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
+		FIELD_CUSTOM_EX("frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
 		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
 		{ _field_terminator }
 	};
@@ -377,7 +377,7 @@ namespace blofeld
 		CINEMATIC_SHOT_OBJECT_FUNCTION_KEYFRAME_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &cinematic_shot_object_function_flags },
-		FIELD_CUSTOM("frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
+		FIELD_CUSTOM_EX("frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
 		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
 		{ _field_real, "value" },
 		{ _field_real, "interpolation time", nullptr, "ticks" },
@@ -395,14 +395,14 @@ namespace blofeld
 		CINEMATIC_SHOT_SCREEN_EFFECT_BLOCK_ID)
 	{
 		{ _field_tag_reference, "screen effect", &global_area_screen_effect_reference },
-		FIELD_CUSTOM("frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
+		FIELD_CUSTOM_EX("frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
 		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
-		FIELD_CUSTOM("stop frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
+		FIELD_CUSTOM_EX("stop frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
 		{ _field_long_integer, "stop frame", _field_id_cinematic_frame_index },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_byte_flags, "flags", &cinematicShotScreenEffectFlags },
-		FIELD_PAD("BLAHWWW", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("BLAHWWW", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_terminator }
 	};
@@ -417,7 +417,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_USER_INPUT_CONSTRAINTS_BLOCK_ID)
 	{
-		FIELD_CUSTOM("frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
+		FIELD_CUSTOM_EX("frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
 		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
 		{ _field_long_integer, "ticks" },
 		{ _field_rectangle_2d, "maximum look angles" },
@@ -436,7 +436,7 @@ namespace blofeld
 		CINEMATICSHOTTEXTUREMOVIEBLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &textureMovieFlags },
-		FIELD_CUSTOM("frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
+		FIELD_CUSTOM_EX("frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
 		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
 		{ _field_tag_reference, "bink movie", &bink_reference },
 		{ _field_terminator }
@@ -494,7 +494,7 @@ namespace blofeld
 	{
 		{ _field_tag_reference, "dialogue", FIELD_FLAG_READ_ONLY, &global_sound_reference },
 		{ _field_tag_reference, "female dialogue", FIELD_FLAG_READ_ONLY, &global_sound_reference },
-		FIELD_CUSTOM("frame", nullptr, FIELD_FLAG_READ_ONLY, _field_id_cinematic_frame_index),
+		FIELD_CUSTOM_EX("frame", nullptr, FIELD_FLAG_READ_ONLY, _field_id_cinematic_frame_index),
 		{ _field_long_integer, "frame", FIELD_FLAG_READ_ONLY, _field_id_cinematic_frame_index },
 		{ _field_real, "scale", FIELD_FLAG_READ_ONLY },
 		{ _field_string_id, "lipsync actor", FIELD_FLAG_READ_ONLY },
@@ -517,15 +517,15 @@ namespace blofeld
 	{
 		{ _field_byte_flags, "flags", &cinematic_shot_effect_flags },
 		{ _field_char_enum, "state", &sceneShotEffectState },
-		FIELD_PAD("CMVOIRLKSD", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("CMVOIRLKSD", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "effect", &global_effect_reference },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_real, "size scale" },
 
-		FIELD_CUSTOM("frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
+		FIELD_CUSTOM_EX("frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
 		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker name" },
 		{ _field_long_block_index, "marker parent", &cinematicSceneDataObjectBlock_block },
 		{ _field_string_id, "function a" },
@@ -549,8 +549,8 @@ namespace blofeld
 		CINEMATIC_SHOT_CUSTOM_SCRIPT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", FIELD_FLAG_UNKNOWN0, &cinematic_shot_custom_script_flags },
-		FIELD_PAD("CMVOIRLKSD", nullptr, FIELD_FLAG_NONE, 3),
-		FIELD_CUSTOM("frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
+		FIELD_PAD_EX("CMVOIRLKSD", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_CUSTOM_EX("frame", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_frame_index),
 		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
 		{ _field_struct, "script", &cinematic_custom_script_block },
 		{ _field_long_integer, "node id", FIELD_FLAG_UNKNOWN0 },
@@ -672,7 +672,7 @@ namespace blofeld
 		CINEMATIC_TRANSITION_SOUND_CLASS_GAIN_BLOCK_STRUCT_ID)
 	{
 		{ _field_char_enum, "class", FIELD_FLAG_INDEX, &sound_class_enum },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "gain", nullptr, "dB" },
 		{ _field_long_integer, "time", nullptr, "hs_ticks" },
 		{ _field_terminator }
@@ -779,7 +779,7 @@ namespace blofeld
 		SCENARIO_CINEMATICS_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &scenario_cinematics_flags },
-		FIELD_PAD("SDJLKANF", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("SDJLKANF", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "name", FIELD_FLAG_INDEX, &cinematic_reference },
 		{ _field_terminator }
 	};
@@ -814,18 +814,18 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SCENE_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("loop now", nullptr, FIELD_FLAG_NONE, _field_id_loop_cinematic_scene),
+		FIELD_CUSTOM_EX("loop now", nullptr, FIELD_FLAG_NONE, _field_id_loop_cinematic_scene),
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "anchor" },
 		{ _field_enum, "reset object lighting", &scene_reset_object_lighting_enum },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "data", FIELD_FLAG_READ_ONLY, &cinematic_scene_data_reference },
 
-		FIELD_CUSTOM("Header", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Header", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "header", &cinematic_custom_script_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_block, "objects", FIELD_FLAG_READ_ONLY, &cinematic_scene_object_block, _field_id_slap },
 		{ _field_block, "shots", &cinematic_shot_block },
 
@@ -835,13 +835,13 @@ namespace blofeld
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_block, "extra camera frame data", FIELD_FLAG_READ_ONLY, &cinematic_shot_extra_camera_block, _field_id_slap },
 
-		FIELD_CUSTOM("Footer", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Footer", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "footer", &cinematic_custom_script_block },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "version*" },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -890,7 +890,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_AND_ZONE_SET_STRUCT_ID)
 	{
-		FIELD_CUSTOM("custom ui", nullptr, FIELD_FLAG_NONE, _field_id_scenario_zone_set_index),
+		FIELD_CUSTOM_EX("custom ui", nullptr, FIELD_FLAG_NONE, _field_id_scenario_zone_set_index),
 		{ _field_tag_reference, "scenario", FIELD_FLAG_UNKNOWN0, &scenario_reference },
 		{ _field_long_integer, "zone set", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
@@ -922,7 +922,7 @@ namespace blofeld
 		{ _field_string_id, "identifier", FIELD_FLAG_READ_ONLY },
 		{ _field_tag_reference, "model animation graph", FIELD_FLAG_READ_ONLY, &global_animation_graph_reference },
 		{ _field_tag_reference, "object type", FIELD_FLAG_READ_ONLY, &scene_object_attachment_block_attachment_type_reference },
-		FIELD_CUSTOM("shots active flags", nullptr, FIELD_FLAG_READ_ONLY, _field_id_cinematic_scene_flags),
+		FIELD_CUSTOM_EX("shots active flags", nullptr, FIELD_FLAG_READ_ONLY, _field_id_cinematic_scene_flags),
 		{ _field_array, "shots active flags", FIELD_FLAG_READ_ONLY, &g_cinematicShotFlagArray_array, _field_id_cinematic_scene_flags },
 		{ _field_terminator }
 	};
@@ -1031,7 +1031,7 @@ namespace blofeld
 		{ _field_enum, "justification", &text_justification_enum_definition },
 		{ _field_enum, "vertical justification", &text_vertical_justification_enum_definition },
 		{ _field_enum, "font", &global_font_id_enum_definition },
-		FIELD_PAD("padding", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("padding", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_rgb_color, "text color" },
 		{ _field_rgb_color, "shadow color" },
 		{ _field_real, "fade in time [seconds]" },

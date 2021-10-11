@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -42,9 +42,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		HAVOK_COLLISION_FILTER_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("specify what each group collides with", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("specify what each group collides with", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_block, "groups", &havok_collision_filter_group_block },
-		FIELD_PAD("alignment_pad", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("alignment_pad", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_struct, "group filter", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &havok_group_filter_filter_struct },
 		{ _field_terminator }
 	};
@@ -69,9 +69,9 @@ namespace blofeld
 		{ _field_pointer, "hkpShapeCollectionFilter vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_pointer, "hkpRayShapeCollectionFilter vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_pointer, "hkpRayCollidableFilter vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
-		FIELD_PAD("m_prepad[2]", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("m_prepad[2]", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_long_integer, "m_type", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("m_postpad[3]", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("m_postpad[3]", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_long_integer, "m_nextFreeSystemGroup", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_long_integer, "m_collisionLookupTable00", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_long_integer, "m_collisionLookupTable01", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
@@ -107,7 +107,7 @@ namespace blofeld
 		{ _field_long_integer, "m_collisionLookupTable31", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		FIELD_PAD("16 byte align pad", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("16 byte align pad", nullptr, FIELD_FLAG_NONE, 12),
 
 		{ _field_real_vector_3d, "m_pad256[0]", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real, "havok w m_pad256[0]", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },

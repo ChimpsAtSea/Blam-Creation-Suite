@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -16,16 +16,16 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PCA_ANIMATION_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("Links", nullptr, FIELD_FLAG_NONE, "links to the tags this data is associated with. These will be set by the importer, you don\'t need to do it manually"),
+		FIELD_EXPLANATION_EX("Links", nullptr, FIELD_FLAG_NONE, "links to the tags this data is associated with. These will be set by the importer, you don\'t need to do it manually"),
 		{ _field_tag_reference, "RenderModel", FIELD_FLAG_READ_ONLY, &render_model_reference$6 },
 		{ _field_tag_reference, "AnimationGraph", FIELD_FLAG_READ_ONLY, &global_animation_graph_reference },
 		{ _field_long_flags, "pcaFlags", FIELD_FLAG_READ_ONLY, &pca_animation_tag_flags },
 		{ _field_long_integer, "PCA Animation Count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "PCA Checksum", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_EXPLANATION("Imported Data", nullptr, FIELD_FLAG_NONE, "imported data"),
+		FIELD_EXPLANATION_EX("Imported Data", nullptr, FIELD_FLAG_NONE, "imported data"),
 		{ _field_block, "frame data", FIELD_FLAG_READ_ONLY, &PCAImportedFrameDatablock_block },
 		{ _field_block, "mesh data", FIELD_FLAG_READ_ONLY, &PCAImportedMeshDataBlock_block },
-		FIELD_EXPLANATION("Resource Data", nullptr, FIELD_FLAG_NONE, "vertex buffers"),
+		FIELD_EXPLANATION_EX("Resource Data", nullptr, FIELD_FLAG_NONE, "vertex buffers"),
 		{ _field_pageable, "api resource", FIELD_FLAG_READ_ONLY, &render_geometry_api_resource_definition_struct },
 		{ _field_terminator }
 	};
@@ -72,9 +72,9 @@ namespace blofeld
 		{ _field_real, "stretch scale", FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "normal offset", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "stretch offset", FIELD_FLAG_READ_ONLY },
-		FIELD_EXPLANATION("Animations", nullptr, FIELD_FLAG_NONE, "all imported animations for this mesh"),
+		FIELD_EXPLANATION_EX("Animations", nullptr, FIELD_FLAG_NONE, "all imported animations for this mesh"),
 		{ _field_block, "animations", FIELD_FLAG_READ_ONLY, &PCAImportedAnimationDataBlock_block },
-		FIELD_EXPLANATION("Vertices", nullptr, FIELD_FLAG_NONE, "all imported blend shape vertices for this mesh"),
+		FIELD_EXPLANATION_EX("Vertices", nullptr, FIELD_FLAG_NONE, "all imported blend shape vertices for this mesh"),
 		{ _field_block, "raw blendshape verts", FIELD_FLAG_READ_ONLY, &raw_blendshape_block },
 		{ _field_terminator }
 	};
@@ -94,7 +94,7 @@ namespace blofeld
 		{ _field_long_integer, "Count", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "PCA Shape Offset", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "PCA coefficient Count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_EXPLANATION("Resource Data", nullptr, FIELD_FLAG_NONE, "coefficients"),
+		FIELD_EXPLANATION_EX("Resource Data", nullptr, FIELD_FLAG_NONE, "coefficients"),
 		{ _field_pageable, "CoefficientResource", FIELD_FLAG_READ_ONLY, &pca_coefficients_resource_definition_struct },
 		{ _field_terminator }
 	};

@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -31,25 +31,25 @@ namespace blofeld
 	{
 		{ _field_enum, "type", &damage_response_class_type_enum },
 		{ _field_word_flags, "flags", &damage_response_class_flags },
-		FIELD_EXPLANATION("directional flash", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("directional flash", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "directional flash", &damage_response_directional_flash_struct },
-		FIELD_EXPLANATION("motion sensor ping", nullptr, FIELD_FLAG_NONE, "WARNING \'motion sensor ping\' section no longer functions post CHUD-2-CUI switchover!"),
+		FIELD_EXPLANATION_EX("motion sensor ping", nullptr, FIELD_FLAG_NONE, "WARNING \'motion sensor ping\' section no longer functions post CHUD-2-CUI switchover!"),
 		{ _field_struct, "motion sensor ping", &damage_response_motion_sensor_ping },
-		FIELD_EXPLANATION("rumble", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("rumble", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "rumble", MAKE_OLD_NAMES("rumble data"), &global_rumble_reference },
-		FIELD_EXPLANATION("camera shake and impulse data", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("camera shake and impulse data", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "camera shake", MAKE_OLD_NAMES("camera shake data"), &global_camera_shake_reference },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "camera shake zoomed", "falls back on camerashake if untuned", MAKE_OLD_NAMES("camera shake data"), &global_camera_shake_reference },
 
-		FIELD_EXPLANATION("simulated input", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("simulated input", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "simulated_input", &global_simulated_input_reference },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "simulated_input zoomed ", "falls back on simulated input if untuned", &global_simulated_input_reference },
 
-		FIELD_EXPLANATION("global sound effect", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("global sound effect", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_block, "global sound effect", &damage_response_global_sound_effect_block },
 		{ _field_terminator }
 	};
@@ -66,7 +66,7 @@ namespace blofeld
 		DAMAGE_RESPONSE_GLOBAL_SOUND_EFFECT_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "effect name" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "scale => duration", nullptr, "seconds", &mapping_function },
 		{ _field_terminator }
 	};
@@ -82,15 +82,15 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AREA_CONTROL_BLOCK_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("AREA CONTROL", nullptr, FIELD_FLAG_NONE, "Higher level scale controls for camera shake, camera impulse and rumble."),
+		FIELD_EXPLANATION_EX("AREA CONTROL", nullptr, FIELD_FLAG_NONE, "Higher level scale controls for camera shake, camera impulse and rumble."),
 		{ _field_word_flags, "flags", &area_control_flags },
-		FIELD_PAD("DRCS", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_EXPLANATION("Distance Falloff", nullptr, FIELD_FLAG_NONE, "controls the maximum distance and the distance falloff of this effect\nNOTE: not used for scenario global effects"),
+		FIELD_PAD_EX("DRCS", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("Distance Falloff", nullptr, FIELD_FLAG_NONE, "controls the maximum distance and the distance falloff of this effect\nNOTE: not used for scenario global effects"),
 		{ _field_real, "maximum distance", "the maximum distance this player feedback will affect", "world units" },
 		{ _field_struct, "distance falloff", &area_control_scalar_function_struct },
-		FIELD_EXPLANATION("Angle Falloff", nullptr, FIELD_FLAG_NONE, "controls the falloff of this effect based on how close you are to looking directly at it\nNOTE: not used for scenario global effects"),
+		FIELD_EXPLANATION_EX("Angle Falloff", nullptr, FIELD_FLAG_NONE, "controls the falloff of this effect based on how close you are to looking directly at it\nNOTE: not used for scenario global effects"),
 		{ _field_struct, "angle falloff", &area_control_scalar_function_struct },
-		FIELD_EXPLANATION("Object Falloff", nullptr, FIELD_FLAG_NONE, "applies a falloff based on an object function - ignored if the effect is not attached to an object"),
+		FIELD_EXPLANATION_EX("Object Falloff", nullptr, FIELD_FLAG_NONE, "applies a falloff based on an object function - ignored if the effect is not attached to an object"),
 		{ _field_struct, "object falloff", &area_control_scalar_object_function_struct },
 		{ _field_terminator }
 	};
@@ -124,7 +124,7 @@ namespace blofeld
 		{ _field_real, "flash duration ", MAKE_OLD_NAMES("duration") },
 
 		{ _field_enum, "fade function", &global_reverse_transition_functions_enum },
-		FIELD_PAD("ZASSFACE", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("ZASSFACE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "center size" },
 		{ _field_real, "offscreen size", MAKE_OLD_NAMES("size") },
 		{ _field_real, "center alpha" },
@@ -160,7 +160,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AREA_CONTROL_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};
@@ -177,7 +177,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};

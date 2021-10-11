@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -308,7 +308,7 @@ namespace blofeld
 		{ _field_char_integer, "promotion index" },
 		{ _field_char_integer, "custom playback index" },
 		{ _field_short_integer, "extra info index" },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "maximum play time", nullptr, "ms" },
 		{ _field_pageable, "sound data resource", &sound_resource_definition_struct },
 		{ _field_terminator }

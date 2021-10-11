@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -129,7 +129,7 @@ namespace blofeld
 		{ _field_short_integer, "frame" },
 		{ _field_short_integer, "frame offset" },
 		{ _field_enum, "type", FIELD_FLAG_READ_ONLY, &frame_event_type_new },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "unique ID", "(Do not change this)", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
@@ -145,10 +145,10 @@ namespace blofeld
 		ANIMATION_SOUND_EVENT_BLOCK_EXTENDED_ID)
 	{
 		{ _field_short_block_index, "frame event", &import_frame_event_block },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_block_index, "sound", &animation_graph_sound_reference_block },
 		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it's absolute." },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -164,13 +164,13 @@ namespace blofeld
 		ANIMATION_EFFECTS_EVENT_BLOCK_EXTENDED_ID)
 	{
 		{ _field_short_block_index, "frame event", &import_frame_event_block },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_block_index, "effect", &animation_graph_effect_reference_block },
 		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it's absolute." },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker name" },
 		{ _field_char_enum, "damage effect reporting type", &global_damage_reporting_enum_definition },
-		FIELD_PAD("pad_2", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad_2", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -187,7 +187,7 @@ namespace blofeld
 		{ _field_short_block_index, "frame event", &import_frame_event_block },
 		{ _field_enum, "dialogue event", &animation_dialogue_event_enum },
 		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it's absolute." },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -239,7 +239,7 @@ namespace blofeld
 		{ _field_byte_flags, "model flags", FIELD_FLAG_READ_ONLY, &animation_node_model_flags },
 		{ _field_byte_flags, "node joint flags", &node_joint_flags },
 		{ _field_byte_flags, "additional flags", &node_info_flags },
-		FIELD_PAD("NOD", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("NOD", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real_vector_3d, "base vector", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "vector range", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "z_pos", FIELD_FLAG_READ_ONLY },
@@ -275,7 +275,7 @@ namespace blofeld
 		ANIMATION_NODE_MASK_ENTRY_BLOCK_ID)
 	{
 		{ _field_short_block_index, "node", FIELD_FLAG_INDEX, &animation_graph_node_block },
-		FIELD_PAD("anbfp", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("anbfp", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -351,14 +351,14 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FOOT_TRACKING_MEMBER_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "foot marker name", FIELD_FLAG_INDEX },
 		{ _field_real_bounds, "foot ik range" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "ankle marker name" },
 		{ _field_real_bounds, "ankle ik range" },
 		{ _field_enum, "default state", &foot_tracking_default_values },
-		FIELD_PAD("f00t1", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("f00t1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -374,7 +374,7 @@ namespace blofeld
 		ANIMATION_POOL_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_real, "weight" },
 		{ _field_short_integer, "loop frame index" },
 		{ _field_word_flags, "user flags", MAKE_OLD_NAMES("playback flags"), &animation_index_flags },
@@ -386,10 +386,10 @@ namespace blofeld
 		{ _field_short_block_index, "composite", FIELD_FLAG_READ_ONLY, &g_compositeTag_block },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
-		FIELD_EXPLANATION("PCA Group Link", nullptr, FIELD_FLAG_NONE, "If this animation contains PCA blend shape animation,\nprovide the name of the PCA Group to which it belongs.\nThese groups should be present in the PCA Groups block."),
+		FIELD_EXPLANATION_EX("PCA Group Link", nullptr, FIELD_FLAG_NONE, "If this animation contains PCA blend shape animation,\nprovide the name of the PCA Group to which it belongs.\nThese groups should be present in the PCA Groups block."),
 		{ _field_string_id, "pca group name" },
 
-		FIELD_EXPLANATION("Shared Animation Data", nullptr, FIELD_FLAG_NONE, "data which may be shared by one or more animations"),
+		FIELD_EXPLANATION_EX("Shared Animation Data", nullptr, FIELD_FLAG_NONE, "data which may be shared by one or more animations"),
 		{ _field_struct, "shared animation reference", FIELD_FLAG_UNKNOWN0, &shared_animation_reference_block },
 		{ _field_block, "shared animation data", &shared_model_animation_block },
 		{ _field_terminator }
@@ -449,7 +449,7 @@ namespace blofeld
 
 		{ _field_real, "average translation magnitude", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "average pivot yaw", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_EXPLANATION("a", nullptr, FIELD_FLAG_UNKNOWN0, "IMPORTANT NOTES ABOUT FRAME EVENTS\n1) The following four fields (hidden except in expert mode) are legacy Halo3-style tag blocks.\n2) New frame events (attached to animations in Maya) will automagically be exported to\n   the frame_event_list any time a model sidecar is imported with the tool import command.\n3) Do not add new frame events, fx events, audio events, or dialog events here.  Instead,\n   please use the frame_event_list tag referenced in \'imported events\' (it\'s right above the\n   \'animations\' tag block).\n4) The only time you should be editing the following hidden fields is to remove legacy\n   frame events that have been replaced by events generated in Maya.\n"),
+		FIELD_EXPLANATION_EX("a", nullptr, FIELD_FLAG_UNKNOWN0, "IMPORTANT NOTES ABOUT FRAME EVENTS\n1) The following four fields (hidden except in expert mode) are legacy Halo3-style tag blocks.\n2) New frame events (attached to animations in Maya) will automagically be exported to\n   the frame_event_list any time a model sidecar is imported with the tool import command.\n3) Do not add new frame events, fx events, audio events, or dialog events here.  Instead,\n   please use the frame_event_list tag referenced in \'imported events\' (it\'s right above the\n   \'animations\' tag block).\n4) The only time you should be editing the following hidden fields is to remove legacy\n   frame events that have been replaced by events generated in Maya.\n"),
 		{ _field_block, "frame events", "Legacy field - please edit in new frame event tag below", &animation_frame_event_block },
 		{ _field_block, "sound events", "Legacy field - please edit in new frame event tag below", &animation_sound_event_block },
 		{ _field_block, "effect events", "Legacy field - please edit in new frame event tag below", &animation_effect_event_block },
@@ -458,7 +458,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "script events", "Legacy field - please edit in new frame event tag below", &animation_script_event_block },
 
-		FIELD_EXPLANATION("b", nullptr, FIELD_FLAG_UNKNOWN0, ""),
+		FIELD_EXPLANATION_EX("b", nullptr, FIELD_FLAG_UNKNOWN0, ""),
 		{ _field_block, "object-space parent nodes", &object_space_node_data_block },
 		{ _field_block, "foot tracking", &foot_tracking_block },
 		{ _field_block, "object space offset nodes", &object_space_offset_node_block },
@@ -498,7 +498,7 @@ namespace blofeld
 	{
 		{ _field_short_block_index, "sound", &animation_graph_sound_reference_block },
 		{ _field_short_integer, "frame" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -515,10 +515,10 @@ namespace blofeld
 	{
 		{ _field_short_block_index, "effect", &animation_graph_effect_reference_block },
 		{ _field_short_integer, "frame" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker name" },
 		{ _field_char_enum, "damage effect reporting type", &global_damage_reporting_enum_definition },
-		FIELD_PAD("eefpd1", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("eefpd1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -549,7 +549,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "script name" },
 		{ _field_short_integer, "frame" },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -580,7 +580,7 @@ namespace blofeld
 		FOOT_TRACKING_BLOCK_ID)
 	{
 		{ _field_short_block_index, "foot", &foot_tracking_member_block },
-		FIELD_PAD("f00t2", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("f00t2", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "cycles", &foot_lock_cycle_block },
 		{ _field_terminator }
 	};
@@ -614,7 +614,7 @@ namespace blofeld
 		OBJECT_SPACE_OFFSET_NODE_BLOCK_ID)
 	{
 		{ _field_short_block_index, "object space offset node", FIELD_FLAG_INDEX, &animation_graph_node_block },
-		FIELD_PAD("wsonbp", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("wsonbp", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -629,7 +629,7 @@ namespace blofeld
 		FIK_ANCHOR_NODE_BLOCK_ID)
 	{
 		{ _field_short_block_index, "anchor node", FIELD_FLAG_INDEX, &animation_graph_node_block },
-		FIELD_PAD("dse", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("dse", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -678,18 +678,18 @@ namespace blofeld
 		{ _field_long_flags, "flags", &blend_screen_definition_flags },
 		{ _field_real, "weight" },
 		{ _field_real_fraction, "interpolation rate", "A value of zero or one means no interpolation.", nullptr, "[0,1]" },
-		FIELD_PAD("nabsbfp0", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("nabsbfp0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "yaw source", &blend_screen_variable_sources },
 		{ _field_enum, "pitch source", &blend_screen_variable_sources },
 		{ _field_enum, "weight source", &blend_screen_weight_sources },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_function),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_function),
 		{ _field_string_id, "yaw source object function" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_function),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_function),
 		{ _field_string_id, "pitch source object function" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_function),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_function),
 		{ _field_string_id, "weight source object function" },
 		{ _field_short_block_index, "weight function", "Function applied to input from weight function source", &animation_function_block },
-		FIELD_PAD("nabsbfp1", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("nabsbfp1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "animation", MAKE_OLD_NAMES("animation info"), &animation_index_struct },
 		{ _field_terminator }
 	};
@@ -707,12 +707,12 @@ namespace blofeld
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "flags", &function_overlay_definition_flags },
-		FIELD_EXPLANATION("Frame Ratio or Playback Speed", nullptr, FIELD_FLAG_NONE, "Enter either or leave blank.  Entering both will default to frame ratio option for playback control."),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_function),
+		FIELD_EXPLANATION_EX("Frame Ratio or Playback Speed", nullptr, FIELD_FLAG_NONE, "Enter either or leave blank.  Entering both will default to frame ratio option for playback control."),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_function),
 		{ _field_string_id, "frame ratio object function" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_function),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_function),
 		{ _field_string_id, "playback speed object function" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_function),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_function),
 		{ _field_string_id, "blend weight object function" },
 		{ _field_struct, "animation", &animation_index_struct },
 		{ _field_terminator }
@@ -747,7 +747,7 @@ namespace blofeld
 		{ _field_short_block_index, "blend screen", FIELD_FLAG_INDEX, &new_animation_blend_screen_block },
 		{ _field_word_flags, "flags", &pose_overlay_item_definition_block_flags },
 		{ _field_short_block_index, "node mask", &animation_node_mask_block },
-		FIELD_PAD("bsidbfp", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("bsidbfp", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -781,7 +781,7 @@ namespace blofeld
 		{ _field_string_id, "intermediate gait name", "animation name used for the speed variations" },
 		{ _field_string_id, "fast gait name" },
 		{ _field_enum, "move state", &animation_gait_directions },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -811,7 +811,7 @@ namespace blofeld
 		ANIMATION_GAIT_ITEM_BLOCK_ID)
 	{
 		{ _field_short_block_index, "animation gait", FIELD_FLAG_INDEX, &animation_gait_block },
-		FIELD_PAD("agibfap", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("agibfap", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -875,7 +875,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_enum, "type", &animation_ik_chain_type_enumeration },
-		FIELD_PAD("aikcbp", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("aikcbp", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_block_index, "start node", MAKE_OLD_NAMES("grandparent node"), &animation_graph_node_block },
 		{ _field_short_block_index, "effector node", &animation_graph_node_block },
 		{ _field_short_integer, "rank", "calculated during post process where rank is default ordinal for solving", FIELD_FLAG_UNKNOWN0 },
@@ -970,7 +970,7 @@ namespace blofeld
 		{ _field_short_block_index, "overlay group", MAKE_OLD_NAMES("pose overlay|overlay"), &overlay_group_definition_block },
 		{ _field_short_block_index, "ik set", &animation_ik_set_block },
 		{ _field_short_block_index, "gait group", &animation_gait_group_block },
-		FIELD_PAD("asbfap", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("asbfap", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "actions", &animation_entry_block },
 		{ _field_block, "overlay animations", MAKE_OLD_NAMES("overlays"), &animation_entry_block },
 		{ _field_block, "death and damage", &damage_animation_block },
@@ -1096,9 +1096,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_IK_BLOCK_V1_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker", "the marker name on the object being attached" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "attach to marker", "the marker name object (weapon, vehicle, etc.) the above marker is being attached to" },
 		{ _field_terminator }
 	};
@@ -1186,7 +1186,7 @@ namespace blofeld
 		{ _field_byte_integer, "link12" },
 		{ _field_byte_integer, "link23" },
 		{ _field_byte_integer, "link31" },
-		FIELD_PAD("aaah", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("aaah", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -1287,14 +1287,14 @@ namespace blofeld
 		{ _field_string_id, "label", FIELD_FLAG_INDEX },
 		{ _field_struct, "animation", FIELD_FLAG_READ_ONLY, &animation_index_struct },
 		{ _field_string_id, "function name" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker name", "this marker should be parented to the vehicle root node" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "contact marker name", "this marker should be parented to the wheel node" },
 		{ _field_real, "mass point offset", "distance along the vehicle's up direction to move the wheel from the marker location" },
 		{ _field_real, "full extension ground_depth", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "full compression ground_depth", FIELD_FLAG_UNKNOWN0 },
-		FIELD_EXPLANATION("Destroyed Suspension", nullptr, FIELD_FLAG_NONE, "Only Necessary for suspensions with a destroyed state"),
+		FIELD_EXPLANATION_EX("Destroyed Suspension", nullptr, FIELD_FLAG_NONE, "Only Necessary for suspensions with a destroyed state"),
 		{ _field_string_id, "region name" },
 		{ _field_real, "destroyed mass point offset" },
 		{ _field_real, "destroyed full extension ground_depth", FIELD_FLAG_UNKNOWN0 },
@@ -1315,10 +1315,10 @@ namespace blofeld
 	{
 		{ _field_string_id, "label", FIELD_FLAG_INDEX },
 		{ _field_struct, "animation", FIELD_FLAG_READ_ONLY, &animation_index_struct },
-		FIELD_PAD("VQWLKE", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("VQWLKE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "function controls", &function_overlay_animation_mode },
 		{ _field_string_id, "function" },
-		FIELD_PAD("OHIOJE", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("OHIOJE", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -1524,7 +1524,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FRAME_EVENT_LIST_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("IMPORTANT TAG NOTES", nullptr, FIELD_FLAG_NONE, "1) DO NOT XSYNC THIS TAG DIRECTLY.  Due to the nature of how this tag is processed, it is never\nloaded in-game.  Instead, xsync the parent model_animation_graph tag.  You can do this without\nchecking out the parent model_animation_graph; just find the tag in question in Bonobo, right-click it\nand select \'Force XSync\'.\n\n2) Legacy events are generated by the parent model_animation_graph.  They are generated when the model\nsidecar is imported, and the importer will try to resolve duplicated events with the frame_event_list.\nIf you need to delete a legacy animation event (or audio/effect event or reference for that matter) it \nmust be deleted from both the model_animation_graph tag AND the frame_event_list tag.\n\n3) The internal pipeline process for animation events now is:\n\t- When a sidecar is imported, if animation, effect, or audio events exist, they are copied into the\n\t  frame_event_list tag.  If the event already exists in the frame_event_list, its values are\n\t  retained.  Otherwise, default values are assigned such that the event behaves exactly as \n\t  it used to.  For the event ID, it is assigned the word \'Legacy\' with zero frame offset.\n\t- New frame events should be specified and saved in the frame_event_list tag (you\'re looking\n\t  at it).\n\t- When the model_animation_graph is compiled, the processor opens the associated frame_event_list\n\t  if one exists, reads and processes the data, and stores it back into the original \n\t  model_animation_graph on the xbox (or cache file), so no additional runtime memory or processing \n\t  time should be required.\n"),
+		FIELD_EXPLANATION_EX("IMPORTANT TAG NOTES", nullptr, FIELD_FLAG_NONE, "1) DO NOT XSYNC THIS TAG DIRECTLY.  Due to the nature of how this tag is processed, it is never\nloaded in-game.  Instead, xsync the parent model_animation_graph tag.  You can do this without\nchecking out the parent model_animation_graph; just find the tag in question in Bonobo, right-click it\nand select \'Force XSync\'.\n\n2) Legacy events are generated by the parent model_animation_graph.  They are generated when the model\nsidecar is imported, and the importer will try to resolve duplicated events with the frame_event_list.\nIf you need to delete a legacy animation event (or audio/effect event or reference for that matter) it \nmust be deleted from both the model_animation_graph tag AND the frame_event_list tag.\n\n3) The internal pipeline process for animation events now is:\n\t- When a sidecar is imported, if animation, effect, or audio events exist, they are copied into the\n\t  frame_event_list tag.  If the event already exists in the frame_event_list, its values are\n\t  retained.  Otherwise, default values are assigned such that the event behaves exactly as \n\t  it used to.  For the event ID, it is assigned the word \'Legacy\' with zero frame offset.\n\t- New frame events should be specified and saved in the frame_event_list tag (you\'re looking\n\t  at it).\n\t- When the model_animation_graph is compiled, the processor opens the associated frame_event_list\n\t  if one exists, reads and processes the data, and stores it back into the original \n\t  model_animation_graph on the xbox (or cache file), so no additional runtime memory or processing \n\t  time should be required.\n"),
 		{ _field_block, "sound references", &animation_graph_sound_reference_block },
 		{ _field_block, "effect references", &animation_graph_effect_reference_block },
 		{ _field_block, "frame events", &import_animation_event_block },
@@ -1541,7 +1541,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_GRAPH_DEFINITIONS_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("GRAPH DATA", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("GRAPH DATA", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "parent animation graph", &model_animation_graph_reference },
 		{ _field_byte_flags, "inheritance flags", &public_animation_graph_flags },
 		{ _field_byte_flags, "private flags", FIELD_FLAG_READ_ONLY, &private_animation_graph_flags },
@@ -1616,7 +1616,7 @@ namespace blofeld
 	{
 		{ _field_tag_reference, "graph reference", FIELD_FLAG_UNKNOWN0, &model_animation_graph_reference },
 		{ _field_short_block_index, "shared animation index", FIELD_FLAG_UNKNOWN0, &shared_model_animation_block },
-		FIELD_PAD("sarbp", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("sarbp", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -1647,12 +1647,12 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_IK_CHAIN_EVENTS_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("REFERENCE IK CHAIN INFO", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("REFERENCE IK CHAIN INFO", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_string_id, "chain name" },
 		{ _field_enum, "chain type", &animation_ik_chain_type_enumeration },
 		{ _field_short_block_index, "chain start node", &animation_graph_node_block },
 		{ _field_short_block_index, "chain effector node", &animation_graph_node_block },
-		FIELD_EXPLANATION("IMPORTED IK CHAIN INFO", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("IMPORTED IK CHAIN INFO", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "chain usage", &animation_ik_chain_event_usage },
 		{ _field_string_id, "proxy marker" },
 		{ _field_long_integer, "proxy id" },
@@ -1660,9 +1660,9 @@ namespace blofeld
 		{ _field_byte_integer, "effector transform data index" },
 		{ _field_byte_integer, "effector weight data index" },
 		{ _field_byte_integer, "pole point data index" },
-		FIELD_EXPLANATION("POST PROCESS IK CHAIN INFO", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("POST PROCESS IK CHAIN INFO", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_byte_integer, "chain index" },
-		FIELD_PAD("aikcep", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("aikcep", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -1677,10 +1677,10 @@ namespace blofeld
 		ANIMATION_IK_CHAIN_PROXIES_STRUCT_ID)
 	{
 		{ _field_long_integer, "id" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "target marker" },
 		{ _field_byte_integer, "proxy transform data index" },
-		FIELD_PAD("aikcpp", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("aikcpp", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -1694,17 +1694,17 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_FACIAL_WRINKLE_EVENTS_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("REFERENCE FACIAL WRINKLE EVENT INFO", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("REFERENCE FACIAL WRINKLE EVENT INFO", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_string_id, "wrinkle name" },
 		{ _field_real, "default value" },
-		FIELD_EXPLANATION("IMPORTED FACIAL WRINKLE INFO", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("IMPORTED FACIAL WRINKLE INFO", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_short_integer, "start frame" },
 		{ _field_short_integer, "frame count" },
 		{ _field_char_enum, "region", &animation_facial_wrinkle_region },
-		FIELD_PAD("PADDNG", nullptr, FIELD_FLAG_NONE, 3),
-		FIELD_EXPLANATION("POST PROCESS WRINKLE EVENT INFO", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_PAD_EX("PADDNG", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_EXPLANATION_EX("POST PROCESS WRINKLE EVENT INFO", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_short_integer, "wrinkle data index" },
-		FIELD_PAD("aikcep", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("aikcep", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -1718,13 +1718,13 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_EXTENDED_EVENTS_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("IMPORTED EXTENDED DATA EVENT INFO", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("IMPORTED EXTENDED DATA EVENT INFO", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_string_id, "name" },
 		{ _field_short_integer, "start frame" },
 		{ _field_short_integer, "frame count" },
 		{ _field_real, "default value" },
 		{ _field_short_integer, "data index" },
-		FIELD_PAD("pants", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pants", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -1769,9 +1769,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PCAANIMATIONDATASTRUCT_ID)
 	{
-		FIELD_EXPLANATION("Group Settings", nullptr, FIELD_FLAG_NONE, "For each PCA Group desired, provide a unique name and desired number of blend shapes.\nThen, assign animations to these groups by setting their pca group name field"),
+		FIELD_EXPLANATION_EX("Group Settings", nullptr, FIELD_FLAG_NONE, "For each PCA Group desired, provide a unique name and desired number of blend shapes.\nThen, assign animations to these groups by setting their pca group name field"),
 		{ _field_block, "PCA Groups", &PCAGroupSettingsBlock_block },
-		FIELD_EXPLANATION("PCA Animation Tag", nullptr, FIELD_FLAG_NONE, "This is where all the imported pca blend shape animation will be stored.\nIf any animations in this graph contain PCA blend shape animation,\ncreate a unique pca_animation tag for this animation graph and link it here.\nOtherwise, one will be created for you."),
+		FIELD_EXPLANATION_EX("PCA Animation Tag", nullptr, FIELD_FLAG_NONE, "This is where all the imported pca blend shape animation will be stored.\nIf any animations in this graph contain PCA blend shape animation,\ncreate a unique pca_animation tag for this animation graph and link it here.\nOtherwise, one will be created for you."),
 		{ _field_tag_reference, "pca animation", &global_pca_animation_tag_reference },
 		{ _field_long_integer, "PCA Animation Count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "PCA Checksum", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -1787,11 +1787,11 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_GRAPH_CONTENTS_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("MODE-n-STATE GRAPH", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("MODE-n-STATE GRAPH", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_short_block_index, "default gait group", &animation_gait_group_block },
-		FIELD_PAD("agcsfap", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("agcsfap", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "modes", &animation_mode_block },
-		FIELD_EXPLANATION("SPECIAL CASE ANIMS", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("SPECIAL CASE ANIMS", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_block, "vehicle suspension", &vehicle_suspension_block },
 		{ _field_block, "function overlays", MAKE_OLD_NAMES("object overlays"), &function_overlay_animation_block },
 		{ _field_terminator }
@@ -1806,7 +1806,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_ANIMATION_RUNTIME_DATA_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("RUN-TIME DATA", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("RUN-TIME DATA", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_block, "inheritence list", FIELD_FLAG_READ_ONLY, &inherited_animation_block },
 		{ _field_block, "new inheritance list", FIELD_FLAG_READ_ONLY, &inherited_animation_block },
 		{ _field_block, "weapon list", &weapon_class_lookup_block },
@@ -1825,7 +1825,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_CODEC_DATA_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("CODEC-SPECIFIC DATA", nullptr, FIELD_FLAG_NONE, "fields used by varous compression codecs to store shared or global data for this graph. Do not manually edit."),
+		FIELD_EXPLANATION_EX("CODEC-SPECIFIC DATA", nullptr, FIELD_FLAG_NONE, "fields used by varous compression codecs to store shared or global data for this graph. Do not manually edit."),
 		{ _field_struct, "shared_static_codec", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &shared_static_data_codec_graph_data_struct },
 		{ _field_terminator }
 	};
@@ -1839,7 +1839,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHARED_STATIC_DATA_CODEC_GRAPH_DATA_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("Shared Static Codec", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Shared Static Codec", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_block, "rotations", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &shared_static_data_codec_rotation_block },
 		{ _field_block, "translations", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &shared_static_data_codec_translation_block },
 		{ _field_block, "scale", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &shared_static_data_codec_scale_block },

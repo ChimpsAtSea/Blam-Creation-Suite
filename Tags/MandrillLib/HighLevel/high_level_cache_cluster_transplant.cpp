@@ -1117,12 +1117,18 @@ public:
 
 					if (c_infinite_tag_instance* infinite_tag_instance = dynamic_cast<c_infinite_tag_instance*>(&tag_instance))
 					{
-						//if (strcmp(field->name, "mesh resource") == 0)
-						if (ucs_pageable_resource_field.unknownC == 0)
-						{
-							console_write_line("%s", field->string_list_definition->name);
-						}
-						else if(ucs_pageable_resource_field.unknownC > 0)
+						//if (strcmp(field->string_list_definition->name, "BitmapDataResource") == 0)
+						//{
+						//	debug_point;
+						//}
+						////if (strcmp(field->name, "mesh resource") == 0)
+						//if (ucs_pageable_resource_field.unknownC == 0)
+						//{
+						//	console_write_line("%s", field->string_list_definition->name);
+						//}
+						//else if(ucs_pageable_resource_field.unknownC > 0)
+						console_write_line("%s", field->string_list_definition->name);
+						if (strcmp(field->string_list_definition->name, "s_render_geometry_api_resource") == 0)
 						{
 							resource_storage = new h_resource();
 

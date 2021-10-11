@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -17,7 +17,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BIG_BATTLE_CREATURE_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("CREATURE", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("CREATURE", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &creature_definition_flags },
 		{ _field_enum, "default team", &unit_default_teams },
 		{ _field_enum, "motion sensor blip size", &global_chud_blip_type_definition },
@@ -29,9 +29,9 @@ namespace blofeld
 		{ _field_tag_reference, "impact damage", &global_damage_reference },
 		{ _field_tag_reference, "impact shield damage", "if not specified, uses 'impact damage'", &global_damage_reference },
 		{ _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block },
-		FIELD_EXPLANATION("death and destruction", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("death and destruction", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_bounds, "destroy after death time", "if non-zero, the creature will destroy itself upon death after this much time", "seconds" },
-		FIELD_EXPLANATION("big battle", nullptr, FIELD_FLAG_NONE, "The following fields only affect creatures configured as boids for big battle"),
+		FIELD_EXPLANATION_EX("big battle", nullptr, FIELD_FLAG_NONE, "The following fields only affect creatures configured as boids for big battle"),
 		{ _field_long_flags, "big battle flags", &creature_big_battle_definition_flags },
 		{ _field_tag_reference, "big battle weapon emitter", &global_cheap_particle_emitter_reference },
 		{ _field_real_point_3d, "big battle weapon offset" },
@@ -41,7 +41,7 @@ namespace blofeld
 		{ _field_tag_reference, "big battle expensive weapon effect", "this fires a full effect from location up, oriented along vehicle's forward and up axes", &global_effect_reference },
 		{ _field_real_bounds, "expensive weapon fire time", nullptr, "seconds" },
 		{ _field_tag_reference, "big battle death effect", &global_effect_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_tag_reference, "imposter model", &imposter_model_reference },
 		{ _field_terminator }
 	};
@@ -93,7 +93,7 @@ namespace blofeld
 		CREATURE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		FIELD_CUSTOM("$$$ CREATURE $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("$$$ CREATURE $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &creature_definition_flags },
 		{ _field_enum, "default team", &unit_default_teams },
 		{ _field_enum, "motion sensor blip size", &global_chud_blip_type_definition },
@@ -105,9 +105,9 @@ namespace blofeld
 		{ _field_tag_reference, "impact damage", &global_damage_reference },
 		{ _field_tag_reference, "impact shield damage", "if not specified, uses 'impact damage'", &global_damage_reference },
 		{ _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block },
-		FIELD_EXPLANATION("death and destruction", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("death and destruction", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_bounds, "destroy after death time", "if non-zero, the creature will destroy itself upon death after this much time", "seconds" },
-		FIELD_EXPLANATION("big battle", nullptr, FIELD_FLAG_NONE, "The following fields only affect creatures configured as boids for big battle"),
+		FIELD_EXPLANATION_EX("big battle", nullptr, FIELD_FLAG_NONE, "The following fields only affect creatures configured as boids for big battle"),
 		{ _field_long_flags, "big battle flags", &creature_big_battle_definition_flags },
 		{ _field_tag_reference, "big battle weapon emitter", &global_cheap_particle_emitter_reference },
 		{ _field_real_point_3d, "big battle weapon offset" },
@@ -117,7 +117,7 @@ namespace blofeld
 		{ _field_tag_reference, "big battle expensive weapon effect", "this fires a full effect from location up, oriented along vehicle's forward and up axes", &global_effect_reference },
 		{ _field_real_bounds, "expensive weapon fire time", nullptr, "seconds" },
 		{ _field_tag_reference, "big battle death effect", &global_effect_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

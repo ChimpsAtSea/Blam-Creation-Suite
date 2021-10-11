@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -371,7 +371,7 @@ namespace blofeld
 		2)
 	{
 		{ _field_byte_flags, "flags", FIELD_FLAG_READ_ONLY, &leaf_flags },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_word_integer, "bsp2d reference count", FIELD_FLAG_READ_ONLY },
 		{ _field_dword_integer, "first bsp2d reference", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }

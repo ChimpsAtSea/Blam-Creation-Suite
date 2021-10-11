@@ -347,6 +347,7 @@ BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const 
 	BOOL end_update_resource_result = EndUpdateResource(update_resource_handle, FALSE);
 	if (end_update_resource_result != TRUE)
 	{
+		DWORD error = GetLastError();
 		rs = BCS_E_FAIL;
 	}
 

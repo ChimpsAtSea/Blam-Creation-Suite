@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -101,7 +101,7 @@ namespace blofeld
 		{ _field_string_id, "starting support upgrade" },
 
 		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
-		FIELD_PAD("AHDVHJE", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("AHDVHJE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -121,7 +121,7 @@ namespace blofeld
 		{ _field_tag_reference, "Vehicle type", &vehicle_reference },
 		{ _field_string_id, "Vehicle seat label" },
 		{ _field_tag_reference, "Weapon type", &weapon_reference$6 },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_custom_short_block_index, "Spawn Point" },
 		{ _field_terminator }
 	};
@@ -199,7 +199,7 @@ namespace blofeld
 		SCENARIO_PERFORMANCE_LINE_ANIMATION_BLOCK_STRUCT_ID)
 	{
 		{ _field_word_flags, "flags", &scenario_performance_line_animation_flags_definition },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "stance" },
 		{ _field_string_id, "animation", FIELD_FLAG_INDEX },
 		{ _field_real, "duration" },
@@ -239,7 +239,7 @@ namespace blofeld
 		SCENARIO_PERFORMANCE_LINE_SYNC_ACTION_ACTOR_BLOCK_ID)
 	{
 		{ _field_custom_short_block_index, "Actor type" },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -259,7 +259,7 @@ namespace blofeld
 		{ _field_string_id, "stance name" },
 		{ _field_real, "probability" },
 		{ _field_word_flags, "flags", &scenario_performance_line_scenery_sync_action_flag_type_definition },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "Actors", &scenario_performance_line_sync_action_actor_block },
 		{ _field_terminator }
 	};
@@ -292,7 +292,7 @@ namespace blofeld
 	{
 		{ _field_tag_reference, "sound effect", &global_sound_reference },
 		{ _field_custom_short_block_index, "attach to point" },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "attach to object named" },
 		{ _field_terminator }
 	};
@@ -331,7 +331,7 @@ namespace blofeld
 		{ _field_legacy, _field_tag_reference, "structure bsp lighting^*!", &structure_lighting_bsp_reference },
 
 		{ _field_tag_reference, "structure metadata", FIELD_FLAG_READ_ONLY, &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
-		FIELD_EXPLANATION("Size Class", nullptr, FIELD_FLAG_NONE, "Tells lightmapper desired res for structure bitmaps.\nNumbers in parens are final sizes after compression"),
+		FIELD_EXPLANATION_EX("Size Class", nullptr, FIELD_FLAG_NONE, "Tells lightmapper desired res for structure bitmaps.\nNumbers in parens are final sizes after compression"),
 		{ _field_long_enum, "size class", &scenario_structure_size_enum },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
@@ -355,14 +355,14 @@ namespace blofeld
 		{ _field_tag_reference, "vehicle authored light probe", &AuthoredLightProbeReference },
 		{ _field_real, "max shadow count scale", "scale up or down the max number of shadows as set in the throttle tag per bsp" },
 		{ _field_real, "decorator sunlight minimum", "0.0 means allow fully dark in the shadows, higher values will brighten up the shadowed decorators", nullptr, "[0.0 to 1.0]" },
-		FIELD_CUSTOM("volumetric light shafts", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("volumetric light shafts", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "volumetric light shaft settings", &scenarioVolumetricLightShaftSettingsStruct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("floating shadows", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("floating shadows", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "floating shadow settings", &scenarioFloatingShadowSettingsStruct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
-		FIELD_EXPLANATION("Clones", nullptr, FIELD_FLAG_NONE, "Describes which other bsps are physical \'clones\' of this bsp\nThis is used to determine how to attach \'position-only\' elements, like decorators, to the bsps:\nEach clone gets a separate copy of decorators that are in both.\nNon-cloned bsps cannot split decorators this way - the decorator will be given to the lowest numbered bsp\n"),
+		FIELD_EXPLANATION_EX("Clones", nullptr, FIELD_FLAG_NONE, "Describes which other bsps are physical \'clones\' of this bsp\nThis is used to determine how to attach \'position-only\' elements, like decorators, to the bsps:\nEach clone gets a separate copy of decorators that are in both.\nNon-cloned bsps cannot split decorators this way - the decorator will be given to the lowest numbered bsp\n"),
 		{ _field_long_block_flags, "cloned bsp flags", &scenario_structure_bsp_reference_block },
 		{ _field_struct, "lightmap setting", MAKE_OLD_NAMES("lightmap resolution buckets"), &scenario_lightmap_setting_struct },
 		{ _field_real, "custom gravity scale", "0==nogravity, 1==full, set the custom gravity scale flag to make this parameter active" },
@@ -390,7 +390,7 @@ namespace blofeld
 		{ _field_legacy, _field_word_block_flags, "active on bsps!" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
-		FIELD_PAD("post-name-pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-name-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_block_flags, "active on bsps", FIELD_FLAG_UNKNOWN0, &scenario_structure_bsp_reference_block },
 
 		{ _field_terminator }
@@ -631,7 +631,7 @@ namespace blofeld
 		{ _field_block, "lipsync sounds", &scenario_zone_set_lipsync_block },
 		{ _field_tag_reference, "cinematic soundbank", "only for cinematics. If you try to use this for anything else without talking to me, i will stab you in the face", &global_soundbank_reference },
 		{ _field_real_rgb_color, "sky clear color", "linear color, must check override flag above to use" },
-		FIELD_PAD("pad4", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("pad4", nullptr, FIELD_FLAG_NONE, 4),
 
 		{ _field_terminator }
 	};
@@ -720,14 +720,14 @@ namespace blofeld
 		{ _field_short_integer, "step count", "the number of discrete values to snap to (e.g., a step count of 5 would snap the function to 0.00,0.25,0.50,0.75 or 1.00)" },
 		{ _field_enum, "map to", &global_transition_functions_enum },
 		{ _field_short_integer, "sawtooth count", "the number of times this function should repeat (e.g., a sawtooth count of 5 would give the function a value of 1.0 at each of 0.25,0.50,0.75 as well as at 1.0" },
-		FIELD_PAD("WBP", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("WBP", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_block_index, "scale result by", "multiply this function (from a weapon, vehicle, etc.) final result of all of the above math", &scenario_function_block },
 		{ _field_enum, "bounds mode", "controls how the bounds, below, are used", &function_bounds_mode_enum },
 		{ _field_real_fraction_bounds, "bounds" },
 		{ _field_real, "runtime inverse bounds range", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("OFLIM", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("OFLIM", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_block_index, "turn off with", "if the specified function is off, so is this function", &scenario_function_block },
-		FIELD_PAD("FX", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("FX", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_real, "runtime reciprocal sawtooth count", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "runtime reciprocal bounds range", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "runtime reciprocal step count", FIELD_FLAG_UNKNOWN0 },
@@ -762,14 +762,14 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DONT_USE_ME_SCENARIO_ENVIRONMENT_OBJECT_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_environment_unknown),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_environment_unknown),
 		{ _field_short_block_index, "bsp", FIELD_FLAG_READ_ONLY, &scenario_structure_bsp_reference_block },
 		{ _field_short_integer, "runtime object type", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "unique id", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("WOQHKQB", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("WOQHKQB", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_tag, "object definition tag", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "object", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
-		FIELD_PAD("YMRTLZ", nullptr, FIELD_FLAG_NONE, 44),
+		FIELD_PAD_EX("YMRTLZ", nullptr, FIELD_FLAG_NONE, 44),
 		{ _field_terminator }
 	};
 
@@ -836,7 +836,7 @@ namespace blofeld
 		{ _field_word_flags, "runtime flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_soft_ceiling_flags_definition },
 		{ _field_string_id, "name" },
 		{ _field_enum, "type", &soft_ceiling_type_enum },
-		FIELD_PAD("my name is", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("my name is", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -861,7 +861,7 @@ namespace blofeld
 		{ _field_short_integer, "insertion point index" },
 		{ _field_word_flags, "flags", &scenario_player_flags },
 		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
-		FIELD_PAD("ANDYNDGE", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("ANDYNDGE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -905,7 +905,7 @@ namespace blofeld
 		{ _field_real_point_2d, "vertex 0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_2d, "vertex 1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_2d, "vertex 2", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -921,7 +921,7 @@ namespace blofeld
 	{
 		{ _field_short_block_index, "trigger volume", &scenario_trigger_volume_block },
 		{ _field_byte_flags, "flags", &kill_volume_flags },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -937,7 +937,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "name", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_integer, "Atmosphere Setting Index", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("XQLJZUE", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("XQLJZUE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "atmosphere", FIELD_FLAG_INDEX, &global_atmosphere_definition_reference },
 		{ _field_terminator }
 	};
@@ -985,7 +985,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DECALS_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_block_index, "decal palette index", &scenario_decal_palette_block },
 		{ _field_byte_flags, "flags", &decal_placement_flags },
 
@@ -993,7 +993,7 @@ namespace blofeld
 		{ _field_legacy, _field_char_integer, "unknown" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
-		FIELD_PAD("post-decal-palette-index-pad", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("post-decal-palette-index-pad", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_struct, "manual bsp flags", FIELD_FLAG_READ_ONLY, &manualBspFlagsReferences },
 
 		{ _field_real_quaternion, "rotation", FIELD_FLAG_READ_ONLY },
@@ -1036,7 +1036,7 @@ namespace blofeld
 		SCENARIO_DETAIL_OBJECT_COLLECTION_PALETTE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "name", FIELD_FLAG_INDEX, &global_detail_object_collection_reference },
-		FIELD_PAD("XBMYUIKEJ", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("XBMYUIKEJ", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -1050,7 +1050,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CUTSCENE_FLAG_BLOCK_ID)
 	{
-		FIELD_PAD("MMNGQBXC", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("MMNGQBXC", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_real_point_3d, "position" },
 
@@ -1159,14 +1159,14 @@ namespace blofeld
 		{ _field_word_flags, "flags", &scenario_cutscene_camera_flags },
 		{ _field_enum, "type", &scenario_cutscene_camera_types },
 		{ _field_string, "name", FIELD_FLAG_INDEX },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_camera_matrix_editor),
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_camera_matrix_editor),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "orientation" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
 		{ _field_short_block_index, "zone set", &scenario_zone_set_block },
-		FIELD_PAD("padd", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("padd", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "" },
 		{ _field_useless_pad, "" },
 
@@ -1185,7 +1185,7 @@ namespace blofeld
 	{
 		{ _field_short_block_index, "trigger volume", &scenario_trigger_volume_block },
 		{ _field_byte_flags, "flags", &kill_volume_flags },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -1261,7 +1261,7 @@ namespace blofeld
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "cluster camera_fx tag", "if empty, uses default", "if empty, uses default", &global_camera_fx_settings_reference },
 		{ _field_byte_flags, "flags", &camera_fx_palette_flags },
-		FIELD_PAD("EKJFER", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("EKJFER", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "forced exposure", "the target exposure (ONLY USED WHEN FORCE EXPOSURE IS CHECKED)", "stops" },
 		{ _field_real, "forced auto-exposure screen brightness", "how bright you want the screen to be (ONLY USED WHEN FORCE AUTO EXPOSURE IS CHECKED)", nullptr, "[0.0001-1]" },
 		{ _field_real, "exposure min", nullptr, "stops" },
@@ -1317,7 +1317,7 @@ namespace blofeld
 		SCENARIO_CLUSTER_ACOUSTICS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "type", FIELD_FLAG_INDEX, &scenario_acoustics_palette_block_definition_block },
-		FIELD_PAD("XQQ", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("XQQ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -1332,7 +1332,7 @@ namespace blofeld
 		SCENARIO_CLUSTER_ATMOSPHERE_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "type", FIELD_FLAG_INDEX, &scenario_atmosphere_palette_block },
-		FIELD_PAD("XQQ", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("XQQ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -1347,7 +1347,7 @@ namespace blofeld
 		SCENARIO_CLUSTER_CAMERA_FX_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "type", FIELD_FLAG_INDEX, &scenario_camera_fx_palette_block },
-		FIELD_PAD("XQQ", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("XQQ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -1362,7 +1362,7 @@ namespace blofeld
 		SCENARIO_CLUSTER_WEATHER_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "type", FIELD_FLAG_INDEX, &scenario_weather_palette_block },
-		FIELD_PAD("XQQ", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("XQQ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -1420,7 +1420,7 @@ namespace blofeld
 		SCENARIO_CHEAP_PARTICLE_SYSTEMS_BLOCK_ID)
 	{
 		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_cheap_particle_system_palette_block },
-		FIELD_PAD("VLKSJLER", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("VLKSJLER", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "rotation" },
 		{ _field_terminator }
@@ -1488,7 +1488,7 @@ namespace blofeld
 		{ _field_word_flags, "flags", &performance_flags },
 		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
 		{ _field_custom_short_block_index, "Point set" },
-		FIELD_PAD("padding", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("padding", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "Actors", &scenario_performance_actor_block },
 		{ _field_block, "Lines", &scenario_performance_line_block },
 		{ _field_real_point_3d, "position" },
@@ -1499,8 +1499,8 @@ namespace blofeld
 		{ _field_string_id, "template" },
 		{ _field_long_integer, "template index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_block, "tasks", FIELD_FLAG_UNKNOWN0, &scenario_performance_task_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_terminator }
 	};
 
@@ -1550,7 +1550,7 @@ namespace blofeld
 		SCENARIORANDOMORDNANCEDROPSETBLOCK_ID)
 	{
 		{ _field_word_flags, "drop set flags", &ordnance_dropset_flags },
-		FIELD_PAD("ODSF", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("ODSF", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_long_integer, "count" },
 		{ _field_tag_reference, "Ordnance List", &Tag::Reference<struct ScenarioOrdnance>::s_defaultDefinition },
@@ -1588,7 +1588,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LOADSCREENREFERENCEBLOCK_ID)
 	{
-		FIELD_EXPLANATION("Map IDs", nullptr, FIELD_FLAG_NONE, "These are pulled from levels_map_id_constants.h\nk_mp_z00_testchamber_map_id\t\t\t10777)\nk_mp_wraparound_map_id\t\t\t\t\t10080)  \nk_mp_z05_cliffside_map_id              10085)  // complex \nk_mp_z11_valhalla_id\t\t\t\t\t10091)\nk_mp_ca_gore_valley_map_id\t\t\t\t10200)\nk_mp_ca_tower_map_id\t\t\t\t\t10202)\nk_mp_ca_warhouse_map_id\t\t\t\t10210)\nk_mp_ca_blood_cavern_map_id\t\t\t10225)\nk_mp_ca_blood_crash_map_id\t\t\t\t10226)\nk_mp_ca_forge_erosion_map_id\t\t\t10245)\nk_mp_ca_redoubt_map_id\t\t\t\t\t10252)\nk_mp_ca_forge_bonanza_map_id\t\t\t10255)\nk_mp_ca_forge_ravine_map_id\t\t\t10256)\nk_mp_ca_canyon_map_id\t\t\t\t\t10261)\nk_mp_zd_02_grind_map_id\t\t\t\t10102)\n\nk_ff81_courtyard_map_id\t\t\t\t11081)\nk_ff82_scurve_map_id\t\t\t\t\t11071)\nk_ff83_breach_map_id\t\t\t\t\t11061)\nk_ff84_temple_map_id\t\t\t\t\t11084)\nk_ff85_island_map_id\t\t\t\t\t11091)\nk_ff86_sniperalley_map_id\t\t\t\t11101)\nk_ff87_chopperbowl_map_id\t\t\t\t11111)\nk_ff88_horseshou_map_id\t\t\t\t11121)\nk_ff89_infinity_map_id\t\t\t\t\t11131)\nk_ff90_fortsw_map_id\t\t\t\t\t11141)\n\nk_sp_intro_map_id\t\t\t\t\t\t12000)\nk_sp_m10_crash_map_id\t\t\t\t\t12010)\nk_sp_m20_haven_map_id\t\t\t\t\t12020)\nk_sp_m30_cryptum_map_id\t\t\t\t12030)\nk_sp_m40_invasion_map_id\t\t\t\t12040)\nk_sp_m60_rescue_map_id\t\t\t\t\t12060)\nk_sp_m70_liftoff_map_id\t\t\t\t12070)\nk_sp_m80_delta_map_id\t\t\t\t\t12080)\nk_sp_m90_sacrifice_map_id\t\t\t\t12090)\n\nk_sp_max_environment_solo_map_id\t\t12499)\n"),
+		FIELD_EXPLANATION_EX("Map IDs", nullptr, FIELD_FLAG_NONE, "These are pulled from levels_map_id_constants.h\nk_mp_z00_testchamber_map_id\t\t\t10777)\nk_mp_wraparound_map_id\t\t\t\t\t10080)  \nk_mp_z05_cliffside_map_id              10085)  // complex \nk_mp_z11_valhalla_id\t\t\t\t\t10091)\nk_mp_ca_gore_valley_map_id\t\t\t\t10200)\nk_mp_ca_tower_map_id\t\t\t\t\t10202)\nk_mp_ca_warhouse_map_id\t\t\t\t10210)\nk_mp_ca_blood_cavern_map_id\t\t\t10225)\nk_mp_ca_blood_crash_map_id\t\t\t\t10226)\nk_mp_ca_forge_erosion_map_id\t\t\t10245)\nk_mp_ca_redoubt_map_id\t\t\t\t\t10252)\nk_mp_ca_forge_bonanza_map_id\t\t\t10255)\nk_mp_ca_forge_ravine_map_id\t\t\t10256)\nk_mp_ca_canyon_map_id\t\t\t\t\t10261)\nk_mp_zd_02_grind_map_id\t\t\t\t10102)\n\nk_ff81_courtyard_map_id\t\t\t\t11081)\nk_ff82_scurve_map_id\t\t\t\t\t11071)\nk_ff83_breach_map_id\t\t\t\t\t11061)\nk_ff84_temple_map_id\t\t\t\t\t11084)\nk_ff85_island_map_id\t\t\t\t\t11091)\nk_ff86_sniperalley_map_id\t\t\t\t11101)\nk_ff87_chopperbowl_map_id\t\t\t\t11111)\nk_ff88_horseshou_map_id\t\t\t\t11121)\nk_ff89_infinity_map_id\t\t\t\t\t11131)\nk_ff90_fortsw_map_id\t\t\t\t\t11141)\n\nk_sp_intro_map_id\t\t\t\t\t\t12000)\nk_sp_m10_crash_map_id\t\t\t\t\t12010)\nk_sp_m20_haven_map_id\t\t\t\t\t12020)\nk_sp_m30_cryptum_map_id\t\t\t\t12030)\nk_sp_m40_invasion_map_id\t\t\t\t12040)\nk_sp_m60_rescue_map_id\t\t\t\t\t12060)\nk_sp_m70_liftoff_map_id\t\t\t\t12070)\nk_sp_m80_delta_map_id\t\t\t\t\t12080)\nk_sp_m90_sacrifice_map_id\t\t\t\t12090)\n\nk_sp_max_environment_solo_map_id\t\t12499)\n"),
 		{ _field_long_integer, "Map ID", "Only valid for main menu - otherwise always use first reference" },
 		{ _field_tag_reference, "Load Screen Reference", &global_loadscreen_reference },
 		{ _field_real, "Tint Gradient Lookup V Coordinate", "Value between 0.0 and 1.0 determines which line to use for tint.\nA negative value will choose a random tint from the palette." },
@@ -1605,14 +1605,14 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIOFLOATINGSHADOWCASCADESETTINGSARRAY_ID)
 	{
-		FIELD_CUSTOM("CASCADE", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("CASCADE", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "cascade half-width" },
 		{ _field_real, "cascade length" },
 		{ _field_real, "cascade offset" },
 		{ _field_real, "bias" },
 		{ _field_real, "filter width" },
 		{ _field_real, "sun direction offset", "if we want to slide the frustum up closer to the sun so that not as much of the frustum is below the ground" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -1652,7 +1652,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "child scenarios", &scenario_child_references_block },
 
-		FIELD_CUSTOM("link to scenario lightmap", nullptr, FIELD_FLAG_NONE, _field_id_unknown_compile),
+		FIELD_CUSTOM_EX("link to scenario lightmap", nullptr, FIELD_FLAG_NONE, _field_id_unknown_compile),
 		{ _field_enum, "type", &scenario_type_enum },
 		{ _field_word_flags, "flags", &scenario_flags },
 		{ _field_long_flags, "runtime trigger volume flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_runtime_trigger_volume_flags },
@@ -1669,7 +1669,7 @@ namespace blofeld
 		{ _field_long_integer, "Inside reverb hash ID", FIELD_FLAG_UNKNOWN0 },
 
 		{ _field_short_integer, "sound permutation mission id" },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "minimum structure bsp importer version", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_angle, "local north" },
 		{ _field_real, "local sea level", "used to calculate aircraft altitude", "wu" },
@@ -1737,7 +1737,7 @@ namespace blofeld
 
 		{ _field_tag_reference, "multiplayer object types", &global_multiplayer_object_type_list_reference },
 		{ _field_char_enum, "multiplayer map size", &multiplayer_map_size_enum },
-		FIELD_PAD("mulmapsizepad", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("mulmapsizepad", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "Playtest req palette", "requisition for SvE, activated via an init.txt option for playtest balance", &scenario_requisition_palette_block, _field_id_sort },
@@ -1755,7 +1755,7 @@ namespace blofeld
 		{ _field_block, "recorded animations", &recorded_animation_block },
 		{ _field_block, "zone set switch trigger volumes", FIELD_FLAG_UNKNOWN3, &scenario_zone_set_switch_trigger_volume_block },
 		{ _field_block, "named location volumes", &scenario_named_location_volume_block },
-		FIELD_EXPLANATION("SPAWN INFLUENCE OVERRIDES", nullptr, FIELD_FLAG_NONE, "You can use the following to override multiplayer global spawn influencers for the scenario.  Default settings are defined in multiplayer/multiplayer_globals.multiplayer_globals."),
+		FIELD_EXPLANATION_EX("SPAWN INFLUENCE OVERRIDES", nullptr, FIELD_FLAG_NONE, "You can use the following to override multiplayer global spawn influencers for the scenario.  Default settings are defined in multiplayer/multiplayer_globals.multiplayer_globals."),
 		{ _field_tag_reference, "Spawn Settings", &g_spawnSettingsReference },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 10 },
@@ -1770,7 +1770,7 @@ namespace blofeld
 		{ _field_legacy, _field_block, "unknown@", &g_null_block }, // assumed
 		{ _field_legacy, _field_block, "unknown@", &g_null_block }, // assumed
 
-		FIELD_EXPLANATION("RENDER FLUFF", nullptr, FIELD_FLAG_NONE, "Pretty"),
+		FIELD_EXPLANATION_EX("RENDER FLUFF", nullptr, FIELD_FLAG_NONE, "Pretty"),
 		{ _field_block, "decals", &scenario_decals_block },
 		{ _field_block, "decal palette", &scenario_decal_palette_block, _field_id_sort },
 
@@ -1835,7 +1835,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_block, "scenario unsafe spawn trigger volumes", &scenarioUnsafeSpawnZoneTriggerVolumesBlock_block },
 		{ _field_short_block_index, "scenario ordnance bounds trigger volume", &scenario_trigger_volume_block },
-		FIELD_PAD("ordnandy", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("ordnandy", nullptr, FIELD_FLAG_NONE, 2),
 
 		{ _field_block, "Orders", &orders_block },
 		{ _field_block, "Triggers", &triggers_block },
@@ -1863,10 +1863,10 @@ namespace blofeld
 		{ _field_tag_reference, "game engine strings", &global_multilingual_unicode_string_list_reference },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
-		FIELD_PAD("QVUC", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("QVUC", nullptr, FIELD_FLAG_NONE, 8),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		FIELD_PAD("QVUC", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("QVUC", nullptr, FIELD_FLAG_NONE, 4),
 
 		{ _field_block, "mission dialogue", &ai_scenario_mission_dialogue_block },
 
@@ -1904,7 +1904,7 @@ namespace blofeld
 		{ _field_block, "neuticles", &scenario_cheap_particle_systems_block },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
-		FIELD_EXPLANATION("Scriptable Light Rigs", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Scriptable Light Rigs", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_block, "scriptable light rigs", &scriptableLightRigBlock_block },
 
 		{ _field_block, "cinematics", &scenario_cinematics_block },
@@ -1922,7 +1922,7 @@ namespace blofeld
 		{ _field_block, "puppetShows", &PuppetShowsBlock_block },
 
 		{ _field_tag_reference, "location name globals", &global_location_name_globals_reference },
-		FIELD_EXPLANATION("garbage collection", nullptr, FIELD_FLAG_NONE, "specify zero for values that should use the data in the globals tag."),
+		FIELD_EXPLANATION_EX("garbage collection", nullptr, FIELD_FLAG_NONE, "specify zero for values that should use the data in the globals tag."),
 		{ _field_block, "garbage collection", &garbage_collection_block, _field_id_slap },
 		{ _field_tag_reference, "hud screen reference", "appears for the player through the scenario", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
 		{ _field_tag_reference, "required resources", &scenario_required_resource_reference },
@@ -1934,9 +1934,9 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 21 },
 		{ _field_tag_reference, "ordnance map bitmap", &global_bitmap_reference },
 		{ _field_real_fraction_bounds, "ordnance map depth bounds" },
-		FIELD_EXPLANATION("Random ordnance", nullptr, FIELD_FLAG_NONE, "Drops randomly selected set of ordnance at positions marked by drop_point objects."),
+		FIELD_EXPLANATION_EX("Random ordnance", nullptr, FIELD_FLAG_NONE, "Drops randomly selected set of ordnance at positions marked by drop_point objects."),
 		{ _field_word_flags, "ordnance flags", &ordnance_flags },
-		FIELD_PAD("SRO", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("SRO", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "drop pod (scenery)", "if set, overrides that in progression globals", &scenery_reference$5 },
 		{ _field_long_integer, "Ordnance drop count" },
 		{ _field_long_integer, "Ordnance max active count", "zero means unlimited" },
@@ -1949,7 +1949,7 @@ namespace blofeld
 		{ _field_real, "Nav marker visibility proximity", nullptr, "wu" },
 		{ _field_real, "Nav marker premium visibility proximity", nullptr, "wu" },
 		{ _field_block, "Drop sets", &scenarioRandomOrdnanceDropSetBlock_block, _field_id_slap },
-		FIELD_EXPLANATION("Ordnance personal", nullptr, FIELD_FLAG_NONE, "Ordnance personal"),
+		FIELD_EXPLANATION_EX("Ordnance personal", nullptr, FIELD_FLAG_NONE, "Ordnance personal"),
 		{ _field_tag_reference, "Scenario Ordnance List", &Tag::Reference<struct ScenarioOrdnance>::s_defaultDefinition },
 		{ _field_block, "Unit Recordings", &ScenarioUnitRecordingBlock_block },
 		{ _field_block, "Exit load screen", "for non-mainmenu, we always use the first one", &loadScreenReferenceBlock_block },
@@ -1991,7 +1991,7 @@ namespace blofeld
 		SCENARIOVOLUMETRICLIGHTSHAFTSETTINGSSTRUCT_ID)
 	{
 		{ _field_byte_flags, "flags", &scenarioVolumetricLightShaftSettingsFlags },
-		FIELD_PAD("pad the byte flag", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad the byte flag", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real_vector_3d, "source direction" },
 		{ _field_real_rgb_color, "shaft color tint" },
 		{ _field_real, "exposure level" },
@@ -2026,7 +2026,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_SETTING_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("Lightmap resolution for each buckets", nullptr, FIELD_FLAG_NONE, "relative to world unit per texel. default:\n1-> 1\n2-> 4\n2-> 16\n3-> 64\n5-> 128\n6-> 256\n7-> 512"),
+		FIELD_EXPLANATION_EX("Lightmap resolution for each buckets", nullptr, FIELD_FLAG_NONE, "relative to world unit per texel. default:\n1-> 1\n2-> 4\n2-> 16\n3-> 64\n5-> 128\n6-> 256\n7-> 512"),
 		{ _field_real, "lightmap res lowest" },
 		{ _field_real, "lightmap res 2nd low" },
 		{ _field_real, "lightmap res 3rd low" },
@@ -2035,7 +2035,7 @@ namespace blofeld
 		{ _field_real, "lightmap res 2nd high" },
 		{ _field_real, "lightmap res highest" },
 		{ _field_byte_flags, "lightmap flags", &scenario_lightmap_per_bsp_flags },
-		FIELD_PAD("pad the byte flag", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad the byte flag", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "analytical light bounce modifier (when per bsp flag is on)" },
 		{ _field_real, "non analytical light bounce modifier (when per bsp flag is on)" },
 		{ _field_long_block_flags, "extra lighting bsp flags", "neighbor bsp that occlude or contribute light (including bounce light)", &scenario_structure_bsp_reference_block },
@@ -2051,7 +2051,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MANUALBSPFLAGSREFERENCES_ID)
 	{
-		FIELD_CUSTOM("manual bsp flags", nullptr, FIELD_FLAG_NONE, _field_id_manual_bsp_flags),
+		FIELD_CUSTOM_EX("manual bsp flags", nullptr, FIELD_FLAG_NONE, _field_id_manual_bsp_flags),
 		{ _field_block, "references block", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenarioBspReferenceBlock_block },
 		{ _field_long_integer, "flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
@@ -2073,13 +2073,13 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		SCENARIO_TRIGGER_VOLUME_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("naming", nullptr, FIELD_FLAG_NONE, "the name of the trigger volume specifies what kind of volume it is:\n\'zone_set:\'\n\'begin_zone_set:\'\n\'kill\' (plus \'_soft\' for soft kill volume)\n\'playerkill\' (plus \'_soft\' for soft kill volume) for player only kill volume \n\'safe_zone\' (plus \'_soft\' for soft kill volume)\n\'location_\'\n\'ordnance_bounds\'\n\'unsafe_spawn\'\nappend \':*\' to zone set names to allow vehicles to teleport along with their players."),
+		FIELD_EXPLANATION_EX("naming", nullptr, FIELD_FLAG_NONE, "the name of the trigger volume specifies what kind of volume it is:\n\'zone_set:\'\n\'begin_zone_set:\'\n\'kill\' (plus \'_soft\' for soft kill volume)\n\'playerkill\' (plus \'_soft\' for soft kill volume) for player only kill volume \n\'safe_zone\' (plus \'_soft\' for soft kill volume)\n\'location_\'\n\'ordnance_bounds\'\n\'unsafe_spawn\'\nappend \':*\' to zone set names to allow vehicles to teleport along with their players."),
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_short_block_index, "object name", &scenario_object_names_block },
 		{ _field_short_integer, "runtime node index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_string_id, "node name" },
 		{ _field_enum, "type", &trigger_volume_type_enum },
-		FIELD_PAD("padding", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("padding", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_vector_3d, "forward", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real_vector_3d, "up", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real_point_3d, "position" },

@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -30,10 +30,10 @@ namespace blofeld
 		CINEMATIC_DYNAMIC_LIGHT_BLOCK_ID)
 	{
 		{ _field_long_flags, "Flags", &cinematic_dynamic_light_flags },
-		FIELD_CUSTOM("Dynamic Light", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_dynamic_light),
-		FIELD_CUSTOM("Direction", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Dynamic Light", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_dynamic_light),
+		FIELD_CUSTOM_EX("Direction", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Direction", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Front-Back", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Front-Back", _field_id_slider_editor },
 		{ _field_real, "Distance", nullptr, "world units" },
 		{ _field_tag_reference, "light", &global_light_definition_reference },
@@ -66,39 +66,39 @@ namespace blofeld
 		NEW_CINEMATIC_LIGHTING_STRUCT_DEFINITION_ID)
 	{
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 38 },
-		FIELD_CUSTOM("Cinematic Lighting", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
-		FIELD_CUSTOM("Cinema Lighting", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_version),
+		FIELD_CUSTOM_EX("Cinematic Lighting", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Cinema Lighting", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_version),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_long_integer, "version", FIELD_FLAG_UNKNOWN0 },
 
-		FIELD_CUSTOM("Direction&Direction(D)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Direction&Direction(D)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Direction&Direction(D)", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back&Front-Back(D)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Front-Back&Front-Back(D)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Front-Back&Front-Back(D)", _field_id_slider_editor },
-		FIELD_CUSTOM("Shadow Interpolation", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Shadow Interpolation", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Shadow Interpolation", _field_id_slider_editor },
-		FIELD_CUSTOM("Overall weight", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Overall weight", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Overall weight", _field_id_slider_editor },
-		FIELD_CUSTOM("Direct weight", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Direct weight", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Direct weight", _field_id_slider_editor },
-		FIELD_CUSTOM("Indirect weight", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Indirect weight", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Indirect weight", _field_id_slider_editor },
-		FIELD_CUSTOM("Airprobe weight", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Airprobe weight", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Airprobe weight", _field_id_slider_editor },
-		FIELD_CUSTOM("Sun weight", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Sun weight", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Sun weight", _field_id_slider_editor },
 		{ _field_real_rgb_color, "Direct color" },
-		FIELD_CUSTOM("Direct intensity", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Direct intensity", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Direct intensity", _field_id_slider_editor },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "unknown" },
 
 		{ _field_real_rgb_color, "Indirect color" },
-		FIELD_CUSTOM("Indirect intensity", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Indirect intensity", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Indirect intensity", _field_id_slider_editor },
-		FIELD_CUSTOM("Interpolation", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Interpolation", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Interpolation", _field_id_slider_editor },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 3 },
@@ -106,7 +106,7 @@ namespace blofeld
 		{ _field_legacy, _field_real, "unknown" },
 		{ _field_legacy, _field_real, "unknown" },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "Authored Light Probe", &authored_light_probe_block },

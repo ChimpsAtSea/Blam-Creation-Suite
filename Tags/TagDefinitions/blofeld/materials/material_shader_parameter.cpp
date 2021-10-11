@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -63,12 +63,12 @@ namespace blofeld
 		{ _field_long_enum, "type", FIELD_FLAG_INDEX, &material_animated_parameter_type_enum },
 		{ _field_string_id, "input name", _field_id_function_input_scalar },
 		{ _field_string_id, "range name", _field_id_function_input_range },
-		{ _field_char_enum, "Output Modifier", FIELD_FLAG_UNKNOWN0, &materialFunctionOutputModEnum, _field_id_fnop },
-		FIELD_PAD("BVCG", nullptr, FIELD_FLAG_NONE, 3),
-		{ _field_string_id, "Output Modifier Input", FIELD_FLAG_UNKNOWN0, _field_id_function_output_modifier },
+		{ _field_char_enum, "Output Modifier", FIELD_FLAG_UNKNOWN0, &materialFunctionOutputModEnum, _field_id_function_output_modifier },
+		FIELD_PAD_EX("BVCG", nullptr, FIELD_FLAG_NONE, 3),
+		{ _field_string_id, "Output Modifier Input", FIELD_FLAG_UNKNOWN0, _field_id_function_output_modifier_input },
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },
-		FIELD_EXPLANATION("FUNCTION", nullptr, FIELD_FLAG_NONE, ""),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_EXPLANATION_EX("FUNCTION", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "function", &mapping_function },
 		{ _field_terminator }
 	};

@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -16,7 +16,7 @@ namespace blofeld
 		AI_SPAWN_CONDITIONS_STRUCT_ID)
 	{
 		{ _field_word_flags, "difficulty flags", &global_campaign_difficulty_enum },
-		FIELD_PAD("post-difficulty-flags-padding", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-difficulty-flags-padding", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

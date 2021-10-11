@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -31,7 +31,7 @@ namespace blofeld
 		LENS_FLARE_REFLECTION_BLOCK_ID)
 	{
 		// #TODO: Verify fields between beginning and unknown for Halo Reach
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
@@ -58,7 +58,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_struct, "brightness curve", "interpolated by external input", &scalar_function_named_struct },
 
-		FIELD_EXPLANATION("TINT COLOR", nullptr, FIELD_FLAG_NONE, "Tinting and modulating are not the same; \'tinting\' a reflection will color the darker regions but leave the highlights, while \'modulating\' will color everything uniformly. The modulation factor controls how much the reflection is modulated as opposed to tinted (0 is tinted, 1 is modulated). The tint power affects the curve of how much of the color range to tint."),
+		FIELD_EXPLANATION_EX("TINT COLOR", nullptr, FIELD_FLAG_NONE, "Tinting and modulating are not the same; \'tinting\' a reflection will color the darker regions but leave the highlights, while \'modulating\' will color everything uniformly. The modulation factor controls how much the reflection is modulated as opposed to tinted (0 is tinted, 1 is modulated). The tint power affects the curve of how much of the color range to tint."),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_struct, "color curve", "interpolated by external input", &color_function_named_struct },
@@ -69,7 +69,7 @@ namespace blofeld
 		{ _field_legacy, _field_real_rgb_color, "tint color" },
 
 		{ _field_real, "tint power", nullptr, nullptr, "[0.1, 16]" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
 		{ _field_terminator }
 	};
 
@@ -113,17 +113,17 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LENS_FLARE_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("LENS FLARE", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("LENS FLARE", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_angle, "falloff angle", nullptr, "degrees" },
 		{ _field_angle, "cutoff angle", nullptr, "degrees" },
-		FIELD_EXPLANATION("OCCLUSION", nullptr, FIELD_FLAG_NONE, "Occlusion factor affects overall lens flare brightness and can also affect scale. Occlusion never affects rotation."),
+		FIELD_EXPLANATION_EX("OCCLUSION", nullptr, FIELD_FLAG_NONE, "Occlusion factor affects overall lens flare brightness and can also affect scale. Occlusion never affects rotation."),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_long_integer, "occlusion reflection index", "occlusion information will be generated against the size of this reflection" },
 
 		{ _field_real, "occlusion offset distance", "distance along offset direction used to test occlusion", "world units" },
 		{ _field_enum, "occlusion offset direction", &lens_flare_occlusion_offset_enum_definition },
-		FIELD_PAD("PANTS", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("PANTS", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "occlusion inner radius scale", "percent of the corona to occlude against (ie 0.25, 0.125, etc)" },
 		{ _field_real, "near fade begin distance", "distance where the lens flare starts to fade in", "world units" },
 		{ _field_real, "near fade end distance", "distance where the lens flare is fully faded in", "world units" },
@@ -133,15 +133,15 @@ namespace blofeld
 		{ _field_word_flags, "flags", &lens_flare_flags_definition },
 		{ _field_short_integer, "runtime flags", FIELD_FLAG_UNKNOWN0 },
 		{ _field_enum, "rotation function", &lens_flare_corona_rotation_function_enum_definition },
-		FIELD_PAD("WWZC", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("WWZC", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_angle, "rotation function scale", nullptr, "degrees" },
-		FIELD_EXPLANATION("EFFECT PARAMETERS", nullptr, FIELD_FLAG_NONE, "Only affects lens flares created by effects."),
+		FIELD_EXPLANATION_EX("EFFECT PARAMETERS", nullptr, FIELD_FLAG_NONE, "Only affects lens flares created by effects."),
 		{ _field_enum, "falloff function", &global_reverse_transition_functions_enum },
-		FIELD_PAD("COYUTLR", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("COYUTLR", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "reflections", &lens_flare_reflection_block },
-		FIELD_EXPLANATION("ANIMATION", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("ANIMATION", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_word_flags, "animation flags", &lens_flare_animation_flags_definition },
-		FIELD_PAD("AQVC", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("AQVC", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "time brightness", &lens_flare_scalar_animation_block },
 		{ _field_block, "age brightness", &lens_flare_scalar_animation_block },
 		{ _field_block, "time color", &lens_flare_color_animation_block },
@@ -163,10 +163,10 @@ namespace blofeld
 	{
 		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
-		{ _field_enum, "Output Modifier", FIELD_FLAG_UNKNOWN0, &output_mod_enum, _field_id_fnop },
-		FIELD_PAD("BVCG1", nullptr, FIELD_FLAG_NONE, 2),
-		{ _field_string_id, "Output Modifier Input", FIELD_FLAG_UNKNOWN0, _field_id_function_output_modifier },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		{ _field_enum, "Output Modifier", FIELD_FLAG_UNKNOWN0, &output_mod_enum, _field_id_function_output_modifier },
+		FIELD_PAD_EX("BVCG1", nullptr, FIELD_FLAG_NONE, 2),
+		{ _field_string_id, "Output Modifier Input", FIELD_FLAG_UNKNOWN0, _field_id_function_output_modifier_input },
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "lens flare color mapping", &mapping_function },
 		{ _field_terminator }
 	};

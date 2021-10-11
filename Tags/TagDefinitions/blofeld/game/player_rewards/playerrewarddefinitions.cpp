@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -17,7 +17,7 @@ namespace blofeld
 		REWARDBLOCK_ID)
 	{
 		{ _field_char_enum, "currency type", "Type of currency given by this reward.", &currencyTypeEnumDefinition },
-		FIELD_PAD("PJB1", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("PJB1", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "reward amount", "Amount of the given currency to be given with this reward." },
 		{ _field_terminator }
 	};

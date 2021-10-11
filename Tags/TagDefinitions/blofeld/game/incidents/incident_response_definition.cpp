@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -16,15 +16,15 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		GAME_INCIDENT_RESPONSE_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM("allowed game modes", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("allowed game modes", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "allowed game modes", &game_mode_flags_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
-		FIELD_CUSTOM("allowed campaign and firefight", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("allowed campaign and firefight", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_string_id, "allowed level name", "Can only be triggered on this level." },
 		{ _field_long_flags, "required skulls", "These skulls must be enabled to trigger.", &skull_flags_definition },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
 		{ _field_long_integer, "heat award" },
 		{ _field_string_id, "game engine event" },
@@ -35,7 +35,7 @@ namespace blofeld
 		{ _field_block, "challenges", &game_incident_daily_challenge_to_increment_block },
 		{ _field_string_id, "hs script" },
 		{ _field_short_integer, "internal hs script index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
-		FIELD_PAD("VHSLKJNE", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("VHSLKJNE", nullptr, FIELD_FLAG_NONE, 2),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "fanfare", &specialized_incident_fanfare_block },
@@ -72,7 +72,7 @@ namespace blofeld
 		{ _field_char_enum, "queue type", &incident_fanfare_queue_type },
 		{ _field_byte_flags, "excluded audience", &incident_fanfare_event_input_enum_definition },
 		{ _field_byte_flags, "broad cast message", &incident_fanfare_event_flags_definition },
-		FIELD_PAD("PADME", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("PADME", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_string_id, "fanfare string" },
 		{ _field_short_integer, "fanfare sprite index" },
 		{ _field_short_integer, "display time in seconds" },

@@ -33,6 +33,13 @@ public:
 	unsigned long long padding;
 	unsigned long long skip_length;
 	const char* explanation;
+	blofeld::e_field_id field_id;
+	const char* field_id_string;
+	union
+	{
+		unsigned long long _field_id_byteswap;
+		char field_id_short_string[sizeof(unsigned long long)];
+	};
 
 	c_inf_tag_field(const char* guerilla_data, const s_inf_tag_field& field_definition);
 };

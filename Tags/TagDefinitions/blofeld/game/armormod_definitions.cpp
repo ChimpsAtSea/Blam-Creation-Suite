@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -43,19 +43,19 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ARMORMOD_GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("explode on death", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("explode on death", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "projectile", "spawned by Explode On Death armormod", &projectile_reference },
-		FIELD_EXPLANATION("aural enhancement", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("aural enhancement", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "looping sound effect", &sound_looping_reference },
 		{ _field_real, "near threshold", "beyond this distance volume is attenuated, far audio settings are applied", "world units" },
 		{ _field_real, "attenuation pct", "how much to attenuate volume" },
 		{ _field_block, "near audio settings", &aural_enhancement_audio_settings_block },
 		{ _field_block, "far audio settings", &aural_enhancement_audio_settings_block },
-		FIELD_EXPLANATION("Enhanced HUD (battle awareness)", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Enhanced HUD (battle awareness)", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "range", nullptr, "world units" },
-		FIELD_EXPLANATION("Stealth", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Stealth", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_byte_flags, "flags", &stealthFlagsDefs },
-		FIELD_PAD("agspad", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("agspad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "stealth ping frequency", "how often stealthed unit will ping", "seconds" },
 		{ _field_real, "stealth ping duration", "length of ping", "seconds" },
 		{ _field_terminator }

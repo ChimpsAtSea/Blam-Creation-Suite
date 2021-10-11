@@ -51,9 +51,9 @@ enum e_h2_field_id_type
 
 	_h2_field_id_function_input_scalar = 'fnin',
 	_h2_field_id_function_input_range = 'fnir',
-	_h2_field_id_function_output_modifier = 'fnom',
+	_h2_field_id_function_output_modifier_input = 'fnom',
 	_h2_field_id_function_unknown = 'fn**',
-	_h2_field_id_fnop = 'fnop',
+	_h2_field_id_function_output_modifier = 'fnop',
 	_h2_field_id_cfpf = 'cfpf',
 	_h2_field_id_cflt = 'cflt',
 	_h2_field_id_sort = 'sort',

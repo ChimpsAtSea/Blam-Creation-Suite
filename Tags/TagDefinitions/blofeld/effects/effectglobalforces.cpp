@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -29,7 +29,7 @@ namespace blofeld
 		EFFECT_GLOBAL_FORCE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_byte_flags, "flags", &globalForceFlags },
-		FIELD_PAD("grog", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("grog", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "force strength", "positive pushes out, negative pulls in" },
 		{ _field_real, "sphere falloff begin", "doesn't work on cylinders, due to shader constant constraints", "wus" },
 		{ _field_real, "sphere falloff end", "doesn't work on cylinders, due to shader constant constraints", "wus" },

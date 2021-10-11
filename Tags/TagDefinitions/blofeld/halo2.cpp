@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -461,8 +461,8 @@ namespace halo2 {
 		{ _field_block, "indices", &blofeld::halo2::decorator_model_indices_block },
 		{ _field_block, "cached data", &blofeld::halo2::cached_data_block },
 		{ _field_struct, "geometry section info", &blofeld::halo2::global_geometry_block_info_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -482,7 +482,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("LIGHT VOLUME", nullptr, FIELD_FLAG_NONE, "Light volumes are rendered as a sequence of glowy sprites, just like in Metal Gear Solid 2. Each instance of the light volume is rendered separately; this allows, for example, a narrow bright white volume to be overlaid on top of a fuzzy wide colored volume, or anything else you want!"),
+		FIELD_EXPLANATION_EX("LIGHT VOLUME", nullptr, FIELD_FLAG_NONE, "Light volumes are rendered as a sequence of glowy sprites, just like in Metal Gear Solid 2. Each instance of the light volume is rendered separately; this allows, for example, a narrow bright white volume to be overlaid on top of a fuzzy wide colored volume, or anything else you want!"),
 		{ _field_useless_pad, "value" },
 		{ _field_real, "falloff distance from camera", nullptr, "world units" },
 		{ _field_real, "cutoff distance from camera", nullptr, "world units" },
@@ -509,20 +509,20 @@ namespace halo2 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$38 },
 		{ _field_long_enum, "orientation", &blofeld::halo2::unnamed_enum$39 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_tag_reference, "shader", &blofeld::halo2::shader_reference },
-		FIELD_EXPLANATION("SCALE X", nullptr, FIELD_FLAG_NONE, "scale of model on x axis"),
+		FIELD_EXPLANATION_EX("SCALE X", nullptr, FIELD_FLAG_NONE, "scale of model on x axis"),
 		{ _field_struct, "scale x", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("SCALE Y", nullptr, FIELD_FLAG_NONE, "scale of model on y axis"),
+		FIELD_EXPLANATION_EX("SCALE Y", nullptr, FIELD_FLAG_NONE, "scale of model on y axis"),
 		{ _field_struct, "scale y", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("SCALE Z", nullptr, FIELD_FLAG_NONE, "scale of model on z axis"),
+		FIELD_EXPLANATION_EX("SCALE Z", nullptr, FIELD_FLAG_NONE, "scale of model on z axis"),
 		{ _field_struct, "scale z", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("ROTATION", nullptr, FIELD_FLAG_NONE, "rotation where 0=0 degrees, 0.5=180 degrees, 1.0=360 degrees"),
+		FIELD_EXPLANATION_EX("ROTATION", nullptr, FIELD_FLAG_NONE, "rotation where 0=0 degrees, 0.5=180 degrees, 1.0=360 degrees"),
 		{ _field_struct, "rotation", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("Spawned Effects", nullptr, FIELD_FLAG_NONE, "collision occurs when particle physics has collision, death spawned when particle dies"),
+		FIELD_EXPLANATION_EX("Spawned Effects", nullptr, FIELD_FLAG_NONE, "collision occurs when particle physics has collision, death spawned when particle dies"),
 		{ _field_tag_reference, "collision effect", "effect, material effect or sound spawned when this particle collides with something", &blofeld::halo2::effect_sound_material_effects_reference },
 		{ _field_tag_reference, "death effect", "effect, material effect or sound spawned when this particle dies", &blofeld::halo2::effect_sound_material_effects_reference },
-		FIELD_EXPLANATION("Attached Particle Systems", nullptr, FIELD_FLAG_NONE, "Locations:\nup - particles shoot straight up\ngravity - particles shoot straight down\nNONE - opposite of particle direction"),
+		FIELD_EXPLANATION_EX("Attached Particle Systems", nullptr, FIELD_FLAG_NONE, "Locations:\nup - particles shoot straight up\ngravity - particles shoot straight down\nNONE - opposite of particle direction"),
 		{ _field_block, "locations", &blofeld::halo2::effect_locations_block },
 		{ _field_block, "attached particle systems", &blofeld::halo2::particle_system_definition_block_new },
 		{ _field_block, "models", &blofeld::halo2::particle_models_block },
@@ -530,9 +530,9 @@ namespace halo2 {
 		{ _field_block, "indices", &blofeld::halo2::particle_model_indices_block },
 		{ _field_block, "cached data", &blofeld::halo2::cached_data_block$2 },
 		{ _field_struct, "geometry section info", &blofeld::halo2::global_geometry_block_info_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -594,7 +594,7 @@ namespace halo2 {
 	{
 		{ _field_block, "vocalizations", &blofeld::halo2::vocalization_definitions_block_0 },
 		{ _field_block, "patterns", &blofeld::halo2::vocalization_patterns_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "dialogue data", &blofeld::halo2::dialogue_data_block },
 		{ _field_block, "involuntary data", &blofeld::halo2::involuntary_data_block },
 		{ _field_terminator }
@@ -657,11 +657,11 @@ namespace halo2 {
 		{ _field_old_string_id, "attachment marker name", "the marker name where the antenna should be attached" },
 		{ _field_tag_reference, "bitmaps", &blofeld::halo2::bitmap_reference$2 },
 		{ _field_tag_reference, "physics", &blofeld::halo2::point_physics_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 80),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 80),
 		{ _field_real_fraction, "spring strength coefficient", "strength of the spring (larger values make the spring stronger)" },
 		{ _field_real, "falloff pixels" },
 		{ _field_real, "cutoff pixels" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
 		{ _field_block, "vertices", &blofeld::halo2::antenna_vertex_block },
 		{ _field_terminator }
 	};
@@ -687,37 +687,37 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_custom, "value" },
-		FIELD_EXPLANATION("Type", nullptr, FIELD_FLAG_NONE, "Type controls bitmap geometry. All dimensions must be a power of 2 except for SPRITES and INTERFACE BITMAPS:\n\n* 2D TEXTURES: Ordinary 2D textures will be generated.\n* 3D TEXTURES: Volume textures will be generated from each sequence of 2D texture slices.\n* CUBE MAPS: Generated from each consecutive set of six 2D textures in each sequence, all faces of a cube map must be square and the same size.\n* SPRITES: Sprite texture pages will be generated.\n* INTERFACE BITMAPS: Similar to 2D TEXTURES but without mipmaps and without the power of 2 restriction."),
+		FIELD_EXPLANATION_EX("Type", nullptr, FIELD_FLAG_NONE, "Type controls bitmap geometry. All dimensions must be a power of 2 except for SPRITES and INTERFACE BITMAPS:\n\n* 2D TEXTURES: Ordinary 2D textures will be generated.\n* 3D TEXTURES: Volume textures will be generated from each sequence of 2D texture slices.\n* CUBE MAPS: Generated from each consecutive set of six 2D textures in each sequence, all faces of a cube map must be square and the same size.\n* SPRITES: Sprite texture pages will be generated.\n* INTERFACE BITMAPS: Similar to 2D TEXTURES but without mipmaps and without the power of 2 restriction."),
 		{ _field_enum, "Type", &blofeld::halo2::unnamed_enum$104 },
-		FIELD_EXPLANATION("Format", nullptr, FIELD_FLAG_NONE, "Format controls how pixels will be stored internally:\n\n* COMPRESSED WITH COLOR-KEY TRANSPARENCY: DXT1 compression, using 4 bits/pixel. 4-x-4 blocks of pixels, are reduced to two colors and interpolated, alpha channel uses color-key transparency instead of alpha from the plate (all zero-alpha pixels also have zero-color).\n* COMPRESSED WITH EXPLICIT ALPHA: DXT2/3 compression, using 8 bits/pixel. Same as DXT1 without the color key transparency, alpha channel uses alpha from plate quantized down to 4 bits/pixel.\n* COMPRESSED WITH INTERPOLATED ALPHA: DXT4/5 compression, using 8 bits/pixel. Same as DXT2/3, except alpha is smoother. Better for smooth alpha gradients, but worse for noisy alpha.\n* 16-BIT COLOR: Uses 16 bits/pixel. Depending on the alpha channel, bitmaps are quantized to either r5g6b5 (no alpha), a1r5g5b5 (1-bit alpha), or a4r4g4b4 (>1-bit alpha).\n* 32-BIT COLOR: Uses 32 bits/pixel. Very high quality and can have alpha at no added cost. This format takes up the most memory, however. Bitmap formats are x8r8g8b8 and a8r8g8b.\n* MONOCHROME: Uses either 8 or 16 bits/pixel. Bitmap formats are a8 (alpha), y8 (intensity), ay8 (combined alpha intensity), and a8y8 (separate alpha intensity)."),
+		FIELD_EXPLANATION_EX("Format", nullptr, FIELD_FLAG_NONE, "Format controls how pixels will be stored internally:\n\n* COMPRESSED WITH COLOR-KEY TRANSPARENCY: DXT1 compression, using 4 bits/pixel. 4-x-4 blocks of pixels, are reduced to two colors and interpolated, alpha channel uses color-key transparency instead of alpha from the plate (all zero-alpha pixels also have zero-color).\n* COMPRESSED WITH EXPLICIT ALPHA: DXT2/3 compression, using 8 bits/pixel. Same as DXT1 without the color key transparency, alpha channel uses alpha from plate quantized down to 4 bits/pixel.\n* COMPRESSED WITH INTERPOLATED ALPHA: DXT4/5 compression, using 8 bits/pixel. Same as DXT2/3, except alpha is smoother. Better for smooth alpha gradients, but worse for noisy alpha.\n* 16-BIT COLOR: Uses 16 bits/pixel. Depending on the alpha channel, bitmaps are quantized to either r5g6b5 (no alpha), a1r5g5b5 (1-bit alpha), or a4r4g4b4 (>1-bit alpha).\n* 32-BIT COLOR: Uses 32 bits/pixel. Very high quality and can have alpha at no added cost. This format takes up the most memory, however. Bitmap formats are x8r8g8b8 and a8r8g8b.\n* MONOCHROME: Uses either 8 or 16 bits/pixel. Bitmap formats are a8 (alpha), y8 (intensity), ay8 (combined alpha intensity), and a8y8 (separate alpha intensity)."),
 		{ _field_enum, "Format", &blofeld::halo2::unnamed_enum$105 },
-		FIELD_EXPLANATION("Usage", nullptr, FIELD_FLAG_NONE, "Usage controls how mipmaps are generated:\n\n* ALPHA BLEND: Pixels with zero alpha are ignored in mipmaps, to prevent bleeding the transparent color.\n* DEFAULT: Downsampling works normally, as in Photoshop.\n* HEIGHT MAP: The bitmap (normally grayscale) is a height map that gets converted to a bump map. Uses <bump height> below. Alpha is passed through unmodified.\n* DETAIL MAP: Mipmap color fades to gray, controlled by <detail fade factor> below. Alpha fades to white.\n* LIGHT MAP: Generates no mipmaps. Do not use!\n* VECTOR MAP: Used mostly for special effects; pixels are treated as xyz vectors and normalized after downsampling. Alpha is passed through unmodified."),
+		FIELD_EXPLANATION_EX("Usage", nullptr, FIELD_FLAG_NONE, "Usage controls how mipmaps are generated:\n\n* ALPHA BLEND: Pixels with zero alpha are ignored in mipmaps, to prevent bleeding the transparent color.\n* DEFAULT: Downsampling works normally, as in Photoshop.\n* HEIGHT MAP: The bitmap (normally grayscale) is a height map that gets converted to a bump map. Uses <bump height> below. Alpha is passed through unmodified.\n* DETAIL MAP: Mipmap color fades to gray, controlled by <detail fade factor> below. Alpha fades to white.\n* LIGHT MAP: Generates no mipmaps. Do not use!\n* VECTOR MAP: Used mostly for special effects; pixels are treated as xyz vectors and normalized after downsampling. Alpha is passed through unmodified."),
 		{ _field_enum, "Usage", &blofeld::halo2::unnamed_enum$106 },
 		{ _field_word_flags, "Flags", &blofeld::halo2::unnamed_enum$107 },
-		FIELD_EXPLANATION("Postprocessing", nullptr, FIELD_FLAG_NONE, "These properties control how mipmaps are postprocessed."),
+		FIELD_EXPLANATION_EX("Postprocessing", nullptr, FIELD_FLAG_NONE, "These properties control how mipmaps are postprocessed."),
 		{ _field_real_fraction, "Detail Fade Factor", "0 means fade to gray by last mipmap; 1 means fade to gray by first mipmap.", nullptr, "[0,1]" },
 		{ _field_real_fraction, "Sharpen Amount", "Sharpens mipmap after downsampling.", nullptr, "[0,1]" },
 		{ _field_real, "Bump Height", "tApparent height of the bump map above the triangle onto which it is textured, in texture repeats (i.e., 1.0 would be as high as the texture is wide).", "repeats" },
 		{ _field_enum, "value", &blofeld::halo2::unnamed_enum$108 },
 		{ _field_short_integer, "value" },
-		FIELD_EXPLANATION("Color Plate", nullptr, FIELD_FLAG_NONE, "The original image file used to import the bitmap group."),
+		FIELD_EXPLANATION_EX("Color Plate", nullptr, FIELD_FLAG_NONE, "The original image file used to import the bitmap group."),
 		{ _field_short_integer, "Color Plate Width", nullptr, "pixels" },
 		{ _field_short_integer, "Color Plate Height", nullptr, "pixels" },
 		{ _field_data, "Compressed Color Plate Data" },
-		FIELD_EXPLANATION("Processed Pixel Data", nullptr, FIELD_FLAG_NONE, "Pixel data after being processed by the tool."),
+		FIELD_EXPLANATION_EX("Processed Pixel Data", nullptr, FIELD_FLAG_NONE, "Pixel data after being processed by the tool."),
 		{ _field_data, "Processed Pixel Data" },
-		FIELD_EXPLANATION("Miscellaneous", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Miscellaneous", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "Blur Filter Size", "Blurs the bitmap before generating mipmaps.", nullptr, "[0,10] pixels" },
 		{ _field_real, "Alpha Bias", "Affects alpha mipmap generation.", nullptr, "[-1,1]" },
 		{ _field_short_integer, "Mipmap Count", "0 Defaults to all levels.", "levels" },
-		FIELD_EXPLANATION("...More Sprite Processing", nullptr, FIELD_FLAG_NONE, "Sprite usage controls the background color of sprite plates."),
+		FIELD_EXPLANATION_EX("...More Sprite Processing", nullptr, FIELD_FLAG_NONE, "Sprite usage controls the background color of sprite plates."),
 		{ _field_enum, "Sprite Usage", &blofeld::halo2::unnamed_enum$109 },
 		{ _field_short_integer, "Sprite Spacing" },
-		FIELD_EXPLANATION("...More Stuff", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("...More Stuff", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "Force Format", &blofeld::halo2::unnamed_enum$110 },
 		{ _field_block, "Sequences", &blofeld::halo2::bitmap_group_sequence_block },
 		{ _field_block, "Bitmaps", &blofeld::halo2::bitmap_data_block },
-		FIELD_EXPLANATION("WDP fields", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("WDP fields", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_char_integer, "color compression quality", "1 means lossless, 127 means crappy", nullptr, "[1,127]" },
 		{ _field_char_integer, "alpha compression quality", "1 means lossless, 127 means crappy", nullptr, "[1,127]" },
 		{ _field_char_integer, "overlap" },
@@ -886,7 +886,7 @@ namespace halo2 {
 		{ _field_block, "ready properties", &blofeld::halo2::character_ready_block },
 		{ _field_block, "engage properties", &blofeld::halo2::character_engage_block },
 		{ _field_block, "charge properties", &blofeld::halo2::character_charge_block },
-		FIELD_EXPLANATION("Danger Values", nullptr, FIELD_FLAG_NONE, "Danger values can be found in the ai-globals section of the globals tag."),
+		FIELD_EXPLANATION_EX("Danger Values", nullptr, FIELD_FLAG_NONE, "Danger values can be found in the ai-globals section of the globals tag."),
 		{ _field_block, "evasion properties", &blofeld::halo2::character_evasion_block },
 		{ _field_block, "cover properties", &blofeld::halo2::character_cover_block },
 		{ _field_block, "retreat properties", &blofeld::halo2::character_retreat_block },
@@ -987,14 +987,14 @@ namespace halo2 {
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$141 },
 		{ _field_string_id, "marker attachment name" },
 		{ _field_tag_reference, "Shader", &blofeld::halo2::shader_reference },
-		FIELD_EXPLANATION("Default cloth vertices", nullptr, FIELD_FLAG_NONE, "if not importing from a render model, type a grid size"),
+		FIELD_EXPLANATION_EX("Default cloth vertices", nullptr, FIELD_FLAG_NONE, "if not importing from a render model, type a grid size"),
 		{ _field_short_integer, "grid x dimension" },
 		{ _field_short_integer, "grid y dimension" },
 		{ _field_real, "grid spacing x" },
 		{ _field_real, "grid spacing y" },
-		FIELD_EXPLANATION("Cloth Properties", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Cloth Properties", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "properties", &blofeld::halo2::cloth_properties_block_struct_definition },
-		FIELD_EXPLANATION("Import or grid data", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Import or grid data", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_block, "vertices", &blofeld::halo2::cloth_vertices_block },
 		{ _field_block, "indices", &blofeld::halo2::cloth_indices_block },
 		{ _field_block, "strip indices", &blofeld::halo2::cloth_indices_block },
@@ -1059,10 +1059,10 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$149 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_bounds, "radius" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real_argb_color, "debug color" },
 		{ _field_tag_reference, "base map", &blofeld::halo2::bitmap_reference },
 		{ _field_tag_reference, "detail map", &blofeld::halo2::bitmap_reference },
@@ -1115,14 +1115,14 @@ namespace halo2 {
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$150 },
 		{ _field_word_flags, "scale flags", "these flags determine which fields are scaled by the contrail density", &blofeld::halo2::unnamed_enum$151 },
-		FIELD_EXPLANATION("point creation", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("point creation", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "point generation rate", "this many points are generated per second", "points per second" },
 		{ _field_real_bounds, "point velocity", "velocity added to each point's initial velocity", "world units per second" },
 		{ _field_angle, "point velocity cone angle", "initial velocity is inside the cone defined by the marker's forward vector and this angle", "degrees" },
 		{ _field_real_fraction, "inherited velocity fraction", "fraction of parent object's velocity that is inherited by contrail points." },
-		FIELD_EXPLANATION("rendering", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("rendering", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "render type", "this specifies how the contrail is oriented in space", &blofeld::halo2::unnamed_enum$152 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "texture repeats u", "texture repeats per contrail segment" },
 		{ _field_real, "texture repeats v", "texture repeats across contrail width" },
 		{ _field_real, "texture animation u", "the texture along the contrail is animated by this value", "repeats per second" },
@@ -1132,35 +1132,35 @@ namespace halo2 {
 		{ _field_short_integer, "first sequence index" },
 		{ _field_short_integer, "sequence count" },
 		{ _field_useless_pad, "value" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
 		{ _field_word_flags, "shader flags", &blofeld::halo2::unnamed_enum$153 },
 		{ _field_enum, "framebuffer blend function", &blofeld::halo2::unnamed_enum$154 },
 		{ _field_enum, "framebuffer fade mode", &blofeld::halo2::unnamed_enum$155 },
 		{ _field_word_flags, "map flags", &blofeld::halo2::unnamed_enum$156 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
-		FIELD_EXPLANATION("Secondary Map", nullptr, FIELD_FLAG_NONE, "Optional multitextured second map"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_EXPLANATION_EX("Secondary Map", nullptr, FIELD_FLAG_NONE, "Optional multitextured second map"),
 		{ _field_tag_reference, "bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_enum, "anchor", &blofeld::halo2::unnamed_enum$157 },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$156 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "u-animation function", &blofeld::halo2::unnamed_enum$158 },
 		{ _field_real, "u-animation period", "0 defaults to 1", "seconds" },
 		{ _field_real, "u-animation phase" },
 		{ _field_real, "u-animation scale", "0 defaults to 1", "repeats" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "v-animation function", &blofeld::halo2::unnamed_enum$158 },
 		{ _field_real, "v-animation period", "0 defaults to 1", "seconds" },
 		{ _field_real, "v-animation phase" },
 		{ _field_real, "v-animation scale", "0 defaults to 1", "repeats" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "rotation-animation function", &blofeld::halo2::unnamed_enum$158 },
 		{ _field_real, "rotation-animation period", "0 defaults to 1", "seconds" },
 		{ _field_real, "rotation-animation phase" },
 		{ _field_real, "rotation-animation scale", "0 defaults to 360", "degrees" },
 		{ _field_real_point_2d, "rotation-animation center" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "zsprite radius scale" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_block, "point states", &blofeld::halo2::contrail_point_states_block },
 		{ _field_terminator }
 	};
@@ -1325,7 +1325,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("DECAL", nullptr, FIELD_FLAG_NONE, "There are several \"layers\" which decals can be placed into, these layers are drawn in a specific order relative to the shader layers and each layer has its own specific blending mode. In general, the decal bitmap\'s alpha channel will be used as an opacity mask if it exists.\n\n* LIT ALPHA-BLEND PRELIGHT: Decals in this layer are lit by the lightmap but are \"faded out\" by dynamic lights. What this means is that dynamic lights hitting them will cause them to disappear, sort of. This layer is rendered immediately before lightmap shadows (and before dynamic lights).\n\n* LIT ALPHA-BLEND: Decals in this layer are lit by the lightmap but are NOT lit by dynamic lights. What this means is that if the decal exists in an area that has dark lightmapping but bright dynamic lighting, the decal will appear dark. This layer is rendered immediately after dynamic lights, and all subsequent decal layers are rendered after this one in order.\n\n* DOUBLE MULTIPLY: Decals in this layer will double-multiply the color in the framebuffer. Gray pixels in the decal bitmap will be transparent (black darkens, white brightens). The decal color in the tag does NOT do anything!!\n\n* MULTIPLY: Decals in this layer will multiply the color in the framebuffer. White pixels in the decal bitmap will be transparent. The decal color (in the decal tag) does NOT do anything!!\n\n* MAX: Decals in this layer will perform a component-wise max operation on the framebuffer, replacing color values with whichever is higher. Black pixels in the decal bitmap will be transparent.\n\n* ADD: Decals in this layer will perform an addition operation on the framebuffer, replacing color values with the sum of the two. Black pixels in the decal bitmap will be transparent.\n\n* ERROR: Decals in this layer will render bright red and show through geometry!\n\nA compound decal is a chain of decals which are instantiated simultaneously. Compound decals are created by referencing another decal tag in the \'next_decal_in_chain\' field below. Do not attempt to create a circularly linked decal chain, i.e. A->B->C->A! This will cause problems and probably hang the game. Also, do not reference a decal from an effect if it is not the head of the chain; for example an effect should not instantiate decal B if the chain was A->B->C. Compound decals can have seperate bitmaps, etc., and can be drawn in seperate layers. In addition, we used to have the ability for each decal in the chain can either inherit its parent\'s radius, rotation, color, etc. - or it can randomly choose its own. This behavior was controlled by the \'geometry_inherited_by_next_decal_in_chain\' flag, below but it\'s currently broken."),
+		FIELD_EXPLANATION_EX("DECAL", nullptr, FIELD_FLAG_NONE, "There are several \"layers\" which decals can be placed into, these layers are drawn in a specific order relative to the shader layers and each layer has its own specific blending mode. In general, the decal bitmap\'s alpha channel will be used as an opacity mask if it exists.\n\n* LIT ALPHA-BLEND PRELIGHT: Decals in this layer are lit by the lightmap but are \"faded out\" by dynamic lights. What this means is that dynamic lights hitting them will cause them to disappear, sort of. This layer is rendered immediately before lightmap shadows (and before dynamic lights).\n\n* LIT ALPHA-BLEND: Decals in this layer are lit by the lightmap but are NOT lit by dynamic lights. What this means is that if the decal exists in an area that has dark lightmapping but bright dynamic lighting, the decal will appear dark. This layer is rendered immediately after dynamic lights, and all subsequent decal layers are rendered after this one in order.\n\n* DOUBLE MULTIPLY: Decals in this layer will double-multiply the color in the framebuffer. Gray pixels in the decal bitmap will be transparent (black darkens, white brightens). The decal color in the tag does NOT do anything!!\n\n* MULTIPLY: Decals in this layer will multiply the color in the framebuffer. White pixels in the decal bitmap will be transparent. The decal color (in the decal tag) does NOT do anything!!\n\n* MAX: Decals in this layer will perform a component-wise max operation on the framebuffer, replacing color values with whichever is higher. Black pixels in the decal bitmap will be transparent.\n\n* ADD: Decals in this layer will perform an addition operation on the framebuffer, replacing color values with the sum of the two. Black pixels in the decal bitmap will be transparent.\n\n* ERROR: Decals in this layer will render bright red and show through geometry!\n\nA compound decal is a chain of decals which are instantiated simultaneously. Compound decals are created by referencing another decal tag in the \'next_decal_in_chain\' field below. Do not attempt to create a circularly linked decal chain, i.e. A->B->C->A! This will cause problems and probably hang the game. Also, do not reference a decal from an effect if it is not the head of the chain; for example an effect should not instantiate decal B if the chain was A->B->C. Compound decals can have seperate bitmaps, etc., and can be drawn in seperate layers. In addition, we used to have the ability for each decal in the chain can either inherit its parent\'s radius, rotation, color, etc. - or it can randomly choose its own. This behavior was controlled by the \'geometry_inherited_by_next_decal_in_chain\' flag, below but it\'s currently broken."),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$165 },
 		{ _field_enum, "type", "controls how the decal wraps onto surface geometry", &blofeld::halo2::unnamed_enum$166 },
 		{ _field_enum, "layer", &blofeld::halo2::unnamed_enum$167 },
@@ -1342,16 +1342,16 @@ namespace halo2 {
 		{ _field_real_bounds, "lifetime", nullptr, "seconds" },
 		{ _field_real_bounds, "decay time", nullptr, "seconds" },
 		{ _field_useless_pad, "value" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "bitmap", &blofeld::halo2::bitmap_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_real, "maximum sprite extent", nullptr, "pixels", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
 	};
@@ -1410,7 +1410,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("parameters", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("parameters", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_short_integer, "updates per second", nullptr, "Hz" },
 		{ _field_short_integer, "x (width)", nullptr, "cells" },
 		{ _field_short_integer, "y (depth)", nullptr, "cells" },
@@ -1418,36 +1418,36 @@ namespace halo2 {
 		{ _field_real, "x (width)", nullptr, "world units" },
 		{ _field_real, "y (depth)", nullptr, "world units" },
 		{ _field_real, "z (height)", nullptr, "world units" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_old_string_id, "marker" },
-		FIELD_EXPLANATION("cell birth", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("cell birth", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_fraction, "cell birth chance", nullptr, nullptr, "[0,1]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_EXPLANATION("gene mutation", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_EXPLANATION_EX("gene mutation", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_integer, "cell gene mutates 1 in", nullptr, "times" },
 		{ _field_long_integer, "virus gene mutations 1 in", nullptr, "times" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_EXPLANATION("cell infection", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_EXPLANATION_EX("cell infection", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_short_bounds, "infected cell lifespan", "the lifespan of a cell once infected", "updates" },
 		{ _field_short_integer, "minimum infection age", "no cell can be infected before it has been alive this number of updates", "updates" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_fraction, "cell infection chance", nullptr, nullptr, "[0,1]" },
 		{ _field_real_fraction, "infection threshold", "0.0 is most difficult for the virus, 1.0 means any virus can infect any cell", nullptr, "[0,1]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_EXPLANATION("initial state", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_EXPLANATION_EX("initial state", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_fraction, "new cell filled chance", nullptr, nullptr, "[0,1]" },
 		{ _field_real_fraction, "new cell infected chance", nullptr, nullptr, "[0,1]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_EXPLANATION("detail texture", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_EXPLANATION_EX("detail texture", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_fraction, "detail texture change chance", nullptr, nullptr, "[0,1]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_short_integer, "detail texture width", "the number of cells repeating across the detail texture in both dimensions", "cells" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "detail texture", &blofeld::halo2::bitmap_reference },
-		FIELD_EXPLANATION("mask texture", nullptr, FIELD_FLAG_NONE, nullptr),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_EXPLANATION_EX("mask texture", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_tag_reference, "mask bitmap", &blofeld::halo2::bitmap_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 240),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 240),
 		{ _field_terminator }
 	};
 
@@ -1501,12 +1501,12 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "Collection Type", &blofeld::halo2::unnamed_enum$173 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "Global z Offset", nullptr, "Applied to all detail objects in this collection so they don't float above the ground." },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 44),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 44),
 		{ _field_tag_reference, "Sprite Plate", &blofeld::halo2::bitmap_reference },
 		{ _field_block, "Types", &blofeld::halo2::detail_object_type_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_terminator }
 	};
 
@@ -1534,14 +1534,14 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$175 },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "locations", &blofeld::halo2::effect_locations_block },
 		{ _field_block, "events", &blofeld::halo2::effect_event_block },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Looping Sound", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Looping Sound", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "looping sound", &blofeld::halo2::sound_looping_reference },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "always play distance" },
 		{ _field_real, "never play distance" },
 		{ _field_terminator }
@@ -1571,10 +1571,10 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("SCREEN EFFECT", nullptr, FIELD_FLAG_NONE, "A screen effect is essentially a collection of pass references, each one corresponding to a shader pass reference from the template. Note that only shader passes in the TRANSPARENT layer are considered during screen effect rendering."),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_EXPLANATION_EX("SCREEN EFFECT", nullptr, FIELD_FLAG_NONE, "A screen effect is essentially a collection of pass references, each one corresponding to a shader pass reference from the template. Note that only shader passes in the TRANSPARENT layer are considered during screen effect rendering."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 64),
 		{ _field_tag_reference, "shader", &blofeld::halo2::shader_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 64),
 		{ _field_block, "pass references", &blofeld::halo2::rasterizer_screen_effect_pass_reference_block },
 		{ _field_terminator }
 	};
@@ -1595,29 +1595,29 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("PLANAR FOG", nullptr, FIELD_FLAG_NONE, "Please don\'t use these flags unless you know what you\'re doing! Come talk to Bernie first."),
+		FIELD_EXPLANATION_EX("PLANAR FOG", nullptr, FIELD_FLAG_NONE, "Please don\'t use these flags unless you know what you\'re doing! Come talk to Bernie first."),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$184 },
 		{ _field_short_integer, "priority" },
 		{ _field_string_id, "global material name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("DENSITY", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("DENSITY", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_useless_pad, "value" },
 		{ _field_real_fraction, "maximum density", "planar fog density is clamped to this value", nullptr, "[0,1]" },
 		{ _field_useless_pad, "value" },
 		{ _field_real, "opaque distance", "the fog becomes opaque (maximum density) at this distance from the viewer", "world units" },
 		{ _field_useless_pad, "value" },
 		{ _field_real, "opaque depth", "the fog becomes opaque at this distance below fog plane", "world units" },
-		FIELD_EXPLANATION("DENSITY (ADVANCED CONTROLS)", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("DENSITY (ADVANCED CONTROLS)", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_bounds, "atmospheric-planar depth", "distances above fog plane where atmospheric fog supercedes planar fog and visa-versa", "world units" },
 		{ _field_real, "eye offset scale", "negative numbers are bad, mmmkay?", nullptr, "[-1,1]" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("COLOR", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("COLOR", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_rgb_color, "color" },
 		{ _field_useless_pad, "value" },
 		{ _field_block, "patchy fog", &blofeld::halo2::planar_fog_patchy_fog_block },
-		FIELD_EXPLANATION("SOUND", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("SOUND", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "background sound", &blofeld::halo2::sound_looping_reference },
 		{ _field_tag_reference, "sound environment", &blofeld::halo2::sound_environment_reference$2 },
 		{ _field_real, "environment damping factor", "scales the surrounding background sound by this much" },
@@ -1678,23 +1678,23 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("PATCHY FOG", nullptr, FIELD_FLAG_NONE, "Use the separate_layer_depths flag carefully, it\'s expensive!"),
+		FIELD_EXPLANATION_EX("PATCHY FOG", nullptr, FIELD_FLAG_NONE, "Use the separate_layer_depths flag carefully, it\'s expensive!"),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$186 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("MOVEMENT MODIFIERS", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("MOVEMENT MODIFIERS", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_fraction, "rotation multiplier", nullptr, nullptr, "[0,1]" },
 		{ _field_real_fraction, "strafing multiplier", nullptr, nullptr, "[0,1]" },
 		{ _field_real_fraction, "zoom multiplier", nullptr, nullptr, "[0,1]" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("NOISE MAP", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("NOISE MAP", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "noise map scale", "0 defaults to 1" },
 		{ _field_tag_reference, "noise map", &blofeld::halo2::bitmap_reference },
 		{ _field_real, "noise vertical scale forward", "0 defaults to 1" },
 		{ _field_real, "noise vertical scale up", "0 defaults to 1" },
 		{ _field_real, "noise opacity scale up", "0 defaults to 1" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("ANIMATION", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("ANIMATION", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "animation period", nullptr, "seconds" },
 		{ _field_useless_pad, "value" },
 		{ _field_real_bounds, "wind velocity", nullptr, "world units per second" },
@@ -1757,25 +1757,25 @@ namespace halo2 {
 		{ _field_block, "game engine settings", &blofeld::halo2::variant_setting_edit_reference_block },
 		{ _field_tag_reference, "default variant strings", &blofeld::halo2::multilingual_unicode_string_list_reference },
 		{ _field_block, "default variants", &blofeld::halo2::g_default_variants_block },
-		FIELD_EXPLANATION("create new slayer variant", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("create new slayer variant", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "value", &blofeld::halo2::create_new_variant_struct_block_struct_definition },
-		FIELD_EXPLANATION("create new king of the hill variant", nullptr, FIELD_FLAG_NONE, nullptr),
-		{ _field_struct, "value", &blofeld::halo2::create_new_variant_struct_block_struct_definition },
-		{ _field_custom, "value" },
-		{ _field_struct, "value", &blofeld::halo2::create_new_variant_struct_block_struct_definition },
-		{ _field_custom, "value" },
-		FIELD_EXPLANATION("create new oddball variant", nullptr, FIELD_FLAG_NONE, nullptr),
-		{ _field_struct, "value", &blofeld::halo2::create_new_variant_struct_block_struct_definition },
-		FIELD_EXPLANATION("create new juggernaut variant", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("create new king of the hill variant", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "value", &blofeld::halo2::create_new_variant_struct_block_struct_definition },
 		{ _field_custom, "value" },
 		{ _field_struct, "value", &blofeld::halo2::create_new_variant_struct_block_struct_definition },
 		{ _field_custom, "value" },
-		FIELD_EXPLANATION("create new capture the flag variant", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("create new oddball variant", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "value", &blofeld::halo2::create_new_variant_struct_block_struct_definition },
-		FIELD_EXPLANATION("create new assault variant", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("create new juggernaut variant", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "value", &blofeld::halo2::create_new_variant_struct_block_struct_definition },
-		FIELD_EXPLANATION("create new territories variant", nullptr, FIELD_FLAG_NONE, nullptr),
+		{ _field_custom, "value" },
+		{ _field_struct, "value", &blofeld::halo2::create_new_variant_struct_block_struct_definition },
+		{ _field_custom, "value" },
+		FIELD_EXPLANATION_EX("create new capture the flag variant", nullptr, FIELD_FLAG_NONE, nullptr),
+		{ _field_struct, "value", &blofeld::halo2::create_new_variant_struct_block_struct_definition },
+		FIELD_EXPLANATION_EX("create new assault variant", nullptr, FIELD_FLAG_NONE, nullptr),
+		{ _field_struct, "value", &blofeld::halo2::create_new_variant_struct_block_struct_definition },
+		FIELD_EXPLANATION_EX("create new territories variant", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "value", &blofeld::halo2::create_new_variant_struct_block_struct_definition },
 		{ _field_custom, "value" },
 		{ _field_array, "unused_create_new_variants", &blofeld::halo2::multiplayer_variant_settings_interface_definition_block_struct_definition__unused_create_new_variants_array },
@@ -1804,17 +1804,17 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_custom, "value" },
-		FIELD_EXPLANATION("Grenade hud screen alignment", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Grenade hud screen alignment", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "anchor", &blofeld::halo2::unnamed_enum$191 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_EXPLANATION("Grenade hud background", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_EXPLANATION_EX("Grenade hud background", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "interface bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
@@ -1824,18 +1824,18 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "multitex overlay", &blofeld::halo2::global_hud_multitexture_overlay_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("Total grenades background", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("Total grenades background", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "interface bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
@@ -1845,18 +1845,18 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "multitex overlay", &blofeld::halo2::global_hud_multitexture_overlay_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("Total grenades numbers", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("Total grenades numbers", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
 		{ _field_real, "flash period" },
@@ -1865,20 +1865,20 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_char_integer, "maximum number of digits" },
 		{ _field_byte_flags, "flags", &blofeld::halo2::unnamed_enum$200 },
 		{ _field_char_integer, "number of fractional digits" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_short_integer, "flash cutoff" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_EXPLANATION("Total grenades overlays", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("Total grenades overlays", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "Overlay bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_block, "Overlays", &blofeld::halo2::grenade_hud_overlay_block },
 		{ _field_block, "Warning sounds", &blofeld::halo2::grenade_hud_sound_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 68),
-		FIELD_EXPLANATION("Messaging information", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 68),
+		FIELD_EXPLANATION_EX("Messaging information", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_short_integer, "sequence index", "sequence index into the global hud icon bitmap" },
 		{ _field_short_integer, "width offset", "extra spacing beyond bitmap width for text alignment" },
 		{ _field_point_2d, "offset from reference corner" },
@@ -1886,7 +1886,7 @@ namespace halo2 {
 		{ _field_char_integer, "frame rate" },
 		{ _field_byte_flags, "flags", &blofeld::halo2::unnamed_enum$204 },
 		{ _field_short_integer, "text index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_terminator }
 	};
 
@@ -1946,34 +1946,34 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("MODEL", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("MODEL", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_custom, "value" },
 		{ _field_tag_reference, "render model", &blofeld::halo2::render_model_reference },
 		{ _field_tag_reference, "collision model", &blofeld::halo2::collision_model_reference },
 		{ _field_tag_reference, "animation", &blofeld::halo2::model_animation_graph_reference },
 		{ _field_tag_reference, "physics", &blofeld::halo2::physics_reference },
 		{ _field_tag_reference, "physics_model", &blofeld::halo2::physics_model_reference },
-		FIELD_EXPLANATION("level of detail", nullptr, FIELD_FLAG_NONE, "If a model is further away than the LOD reduction distance, it will be reduced to that LOD.\nSo the L1 reduction distance should be really long and the L5 reduction distance should be really short.\nThis means distances should be in descending order, e.g. 5 4 3 2 1.\n\nNote that if we run out of memory or too many models are on screen at once, the engine may reduce\nmodels to a lower LOD BEFORE they reach the reduction distance for that LOD.\n\nIf a model has a begin fade distance and disappear distance, it will begin fading out at that distance,\nreaching zero alpha and disappearing at the disappear distance. These distances should be greater than all\nof the LOD reduction distances.\n"),
+		FIELD_EXPLANATION_EX("level of detail", nullptr, FIELD_FLAG_NONE, "If a model is further away than the LOD reduction distance, it will be reduced to that LOD.\nSo the L1 reduction distance should be really long and the L5 reduction distance should be really short.\nThis means distances should be in descending order, e.g. 5 4 3 2 1.\n\nNote that if we run out of memory or too many models are on screen at once, the engine may reduce\nmodels to a lower LOD BEFORE they reach the reduction distance for that LOD.\n\nIf a model has a begin fade distance and disappear distance, it will begin fading out at that distance,\nreaching zero alpha and disappearing at the disappear distance. These distances should be greater than all\nof the LOD reduction distances.\n"),
 		{ _field_real, "disappear distance", nullptr, "world units" },
 		{ _field_real, "begin fade distance", nullptr, "world units" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "reduce to L1", nullptr, "world units (super low)" },
 		{ _field_real, "reduce to L2", nullptr, "world units (low)" },
 		{ _field_real, "reduce to L3", nullptr, "world units (medium)" },
 		{ _field_real, "reduce to L4", nullptr, "world units (high)" },
 		{ _field_real, "reduce to L5", nullptr, "world units (super high)" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_enum, "shadow fade distance", &blofeld::halo2::unnamed_enum$205 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "variants", &blofeld::halo2::model_variant_block },
 		{ _field_block, "materials", &blofeld::halo2::model_material_block },
 		{ _field_block, "new damage info", &blofeld::halo2::global_damage_info_block },
 		{ _field_block, "targets", &blofeld::halo2::model_target_block },
 		{ _field_block, "value", &blofeld::halo2::model_region_block },
 		{ _field_block, "value", &blofeld::halo2::model_node_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "model object data", &blofeld::halo2::model_object_data_block },
-		FIELD_EXPLANATION("more stuff", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("more stuff", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "default dialogue", "The default dialogue tag for this model (overriden by variants)", &blofeld::halo2::dialogue_reference },
 		{ _field_tag_reference, "UNUSED", &blofeld::halo2::shader_reference },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$221 },
@@ -1982,7 +1982,7 @@ namespace halo2 {
 		{ _field_array, "render-only section flags", &blofeld::halo2::model_group_tags_v2_struct_definition__render_only_section_flags_array },
 		{ _field_long_flags, "runtime flags", &blofeld::halo2::unnamed_enum$222 },
 		{ _field_block, "scenario load parameters", &blofeld::halo2::global_scenario_load_parameters_block },
-		FIELD_EXPLANATION("HOLOGRAM", nullptr, FIELD_FLAG_NONE, "hologram shader is applied whenever the control function from it\'s object is non-zero"),
+		FIELD_EXPLANATION_EX("HOLOGRAM", nullptr, FIELD_FLAG_NONE, "hologram shader is applied whenever the control function from it\'s object is non-zero"),
 		{ _field_tag_reference, "hologram shader", &blofeld::halo2::shader_reference },
 		{ _field_string_id, "hologram control function" },
 		{ _field_terminator }
@@ -2044,7 +2044,7 @@ namespace halo2 {
 		{ _field_data, "text data" },
 		{ _field_block, "message elements", &blofeld::halo2::hud_message_elements_block },
 		{ _field_block, "messages", &blofeld::halo2::hud_messages_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 84),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 84),
 		{ _field_terminator }
 	};
 
@@ -2092,8 +2092,8 @@ namespace halo2 {
 		{ _field_char_integer, "y offset" },
 		{ _field_char_integer, "decimal point width" },
 		{ _field_char_integer, "colon width" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 76),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 76),
 		{ _field_terminator }
 	};
 
@@ -2113,16 +2113,16 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("Messaging parameters", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Messaging parameters", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "anchor", &blofeld::halo2::unnamed_enum$191 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "obsolete1", &blofeld::halo2::bitmap_reference },
 		{ _field_tag_reference, "obsolete2", &blofeld::halo2::bitmap_reference },
 		{ _field_real, "up time" },
@@ -2134,7 +2134,7 @@ namespace halo2 {
 		{ _field_tag_reference, "icon bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_tag_reference, "alternate icon text", &blofeld::halo2::multilingual_unicode_string_list_reference },
 		{ _field_block, "button icons", &blofeld::halo2::hud_button_icon_block },
-		FIELD_EXPLANATION("HUD HELP TEXT COLOR", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("HUD HELP TEXT COLOR", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
 		{ _field_real, "flash period" },
@@ -2143,10 +2143,10 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("Other hud messaging data", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("Other hud messaging data", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "hud messages", &blofeld::halo2::hud_message_text_reference },
-		FIELD_EXPLANATION("Objective colors", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Objective colors", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
 		{ _field_real, "flash period" },
@@ -2157,38 +2157,38 @@ namespace halo2 {
 		{ _field_argb_color, "disabled color" },
 		{ _field_short_integer, "uptime ticks" },
 		{ _field_short_integer, "fade ticks" },
-		FIELD_EXPLANATION("Waypoint parameters", nullptr, FIELD_FLAG_NONE, "The offset values are how much the waypoint rectangle border is offset from the safe camera bounds"),
+		FIELD_EXPLANATION_EX("Waypoint parameters", nullptr, FIELD_FLAG_NONE, "The offset values are how much the waypoint rectangle border is offset from the safe camera bounds"),
 		{ _field_real, "top offset" },
 		{ _field_real, "bottom offset" },
 		{ _field_real, "left offset" },
 		{ _field_real, "right offset" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_tag_reference, "arrow bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_block, "waypoint arrows", &blofeld::halo2::hud_waypoint_arrow_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 80),
-		FIELD_EXPLANATION("Multiplayer parameters", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 80),
+		FIELD_EXPLANATION_EX("Multiplayer parameters", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "hud scale in multiplayer" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 256),
-		FIELD_EXPLANATION("Hud globals", nullptr, FIELD_FLAG_NONE, nullptr),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 256),
+		FIELD_EXPLANATION_EX("Hud globals", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_real, "motion sensor range" },
 		{ _field_real, "motion sensor velocity sensitivity", "how fast something moves to show up on the motion sensor" },
 		{ _field_real, "motion sensor scale [DON'T TOUCH EVER]" },
 		{ _field_rectangle_2d, "default chapter title bounds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 44),
-		FIELD_EXPLANATION("Hud damage indicators", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 44),
+		FIELD_EXPLANATION_EX("Hud damage indicators", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_short_integer, "top offset" },
 		{ _field_short_integer, "bottom offset" },
 		{ _field_short_integer, "left offset" },
 		{ _field_short_integer, "right offset" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_tag_reference, "indicator bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_short_integer, "sequence index" },
 		{ _field_short_integer, "multiplayer sequence index" },
 		{ _field_argb_color, "color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("Hud timer definitions", nullptr, FIELD_FLAG_NONE, nullptr),
-		FIELD_EXPLANATION("Not much time left flash color", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("Hud timer definitions", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Not much time left flash color", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
 		{ _field_real, "flash period" },
@@ -2197,8 +2197,8 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("Time out flash color", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("Time out flash color", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
 		{ _field_real, "flash period" },
@@ -2207,16 +2207,16 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
 		{ _field_tag_reference, "carnage report bitmap", &blofeld::halo2::bitmap_reference },
-		FIELD_EXPLANATION("Hud crap that wouldn't fit anywhere else", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Hud crap that wouldn't fit anywhere else", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_short_integer, "loading begin text" },
 		{ _field_short_integer, "loading end text" },
 		{ _field_short_integer, "checkpoint begin text" },
 		{ _field_short_integer, "checkpoint end text" },
 		{ _field_tag_reference, "checkpoint sound", &blofeld::halo2::sound_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 96),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 96),
 		{ _field_struct, "new globals", &blofeld::halo2::global_new_hud_globals_struct_block_struct_definition },
 		{ _field_terminator }
 	};
@@ -2241,7 +2241,7 @@ namespace halo2 {
 	{
 		{ _field_block, "item permutations", &blofeld::halo2::item_permutation },
 		{ _field_short_integer, "spawn time (in seconds, 0 = default)" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
 	};
@@ -2265,7 +2265,7 @@ namespace halo2 {
 		{ _field_struct, "resources", &blofeld::halo2::animation_graph_resources_struct_block_struct_definition },
 		{ _field_struct, "content", &blofeld::halo2::animation_graph_contents_struct_block_struct_definition },
 		{ _field_struct, "run time data", &blofeld::halo2::model_animation_runtime_data_struct_block_struct_definition },
-		FIELD_EXPLANATION("RESULTS OF THE LAST IMPORT", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("RESULTS OF THE LAST IMPORT", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_data, "last import results" },
 		{ _field_block, "additional node data", &blofeld::halo2::additional_node_data_block },
 		{ _field_terminator }
@@ -2290,7 +2290,7 @@ namespace halo2 {
 		{ _field_real_bounds, "radius", nullptr, "world units" },
 		{ _field_real_fraction, "cutoff scale", nullptr, nullptr, "[0,1]" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$243 },
-		FIELD_EXPLANATION("damage", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("damage", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "side effect", &blofeld::halo2::unnamed_enum$244 },
 		{ _field_enum, "category", &blofeld::halo2::unnamed_enum$245 },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$246 },
@@ -2318,33 +2318,33 @@ namespace halo2 {
 		{ _field_real, "shake radius" },
 		{ _field_real, "EMP radius" },
 		{ _field_block, "player responses", &blofeld::halo2::damage_effect_player_response_block },
-		FIELD_EXPLANATION("temporary camera impulse", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("temporary camera impulse", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "duration", nullptr, "seconds" },
 		{ _field_enum, "fade function", &blofeld::halo2::unnamed_enum$250 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_angle, "rotation", nullptr, "degrees" },
 		{ _field_real, "pushback", nullptr, "world units" },
 		{ _field_real_bounds, "jitter", nullptr, "world units" },
 		{ _field_useless_pad, "value" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("camera shaking", nullptr, FIELD_FLAG_NONE, "The wobble function and weight affects how the camera shake oscilates over time.\nIf the weight is one, then the wobble function completely scales the translational\nand rotational magnitudes.  The less the weight, the less the effect wobble has.\nIf the wobble weight is 0 then wobble is completely ignored."),
+		FIELD_EXPLANATION_EX("camera shaking", nullptr, FIELD_FLAG_NONE, "The wobble function and weight affects how the camera shake oscilates over time.\nIf the weight is one, then the wobble function completely scales the translational\nand rotational magnitudes.  The less the weight, the less the effect wobble has.\nIf the wobble weight is 0 then wobble is completely ignored."),
 		{ _field_real, "duration", "the effect will last for this duration.", "seconds" },
 		{ _field_enum, "falloff function", "a function to envelope the effect's magnitude over time", &blofeld::halo2::unnamed_enum$250 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "random translation", "random translation in all directions", "world units" },
 		{ _field_angle, "random rotation", "random rotation in all directions", "degrees" },
 		{ _field_useless_pad, "value" },
 		{ _field_enum, "wobble function", "a function to perturb the effect's behavior over time", &blofeld::halo2::unnamed_enum$158 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "wobble function period", nullptr, "seconds" },
 		{ _field_real_fraction, "wobble weight", "a value of 0.0 signifies that the wobble function has no effect; a value of 1.0 signifies that the effect will not be felt when the wobble function's value is zero." },
 		{ _field_useless_pad, "value" },
 		{ _field_useless_pad, "value" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("sound", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("sound", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_reference },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("breaking effect", nullptr, FIELD_FLAG_NONE, "Controls particle velocities when a damage effect shatters a materal.\n\nAll particles created within \'forward radius\' will be kicked along the\ndamage direction with a speed equivalent to \'forward velocity\' at the\nepicenter of the damage and 0 at the outer radius.  \'Forward exponent\'\nis used to modify the velocity scale.  A low exponent (like 0.5) means that\nparticles between the epicenter and the radius will be kicked out with a speed\ncloser to \'forward velocity\' than if a higher exponent (like 2.0) was used\n\nThe outward fields work in a similar way, except instead of kicking along the\ndamage direction, they get kick away from the damage epicenter."),
+		FIELD_EXPLANATION_EX("breaking effect", nullptr, FIELD_FLAG_NONE, "Controls particle velocities when a damage effect shatters a materal.\n\nAll particles created within \'forward radius\' will be kicked along the\ndamage direction with a speed equivalent to \'forward velocity\' at the\nepicenter of the damage and 0 at the outer radius.  \'Forward exponent\'\nis used to modify the velocity scale.  A low exponent (like 0.5) means that\nparticles between the epicenter and the radius will be kicked out with a speed\ncloser to \'forward velocity\' than if a higher exponent (like 2.0) was used\n\nThe outward fields work in a similar way, except instead of kicking along the\ndamage direction, they get kick away from the damage epicenter."),
 		{ _field_real, "forward velocity", nullptr, "world units per second" },
 		{ _field_real, "forward radius", nullptr, "world units" },
 		{ _field_real, "forward exponent" },
@@ -2440,12 +2440,12 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("LENS FLARE", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("LENS FLARE", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_angle, "falloff angle", nullptr, "degrees" },
 		{ _field_angle, "cutoff angle", nullptr, "degrees" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("OCCLUSION", nullptr, FIELD_FLAG_NONE, "Occlusion factor affects overall lens flare brightness and can also affect scale. Occlusion never affects rotation."),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("OCCLUSION", nullptr, FIELD_FLAG_NONE, "Occlusion factor affects overall lens flare brightness and can also affect scale. Occlusion never affects rotation."),
 		{ _field_real, "occlusion radius", "radius of the square used to test occlusion", "world units" },
 		{ _field_enum, "occlusion offset direction", &blofeld::halo2::unnamed_enum$251 },
 		{ _field_enum, "occlusion inner radius scale", &blofeld::halo2::unnamed_enum$252 },
@@ -2453,21 +2453,21 @@ namespace halo2 {
 		{ _field_real, "far fade distance", "distance at which the lens flare brightness is minimum; set to zero to disable distance fading", "world units" },
 		{ _field_tag_reference, "bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$253 },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_enum, "rotation function", &blofeld::halo2::unnamed_enum$254 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_angle, "rotation function scale", nullptr, "degrees" },
 		{ _field_useless_pad, "value" },
 		{ _field_real_vector_2d, "corona scale", "amount to stretch the corona" },
-		FIELD_EXPLANATION("EFFECT PARAMETERS", nullptr, FIELD_FLAG_NONE, "Only affects lens flares created by effects."),
+		FIELD_EXPLANATION_EX("EFFECT PARAMETERS", nullptr, FIELD_FLAG_NONE, "Only affects lens flares created by effects."),
 		{ _field_enum, "falloff function", &blofeld::halo2::unnamed_enum$250 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_block, "reflections", &blofeld::halo2::lens_flare_reflection_block },
-		FIELD_EXPLANATION("ANIMATION", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("ANIMATION", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$256 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "brightness", &blofeld::halo2::lens_flare_scalar_animation_block },
 		{ _field_block, "color", &blofeld::halo2::lens_flare_color_animation_block },
 		{ _field_block, "rotation", &blofeld::halo2::lens_flare_scalar_animation_block },
@@ -2541,26 +2541,26 @@ namespace halo2 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$257 },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("SHAPE", nullptr, FIELD_FLAG_NONE, "overall shape of the light"),
+		FIELD_EXPLANATION_EX("SHAPE", nullptr, FIELD_FLAG_NONE, "overall shape of the light"),
 		{ _field_enum, "type", &blofeld::halo2::unnamed_enum$21 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_bounds, "size modifer", "how the light's size changes with external scale" },
 		{ _field_real, "shadow quality bias", "larger positive numbers improve quality, larger negative numbers improve speed" },
 		{ _field_enum, "shadow tap bias", "the less taps you use, the faster the light (but edges can look worse)", &blofeld::halo2::unnamed_enum$258 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("SPHERE LIGHT", nullptr, FIELD_FLAG_NONE, "default shape parameters for spherical lights"),
+		FIELD_EXPLANATION_EX("SPHERE LIGHT", nullptr, FIELD_FLAG_NONE, "default shape parameters for spherical lights"),
 		{ _field_real, "radius", "the radius at which illumination falls off to zero", "world units" },
 		{ _field_real, "specular radius", "the radius at which specular highlights fall off to zero (if zero, same as maximum radius)", "world units" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("FRUSTUM LIGHT", nullptr, FIELD_FLAG_NONE, "default shape parameters for frustum lights (orthogonal, projective or pyramid types)"),
+		FIELD_EXPLANATION_EX("FRUSTUM LIGHT", nullptr, FIELD_FLAG_NONE, "default shape parameters for frustum lights (orthogonal, projective or pyramid types)"),
 		{ _field_real, "near width", "width of the frustum light at its near plane", "world units" },
 		{ _field_real, "height stretch", "how much the gel is stretched vertically (0.0 or 1.0 = aspect ratio same as gel)" },
 		{ _field_real, "field of view", "horizontal angle that the frustum light covers (0.0 = no spread, a parallel beam)", "degrees" },
 		{ _field_real, "falloff distance", "distance from near plane to where the light falloff starts" },
 		{ _field_real, "cutoff distance", "distance from near plane to where illumination falls off to zero" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("COLOR", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("COLOR", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_flags, "interpolation flags", &blofeld::halo2::unnamed_enum$259 },
 		{ _field_real_bounds, "bloom bounds", nullptr, nullptr, "[0..2]" },
 		{ _field_real_rgb_color, "specular lower bound" },
@@ -2570,52 +2570,52 @@ namespace halo2 {
 		{ _field_real_rgb_color, "diffuse upper bound" },
 		{ _field_real_bounds, "brightness bounds", nullptr, nullptr, "[0..2]" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("GEL", nullptr, FIELD_FLAG_NONE, "the gel map tints the light\'s illumination per-pixel"),
+		FIELD_EXPLANATION_EX("GEL", nullptr, FIELD_FLAG_NONE, "the gel map tints the light\'s illumination per-pixel"),
 		{ _field_tag_reference, "gel map", "must be a cubemap for spherical light and a 2d texture for frustum light", &blofeld::halo2::bitmap_reference },
 		{ _field_enum, "specular mask", &blofeld::halo2::unnamed_enum$260 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		{ _field_useless_pad, "value" },
-		{ _field_useless_pad, "value" },
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_useless_pad, "value" },
 		{ _field_useless_pad, "value" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("FALLOFF", nullptr, FIELD_FLAG_NONE, nullptr),
+		{ _field_useless_pad, "value" },
+		{ _field_useless_pad, "value" },
+		FIELD_EXPLANATION_EX("FALLOFF", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "falloff function", &blofeld::halo2::unnamed_enum$261 },
 		{ _field_enum, "diffuse contrast", &blofeld::halo2::unnamed_enum$262 },
 		{ _field_enum, "specular contrast", &blofeld::halo2::unnamed_enum$263 },
 		{ _field_enum, "falloff geometry", &blofeld::halo2::unnamed_enum$264 },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("LENS FLARE", nullptr, FIELD_FLAG_NONE, "optional lens flare and light volume associated with this light"),
+		FIELD_EXPLANATION_EX("LENS FLARE", nullptr, FIELD_FLAG_NONE, "optional lens flare and light volume associated with this light"),
 		{ _field_tag_reference, "lens flare", &blofeld::halo2::lens_flare_reference },
 		{ _field_real, "bounding radius", "used to generate a bounding radius for lensflare-only lights", "world units" },
 		{ _field_tag_reference, "light volume", &blofeld::halo2::light_volume_reference },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("RADIOSITY", nullptr, FIELD_FLAG_NONE, "how the light affects the lightmaps (ignored for dynamic lights)"),
+		FIELD_EXPLANATION_EX("RADIOSITY", nullptr, FIELD_FLAG_NONE, "how the light affects the lightmaps (ignored for dynamic lights)"),
 		{ _field_enum, "default lightmap setting", &blofeld::halo2::unnamed_enum$265 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "lightmap half life" },
 		{ _field_real, "lightmap light scale" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("EFFECT PARAMETERS", nullptr, FIELD_FLAG_NONE, "if the light is created by an effect, it will animate itself as follows"),
+		FIELD_EXPLANATION_EX("EFFECT PARAMETERS", nullptr, FIELD_FLAG_NONE, "if the light is created by an effect, it will animate itself as follows"),
 		{ _field_real, "duration", "the light will last this long when created by an effect", "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "falloff function", "the scale of the light will diminish over time according to this function", &blofeld::halo2::unnamed_enum$250 },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("DISTANCE FADING PARAMETERS", nullptr, FIELD_FLAG_NONE, "To fade the light\'s illumination and shadow casting abilities"),
+		FIELD_EXPLANATION_EX("DISTANCE FADING PARAMETERS", nullptr, FIELD_FLAG_NONE, "To fade the light\'s illumination and shadow casting abilities"),
 		{ _field_enum, "illumination fade", &blofeld::halo2::unnamed_enum$266 },
 		{ _field_enum, "shadow fade", &blofeld::halo2::unnamed_enum$266 },
 		{ _field_enum, "specular fade", &blofeld::halo2::unnamed_enum$266 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("ANIMATION PARAMETERS", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("ANIMATION PARAMETERS", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$267 },
 		{ _field_block, "brightness animation", &blofeld::halo2::light_brightness_animation_block },
 		{ _field_block, "color animation", &blofeld::halo2::light_color_animation_block },
 		{ _field_block, "gel animation", &blofeld::halo2::light_gel_animation_block },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("SHADER", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("SHADER", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "shader", &blofeld::halo2::shader_reference },
 		{ _field_terminator }
 	};
@@ -2763,7 +2763,7 @@ namespace halo2 {
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$268 },
 		{ _field_real, "marty's music time", nullptr, "seconds" },
 		{ _field_real, "value" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_tag_reference, "value", &blofeld::halo2::_reference },
 		{ _field_block, "tracks", "tracks play in parallel and loop continuously for the duration of the looping sound.", &blofeld::halo2::looping_sound_track_block },
 		{ _field_block, "detail sounds", "detail sounds play at random throughout the duration of the looping sound.", &blofeld::halo2::looping_sound_detail_block },
@@ -2801,7 +2801,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("lightmap options", nullptr, FIELD_FLAG_NONE, "The following fields control the behavior of the lightmapper\n\nRADIANCE ESTIMATE SEARCH DISTANCE UPPER BOUND: the largest distance the code will look for photons. bigger levels need a bigger search radius.  Measured, in world units, 0.0 defaults to 1.0\n\nRADIANCE ESTIMATE SEARCH DISTANCE LOWER BOUND: the smallest distance the code will look for photons. bigger levels need a bigger search radius.  Measured, in world units, 0.0 defaults to 1.0\n\nLUMINELS PER WORLD UNIT: how many lightmap pixels there should be per world unit.  0.0 defaults to 3.0\n\nOUTPUT WHITE REFERENCE: for experimentation - what wattage the lightmapper considers \"white\" to be for output.  0.0 defaults to 1.0\n\nOUTPUT BLACK REFERENCE: for experimentation - what wattage the lightmapper considers \"black\" to be for output.  0.0 defaults to 0.0\n\nOUTPUT SCHLICK PARAMETER: controls the way midtones are mapped.  0.0 defaults to 4.5\n\nDIFFUSE MAP SCALE: controls how diffuse maps are scaled.  0.0 defaults to 1.5\n\nPRT SUN SCALE: 0.0 defaults to 100.0\n\nPRT SKY SCALE: 0.0 defaults to 1.0\n\nPRT INDIRECT SCALE: 0.0 defaults to 1.0\n\nPRT SCALE: you must set this value.\n\nPRT SURFACE LIGHT SCALE: 0.0 defaults to 1.0\n\nPRT SCENARIO LIGHT SCALE: 0.0 defaults to 1.0\n\nLIGHTPROBE INTERPOLATION OVERIDE(speed): overide the default sampling behavior"),
+		FIELD_EXPLANATION_EX("lightmap options", nullptr, FIELD_FLAG_NONE, "The following fields control the behavior of the lightmapper\n\nRADIANCE ESTIMATE SEARCH DISTANCE UPPER BOUND: the largest distance the code will look for photons. bigger levels need a bigger search radius.  Measured, in world units, 0.0 defaults to 1.0\n\nRADIANCE ESTIMATE SEARCH DISTANCE LOWER BOUND: the smallest distance the code will look for photons. bigger levels need a bigger search radius.  Measured, in world units, 0.0 defaults to 1.0\n\nLUMINELS PER WORLD UNIT: how many lightmap pixels there should be per world unit.  0.0 defaults to 3.0\n\nOUTPUT WHITE REFERENCE: for experimentation - what wattage the lightmapper considers \"white\" to be for output.  0.0 defaults to 1.0\n\nOUTPUT BLACK REFERENCE: for experimentation - what wattage the lightmapper considers \"black\" to be for output.  0.0 defaults to 0.0\n\nOUTPUT SCHLICK PARAMETER: controls the way midtones are mapped.  0.0 defaults to 4.5\n\nDIFFUSE MAP SCALE: controls how diffuse maps are scaled.  0.0 defaults to 1.5\n\nPRT SUN SCALE: 0.0 defaults to 100.0\n\nPRT SKY SCALE: 0.0 defaults to 1.0\n\nPRT INDIRECT SCALE: 0.0 defaults to 1.0\n\nPRT SCALE: you must set this value.\n\nPRT SURFACE LIGHT SCALE: 0.0 defaults to 1.0\n\nPRT SCENARIO LIGHT SCALE: 0.0 defaults to 1.0\n\nLIGHTPROBE INTERPOLATION OVERIDE(speed): overide the default sampling behavior"),
 		{ _field_real, "search distance lower bound" },
 		{ _field_real, "search distance upper bound" },
 		{ _field_real, "luminels per world unit" },
@@ -2816,11 +2816,11 @@ namespace halo2 {
 		{ _field_real, "surface light scale" },
 		{ _field_real, "scenario light scale" },
 		{ _field_real, "lightprobe interpolation overide" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 72),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 72),
 		{ _field_block, "lightmap groups", &blofeld::halo2::structure_lightmap_group_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "errors", &blofeld::halo2::global_error_report_categories_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 104),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 104),
 		{ _field_terminator }
 	};
 
@@ -2840,7 +2840,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 172),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 172),
 		{ _field_long_enum, "language", &blofeld::halo2::unnamed_enum$288 },
 		{ _field_block, "havok cleanup resources", &blofeld::halo2::havok_cleanup_resources_block },
 		{ _field_block, "collision damage", &blofeld::halo2::collision_damage_block },
@@ -2868,9 +2868,9 @@ namespace halo2 {
 		{ _field_tag_reference, "multiplayer globals", &blofeld::halo2::multiplayer_globals_reference },
 		{ _field_block, "runtime level data", &blofeld::halo2::runtime_levels_definition_block },
 		{ _field_block, "ui level data", &blofeld::halo2::ui_levels_definition_block },
-		FIELD_EXPLANATION("Default global lighting", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Default global lighting", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "default global lighting", &blofeld::halo2::chocolate_mountain_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 252),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 252),
 		{ _field_terminator }
 	};
 
@@ -2908,7 +2908,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("Mouse Cursor Bitmaps", nullptr, FIELD_FLAG_NONE, "0 - Normal mouse cursor\n1 - Busy mouse cursor\n2 - Hover mouse cursor\n3 - Text select mouse cursor\n"),
+		FIELD_EXPLANATION_EX("Mouse Cursor Bitmaps", nullptr, FIELD_FLAG_NONE, "0 - Normal mouse cursor\n1 - Busy mouse cursor\n2 - Hover mouse cursor\n3 - Text select mouse cursor\n"),
 		{ _field_block, "mouse cursor bitmaps", &blofeld::halo2::mouse_cursor_bitmap_reference_block },
 		{ _field_real, "animation speed (fps)" },
 		{ _field_terminator }
@@ -2955,17 +2955,17 @@ namespace halo2 {
 		{ _field_tag_reference, "source bitmap", "optional bitmap to draw into the unmasked regions of the meter (modulated by the colors below)", &blofeld::halo2::bitmap_reference },
 		{ _field_short_integer, "stencil sequence index" },
 		{ _field_short_integer, "source sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_enum, "interpolate colors...", &blofeld::halo2::unnamed_enum$303 },
 		{ _field_enum, "anchor colors...", &blofeld::halo2::unnamed_enum$304 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real_argb_color, "empty color" },
 		{ _field_real_argb_color, "full color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_real, "unmask distance", "fade from fully masked to fully unmasked this distance beyond full (and below empty)", "meter units" },
 		{ _field_real, "mask distance", "fade from fully unmasked to fully masked this distance below full (and beyond empty)", "meter units" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_data, "encoded stencil" },
 		{ _field_terminator }
 	};
@@ -3009,8 +3009,8 @@ namespace halo2 {
 	{
 		{ _field_old_string_id, "name" },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$305 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "import info", &blofeld::halo2::global_tag_import_info_block },
 		{ _field_block, "compression info", &blofeld::halo2::global_geometry_compression_info_block },
 		{ _field_block, "regions", &blofeld::halo2::render_model_region_block },
@@ -3023,7 +3023,7 @@ namespace halo2 {
 		{ _field_char_integer, "L4 section group index", nullptr, "(high)" },
 		{ _field_char_integer, "L5 section group index", nullptr, "(super high)" },
 		{ _field_char_integer, "L6 section group index", nullptr, "(hollywood)" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "node list checksum" },
 		{ _field_block, "nodes", &blofeld::halo2::render_model_node_block },
 		{ _field_block, "node map (OLD)", &blofeld::halo2::render_model_node_map_block_old },
@@ -3061,7 +3061,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("vehicle terrain parameters", nullptr, FIELD_FLAG_NONE, "the following fields modify the way a vehicle drives over terrain of this material type."),
+		FIELD_EXPLANATION_EX("vehicle terrain parameters", nullptr, FIELD_FLAG_NONE, "the following fields modify the way a vehicle drives over terrain of this material type."),
 		{ _field_real, "ground friction scale", "fraction of original velocity parallel to the ground after one tick" },
 		{ _field_real, "ground friction normal k1 scale", "cosine of angle at which friction falls off" },
 		{ _field_real, "ground friction normal k0 scale", "cosine of angle at which friction is zero" },
@@ -3153,7 +3153,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$329 },
 		{ _field_real, "bounding radius", nullptr, "world units" },
 		{ _field_real_point_3d, "bounding offset" },
@@ -3161,8 +3161,8 @@ namespace halo2 {
 		{ _field_real, "acceleration scale", "marine 1.0, grunt 1.4, elite 0.9, hunter 0.5, etc.", nullptr, "[0,+inf]" },
 		{ _field_enum, "lightmap shadow mode", &blofeld::halo2::unnamed_enum$330 },
 		{ _field_char_enum, "sweetener size", &blofeld::halo2::unnamed_enum$331 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_useless_pad, "value" },
 		{ _field_real, "dynamic light sphere radius", "sphere to use for dynamic lights and shadows. only used if not 0" },
 		{ _field_real_point_3d, "dynamic light sphere offset", "only used if radius not 0" },
@@ -3178,20 +3178,20 @@ namespace halo2 {
 		{ _field_useless_pad, "value" },
 		{ _field_block, "functions", &blofeld::halo2::object_function_block },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Applying collision damage", nullptr, FIELD_FLAG_NONE, "for things that want to cause more or less collision damage"),
+		FIELD_EXPLANATION_EX("Applying collision damage", nullptr, FIELD_FLAG_NONE, "for things that want to cause more or less collision damage"),
 		{ _field_real, "Apply collision damage scale", "0 means 1.  1 is standard scale.  Some things may want to apply more damage" },
-		FIELD_EXPLANATION("Game collision damage parameters", nullptr, FIELD_FLAG_NONE, "0 - means take default value from globals.globals"),
+		FIELD_EXPLANATION_EX("Game collision damage parameters", nullptr, FIELD_FLAG_NONE, "0 - means take default value from globals.globals"),
 		{ _field_real, "min game acc (default)", "0-oo" },
 		{ _field_real, "max game acc (default)", "0-oo" },
 		{ _field_real, "min game scale (default)", "0-1" },
 		{ _field_real, "max game scale (default)", "0-1" },
-		FIELD_EXPLANATION("Absolute collision damage parameters", nullptr, FIELD_FLAG_NONE, "0 - means take default value from globals.globals"),
+		FIELD_EXPLANATION_EX("Absolute collision damage parameters", nullptr, FIELD_FLAG_NONE, "0 - means take default value from globals.globals"),
 		{ _field_real, "min abs acc (default)", "0-oo" },
 		{ _field_real, "max abs acc (default)", "0-oo" },
 		{ _field_real, "min abs scale (default)", "0-1" },
 		{ _field_real, "max abs scale (default)", "0-1" },
 		{ _field_short_integer, "hud text message index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "attachments", &blofeld::halo2::object_attachment_block },
 		{ _field_block, "widgets", &blofeld::halo2::object_widget_block },
 		{ _field_block, "old functions", &blofeld::halo2::old_object_function_block },
@@ -3261,7 +3261,7 @@ namespace halo2 {
 		{ _field_real, "mass" },
 		{ _field_real, "low freq. deactivation scale", "0 is default (1). LESS than 1 deactivates less aggressively. GREATER than 1 is more agressive." },
 		{ _field_real, "high freq. deactivation scale", "0 is default (1). LESS than 1 deactivates less aggressively. GREATER than 1 is more agressive." },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_block, "phantom types", &blofeld::halo2::phantom_types_block },
 		{ _field_block, "node edges", &blofeld::halo2::physics_model_node_constraint_edge_block },
 		{ _field_block, "rigid bodies", &blofeld::halo2::rigid_bodies_block },
@@ -3272,7 +3272,7 @@ namespace halo2 {
 		{ _field_block, "boxes", &blofeld::halo2::boxes_block },
 		{ _field_block, "triangles", &blofeld::halo2::triangles_block },
 		{ _field_block, "polyhedra", &blofeld::halo2::polyhedra_block },
-		FIELD_EXPLANATION("ALL THESE WORLDS ARE YOURS, EXCEPT EUROPA...", nullptr, FIELD_FLAG_NONE, "Attempt no landings there.  And you can\'t edit anything below this point, so why even look at it?"),
+		FIELD_EXPLANATION_EX("ALL THESE WORLDS ARE YOURS, EXCEPT EUROPA...", nullptr, FIELD_FLAG_NONE, "Attempt no landings there.  And you can\'t edit anything below this point, so why even look at it?"),
 		{ _field_block, "polyhedron four vectors", &blofeld::halo2::polyhedron_four_vectors_block },
 		{ _field_block, "polyhedron plane equations", &blofeld::halo2::polyhedron_plane_equations_block },
 		{ _field_block, "mass distributions", &blofeld::halo2::mass_distributions_block },
@@ -3328,13 +3328,13 @@ namespace halo2 {
 		{ _field_real_fraction, "ground damp fraction" },
 		{ _field_real, "ground normal k1" },
 		{ _field_real, "ground normal k0" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "water friction" },
 		{ _field_real, "water depth" },
 		{ _field_real, "water density" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_fraction, "air friction" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "xx moment" },
 		{ _field_real, "yy moment" },
 		{ _field_real, "zz moment" },
@@ -3360,7 +3360,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_data, "compiled_shader" },
 		{ _field_terminator }
 	};
@@ -3419,14 +3419,14 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$353 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_real, "density", nullptr, "g/mL" },
 		{ _field_real, "air friction" },
 		{ _field_real, "water friction" },
 		{ _field_real, "surface friction", "when hitting the ground or interior, percentage of velocity lost in one collision" },
 		{ _field_real, "elasticity", "0.0 is inelastic collisions (no bounce) 1.0 is perfectly elastic (reflected velocity equals incoming velocity)" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_EXPLANATION("Densities (g/mL)", nullptr, FIELD_FLAG_NONE, "air        0.0011 (g/mL)\nsnow       0.128\ncork       0.24\ncedar      0.43\noak        0.866\nice        0.897\nwater      1.0\nsoil       1.1\ncotton     1.491\ndry earth  1.52\nsand       1.7\ngranite    2.4\nglass      2.5\niron       7.65\nsteel      7.77\nlead       11.37\nuranium    18.74\ngold       19.3\n"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_EXPLANATION_EX("Densities (g/mL)", nullptr, FIELD_FLAG_NONE, "air        0.0011 (g/mL)\nsnow       0.128\ncork       0.24\ncedar      0.43\noak        0.866\nice        0.897\nwater      1.0\nsoil       1.1\ncotton     1.491\ndry earth  1.52\nsand       1.7\ngranite    2.4\nglass      2.5\niron       7.65\nsteel      7.77\nlead       11.37\nuranium    18.74\ngold       19.3\n"),
 		{ _field_terminator }
 	};
 
@@ -3458,14 +3458,14 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "object", &blofeld::halo2::object_block_group_block_struct_definition },
-		FIELD_EXPLANATION("$$$ PROJECTILE $$$", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("$$$ PROJECTILE $$$", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$354 },
 		{ _field_enum, "detonation timer starts", &blofeld::halo2::unnamed_enum$355 },
 		{ _field_enum, "impact noise", &blofeld::halo2::unnamed_enum$356 },
 		{ _field_useless_pad, "value" },
 		{ _field_real, "AI perception radius", nullptr, "world units" },
 		{ _field_real, "collision radius", nullptr, "world units" },
-		FIELD_EXPLANATION("detonation", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("detonation", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "arming time", "won't detonate before this time elapses", "seconds" },
 		{ _field_real, "danger radius", nullptr, "world units" },
 		{ _field_real_bounds, "timer", "detonation countdown (zero is untimed)", "seconds" },
@@ -3482,20 +3482,20 @@ namespace halo2 {
 		{ _field_struct, "your momma", &blofeld::halo2::super_detonation_damage_struct_block_struct_definition },
 		{ _field_tag_reference, "detonation sound", &blofeld::halo2::sound_reference },
 		{ _field_char_enum, "damage reporting type", &blofeld::halo2::unnamed_enum$213 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "super attached detonation damage", &blofeld::halo2::damage_effect_reference },
 		{ _field_useless_pad, "value" },
 		{ _field_real, "material effect radius", "radius within we will generate material effects" },
-		FIELD_EXPLANATION("flyby/impact", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("flyby/impact", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "flyby sound", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "impact effect", &blofeld::halo2::effect_reference },
 		{ _field_tag_reference, "impact damage", &blofeld::halo2::damage_effect_reference },
-		FIELD_EXPLANATION("boarding fields", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("boarding fields", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "boarding detonation time" },
 		{ _field_tag_reference, "boarding detonation damage", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "boarding attached detonation damage", &blofeld::halo2::damage_effect_reference },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("physics", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("physics", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "air gravity scale", "the proportion of normal gravity applied to the projectile when in air." },
 		{ _field_real_bounds, "air damage range", "the range over which damage is scaled when the projectile is in air.", "world units" },
 		{ _field_real, "water gravity scale", "the proportion of normal gravity applied to the projectile when in water." },
@@ -3505,7 +3505,7 @@ namespace halo2 {
 		{ _field_struct, "blah", &blofeld::halo2::angular_velocity_lower_bound_struct_block_struct_definition },
 		{ _field_angle, "guided angular velocity (upper)", nullptr, "degrees per second" },
 		{ _field_real_bounds, "acceleration range", "what distance range the projectile goes from initial velocity to final velocity", "world units" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_fraction, "targeted leading fraction" },
 		{ _field_useless_pad, "value" },
 		{ _field_block, "material responses", &blofeld::halo2::projectile_material_response_block },
@@ -3614,35 +3614,35 @@ namespace halo2 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$38 },
 		{ _field_enum, "particle billboard style", &blofeld::halo2::unnamed_enum$39 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "first sequence index" },
 		{ _field_short_integer, "sequence count" },
-		FIELD_EXPLANATION("Shader Parameters", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Shader Parameters", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_custom, "shader" },
 		{ _field_custom, "value" },
 		{ _field_tag_reference, "shader template", &blofeld::halo2::shader_template_reference },
 		{ _field_block, "shader parameters", &blofeld::halo2::global_shader_parameter_block },
 		{ _field_custom, "value" },
-		FIELD_EXPLANATION("Color", nullptr, FIELD_FLAG_NONE, "controls how the color of the particle changes as\na function of its input"),
+		FIELD_EXPLANATION_EX("Color", nullptr, FIELD_FLAG_NONE, "controls how the color of the particle changes as\na function of its input"),
 		{ _field_struct, "color", &blofeld::halo2::particle_property_color_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("Alpha", nullptr, FIELD_FLAG_NONE, "seperate from color, controls how the particle fades\nas a function of its input"),
+		FIELD_EXPLANATION_EX("Alpha", nullptr, FIELD_FLAG_NONE, "seperate from color, controls how the particle fades\nas a function of its input"),
 		{ _field_struct, "alpha", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("Scale", nullptr, FIELD_FLAG_NONE, "controls how the size of a particle changes as\na function of its input"),
+		FIELD_EXPLANATION_EX("Scale", nullptr, FIELD_FLAG_NONE, "controls how the size of a particle changes as\na function of its input"),
 		{ _field_struct, "scale", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("Rotation", nullptr, FIELD_FLAG_NONE, "controls how the particle rotates. 0= 0 degrees, .5= 180 degrees, 1.0= 360 degrees"),
+		FIELD_EXPLANATION_EX("Rotation", nullptr, FIELD_FLAG_NONE, "controls how the particle rotates. 0= 0 degrees, .5= 180 degrees, 1.0= 360 degrees"),
 		{ _field_struct, "rotation", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("Frame index", nullptr, FIELD_FLAG_NONE, "provides finer grain control over how the animation\nhappens.  a output of 0.25 means that when that input\nis fed in, the particle will be 25% of the way through\nits animation."),
+		FIELD_EXPLANATION_EX("Frame index", nullptr, FIELD_FLAG_NONE, "provides finer grain control over how the animation\nhappens.  a output of 0.25 means that when that input\nis fed in, the particle will be 25% of the way through\nits animation."),
 		{ _field_struct, "frame index", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("Spawned Effects", nullptr, FIELD_FLAG_NONE, "collision occurs when particle physics has collision, death spawned when particle dies"),
+		FIELD_EXPLANATION_EX("Spawned Effects", nullptr, FIELD_FLAG_NONE, "collision occurs when particle physics has collision, death spawned when particle dies"),
 		{ _field_tag_reference, "collision effect", "effect, material effect or sound spawned when this particle collides with something", &blofeld::halo2::effect_sound_material_effects_reference$2 },
 		{ _field_tag_reference, "death effect", "effect, material effect or sound spawned when this particle dies", &blofeld::halo2::effect_sound_material_effects_reference$2 },
-		FIELD_EXPLANATION("Attached Particle Systems", nullptr, FIELD_FLAG_NONE, "Locations:\nup - particles shoot straight up\ngravity - particles shoot straight down\nNONE - opposite of particle direction"),
+		FIELD_EXPLANATION_EX("Attached Particle Systems", nullptr, FIELD_FLAG_NONE, "Locations:\nup - particles shoot straight up\ngravity - particles shoot straight down\nNONE - opposite of particle direction"),
 		{ _field_block, "locations", &blofeld::halo2::effect_locations_block },
 		{ _field_block, "attached particle systems", &blofeld::halo2::particle_system_definition_block_new },
 		{ _field_block, "value", &blofeld::halo2::shader_postprocess_definition_new_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_terminator }
 	};
 
@@ -3673,7 +3673,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_block, "Import Info", &blofeld::halo2::global_tag_import_info_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "Collision Materials", &blofeld::halo2::structure_collision_materials_block },
 		{ _field_block, "Collision BSP", &blofeld::halo2::global_collision_bsp_block },
 		{ _field_real, "Vehicle Floor", "Height below which vehicles get pushed up by an unstoppable force.", "World Units" },
@@ -3687,7 +3687,7 @@ namespace halo2 {
 		{ _field_data, "Cluster Data" },
 		{ _field_block, "Cluster Portals", &blofeld::halo2::structure_bsp_cluster_portal_block },
 		{ _field_block, "Fog Planes", &blofeld::halo2::structure_bsp_fog_plane_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_block, "Weather Palette", &blofeld::halo2::structure_bsp_weather_palette_block },
 		{ _field_block, "Weather Polyhedra", &blofeld::halo2::structure_bsp_weather_polyhedron_block },
 		{ _field_block, "Detail Objects", &blofeld::halo2::structure_bsp_detail_object_data_block },
@@ -3706,7 +3706,7 @@ namespace halo2 {
 		{ _field_block, "Environment Object Palette", &blofeld::halo2::structure_bsp_environment_object_palette_block },
 		{ _field_block, "Environment Objects", &blofeld::halo2::structure_bsp_environment_object_block },
 		{ _field_block, "Lightmaps", &blofeld::halo2::structure_bsp_lightmap_data_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "Leaf Map Leaves", &blofeld::halo2::global_map_leaf_block },
 		{ _field_block, "Leaf Map Connections", &blofeld::halo2::global_leaf_connection_block },
 		{ _field_block, "Errors", &blofeld::halo2::global_error_report_categories_block },
@@ -3716,7 +3716,7 @@ namespace halo2 {
 		{ _field_block, ")Ambience Sound Clusters", &blofeld::halo2::structure_bsp_sound_cluster_block },
 		{ _field_block, ")Reverb Sound Clusters", &blofeld::halo2::structure_bsp_sound_cluster_block },
 		{ _field_block, "Transparent Planes", &blofeld::halo2::transparent_planes_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 96),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 96),
 		{ _field_real, "Vehicle Sperical Limit Radius", "Distances this far and longer from limit origin will pull you back in." },
 		{ _field_real_point_3d, "Vehicle Sperical Limit Center", "Center of space in which vehicle can move." },
 		{ _field_block, "Debug Info", &blofeld::halo2::structure_bsp_debug_info_block },
@@ -3749,12 +3749,12 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "object", &blofeld::halo2::object_block_group_block_struct_definition },
-		FIELD_EXPLANATION("Pathfinding", nullptr, FIELD_FLAG_NONE, "Indicate whether, by default, we should create pathfinding data for this type of scenery"),
+		FIELD_EXPLANATION_EX("Pathfinding", nullptr, FIELD_FLAG_NONE, "Indicate whether, by default, we should create pathfinding data for this type of scenery"),
 		{ _field_enum, "pathfinding policy", &blofeld::halo2::unnamed_enum$385 },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$386 },
-		FIELD_EXPLANATION("Lightmapping", nullptr, FIELD_FLAG_NONE, "Indicate whether, by default, how we should lightmap this type of scenery"),
+		FIELD_EXPLANATION_EX("Lightmapping", nullptr, FIELD_FLAG_NONE, "Indicate whether, by default, how we should lightmap this type of scenery"),
 		{ _field_enum, "lightmapping policy", &blofeld::halo2::unnamed_enum$387 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
 	};
@@ -3888,9 +3888,9 @@ namespace halo2 {
 		{ _field_tag_reference, "Sound Effect Collection", &blofeld::halo2::sound_effect_collection_reference },
 		{ _field_block, "Crates", &blofeld::halo2::scenario_crate_block },
 		{ _field_block, "Crates Palette", &blofeld::halo2::scenario_crate_palette_block },
-		FIELD_EXPLANATION("Global Lighting Override", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Global Lighting Override", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "Global Lighting", &blofeld::halo2::chocolate_mountain_reference },
-		FIELD_EXPLANATION("WARNING", nullptr, FIELD_FLAG_NONE, "Editing Fog palette data will not behave as expected with split scenarios."),
+		FIELD_EXPLANATION_EX("WARNING", nullptr, FIELD_FLAG_NONE, "Editing Fog palette data will not behave as expected with split scenarios."),
 		{ _field_block, "Atmospheric Fog Palette", &blofeld::halo2::scenario_atmospheric_fog_palette },
 		{ _field_block, "Planar Fog Palette", &blofeld::halo2::scenario_planar_fog_palette },
 		{ _field_block, "Flocks", &blofeld::halo2::flock_definition_block },
@@ -3904,7 +3904,7 @@ namespace halo2 {
 		{ _field_block, ")Editor Folders", &blofeld::halo2::g_scenario_editor_folder_block },
 		{ _field_block, "Level Data", &blofeld::halo2::scenario_level_data_block },
 		{ _field_tag_reference, "Territory Location Names", &blofeld::halo2::multilingual_unicode_string_list_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_block, "Mission Dialogue", &blofeld::halo2::ai_scenario_mission_dialogue_block },
 		{ _field_tag_reference, "Objectives", &blofeld::halo2::multilingual_unicode_string_list_reference },
 		{ _field_block, "Interpolators", &blofeld::halo2::scenario_interpolator_block },
@@ -3982,18 +3982,18 @@ namespace halo2 {
 		{ _field_tag_reference, "Template", &blofeld::halo2::shader_template_reference },
 		{ _field_string_id, "Material Name" },
 		{ _field_block, "Runtime Properties", &blofeld::halo2::shader_properties_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_word_flags, "Flags", &blofeld::halo2::unnamed_enum$413 },
 		{ _field_block, "Parameters", &blofeld::halo2::global_shader_parameter_block },
 		{ _field_block, "Postprocess Definition", &blofeld::halo2::shader_postprocess_definition_new_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_useless_pad, "value" },
 		{ _field_block, "Predicted Resources", &blofeld::halo2::predicted_resource_block },
 		{ _field_tag_reference, "Light Response", &blofeld::halo2::shader_light_response_reference },
 		{ _field_enum, "Shader LOD Bias", &blofeld::halo2::unnamed_enum$414 },
 		{ _field_enum, "Specular Type", &blofeld::halo2::unnamed_enum$415 },
 		{ _field_enum, "Lightmap Type", &blofeld::halo2::unnamed_enum$416 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "Lightmap Specular Brightness" },
 		{ _field_real, "Lightmap Ambient Bias", nullptr, nullptr, "[-1,1]" },
 		{ _field_block, "Postprocess Properties", &blofeld::halo2::long_block },
@@ -4059,7 +4059,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_enum, "parameter", &blofeld::halo2::unnamed_enum$190 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_tag_reference, "string list", &blofeld::halo2::multilingual_unicode_string_list_reference },
 		{ _field_string_id, "title text" },
 		{ _field_string_id, "header text" },
@@ -4207,10 +4207,10 @@ namespace halo2 {
 		{ _field_point_2d, "up-arrows offset", nullptr, "from bot-left of 1st item" },
 		{ _field_point_2d, "down-arrows offset", nullptr, "from bot-left of 1st item" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Item Animations", nullptr, FIELD_FLAG_NONE, "Animations ordered as follows:\n0) list item focused\n1) list item unfocused\n2) list item ambient\n3) list item hovered\n4) list item unhovered\n5) list item clicked (hovered->focused)\n6) list item unfocused back to hovered state (focused->hovered)\n"),
+		FIELD_EXPLANATION_EX("Item Animations", nullptr, FIELD_FLAG_NONE, "Animations ordered as follows:\n0) list item focused\n1) list item unfocused\n2) list item ambient\n3) list item hovered\n4) list item unhovered\n5) list item clicked (hovered->focused)\n6) list item unfocused back to hovered state (focused->hovered)\n"),
 		{ _field_block, "item animations", &blofeld::halo2::single_animation_reference_block },
 		{ _field_block, "text blocks", &blofeld::halo2::text_block_reference_block },
-		FIELD_EXPLANATION("NOTE", nullptr, FIELD_FLAG_NONE, "the bitmap block top-left is actually bottom-left here in list skin land!"),
+		FIELD_EXPLANATION_EX("NOTE", nullptr, FIELD_FLAG_NONE, "the bitmap block top-left is actually bottom-left here in list skin land!"),
 		{ _field_block, "bitmap blocks", &blofeld::halo2::bitmap_block_reference_block },
 		{ _field_block, "hud blocks", &blofeld::halo2::hud_block_reference_block },
 		{ _field_block, "player blocks", &blofeld::halo2::player_block_reference_block },
@@ -4245,28 +4245,28 @@ namespace halo2 {
 		{ _field_real, "Render Model Scale", "Multiplier by which to scale the model's geometry up or down (0 defaults to standard, 0.03)." },
 		{ _field_real, "Movement Scale", "How much the sky moves to remain centered on the player (0 defaults to 1.0, which means no parallax)." },
 		{ _field_block, "Cube Map", &blofeld::halo2::sky_cubemap_block },
-		FIELD_EXPLANATION("AMBIENT LIGHT", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("AMBIENT LIGHT", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_rgb_color, "Indoor Ambient Color", "Indoor ambient light color." },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_rgb_color, "Outdoor Ambient Color", "Indoor ambient light color." },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("FOG", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("FOG", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "Fog Spread Distance", "How far fog spreads into adjacent clusters.", "world units" },
 		{ _field_block, "Atmospheric Fog", &blofeld::halo2::sky_atmospheric_fog_block },
 		{ _field_block, "Secondary Fog", &blofeld::halo2::sky_atmospheric_fog_block },
 		{ _field_block, "Sky Fog", &blofeld::halo2::sky_fog_block },
 		{ _field_block, "Patchy Fog", &blofeld::halo2::sky_patchy_fog_block },
-		FIELD_EXPLANATION("BLOOM OVERRIDE", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("BLOOM OVERRIDE", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_fraction, "Amount", nullptr, nullptr, "[0,1]" },
 		{ _field_real_fraction, "Threshold", nullptr, nullptr, "[0,1]" },
 		{ _field_real_fraction, "Brightness", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "Gamma Power" },
 		{ _field_block, "Lights", &blofeld::halo2::sky_light_block },
-		FIELD_EXPLANATION("ROTATION", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("ROTATION", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_angle, "Global Sky Rotation" },
 		{ _field_block, "Shader Functions", &blofeld::halo2::sky_shader_function_block },
 		{ _field_block, "Animations", &blofeld::halo2::sky_animation_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real_rgb_color, "Clear Color" },
 		{ _field_terminator }
 	};
@@ -4302,8 +4302,8 @@ namespace halo2 {
 	{
 		{ _field_block, "categories", &blofeld::halo2::shader_template_category_block },
 		{ _field_block, "shader LODs", &blofeld::halo2::shader_template_level_of_detail_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -4350,12 +4350,12 @@ namespace halo2 {
 		{ _field_char_enum, "import type", &blofeld::halo2::unnamed_enum$437 },
 		{ _field_struct, "playback", &blofeld::halo2::sound_playback_parameters_struct_block_struct_definition },
 		{ _field_struct, "scale", &blofeld::halo2::sound_scale_modifiers_struct_block_struct_definition },
-		FIELD_EXPLANATION("import properties", nullptr, FIELD_FLAG_NONE, nullptr),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("import properties", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_char_enum, "encoding", &blofeld::halo2::unnamed_enum$4 },
 		{ _field_char_enum, "compression", &blofeld::halo2::unnamed_enum$5 },
 		{ _field_struct, "promotion", &blofeld::halo2::sound_promotion_parameters_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::sound_pitch_range_block },
 		{ _field_block, "platform parameters", &blofeld::halo2::sound_platform_sound_playback_block },
 		{ _field_block, "value", &blofeld::halo2::sound_extra_info_block },
@@ -4396,9 +4396,9 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "priority", "when multiple listeners are in different sound environments in split screen, the combined environment will be the one with the highest priority." },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "room intensity", "intensity of the room effect", "dB" },
 		{ _field_real, "room intensity hf", "intensity of the room effect above the reference high frequency", "dB" },
 		{ _field_real, "room rolloff (0 to 10)", "how quickly the room effect rolls off, from 0.0 to 10.0" },
@@ -4411,7 +4411,7 @@ namespace halo2 {
 		{ _field_real, "diffusion" },
 		{ _field_real, "density" },
 		{ _field_real, "hf reference(20 to 20,000)", "for hf values, what frequency defines hf, from 20 to 20,000", "Hz" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_terminator }
 	};
 
@@ -4431,22 +4431,22 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("first person left side mix", nullptr, FIELD_FLAG_NONE, "for first person sounds to the left of you"),
+		FIELD_EXPLANATION_EX("first person left side mix", nullptr, FIELD_FLAG_NONE, "for first person sounds to the left of you"),
 		{ _field_real, "left stereo gain", nullptr, "dB" },
 		{ _field_real, "right stereo gain", nullptr, "dB" },
-		FIELD_EXPLANATION("first person middle mix", nullptr, FIELD_FLAG_NONE, "for first person sounds between your ears"),
+		FIELD_EXPLANATION_EX("first person middle mix", nullptr, FIELD_FLAG_NONE, "for first person sounds between your ears"),
 		{ _field_real, "left stereo gain", nullptr, "dB" },
 		{ _field_real, "right stereo gain", nullptr, "dB" },
-		FIELD_EXPLANATION("first person right side mix", nullptr, FIELD_FLAG_NONE, "for first person sounds to the right of you"),
+		FIELD_EXPLANATION_EX("first person right side mix", nullptr, FIELD_FLAG_NONE, "for first person sounds to the right of you"),
 		{ _field_real, "left stereo gain", nullptr, "dB" },
 		{ _field_real, "right stereo gain", nullptr, "dB" },
-		FIELD_EXPLANATION("first person stereo mix", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("first person stereo mix", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "front speaker gain", nullptr, "dB" },
 		{ _field_real, "rear speaker gain", nullptr, "dB" },
-		FIELD_EXPLANATION("ambient stereo mix", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("ambient stereo mix", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "front speaker gain", nullptr, "dB" },
 		{ _field_real, "rear speaker gain", nullptr, "dB" },
-		FIELD_EXPLANATION("global mix", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("global mix", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "global mix", &blofeld::halo2::sound_global_mix_struct_block_struct_definition },
 		{ _field_terminator }
 	};
@@ -4469,8 +4469,8 @@ namespace halo2 {
 	{
 		{ _field_data, "Documentation" },
 		{ _field_block, "Parameters", &blofeld::halo2::shader_pass_parameter_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "Implementations", &blofeld::halo2::shader_pass_implementation_block },
 		{ _field_block, "Postprocess Definition", &blofeld::halo2::shader_pass_postprocess_definition_new_block },
 		{ _field_terminator }
@@ -4492,12 +4492,12 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("named playing fractions", nullptr, FIELD_FLAG_NONE, "these values correspond to the named play fractions in the dialogue editor (It\'s really skip fractions, but who cares?)"),
+		FIELD_EXPLANATION_EX("named playing fractions", nullptr, FIELD_FLAG_NONE, "these values correspond to the named play fractions in the dialogue editor (It\'s really skip fractions, but who cares?)"),
 		{ _field_real, "almost never" },
 		{ _field_real, "rarely" },
 		{ _field_real, "somewhat" },
 		{ _field_real, "often" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_terminator }
 	};
 
@@ -4518,7 +4518,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "object", &blofeld::halo2::object_block_group_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
 	};
@@ -4561,23 +4561,23 @@ namespace halo2 {
 	{
 		{ _field_data, "Documentation" },
 		{ _field_string_id, "Default Material Name" },
-		FIELD_EXPLANATION("FLAGS", nullptr, FIELD_FLAG_NONE, "* Force Active Camo: Should be used with cautuion, as this causes a backbuffer copy when this shader is rendered.\n* Water: ???.\n* Foliage: Used with lightmapped foliage (two-sided lighting) shaders. It affects importing but not rendering."),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("FLAGS", nullptr, FIELD_FLAG_NONE, "* Force Active Camo: Should be used with cautuion, as this causes a backbuffer copy when this shader is rendered.\n* Water: ???.\n* Foliage: Used with lightmapped foliage (two-sided lighting) shaders. It affects importing but not rendering."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_word_flags, "Flags", &blofeld::halo2::unnamed_enum$475 },
 		{ _field_block, "Properties", &blofeld::halo2::shader_template_property_block },
 		{ _field_block, "Categories", &blofeld::halo2::shader_template_category_block },
-		FIELD_EXPLANATION("LIGHT RESPONSE", nullptr, FIELD_FLAG_NONE, "Not used anymore."),
+		FIELD_EXPLANATION_EX("LIGHT RESPONSE", nullptr, FIELD_FLAG_NONE, "Not used anymore."),
 		{ _field_tag_reference, "Light Response", &blofeld::halo2::shader_light_response_reference },
 		{ _field_block, "LODs", &blofeld::halo2::shader_template_level_of_detail_block },
 		{ _field_block, "value", &blofeld::halo2::shader_template_runtime_external_light_response_index_block },
 		{ _field_block, "value", &blofeld::halo2::shader_template_runtime_external_light_response_index_block },
-		FIELD_EXPLANATION("RECURSIVE RENDERING", nullptr, FIELD_FLAG_NONE, "Really cool stuff."),
+		FIELD_EXPLANATION_EX("RECURSIVE RENDERING", nullptr, FIELD_FLAG_NONE, "Really cool stuff."),
 		{ _field_tag_reference, "Aux 1 Shader", &blofeld::halo2::shader_reference },
 		{ _field_enum, "Aux 1 Layer", &blofeld::halo2::unnamed_enum$432 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "Aux 2 Shader", &blofeld::halo2::shader_reference },
 		{ _field_enum, "Aux 2 Layer", &blofeld::halo2::unnamed_enum$432 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "Postprocess Definition", &blofeld::halo2::shader_template_postprocess_definition_new_block },
 		{ _field_terminator }
 	};
@@ -4632,12 +4632,12 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string, "name" },
-		FIELD_EXPLANATION("Combat status decay options", nullptr, FIELD_FLAG_NONE, "Controls how combat status is allowed to be automatically reduced in the absence of combat stimuli. \'Latch at X\' means that once the level of x is attained (and/or surpassed) the combat status never falls below it"),
+		FIELD_EXPLANATION_EX("Combat status decay options", nullptr, FIELD_FLAG_NONE, "Controls how combat status is allowed to be automatically reduced in the absence of combat stimuli. \'Latch at X\' means that once the level of x is attained (and/or surpassed) the combat status never falls below it"),
 		{ _field_enum, "Combat status decay options", &blofeld::halo2::unnamed_enum$477 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_EXPLANATION("Atittude", nullptr, FIELD_FLAG_NONE, "Indicates general stance for style. This matches the property blocks in the character definition (e.g. defense properties)"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("Atittude", nullptr, FIELD_FLAG_NONE, "Indicates general stance for style. This matches the property blocks in the character definition (e.g. defense properties)"),
 		{ _field_enum, "Attitude", &blofeld::halo2::unnamed_enum$63 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_char_enum, "engage attitude", &blofeld::halo2::unnamed_enum$478 },
 		{ _field_char_enum, "evasion attitude", &blofeld::halo2::unnamed_enum$478 },
 		{ _field_char_enum, "cover attitude", &blofeld::halo2::unnamed_enum$478 },
@@ -4649,9 +4649,9 @@ namespace halo2 {
 		{ _field_char_enum, "idle attitude", &blofeld::halo2::unnamed_enum$478 },
 		{ _field_char_enum, "weapon attitude", &blofeld::halo2::unnamed_enum$478 },
 		{ _field_char_enum, "swarm attitude", &blofeld::halo2::unnamed_enum$478 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Style Behavior Control", nullptr, FIELD_FLAG_NONE, "Check the appropriate box to turn on/off the given behavior"),
+		FIELD_EXPLANATION_EX("Style Behavior Control", nullptr, FIELD_FLAG_NONE, "Check the appropriate box to turn on/off the given behavior"),
 		{ _field_long_flags, "Style control", &blofeld::halo2::unnamed_enum$479 },
 		{ _field_long_flags, "Behaviors1", &blofeld::halo2::unnamed_enum$480 },
 		{ _field_long_flags, "Behaviors2", &blofeld::halo2::unnamed_enum$481 },
@@ -4897,14 +4897,14 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("LIQUID", nullptr, FIELD_FLAG_NONE, nullptr),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("LIQUID", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "type", &blofeld::halo2::unnamed_enum$485 },
 		{ _field_string_id, "attachment marker name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 56),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 56),
 		{ _field_real, "falloff distance from camera", nullptr, "world units" },
 		{ _field_real, "cutoff distance from camera", nullptr, "world units" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_block, "arcs", &blofeld::halo2::liquid_arc_block },
 		{ _field_terminator }
 	};
@@ -5040,17 +5040,17 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_custom, "value" },
-		FIELD_EXPLANATION("Weapon hud screen alignment", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Weapon hud screen alignment", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "anchor", &blofeld::halo2::unnamed_enum$191 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_EXPLANATION("Unit hud background", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_EXPLANATION_EX("Unit hud background", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "interface bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
@@ -5060,18 +5060,18 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "multitex overlay", &blofeld::halo2::global_hud_multitexture_overlay_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("Shield panel background", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("Shield panel background", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "interface bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
@@ -5081,18 +5081,18 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "multitex overlay", &blofeld::halo2::global_hud_multitexture_overlay_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("Shield panel meter", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("Shield panel meter", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "meter bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_rgb_color, "color at meter minimum" },
 		{ _field_rgb_color, "color at meter maximum" },
@@ -5108,19 +5108,19 @@ namespace halo2 {
 		{ _field_real, "translucency" },
 		{ _field_argb_color, "disabled color" },
 		{ _field_block, "value", &blofeld::halo2::g_null_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_rgb_color, "overcharge minimum color" },
 		{ _field_rgb_color, "overcharge maximum color" },
 		{ _field_rgb_color, "overcharge flash color" },
 		{ _field_rgb_color, "overcharge empty color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("Health panel background", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("Health panel background", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "interface bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
@@ -5130,18 +5130,18 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "multitex overlay", &blofeld::halo2::global_hud_multitexture_overlay_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("Health panel meter", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("Health panel meter", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "meter bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_rgb_color, "color at meter minimum" },
 		{ _field_rgb_color, "color at meter maximum" },
@@ -5157,18 +5157,18 @@ namespace halo2 {
 		{ _field_real, "translucency" },
 		{ _field_argb_color, "disabled color" },
 		{ _field_block, "value", &blofeld::halo2::g_null_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_rgb_color, "medium health left color" },
 		{ _field_real, "max color health fraction cutoff" },
 		{ _field_real, "min color health fraction cutoff" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
-		FIELD_EXPLANATION("Motion sensor background", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_EXPLANATION_EX("Motion sensor background", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "interface bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
@@ -5178,18 +5178,18 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "multitex overlay", &blofeld::halo2::global_hud_multitexture_overlay_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("Motion sensor foreground", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("Motion sensor foreground", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "interface bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
@@ -5199,33 +5199,33 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "multitex overlay", &blofeld::halo2::global_hud_multitexture_overlay_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_EXPLANATION("Motion sensor center", nullptr, FIELD_FLAG_NONE, "The blips use this as a reference point"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_EXPLANATION_EX("Motion sensor center", nullptr, FIELD_FLAG_NONE, "The blips use this as a reference point"),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
-		FIELD_EXPLANATION("Auxilary overlays", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_EXPLANATION_EX("Auxilary overlays", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "anchor", &blofeld::halo2::unnamed_enum$191 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_block, "overlays", &blofeld::halo2::unit_hud_auxilary_overlay_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("Hud warning sounds", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("Hud warning sounds", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_block, "sounds", &blofeld::halo2::unit_hud_sound_block },
-		FIELD_EXPLANATION("Auxilary hud meters", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Auxilary hud meters", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_block, "meters", &blofeld::halo2::unit_hud_auxilary_panel_block },
-		FIELD_EXPLANATION("NEW hud", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("NEW hud", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "new hud", &blofeld::halo2::new_hud_definition_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 356),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 356),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_terminator }
 	};
 
@@ -5257,7 +5257,7 @@ namespace halo2 {
 	{
 		{ _field_block, "string references", &blofeld::halo2::multilingual_unicode_string_reference_block },
 		{ _field_data, "string data utf8" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 36),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 36),
 		{ _field_terminator }
 	};
 
@@ -5278,7 +5278,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "object", &blofeld::halo2::object_block_group_block_struct_definition },
-		FIELD_EXPLANATION("$$$ UNIT $$$", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("$$$ UNIT $$$", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$498 },
 		{ _field_enum, "default team", &blofeld::halo2::unnamed_enum$499 },
 		{ _field_enum, "constant sound volume", &blofeld::halo2::unnamed_enum$356 },
@@ -5318,7 +5318,7 @@ namespace halo2 {
 		{ _field_tag_reference, "melee damage", &blofeld::halo2::damage_effect_reference },
 		{ _field_struct, "your momma", &blofeld::halo2::unit_boarding_melee_struct_block_struct_definition },
 		{ _field_enum, "motion sensor blip size", &blofeld::halo2::unnamed_enum$162 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "postures", &blofeld::halo2::unit_postures_block },
 		{ _field_block, "NEW HUD INTERFACES", &blofeld::halo2::unit_hud_reference_block },
 		{ _field_block, "dialogue variants", &blofeld::halo2::dialogue_variant_block },
@@ -5329,9 +5329,9 @@ namespace halo2 {
 		{ _field_block, "powered seats", &blofeld::halo2::powered_seat_block },
 		{ _field_block, "weapons", &blofeld::halo2::unit_weapon_block },
 		{ _field_block, "seats", &blofeld::halo2::unit_seat_block },
-		FIELD_EXPLANATION("Boost", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Boost", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "boost", &blofeld::halo2::unit_boost_struct_block_struct_definition },
-		FIELD_EXPLANATION("Lipsync", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Lipsync", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "lipsync", &blofeld::halo2::unit_lipsync_scales_struct_block_struct_definition },
 		{ _field_terminator }
 	};
@@ -5426,7 +5426,7 @@ namespace halo2 {
 	{
 		{ _field_block, "vehicle permutations", &blofeld::halo2::vehicle_permutation },
 		{ _field_short_integer, "spawn time (in seconds, 0 = default)" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -5447,7 +5447,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "unit", &blofeld::halo2::unit_block_group_block_struct_definition },
-		FIELD_EXPLANATION("$$$ VEHICLE $$$", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("$$$ VEHICLE $$$", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$502 },
 		{ _field_enum, "type", &blofeld::halo2::unnamed_enum$503 },
 		{ _field_enum, "control", &blofeld::halo2::unnamed_enum$504 },
@@ -5473,16 +5473,16 @@ namespace halo2 {
 		{ _field_real, "minimum flipping angular velocity" },
 		{ _field_real, "maximum flipping angular velocity" },
 		{ _field_enum, "vehicle size", "The size determine what kind of seats in larger vehicles it may occupy (i.e. small or large cargo seats)", &blofeld::halo2::unnamed_enum$507 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_real, "fixed gun yaw" },
 		{ _field_real, "fixed gun pitch" },
-		FIELD_EXPLANATION("steering overdampening", nullptr, FIELD_FLAG_NONE, "when the steering is off by more than the cusp angle\nthe steering will overcompensate more and more.  when it\nis less, it overcompensates less and less.  the exponent\nshould be something in the neighborhood of 2.0\n"),
+		FIELD_EXPLANATION_EX("steering overdampening", nullptr, FIELD_FLAG_NONE, "when the steering is off by more than the cusp angle\nthe steering will overcompensate more and more.  when it\nis less, it overcompensates less and less.  the exponent\nshould be something in the neighborhood of 2.0\n"),
 		{ _field_real, "overdampen cusp angle", nullptr, "degrees" },
 		{ _field_real, "overdampen exponent" },
 		{ _field_real, "crouch transition time", nullptr, "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("engine", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("engine", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "engine moment", "higher moments make engine spin up slower" },
 		{ _field_real, "engine max angular velocity", "higher moments make engine spin up slower" },
 		{ _field_block, "gears", &blofeld::halo2::gear_block },
@@ -5492,13 +5492,13 @@ namespace halo2 {
 		{ _field_useless_pad, "value" },
 		{ _field_real, "air friction deceleration", "human plane physics only. 0 is nothing.  1 is like thowing the engine to full reverse" },
 		{ _field_real, "thrust scale", "human plane physics only. 0 is default (1)" },
-		FIELD_EXPLANATION("sounds and effects", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("sounds and effects", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "suspension sound", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "crash sound", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "UNUSED", &blofeld::halo2::material_effects_reference },
 		{ _field_tag_reference, "special effect", &blofeld::halo2::effect_reference },
 		{ _field_tag_reference, "unused effect", &blofeld::halo2::effect_reference },
-		FIELD_EXPLANATION("physics", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("physics", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "havok vehicle physics", &blofeld::halo2::havok_vehicle_physics_struct_block_struct_definition },
 		{ _field_terminator }
 	};
@@ -5596,7 +5596,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "platform", &blofeld::halo2::unnamed_enum$514 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "geometry classifications", &blofeld::halo2::vertex_shader_classification_block },
 		{ _field_long_integer, "output swizzles" },
 		{ _field_terminator }
@@ -5648,37 +5648,37 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("Notes on screen widgets", nullptr, FIELD_FLAG_NONE, "- the widget coordinate system is a left-handed system (+x to the right, +y up, +z into the screen)\n  with the origin centered in the display (regardless of display size)\n- for widget component placement, all coordinates you define in the tag specifiy the object\'s\n  placement prior to the application of any animation\n- all coordinates you define are local to that object\n- all text specific to objects in the screen comes from the screen\'s string list tag\n  all of the string indices you may need to specify will refer to the screen\'s string list tag\n- a pane may contain either buttons OR a list OR a table-view, but never a combination of those\n  (widget won\'t function correctly if you try that)\n- all text is centered unless you specify otherwise"),
-		FIELD_EXPLANATION("Flags", nullptr, FIELD_FLAG_NONE, "Set misc. screen behavior here"),
+		FIELD_EXPLANATION_EX("Notes on screen widgets", nullptr, FIELD_FLAG_NONE, "- the widget coordinate system is a left-handed system (+x to the right, +y up, +z into the screen)\n  with the origin centered in the display (regardless of display size)\n- for widget component placement, all coordinates you define in the tag specifiy the object\'s\n  placement prior to the application of any animation\n- all coordinates you define are local to that object\n- all text specific to objects in the screen comes from the screen\'s string list tag\n  all of the string indices you may need to specify will refer to the screen\'s string list tag\n- a pane may contain either buttons OR a list OR a table-view, but never a combination of those\n  (widget won\'t function correctly if you try that)\n- all text is centered unless you specify otherwise"),
+		FIELD_EXPLANATION_EX("Flags", nullptr, FIELD_FLAG_NONE, "Set misc. screen behavior here"),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$534 },
 		{ _field_enum, "screen ID", &blofeld::halo2::unnamed_enum$535 },
 		{ _field_useless_pad, "value" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Button Key", nullptr, FIELD_FLAG_NONE, "The labels here are just a guide; the actual string used comes from the Nth position\nof this button key entry as found in the ui globals button key string list tag"),
+		FIELD_EXPLANATION_EX("Button Key", nullptr, FIELD_FLAG_NONE, "The labels here are just a guide; the actual string used comes from the Nth position\nof this button key entry as found in the ui globals button key string list tag"),
 		{ _field_enum, "button key type", &blofeld::halo2::unnamed_enum$536 },
-		FIELD_EXPLANATION("Default Text Color", nullptr, FIELD_FLAG_NONE, "Any ui elements that don\'t explicitly set a text color will use this color"),
+		FIELD_EXPLANATION_EX("Default Text Color", nullptr, FIELD_FLAG_NONE, "Any ui elements that don\'t explicitly set a text color will use this color"),
 		{ _field_real_argb_color, "text color" },
-		FIELD_EXPLANATION("Screen Text", nullptr, FIELD_FLAG_NONE, "All text specific to this screen"),
+		FIELD_EXPLANATION_EX("Screen Text", nullptr, FIELD_FLAG_NONE, "All text specific to this screen"),
 		{ _field_tag_reference, "string list tag", &blofeld::halo2::multilingual_unicode_string_list_reference },
-		FIELD_EXPLANATION("Panes", nullptr, FIELD_FLAG_NONE, "Define the screen\'s panes here (normal screens have 1 pane, tab-view screens have 2+ panes)"),
+		FIELD_EXPLANATION_EX("Panes", nullptr, FIELD_FLAG_NONE, "Define the screen\'s panes here (normal screens have 1 pane, tab-view screens have 2+ panes)"),
 		{ _field_block, "panes", &blofeld::halo2::window_pane_reference_block },
-		FIELD_EXPLANATION("Shape Group", nullptr, FIELD_FLAG_NONE, "If the screen is to have a shape group, specify it here (references group in user interface globals tag)"),
+		FIELD_EXPLANATION_EX("Shape Group", nullptr, FIELD_FLAG_NONE, "If the screen is to have a shape group, specify it here (references group in user interface globals tag)"),
 		{ _field_enum, "shape group", &blofeld::halo2::unnamed_enum$545 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_EXPLANATION("More Screen Parameters", nullptr, FIELD_FLAG_NONE, "These are down here because they got added on later. Have a nice day."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("More Screen Parameters", nullptr, FIELD_FLAG_NONE, "These are down here because they got added on later. Have a nice day."),
 		{ _field_string_id, "header string id" },
-		FIELD_EXPLANATION("Local strings", nullptr, FIELD_FLAG_NONE, "String IDs here allow defining new string ids that are visible only to this screen."),
+		FIELD_EXPLANATION_EX("Local strings", nullptr, FIELD_FLAG_NONE, "String IDs here allow defining new string ids that are visible only to this screen."),
 		{ _field_block, "local strings", &blofeld::halo2::local_string_id_list_section_reference_block },
-		FIELD_EXPLANATION("Local bitmaps", nullptr, FIELD_FLAG_NONE, "Bitmaps here allow adding a bitmap that\'s accessible in code for use in this screen."),
+		FIELD_EXPLANATION_EX("Local bitmaps", nullptr, FIELD_FLAG_NONE, "Bitmaps here allow adding a bitmap that\'s accessible in code for use in this screen."),
 		{ _field_block, "local bitmaps", &blofeld::halo2::local_bitmap_reference_block },
-		FIELD_EXPLANATION("LEVEL LOAD PROGRESS FIELDS", nullptr, FIELD_FLAG_NONE, "These are used only for level load progress bitmaps"),
+		FIELD_EXPLANATION_EX("LEVEL LOAD PROGRESS FIELDS", nullptr, FIELD_FLAG_NONE, "These are used only for level load progress bitmaps"),
 		{ _field_real_rgb_color, "source color" },
 		{ _field_real_rgb_color, "destination color" },
 		{ _field_real, "accumulate zoom scale x" },
 		{ _field_real, "accumulate zoom scale y" },
 		{ _field_real, "refraction scale x" },
 		{ _field_real, "refraction scale y" },
-		FIELD_EXPLANATION("Mouse cursors", nullptr, FIELD_FLAG_NONE, "The mouse cursor definition for this screen."),
+		FIELD_EXPLANATION_EX("Mouse cursors", nullptr, FIELD_FLAG_NONE, "The mouse cursor definition for this screen."),
 		{ _field_tag_reference, "mouse cursor definition", &blofeld::halo2::mouse_cursor_definition_reference },
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
@@ -6040,13 +6040,13 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("Shared Globals", nullptr, FIELD_FLAG_NONE, "This is a reference to the ui shared globals tag"),
+		FIELD_EXPLANATION_EX("Shared Globals", nullptr, FIELD_FLAG_NONE, "This is a reference to the ui shared globals tag"),
 		{ _field_tag_reference, "shared globals", &blofeld::halo2::user_interface_shared_globals_definition_reference },
-		FIELD_EXPLANATION("Screen Widgets", nullptr, FIELD_FLAG_NONE, "These are the screen widgets"),
+		FIELD_EXPLANATION_EX("Screen Widgets", nullptr, FIELD_FLAG_NONE, "These are the screen widgets"),
 		{ _field_block, "screen widgets", &blofeld::halo2::user_interface_widget_reference_block },
-		FIELD_EXPLANATION("Multiplayer Variant Settings Interface", nullptr, FIELD_FLAG_NONE, "This blob defines the ui for setting multiplayer game variant parameters"),
+		FIELD_EXPLANATION_EX("Multiplayer Variant Settings Interface", nullptr, FIELD_FLAG_NONE, "This blob defines the ui for setting multiplayer game variant parameters"),
 		{ _field_tag_reference, "mp variant settings ui", &blofeld::halo2::multiplayer_variant_settings_interface_definition_reference },
-		FIELD_EXPLANATION("Game Hopper Localization Strings", nullptr, FIELD_FLAG_NONE, "This is for the loc game hopper strings"),
+		FIELD_EXPLANATION_EX("Game Hopper Localization Strings", nullptr, FIELD_FLAG_NONE, "This is for the loc game hopper strings"),
 		{ _field_tag_reference, "game hopper descriptions", &blofeld::halo2::multilingual_unicode_string_list_reference },
 		{ _field_terminator }
 	};
@@ -6071,36 +6071,36 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("properties", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("properties", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_short_integer, "updates per second", nullptr, "Hz" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "dead cell penalty" },
 		{ _field_real, "live cell bonus" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 80),
-		FIELD_EXPLANATION("height map", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 80),
+		FIELD_EXPLANATION_EX("height map", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_short_integer, "width", nullptr, "cells" },
 		{ _field_short_integer, "height", nullptr, "cells" },
 		{ _field_real, "cell width", nullptr, "world units" },
 		{ _field_real, "height", nullptr, "world units" },
 		{ _field_real_vector_2d, "velocity", nullptr, "cells/update" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_old_string_id, "marker" },
 		{ _field_long_flags, "interpolation flags", &blofeld::halo2::unnamed_enum$259 },
 		{ _field_real_rgb_color, "base color" },
 		{ _field_real_rgb_color, "peak color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 76),
-		FIELD_EXPLANATION("detail map", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 76),
+		FIELD_EXPLANATION_EX("detail map", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_short_integer, "width", nullptr, "cells" },
 		{ _field_short_integer, "height", nullptr, "cells" },
 		{ _field_real, "cell width", nullptr, "world units" },
 		{ _field_real_vector_2d, "velocity", nullptr, "cells/update" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_old_string_id, "marker" },
 		{ _field_short_integer, "texture width", nullptr, "cells" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_tag_reference, "texture", &blofeld::halo2::bitmap_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 160),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 160),
 		{ _field_block, "rules", &blofeld::halo2::rules_block },
 		{ _field_terminator }
 	};
@@ -6121,15 +6121,15 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_EXPLANATION("UI Rendering Globals", nullptr, FIELD_FLAG_NONE, "miscellaneous rendering globals, more below..."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_EXPLANATION_EX("UI Rendering Globals", nullptr, FIELD_FLAG_NONE, "miscellaneous rendering globals, more below..."),
 		{ _field_real, "overlayed screen alpha mod" },
 		{ _field_short_integer, "inc. text update period", nullptr, "milliseconds" },
 		{ _field_short_integer, "inc. text block character", nullptr, "ASCII code" },
@@ -6138,58 +6138,58 @@ namespace halo2 {
 		{ _field_real, "near clip plane distance", nullptr, "objects closer than this are not drawn" },
 		{ _field_real, "projection plane distance", nullptr, "distance at which objects are rendered when z=0 (normal size)" },
 		{ _field_real, "far clip plane distance", nullptr, "objects farther than this are not drawn" },
-		FIELD_EXPLANATION("Overlayed UI Color", nullptr, FIELD_FLAG_NONE, "This is the color of the overlayed ui effect; the alpha component is the maximum opacity"),
+		FIELD_EXPLANATION_EX("Overlayed UI Color", nullptr, FIELD_FLAG_NONE, "This is the color of the overlayed ui effect; the alpha component is the maximum opacity"),
 		{ _field_real_argb_color, "overlayed interface color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_EXPLANATION("Displayed Errors", nullptr, FIELD_FLAG_NONE, "For each error condition displayed in the UI, set the title and description string ids here"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_EXPLANATION_EX("Displayed Errors", nullptr, FIELD_FLAG_NONE, "For each error condition displayed in the UI, set the title and description string ids here"),
 		{ _field_block, "errors", &blofeld::halo2::ui_error_category_block },
-		FIELD_EXPLANATION("Cursor Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays as you tab through items"),
+		FIELD_EXPLANATION_EX("Cursor Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays as you tab through items"),
 		{ _field_tag_reference, "sound tag", &blofeld::halo2::sound_reference },
-		FIELD_EXPLANATION("Selection Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when an item is selected"),
+		FIELD_EXPLANATION_EX("Selection Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when an item is selected"),
 		{ _field_tag_reference, "sound tag", &blofeld::halo2::sound_reference },
-		FIELD_EXPLANATION("Error Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays to alert the user that something went wrong"),
+		FIELD_EXPLANATION_EX("Error Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays to alert the user that something went wrong"),
 		{ _field_tag_reference, "sound tag", &blofeld::halo2::sound_reference },
-		FIELD_EXPLANATION("Advancing Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when advancing to a new screen"),
+		FIELD_EXPLANATION_EX("Advancing Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when advancing to a new screen"),
 		{ _field_tag_reference, "sound tag", &blofeld::halo2::sound_reference },
-		FIELD_EXPLANATION("Retreating Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when retreating to a previous screen"),
+		FIELD_EXPLANATION_EX("Retreating Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when retreating to a previous screen"),
 		{ _field_tag_reference, "sound tag", &blofeld::halo2::sound_reference },
-		FIELD_EXPLANATION("Initial Login Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when advancing past the initial login screen"),
+		FIELD_EXPLANATION_EX("Initial Login Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when advancing past the initial login screen"),
 		{ _field_tag_reference, "sound tag", &blofeld::halo2::sound_reference },
-		FIELD_EXPLANATION("VKBD Cursor Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when cursoring in the vkeyboard"),
+		FIELD_EXPLANATION_EX("VKBD Cursor Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when cursoring in the vkeyboard"),
 		{ _field_tag_reference, "sound tag", &blofeld::halo2::sound_reference },
-		FIELD_EXPLANATION("VKBD Character Insertion Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when selecting buttons in the vkeyboard"),
+		FIELD_EXPLANATION_EX("VKBD Character Insertion Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when selecting buttons in the vkeyboard"),
 		{ _field_tag_reference, "sound tag", &blofeld::halo2::sound_reference },
-		FIELD_EXPLANATION("Online Notification Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when you receive an online notification"),
+		FIELD_EXPLANATION_EX("Online Notification Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when you receive an online notification"),
 		{ _field_tag_reference, "sound tag", &blofeld::halo2::sound_reference },
-		FIELD_EXPLANATION("Tabbed View Pane Tabbing Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when tabbing thru views in a tabbed view pane (eg, online menu)"),
+		FIELD_EXPLANATION_EX("Tabbed View Pane Tabbing Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays when tabbing thru views in a tabbed view pane (eg, online menu)"),
 		{ _field_tag_reference, "sound tag", &blofeld::halo2::sound_reference },
-		FIELD_EXPLANATION("Pregame Countdown Timer Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays as the countdown timer progresses"),
-		{ _field_tag_reference, "sound tag", &blofeld::halo2::sound_reference },
-		{ _field_tag_reference, "value", &blofeld::halo2::sound_reference },
-		FIELD_EXPLANATION("Matchmaking Advance Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays as matchmaking enters the final stage"),
+		FIELD_EXPLANATION_EX("Pregame Countdown Timer Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays as the countdown timer progresses"),
 		{ _field_tag_reference, "sound tag", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "value", &blofeld::halo2::sound_reference },
+		FIELD_EXPLANATION_EX("Matchmaking Advance Sound", nullptr, FIELD_FLAG_NONE, "This is the sound that plays as matchmaking enters the final stage"),
+		{ _field_tag_reference, "sound tag", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "value", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "value", &blofeld::halo2::sound_reference },
-		FIELD_EXPLANATION("Global Bitmaps", nullptr, FIELD_FLAG_NONE, "Sprite sequences for global ui bitmaps, as follows:\n1) vkeyboard cursor\n"),
+		{ _field_tag_reference, "value", &blofeld::halo2::sound_reference },
+		FIELD_EXPLANATION_EX("Global Bitmaps", nullptr, FIELD_FLAG_NONE, "Sprite sequences for global ui bitmaps, as follows:\n1) vkeyboard cursor\n"),
 		{ _field_tag_reference, "global bitmaps tag", &blofeld::halo2::bitmap_reference },
-		FIELD_EXPLANATION("Global Text Strings", nullptr, FIELD_FLAG_NONE, "Global UI Text goes here"),
+		FIELD_EXPLANATION_EX("Global Text Strings", nullptr, FIELD_FLAG_NONE, "Global UI Text goes here"),
 		{ _field_tag_reference, "unicode string list tag", &blofeld::halo2::multilingual_unicode_string_list_reference },
-		FIELD_EXPLANATION("Screen Animations", nullptr, FIELD_FLAG_NONE, "Animations used by screen definitions for transitions and ambient animating"),
+		FIELD_EXPLANATION_EX("Screen Animations", nullptr, FIELD_FLAG_NONE, "Animations used by screen definitions for transitions and ambient animating"),
 		{ _field_block, "screen animations", &blofeld::halo2::animation_reference_block },
-		FIELD_EXPLANATION("Polygonal Shape Groups", nullptr, FIELD_FLAG_NONE, "Define the various groups of shape-objects for use on any ui screens here"),
+		FIELD_EXPLANATION_EX("Polygonal Shape Groups", nullptr, FIELD_FLAG_NONE, "Define the various groups of shape-objects for use on any ui screens here"),
 		{ _field_block, "shape groups", &blofeld::halo2::shape_group_reference_block },
-		FIELD_EXPLANATION("Persistant Background Animations", nullptr, FIELD_FLAG_NONE, "These are the animations used by elements that live in the persistant background"),
+		FIELD_EXPLANATION_EX("Persistant Background Animations", nullptr, FIELD_FLAG_NONE, "These are the animations used by elements that live in the persistant background"),
 		{ _field_block, "animations", &blofeld::halo2::persistent_background_animation_block },
-		FIELD_EXPLANATION("List Skins", nullptr, FIELD_FLAG_NONE, "These define the visual appearances (skins) available for UI lists\nThey are expected to be entered in the following order:\n0) default\n1) squad lobby player list\n2) settings list\n3) playlist entry list\n4) variants list\n5) game browser list\n6) online player menu\n7) game setup menu\n8) playlist contents display\n9) profile picker\n10) mp map list\n11) main menu\n"),
+		FIELD_EXPLANATION_EX("List Skins", nullptr, FIELD_FLAG_NONE, "These define the visual appearances (skins) available for UI lists\nThey are expected to be entered in the following order:\n0) default\n1) squad lobby player list\n2) settings list\n3) playlist entry list\n4) variants list\n5) game browser list\n6) online player menu\n7) game setup menu\n8) playlist contents display\n9) profile picker\n10) mp map list\n11) main menu\n"),
 		{ _field_block, "list item skins", &blofeld::halo2::list_skin_reference_block },
-		FIELD_EXPLANATION("Additional UI Strings", nullptr, FIELD_FLAG_NONE, "These are for specific purposes as noted"),
+		FIELD_EXPLANATION_EX("Additional UI Strings", nullptr, FIELD_FLAG_NONE, "These are for specific purposes as noted"),
 		{ _field_tag_reference, "button key type strings", &blofeld::halo2::multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "game type strings", &blofeld::halo2::multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "value", &blofeld::halo2::_reference$3 },
-		FIELD_EXPLANATION("Skill to rank mapping table", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Skill to rank mapping table", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_block, "skill mappings", &blofeld::halo2::skill_to_rank_mapping_block },
-		FIELD_EXPLANATION("WINDOW PARAMETERS", nullptr, FIELD_FLAG_NONE, "Various settings for different sized UI windows"),
+		FIELD_EXPLANATION_EX("WINDOW PARAMETERS", nullptr, FIELD_FLAG_NONE, "Various settings for different sized UI windows"),
 		{ _field_enum, "full screen header text font", &blofeld::halo2::unnamed_enum$422 },
 		{ _field_enum, "large dialog header text font", &blofeld::halo2::unnamed_enum$422 },
 		{ _field_enum, "half dialog header text font", &blofeld::halo2::unnamed_enum$422 },
@@ -6203,7 +6203,7 @@ namespace halo2 {
 		{ _field_rectangle_2d, "half dialog button key text bounds" },
 		{ _field_rectangle_2d, "qtr dialog header text bounds" },
 		{ _field_rectangle_2d, "qtr dialog button key text bounds" },
-		FIELD_EXPLANATION("Main menu music", nullptr, FIELD_FLAG_NONE, "Looping sound that plays while the main menu is active"),
+		FIELD_EXPLANATION_EX("Main menu music", nullptr, FIELD_FLAG_NONE, "Looping sound that plays while the main menu is active"),
 		{ _field_tag_reference, "main menu music", &blofeld::halo2::sound_looping_reference },
 		{ _field_long_integer, "music fade time", nullptr, "milliseconds" },
 		{ _field_terminator }
@@ -6249,7 +6249,7 @@ namespace halo2 {
 		{ _field_real, "local variation weight" },
 		{ _field_real, "local variation rate" },
 		{ _field_real, "damping" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 36),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 36),
 		{ _field_terminator }
 	};
 
@@ -6270,29 +6270,29 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "child hud", &blofeld::halo2::weapon_hud_interface_reference },
-		FIELD_EXPLANATION("Flash cutoffs", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Flash cutoffs", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$552 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "inventory ammo cutoff" },
 		{ _field_short_integer, "loaded ammo cutoff" },
 		{ _field_short_integer, "heat cutoff" },
 		{ _field_short_integer, "age cutoff" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_EXPLANATION("Weapon hud screen alignment", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_EXPLANATION_EX("Weapon hud screen alignment", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "anchor", &blofeld::halo2::unnamed_enum$191 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_block, "static elements", &blofeld::halo2::weapon_hud_static_block },
 		{ _field_block, "meter elements", &blofeld::halo2::weapon_hud_meter_block },
 		{ _field_block, "number elements", &blofeld::halo2::weapon_hud_number_block },
-		FIELD_EXPLANATION("Crosshairs", nullptr, FIELD_FLAG_NONE, "Crosshairs always go in the center of the screen.\nCrosshairs can be attached to one of four different states:\n\n* Aim: Default crosshair. Frame 0 is the default state, frame 1 is the auto-aim state (frame rate ignored)\n* Zoom: Zoom overlay. Each zoom level has a corresponding frame (frame rate ignored)\n* Charge: Charging overlay. If you wish to display an animation for charging, put it here.\n* Flash: Similar to charging, but for low ammo/batter/heat states\n* Reload/Overheat: Similar to charging, but for reloading/overheating\n"),
+		FIELD_EXPLANATION_EX("Crosshairs", nullptr, FIELD_FLAG_NONE, "Crosshairs always go in the center of the screen.\nCrosshairs can be attached to one of four different states:\n\n* Aim: Default crosshair. Frame 0 is the default state, frame 1 is the auto-aim state (frame rate ignored)\n* Zoom: Zoom overlay. Each zoom level has a corresponding frame (frame rate ignored)\n* Charge: Charging overlay. If you wish to display an animation for charging, put it here.\n* Flash: Similar to charging, but for low ammo/batter/heat states\n* Reload/Overheat: Similar to charging, but for reloading/overheating\n"),
 		{ _field_block, "crosshairs", &blofeld::halo2::weapon_hud_crosshair_block },
 		{ _field_block, "overlay elements", &blofeld::halo2::weapon_hud_overlays_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "value", &blofeld::halo2::g_null_block },
 		{ _field_block, "screen effect", &blofeld::halo2::global_hud_screen_effect_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 132),
-		FIELD_EXPLANATION("Messaging information", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 132),
+		FIELD_EXPLANATION_EX("Messaging information", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_short_integer, "sequence index", "sequence index into the global hud icon bitmap" },
 		{ _field_short_integer, "width offset", "extra spacing beyond bitmap width for text alignment" },
 		{ _field_point_2d, "offset from reference corner" },
@@ -6300,7 +6300,7 @@ namespace halo2 {
 		{ _field_char_integer, "frame rate" },
 		{ _field_byte_flags, "flags", &blofeld::halo2::unnamed_enum$204 },
 		{ _field_short_integer, "text index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_terminator }
 	};
 
@@ -6329,13 +6329,13 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "unit", &blofeld::halo2::unit_block_group_block_struct_definition },
-		FIELD_EXPLANATION("$$$ BIPED $$$", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("$$$ BIPED $$$", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_angle, "moving turning speed", nullptr, "degrees per second" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$99 },
 		{ _field_angle, "stationary turning threshold" },
 		{ _field_useless_pad, "value" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("jumping and landing", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("jumping and landing", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "jump velocity", nullptr, "world units per second" },
 		{ _field_useless_pad, "value" },
 		{ _field_real, "maximum soft landing time", "the longest amount of time the biped can take to recover from a soft landing", "seconds" },
@@ -6346,7 +6346,7 @@ namespace halo2 {
 		{ _field_real, "death hard landing velocity", "the maximum velocity with which a character can strike the ground and live", "world units per second" },
 		{ _field_useless_pad, "value" },
 		{ _field_real, "stun duration", "0 is the default.  Bipeds are stuned when damaged by vehicle collisions, also some are when they take emp damage" },
-		FIELD_EXPLANATION("camera, collision, and autoaim", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("camera, collision, and autoaim", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "standing camera height", nullptr, "world units" },
 		{ _field_real, "crouching camera height", nullptr, "world units" },
 		{ _field_real, "crouch transition time", nullptr, "seconds" },
@@ -6358,7 +6358,7 @@ namespace halo2 {
 		{ _field_real, "camera exclusion distance", "fp camera must always be at least this far out from root node", "world units" },
 		{ _field_real, "autoaim width", nullptr, "world units" },
 		{ _field_struct, "lock-on data", &blofeld::halo2::biped_lock_on_data_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_useless_pad, "value" },
 		{ _field_real, "head shot acc scale", "when the biped ragdolls from a head shot it acceleartes based on this value.  0 defaults to the standard acceleration scale" },
 		{ _field_tag_reference, "area damage effect", &blofeld::halo2::effect_reference },
@@ -6367,7 +6367,7 @@ namespace halo2 {
 		{ _field_tag_reference, "reanimation character", "when the flood reanimate this guy, he turns into a ...", &blofeld::halo2::character_reference$2 },
 		{ _field_tag_reference, "death spawn character", "when I die, out of the ashes of my death crawls a ...", &blofeld::halo2::character_reference$2 },
 		{ _field_short_integer, "death spawn count" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -6408,7 +6408,7 @@ namespace halo2 {
 	{
 		{ _field_struct, "object", &blofeld::halo2::object_block_group_block_struct_definition },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$116 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
 	};
@@ -6436,7 +6436,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "object", &blofeld::halo2::object_block_group_block_struct_definition },
-		FIELD_EXPLANATION("$$$ CREATURE $$$", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("$$$ CREATURE $$$", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$160 },
 		{ _field_enum, "default team", &blofeld::halo2::unnamed_enum$161 },
 		{ _field_enum, "motion sensor blip size", &blofeld::halo2::unnamed_enum$162 },
@@ -6450,7 +6450,7 @@ namespace halo2 {
 		{ _field_tag_reference, "impact damage", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "impact shield damage", "if not specified, uses 'impact damage'", &blofeld::halo2::damage_effect_reference },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("death and destruction", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("death and destruction", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_bounds, "destroy after death time", "if non-zero, the creature will destroy itself upon death after this much time", "seconds" },
 		{ _field_terminator }
 	};
@@ -6505,7 +6505,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "object", &blofeld::halo2::object_block_group_block_struct_definition },
-		FIELD_EXPLANATION("$$$ DEVICE $$$", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("$$$ DEVICE $$$", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$168 },
 		{ _field_real, "power transition time", nullptr, "seconds" },
 		{ _field_real, "power acceleration time", nullptr, "seconds" },
@@ -6514,7 +6514,7 @@ namespace halo2 {
 		{ _field_real, "depowered position transition time", nullptr, "seconds" },
 		{ _field_real, "depowered position acceleration time", nullptr, "seconds" },
 		{ _field_word_flags, "lightmap flags", &blofeld::halo2::unnamed_enum$169 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_tag_reference, "open (up)", &blofeld::halo2::sound_effect_reference },
 		{ _field_tag_reference, "close (down)", &blofeld::halo2::sound_effect_reference },
@@ -6569,13 +6569,13 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "object", &blofeld::halo2::object_block_group_block_struct_definition },
-		FIELD_EXPLANATION("$$$ ITEM $$$", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("$$$ ITEM $$$", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$227 },
 		{ _field_short_integer, "OLD message index" },
 		{ _field_short_integer, "sort order" },
 		{ _field_real, "multiplayer on-ground scale" },
 		{ _field_real, "campaign on-ground scale" },
-		FIELD_EXPLANATION("NEW hud messages", nullptr, FIELD_FLAG_NONE, "everything you need to display stuff"),
+		FIELD_EXPLANATION_EX("NEW hud messages", nullptr, FIELD_FLAG_NONE, "everything you need to display stuff"),
 		{ _field_string_id, "pickup message" },
 		{ _field_string_id, "swap message" },
 		{ _field_string_id, "pickup or dual msg" },
@@ -6623,7 +6623,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "device", &blofeld::halo2::device_block_group_block_struct_definition },
-		FIELD_EXPLANATION("$$$ LIGHT FIXTURE $$$", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("$$$ LIGHT FIXTURE $$$", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
 	};
@@ -6645,7 +6645,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "device", &blofeld::halo2::device_block_group_block_struct_definition },
-		FIELD_EXPLANATION("$$$ MACHINE $$$", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("$$$ MACHINE $$$", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "type", &blofeld::halo2::unnamed_enum$284 },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$285 },
 		{ _field_real, "door open time", nullptr, "seconds" },
@@ -6655,7 +6655,7 @@ namespace halo2 {
 		{ _field_short_integer, "elevator node" },
 		{ _field_useless_pad, "value" },
 		{ _field_enum, "pathfinding policy", &blofeld::halo2::unnamed_enum$287 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -6708,17 +6708,17 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "item", &blofeld::halo2::item_block_group_block_struct_definition },
-		FIELD_EXPLANATION("$$$ WEAPON $$$", nullptr, FIELD_FLAG_NONE, "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'."),
+		FIELD_EXPLANATION_EX("$$$ WEAPON $$$", nullptr, FIELD_FLAG_NONE, "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'."),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$515 },
 		{ _field_old_string_id, "value" },
 		{ _field_enum, "secondary trigger mode", &blofeld::halo2::unnamed_enum$516 },
 		{ _field_short_integer, "maximum alternate shots loaded", "if the second trigger loads alternate ammunition, this is the maximum number of shots that can be loaded at a time" },
 		{ _field_real, "turn on time", "how long after being readied it takes this weapon to switch its 'turned_on' attachment to 1.0" },
-		FIELD_EXPLANATION("old obsolete export to functions", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("old obsolete export to functions", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "ready time", nullptr, "seconds" },
 		{ _field_tag_reference, "ready effect", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_tag_reference, "ready damage effect", &blofeld::halo2::damage_effect_reference },
-		FIELD_EXPLANATION("heat", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("heat", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_fraction, "heat recovery threshold", "the heat value a weapon must return to before leaving the overheated state, once it has become overheated in the first place", nullptr, "[0,1]" },
 		{ _field_real_fraction, "overheated threshold", "the heat value over which a weapon first becomes overheated (should be greater than the heat recovery threshold)", nullptr, "[0,1]" },
 		{ _field_real_fraction, "heat detonation threshold", "the heat value above which the weapon has a chance of exploding each time it is fired", nullptr, "[0,1]" },
@@ -6732,26 +6732,26 @@ namespace halo2 {
 		{ _field_tag_reference, "detonation damage effect", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "player melee damage", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "player melee response", &blofeld::halo2::damage_effect_reference },
-		FIELD_EXPLANATION("melee aim assist", nullptr, FIELD_FLAG_NONE, "magnetism angle: the maximum angle that magnetism works at full strength\nmagnetism range: the maximum distance that magnetism works at full strength\nthrottle magnitude: additional throttle to apply towards target when melee-ing w/ magnetism\nthrottle minimum distance: minimum distance to target that throttle magnetism kicks in\nthrottle maximum adjustment angle: maximum angle throttle magnetism will have an effect, relative to the players movement throttle\n"),
+		FIELD_EXPLANATION_EX("melee aim assist", nullptr, FIELD_FLAG_NONE, "magnetism angle: the maximum angle that magnetism works at full strength\nmagnetism range: the maximum distance that magnetism works at full strength\nthrottle magnitude: additional throttle to apply towards target when melee-ing w/ magnetism\nthrottle minimum distance: minimum distance to target that throttle magnetism kicks in\nthrottle maximum adjustment angle: maximum angle throttle magnetism will have an effect, relative to the players movement throttle\n"),
 		{ _field_struct, "melee aim assist", &blofeld::halo2::melee_aim_assist_struct_block_struct_definition },
-		FIELD_EXPLANATION("melee damage parameters", nullptr, FIELD_FLAG_NONE, "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
+		FIELD_EXPLANATION_EX("melee damage parameters", nullptr, FIELD_FLAG_NONE, "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
 		{ _field_struct, "melee damage parameters", &blofeld::halo2::melee_damage_parameters_struct_block_struct_definition },
 		{ _field_char_enum, "melee damage reporting type", &blofeld::halo2::unnamed_enum$213 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
-		FIELD_EXPLANATION("zoom", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_EXPLANATION_EX("zoom", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_short_integer, "magnification levels", "the number of magnification levels this weapon allows" },
 		{ _field_real_bounds, "magnification range" },
-		FIELD_EXPLANATION("weapon aim assist", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("weapon aim assist", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "weapon aim assist", &blofeld::halo2::aim_assist_struct_block_struct_definition },
-		FIELD_EXPLANATION("movement", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("movement", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "movement penalized", &blofeld::halo2::unnamed_enum$517 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_fraction, "forward movement penalty", "percent slowdown to forward movement for units carrying this weapon" },
 		{ _field_real_fraction, "sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("AI targeting parameters", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("AI targeting parameters", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "AI scariness" },
-		FIELD_EXPLANATION("miscellaneous", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("miscellaneous", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "weapon power-on time", nullptr, "seconds" },
 		{ _field_real, "weapon power-off time", nullptr, "seconds" },
 		{ _field_tag_reference, "weapon power-on effect", &blofeld::halo2::sound_effect_reference$2 },
@@ -6766,11 +6766,11 @@ namespace halo2 {
 		{ _field_real, "active camo ding", "how much to decrease active camo when a round is fired" },
 		{ _field_real, "active camo regrowth rate", "how fast to increase active camo (per tick) when a round is fired" },
 		{ _field_string_id, "handle node", "the node that get's attached to the unit's hand" },
-		FIELD_EXPLANATION("weapon labels", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("weapon labels", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_string_id, "weapon class" },
 		{ _field_string_id, "weapon name" },
 		{ _field_enum, "multiplayer weapon type", &blofeld::halo2::unnamed_enum$518 },
-		FIELD_EXPLANATION("more miscellaneous", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("more miscellaneous", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "weapon type", &blofeld::halo2::unnamed_enum$519 },
 		{ _field_struct, "tracking", &blofeld::halo2::weapon_tracking_struct_block_struct_definition },
 		{ _field_struct, "player interface", &blofeld::halo2::weapon_interface_struct_block_struct_definition },
@@ -6778,9 +6778,9 @@ namespace halo2 {
 		{ _field_block, "magazines", &blofeld::halo2::magazines },
 		{ _field_block, "new triggers", &blofeld::halo2::weapon_triggers },
 		{ _field_block, "barrels", &blofeld::halo2::weapon_barrels },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("first-person movement control", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("first-person movement control", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "max movement acceleration" },
 		{ _field_real, "max movement velocity" },
 		{ _field_real, "max turning acceleration" },
@@ -6895,7 +6895,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "device", &blofeld::halo2::device_block_group_block_struct_definition },
-		FIELD_EXPLANATION("$$$ CONTROL $$$", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("$$$ CONTROL $$$", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "type", &blofeld::halo2::unnamed_enum$163 },
 		{ _field_enum, "triggers when", &blofeld::halo2::unnamed_enum$164 },
 		{ _field_real, "call value", nullptr, nullptr, "[0,1]" },
@@ -6977,7 +6977,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "item", &blofeld::halo2::item_block_group_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 168),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 168),
 		{ _field_terminator }
 	};
 
@@ -7096,15 +7096,15 @@ namespace halo2 {
 		{ _field_real, "mono unspatialized gain", nullptr, "dB" },
 		{ _field_real, "stereo to 3d gain", nullptr, "dB" },
 		{ _field_real, "rear surround to front stereo gain", nullptr, "dB" },
-		FIELD_EXPLANATION("surround center mix", nullptr, FIELD_FLAG_NONE, "for sounds that use the center speaker"),
+		FIELD_EXPLANATION_EX("surround center mix", nullptr, FIELD_FLAG_NONE, "for sounds that use the center speaker"),
 		{ _field_real, "front speaker gain", nullptr, "dB" },
 		{ _field_real, "center speaker gain", nullptr, "dB" },
-		FIELD_EXPLANATION("stereo center mix", nullptr, FIELD_FLAG_NONE, "for sounds that use the center speaker"),
+		FIELD_EXPLANATION_EX("stereo center mix", nullptr, FIELD_FLAG_NONE, "for sounds that use the center speaker"),
 		{ _field_real, "front speaker gain", nullptr, "dB" },
 		{ _field_real, "center speaker gain", nullptr, "dB" },
-		FIELD_EXPLANATION("more sound lovin'", nullptr, FIELD_FLAG_NONE, "for sounds that use the center speaker"),
+		FIELD_EXPLANATION_EX("more sound lovin'", nullptr, FIELD_FLAG_NONE, "for sounds that use the center speaker"),
 		{ _field_real, "stereo unspatialized gain", nullptr, "dB" },
-		FIELD_EXPLANATION("last minute values", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("last minute values", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "solo player fade out delay", nullptr, "seconds" },
 		{ _field_real, "solo player fade out time", nullptr, "seconds" },
 		{ _field_real, "solo player fade in time", nullptr, "seconds" },
@@ -7187,7 +7187,7 @@ namespace halo2 {
 		{ _field_block, "value", &blofeld::halo2::sound_permutation_marker_block },
 		{ _field_enum, "compression", &blofeld::halo2::unnamed_enum$5 },
 		{ _field_char_enum, "language", &blofeld::halo2::unnamed_enum$439 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -7285,12 +7285,12 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "name", "the name of the imported pitch range directory" },
-		FIELD_EXPLANATION("pitch control", nullptr, FIELD_FLAG_NONE, "these settings control what pitches this set of samples represents. if there is only one pitch range, all three values are ignored."),
+		FIELD_EXPLANATION_EX("pitch control", nullptr, FIELD_FLAG_NONE, "these settings control what pitches this set of samples represents. if there is only one pitch range, all three values are ignored."),
 		{ _field_short_integer, "natural pitch", "the apparent pitch when these samples are played at their recorded pitch.", "cents" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_bounds, "bend bounds", "the range of pitches that will be represented using this sample.", "cents" },
 		{ _field_short_bounds, "value" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "permutations", "permutations represent equivalent variations of this sound.", &blofeld::halo2::sound_permutations_block },
 		{ _field_terminator }
 	};
@@ -7311,16 +7311,16 @@ namespace halo2 {
 		{ _field_real, "maximum distance", "the distance beyond which this sound is no longer audible", "world units" },
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this sound that will be ignored (0 means always play.)" },
 		{ _field_real, "maximum bend per second", nullptr, "cents" },
-		FIELD_EXPLANATION("randomization", nullptr, FIELD_FLAG_NONE, "these settings control random variation of volume and pitch.\n the second parameter gets clipped to the first."),
+		FIELD_EXPLANATION_EX("randomization", nullptr, FIELD_FLAG_NONE, "these settings control random variation of volume and pitch.\n the second parameter gets clipped to the first."),
 		{ _field_custom, "Update gain bounds" },
 		{ _field_real, "gain base", "sound's random gain will start here", "dB" },
 		{ _field_real, "gain variance", "sound's gain will be randomly modulated within this range", "dB" },
 		{ _field_short_bounds, "random pitch bounds", "the sound's pitch will be modulated randomly within this range.", "cents" },
-		FIELD_EXPLANATION("directional sounds", nullptr, FIELD_FLAG_NONE, "these settings allow sounds to be directional, fading as they turn away from the listener"),
+		FIELD_EXPLANATION_EX("directional sounds", nullptr, FIELD_FLAG_NONE, "these settings allow sounds to be directional, fading as they turn away from the listener"),
 		{ _field_angle, "inner cone angle", "within the cone defined by this angle and the sound's direction, the sound plays with a gain of 1.0.", "degrees" },
 		{ _field_angle, "outer cone angle", "outside the cone defined by this angle and the sound's direction, the sound plays with a gain of OUTER CONE GAIN. (0 means the sound does not attenuate with direction.)", "degrees" },
 		{ _field_real, "outer cone gain", "the gain to use when the sound is directed away from the listener", "dB" },
-		FIELD_EXPLANATION("SCRIPTED LOCATION OVERRIDE", nullptr, FIELD_FLAG_NONE, "NOTE: this will only apply when the sound is started via script\nazimuth:\n    0 => front\n    90 => left\n    180 => back\n    270 => right\n"),
+		FIELD_EXPLANATION_EX("SCRIPTED LOCATION OVERRIDE", nullptr, FIELD_FLAG_NONE, "NOTE: this will only apply when the sound is started via script\nazimuth:\n    0 => front\n    90 => left\n    180 => back\n    270 => right\n"),
 		{ _field_custom, "Update location" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$438 },
 		{ _field_angle, "azimuth" },
@@ -7347,7 +7347,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("scale modifiers", nullptr, FIELD_FLAG_NONE, "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the values specified above. (0 values are ignored.)"),
+		FIELD_EXPLANATION_EX("scale modifiers", nullptr, FIELD_FLAG_NONE, "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the values specified above. (0 values are ignored.)"),
 		{ _field_real_bounds, "gain modifier", nullptr, "dB" },
 		{ _field_short_bounds, "pitch modifier", nullptr, "cents" },
 		{ _field_real_fraction_bounds, "skip fraction modifier" },
@@ -7366,7 +7366,7 @@ namespace halo2 {
 	{
 		{ _field_short_integer, "maximum playing count" },
 		{ _field_real, "suppression time", "time from when first permutation plays to when another sound from an equal or lower promotion can play", "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -7412,7 +7412,7 @@ namespace halo2 {
 	{
 		{ _field_block, "promotion rules", &blofeld::halo2::sound_promotion_rule_block },
 		{ _field_block, "value", &blofeld::halo2::sound_promotion_runtime_timer_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -7428,11 +7428,11 @@ namespace halo2 {
 	{
 		{ _field_string_id, "name" },
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_reference },
-		FIELD_EXPLANATION("frequency of play", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("frequency of play", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_bounds, "random period bounds", "the time between successive playings of this sound will be randomly selected from this range.", "seconds" },
 		{ _field_real, "value" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$271 },
-		FIELD_EXPLANATION("random spatialization", nullptr, FIELD_FLAG_NONE, "if the sound specified above is not stereo it will be randomly spatialized according to the following constraints. if both lower and upper bounds are zero for any of the following fields, the sound\'s position will be randomly selected from all possible directions or distances."),
+		FIELD_EXPLANATION_EX("random spatialization", nullptr, FIELD_FLAG_NONE, "if the sound specified above is not stereo it will be randomly spatialized according to the following constraints. if both lower and upper bounds are zero for any of the following fields, the sound\'s position will be randomly selected from all possible directions or distances."),
 		{ _field_angle_bounds, "yaw bounds", "the sound's position along the horizon will be randomly selected from this range.", "degrees" },
 		{ _field_angle_bounds, "pitch bounds", "the sound's position above (positive values) or below (negative values) the horizon will be randomly selected from this range.", "degrees" },
 		{ _field_real_bounds, "distance bounds", "the sound's distance (from its spatialized looping sound or from the listener if the looping sound is stereo) will be randomly selected from this range.", "world units" },
@@ -7469,7 +7469,7 @@ namespace halo2 {
 		{ _field_tag_reference, "alt out", &blofeld::halo2::sound_reference },
 		{ _field_useless_pad, "value" },
 		{ _field_enum, "output effect", &blofeld::halo2::unnamed_enum$270 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "alt trans in", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "alt trans out", &blofeld::halo2::sound_reference },
 		{ _field_real, "alt crossfade duration", nullptr, "seconds" },
@@ -7508,13 +7508,13 @@ namespace halo2 {
 		{ _field_short_integer, "Step Count", "Number of discrete values to snap to (e.g., step count of 5 snaps function to 0.00, 0.25, 0.50,0.75, or 1.00)." },
 		{ _field_enum, "Map to", &blofeld::halo2::unnamed_enum$393 },
 		{ _field_short_integer, "Sawtooth Count", "Number of times this function should repeat (e.g., sawtooth count of 5 gives function value of 1.0 at each of 0.25, 0.50, and 0.75, as well as at 1.0)." },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "Bounds Mode", "Controls how bounds, below, are used.", &blofeld::halo2::unnamed_enum$394 },
 		{ _field_real_fraction_bounds, "Bounds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_terminator }
 	};
 
@@ -7592,17 +7592,17 @@ namespace halo2 {
 		{ _field_enum, "Game Type 2", &blofeld::halo2::unnamed_enum$79 },
 		{ _field_enum, "Game Type 3", &blofeld::halo2::unnamed_enum$79 },
 		{ _field_enum, "Game Type 4", &blofeld::halo2::unnamed_enum$79 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "Spawn Time (in seconds, 0 = default)" },
 		{ _field_short_integer, "Respawn on Empty Time", nullptr, "seconds" },
 		{ _field_enum, "Respawn Timer Starts", &blofeld::halo2::unnamed_enum$398 },
 		{ _field_char_enum, "Classification", &blofeld::halo2::unnamed_enum$399 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
 		{ _field_real_point_3d, "Position" },
 		{ _field_struct, "Orientation", &blofeld::halo2::scenario_netgame_equipment_orientation_struct_block_struct_definition },
 		{ _field_tag_reference, "Item/Vehicle Collection", &blofeld::halo2::item_collection_vehicle_collection_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_terminator }
 	};
 
@@ -7677,14 +7677,14 @@ namespace halo2 {
 		{ _field_enum, "Game Type 2", &blofeld::halo2::unnamed_enum$79 },
 		{ _field_enum, "Game Type 3", &blofeld::halo2::unnamed_enum$79 },
 		{ _field_enum, "Game Type 4", &blofeld::halo2::unnamed_enum$79 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_tag_reference, "Item Collection 1", &blofeld::halo2::item_collection_reference$2 },
 		{ _field_tag_reference, "Item Collection 2", &blofeld::halo2::item_collection_reference$2 },
 		{ _field_tag_reference, "Item Collection 3", &blofeld::halo2::item_collection_reference$2 },
 		{ _field_tag_reference, "Item Collection 4", &blofeld::halo2::item_collection_reference$2 },
 		{ _field_tag_reference, "Item Collection 5", &blofeld::halo2::item_collection_reference$2 },
 		{ _field_tag_reference, "Item Collection 6", &blofeld::halo2::item_collection_reference$2 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_terminator }
 	};
 
@@ -7804,11 +7804,11 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_string_id, "Atmospheric Fog Source", nullptr, "From Scenario Atmospheric Fog Palette" },
 		{ _field_string_id, "Interpolator", nullptr, "From Scenario Interpolators" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -7823,42 +7823,42 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "Name" },
-		FIELD_EXPLANATION("ATMOSPHERIC FOG", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("ATMOSPHERIC FOG", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_rgb_color, "Color" },
 		{ _field_real, "Spread Distance", "How far fog spreads into adjacent clusters: 0 defaults to 1.", "World Units" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_fraction, "Maximum Density", "Fog density clamps to this value.", nullptr, "[0,1]" },
 		{ _field_real, "Start Distance", "Before this distance, there is no fog.", "World Units" },
 		{ _field_real, "Opaque Distance", "Fog becomes opaque (maximum density) at this distance from viewer.", "World Units" },
-		FIELD_EXPLANATION("SECONDARY FOG", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("SECONDARY FOG", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_rgb_color, "Color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_fraction, "Maximum Density", "Fog density clamps to this value.", nullptr, "[0,1]" },
 		{ _field_real, "Start Distance", "Before this distance, there is no fog.", "World Units" },
 		{ _field_real, "Opaque Distance", "Fog becomes opaque (maximum density) at this distance from viewer.", "World Units" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("PLANAR FOG OVERRIDE", nullptr, FIELD_FLAG_NONE, "Planar fog, if present, is interpolated toward these values."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("PLANAR FOG OVERRIDE", nullptr, FIELD_FLAG_NONE, "Planar fog, if present, is interpolated toward these values."),
 		{ _field_real_rgb_color, "Planar Color" },
 		{ _field_real_fraction, "Planar Max Density", nullptr, nullptr, "[0,1]" },
 		{ _field_real_fraction, "Planar Override Amount", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "Planar Min Distance Bias", "Don't ask.", "World Units" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 44),
-		FIELD_EXPLANATION("PATCHY FOG", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 44),
+		FIELD_EXPLANATION_EX("PATCHY FOG", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_rgb_color, "Patchy Color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real_fraction_bounds, "Patchy Density", nullptr, nullptr, "[0,1]" },
 		{ _field_real_bounds, "Patchy Distance", nullptr, "World Units" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_tag_reference, "Patchy Fog", &blofeld::halo2::patchy_fog_reference },
 		{ _field_block, "Mixers", &blofeld::halo2::scenario_atmospheric_fog_mixer_block },
-		FIELD_EXPLANATION("BLOOM OVERRIDE", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("BLOOM OVERRIDE", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_fraction, "Amount", nullptr, nullptr, "[0,1]" },
 		{ _field_real_fraction, "Threshold", nullptr, nullptr, "[0,1]" },
 		{ _field_real_fraction, "Brightness", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "Gamma Power" },
-		FIELD_EXPLANATION("CAMERA IMMERSION OVERRIDE", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("CAMERA IMMERSION OVERRIDE", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_word_flags, "Camera Immersion Flags", &blofeld::halo2::unnamed_enum$140 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -7886,8 +7886,8 @@ namespace halo2 {
 	{
 		{ _field_string_id, "Name" },
 		{ _field_tag_reference, "Planar Fog", &blofeld::halo2::planar_fog_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -7919,7 +7919,7 @@ namespace halo2 {
 		{ _field_string_id, "value" },
 		{ _field_string_id, "value" },
 		{ _field_enum, "Campaign Player Type", &blofeld::halo2::unnamed_enum$81 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 6),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 6),
 		{ _field_terminator }
 	};
 
@@ -7951,13 +7951,13 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "Name" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "Node Name" },
 		{ _field_array, "value", &blofeld::halo2::scenario_trigger_volume_struct_definition___array },
 		{ _field_real_point_3d, "Position" },
 		{ _field_real_point_3d, "Extents" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -7986,10 +7986,10 @@ namespace halo2 {
 	{
 		{ _field_short_integer, "Source" },
 		{ _field_short_integer, "Destination" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -8004,7 +8004,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_integer, "BSP Index Key" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -8051,7 +8051,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "Name", &blofeld::halo2::detail_object_collection_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -8067,7 +8067,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_string, "Name" },
 		{ _field_real_point_3d, "Position" },
 		{ _field_real_euler_angles_2d, "Facing" },
@@ -8138,18 +8138,18 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_tag_reference, "Structure BSP", &blofeld::halo2::scenario_structure_bsp_reference },
 		{ _field_tag_reference, "Structure Lightmap", &blofeld::halo2::scenario_structure_lightmap_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "UNUSED radiance est. search distance" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "UNUSED luminels per world unit" },
 		{ _field_real, "UNUSED output white reference" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_word_flags, "Flags", &blofeld::halo2::unnamed_enum$6 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -8172,7 +8172,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "Child Scenario", &blofeld::halo2::scenario_reference$2 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_terminator }
 	};
 
@@ -8214,10 +8214,10 @@ namespace halo2 {
 		{ _field_custom, "value" },
 		{ _field_short_integer, "value" },
 		{ _field_long_integer, "Unique ID" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_tag, "Object Definition Tag" },
 		{ _field_long_integer, "Object" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 44),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 44),
 		{ _field_terminator }
 	};
 
@@ -8251,7 +8251,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -8265,7 +8265,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -8279,7 +8279,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -8293,7 +8293,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -8342,7 +8342,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "Overload Type", &blofeld::halo2::unnamed_enum$405 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "Inner Radius" },
 		{ _field_real, "Outer Radius" },
 		{ _field_real, "Weight" },
@@ -8431,7 +8431,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_custom, "value" },
-		FIELD_EXPLANATION("Static Spawn Zones", nullptr, FIELD_FLAG_NONE, "Lower and upper heights can be left at 0, in which case they use defaults.  Leaving relevant teams empty means all teams; leaving all games empty means all games."),
+		FIELD_EXPLANATION_EX("Static Spawn Zones", nullptr, FIELD_FLAG_NONE, "Lower and upper heights can be left at 0, in which case they use defaults.  Leaving relevant teams empty means all teams; leaving all games empty means all games."),
 		{ _field_struct, "Data", &blofeld::halo2::static_spawn_zone_data_struct_block_struct_definition },
 		{ _field_real_point_3d, "Position" },
 		{ _field_real, "Lower Height" },
@@ -8452,11 +8452,11 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("Dynamic Spawn", nullptr, FIELD_FLAG_NONE, "Non-0 values here overload what appears in multiplayer_globals."),
+		FIELD_EXPLANATION_EX("Dynamic Spawn", nullptr, FIELD_FLAG_NONE, "Non-0 values here overload what appears in multiplayer_globals."),
 		{ _field_real, "Dynamic Spawn Lower Height" },
 		{ _field_real, "Dynamic Spawn Upper Height" },
 		{ _field_real, "Game Object Reset Height" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 60),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 60),
 		{ _field_block, "Dynamic Spawn Overloads", &blofeld::halo2::dynamic_spawn_zone_overload_block },
 		{ _field_block, "Static Respawn Zones", &blofeld::halo2::static_spawn_zone_block },
 		{ _field_block, "Static Initial Spawn Zones", &blofeld::halo2::static_spawn_zone_block },
@@ -8519,7 +8519,7 @@ namespace halo2 {
 	{
 		{ _field_data, "*mopp code" },
 		{ _field_block, "*Evironment Object Identifiers", &blofeld::halo2::old_unused_object_identifiers_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_point_3d, "mopp Bounds Min" },
 		{ _field_real_point_3d, "mopp Bounds Max" },
 		{ _field_terminator }
@@ -8570,8 +8570,8 @@ namespace halo2 {
 		{ _field_string_id, "Accelerator Name", nullptr, "Interpolator" },
 		{ _field_string_id, "Multiplier Name", nullptr, "Interpolator" },
 		{ _field_struct, "Function", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -8585,12 +8585,12 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_tag_reference, "Screen Effect", &blofeld::halo2::screen_effect_reference },
 		{ _field_string_id, "Primary Input", nullptr, "Interpolator" },
 		{ _field_string_id, "Secondary Input", nullptr, "Interpolator" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -8606,7 +8606,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -8638,13 +8638,13 @@ namespace halo2 {
 	{
 		{ _field_string, "Name" },
 		{ _field_tag_reference, "Weather System", &blofeld::halo2::weather_system_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_tag_reference, "Wind", &blofeld::halo2::wind_reference },
 		{ _field_real_vector_3d, "Wind Direction" },
 		{ _field_real, "Wind Magnitude" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_string, "Wind Scale Function" },
 		{ _field_terminator }
 	};
@@ -8694,7 +8694,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_integer, "Scenario Planar Fog Index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_plane_3d, "plane" },
 		{ _field_word_flags, "Flags", &blofeld::halo2::unnamed_enum$365 },
 		{ _field_short_integer, "Priority" },
@@ -8736,14 +8736,14 @@ namespace halo2 {
 		{ _field_string, "Name" },
 		{ _field_tag_reference, "Background Sound", &blofeld::halo2::sound_looping_reference },
 		{ _field_tag_reference, "Inside Cluster Sound", "Play only when player is inside cluster.", &blofeld::halo2::sound_looping_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_real, "Cutoff Distance" },
 		{ _field_long_flags, "Scale Flags", &blofeld::halo2::unnamed_enum$139 },
 		{ _field_real_fraction, "Interior Scale" },
 		{ _field_real_fraction, "Portal Scale" },
 		{ _field_real_fraction, "Exterior Scale" },
 		{ _field_real, "Interpolation Speed", nullptr, "1/sec" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -8770,7 +8770,7 @@ namespace halo2 {
 		{ _field_tag_reference, "Sound Environment", &blofeld::halo2::sound_environment_reference },
 		{ _field_real, "Cutoff Distance" },
 		{ _field_real, "Interpolation Speed", nullptr, "1/sec" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_terminator }
 	};
 
@@ -9043,7 +9043,7 @@ namespace halo2 {
 		{ _field_struct, "Section", &blofeld::halo2::global_geometry_section_struct_block_struct_definition },
 		{ _field_block, "Strip Segments", &blofeld::halo2::structure_indices_segment_block },
 		{ _field_block, "Strip Segment References", &blofeld::halo2::structure_indices_segment_reference_block },
-		FIELD_EXPLANATION("ISQ INFO", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("ISQ INFO", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "ISQ Info", &blofeld::halo2::global_geometry_isq_info_struct_block_struct_definition },
 		{ _field_block, "Forward Edges", &blofeld::halo2::structure_shared_edge_block },
 		{ _field_block, "Forward Edge Groups", &blofeld::halo2::structure_shared_edge_group_block },
@@ -9051,7 +9051,7 @@ namespace halo2 {
 		{ _field_block, "Backward Edge Groups", &blofeld::halo2::structure_shared_edge_group_block },
 		{ _field_block, "Subcluster Boundaries", &blofeld::halo2::structure_subcluster_boundary_block },
 		{ _field_block, "First Triangle Indices", &blofeld::halo2::structure_strip_segment_first_triangle_index_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -9065,7 +9065,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_terminator }
 	};
 
@@ -9093,7 +9093,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_terminator }
 	};
 
@@ -9152,7 +9152,7 @@ namespace halo2 {
 		{ _field_struct, "Section Info", &blofeld::halo2::global_geometry_section_info_struct_block_struct_definition },
 		{ _field_struct, "Geometry Block Info", &blofeld::halo2::global_geometry_block_info_struct_block_struct_definition },
 		{ _field_block, "Cluster Data", &blofeld::halo2::structure_bsp_cluster_data_block_new },
-		FIELD_EXPLANATION("CLUSTER INFO", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("CLUSTER INFO", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_bounds, "Bounds x" },
 		{ _field_real_bounds, "Bounds y" },
 		{ _field_real_bounds, "Bounds z" },
@@ -9163,10 +9163,10 @@ namespace halo2 {
 		{ _field_char_integer, "Planar Fog Designator" },
 		{ _field_char_integer, "Visible Fog Plane Index" },
 		{ _field_short_integer, "Transition Structure BSP" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_word_flags, "Flags", &blofeld::halo2::unnamed_enum$366 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "Predicted Resources", &blofeld::halo2::predicted_resource_block },
 		{ _field_block, "Portals", &blofeld::halo2::structure_bsp_cluster_portal_index_block },
 		{ _field_long_integer, "Checksum from Structure" },
@@ -9271,7 +9271,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "Old Shader", &blofeld::halo2::shader_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "New Shader", &blofeld::halo2::shader_reference },
 		{ _field_terminator }
 	};
@@ -9304,7 +9304,7 @@ namespace halo2 {
 	{
 		{ _field_tag_reference, "Definition", &blofeld::halo2::scenery_reference$2 },
 		{ _field_tag_reference, "Model", &blofeld::halo2::render_model_reference$3 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -9325,7 +9325,7 @@ namespace halo2 {
 		{ _field_string, "Name" },
 		{ _field_real_quaternion, "Rotation" },
 		{ _field_real_point_3d, "Translation" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "Unique ID" },
 		{ _field_tag, "Exported Object Type" },
 		{ _field_string, "Scenario Object Name" },
@@ -9346,8 +9346,8 @@ namespace halo2 {
 		{ _field_block, "Instances", &blofeld::halo2::global_detail_object_block },
 		{ _field_block, "Counts", &blofeld::halo2::global_detail_object_counts_block },
 		{ _field_block, "z Reference Vectors", &blofeld::halo2::global_z_reference_vector_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -9361,7 +9361,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_terminator }
 	};
 
@@ -9391,7 +9391,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 6),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 6),
 		{ _field_terminator }
 	};
 
@@ -9440,7 +9440,7 @@ namespace halo2 {
 		{ _field_short_integer, "Projection Count" },
 		{ _field_short_integer, "Cluster Count" },
 		{ _field_short_integer, "Volume Count" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_data, "Projections" },
 		{ _field_data, "Visibility Clusters" },
 		{ _field_data, "Cluster Remap Table" },
@@ -9487,7 +9487,7 @@ namespace halo2 {
 		{ _field_enum, "Type", &blofeld::halo2::unnamed_enum$384 },
 		{ _field_short_integer, "Code" },
 		{ _field_short_integer, "Pad Thai" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "Point 0" },
 		{ _field_real_point_3d, "Point 1" },
 		{ _field_terminator }
@@ -9531,7 +9531,7 @@ namespace halo2 {
 	{
 		{ _field_word_flags, "Errors", &blofeld::halo2::unnamed_enum$382 },
 		{ _field_word_flags, "Warnings", &blofeld::halo2::unnamed_enum$383 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_block, "Lines", &blofeld::halo2::structure_bsp_debug_info_render_line_block },
 		{ _field_block, "Fog Plane Indices", &blofeld::halo2::structure_bsp_debug_info_indices_block },
 		{ _field_block, "Visible Fog Plane Indices", &blofeld::halo2::structure_bsp_debug_info_indices_block },
@@ -9567,7 +9567,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_integer, "Fog Zone Index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_long_integer, "Connected Plane Designator" },
 		{ _field_block, "Lines", &blofeld::halo2::structure_bsp_debug_info_render_line_block },
 		{ _field_block, "Intersected Cluster Indices", &blofeld::halo2::structure_bsp_debug_info_indices_block },
@@ -9587,7 +9587,7 @@ namespace halo2 {
 	{
 		{ _field_long_integer, "Media Index", nullptr, "Scenario Fog Plane", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "Base Fog Plane Index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_block, "Lines", &blofeld::halo2::structure_bsp_debug_info_render_line_block },
 		{ _field_block, "Immersed Cluster Indices", &blofeld::halo2::structure_bsp_debug_info_indices_block },
 		{ _field_block, "Bounding Fog Plane Indices", &blofeld::halo2::structure_bsp_debug_info_indices_block },
@@ -9605,7 +9605,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 64),
 		{ _field_block, "Clusters", &blofeld::halo2::structure_bsp_cluster_debug_info_block },
 		{ _field_block, "Fog Planes", &blofeld::halo2::structure_bsp_fog_plane_debug_info_block },
 		{ _field_block, "Fog Zones", &blofeld::halo2::structure_bsp_fog_zone_debug_info_block },
@@ -9645,7 +9645,7 @@ namespace halo2 {
 		{ _field_real_rgb_color, "Secondary Direction Color" },
 		{ _field_real_vector_3d, "Secondary Direction" },
 		{ _field_short_integer, "sh Index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -9764,7 +9764,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -9895,7 +9895,7 @@ namespace halo2 {
 	{
 		{ _field_real_point_3d, "Point" },
 		{ _field_short_integer, "First Edge" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -9910,7 +9910,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_integer, "Plane" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "Back Child" },
 		{ _field_short_integer, "Front Child" },
 		{ _field_terminator }
@@ -10055,12 +10055,12 @@ namespace halo2 {
 	{
 		{ _field_long_string, "path" },
 		{ _field_string, "modification date" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 88),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 88),
 		{ _field_long_integer, "checksum", nullptr, "crc32" },
 		{ _field_long_integer, "size", nullptr, "bytes" },
 		{ _field_data, "zipped data" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 128),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 128),
 		{ _field_terminator }
 	};
 
@@ -10078,11 +10078,11 @@ namespace halo2 {
 		{ _field_long_string, "version" },
 		{ _field_string, "import date" },
 		{ _field_string, "culprit" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 96),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 96),
 		{ _field_string, "import time" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "files", &blofeld::halo2::tag_import_file_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 128),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 128),
 		{ _field_terminator }
 	};
 
@@ -10146,7 +10146,7 @@ namespace halo2 {
 	{
 		{ _field_string_id, "name" },
 		{ _field_enum, "group", &blofeld::halo2::unnamed_enum$97 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_block, "role variants", &blofeld::halo2::ai_scene_role_variants_block },
 		{ _field_terminator }
@@ -10171,7 +10171,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "combination rule", &blofeld::halo2::unnamed_enum$85 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "triggers", &blofeld::halo2::trigger_references },
 		{ _field_terminator }
 	};
@@ -10301,7 +10301,7 @@ namespace halo2 {
 		{ _field_word_block_flags, "Manual BSP Flags" },
 		{ _field_struct, "Object ID", &blofeld::halo2::scenario_object_id_struct_block_struct_definition },
 		{ _field_char_enum, "BSP Policy", &blofeld::halo2::unnamed_enum$11 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -10373,7 +10373,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "Name", &blofeld::halo2::scenery_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -10435,7 +10435,7 @@ namespace halo2 {
 	{
 		{ _field_word_flags, ")Pathfinding Flags", &blofeld::halo2::unnamed_enum$16 },
 		{ _field_short_integer, "Pathfinding Object Index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_custom, "value" },
 		{ _field_enum, "Pathfinding Policy", &blofeld::halo2::unnamed_enum$13 },
 		{ _field_enum, "Lightmapping Policy", &blofeld::halo2::unnamed_enum$14 },
@@ -10464,7 +10464,7 @@ namespace halo2 {
 		{ _field_enum, "Pathfinding Policy", &blofeld::halo2::unnamed_enum$13 },
 		{ _field_enum, "Lightmapping Policy", &blofeld::halo2::unnamed_enum$14 },
 		{ _field_block, "Pathfinding References", &blofeld::halo2::pathfinding_object_index_list_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_word_flags, "Valid Multiplayer Games", &blofeld::halo2::unnamed_enum$15 },
 		{ _field_terminator }
 	};
@@ -10510,7 +10510,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "Name", &blofeld::halo2::crate_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -10544,7 +10544,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "Name", &blofeld::halo2::creature_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -10577,7 +10577,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "Name", &blofeld::halo2::equipment_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -10633,7 +10633,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "Name", &blofeld::halo2::weapon_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -10693,7 +10693,7 @@ namespace halo2 {
 	{
 		{ _field_real, "Body Vitality", nullptr, nullptr, "[0,1]" },
 		{ _field_long_flags, "Flags", &blofeld::halo2::unnamed_enum$19 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -10731,7 +10731,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "Name", &blofeld::halo2::biped_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -10766,7 +10766,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "Name", &blofeld::halo2::vehicle_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -10862,7 +10862,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "Name", &blofeld::halo2::device_machine_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -10879,9 +10879,9 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_flags, "Flags", &blofeld::halo2::unnamed_enum$171 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_short_integer, "Pathfinding Object Reference" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -10940,7 +10940,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "Name", &blofeld::halo2::device_control_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -10958,7 +10958,7 @@ namespace halo2 {
 	{
 		{ _field_long_flags, "Flags", &blofeld::halo2::unnamed_enum$172 },
 		{ _field_short_integer, "*DON'T TOUCH THIS" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -10997,7 +10997,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "Name", &blofeld::halo2::device_light_fixture_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -11049,7 +11049,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "Name", &blofeld::halo2::sound_scenery_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -11108,7 +11108,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "Name", &blofeld::halo2::light_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -11175,7 +11175,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("~Controls", nullptr, FIELD_FLAG_NONE, " "),
+		FIELD_EXPLANATION_EX("~Controls", nullptr, FIELD_FLAG_NONE, " "),
 		{ _field_custom, "value" },
 		{ _field_custom, "value" },
 		{ _field_custom, "value" },
@@ -11294,7 +11294,7 @@ namespace halo2 {
 	{
 		{ _field_string, "name" },
 		{ _field_enum, "type", &blofeld::halo2::unnamed_enum$402 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_long_integer, "initialization expression index" },
 		{ _field_useless_pad, "value" },
@@ -11395,10 +11395,10 @@ namespace halo2 {
 		{ _field_char_integer, "version" },
 		{ _field_char_integer, "raw animation data" },
 		{ _field_char_integer, "unit control data version" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "length of animation", nullptr, "ticks" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_data, "recorded animation event stream" },
 		{ _field_terminator }
 	};
@@ -11488,7 +11488,7 @@ namespace halo2 {
 		{ _field_real, "scripted dialog ducking fade out time", nullptr, "seconds" },
 		{ _field_real, "doppler factor" },
 		{ _field_char_enum, "stereo playback type", &blofeld::halo2::unnamed_enum$436 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "transmission multiplier" },
 		{ _field_real, "obstruction max bend" },
 		{ _field_real, "occlusion max bend" },
@@ -11559,7 +11559,7 @@ namespace halo2 {
 		{ _field_short_integer, "redisplay delay", "how long after display this message will stay hidden" },
 		{ _field_real, "display delay (s)", "how long the event can be triggered before it's displayed" },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$226 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -11804,7 +11804,7 @@ namespace halo2 {
 	{
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_reference },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$232 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -11831,7 +11831,7 @@ namespace halo2 {
 	{
 		{ _field_tag_reference, "effect", &blofeld::halo2::effect_reference },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$232 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -12017,7 +12017,7 @@ namespace halo2 {
 		{ _field_char_enum, "current compression", &blofeld::halo2::unnamed_enum$238 },
 		{ _field_real, "weight" },
 		{ _field_short_integer, "loop frame index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_data, "value" },
 		{ _field_struct, "value", &blofeld::halo2::packed_data_sizes_struct_block_struct_definition },
 		{ _field_block, "frame events", &blofeld::halo2::animation_frame_event_block },
@@ -12113,7 +12113,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "state name", "name of the state" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_char_integer, "index a", "first level sub-index into state" },
 		{ _field_char_integer, "index b", "second level sub-index into state" },
 		{ _field_terminator }
@@ -12131,7 +12131,7 @@ namespace halo2 {
 	{
 		{ _field_string_id, "state name", "name of the state" },
 		{ _field_char_enum, "frame event link", "which frame event to link to", &blofeld::halo2::unnamed_enum$241 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_char_integer, "index a", "first level sub-index into state" },
 		{ _field_char_integer, "index b", "second level sub-index into state" },
 		{ _field_terminator }
@@ -12269,7 +12269,7 @@ namespace halo2 {
 		{ _field_real, "mass point offset" },
 		{ _field_real, "full extension ground_depth" },
 		{ _field_real, "full compression ground_depth" },
-		FIELD_EXPLANATION("Destroyed Suspension", nullptr, FIELD_FLAG_NONE, "Only Necessary for suspensions with a destroyed state"),
+		FIELD_EXPLANATION_EX("Destroyed Suspension", nullptr, FIELD_FLAG_NONE, "Only Necessary for suspensions with a destroyed state"),
 		{ _field_string_id, "region name" },
 		{ _field_real, "destroyed mass point offset" },
 		{ _field_real, "destroyed full extension ground_depth" },
@@ -12355,10 +12355,10 @@ namespace halo2 {
 	{
 		{ _field_string_id, "label" },
 		{ _field_struct, "animation", &blofeld::halo2::animation_index_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "function controls", &blofeld::halo2::unnamed_enum$242 },
 		{ _field_string_id, "function" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -12379,7 +12379,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("GRAPH DATA", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("GRAPH DATA", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "parent animation graph", &blofeld::halo2::model_animation_graph_reference$2 },
 		{ _field_byte_flags, "inheritance flags", &blofeld::halo2::unnamed_enum$228 },
 		{ _field_byte_flags, "private flags", &blofeld::halo2::unnamed_enum$229 },
@@ -12422,9 +12422,9 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("MODE-n-STATE GRAPH", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("MODE-n-STATE GRAPH", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_block, "modes", &blofeld::halo2::animation_mode_block },
-		FIELD_EXPLANATION("SPECIAL CASE ANIMS", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("SPECIAL CASE ANIMS", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_block, "vehicle suspension", &blofeld::halo2::vehicle_suspension_block },
 		{ _field_block, "object overlays", &blofeld::halo2::object_animation_block },
 		{ _field_terminator }
@@ -12520,11 +12520,11 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("RUN-TIME DATA", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("RUN-TIME DATA", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_block, "inheritence list", &blofeld::halo2::inherited_animation_block },
 		{ _field_block, "weapon list", &blofeld::halo2::weapon_class_lookup_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -12571,16 +12571,16 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("parameter description", nullptr, FIELD_FLAG_NONE, "DLS2 filtering:\n    resonance gain range: [0, 22.5] dB\n\nparametric EQ:\n    gain range: [-64, 14] dB\n\nfor mono sounds:\n    the left filter controls the DLS 2 parameters\n    the right filter controls the Parametric EQ parameters\n\nfor stereo sounds:\n    both left and right channels must have the same filter\n    i.e., filter type both is invalid"),
+		FIELD_EXPLANATION_EX("parameter description", nullptr, FIELD_FLAG_NONE, "DLS2 filtering:\n    resonance gain range: [0, 22.5] dB\n\nparametric EQ:\n    gain range: [-64, 14] dB\n\nfor mono sounds:\n    the left filter controls the DLS 2 parameters\n    the right filter controls the Parametric EQ parameters\n\nfor stereo sounds:\n    both left and right channels must have the same filter\n    i.e., filter type both is invalid"),
 		{ _field_long_enum, "filter type", &blofeld::halo2::unnamed_enum$411 },
 		{ _field_long_integer, "filter width", nullptr, nullptr, "[0,7]" },
-		FIELD_EXPLANATION("left filter frequency", nullptr, FIELD_FLAG_NONE, "in Hz [0,8000]"),
+		FIELD_EXPLANATION_EX("left filter frequency", nullptr, FIELD_FLAG_NONE, "in Hz [0,8000]"),
 		{ _field_struct, "left filter frequency", &blofeld::halo2::sound_playback_parameter_definition_block_struct_definition },
-		FIELD_EXPLANATION("left filter gain", nullptr, FIELD_FLAG_NONE, "in dB"),
+		FIELD_EXPLANATION_EX("left filter gain", nullptr, FIELD_FLAG_NONE, "in dB"),
 		{ _field_struct, "left filter gain", &blofeld::halo2::sound_playback_parameter_definition_block_struct_definition },
-		FIELD_EXPLANATION("right filter frequency", nullptr, FIELD_FLAG_NONE, "in Hz [0,8000]"),
+		FIELD_EXPLANATION_EX("right filter frequency", nullptr, FIELD_FLAG_NONE, "in Hz [0,8000]"),
 		{ _field_struct, "right filter frequency", &blofeld::halo2::sound_playback_parameter_definition_block_struct_definition },
-		FIELD_EXPLANATION("right filter gain", nullptr, FIELD_FLAG_NONE, "in dB"),
+		FIELD_EXPLANATION_EX("right filter gain", nullptr, FIELD_FLAG_NONE, "in dB"),
 		{ _field_struct, "right filter gain", &blofeld::halo2::sound_playback_parameter_definition_block_struct_definition },
 		{ _field_terminator }
 	};
@@ -12603,11 +12603,11 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("delay", nullptr, FIELD_FLAG_NONE, "seconds"),
+		FIELD_EXPLANATION_EX("delay", nullptr, FIELD_FLAG_NONE, "seconds"),
 		{ _field_struct, "delay", &blofeld::halo2::sound_playback_parameter_definition_block_struct_definition },
-		FIELD_EXPLANATION("frequency", nullptr, FIELD_FLAG_NONE, "Hz[0,43.7]"),
+		FIELD_EXPLANATION_EX("frequency", nullptr, FIELD_FLAG_NONE, "Hz[0,43.7]"),
 		{ _field_struct, "frequency", &blofeld::halo2::sound_playback_parameter_definition_block_struct_definition },
-		FIELD_EXPLANATION("pitch modulation", nullptr, FIELD_FLAG_NONE, "octaves[-1,1]"),
+		FIELD_EXPLANATION_EX("pitch modulation", nullptr, FIELD_FLAG_NONE, "octaves[-1,1]"),
 		{ _field_struct, "pitch modulation", &blofeld::halo2::sound_playback_parameter_definition_block_struct_definition },
 		{ _field_terminator }
 	};
@@ -12622,13 +12622,13 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("delay", nullptr, FIELD_FLAG_NONE, "in seconds"),
+		FIELD_EXPLANATION_EX("delay", nullptr, FIELD_FLAG_NONE, "in seconds"),
 		{ _field_struct, "delay", &blofeld::halo2::sound_playback_parameter_definition_block_struct_definition },
-		FIELD_EXPLANATION("frequency", nullptr, FIELD_FLAG_NONE, "in Hz[0,43.7]"),
+		FIELD_EXPLANATION_EX("frequency", nullptr, FIELD_FLAG_NONE, "in Hz[0,43.7]"),
 		{ _field_struct, "frequency", &blofeld::halo2::sound_playback_parameter_definition_block_struct_definition },
-		FIELD_EXPLANATION("cutoff modulation", nullptr, FIELD_FLAG_NONE, "octaves[-8,8]"),
+		FIELD_EXPLANATION_EX("cutoff modulation", nullptr, FIELD_FLAG_NONE, "octaves[-8,8]"),
 		{ _field_struct, "cutoff modulation", &blofeld::halo2::sound_playback_parameter_definition_block_struct_definition },
-		FIELD_EXPLANATION("gain modulation", nullptr, FIELD_FLAG_NONE, "dB[-16,16]"),
+		FIELD_EXPLANATION_EX("gain modulation", nullptr, FIELD_FLAG_NONE, "dB[-16,16]"),
 		{ _field_struct, "gain modulation", &blofeld::halo2::sound_playback_parameter_definition_block_struct_definition },
 		{ _field_terminator }
 	};
@@ -12659,7 +12659,7 @@ namespace halo2 {
 	{
 		{ _field_block, "value", &blofeld::halo2::platform_sound_override_mixbins_block },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$410 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_block, "filter", &blofeld::halo2::platform_sound_filter_block },
 		{ _field_block, "pitch lfo", &blofeld::halo2::platform_sound_pitch_lfo_block },
 		{ _field_block, "filter lfo", &blofeld::halo2::platform_sound_filter_lfo_block },
@@ -12685,7 +12685,7 @@ namespace halo2 {
 	{
 		{ _field_block, "value", &blofeld::halo2::platform_sound_override_mixbins_block },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$410 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_block, "filter", &blofeld::halo2::platform_sound_filter_block },
 		{ _field_block, "pitch lfo", &blofeld::halo2::platform_sound_pitch_lfo_block },
 		{ _field_block, "filter lfo", &blofeld::halo2::platform_sound_filter_lfo_block },
@@ -12847,7 +12847,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "dsp effect" },
-		FIELD_EXPLANATION("WARNING", nullptr, FIELD_FLAG_NONE, "DON\'T MODIFY THIS TAG UNLESS YOU KNOW WHAT YOU ARE DOING"),
+		FIELD_EXPLANATION_EX("WARNING", nullptr, FIELD_FLAG_NONE, "DON\'T MODIFY THIS TAG UNLESS YOU KNOW WHAT YOU ARE DOING"),
 		{ _field_data, "explanation" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$28 },
 		{ _field_short_integer, "value" },
@@ -13009,21 +13009,21 @@ namespace halo2 {
 		{ _field_real, "vehicle danger radius" },
 		{ _field_real, "vehicle danger lead time", nullptr, "seconds" },
 		{ _field_real, "vehicle nearby player dist", "how nearby a player is to count a vehicle as 'occupied'" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 84),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 84),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_tag_reference, "hill shader", &blofeld::halo2::shader_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_real, "flag reset stop distance" },
 		{ _field_tag_reference, "bomb explode effect", &blofeld::halo2::effect_reference },
 		{ _field_tag_reference, "bomb explode dmg effect", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "bomb defuse effect", &blofeld::halo2::effect_reference },
 		{ _field_string_id, "bomb defusal string" },
 		{ _field_string_id, "blocked teleporter string" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -13038,13 +13038,13 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$314 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "state", &blofeld::halo2::unnamed_enum$315 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "ffa message" },
 		{ _field_string_id, "team message" },
 		{ _field_tag_reference, "value", &blofeld::halo2::_reference$3 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -13148,73 +13148,73 @@ namespace halo2 {
 		{ _field_tag_reference, "default item collection 2", &blofeld::halo2::item_collection_reference },
 		{ _field_long_integer, "default frag grenade count" },
 		{ _field_long_integer, "default plasma grenade count" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
-		FIELD_EXPLANATION("dynamic spawn zones", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_EXPLANATION_EX("dynamic spawn zones", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "dynamic zone upper height" },
 		{ _field_real, "dynamic zone lower height" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
-		FIELD_EXPLANATION("enemy", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_EXPLANATION_EX("enemy", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "enemy inner radius" },
 		{ _field_real, "enemy outer radius" },
 		{ _field_real, "enemy weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("friend", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("friend", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "friend inner radius" },
 		{ _field_real, "friend outer radius" },
 		{ _field_real, "friend weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("enemy vehicle", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("enemy vehicle", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "enemy vehicle inner radius" },
 		{ _field_real, "enemy vehicle outer radius" },
 		{ _field_real, "enemy vehicle weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("friendly vehicle", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("friendly vehicle", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "friendly vehicle inner radius" },
 		{ _field_real, "friendly vehicle outer radius" },
 		{ _field_real, "friendly vehicle weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("empty vehicle", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("empty vehicle", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "empty vehicle inner radius" },
 		{ _field_real, "empty vehicle outer radius" },
 		{ _field_real, "empty vehicle weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("oddball inclusion", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("oddball inclusion", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "oddball inclusion inner radius" },
 		{ _field_real, "oddball inclusion outer radius" },
 		{ _field_real, "oddball inclusion weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("oddball exclusion", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("oddball exclusion", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "oddball exclusion inner radius" },
 		{ _field_real, "oddball exclusion outer radius" },
 		{ _field_real, "oddball exclusion weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("hill inclusion", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("hill inclusion", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "hill inclusion inner radius" },
 		{ _field_real, "hill inclusion outer radius" },
 		{ _field_real, "hill inclusion weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("hill exclusion", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("hill exclusion", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "hill exclusion inner radius" },
 		{ _field_real, "hill exclusion outer radius" },
 		{ _field_real, "hill exclusion weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("last race flag", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("last race flag", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "last race flag inner radius" },
 		{ _field_real, "last race flag outer radius" },
 		{ _field_real, "last race flag weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("dead ally", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("dead ally", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "dead ally inner radius" },
 		{ _field_real, "dead ally outer radius" },
 		{ _field_real, "dead ally weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("controlled territory", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("controlled territory", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "controlled territory inner radius" },
 		{ _field_real, "controlled territory outer radius" },
 		{ _field_real, "controlled territory weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 560),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 560),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_block, "multiplayer constants", &blofeld::halo2::multiplayer_constants_block },
 		{ _field_block, "state responses", &blofeld::halo2::game_engine_status_response_block },
 		{ _field_tag_reference, "scoreboard hud definition", &blofeld::halo2::new_hud_definition_reference },
@@ -13239,7 +13239,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "friction" },
 		{ _field_real_fraction, "restitution" },
 		{ _field_real, "density", nullptr, "kg/m^3" },
@@ -13270,7 +13270,7 @@ namespace halo2 {
 		{ _field_tag_reference, "effect sweetener grinding", &blofeld::halo2::effect_reference },
 		{ _field_tag_reference, "effect sweetener (melee)", &blofeld::halo2::effect_reference },
 		{ _field_tag_reference, "value", &blofeld::halo2::_reference$3 },
-		FIELD_EXPLANATION("sweetener inheritance flags", nullptr, FIELD_FLAG_NONE, "when a sweetener inheritance flag is set the sound\\effect is not inherited from the parent material.  If you leave the sweetener blank and set the flag than no effect\\sound will play"),
+		FIELD_EXPLANATION_EX("sweetener inheritance flags", nullptr, FIELD_FLAG_NONE, "when a sweetener inheritance flag is set the sound\\effect is not inherited from the parent material.  If you leave the sweetener blank and set the flag than no effect\\sound will play"),
 		{ _field_long_flags, "sweetener inheritance flags", &blofeld::halo2::unnamed_enum$300 },
 		{ _field_terminator }
 	};
@@ -13306,10 +13306,10 @@ namespace halo2 {
 	{
 		{ _field_string_id, "name" },
 		{ _field_string_id, "parent name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$299 },
 		{ _field_enum, "old material type", &blofeld::halo2::unnamed_enum$211 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "general armor" },
 		{ _field_string_id, "specific armor" },
 		{ _field_struct, "physics properties", &blofeld::halo2::material_physics_properties_struct_block_struct_definition },
@@ -13446,10 +13446,10 @@ namespace halo2 {
 		{ _field_tag_reference, "effect", &blofeld::halo2::effect_reference },
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_sound_looping_reference },
 		{ _field_string_id, "material name" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_char_enum, "sweetener mode", &blofeld::halo2::unnamed_enum$185 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -13481,9 +13481,9 @@ namespace halo2 {
 		{ _field_tag_reference, "effect", &blofeld::halo2::effect_reference },
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_sound_looping_reference },
 		{ _field_string_id, "material name" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_char_enum, "sweetener mode", &blofeld::halo2::unnamed_enum$185 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
 	};
@@ -13501,9 +13501,9 @@ namespace halo2 {
 		{ _field_tag_reference, "tag (effect or sound)", &blofeld::halo2::sound_sound_looping_effect_reference },
 		{ _field_tag_reference, "secondary tag (effect or sound)", &blofeld::halo2::sound_sound_looping_effect_reference },
 		{ _field_string_id, "material name" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_char_enum, "sweetener mode", &blofeld::halo2::unnamed_enum$185 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -13526,7 +13526,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_block, "materials", &blofeld::halo2::material_effect_material_block_old_v1 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_terminator }
 	};
 
@@ -13608,7 +13608,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_enum, "setting category", &blofeld::halo2::unnamed_enum$188 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "options", &blofeld::halo2::text_value_pair_block },
 		{ _field_block, "value", &blofeld::halo2::null_block },
 		{ _field_terminator }
@@ -13688,7 +13688,7 @@ namespace halo2 {
 		{ _field_long_enum, "variant type", &blofeld::halo2::unnamed_enum$189 },
 		{ _field_block, "settings", &blofeld::halo2::g_default_variant_settings_block },
 		{ _field_char_integer, "description index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -13718,7 +13718,7 @@ namespace halo2 {
 		{ _field_long_enum, "value", &blofeld::halo2::unnamed_enum$189 },
 		{ _field_block, "settings", &blofeld::halo2::g_default_variant_settings_block },
 		{ _field_char_integer, "value" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -13735,7 +13735,7 @@ namespace halo2 {
 		{ _field_long_flags, "text flags", &blofeld::halo2::unnamed_enum$420 },
 		{ _field_enum, "animation index", &blofeld::halo2::unnamed_enum$421 },
 		{ _field_short_integer, "intro animation delay milliseconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "custom font", &blofeld::halo2::unnamed_enum$422 },
 		{ _field_real_argb_color, "text color" },
 		{ _field_rectangle_2d, "bounds" },
@@ -13845,14 +13845,14 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("OBSOLETE", nullptr, FIELD_FLAG_NONE, "this is all obsolete"),
+		FIELD_EXPLANATION_EX("OBSOLETE", nullptr, FIELD_FLAG_NONE, "this is all obsolete"),
 		{ _field_enum, "value type", &blofeld::halo2::unnamed_enum$540 },
-		FIELD_EXPLANATION("Value", nullptr, FIELD_FLAG_NONE, "Enter the value in the box corresponding to the value type you specified above"),
+		FIELD_EXPLANATION_EX("Value", nullptr, FIELD_FLAG_NONE, "Enter the value in the box corresponding to the value type you specified above"),
 		{ _field_enum, "boolean value", &blofeld::halo2::unnamed_enum$541 },
 		{ _field_long_integer, "integer value" },
 		{ _field_real, "fp value" },
 		{ _field_string_id, "text value string_id" },
-		FIELD_EXPLANATION("Text Label", nullptr, FIELD_FLAG_NONE, "This is text string associated with data when it has the value specified above.\nThe string comes from the screen\'s string list tag."),
+		FIELD_EXPLANATION_EX("Text Label", nullptr, FIELD_FLAG_NONE, "This is text string associated with data when it has the value specified above.\nThe string comes from the screen\'s string list tag."),
 		{ _field_string_id, "text label string_id" },
 		{ _field_terminator }
 	};
@@ -13883,7 +13883,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("OBSOLETE", nullptr, FIELD_FLAG_NONE, "this is all obsolete"),
+		FIELD_EXPLANATION_EX("OBSOLETE", nullptr, FIELD_FLAG_NONE, "this is all obsolete"),
 		{ _field_string, "name" },
 		{ _field_block, "text value pairs", &blofeld::halo2::s_text_value_pair_reference_block_unused },
 		{ _field_terminator }
@@ -13905,7 +13905,7 @@ namespace halo2 {
 		{ _field_point_2d, "bottom left" },
 		{ _field_enum, "animation index", &blofeld::halo2::unnamed_enum$421 },
 		{ _field_short_integer, "intro animation delay milliseconds" },
-		FIELD_EXPLANATION("UNUSED", nullptr, FIELD_FLAG_NONE, "This is unused"),
+		FIELD_EXPLANATION_EX("UNUSED", nullptr, FIELD_FLAG_NONE, "This is unused"),
 		{ _field_block, "UNUSED", &blofeld::halo2::s_text_value_pair_reference_block_unused },
 		{ _field_terminator }
 	};
@@ -13966,12 +13966,12 @@ namespace halo2 {
 	{
 		{ _field_long_flags, "text flags", &blofeld::halo2::unnamed_enum$420 },
 		{ _field_short_integer, "cell width" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_point_2d, "bitmap top-left", nullptr, "if there is a bitmap" },
 		{ _field_tag_reference, "bitmap tag", &blofeld::halo2::bitmap_reference },
 		{ _field_string_id, "string id" },
 		{ _field_short_integer, "render depth bias" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -13987,7 +13987,7 @@ namespace halo2 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$543 },
 		{ _field_short_integer, "row height" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "row cells", &blofeld::halo2::table_view_list_item_reference_block },
 		{ _field_terminator }
 	};
@@ -14012,7 +14012,7 @@ namespace halo2 {
 		{ _field_enum, "animation index", &blofeld::halo2::unnamed_enum$421 },
 		{ _field_short_integer, "intro animation delay milliseconds" },
 		{ _field_enum, "custom font", &blofeld::halo2::unnamed_enum$422 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_argb_color, "text color" },
 		{ _field_point_2d, "top-left" },
 		{ _field_block, "table rows", &blofeld::halo2::table_view_list_row_reference_block },
@@ -14038,13 +14038,13 @@ namespace halo2 {
 		{ _field_long_flags, "text flags", &blofeld::halo2::unnamed_enum$420 },
 		{ _field_enum, "animation index", &blofeld::halo2::unnamed_enum$421 },
 		{ _field_short_integer, "intro animation delay milliseconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "custom font", &blofeld::halo2::unnamed_enum$422 },
 		{ _field_real_argb_color, "text color" },
 		{ _field_rectangle_2d, "text bounds" },
 		{ _field_string_id, "string id" },
 		{ _field_short_integer, "render depth bias" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -14068,7 +14068,7 @@ namespace halo2 {
 		{ _field_real, "vert texture wraps/second" },
 		{ _field_tag_reference, "bitmap tag", &blofeld::halo2::bitmap_reference },
 		{ _field_short_integer, "render depth bias" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "sprite animation speed fps" },
 		{ _field_point_2d, "progress bottom-left" },
 		{ _field_string_id, "string identifier" },
@@ -14134,12 +14134,12 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("NOTE on coordinate systems", nullptr, FIELD_FLAG_NONE, "Halo y-axis=ui z-axis, and Halo z-axis=ui y-axis.\nAs a convention, let\'s always place objects in the ui scenario such that\nthey are facing in the \'-y\' direction, and the camera such that is is\nfacing the \'+y\' direction. This way the ui animation for models (which\ngets applied to the camera) will always be consisitent."),
+		FIELD_EXPLANATION_EX("NOTE on coordinate systems", nullptr, FIELD_FLAG_NONE, "Halo y-axis=ui z-axis, and Halo z-axis=ui y-axis.\nAs a convention, let\'s always place objects in the ui scenario such that\nthey are facing in the \'-y\' direction, and the camera such that is is\nfacing the \'+y\' direction. This way the ui animation for models (which\ngets applied to the camera) will always be consisitent."),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$544 },
 		{ _field_enum, "animation index", &blofeld::halo2::unnamed_enum$421 },
 		{ _field_short_integer, "intro animation delay milliseconds" },
 		{ _field_short_integer, "render depth bias" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "objects", &blofeld::halo2::ui_object_reference_block },
 		{ _field_block, "lights", &blofeld::halo2::ui_light_reference_block },
 		{ _field_real_vector_3d, "animation scale factor" },
@@ -14189,7 +14189,7 @@ namespace halo2 {
 		{ _field_real_argb_color, "color" },
 		{ _field_block, "points", &blofeld::halo2::point_block_reference_block },
 		{ _field_short_integer, "render depth bias" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 14),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 14),
 		{ _field_terminator }
 	};
 
@@ -14209,11 +14209,11 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("Unused Debug Geometry Shapes", nullptr, FIELD_FLAG_NONE, "This is the old way"),
+		FIELD_EXPLANATION_EX("Unused Debug Geometry Shapes", nullptr, FIELD_FLAG_NONE, "This is the old way"),
 		{ _field_block, "shapes", &blofeld::halo2::shape_block_reference_block },
-		FIELD_EXPLANATION("Model-Light Groups", nullptr, FIELD_FLAG_NONE, "Specify commonly used model/light groups here"),
+		FIELD_EXPLANATION_EX("Model-Light Groups", nullptr, FIELD_FLAG_NONE, "Specify commonly used model/light groups here"),
 		{ _field_block, "model scene blocks", &blofeld::halo2::ui_model_scene_reference_block },
-		FIELD_EXPLANATION("Bitmaps", nullptr, FIELD_FLAG_NONE, "Specify more flavor bitmaps here"),
+		FIELD_EXPLANATION_EX("Bitmaps", nullptr, FIELD_FLAG_NONE, "Specify more flavor bitmaps here"),
 		{ _field_block, "bitmap blocks", &blofeld::halo2::bitmap_block_reference_block },
 		{ _field_terminator }
 	};
@@ -14256,7 +14256,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_tag_reference, "skin", &blofeld::halo2::user_interface_list_skin_definition_reference },
 		{ _field_point_2d, "bottom-left" },
 		{ _field_char_enum, "table order", &blofeld::halo2::unnamed_enum$426 },
@@ -14287,7 +14287,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "alpha" },
 		{ _field_real_point_3d, "position" },
 		{ _field_terminator }
@@ -14320,20 +14320,20 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$549 },
-		FIELD_EXPLANATION("Primary Intro Transition", nullptr, FIELD_FLAG_NONE, "Defines the primary intro transitional animation"),
+		FIELD_EXPLANATION_EX("Primary Intro Transition", nullptr, FIELD_FLAG_NONE, "Defines the primary intro transitional animation"),
 		{ _field_long_integer, "animation period", nullptr, "milliseconds" },
 		{ _field_block, "keyframes", &blofeld::halo2::screen_animation_keyframe_reference_block },
 		{ _field_useless_pad, "value" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Primary Outro Transition", nullptr, FIELD_FLAG_NONE, "Defines the primary outro transitional animation"),
+		FIELD_EXPLANATION_EX("Primary Outro Transition", nullptr, FIELD_FLAG_NONE, "Defines the primary outro transitional animation"),
 		{ _field_long_integer, "animation period", nullptr, "milliseconds" },
 		{ _field_block, "keyframes", &blofeld::halo2::screen_animation_keyframe_reference_block },
 		{ _field_useless_pad, "value" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Ambient Animation", nullptr, FIELD_FLAG_NONE, "Defines the ambient animation"),
+		FIELD_EXPLANATION_EX("Ambient Animation", nullptr, FIELD_FLAG_NONE, "Defines the ambient animation"),
 		{ _field_long_integer, "animation period", nullptr, "milliseconds" },
 		{ _field_enum, "ambient animation looping style", &blofeld::halo2::unnamed_enum$550 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "keyframes", &blofeld::halo2::screen_animation_keyframe_reference_block },
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
@@ -14400,19 +14400,19 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "animation index", &blofeld::halo2::unnamed_enum$421 },
-		FIELD_EXPLANATION("Button Definitions", nullptr, FIELD_FLAG_NONE, "If the pane contains buttons, define them here"),
+		FIELD_EXPLANATION_EX("Button Definitions", nullptr, FIELD_FLAG_NONE, "If the pane contains buttons, define them here"),
 		{ _field_block, "buttons", &blofeld::halo2::button_widget_reference_block },
-		FIELD_EXPLANATION("List Definition", nullptr, FIELD_FLAG_NONE, "If the pane contains a list, define it here"),
+		FIELD_EXPLANATION_EX("List Definition", nullptr, FIELD_FLAG_NONE, "If the pane contains a list, define it here"),
 		{ _field_block, "list block", &blofeld::halo2::list_reference_block },
-		FIELD_EXPLANATION("OBSOLETE Table View Definition", nullptr, FIELD_FLAG_NONE, "If the pane contains a table-view, define it here"),
+		FIELD_EXPLANATION_EX("OBSOLETE Table View Definition", nullptr, FIELD_FLAG_NONE, "If the pane contains a table-view, define it here"),
 		{ _field_block, "table view", &blofeld::halo2::table_view_list_reference_block },
-		FIELD_EXPLANATION("Flavor Item Blocks", nullptr, FIELD_FLAG_NONE, "Define additional flavor items here"),
+		FIELD_EXPLANATION_EX("Flavor Item Blocks", nullptr, FIELD_FLAG_NONE, "Define additional flavor items here"),
 		{ _field_block, "text blocks", &blofeld::halo2::text_block_reference_block },
 		{ _field_block, "bitmap blocks", &blofeld::halo2::bitmap_block_reference_block },
 		{ _field_block, "model scene blocks", &blofeld::halo2::ui_model_scene_reference_block },
-		FIELD_EXPLANATION("UNUSED", nullptr, FIELD_FLAG_NONE, "these are all OBSOLETE"),
+		FIELD_EXPLANATION_EX("UNUSED", nullptr, FIELD_FLAG_NONE, "these are all OBSOLETE"),
 		{ _field_block, "text-value blocks", &blofeld::halo2::s_text_value_pair_blocks_block_unused },
 		{ _field_block, "hud blocks", &blofeld::halo2::hud_block_reference_block },
 		{ _field_block, "player blocks", &blofeld::halo2::player_block_reference_block },
@@ -14486,7 +14486,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_long_integer, "animation period", nullptr, "milliseconds" },
 		{ _field_block, "interpolated keyframes", &blofeld::halo2::background_animation_keyframe_reference_block },
 		{ _field_terminator }
@@ -14505,7 +14505,7 @@ namespace halo2 {
 		{ _field_long_enum, "error", &blofeld::halo2::unnamed_enum$548 },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$546 },
 		{ _field_char_enum, "default button", &blofeld::halo2::unnamed_enum$547 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_string_id, "title" },
 		{ _field_string_id, "message" },
 		{ _field_string_id, "ok" },
@@ -14799,7 +14799,7 @@ namespace halo2 {
 		{ _field_string_id, "category name" },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$546 },
 		{ _field_char_enum, "default button", &blofeld::halo2::unnamed_enum$547 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_tag_reference, "string tag", &blofeld::halo2::multilingual_unicode_string_list_reference },
 		{ _field_string_id, "default title" },
 		{ _field_string_id, "default message" },
@@ -14852,8 +14852,8 @@ namespace halo2 {
 		{ _field_short_integer, "start index into text blob" },
 		{ _field_short_integer, "start index of message block" },
 		{ _field_char_integer, "panel count" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_terminator }
 	};
 
@@ -14870,17 +14870,17 @@ namespace halo2 {
 		{ _field_string, "Name" },
 		{ _field_char_integer, "Sequence Index", nullptr, nullptr, "[0,15]" },
 		{ _field_byte_flags, "type flags", &blofeld::halo2::unnamed_enum$174 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_fraction, "Color Override Factor", "Fraction of detail object color to use instead of the base map color in the environment:[0,1]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real, "Near Fade Distance", nullptr, "world units" },
 		{ _field_real, "Far Fade Distance", nullptr, "world units" },
 		{ _field_real, "Size", nullptr, "world units per pixel" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_rgb_color, "Minimum Color", nullptr, nullptr, "[0,1]" },
 		{ _field_real_rgb_color, "Maximum Color", nullptr, nullptr, "[0,1]" },
 		{ _field_argb_color, "ambient color", nullptr, nullptr, "[0,255]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -14910,7 +14910,7 @@ namespace halo2 {
 		{ _field_long_integer, "value" },
 		{ _field_long_integer, "value" },
 		{ _field_long_integer, "value" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -14973,11 +14973,11 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("net map info", nullptr, FIELD_FLAG_NONE, "these provide the info required by the UI to load a net map"),
+		FIELD_EXPLANATION_EX("net map info", nullptr, FIELD_FLAG_NONE, "these provide the info required by the UI to load a net map"),
 		{ _field_tag_reference, "descriptive bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_tag_reference, "displayed map name", &blofeld::halo2::multilingual_unicode_string_list_reference },
 		{ _field_string, "scenario tag directory path", "this is the path to the directory containing the scenario tag file of the same name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -14991,30 +14991,30 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("Mask", nullptr, FIELD_FLAG_NONE, "Mask bitmap overlay. Use either a 2D bitmap or an interface bitmap."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("Mask", nullptr, FIELD_FLAG_NONE, "Mask bitmap overlay. Use either a 2D bitmap or an interface bitmap."),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$559 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_tag_reference, "mask (fullscreen)", &blofeld::halo2::bitmap_reference },
 		{ _field_tag_reference, "mask (splitscreen)", &blofeld::halo2::bitmap_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
-		FIELD_EXPLANATION("Screen effect (fullscreen)", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_EXPLANATION_EX("Screen effect (fullscreen)", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_flags, "screen effect flags", &blofeld::halo2::unnamed_enum$560 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_tag_reference, "screen effect", &blofeld::halo2::screen_effect_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_EXPLANATION("Screen effect (splitscreen)", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_EXPLANATION_EX("Screen effect (splitscreen)", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_flags, "screen effect flags", &blofeld::halo2::unnamed_enum$560 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_tag_reference, "screen effect", &blofeld::halo2::screen_effect_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -15043,25 +15043,25 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 64),
-		FIELD_EXPLANATION("source/destination", nullptr, FIELD_FLAG_NONE, "These describe the relationship that causes the effect.\n* destination type is the type of variable you want to be effected\n* destination tells which texture map (or geometry offset) to apply it to\n* source says which value to look at when computing the effect"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_EXPLANATION_EX("source/destination", nullptr, FIELD_FLAG_NONE, "These describe the relationship that causes the effect.\n* destination type is the type of variable you want to be effected\n* destination tells which texture map (or geometry offset) to apply it to\n* source says which value to look at when computing the effect"),
 		{ _field_enum, "destination type", &blofeld::halo2::unnamed_enum$197 },
 		{ _field_enum, "destination", &blofeld::halo2::unnamed_enum$198 },
 		{ _field_enum, "source", &blofeld::halo2::unnamed_enum$199 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_EXPLANATION("in/out bounds", nullptr, FIELD_FLAG_NONE, "When the source is at the lower inbound, the destination ends up the lower outbound and vice-versa applies for the upper values."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("in/out bounds", nullptr, FIELD_FLAG_NONE, "When the source is at the lower inbound, the destination ends up the lower outbound and vice-versa applies for the upper values."),
 		{ _field_real_bounds, "in bounds", nullptr, "source units" },
 		{ _field_real_bounds, "out bounds", nullptr, "pixels" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 64),
-		FIELD_EXPLANATION("tint color bounds", nullptr, FIELD_FLAG_NONE, "If destination is tint, these values are used instead of the out bounds."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_EXPLANATION_EX("tint color bounds", nullptr, FIELD_FLAG_NONE, "If destination is tint, these values are used instead of the out bounds."),
 		{ _field_real_rgb_color, "tint color lower bound" },
 		{ _field_real_rgb_color, "tint color upper bound" },
-		FIELD_EXPLANATION("periodic functions", nullptr, FIELD_FLAG_NONE, "If you use a periodic function as the source, this lets you tweak it."),
+		FIELD_EXPLANATION_EX("periodic functions", nullptr, FIELD_FLAG_NONE, "If you use a periodic function as the source, this lets you tweak it."),
 		{ _field_enum, "periodic function", &blofeld::halo2::unnamed_enum$158 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "function period", nullptr, "seconds" },
 		{ _field_real, "function phase", nullptr, "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -15106,38 +15106,38 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "type" },
 		{ _field_enum, "framebuffer blend func", &blofeld::halo2::unnamed_enum$154 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_EXPLANATION("anchors", nullptr, FIELD_FLAG_NONE, "where you want the origin of the texture.\n*\"texture\" uses the texture coordinates supplied\n*\"screen\" uses the origin of the screen as the origin of the texture"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_EXPLANATION_EX("anchors", nullptr, FIELD_FLAG_NONE, "where you want the origin of the texture.\n*\"texture\" uses the texture coordinates supplied\n*\"screen\" uses the origin of the screen as the origin of the texture"),
 		{ _field_enum, "primary anchor", &blofeld::halo2::unnamed_enum$194 },
 		{ _field_enum, "secondary anchor", &blofeld::halo2::unnamed_enum$194 },
 		{ _field_enum, "tertiary anchor", &blofeld::halo2::unnamed_enum$194 },
-		FIELD_EXPLANATION("blending function", nullptr, FIELD_FLAG_NONE, "how to blend the textures together"),
+		FIELD_EXPLANATION_EX("blending function", nullptr, FIELD_FLAG_NONE, "how to blend the textures together"),
 		{ _field_enum, "0 to 1 blend func", &blofeld::halo2::unnamed_enum$195 },
 		{ _field_enum, "1 to 2 blend func", &blofeld::halo2::unnamed_enum$195 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_EXPLANATION("map scales", nullptr, FIELD_FLAG_NONE, "how much to scale the textures"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("map scales", nullptr, FIELD_FLAG_NONE, "how much to scale the textures"),
 		{ _field_real_point_2d, "primary scale" },
 		{ _field_real_point_2d, "secondary scale" },
 		{ _field_real_point_2d, "tertiary scale" },
-		FIELD_EXPLANATION("map offsets", nullptr, FIELD_FLAG_NONE, "how much to offset the origin of the texture"),
+		FIELD_EXPLANATION_EX("map offsets", nullptr, FIELD_FLAG_NONE, "how much to offset the origin of the texture"),
 		{ _field_real_point_2d, "primary offset" },
 		{ _field_real_point_2d, "secondary offset" },
 		{ _field_real_point_2d, "tertiary offset" },
-		FIELD_EXPLANATION("map", nullptr, FIELD_FLAG_NONE, "which maps to use"),
+		FIELD_EXPLANATION_EX("map", nullptr, FIELD_FLAG_NONE, "which maps to use"),
 		{ _field_tag_reference, "primary", &blofeld::halo2::bitmap_reference },
 		{ _field_tag_reference, "secondary", &blofeld::halo2::bitmap_reference },
 		{ _field_tag_reference, "tertiary", &blofeld::halo2::bitmap_reference },
 		{ _field_enum, "primary wrap mode", &blofeld::halo2::unnamed_enum$196 },
 		{ _field_enum, "secondary wrap mode", &blofeld::halo2::unnamed_enum$196 },
 		{ _field_enum, "tertiary wrap mode", &blofeld::halo2::unnamed_enum$196 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 184),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 184),
 		{ _field_block, "effectors", &blofeld::halo2::global_hud_multitexture_overlay_effector_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 128),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 128),
 		{ _field_terminator }
 	};
 
@@ -15196,17 +15196,17 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string, "name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_rgb_color, "color" },
 		{ _field_real, "opacity" },
 		{ _field_real, "translucency" },
 		{ _field_short_integer, "on screen sequence index" },
 		{ _field_short_integer, "off screen sequence index" },
 		{ _field_short_integer, "occluded sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$223 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_terminator }
 	};
 
@@ -15226,7 +15226,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("widget state", nullptr, FIELD_FLAG_NONE, "this section is split up into YES and NO flags.\na widget will draw if any of it\'s YES flags are true,\nbut it will NOT draw if any of it\'s NO flags are true.\n"),
+		FIELD_EXPLANATION_EX("widget state", nullptr, FIELD_FLAG_NONE, "this section is split up into YES and NO flags.\na widget will draw if any of it\'s YES flags are true,\nbut it will NOT draw if any of it\'s NO flags are true.\n"),
 		{ _field_word_flags, "[Y] unit flags", &blofeld::halo2::unnamed_enum$317 },
 		{ _field_word_flags, "[Y] extra flags", &blofeld::halo2::unnamed_enum$318 },
 		{ _field_word_flags, "[Y] weapon flags", &blofeld::halo2::unnamed_enum$319 },
@@ -15240,7 +15240,7 @@ namespace halo2 {
 		{ _field_char_integer, "age cutoff" },
 		{ _field_char_integer, "clip cutoff" },
 		{ _field_char_integer, "total cutoff" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -15316,7 +15316,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("widget inputs", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("widget inputs", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_char_enum, "input 1", &blofeld::halo2::unnamed_enum$316 },
 		{ _field_char_enum, "input 2", &blofeld::halo2::unnamed_enum$316 },
 		{ _field_char_enum, "input 3", &blofeld::halo2::unnamed_enum$316 },
@@ -15437,15 +15437,15 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("WIDGET EFFECTS", nullptr, FIELD_FLAG_NONE, "allow the scaling, rotation, and offsetting of widgets"),
+		FIELD_EXPLANATION_EX("WIDGET EFFECTS", nullptr, FIELD_FLAG_NONE, "allow the scaling, rotation, and offsetting of widgets"),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$323 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_EXPLANATION("horizontal and vertical scale", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("horizontal and vertical scale", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "your mom", &blofeld::halo2::hud_widget_effect_function_struct_block_struct_definition },
 		{ _field_struct, "your mom", &blofeld::halo2::hud_widget_effect_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("theta", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("theta", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "your mom", &blofeld::halo2::hud_widget_effect_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("horizontal and vertical offset", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("horizontal and vertical offset", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "your mom", &blofeld::halo2::hud_widget_effect_function_struct_block_struct_definition },
 		{ _field_struct, "your mom", &blofeld::halo2::hud_widget_effect_function_struct_block_struct_definition },
 		{ _field_terminator }
@@ -15479,7 +15479,7 @@ namespace halo2 {
 		{ _field_char_integer, "fullscreen sequence index" },
 		{ _field_char_integer, "halfscreen sequence index" },
 		{ _field_char_integer, "quarterscreen sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_point_2d, "fullscreen offset" },
 		{ _field_point_2d, "halfscreen offset" },
 		{ _field_point_2d, "quarterscreen offset" },
@@ -15488,7 +15488,7 @@ namespace halo2 {
 		{ _field_real_point_2d, "quarterscreen registration point" },
 		{ _field_block, "effect", &blofeld::halo2::hud_widget_effect_block },
 		{ _field_enum, "special hud type", &blofeld::halo2::unnamed_enum$324 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -15540,17 +15540,17 @@ namespace halo2 {
 		{ _field_struct, "value", &blofeld::halo2::hud_widget_inputs_struct_block_struct_definition },
 		{ _field_struct, "value", &blofeld::halo2::hud_widget_state_definition_struct_block_struct_definition },
 		{ _field_enum, "anchor", &blofeld::halo2::unnamed_enum$321 },
-		FIELD_EXPLANATION("FLAGS", nullptr, FIELD_FLAG_NONE, "string is a number: treats the inputted string id as a function name, not a string name\n\nforce 2-digit number: when used in combination with above, forces output to be a 2-digit numberwith leading zeros if necessary\n\nforce 3-digit number: same as above, but with 3 digits instead of 2\n\n"),
+		FIELD_EXPLANATION_EX("FLAGS", nullptr, FIELD_FLAG_NONE, "string is a number: treats the inputted string id as a function name, not a string name\n\nforce 2-digit number: when used in combination with above, forces output to be a 2-digit numberwith leading zeros if necessary\n\nforce 3-digit number: same as above, but with 3 digits instead of 2\n\n"),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$325 },
 		{ _field_tag_reference, "shader", &blofeld::halo2::shader_reference },
 		{ _field_string_id, "string" },
 		{ _field_enum, "justification", &blofeld::halo2::unnamed_enum$326 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_char_enum, "fullscreen font index", &blofeld::halo2::unnamed_enum$327 },
 		{ _field_char_enum, "halfscreen font index", &blofeld::halo2::unnamed_enum$327 },
 		{ _field_char_enum, "quarterscreen font index", &blofeld::halo2::unnamed_enum$327 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_real, "fullscreen scale" },
 		{ _field_real, "halfscreen scale" },
 		{ _field_real, "quarterscreen scale" },
@@ -15621,7 +15621,7 @@ namespace halo2 {
 		{ _field_char_integer, "fullscreen sequence index" },
 		{ _field_char_integer, "halfscreen sequence index" },
 		{ _field_char_integer, "quarterscreen sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_point_2d, "fullscreen offset" },
 		{ _field_point_2d, "halfscreen offset" },
 		{ _field_point_2d, "quarterscreen offset" },
@@ -15644,7 +15644,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("dashlight data", nullptr, FIELD_FLAG_NONE, "only relevant to new hud tags for weapons"),
+		FIELD_EXPLANATION_EX("dashlight data", nullptr, FIELD_FLAG_NONE, "only relevant to new hud tags for weapons"),
 		{ _field_short_integer, "low clip cutoff", "the cutoff for showing the reload dashlight" },
 		{ _field_short_integer, "low ammo cutoff", "the cutoff for showing the low ammo dashlight" },
 		{ _field_real, "age cutoff", "the age cutoff for showing the low battery dashlight" },
@@ -15688,7 +15688,7 @@ namespace halo2 {
 		{ _field_tag_reference, "bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_tag_reference, "shader", &blofeld::halo2::shader_reference },
 		{ _field_short_integer, "sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "smallest size" },
 		{ _field_real, "smallest distance" },
 		{ _field_tag_reference, "border bitmap", &blofeld::halo2::bitmap_reference },
@@ -15710,7 +15710,7 @@ namespace halo2 {
 		{ _field_short_integer, "onscreen sequence index" },
 		{ _field_short_integer, "occluded sequence index" },
 		{ _field_short_integer, "offscreen sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -15812,7 +15812,7 @@ namespace halo2 {
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_sound_looping_reference$2 },
 		{ _field_long_flags, "latched to", &blofeld::halo2::unnamed_enum$495 },
 		{ _field_real, "scale" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -15843,8 +15843,8 @@ namespace halo2 {
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "interface bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
@@ -15854,14 +15854,14 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "multitex overlay", &blofeld::halo2::global_hud_multitexture_overlay_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_enum, "type", &blofeld::halo2::unnamed_enum$493 },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$494 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_terminator }
 	};
 
@@ -15888,15 +15888,15 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "type", &blofeld::halo2::unnamed_enum$496 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("BACKGROUND", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("BACKGROUND", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "interface bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
@@ -15906,18 +15906,18 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "multitex overlay", &blofeld::halo2::global_hud_multitexture_overlay_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("METER", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("METER", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "meter bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_rgb_color, "color at meter minimum" },
 		{ _field_rgb_color, "color at meter maximum" },
@@ -15933,11 +15933,11 @@ namespace halo2 {
 		{ _field_real, "translucency" },
 		{ _field_argb_color, "disabled color" },
 		{ _field_block, "value", &blofeld::halo2::g_null_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "minimum fraction cutoff" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$497 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 64),
 		{ _field_terminator }
 	};
 
@@ -15968,8 +15968,8 @@ namespace halo2 {
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
 		{ _field_real, "flash period" },
@@ -15978,14 +15978,14 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "frame rate" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "sequence index" },
 		{ _field_word_flags, "type", &blofeld::halo2::unnamed_enum$558 },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$202 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
 		{ _field_terminator }
 	};
 
@@ -16016,16 +16016,16 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "state attached to", &blofeld::halo2::unnamed_enum$553 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "can use on map type", &blofeld::halo2::unnamed_enum$554 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "interface bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
@@ -16035,12 +16035,12 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "sequence index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "multitex overlay", &blofeld::halo2::global_hud_multitexture_overlay_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
 		{ _field_terminator }
 	};
 
@@ -16076,16 +16076,16 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "state attached to", &blofeld::halo2::unnamed_enum$553 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "can use on map type", &blofeld::halo2::unnamed_enum$554 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_tag_reference, "meter bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_rgb_color, "color at meter minimum" },
 		{ _field_rgb_color, "color at meter maximum" },
@@ -16101,8 +16101,8 @@ namespace halo2 {
 		{ _field_real, "translucency" },
 		{ _field_argb_color, "disabled color" },
 		{ _field_block, "value", &blofeld::halo2::g_null_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
 		{ _field_terminator }
 	};
 
@@ -16117,16 +16117,16 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "state attached to", &blofeld::halo2::unnamed_enum$553 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "can use on map type", &blofeld::halo2::unnamed_enum$554 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
 		{ _field_real, "flash period" },
@@ -16135,15 +16135,15 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_char_integer, "maximum number of digits" },
 		{ _field_byte_flags, "flags", &blofeld::halo2::unnamed_enum$200 },
 		{ _field_char_integer, "number of fractional digits" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_word_flags, "weapon specific flags", &blofeld::halo2::unnamed_enum$555 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 36),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 36),
 		{ _field_terminator }
 	};
 
@@ -16164,13 +16164,13 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "state attached to", &blofeld::halo2::unnamed_enum$553 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "can use on map type", &blofeld::halo2::unnamed_enum$554 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_tag_reference, "Overlay bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_block, "Overlays", &blofeld::halo2::weapon_hud_overlay_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
 		{ _field_terminator }
 	};
 
@@ -16188,8 +16188,8 @@ namespace halo2 {
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
 		{ _field_real, "flash period" },
@@ -16198,11 +16198,11 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "frame rate" },
 		{ _field_short_integer, "sequence index" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$557 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -16229,13 +16229,13 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "crosshair type", &blofeld::halo2::unnamed_enum$556 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "can use on map type", &blofeld::halo2::unnamed_enum$554 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_tag_reference, "Crosshair bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_block, "Crosshair overlays", &blofeld::halo2::weapon_hud_crosshair_item_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
 		{ _field_terminator }
 	};
 
@@ -16277,8 +16277,8 @@ namespace halo2 {
 		{ _field_real, "width scale" },
 		{ _field_real, "height scale" },
 		{ _field_word_flags, "scaling flags", &blofeld::halo2::unnamed_enum$192 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_argb_color, "default color" },
 		{ _field_argb_color, "flashing color" },
 		{ _field_real, "flash period" },
@@ -16287,13 +16287,13 @@ namespace halo2 {
 		{ _field_word_flags, "flash flags", &blofeld::halo2::unnamed_enum$193 },
 		{ _field_real, "flash length", "time of each flash" },
 		{ _field_argb_color, "disabled color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "frame rate" },
 		{ _field_short_integer, "sequence index" },
 		{ _field_word_flags, "type", &blofeld::halo2::unnamed_enum$201 },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$202 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
 		{ _field_terminator }
 	};
 
@@ -16319,7 +16319,7 @@ namespace halo2 {
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_sound_looping_reference$2 },
 		{ _field_long_flags, "latched to", &blofeld::halo2::unnamed_enum$203 },
 		{ _field_real, "scale" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -16342,7 +16342,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_real_rgb_color, "color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real_fraction_bounds, "density", nullptr, nullptr, "[0,1]" },
 		{ _field_real_bounds, "distance", nullptr, "world units" },
 		{ _field_useless_pad, "value" },
@@ -16397,10 +16397,10 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_real_rgb_color, "Color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real_fraction_bounds, "Density", nullptr, nullptr, "[0,1]" },
 		{ _field_real_bounds, "Distance", nullptr, "world units" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_tag_reference, "Patchy Fog", &blofeld::halo2::patchy_fog_reference$3 },
 		{ _field_terminator }
 	};
@@ -16421,7 +16421,7 @@ namespace halo2 {
 		{ _field_real_fraction, "Maximum Density", "Fog density is clamped to this value.", nullptr, "[0,1]" },
 		{ _field_real, "Start Distance", "Before this distance there is no fog.", "world units" },
 		{ _field_real, "Opaque Distance", "Fog becomes opaque (maximum density) at this distance from the viewer.", "world units" },
-		FIELD_EXPLANATION("FOG INFLUENCES", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("FOG INFLUENCES", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_angle_bounds, "Cone", nullptr, "degrees" },
 		{ _field_real_fraction, "Atmospheric Fog Influence", nullptr, nullptr, "[0,1]" },
 		{ _field_real_fraction, "Secondary Fog Influence", nullptr, nullptr, "[0,1]" },
@@ -16443,7 +16443,7 @@ namespace halo2 {
 		{ _field_real_rgb_color, "Color", "Light color." },
 		{ _field_real, "Power", "Light power from 0 to infinity.", nullptr, "[0,+inf]" },
 		{ _field_real, "Test Distance", "Length of the ray for shadow testing.", "world units" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_angle, "Diameter", "Angular diameter of the light source in the sky.", "degrees" },
 		{ _field_terminator }
 	};
@@ -16488,7 +16488,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_string, "Global Function Name", "Global function that controls this shader value." },
 		{ _field_terminator }
 	};
@@ -16504,9 +16504,9 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_integer, "Animation Index", "Index of the animation in the animation graph." },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "Period", nullptr, "sec" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_terminator }
 	};
 
@@ -16538,7 +16538,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_integer, "FIRST palette color" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 1020),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 1020),
 		{ _field_terminator }
 	};
 
@@ -16602,7 +16602,7 @@ namespace halo2 {
 	{
 		{ _field_short_integer, "bitmap index" },
 		{ _field_char_integer, "palette index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -16646,7 +16646,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$283 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "raw vertices", &blofeld::halo2::lightmap_bucket_raw_vertex_block },
 		{ _field_struct, "geometry block info", &blofeld::halo2::global_geometry_block_info_struct_block_struct_definition },
 		{ _field_block, "cache data", &blofeld::halo2::lightmap_vertex_buffer_bucket_cache_data_block },
@@ -16811,7 +16811,7 @@ namespace halo2 {
 		{ _field_string_id, "new general material name" },
 		{ _field_useless_pad, "value" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("vehicle terrain parameters", nullptr, FIELD_FLAG_NONE, "the following fields modify the way a vehicle drives over terrain of this material type."),
+		FIELD_EXPLANATION_EX("vehicle terrain parameters", nullptr, FIELD_FLAG_NONE, "the following fields modify the way a vehicle drives over terrain of this material type."),
 		{ _field_real, "ground friction scale", "fraction of original velocity parallel to the ground after one tick" },
 		{ _field_real, "ground friction normal k1 scale", "cosine of angle at which friction falls off" },
 		{ _field_real, "ground friction normal k0 scale", "cosine of angle at which friction is zero" },
@@ -16871,7 +16871,7 @@ namespace halo2 {
 		{ _field_tag_reference, "ball", &blofeld::halo2::item_reference },
 		{ _field_block, "sounds", &blofeld::halo2::sounds_block },
 		{ _field_tag_reference, "in game text", &blofeld::halo2::multilingual_unicode_string_list_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
 		{ _field_block, "general events", &blofeld::halo2::game_engine_general_event_block },
 		{ _field_block, "slayer events", &blofeld::halo2::game_engine_slayer_event_block },
 		{ _field_block, "ctf events", &blofeld::halo2::game_engine_ctf_event_block },
@@ -16894,9 +16894,9 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "unused", &blofeld::halo2::unit_reference$3 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_real, "walking speed", nullptr, "world units per second" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "run forward", nullptr, "world units per second" },
 		{ _field_real, "run backward", nullptr, "world units per second" },
 		{ _field_real, "run sideways", nullptr, "world units per second" },
@@ -16906,24 +16906,24 @@ namespace halo2 {
 		{ _field_real, "sneak sideways", nullptr, "world units per second" },
 		{ _field_real, "sneak acceleration", nullptr, "world units per second squared" },
 		{ _field_real, "airborne acceleration", nullptr, "world units per second squared" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_real_point_3d, "grenade origin" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real, "stun movement penalty", "1.0 prevents moving while stunned", nullptr, "[0,1]" },
 		{ _field_real, "stun turning penalty", "1.0 prevents turning while stunned", nullptr, "[0,1]" },
 		{ _field_real, "stun jumping penalty", "1.0 prevents jumping while stunned", nullptr, "[0,1]" },
 		{ _field_real, "minimum stun time", "all stunning damage will last for at least this long", "seconds" },
 		{ _field_real, "maximum stun time", "no stunning damage will last for longer than this", "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real_bounds, "first person idle time", nullptr, "seconds" },
 		{ _field_real_fraction, "first person skip fraction", nullptr, nullptr, "[0,1]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_tag_reference, "coop respawn effect", &blofeld::halo2::effect_reference },
 		{ _field_long_integer, "binoculars zoom count" },
 		{ _field_real_bounds, "binoculars zoom range" },
 		{ _field_tag_reference, "binoculars zoom in sound", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "binoculars zoom out sound", &blofeld::halo2::sound_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_tag_reference, "active camouflage on", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "active camouflage off", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "active camouflage error", &blofeld::halo2::sound_reference },
@@ -16946,8 +16946,8 @@ namespace halo2 {
 	{
 		{ _field_tag_reference, "first person hands", &blofeld::halo2::render_model_reference$2 },
 		{ _field_tag_reference, "first person body", &blofeld::halo2::render_model_reference$2 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 120),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 120),
 		{ _field_tag_reference, "third person unit", &blofeld::halo2::unit_reference$4 },
 		{ _field_string_id, "third person variant" },
 		{ _field_terminator }
@@ -16967,17 +16967,17 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real_bounds, "harmful falling distance", nullptr, "world units" },
 		{ _field_tag_reference, "falling damage", &blofeld::halo2::damage_effect_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real, "maximum falling distance", nullptr, "world units" },
 		{ _field_tag_reference, "distance damage", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "vehicle environemtn collision damage effect", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "vehicle killed unit damage effect", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "vehicle collision damage", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "flaming death damage", &blofeld::halo2::damage_effect_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_terminator }
 	};
 
@@ -17014,7 +17014,7 @@ namespace halo2 {
 		{ _field_real, "max abs acc (default)", "0-oo" },
 		{ _field_real, "min abs scale (default)", "0-1" },
 		{ _field_real, "max abs scale (default)", "0-1" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -17044,7 +17044,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("function textures", nullptr, FIELD_FLAG_NONE, "Used internally by the rasterizer. (Do not change unless you know what you\'re doing!)"),
+		FIELD_EXPLANATION_EX("function textures", nullptr, FIELD_FLAG_NONE, "Used internally by the rasterizer. (Do not change unless you know what you\'re doing!)"),
 		{ _field_tag_reference, "distance attenuation", &blofeld::halo2::bitmap_reference },
 		{ _field_tag_reference, "vector normalization", &blofeld::halo2::bitmap_reference },
 		{ _field_tag_reference, "gradients", &blofeld::halo2::bitmap_reference },
@@ -17054,33 +17054,33 @@ namespace halo2 {
 		{ _field_tag_reference, "glow", &blofeld::halo2::bitmap_reference },
 		{ _field_tag_reference, "UNUSED", &blofeld::halo2::bitmap_reference },
 		{ _field_tag_reference, "UNUSED", &blofeld::halo2::bitmap_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_block, "global vertex shaders", &blofeld::halo2::vertex_shader_reference_block },
-		FIELD_EXPLANATION("default textures", nullptr, FIELD_FLAG_NONE, "Used internally by the rasterizer - additive, multiplicative, detail, vector. (Do not change ever, period.)"),
+		FIELD_EXPLANATION_EX("default textures", nullptr, FIELD_FLAG_NONE, "Used internally by the rasterizer - additive, multiplicative, detail, vector. (Do not change ever, period.)"),
 		{ _field_tag_reference, "default 2D", &blofeld::halo2::bitmap_reference },
 		{ _field_tag_reference, "default 3D", &blofeld::halo2::bitmap_reference },
 		{ _field_tag_reference, "default cube map", &blofeld::halo2::bitmap_reference },
-		FIELD_EXPLANATION("experimental textures", nullptr, FIELD_FLAG_NONE, "Used internally by the rasterizer. (Used by Bernie\'s experimental shaders.)"),
+		FIELD_EXPLANATION_EX("experimental textures", nullptr, FIELD_FLAG_NONE, "Used internally by the rasterizer. (Used by Bernie\'s experimental shaders.)"),
 		{ _field_tag_reference, "UNUSED", &blofeld::halo2::bitmap_reference$4 },
 		{ _field_tag_reference, "UNUSED", &blofeld::halo2::bitmap_reference$4 },
 		{ _field_tag_reference, "UNUSED", &blofeld::halo2::bitmap_reference$4 },
 		{ _field_tag_reference, "UNUSED", &blofeld::halo2::bitmap_reference$4 },
-		FIELD_EXPLANATION("video effect textures", nullptr, FIELD_FLAG_NONE, "Used in cinematics."),
+		FIELD_EXPLANATION_EX("video effect textures", nullptr, FIELD_FLAG_NONE, "Used in cinematics."),
 		{ _field_tag_reference, "UNUSED", &blofeld::halo2::bitmap_reference },
 		{ _field_tag_reference, "UNUSED", &blofeld::halo2::bitmap_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 36),
-		FIELD_EXPLANATION("global shader", nullptr, FIELD_FLAG_NONE, "Used for layers that need to do something for other layers to work correctly if the layer is disabled, also used for active-camo, etc."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 36),
+		FIELD_EXPLANATION_EX("global shader", nullptr, FIELD_FLAG_NONE, "Used for layers that need to do something for other layers to work correctly if the layer is disabled, also used for active-camo, etc."),
 		{ _field_tag_reference, "global shader", &blofeld::halo2::shader_reference },
-		FIELD_EXPLANATION("active camouflage", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("active camouflage", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$289 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "refraction amount", nullptr, "pixels" },
 		{ _field_real, "distance falloff" },
 		{ _field_real_rgb_color, "tint color" },
 		{ _field_real, "hyper-stealth refraction", nullptr, "pixels" },
 		{ _field_real, "hyper-stealth distance falloff" },
 		{ _field_real_rgb_color, "hyper-stealth tint color" },
-		FIELD_EXPLANATION("PC textures", nullptr, FIELD_FLAG_NONE, "The PC can\'t use 3D textures, so we use this instead."),
+		FIELD_EXPLANATION_EX("PC textures", nullptr, FIELD_FLAG_NONE, "The PC can\'t use 3D textures, so we use this instead."),
 		{ _field_tag_reference, "UNUSED", &blofeld::halo2::bitmap_reference },
 		{ _field_terminator }
 	};
@@ -17172,9 +17172,9 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_integer, "maximum count" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "throwing effect", &blofeld::halo2::effect_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_tag_reference, "equipment", &blofeld::halo2::equipment_reference$2 },
 		{ _field_tag_reference, "projectile", &blofeld::halo2::projectile_reference },
 		{ _field_terminator }
@@ -17192,7 +17192,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("health", nullptr, FIELD_FLAG_NONE, "scale values for enemy health and damage settings"),
+		FIELD_EXPLANATION_EX("health", nullptr, FIELD_FLAG_NONE, "scale values for enemy health and damage settings"),
 		{ _field_real, "easy enemy damage", "enemy damage multiplier on easy difficulty" },
 		{ _field_real, "normal enemy damage", "enemy damage multiplier on normal difficulty" },
 		{ _field_real, "hard enemy damage", "enemy damage multiplier on hard difficulty" },
@@ -17229,8 +17229,8 @@ namespace halo2 {
 		{ _field_real, "normal infection forms", "toughness of infection forms (may be negative) on normal difficulty" },
 		{ _field_real, "hard infection forms", "toughness of infection forms (may be negative) on hard difficulty" },
 		{ _field_real, "imposs. infection forms", "toughness of infection forms (may be negative) on impossible difficulty" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("ranged fire", nullptr, FIELD_FLAG_NONE, "difficulty-affecting values for enemy ranged combat settings"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("ranged fire", nullptr, FIELD_FLAG_NONE, "difficulty-affecting values for enemy ranged combat settings"),
 		{ _field_real, "easy rate of fire", "enemy rate of fire scale on easy difficulty" },
 		{ _field_real, "normal rate of fire", "enemy rate of fire scale on normal difficulty" },
 		{ _field_real, "hard rate of fire", "enemy rate of fire scale on hard difficulty" },
@@ -17279,8 +17279,8 @@ namespace halo2 {
 		{ _field_real, "normal melee delay scale", "multiplier for all existing non-berserk melee delay times. on normal difficulty" },
 		{ _field_real, "hard melee delay scale", "multiplier for all existing non-berserk melee delay times. on hard difficulty" },
 		{ _field_real, "imposs. melee delay scale", "multiplier for all existing non-berserk melee delay times. on impossible difficulty" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("grenades", nullptr, FIELD_FLAG_NONE, "difficulty-affecting values for enemy grenade behavior"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("grenades", nullptr, FIELD_FLAG_NONE, "difficulty-affecting values for enemy grenade behavior"),
 		{ _field_real, "easy grenade chance scale", "scale factor affecting the desicions to throw a grenade. on easy difficulty" },
 		{ _field_real, "normal grenade chance scale", "scale factor affecting the desicions to throw a grenade. on normal difficulty" },
 		{ _field_real, "hard grenade chance scale", "scale factor affecting the desicions to throw a grenade. on hard difficulty" },
@@ -17289,10 +17289,10 @@ namespace halo2 {
 		{ _field_real, "normal grenade timer scale", "scale factor affecting the delay period between grenades thrown from the same encounter (lower is more often). on normal difficulty" },
 		{ _field_real, "hard grenade timer scale", "scale factor affecting the delay period between grenades thrown from the same encounter (lower is more often). on hard difficulty" },
 		{ _field_real, "imposs. grenade timer scale", "scale factor affecting the delay period between grenades thrown from the same encounter (lower is more often). on impossible difficulty" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("placement", nullptr, FIELD_FLAG_NONE, "difficulty-affecting values for enemy placement"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("placement", nullptr, FIELD_FLAG_NONE, "difficulty-affecting values for enemy placement"),
 		{ _field_real, "easy major upgrade (normal)", "fraction of actors upgraded to their major variant. on easy difficulty" },
 		{ _field_real, "normal major upgrade (normal)", "fraction of actors upgraded to their major variant. on normal difficulty" },
 		{ _field_real, "hard major upgrade (normal)", "fraction of actors upgraded to their major variant. on hard difficulty" },
@@ -17305,15 +17305,15 @@ namespace halo2 {
 		{ _field_real, "normal major upgrade (many)", "fraction of actors upgraded to their major variant when mix = many. on normal difficulty" },
 		{ _field_real, "hard major upgrade (many)", "fraction of actors upgraded to their major variant when mix = many. on hard difficulty" },
 		{ _field_real, "imposs. major upgrade (many)", "fraction of actors upgraded to their major variant when mix = many. on impossible difficulty" },
-		FIELD_EXPLANATION("vehicles", nullptr, FIELD_FLAG_NONE, "difficulty-affecting values for vehicle driving/combat"),
+		FIELD_EXPLANATION_EX("vehicles", nullptr, FIELD_FLAG_NONE, "difficulty-affecting values for vehicle driving/combat"),
 		{ _field_real, "easy player vehicle ram chance", "Chance of deciding to ram the player in a vehicle on easy difficulty" },
 		{ _field_real, "normal player vehicle ram chance", "Chance of deciding to ram the player in a vehicle on normal difficulty" },
 		{ _field_real, "hard player vehicle ram chance", "Chance of deciding to ram the player in a vehicle on hard difficulty" },
 		{ _field_real, "imposs. player vehicle ram chance", "Chance of deciding to ram the player in a vehicle on impossible difficulty" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 84),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 84),
 		{ _field_terminator }
 	};
 
@@ -17344,18 +17344,18 @@ namespace halo2 {
 		{ _field_real_fraction, "magnetism friction", "how much the crosshair slows over enemies" },
 		{ _field_real_fraction, "magnetism adhesion", "how much the crosshair sticks to enemies" },
 		{ _field_real_fraction, "inconsequential target scale", "scales magnetism level for inconsequential targets like infection forms" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_EXPLANATION("crosshair", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_EXPLANATION_EX("crosshair", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_point_2d, "crosshair location", "-1..1, 0 is middle of the screen" },
-		FIELD_EXPLANATION("sprinting", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("sprinting", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "seconds to start", "how long you must be pegged before you start sprinting" },
 		{ _field_real, "seconds to full speed", "how long you must sprint before you reach top speed" },
 		{ _field_real, "decay rate", "how fast being unpegged decays the timer (seconds per second)" },
 		{ _field_real, "full speed multiplier", "how much faster we actually go when at full sprint" },
 		{ _field_real, "pegged magnitude", "how far the stick needs to be pressed before being considered pegged" },
 		{ _field_real, "pegged angular threshold", "how far off straight up (in degrees) we consider pegged" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_EXPLANATION("looking", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_EXPLANATION_EX("looking", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "look default pitch rate", nullptr, "degrees" },
 		{ _field_real, "look default yaw rate", nullptr, "degrees" },
 		{ _field_real_fraction, "look peg threshold", "magnitude of yaw for pegged acceleration to kick in" },
@@ -17364,9 +17364,9 @@ namespace halo2 {
 		{ _field_real, "look pitch acceleration time", "time for a pegged look to reach maximum effect", "seconds" },
 		{ _field_real, "look pitch acceleration scale", "maximum effect of a pegged look (scales last value in the look function below)" },
 		{ _field_real, "look autolevelling scale", "1 is fast, 0 is none, >1 will probably be really fast" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real, "gravity_scale" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "minimum autolevelling ticks", "amount of time player needs to move and not look up or down for autolevelling to kick in" },
 		{ _field_angle, "minimum angle for vehicle flipping", "0 means the vehicle's up vector is along the ground, 90 means the up vector is pointing straight up:degrees" },
 		{ _field_block, "look function", &blofeld::halo2::look_function_block },
@@ -17480,21 +17480,21 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_real, "danger broadly facing" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "danger shooting near" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "danger shooting at" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "danger extremely close" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "danger shield damage" },
 		{ _field_real, "danger exetended shield damage" },
 		{ _field_real, "danger body damage" },
 		{ _field_real, "danger extended body damage" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_tag_reference, "global dialogue tag", &blofeld::halo2::ai_dialogue_globals_reference },
 		{ _field_string_id, "default mission dialogue sound effect" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_real, "jump down", nullptr, "wu/tick" },
 		{ _field_real, "jump step", nullptr, "wu/tick" },
 		{ _field_real, "jump crouch", nullptr, "wu/tick" },
@@ -17510,12 +17510,12 @@ namespace halo2 {
 		{ _field_real_bounds, "hoist step", nullptr, "wus" },
 		{ _field_real_bounds, "hoist crouch", nullptr, "wus" },
 		{ _field_real_bounds, "hoist stand", nullptr, "wus" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_real_bounds, "vault step", nullptr, "wus" },
 		{ _field_real_bounds, "vault crouch", nullptr, "wus" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_block, "gravemind properties", &blofeld::halo2::ai_globals_gravemind_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_real, "scary target threhold", "A target of this scariness is offically considered scary (by combat dialogue, etc.)" },
 		{ _field_real, "scary weapon threhold", "A weapon of this scariness is offically considered scary (by combat dialogue, etc.)" },
 		{ _field_real, "player scariness" },
@@ -17582,9 +17582,9 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "type", &blofeld::halo2::unnamed_enum$352 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "parameters", &blofeld::halo2::particle_controller_parameters },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -17669,7 +17669,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("MARKER NAMES", nullptr, FIELD_FLAG_NONE, "In addition to the marker in the render model there are several special marker names:\n\nreplace\nReplace allows you to use the same effect with different markers. Damage transition effects support this for example.\n\ngravity, up\nThe direction of gravity (down) and the opposite direction (up).  Always supplied\n\nnormal\nVector pointing directly away from the surface you collided with. Supplied for effects from collision.\n\nforward\nThe \'negative incident\' vector i.e. the direction the object is moving in. Most commonly used to generated decals. Supplied for effects from collision.\n\nbackward\nThe \'incident\' vector i.e. the opposite of the direction the object is moving in. Supplied for effects from collision.\n\nreflection\nThe way the effect would reflect off the surface it hit. Supplied for effects from collision.\n\nroot\nThe object root (pivot). These can used for all effects which are associated with an object.\n\nimpact\nThe location of a havok impact.\n\n"),
+		FIELD_EXPLANATION_EX("MARKER NAMES", nullptr, FIELD_FLAG_NONE, "In addition to the marker in the render model there are several special marker names:\n\nreplace\nReplace allows you to use the same effect with different markers. Damage transition effects support this for example.\n\ngravity, up\nThe direction of gravity (down) and the opposite direction (up).  Always supplied\n\nnormal\nVector pointing directly away from the surface you collided with. Supplied for effects from collision.\n\nforward\nThe \'negative incident\' vector i.e. the direction the object is moving in. Most commonly used to generated decals. Supplied for effects from collision.\n\nbackward\nThe \'incident\' vector i.e. the opposite of the direction the object is moving in. Supplied for effects from collision.\n\nreflection\nThe way the effect would reflect off the surface it hit. Supplied for effects from collision.\n\nroot\nThe object root (pivot). These can used for all effects which are associated with an object.\n\nimpact\nThe location of a havok impact.\n\n"),
 		{ _field_old_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -17686,7 +17686,7 @@ namespace halo2 {
 	{
 		{ _field_enum, "create in", &blofeld::halo2::unnamed_enum$43 },
 		{ _field_enum, "create in", &blofeld::halo2::unnamed_enum$44 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "acceleration" },
 		{ _field_real, "inner cone angle", nullptr, "degrees" },
 		{ _field_real, "outer cone angle", nullptr, "degrees" },
@@ -17723,13 +17723,13 @@ namespace halo2 {
 		{ _field_enum, "create in", &blofeld::halo2::unnamed_enum$43 },
 		{ _field_enum, "create in", &blofeld::halo2::unnamed_enum$44 },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$177 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_tag_reference, "type", &blofeld::halo2::damage_effect_object_sound_decal_colony_light_light_volume_liquid_lens_flare_reference },
 		{ _field_real_bounds, "velocity bounds", "initial velocity along the location's forward, for decals the distance at which decal is created (defaults to 0.5)", "world units per second" },
 		{ _field_angle, "velocity cone angle", "initial velocity will be inside the cone defined by this angle.", "degrees" },
 		{ _field_angle_bounds, "angular velocity bounds", nullptr, "degrees per second" },
 		{ _field_real_bounds, "radius modifier bounds" },
-		FIELD_EXPLANATION("SCALE MODIFIERS", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("SCALE MODIFIERS", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_flags, "A scales values", &blofeld::halo2::unnamed_enum$178 },
 		{ _field_long_flags, "B scales values", &blofeld::halo2::unnamed_enum$178 },
 		{ _field_terminator }
@@ -17808,10 +17808,10 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("state timing", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("state timing", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_bounds, "duration", "the time a point spends in this state", "seconds:seconds" },
 		{ _field_real_bounds, "transition duration", "the time a point takes to transition to the next state", "seconds" },
-		FIELD_EXPLANATION("point variables", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("point variables", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "physics", &blofeld::halo2::point_physics_reference },
 		{ _field_useless_pad, "value" },
 		{ _field_real, "width", "contrail width at this point", "world units" },
@@ -17867,7 +17867,7 @@ namespace halo2 {
 		{ _field_real, "antigrav normal k1" },
 		{ _field_real, "antigrav normal k0" },
 		{ _field_string_id, "damage source region name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 64),
 		{ _field_terminator }
 	};
 
@@ -17905,11 +17905,11 @@ namespace halo2 {
 		{ _field_real_vector_3d, "forward" },
 		{ _field_real_vector_3d, "up" },
 		{ _field_enum, "friction type", &blofeld::halo2::unnamed_enum$350 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "friction parallel scale" },
 		{ _field_real, "friction perpendicular scale" },
 		{ _field_real, "radius" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_terminator }
 	};
 
@@ -17965,16 +17965,16 @@ namespace halo2 {
 		{ _field_short_integer, "mipmap Count" },
 		{ _field_short_integer, "Low-Detail mipmap Count" },
 		{ _field_long_integer, "Pixels Offset" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 20),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -18047,8 +18047,8 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_integer, "Bitmap Index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "Left" },
 		{ _field_real, "Right" },
 		{ _field_real, "Top" },
@@ -18070,7 +18070,7 @@ namespace halo2 {
 		{ _field_string, "Name" },
 		{ _field_short_integer, "First Bitmap Index" },
 		{ _field_short_integer, "Bitmap Count" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_block, "Sprites", &blofeld::halo2::bitmap_group_sprite_block },
 		{ _field_terminator }
 	};
@@ -18141,7 +18141,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "constraints", &blofeld::halo2::physics_model_constraint_edge_constraint_block },
 		{ _field_string_id, "node a material", "if you don't fill this out we will pluck the material from the first primitive, of the first rigid body attached to node a" },
 		{ _field_string_id, "node b material", "if you don't fill this out we will pluck the material from the first primitive, of the first rigid body attached to node b, if node b is none we use whatever material a has" },
@@ -18159,7 +18159,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_custom_short_block_index, "permutattion" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "bouding sphere offset" },
 		{ _field_real, "bounding sphere radius" },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$343 },
@@ -18173,15 +18173,15 @@ namespace halo2 {
 		{ _field_custom_short_block_index, "shape" },
 		{ _field_real, "mass", nullptr, "kg", FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "center of mass" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "intertia tensor x" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "intertia tensor y" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "intertia tensor z" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "bounding sphere pad", "the bounding sphere for this rigid body will be outset by this much" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -18296,11 +18296,11 @@ namespace halo2 {
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$338 },
 		{ _field_char_enum, "minimum size", &blofeld::halo2::unnamed_enum$339 },
 		{ _field_char_enum, "maximum size", &blofeld::halo2::unnamed_enum$339 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "marker name", "you don't need this if you're just generating effects.  If empty it defaults to the up of the object" },
 		{ _field_string_id, "alignment marker name", "you don't need this if you're just generating effects.  If empty it defaults to \"marker name\"" },
-		FIELD_EXPLANATION("Linear Motion", nullptr, FIELD_FLAG_NONE, "0 - means do nothing\nCENTER: motion towards marker position \nAXIS: motion towards marker axis, such that object is on the axis\nDIRECTION: motion along marker direction"),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_EXPLANATION_EX("Linear Motion", nullptr, FIELD_FLAG_NONE, "0 - means do nothing\nCENTER: motion towards marker position \nAXIS: motion towards marker axis, such that object is on the axis\nDIRECTION: motion along marker direction"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real, "hookes law e", "0 if you don't want this to behave like spring.  1 is a good starting point if you do." },
 		{ _field_real, "linear dead radius", "radius from linear motion origin in which acceleration is dead." },
 		{ _field_real, "center acc" },
@@ -18309,12 +18309,12 @@ namespace halo2 {
 		{ _field_real, "axis max vel" },
 		{ _field_real, "direction acc" },
 		{ _field_real, "direction max vel" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
-		FIELD_EXPLANATION("Angular Motion", nullptr, FIELD_FLAG_NONE, "0 - means do nothing\nALIGNMENT: algin objects in the phantom with the marker\nSPIN: spin the object about the marker axis"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_EXPLANATION_EX("Angular Motion", nullptr, FIELD_FLAG_NONE, "0 - means do nothing\nALIGNMENT: algin objects in the phantom with the marker\nSPIN: spin the object about the marker axis"),
 		{ _field_real, "alignment hookes law e", "0 if you don't want this to behave like spring.  1 is a good starting point if you do." },
 		{ _field_real, "alignment acc" },
 		{ _field_real, "alignment max vel" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -18361,16 +18361,16 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -18413,25 +18413,25 @@ namespace halo2 {
 		{ _field_real_fraction, "restitution" },
 		{ _field_real, "volume " },
 		{ _field_real, "mass" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "radius" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "rotation i" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "rotation j" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "rotation k" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "translation" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -18458,11 +18458,11 @@ namespace halo2 {
 		{ _field_real_fraction, "restitution" },
 		{ _field_real, "volume " },
 		{ _field_real, "mass" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_long_integer, "num spheres" },
 		{ _field_array, "four vectors storage", &blofeld::halo2::multi_spheres_block_struct_definition__four_vectors_storage_array },
 		{ _field_terminator }
@@ -18485,16 +18485,16 @@ namespace halo2 {
 		{ _field_real_fraction, "restitution" },
 		{ _field_real, "volume " },
 		{ _field_real, "mass" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "radius" },
 		{ _field_real_vector_3d, "bottom" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "top" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -18515,27 +18515,27 @@ namespace halo2 {
 		{ _field_real_fraction, "restitution" },
 		{ _field_real, "volume " },
 		{ _field_real, "mass" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "radius" },
 		{ _field_real_vector_3d, "half extents" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "rotation i" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "rotation j" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "rotation k" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "translation" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -18556,18 +18556,18 @@ namespace halo2 {
 		{ _field_real_fraction, "restitution" },
 		{ _field_real, "volume " },
 		{ _field_real, "mass" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "radius" },
 		{ _field_real_vector_3d, "point a" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "point b" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "point c" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -18588,25 +18588,25 @@ namespace halo2 {
 		{ _field_real_fraction, "restitution" },
 		{ _field_real, "volume " },
 		{ _field_real, "mass" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "radius" },
 		{ _field_real_vector_3d, "aabb half extents" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "aabb center" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_long_integer, "four vectors size" },
 		{ _field_long_integer, "four vectors capacity" },
 		{ _field_long_integer, "num vertices" },
 		{ _field_array, "four vectors storage", &blofeld::halo2::polyhedra_block_struct_definition__four_vectors_storage_array },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_long_integer, "plane equations size" },
 		{ _field_long_integer, "plane equations capacity" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -18621,11 +18621,11 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_real_vector_3d, "four vectors x" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "four vectors y" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "four vectors z" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -18639,7 +18639,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_terminator }
 	};
 
@@ -18654,13 +18654,13 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_real_vector_3d, "center of mass" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "inertia tensor i" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "inertia tensor j" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "inertia tensor k" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -18674,11 +18674,11 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_long_integer, "child shapes size" },
 		{ _field_long_integer, "child shapes capacity" },
 		{ _field_array, "child shapes storage", &blofeld::halo2::lists_block_struct_definition__child_shapes_storage_array },
@@ -18711,11 +18711,11 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "code offset" },
 		{ _field_terminator }
 	};
@@ -18741,7 +18741,7 @@ namespace halo2 {
 		{ _field_real_vector_3d, "b left" },
 		{ _field_real_vector_3d, "b up" },
 		{ _field_real_point_3d, "b position" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -18756,7 +18756,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "constraint bodies", &blofeld::halo2::constraint_bodies_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -18771,7 +18771,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "constraint bodies", &blofeld::halo2::constraint_bodies_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "limit friction" },
 		{ _field_real, "limit min angle" },
 		{ _field_real, "limit max angle" },
@@ -18789,7 +18789,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "constraint bodies", &blofeld::halo2::constraint_bodies_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "min twist" },
 		{ _field_real, "max twist" },
 		{ _field_real, "min cone" },
@@ -18811,7 +18811,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "constraint bodies", &blofeld::halo2::constraint_bodies_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -18826,7 +18826,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "constraint bodies", &blofeld::halo2::constraint_bodies_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "spring_length" },
 		{ _field_terminator }
 	};
@@ -18842,7 +18842,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "constraint bodies", &blofeld::halo2::constraint_bodies_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "min_limit" },
 		{ _field_real, "max_limit" },
 		{ _field_real, "max_friction_force" },
@@ -18875,7 +18875,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "points", &blofeld::halo2::point_to_path_curve_point_block },
 		{ _field_terminator }
 	};
@@ -18890,7 +18890,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 600),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 600),
 		{ _field_terminator }
 	};
 
@@ -18919,7 +18919,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_integer, "node index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_struct, "bsp", &blofeld::halo2::collision_bsp_struct_definition },
 		{ _field_terminator }
@@ -18967,7 +18967,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -19096,9 +19096,9 @@ namespace halo2 {
 	{
 		{ _field_short_integer, "first shared edge index" },
 		{ _field_short_integer, "shared edge count" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_char_integer, "adjacent region index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_char_integer, "section set index" },
 		{ _field_terminator }
 	};
@@ -19175,7 +19175,7 @@ namespace halo2 {
 		{ _field_struct, "section", &blofeld::halo2::global_geometry_section_struct_block_struct_definition },
 		{ _field_struct, "point data", &blofeld::halo2::global_geometry_point_data_struct_block_struct_definition },
 		{ _field_block, "node map", &blofeld::halo2::render_model_node_map_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -19190,7 +19190,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "global_geometry_classification_enum_definition", &blofeld::halo2::unnamed_enum$274 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "section info", &blofeld::halo2::global_geometry_section_info_struct_block_struct_definition },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$306 },
 		{ _field_block, "section data", &blofeld::halo2::render_model_section_data_block },
@@ -19254,7 +19254,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "detail levels", &blofeld::halo2::unnamed_enum$308 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "compound nodes", &blofeld::halo2::render_model_compound_node_block },
 		{ _field_terminator }
 	};
@@ -19297,7 +19297,7 @@ namespace halo2 {
 		{ _field_char_integer, "region index" },
 		{ _field_char_integer, "permutation index" },
 		{ _field_char_integer, "node index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_real_point_3d, "translation" },
 		{ _field_real_quaternion, "rotation" },
 		{ _field_real, "scale" },
@@ -19409,7 +19409,7 @@ namespace halo2 {
 		{ _field_short_integer, "mat index for sbsfc scattering" },
 		{ _field_real, "length scale" },
 		{ _field_short_integer, "number of lods in model" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "lod info", &blofeld::halo2::prt_lod_info_block },
 		{ _field_block, "cluster basis", &blofeld::halo2::prt_cluster_basis_block },
 		{ _field_block, "raw_pca_data", &blofeld::halo2::prt_raw_pca_data_block },
@@ -19490,7 +19490,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "type", &blofeld::halo2::unnamed_enum$220 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "offset" },
 		{ _field_real, "radius" },
 		{ _field_terminator }
@@ -19515,7 +19515,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "permutation name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_byte_flags, "property flags", &blofeld::halo2::unnamed_enum$207 },
 		{ _field_enum, "state", &blofeld::halo2::unnamed_enum$208 },
 		{ _field_tag_reference, "looping effect", "played while the model is in this state", &blofeld::halo2::effect_reference$2 },
@@ -19555,13 +19555,13 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "permutation name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_byte_flags, "flags", &blofeld::halo2::unnamed_enum$206 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "probability", nullptr, "(0,+inf)" },
 		{ _field_block, "states", &blofeld::halo2::model_variant_state_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 5),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 7),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 5),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 7),
 		{ _field_terminator }
 	};
 
@@ -19582,11 +19582,11 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "region name", nullptr, "must match region name in render_model" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_block, "permutations", &blofeld::halo2::model_variant_permutation_block },
 		{ _field_enum, "sort order", "negative values mean closer to the camera", &blofeld::halo2::unnamed_enum$210 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -19636,10 +19636,10 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_block, "regions", &blofeld::halo2::model_variant_region_block },
 		{ _field_block, "objects", &blofeld::halo2::model_variant_object_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_string_id, "dialogue sound effect" },
 		{ _field_tag_reference, "dialogue", &blofeld::halo2::dialogue_reference },
 		{ _field_terminator }
@@ -19658,10 +19658,10 @@ namespace halo2 {
 		{ _field_string_id, "material name" },
 		{ _field_enum, "material type", &blofeld::halo2::unnamed_enum$211 },
 		{ _field_custom_short_block_index, "damage section" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "global material name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -19678,7 +19678,7 @@ namespace halo2 {
 		{ _field_string_id, "name" },
 		{ _field_byte_flags, "flags", &blofeld::halo2::unnamed_enum$219 },
 		{ _field_char_integer, "collision permutation index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -19701,7 +19701,7 @@ namespace halo2 {
 		{ _field_string_id, "name" },
 		{ _field_char_integer, "collision region index" },
 		{ _field_char_integer, "physics region index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "permutations", &blofeld::halo2::model_permutation_block },
 		{ _field_terminator }
 	};
@@ -19717,7 +19717,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "default translation" },
 		{ _field_real_quaternion, "default rotation" },
 		{ _field_real, "default inverse scale" },
@@ -19738,7 +19738,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("lock-on fields", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("lock-on fields", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$218 },
 		{ _field_real, "lock on distance" },
 		{ _field_terminator }
@@ -19798,9 +19798,9 @@ namespace halo2 {
 		{ _field_real_rgb_color, "Primary Lightmap Color" },
 		{ _field_real_point_2d, "Primary Lightmap texcoord" },
 		{ _field_real_vector_3d, "Primary Lightmap Incident Direction" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -19870,9 +19870,9 @@ namespace halo2 {
 		{ _field_tag_reference, "Old Shader", &blofeld::halo2::shader_reference },
 		{ _field_tag_reference, "Shader", &blofeld::halo2::shader_reference },
 		{ _field_block, "Properties", &blofeld::halo2::global_geometry_material_property_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_char_integer, "Breakable Surface Index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -19900,15 +19900,15 @@ namespace halo2 {
 		{ _field_char_integer, "Max Nodes/Vertex" },
 		{ _field_char_integer, "Contributing Compound Node Count" },
 		{ _field_word_flags, "Vertex Usage Flags", &blofeld::halo2::unnamed_enum$280 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
-		FIELD_EXPLANATION("CENTROID", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_EXPLANATION_EX("CENTROID", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_point_3d, "Position" },
 		{ _field_array, "Node Indices", &blofeld::halo2::global_geometry_part_block_struct_definition__node_indices_array },
 		{ _field_array, "Node Weights", &blofeld::halo2::global_geometry_part_block_struct_definition__node_weights_array },
 		{ _field_real, "lod mipmap magic number" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_terminator }
 	};
 
@@ -19972,12 +19972,12 @@ namespace halo2 {
 		{ _field_short_integer, "Subpart Count" },
 		{ _field_char_integer, "Max Nodes/Vertex" },
 		{ _field_char_integer, "Contributing Compound Node Count" },
-		FIELD_EXPLANATION("CENTROID", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("CENTROID", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_point_3d, "Position" },
 		{ _field_array, "Node Indices", &blofeld::halo2::global_geometry_part_block_new_struct_definition__node_indices_array },
 		{ _field_array, "Node Weights", &blofeld::halo2::global_geometry_part_block_new_struct_definition__node_weights_array },
 		{ _field_real, "lod mipmap magic number" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_terminator }
 	};
 
@@ -20013,7 +20013,7 @@ namespace halo2 {
 		{ _field_real, "Position z" },
 		{ _field_real, "Radius" },
 		{ _field_char_integer, "Node 0" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -20035,7 +20035,7 @@ namespace halo2 {
 		{ _field_data, "Visibility mopp Code" },
 		{ _field_block, "mopp Reorder Table", &blofeld::halo2::global_geometry_section_strip_index_block },
 		{ _field_block, "Vertex Buffers", &blofeld::halo2::global_geometry_section_vertex_buffer_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -20069,7 +20069,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("SECTION INFO", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("SECTION INFO", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_short_integer, "Total Vertex Count" },
 		{ _field_short_integer, "Total Triangle Count" },
 		{ _field_short_integer, "Total Part Count" },
@@ -20231,11 +20231,11 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "Flags", &blofeld::halo2::unnamed_enum$307 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "Raw Planes", &blofeld::halo2::global_geometry_plane_block },
 		{ _field_data, "Runtime Plane Data" },
 		{ _field_block, "Rigid Plane Groups", &blofeld::halo2::global_geometry_rigid_plane_group_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_block, "Explicit Edges", &blofeld::halo2::global_geometry_explicit_edge_block },
 		{ _field_terminator }
 	};
@@ -20258,7 +20258,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_char_enum, "Type", &blofeld::halo2::unnamed_enum$33 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_short_integer, "Primary Locator" },
 		{ _field_short_integer, "Secondary Locator" },
 		{ _field_long_integer, "Resource Data Size" },
@@ -20284,16 +20284,16 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("BLOCK INFO", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("BLOCK INFO", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_integer, "Block Offset" },
 		{ _field_long_integer, "Block Size" },
 		{ _field_long_integer, "Section Data Size" },
 		{ _field_long_integer, "Resource Data Size" },
 		{ _field_block, "Resources", &blofeld::halo2::global_geometry_block_resource_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "Owner Tag Section Offset" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -20427,7 +20427,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "input dsp effect name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "components", &blofeld::halo2::platform_sound_effect_template_component_block },
 		{ _field_terminator }
 	};
@@ -20457,7 +20457,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("scale modifiers", nullptr, FIELD_FLAG_NONE, "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the values specified above. (0 values are ignored.)"),
+		FIELD_EXPLANATION_EX("scale modifiers", nullptr, FIELD_FLAG_NONE, "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the values specified above. (0 values are ignored.)"),
 		{ _field_real_bounds, "gain modifier", nullptr, "dB" },
 		{ _field_real_bounds, "pitch modifier", nullptr, "cents" },
 		{ _field_real_fraction_bounds, "skip fraction modifier" },
@@ -20478,15 +20478,15 @@ namespace halo2 {
 		{ _field_real, "maximum distance", "the distance beyond which this sound is no longer audible", "world units" },
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this sound that will be ignored (0 means always play.)" },
 		{ _field_real, "maximum bend per second", nullptr, "cents" },
-		FIELD_EXPLANATION("randomization", nullptr, FIELD_FLAG_NONE, "these settings control random variation of volume and pitch.\n the second parameter gets clipped to the first."),
+		FIELD_EXPLANATION_EX("randomization", nullptr, FIELD_FLAG_NONE, "these settings control random variation of volume and pitch.\n the second parameter gets clipped to the first."),
 		{ _field_real, "gain base", "sound's random gain will start here", "dB" },
 		{ _field_real, "gain variance", "sound's gain will be randomly modulated within this range", "dB" },
 		{ _field_real_bounds, "random pitch bounds", "the sound's pitch will be modulated randomly within this range.", "cents" },
-		FIELD_EXPLANATION("directional sounds", nullptr, FIELD_FLAG_NONE, "these settings allow sounds to be directional, fading as they turn away from the listener"),
+		FIELD_EXPLANATION_EX("directional sounds", nullptr, FIELD_FLAG_NONE, "these settings allow sounds to be directional, fading as they turn away from the listener"),
 		{ _field_angle, "inner cone angle", "within the cone defined by this angle and the sound's direction, the sound plays with a gain of 1.0.", "degrees" },
 		{ _field_angle, "outer cone angle", "outside the cone defined by this angle and the sound's direction, the sound plays with a gain of OUTER CONE GAIN. (0 means the sound does not attenuate with direction.)", "degrees" },
 		{ _field_real, "outer cone gain", "the gain to use when the sound is directed away from the listener", "dB" },
-		FIELD_EXPLANATION("SCRIPTED LOCATION OVERRIDE", nullptr, FIELD_FLAG_NONE, "NOTE: this will only apply when the sound is started via script\nazimuth:\n    0 => front\n    90 => left\n    180 => back\n    270 => right\n"),
+		FIELD_EXPLANATION_EX("SCRIPTED LOCATION OVERRIDE", nullptr, FIELD_FLAG_NONE, "NOTE: this will only apply when the sound is started via script\nazimuth:\n    0 => front\n    90 => left\n    180 => back\n    270 => right\n"),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$438 },
 		{ _field_angle, "azimuth" },
 		{ _field_real, "positional gain", nullptr, "dB" },
@@ -20511,7 +20511,7 @@ namespace halo2 {
 		{ _field_data, "value" },
 		{ _field_block, "value", &blofeld::halo2::sound_permutation_chunk_block },
 		{ _field_enum, "compression", &blofeld::halo2::unnamed_enum$5 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_data, "value" },
 		{ _field_block, "value", &blofeld::halo2::sound_permutation_marker_block },
 		{ _field_terminator }
@@ -20532,7 +20532,7 @@ namespace halo2 {
 		{ _field_real_bounds, "bend bounds", "the range of pitches that will be represented using this sample.", "cents" },
 		{ _field_real_bounds, "value" },
 		{ _field_struct, "value", &blofeld::halo2::mapping_function_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "permutations", "permutations represent equivalent variations of this sound.", &blofeld::halo2::large_sound_permutations_block },
 		{ _field_terminator }
 	};
@@ -20552,7 +20552,7 @@ namespace halo2 {
 		{ _field_real, "gain", "fraction of recorded volume to play at.", "dB" },
 		{ _field_enum, "compression", &blofeld::halo2::unnamed_enum$5 },
 		{ _field_short_integer, "next permutation index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_data, "samples", "sampled sound data" },
 		{ _field_data, "mouth data" },
 		{ _field_data, "subtitle data" },
@@ -20569,7 +20569,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_data, "mouth data" },
 		{ _field_terminator }
 	};
@@ -20585,12 +20585,12 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string, "name", "the name of the imported pitch range directory" },
-		FIELD_EXPLANATION("pitch control", nullptr, FIELD_FLAG_NONE, "these settings control what pitches this set of samples represents. if there is only one pitch range, all three values are ignored."),
+		FIELD_EXPLANATION_EX("pitch control", nullptr, FIELD_FLAG_NONE, "these settings control what pitches this set of samples represents. if there is only one pitch range, all three values are ignored."),
 		{ _field_real, "natural pitch", "the apparent pitch when these samples are played at their recorded pitch.", "cents" },
 		{ _field_real_bounds, "bend bounds", "the range of pitches that will be represented using this sample. this should always contain the natural pitch.", "cents" },
 		{ _field_short_integer, "actual permutation count" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "permutations", "permutations represent equivalent variations of this sound.", &blofeld::halo2::old_sound_permutations_block },
 		{ _field_block, "permutation info", &blofeld::halo2::old_sound_permutation_info_block },
 		{ _field_terminator }
@@ -20606,10 +20606,10 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("SCENARIO LOAD PARAMETERS", nullptr, FIELD_FLAG_NONE, "strip-variant <variant-name>\nstrips a given variant out of the model tag\nstrip-dialogue\nstrips all the dialogue for this model i.e. cinematic only"),
+		FIELD_EXPLANATION_EX("SCENARIO LOAD PARAMETERS", nullptr, FIELD_FLAG_NONE, "strip-variant <variant-name>\nstrips a given variant out of the model tag\nstrip-dialogue\nstrips all the dialogue for this model i.e. cinematic only"),
 		{ _field_tag_reference, "scenario", &blofeld::halo2::scenario_reference },
 		{ _field_data, "parameters" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -20626,8 +20626,8 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_integer, "Campaign ID" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 576),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2304),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 576),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2304),
 		{ _field_terminator }
 	};
 
@@ -20644,8 +20644,8 @@ namespace halo2 {
 		{ _field_long_integer, "Campaign ID" },
 		{ _field_long_integer, "Map ID" },
 		{ _field_tag_reference, "Bitmap", &blofeld::halo2::bitmap_reference },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 576),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2304),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 576),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2304),
 		{ _field_terminator }
 	};
 
@@ -20661,12 +20661,12 @@ namespace halo2 {
 	{
 		{ _field_long_integer, "Map ID" },
 		{ _field_tag_reference, "Bitmap", &blofeld::halo2::bitmap_reference },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 576),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2304),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 576),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2304),
 		{ _field_long_string, "Path" },
 		{ _field_long_integer, "Sort Order" },
 		{ _field_byte_flags, "Flags", &blofeld::halo2::unnamed_enum$301 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_char_integer, "Max Teams None" },
 		{ _field_char_integer, "Max Teams CTF" },
 		{ _field_char_integer, "Max Teams Slayer" },
@@ -20920,7 +20920,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_data, "*mopp Code" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_point_3d, "*mopp Bounds Min" },
 		{ _field_real_point_3d, "*mopp Bounds Max" },
 		{ _field_data, "*Breakable Surfaces mopp Code" },
@@ -20966,8 +20966,8 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "enclosing portal designators", &blofeld::halo2::structure_sound_cluster_portal_designators },
 		{ _field_block, "interior cluster indices", &blofeld::halo2::structure_sound_cluster_interior_cluster_indices },
 		{ _field_terminator }
@@ -21027,9 +21027,9 @@ namespace halo2 {
 		{ _field_real_vector_3d, "Up" },
 		{ _field_real_point_3d, "Position" },
 		{ _field_word_flags, "Flags", &blofeld::halo2::unnamed_enum$379 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_long_integer, "Checksum" },
 		{ _field_string_id, "Name" },
 		{ _field_enum, "Pathfinding Policy", &blofeld::halo2::unnamed_enum$380 },
@@ -21179,14 +21179,14 @@ namespace halo2 {
 		{ _field_block, "Triangles", &blofeld::halo2::error_report_triangles_block },
 		{ _field_block, "Quads", &blofeld::halo2::error_report_quads_block },
 		{ _field_block, "Comments", &blofeld::halo2::error_report_comments_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 380),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 380),
 		{ _field_long_integer, "Report Key" },
 		{ _field_long_integer, "Node Index" },
 		{ _field_real_bounds, "Bounds x" },
 		{ _field_real_bounds, "Bounds y" },
 		{ _field_real_bounds, "Bounds z" },
 		{ _field_real_argb_color, "Color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 84),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 84),
 		{ _field_terminator }
 	};
 
@@ -21222,9 +21222,9 @@ namespace halo2 {
 		{ _field_long_string, "Name" },
 		{ _field_enum, "Report Type", &blofeld::halo2::unnamed_enum$143 },
 		{ _field_word_flags, "Flags", &blofeld::halo2::unnamed_enum$144 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 404),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 404),
 		{ _field_block, "Reports", &blofeld::halo2::error_reports_block },
 		{ _field_terminator }
 	};
@@ -21239,25 +21239,25 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "Size" },
 		{ _field_short_integer, "Count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "Size" },
 		{ _field_short_integer, "Count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "Size" },
 		{ _field_short_integer, "Count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_data, "mopp Code Data" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -21272,18 +21272,18 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "shader", &blofeld::halo2::shader_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_EXPLANATION("COLOR", nullptr, FIELD_FLAG_NONE, "tint color of the beam"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("COLOR", nullptr, FIELD_FLAG_NONE, "tint color of the beam"),
 		{ _field_struct, "color", &blofeld::halo2::color_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("ALPHA", nullptr, FIELD_FLAG_NONE, "how much to fade out beam"),
+		FIELD_EXPLANATION_EX("ALPHA", nullptr, FIELD_FLAG_NONE, "how much to fade out beam"),
 		{ _field_struct, "alpha", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("WIDTH", nullptr, FIELD_FLAG_NONE, "how wide in world units"),
+		FIELD_EXPLANATION_EX("WIDTH", nullptr, FIELD_FLAG_NONE, "how wide in world units"),
 		{ _field_struct, "width", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("LENGTH", nullptr, FIELD_FLAG_NONE, "how long in world units"),
+		FIELD_EXPLANATION_EX("LENGTH", nullptr, FIELD_FLAG_NONE, "how long in world units"),
 		{ _field_struct, "length", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("YAW", nullptr, FIELD_FLAG_NONE, "rotate the marker"),
+		FIELD_EXPLANATION_EX("YAW", nullptr, FIELD_FLAG_NONE, "rotate the marker"),
 		{ _field_struct, "yaw", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("PITCH", nullptr, FIELD_FLAG_NONE, "rotate the marker"),
+		FIELD_EXPLANATION_EX("PITCH", nullptr, FIELD_FLAG_NONE, "rotate the marker"),
 		{ _field_struct, "pitch", &blofeld::halo2::scalar_function_struct_block_struct_definition },
 		{ _field_terminator }
 	};
@@ -21299,29 +21299,29 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "particle physics", &blofeld::halo2::particle_physics_reference },
-		FIELD_EXPLANATION("particle emission rate (particles/tick)", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("particle emission rate (particles/tick)", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "particle emission rate", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("particle lifespan(seconds)", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("particle lifespan(seconds)", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "particle lifespan", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("particle velocity(world units/second)", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("particle velocity(world units/second)", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "particle velocity", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("particle angular velocity(degrees/second)", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("particle angular velocity(degrees/second)", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "particle angular velocity", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("particle size(world units)", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("particle size(world units)", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "particle size", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("particle tint", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("particle tint", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "particle tint", &blofeld::halo2::particle_property_color_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("particle alpha", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("particle alpha", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "particle alpha", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("EMISSION SETTINGS", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("EMISSION SETTINGS", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_enum, "emission shape", &blofeld::halo2::unnamed_enum$47 },
-		FIELD_EXPLANATION("emission radius(world units)", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("emission radius(world units)", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "emission radius", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
-		FIELD_EXPLANATION("emission angle(degrees)", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("emission angle(degrees)", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "emission angle", &blofeld::halo2::particle_property_scalar_struct_new_block_struct_definition },
 		{ _field_real_point_3d, "translational offset" },
 		{ _field_real_euler_angles_2d, "relative direction", "particle initial velocity direction relative to the location's forward" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -21361,10 +21361,10 @@ namespace halo2 {
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$46 },
 		{ _field_real, "LOD in distance", "defaults to 0.0" },
 		{ _field_real, "LOD feather in delta", "defaults to 0.0" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "LOD out distance", "defaults to 30.0" },
 		{ _field_real, "LOD feather out delta", "defaults to 10.0" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "emitters", &blofeld::halo2::particle_system_emitter_definition_block },
 		{ _field_terminator }
 	};
@@ -21440,7 +21440,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "sound flags", &blofeld::halo2::unnamed_enum$294 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "english sound", &blofeld::halo2::sound_reference },
 		{ _field_struct, "extra sounds", &blofeld::halo2::sound_response_extra_sounds_struct_block_struct_definition },
 		{ _field_real, "probability" },
@@ -21464,25 +21464,25 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$290 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "event", &blofeld::halo2::unnamed_enum$291 },
 		{ _field_enum, "audience", &blofeld::halo2::unnamed_enum$292 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "display string" },
 		{ _field_enum, "required field", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_enum, "excluded audience", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
 		{ _field_string_id, "plural display string" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_real, "sound delay (announcer only)" },
 		{ _field_word_flags, "sound flags", &blofeld::halo2::unnamed_enum$294 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_reference },
 		{ _field_struct, "extra sounds", &blofeld::halo2::sound_response_extra_sounds_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::sound_response_definition_block },
 		{ _field_terminator }
 	};
@@ -21578,25 +21578,25 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$290 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "event", &blofeld::halo2::unnamed_enum$310 },
 		{ _field_enum, "audience", &blofeld::halo2::unnamed_enum$292 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "display string" },
 		{ _field_enum, "required field", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_enum, "excluded audience", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
 		{ _field_string_id, "plural display string" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_real, "sound delay (announcer only)" },
 		{ _field_word_flags, "sound flags", &blofeld::halo2::unnamed_enum$294 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_reference },
 		{ _field_struct, "extra sounds", &blofeld::halo2::sound_response_extra_sounds_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::sound_response_definition_block },
 		{ _field_terminator }
 	};
@@ -21630,25 +21630,25 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$290 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "event", &blofeld::halo2::unnamed_enum$295 },
 		{ _field_enum, "audience", &blofeld::halo2::unnamed_enum$292 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "display string" },
 		{ _field_enum, "required field", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_enum, "excluded audience", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
 		{ _field_string_id, "plural display string" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_real, "sound delay (announcer only)" },
 		{ _field_word_flags, "sound flags", &blofeld::halo2::unnamed_enum$294 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_reference },
 		{ _field_struct, "extra sounds", &blofeld::halo2::sound_response_extra_sounds_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::sound_response_definition_block },
 		{ _field_terminator }
 	};
@@ -21671,25 +21671,25 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$290 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "event", &blofeld::halo2::unnamed_enum$296 },
 		{ _field_enum, "audience", &blofeld::halo2::unnamed_enum$292 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "display string" },
 		{ _field_enum, "required field", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_enum, "excluded audience", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
 		{ _field_string_id, "plural display string" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_real, "sound delay (announcer only)" },
 		{ _field_word_flags, "sound flags", &blofeld::halo2::unnamed_enum$294 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_reference },
 		{ _field_struct, "extra sounds", &blofeld::halo2::sound_response_extra_sounds_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::sound_response_definition_block },
 		{ _field_terminator }
 	};
@@ -21724,25 +21724,25 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$290 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "event", &blofeld::halo2::unnamed_enum$313 },
 		{ _field_enum, "audience", &blofeld::halo2::unnamed_enum$292 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "display string" },
 		{ _field_enum, "required field", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_enum, "excluded audience", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
 		{ _field_string_id, "plural display string" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_real, "sound delay (announcer only)" },
 		{ _field_word_flags, "sound flags", &blofeld::halo2::unnamed_enum$294 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_reference },
 		{ _field_struct, "extra sounds", &blofeld::halo2::sound_response_extra_sounds_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::sound_response_definition_block },
 		{ _field_terminator }
 	};
@@ -21780,25 +21780,25 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$290 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "event", &blofeld::halo2::unnamed_enum$297 },
 		{ _field_enum, "audience", &blofeld::halo2::unnamed_enum$292 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "display string" },
 		{ _field_enum, "required field", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_enum, "excluded audience", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
 		{ _field_string_id, "plural display string" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_real, "sound delay (announcer only)" },
 		{ _field_word_flags, "sound flags", &blofeld::halo2::unnamed_enum$294 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_reference },
 		{ _field_struct, "extra sounds", &blofeld::halo2::sound_response_extra_sounds_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::sound_response_definition_block },
 		{ _field_terminator }
 	};
@@ -21825,25 +21825,25 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$290 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "event", &blofeld::halo2::unnamed_enum$298 },
 		{ _field_enum, "audience", &blofeld::halo2::unnamed_enum$292 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "display string" },
 		{ _field_enum, "required field", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_enum, "excluded audience", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
 		{ _field_string_id, "plural display string" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_real, "sound delay (announcer only)" },
 		{ _field_word_flags, "sound flags", &blofeld::halo2::unnamed_enum$294 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_reference },
 		{ _field_struct, "extra sounds", &blofeld::halo2::sound_response_extra_sounds_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::sound_response_definition_block },
 		{ _field_terminator }
 	};
@@ -21871,25 +21871,25 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$290 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "event", &blofeld::halo2::unnamed_enum$311 },
 		{ _field_enum, "audience", &blofeld::halo2::unnamed_enum$292 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "display string" },
 		{ _field_enum, "required field", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_enum, "excluded audience", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
 		{ _field_string_id, "plural display string" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_real, "sound delay (announcer only)" },
 		{ _field_word_flags, "sound flags", &blofeld::halo2::unnamed_enum$294 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_reference },
 		{ _field_struct, "extra sounds", &blofeld::halo2::sound_response_extra_sounds_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::sound_response_definition_block },
 		{ _field_terminator }
 	};
@@ -21913,25 +21913,25 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$290 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "event", &blofeld::halo2::unnamed_enum$312 },
 		{ _field_enum, "audience", &blofeld::halo2::unnamed_enum$292 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "display string" },
 		{ _field_enum, "required field", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_enum, "excluded audience", &blofeld::halo2::unnamed_enum$293 },
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
 		{ _field_string_id, "plural display string" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_real, "sound delay (announcer only)" },
 		{ _field_word_flags, "sound flags", &blofeld::halo2::unnamed_enum$294 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_reference },
 		{ _field_struct, "extra sounds", &blofeld::halo2::sound_response_extra_sounds_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::sound_response_definition_block },
 		{ _field_terminator }
 	};
@@ -22055,9 +22055,9 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "response type", &blofeld::halo2::unnamed_enum$215 },
-		FIELD_EXPLANATION("Constraint damage type", nullptr, FIELD_FLAG_NONE, "* if you specify a constraint group name (see lower section of this block)\n  you can specify a constraint damage\n* loosening a constraint takes it out of the rigid state - activates it\n* destroying a constraint sets the attached body free"),
+		FIELD_EXPLANATION_EX("Constraint damage type", nullptr, FIELD_FLAG_NONE, "* if you specify a constraint group name (see lower section of this block)\n  you can specify a constraint damage\n* loosening a constraint takes it out of the rigid state - activates it\n* destroying a constraint sets the attached body free"),
 		{ _field_enum, "constraint damage type", &blofeld::halo2::unnamed_enum$216 },
-		FIELD_EXPLANATION("Damage response flags", nullptr, FIELD_FLAG_NONE, "* kills object: when the response fires the object dies regardless of its current health\n* inhibits <x>: from halo 1 - disallows basic behaviors for a unit\n* forces drop weapon: from halo 1 - makes the unit drop its current weapon\n* kills weapon <x> trigger: destroys the <x> trigger on the unit\'s current weapon\n* destroys object: when the response fires the object is destroyed"),
+		FIELD_EXPLANATION_EX("Damage response flags", nullptr, FIELD_FLAG_NONE, "* kills object: when the response fires the object dies regardless of its current health\n* inhibits <x>: from halo 1 - disallows basic behaviors for a unit\n* forces drop weapon: from halo 1 - makes the unit drop its current weapon\n* kills weapon <x> trigger: destroys the <x> trigger on the unit\'s current weapon\n* destroys object: when the response fires the object is destroyed"),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$217 },
 		{ _field_real, "damage threshold", "repsonse fires after crossing this threshold.  1=full health" },
 		{ _field_tag_reference, "transition effect", &blofeld::halo2::effect_reference },
@@ -22067,19 +22067,19 @@ namespace halo2 {
 		{ _field_short_integer, "runtime region index" },
 		{ _field_string_id, "effect marker name" },
 		{ _field_struct, "damage effect marker", &blofeld::halo2::instantaneous_response_damage_effect_marker_struct_block_struct_definition },
-		FIELD_EXPLANATION("Response delay", nullptr, FIELD_FLAG_NONE, "If desired, you can specify a delay until the response fires.This delay is pre-empted if another timed response for the same section fires.The delay effect plays while the timer is counting down"),
+		FIELD_EXPLANATION_EX("Response delay", nullptr, FIELD_FLAG_NONE, "If desired, you can specify a delay until the response fires.This delay is pre-empted if another timed response for the same section fires.The delay effect plays while the timer is counting down"),
 		{ _field_real, "response delay", "in seconds" },
 		{ _field_tag_reference, "delay effect", &blofeld::halo2::effect_reference },
 		{ _field_string_id, "delay effect marker name" },
-		FIELD_EXPLANATION("Constraint destruction", nullptr, FIELD_FLAG_NONE, "- a response can destroy a single constraint by naming it explicitly.\n- alternatively it can randomly destroy a single constraint from a specified group if the \"destroy one group constraint\" flag is set\n- also it can destroy all constraints in a specified group if the \"destroy all group constraints\" flag is set\n"),
+		FIELD_EXPLANATION_EX("Constraint destruction", nullptr, FIELD_FLAG_NONE, "- a response can destroy a single constraint by naming it explicitly.\n- alternatively it can randomly destroy a single constraint from a specified group if the \"destroy one group constraint\" flag is set\n- also it can destroy all constraints in a specified group if the \"destroy all group constraints\" flag is set\n"),
 		{ _field_string_id, "constraint/group name" },
-		FIELD_EXPLANATION("seat ejaculation", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("seat ejaculation", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_string_id, "ejecting seat label" },
-		FIELD_EXPLANATION("skip fraction", nullptr, FIELD_FLAG_NONE, "0.0 always fires, 1.0 never fires"),
+		FIELD_EXPLANATION_EX("skip fraction", nullptr, FIELD_FLAG_NONE, "0.0 always fires, 1.0 never fires"),
 		{ _field_real_fraction, "skip fraction" },
-		FIELD_EXPLANATION("destroyed child object marker name", nullptr, FIELD_FLAG_NONE, "when this response fires, any children objects created at the supplied marker name will be destroyed"),
+		FIELD_EXPLANATION_EX("destroyed child object marker name", nullptr, FIELD_FLAG_NONE, "when this response fires, any children objects created at the supplied marker name will be destroyed"),
 		{ _field_string_id, "destroyed child object marker name" },
-		FIELD_EXPLANATION("total damage threshold", nullptr, FIELD_FLAG_NONE, "scale on total damage section vitality"),
+		FIELD_EXPLANATION_EX("total damage threshold", nullptr, FIELD_FLAG_NONE, "scale on total damage section vitality"),
 		{ _field_real_fraction, "total damage threshold" },
 		{ _field_terminator }
 	};
@@ -22143,7 +22143,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "name" },
-		FIELD_EXPLANATION("damage section flags", nullptr, FIELD_FLAG_NONE, "* absorbs body damage: damage to this section does not count against body vitality\n* headshottable: takes extra headshot damage when shot\n* ignores shields: damage to this section bypasses shields"),
+		FIELD_EXPLANATION_EX("damage section flags", nullptr, FIELD_FLAG_NONE, "* absorbs body damage: damage to this section does not count against body vitality\n* headshottable: takes extra headshot damage when shot\n* ignores shields: damage to this section bypasses shields"),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$214 },
 		{ _field_real_fraction, "vitality percentage", "percentage of total object vitality", nullptr, "[0.1]" },
 		{ _field_block, "instant responses", &blofeld::halo2::instantaneous_damage_repsonse_block },
@@ -22151,9 +22151,9 @@ namespace halo2 {
 		{ _field_block, "value", &blofeld::halo2::g_null_block },
 		{ _field_real, "stun time", nullptr, "seconds" },
 		{ _field_real, "recharge time", nullptr, "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_string_id, "resurrection restored region name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -22181,9 +22181,9 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -22219,7 +22219,7 @@ namespace halo2 {
 		{ _field_string_id, "damage constraint name" },
 		{ _field_string_id, "damage constraint group name" },
 		{ _field_real, "group probability scale" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -22236,20 +22236,20 @@ namespace halo2 {
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$212 },
 		{ _field_string_id, "global indirect material name", "absorbes AOE or child damage" },
 		{ _field_custom_short_block_index, "indirect damage section", "absorbes AOE or child damage" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_char_enum, "collision damage reporting type", &blofeld::halo2::unnamed_enum$213 },
 		{ _field_char_enum, "response damage reporting type", &blofeld::halo2::unnamed_enum$213 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
-		FIELD_EXPLANATION("body", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_EXPLANATION_EX("body", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "maximum vitality" },
 		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object's health" },
 		{ _field_real, "stun time", "the length of time the health stay stunned (do not recharge) after taking damage", "seconds" },
 		{ _field_real, "recharge time", "the length of time it would take for the shields to fully recharge after being completely depleted", "seconds" },
 		{ _field_real_fraction, "recharge fraction", "0 defaults to 1 - to what maximum level the body health will be allowed to recharge" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 64),
-		FIELD_EXPLANATION("shield", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_EXPLANATION_EX("shield", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "shield damaged first person shader", &blofeld::halo2::shader_reference },
 		{ _field_tag_reference, "shield damaged shader", &blofeld::halo2::shader_reference },
 		{ _field_real, "maximum shield vitality", "the default initial and maximum shield vitality of this object" },
@@ -22263,13 +22263,13 @@ namespace halo2 {
 		{ _field_tag_reference, "shield recharging effect", &blofeld::halo2::effect_reference },
 		{ _field_block, "damage sections", &blofeld::halo2::global_damage_section_block },
 		{ _field_block, "nodes", &blofeld::halo2::global_damage_nodes_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "damage seats", &blofeld::halo2::damage_seat_info_block },
 		{ _field_block, "damage constraints", &blofeld::halo2::damage_constraint_info_block },
-		FIELD_EXPLANATION("overshield", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("overshield", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "overshield first person shader", &blofeld::halo2::shader_reference },
 		{ _field_tag_reference, "overshield shader", &blofeld::halo2::shader_reference },
 		{ _field_terminator }
@@ -22308,7 +22308,7 @@ namespace halo2 {
 		{ _field_real, "downhill velocity scale" },
 		{ _field_real, "uphill velocity scale" },
 		{ _field_useless_pad, "value" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
 	};
@@ -22384,18 +22384,18 @@ namespace halo2 {
 		{ _field_string_id, "living material name", "collision material used when character is alive" },
 		{ _field_string_id, "dead material name", "collision material used when character is dead" },
 		{ _field_useless_pad, "value" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_useless_pad, "value" },
 		{ _field_block, "dead sphere shapes", &blofeld::halo2::spheres_block },
 		{ _field_block, "pill shapes", &blofeld::halo2::pills_block },
 		{ _field_block, "sphere shapes", &blofeld::halo2::spheres_block },
-		FIELD_EXPLANATION("ground", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("ground", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "ground physics", &blofeld::halo2::character_physics_ground_struct_block_struct_definition },
-		FIELD_EXPLANATION("flying", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("flying", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "flying physics", &blofeld::halo2::character_physics_flying_struct_block_struct_definition },
-		FIELD_EXPLANATION("dead", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("dead", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "dead physics", &blofeld::halo2::character_physics_dead_struct_block_struct_definition },
-		FIELD_EXPLANATION("sentinel", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("sentinel", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "sentinel physics", &blofeld::halo2::character_physics_sentinel_struct_block_struct_definition },
 		{ _field_terminator }
 	};
@@ -22422,17 +22422,17 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_long_integer, "child shapes size" },
 		{ _field_long_integer, "child shapes capacity" },
 		{ _field_array, "child shapes storage", &blofeld::halo2::vehicle_phantom_shape_block_struct_definition__child_shapes_storage_array },
 		{ _field_long_integer, "multisphere count" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$513 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real, "x0" },
 		{ _field_real, "x1" },
 		{ _field_real, "y0" },
@@ -22469,9 +22469,9 @@ namespace halo2 {
 		{ _field_real, "antigrav normal k1" },
 		{ _field_real, "antigrav normal k0" },
 		{ _field_real, "radius" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "damage source region name" },
 		{ _field_real, "default state error" },
 		{ _field_real, "minor damage error" },
@@ -22503,18 +22503,18 @@ namespace halo2 {
 		{ _field_real, "radius" },
 		{ _field_real, "damaged radius", "radius when the tire is blown off." },
 		{ _field_enum, "friction type", &blofeld::halo2::unnamed_enum$511 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "moving friction velocity diff" },
 		{ _field_real, "e-brake moving friction" },
 		{ _field_real, "e-brake friction" },
 		{ _field_real, "e-brake moving friction vel diff" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_string_id, "collision global material name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_EXPLANATION("friction point destruction data", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("friction point destruction data", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "model state destroyed", "only need point can destroy flag set", &blofeld::halo2::unnamed_enum$208 },
 		{ _field_string_id, "region name", "only need point can destroy flag set" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -22553,7 +22553,7 @@ namespace halo2 {
 		{ _field_real, "ground moving friction", "for friction based vehicles only" },
 		{ _field_real, "ground maximum slope 0", "degrees 0-90" },
 		{ _field_real, "ground maximum slope 1", "degrees 0-90.  and greater than slope 0" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_real, "anti_gravity_bank_lift", "lift per WU." },
 		{ _field_real, "steering_bank_reaction_scale", "how quickly we bank when we steer " },
 		{ _field_real, "gravity scale", "value of 0 defaults to 1.  .5 is half gravity" },
@@ -22612,7 +22612,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$98 },
 		{ _field_real, "ecology margin", "distance from ecology boundary that creature begins to be repulsed", "wus" },
@@ -22625,8 +22625,8 @@ namespace halo2 {
 		{ _field_tag_reference, "creature", &blofeld::halo2::creature_reference$2 },
 		{ _field_short_bounds, "boid count" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Flock parameters", nullptr, FIELD_FLAG_NONE, "Recommended initial values (for a sentinel-sized unit): \n\tneighborhood radius= 6.0 \n\tavoidance radius= 3 \n forward scale= 0.5 \n alignment scale= 0.5 \n avoidance scale= 1.0 \n leveling force scale= 0.1 \n perception angle= 120 \n average throttle= 0.75 \n maximum throttle= 1.0 \n position scale= 1.0 \n position min radius= 3 \n position max radius = 9"),
-		FIELD_EXPLANATION("Let me give you a piece of free advice.", nullptr, FIELD_FLAG_NONE, "Flocks with a neighborhood radius of 0 don\'t FLOCK, per se (in the creature-creature interaction kind of way), but they are much cheaper. The best thing is to have a non-zero radius for small flocks, and a zero radius for large flocks (or for \'flow-flocks\', ones with sources and sinks that are intended to create a steady flow of something). Note also that for flocks with a 0 neighborhood radius, the parameters for avoidance, alignment, position and perception angle are ignored entirely."),
+		FIELD_EXPLANATION_EX("Flock parameters", nullptr, FIELD_FLAG_NONE, "Recommended initial values (for a sentinel-sized unit): \n\tneighborhood radius= 6.0 \n\tavoidance radius= 3 \n forward scale= 0.5 \n alignment scale= 0.5 \n avoidance scale= 1.0 \n leveling force scale= 0.1 \n perception angle= 120 \n average throttle= 0.75 \n maximum throttle= 1.0 \n position scale= 1.0 \n position min radius= 3 \n position max radius = 9"),
+		FIELD_EXPLANATION_EX("Let me give you a piece of free advice.", nullptr, FIELD_FLAG_NONE, "Flocks with a neighborhood radius of 0 don\'t FLOCK, per se (in the creature-creature interaction kind of way), but they are much cheaper. The best thing is to have a non-zero radius for small flocks, and a zero radius for large flocks (or for \'flow-flocks\', ones with sources and sinks that are intended to create a steady flow of something). Note also that for flocks with a 0 neighborhood radius, the parameters for avoidance, alignment, position and perception angle are ignored entirely."),
 		{ _field_real, "neighborhood radius", "distance within which one boid is affected by another", "world units" },
 		{ _field_real, "avoidance radius", "distance that a boid tries to maintain from another", "world units" },
 		{ _field_real, "forward scale", "weight given to boid's desire to fly straight ahead", nullptr, "[0..1]" },
@@ -22643,7 +22643,7 @@ namespace halo2 {
 		{ _field_real, "movement weight threshold", "The threshold of accumulated weight over which movement occurs" },
 		{ _field_real, "danger radius", "distance within which boids will avoid a dangerous object (e.g. the player)", "wus" },
 		{ _field_real, "danger scale", "weight given to boid's desire to avoid danger" },
-		FIELD_EXPLANATION("Perlin noise parameters", nullptr, FIELD_FLAG_NONE, "Recommended initial values: \n\trandom offset scale= 0.2 \n\toffset period bounds= 1, 3"),
+		FIELD_EXPLANATION_EX("Perlin noise parameters", nullptr, FIELD_FLAG_NONE, "Recommended initial values: \n\trandom offset scale= 0.2 \n\toffset period bounds= 1, 3"),
 		{ _field_real, "random offset scale", "weight given to boid's random heading offset", nullptr, "[0..1]" },
 		{ _field_real_bounds, "random offset period", nullptr, "seconds" },
 		{ _field_useless_pad, "value" },
@@ -22677,11 +22677,11 @@ namespace halo2 {
 		{ _field_useless_pad, "value" },
 		{ _field_real, "x" },
 		{ _field_useless_pad, "value" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_string, "Exit condition script" },
 		{ _field_short_integer, "value" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$90 },
 		{ _field_terminator }
@@ -22745,7 +22745,7 @@ namespace halo2 {
 		{ _field_string, "name" },
 		{ _field_long_flags, "trigger flags", &blofeld::halo2::unnamed_enum$95 },
 		{ _field_enum, "combination rule", &blofeld::halo2::unnamed_enum$85 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_block, "conditions", &blofeld::halo2::order_completion_condition },
 		{ _field_terminator }
@@ -22768,7 +22768,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_flags, "Trigger flags", &blofeld::halo2::unnamed_enum$87 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -22788,9 +22788,9 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "deprecated" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 44),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 44),
 		{ _field_terminator }
 	};
 
@@ -22805,7 +22805,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "combination rule", &blofeld::halo2::unnamed_enum$85 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_block, "conditions", &blofeld::halo2::order_completion_condition },
 		{ _field_terminator }
 	};
@@ -22855,12 +22855,12 @@ namespace halo2 {
 	{
 		{ _field_custom, "value" },
 		{ _field_string, "name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$82 },
 		{ _field_enum, "Force combat status", &blofeld::halo2::unnamed_enum$83 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string, "Entry Script" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "follow radius" },
 		{ _field_block, "Primary area set", &blofeld::halo2::zone_set_block },
 		{ _field_block, "Secondary area set", &blofeld::halo2::secondary_zone_set_block },
@@ -22908,7 +22908,7 @@ namespace halo2 {
 		{ _field_enum, "combination rule", &blofeld::halo2::unnamed_enum$85 },
 		{ _field_real, "delay time" },
 		{ _field_enum, "dialogue type", "when this ending is triggered, launch a dialogue event of the given type", &blofeld::halo2::unnamed_enum$86 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_block, "triggers", &blofeld::halo2::trigger_references },
 		{ _field_terminator }
@@ -22927,7 +22927,7 @@ namespace halo2 {
 		{ _field_string, "name" },
 		{ _field_real_point_3d, "position" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "surface index" },
 		{ _field_real_euler_angles_2d, "facing direction" },
 		{ _field_terminator }
@@ -22968,7 +22968,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_block, "point sets", &blofeld::halo2::cs_point_set_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 120),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 120),
 		{ _field_terminator }
 	};
 
@@ -22982,7 +22982,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_terminator }
 	};
 
@@ -23012,12 +23012,12 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("CONTROLS", nullptr, FIELD_FLAG_NONE, "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
+		FIELD_EXPLANATION_EX("CONTROLS", nullptr, FIELD_FLAG_NONE, "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
 		{ _field_real_point_3d, "position (local)" },
 		{ _field_short_integer, "reference frame" },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$76 },
 		{ _field_short_integer, "cluster index" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_euler_angles_2d, "normal" },
 		{ _field_custom, "value" },
 		{ _field_terminator }
@@ -23048,7 +23048,7 @@ namespace halo2 {
 	{
 		{ _field_string, "animation name" },
 		{ _field_tag_reference, "animation graph", "leave this blank to use the unit's normal animation graph", &blofeld::halo2::model_animation_graph_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -23063,7 +23063,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string, "script name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -23078,7 +23078,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string, "recording name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -23092,12 +23092,12 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_string, "encounter name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -23113,9 +23113,9 @@ namespace halo2 {
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$92 },
 		{ _field_enum, "addressee", &blofeld::halo2::unnamed_enum$93 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "line delay time" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_tag_reference, "variant 1", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "variant 2", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "variant 3", &blofeld::halo2::sound_reference },
@@ -23156,10 +23156,10 @@ namespace halo2 {
 	{
 		{ _field_string, "name" },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$91 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "trigger distance", "distance the player must enter before the conversation can trigger", "world units" },
 		{ _field_real, "run-to-player dist", "if the 'involves player' flag is set, when triggered the conversation's participant(s) will run to within this distance of the player", "world units" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 36),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 36),
 		{ _field_block, "participants", &blofeld::halo2::ai_conversation_participant_block },
 		{ _field_block, "lines", &blofeld::halo2::ai_conversation_line_block },
 		{ _field_block, "value", &blofeld::halo2::g_null_block },
@@ -23326,7 +23326,7 @@ namespace halo2 {
 		{ _field_long_integer, "first sector" },
 		{ _field_long_integer, "last sector" },
 		{ _field_short_integer, "node_index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -23363,7 +23363,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$371 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "first sector" },
 		{ _field_long_integer, "last sector" },
 		{ _field_block, "bsps", &blofeld::halo2::environment_object_bsp_refs },
@@ -23388,7 +23388,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_integer, "pathfinding object_index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -23412,7 +23412,7 @@ namespace halo2 {
 		{ _field_block, "pathfinding hints", &blofeld::halo2::pathfinding_hints_block },
 		{ _field_block, "instanced geometry refs", &blofeld::halo2::instanced_geometry_reference_block },
 		{ _field_long_integer, "structure checksum" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_block, "user-placed hints", &blofeld::halo2::user_hint_block },
 		{ _field_terminator }
 	};
@@ -23444,11 +23444,11 @@ namespace halo2 {
 	{
 		{ _field_string, "name" },
 		{ _field_long_flags, "area flags", &blofeld::halo2::unnamed_enum$77 },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 20),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 64),
 		{ _field_short_integer, "manual reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "flight_hints", &blofeld::halo2::flight_reference_block },
 		{ _field_terminator }
 	};
@@ -23473,7 +23473,7 @@ namespace halo2 {
 	{
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$75 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_block, "firing positions", &blofeld::halo2::firing_positions_block },
 		{ _field_block, "areas", &blofeld::halo2::areas_block },
@@ -23499,10 +23499,10 @@ namespace halo2 {
 		{ _field_old_string_id, "name" },
 		{ _field_real_point_3d, "position" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", nullptr, "degrees" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$72 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "seat type", &blofeld::halo2::unnamed_enum$73 },
 		{ _field_enum, "grenade type", &blofeld::halo2::unnamed_enum$71 },
 		{ _field_short_integer, "swarm count", "number of cretures in swarm if a swarm is spawned at this location" },
@@ -23511,8 +23511,8 @@ namespace halo2 {
 		{ _field_real, "initial movement distance", "before doing anything else, the actor will travel the given distance in its forward direction" },
 		{ _field_enum, "initial movement mode", &blofeld::halo2::unnamed_enum$74 },
 		{ _field_string, "Placement script" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -23570,8 +23570,8 @@ namespace halo2 {
 		{ _field_real, "weight" },
 		{ _field_real_bounds, "time", nullptr, "seconds" },
 		{ _field_char_integer, "sequence ID", "identifies this move position as belonging to a sequence, only actors whose starting locations match this sequence ID can use it (zero = no sequence)" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 44),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 44),
 		{ _field_long_integer, "surface index" },
 		{ _field_terminator }
 	};
@@ -23610,17 +23610,17 @@ namespace halo2 {
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
 		{ _field_short_integer, "insane diff count", "initial number of actors on insane difficulty (hard difficulty is midway between normal and insane)" },
 		{ _field_enum, "major upgrade", &blofeld::halo2::unnamed_enum$70 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Actor defaults", nullptr, FIELD_FLAG_NONE, "The following default values are used for spawned actors"),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("Actor defaults", nullptr, FIELD_FLAG_NONE, "The following default values are used for spawned actors"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "grenade type", &blofeld::halo2::unnamed_enum$71 },
 		{ _field_string_id, "vehicle variant" },
 		{ _field_useless_pad, "value" },
 		{ _field_block, "starting locations", &blofeld::halo2::actor_starting_locations_block },
 		{ _field_string, "Placement script" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -23721,7 +23721,7 @@ namespace halo2 {
 		{ _field_real, "wind_scale", "[0.0 - 3.0] sug 1.0" },
 		{ _field_real, "wind_flappiness_scale", "[0.0 - 1.0] sug 0.75" },
 		{ _field_real, "longest_rod", "[1.0 - 10.0] sug 3.5" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_terminator }
 	};
 
@@ -23835,11 +23835,11 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("Primary light", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Primary light", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_rgb_color, "Min lightmap color" },
 		{ _field_real_rgb_color, "Max lightmap color" },
 		{ _field_real, "exclusion angle from up", "degrees from up the direct light cannot be" },
-		FIELD_EXPLANATION("Primary light function", nullptr, FIELD_FLAG_NONE, "input: accuracy, output: primary light scale"),
+		FIELD_EXPLANATION_EX("Primary light function", nullptr, FIELD_FLAG_NONE, "input: accuracy, output: primary light scale"),
 		{ _field_custom, "function" },
 		{ _field_struct, "function", &blofeld::halo2::mapping_function_block_struct_definition },
 		{ _field_terminator }
@@ -23855,13 +23855,13 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("Secondary light", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Secondary light", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_rgb_color, "Min lightmap color" },
 		{ _field_real_rgb_color, "Max lightmap color" },
 		{ _field_real_rgb_color, "Min diffuse sample" },
 		{ _field_real_rgb_color, "Max diffuse sample" },
 		{ _field_real, "z axis rotation", "degrees" },
-		FIELD_EXPLANATION("Secondary light function", nullptr, FIELD_FLAG_NONE, "input: accuracy, output: secondary light scale"),
+		FIELD_EXPLANATION_EX("Secondary light function", nullptr, FIELD_FLAG_NONE, "input: accuracy, output: secondary light scale"),
 		{ _field_custom, "function" },
 		{ _field_struct, "function", &blofeld::halo2::mapping_function_block_struct_definition },
 		{ _field_terminator }
@@ -23877,10 +23877,10 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("Ambient light", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Ambient light", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_rgb_color, "Min lightmap sample" },
 		{ _field_real_rgb_color, "Max lightmap sample" },
-		FIELD_EXPLANATION("Ambient light function", nullptr, FIELD_FLAG_NONE, "Ambient light scale. (left side min brightness, right side max brightness). Before this scale it determines a global ambient scale, which added to either light will total ~1.0 scale. Then this scale modifies that."),
+		FIELD_EXPLANATION_EX("Ambient light function", nullptr, FIELD_FLAG_NONE, "Ambient light scale. (left side min brightness, right side max brightness). Before this scale it determines a global ambient scale, which added to either light will total ~1.0 scale. Then this scale modifies that."),
 		{ _field_custom, "function" },
 		{ _field_struct, "function", &blofeld::halo2::mapping_function_block_struct_definition },
 		{ _field_terminator }
@@ -23896,7 +23896,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("Lightmap shadows", nullptr, FIELD_FLAG_NONE, "Shadows generated by the lightmaps get direction from lightmap primary incoming light direction and darken based on how accurate that light is fed into the function below"),
+		FIELD_EXPLANATION_EX("Lightmap shadows", nullptr, FIELD_FLAG_NONE, "Shadows generated by the lightmaps get direction from lightmap primary incoming light direction and darken based on how accurate that light is fed into the function below"),
 		{ _field_custom, "accuracy function" },
 		{ _field_struct, "function 1", &blofeld::halo2::mapping_function_block_struct_definition },
 		{ _field_terminator }
@@ -23913,7 +23913,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_flags, "object affected", &blofeld::halo2::unnamed_enum$187 },
-		FIELD_EXPLANATION("Global lightmap sample", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Global lightmap sample", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "Lightmap brightness offset" },
 		{ _field_struct, "primary light", &blofeld::halo2::primary_light_struct_block_struct_definition },
 		{ _field_struct, "secondary light", &blofeld::halo2::secondary_light_struct_block_struct_definition },
@@ -24332,22 +24332,22 @@ namespace halo2 {
 		{ _field_enum, "speaker type", &blofeld::halo2::unnamed_enum$58 },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$59 },
 		{ _field_enum, "listener/target", "who/what am I speaking to/of?", &blofeld::halo2::unnamed_enum$58 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_enum, "hostility", "The relationship between the subject and the cause", &blofeld::halo2::unnamed_enum$60 },
 		{ _field_enum, "damage type", &blofeld::halo2::unnamed_enum$61 },
 		{ _field_enum, "danger level", "Speaker must have danger level of at least this much", &blofeld::halo2::unnamed_enum$62 },
 		{ _field_enum, "attitude", &blofeld::halo2::unnamed_enum$63 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_enum, "subject actor type", &blofeld::halo2::unnamed_enum$64 },
 		{ _field_enum, "cause actor type", &blofeld::halo2::unnamed_enum$64 },
 		{ _field_enum, "cause type", &blofeld::halo2::unnamed_enum$65 },
 		{ _field_enum, "subject type", &blofeld::halo2::unnamed_enum$65 },
 		{ _field_string_id, "cause ai type name" },
 		{ _field_enum, "spatial relation", "with respect to the subject, the cause is ...", &blofeld::halo2::unnamed_enum$66 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "subject ai type name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_long_flags, "Conditions", &blofeld::halo2::unnamed_enum$67 },
 		{ _field_terminator }
 	};
@@ -24746,7 +24746,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_integer, "involuntary vocalization index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -24762,7 +24762,7 @@ namespace halo2 {
 	{
 		{ _field_string_id, "variant name" },
 		{ _field_short_integer, "variant index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "variant designator" },
 		{ _field_terminator }
 	};
@@ -24779,7 +24779,7 @@ namespace halo2 {
 	{
 		{ _field_long_flags, "general flags", &blofeld::halo2::unnamed_enum$118 },
 		{ _field_enum, "type", &blofeld::halo2::unnamed_enum$119 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_real, "scariness", "the inherent scariness of the character" },
 		{ _field_terminator }
@@ -24829,7 +24829,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "few upgrade chance (easy)" },
 		{ _field_real, "few upgrade chance (normal)" },
 		{ _field_real, "few upgrade chance (heroic)" },
@@ -24885,7 +24885,7 @@ namespace halo2 {
 		{ _field_real, "extended body damage threshold", "Amount of body damage sustained before it is considered 'extended'", "%" },
 		{ _field_useless_pad, "value" },
 		{ _field_real, "suicide radius", "when I die and explode, I damage stuff within this distance of me." },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -24944,7 +24944,7 @@ namespace halo2 {
 	{
 		{ _field_real_euler_angles_2d, "maximum aiming deviation", "how far we can turn our weapon", "degrees" },
 		{ _field_real_euler_angles_2d, "maximum looking deviation", "how far we can turn our head", "degrees" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_angle, "noncombat look delta L", "how far we can turn our head left away from our aiming vector when not in combat", "degrees" },
 		{ _field_angle, "noncombat look delta R", "how far we can turn our head right away from our aiming vector when not in combat", "degrees" },
 		{ _field_angle, "combat look delta L", "how far we can turn our head left away from our aiming vector when in combat", "degrees" },
@@ -24976,7 +24976,7 @@ namespace halo2 {
 		{ _field_enum, "obstacle leap max size", &blofeld::halo2::unnamed_enum$123 },
 		{ _field_enum, "obstacle ignore size", &blofeld::halo2::unnamed_enum$123 },
 		{ _field_enum, "obstacle smashable size", &blofeld::halo2::unnamed_enum$123 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "jump height", &blofeld::halo2::unnamed_enum$124 },
 		{ _field_long_flags, "movement hints", &blofeld::halo2::unnamed_enum$125 },
 		{ _field_real, "throttle scale" },
@@ -25053,7 +25053,7 @@ namespace halo2 {
 	{
 		{ _field_useless_pad, "value" },
 		{ _field_short_integer, "scatter killed count", "After the given number of deaths, the swarm scatters" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "scatter radius", "the distance from the target that the swarm scatters" },
 		{ _field_real, "scatter time", "amount of time to remain scattered" },
 		{ _field_useless_pad, "value" },
@@ -25132,7 +25132,7 @@ namespace halo2 {
 		{ _field_real, "Emerge from cover when shield fraction reaches threshold", "Emerge from cover when shield fraction reaches threshold" },
 		{ _field_real, "Cover danger threshold", "Danger must be this high to cover. At a danger level of 'danger threshold', the chance of seeking cover is the cover chance lower bound (below)" },
 		{ _field_real, "Danger upper threshold", "At or above danger level of upper threshold, the chance of seeking cover is the cover chance upper bound (below)" },
-		FIELD_EXPLANATION("Cover chance", nullptr, FIELD_FLAG_NONE, "The Bounds on the chance of seeking cover.\nThe lower bound is valid when the danger is at \'danger threshold\'\nThe upper bound is valid when the danger is at or above \'danger upper threshold\'.\nIt is interpolated linearly everywhere in between.\n All chances are expressed as \'chance of triggering cover in a 1 second period\'."),
+		FIELD_EXPLANATION_EX("Cover chance", nullptr, FIELD_FLAG_NONE, "The Bounds on the chance of seeking cover.\nThe lower bound is valid when the danger is at \'danger threshold\'\nThe upper bound is valid when the danger is at or above \'danger upper threshold\'.\nIt is interpolated linearly everywhere in between.\n All chances are expressed as \'chance of triggering cover in a 1 second period\'."),
 		{ _field_real_bounds, "Cover chance", "Bounds on the chances of seeking cover." },
 		{ _field_real, "Proximity self-preserve", "When the proximity_self_preservation impulse is enabled, triggers self-preservation when target within this distance", "wus" },
 		{ _field_real, "Disallow cover distance", "Disallow covering from visible target under the given distance away", "world units" },
@@ -25158,7 +25158,7 @@ namespace halo2 {
 		{ _field_useless_pad, "value" },
 		{ _field_real_bounds, "search time" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Uncover", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Uncover", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_bounds, "Uncover distance bounds", "Distance of uncover point from target. Hard lower limit, soft upper limit." },
 		{ _field_terminator }
 	};
@@ -25294,7 +25294,7 @@ namespace halo2 {
 		{ _field_real, "rate of fire", "how many times per second we pull the trigger (zero = continuously held down)" },
 		{ _field_real, "target tracking", "how well our bursts track moving targets. 0.0= fire at the position they were standing when we started the burst. 1.0= fire at current position", nullptr, "[0,1]" },
 		{ _field_real, "target leading", "how much we lead moving targets. 0.0= no prediction. 1.0= predict completely.", nullptr, "[0,1]" },
-		FIELD_EXPLANATION("burst geometry", nullptr, FIELD_FLAG_NONE, "at the start of every burst we pick a random point near the target to fire at, on either the left or the right side.\nthe burst origin angle controls whether this error is exactly horizontal or might have some vertical component.\n\nover the course of the burst we move our projectiles back in the opposite direction towards the target. this return motion is also controlled by an angle that specifies how close to the horizontal it is.\n\nfor example if the burst origin angle and the burst return angle were both zero, and the return length was the same as the burst length, every burst would start the same amount away from the target (on either the left or right) and move back to exactly over the target at the end of the burst."),
+		FIELD_EXPLANATION_EX("burst geometry", nullptr, FIELD_FLAG_NONE, "at the start of every burst we pick a random point near the target to fire at, on either the left or the right side.\nthe burst origin angle controls whether this error is exactly horizontal or might have some vertical component.\n\nover the course of the burst we move our projectiles back in the opposite direction towards the target. this return motion is also controlled by an angle that specifies how close to the horizontal it is.\n\nfor example if the burst origin angle and the burst return angle were both zero, and the return length was the same as the burst length, every burst would start the same amount away from the target (on either the left or right) and move back to exactly over the target at the end of the burst."),
 		{ _field_real, "burst origin radius", "how far away from the target the starting point is", "world units" },
 		{ _field_angle, "burst origin angle", "the range from the horizontal that our starting error can be", "degrees" },
 		{ _field_real_bounds, "burst return length", "how far the burst point moves back towards the target (could be negative)", "world units" },
@@ -25322,7 +25322,7 @@ namespace halo2 {
 		{ _field_long_flags, "weapons flags", &blofeld::halo2::unnamed_enum$131 },
 		{ _field_tag_reference, "weapon", &blofeld::halo2::weapon_reference$4 },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Combat ranges", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Combat ranges", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "maximum firing range", "we can only fire our weapon at targets within this distance", "world units" },
 		{ _field_real, "minimum firing range", "weapon will not be fired at target closer than given distance" },
 		{ _field_real_bounds, "normal combat range", nullptr, "world units" },
@@ -25330,12 +25330,12 @@ namespace halo2 {
 		{ _field_real, "Max special target distance", "Specific target regions on a vehicle or unit will be fired upon only under the given distance", "world units" },
 		{ _field_real_bounds, "timid combat range", nullptr, "world units" },
 		{ _field_real_bounds, "aggressive combat range", nullptr, "world units" },
-		FIELD_EXPLANATION("Ballistic Firing", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Ballistic Firing", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "super-ballistic range", "we try to aim our shots super-ballistically if target is outside this range (zero = never)" },
 		{ _field_real_bounds, "Ballistic firing bounds", "At the min range, the min ballistic fraction is used, at the max, the max ballistic fraction is used", "world units" },
 		{ _field_real_bounds, "Ballistic fraction bounds", "Controls speed and degree of arc. 0 = high, slow, 1 = low, fast", nullptr, "[0-1]" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Behavior", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Behavior", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_bounds, "first burst delay time", nullptr, "seconds" },
 		{ _field_real, "surprise delay time", nullptr, "seconds" },
 		{ _field_real, "surprise fire-wildly time", nullptr, "seconds" },
@@ -25345,7 +25345,7 @@ namespace halo2 {
 		{ _field_real_vector_3d, "custom stand gun offset", "custom standing gun offset for overriding the default in the base actor" },
 		{ _field_real_vector_3d, "custom crouch gun offset", "custom crouching gun offset for overriding the default in the base actor" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("special-case firing properties", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("special-case firing properties", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "special-fire mode", "the type of special weapon fire that we can use", &blofeld::halo2::unnamed_enum$132 },
 		{ _field_enum, "special-fire situation", "when we will decide to use our special weapon fire mode", &blofeld::halo2::unnamed_enum$133 },
 		{ _field_real, "special-fire chance", "how likely we are to use our special weapon fire mode", nullptr, "[0,1]" },
@@ -25353,11 +25353,11 @@ namespace halo2 {
 		{ _field_real, "special damage modifier", "damage modifier for special weapon fire (applied in addition to the normal damage modifier. zero = no change)", nullptr, "[0,1]" },
 		{ _field_angle, "special projectile error", "projectile error angle for special weapon fire (applied in addition to the normal error)", "degrees" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Weapon drop when killed", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Weapon drop when killed", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_bounds, "drop weapon loaded", "amount of ammo loaded into the weapon that we drop (in fractions of a clip, e.g. 0.3 to 0.5)" },
 		{ _field_short_bounds, "drop weapon ammo", "total number of rounds in the weapon that we drop (ignored for energy weapons)" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Accuracy", nullptr, FIELD_FLAG_NONE, "Parameters control how accuracy changes over the duration of a series of bursts\nAccuracy is an analog value between 0 and 1. At zero, the parameters of the first\nfiring-pattern block is used. At 1, the parameters in the second block is used. In\nbetween, all the values are linearly interpolated"),
+		FIELD_EXPLANATION_EX("Accuracy", nullptr, FIELD_FLAG_NONE, "Parameters control how accuracy changes over the duration of a series of bursts\nAccuracy is an analog value between 0 and 1. At zero, the parameters of the first\nfiring-pattern block is used. At 1, the parameters in the second block is used. In\nbetween, all the values are linearly interpolated"),
 		{ _field_real_bounds, "normal accuracy bounds", "Indicates starting and ending accuracies at normal difficulty" },
 		{ _field_real, "normal accuracy time", "The amount of time it takes the accuracy to go from starting to ending" },
 		{ _field_useless_pad, "value" },
@@ -25431,7 +25431,7 @@ namespace halo2 {
 		{ _field_long_flags, "grenades flags", &blofeld::halo2::unnamed_enum$121 },
 		{ _field_enum, "grenade type", "type of grenades that we throw", FIELD_FLAG_INDEX, &blofeld::halo2::unnamed_enum$134 },
 		{ _field_enum, "trajectory type", "how we throw our grenades", &blofeld::halo2::unnamed_enum$135 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "minimum enemy count", "how many enemies must be within the radius of the grenade before we will consider throwing there" },
 		{ _field_real, "enemy radius", "we consider enemies within this radius when determining where to throw", "world units" },
 		{ _field_real, "grenade ideal velocity", "how fast we LIKE to throw our grenades", "world units per second" },
@@ -25445,7 +25445,7 @@ namespace halo2 {
 		{ _field_useless_pad, "value" },
 		{ _field_real_fraction, "anti-vehicle grenade chance", "how likely we are to throw a grenade against a vehicle", nullptr, "[0,1]" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Grenade drop when killed", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Grenade drop when killed", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_short_bounds, "grenade count", "number of grenades that we start with" },
 		{ _field_real, "dont drop grenades chance", "how likely we are not to drop any grenades when we die, even if we still have some", nullptr, "[0,1]" },
 		{ _field_terminator }
@@ -25474,17 +25474,17 @@ namespace halo2 {
 		{ _field_useless_pad, "value" },
 		{ _field_long_flags, "vehicle flags", &blofeld::halo2::unnamed_enum$136 },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Pathfinding", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Pathfinding", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "ai pathfinding radius", "(Ground vehicles)", "world units" },
 		{ _field_real, "ai destination radius", "(All vehicles) Distance within which goal is considered reached", "world units" },
 		{ _field_real, "ai deceleration distanceworld units", "(All vehicles)Distance from goal at which AI starts to decelerate" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Turning", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Turning", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "ai turning radius", "(Warthog, Pelican, Ghost) Idealized average turning radius (should reflect actual vehicle physics)" },
 		{ _field_real, "ai inner turning radius (< tr)", "(Warthog-type) Idealized minimum turning radius (should reflect actual vehicle physics)" },
 		{ _field_real, "ai ideal turning radius (> tr)", "(Warthogs, ghosts) Ideal turning radius for rounding turns (barring obstacles, etc.)" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Steering", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Steering", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_angle, "ai banshee steering maximum", "(Banshee)" },
 		{ _field_real, "ai max steering angle", "(Warthog, ghosts, wraiths)Maximum steering angle from forward (ultimately controls turning speed)", "degrees" },
 		{ _field_real, "ai max steering delta", "(pelicans, dropships, ghosts, wraiths)Maximum delta in steering angle from one tick to the next (ultimately controls turn acceleration)", "degrees" },
@@ -25494,7 +25494,7 @@ namespace halo2 {
 		{ _field_real, "ai avoidance distance", "(Banshee-style) Look-ahead distance for obstacle avoidance", "world units" },
 		{ _field_real, "ai min urgency", "(Banshees)The minimum urgency with which a turn can be made (urgency = percent of maximum steering delta)", nullptr, "[0-1]" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Throttle", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Throttle", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "ai throttle maximum", "(All vehicles)", "(0 - 1)" },
 		{ _field_real, "ai goal min throttle scale", "(Warthogs, Dropships, ghosts)scale on throttle when within 'ai deceleration distance' of goal (0...1)" },
 		{ _field_real, "ai turn min throttle scale", "(Warthogs, ghosts) Scale on throttle due to nearness to a turn (0...1)" },
@@ -25504,10 +25504,10 @@ namespace halo2 {
 		{ _field_real, "theoretical max speed", "(dropships, warthogs, ghosts) About how fast I can go.", "wu/s" },
 		{ _field_real, "error scale", "(dropships, warthogs) scale on the difference between desired and actual speed, applied to throttle" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Combat", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Combat", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_angle, "ai allowable aim deviation angle" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Behavior", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Behavior", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "ai charge tight angle distance", "(All vehicles) The distance at which the tight angle criterion is used for deciding to vehicle charge" },
 		{ _field_real, "ai charge tight angle", "(All vehicles) Angle cosine within which the target must be when target is closer than tight angle distance in order to charge", nullptr, "[0-1]" },
 		{ _field_real, "ai charge repeat timeout", "(All vehicles) Time delay between vehicle charges" },
@@ -25527,7 +25527,7 @@ namespace halo2 {
 		{ _field_real, "turtling timeout", "The turtled state times out after the given number of seconds", "seconds" },
 		{ _field_useless_pad, "value" },
 		{ _field_enum, "obstacle ignore size", &blofeld::halo2::unnamed_enum$123 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -25549,7 +25549,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_useless_pad, "value" },
 		{ _field_real_bounds, "idle pose delay time", "time range for delays between idle poses", "seconds" },
 		{ _field_terminator }
@@ -25604,7 +25604,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_useless_pad, "value" },
 		{ _field_real, "flurry damage threshold", "when more than x damage is caused a juggernaut flurry is triggered", nullptr, "[0..1]" },
 		{ _field_real, "flurry time", "flurry lasts this long", "seconds" },
@@ -25641,11 +25641,11 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("loaded torque", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("loaded torque", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "loaded torque curve", &blofeld::halo2::torque_curve_struct_block_struct_definition },
-		FIELD_EXPLANATION("cruising torque", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("cruising torque", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "cruising torque curve", &blofeld::halo2::torque_curve_struct_block_struct_definition },
-		FIELD_EXPLANATION("gearing", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("gearing", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "min time to upshift", "seconds" },
 		{ _field_real, "engine up-shift scale", "0-1" },
 		{ _field_real, "gear ratio" },
@@ -25716,7 +25716,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$491 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "vocalization" },
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_reference$3 },
 		{ _field_terminator }
@@ -25759,7 +25759,7 @@ namespace halo2 {
 		{ _field_useless_pad, "value" },
 		{ _field_real, "duration", nullptr, "seconds" },
 		{ _field_enum, "fade function", &blofeld::halo2::unnamed_enum$250 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_real_fraction, "maximum intensity", nullptr, nullptr, "[0,1]" },
 		{ _field_useless_pad, "value" },
@@ -25814,9 +25814,9 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("low frequency vibration", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("low frequency vibration", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "low frequency vibration", &blofeld::halo2::vibration_frequency_definition_struct_block_struct_definition },
-		FIELD_EXPLANATION("high frequency vibration", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("high frequency vibration", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "high frequency vibration", &blofeld::halo2::vibration_frequency_definition_struct_block_struct_definition },
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
@@ -25850,12 +25850,12 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "response type", &blofeld::halo2::unnamed_enum$247 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_EXPLANATION("screen flash", nullptr, FIELD_FLAG_NONE, "There are seven screen flash types:\n\nNONE: DST\'= DST\nLIGHTEN: DST\'= DST(1 - A) + C\nDARKEN: DST\'= DST(1 - A) - C\nMAX: DST\'= MAX[DST(1 - C), (C - A)(1-DST)]\nMIN: DST\'= MIN[DST(1 - C), (C + A)(1-DST)]\nTINT: DST\'= DST(1 - C) + (A*PIN[2C - 1, 0, 1] + A)(1-DST)\nINVERT: DST\'= DST(1 - C) + A)\n\nIn the above equations C and A represent the color and alpha of the screen flash, DST represents the color in the framebuffer before the screen flash is applied, and DST\' represents the color after the screen flash is applied."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("screen flash", nullptr, FIELD_FLAG_NONE, "There are seven screen flash types:\n\nNONE: DST\'= DST\nLIGHTEN: DST\'= DST(1 - A) + C\nDARKEN: DST\'= DST(1 - A) - C\nMAX: DST\'= MAX[DST(1 - C), (C - A)(1-DST)]\nMIN: DST\'= MIN[DST(1 - C), (C + A)(1-DST)]\nTINT: DST\'= DST(1 - C) + (A*PIN[2C - 1, 0, 1] + A)(1-DST)\nINVERT: DST\'= DST(1 - C) + A)\n\nIn the above equations C and A represent the color and alpha of the screen flash, DST represents the color in the framebuffer before the screen flash is applied, and DST\' represents the color after the screen flash is applied."),
 		{ _field_struct, "screen flash", &blofeld::halo2::screen_flash_definition_struct_block_struct_definition },
-		FIELD_EXPLANATION("vibration", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("vibration", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "vibration", &blofeld::halo2::vibration_definition_struct_block_struct_definition },
-		FIELD_EXPLANATION("sound effect", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("sound effect", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "sound effect", &blofeld::halo2::damage_effect_sound_effect_definition_block_struct_definition },
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
@@ -25880,13 +25880,13 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$357 },
-		FIELD_EXPLANATION("default result", nullptr, FIELD_FLAG_NONE, "(if the potential result, below, fails to happen)"),
+		FIELD_EXPLANATION_EX("default result", nullptr, FIELD_FLAG_NONE, "(if the potential result, below, fails to happen)"),
 		{ _field_enum, "response", &blofeld::halo2::unnamed_enum$358 },
 		{ _field_tag_reference, "DO NOT USE (OLD effect)", &blofeld::halo2::effect_reference },
 		{ _field_string_id, "material name" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("potential result", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("potential result", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "response", &blofeld::halo2::unnamed_enum$358 },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$359 },
 		{ _field_real_fraction, "chance fraction", nullptr, nullptr, "[0,1]" },
@@ -25894,17 +25894,17 @@ namespace halo2 {
 		{ _field_real_bounds, "and", nullptr, "world units per second" },
 		{ _field_tag_reference, "DO NOT USE (OLD effect)", &blofeld::halo2::effect_reference },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("misc", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("misc", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "scale effects by", &blofeld::halo2::unnamed_enum$360 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_angle, "angular noise", "the angle of incidence is randomly perturbed by at most this amount to simulate irregularity.", "degrees" },
 		{ _field_real, "velocity noise", "the velocity is randomly perturbed by at most this amount to simulate irregularity.", "world units per second" },
 		{ _field_tag_reference, "DO NOT USE (OLD detonation effect)", &blofeld::halo2::effect_reference },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("penetration", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("penetration", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "initial friction", "the fraction of the projectile's velocity lost on penetration" },
 		{ _field_real, "maximum distance", "the maximum distance the projectile can travel through on object of this material" },
-		FIELD_EXPLANATION("reflection", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("reflection", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "parallel friction", "the fraction of the projectile's velocity parallel to the surface lost on impact" },
 		{ _field_real, "perpendicular friction", "the fraction of the projectile's velocity perpendicular to the surface lost on impact" },
 		{ _field_terminator }
@@ -25983,10 +25983,10 @@ namespace halo2 {
 		{ _field_string, "name" },
 		{ _field_real_rgb_color, "color" },
 		{ _field_short_integer, "counts as", nullptr, "neighbors" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "initial placement weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -26002,7 +26002,7 @@ namespace halo2 {
 	{
 		{ _field_string, "name" },
 		{ _field_real_rgb_color, "tint color" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_block, "states", &blofeld::halo2::states_block },
 		{ _field_terminator }
 	};
@@ -26018,15 +26018,15 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_real_fraction, "spring strength coefficient", "strength of the spring (larger values make the spring stronger)" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_real_euler_angles_2d, "angles", "direction toward next vertex" },
 		{ _field_real, "length", "distance between this vertex and the next", "world units" },
 		{ _field_short_integer, "sequence index", "bitmap group sequence index for this vertex's texture" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_argb_color, "color", "color at this vertex" },
 		{ _field_real_argb_color, "LOD color", "color at this vertex for the low-LOD line primitives" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -26041,7 +26041,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_integer, "rounds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "equipment", &blofeld::halo2::equipment_reference$2 },
 		{ _field_terminator }
 	};
@@ -26061,14 +26061,14 @@ namespace halo2 {
 		{ _field_short_integer, "rounds total initial" },
 		{ _field_short_integer, "rounds total maximum" },
 		{ _field_short_integer, "rounds loaded maximum" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_useless_pad, "value" },
 		{ _field_real, "reload time", "the length of time it takes to load a single magazine into the weapon", "seconds" },
 		{ _field_short_integer, "rounds reloaded" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "chamber time", "the length of time it takes to chamber the next round", "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_tag_reference, "reloading effect", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_tag_reference, "reloading damage effect", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "chambering effect", &blofeld::halo2::sound_effect_reference$2 },
@@ -26131,7 +26131,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$528 },
-		FIELD_EXPLANATION("firing", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("firing", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_bounds, "rounds per second", "the number of firing effects created per second" },
 		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final rounds per second", "seconds" },
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return from its final rounds per second to its initial", "seconds" },
@@ -26144,21 +26144,21 @@ namespace halo2 {
 		{ _field_short_integer, "minimum rounds loaded", "the minimum number of rounds necessary to fire the weapon" },
 		{ _field_short_integer, "rounds between tracers", "the number of non-tracer rounds fired between tracers" },
 		{ _field_string_id, "optional barrel marker name" },
-		FIELD_EXPLANATION("prediction properties", nullptr, FIELD_FLAG_NONE, "what the behavior of this barrel is in a predicted network game"),
+		FIELD_EXPLANATION_EX("prediction properties", nullptr, FIELD_FLAG_NONE, "what the behavior of this barrel is in a predicted network game"),
 		{ _field_enum, "prediction type", &blofeld::halo2::unnamed_enum$529 },
 		{ _field_enum, "firing noise", "how loud this weapon appears to the AI", &blofeld::halo2::unnamed_enum$356 },
-		FIELD_EXPLANATION("error", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("error", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" },
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial error", "seconds" },
 		{ _field_real_bounds, "damage error", "the range of angles (in degrees) that a damaged weapon will skew fire" },
-		FIELD_EXPLANATION("dual weapon error", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("dual weapon error", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" },
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial error", "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_angle, "minimum error", nullptr, "degrees" },
 		{ _field_angle_bounds, "error angle", nullptr, "degrees" },
 		{ _field_real_fraction, "dual wield damage scale" },
-		FIELD_EXPLANATION("projectile", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("projectile", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "distribution function", &blofeld::halo2::unnamed_enum$530 },
 		{ _field_short_integer, "projectiles per shot" },
 		{ _field_real, "distribution angle", nullptr, "degrees" },
@@ -26166,23 +26166,23 @@ namespace halo2 {
 		{ _field_angle_bounds, "error angle", nullptr, "degrees" },
 		{ _field_real_point_3d, "first person offset", "+x is forward, +z is up, +y is left", "world units" },
 		{ _field_char_enum, "damage effect reporting type", &blofeld::halo2::unnamed_enum$213 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "projectile", &blofeld::halo2::projectile_reference },
 		{ _field_struct, "eh", &blofeld::halo2::weapon_barrel_damage_effect_struct_block_struct_definition },
-		FIELD_EXPLANATION("misc", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("misc", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "ejection port recovery time", "the amount of time (in seconds) it takes for the ejection port to transition from 1.0 (open) to 0.0 (closed) after a shot has been fired" },
 		{ _field_real, "illumination recovery time", "the amount of time (in seconds) it takes the illumination function to transition from 1.0 (bright) to 0.0 (dark) after a shot has been fired" },
 		{ _field_real_fraction, "heat generated per round", "the amount of heat generated each time the trigger is fired", nullptr, "[0,1]" },
 		{ _field_real_fraction, "age generated per round", "the amount the weapon ages each time the trigger is fired", nullptr, "[0,1]" },
 		{ _field_real, "overload time", "the next trigger fires this often while holding down this trigger", "seconds" },
-		FIELD_EXPLANATION("angle change (recoil)", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("angle change (recoil)", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_angle_bounds, "angle change per shot", "angle change per shot of the weapon during firing" },
 		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final angle change per shot", "seconds" },
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial angle change per shot", "seconds" },
 		{ _field_enum, "angle change function", "function used to scale between initial and final angle change per shot", &blofeld::halo2::unnamed_enum$393 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_block, "firing effects", "firing effects determine what happens when this trigger is fired", &blofeld::halo2::barrel_firing_effect_block },
 		{ _field_terminator }
 	};
@@ -26231,7 +26231,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("AUTOFIRE", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("AUTOFIRE", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "autofire time" },
 		{ _field_real, "autofire throw" },
 		{ _field_enum, "secondary action", &blofeld::halo2::unnamed_enum$526 },
@@ -26258,11 +26258,11 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("CHARGING", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("CHARGING", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "charging time", "the amount of time it takes for this trigger to become fully charged", "seconds" },
 		{ _field_real, "charged time", "the amount of time this trigger can be charged before becoming overcharged", "seconds" },
 		{ _field_enum, "overcharged action", &blofeld::halo2::unnamed_enum$527 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "charged illumination", "the amount of illumination given off when the weapon is fully charged", nullptr, "[0,1]" },
 		{ _field_real, "spew time", "length of time the weapon will spew (fire continuously) while discharging", "seconds" },
 		{ _field_tag_reference, "charging effect", "the charging effect is created once when the trigger begins to charge", &blofeld::halo2::sound_effect_reference$2 },
@@ -26292,7 +26292,7 @@ namespace halo2 {
 		{ _field_enum, "input", &blofeld::halo2::unnamed_enum$523 },
 		{ _field_enum, "behavior", &blofeld::halo2::unnamed_enum$524 },
 		{ _field_enum, "prediction", &blofeld::halo2::unnamed_enum$525 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_struct, "autofire", &blofeld::halo2::weapon_trigger_autofire_struct_block_struct_definition },
 		{ _field_struct, "charging", &blofeld::halo2::weapon_trigger_charging_struct_block_struct_definition },
@@ -26347,8 +26347,8 @@ namespace halo2 {
 		{ _field_angle, "magnetism angle", "the maximum angle that magnetism works at full strength", "degrees" },
 		{ _field_real, "magnetism range", "the maximum distance that magnetism works at full strength", "world units" },
 		{ _field_angle, "deviation angle", "the maximum angle that a projectile is allowed to deviate from the gun barrel", "degrees" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -26384,7 +26384,7 @@ namespace halo2 {
 	{
 		{ _field_real_euler_angles_2d, "damage pyramid angles" },
 		{ _field_real, "damage pyramid depth" },
-		FIELD_EXPLANATION("melee combo damage", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("melee combo damage", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "1st hit melee damage", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "1st hit melee response", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "2nd hit melee damage", &blofeld::halo2::damage_effect_reference },
@@ -26407,7 +26407,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "tracking type", &blofeld::halo2::unnamed_enum$520 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -26448,7 +26448,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_terminator }
 	};
 
@@ -26462,7 +26462,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("interface", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("interface", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "shared interface", &blofeld::halo2::weapon_shared_interface_struct_block_struct_definition },
 		{ _field_block, "first person", &blofeld::halo2::weapon_first_person_interface_block },
 		{ _field_tag_reference, "new hud interface", &blofeld::halo2::new_hud_definition_reference },
@@ -26479,7 +26479,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 76),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 76),
 		{ _field_old_string_id, "value" },
 		{ _field_terminator }
 	};
@@ -26528,7 +26528,7 @@ namespace halo2 {
 		{ _field_old_string_id, "marker" },
 		{ _field_useless_pad, "value" },
 		{ _field_enum, "change color", &blofeld::halo2::unnamed_enum$335 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "primary scale" },
 		{ _field_string_id, "secondary scale" },
 		{ _field_useless_pad, "value" },
@@ -26609,7 +26609,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_long_flags, "scale flags", &blofeld::halo2::unnamed_enum$259 },
 		{ _field_real_rgb_color, "color lower bound" },
 		{ _field_real_rgb_color, "color upper bound" },
@@ -26646,7 +26646,7 @@ namespace halo2 {
 	{
 		{ _field_long_flags, "ai flags", &blofeld::halo2::unnamed_enum$332 },
 		{ _field_string_id, "ai type name", "used for combat dialogue, etc." },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_enum, "ai size", &blofeld::halo2::unnamed_enum$333 },
 		{ _field_enum, "leap jump speed", &blofeld::halo2::unnamed_enum$124 },
 		{ _field_terminator }
@@ -26697,7 +26697,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("lock-on fields", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("lock-on fields", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$100 },
 		{ _field_real, "lock on distance" },
 		{ _field_terminator }
@@ -26816,14 +26816,14 @@ namespace halo2 {
 		{ _field_real, "AI scariness" },
 		{ _field_enum, "ai seat type", &blofeld::halo2::unnamed_enum$501 },
 		{ _field_real_fraction, "listener interpolation factor", "how far to interpolate listener position from camera to occupant's head" },
-		FIELD_EXPLANATION("speed dependant turn rates", nullptr, FIELD_FLAG_NONE, "when the unit velocity is 0, the yaw/pitch rates are the left values\nat [max speed reference], the yaw/pitch rates are the right values.\nthe max speed reference is what the code uses to generate a clamped speed from 0..1\nthe exponent controls how midrange speeds are interpreted."),
+		FIELD_EXPLANATION_EX("speed dependant turn rates", nullptr, FIELD_FLAG_NONE, "when the unit velocity is 0, the yaw/pitch rates are the left values\nat [max speed reference], the yaw/pitch rates are the right values.\nthe max speed reference is what the code uses to generate a clamped speed from 0..1\nthe exponent controls how midrange speeds are interpreted."),
 		{ _field_real_bounds, "yaw rate bounds", nullptr, "degrees per second" },
 		{ _field_real_bounds, "pitch rate bounds", nullptr, "degrees per second" },
 		{ _field_real, "min speed reference" },
 		{ _field_real, "max speed reference" },
 		{ _field_real, "speed exponent" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("camera fields", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("camera fields", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "unit camera", &blofeld::halo2::unit_camera_struct_block_struct_definition },
 		{ _field_block, "unit hud interface", &blofeld::halo2::unit_hud_reference_block },
 		{ _field_string_id, "enter seat string" },
@@ -26832,7 +26832,7 @@ namespace halo2 {
 		{ _field_angle, "yaw maximum" },
 		{ _field_tag_reference, "built-in gunner", &blofeld::halo2::character_reference$5 },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("entry fields", nullptr, FIELD_FLAG_NONE, "note: the entry radius shouldn\'t exceed 3 world units, \nas that is as far as the player will search for a vehicle\nto enter."),
+		FIELD_EXPLANATION_EX("entry fields", nullptr, FIELD_FLAG_NONE, "note: the entry radius shouldn\'t exceed 3 world units, \nas that is as far as the player will search for a vehicle\nto enter."),
 		{ _field_real, "entry radius", "how close to the entry marker a unit must be" },
 		{ _field_angle, "entry marker cone angle", "angle from marker forward the unit must be" },
 		{ _field_angle, "entry marker facing angle", "angle from unit facing the marker must be" },
@@ -26924,7 +26924,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_integer, "variant number", "variant number to use this dialogue with (must match the suffix in the permutations on the unit's model)" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_tag_reference, "dialogue", &blofeld::halo2::dialogue_reference$2 },
 		{ _field_terminator }
@@ -27009,7 +27009,7 @@ namespace halo2 {
 	{
 		{ _field_real_point_3d, "Point" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -27025,7 +27025,7 @@ namespace halo2 {
 	{
 		{ _field_real_point_3d, "Point" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_vector_3d, "Vector" },
 		{ _field_terminator }
 	};
@@ -27043,10 +27043,10 @@ namespace halo2 {
 		{ _field_long_flags, "Flags", &blofeld::halo2::unnamed_enum$374 },
 		{ _field_real_point_3d, "Point 0" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "Point 1" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -27070,16 +27070,16 @@ namespace halo2 {
 		{ _field_long_flags, "Flags", &blofeld::halo2::unnamed_enum$374 },
 		{ _field_real_point_3d, "Point 0" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "Point 1" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "Point 2" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "Point 3" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -27109,10 +27109,10 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "type", &blofeld::halo2::unnamed_enum$377 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_vector_3d, "point" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "sector index" },
 		{ _field_real_euler_angles_2d, "normal" },
 		{ _field_terminator }
@@ -27308,7 +27308,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_old_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -27376,11 +27376,11 @@ namespace halo2 {
 		{ _field_block, "Decal Vertices", &blofeld::halo2::decal_vertices_block },
 		{ _field_block, "Decal Indices", &blofeld::halo2::indices_block },
 		{ _field_vertex_buffer, "decal vertex buffer" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_block, "Sprite Vertices", &blofeld::halo2::sprite_vertices_block },
 		{ _field_block, "Sprite Indices", &blofeld::halo2::indices_block },
 		{ _field_vertex_buffer, "sprite vertex buffer" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_terminator }
 	};
 
@@ -27396,8 +27396,8 @@ namespace halo2 {
 	{
 		{ _field_struct, "Geometry Block Info", &blofeld::halo2::global_geometry_block_info_struct_block_struct_definition },
 		{ _field_block, "Cache Block Data", &blofeld::halo2::decorator_cache_block_data_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -27518,7 +27518,7 @@ namespace halo2 {
 		{ _field_real, "mass 1" },
 		{ _field_real, "mass 2" },
 		{ _field_real, "mass 3" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 736),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 736),
 		{ _field_terminator }
 	};
 
@@ -27561,7 +27561,7 @@ namespace halo2 {
 		{ _field_real, "velocity.x" },
 		{ _field_real, "velocity.y" },
 		{ _field_real, "velocity.z" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real, "mass" },
 		{ _field_real, "creation time stamp" },
 		{ _field_terminator }
@@ -27579,7 +27579,7 @@ namespace halo2 {
 	{
 		{ _field_block, "particles render data", &blofeld::halo2::particles_render_data_block },
 		{ _field_block, "particles other data", &blofeld::halo2::particles_update_data_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -27609,14 +27609,14 @@ namespace halo2 {
 		{ _field_struct, "geometry block info", &blofeld::halo2::global_geometry_block_info_struct_block_struct_definition },
 		{ _field_block, "particle system data", &blofeld::halo2::particle_system_lite_data_block },
 		{ _field_enum, "type", &blofeld::halo2::unnamed_enum$531 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "mininum opacity" },
 		{ _field_real, "maxinum opacity" },
 		{ _field_real, "rain streak scale" },
 		{ _field_real, "rain line width" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -27647,7 +27647,7 @@ namespace halo2 {
 		{ _field_real, "radius" },
 		{ _field_real, "strength" },
 		{ _field_enum, "wind primitive type", &blofeld::halo2::unnamed_enum$533 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -27674,24 +27674,24 @@ namespace halo2 {
 		{ _field_real_vector_3d, "wind primary heading/pitch/strength" },
 		{ _field_real, "primary rate of change" },
 		{ _field_real, "primary min strength" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real_vector_3d, "wind gusting heading/pitch/strength" },
 		{ _field_real, "gust diretional rate of change" },
 		{ _field_real, "gust strength rate of change" },
 		{ _field_real, "gust cone angle" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real, "turbulance rate of change" },
 		{ _field_real_vector_3d, "turbulence_scale x, y, z" },
 		{ _field_real, "gravity constant" },
 		{ _field_block, "wind_pirmitives", &blofeld::halo2::gloal_wind_primitives_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -27720,7 +27720,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_byte_flags, "flags", &blofeld::halo2::unnamed_enum$35 },
 		{ _field_char_enum, "fade distance", &blofeld::halo2::unnamed_enum$36 },
 		{ _field_char_integer, "index" },
@@ -27762,7 +27762,7 @@ namespace halo2 {
 	{
 		{ _field_string_id, "name" },
 		{ _field_char_enum, "type", &blofeld::halo2::unnamed_enum$34 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "scale" },
 		{ _field_block, "permutations", &blofeld::halo2::decorator_permutations_block },
 		{ _field_terminator }
@@ -27880,11 +27880,11 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "Type", &blofeld::halo2::unnamed_enum$363 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "Input Name" },
 		{ _field_string_id, "Range Name" },
 		{ _field_real, "Time Period", nullptr, "sec" },
-		FIELD_EXPLANATION("FUNCTION", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("FUNCTION", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_custom, "animation function" },
 		{ _field_struct, "Function", &blofeld::halo2::mapping_function_block_struct_definition },
 		{ _field_terminator }
@@ -27921,7 +27921,7 @@ namespace halo2 {
 	{
 		{ _field_string_id, "Name" },
 		{ _field_enum, "Type", &blofeld::halo2::unnamed_enum$362 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "Bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_real, "Const Value" },
 		{ _field_real_rgb_color, "Const Color" },
@@ -27949,7 +27949,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "Property", &blofeld::halo2::unnamed_enum$476 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "Parameter Name" },
 		{ _field_terminator }
 	};
@@ -27991,9 +27991,9 @@ namespace halo2 {
 		{ _field_real, "Default Const Value" },
 		{ _field_real_rgb_color, "Default Const Color" },
 		{ _field_enum, "Bitmap Type", &blofeld::halo2::unnamed_enum$430 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_word_flags, "Bitmap Animation Flags", &blofeld::halo2::unnamed_enum$431 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "Bitmap Scale" },
 		{ _field_terminator }
 	};
@@ -28049,9 +28049,9 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "Layer", &blofeld::halo2::unnamed_enum$432 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "Pass", &blofeld::halo2::shader_pass_reference$2 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -28104,7 +28104,7 @@ namespace halo2 {
 		{ _field_real, "Default Const Value" },
 		{ _field_real_rgb_color, "Default Const Color" },
 		{ _field_enum, "Source Extern", &blofeld::halo2::unnamed_enum$441 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -28226,13 +28226,13 @@ namespace halo2 {
 	{
 		{ _field_string_id, "Source Parameter" },
 		{ _field_enum, "Source Extern", &blofeld::halo2::unnamed_enum$443 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "Mode", &blofeld::halo2::unnamed_enum$444 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "Dot Mapping", &blofeld::halo2::unnamed_enum$445 },
 		{ _field_short_integer, "Input Stage", nullptr, nullptr, "[0,3]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "address state", &blofeld::halo2::shader_texture_state_address_state_block },
 		{ _field_block, "filter state", &blofeld::halo2::shader_texture_state_filter_state_block },
 		{ _field_block, "kill state", &blofeld::halo2::shader_texture_state_kill_state_block },
@@ -28383,19 +28383,19 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "Flags", &blofeld::halo2::unnamed_enum$442 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "Textures", &blofeld::halo2::shader_pass_texture_block },
-		FIELD_EXPLANATION("VERTEX SHADER", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("VERTEX SHADER", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "Vertex Shader", &blofeld::halo2::vertex_shader_reference$2 },
 		{ _field_block, "vs Constants", &blofeld::halo2::shader_pass_vertex_shader_constant_block },
 		{ _field_useless_pad, "value" },
 		{ _field_data, "Pixel Shader Code [NO LONGER USED]" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("STATE", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("STATE", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "channels", &blofeld::halo2::unnamed_enum$456 },
 		{ _field_enum, "alpha-blend", &blofeld::halo2::unnamed_enum$457 },
 		{ _field_enum, "depth", &blofeld::halo2::unnamed_enum$458 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "channel state", &blofeld::halo2::shader_state_channels_state_block },
 		{ _field_block, "alpha-blend state", &blofeld::halo2::shader_state_alpha_blend_state_block },
 		{ _field_block, "alpha-test state", &blofeld::halo2::shader_state_alpha_test_state_block },
@@ -28643,8 +28643,8 @@ namespace halo2 {
 		{ _field_char_integer, "combiner index" },
 		{ _field_char_integer, "register index" },
 		{ _field_char_enum, "component mask", &blofeld::halo2::unnamed_enum$474 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -28716,8 +28716,8 @@ namespace halo2 {
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$473 },
 		{ _field_struct, "constants", &blofeld::halo2::tag_block_index_struct_block_struct_definition },
 		{ _field_struct, "combiners", &blofeld::halo2::tag_block_index_struct_block_struct_definition },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -28737,7 +28737,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_argb_color, "constant color0" },
 		{ _field_argb_color, "constant color1" },
 		{ _field_char_integer, "color A register ptr index" },
@@ -28806,22 +28806,22 @@ namespace halo2 {
 		{ _field_struct, "GPU Volatile State", &blofeld::halo2::shader_gpu_state_reference_struct_block_struct_definition },
 		{ _field_struct, "GPU default state", &blofeld::halo2::shader_gpu_state_reference_struct_block_struct_definition },
 		{ _field_tag_reference, "vertex shader", &blofeld::halo2::vertex_shader_reference$3 },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "value externs", &blofeld::halo2::extern_reference_block },
 		{ _field_block, "color externs", &blofeld::halo2::extern_reference_block },
 		{ _field_block, "switch externs", &blofeld::halo2::extern_reference_block },
 		{ _field_short_integer, "bitmap parameter count" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 240),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 240),
 		{ _field_block, "pixel shader fragments", &blofeld::halo2::pixel_shader_fragment_block },
 		{ _field_block, "pixel shader permutations", &blofeld::halo2::pixel_shader_permutation_block },
 		{ _field_block, "pixel shader combiners", &blofeld::halo2::pixel_shader_combiner_block },
 		{ _field_block, "pixel shader constants", &blofeld::halo2::pixel_shader_constant_block },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -29199,7 +29199,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_char_integer, "parameter index" },
 		{ _field_terminator }
 	};
@@ -29304,7 +29304,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_char_integer, "source index" },
 		{ _field_terminator }
 	};
@@ -29322,15 +29322,15 @@ namespace halo2 {
 		{ _field_struct, "textures", &blofeld::halo2::tag_block_index_struct_block_struct_definition },
 		{ _field_struct, "render states", &blofeld::halo2::tag_block_index_struct_block_struct_definition },
 		{ _field_struct, "texture states", &blofeld::halo2::tag_block_index_struct_block_struct_definition },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 240),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 240),
 		{ _field_struct, "ps fragments", &blofeld::halo2::tag_block_index_struct_block_struct_definition },
 		{ _field_struct, "ps permutations", &blofeld::halo2::tag_block_index_struct_block_struct_definition },
 		{ _field_struct, "ps combiners", &blofeld::halo2::tag_block_index_struct_block_struct_definition },
 		{ _field_tag_reference, "vertex shader", &blofeld::halo2::vertex_shader_reference$3 },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_struct, "default render states", &blofeld::halo2::tag_block_index_struct_block_struct_definition },
 		{ _field_struct, "render state externs", &blofeld::halo2::tag_block_index_struct_block_struct_definition },
 		{ _field_struct, "texture state externs", &blofeld::halo2::tag_block_index_struct_block_struct_definition },
@@ -29375,7 +29375,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_terminator }
 	};
 
@@ -29405,7 +29405,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_char_integer, "extern index" },
 		{ _field_terminator }
 	};
@@ -29438,7 +29438,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "parameter name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -29572,7 +29572,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$459 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -29598,10 +29598,10 @@ namespace halo2 {
 		{ _field_enum, "blend function", &blofeld::halo2::unnamed_enum$460 },
 		{ _field_enum, "blend src factor", &blofeld::halo2::unnamed_enum$461 },
 		{ _field_enum, "blend dst factor", &blofeld::halo2::unnamed_enum$461 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_argb_color, "blend color" },
 		{ _field_word_flags, "logic-op flags", &blofeld::halo2::unnamed_enum$462 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -29660,7 +29660,7 @@ namespace halo2 {
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$463 },
 		{ _field_enum, "alpha compare function", &blofeld::halo2::unnamed_enum$464 },
 		{ _field_short_integer, "alpha-test ref", nullptr, nullptr, "[0,255]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -29698,7 +29698,7 @@ namespace halo2 {
 		{ _field_enum, "mode", &blofeld::halo2::unnamed_enum$465 },
 		{ _field_enum, "depth compare function", &blofeld::halo2::unnamed_enum$464 },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$466 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "depth bias slope scale" },
 		{ _field_real, "depth bias" },
 		{ _field_terminator }
@@ -29766,7 +29766,7 @@ namespace halo2 {
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$469 },
 		{ _field_enum, "fill mode", &blofeld::halo2::unnamed_enum$470 },
 		{ _field_enum, "back fill mode", &blofeld::halo2::unnamed_enum$470 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "line width" },
 		{ _field_terminator }
 	};
@@ -29797,7 +29797,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$471 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_rgb_color, "fog color" },
 		{ _field_terminator }
 	};
@@ -29821,7 +29821,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "source parameter" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "constant", &blofeld::halo2::unnamed_enum$472 },
 		{ _field_terminator }
 	};
@@ -29851,7 +29851,7 @@ namespace halo2 {
 		{ _field_enum, "U address mode", &blofeld::halo2::unnamed_enum$446 },
 		{ _field_enum, "V address mode", &blofeld::halo2::unnamed_enum$446 },
 		{ _field_enum, "W address mode", &blofeld::halo2::unnamed_enum$446 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -29878,7 +29878,7 @@ namespace halo2 {
 		{ _field_enum, "mag filter", &blofeld::halo2::unnamed_enum$447 },
 		{ _field_enum, "min filter", &blofeld::halo2::unnamed_enum$447 },
 		{ _field_enum, "mip filter", &blofeld::halo2::unnamed_enum$447 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "mipmap bias" },
 		{ _field_short_integer, "max mipmap index", "0 means all mipmap levels are used" },
 		{ _field_enum, "anisotropy", &blofeld::halo2::unnamed_enum$448 },
@@ -29916,9 +29916,9 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$449 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "colorkey mode", &blofeld::halo2::unnamed_enum$450 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_rgb_color, "colorkey color" },
 		{ _field_terminator }
 	};
@@ -29949,7 +29949,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "component sign flags", &blofeld::halo2::unnamed_enum$451 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_argb_color, "border color" },
 		{ _field_terminator }
 	};
@@ -29974,7 +29974,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "source parameter" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "constant", &blofeld::halo2::unnamed_enum$452 },
 		{ _field_terminator }
 	};
@@ -30031,10 +30031,10 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("CONVOLUTION", nullptr, FIELD_FLAG_NONE, "Convolution blurs the target of this pass reference to the SCREEN EFFECT CONVOLUTION buffer, which is accessible in the shader system through a texture extern. It is not cheap especially for large convolution amounts, so please use it sparingly!! Note that the resolution will be clamped to 64x64 minimum and 768000 pixels total maximum."),
+		FIELD_EXPLANATION_EX("CONVOLUTION", nullptr, FIELD_FLAG_NONE, "Convolution blurs the target of this pass reference to the SCREEN EFFECT CONVOLUTION buffer, which is accessible in the shader system through a texture extern. It is not cheap especially for large convolution amounts, so please use it sparingly!! Note that the resolution will be clamped to 64x64 minimum and 768000 pixels total maximum."),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$182 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 64),
 		{ _field_real, "convolution amount", nullptr, nullptr, "[0,+inf)" },
 		{ _field_real, "filter scale" },
 		{ _field_real_fraction, "filter box factor", nullptr, nullptr, "[0,1] not used for zoom" },
@@ -30063,24 +30063,24 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_data, "explanation" },
-		FIELD_EXPLANATION("IMPLEMENTATIONS", nullptr, FIELD_FLAG_NONE, "Used to control which shader pass implementations are used depending on whether the primary and/or secondary external inputs are greater than zero. An implementation of -1 will not draw anything."),
+		FIELD_EXPLANATION_EX("IMPLEMENTATIONS", nullptr, FIELD_FLAG_NONE, "Used to control which shader pass implementations are used depending on whether the primary and/or secondary external inputs are greater than zero. An implementation of -1 will not draw anything."),
 		{ _field_short_integer, "layer pass index", nullptr, "leave as -1 unless debugging" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_char_integer, "primary=0 and secondary=0", nullptr, "implementation index" },
 		{ _field_char_integer, "primary>0 and secondary=0", nullptr, "implementation index" },
 		{ _field_char_integer, "primary=0 and secondary>0", nullptr, "implementation index" },
 		{ _field_char_integer, "primary>0 and secondary>0", nullptr, "implementation index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 64),
-		FIELD_EXPLANATION("TEXCOORD GENERATION", nullptr, FIELD_FLAG_NONE, "* DEFAULT: Use for mask bitmaps that are mirrored and offset through the texcoords supplied to the screen effect (e.g. through the weapon HUD interface). The shader system must handle scaling.\n\n* VIEWPORT NORMALIZED: Use when copying from texaccum or some other buffer or when applying a texture that is not an interface mask (e.g. another kind of mask, a noise map, etc. which is not mirrored or offset through the weapon HUD interface). Texture coordinates will range from [0,1][0,1] within the viewport, and the shader system must handle scaling if the bitmap is a linear target or an interface bitmap.\n\n* VIEWPORT RELATIVE: Should not be used! This mode was necessary before we had he ability for the shader system to scale by texture resolution. Texture coordinates will range from [0,viewport_size_x][0,viewport_size_y] within the viewport.\n\n* FRAMEBUFFER RELATIVE: Use when copying from the framebuffer. Texture coordinates will range from [viewport_bounds.x0,viewport_bounds.x1][viewport_bounds.y0,viewport_bounds.y1] within the viewport. Let the shader system assume normalized [0,1] coordinate range.\n\n* ZERO: Use when doing dependent-z reads. Texture coordinates will be zero before applying offset (in advanced control block). Offset should be {1/(z_max-z_min), 0, -z_min/(z_max-z_min), 0} where z_min and z_max are in world units, and the \"xy scaled by z_far\" flag should be checked."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_EXPLANATION_EX("TEXCOORD GENERATION", nullptr, FIELD_FLAG_NONE, "* DEFAULT: Use for mask bitmaps that are mirrored and offset through the texcoords supplied to the screen effect (e.g. through the weapon HUD interface). The shader system must handle scaling.\n\n* VIEWPORT NORMALIZED: Use when copying from texaccum or some other buffer or when applying a texture that is not an interface mask (e.g. another kind of mask, a noise map, etc. which is not mirrored or offset through the weapon HUD interface). Texture coordinates will range from [0,1][0,1] within the viewport, and the shader system must handle scaling if the bitmap is a linear target or an interface bitmap.\n\n* VIEWPORT RELATIVE: Should not be used! This mode was necessary before we had he ability for the shader system to scale by texture resolution. Texture coordinates will range from [0,viewport_size_x][0,viewport_size_y] within the viewport.\n\n* FRAMEBUFFER RELATIVE: Use when copying from the framebuffer. Texture coordinates will range from [viewport_bounds.x0,viewport_bounds.x1][viewport_bounds.y0,viewport_bounds.y1] within the viewport. Let the shader system assume normalized [0,1] coordinate range.\n\n* ZERO: Use when doing dependent-z reads. Texture coordinates will be zero before applying offset (in advanced control block). Offset should be {1/(z_max-z_min), 0, -z_min/(z_max-z_min), 0} where z_min and z_max are in world units, and the \"xy scaled by z_far\" flag should be checked."),
 		{ _field_enum, "stage 0 mode", &blofeld::halo2::unnamed_enum$179 },
 		{ _field_enum, "stage 1 mode", &blofeld::halo2::unnamed_enum$179 },
 		{ _field_enum, "stage 2 mode", &blofeld::halo2::unnamed_enum$179 },
 		{ _field_enum, "stage 3 mode", &blofeld::halo2::unnamed_enum$179 },
 		{ _field_block, "advanced control", &blofeld::halo2::rasterizer_screen_effect_texcoord_generation_advanced_control_block },
-		FIELD_EXPLANATION("TARGET", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("TARGET", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "target", &blofeld::halo2::unnamed_enum$181 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 64),
 		{ _field_block, "convolution", &blofeld::halo2::rasterizer_screen_effect_convolution_block },
 		{ _field_terminator }
 	};
@@ -30116,9 +30116,9 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$255 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "bitmap index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_real, "position", "0 is on top of light, 1 is opposite light, 0.5 is the center of the screen, etc.", "along flare axis" },
 		{ _field_real, "rotation offset", nullptr, "degrees" },
@@ -30127,7 +30127,7 @@ namespace halo2 {
 		{ _field_useless_pad, "value" },
 		{ _field_real_fraction_bounds, "brightness", "interpolated by external input", nullptr, "[0,1]" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("TINT COLOR", nullptr, FIELD_FLAG_NONE, "Tinting and modulating are not the same; \'tinting\' a reflection will color the darker regions but leave the highlights, while \'modulating\' will color everything uniformly. The modulation factor controls how much the reflection is modulated as opposed to tinted (0 is tinted, 1 is modulated)."),
+		FIELD_EXPLANATION_EX("TINT COLOR", nullptr, FIELD_FLAG_NONE, "Tinting and modulating are not the same; \'tinting\' a reflection will color the darker regions but leave the highlights, while \'modulating\' will color everything uniformly. The modulation factor controls how much the reflection is modulated as opposed to tinted (0 is tinted, 1 is modulated)."),
 		{ _field_real_fraction, "modulation factor", nullptr, nullptr, "[0,1]" },
 		{ _field_real_rgb_color, "color" },
 		{ _field_useless_pad, "value" },
@@ -30183,7 +30183,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_data, "compiled shader" },
 		{ _field_data, "code" },
 		{ _field_terminator }
@@ -30199,18 +30199,18 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_short_integer, "bitmap index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_EXPLANATION("THICKNESS", nullptr, FIELD_FLAG_NONE, "In world units."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("THICKNESS", nullptr, FIELD_FLAG_NONE, "In world units."),
 		{ _field_struct, "thickness", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("COLOR", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("COLOR", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "color", &blofeld::halo2::color_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("BRIGHTNESS/TIME", nullptr, FIELD_FLAG_NONE, "Periodic function based on time."),
+		FIELD_EXPLANATION_EX("BRIGHTNESS/TIME", nullptr, FIELD_FLAG_NONE, "Periodic function based on time."),
 		{ _field_struct, "brightness-time", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("BRIGHTNESS/FACING", nullptr, FIELD_FLAG_NONE, "Brightness when facing perpendicular versus parallel."),
+		FIELD_EXPLANATION_EX("BRIGHTNESS/FACING", nullptr, FIELD_FLAG_NONE, "Brightness when facing perpendicular versus parallel."),
 		{ _field_struct, "brightness-facing", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("ALONG-AXIS SCALE", nullptr, FIELD_FLAG_NONE, "Scale along-axis. Default should be 1."),
+		FIELD_EXPLANATION_EX("ALONG-AXIS SCALE", nullptr, FIELD_FLAG_NONE, "Scale along-axis. Default should be 1."),
 		{ _field_struct, "along-axis scale", &blofeld::halo2::scalar_function_struct_block_struct_definition },
 		{ _field_terminator }
 	};
@@ -30225,27 +30225,27 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("LIQUID ARC", nullptr, FIELD_FLAG_NONE, "Note that if the type is not STANDARD, then the \'collide_with_stuff\' and material effects will not have any effect. In addition, the \'natural_length\' will not have an effect except as a means to compute the collision fraction."),
+		FIELD_EXPLANATION_EX("LIQUID ARC", nullptr, FIELD_FLAG_NONE, "Note that if the type is not STANDARD, then the \'collide_with_stuff\' and material effects will not have any effect. In addition, the \'natural_length\' will not have an effect except as a means to compute the collision fraction."),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$486 },
 		{ _field_enum, "sprite count", &blofeld::halo2::unnamed_enum$487 },
 		{ _field_real, "natural length", nullptr, "world units" },
 		{ _field_short_integer, "instances" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_angle, "instance spread angle", nullptr, "degrees" },
 		{ _field_real, "instance rotation period", nullptr, "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_tag_reference, "material effects", &blofeld::halo2::material_effects_reference },
 		{ _field_tag_reference, "bitmap", &blofeld::halo2::bitmap_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_EXPLANATION("HORIZONTAL RANGE", nullptr, FIELD_FLAG_NONE, "In world units, how far the noise extends horizontally. By default the horizontal range is along the world XY plane."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_EXPLANATION_EX("HORIZONTAL RANGE", nullptr, FIELD_FLAG_NONE, "In world units, how far the noise extends horizontally. By default the horizontal range is along the world XY plane."),
 		{ _field_struct, "horizontal range", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("VERTICAL RANGE", nullptr, FIELD_FLAG_NONE, "In world units, how far the noise extends vertically. By default the vertical range is along the world Z axis (up)."),
+		FIELD_EXPLANATION_EX("VERTICAL RANGE", nullptr, FIELD_FLAG_NONE, "In world units, how far the noise extends vertically. By default the vertical range is along the world Z axis (up)."),
 		{ _field_struct, "vertical range", &blofeld::halo2::scalar_function_struct_block_struct_definition },
 		{ _field_real_fraction, "vertical negative scale", nullptr, nullptr, "[0,1]" },
-		FIELD_EXPLANATION("ROUGHNESS", nullptr, FIELD_FLAG_NONE, "Roughness controls how the different \'octaves\' of noise get scaled. Usually it is in the range [0,1] but it can be slightly higher or lower and still make sense (zero is actually a pretty decent value). The mathematical equation used is 2^(-k*(1-r)) where \'k\' is the octave index starting at 0 and \'r\' is the roughness value."),
+		FIELD_EXPLANATION_EX("ROUGHNESS", nullptr, FIELD_FLAG_NONE, "Roughness controls how the different \'octaves\' of noise get scaled. Usually it is in the range [0,1] but it can be slightly higher or lower and still make sense (zero is actually a pretty decent value). The mathematical equation used is 2^(-k*(1-r)) where \'k\' is the octave index starting at 0 and \'r\' is the roughness value."),
 		{ _field_struct, "roughness", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 64),
-		FIELD_EXPLANATION("NOISE FREQUENCIES", nullptr, FIELD_FLAG_NONE, "4 sprites is 3 octaves\n8 sprites is 4 octaves\n16 sprites is 5 octaves\n32 sprites is 6 octaves\n64 sprites is 7 octaves\n128 sprites is 8 octaves\n256 sprites is 9 octaves, etc."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_EXPLANATION_EX("NOISE FREQUENCIES", nullptr, FIELD_FLAG_NONE, "4 sprites is 3 octaves\n8 sprites is 4 octaves\n16 sprites is 5 octaves\n32 sprites is 6 octaves\n64 sprites is 7 octaves\n128 sprites is 8 octaves\n256 sprites is 9 octaves, etc."),
 		{ _field_real, "octave 1 frequency", nullptr, "cycles/second" },
 		{ _field_real, "octave 2 frequency", nullptr, "cycles/second" },
 		{ _field_real, "octave 3 frequency", nullptr, "cycles/second" },
@@ -30255,13 +30255,13 @@ namespace halo2 {
 		{ _field_real, "octave 7 frequency", nullptr, "cycles/second" },
 		{ _field_real, "octave 8 frequency", nullptr, "cycles/second" },
 		{ _field_real, "octave 9 frequency", nullptr, "cycles/second" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_word_flags, "octave flags", &blofeld::halo2::unnamed_enum$488 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "cores", &blofeld::halo2::liquid_core_block },
-		FIELD_EXPLANATION("RANGE-COLLISION SCALE", nullptr, FIELD_FLAG_NONE, "Scales range (amplitude) by collision fraction. The input to the function will be 1 if there is no collision, and 0 if the collision occurs at the origin."),
+		FIELD_EXPLANATION_EX("RANGE-COLLISION SCALE", nullptr, FIELD_FLAG_NONE, "Scales range (amplitude) by collision fraction. The input to the function will be 1 if there is no collision, and 0 if the collision occurs at the origin."),
 		{ _field_struct, "range-scale", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("BRIGHTNESS-COLLISION SCALE", nullptr, FIELD_FLAG_NONE, "Scales brightness by collision fraction."),
+		FIELD_EXPLANATION_EX("BRIGHTNESS-COLLISION SCALE", nullptr, FIELD_FLAG_NONE, "Scales brightness by collision fraction."),
 		{ _field_struct, "brightness-scale", &blofeld::halo2::scalar_function_struct_block_struct_definition },
 		{ _field_terminator }
 	};
@@ -30311,12 +30311,12 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("SCALE FACTORS", nullptr, FIELD_FLAG_NONE, "These function control the screenspace aspect ratio of each sprite relative to the projected forward axis. Note that there is no range-input to these functions, because it would not make sense to stretch sprites when the light volume is facing directly towards or away from the camera (which way would we stretch them?)"),
-		FIELD_EXPLANATION("ALONG-AXIS SCALE", nullptr, FIELD_FLAG_NONE, "Values higher than 1 along the axis will cause sprites to elongate and overlap more regardless of the orientation of the light volume, whereas values lower than 1 will cause sprite separation."),
+		FIELD_EXPLANATION_EX("SCALE FACTORS", nullptr, FIELD_FLAG_NONE, "These function control the screenspace aspect ratio of each sprite relative to the projected forward axis. Note that there is no range-input to these functions, because it would not make sense to stretch sprites when the light volume is facing directly towards or away from the camera (which way would we stretch them?)"),
+		FIELD_EXPLANATION_EX("ALONG-AXIS SCALE", nullptr, FIELD_FLAG_NONE, "Values higher than 1 along the axis will cause sprites to elongate and overlap more regardless of the orientation of the light volume, whereas values lower than 1 will cause sprite separation."),
 		{ _field_struct, "along axis", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("AWAY-FROM-AXIS SCALE", nullptr, FIELD_FLAG_NONE, "Values higher than 1 away from the axis will cause the light volume to appear thicker."),
+		FIELD_EXPLANATION_EX("AWAY-FROM-AXIS SCALE", nullptr, FIELD_FLAG_NONE, "Values higher than 1 away from the axis will cause the light volume to appear thicker."),
 		{ _field_struct, "away from axis", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("PARALLEL SCALE", nullptr, FIELD_FLAG_NONE, "When the light volume is viewed directly towards (parallel) or away from the camera, the scale factors above are interpolated towards this constant value. The threshold angle controls when the light volume is considered to be 100% parallel for these computations. The exponent controls how quickly the transition from using the perpendicular scale factors to using the parallel scale factor happens, e.g.:\n\n* exponent=0.0 -> perpendicular scale factors will always be used unless below threshold angle\n* exponent=0.1 -> transition quickly as viewing angle becomes perpendicular\n* exponent=1.0 -> transition smoothly between perpendicular and parallel\n* exponent=9.0 -> transition quickly as viewing angle becomes parallel"),
+		FIELD_EXPLANATION_EX("PARALLEL SCALE", nullptr, FIELD_FLAG_NONE, "When the light volume is viewed directly towards (parallel) or away from the camera, the scale factors above are interpolated towards this constant value. The threshold angle controls when the light volume is considered to be 100% parallel for these computations. The exponent controls how quickly the transition from using the perpendicular scale factors to using the parallel scale factor happens, e.g.:\n\n* exponent=0.0 -> perpendicular scale factors will always be used unless below threshold angle\n* exponent=0.1 -> transition quickly as viewing angle becomes perpendicular\n* exponent=1.0 -> transition smoothly between perpendicular and parallel\n* exponent=9.0 -> transition quickly as viewing angle becomes parallel"),
 		{ _field_real, "parallel scale" },
 		{ _field_angle, "parallel threshold angle", nullptr, "degrees" },
 		{ _field_real, "parallel exponent" },
@@ -30347,27 +30347,27 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("VOLUME", nullptr, FIELD_FLAG_NONE, "If no bitmap is selected, the default glow bitmap will be used. Sprite count controls how many sprites are used to render this volume. Using more sprites will result in a smoother and brighter effect, at a slight performance penalty. Don\'t touch the flags unless you know what you\'re doing (they should be off by default).\n\nBe careful with the \'fuzzy\' flag! It should be used on very wide light volumes to make them blend smoothly into solid geometry rather than \"cutting\" into the zbuffer. Using this feature will make light volumes several times slower when they fill a large portion of the screen."),
+		FIELD_EXPLANATION_EX("VOLUME", nullptr, FIELD_FLAG_NONE, "If no bitmap is selected, the default glow bitmap will be used. Sprite count controls how many sprites are used to render this volume. Using more sprites will result in a smoother and brighter effect, at a slight performance penalty. Don\'t touch the flags unless you know what you\'re doing (they should be off by default).\n\nBe careful with the \'fuzzy\' flag! It should be used on very wide light volumes to make them blend smoothly into solid geometry rather than \"cutting\" into the zbuffer. Using this feature will make light volumes several times slower when they fill a large portion of the screen."),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$37 },
 		{ _field_useless_pad, "value" },
 		{ _field_tag_reference, "bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_long_integer, "sprite count", nullptr, nullptr, "[4,256]" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("OFFSET", nullptr, FIELD_FLAG_NONE, "This function controls the offset along the projected forward axis of the light volume. The output range of this function is the distance in WORLD UNITS from the origin where the first and last sprite are rendered. The input to this function is the fractional value (from 0 to 1) along the projected axis. Using a transition function such as \"late\" will result in more sprites being bunched up towards the origin and spaced further apart near the end.\n\nNote that this and other functions in this tag have a range-input, which is controlled by the output of the FACING function below."),
+		FIELD_EXPLANATION_EX("OFFSET", nullptr, FIELD_FLAG_NONE, "This function controls the offset along the projected forward axis of the light volume. The output range of this function is the distance in WORLD UNITS from the origin where the first and last sprite are rendered. The input to this function is the fractional value (from 0 to 1) along the projected axis. Using a transition function such as \"late\" will result in more sprites being bunched up towards the origin and spaced further apart near the end.\n\nNote that this and other functions in this tag have a range-input, which is controlled by the output of the FACING function below."),
 		{ _field_struct, "offset function", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("RADIUS", nullptr, FIELD_FLAG_NONE, "This function controls the radius in WORLD UNITS of each sprite along the projected forward axis. Using a smaller min value and a larger max value results in a light volume that looks like a cone."),
+		FIELD_EXPLANATION_EX("RADIUS", nullptr, FIELD_FLAG_NONE, "This function controls the radius in WORLD UNITS of each sprite along the projected forward axis. Using a smaller min value and a larger max value results in a light volume that looks like a cone."),
 		{ _field_struct, "radius function", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("BRIGHTNESS", nullptr, FIELD_FLAG_NONE, "This function controls the overall brightness (in [0,1]) of each sprite along the projected forward axis. Note that since the sprites are additive, they will be brighter in areas where they overlap more even if this function is constant, so it may be useful to use the brightness function to compensate for this."),
+		FIELD_EXPLANATION_EX("BRIGHTNESS", nullptr, FIELD_FLAG_NONE, "This function controls the overall brightness (in [0,1]) of each sprite along the projected forward axis. Note that since the sprites are additive, they will be brighter in areas where they overlap more even if this function is constant, so it may be useful to use the brightness function to compensate for this."),
 		{ _field_struct, "brightness function", &blofeld::halo2::scalar_function_struct_block_struct_definition },
-		FIELD_EXPLANATION("COLOR", nullptr, FIELD_FLAG_NONE, "This function controls the color of each sprite along the projected forward axis. Color is multiplied by brightness to produce the final color that will be applied to the sprite."),
+		FIELD_EXPLANATION_EX("COLOR", nullptr, FIELD_FLAG_NONE, "This function controls the color of each sprite along the projected forward axis. Color is multiplied by brightness to produce the final color that will be applied to the sprite."),
 		{ _field_struct, "color function", &blofeld::halo2::color_function_struct_block_struct_definition },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("FACING", nullptr, FIELD_FLAG_NONE, "The input to this function is the facing angle between the light volume and the camera. Zero represents facing towards (parallel) or away from the camera and 1.0 represents facing perpendicular to the camera.\n\nThe output of this function is fed into the range-input of the functions above."),
+		FIELD_EXPLANATION_EX("FACING", nullptr, FIELD_FLAG_NONE, "The input to this function is the facing angle between the light volume and the camera. Zero represents facing towards (parallel) or away from the camera and 1.0 represents facing perpendicular to the camera.\n\nThe output of this function is fed into the range-input of the functions above."),
 		{ _field_struct, "facing function", &blofeld::halo2::scalar_function_struct_block_struct_definition },
 		{ _field_useless_pad, "value" },
 		{ _field_block, "aspect", &blofeld::halo2::light_volume_aspect_block },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("POSTPROCESS CONTROL", nullptr, FIELD_FLAG_NONE, "ADVANCED STUFF!! Don\'t change these values!!"),
+		FIELD_EXPLANATION_EX("POSTPROCESS CONTROL", nullptr, FIELD_FLAG_NONE, "ADVANCED STUFF!! Don\'t change these values!!"),
 		{ _field_real_fraction, "radius frac min", nullptr, nullptr, "[0.00390625, 1.0]" },
 		{ _field_real_fraction, "DEPRECATED!! x-step exponent", nullptr, nullptr, "[0.5, 0.875]" },
 		{ _field_long_integer, "DEPRECATED!! x-buffer length", nullptr, nullptr, "[32, 512]" },
@@ -30376,9 +30376,9 @@ namespace halo2 {
 		{ _field_long_integer, "x-buffer max iterations", nullptr, nullptr, "[1, 256]" },
 		{ _field_real_fraction, "x-delta max error", nullptr, nullptr, "[0.001, 0.1]" },
 		{ _field_useless_pad, "value" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "value", &blofeld::halo2::light_volume_runtime_offset_block },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_terminator }
 	};
 
@@ -31026,7 +31026,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_real_vector_3d, "sphere" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -31041,11 +31041,11 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_real_vector_3d, "four vectors x" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "four vectors y" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "four vectors z" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -31155,7 +31155,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_real_vector_3d, "sphere" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -31169,10 +31169,10 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_long_integer, "num spheres" },
 		{ _field_array, "four vectors storage", &blofeld::halo2::vehicle_phantom_shape_block_struct_definition__multispheres_array_struct_definition__four_vectors_storage_array },
 		{ _field_terminator }
@@ -31225,19 +31225,19 @@ namespace halo2 {
 	{
 		{ _field_tag_reference, "sound classes", &blofeld::halo2::sound_classes_reference },
 		{ _field_tag_reference, "sound effects", &blofeld::halo2::sound_effect_collection_reference },
-		FIELD_EXPLANATION("first person left side mix", nullptr, FIELD_FLAG_NONE, "for first person sounds to the left of you"),
+		FIELD_EXPLANATION_EX("first person left side mix", nullptr, FIELD_FLAG_NONE, "for first person sounds to the left of you"),
 		{ _field_real, "left stereo gain", nullptr, "dB" },
 		{ _field_real, "right stereo gain", nullptr, "dB" },
-		FIELD_EXPLANATION("first person middle mix", nullptr, FIELD_FLAG_NONE, "for first person sounds between your ears"),
+		FIELD_EXPLANATION_EX("first person middle mix", nullptr, FIELD_FLAG_NONE, "for first person sounds between your ears"),
 		{ _field_real, "left stereo gain", nullptr, "dB" },
 		{ _field_real, "right stereo gain", nullptr, "dB" },
-		FIELD_EXPLANATION("first person right side mix", nullptr, FIELD_FLAG_NONE, "for first person sounds to the right of you"),
+		FIELD_EXPLANATION_EX("first person right side mix", nullptr, FIELD_FLAG_NONE, "for first person sounds to the right of you"),
 		{ _field_real, "left stereo gain", nullptr, "dB" },
 		{ _field_real, "right stereo gain", nullptr, "dB" },
-		FIELD_EXPLANATION("first person stereo mix", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("first person stereo mix", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "front speaker gain", nullptr, "dB" },
 		{ _field_real, "rear speaker gain", nullptr, "dB" },
-		FIELD_EXPLANATION("ambient stereo mix", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("ambient stereo mix", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "front speaker gain", nullptr, "dB" },
 		{ _field_real, "rear speaker gain", nullptr, "dB" },
 		{ _field_terminator }
@@ -31277,7 +31277,7 @@ namespace halo2 {
 		{ _field_block, "value", &blofeld::halo2::sound_permutation_marker_block },
 		{ _field_enum, "compression", &blofeld::halo2::unnamed_enum$5 },
 		{ _field_char_enum, "language", &blofeld::halo2::unnamed_enum$439 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -31292,8 +31292,8 @@ namespace halo2 {
 	{
 		{ _field_tag_reference, "promotion sound", &blofeld::halo2::sound_reference },
 		{ _field_short_integer, "promotion count", "when there are this many instances of the sound, promote to the new sound." },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -31307,12 +31307,12 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_reference },
-		FIELD_EXPLANATION("frequency of play", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("frequency of play", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_bounds, "random period bounds", "the time between successive playings of this sound will be randomly selected from this range.", "seconds" },
 		{ _field_real, "gain", nullptr, "dB" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$271 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
-		FIELD_EXPLANATION("random spatialization", nullptr, FIELD_FLAG_NONE, "if the sound specified above is not stereo it will be randomly spatialized according to the following constraints. if both lower and upper bounds are zero for any of the following fields, the sound\'s position will be randomly selected from all possible directions or distances."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_EXPLANATION_EX("random spatialization", nullptr, FIELD_FLAG_NONE, "if the sound specified above is not stereo it will be randomly spatialized according to the following constraints. if both lower and upper bounds are zero for any of the following fields, the sound\'s position will be randomly selected from all possible directions or distances."),
 		{ _field_angle_bounds, "yaw bounds", "the sound's position along the horizon will be randomly selected from this range.", "degrees" },
 		{ _field_angle_bounds, "pitch bounds", "the sound's position above (positive values) or below (negative values) the horizon will be randomly selected from this range.", "degrees" },
 		{ _field_real_bounds, "distance bounds", "the sound's distance (from its spatialized looping sound or from the listener if the looping sound is stereo) will be randomly selected from this range.", "world units" },
@@ -31332,11 +31332,11 @@ namespace halo2 {
 		{ _field_real, "gain", nullptr, "dB" },
 		{ _field_real, "fade in duration", nullptr, "seconds" },
 		{ _field_real, "fade out duration", nullptr, "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_tag_reference, "start", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "loop", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "end", &blofeld::halo2::sound_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_tag_reference, "alternate loop", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "alternate end", &blofeld::halo2::sound_reference },
 		{ _field_terminator }
@@ -31352,13 +31352,13 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$268 },
-		FIELD_EXPLANATION("when scale is ZERO", nullptr, FIELD_FLAG_NONE, "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the value specified below. (0 values are ignored.)"),
+		FIELD_EXPLANATION_EX("when scale is ZERO", nullptr, FIELD_FLAG_NONE, "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the value specified below. (0 values are ignored.)"),
 		{ _field_real, "detail sound period" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_EXPLANATION("when scale is ONE", nullptr, FIELD_FLAG_NONE, "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the value specified below. (0 values are ignored.)"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_EXPLANATION_EX("when scale is ONE", nullptr, FIELD_FLAG_NONE, "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the value specified below. (0 values are ignored.)"),
 		{ _field_real, "detail sound period" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_tag_reference, "continuous damage effect", &blofeld::halo2::_reference },
 		{ _field_block, "tracks", "tracks play in parallel and loop continuously for the duration of the looping sound.", &blofeld::halo2::looping_sound_track_block },
 		{ _field_block, "detail sounds", "detail sounds play at random throughout the duration of the looping sound.", &blofeld::halo2::looping_sound_detail_block },
@@ -31377,7 +31377,7 @@ namespace halo2 {
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$268 },
 		{ _field_real, "marty's music time", nullptr, "seconds" },
 		{ _field_real, "value" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_tag_reference, "value", &blofeld::halo2::_reference },
 		{ _field_block, "tracks", "tracks play in parallel and loop continuously for the duration of the looping sound.", &blofeld::halo2::looping_sound_track_block },
 		{ _field_block, "detail sounds", "detail sounds play at random throughout the duration of the looping sound.", &blofeld::halo2::looping_sound_detail_block },
@@ -31402,7 +31402,7 @@ namespace halo2 {
 		{ _field_string_id, "Spawn Object Name" },
 		{ _field_string_id, "Spawn Marker Name" },
 		{ _field_string_id, "Optional Flag Name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 100),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 100),
 		{ _field_terminator }
 	};
 
@@ -31416,10 +31416,10 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_integer, "value" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string, "Name" },
 		{ _field_array, "value", &blofeld::halo2::scenario_trigger_volume_struct_definition_v0___array },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -31432,7 +31432,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_tag_reference, "Structure BSP", &blofeld::halo2::scenario_structure_bsp_reference },
 		{ _field_terminator }
 	};
@@ -31454,14 +31454,14 @@ namespace halo2 {
 		{ _field_word_flags, "Flags", &blofeld::halo2::unnamed_enum$391 },
 		{ _field_block, "@child scenarios", &blofeld::halo2::scenario_child_scenario_block },
 		{ _field_angle, "Local North" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 136),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 136),
 		{ _field_block, "Predicted Resources", &blofeld::halo2::predicted_resource_block },
 		{ _field_block, "Functions", &blofeld::halo2::scenario_function_block },
 		{ _field_data, "Editor Scenario Data" },
 		{ _field_block, "Comments", &blofeld::halo2::editor_comment_block },
 		{ _field_block, "value", &blofeld::halo2::dont_use_me_scenario_environment_object_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 212),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 212),
 		{ _field_block, "Object Names", &blofeld::halo2::scenario_object_names_block },
 		{ _field_block, "Scenery", &blofeld::halo2::scenario_scenery_block },
 		{ _field_block, "Scenery Palette", &blofeld::halo2::scenario_scenery_palette_block },
@@ -31484,7 +31484,7 @@ namespace halo2 {
 		{ _field_block, "Sound Scenery Palette", &blofeld::halo2::scenario_sound_scenery_palette_block },
 		{ _field_block, "Light Volumes", &blofeld::halo2::scenario_light_block },
 		{ _field_block, "Light Volumes Palette", &blofeld::halo2::scenario_light_palette_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 60),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 60),
 		{ _field_block, "Player Starting Profile", &blofeld::halo2::scenario_profiles_block },
 		{ _field_block, "Player Starting Locations", &blofeld::halo2::scenario_players_block },
 		{ _field_block, "Kill Trigger Volumes", &blofeld::halo2::scenario_trigger_volume_block },
@@ -31496,7 +31496,7 @@ namespace halo2 {
 		{ _field_block, "Decals", &blofeld::halo2::scenario_decals_block },
 		{ _field_block, "Decals Palette", &blofeld::halo2::scenario_decal_palette_block },
 		{ _field_block, "Detail Object Collection Palette", &blofeld::halo2::scenario_detail_object_collection_palette_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 36),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 36),
 		{ _field_block, "Style Palette", &blofeld::halo2::style_palette_block },
 		{ _field_block, "Squad Groups", &blofeld::halo2::squad_groups_block },
 		{ _field_block, "Squads", &blofeld::halo2::squads_block },
@@ -31515,11 +31515,11 @@ namespace halo2 {
 		{ _field_block, "References", &blofeld::halo2::hs_references_block },
 		{ _field_block, "Source Files", &blofeld::halo2::hs_source_files_block_group_block },
 		{ _field_block, "Scripting Data", &blofeld::halo2::cs_script_data_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "Cutscene Flags", &blofeld::halo2::scenario_cutscene_flag_block },
 		{ _field_block, "Cutscene Camera Points", &blofeld::halo2::scenario_cutscene_camera_point_block },
 		{ _field_block, "Cutscene Titles", &blofeld::halo2::scenario_cutscene_title_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 108),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 108),
 		{ _field_tag_reference, "Custom Object Names", &blofeld::halo2::multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "In-Game Help Text", &blofeld::halo2::multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "HUD Messages", &blofeld::halo2::hud_message_text_reference$2 },
@@ -31626,9 +31626,9 @@ namespace halo2 {
 		{ _field_tag_reference, "Sound Effect Collection", &blofeld::halo2::sound_effect_collection_reference },
 		{ _field_block, "Crates", &blofeld::halo2::scenario_crate_block },
 		{ _field_block, "Crates Palette", &blofeld::halo2::scenario_crate_palette_block },
-		FIELD_EXPLANATION("Global Lighting Override", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Global Lighting Override", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "Global Lighting", &blofeld::halo2::chocolate_mountain_reference },
-		FIELD_EXPLANATION("WARNING", nullptr, FIELD_FLAG_NONE, "Editing Fog palette data will not behave as expected with split scenarios."),
+		FIELD_EXPLANATION_EX("WARNING", nullptr, FIELD_FLAG_NONE, "Editing Fog palette data will not behave as expected with split scenarios."),
 		{ _field_block, "Atmospheric Fog Palette", &blofeld::halo2::scenario_atmospheric_fog_palette },
 		{ _field_block, "Planar Fog Palette", &blofeld::halo2::scenario_planar_fog_palette },
 		{ _field_block, "Flocks", &blofeld::halo2::flock_definition_block },
@@ -31642,7 +31642,7 @@ namespace halo2 {
 		{ _field_block, ")Editor Folders", &blofeld::halo2::g_scenario_editor_folder_block },
 		{ _field_block, "Level Data", &blofeld::halo2::scenario_level_data_block },
 		{ _field_tag_reference, "Territory Location Names", &blofeld::halo2::multilingual_unicode_string_list_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_block, "Mission Dialogue", &blofeld::halo2::ai_scenario_mission_dialogue_block },
 		{ _field_tag_reference, "Objectives", &blofeld::halo2::multilingual_unicode_string_list_reference },
 		{ _field_block, "Interpolators", &blofeld::halo2::scenario_interpolator_block },
@@ -31663,23 +31663,23 @@ namespace halo2 {
 	{
 		{ _field_struct, "Section", &blofeld::halo2::global_geometry_section_struct_block_struct_definition },
 		{ _field_struct, "Section Info", &blofeld::halo2::global_geometry_section_info_struct_block_struct_definition },
-		FIELD_EXPLANATION("CLUSTER INFO", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("CLUSTER INFO", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_bounds, "Bounds x" },
 		{ _field_real_bounds, "Bounds y" },
 		{ _field_real_bounds, "Bounds z" },
 		{ _field_short_integer, "Sky Index" },
 		{ _field_short_integer, "Visible Sky Index" },
 		{ _field_short_integer, "Planar Fog Designator" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "Strip Segments", &blofeld::halo2::structure_indices_segment_block },
 		{ _field_block, "Strip Segment References", &blofeld::halo2::structure_indices_segment_reference_block },
 		{ _field_block, "Subclusters", &blofeld::halo2::structure_subcluster_block },
 		{ _field_block, "Predicted Resources", &blofeld::halo2::predicted_resource_block },
 		{ _field_block, "Portals", &blofeld::halo2::structure_bsp_cluster_portal_index_block },
-		FIELD_EXPLANATION("ISQ INFO", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("ISQ INFO", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "ISQ Info", &blofeld::halo2::global_geometry_isq_info_struct_block_struct_definition },
 		{ _field_block, "Forward Edges", &blofeld::halo2::structure_shared_edge_block },
 		{ _field_block, "Forward Edge Groups", &blofeld::halo2::structure_shared_edge_group_block },
@@ -31690,7 +31690,7 @@ namespace halo2 {
 		{ _field_block, "Lightmap Fragments", &blofeld::halo2::structure_bsp_cluster_lightmap_data_block },
 		{ _field_block, "Lightmap Sampling Info", &blofeld::halo2::structure_lightmap_sampling_info_block },
 		{ _field_long_integer, "Checksum from Structure" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -31706,7 +31706,7 @@ namespace halo2 {
 		{ _field_struct, "Section Info", &blofeld::halo2::global_geometry_section_info_struct_block_struct_definition },
 		{ _field_struct, "Geometry Block Info", &blofeld::halo2::global_geometry_block_info_struct_block_struct_definition },
 		{ _field_block, "Cluster Data", &blofeld::halo2::structure_bsp_cluster_data_block },
-		FIELD_EXPLANATION("CLUSTER INFO", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("CLUSTER INFO", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_bounds, "Bounds x" },
 		{ _field_real_bounds, "Bounds y" },
 		{ _field_real_bounds, "Bounds z" },
@@ -31717,10 +31717,10 @@ namespace halo2 {
 		{ _field_char_integer, "Planar Fog Designator" },
 		{ _field_char_integer, "Visible Fog Plane Index" },
 		{ _field_short_integer, "Transition Structure BSP" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_word_flags, "Flags", &blofeld::halo2::unnamed_enum$366 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "Subclusters", &blofeld::halo2::structure_subcluster_block },
 		{ _field_block, "Predicted Resources", &blofeld::halo2::predicted_resource_block },
 		{ _field_block, "Portals", &blofeld::halo2::structure_bsp_cluster_portal_index_block },
@@ -31744,8 +31744,8 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 6),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 6),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "Cluster" },
 		{ _field_short_integer, "Surface Reference Count" },
 		{ _field_long_integer, "First Surface Reference Index" },
@@ -31764,7 +31764,7 @@ namespace halo2 {
 		{ _field_long_integer, "Strip Index" },
 		{ _field_long_integer, "BSP Node Index" },
 		{ _field_long_integer, "Lightmap Triangle Index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -31783,7 +31783,7 @@ namespace halo2 {
 		{ _field_short_integer, "Reverse Edge" },
 		{ _field_short_integer, "Left Surface" },
 		{ _field_short_integer, "Right Surface" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -31865,7 +31865,7 @@ namespace halo2 {
 		{ _field_word_block_flags, "Manual BSP Flags" },
 		{ _field_struct, "Object ID", &blofeld::halo2::scenario_object_id_struct_block_struct_definition },
 		{ _field_char_enum, "BSP Policy", &blofeld::halo2::unnamed_enum$11 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -31882,9 +31882,9 @@ namespace halo2 {
 		{ _field_short_integer, "Desired Permutation", "If non-0, will try to use model permutations with names that end in that number (e.g., 7 would pick \"body-7\" and \"head-7\")." },
 		{ _field_real_point_3d, "Position" },
 		{ _field_real_euler_angles_3d, "Rotation" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_word_flags, "Pathfinding Flags", &blofeld::halo2::unnamed_enum$16 },
 		{ _field_short_integer, "Pathfinding Object Index" },
 		{ _field_long_integer, "Runtime Scenery Object" },
@@ -31957,7 +31957,7 @@ namespace halo2 {
 		{ _field_short_integer, "Desired Permutation", "If non-0, will try to use model permutations with names that end in that number (e.g., 7 would pick \"body-7\" and \"head-7\")." },
 		{ _field_real_point_3d, "Position" },
 		{ _field_real_euler_angles_3d, "Rotation" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -31990,14 +31990,14 @@ namespace halo2 {
 		{ _field_short_integer, "Desired Permutation", "If non-0, will try to use model permutations with names that end in that number (e.g., 7 would pick \"body-7\" and \"head-7\")." },
 		{ _field_real_point_3d, "Position" },
 		{ _field_real_euler_angles_3d, "Rotation" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_short_integer, "Rounds Left" },
 		{ _field_short_integer, "Rounds Loaded" },
 		{ _field_word_flags, "Flags", &blofeld::halo2::unnamed_enum$18 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -32031,11 +32031,11 @@ namespace halo2 {
 		{ _field_short_integer, "Desired Permutation", "If non-0, will try to use model permutations with names that end in that number (e.g., 7 would pick \"body-7\" and \"head-7\")." },
 		{ _field_real_point_3d, "Position" },
 		{ _field_real_euler_angles_3d, "Rotation" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_struct, "Unit Data", &blofeld::halo2::old_scenario_unit_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -32069,11 +32069,11 @@ namespace halo2 {
 		{ _field_short_integer, "Desired Permutation", "If non-0, will try to use model permutations with names that end in that number (e.g., 7 would pick \"body-7\" and \"head-7\")." },
 		{ _field_real_point_3d, "Position" },
 		{ _field_real_euler_angles_3d, "Rotation" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_struct, "Unit Data", &blofeld::halo2::old_scenario_unit_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -32107,10 +32107,10 @@ namespace halo2 {
 		{ _field_short_integer, "Desired Permutation", "If non-0, will try to use model permutations with names that end in that number (e.g., 7 would pick \"body-7\" and \"head-7\")." },
 		{ _field_real_point_3d, "Position" },
 		{ _field_real_euler_angles_3d, "Rotation" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_struct, "Device Data", &blofeld::halo2::old_scenario_device_struct_block_struct_definition },
 		{ _field_long_flags, "Flags", &blofeld::halo2::unnamed_enum$171 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -32161,13 +32161,13 @@ namespace halo2 {
 		{ _field_short_integer, "Desired Permutation", "If non-0, will try to use model permutations with names that end in that number (e.g., 7 would pick \"body-7\" and \"head-7\")." },
 		{ _field_real_point_3d, "Position" },
 		{ _field_real_euler_angles_3d, "Rotation" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_struct, "Device Data", &blofeld::halo2::old_scenario_device_struct_block_struct_definition },
 		{ _field_long_flags, "Flags", &blofeld::halo2::unnamed_enum$172 },
 		{ _field_short_integer, "*DON'T TOUCH THIS" },
 		{ _field_custom, "value" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -32201,13 +32201,13 @@ namespace halo2 {
 		{ _field_short_integer, "Desired Permutation", "If non-0, will try to use model permutations with names that end in that number (e.g., 7 would pick \"body-7\" and \"head-7\")." },
 		{ _field_real_point_3d, "Position" },
 		{ _field_real_euler_angles_3d, "Rotation" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_struct, "Device Data", &blofeld::halo2::old_scenario_device_struct_block_struct_definition },
 		{ _field_real_rgb_color, "Color" },
 		{ _field_real, "Intensity" },
 		{ _field_angle, "Falloff Angle", nullptr, "Degrees" },
 		{ _field_angle, "Cutoff Angle", nullptr, "Degrees" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_terminator }
 	};
 
@@ -32241,7 +32241,7 @@ namespace halo2 {
 		{ _field_short_integer, "Desired Permutation", "If non-0, will try to use model permutations with names that end in that number (e.g., 7 would pick \"body-7\" and \"head-7\")." },
 		{ _field_real_point_3d, "Position" },
 		{ _field_real_euler_angles_3d, "Rotation" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -32274,21 +32274,21 @@ namespace halo2 {
 		{ _field_short_integer, "Desired Permutation", "If non-0, will try to use model permutations with names that end in that number (e.g., 7 would pick \"body-7\" and \"head-7\")." },
 		{ _field_real_point_3d, "Position" },
 		{ _field_real_euler_angles_3d, "Rotation" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_enum, "Type", &blofeld::halo2::unnamed_enum$21 },
 		{ _field_word_flags, "Flags", &blofeld::halo2::unnamed_enum$22 },
 		{ _field_enum, "Lightmap Type", &blofeld::halo2::unnamed_enum$23 },
 		{ _field_word_flags, "Lightmap Flags", &blofeld::halo2::unnamed_enum$24 },
 		{ _field_real, "Lightmap Half Life" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 120),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 120),
 		{ _field_real_point_3d, "Target Point" },
 		{ _field_real, "Width", nullptr, "World Units", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "Height Scale", nullptr, "World Units", FIELD_FLAG_READ_ONLY },
 		{ _field_angle, "Field of View", nullptr, "Degrees", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "Falloff Distance", nullptr, "World Units", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "Cutoff Distance", nullptr, "World Units (from Far Plane)", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 128),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 128),
 		{ _field_terminator }
 	};
 
@@ -32301,7 +32301,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("~Controls", nullptr, FIELD_FLAG_NONE, " "),
+		FIELD_EXPLANATION_EX("~Controls", nullptr, FIELD_FLAG_NONE, " "),
 		{ _field_custom, "value" },
 		{ _field_custom, "value" },
 		{ _field_custom, "value" },
@@ -32335,7 +32335,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_old_string_id, "name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_flags, "Node joint flags", &blofeld::halo2::unnamed_enum$231 },
 		{ _field_real_vector_3d, "base vector" },
 		{ _field_real, "vector range" },
@@ -32374,7 +32374,7 @@ namespace halo2 {
 		{ _field_short_integer, "frame count" },
 		{ _field_short_integer, "frame size" },
 		{ _field_long_integer, "node list checksum" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_word_flags, "playback flags", &blofeld::halo2::unnamed_enum$237 },
 		{ _field_byte_flags, "internal flags", &blofeld::halo2::unnamed_enum$235 },
 		{ _field_byte_flags, "production flags", &blofeld::halo2::unnamed_enum$236 },
@@ -32549,16 +32549,16 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("GRAPH DATA", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("GRAPH DATA", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "parent animation graph", &blofeld::halo2::model_animation_graph_reference$2 },
 		{ _field_block, "skeleton nodes", &blofeld::halo2::animation_graph_node_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "sound references", &blofeld::halo2::animation_graph_sound_reference_block },
 		{ _field_block, "blend screens", &blofeld::halo2::animation_blend_screen_block },
 		{ _field_block, "animations", &blofeld::halo2::animation_pool_block },
 		{ _field_word_flags, "animation graph flags", &blofeld::halo2::unnamed_enum$229 },
 		{ _field_short_integer, "animation codec pack" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 
@@ -32571,7 +32571,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("GRAPH DATA", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("GRAPH DATA", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "parent animation graph", &blofeld::halo2::model_animation_graph_reference$2 },
 		{ _field_byte_flags, "inheritance flags", &blofeld::halo2::unnamed_enum$228 },
 		{ _field_byte_flags, "private flags", &blofeld::halo2::unnamed_enum$229 },
@@ -32608,7 +32608,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "dsp effect" },
-		FIELD_EXPLANATION("WARNING", nullptr, FIELD_FLAG_NONE, "DON\'T MODIFY THIS TAG UNLESS YOU KNOW WHAT YOU ARE DOING"),
+		FIELD_EXPLANATION_EX("WARNING", nullptr, FIELD_FLAG_NONE, "DON\'T MODIFY THIS TAG UNLESS YOU KNOW WHAT YOU ARE DOING"),
 		{ _field_data, "explanation" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$28 },
 		{ _field_short_integer, "value" },
@@ -32651,68 +32651,68 @@ namespace halo2 {
 		{ _field_block, "slayer events", &blofeld::halo2::game_engine_slayer_event_block },
 		{ _field_block, "ctf events", &blofeld::halo2::game_engine_ctf_event_block },
 		{ _field_block, "oddball events", &blofeld::halo2::game_engine_oddball_event_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "king events", &blofeld::halo2::game_engine_king_event_block },
 		{ _field_tag_reference, "default item collection 1", &blofeld::halo2::item_collection_reference },
 		{ _field_tag_reference, "default item collection 2", &blofeld::halo2::item_collection_reference },
 		{ _field_long_integer, "default frag grenade count" },
 		{ _field_long_integer, "default plasma grenade count" },
-		FIELD_EXPLANATION("dynamic spawn zones", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("dynamic spawn zones", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "dynamic zone upper height" },
 		{ _field_real, "dynamic zone lower height" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
-		FIELD_EXPLANATION("enemy", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_EXPLANATION_EX("enemy", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "enemy inner radius" },
 		{ _field_real, "enemy outer radius" },
 		{ _field_real, "enemy weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("friend", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("friend", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "friend inner radius" },
 		{ _field_real, "friend outer radius" },
 		{ _field_real, "friend weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("enemy vehicle", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("enemy vehicle", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "enemy vehicle inner radius" },
 		{ _field_real, "enemy vehicle outer radius" },
 		{ _field_real, "enemy vehicle weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("friendly vehicle", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("friendly vehicle", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "friendly vehicle inner radius" },
 		{ _field_real, "friendly vehicle outer radius" },
 		{ _field_real, "friendly vehicle weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("empty vehicle", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("empty vehicle", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "empty vehicle inner radius" },
 		{ _field_real, "empty vehicle outer radius" },
 		{ _field_real, "empty vehicle weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("oddball inclusion", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("oddball inclusion", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "oddball inclusion inner radius" },
 		{ _field_real, "oddball inclusion outer radius" },
 		{ _field_real, "oddball inclusion weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("oddball exclusion", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("oddball exclusion", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "oddball exclusion inner radius" },
 		{ _field_real, "oddball exclusion outer radius" },
 		{ _field_real, "oddball exclusion weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("hill inclusion", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("hill inclusion", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "hill inclusion inner radius" },
 		{ _field_real, "hill inclusion outer radius" },
 		{ _field_real, "hill inclusion weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("hill exclusion", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("hill exclusion", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "hill exclusion inner radius" },
 		{ _field_real, "hill exclusion outer radius" },
 		{ _field_real, "hill exclusion weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("last race flag", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("last race flag", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "last race flag inner radius" },
 		{ _field_real, "last race flag outer radius" },
 		{ _field_real, "last race flag weight" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 616),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 616),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_terminator }
 	};
 
@@ -32739,9 +32739,9 @@ namespace halo2 {
 	{
 		{ _field_tag_reference, "tag (effect or sound)", &blofeld::halo2::sound_sound_looping_effect_reference },
 		{ _field_string_id, "material name" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_char_enum, "sweetener mode", &blofeld::halo2::unnamed_enum$185 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -32755,7 +32755,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_block, "effects", &blofeld::halo2::material_effect_block_v1 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 128),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 128),
 		{ _field_terminator }
 	};
 
@@ -32792,9 +32792,9 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "priority", "when multiple listeners are in different sound environments in split screen, the combined environment will be the one with the highest priority." },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "room intensity", "intensity of the room effect", "dB" },
 		{ _field_real, "room intensity hf", "intensity of the room effect above the reference high frequency", "dB" },
 		{ _field_real, "room rolloff (0 to 10)", "how quickly the room effect rolls off, from 0.0 to 10.0" },
@@ -32807,7 +32807,7 @@ namespace halo2 {
 		{ _field_real, "diffusion" },
 		{ _field_real, "density" },
 		{ _field_real, "hf reference(20 to 20,000)", "for hf values, what frequency defines hf, from 20 to 20,000", "Hz" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_terminator }
 	};
 
@@ -32829,12 +32829,12 @@ namespace halo2 {
 		{ _field_word_flags, "Flags", &blofeld::halo2::unnamed_enum$114 },
 		{ _field_point_2d, "Registration Point" },
 		{ _field_short_integer, "mipmap Count" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "Pixels Offset" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -32848,25 +32848,25 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_custom_short_block_index, "permutation" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$343 },
 		{ _field_enum, "motion type", &blofeld::halo2::unnamed_enum$344 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "linear damping", "this goes from 0-10 (10 is really, really high)" },
 		{ _field_real, "angular damping", "this goes from 0-10 (10 is really, really high)" },
 		{ _field_enum, "shape type", &blofeld::halo2::unnamed_enum$345 },
 		{ _field_custom_short_block_index, "shape" },
 		{ _field_real, "mass", nullptr, "kg", FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "center of mass" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "intertia tensor x" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "intertia tensor y" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "intertia tensor z" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_vector_3d, "center off mass offset" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -32884,18 +32884,18 @@ namespace halo2 {
 		{ _field_char_enum, "maximum size", &blofeld::halo2::unnamed_enum$339 },
 		{ _field_string_id, "marker name", "you don't need this if you're just generating effects.  If empty it defaults to the up of the object" },
 		{ _field_string_id, "alignment marker name", "you don't need this if you're just generating effects.  If empty it defaults to \"marker name\"" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_real, "linear dead radius", "radius from linear motion origin in which acceleration is dead." },
-		FIELD_EXPLANATION("Linear Motion", nullptr, FIELD_FLAG_NONE, "0 - means do nothing\nCENTER: motion towards marker position \nAXIS: motion towards marker axis, such that object is on the axis\nDIRECTION: motion along marker direction"),
+		FIELD_EXPLANATION_EX("Linear Motion", nullptr, FIELD_FLAG_NONE, "0 - means do nothing\nCENTER: motion towards marker position \nAXIS: motion towards marker axis, such that object is on the axis\nDIRECTION: motion along marker direction"),
 		{ _field_real, "center acc" },
 		{ _field_real, "center max vel" },
 		{ _field_real, "axis acc" },
 		{ _field_real, "axis max vel" },
 		{ _field_real, "direction acc" },
 		{ _field_real, "direction max vel" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
-		FIELD_EXPLANATION("Angular Motion", nullptr, FIELD_FLAG_NONE, "0 - means do nothing\nALIGNMENT: algin objects in the phantom with the marker\nSPIN: spin the object about the marker axis"),
-		FIELD_EXPLANATION("ANGULAR ACC NOT YET IMPLEMENTED", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_EXPLANATION_EX("Angular Motion", nullptr, FIELD_FLAG_NONE, "0 - means do nothing\nALIGNMENT: algin objects in the phantom with the marker\nSPIN: spin the object about the marker axis"),
+		FIELD_EXPLANATION_EX("ANGULAR ACC NOT YET IMPLEMENTED", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "alignment acc" },
 		{ _field_real, "alignment max vel" },
 		{ _field_real, "spin acc" },
@@ -32924,7 +32924,7 @@ namespace halo2 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$337 },
 		{ _field_real, "mass" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 56),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 56),
 		{ _field_block, "rigid bodies", &blofeld::halo2::rigid_bodies_block },
 		{ _field_block, "materials", &blofeld::halo2::materials_block$2 },
 		{ _field_block, "spheres", &blofeld::halo2::spheres_block },
@@ -32932,7 +32932,7 @@ namespace halo2 {
 		{ _field_block, "boxes", &blofeld::halo2::boxes_block },
 		{ _field_block, "triangles", &blofeld::halo2::triangles_block },
 		{ _field_block, "polyhedra", &blofeld::halo2::polyhedra_block },
-		FIELD_EXPLANATION("ALL THESE WORLDS ARE YOURS, EXCEPT EUROPA...", nullptr, FIELD_FLAG_NONE, "Attempt no landings there.  And you can\'t edit anything below this point, so why even look at it?"),
+		FIELD_EXPLANATION_EX("ALL THESE WORLDS ARE YOURS, EXCEPT EUROPA...", nullptr, FIELD_FLAG_NONE, "Attempt no landings there.  And you can\'t edit anything below this point, so why even look at it?"),
 		{ _field_block, "polyhedron four vectors", &blofeld::halo2::polyhedron_four_vectors_block },
 		{ _field_block, "polyhedron plane equations", &blofeld::halo2::polyhedron_plane_equations_block },
 		{ _field_block, "mass distributions", &blofeld::halo2::mass_distributions_block },
@@ -32962,7 +32962,7 @@ namespace halo2 {
 		{ _field_real, "mass" },
 		{ _field_real, "low freq. deactivation scale", "0 is default (1). LESS than 1 deactivates less aggressively. GREATER than 1 is more agressive." },
 		{ _field_real, "high freq. deactivation scale", "0 is default (1). LESS than 1 deactivates less aggressively. GREATER than 1 is more agressive." },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_block, "phantom types", &blofeld::halo2::phantom_types_block },
 		{ _field_block, "node edges", &blofeld::halo2::physics_model_node_constraint_edge_block },
 		{ _field_block, "rigid bodies", &blofeld::halo2::rigid_bodies_block },
@@ -32973,7 +32973,7 @@ namespace halo2 {
 		{ _field_block, "boxes", &blofeld::halo2::boxes_block },
 		{ _field_block, "triangles", &blofeld::halo2::triangles_block },
 		{ _field_block, "polyhedra", &blofeld::halo2::polyhedra_block },
-		FIELD_EXPLANATION("ALL THESE WORLDS ARE YOURS, EXCEPT EUROPA...", nullptr, FIELD_FLAG_NONE, "Attempt no landings there.  And you can\'t edit anything below this point, so why even look at it?"),
+		FIELD_EXPLANATION_EX("ALL THESE WORLDS ARE YOURS, EXCEPT EUROPA...", nullptr, FIELD_FLAG_NONE, "Attempt no landings there.  And you can\'t edit anything below this point, so why even look at it?"),
 		{ _field_block, "polyhedron four vectors", &blofeld::halo2::polyhedron_four_vectors_block },
 		{ _field_block, "polyhedron plane equations", &blofeld::halo2::polyhedron_plane_equations_block },
 		{ _field_block, "mass distributions", &blofeld::halo2::mass_distributions_block },
@@ -33006,10 +33006,10 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_block, "bsps", &blofeld::halo2::collision_model_bsp_block },
 		{ _field_block, "bsp_physics", &blofeld::halo2::collision_bsp_physics_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 44),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 44),
 		{ _field_terminator }
 	};
 
@@ -33023,8 +33023,8 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_old_string_id, "name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_terminator }
 	};
 
@@ -33038,7 +33038,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "OLD damage resistance", &blofeld::halo2::old_global_damage_resistance_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "errors", &blofeld::halo2::global_error_report_categories_block },
 		{ _field_block, "materials", &blofeld::halo2::collision_model_material_block },
 		{ _field_block, "regions", &blofeld::halo2::collision_model_region_block },
@@ -33059,19 +33059,19 @@ namespace halo2 {
 		{ _field_struct, "section", &blofeld::halo2::global_geometry_section_struct_block_struct_definition },
 		{ _field_struct, "point data", &blofeld::halo2::global_geometry_point_data_struct_block_struct_definition },
 		{ _field_block, "node map", &blofeld::halo2::render_model_node_map_block },
-		FIELD_EXPLANATION("ISQ INFO", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("ISQ INFO", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "isq info", &blofeld::halo2::global_geometry_isq_info_struct_block_struct_definition },
 		{ _field_block, "forward shared edges", &blofeld::halo2::render_model_forward_shared_edge_block },
 		{ _field_block, "forward shared edge groups", &blofeld::halo2::render_model_shared_edge_group_block },
 		{ _field_block, "backward shared edges", &blofeld::halo2::render_model_backward_shared_edge_block },
 		{ _field_block, "backward shared edge groups", &blofeld::halo2::render_model_shared_edge_group_block },
-		FIELD_EXPLANATION("DSQ INFO", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("DSQ INFO", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_block, "raw vertices", &blofeld::halo2::render_model_dsq_raw_vertex_block },
 		{ _field_block, "strip indices", &blofeld::halo2::render_model_dsq_strip_index_block },
 		{ _field_block, "silhouette quads", &blofeld::halo2::render_model_dsq_silhouette_quad_block },
 		{ _field_short_integer, "Carmack-silhouette quad count" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -33085,7 +33085,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string_id, "permutation name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "state", &blofeld::halo2::unnamed_enum$209 },
 		{ _field_terminator }
 	};
@@ -33113,29 +33113,29 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("MODEL", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("MODEL", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "render model", &blofeld::halo2::render_model_reference },
 		{ _field_tag_reference, "collision model", &blofeld::halo2::collision_model_reference },
 		{ _field_tag_reference, "animation", &blofeld::halo2::model_animation_graph_reference },
 		{ _field_tag_reference, "physics", &blofeld::halo2::physics_reference },
 		{ _field_tag_reference, "physics model", &blofeld::halo2::physics_model_reference },
-		FIELD_EXPLANATION("level of detail", nullptr, FIELD_FLAG_NONE, "If a model is further away than the LOD reduction distance, it will be reduced to that LOD.\nSo the L1 reduction distance should be really long and the L5 reduction distance should be really short.\nThis means distances should be in descending order, e.g. 5 4 3 2 1.\n\nNote that if we run out of memory or too many models are on screen at once, the engine may reduce\nmodels to a lower LOD BEFORE they reach the reduction distance for that LOD.\n\nIf a model has a max draw distance, it will disappear when it reaches that distance. The max draw distance\nshould be greater than all of the LOD reduction distances.\n"),
+		FIELD_EXPLANATION_EX("level of detail", nullptr, FIELD_FLAG_NONE, "If a model is further away than the LOD reduction distance, it will be reduced to that LOD.\nSo the L1 reduction distance should be really long and the L5 reduction distance should be really short.\nThis means distances should be in descending order, e.g. 5 4 3 2 1.\n\nNote that if we run out of memory or too many models are on screen at once, the engine may reduce\nmodels to a lower LOD BEFORE they reach the reduction distance for that LOD.\n\nIf a model has a max draw distance, it will disappear when it reaches that distance. The max draw distance\nshould be greater than all of the LOD reduction distances.\n"),
 		{ _field_real, "max draw distance", nullptr, "world units" },
 		{ _field_real, "reduce to L1", nullptr, "world units (super low)" },
 		{ _field_real, "reduce to L2", nullptr, "world units (low)" },
 		{ _field_real, "reduce to L3", nullptr, "world units (medium)" },
 		{ _field_real, "reduce to L4", nullptr, "world units (high)" },
 		{ _field_real, "reduce to L5", nullptr, "world units (super high)" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_enum, "shadow fade distance", &blofeld::halo2::unnamed_enum$205 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "variants", &blofeld::halo2::model_variant_block },
 		{ _field_block, "materials", &blofeld::halo2::model_material_block },
 		{ _field_block, "new damage info", &blofeld::halo2::global_damage_info_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "value", &blofeld::halo2::model_region_block },
 		{ _field_block, "value", &blofeld::halo2::model_node_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "model object data", &blofeld::halo2::model_object_data_block },
 		{ _field_terminator }
 	};
@@ -33155,7 +33155,7 @@ namespace halo2 {
 		{ _field_block, "Vertex Buffers", &blofeld::halo2::global_geometry_section_vertex_buffer_block },
 		{ _field_block, "Strip Indices", &blofeld::halo2::global_geometry_section_strip_index_block },
 		{ _field_block, "Parts", &blofeld::halo2::global_geometry_part_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 96),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 96),
 		{ _field_terminator }
 	};
 
@@ -33212,12 +33212,12 @@ namespace halo2 {
 		{ _field_real_vector_3d, "Up" },
 		{ _field_real_point_3d, "Position" },
 		{ _field_short_integer, "Render First Bitvector Index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_tag_reference, "Lightmap Bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_long_integer, "Checksum" },
 		{ _field_string_id, "Name" },
 		{ _field_short_integer, "Pathfinding Object Index" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -33236,12 +33236,12 @@ namespace halo2 {
 		{ _field_real_vector_3d, "Up" },
 		{ _field_real_point_3d, "Position" },
 		{ _field_short_integer, "Render First Bitvector Index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_tag_reference, "Lightmap Bitmap", &blofeld::halo2::bitmap_reference },
 		{ _field_long_integer, "Checksum" },
 		{ _field_string_id, "Name" },
 		{ _field_short_integer, "Pathfinding Object Index" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -33334,9 +33334,9 @@ namespace halo2 {
 		{ _field_tag_reference, "shield recharging effect", &blofeld::halo2::effect_reference },
 		{ _field_block, "damage sections", &blofeld::halo2::global_damage_section_block },
 		{ _field_block, "nodes", &blofeld::halo2::global_damage_nodes_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -33364,7 +33364,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "area type", &blofeld::halo2::unnamed_enum$84 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_custom_short_block_index, "area" },
 		{ _field_terminator }
 	};
@@ -33387,19 +33387,19 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string, "name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$82 },
 		{ _field_enum, "Force combat status", &blofeld::halo2::unnamed_enum$83 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_string, "Entry Script" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "follow radius" },
 		{ _field_block, "DEPRECATED", &blofeld::halo2::area_set_block },
 		{ _field_block, "Area references", &blofeld::halo2::zone_set_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 36),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 36),
 		{ _field_block, "DEPRECATED", &blofeld::halo2::order_completion_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_block, "Order endings", &blofeld::halo2::order_ending_block },
 		{ _field_terminator }
 	};
@@ -33415,17 +33415,17 @@ namespace halo2 {
 	{
 		{ _field_custom, "value" },
 		{ _field_string, "name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$82 },
 		{ _field_enum, "Force combat status", &blofeld::halo2::unnamed_enum$83 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_string, "Entry Script" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "follow radius" },
 		{ _field_block, "Area references", &blofeld::halo2::zone_set_block },
 		{ _field_block, "Special movement", &blofeld::halo2::special_movement_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "Order endings", &blofeld::halo2::order_ending_block },
 		{ _field_terminator }
 	};
@@ -33456,10 +33456,10 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string, "name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 44),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 44),
 		{ _field_block, "points", &blofeld::halo2::cs_point_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_terminator }
 	};
 
@@ -33472,16 +33472,16 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("CONTROLS", nullptr, FIELD_FLAG_NONE, "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
+		FIELD_EXPLANATION_EX("CONTROLS", nullptr, FIELD_FLAG_NONE, "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
 		{ _field_real_point_3d, "placement position" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_custom, "value" },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$76 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "local position" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -33494,14 +33494,14 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("CONTROLS", nullptr, FIELD_FLAG_NONE, "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
+		FIELD_EXPLANATION_EX("CONTROLS", nullptr, FIELD_FLAG_NONE, "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$76 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "position (local)" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "cluster index" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_custom, "value" },
 		{ _field_terminator }
 	};
@@ -33515,14 +33515,14 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_EXPLANATION("CONTROLS", nullptr, FIELD_FLAG_NONE, "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
+		FIELD_EXPLANATION_EX("CONTROLS", nullptr, FIELD_FLAG_NONE, "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$76 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "position (local)" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "cluster index" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_custom, "value" },
 		{ _field_terminator }
 	};
@@ -33615,7 +33615,7 @@ namespace halo2 {
 		{ _field_word_flags, "Path-finding sector flags", &blofeld::halo2::unnamed_enum$369 },
 		{ _field_short_integer, "hint index" },
 		{ _field_short_integer, "first link (do not set manually)" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -33632,8 +33632,8 @@ namespace halo2 {
 		{ _field_long_integer, "first sector" },
 		{ _field_long_integer, "last sector" },
 		{ _field_short_integer, "node_index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 44),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 44),
 		{ _field_block, "bsp2d refs", &blofeld::halo2::ref_block },
 		{ _field_terminator }
 	};
@@ -33647,9 +33647,9 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_short_integer, "reference frame index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -33663,13 +33663,13 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$371 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "first sector" },
 		{ _field_long_integer, "last sector" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_block, "bsps", &blofeld::halo2::environment_object_bsp_refs },
 		{ _field_block, "nodes", &blofeld::halo2::environment_object_nodes },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_terminator }
 	};
 
@@ -33684,11 +33684,11 @@ namespace halo2 {
 	{
 		{ _field_string, "name" },
 		{ _field_long_flags, "area flags", &blofeld::halo2::unnamed_enum$77 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 64),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 64),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_terminator }
 	};
 
@@ -33704,14 +33704,14 @@ namespace halo2 {
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$75 },
 		{ _field_short_integer, "manual bsp index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
 		{ _field_block, "firing positions", &blofeld::halo2::firing_positions_block },
 		{ _field_block, "player starting locations", &blofeld::halo2::scenario_players_block },
 		{ _field_block, "areas", &blofeld::halo2::areas_block },
 		{ _field_block, "orders", &blofeld::halo2::orders_block },
 		{ _field_block, "starting locations", &blofeld::halo2::actor_starting_locations_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 88),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 88),
 		{ _field_terminator }
 	};
 
@@ -33726,13 +33726,13 @@ namespace halo2 {
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_angle, "facing", nullptr, "degrees" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 6),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 6),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_tag_reference, "weapon reference (DO NOT USE)", &blofeld::halo2::weapon_reference$2 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_enum, "grenade type", &blofeld::halo2::unnamed_enum$71 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -33750,14 +33750,14 @@ namespace halo2 {
 		{ _field_old_string_id, "name" },
 		{ _field_real_point_3d, "position" },
 		{ _field_angle, "facing", nullptr, "degrees" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_enum, "seat type", &blofeld::halo2::unnamed_enum$73 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_enum, "grenade type", &blofeld::halo2::unnamed_enum$71 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -33773,13 +33773,13 @@ namespace halo2 {
 		{ _field_old_string_id, "name" },
 		{ _field_real_point_3d, "position" },
 		{ _field_angle, "facing", nullptr, "degrees" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$72 },
 		{ _field_enum, "seat type", &blofeld::halo2::unnamed_enum$73 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_enum, "grenade type", &blofeld::halo2::unnamed_enum$71 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -33795,11 +33795,11 @@ namespace halo2 {
 		{ _field_old_string_id, "name" },
 		{ _field_real_point_3d, "position" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_angle, "facing", nullptr, "degrees" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$72 },
 		{ _field_enum, "seat type", &blofeld::halo2::unnamed_enum$73 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_enum, "grenade type", &blofeld::halo2::unnamed_enum$71 },
 		{ _field_short_integer, "swarm count", "number of cretures in swarm if a swarm is spawned at this location" },
 		{ _field_string_id, "actor variant name" },
@@ -33819,17 +33819,17 @@ namespace halo2 {
 		{ _field_old_string_id, "name" },
 		{ _field_real_point_3d, "position" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", nullptr, "degrees" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$72 },
 		{ _field_enum, "seat type", &blofeld::halo2::unnamed_enum$73 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_enum, "grenade type", &blofeld::halo2::unnamed_enum$71 },
 		{ _field_short_integer, "swarm count", "number of cretures in swarm if a swarm is spawned at this location" },
 		{ _field_string_id, "actor variant name" },
 		{ _field_string_id, "vehicle variant name" },
 		{ _field_real, "initial movement distance", "before doing anything else, the actor will travel the given distance in its forward direction" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -33845,17 +33845,17 @@ namespace halo2 {
 		{ _field_old_string_id, "name" },
 		{ _field_real_point_3d, "position" },
 		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", nullptr, "degrees" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$72 },
 		{ _field_enum, "seat type", &blofeld::halo2::unnamed_enum$73 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_enum, "grenade type", &blofeld::halo2::unnamed_enum$71 },
 		{ _field_short_integer, "swarm count", "number of cretures in swarm if a swarm is spawned at this location" },
 		{ _field_string_id, "actor variant name" },
 		{ _field_string_id, "vehicle variant name" },
 		{ _field_real, "initial movement distance", "before doing anything else, the actor will travel the given distance in its forward direction" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -33869,24 +33869,24 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string, "name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$68 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "team", &blofeld::halo2::unnamed_enum$69 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_real, "squad delay time", nullptr, "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 40),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 40),
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
 		{ _field_short_integer, "insane diff count", "initial number of actors on insane difficulty (hard difficulty is midway between normal and insane)" },
 		{ _field_enum, "major upgrade", &blofeld::halo2::unnamed_enum$70 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 6),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 6),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "initial weapon (DO NOT USE)", &blofeld::halo2::weapon_reference$2 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_enum, "grenade type", &blofeld::halo2::unnamed_enum$71 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_block, "move positions", &blofeld::halo2::move_positions_block },
 		{ _field_block, "starting locations", &blofeld::halo2::actor_starting_locations_block },
 		{ _field_block, "value", &blofeld::halo2::g_null_block },
@@ -33906,20 +33906,20 @@ namespace halo2 {
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$68 },
 		{ _field_enum, "team", &blofeld::halo2::unnamed_enum$69 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real, "squad delay time", nullptr, "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
 		{ _field_short_integer, "insane diff count", "initial number of actors on insane difficulty (hard difficulty is midway between normal and insane)" },
 		{ _field_enum, "major upgrade", &blofeld::halo2::unnamed_enum$70 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_EXPLANATION("Actor defaults", nullptr, FIELD_FLAG_NONE, "The following default values are used for spawned actors"),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_EXPLANATION_EX("Actor defaults", nullptr, FIELD_FLAG_NONE, "The following default values are used for spawned actors"),
 		{ _field_enum, "grenade type", &blofeld::halo2::unnamed_enum$71 },
 		{ _field_string_id, "vehicle variant" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_block, "starting locations", &blofeld::halo2::actor_starting_locations_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -33937,15 +33937,15 @@ namespace halo2 {
 		{ _field_short_integer, "parent index" },
 		{ _field_enum, "priority", &blofeld::halo2::unnamed_enum$48 },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$49 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::unnamed_enum$50 },
 		{ _field_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::unnamed_enum$50 },
 		{ _field_enum, "perception type", &blofeld::halo2::unnamed_enum$51 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "animation impulse", &blofeld::halo2::unnamed_enum$53 },
 		{ _field_enum, "overlap priority", &blofeld::halo2::unnamed_enum$48 },
 		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
 		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
 		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
@@ -33953,7 +33953,7 @@ namespace halo2 {
 		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
 		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
 		{ _field_enum, "max combat status", &blofeld::halo2::unnamed_enum$52 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
 		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
 		{ _field_enum, "speaker emotion", &blofeld::halo2::unnamed_enum$54 },
@@ -33961,10 +33961,10 @@ namespace halo2 {
 		{ _field_real, "player skip fraction" },
 		{ _field_real, "skip fraction" },
 		{ _field_long_string, "Sample line" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "reponses", &blofeld::halo2::response_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -33982,15 +33982,15 @@ namespace halo2 {
 		{ _field_short_integer, "parent index" },
 		{ _field_enum, "priority", &blofeld::halo2::unnamed_enum$48 },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$49 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::unnamed_enum$50 },
 		{ _field_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::unnamed_enum$50 },
 		{ _field_enum, "perception type", &blofeld::halo2::unnamed_enum$51 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "animation impulse", &blofeld::halo2::unnamed_enum$53 },
 		{ _field_enum, "overlap priority", &blofeld::halo2::unnamed_enum$48 },
 		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
 		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
 		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
@@ -33998,7 +33998,7 @@ namespace halo2 {
 		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
 		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
 		{ _field_enum, "max combat status", &blofeld::halo2::unnamed_enum$52 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
 		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
 		{ _field_enum, "speaker emotion", &blofeld::halo2::unnamed_enum$54 },
@@ -34006,9 +34006,9 @@ namespace halo2 {
 		{ _field_real, "player skip fraction" },
 		{ _field_real, "skip fraction" },
 		{ _field_long_string, "Sample line" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "reponses", &blofeld::halo2::response_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "children", &blofeld::halo2::vocalization_definitions_block_5 },
 		{ _field_terminator }
 	};
@@ -34027,15 +34027,15 @@ namespace halo2 {
 		{ _field_short_integer, "parent index" },
 		{ _field_enum, "priority", &blofeld::halo2::unnamed_enum$48 },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$49 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::unnamed_enum$50 },
 		{ _field_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::unnamed_enum$50 },
 		{ _field_enum, "perception type", &blofeld::halo2::unnamed_enum$51 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "animation impulse", &blofeld::halo2::unnamed_enum$53 },
 		{ _field_enum, "overlap priority", &blofeld::halo2::unnamed_enum$48 },
 		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
 		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
 		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
@@ -34043,7 +34043,7 @@ namespace halo2 {
 		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
 		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
 		{ _field_enum, "max combat status", &blofeld::halo2::unnamed_enum$52 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
 		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
 		{ _field_enum, "speaker emotion", &blofeld::halo2::unnamed_enum$54 },
@@ -34051,9 +34051,9 @@ namespace halo2 {
 		{ _field_real, "player skip fraction" },
 		{ _field_real, "skip fraction" },
 		{ _field_long_string, "Sample line" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "reponses", &blofeld::halo2::response_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "children", &blofeld::halo2::vocalization_definitions_block_4 },
 		{ _field_terminator }
 	};
@@ -34072,15 +34072,15 @@ namespace halo2 {
 		{ _field_short_integer, "parent index" },
 		{ _field_enum, "priority", &blofeld::halo2::unnamed_enum$48 },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$49 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::unnamed_enum$50 },
 		{ _field_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::unnamed_enum$50 },
 		{ _field_enum, "perception type", &blofeld::halo2::unnamed_enum$51 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "animation impulse", &blofeld::halo2::unnamed_enum$53 },
 		{ _field_enum, "overlap priority", &blofeld::halo2::unnamed_enum$48 },
 		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
 		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
 		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
@@ -34088,7 +34088,7 @@ namespace halo2 {
 		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
 		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
 		{ _field_enum, "max combat status", &blofeld::halo2::unnamed_enum$52 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
 		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
 		{ _field_enum, "speaker emotion", &blofeld::halo2::unnamed_enum$54 },
@@ -34096,9 +34096,9 @@ namespace halo2 {
 		{ _field_real, "player skip fraction" },
 		{ _field_real, "skip fraction" },
 		{ _field_long_string, "Sample line" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "reponses", &blofeld::halo2::response_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "children", &blofeld::halo2::vocalization_definitions_block_3 },
 		{ _field_terminator }
 	};
@@ -34117,15 +34117,15 @@ namespace halo2 {
 		{ _field_short_integer, "parent index" },
 		{ _field_enum, "priority", &blofeld::halo2::unnamed_enum$48 },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$49 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::unnamed_enum$50 },
 		{ _field_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::unnamed_enum$50 },
 		{ _field_enum, "perception type", &blofeld::halo2::unnamed_enum$51 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "animation impulse", &blofeld::halo2::unnamed_enum$53 },
 		{ _field_enum, "overlap priority", &blofeld::halo2::unnamed_enum$48 },
 		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
 		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
 		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
@@ -34133,7 +34133,7 @@ namespace halo2 {
 		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
 		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
 		{ _field_enum, "max combat status", &blofeld::halo2::unnamed_enum$52 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
 		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
 		{ _field_enum, "speaker emotion", &blofeld::halo2::unnamed_enum$54 },
@@ -34141,9 +34141,9 @@ namespace halo2 {
 		{ _field_real, "player skip fraction" },
 		{ _field_real, "skip fraction" },
 		{ _field_long_string, "Sample line" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "reponses", &blofeld::halo2::response_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "children", &blofeld::halo2::vocalization_definitions_block_2 },
 		{ _field_terminator }
 	};
@@ -34162,15 +34162,15 @@ namespace halo2 {
 		{ _field_short_integer, "parent index" },
 		{ _field_enum, "priority", &blofeld::halo2::unnamed_enum$48 },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$49 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::unnamed_enum$50 },
 		{ _field_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::unnamed_enum$50 },
 		{ _field_enum, "perception type", &blofeld::halo2::unnamed_enum$51 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "animation impulse", &blofeld::halo2::unnamed_enum$53 },
 		{ _field_enum, "overlap priority", &blofeld::halo2::unnamed_enum$48 },
 		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
 		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
 		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
@@ -34178,7 +34178,7 @@ namespace halo2 {
 		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
 		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
 		{ _field_enum, "max combat status", &blofeld::halo2::unnamed_enum$52 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
 		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
 		{ _field_enum, "speaker emotion", &blofeld::halo2::unnamed_enum$54 },
@@ -34186,9 +34186,9 @@ namespace halo2 {
 		{ _field_real, "player skip fraction" },
 		{ _field_real, "skip fraction" },
 		{ _field_long_string, "Sample line" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "reponses", &blofeld::halo2::response_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "children", &blofeld::halo2::vocalization_definitions_block_1 },
 		{ _field_terminator }
 	};
@@ -34302,7 +34302,7 @@ namespace halo2 {
 		{ _field_real, "target leading", "how much we lead moving targets. 0.0= no prediction. 1.0= predict completely.", nullptr, "[0,1]" },
 		{ _field_real, "weapon damage modifier", "what fraction of its normal damage our weapon inflicts (zero = no modifier)" },
 		{ _field_real, "minimum firing range", "weapon will not be fired at target closer than given distance" },
-		FIELD_EXPLANATION("burst geometry", nullptr, FIELD_FLAG_NONE, "at the start of every burst we pick a random point near the target to fire at, on either the left or the right side.\nthe burst origin angle controls whether this error is exactly horizontal or might have some vertical component.\n\nover the course of the burst we move our projectiles back in the opposite direction towards the target. this return motion is also controlled by an angle that specifies how close to the horizontal it is.\n\nfor example if the burst origin angle and the burst return angle were both zero, and the return length was the same as the burst length, every burst would start the same amount away from the target (on either the left or right) and move back to exactly over the target at the end of the burst."),
+		FIELD_EXPLANATION_EX("burst geometry", nullptr, FIELD_FLAG_NONE, "at the start of every burst we pick a random point near the target to fire at, on either the left or the right side.\nthe burst origin angle controls whether this error is exactly horizontal or might have some vertical component.\n\nover the course of the burst we move our projectiles back in the opposite direction towards the target. this return motion is also controlled by an angle that specifies how close to the horizontal it is.\n\nfor example if the burst origin angle and the burst return angle were both zero, and the return length was the same as the burst length, every burst would start the same amount away from the target (on either the left or right) and move back to exactly over the target at the end of the burst."),
 		{ _field_real, "burst origin radius", "how far away from the target the starting point is", "world units" },
 		{ _field_angle, "burst origin angle", "the range from the horizontal that our starting error can be", "degrees" },
 		{ _field_real_bounds, "burst return length", "how far the burst point moves back towards the target (could be negative)", "world units" },
@@ -34313,7 +34313,7 @@ namespace halo2 {
 		{ _field_useless_pad, "value" },
 		{ _field_real, "special damage modifier", "damage modifier for special weapon fire (applied in addition to the normal damage modifier. zero = no change)", nullptr, "[0,1]" },
 		{ _field_angle, "special projectile error", "projectile error angle for special weapon fire (applied in addition to the normal error)", "degrees" },
-		FIELD_EXPLANATION("special-case firing properties", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("special-case firing properties", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "super-ballistic range", "we try to aim our shots super-ballistically if target is outside this range (zero = never)" },
 		{ _field_real, "bombardment range", "we offset our burst targets randomly by this range when firing at non-visible enemies (zero = never)" },
 		{ _field_enum, "special-fire mode", "the type of special weapon fire that we can use", &blofeld::halo2::unnamed_enum$132 },
@@ -34321,13 +34321,13 @@ namespace halo2 {
 		{ _field_real, "special-fire chance", "how likely we are to use our special weapon fire mode", nullptr, "[0,1]" },
 		{ _field_real, "special-fire delay", "how long we must wait between uses of our special weapon fire mode", "seconds" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Weapon drop when killed", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Weapon drop when killed", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_bounds, "drop weapon loaded", "amount of ammo loaded into the weapon that we drop (in fractions of a clip, e.g. 0.3 to 0.5)" },
 		{ _field_short_bounds, "drop weapon ammo", "total number of rounds in the weapon that we drop (ignored for energy weapons)" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Special Targeting", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Special Targeting", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "Max special target distance", "Specific target regions on a vehicle or unit will be fired upon only under the given distance", "world units" },
-		FIELD_EXPLANATION("Ballistic firing", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Ballistic firing", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_bounds, "Ballistic firing bounds", "At the min range, the min ballistic fraction is used, at the max, the max ballistic fraction is used", "world units" },
 		{ _field_real_bounds, "Ballistic fraction bounds", "Controls speed and degree of arc. 0 = high, slow, 1 = low, fast", nullptr, "[0-1]" },
 		{ _field_terminator }
@@ -34345,17 +34345,17 @@ namespace halo2 {
 		{ _field_tag_reference, "unit", &blofeld::halo2::unit_reference$2 },
 		{ _field_long_flags, "vehicle flags", &blofeld::halo2::unnamed_enum$121 },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Pathfinding", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Pathfinding", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "ai pathfinding radius", "(Ground vehicles)", "world units" },
 		{ _field_real, "ai destination radius", "(All vehicles) Distance within which goal is considered reached", "world units" },
 		{ _field_real, "ai deceleration distanceworld units", "(All vehicles)Distance from goal at which AI starts to decelerate" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Turning", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Turning", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "ai turning radius", "(Warthog, Pelican) Idealized average turning radius (should reflect actual vehicle physics)" },
 		{ _field_real, "ai inner turning radius (< tr)", "(Warthog-type) Idealized minimum turning radius (should reflect actual vehicle physics)" },
 		{ _field_real, "ai ideal turning radius (> tr)", "(Warthogs, ghosts) Ideal turning radius for rounding turns (barring obstacles, etc.)" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Steering", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Steering", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_angle, "ai banshee steering maximum", "(Banshee)" },
 		{ _field_real, "ai max steering angle", "(Warthog, ghosts, wraiths)Maximum steering angle from forward (ultimately controls turning speed)", "degrees" },
 		{ _field_real, "ai max steering delta", "(pelicans, dropships, ghosts, wraiths)Maximum delta in steering angle from one tick to the next (ultimately controls turn acceleration)", "degrees" },
@@ -34363,14 +34363,14 @@ namespace halo2 {
 		{ _field_angle_bounds, "ai oversteering bounds", "(Banshee) Angle to goal at which AI will oversteer" },
 		{ _field_real, "ai sideslip distance", "(Ghosts, Dropships) Distance within which Ai will strafe to target (as opposed to turning)" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Throttle", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Throttle", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "ai throttle maximum", "(All vehicles)", "(0 - 1)" },
 		{ _field_real, "ai goal min throttle scale", "(Warthogs, Dropships, ghosts)scale on throttle when within 'ai deceleration distance' of goal (0...1)" },
 		{ _field_real, "ai turn min throttle scale", "(Warthogs, ghosts) Scale on throttle due to nearness to a turn (0...1)" },
 		{ _field_real, "ai direction min throttle scale", "(Warthogs, ghosts) Scale on throttle due to facing away from intended direction (0...1)" },
 		{ _field_real, "ai acceleration scale", "(warthogs, ghosts) The maximum allowable change in throttle between ticks", "(0-1)" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Behavior", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("Behavior", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "ai charge repeat timeout", "(All vehicles) Time delay between vehicle charges" },
 		{ _field_real, "DEPRECATED (ai strafing abort range)", "(All vehicles) Distance at which charge will be aborted" },
 		{ _field_real, "ai avoidance distance", "(Banshee, Sentinels, Dropships) Look-ahead distance for obstacle avoidance", "world units" },
@@ -34412,7 +34412,7 @@ namespace halo2 {
 		{ _field_block, "Look properties", &blofeld::halo2::character_look_block },
 		{ _field_block, "Movement properties", &blofeld::halo2::character_movement_block },
 		{ _field_block, "Engage properties", &blofeld::halo2::character_engage_block },
-		FIELD_EXPLANATION("Danger Values", nullptr, FIELD_FLAG_NONE, "Danger values can be found in the ai-globals section of the globals tag."),
+		FIELD_EXPLANATION_EX("Danger Values", nullptr, FIELD_FLAG_NONE, "Danger values can be found in the ai-globals section of the globals tag."),
 		{ _field_block, "Evasion properties", &blofeld::halo2::character_evasion_block },
 		{ _field_block, "Cover properties", &blofeld::halo2::character_cover_block },
 		{ _field_block, "search properties", &blofeld::halo2::character_search_block },
@@ -34457,7 +34457,7 @@ namespace halo2 {
 		{ _field_block, "ready properties", &blofeld::halo2::character_ready_block },
 		{ _field_block, "engage properties", &blofeld::halo2::character_engage_block },
 		{ _field_block, "charge properties", &blofeld::halo2::character_charge_block },
-		FIELD_EXPLANATION("Danger Values", nullptr, FIELD_FLAG_NONE, "Danger values can be found in the ai-globals section of the globals tag."),
+		FIELD_EXPLANATION_EX("Danger Values", nullptr, FIELD_FLAG_NONE, "Danger values can be found in the ai-globals section of the globals tag."),
 		{ _field_block, "evasion properties", &blofeld::halo2::character_evasion_block },
 		{ _field_block, "cover properties", &blofeld::halo2::character_cover_block },
 		{ _field_block, "retreat properties", &blofeld::halo2::character_retreat_block },
@@ -34485,8 +34485,8 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$491 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_string_id, "vocalization" },
 		{ _field_tag_reference, "sound", &blofeld::halo2::sound_reference$3 },
 		{ _field_terminator }
@@ -34503,7 +34503,7 @@ namespace halo2 {
 	{
 		{ _field_tag_reference, "global dialogue info", &blofeld::halo2::ai_dialogue_globals_reference$2 },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$490 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_block, "vocalizations", &blofeld::halo2::sound_references_block },
 		{ _field_string_id, "mission dialogue designator", "3-letter mission dialogue designator name" },
 		{ _field_terminator }
@@ -34541,7 +34541,7 @@ namespace halo2 {
 		{ _field_useless_pad, "value" },
 		{ _field_real, "duration", nullptr, "seconds" },
 		{ _field_enum, "fade function", &blofeld::halo2::unnamed_enum$250 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_real_fraction, "maximum intensity", nullptr, nullptr, "[0,1]" },
 		{ _field_useless_pad, "value" },
@@ -34549,18 +34549,18 @@ namespace halo2 {
 		{ _field_real_fraction, "frequency", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "duration", nullptr, "seconds" },
 		{ _field_enum, "fade function", &blofeld::halo2::unnamed_enum$250 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_real_fraction, "frequency", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "duration", nullptr, "seconds" },
 		{ _field_enum, "fade function", &blofeld::halo2::unnamed_enum$250 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_useless_pad, "value" },
 		{ _field_useless_pad, "value" },
 		{ _field_real, "duration", nullptr, "seconds" },
 		{ _field_enum, "fade function", &blofeld::halo2::unnamed_enum$250 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_angle, "rotation", nullptr, "degrees" },
 		{ _field_real, "pushback", nullptr, "world units" },
 		{ _field_real_bounds, "jitter", nullptr, "world units" },
@@ -34568,12 +34568,12 @@ namespace halo2 {
 		{ _field_useless_pad, "value" },
 		{ _field_real, "duration", "the effect will last for this duration.", "seconds" },
 		{ _field_enum, "falloff function", "a function to envelope the effect's magnitude over time", &blofeld::halo2::unnamed_enum$250 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "random translation", "random translation in all directions", "world units" },
 		{ _field_angle, "random rotation", "random rotation in all directions", "degrees" },
 		{ _field_useless_pad, "value" },
 		{ _field_enum, "wobble function", "a function to perturb the effect's behavior over time", &blofeld::halo2::unnamed_enum$158 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "wobble function period", nullptr, "seconds" },
 		{ _field_real_fraction, "wobble weight", "a value of 0.0 signifies that the wobble function has no effect; a value of 1.0 signifies that the effect will not be felt when the wobble function's value is zero." },
 		{ _field_useless_pad, "value" },
@@ -34588,7 +34588,7 @@ namespace halo2 {
 		{ _field_real, "outward radius", nullptr, "world units" },
 		{ _field_real, "outward exponent" },
 		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("damage", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("damage", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "side effect", &blofeld::halo2::unnamed_enum$244 },
 		{ _field_enum, "category", &blofeld::halo2::unnamed_enum$245 },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$246 },
@@ -34648,7 +34648,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "object", &blofeld::halo2::object_block_group_block_struct_definition },
-		FIELD_EXPLANATION("$$$ PROJECTILE $$$", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("$$$ PROJECTILE $$$", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$354 },
 		{ _field_enum, "detonation timer starts", &blofeld::halo2::unnamed_enum$355 },
 		{ _field_enum, "impact noise", &blofeld::halo2::unnamed_enum$356 },
@@ -34659,14 +34659,14 @@ namespace halo2 {
 		{ _field_tag_reference, "super detonation", &blofeld::halo2::effect_reference },
 		{ _field_real, "AI perception radius", nullptr, "world units" },
 		{ _field_real, "collision radius", nullptr, "world units" },
-		FIELD_EXPLANATION("detonation", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("detonation", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "arming time", "won't detonate before this time elapses", "seconds" },
 		{ _field_real, "danger radius", nullptr, "world units" },
 		{ _field_tag_reference, "effect", &blofeld::halo2::effect_reference },
 		{ _field_real_bounds, "timer", "detonation countdown (zero is untimed)", "seconds" },
 		{ _field_real, "minimum velocity", "detonates when slowed below this velocity", "world units per second" },
 		{ _field_real, "maximum range", "detonates after travelling this distance", "world units" },
-		FIELD_EXPLANATION("physics", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("physics", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "air gravity scale", "the proportion of normal gravity applied to the projectile when in air." },
 		{ _field_real_bounds, "air damage range", "the range over which damage is scaled when the projectile is in air.", "world units" },
 		{ _field_real, "water gravity scale", "the proportion of normal gravity applied to the projectile when in water." },
@@ -34675,14 +34675,14 @@ namespace halo2 {
 		{ _field_real, "final velocity", "bullet's velocity when inflicting minimum damage", "world units per second" },
 		{ _field_angle, "guided angular velocity", nullptr, "degrees per second" },
 		{ _field_enum, "detonation noise", &blofeld::halo2::unnamed_enum$356 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "detonation started", &blofeld::halo2::effect_reference },
 		{ _field_tag_reference, "flyby sound", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "attached detonation damage", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "impact damage", &blofeld::halo2::damage_effect_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "material responses", &blofeld::halo2::projectile_material_response_block },
-		FIELD_EXPLANATION("New/unsorted fields", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("New/unsorted fields", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "impact effect", &blofeld::halo2::effect_reference },
 		{ _field_tag_reference, "detonation damage", &blofeld::halo2::damage_effect_reference },
 		{ _field_terminator }
@@ -34709,7 +34709,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_integer, "rounds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 10),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 10),
 		{ _field_tag_reference, "equipment", &blofeld::halo2::equipment_reference$2 },
 		{ _field_terminator }
 	};
@@ -34728,16 +34728,16 @@ namespace halo2 {
 		{ _field_short_integer, "rounds total initial" },
 		{ _field_short_integer, "rounds total maximum" },
 		{ _field_short_integer, "rounds loaded maximum" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real, "reload time", "the length of time it takes to load a single magazine into the weapon", "seconds" },
 		{ _field_short_integer, "rounds reloaded" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "chamber time", "the length of time it takes to chamber the next round", "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_tag_reference, "reloading effect", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_tag_reference, "chambering effect", &blofeld::halo2::sound_effect_reference$2 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "magazines", &blofeld::halo2::magazine_objects },
 		{ _field_terminator }
 	};
@@ -34753,7 +34753,7 @@ namespace halo2 {
 	{
 		{ _field_short_integer, "shot count lower bound", "the minimum number of times this firing effect will be used, once it has been chosen" },
 		{ _field_short_integer, "shot count upper bound", "the maximum number of times this firing effect will be used, once it has been chosen" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_tag_reference, "firing effect", "this effect is used when the weapon is loaded and fired normally", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_tag_reference, "misfire effect", "this effect is used when the weapon is loaded but fired while overheated", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_tag_reference, "empty effect", "this effect is used when the weapon is not loaded", &blofeld::halo2::sound_effect_reference$2 },
@@ -34796,47 +34796,47 @@ namespace halo2 {
 		{ _field_short_integer, "minimum rounds loaded", "the minimum number of rounds necessary to fire the weapon" },
 		{ _field_short_integer, "rounds between tracers", "the number of non-tracer rounds fired between tracers" },
 		{ _field_string_id, "optional barrel marker name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "firing noise", "how loud this weapon appears to the AI", &blofeld::halo2::unnamed_enum$356 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" },
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial error", "seconds" },
 		{ _field_real_bounds, "damage error", "the range of angles (in degrees) that a damaged weapon will skew fire" },
 		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" },
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial error", "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_angle, "minimum error", nullptr, "degrees" },
 		{ _field_angle_bounds, "error angle", nullptr, "degrees" },
 		{ _field_real_fraction, "dual wield damage scale" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_enum, "distribution function", &blofeld::halo2::unnamed_enum$530 },
 		{ _field_short_integer, "projectiles per shot" },
 		{ _field_real, "distribution angle", nullptr, "degrees" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_angle, "minimum error", nullptr, "degrees" },
 		{ _field_angle_bounds, "error angle", nullptr, "degrees" },
 		{ _field_real_point_3d, "first person offset", "+x is forward, +z is up, +y is left", "world units" },
 		{ _field_char_enum, "damage effect reporting type", &blofeld::halo2::unnamed_enum$213 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "projectile", &blofeld::halo2::projectile_reference },
 		{ _field_struct, "eh", &blofeld::halo2::weapon_barrel_damage_effect_struct_block_struct_definition },
 		{ _field_real, "ejection port recovery time", "the amount of time (in seconds) it takes for the ejection port to transition from 1.0 (open) to 0.0 (closed) after a shot has been fired" },
 		{ _field_real, "illumination recovery time", "the amount of time (in seconds) it takes the illumination function to transition from 1.0 (bright) to 0.0 (dark) after a shot has been fired" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real_fraction, "heat generated per round", "the amount of heat generated each time the trigger is fired", nullptr, "[0,1]" },
 		{ _field_real_fraction, "age generated per round", "the amount the weapon ages each time the trigger is fired", nullptr, "[0,1]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "overload time", "the next trigger fires this often while holding down this trigger", "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_angle_bounds, "angle change per shot", "angle change per shot of the weapon during firing" },
 		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final angle change per shot", "seconds" },
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial angle change per shot", "seconds" },
 		{ _field_enum, "angle change function", "function used to scale between initial and final angle change per shot", &blofeld::halo2::unnamed_enum$393 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_enum, "prediction type", &blofeld::halo2::unnamed_enum$529 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_block, "firing effects", "firing effects determine what happens when this trigger is fired", &blofeld::halo2::barrel_firing_effect_block },
 		{ _field_terminator }
 	};
@@ -34851,7 +34851,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$528 },
-		FIELD_EXPLANATION("firing", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("firing", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_bounds, "rounds per second", "the number of firing effects created per second" },
 		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final rounds per second", "seconds" },
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return from its final rounds per second to its initial", "seconds" },
@@ -34863,21 +34863,21 @@ namespace halo2 {
 		{ _field_short_integer, "minimum rounds loaded", "the minimum number of rounds necessary to fire the weapon" },
 		{ _field_short_integer, "rounds between tracers", "the number of non-tracer rounds fired between tracers" },
 		{ _field_string_id, "optional barrel marker name" },
-		FIELD_EXPLANATION("prediction properties", nullptr, FIELD_FLAG_NONE, "what the behavior of this barrel is in a predicted network game"),
+		FIELD_EXPLANATION_EX("prediction properties", nullptr, FIELD_FLAG_NONE, "what the behavior of this barrel is in a predicted network game"),
 		{ _field_enum, "prediction type", &blofeld::halo2::unnamed_enum$529 },
 		{ _field_enum, "firing noise", "how loud this weapon appears to the AI", &blofeld::halo2::unnamed_enum$356 },
-		FIELD_EXPLANATION("error", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("error", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" },
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial error", "seconds" },
 		{ _field_real_bounds, "damage error", "the range of angles (in degrees) that a damaged weapon will skew fire" },
-		FIELD_EXPLANATION("dual weapon error", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("dual weapon error", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" },
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial error", "seconds" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_angle, "minimum error", nullptr, "degrees" },
 		{ _field_angle_bounds, "error angle", nullptr, "degrees" },
 		{ _field_real_fraction, "dual wield damage scale" },
-		FIELD_EXPLANATION("projectile", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("projectile", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "distribution function", &blofeld::halo2::unnamed_enum$530 },
 		{ _field_short_integer, "projectiles per shot" },
 		{ _field_real, "distribution angle", nullptr, "degrees" },
@@ -34885,23 +34885,23 @@ namespace halo2 {
 		{ _field_angle_bounds, "error angle", nullptr, "degrees" },
 		{ _field_real_point_3d, "first person offset", "+x is forward, +z is up, +y is left", "world units" },
 		{ _field_char_enum, "damage effect reporting type", &blofeld::halo2::unnamed_enum$213 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "projectile", &blofeld::halo2::projectile_reference },
 		{ _field_struct, "eh", &blofeld::halo2::weapon_barrel_damage_effect_struct_block_struct_definition },
-		FIELD_EXPLANATION("misc", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("misc", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "ejection port recovery time", "the amount of time (in seconds) it takes for the ejection port to transition from 1.0 (open) to 0.0 (closed) after a shot has been fired" },
 		{ _field_real, "illumination recovery time", "the amount of time (in seconds) it takes the illumination function to transition from 1.0 (bright) to 0.0 (dark) after a shot has been fired" },
 		{ _field_real_fraction, "heat generated per round", "the amount of heat generated each time the trigger is fired", nullptr, "[0,1]" },
 		{ _field_real_fraction, "age generated per round", "the amount the weapon ages each time the trigger is fired", nullptr, "[0,1]" },
 		{ _field_real, "overload time", "the next trigger fires this often while holding down this trigger", "seconds" },
-		FIELD_EXPLANATION("angle change (recoil)", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("angle change (recoil)", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_angle_bounds, "angle change per shot", "angle change per shot of the weapon during firing" },
 		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final angle change per shot", "seconds" },
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial angle change per shot", "seconds" },
 		{ _field_enum, "angle change function", "function used to scale between initial and final angle change per shot", &blofeld::halo2::unnamed_enum$393 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_block, "firing effects", "firing effects determine what happens when this trigger is fired", &blofeld::halo2::barrel_firing_effect_block },
 		{ _field_terminator }
 	};
@@ -34956,7 +34956,7 @@ namespace halo2 {
 		{ _field_old_string_id, "value" },
 		{ _field_enum, "secondary trigger mode", &blofeld::halo2::unnamed_enum$516 },
 		{ _field_short_integer, "maximum alternate shots loaded", "if the second trigger loads alternate ammunition, this is the maximum number of shots that can be loaded at a time" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real, "ready time", nullptr, "seconds" },
 		{ _field_tag_reference, "ready effect", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_real_fraction, "heat recovery threshold", "the heat value a weapon must return to before leaving the overheated state, once it has become overheated in the first place", nullptr, "[0,1]" },
@@ -34966,7 +34966,7 @@ namespace halo2 {
 		{ _field_real_fraction, "heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
 		{ _field_real_fraction, "heat illumination", "the amount of illumination given off when the weapon is overheated", nullptr, "[0,1]" },
 		{ _field_real_fraction, "overheated heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_tag_reference, "overheated", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_tag_reference, "detonation", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_tag_reference, "player melee damage", &blofeld::halo2::damage_effect_reference },
@@ -34974,23 +34974,23 @@ namespace halo2 {
 		{ _field_struct, "melee aim assist", &blofeld::halo2::melee_aim_assist_struct_block_struct_definition },
 		{ _field_struct, "melee damage parameters", &blofeld::halo2::melee_damage_parameters_struct_block_struct_definition },
 		{ _field_char_enum, "melee damage reporting type", &blofeld::halo2::unnamed_enum$213 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "actor firing parameters", &blofeld::halo2::character_reference$6 },
 		{ _field_real, "near reticle range", "the range at which the closer of the two static target reticles will be drawn", "world units" },
 		{ _field_real, "far reticle range", "the range at which the farther of the two static target reticles will be drawn", "world units" },
 		{ _field_real, "intersection reticle range", "the maximum range at which the dynamic target reticle will be drawn" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "magnification levels", "the number of magnification levels this weapon allows" },
 		{ _field_real_bounds, "magnification range" },
 		{ _field_struct, "weapon aim assist", &blofeld::halo2::aim_assist_struct_block_struct_definition },
 		{ _field_enum, "movement penalized", &blofeld::halo2::unnamed_enum$517 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_fraction, "forward movement penalty", "percent slowdown to forward movement for units carrying this weapon" },
 		{ _field_real_fraction, "sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real, "AI scariness" },
 		{ _field_real, "light power-on time", nullptr, "seconds" },
 		{ _field_real, "light power-off time", nullptr, "seconds" },
@@ -35000,12 +35000,12 @@ namespace halo2 {
 		{ _field_real, "age rate of fire penalty", "how much the weapon's rate of fire is penalized as it ages" },
 		{ _field_real_fraction, "age misfire start", "the age threshold when the weapon begins to misfire", nullptr, "[0,1]" },
 		{ _field_real_fraction, "age misfire chance", "at age 1.0, the misfire chance per shot", nullptr, "[0,1]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_EXPLANATION("interface", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_EXPLANATION_EX("interface", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "first person model", &blofeld::halo2::render_model_reference$6 },
 		{ _field_tag_reference, "first person animations", &blofeld::halo2::model_animation_graph_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_tag_reference, "pickup sound", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "zoom-in sound", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "zoom-out sound", &blofeld::halo2::sound_reference },
@@ -35019,7 +35019,7 @@ namespace halo2 {
 		{ _field_enum, "weapon type", &blofeld::halo2::unnamed_enum$519 },
 		{ _field_block, "predicted resources", &blofeld::halo2::predicted_resource_block },
 		{ _field_block, "magazines", &blofeld::halo2::magazines },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -35037,17 +35037,17 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "item", &blofeld::halo2::item_block_group_block_struct_definition },
-		FIELD_EXPLANATION("$$$ WEAPON $$$", nullptr, FIELD_FLAG_NONE, "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'."),
+		FIELD_EXPLANATION_EX("$$$ WEAPON $$$", nullptr, FIELD_FLAG_NONE, "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'."),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$515 },
 		{ _field_old_string_id, "value" },
 		{ _field_enum, "secondary trigger mode", &blofeld::halo2::unnamed_enum$516 },
 		{ _field_short_integer, "maximum alternate shots loaded", "if the second trigger loads alternate ammunition, this is the maximum number of shots that can be loaded at a time" },
-		FIELD_EXPLANATION("old obsolete export to functions", nullptr, FIELD_FLAG_NONE, nullptr),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_EXPLANATION_EX("old obsolete export to functions", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real, "ready time", nullptr, "seconds" },
 		{ _field_tag_reference, "ready effect", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_tag_reference, "ready damage effect", &blofeld::halo2::damage_effect_reference },
-		FIELD_EXPLANATION("heat", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("heat", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_fraction, "heat recovery threshold", "the heat value a weapon must return to before leaving the overheated state, once it has become overheated in the first place", nullptr, "[0,1]" },
 		{ _field_real_fraction, "overheated threshold", "the heat value over which a weapon first becomes overheated (should be greater than the heat recovery threshold)", nullptr, "[0,1]" },
 		{ _field_real_fraction, "heat detonation threshold", "the heat value above which the weapon has a chance of exploding each time it is fired", nullptr, "[0,1]" },
@@ -35055,71 +35055,71 @@ namespace halo2 {
 		{ _field_real_fraction, "heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
 		{ _field_real_fraction, "heat illumination", "the amount of illumination given off when the weapon is overheated", nullptr, "[0,1]" },
 		{ _field_real_fraction, "overheated heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_tag_reference, "overheated", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_tag_reference, "overheated damage effect", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "detonation", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_tag_reference, "detonation damage effect", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "player melee damage", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "player melee response", &blofeld::halo2::damage_effect_reference },
-		FIELD_EXPLANATION("melee aim assist", nullptr, FIELD_FLAG_NONE, "magnetism angle: the maximum angle that magnetism works at full strength\nmagnetism range: the maximum distance that magnetism works at full strength\nthrottle magnitude: additional throttle to apply towards target when melee-ing w/ magnetism\nthrottle minimum distance: minimum distance to target that throttle magnetism kicks in\nthrottle maximum adjustment angle: maximum angle throttle magnetism will have an effect, relative to the players movement throttle\n"),
+		FIELD_EXPLANATION_EX("melee aim assist", nullptr, FIELD_FLAG_NONE, "magnetism angle: the maximum angle that magnetism works at full strength\nmagnetism range: the maximum distance that magnetism works at full strength\nthrottle magnitude: additional throttle to apply towards target when melee-ing w/ magnetism\nthrottle minimum distance: minimum distance to target that throttle magnetism kicks in\nthrottle maximum adjustment angle: maximum angle throttle magnetism will have an effect, relative to the players movement throttle\n"),
 		{ _field_struct, "melee aim assist", &blofeld::halo2::melee_aim_assist_struct_block_struct_definition },
-		FIELD_EXPLANATION("melee damage parameters", nullptr, FIELD_FLAG_NONE, "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
+		FIELD_EXPLANATION_EX("melee damage parameters", nullptr, FIELD_FLAG_NONE, "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
 		{ _field_struct, "melee damage parameters", &blofeld::halo2::melee_damage_parameters_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_EXPLANATION("zoom", nullptr, FIELD_FLAG_NONE, nullptr),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("zoom", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "magnification levels", "the number of magnification levels this weapon allows" },
 		{ _field_real_bounds, "magnification range" },
-		FIELD_EXPLANATION("weapon aim assist", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("weapon aim assist", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "weapon aim assist", &blofeld::halo2::aim_assist_struct_block_struct_definition },
-		FIELD_EXPLANATION("movement", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("movement", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "movement penalized", &blofeld::halo2::unnamed_enum$517 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_fraction, "forward movement penalty", "percent slowdown to forward movement for units carrying this weapon" },
 		{ _field_real_fraction, "sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("AI targeting parameters", nullptr, FIELD_FLAG_NONE, nullptr),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("AI targeting parameters", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real, "AI scariness" },
-		FIELD_EXPLANATION("miscellaneous", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("miscellaneous", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "weapon power-on time", nullptr, "seconds" },
 		{ _field_real, "weapon power-off time", nullptr, "seconds" },
 		{ _field_tag_reference, "weapon power-on effect", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_tag_reference, "weapon power-off effect", &blofeld::halo2::sound_effect_reference$2 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_real, "age heat recovery penalty", "how much the weapon's heat recovery is penalized as it ages" },
 		{ _field_real, "age rate of fire penalty", "how much the weapon's rate of fire is penalized as it ages" },
 		{ _field_real_fraction, "age misfire start", "the age threshold when the weapon begins to misfire", nullptr, "[0,1]" },
 		{ _field_real_fraction, "age misfire chance", "at age 1.0, the misfire chance per shot", nullptr, "[0,1]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_EXPLANATION("interface", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_EXPLANATION_EX("interface", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_tag_reference, "first person model", &blofeld::halo2::render_model_reference$6 },
 		{ _field_tag_reference, "first person animations", &blofeld::halo2::model_animation_graph_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_tag_reference, "pickup sound", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "zoom-in sound", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "zoom-out sound", &blofeld::halo2::sound_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real, "active camo ding", "how much to decrease active camo when a round is fired" },
 		{ _field_real, "active camo regrowth rate", "how fast to increase active camo (per tick) when a round is fired" },
 		{ _field_string_id, "handle node", "the node that get's attached to the unit's hand" },
-		FIELD_EXPLANATION("weapon labels", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("weapon labels", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_string_id, "weapon class" },
 		{ _field_string_id, "weapon name" },
 		{ _field_enum, "multiplayer weapon type", &blofeld::halo2::unnamed_enum$518 },
-		FIELD_EXPLANATION("more miscellaneous", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("more miscellaneous", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "weapon type", &blofeld::halo2::unnamed_enum$519 },
 		{ _field_struct, "tracking", &blofeld::halo2::weapon_tracking_struct_block_struct_definition },
 		{ _field_block, "predicted resources", &blofeld::halo2::predicted_resource_block },
 		{ _field_block, "magazines", &blofeld::halo2::magazines },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "new triggers", &blofeld::halo2::weapon_triggers },
 		{ _field_block, "barrels", &blofeld::halo2::weapon_barrels },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -35133,18 +35133,18 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "item", &blofeld::halo2::item_block_group_block_struct_definition },
-		FIELD_EXPLANATION("$$$ WEAPON $$$", nullptr, FIELD_FLAG_NONE, "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'."),
+		FIELD_EXPLANATION_EX("$$$ WEAPON $$$", nullptr, FIELD_FLAG_NONE, "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'."),
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$515 },
 		{ _field_old_string_id, "value" },
 		{ _field_enum, "secondary trigger mode", &blofeld::halo2::unnamed_enum$516 },
 		{ _field_short_integer, "maximum alternate shots loaded", "if the second trigger loads alternate ammunition, this is the maximum number of shots that can be loaded at a time" },
 		{ _field_real, "turn on time", "how long after being readied it takes this weapon to switch its 'turned_on' attachment to 1.0" },
-		FIELD_EXPLANATION("old obsolete export to functions", nullptr, FIELD_FLAG_NONE, nullptr),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("old obsolete export to functions", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "ready time", nullptr, "seconds" },
 		{ _field_tag_reference, "ready effect", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_tag_reference, "ready damage effect", &blofeld::halo2::damage_effect_reference },
-		FIELD_EXPLANATION("heat", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("heat", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_fraction, "heat recovery threshold", "the heat value a weapon must return to before leaving the overheated state, once it has become overheated in the first place", nullptr, "[0,1]" },
 		{ _field_real_fraction, "overheated threshold", "the heat value over which a weapon first becomes overheated (should be greater than the heat recovery threshold)", nullptr, "[0,1]" },
 		{ _field_real_fraction, "heat detonation threshold", "the heat value above which the weapon has a chance of exploding each time it is fired", nullptr, "[0,1]" },
@@ -35152,74 +35152,74 @@ namespace halo2 {
 		{ _field_real_fraction, "heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
 		{ _field_real_fraction, "heat illumination", "the amount of illumination given off when the weapon is overheated", nullptr, "[0,1]" },
 		{ _field_real_fraction, "overheated heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_tag_reference, "overheated", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_tag_reference, "overheated damage effect", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "detonation", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_tag_reference, "detonation damage effect", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "player melee damage", &blofeld::halo2::damage_effect_reference },
 		{ _field_tag_reference, "player melee response", &blofeld::halo2::damage_effect_reference },
-		FIELD_EXPLANATION("melee aim assist", nullptr, FIELD_FLAG_NONE, "magnetism angle: the maximum angle that magnetism works at full strength\nmagnetism range: the maximum distance that magnetism works at full strength\nthrottle magnitude: additional throttle to apply towards target when melee-ing w/ magnetism\nthrottle minimum distance: minimum distance to target that throttle magnetism kicks in\nthrottle maximum adjustment angle: maximum angle throttle magnetism will have an effect, relative to the players movement throttle\n"),
+		FIELD_EXPLANATION_EX("melee aim assist", nullptr, FIELD_FLAG_NONE, "magnetism angle: the maximum angle that magnetism works at full strength\nmagnetism range: the maximum distance that magnetism works at full strength\nthrottle magnitude: additional throttle to apply towards target when melee-ing w/ magnetism\nthrottle minimum distance: minimum distance to target that throttle magnetism kicks in\nthrottle maximum adjustment angle: maximum angle throttle magnetism will have an effect, relative to the players movement throttle\n"),
 		{ _field_struct, "melee aim assist", &blofeld::halo2::melee_aim_assist_struct_block_struct_definition },
-		FIELD_EXPLANATION("melee damage parameters", nullptr, FIELD_FLAG_NONE, "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
+		FIELD_EXPLANATION_EX("melee damage parameters", nullptr, FIELD_FLAG_NONE, "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
 		{ _field_struct, "melee damage parameters", &blofeld::halo2::melee_damage_parameters_struct_block_struct_definition },
 		{ _field_char_enum, "melee damage reporting type", &blofeld::halo2::unnamed_enum$213 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 3),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_EXPLANATION("zoom", nullptr, FIELD_FLAG_NONE, nullptr),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("zoom", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "magnification levels", "the number of magnification levels this weapon allows" },
 		{ _field_real_bounds, "magnification range" },
-		FIELD_EXPLANATION("weapon aim assist", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("weapon aim assist", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "weapon aim assist", &blofeld::halo2::aim_assist_struct_block_struct_definition },
-		FIELD_EXPLANATION("movement", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("movement", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "movement penalized", &blofeld::halo2::unnamed_enum$517 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_fraction, "forward movement penalty", "percent slowdown to forward movement for units carrying this weapon" },
 		{ _field_real_fraction, "sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
-		FIELD_EXPLANATION("AI targeting parameters", nullptr, FIELD_FLAG_NONE, nullptr),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_EXPLANATION_EX("AI targeting parameters", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real, "AI scariness" },
-		FIELD_EXPLANATION("miscellaneous", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("miscellaneous", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "weapon power-on time", nullptr, "seconds" },
 		{ _field_real, "weapon power-off time", nullptr, "seconds" },
 		{ _field_tag_reference, "weapon power-on effect", &blofeld::halo2::sound_effect_reference$2 },
 		{ _field_tag_reference, "weapon power-off effect", &blofeld::halo2::sound_effect_reference$2 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_real, "age heat recovery penalty", "how much the weapon's heat recovery is penalized as it ages" },
 		{ _field_real, "age rate of fire penalty", "how much the weapon's rate of fire is penalized as it ages" },
 		{ _field_real_fraction, "age misfire start", "the age threshold when the weapon begins to misfire", nullptr, "[0,1]" },
 		{ _field_real_fraction, "age misfire chance", "at age 1.0, the misfire chance per shot", nullptr, "[0,1]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_tag_reference, "pickup sound", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "zoom-in sound", &blofeld::halo2::sound_reference },
 		{ _field_tag_reference, "zoom-out sound", &blofeld::halo2::sound_reference },
 		{ _field_real, "active camo ding", "how much to decrease active camo when a round is fired" },
 		{ _field_real, "active camo regrowth rate", "how fast to increase active camo (per tick) when a round is fired" },
 		{ _field_string_id, "handle node", "the node that get's attached to the unit's hand" },
-		FIELD_EXPLANATION("weapon labels", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("weapon labels", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_string_id, "weapon class" },
 		{ _field_string_id, "weapon name" },
 		{ _field_enum, "multiplayer weapon type", &blofeld::halo2::unnamed_enum$518 },
-		FIELD_EXPLANATION("more miscellaneous", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("more miscellaneous", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "weapon type", &blofeld::halo2::unnamed_enum$519 },
 		{ _field_struct, "tracking", &blofeld::halo2::weapon_tracking_struct_block_struct_definition },
 		{ _field_struct, "player interface", &blofeld::halo2::weapon_interface_struct_block_struct_definition },
 		{ _field_block, "predicted resources", &blofeld::halo2::predicted_resource_block },
 		{ _field_block, "magazines", &blofeld::halo2::magazines },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "new triggers", &blofeld::halo2::weapon_triggers },
 		{ _field_block, "barrels", &blofeld::halo2::weapon_barrels },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_EXPLANATION("first-person movement control", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_EXPLANATION_EX("first-person movement control", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "max movement acceleration" },
 		{ _field_real, "max movement velocity" },
 		{ _field_real, "max turning acceleration" },
 		{ _field_real, "max turning velocity" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_tag_reference, "deployed vehicle", &blofeld::halo2::vehicle_reference$5 },
 		{ _field_terminator }
 	};
@@ -35237,7 +35237,7 @@ namespace halo2 {
 		{ _field_enum, "pathfinding policy", &blofeld::halo2::unnamed_enum$388 },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$386 },
 		{ _field_enum, "lightmapping policy", &blofeld::halo2::unnamed_enum$389 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
 	};
@@ -35268,12 +35268,12 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "object", &blofeld::halo2::object_block_group_block_struct_definition },
-		FIELD_EXPLANATION("Pathfinding", nullptr, FIELD_FLAG_NONE, "Indicate whether, by default, we should create pathfinding data for this type of scenery"),
+		FIELD_EXPLANATION_EX("Pathfinding", nullptr, FIELD_FLAG_NONE, "Indicate whether, by default, we should create pathfinding data for this type of scenery"),
 		{ _field_enum, "pathfinding policy", &blofeld::halo2::unnamed_enum$388 },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$386 },
-		FIELD_EXPLANATION("Lightmapping", nullptr, FIELD_FLAG_NONE, "Indicate whether, by default, how we should lightmap this type of scenery"),
+		FIELD_EXPLANATION_EX("Lightmapping", nullptr, FIELD_FLAG_NONE, "Indicate whether, by default, how we should lightmap this type of scenery"),
 		{ _field_enum, "lightmapping policy", &blofeld::halo2::unnamed_enum$387 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
 	};
@@ -35300,17 +35300,17 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_struct, "unit", &blofeld::halo2::unit_block_group_block_struct_definition },
-		FIELD_EXPLANATION("$$$ BIPED $$$", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("$$$ BIPED $$$", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_angle, "moving turning speed", nullptr, "degrees per second" },
-		FIELD_SKIP("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_angle, "stationary turning threshold" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_enum, "old obsolete A in", &blofeld::halo2::unnamed_enum$103 },
 		{ _field_enum, "old obsolete B in", &blofeld::halo2::unnamed_enum$103 },
 		{ _field_enum, "old obsolete C in", &blofeld::halo2::unnamed_enum$103 },
 		{ _field_enum, "old obsolete D in", &blofeld::halo2::unnamed_enum$103 },
 		{ _field_tag_reference, "DON'T USE", &blofeld::halo2::damage_effect_reference },
-		FIELD_EXPLANATION("flying", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("flying", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_angle, "bank angle", "angle at which we bank left/right when sidestepping or turning while moving forwards", "degrees" },
 		{ _field_real, "bank apply time", "time it takes us to apply a bank", "seconds" },
 		{ _field_real, "bank decay time", "time it takes us to recover from a bank", "seconds" },
@@ -35322,8 +35322,8 @@ namespace halo2 {
 		{ _field_angle, "angular velocity maximum", "turn rate", "degrees per second" },
 		{ _field_angle, "angular acceleration maximum", "turn acceleration rate", "degrees per second squared" },
 		{ _field_real, "crouch velocity modifier", "how much slower we fly if crouching (zero = same speed)", nullptr, "[0,1]" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
-		FIELD_EXPLANATION("movement", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_EXPLANATION_EX("movement", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_angle, "maximum slope angle", nullptr, "degrees" },
 		{ _field_angle, "downhill falloff angle", nullptr, "degrees" },
 		{ _field_angle, "downhill cutoff angle", nullptr, "degrees" },
@@ -35331,20 +35331,20 @@ namespace halo2 {
 		{ _field_angle, "uphill falloff angle", nullptr, "degrees" },
 		{ _field_angle, "uphill cutoff angle", nullptr, "degrees" },
 		{ _field_real, "uphill velocity scale" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_tag_reference, "UNUSED", &blofeld::halo2::material_effects_reference },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
-		FIELD_EXPLANATION("jumping and landing", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_EXPLANATION_EX("jumping and landing", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "jump velocity", nullptr, "world units per second" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_real, "maximum soft landing time", "the longest amount of time the biped can take to recover from a soft landing", "seconds" },
 		{ _field_real, "maximum hard landing time", "the longest amount of time the biped can take to recover from a hard landing", "seconds" },
 		{ _field_real, "minimum soft landing velocity", "below this velocity the biped does not react when landing", "world units per second" },
 		{ _field_real, "minimum hard landing velocity", "below this velocity the biped will not do a soft landing when returning to the ground", "world units per second" },
 		{ _field_real, "maximum hard landing velocity", "the velocity corresponding to the maximum landing time", "world units per second" },
 		{ _field_real, "death hard landing velocity", "the maximum velocity with which a character can strike the ground and live", "world units per second" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
-		FIELD_EXPLANATION("camera, collision, and autoaim", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_EXPLANATION_EX("camera, collision, and autoaim", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real, "standing camera height", nullptr, "world units" },
 		{ _field_real, "crouching camera height", nullptr, "world units" },
 		{ _field_real, "crouch transition time", nullptr, "seconds" },
@@ -35359,12 +35359,12 @@ namespace halo2 {
 		{ _field_real, "collision radius", nullptr, "world units" },
 		{ _field_real, "collision mass", nullptr, "world mass units" },
 		{ _field_string_id, "collision global material name", "collision material used when biped is alive" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "dead collision global material name", "collision material used when biped is dead" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_real, "autoaim width", nullptr, "world units" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 140),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 140),
 		{ _field_block, "contact points", "these are the points where the biped touches the ground", &blofeld::halo2::contact_point_block_v1 },
 		{ _field_block, "pill shapes", "No point editing these.  They get filled out at map load.", &blofeld::halo2::pills_block },
 		{ _field_terminator }
@@ -35389,7 +35389,7 @@ namespace halo2 {
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$500 },
 		{ _field_old_string_id, "label" },
 		{ _field_old_string_id, "marker name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_real_vector_3d, "acceleration scale" },
 		{ _field_real, "AI scariness" },
 		{ _field_enum, "ai seat type", &blofeld::halo2::unnamed_enum$501 },
@@ -35398,13 +35398,13 @@ namespace halo2 {
 		{ _field_real, "pitch rate", nullptr, "degrees per second" },
 		{ _field_struct, "unit camera", &blofeld::halo2::unit_camera_struct_block_struct_definition },
 		{ _field_block, "unit hud interface", &blofeld::halo2::unit_hud_reference_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "hud text message index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_angle, "yaw minimum" },
 		{ _field_angle, "yaw maximum" },
 		{ _field_tag_reference, "built-in gunner", &blofeld::halo2::character_reference$5 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_terminator }
 	};
 
@@ -35420,7 +35420,7 @@ namespace halo2 {
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$500 },
 		{ _field_old_string_id, "label" },
 		{ _field_old_string_id, "marker name" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_real_vector_3d, "acceleration scale" },
 		{ _field_real, "AI scariness" },
 		{ _field_enum, "ai seat type", &blofeld::halo2::unnamed_enum$501 },
@@ -35431,13 +35431,13 @@ namespace halo2 {
 		{ _field_real, "speed exponent" },
 		{ _field_struct, "unit camera", &blofeld::halo2::unit_camera_struct_block_struct_definition },
 		{ _field_block, "unit hud interface", &blofeld::halo2::unit_hud_reference_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "hud text message index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_angle, "yaw minimum" },
 		{ _field_angle, "yaw maximum" },
 		{ _field_tag_reference, "built-in gunner", &blofeld::halo2::character_reference$5 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_terminator }
 	};
 
@@ -35455,35 +35455,35 @@ namespace halo2 {
 		{ _field_old_string_id, "marker name" },
 		{ _field_string_id, "entry marker(s) name" },
 		{ _field_string_id, "boarding grenade marker" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_real, "turnover time", "how much time it takes to evict a rider from a flipped vehicle", "seconds" },
 		{ _field_real_vector_3d, "acceleration scale" },
 		{ _field_real, "AI scariness" },
 		{ _field_enum, "ai seat type", &blofeld::halo2::unnamed_enum$501 },
 		{ _field_real_fraction, "listener interpolation factor", "how far to interpolate listener position from camera to occupant's head" },
-		FIELD_EXPLANATION("speed dependant turn rates", nullptr, FIELD_FLAG_NONE, "when the unit velocity is 0, the yaw/pitch rates are the left values\nat [max speed reference], the yaw/pitch rates are the right values.\nthe max speed reference is what the code uses to generate a clamped speed from 0..1\nthe exponent controls how midrange speeds are interpreted."),
+		FIELD_EXPLANATION_EX("speed dependant turn rates", nullptr, FIELD_FLAG_NONE, "when the unit velocity is 0, the yaw/pitch rates are the left values\nat [max speed reference], the yaw/pitch rates are the right values.\nthe max speed reference is what the code uses to generate a clamped speed from 0..1\nthe exponent controls how midrange speeds are interpreted."),
 		{ _field_real_bounds, "yaw rate bounds", nullptr, "degrees per second" },
 		{ _field_real_bounds, "pitch rate bounds", nullptr, "degrees per second" },
 		{ _field_real, "min speed reference" },
 		{ _field_real, "max speed reference" },
 		{ _field_real, "speed exponent" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_EXPLANATION("camera fields", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_EXPLANATION_EX("camera fields", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_struct, "unit camera", &blofeld::halo2::unit_camera_struct_block_struct_definition },
 		{ _field_block, "unit hud interface", &blofeld::halo2::unit_hud_reference_block },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_short_integer, "hud text message index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_angle, "yaw minimum" },
 		{ _field_angle, "yaw maximum" },
 		{ _field_tag_reference, "built-in gunner", &blofeld::halo2::character_reference$5 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
-		FIELD_EXPLANATION("entry fields", nullptr, FIELD_FLAG_NONE, "note: the entry radius shouldn\'t exceed 3 world units, \nas that is as far as the player will search for a vehicle\nto enter."),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_EXPLANATION_EX("entry fields", nullptr, FIELD_FLAG_NONE, "note: the entry radius shouldn\'t exceed 3 world units, \nas that is as far as the player will search for a vehicle\nto enter."),
 		{ _field_real, "entry radius", "how close to the entry marker a unit must be" },
 		{ _field_angle, "entry marker cone angle", "angle from marker forward the unit must be" },
 		{ _field_angle, "entry marker facing angle", "angle from unit facing the marker must be" },
 		{ _field_real, "maximum relative velocity" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_terminator }
 	};
 
@@ -35592,10 +35592,10 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_enum, "hint type", &blofeld::halo2::unnamed_enum$373 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 84),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 84),
 		{ _field_short_integer, "Next hint index" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -35674,7 +35674,7 @@ namespace halo2 {
 		{ _field_block, "indices", &blofeld::halo2::decorator_model_indices_block },
 		{ _field_block, "cached data", &blofeld::halo2::cached_data_block },
 		{ _field_struct, "geometry section info", &blofeld::halo2::global_geometry_block_info_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_terminator }
 	};
 
@@ -35701,21 +35701,21 @@ namespace halo2 {
 		{ _field_real, "maximum bend per second", nullptr, "cents" },
 		{ _field_enum, "output effect", &blofeld::halo2::unnamed_enum$270 },
 		{ _field_enum, "import type", &blofeld::halo2::unnamed_enum$437 },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real_fraction, "skip fraction modifier" },
 		{ _field_real, "gain modifier", nullptr, "dB" },
 		{ _field_real, "pitch modifier", nullptr, "cents" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real_fraction, "skip fraction modifier" },
 		{ _field_real, "gain modifier", nullptr, "dB" },
 		{ _field_real, "pitch modifier", nullptr, "cents" },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_enum, "encoding", &blofeld::halo2::unnamed_enum$4 },
 		{ _field_enum, "compression", &blofeld::halo2::unnamed_enum$5 },
 		{ _field_tag_reference, "promotion sound", &blofeld::halo2::sound_reference },
 		{ _field_short_integer, "promotion count", "when there are this many instances of the sound, promote to the new sound." },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::old_sound_pitch_range_block },
 		{ _field_terminator }
 	};
@@ -35737,11 +35737,11 @@ namespace halo2 {
 		{ _field_enum, "import type", &blofeld::halo2::unnamed_enum$437 },
 		{ _field_struct, "playback", &blofeld::halo2::large_sound_playback_parameters_struct_block_struct_definition },
 		{ _field_struct, "scale", &blofeld::halo2::large_sound_scale_modifiers_struct_block_struct_definition },
-		FIELD_EXPLANATION("import properties", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("import properties", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "encoding", &blofeld::halo2::unnamed_enum$4 },
 		{ _field_enum, "compression", &blofeld::halo2::unnamed_enum$5 },
 		{ _field_struct, "promotion", &blofeld::halo2::sound_promotion_parameters_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::large_sound_pitch_range_block },
 		{ _field_block, "platform parameters", &blofeld::halo2::sound_platform_sound_playback_block },
 		{ _field_terminator }
@@ -35764,11 +35764,11 @@ namespace halo2 {
 		{ _field_enum, "import type", &blofeld::halo2::unnamed_enum$437 },
 		{ _field_struct, "playback", &blofeld::halo2::large_sound_playback_parameters_struct_block_struct_definition },
 		{ _field_struct, "scale", &blofeld::halo2::large_sound_scale_modifiers_struct_block_struct_definition },
-		FIELD_EXPLANATION("import properties", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("import properties", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "encoding", &blofeld::halo2::unnamed_enum$4 },
 		{ _field_enum, "compression", &blofeld::halo2::unnamed_enum$5 },
 		{ _field_struct, "promotion", &blofeld::halo2::sound_promotion_parameters_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::large_sound_pitch_range_block },
 		{ _field_block, "platform parameters", &blofeld::halo2::sound_platform_sound_playback_block },
 		{ _field_terminator }
@@ -35791,11 +35791,11 @@ namespace halo2 {
 		{ _field_enum, "import type", &blofeld::halo2::unnamed_enum$437 },
 		{ _field_struct, "playback", &blofeld::halo2::large_sound_playback_parameters_struct_block_struct_definition },
 		{ _field_struct, "scale", &blofeld::halo2::large_sound_scale_modifiers_struct_block_struct_definition },
-		FIELD_EXPLANATION("import properties", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("import properties", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "encoding", &blofeld::halo2::unnamed_enum$4 },
 		{ _field_enum, "compression", &blofeld::halo2::unnamed_enum$5 },
 		{ _field_struct, "promotion", &blofeld::halo2::sound_promotion_parameters_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::large_sound_pitch_range_block },
 		{ _field_block, "platform parameters", &blofeld::halo2::sound_platform_sound_playback_block },
 		{ _field_terminator }
@@ -35817,11 +35817,11 @@ namespace halo2 {
 		{ _field_enum, "import type", &blofeld::halo2::unnamed_enum$437 },
 		{ _field_struct, "playback", &blofeld::halo2::sound_playback_parameters_struct_block_struct_definition },
 		{ _field_struct, "scale", &blofeld::halo2::sound_scale_modifiers_struct_block_struct_definition },
-		FIELD_EXPLANATION("import properties", nullptr, FIELD_FLAG_NONE, nullptr),
+		FIELD_EXPLANATION_EX("import properties", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_enum, "encoding", &blofeld::halo2::unnamed_enum$4 },
 		{ _field_enum, "compression", &blofeld::halo2::unnamed_enum$5 },
 		{ _field_struct, "promotion", &blofeld::halo2::sound_promotion_parameters_struct_block_struct_definition },
-		FIELD_PAD("value", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::sound_pitch_range_block },
 		{ _field_block, "platform parameters", &blofeld::halo2::sound_platform_sound_playback_block },
 		{ _field_block, "value", &blofeld::halo2::sound_extra_info_block },

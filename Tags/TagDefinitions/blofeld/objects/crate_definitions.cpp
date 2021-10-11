@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -32,9 +32,9 @@ namespace blofeld
 	{
 		{ _field_struct, "object", &object_struct_definition },
 		
-		FIELD_CUSTOM("$$$ CRATE $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("$$$ CRATE $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_word_flags, "flags", &crate_flags },
-		FIELD_PAD("KOQVK", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("KOQVK", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block },
 		{ _field_long_integer, "self destruction timer", nullptr, "seconds" },
 
@@ -44,7 +44,7 @@ namespace blofeld
 		{ _field_string_id, "grab pickup string", "the string to display when the player can grab this object, from ui/hud/hud_messages" },
 		{ _field_tag_reference, "projectile bounce effect", "effect to play when a projectile bounces because of the \"all projectiles bounce off\" flag", &global_effect_reference },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

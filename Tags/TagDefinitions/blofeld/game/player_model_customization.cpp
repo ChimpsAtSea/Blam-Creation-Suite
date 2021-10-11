@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -51,7 +51,7 @@ namespace blofeld
 		{ _field_string_id, "region name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "permutation name" },
 		{ _field_byte_flags, "flags", &model_customization_player_permutation_flags },
-		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 

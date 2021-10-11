@@ -602,7 +602,7 @@
 //	}
 //	ImGui::PopStyleColor();
 //}
-//void c_blofeld_tag_debugger_tab::render_field_custom(render_field_callback_args)
+//void c_blofeld_tag_debugger_tab::render_FIELD_CUSTOM_EX(render_field_callback_args)
 //{
 //	if (show_custom_fields)
 //	{

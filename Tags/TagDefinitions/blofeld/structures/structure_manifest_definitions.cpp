@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -49,9 +49,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_MANIFEST_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("build identifer", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("build identifer", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "build identifer", FIELD_FLAG_READ_ONLY, &structure_manifest_build_identifier_struct },
-		FIELD_EXPLANATION("parent build identifier", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("parent build identifier", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "parent build identifer", "for local builds, this is the content build identifier you are based on", FIELD_FLAG_READ_ONLY, &structure_manifest_build_identifier_struct },
 		{ _field_block, "bsp manifest", FIELD_FLAG_READ_ONLY, &structure_manifest_bsp_block },
 		{ _field_terminator }

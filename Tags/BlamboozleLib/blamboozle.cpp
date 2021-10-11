@@ -30,20 +30,23 @@ int blamboozle_run()
 	const wchar_t* halo2_guerilla_file;
 	const wchar_t* halo4_midnight_tags_test;
 	const wchar_t* halo5_forge_file;
-	const wchar_t* infinite_preview_file;
+	const wchar_t* infinite_flight1_preview_file;
+	const wchar_t* infinite_flight2_preview_file;
 
 	BCS_RESULT rs0 = command_line_get_argument(L"blamboozle-halo1-guerilla", halo1_guerilla_file);
 	BCS_RESULT rs1 = command_line_get_argument(L"blamboozle-halo2-guerilla", halo2_guerilla_file);
 	BCS_RESULT rs2 = command_line_get_argument(L"blamboozle-halo4-tag-test", halo4_midnight_tags_test);
 	BCS_RESULT rs3 = command_line_get_argument(L"blamboozle-halo5-forge", halo5_forge_file);
-	BCS_RESULT rs4 = command_line_get_argument(L"blamboozle-infinite", infinite_preview_file);
+	BCS_RESULT rs4 = command_line_get_argument(L"blamboozle-infinite-flight1", infinite_flight1_preview_file);
+	BCS_RESULT rs5 = command_line_get_argument(L"blamboozle-infinite-flight2", infinite_flight2_preview_file);
 
 	if(
 		BCS_FAILED(rs0) && 
 		BCS_FAILED(rs1) && 
 		BCS_FAILED(rs2) && 
 		BCS_FAILED(rs3) && 
-		BCS_FAILED(rs4))
+		BCS_FAILED(rs4) && 
+		BCS_FAILED(rs5))
 	{
 		console_write_line("No binary file(s) specified");
 		console_write_line("Usage <output directory> <binary ...>");
@@ -54,17 +57,17 @@ int blamboozle_run()
 
 	if (BCS_SUCCEEDED(rs0))
 	{
-		result += blamboozle_run(output_directory, halo1_guerilla_file, _engine_type_halo1);
+		result += blamboozle_run(output_directory, halo1_guerilla_file, _engine_type_halo1, _build_not_set);
 	}
 
 	if (BCS_SUCCEEDED(rs1))
 	{
-		result += blamboozle_run(output_directory, halo2_guerilla_file, _engine_type_halo2, true);
+		result += blamboozle_run(output_directory, halo2_guerilla_file, _engine_type_halo2, _build_not_set, true);
 	}
 
 	if (BCS_SUCCEEDED(rs2))
 	{
-		result += blamboozle_run(output_directory, halo4_midnight_tags_test, _engine_type_halo4, true);
+		result += blamboozle_run(output_directory, halo4_midnight_tags_test, _engine_type_halo4, _build_not_set, true);
 	}
 
 	if (BCS_SUCCEEDED(rs3))
@@ -74,13 +77,18 @@ int blamboozle_run()
 
 	if (BCS_SUCCEEDED(rs4))
 	{
-		result += blamboozle_run(output_directory, infinite_preview_file, _engine_type_infinite, true);
+		result += blamboozle_run(output_directory, infinite_flight1_preview_file, _engine_type_infinite, _build_infinite_FLT002INT_199229_21_07_20_0001, true);
+	}
+
+	if (BCS_SUCCEEDED(rs5))
+	{
+		result += blamboozle_run(output_directory, infinite_flight2_preview_file, _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001, true);
 	}
 
 	return result;
 }
 
-int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepath, e_engine_type engine_type, bool skip_hash_check)
+int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepath, e_engine_type engine_type, e_build build, bool skip_hash_check)
 {
 	if (!skip_hash_check)
 	{
@@ -193,7 +201,7 @@ int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepa
 	break;
 	case _engine_type_infinite:
 	{
-		c_blamboozle_infinite infinite = c_blamboozle_infinite(output_directory, binary_filepath);
+		c_blamboozle_infinite infinite = c_blamboozle_infinite(output_directory, binary_filepath, build);
 		infinite.run();
 	}
 	break;

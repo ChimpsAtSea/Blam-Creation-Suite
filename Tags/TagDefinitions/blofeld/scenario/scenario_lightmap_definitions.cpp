@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -572,8 +572,8 @@ namespace blofeld
 	{
 		{ _field_long_integer, "cluster offset" },
 		{ _field_char_integer, "single probe" },
-		FIELD_PAD("LHWCHFX", nullptr, FIELD_FLAG_NONE, 1),
-		FIELD_PAD("DWCIEFG", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("LHWCHFX", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("DWCIEFG", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -601,7 +601,7 @@ namespace blofeld
 		SCENARIO_WETNESS_BSP_DATA_STRUCT_DEFINITION_ID)
 	{
 		{ _field_short_integer, "bsp reference index" },
-		FIELD_PAD("LHWCHFX", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("LHWCHFX", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "structure BSP import checksum" },
 		{ _field_long_integer, "lightmap BSP import checksum" },
 		{ _field_long_integer, "design BSP checksum" },

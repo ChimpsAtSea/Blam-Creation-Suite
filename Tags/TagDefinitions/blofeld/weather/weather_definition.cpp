@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -31,11 +31,11 @@ namespace blofeld
 	{
 		{ _field_long_integer, "version", "INTERNAL TAG USE ONLY DO NOT CHANGE", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "rain amount", "fade control for all rain effects", nullptr, "[0,1]" },
-		FIELD_EXPLANATION("Rain Effects", nullptr, FIELD_FLAG_NONE, "These effects are applied when this rain is active\n"),
+		FIELD_EXPLANATION_EX("Rain Effects", nullptr, FIELD_FLAG_NONE, "These effects are applied when this rain is active\n"),
 		{ _field_tag_reference, "effect", &global_effect_reference },
 		{ _field_tag_reference, "screen effect", &global_area_screen_effect_reference },
 		{ _field_tag_reference, "camera fx", &global_camera_fx_settings_reference },
-		FIELD_CUSTOM("particles", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("particles", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &rain_particle_flags },
 		{ _field_tag_reference, "drop texture", &global_bitmap_reference },
 		{ _field_tag_reference, "splash texture", &global_bitmap_reference },
@@ -62,8 +62,8 @@ namespace blofeld
 		{ _field_real, "ripple max size", "maximum size of the ripple" },
 		{ _field_real, "ripple lifetime", "how long the ripples last", "seconds" },
 		{ _field_real, "ripple intensity", "intensifies ripples" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("rain sheet", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("rain sheet", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_tag_reference, "rain sheet texture", &global_bitmap_reference },
 		{ _field_real, "rain sheet speed" },
 		{ _field_real, "rain sheet intervals" },
@@ -74,8 +74,8 @@ namespace blofeld
 		{ _field_real, "rain sheet depth fade", MAKE_OLD_NAMES("rain sheet fade factor") },
 		{ _field_real, "transparent sort distance" },
 		{ _field_real, "transparent sort layer" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("light volume", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("light volume", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_tag_reference, "light volume texture", &global_bitmap_reference },
 		{ _field_real, "light volume intensity" },
 		{ _field_real, "light volume texture scale" },
@@ -83,16 +83,16 @@ namespace blofeld
 		{ _field_real, "farthest rain particle distance" },
 		{ _field_real, "closest rain sheet distance" },
 		{ _field_real, "rain drop length compensation", "make it longer when it is far" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("rain transition", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("rain transition", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "wetness fade in time", nullptr, "seconds" },
 		{ _field_real, "wetness fade out time", nullptr, "seconds" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("material dim", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("material dim", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "dim of point light" },
 		{ _field_real, "dim of imposters" },
 		{ _field_real, "dim of decorators" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

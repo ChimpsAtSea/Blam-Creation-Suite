@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -161,11 +161,11 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		FIELD_PAD("YJLTWDSL", nullptr, FIELD_FLAG_NONE, 172),
+		FIELD_PAD_EX("YJLTWDSL", nullptr, FIELD_FLAG_NONE, 172),
 		{ _field_long_enum, "language", &language_enum },
 		{ _field_block, "havok cleanup resources", &havok_cleanup_resources_block },
 		{ _field_block, "sound globals", &sound_globals_block },
-		FIELD_EXPLANATION("AI globals", nullptr, FIELD_FLAG_NONE, "I have moved the ai globals out of this tag, and into its own tag which is referenced here."),
+		FIELD_EXPLANATION_EX("AI globals", nullptr, FIELD_FLAG_NONE, "I have moved the ai globals out of this tag, and into its own tag which is referenced here."),
 		{ _field_block, "DEPRECATED", MAKE_OLD_NAMES("ai globals"), FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &ai_globals_data_block, _field_id_slap },
 		{ _field_tag_reference, "ai globals ref", &ai_globals_reference },
 		{ _field_block, "damage table", &game_globals_damage_block },
@@ -199,9 +199,9 @@ namespace blofeld
 		{ _field_block, "profile colors", &multiplayer_color_block },
 		{ _field_block, "emblem colors", &multiplayer_color_block },
 		{ _field_block, "visor colors", &visor_color_block },
-		FIELD_CUSTOM("Elite specular colors", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Elite specular colors", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "elite specular color", &elite_specular_color_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "forge globals", &forge_globals_reference },
@@ -247,18 +247,18 @@ namespace blofeld
 		{ _field_struct, "language pack16", FIELD_FLAG_UNKNOWN0, &language_pack_definition },
 		{ _field_struct, "language pack17", FIELD_FLAG_UNKNOWN0, &language_pack_definition },
 
-		FIELD_EXPLANATION("Rasterizer globals", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Rasterizer globals", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "rasterizer_globals_ref", &global_rasterizer_globals_reference },
-		FIELD_EXPLANATION("Default camera fx settings", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Default camera fx settings", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "default camera fx settings", &global_camera_fx_settings_reference },
-		FIELD_EXPLANATION("Default wind settings", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Default wind settings", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "default wind settings", &global_wind_reference },
-		FIELD_EXPLANATION("Weather globals", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Weather globals", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "weather globals", &global_weather_globals_reference },
-		FIELD_EXPLANATION("Default collision damage", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Default collision damage", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "collision damage effect", &global_damage_reference },
 		{ _field_tag_reference, "collision damage", &collision_damage_reference$5 },
-		FIELD_EXPLANATION("global material types", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("global material types", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_string_id, "global water material", "the default value for what material type water is" },
 		{ _field_string_id, "global air material", "the default value for what material type air is" },
 		{ _field_short_integer, "global water material type", FIELD_FLAG_UNKNOWN0 },

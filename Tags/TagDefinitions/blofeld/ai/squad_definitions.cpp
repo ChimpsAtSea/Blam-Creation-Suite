@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -41,7 +41,7 @@ namespace blofeld
 		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_short_block_index, "parent", &squad_groups_block, _field_id_squad_template },
 		{ _field_short_block_index, "initial objective", &objectives_block },
-		FIELD_PAD("soon to be an initial task", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("soon to be an initial task", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
 		{ _field_terminator }
 	};
@@ -57,7 +57,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUADS_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "flags", &squad_flags },
 		{ _field_enum, "team", &ai_team_enum },
@@ -71,7 +71,7 @@ namespace blofeld
 		{ _field_long_enum, "wave placement filter", "Filter which squads in Firefight waves can be spawned into this squad", &wave_placement_filter_enum },
 		{ _field_string_id, "template" },
 		{ _field_long_integer, "squad template index", FIELD_FLAG_UNKNOWN0 },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "designer", &squad_definition_internal_struct },
 		{ _field_struct, "templated", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &squad_definition_internal_struct },
 		{ _field_terminator }
@@ -108,7 +108,7 @@ namespace blofeld
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_byte_flags, "flags", &spawn_formation_flags },
-		FIELD_PAD("post-flags-pad", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("post-flags-pad", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_terminator }
 	};
@@ -132,7 +132,7 @@ namespace blofeld
 		{ _field_short_integer, "activity variant", FIELD_FLAG_UNKNOWN0 },
 		{ _field_string_id, "command script", _field_id_halo_script_block },
 		{ _field_short_integer, "command script index", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
-		FIELD_PAD("post-command-script", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-command-script", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -150,7 +150,7 @@ namespace blofeld
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_custom_short_block_index, "cell" },
-		FIELD_PAD("post-cell-index-pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-cell-index-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "position" },
 		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
@@ -165,7 +165,7 @@ namespace blofeld
 		{ _field_enum, "seat type", &ai_placement_seat_preference_enum },
 		{ _field_enum, "grenade type", &global_ai_grenade_type_enum },
 		{ _field_short_integer, "swarm count", "number of cretures in swarm if a swarm is spawned at this location" },
-		FIELD_PAD("post-swarm-count-pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-swarm-count-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "actor variant name" },
 		{ _field_string_id, "vehicle variant name" },
 		{ _field_string_id, "voice designator" },
@@ -176,7 +176,7 @@ namespace blofeld
 		{ _field_short_block_index, "biped body", &scenario_biped_block },
 		{ _field_string_id, "placement script", MAKE_OLD_NAMES("Placement script"), _field_id_halo_script_block },
 		{ _field_short_integer, "placement script index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
-		FIELD_PAD("post-placement-script-pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-placement-script-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "activity name" },
 		{ _field_string_id, "movement set" },
 		{ _field_custom_short_block_index, "point set" },
@@ -185,7 +185,7 @@ namespace blofeld
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_short_block_index, "vehicle body", &scenario_vehicle_block },
-		FIELD_PAD("post-vehicle_index-pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-vehicle_index-pad", nullptr, FIELD_FLAG_NONE, 2),
 
 		{ _field_terminator }
 	};
@@ -201,7 +201,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		CELL_BLOCK_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("Character Build", nullptr, FIELD_FLAG_NONE, "Specify the distribution of characters and weapons in the cell sub-folders"),
+		FIELD_EXPLANATION_EX("Character Build", nullptr, FIELD_FLAG_NONE, "Specify the distribution of characters and weapons in the cell sub-folders"),
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
@@ -215,7 +215,7 @@ namespace blofeld
 		{ _field_string_id, "vehicle variant" },
 		{ _field_string_id, "Placement script", _field_id_halo_script_block },
 		{ _field_short_integer, "placement script index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
-		FIELD_PAD("plsc", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("plsc", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "activity name" },
 		{ _field_string_id, "movement set" },
 		{ _field_custom_short_block_index, "point set" },
@@ -236,7 +236,7 @@ namespace blofeld
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_short_block_index, "character type", FIELD_FLAG_INDEX, &character_palette_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
 	};
@@ -253,7 +253,7 @@ namespace blofeld
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_short_block_index, "weapon type", FIELD_FLAG_INDEX, &scenario_weapon_palette_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
 	};
@@ -270,7 +270,7 @@ namespace blofeld
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_short_block_index, "equipment type", FIELD_FLAG_INDEX, &scenario_equipment_palette_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
 	};
@@ -289,13 +289,13 @@ namespace blofeld
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
 		{ _field_enum, "major upgrade", &major_upgrade_enum },
-		FIELD_EXPLANATION("Character Build", nullptr, FIELD_FLAG_NONE, "Specify the distribution of characters and weapons in the following blocks"),
+		FIELD_EXPLANATION_EX("Character Build", nullptr, FIELD_FLAG_NONE, "Specify the distribution of characters and weapons in the following blocks"),
 		{ _field_block, "character type", &character_ref_choice_block, _field_id_grid },
 		{ _field_block, "initial weapon", &weapon_ref_choice_block, _field_id_grid },
 		{ _field_block, "initial secondary weapon", &weapon_ref_choice_block, _field_id_grid },
 		{ _field_block, "initial equipment", &equipment_ref_choice_block, _field_id_grid },
 		{ _field_enum, "grenade type", &global_ai_grenade_type_enum },
-		FIELD_PAD("post-grenade", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-grenade", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "vehicle type", &vehicle_reference$3 },
 		{ _field_string_id, "vehicle variant" },
 		{ _field_string_id, "activity name" },
@@ -316,7 +316,7 @@ namespace blofeld
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_tag_reference, "character type", FIELD_FLAG_INDEX, &character_reference$7 },
 		{ _field_short_integer, "chance" },
-		FIELD_PAD("post-chance", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-chance", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -334,7 +334,7 @@ namespace blofeld
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_tag_reference, "weapon type", FIELD_FLAG_INDEX, &weapon_reference$8 },
 		{ _field_short_integer, "chance" },
-		FIELD_PAD("post-chance", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-chance", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -352,7 +352,7 @@ namespace blofeld
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_tag_reference, "equipment type", FIELD_FLAG_INDEX, &equipment_reference$4 },
 		{ _field_short_integer, "chance" },
-		FIELD_PAD("post-chance", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-chance", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

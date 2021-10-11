@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -32,17 +32,17 @@ namespace blofeld
 		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_char_integer, "sequence index", nullptr, nullptr, "[0,15]" },
 		{ _field_byte_flags, "type flags", &detail_object_type_flags_definition },
-		FIELD_PAD("VYF", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("VYF", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_fraction, "color override factor", "fraction of detail object color to use instead of the base map color in the environment:[0,1]" },
-		FIELD_PAD("QMOOJ", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("QMOOJ", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real, "near fade distance", nullptr, "world units" },
 		{ _field_real, "far fade distance", nullptr, "world units" },
 		{ _field_real, "size", nullptr, "world units per pixel" },
-		FIELD_PAD("TDAQ", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("TDAQ", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real_rgb_color, "minimum color", nullptr, nullptr, "[0,1]" },
 		{ _field_real_rgb_color, "maximum color", nullptr, nullptr, "[0,1]" },
 		{ _field_argb_color, "ambient color", nullptr, nullptr, "[0,255]" },
-		FIELD_PAD("VCXJHYY", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("VCXJHYY", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -63,7 +63,7 @@ namespace blofeld
 		{ _field_long_integer, "valid layers flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "start index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "count index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("OHF", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("OHF", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -126,12 +126,12 @@ namespace blofeld
 		DETAIL_OBJECT_COLLECTION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_enum, "collection type", &detail_object_collection_type_enum_definition },
-		FIELD_PAD("YN", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("YN", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "global z offset", nullptr, "applied to all detail objects of in this collection so they don't float above the ground" },
-		FIELD_PAD("EBGQ", nullptr, FIELD_FLAG_NONE, 44),
+		FIELD_PAD_EX("EBGQ", nullptr, FIELD_FLAG_NONE, 44),
 		{ _field_tag_reference, "sprite plate", &global_bitmap_reference },
 		{ _field_block, "types", &detail_object_type_block },
-		FIELD_PAD("ZQUVEZKGL", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("ZQUVEZKGL", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_terminator }
 	};
 

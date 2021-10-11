@@ -159,14 +159,14 @@ void c_graphics_d3d12::init_descriptor_heap_allocator()
 		*this,
 		D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV,
 		D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE,
-		1024,
+		131072,
 		L"c_graphics_d3d12::cbv_srv_uav_descriptor_heap_allocator_gpu"
 	);
 	cbv_srv_uav_descriptor_heap_allocator_cpu = new c_descriptor_heap_allocator_d3d12(
 		*this,
 		D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV,
 		D3D12_DESCRIPTOR_HEAP_FLAG_NONE,
-		512,
+		131072,
 		L"c_graphics_d3d12::cbv_srv_uav_descriptor_heap_allocator_cpu"
 	);
 	sampler_descriptor_heap_allocator_gpu = new c_descriptor_heap_allocator_d3d12(

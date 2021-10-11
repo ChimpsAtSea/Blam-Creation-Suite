@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -107,7 +107,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		INFINITYMISSIONSEASONIMAGESDEFINITION_ID)
 	{
-		FIELD_EXPLANATION("Season Images", nullptr, FIELD_FLAG_NONE, "This block should contain a season\'s worth of Infinity mission images"),
+		FIELD_EXPLANATION_EX("Season Images", nullptr, FIELD_FLAG_NONE, "This block should contain a season\'s worth of Infinity mission images"),
 		{ _field_long_integer, "season number", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "epilogue image", "displayed where the missions would be, when the epilogue is selected", &global_bitmap_reference },
 		{ _field_block, "season images", &InfinityMissionImagesDefinition_block },
@@ -144,7 +144,7 @@ namespace blofeld
 		{ _field_string_id, "category display name", FIELD_FLAG_INDEX },
 		{ _field_short_integer, "sprite index" },
 		{ _field_byte_flags, "flags", &pgcr_enemy_to_category_entry_flags },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_block, "player types", &pgcr_player_to_category_entry_block },
 		{ _field_block, "enemy types", &pgcr_enemy_to_category_entry_block },
 		{ _field_terminator }
@@ -161,7 +161,7 @@ namespace blofeld
 		PGCR_PLAYER_TO_CATEGORY_ENTRY_BLOCK_ID)
 	{
 		{ _field_char_enum, "player type", &pgcr_player_type_enum },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -177,7 +177,7 @@ namespace blofeld
 	{
 		{ _field_char_enum, "character type", &campaign_metagame_bucket_type_with_none_enum },
 		{ _field_char_enum, "character class", &campaign_metagame_bucket_class_with_none_enum },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -195,7 +195,7 @@ namespace blofeld
 		{ _field_string_id, "display name" },
 		{ _field_tag_reference, "sprite", &global_bitmap_reference },
 		{ _field_short_integer, "sprite index" },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -245,7 +245,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "resolution name" },
 		{ _field_char_enum, "pivot corner", &cui_camera_pivot_corner_enum_definition },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "Z near", "distance to near clipping plane" },
 		{ _field_real, "Z far", "distance to far clipping plane" },
 		{ _field_real, "X angle degrees", "camera angle around the X axis" },
@@ -263,7 +263,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CUI_PLAYER_MODEL_CAMERA_SETTINGS_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("Camera Settings", nullptr, FIELD_FLAG_NONE, "These are model-viewing camera parameters that you can control\n* FOV is the field of view used by the texture camera\n  if left 0, a suitable default FOV is used\n* Initial Radial Offset is the initial radial distance of the camera from the target model\n* Final Radial Offset is the final radial distance of the camera from the target model\n* Camera Radial Step Size is the incremental change in input to the radial transition function per tick\n* Initial Vertical Offset is the initial vertical distance of the camera from the target\'s center\n* Final Vertical Offset is the final vertical distance of the camera from the target\'s center\n* Camera Vertical Step Size is the incremental change in input to the vertical transition function per tick\n* Camera Rotational Step Size is the incremental change in camera rotation per game tick\n* The Transition Functions are used to control the camera zoom with controller input\n  if left empty, a linear interpolation is used for camera zoom"),
+		FIELD_EXPLANATION_EX("Camera Settings", nullptr, FIELD_FLAG_NONE, "These are model-viewing camera parameters that you can control\n* FOV is the field of view used by the texture camera\n  if left 0, a suitable default FOV is used\n* Initial Radial Offset is the initial radial distance of the camera from the target model\n* Final Radial Offset is the final radial distance of the camera from the target model\n* Camera Radial Step Size is the incremental change in input to the radial transition function per tick\n* Initial Vertical Offset is the initial vertical distance of the camera from the target\'s center\n* Final Vertical Offset is the final vertical distance of the camera from the target\'s center\n* Camera Vertical Step Size is the incremental change in input to the vertical transition function per tick\n* Camera Rotational Step Size is the incremental change in camera rotation per game tick\n* The Transition Functions are used to control the camera zoom with controller input\n  if left empty, a linear interpolation is used for camera zoom"),
 		{ _field_string_id, "name" },
 		{ _field_real_point_3d, "model world position", "arbitrary location in the world to place the model", "wu" },
 		{ _field_real_point_3d, "minimum world position" },
@@ -291,7 +291,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "name" },
 		{ _field_real, "zoom speed", nullptr, "wu per tick" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "zoom transition function", &mapping_function },
 		{ _field_real_euler_angles_2d, "initial rotation", nullptr, "degrees" },
 		{ _field_real_euler_angles_2d, "minimum rotation", nullptr, "degrees" },
@@ -311,7 +311,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUI_PLAYER_MODEL_TRANSITION_SETTINGS_DEFINITION_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "camera transition function", &mapping_function },
 		{ _field_terminator }
 	};
@@ -327,7 +327,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUI_ACTIVE_ROSTER_SETTINGS_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "analog scroll function", &mapping_function },
 		{ _field_terminator }
 	};
@@ -359,7 +359,7 @@ namespace blofeld
 		USERINTERFACEGAMESCREENSEQUENCESTEPDEFINITION_ID)
 	{
 		{ _field_byte_flags, "flags", &UIGameStartSequenceFlagsDefinition },
-		FIELD_PAD("UMPKIU", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("UMPKIU", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "screen", FIELD_FLAG_INDEX, &cui_screen_reference },
 		{ _field_short_integer, "startTime", nullptr, "ticks" },
 		{ _field_short_integer, "endTime", nullptr, "ticks" },
@@ -410,15 +410,15 @@ namespace blofeld
 		{ _field_block, "text team", &color_list_block },
 		{ _field_block, "bitmap player", &color_list_block },
 		{ _field_block, "bitmap team", &color_list_block },
-		FIELD_CUSTOM("Affiliation", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Affiliation", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real_argb_color, "bitmap friend" },
 		{ _field_real_argb_color, "bitmap enemy" },
 		{ _field_real_argb_color, "bitmap neutral" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("Flood Team Colors", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("Flood Team Colors", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real_argb_color, "bitmap flood" },
 		{ _field_real_argb_color, "bitmap spartans" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -450,7 +450,7 @@ namespace blofeld
 		{ _field_byte_flags, "flags", &gui_alert_flags },
 		{ _field_char_enum, "error category", &gui_error_category_enum },
 		{ _field_char_enum, "error icon", &gui_error_icon_enum },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_string_id, "title" },
 		{ _field_string_id, "message" },
 		{ _field_terminator }
@@ -468,7 +468,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "dialog name", FIELD_FLAG_INDEX },
 		{ _field_word_flags, "flags", &gui_dialog_flags },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "title" },
 		{ _field_string_id, "message" },
 		{ _field_string_id, "first_item" },
@@ -559,7 +559,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_INTERFACE_SOUNDS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("Controller Input Events", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Controller Input Events", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_tag_reference, "tab up", &global_sound_reference },
 		{ _field_tag_reference, "tab left", &global_sound_reference },
 		{ _field_tag_reference, "tab right", &global_sound_reference },
@@ -624,26 +624,26 @@ namespace blofeld
 		{ _field_tag_reference, "right stick released right", &global_sound_reference },
 		{ _field_tag_reference, "right stick released up", &global_sound_reference },
 		{ _field_tag_reference, "right stick released down", &global_sound_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("General", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("General", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_tag_reference, "error", &global_sound_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("Screen", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("Screen", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_tag_reference, "screen transition in", &global_sound_reference },
 		{ _field_tag_reference, "screen transition out", &global_sound_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("Timers", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("Timers", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_tag_reference, "game start countdown timer first tick", &global_sound_reference },
 		{ _field_tag_reference, "game start countdown timer tick", &global_sound_reference },
 		{ _field_tag_reference, "game start countdown timer final tick", &global_sound_reference },
 		{ _field_tag_reference, "alternate countdown timer first tick", &global_sound_reference },
 		{ _field_tag_reference, "alternate countdown timer tick", &global_sound_reference },
 		{ _field_tag_reference, "alternate countdown timer final tick", &global_sound_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("Misc", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("Misc", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_tag_reference, "matchmaking reveal", &global_sound_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("Exit Experience", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("Exit Experience", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_tag_reference, "game completion", &global_sound_reference },
 		{ _field_tag_reference, "winning bonus", &global_sound_reference },
 		{ _field_tag_reference, "hopper bonus", &global_sound_reference },
@@ -656,7 +656,7 @@ namespace blofeld
 		{ _field_tag_reference, "counter loop", &global_looping_sound_reference },
 		{ _field_tag_reference, "score bonus", &global_sound_reference },
 		{ _field_tag_reference, "rewards", &global_sound_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -672,13 +672,13 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "flags", &UserInterfaceTagGlobalsFlagsDefinition },
 
-		FIELD_EXPLANATION("Shared Globals", nullptr, FIELD_FLAG_NONE, "This is a reference to the ui shared globals tag"),
+		FIELD_EXPLANATION_EX("Shared Globals", nullptr, FIELD_FLAG_NONE, "This is a reference to the ui shared globals tag"),
 		{ _field_tag_reference, "shared globals", &g_user_interface_shared_globals_reference },
-		FIELD_EXPLANATION("Multiplayer Variant Settings Interface", nullptr, FIELD_FLAG_NONE, "This blob defines the ui for setting multiplayer game variant parameters"),
+		FIELD_EXPLANATION_EX("Multiplayer Variant Settings Interface", nullptr, FIELD_FLAG_NONE, "This blob defines the ui for setting multiplayer game variant parameters"),
 		{ _field_tag_reference, "mp variant settings ui", &g_multiplayer_variant_settings_interface_reference },
-		FIELD_EXPLANATION("Game Hopper Localization Strings", nullptr, FIELD_FLAG_NONE, "This is for the loc game hopper strings"),
+		FIELD_EXPLANATION_EX("Game Hopper Localization Strings", nullptr, FIELD_FLAG_NONE, "This is for the loc game hopper strings"),
 		{ _field_tag_reference, "game hopper descriptions", &global_multilingual_unicode_string_list_reference },
-		FIELD_EXPLANATION("Screen Widgets", nullptr, FIELD_FLAG_NONE, "These are the HaloX screen widgets"),
+		FIELD_EXPLANATION_EX("Screen Widgets", nullptr, FIELD_FLAG_NONE, "These are the HaloX screen widgets"),
 		{ _field_block, "cui screen widgets", &cui_component_screen_reference_block_definition_block },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 5 },
@@ -695,15 +695,15 @@ namespace blofeld
 		{ _field_block, "active roster settings", &cui_active_roster_settings_block },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
-		FIELD_EXPLANATION("PGCR Categories Definitions", nullptr, FIELD_FLAG_NONE, "This is a reference to the tag storing the categories we want to display in the PGCR"),
+		FIELD_EXPLANATION_EX("PGCR Categories Definitions", nullptr, FIELD_FLAG_NONE, "This is a reference to the tag storing the categories we want to display in the PGCR"),
 		{ _field_tag_reference, "pgcr categories definitions", &pgcr_enemy_to_category_mapping_definition_reference },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
-		FIELD_EXPLANATION("PGCR Damage Types Definitions", nullptr, FIELD_FLAG_NONE, "This is a reference to the tag storing details about damage types for display in the PGCR"),
+		FIELD_EXPLANATION_EX("PGCR Damage Types Definitions", nullptr, FIELD_FLAG_NONE, "This is a reference to the tag storing details about damage types for display in the PGCR"),
 		{ _field_tag_reference, "pgcr damage types definitions", &pgcr_damage_type_image_mapping_definition_reference },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
-		FIELD_EXPLANATION("Campaign State Screen Scripts", nullptr, FIELD_FLAG_NONE, "Contains a mapping of campaign map IDs and screen scripts used to implement lobby backgrounds that track campaign state. This block should only be non-empty for the main menu."),
+		FIELD_EXPLANATION_EX("Campaign State Screen Scripts", nullptr, FIELD_FLAG_NONE, "Contains a mapping of campaign map IDs and screen scripts used to implement lobby backgrounds that track campaign state. This block should only be non-empty for the main menu."),
 		{ _field_block, "campaign state screen scripts", &campaign_state_screen_script_block_definition_block },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 9 },
@@ -730,44 +730,44 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_INTERFACE_SHARED_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("UI Rendering Globals", nullptr, FIELD_FLAG_NONE, "miscellaneous rendering globals, more below..."),
+		FIELD_EXPLANATION_EX("UI Rendering Globals", nullptr, FIELD_FLAG_NONE, "miscellaneous rendering globals, more below..."),
 		{ _field_short_integer, "inc. text update period", nullptr, "milliseconds" },
 		{ _field_short_integer, "inc. text block character", nullptr, "ASCII code" },
 		{ _field_real, "near clip plane distance", nullptr, "objects closer than this are not drawn" },
 		{ _field_real, "projection plane distance", nullptr, "distance at which objects are rendered when z=0 (normal size)" },
 		{ _field_real, "far clip plane distance", nullptr, "objects farther than this are not drawn" },
-		FIELD_EXPLANATION("Global Text Strings", nullptr, FIELD_FLAG_NONE, "Global UI Text goes here"),
+		FIELD_EXPLANATION_EX("Global Text Strings", nullptr, FIELD_FLAG_NONE, "Global UI Text goes here"),
 		{ _field_tag_reference, "unicode string list tag", &global_multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "unicode damage reporting string list tag", &global_multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "unicode fire team member name string list", MAKE_OLD_NAMES("unicode fire team member string list tag"), &global_multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "unicode fire team member service tag string list", &global_multilingual_unicode_string_list_reference },
-		FIELD_EXPLANATION("Main menu music", nullptr, FIELD_FLAG_NONE, "Looping sound that plays while the main menu is active"),
+		FIELD_EXPLANATION_EX("Main menu music", nullptr, FIELD_FLAG_NONE, "Looping sound that plays while the main menu is active"),
 		{ _field_tag_reference, "main menu music", &global_looping_sound_reference },
 		{ _field_tag_reference, "main menu alternate music", &global_looping_sound_reference },
 		{ _field_long_integer, "music fade time", nullptr, "milliseconds" },
-		FIELD_EXPLANATION("Default Text and Shadow Colors", nullptr, FIELD_FLAG_NONE, "These are the default values used for text glyphs and text shadows"),
+		FIELD_EXPLANATION_EX("Default Text and Shadow Colors", nullptr, FIELD_FLAG_NONE, "These are the default values used for text glyphs and text shadows"),
 		{ _field_real_argb_color, "text color" },
 		{ _field_real_argb_color, "shadow color" },
-		FIELD_EXPLANATION("Color presets", nullptr, FIELD_FLAG_NONE, "Colors are defined here and used in text widgets throughout the UI.  Specify a string_id here and the same one in a text widget.  If you don\'t specify one in a text widget, you\'ll use the first entry here."),
+		FIELD_EXPLANATION_EX("Color presets", nullptr, FIELD_FLAG_NONE, "Colors are defined here and used in text widgets throughout the UI.  Specify a string_id here and the same one in a text widget.  If you don\'t specify one in a text widget, you\'ll use the first entry here."),
 		{ _field_block, "color presets", &color_presets_block },
-		FIELD_EXPLANATION("Tint colors", nullptr, FIELD_FLAG_NONE, "These colors are used for tinting widgets by team or player color."),
+		FIELD_EXPLANATION_EX("Tint colors", nullptr, FIELD_FLAG_NONE, "These colors are used for tinting widgets by team or player color."),
 		{ _field_block, "tint colors", &tint_colors_block },
-		FIELD_EXPLANATION("Emblem counts", nullptr, FIELD_FLAG_NONE, "This lets us define how many images are in the emblem image bitmaps without opening them."),
+		FIELD_EXPLANATION_EX("Emblem counts", nullptr, FIELD_FLAG_NONE, "This lets us define how many images are in the emblem image bitmaps without opening them."),
 		{ _field_short_integer, "Primary emblem count" },
 		{ _field_short_integer, "Secondary emblem count" },
-		FIELD_EXPLANATION("User interface sounds", nullptr, FIELD_FLAG_NONE, "Default sound effects for various UI actions"),
+		FIELD_EXPLANATION_EX("User interface sounds", nullptr, FIELD_FLAG_NONE, "Default sound effects for various UI actions"),
 		{ _field_tag_reference, "default sounds", &user_interface_sounds_definition_reference },
-		FIELD_EXPLANATION("HaloX Alerts", nullptr, FIELD_FLAG_NONE, "Alerts are triggered by specific events that happen in the game.  The game can require that an error be resolved before the dialog can be dismissed.  Once the error is resolved (or if it doesn\'t require resolution,) the user can dismiss it."),
+		FIELD_EXPLANATION_EX("HaloX Alerts", nullptr, FIELD_FLAG_NONE, "Alerts are triggered by specific events that happen in the game.  The game can require that an error be resolved before the dialog can be dismissed.  Once the error is resolved (or if it doesn\'t require resolution,) the user can dismiss it."),
 		{ _field_block, "alert descriptions", &gui_alert_description_block },
-		FIELD_EXPLANATION("HaloX Dialogs", nullptr, FIELD_FLAG_NONE, "Dialogs are brought up by individual screens or UI systems to ask the user a question, typically of the Ok/Cancel sort such as: \'Are you sure you want to leave the game?\'.\nNotes:\n- first item defaults to \'ok\', second item defaults to \'cancel.  third and fourth items don\'t display if they\'re not set\n- if \'b button action\' is set to \'button ignored\' then the b button doesn\'t do anything (such as cancelling)"),
+		FIELD_EXPLANATION_EX("HaloX Dialogs", nullptr, FIELD_FLAG_NONE, "Dialogs are brought up by individual screens or UI systems to ask the user a question, typically of the Ok/Cancel sort such as: \'Are you sure you want to leave the game?\'.\nNotes:\n- first item defaults to \'ok\', second item defaults to \'cancel.  third and fourth items don\'t display if they\'re not set\n- if \'b button action\' is set to \'button ignored\' then the b button doesn\'t do anything (such as cancelling)"),
 		{ _field_block, "dialog descriptions", &gui_dialog_description_block },
-		FIELD_EXPLANATION("Content Aspect Ratio Scaling", nullptr, FIELD_FLAG_NONE, "These define the scaling that will get applied to UI content and animations when running at the specified display modes"),
+		FIELD_EXPLANATION_EX("Content Aspect Ratio Scaling", nullptr, FIELD_FLAG_NONE, "These define the scaling that will get applied to UI content and animations when running at the specified display modes"),
 		{ _field_real_vector_2d, "16x9" },
 		{ _field_real_vector_2d, "4x3" },
-		FIELD_EXPLANATION("Blur Constants", nullptr, FIELD_FLAG_NONE, "These control the blur kernel used when blurring overlayed UI"),
+		FIELD_EXPLANATION_EX("Blur Constants", nullptr, FIELD_FLAG_NONE, "These control the blur kernel used when blurring overlayed UI"),
 		{ _field_real, "horizontal blur factor" },
 		{ _field_real, "vertical blur factor" },
-		FIELD_EXPLANATION("Appearance Model Names", nullptr, FIELD_FLAG_NONE, "These specify the name of a scenario-placed biped to be used for the Start Menu Appearance model\nIf you want to use a scenario-placed biped (non-AI), enter the biped name in the \'biped name\' field\nIf you want to use an AI-placed biped, enter the squad name string and starting position string_id"),
+		FIELD_EXPLANATION_EX("Appearance Model Names", nullptr, FIELD_FLAG_NONE, "These specify the name of a scenario-placed biped to be used for the Start Menu Appearance model\nIf you want to use a scenario-placed biped (non-AI), enter the biped name in the \'biped name\' field\nIf you want to use an AI-placed biped, enter the squad name string and starting position string_id"),
 		{ _field_string_id, "mc biped name" },
 		{ _field_string, "mc ai squad name" },
 		{ _field_string_id, "mc ai start pos" },
@@ -776,19 +776,19 @@ namespace blofeld
 		{ _field_string_id, "elite ai start pos" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
-		FIELD_EXPLANATION("Player Portrait Model Names", nullptr, FIELD_FLAG_NONE, "These specify the name of a scenario-placed biped to be used for the Player Portrait Appearance model\nEnter the scenario-placed biped (non-AI) name in the \'spartan biped name\' and \'elite biped name\' field"),
+		FIELD_EXPLANATION_EX("Player Portrait Model Names", nullptr, FIELD_FLAG_NONE, "These specify the name of a scenario-placed biped to be used for the Player Portrait Appearance model\nEnter the scenario-placed biped (non-AI) name in the \'spartan biped name\' and \'elite biped name\' field"),
 		{ _field_string_id, "spartan portrait biped name" },
 		{ _field_string_id, "elite portrait biped name" },
 
-		FIELD_EXPLANATION("UI Navigation speed", nullptr, FIELD_FLAG_NONE, "This controls tabbing around the UI.  The tab delay is how fast you move around normally. \nTab fast wait is how long the UI waits till using the tab fast delay instead of the tab delay."),
+		FIELD_EXPLANATION_EX("UI Navigation speed", nullptr, FIELD_FLAG_NONE, "This controls tabbing around the UI.  The tab delay is how fast you move around normally. \nTab fast wait is how long the UI waits till using the tab fast delay instead of the tab delay."),
 		{ _field_long_integer, "navigation tab delay msec" },
 		{ _field_long_integer, "navigation tab fast wait msec" },
 		{ _field_long_integer, "navigation tab fast delay msec" },
-		FIELD_EXPLANATION("Spinner tab speed", nullptr, FIELD_FLAG_NONE, "This is an alternate control for tabbing speed in the spinner.\nThe input (x) is the time the stick has been held down.\nThe output (y) is the time between tab events."),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_EXPLANATION_EX("Spinner tab speed", nullptr, FIELD_FLAG_NONE, "This is an alternate control for tabbing speed in the spinner.\nThe input (x) is the time the stick has been held down.\nThe output (y) is the time between tab events."),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "spinner tab speed function", &mapping_function },
 		{ _field_long_integer, "max input time (x) on the graph (msec)" },
-		FIELD_EXPLANATION("Attract Mode Settings", nullptr, FIELD_FLAG_NONE, "These control behavior of the attract mode movies"),
+		FIELD_EXPLANATION_EX("Attract Mode Settings", nullptr, FIELD_FLAG_NONE, "These control behavior of the attract mode movies"),
 		{ _field_long_integer, "delay", nullptr, "seconds" },
 		{ _field_block, "PGCR per player tracked incidents", &pgcr_incident_block },
 		{ _field_terminator }

@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -33,17 +33,17 @@ namespace blofeld
 		{ _field_tag_reference, "source bitmap", "optional bitmap to draw into the unmasked regions of the meter (modulated by the colors below)", &global_bitmap_reference },
 		{ _field_short_integer, "stencil sequence index" },
 		{ _field_short_integer, "source sequence index" },
-		FIELD_PAD("KBT", nullptr, FIELD_FLAG_NONE, 16),
-		FIELD_PAD("ON", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("KBT", nullptr, FIELD_FLAG_NONE, 16),
+		FIELD_PAD_EX("ON", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_enum, "interpolate colors...", &color_interpolation_modes_enum },
 		{ _field_enum, "anchor colors...", &color_anchors_enum },
-		FIELD_PAD("WMTT", nullptr, FIELD_FLAG_NONE, 8),
+		FIELD_PAD_EX("WMTT", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real_argb_color, "empty color" },
 		{ _field_real_argb_color, "full color" },
-		FIELD_PAD("VNJW", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("VNJW", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_real, "unmask distance", "fade from fully masked to fully unmasked this distance beyond full (and below empty)", "meter units" },
 		{ _field_real, "mask distance", "fade from fully unmasked to fully masked this distance below full (and beyond empty)", "meter units" },
-		FIELD_PAD("SBQWDR", nullptr, FIELD_FLAG_NONE, 20),
+		FIELD_PAD_EX("SBQWDR", nullptr, FIELD_FLAG_NONE, 20),
 		{ _field_data, "encoded stencil" },
 		{ _field_terminator }
 	};

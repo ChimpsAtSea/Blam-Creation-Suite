@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -60,7 +60,7 @@ namespace blofeld
 		{ _field_short_block_index, "big battle creature", &big_battle_creature_palette_block },
 		{ _field_short_bounds, "boid count" },
 		{ _field_short_block_index, "enemy flock", &flock_instance_block },
-		FIELD_PAD("post-enemy-flock", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-enemy-flock", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "enemy flock max target distance" },
 		{ _field_terminator }
 	};
@@ -83,7 +83,7 @@ namespace blofeld
 		{ _field_real, "weight", "probability of producing at this source" },
 		{ _field_char_integer, "bsp_index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_byte_integer, "cluster index", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("post-cluster-ref", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-cluster-ref", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -103,7 +103,7 @@ namespace blofeld
 		{ _field_real, "radius" },
 		{ _field_real, "max destination volume penetration", "The farthest the boid will go inside our destination volume", "wu" },
 		{ _field_short_block_index, "destination volume", &scenario_trigger_volume_block },
-		FIELD_PAD("post-destination-volume", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-destination-volume", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -116,7 +116,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FLOCK_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("Simple flocking", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Simple flocking", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "forward weight", "weight given to boid's desire to fly straight ahead", nullptr, "[0..1]", MAKE_OLD_NAMES("forward scale") },
 		{ _field_real, "leveling force weight", "weight given to boids desire to fly level", nullptr, "[0..1]", MAKE_OLD_NAMES("leveling force scale") },
 		{ _field_real, "destination weight", "weight given to boid's desire to fly towards its sinks", nullptr, "[0..1]", MAKE_OLD_NAMES("sink scale") },
@@ -130,10 +130,10 @@ namespace blofeld
 		{ _field_real, "target delay time", "amount of time we need to be locked onto a target before we might start killing it", "seconds" },
 		{ _field_real, "target kill chance", "probability of killing your target in one second", "chance per second" },
 		{ _field_real, "ai destroy chance", "if targetted by AI, the probability of dying in one second", "chance per second" },
-		FIELD_EXPLANATION("Perlin noise parameters", nullptr, FIELD_FLAG_NONE, "Recommended initial values: \n\trandom offset scale= 0.2 \n\toffset period bounds= 1, 3"),
+		FIELD_EXPLANATION_EX("Perlin noise parameters", nullptr, FIELD_FLAG_NONE, "Recommended initial values: \n\trandom offset scale= 0.2 \n\toffset period bounds= 1, 3"),
 		{ _field_real, "random offset weight", "weight given to boid's random heading offset", nullptr, "[0..1]", MAKE_OLD_NAMES("random offset scale") },
 		{ _field_real_bounds, "random offset period", nullptr, "seconds" },
-		FIELD_EXPLANATION("Complex Flocking", nullptr, FIELD_FLAG_NONE, "WARNING: In flocks with a neighborhood radius of 0, creatures are not influenced by the other creatures around them. THESE ARE MUCH CHEAPER.\n"),
+		FIELD_EXPLANATION_EX("Complex Flocking", nullptr, FIELD_FLAG_NONE, "WARNING: In flocks with a neighborhood radius of 0, creatures are not influenced by the other creatures around them. THESE ARE MUCH CHEAPER.\n"),
 		{ _field_real, "neighborhood radius", "distance within which one boid is affected by another", "world units" },
 		{ _field_angle, "perception angle", "angle-from-forward within which one boid can perceive and react to another", "degrees" },
 		{ _field_real, "avoidance weight", "weight given to boid's desire to avoid collisions with other boids, when within the avoidance radius", nullptr, "[0..1]", MAKE_OLD_NAMES("avoidance scale") },

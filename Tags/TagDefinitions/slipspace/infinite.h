@@ -9478,9 +9478,11 @@ namespace infinite {
 
 	extern s_tag_struct_definition hsbytecode;
 
+	extern s_tag_struct_definition hssource_v1;
 	extern s_tag_struct_definition hssource;
-
+	extern s_tag_struct_definition hssymbol_v1;
 	extern s_tag_struct_definition hssymbol;
+
 
 	extern s_tag_struct_definition hsdebugresource;
 

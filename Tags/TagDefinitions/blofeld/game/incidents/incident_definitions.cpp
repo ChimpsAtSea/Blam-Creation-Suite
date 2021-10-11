@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -67,26 +67,26 @@ namespace blofeld
 		INCIDENT_DEFINITION_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
-		FIELD_CUSTOM("PROPERTIES", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("PROPERTIES", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_byte_flags, "flags", &incident_definition_flags },
-		FIELD_PAD("JKOPEIE", nullptr, FIELD_FLAG_NONE, 3),
-		FIELD_CUSTOM("DISALLOWED GAME MODES", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_PAD_EX("JKOPEIE", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_CUSTOM_EX("DISALLOWED GAME MODES", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "disallowed game modes", &game_mode_flags_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_block, "suppressed incidents", &suppressed_incident_block, _field_id_slap },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "suppressed incident blocks", &SuppressedIncidentBlockReferenceDefinition_block, _field_id_slap },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("CREATION", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("CREATION", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_block, "specialized incidents", &specialized_incident_block, _field_id_slap },
 		{ _field_block, "accumulator incidents", &incident_accumulator_block, _field_id_slap },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "sum accumulator incidents", &incident_sum_accumulator_block, _field_id_slap },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_block, "response", &game_incident_response_block },
 		{ _field_terminator }
 	};
@@ -103,7 +103,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "incident name", FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "suppression type", &suppressed_incident_flags },
-		FIELD_PAD("VNJESHFHV", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("VNJESHFHV", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -161,7 +161,7 @@ namespace blofeld
 		SPECIALIZED_INCIDENT_KILL_IMPLEMENT_BLOCK_ID)
 	{
 		{ _field_char_enum, "damage reporting type", FIELD_FLAG_INDEX, &global_damage_reporting_enum_definition },
-		FIELD_PAD("ACNUIEHF", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("ACNUIEHF", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -185,7 +185,7 @@ namespace blofeld
 		{ _field_long_flags, "flags", &specialized_incident_kill_bucket_flags },
 		{ _field_char_enum, "bucket type", FIELD_FLAG_INDEX, &campaign_metagame_bucket_type_with_none_enum },
 		{ _field_char_enum, "bucket class", FIELD_FLAG_INDEX, &campaign_metagame_bucket_class_with_none_enum },
-		FIELD_PAD("PAD0", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("PAD0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string, "gamertag" },
 		{ _field_block, "riding in vehicles", &specialized_incident_object_riding_in_vehicle_properties_block },
 
@@ -217,7 +217,7 @@ namespace blofeld
 		SPECIALIZED_INCIDENT_SPECIAL_KILL_TYPE_BLOCK_ID)
 	{
 		{ _field_char_enum, "special kill type", FIELD_FLAG_INDEX, &specialized_incident_special_kill_type_enum },
-		FIELD_PAD("CVUIHEN", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("CVUIHEN", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -234,7 +234,7 @@ namespace blofeld
 		{ _field_word_flags, "flags", &specializedIncidentGameOverFlags },
 		{ _field_short_integer, "minimum game length", nullptr, "seconds" },
 		{ _field_char_integer, "megalo category index", "only used if the \"check megalo category\" flag is set" },
-		FIELD_PAD("PAD1", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("PAD1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -263,7 +263,7 @@ namespace blofeld
 		SPECIALIZEDINCIDENTCUSTOMDATAFILTERBLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
-		FIELD_PAD("PAD1", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("PAD1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_long_integer, "value" },
 		{ _field_terminator }
 	};
@@ -279,7 +279,7 @@ namespace blofeld
 		SPECIALIZEDINCIDENTDISTANCEFILTERBLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
-		FIELD_PAD("PAD1", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("PAD1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_long_integer, "distance between effect and cause player", nullptr, "wu" },
 		{ _field_terminator }
 	};
@@ -296,7 +296,7 @@ namespace blofeld
 	{
 		{ _field_char_enum, "aggregation type", &incident_accumulator_aggregation_method_enum },
 		{ _field_char_enum, "resets on", &incident_accumulator_reset_enum },
-		FIELD_PAD("VJIOEJNLKS", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("VJIOEJNLKS", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "child incidents", &incident_accumulator_child_incident_block },
 		{ _field_terminator }
 	};
@@ -312,7 +312,7 @@ namespace blofeld
 		INCIDENT_ACCUMULATOR_CHILD_INCIDENT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
-		FIELD_PAD("VLHSJNRE", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("VLHSJNRE", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_long_integer, "count" },
 		{ _field_string_id, "incident name" },
 
@@ -335,7 +335,7 @@ namespace blofeld
 	{
 		{ _field_char_enum, "resets on", &incident_accumulator_reset_enum },
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
-		FIELD_PAD("XSEXEC", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("XSEXEC", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "count" },
 		{ _field_block, "child incidents", &incident_sum_accumulator_child_incident_block },
 		{ _field_terminator }
@@ -391,13 +391,13 @@ namespace blofeld
 		{ _field_real, "damage threshold for distraction incident distractor", nullptr, nullptr, "[0,1]" },
 		{ _field_tag_reference, "reward globals", FIELD_FLAG_UNKNOWN0, &reward_globals_definition_reference },
 		{ _field_tag_reference, "commendation globals", &commendation_globals_definition_reference },
-		FIELD_CUSTOM("HEAT", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("HEAT", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_short_integer, "maximum heat" },
-		FIELD_PAD("KVLHESKH", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("KVLHESKH", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "full heat decay time", "seconds to completely deplete a full heat meter", "S" },
 		{ _field_real, "full heat stun time", "seconds from the time you are at maximum heat until it starts decaying again", "s" },
 		{ _field_real, "betrayal heat stun time", "seconds from the time you are at maximum heat until it starts decaying again", "s" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "incident definitions", &incident_global_properties_incident_definitions_block },

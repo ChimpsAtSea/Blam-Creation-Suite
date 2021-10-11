@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -17,8 +17,8 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DECORATOR_SET_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("link to render model", nullptr, FIELD_FLAG_NONE, _field_id_unknown_compile),
-		FIELD_EXPLANATION("Render models", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_CUSTOM_EX("link to render model", nullptr, FIELD_FLAG_NONE, _field_id_unknown_compile),
+		FIELD_EXPLANATION_EX("Render models", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "Base", MAKE_OLD_NAMES("render model"), FIELD_FLAG_READ_ONLY, &render_model_reference },
 		{ _field_tag_reference, "Lod2", MAKE_OLD_NAMES("render model_lod1"), FIELD_FLAG_READ_ONLY, &render_model_reference },
 		{ _field_tag_reference, "Lod3", MAKE_OLD_NAMES("render model_lod2"), FIELD_FLAG_READ_ONLY, &render_model_reference },
@@ -26,7 +26,7 @@ namespace blofeld
 		{ _field_block, "render model instance names", FIELD_FLAG_UNKNOWN0, &decorator_set_instance_name_block },
 		{ _field_long_integer, "render model instance name valid count", FIELD_FLAG_UNKNOWN0 },
 		{ _field_tag_reference, "texture", &bitmap_reference$6 },
-		FIELD_EXPLANATION("RENDERING", nullptr, FIELD_FLAG_NONE, "\n"),
+		FIELD_EXPLANATION_EX("RENDERING", nullptr, FIELD_FLAG_NONE, "\n"),
 		{ _field_byte_flags, "render flags", &decorator_set_render_flags_definition },
 		{ _field_char_enum, "render shader", &decorator_set_render_shader_enum_definition },
 		{ _field_char_enum, "light sampling pattern", &decorator_set_lighting_sample_pattern_enum_definition },
@@ -43,7 +43,7 @@ namespace blofeld
 		{ _field_real, "shaded bright", "the bright side of a shaded decorator is this much brighter than the dark side" },
 		{ _field_real, "unused1", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "unused2", FIELD_FLAG_UNKNOWN0 },
-		FIELD_EXPLANATION("LOD FADE + CULL", nullptr, FIELD_FLAG_NONE, "\n"),
+		FIELD_EXPLANATION_EX("LOD FADE + CULL", nullptr, FIELD_FLAG_NONE, "\n"),
 		{ _field_real, "early cull", "cull vertices this percentage sooner than LOD3-nothing transition", nullptr, "[0 - 1]" },
 		{ _field_real, "cull block size", "decorators are grouped into blocks to be culled in large batches, this determines how much ground each batch covers.  Should be small if you expect to have very dense decorators, and large if you expect them to be sparse", nullptr, "[0.5-100]world units" },
 		{ _field_real, "decimation speed", "1 is default", nullptr, "[0 - infinite]", FIELD_FLAG_UNKNOWN0 },
@@ -52,28 +52,28 @@ namespace blofeld
 		{ _field_real, "decimation start", nullptr, "world units" },
 		{ _field_real, "decimation end", nullptr, "world units" },
 		{ _field_long_integer, "max valid lod", FIELD_FLAG_UNKNOWN0 },
-		FIELD_EXPLANATION("Lod transitions", nullptr, FIELD_FLAG_NONE, ""),
-		FIELD_EXPLANATION("Base to LOD2", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Lod transitions", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Base to LOD2", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "start point0", MAKE_OLD_NAMES("Base to LOD1 cross fading start point") },
 		{ _field_real, "end point0", MAKE_OLD_NAMES("Base to LOD1 cross fading end point") },
 		{ _field_real, "scale0", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "offset0", FIELD_FLAG_UNKNOWN0 },
-		FIELD_EXPLANATION("LOD2 to LOD3", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("LOD2 to LOD3", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "start point1", MAKE_OLD_NAMES("LOD1 to LOD2 cross fading start point") },
 		{ _field_real, "end point1", MAKE_OLD_NAMES("LOD1 to LOD2 cross fading end point") },
 		{ _field_real, "scale1", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "offset1", FIELD_FLAG_UNKNOWN0 },
-		FIELD_EXPLANATION("LOD3 to LOD4", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("LOD3 to LOD4", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "start point2", MAKE_OLD_NAMES("LOD2 to LOD3 cross fading start point") },
 		{ _field_real, "end point2", MAKE_OLD_NAMES("LOD2 to LOD3 cross fading end point") },
 		{ _field_real, "scale2", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "offset2", FIELD_FLAG_UNKNOWN0 },
-		FIELD_EXPLANATION("LOD4 to nothing", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("LOD4 to nothing", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "start point3", MAKE_OLD_NAMES("LOD3 to nothing cross fading start point") },
 		{ _field_real, "end point3", MAKE_OLD_NAMES("LOD3 to nothing cross fading end point") },
 		{ _field_real, "scale3", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "offset3", FIELD_FLAG_UNKNOWN0 },
-		FIELD_EXPLANATION("DECORATOR TYPES", nullptr, FIELD_FLAG_NONE, "These describe the randomized settings for your decorator meshes.\n\nTHIS ONLY AFFECTS DECORATORS WHEN YOU PLACE THEM DOWN INITIALLY\nChanging these settings will not affect already placed decorators unless you use the \'reapply-type-settings\' brush\n\nWARNING: Re-arranging the order of these types after placing decorators\nin your level will cause the placed decorators to change types.\n\nDO NOT DELETE!  DO NOT INSERT!  OR YOUR PLACED DECORATORS WILL BE CHANGED!\n"),
+		FIELD_EXPLANATION_EX("DECORATOR TYPES", nullptr, FIELD_FLAG_NONE, "These describe the randomized settings for your decorator meshes.\n\nTHIS ONLY AFFECTS DECORATORS WHEN YOU PLACE THEM DOWN INITIALLY\nChanging these settings will not affect already placed decorators unless you use the \'reapply-type-settings\' brush\n\nWARNING: Re-arranging the order of these types after placing decorators\nin your level will cause the placed decorators to change types.\n\nDO NOT DELETE!  DO NOT INSERT!  OR YOUR PLACED DECORATORS WILL BE CHANGED!\n"),
 		{ _field_block, "decorator types", &global_decorator_type_block },
 		{ _field_terminator }
 	};

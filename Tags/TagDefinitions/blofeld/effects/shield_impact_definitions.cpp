@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -62,25 +62,25 @@ namespace blofeld
 
 		// Reach, H4
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 48 },
-		FIELD_EXPLANATION("Shield Controls", nullptr, FIELD_FLAG_NONE, "You can use the following variables as inputs to the functions here, in addition to any object variables\n    shield_vitality        percentage of shield remaining\n    shield_intensity       mixture of recent and current damage (see below)\n    current_shield_damage\n    recent_shield_damage\n"),
+		FIELD_EXPLANATION_EX("Shield Controls", nullptr, FIELD_FLAG_NONE, "You can use the following variables as inputs to the functions here, in addition to any object variables\n    shield_vitality        percentage of shield remaining\n    shield_intensity       mixture of recent and current damage (see below)\n    current_shield_damage\n    recent_shield_damage\n"),
 		{ _field_word_flags, "flags", &shield_flags },
 		{ _field_short_integer, "version", FIELD_FLAG_UNKNOWN0 },
-		FIELD_CUSTOM("Shield Intensity", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
-		FIELD_EXPLANATION("Shield Intensity", nullptr, FIELD_FLAG_NONE, "Shield intensity is a combination of recent damage and current damage.\nThese controls let you adjust the relative intensity contribution from each.\n\'shield_intensity\' can be used as an input to any of the animation function curves below."),
+		FIELD_CUSTOM_EX("Shield Intensity", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_EXPLANATION_EX("Shield Intensity", nullptr, FIELD_FLAG_NONE, "Shield intensity is a combination of recent damage and current damage.\nThese controls let you adjust the relative intensity contribution from each.\n\'shield_intensity\' can be used as an input to any of the animation function curves below."),
 		{ _field_real, "Recent Damage Intensity" },
 		{ _field_real, "Current Damage Intensity" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("Shield Edge", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
-		FIELD_EXPLANATION("Shield Edge", nullptr, FIELD_FLAG_NONE, "These controls allow you to define the location and width of the shield edges.\nThe edge is faded as a function of the surface normal with respect to the camera.\nRadius 1.0 corresponds to the glancing edges of the surface (the silhouette edges).\nRadius 0.0 corresponds to the area of the surface directly facing the camera (the center).\nYou can control separately the inner and outer fades."),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("Shield Edge", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_EXPLANATION_EX("Shield Edge", nullptr, FIELD_FLAG_NONE, "These controls allow you to define the location and width of the shield edges.\nThe edge is faded as a function of the surface normal with respect to the camera.\nRadius 1.0 corresponds to the glancing edges of the surface (the silhouette edges).\nRadius 0.0 corresponds to the area of the surface directly facing the camera (the center).\nYou can control separately the inner and outer fades."),
 		{ _field_real, "Depth Fade Range", nullptr, "world units" },
 		{ _field_real, "Outer Fade Radius", nullptr, nullptr, "[0-1]" },
 		{ _field_real, "Center Radius", nullptr, nullptr, "[0-1]" },
 		{ _field_real, "Inner Fade Radius", nullptr, nullptr, "[0-1]" },
 		{ _field_struct, "Edge Glow Color", &shield_color_function_struct },
 		{ _field_struct, "Edge Glow Intensity", &shield_scalar_function_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("Plasma", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
-		FIELD_EXPLANATION("Plasma", nullptr, FIELD_FLAG_NONE, "These controls allow you to define the appearance of the plasma effect.\nThe plasma is calculated using the standard formula (1-abs(tex0-tex1))^(sharpness).\nTiling scale controls the spatial tiling of the plasma textures.\nScroll speed controls how fast the textures scroll on the surface.\nYou can specify separate sharpness values for the edge and the center.\n"),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("Plasma", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_EXPLANATION_EX("Plasma", nullptr, FIELD_FLAG_NONE, "These controls allow you to define the appearance of the plasma effect.\nThe plasma is calculated using the standard formula (1-abs(tex0-tex1))^(sharpness).\nTiling scale controls the spatial tiling of the plasma textures.\nScroll speed controls how fast the textures scroll on the surface.\nYou can specify separate sharpness values for the edge and the center.\n"),
 		{ _field_real, "Plasma Depth Fade Range", nullptr, "world units" },
 		{ _field_tag_reference, "Plasma Noise Texture 0", &global_bitmap_reference },
 		{ _field_tag_reference, "Plasma Noise Texture 1", &global_bitmap_reference },
@@ -95,18 +95,18 @@ namespace blofeld
 		{ _field_struct, "Plasma Center Intensity", &shield_scalar_function_struct },
 		{ _field_struct, "Plasma Edge Color", &shield_color_function_struct },
 		{ _field_struct, "Plasma Edge Intensity", &shield_scalar_function_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("Extrusion Oscillation", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
-		FIELD_EXPLANATION("Extrusion Oscillation", nullptr, FIELD_FLAG_NONE, "These controls allow you to define the oscillation in the extrusion.\nThese textures are tiled and scrolled in the xy and yz planes, and their red channel is applied as an offset to the extrusion\nTiling scale controls the spatial tiling of the plasma textures.\nScroll speed controls how fast the textures scroll on the surface.\nYou can specify separate sharpness values for the edge and the center.\n"),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("Extrusion Oscillation", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_EXPLANATION_EX("Extrusion Oscillation", nullptr, FIELD_FLAG_NONE, "These controls allow you to define the oscillation in the extrusion.\nThese textures are tiled and scrolled in the xy and yz planes, and their red channel is applied as an offset to the extrusion\nTiling scale controls the spatial tiling of the plasma textures.\nScroll speed controls how fast the textures scroll on the surface.\nYou can specify separate sharpness values for the edge and the center.\n"),
 		{ _field_tag_reference, "Oscillation Texture 0", &global_bitmap_reference },
 		{ _field_tag_reference, "Oscillation Texture 1", &global_bitmap_reference },
 		{ _field_real, "Oscillation Tiling Scale" },
 		{ _field_real, "Oscillation Scroll Speed" },
 		{ _field_struct, "Extrusion Amount", &shield_scalar_function_struct },
 		{ _field_struct, "Oscillation Amplitude", &shield_scalar_function_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("Hit Response", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
-		FIELD_EXPLANATION("Hit Response", nullptr, FIELD_FLAG_NONE, "These controls allow you to define the color variation in the area surrounding projectile impacts.\nYou can control the color, and the size of the colored area.\nThe default input is time since impact.\n"),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("Hit Response", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_EXPLANATION_EX("Hit Response", nullptr, FIELD_FLAG_NONE, "These controls allow you to define the color variation in the area surrounding projectile impacts.\nYou can control the color, and the size of the colored area.\nThe default input is time since impact.\n"),
 		{ _field_real, "Hit Time", nullptr, "seconds" },
 		{ _field_struct, "Hit Color", &shield_color_function_struct },
 		{ _field_struct, "Hit Intensity", &shield_scalar_function_struct },
@@ -114,7 +114,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_struct, "Hit Radius", &shield_scalar_function_struct },
 		{ _field_tag_reference, "hit blob texture (adds significant cost)", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_real_quaternion, "edge_scales", FIELD_FLAG_UNKNOWN0 },
@@ -137,7 +137,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};
@@ -154,7 +154,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};

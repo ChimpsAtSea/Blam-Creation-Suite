@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -17,9 +17,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_SYSTEM_DEFINITION_BLOCK_NEW_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
 		{ _field_char_enum, "priority", &global_effect_priority_enum },
-		FIELD_PAD("CXAEIHGADNF", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("CXAEIHGADNF", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "particle", &particle_reference },
 		{ _field_long_block_index, "location", &effect_locations_block },
 		{ _field_enum, "coordinate system", &coordinate_system_enum },
@@ -29,7 +29,7 @@ namespace blofeld
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_char_enum, "game mode", &effectPartGameModeDefinition },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 1),
 
 		{ _field_short_integer, "sort bias", "use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
 
@@ -45,7 +45,7 @@ namespace blofeld
 
 		{ _field_real, "size scale", "multiplied by all \"size\" related fields, like scale, velocity, acceleration" },
 		{ _field_real, "camera offset", "the particle is pushed away from the camera this distance (can be negative)", "world units" },
-		FIELD_CUSTOM("Estimate overdraw threshold", nullptr, FIELD_FLAG_NONE, _field_id_particle_estimate_overdraw_unknown),
+		FIELD_CUSTOM_EX("Estimate overdraw threshold", nullptr, FIELD_FLAG_NONE, _field_id_particle_estimate_overdraw_unknown),
 		{ _field_real, "Pixel budget", nullptr, "ms" },
 		{ _field_real, "near fade range", "distance beyond cutoff over which particles fade", "world units" },
 		{ _field_real, "near fade cutoff", "distance in front of camera where fade is complete", "world units", FIELD_FLAG_READ_ONLY },
@@ -65,7 +65,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "unknown" },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
 		{ _field_block, "emitters", &particle_system_emitter_definition_block },
 		{ _field_real, "runtime max lifespan", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "runtime overdraw", FIELD_FLAG_UNKNOWN0 },
@@ -83,22 +83,22 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_SYSTEM_EMITTER_DEFINITION_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
 		{ _field_string_id, "emitter name", FIELD_FLAG_INDEX },
-		FIELD_CUSTOM("EMITTER SETTINGS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("EMITTER SETTINGS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_char_enum, "emission shape", &emission_shape_enum },
 		{ _field_byte_flags, "flags", FIELD_FLAG_UNKNOWN0, &emitter_flags },
 		{ _field_byte_flags, "emitter flags", &visible_emitter_flags },
 		{ _field_char_enum, "particle axis (for models)", &emission_axis_enum },
 		{ _field_char_enum, "particle reference axis", &emission_reference_axis_enum },
-		FIELD_PAD("Pad0", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("Pad0", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "custom shape", &particle_emitter_custom_shape_reference },
 		{ _field_tag_reference, "boat hull", &particle_emitter_boat_hull_shape_reference },
 		{ _field_real, "bounding radius estimate", "used if override is zero", "world units", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "bounding radius override", "used if non-zero", "world units" },
 		{ _field_real_point_3d, "axis scale", "NOTE - setting this will break automatic bounding sphere calculation, you must enter radius manually" },
 		{ _field_real_vector_2d, "uv scrolling", nullptr, "tiles per second" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
 		{ _field_struct, "translational offset", "XYZ controls that offset the emitter's origin from the original location", "world units", &particle_property_real_point3d_struct_new },
 		{ _field_struct, "relative direction", "yaw/pitch that changes the initial rotation of the emitter", &particle_property_real_euler_angles2d_struct_new },
 
@@ -106,24 +106,24 @@ namespace blofeld
 		{ _field_legacy, _field_long_integer, "unknown@" },
 		{ _field_legacy, _field_long_integer, "unknown@" },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
 		{ _field_struct, "emission radius", "defines the size of the emitter", "world units", &particle_property_scalar_struct_new },
 		{ _field_struct, "emission angle", "determines the angle at which particles are emitted", "degrees", &particle_property_scalar_struct_new },
 		{ _field_struct, "emission axis angle", "determines the max tilt for particle axis", "degrees", &particle_property_scalar_struct_new },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("EMISSION SETTINGS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("EMISSION SETTINGS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "particle starting count", "number of particles that are spawned at the birth of the effect", &particle_property_scalar_struct_new },
 		{ _field_struct, "particle max count", "max number of particles allowed to exist at one time", "0=unlimited", &particle_property_scalar_struct_new },
 		{ _field_struct, "particle emission rate", "number of particles that are spawned every second from the emitters", "particles per second", &particle_property_scalar_struct_new },
 		{ _field_struct, "particle emission per distance", "number of particles that are spawned every world unit of motion from the emitters", "particles per world unit", &particle_property_scalar_struct_new },
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach }, // #TODO: Which one of these properties was removed?
 		{ _field_struct, "particle lifespan", "the number of seconds a particle will live after emission", "seconds", &particle_property_scalar_struct_new },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("PARTICLE MOTION", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
-		FIELD_CUSTOM("particle physics template", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("PARTICLE MOTION", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("particle physics template", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "particle movement", &particle_physics_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "particle attractor/repulsor", &emitterGlobalForceBlock_block },
@@ -133,8 +133,8 @@ namespace blofeld
 		{ _field_struct, "particle initial velocity", nullptr, "world units per second", MAKE_OLD_NAMES("particle velocity"), &particle_property_scalar_struct_new },
 		{ _field_struct, "particle rotation", nullptr, ".25=90°, .5=180°, 1=360° ... adds to physics", &particle_property_scalar_struct_new },
 		{ _field_struct, "particle initial rotation rate", nullptr, "360 degree rotations per second", MAKE_OLD_NAMES("particle angular velocity"), &particle_property_scalar_struct_new },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("PARTICLE APPEARANCE", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("PARTICLE APPEARANCE", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "particle size", nullptr, "world units", &particle_property_scalar_struct_new },
 		{ _field_struct, "particle scale", nullptr, "multiple of size", &particle_property_scalar_struct_new },
 
@@ -149,8 +149,8 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_struct, "particle alpha white point", nullptr, "1=normal, 0=clamped", &particle_property_scalar_struct_new },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
 		{ _field_long_integer, "runtime m_constant_per_particle_properties", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "runtime m_constant_over_time_properties", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "runtime m_used_particle_states", FIELD_FLAG_UNKNOWN0 },

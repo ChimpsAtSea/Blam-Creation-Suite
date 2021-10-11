@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -47,7 +47,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CUBEMAP_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_string_id, "name" },
 		{ _field_real_point_3d, "cubemap position" },
 		{ _field_enum, "cubemap resolution", &cubemap_resolution_enum },
@@ -56,10 +56,10 @@ namespace blofeld
 		{ _field_legacy, _field_short_integer, "unknown" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
-		FIELD_PAD("post-cubemap-resolution-pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-cubemap-resolution-pad", nullptr, FIELD_FLAG_NONE, 2),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
-		FIELD_EXPLANATION("bsps it could belong to", nullptr, FIELD_FLAG_NONE, "empty masks mean automatic selection."),
+		FIELD_EXPLANATION_EX("bsps it could belong to", nullptr, FIELD_FLAG_NONE, "empty masks mean automatic selection."),
 		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences },
 
 		{ _field_block, "reference points", &cubemap_reference_points_block },

@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -128,7 +128,7 @@ namespace blofeld
 		COLLISION_MODEL_NODE_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
-		FIELD_PAD("PFPPD", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("PFPPD", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_block_index, "parent node", FIELD_FLAG_READ_ONLY, &collision_model_node_block },
 		{ _field_short_block_index, "next sibling node", FIELD_FLAG_READ_ONLY, &collision_model_node_block },
 		{ _field_short_block_index, "first child node", FIELD_FLAG_READ_ONLY, &collision_model_node_block },
@@ -151,7 +151,7 @@ namespace blofeld
 		COLLISION_MODEL_BSP_STRUCT_ID)
 	{
 		{ _field_short_integer, "node index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("KXGCEIEI", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("KXGCEIEI", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "" },
 		{ _field_struct, "bsp", FIELD_FLAG_READ_ONLY, &global_collision_bsp_struct },
 		{ _field_terminator }

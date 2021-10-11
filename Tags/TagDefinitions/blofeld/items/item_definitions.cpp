@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -45,7 +45,7 @@ namespace blofeld
 		ITEM_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		FIELD_CUSTOM("$$$ ITEM $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("$$$ ITEM $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &item_definition_flags },
 
 		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 4 },
@@ -59,7 +59,7 @@ namespace blofeld
 		{ _field_real, "OLD multiplayer on-ground scale" },
 		{ _field_real, "OLD campaign on-ground scale" },
 
-		FIELD_EXPLANATION("NEW hud messages", nullptr, FIELD_FLAG_NONE, "everything you need to display shite"),
+		FIELD_EXPLANATION_EX("NEW hud messages", nullptr, FIELD_FLAG_NONE, "everything you need to display shite"),
 		{ _field_string_id, "pickup message" },
 		{ _field_string_id, "swap message" },
 		{ _field_string_id, "pickup message (dual)" },
@@ -81,7 +81,7 @@ namespace blofeld
 		{ _field_real_bounds, "detonation delay", nullptr, "seconds" },
 		{ _field_tag_reference, "detonating effect", &global_effect_reference },
 		{ _field_tag_reference, "detonation effect", &global_effect_reference },
-		FIELD_EXPLANATION("Item scale settings", nullptr, FIELD_FLAG_NONE, "because grenades look better as coconuts. 0==1"),
+		FIELD_EXPLANATION_EX("Item scale settings", nullptr, FIELD_FLAG_NONE, "because grenades look better as coconuts. 0==1"),
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_real, "campaign ground scale" },
@@ -112,7 +112,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_equal, _engine_type_groundhog },
 		{ _field_legacy, _field_real, "unknown" },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

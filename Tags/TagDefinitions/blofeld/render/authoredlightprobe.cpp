@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -17,18 +17,18 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AUTHORED_LIGHT_PROBE_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("Character Lighting", nullptr, FIELD_FLAG_NONE, "\n"),
+		FIELD_EXPLANATION_EX("Character Lighting", nullptr, FIELD_FLAG_NONE, "\n"),
 		{ _field_block, "Lights", FIELD_FLAG_READ_ONLY, &authored_light_probe_lights_block },
-		FIELD_CUSTOM("Authored Light Probe Intensity Scale", nullptr, FIELD_FLAG_UNKNOWN0, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Authored Light Probe Intensity Scale", nullptr, FIELD_FLAG_UNKNOWN0, _field_id_slider_editor),
 		{ _field_real, "Authored Light Probe Intensity Scale", FIELD_FLAG_UNKNOWN0, _field_id_slider_editor },
-		FIELD_CUSTOM("Generated Air Probe Intensity Scale", nullptr, FIELD_FLAG_UNKNOWN0, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Generated Air Probe Intensity Scale", nullptr, FIELD_FLAG_UNKNOWN0, _field_id_slider_editor),
 		{ _field_real, "Generated Air Probe Intensity Scale", FIELD_FLAG_UNKNOWN0, _field_id_slider_editor },
 		{ _field_array, "raw sh data", FIELD_FLAG_UNKNOWN0, &real_rgb_lightprobe_array },
 		{ _field_char_enum, "Is Camera-space", &midnight_boolean_enum_definition },
 		{ _field_char_enum, "Apply to First Person Geometry", &midnight_boolean_enum_definition },
-		FIELD_PAD("pdd", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_EXPLANATION("Object Shadows (all objects, not just characters)", nullptr, FIELD_FLAG_NONE, "\n"),
-		FIELD_CUSTOM("IO Direct Lighting Minimum Percentage (When in Shadow)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_PAD_EX("pdd", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION_EX("Object Shadows (all objects, not just characters)", nullptr, FIELD_FLAG_NONE, "\n"),
+		FIELD_CUSTOM_EX("IO Direct Lighting Minimum Percentage (When in Shadow)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "IO Direct Lighting Minimum Percentage (When in Shadow)", _field_id_slider_editor },
 		{ _field_terminator }
 	};
@@ -50,24 +50,24 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AUTHORED_LIGHT_PROBE_LIGHTS_BLOCK_ID)
 	{
-		FIELD_CUSTOM("Authored Light Probe", nullptr, FIELD_FLAG_NONE, _field_id_authored_light_probe),
-		FIELD_CUSTOM("Direction 1&Direction(D)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Authored Light Probe", nullptr, FIELD_FLAG_NONE, _field_id_authored_light_probe),
+		FIELD_CUSTOM_EX("Direction 1&Direction(D)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Direction 1&Direction(D)", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back 1&Front-Back(D)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Front-Back 1&Front-Back(D)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Front-Back 1&Front-Back(D)", _field_id_slider_editor },
 		{ _field_real_rgb_color, "Direct color 1" },
-		FIELD_CUSTOM("Direct intensity 1", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Direct intensity 1", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Direct intensity 1", _field_id_slider_editor },
-		FIELD_CUSTOM("Direction 2&Direction(D)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Direction 2&Direction(D)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Direction 2&Direction(D)", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back 2&Front-Back(D)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Front-Back 2&Front-Back(D)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Front-Back 2&Front-Back(D)", _field_id_slider_editor },
 		{ _field_real_rgb_color, "Direct color 2" },
-		FIELD_CUSTOM("Direct intensity 2", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Direct intensity 2", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Direct intensity 2", _field_id_slider_editor },
-		FIELD_CUSTOM("Authored Light Probe Intensity Scale", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Authored Light Probe Intensity Scale", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Authored Light Probe Intensity Scale", _field_id_slider_editor },
-		FIELD_CUSTOM("Generated Air Probe Intensity Scale", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		FIELD_CUSTOM_EX("Generated Air Probe Intensity Scale", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Generated Air Probe Intensity Scale", _field_id_slider_editor },
 		{ _field_terminator }
 	};

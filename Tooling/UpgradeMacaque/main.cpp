@@ -102,5 +102,7 @@ int main()
 		}
 	}
 
+	deinit_command_line();
+	deinit_console();
 	return rs;
 }

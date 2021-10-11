@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -18,7 +18,7 @@ namespace blofeld
 	{
 		{ _field_long_flags, "Trigger flags", &trigger_ref_flags },
 		{ _field_short_block_index, "trigger", FIELD_FLAG_INDEX, &triggers_block },
-		FIELD_PAD("LPQYXEA", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("LPQYXEA", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -32,11 +32,11 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIGGERS_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "trigger flags", &trigger_flags },
 		{ _field_enum, "combination rule", &combination_rules_enum },
-		FIELD_PAD("XXCMMRUP", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("XXCMMRUP", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "" },
 		{ _field_block, "conditions", &order_completion_condition_block },
 		{ _field_terminator }
@@ -61,11 +61,11 @@ namespace blofeld
 		{ _field_real, "x" },
 		{ _field_useless_pad, "" },
 		{ _field_short_block_index, "trigger volume", &scenario_trigger_volume_block },
-		FIELD_PAD("VZNEYGLW", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("VZNEYGLW", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "" },
 		{ _field_string, "Exit condition script", _field_id_halo_script_block },
 		{ _field_short_integer, "script index", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("LEV", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("LEV", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "" },
 		{ _field_long_flags, "flags", &completion_condition_flags },
 		{ _field_terminator }
@@ -81,13 +81,13 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ORDERS_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_short_block_index, "Style", &style_palette_block },
-		FIELD_PAD("YATIWNRNR", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("YATIWNRNR", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_flags, "flags", &order_flags },
 		{ _field_enum, "Force combat status", &force_combat_status_enum },
-		FIELD_PAD("PWY", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("PWY", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string, "Entry Script", _field_id_halo_script_block },
 		{ _field_short_integer, "Script index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_block_index, "Follow squad", &squads_block },
@@ -131,7 +131,7 @@ namespace blofeld
 		{ _field_enum, "combination rule", &combination_rules_enum },
 		{ _field_real, "delay time" },
 		{ _field_enum, "dialogue type", "when this ending is triggered, launch a dialogue event of the given type", &order_ending_dialogue_enum },
-		FIELD_PAD("YVKPCQIYY", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("YVKPCQIYY", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "" },
 		{ _field_block, "triggers", &trigger_references_block },
 		{ _field_terminator }

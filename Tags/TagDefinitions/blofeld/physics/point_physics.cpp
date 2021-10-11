@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -41,8 +41,8 @@ namespace blofeld
 		{ _field_real, "water friction" },
 		{ _field_real, "surface friction", "when hitting the ground or interior, percentage of velocity lost in one collision" },
 		{ _field_real, "elasticity", "0.0 is inelastic collisions (no bounce) 1.0 is perfectly elastic (reflected velocity equals incoming velocity)" },
-		FIELD_PAD("DR", nullptr, FIELD_FLAG_NONE, 12),
-		FIELD_EXPLANATION("Densities (g/mL)", nullptr, FIELD_FLAG_NONE, "air        0.0011 (g/mL)\nsnow       0.128\ncork       0.24\ncedar      0.43\noak        0.866\nice        0.897\nwater      1.0\nsoil       1.1\ncotton     1.491\ndry earth  1.52\nsand       1.7\ngranite    2.4\nglass      2.5\niron       7.65\nsteel      7.77\nlead       11.37\nuranium    18.74\ngold       19.3\n"),
+		FIELD_PAD_EX("DR", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_EXPLANATION_EX("Densities (g/mL)", nullptr, FIELD_FLAG_NONE, "air        0.0011 (g/mL)\nsnow       0.128\ncork       0.24\ncedar      0.43\noak        0.866\nice        0.897\nwater      1.0\nsoil       1.1\ncotton     1.491\ndry earth  1.52\nsand       1.7\ngranite    2.4\nglass      2.5\niron       7.65\nsteel      7.77\nlead       11.37\nuranium    18.74\ngold       19.3\n"),
 		{ _field_terminator }
 	};
 

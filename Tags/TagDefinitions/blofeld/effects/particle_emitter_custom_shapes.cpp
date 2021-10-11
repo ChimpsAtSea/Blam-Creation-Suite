@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -48,8 +48,8 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_EMITTER_CUSTOM_POINTS_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("import", nullptr, FIELD_FLAG_NONE, _field_id_unknown_compile),
-		FIELD_EXPLANATION("PARTICLE POINTS", nullptr, FIELD_FLAG_NONE, "Explanation goes here.\nWoo....\n"),
+		FIELD_CUSTOM_EX("import", nullptr, FIELD_FLAG_NONE, _field_id_unknown_compile),
+		FIELD_EXPLANATION_EX("PARTICLE POINTS", nullptr, FIELD_FLAG_NONE, "Explanation goes here.\nWoo....\n"),
 		{ _field_tag_reference, "source reference", FIELD_FLAG_UNKNOWN0, &particle_model_reference },
 		{ _field_real_vector_3d, "compression scale" },
 		{ _field_real_vector_3d, "compression offset" },

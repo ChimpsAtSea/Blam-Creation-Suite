@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -58,9 +58,9 @@ namespace blofeld
 		{ _field_tag_reference, "sound", &global_sound_and_looping_sound_reference },
 		{ _field_string_id, "material name", FIELD_FLAG_INDEX },
 		{ _field_short_integer, "runtime material index", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("KTRVUIKB", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("KTRVUIKB", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_char_enum, "sweetener mode", &sweeneter_mode_enum },
-		FIELD_PAD("QNGPTA", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("QNGPTA", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_useless_pad, "" },
 		{ _field_terminator }
 	};
@@ -80,7 +80,7 @@ namespace blofeld
 		{ _field_string_id, "material name", FIELD_FLAG_INDEX },
 		{ _field_short_integer, "runtime material index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_char_enum, "sweetener mode", &sweeneter_mode_enum },
-		FIELD_PAD("L", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("L", nullptr, FIELD_FLAG_NONE, 1),
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "max_visibility_distance", "manual override for the max distance this effect can be from the camera and still be rendered (not valid for sounds)." },

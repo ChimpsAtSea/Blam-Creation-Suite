@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -110,12 +110,12 @@ namespace blofeld
 		{ _field_enum, "listener/target", "who/what am I speaking to/of?", &speaker_type_enum },
 		{ _field_enum, "hostility", "The relationship between the subject and the cause", &hostility_enum },
 		{ _field_word_flags, "flags", &pattern_flags },
-		FIELD_EXPLANATION("Cause", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Cause", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "cause actor type", &actor_type_enum },
 		{ _field_enum, "cause type", &dialogue_object_types_enum },
 		{ _field_string_id, "cause ai type name" },
 		{ _field_string_id, "cause equipment type name" },
-		FIELD_EXPLANATION("Speaker", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Speaker", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "speaker object type", &dialogue_object_types_enum },
 		{ _field_enum, "speaker behavior", &speaker_behavior_enum },
 		{ _field_enum, "danger level", "Speaker must have danger level of at least this much", &danger_enum },
@@ -128,14 +128,14 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "Conditions", &dialogue_condition_flags },
 		
-		FIELD_EXPLANATION("Matching", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Matching", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "spatial relation", "with respect to the subject, the cause is ...", &spatial_relation_enum },
 		{ _field_enum, "damage type", &damage_enum },
 		{ _field_enum, "game type", &game_type_enum },
-		FIELD_EXPLANATION("Subject", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Subject", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "subject actor type", &actor_type_enum },
 		{ _field_enum, "subject type", &dialogue_object_types_enum },
-		FIELD_PAD("post-subject-type-pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("post-subject-type-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "subject ai type name" },
 		{ _field_terminator }
 	};
@@ -166,7 +166,7 @@ namespace blofeld
 		INVOLUNTARY_DATA_BLOCK_ID)
 	{
 		{ _field_short_integer, "involuntary vocalization index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("JXIFX", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("JXIFX", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -193,26 +193,26 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_DIALOGUE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("Global timing", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Global timing", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_bounds, "strike delay bounds", nullptr, "secs" },
 		{ _field_real, "remind delay", nullptr, "secs" },
 		{ _field_real, "cover curse chance" },
-		FIELD_EXPLANATION("Player look settings", nullptr, FIELD_FLAG_NONE, "used to play look and look_longtime dialogue in campain and firefight"),
+		FIELD_EXPLANATION_EX("Player look settings", nullptr, FIELD_FLAG_NONE, "used to play look and look_longtime dialogue in campain and firefight"),
 		{ _field_real, "player look max distance", "defaults to 10 wu", "wu" },
 		{ _field_real, "player look", "defaults to 3 secs", "secs" },
 		{ _field_real, "player look long time", "defaults to 15 secs", "secs" },
-		FIELD_EXPLANATION("Spartan nearby search distance", nullptr, FIELD_FLAG_NONE, "this is used when checking if the player is with other spartan ais."),
+		FIELD_EXPLANATION_EX("Spartan nearby search distance", nullptr, FIELD_FLAG_NONE, "this is used when checking if the player is with other spartan ais."),
 		{ _field_real, "spartan nearby search distance", "defaults to 7 wu", "wu" },
-		FIELD_EXPLANATION("Face friendly player distance", nullptr, FIELD_FLAG_NONE, "when talking to friendly players within this distance, if not in combat, we will turn to face them."),
+		FIELD_EXPLANATION_EX("Face friendly player distance", nullptr, FIELD_FLAG_NONE, "when talking to friendly players within this distance, if not in combat, we will turn to face them."),
 		{ _field_real, "face friendly player distance", "0: disable facing behavior", "wu" },
-		FIELD_EXPLANATION("Space dialogue effect", nullptr, FIELD_FLAG_NONE, "at some point this will be moved into the patterns block..."),
+		FIELD_EXPLANATION_EX("Space dialogue effect", nullptr, FIELD_FLAG_NONE, "at some point this will be moved into the patterns block..."),
 		{ _field_string_id, "space dialogue effect", "used for dialog lines started by a pattern with \"speaker in space\" set" },
-		FIELD_EXPLANATION("Default stimulus suppressors", nullptr, FIELD_FLAG_NONE, "when these stimuli are active on an actor, default stimulus permutations will be suppressed."),
+		FIELD_EXPLANATION_EX("Default stimulus suppressors", nullptr, FIELD_FLAG_NONE, "when these stimuli are active on an actor, default stimulus permutations will be suppressed."),
 		{ _field_block, "default stimulus suppressors", &default_stimulus_suppressor_block },
-		FIELD_EXPLANATION("Imported Data. Don't touch me.", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Imported Data. Don't touch me.", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_block, "vocalizations", &vocalization_definitions_block },
 		{ _field_block, "patterns", &vocalization_patterns_block },
-		FIELD_PAD("WWKMVLL", nullptr, FIELD_FLAG_NONE, 12),
+		FIELD_PAD_EX("WWKMVLL", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "dialogue data", &dialogue_data_block },
 		{ _field_block, "involuntary data", &involuntary_data_block },
 		{ _field_block, "predicted vocalizations", &predicted_data_block },

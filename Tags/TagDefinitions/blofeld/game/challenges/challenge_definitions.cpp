@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -31,7 +31,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "category_name", FIELD_FLAG_INDEX },
 		{ _field_char_enum, "challenge category", FIELD_FLAG_INDEX, &challenge_category_enum_definition },
-		FIELD_PAD("WAT1", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("WAT1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_block, "challenges", &challenge_block },
 		{ _field_terminator }
 	};
@@ -62,21 +62,21 @@ namespace blofeld
 		{ _field_long_integer, "chud_progress_bitmap_sequence_index", "What icon is shown in the progress toast?" },
 		{ _field_byte_flags, "flags", &challenge_definition_flags },
 		{ _field_char_enum, "icon", &challengeIconDefinition },
-		FIELD_PAD("PJB1", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("PJB1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_flags, "auto progress on", "Conditions that progress this challenge magically (aside from incidents, which can progress any challenge)", &challenge_progress_flags },
-		FIELD_CUSTOM("requirements", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
-		FIELD_CUSTOM("permitted game types", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("requirements", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("permitted game types", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "permitted game types", &game_mode_flags_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_string_id, "level_name", "can only be progressed on this level, if specified" },
 		{ _field_long_integer, "map_id", "can only be progressed on this map, if > 0 (only works for campaign and spartan ops)" },
 		{ _field_short_integer, "mission id", "can only be progressed on this mission, if >= 0 (only works for spartan ops)" },
-		FIELD_PAD("PJB2", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("PJB2", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_flags, "skulls", "this challenge can only be progressed with at least these skulls enabled in the game options (only works for campaign)", &skull_flags_definition },
 		{ _field_long_integer, "minimum_score", "must score at least this many points, if > 0 (only works for campaign)" },
 		{ _field_long_integer, "maximum_player_death_count", "must die no more than this many times, if >= 0" },
 		{ _field_long_integer, "maximum_level_completion_seconds", "must complete the level in no more than this many seconds, if > 0" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

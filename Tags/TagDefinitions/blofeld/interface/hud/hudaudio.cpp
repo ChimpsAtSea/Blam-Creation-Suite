@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -17,16 +17,16 @@ namespace blofeld
 		HUD_UNIT_SOUND_BLOCK_ID)
 	{
 		{ _field_block, "Hud audio cues", &hud_unit_sound_cue_block },
-		FIELD_CUSTOM("health thresholds", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("health thresholds", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "health minor" },
 		{ _field_real, "health major" },
 		{ _field_real, "health critical" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("shield thresholds", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("shield thresholds", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "shield minor" },
 		{ _field_real, "shield major" },
 		{ _field_real, "shield critical" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

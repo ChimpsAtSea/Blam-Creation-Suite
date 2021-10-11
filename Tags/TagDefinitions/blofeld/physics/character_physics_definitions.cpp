@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -35,9 +35,9 @@ namespace blofeld
 		{ _field_block, "list shapes", "don't be an asshole, edit something else", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &lists_block },
 		{ _field_block, "list shape childInfos", "don't be an asshole, edit something else", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &list_shapes_block },
 
-		FIELD_EXPLANATION("ground", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("ground", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "ground physics", &character_physics_ground_struct },
-		FIELD_EXPLANATION("flying", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("flying", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "flying physics", &character_physics_flying_struct },
 		{ _field_terminator }
 	};

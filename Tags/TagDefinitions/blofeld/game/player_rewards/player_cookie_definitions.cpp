@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -31,7 +31,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_char_enum, "type", &rewardTypeEnum },
-		FIELD_PAD("PJB1", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("PJB1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_block, "rewards", &rewardBlock_block },
 		{ _field_terminator }
 	};

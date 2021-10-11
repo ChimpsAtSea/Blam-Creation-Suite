@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -31,7 +31,7 @@ namespace blofeld
 	{
 		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_real_rgb_color, "tint color" },
-		FIELD_PAD("VJSKSPI", nullptr, FIELD_FLAG_NONE, 32),
+		FIELD_PAD_EX("VJSKSPI", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_block, "states", &states_block },
 		{ _field_terminator }
 	};
@@ -49,9 +49,9 @@ namespace blofeld
 		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_real_rgb_color, "color" },
 		{ _field_short_integer, "counts as", nullptr, "neighbors" },
-		FIELD_PAD("IZ", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("IZ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "initial placement weight" },
-		FIELD_PAD("B", nullptr, FIELD_FLAG_NONE, 24),
+		FIELD_PAD_EX("B", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_short_block_index, "zero", &states_block },
 		{ _field_short_block_index, "one", &states_block },
 		{ _field_short_block_index, "two", &states_block },
@@ -61,7 +61,7 @@ namespace blofeld
 		{ _field_short_block_index, "six", &states_block },
 		{ _field_short_block_index, "seven", &states_block },
 		{ _field_short_block_index, "eight", &states_block },
-		FIELD_PAD("BJVWP", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("BJVWP", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -74,36 +74,36 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CELLULAR_AUTOMATA2D_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("properties", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("properties", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_short_integer, "updates per second", nullptr, "Hz" },
-		FIELD_PAD("IFJ", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("IFJ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "dead cell penalty" },
 		{ _field_real, "live cell bonus" },
-		FIELD_PAD("EPTNF", nullptr, FIELD_FLAG_NONE, 80),
-		FIELD_EXPLANATION("height map", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_PAD_EX("EPTNF", nullptr, FIELD_FLAG_NONE, 80),
+		FIELD_EXPLANATION_EX("height map", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_short_integer, "width", nullptr, "cells" },
 		{ _field_short_integer, "height", nullptr, "cells" },
 		{ _field_real, "cell width", nullptr, "world units" },
 		{ _field_real, "height", nullptr, "world units" },
 		{ _field_real_vector_2d, "velocity", nullptr, "cells/update" },
-		FIELD_PAD("KHXCI", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_PAD_EX("KHXCI", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_old_string_id, "marker" },
 		{ _field_long_flags, "interpolation flags", &global_rgb_interpolation_flags },
 		{ _field_real_rgb_color, "base color" },
 		{ _field_real_rgb_color, "peak color" },
-		FIELD_PAD("IXKLNR", nullptr, FIELD_FLAG_NONE, 76),
-		FIELD_EXPLANATION("detail map", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_PAD_EX("IXKLNR", nullptr, FIELD_FLAG_NONE, 76),
+		FIELD_EXPLANATION_EX("detail map", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_short_integer, "width", nullptr, "cells" },
 		{ _field_short_integer, "height", nullptr, "cells" },
 		{ _field_real, "cell width", nullptr, "world units" },
 		{ _field_real_vector_2d, "velocity", nullptr, "cells/update" },
-		FIELD_PAD("JXB", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("JXB", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_old_string_id, "marker" },
 		{ _field_short_integer, "texture width", nullptr, "cells" },
-		FIELD_PAD("HNOIXYJ", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_PAD("DDIGC", nullptr, FIELD_FLAG_NONE, 48),
+		FIELD_PAD_EX("HNOIXYJ", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("DDIGC", nullptr, FIELD_FLAG_NONE, 48),
 		{ _field_tag_reference, "texture", &global_bitmap_reference },
-		FIELD_PAD("HSJQLXWS", nullptr, FIELD_FLAG_NONE, 160),
+		FIELD_PAD_EX("HSJQLXWS", nullptr, FIELD_FLAG_NONE, 160),
 		{ _field_block, "rules", &rules_block },
 		{ _field_terminator }
 	};

@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -17,7 +17,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_SETTINGS_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
 		{ _field_struct, "exposure", &camera_fx_exposure_struct },
 		{ _field_struct, "auto_exposure_sensitivity", &camera_fx_exposure_sensitivity_struct },
 		{ _field_struct, "bloom_highlight", MAKE_OLD_NAMES("bloom_point"), &camera_fx_bloom_highlight_struct },
@@ -41,7 +41,7 @@ namespace blofeld
 		{ _field_struct, "color_grading", &camera_fx_color_grading_struct },
 		{ _field_struct, "filmic_tone_curve", &camera_fx_filmic_tone_curve_struct },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
 		{ _field_terminator }
 	};
 
@@ -61,20 +61,20 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_EXPOSURE_STRUCT_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
-		FIELD_EXPLANATION("EXPOSURE", nullptr, FIELD_FLAG_NONE, "Controls the brightness of the scene, like exposure time on your camera.\nThe actual exposure always blends towards the target exposure.\nWith auto-exposure on, the target exposure is calculated relative to the brightness of what is on screen.\n"),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
+		FIELD_EXPLANATION_EX("EXPOSURE", nullptr, FIELD_FLAG_NONE, "Controls the brightness of the scene, like exposure time on your camera.\nThe actual exposure always blends towards the target exposure.\nWith auto-exposure on, the target exposure is calculated relative to the brightness of what is on screen.\n"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_auto_adjust },
-		FIELD_PAD("MKRGRF", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("MKRGRF", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "exposure", "the target exposure (ONLY USED WHEN AUTO-EXPOSURE IS OFF)", "stops" },
 		{ _field_real, "maximum change", "the maximum allowed change in exposure between frames", "stops" },
 		{ _field_real, "blend speed (0-1)", "1 is instantaneous, 0.01 is a good speed, 0.001 is slower", "percent per frame" },
 		{ _field_real, "minimum", "the absolute target exposure is clamped to this range", "stops" },
 		{ _field_real, "maximum", "the absolute target exposure is clamped to this range", "stops" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
 		{ _field_real, "auto-exposure screen brightness", "how bright you want the screen to be - auto-exposure will make it happen", nullptr, "[0.0001-1]" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
 		{ _field_real, "auto-exposure delay", "how long to wait before auto-exposure kicks in to adjust the exposure", nullptr, "[0.1-1]seconds" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
 		{ _field_terminator }
 	};
 
@@ -87,9 +87,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_EXPOSURE_SENSITIVITY_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("AUTO EXPOSURE SENSITIVITY", nullptr, FIELD_FLAG_NONE, "How sensitive auto exposure is to small bright patches on the screen (like the sun)"),
+		FIELD_EXPLANATION_EX("AUTO EXPOSURE SENSITIVITY", nullptr, FIELD_FLAG_NONE, "How sensitive auto exposure is to small bright patches on the screen (like the sun)"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
-		FIELD_PAD("MAKAMAKAHEY", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("MAKAMAKAHEY", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "sensitivity (0-1)" },
 		{ _field_terminator }
 	};
@@ -103,9 +103,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_HIGHLIGHT_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("HIGHLIGHT BLOOM", nullptr, FIELD_FLAG_NONE, "These parameters control bloom off the highlights (really bright stuff)"),
+		FIELD_EXPLANATION_EX("HIGHLIGHT BLOOM", nullptr, FIELD_FLAG_NONE, "These parameters control bloom off the highlights (really bright stuff)"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
-		FIELD_PAD("LOTPRER", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("LOTPRER", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "highlight bloom", MAKE_OLD_NAMES("bloom point") },
 		{ _field_real, "maximum change" },
 		{ _field_real, "blend speed (0-1)" },
@@ -121,9 +121,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_INHERENT_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("INHERENT BLOOM", nullptr, FIELD_FLAG_NONE, "These parameters control bloom off everything (bright and dark)"),
+		FIELD_EXPLANATION_EX("INHERENT BLOOM", nullptr, FIELD_FLAG_NONE, "These parameters control bloom off everything (bright and dark)"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
-		FIELD_PAD("ERIRLE", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("ERIRLE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "inherent bloom" },
 		{ _field_real, "maximum change" },
 		{ _field_real, "blend speed (0-1)" },
@@ -139,9 +139,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_SELF_ILLUM_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("SELF-ILLUM BLOOM", nullptr, FIELD_FLAG_NONE, "These parameters control off of self-illum pixels"),
+		FIELD_EXPLANATION_EX("SELF-ILLUM BLOOM", nullptr, FIELD_FLAG_NONE, "These parameters control off of self-illum pixels"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
-		FIELD_PAD("ERIRLE", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("ERIRLE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "self-illum bloom bloom" },
 		{ _field_real, "maximum change" },
 		{ _field_real, "blend speed (0-1)" },
@@ -157,9 +157,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_INTENSITY_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("BLOOM INTENSITY", nullptr, FIELD_FLAG_NONE, "These parameters control how bright the bloom is, relative to the underlying scene"),
+		FIELD_EXPLANATION_EX("BLOOM INTENSITY", nullptr, FIELD_FLAG_NONE, "These parameters control how bright the bloom is, relative to the underlying scene"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
-		FIELD_PAD("SEMIFMD", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("SEMIFMD", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "bloom intensity" },
 		{ _field_real, "maximum change" },
 		{ _field_real, "blend speed (0-1)" },
@@ -175,9 +175,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_LARGE_COLOR_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("BLOOM LARGE COLOR", nullptr, FIELD_FLAG_NONE, "These parameters control the color of the large bloom"),
+		FIELD_EXPLANATION_EX("BLOOM LARGE COLOR", nullptr, FIELD_FLAG_NONE, "These parameters control the color of the large bloom"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
-		FIELD_PAD("KKROFI", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("KKROFI", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_rgb_color, "large color" },
 		{ _field_terminator }
 	};
@@ -191,9 +191,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_MEDIUM_COLOR_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("BLOOM MEDIUM COLOR", nullptr, FIELD_FLAG_NONE, "These parameters control the color of the medium bloom"),
+		FIELD_EXPLANATION_EX("BLOOM MEDIUM COLOR", nullptr, FIELD_FLAG_NONE, "These parameters control the color of the medium bloom"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
-		FIELD_PAD("LEORPP", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("LEORPP", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_rgb_color, "medium color" },
 		{ _field_terminator }
 	};
@@ -207,9 +207,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_SMALL_COLOR_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("BLOOM SMALL COLOR", nullptr, FIELD_FLAG_NONE, "These parameters control the color of the small bloom"),
+		FIELD_EXPLANATION_EX("BLOOM SMALL COLOR", nullptr, FIELD_FLAG_NONE, "These parameters control the color of the small bloom"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
-		FIELD_PAD("JSIRWSFGAOD", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("JSIRWSFGAOD", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_rgb_color, "small color" },
 		{ _field_terminator }
 	};
@@ -224,7 +224,7 @@ namespace blofeld
 		CAMERA_FX_BLING_INTENSITY_STRUCT_ID)
 	{
 		{ _field_word_flags, "flags", FIELD_FLAG_UNKNOWN0, &camera_fx_parameter_flags_no_auto_adjust },
-		FIELD_PAD("QREWRER", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("QREWRER", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "bling intensity", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "maximum change", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "blend speed (0-1)", FIELD_FLAG_UNKNOWN0 },
@@ -241,7 +241,7 @@ namespace blofeld
 		CAMERA_FX_BLING_SIZE_STRUCT_ID)
 	{
 		{ _field_word_flags, "flags", FIELD_FLAG_UNKNOWN0, &camera_fx_parameter_flags_no_auto_adjust },
-		FIELD_PAD("LSDFPO", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("LSDFPO", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "bling length", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "maximum change", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "blend speed (0-1)", FIELD_FLAG_UNKNOWN0 },
@@ -258,7 +258,7 @@ namespace blofeld
 		CAMERA_FX_BLING_ANGLE_STRUCT_ID)
 	{
 		{ _field_word_flags, "flags", FIELD_FLAG_UNKNOWN0, &camera_fx_parameter_flags_no_auto_adjust },
-		FIELD_PAD("ILJS", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("ILJS", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "bling angle", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "maximum change", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "blend speed (0-1)", FIELD_FLAG_UNKNOWN0 },
@@ -288,9 +288,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_SELF_ILLUM_PREFERRED_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("SELF ILLUM EXPOSURE", nullptr, FIELD_FLAG_NONE, "These parameters control the self-illumination exposure\npreferred is the preferred exposure, and scale controls\nhow much it varies from the preferred exposure"),
+		FIELD_EXPLANATION_EX("SELF ILLUM EXPOSURE", nullptr, FIELD_FLAG_NONE, "These parameters control the self-illumination exposure\npreferred is the preferred exposure, and scale controls\nhow much it varies from the preferred exposure"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
-		FIELD_PAD("JJFJFJKE", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("JJFJFJKE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "preferred exposure", "the preferred exposure for self illum", "stops" },
 		{ _field_real, "maximum change" },
 		{ _field_real, "blend speed (0-1)" },
@@ -306,9 +306,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_SELF_ILLUM_SCALE_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("SELF ILLUM CHANGE", nullptr, FIELD_FLAG_NONE, "How much self illum exposure is allowed to change\n0 means no change at all, 1 means it will\nequal the normal exposure"),
+		FIELD_EXPLANATION_EX("SELF ILLUM CHANGE", nullptr, FIELD_FLAG_NONE, "How much self illum exposure is allowed to change\n0 means no change at all, 1 means it will\nequal the normal exposure"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
-		FIELD_PAD("WOOGATCHOU", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("WOOGATCHOU", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "exposure change", "how much the self illum is allowed to change, as a percentage of the normal exposure change", nullptr, "[0-1]" },
 		{ _field_real, "maximum change" },
 		{ _field_real, "blend speed (0-1)" },
@@ -324,9 +324,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_COLOR_GRADING_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("Color Grading", nullptr, FIELD_FLAG_NONE, "set the color grading texture"),
+		FIELD_EXPLANATION_EX("Color Grading", nullptr, FIELD_FLAG_NONE, "set the color grading texture"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
-		FIELD_PAD("SKHFDNV", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("SKHFDNV", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "color grading texture", &global_bitmap_reference },
 		{ _field_terminator }
 	};
@@ -340,9 +340,9 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_FILMIC_TONE_CURVE_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("Filmic Tone Curve", nullptr, FIELD_FLAG_NONE, "set the values for the filmic tone curve"),
+		FIELD_EXPLANATION_EX("Filmic Tone Curve", nullptr, FIELD_FLAG_NONE, "set the values for the filmic tone curve"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_enabled },
-		FIELD_PAD("MKRGRF", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("MKRGRF", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "shoulder strength", "How intense the shoulder is" },
 		{ _field_real, "linear strength", "How intense the linear portion is" },
 		{ _field_real, "linear angle", "Angle of linear portion of curve" },

@@ -104,7 +104,7 @@
 //	void render_field_skip(render_field_callback_args);
 //	void render_field_non_cache_runtime_value(render_field_callback_args);
 //	void render_field_explanation(render_field_callback_args);
-//	void render_field_custom(render_field_callback_args);
+//	void render_FIELD_CUSTOM_EX(render_field_callback_args);
 //	void render_field_struct(render_field_callback_args);
 //	void render_field_array(render_field_callback_args);
 //	void render_field_pageable(render_field_callback_args);

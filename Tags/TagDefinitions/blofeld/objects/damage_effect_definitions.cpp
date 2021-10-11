@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -65,7 +65,7 @@ namespace blofeld
 		{ _field_real_bounds, "radius", nullptr, "world units" },
 		{ _field_real_fraction, "cutoff scale", nullptr, nullptr, "[0,1]" },
 		{ _field_long_flags, "effect flags", &damage_effect_flags },
-		FIELD_EXPLANATION("damage", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("damage", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "side effect", &damage_side_effects },
 		{ _field_enum, "category", &damage_categories },
 
@@ -109,7 +109,7 @@ namespace blofeld
 
 		{ _field_useless_pad, "" },
 		{ _field_useless_pad, "" },
-		FIELD_EXPLANATION("DEPRECATED - rider damage scales", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("DEPRECATED - rider damage scales", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "rider direct damage scale" },
 		{ _field_real, "rider maximum transfer damage scale" },
 		{ _field_real, "rider minimum transfer damage scale" },
@@ -146,7 +146,7 @@ namespace blofeld
 		{ _field_real, "stasis max biped turning rate" },
 		{ _field_real, "stasis gravity multiplier" },
 		{ _field_real, "equipment hack time", nullptr, "seconds" },
-		FIELD_EXPLANATION("if 'Apply Tree Of Life'", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("if 'Apply Tree Of Life'", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "tree_of_life shield regen modifier", "regen velocity of TOL:if non-1.0 this overrides any 'shield recharge rate' trait" },
 		{ _field_real, "minimum shield level", "when hit, shield will be reset to this percentage of full strength if it is below", nullptr, "[0, 1]" },
 		{ _field_real, "shield stun time", "time after damage applied before shield recharges", "seconds" },
@@ -155,22 +155,22 @@ namespace blofeld
 		{ _field_real, "minimum energy level", "like above, TOL reset minimum equipment energy to this", nullptr, "[0, 1]" },
 		{ _field_real, "maximum energy level", "cap equipment energy to this", nullptr, "[0, 1]" },
 		{ _field_real, "equipment stun time", "time after damage applied before equipment recharges", "seconds" },
-		FIELD_EXPLANATION("Modifies TOL logic so that (above) unstun will only happen if (below) minimum stun time has passed", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Modifies TOL logic so that (above) unstun will only happen if (below) minimum stun time has passed", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "shield minimum stun time", nullptr, "seconds" },
 		{ _field_real, "health minimum stun time", nullptr, "seconds" },
 
 		// reach moved a bunch of this into its own tag
-		FIELD_EXPLANATION("damage response", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("damage response", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "damage response", &global_damage_response_definition_reference },
 
-		FIELD_EXPLANATION("sound", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("sound", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "old melee sound", MAKE_OLD_NAMES("sound"), &global_sound_reference },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "damage sounds", &damage_effect_sound_block },
 
 		{ _field_useless_pad, "" },
-		FIELD_EXPLANATION("breaking effect", nullptr, FIELD_FLAG_NONE, "Controls particle velocities when a damage effect shatters a materal.\n\nAll particles created within \'forward radius\' will be kicked along the\ndamage direction with a speed equivalent to \'forward velocity\' at the\nepicenter of the damage and 0 at the outer radius.  \'Forward exponent\'\nis used to modify the velocity scale.  A low exponent (like 0.5) means that\nparticles between the epicenter and the radius will be kicked out with a speed\ncloser to \'forward velocity\' than if a higher exponent (like 2.0) was used\n\nThe outward fields work in a similar way, except instead of kicking along the\ndamage direction, they get kick away from the damage epicenter."),
+		FIELD_EXPLANATION_EX("breaking effect", nullptr, FIELD_FLAG_NONE, "Controls particle velocities when a damage effect shatters a materal.\n\nAll particles created within \'forward radius\' will be kicked along the\ndamage direction with a speed equivalent to \'forward velocity\' at the\nepicenter of the damage and 0 at the outer radius.  \'Forward exponent\'\nis used to modify the velocity scale.  A low exponent (like 0.5) means that\nparticles between the epicenter and the radius will be kicked out with a speed\ncloser to \'forward velocity\' than if a higher exponent (like 2.0) was used\n\nThe outward fields work in a similar way, except instead of kicking along the\ndamage direction, they get kick away from the damage epicenter."),
 		{ _field_real, "forward velocity", nullptr, "world units per second" },
 		{ _field_real, "forward radius", nullptr, "world units" },
 		{ _field_real, "forward exponent" },

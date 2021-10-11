@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -20,7 +20,7 @@ namespace blofeld
 		{ _field_byte_flags, "flags", &map_variant_palette_flags },
 
 		{ _field_legacy, _field_version_not_equal, _engine_type_haloreach, 1 },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 4 },
 		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 3 },

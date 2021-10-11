@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -32,7 +32,7 @@ namespace blofeld
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_char_enum, "type", &global_achievement_enum },
 		{ _field_byte_flags, "difficulty", &global_campaign_difficulty_flags },
-		FIELD_PAD("VJNOSNJER", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("VJNOSNJER", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "restricted levels", &single_achievement_restricted_level_block },
 		{ _field_terminator }
 	};

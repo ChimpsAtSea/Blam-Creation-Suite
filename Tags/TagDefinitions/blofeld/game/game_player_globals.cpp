@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -50,7 +50,7 @@ namespace blofeld
 		{ _field_real, "fire team cone angle", nullptr, "in degrees" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
-		FIELD_EXPLANATION("sprinting/momentum", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("sprinting/momentum", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_block, "momentum and sprinting", &player_momentum_data_block },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 3 },
@@ -72,7 +72,7 @@ namespace blofeld
 		PLAYER_MOMENTUM_DATA_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flag", &MomentumFlag },
-		FIELD_PAD("PAD", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("PAD", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "seconds to start", "how long you must be pegged before you gain momentum" },
 		{ _field_real, "seconds to full speed", "how long you must have momentum before you reach top speed" },
 		{ _field_real, "decay rate", "how fast being unpegged decays the timer (seconds per second)" },
@@ -106,7 +106,7 @@ namespace blofeld
 		PLAYER_REPRESENTATION_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &player_representation_flags },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "hud screen reference", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
@@ -144,7 +144,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "hidden region", FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "flags", &FpBodyRegionFlags },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 

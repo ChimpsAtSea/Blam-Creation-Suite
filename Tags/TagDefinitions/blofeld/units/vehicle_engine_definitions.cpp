@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -27,7 +27,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GEAR_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("loaded torque", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("loaded torque", nullptr, FIELD_FLAG_NONE, ""),
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach },
 		{ _field_legacy, _field_struct, "loaded torque", &old_torque_struct_struct_definition },
@@ -35,7 +35,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_struct, "loaded torque curve", &torque_curve_struct },
 
-		FIELD_EXPLANATION("cruising torque", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("cruising torque", nullptr, FIELD_FLAG_NONE, ""),
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach },
 		{ _field_legacy, _field_struct, "cruising torque", &old_torque_struct_struct_definition },
@@ -43,7 +43,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_struct, "cruising torque curve", &torque_curve_struct },
 
-		FIELD_EXPLANATION("gearing", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("gearing", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "min time to upshift", "seconds" },
 		{ _field_real, "engine up-shift scale", "0-1" },
 		{ _field_real, "gear ratio" },
@@ -83,7 +83,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_VEHICLE_ENGINE_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("engine", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("engine", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "engine moment", "higher moments make engine spin up slower" },
 		{ _field_real, "engine max angular velocity", "higher moments make engine spin up slower" },
 		{ _field_block, "gears", &gear_block },

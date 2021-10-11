@@ -1,17 +1,31 @@
 #include "blamboozlelib-private-pch.h"
 
-c_blamboozle_infinite::c_blamboozle_infinite(const wchar_t* _output_directory, const wchar_t* _binary_filepath) :
+c_blamboozle_infinite::c_blamboozle_infinite(const wchar_t* _output_directory, const wchar_t* _binary_filepath, e_build build) :
 	c_blamboozle_base(_output_directory, _binary_filepath)
 {
 	output_directory += L"infinite\\";
+
+	if (build == _build_infinite_FLT002INT_199229_21_07_20_0001)
+	{
+		// Flight 1
+		infinite_dump_base_address = 0x7ff602180000; // #TODO: get this dynamically?
+		infinite_tag_layout_table_address = 0x000001A6FE114000;
+		infinite_num_tag_layouts = 473;
+
+	}
+	if (build == _build_infinite_HIFLTA_202700_21_09_06_0001)
+	{
+		// Flight 2
+		infinite_dump_base_address = 0x00007FF749670000;
+		infinite_tag_layout_table_address = 0x00000285c43c4000;
+		infinite_num_tag_layouts = 474;
+	}
 }
 
 c_blamboozle_infinite::~c_blamboozle_infinite()
 {
 
 }
-
-
 
 int c_blamboozle_infinite::run()
 {

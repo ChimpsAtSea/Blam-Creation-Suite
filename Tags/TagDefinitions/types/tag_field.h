@@ -35,8 +35,8 @@ namespace blofeld
 		{
 			const void* const extra_value; // #todo remove
 			unsigned long custom_type; // #todo remove
-			e_field_id id;
 		};
+		e_field_id id;
 		//enum e_build const min_version;
 		//enum e_build const max_version;
 
@@ -291,6 +291,10 @@ namespace blofeld
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char** old_names, unsigned long flags, e_field_id id) :
 			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, old_names, flags, nullptr, id) {};
 
+		// type, name, description, FLAGS, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, unsigned long flags, e_field_id id) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, flags, nullptr, id) {};
+
 		// type, name, description, old-names-array
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char** old_names) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, old_names, 0, nullptr, _field_id_default) {};
@@ -326,6 +330,7 @@ namespace blofeld
 		// type, name, description, units, limits, old-names-array, FLAGS
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char* limits, const char** old_names, unsigned long flags) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, limits, old_names, flags, nullptr, _field_id_default) {};
+
 
 		// #TODO: replace all of these constructors with bespoke type checking
 		// don't put incorrect pointers along with incorrect field types
@@ -367,13 +372,13 @@ namespace blofeld
 			line(0),
 #endif
 			pointer(pointer), // union
-			extra_value((void*)id), // union
+			extra_value(nullptr), // union
+			id(id),
 			engine_platform_build(),
 			_version_field_skip_count(0),
 			_custom_version_callback(nullptr)
 			//string_parser(name)
 		{
-
 		}
 	};
 

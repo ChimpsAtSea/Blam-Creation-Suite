@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -35,7 +35,7 @@ namespace blofeld
 		{ _field_long_enum, "alt crossfade mode", &looping_sound_fade_modes },
 		{ _field_real, "alt fade out duration", nullptr, "seconds" },
 		{ _field_long_enum, "alt fade out mode", &looping_sound_fade_modes },
-		FIELD_EXPLANATION("Layer Settings", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Layer Settings", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "layer", &looping_sound_layers },
 		{ _field_word_flags, "layer flags", &looping_sound_track_layer_flags },
 		{ _field_real, "layer fade in duration", nullptr, "seconds" },

@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -96,7 +96,7 @@ namespace blofeld
 		{ _field_string_id, "ranged interpolation name", "if you have the ranged button checked" },
 
 		{ _field_real, "min value", "function must exceed this value (after mapping) to be active 0. means do nothing" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "default function", &mapping_function },
 		{ _field_string_id, "scale by" },
 
@@ -120,7 +120,7 @@ namespace blofeld
 		{ _field_long_enum, "interpolation mode", &object_function_interpolation_mode_enum },
 		{ _field_real, "linear travel time", "used by constant velocity", "s" },
 		{ _field_real, "acceleration", "used by linear acceleration", "1/s/s" },
-		FIELD_EXPLANATION("springs", nullptr, FIELD_FLAG_NONE, "the damping ratio is c/(2*sqrt(k)). if this ratio is:\n= 0 : oscillates forever\n< 1 : oscillates with decreasing amplitude\n= 1 : reaches the target precisely and quickly (no oscillation)\n> 1 : reaches the target slowly\nthe higher the value of k, the quicker the system will reach the target value"),
+		FIELD_EXPLANATION_EX("springs", nullptr, FIELD_FLAG_NONE, "the damping ratio is c/(2*sqrt(k)). if this ratio is:\n= 0 : oscillates forever\n< 1 : oscillates with decreasing amplitude\n= 1 : reaches the target precisely and quickly (no oscillation)\n> 1 : reaches the target slowly\nthe higher the value of k, the quicker the system will reach the target value"),
 		{ _field_real, "spring k", "used by damped spring\ndetermines acceleration by displacement" },
 		{ _field_real, "spring c", "used by damped spring\ndetermines damping based on velocity" },
 		{ _field_real, "fraction", "used by fractional\nhow mush of the distance to the target to cover each update", "0-1" },
@@ -193,11 +193,11 @@ namespace blofeld
 		{ _field_legacy, _field_long_flags, "atlas flags", &global_object_attachment_flags },
 
 		{ _field_tag_reference, "type", FIELD_FLAG_INDEX, &global_object_attachment_block_type_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_old_string_id, "marker" },
 		{ _field_char_enum, "change color", &global_object_change_color_enum },
 		{ _field_byte_flags, "flags", &object_attachment_flags },
-		FIELD_PAD("DPKP", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("DPKP", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "primary scale" },
 		{ _field_string_id, "secondary scale" },
 		{ _field_terminator }
@@ -261,7 +261,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_CHANGE_COLOR_FUNCTION_ID)
 	{
-		FIELD_PAD("TJJWBYNU", nullptr, FIELD_FLAG_NONE, 4),
+		FIELD_PAD_EX("TJJWBYNU", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_long_flags, "scale flags", &global_rgb_interpolation_flags },
 		{ _field_real_rgb_color, "color lower bound" },
 		{ _field_real_rgb_color, "color upper bound" },
@@ -280,7 +280,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_OBJECT_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("GAME ENGINE INCLUSION", nullptr, FIELD_FLAG_NONE, "Set which game engines you desire this object to appear in"),
+		FIELD_EXPLANATION_EX("GAME ENGINE INCLUSION", nullptr, FIELD_FLAG_NONE, "Set which game engines you desire this object to appear in"),
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach },
 		{ _field_word_flags, "game engine flags", &global_game_engine_type_flags },
@@ -288,7 +288,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_byte_flags, "game engine flags", &global_game_engine_type_flags },
 
-		FIELD_EXPLANATION("TYPE AND FLAGS", nullptr, FIELD_FLAG_NONE, "Type pertains to how you want the game engine to handle this object\nCertain flags applicable only to certain object types, should be self evident"),
+		FIELD_EXPLANATION_EX("TYPE AND FLAGS", nullptr, FIELD_FLAG_NONE, "Type pertains to how you want the game engine to handle this object\nCertain flags applicable only to certain object types, should be self evident"),
 		{ _field_char_enum, "type", &multiplayer_object_type },
 		{ _field_byte_flags, "teleporter passability", nullptr, "used only for teleporters", &teleporter_passability_flags },
 
@@ -302,7 +302,7 @@ namespace blofeld
 		{ _field_char_enum, "spawn timer type", &multiplayer_object_spawn_timer_types },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 5 },
-		FIELD_EXPLANATION("GOAL & RESPAWN ZONE OBJECT BOUNDARY", nullptr, FIELD_FLAG_NONE, "These fields are only used for goal area objects with boundaries, and for respawn zones"),
+		FIELD_EXPLANATION_EX("GOAL & RESPAWN ZONE OBJECT BOUNDARY", nullptr, FIELD_FLAG_NONE, "These fields are only used for goal area objects with boundaries, and for respawn zones"),
 		{ _field_real, "boundary width/radius" },
 		{ _field_real, "boundary box length" },
 		{ _field_real, "boundary +height" },
@@ -314,9 +314,9 @@ namespace blofeld
 		{ _field_legacy, _field_char_enum, "spawn timer type", &multiplayer_object_spawn_timer_types }, // moved after reach
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		FIELD_PAD("pad_shape", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad_shape", nullptr, FIELD_FLAG_NONE, 3),
 
-		FIELD_EXPLANATION("SPAWNING DATA", nullptr, FIELD_FLAG_NONE, "These fields are used for default spawning times and remapping"),
+		FIELD_EXPLANATION_EX("SPAWNING DATA", nullptr, FIELD_FLAG_NONE, "These fields are used for default spawning times and remapping"),
 		{ _field_short_integer, "default spawn time", nullptr, "seconds" },
 		{ _field_short_integer, "default abandonment time", nullptr, "seconds" },
 
@@ -331,9 +331,9 @@ namespace blofeld
 		{ _field_word_flags, "flags", &multiplayer_object_flags },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad1", nullptr, FIELD_FLAG_NONE, 2),
 
-		FIELD_EXPLANATION("RESPAWN ZONE DATA", nullptr, FIELD_FLAG_NONE, "These are respawn zone weights, used only for respawn zones"),
+		FIELD_EXPLANATION_EX("RESPAWN ZONE DATA", nullptr, FIELD_FLAG_NONE, "These are respawn zone weights, used only for respawn zones"),
 		{ _field_real, "normal weight", nullptr, "aka natural weight" },
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach, 2 },
@@ -343,24 +343,24 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "falloff function", "Multiplier applied to weight (domain is center to radius, range should be 0 to 1).", &spawn_influence_weight_falloff_function_block },
 
-		FIELD_EXPLANATION("MARKER DATA", nullptr, FIELD_FLAG_NONE, "These fields are only used for defining certain, special markers to use for positional locations if the default position (object origin) is not sufficient"),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_EXPLANATION_EX("MARKER DATA", nullptr, FIELD_FLAG_NONE, "These fields are only used for defining certain, special markers to use for positional locations if the default position (object origin) is not sufficient"),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "boundary center marker" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "spawned object marker name" },
-		FIELD_EXPLANATION("SPAWNED OBJECT", nullptr, FIELD_FLAG_NONE, "If this object is intended to spawn something, the object it spawns should be specified here"),
+		FIELD_EXPLANATION_EX("SPAWNED OBJECT", nullptr, FIELD_FLAG_NONE, "If this object is intended to spawn something, the object it spawns should be specified here"),
 		{ _field_tag_reference, "spawned object", &object_reference },
 		{ _field_string_id, "NYI boundary material" },
-		FIELD_EXPLANATION("BOUNDARY SHADER - DEFAULT", nullptr, FIELD_FLAG_NONE, "These are default shaders used for boundary geometry"),
+		FIELD_EXPLANATION_EX("BOUNDARY SHADER - DEFAULT", nullptr, FIELD_FLAG_NONE, "These are default shaders used for boundary geometry"),
 		{ _field_tag_reference, "boundary standard shader", &multiplayer_object_block_boundary_standard_shader_reference },
 		{ _field_tag_reference, "boundary opaque shader", &multiplayer_object_block_boundary_standard_shader_reference },
-		FIELD_EXPLANATION("BOUNDARY SHADER - SPHERE", nullptr, FIELD_FLAG_NONE, "These are custom shaders used for spherical boundary geometry"),
+		FIELD_EXPLANATION_EX("BOUNDARY SHADER - SPHERE", nullptr, FIELD_FLAG_NONE, "These are custom shaders used for spherical boundary geometry"),
 		{ _field_tag_reference, "sphere standard shader", &multiplayer_object_block_boundary_standard_shader_reference },
 		{ _field_tag_reference, "sphere opaque shader", &multiplayer_object_block_boundary_standard_shader_reference },
-		FIELD_EXPLANATION("BOUNDARY SHADER - CYLINDER", nullptr, FIELD_FLAG_NONE, "These are custom shaders used for cylindrical boundary geometry"),
+		FIELD_EXPLANATION_EX("BOUNDARY SHADER - CYLINDER", nullptr, FIELD_FLAG_NONE, "These are custom shaders used for cylindrical boundary geometry"),
 		{ _field_tag_reference, "cylinder standard shader", &multiplayer_object_block_boundary_standard_shader_reference },
 		{ _field_tag_reference, "cylinder opaque shader", &multiplayer_object_block_boundary_standard_shader_reference },
-		FIELD_EXPLANATION("BOUNDARY SHADER - BOX", nullptr, FIELD_FLAG_NONE, "These are custom shaders used for box boundary geometry"),
+		FIELD_EXPLANATION_EX("BOUNDARY SHADER - BOX", nullptr, FIELD_FLAG_NONE, "These are custom shaders used for box boundary geometry"),
 		{ _field_tag_reference, "box standard shader", &multiplayer_object_block_boundary_standard_shader_reference },
 		{ _field_tag_reference, "box opaque shader", &multiplayer_object_block_boundary_standard_shader_reference },
 		{ _field_terminator }
@@ -376,7 +376,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_SPAWN_EFFECTS_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("Spawn Effects", nullptr, FIELD_FLAG_NONE, "Effect played when an object of this type spawns in during each game mode.\nUnlike creation effect, it is only played when the object spawns in through certain methods, not whenever one is created."),
+		FIELD_EXPLANATION_EX("Spawn Effects", nullptr, FIELD_FLAG_NONE, "Effect played when an object of this type spawns in during each game mode.\nUnlike creation effect, it is only played when the object spawns in through certain methods, not whenever one is created."),
 		{ _field_tag_reference, "multiplayer spawn effect", "effect played when this object spawns in MP games", &global_effect_reference },
 		{ _field_tag_reference, "survival spawn effect", "effect played when this object spawns in Firefight games", &global_effect_reference },
 		{ _field_tag_reference, "campaign spawn effect", "effect played when this object spawns in Campaign games", &global_effect_reference },
@@ -393,7 +393,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("OBJECT", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("OBJECT", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_short_integer, "runtime object type", FIELD_FLAG_UNKNOWN0 },
 
 		{ _field_legacy, _field_version_equal, {_engine_type_haloreach} },
@@ -440,7 +440,7 @@ namespace blofeld
 		{ _field_string_id, "default model variant" },
 		{ _field_tag_reference, "model", &model_reference$2 },
 		{ _field_tag_reference, "crate object", &crate_reference },
-		FIELD_EXPLANATION("only set this tag if you want to override the default collision damage values in globals.globals", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("only set this tag if you want to override the default collision damage values in globals.globals", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "collision damage", &collision_damage_reference },
 
 		{ _field_legacy, _field_version_greater_or_equal, {_engine_type_haloreach}, 1 },
@@ -485,9 +485,9 @@ namespace blofeld
 		{ _field_struct, "script data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &hs_script_data_struct },
 		{ _field_block, "script tagalongs", &hs_references_block },
 		{ _field_block, "scripted dependencies", &hs_references_block },
-		FIELD_EXPLANATION("Object Abandoment", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Object Abandoment", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "object abandonment", &object_abandonment_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		
 		{ _field_terminator }
 	};
@@ -504,7 +504,7 @@ namespace blofeld
 		{ _field_real, "Vitality Limit To Start Countdown" },
 		{ _field_real, "Countdown Time In Seconds" },
 		{ _field_byte_flags, "flags", &object_abandonment_flags },
-		FIELD_PAD("DPKP", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("DPKP", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 

@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -89,7 +89,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_short_block_index, "component definition index", &component_definition_block },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -183,7 +183,7 @@ namespace blofeld
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "value" },
 		{ _field_byte_flags, "flags", &propertyComponentPtrFlags },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -248,7 +248,7 @@ namespace blofeld
 		{ _field_real, "time base offset" },
 		{ _field_real, "time exponential offset" },
 		{ _field_char_enum, "animation input", &animationInputType },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_block, "components", &animation_component_definition_block },
 		{ _field_terminator }
@@ -284,7 +284,7 @@ namespace blofeld
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_enum, "composition", &animation_property_composition_type },
 		{ _field_byte_flags, "flags", &animation_property_flags },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_long_integer, "total milliseconds" },
 		{ _field_block, "real keyframes", &animation_property_keyframe_real_value_block },
 		{ _field_terminator }
@@ -320,7 +320,7 @@ namespace blofeld
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_enum, "composition", &animation_property_composition_type },
 		{ _field_byte_flags, "flags", &animation_property_flags },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_long_integer, "total milliseconds" },
 		{ _field_block, "argb color keyframes", &animation_property_keyframe_argb_color_value_block },
 		{ _field_terminator }
@@ -358,7 +358,7 @@ namespace blofeld
 		{ _field_byte_flags, "flags", &editor_overlay_info_flags },
 		{ _field_block, "components editor only", &component_editor_only_definition_block },
 		{ _field_block, "animations editor only", &animation_editor_only_definition_block },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -389,7 +389,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "flags", &editor_property_info_flags },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -440,7 +440,7 @@ namespace blofeld
 		{ _field_string_id, "target component name" },
 		{ _field_string_id, "target property name" },
 		{ _field_char_enum, "comparison operator", &binding_conversion_comparison_operator_enum_definition },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_long_integer, "comparison value" },
 		{ _field_terminator }
 	};
@@ -473,7 +473,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_enum, "type", &property_type },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -512,7 +512,7 @@ namespace blofeld
 		{ _field_char_enum, "step type", FIELD_FLAG_INDEX, &step_type },
 		{ _field_char_enum, "operator", &step_operator },
 		{ _field_char_enum, "variable", &step_variable },
-		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_real, "value&real value" },
 		{ _field_string_id, "string id value" },
 		{ _field_terminator }
@@ -655,7 +655,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_SCALAR_FUNCTION_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "scalar function", &mapping_function },
 		{ _field_terminator }
 	};

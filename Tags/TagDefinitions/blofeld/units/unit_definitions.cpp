@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -62,7 +62,7 @@ namespace blofeld
 		UNIT_CAMERA_ACCELERATION_DISPLACEMENT_BLOCK_ID)
 	{
 		{ _field_real, "maximum camera velocity", "how quickly the camera can move to a new displacement (if the velocity suddenly changes).\nDuring this time the aim vector for the unit will be inaccurate, so don't set this too low.\n0 defaults to infinite.", "wu/s" },
-		FIELD_EXPLANATION(nullptr, nullptr, FIELD_FLAG_NONE, "For each of the following functions, if 1 instance of the block is specified, the offsets are symmetric.\nIf 2 instances are specified, then the first instance is used for positive displacement and the second is used for negative displacement."),
+		FIELD_EXPLANATION_EX(nullptr, nullptr, FIELD_FLAG_NONE, "For each of the following functions, if 1 instance of the block is specified, the offsets are symmetric.\nIf 2 instances are specified, then the first instance is used for positive displacement and the second is used for negative displacement."),
 		{ _field_struct, "forward/back", &unit_camera_acceleration_displacement_function_struct },
 		{ _field_struct, "left/right", &unit_camera_acceleration_displacement_function_struct },
 		{ _field_struct, "up/down", &unit_camera_acceleration_displacement_function_struct },
@@ -82,9 +82,9 @@ namespace blofeld
 		{ _field_string_id, "complete weapon name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "weapon class" },
 		{ _field_string_id, "weapon name" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "right hand marker" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "left hand marker" },
 		{ _field_terminator }
 	};
@@ -116,7 +116,7 @@ namespace blofeld
 		DIALOGUE_VARIANT_BLOCK_ID)
 	{
 		{ _field_short_integer, "variant number", "variant number to use this dialogue with (must match the suffix in the permutations on the unit's model)" },
-		FIELD_PAD("BQCVEMF", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("BQCVEMF", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "" },
 		{ _field_tag_reference, "dialogue", &dialogue_reference },
 		{ _field_terminator }
@@ -179,7 +179,7 @@ namespace blofeld
 		{ _field_real, "idle scanning pitch max", "(0 to 180) how far it will look around past its initial rotation", "degrees" },
 		{ _field_real, "idle scanning min interest distance", "0 = infinite.  Idle scanning won't look at something that is closer than this distance", "world units" },
 		{ _field_tag_reference, "alert mode effect", "effect played on the turret when it goes into alert mode", &global_effect_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "alert mode effect marker" },
 		{ _field_string_id, "alert mode effect primary scale" },
 		{ _field_string_id, "alert mode effect secondary scale" },
@@ -200,7 +200,7 @@ namespace blofeld
 		SENTRYPROPERTIESBLOCK_ID)
 	{
 		{ _field_byte_flags, "behavior", &sentryTurretBehaviorFlagDefinition },
-		FIELD_PAD("flagPad", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("flagPad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "sight cone angle", "the cone that this sentry actually sees with; only used when scanning", "degrees" },
 		{ _field_real, "alert range", "how far the sentry can see (sentry will track enemies within alert range, but not necessarily fire)", "world units" },
 		{ _field_real, "attack range", "how far the sentry can shoot", "world units" },
@@ -243,17 +243,17 @@ namespace blofeld
 		{ _field_long_flags, "secondary flags", &unit_seat_secondary_flags },
 
 		{ _field_old_string_id, "label", FIELD_FLAG_INDEX },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_old_string_id, "marker name" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "entry marker(s) name" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "ui marker name" },
 		{ _field_string_id, "ui navpoint name" },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "boarding grenade marker" },
 		{ _field_string_id, "boarding grenade string" },
 		{ _field_string_id, "boarding melee string" },
@@ -261,7 +261,7 @@ namespace blofeld
 		{ _field_real_fraction, "ping scale", "nathan is too lazy to make pings for each seat." },
 		{ _field_useless_pad, "" },
 		{ _field_real, "turnover time", "how much time it takes to evict a rider from a flipped vehicle", "seconds" },
-		FIELD_EXPLANATION("seat acceleration spring", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("seat acceleration spring", nullptr, FIELD_FLAG_NONE, ""),
 
 		// Reach and above live in a new seperate tag group, see physics/spring_acceleration_definitions.cpp
 		{ _field_legacy, _field_version_less, _engine_type_haloreach, 3 },
@@ -280,7 +280,7 @@ namespace blofeld
 		{ _field_block, "additional boarding seats", "additional seats to eject", &boarding_seat_block },
 
 		{ _field_real_fraction, "listener interpolation factor", "how far to interpolate listener position from camera to occupant's head" },
-		FIELD_EXPLANATION("speed dependant turn rates", nullptr, FIELD_FLAG_NONE, "when the unit velocity is 0, the yaw/pitch rates are the left values\nat [max speed reference], the yaw/pitch rates are the right values.\nthe max speed reference is what the code uses to generate a clamped speed from 0..1\nthe exponent controls how midrange speeds are interpreted.\nIOW: As velocity exceeds \'min speed\' and approaches \'max speed\', turn rates are scaled from low --> high"),
+		FIELD_EXPLANATION_EX("speed dependant turn rates", nullptr, FIELD_FLAG_NONE, "when the unit velocity is 0, the yaw/pitch rates are the left values\nat [max speed reference], the yaw/pitch rates are the right values.\nthe max speed reference is what the code uses to generate a clamped speed from 0..1\nthe exponent controls how midrange speeds are interpreted.\nIOW: As velocity exceeds \'min speed\' and approaches \'max speed\', turn rates are scaled from low --> high"),
 		{ _field_real_bounds, "yaw rate bounds", nullptr, "degrees per second" },
 		{ _field_real_bounds, "pitch rate bounds", nullptr, "degrees per second" },
 		{ _field_real, "pitch interpolation time", "0 means use default 17", "seconds to interpolate" },
@@ -288,7 +288,7 @@ namespace blofeld
 		{ _field_real, "max speed reference" },
 		{ _field_real, "speed exponent", "if >0, t is then modified by raising to this exponent and result is used to linearly interpolate yaw/pitch rates" },
 		{ _field_useless_pad, "" },
-		FIELD_EXPLANATION("camera fields", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("camera fields", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "unit camera", &unit_camera_struct },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
@@ -308,7 +308,7 @@ namespace blofeld
 
 		{ _field_tag_reference, "built-in gunner", &character_reference },
 		{ _field_useless_pad, "" },
-		FIELD_EXPLANATION("entry fields", nullptr, FIELD_FLAG_NONE, "note: the entry radius shouldn\'t exceed 3 world units, \nas that is as far as the player will search for a vehicle\nto enter."),
+		FIELD_EXPLANATION_EX("entry fields", nullptr, FIELD_FLAG_NONE, "note: the entry radius shouldn\'t exceed 3 world units, \nas that is as far as the player will search for a vehicle\nto enter."),
 		{ _field_real, "entry radius", "how close to the entry marker a unit must be" },
 		{ _field_angle, "entry marker cone angle", "angle from marker forward the unit must be" },
 		{ _field_angle, "entry marker facing angle", "angle from unit facing the marker must be" },
@@ -326,7 +326,7 @@ namespace blofeld
 		{ _field_long_integer, "runtime invisible seat region index", FIELD_FLAG_READ_ONLY },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
-		FIELD_EXPLANATION("seat death grab crate", nullptr, FIELD_FLAG_NONE, "If this unit dies while this seat is occupied, the occupant will be handed an instance of this crate for throwing purposes."),
+		FIELD_EXPLANATION_EX("seat death grab crate", nullptr, FIELD_FLAG_NONE, "If this unit dies while this seat is occupied, the occupant will be handed an instance of this crate for throwing purposes."),
 		{ _field_tag_reference, "seat death grab crate", &crate_reference$2 },
 		{ _field_string_id, "Seat Selection String" },
 		{ _field_real, "bailout velocity", "if exiting in bailout fashion, how much velocity to add in the entry_marker's forward direction", "wu/s" },
@@ -345,7 +345,7 @@ namespace blofeld
 		BOARDING_SEAT_BLOCK_ID)
 	{
 		{ _field_short_block_index, "seat", FIELD_FLAG_INDEX, &unit_seat_block },
-		FIELD_PAD("PAD", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("PAD", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -361,7 +361,7 @@ namespace blofeld
 		UNIT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		FIELD_CUSTOM("$$$ UNIT $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("$$$ UNIT $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &unit_flags_part1, _field_id_dumb },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
@@ -386,17 +386,17 @@ namespace blofeld
 		{ _field_struct, "unit camera", &unit_camera_struct },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
-		FIELD_EXPLANATION("sync action camera fields", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("sync action camera fields", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "sync action camera", &unit_camera_struct },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 9 },
 		{ _field_tag_reference, "assasination start damage response", &damage_response_definition_reference },
 		{ _field_tag_reference, "assassination weapon", &weapon_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "assassination weapon stow marker", "the anchor we attach the knife to when we stow it" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "assassination weapon out marker", "the anchor we attach the knife to when we pull it out" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "assassination weapon anchor marker", "the marker on the knife that we anchor to the biped" },
 		{ _field_tag_reference, "seat acceleration", &spring_acceleration_reference },
 
@@ -405,7 +405,7 @@ namespace blofeld
 		{ _field_legacy, _field_real, "acceleration action scale" },
 		{ _field_legacy, _field_real, "acceleration attach scale" },
 		
-		FIELD_CUSTOM("pings", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("pings", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "soft ping threshold", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "soft ping interrupt time", nullptr, "seconds" },
 		{ _field_real, "hard ping threshold", nullptr, nullptr, "[0,1]" },
@@ -430,13 +430,13 @@ namespace blofeld
 		{ _field_legacy, _field_version_less, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "distance of evade anim:world units#this must be set to tell the AI how far it should expect our evade animation to move us" },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_real, "distance of dive anim", "this must be set to tell the AI how far it should expect our dive animation to move us", "world units" },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_real_fraction, "terminal velocity fall ratio", "ratio of airborne_arc animation to switch off falling overlay" },
 
-		FIELD_CUSTOM("stun", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("stun", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "stun movement penalty", "1.0 prevents moving while stunned", nullptr, "[0,1]" },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
@@ -445,13 +445,13 @@ namespace blofeld
 		{ _field_real, "minimum stun time", "all stunning damage will last for at least this long", "seconds" },
 		{ _field_real, "maximum stun time", "no stunning damage will last for longer than this", "seconds" },
 		
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_real, "feign death chance", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "feign repeat chance", nullptr, nullptr, "[0,1]" },
 		{ _field_tag_reference, "spawned turret character", "automatically created character when this unit is driven", &character_reference },
 		{ _field_short_bounds, "spawned actor count", "number of actors which we spawn" },
 		{ _field_real, "spawned velocity", "velocity at which we throw spawned actors" },
-		FIELD_CUSTOM("aiming/looking", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("aiming/looking", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_string_id, "target aiming pivot marker name", "set this to have your weapon barrel point at its calcualed target instead of matching the aiming of the unit controlling it.  This marker should be along the barrel at point that doesn't move when the barrel pitches up and down." },
@@ -461,7 +461,7 @@ namespace blofeld
 		{ _field_real_fraction, "casual aiming modifier", nullptr, nullptr, "[0,1]" },
 		{ _field_angle, "looking velocity maximum", nullptr, "degrees per second" },
 		{ _field_angle, "looking acceleration maximum", nullptr, "degrees per second squared" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "object velocity maximum", "Debug value for object velocity that corresponds to a blend screen weight of 1, 0 defaults to 5.0", "world units per second", FIELD_FLAG_UNKNOWN0 },
@@ -472,16 +472,16 @@ namespace blofeld
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_enum, "melee damage class", &global_melee_class_enum_definition },
-		FIELD_PAD("PAD", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("PAD", nullptr, FIELD_FLAG_NONE, 2),
 		
-		FIELD_CUSTOM("melee damage", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("melee damage", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_tag_reference, "melee damage", &global_damage_reference },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "native melee override", "when set, characters will melee with these settings rather than their actual held weapon. (for characters that melee with an off hand)", &weapon_reference },
 
 		{ _field_struct, "your momma", &unit_boarding_melee_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_enum, "motion sensor blip size", &global_chud_blip_type_definition },
 		{ _field_enum, "item owner size", &unit_item_owner_size_enum },
 
@@ -498,7 +498,7 @@ namespace blofeld
 		{ _field_block, "Hud audio cues", &hud_unit_sound_block },
 
 		{ _field_block, "dialogue variants", &dialogue_variant_block },
-		FIELD_CUSTOM("standard grenade throw", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("standard grenade throw", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_real, "grenade angle", nullptr, "degrees" },
@@ -506,23 +506,23 @@ namespace blofeld
 		{ _field_real, "grenade angle min elevation", nullptr, "degrees" },
 		
 		{ _field_real, "grenade velocity", nullptr, "world units per second" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 6 },
-		FIELD_CUSTOM("sprinting grenade throw", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("sprinting grenade throw", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "grenade angle (sprinting)", nullptr, "degrees" },
 		{ _field_real, "grenade angle max elevation (sprinting)", nullptr, "degrees" },
 		{ _field_real, "grenade angle min elevation (sprinting)", nullptr, "degrees" },
 		{ _field_real, "grenade velocity (sprinting)", nullptr, "world units per second" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 6 },
-		FIELD_CUSTOM("primary weapon toss", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("primary weapon toss", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "weapon angle", nullptr, "degrees" },
 		{ _field_real, "weapon angle max elevation", nullptr, "degrees" },
 		{ _field_real, "weapon angle min elevation", nullptr, "degrees" },
 		{ _field_real, "weapon velocity", nullptr, "world units per second" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		
 		{ _field_enum, "grenade type", &global_grenade_type_enum },
 		{ _field_short_integer, "grenade count" },
@@ -535,44 +535,44 @@ namespace blofeld
 		{ _field_block, "seats", &unit_seat_block },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 }, // custom fields are factored into the versioning
-		FIELD_CUSTOM("open/close", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("open/close", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "opening time", "how long the unit takes to open when the hs_function unit_open is called\nThe current open state can be retrieved from the object function unit_open", "s" },
 		{ _field_real, "closing time", "you don't have to go home, but you can't stay here", "s" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		
-		FIELD_CUSTOM("EMP Disabling", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("EMP Disabling", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "emp disabled time", nullptr, "seconds" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_real, "emp disabled time (PVP)", "Set to -1 for not disabled in MP but disabled in SP", "seconds " },
 		
 		{ _field_tag_reference, "emp disabled effect", &global_effect_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM("Boost", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX("Boost", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "boost", &unit_boost_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_EXPLANATION("Lipsync", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_EXPLANATION_EX("Lipsync", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "lipsync", &unit_lipsync_scales_struct },
-		FIELD_EXPLANATION("Exit and Detach", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Exit and Detach", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "exit and detach damage", &global_damage_reference },
 		{ _field_tag_reference, "exit and detach weapon", &global_weapon_reference },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
-		FIELD_EXPLANATION("Experience", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_EXPLANATION_EX("Experience", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_short_integer, "experience for kill" },
 		{ _field_short_integer, "experience for assist" },
 		{ _field_tag_reference, "hero assist equipment", "this is where you stick an equipment that the biped will always have, to implement the bizarrely named hero assist", &global_equipment_reference },
 		{ _field_real, "bailout threshold", "the speed above which units will bail out of a vehicle instead of just exiting", "wu/s" },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end), // end unit group
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end), // end unit group
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_real_fraction, "iron sight weapon dampening", "when using iron sights, how much to scale the weapon overlays to steady the gun (0 = rock steady, 1= no dampening)", "(0-1)" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
-		FIELD_CUSTOM("Birthing", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Birthing", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "birth", &unit_birth_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		
 		{ _field_terminator }
 	};
@@ -587,10 +587,10 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_CAMERA_STRUCT_ID)
 	{
-		FIELD_CUSTOM("Unit Camera", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM_EX("Unit Camera", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_word_flags, "flags", &unit_camera_flags_definition },
-		FIELD_PAD("doh", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_PAD_EX("doh", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_old_string_id, "camera marker name" },
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach },
@@ -616,7 +616,7 @@ namespace blofeld
 		{ _field_block, "move stick overrides", &gamepad_stick_info_block },
 		{ _field_block, "look stick overrides", &gamepad_stick_info_block },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -636,8 +636,8 @@ namespace blofeld
 		UNIT_CAMERA_ACCELERATION_DISPLACEMENT_FUNCTION_STRUCT_ID)
 	{
 		{ _field_char_enum, "Input Variable", &unit_camera_acceleration_displacement_input, _field_id_function_input_scalar },
-		FIELD_PAD("blah", nullptr, FIELD_FLAG_NONE, 3),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_PAD_EX("blah", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "mapping", &mapping_function },
 		{ _field_real, "maximum value", "for linear velocity; this is wu/s\nfor linear acceleration; this is the fraction of the seat acceleration\nfor angular velocity; this is deg/s", _field_id_function_unknown },
 		{ _field_real, "camera scale (axial)", "scale factor used when this acceleration component is along the axis of the forward vector of the camera", _field_id_function_unknown },
@@ -655,7 +655,7 @@ namespace blofeld
 		UNIT_ADDITIONAL_NODE_NAMES_STRUCT_ID)
 	{
 		{ _field_string_id, "preferred_gun_node", "if found, use this gun marker" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 
 		{ _field_legacy, _field_version_equal, _engine_type_groundhog },
 		{ _field_legacy, _field_string_id, "preferred_dual_gun_node" },
@@ -664,7 +664,7 @@ namespace blofeld
 		{ _field_string_id, "preferred_grenade_marker", "if found, use this marker to attach live grenades to" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
-		FIELD_EXPLANATION("Weapon Specific Markers", nullptr, FIELD_FLAG_NONE, "These will override the righthand/lefthand nodes when the weapon matches the one used by the unit"),
+		FIELD_EXPLANATION_EX("Weapon Specific Markers", nullptr, FIELD_FLAG_NONE, "These will override the righthand/lefthand nodes when the weapon matches the one used by the unit"),
 		{ _field_block, "weapon specific markers", &WeaponSpecificMarkersBlock_block },
 
 		{ _field_terminator }
@@ -734,7 +734,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_real, "recharge rate", "1 means you recharge fully in 1 second.  .1 means you rechage fully in 10 seconds" },
 		{ _field_real, "recharge delay", "how long do you have to be off the tirgger for before boost starts recharging", "s" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "trigger to boost", &mapping_function },
 
 		{ _field_terminator }
@@ -764,7 +764,7 @@ namespace blofeld
 		UNIT_BIRTH_STRUCT_ID)
 	{
 		{ _field_short_block_index, "seat", FIELD_FLAG_INDEX, &unit_seat_block },
-		FIELD_PAD("PAD", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("PAD", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "birthing region", "if found, this region will be set to destroyed during birth" },
 		{ _field_terminator }
 	};

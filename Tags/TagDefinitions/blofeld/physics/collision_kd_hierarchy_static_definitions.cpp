@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -70,7 +70,7 @@ namespace blofeld
 		{ _field_short_integer, "instance index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "instance index dword mask", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "bsp index", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("bsp-index-pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("bsp-index-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "bsp mask", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
@@ -114,7 +114,7 @@ namespace blofeld
 		SUPER_NODE_MAPPINGS_BLOCK_ID)
 	{
 		{ _field_array, "indices", FIELD_FLAG_UNKNOWN0, &super_node_mapping_index_array },
-		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

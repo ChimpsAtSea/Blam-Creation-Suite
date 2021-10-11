@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -57,16 +57,16 @@ namespace blofeld
 		STYLE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_string, "name", FIELD_FLAG_INDEX },
-		FIELD_EXPLANATION("Combat status decay options", nullptr, FIELD_FLAG_NONE, "Controls how combat status is allowed to be automatically reduced in the absence of combat stimuli. \'Latch at X\' means that once the level of x is attained (and/or surpassed) the combat status never falls below it. Not applicable when style is applied to a character tag."),
+		FIELD_EXPLANATION_EX("Combat status decay options", nullptr, FIELD_FLAG_NONE, "Controls how combat status is allowed to be automatically reduced in the absence of combat stimuli. \'Latch at X\' means that once the level of x is attained (and/or surpassed) the combat status never falls below it. Not applicable when style is applied to a character tag."),
 		{ _field_enum, "Combat status decay options", &combat_status_enum },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
-		FIELD_PAD("hghq", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD_EX("hghq", nullptr, FIELD_FLAG_NONE, 2),
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach },
 		{ _field_legacy, _field_short_integer, "@unknown" },
 
-		FIELD_EXPLANATION("Style Behavior Control", nullptr, FIELD_FLAG_NONE, "Check the appropriate box to turn on/off the given behavior"),
+		FIELD_EXPLANATION_EX("Style Behavior Control", nullptr, FIELD_FLAG_NONE, "Check the appropriate box to turn on/off the given behavior"),
 		{ _field_long_flags, "Style control", &style_control_flags },
 		{ _field_long_flags, "Behaviors1", &behavior_set1, _field_id_dumb },
 		{ _field_long_flags, "Behaviors2", &behavior_set2, _field_id_dumb },

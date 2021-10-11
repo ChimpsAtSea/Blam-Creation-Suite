@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -104,8 +104,8 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTILINGUAL_UNICODE_STRING_LIST_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("import", nullptr, FIELD_FLAG_NONE, _field_id_text_unknown),
-		FIELD_CUSTOM("import clean", nullptr, FIELD_FLAG_NONE, _field_id_text_unknown),
+		FIELD_CUSTOM_EX("import", nullptr, FIELD_FLAG_NONE, _field_id_text_unknown),
+		FIELD_CUSTOM_EX("import clean", nullptr, FIELD_FLAG_NONE, _field_id_text_unknown),
 		{ _field_block, "string references", FIELD_FLAG_READ_ONLY, &multilingual_unicode_string_reference_block },
 		{ _field_block, "substitution pairs", FIELD_FLAG_READ_ONLY, &string_substitution_pair_block },
 		{ _field_data, "string data utf8", FIELD_FLAG_READ_ONLY },

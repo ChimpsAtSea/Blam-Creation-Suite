@@ -1,5 +1,5 @@
 #include <tagdefinitions-private-pch.h>
-#include <macaque_field_type_override.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -31,7 +31,7 @@ namespace blofeld
 	{
 		{ _field_enum, "type", &particle_movement_type },
 		{ _field_byte_flags, "flags", FIELD_FLAG_UNKNOWN0, &particle_controller_flags },
-		FIELD_PAD("KNTXOMS", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD_EX("KNTXOMS", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_block, "parameters", &particle_controller_parameters_block },
 		{ _field_long_integer, "runtime m_constant_parameters", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "runtime m_used_particle_states", FIELD_FLAG_UNKNOWN0 },
@@ -70,7 +70,7 @@ namespace blofeld
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_char_integer, "global force controller index", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("pphys", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pphys", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_block, "movements", &particle_controller_block },
 		{ _field_tag_reference, "turbulence texture", &global_bitmap_reference },
@@ -93,7 +93,7 @@ namespace blofeld
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_char_integer, "global force controller index", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("pphys", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_PAD_EX("pphys", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_block, "movements", &particle_controller_block },
 		{ _field_tag_reference, "turbulence texture", &global_bitmap_reference },
