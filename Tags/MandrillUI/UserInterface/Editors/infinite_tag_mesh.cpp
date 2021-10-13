@@ -187,17 +187,17 @@ c_infinite_tag_mesh::c_infinite_tag_mesh(
 				}
 			}
 
-			auto position_buffer_result = graphics_buffer_create(&graphics, _graphics_buffer_type_generic, sizeof(float3), positions.size(), position_buffer);
-			auto texcoord_buffer_result = graphics_buffer_create(&graphics, _graphics_buffer_type_generic, sizeof(float2), texcoords.size(), texcoord_buffer);
-			auto color_buffer_result = graphics_buffer_create(&graphics, _graphics_buffer_type_generic, sizeof(float4), colors.size(), color_buffer);
-			auto normal_buffer_result = graphics_buffer_create(&graphics, _graphics_buffer_type_generic, sizeof(float3), normals.size(), normal_buffer);
-			auto index_buffer_result = graphics_buffer_create(&graphics, _graphics_buffer_type_generic, sizeof(unsigned long), indices.size(), index_buffer);
+			auto position_buffer_result = graphics_buffer_create(&graphics, _graphics_buffer_type_generic, sizeof(float3), static_cast<unsigned long>(positions.size()), position_buffer);
+			auto texcoord_buffer_result = graphics_buffer_create(&graphics, _graphics_buffer_type_generic, sizeof(float2), static_cast<unsigned long>(texcoords.size()), texcoord_buffer);
+			auto color_buffer_result = graphics_buffer_create(&graphics, _graphics_buffer_type_generic, sizeof(float4), static_cast<unsigned long>(colors.size()), color_buffer);
+			auto normal_buffer_result = graphics_buffer_create(&graphics, _graphics_buffer_type_generic, sizeof(float3), static_cast<unsigned long>(normals.size()), normal_buffer);
+			auto index_buffer_result = graphics_buffer_create(&graphics, _graphics_buffer_type_generic, sizeof(unsigned long), static_cast<unsigned long>(indices.size()), index_buffer);
 
-			position_buffer->write_data(positions.data(), sizeof(positions[0])* positions.size());
-			texcoord_buffer->write_data(texcoords.data(), sizeof(texcoords[0])* texcoords.size());
-			color_buffer->write_data(colors.data(), sizeof(colors[0])* colors.size());
-			normal_buffer->write_data(normals.data(), sizeof(normals[0])* normals.size());
-			index_buffer->write_data(indices.data(), sizeof(indices[0])* indices.size());
+			position_buffer->write_data(positions.data(), sizeof(positions[0])* static_cast<unsigned long>(positions.size()));
+			texcoord_buffer->write_data(texcoords.data(), sizeof(texcoords[0])* static_cast<unsigned long>(texcoords.size()));
+			color_buffer->write_data(colors.data(), sizeof(colors[0])* static_cast<unsigned long>(colors.size()));
+			normal_buffer->write_data(normals.data(), sizeof(normals[0])* static_cast<unsigned long>(normals.size()));
+			index_buffer->write_data(indices.data(), sizeof(indices[0])* static_cast<unsigned long>(indices.size()));
 
 			c_graphics_buffer* vertex_buffers[] =
 			{
@@ -210,7 +210,7 @@ c_infinite_tag_mesh::c_infinite_tag_mesh(
 			auto graphics_geometry_result = graphics_geometry_create(
 				&graphics,
 				index_buffer,
-				indices.size(),
+				static_cast<unsigned long>(indices.size()),
 				vertex_buffers,
 				_countof(vertex_buffers),
 				vertex_layout,

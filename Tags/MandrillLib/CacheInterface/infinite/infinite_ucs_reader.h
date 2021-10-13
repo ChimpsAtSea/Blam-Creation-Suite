@@ -163,14 +163,13 @@ static_assert(k_infinite_ucs_pageable_resource_field_size == 0x10);
 class c_infinite_ucs_reader
 {
 public:
-	c_infinite_ucs_reader(const void* header_data, const void* tag_data, const void* resource_data);
+	c_infinite_ucs_reader(const void* ucs_data);
 	~c_infinite_ucs_reader();
 	
 	long get_root_tag_block_entry_index() const;
 
 	const void* header_data;
 	const void* tag_data;
-	const void* resource_data;
 
 	const s_infinite_ucs_header* ucs_header;
 	const s_infinite_ucs_tag_dependency_list* tag_dependency_list;

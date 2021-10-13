@@ -24,7 +24,8 @@ int WINAPI wWinMain(
 
 	BCS_FAIL_RETURN(register_process_module_by_pointer(wWinMain));
 	BCS_RESULT rs0 = init_command_line(lpCmdLine);
-	BCS_RESULT rs1 = BCS_SUCCEEDED(command_line_has_argument("console")) ? init_console() : BCS_S_OK;
+	BCS_RESULT rs1 = init_console();
+	if(BCS_SUCCEEDED(rs1)) rs1 = BCS_SUCCEEDED(command_line_has_argument("console")) ? alloc_console("Mandrill") : BCS_S_OK;
 	BCS_RESULT rs2 = window_create(window_title, "mandrill", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, window);
 	BCS_RESULT rs3 = render_context_window_create(*window, graphics_background_color, window_render_context);
 

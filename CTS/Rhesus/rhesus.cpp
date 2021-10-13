@@ -194,7 +194,8 @@ bool rhesus_crash_reporter(int& result)
 
 	if (is_rhesus_debug)
 	{
-		init_console("Rhesus");
+		init_console();
+		alloc_console("Rhesus");
 	}
 
 	console_write_line("----- RHESUS CRASH REPORTER DEBUG -----", GetCommandLineA());

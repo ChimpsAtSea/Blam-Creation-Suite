@@ -1,9 +1,8 @@
 #include "mandrilllib-private-pch.h"
 
-c_infinite_ucs_reader::c_infinite_ucs_reader(const void* header_data, const void* tag_data, const void* resource_data) :
-	header_data(header_data),
-	tag_data(tag_data),
-	resource_data(resource_data),
+c_infinite_ucs_reader::c_infinite_ucs_reader(const void* ucs_data) :
+	header_data(ucs_data),
+	tag_data(),
 	ucs_header(),
 	tag_dependency_list(),
 	nuggets(),
@@ -32,6 +31,16 @@ c_infinite_ucs_reader::c_infinite_ucs_reader(const void* header_data, const void
 	zoneset_data = reinterpret_cast<const char*>(string_table + ucs_header->string_table_size);
 	extra_data = reinterpret_cast<const void*>(zoneset_data + ucs_header->zoneset_data_size);
 	extra_data_size = static_cast<unsigned long>(reinterpret_cast<intptr_t>(tag_data) - reinterpret_cast<intptr_t>(extra_data));
+	
+	tag_data = reinterpret_cast<const char*>(ucs_header) + ucs_header->header_size;
+	
+	if (ucs_header->tag_dependency_count == 0) tag_dependency_list = nullptr;
+	if (ucs_header->nugget_count == 0) nuggets = nullptr;
+	if (ucs_header->tag_block_count == 0) tag_block_instances = nullptr;
+	if (ucs_header->data_reference_count == 0) tag_data_instances = nullptr;
+	if (ucs_header->tag_reference_count == 0) tag_reference = nullptr;
+	if (ucs_header->string_table_size == 0) string_table = nullptr;
+	if (ucs_header->zoneset_data_size == 0) zoneset_data = nullptr;
 
 	debug_point;
 
