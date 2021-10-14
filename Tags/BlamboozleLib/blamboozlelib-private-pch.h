@@ -37,6 +37,7 @@ using btag_group = bigendian_type<tag_group>;
 #include "infinite/infinite.h"
 #include "halo5/halo5_forge.h"
 #include "halo4/halo4.h"
+#include "halo3/halo3.h"
 #include "halo2/halo2.h"
 #include "halo1/halo1.h"
 

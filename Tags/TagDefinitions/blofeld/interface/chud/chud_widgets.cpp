@@ -46,7 +46,7 @@ namespace blofeld
 	
 	TAG_REFERENCE_GROUP(wadt_animation_reference, _tag_reference_flag_resolved_by_game)
 	{
-		CHUD_ANIMATION_TAG,
+		CHUD_ANIMATION_DEFINITION_TAG,
 		INVALID_TAG,
 	};
 

@@ -4,8 +4,9 @@ const char* blofeld::field_id_to_string(blofeld::e_field_id field)
 {
 	using namespace blofeld;
 #define FIELD_ID_TO_STRING(_field) if(field == _field) return #_field;
-
+	
 	FIELD_ID_TO_STRING(_field_id_default);
+	FIELD_ID_TO_STRING(_field_id_null);
 	FIELD_ID_TO_STRING(_field_id_field_group_begin);
 	FIELD_ID_TO_STRING(_field_id_field_group_end);
 	FIELD_ID_TO_STRING(_field_id_point);
@@ -92,6 +93,16 @@ const char* blofeld::field_id_to_string(blofeld::e_field_id field)
 	FIELD_ID_TO_STRING(_field_id_malleablepropertybasefloat);
 	FIELD_ID_TO_STRING(_field_id_malleablepropertybaseshort);
 	FIELD_ID_TO_STRING(_field_id_malleablepropertybaseangle);
+	FIELD_ID_TO_STRING(_field_id_ascii);
+	FIELD_ID_TO_STRING(_field_id_lflg);
+	FIELD_ID_TO_STRING(_field_id_allg);
+	FIELD_ID_TO_STRING(_field_id_bspX);
+	FIELD_ID_TO_STRING(_field_id_bspY);
+	FIELD_ID_TO_STRING(_field_id_rede);
+	FIELD_ID_TO_STRING(_field_id_cflt);
+	FIELD_ID_TO_STRING(_field_id_filx);
+	FIELD_ID_TO_STRING(_field_id_auds);
+	
 	
 #undef FIELD_ID_TO_STRING
 

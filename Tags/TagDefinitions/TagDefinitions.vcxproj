@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="blamlib\halo3_tools.cpp" />
     <ClCompile Include="blofeld.cpp" />
     <ClCompile Include="blofeld\ai\ai.cpp" />
     <ClCompile Include="blofeld\ai\ai_cues.cpp" />
@@ -165,9 +166,10 @@
     <ClCompile Include="blofeld\gen3_xbox360_validation_data.cpp" />
     <ClCompile Include="blofeld\geometry\geometry_definitions.cpp" />
     <ClCompile Include="blofeld\geometry\geometry_definitions_new.cpp" />
-    <ClCompile Include="blofeld\halo1.cpp" />
-    <ClCompile Include="blofeld\halo2.cpp" />
+    <ClCompile Include="blamlib\halo1_tools.cpp" />
+    <ClCompile Include="blamlib\halo2_tools.cpp" />
     <ClCompile Include="blofeld\hs\hs_scenario_definitions.cpp" />
+    <ClCompile Include="blofeld\interface\chud\cortana_definitions.cpp" />
     <ClCompile Include="slipspace\infinite_flight1.cpp" />
     <ClCompile Include="blofeld\inline_files.cpp" />
     <ClCompile Include="blofeld\interface\chud\chud_definitions.cpp" />
@@ -345,6 +347,7 @@
     <ClCompile Include="definition_migration.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="blamlib\halo3_tools.h" />
     <ClInclude Include="blofeld\ai\ai.h" />
     <ClInclude Include="blofeld\ai\ai_cues.h" />
     <ClInclude Include="blofeld\ai\ai_dialogue_definitions.h" />
@@ -485,9 +488,10 @@
     <ClInclude Include="blofeld\gen3_xbox360_validation_data.h" />
     <ClInclude Include="blofeld\geometry\geometry_definitions.h" />
     <ClInclude Include="blofeld\geometry\geometry_definitions_new.h" />
-    <ClInclude Include="blofeld\halo1.h" />
-    <ClInclude Include="blofeld\halo2.h" />
+    <ClInclude Include="blamlib\halo1_tools.h" />
+    <ClInclude Include="blamlib\halo2_tools.h" />
     <ClInclude Include="blofeld\hs\hs_scenario_definitions.h" />
+    <ClInclude Include="blofeld\interface\chud\cortana_definitions.h" />
     <ClInclude Include="slipspace\infinite_flight1.h" />
     <ClInclude Include="blofeld\interface\chud\chud_definitions.h" />
     <ClInclude Include="blofeld\interface\chud\chud_widgets.h" />

@@ -32,7 +32,7 @@
 //s_halo1_tag_group_hierarchy chocolate_mountain_new_group = { blofeld::CHOCOLATE_MOUNTAIN_NEW_TAG, "chocolate_mountain_new" };
 //s_halo1_tag_group_hierarchy chud_animation_definition_group = { blofeld::CHUD_ANIMATION_TAG, "chud_animation_definition" };
 //s_halo1_tag_group_hierarchy chud_definition_group = { blofeld::CHUD_TAG, "chud_definition" };
-//s_halo1_tag_group_hierarchy chud_globals_definition_group = { blofeld::CHUD_GLOBALS_TAG, "chud_globals_definition" };
+//s_halo1_tag_group_hierarchy chud_globals_definition_group = { blofeld::CHUD_GLOBALS_DEFINITION_TAG, "chud_globals_definition" };
 //s_halo1_tag_group_hierarchy chud_widget_animation_data_template_group = { blofeld::CHUD_WIDGET_ANIMATION_DATA_TAG, "chud_widget_animation_data_template" };
 //s_halo1_tag_group_hierarchy chud_widget_datasource_template_group = { blofeld::CHUD_WIDGET_DATASOURCE_TAG, "chud_widget_datasource_template" };
 //s_halo1_tag_group_hierarchy chud_widget_placement_data_template_group = { blofeld::CHUD_WIDGET_PLACEMENT_DATA_TAG, "chud_widget_placement_data_template" };

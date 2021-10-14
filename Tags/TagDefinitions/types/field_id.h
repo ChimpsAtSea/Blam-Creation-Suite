@@ -5,7 +5,8 @@ namespace blofeld
 	enum e_field_id
 	{
 		_field_id_default,
-		
+		_field_id_null = -1,
+
 		_field_id_point = 'poin',
 		_field_id_orientation = 'orie',
 		_field_id_scale = 'scal',
@@ -109,7 +110,19 @@ namespace blofeld
 		_field_id_malleablepropertybasefloat = 'mpfi',
 		_field_id_malleablepropertybaseshort = 'mpsh',
 		_field_id_malleablepropertybaseangle = 'mpai',
-		
+
+		_field_id_ascii = 'asci',
+		_field_id_lflg = 'lflg',
+		_field_id_allg = 'allg',
+		_field_id_bspX = 'bsp*',
+		_field_id_bspY = 'bsp!',
+		_field_id_rede = 'rede',
+		_field_id_cflt = 'cflt',
+		_field_id_filx = 'filx',
+		_field_id_auds = 'auds',
+			
+			
+
 	};
 
 	BCS_DEBUG_API const char* field_id_to_string(e_field_id field);

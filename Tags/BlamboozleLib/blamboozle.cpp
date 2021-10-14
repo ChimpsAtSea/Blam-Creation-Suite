@@ -28,25 +28,28 @@ int blamboozle_run()
 
 	const wchar_t* halo1_guerilla_file;
 	const wchar_t* halo2_guerilla_file;
+	const wchar_t* halo3_guerilla_file;
 	const wchar_t* halo4_midnight_tags_test;
 	const wchar_t* halo5_forge_file;
 	const wchar_t* infinite_flight1_preview_file;
 	const wchar_t* infinite_flight2_preview_file;
 
-	BCS_RESULT rs0 = command_line_get_argument(L"blamboozle-halo1-guerilla", halo1_guerilla_file);
-	BCS_RESULT rs1 = command_line_get_argument(L"blamboozle-halo2-guerilla", halo2_guerilla_file);
-	BCS_RESULT rs2 = command_line_get_argument(L"blamboozle-halo4-tag-test", halo4_midnight_tags_test);
-	BCS_RESULT rs3 = command_line_get_argument(L"blamboozle-halo5-forge", halo5_forge_file);
-	BCS_RESULT rs4 = command_line_get_argument(L"blamboozle-infinite-flight1", infinite_flight1_preview_file);
-	BCS_RESULT rs5 = command_line_get_argument(L"blamboozle-infinite-flight2", infinite_flight2_preview_file);
+	BCS_RESULT rs_halo1_guerilla			= command_line_get_argument(L"blamboozle-halo1-guerilla",		halo1_guerilla_file);
+	BCS_RESULT rs_halo2_guerilla			= command_line_get_argument(L"blamboozle-halo2-guerilla",		halo2_guerilla_file);
+	BCS_RESULT rs_halo3_guerilla			= command_line_get_argument(L"blamboozle-halo3-guerilla",		halo3_guerilla_file);
+	BCS_RESULT rs_halo4_tags_test			= command_line_get_argument(L"blamboozle-halo4-tag-test",		halo4_midnight_tags_test);
+	BCS_RESULT rs_halo5_forge				= command_line_get_argument(L"blamboozle-halo5-forge",			halo5_forge_file);
+	BCS_RESULT rs_infinite_flight1_preview	= command_line_get_argument(L"blamboozle-infinite-flight1",		infinite_flight1_preview_file);
+	BCS_RESULT rs_infinite_flight2_preview	= command_line_get_argument(L"blamboozle-infinite-flight2",		infinite_flight2_preview_file);
 
 	if(
-		BCS_FAILED(rs0) && 
-		BCS_FAILED(rs1) && 
-		BCS_FAILED(rs2) && 
-		BCS_FAILED(rs3) && 
-		BCS_FAILED(rs4) && 
-		BCS_FAILED(rs5))
+		BCS_FAILED(rs_halo1_guerilla		  ) &&
+		BCS_FAILED(rs_halo2_guerilla		  ) &&
+		BCS_FAILED(rs_halo3_guerilla		  ) &&
+		BCS_FAILED(rs_halo4_tags_test		  ) &&
+		BCS_FAILED(rs_halo5_forge			  ) &&
+		BCS_FAILED(rs_infinite_flight1_preview) &&
+		BCS_FAILED(rs_infinite_flight2_preview))
 	{
 		console_write_line("No binary file(s) specified");
 		console_write_line("Usage <output directory> <binary ...>");
@@ -55,32 +58,37 @@ int blamboozle_run()
 
 	int result = 0;
 
-	if (BCS_SUCCEEDED(rs0))
+	if (BCS_SUCCEEDED(rs_halo1_guerilla))
 	{
 		result += blamboozle_run(output_directory, halo1_guerilla_file, _engine_type_halo1, _build_not_set);
 	}
 
-	if (BCS_SUCCEEDED(rs1))
+	if (BCS_SUCCEEDED(rs_halo2_guerilla))
 	{
 		result += blamboozle_run(output_directory, halo2_guerilla_file, _engine_type_halo2, _build_not_set, true);
 	}
 
-	if (BCS_SUCCEEDED(rs2))
+	if (BCS_SUCCEEDED(rs_halo3_guerilla))
+	{
+		result += blamboozle_run(output_directory, halo3_guerilla_file, _engine_type_halo3, _build_halo3_guerilla, true);
+	}
+
+	if (BCS_SUCCEEDED(rs_halo4_tags_test))
 	{
 		result += blamboozle_run(output_directory, halo4_midnight_tags_test, _engine_type_halo4, _build_not_set, true);
 	}
 
-	if (BCS_SUCCEEDED(rs3))
+	if (BCS_SUCCEEDED(rs_halo5_forge))
 	{
 		result += blamboozle_run(output_directory, halo5_forge_file, _engine_type_halo5);
 	}
 
-	if (BCS_SUCCEEDED(rs4))
+	if (BCS_SUCCEEDED(rs_infinite_flight1_preview))
 	{
 		result += blamboozle_run(output_directory, infinite_flight1_preview_file, _engine_type_infinite, _build_infinite_FLT002INT_199229_21_07_20_0001, true);
 	}
 
-	if (BCS_SUCCEEDED(rs5))
+	if (BCS_SUCCEEDED(rs_infinite_flight2_preview))
 	{
 		result += blamboozle_run(output_directory, infinite_flight2_preview_file, _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001, true);
 	}
@@ -185,6 +193,12 @@ int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepa
 	{
 		c_blamboozle_h2_guerilla h2_guerilla = c_blamboozle_h2_guerilla(output_directory, binary_filepath);
 		h2_guerilla.run();
+	}
+	break;
+	case _engine_type_halo3:
+	{
+		c_blamboozle_h3_guerilla h3_guerilla = c_blamboozle_h3_guerilla(output_directory, binary_filepath, build);
+		h3_guerilla.run();
 	}
 	break;
 	case _engine_type_halo4:

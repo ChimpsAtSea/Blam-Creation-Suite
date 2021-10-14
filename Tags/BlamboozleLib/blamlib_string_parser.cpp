@@ -1,3 +1,3 @@
 #include "blamboozlelib-private-pch.h"
 
-#include <TagCodegen\blamlib_string_parser.cpp>
+#include <TagCodegen\blamlib_string_parser.inl>

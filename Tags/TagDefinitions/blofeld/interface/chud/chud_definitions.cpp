@@ -132,7 +132,7 @@ namespace blofeld
 		{ _field_legacy, _field_terminator }
 	};
 
-	V5_TAG_GROUP_FROM_BLOCK(chud_animation, CHUD_ANIMATION_TAG, chad_block);
+	V5_TAG_GROUP_FROM_BLOCK(chud_animation, CHUD_ANIMATION_DEFINITION_TAG, chad_block);
 	V5_TAG_BLOCK_FROM_STRUCT(chad_block, 1, chad_struct_definition_struct_definition)
 	V5_TAG_STRUCT(chad_struct_definition)
 	{
@@ -159,7 +159,7 @@ namespace blofeld
 
 		{ _field_legacy, _field_terminator }
 	};
-	TAG_REFERENCE(chud_animation_reference, CHUD_ANIMATION_TAG);
+	TAG_REFERENCE(chud_animation_reference, CHUD_ANIMATION_DEFINITION_TAG);
 
 
 	V5_TAG_BLOCK(chdt_compiled_widget_data_block, 65536)
@@ -484,7 +484,7 @@ namespace blofeld
 		{ _field_legacy, _field_terminator }
 	};
 
-	V5_TAG_GROUP_FROM_BLOCK(chud, CHUD_TAG, chud_block);
+	V5_TAG_GROUP_FROM_BLOCK(chud, CHUD_DEFINITION_TAG, chud_block);
 	V5_TAG_BLOCK_FROM_STRUCT(chud_block, 1, chud_struct_definition_struct_definition);
 	V5_TAG_STRUCT(chud_struct_definition)
 	{
@@ -503,7 +503,7 @@ namespace blofeld
 		{ _field_legacy, _field_block, "compiled widget data", &chdt_compiled_widget_data_block },
 		{ _field_legacy, _field_terminator }
 	};
-	TAG_REFERENCE(chud_reference, CHUD_TAG);
+	TAG_REFERENCE(chud_reference, CHUD_DEFINITION_TAG);
 
 
 	V5_TAG_BLOCK(chgd_hud_sounds_block, 65536)
@@ -763,7 +763,7 @@ namespace blofeld
 		{ _field_legacy, _field_terminator }
 	};
 
-	V5_TAG_GROUP_FROM_BLOCK(chud_globals, CHUD_GLOBALS_TAG, chgd_block);
+	V5_TAG_GROUP_FROM_BLOCK(chud_globals, CHUD_GLOBALS_DEFINITION_TAG, chgd_block);
 	V5_TAG_BLOCK_FROM_STRUCT(chgd_block, 1, chgd_struct_definition_struct_definition);
 	V5_TAG_STRUCT(chgd_struct_definition)
 	{
@@ -1435,7 +1435,7 @@ namespace blofeld
 		{ _field_legacy, _field_block, "state triggers", &chgd_state_triggers_block },
 		{ _field_legacy, _field_terminator }
 	};
-	TAG_REFERENCE(chud_globals_reference, CHUD_GLOBALS_TAG);
+	TAG_REFERENCE(chud_globals_reference, CHUD_GLOBALS_DEFINITION_TAG);
 
 
 	STRINGS(biped_enum_definition)

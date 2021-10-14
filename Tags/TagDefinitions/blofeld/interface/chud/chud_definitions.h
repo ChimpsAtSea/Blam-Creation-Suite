@@ -2,9 +2,9 @@
 
 namespace blofeld
 {
-	constexpr unsigned long CHUD_ANIMATION_TAG = 'chad';
-	constexpr unsigned long CHUD_TAG = 'chdt';
-	constexpr unsigned long CHUD_GLOBALS_TAG = 'chgd';
+	constexpr unsigned long CHUD_ANIMATION_DEFINITION_TAG = 'chad';
+	constexpr unsigned long CHUD_DEFINITION_TAG = 'chdt';
+	constexpr unsigned long CHUD_GLOBALS_DEFINITION_TAG = 'chgd';
 
 	extern s_tag_reference_definition unknown_reference;
 

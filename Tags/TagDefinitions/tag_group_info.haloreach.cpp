@@ -35,9 +35,9 @@ namespace blofeld
 		s_tag_group_info cheap_particle_emitter_group = { blofeld::CHEAP_PARTICLE_EMITTER_TAG, "cheap_particle_emitter" };
 		s_tag_group_info cheap_particle_type_library_group = { blofeld::CHEAP_PARTICLE_TYPE_LIBRARY_TAG, "cheap_particle_type_library" };
 		s_tag_group_info chocolate_mountain_new_group = { blofeld::CHOCOLATE_MOUNTAIN_NEW_TAG, "chocolate_mountain_new" };
-		s_tag_group_info chud_animation_definition_group = { blofeld::CHUD_ANIMATION_TAG, "chud_animation_definition" };
-		s_tag_group_info chud_definition_group = { blofeld::CHUD_TAG, "chud_definition" };
-		s_tag_group_info chud_globals_definition_group = { blofeld::CHUD_GLOBALS_TAG, "chud_globals_definition" };
+		s_tag_group_info chud_animation_definition_group = { blofeld::CHUD_ANIMATION_DEFINITION_TAG, "chud_animation_definition" };
+		s_tag_group_info chud_definition_group = { blofeld::CHUD_DEFINITION_TAG, "chud_definition" };
+		s_tag_group_info chud_globals_definition_group = { blofeld::CHUD_GLOBALS_DEFINITION_TAG, "chud_globals_definition" };
 		s_tag_group_info chud_widget_animation_data_template_group = { blofeld::CHUD_WIDGET_ANIMATION_DATA_TAG, "chud_widget_animation_data_template" };
 		s_tag_group_info chud_widget_datasource_template_group = { blofeld::CHUD_WIDGET_DATASOURCE_TAG, "chud_widget_datasource_template" };
 		s_tag_group_info chud_widget_placement_data_template_group = { blofeld::CHUD_WIDGET_PLACEMENT_DATA_TAG, "chud_widget_placement_data_template" };

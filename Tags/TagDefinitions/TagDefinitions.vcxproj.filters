@@ -933,13 +933,13 @@
     <ClCompile Include="blofeld\components\chocolate_mountain_new_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="blofeld\halo1.cpp">
+    <ClCompile Include="blamlib\halo1_tools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="slipspace\infinite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="blofeld\halo2.cpp">
+    <ClCompile Include="blamlib\halo2_tools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="slipspace\infinite_flight1.cpp">
@@ -955,6 +955,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="types\field_id.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blamlib\halo3_tools.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blofeld\interface\chud\cortana_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1907,13 +1913,13 @@
     <ClInclude Include="blofeld\components\chocolate_mountain_new_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="blofeld\halo1.h">
+    <ClInclude Include="blamlib\halo1_tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="slipspace\infinite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="blofeld\halo2.h">
+    <ClInclude Include="blamlib\halo2_tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="slipspace\infinite_flight1.h">
@@ -1929,6 +1935,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="types\field_id.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blamlib\halo3_tools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\chud\cortana_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

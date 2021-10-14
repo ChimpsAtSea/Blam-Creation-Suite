@@ -1,5 +1,30 @@
 #pragma once
 
+// #TODO: Make a home for these
+static constexpr unsigned long RENDER_SKINS_OBJECT_GLOBALS_TAG = 'rsod';
+static constexpr unsigned long GUI_BITMAP_WIDGET_DEFINITION_TAG = 'bmp3';
+static constexpr unsigned long GUI_BUTTON_KEY_DEFINITION_TAG = 'bkey';
+static constexpr unsigned long GUI_DATASOURCE_DEFINITION_TAG = 'dsrc';
+static constexpr unsigned long GUI_GROUP_WIDGET_DEFINITION_TAG = 'grup';
+static constexpr unsigned long GUI_LIST_WIDGET_DEFINITION_TAG = 'lst3';
+static constexpr unsigned long GUI_MODEL_WIDGET_DEFINITION_TAG = 'mdl3';
+static constexpr unsigned long GUI_SCREEN_WIDGET_DEFINITION_TAG = 'scn3';
+static constexpr unsigned long GUI_SKIN_DEFINITION_TAG = 'skn3';
+static constexpr unsigned long GUI_TEXT_WIDGET_DEFINITION_TAG = 'txt3';
+static constexpr unsigned long GUI_WIDGET_ANIMATION_COLLECTION_DEFINITION_TAG = 'wacd';
+static constexpr unsigned long GUI_WIDGET_ANIMATION_DEFINITION_TAG = 'wgan';
+static constexpr unsigned long MOUSE_CURSOR_DEFINITION_TAG = 'mcsr';
+static constexpr unsigned long GUI_WIDGET_COLOR_ANIMATION_DEFINITION_TAG = 'wclr';
+static constexpr unsigned long GUI_WIDGET_POSITION_ANIMATION_DEFINITION_TAG = 'wpos';
+static constexpr unsigned long GUI_WIDGET_ROTATION_ANIMATION_DEFINITION_TAG = 'wrot';
+static constexpr unsigned long GUI_WIDGET_SCALE_ANIMATION_DEFINITION_TAG = 'wscl';
+static constexpr unsigned long GUI_WIDGET_SPRITE_ANIMATION_DEFINITION_TAG = 'wspr';
+static constexpr unsigned long GUI_WIDGET_TEXTURE_COORDINATE_ANIMATION_DEFINITION_TAG = 'wtuv';
+static constexpr unsigned long GUI_WIDGET_FONT_ANIMATION_DEFINITION_TAG = 'wfon';
+static constexpr unsigned long PATCHY_FOG_TAG = 'fpch';
+static constexpr unsigned long SCENARIO_HS_SOURCE_FILE_TAG = 'hsc*';
+static constexpr unsigned long SCREEN_EFFECT_TAG = 'egor';
+
 #include "manual_tag_references.h"
 #include "__unknown\tag_references.h"
 #include "ai\ai.h"
@@ -143,6 +168,7 @@
 #include "hs\hs_scenario_definitions.h"
 #include "interface\chud\chud_definitions.h"
 #include "interface\chud\chud_widgets.h"
+#include "interface\chud\cortana_definitions.h"
 #include "interface\chud\polyart\polyartbasedefinitions.h"
 #include "interface\chud\polyart\polyartdefinitions.h"
 #include "interface\chud\polyart\vectorartdefinitions.h"
