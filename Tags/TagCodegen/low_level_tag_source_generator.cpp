@@ -149,7 +149,8 @@ void c_low_level_tag_source_generator::generate_header() const
 				current_field->field_type == blofeld::_field_block,
 				&field_name_unique_counter);
 
-			const char* field_type_string = field_to_string(current_field->field_type);
+			const char* field_type_string;
+			ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(current_field->field_type, field_type_string)));
 
 			if (!custom_structure_codegen(_custom_structure_codegen_low_level_header, stream, "\t\t\t", &field_formatter, *struct_definition, *current_field, namespace_name))
 			{
@@ -465,7 +466,8 @@ void c_low_level_tag_source_generator::generate_source() const
 				current_field->field_type == blofeld::_field_block,
 				&field_name_unique_counter);
 
-			const char* field_type_string = field_to_string(current_field->field_type);
+			const char* field_type_string;
+			ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(current_field->field_type, field_type_string)));
 
 			if (!custom_structure_codegen(_custom_structure_codegen_low_level_byteswap, stream, "\t", &field_formatter, *struct_definition, *current_field, namespace_name))
 			{

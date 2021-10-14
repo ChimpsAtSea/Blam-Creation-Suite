@@ -1474,7 +1474,8 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& o
 		}
 		break;
 		default:
-			const char* field_type_name = field_to_string(field.field_type);
+			const char* field_type_name = "Unknown Field Type";
+			field_to_tag_field_type(field.field_type, field_type_name);
 			ImGui::Text("Unknown type '%s' for field '%s'", field_type_name, field.name);
 			break;
 		}

@@ -114,81 +114,100 @@ unsigned long blofeld::get_blofeld_field_size(const s_tag_field& field, s_engine
 	}
 }
 
-const char* blofeld::field_to_string(e_field field)
+BCS_DEBUG_API BCS_RESULT blofeld::field_to_tag_field_type(e_field field, const char*& tag_field_type)
 {
-	switch (field)
+#define FIELD_TO_TAG_FIELD_TYPE(_field, _tag_field_type) if(_field == field) { tag_field_type = _tag_field_type; return BCS_S_OK; }
+
+	FIELD_TO_TAG_FIELD_TYPE(_field_string, "string");
+	FIELD_TO_TAG_FIELD_TYPE(_field_long_string, "long string");
+	FIELD_TO_TAG_FIELD_TYPE(_field_string_id, "string id");
+	FIELD_TO_TAG_FIELD_TYPE(_field_old_string_id, "old string id");
+	FIELD_TO_TAG_FIELD_TYPE(_field_char_integer, "char integer");
+	FIELD_TO_TAG_FIELD_TYPE(_field_short_integer, "short integer");
+	FIELD_TO_TAG_FIELD_TYPE(_field_long_integer, "long integer");
+	FIELD_TO_TAG_FIELD_TYPE(_field_int64_integer, "int64 integer");
+	FIELD_TO_TAG_FIELD_TYPE(_field_angle, "angle");
+	FIELD_TO_TAG_FIELD_TYPE(_field_tag, "tag");
+	FIELD_TO_TAG_FIELD_TYPE(_field_char_enum, "char enum");
+	FIELD_TO_TAG_FIELD_TYPE(_field_enum, "short enum");
+	FIELD_TO_TAG_FIELD_TYPE(_field_long_enum, "long enum");
+	FIELD_TO_TAG_FIELD_TYPE(_field_long_flags, "long flags");
+	FIELD_TO_TAG_FIELD_TYPE(_field_word_flags, "word flags");
+	FIELD_TO_TAG_FIELD_TYPE(_field_byte_flags, "byte flags");
+	FIELD_TO_TAG_FIELD_TYPE(_field_point_2d, "point 2d");
+	FIELD_TO_TAG_FIELD_TYPE(_field_rectangle_2d, "rectangle 2d");
+	FIELD_TO_TAG_FIELD_TYPE(_field_rgb_color, "rgb color");
+	FIELD_TO_TAG_FIELD_TYPE(_field_argb_color, "argb color");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real, "real");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_fraction, "real fraction");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_point_2d, "real point 2d");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_point_3d, "real point 3d");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_vector_2d, "real vector 2d");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_vector_3d, "real vector 3d");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_quaternion, "real quaternion");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_euler_angles_2d, "real euler angles 2d");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_euler_angles_3d, "real euler angles 3d");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_plane_2d, "real plane 2d");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_plane_3d, "real plane 3d");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_rgb_color, "real rgb color");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_argb_color, "real argb color");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_hsv_color, "real hsv color");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_ahsv_color, "real ahsv color");
+	FIELD_TO_TAG_FIELD_TYPE(_field_short_bounds, "short integer bounds");
+	FIELD_TO_TAG_FIELD_TYPE(_field_angle_bounds, "angle bounds");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_bounds, "real bounds");
+	FIELD_TO_TAG_FIELD_TYPE(_field_real_fraction_bounds, "fraction bounds");
+	FIELD_TO_TAG_FIELD_TYPE(_field_tag_reference, "tag reference");
+	FIELD_TO_TAG_FIELD_TYPE(_field_block, "block");
+	FIELD_TO_TAG_FIELD_TYPE(_field_long_block_flags, "long block flags");
+	FIELD_TO_TAG_FIELD_TYPE(_field_word_block_flags, "word block flags");
+	FIELD_TO_TAG_FIELD_TYPE(_field_byte_block_flags, "byte block flags");
+	FIELD_TO_TAG_FIELD_TYPE(_field_char_block_index, "char block index");
+	FIELD_TO_TAG_FIELD_TYPE(_field_custom_char_block_index, "custom char block index");
+	FIELD_TO_TAG_FIELD_TYPE(_field_short_block_index, "short block index");
+	FIELD_TO_TAG_FIELD_TYPE(_field_custom_short_block_index, "custom short block index");
+	FIELD_TO_TAG_FIELD_TYPE(_field_long_block_index, "long block index");
+	FIELD_TO_TAG_FIELD_TYPE(_field_custom_long_block_index, "custom long block index");
+	FIELD_TO_TAG_FIELD_TYPE(_field_data, "data");
+	FIELD_TO_TAG_FIELD_TYPE(_field_vertex_buffer, "vertex buffer");
+	FIELD_TO_TAG_FIELD_TYPE(_field_pad, "pad");
+	FIELD_TO_TAG_FIELD_TYPE(_field_useless_pad, "useless pad");
+	FIELD_TO_TAG_FIELD_TYPE(_field_skip, "skip");
+	FIELD_TO_TAG_FIELD_TYPE(_field_non_cache_runtime_value, "non-cache runtime value");
+	FIELD_TO_TAG_FIELD_TYPE(_field_explanation, "explanation");
+	FIELD_TO_TAG_FIELD_TYPE(_field_custom, "custom");
+	FIELD_TO_TAG_FIELD_TYPE(_field_struct, "struct");
+	FIELD_TO_TAG_FIELD_TYPE(_field_array, "array");
+	FIELD_TO_TAG_FIELD_TYPE(_field_pageable, "pageable resource");
+	FIELD_TO_TAG_FIELD_TYPE(_field_api_interop, "api interop");
+	FIELD_TO_TAG_FIELD_TYPE(_field_terminator, "terminator X");
+	FIELD_TO_TAG_FIELD_TYPE(_field_byte_integer, "byte integer");
+	FIELD_TO_TAG_FIELD_TYPE(_field_word_integer, "word integer");
+	FIELD_TO_TAG_FIELD_TYPE(_field_dword_integer, "dword integer");
+	FIELD_TO_TAG_FIELD_TYPE(_field_qword_integer, "qword integer");
+	FIELD_TO_TAG_FIELD_TYPE(_field_data_path, "data path"); // H5F/INF
+	FIELD_TO_TAG_FIELD_TYPE(_field_embedded_tag, "embedded tag"); // H5F/INF
+	FIELD_TO_TAG_FIELD_TYPE(_field_pointer, "pointer"); // #NONSTANDARD
+	FIELD_TO_TAG_FIELD_TYPE(_field_half, "half"); // #NONSTANDARD
+
+	return BCS_E_NOT_FOUND;
+#undef FIELD_TO_TAG_FIELD_TYPE
+}
+
+BCS_DEBUG_API BCS_RESULT blofeld::tag_field_type_to_field(const char* tag_field_type, e_field& field)
+{
+	for (underlying(e_field) field_type = 0; field_type < _field_type_non_standard_custom_type; field_type++)
 	{
-	case _field_string:									return "string";
-	case _field_long_string:							return "long string";
-	case _field_string_id:								return "string id";
-	case _field_old_string_id:							return "old string id";
-	case _field_char_integer:							return "char integer";
-	case _field_short_integer:							return "short integer";
-	case _field_long_integer:							return "long integer";
-	case _field_int64_integer:							return "int64 integer";
-	case _field_angle:									return "angle";
-	case _field_tag:									return "tag";
-	case _field_char_enum:								return "char enum";
-	case _field_enum:									return "short enum";
-	case _field_long_enum:								return "long enum";
-	case _field_long_flags:								return "long flags";
-	case _field_word_flags:								return "word flags";
-	case _field_byte_flags:								return "byte flags";
-	case _field_point_2d:								return "point 2d";
-	case _field_rectangle_2d:							return "rectangle 2d";
-	case _field_rgb_color:								return "rgb color";
-	case _field_argb_color:								return "argb color";
-	case _field_real:									return "real";
-	case _field_real_fraction:							return "real fraction";
-	case _field_real_point_2d:							return "real point 2d";
-	case _field_real_point_3d:							return "real point 3d";
-	case _field_real_vector_2d:							return "real vector 2d";
-	case _field_real_vector_3d:							return "real vector 3d";
-	case _field_real_quaternion:						return "real quaternion";
-	case _field_real_euler_angles_2d:					return "real euler angles 2d";
-	case _field_real_euler_angles_3d:					return "real euler angles 3d";
-	case _field_real_plane_2d:							return "real plane 2d";
-	case _field_real_plane_3d:							return "real plane 3d";
-	case _field_real_rgb_color:							return "real rgb color";
-	case _field_real_argb_color:						return "real argb color";
-	case _field_real_hsv_color:							return "real hsv color";
-	case _field_real_ahsv_color:						return "real ahsv color";
-	case _field_short_bounds:							return "short integer bounds";
-	case _field_angle_bounds:							return "angle bounds";
-	case _field_real_bounds:							return "real bounds";
-	case _field_real_fraction_bounds:					return "fraction bounds";
-	case _field_tag_reference:							return "tag reference";
-	case _field_block:									return "block";
-	case _field_long_block_flags:						return "long block flags";
-	case _field_word_block_flags:						return "word block flags";
-	case _field_byte_block_flags:						return "byte block flags";
-	case _field_char_block_index:						return "char block index";
-	case _field_custom_char_block_index:				return "custom char block index";
-	case _field_short_block_index:						return "short block index";
-	case _field_custom_short_block_index:				return "custom short block index";
-	case _field_long_block_index:						return "long block index";
-	case _field_custom_long_block_index:				return "custom long block index";
-	case _field_data:									return "data";
-	case _field_vertex_buffer:							return "vertex buffer";
-	case _field_pad:									return "pad";
-	case _field_useless_pad:							return "useless pad";
-	case _field_skip:									return "skip";
-	case _field_non_cache_runtime_value:				return "non-cache runtime value";
-	case _field_explanation:							return "explanation";
-	case _field_custom:									return "custom";
-	case _field_struct:									return "struct";
-	case _field_array:									return "array";
-	case _field_pageable:								return "pageable resource";
-	case _field_api_interop:							return "api interop";
-	case _field_terminator:								return "terminator X";
-	case _field_byte_integer:							return "byte integer";
-	case _field_word_integer:							return "word integer";
-	case _field_dword_integer:							return "dword integer";
-	case _field_qword_integer:							return "qword integer";
-	case _field_data_path:								return "data path"; // H5F/INF
-	case _field_embedded_tag:							return "embedded tag"; // H5F/INF
-	case _field_pointer:								return "pointer"; // #NONSTANDARD
-	case _field_half:									return "half"; // #NONSTANDARD
+		e_field current_field_type = static_cast<e_field>(field_type);
+		const char* current_tag_field_type;
+		if (BCS_SUCCEEDED(::field_to_tag_field_type(current_field_type, current_tag_field_type)))
+		{
+			if (strcmp(tag_field_type, current_tag_field_type) == 0)
+			{
+				field = current_field_type;
+				return BCS_S_OK;
+			}
+		}
 	}
-	return nullptr;
+	return BCS_E_NOT_FOUND;
 }

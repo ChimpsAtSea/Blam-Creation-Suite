@@ -106,6 +106,8 @@ c_halo4_vectorart_vertex_buffer_interop::c_halo4_vectorart_vertex_buffer_interop
 	vertex_data(),
 	vertex_data_size()
 {
+	// #TODO: reexport halo 4 interops
+	/*
 	using namespace blofeld::xbox360_gen3;
 	s_vectorartVertexBufferDescriptorStruct interop_data = *static_cast<const s_vectorartVertexBufferDescriptorStruct*>(data);
 	byteswap(interop_data);
@@ -118,6 +120,7 @@ c_halo4_vectorart_vertex_buffer_interop::c_halo4_vectorart_vertex_buffer_interop
 	memcpy(vertex_data, source_vertex_data, vertex_data_size);
 
 	debug_point;
+	*/
 }
 
 c_halo4_vectorart_vertex_buffer_interop::~c_halo4_vectorart_vertex_buffer_interop()
@@ -131,6 +134,8 @@ c_halo4_polyart_vertex_buffer_interop::c_halo4_polyart_vertex_buffer_interop(c_h
 	vertex_data_size(),
 	vertex_type()
 {
+	// #TODO: reexport halo 4 interops
+	/*
 	using namespace blofeld::xbox360_gen3;
 	s_polyartVertexBufferDescriptorStruct interop_data = *static_cast<const s_polyartVertexBufferDescriptorStruct*>(data);
 	byteswap(interop_data);
@@ -144,6 +149,7 @@ c_halo4_polyart_vertex_buffer_interop::c_halo4_polyart_vertex_buffer_interop(c_h
 	vertex_type = interop_data.vertex_type;
 
 	debug_point;
+	*/
 }
 
 c_halo4_polyart_vertex_buffer_interop::~c_halo4_polyart_vertex_buffer_interop()
@@ -156,6 +162,8 @@ c_halo4_polyart_index_buffer_interop::c_halo4_polyart_index_buffer_interop(c_hal
 	index_data(),
 	index_data_size()
 {
+	// #TODO: reexport halo 4 interops
+	/*
 	using namespace blofeld::xbox360_gen3;
 	s_polyartIndexBufferDescriptorStruct interop_data = *static_cast<const s_polyartIndexBufferDescriptorStruct*>(data);
 	byteswap(interop_data);
@@ -168,6 +176,7 @@ c_halo4_polyart_index_buffer_interop::c_halo4_polyart_index_buffer_interop(c_hal
 	memcpy(index_data, source_index_data, index_data_size);
 
 	debug_point;
+	*/
 }
 
 c_halo4_polyart_index_buffer_interop::~c_halo4_polyart_index_buffer_interop()

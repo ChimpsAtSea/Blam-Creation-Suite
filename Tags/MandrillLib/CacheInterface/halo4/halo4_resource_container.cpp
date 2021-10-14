@@ -152,9 +152,9 @@ void c_halo4_bitmap_texture_interop_resource::digest_page(c_halo4_cache_file_rea
 			//	return;
 			//}
 
-			const s_render_texture_interop_definition_struct* render_texture_interop_struct_data = reinterpret_cast<decltype(render_texture_interop_struct_data)>(resource_priority_datas.naive_resource_control_data);
-			s_render_texture_interop_definition_struct render_texture_interop_struct = *render_texture_interop_struct_data;
-			byteswap(render_texture_interop_struct);
+			//const s_render_texture_interop_definition_struct* render_texture_interop_struct_data = reinterpret_cast<decltype(render_texture_interop_struct_data)>(resource_priority_datas.naive_resource_control_data);
+			//s_render_texture_interop_definition_struct render_texture_interop_struct = *render_texture_interop_struct_data;
+			//byteswap(render_texture_interop_struct);
 
 			unsigned long sub_bitmap_index;
 			ASSERT(BCS_SUCCEEDED(get_sub_bitmap_index_by_resource_index(cache_reader, sub_bitmap_index)));

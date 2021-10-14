@@ -3,7 +3,7 @@
 class c_h3_tag_struct_definition;
 class c_h3_tag_group_definition;
 
-struct s_h3_tag_persistent_identifier
+struct s_h3_tag_struct_persistent_identifier
 {
 	unsigned long data[4];
 };
@@ -15,7 +15,7 @@ struct s_h3_tag_struct_definition
 	ptr64 filepath_address;
 	long line_number;
 	long padding;
-	s_h3_tag_persistent_identifier persistent_identifier;
+	s_h3_tag_struct_persistent_identifier persistent_identifier;
 	ptr64 fields_address;
 	unsigned long structure_size;
 	ptr64 size_string_address; // not included in release build
@@ -36,7 +36,7 @@ public:
 	std::string code_name;
 	unsigned long structure_size;
 	unsigned long alignment_bits;
-	s_h3_tag_persistent_identifier persistent_identifier;
+	s_h3_tag_struct_persistent_identifier persistent_identifier;
 	const s_h3_tag_struct_definition& struct_definition;
 
 	//c_h3_tag_block_definition* block_definition;

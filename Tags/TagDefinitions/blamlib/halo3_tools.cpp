@@ -1279,7053 +1279,8228 @@ namespace halo3_tools {
 		ITEM_TAG,
 		equipment_block_group_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		g_null_block_block,
-		"g_null_block_block",
+		"g_null_block",
+		"g_null_block",
 		0,
 		g_null_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cinematics_block_block,
-		"scenario_cinematics_block_block",
+		"scenario_cinematics_block",
+		"scenario_cinematics_block",
 		32,
 		scenario_cinematics_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematics_globals_block_block,
-		"cinematics_globals_block_block",
+		"cinematics_globals_block",
+		"cinematics_globals_block",
 		1,
 		cinematics_globals_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_frame_block_block,
-		"cinematic_shot_frame_block_block",
+		"cinematic_shot_frame_block",
+		"cinematic_shot_frame_block",
 		10000,
 		cinematic_shot_frame_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_scene_object_block_block,
-		"cinematic_scene_object_block_block",
+		"cinematic_scene_object_block",
+		"cinematic_scene_object_block",
 		10000,
 		cinematic_scene_object_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_lighting_block_block,
-		"cinematic_shot_lighting_block_block",
+		"cinematic_shot_lighting_block",
+		"cinematic_shot_lighting_block",
 		10000,
 		cinematic_shot_lighting_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_clip_subject_block_block,
-		"cinematic_shot_clip_subject_block_block",
+		"cinematic_shot_clip_subject_block",
+		"cinematic_shot_clip_subject_block",
 		24,
 		cinematic_shot_clip_subject_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_clip_block_block,
-		"cinematic_shot_clip_block_block",
+		"cinematic_shot_clip_block",
+		"cinematic_shot_clip_block",
 		32,
 		cinematic_shot_clip_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_dialogue_block_block,
-		"cinematic_shot_dialogue_block_block",
+		"cinematic_shot_dialogue_block",
+		"cinematic_shot_dialogue_block",
 		10000,
 		cinematic_shot_dialogue_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_music_block_block,
-		"cinematic_shot_music_block_block",
+		"cinematic_shot_music_block",
+		"cinematic_shot_music_block",
 		10000,
 		cinematic_shot_music_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_effect_block_block,
-		"cinematic_shot_effect_block_block",
+		"cinematic_shot_effect_block",
+		"cinematic_shot_effect_block",
 		10000,
 		cinematic_shot_effect_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_cortana_effects_block_block,
-		"cinematic_shot_cortana_effects_block_block",
+		"cinematic_shot_cortana_effects_block",
+		"cinematic_shot_cortana_effects_block",
 		10000,
 		cinematic_shot_cortana_effects_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_object_function_keyframe_block_block,
-		"cinematic_shot_object_function_keyframe_block_block",
+		"cinematic_shot_object_function_keyframe_block",
+		"cinematic_shot_object_function_keyframe_block",
 		10000,
 		cinematic_shot_object_function_keyframe_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_object_function_block_block,
-		"cinematic_shot_object_function_block_block",
+		"cinematic_shot_object_function_block",
+		"cinematic_shot_object_function_block",
 		10000,
 		cinematic_shot_object_function_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_extra_camera_frame_block_block,
-		"cinematic_extra_camera_frame_block_block",
+		"cinematic_extra_camera_frame_block",
+		"cinematic_extra_camera_frame_block",
 		10000,
 		cinematic_extra_camera_frame_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_extra_camera_shot_block_block,
-		"cinematic_extra_camera_shot_block_block",
+		"cinematic_extra_camera_shot_block",
+		"cinematic_extra_camera_shot_block",
 		10000,
 		cinematic_extra_camera_shot_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_custom_script_block_block,
-		"cinematic_shot_custom_script_block_block",
+		"cinematic_shot_custom_script_block",
+		"cinematic_shot_custom_script_block",
 		10000,
 		cinematic_shot_custom_script_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_extra_camera_block_block,
-		"cinematic_shot_extra_camera_block_block",
+		"cinematic_shot_extra_camera_block",
+		"cinematic_shot_extra_camera_block",
 		10000,
 		cinematic_shot_extra_camera_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_block_block,
-		"cinematic_shot_block_block",
+		"cinematic_shot_block",
+		"cinematic_shot_block",
 		32,
 		cinematic_shot_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scene_object_attachment_block_block,
-		"scene_object_attachment_block_block",
+		"scene_object_attachment_block",
+		"scene_object_attachment_block",
 		10000,
 		scene_object_attachment_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_scene_block_group_block,
-		"cinematic_scene_block_group_block",
+		"cinematic_scene_block",
+		"cinematic_scene_block",
 		1,
 		cinematic_scene_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_scene_reference_block_block,
-		"cinematic_scene_reference_block_block",
+		"cinematic_scene_reference_block",
+		"cinematic_scene_reference_block",
 		32,
 		cinematic_scene_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_playback_data_block_block,
-		"cinematic_shot_playback_data_block_block",
+		"cinematic_shot_playback_data_block",
+		"cinematic_shot_playback_data_block",
 		32,
 		cinematic_shot_playback_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_block_group_block,
-		"cinematic_block_group_block",
+		"cinematic_block",
+		"cinematic_block",
 		1,
 		cinematic_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cutscene_title_block_block,
-		"scenario_cutscene_title_block_block",
+		"scenario_cutscene_title_block",
+		"scenario_cutscene_title_block",
 		128,
 		scenario_cutscene_title_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_dialogue_constants_block_group_block,
-		"sound_dialogue_constants_block_group_block",
+		"sound_dialogue_constants_block",
+		"sound_dialogue_constants_block",
 		1,
 		sound_dialogue_constants_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_global_propagation_block_group_block,
-		"sound_global_propagation_block_group_block",
+		"sound_global_propagation_block",
+		"sound_global_propagation_block",
 		1,
 		sound_global_propagation_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_mix_block_group_block,
-		"sound_mix_block_group_block",
+		"sound_mix_block",
+		"sound_mix_block",
 		1,
 		sound_mix_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_resource_language_block_block,
-		"sound_resource_language_block_block",
+		"sound_resource_language_block",
+		"sound_resource_language_block",
 		24,
 		sound_resource_language_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_xma2_seek_table_block_block,
-		"sound_xma2_seek_table_block_block",
+		"sound_xma2_seek_table_block",
+		"sound_xma2_seek_table_block",
 		131072,
 		sound_xma2_seek_table_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		facial_animation_key_block_block,
-		"facial_animation_key_block_block",
+		"facial_animation_key_block",
+		"facial_animation_key_block",
 		1024,
 		facial_animation_key_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		facial_animation_curve_block_block,
-		"facial_animation_curve_block_block",
+		"facial_animation_curve_block",
+		"facial_animation_curve_block",
 		64,
 		facial_animation_curve_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		runtime_facial_animation_key_block_block,
-		"runtime_facial_animation_key_block_block",
+		"runtime_facial_animation_key_block",
+		"runtime_facial_animation_key_block",
 		1024,
 		runtime_facial_animation_key_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		facial_animation_block_block,
-		"facial_animation_block_block",
+		"facial_animation_block",
+		"facial_animation_block",
 		12,
 		facial_animation_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_permutation_dialogue_info_block_block,
-		"sound_permutation_dialogue_info_block_block",
+		"sound_permutation_dialogue_info_block",
+		"sound_permutation_dialogue_info_block",
 		384,
 		sound_permutation_dialogue_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_permutation_dialogue_info_new_block_block,
-		"sound_permutation_dialogue_info_new_block_block",
+		"sound_permutation_dialogue_info_new_block",
+		"sound_permutation_dialogue_info_new_block",
 		384,
 		sound_permutation_dialogue_info_new_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_permutation_languages_block_block,
-		"sound_permutation_languages_block_block",
+		"sound_permutation_languages_block",
+		"sound_permutation_languages_block",
 		12,
 		sound_permutation_languages_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_permutation_chunk_block_block,
-		"sound_permutation_chunk_block_block",
+		"sound_permutation_chunk_block",
+		"sound_permutation_chunk_block",
 		327675,
 		sound_permutation_chunk_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_permutation_marker_block_block,
-		"sound_permutation_marker_block_block",
+		"sound_permutation_marker_block",
+		"sound_permutation_marker_block",
 		65535,
 		sound_permutation_marker_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_extra_info_block_block,
-		"sound_extra_info_block_block",
+		"sound_extra_info_block",
+		"sound_extra_info_block",
 		1,
 		sound_extra_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_platform_sound_playback_block_block,
-		"sound_platform_sound_playback_block_block",
+		"sound_platform_sound_playback_block",
+		"sound_platform_sound_playback_block",
 		1,
 		sound_platform_sound_playback_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_definition_language_permutation_info_block_block,
-		"sound_definition_language_permutation_info_block_block",
+		"sound_definition_language_permutation_info_block",
+		"sound_definition_language_permutation_info_block",
 		768,
 		sound_definition_language_permutation_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_encoded_dialogue_section_block_block,
-		"sound_encoded_dialogue_section_block_block",
+		"sound_encoded_dialogue_section_block",
+		"sound_encoded_dialogue_section_block",
 		1,
 		sound_encoded_dialogue_section_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_promotion_rule_block_block,
-		"sound_promotion_rule_block_block",
+		"sound_promotion_rule_block",
+		"sound_promotion_rule_block",
 		12,
 		sound_promotion_rule_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_promotion_runtime_timer_block_block,
-		"sound_promotion_runtime_timer_block_block",
+		"sound_promotion_runtime_timer_block",
+		"sound_promotion_runtime_timer_block",
 		12,
 		sound_promotion_runtime_timer_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_block_group_block,
-		"sound_block_group_block",
+		"sound_block",
+		"sound_block",
 		1,
 		sound_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		looping_sound_detail_block_block,
-		"looping_sound_detail_block_block",
+		"looping_sound_detail_block",
+		"looping_sound_detail_block",
 		12,
 		looping_sound_detail_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		looping_sound_track_block_block,
-		"looping_sound_track_block_block",
+		"looping_sound_track_block",
+		"looping_sound_track_block",
 		4,
 		looping_sound_track_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_looping_block_group_block,
-		"sound_looping_block_group_block",
+		"sound_looping",
+		"sound_looping_block",
 		1,
 		sound_looping_group_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_permutations_block_block,
-		"sound_permutations_block_block",
+		"sound_permutations_block",
+		"sound_permutations_block",
 		32,
 		sound_permutations_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_pitch_range_block_block,
-		"sound_pitch_range_block_block",
+		"sound_pitch_range_block",
+		"sound_pitch_range_block",
 		12,
 		sound_pitch_range_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_globals_block_block,
-		"sound_globals_block_block",
+		"sound_globals_block",
+		"sound_globals_block",
 		1,
 		sound_globals_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_permutation_raw_info_block_block,
-		"sound_permutation_raw_info_block_block",
+		"sound_permutation_raw_info_block",
+		"sound_permutation_raw_info_block",
 		24,
 		sound_permutation_raw_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_texture_interop_block_block,
-		"bitmap_texture_interop_block_block",
+		"bitmap_texture_interop_block",
+		"bitmap_texture_interop_block",
 		65536,
 		bitmap_texture_interop_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_block_group_block,
-		"bitmap_block_group_block",
+		"bitmap_block",
+		"bitmap_block",
 		1,
 		bitmap_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_texture_interleaved_interop_block_block,
-		"bitmap_texture_interleaved_interop_block_block",
+		"bitmap_texture_interleaved_interop_block",
+		"bitmap_texture_interleaved_interop_block",
 		65536,
 		bitmap_texture_interleaved_interop_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		multilingual_unicode_string_reference_block_block,
-		"multilingual_unicode_string_reference_block_block",
+		"multilingual_unicode_string_reference_block",
+		"multilingual_unicode_string_reference_block",
 		12288,
 		multilingual_unicode_string_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		multilingual_unicode_string_list_block_group_block,
-		"multilingual_unicode_string_list_block_group_block",
+		"multilingual_unicode_string_list_block",
+		"multilingual_unicode_string_list_block",
 		1,
 		multilingual_unicode_string_list_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		breakable_surface_block_group_block,
-		"breakable_surface_block_group_block",
+		"breakable_surface_block",
+		"breakable_surface_block",
 		1,
 		breakable_surface_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		player_information_block_block,
-		"player_information_block_block",
+		"player_information_block",
+		"player_information_block",
 		1,
 		player_information_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		falling_damage_block_block,
-		"falling_damage_block_block",
+		"falling_damage_block",
+		"falling_damage_block",
 		1,
 		falling_damage_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		havok_cleanup_resources_block_block,
-		"havok_cleanup_resources_block_block",
+		"havok_cleanup_resources_block",
+		"havok_cleanup_resources_block",
 		1,
 		havok_cleanup_resources_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		interface_tag_references_block,
-		"interface_tag_references_block",
+		"interface_tag_references",
+		"interface_tag_references",
 		1,
 		interface_tag_references);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cheat_weapons_block_block,
-		"cheat_weapons_block_block",
+		"cheat_weapons_block",
+		"cheat_weapons_block",
 		20,
 		cheat_weapons_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cheat_powerups_block_block,
-		"cheat_powerups_block_block",
+		"cheat_powerups_block",
+		"cheat_powerups_block",
 		20,
 		cheat_powerups_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		grenades_block_block,
-		"grenades_block_block",
+		"grenades_block",
+		"grenades_block",
 		4,
 		grenades_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		difficulty_block_block,
-		"difficulty_block_block",
+		"difficulty_block",
+		"difficulty_block",
 		1,
 		difficulty_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		look_function_block_block,
-		"look_function_block_block",
+		"look_function_block",
+		"look_function_block",
 		16,
 		look_function_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		player_control_block_block,
-		"player_control_block_block",
+		"player_control_block",
+		"player_control_block",
 		1,
 		player_control_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		camera_block_block,
-		"camera_block_block",
+		"camera_block",
+		"camera_block",
 		1,
 		camera_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_block_block,
-		"sound_block_block",
+		"sound_block",
+		"sound_block",
 		2,
 		sound_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		armor_modifier_block_block,
-		"armor_modifier_block_block",
+		"armor_modifier_block",
+		"armor_modifier_block",
 		512,
 		armor_modifier_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_group_block_block,
-		"damage_group_block_block",
+		"damage_group_block",
+		"damage_group_block",
 		512,
 		damage_group_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_globals_damage_block_block,
-		"game_globals_damage_block_block",
+		"game_globals_damage_block",
+		"game_globals_damage_block",
 		2,
 		game_globals_damage_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_globals_gravemind_block_block,
-		"ai_globals_gravemind_block_block",
+		"ai_globals_gravemind_block",
+		"ai_globals_gravemind_block",
 		1,
 		ai_globals_gravemind_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_globals_styles_block_block,
-		"ai_globals_styles_block_block",
+		"ai_globals_styles_block",
+		"ai_globals_styles_block",
 		3,
 		ai_globals_styles_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_globals_block_block,
-		"ai_globals_block_block",
+		"ai_globals_block",
+		"ai_globals_block",
 		1,
 		ai_globals_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_color_block_block,
-		"multiplayer_color_block_block",
+		"multiplayer_color_block",
+		"multiplayer_color_block",
 		32,
 		multiplayer_color_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		globals_block_group_block,
-		"globals_block_group_block",
+		"globals_block",
+		"globals_block",
 		1,
 		globals_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		player_representation_block_block,
-		"player_representation_block_block",
+		"player_representation_block",
+		"player_representation_block",
 		6,
 		player_representation_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_block_group_block,
-		"model_block_group_block",
+		"model_block",
+		"model_block",
 		1,
 		model_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_model_instance_group_block_block,
-		"global_model_instance_group_block_block",
+		"instance group",
+		"global_model_instance_group_block",
 		256,
 		global_model_instance_group_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_instance_group_member_block_block,
-		"model_instance_group_member_block_block",
+		"instance group member",
+		"model_instance_group_member_block",
 		32,
 		model_instance_group_member_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_variant_block_block,
-		"model_variant_block_block",
+		"variant",
+		"model_variant_block",
 		64,
 		model_variant_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_variant_region_block_block,
-		"model_variant_region_block_block",
+		"region",
+		"model_variant_region_block",
 		16,
 		model_variant_region_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_variant_state_block_block,
-		"model_variant_state_block_block",
+		"model_variant_state_block",
+		"model_variant_state_block",
 		10,
 		model_variant_state_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_variant_permutation_block_block,
-		"model_variant_permutation_block_block",
+		"permutation",
+		"model_variant_permutation_block",
 		128,
 		model_variant_permutation_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_variant_object_block_block,
-		"model_variant_object_block_block",
+		"object",
+		"model_variant_object_block",
 		16,
 		model_variant_object_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_material_block_block,
-		"model_material_block_block",
+		"material",
+		"model_material_block",
 		32,
 		model_material_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_region_block_block,
-		"model_region_block_block",
+		"model_region_block",
+		"model_region_block",
 		16,
 		model_region_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_permutation_block_block,
-		"model_permutation_block_block",
+		"model_permutation_block",
+		"model_permutation_block",
 		128,
 		model_permutation_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_node_block_block,
-		"model_node_block_block",
+		"model_node_block",
+		"model_node_block",
 		255,
 		model_node_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_target_block_block,
-		"model_target_block_block",
+		"model_target_block",
+		"model_target_block",
 		32,
 		model_target_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_self_shadow_region_cast_override_block_block,
-		"model_self_shadow_region_cast_override_block_block",
+		"model_self_shadow_region_cast_override_block",
+		"model_self_shadow_region_cast_override_block",
 		16,
 		model_self_shadow_region_cast_override_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_self_shadow_region_receive_override_block_block,
-		"model_self_shadow_region_receive_override_block_block",
+		"model_self_shadow_region_receive_override_block",
+		"model_self_shadow_region_receive_override_block",
 		16,
 		model_self_shadow_region_receive_override_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_occlusion_sphere_block_block,
-		"model_occlusion_sphere_block_block",
+		"model_occlusion_sphere_block",
+		"model_occlusion_sphere_block",
 		16,
 		model_occlusion_sphere_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_object_data_block_block,
-		"model_object_data_block_block",
+		"model_object_data_block",
+		"model_object_data_block",
 		1,
 		model_object_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_model_block_group_block,
-		"render_model_block_group_block",
+		"render_model_block",
+		"render_model_block",
 		1,
 		render_model_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_model_region_block_block,
-		"render_model_region_block_block",
+		"region",
+		"render_model_region_block",
 		16,
 		render_model_region_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_model_permutation_block_block,
-		"render_model_permutation_block_block",
+		"permutation",
+		"render_model_permutation_block",
 		128,
 		render_model_permutation_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_model_node_block_block,
-		"render_model_node_block_block",
+		"node",
+		"render_model_node_block",
 		255,
 		render_model_node_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_model_marker_group_block_block,
-		"render_model_marker_group_block_block",
+		"marker group",
+		"render_model_marker_group_block",
 		4096,
 		render_model_marker_group_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_model_marker_block_block,
-		"render_model_marker_block_block",
+		"marker",
+		"render_model_marker_block",
 		256,
 		render_model_marker_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sky_lights_block_block,
-		"sky_lights_block_block",
+		"sky_lights_block",
+		"sky_lights_block",
 		1024,
 		sky_lights_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		volume_samples_block_block,
-		"volume_samples_block_block",
+		"volume_samples_block",
+		"volume_samples_block",
 		128,
 		volume_samples_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		default_node_orientations_block_block,
-		"default_node_orientations_block_block",
+		"default_node_orientations_block",
+		"default_node_orientations_block",
 		255,
 		default_node_orientations_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_model_material_block_block,
-		"collision_model_material_block_block",
+		"material",
+		"collision_model_material_block",
 		32,
 		collision_model_material_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_model_region_block_block,
-		"collision_model_region_block_block",
+		"region",
+		"collision_model_region_block",
 		16,
 		collision_model_region_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_model_permutation_block_block,
-		"collision_model_permutation_block_block",
+		"collision_model_permutation_block",
+		"collision_model_permutation_block",
 		128,
 		collision_model_permutation_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_model_node_block_block,
-		"collision_model_node_block_block",
+		"collision_model_node_block",
+		"collision_model_node_block",
 		255,
 		collision_model_node_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_model_pathfinding_sphere_block_block,
-		"collision_model_pathfinding_sphere_block_block",
+		"sphere",
+		"collision_model_pathfinding_sphere_block",
 		32,
 		collision_model_pathfinding_sphere_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_model_bsp_block_block,
-		"collision_model_bsp_block_block",
+		"bsp",
+		"collision_model_bsp_block",
 		64,
 		collision_model_bsp_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_model_block_group_block,
-		"collision_model_block_group_block",
+		"collision_model_block",
+		"collision_model_block",
 		1,
 		collision_model_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		point_to_path_curve_point_block_block,
-		"point_to_path_curve_point_block_block",
+		"point_to_path_curve_point_block",
+		"point_to_path_curve_point_block",
 		1024,
 		point_to_path_curve_point_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		point_to_path_curve_block_block,
-		"point_to_path_curve_block_block",
+		"point_to_path_curve_block",
+		"point_to_path_curve_block",
 		64,
 		point_to_path_curve_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_block_group_block,
-		"physics_model_block_group_block",
+		"physics_model_block",
+		"physics_model_block",
 		1,
 		physics_model_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		materials_block_block,
-		"materials_block_block",
+		"materials_block",
+		"materials_block",
 		64,
 		materials_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		phantoms_block_block,
-		"phantoms_block_block",
+		"phantoms_block",
+		"phantoms_block",
 		1024,
 		phantoms_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		rigid_bodies_block_block,
-		"rigid_bodies_block_block",
+		"rigid_bodies_block",
+		"rigid_bodies_block",
 		64,
 		rigid_bodies_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		spheres_block_block,
-		"spheres_block_block",
+		"spheres_block",
+		"spheres_block",
 		1024,
 		spheres_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		multi_spheres_block_block,
-		"multi_spheres_block_block",
+		"multi_spheres_block",
+		"multi_spheres_block",
 		1024,
 		multi_spheres_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		pills_block_block,
-		"pills_block_block",
+		"pills_block",
+		"pills_block",
 		1024,
 		pills_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		triangles_block_block,
-		"triangles_block_block",
+		"triangles_block",
+		"triangles_block",
 		1024,
 		triangles_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		boxes_block_block,
-		"boxes_block_block",
+		"boxes_block",
+		"boxes_block",
 		1024,
 		boxes_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		polyhedra_block_block,
-		"polyhedra_block_block",
+		"polyhedra_block",
+		"polyhedra_block",
 		1024,
 		polyhedra_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		polyhedron_four_vectors_block_block,
-		"polyhedron_four_vectors_block_block",
+		"polyhedron_four_vectors_block",
+		"polyhedron_four_vectors_block",
 		8192,
 		polyhedron_four_vectors_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		polyhedron_plane_equations_block_block,
-		"polyhedron_plane_equations_block_block",
+		"polyhedron_plane_equations_block",
+		"polyhedron_plane_equations_block",
 		4096,
 		polyhedron_plane_equations_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		mass_distributions_block_block,
-		"mass_distributions_block_block",
+		"mass_distributions_block",
+		"mass_distributions_block",
 		1024,
 		mass_distributions_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		lists_block_block,
-		"lists_block_block",
+		"lists_block",
+		"lists_block",
 		64,
 		lists_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		list_shapes_block_block,
-		"list_shapes_block_block",
+		"list_shapes_block",
+		"list_shapes_block",
 		2048,
 		list_shapes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		mopps_block_block,
-		"mopps_block_block",
+		"mopps_block",
+		"mopps_block",
 		64,
 		mopps_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		hinge_constraints_block_block,
-		"hinge_constraints_block_block",
+		"hinge_constraints_block",
+		"hinge_constraints_block",
 		64,
 		hinge_constraints_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ragdoll_constraints_block_block,
-		"ragdoll_constraints_block_block",
+		"ragdoll_constraints_block",
+		"ragdoll_constraints_block",
 		64,
 		ragdoll_constraints_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		regions_block_block,
-		"regions_block_block",
+		"regions_block",
+		"regions_block",
 		16,
 		regions_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		permutations_block_block,
-		"permutations_block_block",
+		"permutations_block",
+		"permutations_block",
 		128,
 		permutations_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		rigid_body_indices_block_block,
-		"rigid_body_indices_block_block",
+		"rigid_body_indices_block",
+		"rigid_body_indices_block",
 		64,
 		rigid_body_indices_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		nodes_block_block,
-		"nodes_block_block",
+		"nodes_block",
+		"nodes_block",
 		255,
 		nodes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		limited_hinge_constraints_block_block,
-		"limited_hinge_constraints_block_block",
+		"limited_hinge_constraints_block",
+		"limited_hinge_constraints_block",
 		64,
 		limited_hinge_constraints_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ball_and_socket_constraints_block_block,
-		"ball_and_socket_constraints_block_block",
+		"ball_and_socket_constraints_block",
+		"ball_and_socket_constraints_block",
 		64,
 		ball_and_socket_constraints_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		stiff_spring_constraints_block_block,
-		"stiff_spring_constraints_block_block",
+		"stiff_spring_constraints_block",
+		"stiff_spring_constraints_block",
 		64,
 		stiff_spring_constraints_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		prismatic_constraints_block_block,
-		"prismatic_constraints_block_block",
+		"prismatic_constraints_block",
+		"prismatic_constraints_block",
 		64,
 		prismatic_constraints_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_damped_spring_motor_block_block,
-		"physics_model_damped_spring_motor_block_block",
+		"physics_model_damped_spring_motor_block",
+		"physics_model_damped_spring_motor_block",
 		64,
 		physics_model_damped_spring_motor_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_position_motor_block_block,
-		"physics_model_position_motor_block_block",
+		"physics_model_position_motor_block",
+		"physics_model_position_motor_block",
 		64,
 		physics_model_position_motor_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_ragdoll_motors_block_block,
-		"physics_model_ragdoll_motors_block_block",
+		"physics_model_ragdoll_motors_block",
+		"physics_model_ragdoll_motors_block",
 		1,
 		physics_model_ragdoll_motors_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_limited_hinge_motors_block_block,
-		"physics_model_limited_hinge_motors_block_block",
+		"physics_model_limited_hinge_motors_block",
+		"physics_model_limited_hinge_motors_block",
 		1,
 		physics_model_limited_hinge_motors_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_constraint_edge_constraint_block_block,
-		"physics_model_constraint_edge_constraint_block_block",
+		"physics_model_constraint_edge_constraint_block",
+		"physics_model_constraint_edge_constraint_block",
 		64,
 		physics_model_constraint_edge_constraint_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_powered_chain_nodes_block_block,
-		"physics_model_powered_chain_nodes_block_block",
+		"physics_model_powered_chain_nodes_block",
+		"physics_model_powered_chain_nodes_block",
 		255,
 		physics_model_powered_chain_nodes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_powered_chain_constraints_block_block,
-		"physics_model_powered_chain_constraints_block_block",
+		"physics_model_powered_chain_constraints_block",
+		"physics_model_powered_chain_constraints_block",
 		64,
 		physics_model_powered_chain_constraints_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_powered_chains_block_block,
-		"physics_model_powered_chains_block_block",
+		"physics_model_powered_chains_block",
+		"physics_model_powered_chains_block",
 		64,
 		physics_model_powered_chains_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_node_constraint_edge_block_block,
-		"physics_model_node_constraint_edge_block_block",
+		"physics_model_node_constraint_edge_block",
+		"physics_model_node_constraint_edge_block",
 		4096,
 		physics_model_node_constraint_edge_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		phantom_types_block_block,
-		"phantom_types_block_block",
+		"phantom_types_block",
+		"phantom_types_block",
 		16,
 		phantom_types_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_cluster_mapping_block_block,
-		"structure_seam_cluster_mapping_block_block",
+		"structure_seam_cluster_mapping_block",
+		"structure_seam_cluster_mapping_block",
 		32,
 		structure_seam_cluster_mapping_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_edge_mapping_block_block,
-		"structure_seam_edge_mapping_block_block",
+		"structure_seam_edge_mapping_block",
+		"structure_seam_edge_mapping_block",
 		32767,
 		structure_seam_edge_mapping_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_original_vertex_block_block,
-		"structure_seam_original_vertex_block_block",
+		"structure_seam_original_vertex_block",
+		"structure_seam_original_vertex_block",
 		32767,
 		structure_seam_original_vertex_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_final_points_block_block,
-		"structure_seam_final_points_block_block",
+		"structure_seam_final_points_block",
+		"structure_seam_final_points_block",
 		32767,
 		structure_seam_final_points_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_final_planes_block_block,
-		"structure_seam_final_planes_block_block",
+		"structure_seam_final_planes_block",
+		"structure_seam_final_planes_block",
 		32767,
 		structure_seam_final_planes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_final_triangles_block_block,
-		"structure_seam_final_triangles_block_block",
+		"structure_seam_final_triangles_block",
+		"structure_seam_final_triangles_block",
 		32767,
 		structure_seam_final_triangles_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_final_edges_block_block,
-		"structure_seam_final_edges_block_block",
+		"structure_seam_final_edges_block",
+		"structure_seam_final_edges_block",
 		32767,
 		structure_seam_final_edges_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_block_block,
-		"structure_seam_block_block",
+		"structure_seam_block",
+		"structure_seam_block",
 		128,
 		structure_seam_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seams_block_group_block,
-		"structure_seams_block_group_block",
+		"structure_seams_block",
+		"structure_seams_block",
 		1,
 		structure_seams_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_mapping_block_block,
-		"structure_seam_mapping_block_block",
+		"structure_seam_mapping_block",
+		"structure_seam_mapping_block",
 		128,
 		structure_seam_mapping_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_design_block_group_block,
-		"structure_design_block_group_block",
+		"structure_design_block",
+		"structure_design_block",
 		1,
 		structure_design_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		color_block_block,
-		"color_block_block",
+		"color_block",
+		"color_block",
 		512,
 		color_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		color_table_block_group_block,
-		"color_table_block_group_block",
+		"color_table_block",
+		"color_table_block",
 		1,
 		color_table_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_scenery_block_group_block,
-		"effect_scenery_block_group_block",
+		"effect_scenery_block",
+		"effect_scenery_block",
 		1,
 		effect_scenery_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		contrail_definition_block_block,
-		"contrail_definition_block_block",
+		"contrail_definition_block",
+		"contrail_definition_block",
 		16,
 		contrail_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		contrail_system_block_group_block,
-		"contrail_system_block_group_block",
+		"contrail_system_block",
+		"contrail_system_block",
 		1,
 		contrail_system_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		light_volume_definition_block_block,
-		"light_volume_definition_block_block",
+		"light_volume_definition_block",
+		"light_volume_definition_block",
 		16,
 		light_volume_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		light_volume_system_block_group_block,
-		"light_volume_system_block_group_block",
+		"light_volume_system_block",
+		"light_volume_system_block",
 		1,
 		light_volume_system_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		beam_definition_block_block,
-		"beam_definition_block_block",
+		"beam_definition_block",
+		"beam_definition_block",
 		16,
 		beam_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		beam_system_block_group_block,
-		"beam_system_block_group_block",
+		"beam_system_block",
+		"beam_system_block",
 		1,
 		beam_system_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_locations_block_block,
-		"effect_locations_block_block",
+		"effect_locations_block",
+		"effect_locations_block",
 		8,
 		effect_locations_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_accelerations_block_block,
-		"effect_accelerations_block_block",
+		"effect_accelerations_block",
+		"effect_accelerations_block",
 		32,
 		effect_accelerations_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_part_block_block,
-		"effect_part_block_block",
+		"effect_part_block",
+		"effect_part_block",
 		32,
 		effect_part_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_event_block_block,
-		"effect_event_block_block",
+		"effect_event_block",
+		"effect_event_block",
 		32,
 		effect_event_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_conical_distribution_block_block,
-		"effect_conical_distribution_block_block",
+		"effect_conical_distribution_block",
+		"effect_conical_distribution_block",
 		1,
 		effect_conical_distribution_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_block_group_block,
-		"effect_block_group_block",
+		"effect_block",
+		"effect_block",
 		1,
 		effect_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_component_holdback_block_block,
-		"effect_component_holdback_block_block",
+		"effect_component_holdback_block",
+		"effect_component_holdback_block",
 		3,
 		effect_component_holdback_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_component_holdbacks_block_block,
-		"effect_component_holdbacks_block_block",
+		"effect_component_holdbacks_block",
+		"effect_component_holdbacks_block",
 		28,
 		effect_component_holdbacks_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_globals_block_group_block,
-		"effect_globals_block_group_block",
+		"effect_globals_block",
+		"effect_globals_block",
 		1,
 		effect_globals_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		attachment_block_block,
-		"attachment_block_block",
+		"attachment_block",
+		"attachment_block",
 		4,
 		attachment_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gpu_sprite_block_block,
-		"gpu_sprite_block_block",
+		"gpu_sprite_block",
+		"gpu_sprite_block",
 		1,
 		gpu_sprite_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gpu_variants_block_block,
-		"gpu_variants_block_block",
+		"gpu_variants_block",
+		"gpu_variants_block",
 		16,
 		gpu_variants_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_block_group_block,
-		"particle_block_group_block",
+		"particle_block",
+		"particle_block",
 		1,
 		particle_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_model_block_group_block,
-		"particle_model_block_group_block",
+		"particle_model_block",
+		"particle_model_block",
 		1,
 		particle_model_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_controller_parameters_block,
-		"particle_controller_parameters_block",
+		"particle_controller_parameters",
+		"particle_controller_parameters",
 		9,
 		particle_controller_parameters);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_controller_block,
-		"particle_controller_block",
+		"particle_controller",
+		"particle_controller",
 		4,
 		particle_controller);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_physics_block_group_block,
-		"particle_physics_block_group_block",
+		"particle_physics_block",
+		"particle_physics_block",
 		1,
 		particle_physics_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		camera_track_control_point_block_block,
-		"camera_track_control_point_block_block",
+		"camera_track_control_point_block",
+		"camera_track_control_point_block",
 		16,
 		camera_track_control_point_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		camera_track_block_group_block,
-		"camera_track_block_group_block",
+		"camera_track_block",
+		"camera_track_block",
 		1,
 		camera_track_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		point_physics_block_group_block,
-		"point_physics_block_group_block",
+		"point_physics_block",
+		"point_physics_block",
 		1,
 		point_physics_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_weather_palette_block_block,
-		"structure_bsp_weather_palette_block_block",
+		"structure_bsp_weather_palette_block",
+		"structure_bsp_weather_palette_block",
 		32,
 		structure_bsp_weather_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_atmosphere_palette_block_block,
-		"structure_bsp_atmosphere_palette_block_block",
+		"structure_bsp_atmosphere_palette_block",
+		"structure_bsp_atmosphere_palette_block",
 		32,
 		structure_bsp_atmosphere_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_camera_fx_palette_block_block,
-		"structure_bsp_camera_fx_palette_block_block",
+		"structure_bsp_camera_fx_palette_block",
+		"structure_bsp_camera_fx_palette_block",
 		64,
 		structure_bsp_camera_fx_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_cluster_portal_index_block_block,
-		"structure_bsp_cluster_portal_index_block_block",
+		"structure_bsp_cluster_portal_index_block",
+		"structure_bsp_cluster_portal_index_block",
 		512,
 		structure_bsp_cluster_portal_index_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_surface_block_block,
-		"structure_surface_block_block",
+		"structure_surface_block",
+		"structure_surface_block",
 		262136,
 		structure_surface_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_surface_small_block_block,
-		"structure_surface_small_block_block",
+		"structure_surface_small_block",
+		"structure_surface_small_block",
 		32767,
 		structure_surface_small_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_surface_to_triangle_mapping_block_block,
-		"structure_surface_to_triangle_mapping_block_block",
+		"structure_surface_to_triangle_mapping_block",
+		"structure_surface_to_triangle_mapping_block",
 		2097088,
 		structure_surface_to_triangle_mapping_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		transparent_planes_block_block,
-		"transparent_planes_block_block",
+		"transparent_planes_block",
+		"transparent_planes_block",
 		32768,
 		transparent_planes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_cluster_block_block,
-		"structure_bsp_cluster_block_block",
+		"structure_bsp_cluster_block",
+		"structure_bsp_cluster_block",
 		256,
 		structure_bsp_cluster_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_weather_polyhedron_plane_block_block,
-		"structure_bsp_weather_polyhedron_plane_block_block",
+		"structure_bsp_weather_polyhedron_plane_block",
+		"structure_bsp_weather_polyhedron_plane_block",
 		16,
 		structure_bsp_weather_polyhedron_plane_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_weather_polyhedron_block_block,
-		"structure_bsp_weather_polyhedron_block_block",
+		"structure_bsp_weather_polyhedron_block",
+		"structure_bsp_weather_polyhedron_block",
 		32,
 		structure_bsp_weather_polyhedron_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_cluster_portal_vertex_block_block,
-		"structure_bsp_cluster_portal_vertex_block_block",
+		"structure_bsp_cluster_portal_vertex_block",
+		"structure_bsp_cluster_portal_vertex_block",
 		128,
 		structure_bsp_cluster_portal_vertex_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_cluster_portal_block_block,
-		"structure_bsp_cluster_portal_block_block",
+		"structure_bsp_cluster_portal_block",
+		"structure_bsp_cluster_portal_block",
 		1024,
 		structure_bsp_cluster_portal_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_pathfinding_edges_block_block,
-		"structure_bsp_pathfinding_edges_block_block",
+		"structure_bsp_pathfinding_edges_block",
+		"structure_bsp_pathfinding_edges_block",
 		2621440,
 		structure_bsp_pathfinding_edges_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_conveyor_surface_block_block,
-		"structure_bsp_conveyor_surface_block_block",
+		"structure_bsp_conveyor_surface_block",
+		"structure_bsp_conveyor_surface_block",
 		512,
 		structure_bsp_conveyor_surface_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_collision_materials_block_block,
-		"structure_collision_materials_block_block",
+		"structure_collision_materials_block",
+		"structure_collision_materials_block",
 		512,
 		structure_collision_materials_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_marker_block_block,
-		"structure_bsp_marker_block_block",
+		"structure_bsp_marker_block",
+		"structure_bsp_marker_block",
 		1024,
 		structure_bsp_marker_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_marker_light_palette_block,
-		"structure_bsp_marker_light_palette_block",
+		"structure_bsp_marker_light_palette",
+		"structure_bsp_marker_light_palette",
 		1024,
 		structure_bsp_marker_light_palette);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_marker_light_index_block,
-		"structure_bsp_marker_light_index_block",
+		"structure_bsp_marker_light_index",
+		"structure_bsp_marker_light_index",
 		1024,
 		structure_bsp_marker_light_index);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_environment_object_palette_block_block,
-		"structure_bsp_environment_object_palette_block_block",
+		"structure_bsp_environment_object_palette_block",
+		"structure_bsp_environment_object_palette_block",
 		100,
 		structure_bsp_environment_object_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_environment_object_block_block,
-		"structure_bsp_environment_object_block_block",
+		"structure_bsp_environment_object_block",
+		"structure_bsp_environment_object_block",
 		16384,
 		structure_bsp_environment_object_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_detail_object_data_block_block,
-		"structure_bsp_detail_object_data_block_block",
+		"structure_bsp_detail_object_data_block",
+		"structure_bsp_detail_object_data_block",
 		1,
 		structure_bsp_detail_object_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_runtime_decal_block_block,
-		"structure_bsp_runtime_decal_block_block",
+		"structure_bsp_runtime_decal_block",
+		"structure_bsp_runtime_decal_block",
 		6144,
 		structure_bsp_runtime_decal_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_leaf_block_block,
-		"structure_bsp_leaf_block_block",
+		"structure_bsp_leaf_block",
+		"structure_bsp_leaf_block",
 		134217728,
 		structure_bsp_leaf_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		seam_indices_block_definition_block,
-		"seam_indices_block_definition_block",
+		"seam_indices_block_definition",
+		"seam_indices_block_definition",
 		128,
 		seam_indices_block_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		pvs_bound_object_references_block_block,
-		"pvs_bound_object_references_block_block",
+		"pvs_bound_object_references_block",
+		"pvs_bound_object_references_block",
 		6336,
 		pvs_bound_object_references_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		pvs_bound_object_identifiers_block_block,
-		"pvs_bound_object_identifiers_block_block",
+		"pvs_bound_object_identifiers_block",
+		"pvs_bound_object_identifiers_block",
 		6336,
 		pvs_bound_object_identifiers_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_debug_info_block_block,
-		"structure_bsp_debug_info_block_block",
+		"structure_bsp_debug_info_block",
+		"structure_bsp_debug_info_block",
 		1,
 		structure_bsp_debug_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_cluster_debug_info_block_block,
-		"structure_bsp_cluster_debug_info_block_block",
+		"structure_bsp_cluster_debug_info_block",
+		"structure_bsp_cluster_debug_info_block",
 		256,
 		structure_bsp_cluster_debug_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_fog_plane_debug_info_block_block,
-		"structure_bsp_fog_plane_debug_info_block_block",
+		"structure_bsp_fog_plane_debug_info_block",
+		"structure_bsp_fog_plane_debug_info_block",
 		127,
 		structure_bsp_fog_plane_debug_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_fog_zone_debug_info_block_block,
-		"structure_bsp_fog_zone_debug_info_block_block",
+		"structure_bsp_fog_zone_debug_info_block",
+		"structure_bsp_fog_zone_debug_info_block",
 		127,
 		structure_bsp_fog_zone_debug_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_debug_info_render_line_block_block,
-		"structure_bsp_debug_info_render_line_block_block",
+		"structure_bsp_debug_info_render_line_block",
+		"structure_bsp_debug_info_render_line_block",
 		32767,
 		structure_bsp_debug_info_render_line_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_debug_info_indices_block_block,
-		"structure_bsp_debug_info_indices_block_block",
+		"structure_bsp_debug_info_indices_block",
+		"structure_bsp_debug_info_indices_block",
 		32767,
 		structure_bsp_debug_info_indices_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_sky_owner_cluster_block_block,
-		"structure_bsp_sky_owner_cluster_block_block",
+		"structure_bsp_sky_owner_cluster_block",
+		"structure_bsp_sky_owner_cluster_block",
 		32,
 		structure_bsp_sky_owner_cluster_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_fake_lightprobes_block_block,
-		"structure_bsp_fake_lightprobes_block_block",
+		"structure_bsp_fake_lightprobes_block",
+		"structure_bsp_fake_lightprobes_block",
 		2048,
 		structure_bsp_fake_lightprobes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_edge_to_seam_edge_mapping_block_block,
-		"structure_edge_to_seam_edge_mapping_block_block",
+		"structure_edge_to_seam_edge_mapping_block",
+		"structure_edge_to_seam_edge_mapping_block",
 		2621440,
 		structure_edge_to_seam_edge_mapping_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		widget_reference_block_block,
-		"widget_reference_block_block",
+		"widget_reference_block",
+		"widget_reference_block",
 		1024,
 		widget_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		runtime_decorator_set_block_block,
-		"runtime_decorator_set_block_block",
+		"runtime_decorator_set_block",
+		"runtime_decorator_set_block",
 		48,
 		runtime_decorator_set_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_raw_resources_block,
-		"structure_bsp_raw_resources_block",
+		"structure_bsp_raw_resources",
+		"structure_bsp_raw_resources",
 		1,
 		structure_bsp_raw_resources);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_structure_bsp_block_group_block,
-		"scenario_structure_bsp_block_group_block",
+		"scenario_structure_bsp_block",
+		"scenario_structure_bsp_block",
 		1,
 		scenario_structure_bsp_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_structure_lighting_info_block_group_block,
-		"scenario_structure_lighting_info_block_group_block",
+		"scenario_structure_lighting_info_block",
+		"scenario_structure_lighting_info_block",
 		1,
 		scenario_structure_lighting_info_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_lighting_generic_light_definition_block_block,
-		"structure_lighting_generic_light_definition_block_block",
+		"structure_lighting_generic_light_definition_block",
+		"structure_lighting_generic_light_definition_block",
 		32767,
 		structure_lighting_generic_light_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_lighting_generic_light_instance_block_block,
-		"structure_lighting_generic_light_instance_block_block",
+		"structure_lighting_generic_light_instance_block",
+		"structure_lighting_generic_light_instance_block",
 		32767,
 		structure_lighting_generic_light_instance_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_lighting_region_triangle_block_block,
-		"structure_lighting_region_triangle_block_block",
+		"structure_lighting_region_triangle_block",
+		"structure_lighting_region_triangle_block",
 		32767,
 		structure_lighting_region_triangle_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_lighting_region_block_block,
-		"structure_lighting_region_block_block",
+		"structure_lighting_region_block",
+		"structure_lighting_region_block",
 		32767,
 		structure_lighting_region_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_material_lighting_info_block_block,
-		"structure_material_lighting_info_block_block",
+		"structure_material_lighting_info_block",
+		"structure_material_lighting_info_block",
 		32767,
 		structure_material_lighting_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_lightprobe_value_block,
-		"scenario_lightmap_lightprobe_value_block",
+		"scenario_lightmap_lightprobe_value",
+		"scenario_lightmap_lightprobe_value",
 		65535,
 		scenario_lightmap_lightprobe_value);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_airprobe_value_block,
-		"scenario_lightmap_airprobe_value_block",
+		"scenario_lightmap_airprobe_value",
+		"scenario_lightmap_airprobe_value",
 		512,
 		scenario_lightmap_airprobe_value);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_scenery_probe_value_block,
-		"scenario_lightmap_scenery_probe_value_block",
+		"scenario_lightmap_scenery_probe_value",
+		"scenario_lightmap_scenery_probe_value",
 		2000,
 		scenario_lightmap_scenery_probe_value);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_device_machine_probe_value_block,
-		"scenario_lightmap_device_machine_probe_value_block",
+		"scenario_lightmap_device_machine_probe_value",
+		"scenario_lightmap_device_machine_probe_value",
 		65535,
 		scenario_lightmap_device_machine_probe_value);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_device_machine_probe_data_value_block,
-		"scenario_lightmap_device_machine_probe_data_value_block",
+		"scenario_lightmap_device_machine_probe_data_value",
+		"scenario_lightmap_device_machine_probe_data_value",
 		65535,
 		scenario_lightmap_device_machine_probe_data_value);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_mini_lightprobe_value_block,
-		"scenario_lightmap_mini_lightprobe_value_block",
+		"scenario_lightmap_mini_lightprobe_value",
+		"scenario_lightmap_mini_lightprobe_value",
 		65535,
 		scenario_lightmap_mini_lightprobe_value_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_pervertex_data_block,
-		"scenario_lightmap_pervertex_data_block",
+		"scenario_lightmap_pervertex_data",
+		"scenario_lightmap_pervertex_data",
 		65535,
 		scenario_lightmap_pervertex_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_cluster_data_block,
-		"scenario_lightmap_cluster_data_block",
+		"scenario_lightmap_cluster_data",
+		"scenario_lightmap_cluster_data",
 		65535,
 		scenario_lightmap_cluster_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_instance_data_block,
-		"scenario_lightmap_instance_data_block",
+		"scenario_lightmap_instance_data",
+		"scenario_lightmap_instance_data",
 		65535,
 		scenario_lightmap_instance_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_bsp_data_block_group_block,
-		"scenario_lightmap_bsp_data_block_group_block",
+		"scenario_lightmap_bsp_data_block",
+		"scenario_lightmap_bsp_data_block",
 		1,
 		scenario_lightmap_bsp_data_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		obsolete_scenario_lightmap_bsp_data_block,
-		"obsolete_scenario_lightmap_bsp_data_block",
+		"obsolete_scenario_lightmap_bsp_data",
+		"obsolete_scenario_lightmap_bsp_data",
 		65535,
 		obsolete_scenario_lightmap_bsp_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_bsp_data_reference_block_block,
-		"scenario_lightmap_bsp_data_reference_block_block",
+		"scenario_lightmap_bsp_data_reference_block",
+		"scenario_lightmap_bsp_data_reference_block",
 		32,
 		scenario_lightmap_bsp_data_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_block_group_block,
-		"scenario_lightmap_block_group_block",
+		"scenario_lightmap_block",
+		"scenario_lightmap_block",
 		1,
 		scenario_lightmap_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_block_data_block,
-		"faux_data_block_data_block",
+		"faux_data_block_data",
+		"faux_data_block_data",
 		65535,
 		faux_data_block_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_cluster_data_block,
-		"faux_data_cluster_data_block",
+		"faux_data_cluster_data",
+		"faux_data_cluster_data",
 		65535,
 		faux_data_cluster_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_instance_data_block,
-		"faux_data_instance_data_block",
+		"faux_data_instance_data",
+		"faux_data_instance_data",
 		65535,
 		faux_data_instance_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_global_cluster_instance_data_block,
-		"faux_data_global_cluster_instance_data_block",
+		"faux_data_global_cluster_instance_data",
+		"faux_data_global_cluster_instance_data",
 		65535,
 		faux_data_global_cluster_instance_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_global_cluster_data_block,
-		"faux_data_global_cluster_data_block",
+		"faux_data_global_cluster_data",
+		"faux_data_global_cluster_data",
 		65535,
 		faux_data_global_cluster_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_global_instance_definition_data_block,
-		"faux_data_global_instance_definition_data_block",
+		"faux_data_global_instance_definition_data",
+		"faux_data_global_instance_definition_data",
 		65535,
 		faux_data_global_instance_definition_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_global_instance_data_block,
-		"faux_data_global_instance_data_block",
+		"faux_data_global_instance_data",
+		"faux_data_global_instance_data",
 		65535,
 		faux_data_global_instance_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_global_material_data_block,
-		"faux_data_global_material_data_block",
+		"faux_data_global_material_data",
+		"faux_data_global_material_data",
 		65535,
 		faux_data_global_material_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_bsp_global_data_block,
-		"faux_data_bsp_global_data_block",
+		"faux_data_bsp_global_data",
+		"faux_data_bsp_global_data",
 		65535,
 		faux_data_bsp_global_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_object_data_block,
-		"faux_data_object_data_block",
+		"faux_data_object_data",
+		"faux_data_object_data",
 		65535,
 		faux_data_object_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_lightprobe_value_block,
-		"faux_data_lightprobe_value_block",
+		"faux_data_lightprobe_value",
+		"faux_data_lightprobe_value",
 		65535,
 		faux_data_lightprobe_value);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_airprobe_lightgroup_value_block,
-		"faux_data_airprobe_lightgroup_value_block",
+		"faux_data_airprobe_lightgroup_value",
+		"faux_data_airprobe_lightgroup_value",
 		512,
 		faux_data_airprobe_lightgroup_value);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_scenery_probe_lightgroup_value_block,
-		"faux_data_scenery_probe_lightgroup_value_block",
+		"faux_data_scenery_probe_lightgroup_value",
+		"faux_data_scenery_probe_lightgroup_value",
 		2000,
 		faux_data_scenery_probe_lightgroup_value);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_device_probe_lightgroup_value_block,
-		"faux_data_device_probe_lightgroup_value_block",
+		"faux_data_device_probe_lightgroup_value",
+		"faux_data_device_probe_lightgroup_value",
 		65535,
 		faux_data_device_probe_lightgroup_value);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_device_probes_lightgroup_value_block,
-		"faux_data_device_probes_lightgroup_value_block",
+		"faux_data_device_probes_lightgroup_value",
+		"faux_data_device_probes_lightgroup_value",
 		65535,
 		faux_data_device_probes_lightgroup_value);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_lightmap_group_data_block,
-		"faux_data_lightmap_group_data_block",
+		"faux_data_lightmap_group_data",
+		"faux_data_lightmap_group_data",
 		65535,
 		faux_data_lightmap_group_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_airprobe_value_block,
-		"faux_data_airprobe_value_block",
+		"faux_data_airprobe_value",
+		"faux_data_airprobe_value",
 		512,
 		faux_data_airprobe_value);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_scenery_probe_value_block,
-		"faux_data_scenery_probe_value_block",
+		"faux_data_scenery_probe_value",
+		"faux_data_scenery_probe_value",
 		2000,
 		faux_data_scenery_probe_value);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_device_machine_probe_value_block,
-		"faux_data_device_machine_probe_value_block",
+		"faux_data_device_machine_probe_value",
+		"faux_data_device_machine_probe_value",
 		65535,
 		faux_data_device_machine_probe_value);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_device_machine_probes_value_block,
-		"faux_data_device_machine_probes_value_block",
+		"faux_data_device_machine_probes_value",
+		"faux_data_device_machine_probes_value",
 		65535,
 		faux_data_device_machine_probes_value);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_faux_data_block_group_block,
-		"scenario_faux_data_block_group_block",
+		"scenario_faux_data_block",
+		"scenario_faux_data_block",
 		1,
 		scenario_faux_data_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_decals_block_block,
-		"scenario_decals_block_block",
+		"scenario_decals_block",
+		"scenario_decals_block",
 		65536,
 		scenario_decals_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_decal_palette_block_block,
-		"scenario_decal_palette_block_block",
+		"scenario_decal_palette_block",
+		"scenario_decal_palette_block",
 		2048,
 		scenario_decal_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		dont_use_me_scenario_environment_object_block_block,
-		"dont_use_me_scenario_environment_object_block_block",
+		"dont_use_me_scenario_environment_object_block",
+		"dont_use_me_scenario_environment_object_block",
 		4096,
 		dont_use_me_scenario_environment_object_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cutscene_flag_block_block,
-		"scenario_cutscene_flag_block_block",
+		"scenario_cutscene_flag_block",
+		"scenario_cutscene_flag_block",
 		512,
 		scenario_cutscene_flag_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_block_block,
-		"scenario_zone_set_block_block",
+		"scenario_zone_set_block",
+		"scenario_zone_set_block",
 		48,
 		scenario_zone_set_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lighting_zone_set_block_block,
-		"scenario_lighting_zone_set_block_block",
+		"scenario_lighting_zone_set_block",
+		"scenario_lighting_zone_set_block",
 		48,
 		scenario_lighting_zone_set_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_function_block_block,
-		"scenario_function_block_block",
+		"scenario_function_block",
+		"scenario_function_block",
 		32,
 		scenario_function_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_soft_ceilings_block_block,
-		"scenario_soft_ceilings_block_block",
+		"scenario_soft_ceilings_block",
+		"scenario_soft_ceilings_block",
 		128,
 		scenario_soft_ceilings_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_profiles_block_block,
-		"scenario_profiles_block_block",
+		"scenario_profiles_block",
+		"scenario_profiles_block",
 		256,
 		scenario_profiles_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_kill_trigger_volumes_block_block,
-		"scenario_kill_trigger_volumes_block_block",
+		"scenario_kill_trigger_volumes_block",
+		"scenario_kill_trigger_volumes_block",
 		1024,
 		scenario_kill_trigger_volumes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_safe_zone_trigger_volumes_block_block,
-		"scenario_safe_zone_trigger_volumes_block_block",
+		"scenario_safe_zone_trigger_volumes_block",
+		"scenario_safe_zone_trigger_volumes_block",
 		1024,
 		scenario_safe_zone_trigger_volumes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_switch_trigger_volume_block_block,
-		"scenario_zone_set_switch_trigger_volume_block_block",
+		"scenario_zone_set_switch_trigger_volume_block",
+		"scenario_zone_set_switch_trigger_volume_block",
 		1024,
 		scenario_zone_set_switch_trigger_volume_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		player_spawn_influencer_block_block,
-		"player_spawn_influencer_block_block",
+		"player_spawn_influencer_block",
+		"player_spawn_influencer_block",
 		1,
 		player_spawn_influencer_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		netgame_goal_influencer_block_block,
-		"netgame_goal_influencer_block_block",
+		"netgame_goal_influencer_block",
+		"netgame_goal_influencer_block",
 		1,
 		netgame_goal_influencer_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_detail_object_collection_palette_block_block,
-		"scenario_detail_object_collection_palette_block_block",
+		"scenario_detail_object_collection_palette_block",
+		"scenario_detail_object_collection_palette_block",
 		32,
 		scenario_detail_object_collection_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cutscene_camera_point_block_block,
-		"scenario_cutscene_camera_point_block_block",
+		"scenario_cutscene_camera_point_block",
+		"scenario_cutscene_camera_point_block",
 		512,
 		scenario_cutscene_camera_point_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		editor_comment_block_block,
-		"editor_comment_block_block",
+		"editor_comment_block",
+		"editor_comment_block",
 		65536,
 		editor_comment_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_background_sounds_block_block,
-		"scenario_cluster_background_sounds_block_block",
+		"scenario_cluster_background_sounds_block",
+		"scenario_cluster_background_sounds_block",
 		256,
 		scenario_cluster_background_sounds_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_acoustics_block_block,
-		"scenario_cluster_acoustics_block_block",
+		"scenario_cluster_acoustics_block",
+		"scenario_cluster_acoustics_block",
 		256,
 		scenario_cluster_acoustics_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_sound_environments_block_block,
-		"scenario_cluster_sound_environments_block_block",
+		"scenario_cluster_sound_environments_block",
+		"scenario_cluster_sound_environments_block",
 		256,
 		scenario_cluster_sound_environments_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_weather_properties_block_block,
-		"scenario_cluster_weather_properties_block_block",
+		"scenario_cluster_weather_properties_block",
+		"scenario_cluster_weather_properties_block",
 		256,
 		scenario_cluster_weather_properties_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_atmosphere_properties_block_block,
-		"scenario_cluster_atmosphere_properties_block_block",
+		"scenario_cluster_atmosphere_properties_block",
+		"scenario_cluster_atmosphere_properties_block",
 		256,
 		scenario_cluster_atmosphere_properties_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_camera_fx_properties_block_block,
-		"scenario_cluster_camera_fx_properties_block_block",
+		"scenario_cluster_camera_fx_properties_block",
+		"scenario_cluster_camera_fx_properties_block",
 		256,
 		scenario_cluster_camera_fx_properties_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_points_block_block,
-		"scenario_cluster_points_block_block",
+		"scenario_cluster_points_block",
+		"scenario_cluster_points_block",
 		256,
 		scenario_cluster_points_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_data_block_block,
-		"scenario_cluster_data_block_block",
+		"scenario_cluster_data_block",
+		"scenario_cluster_data_block",
 		16,
 		scenario_cluster_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		dynamic_spawn_zone_overload_block_block,
-		"dynamic_spawn_zone_overload_block_block",
+		"dynamic_spawn_zone_overload_block",
+		"dynamic_spawn_zone_overload_block",
 		32,
 		dynamic_spawn_zone_overload_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_spawn_data_block_block,
-		"scenario_spawn_data_block_block",
+		"scenario_spawn_data_block",
+		"scenario_spawn_data_block",
 		1,
 		scenario_spawn_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_interpolator_block_block,
-		"scenario_interpolator_block_block",
+		"interpolators",
+		"scenario_interpolator_block",
 		16,
 		scenario_interpolator_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_screen_effect_reference_block_block,
-		"scenario_screen_effect_reference_block_block",
+		"screen effect reference",
+		"scenario_screen_effect_reference_block",
 		16,
 		scenario_screen_effect_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_cluster_pvs_bit_vector_block_block,
-		"scenario_zone_set_cluster_pvs_bit_vector_block_block",
+		"scenario_zone_set_cluster_pvs_bit_vector_block",
+		"scenario_zone_set_cluster_pvs_bit_vector_block",
 		8,
 		scenario_zone_set_cluster_pvs_bit_vector_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_bsp_bits_block_block,
-		"scenario_zone_set_bsp_bits_block_block",
+		"scenario_zone_set_bsp_bits_block",
+		"scenario_zone_set_bsp_bits_block",
 		16,
 		scenario_zone_set_bsp_bits_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_cluster_pvs_block_block,
-		"scenario_zone_set_cluster_pvs_block_block",
+		"scenario_zone_set_cluster_pvs_block",
+		"scenario_zone_set_cluster_pvs_block",
 		256,
 		scenario_zone_set_cluster_pvs_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_cluster_sky_indices_block_block,
-		"scenario_zone_set_cluster_sky_indices_block_block",
+		"scenario_zone_set_cluster_sky_indices_block",
+		"scenario_zone_set_cluster_sky_indices_block",
 		256,
 		scenario_zone_set_cluster_sky_indices_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_multiple_skies_visible_bit_vector_block_block,
-		"scenario_zone_set_multiple_skies_visible_bit_vector_block_block",
+		"scenario_zone_set_multiple_skies_visible_bit_vector_block",
+		"scenario_zone_set_multiple_skies_visible_bit_vector_block",
 		256,
 		scenario_zone_set_multiple_skies_visible_bit_vector_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cluster_audio_bit_vector_block_block,
-		"cluster_audio_bit_vector_block_block",
+		"cluster_audio_bit_vector_block",
+		"cluster_audio_bit_vector_block",
 		256,
 		cluster_audio_bit_vector_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cluster_audio_cluster_indices_block_block,
-		"cluster_audio_cluster_indices_block_block",
+		"cluster_audio_cluster_indices_block",
+		"cluster_audio_cluster_indices_block",
 		256,
 		cluster_audio_cluster_indices_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cluster_audio_cluster_neighbors_block_block,
-		"cluster_audio_cluster_neighbors_block_block",
+		"cluster_audio_cluster_neighbors_block",
+		"cluster_audio_cluster_neighbors_block",
 		256,
 		cluster_audio_cluster_neighbors_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_bsp_pvs_block_block,
-		"scenario_zone_set_bsp_pvs_block_block",
+		"scenario_zone_set_bsp_pvs_block",
+		"scenario_zone_set_bsp_pvs_block",
 		16,
 		scenario_zone_set_bsp_pvs_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_bsp_checksum_block_block,
-		"scenario_zone_set_bsp_checksum_block_block",
+		"scenario_zone_set_bsp_checksum_block",
+		"scenario_zone_set_bsp_checksum_block",
 		16,
 		scenario_zone_set_bsp_checksum_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_pvs_block_block,
-		"scenario_zone_set_pvs_block_block",
+		"scenario_zone_set_pvs_block",
+		"scenario_zone_set_pvs_block",
 		49,
 		scenario_zone_set_pvs_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cinematic_lighting_palette_block_block,
-		"scenario_cinematic_lighting_palette_block_block",
+		"scenario_cinematic_lighting_palette_block",
+		"scenario_cinematic_lighting_palette_block",
 		128,
 		scenario_cinematic_lighting_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_airprobes_block_block,
-		"scenario_airprobes_block_block",
+		"scenario_airprobes_block",
+		"scenario_airprobes_block",
 		512,
 		scenario_airprobes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_required_resource_block_group_block,
-		"scenario_required_resource_block_group_block",
+		"scenario_required_resource_block",
+		"scenario_required_resource_block",
 		1,
 		scenario_required_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_object_names_block_block,
-		"scenario_object_names_block_block",
+		"scenario_object_names_block",
+		"scenario_object_names_block",
 		2048,
 		scenario_object_names_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_players_block_block,
-		"scenario_players_block_block",
+		"scenario_players_block",
+		"scenario_players_block",
 		256,
 		scenario_players_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_trigger_volume_block_block,
-		"scenario_trigger_volume_block_block",
+		"scenario_trigger_volume_block",
+		"scenario_trigger_volume_block",
 		1024,
 		scenario_trigger_volume_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		static_spawn_zone_block_block,
-		"static_spawn_zone_block_block",
+		"static_spawn_zone_block",
+		"static_spawn_zone_block",
 		128,
 		static_spawn_zone_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_structure_bsp_reference_block_block,
-		"scenario_structure_bsp_reference_block_block",
+		"scenario_structure_bsp_reference_block",
+		"scenario_structure_bsp_reference_block",
 		16,
 		scenario_structure_bsp_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_sky_reference_block_block,
-		"scenario_sky_reference_block_block",
+		"scenario_sky_reference_block",
+		"scenario_sky_reference_block",
 		32,
 		scenario_sky_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cortana_effect_block_block,
-		"scenario_cortana_effect_block_block",
+		"scenario_cortana_effect_block",
+		"scenario_cortana_effect_block",
 		64,
 		scenario_cortana_effect_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_budget_references_block_block,
-		"scenario_budget_references_block_block",
+		"scenario_budget_references_block",
+		"scenario_budget_references_block",
 		256,
 		scenario_budget_references_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_block_group_block,
-		"scenario_block_group_block",
+		"scenario_block",
+		"scenario_block",
 		1,
 		scenario_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_scavenger_hunt_object_block_block,
-		"scenario_scavenger_hunt_object_block_block",
+		"scenario_scavenger_hunt_object_block",
+		"scenario_scavenger_hunt_object_block",
 		24,
 		scenario_scavenger_hunt_object_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		single_screen_effect_block,
-		"single_screen_effect_block",
+		"single_screen_effect",
+		"single_screen_effect",
 		8,
 		single_screen_effect);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		area_screen_effect_block_group_block,
-		"area_screen_effect_block_group_block",
+		"area_screen_effect_block",
+		"area_screen_effect_block",
 		1,
 		area_screen_effect_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		atmosphere_setting_block_block,
-		"atmosphere_setting_block_block",
+		"atmosphere_setting_block",
+		"atmosphere_setting_block",
 		128,
 		atmosphere_setting_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		underwater_setting_block_block,
-		"underwater_setting_block_block",
+		"underwater_setting_block",
+		"underwater_setting_block",
 		128,
 		underwater_setting_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sky_atm_parameters_block_group_block,
-		"sky_atm_parameters_block_group_block",
+		"sky_atm_parameters_block",
+		"sky_atm_parameters_block",
 		1,
 		sky_atm_parameters_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_sh_light_block_block,
-		"cinematic_sh_light_block_block",
+		"cinematic_sh_light_block",
+		"cinematic_sh_light_block",
 		16,
 		cinematic_sh_light_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_dynamic_light_block_block,
-		"cinematic_dynamic_light_block_block",
+		"cinematic_dynamic_light_block",
+		"cinematic_dynamic_light_block",
 		16,
 		cinematic_dynamic_light_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		new_cinematic_lighting_block_group_block,
-		"new_cinematic_lighting_block_group_block",
+		"new_cinematic_lighting_block",
+		"new_cinematic_lighting_block",
 		1,
 		new_cinematic_lighting_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shield_impact_block_group_block,
-		"shield_impact_block_group_block",
+		"shield_impact_block",
+		"shield_impact_block",
 		1,
 		shield_impact_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		wind_block_group_block,
-		"wind_block_group_block",
+		"wind_block",
+		"wind_block",
 		1,
 		wind_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_environment_block_group_block,
-		"sound_environment_block_group_block",
+		"sound_environment",
+		"sound_environment_block",
 		1,
 		sound_environment_group_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		lens_flare_reflection_block_block,
-		"lens_flare_reflection_block_block",
+		"reflection",
+		"lens_flare_reflection_block",
 		32,
 		lens_flare_reflection_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		lens_flare_scalar_animation_block_block,
-		"lens_flare_scalar_animation_block_block",
+		"lens_flare_scalar_animation_block",
+		"lens_flare_scalar_animation_block",
 		1,
 		lens_flare_scalar_animation_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		lens_flare_color_animation_block_block,
-		"lens_flare_color_animation_block_block",
+		"lens_flare_color_animation_block",
+		"lens_flare_color_animation_block",
 		1,
 		lens_flare_color_animation_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		lens_flare_block_group_block,
-		"lens_flare_block_group_block",
+		"lens_flare_block",
+		"lens_flare_block",
 		1,
 		lens_flare_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		planar_fog_patchy_fog_block_block,
-		"planar_fog_patchy_fog_block_block",
+		"planar_fog_patchy_fog_block",
+		"planar_fog_patchy_fog_block",
 		1,
 		planar_fog_patchy_fog_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		planar_fog_block_group_block,
-		"planar_fog_block_group_block",
+		"planar_fog_block",
+		"planar_fog_block",
 		1,
 		planar_fog_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		patchy_fog_block_group_block,
-		"patchy_fog_block_group_block",
+		"patchy_fog_block",
+		"patchy_fog_block",
 		1,
 		patchy_fog_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		decal_definition_block_block,
-		"decal_definition_block_block",
+		"decal_definition_block",
+		"decal_definition_block",
 		16,
 		decal_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		decal_system_block_group_block,
-		"decal_system_block_group_block",
+		"decal_system_block",
+		"decal_system_block",
 		1,
 		decal_system_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_description_block_block,
-		"scenario_description_block_block",
+		"scenario_description_block",
+		"scenario_description_block",
 		32,
 		scenario_description_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_scenario_description_block_group_block,
-		"multiplayer_scenario_description_block_group_block",
+		"multiplayer_scenario_description_block",
+		"multiplayer_scenario_description_block",
 		1,
 		multiplayer_scenario_description_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		detail_object_type_block_block,
-		"detail_object_type_block_block",
+		"detail_object_type_block",
+		"detail_object_type_block",
 		16,
 		detail_object_type_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		detail_object_collection_block_group_block,
-		"detail_object_collection_block_group_block",
+		"detail_object_collection_block",
+		"detail_object_collection_block",
 		1,
 		detail_object_collection_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_detail_object_cells_block_block,
-		"global_detail_object_cells_block_block",
+		"global_detail_object_cells_block",
+		"global_detail_object_cells_block",
 		262144,
 		global_detail_object_cells_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_detail_object_block_block,
-		"global_detail_object_block_block",
+		"global_detail_object_block",
+		"global_detail_object_block",
 		2097152,
 		global_detail_object_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_detail_object_counts_block_block,
-		"global_detail_object_counts_block_block",
+		"global_detail_object_counts_block",
+		"global_detail_object_counts_block",
 		8388608,
 		global_detail_object_counts_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_z_reference_vector_block_block,
-		"global_z_reference_vector_block_block",
+		"global_z_reference_vector_block",
+		"global_z_reference_vector_block",
 		262144,
 		global_z_reference_vector_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_scenery_block_group_block,
-		"sound_scenery_block_group_block",
+		"sound_scenery_block",
+		"sound_scenery_block",
 		1,
 		sound_scenery_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		mouse_cursor_bitmap_reference_block_block,
-		"mouse_cursor_bitmap_reference_block_block",
+		"mouse_cursor_bitmap_reference_block",
+		"mouse_cursor_bitmap_reference_block",
 		4,
 		mouse_cursor_bitmap_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		mouse_cursor_definition_block_group_block,
-		"mouse_cursor_definition_block_group_block",
+		"mouse_cursor_definition_block",
+		"mouse_cursor_definition_block",
 		1,
 		mouse_cursor_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		old_material_effect_material_block_block,
-		"old_material_effect_material_block_block",
+		"old_material_effect_material_block",
+		"old_material_effect_material_block",
 		33,
 		old_material_effect_material_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		material_effect_material_block_block,
-		"material_effect_material_block_block",
+		"material_effect_material_block",
+		"material_effect_material_block",
 		500,
 		material_effect_material_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		material_effect_block_v2_block,
-		"material_effect_block_v2_block",
+		"material_effect_block_v2",
+		"material_effect_block_v2",
 		23,
 		material_effect_block_v2);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		material_effects_block_group_block,
-		"material_effects_block_group_block",
+		"material_effects_block",
+		"material_effects_block",
 		1,
 		material_effects_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_resources_block_block,
-		"scenario_resources_block_block",
+		"scenario_resources_block",
+		"scenario_resources_block",
 		1,
 		scenario_resources_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_scenery_resource_block_group_block,
-		"scenario_scenery_resource_block_group_block",
+		"scenario_scenery_resource_block",
+		"scenario_scenery_resource_block",
 		1,
 		scenario_scenery_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_bipeds_resource_block_group_block,
-		"scenario_bipeds_resource_block_group_block",
+		"scenario_bipeds_resource_block",
+		"scenario_bipeds_resource_block",
 		1,
 		scenario_bipeds_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_vehicles_resource_block_group_block,
-		"scenario_vehicles_resource_block_group_block",
+		"scenario_vehicles_resource_block",
+		"scenario_vehicles_resource_block",
 		1,
 		scenario_vehicles_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_equipment_resource_block_group_block,
-		"scenario_equipment_resource_block_group_block",
+		"scenario_equipment_resource_block",
+		"scenario_equipment_resource_block",
 		1,
 		scenario_equipment_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_weapons_resource_block_group_block,
-		"scenario_weapons_resource_block_group_block",
+		"scenario_weapons_resource_block",
+		"scenario_weapons_resource_block",
 		1,
 		scenario_weapons_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_sound_scenery_resource_block_group_block,
-		"scenario_sound_scenery_resource_block_group_block",
+		"scenario_sound_scenery_resource_block",
+		"scenario_sound_scenery_resource_block",
 		1,
 		scenario_sound_scenery_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lights_resource_block_group_block,
-		"scenario_lights_resource_block_group_block",
+		"scenario_lights_resource_block",
+		"scenario_lights_resource_block",
 		1,
 		scenario_lights_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_devices_resource_block_group_block,
-		"scenario_devices_resource_block_group_block",
+		"scenario_devices_resource_block",
+		"scenario_devices_resource_block",
 		1,
 		scenario_devices_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_effect_scenery_resource_block_group_block,
-		"scenario_effect_scenery_resource_block_group_block",
+		"scenario_effect_scenery_resource_block",
+		"scenario_effect_scenery_resource_block",
 		1,
 		scenario_effect_scenery_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_decals_resource_block_group_block,
-		"scenario_decals_resource_block_group_block",
+		"scenario_decals_resource_block",
+		"scenario_decals_resource_block",
 		1,
 		scenario_decals_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cinematics_resource_block_group_block,
-		"scenario_cinematics_resource_block_group_block",
+		"scenario_cinematics_resource_block",
+		"scenario_cinematics_resource_block",
 		1,
 		scenario_cinematics_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_trigger_volumes_resource_block_group_block,
-		"scenario_trigger_volumes_resource_block_group_block",
+		"scenario_trigger_volumes_resource_block",
+		"scenario_trigger_volumes_resource_block",
 		1,
 		scenario_trigger_volumes_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_data_resource_block_group_block,
-		"scenario_cluster_data_resource_block_group_block",
+		"scenario_cluster_data_resource_block",
+		"scenario_cluster_data_resource_block",
 		1,
 		scenario_cluster_data_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_sky_references_resource_block_group_block,
-		"scenario_sky_references_resource_block_group_block",
+		"scenario_sky_references_resource_block",
+		"scenario_sky_references_resource_block",
 		1,
 		scenario_sky_references_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cubemap_resource_block_group_block,
-		"scenario_cubemap_resource_block_group_block",
+		"scenario_cubemap_resource_block",
+		"scenario_cubemap_resource_block",
 		1,
 		scenario_cubemap_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_ai_resource_block_group_block,
-		"scenario_ai_resource_block_group_block",
+		"scenario_ai_resource_block",
+		"scenario_ai_resource_block",
 		1,
 		scenario_ai_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_comments_resource_block_group_block,
-		"scenario_comments_resource_block_group_block",
+		"scenario_comments_resource_block",
+		"scenario_comments_resource_block",
 		1,
 		scenario_comments_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_creature_resource_block_group_block,
-		"scenario_creature_resource_block_group_block",
+		"scenario_creature_resource_block",
+		"scenario_creature_resource_block",
 		1,
 		scenario_creature_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_decorators_resource_block_group_block,
-		"scenario_decorators_resource_block_group_block",
+		"scenario_decorators_resource_block",
+		"scenario_decorators_resource_block",
 		1,
 		scenario_decorators_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_structure_lighting_resource_block_group_block,
-		"scenario_structure_lighting_resource_block_group_block",
+		"scenario_structure_lighting_resource_block",
+		"scenario_structure_lighting_resource_block",
 		1,
 		scenario_structure_lighting_resource_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_hs_source_reference_block_block,
-		"scenario_hs_source_reference_block_block",
+		"scenario_hs_source_reference_block",
+		"scenario_hs_source_reference_block",
 		16,
 		scenario_hs_source_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_ai_resource_reference_block_block,
-		"scenario_ai_resource_reference_block_block",
+		"scenario_ai_resource_reference_block",
+		"scenario_ai_resource_reference_block",
 		2,
 		scenario_ai_resource_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_resource_reference_block_block,
-		"scenario_resource_reference_block_block",
+		"scenario_resource_reference_block",
+		"scenario_resource_reference_block",
 		127,
 		scenario_resource_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_split_resources_block_block,
-		"scenario_split_resources_block_block",
+		"scenario_split_resources_block",
+		"scenario_split_resources_block",
 		1,
 		scenario_split_resources_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_class_block_block,
-		"sound_class_block_block",
+		"sound_class_block",
+		"sound_class_block",
 		54,
 		sound_class_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_classes_block_group_block,
-		"sound_classes_block_group_block",
+		"sound_classes_block",
+		"sound_classes_block",
 		1,
 		sound_classes_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_color_block_block$2,
-		"multiplayer_color_block_block",
+		"multiplayer_color_block",
+		"multiplayer_color_block",
 		32,
 		multiplayer_color_block$2);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		customized_model_bits_block_block,
-		"customized_model_bits_block_block",
+		"customized_model_bits_block",
+		"customized_model_bits_block",
 		4,
 		customized_model_bits_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		customized_model_selection_block_block,
-		"customized_model_selection_block_block",
+		"customized_model_selection_block",
+		"customized_model_selection_block",
 		69,
 		customized_model_selection_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		customized_model_area_block_block,
-		"customized_model_area_block_block",
+		"customized_model_area_block",
+		"customized_model_area_block",
 		8,
 		customized_model_area_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		customized_model_characters_block_block,
-		"customized_model_characters_block_block",
+		"customized_model_characters_block",
+		"customized_model_characters_block",
 		2,
 		customized_model_characters_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_selections_block_block,
-		"weapon_selections_block_block",
+		"weapon_selections_block",
+		"weapon_selections_block",
 		64,
 		weapon_selections_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vehicle_selections_block_block,
-		"vehicle_selections_block_block",
+		"vehicle_selections_block",
+		"vehicle_selections_block",
 		16,
 		vehicle_selections_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		grenade_selections_block_block,
-		"grenade_selections_block_block",
+		"grenade_selections_block",
+		"grenade_selections_block",
 		8,
 		grenade_selections_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		object_remap_entry_block_block,
-		"object_remap_entry_block_block",
+		"object_remap_entry_block",
+		"object_remap_entry_block",
 		64,
 		object_remap_entry_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_weapon_set_block_block,
-		"multiplayer_weapon_set_block_block",
+		"multiplayer_weapon_set_block",
+		"multiplayer_weapon_set_block",
 		32,
 		multiplayer_weapon_set_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_vehicle_set_block_block,
-		"multiplayer_vehicle_set_block_block",
+		"multiplayer_vehicle_set_block",
+		"multiplayer_vehicle_set_block",
 		32,
 		multiplayer_vehicle_set_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_universal_block_block,
-		"multiplayer_universal_block_block",
+		"multiplayer_universal_block",
+		"multiplayer_universal_block",
 		1,
 		multiplayer_universal_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_spawn_influence_block_block,
-		"weapon_spawn_influence_block_block",
+		"weapon_spawn_influence_block",
+		"weapon_spawn_influence_block",
 		16,
 		weapon_spawn_influence_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vehicle_spawn_influence_block_block,
-		"vehicle_spawn_influence_block_block",
+		"vehicle_spawn_influence_block",
+		"vehicle_spawn_influence_block",
 		16,
 		vehicle_spawn_influence_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		projectile_spawn_influence_block_block,
-		"projectile_spawn_influence_block_block",
+		"projectile_spawn_influence_block",
+		"projectile_spawn_influence_block",
 		32,
 		projectile_spawn_influence_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_spawn_influence_block_block,
-		"equipment_spawn_influence_block_block",
+		"equipment_spawn_influence_block",
+		"equipment_spawn_influence_block",
 		16,
 		equipment_spawn_influence_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_constants_block_block,
-		"multiplayer_constants_block_block",
+		"multiplayer_constants_block",
+		"multiplayer_constants_block",
 		1,
 		multiplayer_constants_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_status_response_block_block,
-		"game_engine_status_response_block_block",
+		"game_engine_status_response_block",
+		"game_engine_status_response_block",
 		32,
 		game_engine_status_response_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sounds_block_block,
-		"sounds_block_block",
+		"sounds_block",
+		"sounds_block",
 		60,
 		sounds_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		looping_sounds_block_block,
-		"looping_sounds_block_block",
+		"looping_sounds_block",
+		"looping_sounds_block",
 		60,
 		looping_sounds_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_runtime_block_block,
-		"multiplayer_runtime_block_block",
+		"multiplayer_runtime_block",
+		"multiplayer_runtime_block",
 		1,
 		multiplayer_runtime_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_globals_block_group_block,
-		"multiplayer_globals_block_group_block",
+		"multiplayer_globals_block",
+		"multiplayer_globals_block",
 		1,
 		multiplayer_globals_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		player_trait_shield_vitality_block_block,
-		"player_trait_shield_vitality_block_block",
+		"player_trait_shield_vitality_block",
+		"player_trait_shield_vitality_block",
 		1,
 		player_trait_shield_vitality_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		player_trait_weapons_block_block,
-		"player_trait_weapons_block_block",
+		"player_trait_weapons_block",
+		"player_trait_weapons_block",
 		1,
 		player_trait_weapons_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		player_trait_movement_block_block,
-		"player_trait_movement_block_block",
+		"player_trait_movement_block",
+		"player_trait_movement_block",
 		1,
 		player_trait_movement_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		player_trait_sensors_block_block,
-		"player_trait_sensors_block_block",
+		"player_trait_sensors_block",
+		"player_trait_sensors_block",
 		1,
 		player_trait_sensors_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		player_trait_appearance_block_block,
-		"player_trait_appearance_block_block",
+		"player_trait_appearance_block",
+		"player_trait_appearance_block",
 		1,
 		player_trait_appearance_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_player_traits_block_block,
-		"game_engine_player_traits_block_block",
+		"game_engine_player_traits_block",
+		"game_engine_player_traits_block",
 		64,
 		game_engine_player_traits_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_miscellaneous_options_block_block,
-		"game_engine_miscellaneous_options_block_block",
+		"game_engine_miscellaneous_options_block",
+		"game_engine_miscellaneous_options_block",
 		1,
 		game_engine_miscellaneous_options_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_respawn_options_block_block,
-		"game_engine_respawn_options_block_block",
+		"game_engine_respawn_options_block",
+		"game_engine_respawn_options_block",
 		1,
 		game_engine_respawn_options_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_social_options_block_block,
-		"game_engine_social_options_block_block",
+		"game_engine_social_options_block",
+		"game_engine_social_options_block",
 		1,
 		game_engine_social_options_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_map_override_options_block_block,
-		"game_engine_map_override_options_block_block",
+		"game_engine_map_override_options_block",
+		"game_engine_map_override_options_block",
 		1,
 		game_engine_map_override_options_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_slayer_variant_block_block,
-		"game_engine_slayer_variant_block_block",
+		"game_engine_slayer_variant_block",
+		"game_engine_slayer_variant_block",
 		32,
 		game_engine_slayer_variant_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_oddball_variant_block_block,
-		"game_engine_oddball_variant_block_block",
+		"game_engine_oddball_variant_block",
+		"game_engine_oddball_variant_block",
 		32,
 		game_engine_oddball_variant_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_ctf_variant_block_block,
-		"game_engine_ctf_variant_block_block",
+		"game_engine_ctf_variant_block",
+		"game_engine_ctf_variant_block",
 		32,
 		game_engine_ctf_variant_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_assault_variant_block_block,
-		"game_engine_assault_variant_block_block",
+		"game_engine_assault_variant_block",
+		"game_engine_assault_variant_block",
 		32,
 		game_engine_assault_variant_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_infection_variant_block_block,
-		"game_engine_infection_variant_block_block",
+		"game_engine_infection_variant_block",
+		"game_engine_infection_variant_block",
 		32,
 		game_engine_infection_variant_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_king_variant_block_block,
-		"game_engine_king_variant_block_block",
+		"game_engine_king_variant_block",
+		"game_engine_king_variant_block",
 		32,
 		game_engine_king_variant_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_territories_variant_block_block,
-		"game_engine_territories_variant_block_block",
+		"game_engine_territories_variant_block",
+		"game_engine_territories_variant_block",
 		32,
 		game_engine_territories_variant_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_juggernaut_variant_block_block,
-		"game_engine_juggernaut_variant_block_block",
+		"game_engine_juggernaut_variant_block",
+		"game_engine_juggernaut_variant_block",
 		32,
 		game_engine_juggernaut_variant_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_vip_variant_block_block,
-		"game_engine_vip_variant_block_block",
+		"game_engine_vip_variant_block",
+		"game_engine_vip_variant_block",
 		32,
 		game_engine_vip_variant_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_sandbox_variant_block_block,
-		"game_engine_sandbox_variant_block_block",
+		"game_engine_sandbox_variant_block",
+		"game_engine_sandbox_variant_block",
 		32,
 		game_engine_sandbox_variant_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_settings_definition_block_group_block,
-		"game_engine_settings_definition_block_group_block",
+		"game_engine_settings_definition_block",
+		"game_engine_settings_definition_block",
 		1,
 		game_engine_settings_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_effect_template_additional_sound_input_block_block,
-		"sound_effect_template_additional_sound_input_block_block",
+		"sound_effect_template_additional_sound_input_block",
+		"sound_effect_template_additional_sound_input_block",
 		1,
 		sound_effect_template_additional_sound_input_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_effect_component_block_block,
-		"sound_effect_component_block_block",
+		"sound_effect_component_block",
+		"sound_effect_component_block",
 		16,
 		sound_effect_component_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_effect_override_parameters_block_block,
-		"sound_effect_override_parameters_block_block",
+		"sound_effect_override_parameters_block",
+		"sound_effect_override_parameters_block",
 		128,
 		sound_effect_override_parameters_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_effect_overrides_block_block,
-		"sound_effect_overrides_block_block",
+		"sound_effect_overrides_block",
+		"sound_effect_overrides_block",
 		128,
 		sound_effect_overrides_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_effect_template_parameter_block_block,
-		"sound_effect_template_parameter_block_block",
+		"sound_effect_template_parameter_block",
+		"sound_effect_template_parameter_block",
 		128,
 		sound_effect_template_parameter_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_effect_templates_block_block,
-		"sound_effect_templates_block_block",
+		"sound_effect_templates_block",
+		"sound_effect_templates_block",
 		8,
 		sound_effect_templates_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_effect_template_block_group_block,
-		"sound_effect_template_block_group_block",
+		"sound_effect_template_block",
+		"sound_effect_template_block",
 		1,
 		sound_effect_template_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		platform_sound_override_mixbins_block_block,
-		"platform_sound_override_mixbins_block_block",
+		"platform_sound_override_mixbins_block",
+		"platform_sound_override_mixbins_block",
 		8,
 		platform_sound_override_mixbins_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		platform_sound_filter_block_block,
-		"platform_sound_filter_block_block",
+		"platform_sound_filter_block",
+		"platform_sound_filter_block",
 		1,
 		platform_sound_filter_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		platform_sound_pitch_lfo_block_block,
-		"platform_sound_pitch_lfo_block_block",
+		"platform_sound_pitch_lfo_block",
+		"platform_sound_pitch_lfo_block",
 		1,
 		platform_sound_pitch_lfo_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		platform_sound_filter_lfo_block_block,
-		"platform_sound_filter_lfo_block_block",
+		"platform_sound_filter_lfo_block",
+		"platform_sound_filter_lfo_block",
 		1,
 		platform_sound_filter_lfo_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_effect_playback_block_block,
-		"sound_effect_playback_block_block",
+		"sound_effect_playback_block",
+		"sound_effect_playback_block",
 		1,
 		sound_effect_playback_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		platform_sound_playback_block_block,
-		"platform_sound_playback_block_block",
+		"platform_sound_playback_block",
+		"platform_sound_playback_block",
 		128,
 		platform_sound_playback_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_effect_collection_block_group_block,
-		"sound_effect_collection_block_group_block",
+		"sound_effect_collection_block",
+		"sound_effect_collection_block",
 		1,
 		sound_effect_collection_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_graph_sound_reference_block_block,
-		"animation_graph_sound_reference_block_block",
+		"animation_graph_sound_reference_block",
+		"animation_graph_sound_reference_block",
 		512,
 		animation_graph_sound_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_graph_node_block_block,
-		"animation_graph_node_block_block",
+		"animation_graph_node_block",
+		"animation_graph_node_block",
 		255,
 		animation_graph_node_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_graph_effect_reference_block_block,
-		"animation_graph_effect_reference_block_block",
+		"animation_graph_effect_reference_block",
+		"animation_graph_effect_reference_block",
 		512,
 		animation_graph_effect_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_frame_event_block_block,
-		"animation_frame_event_block_block",
+		"animation_frame_event_block",
+		"animation_frame_event_block",
 		512,
 		animation_frame_event_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_sound_event_block_block,
-		"animation_sound_event_block_block",
+		"animation_sound_event_block",
+		"animation_sound_event_block",
 		512,
 		animation_sound_event_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_effect_event_block_block,
-		"animation_effect_event_block_block",
+		"animation_effect_event_block",
+		"animation_effect_event_block",
 		512,
 		animation_effect_event_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_dialogue_event_block_block,
-		"animation_dialogue_event_block_block",
+		"animation_dialogue_event_block",
+		"animation_dialogue_event_block",
 		512,
 		animation_dialogue_event_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_blend_screen_block_block,
-		"animation_blend_screen_block_block",
+		"animation_blend_screen_block",
+		"animation_blend_screen_block",
 		64,
 		animation_blend_screen_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		object_space_node_data_block_block,
-		"object_space_node_data_block_block",
+		"object_space_node_data_block",
+		"object_space_node_data_block",
 		255,
 		object_space_node_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		foot_tracking_member_block_block,
-		"foot_tracking_member_block_block",
+		"foot_tracking_member_block",
+		"foot_tracking_member_block",
 		32,
 		foot_tracking_member_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		foot_lock_cycle_block_block,
-		"foot_lock_cycle_block_block",
+		"foot_lock_cycle_block",
+		"foot_lock_cycle_block",
 		64,
 		foot_lock_cycle_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		foot_tracking_block_block,
-		"foot_tracking_block_block",
+		"foot_tracking_block",
+		"foot_tracking_block",
 		32,
 		foot_tracking_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		foot_tracking_defaults_block,
-		"foot_tracking_defaults_block",
+		"foot_tracking_defaults",
+		"foot_tracking_defaults",
 		32,
 		foot_tracking_defaults);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_pool_block_block,
-		"animation_pool_block_block",
+		"animation_pool_block",
+		"animation_pool_block",
 		2048,
 		animation_pool_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_transition_destination_block_block,
-		"animation_transition_destination_block_block",
+		"animation_transition_destination_block",
+		"animation_transition_destination_block",
 		32,
 		animation_transition_destination_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_transition_block_block,
-		"animation_transition_block_block",
+		"animation_transition_block",
+		"animation_transition_block",
 		256,
 		animation_transition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_ik_block_block,
-		"animation_ik_block_block",
+		"animation_ik_block",
+		"animation_ik_block",
 		8,
 		animation_ik_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_entry_block_block,
-		"animation_entry_block_block",
+		"animation_entry_block",
+		"animation_entry_block",
 		256,
 		animation_entry_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_region_block_block,
-		"damage_region_block_block",
+		"damage_region_block",
+		"damage_region_block",
 		11,
 		damage_region_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_direction_block_block,
-		"damage_direction_block_block",
+		"damage_direction_block",
+		"damage_direction_block",
 		4,
 		damage_direction_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_animation_block_block,
-		"damage_animation_block_block",
+		"damage_animation_block",
+		"damage_animation_block",
 		8,
 		damage_animation_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vehicle_suspension_block_block,
-		"vehicle_suspension_block_block",
+		"vehicle_suspension_block",
+		"vehicle_suspension_block",
 		32,
 		vehicle_suspension_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_type_block_block,
-		"weapon_type_block_block",
+		"weapon_type_block",
+		"weapon_type_block",
 		64,
 		weapon_type_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_class_block_block,
-		"weapon_class_block_block",
+		"weapon_class_block",
+		"weapon_class_block",
 		64,
 		weapon_class_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_mode_block_block,
-		"animation_mode_block_block",
+		"animation_mode_block",
+		"animation_mode_block",
 		512,
 		animation_mode_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		object_animation_block_block,
-		"object_animation_block_block",
+		"object_animation_block",
+		"object_animation_block",
 		32,
 		object_animation_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		inherited_animation_node_map_block_block,
-		"inherited_animation_node_map_block_block",
+		"inherited_animation_node_map_block",
+		"inherited_animation_node_map_block",
 		255,
 		inherited_animation_node_map_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		inherited_animation_node_map_flag_block_block,
-		"inherited_animation_node_map_flag_block_block",
+		"inherited_animation_node_map_flag_block",
+		"inherited_animation_node_map_flag_block",
 		255,
 		inherited_animation_node_map_flag_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		inherited_animation_block_block,
-		"inherited_animation_block_block",
+		"inherited_animation_block",
+		"inherited_animation_block",
 		8,
 		inherited_animation_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_class_lookup_block_block,
-		"weapon_class_lookup_block_block",
+		"weapon_class_lookup_block",
+		"weapon_class_lookup_block",
 		64,
 		weapon_class_lookup_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		additional_node_data_block_block,
-		"additional_node_data_block_block",
+		"additional_node_data_block",
+		"additional_node_data_block",
 		255,
 		additional_node_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_animation_tag_resource_member_block,
-		"model_animation_tag_resource_member_block",
+		"model_animation_tag_resource_member",
+		"model_animation_tag_resource_member",
 		2048,
 		model_animation_tag_resource_member);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_animation_tag_resource_group_block,
-		"model_animation_tag_resource_group_block",
+		"model_animation_tag_resource_group",
+		"model_animation_tag_resource_group",
 		4096,
 		model_animation_tag_resource_group);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_animation_graph_block_group_block,
-		"model_animation_graph_block_group_block",
+		"model_animation_graph_block",
+		"model_animation_graph_block",
 		1,
 		model_animation_graph_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_codec_block_block,
-		"sound_gestalt_codec_block_block",
+		"sound_gestalt_codec_block",
+		"sound_gestalt_codec_block",
 		32767,
 		sound_gestalt_codec_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_playback_block_block,
-		"sound_gestalt_playback_block_block",
+		"sound_gestalt_playback_block",
+		"sound_gestalt_playback_block",
 		32767,
 		sound_gestalt_playback_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_scale_block_block,
-		"sound_gestalt_scale_block_block",
+		"sound_gestalt_scale_block",
+		"sound_gestalt_scale_block",
 		32767,
 		sound_gestalt_scale_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_import_names_block_block,
-		"sound_gestalt_import_names_block_block",
+		"sound_gestalt_import_names_block",
+		"sound_gestalt_import_names_block",
 		32767,
 		sound_gestalt_import_names_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_pitch_range_parameters_block_block,
-		"sound_gestalt_pitch_range_parameters_block_block",
+		"sound_gestalt_pitch_range_parameters_block",
+		"sound_gestalt_pitch_range_parameters_block",
 		32767,
 		sound_gestalt_pitch_range_parameters_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_permutations_block_block,
-		"sound_gestalt_permutations_block_block",
+		"sound_gestalt_permutations_block",
+		"sound_gestalt_permutations_block",
 		1048575,
 		sound_gestalt_permutations_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_permutation_languages_block_block,
-		"sound_gestalt_permutation_languages_block_block",
+		"sound_gestalt_permutation_languages_block",
+		"sound_gestalt_permutation_languages_block",
 		1048575,
 		sound_gestalt_permutation_languages_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_pitch_ranges_block_block,
-		"sound_gestalt_pitch_ranges_block_block",
+		"sound_gestalt_pitch_ranges_block",
+		"sound_gestalt_pitch_ranges_block",
 		32767,
 		sound_gestalt_pitch_ranges_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_custom_playback_block_block,
-		"sound_gestalt_custom_playback_block_block",
+		"sound_gestalt_custom_playback_block",
+		"sound_gestalt_custom_playback_block",
 		32767,
 		sound_gestalt_custom_playback_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_runtime_permutation_bit_vector_block_block,
-		"sound_gestalt_runtime_permutation_bit_vector_block_block",
+		"sound_gestalt_runtime_permutation_bit_vector_block",
+		"sound_gestalt_runtime_permutation_bit_vector_block",
 		32767,
 		sound_gestalt_runtime_permutation_bit_vector_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_promotions_block_block,
-		"sound_gestalt_promotions_block_block",
+		"sound_gestalt_promotions_block",
+		"sound_gestalt_promotions_block",
 		128,
 		sound_gestalt_promotions_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_extra_info_block_block,
-		"sound_gestalt_extra_info_block_block",
+		"sound_gestalt_extra_info_block",
+		"sound_gestalt_extra_info_block",
 		32767,
 		sound_gestalt_extra_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_cache_file_gestalt_block_group_block,
-		"sound_cache_file_gestalt_block_group_block",
+		"sound_cache_file_gestalt_block",
+		"sound_cache_file_gestalt_block",
 		1,
 		sound_cache_file_gestalt_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_sound_block_group_block,
-		"cache_file_sound_block_group_block",
+		"cache_file_sound_block",
+		"cache_file_sound_block",
 		1,
 		cache_file_sound_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_interop_type_identifier_block_block,
-		"cache_file_interop_type_identifier_block_block",
+		"cache_file_interop_type_identifier_block",
+		"cache_file_interop_type_identifier_block",
 		16,
 		cache_file_interop_type_identifier_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_fixup_location_block_block,
-		"cache_file_resource_fixup_location_block_block",
+		"cache_file_resource_fixup_location_block",
+		"cache_file_resource_fixup_location_block",
 		32767,
 		cache_file_resource_fixup_location_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_interop_location_block_block,
-		"cache_file_resource_interop_location_block_block",
+		"cache_file_resource_interop_location_block",
+		"cache_file_resource_interop_location_block",
 		32767,
 		cache_file_resource_interop_location_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_streaming_sublocation_block_block,
-		"cache_file_resource_streaming_sublocation_block_block",
+		"cache_file_resource_streaming_sublocation_block",
+		"cache_file_resource_streaming_sublocation_block",
 		32767,
 		cache_file_resource_streaming_sublocation_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_streaming_sublocation_table_block_block,
-		"cache_file_resource_streaming_sublocation_table_block_block",
+		"cache_file_resource_streaming_sublocation_table_block",
+		"cache_file_resource_streaming_sublocation_table_block",
 		32767,
 		cache_file_resource_streaming_sublocation_table_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_file_location_block_block,
-		"cache_file_resource_file_location_block_block",
+		"cache_file_resource_file_location_block",
+		"cache_file_resource_file_location_block",
 		32767,
 		cache_file_resource_location_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_patch_lookup_block_block,
-		"cache_file_resource_patch_lookup_block_block",
+		"cache_file_resource_patch_lookup_block",
+		"cache_file_resource_patch_lookup_block",
 		32767,
 		cache_file_resource_patch_lookup_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_default_location_block_block,
-		"cache_file_resource_default_location_block_block",
+		"cache_file_resource_default_location_block",
+		"cache_file_resource_default_location_block",
 		32767,
 		cache_file_resource_default_location_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_data_block_block,
-		"cache_file_resource_data_block_block",
+		"cache_file_resource_data_block",
+		"cache_file_resource_data_block",
 		32767,
 		cache_file_resource_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resources_bitvector_block_block,
-		"cache_file_tag_resources_bitvector_block_block",
+		"cache_file_tag_resources_bitvector_block",
+		"cache_file_tag_resources_bitvector_block",
 		32767,
 		cache_file_tag_resources_bitvector_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_usage_block_block,
-		"cache_file_tag_resource_usage_block_block",
+		"cache_file_tag_resource_usage_block",
+		"cache_file_tag_resource_usage_block",
 		16,
 		cache_file_tag_resource_usage_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_bsp_reference_block_block,
-		"cache_file_bsp_reference_block_block",
+		"cache_file_bsp_reference_block",
+		"cache_file_bsp_reference_block",
 		16,
 		cache_file_bsp_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_owner_block_block,
-		"cache_file_resource_owner_block_block",
+		"cache_file_resource_owner_block",
+		"cache_file_resource_owner_block",
 		32767,
 		cache_file_resource_owner_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_owner_reference_block_block,
-		"cache_file_resource_owner_reference_block_block",
+		"cache_file_resource_owner_reference_block",
+		"cache_file_resource_owner_reference_block",
 		32767,
 		cache_file_resource_owner_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_zone_resource_visit_node_block_block,
-		"cache_file_zone_resource_visit_node_block_block",
+		"cache_file_zone_resource_visit_node_block",
+		"cache_file_zone_resource_visit_node_block",
 		32767,
 		cache_file_zone_resource_visit_node_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_zone_resource_visit_node_link_block_block,
-		"cache_file_zone_resource_visit_node_link_block_block",
+		"cache_file_zone_resource_visit_node_link_block",
+		"cache_file_zone_resource_visit_node_link_block",
 		32767,
 		cache_file_zone_resource_visit_node_link_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_model_variant_usage_block_block,
-		"cache_file_model_variant_usage_block_block",
+		"cache_file_model_variant_usage_block",
+		"cache_file_model_variant_usage_block",
 		32767,
 		cache_file_model_variant_usage_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_model_variant_usage_reference_block_block,
-		"cache_file_model_variant_usage_reference_block_block",
+		"cache_file_model_variant_usage_reference_block",
+		"cache_file_model_variant_usage_reference_block",
 		32767,
 		cache_file_model_variant_usage_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_character_usage_block_block,
-		"cache_file_character_usage_block_block",
+		"cache_file_character_usage_block",
+		"cache_file_character_usage_block",
 		32767,
 		cache_file_character_usage_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_zone_block_block,
-		"cache_file_tag_zone_block_block",
+		"cache_file_tag_zone_block",
+		"cache_file_tag_zone_block",
 		32767,
 		cache_file_tag_zone_manifest_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_global_zone_block_block,
-		"cache_file_global_zone_block_block",
+		"cache_file_global_zone_block",
+		"cache_file_global_zone_block",
 		1,
 		cache_file_tag_zone_manifest_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_bsp_zone_block_block,
-		"cache_file_bsp_zone_block_block",
+		"cache_file_bsp_zone_block",
+		"cache_file_bsp_zone_block",
 		16,
 		cache_file_tag_zone_manifest_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_designer_zone_block_block,
-		"cache_file_designer_zone_block_block",
+		"cache_file_designer_zone_block",
+		"cache_file_designer_zone_block",
 		32,
 		cache_file_tag_zone_manifest_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_cinematic_zone_block_block,
-		"cache_file_cinematic_zone_block_block",
+		"cache_file_cinematic_zone_block",
+		"cache_file_cinematic_zone_block",
 		32,
 		cache_file_tag_zone_manifest_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_full_zone_sets_block_block,
-		"cache_file_full_zone_sets_block_block",
+		"cache_file_full_zone_sets_block",
+		"cache_file_full_zone_sets_block",
 		48,
 		cache_file_tag_zone_manifest_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_zone_set_zone_usage_block_block,
-		"cache_file_zone_set_zone_usage_block_block",
+		"cache_file_zone_set_zone_usage_block",
+		"cache_file_zone_set_zone_usage_block",
 		48,
 		cache_file_zone_set_zone_usage_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		resource_category_block_block,
-		"resource_category_block_block",
+		"resource_category_block",
+		"resource_category_block",
 		128,
 		resource_category_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_debug_resource_definition_block_block,
-		"cache_file_debug_resource_definition_block_block",
+		"cache_file_debug_resource_definition_block",
+		"cache_file_debug_resource_definition_block",
 		16,
 		cache_file_debug_resource_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_layout_block_block,
-		"cache_file_resource_layout_block_block",
+		"cache_file_resource_layout_block",
+		"cache_file_resource_layout_block",
 		32767,
 		cache_file_resource_layout_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_named_value_block_block,
-		"cache_file_tag_resource_named_value_block_block",
+		"cache_file_tag_resource_named_value_block",
+		"cache_file_tag_resource_named_value_block",
 		128,
 		cache_file_tag_resource_named_value_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_properties_block_block,
-		"cache_file_tag_resource_properties_block_block",
+		"cache_file_tag_resource_properties_block",
+		"cache_file_tag_resource_properties_block",
 		32767,
 		cache_file_tag_resource_properties_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		debug_cache_file_tag_zone_block_block,
-		"debug_cache_file_tag_zone_block_block",
+		"debug_cache_file_tag_zone_block",
+		"debug_cache_file_tag_zone_block",
 		32767,
 		debug_cache_file_zone_manifest_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		debug_cache_file_model_variant_zone_block_block,
-		"debug_cache_file_model_variant_zone_block_block",
+		"debug_cache_file_model_variant_zone_block",
+		"debug_cache_file_model_variant_zone_block",
 		32767,
 		debug_cache_file_zone_manifest_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		debug_cache_file_combat_dialogue_zone_block_block,
-		"debug_cache_file_combat_dialogue_zone_block_block",
+		"debug_cache_file_combat_dialogue_zone_block",
+		"debug_cache_file_combat_dialogue_zone_block",
 		32767,
 		debug_cache_file_zone_manifest_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_parentage_block_block,
-		"cache_file_tag_parentage_block_block",
+		"cache_file_tag_parentage_block",
+		"cache_file_tag_parentage_block",
 		65534,
 		cache_file_tag_parentage_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_parentage_reference_block_block,
-		"cache_file_tag_parentage_reference_block_block",
+		"cache_file_tag_parentage_reference_block",
+		"cache_file_tag_parentage_reference_block",
 		65534,
 		cache_file_tag_parentage_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_prediction_quantum_block_block,
-		"cache_file_tag_resource_prediction_quantum_block_block",
+		"cache_file_tag_resource_prediction_quantum_block",
+		"cache_file_tag_resource_prediction_quantum_block",
 		32767,
 		cache_file_tag_resource_prediction_quantum_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_prediction_atom_block_block,
-		"cache_file_tag_resource_prediction_atom_block_block",
+		"cache_file_tag_resource_prediction_atom_block",
+		"cache_file_tag_resource_prediction_atom_block",
 		65535,
 		cache_file_tag_resource_prediction_atom_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_prediction_molecule_atom_reference_block_block,
-		"cache_file_tag_resource_prediction_molecule_atom_reference_block_block",
+		"cache_file_tag_resource_prediction_molecule_atom_reference_block",
+		"cache_file_tag_resource_prediction_molecule_atom_reference_block",
 		65535,
 		cache_file_tag_resource_prediction_molecule_atom_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_prediction_molecule_block_block,
-		"cache_file_tag_resource_prediction_molecule_block_block",
+		"cache_file_tag_resource_prediction_molecule_block",
+		"cache_file_tag_resource_prediction_molecule_block",
 		32767,
 		cache_file_tag_resource_prediction_molecule_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_prediction_molecule_keys_block_block,
-		"cache_file_tag_resource_prediction_molecule_keys_block_block",
+		"cache_file_tag_resource_prediction_molecule_keys_block",
+		"cache_file_tag_resource_prediction_molecule_keys_block",
 		8192,
 		cache_file_tag_resource_prediction_molecule_keys_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_bsp_attachment_block_block,
-		"cache_file_bsp_attachment_block_block",
+		"cache_file_bsp_attachment_block",
+		"cache_file_bsp_attachment_block",
 		32767,
 		cache_file_bsp_attachment_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_bsp_game_attachments_block_block,
-		"cache_file_bsp_game_attachments_block_block",
+		"cache_file_bsp_game_attachments_block",
+		"cache_file_bsp_game_attachments_block",
 		16,
 		cache_file_bsp_game_attachments_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_gestalt_block_group_block,
-		"cache_file_resource_gestalt_block_group_block",
+		"cache_file_resource_gestalt_block",
+		"cache_file_resource_gestalt_block",
 		1,
 		cache_file_resource_gestalt_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_layout_table_block_group_block,
-		"cache_file_resource_layout_table_block_group_block",
+		"cache_file_resource_layout_table_block",
+		"cache_file_resource_layout_table_block",
 		1,
 		cache_file_resource_layout_table_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_type_identifier_block_block,
-		"cache_file_resource_type_identifier_block_block",
+		"cache_file_resource_type_identifier_block",
+		"cache_file_resource_type_identifier_block",
 		16,
 		cache_file_resource_type_identifier_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_codec_identifier_block_block,
-		"cache_file_codec_identifier_block_block",
+		"cache_file_codec_identifier_block",
+		"cache_file_codec_identifier_block",
 		127,
 		cache_file_codec_identifier_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_shared_file_block_block,
-		"cache_file_shared_file_block_block",
+		"cache_file_shared_file_block",
+		"cache_file_shared_file_block",
 		7,
 		cache_file_shared_file_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		resource_owner_block_block,
-		"resource_owner_block_block",
+		"resource_owner_block",
+		"resource_owner_block",
 		32767,
 		resource_owner_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shared_cache_file_new_location_block_block,
-		"shared_cache_file_new_location_block_block",
+		"shared_cache_file_new_location_block",
+		"shared_cache_file_new_location_block",
 		32767,
 		shared_cache_file_new_location_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shared_cache_file_original_location_block_block,
-		"shared_cache_file_original_location_block_block",
+		"shared_cache_file_original_location_block",
+		"shared_cache_file_original_location_block",
 		32767,
 		shared_cache_file_original_location_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shared_cache_file_original_location_reference_block_block,
-		"shared_cache_file_original_location_reference_block_block",
+		"shared_cache_file_original_location_reference_block",
+		"shared_cache_file_original_location_reference_block",
 		32767,
 		shared_cache_file_original_location_reference_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shared_cache_file_layout_block_group_block,
-		"shared_cache_file_layout_block_group_block",
+		"shared_cache_file_layout_block",
+		"shared_cache_file_layout_block",
 		1,
 		shared_cache_file_layout_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		bink_block_group_block,
-		"bink_block_group_block",
+		"bink_block",
+		"bink_block",
 		1,
 		bink_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		player_training_entry_data_block_block,
-		"player_training_entry_data_block_block",
+		"player_training_entry_data_block",
+		"player_training_entry_data_block",
 		35,
 		player_training_entry_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_usage_block_block,
-		"bitmap_usage_block_block",
+		"bitmap_usage_block",
+		"bitmap_usage_block",
 		1,
 		bitmap_usage_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_language_info_block_block,
-		"sound_language_info_block_block",
+		"sound_language_info_block",
+		"sound_language_info_block",
 		12,
 		sound_language_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_permutation_language_info_block,
-		"sound_permutation_language_info_block",
+		"sound_permutation_language_info",
+		"sound_permutation_language_info",
 		32767,
 		sound_permutation_language_info);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_pitch_range_language_info_block,
-		"sound_pitch_range_language_info_block",
+		"sound_pitch_range_language_info",
+		"sound_pitch_range_language_info",
 		32767,
 		sound_pitch_range_language_info);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_group_sprite_block_def_block,
-		"bitmap_group_sprite_block_def_block",
+		"bitmap_group_sprite_block_def",
+		"bitmap_group_sprite_block_def",
 		128,
 		bitmap_group_sprite_block_def);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_group_sequence_block_def_block,
-		"bitmap_group_sequence_block_def_block",
+		"bitmap_group_sequence_block_def",
+		"bitmap_group_sequence_block_def",
 		256,
 		bitmap_group_sequence_block_def);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_data_block_def_block,
-		"bitmap_data_block_def_block",
+		"bitmap_data_block_def",
+		"bitmap_data_block_def",
 		65536,
 		bitmap_data_block_def);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_scenario_load_parameters_block_block,
-		"global_scenario_load_parameters_block_block",
+		"scenario load parameters",
+		"global_scenario_load_parameters_block",
 		32,
 		global_scenario_load_parameters_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_audibility_block_block,
-		"structure_bsp_audibility_block_block",
+		"structure_bsp_audibility_block",
+		"structure_bsp_audibility_block",
 		1,
 		structure_bsp_audibility_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		door_encoded_pas_block_block,
-		"door_encoded_pas_block_block",
+		"door_encoded_pas_block",
+		"door_encoded_pas_block",
 		2048,
 		door_encoded_pas_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cluster_door_portal_encoded_pas_block_block,
-		"cluster_door_portal_encoded_pas_block_block",
+		"cluster_door_portal_encoded_pas_block",
+		"cluster_door_portal_encoded_pas_block",
 		1024,
 		cluster_door_portal_encoded_pas_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_deafening_encoded_pas_block_block,
-		"ai_deafening_encoded_pas_block_block",
+		"ai_deafening_encoded_pas_block",
+		"ai_deafening_encoded_pas_block",
 		1020,
 		ai_deafening_encoded_pas_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		encoded_cluster_distances_block_block,
-		"encoded_cluster_distances_block_block",
+		"encoded_cluster_distances_block",
+		"encoded_cluster_distances_block",
 		32640,
 		encoded_cluster_distances_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		occluder_to_machine_door_mapping_block,
-		"occluder_to_machine_door_mapping_block",
+		"occluder_to_machine_door_mapping",
+		"occluder_to_machine_door_mapping",
 		128,
 		occluder_to_machine_door_mapping);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gpu_function_block_block,
-		"gpu_function_block_block",
+		"gpu_function_block",
+		"gpu_function_block",
 		25,
 		gpu_function_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gpu_color_block_block,
-		"gpu_color_block_block",
+		"gpu_color_block",
+		"gpu_color_block",
 		8,
 		gpu_color_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gpu_property_block_block,
-		"gpu_property_block_block",
+		"gpu_property_block",
+		"gpu_property_block",
 		15,
 		gpu_property_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_system_emitter_definition_block_block,
-		"particle_system_emitter_definition_block_block",
+		"particle_system_emitter_definition_block",
+		"particle_system_emitter_definition_block",
 		8,
 		particle_system_emitter_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_system_definition_block_new_block,
-		"particle_system_definition_block_new_block",
+		"particle_system_definition_block_new",
+		"particle_system_definition_block_new",
 		32,
 		particle_system_definition_block_new);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		mopp_code_definition_block_block,
-		"mopp_code_definition_block_block",
+		"mopp_code_definition_block",
+		"mopp_code_definition_block",
 		32767,
 		mopp_code_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		mopp_code_data_definition_block_block,
-		"mopp_code_data_definition_block_block",
+		"mopp_code_data_definition_block",
+		"mopp_code_data_definition_block",
 		16777216,
 		mopp_code_data_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		material_physics_drag_properties_block_block,
-		"material_physics_drag_properties_block_block",
+		"material_physics_drag_properties_block",
+		"material_physics_drag_properties_block",
 		2,
 		material_physics_drag_properties_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		materials_block_block$2,
-		"materials_block_block",
+		"materials_block",
+		"materials_block",
 		256,
 		materials_block$2);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		underwater_proxies_block_block,
-		"underwater_proxies_block_block",
+		"underwater_proxies_block",
+		"underwater_proxies_block",
 		256,
 		underwater_proxies_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_metagame_scenario_bonuses_block_block,
-		"campaign_metagame_scenario_bonuses_block_block",
+		"campaign_metagame_scenario_bonuses_block",
+		"campaign_metagame_scenario_bonuses_block",
 		8,
 		campaign_metagame_scenario_bonuses_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_metagame_style_type_block_block,
-		"campaign_metagame_style_type_block_block",
+		"campaign_metagame_style_type_block",
+		"campaign_metagame_style_type_block",
 		8,
 		campaign_metagame_style_type_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_metagame_difficulty_scale_block_block,
-		"campaign_metagame_difficulty_scale_block_block",
+		"campaign_metagame_difficulty_scale_block",
+		"campaign_metagame_difficulty_scale_block",
 		4,
 		campaign_metagame_difficulty_scale_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_metagame_primary_skull_block_block,
-		"campaign_metagame_primary_skull_block_block",
+		"campaign_metagame_primary_skull_block",
+		"campaign_metagame_primary_skull_block",
 		9,
 		campaign_metagame_primary_skull_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_metagame_secondary_skull_block_block,
-		"campaign_metagame_secondary_skull_block_block",
+		"campaign_metagame_secondary_skull_block",
+		"campaign_metagame_secondary_skull_block",
 		5,
 		campaign_metagame_secondary_skull_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_metagame_globals_block_block,
-		"campaign_metagame_globals_block_block",
+		"campaign_metagame_globals_block",
+		"campaign_metagame_globals_block",
 		1,
 		campaign_metagame_globals_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_metagame_bucket_block_block,
-		"campaign_metagame_bucket_block_block",
+		"campaign_metagame_bucket_block",
+		"campaign_metagame_bucket_block",
 		1,
 		campaign_metagame_bucket_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_metagame_scenario_block_block,
-		"campaign_metagame_scenario_block_block",
+		"campaign_metagame_scenario_block",
+		"campaign_metagame_scenario_block",
 		1,
 		campaign_metagame_scenario_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vehicle_phantom_shape_block_block,
-		"vehicle_phantom_shape_block_block",
+		"vehicle_phantom_shape_block",
+		"vehicle_phantom_shape_block",
 		1,
 		vehicle_phantom_shape_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		anti_gravity_point_definition_block_block,
-		"anti_gravity_point_definition_block_block",
+		"anti_gravity_point_definition_block",
+		"anti_gravity_point_definition_block",
 		16,
 		anti_gravity_point_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		friction_point_definition_block_block,
-		"friction_point_definition_block_block",
+		"friction_point_definition_block",
+		"friction_point_definition_block",
 		16,
 		friction_point_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		instantaneous_damage_repsonse_block_block,
-		"instantaneous_damage_repsonse_block_block",
+		"instantaneous_damage_repsonse_block",
+		"instantaneous_damage_repsonse_block",
 		16,
 		instantaneous_damage_repsonse_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_seat_info_block_block,
-		"damage_seat_info_block_block",
+		"damage_seat_info_block",
+		"damage_seat_info_block",
 		16,
 		damage_seat_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_constraint_info_block_block,
-		"damage_constraint_info_block_block",
+		"damage_constraint_info_block",
+		"damage_constraint_info_block",
 		16,
 		damage_constraint_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_seat_region_setting_block_block,
-		"damage_seat_region_setting_block_block",
+		"damage_seat_region_setting_block",
+		"damage_seat_region_setting_block",
 		1,
 		damage_seat_region_setting_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_damage_info_block_block,
-		"global_damage_info_block_block",
+		"global_damage_info_block",
+		"global_damage_info_block",
 		1,
 		global_damage_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_damage_section_block_block,
-		"global_damage_section_block_block",
+		"global_damage_section_block",
+		"global_damage_section_block",
 		16,
 		global_damage_section_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_damage_nodes_block_block,
-		"global_damage_nodes_block_block",
+		"global_damage_nodes_block",
+		"global_damage_nodes_block",
 		255,
 		global_damage_nodes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sorting_position_block_block,
-		"sorting_position_block_block",
+		"sorting_position_block",
+		"sorting_position_block",
 		65535,
 		sorting_position_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		part_block_block,
-		"part_block_block",
+		"part_block",
+		"part_block",
 		255,
 		part_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		subpart_block_block,
-		"subpart_block_block",
+		"subpart_block",
+		"subpart_block",
 		32767,
 		subpart_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		indices_word_block_block,
-		"indices_word_block_block",
+		"indices_word_block",
+		"indices_word_block",
 		65535,
 		indices_word_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		raw_vertex_block_block,
-		"raw_vertex_block_block",
+		"raw_vertex_block",
+		"raw_vertex_block",
 		65535,
 		raw_vertex_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		raw_water_append_block_block,
-		"raw_water_append_block_block",
+		"raw_water_append_block",
+		"raw_water_append_block",
 		65535,
 		raw_water_append_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		raw_water_block_block,
-		"raw_water_block_block",
+		"raw_water_block",
+		"raw_water_block",
 		65535,
 		raw_water_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		compression_info_block_block,
-		"compression_info_block_block",
+		"compression_info_block",
+		"compression_info_block",
 		65536,
 		compression_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		node_map_byte_block_block,
-		"node_map_byte_block_block",
+		"node_map_byte_block",
+		"node_map_byte_block",
 		255,
 		node_map_byte_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		instance_index_word_block_block,
-		"instance_index_word_block_block",
+		"instance_index_word_block",
+		"instance_index_word_block",
 		65535,
 		instance_index_word_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_instance_bucket_block_block,
-		"global_instance_bucket_block_block",
+		"global_instance_bucket_block",
+		"global_instance_bucket_block",
 		2048,
 		global_instance_bucket_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		per_mesh_raw_data_block_block,
-		"per_mesh_raw_data_block_block",
+		"per_mesh_raw_data_block",
+		"per_mesh_raw_data_block",
 		65535,
 		per_mesh_raw_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		per_mesh_mopp_block_block,
-		"per_mesh_mopp_block_block",
+		"per_mesh_mopp_block",
+		"per_mesh_mopp_block",
 		65535,
 		per_mesh_mopp_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		per_mesh_node_map_block_block,
-		"per_mesh_node_map_block_block",
+		"per_mesh_node_map_block",
+		"per_mesh_node_map_block",
 		65535,
 		per_mesh_node_map_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		per_mesh_subpart_visibility_block_block,
-		"per_mesh_subpart_visibility_block_block",
+		"per_mesh_subpart_visibility_block",
+		"per_mesh_subpart_visibility_block",
 		64,
 		per_mesh_subpart_visibility_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		per_instance_prt_data_block_block,
-		"per_instance_prt_data_block_block",
+		"per_instance_prt_data_block",
+		"per_instance_prt_data_block",
 		65535,
 		per_instance_prt_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		per_mesh_prt_data_block_block,
-		"per_mesh_prt_data_block_block",
+		"per_mesh_prt_data_block",
+		"per_mesh_prt_data_block",
 		65535,
 		per_mesh_prt_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		per_instance_lightmap_texcoords_block_block,
-		"per_instance_lightmap_texcoords_block_block",
+		"per_instance_lightmap_texcoords_block",
+		"per_instance_lightmap_texcoords_block",
 		65535,
 		per_instance_lightmap_texcoords_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_data_block_block,
-		"user_data_block_block",
+		"user_data_block",
+		"user_data_block",
 		64,
 		user_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vertex_buffers_block_block,
-		"vertex_buffers_block_block",
+		"vertex_buffers_block",
+		"vertex_buffers_block",
 		65535,
 		vertex_buffers_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		index_buffers_block_block,
-		"index_buffers_block_block",
+		"index_buffers_block",
+		"index_buffers_block",
 		65535,
 		index_buffers_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_vertex_buffer_block_block,
-		"render_vertex_buffer_block_block",
+		"render_vertex_buffer_block",
+		"render_vertex_buffer_block",
 		65535,
 		render_vertex_buffer_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_index_buffer_block_block,
-		"render_index_buffer_block_block",
+		"render_index_buffer_block",
+		"render_index_buffer_block",
 		65535,
 		render_index_buffer_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_mesh_block_block,
-		"global_mesh_block_block",
+		"mesh",
+		"global_mesh_block",
 		65535,
 		global_mesh_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_geometry_section_strip_index_block_block,
-		"global_geometry_section_strip_index_block_block",
+		"index",
+		"global_geometry_section_strip_index_block",
 		16777214,
 		global_geometry_section_strip_index_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_render_model_instance_placement_block_block,
-		"global_render_model_instance_placement_block_block",
+		"global_render_model_instance_placement_block",
+		"global_render_model_instance_placement_block",
 		64,
 		global_render_model_instance_placement_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_instanced_geometry_definition_block_block,
-		"structure_bsp_instanced_geometry_definition_block_block",
+		"structure_bsp_instanced_geometry_definition_block",
+		"structure_bsp_instanced_geometry_definition_block",
 		1024,
 		structure_bsp_instanced_geometry_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_instanced_geometry_instances_block_block,
-		"structure_bsp_instanced_geometry_instances_block_block",
+		"structure_bsp_instanced_geometry_instances_block",
+		"structure_bsp_instanced_geometry_instances_block",
 		4096,
 		structure_bsp_instanced_geometry_instances_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		error_reports_block_block,
-		"error_reports_block_block",
+		"error report",
+		"error_reports_block",
 		1048576,
 		error_reports_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		error_report_vertices_block_block,
-		"error_report_vertices_block_block",
+		"error report vertex",
+		"error_report_vertices_block",
 		1048576,
 		error_report_vertices_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		error_report_vectors_block_block,
-		"error_report_vectors_block_block",
+		"error report vector",
+		"error_report_vectors_block",
 		1048576,
 		error_report_vectors_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		error_report_lines_block_block,
-		"error_report_lines_block_block",
+		"error report line",
+		"error_report_lines_block",
 		1048576,
 		error_report_lines_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		error_report_triangles_block_block,
-		"error_report_triangles_block_block",
+		"error report triangle",
+		"error_report_triangles_block",
 		1048576,
 		error_report_triangles_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		error_report_quads_block_block,
-		"error_report_quads_block_block",
+		"error report quad",
+		"error_report_quads_block",
 		1048576,
 		error_report_quads_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		error_report_comments_block_block,
-		"error_report_comments_block_block",
+		"error report comment",
+		"error_report_comments_block",
 		1048576,
 		error_report_comments_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_error_report_categories_block_block,
-		"global_error_report_categories_block_block",
+		"error report category",
+		"global_error_report_categories_block",
 		64,
 		global_error_report_categories_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_geometry_material_block_block,
-		"global_geometry_material_block_block",
+		"material",
+		"global_geometry_material_block",
 		1024,
 		global_geometry_material_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_geometry_material_property_block_block,
-		"global_geometry_material_property_block_block",
+		"material property",
+		"global_geometry_material_property_block",
 		16,
 		global_geometry_material_property_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		bsp3d_nodes_block_block,
-		"bsp3d_nodes_block_block",
+		"bsp3d_nodes_block",
+		"bsp3d_nodes_block",
 		8388608,
 		bsp3d_nodes_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		large_bsp3d_nodes_block_block,
-		"large_bsp3d_nodes_block_block",
+		"bsp3d node",
+		"large_bsp3d_nodes_block",
 		536870911,
 		large_bsp3d_nodes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		planes_block_block,
-		"planes_block_block",
+		"planes_block",
+		"planes_block",
 		536870911,
 		planes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		leaves_block_block,
-		"leaves_block_block",
+		"leaves_block",
+		"leaves_block",
 		8388608,
 		collision_leaf_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		large_leaves_block_block,
-		"large_leaves_block_block",
+		"leaf",
+		"large_leaves_block",
 		134217728,
 		large_leaves_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		bsp2d_references_block_block,
-		"bsp2d_references_block_block",
+		"bsp2d_references_block",
+		"bsp2d_references_block",
 		196608,
 		bsp2d_references_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		large_bsp2d_references_block_block,
-		"large_bsp2d_references_block_block",
+		"bsp2d reference",
+		"large_bsp2d_references_block",
 		536870911,
 		large_bsp2d_references_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		bsp2d_nodes_block_block,
-		"bsp2d_nodes_block_block",
+		"bsp2d_nodes_block",
+		"bsp2d_nodes_block",
 		32767,
 		bsp2d_nodes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		large_bsp2d_nodes_block_block,
-		"large_bsp2d_nodes_block_block",
+		"bsp2d node",
+		"large_bsp2d_nodes_block",
 		536870911,
 		large_bsp2d_nodes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		surfaces_block_block,
-		"surfaces_block_block",
+		"surfaces_block",
+		"surfaces_block",
 		32767,
 		surfaces_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		large_surfaces_block_block,
-		"large_surfaces_block_block",
+		"surface",
+		"large_surfaces_block",
 		262136,
 		large_surfaces_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		edges_block_block,
-		"edges_block_block",
+		"edges_block",
+		"edges_block",
 		262144,
 		edges_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		large_edges_block_block,
-		"large_edges_block_block",
+		"edge",
+		"large_edges_block",
 		2621440,
 		large_edges_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vertices_block_block,
-		"vertices_block_block",
+		"vertices_block",
+		"vertices_block",
 		131072,
 		vertices_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		large_vertices_block_block,
-		"large_vertices_block_block",
+		"vertex",
+		"large_vertices_block",
 		1310720,
 		large_vertices_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_collision_bsp_block_block,
-		"global_collision_bsp_block_block",
+		"global_collision_bsp_block",
+		"global_collision_bsp_block",
 		1,
 		global_collision_bsp_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_large_collision_bsp_block_block,
-		"global_large_collision_bsp_block_block",
+		"global_large_collision_bsp_block",
+		"global_large_collision_bsp_block",
 		1,
 		global_large_collision_bsp_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_bsp_physics_block_block,
-		"collision_bsp_physics_block_block",
+		"collision_bsp_physics_block",
+		"collision_bsp_physics_block",
 		1024,
 		collision_bsp_physics_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_soft_ceiling_triangle_block_block,
-		"structure_soft_ceiling_triangle_block_block",
+		"structure_soft_ceiling_triangle_block",
+		"structure_soft_ceiling_triangle_block",
 		32767,
 		structure_soft_ceiling_triangle_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_soft_ceiling_block_block,
-		"structure_soft_ceiling_block_block",
+		"structure_soft_ceiling_block",
+		"structure_soft_ceiling_block",
 		128,
 		structure_soft_ceiling_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		breakable_surface_key_table_block_block,
-		"breakable_surface_key_table_block_block",
+		"breakable_surface_key_table_block",
+		"breakable_surface_key_table_block",
 		32767,
 		breakable_surface_key_table_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_water_groups_block_block,
-		"structure_water_groups_block_block",
+		"structure_water_groups_block",
+		"structure_water_groups_block",
 		1024,
 		structure_water_groups_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_water_instance_planes_block_block,
-		"structure_water_instance_planes_block_block",
+		"structure_water_instance_planes_block",
+		"structure_water_instance_planes_block",
 		1024,
 		structure_water_instance_planes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_water_instance_debug_triangles_block_block,
-		"structure_water_instance_debug_triangles_block_block",
+		"structure_water_instance_debug_triangles_block",
+		"structure_water_instance_debug_triangles_block",
 		1024,
 		structure_water_instance_debug_triangles_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_water_instances_block_block,
-		"structure_water_instances_block_block",
+		"structure_water_instances_block",
+		"structure_water_instances_block",
 		1024,
 		structure_water_instances_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		soft_surfaces_definition_block_block,
-		"soft_surfaces_definition_block_block",
+		"soft_surfaces_definition_block",
+		"soft_surfaces_definition_block",
 		1,
 		soft_surfaces_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cubemap_block_block,
-		"scenario_cubemap_block_block",
+		"scenario_cubemap_block",
+		"scenario_cubemap_block",
 		1024,
 		scenario_cubemap_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_cluster_cubemap_block,
-		"structure_cluster_cubemap_block",
+		"structure_cluster_cubemap",
+		"structure_cluster_cubemap",
 		32,
 		structure_cluster_cubemap);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_sound_cluster_portal_designators_block,
-		"structure_sound_cluster_portal_designators_block",
+		"structure_sound_cluster_portal_designators",
+		"structure_sound_cluster_portal_designators",
 		1024,
 		structure_sound_cluster_portal_designators);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_sound_cluster_interior_cluster_indices_block,
-		"structure_sound_cluster_interior_cluster_indices_block",
+		"structure_sound_cluster_interior_cluster_indices",
+		"structure_sound_cluster_interior_cluster_indices",
 		256,
 		structure_sound_cluster_interior_cluster_indices);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_sound_cluster_block_block,
-		"structure_bsp_sound_cluster_block_block",
+		"structure_bsp_sound_cluster_block",
+		"structure_bsp_sound_cluster_block",
 		256,
 		structure_bsp_sound_cluster_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_scenery_block_block,
-		"scenario_scenery_block_block",
+		"scenario_scenery_block",
+		"scenario_scenery_block",
 		2000,
 		scenario_scenery_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_scenery_palette_block_block,
-		"scenario_scenery_palette_block_block",
+		"scenario_scenery_palette_block",
+		"scenario_scenery_palette_block",
 		256,
 		scenario_scenery_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_biped_block_block,
-		"scenario_biped_block_block",
+		"scenario_biped_block",
+		"scenario_biped_block",
 		256,
 		scenario_biped_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_biped_palette_block_block,
-		"scenario_biped_palette_block_block",
+		"scenario_biped_palette_block",
+		"scenario_biped_palette_block",
 		256,
 		scenario_biped_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_vehicle_block_block,
-		"scenario_vehicle_block_block",
+		"scenario_vehicle_block",
+		"scenario_vehicle_block",
 		256,
 		scenario_vehicle_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_vehicle_palette_block_block,
-		"scenario_vehicle_palette_block_block",
+		"scenario_vehicle_palette_block",
+		"scenario_vehicle_palette_block",
 		256,
 		scenario_vehicle_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_equipment_block_block,
-		"scenario_equipment_block_block",
+		"scenario_equipment_block",
+		"scenario_equipment_block",
 		256,
 		scenario_equipment_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_equipment_palette_block_block,
-		"scenario_equipment_palette_block_block",
+		"scenario_equipment_palette_block",
+		"scenario_equipment_palette_block",
 		256,
 		scenario_equipment_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_weapon_block_block,
-		"scenario_weapon_block_block",
+		"scenario_weapon_block",
+		"scenario_weapon_block",
 		128,
 		scenario_weapon_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_weapon_palette_block_block,
-		"scenario_weapon_palette_block_block",
+		"scenario_weapon_palette_block",
+		"scenario_weapon_palette_block",
 		256,
 		scenario_weapon_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		device_group_block_block,
-		"device_group_block_block",
+		"device_group_block",
+		"device_group_block",
 		128,
 		device_group_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_machine_block_block,
-		"scenario_machine_block_block",
+		"scenario_machine_block",
+		"scenario_machine_block",
 		600,
 		scenario_machine_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_machine_palette_block_block,
-		"scenario_machine_palette_block_block",
+		"scenario_machine_palette_block",
+		"scenario_machine_palette_block",
 		256,
 		scenario_machine_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_terminal_block_block,
-		"scenario_terminal_block_block",
+		"scenario_terminal_block",
+		"scenario_terminal_block",
 		20,
 		scenario_terminal_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_terminal_palette_block_block,
-		"scenario_terminal_palette_block_block",
+		"scenario_terminal_palette_block",
+		"scenario_terminal_palette_block",
 		256,
 		scenario_terminal_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_control_block_block,
-		"scenario_control_block_block",
+		"scenario_control_block",
+		"scenario_control_block",
 		100,
 		scenario_control_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_control_palette_block_block,
-		"scenario_control_palette_block_block",
+		"scenario_control_palette_block",
+		"scenario_control_palette_block",
 		256,
 		scenario_control_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_sound_scenery_block_block,
-		"scenario_sound_scenery_block_block",
+		"scenario_sound_scenery_block",
+		"scenario_sound_scenery_block",
 		512,
 		scenario_sound_scenery_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_sound_scenery_palette_block_block,
-		"scenario_sound_scenery_palette_block_block",
+		"scenario_sound_scenery_palette_block",
+		"scenario_sound_scenery_palette_block",
 		256,
 		scenario_sound_scenery_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_light_block_block,
-		"scenario_light_block_block",
+		"scenario_light_block",
+		"scenario_light_block",
 		500,
 		scenario_light_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_light_palette_block_block,
-		"scenario_light_palette_block_block",
+		"scenario_light_palette_block",
+		"scenario_light_palette_block",
 		256,
 		scenario_light_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_crate_block_block,
-		"scenario_crate_block_block",
+		"scenario_crate_block",
+		"scenario_crate_block",
 		1536,
 		scenario_crate_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_crate_palette_block_block,
-		"scenario_crate_palette_block_block",
+		"scenario_crate_palette_block",
+		"scenario_crate_palette_block",
 		256,
 		scenario_crate_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_creature_block_block,
-		"scenario_creature_block_block",
+		"scenario_creature_block",
+		"scenario_creature_block",
 		128,
 		scenario_creature_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_creature_palette_block_block,
-		"scenario_creature_palette_block_block",
+		"scenario_creature_palette_block",
+		"scenario_creature_palette_block",
 		256,
 		scenario_creature_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_giant_block_block,
-		"scenario_giant_block_block",
+		"scenario_giant_block",
+		"scenario_giant_block",
 		32,
 		scenario_giant_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_giant_palette_block_block,
-		"scenario_giant_palette_block_block",
+		"scenario_giant_palette_block",
+		"scenario_giant_palette_block",
 		256,
 		scenario_giant_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_effect_scenery_block_block,
-		"scenario_effect_scenery_block_block",
+		"scenario_effect_scenery_block",
+		"scenario_effect_scenery_block",
 		512,
 		scenario_effect_scenery_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_effect_scenery_palette_block_block,
-		"scenario_effect_scenery_palette_block_block",
+		"scenario_effect_scenery_palette_block",
+		"scenario_effect_scenery_palette_block",
 		256,
 		scenario_effect_scenery_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		map_variant_vehicle_palette_block_block,
-		"map_variant_vehicle_palette_block_block",
+		"map_variant_vehicle_palette_block",
+		"map_variant_vehicle_palette_block",
 		256,
 		map_variant_vehicle_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		map_variant_weapon_palette_block_block,
-		"map_variant_weapon_palette_block_block",
+		"map_variant_weapon_palette_block",
+		"map_variant_weapon_palette_block",
 		256,
 		map_variant_weapon_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		map_variant_equipment_palette_block_block,
-		"map_variant_equipment_palette_block_block",
+		"map_variant_equipment_palette_block",
+		"map_variant_equipment_palette_block",
 		256,
 		map_variant_equipment_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		map_variant_scenery_palette_block_block,
-		"map_variant_scenery_palette_block_block",
+		"map_variant_scenery_palette_block",
+		"map_variant_scenery_palette_block",
 		256,
 		map_variant_scenery_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		map_variant_teleporter_palette_block_block,
-		"map_variant_teleporter_palette_block_block",
+		"map_variant_teleporter_palette_block",
+		"map_variant_teleporter_palette_block",
 		256,
 		map_variant_teleporter_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		map_variant_goal_palette_block_block,
-		"map_variant_goal_palette_block_block",
+		"map_variant_goal_palette_block",
+		"map_variant_goal_palette_block",
 		256,
 		map_variant_goal_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		map_variant_spawn_objects_palette_block_block,
-		"map_variant_spawn_objects_palette_block_block",
+		"map_variant_spawn_objects_palette_block",
+		"map_variant_spawn_objects_palette_block",
 		256,
 		map_variant_spawn_objects_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		pathfinding_object_index_list_block_block,
-		"pathfinding_object_index_list_block_block",
+		"pathfinding_object_index_list_block",
+		"pathfinding_object_index_list_block",
 		16,
 		pathfinding_object_index_list_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_object_node_orientations_bit_vector_block_block,
-		"scenario_object_node_orientations_bit_vector_block_block",
+		"scenario_object_node_orientations_bit_vector_block",
+		"scenario_object_node_orientations_bit_vector_block",
 		64,
 		scenario_object_node_orientations_bit_vector_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_object_node_orientations_orientations_block_block,
-		"scenario_object_node_orientations_orientations_block_block",
+		"scenario_object_node_orientations_orientations_block",
+		"scenario_object_node_orientations_orientations_block",
 		1785,
 		scenario_object_node_orientations_orientations_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_object_node_orientations_block_block,
-		"scenario_object_node_orientations_block_block",
+		"scenario_object_node_orientations_block",
+		"scenario_object_node_orientations_block",
 		1,
 		scenario_object_node_orientations_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_acoustics_palette_block_definition_block,
-		"scenario_acoustics_palette_block_definition_block",
+		"scenario_acoustics_palette_block_definition",
+		"scenario_acoustics_palette_block_definition",
 		512,
 		scenario_acoustics_palette_block_definition_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_acoustics_environment_palette_block_block,
-		"scenario_acoustics_environment_palette_block_block",
+		"scenario_acoustics_environment_palette_block",
+		"scenario_acoustics_environment_palette_block",
 		64,
 		scenario_acoustics_environment_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_acoustics_ambience_palette_block_block,
-		"scenario_acoustics_ambience_palette_block_block",
+		"scenario_acoustics_ambience_palette_block",
+		"scenario_acoustics_ambience_palette_block",
 		64,
 		scenario_acoustics_ambience_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_acoustic_volume_block_block,
-		"scenario_acoustic_volume_block_block",
+		"scenario_acoustic_volume_block",
+		"scenario_acoustic_volume_block",
 		8192,
 		scenario_acoustic_volume_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		map_leaf_face_vertex_block_block,
-		"map_leaf_face_vertex_block_block",
+		"map_leaf_face_vertex_block",
+		"map_leaf_face_vertex_block",
 		64,
 		map_leaf_face_vertex_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		map_leaf_face_block_block,
-		"map_leaf_face_block_block",
+		"map_leaf_face_block",
+		"map_leaf_face_block",
 		512,
 		map_leaf_face_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		map_leaf_connection_index_block_block,
-		"map_leaf_connection_index_block_block",
+		"map_leaf_connection_index_block",
+		"map_leaf_connection_index_block",
 		1024,
 		map_leaf_connection_index_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		leaf_connection_vertex_block_block,
-		"leaf_connection_vertex_block_block",
+		"leaf_connection_vertex_block",
+		"leaf_connection_vertex_block",
 		64,
 		leaf_connection_vertex_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_map_leaf_block_block,
-		"global_map_leaf_block_block",
+		"global_map_leaf_block",
+		"global_map_leaf_block",
 		134217728,
 		global_map_leaf_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_leaf_connection_block_block,
-		"global_leaf_connection_block_block",
+		"global_leaf_connection_block",
+		"global_leaf_connection_block",
 		524288,
 		global_leaf_connection_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		breakable_surface_set_block_block,
-		"breakable_surface_set_block_block",
+		"breakable_surface_set_block",
+		"breakable_surface_set_block",
 		2048,
 		breakable_surface_set_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_decorator_block_block,
-		"scenario_decorator_block_block",
+		"scenario_decorator_block",
+		"scenario_decorator_block",
 		1,
 		scenario_decorator_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		decorator_scenario_set_block_block,
-		"decorator_scenario_set_block_block",
+		"decorator_scenario_set_block",
+		"decorator_scenario_set_block",
 		48,
 		decorator_scenario_set_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		decorator_palette_block,
-		"decorator_palette_block",
+		"decorator_palette",
+		"decorator_palette",
 		16,
 		decorator_palette);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_decorator_placement_block_block,
-		"global_decorator_placement_block_block",
+		"global_decorator_placement_block",
+		"global_decorator_placement_block",
 		262144,
 		global_decorator_placement_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_match_probe_block_block,
-		"scenario_lightmap_match_probe_block_block",
+		"scenario_lightmap_match_probe_block",
+		"scenario_lightmap_match_probe_block",
 		2147483647,
 		scenario_lightmap_match_probe_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_designer_zone_block_block,
-		"scenario_designer_zone_block_block",
+		"scenario_designer_zone_block",
+		"scenario_designer_zone_block",
 		32,
 		scenario_designer_zone_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		biped_block_index_flags_block_block,
-		"biped_block_index_flags_block_block",
+		"biped_block_index_flags_block",
+		"biped_block_index_flags_block",
 		256,
 		biped_block_index_flags_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vehicle_block_index_flags_block_block,
-		"vehicle_block_index_flags_block_block",
+		"vehicle_block_index_flags_block",
+		"vehicle_block_index_flags_block",
 		256,
 		vehicle_block_index_flags_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_block_index_flags_block_block,
-		"weapon_block_index_flags_block_block",
+		"weapon_block_index_flags_block",
+		"weapon_block_index_flags_block",
 		256,
 		weapon_block_index_flags_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_block_index_flags_block_block,
-		"equipment_block_index_flags_block_block",
+		"equipment_block_index_flags_block",
+		"equipment_block_index_flags_block",
 		256,
 		equipment_block_index_flags_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenery_block_index_flags_block_block,
-		"scenery_block_index_flags_block_block",
+		"scenery_block_index_flags_block",
+		"scenery_block_index_flags_block",
 		256,
 		scenery_block_index_flags_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		machine_block_index_flags_block_block,
-		"machine_block_index_flags_block_block",
+		"machine_block_index_flags_block",
+		"machine_block_index_flags_block",
 		256,
 		machine_block_index_flags_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		terminal_block_index_flags_block_block,
-		"terminal_block_index_flags_block_block",
+		"terminal_block_index_flags_block",
+		"terminal_block_index_flags_block",
 		256,
 		terminal_block_index_flags_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		control_block_index_flags_block_block,
-		"control_block_index_flags_block_block",
+		"control_block_index_flags_block",
+		"control_block_index_flags_block",
 		256,
 		control_block_index_flags_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_scenery_block_index_flags_block_block,
-		"sound_scenery_block_index_flags_block_block",
+		"sound_scenery_block_index_flags_block",
+		"sound_scenery_block_index_flags_block",
 		256,
 		sound_scenery_block_index_flags_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		crate_block_index_flags_block_block,
-		"crate_block_index_flags_block_block",
+		"crate_block_index_flags_block",
+		"crate_block_index_flags_block",
 		256,
 		crate_block_index_flags_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		creature_block_index_flags_block_block,
-		"creature_block_index_flags_block_block",
+		"creature_block_index_flags_block",
+		"creature_block_index_flags_block",
 		256,
 		creature_block_index_flags_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		giant_block_index_flags_block_block,
-		"giant_block_index_flags_block_block",
+		"giant_block_index_flags_block",
+		"giant_block_index_flags_block",
 		256,
 		giant_block_index_flags_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_scenery_block_index_flags_block_block,
-		"effect_scenery_block_index_flags_block_block",
+		"effect_scenery_block_index_flags_block",
+		"effect_scenery_block_index_flags_block",
 		256,
 		effect_scenery_block_index_flags_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_block_index_flags_block_block,
-		"character_block_index_flags_block_block",
+		"character_block_index_flags_block",
+		"character_block_index_flags_block",
 		256,
 		character_block_index_flags_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		budget_reference_block_index_flags_block_block,
-		"budget_reference_block_index_flags_block_block",
+		"budget_reference_block_index_flags_block",
+		"budget_reference_block_index_flags_block",
 		256,
 		budget_reference_block_index_flags_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_debugger_block_definition_block,
-		"scenario_zone_debugger_block_definition_block",
+		"scenario_zone_debugger_block_definition",
+		"scenario_zone_debugger_block_definition",
 		1,
 		scenario_zone_debugger_block_definition_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		hs_script_parameters_block_block,
-		"hs_script_parameters_block_block",
+		"hs_script_parameters_block",
+		"hs_script_parameters_block",
 		5,
 		hs_script_parameters_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		hs_scripts_block_block,
-		"hs_scripts_block_block",
+		"hs_scripts_block",
+		"hs_scripts_block",
 		1024,
 		hs_scripts_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		hs_globals_block_block,
-		"hs_globals_block_block",
+		"hs_globals_block",
+		"hs_globals_block",
 		280,
 		hs_globals_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		hs_references_block_block,
-		"hs_references_block_block",
+		"hs_references_block",
+		"hs_references_block",
 		512,
 		hs_references_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		hs_source_files_block_group_block,
-		"hs_source_files_block_group_block",
+		"hs_source_files_block",
+		"hs_source_files_block",
 		16,
 		hs_source_files_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		hs_unit_seat_block_block,
-		"hs_unit_seat_block_block",
+		"hs_unit_seat_block",
+		"hs_unit_seat_block",
 		65536,
 		hs_unit_seat_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		hs_syntax_datum_block_block,
-		"hs_syntax_datum_block_block",
+		"hs_syntax_datum_block",
+		"hs_syntax_datum_block",
 		61440,
 		hs_syntax_datum_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		door_encoded_pas_block_block$2,
-		"door_encoded_pas_block_block",
+		"door_encoded_pas_block",
+		"door_encoded_pas_block",
 		8192,
 		door_encoded_pas_block$2);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		room_door_portal_encoded_pas_block_block,
-		"room_door_portal_encoded_pas_block_block",
+		"room_door_portal_encoded_pas_block",
+		"room_door_portal_encoded_pas_block",
 		4096,
 		room_door_portal_encoded_pas_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_deafening_encoded_pas_block_block$2,
-		"ai_deafening_encoded_pas_block_block",
+		"ai_deafening_encoded_pas_block",
+		"ai_deafening_encoded_pas_block",
 		16368,
 		ai_deafening_encoded_pas_block$2);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		encoded_room_distances_block_block,
-		"encoded_room_distances_block_block",
+		"encoded_room_distances_block",
+		"encoded_room_distances_block",
 		523776,
 		encoded_room_distances_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_portal_to_door_occluder_block_block,
-		"game_portal_to_door_occluder_block_block",
+		"game_portal_to_door_occluder_block",
+		"game_portal_to_door_occluder_block",
 		16,
 		game_portal_to_door_occluder_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		bsp_cluster_to_room_bounds_block,
-		"bsp_cluster_to_room_bounds_block",
+		"bsp_cluster_to_room_bounds",
+		"bsp_cluster_to_room_bounds",
 		16,
 		bsp_cluster_to_room_bounds);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		bsp_cluster_to_room_indices_block,
-		"bsp_cluster_to_room_indices_block",
+		"bsp_cluster_to_room_indices",
+		"bsp_cluster_to_room_indices",
 		1024,
 		bsp_cluster_to_room_indices);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_audibility_block_block,
-		"game_audibility_block_block",
+		"game_audibility_block",
+		"game_audibility_block",
 		48,
 		game_audibility_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		recorded_animation_block_block,
-		"recorded_animation_block_block",
+		"recorded_animation_block",
+		"recorded_animation_block",
 		1024,
 		recorded_animation_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_device_portal_association_block_block,
-		"structure_device_portal_association_block_block",
+		"structure_device_portal_association_block",
+		"structure_device_portal_association_block",
 		128,
 		structure_device_portal_association_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_portal_to_portal_mapping_block_block,
-		"game_portal_to_portal_mapping_block_block",
+		"game_portal_to_portal_mapping_block",
+		"game_portal_to_portal_mapping_block",
 		128,
 		game_portal_to_portal_mapping_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_portal_device_mapping_block_block,
-		"structure_portal_device_mapping_block_block",
+		"structure_portal_device_mapping_block",
+		"structure_portal_device_mapping_block",
 		16,
 		structure_portal_device_mapping_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		g_scenario_editor_folder_block_block,
-		"g_scenario_editor_folder_block_block",
+		"g_scenario_editor_folder_block",
+		"g_scenario_editor_folder_block",
 		32767,
 		g_scenario_editor_folder_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_general_event_block_block,
-		"game_engine_general_event_block_block",
+		"game_engine_general_event_block",
+		"game_engine_general_event_block",
 		128,
 		game_engine_general_event_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_flavor_event_block_block,
-		"game_engine_flavor_event_block_block",
+		"game_engine_flavor_event_block",
+		"game_engine_flavor_event_block",
 		128,
 		game_engine_flavor_event_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_slayer_event_block_block,
-		"game_engine_slayer_event_block_block",
+		"game_engine_slayer_event_block",
+		"game_engine_slayer_event_block",
 		128,
 		game_engine_slayer_event_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_ctf_event_block_block,
-		"game_engine_ctf_event_block_block",
+		"game_engine_ctf_event_block",
+		"game_engine_ctf_event_block",
 		128,
 		game_engine_ctf_event_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_assault_event_block_block,
-		"game_engine_assault_event_block_block",
+		"game_engine_assault_event_block",
+		"game_engine_assault_event_block",
 		128,
 		game_engine_assault_event_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_oddball_event_block_block,
-		"game_engine_oddball_event_block_block",
+		"game_engine_oddball_event_block",
+		"game_engine_oddball_event_block",
 		128,
 		game_engine_oddball_event_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_king_event_block_block,
-		"game_engine_king_event_block_block",
+		"game_engine_king_event_block",
+		"game_engine_king_event_block",
 		128,
 		game_engine_king_event_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_juggernaut_event_block_block,
-		"game_engine_juggernaut_event_block_block",
+		"game_engine_juggernaut_event_block",
+		"game_engine_juggernaut_event_block",
 		128,
 		game_engine_juggernaut_event_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_territories_event_block_block,
-		"game_engine_territories_event_block_block",
+		"game_engine_territories_event_block",
+		"game_engine_territories_event_block",
 		128,
 		game_engine_territories_event_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_infection_event_block_block,
-		"game_engine_infection_event_block_block",
+		"game_engine_infection_event_block",
+		"game_engine_infection_event_block",
 		128,
 		game_engine_infection_event_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_vip_event_block_block,
-		"game_engine_vip_event_block_block",
+		"game_engine_vip_event_block",
+		"game_engine_vip_event_block",
 		128,
 		game_engine_vip_event_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_response_definition_block_block,
-		"sound_response_definition_block_block",
+		"sound_response_definition_block",
+		"sound_response_definition_block",
 		10,
 		sound_response_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_water_ripple_block_group_block,
-		"render_water_ripple_block_group_block",
+		"render_water_ripple_block",
+		"render_water_ripple_block",
 		1,
 		render_water_ripple_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		camera_fx_settings_block_group_block,
-		"camera_fx_settings_block_group_block",
+		"camera_fx_settings_block",
+		"camera_fx_settings_block",
 		1,
 		camera_fx_settings_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		per_object_type_relative_min_luminance_block_block,
-		"per_object_type_relative_min_luminance_block_block",
+		"per_object_type_relative_min_luminance_block",
+		"per_object_type_relative_min_luminance_block",
 		14,
 		per_object_type_relative_min_luminance_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chocolate_mountain_new_block_group_block,
-		"chocolate_mountain_new_block_group_block",
+		"chocolate_mountain_new_block",
+		"chocolate_mountain_new_block",
 		1,
 		chocolate_mountain_new_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_category_block_block,
-		"render_method_category_block_block",
+		"render_method_category_block",
+		"render_method_category_block",
 		16,
 		render_method_category_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_options_block_block,
-		"render_method_options_block_block",
+		"render_method_options_block",
+		"render_method_options_block",
 		32,
 		render_method_options_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_entry_points_block_block,
-		"render_method_entry_points_block_block",
+		"render_method_entry_points_block",
+		"render_method_entry_points_block",
 		32,
 		render_method_entry_points_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_pass_block_block,
-		"render_method_pass_block_block",
+		"render_method_pass_block",
+		"render_method_pass_block",
 		1024,
 		render_method_pass_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_option_parameter_block_block,
-		"render_method_option_parameter_block_block",
+		"render_method_option_parameter_block",
+		"render_method_option_parameter_block",
 		64,
 		render_method_option_parameter_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_parameter_block_block,
-		"render_method_parameter_block_block",
+		"render_method_parameter_block",
+		"render_method_parameter_block",
 		64,
 		render_method_parameter_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_postprocess_block_block,
-		"render_method_postprocess_block_block",
+		"render_method_postprocess_block",
+		"render_method_postprocess_block",
 		1,
 		render_method_postprocess_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_postprocess_texture_block_block,
-		"render_method_postprocess_texture_block_block",
+		"render_method_postprocess_texture_block",
+		"render_method_postprocess_texture_block",
 		64,
 		render_method_postprocess_texture_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_routing_info_block_block,
-		"render_method_routing_info_block_block",
+		"render_method_routing_info_block",
+		"render_method_routing_info_block",
 		512,
 		render_method_routing_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_template_pass_block_block,
-		"render_method_template_pass_block_block",
+		"render_method_template_pass_block",
+		"render_method_template_pass_block",
 		64,
 		render_method_template_pass_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vertex_types_block_block,
-		"vertex_types_block_block",
+		"vertex_types_block",
+		"vertex_types_block",
 		22,
 		vertex_types_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		tag_block_index_block_block,
-		"tag_block_index_block_block",
+		"tag_block_index_block",
+		"tag_block_index_block",
 		1024,
 		tag_block_index_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		short_block_block,
-		"short_block_block",
+		"short_block",
+		"short_block",
 		1024,
 		short_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		real_vector4d_block_block,
-		"real_vector4d_block_block",
+		"real_vector4d_block",
+		"real_vector4d_block",
 		1024,
 		real_vector4d_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		int_block_block,
-		"int_block_block",
+		"int_block",
+		"int_block",
 		1024,
 		int_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_definition_block_group_block,
-		"render_method_definition_block_group_block",
+		"render_method_definition_block",
+		"render_method_definition_block",
 		1,
 		render_method_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_pass_category_dependencies_block,
-		"render_method_pass_category_dependencies_block",
+		"render_method_pass_category_dependencies",
+		"render_method_pass_category_dependencies",
 		1,
 		render_method_pass_category_dependencies);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		entry_point_dependencies_block_block,
-		"entry_point_dependencies_block_block",
+		"entry_point_dependencies_block",
+		"entry_point_dependencies_block",
 		18,
 		entry_point_dependencies_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_option_block_group_block,
-		"render_method_option_block_group_block",
+		"render_method_option_block",
+		"render_method_option_block",
 		1,
 		render_method_option_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_block_group_block,
-		"render_method_block_group_block",
+		"render_method_block",
+		"render_method_block",
 		1,
 		render_method_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_template_constant_table_block_block,
-		"render_method_template_constant_table_block_block",
+		"render_method_template_constant_table_block",
+		"render_method_template_constant_table_block",
 		254,
 		render_method_template_constant_table_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_template_platform_block_block,
-		"render_method_template_platform_block_block",
+		"render_method_template_platform_block",
+		"render_method_template_platform_block",
 		1,
 		render_method_template_platform_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_template_block_group_block,
-		"render_method_template_block_group_block",
+		"render_method_template_block",
+		"render_method_template_block",
 		1,
 		render_method_template_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_animated_parameter_block_block,
-		"render_method_animated_parameter_block_block",
+		"render_method_animated_parameter_block",
+		"render_method_animated_parameter_block",
 		1024,
 		render_method_animated_parameter_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_postprocess_pass_block_block,
-		"render_method_postprocess_pass_block_block",
+		"render_method_postprocess_pass_block",
+		"render_method_postprocess_pass_block",
 		1024,
 		render_method_postprocess_pass_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		constant_buffers_block_block,
-		"constant_buffers_block_block",
+		"constant_buffers_block",
+		"constant_buffers_block",
 		2147483647,
 		constant_buffers_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		constant_buffer_indices_block_block,
-		"constant_buffer_indices_block_block",
+		"constant_buffer_indices_block",
+		"constant_buffer_indices_block",
 		2147483647,
 		constant_buffer_indices_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		layer_bitmaps_block,
-		"layer_bitmaps_block",
+		"layer_bitmaps",
+		"layer_bitmaps",
 		11,
 		layer_bitmaps);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		replace_material_block,
-		"replace_material_block",
+		"replace_material",
+		"replace_material",
 		52,
 		replace_material);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		replace_bitmaps_block,
-		"replace_bitmaps_block",
+		"replace_bitmaps",
+		"replace_bitmaps",
 		11,
 		replace_bitmaps);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		replace_params_material_block,
-		"replace_params_material_block",
+		"replace_params_material",
+		"replace_params_material",
 		52,
 		replace_params_material);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		real_vector4d_skins_block,
-		"real_vector4d_skins_block",
+		"real_vector4d_skins",
+		"real_vector4d_skins",
 		1,
 		real_vector4d_skins);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		replace_params_block,
-		"replace_params_block",
+		"replace_params",
+		"replace_params",
 		52,
 		replace_params);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_skins_object_block,
-		"render_skins_object_block",
+		"render_skin",
+		"render_skins_object",
 		1024,
 		render_skins_object);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		render_skins_object_globals_block_group_block,
-		"render_skins_object_globals_block_group_block",
+		"render_skins_object_globals_block",
+		"render_skins_object_globals_block",
 		1,
 		render_skins_object_globals_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_block_group_block,
-		"shader_block_group_block",
+		"shader_block",
+		"shader_block",
 		1,
 		shader_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_custom_block_group_block,
-		"shader_custom_block_group_block",
+		"shader_custom_block",
+		"shader_custom_block",
 		1,
 		shader_custom_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_halogram_block_group_block,
-		"shader_halogram_block_group_block",
+		"shader_halogram_block",
+		"shader_halogram_block",
 		1,
 		shader_halogram_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_foliage_block_group_block,
-		"shader_foliage_block_group_block",
+		"shader_foliage_block",
+		"shader_foliage_block",
 		1,
 		shader_foliage_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_skin_block_group_block,
-		"shader_skin_block_group_block",
+		"shader_skin_block",
+		"shader_skin_block",
 		1,
 		shader_skin_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_cortana_block_group_block,
-		"shader_cortana_block_group_block",
+		"shader_cortana_block",
+		"shader_cortana_block",
 		1,
 		shader_cortana_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_terrain_block_group_block,
-		"shader_terrain_block_group_block",
+		"shader_terrain_block",
+		"shader_terrain_block",
 		1,
 		shader_terrain_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_particle_block_group_block,
-		"shader_particle_block_group_block",
+		"shader_particle_block",
+		"shader_particle_block",
 		1,
 		shader_particle_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_contrail_block_group_block,
-		"shader_contrail_block_group_block",
+		"shader_contrail_block",
+		"shader_contrail_block",
 		1,
 		shader_contrail_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_light_volume_block_group_block,
-		"shader_light_volume_block_group_block",
+		"shader_light_volume_block",
+		"shader_light_volume_block",
 		1,
 		shader_light_volume_struct_definition$2);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_beam_block_group_block,
-		"shader_beam_block_group_block",
+		"shader_beam_block",
+		"shader_beam_block",
 		1,
 		shader_beam_struct_definition$2);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_decal_block_group_block,
-		"shader_decal_block_group_block",
+		"shader_decal_block",
+		"shader_decal_block",
 		1,
 		shader_decal_struct_definition$2);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_water_block_group_block,
-		"shader_water_block_group_block",
+		"shader_water_block",
+		"shader_water_block",
 		1,
 		shader_water_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vertex_types_block_block$2,
-		"vertex_types_block_block",
+		"vertex_types_block",
+		"vertex_types_block",
 		1024,
 		vertex_types_block$2);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		compiled_vertex_shader_block_block,
-		"compiled_vertex_shader_block_block",
+		"compiled_vertex_shader_block",
+		"compiled_vertex_shader_block",
 		1024,
 		compiled_vertex_shader_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vertex_entry_point_block_block,
-		"vertex_entry_point_block_block",
+		"vertex_entry_point_block",
+		"vertex_entry_point_block",
 		44,
 		vertex_entry_point_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		pixel_entry_point_block_block,
-		"pixel_entry_point_block_block",
+		"pixel_entry_point_block",
+		"pixel_entry_point_block",
 		1024,
 		pixel_entry_point_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		compiled_pixel_shader_block_block,
-		"compiled_pixel_shader_block_block",
+		"compiled_pixel_shader_block",
+		"compiled_pixel_shader_block",
 		1024,
 		compiled_pixel_shader_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		compute_entry_point_block_block,
-		"compute_entry_point_block_block",
+		"compute_entry_point_block",
+		"compute_entry_point_block",
 		1024,
 		compute_entry_point_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		compiled_compute_shader_block_block,
-		"compiled_compute_shader_block_block",
+		"compiled_compute_shader_block",
+		"compiled_compute_shader_block",
 		1024,
 		compiled_compute_shader_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vertex_shader_block_group_block,
-		"vertex_shader_block_group_block",
+		"vertex_shader_block",
+		"vertex_shader_block",
 		1,
 		vertex_shader_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		pixel_shader_block_group_block,
-		"pixel_shader_block_group_block",
+		"pixel_shader_block",
+		"pixel_shader_block",
 		1,
 		pixel_shader_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		compute_shader_block_group_block,
-		"compute_shader_block_group_block",
+		"compute_shader_block",
+		"compute_shader_block",
 		1,
 		compute_shader_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		hlsl_include_block_group_block,
-		"hlsl_include_block_group_block",
+		"hlsl_include_block",
+		"hlsl_include_block",
 		1,
 		hlsl_include_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_shader_option_dependency_block,
-		"global_shader_option_dependency_block",
+		"global_shader_option_dependency",
+		"global_shader_option_dependency",
 		32,
 		global_shader_option_dependency);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_shader_category_dependency_block,
-		"global_shader_category_dependency_block",
+		"global_shader_category_dependency",
+		"global_shader_category_dependency",
 		16,
 		global_shader_category_dependency);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_shader_entry_point_block_block,
-		"global_shader_entry_point_block_block",
+		"global_shader_entry_point_block",
+		"global_shader_entry_point_block",
 		36,
 		global_shader_entry_point_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_vertex_shader_vertex_types_block_block,
-		"global_vertex_shader_vertex_types_block_block",
+		"global_vertex_shader_vertex_types_block",
+		"global_vertex_shader_vertex_types_block",
 		44,
 		global_vertex_shader_vertex_types_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_vertex_shader_block_group_block,
-		"global_vertex_shader_block_group_block",
+		"global_vertex_shader_block",
+		"global_vertex_shader_block",
 		1,
 		global_vertex_shader_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_pixel_shader_block_group_block,
-		"global_pixel_shader_block_group_block",
+		"global_pixel_shader_block",
+		"global_pixel_shader_block",
 		1,
 		global_pixel_shader_block_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		fragment_block_group_block,
-		"fragment_block_group_block",
+		"fragment_block",
+		"fragment_block",
 		1,
 		fragment_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		decorator_set_instance_name_block_block,
-		"decorator_set_instance_name_block_block",
+		"decorator_set_instance_name_block",
+		"decorator_set_instance_name_block",
 		32767,
 		decorator_set_instance_name_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_decorator_type_block_block,
-		"global_decorator_type_block_block",
+		"global_decorator_type_block",
+		"global_decorator_type_block",
 		254,
 		global_decorator_type_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		decorator_set_block_group_block,
-		"decorator_set_block_group_block",
+		"decorator_set_block",
+		"decorator_set_block",
 		48,
 		decorator_set_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_start_index_block_block,
-		"model_start_index_block_block",
+		"model_start_index_block",
+		"model_start_index_block",
 		65535,
 		model_start_index_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		decorator_runtime_cluster_block_block,
-		"decorator_runtime_cluster_block_block",
+		"decorator_runtime_cluster_block",
+		"decorator_runtime_cluster_block",
 		48000,
 		decorator_runtime_cluster_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		default_textures_refs_block_block,
-		"default_textures_refs_block_block",
+		"default_textures_refs_block",
+		"default_textures_refs_block",
 		16,
 		default_textures_refs_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		material_textures_refs_block_block,
-		"material_textures_refs_block_block",
+		"material_textures_refs_block",
+		"material_textures_refs_block",
 		16,
 		material_textures_refs_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		atmosphere_textures_refs_block_block,
-		"atmosphere_textures_refs_block_block",
+		"atmosphere_textures_refs_block",
+		"atmosphere_textures_refs_block",
 		3,
 		atmosphere_textures_refs_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		explicit_shader_refs_block_block,
-		"explicit_shader_refs_block_block",
+		"explicit_shader_refs_block",
+		"explicit_shader_refs_block",
 		128,
 		explicit_shader_refs_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		rasterizer_globals_block_group_block,
-		"rasterizer_globals_block_group_block",
+		"rasterizer_globals_block",
+		"rasterizer_globals_block",
 		1,
 		rasterizer_globals_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		performane_throttle_block_block,
-		"performane_throttle_block_block",
+		"performane_throttle_block",
+		"performane_throttle_block",
 		4,
 		performane_throttle_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		performance_throttles_block_group_block,
-		"performance_throttles_block_group_block",
+		"performance_throttles_block",
+		"performance_throttles_block",
 		1,
 		performance_throttles_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		rasterizer_screen_effect_texcoord_generation_advanced_control_block_block,
-		"rasterizer_screen_effect_texcoord_generation_advanced_control_block_block",
+		"advanced control",
+		"rasterizer_screen_effect_texcoord_generation_advanced_control_block",
 		1,
 		rasterizer_screen_effect_texcoord_generation_advanced_control_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		rasterizer_screen_effect_convolution_block_block,
-		"rasterizer_screen_effect_convolution_block_block",
+		"convolution",
+		"rasterizer_screen_effect_convolution_block",
 		2,
 		rasterizer_screen_effect_convolution_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		rasterizer_screen_effect_pass_reference_block_block,
-		"rasterizer_screen_effect_pass_reference_block_block",
+		"pass reference",
+		"rasterizer_screen_effect_pass_reference_block",
 		8,
 		rasterizer_screen_effect_pass_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		screen_effect_block_group_block,
-		"screen_effect_block_group_block",
+		"screen_effect_block",
+		"screen_effect_block",
 		1,
 		screen_effect_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		rasterizer_cache_file_globals_block_group_block,
-		"rasterizer_cache_file_globals_block_group_block",
+		"rasterizer_cache_file_globals_block",
+		"rasterizer_cache_file_globals_block",
 		1,
 		rasterizer_cache_file_globals_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		color_grading_curves_editor_block_block,
-		"color_grading_curves_editor_block_block",
+		"color_grading_curves_editor_block",
+		"color_grading_curves_editor_block",
 		1,
 		color_grading_curves_editor_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		color_grading_brightness_contrast_block_block,
-		"color_grading_brightness_contrast_block_block",
+		"color_grading_brightness_contrast_block",
+		"color_grading_brightness_contrast_block",
 		1,
 		color_grading_brightness_contrast_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		color_grading_hslv_block_block,
-		"color_grading_hslv_block_block",
+		"color_grading_hslv_block",
+		"color_grading_hslv_block",
 		1,
 		color_grading_hslv_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		color_grading_colorize_effect_block_block,
-		"color_grading_colorize_effect_block_block",
+		"color_grading_colorize_effect_block",
+		"color_grading_colorize_effect_block",
 		1,
 		color_grading_colorize_effect_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		color_grading_selective_color_block_block,
-		"color_grading_selective_color_block_block",
+		"color_grading_selective_color_block",
+		"color_grading_selective_color_block",
 		1,
 		color_grading_selective_color_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		color_grading_color_balance_block_block,
-		"color_grading_color_balance_block_block",
+		"color_grading_color_balance_block",
+		"color_grading_color_balance_block",
 		1,
 		color_grading_color_balance_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		rasterizer_constant_block_block,
-		"rasterizer_constant_block_block",
+		"rasterizer_constant_block",
+		"rasterizer_constant_block",
 		426,
 		rasterizer_constant_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		meter_block_group_block,
-		"meter_block_group_block",
+		"meter_block",
+		"meter_block",
 		1,
 		meter_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_state_data_block_block,
-		"chud_widget_state_data_block_block",
+		"chud_widget_state_data_block",
+		"chud_widget_state_data_block",
 		1,
 		chud_widget_state_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_placement_data_block_block,
-		"chud_widget_placement_data_block_block",
+		"chud_widget_placement_data_block",
+		"chud_widget_placement_data_block",
 		1,
 		chud_widget_placement_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_render_data_block_block,
-		"chud_widget_render_data_block_block",
+		"chud_widget_render_data_block",
+		"chud_widget_render_data_block",
 		1,
 		chud_widget_render_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_animation_data_block_block,
-		"chud_widget_animation_data_block_block",
+		"chud_widget_animation_data_block",
+		"chud_widget_animation_data_block",
 		1,
 		chud_widget_animation_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_bitmap_block_block,
-		"chud_widget_bitmap_block_block",
+		"chud_widget_bitmap_block",
+		"chud_widget_bitmap_block",
 		32,
 		chud_widget_bitmap_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_text_block_block,
-		"chud_widget_text_block_block",
+		"chud_widget_text_block",
+		"chud_widget_text_block",
 		32,
 		chud_widget_text_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_collection_block_block,
-		"chud_widget_collection_block_block",
+		"chud_widget_collection_block",
+		"chud_widget_collection_block",
 		32,
 		chud_widget_collection_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_definition_block_group_block,
-		"chud_definition_block_group_block",
+		"chud_definition_block",
+		"chud_definition_block",
 		1,
 		chud_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_keyframe_position_block_block,
-		"chud_keyframe_position_block_block",
+		"chud_keyframe_position_block",
+		"chud_keyframe_position_block",
 		32,
 		chud_keyframe_position_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_keyframe_rotation_block_block,
-		"chud_keyframe_rotation_block_block",
+		"chud_keyframe_rotation_block",
+		"chud_keyframe_rotation_block",
 		32,
 		chud_keyframe_rotation_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_keyframe_scale_block_block,
-		"chud_keyframe_scale_block_block",
+		"chud_keyframe_scale_block",
+		"chud_keyframe_scale_block",
 		32,
 		chud_keyframe_scale_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_keyframe_color_block_block,
-		"chud_keyframe_color_block_block",
+		"chud_keyframe_color_block",
+		"chud_keyframe_color_block",
 		32,
 		chud_keyframe_color_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_keyframe_scalar_block_block,
-		"chud_keyframe_scalar_block_block",
+		"chud_keyframe_scalar_block",
+		"chud_keyframe_scalar_block",
 		32,
 		chud_keyframe_scalar_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_keyframe_texture_block_block,
-		"chud_keyframe_texture_block_block",
+		"chud_keyframe_texture_block",
+		"chud_keyframe_texture_block",
 		32,
 		chud_keyframe_texture_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_position_block_block,
-		"chud_animation_position_block_block",
+		"chud_animation_position_block",
+		"chud_animation_position_block",
 		1,
 		chud_animation_position_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_rotation_block_block,
-		"chud_animation_rotation_block_block",
+		"chud_animation_rotation_block",
+		"chud_animation_rotation_block",
 		1,
 		chud_animation_rotation_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_scale_block_block,
-		"chud_animation_scale_block_block",
+		"chud_animation_scale_block",
+		"chud_animation_scale_block",
 		1,
 		chud_animation_scale_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_color_block_block,
-		"chud_animation_color_block_block",
+		"chud_animation_color_block",
+		"chud_animation_color_block",
 		1,
 		chud_animation_color_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_scalar_block_block,
-		"chud_animation_scalar_block_block",
+		"chud_animation_scalar_block",
+		"chud_animation_scalar_block",
 		1,
 		chud_animation_scalar_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_texture_block_block,
-		"chud_animation_texture_block_block",
+		"chud_animation_texture_block",
+		"chud_animation_texture_block",
 		1,
 		chud_animation_texture_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_definition_block_group_block,
-		"chud_animation_definition_block_group_block",
+		"chud_animation_definition_block",
+		"chud_animation_definition_block",
 		1,
 		chud_animation_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_curvature_info_block_block,
-		"chud_curvature_info_block_block",
+		"chud_curvature_info_block",
+		"chud_curvature_info_block",
 		64,
 		chud_curvature_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_sound_block_block,
-		"chud_sound_block_block",
+		"chud_sound_block",
+		"chud_sound_block",
 		8,
 		chud_sound_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_medal_name_block_block,
-		"chud_medal_name_block_block",
+		"chud_medal_name_block",
+		"chud_medal_name_block",
 		128,
 		chud_medal_name_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_skin_info_block_block,
-		"chud_skin_info_block_block",
+		"chud_skin_info_block",
+		"chud_skin_info_block",
 		6,
 		chud_skin_info_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_shader_block_block,
-		"chud_shader_block_block",
+		"chud_shader_block",
+		"chud_shader_block",
 		64,
 		chud_shader_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_suck_profile_block_block,
-		"chud_suck_profile_block_block",
+		"chud_suck_profile_block",
+		"chud_suck_profile_block",
 		64,
 		chud_suck_profile_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cortana_effect_distance_config_block_block,
-		"cortana_effect_distance_config_block_block",
+		"cortana_effect_distance_config_block",
+		"cortana_effect_distance_config_block",
 		64,
 		cortana_effect_distance_config_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cortana_effect_config_block_block,
-		"cortana_effect_config_block_block",
+		"cortana_effect_config_block",
+		"cortana_effect_config_block",
 		64,
 		cortana_effect_config_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_globals_definition_block_group_block,
-		"chud_globals_definition_block_group_block",
+		"chud_globals_definition_block",
+		"chud_globals_definition_block",
 		1,
 		chud_globals_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cortana_keyframe_2d_block_block,
-		"cortana_keyframe_2d_block_block",
+		"cortana_keyframe_2d_block",
+		"cortana_keyframe_2d_block",
 		200,
 		cortana_keyframe_2d_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cortana_animation_2d_block_block,
-		"cortana_animation_2d_block_block",
+		"cortana_animation_2d_block",
+		"cortana_animation_2d_block",
 		1,
 		cortana_animation_2d_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cortana_effect_2d_block_block,
-		"cortana_effect_2d_block_block",
+		"cortana_effect_2d_block",
+		"cortana_effect_2d_block",
 		1,
 		cortana_effect_2d_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cortana_keyframe_3d_block_block,
-		"cortana_keyframe_3d_block_block",
+		"cortana_keyframe_3d_block",
+		"cortana_keyframe_3d_block",
 		200,
 		cortana_keyframe_3d_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cortana_animation_3d_block_block,
-		"cortana_animation_3d_block_block",
+		"cortana_animation_3d_block",
+		"cortana_animation_3d_block",
 		1,
 		cortana_animation_3d_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cortana_effect_3d_block_block,
-		"cortana_effect_3d_block_block",
+		"cortana_effect_3d_block",
+		"cortana_effect_3d_block",
 		1,
 		cortana_effect_3d_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cortana_background_effect_params_block_block,
-		"cortana_background_effect_params_block_block",
+		"cortana_background_effect_params_block",
+		"cortana_background_effect_params_block",
 		1,
 		cortana_background_effect_params_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cortana_texcam_effect_params_block_block,
-		"cortana_texcam_effect_params_block_block",
+		"cortana_texcam_effect_params_block",
+		"cortana_texcam_effect_params_block",
 		1,
 		cortana_texcam_effect_params_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cortana_widget_block_block,
-		"cortana_widget_block_block",
+		"cortana_widget_block",
+		"cortana_widget_block",
 		1,
 		cortana_widget_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cortana_composite_effect_params_block_block,
-		"cortana_composite_effect_params_block_block",
+		"cortana_composite_effect_params_block",
+		"cortana_composite_effect_params_block",
 		1,
 		cortana_composite_effect_params_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cortana_sound_definition_block_block,
-		"cortana_sound_definition_block_block",
+		"cortana_sound_definition_block",
+		"cortana_sound_definition_block",
 		1,
 		cortana_sound_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cortana_effect_definition_block_group_block,
-		"cortana_effect_definition_block_group_block",
+		"cortana_effect_definition_block",
+		"cortana_effect_definition_block",
 		1,
 		cortana_effect_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		widget_rotation_animation_keyframe_block_block,
-		"widget_rotation_animation_keyframe_block_block",
+		"widget_rotation_animation_keyframe_block",
+		"widget_rotation_animation_keyframe_block",
 		16,
 		widget_rotation_animation_keyframe_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_widget_rotation_animation_definition_block_group_block,
-		"gui_widget_rotation_animation_definition_block_group_block",
+		"gui_widget_rotation_animation_definition_block",
+		"gui_widget_rotation_animation_definition_block",
 		1,
 		gui_widget_rotation_animation_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		widget_scale_animation_keyframe_block_block,
-		"widget_scale_animation_keyframe_block_block",
+		"widget_scale_animation_keyframe_block",
+		"widget_scale_animation_keyframe_block",
 		16,
 		widget_scale_animation_keyframe_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_widget_scale_animation_definition_block_group_block,
-		"gui_widget_scale_animation_definition_block_group_block",
+		"gui_widget_scale_animation_definition_block",
+		"gui_widget_scale_animation_definition_block",
 		1,
 		gui_widget_scale_animation_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		widget_texture_coordinate_animation_keyframe_block_block,
-		"widget_texture_coordinate_animation_keyframe_block_block",
+		"widget_texture_coordinate_animation_keyframe_block",
+		"widget_texture_coordinate_animation_keyframe_block",
 		16,
 		widget_texture_coordinate_animation_keyframe_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_widget_texture_coordinate_animation_definition_block_group_block,
-		"gui_widget_texture_coordinate_animation_definition_block_group_block",
+		"gui_widget_texture_coordinate_animation_definition_block",
+		"gui_widget_texture_coordinate_animation_definition_block",
 		1,
 		gui_widget_texture_coordinate_animation_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		widget_sprite_animation_keyframe_block_block,
-		"widget_sprite_animation_keyframe_block_block",
+		"widget_sprite_animation_keyframe_block",
+		"widget_sprite_animation_keyframe_block",
 		16,
 		widget_sprite_animation_keyframe_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_widget_sprite_animation_definition_block_group_block,
-		"gui_widget_sprite_animation_definition_block_group_block",
+		"gui_widget_sprite_animation_definition_block",
+		"gui_widget_sprite_animation_definition_block",
 		1,
 		gui_widget_sprite_animation_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		widget_font_animation_keyframe_block_block,
-		"widget_font_animation_keyframe_block_block",
+		"widget_font_animation_keyframe_block",
+		"widget_font_animation_keyframe_block",
 		16,
 		widget_font_animation_keyframe_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_widget_font_animation_definition_block_group_block,
-		"gui_widget_font_animation_definition_block_group_block",
+		"gui_widget_font_animation_definition_block",
+		"gui_widget_font_animation_definition_block",
 		1,
 		gui_widget_font_animation_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_widget_animation_definition_block_group_block,
-		"gui_widget_animation_definition_block_group_block",
+		"gui_widget_animation_definition_block",
+		"gui_widget_animation_definition_block",
 		1,
 		gui_widget_animation_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_widget_animation_collection_definition_block_group_block,
-		"gui_widget_animation_collection_definition_block_group_block",
+		"gui_widget_animation_collection_definition_block",
+		"gui_widget_animation_collection_definition_block",
 		1,
 		gui_widget_animation_collection_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_text_widget_definition_block_group_block,
-		"gui_text_widget_definition_block_group_block",
+		"gui_text_widget_definition_block",
+		"gui_text_widget_definition_block",
 		1,
 		gui_text_widget_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		text_widget_block_block,
-		"text_widget_block_block",
+		"text_widget_block",
+		"text_widget_block",
 		64,
 		text_widget_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_bitmap_widget_definition_block_group_block,
-		"gui_bitmap_widget_definition_block_group_block",
+		"gui_bitmap_widget_definition_block",
+		"gui_bitmap_widget_definition_block",
 		1,
 		gui_bitmap_widget_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_widget_block_block,
-		"bitmap_widget_block_block",
+		"bitmap_widget_block",
+		"bitmap_widget_block",
 		32,
 		bitmap_widget_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_widget_camera_settings_block_block,
-		"model_widget_camera_settings_block_block",
+		"model_widget_camera_settings_block",
+		"model_widget_camera_settings_block",
 		2,
 		model_widget_camera_settings_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_model_widget_definition_block_group_block,
-		"gui_model_widget_definition_block_group_block",
+		"gui_model_widget_definition_block",
+		"gui_model_widget_definition_block",
 		1,
 		gui_model_widget_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		model_widget_block_block,
-		"model_widget_block_block",
+		"model_widget_block",
+		"model_widget_block",
 		1,
 		model_widget_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_skin_definition_block_group_block,
-		"gui_skin_definition_block_group_block",
+		"gui_skin_definition_block",
+		"gui_skin_definition_block",
 		1,
 		gui_skin_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		list_item_widget_block_block,
-		"list_item_widget_block_block",
+		"list_item_widget_block",
+		"list_item_widget_block",
 		32,
 		list_item_widget_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_list_widget_definition_block_group_block,
-		"gui_list_widget_definition_block_group_block",
+		"gui_list_widget_definition_block",
+		"gui_list_widget_definition_block",
 		1,
 		gui_list_widget_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		list_widget_block_block,
-		"list_widget_block_block",
+		"list_widget_block",
+		"list_widget_block",
 		32,
 		list_widget_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_group_widget_definition_block_group_block,
-		"gui_group_widget_definition_block_group_block",
+		"gui_group_widget_definition_block",
+		"gui_group_widget_definition_block",
 		1,
 		gui_group_widget_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		group_widget_block_block,
-		"group_widget_block_block",
+		"group_widget_block",
+		"group_widget_block",
 		32,
 		group_widget_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_button_key_definition_block_group_block,
-		"gui_button_key_definition_block_group_block",
+		"gui_button_key_definition_block",
+		"gui_button_key_definition_block",
 		1,
 		gui_button_key_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		button_key_block_block,
-		"button_key_block_block",
+		"button_key_block",
+		"button_key_block",
 		32,
 		button_key_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		integer_data_nugget_block_block,
-		"integer_data_nugget_block_block",
+		"integer_data_nugget_block",
+		"integer_data_nugget_block",
 		16,
 		integer_data_nugget_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		string_data_nugget_block_block,
-		"string_data_nugget_block_block",
+		"string_data_nugget_block",
+		"string_data_nugget_block",
 		16,
 		string_data_nugget_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		string_id_data_nugget_block_block,
-		"string_id_data_nugget_block_block",
+		"string_id_data_nugget_block",
+		"string_id_data_nugget_block",
 		16,
 		string_id_data_nugget_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		datasource_element_block_block,
-		"datasource_element_block_block",
+		"datasource_element_block",
+		"datasource_element_block",
 		128,
 		datasource_element_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_datasource_definition_block_group_block,
-		"gui_datasource_definition_block_group_block",
+		"gui_datasource_definition_block",
+		"gui_datasource_definition_block",
 		1,
 		gui_datasource_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_screen_widget_definition_block_group_block,
-		"gui_screen_widget_definition_block_group_block",
+		"gui_screen_widget_definition_block",
+		"gui_screen_widget_definition_block",
 		1,
 		gui_screen_widget_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_widget_reference_block_block,
-		"gui_widget_reference_block_block",
+		"gui_widget_reference_block",
+		"gui_widget_reference_block",
 		256,
 		gui_widget_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		color_presets_block_block,
-		"color_presets_block_block",
+		"color_presets_block",
+		"color_presets_block",
 		64,
 		color_presets_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		color_list_block_block,
-		"color_list_block_block",
+		"color_list_block",
+		"color_list_block",
 		32,
 		color_list_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		tint_colors_block_block,
-		"tint_colors_block_block",
+		"tint_colors_block",
+		"tint_colors_block",
 		1,
 		tint_colors_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_alert_description_block_block,
-		"gui_alert_description_block_block",
+		"gui_alert_description_block",
+		"gui_alert_description_block",
 		512,
 		gui_alert_description_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_dialog_description_block_block,
-		"gui_dialog_description_block_block",
+		"gui_dialog_description_block",
+		"gui_dialog_description_block",
 		256,
 		gui_dialog_description_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		datasource_definition_block_block,
-		"datasource_definition_block_block",
+		"datasource_definition_block",
+		"datasource_definition_block",
 		32,
 		datasource_definition_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_interface_sounds_definition_block_group_block,
-		"user_interface_sounds_definition_block_group_block",
+		"user_interface_sounds_definition_block",
+		"user_interface_sounds_definition_block",
 		1,
 		user_interface_sounds_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_interface_shared_globals_definition_block_group_block,
-		"user_interface_shared_globals_definition_block_group_block",
+		"user_interface_shared_globals_definition_block",
+		"user_interface_shared_globals_definition_block",
 		1,
 		user_interface_shared_globals_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_interface_globals_definition_block_group_block,
-		"user_interface_globals_definition_block_group_block",
+		"user_interface_globals_definition_block",
+		"user_interface_globals_definition_block",
 		1,
 		user_interface_globals_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		keyframe_transition_function_block_block,
-		"keyframe_transition_function_block_block",
+		"keyframe_transition_function_block",
+		"keyframe_transition_function_block",
 		1,
 		keyframe_transition_function_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		widget_color_animation_keyframe_block_block,
-		"widget_color_animation_keyframe_block_block",
+		"widget_color_animation_keyframe_block",
+		"widget_color_animation_keyframe_block",
 		16,
 		widget_color_animation_keyframe_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_widget_color_animation_definition_block_group_block,
-		"gui_widget_color_animation_definition_block_group_block",
+		"gui_widget_color_animation_definition_block",
+		"gui_widget_color_animation_definition_block",
 		1,
 		gui_widget_color_animation_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		widget_position_animation_keyframe_block_block,
-		"widget_position_animation_keyframe_block_block",
+		"widget_position_animation_keyframe_block",
+		"widget_position_animation_keyframe_block",
 		16,
 		widget_position_animation_keyframe_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_widget_position_animation_definition_block_group_block,
-		"gui_widget_position_animation_definition_block_group_block",
+		"gui_widget_position_animation_definition_block",
+		"gui_widget_position_animation_definition_block",
 		1,
 		gui_widget_position_animation_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		text_value_pair_reference_block_block,
-		"text_value_pair_reference_block_block",
+		"text_value_pair_reference_block",
+		"text_value_pair_reference_block",
 		32,
 		text_value_pair_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		text_value_pair_definition_block_group_block,
-		"text_value_pair_definition_block_group_block",
+		"text_value_pair_definition_block",
+		"text_value_pair_definition_block",
 		1,
 		text_value_pair_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sandbox_property_allowed_values_reference_block_block,
-		"sandbox_property_allowed_values_reference_block_block",
+		"sandbox_property_allowed_values_reference_block",
+		"sandbox_property_allowed_values_reference_block",
 		64,
 		sandbox_property_allowed_values_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sandbox_text_value_pair_definition_block_group_block,
-		"sandbox_text_value_pair_definition_block_group_block",
+		"sandbox_text_value_pair_definition_block",
+		"sandbox_text_value_pair_definition_block",
 		1,
 		sandbox_text_value_pair_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		variant_option_block_block,
-		"variant_option_block_block",
+		"variant_option_block",
+		"variant_option_block",
 		16,
 		variant_option_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		variant_setting_edit_reference_block_block,
-		"variant_setting_edit_reference_block_block",
+		"variant_setting_edit_reference_block",
+		"variant_setting_edit_reference_block",
 		217,
 		variant_setting_edit_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_variant_settings_interface_definition_block_group_block,
-		"multiplayer_variant_settings_interface_definition_block_group_block",
+		"multiplayer_variant_settings_interface_definition_block",
+		"multiplayer_variant_settings_interface_definition_block",
 		1,
 		multiplayer_variant_settings_interface_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_damage_block_group_block,
-		"collision_damage_block_group_block",
+		"collision_damage_block",
+		"collision_damage_block",
 		1,
 		collision_damage_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_hud_reference_block_block,
-		"unit_hud_reference_block_block",
+		"unit_hud_reference_block",
+		"unit_hud_reference_block",
 		2,
 		unit_hud_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_camera_track_block_block,
-		"unit_camera_track_block_block",
+		"unit_camera_track_block",
+		"unit_camera_track_block",
 		2,
 		unit_camera_track_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_camera_acceleration_displacment_function_block_block,
-		"unit_camera_acceleration_displacment_function_block_block",
+		"unit_camera_acceleration_displacment_function_block",
+		"unit_camera_acceleration_displacment_function_block",
 		1,
 		unit_camera_acceleration_displacment_function_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_postures_block_block,
-		"unit_postures_block_block",
+		"unit_postures_block",
+		"unit_postures_block",
 		20,
 		unit_postures_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_seat_block_block,
-		"unit_seat_block_block",
+		"unit_seat_block",
+		"unit_seat_block",
 		64,
 		unit_seat_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_weapon_block_block,
-		"unit_weapon_block_block",
+		"unit_weapon_block",
+		"unit_weapon_block",
 		4,
 		unit_weapon_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		powered_seat_block_block,
-		"powered_seat_block_block",
+		"powered_seat_block",
+		"powered_seat_block",
 		2,
 		powered_seat_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		dialogue_variant_block_block,
-		"dialogue_variant_block_block",
+		"dialogue_variant_block",
+		"dialogue_variant_block",
 		16,
 		dialogue_variant_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_block_group_block,
-		"unit_block_group_block",
+		"unit_block",
+		"unit_block",
 		1,
 		unit_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		contact_point_block_block,
-		"contact_point_block_block",
+		"contact_point_block",
+		"contact_point_block",
 		3,
 		contact_point_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		biped_block_group_block,
-		"biped_block_group_block",
+		"biped",
+		"biped_block",
 		1,
 		biped_group_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		human_tank_block_block,
-		"human_tank_block_block",
+		"human_tank_block",
+		"human_tank_block",
 		1,
 		human_tank_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		human_jeep_block_block,
-		"human_jeep_block_block",
+		"human_jeep_block",
+		"human_jeep_block",
 		1,
 		human_jeep_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		human_plane_block_block,
-		"human_plane_block_block",
+		"human_plane_block",
+		"human_plane_block",
 		1,
 		human_plane_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		alien_scout_block_block,
-		"alien_scout_block_block",
+		"alien_scout_block",
+		"alien_scout_block",
 		1,
 		alien_scout_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		alien_fighter_block_block,
-		"alien_fighter_block_block",
+		"alien_fighter_block",
+		"alien_fighter_block",
 		1,
 		alien_fighter_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		turret_block_block,
-		"turret_block_block",
+		"turret_block",
+		"turret_block",
 		1,
 		turret_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		mantis_block_block,
-		"mantis_block_block",
+		"mantis_block",
+		"mantis_block",
 		1,
 		mantis_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		guardian_block_block,
-		"guardian_block_block",
+		"guardian_block",
+		"guardian_block",
 		1,
 		guardian_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vtol_block_block,
-		"vtol_block_block",
+		"vtol_block",
+		"vtol_block",
 		1,
 		vtol_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		chopper_block_block,
-		"chopper_block_block",
+		"chopper_block",
+		"chopper_block",
 		1,
 		chopper_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vehicle_block_group_block,
-		"vehicle_block_group_block",
+		"vehicle",
+		"vehicle_block",
 		1,
 		vehicle_group_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vehicle_permutation_block,
-		"vehicle_permutation_block",
+		"vehicle_permutation",
+		"vehicle_permutation",
 		32,
 		vehicle_permutation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vehicle_collection_block_group_block,
-		"vehicle_collection_block_group_block",
+		"vehicle_collection_block",
+		"vehicle_collection_block",
 		1,
 		vehicle_collection_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		object_function_block_block,
-		"object_function_block_block",
+		"object_function_block",
+		"object_function_block",
 		256,
 		object_function_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		object_attachment_block_block,
-		"object_attachment_block_block",
+		"object_attachment_block",
+		"object_attachment_block",
 		16,
 		object_attachment_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		object_widget_block_block,
-		"object_widget_block_block",
+		"object_widget_block",
+		"object_widget_block",
 		4,
 		object_widget_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		object_change_color_initial_permutation_block,
-		"object_change_color_initial_permutation_block",
+		"object_change_color_initial_permutation",
+		"object_change_color_initial_permutation",
 		32,
 		object_change_color_initial_permutation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		object_change_color_function_block,
-		"object_change_color_function_block",
+		"object_change_color_function",
+		"object_change_color_function",
 		4,
 		object_change_color_function);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		object_change_colors_block,
-		"object_change_colors_block",
+		"object_change_colors",
+		"object_change_colors",
 		4,
 		object_change_colors);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_object_block_block,
-		"multiplayer_object_block_block",
+		"multiplayer_object_block",
+		"multiplayer_object_block",
 		1,
 		multiplayer_object_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		object_ai_properties_block_block,
-		"object_ai_properties_block_block",
+		"object_ai_properties_block",
+		"object_ai_properties_block",
 		1,
 		object_ai_properties_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		object_early_mover_obb_block_block,
-		"object_early_mover_obb_block_block",
+		"object_early_mover_obb_block",
+		"object_early_mover_obb_block",
 		1,
 		object_early_mover_obb_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		object_block_group_block,
-		"object_block_group_block",
+		"object_block",
+		"object_block",
 		1,
 		object_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		scenery_block_group_block,
-		"scenery_block_group_block",
+		"scenery",
+		"scenery_block",
 		1,
 		scenery_group_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		crate_block_group_block,
-		"crate_block_group_block",
+		"crate_block",
+		"crate_block",
 		1,
 		crate_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		creature_block_group_block,
-		"creature_block_group_block",
+		"creature_block",
+		"creature_block",
 		1,
 		creature_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		giant_buckle_parameters_block_block,
-		"giant_buckle_parameters_block_block",
+		"giant_buckle_parameters_block",
+		"giant_buckle_parameters_block",
 		3,
 		giant_buckle_parameters_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		giant_block_group_block,
-		"giant_block_group_block",
+		"giant_block",
+		"giant_block",
 		1,
 		giant_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		magazine_objects_block,
-		"magazine_objects_block",
+		"magazine_objects",
+		"magazine_objects",
 		8,
 		magazine_objects);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		magazines_block,
-		"magazines_block",
+		"magazines",
+		"magazines",
 		2,
 		magazines);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_barrel_first_person_offset_block_block,
-		"weapon_barrel_first_person_offset_block_block",
+		"weapon_barrel_first_person_offset_block",
+		"weapon_barrel_first_person_offset_block",
 		3,
 		weapon_barrel_first_person_offset_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		barrel_firing_effect_block_block,
-		"barrel_firing_effect_block_block",
+		"barrel_firing_effect_block",
+		"barrel_firing_effect_block",
 		4,
 		barrel_firing_effect_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_barrels_block,
-		"weapon_barrels_block",
+		"weapon_barrels",
+		"weapon_barrels",
 		2,
 		weapon_barrels);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_triggers_block,
-		"weapon_triggers_block",
+		"weapon_triggers",
+		"weapon_triggers",
 		2,
 		weapon_triggers);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_first_person_interface_block_block,
-		"weapon_first_person_interface_block_block",
+		"weapon_first_person_interface_block",
+		"weapon_first_person_interface_block",
 		2,
 		weapon_first_person_interface_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_block_group_block,
-		"weapon_block_group_block",
+		"weapon",
+		"weapon_block",
 		1,
 		weapon_group_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		light_block_group_block,
-		"light_block_group_block",
+		"light_block",
+		"light_block",
 		1,
 		light_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		predicted_bitmaps_block_block,
-		"predicted_bitmaps_block_block",
+		"predicted_bitmaps_block",
+		"predicted_bitmaps_block",
 		8,
 		predicted_bitmaps_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		item_block_group_block,
-		"item_block_group_block",
+		"item_block",
+		"item_block",
 		1,
 		item_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		item_permutation_block,
-		"item_permutation_block",
+		"item_permutation",
+		"item_permutation",
 		32,
 		item_permutation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		item_collection_block_group_block,
-		"item_collection_block_group_block",
+		"item_collection_block",
+		"item_collection_block",
 		1,
 		item_collection_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_super_shield_block_block,
-		"equipment_type_super_shield_block_block",
+		"equipment_type_super_shield_block",
+		"equipment_type_super_shield_block",
 		1,
 		equipment_type_super_shield_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_multiplayer_powerup_block_block,
-		"equipment_type_multiplayer_powerup_block_block",
+		"equipment_type_multiplayer_powerup_block",
+		"equipment_type_multiplayer_powerup_block",
 		1,
 		equipment_type_multiplayer_powerup_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_spawner_block_block,
-		"equipment_type_spawner_block_block",
+		"equipment_type_spawner_block",
+		"equipment_type_spawner_block",
 		1,
 		equipment_type_spawner_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_proximity_mine_block_block,
-		"equipment_type_proximity_mine_block_block",
+		"equipment_type_proximity_mine_block",
+		"equipment_type_proximity_mine_block",
 		1,
 		equipment_type_proximity_mine_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_motion_tracker_noise_block_block,
-		"equipment_type_motion_tracker_noise_block_block",
+		"equipment_type_motion_tracker_noise_block",
+		"equipment_type_motion_tracker_noise_block",
 		1,
 		equipment_type_motion_tracker_noise_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_showme_block_block,
-		"equipment_type_showme_block_block",
+		"equipment_type_showme_block",
+		"equipment_type_showme_block",
 		1,
 		equipment_type_showme_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_invisibility_mode_block_block,
-		"equipment_type_invisibility_mode_block_block",
+		"equipment_type_invisibility_mode_block",
+		"equipment_type_invisibility_mode_block",
 		1,
 		equipment_type_invisibility_mode_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_invincibility_block_block,
-		"equipment_type_invincibility_block_block",
+		"equipment_type_invincibility_block",
+		"equipment_type_invincibility_block",
 		1,
 		equipment_type_invincibility_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_treeoflife_block_block,
-		"equipment_type_treeoflife_block_block",
+		"equipment_type_treeoflife_block",
+		"equipment_type_treeoflife_block",
 		1,
 		equipment_type_treeoflife_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_block_group_block,
-		"equipment_block_group_block",
+		"equipment",
+		"equipment_block",
 		1,
 		equipment_group_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		antenna_vertex_block_block,
-		"antenna_vertex_block_block",
+		"antenna_vertex_block",
+		"antenna_vertex_block",
 		20,
 		antenna_vertex_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		antenna_block_group_block,
-		"antenna_block_group_block",
+		"antenna_block",
+		"antenna_block",
 		1,
 		antenna_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		leaf_type_block_block,
-		"leaf_type_block_block",
+		"leaf_type_block",
+		"leaf_type_block",
 		16,
 		leaf_type_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		leaf_system_block_group_block,
-		"leaf_system_block_group_block",
+		"leaf_system_block",
+		"leaf_system_block",
 		1,
 		leaf_system_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cellular_automata_block_group_block,
-		"cellular_automata_block_group_block",
+		"cellular_automata_block",
+		"cellular_automata_block",
 		1,
 		cellular_automata_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		states_block_block,
-		"states_block_block",
+		"states_block",
+		"states_block",
 		16,
 		states_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		rules_block_block,
-		"rules_block_block",
+		"rules_block",
+		"rules_block",
 		16,
 		rules_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cellular_automata2d_block_group_block,
-		"cellular_automata2d_block_group_block",
+		"cellular_automata2d_block",
+		"cellular_automata2d_block",
 		1,
 		cellular_automata2d_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		stereo_system_block_group_block,
-		"stereo_system_block_group_block",
+		"stereo_system_block",
+		"stereo_system_block",
 		1,
 		stereo_system_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		brute_grenade_block_block,
-		"brute_grenade_block_block",
+		"brute_grenade_block",
+		"brute_grenade_block",
 		1,
 		brute_grenade_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		fire_bomb_grenade_block_block,
-		"fire_bomb_grenade_block_block",
+		"fire_bomb_grenade_block",
+		"fire_bomb_grenade_block",
 		1,
 		fire_bomb_grenade_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		conical_projection_block_block,
-		"conical_projection_block_block",
+		"conical_projection_block",
+		"conical_projection_block",
 		1,
 		conical_projection_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		projectile_material_response_block_block,
-		"projectile_material_response_block_block",
+		"projectile_material_response_block",
+		"projectile_material_response_block",
 		200,
 		projectile_material_response_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		projectile_block_group_block,
-		"projectile_block_group_block",
+		"projectile",
+		"projectile_block",
 		1,
 		projectile_group_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		device_block_group_block,
-		"device_block_group_block",
+		"device_block",
+		"device_block",
 		1,
 		device_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		device_machine_block_group_block,
-		"device_machine_block_group_block",
+		"device_machine_block",
+		"device_machine_block",
 		1,
 		device_machine_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		device_terminal_block_group_block,
-		"device_terminal_block_group_block",
+		"device_terminal_block",
+		"device_terminal_block",
 		1,
 		device_terminal_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		device_control_block_group_block,
-		"device_control_block_group_block",
+		"device_control_block",
+		"device_control_block",
 		1,
 		device_control_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		muffin_permutation_name_block_block,
-		"muffin_permutation_name_block_block",
+		"muffin_permutation_name_block",
+		"muffin_permutation_name_block",
 		32767,
 		muffin_permutation_name_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		global_muffin_type_block_block,
-		"global_muffin_type_block_block",
+		"global_muffin_type_block",
+		"global_muffin_type_block",
 		16,
 		global_muffin_type_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		muffin_marker_block_block,
-		"muffin_marker_block_block",
+		"muffin_marker_block",
+		"muffin_marker_block",
 		32767,
 		muffin_marker_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		muffin_block_group_block,
-		"muffin_block_group_block",
+		"muffin_block",
+		"muffin_block",
 		1,
 		muffin_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_effect_player_response_block_block,
-		"damage_effect_player_response_block_block",
+		"damage_effect_player_response_block",
+		"damage_effect_player_response_block",
 		2,
 		damage_effect_player_response_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_effect_block_group_block,
-		"damage_effect_block_group_block",
+		"damage_effect",
+		"damage_effect_block",
 		1,
 		damage_effect_group_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_response_class_block_block,
-		"damage_response_class_block_block",
+		"damage_response_class_block",
+		"damage_response_class_block",
 		2,
 		damage_response_class_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_response_definition_block_group_block,
-		"damage_response_definition_block_group_block",
+		"damage_response_definition_block",
+		"damage_response_definition_block",
 		1,
 		damage_response_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_references_block_block,
-		"sound_references_block_block",
+		"sound_references_block",
+		"sound_references_block",
 		500,
 		sound_references_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		dialogue_block_group_block,
-		"dialogue_block_group_block",
+		"dialogue",
+		"dialogue_block",
 		1,
 		dialogue_group_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cloth_vertices_block_block,
-		"cloth_vertices_block_block",
+		"cloth_vertices_block",
+		"cloth_vertices_block",
 		121,
 		cloth_vertices_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cloth_indices_block_block,
-		"cloth_indices_block_block",
+		"cloth_indices_block",
+		"cloth_indices_block",
 		1210,
 		cloth_indices_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cloth_links_block_block,
-		"cloth_links_block_block",
+		"cloth_links_block",
+		"cloth_links_block",
 		1210,
 		cloth_links_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_sphere_block_block,
-		"collision_sphere_block_block",
+		"collision_sphere_block",
+		"collision_sphere_block",
 		8,
 		collision_sphere_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cloth_block_group_block,
-		"cloth_block_group_block",
+		"cloth_block",
+		"cloth_block",
 		1,
 		cloth_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		fluid_dynamics_block_group_block,
-		"fluid_dynamics_block_group_block",
+		"fluid_dynamics_block",
+		"fluid_dynamics_block",
 		1,
 		fluid_dynamics_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		fluid_dynamics_squirter_block_block,
-		"fluid_dynamics_squirter_block_block",
+		"fluid_dynamics_squirter_block",
+		"fluid_dynamics_squirter_block",
 		16,
 		fluid_dynamics_squirter_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		fluid_dynamics_inflow_block_block,
-		"fluid_dynamics_inflow_block_block",
+		"fluid_dynamics_inflow_block",
+		"fluid_dynamics_inflow_block",
 		16,
 		fluid_dynamics_inflow_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		fluid_dynamics_outflow_block_block,
-		"fluid_dynamics_outflow_block_block",
+		"fluid_dynamics_outflow_block",
+		"fluid_dynamics_outflow_block",
 		16,
 		fluid_dynamics_outflow_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		fluid_dynamics_obstacle_block_block,
-		"fluid_dynamics_obstacle_block_block",
+		"fluid_dynamics_obstacle_block",
+		"fluid_dynamics_obstacle_block",
 		32,
 		fluid_dynamics_obstacle_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		gear_block_block,
-		"gear_block_block",
+		"gear_block",
+		"gear_block",
 		16,
 		gear_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		fire_team_block_block,
-		"fire_team_block_block",
+		"fire_team_block",
+		"fire_team_block",
 		10,
 		fire_team_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		patrol_point_block_block,
-		"patrol_point_block_block",
+		"patrol_point_block",
+		"patrol_point_block",
 		32,
 		patrol_point_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		actor_starting_locations_block_block,
-		"actor_starting_locations_block_block",
+		"actor_starting_locations_block",
+		"actor_starting_locations_block",
 		32,
 		actor_starting_locations_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		squads_block_block,
-		"squads_block_block",
+		"squads_block",
+		"squads_block",
 		335,
 		squads_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		squad_groups_block_block,
-		"squad_groups_block_block",
+		"squad_groups_block",
+		"squad_groups_block",
 		130,
 		squad_groups_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		behavior_names_block_block,
-		"behavior_names_block_block",
+		"behavior_names_block",
+		"behavior_names_block",
 		224,
 		behavior_names_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		style_block_group_block,
-		"style_block_group_block",
+		"style_block",
+		"style_block",
 		1,
 		style_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		style_palette_block_block,
-		"style_palette_block_block",
+		"style_palette_block",
+		"style_palette_block",
 		50,
 		style_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		flock_instance_block_block,
-		"flock_instance_block_block",
+		"flock_instance_block",
+		"flock_instance_block",
 		50,
 		flock_instance_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		flock_palette_block_block,
-		"flock_palette_block_block",
+		"flock_palette_block",
+		"flock_palette_block",
 		50,
 		flock_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		flock_source_block_block,
-		"flock_source_block_block",
+		"flock_source_block",
+		"flock_source_block",
 		10,
 		flock_source_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		flock_sink_block_block,
-		"flock_sink_block_block",
+		"flock_sink_block",
+		"flock_sink_block",
 		10,
 		flock_sink_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		flock_block_group_block,
-		"flock_block_group_block",
+		"flock_block",
+		"flock_block",
 		1,
 		flock_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_voice_block_block,
-		"character_voice_block_block",
+		"character_voice_block",
+		"character_voice_block",
 		64,
 		character_voice_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_variants_block_block,
-		"character_variants_block_block",
+		"character_variants_block",
+		"character_variants_block",
 		64,
 		character_variants_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_voice_properties_block_block,
-		"character_voice_properties_block_block",
+		"character_voice_properties_block",
+		"character_voice_properties_block",
 		1,
 		character_voice_properties_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_general_block_block,
-		"character_general_block_block",
+		"character_general_block",
+		"character_general_block",
 		1,
 		character_general_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_placement_block_block,
-		"character_placement_block_block",
+		"character_placement_block",
+		"character_placement_block",
 		1,
 		character_placement_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_vitality_block_block,
-		"character_vitality_block_block",
+		"character_vitality_block",
+		"character_vitality_block",
 		1,
 		character_vitality_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_perception_block_block,
-		"character_perception_block_block",
+		"character_perception_block",
+		"character_perception_block",
 		4,
 		character_perception_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_look_block_block,
-		"character_look_block_block",
+		"character_look_block",
+		"character_look_block",
 		1,
 		character_look_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_movement_block_block,
-		"character_movement_block_block",
+		"character_movement_block",
+		"character_movement_block",
 		1,
 		character_movement_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_flocking_block_block,
-		"character_flocking_block_block",
+		"character_flocking_block",
+		"character_flocking_block",
 		1,
 		character_flocking_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_swarm_block_block,
-		"character_swarm_block_block",
+		"character_swarm_block",
+		"character_swarm_block",
 		3,
 		character_swarm_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_engage_block_block,
-		"character_engage_block_block",
+		"character_engage_block",
+		"character_engage_block",
 		3,
 		character_engage_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_evasion_block_block,
-		"character_evasion_block_block",
+		"character_evasion_block",
+		"character_evasion_block",
 		3,
 		character_evasion_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_cover_block_block,
-		"character_cover_block_block",
+		"character_cover_block",
+		"character_cover_block",
 		3,
 		character_cover_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_search_block_block,
-		"character_search_block_block",
+		"character_search_block",
+		"character_search_block",
 		3,
 		character_search_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_presearch_block_block,
-		"character_presearch_block_block",
+		"character_presearch_block",
+		"character_presearch_block",
 		3,
 		character_presearch_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_retreat_block_block,
-		"character_retreat_block_block",
+		"character_retreat_block",
+		"character_retreat_block",
 		3,
 		character_retreat_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_charge_difficulty_limits_block_block,
-		"character_charge_difficulty_limits_block_block",
+		"character_charge_difficulty_limits_block",
+		"character_charge_difficulty_limits_block",
 		4,
 		character_charge_difficulty_limits_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_charge_block_block,
-		"character_charge_block_block",
+		"character_charge_block",
+		"character_charge_block",
 		3,
 		character_charge_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_ready_block_block,
-		"character_ready_block_block",
+		"character_ready_block",
+		"character_ready_block",
 		3,
 		character_ready_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_firing_pattern_block_block,
-		"character_firing_pattern_block_block",
+		"character_firing_pattern_block",
+		"character_firing_pattern_block",
 		2,
 		character_firing_pattern_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_weapons_block_block,
-		"character_weapons_block_block",
+		"character_weapons_block",
+		"character_weapons_block",
 		100,
 		character_weapons_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_firing_pattern_properties_block_block,
-		"character_firing_pattern_properties_block_block",
+		"character_firing_pattern_properties_block",
+		"character_firing_pattern_properties_block",
 		100,
 		character_firing_pattern_properties_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_grenades_block_block,
-		"character_grenades_block_block",
+		"character_grenades_block",
+		"character_grenades_block",
 		10,
 		character_grenades_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_vehicle_block_block,
-		"character_vehicle_block_block",
+		"character_vehicle_block",
+		"character_vehicle_block",
 		100,
 		character_vehicle_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_idle_block_block,
-		"character_idle_block_block",
+		"character_idle_block",
+		"character_idle_block",
 		3,
 		character_idle_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_vocalization_block_block,
-		"character_vocalization_block_block",
+		"character_vocalization_block",
+		"character_vocalization_block",
 		1,
 		character_vocalization_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_boarding_block_block,
-		"character_boarding_block_block",
+		"character_boarding_block",
+		"character_boarding_block",
 		1,
 		character_boarding_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_guardian_block_block,
-		"character_guardian_block_block",
+		"character_guardian_block",
+		"character_guardian_block",
 		1,
 		character_guardian_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_combatform_block_block,
-		"character_combatform_block_block",
+		"character_combatform_block",
+		"character_combatform_block",
 		3,
 		character_combatform_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_scarab_block_block,
-		"character_scarab_block_block",
+		"character_scarab_block",
+		"character_scarab_block",
 		1,
 		character_scarab_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_morph_block_block,
-		"character_morph_block_block",
+		"character_morph_block",
+		"character_morph_block",
 		1,
 		character_morph_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_equipment_usage_block_block,
-		"character_equipment_usage_block_block",
+		"character_equipment_usage_block",
+		"character_equipment_usage_block",
 		8,
 		character_equipment_usage_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_equipment_block_block,
-		"character_equipment_block_block",
+		"character_equipment_block",
+		"character_equipment_block",
 		8,
 		character_equipment_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_activity_object_block_block,
-		"character_activity_object_block_block",
+		"character_activity_object_block",
+		"character_activity_object_block",
 		32,
 		character_activity_object_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_block_group_block,
-		"character_block_group_block",
+		"character_block",
+		"character_block",
 		1,
 		character_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		response_block_block,
-		"response_block_block",
+		"response_block",
+		"response_block",
 		20,
 		response_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vocalization_definitions_block_block,
-		"vocalization_definitions_block_block",
+		"vocalization_definitions_block",
+		"vocalization_definitions_block",
 		500,
 		vocalization_definitions_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		vocalization_patterns_block_block,
-		"vocalization_patterns_block_block",
+		"vocalization_patterns_block",
+		"vocalization_patterns_block",
 		1000,
 		vocalization_patterns_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		dialogue_data_block_block,
-		"dialogue_data_block_block",
+		"dialogue_data_block",
+		"dialogue_data_block",
 		112,
 		dialogue_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		involuntary_data_block_block,
-		"involuntary_data_block_block",
+		"involuntary_data_block",
+		"involuntary_data_block",
 		100,
 		involuntary_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_dialogue_globals_block_group_block,
-		"ai_dialogue_globals_block_group_block",
+		"ai_dialogue_globals_block",
+		"ai_dialogue_globals_block",
 		1,
 		ai_dialogue_globals_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_scene_block_block,
-		"ai_scene_block_block",
+		"ai_scene_block",
+		"ai_scene_block",
 		100,
 		ai_scene_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_scenario_mission_dialogue_block_block,
-		"ai_scenario_mission_dialogue_block_block",
+		"ai_scenario_mission_dialogue_block",
+		"ai_scenario_mission_dialogue_block",
 		1,
 		ai_scenario_mission_dialogue_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		mission_dialogue_variants_block_block,
-		"mission_dialogue_variants_block_block",
+		"mission_dialogue_variants_block",
+		"mission_dialogue_variants_block",
 		10,
 		mission_dialogue_variants_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		mission_dialogue_lines_block_block,
-		"mission_dialogue_lines_block_block",
+		"mission_dialogue_lines_block",
+		"mission_dialogue_lines_block",
 		500,
 		mission_dialogue_lines_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_mission_dialogue_block_group_block,
-		"ai_mission_dialogue_block_group_block",
+		"ai_mission_dialogue_block",
+		"ai_mission_dialogue_block",
 		1,
 		ai_mission_dialogue_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_scene_role_variants_block_block,
-		"ai_scene_role_variants_block_block",
+		"ai_scene_role_variants_block",
+		"ai_scene_role_variants_block",
 		10,
 		ai_scene_role_variants_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_scene_role_block_block,
-		"ai_scene_role_block_block",
+		"ai_scene_role_block",
+		"ai_scene_role_block",
 		10,
 		ai_scene_role_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_scene_trigger_block_block,
-		"ai_scene_trigger_block_block",
+		"ai_scene_trigger_block",
+		"ai_scene_trigger_block",
 		1,
 		ai_scene_trigger_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		objectives_block_block,
-		"objectives_block_block",
+		"objectives_block",
+		"objectives_block",
 		100,
 		objectives_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		tasks_block_block,
-		"tasks_block_block",
+		"tasks_block",
+		"tasks_block",
 		100,
 		tasks_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		script_fragment_block_block,
-		"script_fragment_block_block",
+		"script_fragment_block",
+		"script_fragment_block",
 		1,
 		script_fragment_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		task_direction_block_block,
-		"task_direction_block_block",
+		"task_direction_block",
+		"task_direction_block",
 		1,
 		task_direction_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sector_link_block_block,
-		"sector_link_block_block",
+		"sector_link_block",
+		"sector_link_block",
 		2621440,
 		sector_link_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sector_vertex_block_block,
-		"sector_vertex_block_block",
+		"sector_vertex_block",
+		"sector_vertex_block",
 		65535,
 		sector_vertex_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sector_block_block,
-		"sector_block_block",
+		"sector_block",
+		"sector_block",
 		65534,
 		sector_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ref_block_block,
-		"ref_block_block",
+		"ref_block",
+		"ref_block",
 		262136,
 		ref_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		sector_bsp2d_nodes_block_block,
-		"sector_bsp2d_nodes_block_block",
+		"sector_bsp2d_nodes_block",
+		"sector_bsp2d_nodes_block",
 		536870911,
 		sector_bsp2d_nodes_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		environment_object_bsp_refs_block,
-		"environment_object_bsp_refs_block",
+		"environment_object_bsp_refs",
+		"environment_object_bsp_refs",
 		1024,
 		environment_object_bsp_refs);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		environment_object_refs_block,
-		"environment_object_refs_block",
+		"environment_object_refs",
+		"environment_object_refs",
 		4000,
 		environment_object_refs);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		instanced_geometry_reference_block_block,
-		"instanced_geometry_reference_block_block",
+		"instanced_geometry_reference_block",
+		"instanced_geometry_reference_block",
 		4096,
 		instanced_geometry_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		giant_pathfinding_data_block_block,
-		"giant_pathfinding_data_block_block",
+		"giant_pathfinding_data_block",
+		"giant_pathfinding_data_block",
 		1,
 		giant_pathfinding_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		pf_seam_link_block_block,
-		"pf_seam_link_block_block",
+		"pf_seam_link_block",
+		"pf_seam_link_block",
 		32767,
 		pf_seam_link_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		pf_seam_block_block,
-		"pf_seam_block_block",
+		"pf_seam_block",
+		"pf_seam_block",
 		128,
 		pf_seam_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		pf_jump_index_block_block,
-		"pf_jump_index_block_block",
+		"pf_jump_index_block",
+		"pf_jump_index_block",
 		12,
 		pf_jump_index_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		pf_jump_seam_block_block,
-		"pf_jump_seam_block_block",
+		"pf_jump_seam_block",
+		"pf_jump_seam_block",
 		100,
 		pf_jump_seam_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		pf_door_block_block,
-		"pf_door_block_block",
+		"pf_door_block",
+		"pf_door_block",
 		400,
 		pf_door_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		pathfinding_data_block_block,
-		"pathfinding_data_block_block",
+		"pathfinding_data_block",
+		"pathfinding_data_block",
 		16,
 		pathfinding_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_block_block,
-		"user_hint_block_block",
+		"user_hint_block",
+		"user_hint_block",
 		1,
 		user_hint_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		pathfinding_hints_block_block,
-		"pathfinding_hints_block_block",
+		"pathfinding_hints_block",
+		"pathfinding_hints_block",
 		32767,
 		pathfinding_hints_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_line_segment_block_block,
-		"user_hint_line_segment_block_block",
+		"user_hint_line_segment_block",
+		"user_hint_line_segment_block",
 		1000,
 		user_hint_line_segment_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_parallelogram_block_block,
-		"user_hint_parallelogram_block_block",
+		"user_hint_parallelogram_block",
+		"user_hint_parallelogram_block",
 		1000,
 		user_hint_parallelogram_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_well_block_block,
-		"user_hint_well_block_block",
+		"user_hint_well_block",
+		"user_hint_well_block",
 		1000,
 		user_hint_well_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_flight_block_block,
-		"user_hint_flight_block_block",
+		"user_hint_flight_block",
+		"user_hint_flight_block",
 		50,
 		user_hint_flight_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_giant_block_block,
-		"user_hint_giant_block_block",
+		"user_hint_giant_block",
+		"user_hint_giant_block",
 		1,
 		user_hint_giant_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_giant_sector_block_block,
-		"user_hint_giant_sector_block_block",
+		"user_hint_giant_sector_block",
+		"user_hint_giant_sector_block",
 		1000,
 		user_hint_giant_sector_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_giant_rail_block_block,
-		"user_hint_giant_rail_block_block",
+		"user_hint_giant_rail_block",
+		"user_hint_giant_rail_block",
 		1000,
 		user_hint_giant_rail_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_flood_block_block,
-		"user_hint_flood_block_block",
+		"user_hint_flood_block",
+		"user_hint_flood_block",
 		1,
 		user_hint_flood_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_flood_sector_block_block,
-		"user_hint_flood_sector_block_block",
+		"user_hint_flood_sector_block",
+		"user_hint_flood_sector_block",
 		1000,
 		user_hint_flood_sector_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_jump_block_block,
-		"user_hint_jump_block_block",
+		"user_hint_jump_block",
+		"user_hint_jump_block",
 		1000,
 		user_hint_jump_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		special_movement_block_block,
-		"special_movement_block_block",
+		"special_movement_block",
+		"special_movement_block",
 		1,
 		special_movement_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_climb_block_block,
-		"user_hint_climb_block_block",
+		"user_hint_climb_block",
+		"user_hint_climb_block",
 		200,
 		user_hint_climb_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_well_point_block_block,
-		"user_hint_well_point_block_block",
+		"user_hint_well_point_block",
+		"user_hint_well_point_block",
 		1000,
 		user_hint_well_point_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_flight_point_block_block,
-		"user_hint_flight_point_block_block",
+		"user_hint_flight_point_block",
+		"user_hint_flight_point_block",
 		10,
 		user_hint_flight_point_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_sector_point_block_block,
-		"user_hint_sector_point_block_block",
+		"user_hint_sector_point_block",
+		"user_hint_sector_point_block",
 		1000,
 		user_hint_sector_point_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		trigger_references_block,
-		"trigger_references_block",
+		"trigger_references",
+		"trigger_references",
 		10,
 		trigger_references);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		triggers_block_block,
-		"triggers_block_block",
+		"triggers_block",
+		"triggers_block",
 		256,
 		triggers_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		zone_set_block_block,
-		"zone_set_block_block",
+		"zone_set_block",
+		"zone_set_block",
 		32,
 		zone_set_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		pureform_distribution_block_block,
-		"pureform_distribution_block_block",
+		"pureform_distribution_block",
+		"pureform_distribution_block",
 		1,
 		pureform_distribution_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		order_completion_condition_block,
-		"order_completion_condition_block",
+		"order_completion_condition",
+		"order_completion_condition",
 		5,
 		order_completion_condition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		orders_block_block,
-		"orders_block_block",
+		"orders_block",
+		"orders_block",
 		300,
 		orders_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		secondary_zone_set_block_block,
-		"secondary_zone_set_block_block",
+		"secondary_zone_set_block",
+		"secondary_zone_set_block",
 		32,
 		secondary_zone_set_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		order_ending_block_block,
-		"order_ending_block_block",
+		"order_ending_block",
+		"order_ending_block",
 		12,
 		order_ending_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		secondary_set_trigger_block_block,
-		"secondary_set_trigger_block_block",
+		"secondary_set_trigger_block",
+		"secondary_set_trigger_block",
 		1,
 		secondary_set_trigger_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_reference_frame_block_block,
-		"ai_reference_frame_block_block",
+		"ai_reference_frame_block",
+		"ai_reference_frame_block",
 		150,
 		ai_reference_frame_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cs_script_data_block_block,
-		"cs_script_data_block_block",
+		"cs_script_data_block",
+		"cs_script_data_block",
 		1,
 		cs_script_data_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cs_point_set_block_block,
-		"cs_point_set_block_block",
+		"cs_point_set_block",
+		"cs_point_set_block",
 		200,
 		cs_point_set_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		cs_point_block_block,
-		"cs_point_block_block",
+		"cs_point_block",
+		"cs_point_block",
 		32,
 		cs_point_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		flight_reference_block_block,
-		"flight_reference_block_block",
+		"flight_reference_block",
+		"flight_reference_block",
 		10,
 		flight_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		areas_block_block,
-		"areas_block_block",
+		"areas_block",
+		"areas_block",
 		128,
 		areas_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		zone_block_block,
-		"zone_block_block",
+		"zone_block",
+		"zone_block",
 		128,
 		zone_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		character_palette_block_block,
-		"character_palette_block_block",
+		"character_palette_block",
+		"character_palette_block",
 		256,
 		character_palette_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_recording_reference_block_block,
-		"ai_recording_reference_block_block",
+		"ai_recording_reference_block",
+		"ai_recording_reference_block",
 		128,
 		ai_recording_reference_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		firing_positions_block_block,
-		"firing_positions_block_block",
+		"firing_positions_block",
+		"firing_positions_block",
 		2048,
 		firing_positions_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V2(
 		walker_physics_leg_block_block,
-		"walker_physics_leg_block_block",
+		"walker_physics_leg_block",
+		"walker_physics_leg_block",
 		32,
 		walker_physics_leg_block);
 
@@ -8424,6 +9599,12 @@ namespace halo3_tools {
 		"shared_cache_file_creation_date_array",
 		4,
 		shared_cache_file_creation_date_array_struct_definition);
+
+	TAG_ARRAY_FROM_STRUCT(
+		render_interleaved_texture_array_definition,
+		"render_interleaved_texture_array_definition",
+		2,
+		render_texture_format_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		gpu_function_sub_array,
@@ -11537,7 +12718,7 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_TEXTURE_INTEROP_RESOURCE_STRUCT_ID)
 	{
-		{ _field_api_interop, "texture interop" },
+		{ _field_api_interop, "texture interop", &blofeld::halo3_tools::render_texture_interop_definition },
 		{ _field_terminator }
 	};
 
@@ -11563,7 +12744,7 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_TEXTURE_INTERLEAVED_INTEROP_RESOURCE_STRUCT_ID)
 	{
-		{ _field_api_interop, "interleaved texture interop" },
+		{ _field_api_interop, "interleaved texture interop", &blofeld::halo3_tools::render_texture_interleaved_interop_definition },
 		{ _field_terminator }
 	};
 
@@ -24922,6 +26103,83 @@ namespace halo3_tools {
 	};
 	STRING_LIST(player_training_flags, player_training_flags_strings, _countof(player_training_flags_strings));
 
+	#define RENDER_TEXTURE_INTEROP_DEFINITION_STRUCT_ID { 0x64017671, 0x437A46F0, 0x9A33C422, 0x517096E3 }
+	TAG_STRUCT(
+		render_texture_interop_definition_struct,
+		"render_texture_interop_definition_struct",
+		"s_render_texture_interop_definition_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		RENDER_TEXTURE_INTEROP_DEFINITION_STRUCT_ID)
+	{
+		{ _field_data, "pixel data", &blofeld::halo3_tools::base_render_texture_data },
+		{ _field_data, "high res data", &blofeld::halo3_tools::high_res_render_texture_data },
+		{ _field_short_integer, "width" },
+		{ _field_short_integer, "height" },
+		{ _field_char_integer, "depth" },
+		{ _field_char_integer, "total mipmap count" },
+		{ _field_char_enum, "type", &blofeld::halo3_tools::bitmap_types },
+		{ _field_char_enum, "is high res bitmap", &blofeld::halo3_tools::boolean_enum_definition },
+		{ _field_long_integer, "xenon d3d format" },
+		{ _field_char_integer, "bm_format" },
+		{ _field_char_integer, "bm_curve" },
+		{ _field_short_integer, "bm_flags" },
+		{ _field_terminator }
+	};
+
+	STRINGS(bitmap_types)
+	{
+		"2D texture",
+		"3D texture",
+		"cube map",
+		"array"
+	};
+	STRING_LIST(bitmap_types, bitmap_types_strings, _countof(bitmap_types_strings));
+
+	STRINGS(boolean_enum_definition)
+	{
+		"false",
+		"true"
+	};
+	STRING_LIST(boolean_enum_definition, boolean_enum_definition_strings, _countof(boolean_enum_definition_strings));
+
+	#define RENDER_TEXTURE_FORMAT_DEFINITION_ID { 0xA5D6641E, 0xAC074AA2, 0x9ADEF9FC, 0x336413F7 }
+	TAG_STRUCT(
+		render_texture_format_definition,
+		"render_texture_format_definition",
+		"s_render_texture_format_definition",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		RENDER_TEXTURE_FORMAT_DEFINITION_ID)
+	{
+		{ _field_short_integer, "width" },
+		{ _field_short_integer, "height" },
+		{ _field_char_integer, "depth" },
+		{ _field_char_integer, "total mipmap count" },
+		{ _field_char_enum, "type", &blofeld::halo3_tools::bitmap_types },
+		{ _field_char_enum, "is high res bitmap", &blofeld::halo3_tools::boolean_enum_definition },
+		{ _field_long_integer, "xenon d3d format" },
+		{ _field_char_integer, "bm_format" },
+		{ _field_char_integer, "bm_curve" },
+		{ _field_short_integer, "bm_flags" },
+		{ _field_terminator }
+	};
+
+	#define RENDER_TEXTURE_INTERLEAVED_INTEROP_DEFINITION_STRUCT_ID { 0x90486D0A, 0x944A4941, 0x9FE79AF0, 0x39E2E611 }
+	TAG_STRUCT(
+		render_texture_interleaved_interop_definition_struct,
+		"render_texture_interleaved_interop_definition_struct",
+		"s_render_texture_interleaved_interop_definition_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		RENDER_TEXTURE_INTERLEAVED_INTEROP_DEFINITION_STRUCT_ID)
+	{
+		{ _field_data, "pixel data", &blofeld::halo3_tools::base_render_texture_data },
+		{ _field_data, "high res data", &blofeld::halo3_tools::high_res_render_texture_data },
+		{ _field_array, "interleaved textures", &blofeld::halo3_tools::render_interleaved_texture_array_definition },
+		{ _field_terminator }
+	};
+
 	#define BITMAP_USAGE_BLOCK_ID { 0x09E0AE90, 0x64F444D8, 0xAFC0FAB5, 0x0BDCBD57 }
 	TAG_STRUCT(
 		bitmap_usage_block,
@@ -24996,15 +26254,6 @@ namespace halo3_tools {
 		"3D Pack (packs elements into a 3D bitmap)"
 	};
 	STRING_LIST(bitmap_usage_packer_def, bitmap_usage_packer_def_strings, _countof(bitmap_usage_packer_def_strings));
-
-	STRINGS(bitmap_types)
-	{
-		"2D texture",
-		"3D texture",
-		"cube map",
-		"array"
-	};
-	STRING_LIST(bitmap_types, bitmap_types_strings, _countof(bitmap_types_strings));
 
 	STRINGS(bitmap_usage_downsample_filter_def)
 	{
@@ -27013,7 +28262,7 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_VERTEX_BUFFER_BLOCK_ID)
 	{
-		{ _field_api_interop, "vertex buffer interop" },
+		{ _field_api_interop, "vertex buffer interop", &blofeld::halo3_tools::render_vertex_buffer_interop_definition },
 		{ _field_terminator }
 	};
 
@@ -27026,7 +28275,7 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_INDEX_BUFFER_BLOCK_ID)
 	{
-		{ _field_api_interop, "index buffer interop" },
+		{ _field_api_interop, "index buffer interop", &blofeld::halo3_tools::render_index_buffer_interop_definition },
 		{ _field_terminator }
 	};
 
@@ -30008,6 +31257,36 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
+	#define RENDER_VERTEX_BUFFER_DESCRIPTOR_STRUCT_ID { 0x44953A7F, 0x73B448CB, 0xA68E5A44, 0x28379244 }
+	TAG_STRUCT(
+		render_vertex_buffer_descriptor_struct,
+		"render_vertex_buffer_descriptor_struct",
+		"s_render_vertex_buffer_descriptor_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		RENDER_VERTEX_BUFFER_DESCRIPTOR_STRUCT_ID)
+	{
+		{ _field_long_integer, "vertex count" },
+		{ _field_short_integer, "declaration" },
+		{ _field_short_integer, "stride" },
+		{ _field_data, "vertices", &blofeld::halo3_tools::render_geometry_vertex_buffer_data },
+		{ _field_terminator }
+	};
+
+	#define RENDER_INDEX_BUFFER_DESCRIPTOR_STRUCT_ID { 0x92B1FF62, 0x80FC4C26, 0x8BDC1478, 0x642346D2 }
+	TAG_STRUCT(
+		render_index_buffer_descriptor_struct,
+		"render_index_buffer_descriptor_struct",
+		"s_render_index_buffer_descriptor_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		RENDER_INDEX_BUFFER_DESCRIPTOR_STRUCT_ID)
+	{
+		{ _field_long_integer, "primitive type" },
+		{ _field_data, "index_data", &blofeld::halo3_tools::render_geometry_index_data },
+		{ _field_terminator }
+	};
+
 	#define SCENARIO_LIGHTMAP_MATCH_PROBE_BLOCK_ID { 0xC81216A3, 0xCA7D43D2, 0xBAFC314E, 0xE4A1A3A9 }
 	TAG_STRUCT(
 		scenario_lightmap_match_probe_block,
@@ -32510,7 +33789,7 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CONSTANT_BUFFERS_BLOCK_ID)
 	{
-		{ _field_api_interop, "constant buffer interop" },
+		{ _field_api_interop, "constant buffer interop", &blofeld::halo3_tools::constant_buffer_interop_definition },
 		{ _field_terminator }
 	};
 
@@ -33680,6 +34959,19 @@ namespace halo3_tools {
 		RASTERIZER_CACHE_FILE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "texture header count" },
+		{ _field_terminator }
+	};
+
+	#define CONSTANT_BUFFER_DESCRIPTOR_STRUCT_ID { 0xD74B6090, 0x94294408, 0x9424BBEA, 0x2A560319 }
+	TAG_STRUCT(
+		constant_buffer_descriptor_struct,
+		"constant_buffer_descriptor_struct",
+		"s_constant_buffer_descriptor_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		CONSTANT_BUFFER_DESCRIPTOR_STRUCT_ID)
+	{
+		{ _field_data, "constant data", &blofeld::halo3_tools::constant_buffer_data },
 		{ _field_terminator }
 	};
 
@@ -45697,6 +46989,22 @@ namespace halo3_tools {
 		k_bink_resource_data_maximum_size);
 
 	TAG_DATA(
+		base_render_texture_data,
+		"base_render_texture_data",
+		2240,
+		16,
+		1073741824,
+		MAXIMUM_BITMAP_PIXELS_SIZE);
+
+	TAG_DATA(
+		high_res_render_texture_data,
+		"high_res_render_texture_data",
+		3264,
+		16,
+		1073741824,
+		MAXIMUM_BITMAP_PIXELS_SIZE);
+
+	TAG_DATA(
 		parameters_text_definition,
 		"parameters_text_definition",
 		10,
@@ -45743,6 +47051,22 @@ namespace halo3_tools {
 		0,
 		8192,
 		MAXIMUM_ERROR_REPORT_STRING_LENGTH+1);
+
+	TAG_DATA(
+		render_geometry_vertex_buffer_data,
+		"render_geometry_vertex_buffer_data",
+		128,
+		2,
+		268435456,
+		256*k_meg);
+
+	TAG_DATA(
+		render_geometry_index_data,
+		"render_geometry_index_data",
+		128,
+		2,
+		131070,
+		sizeof(word)*UNSIGNED_SHORT_MAX);
 
 	TAG_DATA(
 		hs_source_data_definition,
@@ -45825,6 +47149,14 @@ namespace halo3_tools {
 		UNSIGNED_SHORT_MAX);
 
 	TAG_DATA(
+		constant_buffer_data,
+		"constant_buffer_data",
+		0,
+		0,
+		65536,
+		4096*16);
+
+	TAG_DATA(
 		meter_stencil_data_definition,
 		"meter_stencil_data_definition",
 		0,
@@ -45839,6 +47171,41 @@ namespace halo3_tools {
 		0,
 		4096,
 		HS_MAXIMUM_DYNAMIC_SOURCE_DATA_BYTES);
+
+	#define RENDER_TEXTURE_INTEROP_DEFINITION_ID { 0x64017671, 0x437A46F0, 0x9A33C422, 0x517096E3 }
+	TAG_INTEROP(
+		render_texture_interop_definition,
+		"render_texture_interop_definition",
+		render_texture_interop_definition_struct,
+		RENDER_TEXTURE_INTEROP_DEFINITION_ID);
+
+	#define RENDER_TEXTURE_INTERLEAVED_INTEROP_DEFINITION_ID { 0x90486D0A, 0x944A4941, 0x9FE79AF0, 0x39E2E611 }
+	TAG_INTEROP(
+		render_texture_interleaved_interop_definition,
+		"render_texture_interleaved_interop_definition",
+		render_texture_interleaved_interop_definition_struct,
+		RENDER_TEXTURE_INTERLEAVED_INTEROP_DEFINITION_ID);
+
+	#define RENDER_VERTEX_BUFFER_INTEROP_DEFINITION_ID { 0x12721193, 0x798F4648, 0xB08E254D, 0xFB5907DF }
+	TAG_INTEROP(
+		render_vertex_buffer_interop_definition,
+		"render_vertex_buffer_interop_definition",
+		render_vertex_buffer_descriptor_struct,
+		RENDER_VERTEX_BUFFER_INTEROP_DEFINITION_ID);
+
+	#define RENDER_INDEX_BUFFER_INTEROP_DEFINITION_ID { 0x08380D7D, 0xF14D4112, 0x82CE3471, 0x1E43A770 }
+	TAG_INTEROP(
+		render_index_buffer_interop_definition,
+		"render_index_buffer_interop_definition",
+		render_index_buffer_descriptor_struct,
+		RENDER_INDEX_BUFFER_INTEROP_DEFINITION_ID);
+
+	#define CONSTANT_BUFFER_INTEROP_DEFINITION_ID { 0xF2C8DD55, 0xC9D046A0, 0x9B8DA746, 0xBC8F6917 }
+	TAG_INTEROP(
+		constant_buffer_interop_definition,
+		"constant_buffer_interop_definition",
+		constant_buffer_descriptor_struct,
+		CONSTANT_BUFFER_INTEROP_DEFINITION_ID);
 
 
 } // namespace blofeld

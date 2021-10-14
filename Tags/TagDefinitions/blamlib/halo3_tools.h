@@ -2932,6 +2932,8 @@ namespace halo3_tools {
 
 	extern s_tag_array_definition shared_cache_file_creation_date_array;
 
+	extern s_tag_array_definition render_interleaved_texture_array_definition;
+
 	extern s_tag_array_definition gpu_function_sub_array;
 
 	extern s_tag_array_definition gpu_color_sub_array;
@@ -4699,13 +4701,20 @@ namespace halo3_tools {
 	extern s_tag_struct_definition player_training_entry_data_block;
 	extern s_string_list_definition player_training_flags;
 
+	extern s_tag_struct_definition render_texture_interop_definition_struct;
+	extern s_string_list_definition bitmap_types;
+	extern s_string_list_definition boolean_enum_definition;
+
+	extern s_tag_struct_definition render_texture_format_definition;
+
+	extern s_tag_struct_definition render_texture_interleaved_interop_definition_struct;
+
 	extern s_tag_struct_definition bitmap_usage_block;
 	extern s_string_list_definition bitmap_curve_enum;
 	extern s_string_list_definition bitmap_usage_flags_def;
 	extern s_string_list_definition bitmap_usage_slicer_def;
 	extern s_string_list_definition bitmap_usage_dicer_flags_def;
 	extern s_string_list_definition bitmap_usage_packer_def;
-	extern s_string_list_definition bitmap_types;
 	extern s_string_list_definition bitmap_usage_downsample_filter_def;
 	extern s_string_list_definition bitmap_usage_downsample_flags_def;
 	extern s_string_list_definition bitmap_usage_swizzle_def;
@@ -5270,6 +5279,10 @@ namespace halo3_tools {
 
 	extern s_tag_struct_definition scenario_decorator_block;
 
+	extern s_tag_struct_definition render_vertex_buffer_descriptor_struct;
+
+	extern s_tag_struct_definition render_index_buffer_descriptor_struct;
+
 	extern s_tag_struct_definition scenario_lightmap_match_probe_block;
 
 	extern s_tag_struct_definition biped_block_index_flags_block_struct;
@@ -5647,6 +5660,8 @@ namespace halo3_tools {
 	extern s_tag_struct_definition screen_effect_struct_definition;
 
 	extern s_tag_struct_definition rasterizer_cache_file_globals_struct_definition;
+
+	extern s_tag_struct_definition constant_buffer_descriptor_struct;
 
 	extern s_tag_struct_definition color_grading_scalar_function_struct;
 
@@ -6750,6 +6765,10 @@ namespace halo3_tools {
 
 	extern s_tag_data_definition bink_resource_data;
 
+	extern s_tag_data_definition base_render_texture_data;
+
+	extern s_tag_data_definition high_res_render_texture_data;
+
 	extern s_tag_data_definition parameters_text_definition;
 
 	extern s_tag_data_definition mopp_code_data_definition;
@@ -6761,6 +6780,10 @@ namespace halo3_tools {
 	extern s_tag_data_definition global_section_mopp_code_data;
 
 	extern s_tag_data_definition error_report_string_data;
+
+	extern s_tag_data_definition render_geometry_vertex_buffer_data;
+
+	extern s_tag_data_definition render_geometry_index_data;
 
 	extern s_tag_data_definition hs_source_data_definition;
 
@@ -6782,9 +6805,21 @@ namespace halo3_tools {
 
 	extern s_tag_data_definition rasterizer_screen_effect_text_definition;
 
+	extern s_tag_data_definition constant_buffer_data;
+
 	extern s_tag_data_definition meter_stencil_data_definition;
 
 	extern s_tag_data_definition cortana_script_data;
+
+	extern s_tag_interop_definition render_texture_interop_definition;
+
+	extern s_tag_interop_definition render_texture_interleaved_interop_definition;
+
+	extern s_tag_interop_definition render_vertex_buffer_interop_definition;
+
+	extern s_tag_interop_definition render_index_buffer_interop_definition;
+
+	extern s_tag_interop_definition constant_buffer_interop_definition;
 
 
 } // namespace blofeld

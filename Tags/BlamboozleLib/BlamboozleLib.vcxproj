@@ -211,6 +211,7 @@
     <ClCompile Include="halo3\h3_tag_explanation_definition.cpp" />
     <ClCompile Include="halo3\h3_tag_field.cpp" />
     <ClCompile Include="halo3\h3_tag_group_definition.cpp" />
+    <ClCompile Include="halo3\h3_tag_api_interop_definition.cpp" />
     <ClCompile Include="halo3\h3_tag_pageable_resource_definition.cpp" />
     <ClCompile Include="halo3\h3_tag_reference_definition.cpp" />
     <ClCompile Include="halo3\h3_tag_string_list_definition.cpp" />
@@ -291,6 +292,7 @@
     <ClInclude Include="halo3\h3_tag_explanation_definition.h" />
     <ClInclude Include="halo3\h3_tag_field.h" />
     <ClInclude Include="halo3\h3_tag_group_definition.h" />
+    <ClInclude Include="halo3\h3_tag_api_interop_definition.h" />
     <ClInclude Include="halo3\h3_tag_pageable_resource_definition.h" />
     <ClInclude Include="halo3\h3_tag_reference_definition.h" />
     <ClInclude Include="halo3\h3_tag_string_list_definition.h" />

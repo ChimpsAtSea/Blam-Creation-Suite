@@ -1632,10 +1632,10 @@ namespace blofeld
 
 	V5_TAG_BLOCK(scenario_structured_buffer_interops_block, 1)
 	{
-		{ _field_legacy, _field_api_interop, "effect", &structured_buffer_struct_definition },
-		{ _field_legacy, _field_api_interop, "beam", &structured_buffer_struct_definition },
-		{ _field_legacy, _field_api_interop, "contrail", &structured_buffer_struct_definition },
-		{ _field_legacy, _field_api_interop, "light volume", &structured_buffer_struct_definition },
+		{ _field_legacy, _field_api_interop, "effect"/*, &structured_buffer_struct_definition*/ },
+		{ _field_legacy, _field_api_interop, "beam"/*, &structured_buffer_struct_definition*/ },
+		{ _field_legacy, _field_api_interop, "contrail"/*, &structured_buffer_struct_definition*/ },
+		{ _field_legacy, _field_api_interop, "light volume"/*, &structured_buffer_struct_definition*/ },
 		{ _field_legacy, _field_terminator }
 	};
 

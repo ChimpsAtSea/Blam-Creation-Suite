@@ -13,6 +13,8 @@ class c_h3_tag_reference_definition;
 class c_h3_tag_array_definition;
 class c_h3_tag_struct_definition;
 class c_h3_tag_pageable_resource_definition;
+class c_h3_tag_data_definition;
+class c_h3_tag_api_interop_definition;
 
 class c_h3_tag_field
 {
@@ -30,6 +32,7 @@ public:
 	c_h3_string_list_definition* string_list_definition;
 	c_h3_tag_pageable_resource_definition* pageable_resource_definition;
 	c_h3_tag_data_definition* data_definition;
+	c_h3_tag_api_interop_definition* api_interop_definition;
 
 	unsigned long long padding;
 	unsigned long long skip_length;

@@ -966,6 +966,9 @@
     <ClCompile Include="types\tag_data_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="types\tag_interop_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld.h">

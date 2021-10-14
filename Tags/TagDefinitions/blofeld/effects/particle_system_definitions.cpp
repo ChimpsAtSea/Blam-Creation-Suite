@@ -286,7 +286,7 @@ namespace blofeld
 		GPU_PROPERTY_FUNCTION_COLOR_STRUCT_ID)
 	{
 		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 3  },
-		{ _field_legacy, _field_api_interop, "runtime gpu data", &constant_buffer_struct },
+		{ _field_legacy, _field_api_interop, "runtime gpu data"/*, &constant_buffer_struct*/ },
 		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "@unknown" },
 

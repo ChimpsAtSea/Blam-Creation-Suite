@@ -344,6 +344,7 @@
     <ClCompile Include="types\tag_block_definition.cpp" />
     <ClCompile Include="types\tag_data_definition.cpp" />
     <ClCompile Include="types\tag_group.cpp" />
+    <ClCompile Include="types\tag_interop_definition.cpp" />
     <ClCompile Include="types\tag_struct_definition.cpp" />
     <ClCompile Include="definition_migration.cpp" />
   </ItemGroup>

@@ -67,8 +67,10 @@ bool definition_migration_compare_struct(
 
 			if (old_field.field_type != new_field.field_type)
 			{
-				const char* old_field_type_name = field_to_string(old_field.field_type);
-				const char* new_field_type_name = field_to_string(new_field.field_type);
+				const char* old_field_type_name;
+				const char* new_field_type_name;
+				ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(old_field.field_type, old_field_type_name)));
+				ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(new_field.field_type, new_field_type_name)));
 				console_write_line_with_debug("%s(%i): warning DM04: OLD[0] structure field missmatch [%s] [%s %s] -> [%s %s]", old_field.filename, old_field.line, new_struct_definition.name, old_field_type_name, old_field.name, new_field_type_name, new_field.name);
 				console_write_line_with_debug("%s(%i): warning DM04: NEW[1] structure field missmatch [%s] [%s %s] -> [%s %s]", new_field.filename, new_field.line, old_struct_definition.name, old_field_type_name, old_field.name, new_field_type_name, new_field.name);
 				result = true;

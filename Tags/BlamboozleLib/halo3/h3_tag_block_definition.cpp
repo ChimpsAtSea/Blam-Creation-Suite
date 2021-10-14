@@ -13,19 +13,18 @@ c_h3_tag_block_definition::c_h3_tag_block_definition(const char* data, const s_h
 	block_definition(definition_header),
 	tag_group_definition(tag_group_definition)
 {
+	code_name = h3_convert_to_code_name(name);
 	if (tag_group_definition)
 	{
-		name += "_group_block";
+		code_name += "_group_block";
 	}
 	else
 	{
-		name += "_block";
+		code_name += "_block";
 	}
 
-	code_name = h3_convert_to_code_name(name);
-
 	unsigned long existing_count = 0;
-	for (auto& keyval : tag_block_definitions) if (name == keyval.second->name) existing_count++;
+	for (auto& keyval : tag_block_definitions) if (code_name == keyval.second->code_name) existing_count++;
 	if (existing_count > 1)
 	{
 		code_name += "$";

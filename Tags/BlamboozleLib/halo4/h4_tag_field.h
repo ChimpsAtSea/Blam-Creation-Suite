@@ -384,7 +384,7 @@ public:
 	}
 };
 
-struct s_h4_tag_interop_definition
+struct s_h4_tag_api_interop_definition
 {
 	GUID guid;
 	typed_bptr32<s_h4_tag_struct_definition*> struct_definition;
@@ -393,15 +393,15 @@ struct s_h4_tag_interop_definition
 	bulong unknown;
 };
 
-class c_h4_tag_interop_definition :
-	public t_h4_tag_field<s_h4_tag_interop_definition>
+class c_h4_tag_api_interop_definition :
+	public t_h4_tag_field<s_h4_tag_api_interop_definition>
 {
 public:
-	c_h4_tag_interop* tag_interop_definition;
+	c_h4_tag_interop* tag_api_interop_definition;
 
-	c_h4_tag_interop_definition(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
+	c_h4_tag_api_interop_definition(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
-		tag_interop_definition(c_h4_blamboozle::get_tag_interop_definition(h4_data, definition))
+		tag_api_interop_definition(c_h4_blamboozle::get_tag_api_interop_definition(h4_data, definition))
 	{
 		unsigned long definition_address = field_definition->definition_address.value();
 
@@ -409,8 +409,8 @@ public:
 	}
 };
 //
-//class c_h4_tag_interop_definition :
-//	public t_h4_tag_field<s_h4_tag_interop_definition>
+//class c_h4_tag_api_interop_definition :
+//	public t_h4_tag_field<s_h4_tag_api_interop_definition>
 //{
 //public:
 //	GUID const guid;
@@ -421,7 +421,7 @@ public:
 //	unsigned long unknown;
 //	c_h4_tag_struct* tag_struct;
 //
-//	c_h4_tag_interop_definition(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
+//	c_h4_tag_api_interop_definition(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 //		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
 //		guid(definition->guid),
 //		struct_definition(h4_va_to_pointer<s_h4_tag_struct_definition>(h4_data, definition->struct_definition.value())),

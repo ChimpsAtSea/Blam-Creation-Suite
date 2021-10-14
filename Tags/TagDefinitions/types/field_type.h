@@ -106,5 +106,6 @@ namespace blofeld
 
 	BCS_DEBUG_API unsigned long get_blofeld_field_size(e_platform_type platform_type, e_field field);
 	BCS_DEBUG_API unsigned long get_blofeld_field_size(const s_tag_field& field, s_engine_platform_build engine_platform_build);
-	BCS_DEBUG_API const char* field_to_string(e_field field);
+	BCS_DEBUG_API BCS_RESULT field_to_tag_field_type(e_field field, const char*& tag_field_type);
+	BCS_DEBUG_API BCS_RESULT tag_field_type_to_field(const char* tag_field_type, e_field& field);
 }

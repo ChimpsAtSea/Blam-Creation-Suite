@@ -360,6 +360,10 @@ namespace blofeld
 #include "tag_field.ctor.inl"
 #undef __tag_field_pointer_type__
 		
+#define __tag_field_pointer_type__ s_tag_interop_definition
+#include "tag_field.ctor.inl"
+#undef __tag_field_pointer_type__
+		
 		// type, name, description, units, limits, old-names-array, FLAGS, pointer, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char* limits, const char** old_names, unsigned long flags, const void* pointer, e_field_id id) :
 			field_type(type),

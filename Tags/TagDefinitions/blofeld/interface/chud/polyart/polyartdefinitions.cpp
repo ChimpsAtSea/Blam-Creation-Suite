@@ -26,8 +26,8 @@ namespace blofeld
 		{ _field_block, "indices", FIELD_FLAG_READ_ONLY, &polyartIndexBlock_block },
 		{ _field_block, "pc vertex buffers", FIELD_FLAG_READ_ONLY, &vertexBuffersBlock_block },
 		{ _field_block, "pc index buffers", FIELD_FLAG_READ_ONLY, &indexBuffersBlock_block },
-		{ _field_api_interop, "vertex buffer interop", FIELD_FLAG_READ_ONLY, &polyartVertexBufferDescriptorStruct },
-		{ _field_api_interop, "index buffer interop", FIELD_FLAG_READ_ONLY, &polyartIndexBufferDescriptorStruct },
+		{ _field_api_interop, "vertex buffer interop", FIELD_FLAG_READ_ONLY/*, &polyartVertexBufferDescriptorStruct */},
+		{ _field_api_interop, "index buffer interop", FIELD_FLAG_READ_ONLY/*, &polyartIndexBufferDescriptorStruct*/ },
 		{ _field_terminator }
 	};
 

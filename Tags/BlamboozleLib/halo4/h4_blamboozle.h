@@ -6,7 +6,7 @@ struct s_h4_tag_array_definition;
 struct s_h4_tag_struct_definition;
 struct s_h4_tag_enum_definition;
 struct s_h4_tag_reference_definition;
-struct s_h4_tag_interop_definition;
+struct s_h4_tag_api_interop_definition;
 struct s_h4_tag_resource_definition;
 
 class c_h4_tag_block;
@@ -39,10 +39,10 @@ public:
 		unsigned long offset);
 	static std::map<const void*, c_h4_tag_struct*> tag_struct_definitions;
 
-	static c_h4_tag_interop* get_tag_interop_definition(
+	static c_h4_tag_interop* get_tag_api_interop_definition(
 		const char* h4_data,
-		const s_h4_tag_interop_definition* definition_header);
-	static std::map<const void*, c_h4_tag_interop*> tag_interop_definitions;
+		const s_h4_tag_api_interop_definition* definition_header);
+	static std::map<const void*, c_h4_tag_interop*> tag_api_interop_definitions;
 
 	static c_h4_tag_resource* get_tag_resource_definition(
 		const char* h4_data,

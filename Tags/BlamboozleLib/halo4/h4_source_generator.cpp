@@ -1338,11 +1338,11 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 		}
 		case _h4_field_type_api_interop:
 		{
-			c_h4_tag_interop_definition* interop_field = dynamic_cast<c_h4_tag_interop_definition*>(tag_field);
+			c_h4_tag_api_interop_definition* interop_field = dynamic_cast<c_h4_tag_api_interop_definition*>(tag_field);
 			ASSERT(interop_field);
 			ASSERT(interop_field->name);
-			ASSERT(interop_field->tag_interop_definition);
-			c_h4_tag_struct_container* tag_struct_container = preprocessor.find_existing_tag_struct_container(interop_field->tag_interop_definition->tag_struct);
+			ASSERT(interop_field->tag_api_interop_definition);
+			c_h4_tag_struct_container* tag_struct_container = preprocessor.find_existing_tag_struct_container(interop_field->tag_api_interop_definition->tag_struct);
 			ASSERT(tag_struct_container);
 
 			s << "\t\t{ ";

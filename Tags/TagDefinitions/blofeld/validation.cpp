@@ -15,15 +15,16 @@ namespace blofeld
 
 		for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 		{
-			const char* field_string = field_to_string(current_field->field_type);
-			const char* nice_field_string = field_string + 1;
-
 			unsigned long field_skip_count;
 			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;
 			}
+
+			const char* field_string;
+			ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(current_field->field_type, field_string)));
+			const char* nice_field_string = field_string + 1;
 
 			if (recursive)
 			{
@@ -42,7 +43,10 @@ namespace blofeld
 				}
 				case _field_api_interop:
 				{
-					next_struct_definition = current_field->struct_definition;
+					if (current_field->tag_interop_definition) // #TODO: enforce this
+					{
+						next_struct_definition = &current_field->tag_interop_definition->struct_definition;
+					}
 					break;
 				}
 				case _field_pageable:
@@ -112,15 +116,15 @@ namespace blofeld
 
 		for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 		{
-
-			const char* field_string = field_to_string(current_field->field_type);
-
 			unsigned long field_skip_count;
 			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;
 			}
+
+			const char* field_string;
+			ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(current_field->field_type, field_string)));
 
 			if (block_failed_validation)
 			{

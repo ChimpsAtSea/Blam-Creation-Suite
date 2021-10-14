@@ -276,6 +276,25 @@ void h3_sort_structures(std::vector<c_h3_tag_group_definition*>& group_definitio
 	}
 }
 
+std::vector<c_h3_tag_api_interop_definition*> exported_api_interop_definitions;
+void h3_clear_exported_api_interops()
+{
+	exported_api_interop_definitions.clear();
+}
+
+bool is_api_interop_exported(c_h3_tag_api_interop_definition& api_interop_definition)
+{
+	for (c_h3_tag_api_interop_definition* current_api_interop_definition : exported_api_interop_definitions)
+	{
+		if (current_api_interop_definition == &api_interop_definition)
+		{
+			return true;
+		}
+	}
+	exported_api_interop_definitions.push_back(&api_interop_definition);
+	return false;
+}
+
 std::vector<c_h3_tag_data_definition*> exported_data_definitions;
 void h3_clear_exported_datas()
 {
@@ -840,6 +859,48 @@ void h3_write_fields(std::stringstream& s, std::vector<c_h3_tag_field*>& fields)
 			s << " }," << std::endl;
 		}
 		break;
+		case _h3_field_type_api_interop:
+		{
+			s << "\t\t{ ";
+			s << field_generic_type_name << ", ";
+			s << "\"" << name.c_str() << "\"";
+			if (write_description)
+			{
+				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
+				else s << ", " << "nullptr";
+			}
+			if (write_units)
+			{
+				if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
+				else s << ", " << "nullptr";
+			}
+			if (write_limits)
+			{
+				if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
+				else s << ", " << "nullptr";
+			}
+			if (write_old_name)
+			{
+				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+			}
+			if (write_flags)
+			{
+				s << ", ";
+				h3_generate_tag_field_flags(s, string_parser);
+			}
+			ASSERT(tag_field->api_interop_definition);
+			if (tag_field->api_interop_definition)
+			{
+				s << ", &blofeld::" << _namespace << "::" << tag_field->api_interop_definition->code_name;
+			}
+			if (write_tag)
+			{
+				s << ", " << tag_field->field_id_string;
+			}
+
+			s << " }," << std::endl;
+		}
+		break;
 		case _h3_field_type_data:
 		{
 			s << "\t\t{ ";
@@ -1237,8 +1298,10 @@ void h3_export_header(
 	std::vector<c_h3_tag_block_definition*>& block_definitions,
 	std::vector<c_h3_tag_array_definition*>& array_definitions,
 	std::vector<c_h3_tag_struct_definition*>& struct_definitions,
-	std::vector<c_h3_tag_data_definition*>& data_definitions)
+	std::vector<c_h3_tag_data_definition*>& data_definitions,
+	std::vector<c_h3_tag_api_interop_definition*>& api_interop_definitions)
 {
+	h3_clear_exported_api_interops();
 	h3_clear_exported_datas();
 	h3_clear_exported_structs();
 	h3_clear_exported_groups();
@@ -1319,6 +1382,16 @@ void h3_export_header(
 			s << std::endl;
 		}
 	}
+	
+	for (auto& api_interop_definition : api_interop_definitions)
+	{
+		if (!is_api_interop_exported(*api_interop_definition))
+		{
+			s << "\textern s_tag_interop_definition " << api_interop_definition->code_name << ";" << std::endl;
+
+			s << std::endl;
+		}
+	}
 
 	s << std::endl;
 	s << "} // namespace blofeld" << std::endl;
@@ -1333,8 +1406,10 @@ void h3_export_source(
 	std::vector<c_h3_tag_block_definition*>& block_definitions,
 	std::vector<c_h3_tag_array_definition*>& array_definitions,
 	std::vector<c_h3_tag_struct_definition*>& struct_definitions,
-	std::vector<c_h3_tag_data_definition*>& data_definitions)
+	std::vector<c_h3_tag_data_definition*>& data_definitions,
+	std::vector<c_h3_tag_api_interop_definition*>& api_interop_definitions)
 {
+	h3_clear_exported_api_interops();
 	h3_clear_exported_datas();
 	h3_clear_exported_structs();
 	h3_clear_exported_groups();
@@ -1386,8 +1461,14 @@ void h3_export_source(
 		{
 			c_h3_tag_struct_definition* struct_definition = &block_definition->struct_definition;
 
-			s << "\tTAG_BLOCK_FROM_STRUCT(" << std::endl;
+			if (strcmp(block_definition->pretty_name.c_str(), "multilingual_unicode_string_list_block") == 0)
+			{
+				debug_point;
+			}
+
+			s << "\tTAG_BLOCK_FROM_STRUCT_V2(" << std::endl;
 			s << "\t\t" << block_definition->code_name << "," << std::endl;
+			s << "\t\t" << "\"" << block_definition->pretty_name << "\"," << std::endl;
 			s << "\t\t" << "\"" << block_definition->name << "\"," << std::endl;
 			s << "\t\t" << "" << block_definition->max_count << "," << std::endl;
 			s << "\t\t" << struct_definition->code_name << ");" << std::endl;
@@ -1473,6 +1554,42 @@ void h3_export_source(
 			s << std::endl;
 		}
 	}
+	
+	for (auto& api_interop_definition : api_interop_definitions)
+	{
+		if (!is_api_interop_exported(*api_interop_definition))
+		{
+			char persistent_identifier_buffer[256];
+			snprintf(
+				persistent_identifier_buffer,
+				256,
+				"0x%08X, 0x%08X, 0x%08X, 0x%08X",
+				api_interop_definition->persistent_identifier.data[0],
+				api_interop_definition->persistent_identifier.data[1],
+				api_interop_definition->persistent_identifier.data[2],
+				api_interop_definition->persistent_identifier.data[3]);
+
+			char persistent_identifier_name_buffer[256];
+			snprintf(
+				persistent_identifier_name_buffer,
+				256,
+				"%s_id",
+				api_interop_definition->code_name.c_str());
+			for (char* persistent_identifier_name_pos = persistent_identifier_name_buffer; *persistent_identifier_name_pos; persistent_identifier_name_pos++)
+			{
+				*persistent_identifier_name_pos = toupper(*persistent_identifier_name_pos);
+			}
+
+			s << "\t#define " << persistent_identifier_name_buffer << " { " << persistent_identifier_buffer << " }" << std::nouppercase << std::endl;
+
+			s << "\tTAG_INTEROP(" << std::endl;
+			s << "\t\t" << api_interop_definition->code_name << "," << std::endl;
+			s << "\t\t" << "\"" << api_interop_definition->name << "\"," << std::endl;
+			s << "\t\t" << api_interop_definition->struct_definition.code_name  << "," << std::endl;
+			s << "\t\t" << persistent_identifier_name_buffer << ");" << std::endl;
+			s << std::endl;
+		}
+	}
 
 	s << std::endl;
 	s << "} // namespace blofeld" << std::endl;
@@ -1486,7 +1603,8 @@ void h3_export_code(
 	std::vector<c_h3_tag_block_definition*>& block_definitions,
 	std::vector<c_h3_tag_array_definition*>& array_definitions,
 	std::vector<c_h3_tag_struct_definition*>& struct_definitions,
-	std::vector<c_h3_tag_data_definition*>& data_definitions)
+	std::vector<c_h3_tag_data_definition*>& data_definitions,
+	std::vector<c_h3_tag_api_interop_definition*>& api_interop_definitions)
 {
 	std::stringstream header_stream;
 	std::stringstream source_stream;
@@ -1494,8 +1612,8 @@ void h3_export_code(
 	h3_sort_group_definitions(group_definitions);
 	h3_sort_structures(sorted_group_definitions);
 
-	h3_export_header(header_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions);
-	h3_export_source(source_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions);
+	h3_export_header(header_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions, api_interop_definitions);
+	h3_export_source(source_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions, api_interop_definitions);
 
 	std::string header_string = header_stream.str();
 	std::string source_string = source_stream.str();

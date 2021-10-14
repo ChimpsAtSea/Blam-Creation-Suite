@@ -4,7 +4,7 @@ std::map<const void*, c_h4_tag_block*> c_h4_blamboozle::tag_block_definitions;
 std::map<const void*, c_h4_tag_struct*> c_h4_blamboozle::tag_struct_definitions;
 std::map<const void*, c_h4_tag_enum*> c_h4_blamboozle::tag_enum_definitions;
 std::map<const void*, c_h4_tag_reference*> c_h4_blamboozle::tag_reference_definitions;
-std::map<const void*, c_h4_tag_interop*> c_h4_blamboozle::tag_interop_definitions;
+std::map<const void*, c_h4_tag_interop*> c_h4_blamboozle::tag_api_interop_definitions;
 std::map<const void*, c_h4_tag_resource*> c_h4_blamboozle::tag_resource_definitions;
 
 
@@ -253,9 +253,9 @@ c_h4_tag_array* c_h4_blamboozle::get_tag_array_definition(const char* h4_data, c
 	return tag_block_definition;
 }
 
-c_h4_tag_interop* c_h4_blamboozle::get_tag_interop_definition(
+c_h4_tag_interop* c_h4_blamboozle::get_tag_api_interop_definition(
 	const char* h4_data, 
-	const s_h4_tag_interop_definition* definition_header)
+	const s_h4_tag_api_interop_definition* definition_header)
 {
 	if (definition_header == nullptr)
 	{
@@ -263,28 +263,28 @@ c_h4_tag_interop* c_h4_blamboozle::get_tag_interop_definition(
 	}
 	ASSERT(h4_data != nullptr);
 
-	std::map<const void*, c_h4_tag_interop*>::iterator tag_interop_definition_iterator = tag_interop_definitions.find(definition_header);
+	std::map<const void*, c_h4_tag_interop*>::iterator tag_api_interop_definition_iterator = tag_api_interop_definitions.find(definition_header);
 
-	if (tag_interop_definition_iterator != tag_interop_definitions.end())
+	if (tag_api_interop_definition_iterator != tag_api_interop_definitions.end())
 	{
-		return tag_interop_definition_iterator->second;
+		return tag_api_interop_definition_iterator->second;
 	}
 
-	for (const std::pair<const void*, c_h4_tag_interop*>& tag_interop_key : tag_interop_definitions)
+	for (const std::pair<const void*, c_h4_tag_interop*>& tag_interop_key : tag_api_interop_definitions)
 	{
 		c_h4_tag_interop& tag_interop = *tag_interop_key.second;
-		if (definition_header == tag_interop.tag_interop_definition)
+		if (definition_header == tag_interop.tag_api_interop_definition)
 		{
 			return tag_interop_key.second;
 		}
 	}
 
-	c_h4_tag_interop* tag_interop_definition = reinterpret_cast<c_h4_tag_interop*>(malloc(sizeof(c_h4_tag_interop)));
-	tag_interop_definitions[definition_header] = tag_interop_definition;
-	new(tag_interop_definition) c_h4_tag_interop(h4_data, definition_header);
+	c_h4_tag_interop* tag_api_interop_definition = reinterpret_cast<c_h4_tag_interop*>(malloc(sizeof(c_h4_tag_interop)));
+	tag_api_interop_definitions[definition_header] = tag_api_interop_definition;
+	new(tag_api_interop_definition) c_h4_tag_interop(h4_data, definition_header);
 
 
-	return tag_interop_definition;
+	return tag_api_interop_definition;
 }
 
 c_h4_tag_resource* c_h4_blamboozle::get_tag_resource_definition(

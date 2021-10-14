@@ -27,7 +27,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CONSTANT_BUFFERS_BLOCK_ID)
 	{
-		{ _field_legacy, _field_api_interop, "constant buffer interop*", &constant_buffer_struct },
+		{ _field_legacy, _field_api_interop, "constant buffer interop*"/*, &constant_buffer_struct*/ },
 		{ _field_legacy, _field_terminator }
 	};
 
@@ -577,7 +577,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		RENDER_VERTEX_BUFFER_BLOCK_ID)
 	{
-		{ _field_api_interop, "vertex buffer interop", &render_vertex_buffer_descriptor_struct },
+		{ _field_api_interop, "vertex buffer interop"/*, &render_vertex_buffer_descriptor_struct*/ },
 		{ _field_terminator }
 	};
 
@@ -591,7 +591,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		RENDER_INDEX_BUFFER_BLOCK_ID)
 	{
-		{ _field_api_interop, "index buffer interop", &render_index_buffer_descriptor_struct },
+		{ _field_api_interop, "index buffer interop"/*, &render_index_buffer_descriptor_struct*/ },
 		{ _field_terminator }
 	};
 

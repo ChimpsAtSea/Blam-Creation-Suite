@@ -705,10 +705,10 @@ void c_h4_generator_preprocessor::process_tag_struct_field(c_h4_tag_field* tag_f
 		traverse_tag_structs(*_struct, nullptr, false, false, false, false, false, true);
 	}
 
-	if (c_h4_tag_interop_definition* interop_field = dynamic_cast<c_h4_tag_interop_definition*>(tag_field))
+	if (c_h4_tag_api_interop_definition* interop_field = dynamic_cast<c_h4_tag_api_interop_definition*>(tag_field))
 	{
 		bool x = strstr(interop_field->name, "interleaved texture interop") != 0;
-		c_h4_tag_interop* tag_interop = interop_field->tag_interop_definition;
+		c_h4_tag_interop* tag_interop = interop_field->tag_api_interop_definition;
 		ASSERT(tag_interop != nullptr);
 		c_h4_tag_struct& _struct = tag_interop->tag_struct;
 		traverse_tag_structs(_struct, nullptr, false, false, false, true, false, true);
