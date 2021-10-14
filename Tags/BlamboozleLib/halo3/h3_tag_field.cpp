@@ -13,6 +13,7 @@ c_h3_tag_field::c_h3_tag_field(const char* guerilla_data, const s_h3_tag_field& 
 	struct_definition(nullptr),
 	array_definition(nullptr),
 	string_list_definition(nullptr),
+	data_definition(nullptr),
 	padding(0),
 	skip_length(0),
 	explanation(0),
@@ -71,6 +72,10 @@ c_h3_tag_field::c_h3_tag_field(const char* guerilla_data, const s_h3_tag_field& 
 	case _h3_field_type_api_interop:
 		break;
 	case _h3_field_type_data:
+		ASSERT(field_definition.definition_address != 0);
+		data_definition = c_h3_tag_data_definition::h3_get_tag_data_definition(guerilla_data, field_definition.definition_address);
+		debug_point;
+		break;
 	case _h3_field_type_short_integer:
 	case _h3_field_type_real:
 	case _h3_field_type_string_id:

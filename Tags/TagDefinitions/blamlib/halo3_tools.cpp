@@ -8533,7 +8533,7 @@ namespace halo3_tools {
 		8,
 		area_cluster_occupancy_bitvector_array_struct_definition);
 
-	#define SHADER_CONTRAIL_STRUCT_DEFINITION_ID { 0x00000000, 0xB938733A, 0x10934017, 0x9931B3E4 }
+	#define SHADER_CONTRAIL_STRUCT_DEFINITION_ID { 0xB938733A, 0x10934017, 0x9931B3E4, 0xE1B1434C }
 	TAG_STRUCT(
 		shader_contrail_struct_definition,
 		"shader_contrail_struct_definition",
@@ -8546,7 +8546,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHADER_PARTICLE_STRUCT_DEFINITION_ID { 0x00000000, 0x769BE1B8, 0x531C4049, 0x99594583 }
+	#define SHADER_PARTICLE_STRUCT_DEFINITION_ID { 0x769BE1B8, 0x531C4049, 0x99594583, 0x24A08389 }
 	TAG_STRUCT(
 		shader_particle_struct_definition,
 		"shader_particle_struct_definition",
@@ -8559,7 +8559,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BIPED_GROUP_STRUCT_DEFINITION_ID { 0x00000000, 0x6855591D, 0xC7A2477E, 0xBB97CD08 }
+	#define BIPED_GROUP_STRUCT_DEFINITION_ID { 0x6855591D, 0xC7A2477E, 0xBB97CD08, 0xE97A8C61 }
 	TAG_STRUCT(
 		biped_group_struct_definition,
 		"biped_group",
@@ -8643,7 +8643,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(muffin_group_reference_tagref, MUFFIN_TAG);
 
-	#define CRATE_STRUCT_DEFINITION_ID { 0x00000000, 0x793C3A87, 0x506C4035, 0xBF3BFC95 }
+	#define CRATE_STRUCT_DEFINITION_ID { 0x793C3A87, 0x506C4035, 0xBF3BFC95, 0xF0459BE4 }
 	TAG_STRUCT(
 		crate_struct_definition,
 		"crate_struct_definition",
@@ -8667,7 +8667,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(crate_flags, crate_flags_strings, _countof(crate_flags_strings));
 
-	#define CREATURE_STRUCT_DEFINITION_ID { 0x00000000, 0x83C805FE, 0xCAD24C6A, 0x8781D5EE }
+	#define CREATURE_STRUCT_DEFINITION_ID { 0x83C805FE, 0xCAD24C6A, 0x8781D5EE, 0x18B84ED8 }
 	TAG_STRUCT(
 		creature_struct_definition,
 		"creature_struct_definition",
@@ -8737,7 +8737,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(damage_effect_group_reference_tagref, DAMAGE_EFFECT_TAG);
 
-	#define DEVICE_CONTROL_STRUCT_DEFINITION_ID { 0x00000000, 0x58F680DD, 0x1B2D4A08, 0xAA1F8640 }
+	#define DEVICE_CONTROL_STRUCT_DEFINITION_ID { 0x58F680DD, 0x1B2D4A08, 0xAA1F8640, 0x73F38CEE }
 	TAG_STRUCT(
 		device_control_struct_definition,
 		"device_control_struct_definition",
@@ -8782,7 +8782,7 @@ namespace halo3_tools {
 		INVALID_TAG
 	};
 
-	#define DEVICE_STRUCT_DEFINITION_ID { 0x00000000, 0xB2FE944E, 0x74CF4590, 0x9FE30CED }
+	#define DEVICE_STRUCT_DEFINITION_ID { 0xB2FE944E, 0x74CF4590, 0x9FE30CED, 0xB1BF6B94 }
 	TAG_STRUCT(
 		device_struct_definition,
 		"device_struct_definition",
@@ -8832,7 +8832,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(device_lightmap_flags, device_lightmap_flags_strings, _countof(device_lightmap_flags_strings));
 
-	#define EFFECT_SCENERY_STRUCT_DEFINITION_ID { 0x00000000, 0x575B0686, 0x25B7457D, 0xBBB14145 }
+	#define EFFECT_SCENERY_STRUCT_DEFINITION_ID { 0x575B0686, 0x25B7457D, 0xBBB14145, 0x173BB6C9 }
 	TAG_STRUCT(
 		effect_scenery_struct_definition,
 		"effect_scenery_struct_definition",
@@ -8845,7 +8845,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define EQUIPMENT_GROUP_STRUCT_DEFINITION_ID { 0x00000000, 0x18B70662, 0x869349C3, 0xB79E4FBE }
+	#define EQUIPMENT_GROUP_STRUCT_DEFINITION_ID { 0x18B70662, 0x869349C3, 0xB79E4FBE, 0xC65A52CB }
 	TAG_STRUCT(
 		equipment_group_struct_definition,
 		"equipment_group",
@@ -8894,7 +8894,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(sound_group_reference_tagref, SOUND_TAG, _tag_reference_flag_resolved_by_game);
 
-	#define GIANT_STRUCT_DEFINITION_ID { 0x00000000, 0xA855591D, 0xA7A2477E, 0xAB97CD08 }
+	#define GIANT_STRUCT_DEFINITION_ID { 0xA855591D, 0xA7A2477E, 0xAB97CD08, 0xA97A8C61 }
 	TAG_STRUCT(
 		giant_struct_definition,
 		"giant_struct_definition",
@@ -8921,7 +8921,7 @@ namespace halo3_tools {
 
 	STRING_LIST(giant_definition_flags, empty_string_list, 0);
 
-	#define ITEM_STRUCT_DEFINITION_ID { 0x00000000, 0x21CDF7E3, 0xAD94443E, 0xAE80968D }
+	#define ITEM_STRUCT_DEFINITION_ID { 0x21CDF7E3, 0xAD94443E, 0xAE80968D, 0x8CFBEBBF }
 	TAG_STRUCT(
 		item_struct_definition,
 		"item_struct_definition",
@@ -8978,7 +8978,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(item_definition_flags, item_definition_flags_strings, _countof(item_definition_flags_strings));
 
-	#define DEVICE_MACHINE_STRUCT_DEFINITION_ID { 0x00000000, 0x8D04FAA2, 0xC2034C8D, 0xB2925D27 }
+	#define DEVICE_MACHINE_STRUCT_DEFINITION_ID { 0x8D04FAA2, 0xC2034C8D, 0xB2925D27, 0x85AF7748 }
 	TAG_STRUCT(
 		device_machine_struct_definition,
 		"device_machine_struct_definition",
@@ -9037,7 +9037,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(machine_pathfinding_policy_enum, machine_pathfinding_policy_enum_strings, _countof(machine_pathfinding_policy_enum_strings));
 
-	#define PROJECTILE_GROUP_STRUCT_DEFINITION_ID { 0x00000000, 0xF7D82E78, 0x19074B8C, 0x80D49472 }
+	#define PROJECTILE_GROUP_STRUCT_DEFINITION_ID { 0xF7D82E78, 0x19074B8C, 0x80D49472, 0x7BD600C1 }
 	TAG_STRUCT(
 		projectile_group_struct_definition,
 		"projectile_group",
@@ -9223,7 +9223,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(global_damage_reporting_enum_definition, global_damage_reporting_enum_definition_strings, _countof(global_damage_reporting_enum_definition_strings));
 
-	#define SHADER_BEAM_STRUCT_DEFINITION$2_ID { 0x00000000, 0x0592DCD9, 0x37FA4BC4, 0xA738BF8A }
+	#define SHADER_BEAM_STRUCT_DEFINITION$2_ID { 0x0592DCD9, 0x37FA4BC4, 0xA738BF8A, 0x3D5A5091 }
 	TAG_STRUCT(
 		shader_beam_struct_definition$2,
 		"shader_beam_struct_definition",
@@ -9236,7 +9236,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHADER_CUSTOM_STRUCT_DEFINITION_ID { 0x00000000, 0xFF50E364, 0xEB3245FF, 0xA2D4B69B }
+	#define SHADER_CUSTOM_STRUCT_DEFINITION_ID { 0xFF50E364, 0xEB3245FF, 0xA2D4B69B, 0x8BE29BB4 }
 	TAG_STRUCT(
 		shader_custom_struct_definition,
 		"shader_custom_struct_definition",
@@ -9250,7 +9250,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHADER_CORTANA_STRUCT_DEFINITION_ID { 0x00000000, 0xC85B5D4E, 0xE9A04958, 0xB56578B1 }
+	#define SHADER_CORTANA_STRUCT_DEFINITION_ID { 0xC85B5D4E, 0xE9A04958, 0xB56578B1, 0xFD846D3B }
 	TAG_STRUCT(
 		shader_cortana_struct_definition,
 		"shader_cortana_struct_definition",
@@ -9264,7 +9264,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHADER_DECAL_STRUCT_DEFINITION$2_ID { 0x00000000, 0xEA087CA7, 0x6D4B455B, 0xA5D40D3C }
+	#define SHADER_DECAL_STRUCT_DEFINITION$2_ID { 0xEA087CA7, 0x6D4B455B, 0xA5D40D3C, 0xC2BD313A }
 	TAG_STRUCT(
 		shader_decal_struct_definition$2,
 		"shader_decal_struct_definition",
@@ -9277,7 +9277,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHADER_LIGHT_VOLUME_STRUCT_DEFINITION$2_ID { 0x00000000, 0x0EBF63AF, 0x426B4679, 0x93E4F59B }
+	#define SHADER_LIGHT_VOLUME_STRUCT_DEFINITION$2_ID { 0x0EBF63AF, 0x426B4679, 0x93E4F59B, 0x93BC0FF2 }
 	TAG_STRUCT(
 		shader_light_volume_struct_definition$2,
 		"shader_light_volume_struct_definition",
@@ -9290,7 +9290,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHADER_TERRAIN_STRUCT_DEFINITION_ID { 0x00000000, 0xA5E23FFC, 0x86CF4F04, 0x8F9BB910 }
+	#define SHADER_TERRAIN_STRUCT_DEFINITION_ID { 0xA5E23FFC, 0x86CF4F04, 0x8F9BB910, 0xEC559C56 }
 	TAG_STRUCT(
 		shader_terrain_struct_definition,
 		"shader_terrain_struct_definition",
@@ -9312,7 +9312,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHADER_STRUCT_DEFINITION_ID { 0x00000000, 0x03AC664D, 0xEFE440D5, 0x90BB753B }
+	#define SHADER_STRUCT_DEFINITION_ID { 0x03AC664D, 0xEFE440D5, 0x90BB753B, 0xDD1C8632 }
 	TAG_STRUCT(
 		shader_struct_definition,
 		"shader_struct_definition",
@@ -9326,7 +9326,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHADER_FOLIAGE_STRUCT_DEFINITION_ID { 0x00000000, 0xD74BE733, 0x121C43AD, 0xBA9BDBAB }
+	#define SHADER_FOLIAGE_STRUCT_DEFINITION_ID { 0xD74BE733, 0x121C43AD, 0xBA9BDBAB, 0x5CFF186F }
 	TAG_STRUCT(
 		shader_foliage_struct_definition,
 		"shader_foliage_struct_definition",
@@ -9340,7 +9340,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_SCENERY_STRUCT_DEFINITION_ID { 0x00000000, 0xD4C4A75B, 0x96954D6A, 0xBB77085F }
+	#define SOUND_SCENERY_STRUCT_DEFINITION_ID { 0xD4C4A75B, 0x96954D6A, 0xBB77085F, 0xD4396EF5 }
 	TAG_STRUCT(
 		sound_scenery_struct_definition,
 		"sound_scenery_struct_definition",
@@ -9358,7 +9358,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENERY_GROUP_STRUCT_DEFINITION_ID { 0x00000000, 0x8EF5AC73, 0xE1C843B9, 0xA15CC8AA }
+	#define SCENERY_GROUP_STRUCT_DEFINITION_ID { 0x8EF5AC73, 0xE1C843B9, 0xA15CC8AA, 0xC9F15E5C }
 	TAG_STRUCT(
 		scenery_group_struct_definition,
 		"scenery_group",
@@ -9401,7 +9401,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(lightmapping_policy_enum, lightmapping_policy_enum_strings, _countof(lightmapping_policy_enum_strings));
 
-	#define UNIT_STRUCT_DEFINITION_ID { 0x00000000, 0xC8958077, 0x466A4028, 0x94ACA1E3 }
+	#define UNIT_STRUCT_DEFINITION_ID { 0xC8958077, 0x466A4028, 0x94ACA1E3, 0xDB3BF1B8 }
 	TAG_STRUCT(
 		unit_struct_definition,
 		"unit_struct_definition",
@@ -9547,7 +9547,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(weapon_group_reference$3_tagref, WEAPON_TAG);
 
-	#define SHADER_WATER_STRUCT_DEFINITION_ID { 0x00000000, 0x690CD756, 0x20E34F49, 0xA35E9CD9 }
+	#define SHADER_WATER_STRUCT_DEFINITION_ID { 0x690CD756, 0x20E34F49, 0xA35E9CD9, 0x594C0FA2 }
 	TAG_STRUCT(
 		shader_water_struct_definition,
 		"shader_water_struct_definition",
@@ -9560,7 +9560,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHADER_HALOGRAM_STRUCT_DEFINITION_ID { 0x00000000, 0xC9823BF8, 0x33A44F28, 0x8307126E }
+	#define SHADER_HALOGRAM_STRUCT_DEFINITION_ID { 0xC9823BF8, 0x33A44F28, 0x8307126E, 0xD5E0FA05 }
 	TAG_STRUCT(
 		shader_halogram_struct_definition,
 		"shader_halogram_struct_definition",
@@ -9574,7 +9574,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHADER_SKIN_STRUCT_DEFINITION_ID { 0x00000000, 0xC5B8AAB4, 0x932348D9, 0x8333AD6E }
+	#define SHADER_SKIN_STRUCT_DEFINITION_ID { 0xC5B8AAB4, 0x932348D9, 0x8333AD6E, 0x6B1DE570 }
 	TAG_STRUCT(
 		shader_skin_struct_definition,
 		"shader_skin_struct_definition",
@@ -9588,7 +9588,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DEVICE_TERMINAL_STRUCT_DEFINITION_ID { 0x00000000, 0x99043D50, 0x595A4182, 0xBC0E31FE }
+	#define DEVICE_TERMINAL_STRUCT_DEFINITION_ID { 0x99043D50, 0x595A4182, 0xBC0E31FE, 0xF8D1EEE7 }
 	TAG_STRUCT(
 		device_terminal_struct_definition,
 		"device_terminal_struct_definition",
@@ -9663,7 +9663,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(content_flags, content_flags_strings, _countof(content_flags_strings));
 
-	#define VEHICLE_GROUP_STRUCT_DEFINITION_ID { 0x00000000, 0xC6A4B989, 0x09714F2B, 0xBF522976 }
+	#define VEHICLE_GROUP_STRUCT_DEFINITION_ID { 0xC6A4B989, 0x09714F2B, 0xBF522976, 0xF69B2344 }
 	TAG_STRUCT(
 		vehicle_group_struct_definition,
 		"vehicle_group",
@@ -9743,7 +9743,7 @@ namespace halo3_tools {
 		INVALID_TAG
 	};
 
-	#define WEAPON_GROUP_STRUCT_DEFINITION_ID { 0x00000000, 0xFFC6FB66, 0x88904EC8, 0xB98D9160 }
+	#define WEAPON_GROUP_STRUCT_DEFINITION_ID { 0xFFC6FB66, 0x88904EC8, 0xB98D9160, 0xFA0A7CDE }
 	TAG_STRUCT(
 		weapon_group_struct_definition,
 		"weapon_group",
@@ -9946,7 +9946,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(material_effects_group_reference_tagref, MATERIAL_EFFECTS_TAG);
 
-	#define SCALAR_FUNCTION_NAMED_STRUCT_ID { 0x00000000, 0x72CB9289, 0x0276481E, 0x9467A351 }
+	#define SCALAR_FUNCTION_NAMED_STRUCT_ID { 0x72CB9289, 0x0276481E, 0x9467A351, 0xF56D7C18 }
 	TAG_STRUCT(
 		scalar_function_named_struct,
 		"scalar_function_named_struct",
@@ -9960,7 +9960,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MAPPING_FUNCTION_ID { 0x00000000, 0x5A14A98F, 0x53FA4484, 0x801068D4 }
+	#define MAPPING_FUNCTION_ID { 0x5A14A98F, 0x53FA4484, 0x801068D4, 0x0AF1459E }
 	TAG_STRUCT(
 		mapping_function,
 		"mapping_function",
@@ -9970,12 +9970,12 @@ namespace halo3_tools {
 		MAPPING_FUNCTION_ID)
 	{
 		FIELD_HIDE_BEGIN(),
-		{ _field_data, "data" },
+		{ _field_data, "data", &blofeld::halo3_tools::function_definition_data },
 		FIELD_HIDE_END(),
 		{ _field_terminator }
 	};
 
-	#define G_NULL_BLOCK_ID { 0x00000000, 0x757E48A6, 0x9CAC4CBC, 0xBC46A11C }
+	#define G_NULL_BLOCK_ID { 0x757E48A6, 0x9CAC4CBC, 0xBC46A11C, 0x63F7E2F3 }
 	TAG_STRUCT(
 		g_null_block,
 		"g_null_block",
@@ -9988,7 +9988,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CINEMATICS_BLOCK_ID { 0x00000000, 0x59336E8E, 0x27A04735, 0xA9545DF3 }
+	#define SCENARIO_CINEMATICS_BLOCK_ID { 0x59336E8E, 0x27A04735, 0xA9545DF3, 0x921A7282 }
 	TAG_STRUCT(
 		scenario_cinematics_block,
 		"scenario_cinematics_block",
@@ -10003,7 +10003,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(cinematic_group_reference_tagref, CINEMATIC_TAG);
 
-	#define SCENARIO_CUTSCENE_TITLE_STRUCT_ID { 0x00000000, 0xD8858602, 0xD42E4FA2, 0x84CB2347 }
+	#define SCENARIO_CUTSCENE_TITLE_STRUCT_ID { 0xD8858602, 0xD42E4FA2, 0x84CB2347, 0xBBA1F96F }
 	TAG_STRUCT(
 		scenario_cutscene_title_struct,
 		"scenario_cutscene_title_struct",
@@ -10059,7 +10059,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(font_id_enum_definition, font_id_enum_definition_strings, _countof(font_id_enum_definition_strings));
 
-	#define CINEMATIC_CUSTOM_SCRIPT_BLOCK_ID { 0x00000000, 0xC119D09A, 0x7F5F44A3, 0x9703E8E0 }
+	#define CINEMATIC_CUSTOM_SCRIPT_BLOCK_ID { 0xC119D09A, 0x7F5F44A3, 0x9703E8E0, 0x3EFD6987 }
 	TAG_STRUCT(
 		cinematic_custom_script_block,
 		"cinematic_custom_script_block",
@@ -10068,11 +10068,11 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_CUSTOM_SCRIPT_BLOCK_ID)
 	{
-		{ _field_data, "script", MAKE_OLD_NAMES(" ") },
+		{ _field_data, "script", MAKE_OLD_NAMES(" "), &blofeld::halo3_tools::custom_script_data },
 		{ _field_terminator }
 	};
 
-	#define CAMERA_FRAME_STRUCT_ID { 0x00000000, 0xECDDDE5E, 0x52994BFF, 0xA60B9529 }
+	#define CAMERA_FRAME_STRUCT_ID { 0xECDDDE5E, 0x52994BFF, 0xA60B9529, 0x630936B7 }
 	TAG_STRUCT(
 		camera_frame_struct,
 		"camera_frame_struct",
@@ -10095,7 +10095,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_AND_ZONE_SET_STRUCT_ID { 0x00000000, 0x68E9CE6F, 0xC3964CAE, 0xB0D8CDC6 }
+	#define SCENARIO_AND_ZONE_SET_STRUCT_ID { 0x68E9CE6F, 0xC3964CAE, 0xB0D8CDC6, 0xA3F5786D }
 	TAG_STRUCT(
 		scenario_and_zone_set_struct,
 		"scenario_and_zone_set_struct",
@@ -10112,7 +10112,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(scenario_group_reference_tagref, SCENARIO_TAG, _tag_reference_flag_not_a_dependency);
 
-	#define CINEMATIC_SHOT_FRAME_BLOCK_ID { 0x00000000, 0xBD4D0364, 0x996745B6, 0x859A07A4 }
+	#define CINEMATIC_SHOT_FRAME_BLOCK_ID { 0xBD4D0364, 0x996745B6, 0x859A07A4, 0x186868E9 }
 	TAG_STRUCT(
 		cinematic_shot_frame_block,
 		"cinematic_shot_frame_block",
@@ -10125,7 +10125,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CINEMATIC_SHOT_LIGHTING_BLOCK_ID { 0x00000000, 0x6F86178C, 0xF5E04C8F, 0xA14C3003 }
+	#define CINEMATIC_SHOT_LIGHTING_BLOCK_ID { 0x6F86178C, 0xF5E04C8F, 0xA14C3003, 0xEAADCE78 }
 	TAG_STRUCT(
 		cinematic_shot_lighting_block,
 		"cinematic_shot_lighting_block",
@@ -10142,7 +10142,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(new_cinematic_lighting_group_reference_tagref, NEW_CINEMATIC_LIGHTING_TAG);
 
-	#define CINEMATIC_SHOT_CLIP_SUBJECT_BLOCK_ID { 0x00000000, 0xFD9DBB28, 0x7065418F, 0x93640300 }
+	#define CINEMATIC_SHOT_CLIP_SUBJECT_BLOCK_ID { 0xFD9DBB28, 0x7065418F, 0x93640300, 0xE4390930 }
 	TAG_STRUCT(
 		cinematic_shot_clip_subject_block,
 		"cinematic_shot_clip_subject_block",
@@ -10155,7 +10155,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CINEMATIC_SHOT_CLIP_BLOCK_ID { 0x00000000, 0xE6CA5E17, 0x64634682, 0x97D7DE14 }
+	#define CINEMATIC_SHOT_CLIP_BLOCK_ID { 0xE6CA5E17, 0x64634682, 0x97D7DE14, 0x41724603 }
 	TAG_STRUCT(
 		cinematic_shot_clip_block,
 		"cinematic_shot_clip_block",
@@ -10172,7 +10172,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CINEMATIC_SHOT_DIALOGUE_BLOCK_ID { 0x00000000, 0x71BBACCC, 0x8A6D4B0B, 0xB080D7CC }
+	#define CINEMATIC_SHOT_DIALOGUE_BLOCK_ID { 0x71BBACCC, 0x8A6D4B0B, 0xB080D7CC, 0x12A99F39 }
 	TAG_STRUCT(
 		cinematic_shot_dialogue_block,
 		"cinematic_shot_dialogue_block",
@@ -10190,7 +10190,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CINEMATIC_SHOT_MUSIC_BLOCK_ID { 0x00000000, 0xC8BD6E28, 0x7DEA45AA, 0x9861384B }
+	#define CINEMATIC_SHOT_MUSIC_BLOCK_ID { 0xC8BD6E28, 0x7DEA45AA, 0x9861384B, 0xA392711F }
 	TAG_STRUCT(
 		cinematic_shot_music_block,
 		"cinematic_shot_music_block",
@@ -10218,7 +10218,7 @@ namespace halo3_tools {
 		INVALID_TAG
 	};
 
-	#define CINEMATIC_SHOT_EFFECT_BLOCK_ID { 0x00000000, 0x1FE3755D, 0xB74B489F, 0xB43E9A17 }
+	#define CINEMATIC_SHOT_EFFECT_BLOCK_ID { 0x1FE3755D, 0xB74B489F, 0xB43E9A17, 0x145632C0 }
 	TAG_STRUCT(
 		cinematic_shot_effect_block,
 		"cinematic_shot_effect_block",
@@ -10234,7 +10234,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CINEMATIC_SHOT_CORTANA_EFFECTS_BLOCK_ID { 0x00000000, 0x29005724, 0xF88243D5, 0xAA780DCF }
+	#define CINEMATIC_SHOT_CORTANA_EFFECTS_BLOCK_ID { 0x29005724, 0xF88243D5, 0xAA780DCF, 0xE5CB2C48 }
 	TAG_STRUCT(
 		cinematic_shot_cortana_effects_block,
 		"cinematic_shot_cortana_effects_block",
@@ -10250,7 +10250,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(cortana_effect_definition_group_reference_tagref, CORTANA_EFFECT_DEFINITION_TAG);
 
-	#define CINEMATIC_SHOT_OBJECT_FUNCTION_KEYFRAME_BLOCK_ID { 0x00000000, 0x272DF6C5, 0xFB2B42CF, 0x8D0089D4 }
+	#define CINEMATIC_SHOT_OBJECT_FUNCTION_KEYFRAME_BLOCK_ID { 0x272DF6C5, 0xFB2B42CF, 0x8D0089D4, 0x982001C8 }
 	TAG_STRUCT(
 		cinematic_shot_object_function_keyframe_block,
 		"cinematic_shot_object_function_keyframe_block",
@@ -10272,7 +10272,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(cinematic_shot_object_function_flags, cinematic_shot_object_function_flags_strings, _countof(cinematic_shot_object_function_flags_strings));
 
-	#define CINEMATIC_SHOT_OBJECT_FUNCTION_BLOCK_ID { 0x00000000, 0x5AA608DA, 0xB9F145EE, 0xAF52C72D }
+	#define CINEMATIC_SHOT_OBJECT_FUNCTION_BLOCK_ID { 0x5AA608DA, 0xB9F145EE, 0xAF52C72D, 0x315EC520 }
 	TAG_STRUCT(
 		cinematic_shot_object_function_block,
 		"cinematic_shot_object_function_block",
@@ -10287,7 +10287,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CINEMATIC_EXTRA_CAMERA_FRAME_BLOCK_ID { 0x00000000, 0x39DDFE90, 0x9DEA4DD3, 0x994B8B1C }
+	#define CINEMATIC_EXTRA_CAMERA_FRAME_BLOCK_ID { 0x39DDFE90, 0x9DEA4DD3, 0x994B8B1C, 0xECB7261F }
 	TAG_STRUCT(
 		cinematic_extra_camera_frame_block,
 		"cinematic_extra_camera_frame_block",
@@ -10307,7 +10307,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(cinematic_extra_camera_frame_flags, cinematic_extra_camera_frame_flags_strings, _countof(cinematic_extra_camera_frame_flags_strings));
 
-	#define CINEMATIC_EXTRA_CAMERA_SHOT_BLOCK_ID { 0x00000000, 0x897BBEBF, 0xD4A34B10, 0x91144E0E }
+	#define CINEMATIC_EXTRA_CAMERA_SHOT_BLOCK_ID { 0x897BBEBF, 0xD4A34B10, 0x91144E0E, 0xE6EFBDD5 }
 	TAG_STRUCT(
 		cinematic_extra_camera_shot_block,
 		"cinematic_extra_camera_shot_block",
@@ -10320,7 +10320,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CINEMATIC_SHOT_CUSTOM_SCRIPT_BLOCK_ID { 0x00000000, 0xBC8133AA, 0xC1F84079, 0x922C7BA9 }
+	#define CINEMATIC_SHOT_CUSTOM_SCRIPT_BLOCK_ID { 0xBC8133AA, 0xC1F84079, 0x922C7BA9, 0x5FCA1CD2 }
 	TAG_STRUCT(
 		cinematic_shot_custom_script_block,
 		"cinematic_shot_custom_script_block",
@@ -10334,7 +10334,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CINEMATIC_SHOT_EXTRA_CAMERA_BLOCK_ID { 0x00000000, 0x1451DA10, 0xDBD64C68, 0xAAABB84D }
+	#define CINEMATIC_SHOT_EXTRA_CAMERA_BLOCK_ID { 0x1451DA10, 0xDBD64C68, 0xAAABB84D, 0xD39799B3 }
 	TAG_STRUCT(
 		cinematic_shot_extra_camera_block,
 		"cinematic_shot_extra_camera_block",
@@ -10349,7 +10349,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CINEMATIC_SHOT_BLOCK_ID { 0x00000000, 0xCD10E9F0, 0x721C470E, 0x8571C1FE }
+	#define CINEMATIC_SHOT_BLOCK_ID { 0xCD10E9F0, 0x721C470E, 0x8571C1FE, 0xA88E8AC9 }
 	TAG_STRUCT(
 		cinematic_shot_block,
 		"cinematic_shot_block",
@@ -10386,7 +10386,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(shot_flags_definition, shot_flags_definition_strings, _countof(shot_flags_definition_strings));
 
-	#define SCENE_OBJECT_ATTACHMENT_BLOCK_ID { 0x00000000, 0x713DCA38, 0xF48F4FA1, 0x87E89BFB }
+	#define SCENE_OBJECT_ATTACHMENT_BLOCK_ID { 0x713DCA38, 0xF48F4FA1, 0x87E89BFB, 0x1A6D2BC3 }
 	TAG_STRUCT(
 		scene_object_attachment_block,
 		"scene_object_attachment_block",
@@ -10410,7 +10410,7 @@ namespace halo3_tools {
 		INVALID_TAG
 	};
 
-	#define CINEMATIC_SCENE_OBJECT_BLOCK_ID { 0x00000000, 0x4487BA1E, 0x95274D36, 0xBC49F26F }
+	#define CINEMATIC_SCENE_OBJECT_BLOCK_ID { 0x4487BA1E, 0x95274D36, 0xBC49F26F, 0x331B95B2 }
 	TAG_STRUCT(
 		cinematic_scene_object_block,
 		"cinematic_scene_object_block",
@@ -10456,7 +10456,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(cinematic_coop_type_flags, cinematic_coop_type_flags_strings, _countof(cinematic_coop_type_flags_strings));
 
-	#define CINEMATIC_SCENE_STRUCT_DEFINITION_ID { 0x00000000, 0x2F16CF25, 0xB4144920, 0xAA9CA793 }
+	#define CINEMATIC_SCENE_STRUCT_DEFINITION_ID { 0x2F16CF25, 0xB4144920, 0xAA9CA793, 0x06DFF67F }
 	TAG_STRUCT(
 		cinematic_scene_struct_definition,
 		"cinematic_scene_struct_definition",
@@ -10489,7 +10489,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scene_reset_object_lighting_enum, scene_reset_object_lighting_enum_strings, _countof(scene_reset_object_lighting_enum_strings));
 
-	#define CINEMATIC_SCENE_REFERENCE_BLOCK_ID { 0x00000000, 0x77C11E67, 0x725B4B54, 0x916808BF }
+	#define CINEMATIC_SCENE_REFERENCE_BLOCK_ID { 0x77C11E67, 0x725B4B54, 0x916808BF, 0x593A841D }
 	TAG_STRUCT(
 		cinematic_scene_reference_block,
 		"cinematic_scene_reference_block",
@@ -10504,7 +10504,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(cinematic_scene_group_reference_tagref, CINEMATIC_SCENE_TAG);
 
-	#define CINEMATIC_SHOT_PLAYBACK_DATA_BLOCK_ID { 0x00000000, 0xBCE7A6B4, 0xE12744C9, 0xBEAEBC13 }
+	#define CINEMATIC_SHOT_PLAYBACK_DATA_BLOCK_ID { 0xBCE7A6B4, 0xE12744C9, 0xBEAEBC13, 0xD21CF591 }
 	TAG_STRUCT(
 		cinematic_shot_playback_data_block,
 		"cinematic_shot_playback_data_block",
@@ -10517,7 +10517,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CINEMATIC_PLAYBACK_DATA_BLOCK_ID { 0x00000000, 0xEBD41AA0, 0x8EDA4FF2, 0x91204D62 }
+	#define CINEMATIC_PLAYBACK_DATA_BLOCK_ID { 0xEBD41AA0, 0x8EDA4FF2, 0x91204D62, 0x3C9BA5B4 }
 	TAG_STRUCT(
 		cinematic_playback_data_block,
 		"cinematic_playback_data_block",
@@ -10531,7 +10531,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CINEMATIC_STRUCT_DEFINITION_ID { 0x00000000, 0xC3B34AC3, 0x066746A9, 0x861EC843 }
+	#define CINEMATIC_STRUCT_DEFINITION_ID { 0xC3B34AC3, 0x066746A9, 0x861EC843, 0xA1016B03 }
 	TAG_STRUCT(
 		cinematic_struct_definition,
 		"cinematic_struct_definition",
@@ -10582,7 +10582,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(bink_group_reference_tagref, BINK_TAG);
 
-	#define CINEMATICS_GLOBALS_BLOCK_ID { 0x00000000, 0x3B2F2A5B, 0x52DF4FB0, 0xA68FFF8B }
+	#define CINEMATICS_GLOBALS_BLOCK_ID { 0x3B2F2A5B, 0x52DF4FB0, 0xA68FFF8B, 0x30D069D7 }
 	TAG_STRUCT(
 		cinematics_globals_block,
 		"cinematics_globals_block",
@@ -10598,7 +10598,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(scenery_group_reference$3_tagref, SCENERY_TAG);
 
-	#define SOUND_PLATFORM_SOUND_PLAYBACK_BLOCK_ID { 0x00000000, 0x4A3DA0A2, 0xCB0F41E1, 0xAAB6650E }
+	#define SOUND_PLATFORM_SOUND_PLAYBACK_BLOCK_ID { 0x4A3DA0A2, 0xCB0F41E1, 0xAAB6650E, 0xBCA33F94 }
 	TAG_STRUCT(
 		sound_platform_sound_playback_block,
 		"sound_platform_sound_playback_block",
@@ -10612,7 +10612,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_DIALOGUE_CONSTANTS_STRUCT_DEFINITION_ID { 0x00000000, 0x81DF7335, 0x8D55482D, 0xBCD40D38 }
+	#define SOUND_DIALOGUE_CONSTANTS_STRUCT_DEFINITION_ID { 0x81DF7335, 0x8D55482D, 0xBCD40D38, 0xA8F5D740 }
 	TAG_STRUCT(
 		sound_dialogue_constants_struct_definition,
 		"sound_dialogue_constants_struct_definition",
@@ -10630,7 +10630,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_PROPAGATION_DEFINITION_STRUCT_ID { 0x00000000, 0xDE42E807, 0x9F174952, 0xA2622269 }
+	#define SOUND_PROPAGATION_DEFINITION_STRUCT_ID { 0xDE42E807, 0x9F174952, 0xA2622269, 0x55663071 }
 	TAG_STRUCT(
 		sound_propagation_definition_struct,
 		"sound_propagation_definition_struct",
@@ -10652,7 +10652,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(sound_looping_group_reference_tagref, SOUND_LOOPING_TAG, _tag_reference_flag_resolved_by_game);
 
-	#define SOUND_GLOBAL_PROPAGATION_BLOCK_STRUCT_ID { 0x00000000, 0xC5AF7C88, 0xA7864D2E, 0xA2207469 }
+	#define SOUND_GLOBAL_PROPAGATION_BLOCK_STRUCT_ID { 0xC5AF7C88, 0xA7864D2E, 0xA2207469, 0xA4EDB0BE }
 	TAG_STRUCT(
 		sound_global_propagation_block_struct,
 		"sound_global_propagation_block_struct",
@@ -10666,7 +10666,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_CENTER_MIX_STRUCT_ID { 0x00000000, 0x5F672B73, 0xEC7142BA, 0xB9066F9F }
+	#define SOUND_CENTER_MIX_STRUCT_ID { 0x5F672B73, 0xEC7142BA, 0xB9066F9F, 0x56A974D9 }
 	TAG_STRUCT(
 		sound_center_mix_struct,
 		"sound_center_mix_struct",
@@ -10680,7 +10680,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_GLOBAL_MIX_STRUCT_ID { 0x00000000, 0xA2C05D8F, 0xA92D4D82, 0x9534A331 }
+	#define SOUND_GLOBAL_MIX_STRUCT_ID { 0xA2C05D8F, 0xA92D4D82, 0x9534A331, 0x4BD3EF82 }
 	TAG_STRUCT(
 		sound_global_mix_struct,
 		"sound_global_mix_struct",
@@ -10710,7 +10710,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_GLOBALS_BLOCK_ID { 0x00000000, 0x49B78628, 0xC8024A1F, 0x9F59E6A4 }
+	#define SOUND_GLOBALS_BLOCK_ID { 0x49B78628, 0xC8024A1F, 0x9F59E6A4, 0x7AB7B1C5 }
 	TAG_STRUCT(
 		sound_globals_block,
 		"sound_globals_block",
@@ -10737,7 +10737,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(sound_global_propagation_group_reference_tagref, SOUND_GLOBAL_PROPAGATION_TAG);
 
-	#define SOUND_STEREO_MIX_STRUCT_ID { 0x00000000, 0xF0FFEE52, 0xB30949B6, 0x86208462 }
+	#define SOUND_STEREO_MIX_STRUCT_ID { 0xF0FFEE52, 0xB30949B6, 0x86208462, 0x42D0E5DB }
 	TAG_STRUCT(
 		sound_stereo_mix_struct,
 		"sound_stereo_mix_struct",
@@ -10751,7 +10751,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_SURROUND_MIX_STRUCT_ID { 0x00000000, 0xEA4CD876, 0x62334CC1, 0xABC12101 }
+	#define SOUND_SURROUND_MIX_STRUCT_ID { 0xEA4CD876, 0x62334CC1, 0xABC12101, 0x9DCEA290 }
 	TAG_STRUCT(
 		sound_surround_mix_struct,
 		"sound_surround_mix_struct",
@@ -10765,7 +10765,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_MIX_STRUCT_DEFINITION_ID { 0x00000000, 0xE80CFFF1, 0xA42648F0, 0xB072961C }
+	#define SOUND_MIX_STRUCT_DEFINITION_ID { 0xE80CFFF1, 0xA42648F0, 0xB072961C, 0x74F379DE }
 	TAG_STRUCT(
 		sound_mix_struct_definition,
 		"sound_mix_struct_definition",
@@ -10789,7 +10789,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_RESOURCE_DEFINITION_STRUCT_ID { 0x00000000, 0xC0BA15AA, 0xB9CB4B7B, 0x9D98A769 }
+	#define SOUND_RESOURCE_DEFINITION_STRUCT_ID { 0xC0BA15AA, 0xB9CB4B7B, 0x9D98A769, 0xD335C8BB }
 	TAG_STRUCT(
 		sound_resource_definition_struct,
 		"sound_resource_definition_struct",
@@ -10798,11 +10798,11 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_RESOURCE_DEFINITION_STRUCT_ID)
 	{
-		{ _field_data, "sample data" },
+		{ _field_data, "sample data", &blofeld::halo3_tools::sound_resource_samples },
 		{ _field_terminator }
 	};
 
-	#define SOUND_RESOURCE_LANGUAGE_BLOCK_STRUCT_ID { 0x00000000, 0x04F2C501, 0x9D1B4095, 0x92D7588B }
+	#define SOUND_RESOURCE_LANGUAGE_BLOCK_STRUCT_ID { 0x04F2C501, 0x9D1B4095, 0x92D7588B, 0x0BB6CEA4 }
 	TAG_STRUCT(
 		sound_resource_language_block_struct,
 		"sound_resource_language_block_struct",
@@ -10834,7 +10834,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(sound_language_enum_definition, sound_language_enum_definition_strings, _countof(sound_language_enum_definition_strings));
 
-	#define SOUND_PERMUTATION_MARKER_BLOCK_ID { 0x00000000, 0x4679E356, 0x4CB34837, 0xA34808AC }
+	#define SOUND_PERMUTATION_MARKER_BLOCK_ID { 0x4679E356, 0x4CB34837, 0xA34808AC, 0x6DCA28A0 }
 	TAG_STRUCT(
 		sound_permutation_marker_block,
 		"sound_permutation_marker_block",
@@ -10850,7 +10850,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_XMA2_SEEK_TABLE_BLOCK_ID { 0x00000000, 0x6927A11A, 0x10E24EDD, 0x9E681A4E }
+	#define SOUND_XMA2_SEEK_TABLE_BLOCK_ID { 0x6927A11A, 0x10E24EDD, 0x9E681A4E, 0xB2AD185F }
 	TAG_STRUCT(
 		sound_xma2_seek_table_block,
 		"sound_xma2_seek_table_block",
@@ -10868,7 +10868,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FACIAL_ANIMATION_KEY_BLOCK_ID { 0x00000000, 0xF40149AE, 0x6F4A4B45, 0x818B8905 }
+	#define FACIAL_ANIMATION_KEY_BLOCK_ID { 0xF40149AE, 0x6F4A4B45, 0x818B8905, 0x0E9E5940 }
 	TAG_STRUCT(
 		facial_animation_key_block,
 		"facial_animation_key_block",
@@ -10884,7 +10884,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FACIAL_ANIMATION_CURVE_BLOCK_ID { 0x00000000, 0xD590B04A, 0xAFFF4D58, 0xB7ECFBFE }
+	#define FACIAL_ANIMATION_CURVE_BLOCK_ID { 0xD590B04A, 0xAFFF4D58, 0xB7ECFBFE, 0xE206ABE4 }
 	TAG_STRUCT(
 		facial_animation_curve_block,
 		"facial_animation_curve_block",
@@ -10897,7 +10897,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RUNTIME_FACIAL_ANIMATION_KEY_BLOCK_ID { 0x00000000, 0x11F6EBE5, 0xB9DC4385, 0x98693D9D }
+	#define RUNTIME_FACIAL_ANIMATION_KEY_BLOCK_ID { 0x11F6EBE5, 0xB9DC4385, 0x98693D9D, 0xDD504D06 }
 	TAG_STRUCT(
 		runtime_facial_animation_key_block,
 		"runtime_facial_animation_key_block",
@@ -10916,7 +10916,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FACIAL_ANIMATION_BLOCK_ID { 0x00000000, 0xB2453F2D, 0x5D95404D, 0x9AFEDD50 }
+	#define FACIAL_ANIMATION_BLOCK_ID { 0xB2453F2D, 0x5D95404D, 0x9AFEDD50, 0x269C7E4A }
 	TAG_STRUCT(
 		facial_animation_block,
 		"facial_animation_block",
@@ -10934,7 +10934,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_PERMUTATION_RAW_INFO_BLOCK_ID { 0x00000000, 0xDC6BFACE, 0x54E5414E, 0xB0B03C61 }
+	#define SOUND_PERMUTATION_RAW_INFO_BLOCK_ID { 0xDC6BFACE, 0x54E5414E, 0xB0B03C61, 0x2ED507A1 }
 	TAG_STRUCT(
 		sound_permutation_raw_info_block,
 		"sound_permutation_raw_info_block",
@@ -10944,9 +10944,9 @@ namespace halo3_tools {
 		SOUND_PERMUTATION_RAW_INFO_BLOCK_ID)
 	{
 		{ _field_string_id, "skip fraction name" },
-		{ _field_data, "samples", "sampled sound data" },
-		{ _field_data, "mouth data" },
-		{ _field_data, "lipsync data" },
+		{ _field_data, "samples", "sampled sound data", &blofeld::halo3_tools::sound_samples },
+		{ _field_data, "mouth data", &blofeld::halo3_tools::sound_mouth_data },
+		{ _field_data, "lipsync data", &blofeld::halo3_tools::sound_lipsync_data },
 		{ _field_block, "markers", &blofeld::halo3_tools::sound_permutation_marker_block_block },
 		{ _field_block, "xma2 seek table", &blofeld::halo3_tools::sound_xma2_seek_table_block_block },
 		{ _field_enum, "compression", &blofeld::halo3_tools::sound_compression_enum },
@@ -10974,7 +10974,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(sound_compression_enum, sound_compression_enum_strings, _countof(sound_compression_enum_strings));
 
-	#define SOUND_PERMUTATION_DIALOGUE_INFO_BLOCK_ID { 0x00000000, 0x7862CF59, 0x980B4657, 0x8078F36D }
+	#define SOUND_PERMUTATION_DIALOGUE_INFO_BLOCK_ID { 0x7862CF59, 0x980B4657, 0x8078F36D, 0x01E7C875 }
 	TAG_STRUCT(
 		sound_permutation_dialogue_info_block,
 		"sound_permutation_dialogue_info_block",
@@ -10990,7 +10990,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_PERMUTATION_DIALOGUE_INFO_NEW_BLOCK_ID { 0x00000000, 0x5FF04F76, 0xBF284BF9, 0x9F6D60E7 }
+	#define SOUND_PERMUTATION_DIALOGUE_INFO_NEW_BLOCK_ID { 0x5FF04F76, 0xBF284BF9, 0x9F6D60E7, 0x90C7B9C2 }
 	TAG_STRUCT(
 		sound_permutation_dialogue_info_new_block,
 		"sound_permutation_dialogue_info_new_block",
@@ -11015,7 +11015,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_ENCODED_DIALOGUE_SECTION_BLOCK_ID { 0x00000000, 0xAC9A8841, 0x31DA4358, 0xA9D8DEDF }
+	#define SOUND_ENCODED_DIALOGUE_SECTION_BLOCK_ID { 0xAC9A8841, 0x31DA4358, 0xA9D8DEDF, 0xA2FA08AE }
 	TAG_STRUCT(
 		sound_encoded_dialogue_section_block,
 		"sound_encoded_dialogue_section_block",
@@ -11024,13 +11024,13 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_ENCODED_DIALOGUE_SECTION_BLOCK_ID)
 	{
-		{ _field_data, "encoded data" },
+		{ _field_data, "encoded data", &blofeld::halo3_tools::generic_tag_data },
 		{ _field_block, "sound dialogue info", &blofeld::halo3_tools::sound_permutation_dialogue_info_block_block },
 		{ _field_block, "sound dialogue info new", &blofeld::halo3_tools::sound_permutation_dialogue_info_new_block_block },
 		{ _field_terminator }
 	};
 
-	#define SOUND_PERMUTATION_LANGUAGES_BLOCK_ID { 0x00000000, 0xABBB81FE, 0xABFB4938, 0xAB0BB7A5 }
+	#define SOUND_PERMUTATION_LANGUAGES_BLOCK_ID { 0xABBB81FE, 0xABFB4938, 0xAB0BB7A5, 0xAB3BBDC0 }
 	TAG_STRUCT(
 		sound_permutation_languages_block,
 		"sound_permutation_languages_block",
@@ -11046,7 +11046,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_PITCH_RANGE_BLOCK_ID { 0x00000000, 0x77F72A4F, 0x42D64D55, 0xB4072E44 }
+	#define SOUND_PITCH_RANGE_BLOCK_ID { 0x77F72A4F, 0x42D64D55, 0xB4072E44, 0x0E750C29 }
 	TAG_STRUCT(
 		sound_pitch_range_block,
 		"sound_pitch_range_block",
@@ -11076,7 +11076,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(sound_pitch_range_internal_xsync_flags, sound_pitch_range_internal_xsync_flags_strings, _countof(sound_pitch_range_internal_xsync_flags_strings));
 
-	#define SOUND_PROMOTION_RULE_BLOCK_ID { 0x00000000, 0xC69943B0, 0x10BC44C8, 0xBC4D84CB }
+	#define SOUND_PROMOTION_RULE_BLOCK_ID { 0xC69943B0, 0x10BC44C8, 0xBC4D84CB, 0xADCE8178 }
 	TAG_STRUCT(
 		sound_promotion_rule_block,
 		"sound_promotion_rule_block",
@@ -11093,7 +11093,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_PROMOTION_RUNTIME_TIMER_BLOCK_ID { 0x00000000, 0x7738DDE0, 0x0D754110, 0xB20B95F0 }
+	#define SOUND_PROMOTION_RUNTIME_TIMER_BLOCK_ID { 0x7738DDE0, 0x0D754110, 0xB20B95F0, 0x43509AAA }
 	TAG_STRUCT(
 		sound_promotion_runtime_timer_block,
 		"sound_promotion_runtime_timer_block",
@@ -11106,7 +11106,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_EXTRA_INFO_BLOCK_ID { 0x00000000, 0xA88172BA, 0x8BEC4641, 0x8E2A9EDB }
+	#define SOUND_EXTRA_INFO_BLOCK_ID { 0xA88172BA, 0x8BEC4641, 0x8E2A9EDB, 0x3B346B18 }
 	TAG_STRUCT(
 		sound_extra_info_block,
 		"sound_extra_info_block",
@@ -11121,7 +11121,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_BLOCK_STRUCT_ID { 0x00000000, 0xFD4F3EEC, 0xA74F4557, 0x95B7892C }
+	#define SOUND_BLOCK_STRUCT_ID { 0xFD4F3EEC, 0xA74F4557, 0x95B7892C, 0xFCCB91A0 }
 	TAG_STRUCT(
 		sound_block_struct,
 		"sound_block_struct",
@@ -11271,7 +11271,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(sound_encoding_enum, sound_encoding_enum_strings, _countof(sound_encoding_enum_strings));
 
-	#define SOUND_PLAYBACK_PARAMETERS_STRUCT_ID { 0x00000000, 0x04851E6C, 0x1277447B, 0xB15A0C03 }
+	#define SOUND_PLAYBACK_PARAMETERS_STRUCT_ID { 0x04851E6C, 0x1277447B, 0xB15A0C03, 0x9B5C40CA }
 	TAG_STRUCT(
 		sound_playback_parameters_struct,
 		"sound_playback_parameters_struct",
@@ -11315,7 +11315,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(sound_override_location_flags_definition, sound_override_location_flags_definition_strings, _countof(sound_override_location_flags_definition_strings));
 
-	#define SOUND_SCALE_MODIFIERS_STRUCT_ID { 0x00000000, 0x3ABE3277, 0x90774F0E, 0xA794C831 }
+	#define SOUND_SCALE_MODIFIERS_STRUCT_ID { 0x3ABE3277, 0x90774F0E, 0xA794C831, 0x58D6DACF }
 	TAG_STRUCT(
 		sound_scale_modifiers_struct,
 		"sound_scale_modifiers_struct",
@@ -11331,7 +11331,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_PROMOTION_PARAMETERS_STRUCT_ID { 0x00000000, 0x2CF97DF2, 0xC0014BDB, 0xAE39ECEA }
+	#define SOUND_PROMOTION_PARAMETERS_STRUCT_ID { 0x2CF97DF2, 0xC0014BDB, 0xAE39ECEA, 0xBA189908 }
 	TAG_STRUCT(
 		sound_promotion_parameters_struct,
 		"sound_promotion_parameters_struct",
@@ -11348,7 +11348,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_PERMUTATION_CHUNK_BLOCK_ID { 0x00000000, 0xBDB277FD, 0x04314F54, 0x95098A19 }
+	#define SOUND_PERMUTATION_CHUNK_BLOCK_ID { 0xBDB277FD, 0x04314F54, 0x95098A19, 0x71D29FE5 }
 	TAG_STRUCT(
 		sound_permutation_chunk_block,
 		"sound_permutation_chunk_block",
@@ -11367,7 +11367,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_DEFINITION_LANGUAGE_PERMUTATION_INFO_BLOCK_ID { 0x00000000, 0x87CF4394, 0xE57F4B18, 0xAA4D2FB5 }
+	#define SOUND_DEFINITION_LANGUAGE_PERMUTATION_INFO_BLOCK_ID { 0x87CF4394, 0xE57F4B18, 0xAA4D2FB5, 0x6C5606CB }
 	TAG_STRUCT(
 		sound_definition_language_permutation_info_block,
 		"sound_definition_language_permutation_info_block",
@@ -11380,7 +11380,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_PERMUTATIONS_BLOCK_ID { 0x00000000, 0x1426CFA4, 0x00DA4206, 0xAD7C0A62 }
+	#define SOUND_PERMUTATIONS_BLOCK_ID { 0x1426CFA4, 0x00DA4206, 0xAD7C0A62, 0xDA270964 }
 	TAG_STRUCT(
 		sound_permutations_block,
 		"sound_permutations_block",
@@ -11412,7 +11412,7 @@ namespace halo3_tools {
 
 	STRING_LIST(sound_permutation_flags, empty_string_list, 0);
 
-	#define LOOPING_SOUND_DETAIL_BLOCK_ID { 0x00000000, 0xA617A95E, 0x4F7447C1, 0xB14046E5 }
+	#define LOOPING_SOUND_DETAIL_BLOCK_ID { 0xA617A95E, 0x4F7447C1, 0xB14046E5, 0xAE77AE0F }
 	TAG_STRUCT(
 		looping_sound_detail_block,
 		"looping_sound_detail_block",
@@ -11444,7 +11444,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(looping_sound_detail_flags, looping_sound_detail_flags_strings, _countof(looping_sound_detail_flags_strings));
 
-	#define LOOPING_SOUND_TRACK_BLOCK_ID { 0x00000000, 0x274E50ED, 0x4CB34CFA, 0x8469F40F }
+	#define LOOPING_SOUND_TRACK_BLOCK_ID { 0x274E50ED, 0x4CB34CFA, 0x8469F40F, 0xEDAF50AC }
 	TAG_STRUCT(
 		looping_sound_track_block,
 		"looping_sound_track_block",
@@ -11492,7 +11492,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(sound_effects_enum, sound_effects_enum_strings, _countof(sound_effects_enum_strings));
 
-	#define SOUND_LOOPING_GROUP_STRUCT_DEFINITION_ID { 0x00000000, 0xD492E38E, 0x64EC43C3, 0x8F8AC4EC }
+	#define SOUND_LOOPING_GROUP_STRUCT_DEFINITION_ID { 0xD492E38E, 0x64EC43C3, 0x8F8AC4EC, 0xE04E0DB9 }
 	TAG_STRUCT(
 		sound_looping_group_struct_definition,
 		"sound_looping_group",
@@ -11528,7 +11528,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(_reference$2_tagref, INVALID_TAG, _tag_reference_flag_not_a_resource_dependency);
 
-	#define BITMAP_TEXTURE_INTEROP_RESOURCE_STRUCT_ID { 0x00000000, 0xA9542662, 0xC80B42AB, 0x89C0049A }
+	#define BITMAP_TEXTURE_INTEROP_RESOURCE_STRUCT_ID { 0xA9542662, 0xC80B42AB, 0x89C0049A, 0xF33BFF9C }
 	TAG_STRUCT(
 		bitmap_texture_interop_resource_struct,
 		"bitmap_texture_interop_resource_struct",
@@ -11541,7 +11541,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BITMAP_TEXTURE_INTEROP_BLOCK_STRUCT_ID { 0x00000000, 0xCBC28AC7, 0x279B478F, 0xAF316019 }
+	#define BITMAP_TEXTURE_INTEROP_BLOCK_STRUCT_ID { 0xCBC28AC7, 0x279B478F, 0xAF316019, 0xFD14E270 }
 	TAG_STRUCT(
 		bitmap_texture_interop_block_struct,
 		"bitmap_texture_interop_block_struct",
@@ -11554,7 +11554,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BITMAP_TEXTURE_INTERLEAVED_INTEROP_RESOURCE_STRUCT_ID { 0x00000000, 0x1D36B11D, 0x7C714D24, 0x9EDAE21F }
+	#define BITMAP_TEXTURE_INTERLEAVED_INTEROP_RESOURCE_STRUCT_ID { 0x1D36B11D, 0x7C714D24, 0x9EDAE21F, 0xA0629172 }
 	TAG_STRUCT(
 		bitmap_texture_interleaved_interop_resource_struct,
 		"bitmap_texture_interleaved_interop_resource_struct",
@@ -11567,7 +11567,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BITMAP_TEXTURE_INTERLEAVED_INTEROP_BLOCK_STRUCT_ID { 0x00000000, 0x6CAC3A05, 0x36414556, 0xB586A7E8 }
+	#define BITMAP_TEXTURE_INTERLEAVED_INTEROP_BLOCK_STRUCT_ID { 0x6CAC3A05, 0x36414556, 0xB586A7E8, 0x0731BD25 }
 	TAG_STRUCT(
 		bitmap_texture_interleaved_interop_block_struct,
 		"bitmap_texture_interleaved_interop_block_struct",
@@ -11580,7 +11580,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BITMAP_BLOCK_STRUCT_ID { 0x00000000, 0x2335AB52, 0xC24A4268, 0x94728F7D }
+	#define BITMAP_BLOCK_STRUCT_ID { 0x2335AB52, 0xC24A4268, 0x94728F7D, 0xD36D1923 }
 	TAG_STRUCT(
 		bitmap_block_struct,
 		"bitmap_block_struct",
@@ -11602,11 +11602,11 @@ namespace halo3_tools {
 		{ _field_block, "usage override", &blofeld::halo3_tools::bitmap_usage_block_block },
 		{ _field_block, "manual_sequences", &blofeld::halo3_tools::bitmap_group_sequence_block_def_block },
 		FIELD_EXPLANATION("IMPORT DATA", "\n\n\n\n\n\n\n\n\n\n\n\n\n***************************************************************************************************************************\n\nEverything below this line is bitmap data.  It is updated when you reimport the bitmap.\n\nAny changes you make below will be lost in the next reimport, and may even cause \'bad things\' to happen.\n\n***************************************************************************************************************************\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"),
-		{ _field_data, "source data" },
-		{ _field_data, "processed pixel data" },
+		{ _field_data, "source data", &blofeld::halo3_tools::bitmap_group_source_data_def },
+		{ _field_data, "processed pixel data", &blofeld::halo3_tools::bitmap_group_pixel_data_def },
 		{ _field_block, "sequences", &blofeld::halo3_tools::bitmap_group_sequence_block_def_block },
 		{ _field_block, "bitmaps", &blofeld::halo3_tools::bitmap_data_block_def_block },
-		{ _field_data, "xenon processed pixel data" },
+		{ _field_data, "xenon processed pixel data", &blofeld::halo3_tools::bitmap_group_xenon_pixel_data_def },
 		{ _field_block, "xenon bitmaps", &blofeld::halo3_tools::bitmap_data_block_def_block },
 		{ _field_block, "hardware textures", &blofeld::halo3_tools::bitmap_texture_interop_block_block },
 		{ _field_block, "interleaved hardware textures", &blofeld::halo3_tools::bitmap_texture_interleaved_interop_block_block },
@@ -11721,7 +11721,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(bitmap_usage_format_def, bitmap_usage_format_def_strings, _countof(bitmap_usage_format_def_strings));
 
-	#define LANGUAGE_PACK_DEFINITION_ID { 0x00000000, 0x75A16A47, 0xDCD04796, 0x8CB23851 }
+	#define LANGUAGE_PACK_DEFINITION_ID { 0x75A16A47, 0xDCD04796, 0x8CB23851, 0x14C59991 }
 	TAG_STRUCT(
 		language_pack_definition,
 		"language_pack_definition",
@@ -11743,7 +11743,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DATA_HASH_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x6A3A433A, 0xA2E2464E, 0xBD38F0AE }
+	#define DATA_HASH_DEFINITION_STRUCT_DEFINITION_ID { 0x6A3A433A, 0xA2E2464E, 0xBD38F0AE, 0x0CC98FB3 }
 	TAG_STRUCT(
 		data_hash_definition_struct_definition,
 		"data_hash_definition",
@@ -11756,7 +11756,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTILINGUAL_UNICODE_STRING_REFERENCE_BLOCK_ID { 0x00000000, 0xC5BC6DA3, 0x37A44EB2, 0xA26A511D }
+	#define MULTILINGUAL_UNICODE_STRING_REFERENCE_BLOCK_ID { 0xC5BC6DA3, 0x37A44EB2, 0xA26A511D, 0x236996E6 }
 	TAG_STRUCT(
 		multilingual_unicode_string_reference_block,
 		"multilingual_unicode_string_reference_block",
@@ -11781,7 +11781,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTILINGUAL_UNICODE_STRING_LIST_LANGUAGE_PACK_OFFSETS_STRUCT_DEFINITION_ID { 0x00000000, 0xD3554473, 0x3F7445DD, 0x86D39D3C }
+	#define MULTILINGUAL_UNICODE_STRING_LIST_LANGUAGE_PACK_OFFSETS_STRUCT_DEFINITION_ID { 0xD3554473, 0x3F7445DD, 0x86D39D3C, 0x59003C59 }
 	TAG_STRUCT(
 		multilingual_unicode_string_list_language_pack_offsets_struct_definition,
 		"multilingual_unicode_string_list_language_pack_offsets",
@@ -11795,7 +11795,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTILINGUAL_UNICODE_STRING_LIST_STRUCT_DEFINITION_ID { 0x00000000, 0x257EFBBE, 0x66F84C7A, 0x8922D3CD }
+	#define MULTILINGUAL_UNICODE_STRING_LIST_STRUCT_DEFINITION_ID { 0x257EFBBE, 0x66F84C7A, 0x8922D3CD, 0x800AE80F }
 	TAG_STRUCT(
 		multilingual_unicode_string_list_struct_definition,
 		"multilingual_unicode_string_list_struct_definition",
@@ -11806,12 +11806,12 @@ namespace halo3_tools {
 	{
 		FIELD_CUSTOM("import", _field_id_text_unknown),
 		{ _field_block, "string references", &blofeld::halo3_tools::multilingual_unicode_string_reference_block_block },
-		{ _field_data, "string data utf8" },
+		{ _field_data, "string data utf8", &blofeld::halo3_tools::utf8_string_data },
 		{ _field_array, "language pack offsets", &blofeld::halo3_tools::multilingual_unicode_string_list_language_pack_offsets },
 		{ _field_terminator }
 	};
 
-	#define BREAKABLE_SURFACE_STRUCT_DEFINITION_ID { 0x00000000, 0x7CC19130, 0xBD5344AB, 0x8BA2CB75 }
+	#define BREAKABLE_SURFACE_STRUCT_DEFINITION_ID { 0x7CC19130, 0xBD5344AB, 0x8BA2CB75, 0xDAA60C73 }
 	TAG_STRUCT(
 		breakable_surface_struct_definition,
 		"breakable_surface_struct_definition",
@@ -11832,7 +11832,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(bitmap_group_reference$2_tagref, BITMAP_TAG);
 
-	#define PLAYER_INFORMATION_BLOCK_ID { 0x00000000, 0x45AF4745, 0x4D24477D, 0xA205702C }
+	#define PLAYER_INFORMATION_BLOCK_ID { 0x45AF4745, 0x4D24477D, 0xA205702C, 0xE5CAEBE7 }
 	TAG_STRUCT(
 		player_information_block,
 		"player_information_block",
@@ -11872,7 +11872,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(damage_response_definition_group_reference_tagref, DAMAGE_RESPONSE_DEFINITION_TAG);
 
-	#define PLAYER_REPRESENTATION_BLOCK_ID { 0x00000000, 0x4F35E23A, 0xFACB43D1, 0x90C6D726 }
+	#define PLAYER_REPRESENTATION_BLOCK_ID { 0x4F35E23A, 0xFACB43D1, 0x90C6D726, 0x49C496B7 }
 	TAG_STRUCT(
 		player_representation_block,
 		"player_representation_block",
@@ -11894,7 +11894,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(unit_group_reference$3_tagref, UNIT_TAG);
 
-	#define FALLING_DAMAGE_BLOCK_ID { 0x00000000, 0x2B7CE12A, 0xC9FD4184, 0xA5B5C911 }
+	#define FALLING_DAMAGE_BLOCK_ID { 0x2B7CE12A, 0xC9FD4184, 0xA5B5C911, 0x6D515D0A }
 	TAG_STRUCT(
 		falling_damage_block,
 		"falling_damage_block",
@@ -11916,7 +11916,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define HAVOK_CLEANUP_RESOURCES_BLOCK_ID { 0x00000000, 0x1158B5B8, 0xFBFC4D5A, 0xB4862259 }
+	#define HAVOK_CLEANUP_RESOURCES_BLOCK_ID { 0x1158B5B8, 0xFBFC4D5A, 0xB4862259, 0xCB91EB7B }
 	TAG_STRUCT(
 		havok_cleanup_resources_block,
 		"havok_cleanup_resources_block",
@@ -11929,7 +11929,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define INTERFACE_TAG_REFERENCES_ID { 0x00000000, 0xEAFCBD42, 0x27264DFB, 0x9C2624C1 }
+	#define INTERFACE_TAG_REFERENCES_ID { 0xEAFCBD42, 0x27264DFB, 0x9C2624C1, 0x928B0D3C }
 	TAG_STRUCT(
 		interface_tag_references,
 		"interface_tag_references",
@@ -11965,7 +11965,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(chud_globals_definition_group_reference_tagref, CHUD_GLOBALS_DEFINITION_TAG);
 
-	#define CHEAT_WEAPONS_BLOCK_ID { 0x00000000, 0xD13CBBE7, 0x9DEC4ED6, 0x983BA69C }
+	#define CHEAT_WEAPONS_BLOCK_ID { 0xD13CBBE7, 0x9DEC4ED6, 0x983BA69C, 0x9D39AE04 }
 	TAG_STRUCT(
 		cheat_weapons_block,
 		"cheat_weapons_block",
@@ -11980,7 +11980,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(item_group_reference_tagref, ITEM_TAG);
 
-	#define CHEAT_POWERUPS_BLOCK_ID { 0x00000000, 0x60B57D08, 0xF45F431C, 0xBCFF4793 }
+	#define CHEAT_POWERUPS_BLOCK_ID { 0x60B57D08, 0xF45F431C, 0xBCFF4793, 0x3C28C018 }
 	TAG_STRUCT(
 		cheat_powerups_block,
 		"cheat_powerups_block",
@@ -11995,7 +11995,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(equipment_group_reference$3_tagref, EQUIPMENT_TAG);
 
-	#define GRENADES_BLOCK_ID { 0x00000000, 0xFB5FD410, 0x43B74B07, 0x94CDA4F5 }
+	#define GRENADES_BLOCK_ID { 0xFB5FD410, 0x43B74B07, 0x94CDA4F5, 0x19F43A56 }
 	TAG_STRUCT(
 		grenades_block,
 		"grenades_block",
@@ -12015,7 +12015,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(projectile_group_reference$2_tagref, PROJECTILE_TAG);
 
-	#define DIFFICULTY_BLOCK_ID { 0x00000000, 0x9C84698C, 0xA3CF40B5, 0xB4736069 }
+	#define DIFFICULTY_BLOCK_ID { 0x9C84698C, 0xA3CF40B5, 0xB4736069, 0xABD1016B }
 	TAG_STRUCT(
 		difficulty_block,
 		"difficulty_block",
@@ -12149,7 +12149,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LOOK_FUNCTION_BLOCK_ID { 0x00000000, 0x5BF29EE1, 0x726941AE, 0xB23EC7C6 }
+	#define LOOK_FUNCTION_BLOCK_ID { 0x5BF29EE1, 0x726941AE, 0xB23EC7C6, 0x0B164F7C }
 	TAG_STRUCT(
 		look_function_block,
 		"look_function_block",
@@ -12162,7 +12162,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PLAYER_CONTROL_BLOCK_ID { 0x00000000, 0xAFAD7414, 0x08FE4A96, 0x94E4BCF6 }
+	#define PLAYER_CONTROL_BLOCK_ID { 0xAFAD7414, 0x08FE4A96, 0x94E4BCF6, 0x39C2EEFC }
 	TAG_STRUCT(
 		player_control_block,
 		"player_control_block",
@@ -12205,7 +12205,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_BLOCK_ID { 0x00000000, 0x5544FB06, 0xF3D04476, 0xA51F6257 }
+	#define CAMERA_BLOCK_ID { 0x5544FB06, 0xF3D04476, 0xA51F6257, 0x6BA634E2 }
 	TAG_STRUCT(
 		camera_block,
 		"camera_block",
@@ -12277,7 +12277,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(global_transition_functions_enum, global_transition_functions_enum_strings, _countof(global_transition_functions_enum_strings));
 
-	#define SOUND_BLOCK_ID { 0x00000000, 0xBAB7A89B, 0xDFC743D6, 0xB8895623 }
+	#define SOUND_BLOCK_ID { 0xBAB7A89B, 0xDFC743D6, 0xB8895623, 0xEBA18D33 }
 	TAG_STRUCT(
 		sound_block,
 		"sound_block",
@@ -12292,7 +12292,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(_reference$3_tagref, INVALID_TAG);
 
-	#define ARMOR_MODIFIER_BLOCK_ID { 0x00000000, 0x1D0D482B, 0x0AB145C0, 0x86B6EF80 }
+	#define ARMOR_MODIFIER_BLOCK_ID { 0x1D0D482B, 0x0AB145C0, 0x86B6EF80, 0x3FDE838A }
 	TAG_STRUCT(
 		armor_modifier_block,
 		"armor_modifier_block",
@@ -12306,7 +12306,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_GROUP_BLOCK_ID { 0x00000000, 0x34945DAA, 0x3110409D, 0xA4F3330D }
+	#define DAMAGE_GROUP_BLOCK_ID { 0x34945DAA, 0x3110409D, 0xA4F3330D, 0x4B1BFD04 }
 	TAG_STRUCT(
 		damage_group_block,
 		"damage_group_block",
@@ -12320,7 +12320,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GAME_GLOBALS_DAMAGE_BLOCK_ID { 0x00000000, 0x5E608798, 0x58964FDC, 0xBCD062B5 }
+	#define GAME_GLOBALS_DAMAGE_BLOCK_ID { 0x5E608798, 0x58964FDC, 0xBCD062B5, 0x7302D300 }
 	TAG_STRUCT(
 		game_globals_damage_block,
 		"game_globals_damage_block",
@@ -12333,7 +12333,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define AI_GLOBALS_GRAVEMIND_BLOCK_ID { 0x00000000, 0x5D6B3B9D, 0x1FC047FE, 0x8CDF19E7 }
+	#define AI_GLOBALS_GRAVEMIND_BLOCK_ID { 0x5D6B3B9D, 0x1FC047FE, 0x8CDF19E7, 0xA287DA56 }
 	TAG_STRUCT(
 		ai_globals_gravemind_block,
 		"ai_globals_gravemind_block",
@@ -12348,7 +12348,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define AI_GLOBALS_STYLES_BLOCK_ID { 0x00000000, 0xE19AA5CB, 0x908B4D23, 0xBEA340E9 }
+	#define AI_GLOBALS_STYLES_BLOCK_ID { 0xE19AA5CB, 0x908B4D23, 0xBEA340E9, 0x2BD0EEED }
 	TAG_STRUCT(
 		ai_globals_styles_block,
 		"ai_globals_styles_block",
@@ -12363,7 +12363,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(style_group_reference$3_tagref, STYLE_TAG);
 
-	#define AI_GLOBALS_BLOCK_ID { 0x00000000, 0x1D0F80A0, 0xA5BD4A1B, 0x9A070B18 }
+	#define AI_GLOBALS_BLOCK_ID { 0x1D0F80A0, 0xA5BD4A1B, 0x9A070B18, 0xA8706C11 }
 	TAG_STRUCT(
 		ai_globals_block,
 		"ai_globals_block",
@@ -12432,7 +12432,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(ai_dialogue_globals_group_reference_tagref, AI_DIALOGUE_GLOBALS_TAG);
 
-	#define MULTIPLAYER_COLOR_BLOCK_ID { 0x00000000, 0x0A6C9756, 0xF0E24866, 0xA708F3E9 }
+	#define MULTIPLAYER_COLOR_BLOCK_ID { 0x0A6C9756, 0xF0E24866, 0xA708F3E9, 0xC9C41962 }
 	TAG_STRUCT(
 		multiplayer_color_block,
 		"multiplayer_color_block",
@@ -12445,7 +12445,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBALS_STRUCT_DEFINITION_ID { 0x00000000, 0x08DE77CB, 0xA2CF4145, 0xBB807A30 }
+	#define GLOBALS_STRUCT_DEFINITION_ID { 0x08DE77CB, 0xA2CF4145, 0xBB807A30, 0xB2A866B3 }
 	TAG_STRUCT(
 		globals_struct_definition,
 		"globals_struct_definition",
@@ -12540,7 +12540,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(render_skins_object_globals_group_reference_tagref, RENDER_SKINS_OBJECT_GLOBALS_TAG);
 
-	#define CHARACTER_PHYSICS_GROUND_STRUCT_ID { 0x00000000, 0xE61D5093, 0x77E5453D, 0x90EC05A0 }
+	#define CHARACTER_PHYSICS_GROUND_STRUCT_ID { 0xE61D5093, 0x77E5453D, 0x90EC05A0, 0x8B7B778B }
 	TAG_STRUCT(
 		character_physics_ground_struct,
 		"character_physics_ground_struct",
@@ -12568,7 +12568,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_PHYSICS_FLYING_STRUCT_ID { 0x00000000, 0x692E7BDD, 0x59F4483F, 0xAEBF3C6D }
+	#define CHARACTER_PHYSICS_FLYING_STRUCT_ID { 0x692E7BDD, 0x59F4483F, 0xAEBF3C6D, 0x645E1EC3 }
 	TAG_STRUCT(
 		character_physics_flying_struct,
 		"character_physics_flying_struct",
@@ -12598,7 +12598,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(flying_physics_flags, flying_physics_flags_strings, _countof(flying_physics_flags_strings));
 
-	#define CHARACTER_PHYSICS_STRUCT_ID { 0x00000000, 0x7F1CE04F, 0x93D14DEC, 0xA9872258 }
+	#define CHARACTER_PHYSICS_STRUCT_ID { 0x7F1CE04F, 0x93D14DEC, 0xA9872258, 0x04CD6B27 }
 	TAG_STRUCT(
 		character_physics_struct,
 		"character_physics_struct",
@@ -12641,7 +12641,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(character_physics_flags, character_physics_flags_strings, _countof(character_physics_flags_strings));
 
-	#define MODEL_OBJECT_DATA_BLOCK_ID { 0x00000000, 0x77683B32, 0xFF1C498B, 0x9729C07A }
+	#define MODEL_OBJECT_DATA_BLOCK_ID { 0x77683B32, 0xFF1C498B, 0x9729C07A, 0xF0730254 }
 	TAG_STRUCT(
 		model_object_data_block,
 		"model_object_data_block",
@@ -12665,7 +12665,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(bounding_sphere_enum_definition, bounding_sphere_enum_definition_strings, _countof(bounding_sphere_enum_definition_strings));
 
-	#define MODEL_BLOCK_STRUCT_ID { 0x00000000, 0xAB569A7E, 0xC76C4EA3, 0x99F00227 }
+	#define MODEL_BLOCK_STRUCT_ID { 0xAB569A7E, 0xC76C4EA3, 0x99F00227, 0xD006A3D8 }
 	TAG_STRUCT(
 		model_block_struct,
 		"model_block_struct",
@@ -12762,7 +12762,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(shield_impact_group_reference_tagref, SHIELD_IMPACT_TAG);
 
-	#define RUNTIME_REGION_INDEX_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0x698D671C, 0x87E64985, 0x8D63EF05 }
+	#define RUNTIME_REGION_INDEX_ARRAY_STRUCT_DEFINITION_ID { 0x698D671C, 0x87E64985, 0x8D63EF05, 0xF3EAE84E }
 	TAG_STRUCT(
 		runtime_region_index_array_struct_definition,
 		"runtime_region_index_array",
@@ -12775,7 +12775,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MODEL_INSTANCE_GROUP_MEMBER_BLOCK_ID { 0x00000000, 0xB9F452BD, 0xE5364484, 0xBCA75D3E }
+	#define MODEL_INSTANCE_GROUP_MEMBER_BLOCK_ID { 0xB9F452BD, 0xE5364484, 0xBCA75D3E, 0x096AF278 }
 	TAG_STRUCT(
 		model_instance_group_member_block,
 		"model_instance_group_member_block",
@@ -12792,7 +12792,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_MODEL_INSTANCE_GROUP_BLOCK_ID { 0x00000000, 0xE2233121, 0xFA0F464B, 0x93BEE223 }
+	#define GLOBAL_MODEL_INSTANCE_GROUP_BLOCK_ID { 0xE2233121, 0xFA0F464B, 0x93BEE223, 0x29DA60B2 }
 	TAG_STRUCT(
 		global_model_instance_group_block,
 		"global_model_instance_group_block",
@@ -12815,7 +12815,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(model_instance_group_choice_enum, model_instance_group_choice_enum_strings, _countof(model_instance_group_choice_enum_strings));
 
-	#define MODEL_VARIANT_BLOCK_ID { 0x00000000, 0x539CDDB4, 0x7412487A, 0x91B85DAA }
+	#define MODEL_VARIANT_BLOCK_ID { 0x539CDDB4, 0x7412487A, 0x91B85DAA, 0xC3AAF510 }
 	TAG_STRUCT(
 		model_variant_block,
 		"model_variant_block",
@@ -12833,7 +12833,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MODEL_VARIANT_REGION_BLOCK_ID { 0x00000000, 0x070F6AFA, 0x05F64F74, 0xBAFFFFE6 }
+	#define MODEL_VARIANT_REGION_BLOCK_ID { 0x070F6AFA, 0x05F64F74, 0xBAFFFFE6, 0x12F8BD5C }
 	TAG_STRUCT(
 		model_variant_region_block,
 		"model_variant_region_block",
@@ -12869,7 +12869,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(region_sort_enum, region_sort_enum_strings, _countof(region_sort_enum_strings));
 
-	#define MODEL_STATE_PERMUTATION_INDEX_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0x42CDCB9B, 0x148440EA, 0xB21C6D08 }
+	#define MODEL_STATE_PERMUTATION_INDEX_ARRAY_STRUCT_DEFINITION_ID { 0x42CDCB9B, 0x148440EA, 0xB21C6D08, 0xB3C86C53 }
 	TAG_STRUCT(
 		model_state_permutation_index_array_struct_definition,
 		"model_state_permutation_index_array",
@@ -12882,7 +12882,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MODEL_VARIANT_PERMUTATION_BLOCK_ID { 0x00000000, 0x4ED99004, 0x1D7045CC, 0x98959600 }
+	#define MODEL_VARIANT_PERMUTATION_BLOCK_ID { 0x4ED99004, 0x1D7045CC, 0x98959600, 0x6C3550AD }
 	TAG_STRUCT(
 		model_variant_permutation_block,
 		"model_variant_permutation_block",
@@ -12908,7 +12908,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(model_variant_permutation_flags_definition, model_variant_permutation_flags_definition_strings, _countof(model_variant_permutation_flags_definition_strings));
 
-	#define MODEL_VARIANT_STATE_BLOCK_ID { 0x00000000, 0xDD3D5ACB, 0xC81742A9, 0x911C9F78 }
+	#define MODEL_VARIANT_STATE_BLOCK_ID { 0xDD3D5ACB, 0xC81742A9, 0x911C9F78, 0x4A18CA81 }
 	TAG_STRUCT(
 		model_variant_state_block,
 		"model_variant_state_block",
@@ -12948,7 +12948,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(effect_group_reference$2_tagref, EFFECT_TAG);
 
-	#define MODEL_VARIANT_OBJECT_BLOCK_ID { 0x00000000, 0x86B36FDB, 0xEAD546C3, 0xB0190BC3 }
+	#define MODEL_VARIANT_OBJECT_BLOCK_ID { 0x86B36FDB, 0xEAD546C3, 0xB0190BC3, 0x34938689 }
 	TAG_STRUCT(
 		model_variant_object_block,
 		"model_variant_object_block",
@@ -12966,7 +12966,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(object_group_reference$3_tagref, OBJECT_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
-	#define MODEL_MATERIAL_BLOCK_ID { 0x00000000, 0x6513E3D0, 0x26B14AAA, 0x9CC86DC9 }
+	#define MODEL_MATERIAL_BLOCK_ID { 0x6513E3D0, 0x26B14AAA, 0x9CC86DC9, 0xB4279C53 }
 	TAG_STRUCT(
 		model_material_block,
 		"model_material_block",
@@ -12986,7 +12986,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MODEL_TARGET_LOCK_ON_DATA_STRUCT_ID { 0x00000000, 0x3BEBBCB0, 0xF83B4943, 0x9C36F114 }
+	#define MODEL_TARGET_LOCK_ON_DATA_STRUCT_ID { 0x3BEBBCB0, 0xF83B4943, 0x9C36F114, 0x2C166B4D }
 	TAG_STRUCT(
 		model_target_lock_on_data_struct,
 		"model_target_lock_on_data_struct",
@@ -13013,7 +13013,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(model_target_lock_on_flags_definition, model_target_lock_on_flags_definition_strings, _countof(model_target_lock_on_flags_definition_strings));
 
-	#define MODEL_TARGET_BLOCK_ID { 0x00000000, 0x98F4CB8B, 0xA25646F3, 0x9B244873 }
+	#define MODEL_TARGET_BLOCK_ID { 0x98F4CB8B, 0xA25646F3, 0x9B244873, 0xF1005E11 }
 	TAG_STRUCT(
 		model_target_block,
 		"model_target_block",
@@ -13033,7 +13033,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MODEL_REGION_BLOCK_ID { 0x00000000, 0x4E1EFAA1, 0x9CA248F7, 0x9223106F }
+	#define MODEL_REGION_BLOCK_ID { 0x4E1EFAA1, 0x9CA248F7, 0x9223106F, 0xC7A5C1A4 }
 	TAG_STRUCT(
 		model_region_block,
 		"model_region_block",
@@ -13050,7 +13050,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MODEL_PERMUTATION_BLOCK_ID { 0x00000000, 0x72671B5F, 0x63CE4207, 0xBE9A29D5 }
+	#define MODEL_PERMUTATION_BLOCK_ID { 0x72671B5F, 0x63CE4207, 0xBE9A29D5, 0x3EB1033F }
 	TAG_STRUCT(
 		model_permutation_block,
 		"model_permutation_block",
@@ -13073,7 +13073,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(model_permutation_flags_definition, model_permutation_flags_definition_strings, _countof(model_permutation_flags_definition_strings));
 
-	#define MODEL_NODE_BLOCK_ID { 0x00000000, 0xE5E9FB01, 0xF8384408, 0xAFEC9EFF }
+	#define MODEL_NODE_BLOCK_ID { 0xE5E9FB01, 0xF8384408, 0xAFEC9EFF, 0x28E7E6F4 }
 	TAG_STRUCT(
 		model_node_block,
 		"model_node_block",
@@ -13097,7 +13097,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MODEL_SELF_SHADOW_REGION_CAST_OVERRIDE_BLOCK_ID { 0x00000000, 0x9AAFE87A, 0xEB8C4EC7, 0x89BAEF7B }
+	#define MODEL_SELF_SHADOW_REGION_CAST_OVERRIDE_BLOCK_ID { 0x9AAFE87A, 0xEB8C4EC7, 0x89BAEF7B, 0x7ADE02DB }
 	TAG_STRUCT(
 		model_self_shadow_region_cast_override_block,
 		"model_self_shadow_region_cast_override_block",
@@ -13111,7 +13111,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MODEL_SELF_SHADOW_REGION_RECEIVE_OVERRIDE_BLOCK_ID { 0x00000000, 0x7EB85F6C, 0x6B57414C, 0xAF117275 }
+	#define MODEL_SELF_SHADOW_REGION_RECEIVE_OVERRIDE_BLOCK_ID { 0x7EB85F6C, 0x6B57414C, 0xAF117275, 0x5EA33656 }
 	TAG_STRUCT(
 		model_self_shadow_region_receive_override_block,
 		"model_self_shadow_region_receive_override_block",
@@ -13133,7 +13133,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(model_prt_shadow_receive_mode_definition, model_prt_shadow_receive_mode_definition_strings, _countof(model_prt_shadow_receive_mode_definition_strings));
 
-	#define MODEL_OCCLUSION_SPHERE_BLOCK_ID { 0x00000000, 0x6301C370, 0x3F4846FD, 0x8AF5CD6F }
+	#define MODEL_OCCLUSION_SPHERE_BLOCK_ID { 0x6301C370, 0x3F4846FD, 0x8AF5CD6F, 0x79C5363C }
 	TAG_STRUCT(
 		model_occlusion_sphere_block,
 		"model_occlusion_sphere_block",
@@ -13150,7 +13150,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SKY_LIGHTS_BLOCK_ID { 0x00000000, 0x130995FD, 0x092140E0, 0xB8171BDB }
+	#define SKY_LIGHTS_BLOCK_ID { 0x130995FD, 0x092140E0, 0xB8171BDB, 0x8DC1F998 }
 	TAG_STRUCT(
 		sky_lights_block,
 		"sky_lights_block",
@@ -13165,7 +13165,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RADIANCE_TRANSFER_MATRIX_STRUCT_DEFINITION_ID { 0x00000000, 0x0FA34AD9, 0x785D45B5, 0xA12B1861 }
+	#define RADIANCE_TRANSFER_MATRIX_STRUCT_DEFINITION_ID { 0x0FA34AD9, 0x785D45B5, 0xA12B1861, 0x7B84E30C }
 	TAG_STRUCT(
 		radiance_transfer_matrix_struct_definition,
 		"radiance_transfer_matrix",
@@ -13178,7 +13178,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VOLUME_SAMPLES_BLOCK_ID { 0x00000000, 0x069D0DD6, 0x55E6413E, 0xAABD61B5 }
+	#define VOLUME_SAMPLES_BLOCK_ID { 0x069D0DD6, 0x55E6413E, 0xAABD61B5, 0x3168B3C9 }
 	TAG_STRUCT(
 		volume_samples_block,
 		"volume_samples_block",
@@ -13192,7 +13192,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DEFAULT_NODE_ORIENTATIONS_BLOCK_ID { 0x00000000, 0xA3A5979B, 0x41D84244, 0xA1400226 }
+	#define DEFAULT_NODE_ORIENTATIONS_BLOCK_ID { 0xA3A5979B, 0x41D84244, 0xA1400226, 0xA5CD38C9 }
 	TAG_STRUCT(
 		default_node_orientations_block,
 		"default_node_orientations_block",
@@ -13207,7 +13207,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DEFAULT_LIGHTPROBE_STRUCT_DEFINITION_ID { 0x00000000, 0xE5271D41, 0x59124778, 0x8A490C10 }
+	#define DEFAULT_LIGHTPROBE_STRUCT_DEFINITION_ID { 0xE5271D41, 0x59124778, 0x8A490C10, 0x5187D581 }
 	TAG_STRUCT(
 		default_lightprobe_struct_definition,
 		"default_lightprobe",
@@ -13220,7 +13220,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_MODEL_BLOCK_STRUCT_ID { 0x00000000, 0x69FF7DC3, 0x07F94EB6, 0xA4788DFF }
+	#define RENDER_MODEL_BLOCK_STRUCT_ID { 0x69FF7DC3, 0x07F94EB6, 0xA4788DFF, 0xBBF9621C }
 	TAG_STRUCT(
 		render_model_block_struct,
 		"render_model_block_struct",
@@ -13263,7 +13263,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(render_model_flags_definition, render_model_flags_definition_strings, _countof(render_model_flags_definition_strings));
 
-	#define RENDER_MODEL_REGION_BLOCK_ID { 0x00000000, 0x5F23BC11, 0xB76B42D7, 0xA38C6C46 }
+	#define RENDER_MODEL_REGION_BLOCK_ID { 0x5F23BC11, 0xB76B42D7, 0xA38C6C46, 0x1DEE5813 }
 	TAG_STRUCT(
 		render_model_region_block,
 		"render_model_region_block",
@@ -13277,7 +13277,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_MODEL_PERMUTATION_BLOCK_ID { 0x00000000, 0x7900DDE2, 0x064B40BE, 0x8F806330 }
+	#define RENDER_MODEL_PERMUTATION_BLOCK_ID { 0x7900DDE2, 0x064B40BE, 0x8F806330, 0x878B35EB }
 	TAG_STRUCT(
 		render_model_permutation_block,
 		"render_model_permutation_block",
@@ -13331,7 +13331,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(render_model_instance_bitfield_flags_definition, render_model_instance_bitfield_flags_definition_strings, _countof(render_model_instance_bitfield_flags_definition_strings));
 
-	#define RENDER_MODEL_NODE_BLOCK_ID { 0x00000000, 0xB74453B7, 0xD6E3402E, 0x8A1587D0 }
+	#define RENDER_MODEL_NODE_BLOCK_ID { 0xB74453B7, 0xD6E3402E, 0x8A1587D0, 0xEFBF22EA }
 	TAG_STRUCT(
 		render_model_node_block,
 		"render_model_node_block",
@@ -13357,7 +13357,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_MODEL_MARKER_GROUP_BLOCK_ID { 0x00000000, 0xE60694FA, 0xA9EC4D0D, 0x89E6238C }
+	#define RENDER_MODEL_MARKER_GROUP_BLOCK_ID { 0xE60694FA, 0xA9EC4D0D, 0x89E6238C, 0xF66CBE15 }
 	TAG_STRUCT(
 		render_model_marker_group_block,
 		"render_model_marker_group_block",
@@ -13371,7 +13371,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_MODEL_MARKER_BLOCK_ID { 0x00000000, 0xD7CC940F, 0x39874D92, 0x808A0C39 }
+	#define RENDER_MODEL_MARKER_BLOCK_ID { 0xD7CC940F, 0x39874D92, 0x808A0C39, 0x0AF0AC68 }
 	TAG_STRUCT(
 		render_model_marker_block,
 		"render_model_marker_block",
@@ -13390,7 +13390,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLLISION_MODEL_MATERIAL_BLOCK_ID { 0x00000000, 0x7B10BA44, 0xCCA147A9, 0xBA00D05C }
+	#define COLLISION_MODEL_MATERIAL_BLOCK_ID { 0x7B10BA44, 0xCCA147A9, 0xBA00D05C, 0x22B0B273 }
 	TAG_STRUCT(
 		collision_model_material_block,
 		"collision_model_material_block",
@@ -13403,7 +13403,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLLISION_MODEL_REGION_BLOCK_ID { 0x00000000, 0xA2B3D98B, 0x4F4246CE, 0xA22339FE }
+	#define COLLISION_MODEL_REGION_BLOCK_ID { 0xA2B3D98B, 0x4F4246CE, 0xA22339FE, 0xC303404E }
 	TAG_STRUCT(
 		collision_model_region_block,
 		"collision_model_region_block",
@@ -13417,7 +13417,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLLISION_MODEL_BSP_BLOCK_ID { 0x00000000, 0x036840D2, 0x531648C1, 0x887F7243 }
+	#define COLLISION_MODEL_BSP_BLOCK_ID { 0x036840D2, 0x531648C1, 0x887F7243, 0xB140B84F }
 	TAG_STRUCT(
 		collision_model_bsp_block,
 		"collision_model_bsp_block",
@@ -13433,7 +13433,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLLISION_MODEL_PATHFINDING_SPHERE_BLOCK_ID { 0x00000000, 0xEC25013C, 0xA1934E7A, 0xAD0346BB }
+	#define COLLISION_MODEL_PATHFINDING_SPHERE_BLOCK_ID { 0xEC25013C, 0xA1934E7A, 0xAD0346BB, 0x515C39B6 }
 	TAG_STRUCT(
 		collision_model_pathfinding_sphere_block,
 		"collision_model_pathfinding_sphere_block",
@@ -13458,7 +13458,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(pathfinding_sphere_flags, pathfinding_sphere_flags_strings, _countof(pathfinding_sphere_flags_strings));
 
-	#define COLLISION_MODEL_STRUCT_DEFINITION_ID { 0x00000000, 0x82629323, 0x5D1942A5, 0x94270FB1 }
+	#define COLLISION_MODEL_STRUCT_DEFINITION_ID { 0x82629323, 0x5D1942A5, 0x94270FB1, 0x49FBDD92 }
 	TAG_STRUCT(
 		collision_model_struct_definition,
 		"collision_model_struct_definition",
@@ -13483,7 +13483,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(collision_model_flags, collision_model_flags_strings, _countof(collision_model_flags_strings));
 
-	#define COLLISION_MODEL_PERMUTATION_BLOCK_ID { 0x00000000, 0xAB85D1D7, 0x6FED4CD0, 0x9D46D6F6 }
+	#define COLLISION_MODEL_PERMUTATION_BLOCK_ID { 0xAB85D1D7, 0x6FED4CD0, 0x9D46D6F6, 0x52EE1C6D }
 	TAG_STRUCT(
 		collision_model_permutation_block,
 		"collision_model_permutation_block",
@@ -13499,7 +13499,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLLISION_MODEL_NODE_BLOCK_ID { 0x00000000, 0x732343D3, 0x041E4597, 0x92128A86 }
+	#define COLLISION_MODEL_NODE_BLOCK_ID { 0x732343D3, 0x041E4597, 0x92128A86, 0x949F6A18 }
 	TAG_STRUCT(
 		collision_model_node_block,
 		"collision_model_node_block",
@@ -13516,7 +13516,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LISTS_BLOCK_ID { 0x00000000, 0xD663F86E, 0xB8D94D62, 0x922BA3C3 }
+	#define LISTS_BLOCK_ID { 0xD663F86E, 0xB8D94D62, 0x922BA3C3, 0xBB29D488 }
 	TAG_STRUCT(
 		lists_block,
 		"lists_block",
@@ -13536,7 +13536,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LIST_SHAPES_BLOCK_ID { 0x00000000, 0xECB46633, 0x848F4024, 0xBB89AACA }
+	#define LIST_SHAPES_BLOCK_ID { 0xECB46633, 0x848F4024, 0xBB89AACA, 0x81AFF2C4 }
 	TAG_STRUCT(
 		list_shapes_block,
 		"list_shapes_block",
@@ -13553,7 +13553,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MOPPS_BLOCK_ID { 0x00000000, 0x0E47FE63, 0x1D7740FD, 0x953287BF }
+	#define MOPPS_BLOCK_ID { 0x0E47FE63, 0x1D7740FD, 0x953287BF, 0x4CB509E9 }
 	TAG_STRUCT(
 		mopps_block,
 		"mopps_block",
@@ -13573,7 +13573,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CONSTRAINT_BODIES_STRUCT_ID { 0x00000000, 0x8C776F54, 0x79CD4488, 0xA821DD34 }
+	#define CONSTRAINT_BODIES_STRUCT_ID { 0x8C776F54, 0x79CD4488, 0xA821DD34, 0xBD455BC0 }
 	TAG_STRUCT(
 		constraint_bodies_struct,
 		"constraint_bodies_struct",
@@ -13600,7 +13600,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define HINGE_CONSTRAINTS_BLOCK_ID { 0x00000000, 0xAF7DC3D5, 0x530140B4, 0x91B125D8 }
+	#define HINGE_CONSTRAINTS_BLOCK_ID { 0xAF7DC3D5, 0x530140B4, 0x91B125D8, 0x62093ACB }
 	TAG_STRUCT(
 		hinge_constraints_block,
 		"hinge_constraints_block",
@@ -13614,7 +13614,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LIMITED_HINGE_CONSTRAINTS_BLOCK_ID { 0x00000000, 0xCA7D0DCC, 0x98DD4A69, 0x99C928CE }
+	#define LIMITED_HINGE_CONSTRAINTS_BLOCK_ID { 0xCA7D0DCC, 0x98DD4A69, 0x99C928CE, 0xB478F286 }
 	TAG_STRUCT(
 		limited_hinge_constraints_block,
 		"limited_hinge_constraints_block",
@@ -13631,7 +13631,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RAGDOLL_CONSTRAINTS_BLOCK_ID { 0x00000000, 0x71F3DE11, 0xA1B24FB1, 0xAEBDF8E1 }
+	#define RAGDOLL_CONSTRAINTS_BLOCK_ID { 0x71F3DE11, 0xA1B24FB1, 0xAEBDF8E1, 0x2005975C }
 	TAG_STRUCT(
 		ragdoll_constraints_block,
 		"ragdoll_constraints_block",
@@ -13652,7 +13652,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BALL_AND_SOCKET_CONSTRAINTS_BLOCK_ID { 0x00000000, 0x96EF29F8, 0xD4CB4C71, 0x8E24795D }
+	#define BALL_AND_SOCKET_CONSTRAINTS_BLOCK_ID { 0x96EF29F8, 0xD4CB4C71, 0x8E24795D, 0xBC63D57D }
 	TAG_STRUCT(
 		ball_and_socket_constraints_block,
 		"ball_and_socket_constraints_block",
@@ -13666,7 +13666,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STIFF_SPRING_CONSTRAINTS_BLOCK_ID { 0x00000000, 0xB171A408, 0xC3E44FA9, 0x9B290904 }
+	#define STIFF_SPRING_CONSTRAINTS_BLOCK_ID { 0xB171A408, 0xC3E44FA9, 0x9B290904, 0xF448E781 }
 	TAG_STRUCT(
 		stiff_spring_constraints_block,
 		"stiff_spring_constraints_block",
@@ -13681,7 +13681,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PRISMATIC_CONSTRAINTS_BLOCK_ID { 0x00000000, 0x6514A948, 0x92AC4D16, 0x807D1F7F }
+	#define PRISMATIC_CONSTRAINTS_BLOCK_ID { 0x6514A948, 0x92AC4D16, 0x807D1F7F, 0x6DF5D8A4 }
 	TAG_STRUCT(
 		prismatic_constraints_block,
 		"prismatic_constraints_block",
@@ -13698,7 +13698,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define REGIONS_BLOCK_ID { 0x00000000, 0x43CF00C4, 0x48FA425D, 0x9F3945E3 }
+	#define REGIONS_BLOCK_ID { 0x43CF00C4, 0x48FA425D, 0x9F3945E3, 0xC0CC414D }
 	TAG_STRUCT(
 		regions_block,
 		"regions_block",
@@ -13712,7 +13712,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PERMUTATIONS_BLOCK_ID { 0x00000000, 0xB9073D8F, 0x99774226, 0x951F4436 }
+	#define PERMUTATIONS_BLOCK_ID { 0xB9073D8F, 0x99774226, 0x951F4436, 0x864FD834 }
 	TAG_STRUCT(
 		permutations_block,
 		"permutations_block",
@@ -13726,7 +13726,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RIGID_BODY_INDICES_BLOCK_ID { 0x00000000, 0xC6210EEA, 0x4B0D46CA, 0xB5ECB5CE }
+	#define RIGID_BODY_INDICES_BLOCK_ID { 0xC6210EEA, 0x4B0D46CA, 0xB5ECB5CE, 0xFCB173A7 }
 	TAG_STRUCT(
 		rigid_body_indices_block,
 		"rigid_body_indices_block",
@@ -13739,7 +13739,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define NODES_BLOCK_ID { 0x00000000, 0xF92912E1, 0xA4364CD1, 0xA65724A1 }
+	#define NODES_BLOCK_ID { 0xF92912E1, 0xA4364CD1, 0xA65724A1, 0xBB8A252B }
 	TAG_STRUCT(
 		nodes_block,
 		"nodes_block",
@@ -13762,7 +13762,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(nodes_flags, nodes_flags_strings, _countof(nodes_flags_strings));
 
-	#define POINT_TO_PATH_CURVE_POINT_BLOCK_ID { 0x00000000, 0x7D8769F4, 0xBCD646C2, 0x99D3A2DC }
+	#define POINT_TO_PATH_CURVE_POINT_BLOCK_ID { 0x7D8769F4, 0xBCD646C2, 0x99D3A2DC, 0x900FAE2F }
 	TAG_STRUCT(
 		point_to_path_curve_point_block,
 		"point_to_path_curve_point_block",
@@ -13776,7 +13776,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define POINT_TO_PATH_CURVE_BLOCK_ID { 0x00000000, 0x295B83E5, 0x915B4FEA, 0xB9C37400 }
+	#define POINT_TO_PATH_CURVE_BLOCK_ID { 0x295B83E5, 0x915B4FEA, 0xB9C37400, 0xF93E5BD0 }
 	TAG_STRUCT(
 		point_to_path_curve_block,
 		"point_to_path_curve_block",
@@ -13792,7 +13792,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define HAVOK_PRIMITIVE_STRUCT_ID { 0x00000000, 0xEA25BEF8, 0x01384DFD, 0x886C4497 }
+	#define HAVOK_PRIMITIVE_STRUCT_ID { 0xEA25BEF8, 0x01384DFD, 0x886C4497, 0x7BE57757 }
 	TAG_STRUCT(
 		havok_primitive_struct,
 		"havok_primitive_struct",
@@ -13821,7 +13821,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(primitive_flags, primitive_flags_strings, _countof(primitive_flags_strings));
 
-	#define HAVOK_SHAPE_STRUCT_ID { 0x00000000, 0xCC42E7A1, 0x996A46EB, 0xA0A3AB5E }
+	#define HAVOK_SHAPE_STRUCT_ID { 0xCC42E7A1, 0x996A46EB, 0xA0A3AB5E, 0x7120F79C }
 	TAG_STRUCT(
 		havok_shape_struct,
 		"havok_shape_struct",
@@ -13840,7 +13840,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define HAVOK_SHAPE_COLLECTION_STRUCT_ID { 0x00000000, 0xDD6DCE26, 0x88D54E3D, 0x87B805A2 }
+	#define HAVOK_SHAPE_COLLECTION_STRUCT_ID { 0xDD6DCE26, 0x88D54E3D, 0x87B805A2, 0xD7E20D10 }
 	TAG_STRUCT(
 		havok_shape_collection_struct,
 		"havok_shape_collection_struct",
@@ -13856,7 +13856,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define HAVOK_CONVEX_SHAPE_STRUCT_ID { 0x00000000, 0x47913899, 0x5D904202, 0x851C913C }
+	#define HAVOK_CONVEX_SHAPE_STRUCT_ID { 0x47913899, 0x5D904202, 0x851C913C, 0xE4EB9434 }
 	TAG_STRUCT(
 		havok_convex_shape_struct,
 		"havok_convex_shape_struct",
@@ -13871,7 +13871,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define HAVOK_CONVEX_TRANSFORM_SHAPE_STRUCT_ID { 0x00000000, 0x5D3A0E84, 0xC3E344C7, 0xBD31E21E }
+	#define HAVOK_CONVEX_TRANSFORM_SHAPE_STRUCT_ID { 0x5D3A0E84, 0xC3E344C7, 0xBD31E21E, 0x36C2099E }
 	TAG_STRUCT(
 		havok_convex_transform_shape_struct,
 		"havok_convex_transform_shape_struct",
@@ -13896,7 +13896,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define HAVOK_CONVEX_TRANSLATE_SHAPE_STRUCT_ID { 0x00000000, 0x27EB2FD5, 0xDDD74902, 0x88DEF834 }
+	#define HAVOK_CONVEX_TRANSLATE_SHAPE_STRUCT_ID { 0x27EB2FD5, 0xDDD74902, 0x88DEF834, 0x424CEE47 }
 	TAG_STRUCT(
 		havok_convex_translate_shape_struct,
 		"havok_convex_translate_shape_struct",
@@ -13915,7 +13915,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define HAVOK_SHAPE_REFERENCE_STRUCT_ID { 0x00000000, 0x573EF14C, 0x91AC4F07, 0xA1702B47 }
+	#define HAVOK_SHAPE_REFERENCE_STRUCT_ID { 0x573EF14C, 0x91AC4F07, 0xA1702B47, 0x7875B0E0 }
 	TAG_STRUCT(
 		havok_shape_reference_struct,
 		"havok_shape_reference_struct",
@@ -13951,7 +13951,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(shape_enum, shape_enum_strings, _countof(shape_enum_strings));
 
-	#define PHYSICS_MODEL_DAMPED_SPRING_MOTOR_BLOCK_ID { 0x00000000, 0x60496061, 0xD264415C, 0xAF53227C }
+	#define PHYSICS_MODEL_DAMPED_SPRING_MOTOR_BLOCK_ID { 0x60496061, 0xD264415C, 0xAF53227C, 0x68D09DA9 }
 	TAG_STRUCT(
 		physics_model_damped_spring_motor_block,
 		"physics_model_damped_spring_motor_block",
@@ -13969,7 +13969,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PHYSICS_MODEL_POSITION_MOTOR_BLOCK_ID { 0x00000000, 0xC0C65573, 0xE34244CE, 0xBFDAC94B }
+	#define PHYSICS_MODEL_POSITION_MOTOR_BLOCK_ID { 0xC0C65573, 0xE34244CE, 0xBFDAC94B, 0xF92ECE8C }
 	TAG_STRUCT(
 		physics_model_position_motor_block,
 		"physics_model_position_motor_block",
@@ -13989,7 +13989,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PHYSICS_MODEL_MOTOR_REFERENCE_STRUCT_ID { 0x00000000, 0xAB7B559D, 0x0D744412, 0x84CDF67A }
+	#define PHYSICS_MODEL_MOTOR_REFERENCE_STRUCT_ID { 0xAB7B559D, 0x0D744412, 0x84CDF67A, 0x370BCC34 }
 	TAG_STRUCT(
 		physics_model_motor_reference_struct,
 		"physics_model_motor_reference_struct",
@@ -14011,7 +14011,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(physics_model_motor_types_enum, physics_model_motor_types_enum_strings, _countof(physics_model_motor_types_enum_strings));
 
-	#define PHYSICS_MODEL_RAGDOLL_MOTORS_BLOCK_ID { 0x00000000, 0x62A96AB5, 0x48164E64, 0xA529F07B }
+	#define PHYSICS_MODEL_RAGDOLL_MOTORS_BLOCK_ID { 0x62A96AB5, 0x48164E64, 0xA529F07B, 0x62FA3B40 }
 	TAG_STRUCT(
 		physics_model_ragdoll_motors_block,
 		"physics_model_ragdoll_motors_block",
@@ -14029,7 +14029,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PHYSICS_MODEL_LIMITED_HINGE_MOTORS_BLOCK_ID { 0x00000000, 0xB4F83810, 0x94E14E38, 0x95347376 }
+	#define PHYSICS_MODEL_LIMITED_HINGE_MOTORS_BLOCK_ID { 0xB4F83810, 0x94E14E38, 0x95347376, 0xA5785B3A }
 	TAG_STRUCT(
 		physics_model_limited_hinge_motors_block,
 		"physics_model_limited_hinge_motors_block",
@@ -14042,7 +14042,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PHYSICS_MODEL_CONSTRAINT_EDGE_CONSTRAINT_BLOCK_ID { 0x00000000, 0x47C5C654, 0x707F4F7B, 0x956BA9B5 }
+	#define PHYSICS_MODEL_CONSTRAINT_EDGE_CONSTRAINT_BLOCK_ID { 0x47C5C654, 0x707F4F7B, 0x956BA9B5, 0xAC3E2279 }
 	TAG_STRUCT(
 		physics_model_constraint_edge_constraint_block,
 		"physics_model_constraint_edge_constraint_block",
@@ -14080,7 +14080,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(rigid_body_constraint_edge_constraint_flags_definition, rigid_body_constraint_edge_constraint_flags_definition_strings, _countof(rigid_body_constraint_edge_constraint_flags_definition_strings));
 
-	#define PHYSICS_MODEL_POWERED_CHAIN_NODES_BLOCK_ID { 0x00000000, 0xBBC31F9B, 0x1DEF4AA0, 0x02354B86 }
+	#define PHYSICS_MODEL_POWERED_CHAIN_NODES_BLOCK_ID { 0xBBC31F9B, 0x1DEF4AA0, 0x02354B86, 0x462AEBA3 }
 	TAG_STRUCT(
 		physics_model_powered_chain_nodes_block,
 		"physics_model_powered_chain_nodes_block",
@@ -14093,7 +14093,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PHYSICS_MODEL_POWERED_CHAIN_CONSTRAINTS_BLOCK_ID { 0x00000000, 0xBB331F9B, 0x1CEF4AA0, 0x0A354B86 }
+	#define PHYSICS_MODEL_POWERED_CHAIN_CONSTRAINTS_BLOCK_ID { 0xBB331F9B, 0x1CEF4AA0, 0x0A354B86, 0x462AEBB3 }
 	TAG_STRUCT(
 		physics_model_powered_chain_constraints_block,
 		"physics_model_powered_chain_constraints_block",
@@ -14110,7 +14110,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PHYSICS_MODEL_POWERED_CHAINS_BLOCK_ID { 0x00000000, 0xABC31F9B, 0x1DEF46A0, 0x12354B86 }
+	#define PHYSICS_MODEL_POWERED_CHAINS_BLOCK_ID { 0xABC31F9B, 0x1DEF46A0, 0x12354B86, 0x462CEBA3 }
 	TAG_STRUCT(
 		physics_model_powered_chains_block,
 		"physics_model_powered_chains_block",
@@ -14124,7 +14124,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PHYSICS_MODEL_NODE_CONSTRAINT_EDGE_BLOCK_ID { 0x00000000, 0x1E831F9B, 0x155146A0, 0x9A054B86 }
+	#define PHYSICS_MODEL_NODE_CONSTRAINT_EDGE_BLOCK_ID { 0x1E831F9B, 0x155146A0, 0x9A054B86, 0x462C1033 }
 	TAG_STRUCT(
 		physics_model_node_constraint_edge_block,
 		"physics_model_node_constraint_edge_block",
@@ -14143,7 +14143,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PHANTOMS_BLOCK_ID { 0x00000000, 0x199D9072, 0x08164F19, 0x882A3D7D }
+	#define PHANTOMS_BLOCK_ID { 0x199D9072, 0x08164F19, 0x882A3D7D, 0x7D2BFFDF }
 	TAG_STRUCT(
 		phantoms_block,
 		"phantoms_block",
@@ -14160,7 +14160,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MATERIALS_BLOCK_ID { 0x00000000, 0xAC367567, 0x39714E57, 0x9B17ED70 }
+	#define MATERIALS_BLOCK_ID { 0xAC367567, 0x39714E57, 0x9B17ED70, 0x20402724 }
 	TAG_STRUCT(
 		materials_block,
 		"materials_block",
@@ -14191,7 +14191,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(physics_material_proxy_collision_groups, physics_material_proxy_collision_groups_strings, _countof(physics_material_proxy_collision_groups_strings));
 
-	#define SPHERES_BLOCK_STRUCT_ID { 0x00000000, 0x13A2024A, 0xCEE84E60, 0x8CEFE839 }
+	#define SPHERES_BLOCK_STRUCT_ID { 0x13A2024A, 0xCEE84E60, 0x8CEFE839, 0x37177383 }
 	TAG_STRUCT(
 		spheres_block_struct,
 		"spheres_block_struct",
@@ -14207,7 +14207,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTI_SPHERE_VECTOR_STORAGE_STRUCT_DEFINITION_ID { 0x00000000, 0xC2F4C73E, 0xD6904055, 0xB0613D10 }
+	#define MULTI_SPHERE_VECTOR_STORAGE_STRUCT_DEFINITION_ID { 0xC2F4C73E, 0xD6904055, 0xB0613D10, 0x58830BA2 }
 	TAG_STRUCT(
 		multi_sphere_vector_storage_struct_definition,
 		"multi_sphere_vector_storage",
@@ -14221,7 +14221,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTI_SPHERES_BLOCK_ID { 0x00000000, 0x323F28C4, 0x46434CC0, 0xB02914D2 }
+	#define MULTI_SPHERES_BLOCK_ID { 0x323F28C4, 0x46434CC0, 0xB02914D2, 0x75F96E7D }
 	TAG_STRUCT(
 		multi_spheres_block,
 		"multi_spheres_block",
@@ -14238,7 +14238,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PILLS_BLOCK_ID { 0x00000000, 0x928FD352, 0x3F1F4972, 0x8A356382 }
+	#define PILLS_BLOCK_ID { 0x928FD352, 0x3F1F4972, 0x8A356382, 0x74A2E50F }
 	TAG_STRUCT(
 		pills_block,
 		"pills_block",
@@ -14257,7 +14257,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BOXES_BLOCK_STRUCT_ID { 0x00000000, 0xB5E06C08, 0x326942FB, 0x8CBD0A22 }
+	#define BOXES_BLOCK_STRUCT_ID { 0xB5E06C08, 0x326942FB, 0x8CBD0A22, 0x0DBBBADA }
 	TAG_STRUCT(
 		boxes_block_struct,
 		"boxes_block_struct",
@@ -14275,7 +14275,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define TRIANGLES_BLOCK_ID { 0x00000000, 0x4232CD5A, 0x55BE4A6B, 0x95E44B7C }
+	#define TRIANGLES_BLOCK_ID { 0x4232CD5A, 0x55BE4A6B, 0x95E44B7C, 0xE4391DA2 }
 	TAG_STRUCT(
 		triangles_block,
 		"triangles_block",
@@ -14301,7 +14301,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define POLYHEDRA_BLOCK_ID { 0x00000000, 0x58227F42, 0xA3C74ADF, 0x9AF61488 }
+	#define POLYHEDRA_BLOCK_ID { 0x58227F42, 0xA3C74ADF, 0x9AF61488, 0xCC1BE985 }
 	TAG_STRUCT(
 		polyhedra_block,
 		"polyhedra_block",
@@ -14329,7 +14329,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define POLYHEDRON_FOUR_VECTORS_BLOCK_ID { 0x00000000, 0x919AD72B, 0xA3A24A74, 0xAC7F3BB6 }
+	#define POLYHEDRON_FOUR_VECTORS_BLOCK_ID { 0x919AD72B, 0xA3A24A74, 0xAC7F3BB6, 0x43B76BC1 }
 	TAG_STRUCT(
 		polyhedron_four_vectors_block,
 		"polyhedron_four_vectors_block",
@@ -14347,7 +14347,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define POLYHEDRON_PLANE_EQUATIONS_BLOCK_ID { 0x00000000, 0x6C2FB23C, 0xBA2C4042, 0xBFBACDF2 }
+	#define POLYHEDRON_PLANE_EQUATIONS_BLOCK_ID { 0x6C2FB23C, 0xBA2C4042, 0xBFBACDF2, 0x2191CAB5 }
 	TAG_STRUCT(
 		polyhedron_plane_equations_block,
 		"polyhedron_plane_equations_block",
@@ -14361,7 +14361,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MASS_DISTRIBUTIONS_BLOCK_ID { 0x00000000, 0xD795D66A, 0x38FD48C4, 0x9283011C }
+	#define MASS_DISTRIBUTIONS_BLOCK_ID { 0xD795D66A, 0x38FD48C4, 0x9283011C, 0xB7D8ACA0 }
 	TAG_STRUCT(
 		mass_distributions_block,
 		"mass_distributions_block",
@@ -14381,7 +14381,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RIGID_BODIES_BLOCK_ID { 0x00000000, 0xF902EE13, 0xFEA643C7, 0x9C90BED0 }
+	#define RIGID_BODIES_BLOCK_ID { 0xF902EE13, 0xFEA643C7, 0x9C90BED0, 0xF9D06754 }
 	TAG_STRUCT(
 		rigid_bodies_block,
 		"rigid_bodies_block",
@@ -14466,7 +14466,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(rigid_body_size_enum, rigid_body_size_enum_strings, _countof(rigid_body_size_enum_strings));
 
-	#define PHANTOM_TYPES_BLOCK_ID { 0x00000000, 0xD69E43B2, 0x76774178, 0x92128AEB }
+	#define PHANTOM_TYPES_BLOCK_ID { 0xD69E43B2, 0x76774178, 0x92128AEB, 0xE2AB2C7C }
 	TAG_STRUCT(
 		phantom_types_block,
 		"phantom_types_block",
@@ -14537,7 +14537,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(phantom_flags, phantom_flags_strings, _countof(phantom_flags_strings));
 
-	#define PHYSICS_MODEL_STRUCT_DEFINITION_ID { 0x00000000, 0xB3439E17, 0x0DDD4542, 0xB8B59423 }
+	#define PHYSICS_MODEL_STRUCT_DEFINITION_ID { 0xB3439E17, 0x0DDD4542, 0xB8B59423, 0x9665EE90 }
 	TAG_STRUCT(
 		physics_model_struct_definition,
 		"physics_model_struct_definition",
@@ -14574,7 +14574,7 @@ namespace halo3_tools {
 		{ _field_block, "lists", &blofeld::halo3_tools::lists_block_block },
 		{ _field_block, "list shapes", &blofeld::halo3_tools::list_shapes_block_block },
 		{ _field_block, "mopps", &blofeld::halo3_tools::mopps_block_block },
-		{ _field_data, "mopp codes" },
+		{ _field_data, "mopp codes", &blofeld::halo3_tools::mopp_code_data_definition },
 		{ _field_block, "hinge constraints", &blofeld::halo3_tools::hinge_constraints_block_block },
 		{ _field_block, "ragdoll constraints", &blofeld::halo3_tools::ragdoll_constraints_block_block },
 		{ _field_block, "regions", &blofeld::halo3_tools::regions_block_block },
@@ -14597,7 +14597,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(physics_model_flags, physics_model_flags_strings, _countof(physics_model_flags_strings));
 
-	#define STRUCTURE_SEAM_IDENTIFIER_STRUCT_ID { 0x00000000, 0xDDF67371, 0xDF8642BF, 0xAC893004 }
+	#define STRUCTURE_SEAM_IDENTIFIER_STRUCT_ID { 0xDDF67371, 0xDF8642BF, 0xAC893004, 0xBC6869EC }
 	TAG_STRUCT(
 		structure_seam_identifier_struct,
 		"structure_seam_identifier_struct",
@@ -14613,7 +14613,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SEAM_CLUSTER_MAPPING_BLOCK_ID { 0x00000000, 0xE1A86C0A, 0x487745EF, 0x922F5821 }
+	#define STRUCTURE_SEAM_CLUSTER_MAPPING_BLOCK_ID { 0xE1A86C0A, 0x487745EF, 0x922F5821, 0x3E39C08A }
 	TAG_STRUCT(
 		structure_seam_cluster_mapping_block,
 		"structure_seam_cluster_mapping_block",
@@ -14627,7 +14627,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SEAM_EDGE_MAPPING_BLOCK_ID { 0x00000000, 0x758F902F, 0x67CC4351, 0x9A174FC4 }
+	#define STRUCTURE_SEAM_EDGE_MAPPING_BLOCK_ID { 0x758F902F, 0x67CC4351, 0x9A174FC4, 0x0590C91F }
 	TAG_STRUCT(
 		structure_seam_edge_mapping_block,
 		"structure_seam_edge_mapping_block",
@@ -14640,7 +14640,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SEAM_MAPPING_BLOCK_ID { 0x00000000, 0xB9EF902E, 0xE89545BC, 0xABE91A74 }
+	#define STRUCTURE_SEAM_MAPPING_BLOCK_ID { 0xB9EF902E, 0xE89545BC, 0xABE91A74, 0x40C7C1A5 }
 	TAG_STRUCT(
 		structure_seam_mapping_block,
 		"structure_seam_mapping_block",
@@ -14655,7 +14655,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SEAM_ORIGINAL_VERTEX_BLOCK_ID { 0x00000000, 0x1C23A365, 0x182E4449, 0x9EB71083 }
+	#define STRUCTURE_SEAM_ORIGINAL_VERTEX_BLOCK_ID { 0x1C23A365, 0x182E4449, 0x9EB71083, 0x6091788A }
 	TAG_STRUCT(
 		structure_seam_original_vertex_block,
 		"structure_seam_original_vertex_block",
@@ -14669,7 +14669,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SEAM_ORIGINAL_GEOMETRY_STRUCT_ID { 0x00000000, 0x94C5DB45, 0x5F934BF3, 0xA02C2890 }
+	#define STRUCTURE_SEAM_ORIGINAL_GEOMETRY_STRUCT_ID { 0x94C5DB45, 0x5F934BF3, 0xA02C2890, 0x4C76F360 }
 	TAG_STRUCT(
 		structure_seam_original_geometry_struct,
 		"structure_seam_original_geometry_struct",
@@ -14682,7 +14682,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SEAM_FINAL_POINTS_BLOCK_ID { 0x00000000, 0xD88A3DB6, 0x83704955, 0xB4012152 }
+	#define STRUCTURE_SEAM_FINAL_POINTS_BLOCK_ID { 0xD88A3DB6, 0x83704955, 0xB4012152, 0x3E69CCA7 }
 	TAG_STRUCT(
 		structure_seam_final_points_block,
 		"structure_seam_final_points_block",
@@ -14695,7 +14695,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SEAM_FINAL_PLANES_BLOCK_ID { 0x00000000, 0x9D8D76FA, 0xC55D4D57, 0xBE1E8C92 }
+	#define STRUCTURE_SEAM_FINAL_PLANES_BLOCK_ID { 0x9D8D76FA, 0xC55D4D57, 0xBE1E8C92, 0x39DC68A8 }
 	TAG_STRUCT(
 		structure_seam_final_planes_block,
 		"structure_seam_final_planes_block",
@@ -14708,7 +14708,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SEAM_FINAL_TRIANGLES_BLOCK_ID { 0x00000000, 0xFA685DE8, 0xA9BF4914, 0xB6C3D98E }
+	#define STRUCTURE_SEAM_FINAL_TRIANGLES_BLOCK_ID { 0xFA685DE8, 0xA9BF4914, 0xB6C3D98E, 0x0C4B0CED }
 	TAG_STRUCT(
 		structure_seam_final_triangles_block,
 		"structure_seam_final_triangles_block",
@@ -14725,7 +14725,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SEAM_FINAL_EDGES_BLOCK_ID { 0x00000000, 0x5CE6FC51, 0x55D54CD5, 0x8B04C24C }
+	#define STRUCTURE_SEAM_FINAL_EDGES_BLOCK_ID { 0x5CE6FC51, 0x55D54CD5, 0x8B04C24C, 0x116945CA }
 	TAG_STRUCT(
 		structure_seam_final_edges_block,
 		"structure_seam_final_edges_block",
@@ -14739,7 +14739,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SEAM_FINAL_GEOMETRY_STRUCT_ID { 0x00000000, 0x89A4CF05, 0x884A4959, 0xB0830D92 }
+	#define STRUCTURE_SEAM_FINAL_GEOMETRY_STRUCT_ID { 0x89A4CF05, 0x884A4959, 0xB0830D92, 0x161B070E }
 	TAG_STRUCT(
 		structure_seam_final_geometry_struct,
 		"structure_seam_final_geometry_struct",
@@ -14755,7 +14755,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SEAM_BLOCK_ID { 0x00000000, 0x71952903, 0x695E49A5, 0x85CD305E }
+	#define STRUCTURE_SEAM_BLOCK_ID { 0x71952903, 0x695E49A5, 0x85CD305E, 0x57868F0C }
 	TAG_STRUCT(
 		structure_seam_block,
 		"structure_seam_block",
@@ -14770,7 +14770,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SEAMS_STRUCT_DEFINITION_ID { 0x00000000, 0x1073D9E0, 0x3D9447BB, 0x89E0B4FF }
+	#define STRUCTURE_SEAMS_STRUCT_DEFINITION_ID { 0x1073D9E0, 0x3D9447BB, 0x89E0B4FF, 0x30BD63B1 }
 	TAG_STRUCT(
 		structure_seams_struct_definition,
 		"structure_seams_struct_definition",
@@ -14786,7 +14786,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_DESIGN_BLOCK_STRUCT_ID { 0x00000000, 0xA073D9E0, 0x3D9447CB, 0x1BE0B4FF }
+	#define STRUCTURE_DESIGN_BLOCK_STRUCT_ID { 0xA073D9E0, 0x3D9447CB, 0x1BE0B4FF, 0x3ABDC3B1 }
 	TAG_STRUCT(
 		structure_design_block_struct,
 		"structure_design_block_struct",
@@ -14799,7 +14799,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLOR_BLOCK_ID { 0x00000000, 0x68FBD3A8, 0x3C76413C, 0x8C564268 }
+	#define COLOR_BLOCK_ID { 0x68FBD3A8, 0x3C76413C, 0x8C564268, 0x66145DD1 }
 	TAG_STRUCT(
 		color_block,
 		"color_block",
@@ -14813,7 +14813,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLOR_TABLE_STRUCT_DEFINITION_ID { 0x00000000, 0xD54F00C7, 0x019F497D, 0xA02B0FD4 }
+	#define COLOR_TABLE_STRUCT_DEFINITION_ID { 0xD54F00C7, 0x019F497D, 0xA02B0FD4, 0x27691AFA }
 	TAG_STRUCT(
 		color_table_struct_definition,
 		"color_table_struct_definition",
@@ -14826,7 +14826,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CONTRAIL_PROPERTY_SCALAR_ID { 0x00000000, 0x93902216, 0x6557452B, 0x963F8D1E }
+	#define CONTRAIL_PROPERTY_SCALAR_ID { 0x93902216, 0x6557452B, 0x963F8D1E, 0xB996CEB2 }
 	TAG_STRUCT(
 		contrail_property_scalar,
 		"contrail_property_scalar",
@@ -14876,7 +14876,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(output_mod_enum$3, output_mod_enum$3_strings, _countof(output_mod_enum$3_strings));
 
-	#define CONTRAIL_PROPERTY_COLOR_ID { 0x00000000, 0x9DC20E80, 0xBBA14484, 0xB8755E2E }
+	#define CONTRAIL_PROPERTY_COLOR_ID { 0x9DC20E80, 0xBBA14484, 0xB8755E2E, 0x2146F633 }
 	TAG_STRUCT(
 		contrail_property_color,
 		"contrail_property_color",
@@ -14897,7 +14897,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CONTRAIL_DEFINITION_BLOCK_ID { 0x00000000, 0xCD852494, 0x13844D0F, 0xB5769DA2 }
+	#define CONTRAIL_DEFINITION_BLOCK_ID { 0xCD852494, 0x13844D0F, 0xB5769DA2, 0x9C2854E4 }
 	TAG_STRUCT(
 		contrail_definition_block,
 		"contrail_definition_block",
@@ -14963,7 +14963,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(contrail_profile_shape_enum, contrail_profile_shape_enum_strings, _countof(contrail_profile_shape_enum_strings));
 
-	#define CONTRAIL_SYSTEM_STRUCT_DEFINITION_ID { 0x00000000, 0x0FDD9B87, 0xD6434207, 0x8CD9D031 }
+	#define CONTRAIL_SYSTEM_STRUCT_DEFINITION_ID { 0x0FDD9B87, 0xD6434207, 0x8CD9D031, 0x422026CE }
 	TAG_STRUCT(
 		contrail_system_struct_definition,
 		"contrail_system_struct_definition",
@@ -14976,7 +14976,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CONTRAIL_PROPERTY_REAL_POINT2D_ID { 0x00000000, 0xCC27566D, 0xA12641FD, 0xB3ABF300 }
+	#define CONTRAIL_PROPERTY_REAL_POINT2D_ID { 0xCC27566D, 0xA12641FD, 0xB3ABF300, 0x2BE1E977 }
 	TAG_STRUCT(
 		contrail_property_real_point2d,
 		"contrail_property_real_point2d",
@@ -14999,7 +14999,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CONTRAIL_PROPERTY_REAL_VECTOR3D_ID { 0x00000000, 0xF9E41786, 0x3866452B, 0xB648C8DB }
+	#define CONTRAIL_PROPERTY_REAL_VECTOR3D_ID { 0xF9E41786, 0x3866452B, 0xB648C8DB, 0x5D650555 }
 	TAG_STRUCT(
 		contrail_property_real_vector3d,
 		"contrail_property_real_vector3d",
@@ -15022,7 +15022,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LIGHT_VOLUME_PROPERTY_REAL_ID { 0x00000000, 0xBC2E916E, 0x13C1459C, 0x82BC6E0D }
+	#define LIGHT_VOLUME_PROPERTY_REAL_ID { 0xBC2E916E, 0x13C1459C, 0x82BC6E0D, 0x888CE0DD }
 	TAG_STRUCT(
 		light_volume_property_real,
 		"light_volume_property_real",
@@ -15066,7 +15066,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(output_mod_enum$6, output_mod_enum$6_strings, _countof(output_mod_enum$6_strings));
 
-	#define LIGHT_VOLUME_PROPERTY_REAL_RGB_COLOR_ID { 0x00000000, 0x59110FA9, 0x9D244BEE, 0x8CBB0FF2 }
+	#define LIGHT_VOLUME_PROPERTY_REAL_RGB_COLOR_ID { 0x59110FA9, 0x9D244BEE, 0x8CBB0FF2, 0x3A822ECF }
 	TAG_STRUCT(
 		light_volume_property_real_rgb_color,
 		"light_volume_property_real_rgb_color",
@@ -15087,7 +15087,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LIGHT_VOLUME_DEFINITION_BLOCK_ID { 0x00000000, 0x7E3CF99B, 0xB85C4AF7, 0x8F990018 }
+	#define LIGHT_VOLUME_DEFINITION_BLOCK_ID { 0x7E3CF99B, 0xB85C4AF7, 0x8F990018, 0xB1E1DD8A }
 	TAG_STRUCT(
 		light_volume_definition_block,
 		"light_volume_definition_block",
@@ -15121,7 +15121,7 @@ namespace halo3_tools {
 
 	STRING_LIST(light_volume_appearance_flags, empty_string_list, 0);
 
-	#define LIGHT_VOLUME_SYSTEM_STRUCT_DEFINITION_ID { 0x00000000, 0x668829E0, 0x9E2E4295, 0xACE1F43F }
+	#define LIGHT_VOLUME_SYSTEM_STRUCT_DEFINITION_ID { 0x668829E0, 0x9E2E4295, 0xACE1F43F, 0x067789BC }
 	TAG_STRUCT(
 		light_volume_system_struct_definition,
 		"light_volume_system_struct_definition",
@@ -15134,7 +15134,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BEAM_PROPERTY_REAL_ID { 0x00000000, 0x608DF497, 0x0DFA493C, 0xBC831C4A }
+	#define BEAM_PROPERTY_REAL_ID { 0x608DF497, 0x0DFA493C, 0xBC831C4A, 0x224AFD50 }
 	TAG_STRUCT(
 		beam_property_real,
 		"beam_property_real",
@@ -15180,7 +15180,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(output_mod_enum, output_mod_enum_strings, _countof(output_mod_enum_strings));
 
-	#define BEAM_PROPERTY_REAL_RGB_COLOR_ID { 0x00000000, 0x8F1E9E85, 0x0ED74AD7, 0x82150CDE }
+	#define BEAM_PROPERTY_REAL_RGB_COLOR_ID { 0x8F1E9E85, 0x0ED74AD7, 0x82150CDE, 0xD6147276 }
 	TAG_STRUCT(
 		beam_property_real_rgb_color,
 		"beam_property_real_rgb_color",
@@ -15201,7 +15201,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BEAM_DEFINITION_BLOCK_ID { 0x00000000, 0x8818C9F5, 0x153D4691, 0x99A530C1 }
+	#define BEAM_DEFINITION_BLOCK_ID { 0x8818C9F5, 0x153D4691, 0x99A530C1, 0x6ECB5536 }
 	TAG_STRUCT(
 		beam_definition_block,
 		"beam_definition_block",
@@ -15256,7 +15256,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(beam_profile_shape_enum, beam_profile_shape_enum_strings, _countof(beam_profile_shape_enum_strings));
 
-	#define BEAM_SYSTEM_STRUCT_DEFINITION_ID { 0x00000000, 0xCA885130, 0xB888432C, 0xA8F8F41A }
+	#define BEAM_SYSTEM_STRUCT_DEFINITION_ID { 0xCA885130, 0xB888432C, 0xA8F8F41A, 0x27984D74 }
 	TAG_STRUCT(
 		beam_system_struct_definition,
 		"beam_system_struct_definition",
@@ -15269,7 +15269,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BEAM_PROPERTY_REAL_POINT2D_ID { 0x00000000, 0x0E7740B2, 0xC8494978, 0x9B84F033 }
+	#define BEAM_PROPERTY_REAL_POINT2D_ID { 0x0E7740B2, 0xC8494978, 0x9B84F033, 0xBDC2DEEC }
 	TAG_STRUCT(
 		beam_property_real_point2d,
 		"beam_property_real_point2d",
@@ -15292,7 +15292,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define EFFECT_LOCATIONS_BLOCK_ID { 0x00000000, 0xF2742E8C, 0xCAA34E8B, 0xBD3E6DF9 }
+	#define EFFECT_LOCATIONS_BLOCK_ID { 0xF2742E8C, 0xCAA34E8B, 0xBD3E6DF9, 0x3868BCB3 }
 	TAG_STRUCT(
 		effect_locations_block,
 		"effect_locations_block",
@@ -15325,7 +15325,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(global_effect_priority_enum, global_effect_priority_enum_strings, _countof(global_effect_priority_enum_strings));
 
-	#define EFFECT_ACCELERATIONS_BLOCK_ID { 0x00000000, 0x007DDA95, 0x2A084D2A, 0x8AE44F3A }
+	#define EFFECT_ACCELERATIONS_BLOCK_ID { 0x007DDA95, 0x2A084D2A, 0x8AE44F3A, 0x4F217DD2 }
 	TAG_STRUCT(
 		effect_accelerations_block,
 		"effect_accelerations_block",
@@ -15361,7 +15361,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(effect_dispositions, effect_dispositions_strings, _countof(effect_dispositions_strings));
 
-	#define EFFECT_PART_BLOCK_ID { 0x00000000, 0x10814B9B, 0xE63D42D7, 0x945DD824 }
+	#define EFFECT_PART_BLOCK_ID { 0x10814B9B, 0xE63D42D7, 0x945DD824, 0x6CF277F8 }
 	TAG_STRUCT(
 		effect_part_block,
 		"effect_part_block",
@@ -15442,7 +15442,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(effect_part_scaleable_values, effect_part_scaleable_values_strings, _countof(effect_part_scaleable_values_strings));
 
-	#define EFFECT_EVENT_BLOCK_ID { 0x00000000, 0x45ADB157, 0x3FEF4708, 0xB03F70BB }
+	#define EFFECT_EVENT_BLOCK_ID { 0x45ADB157, 0x3FEF4708, 0xB03F70BB, 0x8CF7F2FE }
 	TAG_STRUCT(
 		effect_event_block,
 		"effect_event_block",
@@ -15471,7 +15471,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(event_flags, event_flags_strings, _countof(event_flags_strings));
 
-	#define EFFECT_CONICAL_DISTRIBUTION_BLOCK_ID { 0x00000000, 0x3B2368F1, 0x9891495D, 0xB02F5E1C }
+	#define EFFECT_CONICAL_DISTRIBUTION_BLOCK_ID { 0x3B2368F1, 0x9891495D, 0xB02F5E1C, 0x5B933025 }
 	TAG_STRUCT(
 		effect_conical_distribution_block,
 		"effect_conical_distribution_block",
@@ -15488,7 +15488,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define EFFECT_STRUCT_DEFINITION_ID { 0x00000000, 0x02460523, 0x9FC6448B, 0x921ECD13 }
+	#define EFFECT_STRUCT_DEFINITION_ID { 0x02460523, 0x9FC6448B, 0x921ECD13, 0xB1F48215 }
 	TAG_STRUCT(
 		effect_struct_definition,
 		"effect_struct_definition",
@@ -15537,7 +15537,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(effect_flags, effect_flags_strings, _countof(effect_flags_strings));
 
-	#define EFFECT_COMPONENT_HOLDBACK_BLOCK_ID { 0x00000000, 0xF1F9FECE, 0xDB96482E, 0x888A6653 }
+	#define EFFECT_COMPONENT_HOLDBACK_BLOCK_ID { 0xF1F9FECE, 0xDB96482E, 0x888A6653, 0xCAACCD84 }
 	TAG_STRUCT(
 		effect_component_holdback_block,
 		"effect_component_holdback_block",
@@ -15554,7 +15554,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define EFFECT_COMPONENT_HOLDBACKS_BLOCK_ID { 0x00000000, 0x8CADDBFF, 0xC0E843FA, 0xB225FFEB }
+	#define EFFECT_COMPONENT_HOLDBACKS_BLOCK_ID { 0x8CADDBFF, 0xC0E843FA, 0xB225FFEB, 0xB26D05DA }
 	TAG_STRUCT(
 		effect_component_holdbacks_block,
 		"effect_component_holdbacks_block",
@@ -15602,7 +15602,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(effect_holdback_type_enum, effect_holdback_type_enum_strings, _countof(effect_holdback_type_enum_strings));
 
-	#define EFFECT_GLOBALS_STRUCT_DEFINITION_ID { 0x00000000, 0xA7E2A204, 0x03B84418, 0xA6A9A385 }
+	#define EFFECT_GLOBALS_STRUCT_DEFINITION_ID { 0xA7E2A204, 0x03B84418, 0xA6A9A385, 0x4797476F }
 	TAG_STRUCT(
 		effect_globals_struct_definition,
 		"effect_globals_struct_definition",
@@ -15616,7 +15616,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ATTACHMENT_BLOCK_ID { 0x00000000, 0xDB309672, 0x396440FD, 0x8DB1932A }
+	#define ATTACHMENT_BLOCK_ID { 0xDB309672, 0x396440FD, 0x8DB1932A, 0xD3071736 }
 	TAG_STRUCT(
 		attachment_block,
 		"attachment_block",
@@ -15677,7 +15677,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_state_type_enum, game_state_type_enum_strings, _countof(game_state_type_enum_strings));
 
-	#define GPU_SINGLE_CONSTANT_REGISTER_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0xA2794AE9, 0x58564257, 0xA6A57292 }
+	#define GPU_SINGLE_CONSTANT_REGISTER_ARRAY_STRUCT_DEFINITION_ID { 0xA2794AE9, 0x58564257, 0xA6A57292, 0x7319E3F2 }
 	TAG_STRUCT(
 		gpu_single_constant_register_array_struct_definition,
 		"gpu_single_constant_register_array",
@@ -15690,7 +15690,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GPU_SPRITE_BLOCK_ID { 0x00000000, 0x821F9C90, 0x95844863, 0x9425371D }
+	#define GPU_SPRITE_BLOCK_ID { 0x821F9C90, 0x95844863, 0x9425371D, 0x7AB8E8DD }
 	TAG_STRUCT(
 		gpu_sprite_block,
 		"gpu_sprite_block",
@@ -15703,7 +15703,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GPU_VARIANTS_BLOCK_ID { 0x00000000, 0x7820CC6F, 0x022840F4, 0x93225BE7 }
+	#define GPU_VARIANTS_BLOCK_ID { 0x7820CC6F, 0x022840F4, 0x93225BE7, 0x818DBD97 }
 	TAG_STRUCT(
 		gpu_variants_block,
 		"gpu_variants_block",
@@ -15716,7 +15716,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GPU_DATA_STRUCT$2_ID { 0x00000000, 0x62F911D6, 0x9725493B, 0x8FFDB178 }
+	#define GPU_DATA_STRUCT$2_ID { 0x62F911D6, 0x9725493B, 0x8FFDB178, 0x0608FC7B }
 	TAG_STRUCT(
 		gpu_data_struct$2,
 		"gpu_data_struct",
@@ -15730,7 +15730,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PARTICLE_STRUCT_DEFINITION_ID { 0x00000000, 0x9ED62376, 0x9F9E4A9D, 0x9DE72B9D }
+	#define PARTICLE_STRUCT_DEFINITION_ID { 0x9ED62376, 0x9F9E4A9D, 0x9DE72B9D, 0x51E76D25 }
 	TAG_STRUCT(
 		particle_struct_definition,
 		"particle_struct_definition",
@@ -15826,7 +15826,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(particle_model_group_reference_tagref, PARTICLE_MODEL_TAG);
 
-	#define GPU_DATA_STRUCT_ID { 0x00000000, 0xF0F224FF, 0x7CD04586, 0x9698B35C }
+	#define GPU_DATA_STRUCT_ID { 0xF0F224FF, 0x7CD04586, 0x9698B35C, 0x7E98B715 }
 	TAG_STRUCT(
 		gpu_data_struct,
 		"gpu_data_struct",
@@ -15839,7 +15839,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PARTICLE_MODEL_STRUCT_DEFINITION_ID { 0x00000000, 0xC4C7FDE0, 0xADA64FF1, 0x9CDCC3BE }
+	#define PARTICLE_MODEL_STRUCT_DEFINITION_ID { 0xC4C7FDE0, 0xADA64FF1, 0x9CDCC3BE, 0xF1D59F65 }
 	TAG_STRUCT(
 		particle_model_struct_definition,
 		"particle_model_struct_definition",
@@ -15857,7 +15857,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PARTICLE_CONTROLLER_PARAMETERS_ID { 0x00000000, 0xAC90ED63, 0x7FCF4CE1, 0xADDEA140 }
+	#define PARTICLE_CONTROLLER_PARAMETERS_ID { 0xAC90ED63, 0x7FCF4CE1, 0xADDEA140, 0x9C137F95 }
 	TAG_STRUCT(
 		particle_controller_parameters,
 		"particle_controller_parameters",
@@ -15871,7 +15871,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PARTICLE_CONTROLLER_ID { 0x00000000, 0xFFDF1EEA, 0xE003416F, 0xBBE85C7F }
+	#define PARTICLE_CONTROLLER_ID { 0xFFDF1EEA, 0xE003416F, 0xBBE85C7F, 0xA06AFA10 }
 	TAG_STRUCT(
 		particle_controller,
 		"particle_controller",
@@ -15897,7 +15897,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(particle_movement_type, particle_movement_type_strings, _countof(particle_movement_type_strings));
 
-	#define PARTICLE_PHYSICS_STRUCT_ID { 0x00000000, 0x2E19EA87, 0xEB8741A8, 0xB25C5661 }
+	#define PARTICLE_PHYSICS_STRUCT_ID { 0x2E19EA87, 0xEB8741A8, 0xB25C5661, 0x9D4201DD }
 	TAG_STRUCT(
 		particle_physics_struct,
 		"particle_physics_struct",
@@ -15927,7 +15927,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(particle_movement_flags, particle_movement_flags_strings, _countof(particle_movement_flags_strings));
 
-	#define PARTICLE_PHYSICS_STRUCT_DEFINITION_ID { 0x00000000, 0xC86CD2D6, 0xEB9C4A4F, 0x96C423E9 }
+	#define PARTICLE_PHYSICS_STRUCT_DEFINITION_ID { 0xC86CD2D6, 0xEB9C4A4F, 0x96C423E9, 0x48A52870 }
 	TAG_STRUCT(
 		particle_physics_struct_definition,
 		"particle_physics_struct_definition",
@@ -15942,7 +15942,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_TRACK_CONTROL_POINT_BLOCK_ID { 0x00000000, 0x549FEEF0, 0xCAD54130, 0x9685AB6F }
+	#define CAMERA_TRACK_CONTROL_POINT_BLOCK_ID { 0x549FEEF0, 0xCAD54130, 0x9685AB6F, 0x75D07A1F }
 	TAG_STRUCT(
 		camera_track_control_point_block,
 		"camera_track_control_point_block",
@@ -15957,7 +15957,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_TRACK_STRUCT_DEFINITION_ID { 0x00000000, 0x3215F817, 0x264E4A98, 0x8165BFA1 }
+	#define CAMERA_TRACK_STRUCT_DEFINITION_ID { 0x3215F817, 0x264E4A98, 0x8165BFA1, 0xAACA3E6F }
 	TAG_STRUCT(
 		camera_track_struct_definition,
 		"camera_track_struct_definition",
@@ -15974,7 +15974,7 @@ namespace halo3_tools {
 
 	STRING_LIST(camera_track_flags, empty_string_list, 0);
 
-	#define POINT_PHYSICS_STRUCT_DEFINITION_ID { 0x00000000, 0x25622995, 0xA9214233, 0x8BD5DA29 }
+	#define POINT_PHYSICS_STRUCT_DEFINITION_ID { 0x25622995, 0xA9214233, 0x8BD5DA29, 0xE1C6CC0A }
 	TAG_STRUCT(
 		point_physics_struct_definition,
 		"point_physics_struct_definition",
@@ -16012,7 +16012,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(point_physics_definition_flags, point_physics_definition_flags_strings, _countof(point_physics_definition_flags_strings));
 
-	#define TRANSPARENT_PLANES_BLOCK_ID { 0x00000000, 0xB66CE451, 0x57AE4DC8, 0xB204270D }
+	#define TRANSPARENT_PLANES_BLOCK_ID { 0xB66CE451, 0x57AE4DC8, 0xB204270D, 0x07A9412F }
 	TAG_STRUCT(
 		transparent_planes_block,
 		"transparent_planes_block",
@@ -16027,7 +16027,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_WEATHER_PALETTE_BLOCK_ID { 0x00000000, 0x3490A48C, 0xDB4840AC, 0xA337AC00 }
+	#define STRUCTURE_BSP_WEATHER_PALETTE_BLOCK_ID { 0x3490A48C, 0xDB4840AC, 0xA337AC00, 0xF8669A36 }
 	TAG_STRUCT(
 		structure_bsp_weather_palette_block,
 		"structure_bsp_weather_palette_block",
@@ -16048,7 +16048,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_ATMOSPHERE_PALETTE_BLOCK_ID { 0x00000000, 0x5E3AA7DD, 0x3DA64CE6, 0xA9642C49 }
+	#define STRUCTURE_BSP_ATMOSPHERE_PALETTE_BLOCK_ID { 0x5E3AA7DD, 0x3DA64CE6, 0xA9642C49, 0xB0358993 }
 	TAG_STRUCT(
 		structure_bsp_atmosphere_palette_block,
 		"structure_bsp_atmosphere_palette_block",
@@ -16063,7 +16063,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_CAMERA_FX_PALETTE_BLOCK_ID { 0x00000000, 0x391597B7, 0x927B496B, 0xA8EBEFFE }
+	#define STRUCTURE_BSP_CAMERA_FX_PALETTE_BLOCK_ID { 0x391597B7, 0x927B496B, 0xA8EBEFFE, 0x90972B2F }
 	TAG_STRUCT(
 		structure_bsp_camera_fx_palette_block,
 		"structure_bsp_camera_fx_palette_block",
@@ -16095,7 +16095,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(camera_fx_palette_flags, camera_fx_palette_flags_strings, _countof(camera_fx_palette_flags_strings));
 
-	#define STRUCTURE_BSP_WEATHER_POLYHEDRON_PLANE_BLOCK_ID { 0x00000000, 0xFB339192, 0xD6644086, 0xACD0BBD3 }
+	#define STRUCTURE_BSP_WEATHER_POLYHEDRON_PLANE_BLOCK_ID { 0xFB339192, 0xD6644086, 0xACD0BBD3, 0xF4BEC2CB }
 	TAG_STRUCT(
 		structure_bsp_weather_polyhedron_plane_block,
 		"structure_bsp_weather_polyhedron_plane_block",
@@ -16108,7 +16108,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_WEATHER_POLYHEDRON_BLOCK_ID { 0x00000000, 0x71280194, 0x1E0E48F2, 0xB9E452BF }
+	#define STRUCTURE_BSP_WEATHER_POLYHEDRON_BLOCK_ID { 0x71280194, 0x1E0E48F2, 0xB9E452BF, 0x2D8E5C31 }
 	TAG_STRUCT(
 		structure_bsp_weather_polyhedron_block,
 		"structure_bsp_weather_polyhedron_block",
@@ -16123,7 +16123,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_CLUSTER_PORTAL_VERTEX_BLOCK_ID { 0x00000000, 0xCE56A99F, 0x1DD34CA8, 0xAA366F5F }
+	#define STRUCTURE_BSP_CLUSTER_PORTAL_VERTEX_BLOCK_ID { 0xCE56A99F, 0x1DD34CA8, 0xAA366F5F, 0xF8F748EC }
 	TAG_STRUCT(
 		structure_bsp_cluster_portal_vertex_block,
 		"structure_bsp_cluster_portal_vertex_block",
@@ -16136,7 +16136,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_CLUSTER_PORTAL_BLOCK_ID { 0x00000000, 0x515C51A4, 0x87494090, 0x95104547 }
+	#define STRUCTURE_BSP_CLUSTER_PORTAL_BLOCK_ID { 0x515C51A4, 0x87494090, 0x95104547, 0x3C6C550F }
 	TAG_STRUCT(
 		structure_bsp_cluster_portal_block,
 		"structure_bsp_cluster_portal_block",
@@ -16166,7 +16166,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(structure_bsp_cluster_portal_flags_definition, structure_bsp_cluster_portal_flags_definition_strings, _countof(structure_bsp_cluster_portal_flags_definition_strings));
 
-	#define STRUCTURE_BSP_CLUSTER_PORTAL_INDEX_BLOCK_ID { 0x00000000, 0x8C1C3A41, 0x400B4519, 0x95B2C6B8 }
+	#define STRUCTURE_BSP_CLUSTER_PORTAL_INDEX_BLOCK_ID { 0x8C1C3A41, 0x400B4519, 0x95B2C6B8, 0x710AC715 }
 	TAG_STRUCT(
 		structure_bsp_cluster_portal_index_block,
 		"structure_bsp_cluster_portal_index_block",
@@ -16179,7 +16179,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_PATHFINDING_EDGES_BLOCK_ID { 0x00000000, 0xFC7DDF4C, 0x9BFA471B, 0xB7131769 }
+	#define STRUCTURE_BSP_PATHFINDING_EDGES_BLOCK_ID { 0xFC7DDF4C, 0x9BFA471B, 0xB7131769, 0x62668E4D }
 	TAG_STRUCT(
 		structure_bsp_pathfinding_edges_block,
 		"structure_bsp_pathfinding_edges_block",
@@ -16192,7 +16192,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_CONVEYOR_SURFACE_BLOCK_ID { 0x00000000, 0xCD0C6613, 0x20BF49D0, 0x9379FD49 }
+	#define STRUCTURE_BSP_CONVEYOR_SURFACE_BLOCK_ID { 0xCD0C6613, 0x20BF49D0, 0x9379FD49, 0xA1729B48 }
 	TAG_STRUCT(
 		structure_bsp_conveyor_surface_block,
 		"structure_bsp_conveyor_surface_block",
@@ -16206,7 +16206,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_COLLISION_MATERIALS_BLOCK_ID { 0x00000000, 0x9B46AC25, 0x4F274C73, 0xA712E380 }
+	#define STRUCTURE_COLLISION_MATERIALS_BLOCK_ID { 0x9B46AC25, 0x4F274C73, 0xA712E380, 0x4CCC324B }
 	TAG_STRUCT(
 		structure_collision_materials_block,
 		"structure_collision_materials_block",
@@ -16225,7 +16225,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(render_method_group_reference$6_tagref, RENDER_METHOD_TAG, _tag_reference_flag_not_a_resource_dependency);
 
-	#define STRUCTURE_BSP_MARKER_BLOCK_ID { 0x00000000, 0xE4B2C51D, 0xF2C84524, 0x8F67A353 }
+	#define STRUCTURE_BSP_MARKER_BLOCK_ID { 0xE4B2C51D, 0xF2C84524, 0x8F67A353, 0x3E9F7017 }
 	TAG_STRUCT(
 		structure_bsp_marker_block,
 		"structure_bsp_marker_block",
@@ -16240,7 +16240,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_MARKER_LIGHT_PALETTE_ID { 0x00000000, 0xA008D181, 0x9612449F, 0x96D5E611 }
+	#define STRUCTURE_BSP_MARKER_LIGHT_PALETTE_ID { 0xA008D181, 0x9612449F, 0x96D5E611, 0xE4355D97 }
 	TAG_STRUCT(
 		structure_bsp_marker_light_palette,
 		"structure_bsp_marker_light_palette",
@@ -16255,7 +16255,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(light_group_reference$3_tagref, LIGHT_TAG, _tag_reference_flag_resolved_by_game);
 
-	#define STRUCTURE_BSP_MARKER_LIGHT_INDEX_ID { 0x00000000, 0xCBAC4327, 0xB7F94CF8, 0x9E42DAEC }
+	#define STRUCTURE_BSP_MARKER_LIGHT_INDEX_ID { 0xCBAC4327, 0xB7F94CF8, 0x9E42DAEC, 0xFA79FFA7 }
 	TAG_STRUCT(
 		structure_bsp_marker_light_index,
 		"structure_bsp_marker_light_index",
@@ -16268,7 +16268,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_ENVIRONMENT_OBJECT_PALETTE_BLOCK_ID { 0x00000000, 0x37D2FC4A, 0x2E6243F8, 0xB235BEDE }
+	#define STRUCTURE_BSP_ENVIRONMENT_OBJECT_PALETTE_BLOCK_ID { 0x37D2FC4A, 0x2E6243F8, 0xB235BEDE, 0x7776BE11 }
 	TAG_STRUCT(
 		structure_bsp_environment_object_palette_block,
 		"structure_bsp_environment_object_palette_block",
@@ -16287,7 +16287,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(render_model_group_reference$6_tagref, RENDER_MODEL_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
 
-	#define STRUCTURE_BSP_ENVIRONMENT_OBJECT_BLOCK_ID { 0x00000000, 0x1CDF634D, 0xFD90476F, 0x9133F1DA }
+	#define STRUCTURE_BSP_ENVIRONMENT_OBJECT_BLOCK_ID { 0x1CDF634D, 0xFD90476F, 0x9133F1DA, 0xCC1B247F }
 	TAG_STRUCT(
 		structure_bsp_environment_object_block,
 		"structure_bsp_environment_object_block",
@@ -16308,7 +16308,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_DETAIL_OBJECT_DATA_BLOCK_ID { 0x00000000, 0x20D0C285, 0xB61244F7, 0x996ED157 }
+	#define STRUCTURE_BSP_DETAIL_OBJECT_DATA_BLOCK_ID { 0x20D0C285, 0xB61244F7, 0x996ED157, 0x181CA371 }
 	TAG_STRUCT(
 		structure_bsp_detail_object_data_block,
 		"structure_bsp_detail_object_data_block",
@@ -16326,7 +16326,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_RUNTIME_DECAL_BLOCK_ID { 0x00000000, 0x617C468A, 0x8AC44161, 0xB167C76F }
+	#define STRUCTURE_BSP_RUNTIME_DECAL_BLOCK_ID { 0x617C468A, 0x8AC44161, 0xB167C76F, 0x152716BF }
 	TAG_STRUCT(
 		structure_bsp_runtime_decal_block,
 		"structure_bsp_runtime_decal_block",
@@ -16343,7 +16343,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SEAM_INDICES_BLOCK_DEFINITION_ID { 0x00000000, 0x4DD47B87, 0x293440E9, 0x95732E53 }
+	#define SEAM_INDICES_BLOCK_DEFINITION_ID { 0x4DD47B87, 0x293440E9, 0x95732E53, 0xECAD8B62 }
 	TAG_STRUCT(
 		seam_indices_block_definition,
 		"seam_indices_block_definition",
@@ -16356,7 +16356,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PVS_BOUND_OBJECT_REFERENCES_BLOCK_ID { 0x00000000, 0xAAB47B87, 0xCD3AA0E9, 0x9BBEFE53 }
+	#define PVS_BOUND_OBJECT_REFERENCES_BLOCK_ID { 0xAAB47B87, 0xCD3AA0E9, 0x9BBEFE53, 0x01AD8BCC }
 	TAG_STRUCT(
 		pvs_bound_object_references_block,
 		"pvs_bound_object_references_block",
@@ -16369,7 +16369,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PVS_BOUND_OBJECT_IDENTIFIERS_BLOCK_ID { 0x00000000, 0x4AB47B87, 0xCD3440E9, 0x957EFE53 }
+	#define PVS_BOUND_OBJECT_IDENTIFIERS_BLOCK_ID { 0x4AB47B87, 0xCD3440E9, 0x957EFE53, 0x01AD8B62 }
 	TAG_STRUCT(
 		pvs_bound_object_identifiers_block,
 		"pvs_bound_object_identifiers_block",
@@ -16382,7 +16382,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_CLUSTER_BLOCK_ID { 0x00000000, 0x443EB808, 0xF3A4493E, 0xAAB7DADD }
+	#define STRUCTURE_BSP_CLUSTER_BLOCK_ID { 0x443EB808, 0xF3A4493E, 0xAAB7DADD, 0x79F9A8DE }
 	TAG_STRUCT(
 		structure_bsp_cluster_block,
 		"structure_bsp_cluster_block",
@@ -16432,7 +16432,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(structure_cluster_flags, structure_cluster_flags_strings, _countof(structure_cluster_flags_strings));
 
-	#define STRUCTURE_BSP_DEBUG_INFO_BLOCK_ID { 0x00000000, 0x8FF53A43, 0xE3814420, 0x81140052 }
+	#define STRUCTURE_BSP_DEBUG_INFO_BLOCK_ID { 0x8FF53A43, 0xE3814420, 0x81140052, 0xAB9DFEA6 }
 	TAG_STRUCT(
 		structure_bsp_debug_info_block,
 		"structure_bsp_debug_info_block",
@@ -16448,7 +16448,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_CLUSTER_DEBUG_INFO_BLOCK_ID { 0x00000000, 0xB5A0AC69, 0x26934359, 0x9CA55C27 }
+	#define STRUCTURE_BSP_CLUSTER_DEBUG_INFO_BLOCK_ID { 0xB5A0AC69, 0x26934359, 0x9CA55C27, 0x431EC06E }
 	TAG_STRUCT(
 		structure_bsp_cluster_debug_info_block,
 		"structure_bsp_cluster_debug_info_block",
@@ -16484,7 +16484,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(structure_bsp_debug_info_cluster_warning_flags, structure_bsp_debug_info_cluster_warning_flags_strings, _countof(structure_bsp_debug_info_cluster_warning_flags_strings));
 
-	#define STRUCTURE_BSP_FOG_PLANE_DEBUG_INFO_BLOCK_ID { 0x00000000, 0xF78A15DF, 0xDCC84AD0, 0xA18E7B16 }
+	#define STRUCTURE_BSP_FOG_PLANE_DEBUG_INFO_BLOCK_ID { 0xF78A15DF, 0xDCC84AD0, 0xA18E7B16, 0x621BC70B }
 	TAG_STRUCT(
 		structure_bsp_fog_plane_debug_info_block,
 		"structure_bsp_fog_plane_debug_info_block",
@@ -16502,7 +16502,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_FOG_ZONE_DEBUG_INFO_BLOCK_ID { 0x00000000, 0x54513BD1, 0x61374DCB, 0x950FF95C }
+	#define STRUCTURE_BSP_FOG_ZONE_DEBUG_INFO_BLOCK_ID { 0x54513BD1, 0x61374DCB, 0x950FF95C, 0x72B662D5 }
 	TAG_STRUCT(
 		structure_bsp_fog_zone_debug_info_block,
 		"structure_bsp_fog_zone_debug_info_block",
@@ -16521,7 +16521,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_DEBUG_INFO_RENDER_LINE_BLOCK_ID { 0x00000000, 0x288FF283, 0x1AB747CD, 0x84A91A1A }
+	#define STRUCTURE_BSP_DEBUG_INFO_RENDER_LINE_BLOCK_ID { 0x288FF283, 0x1AB747CD, 0x84A91A1A, 0x49EB05F1 }
 	TAG_STRUCT(
 		structure_bsp_debug_info_render_line_block,
 		"structure_bsp_debug_info_render_line_block",
@@ -16551,7 +16551,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(structure_bsp_debug_info_render_line_type_enum, structure_bsp_debug_info_render_line_type_enum_strings, _countof(structure_bsp_debug_info_render_line_type_enum_strings));
 
-	#define STRUCTURE_BSP_DEBUG_INFO_INDICES_BLOCK_ID { 0x00000000, 0x5E7D4A5C, 0x49B34181, 0xB5652E00 }
+	#define STRUCTURE_BSP_DEBUG_INFO_INDICES_BLOCK_ID { 0x5E7D4A5C, 0x49B34181, 0xB5652E00, 0x9BA99982 }
 	TAG_STRUCT(
 		structure_bsp_debug_info_indices_block,
 		"structure_bsp_debug_info_indices_block",
@@ -16564,7 +16564,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_SKY_OWNER_CLUSTER_BLOCK_ID { 0x00000000, 0x5CDBBAA5, 0x15CB4A6C, 0xA0F28010 }
+	#define STRUCTURE_BSP_SKY_OWNER_CLUSTER_BLOCK_ID { 0x5CDBBAA5, 0x15CB4A6C, 0xA0F28010, 0xC976FB69 }
 	TAG_STRUCT(
 		structure_bsp_sky_owner_cluster_block,
 		"structure_bsp_sky_owner_cluster_block",
@@ -16577,7 +16577,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_FAKE_LIGHTPROBES_BLOCK_ID { 0x00000000, 0xEA359EEC, 0x5A194498, 0x8E4C7987 }
+	#define STRUCTURE_BSP_FAKE_LIGHTPROBES_BLOCK_ID { 0xEA359EEC, 0x5A194498, 0x8E4C7987, 0x7190C23E }
 	TAG_STRUCT(
 		structure_bsp_fake_lightprobes_block,
 		"structure_bsp_fake_lightprobes_block",
@@ -16591,7 +16591,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_EDGE_TO_SEAM_EDGE_MAPPING_BLOCK_ID { 0x00000000, 0x5E7D4A2C, 0x49134181, 0xB2652E00 }
+	#define STRUCTURE_EDGE_TO_SEAM_EDGE_MAPPING_BLOCK_ID { 0x5E7D4A2C, 0x49134181, 0xB2652E00, 0xABA99982 }
 	TAG_STRUCT(
 		structure_edge_to_seam_edge_mapping_block,
 		"structure_edge_to_seam_edge_mapping_block",
@@ -16605,7 +16605,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WIDGET_REFERENCE_BLOCK_ID { 0x00000000, 0xFE7DCA2C, 0x49136A81, 0xB9652900 }
+	#define WIDGET_REFERENCE_BLOCK_ID { 0xFE7DCA2C, 0x49136A81, 0xB9652900, 0xABAA5A82 }
 	TAG_STRUCT(
 		widget_reference_block,
 		"widget_reference_block",
@@ -16622,7 +16622,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(leaf_system_group_reference_tagref, LEAF_SYSTEM_TAG);
 
-	#define RUNTIME_DECORATOR_SET_BLOCK_ID { 0x00000000, 0xEBC8164A, 0x583140C6, 0xBB8277A0 }
+	#define RUNTIME_DECORATOR_SET_BLOCK_ID { 0xEBC8164A, 0x583140C6, 0xBB8277A0, 0x58357ADA }
 	TAG_STRUCT(
 		runtime_decorator_set_block,
 		"runtime_decorator_set_block",
@@ -16637,7 +16637,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(decorator_set_group_reference_tagref, DECORATOR_SET_TAG);
 
-	#define STRUCTURE_BSP_RESOURCE_STRUCT_ID { 0x00000000, 0x03A9EF85, 0x2F7A473A, 0x8A86F093 }
+	#define STRUCTURE_BSP_RESOURCE_STRUCT_ID { 0x03A9EF85, 0x2F7A473A, 0x8A86F093, 0x2DE335AF }
 	TAG_STRUCT(
 		structure_bsp_resource_struct,
 		"structure_bsp_resource_struct",
@@ -16653,7 +16653,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_TAG_RESOURCES_STRUCT_ID { 0x00000000, 0x72D3359D, 0x5BCF4E28, 0xA26904A5 }
+	#define STRUCTURE_BSP_TAG_RESOURCES_STRUCT_ID { 0x72D3359D, 0x5BCF4E28, 0xA26904A5, 0xD923E60C }
 	TAG_STRUCT(
 		structure_bsp_tag_resources_struct,
 		"structure_bsp_tag_resources_struct",
@@ -16666,7 +16666,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_RAW_RESOURCES_ID { 0x00000000, 0x3A39EBF4, 0xA1FA4120, 0x8CA7C0AC }
+	#define STRUCTURE_BSP_RAW_RESOURCES_ID { 0x3A39EBF4, 0xA1FA4120, 0x8CA7C0AC, 0x54DCAE26 }
 	TAG_STRUCT(
 		structure_bsp_raw_resources,
 		"structure_bsp_raw_resources",
@@ -16679,7 +16679,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_CACHE_FILE_TAG_RESOURCES_STRUCT_ID { 0x00000000, 0xF94BEACC, 0xEDAB423F, 0x82675E23 }
+	#define STRUCTURE_BSP_CACHE_FILE_TAG_RESOURCES_STRUCT_ID { 0xF94BEACC, 0xEDAB423F, 0x82675E23, 0xFA14A1AD }
 	TAG_STRUCT(
 		structure_bsp_cache_file_tag_resources_struct,
 		"structure_bsp_cache_file_tag_resources_struct",
@@ -16695,7 +16695,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_RESOURCE_INTERFACE_ID { 0x00000000, 0xB024FA19, 0x92E24683, 0xB26BDF83 }
+	#define STRUCTURE_BSP_RESOURCE_INTERFACE_ID { 0xB024FA19, 0x92E24683, 0xB26BDF83, 0x52E5E222 }
 	TAG_STRUCT(
 		structure_bsp_resource_interface,
 		"structure_bsp_resource_interface",
@@ -16711,7 +16711,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_STRUCTURE_BSP_BLOCK_STRUCT_ID { 0x00000000, 0x5043D2DD, 0xE3624E5A, 0xBB518106 }
+	#define SCENARIO_STRUCTURE_BSP_BLOCK_STRUCT_ID { 0x5043D2DD, 0xE3624E5A, 0xBB518106, 0x4E2109D4 }
 	TAG_STRUCT(
 		scenario_structure_bsp_block_struct,
 		"scenario_structure_bsp_block_struct",
@@ -16750,7 +16750,7 @@ namespace halo3_tools {
 		{ _field_block, "acoustics palette", &blofeld::halo3_tools::scenario_acoustics_palette_block_definition_block },
 		{ _field_block, "background sound palette", &blofeld::halo3_tools::scenario_acoustics_ambience_palette_block_block },
 		{ _field_block, "sound environment palette", &blofeld::halo3_tools::scenario_acoustics_environment_palette_block_block },
-		{ _field_data, "sound PAS data" },
+		{ _field_data, "sound PAS data", &blofeld::halo3_tools::structure_bsp_cluster_encoded_sound_data },
 		{ _field_block, "markers", &blofeld::halo3_tools::structure_bsp_marker_block_block },
 		{ _field_block, "marker light palette", &blofeld::halo3_tools::structure_bsp_marker_light_palette_block },
 		{ _field_block, "marker light palette index", &blofeld::halo3_tools::structure_bsp_marker_light_index_block },
@@ -16784,7 +16784,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(structure_bsp_flags_definition, structure_bsp_flags_definition_strings, _countof(structure_bsp_flags_definition_strings));
 
-	#define STRUCTURE_BSP_LEAF_BLOCK_ID { 0x00000000, 0xB611DF65, 0xC92C4779, 0x8227AAFA }
+	#define STRUCTURE_BSP_LEAF_BLOCK_ID { 0xB611DF65, 0xC92C4779, 0x8227AAFA, 0x52126166 }
 	TAG_STRUCT(
 		structure_bsp_leaf_block,
 		"structure_bsp_leaf_block",
@@ -16797,7 +16797,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SURFACE_BLOCK_ID { 0x00000000, 0xE0159FC4, 0xC9AB45E9, 0xB1B58400 }
+	#define STRUCTURE_SURFACE_BLOCK_ID { 0xE0159FC4, 0xC9AB45E9, 0xB1B58400, 0x24345098 }
 	TAG_STRUCT(
 		structure_surface_block,
 		"structure_surface_block",
@@ -16811,7 +16811,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SURFACE_SMALL_BLOCK_ID { 0x00000000, 0xE0259FC4, 0xC99845E9, 0xB1B58439 }
+	#define STRUCTURE_SURFACE_SMALL_BLOCK_ID { 0xE0259FC4, 0xC99845E9, 0xB1B58439, 0x24225098 }
 	TAG_STRUCT(
 		structure_surface_small_block,
 		"structure_surface_small_block",
@@ -16825,7 +16825,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SURFACE_TO_TRIANGLE_MAPPING_BLOCK_ID { 0x00000000, 0xF47D6283, 0x9929408E, 0xACA5689B }
+	#define STRUCTURE_SURFACE_TO_TRIANGLE_MAPPING_BLOCK_ID { 0xF47D6283, 0x9929408E, 0xACA5689B, 0x69D9FB0E }
 	TAG_STRUCT(
 		structure_surface_to_triangle_mapping_block,
 		"structure_surface_to_triangle_mapping_block",
@@ -16839,7 +16839,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_STRUCTURE_LIGHTING_INFO_STRUCT_DEFINITION_ID { 0x00000000, 0xF6DF366B, 0xD04D4A01, 0xA4C203FB }
+	#define SCENARIO_STRUCTURE_LIGHTING_INFO_STRUCT_DEFINITION_ID { 0xF6DF366B, 0xD04D4A01, 0xA4C203FB, 0xA459CB2F }
 	TAG_STRUCT(
 		scenario_structure_lighting_info_struct_definition,
 		"scenario_structure_lighting_info_struct_definition",
@@ -16856,7 +16856,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_LIGHTING_GENERIC_LIGHT_DEFINITION_BLOCK_ID { 0x00000000, 0x5CAD7A73, 0x815E4084, 0xBEC019F8 }
+	#define STRUCTURE_LIGHTING_GENERIC_LIGHT_DEFINITION_BLOCK_ID { 0x5CAD7A73, 0x815E4084, 0xBEC019F8, 0xB6D14D02 }
 	TAG_STRUCT(
 		structure_lighting_generic_light_definition_block,
 		"structure_lighting_generic_light_definition_block",
@@ -16902,7 +16902,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(structure_lighting_generic_light_shape_enum, structure_lighting_generic_light_shape_enum_strings, _countof(structure_lighting_generic_light_shape_enum_strings));
 
-	#define STRUCTURE_LIGHTING_GENERIC_LIGHT_INSTANCE_BLOCK_ID { 0x00000000, 0x09005BBF, 0x4E134B68, 0x9B53BFCC }
+	#define STRUCTURE_LIGHTING_GENERIC_LIGHT_INSTANCE_BLOCK_ID { 0x09005BBF, 0x4E134B68, 0x9B53BFCC, 0x6CC50117 }
 	TAG_STRUCT(
 		structure_lighting_generic_light_instance_block,
 		"structure_lighting_generic_light_instance_block",
@@ -16918,7 +16918,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_LIGHTING_REGION_TRIANGLE_BLOCK_ID { 0x00000000, 0xE5537A0C, 0xBF214E6B, 0xB59214E8 }
+	#define STRUCTURE_LIGHTING_REGION_TRIANGLE_BLOCK_ID { 0xE5537A0C, 0xBF214E6B, 0xB59214E8, 0xE9BB4F8D }
 	TAG_STRUCT(
 		structure_lighting_region_triangle_block,
 		"structure_lighting_region_triangle_block",
@@ -16933,7 +16933,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_LIGHTING_REGION_BLOCK_ID { 0x00000000, 0xB54AAE09, 0x0B8D44E2, 0xB81C187A }
+	#define STRUCTURE_LIGHTING_REGION_BLOCK_ID { 0xB54AAE09, 0x0B8D44E2, 0xB81C187A, 0x105CB6F7 }
 	TAG_STRUCT(
 		structure_lighting_region_block,
 		"structure_lighting_region_block",
@@ -16947,7 +16947,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_MATERIAL_LIGHTING_INFO_BLOCK_ID { 0x00000000, 0x9DD3CC89, 0xB8374B30, 0xBD6F5C2D }
+	#define STRUCTURE_MATERIAL_LIGHTING_INFO_BLOCK_ID { 0x9DD3CC89, 0xB8374B30, 0xBD6F5C2D, 0xDA247EA0 }
 	TAG_STRUCT(
 		structure_material_lighting_info_block,
 		"structure_material_lighting_info_block",
@@ -16977,7 +16977,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(structure_material_lighting_info_flags, structure_material_lighting_info_flags_strings, _countof(structure_material_lighting_info_flags_strings));
 
-	#define LIGHTPROBE_TERMS_STRUCT_DEFINITION_ID { 0x00000000, 0xE915B33A, 0xD4A2428B, 0xBC8EF424 }
+	#define LIGHTPROBE_TERMS_STRUCT_DEFINITION_ID { 0xE915B33A, 0xD4A2428B, 0xBC8EF424, 0xEFDB0F70 }
 	TAG_STRUCT(
 		lightprobe_terms_struct_definition,
 		"lightprobe_terms",
@@ -16990,7 +16990,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_LIGHTMAP_LIGHTPROBE_VALUE_ID { 0x00000000, 0x8A43FCFC, 0x348747AA, 0xBBFC7C0A }
+	#define SCENARIO_LIGHTMAP_LIGHTPROBE_VALUE_ID { 0x8A43FCFC, 0x348747AA, 0xBBFC7C0A, 0xC425DD0C }
 	TAG_STRUCT(
 		scenario_lightmap_lightprobe_value,
 		"scenario_lightmap_lightprobe_value",
@@ -17014,7 +17014,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_LIGHTMAP_AIRPROBE_VALUE_ID { 0x00000000, 0x51851D4A, 0x54A64B69, 0xA6B0BA23 }
+	#define SCENARIO_LIGHTMAP_AIRPROBE_VALUE_ID { 0x51851D4A, 0x54A64B69, 0xA6B0BA23, 0xAE40825D }
 	TAG_STRUCT(
 		scenario_lightmap_airprobe_value,
 		"scenario_lightmap_airprobe_value",
@@ -17042,7 +17042,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_LIGHTMAP_SCENERY_PROBE_VALUE_ID { 0x00000000, 0xC567A6F7, 0xEDBB4B89, 0x9E94D24A }
+	#define SCENARIO_LIGHTMAP_SCENERY_PROBE_VALUE_ID { 0xC567A6F7, 0xEDBB4B89, 0x9E94D24A, 0x811050F8 }
 	TAG_STRUCT(
 		scenario_lightmap_scenery_probe_value,
 		"scenario_lightmap_scenery_probe_value",
@@ -17067,7 +17067,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_LIGHTMAP_DEVICE_MACHINE_PROBE_VALUE_ID { 0x00000000, 0x6AD4B1AA, 0xD6554D18, 0x9EB581E4 }
+	#define SCENARIO_LIGHTMAP_DEVICE_MACHINE_PROBE_VALUE_ID { 0x6AD4B1AA, 0xD6554D18, 0x9EB581E4, 0x6721828E }
 	TAG_STRUCT(
 		scenario_lightmap_device_machine_probe_value,
 		"scenario_lightmap_device_machine_probe_value",
@@ -17092,7 +17092,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_LIGHTMAP_DEVICE_MACHINE_PROBE_DATA_VALUE_ID { 0x00000000, 0xBA9A8872, 0xAE5B4F65, 0xA6462078 }
+	#define SCENARIO_LIGHTMAP_DEVICE_MACHINE_PROBE_DATA_VALUE_ID { 0xBA9A8872, 0xAE5B4F65, 0xA6462078, 0xEAEAD21B }
 	TAG_STRUCT(
 		scenario_lightmap_device_machine_probe_data_value,
 		"scenario_lightmap_device_machine_probe_data_value",
@@ -17112,7 +17112,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MINI_LIGHTPROBE_TERMS_STRUCT_DEFINITION_ID { 0x00000000, 0xA044900B, 0x6EF74149, 0xAF4B8AA8 }
+	#define MINI_LIGHTPROBE_TERMS_STRUCT_DEFINITION_ID { 0xA044900B, 0x6EF74149, 0xAF4B8AA8, 0x171FFA09 }
 	TAG_STRUCT(
 		mini_lightprobe_terms_struct_definition,
 		"mini_lightprobe_terms",
@@ -17125,7 +17125,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COMPRESSION_VECTORS_STRUCT_DEFINITION_ID { 0x00000000, 0xC325DC36, 0x4EC54D78, 0xA7237653 }
+	#define COMPRESSION_VECTORS_STRUCT_DEFINITION_ID { 0xC325DC36, 0x4EC54D78, 0xA7237653, 0x55717A2E }
 	TAG_STRUCT(
 		compression_vectors_struct_definition,
 		"compression_vectors",
@@ -17138,7 +17138,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_LIGHTMAP_MINI_LIGHTPROBE_VALUE_STRUCT_ID { 0x00000000, 0x84021BFE, 0xFB224484, 0xA9768216 }
+	#define SCENARIO_LIGHTMAP_MINI_LIGHTPROBE_VALUE_STRUCT_ID { 0x84021BFE, 0xFB224484, 0xA9768216, 0xB61042CE }
 	TAG_STRUCT(
 		scenario_lightmap_mini_lightprobe_value_struct,
 		"scenario_lightmap_mini_lightprobe_value_struct",
@@ -17157,7 +17157,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_LIGHTMAP_PERVERTEX_DATA_ID { 0x00000000, 0x3DD36A68, 0x5AEB4412, 0xB0413C8F }
+	#define SCENARIO_LIGHTMAP_PERVERTEX_DATA_ID { 0x3DD36A68, 0x5AEB4412, 0xB0413C8F, 0xCEF9B4A7 }
 	TAG_STRUCT(
 		scenario_lightmap_pervertex_data,
 		"scenario_lightmap_pervertex_data",
@@ -17171,7 +17171,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_LIGHTMAP_CLUSTER_DATA_ID { 0x00000000, 0x103A0755, 0xE4ED4051, 0x96CE9FBE }
+	#define SCENARIO_LIGHTMAP_CLUSTER_DATA_ID { 0x103A0755, 0xE4ED4051, 0x96CE9FBE, 0x00A61E8F }
 	TAG_STRUCT(
 		scenario_lightmap_cluster_data,
 		"scenario_lightmap_cluster_data",
@@ -17185,7 +17185,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_LIGHTMAP_INSTANCE_DATA_ID { 0x00000000, 0x02B9848C, 0x68E0495A, 0x8BAAD777 }
+	#define SCENARIO_LIGHTMAP_INSTANCE_DATA_ID { 0x02B9848C, 0x68E0495A, 0x8BAAD777, 0x64AF9F2F }
 	TAG_STRUCT(
 		scenario_lightmap_instance_data,
 		"scenario_lightmap_instance_data",
@@ -17201,7 +17201,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_LIGHTMAP_BSP_DATA_BLOCK_STRUCT_ID { 0x00000000, 0x750464BE, 0xDF6E4973, 0x8B70B0DD }
+	#define SCENARIO_LIGHTMAP_BSP_DATA_BLOCK_STRUCT_ID { 0x750464BE, 0xDF6E4973, 0x8B70B0DD, 0xDB7F6F3D }
 	TAG_STRUCT(
 		scenario_lightmap_bsp_data_block_struct,
 		"scenario_lightmap_bsp_data_block_struct",
@@ -17240,7 +17240,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(bitmap_group_reference$4_tagref, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
-	#define OBSOLETE_SCENARIO_LIGHTMAP_BSP_DATA_ID { 0x00000000, 0x05616753, 0xCB3C48EF, 0x8F0AC4E2 }
+	#define OBSOLETE_SCENARIO_LIGHTMAP_BSP_DATA_ID { 0x05616753, 0xCB3C48EF, 0x8F0AC4E2, 0x79129381 }
 	TAG_STRUCT(
 		obsolete_scenario_lightmap_bsp_data,
 		"obsolete_scenario_lightmap_bsp_data",
@@ -17263,7 +17263,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_LIGHTMAP_BSP_DATA_REFERENCE_BLOCK_ID { 0x00000000, 0xFFDC5A33, 0x248B4BA2, 0xBC16903E }
+	#define SCENARIO_LIGHTMAP_BSP_DATA_REFERENCE_BLOCK_ID { 0xFFDC5A33, 0x248B4BA2, 0xBC16903E, 0xABBC58E9 }
 	TAG_STRUCT(
 		scenario_lightmap_bsp_data_reference_block,
 		"scenario_lightmap_bsp_data_reference_block",
@@ -17278,7 +17278,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(scenario_lightmap_bsp_data_group_reference_tagref, SCENARIO_LIGHTMAP_BSP_DATA_TAG);
 
-	#define SCENARIO_LIGHTMAP_BLOCK_STRUCT_ID { 0x00000000, 0xD871C433, 0xD2864E9F, 0xB2E8B245 }
+	#define SCENARIO_LIGHTMAP_BLOCK_STRUCT_ID { 0xD871C433, 0xD2864E9F, 0xB2E8B245, 0x76BE82ED }
 	TAG_STRUCT(
 		scenario_lightmap_block_struct,
 		"scenario_lightmap_block_struct",
@@ -17297,7 +17297,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_BLOCK_DATA_ID { 0x00000000, 0xA45B224D, 0x390D42BF, 0x81E27D69 }
+	#define FAUX_DATA_BLOCK_DATA_ID { 0xA45B224D, 0x390D42BF, 0x81E27D69, 0x899326E9 }
 	TAG_STRUCT(
 		faux_data_block_data,
 		"faux_data_block_data",
@@ -17308,12 +17308,12 @@ namespace halo3_tools {
 	{
 		{ _field_short_integer, "width" },
 		{ _field_short_integer, "height" },
-		{ _field_data, "radiance data" },
-		{ _field_data, "lightprobe data" },
+		{ _field_data, "radiance data", &blofeld::halo3_tools::faux_data_radiance_data },
+		{ _field_data, "lightprobe data", &blofeld::halo3_tools::faux_data_lightprobe_data },
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_CLUSTER_DATA_ID { 0x00000000, 0xC23E2DDD, 0xC8E14C16, 0x8DE9F8FD }
+	#define FAUX_DATA_CLUSTER_DATA_ID { 0xC23E2DDD, 0xC8E14C16, 0x8DE9F8FD, 0x51AFF61F }
 	TAG_STRUCT(
 		faux_data_cluster_data,
 		"faux_data_cluster_data",
@@ -17327,7 +17327,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_INSTANCE_DATA_ID { 0x00000000, 0x57E5396A, 0xEB4F46C2, 0x95CA97B1 }
+	#define FAUX_DATA_INSTANCE_DATA_ID { 0x57E5396A, 0xEB4F46C2, 0x95CA97B1, 0xF74B0C19 }
 	TAG_STRUCT(
 		faux_data_instance_data,
 		"faux_data_instance_data",
@@ -17341,7 +17341,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_GLOBAL_CLUSTER_INSTANCE_DATA_ID { 0x00000000, 0x11531046, 0xDDE44D9B, 0x8994A43D }
+	#define FAUX_DATA_GLOBAL_CLUSTER_INSTANCE_DATA_ID { 0x11531046, 0xDDE44D9B, 0x8994A43D, 0xEFE8DDEC }
 	TAG_STRUCT(
 		faux_data_global_cluster_instance_data,
 		"faux_data_global_cluster_instance_data",
@@ -17354,7 +17354,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_GLOBAL_CLUSTER_DATA_ID { 0x00000000, 0xED726D9D, 0x318941F7, 0xA19D75F5 }
+	#define FAUX_DATA_GLOBAL_CLUSTER_DATA_ID { 0xED726D9D, 0x318941F7, 0xA19D75F5, 0x08D374E3 }
 	TAG_STRUCT(
 		faux_data_global_cluster_data,
 		"faux_data_global_cluster_data",
@@ -17369,7 +17369,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_GLOBAL_INSTANCE_DEFINITION_DATA_ID { 0x00000000, 0x2FCDFB1C, 0xF2E8454F, 0xACE669F3 }
+	#define FAUX_DATA_GLOBAL_INSTANCE_DEFINITION_DATA_ID { 0x2FCDFB1C, 0xF2E8454F, 0xACE669F3, 0x5787527A }
 	TAG_STRUCT(
 		faux_data_global_instance_definition_data,
 		"faux_data_global_instance_definition_data",
@@ -17382,7 +17382,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_GLOBAL_INSTANCE_DATA_ID { 0x00000000, 0x25FE37FA, 0xC4FE44F4, 0xBBD38762 }
+	#define FAUX_DATA_GLOBAL_INSTANCE_DATA_ID { 0x25FE37FA, 0xC4FE44F4, 0xBBD38762, 0x6C2D11DA }
 	TAG_STRUCT(
 		faux_data_global_instance_data,
 		"faux_data_global_instance_data",
@@ -17401,7 +17401,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_GLOBAL_MATERIAL_DATA_ID { 0x00000000, 0xCC088D26, 0xF9B947DC, 0x9233D7E5 }
+	#define FAUX_DATA_GLOBAL_MATERIAL_DATA_ID { 0xCC088D26, 0xF9B947DC, 0x9233D7E5, 0x283FA0CC }
 	TAG_STRUCT(
 		faux_data_global_material_data,
 		"faux_data_global_material_data",
@@ -17417,7 +17417,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(render_method_group_reference$5_tagref, RENDER_METHOD_TAG);
 
-	#define FAUX_DATA_BSP_GLOBAL_DATA_ID { 0x00000000, 0xC93B128A, 0xEB074D96, 0x844A5887 }
+	#define FAUX_DATA_BSP_GLOBAL_DATA_ID { 0xC93B128A, 0xEB074D96, 0x844A5887, 0x99224109 }
 	TAG_STRUCT(
 		faux_data_bsp_global_data,
 		"faux_data_bsp_global_data",
@@ -17438,7 +17438,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_OBJECT_DATA_ID { 0x00000000, 0xAD909893, 0x336449DF, 0x8D40688F }
+	#define FAUX_DATA_OBJECT_DATA_ID { 0xAD909893, 0x336449DF, 0x8D40688F, 0x9FABBE9B }
 	TAG_STRUCT(
 		faux_data_object_data,
 		"faux_data_object_data",
@@ -17454,7 +17454,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_LIGHTPROBE_TERMS_STRUCT_DEFINITION_ID { 0x00000000, 0xBC43E3B8, 0x951C4FF4, 0x8935E26E }
+	#define FAUX_DATA_LIGHTPROBE_TERMS_STRUCT_DEFINITION_ID { 0xBC43E3B8, 0x951C4FF4, 0x8935E26E, 0x2CC6C2C4 }
 	TAG_STRUCT(
 		faux_data_lightprobe_terms_struct_definition,
 		"faux_data_lightprobe_terms",
@@ -17467,7 +17467,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_LIGHTPROBE_VALUE_ID { 0x00000000, 0x5F273E46, 0xF6734D07, 0x95EB4910 }
+	#define FAUX_DATA_LIGHTPROBE_VALUE_ID { 0x5F273E46, 0xF6734D07, 0x95EB4910, 0x93415963 }
 	TAG_STRUCT(
 		faux_data_lightprobe_value,
 		"faux_data_lightprobe_value",
@@ -17483,7 +17483,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_AIRPROBE_LIGHTGROUP_VALUE_ID { 0x00000000, 0x6BC1733B, 0x4DE84343, 0x8681D549 }
+	#define FAUX_DATA_AIRPROBE_LIGHTGROUP_VALUE_ID { 0x6BC1733B, 0x4DE84343, 0x8681D549, 0xAD75F6F9 }
 	TAG_STRUCT(
 		faux_data_airprobe_lightgroup_value,
 		"faux_data_airprobe_lightgroup_value",
@@ -17501,7 +17501,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_SCENERY_PROBE_LIGHTGROUP_VALUE_ID { 0x00000000, 0x54D3BB40, 0x1E894701, 0xA9F6CDD1 }
+	#define FAUX_DATA_SCENERY_PROBE_LIGHTGROUP_VALUE_ID { 0x54D3BB40, 0x1E894701, 0xA9F6CDD1, 0xD6E37785 }
 	TAG_STRUCT(
 		faux_data_scenery_probe_lightgroup_value,
 		"faux_data_scenery_probe_lightgroup_value",
@@ -17516,7 +17516,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_DEVICE_PROBE_LIGHTGROUP_VALUE_ID { 0x00000000, 0xC4017D7A, 0x20A84117, 0xAE7594F0 }
+	#define FAUX_DATA_DEVICE_PROBE_LIGHTGROUP_VALUE_ID { 0xC4017D7A, 0x20A84117, 0xAE7594F0, 0x4D015DFE }
 	TAG_STRUCT(
 		faux_data_device_probe_lightgroup_value,
 		"faux_data_device_probe_lightgroup_value",
@@ -17531,7 +17531,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_DEVICE_PROBES_LIGHTGROUP_VALUE_ID { 0x00000000, 0x098C9D69, 0x3FBA44F2, 0xAB53226C }
+	#define FAUX_DATA_DEVICE_PROBES_LIGHTGROUP_VALUE_ID { 0x098C9D69, 0x3FBA44F2, 0xAB53226C, 0x42962CAE }
 	TAG_STRUCT(
 		faux_data_device_probes_lightgroup_value,
 		"faux_data_device_probes_lightgroup_value",
@@ -17545,7 +17545,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_LIGHTMAP_GROUP_DATA_ID { 0x00000000, 0x84ADA0A8, 0x8C20429E, 0x8CC82CB3 }
+	#define FAUX_DATA_LIGHTMAP_GROUP_DATA_ID { 0x84ADA0A8, 0x8C20429E, 0x8CC82CB3, 0xDA249FB2 }
 	TAG_STRUCT(
 		faux_data_lightmap_group_data,
 		"faux_data_lightmap_group_data",
@@ -17571,7 +17571,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_AIRPROBE_VALUE_ID { 0x00000000, 0x839F6FD3, 0xFFE6453B, 0x9BC6DB4A }
+	#define FAUX_DATA_AIRPROBE_VALUE_ID { 0x839F6FD3, 0xFFE6453B, 0x9BC6DB4A, 0x228CA92C }
 	TAG_STRUCT(
 		faux_data_airprobe_value,
 		"faux_data_airprobe_value",
@@ -17599,7 +17599,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_SCENERY_PROBE_VALUE_ID { 0x00000000, 0x24072F3C, 0x8C9946A1, 0xB2A98E89 }
+	#define FAUX_DATA_SCENERY_PROBE_VALUE_ID { 0x24072F3C, 0x8C9946A1, 0xB2A98E89, 0x0C557446 }
 	TAG_STRUCT(
 		faux_data_scenery_probe_value,
 		"faux_data_scenery_probe_value",
@@ -17624,7 +17624,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_DEVICE_MACHINE_PROBE_VALUE_ID { 0x00000000, 0xF6B010E5, 0xDB634EA1, 0xBB267C72 }
+	#define FAUX_DATA_DEVICE_MACHINE_PROBE_VALUE_ID { 0xF6B010E5, 0xDB634EA1, 0xBB267C72, 0x8747103D }
 	TAG_STRUCT(
 		faux_data_device_machine_probe_value,
 		"faux_data_device_machine_probe_value",
@@ -17649,7 +17649,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FAUX_DATA_DEVICE_MACHINE_PROBES_VALUE_ID { 0x00000000, 0x226364BE, 0x3330477B, 0xA15AB3CD }
+	#define FAUX_DATA_DEVICE_MACHINE_PROBES_VALUE_ID { 0x226364BE, 0x3330477B, 0xA15AB3CD, 0x730D0509 }
 	TAG_STRUCT(
 		faux_data_device_machine_probes_value,
 		"faux_data_device_machine_probes_value",
@@ -17669,7 +17669,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_FAUX_DATA_STRUCT_DEFINITION_ID { 0x00000000, 0x38CAB71A, 0x4F7C49F9, 0x97FE2A71 }
+	#define SCENARIO_FAUX_DATA_STRUCT_DEFINITION_ID { 0x38CAB71A, 0x4F7C49F9, 0x97FE2A71, 0x39AC3A82 }
 	TAG_STRUCT(
 		scenario_faux_data_struct_definition,
 		"scenario_faux_data_struct_definition",
@@ -17688,7 +17688,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_FUNCTION_BLOCK_ID { 0x00000000, 0x9B8F92BF, 0xE23F4122, 0xA8821B49 }
+	#define SCENARIO_FUNCTION_BLOCK_ID { 0x9B8F92BF, 0xE23F4122, 0xA8821B49, 0xAD8F29FB }
 	TAG_STRUCT(
 		scenario_function_block,
 		"scenario_function_block",
@@ -17759,7 +17759,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(function_bounds_mode_enum, function_bounds_mode_enum_strings, _countof(function_bounds_mode_enum_strings));
 
-	#define SCENARIO_OBJECT_NAMES_BLOCK_ID { 0x00000000, 0x6B05A7F7, 0x3584428C, 0x92762448 }
+	#define SCENARIO_OBJECT_NAMES_BLOCK_ID { 0x6B05A7F7, 0x3584428C, 0x92762448, 0xA29197DB }
 	TAG_STRUCT(
 		scenario_object_names_block,
 		"scenario_object_names_block",
@@ -17774,7 +17774,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_SOFT_CEILINGS_BLOCK_ID { 0x00000000, 0xB256A9B1, 0x07994E39, 0x90B64DA5 }
+	#define SCENARIO_SOFT_CEILINGS_BLOCK_ID { 0xB256A9B1, 0x07994E39, 0x90B64DA5, 0x84259A58 }
 	TAG_STRUCT(
 		scenario_soft_ceilings_block,
 		"scenario_soft_ceilings_block",
@@ -17808,7 +17808,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(soft_ceiling_type_enum, soft_ceiling_type_enum_strings, _countof(soft_ceiling_type_enum_strings));
 
-	#define SCENARIO_PROFILES_BLOCK_ID { 0x00000000, 0x5AFB6481, 0x6ED940DC, 0x855CB02A }
+	#define SCENARIO_PROFILES_BLOCK_ID { 0x5AFB6481, 0x6ED940DC, 0x855CB02A, 0xB73D1AC4 }
 	TAG_STRUCT(
 		scenario_profiles_block,
 		"scenario_profiles_block",
@@ -17837,7 +17837,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(weapon_group_reference$7_tagref, WEAPON_TAG);
 
-	#define SCENARIO_PLAYERS_BLOCK_ID { 0x00000000, 0x2C1FF0F5, 0x45734A11, 0x891B161E }
+	#define SCENARIO_PLAYERS_BLOCK_ID { 0x2C1FF0F5, 0x45734A11, 0x891B161E, 0xC24170EF }
 	TAG_STRUCT(
 		scenario_players_block,
 		"scenario_players_block",
@@ -17865,7 +17865,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(global_player_character_enum, global_player_character_enum_strings, _countof(global_player_character_enum_strings));
 
-	#define SCENARIO_KILL_TRIGGER_VOLUMES_BLOCK_ID { 0x00000000, 0xF8016A0D, 0x0FB54EB9, 0xAE9F2DBA }
+	#define SCENARIO_KILL_TRIGGER_VOLUMES_BLOCK_ID { 0xF8016A0D, 0x0FB54EB9, 0xAE9F2DBA, 0x9A8BF849 }
 	TAG_STRUCT(
 		scenario_kill_trigger_volumes_block,
 		"scenario_kill_trigger_volumes_block",
@@ -17878,7 +17878,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_SAFE_ZONE_TRIGGER_VOLUMES_BLOCK_ID { 0x00000000, 0x3B6FF7F7, 0xD6F1480D, 0x9AC3621D }
+	#define SCENARIO_SAFE_ZONE_TRIGGER_VOLUMES_BLOCK_ID { 0x3B6FF7F7, 0xD6F1480D, 0x9AC3621D, 0xA0ED3BA2 }
 	TAG_STRUCT(
 		scenario_safe_zone_trigger_volumes_block,
 		"scenario_safe_zone_trigger_volumes_block",
@@ -17891,7 +17891,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_ZONE_SET_SWITCH_TRIGGER_VOLUME_BLOCK_ID { 0x00000000, 0xDBC2A01B, 0xC1BC44B3, 0xAF8E24E1 }
+	#define SCENARIO_ZONE_SET_SWITCH_TRIGGER_VOLUME_BLOCK_ID { 0xDBC2A01B, 0xC1BC44B3, 0xAF8E24E1, 0xBC8618F1 }
 	TAG_STRUCT(
 		scenario_zone_set_switch_trigger_volume_block,
 		"scenario_zone_set_switch_trigger_volume_block",
@@ -17913,7 +17913,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenario_zone_set_switch_trigger_volume_flags_definition, scenario_zone_set_switch_trigger_volume_flags_definition_strings, _countof(scenario_zone_set_switch_trigger_volume_flags_definition_strings));
 
-	#define PLAYER_SPAWN_INFLUENCER_BLOCK_ID { 0x00000000, 0x379B48E7, 0x664E4107, 0xBB4C2403 }
+	#define PLAYER_SPAWN_INFLUENCER_BLOCK_ID { 0x379B48E7, 0x664E4107, 0xBB4C2403, 0xC803693F }
 	TAG_STRUCT(
 		player_spawn_influencer_block,
 		"player_spawn_influencer_block",
@@ -17930,7 +17930,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define NETGAME_GOAL_INFLUENCER_BLOCK_ID { 0x00000000, 0xD5D098D7, 0x963E4017, 0x9E289E11 }
+	#define NETGAME_GOAL_INFLUENCER_BLOCK_ID { 0xD5D098D7, 0x963E4017, 0x9E289E11, 0x9EC4978D }
 	TAG_STRUCT(
 		netgame_goal_influencer_block,
 		"netgame_goal_influencer_block",
@@ -17947,7 +17947,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_DECAL_PALETTE_BLOCK_ID { 0x00000000, 0xC7E94CE6, 0x20F34065, 0xA165ACE3 }
+	#define SCENARIO_DECAL_PALETTE_BLOCK_ID { 0xC7E94CE6, 0x20F34065, 0xA165ACE3, 0x5C495C0A }
 	TAG_STRUCT(
 		scenario_decal_palette_block,
 		"scenario_decal_palette_block",
@@ -17962,7 +17962,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(decal_system_group_reference_tagref, DECAL_SYSTEM_TAG);
 
-	#define SCENARIO_DECALS_BLOCK_ID { 0x00000000, 0x2F188AAB, 0x722045CB, 0xBB8315AD }
+	#define SCENARIO_DECALS_BLOCK_ID { 0x2F188AAB, 0x722045CB, 0xBB8315AD, 0xA352D120 }
 	TAG_STRUCT(
 		scenario_decals_block,
 		"scenario_decals_block",
@@ -17982,7 +17982,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_DETAIL_OBJECT_COLLECTION_PALETTE_BLOCK_ID { 0x00000000, 0xC7D6DFC3, 0xD05849AE, 0xA3485B28 }
+	#define SCENARIO_DETAIL_OBJECT_COLLECTION_PALETTE_BLOCK_ID { 0xC7D6DFC3, 0xD05849AE, 0xA3485B28, 0x5E5D947F }
 	TAG_STRUCT(
 		scenario_detail_object_collection_palette_block,
 		"scenario_detail_object_collection_palette_block",
@@ -17998,7 +17998,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(detail_object_collection_group_reference_tagref, DETAIL_OBJECT_COLLECTION_TAG);
 
-	#define SCENARIO_CUTSCENE_FLAG_BLOCK_ID { 0x00000000, 0xE5E8BB54, 0x69394856, 0xBCAC9DB6 }
+	#define SCENARIO_CUTSCENE_FLAG_BLOCK_ID { 0xE5E8BB54, 0x69394856, 0xBCAC9DB6, 0x2C324EB0 }
 	TAG_STRUCT(
 		scenario_cutscene_flag_block,
 		"scenario_cutscene_flag_block",
@@ -18016,7 +18016,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CUTSCENE_CAMERA_POINT_BLOCK_ID { 0x00000000, 0xC38639D4, 0x24BA4407, 0xB58BCDD4 }
+	#define SCENARIO_CUTSCENE_CAMERA_POINT_BLOCK_ID { 0xC38639D4, 0x24BA4407, 0xB58BCDD4, 0xF728D8DC }
 	TAG_STRUCT(
 		scenario_cutscene_camera_point_block,
 		"scenario_cutscene_camera_point_block",
@@ -18052,7 +18052,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenario_cutscene_camera_types, scenario_cutscene_camera_types_strings, _countof(scenario_cutscene_camera_types_strings));
 
-	#define SCENARIO_SKY_REFERENCE_BLOCK_ID { 0x00000000, 0x4C469778, 0xC1694C79, 0x977EC9A8 }
+	#define SCENARIO_SKY_REFERENCE_BLOCK_ID { 0x4C469778, 0xC1694C79, 0x977EC9A8, 0xBC46911A }
 	TAG_STRUCT(
 		scenario_sky_reference_block,
 		"scenario_sky_reference_block",
@@ -18069,7 +18069,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(scenery_group_reference_tagref, SCENERY_TAG);
 
-	#define SCENARIO_STRUCTURE_BSP_REFERENCE_BLOCK_ID { 0x00000000, 0xE6CC8C8B, 0x3B6B4E10, 0x897CB89E }
+	#define SCENARIO_STRUCTURE_BSP_REFERENCE_BLOCK_ID { 0xE6CC8C8B, 0x3B6B4E10, 0x897CB89E, 0x1FA22862 }
 	TAG_STRUCT(
 		scenario_structure_bsp_reference_block,
 		"scenario_structure_bsp_reference_block",
@@ -18137,7 +18137,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(bitmap_group_reference$3_tagref, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
 
-	#define EDITOR_COMMENT_BLOCK_ID { 0x00000000, 0x6FEF91B0, 0x9F8D4BB8, 0xABF5A1D9 }
+	#define EDITOR_COMMENT_BLOCK_ID { 0x6FEF91B0, 0x9F8D4BB8, 0xABF5A1D9, 0xBA1A600D }
 	TAG_STRUCT(
 		editor_comment_block,
 		"editor_comment_block",
@@ -18159,7 +18159,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(editor_comment_type_enum_definition, editor_comment_type_enum_definition_strings, _countof(editor_comment_type_enum_definition_strings));
 
-	#define DONT_USE_ME_SCENARIO_ENVIRONMENT_OBJECT_BLOCK_ID { 0x00000000, 0x5F0CC647, 0xE8A84CED, 0x8889437C }
+	#define DONT_USE_ME_SCENARIO_ENVIRONMENT_OBJECT_BLOCK_ID { 0x5F0CC647, 0xE8A84CED, 0x8889437C, 0xA1791104 }
 	TAG_STRUCT(
 		dont_use_me_scenario_environment_object_block,
 		"dont_use_me_scenario_environment_object_block",
@@ -18179,7 +18179,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CLUSTER_BACKGROUND_SOUNDS_BLOCK_ID { 0x00000000, 0x155F447F, 0x2F444D79, 0x9AFF9137 }
+	#define SCENARIO_CLUSTER_BACKGROUND_SOUNDS_BLOCK_ID { 0x155F447F, 0x2F444D79, 0x9AFF9137, 0x3D8C3277 }
 	TAG_STRUCT(
 		scenario_cluster_background_sounds_block,
 		"scenario_cluster_background_sounds_block",
@@ -18193,7 +18193,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CLUSTER_ACOUSTICS_BLOCK_STRUCT_ID { 0x00000000, 0xBF96DEDB, 0xC56E4461, 0x8A27F764 }
+	#define SCENARIO_CLUSTER_ACOUSTICS_BLOCK_STRUCT_ID { 0xBF96DEDB, 0xC56E4461, 0x8A27F764, 0x81157DE4 }
 	TAG_STRUCT(
 		scenario_cluster_acoustics_block_struct,
 		"scenario_cluster_acoustics_block_struct",
@@ -18207,7 +18207,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CLUSTER_SOUND_ENVIRONMENTS_BLOCK_ID { 0x00000000, 0x3A148CAE, 0x40FE4437, 0xB183391A }
+	#define SCENARIO_CLUSTER_SOUND_ENVIRONMENTS_BLOCK_ID { 0x3A148CAE, 0x40FE4437, 0xB183391A, 0x34DFCB0B }
 	TAG_STRUCT(
 		scenario_cluster_sound_environments_block,
 		"scenario_cluster_sound_environments_block",
@@ -18221,7 +18221,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CLUSTER_WEATHER_PROPERTIES_BLOCK_ID { 0x00000000, 0x056A9AF5, 0x81FB408D, 0xA3C9B738 }
+	#define SCENARIO_CLUSTER_WEATHER_PROPERTIES_BLOCK_ID { 0x056A9AF5, 0x81FB408D, 0xA3C9B738, 0x66D4B000 }
 	TAG_STRUCT(
 		scenario_cluster_weather_properties_block,
 		"scenario_cluster_weather_properties_block",
@@ -18235,7 +18235,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CLUSTER_ATMOSPHERE_PROPERTIES_BLOCK_ID { 0x00000000, 0x5AA1878B, 0x7AFC441D, 0x92F1DBC3 }
+	#define SCENARIO_CLUSTER_ATMOSPHERE_PROPERTIES_BLOCK_ID { 0x5AA1878B, 0x7AFC441D, 0x92F1DBC3, 0xD6BB0B64 }
 	TAG_STRUCT(
 		scenario_cluster_atmosphere_properties_block,
 		"scenario_cluster_atmosphere_properties_block",
@@ -18249,7 +18249,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CLUSTER_CAMERA_FX_PROPERTIES_BLOCK_ID { 0x00000000, 0x04C3DEFF, 0xE1014E4F, 0x95C9EC20 }
+	#define SCENARIO_CLUSTER_CAMERA_FX_PROPERTIES_BLOCK_ID { 0x04C3DEFF, 0xE1014E4F, 0x95C9EC20, 0x1B0C0C04 }
 	TAG_STRUCT(
 		scenario_cluster_camera_fx_properties_block,
 		"scenario_cluster_camera_fx_properties_block",
@@ -18263,7 +18263,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CLUSTER_POINTS_BLOCK_ID { 0x00000000, 0xEB2CB6F0, 0x63FF4765, 0x8D37ED82 }
+	#define SCENARIO_CLUSTER_POINTS_BLOCK_ID { 0xEB2CB6F0, 0x63FF4765, 0x8D37ED82, 0x6D07B4D1 }
 	TAG_STRUCT(
 		scenario_cluster_points_block,
 		"scenario_cluster_points_block",
@@ -18276,7 +18276,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CLUSTER_DATA_BLOCK_ID { 0x00000000, 0x2C52EDFB, 0xACFE4C9E, 0xAA66C6ED }
+	#define SCENARIO_CLUSTER_DATA_BLOCK_ID { 0x2C52EDFB, 0xACFE4C9E, 0xAA66C6ED, 0xD4B370C9 }
 	TAG_STRUCT(
 		scenario_cluster_data_block,
 		"scenario_cluster_data_block",
@@ -18297,7 +18297,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DYNAMIC_SPAWN_ZONE_OVERLOAD_BLOCK_ID { 0x00000000, 0x90DFBA93, 0xFA034215, 0x83FFAC3E }
+	#define DYNAMIC_SPAWN_ZONE_OVERLOAD_BLOCK_ID { 0x90DFBA93, 0xFA034215, 0x83FFAC3E, 0x002083EE }
 	TAG_STRUCT(
 		dynamic_spawn_zone_overload_block,
 		"dynamic_spawn_zone_overload_block",
@@ -18331,7 +18331,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(dynamic_spawn_zone_enum, dynamic_spawn_zone_enum_strings, _countof(dynamic_spawn_zone_enum_strings));
 
-	#define STATIC_SPAWN_ZONE_DATA_STRUCT_ID { 0x00000000, 0x85521D54, 0x7D0C4412, 0xBDB06B6A }
+	#define STATIC_SPAWN_ZONE_DATA_STRUCT_ID { 0x85521D54, 0x7D0C4412, 0xBDB06B6A, 0xBC9CF25A }
 	TAG_STRUCT(
 		static_spawn_zone_data_struct,
 		"static_spawn_zone_data_struct",
@@ -18384,7 +18384,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenario_spawn_flags, scenario_spawn_flags_strings, _countof(scenario_spawn_flags_strings));
 
-	#define STATIC_SPAWN_ZONE_BLOCK_ID { 0x00000000, 0xBA568BB4, 0xEDAA4271, 0x8BCCC208 }
+	#define STATIC_SPAWN_ZONE_BLOCK_ID { 0xBA568BB4, 0xEDAA4271, 0x8BCCC208, 0xE21171B3 }
 	TAG_STRUCT(
 		static_spawn_zone_block,
 		"static_spawn_zone_block",
@@ -18405,7 +18405,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_SPAWN_DATA_BLOCK_ID { 0x00000000, 0x802F5382, 0x9FDA439F, 0x845A38FB }
+	#define SCENARIO_SPAWN_DATA_BLOCK_ID { 0x802F5382, 0x9FDA439F, 0x845A38FB, 0xA6060A27 }
 	TAG_STRUCT(
 		scenario_spawn_data_block,
 		"scenario_spawn_data_block",
@@ -18425,7 +18425,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_INTERPOLATOR_BLOCK_ID { 0x00000000, 0x2FA4AF3D, 0x658E4C1D, 0x8B561159 }
+	#define SCENARIO_INTERPOLATOR_BLOCK_ID { 0x2FA4AF3D, 0x658E4C1D, 0x8B561159, 0xEE9A1051 }
 	TAG_STRUCT(
 		scenario_interpolator_block,
 		"scenario_interpolator_block",
@@ -18443,7 +18443,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_SCREEN_EFFECT_REFERENCE_BLOCK_ID { 0x00000000, 0x4306B484, 0x346D468E, 0xA0819011 }
+	#define SCENARIO_SCREEN_EFFECT_REFERENCE_BLOCK_ID { 0x4306B484, 0x346D468E, 0xA0819011, 0x270B0D88 }
 	TAG_STRUCT(
 		scenario_screen_effect_reference_block,
 		"scenario_screen_effect_reference_block",
@@ -18463,7 +18463,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(screen_effect_group_reference_tagref, SCREEN_EFFECT_TAG);
 
-	#define OBJECT_SALT_STORAGE_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0x2BAB1657, 0x98084D7F, 0x8C0FFCBC }
+	#define OBJECT_SALT_STORAGE_ARRAY_STRUCT_DEFINITION_ID { 0x2BAB1657, 0x98084D7F, 0x8C0FFCBC, 0x954E72C1 }
 	TAG_STRUCT(
 		object_salt_storage_array_struct_definition,
 		"object_salt_storage_array",
@@ -18476,7 +18476,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_ZONE_SET_CLUSTER_PVS_BIT_VECTOR_BLOCK_ID { 0x00000000, 0x91455EA9, 0x29C14710, 0x9953A70B }
+	#define SCENARIO_ZONE_SET_CLUSTER_PVS_BIT_VECTOR_BLOCK_ID { 0x91455EA9, 0x29C14710, 0x9953A70B, 0x26677B16 }
 	TAG_STRUCT(
 		scenario_zone_set_cluster_pvs_bit_vector_block,
 		"scenario_zone_set_cluster_pvs_bit_vector_block",
@@ -18489,7 +18489,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_ZONE_SET_BSP_BITS_BLOCK_ID { 0x00000000, 0x10A94FBA, 0xA71E43CE, 0x8AC7E6E6 }
+	#define SCENARIO_ZONE_SET_BSP_BITS_BLOCK_ID { 0x10A94FBA, 0xA71E43CE, 0x8AC7E6E6, 0x78196CDB }
 	TAG_STRUCT(
 		scenario_zone_set_bsp_bits_block,
 		"scenario_zone_set_bsp_bits_block",
@@ -18502,7 +18502,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_ZONE_SET_CLUSTER_PVS_BLOCK_ID { 0x00000000, 0x6ACD70D4, 0x2B484AE0, 0xA1A1A7CB }
+	#define SCENARIO_ZONE_SET_CLUSTER_PVS_BLOCK_ID { 0x6ACD70D4, 0x2B484AE0, 0xA1A1A7CB, 0x597648C4 }
 	TAG_STRUCT(
 		scenario_zone_set_cluster_pvs_block,
 		"scenario_zone_set_cluster_pvs_block",
@@ -18515,7 +18515,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_ZONE_SET_CLUSTER_SKY_INDICES_BLOCK_ID { 0x00000000, 0x0384FB21, 0x66064946, 0xB82696F3 }
+	#define SCENARIO_ZONE_SET_CLUSTER_SKY_INDICES_BLOCK_ID { 0x0384FB21, 0x66064946, 0xB82696F3, 0x28E7B5C5 }
 	TAG_STRUCT(
 		scenario_zone_set_cluster_sky_indices_block,
 		"scenario_zone_set_cluster_sky_indices_block",
@@ -18528,7 +18528,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_ZONE_SET_MULTIPLE_SKIES_VISIBLE_BIT_VECTOR_BLOCK_ID { 0x00000000, 0x0314FB21, 0x66364916, 0xA82696F3 }
+	#define SCENARIO_ZONE_SET_MULTIPLE_SKIES_VISIBLE_BIT_VECTOR_BLOCK_ID { 0x0314FB21, 0x66364916, 0xA82696F3, 0x2BE7B5C5 }
 	TAG_STRUCT(
 		scenario_zone_set_multiple_skies_visible_bit_vector_block,
 		"scenario_zone_set_multiple_skies_visible_bit_vector_block",
@@ -18541,7 +18541,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CLUSTER_AUDIO_BIT_VECTOR_BLOCK_ID { 0x00000000, 0x10EE9E59, 0x67D84016, 0xA3CE2C0F }
+	#define CLUSTER_AUDIO_BIT_VECTOR_BLOCK_ID { 0x10EE9E59, 0x67D84016, 0xA3CE2C0F, 0x72CFD878 }
 	TAG_STRUCT(
 		cluster_audio_bit_vector_block,
 		"cluster_audio_bit_vector_block",
@@ -18554,7 +18554,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CLUSTER_AUDIO_CLUSTER_INDICES_BLOCK_ID { 0x00000000, 0xB84E32B5, 0xA96B458C, 0xA10013DF }
+	#define CLUSTER_AUDIO_CLUSTER_INDICES_BLOCK_ID { 0xB84E32B5, 0xA96B458C, 0xA10013DF, 0xED58EB05 }
 	TAG_STRUCT(
 		cluster_audio_cluster_indices_block,
 		"cluster_audio_cluster_indices_block",
@@ -18567,7 +18567,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CLUSTER_AUDIO_CLUSTER_NEIGHBORS_BLOCK_ID { 0x00000000, 0x485364AA, 0x49FE4541, 0x9AE29324 }
+	#define CLUSTER_AUDIO_CLUSTER_NEIGHBORS_BLOCK_ID { 0x485364AA, 0x49FE4541, 0x9AE29324, 0x2B5075B6 }
 	TAG_STRUCT(
 		cluster_audio_cluster_neighbors_block,
 		"cluster_audio_cluster_neighbors_block",
@@ -18580,7 +18580,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_ZONE_SET_BSP_PVS_BLOCK_ID { 0x00000000, 0xFF83875C, 0xA9F04229, 0xA769E3B0 }
+	#define SCENARIO_ZONE_SET_BSP_PVS_BLOCK_ID { 0xFF83875C, 0xA9F04229, 0xA769E3B0, 0xE36AB1A8 }
 	TAG_STRUCT(
 		scenario_zone_set_bsp_pvs_block,
 		"scenario_zone_set_bsp_pvs_block",
@@ -18599,7 +18599,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_ZONE_SET_BSP_CHECKSUM_BLOCK_ID { 0x00000000, 0xA095C3A1, 0x36A34F37, 0xBC4C3E01 }
+	#define SCENARIO_ZONE_SET_BSP_CHECKSUM_BLOCK_ID { 0xA095C3A1, 0x36A34F37, 0xBC4C3E01, 0x17E4A7C7 }
 	TAG_STRUCT(
 		scenario_zone_set_bsp_checksum_block,
 		"scenario_zone_set_bsp_checksum_block",
@@ -18612,7 +18612,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_ZONE_SET_PVS_BLOCK_ID { 0x00000000, 0x1B4A2C99, 0x8ECA4B38, 0x8A4A2436 }
+	#define SCENARIO_ZONE_SET_PVS_BLOCK_ID { 0x1B4A2C99, 0x8ECA4B38, 0x8A4A2436, 0x5888158E }
 	TAG_STRUCT(
 		scenario_zone_set_pvs_block,
 		"scenario_zone_set_pvs_block",
@@ -18636,7 +18636,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenario_zone_set_pvs_flags, scenario_zone_set_pvs_flags_strings, _countof(scenario_zone_set_pvs_flags_strings));
 
-	#define SCENARIO_ZONE_SET_BLOCK_ID { 0x00000000, 0x49565D10, 0xEFBE4EE6, 0xB18E7C6D }
+	#define SCENARIO_ZONE_SET_BLOCK_ID { 0x49565D10, 0xEFBE4EE6, 0xB18E7C6D, 0x68053DDB }
 	TAG_STRUCT(
 		scenario_zone_set_block,
 		"scenario_zone_set_block",
@@ -18665,7 +18665,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenario_zone_set_flags_definition, scenario_zone_set_flags_definition_strings, _countof(scenario_zone_set_flags_definition_strings));
 
-	#define SCENARIO_LIGHTING_ZONE_SET_BLOCK_ID { 0x00000000, 0x79C011B7, 0xF6B34F11, 0xB4F34E8E }
+	#define SCENARIO_LIGHTING_ZONE_SET_BLOCK_ID { 0x79C011B7, 0xF6B34F11, 0xB4F34E8E, 0x389F9F4F }
 	TAG_STRUCT(
 		scenario_lighting_zone_set_block,
 		"scenario_lighting_zone_set_block",
@@ -18680,7 +18680,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CINEMATIC_LIGHTING_PALETTE_BLOCK_ID { 0x00000000, 0x43D75F43, 0xE5A54B36, 0xB4332785 }
+	#define SCENARIO_CINEMATIC_LIGHTING_PALETTE_BLOCK_ID { 0x43D75F43, 0xE5A54B36, 0xB4332785, 0x75D44A46 }
 	TAG_STRUCT(
 		scenario_cinematic_lighting_palette_block,
 		"scenario_cinematic_lighting_palette_block",
@@ -18694,7 +18694,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CORTANA_EFFECT_BLOCK_ID { 0x00000000, 0x80192CED, 0xBDDD4071, 0x8BB9A7BE }
+	#define SCENARIO_CORTANA_EFFECT_BLOCK_ID { 0x80192CED, 0xBDDD4071, 0x8BB9A7BE, 0x6646F1E9 }
 	TAG_STRUCT(
 		scenario_cortana_effect_block,
 		"scenario_cortana_effect_block",
@@ -18707,7 +18707,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_AIRPROBES_BLOCK_ID { 0x00000000, 0x7F6345AD, 0x5BD4425F, 0x8DEEF6ED }
+	#define SCENARIO_AIRPROBES_BLOCK_ID { 0x7F6345AD, 0x5BD4425F, 0x8DEEF6ED, 0xF522A677 }
 	TAG_STRUCT(
 		scenario_airprobes_block,
 		"scenario_airprobes_block",
@@ -18723,7 +18723,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_BUDGET_REFERENCES_BLOCK_ID { 0x00000000, 0x236E8B7D, 0x9D0D45DE, 0x9CEAEB74 }
+	#define SCENARIO_BUDGET_REFERENCES_BLOCK_ID { 0x236E8B7D, 0x9D0D45DE, 0x9CEAEB74, 0xFEDA3382 }
 	TAG_STRUCT(
 		scenario_budget_references_block,
 		"scenario_budget_references_block",
@@ -18738,7 +18738,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(_reference$4_tagref, INVALID_TAG);
 
-	#define SCENARIO_REQUIRED_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0xA9B90BB8, 0xC5684B2B, 0xA9CD6FDD }
+	#define SCENARIO_REQUIRED_RESOURCE_STRUCT_DEFINITION_ID { 0xA9B90BB8, 0xC5684B2B, 0xA9CD6FDD, 0x9B7C6602 }
 	TAG_STRUCT(
 		scenario_required_resource_struct_definition,
 		"scenario_required_resource_struct_definition",
@@ -18751,7 +18751,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_SCAVENGER_HUNT_OBJECT_BLOCK_ID { 0x00000000, 0x236E8B7D, 0x9D0D45DE, 0x9CEAEB74 }
+	#define SCENARIO_SCAVENGER_HUNT_OBJECT_BLOCK_ID { 0x236E8B7D, 0x9D0D45DE, 0x9CEAEB74, 0xFEDA3383 }
 	TAG_STRUCT(
 		scenario_scavenger_hunt_object_block,
 		"scenario_scavenger_hunt_object_block",
@@ -18766,7 +18766,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_STRUCT_DEFINITION_ID { 0x00000000, 0xEFAE882E, 0x0DC94D1D, 0xA358CB6A }
+	#define SCENARIO_STRUCT_DEFINITION_ID { 0xEFAE882E, 0x0DC94D1D, 0xA358CB6A, 0x34875D40 }
 	TAG_STRUCT(
 		scenario_struct_definition,
 		"scenario_struct_definition",
@@ -18790,7 +18790,7 @@ namespace halo3_tools {
 		{ _field_block, "lighting zone sets", &blofeld::halo3_tools::scenario_lighting_zone_set_block_block },
 		{ _field_block, "predicted resources", &blofeld::halo3_tools::g_null_block_block },
 		{ _field_block, "functions", &blofeld::halo3_tools::scenario_function_block_block },
-		{ _field_data, "editor scenario data" },
+		{ _field_data, "editor scenario data", &blofeld::halo3_tools::editor_scenario_data_definition },
 		{ _field_block, "comments", &blofeld::halo3_tools::editor_comment_block_block },
 		{ _field_block, "unused scenario environment objects", &blofeld::halo3_tools::dont_use_me_scenario_environment_object_block_block },
 		{ _field_block, "object names", &blofeld::halo3_tools::scenario_object_names_block_block, _field_id_sort },
@@ -18863,7 +18863,7 @@ namespace halo3_tools {
 		{ _field_block, "ai pathfinding data", &blofeld::halo3_tools::pathfinding_data_block_block },
 		{ _field_block, "ai user hint data", &blofeld::halo3_tools::user_hint_block_block },
 		{ _field_block, "ai recording references", &blofeld::halo3_tools::ai_recording_reference_block_block },
-		{ _field_data, "script string data" },
+		{ _field_data, "script string data", &blofeld::halo3_tools::hs_string_data_definition },
 		{ _field_block, "scripts", &blofeld::halo3_tools::hs_scripts_block_block },
 		{ _field_block, "globals", &blofeld::halo3_tools::hs_globals_block_block },
 		{ _field_block, "references", &blofeld::halo3_tools::hs_references_block_block },
@@ -18970,7 +18970,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(performance_throttles_group_reference_tagref, PERFORMANCE_THROTTLES_TAG);
 
-	#define SCENARIO_TRIGGER_VOLUME_STRUCT_ID { 0x00000000, 0xBF59DB68, 0x05A9439E, 0x811C3B2F }
+	#define SCENARIO_TRIGGER_VOLUME_STRUCT_ID { 0xBF59DB68, 0x05A9439E, 0x811C3B2F, 0xADE31F09 }
 	TAG_STRUCT(
 		scenario_trigger_volume_struct,
 		"scenario_trigger_volume_struct",
@@ -18993,7 +18993,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCREEN_EFFECT_SCALAR_FUNCTION_STRUCT_ID { 0x00000000, 0xD2D2C2B8, 0xA3D24359, 0x8D127DD8 }
+	#define SCREEN_EFFECT_SCALAR_FUNCTION_STRUCT_ID { 0xD2D2C2B8, 0xA3D24359, 0x8D127DD8, 0x7EB7F3D8 }
 	TAG_STRUCT(
 		screen_effect_scalar_function_struct,
 		"screen_effect_scalar_function_struct",
@@ -19007,7 +19007,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SINGLE_SCREEN_EFFECT_ID { 0x00000000, 0x2E559B36, 0x4E3546A7, 0xA1AE1E29 }
+	#define SINGLE_SCREEN_EFFECT_ID { 0x2E559B36, 0x4E3546A7, 0xA1AE1E29, 0x90AA239F }
 	TAG_STRUCT(
 		single_screen_effect,
 		"single_screen_effect",
@@ -19049,7 +19049,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(area_screen_effect_flags_definition, area_screen_effect_flags_definition_strings, _countof(area_screen_effect_flags_definition_strings));
 
-	#define AREA_SCREEN_EFFECT_STRUCT_DEFINITION_ID { 0x00000000, 0xE25095D4, 0x57E84346, 0xAA15B7AB }
+	#define AREA_SCREEN_EFFECT_STRUCT_DEFINITION_ID { 0xE25095D4, 0x57E84346, 0xAA15B7AB, 0x8088091E }
 	TAG_STRUCT(
 		area_screen_effect_struct_definition,
 		"area_screen_effect_struct_definition",
@@ -19062,7 +19062,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ATMOSPHERE_SETTING_BLOCK_ID { 0x00000000, 0x05D9F272, 0xDCED4E3D, 0x8346BE0C }
+	#define ATMOSPHERE_SETTING_BLOCK_ID { 0x05D9F272, 0xDCED4E3D, 0x8346BE0C, 0x45020E2C }
 	TAG_STRUCT(
 		atmosphere_setting_block,
 		"atmosphere_setting_block",
@@ -19115,7 +19115,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(atmosphere_flags, atmosphere_flags_strings, _countof(atmosphere_flags_strings));
 
-	#define UNDERWATER_SETTING_BLOCK_ID { 0x00000000, 0x374A69ED, 0x97D24CE5, 0x900F5C79 }
+	#define UNDERWATER_SETTING_BLOCK_ID { 0x374A69ED, 0x97D24CE5, 0x900F5C79, 0xA3FD83B1 }
 	TAG_STRUCT(
 		underwater_setting_block,
 		"underwater_setting_block",
@@ -19130,7 +19130,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SKY_ATM_PARAMETERS_STRUCT_DEFINITION_ID { 0x00000000, 0xE6F253EA, 0x07C04F2F, 0xBB4AB73C }
+	#define SKY_ATM_PARAMETERS_STRUCT_DEFINITION_ID { 0xE6F253EA, 0x07C04F2F, 0xBB4AB73C, 0x7089652F }
 	TAG_STRUCT(
 		sky_atm_parameters_struct_definition,
 		"sky_atm_parameters_struct_definition",
@@ -19172,7 +19172,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(global_sort_layer_enum_defintion, global_sort_layer_enum_defintion_strings, _countof(global_sort_layer_enum_defintion_strings));
 
-	#define CINEMATIC_SH_LIGHT_BLOCK_ID { 0x00000000, 0xBCF365C7, 0xA4DA476C, 0x9CBA12DE }
+	#define CINEMATIC_SH_LIGHT_BLOCK_ID { 0xBCF365C7, 0xA4DA476C, 0x9CBA12DE, 0xED6DE339 }
 	TAG_STRUCT(
 		cinematic_sh_light_block,
 		"cinematic_sh_light_block",
@@ -19196,7 +19196,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(cinematic_sh_light_flags, cinematic_sh_light_flags_strings, _countof(cinematic_sh_light_flags_strings));
 
-	#define CINEMATIC_DYNAMIC_LIGHT_BLOCK_ID { 0x00000000, 0x6D9568FD, 0x448D4F36, 0x9C5940F5 }
+	#define CINEMATIC_DYNAMIC_LIGHT_BLOCK_ID { 0x6D9568FD, 0x448D4F36, 0x9C5940F5, 0x15B39D09 }
 	TAG_STRUCT(
 		cinematic_dynamic_light_block,
 		"cinematic_dynamic_light_block",
@@ -19223,7 +19223,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(light_group_reference$2_tagref, LIGHT_TAG);
 
-	#define NEW_CINEMATIC_LIGHTING_STRUCT_DEFINITION_ID { 0x00000000, 0x6E8A26A1, 0xE0954B7C, 0xA1044895 }
+	#define NEW_CINEMATIC_LIGHTING_STRUCT_DEFINITION_ID { 0x6E8A26A1, 0xE0954B7C, 0xA1044895, 0x5B59B00D }
 	TAG_STRUCT(
 		new_cinematic_lighting_struct_definition,
 		"new_cinematic_lighting_struct_definition",
@@ -19238,7 +19238,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHIELD_IMPACT_STRUCT_DEFINITION_ID { 0x00000000, 0x0C627936, 0x3C6642FA, 0xAD2D41FD }
+	#define SHIELD_IMPACT_STRUCT_DEFINITION_ID { 0x0C627936, 0x3C6642FA, 0xAD2D41FD, 0x3F729B2F }
 	TAG_STRUCT(
 		shield_impact_struct_definition,
 		"shield_impact_struct_definition",
@@ -19274,7 +19274,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WIND_SCALAR_FUNCTION_STRUCT_ID { 0x00000000, 0xC19F77F7, 0xBDE74B5E, 0xA4BA598F }
+	#define WIND_SCALAR_FUNCTION_STRUCT_ID { 0xC19F77F7, 0xBDE74B5E, 0xA4BA598F, 0x198FA328 }
 	TAG_STRUCT(
 		wind_scalar_function_struct,
 		"wind_scalar_function_struct",
@@ -19288,7 +19288,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WIND_BLOCK_ID { 0x00000000, 0x4F54D275, 0x39034545, 0xA099DD8C }
+	#define WIND_BLOCK_ID { 0x4F54D275, 0x39034545, 0xA099DD8C, 0xB8647BC2 }
 	TAG_STRUCT(
 		wind_block,
 		"wind_block",
@@ -19309,7 +19309,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_ENVIRONMENT_GROUP_STRUCT_DEFINITION_ID { 0x00000000, 0x4CD177FC, 0x8F1042D4, 0xBED5960A }
+	#define SOUND_ENVIRONMENT_GROUP_STRUCT_DEFINITION_ID { 0x4CD177FC, 0x8F1042D4, 0xBED5960A, 0x5BFBBABB }
 	TAG_STRUCT(
 		sound_environment_group_struct_definition,
 		"sound_environment_group",
@@ -19337,7 +19337,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LENS_FLARE_REFLECTION_BLOCK_ID { 0x00000000, 0xFBC30377, 0x4BFC46CA, 0x879F8A99 }
+	#define LENS_FLARE_REFLECTION_BLOCK_ID { 0xFBC30377, 0x4BFC46CA, 0x879F8A99, 0xBC0D240A }
 	TAG_STRUCT(
 		lens_flare_reflection_block,
 		"lens_flare_reflection_block",
@@ -19385,7 +19385,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(lens_flare_reflection_flags_definition, lens_flare_reflection_flags_definition_strings, _countof(lens_flare_reflection_flags_definition_strings));
 
-	#define LENS_FLARE_SCALAR_ANIMATION_BLOCK_ID { 0x00000000, 0x70D82126, 0xAABD40BB, 0xA37A03B0 }
+	#define LENS_FLARE_SCALAR_ANIMATION_BLOCK_ID { 0x70D82126, 0xAABD40BB, 0xA37A03B0, 0x9D77D10B }
 	TAG_STRUCT(
 		lens_flare_scalar_animation_block,
 		"lens_flare_scalar_animation_block",
@@ -19398,7 +19398,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LENS_FLARE_COLOR_FUNCTION_STRUCT_ID { 0x00000000, 0x3DBB7F1A, 0x54F94FD0, 0x9D24DA91 }
+	#define LENS_FLARE_COLOR_FUNCTION_STRUCT_ID { 0x3DBB7F1A, 0x54F94FD0, 0x9D24DA91, 0x297A3078 }
 	TAG_STRUCT(
 		lens_flare_color_function_struct,
 		"lens_flare_color_function_struct",
@@ -19425,7 +19425,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(output_mod_enum$4, output_mod_enum$4_strings, _countof(output_mod_enum$4_strings));
 
-	#define LENS_FLARE_COLOR_ANIMATION_BLOCK_ID { 0x00000000, 0xA0B6D131, 0x2A634A2F, 0x8DD9CB77 }
+	#define LENS_FLARE_COLOR_ANIMATION_BLOCK_ID { 0xA0B6D131, 0x2A634A2F, 0x8DD9CB77, 0x8BDC993A }
 	TAG_STRUCT(
 		lens_flare_color_animation_block,
 		"lens_flare_color_animation_block",
@@ -19438,7 +19438,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LENS_FLARE_STRUCT_DEFINITION_ID { 0x00000000, 0xDA19E8C2, 0xEFC54593, 0xAB4A3192 }
+	#define LENS_FLARE_STRUCT_DEFINITION_ID { 0xDA19E8C2, 0xEFC54593, 0xAB4A3192, 0x74E25FCB }
 	TAG_STRUCT(
 		lens_flare_struct_definition,
 		"lens_flare_struct_definition",
@@ -19544,7 +19544,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(lens_flare_animation_flags_definition, lens_flare_animation_flags_definition_strings, _countof(lens_flare_animation_flags_definition_strings));
 
-	#define PLANAR_FOG_PATCHY_FOG_BLOCK_ID { 0x00000000, 0x61B2A839, 0xEFFE4EEA, 0x9596C446 }
+	#define PLANAR_FOG_PATCHY_FOG_BLOCK_ID { 0x61B2A839, 0xEFFE4EEA, 0x9596C446, 0xFC3C395A }
 	TAG_STRUCT(
 		planar_fog_patchy_fog_block,
 		"planar_fog_patchy_fog_block",
@@ -19566,7 +19566,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(patchy_fog_group_reference_tagref, PATCHY_FOG_TAG);
 
-	#define PLANAR_FOG_STRUCT_DEFINITION_ID { 0x00000000, 0xA42E0FDD, 0xFDE04C16, 0xB5E02990 }
+	#define PLANAR_FOG_STRUCT_DEFINITION_ID { 0xA42E0FDD, 0xFDE04C16, 0xB5E02990, 0xFBF0B49D }
 	TAG_STRUCT(
 		planar_fog_struct_definition,
 		"planar_fog_struct_definition",
@@ -19621,7 +19621,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(sound_environment_group_reference$2_tagref, SOUND_ENVIRONMENT_TAG);
 
-	#define PATCHY_FOG_STRUCT_DEFINITION_ID { 0x00000000, 0x7D1803DA, 0x59E74731, 0x9178F0C0 }
+	#define PATCHY_FOG_STRUCT_DEFINITION_ID { 0x7D1803DA, 0x59E74731, 0x9178F0C0, 0x24C9F2DD }
 	TAG_STRUCT(
 		patchy_fog_struct_definition,
 		"patchy_fog_struct_definition",
@@ -19667,7 +19667,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(patchy_fog_flags_definition, patchy_fog_flags_definition_strings, _countof(patchy_fog_flags_definition_strings));
 
-	#define DECAL_DEFINITION_BLOCK_ID { 0x00000000, 0x05E5AE1B, 0x33A44FBF, 0x83F60D66 }
+	#define DECAL_DEFINITION_BLOCK_ID { 0x05E5AE1B, 0x33A44FBF, 0x83F60D66, 0xAC15FDB8 }
 	TAG_STRUCT(
 		decal_definition_block,
 		"decal_definition_block",
@@ -19702,7 +19702,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(decal_pass_enum, decal_pass_enum_strings, _countof(decal_pass_enum_strings));
 
-	#define DECAL_SYSTEM_STRUCT_DEFINITION_ID { 0x00000000, 0x570BB931, 0x8CB3411C, 0xB0466FBE }
+	#define DECAL_SYSTEM_STRUCT_DEFINITION_ID { 0x570BB931, 0x8CB3411C, 0xB0466FBE, 0x7FE4EEE5 }
 	TAG_STRUCT(
 		decal_system_struct_definition,
 		"decal_system_struct_definition",
@@ -19734,7 +19734,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(decal_system_flags, decal_system_flags_strings, _countof(decal_system_flags_strings));
 
-	#define SCENARIO_DESCRIPTION_BLOCK_ID { 0x00000000, 0x7D8A2617, 0x205147A6, 0x9D349A6A }
+	#define SCENARIO_DESCRIPTION_BLOCK_ID { 0x7D8A2617, 0x205147A6, 0x9D349A6A, 0xD9966E2B }
 	TAG_STRUCT(
 		scenario_description_block,
 		"scenario_description_block",
@@ -19751,7 +19751,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_SCENARIO_DESCRIPTION_STRUCT_DEFINITION_ID { 0x00000000, 0xD647C9B6, 0xBBE94E29, 0xA5059E78 }
+	#define MULTIPLAYER_SCENARIO_DESCRIPTION_STRUCT_DEFINITION_ID { 0xD647C9B6, 0xBBE94E29, 0xA5059E78, 0x431E3C82 }
 	TAG_STRUCT(
 		multiplayer_scenario_description_struct_definition,
 		"multiplayer_scenario_description_struct_definition",
@@ -19764,7 +19764,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DETAIL_OBJECT_TYPE_BLOCK_ID { 0x00000000, 0xAD1BA8EC, 0x9D6D4B81, 0x941E1C74 }
+	#define DETAIL_OBJECT_TYPE_BLOCK_ID { 0xAD1BA8EC, 0x9D6D4B81, 0x941E1C74, 0x6B46F40A }
 	TAG_STRUCT(
 		detail_object_type_block,
 		"detail_object_type_block",
@@ -19799,7 +19799,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(detail_object_type_flags_definition, detail_object_type_flags_definition_strings, _countof(detail_object_type_flags_definition_strings));
 
-	#define DETAIL_OBJECT_COLLECTION_STRUCT_DEFINITION_ID { 0x00000000, 0x5410E64E, 0x0296459C, 0xAC1594F8 }
+	#define DETAIL_OBJECT_COLLECTION_STRUCT_DEFINITION_ID { 0x5410E64E, 0x0296459C, 0xAC1594F8, 0xF1099A8B }
 	TAG_STRUCT(
 		detail_object_collection_struct_definition,
 		"detail_object_collection_struct_definition",
@@ -19825,7 +19825,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(detail_object_collection_type_enum_definition, detail_object_collection_type_enum_definition_strings, _countof(detail_object_collection_type_enum_definition_strings));
 
-	#define GLOBAL_DETAIL_OBJECT_CELLS_BLOCK_ID { 0x00000000, 0x1960315C, 0xBFE04781, 0xBB7BDB66 }
+	#define GLOBAL_DETAIL_OBJECT_CELLS_BLOCK_ID { 0x1960315C, 0xBFE04781, 0xBB7BDB66, 0x5627F0EE }
 	TAG_STRUCT(
 		global_detail_object_cells_block,
 		"global_detail_object_cells_block",
@@ -19845,7 +19845,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_DETAIL_OBJECT_BLOCK_ID { 0x00000000, 0x1418CEDE, 0x449D419B, 0x9406F322 }
+	#define GLOBAL_DETAIL_OBJECT_BLOCK_ID { 0x1418CEDE, 0x449D419B, 0x9406F322, 0xA3D43D98 }
 	TAG_STRUCT(
 		global_detail_object_block,
 		"global_detail_object_block",
@@ -19862,7 +19862,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_DETAIL_OBJECT_COUNTS_BLOCK_ID { 0x00000000, 0xCB802C6A, 0xFBE64494, 0x9401AEFB }
+	#define GLOBAL_DETAIL_OBJECT_COUNTS_BLOCK_ID { 0xCB802C6A, 0xFBE64494, 0x9401AEFB, 0x0759E910 }
 	TAG_STRUCT(
 		global_detail_object_counts_block,
 		"global_detail_object_counts_block",
@@ -19875,7 +19875,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_Z_REFERENCE_VECTOR_BLOCK_ID { 0x00000000, 0x2BDA3AB4, 0x28434572, 0xA6BF6C69 }
+	#define GLOBAL_Z_REFERENCE_VECTOR_BLOCK_ID { 0x2BDA3AB4, 0x28434572, 0xA6BF6C69, 0x72508C99 }
 	TAG_STRUCT(
 		global_z_reference_vector_block,
 		"global_z_reference_vector_block",
@@ -19891,7 +19891,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MOUSE_CURSOR_BITMAP_REFERENCE_BLOCK_ID { 0x00000000, 0x03387345, 0x82F89A22, 0xE928B22A }
+	#define MOUSE_CURSOR_BITMAP_REFERENCE_BLOCK_ID { 0x03387345, 0x82F89A22, 0xE928B22A, 0xBBAF8924 }
 	TAG_STRUCT(
 		mouse_cursor_bitmap_reference_block,
 		"mouse_cursor_bitmap_reference_block",
@@ -19904,7 +19904,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MOUSE_CURSOR_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x03387346, 0x82F89A22, 0xE928B22A }
+	#define MOUSE_CURSOR_DEFINITION_STRUCT_DEFINITION_ID { 0x03387346, 0x82F89A22, 0xE928B22A, 0xBBAF8924 }
 	TAG_STRUCT(
 		mouse_cursor_definition_struct_definition,
 		"mouse_cursor_definition_struct_definition",
@@ -19919,7 +19919,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define OLD_MATERIAL_EFFECT_MATERIAL_BLOCK_ID { 0x00000000, 0x4F36A27D, 0x89FD4598, 0x8E5E3AD5 }
+	#define OLD_MATERIAL_EFFECT_MATERIAL_BLOCK_ID { 0x4F36A27D, 0x89FD4598, 0x8E5E3AD5, 0xF3F90ADA }
 	TAG_STRUCT(
 		old_material_effect_material_block,
 		"old_material_effect_material_block",
@@ -19954,7 +19954,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(sweeneter_mode_enum, sweeneter_mode_enum_strings, _countof(sweeneter_mode_enum_strings));
 
-	#define MATERIAL_EFFECT_BLOCK_V2_ID { 0x00000000, 0xB0032D67, 0x821D41B8, 0xAE3F37AC }
+	#define MATERIAL_EFFECT_BLOCK_V2_ID { 0xB0032D67, 0x821D41B8, 0xAE3F37AC, 0x6CC0FD16 }
 	TAG_STRUCT(
 		material_effect_block_v2,
 		"material_effect_block_v2",
@@ -19969,7 +19969,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MATERIAL_EFFECTS_BLOCK_STRUCT_ID { 0x00000000, 0x1B36A19F, 0x5F674BCE, 0x97D54F55 }
+	#define MATERIAL_EFFECTS_BLOCK_STRUCT_ID { 0x1B36A19F, 0x5F674BCE, 0x97D54F55, 0xE0F07B7A }
 	TAG_STRUCT(
 		material_effects_block_struct,
 		"material_effects_block_struct",
@@ -19983,7 +19983,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MATERIAL_EFFECT_MATERIAL_BLOCK_ID { 0x00000000, 0x8FCE6765, 0x945C435C, 0x9241DE33 }
+	#define MATERIAL_EFFECT_MATERIAL_BLOCK_ID { 0x8FCE6765, 0x945C435C, 0x9241DE33, 0xDC8ED887 }
 	TAG_STRUCT(
 		material_effect_material_block,
 		"material_effect_material_block",
@@ -20009,7 +20009,7 @@ namespace halo3_tools {
 		INVALID_TAG
 	};
 
-	#define SCENARIO_RESOURCE_LAYER_IDENTIFIER_STRUCT_ID { 0x00000000, 0xFF1B968F, 0x95A74C99, 0xBC24CF4D }
+	#define SCENARIO_RESOURCE_LAYER_IDENTIFIER_STRUCT_ID { 0xFF1B968F, 0x95A74C99, 0xBC24CF4D, 0xC44641AA }
 	TAG_STRUCT(
 		scenario_resource_layer_identifier_struct,
 		"scenario_resource_layer_identifier_struct",
@@ -20022,7 +20022,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_SCENERY_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0x83575E2A, 0xA4174E8E, 0x9D5936DF }
+	#define SCENARIO_SCENERY_RESOURCE_STRUCT_DEFINITION_ID { 0x83575E2A, 0xA4174E8E, 0x9D5936DF, 0x0C265747 }
 	TAG_STRUCT(
 		scenario_scenery_resource_struct_definition,
 		"scenario_scenery_resource_struct_definition",
@@ -20045,7 +20045,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_BIPEDS_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0x475BF7B2, 0x0BFF4F85, 0xBE6BF131 }
+	#define SCENARIO_BIPEDS_RESOURCE_STRUCT_DEFINITION_ID { 0x475BF7B2, 0x0BFF4F85, 0xBE6BF131, 0xB328AD1F }
 	TAG_STRUCT(
 		scenario_bipeds_resource_struct_definition,
 		"scenario_bipeds_resource_struct_definition",
@@ -20065,7 +20065,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_VEHICLES_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0xB2122BA7, 0x3E684441, 0xAFBB65B3 }
+	#define SCENARIO_VEHICLES_RESOURCE_STRUCT_DEFINITION_ID { 0xB2122BA7, 0x3E684441, 0xAFBB65B3, 0x7EE745D9 }
 	TAG_STRUCT(
 		scenario_vehicles_resource_struct_definition,
 		"scenario_vehicles_resource_struct_definition",
@@ -20085,7 +20085,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_EQUIPMENT_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0x37F9E756, 0x75174954, 0xA868B90A }
+	#define SCENARIO_EQUIPMENT_RESOURCE_STRUCT_DEFINITION_ID { 0x37F9E756, 0x75174954, 0xA868B90A, 0xFCCF234A }
 	TAG_STRUCT(
 		scenario_equipment_resource_struct_definition,
 		"scenario_equipment_resource_struct_definition",
@@ -20105,7 +20105,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_WEAPONS_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0x967807C0, 0x44984362, 0xB2A17DAC }
+	#define SCENARIO_WEAPONS_RESOURCE_STRUCT_DEFINITION_ID { 0x967807C0, 0x44984362, 0xB2A17DAC, 0x6F86E5C2 }
 	TAG_STRUCT(
 		scenario_weapons_resource_struct_definition,
 		"scenario_weapons_resource_struct_definition",
@@ -20125,7 +20125,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_SOUND_SCENERY_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0xC7FE1414, 0xEECB4788, 0x9F3E4313 }
+	#define SCENARIO_SOUND_SCENERY_RESOURCE_STRUCT_DEFINITION_ID { 0xC7FE1414, 0xEECB4788, 0x9F3E4313, 0x8DED9662 }
 	TAG_STRUCT(
 		scenario_sound_scenery_resource_struct_definition,
 		"scenario_sound_scenery_resource_struct_definition",
@@ -20145,7 +20145,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_LIGHTS_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0x820EABCF, 0x8B234A05, 0xA2CE83B6 }
+	#define SCENARIO_LIGHTS_RESOURCE_STRUCT_DEFINITION_ID { 0x820EABCF, 0x8B234A05, 0xA2CE83B6, 0x6A942638 }
 	TAG_STRUCT(
 		scenario_lights_resource_struct_definition,
 		"scenario_lights_resource_struct_definition",
@@ -20165,7 +20165,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_DEVICES_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0xC4AEFD3D, 0xB8E94412, 0xAA9948D1 }
+	#define SCENARIO_DEVICES_RESOURCE_STRUCT_DEFINITION_ID { 0xC4AEFD3D, 0xB8E94412, 0xAA9948D1, 0xC793E826 }
 	TAG_STRUCT(
 		scenario_devices_resource_struct_definition,
 		"scenario_devices_resource_struct_definition",
@@ -20192,7 +20192,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_EFFECT_SCENERY_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0x5C0701D8, 0x2BD94F1D, 0xAE1BBB2B }
+	#define SCENARIO_EFFECT_SCENERY_RESOURCE_STRUCT_DEFINITION_ID { 0x5C0701D8, 0x2BD94F1D, 0xAE1BBB2B, 0x8AFB3507 }
 	TAG_STRUCT(
 		scenario_effect_scenery_resource_struct_definition,
 		"scenario_effect_scenery_resource_struct_definition",
@@ -20212,7 +20212,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_DECALS_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0xDBC7B190, 0x736844B9, 0xA22B2FEC }
+	#define SCENARIO_DECALS_RESOURCE_STRUCT_DEFINITION_ID { 0xDBC7B190, 0x736844B9, 0xA22B2FEC, 0x8DF64BE0 }
 	TAG_STRUCT(
 		scenario_decals_resource_struct_definition,
 		"scenario_decals_resource_struct_definition",
@@ -20228,7 +20228,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CINEMATICS_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0x3465F018, 0x826144C4, 0x932F5DFC }
+	#define SCENARIO_CINEMATICS_RESOURCE_STRUCT_DEFINITION_ID { 0x3465F018, 0x826144C4, 0x932F5DFC, 0xD3E086C6 }
 	TAG_STRUCT(
 		scenario_cinematics_resource_struct_definition,
 		"scenario_cinematics_resource_struct_definition",
@@ -20245,7 +20245,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_TRIGGER_VOLUMES_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0xD8DB1578, 0x222D4D16, 0x8DC9DFF7 }
+	#define SCENARIO_TRIGGER_VOLUMES_RESOURCE_STRUCT_DEFINITION_ID { 0xD8DB1578, 0x222D4D16, 0x8DC9DFF7, 0xE5FDE56B }
 	TAG_STRUCT(
 		scenario_trigger_volumes_resource_struct_definition,
 		"scenario_trigger_volumes_resource_struct_definition",
@@ -20261,7 +20261,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CLUSTER_DATA_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0xB7877AD3, 0x8B904A87, 0xBC400966 }
+	#define SCENARIO_CLUSTER_DATA_RESOURCE_STRUCT_DEFINITION_ID { 0xB7877AD3, 0x8B904A87, 0xBC400966, 0xCB3DFE3E }
 	TAG_STRUCT(
 		scenario_cluster_data_resource_struct_definition,
 		"scenario_cluster_data_resource_struct_definition",
@@ -20279,7 +20279,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_SKY_REFERENCES_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0x5F44104C, 0x15E74093, 0x9F6C3959 }
+	#define SCENARIO_SKY_REFERENCES_RESOURCE_STRUCT_DEFINITION_ID { 0x5F44104C, 0x15E74093, 0x9F6C3959, 0xB1199A19 }
 	TAG_STRUCT(
 		scenario_sky_references_resource_struct_definition,
 		"scenario_sky_references_resource_struct_definition",
@@ -20293,7 +20293,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CUBEMAP_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0x66EC0310, 0x4C1D4F6C, 0xADEAB033 }
+	#define SCENARIO_CUBEMAP_RESOURCE_STRUCT_DEFINITION_ID { 0x66EC0310, 0x4C1D4F6C, 0xADEAB033, 0x9240394E }
 	TAG_STRUCT(
 		scenario_cubemap_resource_struct_definition,
 		"scenario_cubemap_resource_struct_definition",
@@ -20306,7 +20306,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_AI_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0x5F5F4D72, 0x3A654A18, 0x9C0B65E1 }
+	#define SCENARIO_AI_RESOURCE_STRUCT_DEFINITION_ID { 0x5F5F4D72, 0x3A654A18, 0x9C0B65E1, 0x2C92E297 }
 	TAG_STRUCT(
 		scenario_ai_resource_struct_definition,
 		"scenario_ai_resource_struct_definition",
@@ -20337,7 +20337,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_COMMENTS_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0x2A284F04, 0xB74C4091, 0xB21003C5 }
+	#define SCENARIO_COMMENTS_RESOURCE_STRUCT_DEFINITION_ID { 0x2A284F04, 0xB74C4091, 0xB21003C5, 0x6B1179F3 }
 	TAG_STRUCT(
 		scenario_comments_resource_struct_definition,
 		"scenario_comments_resource_struct_definition",
@@ -20350,7 +20350,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CREATURE_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0x653278AF, 0xD8CF4819, 0x8576EFB0 }
+	#define SCENARIO_CREATURE_RESOURCE_STRUCT_DEFINITION_ID { 0x653278AF, 0xD8CF4819, 0x8576EFB0, 0x3E621A27 }
 	TAG_STRUCT(
 		scenario_creature_resource_struct_definition,
 		"scenario_creature_resource_struct_definition",
@@ -20370,7 +20370,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_DECORATORS_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0x44CA7462, 0xFC714FE5, 0xB749E74B }
+	#define SCENARIO_DECORATORS_RESOURCE_STRUCT_DEFINITION_ID { 0x44CA7462, 0xFC714FE5, 0xB749E74B, 0xB519C7F1 }
 	TAG_STRUCT(
 		scenario_decorators_resource_struct_definition,
 		"scenario_decorators_resource_struct_definition",
@@ -20385,7 +20385,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_STRUCTURE_LIGHTING_RESOURCE_STRUCT_DEFINITION_ID { 0x00000000, 0xDDD32C16, 0xD9F04420, 0xAF3B2B69 }
+	#define SCENARIO_STRUCTURE_LIGHTING_RESOURCE_STRUCT_DEFINITION_ID { 0xDDD32C16, 0xD9F04420, 0xAF3B2B69, 0xF7BD5884 }
 	TAG_STRUCT(
 		scenario_structure_lighting_resource_struct_definition,
 		"scenario_structure_lighting_resource_struct_definition",
@@ -20398,7 +20398,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_HS_SOURCE_REFERENCE_BLOCK_ID { 0x00000000, 0x8CF36B3A, 0x8C224FCC, 0xA38A9B83 }
+	#define SCENARIO_HS_SOURCE_REFERENCE_BLOCK_ID { 0x8CF36B3A, 0x8C224FCC, 0xA38A9B83, 0xCEC80ED2 }
 	TAG_STRUCT(
 		scenario_hs_source_reference_block,
 		"scenario_hs_source_reference_block",
@@ -20413,7 +20413,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(scenario_hs_source_file_group_reference_tagref, SCENARIO_HS_SOURCE_FILE_TAG);
 
-	#define SCENARIO_AI_RESOURCE_REFERENCE_BLOCK_ID { 0x00000000, 0x59BDC50E, 0x4F624F19, 0x9DDC3B84 }
+	#define SCENARIO_AI_RESOURCE_REFERENCE_BLOCK_ID { 0x59BDC50E, 0x4F624F19, 0x9DDC3B84, 0xFFDFF3A7 }
 	TAG_STRUCT(
 		scenario_ai_resource_reference_block,
 		"scenario_ai_resource_reference_block",
@@ -20428,7 +20428,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(scenario_ai_resource_group_reference_tagref, SCENARIO_AI_RESOURCE_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
-	#define SCENARIO_RESOURCE_REFERENCE_BLOCK_ID { 0x00000000, 0x15DA3453, 0xE60D493D, 0xA717CC66 }
+	#define SCENARIO_RESOURCE_REFERENCE_BLOCK_ID { 0x15DA3453, 0xE60D493D, 0xA717CC66, 0xA242F9A0 }
 	TAG_STRUCT(
 		scenario_resource_reference_block,
 		"scenario_resource_reference_block",
@@ -20443,7 +20443,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(_reference$5_tagref, INVALID_TAG);
 
-	#define SCENARIO_SPLIT_RESOURCES_BLOCK_STRUCT_ID { 0x00000000, 0xFCE6866C, 0xDA914821, 0x80CF9EC5 }
+	#define SCENARIO_SPLIT_RESOURCES_BLOCK_STRUCT_ID { 0xFCE6866C, 0xDA914821, 0x80CF9EC5, 0xF526F280 }
 	TAG_STRUCT(
 		scenario_split_resources_block_struct,
 		"scenario_split_resources_block_struct",
@@ -20517,7 +20517,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(scenario_cubemap_resource_group_reference_tagref, SCENARIO_CUBEMAP_RESOURCE_TAG);
 
-	#define SCENARIO_RESOURCES_BLOCK_STRUCT_ID { 0x00000000, 0x3CE75F87, 0x2263458C, 0xB934A64B }
+	#define SCENARIO_RESOURCES_BLOCK_STRUCT_ID { 0x3CE75F87, 0x2263458C, 0xB934A64B, 0x780A7075 }
 	TAG_STRUCT(
 		scenario_resources_block_struct,
 		"scenario_resources_block_struct",
@@ -20539,7 +20539,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenario_resource_flags_definition, scenario_resource_flags_definition_strings, _countof(scenario_resource_flags_definition_strings));
 
-	#define SOUND_CLASS_BLOCK_ID { 0x00000000, 0xBFA3C09A, 0x60FB4329, 0x9B90CCD6 }
+	#define SOUND_CLASS_BLOCK_ID { 0xBFA3C09A, 0x60FB4329, 0x9B90CCD6, 0x5AA62B3F }
 	TAG_STRUCT(
 		sound_class_block,
 		"sound_class_block",
@@ -20640,7 +20640,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(sound_class_stereo_playback_definition, sound_class_stereo_playback_definition_strings, _countof(sound_class_stereo_playback_definition_strings));
 
-	#define SOUND_CLASSES_BLOCK_STRUCT_ID { 0x00000000, 0x75FD0DA6, 0x09ED40AC, 0x89E9FCF7 }
+	#define SOUND_CLASSES_BLOCK_STRUCT_ID { 0x75FD0DA6, 0x09ED40AC, 0x89E9FCF7, 0x523A0B97 }
 	TAG_STRUCT(
 		sound_classes_block_struct,
 		"sound_classes_block_struct",
@@ -20653,7 +20653,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_COLOR_BLOCK$2_ID { 0x00000000, 0x7E9866A8, 0xDE8F426F, 0x9F08988D }
+	#define MULTIPLAYER_COLOR_BLOCK$2_ID { 0x7E9866A8, 0xDE8F426F, 0x9F08988D, 0xFED37A7C }
 	TAG_STRUCT(
 		multiplayer_color_block$2,
 		"multiplayer_color_block",
@@ -20666,7 +20666,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CUSTOMIZED_MODEL_BITS_BLOCK_ID { 0x00000000, 0x237DA900, 0x19DC43CF, 0xADB1D7B2 }
+	#define CUSTOMIZED_MODEL_BITS_BLOCK_ID { 0x237DA900, 0x19DC43CF, 0xADB1D7B2, 0x75A28CC6 }
 	TAG_STRUCT(
 		customized_model_bits_block,
 		"customized_model_bits_block",
@@ -20680,7 +20680,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CUSTOMIZED_MODEL_SELECTION_BLOCK_ID { 0x00000000, 0x2C7D12D1, 0x9F3240C8, 0x9ABAC796 }
+	#define CUSTOMIZED_MODEL_SELECTION_BLOCK_ID { 0x2C7D12D1, 0x9F3240C8, 0x9ABAC796, 0xCCF4D351 }
 	TAG_STRUCT(
 		customized_model_selection_block,
 		"customized_model_selection_block",
@@ -20705,7 +20705,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(customized_model_selection_flags_definition, customized_model_selection_flags_definition_strings, _countof(customized_model_selection_flags_definition_strings));
 
-	#define CUSTOMIZED_MODEL_AREA_BLOCK_ID { 0x00000000, 0x09532E90, 0x7DEA4C44, 0xB3036532 }
+	#define CUSTOMIZED_MODEL_AREA_BLOCK_ID { 0x09532E90, 0x7DEA4C44, 0xB3036532, 0x2BF2A961 }
 	TAG_STRUCT(
 		customized_model_area_block,
 		"customized_model_area_block",
@@ -20719,7 +20719,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CUSTOMIZED_MODEL_CHARACTERS_BLOCK_ID { 0x00000000, 0x577EA847, 0x582A4271, 0xBC9A2345 }
+	#define CUSTOMIZED_MODEL_CHARACTERS_BLOCK_ID { 0x577EA847, 0x582A4271, 0xBC9A2345, 0x4E4F4CE0 }
 	TAG_STRUCT(
 		customized_model_characters_block,
 		"customized_model_characters_block",
@@ -20733,7 +20733,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WEAPON_SELECTIONS_BLOCK_ID { 0x00000000, 0x414AD761, 0xE53A4C77, 0x8306C25E }
+	#define WEAPON_SELECTIONS_BLOCK_ID { 0x414AD761, 0xE53A4C77, 0x8306C25E, 0xFC4A75CD }
 	TAG_STRUCT(
 		weapon_selections_block,
 		"weapon_selections_block",
@@ -20750,7 +20750,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(weapon_group_reference$6_tagref, WEAPON_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
 
-	#define VEHICLE_SELECTIONS_BLOCK_ID { 0x00000000, 0xF81BA8F6, 0x98B841FF, 0x804ED45A }
+	#define VEHICLE_SELECTIONS_BLOCK_ID { 0xF81BA8F6, 0x98B841FF, 0x804ED45A, 0x576334CD }
 	TAG_STRUCT(
 		vehicle_selections_block,
 		"vehicle_selections_block",
@@ -20766,7 +20766,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(vehicle_group_reference$2_tagref, VEHICLE_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
 
-	#define GRENADE_SELECTIONS_BLOCK_ID { 0x00000000, 0x70731CEF, 0xE9464E6C, 0xBE96122E }
+	#define GRENADE_SELECTIONS_BLOCK_ID { 0x70731CEF, 0xE9464E6C, 0xBE96122E, 0x3652A267 }
 	TAG_STRUCT(
 		grenade_selections_block,
 		"grenade_selections_block",
@@ -20780,7 +20780,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define OBJECT_REMAP_ENTRY_BLOCK_ID { 0x00000000, 0xF1BE561E, 0x1171460B, 0xA5395B4D }
+	#define OBJECT_REMAP_ENTRY_BLOCK_ID { 0xF1BE561E, 0x1171460B, 0xA5395B4D, 0x07E4AC65 }
 	TAG_STRUCT(
 		object_remap_entry_block,
 		"object_remap_entry_block",
@@ -20794,7 +20794,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_WEAPON_SET_BLOCK_ID { 0x00000000, 0x788BDD5E, 0xAB1A46BE, 0x9C474B7E }
+	#define MULTIPLAYER_WEAPON_SET_BLOCK_ID { 0x788BDD5E, 0xAB1A46BE, 0x9C474B7E, 0x1BE0F091 }
 	TAG_STRUCT(
 		multiplayer_weapon_set_block,
 		"multiplayer_weapon_set_block",
@@ -20808,7 +20808,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_VEHICLE_SET_BLOCK_ID { 0x00000000, 0x7FAF5041, 0xED1F488B, 0x84D341D8 }
+	#define MULTIPLAYER_VEHICLE_SET_BLOCK_ID { 0x7FAF5041, 0xED1F488B, 0x84D341D8, 0x89B84619 }
 	TAG_STRUCT(
 		multiplayer_vehicle_set_block,
 		"multiplayer_vehicle_set_block",
@@ -20822,7 +20822,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_UNIVERSAL_BLOCK_ID { 0x00000000, 0x2F00F890, 0x345F45B7, 0x879F73D4 }
+	#define MULTIPLAYER_UNIVERSAL_BLOCK_ID { 0x2F00F890, 0x345F45B7, 0x879F73D4, 0x0A5D9AEC }
 	TAG_STRUCT(
 		multiplayer_universal_block,
 		"multiplayer_universal_block",
@@ -20857,7 +20857,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(game_engine_settings_definition_group_reference_tagref, GAME_ENGINE_SETTINGS_DEFINITION_TAG);
 
-	#define WEAPON_SPAWN_INFLUENCE_BLOCK_ID { 0x00000000, 0x87D4A845, 0x10704864, 0x96A1F457 }
+	#define WEAPON_SPAWN_INFLUENCE_BLOCK_ID { 0x87D4A845, 0x10704864, 0x96A1F457, 0x58B8ED50 }
 	TAG_STRUCT(
 		weapon_spawn_influence_block,
 		"weapon_spawn_influence_block",
@@ -20874,7 +20874,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VEHICLE_SPAWN_INFLUENCE_BLOCK_ID { 0x00000000, 0x64AE7B1C, 0x32A64906, 0x892A75B8 }
+	#define VEHICLE_SPAWN_INFLUENCE_BLOCK_ID { 0x64AE7B1C, 0x32A64906, 0x892A75B8, 0xEBC0BE95 }
 	TAG_STRUCT(
 		vehicle_spawn_influence_block,
 		"vehicle_spawn_influence_block",
@@ -20891,7 +20891,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PROJECTILE_SPAWN_INFLUENCE_BLOCK_ID { 0x00000000, 0x6E14464D, 0x2EB94C80, 0xA81C3654 }
+	#define PROJECTILE_SPAWN_INFLUENCE_BLOCK_ID { 0x6E14464D, 0x2EB94C80, 0xA81C3654, 0xB772B549 }
 	TAG_STRUCT(
 		projectile_spawn_influence_block,
 		"projectile_spawn_influence_block",
@@ -20909,7 +20909,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(projectile_group_reference$3_tagref, PROJECTILE_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
 
-	#define EQUIPMENT_SPAWN_INFLUENCE_BLOCK_ID { 0x00000000, 0x2642BDE4, 0x300F4A33, 0x8ABD12F8 }
+	#define EQUIPMENT_SPAWN_INFLUENCE_BLOCK_ID { 0x2642BDE4, 0x300F4A33, 0x8ABD12F8, 0x1B904F85 }
 	TAG_STRUCT(
 		equipment_spawn_influence_block,
 		"equipment_spawn_influence_block",
@@ -20925,7 +20925,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(equipment_group_reference$4_tagref, EQUIPMENT_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
 
-	#define MULTIPLAYER_CONSTANTS_BLOCK_ID { 0x00000000, 0x8FFC2A96, 0xD8DF4203, 0xBBF5DD91 }
+	#define MULTIPLAYER_CONSTANTS_BLOCK_ID { 0x8FFC2A96, 0xD8DF4203, 0xBBF5DD91, 0xE6C61E5A }
 	TAG_STRUCT(
 		multiplayer_constants_block,
 		"multiplayer_constants_block",
@@ -21066,7 +21066,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GAME_ENGINE_STATUS_RESPONSE_BLOCK_ID { 0x00000000, 0x79A4818A, 0xCCA84A1F, 0x96B1B1D4 }
+	#define GAME_ENGINE_STATUS_RESPONSE_BLOCK_ID { 0x79A4818A, 0xCCA84A1F, 0x96B1B1D4, 0x3F614F45 }
 	TAG_STRUCT(
 		game_engine_status_response_block,
 		"game_engine_status_response_block",
@@ -21126,7 +21126,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_status_enum_definition, game_engine_status_enum_definition_strings, _countof(game_engine_status_enum_definition_strings));
 
-	#define SOUNDS_BLOCK_ID { 0x00000000, 0x8FD2D002, 0xD5E44F17, 0x90660349 }
+	#define SOUNDS_BLOCK_ID { 0x8FD2D002, 0xD5E44F17, 0x90660349, 0xA707D3BB }
 	TAG_STRUCT(
 		sounds_block,
 		"sounds_block",
@@ -21139,7 +21139,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LOOPING_SOUNDS_BLOCK_ID { 0x00000000, 0x44B2F1E2, 0x220F4C4E, 0xBBEC6399 }
+	#define LOOPING_SOUNDS_BLOCK_ID { 0x44B2F1E2, 0x220F4C4E, 0xBBEC6399, 0x48A923A2 }
 	TAG_STRUCT(
 		looping_sounds_block,
 		"looping_sounds_block",
@@ -21152,7 +21152,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_GLOBALS_STRUCT_DEFINITION_ID { 0x00000000, 0x5DEE8F01, 0xEE20468C, 0xA3EE7C18 }
+	#define MULTIPLAYER_GLOBALS_STRUCT_DEFINITION_ID { 0x5DEE8F01, 0xEE20468C, 0xA3EE7C18, 0x2D409CC3 }
 	TAG_STRUCT(
 		multiplayer_globals_struct_definition,
 		"multiplayer_globals_struct_definition",
@@ -21166,7 +21166,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_RUNTIME_BLOCK_ID { 0x00000000, 0x6F17154D, 0x48564D05, 0xB362026A }
+	#define MULTIPLAYER_RUNTIME_BLOCK_ID { 0x6F17154D, 0x48564D05, 0xB362026A, 0x93F87F54 }
 	TAG_STRUCT(
 		multiplayer_runtime_block,
 		"multiplayer_runtime_block",
@@ -21222,7 +21222,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(render_method_group_reference$3_tagref, RENDER_METHOD_TAG);
 
-	#define PLAYER_TRAIT_SHIELD_VITALITY_BLOCK_ID { 0x00000000, 0xC7AA9D86, 0xD4774331, 0x85791E39 }
+	#define PLAYER_TRAIT_SHIELD_VITALITY_BLOCK_ID { 0xC7AA9D86, 0xD4774331, 0x85791E39, 0xB0DD4D7C }
 	TAG_STRUCT(
 		player_trait_shield_vitality_block,
 		"player_trait_shield_vitality_block",
@@ -21303,7 +21303,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(player_trait_vampirism, player_trait_vampirism_strings, _countof(player_trait_vampirism_strings));
 
-	#define PLAYER_TRAIT_WEAPONS_BLOCK_ID { 0x00000000, 0xAD377BF3, 0x6CA44C77, 0xA2B9F41C }
+	#define PLAYER_TRAIT_WEAPONS_BLOCK_ID { 0xAD377BF3, 0x6CA44C77, 0xA2B9F41C, 0x9081E28C }
 	TAG_STRUCT(
 		player_trait_weapons_block,
 		"player_trait_weapons_block",
@@ -21375,7 +21375,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(player_trait_grenade_count_setting, player_trait_grenade_count_setting_strings, _countof(player_trait_grenade_count_setting_strings));
 
-	#define PLAYER_TRAIT_MOVEMENT_BLOCK_ID { 0x00000000, 0x74AC35FA, 0xCA024738, 0x9DEDC2E9 }
+	#define PLAYER_TRAIT_MOVEMENT_BLOCK_ID { 0x74AC35FA, 0xCA024738, 0x9DEDC2E9, 0x8517604C }
 	TAG_STRUCT(
 		player_trait_movement_block,
 		"player_trait_movement_block",
@@ -21427,7 +21427,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(player_trait_movement_vehicle_usage, player_trait_movement_vehicle_usage_strings, _countof(player_trait_movement_vehicle_usage_strings));
 
-	#define PLAYER_TRAIT_SENSORS_BLOCK_ID { 0x00000000, 0x49B7994C, 0x38DE4C9B, 0x9134B1A4 }
+	#define PLAYER_TRAIT_SENSORS_BLOCK_ID { 0x49B7994C, 0x38DE4C9B, 0x9134B1A4, 0xAAE5938B }
 	TAG_STRUCT(
 		player_trait_sensors_block,
 		"player_trait_sensors_block",
@@ -21465,7 +21465,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(player_trait_sensors_motion_tracker_range, player_trait_sensors_motion_tracker_range_strings, _countof(player_trait_sensors_motion_tracker_range_strings));
 
-	#define PLAYER_TRAIT_APPEARANCE_BLOCK_ID { 0x00000000, 0xCCE91B14, 0x72924299, 0xA442173E }
+	#define PLAYER_TRAIT_APPEARANCE_BLOCK_ID { 0xCCE91B14, 0x72924299, 0xA442173E, 0x1A915FFD }
 	TAG_STRUCT(
 		player_trait_appearance_block,
 		"player_trait_appearance_block",
@@ -21530,7 +21530,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(player_trait_appearance_forced_change_color_settings, player_trait_appearance_forced_change_color_settings_strings, _countof(player_trait_appearance_forced_change_color_settings_strings));
 
-	#define GAME_ENGINE_PLAYER_TRAITS_BLOCK_ID { 0x00000000, 0xF63362FC, 0x54C34B03, 0xB281876F }
+	#define GAME_ENGINE_PLAYER_TRAITS_BLOCK_ID { 0xF63362FC, 0x54C34B03, 0xB281876F, 0x6CDFA31E }
 	TAG_STRUCT(
 		game_engine_player_traits_block,
 		"game_engine_player_traits_block",
@@ -21548,7 +21548,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GAME_ENGINE_MISCELLANEOUS_OPTIONS_BLOCK_ID { 0x00000000, 0x4E184020, 0x9F9B44E9, 0x9B53D8FA }
+	#define GAME_ENGINE_MISCELLANEOUS_OPTIONS_BLOCK_ID { 0x4E184020, 0x9F9B44E9, 0x9B53D8FA, 0x60936484 }
 	TAG_STRUCT(
 		game_engine_miscellaneous_options_block,
 		"game_engine_miscellaneous_options_block",
@@ -21579,7 +21579,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(round_reset_enum, round_reset_enum_strings, _countof(round_reset_enum_strings));
 
-	#define GAME_ENGINE_RESPAWN_OPTIONS_BLOCK_ID { 0x00000000, 0xAE909DD1, 0x6A184C06, 0xA850A80C }
+	#define GAME_ENGINE_RESPAWN_OPTIONS_BLOCK_ID { 0xAE909DD1, 0x6A184C06, 0xA850A80C, 0x6156FB90 }
 	TAG_STRUCT(
 		game_engine_respawn_options_block,
 		"game_engine_respawn_options_block",
@@ -21610,7 +21610,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_respawn_options_flags, game_engine_respawn_options_flags_strings, _countof(game_engine_respawn_options_flags_strings));
 
-	#define GAME_ENGINE_SOCIAL_OPTIONS_BLOCK_ID { 0x00000000, 0xEA186C9D, 0xC04940B9, 0xB8F44A1B }
+	#define GAME_ENGINE_SOCIAL_OPTIONS_BLOCK_ID { 0xEA186C9D, 0xC04940B9, 0xB8F44A1B, 0x4E8326DF }
 	TAG_STRUCT(
 		game_engine_social_options_block,
 		"game_engine_social_options_block",
@@ -21636,7 +21636,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_social_options_flags, game_engine_social_options_flags_strings, _countof(game_engine_social_options_flags_strings));
 
-	#define GAME_ENGINE_MAP_OVERRIDE_OPTIONS_BLOCK_ID { 0x00000000, 0xE881D96D, 0xBB884679, 0x9ACC0364 }
+	#define GAME_ENGINE_MAP_OVERRIDE_OPTIONS_BLOCK_ID { 0xE881D96D, 0xBB884679, 0x9ACC0364, 0xE9D68670 }
 	TAG_STRUCT(
 		game_engine_map_override_options_block,
 		"game_engine_map_override_options_block",
@@ -21666,7 +21666,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_map_override_options_flags, game_engine_map_override_options_flags_strings, _countof(game_engine_map_override_options_flags_strings));
 
-	#define GAME_ENGINE_SLAYER_VARIANT_BLOCK_ID { 0x00000000, 0xC85C9ED6, 0x9BB245AE, 0xAF532367 }
+	#define GAME_ENGINE_SLAYER_VARIANT_BLOCK_ID { 0xC85C9ED6, 0x9BB245AE, 0xAF532367, 0x781EBD22 }
 	TAG_STRUCT(
 		game_engine_slayer_variant_block,
 		"game_engine_slayer_variant_block",
@@ -21709,7 +21709,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(slayer_team_scoring_settings, slayer_team_scoring_settings_strings, _countof(slayer_team_scoring_settings_strings));
 
-	#define GAME_ENGINE_ODDBALL_VARIANT_BLOCK_ID { 0x00000000, 0x88F4A232, 0x599941A1, 0xB4F375C8 }
+	#define GAME_ENGINE_ODDBALL_VARIANT_BLOCK_ID { 0x88F4A232, 0x599941A1, 0xB4F375C8, 0x85CCA596 }
 	TAG_STRUCT(
 		game_engine_oddball_variant_block,
 		"game_engine_oddball_variant_block",
@@ -21754,7 +21754,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(oddball_variant_team_scoring_settings, oddball_variant_team_scoring_settings_strings, _countof(oddball_variant_team_scoring_settings_strings));
 
-	#define GAME_ENGINE_CTF_VARIANT_BLOCK_ID { 0x00000000, 0x488BD3A9, 0xD26A4D51, 0xA7F43B4B }
+	#define GAME_ENGINE_CTF_VARIANT_BLOCK_ID { 0x488BD3A9, 0xD26A4D51, 0xA7F43B4B, 0x1B45B434 }
 	TAG_STRUCT(
 		game_engine_ctf_variant_block,
 		"game_engine_ctf_variant_block",
@@ -21840,7 +21840,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(ctf_variant_sudden_death_time, ctf_variant_sudden_death_time_strings, _countof(ctf_variant_sudden_death_time_strings));
 
-	#define GAME_ENGINE_ASSAULT_VARIANT_BLOCK_ID { 0x00000000, 0x4F7E96B0, 0x10534DEB, 0x95641B8D }
+	#define GAME_ENGINE_ASSAULT_VARIANT_BLOCK_ID { 0x4F7E96B0, 0x10534DEB, 0x95641B8D, 0x42C06E18 }
 	TAG_STRUCT(
 		game_engine_assault_variant_block,
 		"game_engine_assault_variant_block",
@@ -21915,7 +21915,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(assault_variant_sudden_death_time, assault_variant_sudden_death_time_strings, _countof(assault_variant_sudden_death_time_strings));
 
-	#define GAME_ENGINE_INFECTION_VARIANT_BLOCK_ID { 0x00000000, 0xE87FED5C, 0xDA2E4242, 0xB232337D }
+	#define GAME_ENGINE_INFECTION_VARIANT_BLOCK_ID { 0xE87FED5C, 0xDA2E4242, 0xB232337D, 0x2291FD7D }
 	TAG_STRUCT(
 		game_engine_infection_variant_block,
 		"game_engine_infection_variant_block",
@@ -21994,7 +21994,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(infection_initial_zombie_count_settings, infection_initial_zombie_count_settings_strings, _countof(infection_initial_zombie_count_settings_strings));
 
-	#define GAME_ENGINE_KING_VARIANT_BLOCK_ID { 0x00000000, 0x51EB8C1D, 0x962140DE, 0xBE434810 }
+	#define GAME_ENGINE_KING_VARIANT_BLOCK_ID { 0x51EB8C1D, 0x962140DE, 0xBE434810, 0x659983F5 }
 	TAG_STRUCT(
 		game_engine_king_variant_block,
 		"game_engine_king_variant_block",
@@ -22058,7 +22058,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(king_moving_hill_order_settings, king_moving_hill_order_settings_strings, _countof(king_moving_hill_order_settings_strings));
 
-	#define GAME_ENGINE_TERRITORIES_VARIANT_BLOCK_ID { 0x00000000, 0xB3AEF918, 0x0EC34019, 0x9B236B5A }
+	#define GAME_ENGINE_TERRITORIES_VARIANT_BLOCK_ID { 0xB3AEF918, 0x0EC34019, 0x9B236B5A, 0x9F7C03B2 }
 	TAG_STRUCT(
 		game_engine_territories_variant_block,
 		"game_engine_territories_variant_block",
@@ -22125,7 +22125,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(territories_sudden_death_settings, territories_sudden_death_settings_strings, _countof(territories_sudden_death_settings_strings));
 
-	#define GAME_ENGINE_JUGGERNAUT_VARIANT_BLOCK_ID { 0x00000000, 0x153EA0D7, 0xEACC442E, 0x8AE7206C }
+	#define GAME_ENGINE_JUGGERNAUT_VARIANT_BLOCK_ID { 0x153EA0D7, 0xEACC442E, 0x8AE7206C, 0xE5C9CA19 }
 	TAG_STRUCT(
 		game_engine_juggernaut_variant_block,
 		"game_engine_juggernaut_variant_block",
@@ -22206,7 +22206,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(juggernaut_zone_order_settings, juggernaut_zone_order_settings_strings, _countof(juggernaut_zone_order_settings_strings));
 
-	#define GAME_ENGINE_VIP_VARIANT_BLOCK_ID { 0x00000000, 0xB364B82D, 0x119946CC, 0x918350E6 }
+	#define GAME_ENGINE_VIP_VARIANT_BLOCK_ID { 0xB364B82D, 0x119946CC, 0x918350E6, 0x6E5500E1 }
 	TAG_STRUCT(
 		game_engine_vip_variant_block,
 		"game_engine_vip_variant_block",
@@ -22282,7 +22282,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(vip_zone_order_settings, vip_zone_order_settings_strings, _countof(vip_zone_order_settings_strings));
 
-	#define GAME_ENGINE_SANDBOX_VARIANT_BLOCK_ID { 0x00000000, 0x5B14CC8E, 0x9237482D, 0xA4EED56E }
+	#define GAME_ENGINE_SANDBOX_VARIANT_BLOCK_ID { 0x5B14CC8E, 0x9237482D, 0xA4EED56E, 0x97F068DA }
 	TAG_STRUCT(
 		game_engine_sandbox_variant_block,
 		"game_engine_sandbox_variant_block",
@@ -22334,7 +22334,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(sandbox_respawn_time, sandbox_respawn_time_strings, _countof(sandbox_respawn_time_strings));
 
-	#define GAME_ENGINE_SETTINGS_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x2644FCED, 0xC39A4930, 0xB9F37CB2 }
+	#define GAME_ENGINE_SETTINGS_DEFINITION_STRUCT_DEFINITION_ID { 0x2644FCED, 0xC39A4930, 0xB9F37CB2, 0x70F9BDA5 }
 	TAG_STRUCT(
 		game_engine_settings_definition_struct_definition,
 		"game_engine_settings_definition_struct_definition",
@@ -22365,7 +22365,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_settings_flags, game_engine_settings_flags_strings, _countof(game_engine_settings_flags_strings));
 
-	#define SOUND_EFFECT_STRUCT_DEFINITION_ID { 0x00000000, 0xDDEAC512, 0x7C2646FE, 0xB674EE36 }
+	#define SOUND_EFFECT_STRUCT_DEFINITION_ID { 0xDDEAC512, 0x7C2646FE, 0xB674EE36, 0x6763C486 }
 	TAG_STRUCT(
 		sound_effect_struct_definition,
 		"sound_effect_struct_definition",
@@ -22378,14 +22378,14 @@ namespace halo3_tools {
 		{ _field_tag_reference, "template", &blofeld::halo3_tools::sound_effect_template_group_reference_tagref },
 		{ _field_block, "components", &blofeld::halo3_tools::sound_effect_component_block_block },
 		{ _field_block, "template overrides", &blofeld::halo3_tools::sound_effect_overrides_block_block },
-		{ _field_data, "hardware format" },
+		{ _field_data, "hardware format", &blofeld::halo3_tools::sound_effect_hardware_format_data_definition },
 		{ _field_block, "platform effect", &blofeld::halo3_tools::g_null_block_block },
 		{ _field_terminator }
 	};
 
 	TAG_REFERENCE(sound_effect_template_group_reference_tagref, SOUND_EFFECT_TEMPLATE_TAG);
 
-	#define SOUND_EFFECT_COMPONENT_BLOCK_ID { 0x00000000, 0xA4A3D138, 0x566D48A0, 0x88AEB28B }
+	#define SOUND_EFFECT_COMPONENT_BLOCK_ID { 0xA4A3D138, 0x566D48A0, 0x88AEB28B, 0x5913927F }
 	TAG_STRUCT(
 		sound_effect_component_block,
 		"sound_effect_component_block",
@@ -22418,7 +22418,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(sound_effect_component_flags, sound_effect_component_flags_strings, _countof(sound_effect_component_flags_strings));
 
-	#define SOUND_EFFECT_OVERRIDES_BLOCK_ID { 0x00000000, 0xD9CF12E6, 0x0F1C4C2F, 0xBDB2AFEC }
+	#define SOUND_EFFECT_OVERRIDES_BLOCK_ID { 0xD9CF12E6, 0x0F1C4C2F, 0xBDB2AFEC, 0xDEBFA826 }
 	TAG_STRUCT(
 		sound_effect_overrides_block,
 		"sound_effect_overrides_block",
@@ -22432,7 +22432,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_EFFECT_TEMPLATE_PARAMETER_BLOCK_ID { 0x00000000, 0x0C097B16, 0x12DF427A, 0xA170402E }
+	#define SOUND_EFFECT_TEMPLATE_PARAMETER_BLOCK_ID { 0x0C097B16, 0x12DF427A, 0xA170402E, 0xBFD48E4F }
 	TAG_STRUCT(
 		sound_effect_template_parameter_block,
 		"sound_effect_template_parameter_block",
@@ -22468,7 +22468,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(sound_effect_template_parameter_flags_definition, sound_effect_template_parameter_flags_definition_strings, _countof(sound_effect_template_parameter_flags_definition_strings));
 
-	#define SOUND_EFFECT_TEMPLATE_ADDITIONAL_SOUND_INPUT_BLOCK_ID { 0x00000000, 0xC146FB4E, 0x44454229, 0xB830C667 }
+	#define SOUND_EFFECT_TEMPLATE_ADDITIONAL_SOUND_INPUT_BLOCK_ID { 0xC146FB4E, 0x44454229, 0xB830C667, 0x1A9F31F0 }
 	TAG_STRUCT(
 		sound_effect_template_additional_sound_input_block,
 		"sound_effect_template_additional_sound_input_block",
@@ -22484,7 +22484,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_EFFECT_TEMPLATE_STRUCT_DEFINITION_ID { 0x00000000, 0xAB4E33F8, 0x77314AE8, 0x9EC2A912 }
+	#define SOUND_EFFECT_TEMPLATE_STRUCT_DEFINITION_ID { 0xAB4E33F8, 0x77314AE8, 0x9EC2A912, 0x98B0CCCD }
 	TAG_STRUCT(
 		sound_effect_template_struct_definition,
 		"sound_effect_template_struct_definition",
@@ -22499,7 +22499,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_EFFECT_OVERRIDE_PARAMETERS_BLOCK_ID { 0x00000000, 0xEC26EA0E, 0xBFC34134, 0xA6C94143 }
+	#define SOUND_EFFECT_OVERRIDE_PARAMETERS_BLOCK_ID { 0xEC26EA0E, 0xBFC34134, 0xA6C94143, 0xCF9B3F78 }
 	TAG_STRUCT(
 		sound_effect_override_parameters_block,
 		"sound_effect_override_parameters_block",
@@ -22519,7 +22519,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_EFFECT_TEMPLATES_BLOCK_ID { 0x00000000, 0x5C8458F8, 0x94B84560, 0x93EBB56F }
+	#define SOUND_EFFECT_TEMPLATES_BLOCK_ID { 0x5C8458F8, 0x94B84560, 0x93EBB56F, 0xA67E6E02 }
 	TAG_STRUCT(
 		sound_effect_templates_block,
 		"sound_effect_templates_block",
@@ -22530,7 +22530,7 @@ namespace halo3_tools {
 	{
 		{ _field_string_id, "dsp effect" },
 		FIELD_EXPLANATION("WARNING", "DON\'T MODIFY THIS TAG UNLESS YOU KNOW WHAT YOU ARE DOING"),
-		{ _field_data, "explanation" },
+		{ _field_data, "explanation", &blofeld::halo3_tools::sound_effect_template_explanation },
 		{ _field_long_flags, "flags", &blofeld::halo3_tools::sound_effect_template_flags_definition },
 		{ _field_short_integer, "dsp state offset" },
 		{ _field_short_integer, "dsp state size" },
@@ -22545,7 +22545,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(sound_effect_template_flags_definition, sound_effect_template_flags_definition_strings, _countof(sound_effect_template_flags_definition_strings));
 
-	#define PLATFORM_SOUND_OVERRIDE_MIXBINS_BLOCK_ID { 0x00000000, 0xFD5F38E8, 0x5FE84C98, 0x8CB12D71 }
+	#define PLATFORM_SOUND_OVERRIDE_MIXBINS_BLOCK_ID { 0xFD5F38E8, 0x5FE84C98, 0x8CB12D71, 0x04F09A92 }
 	TAG_STRUCT(
 		platform_sound_override_mixbins_block,
 		"platform_sound_override_mixbins_block",
@@ -22577,7 +22577,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(platform_sound_mixbin_enum_definition, platform_sound_mixbin_enum_definition_strings, _countof(platform_sound_mixbin_enum_definition_strings));
 
-	#define PLATFORM_SOUND_FILTER_BLOCK_ID { 0x00000000, 0x0947B337, 0xE51645EE, 0x90F6BDE7 }
+	#define PLATFORM_SOUND_FILTER_BLOCK_ID { 0x0947B337, 0xE51645EE, 0x90F6BDE7, 0x2F27FAFA }
 	TAG_STRUCT(
 		platform_sound_filter_block,
 		"platform_sound_filter_block",
@@ -22608,7 +22608,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(platform_sound_filter_type_enum_definition, platform_sound_filter_type_enum_definition_strings, _countof(platform_sound_filter_type_enum_definition_strings));
 
-	#define PLATFORM_SOUND_PITCH_LFO_BLOCK_ID { 0x00000000, 0x419B4394, 0x9A40451B, 0xBD3CD14C }
+	#define PLATFORM_SOUND_PITCH_LFO_BLOCK_ID { 0x419B4394, 0x9A40451B, 0xBD3CD14C, 0xDC585ABA }
 	TAG_STRUCT(
 		platform_sound_pitch_lfo_block,
 		"platform_sound_pitch_lfo_block",
@@ -22626,7 +22626,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PLATFORM_SOUND_FILTER_LFO_BLOCK_ID { 0x00000000, 0xD55A7151, 0xC4C146FE, 0x8A0DEEEC }
+	#define PLATFORM_SOUND_FILTER_LFO_BLOCK_ID { 0xD55A7151, 0xC4C146FE, 0x8A0DEEEC, 0xECC95EF7 }
 	TAG_STRUCT(
 		platform_sound_filter_lfo_block,
 		"platform_sound_filter_lfo_block",
@@ -22646,7 +22646,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_EFFECT_PLAYBACK_BLOCK_ID { 0x00000000, 0x3E639ADD, 0x63F14B71, 0xA93D0C5B }
+	#define SOUND_EFFECT_PLAYBACK_BLOCK_ID { 0x3E639ADD, 0x63F14B71, 0xA93D0C5B, 0x1199A572 }
 	TAG_STRUCT(
 		sound_effect_playback_block,
 		"sound_effect_playback_block",
@@ -22659,7 +22659,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PLATFORM_SOUND_PLAYBACK_BLOCK_ID { 0x00000000, 0x334A1B38, 0x94C44B5C, 0x9CBD395C }
+	#define PLATFORM_SOUND_PLAYBACK_BLOCK_ID { 0x334A1B38, 0x94C44B5C, 0x9CBD395C, 0x8A7B7F5A }
 	TAG_STRUCT(
 		platform_sound_playback_block,
 		"platform_sound_playback_block",
@@ -22673,7 +22673,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_EFFECT_COLLECTION_STRUCT_DEFINITION_ID { 0x00000000, 0xA24760BC, 0xCAB4458A, 0x9782A026 }
+	#define SOUND_EFFECT_COLLECTION_STRUCT_DEFINITION_ID { 0xA24760BC, 0xCAB4458A, 0x9782A026, 0xDBEF5B53 }
 	TAG_STRUCT(
 		sound_effect_collection_struct_definition,
 		"sound_effect_collection_struct_definition",
@@ -22686,7 +22686,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PLATFORM_SOUND_PLAYBACK_STRUCT_ID { 0x00000000, 0x59FB9222, 0xC4734528, 0x92692773 }
+	#define PLATFORM_SOUND_PLAYBACK_STRUCT_ID { 0x59FB9222, 0xC4734528, 0x92692773, 0x190B5506 }
 	TAG_STRUCT(
 		platform_sound_playback_struct,
 		"platform_sound_playback_struct",
@@ -22712,7 +22712,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(platform_sound_playback_flags_definition, platform_sound_playback_flags_definition_strings, _countof(platform_sound_playback_flags_definition_strings));
 
-	#define SIMPLE_PLATFORM_SOUND_PLAYBACK_STRUCT_ID { 0x00000000, 0x31CFE3B0, 0x65194B21, 0x8273043A }
+	#define SIMPLE_PLATFORM_SOUND_PLAYBACK_STRUCT_ID { 0x31CFE3B0, 0x65194B21, 0x8273043A, 0x7185E93E }
 	TAG_STRUCT(
 		simple_platform_sound_playback_struct,
 		"simple_platform_sound_playback_struct",
@@ -22731,7 +22731,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define G_NODE_FLAG_STORAGE_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0xFA382E96, 0x31004754, 0xA73B7ADD }
+	#define G_NODE_FLAG_STORAGE_ARRAY_STRUCT_DEFINITION_ID { 0xFA382E96, 0x31004754, 0xA73B7ADD, 0xC9AA134C }
 	TAG_STRUCT(
 		g_node_flag_storage_array_struct_definition,
 		"g_node_flag_storage_array",
@@ -22744,7 +22744,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_AIMING_SCREEN_STRUCT_ID { 0x00000000, 0xA933DD9C, 0x21874089, 0xA3990F17 }
+	#define ANIMATION_AIMING_SCREEN_STRUCT_ID { 0xA933DD9C, 0x21874089, 0xA3990F17, 0x00DD3043 }
 	TAG_STRUCT(
 		animation_aiming_screen_struct,
 		"animation_aiming_screen_struct",
@@ -22764,7 +22764,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_GRAPH_SOUND_REFERENCE_BLOCK_ID { 0x00000000, 0x9E2008A6, 0x15384504, 0x86E98642 }
+	#define ANIMATION_GRAPH_SOUND_REFERENCE_BLOCK_ID { 0x9E2008A6, 0x15384504, 0x86E98642, 0x770EB5DF }
 	TAG_STRUCT(
 		animation_graph_sound_reference_block,
 		"animation_graph_sound_reference_block",
@@ -22791,7 +22791,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(key_event_flags_enum, key_event_flags_enum_strings, _countof(key_event_flags_enum_strings));
 
-	#define ANIMATION_GRAPH_EFFECT_REFERENCE_BLOCK_ID { 0x00000000, 0x3CF4A82F, 0x85234898, 0xB66DD8B6 }
+	#define ANIMATION_GRAPH_EFFECT_REFERENCE_BLOCK_ID { 0x3CF4A82F, 0x85234898, 0xB66DD8B6, 0xB88F8280 }
 	TAG_STRUCT(
 		animation_graph_effect_reference_block,
 		"animation_graph_effect_reference_block",
@@ -22806,7 +22806,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_FRAME_EVENT_STRUCT_ID { 0x00000000, 0x4B542454, 0x08634540, 0x94899D46 }
+	#define ANIMATION_FRAME_EVENT_STRUCT_ID { 0x4B542454, 0x08634540, 0x94899D46, 0x7CF531E1 }
 	TAG_STRUCT(
 		animation_frame_event_struct,
 		"animation_frame_event_struct",
@@ -22838,7 +22838,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(frame_event_type_new, frame_event_type_new_strings, _countof(frame_event_type_new_strings));
 
-	#define ANIMATION_SOUND_EVENT_BLOCK_ID { 0x00000000, 0xB35BC4A2, 0x13E84535, 0x99DC4BB0 }
+	#define ANIMATION_SOUND_EVENT_BLOCK_ID { 0xB35BC4A2, 0x13E84535, 0x99DC4BB0, 0x8C7AEE2F }
 	TAG_STRUCT(
 		animation_sound_event_block,
 		"animation_sound_event_block",
@@ -22853,7 +22853,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_DIALOGUE_EVENT_BLOCK_ID { 0x00000000, 0x2A844863, 0x9AAD473C, 0x93A75C3E }
+	#define ANIMATION_DIALOGUE_EVENT_BLOCK_ID { 0x2A844863, 0x9AAD473C, 0x93A75C3E, 0xD1BF6F0E }
 	TAG_STRUCT(
 		animation_dialogue_event_block,
 		"animation_dialogue_event_block",
@@ -22881,7 +22881,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(animation_dialogue_event_enum, animation_dialogue_event_enum_strings, _countof(animation_dialogue_event_enum_strings));
 
-	#define ANIMATION_BLEND_SCREEN_BLOCK_ID { 0x00000000, 0xED41E38F, 0x7F884652, 0xAC5624AC }
+	#define ANIMATION_BLEND_SCREEN_BLOCK_ID { 0xED41E38F, 0x7F884652, 0xAC5624AC, 0x23F6E113 }
 	TAG_STRUCT(
 		animation_blend_screen_block,
 		"animation_blend_screen_block",
@@ -22895,7 +22895,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PACKED_DATA_SIZES_STRUCT_ID { 0x00000000, 0x1FBE28A2, 0x840641F2, 0x8852141E }
+	#define PACKED_DATA_SIZES_STRUCT_ID { 0x1FBE28A2, 0x840641F2, 0x8852141E, 0x02D54A2E }
 	TAG_STRUCT(
 		packed_data_sizes_struct,
 		"packed_data_sizes_struct",
@@ -22914,7 +22914,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define QUANTIZED_ORIENTATION_STRUCT_ID { 0x00000000, 0x214A3836, 0x146C45DD, 0x91315D22 }
+	#define QUANTIZED_ORIENTATION_STRUCT_ID { 0x214A3836, 0x146C45DD, 0x91315D22, 0x78CBEE5D }
 	TAG_STRUCT(
 		quantized_orientation_struct,
 		"quantized_orientation_struct",
@@ -22932,7 +22932,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define OBJECT_SPACE_NODE_DATA_BLOCK_ID { 0x00000000, 0x27BCCD47, 0x04C147A1, 0x9D4D4A77 }
+	#define OBJECT_SPACE_NODE_DATA_BLOCK_ID { 0x27BCCD47, 0x04C147A1, 0x9D4D4A77, 0xFA16E702 }
 	TAG_STRUCT(
 		object_space_node_data_block,
 		"object_space_node_data_block",
@@ -22955,7 +22955,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(orientation_component_flags, orientation_component_flags_strings, _countof(orientation_component_flags_strings));
 
-	#define FOOT_TRACKING_MEMBER_BLOCK_ID { 0x00000000, 0xD066D043, 0x7AF34927, 0xB01540CE }
+	#define FOOT_TRACKING_MEMBER_BLOCK_ID { 0xD066D043, 0x7AF34927, 0xB01540CE, 0x43143EB4 }
 	TAG_STRUCT(
 		foot_tracking_member_block,
 		"foot_tracking_member_block",
@@ -22980,7 +22980,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(foot_tracking_default_values, foot_tracking_default_values_strings, _countof(foot_tracking_default_values_strings));
 
-	#define FOOT_LOCK_CYCLE_BLOCK_ID { 0x00000000, 0xB3A64A4C, 0x6BC544B3, 0xAAAC4AF4 }
+	#define FOOT_LOCK_CYCLE_BLOCK_ID { 0xB3A64A4C, 0x6BC544B3, 0xAAAC4AF4, 0xA16E5881 }
 	TAG_STRUCT(
 		foot_lock_cycle_block,
 		"foot_lock_cycle_block",
@@ -22997,7 +22997,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FOOT_TRACKING_BLOCK_ID { 0x00000000, 0x65A0785D, 0x1C8B4E74, 0xB942B141 }
+	#define FOOT_TRACKING_BLOCK_ID { 0x65A0785D, 0x1C8B4E74, 0xB942B141, 0x5D95DF9E }
 	TAG_STRUCT(
 		foot_tracking_block,
 		"foot_tracking_block",
@@ -23012,7 +23012,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FOOT_TRACKING_DEFAULTS_ID { 0x00000000, 0x38B72849, 0xFBD74264, 0xBC245286 }
+	#define FOOT_TRACKING_DEFAULTS_ID { 0x38B72849, 0xFBD74264, 0xBC245286, 0x2F5A03BC }
 	TAG_STRUCT(
 		foot_tracking_defaults,
 		"foot_tracking_defaults",
@@ -23026,7 +23026,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_POOL_BLOCK_ID { 0x00000000, 0x1981C030, 0xF26F4042, 0x8148C7EA }
+	#define ANIMATION_POOL_BLOCK_ID { 0x1981C030, 0xF26F4042, 0x8148C7EA, 0xC814F353 }
 	TAG_STRUCT(
 		animation_pool_block,
 		"animation_pool_block",
@@ -23131,7 +23131,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(internal_animation_flags, internal_animation_flags_strings, _countof(internal_animation_flags_strings));
 
-	#define ANIMATION_INDEX_STRUCT_ID { 0x00000000, 0x460AC446, 0x6E044055, 0xB5772485 }
+	#define ANIMATION_INDEX_STRUCT_ID { 0x460AC446, 0x6E044055, 0xB5772485, 0xC9FCAEC3 }
 	TAG_STRUCT(
 		animation_index_struct,
 		"animation_index_struct",
@@ -23145,7 +23145,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_TRANSITION_STATE_STRUCT_ID { 0x00000000, 0x462ACFEE, 0x8F2243DC, 0x8DEBA812 }
+	#define ANIMATION_TRANSITION_STATE_STRUCT_ID { 0x462ACFEE, 0x8F2243DC, 0x8DEBA812, 0x22178E9A }
 	TAG_STRUCT(
 		animation_transition_state_struct,
 		"animation_transition_state_struct",
@@ -23161,7 +23161,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_DESTINATION_STATE_STRUCT_ID { 0x00000000, 0x6174C16F, 0xFBBA4D67, 0xBBA6256D }
+	#define ANIMATION_DESTINATION_STATE_STRUCT_ID { 0x6174C16F, 0xFBBA4D67, 0xBBA6256D, 0x3F1E99E6 }
 	TAG_STRUCT(
 		animation_destination_state_struct,
 		"animation_destination_state_struct",
@@ -23188,7 +23188,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(transition_keyframe_type, transition_keyframe_type_strings, _countof(transition_keyframe_type_strings));
 
-	#define ANIMATION_TRANSITION_DESTINATION_BLOCK_ID { 0x00000000, 0x53D4B816, 0x777448DA, 0xAEEF8A43 }
+	#define ANIMATION_TRANSITION_DESTINATION_BLOCK_ID { 0x53D4B816, 0x777448DA, 0xAEEF8A43, 0x84E7B27E }
 	TAG_STRUCT(
 		animation_transition_destination_block,
 		"animation_transition_destination_block",
@@ -23204,7 +23204,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_TRANSITION_BLOCK_ID { 0x00000000, 0x114D8BA8, 0x124147F7, 0xB248EF7F }
+	#define ANIMATION_TRANSITION_BLOCK_ID { 0x114D8BA8, 0x124147F7, 0xB248EF7F, 0x17A4B1B2 }
 	TAG_STRUCT(
 		animation_transition_block,
 		"animation_transition_block",
@@ -23219,7 +23219,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_IK_BLOCK_ID { 0x00000000, 0x298A3519, 0x24ED45D8, 0xB9C03830 }
+	#define ANIMATION_IK_BLOCK_ID { 0x298A3519, 0x24ED45D8, 0xB9C03830, 0x956878DD }
 	TAG_STRUCT(
 		animation_ik_block,
 		"animation_ik_block",
@@ -23233,7 +23233,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_ENTRY_BLOCK_ID { 0x00000000, 0xED625457, 0xB4F24A9B, 0x864B5469 }
+	#define ANIMATION_ENTRY_BLOCK_ID { 0xED625457, 0xB4F24A9B, 0x864B5469, 0x3C760EF5 }
 	TAG_STRUCT(
 		animation_entry_block,
 		"animation_entry_block",
@@ -23247,7 +23247,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_REGION_BLOCK_ID { 0x00000000, 0xC4A06F84, 0x33324424, 0x85ABA033 }
+	#define DAMAGE_REGION_BLOCK_ID { 0xC4A06F84, 0x33324424, 0x85ABA033, 0x78C5D41C }
 	TAG_STRUCT(
 		damage_region_block,
 		"damage_region_block",
@@ -23260,7 +23260,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_DIRECTION_BLOCK_ID { 0x00000000, 0x08E94A96, 0x4DFE4AA9, 0xB50211A8 }
+	#define DAMAGE_DIRECTION_BLOCK_ID { 0x08E94A96, 0x4DFE4AA9, 0xB50211A8, 0x1BE40FED }
 	TAG_STRUCT(
 		damage_direction_block,
 		"damage_direction_block",
@@ -23273,7 +23273,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_ANIMATION_BLOCK_ID { 0x00000000, 0x3ACB8A45, 0x68F24D9F, 0xA55254BA }
+	#define DAMAGE_ANIMATION_BLOCK_ID { 0x3ACB8A45, 0x68F24D9F, 0xA55254BA, 0x727902FD }
 	TAG_STRUCT(
 		damage_animation_block,
 		"damage_animation_block",
@@ -23287,7 +23287,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VEHICLE_SUSPENSION_BLOCK_ID { 0x00000000, 0x8896A049, 0xE9614E59, 0x9E0BC659 }
+	#define VEHICLE_SUSPENSION_BLOCK_ID { 0x8896A049, 0xE9614E59, 0x9E0BC659, 0xA399CF0C }
 	TAG_STRUCT(
 		vehicle_suspension_block,
 		"vehicle_suspension_block",
@@ -23310,7 +23310,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WEAPON_TYPE_BLOCK_ID { 0x00000000, 0x059E4356, 0x739A4C11, 0x8118B842 }
+	#define WEAPON_TYPE_BLOCK_ID { 0x059E4356, 0x739A4C11, 0x8118B842, 0xE5189F48 }
 	TAG_STRUCT(
 		weapon_type_block,
 		"weapon_type_block",
@@ -23327,7 +23327,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WEAPON_CLASS_BLOCK_ID { 0x00000000, 0x6216571C, 0x23BA46BC, 0x92F3480B }
+	#define WEAPON_CLASS_BLOCK_ID { 0x6216571C, 0x23BA46BC, 0x92F3480B, 0x1843D00C }
 	TAG_STRUCT(
 		weapon_class_block,
 		"weapon_class_block",
@@ -23342,7 +23342,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_MODE_BLOCK_ID { 0x00000000, 0x8D89D744, 0x83E7433C, 0xB92A43A6 }
+	#define ANIMATION_MODE_BLOCK_ID { 0x8D89D744, 0x83E7433C, 0xB92A43A6, 0x063E43E4 }
 	TAG_STRUCT(
 		animation_mode_block,
 		"animation_mode_block",
@@ -23358,7 +23358,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define OBJECT_ANIMATION_BLOCK_ID { 0x00000000, 0xC89466F6, 0x7EF04B56, 0xAF1ACD05 }
+	#define OBJECT_ANIMATION_BLOCK_ID { 0xC89466F6, 0x7EF04B56, 0xAF1ACD05, 0xDE675B3E }
 	TAG_STRUCT(
 		object_animation_block,
 		"object_animation_block",
@@ -23383,7 +23383,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(object_animation_mode, object_animation_mode_strings, _countof(object_animation_mode_strings));
 
-	#define ANIMATION_GRAPH_DEFINITIONS_STRUCT_ID { 0x00000000, 0x7378A5C8, 0x70D449B0, 0x88828F27 }
+	#define ANIMATION_GRAPH_DEFINITIONS_STRUCT_ID { 0x7378A5C8, 0x70D449B0, 0x88828F27, 0x7D26A6A7 }
 	TAG_STRUCT(
 		animation_graph_definitions_struct,
 		"animation_graph_definitions_struct",
@@ -23427,7 +23427,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(private_animation_graph_flags, private_animation_graph_flags_strings, _countof(private_animation_graph_flags_strings));
 
-	#define ANIMATION_GRAPH_CONTENTS_STRUCT_ID { 0x00000000, 0xBC004E8A, 0x1CC048DD, 0xBF08E736 }
+	#define ANIMATION_GRAPH_CONTENTS_STRUCT_ID { 0xBC004E8A, 0x1CC048DD, 0xBF08E736, 0x8D4C66FE }
 	TAG_STRUCT(
 		animation_graph_contents_struct,
 		"animation_graph_contents_struct",
@@ -23444,7 +23444,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define INHERITED_ANIMATION_NODE_MAP_BLOCK_ID { 0x00000000, 0x1268AB4E, 0x215248B5, 0x946D03DB }
+	#define INHERITED_ANIMATION_NODE_MAP_BLOCK_ID { 0x1268AB4E, 0x215248B5, 0x946D03DB, 0xA15E169F }
 	TAG_STRUCT(
 		inherited_animation_node_map_block,
 		"inherited_animation_node_map_block",
@@ -23457,7 +23457,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define INHERITED_ANIMATION_NODE_MAP_FLAG_BLOCK_ID { 0x00000000, 0x3ED77110, 0x0F524FC0, 0xA34B0BE3 }
+	#define INHERITED_ANIMATION_NODE_MAP_FLAG_BLOCK_ID { 0x3ED77110, 0x0F524FC0, 0xA34B0BE3, 0x168D8C7F }
 	TAG_STRUCT(
 		inherited_animation_node_map_flag_block,
 		"inherited_animation_node_map_flag_block",
@@ -23470,7 +23470,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define INHERITED_ANIMATION_BLOCK_ID { 0x00000000, 0xBBA74F4E, 0x94B64EE2, 0xA1DCD8E7 }
+	#define INHERITED_ANIMATION_BLOCK_ID { 0xBBA74F4E, 0x94B64EE2, 0xA1DCD8E7, 0x53D89B25 }
 	TAG_STRUCT(
 		inherited_animation_block,
 		"inherited_animation_block",
@@ -23487,7 +23487,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WEAPON_CLASS_LOOKUP_BLOCK_ID { 0x00000000, 0x829BCBD4, 0x902C4457, 0xB3D2562B }
+	#define WEAPON_CLASS_LOOKUP_BLOCK_ID { 0x829BCBD4, 0x902C4457, 0xB3D2562B, 0x178C3288 }
 	TAG_STRUCT(
 		weapon_class_lookup_block,
 		"weapon_class_lookup_block",
@@ -23501,7 +23501,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ADDITIONAL_NODE_DATA_BLOCK_ID { 0x00000000, 0x29A1DD97, 0xBB8948F7, 0xB606A4F9 }
+	#define ADDITIONAL_NODE_DATA_BLOCK_ID { 0x29A1DD97, 0xBB8948F7, 0xB606A4F9, 0xA4728C90 }
 	TAG_STRUCT(
 		additional_node_data_block,
 		"additional_node_data_block",
@@ -23519,7 +23519,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MODEL_ANIMATION_RUNTIME_DATA_STRUCT_ID { 0x00000000, 0xB1091BBF, 0xFC474475, 0x85A2D6A5 }
+	#define MODEL_ANIMATION_RUNTIME_DATA_STRUCT_ID { 0xB1091BBF, 0xFC474475, 0x85A2D6A5, 0x2FAF2F30 }
 	TAG_STRUCT(
 		model_animation_runtime_data_struct,
 		"model_animation_runtime_data_struct",
@@ -23536,7 +23536,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MODEL_ANIMATION_TAG_RESOURCE_MEMBER_ID { 0x00000000, 0xF84A790E, 0xBB494C5C, 0xA5D85B12 }
+	#define MODEL_ANIMATION_TAG_RESOURCE_MEMBER_ID { 0xF84A790E, 0xBB494C5C, 0xA5D85B12, 0x9758A12C }
 	TAG_STRUCT(
 		model_animation_tag_resource_member,
 		"model_animation_tag_resource_member",
@@ -23551,11 +23551,11 @@ namespace halo3_tools {
 		{ _field_char_integer, "node count" },
 		{ _field_char_enum, "movement_data_type", &blofeld::halo3_tools::frame_info_type_enum },
 		{ _field_struct, "data sizes", &blofeld::halo3_tools::packed_data_sizes_struct },
-		{ _field_data, "animation_data" },
+		{ _field_data, "animation_data", &blofeld::halo3_tools::aligned_animation_data_definition_v1 },
 		{ _field_terminator }
 	};
 
-	#define MODEL_ANIMATION_TAG_RESOURCE_STRUCT_ID { 0x00000000, 0x09439BE6, 0x3BDA48B1, 0x9947AD2E }
+	#define MODEL_ANIMATION_TAG_RESOURCE_STRUCT_ID { 0x09439BE6, 0x3BDA48B1, 0x9947AD2E, 0xA1280611 }
 	TAG_STRUCT(
 		model_animation_tag_resource_struct,
 		"model_animation_tag_resource_struct",
@@ -23568,7 +23568,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MODEL_ANIMATION_TAG_RESOURCE_GROUP_ID { 0x00000000, 0x47846C50, 0x26C74AF5, 0x8CBDED72 }
+	#define MODEL_ANIMATION_TAG_RESOURCE_GROUP_ID { 0x47846C50, 0x26C74AF5, 0x8CBDED72, 0x972458F6 }
 	TAG_STRUCT(
 		model_animation_tag_resource_group,
 		"model_animation_tag_resource_group",
@@ -23582,7 +23582,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MODEL_ANIMATION_GRAPH_BLOCK_STRUCT_ID { 0x00000000, 0xBC9BFC5F, 0x0D294C40, 0xAD92DA9E }
+	#define MODEL_ANIMATION_GRAPH_BLOCK_STRUCT_ID { 0xBC9BFC5F, 0x0D294C40, 0xAD92DA9E, 0xA336E795 }
 	TAG_STRUCT(
 		model_animation_graph_block_struct,
 		"model_animation_graph_block_struct",
@@ -23595,13 +23595,13 @@ namespace halo3_tools {
 		{ _field_struct, "content", &blofeld::halo3_tools::animation_graph_contents_struct },
 		{ _field_struct, "run time data", &blofeld::halo3_tools::model_animation_runtime_data_struct },
 		FIELD_EXPLANATION("RESULTS OF THE LAST IMPORT", nullptr),
-		{ _field_data, "last import results" },
+		{ _field_data, "last import results", &blofeld::halo3_tools::error_report_string_data$2 },
 		{ _field_block, "additional node data", &blofeld::halo3_tools::additional_node_data_block_block },
 		{ _field_block, "tag resource groups", &blofeld::halo3_tools::model_animation_tag_resource_group_block },
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_GRAPH_NODE_BLOCK_ID { 0x00000000, 0xA1BC3EC9, 0xA8A1454C, 0x8C893F2D }
+	#define ANIMATION_GRAPH_NODE_BLOCK_ID { 0xA1BC3EC9, 0xA8A1454C, 0x8C893F2D, 0x2CAC1368 }
 	TAG_STRUCT(
 		animation_graph_node_block,
 		"animation_graph_node_block",
@@ -23641,7 +23641,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(node_joint_flags, node_joint_flags_strings, _countof(node_joint_flags_strings));
 
-	#define ANIMATION_EFFECT_EVENT_BLOCK_ID { 0x00000000, 0xE4CD0730, 0x8A8342C9, 0xB1A8EE0B }
+	#define ANIMATION_EFFECT_EVENT_BLOCK_ID { 0xE4CD0730, 0x8A8342C9, 0xB1A8EE0B, 0x73E441C9 }
 	TAG_STRUCT(
 		animation_effect_event_block,
 		"animation_effect_event_block",
@@ -23656,7 +23656,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_GESTALT_CODEC_BLOCK_ID { 0x00000000, 0xEA72FE1B, 0xD8C74A73, 0xB3E54E1C }
+	#define SOUND_GESTALT_CODEC_BLOCK_ID { 0xEA72FE1B, 0xD8C74A73, 0xB3E54E1C, 0xCF7E2316 }
 	TAG_STRUCT(
 		sound_gestalt_codec_block,
 		"sound_gestalt_codec_block",
@@ -23671,7 +23671,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_GESTALT_PLAYBACK_BLOCK_ID { 0x00000000, 0x97618ABE, 0x6C854431, 0x9D80FAB7 }
+	#define SOUND_GESTALT_PLAYBACK_BLOCK_ID { 0x97618ABE, 0x6C854431, 0x9D80FAB7, 0xF199F2EC }
 	TAG_STRUCT(
 		sound_gestalt_playback_block,
 		"sound_gestalt_playback_block",
@@ -23684,7 +23684,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_GESTALT_SCALE_BLOCK_ID { 0x00000000, 0x293C6CE9, 0x552C4FF1, 0x9FEBA09B }
+	#define SOUND_GESTALT_SCALE_BLOCK_ID { 0x293C6CE9, 0x552C4FF1, 0x9FEBA09B, 0x46CD5D15 }
 	TAG_STRUCT(
 		sound_gestalt_scale_block,
 		"sound_gestalt_scale_block",
@@ -23697,7 +23697,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_GESTALT_IMPORT_NAMES_BLOCK_ID { 0x00000000, 0xDEDBEFA5, 0xCF91450E, 0xB92C4760 }
+	#define SOUND_GESTALT_IMPORT_NAMES_BLOCK_ID { 0xDEDBEFA5, 0xCF91450E, 0xB92C4760, 0x1487AD06 }
 	TAG_STRUCT(
 		sound_gestalt_import_names_block,
 		"sound_gestalt_import_names_block",
@@ -23710,7 +23710,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_GESTALT_PITCH_RANGE_PARAMETERS_BLOCK_ID { 0x00000000, 0xD2578760, 0xAD2B4BD4, 0xBF890920 }
+	#define SOUND_GESTALT_PITCH_RANGE_PARAMETERS_BLOCK_ID { 0xD2578760, 0xAD2B4BD4, 0xBF890920, 0x60A1D630 }
 	TAG_STRUCT(
 		sound_gestalt_pitch_range_parameters_block,
 		"sound_gestalt_pitch_range_parameters_block",
@@ -23726,7 +23726,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_GESTALT_PERMUTATIONS_BLOCK_ID { 0x00000000, 0x066E48B0, 0x55A34789, 0x8605F561 }
+	#define SOUND_GESTALT_PERMUTATIONS_BLOCK_ID { 0x066E48B0, 0x55A34789, 0x8605F561, 0x771453C4 }
 	TAG_STRUCT(
 		sound_gestalt_permutations_block,
 		"sound_gestalt_permutations_block",
@@ -23746,7 +23746,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_GESTALT_PERMUTATION_LANGUAGES_BLOCK_STRUCT_ID { 0x00000000, 0xC2E50233, 0xA6814C87, 0x8DAE2CAC }
+	#define SOUND_GESTALT_PERMUTATION_LANGUAGES_BLOCK_STRUCT_ID { 0xC2E50233, 0xA6814C87, 0x8DAE2CAC, 0xAE66E3A1 }
 	TAG_STRUCT(
 		sound_gestalt_permutation_languages_block_struct,
 		"sound_gestalt_permutation_languages_block_struct",
@@ -23795,7 +23795,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_GESTALT_PITCH_RANGES_BLOCK_ID { 0x00000000, 0x5C7B7E97, 0x95FD457B, 0x991EDD3F }
+	#define SOUND_GESTALT_PITCH_RANGES_BLOCK_ID { 0x5C7B7E97, 0x95FD457B, 0x991EDD3F, 0x533CD08C }
 	TAG_STRUCT(
 		sound_gestalt_pitch_ranges_block,
 		"sound_gestalt_pitch_ranges_block",
@@ -23812,7 +23812,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_GESTALT_CUSTOM_PLAYBACK_BLOCK_ID { 0x00000000, 0x85AB06BE, 0x4C484E51, 0xB1632921 }
+	#define SOUND_GESTALT_CUSTOM_PLAYBACK_BLOCK_ID { 0x85AB06BE, 0x4C484E51, 0xB1632921, 0x407A7122 }
 	TAG_STRUCT(
 		sound_gestalt_custom_playback_block,
 		"sound_gestalt_custom_playback_block",
@@ -23825,7 +23825,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_GESTALT_RUNTIME_PERMUTATION_BIT_VECTOR_BLOCK_ID { 0x00000000, 0xBCDA51CD, 0xDBB444BD, 0xB166F6B5 }
+	#define SOUND_GESTALT_RUNTIME_PERMUTATION_BIT_VECTOR_BLOCK_ID { 0xBCDA51CD, 0xDBB444BD, 0xB166F6B5, 0x6A59110C }
 	TAG_STRUCT(
 		sound_gestalt_runtime_permutation_bit_vector_block,
 		"sound_gestalt_runtime_permutation_bit_vector_block",
@@ -23838,7 +23838,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_GESTALT_PROMOTIONS_BLOCK_ID { 0x00000000, 0xCC80F520, 0xE19E47AB, 0x9568534D }
+	#define SOUND_GESTALT_PROMOTIONS_BLOCK_ID { 0xCC80F520, 0xE19E47AB, 0x9568534D, 0x2010E31B }
 	TAG_STRUCT(
 		sound_gestalt_promotions_block,
 		"sound_gestalt_promotions_block",
@@ -23851,7 +23851,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_GESTALT_EXTRA_INFO_BLOCK_ID { 0x00000000, 0x855E8E14, 0xC58C4761, 0x89AB85D2 }
+	#define SOUND_GESTALT_EXTRA_INFO_BLOCK_ID { 0x855E8E14, 0xC58C4761, 0x89AB85D2, 0x1F8A629F }
 	TAG_STRUCT(
 		sound_gestalt_extra_info_block,
 		"sound_gestalt_extra_info_block",
@@ -23864,7 +23864,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_CACHE_FILE_GESTALT_STRUCT_DEFINITION_ID { 0x00000000, 0xCF6AEC54, 0x95E846F2, 0x9B3F6246 }
+	#define SOUND_CACHE_FILE_GESTALT_STRUCT_DEFINITION_ID { 0xCF6AEC54, 0x95E846F2, 0x9B3F6246, 0x00AA2223 }
 	TAG_STRUCT(
 		sound_cache_file_gestalt_struct_definition,
 		"sound_cache_file_gestalt_struct_definition",
@@ -23885,7 +23885,7 @@ namespace halo3_tools {
 		{ _field_block, "custom playbacks", &blofeld::halo3_tools::sound_gestalt_custom_playback_block_block },
 		{ _field_block, "language durations", &blofeld::halo3_tools::sound_language_info_block_block },
 		{ _field_block, "runtime permutation flags", &blofeld::halo3_tools::sound_gestalt_runtime_permutation_bit_vector_block_block },
-		{ _field_data, "naive sample data" },
+		{ _field_data, "naive sample data", &blofeld::halo3_tools::naive_sample_data },
 		{ _field_long_integer, "no one listens to me" },
 		{ _field_long_integer, "but now I'm used to it" },
 		{ _field_block, "chunks", &blofeld::halo3_tools::sound_permutation_chunk_block_block },
@@ -23894,7 +23894,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_SOUND_STRUCT_DEFINITION_ID { 0x00000000, 0x063E9C33, 0xDDF646F7, 0xB9AD58DE }
+	#define CACHE_FILE_SOUND_STRUCT_DEFINITION_ID { 0x063E9C33, 0xDDF646F7, 0xB9AD58DE, 0x19E86FD6 }
 	TAG_STRUCT(
 		cache_file_sound_struct_definition,
 		"cache_file_sound_struct_definition",
@@ -23920,7 +23920,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_RESOURCE_TYPE_IDENTIFIER_BLOCK_ID { 0x00000000, 0xA2D1A781, 0xD56446D0, 0xA06621D2 }
+	#define CACHE_FILE_RESOURCE_TYPE_IDENTIFIER_BLOCK_ID { 0xA2D1A781, 0xD56446D0, 0xA06621D2, 0x648D26B3 }
 	TAG_STRUCT(
 		cache_file_resource_type_identifier_block,
 		"cache_file_resource_type_identifier_block",
@@ -23940,7 +23940,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_INTEROP_TYPE_IDENTIFIER_BLOCK_ID { 0x00000000, 0x946946AC, 0x22F84B4A, 0x8DC4B9C6 }
+	#define CACHE_FILE_INTEROP_TYPE_IDENTIFIER_BLOCK_ID { 0x946946AC, 0x22F84B4A, 0x8DC4B9C6, 0xB9CDE8FE }
 	TAG_STRUCT(
 		cache_file_interop_type_identifier_block,
 		"cache_file_interop_type_identifier_block",
@@ -23957,7 +23957,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_CODEC_IDENTIFIER_BLOCK_ID { 0x00000000, 0x98BC457E, 0x5FEA4C26, 0x9C9EFCF1 }
+	#define CACHE_FILE_CODEC_IDENTIFIER_BLOCK_ID { 0x98BC457E, 0x5FEA4C26, 0x9C9EFCF1, 0xFB46C21F }
 	TAG_STRUCT(
 		cache_file_codec_identifier_block,
 		"cache_file_codec_identifier_block",
@@ -23973,7 +23973,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_RESOURCE_FIXUP_LOCATION_BLOCK_ID { 0x00000000, 0xFEA3F8F7, 0x966E4EFE, 0xBA0B07A9 }
+	#define CACHE_FILE_RESOURCE_FIXUP_LOCATION_BLOCK_ID { 0xFEA3F8F7, 0x966E4EFE, 0xBA0B07A9, 0x40C2D4EC }
 	TAG_STRUCT(
 		cache_file_resource_fixup_location_block,
 		"cache_file_resource_fixup_location_block",
@@ -23987,7 +23987,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_RESOURCE_INTEROP_LOCATION_BLOCK_ID { 0x00000000, 0x5A424E33, 0x52034BD5, 0xB69A55CD }
+	#define CACHE_FILE_RESOURCE_INTEROP_LOCATION_BLOCK_ID { 0x5A424E33, 0x52034BD5, 0xB69A55CD, 0x95A55DA9 }
 	TAG_STRUCT(
 		cache_file_resource_interop_location_block,
 		"cache_file_resource_interop_location_block",
@@ -24001,7 +24001,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_SHARED_FILE_BLOCK_ID { 0x00000000, 0x13027DEC, 0xFA9E4C11, 0xBD81B8E7 }
+	#define CACHE_FILE_SHARED_FILE_BLOCK_ID { 0x13027DEC, 0xFA9E4C11, 0xBD81B8E7, 0xD68881E9 }
 	TAG_STRUCT(
 		cache_file_shared_file_block,
 		"cache_file_shared_file_block",
@@ -24026,7 +24026,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(cache_file_shared_file_flags_definition, cache_file_shared_file_flags_definition_strings, _countof(cache_file_shared_file_flags_definition_strings));
 
-	#define CACHE_FILE_RESOURCE_STREAMING_SUBLOCATION_BLOCK_ID { 0x00000000, 0x184D947A, 0x728243C5, 0x8329E7B3 }
+	#define CACHE_FILE_RESOURCE_STREAMING_SUBLOCATION_BLOCK_ID { 0x184D947A, 0x728243C5, 0x8329E7B3, 0xF3FB0838 }
 	TAG_STRUCT(
 		cache_file_resource_streaming_sublocation_block,
 		"cache_file_resource_streaming_sublocation_block",
@@ -24040,7 +24040,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_RESOURCE_STREAMING_SUBLOCATION_TABLE_BLOCK_ID { 0x00000000, 0x41CFEA33, 0xC3564990, 0xABA22B6B }
+	#define CACHE_FILE_RESOURCE_STREAMING_SUBLOCATION_TABLE_BLOCK_ID { 0x41CFEA33, 0xC3564990, 0xABA22B6B, 0xF24EB390 }
 	TAG_STRUCT(
 		cache_file_resource_streaming_sublocation_table_block,
 		"cache_file_resource_streaming_sublocation_table_block",
@@ -24054,7 +24054,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RESOURCE_HASH_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0xF713F8B8, 0xA3FB4157, 0x956953B8 }
+	#define RESOURCE_HASH_DEFINITION_STRUCT_DEFINITION_ID { 0xF713F8B8, 0xA3FB4157, 0x956953B8, 0x16833EDB }
 	TAG_STRUCT(
 		resource_hash_definition_struct_definition,
 		"resource_hash_definition",
@@ -24067,7 +24067,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RESOURCE_CHECKSUM_STRUCT_ID { 0x00000000, 0x6DA6A4F0, 0x19C443F8, 0x8B233E7F }
+	#define RESOURCE_CHECKSUM_STRUCT_ID { 0x6DA6A4F0, 0x19C443F8, 0x8B233E7F, 0xE4FB0736 }
 	TAG_STRUCT(
 		resource_checksum_struct,
 		"resource_checksum_struct",
@@ -24083,7 +24083,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_RESOURCE_LOCATION_STRUCT_ID { 0x00000000, 0xA82CDAB9, 0xAF1B4171, 0x816BA199 }
+	#define CACHE_FILE_RESOURCE_LOCATION_STRUCT_ID { 0xA82CDAB9, 0xAF1B4171, 0x816BA199, 0xDD8E6C9C }
 	TAG_STRUCT(
 		cache_file_resource_location_struct,
 		"cache_file_resource_location_struct",
@@ -24118,7 +24118,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(cache_file_tag_resource_location_flags, cache_file_tag_resource_location_flags_strings, _countof(cache_file_tag_resource_location_flags_strings));
 
-	#define CACHE_FILE_RESOURCE_PATCH_LOOKUP_BLOCK_ID { 0x00000000, 0xA81CDAB9, 0xA11B4171, 0x806BA199 }
+	#define CACHE_FILE_RESOURCE_PATCH_LOOKUP_BLOCK_ID { 0xA81CDAB9, 0xA11B4171, 0x806BA199, 0xD18E6C9C }
 	TAG_STRUCT(
 		cache_file_resource_patch_lookup_block,
 		"cache_file_resource_patch_lookup_block",
@@ -24133,7 +24133,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_RESOURCE_DEFAULT_LOCATION_BLOCK_ID { 0x00000000, 0xE8CE3689, 0x412848DF, 0x8D98BA3D }
+	#define CACHE_FILE_RESOURCE_DEFAULT_LOCATION_BLOCK_ID { 0xE8CE3689, 0x412848DF, 0x8D98BA3D, 0x43333461 }
 	TAG_STRUCT(
 		cache_file_resource_default_location_block,
 		"cache_file_resource_default_location_block",
@@ -24151,7 +24151,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_RESOURCE_DATA_BLOCK_ID { 0x00000000, 0x07EF6B5D, 0x210B4AD1, 0x9DEC2F43 }
+	#define CACHE_FILE_RESOURCE_DATA_BLOCK_ID { 0x07EF6B5D, 0x210B4AD1, 0x9DEC2F43, 0xE9DCB6A4 }
 	TAG_STRUCT(
 		cache_file_resource_data_block,
 		"cache_file_resource_data_block",
@@ -24182,7 +24182,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(cache_file_resource_data_flags_definition, cache_file_resource_data_flags_definition_strings, _countof(cache_file_resource_data_flags_definition_strings));
 
-	#define CACHE_FILE_TAG_RESOURCES_BITVECTOR_BLOCK_ID { 0x00000000, 0xF5CB474E, 0xF51C465F, 0x9DD77EAF }
+	#define CACHE_FILE_TAG_RESOURCES_BITVECTOR_BLOCK_ID { 0xF5CB474E, 0xF51C465F, 0x9DD77EAF, 0x5070BA68 }
 	TAG_STRUCT(
 		cache_file_tag_resources_bitvector_block,
 		"cache_file_tag_resources_bitvector_block",
@@ -24195,7 +24195,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_TAG_RESOURCE_USAGE_BLOCK_STRUCT_ID { 0x00000000, 0x7E3FC27D, 0x0B104D30, 0xBE6C359D }
+	#define CACHE_FILE_TAG_RESOURCE_USAGE_BLOCK_STRUCT_ID { 0x7E3FC27D, 0x0B104D30, 0xBE6C359D, 0xBB4988CB }
 	TAG_STRUCT(
 		cache_file_tag_resource_usage_block_struct,
 		"cache_file_tag_resource_usage_block_struct",
@@ -24212,7 +24212,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_BSP_REFERENCE_BLOCK_ID { 0x00000000, 0x84874E4D, 0xDBA4456E, 0x8BC8229B }
+	#define CACHE_FILE_BSP_REFERENCE_BLOCK_ID { 0x84874E4D, 0xDBA4456E, 0x8BC8229B, 0xA6B4A90D }
 	TAG_STRUCT(
 		cache_file_bsp_reference_block,
 		"cache_file_bsp_reference_block",
@@ -24225,7 +24225,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_RESOURCE_OWNER_BLOCK_ID { 0x00000000, 0xEEF8F43D, 0x5D8249C7, 0x8CD02DD1 }
+	#define CACHE_FILE_RESOURCE_OWNER_BLOCK_ID { 0xEEF8F43D, 0x5D8249C7, 0x8CD02DD1, 0x34A61C28 }
 	TAG_STRUCT(
 		cache_file_resource_owner_block,
 		"cache_file_resource_owner_block",
@@ -24238,7 +24238,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_RESOURCE_OWNER_REFERENCE_BLOCK_ID { 0x00000000, 0x182CCAC9, 0x87284EE2, 0xA12E1B0F }
+	#define CACHE_FILE_RESOURCE_OWNER_REFERENCE_BLOCK_ID { 0x182CCAC9, 0x87284EE2, 0xA12E1B0F, 0xEEAE5B58 }
 	TAG_STRUCT(
 		cache_file_resource_owner_reference_block,
 		"cache_file_resource_owner_reference_block",
@@ -24251,7 +24251,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_ZONE_RESOURCE_VISIT_NODE_LINK_BLOCK_ID { 0x00000000, 0x22319003, 0x8D884426, 0xAF2ED443 }
+	#define CACHE_FILE_ZONE_RESOURCE_VISIT_NODE_LINK_BLOCK_ID { 0x22319003, 0x8D884426, 0xAF2ED443, 0xE9B58033 }
 	TAG_STRUCT(
 		cache_file_zone_resource_visit_node_link_block,
 		"cache_file_zone_resource_visit_node_link_block",
@@ -24264,7 +24264,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_ZONE_RESOURCE_VISIT_NODE_BLOCK_STRUCT_ID { 0x00000000, 0x17C375BA, 0xE7B7481F, 0xAF7D1577 }
+	#define CACHE_FILE_ZONE_RESOURCE_VISIT_NODE_BLOCK_STRUCT_ID { 0x17C375BA, 0xE7B7481F, 0xAF7D1577, 0xFAC6CD4A }
 	TAG_STRUCT(
 		cache_file_zone_resource_visit_node_block_struct,
 		"cache_file_zone_resource_visit_node_block_struct",
@@ -24279,7 +24279,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_MODEL_VARIANT_USAGE_BLOCK_ID { 0x00000000, 0x2321AB6C, 0xB74547EF, 0x8B8E12EA }
+	#define CACHE_FILE_MODEL_VARIANT_USAGE_BLOCK_ID { 0x2321AB6C, 0xB74547EF, 0x8B8E12EA, 0x7D729350 }
 	TAG_STRUCT(
 		cache_file_model_variant_usage_block,
 		"cache_file_model_variant_usage_block",
@@ -24295,7 +24295,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_MODEL_VARIANT_USAGE_REFERENCE_BLOCK_ID { 0x00000000, 0x48A5C4F6, 0x17C44C21, 0x8BB1975C }
+	#define CACHE_FILE_MODEL_VARIANT_USAGE_REFERENCE_BLOCK_ID { 0x48A5C4F6, 0x17C44C21, 0x8BB1975C, 0x887DC11F }
 	TAG_STRUCT(
 		cache_file_model_variant_usage_reference_block,
 		"cache_file_model_variant_usage_reference_block",
@@ -24308,7 +24308,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_CHARACTER_USAGE_BLOCK_ID { 0x00000000, 0x7DCD4D50, 0xCCC04A10, 0xA5187197 }
+	#define CACHE_FILE_CHARACTER_USAGE_BLOCK_ID { 0x7DCD4D50, 0xCCC04A10, 0xA5187197, 0xDCC31708 }
 	TAG_STRUCT(
 		cache_file_character_usage_block,
 		"cache_file_character_usage_block",
@@ -24323,7 +24323,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_TAG_ZONE_MANIFEST_STRUCT_ID { 0x00000000, 0x97526DBD, 0x0D3046F2, 0x846E0460 }
+	#define CACHE_FILE_TAG_ZONE_MANIFEST_STRUCT_ID { 0x97526DBD, 0x0D3046F2, 0x846E0460, 0xDADC74B2 }
 	TAG_STRUCT(
 		cache_file_tag_zone_manifest_struct,
 		"cache_file_tag_zone_manifest_struct",
@@ -24349,7 +24349,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_ZONE_SET_ZONE_USAGE_BLOCK_ID { 0x00000000, 0xFA90B323, 0xCE6D4D2B, 0xA8722EA8 }
+	#define CACHE_FILE_ZONE_SET_ZONE_USAGE_BLOCK_ID { 0xFA90B323, 0xCE6D4D2B, 0xA8722EA8, 0xB3830975 }
 	TAG_STRUCT(
 		cache_file_zone_set_zone_usage_block,
 		"cache_file_zone_set_zone_usage_block",
@@ -24370,7 +24370,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RESOURCE_CATEGORY_BLOCK_ID { 0x00000000, 0xC450B05F, 0xDFCD4840, 0xAED5D08F }
+	#define RESOURCE_CATEGORY_BLOCK_ID { 0xC450B05F, 0xDFCD4840, 0xAED5D08F, 0x1D23AEB7 }
 	TAG_STRUCT(
 		resource_category_block,
 		"resource_category_block",
@@ -24383,7 +24383,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_DEBUG_RESOURCE_DEFINITION_BLOCK_ID { 0x00000000, 0x6D56BE92, 0xE91F4C91, 0x901F2870 }
+	#define CACHE_FILE_DEBUG_RESOURCE_DEFINITION_BLOCK_ID { 0x6D56BE92, 0xE91F4C91, 0x901F2870, 0xADDF2F38 }
 	TAG_STRUCT(
 		cache_file_debug_resource_definition_block,
 		"cache_file_debug_resource_definition_block",
@@ -24396,7 +24396,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_RESOURCE_LAYOUT_BLOCK_STRUCT_ID { 0x00000000, 0xAF086415, 0x9CB7429E, 0xB4D397A6 }
+	#define CACHE_FILE_RESOURCE_LAYOUT_BLOCK_STRUCT_ID { 0xAF086415, 0x9CB7429E, 0xB4D397A6, 0x0AD19864 }
 	TAG_STRUCT(
 		cache_file_resource_layout_block_struct,
 		"cache_file_resource_layout_block_struct",
@@ -24428,7 +24428,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(cache_file_resource_global_zone_attachment_flags, cache_file_resource_global_zone_attachment_flags_strings, _countof(cache_file_resource_global_zone_attachment_flags_strings));
 
-	#define CACHE_FILE_TAG_RESOURCE_NAMED_VALUE_BLOCK_ID { 0x00000000, 0xE15017A2, 0xAB51458E, 0xB4ADB126 }
+	#define CACHE_FILE_TAG_RESOURCE_NAMED_VALUE_BLOCK_ID { 0xE15017A2, 0xAB51458E, 0xB4ADB126, 0x18477B8E }
 	TAG_STRUCT(
 		cache_file_tag_resource_named_value_block,
 		"cache_file_tag_resource_named_value_block",
@@ -24454,7 +24454,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(named_value_type_enum, named_value_type_enum_strings, _countof(named_value_type_enum_strings));
 
-	#define CACHE_FILE_TAG_RESOURCE_PROPERTIES_BLOCK_ID { 0x00000000, 0x884D15C8, 0x1E404784, 0xB1E4362C }
+	#define CACHE_FILE_TAG_RESOURCE_PROPERTIES_BLOCK_ID { 0x884D15C8, 0x1E404784, 0xB1E4362C, 0x2E44E7E3 }
 	TAG_STRUCT(
 		cache_file_tag_resource_properties_block,
 		"cache_file_tag_resource_properties_block",
@@ -24467,7 +24467,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DEBUG_CACHE_FILE_ZONE_MANIFEST_STRUCT_ID { 0x00000000, 0x4E4AC3CD, 0x598D4EFC, 0xAD44DA5D }
+	#define DEBUG_CACHE_FILE_ZONE_MANIFEST_STRUCT_ID { 0x4E4AC3CD, 0x598D4EFC, 0xAD44DA5D, 0xEA3DA8F0 }
 	TAG_STRUCT(
 		debug_cache_file_zone_manifest_struct,
 		"debug_cache_file_zone_manifest_struct",
@@ -24483,7 +24483,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_TAG_PARENTAGE_REFERENCE_BLOCK_ID { 0x00000000, 0xC273771E, 0x99C645BA, 0xB30E3EC4 }
+	#define CACHE_FILE_TAG_PARENTAGE_REFERENCE_BLOCK_ID { 0xC273771E, 0x99C645BA, 0xB30E3EC4, 0x968468FB }
 	TAG_STRUCT(
 		cache_file_tag_parentage_reference_block,
 		"cache_file_tag_parentage_reference_block",
@@ -24496,7 +24496,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_TAG_PARENTAGE_BLOCK_STRUCT_ID { 0x00000000, 0x30B9A8D9, 0x80FD41FD, 0xBE990CAA }
+	#define CACHE_FILE_TAG_PARENTAGE_BLOCK_STRUCT_ID { 0x30B9A8D9, 0x80FD41FD, 0xBE990CAA, 0x8CF7F824 }
 	TAG_STRUCT(
 		cache_file_tag_parentage_block_struct,
 		"cache_file_tag_parentage_block_struct",
@@ -24520,7 +24520,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(cache_file_tag_parentage_flags_definition, cache_file_tag_parentage_flags_definition_strings, _countof(cache_file_tag_parentage_flags_definition_strings));
 
-	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_QUANTUM_BLOCK_ID { 0x00000000, 0xB0C3E6A3, 0x6B6C44A1, 0x9C87B72D }
+	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_QUANTUM_BLOCK_ID { 0xB0C3E6A3, 0x6B6C44A1, 0x9C87B72D, 0xEF8EF158 }
 	TAG_STRUCT(
 		cache_file_tag_resource_prediction_quantum_block,
 		"cache_file_tag_resource_prediction_quantum_block",
@@ -24533,7 +24533,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_ATOM_BLOCK_ID { 0x00000000, 0xD4DF8812, 0xE9CC40B4, 0x83EC0650 }
+	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_ATOM_BLOCK_ID { 0xD4DF8812, 0xE9CC40B4, 0x83EC0650, 0x0C2C8AC6 }
 	TAG_STRUCT(
 		cache_file_tag_resource_prediction_atom_block,
 		"cache_file_tag_resource_prediction_atom_block",
@@ -24548,7 +24548,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_MOLECULE_ATOM_REFERENCE_BLOCK_ID { 0x00000000, 0xF49C2052, 0xC3B94427, 0xB175D8B8 }
+	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_MOLECULE_ATOM_REFERENCE_BLOCK_ID { 0xF49C2052, 0xC3B94427, 0xB175D8B8, 0x44EC4F73 }
 	TAG_STRUCT(
 		cache_file_tag_resource_prediction_molecule_atom_reference_block,
 		"cache_file_tag_resource_prediction_molecule_atom_reference_block",
@@ -24561,7 +24561,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_MOLECULE_BLOCK_ID { 0x00000000, 0x335E8A1B, 0x745046FF, 0xA6B7B810 }
+	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_MOLECULE_BLOCK_ID { 0x335E8A1B, 0x745046FF, 0xA6B7B810, 0xC0F7C4B7 }
 	TAG_STRUCT(
 		cache_file_tag_resource_prediction_molecule_block,
 		"cache_file_tag_resource_prediction_molecule_block",
@@ -24577,7 +24577,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_MOLECULE_KEYS_BLOCK_ID { 0x00000000, 0xB205AA17, 0xED834796, 0xB4669D18 }
+	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_MOLECULE_KEYS_BLOCK_ID { 0xB205AA17, 0xED834796, 0xB4669D18, 0x47F86845 }
 	TAG_STRUCT(
 		cache_file_tag_resource_prediction_molecule_keys_block,
 		"cache_file_tag_resource_prediction_molecule_keys_block",
@@ -24592,7 +24592,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_TABLE_ID { 0x00000000, 0x8AC05042, 0xF5CF4649, 0x91F59F02 }
+	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_TABLE_ID { 0x8AC05042, 0xF5CF4649, 0x91F59F02, 0xC1CF8172 }
 	TAG_STRUCT(
 		cache_file_tag_resource_prediction_table,
 		"cache_file_tag_resource_prediction_table",
@@ -24609,7 +24609,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_BSP_ATTACHMENT_BLOCK_ID { 0x00000000, 0x8A7031E2, 0xC4C94AC7, 0x89C74C82 }
+	#define CACHE_FILE_BSP_ATTACHMENT_BLOCK_ID { 0x8A7031E2, 0xC4C94AC7, 0x89C74C82, 0xC996E277 }
 	TAG_STRUCT(
 		cache_file_bsp_attachment_block,
 		"cache_file_bsp_attachment_block",
@@ -24622,7 +24622,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_BSP_GAME_ATTACHMENTS_BLOCK_STRUCT_ID { 0x00000000, 0xE0BB848D, 0xE4CB4E34, 0x80F3985E }
+	#define CACHE_FILE_BSP_GAME_ATTACHMENTS_BLOCK_STRUCT_ID { 0xE0BB848D, 0xE4CB4E34, 0x80F3985E, 0x09450C40 }
 	TAG_STRUCT(
 		cache_file_bsp_game_attachments_block_struct,
 		"cache_file_bsp_game_attachments_block_struct",
@@ -24637,7 +24637,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_RESOURCE_GESTALT_BLOCK_STRUCT_ID { 0x00000000, 0x84D7FF6E, 0xDE544E80, 0x8139DE61 }
+	#define CACHE_FILE_RESOURCE_GESTALT_BLOCK_STRUCT_ID { 0x84D7FF6E, 0xDE544E80, 0x8139DE61, 0x36DCA9DB }
 	TAG_STRUCT(
 		cache_file_resource_gestalt_block_struct,
 		"cache_file_resource_gestalt_block_struct",
@@ -24675,7 +24675,7 @@ namespace halo3_tools {
 		{ _field_block, "resource owners", &blofeld::halo3_tools::cache_file_resource_owner_block_block },
 		{ _field_block, "model variant usage", &blofeld::halo3_tools::cache_file_model_variant_usage_block_block },
 		{ _field_block, "character usage", &blofeld::halo3_tools::cache_file_character_usage_block_block },
-		{ _field_data, "naive resource control data" },
+		{ _field_data, "naive resource control data", &blofeld::halo3_tools::naive_control_data_definition },
 		{ _field_long_integer, "minimum complete resource size" },
 		{ _field_long_integer, "minimum required resource size" },
 		{ _field_long_integer, "minimum dvd resource size" },
@@ -24696,7 +24696,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_RESOURCE_LAYOUT_TABLE_BLOCK_STRUCT_ID { 0x00000000, 0x3FC58CEB, 0x3F3647DE, 0x9126EA74 }
+	#define CACHE_FILE_RESOURCE_LAYOUT_TABLE_BLOCK_STRUCT_ID { 0x3FC58CEB, 0x3F3647DE, 0x9126EA74, 0xF2ED0990 }
 	TAG_STRUCT(
 		cache_file_resource_layout_table_block_struct,
 		"cache_file_resource_layout_table_block_struct",
@@ -24716,7 +24716,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RESOURCE_OWNER_BLOCK_STRUCT_ID { 0x00000000, 0xB541797A, 0xEC94444B, 0x8C4B1BE7 }
+	#define RESOURCE_OWNER_BLOCK_STRUCT_ID { 0xB541797A, 0xEC94444B, 0x8C4B1BE7, 0x5E4C79E2 }
 	TAG_STRUCT(
 		resource_owner_block_struct,
 		"resource_owner_block_struct",
@@ -24729,7 +24729,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHARED_CACHE_FILE_ORIGINAL_LOCATION_BLOCK_STRUCT_ID { 0x00000000, 0x8E51EF25, 0x8DA5499D, 0x8C428926 }
+	#define SHARED_CACHE_FILE_ORIGINAL_LOCATION_BLOCK_STRUCT_ID { 0x8E51EF25, 0x8DA5499D, 0x8C428926, 0xE185B4B7 }
 	TAG_STRUCT(
 		shared_cache_file_original_location_block_struct,
 		"shared_cache_file_original_location_block_struct",
@@ -24768,7 +24768,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(shared_file_type_enum, shared_file_type_enum_strings, _countof(shared_file_type_enum_strings));
 
-	#define SHARED_CACHE_FILE_ORIGINAL_LOCATION_REFERENCE_BLOCK_STRUCT_ID { 0x00000000, 0xC6F98A6E, 0x822144D8, 0x82343AC3 }
+	#define SHARED_CACHE_FILE_ORIGINAL_LOCATION_REFERENCE_BLOCK_STRUCT_ID { 0xC6F98A6E, 0x822144D8, 0x82343AC3, 0x5105834A }
 	TAG_STRUCT(
 		shared_cache_file_original_location_reference_block_struct,
 		"shared_cache_file_original_location_reference_block_struct",
@@ -24781,7 +24781,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHARED_CACHE_FILE_NEW_LOCATION_BLOCK_STRUCT_ID { 0x00000000, 0x2A6EBBE5, 0x372B4119, 0x9D575320 }
+	#define SHARED_CACHE_FILE_NEW_LOCATION_BLOCK_STRUCT_ID { 0x2A6EBBE5, 0x372B4119, 0x9D575320, 0x2F65A1AD }
 	TAG_STRUCT(
 		shared_cache_file_new_location_block_struct,
 		"shared_cache_file_new_location_block_struct",
@@ -24811,7 +24811,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(shared_cache_file_location_flags_definition, shared_cache_file_location_flags_definition_strings, _countof(shared_cache_file_location_flags_definition_strings));
 
-	#define SHARED_CACHE_FILE_CREATION_DATE_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0x82D1ED58, 0x338B427A, 0xB4F1316B }
+	#define SHARED_CACHE_FILE_CREATION_DATE_ARRAY_STRUCT_DEFINITION_ID { 0x82D1ED58, 0x338B427A, 0xB4F1316B, 0x56C4511D }
 	TAG_STRUCT(
 		shared_cache_file_creation_date_array_struct_definition,
 		"shared_cache_file_creation_date_array",
@@ -24825,7 +24825,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHARED_CACHE_FILE_LAYOUT_BLOCK_STRUCT_ID { 0x00000000, 0xA21AF187, 0x41D04330, 0xA9383314 }
+	#define SHARED_CACHE_FILE_LAYOUT_BLOCK_STRUCT_ID { 0xA21AF187, 0x41D04330, 0xA9383314, 0xD53C04B4 }
 	TAG_STRUCT(
 		shared_cache_file_layout_block_struct,
 		"shared_cache_file_layout_block_struct",
@@ -24869,7 +24869,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BINK_RESOURCE_STRUCT_ID { 0x00000000, 0xD0B4CCE8, 0x76C64FEB, 0xA54C008A }
+	#define BINK_RESOURCE_STRUCT_ID { 0xD0B4CCE8, 0x76C64FEB, 0xA54C008A, 0x6D5D24CD }
 	TAG_STRUCT(
 		bink_resource_struct,
 		"bink_resource_struct",
@@ -24878,11 +24878,11 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BINK_RESOURCE_STRUCT_ID)
 	{
-		{ _field_data, "bink data" },
+		{ _field_data, "bink data", &blofeld::halo3_tools::bink_resource_data },
 		{ _field_terminator }
 	};
 
-	#define BINK_STRUCT_DEFINITION_ID { 0x00000000, 0x4F2A6045, 0x63FF4A67, 0x81F2A8BD }
+	#define BINK_STRUCT_DEFINITION_ID { 0x4F2A6045, 0x63FF4A67, 0x81F2A8BD, 0xCF491D3A }
 	TAG_STRUCT(
 		bink_struct_definition,
 		"bink_struct_definition",
@@ -24896,7 +24896,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PLAYER_TRAINING_ENTRY_DATA_BLOCK_ID { 0x00000000, 0x02521B32, 0x611C4819, 0xA1067B6A }
+	#define PLAYER_TRAINING_ENTRY_DATA_BLOCK_ID { 0x02521B32, 0x611C4819, 0xA1067B6A, 0x683D77BF }
 	TAG_STRUCT(
 		player_training_entry_data_block,
 		"player_training_entry_data_block",
@@ -24922,7 +24922,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(player_training_flags, player_training_flags_strings, _countof(player_training_flags_strings));
 
-	#define BITMAP_USAGE_BLOCK_ID { 0x00000000, 0x09E0AE90, 0x64F444D8, 0xAFC0FAB5 }
+	#define BITMAP_USAGE_BLOCK_ID { 0x09E0AE90, 0x64F444D8, 0xAFC0FAB5, 0x0BDCBD57 }
 	TAG_STRUCT(
 		bitmap_usage_block,
 		"bitmap_usage_block",
@@ -25040,7 +25040,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(bitmap_usage_swizzle_def, bitmap_usage_swizzle_def_strings, _countof(bitmap_usage_swizzle_def_strings));
 
-	#define SOUND_PERMUTATION_LANGUAGE_INFO_ID { 0x00000000, 0xAA0C06AC, 0x53514559, 0x98CCC8D0 }
+	#define SOUND_PERMUTATION_LANGUAGE_INFO_ID { 0xAA0C06AC, 0x53514559, 0x98CCC8D0, 0x410A29CA }
 	TAG_STRUCT(
 		sound_permutation_language_info,
 		"sound_permutation_language_info",
@@ -25053,7 +25053,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_PITCH_RANGE_LANGUAGE_INFO_ID { 0x00000000, 0x55CF2587, 0xC2A84F0D, 0xA21BD9D4 }
+	#define SOUND_PITCH_RANGE_LANGUAGE_INFO_ID { 0x55CF2587, 0xC2A84F0D, 0xA21BD9D4, 0xF3411CAA }
 	TAG_STRUCT(
 		sound_pitch_range_language_info,
 		"sound_pitch_range_language_info",
@@ -25067,7 +25067,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_LANGUAGE_INFO_BLOCK_ID { 0x00000000, 0xD69CF235, 0x9A8943DB, 0xBFE85363 }
+	#define SOUND_LANGUAGE_INFO_BLOCK_ID { 0xD69CF235, 0x9A8943DB, 0xBFE85363, 0x9C6857EC }
 	TAG_STRUCT(
 		sound_language_info_block,
 		"sound_language_info_block",
@@ -25082,7 +25082,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_PLAYBACK_PARAMETER_DEFINITION_ID { 0x00000000, 0x9254F2F2, 0xFB6E422C, 0x9FC6AC01 }
+	#define SOUND_PLAYBACK_PARAMETER_DEFINITION_ID { 0x9254F2F2, 0xFB6E422C, 0x9FC6AC01, 0xF911E593 }
 	TAG_STRUCT(
 		sound_playback_parameter_definition,
 		"sound_playback_parameter_definition",
@@ -25096,7 +25096,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BITMAP_GROUP_SPRITE_BLOCK_DEF_ID { 0x00000000, 0xBBF4F819, 0xF00A42DC, 0xA731202E }
+	#define BITMAP_GROUP_SPRITE_BLOCK_DEF_ID { 0xBBF4F819, 0xF00A42DC, 0xA731202E, 0x289D9752 }
 	TAG_STRUCT(
 		bitmap_group_sprite_block_def,
 		"bitmap_group_sprite_block_def",
@@ -25116,7 +25116,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BITMAP_GROUP_SEQUENCE_BLOCK_DEF_ID { 0x00000000, 0x15026732, 0x9E8B45CE, 0xB853499B }
+	#define BITMAP_GROUP_SEQUENCE_BLOCK_DEF_ID { 0x15026732, 0x9E8B45CE, 0xB853499B, 0x557C9320 }
 	TAG_STRUCT(
 		bitmap_group_sequence_block_def,
 		"bitmap_group_sequence_block_def",
@@ -25133,7 +25133,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BITMAP_DATA_BLOCK_DEF_ID { 0x00000000, 0xDEB0516A, 0x021C4498, 0x9941C6CD }
+	#define BITMAP_DATA_BLOCK_DEF_ID { 0xDEB0516A, 0x021C4498, 0x9941C6CD, 0xC294AA69 }
 	TAG_STRUCT(
 		bitmap_data_block_def,
 		"bitmap_data_block_def",
@@ -25230,7 +25230,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(bitmap_flags, bitmap_flags_strings, _countof(bitmap_flags_strings));
 
-	#define GLOBAL_SCENARIO_LOAD_PARAMETERS_BLOCK_ID { 0x00000000, 0x4B6AED51, 0xF0454236, 0x871E52C4 }
+	#define GLOBAL_SCENARIO_LOAD_PARAMETERS_BLOCK_ID { 0x4B6AED51, 0xF0454236, 0x871E52C4, 0xA013780C }
 	TAG_STRUCT(
 		global_scenario_load_parameters_block,
 		"global_scenario_load_parameters_block",
@@ -25241,14 +25241,14 @@ namespace halo3_tools {
 	{
 		FIELD_EXPLANATION("SCENARIO LOAD PARAMETERS", "strip-variant <variant-name>\nstrips a given variant out of the model tag\nstrip-dialogue\nstrips all the dialogue for this model i.e. cinematic only"),
 		{ _field_tag_reference, "scenario", &blofeld::halo3_tools::scenario_group_reference$2_tagref },
-		{ _field_data, "parameters" },
+		{ _field_data, "parameters", &blofeld::halo3_tools::parameters_text_definition },
 		FIELD_PAD("BDZDSK", 32),
 		{ _field_terminator }
 	};
 
 	TAG_REFERENCE(scenario_group_reference$2_tagref, SCENARIO_TAG, _tag_reference_flag_not_a_dependency);
 
-	#define DOOR_ENCODED_PAS_BLOCK_ID { 0x00000000, 0x9255D845, 0xD61C419D, 0x8A4FCEF3 }
+	#define DOOR_ENCODED_PAS_BLOCK_ID { 0x9255D845, 0xD61C419D, 0x8A4FCEF3, 0xEEC5D7A7 }
 	TAG_STRUCT(
 		door_encoded_pas_block,
 		"door_encoded_pas_block",
@@ -25261,7 +25261,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CLUSTER_DOOR_PORTAL_ENCODED_PAS_BLOCK_ID { 0x00000000, 0xA713EF2B, 0x09DC4EC5, 0xA6AAF397 }
+	#define CLUSTER_DOOR_PORTAL_ENCODED_PAS_BLOCK_ID { 0xA713EF2B, 0x09DC4EC5, 0xA6AAF397, 0xF331FEEA }
 	TAG_STRUCT(
 		cluster_door_portal_encoded_pas_block,
 		"cluster_door_portal_encoded_pas_block",
@@ -25274,7 +25274,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define AI_DEAFENING_ENCODED_PAS_BLOCK_ID { 0x00000000, 0x3C517394, 0xB038480C, 0x85F3F6D1 }
+	#define AI_DEAFENING_ENCODED_PAS_BLOCK_ID { 0x3C517394, 0xB038480C, 0x85F3F6D1, 0x6E15185D }
 	TAG_STRUCT(
 		ai_deafening_encoded_pas_block,
 		"ai_deafening_encoded_pas_block",
@@ -25287,7 +25287,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ENCODED_CLUSTER_DISTANCES_BLOCK_ID { 0x00000000, 0x8C5E9324, 0xC3FC4EA5, 0x81F5E77C }
+	#define ENCODED_CLUSTER_DISTANCES_BLOCK_ID { 0x8C5E9324, 0xC3FC4EA5, 0x81F5E77C, 0xA8E03933 }
 	TAG_STRUCT(
 		encoded_cluster_distances_block,
 		"encoded_cluster_distances_block",
@@ -25300,7 +25300,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define OCCLUDER_TO_MACHINE_DOOR_MAPPING_ID { 0x00000000, 0xAD280621, 0x0FD74AED, 0xB1714B7B }
+	#define OCCLUDER_TO_MACHINE_DOOR_MAPPING_ID { 0xAD280621, 0x0FD74AED, 0xB1714B7B, 0xDBAC6090 }
 	TAG_STRUCT(
 		occluder_to_machine_door_mapping,
 		"occluder_to_machine_door_mapping",
@@ -25313,7 +25313,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_AUDIBILITY_BLOCK_ID { 0x00000000, 0xD13EBD44, 0xF32645BD, 0x9B99BC19 }
+	#define STRUCTURE_BSP_AUDIBILITY_BLOCK_ID { 0xD13EBD44, 0xF32645BD, 0x9B99BC19, 0xE4C46E5C }
 	TAG_STRUCT(
 		structure_bsp_audibility_block,
 		"structure_bsp_audibility_block",
@@ -25332,7 +25332,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GPU_FUNCTION_SUB_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0xD6260931, 0xE09141A2, 0x984511D9 }
+	#define GPU_FUNCTION_SUB_ARRAY_STRUCT_DEFINITION_ID { 0xD6260931, 0xE09141A2, 0x984511D9, 0xA3D78599 }
 	TAG_STRUCT(
 		gpu_function_sub_array_struct_definition,
 		"gpu_function_sub_array",
@@ -25345,7 +25345,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GPU_FUNCTION_BLOCK_ID { 0x00000000, 0xE4F4C1FD, 0x776D4521, 0xAACCF4EA }
+	#define GPU_FUNCTION_BLOCK_ID { 0xE4F4C1FD, 0x776D4521, 0xAACCF4EA, 0x51350BCD }
 	TAG_STRUCT(
 		gpu_function_block,
 		"gpu_function_block",
@@ -25358,7 +25358,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GPU_COLOR_SUB_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0xEBCC1FB0, 0x84F141D4, 0xA584B00F }
+	#define GPU_COLOR_SUB_ARRAY_STRUCT_DEFINITION_ID { 0xEBCC1FB0, 0x84F141D4, 0xA584B00F, 0x8EFF6043 }
 	TAG_STRUCT(
 		gpu_color_sub_array_struct_definition,
 		"gpu_color_sub_array",
@@ -25371,7 +25371,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GPU_COLOR_BLOCK_ID { 0x00000000, 0x77A26FFB, 0x0C164319, 0x81E4C4D3 }
+	#define GPU_COLOR_BLOCK_ID { 0x77A26FFB, 0x0C164319, 0x81E4C4D3, 0x69DC3749 }
 	TAG_STRUCT(
 		gpu_color_block,
 		"gpu_color_block",
@@ -25384,7 +25384,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GPU_PROPERTY_SUB_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0x5E56CDB1, 0xEC34402B, 0xBF36EF1D }
+	#define GPU_PROPERTY_SUB_ARRAY_STRUCT_DEFINITION_ID { 0x5E56CDB1, 0xEC34402B, 0xBF36EF1D, 0x9B7468BA }
 	TAG_STRUCT(
 		gpu_property_sub_array_struct_definition,
 		"gpu_property_sub_array",
@@ -25397,7 +25397,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GPU_PROPERTY_BLOCK_ID { 0x00000000, 0xA49C0823, 0x46CF4B62, 0xA45B3947 }
+	#define GPU_PROPERTY_BLOCK_ID { 0xA49C0823, 0x46CF4B62, 0xA45B3947, 0x2D11DA0E }
 	TAG_STRUCT(
 		gpu_property_block,
 		"gpu_property_block",
@@ -25410,7 +25410,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GPU_PROPERTY_FUNCTION_COLOR_STRUCT_ID { 0x00000000, 0x33DE2336, 0x7C6242C5, 0xAD5A8C31 }
+	#define GPU_PROPERTY_FUNCTION_COLOR_STRUCT_ID { 0x33DE2336, 0x7C6242C5, 0xAD5A8C31, 0x992C78EA }
 	TAG_STRUCT(
 		gpu_property_function_color_struct,
 		"gpu_property_function_color_struct",
@@ -25425,7 +25425,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PARTICLE_SYSTEM_EMITTER_DEFINITION_BLOCK_ID { 0x00000000, 0xD274EE53, 0x85814DDA, 0x82E8BD20 }
+	#define PARTICLE_SYSTEM_EMITTER_DEFINITION_BLOCK_ID { 0xD274EE53, 0x85814DDA, 0x82E8BD20, 0x70B91AB5 }
 	TAG_STRUCT(
 		particle_system_emitter_definition_block,
 		"particle_system_emitter_definition_block",
@@ -25514,7 +25514,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(emission_reference_axis_enum, emission_reference_axis_enum_strings, _countof(emission_reference_axis_enum_strings));
 
-	#define PARTICLE_SYSTEM_DEFINITION_BLOCK_NEW_ID { 0x00000000, 0x1A9DCA45, 0x13064A9F, 0x9D46034E }
+	#define PARTICLE_SYSTEM_DEFINITION_BLOCK_NEW_ID { 0x1A9DCA45, 0x13064A9F, 0x9D46034E, 0x0C703387 }
 	TAG_STRUCT(
 		particle_system_definition_block_new,
 		"particle_system_definition_block_new",
@@ -25577,7 +25577,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(particle_system_flags, particle_system_flags_strings, _countof(particle_system_flags_strings));
 
-	#define MOPP_CODE_DATA_DEFINITION_BLOCK_ID { 0x00000000, 0x0EAB741F, 0xF5D74408, 0x9D5A32E1 }
+	#define MOPP_CODE_DATA_DEFINITION_BLOCK_ID { 0x0EAB741F, 0xF5D74408, 0x9D5A32E1, 0x12D4FD6D }
 	TAG_STRUCT(
 		mopp_code_data_definition_block,
 		"mopp_code_data_definition_block",
@@ -25590,7 +25590,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MOPP_CODE_DEFINITION_BLOCK_ID { 0x00000000, 0xEE2BC898, 0x8AD14E98, 0xB64351E5 }
+	#define MOPP_CODE_DEFINITION_BLOCK_ID { 0xEE2BC898, 0x8AD14E98, 0xB64351E5, 0x635CF676 }
 	TAG_STRUCT(
 		mopp_code_definition_block,
 		"mopp_code_definition_block",
@@ -25615,7 +25615,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MATERIAL_PHYSICS_DRAG_PROPERTIES_BLOCK_ID { 0x00000000, 0x82205FA0, 0xDC4348B0, 0x8D0E46FE }
+	#define MATERIAL_PHYSICS_DRAG_PROPERTIES_BLOCK_ID { 0x82205FA0, 0xDC4348B0, 0x8D0E46FE, 0x3D8DC82B }
 	TAG_STRUCT(
 		material_physics_drag_properties_block,
 		"material_physics_drag_properties_block",
@@ -25639,7 +25639,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MATERIALS_SWEETENERS_STRUCT_ID { 0x00000000, 0x9F74BAB9, 0xC3664288, 0xB82EFC4F }
+	#define MATERIALS_SWEETENERS_STRUCT_ID { 0x9F74BAB9, 0xC3664288, 0xB82EFC4F, 0x59924C4B }
 	TAG_STRUCT(
 		materials_sweeteners_struct,
 		"materials_sweeteners_struct",
@@ -25694,7 +25694,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(materials_sweeteners_inheritance_flags, materials_sweeteners_inheritance_flags_strings, _countof(materials_sweeteners_inheritance_flags_strings));
 
-	#define UNDERWATER_PROXIES_BLOCK_ID { 0x00000000, 0xAD5F9353, 0xA0B9C7A3, 0xBAA0406F }
+	#define UNDERWATER_PROXIES_BLOCK_ID { 0xAD5F9353, 0xA0B9C7A3, 0xBAA0406F, 0xC16F2653 }
 	TAG_STRUCT(
 		underwater_proxies_block,
 		"underwater_proxies_block",
@@ -25712,7 +25712,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MATERIALS_BLOCK$2_ID { 0x00000000, 0x4D5F9153, 0x00B947A3, 0xBCAF406F }
+	#define MATERIALS_BLOCK$2_ID { 0x4D5F9153, 0x00B947A3, 0xBCAF406F, 0xC56F065C }
 	TAG_STRUCT(
 		materials_block$2,
 		"materials_block",
@@ -25745,7 +25745,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(breakable_surface_group_reference_tagref, BREAKABLE_SURFACE_TAG);
 
-	#define MATERIAL_PHYSICS_PROPERTIES_STRUCT_ID { 0x00000000, 0x8DB8D6D8, 0x833D4150, 0xA47D3861 }
+	#define MATERIAL_PHYSICS_PROPERTIES_STRUCT_ID { 0x8DB8D6D8, 0x833D4150, 0xA47D3861, 0x5C3FDD97 }
 	TAG_STRUCT(
 		material_physics_properties_struct,
 		"material_physics_properties_struct",
@@ -25762,7 +25762,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMPAIGN_METAGAME_BUCKET_BLOCK_ID { 0x00000000, 0x63D7EE66, 0xCFE44D6F, 0xBC5A8E71 }
+	#define CAMPAIGN_METAGAME_BUCKET_BLOCK_ID { 0x63D7EE66, 0xCFE44D6F, 0xBC5A8E71, 0x7128E562 }
 	TAG_STRUCT(
 		campaign_metagame_bucket_block,
 		"campaign_metagame_bucket_block",
@@ -25832,7 +25832,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(campaign_metagame_bucket_class_enum, campaign_metagame_bucket_class_enum_strings, _countof(campaign_metagame_bucket_class_enum_strings));
 
-	#define CAMPAIGN_METAGAME_SCENARIO_BONUSES_BLOCK_ID { 0x00000000, 0xDD111048, 0xEEC841D1, 0x860C878F }
+	#define CAMPAIGN_METAGAME_SCENARIO_BONUSES_BLOCK_ID { 0xDD111048, 0xEEC841D1, 0x860C878F, 0xD680F7F4 }
 	TAG_STRUCT(
 		campaign_metagame_scenario_bonuses_block,
 		"campaign_metagame_scenario_bonuses_block",
@@ -25846,7 +25846,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMPAIGN_METAGAME_SCENARIO_BLOCK_ID { 0x00000000, 0x59269CAB, 0x380A4488, 0x9D7D8B32 }
+	#define CAMPAIGN_METAGAME_SCENARIO_BLOCK_ID { 0x59269CAB, 0x380A4488, 0x9D7D8B32, 0xD61CB01A }
 	TAG_STRUCT(
 		campaign_metagame_scenario_block,
 		"campaign_metagame_scenario_block",
@@ -25860,7 +25860,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMPAIGN_METAGAME_STYLE_TYPE_BLOCK_ID { 0x00000000, 0x5DFA1230, 0x8A3D4653, 0x9E93D875 }
+	#define CAMPAIGN_METAGAME_STYLE_TYPE_BLOCK_ID { 0x5DFA1230, 0x8A3D4653, 0x9E93D875, 0xAFD34842 }
 	TAG_STRUCT(
 		campaign_metagame_style_type_block,
 		"campaign_metagame_style_type_block",
@@ -25873,7 +25873,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMPAIGN_METAGAME_DIFFICULTY_SCALE_BLOCK_ID { 0x00000000, 0x4C1DFA8F, 0x201E4EAA, 0xAD8B851B }
+	#define CAMPAIGN_METAGAME_DIFFICULTY_SCALE_BLOCK_ID { 0x4C1DFA8F, 0x201E4EAA, 0xAD8B851B, 0x7D67E295 }
 	TAG_STRUCT(
 		campaign_metagame_difficulty_scale_block,
 		"campaign_metagame_difficulty_scale_block",
@@ -25886,7 +25886,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMPAIGN_METAGAME_PRIMARY_SKULL_BLOCK_ID { 0x00000000, 0x8F1530D9, 0xC5CC4C93, 0xA6739313 }
+	#define CAMPAIGN_METAGAME_PRIMARY_SKULL_BLOCK_ID { 0x8F1530D9, 0xC5CC4C93, 0xA6739313, 0xD5C8BAAE }
 	TAG_STRUCT(
 		campaign_metagame_primary_skull_block,
 		"campaign_metagame_primary_skull_block",
@@ -25899,7 +25899,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMPAIGN_METAGAME_SECONDARY_SKULL_BLOCK_ID { 0x00000000, 0x5530517A, 0x4E0641F9, 0x91EF5800 }
+	#define CAMPAIGN_METAGAME_SECONDARY_SKULL_BLOCK_ID { 0x5530517A, 0x4E0641F9, 0x91EF5800, 0x0B998E75 }
 	TAG_STRUCT(
 		campaign_metagame_secondary_skull_block,
 		"campaign_metagame_secondary_skull_block",
@@ -25912,7 +25912,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMPAIGN_METAGAME_GLOBALS_BLOCK_ID { 0x00000000, 0x84D6CB38, 0x9F7147BA, 0x80478800 }
+	#define CAMPAIGN_METAGAME_GLOBALS_BLOCK_ID { 0x84D6CB38, 0x9F7147BA, 0x80478800, 0x00026D5C }
 	TAG_STRUCT(
 		campaign_metagame_globals_block,
 		"campaign_metagame_globals_block",
@@ -25934,7 +25934,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTISPHERE_SPHERE_STORAGE_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0x78A08C0E, 0xE6C14D82, 0x92B99FBA }
+	#define MULTISPHERE_SPHERE_STORAGE_ARRAY_STRUCT_DEFINITION_ID { 0x78A08C0E, 0xE6C14D82, 0x92B99FBA, 0xBE10BC0D }
 	TAG_STRUCT(
 		multisphere_sphere_storage_array_struct_definition,
 		"multisphere_sphere_storage_array",
@@ -25948,7 +25948,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTISPHERE_STORAGE_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0x094E3EB0, 0xF12F4E3F, 0x912A7769 }
+	#define MULTISPHERE_STORAGE_ARRAY_STRUCT_DEFINITION_ID { 0x094E3EB0, 0xF12F4E3F, 0x912A7769, 0xDEF5B91C }
 	TAG_STRUCT(
 		multisphere_storage_array_struct_definition,
 		"multisphere_storage_array",
@@ -25964,7 +25964,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LIST_SHAPE_STORAGE_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0x45C9BDDA, 0xF33349CF, 0x84E8A3D9 }
+	#define LIST_SHAPE_STORAGE_ARRAY_STRUCT_DEFINITION_ID { 0x45C9BDDA, 0xF33349CF, 0x84E8A3D9, 0x29DB1C3B }
 	TAG_STRUCT(
 		list_shape_storage_array_struct_definition,
 		"list_shape_storage_array",
@@ -25981,7 +25981,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VEHICLE_PHANTOM_SHAPE_BLOCK_ID { 0x00000000, 0xE0D519DE, 0x8B1D482D, 0xAE2C2A33 }
+	#define VEHICLE_PHANTOM_SHAPE_BLOCK_ID { 0xE0D519DE, 0x8B1D482D, 0xAE2C2A33, 0xE4044E50 }
 	TAG_STRUCT(
 		vehicle_phantom_shape_block,
 		"vehicle_phantom_shape_block",
@@ -26018,7 +26018,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(vehicle_phantom_shape_flags, vehicle_phantom_shape_flags_strings, _countof(vehicle_phantom_shape_flags_strings));
 
-	#define ANTI_GRAVITY_POINT_DEFINITION_BLOCK_ID { 0x00000000, 0x9001A182, 0x08DF4B6F, 0x8425443F }
+	#define ANTI_GRAVITY_POINT_DEFINITION_BLOCK_ID { 0x9001A182, 0x08DF4B6F, 0x8425443F, 0xF6CA64AD }
 	TAG_STRUCT(
 		anti_gravity_point_definition_block,
 		"anti_gravity_point_definition_block",
@@ -26054,7 +26054,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(anti_gravity_point_definition_flags, anti_gravity_point_definition_flags_strings, _countof(anti_gravity_point_definition_flags_strings));
 
-	#define FRICTION_POINT_DEFINITION_BLOCK_ID { 0x00000000, 0x1694B591, 0xC73D42A9, 0x9D1207F5 }
+	#define FRICTION_POINT_DEFINITION_BLOCK_ID { 0x1694B591, 0xC73D42A9, 0x9D1207F5, 0xEFCEF368 }
 	TAG_STRUCT(
 		friction_point_definition_block,
 		"friction_point_definition_block",
@@ -26102,7 +26102,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(friction_point_definition_friction_types, friction_point_definition_friction_types_strings, _countof(friction_point_definition_friction_types_strings));
 
-	#define HAVOK_VEHICLE_PHYSICS_STRUCT_ID { 0x00000000, 0xF61F67DF, 0xEC364DFE, 0x9AB565F7 }
+	#define HAVOK_VEHICLE_PHYSICS_STRUCT_ID { 0xF61F67DF, 0xEC364DFE, 0x9AB565F7, 0x2D6F7EA8 }
 	TAG_STRUCT(
 		havok_vehicle_physics_struct,
 		"havok_vehicle_physics_struct",
@@ -26138,7 +26138,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(havok_vehicle_physics_definition_flags, havok_vehicle_physics_definition_flags_strings, _countof(havok_vehicle_physics_definition_flags_strings));
 
-	#define DAMAGE_BODY_PARAMETERS_STRUCT_ID { 0x00000000, 0x33ECAC95, 0x9A4245E7, 0x8F244955 }
+	#define DAMAGE_BODY_PARAMETERS_STRUCT_ID { 0x33ECAC95, 0x9A4245E7, 0x8F244955, 0x413516E8 }
 	TAG_STRUCT(
 		damage_body_parameters_struct,
 		"damage_body_parameters_struct",
@@ -26155,7 +26155,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_SHIELD_PARAMETERS_STRUCT_ID { 0x00000000, 0xD30C88AC, 0xF030462C, 0x9536E894 }
+	#define DAMAGE_SHIELD_PARAMETERS_STRUCT_ID { 0xD30C88AC, 0xF030462C, 0x9536E894, 0xA6F752C1 }
 	TAG_STRUCT(
 		damage_shield_parameters_struct,
 		"damage_shield_parameters_struct",
@@ -26176,7 +26176,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_DAMAGE_SECTION_BLOCK_ID { 0x00000000, 0x62D3077B, 0xC6584BCA, 0x9A4E7C7A }
+	#define GLOBAL_DAMAGE_SECTION_BLOCK_ID { 0x62D3077B, 0xC6584BCA, 0x9A4E7C7A, 0x989EB4F1 }
 	TAG_STRUCT(
 		global_damage_section_block,
 		"global_damage_section_block",
@@ -26216,7 +26216,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(damage_section_flags_definition, damage_section_flags_definition_strings, _countof(damage_section_flags_definition_strings));
 
-	#define INSTANTANEOUS_DAMAGE_REPSONSE_BLOCK_ID { 0x00000000, 0x2A8C9E6B, 0x10DE4CDB, 0x9C2F98C4 }
+	#define INSTANTANEOUS_DAMAGE_REPSONSE_BLOCK_ID { 0x2A8C9E6B, 0x10DE4CDB, 0x9C2F98C4, 0xBB69FEED }
 	TAG_STRUCT(
 		instantaneous_damage_repsonse_block,
 		"instantaneous_damage_repsonse_block",
@@ -26323,7 +26323,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(damage_response_custom_response_behavior_enum_definition, damage_response_custom_response_behavior_enum_definition_strings, _countof(damage_response_custom_response_behavior_enum_definition_strings));
 
-	#define DAMAGE_SEAT_REGION_SETTING_BLOCK_ID { 0x00000000, 0x11C1834D, 0xC1A14C1E, 0x9BB6EFBD }
+	#define DAMAGE_SEAT_REGION_SETTING_BLOCK_ID { 0x11C1834D, 0xC1A14C1E, 0x9BB6EFBD, 0x8A649453 }
 	TAG_STRUCT(
 		damage_seat_region_setting_block,
 		"damage_seat_region_setting_block",
@@ -26348,7 +26348,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_SEAT_INFO_BLOCK_ID { 0x00000000, 0xF8A6BCA3, 0xCAA541C0, 0xA3EBD6F5 }
+	#define DAMAGE_SEAT_INFO_BLOCK_ID { 0xF8A6BCA3, 0xCAA541C0, 0xA3EBD6F5, 0xFED5C84D }
 	TAG_STRUCT(
 		damage_seat_info_block,
 		"damage_seat_info_block",
@@ -26366,7 +26366,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_CONSTRAINT_INFO_BLOCK_ID { 0x00000000, 0xB2695CA4, 0x6DBB4594, 0x8CD7C095 }
+	#define DAMAGE_CONSTRAINT_INFO_BLOCK_ID { 0xB2695CA4, 0x6DBB4594, 0x8CD7C095, 0x292B2763 }
 	TAG_STRUCT(
 		damage_constraint_info_block,
 		"damage_constraint_info_block",
@@ -26384,7 +26384,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_DAMAGE_NODES_BLOCK_ID { 0x00000000, 0x3736D0B4, 0x7C0A40E1, 0xA4811152 }
+	#define GLOBAL_DAMAGE_NODES_BLOCK_ID { 0x3736D0B4, 0x7C0A40E1, 0xA4811152, 0x22F811F0 }
 	TAG_STRUCT(
 		global_damage_nodes_block,
 		"global_damage_nodes_block",
@@ -26399,7 +26399,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_DAMAGE_INFO_BLOCK_ID { 0x00000000, 0xF8EA703F, 0x560E438E, 0x903E0A00 }
+	#define GLOBAL_DAMAGE_INFO_BLOCK_ID { 0xF8EA703F, 0x560E438E, 0x903E0A00, 0x1C77B3F2 }
 	TAG_STRUCT(
 		global_damage_info_block,
 		"global_damage_info_block",
@@ -26453,7 +26453,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(model_damage_info_flags_definition, model_damage_info_flags_definition_strings, _countof(model_damage_info_flags_definition_strings));
 
-	#define INSTANTANEOUS_RESPONSE_DAMAGE_EFFECT_STRUCT_ID { 0x00000000, 0x16BAF761, 0x451A4914, 0xB508138C }
+	#define INSTANTANEOUS_RESPONSE_DAMAGE_EFFECT_STRUCT_ID { 0x16BAF761, 0x451A4914, 0xB508138C, 0x7244DA1E }
 	TAG_STRUCT(
 		instantaneous_response_damage_effect_struct,
 		"instantaneous_response_damage_effect_struct",
@@ -26466,7 +26466,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define INSTANTANEOUS_RESPONSE_DAMAGE_EFFECT_MARKER_STRUCT_ID { 0x00000000, 0x6272DDC9, 0xC8664D2F, 0xB77E21BC }
+	#define INSTANTANEOUS_RESPONSE_DAMAGE_EFFECT_MARKER_STRUCT_ID { 0x6272DDC9, 0xC8664D2F, 0xB77E21BC, 0xB0C9B9DF }
 	TAG_STRUCT(
 		instantaneous_response_damage_effect_marker_struct,
 		"instantaneous_response_damage_effect_marker_struct",
@@ -26479,7 +26479,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PART_BLOCK_ID { 0x00000000, 0x4A81849D, 0xFBEE42B4, 0xA3C956AC }
+	#define PART_BLOCK_ID { 0x4A81849D, 0xFBEE42B4, 0xA3C956AC, 0xE6530F18 }
 	TAG_STRUCT(
 		part_block,
 		"part_block",
@@ -26509,7 +26509,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(part_flags, part_flags_strings, _countof(part_flags_strings));
 
-	#define SUBPART_BLOCK_ID { 0x00000000, 0x09109A33, 0x9C27436F, 0xB438BFBA }
+	#define SUBPART_BLOCK_ID { 0x09109A33, 0x9C27436F, 0xB438BFBA, 0xB6971BAE }
 	TAG_STRUCT(
 		subpart_block,
 		"subpart_block",
@@ -26525,7 +26525,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define INDICES_WORD_BLOCK_ID { 0x00000000, 0x92F5E99B, 0xFC5B45B5, 0xA594973C }
+	#define INDICES_WORD_BLOCK_ID { 0x92F5E99B, 0xFC5B45B5, 0xA594973C, 0x688E96A8 }
 	TAG_STRUCT(
 		indices_word_block,
 		"indices_word_block",
@@ -26538,7 +26538,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define NODE_INDICES_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0x96D9B877, 0x7D854A1A, 0x94447B36 }
+	#define NODE_INDICES_ARRAY_STRUCT_DEFINITION_ID { 0x96D9B877, 0x7D854A1A, 0x94447B36, 0x3D993ECB }
 	TAG_STRUCT(
 		node_indices_array_struct_definition,
 		"node_indices_array",
@@ -26551,7 +26551,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define NODE_WEIGHTS_COMPLETE_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0x93F6CB70, 0x935C4824, 0xAFBCAA80 }
+	#define NODE_WEIGHTS_COMPLETE_ARRAY_STRUCT_DEFINITION_ID { 0x93F6CB70, 0x935C4824, 0xAFBCAA80, 0x199C0BA7 }
 	TAG_STRUCT(
 		node_weights_complete_array_struct_definition,
 		"node_weights_complete_array",
@@ -26564,7 +26564,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define NODE_WEIGHTS_IMPLICIT_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0x688AC376, 0x93AA40C8, 0xB49A447E }
+	#define NODE_WEIGHTS_IMPLICIT_ARRAY_STRUCT_DEFINITION_ID { 0x688AC376, 0x93AA40C8, 0xB49A447E, 0x88C1B821 }
 	TAG_STRUCT(
 		node_weights_implicit_array_struct_definition,
 		"node_weights_implicit_array",
@@ -26577,7 +26577,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RAW_VERTEX_BLOCK_ID { 0x00000000, 0x98F6C836, 0xCD9343C5, 0xBA313188 }
+	#define RAW_VERTEX_BLOCK_ID { 0x98F6C836, 0xCD9343C5, 0xBA313188, 0x05BDBA77 }
 	TAG_STRUCT(
 		raw_vertex_block,
 		"raw_vertex_block",
@@ -26598,7 +26598,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RAW_WATER_APPEND_BLOCK_ID { 0x00000000, 0xB6F83085, 0xC99A41B1, 0xB7F454A8 }
+	#define RAW_WATER_APPEND_BLOCK_ID { 0xB6F83085, 0xC99A41B1, 0xB7F454A8, 0x5AE2008E }
 	TAG_STRUCT(
 		raw_water_append_block,
 		"raw_water_append_block",
@@ -26613,7 +26613,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RAW_WATER_BLOCK_ID { 0x00000000, 0x4F09C644, 0x93ED4F12, 0xA9D754E1 }
+	#define RAW_WATER_BLOCK_ID { 0x4F09C644, 0x93ED4F12, 0xA9D754E1, 0x6E7054C7 }
 	TAG_STRUCT(
 		raw_water_block,
 		"raw_water_block",
@@ -26627,7 +26627,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COMPRESSION_INFO_BLOCK_ID { 0x00000000, 0xFE51FDAC, 0x62FF4778, 0xA8C33054 }
+	#define COMPRESSION_INFO_BLOCK_ID { 0xFE51FDAC, 0x62FF4778, 0xA8C33054, 0xA023A96C }
 	TAG_STRUCT(
 		compression_info_block,
 		"compression_info_block",
@@ -26653,7 +26653,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(compression_flags, compression_flags_strings, _countof(compression_flags_strings));
 
-	#define SORTING_POSITION_BLOCK_ID { 0x00000000, 0x684EF46D, 0xB52E4111, 0x8E20FEFB }
+	#define SORTING_POSITION_BLOCK_ID { 0x684EF46D, 0xB52E4111, 0x8E20FEFB, 0xEEFB1C9E }
 	TAG_STRUCT(
 		sorting_position_block,
 		"sorting_position_block",
@@ -26670,7 +26670,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define NODE_MAP_BYTE_BLOCK_ID { 0x00000000, 0x77DB2A4A, 0x0EC6490D, 0x822EA727 }
+	#define NODE_MAP_BYTE_BLOCK_ID { 0x77DB2A4A, 0x0EC6490D, 0x822EA727, 0x3026F880 }
 	TAG_STRUCT(
 		node_map_byte_block,
 		"node_map_byte_block",
@@ -26683,7 +26683,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define INSTANCE_INDEX_WORD_BLOCK_ID { 0x00000000, 0xBB11BC2A, 0x52524BAC, 0x993757BE }
+	#define INSTANCE_INDEX_WORD_BLOCK_ID { 0xBB11BC2A, 0x52524BAC, 0x993757BE, 0x8027853E }
 	TAG_STRUCT(
 		instance_index_word_block,
 		"instance_index_word_block",
@@ -26696,7 +26696,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_INSTANCE_BUCKET_BLOCK_ID { 0x00000000, 0x0C556069, 0xC7904BAA, 0xA39F96E0 }
+	#define GLOBAL_INSTANCE_BUCKET_BLOCK_ID { 0x0C556069, 0xC7904BAA, 0xA39F96E0, 0xD9B27120 }
 	TAG_STRUCT(
 		global_instance_bucket_block,
 		"global_instance_bucket_block",
@@ -26711,7 +26711,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VERTEX_BUFFER_INDICES_WORD_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0x5E95A6C9, 0x37604276, 0xBD4EEEA3 }
+	#define VERTEX_BUFFER_INDICES_WORD_ARRAY_STRUCT_DEFINITION_ID { 0x5E95A6C9, 0x37604276, 0xBD4EEEA3, 0x52D11A95 }
 	TAG_STRUCT(
 		vertex_buffer_indices_word_array_struct_definition,
 		"vertex_buffer_indices_word_array",
@@ -26724,7 +26724,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_MESH_BLOCK_ID { 0x00000000, 0xEBB348BB, 0xA7C04CC8, 0xA6E51515 }
+	#define GLOBAL_MESH_BLOCK_ID { 0xEBB348BB, 0xA7C04CC8, 0xA6E51515, 0xA5A99C7C }
 	TAG_STRUCT(
 		global_mesh_block,
 		"global_mesh_block",
@@ -26807,7 +26807,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(mesh_index_buffer_type_definition, mesh_index_buffer_type_definition_strings, _countof(mesh_index_buffer_type_definition_strings));
 
-	#define PER_MESH_RAW_DATA_BLOCK_ID { 0x00000000, 0x52900AB0, 0x23054B64, 0xBA861C13 }
+	#define PER_MESH_RAW_DATA_BLOCK_ID { 0x52900AB0, 0x23054B64, 0xBA861C13, 0x2CC95C01 }
 	TAG_STRUCT(
 		per_mesh_raw_data_block,
 		"per_mesh_raw_data_block",
@@ -26833,7 +26833,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(per_mesh_raw_data_flags, per_mesh_raw_data_flags_strings, _countof(per_mesh_raw_data_flags_strings));
 
-	#define GLOBAL_GEOMETRY_SECTION_STRIP_INDEX_BLOCK_ID { 0x00000000, 0x107EF125, 0x11634A1A, 0x82868F02 }
+	#define GLOBAL_GEOMETRY_SECTION_STRIP_INDEX_BLOCK_ID { 0x107EF125, 0x11634A1A, 0x82868F02, 0x94A3A3D1 }
 	TAG_STRUCT(
 		global_geometry_section_strip_index_block,
 		"global_geometry_section_strip_index_block",
@@ -26846,7 +26846,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PER_MESH_MOPP_BLOCK_ID { 0x00000000, 0x7764423C, 0x370E4E3E, 0x8F6460EB }
+	#define PER_MESH_MOPP_BLOCK_ID { 0x7764423C, 0x370E4E3E, 0x8F6460EB, 0xD5CAF9B6 }
 	TAG_STRUCT(
 		per_mesh_mopp_block,
 		"per_mesh_mopp_block",
@@ -26855,12 +26855,12 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PER_MESH_MOPP_BLOCK_ID)
 	{
-		{ _field_data, "mopp code" },
+		{ _field_data, "mopp code", &blofeld::halo3_tools::global_section_mopp_code_data },
 		{ _field_block, "mopp reorder table", &blofeld::halo3_tools::global_geometry_section_strip_index_block_block },
 		{ _field_terminator }
 	};
 
-	#define PER_MESH_NODE_MAP_BLOCK_ID { 0x00000000, 0xC23B2003, 0x2AA6450C, 0x8B2497D9 }
+	#define PER_MESH_NODE_MAP_BLOCK_ID { 0xC23B2003, 0x2AA6450C, 0x8B2497D9, 0x6C50810F }
 	TAG_STRUCT(
 		per_mesh_node_map_block,
 		"per_mesh_node_map_block",
@@ -26873,7 +26873,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PER_MESH_SUBPART_VISIBILITY_BLOCK_ID { 0x00000000, 0x06360432, 0x14BE47E0, 0x818AB223 }
+	#define PER_MESH_SUBPART_VISIBILITY_BLOCK_ID { 0x06360432, 0x14BE47E0, 0x818AB223, 0xA6DB06A2 }
 	TAG_STRUCT(
 		per_mesh_subpart_visibility_block,
 		"per_mesh_subpart_visibility_block",
@@ -26886,7 +26886,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PER_INSTANCE_PRT_DATA_BLOCK_ID { 0x00000000, 0x836CA33D, 0x37D944DB, 0xBBEFF22E }
+	#define PER_INSTANCE_PRT_DATA_BLOCK_ID { 0x836CA33D, 0x37D944DB, 0xBBEFF22E, 0x6F5D159B }
 	TAG_STRUCT(
 		per_instance_prt_data_block,
 		"per_instance_prt_data_block",
@@ -26895,11 +26895,11 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PER_INSTANCE_PRT_DATA_BLOCK_ID)
 	{
-		{ _field_data, "mesh pca data" },
+		{ _field_data, "mesh pca data", &blofeld::halo3_tools::mesh_pca_data_definition },
 		{ _field_terminator }
 	};
 
-	#define PER_MESH_PRT_DATA_BLOCK_ID { 0x00000000, 0x7ECBA5AF, 0x689D4385, 0xBE237733 }
+	#define PER_MESH_PRT_DATA_BLOCK_ID { 0x7ECBA5AF, 0x689D4385, 0xBE237733, 0x820D7068 }
 	TAG_STRUCT(
 		per_mesh_prt_data_block,
 		"per_mesh_prt_data_block",
@@ -26908,12 +26908,12 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PER_MESH_PRT_DATA_BLOCK_ID)
 	{
-		{ _field_data, "mesh pca data" },
+		{ _field_data, "mesh pca data", &blofeld::halo3_tools::mesh_pca_data_definition },
 		{ _field_block, "per instance prt data", &blofeld::halo3_tools::per_instance_prt_data_block_block },
 		{ _field_terminator }
 	};
 
-	#define PER_INSTANCE_LIGHTMAP_TEXCOORDS_BLOCK_ID { 0x00000000, 0xF880A4D0, 0xF9F848AE, 0x99B436D5 }
+	#define PER_INSTANCE_LIGHTMAP_TEXCOORDS_BLOCK_ID { 0xF880A4D0, 0xF9F848AE, 0x99B436D5, 0xC2C552E5 }
 	TAG_STRUCT(
 		per_instance_lightmap_texcoords_block,
 		"per_instance_lightmap_texcoords_block",
@@ -26928,7 +26928,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_RENDER_GEOMETRY_USER_DATA_HEADER_STRUCT_ID { 0x00000000, 0x90ADB30A, 0xC06E4FA8, 0x96F092C1 }
+	#define GLOBAL_RENDER_GEOMETRY_USER_DATA_HEADER_STRUCT_ID { 0x90ADB30A, 0xC06E4FA8, 0x96F092C1, 0x020E847F }
 	TAG_STRUCT(
 		global_render_geometry_user_data_header_struct,
 		"global_render_geometry_user_data_header_struct",
@@ -26949,7 +26949,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(render_geometry_user_data_type_definition, render_geometry_user_data_type_definition_strings, _countof(render_geometry_user_data_type_definition_strings));
 
-	#define USER_DATA_BLOCK_ID { 0x00000000, 0x3BBE7E4E, 0x475949EF, 0xBDD01F25 }
+	#define USER_DATA_BLOCK_ID { 0x3BBE7E4E, 0x475949EF, 0xBDD01F25, 0x7C2F2589 }
 	TAG_STRUCT(
 		user_data_block,
 		"user_data_block",
@@ -26959,11 +26959,11 @@ namespace halo3_tools {
 		USER_DATA_BLOCK_ID)
 	{
 		{ _field_struct, "user data header", &blofeld::halo3_tools::global_render_geometry_user_data_header_struct },
-		{ _field_data, "user data" },
+		{ _field_data, "user data", &blofeld::halo3_tools::user_data_definition },
 		{ _field_terminator }
 	};
 
-	#define VERTEX_BUFFERS_BLOCK_ID { 0x00000000, 0x10DD7329, 0xE07F4880, 0xBC8BB79A }
+	#define VERTEX_BUFFERS_BLOCK_ID { 0x10DD7329, 0xE07F4880, 0xBC8BB79A, 0x253227EE }
 	TAG_STRUCT(
 		vertex_buffers_block,
 		"vertex_buffers_block",
@@ -26984,7 +26984,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define INDEX_BUFFERS_BLOCK_ID { 0x00000000, 0xC747C29E, 0x88D1483B, 0x9336EC15 }
+	#define INDEX_BUFFERS_BLOCK_ID { 0xC747C29E, 0x88D1483B, 0x9336EC15, 0xF00BDD09 }
 	TAG_STRUCT(
 		index_buffers_block,
 		"index_buffers_block",
@@ -27004,7 +27004,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_VERTEX_BUFFER_BLOCK_ID { 0x00000000, 0xFB026490, 0xD41E4141, 0xA8A023BE }
+	#define RENDER_VERTEX_BUFFER_BLOCK_ID { 0xFB026490, 0xD41E4141, 0xA8A023BE, 0x06497B4E }
 	TAG_STRUCT(
 		render_vertex_buffer_block,
 		"render_vertex_buffer_block",
@@ -27017,7 +27017,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_INDEX_BUFFER_BLOCK_ID { 0x00000000, 0x034F8376, 0xE6BB4E0E, 0x8039CB4B }
+	#define RENDER_INDEX_BUFFER_BLOCK_ID { 0x034F8376, 0xE6BB4E0E, 0x8039CB4B, 0xE53EC97C }
 	TAG_STRUCT(
 		render_index_buffer_block,
 		"render_index_buffer_block",
@@ -27030,7 +27030,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_GEOMETRY_API_RESOURCE_DEFINITION_STRUCT_ID { 0x00000000, 0x8AEB8021, 0xF60A4164, 0x970C7091 }
+	#define RENDER_GEOMETRY_API_RESOURCE_DEFINITION_STRUCT_ID { 0x8AEB8021, 0xF60A4164, 0x970C7091, 0x23365545 }
 	TAG_STRUCT(
 		render_geometry_api_resource_definition_struct,
 		"render_geometry_api_resource_definition_struct",
@@ -27046,7 +27046,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_RENDER_GEOMETRY_STRUCT_ID { 0x00000000, 0x25CE2A94, 0x081545BA, 0x9E9A2690 }
+	#define GLOBAL_RENDER_GEOMETRY_STRUCT_ID { 0x25CE2A94, 0x081545BA, 0x9E9A2690, 0xEFDBE832 }
 	TAG_STRUCT(
 		global_render_geometry_struct,
 		"global_render_geometry_struct",
@@ -27079,7 +27079,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(render_geometry_flags, render_geometry_flags_strings, _countof(render_geometry_flags_strings));
 
-	#define STRUCTURE_BSP_INSTANCED_GEOMETRY_DEFINITION_BLOCK_ID { 0x00000000, 0xF51D0B5F, 0x91954EB1, 0x8B0C7E1F }
+	#define STRUCTURE_BSP_INSTANCED_GEOMETRY_DEFINITION_BLOCK_ID { 0xF51D0B5F, 0x91954EB1, 0x8B0C7E1F, 0x85168F82 }
 	TAG_STRUCT(
 		structure_bsp_instanced_geometry_definition_block,
 		"structure_bsp_instanced_geometry_definition_block",
@@ -27104,7 +27104,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_RENDER_MODEL_INSTANCE_PLACEMENT_BLOCK_ID { 0x00000000, 0xC01E3AA5, 0x8CC5444B, 0xAA65DA03 }
+	#define GLOBAL_RENDER_MODEL_INSTANCE_PLACEMENT_BLOCK_ID { 0xC01E3AA5, 0x8CC5444B, 0xAA65DA03, 0xDF961696 }
 	TAG_STRUCT(
 		global_render_model_instance_placement_block,
 		"global_render_model_instance_placement_block",
@@ -27123,7 +27123,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_INSTANCED_GEOMETRY_INSTANCES_BLOCK_ID { 0x00000000, 0x1AED06E6, 0xF1AC46B4, 0x8A2AF2D2 }
+	#define STRUCTURE_BSP_INSTANCED_GEOMETRY_INSTANCES_BLOCK_ID { 0x1AED06E6, 0xF1AC46B4, 0x8A2AF2D2, 0xDA51B54A }
 	TAG_STRUCT(
 		structure_bsp_instanced_geometry_instances_block,
 		"structure_bsp_instanced_geometry_instances_block",
@@ -27188,7 +27188,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(instanced_geometry_lightmapping_policy_enum, instanced_geometry_lightmapping_policy_enum_strings, _countof(instanced_geometry_lightmapping_policy_enum_strings));
 
-	#define GLOBAL_ERROR_REPORT_CATEGORIES_BLOCK_ID { 0x00000000, 0x3CBB78D5, 0xCA074D83, 0x8994291A }
+	#define GLOBAL_ERROR_REPORT_CATEGORIES_BLOCK_ID { 0x3CBB78D5, 0xCA074D83, 0x8994291A, 0x8E13F496 }
 	TAG_STRUCT(
 		global_error_report_categories_block,
 		"global_error_report_categories_block",
@@ -27226,7 +27226,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(error_report_flags, error_report_flags_strings, _countof(error_report_flags_strings));
 
-	#define ERROR_REPORTS_BLOCK_ID { 0x00000000, 0xEE6AAB20, 0x3227499F, 0x914508D6 }
+	#define ERROR_REPORTS_BLOCK_ID { 0xEE6AAB20, 0x3227499F, 0x914508D6, 0x40FCAA9E }
 	TAG_STRUCT(
 		error_reports_block,
 		"error_reports_block",
@@ -27238,7 +27238,7 @@ namespace halo3_tools {
 		{ _field_char_enum, "type", &blofeld::halo3_tools::error_report_types },
 		{ _field_char_enum, "source", &blofeld::halo3_tools::error_report_source },
 		{ _field_word_flags, "flags", &blofeld::halo3_tools::error_report_flags },
-		{ _field_data, "text" },
+		{ _field_data, "text", &blofeld::halo3_tools::error_report_string_data },
 		{ _field_string, "source filename" },
 		{ _field_long_integer, "source line number" },
 		{ _field_block, "vertices", &blofeld::halo3_tools::error_report_vertices_block_block },
@@ -27266,7 +27266,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(error_report_source, error_report_source_strings, _countof(error_report_source_strings));
 
-	#define ERROR_POINT_NODE_INDEX_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0xB0BC81FE, 0xF4FF4938, 0xBA0BD7A5 }
+	#define ERROR_POINT_NODE_INDEX_ARRAY_STRUCT_DEFINITION_ID { 0xB0BC81FE, 0xF4FF4938, 0xBA0BD7A5, 0xCE3EBDC0 }
 	TAG_STRUCT(
 		error_point_node_index_array_struct_definition,
 		"error_point_node_index_array",
@@ -27279,7 +27279,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ERROR_POINT_NODE_WEIGHT_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0xFA129333, 0xA37C4DC7, 0xB1050C1B }
+	#define ERROR_POINT_NODE_WEIGHT_ARRAY_STRUCT_DEFINITION_ID { 0xFA129333, 0xA37C4DC7, 0xB1050C1B, 0x12F05638 }
 	TAG_STRUCT(
 		error_point_node_weight_array_struct_definition,
 		"error_point_node_weight_array",
@@ -27292,7 +27292,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ERROR_REPORT_POINT_DEFINITION_ID { 0x00000000, 0xB6C2368C, 0x78534A62, 0x9882F40C }
+	#define ERROR_REPORT_POINT_DEFINITION_ID { 0xB6C2368C, 0x78534A62, 0x9882F40C, 0xE2181EF5 }
 	TAG_STRUCT(
 		error_report_point_definition,
 		"error_report_point_definition",
@@ -27307,7 +27307,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ERROR_REPORT_VERTICES_BLOCK_ID { 0x00000000, 0xB44D11D1, 0xA884463D, 0xB9552513 }
+	#define ERROR_REPORT_VERTICES_BLOCK_ID { 0xB44D11D1, 0xA884463D, 0xB9552513, 0x0E390450 }
 	TAG_STRUCT(
 		error_report_vertices_block,
 		"error_report_vertices_block",
@@ -27322,7 +27322,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ERROR_REPORT_VECTORS_BLOCK_ID { 0x00000000, 0xF617E038, 0x0B4E4E8D, 0xAF4F86B9 }
+	#define ERROR_REPORT_VECTORS_BLOCK_ID { 0xF617E038, 0x0B4E4E8D, 0xAF4F86B9, 0x02745E1F }
 	TAG_STRUCT(
 		error_report_vectors_block,
 		"error_report_vectors_block",
@@ -27338,7 +27338,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ERROR_REPORT_LINE_POINT_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0x0F4729E0, 0x338142C9, 0xBB1ABDAE }
+	#define ERROR_REPORT_LINE_POINT_ARRAY_STRUCT_DEFINITION_ID { 0x0F4729E0, 0x338142C9, 0xBB1ABDAE, 0x4888C89A }
 	TAG_STRUCT(
 		error_report_line_point_array_struct_definition,
 		"error_report_line_point_array",
@@ -27351,7 +27351,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ERROR_REPORT_LINES_BLOCK_ID { 0x00000000, 0x1C172D3C, 0x604A4356, 0x8F1BDE48 }
+	#define ERROR_REPORT_LINES_BLOCK_ID { 0x1C172D3C, 0x604A4356, 0x8F1BDE48, 0xE0CA8284 }
 	TAG_STRUCT(
 		error_report_lines_block,
 		"error_report_lines_block",
@@ -27365,7 +27365,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ERROR_REPORT_TRIANGLE_POINT_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0xD7176398, 0xDDD84F94, 0x8AFE9068 }
+	#define ERROR_REPORT_TRIANGLE_POINT_ARRAY_STRUCT_DEFINITION_ID { 0xD7176398, 0xDDD84F94, 0x8AFE9068, 0x59AEA189 }
 	TAG_STRUCT(
 		error_report_triangle_point_array_struct_definition,
 		"error_report_triangle_point_array",
@@ -27378,7 +27378,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ERROR_REPORT_TRIANGLES_BLOCK_ID { 0x00000000, 0xF926E761, 0x001244E3, 0x85173116 }
+	#define ERROR_REPORT_TRIANGLES_BLOCK_ID { 0xF926E761, 0x001244E3, 0x85173116, 0x2B96347A }
 	TAG_STRUCT(
 		error_report_triangles_block,
 		"error_report_triangles_block",
@@ -27392,7 +27392,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ERROR_REPORT_QUAD_POINT_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0x81027CE9, 0x0A0E42FD, 0xAE95FE26 }
+	#define ERROR_REPORT_QUAD_POINT_ARRAY_STRUCT_DEFINITION_ID { 0x81027CE9, 0x0A0E42FD, 0xAE95FE26, 0x6EB082A3 }
 	TAG_STRUCT(
 		error_report_quad_point_array_struct_definition,
 		"error_report_quad_point_array",
@@ -27405,7 +27405,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ERROR_REPORT_QUADS_BLOCK_ID { 0x00000000, 0xD1071621, 0xE7D84305, 0x8AEA9FCC }
+	#define ERROR_REPORT_QUADS_BLOCK_ID { 0xD1071621, 0xE7D84305, 0x8AEA9FCC, 0xC52955BF }
 	TAG_STRUCT(
 		error_report_quads_block,
 		"error_report_quads_block",
@@ -27419,7 +27419,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ERROR_REPORT_COMMENTS_BLOCK_ID { 0x00000000, 0x709A9566, 0xDEA34617, 0x8AFF50B9 }
+	#define ERROR_REPORT_COMMENTS_BLOCK_ID { 0x709A9566, 0xDEA34617, 0x8AFF50B9, 0xDB6DE950 }
 	TAG_STRUCT(
 		error_report_comments_block,
 		"error_report_comments_block",
@@ -27428,13 +27428,13 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORT_COMMENTS_BLOCK_ID)
 	{
-		{ _field_data, "text" },
+		{ _field_data, "text", &blofeld::halo3_tools::error_report_string_data },
 		{ _field_struct, "point", &blofeld::halo3_tools::error_report_point_definition },
 		{ _field_real_argb_color, "color" },
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_GEOMETRY_MATERIAL_BLOCK_ID { 0x00000000, 0xB1135973, 0x34A54DC5, 0x99901631 }
+	#define GLOBAL_GEOMETRY_MATERIAL_BLOCK_ID { 0xB1135973, 0x34A54DC5, 0x99901631, 0xB0B5E573 }
 	TAG_STRUCT(
 		global_geometry_material_block,
 		"global_geometry_material_block",
@@ -27453,7 +27453,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(render_method_group_reference_tagref, RENDER_METHOD_TAG);
 
-	#define GLOBAL_GEOMETRY_MATERIAL_PROPERTY_BLOCK_ID { 0x00000000, 0xC8582E72, 0x3D064599, 0xB4857A5C }
+	#define GLOBAL_GEOMETRY_MATERIAL_PROPERTY_BLOCK_ID { 0xC8582E72, 0x3D064599, 0xB4857A5C, 0xA10618F2 }
 	TAG_STRUCT(
 		global_geometry_material_property_block,
 		"global_geometry_material_property_block",
@@ -27483,7 +27483,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(geometry_material_property_type, geometry_material_property_type_strings, _countof(geometry_material_property_type_strings));
 
-	#define GLOBAL_COLLISION_BSP_BLOCK_ID { 0x00000000, 0xE15E4F1B, 0x1F17442D, 0x8730F6BB }
+	#define GLOBAL_COLLISION_BSP_BLOCK_ID { 0xE15E4F1B, 0x1F17442D, 0x8730F6BB, 0xC0E02045 }
 	TAG_STRUCT(
 		global_collision_bsp_block,
 		"global_collision_bsp_block",
@@ -27503,7 +27503,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_LARGE_COLLISION_BSP_BLOCK_ID { 0x00000000, 0xE15AAF1B, 0xBF17422D, 0xB730F6DB }
+	#define GLOBAL_LARGE_COLLISION_BSP_BLOCK_ID { 0xE15AAF1B, 0xBF17422D, 0xB730F6DB, 0xCDE02043 }
 	TAG_STRUCT(
 		global_large_collision_bsp_block,
 		"global_large_collision_bsp_block",
@@ -27523,7 +27523,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BSP3D_NODES_BLOCK_STRUCT_ID { 0x00000000, 0xB5D8FC21, 0xFF8E48E7, 0x92611F52 }
+	#define BSP3D_NODES_BLOCK_STRUCT_ID { 0xB5D8FC21, 0xFF8E48E7, 0x92611F52, 0x3E7371A3 }
 	TAG_STRUCT(
 		bsp3d_nodes_block_struct,
 		"bsp3d_nodes_block_struct",
@@ -27536,7 +27536,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LARGE_BSP3D_NODES_BLOCK_ID { 0x00000000, 0xB16070E2, 0x373C48DD, 0xBC536E38 }
+	#define LARGE_BSP3D_NODES_BLOCK_ID { 0xB16070E2, 0x373C48DD, 0xBC536E38, 0xA979E2E0 }
 	TAG_STRUCT(
 		large_bsp3d_nodes_block,
 		"large_bsp3d_nodes_block",
@@ -27551,7 +27551,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PLANES_BLOCK_ID { 0x00000000, 0x5D188A8D, 0x719C4E0D, 0x8015A6DA }
+	#define PLANES_BLOCK_ID { 0x5D188A8D, 0x719C4E0D, 0x8015A6DA, 0x22E342EB }
 	TAG_STRUCT(
 		planes_block,
 		"planes_block",
@@ -27564,7 +27564,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLLISION_LEAF_STRUCT_ID { 0x00000000, 0xA5FD8EE3, 0x9A644ECC, 0x9CEBF2FB }
+	#define COLLISION_LEAF_STRUCT_ID { 0xA5FD8EE3, 0x9A644ECC, 0x9CEBF2FB, 0x45030CA1 }
 	TAG_STRUCT(
 		collision_leaf_struct,
 		"collision_leaf_struct",
@@ -27586,7 +27586,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(leaf_flags, leaf_flags_strings, _countof(leaf_flags_strings));
 
-	#define LARGE_LEAVES_BLOCK_ID { 0x00000000, 0x6FACAFAA, 0x8B1C4C58, 0x913373AA }
+	#define LARGE_LEAVES_BLOCK_ID { 0x6FACAFAA, 0x8B1C4C58, 0x913373AA, 0x7C8A9E94 }
 	TAG_STRUCT(
 		large_leaves_block,
 		"large_leaves_block",
@@ -27601,7 +27601,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BSP2D_REFERENCES_BLOCK_ID { 0x00000000, 0x591E809E, 0x8C38445F, 0xB889DE6F }
+	#define BSP2D_REFERENCES_BLOCK_ID { 0x591E809E, 0x8C38445F, 0xB889DE6F, 0x3B5474FF }
 	TAG_STRUCT(
 		bsp2d_references_block,
 		"bsp2d_references_block",
@@ -27615,7 +27615,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LARGE_BSP2D_REFERENCES_BLOCK_ID { 0x00000000, 0x7E600865, 0x481349EE, 0xAA595566 }
+	#define LARGE_BSP2D_REFERENCES_BLOCK_ID { 0x7E600865, 0x481349EE, 0xAA595566, 0x4FD9C2BB }
 	TAG_STRUCT(
 		large_bsp2d_references_block,
 		"large_bsp2d_references_block",
@@ -27629,7 +27629,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BSP2D_NODES_BLOCK_ID { 0x00000000, 0x6CD60C8C, 0xC73B4124, 0xB339408C }
+	#define BSP2D_NODES_BLOCK_ID { 0x6CD60C8C, 0xC73B4124, 0xB339408C, 0x966AD3BE }
 	TAG_STRUCT(
 		bsp2d_nodes_block,
 		"bsp2d_nodes_block",
@@ -27644,7 +27644,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LARGE_BSP2D_NODES_BLOCK_ID { 0x00000000, 0xC17973C7, 0x16C14EE5, 0xA40FA277 }
+	#define LARGE_BSP2D_NODES_BLOCK_ID { 0xC17973C7, 0x16C14EE5, 0xA40FA277, 0x212D8050 }
 	TAG_STRUCT(
 		large_bsp2d_nodes_block,
 		"large_bsp2d_nodes_block",
@@ -27659,7 +27659,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SURFACES_BLOCK_ID { 0x00000000, 0x7CB81935, 0x01394B88, 0xBF32DE80 }
+	#define SURFACES_BLOCK_ID { 0x7CB81935, 0x01394B88, 0xBF32DE80, 0xD8589139 }
 	TAG_STRUCT(
 		surfaces_block,
 		"surfaces_block",
@@ -27690,7 +27690,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(surface_flags, surface_flags_strings, _countof(surface_flags_strings));
 
-	#define LARGE_SURFACES_BLOCK_ID { 0x00000000, 0xE4F80B98, 0x0D764C5B, 0xBD4E563D }
+	#define LARGE_SURFACES_BLOCK_ID { 0xE4F80B98, 0x0D764C5B, 0xBD4E563D, 0x50414589 }
 	TAG_STRUCT(
 		large_surfaces_block,
 		"large_surfaces_block",
@@ -27709,7 +27709,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define EDGES_BLOCK_ID { 0x00000000, 0xB51DA635, 0xEC534400, 0x81B58C33 }
+	#define EDGES_BLOCK_ID { 0xB51DA635, 0xEC534400, 0x81B58C33, 0xD1DCCAFD }
 	TAG_STRUCT(
 		edges_block,
 		"edges_block",
@@ -27727,7 +27727,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LARGE_EDGES_BLOCK_ID { 0x00000000, 0x76B24BE8, 0xE1574464, 0xB7C09C61 }
+	#define LARGE_EDGES_BLOCK_ID { 0x76B24BE8, 0xE1574464, 0xB7C09C61, 0x948F3471 }
 	TAG_STRUCT(
 		large_edges_block,
 		"large_edges_block",
@@ -27745,7 +27745,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VERTICES_BLOCK_ID { 0x00000000, 0x6C3F6A60, 0x1FCE4C6A, 0x8F89E265 }
+	#define VERTICES_BLOCK_ID { 0x6C3F6A60, 0x1FCE4C6A, 0x8F89E265, 0xE56D2F60 }
 	TAG_STRUCT(
 		vertices_block,
 		"vertices_block",
@@ -27760,7 +27760,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LARGE_VERTICES_BLOCK_ID { 0x00000000, 0x0459797B, 0xF03B4186, 0xAA638C78 }
+	#define LARGE_VERTICES_BLOCK_ID { 0x0459797B, 0xF03B4186, 0xAA638C78, 0xD41B79DD }
 	TAG_STRUCT(
 		large_vertices_block,
 		"large_vertices_block",
@@ -27775,7 +27775,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_COLLISION_BSP_STRUCT_ID { 0x00000000, 0x130D16E9, 0xA4684A1E, 0xA91958AD }
+	#define GLOBAL_COLLISION_BSP_STRUCT_ID { 0x130D16E9, 0xA4684A1E, 0xA91958AD, 0x3BDAA7EC }
 	TAG_STRUCT(
 		global_collision_bsp_struct,
 		"global_collision_bsp_struct",
@@ -27795,7 +27795,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLLISION_BSP_PHYSICS_BLOCK_ID { 0x00000000, 0xDFDA91AC, 0x1DC240BB, 0x8F8A4DA3 }
+	#define COLLISION_BSP_PHYSICS_BLOCK_ID { 0xDFDA91AC, 0x1DC240BB, 0x8F8A4DA3, 0x16F98A39 }
 	TAG_STRUCT(
 		collision_bsp_physics_block,
 		"collision_bsp_physics_block",
@@ -27826,7 +27826,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SOFT_CEILING_TRIANGLE_BLOCK_ID { 0x00000000, 0xF75BE784, 0x41744702, 0xA1F258E9 }
+	#define STRUCTURE_SOFT_CEILING_TRIANGLE_BLOCK_ID { 0xF75BE784, 0x41744702, 0xA1F258E9, 0x2CD5B9E4 }
 	TAG_STRUCT(
 		structure_soft_ceiling_triangle_block,
 		"structure_soft_ceiling_triangle_block",
@@ -27844,7 +27844,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SOFT_CEILING_BLOCK_ID { 0x00000000, 0x51FDFC81, 0xC7EF4920, 0x8C353CCA }
+	#define STRUCTURE_SOFT_CEILING_BLOCK_ID { 0x51FDFC81, 0xC7EF4920, 0x8C353CCA, 0x2A23FF5D }
 	TAG_STRUCT(
 		structure_soft_ceiling_block,
 		"structure_soft_ceiling_block",
@@ -27860,7 +27860,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BREAKABLE_SURFACE_KEY_TABLE_BLOCK_ID { 0x00000000, 0x9815598B, 0x36884E51, 0x81CF6CB8 }
+	#define BREAKABLE_SURFACE_KEY_TABLE_BLOCK_ID { 0x9815598B, 0x36884E51, 0x81CF6CB8, 0xAA8F19CD }
 	TAG_STRUCT(
 		breakable_surface_key_table_block,
 		"breakable_surface_key_table_block",
@@ -27882,7 +27882,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_WATER_GROUPS_BLOCK_ID { 0x00000000, 0xA1FDFC81, 0x07EF4920, 0xBC353CCA }
+	#define STRUCTURE_WATER_GROUPS_BLOCK_ID { 0xA1FDFC81, 0x07EF4920, 0xBC353CCA, 0x1A23FF5D }
 	TAG_STRUCT(
 		structure_water_groups_block,
 		"structure_water_groups_block",
@@ -27895,7 +27895,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_WATER_INSTANCE_PLANES_BLOCK_ID { 0x00000000, 0xAAFDFC81, 0x0BEF4920, 0xBC353CCA }
+	#define STRUCTURE_WATER_INSTANCE_PLANES_BLOCK_ID { 0xAAFDFC81, 0x0BEF4920, 0xBC353CCA, 0x1D23FF5D }
 	TAG_STRUCT(
 		structure_water_instance_planes_block,
 		"structure_water_instance_planes_block",
@@ -27908,7 +27908,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_WATER_INSTANCE_DEBUG_TRIANGLES_BLOCK_ID { 0x00000000, 0xAAFDFA81, 0x0BEF4B20, 0xBC3530CA }
+	#define STRUCTURE_WATER_INSTANCE_DEBUG_TRIANGLES_BLOCK_ID { 0xAAFDFA81, 0x0BEF4B20, 0xBC3530CA, 0x1D23FD5D }
 	TAG_STRUCT(
 		structure_water_instance_debug_triangles_block,
 		"structure_water_instance_debug_triangles_block",
@@ -27923,7 +27923,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_WATER_INSTANCES_BLOCK_ID { 0x00000000, 0xA1FDFC80, 0x07EF4921, 0xBC353CC2 }
+	#define STRUCTURE_WATER_INSTANCES_BLOCK_ID { 0xA1FDFC80, 0x07EF4921, 0xBC353CC2, 0x1A23FF53 }
 	TAG_STRUCT(
 		structure_water_instances_block,
 		"structure_water_instances_block",
@@ -27941,7 +27941,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOFT_SURFACES_DEFINITION_BLOCK_ID { 0x00000000, 0xBD13C0EA, 0x830B4239, 0xA55BF0F4 }
+	#define SOFT_SURFACES_DEFINITION_BLOCK_ID { 0xBD13C0EA, 0x830B4239, 0xA55BF0F4, 0xCEC129A9 }
 	TAG_STRUCT(
 		soft_surfaces_definition_block,
 		"soft_surfaces_definition_block",
@@ -27959,7 +27959,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_STRUCTURE_PHYSICS_STRUCT_ID { 0x00000000, 0x85AE0045, 0x53D34FA6, 0x8EF153FA }
+	#define GLOBAL_STRUCTURE_PHYSICS_STRUCT_ID { 0x85AE0045, 0x53D34FA6, 0x8EF153FA, 0x77162294 }
 	TAG_STRUCT(
 		global_structure_physics_struct,
 		"global_structure_physics_struct",
@@ -27977,7 +27977,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_STRUCTURE_PHYSICS_DESIGN_STRUCT_ID { 0x00000000, 0x85AE0A45, 0x13D34FA6, 0x8EB153FA }
+	#define GLOBAL_STRUCTURE_PHYSICS_DESIGN_STRUCT_ID { 0x85AE0A45, 0x13D34FA6, 0x8EB153FA, 0xA7162294 }
 	TAG_STRUCT(
 		global_structure_physics_design_struct,
 		"global_structure_physics_design_struct",
@@ -27995,7 +27995,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PARTICLE_PROPERTY_SCALAR_STRUCT_NEW_ID { 0x00000000, 0x64607252, 0xE8084E37, 0x8447409D }
+	#define PARTICLE_PROPERTY_SCALAR_STRUCT_NEW_ID { 0x64607252, 0xE8084E37, 0x8447409D, 0x9411483C }
 	TAG_STRUCT(
 		particle_property_scalar_struct_new,
 		"particle_property_scalar_struct_new",
@@ -28024,7 +28024,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(output_mod_enum$2, output_mod_enum$2_strings, _countof(output_mod_enum$2_strings));
 
-	#define PARTICLE_PROPERTY_COLOR_STRUCT_NEW_ID { 0x00000000, 0x342C0071, 0xBAFB43CF, 0x9FDA5DD6 }
+	#define PARTICLE_PROPERTY_COLOR_STRUCT_NEW_ID { 0x342C0071, 0xBAFB43CF, 0x9FDA5DD6, 0x630D2DCA }
 	TAG_STRUCT(
 		particle_property_color_struct_new,
 		"particle_property_color_struct_new",
@@ -28045,7 +28045,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PARTICLE_PROPERTY_REAL_POINT3D_STRUCT_NEW_ID { 0x00000000, 0x0BEB218F, 0x6CE546FA, 0xA21161F6 }
+	#define PARTICLE_PROPERTY_REAL_POINT3D_STRUCT_NEW_ID { 0x0BEB218F, 0x6CE546FA, 0xA21161F6, 0xE75582FC }
 	TAG_STRUCT(
 		particle_property_real_point3d_struct_new,
 		"particle_property_real_point3d_struct_new",
@@ -28068,7 +28068,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PARTICLE_PROPERTY_REAL_VECTOR3D_STRUCT_NEW_ID { 0x00000000, 0x02581257, 0x6A544BEE, 0xA48450A0 }
+	#define PARTICLE_PROPERTY_REAL_VECTOR3D_STRUCT_NEW_ID { 0x02581257, 0x6A544BEE, 0xA48450A0, 0xA5C42FB5 }
 	TAG_STRUCT(
 		particle_property_real_vector3d_struct_new,
 		"particle_property_real_vector3d_struct_new",
@@ -28091,7 +28091,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PARTICLE_PROPERTY_REAL_VECTOR3D_SPHERICAL_STRUCT_NEW_ID { 0x00000000, 0x177FFA4E, 0x1DF44D58, 0xB4D45610 }
+	#define PARTICLE_PROPERTY_REAL_VECTOR3D_SPHERICAL_STRUCT_NEW_ID { 0x177FFA4E, 0x1DF44D58, 0xB4D45610, 0x086CBE4D }
 	TAG_STRUCT(
 		particle_property_real_vector3d_spherical_struct_new,
 		"particle_property_real_vector3d_spherical_struct_new",
@@ -28116,7 +28116,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PROPERTY_EDITABLE_VECTOR3D_INTERPOLATOR_ID { 0x00000000, 0x1FAEFF55, 0x777F4D02, 0xB41C0357 }
+	#define PROPERTY_EDITABLE_VECTOR3D_INTERPOLATOR_ID { 0x1FAEFF55, 0x777F4D02, 0xB41C0357, 0x0C7E36F4 }
 	TAG_STRUCT(
 		property_editable_vector3d_interpolator,
 		"property_editable_vector3d_interpolator",
@@ -28130,7 +28130,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CUBEMAP_BLOCK_ID { 0x00000000, 0x05268782, 0x3F8F473B, 0x87B21BB6 }
+	#define SCENARIO_CUBEMAP_BLOCK_ID { 0x05268782, 0x3F8F473B, 0x87B21BB6, 0x67E5D5EF }
 	TAG_STRUCT(
 		scenario_cubemap_block,
 		"scenario_cubemap_block",
@@ -28155,7 +28155,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(cubemap_resolution_enum, cubemap_resolution_enum_strings, _countof(cubemap_resolution_enum_strings));
 
-	#define STRUCTURE_CLUSTER_CUBEMAP_ID { 0x00000000, 0xCAE96BC4, 0xD7A14711, 0xBA17DE83 }
+	#define STRUCTURE_CLUSTER_CUBEMAP_ID { 0xCAE96BC4, 0xD7A14711, 0xBA17DE83, 0x3A3B5BAB }
 	TAG_STRUCT(
 		structure_cluster_cubemap,
 		"structure_cluster_cubemap",
@@ -28170,7 +28170,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SOUND_CLUSTER_PORTAL_DESIGNATORS_ID { 0x00000000, 0x01EC24E9, 0xFD0D4390, 0xB834EDB2 }
+	#define STRUCTURE_SOUND_CLUSTER_PORTAL_DESIGNATORS_ID { 0x01EC24E9, 0xFD0D4390, 0xB834EDB2, 0x81935210 }
 	TAG_STRUCT(
 		structure_sound_cluster_portal_designators,
 		"structure_sound_cluster_portal_designators",
@@ -28183,7 +28183,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_SOUND_CLUSTER_INTERIOR_CLUSTER_INDICES_ID { 0x00000000, 0xC93822AC, 0x9F9E404B, 0x9440C3DA }
+	#define STRUCTURE_SOUND_CLUSTER_INTERIOR_CLUSTER_INDICES_ID { 0xC93822AC, 0x9F9E404B, 0x9440C3DA, 0x462F28E7 }
 	TAG_STRUCT(
 		structure_sound_cluster_interior_cluster_indices,
 		"structure_sound_cluster_interior_cluster_indices",
@@ -28196,7 +28196,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_SOUND_CLUSTER_BLOCK_ID { 0x00000000, 0x1B60A32F, 0x573342BF, 0x861F64D3 }
+	#define STRUCTURE_BSP_SOUND_CLUSTER_BLOCK_ID { 0x1B60A32F, 0x573342BF, 0x861F64D3, 0xADC5FA35 }
 	TAG_STRUCT(
 		structure_bsp_sound_cluster_block,
 		"structure_bsp_sound_cluster_block",
@@ -28212,7 +28212,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_OBJECT_ID_STRUCT_ID { 0x00000000, 0xA40A1401, 0xDE4B45AE, 0xB47F4714 }
+	#define SCENARIO_OBJECT_ID_STRUCT_ID { 0xA40A1401, 0xDE4B45AE, 0xB47F4714, 0x99C39E7B }
 	TAG_STRUCT(
 		scenario_object_id_struct,
 		"scenario_object_id_struct",
@@ -28258,7 +28258,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(object_source_enum_definition, object_source_enum_definition_strings, _countof(object_source_enum_definition_strings));
 
-	#define SCENARIO_OBJECT_REFERENCE_STRUCT_ID { 0x00000000, 0xA40BCD01, 0xDE0AB5AE, 0xB12F4714 }
+	#define SCENARIO_OBJECT_REFERENCE_STRUCT_ID { 0xA40BCD01, 0xDE0AB5AE, 0xB12F4714, 0xAAC39E7B }
 	TAG_STRUCT(
 		scenario_object_reference_struct,
 		"scenario_object_reference_struct",
@@ -28272,7 +28272,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PATHFINDING_OBJECT_INDEX_LIST_BLOCK_ID { 0x00000000, 0x37C77D68, 0xF2954BAD, 0xA5D4509E }
+	#define PATHFINDING_OBJECT_INDEX_LIST_BLOCK_ID { 0x37C77D68, 0xF2954BAD, 0xA5D4509E, 0xBAE0F213 }
 	TAG_STRUCT(
 		pathfinding_object_index_list_block,
 		"pathfinding_object_index_list_block",
@@ -28286,7 +28286,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_OBJECT_PARENT_STRUCT_ID { 0x00000000, 0xC16E1FE3, 0xC0AA4656, 0x95075B5F }
+	#define SCENARIO_OBJECT_PARENT_STRUCT_ID { 0xC16E1FE3, 0xC0AA4656, 0x95075B5F, 0x41BB4DF4 }
 	TAG_STRUCT(
 		scenario_object_parent_struct,
 		"scenario_object_parent_struct",
@@ -28302,7 +28302,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_OBJECT_NODE_ORIENTATIONS_BIT_VECTOR_BLOCK_ID { 0x00000000, 0xEDBAEA00, 0x1CBB4AEF, 0xCC2D582C }
+	#define SCENARIO_OBJECT_NODE_ORIENTATIONS_BIT_VECTOR_BLOCK_ID { 0xEDBAEA00, 0x1CBB4AEF, 0xCC2D582C, 0x0D39C28A }
 	TAG_STRUCT(
 		scenario_object_node_orientations_bit_vector_block,
 		"scenario_object_node_orientations_bit_vector_block",
@@ -28315,7 +28315,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_OBJECT_NODE_ORIENTATIONS_ORIENTATIONS_BLOCK_ID { 0x00000000, 0xEDAAEC00, 0x4CB74AEF, 0xBC2F582C }
+	#define SCENARIO_OBJECT_NODE_ORIENTATIONS_ORIENTATIONS_BLOCK_ID { 0xEDAAEC00, 0x4CB74AEF, 0xBC2F582C, 0x1D39C08A }
 	TAG_STRUCT(
 		scenario_object_node_orientations_orientations_block,
 		"scenario_object_node_orientations_orientations_block",
@@ -28328,7 +28328,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_OBJECT_NODE_ORIENTATIONS_BLOCK_ID { 0x00000000, 0xEDA8EC00, 0x4C774AEF, 0xB12F582C }
+	#define SCENARIO_OBJECT_NODE_ORIENTATIONS_BLOCK_ID { 0xEDA8EC00, 0x4C774AEF, 0xB12F582C, 0x1E39C08A }
 	TAG_STRUCT(
 		scenario_object_node_orientations_block,
 		"scenario_object_node_orientations_block",
@@ -28344,7 +28344,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_OBJECT_PERMUTATION_STRUCT_ID { 0x00000000, 0x03BD8F07, 0x22A74669, 0xA02A4C64 }
+	#define SCENARIO_OBJECT_PERMUTATION_STRUCT_ID { 0x03BD8F07, 0x22A74669, 0xA02A4C64, 0x096D3305 }
 	TAG_STRUCT(
 		scenario_object_permutation_struct,
 		"scenario_object_permutation_struct",
@@ -28372,7 +28372,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenario_object_active_change_color_flags, scenario_object_active_change_color_flags_strings, _countof(scenario_object_active_change_color_flags_strings));
 
-	#define SCENARIO_MULTIPLAYER_OBJECT_STRUCT_ID { 0x00000000, 0xD7949B53, 0x207B47B5, 0x99E1EB91 }
+	#define SCENARIO_MULTIPLAYER_OBJECT_STRUCT_ID { 0xD7949B53, 0x207B47B5, 0x99E1EB91, 0x29AF1E16 }
 	TAG_STRUCT(
 		scenario_multiplayer_object_struct,
 		"scenario_multiplayer_object_struct",
@@ -28497,7 +28497,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(multiplayer_teleporter_channel, multiplayer_teleporter_channel_strings, _countof(multiplayer_teleporter_channel_strings));
 
-	#define SCENARIO_SCENERY_PALETTE_BLOCK_ID { 0x00000000, 0x1A68BAA7, 0xC1684595, 0xAE27EC8D }
+	#define SCENARIO_SCENERY_PALETTE_BLOCK_ID { 0x1A68BAA7, 0xC1684595, 0xAE27EC8D, 0x238EFE5D }
 	TAG_STRUCT(
 		scenario_scenery_palette_block,
 		"scenario_scenery_palette_block",
@@ -28513,7 +28513,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(scenery_group_reference$2_tagref, SCENERY_TAG);
 
-	#define SCENARIO_SCENERY_DATUM_STRUCT_V4_ID { 0x00000000, 0xECD107BB, 0x32A143B7, 0x934D8DC0 }
+	#define SCENARIO_SCENERY_DATUM_STRUCT_V4_ID { 0xECD107BB, 0x32A143B7, 0x934D8DC0, 0x0B606F2D }
 	TAG_STRUCT(
 		scenario_scenery_datum_struct_v4,
 		"scenario_scenery_datum_struct_v4",
@@ -28549,7 +28549,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenery_lightmap_policy_enum, scenery_lightmap_policy_enum_strings, _countof(scenery_lightmap_policy_enum_strings));
 
-	#define SCENARIO_CRATE_PALETTE_BLOCK_ID { 0x00000000, 0x551E40AB, 0x0E4A4D8D, 0x90123759 }
+	#define SCENARIO_CRATE_PALETTE_BLOCK_ID { 0x551E40AB, 0x0E4A4D8D, 0x90123759, 0xFD13FAFA }
 	TAG_STRUCT(
 		scenario_crate_palette_block,
 		"scenario_crate_palette_block",
@@ -28565,7 +28565,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(crate_group_reference_tagref, CRATE_TAG);
 
-	#define SCENARIO_CRATE_DATUM_STRUCT_ID { 0x00000000, 0x5B721C93, 0xD3E64C22, 0xAA9B2A15 }
+	#define SCENARIO_CRATE_DATUM_STRUCT_ID { 0x5B721C93, 0xD3E64C22, 0xAA9B2A15, 0x1614421C }
 	TAG_STRUCT(
 		scenario_crate_datum_struct,
 		"scenario_crate_datum_struct",
@@ -28580,7 +28580,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CRATE_BLOCK_ID { 0x00000000, 0x64C39900, 0x24D642E9, 0xAB5396A7 }
+	#define SCENARIO_CRATE_BLOCK_ID { 0x64C39900, 0x24D642E9, 0xAB5396A7, 0x50C5FCDE }
 	TAG_STRUCT(
 		scenario_crate_block,
 		"scenario_crate_block",
@@ -28600,7 +28600,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CREATURE_PALETTE_BLOCK_ID { 0x00000000, 0x65384A0C, 0x581941A9, 0xB2668441 }
+	#define SCENARIO_CREATURE_PALETTE_BLOCK_ID { 0x65384A0C, 0x581941A9, 0xB2668441, 0x2732CE0E }
 	TAG_STRUCT(
 		scenario_creature_palette_block,
 		"scenario_creature_palette_block",
@@ -28616,7 +28616,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(creature_group_reference_tagref, CREATURE_TAG);
 
-	#define SCENARIO_CREATURE_BLOCK_ID { 0x00000000, 0x09DFDC77, 0xD7B340DD, 0x98945C37 }
+	#define SCENARIO_CREATURE_BLOCK_ID { 0x09DFDC77, 0xD7B340DD, 0x98945C37, 0x64786346 }
 	TAG_STRUCT(
 		scenario_creature_block,
 		"scenario_creature_block",
@@ -28633,7 +28633,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_EQUIPMENT_PALETTE_BLOCK_ID { 0x00000000, 0xA91733C4, 0x27394ADD, 0xBDF68C43 }
+	#define SCENARIO_EQUIPMENT_PALETTE_BLOCK_ID { 0xA91733C4, 0x27394ADD, 0xBDF68C43, 0x9CDCAD72 }
 	TAG_STRUCT(
 		scenario_equipment_palette_block,
 		"scenario_equipment_palette_block",
@@ -28649,7 +28649,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(equipment_group_reference_tagref, EQUIPMENT_TAG);
 
-	#define SCENARIO_EQUIPMENT_DATUM_STRUCT_ID { 0x00000000, 0x48D20C56, 0x8B844C52, 0xA0DA0D7B }
+	#define SCENARIO_EQUIPMENT_DATUM_STRUCT_ID { 0x48D20C56, 0x8B844C52, 0xA0DA0D7B, 0x0B10F54A }
 	TAG_STRUCT(
 		scenario_equipment_datum_struct,
 		"scenario_equipment_datum_struct",
@@ -28670,7 +28670,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenario_equipment_flags_definition, scenario_equipment_flags_definition_strings, _countof(scenario_equipment_flags_definition_strings));
 
-	#define SCENARIO_WEAPON_PALETTE_BLOCK_ID { 0x00000000, 0xB129233A, 0xC7914741, 0x9513A80A }
+	#define SCENARIO_WEAPON_PALETTE_BLOCK_ID { 0xB129233A, 0xC7914741, 0x9513A80A, 0x3B9C12D1 }
 	TAG_STRUCT(
 		scenario_weapon_palette_block,
 		"scenario_weapon_palette_block",
@@ -28686,7 +28686,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(weapon_group_reference_tagref, WEAPON_TAG);
 
-	#define SCENARIO_WEAPON_DATUM_STRUCT_ID { 0x00000000, 0x95BC43BA, 0xC6EF42C5, 0x95BA7855 }
+	#define SCENARIO_WEAPON_DATUM_STRUCT_ID { 0x95BC43BA, 0xC6EF42C5, 0x95BA7855, 0x50A05B6F }
 	TAG_STRUCT(
 		scenario_weapon_datum_struct,
 		"scenario_weapon_datum_struct",
@@ -28709,7 +28709,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenario_weapon_datum_flags, scenario_weapon_datum_flags_strings, _countof(scenario_weapon_datum_flags_strings));
 
-	#define SCENARIO_UNIT_STRUCT_ID { 0x00000000, 0xF7C25813, 0x7E524E9D, 0x89F06521 }
+	#define SCENARIO_UNIT_STRUCT_ID { 0xF7C25813, 0x7E524E9D, 0x89F06521, 0x97EDBB16 }
 	TAG_STRUCT(
 		scenario_unit_struct,
 		"scenario_unit_struct",
@@ -28731,7 +28731,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenario_unit_datum_flags, scenario_unit_datum_flags_strings, _countof(scenario_unit_datum_flags_strings));
 
-	#define SCENARIO_BIPED_PALETTE_BLOCK_ID { 0x00000000, 0x3CCBF08D, 0x94FD4CD9, 0x9D7E48BE }
+	#define SCENARIO_BIPED_PALETTE_BLOCK_ID { 0x3CCBF08D, 0x94FD4CD9, 0x9D7E48BE, 0x7F3F3102 }
 	TAG_STRUCT(
 		scenario_biped_palette_block,
 		"scenario_biped_palette_block",
@@ -28747,7 +28747,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(biped_group_reference_tagref, BIPED_TAG);
 
-	#define SCENARIO_GIANT_DATUM_STRUCT_ID { 0x00000000, 0x89405329, 0x890C4F04, 0xB9B87A12 }
+	#define SCENARIO_GIANT_DATUM_STRUCT_ID { 0x89405329, 0x890C4F04, 0xB9B87A12, 0x6E648B53 }
 	TAG_STRUCT(
 		scenario_giant_datum_struct,
 		"scenario_giant_datum_struct",
@@ -28762,7 +28762,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_GIANT_PALETTE_BLOCK_ID { 0x00000000, 0xFCCBF08D, 0xF4FD4CD9, 0xFD7E48BE }
+	#define SCENARIO_GIANT_PALETTE_BLOCK_ID { 0xFCCBF08D, 0xF4FD4CD9, 0xFD7E48BE, 0xFF3F3102 }
 	TAG_STRUCT(
 		scenario_giant_palette_block,
 		"scenario_giant_palette_block",
@@ -28778,7 +28778,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(giant_group_reference_tagref, GIANT_TAG);
 
-	#define MAP_VARIANT_VEHICLE_PALETTE_BLOCK_ID { 0x00000000, 0x32ACE1FB, 0xC80245B7, 0x875FA25B }
+	#define MAP_VARIANT_VEHICLE_PALETTE_BLOCK_ID { 0x32ACE1FB, 0xC80245B7, 0x875FA25B, 0x9C408A82 }
 	TAG_STRUCT(
 		map_variant_vehicle_palette_block,
 		"map_variant_vehicle_palette_block",
@@ -28797,7 +28797,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(vehicle_group_reference$4_tagref, VEHICLE_TAG);
 
-	#define MAP_VARIANT_EQUIPMENT_PALETTE_BLOCK_ID { 0x00000000, 0x79F214B9, 0x416741B7, 0xBA63624B }
+	#define MAP_VARIANT_EQUIPMENT_PALETTE_BLOCK_ID { 0x79F214B9, 0x416741B7, 0xBA63624B, 0x21A28743 }
 	TAG_STRUCT(
 		map_variant_equipment_palette_block,
 		"map_variant_equipment_palette_block",
@@ -28816,7 +28816,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(equipment_group_reference$5_tagref, EQUIPMENT_TAG);
 
-	#define MAP_VARIANT_WEAPON_PALETTE_BLOCK_ID { 0x00000000, 0xD15A8403, 0xD2854B0E, 0x8DB1BD06 }
+	#define MAP_VARIANT_WEAPON_PALETTE_BLOCK_ID { 0xD15A8403, 0xD2854B0E, 0x8DB1BD06, 0xB215E369 }
 	TAG_STRUCT(
 		map_variant_weapon_palette_block,
 		"map_variant_weapon_palette_block",
@@ -28842,7 +28842,7 @@ namespace halo3_tools {
 		INVALID_TAG
 	};
 
-	#define MAP_VARIANT_SCENERY_PALETTE_BLOCK_ID { 0x00000000, 0x88B70163, 0x004F4610, 0x9FEB5F6D }
+	#define MAP_VARIANT_SCENERY_PALETTE_BLOCK_ID { 0x88B70163, 0x004F4610, 0x9FEB5F6D, 0xC91128E0 }
 	TAG_STRUCT(
 		map_variant_scenery_palette_block,
 		"map_variant_scenery_palette_block",
@@ -28859,7 +28859,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MAP_VARIANT_TELEPORTER_PALETTE_BLOCK_ID { 0x00000000, 0xF17C0EA2, 0xCD014381, 0x98F8615E }
+	#define MAP_VARIANT_TELEPORTER_PALETTE_BLOCK_ID { 0xF17C0EA2, 0xCD014381, 0x98F8615E, 0xD6A0C55F }
 	TAG_STRUCT(
 		map_variant_teleporter_palette_block,
 		"map_variant_teleporter_palette_block",
@@ -28876,7 +28876,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MAP_VARIANT_GOAL_PALETTE_BLOCK_ID { 0x00000000, 0x85209E19, 0xBC1E486F, 0xAD4AB824 }
+	#define MAP_VARIANT_GOAL_PALETTE_BLOCK_ID { 0x85209E19, 0xBC1E486F, 0xAD4AB824, 0x69D342CF }
 	TAG_STRUCT(
 		map_variant_goal_palette_block,
 		"map_variant_goal_palette_block",
@@ -28893,7 +28893,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MAP_VARIANT_SPAWN_OBJECTS_PALETTE_BLOCK_ID { 0x00000000, 0xFCC1CC42, 0xE2DC46E9, 0xA7288102 }
+	#define MAP_VARIANT_SPAWN_OBJECTS_PALETTE_BLOCK_ID { 0xFCC1CC42, 0xE2DC46E9, 0xA7288102, 0x98000419 }
 	TAG_STRUCT(
 		map_variant_spawn_objects_palette_block,
 		"map_variant_spawn_objects_palette_block",
@@ -28910,7 +28910,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_VEHICLE_PALETTE_BLOCK_ID { 0x00000000, 0x666689FB, 0x9FE8484B, 0xAAAC920E }
+	#define SCENARIO_VEHICLE_PALETTE_BLOCK_ID { 0x666689FB, 0x9FE8484B, 0xAAAC920E, 0x44ED0845 }
 	TAG_STRUCT(
 		scenario_vehicle_palette_block,
 		"scenario_vehicle_palette_block",
@@ -28926,7 +28926,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(vehicle_group_reference_tagref, VEHICLE_TAG);
 
-	#define DEVICE_GROUP_BLOCK_ID { 0x00000000, 0xACEBB874, 0x1E6A4C32, 0x839122F6 }
+	#define DEVICE_GROUP_BLOCK_ID { 0xACEBB874, 0x1E6A4C32, 0x839122F6, 0x6729B33B }
 	TAG_STRUCT(
 		device_group_block,
 		"device_group_block",
@@ -28948,7 +28948,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(device_group_flags, device_group_flags_strings, _countof(device_group_flags_strings));
 
-	#define SCENARIO_DEVICE_STRUCT_ID { 0x00000000, 0xF3F2B599, 0x93524F63, 0xBF5BD676 }
+	#define SCENARIO_DEVICE_STRUCT_ID { 0xF3F2B599, 0x93524F63, 0xBF5BD676, 0x6FD79D9E }
 	TAG_STRUCT(
 		scenario_device_struct,
 		"scenario_device_struct",
@@ -28973,7 +28973,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenario_device_flags, scenario_device_flags_strings, _countof(scenario_device_flags_strings));
 
-	#define SCENARIO_MACHINE_PALETTE_BLOCK_ID { 0x00000000, 0x3DD4739B, 0xA07F4861, 0x8F13C5F7 }
+	#define SCENARIO_MACHINE_PALETTE_BLOCK_ID { 0x3DD4739B, 0xA07F4861, 0x8F13C5F7, 0xE350E9BA }
 	TAG_STRUCT(
 		scenario_machine_palette_block,
 		"scenario_machine_palette_block",
@@ -28989,7 +28989,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(device_machine_group_reference_tagref, DEVICE_MACHINE_TAG);
 
-	#define SCENARIO_MACHINE_STRUCT_V3_ID { 0x00000000, 0x43A76E9A, 0xA1E24E63, 0xA60DD607 }
+	#define SCENARIO_MACHINE_STRUCT_V3_ID { 0x43A76E9A, 0xA1E24E63, 0xA60DD607, 0x83C2C762 }
 	TAG_STRUCT(
 		scenario_machine_struct_v3,
 		"scenario_machine_struct_v3",
@@ -29027,7 +29027,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenario_machine_pathfinding_policy_enum, scenario_machine_pathfinding_policy_enum_strings, _countof(scenario_machine_pathfinding_policy_enum_strings));
 
-	#define SCENARIO_TERMINAL_PALETTE_BLOCK_ID { 0x00000000, 0x1001DE4F, 0xE9CB4A21, 0x95F9A6C4 }
+	#define SCENARIO_TERMINAL_PALETTE_BLOCK_ID { 0x1001DE4F, 0xE9CB4A21, 0x95F9A6C4, 0x1FD3B4DF }
 	TAG_STRUCT(
 		scenario_terminal_palette_block,
 		"scenario_terminal_palette_block",
@@ -29043,7 +29043,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(device_terminal_group_reference_tagref, DEVICE_TERMINAL_TAG);
 
-	#define SCENARIO_TERMINAL_STRUCT_ID { 0x00000000, 0x167BF1D1, 0x8FF44C03, 0xB1C1085B }
+	#define SCENARIO_TERMINAL_STRUCT_ID { 0x167BF1D1, 0x8FF44C03, 0xB1C1085B, 0xF16DB71F }
 	TAG_STRUCT(
 		scenario_terminal_struct,
 		"scenario_terminal_struct",
@@ -29056,7 +29056,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_TERMINAL_BLOCK_ID { 0x00000000, 0x9BE62BD0, 0xCD8E4FD7, 0xABCBDF23 }
+	#define SCENARIO_TERMINAL_BLOCK_ID { 0x9BE62BD0, 0xCD8E4FD7, 0xABCBDF23, 0x3BE7133D }
 	TAG_STRUCT(
 		scenario_terminal_block,
 		"scenario_terminal_block",
@@ -29075,7 +29075,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CONTROL_PALETTE_BLOCK_ID { 0x00000000, 0xFFF11901, 0x16EA4B50, 0x9C997778 }
+	#define SCENARIO_CONTROL_PALETTE_BLOCK_ID { 0xFFF11901, 0x16EA4B50, 0x9C997778, 0xE1D7C1A7 }
 	TAG_STRUCT(
 		scenario_control_palette_block,
 		"scenario_control_palette_block",
@@ -29091,7 +29091,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(device_control_group_reference_tagref, DEVICE_CONTROL_TAG);
 
-	#define SCENARIO_CONTROL_STRUCT_ID { 0x00000000, 0x4C0DFF56, 0xAB5E4908, 0xBC8FEA48 }
+	#define SCENARIO_CONTROL_STRUCT_ID { 0x4C0DFF56, 0xAB5E4908, 0xBC8FEA48, 0x712465AA }
 	TAG_STRUCT(
 		scenario_control_struct,
 		"scenario_control_struct",
@@ -29112,7 +29112,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenario_control_flags, scenario_control_flags_strings, _countof(scenario_control_flags_strings));
 
-	#define SCENARIO_SOUND_SCENERY_PALETTE_BLOCK_ID { 0x00000000, 0x26AD173B, 0xA3964E5A, 0x8CB3FCC2 }
+	#define SCENARIO_SOUND_SCENERY_PALETTE_BLOCK_ID { 0x26AD173B, 0xA3964E5A, 0x8CB3FCC2, 0x50965380 }
 	TAG_STRUCT(
 		scenario_sound_scenery_palette_block,
 		"scenario_sound_scenery_palette_block",
@@ -29128,7 +29128,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(sound_scenery_group_reference_tagref, SOUND_SCENERY_TAG);
 
-	#define SOUND_SCENERY_DATUM_STRUCT_ID { 0x00000000, 0xFF6D6F6D, 0x3E6F4BF4, 0xADD8327E }
+	#define SOUND_SCENERY_DATUM_STRUCT_ID { 0xFF6D6F6D, 0x3E6F4BF4, 0xADD8327E, 0x767DAEBA }
 	TAG_STRUCT(
 		sound_scenery_datum_struct,
 		"sound_scenery_datum_struct",
@@ -29153,7 +29153,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(sound_volume_type_enumeration, sound_volume_type_enumeration_strings, _countof(sound_volume_type_enumeration_strings));
 
-	#define SCENARIO_EFFECT_SCENERY_DATUM_STRUCT_ID { 0x00000000, 0xAECBC47E, 0xC5FD4495, 0x9C908F2E }
+	#define SCENARIO_EFFECT_SCENERY_DATUM_STRUCT_ID { 0xAECBC47E, 0xC5FD4495, 0x9C908F2E, 0x2C4FAD95 }
 	TAG_STRUCT(
 		scenario_effect_scenery_datum_struct,
 		"scenario_effect_scenery_datum_struct",
@@ -29165,7 +29165,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_EFFECT_SCENERY_PALETTE_BLOCK_ID { 0x00000000, 0xD571AA7C, 0xB1C5453D, 0xA4C230A8 }
+	#define SCENARIO_EFFECT_SCENERY_PALETTE_BLOCK_ID { 0xD571AA7C, 0xB1C5453D, 0xA4C230A8, 0x510B0C22 }
 	TAG_STRUCT(
 		scenario_effect_scenery_palette_block,
 		"scenario_effect_scenery_palette_block",
@@ -29181,7 +29181,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(effect_scenery_group_reference_tagref, EFFECT_SCENERY_TAG);
 
-	#define SCENARIO_LIGHT_PALETTE_BLOCK_ID { 0x00000000, 0x9E64D9DF, 0x92BC446B, 0xB7A127D7 }
+	#define SCENARIO_LIGHT_PALETTE_BLOCK_ID { 0x9E64D9DF, 0x92BC446B, 0xB7A127D7, 0xD7548F7B }
 	TAG_STRUCT(
 		scenario_light_palette_block,
 		"scenario_light_palette_block",
@@ -29197,7 +29197,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(light_group_reference_tagref, LIGHT_TAG);
 
-	#define SCENARIO_LIGHT_STRUCT_ID { 0x00000000, 0xBB77795D, 0x33D6469D, 0xB74A00C7 }
+	#define SCENARIO_LIGHT_STRUCT_ID { 0xBB77795D, 0x33D6469D, 0xB74A00C7, 0xBF78146F }
 	TAG_STRUCT(
 		scenario_light_struct,
 		"scenario_light_struct",
@@ -29254,7 +29254,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenario_light_lightmap_flags_definition, scenario_light_lightmap_flags_definition_strings, _countof(scenario_light_lightmap_flags_definition_strings));
 
-	#define SCENARIO_OBJECT_DATUM_STRUCT_ID { 0x00000000, 0xB2D98DC9, 0xF27A4A22, 0xB6CD6942 }
+	#define SCENARIO_OBJECT_DATUM_STRUCT_ID { 0xB2D98DC9, 0xF27A4A22, 0xB6CD6942, 0x27B43F20 }
 	TAG_STRUCT(
 		scenario_object_datum_struct,
 		"scenario_object_datum_struct",
@@ -29313,7 +29313,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scenario_object_bsp_placement_policy_definition, scenario_object_bsp_placement_policy_definition_strings, _countof(scenario_object_bsp_placement_policy_definition_strings));
 
-	#define SCENARIO_SCENERY_BLOCK_ID { 0x00000000, 0x283E4BAF, 0x0A4B4423, 0xAFFCC242 }
+	#define SCENARIO_SCENERY_BLOCK_ID { 0x283E4BAF, 0x0A4B4423, 0xAFFCC242, 0xC3BDCB2D }
 	TAG_STRUCT(
 		scenario_scenery_block,
 		"scenario_scenery_block",
@@ -29333,7 +29333,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_EQUIPMENT_BLOCK_ID { 0x00000000, 0x1B8D7978, 0x0A1543A4, 0xAA855C05 }
+	#define SCENARIO_EQUIPMENT_BLOCK_ID { 0x1B8D7978, 0x0A1543A4, 0xAA855C05, 0x9DF77483 }
 	TAG_STRUCT(
 		scenario_equipment_block,
 		"scenario_equipment_block",
@@ -29352,7 +29352,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_WEAPON_BLOCK_ID { 0x00000000, 0x687A60CA, 0x9BB94DE2, 0xB92F066B }
+	#define SCENARIO_WEAPON_BLOCK_ID { 0x687A60CA, 0x9BB94DE2, 0xB92F066B, 0x24108BC6 }
 	TAG_STRUCT(
 		scenario_weapon_block,
 		"scenario_weapon_block",
@@ -29372,7 +29372,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_BIPED_BLOCK_ID { 0x00000000, 0xD9AC3CB5, 0x4EB541D4, 0xA631C1B6 }
+	#define SCENARIO_BIPED_BLOCK_ID { 0xD9AC3CB5, 0x4EB541D4, 0xA631C1B6, 0x364F885E }
 	TAG_STRUCT(
 		scenario_biped_block,
 		"scenario_biped_block",
@@ -29391,7 +29391,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_GIANT_BLOCK_ID { 0x00000000, 0xD4AC3CB5, 0x4E5541D4, 0xA63121B6 }
+	#define SCENARIO_GIANT_BLOCK_ID { 0xD4AC3CB5, 0x4E5541D4, 0xA63121B6, 0x364F882E }
 	TAG_STRUCT(
 		scenario_giant_block,
 		"scenario_giant_block",
@@ -29411,7 +29411,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_VEHICLE_BLOCK_ID { 0x00000000, 0x756D14F1, 0xDEF4497E, 0xA140AC68 }
+	#define SCENARIO_VEHICLE_BLOCK_ID { 0x756D14F1, 0xDEF4497E, 0xA140AC68, 0xC9C52931 }
 	TAG_STRUCT(
 		scenario_vehicle_block,
 		"scenario_vehicle_block",
@@ -29431,7 +29431,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_MACHINE_BLOCK_ID { 0x00000000, 0xC7CF0D75, 0x5D864949, 0x8F05E50B }
+	#define SCENARIO_MACHINE_BLOCK_ID { 0xC7CF0D75, 0x5D864949, 0x8F05E50B, 0x8F928F88 }
 	TAG_STRUCT(
 		scenario_machine_block,
 		"scenario_machine_block",
@@ -29450,7 +29450,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CONTROL_BLOCK_ID { 0x00000000, 0x92F483D9, 0x5B3C4AB8, 0xA3EBB7C5 }
+	#define SCENARIO_CONTROL_BLOCK_ID { 0x92F483D9, 0x5B3C4AB8, 0xA3EBB7C5, 0x346983EF }
 	TAG_STRUCT(
 		scenario_control_block,
 		"scenario_control_block",
@@ -29469,7 +29469,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_SOUND_SCENERY_BLOCK_ID { 0x00000000, 0x3AF565D6, 0x04364ABA, 0xABC4F95D }
+	#define SCENARIO_SOUND_SCENERY_BLOCK_ID { 0x3AF565D6, 0x04364ABA, 0xABC4F95D, 0xACF0FE38 }
 	TAG_STRUCT(
 		scenario_sound_scenery_block,
 		"scenario_sound_scenery_block",
@@ -29487,7 +29487,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_EFFECT_SCENERY_BLOCK_ID { 0x00000000, 0xAD706F17, 0x252A467B, 0x9484D9A5 }
+	#define SCENARIO_EFFECT_SCENERY_BLOCK_ID { 0xAD706F17, 0x252A467B, 0x9484D9A5, 0x64355699 }
 	TAG_STRUCT(
 		scenario_effect_scenery_block,
 		"scenario_effect_scenery_block",
@@ -29505,7 +29505,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_LIGHT_BLOCK_ID { 0x00000000, 0x69972ABE, 0x7F85440A, 0x89F17D4D }
+	#define SCENARIO_LIGHT_BLOCK_ID { 0x69972ABE, 0x7F85440A, 0x89F17D4D, 0x769528B5 }
 	TAG_STRUCT(
 		scenario_light_block,
 		"scenario_light_block",
@@ -29527,7 +29527,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_ACOUSTICS_ENVIRONMENT_PALETTE_BLOCK_ID { 0x00000000, 0x28E5442D, 0x171C4393, 0x84F40877 }
+	#define SCENARIO_ACOUSTICS_ENVIRONMENT_PALETTE_BLOCK_ID { 0x28E5442D, 0x171C4393, 0x84F40877, 0x829F3F5B }
 	TAG_STRUCT(
 		scenario_acoustics_environment_palette_block,
 		"scenario_acoustics_environment_palette_block",
@@ -29544,7 +29544,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_ACOUSTICS_AMBIENCE_PALETTE_BLOCK_ID { 0x00000000, 0xA4166168, 0x4AC841B8, 0x96D833C4 }
+	#define SCENARIO_ACOUSTICS_AMBIENCE_PALETTE_BLOCK_ID { 0xA4166168, 0x4AC841B8, 0x96D833C4, 0xB097F56C }
 	TAG_STRUCT(
 		scenario_acoustics_ambience_palette_block,
 		"scenario_acoustics_ambience_palette_block",
@@ -29576,7 +29576,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(background_sound_scale_flags_definition, background_sound_scale_flags_definition_strings, _countof(background_sound_scale_flags_definition_strings));
 
-	#define SCENARIO_ACOUSTICS_ENVIRONMENT_DEFINITION_ID { 0x00000000, 0x718F78F4, 0x7FB14DA7, 0x88A566D2 }
+	#define SCENARIO_ACOUSTICS_ENVIRONMENT_DEFINITION_ID { 0x718F78F4, 0x7FB14DA7, 0x88A566D2, 0x3608B533 }
 	TAG_STRUCT(
 		scenario_acoustics_environment_definition,
 		"scenario_acoustics_environment_definition",
@@ -29591,7 +29591,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_ACOUSTICS_AMBIENCE_DEFINITION_ID { 0x00000000, 0x35137799, 0x93F24E9E, 0x81364E61 }
+	#define SCENARIO_ACOUSTICS_AMBIENCE_DEFINITION_ID { 0x35137799, 0x93F24E9E, 0x81364E61, 0xE072BBAB }
 	TAG_STRUCT(
 		scenario_acoustics_ambience_definition,
 		"scenario_acoustics_ambience_definition",
@@ -29611,7 +29611,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_ACOUSTICS_PALETTE_BLOCK_DEFINITION_STRUCT_ID { 0x00000000, 0xCADEB9A2, 0x119B467B, 0x82D36013 }
+	#define SCENARIO_ACOUSTICS_PALETTE_BLOCK_DEFINITION_STRUCT_ID { 0xCADEB9A2, 0x119B467B, 0x82D36013, 0xDE6C1794 }
 	TAG_STRUCT(
 		scenario_acoustics_palette_block_definition_struct,
 		"scenario_acoustics_palette_block_definition_struct",
@@ -29628,7 +29628,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_ACOUSTIC_VOLUME_BLOCK_ID { 0x00000000, 0xD4564088, 0xB6D949ED, 0x914DFFB6 }
+	#define SCENARIO_ACOUSTIC_VOLUME_BLOCK_ID { 0xD4564088, 0xB6D949ED, 0x914DFFB6, 0x0B5D893D }
 	TAG_STRUCT(
 		scenario_acoustic_volume_block,
 		"scenario_acoustic_volume_block",
@@ -29643,7 +29643,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MAP_LEAF_FACE_VERTEX_BLOCK_ID { 0x00000000, 0xF918DB0A, 0x67E04ADB, 0x9440FD77 }
+	#define MAP_LEAF_FACE_VERTEX_BLOCK_ID { 0xF918DB0A, 0x67E04ADB, 0x9440FD77, 0x21A4734D }
 	TAG_STRUCT(
 		map_leaf_face_vertex_block,
 		"map_leaf_face_vertex_block",
@@ -29656,7 +29656,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MAP_LEAF_FACE_BLOCK_ID { 0x00000000, 0x76C78229, 0x504B49E6, 0xAE70E1D0 }
+	#define MAP_LEAF_FACE_BLOCK_ID { 0x76C78229, 0x504B49E6, 0xAE70E1D0, 0x63A16B1E }
 	TAG_STRUCT(
 		map_leaf_face_block,
 		"map_leaf_face_block",
@@ -29670,7 +29670,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MAP_LEAF_CONNECTION_INDEX_BLOCK_ID { 0x00000000, 0xDE3F27ED, 0x242A469D, 0xAF139C96 }
+	#define MAP_LEAF_CONNECTION_INDEX_BLOCK_ID { 0xDE3F27ED, 0x242A469D, 0xAF139C96, 0xFB3C81EA }
 	TAG_STRUCT(
 		map_leaf_connection_index_block,
 		"map_leaf_connection_index_block",
@@ -29683,7 +29683,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_MAP_LEAF_BLOCK_ID { 0x00000000, 0x7963BAF0, 0x35ED4A23, 0x91FEC7CC }
+	#define GLOBAL_MAP_LEAF_BLOCK_ID { 0x7963BAF0, 0x35ED4A23, 0x91FEC7CC, 0xC9477083 }
 	TAG_STRUCT(
 		global_map_leaf_block,
 		"global_map_leaf_block",
@@ -29697,7 +29697,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LEAF_CONNECTION_VERTEX_BLOCK_ID { 0x00000000, 0x421E487D, 0x11484CA1, 0x853701FC }
+	#define LEAF_CONNECTION_VERTEX_BLOCK_ID { 0x421E487D, 0x11484CA1, 0x853701FC, 0x69284A5C }
 	TAG_STRUCT(
 		leaf_connection_vertex_block,
 		"leaf_connection_vertex_block",
@@ -29710,7 +29710,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_LEAF_CONNECTION_BLOCK_ID { 0x00000000, 0x7FE10580, 0x88974F2E, 0x810AB1B9 }
+	#define GLOBAL_LEAF_CONNECTION_BLOCK_ID { 0x7FE10580, 0x88974F2E, 0x810AB1B9, 0xD47E3481 }
 	TAG_STRUCT(
 		global_leaf_connection_block,
 		"global_leaf_connection_block",
@@ -29727,7 +29727,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SUPPORTED_BITFIELD_STRUCT_DEFINITION_ID { 0x00000000, 0x5BA3F924, 0xD9104D57, 0x9D743495 }
+	#define SUPPORTED_BITFIELD_STRUCT_DEFINITION_ID { 0x5BA3F924, 0xD9104D57, 0x9D743495, 0x3F6636C6 }
 	TAG_STRUCT(
 		supported_bitfield_struct_definition,
 		"supported_bitfield",
@@ -29740,7 +29740,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BREAKABLE_SURFACE_SET_BLOCK_ID { 0x00000000, 0x1CAF3641, 0x92334C3F, 0x9991A6AC }
+	#define BREAKABLE_SURFACE_SET_BLOCK_ID { 0x1CAF3641, 0x92334C3F, 0x9991A6AC, 0xCB69431A }
 	TAG_STRUCT(
 		breakable_surface_set_block,
 		"breakable_surface_set_block",
@@ -29753,7 +29753,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CLUSTER_INSTANCED_GEOMETRY_SHAPE_STRUCT_ID { 0x00000000, 0x6873D774, 0x47B04151, 0x8BAECCB7 }
+	#define CLUSTER_INSTANCED_GEOMETRY_SHAPE_STRUCT_ID { 0x6873D774, 0x47B04151, 0x8BAECCB7, 0x8CD024D4 }
 	TAG_STRUCT(
 		cluster_instanced_geometry_shape_struct,
 		"cluster_instanced_geometry_shape_struct",
@@ -29771,7 +29771,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(scenario_structure_bsp_group_reference$2_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency);
 
-	#define MOPP_BV_TREE_SHAPE_STRUCT_ID { 0x00000000, 0x14FEE224, 0xF55F4E77, 0x8D69DF87 }
+	#define MOPP_BV_TREE_SHAPE_STRUCT_ID { 0x14FEE224, 0xF55F4E77, 0x8D69DF87, 0x67453D52 }
 	TAG_STRUCT(
 		mopp_bv_tree_shape_struct,
 		"mopp_bv_tree_shape_struct",
@@ -29787,7 +29787,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLLISION_INSTANCED_GEOMETRY_STRUCT_ID { 0x00000000, 0xBD2192D5, 0x7C4D4EC2, 0xAFE67FFB }
+	#define COLLISION_INSTANCED_GEOMETRY_STRUCT_ID { 0xBD2192D5, 0x7C4D4EC2, 0xAFE67FFB, 0x924BC6DB }
 	TAG_STRUCT(
 		collision_instanced_geometry_struct,
 		"collision_instanced_geometry_struct",
@@ -29803,7 +29803,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DECORATOR_BRUSH_STRUCT_ID { 0x00000000, 0xC3DB84FA, 0xC247443B, 0x9093336D }
+	#define DECORATOR_BRUSH_STRUCT_ID { 0xC3DB84FA, 0xC247443B, 0x9093336D, 0xF7E811A2 }
 	TAG_STRUCT(
 		decorator_brush_struct,
 		"decorator_brush_struct",
@@ -29909,7 +29909,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(decorator_brush_shape_enum_definition, decorator_brush_shape_enum_definition_strings, _countof(decorator_brush_shape_enum_definition_strings));
 
-	#define GLOBAL_DECORATOR_PLACEMENT_BLOCK_ID { 0x00000000, 0x04F0AFBF, 0x257649DF, 0x916C1650 }
+	#define GLOBAL_DECORATOR_PLACEMENT_BLOCK_ID { 0x04F0AFBF, 0x257649DF, 0x916C1650, 0xEC5FBF80 }
 	TAG_STRUCT(
 		global_decorator_placement_block,
 		"global_decorator_placement_block",
@@ -29944,7 +29944,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(decorator_placement_flags_definition, decorator_placement_flags_definition_strings, _countof(decorator_placement_flags_definition_strings));
 
-	#define DECORATOR_SCENARIO_SET_BLOCK_ID { 0x00000000, 0x40576308, 0x4FC747DD, 0xAED99352 }
+	#define DECORATOR_SCENARIO_SET_BLOCK_ID { 0x40576308, 0x4FC747DD, 0xAED99352, 0xBE229502 }
 	TAG_STRUCT(
 		decorator_scenario_set_block,
 		"decorator_scenario_set_block",
@@ -29958,7 +29958,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DECORATOR_PALETTE_ID { 0x00000000, 0xD416B945, 0x6A6045D6, 0xA46B060A }
+	#define DECORATOR_PALETTE_ID { 0xD416B945, 0x6A6045D6, 0xA46B060A, 0x6D084231 }
 	TAG_STRUCT(
 		decorator_palette,
 		"decorator_palette",
@@ -29987,7 +29987,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_DECORATOR_BLOCK_ID { 0x00000000, 0xDCA3DA7E, 0xDA4B412B, 0xBED1DC74 }
+	#define SCENARIO_DECORATOR_BLOCK_ID { 0xDCA3DA7E, 0xDA4B412B, 0xBED1DC74, 0xF6507BAC }
 	TAG_STRUCT(
 		scenario_decorator_block,
 		"scenario_decorator_block",
@@ -30008,7 +30008,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_LIGHTMAP_MATCH_PROBE_BLOCK_ID { 0x00000000, 0xC81216A3, 0xCA7D43D2, 0xBAFC314E }
+	#define SCENARIO_LIGHTMAP_MATCH_PROBE_BLOCK_ID { 0xC81216A3, 0xCA7D43D2, 0xBAFC314E, 0xE4A1A3A9 }
 	TAG_STRUCT(
 		scenario_lightmap_match_probe_block,
 		"scenario_lightmap_match_probe_block",
@@ -30029,7 +30029,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BIPED_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x00000000, 0xAE76A8B1, 0xEEE349D5, 0x8E0EB470 }
+	#define BIPED_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0xAE76A8B1, 0xEEE349D5, 0x8E0EB470, 0xCF3F6160 }
 	TAG_STRUCT(
 		biped_block_index_flags_block_struct,
 		"biped_block_index_flags_block_struct",
@@ -30042,7 +30042,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VEHICLE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x00000000, 0xD97D47DE, 0x61A34B62, 0x9D457953 }
+	#define VEHICLE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0xD97D47DE, 0x61A34B62, 0x9D457953, 0x3628F7DE }
 	TAG_STRUCT(
 		vehicle_block_index_flags_block_struct,
 		"vehicle_block_index_flags_block_struct",
@@ -30055,7 +30055,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WEAPON_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x00000000, 0xF11CDE07, 0xCED0403C, 0xBF09B2C7 }
+	#define WEAPON_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0xF11CDE07, 0xCED0403C, 0xBF09B2C7, 0x6653FAB9 }
 	TAG_STRUCT(
 		weapon_block_index_flags_block_struct,
 		"weapon_block_index_flags_block_struct",
@@ -30068,7 +30068,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define EQUIPMENT_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x00000000, 0xB7A7D0B5, 0x849B45D5, 0x9D7AEBD2 }
+	#define EQUIPMENT_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0xB7A7D0B5, 0x849B45D5, 0x9D7AEBD2, 0x7FA02CCB }
 	TAG_STRUCT(
 		equipment_block_index_flags_block_struct,
 		"equipment_block_index_flags_block_struct",
@@ -30081,7 +30081,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENERY_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x00000000, 0x50BDCE4A, 0x841D42F3, 0xB6BD3790 }
+	#define SCENERY_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x50BDCE4A, 0x841D42F3, 0xB6BD3790, 0xCD47CDBA }
 	TAG_STRUCT(
 		scenery_block_index_flags_block_struct,
 		"scenery_block_index_flags_block_struct",
@@ -30094,7 +30094,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MACHINE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x00000000, 0x266621B5, 0xFDB64754, 0x8FC9D2C5 }
+	#define MACHINE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x266621B5, 0xFDB64754, 0x8FC9D2C5, 0xA7FF5BDF }
 	TAG_STRUCT(
 		machine_block_index_flags_block_struct,
 		"machine_block_index_flags_block_struct",
@@ -30107,7 +30107,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define TERMINAL_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x00000000, 0xC2BEE19D, 0xB5F0423F, 0xBA356503 }
+	#define TERMINAL_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0xC2BEE19D, 0xB5F0423F, 0xBA356503, 0x62B96151 }
 	TAG_STRUCT(
 		terminal_block_index_flags_block_struct,
 		"terminal_block_index_flags_block_struct",
@@ -30120,7 +30120,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CONTROL_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x00000000, 0x6388FD6C, 0x6FE74B66, 0xB04DAAF6 }
+	#define CONTROL_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x6388FD6C, 0x6FE74B66, 0xB04DAAF6, 0x602232D9 }
 	TAG_STRUCT(
 		control_block_index_flags_block_struct,
 		"control_block_index_flags_block_struct",
@@ -30133,7 +30133,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_SCENERY_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x00000000, 0x1D75B752, 0x30794C1E, 0x92F7FE0B }
+	#define SOUND_SCENERY_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x1D75B752, 0x30794C1E, 0x92F7FE0B, 0x9A73B1F6 }
 	TAG_STRUCT(
 		sound_scenery_block_index_flags_block_struct,
 		"sound_scenery_block_index_flags_block_struct",
@@ -30146,7 +30146,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CRATE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x00000000, 0xAE2328B4, 0x9AF842AF, 0xB8597C81 }
+	#define CRATE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0xAE2328B4, 0x9AF842AF, 0xB8597C81, 0x177E8F02 }
 	TAG_STRUCT(
 		crate_block_index_flags_block_struct,
 		"crate_block_index_flags_block_struct",
@@ -30159,7 +30159,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CREATURE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x00000000, 0x28EFEBFB, 0x85BB41F9, 0xAA7F3DB1 }
+	#define CREATURE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x28EFEBFB, 0x85BB41F9, 0xAA7F3DB1, 0x4525BDC6 }
 	TAG_STRUCT(
 		creature_block_index_flags_block_struct,
 		"creature_block_index_flags_block_struct",
@@ -30172,7 +30172,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GIANT_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x00000000, 0x127D1256, 0x0AD44F51, 0xB07D8B34 }
+	#define GIANT_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x127D1256, 0x0AD44F51, 0xB07D8B34, 0x4496D0A2 }
 	TAG_STRUCT(
 		giant_block_index_flags_block_struct,
 		"giant_block_index_flags_block_struct",
@@ -30185,7 +30185,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define EFFECT_SCENERY_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x00000000, 0xA5A55650, 0xA1334BAB, 0x9A91DD38 }
+	#define EFFECT_SCENERY_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0xA5A55650, 0xA1334BAB, 0x9A91DD38, 0x86E1FFBA }
 	TAG_STRUCT(
 		effect_scenery_block_index_flags_block_struct,
 		"effect_scenery_block_index_flags_block_struct",
@@ -30198,7 +30198,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x00000000, 0x878E0364, 0x3F1F47F2, 0x963CE43C }
+	#define CHARACTER_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x878E0364, 0x3F1F47F2, 0x963CE43C, 0xA3BB5D25 }
 	TAG_STRUCT(
 		character_block_index_flags_block_struct,
 		"character_block_index_flags_block_struct",
@@ -30211,7 +30211,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BUDGET_REFERENCE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x00000000, 0xFD713DEA, 0x0786402E, 0xA77EA27B }
+	#define BUDGET_REFERENCE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0xFD713DEA, 0x0786402E, 0xA77EA27B, 0xD760F6BF }
 	TAG_STRUCT(
 		budget_reference_block_index_flags_block_struct,
 		"budget_reference_block_index_flags_block_struct",
@@ -30224,7 +30224,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_DESIGNER_ZONE_BLOCK_ID { 0x00000000, 0xB02184D9, 0xCED54A10, 0xA3980886 }
+	#define SCENARIO_DESIGNER_ZONE_BLOCK_ID { 0xB02184D9, 0xCED54A10, 0xA3980886, 0x739063EC }
 	TAG_STRUCT(
 		scenario_designer_zone_block,
 		"scenario_designer_zone_block",
@@ -30270,7 +30270,7 @@ namespace halo3_tools {
 
 	STRING_LIST(scenario_designer_zone_flags_definition, empty_string_list, 0);
 
-	#define SCENARIO_ZONE_DEBUGGER_BLOCK_DEFINITION_STRUCT_ID { 0x00000000, 0x3736B0FB, 0x4E6A462A, 0xA642E58A }
+	#define SCENARIO_ZONE_DEBUGGER_BLOCK_DEFINITION_STRUCT_ID { 0x3736B0FB, 0x4E6A462A, 0xA642E58A, 0x35673446 }
 	TAG_STRUCT(
 		scenario_zone_debugger_block_definition_struct,
 		"scenario_zone_debugger_block_definition_struct",
@@ -30283,7 +30283,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define HS_SCRIPT_PARAMETERS_BLOCK_ID { 0x00000000, 0x9E0B1B9B, 0xC4DF453F, 0x9C5A8529 }
+	#define HS_SCRIPT_PARAMETERS_BLOCK_ID { 0x9E0B1B9B, 0xC4DF453F, 0x9C5A8529, 0xFDAB8B17 }
 	TAG_STRUCT(
 		hs_script_parameters_block,
 		"hs_script_parameters_block",
@@ -30386,7 +30386,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(hs_types_enum, hs_types_enum_strings, _countof(hs_types_enum_strings));
 
-	#define HS_SCRIPTS_BLOCK_ID { 0x00000000, 0x743D2F82, 0xC7BE47E3, 0xA33C2E37 }
+	#define HS_SCRIPTS_BLOCK_ID { 0x743D2F82, 0xC7BE47E3, 0xA33C2E37, 0x4C93AE2F }
 	TAG_STRUCT(
 		hs_scripts_block,
 		"hs_scripts_block",
@@ -30415,7 +30415,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(hs_script_types_enum, hs_script_types_enum_strings, _countof(hs_script_types_enum_strings));
 
-	#define HS_GLOBALS_BLOCK_ID { 0x00000000, 0x0593352A, 0x7FDE40C1, 0x9FA69786 }
+	#define HS_GLOBALS_BLOCK_ID { 0x0593352A, 0x7FDE40C1, 0x9FA69786, 0x35DEEEA1 }
 	TAG_STRUCT(
 		hs_globals_block,
 		"hs_globals_block",
@@ -30433,7 +30433,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define HS_REFERENCES_BLOCK_ID { 0x00000000, 0xD5081A5A, 0xAAAE49B0, 0xA3DD5C21 }
+	#define HS_REFERENCES_BLOCK_ID { 0xD5081A5A, 0xAAAE49B0, 0xA3DD5C21, 0x984C1A8B }
 	TAG_STRUCT(
 		hs_references_block,
 		"hs_references_block",
@@ -30449,7 +30449,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(_reference_tagref, INVALID_TAG);
 
-	#define HS_SOURCE_FILES_BLOCK_ID { 0x00000000, 0xCB061583, 0x078C4130, 0xA21DDAC3 }
+	#define HS_SOURCE_FILES_BLOCK_ID { 0xCB061583, 0x078C4130, 0xA21DDAC3, 0x5C721332 }
 	TAG_STRUCT(
 		hs_source_files_block,
 		"hs_source_files_block",
@@ -30459,7 +30459,7 @@ namespace halo3_tools {
 		HS_SOURCE_FILES_BLOCK_ID)
 	{
 		{ _field_string, "name" },
-		{ _field_data, "source" },
+		{ _field_data, "source", &blofeld::halo3_tools::hs_source_data_definition },
 		{ _field_block, "external references", &blofeld::halo3_tools::hs_references_block_block },
 		{ _field_long_flags, "flags", &blofeld::halo3_tools::hs_source_file_flags },
 		{ _field_terminator }
@@ -30472,7 +30472,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(hs_source_file_flags, hs_source_file_flags_strings, _countof(hs_source_file_flags_strings));
 
-	#define HS_SYNTAX_DATUM_BLOCK_ID { 0x00000000, 0x3B57A0DC, 0x8E8147C2, 0xADEB0323 }
+	#define HS_SYNTAX_DATUM_BLOCK_ID { 0x3B57A0DC, 0x8E8147C2, 0xADEB0323, 0x1D9501C3 }
 	TAG_STRUCT(
 		hs_syntax_datum_block,
 		"hs_syntax_datum_block",
@@ -30493,7 +30493,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define HS_UNIT_SEAT_BLOCK_ID { 0x00000000, 0x605A618D, 0x49FA4B10, 0x9715B7D2 }
+	#define HS_UNIT_SEAT_BLOCK_ID { 0x605A618D, 0x49FA4B10, 0x9715B7D2, 0xCC2A0947 }
 	TAG_STRUCT(
 		hs_unit_seat_block,
 		"hs_unit_seat_block",
@@ -30508,7 +30508,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DOOR_ENCODED_PAS_BLOCK$2_ID { 0x00000000, 0x1FE14003, 0x355B4244, 0x9C611D68 }
+	#define DOOR_ENCODED_PAS_BLOCK$2_ID { 0x1FE14003, 0x355B4244, 0x9C611D68, 0x025CD191 }
 	TAG_STRUCT(
 		door_encoded_pas_block$2,
 		"door_encoded_pas_block",
@@ -30521,7 +30521,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ROOM_DOOR_PORTAL_ENCODED_PAS_BLOCK_ID { 0x00000000, 0x79C40107, 0xC34F4FFE, 0xA9B0E0BA }
+	#define ROOM_DOOR_PORTAL_ENCODED_PAS_BLOCK_ID { 0x79C40107, 0xC34F4FFE, 0xA9B0E0BA, 0x40627A21 }
 	TAG_STRUCT(
 		room_door_portal_encoded_pas_block,
 		"room_door_portal_encoded_pas_block",
@@ -30534,7 +30534,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define AI_DEAFENING_ENCODED_PAS_BLOCK$2_ID { 0x00000000, 0x8229AF1A, 0x07484AF9, 0xB927F592 }
+	#define AI_DEAFENING_ENCODED_PAS_BLOCK$2_ID { 0x8229AF1A, 0x07484AF9, 0xB927F592, 0xE928E357 }
 	TAG_STRUCT(
 		ai_deafening_encoded_pas_block$2,
 		"ai_deafening_encoded_pas_block",
@@ -30547,7 +30547,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ENCODED_ROOM_DISTANCES_BLOCK_ID { 0x00000000, 0x079EE95D, 0x71A0441D, 0x9947D8E4 }
+	#define ENCODED_ROOM_DISTANCES_BLOCK_ID { 0x079EE95D, 0x71A0441D, 0x9947D8E4, 0x6865EE9B }
 	TAG_STRUCT(
 		encoded_room_distances_block,
 		"encoded_room_distances_block",
@@ -30560,7 +30560,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GAME_PORTAL_TO_DOOR_OCCLUDER_BLOCK_ID { 0x00000000, 0xD969E829, 0x574E4545, 0x9AEAA8B4 }
+	#define GAME_PORTAL_TO_DOOR_OCCLUDER_BLOCK_ID { 0xD969E829, 0x574E4545, 0x9AEAA8B4, 0x755A88B9 }
 	TAG_STRUCT(
 		game_portal_to_door_occluder_block,
 		"game_portal_to_door_occluder_block",
@@ -30574,7 +30574,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BSP_CLUSTER_TO_ROOM_BOUNDS_ID { 0x00000000, 0xABDDE059, 0xBF8E4C35, 0xB3B79A93 }
+	#define BSP_CLUSTER_TO_ROOM_BOUNDS_ID { 0xABDDE059, 0xBF8E4C35, 0xB3B79A93, 0x7AB91ED6 }
 	TAG_STRUCT(
 		bsp_cluster_to_room_bounds,
 		"bsp_cluster_to_room_bounds",
@@ -30588,7 +30588,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BSP_CLUSTER_TO_ROOM_INDICES_ID { 0x00000000, 0x06A9CB1C, 0xDEEA451B, 0x89E0296C }
+	#define BSP_CLUSTER_TO_ROOM_INDICES_ID { 0x06A9CB1C, 0xDEEA451B, 0x89E0296C, 0x362F4EB6 }
 	TAG_STRUCT(
 		bsp_cluster_to_room_indices,
 		"bsp_cluster_to_room_indices",
@@ -30601,7 +30601,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GAME_AUDIBILITY_BLOCK_ID { 0x00000000, 0x73FDA6A6, 0x4E2A483E, 0xA308C3B1 }
+	#define GAME_AUDIBILITY_BLOCK_ID { 0x73FDA6A6, 0x4E2A483E, 0xA308C3B1, 0xAD242965 }
 	TAG_STRUCT(
 		game_audibility_block,
 		"game_audibility_block",
@@ -30623,7 +30623,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RECORDED_ANIMATION_BLOCK_ID { 0x00000000, 0x0739519D, 0x2BC04823, 0x8A0427CB }
+	#define RECORDED_ANIMATION_BLOCK_ID { 0x0739519D, 0x2BC04823, 0x8A0427CB, 0xE4550DC1 }
 	TAG_STRUCT(
 		recorded_animation_block,
 		"recorded_animation_block",
@@ -30640,11 +30640,11 @@ namespace halo3_tools {
 		{ _field_short_integer, "length of animation", nullptr, "ticks" },
 		FIELD_PAD("DCAU", 2),
 		FIELD_PAD("HL", 4),
-		{ _field_data, "recorded animation event stream" },
+		{ _field_data, "recorded animation event stream", &blofeld::halo3_tools::recorded_animation_event_stream_data },
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_DEVICE_PORTAL_ASSOCIATION_BLOCK_ID { 0x00000000, 0xB39054AF, 0x2CB3457E, 0x844CFA19 }
+	#define STRUCTURE_DEVICE_PORTAL_ASSOCIATION_BLOCK_ID { 0xB39054AF, 0x2CB3457E, 0x844CFA19, 0x64B70FB3 }
 	TAG_STRUCT(
 		structure_device_portal_association_block,
 		"structure_device_portal_association_block",
@@ -30659,7 +30659,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GAME_PORTAL_TO_PORTAL_MAPPING_BLOCK_ID { 0x00000000, 0xB0BFEAC7, 0x25274FE1, 0xBAC1087B }
+	#define GAME_PORTAL_TO_PORTAL_MAPPING_BLOCK_ID { 0xB0BFEAC7, 0x25274FE1, 0xBAC1087B, 0x16519CB7 }
 	TAG_STRUCT(
 		game_portal_to_portal_mapping_block,
 		"game_portal_to_portal_mapping_block",
@@ -30672,7 +30672,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_PORTAL_DEVICE_MAPPING_BLOCK_ID { 0x00000000, 0xF9BA6A28, 0xBF964539, 0xBB2BA621 }
+	#define STRUCTURE_PORTAL_DEVICE_MAPPING_BLOCK_ID { 0xF9BA6A28, 0xBF964539, 0xBB2BA621, 0x11162D6C }
 	TAG_STRUCT(
 		structure_portal_device_mapping_block,
 		"structure_portal_device_mapping_block",
@@ -30686,7 +30686,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define G_SCENARIO_EDITOR_FOLDER_BLOCK_ID { 0x00000000, 0x0B9D6A59, 0x9A5741CB, 0xA1D7A5D1 }
+	#define G_SCENARIO_EDITOR_FOLDER_BLOCK_ID { 0x0B9D6A59, 0x9A5741CB, 0xA1D7A5D1, 0x9F085A3D }
 	TAG_STRUCT(
 		g_scenario_editor_folder_block,
 		"g_scenario_editor_folder_block",
@@ -30700,7 +30700,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_RESPONSE_DEFINITION_BLOCK_ID { 0x00000000, 0xDFB84E8C, 0x19834057, 0x80B714A7 }
+	#define SOUND_RESPONSE_DEFINITION_BLOCK_ID { 0xDFB84E8C, 0x19834057, 0x80B714A7, 0xEE445191 }
 	TAG_STRUCT(
 		sound_response_definition_block,
 		"sound_response_definition_block",
@@ -30723,7 +30723,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_sound_response_flags_definition, game_engine_sound_response_flags_definition_strings, _countof(game_engine_sound_response_flags_definition_strings));
 
-	#define GAME_ENGINE_GENERAL_EVENT_BLOCK_ID { 0x00000000, 0x6DCC8D0A, 0xDEFE4EDF, 0x8856D209 }
+	#define GAME_ENGINE_GENERAL_EVENT_BLOCK_ID { 0x6DCC8D0A, 0xDEFE4EDF, 0x8856D209, 0xDB134344 }
 	TAG_STRUCT(
 		game_engine_general_event_block,
 		"game_engine_general_event_block",
@@ -30868,7 +30868,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_event_splitscreen_suppression_enum_definition, game_engine_event_splitscreen_suppression_enum_definition_strings, _countof(game_engine_event_splitscreen_suppression_enum_definition_strings));
 
-	#define GAME_ENGINE_FLAVOR_EVENT_BLOCK_ID { 0x00000000, 0x0687DDF6, 0xB36B43D9, 0x845FF88C }
+	#define GAME_ENGINE_FLAVOR_EVENT_BLOCK_ID { 0x0687DDF6, 0xB36B43D9, 0x845FF88C, 0xED426323 }
 	TAG_STRUCT(
 		game_engine_flavor_event_block,
 		"game_engine_flavor_event_block",
@@ -30968,7 +30968,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_flavor_event_enum_definition, game_engine_flavor_event_enum_definition_strings, _countof(game_engine_flavor_event_enum_definition_strings));
 
-	#define GAME_ENGINE_SLAYER_EVENT_BLOCK_ID { 0x00000000, 0x517C3C9B, 0xD17E4FFC, 0xB1C44189 }
+	#define GAME_ENGINE_SLAYER_EVENT_BLOCK_ID { 0x517C3C9B, 0xD17E4FFC, 0xB1C44189, 0xB660453B }
 	TAG_STRUCT(
 		game_engine_slayer_event_block,
 		"game_engine_slayer_event_block",
@@ -31012,7 +31012,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_slayer_event_enum_definition, game_engine_slayer_event_enum_definition_strings, _countof(game_engine_slayer_event_enum_definition_strings));
 
-	#define GAME_ENGINE_CTF_EVENT_BLOCK_ID { 0x00000000, 0x7E220FEC, 0x2E9D441A, 0xA648EA1B }
+	#define GAME_ENGINE_CTF_EVENT_BLOCK_ID { 0x7E220FEC, 0x2E9D441A, 0xA648EA1B, 0xA7C4390A }
 	TAG_STRUCT(
 		game_engine_ctf_event_block,
 		"game_engine_ctf_event_block",
@@ -31068,7 +31068,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_ctf_event_enum_definition, game_engine_ctf_event_enum_definition_strings, _countof(game_engine_ctf_event_enum_definition_strings));
 
-	#define GAME_ENGINE_ASSAULT_EVENT_BLOCK_ID { 0x00000000, 0x491A1321, 0x0C6743AC, 0x9016756A }
+	#define GAME_ENGINE_ASSAULT_EVENT_BLOCK_ID { 0x491A1321, 0x0C6743AC, 0x9016756A, 0x6C281936 }
 	TAG_STRUCT(
 		game_engine_assault_event_block,
 		"game_engine_assault_event_block",
@@ -31127,7 +31127,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_assault_event_enum_definition, game_engine_assault_event_enum_definition_strings, _countof(game_engine_assault_event_enum_definition_strings));
 
-	#define GAME_ENGINE_ODDBALL_EVENT_BLOCK_ID { 0x00000000, 0x901F2A4E, 0x70D043B7, 0x86C98589 }
+	#define GAME_ENGINE_ODDBALL_EVENT_BLOCK_ID { 0x901F2A4E, 0x70D043B7, 0x86C98589, 0xF21E09F2 }
 	TAG_STRUCT(
 		game_engine_oddball_event_block,
 		"game_engine_oddball_event_block",
@@ -31177,7 +31177,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_oddball_event_enum_definition, game_engine_oddball_event_enum_definition_strings, _countof(game_engine_oddball_event_enum_definition_strings));
 
-	#define GAME_ENGINE_KING_EVENT_BLOCK_ID { 0x00000000, 0x2760101D, 0xEDC44A17, 0x8412F3FF }
+	#define GAME_ENGINE_KING_EVENT_BLOCK_ID { 0x2760101D, 0xEDC44A17, 0x8412F3FF, 0x586D507F }
 	TAG_STRUCT(
 		game_engine_king_event_block,
 		"game_engine_king_event_block",
@@ -31225,7 +31225,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_king_event_enum_definition, game_engine_king_event_enum_definition_strings, _countof(game_engine_king_event_enum_definition_strings));
 
-	#define GAME_ENGINE_JUGGERNAUT_EVENT_BLOCK_ID { 0x00000000, 0x7DF87DDB, 0x8C8045F1, 0x8292D57C }
+	#define GAME_ENGINE_JUGGERNAUT_EVENT_BLOCK_ID { 0x7DF87DDB, 0x8C8045F1, 0x8292D57C, 0x80D24AAF }
 	TAG_STRUCT(
 		game_engine_juggernaut_event_block,
 		"game_engine_juggernaut_event_block",
@@ -31270,7 +31270,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_juggernaut_event_enum_definition, game_engine_juggernaut_event_enum_definition_strings, _countof(game_engine_juggernaut_event_enum_definition_strings));
 
-	#define GAME_ENGINE_TERRITORIES_EVENT_BLOCK_ID { 0x00000000, 0x23EF636C, 0xC2874E30, 0xB6E57C86 }
+	#define GAME_ENGINE_TERRITORIES_EVENT_BLOCK_ID { 0x23EF636C, 0xC2874E30, 0xB6E57C86, 0xE2CB2948 }
 	TAG_STRUCT(
 		game_engine_territories_event_block,
 		"game_engine_territories_event_block",
@@ -31316,7 +31316,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_territories_event_enum_definition, game_engine_territories_event_enum_definition_strings, _countof(game_engine_territories_event_enum_definition_strings));
 
-	#define GAME_ENGINE_INFECTION_EVENT_BLOCK_ID { 0x00000000, 0xC59F6566, 0xC092435C, 0x82C21826 }
+	#define GAME_ENGINE_INFECTION_EVENT_BLOCK_ID { 0xC59F6566, 0xC092435C, 0x82C21826, 0x7463DFEE }
 	TAG_STRUCT(
 		game_engine_infection_event_block,
 		"game_engine_infection_event_block",
@@ -31362,7 +31362,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_infection_event_enum_definition, game_engine_infection_event_enum_definition_strings, _countof(game_engine_infection_event_enum_definition_strings));
 
-	#define GAME_ENGINE_VIP_EVENT_BLOCK_ID { 0x00000000, 0xF3E2BE89, 0xDB524E7E, 0x92CAF8C0 }
+	#define GAME_ENGINE_VIP_EVENT_BLOCK_ID { 0xF3E2BE89, 0xDB524E7E, 0x92CAF8C0, 0x04A0A899 }
 	TAG_STRUCT(
 		game_engine_vip_event_block,
 		"game_engine_vip_event_block",
@@ -31410,7 +31410,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_engine_vip_event_enum_definition, game_engine_vip_event_enum_definition_strings, _countof(game_engine_vip_event_enum_definition_strings));
 
-	#define SOUND_RESPONSE_EXTRA_SOUNDS_STRUCT_ID { 0x00000000, 0x22E1CEE0, 0x986645E5, 0x9CE3F631 }
+	#define SOUND_RESPONSE_EXTRA_SOUNDS_STRUCT_ID { 0x22E1CEE0, 0x986645E5, 0x9CE3F631, 0xE0C1C24C }
 	TAG_STRUCT(
 		sound_response_extra_sounds_struct,
 		"sound_response_extra_sounds_struct",
@@ -31434,7 +31434,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_WATER_RIPPLE_STRUCT_DEFINITION_ID { 0x00000000, 0xCB60D088, 0x882E4775, 0x883C8C94 }
+	#define RENDER_WATER_RIPPLE_STRUCT_DEFINITION_ID { 0xCB60D088, 0x882E4775, 0x883C8C94, 0x8CE7CD58 }
 	TAG_STRUCT(
 		render_water_ripple_struct_definition,
 		"render_water_ripple_struct_definition",
@@ -31496,7 +31496,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(transition_function_enum, transition_function_enum_strings, _countof(transition_function_enum_strings));
 
-	#define CAMERA_FX_EXPOSURE_STRUCT_ID { 0x00000000, 0x1FBECC29, 0x38C74B70, 0xAF139847 }
+	#define CAMERA_FX_EXPOSURE_STRUCT_ID { 0x1FBECC29, 0x38C74B70, 0xAF139847, 0x3C5FD67B }
 	TAG_STRUCT(
 		camera_fx_exposure_struct,
 		"camera_fx_exposure_struct",
@@ -31528,7 +31528,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(camera_fx_parameter_flags_auto_adjust, camera_fx_parameter_flags_auto_adjust_strings, _countof(camera_fx_parameter_flags_auto_adjust_strings));
 
-	#define CAMERA_FX_EXPOSURE_SENSITIVITY_STRUCT_ID { 0x00000000, 0xB2285D8B, 0x80E54585, 0xA4116DDE }
+	#define CAMERA_FX_EXPOSURE_SENSITIVITY_STRUCT_ID { 0xB2285D8B, 0x80E54585, 0xA4116DDE, 0x5A2A16B5 }
 	TAG_STRUCT(
 		camera_fx_exposure_sensitivity_struct,
 		"camera_fx_exposure_sensitivity_struct",
@@ -31554,7 +31554,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(camera_fx_parameter_flags_no_auto_adjust, camera_fx_parameter_flags_no_auto_adjust_strings, _countof(camera_fx_parameter_flags_no_auto_adjust_strings));
 
-	#define CAMERA_FX_EXPOSURE_ANTI_BLOOM_STRUCT_ID { 0x00000000, 0x9C5BBDFF, 0xB5614BF0, 0xB7888A6E }
+	#define CAMERA_FX_EXPOSURE_ANTI_BLOOM_STRUCT_ID { 0x9C5BBDFF, 0xB5614BF0, 0xB7888A6E, 0x5A10B38B }
 	TAG_STRUCT(
 		camera_fx_exposure_anti_bloom_struct,
 		"camera_fx_exposure_anti_bloom_struct",
@@ -31570,7 +31570,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_FX_BLOOM_POINT_STRUCT_ID { 0x00000000, 0x5C28BDB2, 0x7AA74136, 0x95D02E4D }
+	#define CAMERA_FX_BLOOM_POINT_STRUCT_ID { 0x5C28BDB2, 0x7AA74136, 0x95D02E4D, 0x477781EA }
 	TAG_STRUCT(
 		camera_fx_bloom_point_struct,
 		"camera_fx_bloom_point_struct",
@@ -31588,7 +31588,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_FX_BLOOM_INHERENT_STRUCT_ID { 0x00000000, 0x1889C932, 0xA56D48C8, 0xB0B3D7D4 }
+	#define CAMERA_FX_BLOOM_INHERENT_STRUCT_ID { 0x1889C932, 0xA56D48C8, 0xB0B3D7D4, 0x01DCD5F7 }
 	TAG_STRUCT(
 		camera_fx_bloom_inherent_struct,
 		"camera_fx_bloom_inherent_struct",
@@ -31606,7 +31606,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_FX_BLOOM_INTENSITY_STRUCT_ID { 0x00000000, 0xA87763D2, 0xF5B240F3, 0xA22524B0 }
+	#define CAMERA_FX_BLOOM_INTENSITY_STRUCT_ID { 0xA87763D2, 0xF5B240F3, 0xA22524B0, 0xF5DFD719 }
 	TAG_STRUCT(
 		camera_fx_bloom_intensity_struct,
 		"camera_fx_bloom_intensity_struct",
@@ -31624,7 +31624,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_FX_BLOOM_LARGE_COLOR_STRUCT_ID { 0x00000000, 0x3318D9F0, 0x02EC4CD5, 0xADE89517 }
+	#define CAMERA_FX_BLOOM_LARGE_COLOR_STRUCT_ID { 0x3318D9F0, 0x02EC4CD5, 0xADE89517, 0x0292B6B5 }
 	TAG_STRUCT(
 		camera_fx_bloom_large_color_struct,
 		"camera_fx_bloom_large_color_struct",
@@ -31640,7 +31640,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_FX_BLOOM_MEDIUM_COLOR_STRUCT_ID { 0x00000000, 0xA8C89B4A, 0x156A41DD, 0xBCA2746E }
+	#define CAMERA_FX_BLOOM_MEDIUM_COLOR_STRUCT_ID { 0xA8C89B4A, 0x156A41DD, 0xBCA2746E, 0x49C59B4A }
 	TAG_STRUCT(
 		camera_fx_bloom_medium_color_struct,
 		"camera_fx_bloom_medium_color_struct",
@@ -31656,7 +31656,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_FX_BLOOM_SMALL_COLOR_STRUCT_ID { 0x00000000, 0x36F650D6, 0x8BC24EAA, 0x80D95DD3 }
+	#define CAMERA_FX_BLOOM_SMALL_COLOR_STRUCT_ID { 0x36F650D6, 0x8BC24EAA, 0x80D95DD3, 0xC20AACC8 }
 	TAG_STRUCT(
 		camera_fx_bloom_small_color_struct,
 		"camera_fx_bloom_small_color_struct",
@@ -31672,7 +31672,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_FX_BLING_INTENSITY_STRUCT_ID { 0x00000000, 0xE8F1A4E1, 0xC00F4456, 0x8EE2967B }
+	#define CAMERA_FX_BLING_INTENSITY_STRUCT_ID { 0xE8F1A4E1, 0xC00F4456, 0x8EE2967B, 0x6D8FA42B }
 	TAG_STRUCT(
 		camera_fx_bling_intensity_struct,
 		"camera_fx_bling_intensity_struct",
@@ -31689,7 +31689,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_FX_BLING_SIZE_STRUCT_ID { 0x00000000, 0xF54F8BED, 0xE5544B4E, 0x926E406D }
+	#define CAMERA_FX_BLING_SIZE_STRUCT_ID { 0xF54F8BED, 0xE5544B4E, 0x926E406D, 0xEFE013B9 }
 	TAG_STRUCT(
 		camera_fx_bling_size_struct,
 		"camera_fx_bling_size_struct",
@@ -31706,7 +31706,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_FX_BLING_ANGLE_STRUCT_ID { 0x00000000, 0x31CE204D, 0x092C4581, 0xA500B810 }
+	#define CAMERA_FX_BLING_ANGLE_STRUCT_ID { 0x31CE204D, 0x092C4581, 0xA500B810, 0x18D31B80 }
 	TAG_STRUCT(
 		camera_fx_bling_angle_struct,
 		"camera_fx_bling_angle_struct",
@@ -31723,7 +31723,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_FX_BLING_COUNT_STRUCT_ID { 0x00000000, 0x8457D09C, 0xCB004AEB, 0x87C29399 }
+	#define CAMERA_FX_BLING_COUNT_STRUCT_ID { 0x8457D09C, 0xCB004AEB, 0x87C29399, 0xF221FEF5 }
 	TAG_STRUCT(
 		camera_fx_bling_count_struct,
 		"camera_fx_bling_count_struct",
@@ -31747,7 +31747,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(camera_fx_parameter_flags_bling_spikes, camera_fx_parameter_flags_bling_spikes_strings, _countof(camera_fx_parameter_flags_bling_spikes_strings));
 
-	#define CAMERA_FX_SELF_ILLUM_PREFERRED_STRUCT_ID { 0x00000000, 0xE684AD74, 0xC6D54D23, 0x996036C6 }
+	#define CAMERA_FX_SELF_ILLUM_PREFERRED_STRUCT_ID { 0xE684AD74, 0xC6D54D23, 0x996036C6, 0xC011911B }
 	TAG_STRUCT(
 		camera_fx_self_illum_preferred_struct,
 		"camera_fx_self_illum_preferred_struct",
@@ -31765,7 +31765,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_FX_SELF_ILLUM_SCALE_STRUCT_ID { 0x00000000, 0x4545C700, 0x22624FE4, 0xB9FDE3E7 }
+	#define CAMERA_FX_SELF_ILLUM_SCALE_STRUCT_ID { 0x4545C700, 0x22624FE4, 0xB9FDE3E7, 0x1696B87B }
 	TAG_STRUCT(
 		camera_fx_self_illum_scale_struct,
 		"camera_fx_self_illum_scale_struct",
@@ -31783,7 +31783,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_FX_SSAO_STRUCT_ID { 0x00000000, 0x4545C701, 0x22624FE5, 0xB9FDE3E8 }
+	#define CAMERA_FX_SSAO_STRUCT_ID { 0x4545C701, 0x22624FE5, 0xB9FDE3E8, 0x1696B87C }
 	TAG_STRUCT(
 		camera_fx_ssao_struct,
 		"camera_fx_ssao_struct",
@@ -31810,7 +31810,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(camera_fx_parameter_flags_ssao, camera_fx_parameter_flags_ssao_strings, _countof(camera_fx_parameter_flags_ssao_strings));
 
-	#define CAMERA_FX_LIGHTSHAFTS_STRUCT_ID { 0x00000000, 0xC8122CD7, 0x04134944, 0xABB3E3D9 }
+	#define CAMERA_FX_LIGHTSHAFTS_STRUCT_ID { 0xC8122CD7, 0x04134944, 0xABB3E3D9, 0xC0BE70FD }
 	TAG_STRUCT(
 		camera_fx_lightshafts_struct,
 		"camera_fx_lightshafts_struct",
@@ -31832,7 +31832,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_FX_SETTINGS_BLOCK_ID { 0x00000000, 0xC7122CD7, 0x03134944, 0xAAB3E3D9 }
+	#define CAMERA_FX_SETTINGS_BLOCK_ID { 0xC7122CD7, 0x03134944, 0xAAB3E3D9, 0xBFBE70FD }
 	TAG_STRUCT(
 		camera_fx_settings_block,
 		"camera_fx_settings_block",
@@ -31862,7 +31862,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PER_OBJECT_TYPE_RELATIVE_MIN_LUMINANCE_BLOCK_ID { 0x00000000, 0x616CDAEF, 0x84E6448D, 0x9200E131 }
+	#define PER_OBJECT_TYPE_RELATIVE_MIN_LUMINANCE_BLOCK_ID { 0x616CDAEF, 0x84E6448D, 0x9200E131, 0x9E702C4A }
 	TAG_STRUCT(
 		per_object_type_relative_min_luminance_block,
 		"per_object_type_relative_min_luminance_block",
@@ -31875,7 +31875,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHOCOLATE_MOUNTAIN_NEW_STRUCT_DEFINITION_ID { 0x00000000, 0x810466A3, 0x93944E38, 0x979E8CD4 }
+	#define CHOCOLATE_MOUNTAIN_NEW_STRUCT_DEFINITION_ID { 0x810466A3, 0x93944E38, 0x979E8CD4, 0x627B0411 }
 	TAG_STRUCT(
 		chocolate_mountain_new_struct_definition,
 		"chocolate_mountain_new_struct_definition",
@@ -31889,7 +31889,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define TAG_BLOCK_INDEX_STRUCT_ID { 0x00000000, 0xA7D748C4, 0x6A624229, 0xB70B7DC6 }
+	#define TAG_BLOCK_INDEX_STRUCT_ID { 0xA7D748C4, 0x6A624229, 0xB70B7DC6, 0x27861D70 }
 	TAG_STRUCT(
 		tag_block_index_struct,
 		"tag_block_index_struct",
@@ -31902,7 +31902,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define TAG_BLOCK_INDEX_BLOCK_ID { 0x00000000, 0x4CD511CB, 0xE05742A6, 0x9B31EFB8 }
+	#define TAG_BLOCK_INDEX_BLOCK_ID { 0x4CD511CB, 0xE05742A6, 0x9B31EFB8, 0x74D7BEE6 }
 	TAG_STRUCT(
 		tag_block_index_block,
 		"tag_block_index_block",
@@ -31915,7 +31915,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHORT_BLOCK_ID { 0x00000000, 0x66A4C53E, 0x850348A6, 0xA9769EA5 }
+	#define SHORT_BLOCK_ID { 0x66A4C53E, 0x850348A6, 0xA9769EA5, 0xA0DFBC08 }
 	TAG_STRUCT(
 		short_block,
 		"short_block",
@@ -31928,7 +31928,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define REAL_VECTOR4D_BLOCK_ID { 0x00000000, 0xFF9E024C, 0x7D184C50, 0x90D73F8E }
+	#define REAL_VECTOR4D_BLOCK_ID { 0xFF9E024C, 0x7D184C50, 0x90D73F8E, 0x22EF3A5D }
 	TAG_STRUCT(
 		real_vector4d_block,
 		"real_vector4d_block",
@@ -31942,7 +31942,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define INT_BLOCK_ID { 0x00000000, 0x484FD1FE, 0x4FD7488B, 0xAFAAE8DB }
+	#define INT_BLOCK_ID { 0x484FD1FE, 0x4FD7488B, 0xAFAAE8DB, 0x731747C0 }
 	TAG_STRUCT(
 		int_block,
 		"int_block",
@@ -31955,7 +31955,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_METHOD_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x45573089, 0x681B4D5B, 0xB00F0E44 }
+	#define RENDER_METHOD_DEFINITION_STRUCT_DEFINITION_ID { 0x45573089, 0x681B4D5B, 0xB00F0E44, 0xDE8E72DC }
 	TAG_STRUCT(
 		render_method_definition_struct_definition,
 		"render_method_definition_struct_definition",
@@ -31987,7 +31987,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(render_method_definition_flags, render_method_definition_flags_strings, _countof(render_method_definition_flags_strings));
 
-	#define RENDER_METHOD_CATEGORY_BLOCK_ID { 0x00000000, 0xE2DDAEE5, 0x1BE349F1, 0xAB13830F }
+	#define RENDER_METHOD_CATEGORY_BLOCK_ID { 0xE2DDAEE5, 0x1BE349F1, 0xAB13830F, 0x6F22F795 }
 	TAG_STRUCT(
 		render_method_category_block,
 		"render_method_category_block",
@@ -32003,7 +32003,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_METHOD_OPTIONS_BLOCK_ID { 0x00000000, 0xDC643C49, 0x41DB4D7D, 0xBB8D4C90 }
+	#define RENDER_METHOD_OPTIONS_BLOCK_ID { 0xDC643C49, 0x41DB4D7D, 0xBB8D4C90, 0x71AEF410 }
 	TAG_STRUCT(
 		render_method_options_block,
 		"render_method_options_block",
@@ -32019,7 +32019,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_METHOD_ENTRY_POINTS_BLOCK_ID { 0x00000000, 0xB66B69D3, 0x677844FA, 0xAC873549 }
+	#define RENDER_METHOD_ENTRY_POINTS_BLOCK_ID { 0xB66B69D3, 0x677844FA, 0xAC873549, 0xC59E32FB }
 	TAG_STRUCT(
 		render_method_entry_points_block,
 		"render_method_entry_points_block",
@@ -32056,7 +32056,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(entry_point_enum, entry_point_enum_strings, _countof(entry_point_enum_strings));
 
-	#define RENDER_METHOD_PASS_CATEGORY_DEPENDENCIES_ID { 0x00000000, 0xC2CF2C86, 0x74B042BC, 0xB50C5874 }
+	#define RENDER_METHOD_PASS_CATEGORY_DEPENDENCIES_ID { 0xC2CF2C86, 0x74B042BC, 0xB50C5874, 0xEC6E468D }
 	TAG_STRUCT(
 		render_method_pass_category_dependencies,
 		"render_method_pass_category_dependencies",
@@ -32069,7 +32069,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_METHOD_PASS_BLOCK_ID { 0x00000000, 0xF41A0813, 0xBFB7492D, 0x8B50A95B }
+	#define RENDER_METHOD_PASS_BLOCK_ID { 0xF41A0813, 0xBFB7492D, 0x8B50A95B, 0x2474B0C0 }
 	TAG_STRUCT(
 		render_method_pass_block,
 		"render_method_pass_block",
@@ -32090,7 +32090,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(render_method_pass_flags, render_method_pass_flags_strings, _countof(render_method_pass_flags_strings));
 
-	#define ENTRY_POINT_DEPENDENCIES_BLOCK_ID { 0x00000000, 0xDC66C4D9, 0x0FE54B4A, 0x9F986F49 }
+	#define ENTRY_POINT_DEPENDENCIES_BLOCK_ID { 0xDC66C4D9, 0x0FE54B4A, 0x9F986F49, 0xE533610D }
 	TAG_STRUCT(
 		entry_point_dependencies_block,
 		"entry_point_dependencies_block",
@@ -32104,7 +32104,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VERTEX_TYPES_BLOCK_ID { 0x00000000, 0x10D75123, 0xB1E940D6, 0x93113433 }
+	#define VERTEX_TYPES_BLOCK_ID { 0x10D75123, 0xB1E940D6, 0x93113433, 0x80D97C43 }
 	TAG_STRUCT(
 		vertex_types_block,
 		"vertex_types_block",
@@ -32146,7 +32146,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(vertex_types_names_enum, vertex_types_names_enum_strings, _countof(vertex_types_names_enum_strings));
 
-	#define RENDER_METHOD_OPTION_STRUCT_DEFINITION_ID { 0x00000000, 0x64873A7E, 0x31464CE2, 0xBB5A3107 }
+	#define RENDER_METHOD_OPTION_STRUCT_DEFINITION_ID { 0x64873A7E, 0x31464CE2, 0xBB5A3107, 0xBCDDB84C }
 	TAG_STRUCT(
 		render_method_option_struct_definition,
 		"render_method_option_struct_definition",
@@ -32159,7 +32159,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_METHOD_OPTION_PARAMETER_BLOCK_ID { 0x00000000, 0x11BB68C2, 0x756A4F92, 0xBC2DAAF6 }
+	#define RENDER_METHOD_OPTION_PARAMETER_BLOCK_ID { 0x11BB68C2, 0x756A4F92, 0xBC2DAAF6, 0xEF1AB32E }
 	TAG_STRUCT(
 		render_method_option_parameter_block,
 		"render_method_option_parameter_block",
@@ -32182,7 +32182,7 @@ namespace halo3_tools {
 		FIELD_PAD("padding", 2),
 		{ _field_argb_color, "default color" },
 		{ _field_real, "default bitmap scale" },
-		{ _field_data, "help text" },
+		{ _field_data, "help text", &blofeld::halo3_tools::code_block$2 },
 		{ _field_terminator }
 	};
 
@@ -32289,7 +32289,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(render_method_bitmap_address_mode_enum, render_method_bitmap_address_mode_enum_strings, _countof(render_method_bitmap_address_mode_enum_strings));
 
-	#define RENDER_METHOD_STRUCT_DEFINITION_ID { 0x00000000, 0xE5438218, 0x3A6340DC, 0x9DAFA818 }
+	#define RENDER_METHOD_STRUCT_DEFINITION_ID { 0xE5438218, 0x3A6340DC, 0x9DAFA818, 0x761ADDF3 }
 	TAG_STRUCT(
 		render_method_struct_definition,
 		"render_method_struct_definition",
@@ -32327,7 +32327,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(global_render_method_runtime_flags_defintion, global_render_method_runtime_flags_defintion_strings, _countof(global_render_method_runtime_flags_defintion_strings));
 
-	#define RENDER_METHOD_TEMPLATE_CONSTANT_TABLE_BLOCK_ID { 0x00000000, 0x17C33ABC, 0xC3DE46B7, 0xB84ECBCA }
+	#define RENDER_METHOD_TEMPLATE_CONSTANT_TABLE_BLOCK_ID { 0x17C33ABC, 0xC3DE46B7, 0xB84ECBCA, 0x13595216 }
 	TAG_STRUCT(
 		render_method_template_constant_table_block,
 		"render_method_template_constant_table_block",
@@ -32340,7 +32340,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_METHOD_TEMPLATE_PLATFORM_BLOCK_ID { 0x00000000, 0x1926C436, 0x483246AA, 0x86067626 }
+	#define RENDER_METHOD_TEMPLATE_PLATFORM_BLOCK_ID { 0x1926C436, 0x483246AA, 0x86067626, 0x533DDEA8 }
 	TAG_STRUCT(
 		render_method_template_platform_block,
 		"render_method_template_platform_block",
@@ -32389,7 +32389,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(entry_points_flags, entry_points_flags_strings, _countof(entry_points_flags_strings));
 
-	#define RENDER_METHOD_TEMPLATE_STRUCT_DEFINITION_ID { 0x00000000, 0xE29233A9, 0xAE7B4321, 0x93DFA5CE }
+	#define RENDER_METHOD_TEMPLATE_STRUCT_DEFINITION_ID { 0xE29233A9, 0xAE7B4321, 0x93DFA5CE, 0x4E5BD1D5 }
 	TAG_STRUCT(
 		render_method_template_struct_definition,
 		"render_method_template_struct_definition",
@@ -32412,7 +32412,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_METHOD_ANIMATED_PARAMETER_BLOCK_ID { 0x00000000, 0x70665B4B, 0xBE174B76, 0x87B39EE2 }
+	#define RENDER_METHOD_ANIMATED_PARAMETER_BLOCK_ID { 0x70665B4B, 0xBE174B76, 0x87B39EE2, 0x0B5CC3A0 }
 	TAG_STRUCT(
 		render_method_animated_parameter_block,
 		"render_method_animated_parameter_block",
@@ -32445,7 +32445,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(render_method_animated_parameter_type_enum, render_method_animated_parameter_type_enum_strings, _countof(render_method_animated_parameter_type_enum_strings));
 
-	#define RENDER_METHOD_PARAMETER_BLOCK_ID { 0x00000000, 0x1EF54661, 0x630F4E8D, 0xAD88BD76 }
+	#define RENDER_METHOD_PARAMETER_BLOCK_ID { 0x1EF54661, 0x630F4E8D, 0xAD88BD76, 0x5BBF101C }
 	TAG_STRUCT(
 		render_method_parameter_block,
 		"render_method_parameter_block",
@@ -32473,7 +32473,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(bitmap_group_reference_tagref, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
 
-	#define RENDER_METHOD_POSTPROCESS_PASS_BLOCK_ID { 0x00000000, 0x920AA523, 0xD662493D, 0x887E528D }
+	#define RENDER_METHOD_POSTPROCESS_PASS_BLOCK_ID { 0x920AA523, 0xD662493D, 0x887E528D, 0xAFE64288 }
 	TAG_STRUCT(
 		render_method_postprocess_pass_block,
 		"render_method_postprocess_pass_block",
@@ -32488,7 +32488,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RUNTIME_QUERYABLE_PROPERTIES_STRUCT_DEFINITION_ID { 0x00000000, 0x0C5470BA, 0x5AEE4BEC, 0xBEC72F30 }
+	#define RUNTIME_QUERYABLE_PROPERTIES_STRUCT_DEFINITION_ID { 0x0C5470BA, 0x5AEE4BEC, 0xBEC72F30, 0x08902CAC }
 	TAG_STRUCT(
 		runtime_queryable_properties_struct_definition,
 		"runtime_queryable_properties",
@@ -32501,7 +32501,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CONSTANT_BUFFERS_BLOCK_ID { 0x00000000, 0xC8974B4E, 0x0B984924, 0xA17AEE41 }
+	#define CONSTANT_BUFFERS_BLOCK_ID { 0xC8974B4E, 0x0B984924, 0xA17AEE41, 0x79163294 }
 	TAG_STRUCT(
 		constant_buffers_block,
 		"constant_buffers_block",
@@ -32514,7 +32514,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CONSTANT_BUFFER_INDICES_BLOCK_ID { 0x00000000, 0xEAE63687, 0xCEBB442E, 0xA2427CE3 }
+	#define CONSTANT_BUFFER_INDICES_BLOCK_ID { 0xEAE63687, 0xCEBB442E, 0xA2427CE3, 0xE99072E2 }
 	TAG_STRUCT(
 		constant_buffer_indices_block,
 		"constant_buffer_indices_block",
@@ -32528,7 +32528,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CONSTANT_BUFFER_RESOURCE_DEFINITION_STRUCT_ID { 0x00000000, 0x0A547ABF, 0x02794CC0, 0xA3B80E11 }
+	#define CONSTANT_BUFFER_RESOURCE_DEFINITION_STRUCT_ID { 0x0A547ABF, 0x02794CC0, 0xA3B80E11, 0x537A34EA }
 	TAG_STRUCT(
 		constant_buffer_resource_definition_struct,
 		"constant_buffer_resource_definition_struct",
@@ -32542,7 +32542,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_METHOD_POSTPROCESS_BLOCK_ID { 0x00000000, 0x448CE620, 0x8C944D92, 0xBCD05705 }
+	#define RENDER_METHOD_POSTPROCESS_BLOCK_ID { 0x448CE620, 0x8C944D92, 0xBCD05705, 0x362CBBF6 }
 	TAG_STRUCT(
 		render_method_postprocess_block,
 		"render_method_postprocess_block",
@@ -32570,7 +32570,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(render_method_template_group_reference_tagref, RENDER_METHOD_TEMPLATE_TAG);
 
-	#define RENDER_METHOD_POSTPROCESS_TEXTURE_BLOCK_ID { 0x00000000, 0x9491A651, 0xAFB44C1E, 0x9822B53F }
+	#define RENDER_METHOD_POSTPROCESS_TEXTURE_BLOCK_ID { 0x9491A651, 0xAFB44C1E, 0x9822B53F, 0x607F03C2 }
 	TAG_STRUCT(
 		render_method_postprocess_texture_block,
 		"render_method_postprocess_texture_block",
@@ -32592,7 +32592,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_METHOD_ROUTING_INFO_BLOCK_ID { 0x00000000, 0x3D3CBE29, 0x43EC44D6, 0x961AE5CB }
+	#define RENDER_METHOD_ROUTING_INFO_BLOCK_ID { 0x3D3CBE29, 0x43EC44D6, 0x961AE5CB, 0x249A1D37 }
 	TAG_STRUCT(
 		render_method_routing_info_block,
 		"render_method_routing_info_block",
@@ -32607,7 +32607,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RENDER_METHOD_TEMPLATE_PASS_BLOCK_ID { 0x00000000, 0x10A89CAE, 0x02C24E53, 0xB26A4E02 }
+	#define RENDER_METHOD_TEMPLATE_PASS_BLOCK_ID { 0x10A89CAE, 0x02C24E53, 0xB26A4E02, 0x2A6E6525 }
 	TAG_STRUCT(
 		render_method_template_pass_block,
 		"render_method_template_pass_block",
@@ -32634,7 +32634,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LAYER_BITMAPS_ID { 0x00000000, 0xFF9E024B, 0x7D184C51, 0x90D73F8E }
+	#define LAYER_BITMAPS_ID { 0xFF9E024B, 0x7D184C51, 0x90D73F8E, 0x22EF3A5D }
 	TAG_STRUCT(
 		layer_bitmaps,
 		"layer_bitmaps",
@@ -32649,7 +32649,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(bitmap_group_reference$10_tagref, BITMAP_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_not_a_resource_dependency);
 
-	#define REPLACE_MATERIAL_ID { 0x00000000, 0xFF9E023B, 0x7D174C51, 0x90D73F8E }
+	#define REPLACE_MATERIAL_ID { 0xFF9E023B, 0x7D174C51, 0x90D73F8E, 0x22EF3A5D }
 	TAG_STRUCT(
 		replace_material,
 		"replace_material",
@@ -32665,7 +32665,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(render_method_group_reference$4_tagref, RENDER_METHOD_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_not_a_resource_dependency);
 
-	#define REPLACE_BITMAPS_ID { 0x00000000, 0xFF9E024A, 0x7D184B51, 0x90D74F8E }
+	#define REPLACE_BITMAPS_ID { 0xFF9E024A, 0x7D184B51, 0x90D74F8E, 0x22EF3A5D }
 	TAG_STRUCT(
 		replace_bitmaps,
 		"replace_bitmaps",
@@ -32679,7 +32679,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define REPLACE_PARAMS_MATERIAL_ID { 0x00000000, 0xFF9E014A, 0x7D164B51, 0x90D64F8E }
+	#define REPLACE_PARAMS_MATERIAL_ID { 0xFF9E014A, 0x7D164B51, 0x90D64F8E, 0x22EF3A5D }
 	TAG_STRUCT(
 		replace_params_material,
 		"replace_params_material",
@@ -32692,7 +32692,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define REAL_VECTOR4D_SKINS_ID { 0x00000000, 0xFF9E021C, 0x7D174C50, 0x90D73F8D }
+	#define REAL_VECTOR4D_SKINS_ID { 0xFF9E021C, 0x7D174C50, 0x90D73F8D, 0x22EC3A5A }
 	TAG_STRUCT(
 		real_vector4d_skins,
 		"real_vector4d_skins",
@@ -32706,7 +32706,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define REPLACE_PARAMS_ID { 0x00000000, 0xFF9E034A, 0x7D164B41, 0x90D64F5E }
+	#define REPLACE_PARAMS_ID { 0xFF9E034A, 0x7D164B41, 0x90D64F5E, 0x22EF3A2D }
 	TAG_STRUCT(
 		replace_params,
 		"replace_params",
@@ -32758,7 +32758,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(entry_point_skins_enum, entry_point_skins_enum_strings, _countof(entry_point_skins_enum_strings));
 
-	#define RENDER_SKINS_OBJECT_ID { 0x00000000, 0xFF9B034B, 0x7D254B41, 0x91D64F5E }
+	#define RENDER_SKINS_OBJECT_ID { 0xFF9B034B, 0x7D254B41, 0x91D64F5E, 0x22EF3C2D }
 	TAG_STRUCT(
 		render_skins_object,
 		"render_skins_object",
@@ -32811,7 +32811,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(vehicle_group_reference$3_tagref, VEHICLE_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_not_a_resource_dependency);
 
-	#define RENDER_SKINS_OBJECT_GLOBALS_STRUCT_DEFINITION_ID { 0x00000000, 0x45573089, 0x681B4D5B, 0xB00F0E44 }
+	#define RENDER_SKINS_OBJECT_GLOBALS_STRUCT_DEFINITION_ID { 0x45573089, 0x681B4D5B, 0xB00F0E44, 0xDE8E72DD }
 	TAG_STRUCT(
 		render_skins_object_globals_struct_definition,
 		"render_skins_object_globals_struct_definition",
@@ -32824,7 +32824,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MATERIAL_TYPE_STRUCT_ID { 0x00000000, 0xFDEBAF30, 0x1AB34195, 0xA37ECE6C }
+	#define MATERIAL_TYPE_STRUCT_ID { 0xFDEBAF30, 0x1AB34195, 0xA37ECE6C, 0xE4A2D97E }
 	TAG_STRUCT(
 		material_type_struct,
 		"material_type_struct",
@@ -32837,7 +32837,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHADER_PARTICLE_STRUCT_DEFINITION$2_ID { 0x00000000, 0x769BE1B8, 0x531C4049, 0x99594583 }
+	#define SHADER_PARTICLE_STRUCT_DEFINITION$2_ID { 0x769BE1B8, 0x531C4049, 0x99594583, 0x24A08389 }
 	TAG_STRUCT(
 		shader_particle_struct_definition$2,
 		"shader_particle_struct_definition",
@@ -32859,7 +32859,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHADER_CONTRAIL_STRUCT_DEFINITION$2_ID { 0x00000000, 0xB938733A, 0x10934017, 0x9931B3E4 }
+	#define SHADER_CONTRAIL_STRUCT_DEFINITION$2_ID { 0xB938733A, 0x10934017, 0x9931B3E4, 0xE1B1434C }
 	TAG_STRUCT(
 		shader_contrail_struct_definition$2,
 		"shader_contrail_struct_definition",
@@ -32881,7 +32881,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHADER_LIGHT_VOLUME_STRUCT_DEFINITION_ID { 0x00000000, 0x0EBF63AF, 0x426B4679, 0x93E4F59B }
+	#define SHADER_LIGHT_VOLUME_STRUCT_DEFINITION_ID { 0x0EBF63AF, 0x426B4679, 0x93E4F59B, 0x93BC0FF2 }
 	TAG_STRUCT(
 		shader_light_volume_struct_definition,
 		"shader_light_volume_struct_definition",
@@ -32903,7 +32903,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHADER_BEAM_STRUCT_DEFINITION_ID { 0x00000000, 0x0592DCD9, 0x37FA4BC4, 0xA738BF8A }
+	#define SHADER_BEAM_STRUCT_DEFINITION_ID { 0x0592DCD9, 0x37FA4BC4, 0xA738BF8A, 0x3D5A5091 }
 	TAG_STRUCT(
 		shader_beam_struct_definition,
 		"shader_beam_struct_definition",
@@ -32925,7 +32925,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SHADER_DECAL_STRUCT_DEFINITION_ID { 0x00000000, 0xEA087CA7, 0x6D4B455B, 0xA5D40D3C }
+	#define SHADER_DECAL_STRUCT_DEFINITION_ID { 0xEA087CA7, 0x6D4B455B, 0xA5D40D3C, 0xC2BD313A }
 	TAG_STRUCT(
 		shader_decal_struct_definition,
 		"shader_decal_struct_definition",
@@ -32947,7 +32947,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RASTERIZER_COMPILED_SHADER_STRUCT_ID { 0x00000000, 0xF99B344C, 0x5A344EF5, 0x8D1FB1EE }
+	#define RASTERIZER_COMPILED_SHADER_STRUCT_ID { 0xF99B344C, 0x5A344EF5, 0x8D1FB1EE, 0xFC6B0182 }
 	TAG_STRUCT(
 		rasterizer_compiled_shader_struct,
 		"rasterizer_compiled_shader_struct",
@@ -32956,9 +32956,9 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RASTERIZER_COMPILED_SHADER_STRUCT_ID)
 	{
-		{ _field_data, "xenon compiled shader", MAKE_OLD_NAMES("..:xenon compiled shader") },
-		{ _field_data, "dx9 compiled shader", MAKE_OLD_NAMES("..:dx9 compiled shader") },
-		{ _field_data, "durango compiled shader", MAKE_OLD_NAMES("..:durango compiled shader") },
+		{ _field_data, "xenon compiled shader", MAKE_OLD_NAMES("..:xenon compiled shader"), &blofeld::halo3_tools::xenon_compiled_shader_data },
+		{ _field_data, "dx9 compiled shader", MAKE_OLD_NAMES("..:dx9 compiled shader"), &blofeld::halo3_tools::dx9_compiled_shader_data },
+		{ _field_data, "durango compiled shader", MAKE_OLD_NAMES("..:durango compiled shader"), &blofeld::halo3_tools::durango_compiled_shader_data },
 		FIELD_EXPLANATION("Xenon constant table", nullptr),
 		{ _field_struct, "xenon rasterizer constant table", &blofeld::halo3_tools::global_rasterizer_constant_table_struct },
 		FIELD_EXPLANATION("DX9 constant table", nullptr),
@@ -32969,7 +32969,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VERTEX_TYPES_BLOCK$2_ID { 0x00000000, 0x179BB0D5, 0x3B834BE0, 0x81D71471 }
+	#define VERTEX_TYPES_BLOCK$2_ID { 0x179BB0D5, 0x3B834BE0, 0x81D71471, 0xB7FD5D61 }
 	TAG_STRUCT(
 		vertex_types_block$2,
 		"vertex_types_block",
@@ -32983,7 +32983,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COMPILED_VERTEX_SHADER_BLOCK_ID { 0x00000000, 0x3543DB1D, 0x836C4843, 0xB307E446 }
+	#define COMPILED_VERTEX_SHADER_BLOCK_ID { 0x3543DB1D, 0x836C4843, 0xB307E446, 0x83BD276F }
 	TAG_STRUCT(
 		compiled_vertex_shader_block,
 		"compiled_vertex_shader_block",
@@ -32997,7 +32997,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VERTEX_ENTRY_POINT_BLOCK_ID { 0x00000000, 0x7D27C32F, 0x4BFF419F, 0xAE908394 }
+	#define VERTEX_ENTRY_POINT_BLOCK_ID { 0x7D27C32F, 0x4BFF419F, 0xAE908394, 0xF054F56B }
 	TAG_STRUCT(
 		vertex_entry_point_block,
 		"vertex_entry_point_block",
@@ -33010,7 +33010,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PIXEL_ENTRY_POINT_BLOCK_ID { 0x00000000, 0x1E202E95, 0x06BA407D, 0x9B57749D }
+	#define PIXEL_ENTRY_POINT_BLOCK_ID { 0x1E202E95, 0x06BA407D, 0x9B57749D, 0xC19E5EF2 }
 	TAG_STRUCT(
 		pixel_entry_point_block,
 		"pixel_entry_point_block",
@@ -33024,7 +33024,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COMPILED_PIXEL_SHADER_BLOCK_ID { 0x00000000, 0xFA151841, 0x172743E2, 0xB91717BF }
+	#define COMPILED_PIXEL_SHADER_BLOCK_ID { 0xFA151841, 0x172743E2, 0xB91717BF, 0x3BAF16F7 }
 	TAG_STRUCT(
 		compiled_pixel_shader_block,
 		"compiled_pixel_shader_block",
@@ -33038,7 +33038,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COMPUTE_ENTRY_POINT_BLOCK_ID { 0x00000000, 0x8CE4ED92, 0x53A147AC, 0xB55FD1EF }
+	#define COMPUTE_ENTRY_POINT_BLOCK_ID { 0x8CE4ED92, 0x53A147AC, 0xB55FD1EF, 0xFEA6270B }
 	TAG_STRUCT(
 		compute_entry_point_block,
 		"compute_entry_point_block",
@@ -33052,7 +33052,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COMPILED_COMPUTE_SHADER_BLOCK_ID { 0x00000000, 0x32C3860E, 0xCF764DC2, 0xA0FC6812 }
+	#define COMPILED_COMPUTE_SHADER_BLOCK_ID { 0x32C3860E, 0xCF764DC2, 0xA0FC6812, 0x9733B397 }
 	TAG_STRUCT(
 		compiled_compute_shader_block,
 		"compiled_compute_shader_block",
@@ -33066,7 +33066,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VERTEX_SHADER_BLOCK_STRUCT_ID { 0x00000000, 0x60FD71E9, 0xC5654B09, 0xBE6F6918 }
+	#define VERTEX_SHADER_BLOCK_STRUCT_ID { 0x60FD71E9, 0xC5654B09, 0xBE6F6918, 0x7C935A75 }
 	TAG_STRUCT(
 		vertex_shader_block_struct,
 		"vertex_shader_block_struct",
@@ -33082,7 +33082,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PIXEL_SHADER_BLOCK_STRUCT_ID { 0x00000000, 0xA0282D19, 0x14CF4500, 0xBB7ADB22 }
+	#define PIXEL_SHADER_BLOCK_STRUCT_ID { 0xA0282D19, 0x14CF4500, 0xBB7ADB22, 0x40C57D44 }
 	TAG_STRUCT(
 		pixel_shader_block_struct,
 		"pixel_shader_block_struct",
@@ -33098,7 +33098,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COMPUTE_SHADER_BLOCK_STRUCT_ID { 0x00000000, 0x50005A90, 0x044E4511, 0xBF67AD6C }
+	#define COMPUTE_SHADER_BLOCK_STRUCT_ID { 0x50005A90, 0x044E4511, 0xBF67AD6C, 0x5F94CAA0 }
 	TAG_STRUCT(
 		compute_shader_block_struct,
 		"compute_shader_block_struct",
@@ -33114,7 +33114,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define HLSL_INCLUDE_STRUCT_DEFINITION_ID { 0x00000000, 0x7481D09D, 0x2F6D4C89, 0xB397EADA }
+	#define HLSL_INCLUDE_STRUCT_DEFINITION_ID { 0x7481D09D, 0x2F6D4C89, 0xB397EADA, 0xCEE7E3AE }
 	TAG_STRUCT(
 		hlsl_include_struct_definition,
 		"hlsl_include_struct_definition",
@@ -33123,11 +33123,11 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HLSL_INCLUDE_STRUCT_DEFINITION_ID)
 	{
-		{ _field_data, "include file" },
+		{ _field_data, "include file", &blofeld::halo3_tools::code_block },
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_SHADER_OPTION_DEPENDENCY_ID { 0x00000000, 0x36B7BB10, 0x29F2482F, 0xA621D1B7 }
+	#define GLOBAL_SHADER_OPTION_DEPENDENCY_ID { 0x36B7BB10, 0x29F2482F, 0xA621D1B7, 0x8FC91F6E }
 	TAG_STRUCT(
 		global_shader_option_dependency,
 		"global_shader_option_dependency",
@@ -33140,7 +33140,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_SHADER_CATEGORY_DEPENDENCY_ID { 0x00000000, 0x5F7BC1E8, 0x34304024, 0xA5DBCB55 }
+	#define GLOBAL_SHADER_CATEGORY_DEPENDENCY_ID { 0x5F7BC1E8, 0x34304024, 0xA5DBCB55, 0x1D18FDE8 }
 	TAG_STRUCT(
 		global_shader_category_dependency,
 		"global_shader_category_dependency",
@@ -33154,7 +33154,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_SHADER_ENTRY_POINT_BLOCK_ID { 0x00000000, 0xC774B246, 0x4B264463, 0x8F00FFB5 }
+	#define GLOBAL_SHADER_ENTRY_POINT_BLOCK_ID { 0xC774B246, 0x4B264463, 0x8F00FFB5, 0xDBF46C9D }
 	TAG_STRUCT(
 		global_shader_entry_point_block,
 		"global_shader_entry_point_block",
@@ -33169,7 +33169,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_VERTEX_SHADER_VERTEX_TYPES_BLOCK_ID { 0x00000000, 0xD8909DB6, 0x9DFC44C9, 0xA2F08BB0 }
+	#define GLOBAL_VERTEX_SHADER_VERTEX_TYPES_BLOCK_ID { 0xD8909DB6, 0x9DFC44C9, 0xA2F08BB0, 0x5B8D92E6 }
 	TAG_STRUCT(
 		global_vertex_shader_vertex_types_block,
 		"global_vertex_shader_vertex_types_block",
@@ -33182,7 +33182,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_VERTEX_SHADER_BLOCK_STRUCT_ID { 0x00000000, 0x6551E55E, 0x833B4478, 0x87DF6901 }
+	#define GLOBAL_VERTEX_SHADER_BLOCK_STRUCT_ID { 0x6551E55E, 0x833B4478, 0x87DF6901, 0x1AA92BE2 }
 	TAG_STRUCT(
 		global_vertex_shader_block_struct,
 		"global_vertex_shader_block_struct",
@@ -33197,7 +33197,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_PIXEL_SHADER_BLOCK_STRUCT_ID { 0x00000000, 0x4D7594D2, 0x86B447C9, 0xAB545AE9 }
+	#define GLOBAL_PIXEL_SHADER_BLOCK_STRUCT_ID { 0x4D7594D2, 0x86B447C9, 0xAB545AE9, 0x92626D45 }
 	TAG_STRUCT(
 		global_pixel_shader_block_struct,
 		"global_pixel_shader_block_struct",
@@ -33212,7 +33212,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FRAGMENT_STRUCT_DEFINITION_ID { 0x00000000, 0x7AC572BF, 0x8A2F4135, 0xA86594B3 }
+	#define FRAGMENT_STRUCT_DEFINITION_ID { 0x7AC572BF, 0x8A2F4135, 0xA86594B3, 0x48BC9546 }
 	TAG_STRUCT(
 		fragment_struct_definition,
 		"fragment_struct_definition",
@@ -33221,12 +33221,12 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FRAGMENT_STRUCT_DEFINITION_ID)
 	{
-		{ _field_data, "xenon" },
-		{ _field_data, "pc" },
+		{ _field_data, "xenon", &blofeld::halo3_tools::fragment_data },
+		{ _field_data, "pc", &blofeld::halo3_tools::fragment_data },
 		{ _field_terminator }
 	};
 
-	#define DECORATOR_SET_INSTANCE_NAME_BLOCK_ID { 0x00000000, 0xBA17DA19, 0x1009419A, 0x875C1352 }
+	#define DECORATOR_SET_INSTANCE_NAME_BLOCK_ID { 0xBA17DA19, 0x1009419A, 0x875C1352, 0xFE1C4B67 }
 	TAG_STRUCT(
 		decorator_set_instance_name_block,
 		"decorator_set_instance_name_block",
@@ -33239,7 +33239,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_DECORATOR_TYPE_STRUCT_ID { 0x00000000, 0x02B61C35, 0x457E4970, 0xBB11A050 }
+	#define GLOBAL_DECORATOR_TYPE_STRUCT_ID { 0x02B61C35, 0x457E4970, 0xBB11A050, 0x2DF8A18E }
 	TAG_STRUCT(
 		global_decorator_type_struct,
 		"global_decorator_type_struct",
@@ -33278,7 +33278,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(decorator_type_flags_definition, decorator_type_flags_definition_strings, _countof(decorator_type_flags_definition_strings));
 
-	#define DECORATOR_SET_BLOCK_ID { 0x00000000, 0xAF008F9B, 0x6F9E4D28, 0xAD976280 }
+	#define DECORATOR_SET_BLOCK_ID { 0xAF008F9B, 0x6F9E4D28, 0xAD976280, 0x056A47AD }
 	TAG_STRUCT(
 		decorator_set_block,
 		"decorator_set_block",
@@ -33348,7 +33348,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(decorator_set_lighting_sample_pattern_enum_definition, decorator_set_lighting_sample_pattern_enum_definition_strings, _countof(decorator_set_lighting_sample_pattern_enum_definition_strings));
 
-	#define MODEL_START_INDEX_BLOCK_ID { 0x00000000, 0x9FB40F1E, 0x36634D4D, 0xBD890371 }
+	#define MODEL_START_INDEX_BLOCK_ID { 0x9FB40F1E, 0x36634D4D, 0xBD890371, 0xFD233624 }
 	TAG_STRUCT(
 		model_start_index_block,
 		"model_start_index_block",
@@ -33361,7 +33361,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DECORATOR_RUNTIME_CLUSTER_BLOCK_ID { 0x00000000, 0xE2543A30, 0xA9E742B9, 0x8F489AF7 }
+	#define DECORATOR_RUNTIME_CLUSTER_BLOCK_ID { 0xE2543A30, 0xA9E742B9, 0x8F489AF7, 0xC283783F }
 	TAG_STRUCT(
 		decorator_runtime_cluster_block,
 		"decorator_runtime_cluster_block",
@@ -33382,7 +33382,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DEFAULT_TEXTURES_REFS_BLOCK_ID { 0x00000000, 0x7B0790D8, 0xD39D47C8, 0x85721089 }
+	#define DEFAULT_TEXTURES_REFS_BLOCK_ID { 0x7B0790D8, 0xD39D47C8, 0x85721089, 0x8A80F128 }
 	TAG_STRUCT(
 		default_textures_refs_block,
 		"default_textures_refs_block",
@@ -33404,7 +33404,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(bitmap_group_reference$9_tagref, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
-	#define MATERIAL_TEXTURES_REFS_BLOCK_ID { 0x00000000, 0x0F4DB844, 0xFD9F48CD, 0xB9DCAA47 }
+	#define MATERIAL_TEXTURES_REFS_BLOCK_ID { 0x0F4DB844, 0xFD9F48CD, 0xB9DCAA47, 0x2D47CCD4 }
 	TAG_STRUCT(
 		material_textures_refs_block,
 		"material_textures_refs_block",
@@ -33417,7 +33417,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ATMOSPHERE_TEXTURES_REFS_BLOCK_ID { 0x00000000, 0xFC7435B9, 0x11FF4F67, 0x8BC86292 }
+	#define ATMOSPHERE_TEXTURES_REFS_BLOCK_ID { 0xFC7435B9, 0x11FF4F67, 0x8BC86292, 0x8D7B3B80 }
 	TAG_STRUCT(
 		atmosphere_textures_refs_block,
 		"atmosphere_textures_refs_block",
@@ -33430,7 +33430,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define EXPLICIT_SHADER_REFS_BLOCK_ID { 0x00000000, 0xD3D3046B, 0xF1924CAB, 0x95BC117B }
+	#define EXPLICIT_SHADER_REFS_BLOCK_ID { 0xD3D3046B, 0xF1924CAB, 0x95BC117B, 0x3CCD846F }
 	TAG_STRUCT(
 		explicit_shader_refs_block,
 		"explicit_shader_refs_block",
@@ -33451,7 +33451,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(compute_shader_group_reference_tagref, COMPUTE_SHADER_TAG);
 
-	#define RASTERIZER_GLOBALS_STRUCT_DEFINITION_ID { 0x00000000, 0x1E0FE0EA, 0x9D3048D5, 0x9D86E7F7 }
+	#define RASTERIZER_GLOBALS_STRUCT_DEFINITION_ID { 0x1E0FE0EA, 0x9D3048D5, 0x9D86E7F7, 0xCAA91C4A }
 	TAG_STRUCT(
 		rasterizer_globals_struct_definition,
 		"rasterizer_globals_struct_definition",
@@ -33493,7 +33493,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(pixel_shader_group_reference$2_tagref, PIXEL_SHADER_TAG);
 
-	#define PERFORMANE_THROTTLE_BLOCK_ID { 0x00000000, 0x85D15105, 0x8B6740B3, 0xA382FD88 }
+	#define PERFORMANE_THROTTLE_BLOCK_ID { 0x85D15105, 0x8B6740B3, 0xA382FD88, 0xD1A37CE3 }
 	TAG_STRUCT(
 		performane_throttle_block,
 		"performane_throttle_block",
@@ -33533,7 +33533,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(performance_throttle_flags, performance_throttle_flags_strings, _countof(performance_throttle_flags_strings));
 
-	#define PERFORMANCE_THROTTLES_STRUCT_DEFINITION_ID { 0x00000000, 0x044A4563, 0x26134854, 0xA54E1DDE }
+	#define PERFORMANCE_THROTTLES_STRUCT_DEFINITION_ID { 0x044A4563, 0x26134854, 0xA54E1DDE, 0x72F14803 }
 	TAG_STRUCT(
 		performance_throttles_struct_definition,
 		"performance_throttles_struct_definition",
@@ -33547,7 +33547,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RASTERIZER_SCREEN_EFFECT_TEXCOORD_GENERATION_ADVANCED_CONTROL_BLOCK_ID { 0x00000000, 0x9F30D1B4, 0x49C64454, 0x870FD3E8 }
+	#define RASTERIZER_SCREEN_EFFECT_TEXCOORD_GENERATION_ADVANCED_CONTROL_BLOCK_ID { 0x9F30D1B4, 0x49C64454, 0x870FD3E8, 0xDE9F3950 }
 	TAG_STRUCT(
 		rasterizer_screen_effect_texcoord_generation_advanced_control_block,
 		"rasterizer_screen_effect_texcoord_generation_advanced_control_block",
@@ -33573,7 +33573,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(rasterizer_screen_effect_texcoord_flags_definition, rasterizer_screen_effect_texcoord_flags_definition_strings, _countof(rasterizer_screen_effect_texcoord_flags_definition_strings));
 
-	#define RASTERIZER_SCREEN_EFFECT_CONVOLUTION_BLOCK_ID { 0x00000000, 0xE0B9FF21, 0x684D4731, 0xA8749FE2 }
+	#define RASTERIZER_SCREEN_EFFECT_CONVOLUTION_BLOCK_ID { 0xE0B9FF21, 0x684D4731, 0xA8749FE2, 0x0E4B811B }
 	TAG_STRUCT(
 		rasterizer_screen_effect_convolution_block,
 		"rasterizer_screen_effect_convolution_block",
@@ -33603,7 +33603,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(rasterizer_screen_effect_convolution_flags_definition, rasterizer_screen_effect_convolution_flags_definition_strings, _countof(rasterizer_screen_effect_convolution_flags_definition_strings));
 
-	#define RASTERIZER_SCREEN_EFFECT_PASS_REFERENCE_BLOCK_ID { 0x00000000, 0xE53D18A8, 0x41BA446F, 0xA5F9AD21 }
+	#define RASTERIZER_SCREEN_EFFECT_PASS_REFERENCE_BLOCK_ID { 0xE53D18A8, 0x41BA446F, 0xA5F9AD21, 0x0E918550 }
 	TAG_STRUCT(
 		rasterizer_screen_effect_pass_reference_block,
 		"rasterizer_screen_effect_pass_reference_block",
@@ -33612,7 +33612,7 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RASTERIZER_SCREEN_EFFECT_PASS_REFERENCE_BLOCK_ID)
 	{
-		{ _field_data, "explanation" },
+		{ _field_data, "explanation", &blofeld::halo3_tools::rasterizer_screen_effect_text_definition },
 		FIELD_EXPLANATION("IMPLEMENTATIONS", "Used to control which shader pass implementations are used depending on whether the primary and/or secondary external inputs are greater than zero. An implementation of -1 will not draw anything."),
 		{ _field_short_integer, "layer pass index", nullptr, "leave as -1 unless debugging" },
 		FIELD_PAD("KSTFBK", 2),
@@ -33654,7 +33654,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(rasterizer_screen_effect_target_enum_definition, rasterizer_screen_effect_target_enum_definition_strings, _countof(rasterizer_screen_effect_target_enum_definition_strings));
 
-	#define SCREEN_EFFECT_STRUCT_DEFINITION_ID { 0x00000000, 0x3D9F3543, 0xE3EC48E5, 0xAEF05342 }
+	#define SCREEN_EFFECT_STRUCT_DEFINITION_ID { 0x3D9F3543, 0xE3EC48E5, 0xAEF05342, 0x2C2E1BE5 }
 	TAG_STRUCT(
 		screen_effect_struct_definition,
 		"screen_effect_struct_definition",
@@ -33670,7 +33670,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RASTERIZER_CACHE_FILE_GLOBALS_STRUCT_DEFINITION_ID { 0x00000000, 0x3FAFA78E, 0x905B48F5, 0x82089983 }
+	#define RASTERIZER_CACHE_FILE_GLOBALS_STRUCT_DEFINITION_ID { 0x3FAFA78E, 0x905B48F5, 0x82089983, 0x561E7C3B }
 	TAG_STRUCT(
 		rasterizer_cache_file_globals_struct_definition,
 		"rasterizer_cache_file_globals_struct_definition",
@@ -33683,7 +33683,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLOR_GRADING_SCALAR_FUNCTION_STRUCT_ID { 0x00000000, 0x4545C703, 0x22624FE7, 0xB9FDE3F0 }
+	#define COLOR_GRADING_SCALAR_FUNCTION_STRUCT_ID { 0x4545C703, 0x22624FE7, 0xB9FDE3F0, 0x1696B87E }
 	TAG_STRUCT(
 		color_grading_scalar_function_struct,
 		"color_grading_scalar_function_struct",
@@ -33697,7 +33697,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLOR_GRADING_CURVES_EDITOR_BLOCK_ID { 0x00000000, 0x4545C704, 0x22624FE8, 0xB9FDE3F1 }
+	#define COLOR_GRADING_CURVES_EDITOR_BLOCK_ID { 0x4545C704, 0x22624FE8, 0xB9FDE3F1, 0x1696B87F }
 	TAG_STRUCT(
 		color_grading_curves_editor_block,
 		"color_grading_curves_editor_block",
@@ -33728,7 +33728,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(col_grad_curves_editor_mode, col_grad_curves_editor_mode_strings, _countof(col_grad_curves_editor_mode_strings));
 
-	#define COLOR_GRADING_BRIGHTNESS_CONTRAST_BLOCK_ID { 0x00000000, 0x4545C705, 0x22624FE9, 0xB9FDE3F2 }
+	#define COLOR_GRADING_BRIGHTNESS_CONTRAST_BLOCK_ID { 0x4545C705, 0x22624FE9, 0xB9FDE3F2, 0x1696B880 }
 	TAG_STRUCT(
 		color_grading_brightness_contrast_block,
 		"color_grading_brightness_contrast_block",
@@ -33743,7 +33743,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLOR_GRADING_HSLV_BLOCK_ID { 0x00000000, 0x4545C706, 0x22624FEA, 0xB9FDE3F3 }
+	#define COLOR_GRADING_HSLV_BLOCK_ID { 0x4545C706, 0x22624FEA, 0xB9FDE3F3, 0x1696B881 }
 	TAG_STRUCT(
 		color_grading_hslv_block,
 		"color_grading_hslv_block",
@@ -33760,7 +33760,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLOR_GRADING_COLORIZE_EFFECT_BLOCK_ID { 0x00000000, 0x4545C707, 0x22624FEB, 0xB9FDE3F4 }
+	#define COLOR_GRADING_COLORIZE_EFFECT_BLOCK_ID { 0x4545C707, 0x22624FEB, 0xB9FDE3F4, 0x1696B882 }
 	TAG_STRUCT(
 		color_grading_colorize_effect_block,
 		"color_grading_colorize_effect_block",
@@ -33777,7 +33777,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLOR_GRADING_CMYB_STRUCT_ID { 0x00000000, 0x4545C709, 0x22624FED, 0xB9FDE3F6 }
+	#define COLOR_GRADING_CMYB_STRUCT_ID { 0x4545C709, 0x22624FED, 0xB9FDE3F6, 0x1696B884 }
 	TAG_STRUCT(
 		color_grading_cmyb_struct,
 		"color_grading_cmyb_struct",
@@ -33793,7 +33793,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLOR_GRADING_SELECTIVE_COLOR_BLOCK_ID { 0x00000000, 0x4545C708, 0x22624FEC, 0xB9FDE3F5 }
+	#define COLOR_GRADING_SELECTIVE_COLOR_BLOCK_ID { 0x4545C708, 0x22624FEC, 0xB9FDE3F5, 0x1696B883 }
 	TAG_STRUCT(
 		color_grading_selective_color_block,
 		"color_grading_selective_color_block",
@@ -33824,7 +33824,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLOR_GRADING_CMY_STRUCT_ID { 0x00000000, 0x4545C70A, 0x22624FEE, 0xB9FDE3F7 }
+	#define COLOR_GRADING_CMY_STRUCT_ID { 0x4545C70A, 0x22624FEE, 0xB9FDE3F7, 0x1696B885 }
 	TAG_STRUCT(
 		color_grading_cmy_struct,
 		"color_grading_cmy_struct",
@@ -33839,7 +33839,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLOR_GRADING_COLOR_BALANCE_BLOCK_ID { 0x00000000, 0x4545C70B, 0x22624FEF, 0xB9FDE3F8 }
+	#define COLOR_GRADING_COLOR_BALANCE_BLOCK_ID { 0x4545C70B, 0x22624FEF, 0xB9FDE3F8, 0x1696B886 }
 	TAG_STRUCT(
 		color_grading_color_balance_block,
 		"color_grading_color_balance_block",
@@ -33858,7 +33858,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CAMERA_FX_COLOR_GRADING_STRUCT_ID { 0x00000000, 0x4545C702, 0x22624FE6, 0xB9FDE3E9 }
+	#define CAMERA_FX_COLOR_GRADING_STRUCT_ID { 0x4545C702, 0x22624FE6, 0xB9FDE3E9, 0x1696B87D }
 	TAG_STRUCT(
 		camera_fx_color_grading_struct,
 		"camera_fx_color_grading_struct",
@@ -33889,7 +33889,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(camera_fx_parameter_flags_cg, camera_fx_parameter_flags_cg_strings, _countof(camera_fx_parameter_flags_cg_strings));
 
-	#define RASTERIZER_CONSTANT_BLOCK_ID { 0x00000000, 0x9EAC07AB, 0x559D43EF, 0x88AEF5BC }
+	#define RASTERIZER_CONSTANT_BLOCK_ID { 0x9EAC07AB, 0x559D43EF, 0x88AEF5BC, 0x656E3255 }
 	TAG_STRUCT(
 		rasterizer_constant_block,
 		"rasterizer_constant_block",
@@ -33914,7 +33914,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(register_set_enum, register_set_enum_strings, _countof(register_set_enum_strings));
 
-	#define GLOBAL_RASTERIZER_CONSTANT_TABLE_STRUCT_ID { 0x00000000, 0x88225AE9, 0x664A4892, 0xA3910819 }
+	#define GLOBAL_RASTERIZER_CONSTANT_TABLE_STRUCT_ID { 0x88225AE9, 0x664A4892, 0xA3910819, 0x46CAAEFB }
 	TAG_STRUCT(
 		global_rasterizer_constant_table_struct,
 		"global_rasterizer_constant_table_struct",
@@ -33939,7 +33939,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(rasterizer_constant_table_type_enum, rasterizer_constant_table_type_enum_strings, _countof(rasterizer_constant_table_type_enum_strings));
 
-	#define METER_STRUCT_DEFINITION_ID { 0x00000000, 0x3B48AAFB, 0xF0C147FC, 0xAD439E06 }
+	#define METER_STRUCT_DEFINITION_ID { 0x3B48AAFB, 0xF0C147FC, 0xAD439E06, 0xEDAF749A }
 	TAG_STRUCT(
 		meter_struct_definition,
 		"meter_struct_definition",
@@ -33964,7 +33964,7 @@ namespace halo3_tools {
 		{ _field_real, "unmask distance", "fade from fully masked to fully unmasked this distance beyond full (and below empty)", "meter units" },
 		{ _field_real, "mask distance", "fade from fully unmasked to fully masked this distance below full (and beyond empty)", "meter units" },
 		FIELD_PAD("SBQWDR", 20),
-		{ _field_data, "encoded stencil" },
+		{ _field_data, "encoded stencil", &blofeld::halo3_tools::meter_stencil_data_definition },
 		{ _field_terminator }
 	};
 
@@ -33989,7 +33989,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(color_anchors_enum, color_anchors_enum_strings, _countof(color_anchors_enum_strings));
 
-	#define CHUD_WIDGET_STATE_DATA_BLOCK_ID { 0x00000000, 0xF835F4AA, 0xD93B4BAB, 0xA8039E9B }
+	#define CHUD_WIDGET_STATE_DATA_BLOCK_ID { 0xF835F4AA, 0xD93B4BAB, 0xA8039E9B, 0x03946C07 }
 	TAG_STRUCT(
 		chud_widget_state_data_block,
 		"chud_widget_state_data_block",
@@ -34263,7 +34263,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(chud_misc_hidden_state_enum, chud_misc_hidden_state_enum_strings, _countof(chud_misc_hidden_state_enum_strings));
 
-	#define CHUD_WIDGET_PLACEMENT_DATA_BLOCK_ID { 0x00000000, 0x46DF1012, 0xE89642C2, 0x87B81DA3 }
+	#define CHUD_WIDGET_PLACEMENT_DATA_BLOCK_ID { 0x46DF1012, 0xE89642C2, 0x87B81DA3, 0x467CD4AD }
 	TAG_STRUCT(
 		chud_widget_placement_data_block,
 		"chud_widget_placement_data_block",
@@ -34329,7 +34329,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(chud_widget_placement_flags, chud_widget_placement_flags_strings, _countof(chud_widget_placement_flags_strings));
 
-	#define CHUD_WIDGET_RENDER_DATA_BLOCK_ID { 0x00000000, 0x6B0C4008, 0x2B5C42E7, 0x854D15EB }
+	#define CHUD_WIDGET_RENDER_DATA_BLOCK_ID { 0x6B0C4008, 0x2B5C42E7, 0x854D15EB, 0x2601FDF2 }
 	TAG_STRUCT(
 		chud_widget_render_data_block,
 		"chud_widget_render_data_block",
@@ -34521,7 +34521,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(chud_render_scalar_output_enum, chud_render_scalar_output_enum_strings, _countof(chud_render_scalar_output_enum_strings));
 
-	#define CHUD_WIDGET_ANIMATION_BLOCK_STRUCT_ID { 0x00000000, 0x2B858790, 0xB95A47AF, 0xB34604D3 }
+	#define CHUD_WIDGET_ANIMATION_BLOCK_STRUCT_ID { 0x2B858790, 0xB95A47AF, 0xB34604D3, 0xB3BBB9F3 }
 	TAG_STRUCT(
 		chud_widget_animation_block_struct,
 		"chud_widget_animation_block_struct",
@@ -34552,7 +34552,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(chud_animation_definition_group_reference_tagref, CHUD_ANIMATION_DEFINITION_TAG);
 
-	#define CHUD_WIDGET_ANIMATION_DATA_BLOCK_ID { 0x00000000, 0x14CA715E, 0xBB264BB5, 0x96EC1FCA }
+	#define CHUD_WIDGET_ANIMATION_DATA_BLOCK_ID { 0x14CA715E, 0xBB264BB5, 0x96EC1FCA, 0x16E96BC6 }
 	TAG_STRUCT(
 		chud_widget_animation_data_block,
 		"chud_widget_animation_data_block",
@@ -34576,7 +34576,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_WIDGET_BASE_STRUCT_ID { 0x00000000, 0x92C89298, 0x4215479E, 0xA60D017D }
+	#define CHUD_WIDGET_BASE_STRUCT_ID { 0x92C89298, 0x4215479E, 0xA60D017D, 0x05C91503 }
 	TAG_STRUCT(
 		chud_widget_base_struct,
 		"chud_widget_base_struct",
@@ -34633,7 +34633,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(chud_widget_base_layer_enum, chud_widget_base_layer_enum_strings, _countof(chud_widget_base_layer_enum_strings));
 
-	#define CHUD_WIDGET_BITMAP_BLOCK_ID { 0x00000000, 0x185F3C35, 0x4EE44084, 0x9355EF1C }
+	#define CHUD_WIDGET_BITMAP_BLOCK_ID { 0x185F3C35, 0x4EE44084, 0x9355EF1C, 0xFFAAF91E }
 	TAG_STRUCT(
 		chud_widget_bitmap_block,
 		"chud_widget_bitmap_block",
@@ -34669,7 +34669,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(chud_widget_bitmap_flags, chud_widget_bitmap_flags_strings, _countof(chud_widget_bitmap_flags_strings));
 
-	#define CHUD_WIDGET_TEXT_BLOCK_ID { 0x00000000, 0xD5245524, 0x48904D19, 0x955891F4 }
+	#define CHUD_WIDGET_TEXT_BLOCK_ID { 0xD5245524, 0x48904D19, 0x955891F4, 0xED3A7CD5 }
 	TAG_STRUCT(
 		chud_widget_text_block,
 		"chud_widget_text_block",
@@ -34724,7 +34724,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(chud_widget_text_font_type_enum, chud_widget_text_font_type_enum_strings, _countof(chud_widget_text_font_type_enum_strings));
 
-	#define CHUD_WIDGET_COLLECTION_BLOCK_ID { 0x00000000, 0x28026D9A, 0x6E1C4263, 0xA40344D0 }
+	#define CHUD_WIDGET_COLLECTION_BLOCK_ID { 0x28026D9A, 0x6E1C4263, 0xA40344D0, 0xEF110958 }
 	TAG_STRUCT(
 		chud_widget_collection_block,
 		"chud_widget_collection_block",
@@ -34739,7 +34739,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_DEFINITION_INFO_STRUCT_ID { 0x00000000, 0xAFA695BE, 0x628A4B72, 0xBB7BCD3B }
+	#define CHUD_DEFINITION_INFO_STRUCT_ID { 0xAFA695BE, 0x628A4B72, 0xBB7BCD3B, 0xAD3E76C7 }
 	TAG_STRUCT(
 		chud_definition_info_struct,
 		"chud_definition_info_struct",
@@ -34754,7 +34754,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0xF4B39825, 0x4DE644A5, 0xA11B5394 }
+	#define CHUD_DEFINITION_STRUCT_DEFINITION_ID { 0xF4B39825, 0x4DE644A5, 0xA11B5394, 0x762B09E1 }
 	TAG_STRUCT(
 		chud_definition_struct_definition,
 		"chud_definition_struct_definition",
@@ -34768,7 +34768,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_KEYFRAME_BASE_STRUCT_ID { 0x00000000, 0xB7F63620, 0xCF414F5D, 0xB4C50528 }
+	#define CHUD_KEYFRAME_BASE_STRUCT_ID { 0xB7F63620, 0xCF414F5D, 0xB4C50528, 0x3C98F329 }
 	TAG_STRUCT(
 		chud_keyframe_base_struct,
 		"chud_keyframe_base_struct",
@@ -34781,7 +34781,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_KEYFRAME_POSITION_BLOCK_ID { 0x00000000, 0xD55B0F4F, 0x5F144EEC, 0x9D5F2F8A }
+	#define CHUD_KEYFRAME_POSITION_BLOCK_ID { 0xD55B0F4F, 0x5F144EEC, 0x9D5F2F8A, 0xDB60A619 }
 	TAG_STRUCT(
 		chud_keyframe_position_block,
 		"chud_keyframe_position_block",
@@ -34795,7 +34795,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_KEYFRAME_ROTATION_BLOCK_ID { 0x00000000, 0xE8D2C529, 0x58464F27, 0xA5746ED0 }
+	#define CHUD_KEYFRAME_ROTATION_BLOCK_ID { 0xE8D2C529, 0x58464F27, 0xA5746ED0, 0x83DF83BD }
 	TAG_STRUCT(
 		chud_keyframe_rotation_block,
 		"chud_keyframe_rotation_block",
@@ -34809,7 +34809,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_KEYFRAME_SCALE_BLOCK_ID { 0x00000000, 0x0550AF8C, 0x2892442F, 0xBF3D504C }
+	#define CHUD_KEYFRAME_SCALE_BLOCK_ID { 0x0550AF8C, 0x2892442F, 0xBF3D504C, 0x25CBF0C7 }
 	TAG_STRUCT(
 		chud_keyframe_scale_block,
 		"chud_keyframe_scale_block",
@@ -34823,7 +34823,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_KEYFRAME_COLOR_BLOCK_ID { 0x00000000, 0xA37EBC6D, 0xA7A444F5, 0x87DAE335 }
+	#define CHUD_KEYFRAME_COLOR_BLOCK_ID { 0xA37EBC6D, 0xA7A444F5, 0x87DAE335, 0x535CB485 }
 	TAG_STRUCT(
 		chud_keyframe_color_block,
 		"chud_keyframe_color_block",
@@ -34844,7 +34844,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(chud_keyframe_color_source_enum, chud_keyframe_color_source_enum_strings, _countof(chud_keyframe_color_source_enum_strings));
 
-	#define CHUD_KEYFRAME_SCALAR_BLOCK_ID { 0x00000000, 0xEA5B9F51, 0xB8FE4CC5, 0x965AEE01 }
+	#define CHUD_KEYFRAME_SCALAR_BLOCK_ID { 0xEA5B9F51, 0xB8FE4CC5, 0x965AEE01, 0x7129C277 }
 	TAG_STRUCT(
 		chud_keyframe_scalar_block,
 		"chud_keyframe_scalar_block",
@@ -34858,7 +34858,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_KEYFRAME_TEXTURE_BLOCK_ID { 0x00000000, 0x770E5156, 0x640C4802, 0xAECB08CD }
+	#define CHUD_KEYFRAME_TEXTURE_BLOCK_ID { 0x770E5156, 0x640C4802, 0xAECB08CD, 0x04588C14 }
 	TAG_STRUCT(
 		chud_keyframe_texture_block,
 		"chud_keyframe_texture_block",
@@ -34873,7 +34873,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_ANIMATION_POSITION_BLOCK_ID { 0x00000000, 0xD023FCA1, 0xCC7042E7, 0xBD9E9086 }
+	#define CHUD_ANIMATION_POSITION_BLOCK_ID { 0xD023FCA1, 0xCC7042E7, 0xBD9E9086, 0x6C3DA68D }
 	TAG_STRUCT(
 		chud_animation_position_block,
 		"chud_animation_position_block",
@@ -34888,7 +34888,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_ANIMATION_ROTATION_BLOCK_ID { 0x00000000, 0x259544B2, 0x2E544680, 0x9F49736C }
+	#define CHUD_ANIMATION_ROTATION_BLOCK_ID { 0x259544B2, 0x2E544680, 0x9F49736C, 0x2900A351 }
 	TAG_STRUCT(
 		chud_animation_rotation_block,
 		"chud_animation_rotation_block",
@@ -34903,7 +34903,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_ANIMATION_SCALE_BLOCK_ID { 0x00000000, 0xDC02D688, 0x442B4E9E, 0x9CBCA8AA }
+	#define CHUD_ANIMATION_SCALE_BLOCK_ID { 0xDC02D688, 0x442B4E9E, 0x9CBCA8AA, 0xBC1C980D }
 	TAG_STRUCT(
 		chud_animation_scale_block,
 		"chud_animation_scale_block",
@@ -34918,7 +34918,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_ANIMATION_COLOR_BLOCK_ID { 0x00000000, 0x8EF398B0, 0x4FDC49F0, 0xBC5DA1E1 }
+	#define CHUD_ANIMATION_COLOR_BLOCK_ID { 0x8EF398B0, 0x4FDC49F0, 0xBC5DA1E1, 0x01FFB526 }
 	TAG_STRUCT(
 		chud_animation_color_block,
 		"chud_animation_color_block",
@@ -34933,7 +34933,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_ANIMATION_SCALAR_BLOCK_ID { 0x00000000, 0x067F4A97, 0x8A6A4D8A, 0xA531F48E }
+	#define CHUD_ANIMATION_SCALAR_BLOCK_ID { 0x067F4A97, 0x8A6A4D8A, 0xA531F48E, 0x69E77FF6 }
 	TAG_STRUCT(
 		chud_animation_scalar_block,
 		"chud_animation_scalar_block",
@@ -34948,7 +34948,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_ANIMATION_TEXTURE_BLOCK_ID { 0x00000000, 0x6B6904CE, 0xE6494A69, 0x9C361F2E }
+	#define CHUD_ANIMATION_TEXTURE_BLOCK_ID { 0x6B6904CE, 0xE6494A69, 0x9C361F2E, 0x6A0955C9 }
 	TAG_STRUCT(
 		chud_animation_texture_block,
 		"chud_animation_texture_block",
@@ -34963,7 +34963,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0xFC2CF9F8, 0xE3764ECE, 0xB06C5328 }
+	#define CHUD_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0xFC2CF9F8, 0xE3764ECE, 0xB06C5328, 0xE7F5F835 }
 	TAG_STRUCT(
 		chud_animation_definition_struct_definition,
 		"chud_animation_definition_struct_definition",
@@ -34994,7 +34994,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(chud_animation_flags, chud_animation_flags_strings, _countof(chud_animation_flags_strings));
 
-	#define CHUD_CURVATURE_INFO_BLOCK_ID { 0x00000000, 0x0D690603, 0x66E247ED, 0x97851CEE }
+	#define CHUD_CURVATURE_INFO_BLOCK_ID { 0x0D690603, 0x66E247ED, 0x97851CEE, 0x755F52CE }
 	TAG_STRUCT(
 		chud_curvature_info_block,
 		"chud_curvature_info_block",
@@ -35042,7 +35042,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(chud_curvature_res_flags, chud_curvature_res_flags_strings, _countof(chud_curvature_res_flags_strings));
 
-	#define CHUD_SOUND_BLOCK_ID { 0x00000000, 0x3CCA9033, 0x079C4A4A, 0xB9734217 }
+	#define CHUD_SOUND_BLOCK_ID { 0x3CCA9033, 0x079C4A4A, 0xB9734217, 0xF960254C }
 	TAG_STRUCT(
 		chud_sound_block,
 		"chud_sound_block",
@@ -35086,7 +35086,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(chud_sound_cue_flags, chud_sound_cue_flags_strings, _countof(chud_sound_cue_flags_strings));
 
-	#define CHUD_MEDAL_NAME_BLOCK_ID { 0x00000000, 0x1728902E, 0xDE7C467C, 0x974578E7 }
+	#define CHUD_MEDAL_NAME_BLOCK_ID { 0x1728902E, 0xDE7C467C, 0x974578E7, 0x36E87D4F }
 	TAG_STRUCT(
 		chud_medal_name_block,
 		"chud_medal_name_block",
@@ -35099,7 +35099,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_CONFIG_INFO_BLOCK_STRUCT_ID { 0x00000000, 0x1DA0D877, 0xDE4544E9, 0x81D0D0AC }
+	#define CHUD_CONFIG_INFO_BLOCK_STRUCT_ID { 0x1DA0D877, 0xDE4544E9, 0x81D0D0AC, 0x906D9FB2 }
 	TAG_STRUCT(
 		chud_config_info_block_struct,
 		"chud_config_info_block_struct",
@@ -35117,7 +35117,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_SKIN_INFO_BLOCK_ID { 0x00000000, 0xB95D78AB, 0xA51E48A1, 0x9921C1A3 }
+	#define CHUD_SKIN_INFO_BLOCK_ID { 0xB95D78AB, 0xA51E48A1, 0x9921C1A3, 0xFB1D9F1F }
 	TAG_STRUCT(
 		chud_skin_info_block,
 		"chud_skin_info_block",
@@ -35200,7 +35200,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(chud_skin_type_enum, chud_skin_type_enum_strings, _countof(chud_skin_type_enum_strings));
 
-	#define CHUD_SHADER_BLOCK_ID { 0x00000000, 0xA432132B, 0x7B2C49E6, 0xA45F6D5C }
+	#define CHUD_SHADER_BLOCK_ID { 0xA432132B, 0x7B2C49E6, 0xA45F6D5C, 0x569D561B }
 	TAG_STRUCT(
 		chud_shader_block,
 		"chud_shader_block",
@@ -35214,7 +35214,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_SUCK_PROFILE_BLOCK_ID { 0x00000000, 0x815F7CC2, 0xF5624FA3, 0x8E4A1FD2 }
+	#define CHUD_SUCK_PROFILE_BLOCK_ID { 0x815F7CC2, 0xF5624FA3, 0x8E4A1FD2, 0xC13450FD }
 	TAG_STRUCT(
 		chud_suck_profile_block,
 		"chud_suck_profile_block",
@@ -35242,7 +35242,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CORTANA_EFFECT_HEADING_CONFIG_STRUCT_ID { 0x00000000, 0xE4AECC38, 0x4D0549F7, 0xB92196F4 }
+	#define CORTANA_EFFECT_HEADING_CONFIG_STRUCT_ID { 0xE4AECC38, 0x4D0549F7, 0xB92196F4, 0x3BB5071F }
 	TAG_STRUCT(
 		cortana_effect_heading_config_struct,
 		"cortana_effect_heading_config_struct",
@@ -35267,7 +35267,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CORTANA_EFFECT_DISTANCE_CONFIG_BLOCK_ID { 0x00000000, 0x866218FE, 0x1DD94699, 0x8FE7DD41 }
+	#define CORTANA_EFFECT_DISTANCE_CONFIG_BLOCK_ID { 0x866218FE, 0x1DD94699, 0x8FE7DD41, 0x0CAC8E2F }
 	TAG_STRUCT(
 		cortana_effect_distance_config_block,
 		"cortana_effect_distance_config_block",
@@ -35285,7 +35285,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CORTANA_EFFECT_CONFIG_BLOCK_ID { 0x00000000, 0x627019AD, 0x319149C9, 0xA5C9A00B }
+	#define CORTANA_EFFECT_CONFIG_BLOCK_ID { 0x627019AD, 0x319149C9, 0xA5C9A00B, 0x874E673E }
 	TAG_STRUCT(
 		cortana_effect_config_block,
 		"cortana_effect_config_block",
@@ -35299,7 +35299,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHUD_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x42D4D707, 0xA80A45E4, 0x87EA9920 }
+	#define CHUD_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0x42D4D707, 0xA80A45E4, 0x87EA9920, 0x467DF00D }
 	TAG_STRUCT(
 		chud_globals_definition_struct_definition,
 		"chud_globals_definition_struct_definition",
@@ -35341,7 +35341,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CORTANA_KEYFRAME_2D_BLOCK_ID { 0x00000000, 0xE0D44797, 0xACA24D1F, 0xBFC339E7 }
+	#define CORTANA_KEYFRAME_2D_BLOCK_ID { 0xE0D44797, 0xACA24D1F, 0xBFC339E7, 0x3376C8D0 }
 	TAG_STRUCT(
 		cortana_keyframe_2d_block,
 		"cortana_keyframe_2d_block",
@@ -35355,7 +35355,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CORTANA_ANIMATION_2D_BLOCK_ID { 0x00000000, 0x01EBC65F, 0xF83D4F66, 0xB656171E }
+	#define CORTANA_ANIMATION_2D_BLOCK_ID { 0x01EBC65F, 0xF83D4F66, 0xB656171E, 0xC13592E6 }
 	TAG_STRUCT(
 		cortana_animation_2d_block,
 		"cortana_animation_2d_block",
@@ -35370,7 +35370,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CORTANA_EFFECT_2D_BLOCK_ID { 0x00000000, 0x9A8339E6, 0xD35942FD, 0x8EE3A485 }
+	#define CORTANA_EFFECT_2D_BLOCK_ID { 0x9A8339E6, 0xD35942FD, 0x8EE3A485, 0x58169BBE }
 	TAG_STRUCT(
 		cortana_effect_2d_block,
 		"cortana_effect_2d_block",
@@ -35393,7 +35393,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(cortana_effect_flags, cortana_effect_flags_strings, _countof(cortana_effect_flags_strings));
 
-	#define CORTANA_KEYFRAME_3D_BLOCK_ID { 0x00000000, 0x4B0A5674, 0x9AC64692, 0x9AA11A6C }
+	#define CORTANA_KEYFRAME_3D_BLOCK_ID { 0x4B0A5674, 0x9AC64692, 0x9AA11A6C, 0xDE178BB6 }
 	TAG_STRUCT(
 		cortana_keyframe_3d_block,
 		"cortana_keyframe_3d_block",
@@ -35407,7 +35407,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CORTANA_ANIMATION_3D_BLOCK_ID { 0x00000000, 0x3EA4BCB3, 0xCC4C498D, 0xB357E44E }
+	#define CORTANA_ANIMATION_3D_BLOCK_ID { 0x3EA4BCB3, 0xCC4C498D, 0xB357E44E, 0xBABAAECC }
 	TAG_STRUCT(
 		cortana_animation_3d_block,
 		"cortana_animation_3d_block",
@@ -35422,7 +35422,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CORTANA_EFFECT_3D_BLOCK_ID { 0x00000000, 0x871717F6, 0xF74C44AD, 0xAE8F654B }
+	#define CORTANA_EFFECT_3D_BLOCK_ID { 0x871717F6, 0xF74C44AD, 0xAE8F654B, 0xDEDB6E7F }
 	TAG_STRUCT(
 		cortana_effect_3d_block,
 		"cortana_effect_3d_block",
@@ -35439,7 +35439,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CORTANA_BACKGROUND_EFFECT_PARAMS_BLOCK_ID { 0x00000000, 0x4F980F90, 0x86124A75, 0xA3B640BD }
+	#define CORTANA_BACKGROUND_EFFECT_PARAMS_BLOCK_ID { 0x4F980F90, 0x86124A75, 0xA3B640BD, 0x0A0777FD }
 	TAG_STRUCT(
 		cortana_background_effect_params_block,
 		"cortana_background_effect_params_block",
@@ -35463,7 +35463,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CORTANA_TEXCAM_EFFECT_PARAMS_BLOCK_ID { 0x00000000, 0xDE8E3025, 0xF4394AF7, 0xB9A44061 }
+	#define CORTANA_TEXCAM_EFFECT_PARAMS_BLOCK_ID { 0xDE8E3025, 0xF4394AF7, 0xB9A44061, 0x3CFC9033 }
 	TAG_STRUCT(
 		cortana_texcam_effect_params_block,
 		"cortana_texcam_effect_params_block",
@@ -35483,7 +35483,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CORTANA_WIDGET_BLOCK_ID { 0x00000000, 0xDE8702CA, 0xB4E6477E, 0xA31596E7 }
+	#define CORTANA_WIDGET_BLOCK_ID { 0xDE8702CA, 0xB4E6477E, 0xA31596E7, 0xAE4406A8 }
 	TAG_STRUCT(
 		cortana_widget_block,
 		"cortana_widget_block",
@@ -35496,7 +35496,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CORTANA_COMPOSITE_EFFECT_PARAMS_BLOCK_ID { 0x00000000, 0x1E2CEA89, 0x381A467D, 0xB6434554 }
+	#define CORTANA_COMPOSITE_EFFECT_PARAMS_BLOCK_ID { 0x1E2CEA89, 0x381A467D, 0xB6434554, 0x2C77EB32 }
 	TAG_STRUCT(
 		cortana_composite_effect_params_block,
 		"cortana_composite_effect_params_block",
@@ -35514,7 +35514,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CORTANA_SOUND_DEFINITION_BLOCK_ID { 0x00000000, 0x5DA323F5, 0x8B1A4F6B, 0x8848F24C }
+	#define CORTANA_SOUND_DEFINITION_BLOCK_ID { 0x5DA323F5, 0x8B1A4F6B, 0x8848F24C, 0x616F52EF }
 	TAG_STRUCT(
 		cortana_sound_definition_block,
 		"cortana_sound_definition_block",
@@ -35530,7 +35530,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(sound_group_reference$2_tagref, SOUND_TAG);
 
-	#define CORTANA_SCRIPT_BLOCK_ID { 0x00000000, 0xA39D28A9, 0x39F5424B, 0x9EBDCB4E }
+	#define CORTANA_SCRIPT_BLOCK_ID { 0xA39D28A9, 0x39F5424B, 0x9EBDCB4E, 0xA177C7C8 }
 	TAG_STRUCT(
 		cortana_script_block,
 		"cortana_script_block",
@@ -35539,11 +35539,11 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CORTANA_SCRIPT_BLOCK_ID)
 	{
-		{ _field_data, "script", MAKE_OLD_NAMES(" ") },
+		{ _field_data, "script", MAKE_OLD_NAMES(" "), &blofeld::halo3_tools::cortana_script_data },
 		{ _field_terminator }
 	};
 
-	#define CORTANA_EFFECT_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0xC32053DF, 0x36304D96, 0x8F9D2459 }
+	#define CORTANA_EFFECT_DEFINITION_STRUCT_DEFINITION_ID { 0xC32053DF, 0x36304D96, 0x8F9D2459, 0x07C20F61 }
 	TAG_STRUCT(
 		cortana_effect_definition_struct_definition,
 		"cortana_effect_definition_struct_definition",
@@ -35571,7 +35571,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(cinematic_scene_group_reference$2_tagref, CINEMATIC_SCENE_TAG);
 
-	#define GUI_WIDGET_ROTATION_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x8A3C54E5, 0xAAAA49DB, 0x9FDF6A9F }
+	#define GUI_WIDGET_ROTATION_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x8A3C54E5, 0xAAAA49DB, 0x9FDF6A9F, 0x09D6259D }
 	TAG_STRUCT(
 		gui_widget_rotation_animation_definition_struct_definition,
 		"gui_widget_rotation_animation_definition_struct_definition",
@@ -35594,7 +35594,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(widget_component_animation_flags, widget_component_animation_flags_strings, _countof(widget_component_animation_flags_strings));
 
-	#define WIDGET_SCALE_ANIMATION_KEYFRAME_BLOCK_ID { 0x00000000, 0xF708238C, 0x7A544407, 0x9A9E2E56 }
+	#define WIDGET_SCALE_ANIMATION_KEYFRAME_BLOCK_ID { 0xF708238C, 0x7A544407, 0x9A9E2E56, 0x3A99EA8F }
 	TAG_STRUCT(
 		widget_scale_animation_keyframe_block,
 		"widget_scale_animation_keyframe_block",
@@ -35627,7 +35627,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(widget_positioning, widget_positioning_strings, _countof(widget_positioning_strings));
 
-	#define GUI_WIDGET_SCALE_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x27B7B069, 0x9E634D97, 0x91511E0B }
+	#define GUI_WIDGET_SCALE_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x27B7B069, 0x9E634D97, 0x91511E0B, 0xCFD9946F }
 	TAG_STRUCT(
 		gui_widget_scale_animation_definition_struct_definition,
 		"gui_widget_scale_animation_definition_struct_definition",
@@ -35643,7 +35643,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WIDGET_TEXTURE_COORDINATE_ANIMATION_KEYFRAME_BLOCK_ID { 0x00000000, 0xB3D30CAD, 0xB73E436D, 0x91AA0264 }
+	#define WIDGET_TEXTURE_COORDINATE_ANIMATION_KEYFRAME_BLOCK_ID { 0xB3D30CAD, 0xB73E436D, 0x91AA0264, 0xB6505AAF }
 	TAG_STRUCT(
 		widget_texture_coordinate_animation_keyframe_block,
 		"widget_texture_coordinate_animation_keyframe_block",
@@ -35658,7 +35658,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GUI_WIDGET_TEXTURE_COORDINATE_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x45B0B658, 0x45A64E4D, 0xBD02238E }
+	#define GUI_WIDGET_TEXTURE_COORDINATE_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x45B0B658, 0x45A64E4D, 0xBD02238E, 0xB8CDB04E }
 	TAG_STRUCT(
 		gui_widget_texture_coordinate_animation_definition_struct_definition,
 		"gui_widget_texture_coordinate_animation_definition_struct_definition",
@@ -35674,7 +35674,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WIDGET_SPRITE_ANIMATION_KEYFRAME_BLOCK_ID { 0x00000000, 0x0EA0FF39, 0x8CC74742, 0x9972FDD2 }
+	#define WIDGET_SPRITE_ANIMATION_KEYFRAME_BLOCK_ID { 0x0EA0FF39, 0x8CC74742, 0x9972FDD2, 0x50A53F3F }
 	TAG_STRUCT(
 		widget_sprite_animation_keyframe_block,
 		"widget_sprite_animation_keyframe_block",
@@ -35690,7 +35690,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GUI_WIDGET_SPRITE_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x9960BD5B, 0x57954056, 0xAD4C34DF }
+	#define GUI_WIDGET_SPRITE_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x9960BD5B, 0x57954056, 0xAD4C34DF, 0x163BD491 }
 	TAG_STRUCT(
 		gui_widget_sprite_animation_definition_struct_definition,
 		"gui_widget_sprite_animation_definition_struct_definition",
@@ -35706,7 +35706,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WIDGET_FONT_ANIMATION_KEYFRAME_BLOCK_ID { 0x00000000, 0x64F43896, 0x2458428B, 0xBE755612 }
+	#define WIDGET_FONT_ANIMATION_KEYFRAME_BLOCK_ID { 0x64F43896, 0x2458428B, 0xBE755612, 0xA9D452BA }
 	TAG_STRUCT(
 		widget_font_animation_keyframe_block,
 		"widget_font_animation_keyframe_block",
@@ -35738,7 +35738,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(interface_fonts, interface_fonts_strings, _countof(interface_fonts_strings));
 
-	#define GUI_WIDGET_FONT_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x93EF612B, 0xF7ED4986, 0xA75C9186 }
+	#define GUI_WIDGET_FONT_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x93EF612B, 0xF7ED4986, 0xA75C9186, 0xF553BA7C }
 	TAG_STRUCT(
 		gui_widget_font_animation_definition_struct_definition,
 		"gui_widget_font_animation_definition_struct_definition",
@@ -35754,7 +35754,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GUI_WIDGET_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x9A64C70A, 0x468244E4, 0xB50E6EE5 }
+	#define GUI_WIDGET_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x9A64C70A, 0x468244E4, 0xB50E6EE5, 0xA875660C }
 	TAG_STRUCT(
 		gui_widget_animation_definition_struct_definition,
 		"gui_widget_animation_definition_struct_definition",
@@ -35795,7 +35795,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(gui_widget_font_animation_definition_group_reference_tagref, GUI_WIDGET_FONT_ANIMATION_DEFINITION_TAG);
 
-	#define GUI_WIDGET_ANIMATION_COLLECTION_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0xFF5D3A97, 0x416C4AE3, 0xBA55EBA1 }
+	#define GUI_WIDGET_ANIMATION_COLLECTION_DEFINITION_STRUCT_DEFINITION_ID { 0xFF5D3A97, 0x416C4AE3, 0xBA55EBA1, 0xF7C2DC07 }
 	TAG_STRUCT(
 		gui_widget_animation_collection_definition_struct_definition,
 		"gui_widget_animation_collection_definition_struct_definition",
@@ -35849,7 +35849,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(gui_widget_animation_definition_group_reference_tagref, GUI_WIDGET_ANIMATION_DEFINITION_TAG);
 
-	#define GUI_TEXT_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x7EA316B7, 0xE4AE48EA, 0x80D488E8 }
+	#define GUI_TEXT_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0x7EA316B7, 0xE4AE48EA, 0x80D488E8, 0x26070751 }
 	TAG_STRUCT(
 		gui_text_widget_definition_struct_definition,
 		"gui_text_widget_definition_struct_definition",
@@ -35900,7 +35900,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(gui_widget_animation_collection_definition_group_reference_tagref, GUI_WIDGET_ANIMATION_COLLECTION_DEFINITION_TAG);
 
-	#define TEXT_WIDGET_BLOCK_ID { 0x00000000, 0x7772B513, 0x0E524F5F, 0x998EA4F4 }
+	#define TEXT_WIDGET_BLOCK_ID { 0x7772B513, 0x0E524F5F, 0x998EA4F4, 0x0BE22127 }
 	TAG_STRUCT(
 		text_widget_block,
 		"text_widget_block",
@@ -35927,7 +35927,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(gui_text_widget_definition_group_reference_tagref, GUI_TEXT_WIDGET_DEFINITION_TAG);
 
-	#define GUI_BITMAP_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x20F9D991, 0xB5AB4E51, 0xA451F32F }
+	#define GUI_BITMAP_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0x20F9D991, 0xB5AB4E51, 0xA451F32F, 0xCBE8813F }
 	TAG_STRUCT(
 		gui_bitmap_widget_definition_struct_definition,
 		"gui_bitmap_widget_definition_struct_definition",
@@ -35989,7 +35989,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(render_blend_mode, render_blend_mode_strings, _countof(render_blend_mode_strings));
 
-	#define BITMAP_WIDGET_BLOCK_ID { 0x00000000, 0xDDE4BA47, 0xBF814B4C, 0x8D627DE8 }
+	#define BITMAP_WIDGET_BLOCK_ID { 0xDDE4BA47, 0xBF814B4C, 0x8D627DE8, 0xC1634AD6 }
 	TAG_STRUCT(
 		bitmap_widget_block,
 		"bitmap_widget_block",
@@ -36019,7 +36019,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(gui_bitmap_widget_definition_group_reference_tagref, GUI_BITMAP_WIDGET_DEFINITION_TAG);
 
-	#define MODEL_WIDGET_CAMERA_SETTINGS_BLOCK_ID { 0x00000000, 0x73F777A8, 0xD54048BE, 0x85B6BDBA }
+	#define MODEL_WIDGET_CAMERA_SETTINGS_BLOCK_ID { 0x73F777A8, 0xD54048BE, 0x85B6BDBA, 0xF872B8EF }
 	TAG_STRUCT(
 		model_widget_camera_settings_block,
 		"model_widget_camera_settings_block",
@@ -36046,7 +36046,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GUI_MODEL_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x32CD1399, 0x79F34B3B, 0xA2B9086C }
+	#define GUI_MODEL_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0x32CD1399, 0x79F34B3B, 0xA2B9086C, 0x7139BA84 }
 	TAG_STRUCT(
 		gui_model_widget_definition_struct_definition,
 		"gui_model_widget_definition_struct_definition",
@@ -36075,7 +36075,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(model_widget_definition_flags, model_widget_definition_flags_strings, _countof(model_widget_definition_flags_strings));
 
-	#define MODEL_WIDGET_BLOCK_ID { 0x00000000, 0x2C4C3D38, 0x8E2A4EA9, 0xACD3CB2B }
+	#define MODEL_WIDGET_BLOCK_ID { 0x2C4C3D38, 0x8E2A4EA9, 0xACD3CB2B, 0x2A2B0152 }
 	TAG_STRUCT(
 		model_widget_block,
 		"model_widget_block",
@@ -36098,7 +36098,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(gui_model_widget_definition_group_reference_tagref, GUI_MODEL_WIDGET_DEFINITION_TAG);
 
-	#define GUI_SKIN_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x6D2617BA, 0xF2AE4A74, 0xA00BACCC }
+	#define GUI_SKIN_DEFINITION_STRUCT_DEFINITION_ID { 0x6D2617BA, 0xF2AE4A74, 0xA00BACCC, 0x1862CDCF }
 	TAG_STRUCT(
 		gui_skin_definition_struct_definition,
 		"gui_skin_definition_struct_definition",
@@ -36119,7 +36119,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(gui_skin_definition_flags, gui_skin_definition_flags_strings, _countof(gui_skin_definition_flags_strings));
 
-	#define LIST_ITEM_WIDGET_BLOCK_ID { 0x00000000, 0x7EEE4BF3, 0xF9F74F3A, 0x80094D69 }
+	#define LIST_ITEM_WIDGET_BLOCK_ID { 0x7EEE4BF3, 0xF9F74F3A, 0x80094D69, 0x821CBDD8 }
 	TAG_STRUCT(
 		list_item_widget_block,
 		"list_item_widget_block",
@@ -36147,7 +36147,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(list_item_widget_flags, list_item_widget_flags_strings, _countof(list_item_widget_flags_strings));
 
-	#define GUI_LIST_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0xDE4DC1A3, 0x12DD4725, 0xB96070E6 }
+	#define GUI_LIST_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0xDE4DC1A3, 0x12DD4725, 0xB96070E6, 0x9C257C2B }
 	TAG_STRUCT(
 		gui_list_widget_definition_struct_definition,
 		"gui_list_widget_definition_struct_definition",
@@ -36187,7 +36187,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(gui_skin_definition_group_reference_tagref, GUI_SKIN_DEFINITION_TAG);
 
-	#define LIST_WIDGET_BLOCK_ID { 0x00000000, 0x6E86426A, 0xC00D4AC2, 0x9A1D2E66 }
+	#define LIST_WIDGET_BLOCK_ID { 0x6E86426A, 0xC00D4AC2, 0x9A1D2E66, 0xB7ABA794 }
 	TAG_STRUCT(
 		list_widget_block,
 		"list_widget_block",
@@ -36215,7 +36215,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(gui_list_widget_definition_group_reference_tagref, GUI_LIST_WIDGET_DEFINITION_TAG);
 
-	#define GUI_GROUP_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0xD3AB72CB, 0xF7F047DB, 0xA55B08E4 }
+	#define GUI_GROUP_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0xD3AB72CB, 0xF7F047DB, 0xA55B08E4, 0x1FC03C48 }
 	TAG_STRUCT(
 		gui_group_widget_definition_struct_definition,
 		"gui_group_widget_definition_struct_definition",
@@ -36247,7 +36247,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(group_widget_definition_flags, group_widget_definition_flags_strings, _countof(group_widget_definition_flags_strings));
 
-	#define GROUP_WIDGET_BLOCK_ID { 0x00000000, 0x66F99A7D, 0xB0584519, 0xBA1A74EC }
+	#define GROUP_WIDGET_BLOCK_ID { 0x66F99A7D, 0xB0584519, 0xBA1A74EC, 0x5A975D3F }
 	TAG_STRUCT(
 		group_widget_block,
 		"group_widget_block",
@@ -36273,7 +36273,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(gui_group_widget_definition_group_reference_tagref, GUI_GROUP_WIDGET_DEFINITION_TAG);
 
-	#define GUI_BUTTON_KEY_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0xDC0640AD, 0x5D11477D, 0xAB1D6FB0 }
+	#define GUI_BUTTON_KEY_DEFINITION_STRUCT_DEFINITION_ID { 0xDC0640AD, 0x5D11477D, 0xAB1D6FB0, 0x8CC12A16 }
 	TAG_STRUCT(
 		gui_button_key_definition_struct_definition,
 		"gui_button_key_definition_struct_definition",
@@ -36304,7 +36304,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(button_key_flags, button_key_flags_strings, _countof(button_key_flags_strings));
 
-	#define BUTTON_KEY_BLOCK_ID { 0x00000000, 0x575F26FE, 0x9CD04E9F, 0xBBDB851A }
+	#define BUTTON_KEY_BLOCK_ID { 0x575F26FE, 0x9CD04E9F, 0xBBDB851A, 0xD4914CD0 }
 	TAG_STRUCT(
 		button_key_block,
 		"button_key_block",
@@ -36319,7 +36319,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(gui_button_key_definition_group_reference_tagref, GUI_BUTTON_KEY_DEFINITION_TAG);
 
-	#define INTEGER_DATA_NUGGET_BLOCK_ID { 0x00000000, 0xD04D9EC4, 0x19504F6F, 0x84D7E10A }
+	#define INTEGER_DATA_NUGGET_BLOCK_ID { 0xD04D9EC4, 0x19504F6F, 0x84D7E10A, 0xF16CC1E4 }
 	TAG_STRUCT(
 		integer_data_nugget_block,
 		"integer_data_nugget_block",
@@ -36333,7 +36333,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRING_DATA_NUGGET_BLOCK_ID { 0x00000000, 0xFA7B2798, 0x29BC4D22, 0xA69A46FA }
+	#define STRING_DATA_NUGGET_BLOCK_ID { 0xFA7B2798, 0x29BC4D22, 0xA69A46FA, 0x10C932A2 }
 	TAG_STRUCT(
 		string_data_nugget_block,
 		"string_data_nugget_block",
@@ -36347,7 +36347,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STRING_ID_DATA_NUGGET_BLOCK_ID { 0x00000000, 0x8821E66E, 0xB26B4779, 0x9F545C99 }
+	#define STRING_ID_DATA_NUGGET_BLOCK_ID { 0x8821E66E, 0xB26B4779, 0x9F545C99, 0xDA3CBDDD }
 	TAG_STRUCT(
 		string_id_data_nugget_block,
 		"string_id_data_nugget_block",
@@ -36361,7 +36361,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DATASOURCE_ELEMENT_BLOCK_ID { 0x00000000, 0x64BBAB6F, 0xCD424FA0, 0x99CD3263 }
+	#define DATASOURCE_ELEMENT_BLOCK_ID { 0x64BBAB6F, 0xCD424FA0, 0x99CD3263, 0x85E99AC7 }
 	TAG_STRUCT(
 		datasource_element_block,
 		"datasource_element_block",
@@ -36377,7 +36377,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GUI_DATASOURCE_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x80DAA090, 0x2B5449DB, 0x8A806937 }
+	#define GUI_DATASOURCE_DEFINITION_STRUCT_DEFINITION_ID { 0x80DAA090, 0x2B5449DB, 0x8A806937, 0x395185CA }
 	TAG_STRUCT(
 		gui_datasource_definition_struct_definition,
 		"gui_datasource_definition_struct_definition",
@@ -36392,7 +36392,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GUI_SCREEN_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x1D2BE911, 0x21904B71, 0xA9E4337B }
+	#define GUI_SCREEN_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0x1D2BE911, 0x21904B71, 0xA9E4337B, 0x00698B9B }
 	TAG_STRUCT(
 		gui_screen_widget_definition_struct_definition,
 		"gui_screen_widget_definition_struct_definition",
@@ -36439,7 +36439,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(mouse_cursor_definition_group_reference_tagref, MOUSE_CURSOR_DEFINITION_TAG);
 
-	#define GUI_WIDGET_REFERENCE_BLOCK_ID { 0x00000000, 0xB23C0E50, 0x94084D0C, 0xA73879E6 }
+	#define GUI_WIDGET_REFERENCE_BLOCK_ID { 0xB23C0E50, 0x94084D0C, 0xA73879E6, 0x950640EC }
 	TAG_STRUCT(
 		gui_widget_reference_block,
 		"gui_widget_reference_block",
@@ -36454,7 +36454,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(gui_screen_widget_definition_group_reference$2_tagref, GUI_SCREEN_WIDGET_DEFINITION_TAG);
 
-	#define COLOR_PRESETS_BLOCK_ID { 0x00000000, 0x26B5A836, 0x2251412E, 0xA23E454A }
+	#define COLOR_PRESETS_BLOCK_ID { 0x26B5A836, 0x2251412E, 0xA23E454A, 0x0039DCDE }
 	TAG_STRUCT(
 		color_presets_block,
 		"color_presets_block",
@@ -36468,7 +36468,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLOR_LIST_BLOCK_ID { 0x00000000, 0x0F5F62C7, 0xC6A24A78, 0xBCCFBB7A }
+	#define COLOR_LIST_BLOCK_ID { 0x0F5F62C7, 0xC6A24A78, 0xBCCFBB7A, 0xF47B91CD }
 	TAG_STRUCT(
 		color_list_block,
 		"color_list_block",
@@ -36481,7 +36481,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define TINT_COLORS_BLOCK_ID { 0x00000000, 0x60C481EE, 0x800046A2, 0x8304DA08 }
+	#define TINT_COLORS_BLOCK_ID { 0x60C481EE, 0x800046A2, 0x8304DA08, 0xAC51C372 }
 	TAG_STRUCT(
 		tint_colors_block,
 		"tint_colors_block",
@@ -36497,7 +36497,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GUI_ALERT_DESCRIPTION_BLOCK_ID { 0x00000000, 0xBE222E19, 0x7F2B4774, 0x8343FCDB }
+	#define GUI_ALERT_DESCRIPTION_BLOCK_ID { 0xBE222E19, 0x7F2B4774, 0x8343FCDB, 0x1E293D77 }
 	TAG_STRUCT(
 		gui_alert_description_block,
 		"gui_alert_description_block",
@@ -36542,7 +36542,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(gui_error_icon_enum, gui_error_icon_enum_strings, _countof(gui_error_icon_enum_strings));
 
-	#define GUI_DIALOG_DESCRIPTION_BLOCK_ID { 0x00000000, 0x7C5393A4, 0x94744F38, 0x8CC51E2D }
+	#define GUI_DIALOG_DESCRIPTION_BLOCK_ID { 0x7C5393A4, 0x94744F38, 0x8CC51E2D, 0x299DFBF4 }
 	TAG_STRUCT(
 		gui_dialog_description_block,
 		"gui_dialog_description_block",
@@ -36592,7 +36592,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(gui_dialog_b_button_action_enum, gui_dialog_b_button_action_enum_strings, _countof(gui_dialog_b_button_action_enum_strings));
 
-	#define DATASOURCE_DEFINITION_BLOCK_ID { 0x00000000, 0x38B63661, 0xB65F402A, 0x8B4115F4 }
+	#define DATASOURCE_DEFINITION_BLOCK_ID { 0x38B63661, 0xB65F402A, 0x8B4115F4, 0x18AB5596 }
 	TAG_STRUCT(
 		datasource_definition_block,
 		"datasource_definition_block",
@@ -36607,7 +36607,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(gui_datasource_definition_group_reference_tagref, GUI_DATASOURCE_DEFINITION_TAG);
 
-	#define USER_INTERFACE_SOUNDS_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x70FFE855, 0x2DE74385, 0x83BAE604 }
+	#define USER_INTERFACE_SOUNDS_DEFINITION_STRUCT_DEFINITION_ID { 0x70FFE855, 0x2DE74385, 0x83BAE604, 0x1597E3B6 }
 	TAG_STRUCT(
 		user_interface_sounds_definition_struct_definition,
 		"user_interface_sounds_definition_struct_definition",
@@ -36659,7 +36659,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define USER_INTERFACE_SHARED_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x520DAD1B, 0x3ABC40F7, 0xA25DED9A }
+	#define USER_INTERFACE_SHARED_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0x520DAD1B, 0x3ABC40F7, 0xA25DED9A, 0xB6D09BC7 }
 	TAG_STRUCT(
 		user_interface_shared_globals_definition_struct_definition,
 		"user_interface_shared_globals_definition_struct_definition",
@@ -36718,7 +36718,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define USER_INTERFACE_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0xFF5E4703, 0xC3CE4535, 0xBBBF413E }
+	#define USER_INTERFACE_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0xFF5E4703, 0xC3CE4535, 0xBBBF413E, 0x31D62CBE }
 	TAG_STRUCT(
 		user_interface_globals_definition_struct_definition,
 		"user_interface_globals_definition_struct_definition",
@@ -36742,7 +36742,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(multiplayer_variant_settings_interface_definition_group_reference_tagref, MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_TAG);
 
-	#define KEYFRAME_TRANSITION_FUNCTION_BLOCK_ID { 0x00000000, 0xB1CEF1A3, 0xD97A4747, 0x8E0B2320 }
+	#define KEYFRAME_TRANSITION_FUNCTION_BLOCK_ID { 0xB1CEF1A3, 0xD97A4747, 0x8E0B2320, 0x20E20ADD }
 	TAG_STRUCT(
 		keyframe_transition_function_block,
 		"keyframe_transition_function_block",
@@ -36756,7 +36756,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WIDGET_COLOR_ANIMATION_KEYFRAME_BLOCK_ID { 0x00000000, 0xEB0EE07C, 0x77AF430F, 0x961C3375 }
+	#define WIDGET_COLOR_ANIMATION_KEYFRAME_BLOCK_ID { 0xEB0EE07C, 0x77AF430F, 0x961C3375, 0x06B31D44 }
 	TAG_STRUCT(
 		widget_color_animation_keyframe_block,
 		"widget_color_animation_keyframe_block",
@@ -36771,7 +36771,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GUI_WIDGET_COLOR_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x78374874, 0x773348DA, 0x86389481 }
+	#define GUI_WIDGET_COLOR_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x78374874, 0x773348DA, 0x86389481, 0x6D1F08B7 }
 	TAG_STRUCT(
 		gui_widget_color_animation_definition_struct_definition,
 		"gui_widget_color_animation_definition_struct_definition",
@@ -36787,7 +36787,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WIDGET_POSITION_ANIMATION_KEYFRAME_BLOCK_ID { 0x00000000, 0x38676B8C, 0x6EAC4040, 0x90E76B7F }
+	#define WIDGET_POSITION_ANIMATION_KEYFRAME_BLOCK_ID { 0x38676B8C, 0x6EAC4040, 0x90E76B7F, 0xA110AA67 }
 	TAG_STRUCT(
 		widget_position_animation_keyframe_block,
 		"widget_position_animation_keyframe_block",
@@ -36802,7 +36802,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GUI_WIDGET_POSITION_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0xA50A49EB, 0x955D421A, 0x8D1E9C96 }
+	#define GUI_WIDGET_POSITION_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0xA50A49EB, 0x955D421A, 0x8D1E9C96, 0xEA246AB0 }
 	TAG_STRUCT(
 		gui_widget_position_animation_definition_struct_definition,
 		"gui_widget_position_animation_definition_struct_definition",
@@ -36818,7 +36818,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WIDGET_ROTATION_ANIMATION_KEYFRAME_BLOCK_ID { 0x00000000, 0x8BC613C4, 0xF6F44C13, 0x8B4AA33D }
+	#define WIDGET_ROTATION_ANIMATION_KEYFRAME_BLOCK_ID { 0x8BC613C4, 0xF6F44C13, 0x8B4AA33D, 0xA4BCE677 }
 	TAG_STRUCT(
 		widget_rotation_animation_keyframe_block,
 		"widget_rotation_animation_keyframe_block",
@@ -36836,7 +36836,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define TEXT_VALUE_PAIR_REFERENCE_BLOCK_ID { 0x00000000, 0xF7AE82B9, 0xCEA54D49, 0xABC02F9F }
+	#define TEXT_VALUE_PAIR_REFERENCE_BLOCK_ID { 0xF7AE82B9, 0xCEA54D49, 0xABC02F9F, 0x5AB01E19 }
 	TAG_STRUCT(
 		text_value_pair_reference_block,
 		"text_value_pair_reference_block",
@@ -36869,7 +36869,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(text_value_pair_parameter_type, text_value_pair_parameter_type_strings, _countof(text_value_pair_parameter_type_strings));
 
-	#define TEXT_VALUE_PAIR_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0xDFA0A227, 0xB83A4610, 0x8DF352D1 }
+	#define TEXT_VALUE_PAIR_DEFINITION_STRUCT_DEFINITION_ID { 0xDFA0A227, 0xB83A4610, 0x8DF352D1, 0x391AB478 }
 	TAG_STRUCT(
 		text_value_pair_definition_struct_definition,
 		"text_value_pair_definition_struct_definition",
@@ -37511,7 +37511,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(game_variant_parameters, game_variant_parameters_strings, _countof(game_variant_parameters_strings));
 
-	#define SANDBOX_PROPERTY_ALLOWED_VALUES_REFERENCE_BLOCK_ID { 0x00000000, 0x266531A0, 0x83F842C7, 0x802AA55C }
+	#define SANDBOX_PROPERTY_ALLOWED_VALUES_REFERENCE_BLOCK_ID { 0x266531A0, 0x83F842C7, 0x802AA55C, 0x5A9D94BE }
 	TAG_STRUCT(
 		sandbox_property_allowed_values_reference_block,
 		"sandbox_property_allowed_values_reference_block",
@@ -37525,7 +37525,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SANDBOX_TEXT_VALUE_PAIR_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x42D0D8BD, 0x41594A07, 0x93653D79 }
+	#define SANDBOX_TEXT_VALUE_PAIR_DEFINITION_STRUCT_DEFINITION_ID { 0x42D0D8BD, 0x41594A07, 0x93653D79, 0x74AD97DD }
 	TAG_STRUCT(
 		sandbox_text_value_pair_definition_struct_definition,
 		"sandbox_text_value_pair_definition_struct_definition",
@@ -37538,7 +37538,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VARIANT_OPTION_BLOCK_ID { 0x00000000, 0xE174884E, 0x69AD477F, 0xB879C646 }
+	#define VARIANT_OPTION_BLOCK_ID { 0xE174884E, 0x69AD477F, 0xB879C646, 0x023019A6 }
 	TAG_STRUCT(
 		variant_option_block,
 		"variant_option_block",
@@ -37785,7 +37785,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(text_value_pair_definition_group_reference_tagref, TEXT_VALUE_PAIR_DEFINITION_TAG);
 
-	#define VARIANT_SETTING_EDIT_REFERENCE_BLOCK_ID { 0x00000000, 0x7364A0E9, 0x967C43F8, 0x8C275EB9 }
+	#define VARIANT_SETTING_EDIT_REFERENCE_BLOCK_ID { 0x7364A0E9, 0x967C43F8, 0x8C275EB9, 0xAF488C6F }
 	TAG_STRUCT(
 		variant_setting_edit_reference_block,
 		"variant_setting_edit_reference_block",
@@ -37800,7 +37800,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x07D9BF44, 0xA8044D74, 0x9C09C13F }
+	#define MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_STRUCT_DEFINITION_ID { 0x07D9BF44, 0xA8044D74, 0x9C09C13F, 0xF5077BB7 }
 	TAG_STRUCT(
 		multiplayer_variant_settings_interface_definition_struct_definition,
 		"multiplayer_variant_settings_interface_definition_struct_definition",
@@ -37814,7 +37814,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLLISION_DAMAGE_STRUCT_DEFINITION_ID { 0x00000000, 0x50FEF768, 0x5E0F4D35, 0x8B165F16 }
+	#define COLLISION_DAMAGE_STRUCT_DEFINITION_ID { 0x50FEF768, 0x5E0F4D35, 0x8B165F16, 0xBEAAF2E6 }
 	TAG_STRUCT(
 		collision_damage_struct_definition,
 		"collision_damage_struct_definition",
@@ -37839,7 +37839,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define UNIT_HUD_REFERENCE_BLOCK_ID { 0x00000000, 0x4E4BD8C6, 0xF0784EC9, 0x80EF8BCD }
+	#define UNIT_HUD_REFERENCE_BLOCK_ID { 0x4E4BD8C6, 0xF0784EC9, 0x80EF8BCD, 0x5F2BFFD2 }
 	TAG_STRUCT(
 		unit_hud_reference_block,
 		"unit_hud_reference_block",
@@ -37854,7 +37854,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define UNIT_CAMERA_TRACK_BLOCK_ID { 0x00000000, 0x7C803867, 0x535E45B7, 0x81C122B6 }
+	#define UNIT_CAMERA_TRACK_BLOCK_ID { 0x7C803867, 0x535E45B7, 0x81C122B6, 0xD6F2CAFC }
 	TAG_STRUCT(
 		unit_camera_track_block,
 		"unit_camera_track_block",
@@ -37868,7 +37868,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define UNIT_CAMERA_ACCELERATION_DISPLACMENT_FUNCTION_STRUCT_ID { 0x00000000, 0x22A7A324, 0xB17C4B45, 0xBBF37B84 }
+	#define UNIT_CAMERA_ACCELERATION_DISPLACMENT_FUNCTION_STRUCT_ID { 0x22A7A324, 0xB17C4B45, 0xBBF37B84, 0xD2BD1E36 }
 	TAG_STRUCT(
 		unit_camera_acceleration_displacment_function_struct,
 		"unit_camera_acceleration_displacment_function_struct",
@@ -37886,7 +37886,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define UNIT_CAMERA_ACCELERATION_DISPLACMENT_FUNCTION_BLOCK_ID { 0x00000000, 0x23D5C530, 0x05A548F3, 0x80168453 }
+	#define UNIT_CAMERA_ACCELERATION_DISPLACMENT_FUNCTION_BLOCK_ID { 0x23D5C530, 0x05A548F3, 0x80168453, 0x80F5F3F1 }
 	TAG_STRUCT(
 		unit_camera_acceleration_displacment_function_block,
 		"unit_camera_acceleration_displacment_function_block",
@@ -37907,7 +37907,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define UNIT_CAMERA_STRUCT_ID { 0x00000000, 0x382328B4, 0x49B04550, 0x9B1635F2 }
+	#define UNIT_CAMERA_STRUCT_ID { 0x382328B4, 0x49B04550, 0x9B1635F2, 0x1B616A06 }
 	TAG_STRUCT(
 		unit_camera_struct,
 		"unit_camera_struct",
@@ -37936,7 +37936,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(unit_camera_flags_definition, unit_camera_flags_definition_strings, _countof(unit_camera_flags_definition_strings));
 
-	#define UNIT_POSTURES_BLOCK_ID { 0x00000000, 0xAE9EA3B9, 0x5AAA4959, 0xAA7D53AA }
+	#define UNIT_POSTURES_BLOCK_ID { 0xAE9EA3B9, 0x5AAA4959, 0xAA7D53AA, 0x08A60FB7 }
 	TAG_STRUCT(
 		unit_postures_block,
 		"unit_postures_block",
@@ -37951,7 +37951,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define UNIT_SEAT_ACCELERATION_STRUCT_ID { 0x00000000, 0x6759875D, 0x5E544E01, 0x886B2F2A }
+	#define UNIT_SEAT_ACCELERATION_STRUCT_ID { 0x6759875D, 0x5E544E01, 0x886B2F2A, 0x1F5C9BDE }
 	TAG_STRUCT(
 		unit_seat_acceleration_struct,
 		"unit_seat_acceleration_struct",
@@ -37966,7 +37966,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define UNIT_WEAPON_BLOCK_ID { 0x00000000, 0x666B0F35, 0x947942E0, 0x91252FF5 }
+	#define UNIT_WEAPON_BLOCK_ID { 0x666B0F35, 0x947942E0, 0x91252FF5, 0xF22266EF }
 	TAG_STRUCT(
 		unit_weapon_block,
 		"unit_weapon_block",
@@ -37982,7 +37982,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(weapon_group_reference$2_tagref, WEAPON_TAG);
 
-	#define POWERED_SEAT_BLOCK_ID { 0x00000000, 0x26FB2A20, 0x2F5946C9, 0x912DAE92 }
+	#define POWERED_SEAT_BLOCK_ID { 0x26FB2A20, 0x2F5946C9, 0x912DAE92, 0xEC1BCBB6 }
 	TAG_STRUCT(
 		powered_seat_block,
 		"powered_seat_block",
@@ -37998,7 +37998,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DIALOGUE_VARIANT_BLOCK_ID { 0x00000000, 0xC954BD46, 0x4A9C4A98, 0xAC562A99 }
+	#define DIALOGUE_VARIANT_BLOCK_ID { 0xC954BD46, 0x4A9C4A98, 0xAC562A99, 0x9AE5A33F }
 	TAG_STRUCT(
 		dialogue_variant_block,
 		"dialogue_variant_block",
@@ -38016,7 +38016,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(dialogue_group_reference_tagref, DIALOGUE_TAG);
 
-	#define UNIT_BOOST_STRUCT_ID { 0x00000000, 0x4506D858, 0x370B402D, 0x83F08481 }
+	#define UNIT_BOOST_STRUCT_ID { 0x4506D858, 0x370B402D, 0x83F08481, 0xCB943803 }
 	TAG_STRUCT(
 		unit_boost_struct,
 		"unit_boost_struct",
@@ -38036,7 +38036,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(collision_damage_group_reference$2_tagref, COLLISION_DAMAGE_TAG);
 
-	#define UNIT_SEAT_BLOCK_ID { 0x00000000, 0x0503B218, 0xDE414AF3, 0xAED6B5FD }
+	#define UNIT_SEAT_BLOCK_ID { 0x0503B218, 0xDE414AF3, 0xAED6B5FD, 0xC83836D9 }
 	TAG_STRUCT(
 		unit_seat_block,
 		"unit_seat_block",
@@ -38136,7 +38136,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(global_ai_seat_type_enum, global_ai_seat_type_enum_strings, _countof(global_ai_seat_type_enum_strings));
 
-	#define UNIT_BOARDING_MELEE_STRUCT_ID { 0x00000000, 0xA96C7D6D, 0xD8B54A51, 0xBF99FA0C }
+	#define UNIT_BOARDING_MELEE_STRUCT_ID { 0xA96C7D6D, 0xD8B54A51, 0xBF99FA0C, 0x13071BCE }
 	TAG_STRUCT(
 		unit_boarding_melee_struct,
 		"unit_boarding_melee_struct",
@@ -38155,7 +38155,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define UNIT_ADDITIONAL_NODE_NAMES_STRUCT_ID { 0x00000000, 0x35A19301, 0xDCF54C9C, 0x8671ED37 }
+	#define UNIT_ADDITIONAL_NODE_NAMES_STRUCT_ID { 0x35A19301, 0xDCF54C9C, 0x8671ED37, 0x1EF33AE5 }
 	TAG_STRUCT(
 		unit_additional_node_names_struct,
 		"unit_additional_node_names_struct",
@@ -38168,7 +38168,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define UNIT_LIPSYNC_SCALES_STRUCT_ID { 0x00000000, 0x2E5A89D9, 0xAF1E466B, 0x9F62F58C }
+	#define UNIT_LIPSYNC_SCALES_STRUCT_ID { 0x2E5A89D9, 0xAF1E466B, 0x9F62F58C, 0x8B1BFE32 }
 	TAG_STRUCT(
 		unit_lipsync_scales_struct,
 		"unit_lipsync_scales_struct",
@@ -38182,7 +38182,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CONTACT_POINT_BLOCK_ID { 0x00000000, 0x0EE23ED8, 0x815D4570, 0x855B29FD }
+	#define CONTACT_POINT_BLOCK_ID { 0x0EE23ED8, 0x815D4570, 0x855B29FD, 0xF4A4104A }
 	TAG_STRUCT(
 		contact_point_block,
 		"contact_point_block",
@@ -38196,7 +38196,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BIPED_LEAPING_DATA_STRUCT_ID { 0x00000000, 0x8D1584BD, 0xB9A24D94, 0xAB6217DD }
+	#define BIPED_LEAPING_DATA_STRUCT_ID { 0x8D1584BD, 0xB9A24D94, 0xAB6217DD, 0x65BD78D0 }
 	TAG_STRUCT(
 		biped_leaping_data_struct,
 		"biped_leaping_data_struct",
@@ -38224,7 +38224,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(biped_leap_flags_definition, biped_leap_flags_definition_strings, _countof(biped_leap_flags_definition_strings));
 
-	#define BIPED_LOCK_ON_DATA_STRUCT_ID { 0x00000000, 0x1AAE68DF, 0x4C794A76, 0xBD1622AA }
+	#define BIPED_LOCK_ON_DATA_STRUCT_ID { 0x1AAE68DF, 0x4C794A76, 0xBD1622AA, 0xA12849B3 }
 	TAG_STRUCT(
 		biped_lock_on_data_struct,
 		"biped_lock_on_data_struct",
@@ -38247,7 +38247,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(biped_lock_on_flags_definition, biped_lock_on_flags_definition_strings, _countof(biped_lock_on_flags_definition_strings));
 
-	#define BIPED_GROUND_FITTING_DATA_STRUCT_ID { 0x00000000, 0x8E954938, 0x813744E7, 0xBA856A03 }
+	#define BIPED_GROUND_FITTING_DATA_STRUCT_ID { 0x8E954938, 0x813744E7, 0xBA856A03, 0x1B7808B0 }
 	TAG_STRUCT(
 		biped_ground_fitting_data_struct,
 		"biped_ground_fitting_data_struct",
@@ -38273,7 +38273,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STEERING_ANIMATION_STRUCT_ID { 0x00000000, 0xA551DA10, 0x1D3F4100, 0x9C4C60D2 }
+	#define STEERING_ANIMATION_STRUCT_ID { 0xA551DA10, 0x1D3F4100, 0x9C4C60D2, 0x46D74662 }
 	TAG_STRUCT(
 		steering_animation_struct,
 		"steering_animation_struct",
@@ -38288,7 +38288,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ENGINE_FUNCTION_STRUCT_ID { 0x00000000, 0xFAE37480, 0x13E14F26, 0xA1CB57D9 }
+	#define ENGINE_FUNCTION_STRUCT_ID { 0xFAE37480, 0x13E14F26, 0xA1CB57D9, 0xD755D2D0 }
 	TAG_STRUCT(
 		engine_function_struct,
 		"engine_function_struct",
@@ -38305,7 +38305,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VEHICLE_STEERING_CONTROL_STRUCT_ID { 0x00000000, 0x2B36CF56, 0x040E4806, 0xAE2A1F64 }
+	#define VEHICLE_STEERING_CONTROL_STRUCT_ID { 0x2B36CF56, 0x040E4806, 0xAE2A1F64, 0x89A6F9B2 }
 	TAG_STRUCT(
 		vehicle_steering_control_struct,
 		"vehicle_steering_control_struct",
@@ -38320,7 +38320,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VEHICLE_TURNING_CONTROL_STRUCT_ID { 0x00000000, 0x36D7646B, 0xE70A47D1, 0x98AF489E }
+	#define VEHICLE_TURNING_CONTROL_STRUCT_ID { 0x36D7646B, 0xE70A47D1, 0x98AF489E, 0x9B5C63F1 }
 	TAG_STRUCT(
 		vehicle_turning_control_struct,
 		"vehicle_turning_control_struct",
@@ -38336,7 +38336,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define HUMAN_TANK_BLOCK_ID { 0x00000000, 0x7AD171CF, 0x889B48FF, 0x9B3677D4 }
+	#define HUMAN_TANK_BLOCK_ID { 0x7AD171CF, 0x889B48FF, 0x9B3677D4, 0xF2E74E3B }
 	TAG_STRUCT(
 		human_tank_block,
 		"human_tank_block",
@@ -38365,7 +38365,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define HUMAN_JEEP_BLOCK_ID { 0x00000000, 0xE8B7F68B, 0x63C644C7, 0xBE98A235 }
+	#define HUMAN_JEEP_BLOCK_ID { 0xE8B7F68B, 0x63C644C7, 0xBE98A235, 0x1AD78551 }
 	TAG_STRUCT(
 		human_jeep_block,
 		"human_jeep_block",
@@ -38383,7 +38383,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define HUMAN_PLANE_BLOCK_ID { 0x00000000, 0x3F025A0A, 0x7D8B4893, 0xBEE5EAF1 }
+	#define HUMAN_PLANE_BLOCK_ID { 0x3F025A0A, 0x7D8B4893, 0xBEE5EAF1, 0x42591680 }
 	TAG_STRUCT(
 		human_plane_block,
 		"human_plane_block",
@@ -38415,7 +38415,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ALIEN_SCOUT_BLOCK_ID { 0x00000000, 0x44F7199E, 0x44564222, 0xB555F347 }
+	#define ALIEN_SCOUT_BLOCK_ID { 0x44F7199E, 0x44564222, 0xB555F347, 0x2AE7DC1C }
 	TAG_STRUCT(
 		alien_scout_block,
 		"alien_scout_block",
@@ -38467,7 +38467,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(alien_scout_flags, alien_scout_flags_strings, _countof(alien_scout_flags_strings));
 
-	#define ALIEN_FIGHTER_BLOCK_ID { 0x00000000, 0x1F64F81E, 0x24D64BCB, 0x828FBA10 }
+	#define ALIEN_FIGHTER_BLOCK_ID { 0x1F64F81E, 0x24D64BCB, 0x828FBA10, 0xABC09BAB }
 	TAG_STRUCT(
 		alien_fighter_block,
 		"alien_fighter_block",
@@ -38506,7 +38506,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define TURRET_BLOCK_ID { 0x00000000, 0xA788CE59, 0xB2AC4121, 0xA7387B57 }
+	#define TURRET_BLOCK_ID { 0xA788CE59, 0xB2AC4121, 0xA7387B57, 0xA01A73CD }
 	TAG_STRUCT(
 		turret_block,
 		"turret_block",
@@ -38519,7 +38519,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MANTIS_BLOCK_ID { 0x00000000, 0x3D5289E7, 0xE2554038, 0xA70B311D }
+	#define MANTIS_BLOCK_ID { 0x3D5289E7, 0xE2554038, 0xA70B311D, 0xAAE49B2B }
 	TAG_STRUCT(
 		mantis_block,
 		"mantis_block",
@@ -38562,7 +38562,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GUARDIAN_BLOCK_ID { 0x00000000, 0x3A5289E7, 0xE34740B8, 0xA7CB311D }
+	#define GUARDIAN_BLOCK_ID { 0x3A5289E7, 0xE34740B8, 0xA7CB311D, 0xDAE40875 }
 	TAG_STRUCT(
 		guardian_block,
 		"guardian_block",
@@ -38585,7 +38585,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VTOL_BLOCK_ID { 0x00000000, 0x3FF3D8BD, 0x885445AB, 0xA71E3BEE }
+	#define VTOL_BLOCK_ID { 0x3FF3D8BD, 0x885445AB, 0xA71E3BEE, 0x6D8D25EE }
 	TAG_STRUCT(
 		vtol_block,
 		"vtol_block",
@@ -38629,7 +38629,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHOPPER_BLOCK_ID { 0x00000000, 0x83DF59C4, 0xC84947A4, 0x9CF064DB }
+	#define CHOPPER_BLOCK_ID { 0x83DF59C4, 0xC84947A4, 0x9CF064DB, 0x032894CC }
 	TAG_STRUCT(
 		chopper_block,
 		"chopper_block",
@@ -38659,7 +38659,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VEHICLE_PHYSICS_TYPES_STRUCT_ID { 0x00000000, 0xC319BCC5, 0x75334227, 0x93E7A6C7 }
+	#define VEHICLE_PHYSICS_TYPES_STRUCT_ID { 0xC319BCC5, 0x75334227, 0x93E7A6C7, 0xCFF0752A }
 	TAG_STRUCT(
 		vehicle_physics_types_struct,
 		"vehicle_physics_types_struct",
@@ -38681,7 +38681,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define VEHICLE_PERMUTATION_ID { 0x00000000, 0x2688F89B, 0x929A45E3, 0x8D678F11 }
+	#define VEHICLE_PERMUTATION_ID { 0x2688F89B, 0x929A45E3, 0x8D678F11, 0x88865186 }
 	TAG_STRUCT(
 		vehicle_permutation,
 		"vehicle_permutation",
@@ -38698,7 +38698,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(vehicle_group_reference$5_tagref, VEHICLE_TAG);
 
-	#define VEHICLE_COLLECTION_STRUCT_DEFINITION_ID { 0x00000000, 0x4D07C219, 0x3F31494E, 0x8013C764 }
+	#define VEHICLE_COLLECTION_STRUCT_DEFINITION_ID { 0x4D07C219, 0x3F31494E, 0x8013C764, 0xFBE91900 }
 	TAG_STRUCT(
 		vehicle_collection_struct_definition,
 		"vehicle_collection_struct_definition",
@@ -38713,7 +38713,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define OBJECT_FUNCTION_BLOCK_ID { 0x00000000, 0xD2EFDBE6, 0x41EE4DC2, 0x805F2410 }
+	#define OBJECT_FUNCTION_BLOCK_ID { 0xD2EFDBE6, 0x41EE4DC2, 0x805F2410, 0x82F5BAD9 }
 	TAG_STRUCT(
 		object_function_block,
 		"object_function_block",
@@ -38744,7 +38744,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(object_function_flags, object_function_flags_strings, _countof(object_function_flags_strings));
 
-	#define OBJECT_ATTACHMENT_BLOCK_ID { 0x00000000, 0x11097257, 0x4775429C, 0xA775D933 }
+	#define OBJECT_ATTACHMENT_BLOCK_ID { 0x11097257, 0x4775429C, 0xA775D933, 0xEE75453F }
 	TAG_STRUCT(
 		object_attachment_block,
 		"object_attachment_block",
@@ -38783,7 +38783,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(global_object_change_color_enum, global_object_change_color_enum_strings, _countof(global_object_change_color_enum_strings));
 
-	#define OBJECT_WIDGET_BLOCK_ID { 0x00000000, 0x62919B1E, 0xA5AA4661, 0xB8317D8A }
+	#define OBJECT_WIDGET_BLOCK_ID { 0x62919B1E, 0xA5AA4661, 0xB8317D8A, 0x3AC0DDAA }
 	TAG_STRUCT(
 		object_widget_block,
 		"object_widget_block",
@@ -38808,7 +38808,7 @@ namespace halo3_tools {
 		INVALID_TAG
 	};
 
-	#define OBJECT_CHANGE_COLOR_INITIAL_PERMUTATION_ID { 0x00000000, 0xFC403E79, 0xA7A64D2E, 0xAD0C6C21 }
+	#define OBJECT_CHANGE_COLOR_INITIAL_PERMUTATION_ID { 0xFC403E79, 0xA7A64D2E, 0xAD0C6C21, 0xC2A06C7B }
 	TAG_STRUCT(
 		object_change_color_initial_permutation,
 		"object_change_color_initial_permutation",
@@ -38824,7 +38824,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define OBJECT_CHANGE_COLOR_FUNCTION_ID { 0x00000000, 0x9F69CB7C, 0xBA0D4F58, 0x96CEA30C }
+	#define OBJECT_CHANGE_COLOR_FUNCTION_ID { 0x9F69CB7C, 0xBA0D4F58, 0x96CEA30C, 0xD0A89C28 }
 	TAG_STRUCT(
 		object_change_color_function,
 		"object_change_color_function",
@@ -38849,7 +38849,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(global_rgb_interpolation_flags, global_rgb_interpolation_flags_strings, _countof(global_rgb_interpolation_flags_strings));
 
-	#define OBJECT_CHANGE_COLORS_ID { 0x00000000, 0x0AB056AD, 0x8F3241C9, 0x9EDBB26A }
+	#define OBJECT_CHANGE_COLORS_ID { 0x0AB056AD, 0x8F3241C9, 0x9EDBB26A, 0x9B24F6FE }
 	TAG_STRUCT(
 		object_change_colors,
 		"object_change_colors",
@@ -38864,7 +38864,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_OBJECT_BLOCK_ID { 0x00000000, 0x027B0263, 0xE97643DE, 0xB173536B }
+	#define MULTIPLAYER_OBJECT_BLOCK_ID { 0x027B0263, 0xE97643DE, 0xB173536B, 0x73AEE467 }
 	TAG_STRUCT(
 		multiplayer_object_block,
 		"multiplayer_object_block",
@@ -38983,7 +38983,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(render_method_group_reference$2_tagref, RENDER_METHOD_TAG);
 
-	#define OBJECT_AI_PROPERTIES_BLOCK_ID { 0x00000000, 0x26FB5335, 0x712E447D, 0x93F77F52 }
+	#define OBJECT_AI_PROPERTIES_BLOCK_ID { 0x26FB5335, 0x712E447D, 0x93F77F52, 0xAFFD7871 }
 	TAG_STRUCT(
 		object_ai_properties_block,
 		"object_ai_properties_block",
@@ -39036,7 +39036,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(global_ai_jump_height_enum, global_ai_jump_height_enum_strings, _countof(global_ai_jump_height_enum_strings));
 
-	#define OBJECT_EARLY_MOVER_OBB_BLOCK_ID { 0x00000000, 0x7AD1FFFF, 0xAAAA48FF, 0xCB3677D4 }
+	#define OBJECT_EARLY_MOVER_OBB_BLOCK_ID { 0x7AD1FFFF, 0xAAAA48FF, 0xCB3677D4, 0xFFE70E3B }
 	TAG_STRUCT(
 		object_early_mover_obb_block,
 		"object_early_mover_obb_block",
@@ -39056,7 +39056,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define OBJECT_STRUCT_DEFINITION_ID { 0x00000000, 0x94A95A6C, 0xF5FC457A, 0x88A44257 }
+	#define OBJECT_STRUCT_DEFINITION_ID { 0x94A95A6C, 0xF5FC457A, 0x88A44257, 0x803394F0 }
 	TAG_STRUCT(
 		object_struct_definition,
 		"object_struct_definition",
@@ -39160,7 +39160,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(object_definition_secondary_flags, object_definition_secondary_flags_strings, _countof(object_definition_secondary_flags_strings));
 
-	#define GIANT_BUCKLE_PARAMETERS_BLOCK_ID { 0x00000000, 0x4E004B41, 0x95E34827, 0xAF0C255E }
+	#define GIANT_BUCKLE_PARAMETERS_BLOCK_ID { 0x4E004B41, 0x95E34827, 0xAF0C255E, 0x698BE753 }
 	TAG_STRUCT(
 		giant_buckle_parameters_block,
 		"giant_buckle_parameters_block",
@@ -39210,7 +39210,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(slider_movement_patterns, slider_movement_patterns_strings, _countof(slider_movement_patterns_strings));
 
-	#define WEAPON_BARREL_FIRST_PERSON_OFFSET_BLOCK_ID { 0x00000000, 0x0AEB3ED8, 0xCDED4570, 0xA10B29FD }
+	#define WEAPON_BARREL_FIRST_PERSON_OFFSET_BLOCK_ID { 0x0AEB3ED8, 0xCDED4570, 0xA10B29FD, 0xCFA4104A }
 	TAG_STRUCT(
 		weapon_barrel_first_person_offset_block,
 		"weapon_barrel_first_person_offset_block",
@@ -39223,7 +39223,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WEAPON_BARREL_FIRING_PARAMETERS_STRUCT_ID { 0x00000000, 0x85D673EA, 0x92E147FF, 0xB5F3E5BA }
+	#define WEAPON_BARREL_FIRING_PARAMETERS_STRUCT_ID { 0x85D673EA, 0x92E147FF, 0xB5F3E5BA, 0x101796F3 }
 	TAG_STRUCT(
 		weapon_barrel_firing_parameters_struct,
 		"weapon_barrel_firing_parameters_struct",
@@ -39243,7 +39243,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WEAPON_BARREL_FIRING_ERROR_STRUCT_ID { 0x00000000, 0xB76772F5, 0x98BB4797, 0xBC2BC6CD }
+	#define WEAPON_BARREL_FIRING_ERROR_STRUCT_ID { 0xB76772F5, 0x98BB4797, 0xBC2BC6CD, 0x43C3E14E }
 	TAG_STRUCT(
 		weapon_barrel_firing_error_struct,
 		"weapon_barrel_firing_error_struct",
@@ -39261,7 +39261,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WEAPON_BARREL_DUAL_WEAPON_ERROR_STRUCT_ID { 0x00000000, 0x28B45B8D, 0x2A12454C, 0xAD8F5054 }
+	#define WEAPON_BARREL_DUAL_WEAPON_ERROR_STRUCT_ID { 0x28B45B8D, 0x2A12454C, 0xAD8F5054, 0x8CED73A5 }
 	TAG_STRUCT(
 		weapon_barrel_dual_weapon_error_struct,
 		"weapon_barrel_dual_weapon_error_struct",
@@ -39280,7 +39280,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WEAPON_TRIGGER_AUTOFIRE_STRUCT_ID { 0x00000000, 0x2E880044, 0x234145A2, 0x803AC387 }
+	#define WEAPON_TRIGGER_AUTOFIRE_STRUCT_ID { 0x2E880044, 0x234145A2, 0x803AC387, 0xB24AF26C }
 	TAG_STRUCT(
 		weapon_trigger_autofire_struct,
 		"weapon_trigger_autofire_struct",
@@ -39306,7 +39306,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(weapon_trigger_autofire_actions, weapon_trigger_autofire_actions_strings, _countof(weapon_trigger_autofire_actions_strings));
 
-	#define WEAPON_TRIGGER_CHARGING_STRUCT_ID { 0x00000000, 0x2A90D186, 0xD9FD48DD, 0x879003FA }
+	#define WEAPON_TRIGGER_CHARGING_STRUCT_ID { 0x2A90D186, 0xD9FD48DD, 0x879003FA, 0x3B897118 }
 	TAG_STRUCT(
 		weapon_trigger_charging_struct,
 		"weapon_trigger_charging_struct",
@@ -39339,7 +39339,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(weapon_trigger_overcharged_actions, weapon_trigger_overcharged_actions_strings, _countof(weapon_trigger_overcharged_actions_strings));
 
-	#define WEAPON_TRIGGERS_ID { 0x00000000, 0x908CED94, 0x29134ADA, 0x9600E10A }
+	#define WEAPON_TRIGGERS_ID { 0x908CED94, 0x29134ADA, 0x9600E10A, 0x2C4ED066 }
 	TAG_STRUCT(
 		weapon_triggers,
 		"weapon_triggers",
@@ -39399,7 +39399,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(trigger_prediction_type_enum, trigger_prediction_type_enum_strings, _countof(trigger_prediction_type_enum_strings));
 
-	#define AIM_ASSIST_STRUCT_ID { 0x00000000, 0xFD3F0BC9, 0x19DE4608, 0xA91A35B8 }
+	#define AIM_ASSIST_STRUCT_ID { 0xFD3F0BC9, 0x19DE4608, 0xA91A35B8, 0x0AC45727 }
 	TAG_STRUCT(
 		aim_assist_struct,
 		"aim_assist_struct",
@@ -39421,7 +39421,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WEAPON_FIRST_PERSON_INTERFACE_BLOCK_ID { 0x00000000, 0x3B47D10E, 0xB50C4EC2, 0xA64BEB32 }
+	#define WEAPON_FIRST_PERSON_INTERFACE_BLOCK_ID { 0x3B47D10E, 0xB50C4EC2, 0xA64BEB32, 0x712F5A86 }
 	TAG_STRUCT(
 		weapon_first_person_interface_block,
 		"weapon_first_person_interface_block",
@@ -39439,7 +39439,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(model_animation_graph_group_reference$3_tagref, MODEL_ANIMATION_GRAPH_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
-	#define WEAPON_SHARED_INTERFACE_STRUCT_ID { 0x00000000, 0x96C3519E, 0x13604185, 0x9C8C6C87 }
+	#define WEAPON_SHARED_INTERFACE_STRUCT_ID { 0x96C3519E, 0x13604185, 0x9C8C6C87, 0xE8738BE9 }
 	TAG_STRUCT(
 		weapon_shared_interface_struct,
 		"weapon_shared_interface_struct",
@@ -39452,7 +39452,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WEAPON_INTERFACE_STRUCT_ID { 0x00000000, 0xE19D1139, 0xDC6246CC, 0x9B9CDBBB }
+	#define WEAPON_INTERFACE_STRUCT_ID { 0xE19D1139, 0xDC6246CC, 0x9B9CDBBB, 0x5D685572 }
 	TAG_STRUCT(
 		weapon_interface_struct,
 		"weapon_interface_struct",
@@ -39468,7 +39468,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MAGAZINE_OBJECTS_ID { 0x00000000, 0x3EF33972, 0xC4AC4C51, 0x96B58412 }
+	#define MAGAZINE_OBJECTS_ID { 0x3EF33972, 0xC4AC4C51, 0x96B58412, 0x7427D4AC }
 	TAG_STRUCT(
 		magazine_objects,
 		"magazine_objects",
@@ -39483,7 +39483,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MAGAZINES_ID { 0x00000000, 0xB8FCF9A4, 0xA0194C8E, 0x8CFE64C5 }
+	#define MAGAZINES_ID { 0xB8FCF9A4, 0xA0194C8E, 0x8CFE64C5, 0xB1CFC041 }
 	TAG_STRUCT(
 		magazines,
 		"magazines",
@@ -39522,7 +39522,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(magazine_flags, magazine_flags_strings, _countof(magazine_flags_strings));
 
-	#define BARREL_FIRING_EFFECT_BLOCK_ID { 0x00000000, 0x28BBFA00, 0x756842B0, 0x94E75CD1 }
+	#define BARREL_FIRING_EFFECT_BLOCK_ID { 0x28BBFA00, 0x756842B0, 0x94E75CD1, 0xB8E7F4E6 }
 	TAG_STRUCT(
 		barrel_firing_effect_block,
 		"barrel_firing_effect_block",
@@ -39548,7 +39548,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WEAPON_BARREL_DAMAGE_EFFECT_STRUCT_ID { 0x00000000, 0x0CC000C1, 0x6C214FBD, 0x8B1DF64F }
+	#define WEAPON_BARREL_DAMAGE_EFFECT_STRUCT_ID { 0x0CC000C1, 0x6C214FBD, 0x8B1DF64F, 0xC75CB408 }
 	TAG_STRUCT(
 		weapon_barrel_damage_effect_struct,
 		"weapon_barrel_damage_effect_struct",
@@ -39561,7 +39561,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WEAPON_BARRELS_ID { 0x00000000, 0x52D6B3B0, 0x3234423B, 0x95125B72 }
+	#define WEAPON_BARRELS_ID { 0x52D6B3B0, 0x3234423B, 0x95125B72, 0xFC44714A }
 	TAG_STRUCT(
 		weapon_barrels,
 		"weapon_barrels",
@@ -39663,7 +39663,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(crate_group_reference$4_tagref, CRATE_TAG);
 
-	#define MELEE_DAMAGE_PARAMETERS_STRUCT_ID { 0x00000000, 0xFB2BAFC5, 0xCAAB4FC4, 0xA9F1A15E }
+	#define MELEE_DAMAGE_PARAMETERS_STRUCT_ID { 0xFB2BAFC5, 0xCAAB4FC4, 0xA9F1A15E, 0x24F5E9C9 }
 	TAG_STRUCT(
 		melee_damage_parameters_struct,
 		"melee_damage_parameters_struct",
@@ -39690,7 +39690,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define WEAPON_TRACKING_STRUCT_ID { 0x00000000, 0x44DEB1AF, 0x7FE1483B, 0xB28A3425 }
+	#define WEAPON_TRACKING_STRUCT_ID { 0x44DEB1AF, 0x7FE1483B, 0xB28A3425, 0xB4E18AE3 }
 	TAG_STRUCT(
 		weapon_tracking_struct,
 		"weapon_tracking_struct",
@@ -39712,7 +39712,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(weapon_tracking_types, weapon_tracking_types_strings, _countof(weapon_tracking_types_strings));
 
-	#define LIGHT_SCALAR_FUNCTION_STRUCT_ID { 0x00000000, 0x26AA4A83, 0x42B4434A, 0x93ACA3CB }
+	#define LIGHT_SCALAR_FUNCTION_STRUCT_ID { 0x26AA4A83, 0x42B4434A, 0x93ACA3CB, 0x08A920CD }
 	TAG_STRUCT(
 		light_scalar_function_struct,
 		"light_scalar_function_struct",
@@ -39739,7 +39739,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(output_mod_enum$5, output_mod_enum$5_strings, _countof(output_mod_enum$5_strings));
 
-	#define LIGHT_COLOR_FUNCTION_STRUCT_ID { 0x00000000, 0x3DBB8F1A, 0x54F94FD0, 0x9D24DA91 }
+	#define LIGHT_COLOR_FUNCTION_STRUCT_ID { 0x3DBB8F1A, 0x54F94FD0, 0x9D24DA91, 0x297A3078 }
 	TAG_STRUCT(
 		light_color_function_struct,
 		"light_color_function_struct",
@@ -39758,7 +39758,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LIGHT_STRUCT_DEFINITION_ID { 0x00000000, 0x671EB9F2, 0xB6AF482D, 0x902D0F25 }
+	#define LIGHT_STRUCT_DEFINITION_ID { 0x671EB9F2, 0xB6AF482D, 0x902D0F25, 0xEDB665A1 }
 	TAG_STRUCT(
 		light_struct_definition,
 		"light_struct_definition",
@@ -39842,7 +39842,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(lens_flare_group_reference_tagref, LENS_FLARE_TAG);
 
-	#define PREDICTED_BITMAPS_BLOCK_ID { 0x00000000, 0x7A456E83, 0x479F4218, 0xBEF99B2A }
+	#define PREDICTED_BITMAPS_BLOCK_ID { 0x7A456E83, 0x479F4218, 0xBEF99B2A, 0x0736B520 }
 	TAG_STRUCT(
 		predicted_bitmaps_block,
 		"predicted_bitmaps_block",
@@ -39855,7 +39855,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ITEM_PERMUTATION_ID { 0x00000000, 0x40C928A3, 0x624D4955, 0x949FFE89 }
+	#define ITEM_PERMUTATION_ID { 0x40C928A3, 0x624D4955, 0x949FFE89, 0x1BF7BD9C }
 	TAG_STRUCT(
 		item_permutation,
 		"item_permutation",
@@ -39872,7 +39872,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ITEM_COLLECTION_STRUCT_DEFINITION_ID { 0x00000000, 0x92499B84, 0x6FAB4F49, 0x9AC7946B }
+	#define ITEM_COLLECTION_STRUCT_DEFINITION_ID { 0x92499B84, 0x6FAB4F49, 0x9AC7946B, 0x776CF9B5 }
 	TAG_STRUCT(
 		item_collection_struct_definition,
 		"item_collection_struct_definition",
@@ -39888,7 +39888,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define EQUIPMENT_TYPE_SUPER_SHIELD_BLOCK_ID { 0x00000000, 0xE3B9A6B3, 0xEA084D0F, 0x8E98832A }
+	#define EQUIPMENT_TYPE_SUPER_SHIELD_BLOCK_ID { 0xE3B9A6B3, 0xEA084D0F, 0x8E98832A, 0x7DE6B2C3 }
 	TAG_STRUCT(
 		equipment_type_super_shield_block,
 		"equipment_type_super_shield_block",
@@ -39906,7 +39906,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define EQUIPMENT_TYPE_MULTIPLAYER_POWERUP_BLOCK_ID { 0x00000000, 0x722536F2, 0xBC644EEF, 0xAD1E23AD }
+	#define EQUIPMENT_TYPE_MULTIPLAYER_POWERUP_BLOCK_ID { 0x722536F2, 0xBC644EEF, 0xAD1E23AD, 0x7F611939 }
 	TAG_STRUCT(
 		equipment_type_multiplayer_powerup_block,
 		"equipment_type_multiplayer_powerup_block",
@@ -39927,7 +39927,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(multiplayer_powerup_flavor, multiplayer_powerup_flavor_strings, _countof(multiplayer_powerup_flavor_strings));
 
-	#define EQUIPMENT_TYPE_SPAWNER_BLOCK_ID { 0x00000000, 0x094A0C6C, 0xB09B4658, 0xA912F337 }
+	#define EQUIPMENT_TYPE_SPAWNER_BLOCK_ID { 0x094A0C6C, 0xB09B4658, 0xA912F337, 0x82263A70 }
 	TAG_STRUCT(
 		equipment_type_spawner_block,
 		"equipment_type_spawner_block",
@@ -39957,7 +39957,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(equipment_spawner_spawn_type, equipment_spawner_spawn_type_strings, _countof(equipment_spawner_spawn_type_strings));
 
-	#define EQUIPMENT_TYPE_PROXIMITY_MINE_BLOCK_ID { 0x00000000, 0x5B614FE2, 0xDCDC4443, 0xAD380949 }
+	#define EQUIPMENT_TYPE_PROXIMITY_MINE_BLOCK_ID { 0x5B614FE2, 0xDCDC4443, 0xAD380949, 0x1CC95A5E }
 	TAG_STRUCT(
 		equipment_type_proximity_mine_block,
 		"equipment_type_proximity_mine_block",
@@ -39975,7 +39975,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define EQUIPMENT_TYPE_MOTION_TRACKER_NOISE_BLOCK_ID { 0x00000000, 0x480DD4C7, 0x59894CFD, 0xAC664023 }
+	#define EQUIPMENT_TYPE_MOTION_TRACKER_NOISE_BLOCK_ID { 0x480DD4C7, 0x59894CFD, 0xAC664023, 0x2F91791D }
 	TAG_STRUCT(
 		equipment_type_motion_tracker_noise_block,
 		"equipment_type_motion_tracker_noise_block",
@@ -39991,7 +39991,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define EQUIPMENT_TYPE_SHOWME_BLOCK_ID { 0x00000000, 0x8AA47DF4, 0x791D43F9, 0x930CA0F9 }
+	#define EQUIPMENT_TYPE_SHOWME_BLOCK_ID { 0x8AA47DF4, 0x791D43F9, 0x930CA0F9, 0x36DFAF92 }
 	TAG_STRUCT(
 		equipment_type_showme_block,
 		"equipment_type_showme_block",
@@ -40004,7 +40004,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define EQUIPMENT_TYPE_INVISIBILITY_MODE_BLOCK_ID { 0x00000000, 0x0B32D7AE, 0xC10D4B78, 0x90E7DE1A }
+	#define EQUIPMENT_TYPE_INVISIBILITY_MODE_BLOCK_ID { 0x0B32D7AE, 0xC10D4B78, 0x90E7DE1A, 0x2A4AD4DB }
 	TAG_STRUCT(
 		equipment_type_invisibility_mode_block,
 		"equipment_type_invisibility_mode_block",
@@ -40018,7 +40018,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define EQUIPMENT_TYPE_INVINCIBILITY_BLOCK_ID { 0x00000000, 0x0B02D7AE, 0xA10DBB78, 0xC0E7DE1A }
+	#define EQUIPMENT_TYPE_INVINCIBILITY_BLOCK_ID { 0x0B02D7AE, 0xA10DBB78, 0xC0E7DE1A, 0x2ADAE4DB }
 	TAG_STRUCT(
 		equipment_type_invincibility_block,
 		"equipment_type_invincibility_block",
@@ -40037,7 +40037,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define EQUIPMENT_TYPE_TREEOFLIFE_BLOCK_ID { 0x00000000, 0xBD1902E6, 0x186146F4, 0xB593ECBF }
+	#define EQUIPMENT_TYPE_TREEOFLIFE_BLOCK_ID { 0xBD1902E6, 0x186146F4, 0xB593ECBF, 0x3804E959 }
 	TAG_STRUCT(
 		equipment_type_treeoflife_block,
 		"equipment_type_treeoflife_block",
@@ -40050,7 +40050,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ANTENNA_VERTEX_BLOCK_ID { 0x00000000, 0x5F3BF4F0, 0x7754476A, 0x8359AD41 }
+	#define ANTENNA_VERTEX_BLOCK_ID { 0x5F3BF4F0, 0x7754476A, 0x8359AD41, 0xAB160F49 }
 	TAG_STRUCT(
 		antenna_vertex_block,
 		"antenna_vertex_block",
@@ -40070,7 +40070,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ANTENNA_STRUCT_DEFINITION_ID { 0x00000000, 0xB3BE1D39, 0xEF274B86, 0x866479C8 }
+	#define ANTENNA_STRUCT_DEFINITION_ID { 0xB3BE1D39, 0xEF274B86, 0x866479C8, 0xE030C9EE }
 	TAG_STRUCT(
 		antenna_struct_definition,
 		"antenna_struct_definition",
@@ -40097,7 +40097,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(point_physics_group_reference_tagref, POINT_PHYSICS_TAG);
 
-	#define LEAF_TYPE_BLOCK_ID { 0x00000000, 0x9CB09D25, 0xB3394521, 0xBC2282FD }
+	#define LEAF_TYPE_BLOCK_ID { 0x9CB09D25, 0xB3394521, 0xBC2282FD, 0xFA4AED55 }
 	TAG_STRUCT(
 		leaf_type_block,
 		"leaf_type_block",
@@ -40123,7 +40123,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define LEAF_SYSTEM_STRUCT_DEFINITION_ID { 0x00000000, 0x0609FC23, 0x1694654C, 0x86B19DA1 }
+	#define LEAF_SYSTEM_STRUCT_DEFINITION_ID { 0x0609FC23, 0x1694654C, 0x86B19DA1, 0x00C0A48B }
 	TAG_STRUCT(
 		leaf_system_struct_definition,
 		"leaf_system_struct_definition",
@@ -40158,7 +40158,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(leaf_flags$2, leaf_flags$2_strings, _countof(leaf_flags$2_strings));
 
-	#define CELLULAR_AUTOMATA_STRUCT_DEFINITION_ID { 0x00000000, 0xA8E224D3, 0x1BD34E44, 0xBABD0523 }
+	#define CELLULAR_AUTOMATA_STRUCT_DEFINITION_ID { 0xA8E224D3, 0x1BD34E44, 0xBABD0523, 0x5DE7F39D }
 	TAG_STRUCT(
 		cellular_automata_struct_definition,
 		"cellular_automata_struct_definition",
@@ -40208,7 +40208,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STATES_BLOCK_ID { 0x00000000, 0x3BD7BDBB, 0xD2EE413B, 0x822971B4 }
+	#define STATES_BLOCK_ID { 0x3BD7BDBB, 0xD2EE413B, 0x822971B4, 0x516A8D30 }
 	TAG_STRUCT(
 		states_block,
 		"states_block",
@@ -40236,7 +40236,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define RULES_BLOCK_ID { 0x00000000, 0xDBEB4D68, 0x20704C35, 0x9B47CD3F }
+	#define RULES_BLOCK_ID { 0xDBEB4D68, 0x20704C35, 0x9B47CD3F, 0x0C94F08B }
 	TAG_STRUCT(
 		rules_block,
 		"rules_block",
@@ -40252,7 +40252,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CELLULAR_AUTOMATA2D_STRUCT_DEFINITION_ID { 0x00000000, 0x58015675, 0xB4FA436F, 0xAAB9EC7C }
+	#define CELLULAR_AUTOMATA2D_STRUCT_DEFINITION_ID { 0x58015675, 0xB4FA436F, 0xAAB9EC7C, 0x90E51960 }
 	TAG_STRUCT(
 		cellular_automata2d_struct_definition,
 		"cellular_automata2d_struct_definition",
@@ -40295,7 +40295,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STEREO_SYSTEM_STRUCT_DEFINITION_ID { 0x00000000, 0x4B58B990, 0x4F154F6F, 0xA32235AE }
+	#define STEREO_SYSTEM_STRUCT_DEFINITION_ID { 0x4B58B990, 0x4F154F6F, 0xA32235AE, 0xCFE62423 }
 	TAG_STRUCT(
 		stereo_system_struct_definition,
 		"stereo_system_struct_definition",
@@ -40308,7 +40308,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BRUTE_GRENADE_BLOCK_ID { 0x00000000, 0x7CFB56DB, 0x21F54A49, 0x9344DC0D }
+	#define BRUTE_GRENADE_BLOCK_ID { 0x7CFB56DB, 0x21F54A49, 0x9344DC0D, 0x0D4B6598 }
 	TAG_STRUCT(
 		brute_grenade_block,
 		"brute_grenade_block",
@@ -40332,7 +40332,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FIRE_BOMB_GRENADE_BLOCK_ID { 0x00000000, 0x09184400, 0x5A34419E, 0xB4FB0517 }
+	#define FIRE_BOMB_GRENADE_BLOCK_ID { 0x09184400, 0x5A34419E, 0xB4FB0517, 0x990A5438 }
 	TAG_STRUCT(
 		fire_bomb_grenade_block,
 		"fire_bomb_grenade_block",
@@ -40345,7 +40345,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CONICAL_PROJECTION_BLOCK_ID { 0x00000000, 0xC44A9D16, 0x88854B7D, 0x8A5731FD }
+	#define CONICAL_PROJECTION_BLOCK_ID { 0xC44A9D16, 0x88854B7D, 0x8A5731FD, 0x79F9555F }
 	TAG_STRUCT(
 		conical_projection_block,
 		"conical_projection_block",
@@ -40362,7 +40362,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PROJECTILE_MATERIAL_RESPONSE_BLOCK_ID { 0x00000000, 0x33464F1F, 0x1BE74B67, 0x8A913714 }
+	#define PROJECTILE_MATERIAL_RESPONSE_BLOCK_ID { 0x33464F1F, 0x1BE74B67, 0x8A913714, 0x60E78572 }
 	TAG_STRUCT(
 		projectile_material_response_block,
 		"projectile_material_response_block",
@@ -40433,7 +40433,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(effect_scale_enum, effect_scale_enum_strings, _countof(effect_scale_enum_strings));
 
-	#define ANGULAR_VELOCITY_LOWER_BOUND_STRUCT_ID { 0x00000000, 0x8365B7E9, 0x92B540F0, 0xB71DED6E }
+	#define ANGULAR_VELOCITY_LOWER_BOUND_STRUCT_ID { 0x8365B7E9, 0x92B540F0, 0xB71DED6E, 0x1F92083C }
 	TAG_STRUCT(
 		angular_velocity_lower_bound_struct,
 		"angular_velocity_lower_bound_struct",
@@ -40446,7 +40446,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SUPER_DETONATION_DAMAGE_STRUCT_ID { 0x00000000, 0xA018816E, 0x4F4F48B3, 0x9A4AEA76 }
+	#define SUPER_DETONATION_DAMAGE_STRUCT_ID { 0xA018816E, 0x4F4F48B3, 0x9A4AEA76, 0x5C479F3A }
 	TAG_STRUCT(
 		super_detonation_damage_struct,
 		"super_detonation_damage_struct",
@@ -40459,7 +40459,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MUFFIN_PERMUTATION_NAME_BLOCK_ID { 0x00000000, 0x549A4CAB, 0xC2DE4599, 0x8E98C68E }
+	#define MUFFIN_PERMUTATION_NAME_BLOCK_ID { 0x549A4CAB, 0xC2DE4599, 0x8E98C68E, 0xC87E36AA }
 	TAG_STRUCT(
 		muffin_permutation_name_block,
 		"muffin_permutation_name_block",
@@ -40472,7 +40472,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MUFFIN_SCALAR_FUNCTION_STRUCT_ID { 0x00000000, 0xE0DF474A, 0xDBEB491C, 0xB0EC54D4 }
+	#define MUFFIN_SCALAR_FUNCTION_STRUCT_ID { 0xE0DF474A, 0xDBEB491C, 0xB0EC54D4, 0x593073E1 }
 	TAG_STRUCT(
 		muffin_scalar_function_struct,
 		"muffin_scalar_function_struct",
@@ -40486,7 +40486,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_MUFFIN_TYPE_STRUCT_ID { 0x00000000, 0x0EB31413, 0xE68F4840, 0xB0E7C088 }
+	#define GLOBAL_MUFFIN_TYPE_STRUCT_ID { 0x0EB31413, 0xE68F4840, 0xB0E7C088, 0x51EED254 }
 	TAG_STRUCT(
 		global_muffin_type_struct,
 		"global_muffin_type_struct",
@@ -40523,7 +40523,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(muffin_type_flags_definition, muffin_type_flags_definition_strings, _countof(muffin_type_flags_definition_strings));
 
-	#define MUFFIN_MARKER_BLOCK_ID { 0x00000000, 0x02BF185B, 0xBDE44510, 0x94C0C253 }
+	#define MUFFIN_MARKER_BLOCK_ID { 0x02BF185B, 0xBDE44510, 0x94C0C253, 0x327F1A01 }
 	TAG_STRUCT(
 		muffin_marker_block,
 		"muffin_marker_block",
@@ -40538,7 +40538,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MUFFIN_BLOCK_ID { 0x00000000, 0x9457B543, 0xE9544059, 0xB3F1A8B8 }
+	#define MUFFIN_BLOCK_ID { 0x9457B543, 0xE9544059, 0xB3F1A8B8, 0x4492C9F1 }
 	TAG_STRUCT(
 		muffin_block,
 		"muffin_block",
@@ -40558,7 +40558,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(render_model_group_reference$4_tagref, RENDER_MODEL_TAG);
 
-	#define RUMBLE_FREQUENCY_DEFINITION_STRUCT_ID { 0x00000000, 0xEA65C648, 0xFDA541ED, 0x98C4CA63 }
+	#define RUMBLE_FREQUENCY_DEFINITION_STRUCT_ID { 0xEA65C648, 0xFDA541ED, 0x98C4CA63, 0xC70E97CC }
 	TAG_STRUCT(
 		rumble_frequency_definition_struct,
 		"rumble_frequency_definition_struct",
@@ -40574,7 +40574,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SCREEN_FLASH_DEFINITION_STRUCT_ID { 0x00000000, 0xB63010EE, 0x9BC04113, 0xBDB648E3 }
+	#define SCREEN_FLASH_DEFINITION_STRUCT_ID { 0xB63010EE, 0x9BC04113, 0xBDB648E3, 0x9EFB182A }
 	TAG_STRUCT(
 		screen_flash_definition_struct,
 		"screen_flash_definition_struct",
@@ -40616,7 +40616,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(screen_flash_priorities, screen_flash_priorities_strings, _countof(screen_flash_priorities_strings));
 
-	#define RUMBLE_DEFINITION_STRUCT_ID { 0x00000000, 0xDC920647, 0x0E064D33, 0x9F9ACC30 }
+	#define RUMBLE_DEFINITION_STRUCT_ID { 0xDC920647, 0x0E064D33, 0x9F9ACC30, 0xDBBC4126 }
 	TAG_STRUCT(
 		rumble_definition_struct,
 		"rumble_definition_struct",
@@ -40633,7 +40633,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_EFFECT_SOUND_EFFECT_DEFINITION_ID { 0x00000000, 0x5EC04256, 0x4AF64E4E, 0xBD70CD8F }
+	#define DAMAGE_EFFECT_SOUND_EFFECT_DEFINITION_ID { 0x5EC04256, 0x4AF64E4E, 0xBD70CD8F, 0xF574AEB4 }
 	TAG_STRUCT(
 		damage_effect_sound_effect_definition,
 		"damage_effect_sound_effect_definition",
@@ -40649,7 +40649,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_EFFECT_PLAYER_RESPONSE_BLOCK_ID { 0x00000000, 0xC2FB2B1B, 0x455A4F24, 0x83C39CC6 }
+	#define DAMAGE_EFFECT_PLAYER_RESPONSE_BLOCK_ID { 0xC2FB2B1B, 0x455A4F24, 0x83C39CC6, 0xC002E2CA }
 	TAG_STRUCT(
 		damage_effect_player_response_block,
 		"damage_effect_player_response_block",
@@ -40678,7 +40678,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(damage_effect_player_response_types, damage_effect_player_response_types_strings, _countof(damage_effect_player_response_types_strings));
 
-	#define DAMAGE_OUTER_CONE_ANGLE_STRUCT_ID { 0x00000000, 0x728A16DC, 0x5EF1403B, 0x873B7F44 }
+	#define DAMAGE_OUTER_CONE_ANGLE_STRUCT_ID { 0x728A16DC, 0x5EF1403B, 0x873B7F44, 0xC741A9F2 }
 	TAG_STRUCT(
 		damage_outer_cone_angle_struct,
 		"damage_outer_cone_angle_struct",
@@ -40691,7 +40691,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_EFFECT_GROUP_STRUCT_DEFINITION_ID { 0x00000000, 0x902C71FE, 0x22D24D90, 0x94283954 }
+	#define DAMAGE_EFFECT_GROUP_STRUCT_DEFINITION_ID { 0x902C71FE, 0x22D24D90, 0x94283954, 0x36E07393 }
 	TAG_STRUCT(
 		damage_effect_group_struct_definition,
 		"damage_effect_group",
@@ -40835,7 +40835,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(damage_flags, damage_flags_strings, _countof(damage_flags_strings));
 
-	#define DAMAGE_RESPONSE_SCREEN_FLASH_STRUCT_ID { 0x00000000, 0x476AA78D, 0x20B248B3, 0x9A9A693F }
+	#define DAMAGE_RESPONSE_SCREEN_FLASH_STRUCT_ID { 0x476AA78D, 0x20B248B3, 0x9A9A693F, 0x73DA7C2B }
 	TAG_STRUCT(
 		damage_response_screen_flash_struct,
 		"damage_response_screen_flash_struct",
@@ -40874,7 +40874,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(screen_flash_priority_enum, screen_flash_priority_enum_strings, _countof(screen_flash_priority_enum_strings));
 
-	#define DAMAGE_RESPONSE_MOTION_BLUR_STRUCT_ID { 0x00000000, 0x9B0F64E3, 0xE9CB488B, 0xB663872C }
+	#define DAMAGE_RESPONSE_MOTION_BLUR_STRUCT_ID { 0x9B0F64E3, 0xE9CB488B, 0xB663872C, 0x7ADB66F4 }
 	TAG_STRUCT(
 		damage_response_motion_blur_struct,
 		"damage_response_motion_blur_struct",
@@ -40892,7 +40892,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_RESPONSE_DIRECTIONAL_FLASH_STRUCT_ID { 0x00000000, 0xD18EB7B1, 0xE169416F, 0xB5CA99B6 }
+	#define DAMAGE_RESPONSE_DIRECTIONAL_FLASH_STRUCT_ID { 0xD18EB7B1, 0xE169416F, 0xB5CA99B6, 0xC316A290 }
 	TAG_STRUCT(
 		damage_response_directional_flash_struct,
 		"damage_response_directional_flash_struct",
@@ -40911,7 +40911,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_RESPONSE_RUMBLE_FREQUENCY_STRUCT_ID { 0x00000000, 0xF234FFAB, 0xCBBC406C, 0xB5BD1065 }
+	#define DAMAGE_RESPONSE_RUMBLE_FREQUENCY_STRUCT_ID { 0xF234FFAB, 0xCBBC406C, 0xB5BD1065, 0x44D8973A }
 	TAG_STRUCT(
 		damage_response_rumble_frequency_struct,
 		"damage_response_rumble_frequency_struct",
@@ -40926,7 +40926,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_RESPONSE_RUMBLE_STRUCT_ID { 0x00000000, 0x2AA685EE, 0xF9E0450C, 0x9EC9FD5F }
+	#define DAMAGE_RESPONSE_RUMBLE_STRUCT_ID { 0x2AA685EE, 0xF9E0450C, 0x9EC9FD5F, 0x527F607C }
 	TAG_STRUCT(
 		damage_response_rumble_struct,
 		"damage_response_rumble_struct",
@@ -40942,7 +40942,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_RESPONSE_CAMERA_IMPULSE_STRUCT_ID { 0x00000000, 0x37A16831, 0xC2C54392, 0x90D930A8 }
+	#define DAMAGE_RESPONSE_CAMERA_IMPULSE_STRUCT_ID { 0x37A16831, 0xC2C54392, 0x90D930A8, 0x959F7059 }
 	TAG_STRUCT(
 		damage_response_camera_impulse_struct,
 		"damage_response_camera_impulse_struct",
@@ -40960,7 +40960,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_RESPONSE_CAMERA_SHAKE_STRUCT_ID { 0x00000000, 0x418D0ED8, 0x5A61428B, 0x81350A9A }
+	#define DAMAGE_RESPONSE_CAMERA_SHAKE_STRUCT_ID { 0x418D0ED8, 0x5A61428B, 0x81350A9A, 0x657745E4 }
 	TAG_STRUCT(
 		damage_response_camera_shake_struct,
 		"damage_response_camera_shake_struct",
@@ -40981,7 +40981,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_RESPONSE_CLASS_BLOCK_ID { 0x00000000, 0x4B0239EB, 0xE7E44E9F, 0x9A3C8635 }
+	#define DAMAGE_RESPONSE_CLASS_BLOCK_ID { 0x4B0239EB, 0xE7E44E9F, 0x9A3C8635, 0xA660F69B }
 	TAG_STRUCT(
 		damage_response_class_block,
 		"damage_response_class_block",
@@ -41021,7 +41021,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(damage_response_class_flags, damage_response_class_flags_strings, _countof(damage_response_class_flags_strings));
 
-	#define DAMAGE_RESPONSE_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x94C849C2, 0x81F94875, 0x8B4DD2B0 }
+	#define DAMAGE_RESPONSE_DEFINITION_STRUCT_DEFINITION_ID { 0x94C849C2, 0x81F94875, 0x8B4DD2B0, 0x54CD47EF }
 	TAG_STRUCT(
 		damage_response_definition_struct_definition,
 		"damage_response_definition_struct_definition",
@@ -41034,7 +41034,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SOUND_REFERENCES_BLOCK_ID { 0x00000000, 0x6751BC80, 0xAF514348, 0x886AF0F0 }
+	#define SOUND_REFERENCES_BLOCK_ID { 0x6751BC80, 0xAF514348, 0x886AF0F0, 0x68DB8F16 }
 	TAG_STRUCT(
 		sound_references_block,
 		"sound_references_block",
@@ -41058,7 +41058,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(sound_group_reference$5_tagref, SOUND_TAG, _tag_reference_flag_resolved_by_game);
 
-	#define DIALOGUE_GROUP_STRUCT_DEFINITION_ID { 0x00000000, 0xAA0A2CFC, 0xE8A4480C, 0xAFF53536 }
+	#define DIALOGUE_GROUP_STRUCT_DEFINITION_ID { 0xAA0A2CFC, 0xE8A4480C, 0xAFF53536, 0x20BCFEF8 }
 	TAG_STRUCT(
 		dialogue_group_struct_definition,
 		"dialogue_group",
@@ -41082,7 +41082,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(dialogue_flags, dialogue_flags_strings, _countof(dialogue_flags_strings));
 
-	#define CLOTH_PROPERTIES_ID { 0x00000000, 0x3654721A, 0x8FDB4A6D, 0x833E911B }
+	#define CLOTH_PROPERTIES_ID { 0x3654721A, 0x8FDB4A6D, 0x833E911B, 0x06E30928 }
 	TAG_STRUCT(
 		cloth_properties,
 		"cloth_properties",
@@ -41108,7 +41108,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(cloth_integration_enum, cloth_integration_enum_strings, _countof(cloth_integration_enum_strings));
 
-	#define CLOTH_VERTICES_BLOCK_ID { 0x00000000, 0x9CBFA025, 0xB3394521, 0xBC81E2FD }
+	#define CLOTH_VERTICES_BLOCK_ID { 0x9CBFA025, 0xB3394521, 0xBC81E2FD, 0xF791ED55 }
 	TAG_STRUCT(
 		cloth_vertices_block,
 		"cloth_vertices_block",
@@ -41122,7 +41122,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CLOTH_INDICES_BLOCK_ID { 0x00000000, 0x37D025EE, 0xD2D24235, 0xA99B29D1 }
+	#define CLOTH_INDICES_BLOCK_ID { 0x37D025EE, 0xD2D24235, 0xA99B29D1, 0x0BEACCDC }
 	TAG_STRUCT(
 		cloth_indices_block,
 		"cloth_indices_block",
@@ -41135,7 +41135,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CLOTH_LINKS_BLOCK_ID { 0x00000000, 0x2A08CAD4, 0x1EE64F76, 0x85A6FF91 }
+	#define CLOTH_LINKS_BLOCK_ID { 0x2A08CAD4, 0x1EE64F76, 0x85A6FF91, 0x40E35AAF }
 	TAG_STRUCT(
 		cloth_links_block,
 		"cloth_links_block",
@@ -41150,7 +41150,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define COLLISION_SPHERE_BLOCK_ID { 0x00000000, 0x1168CFD4, 0x1EEC4C7A, 0x85A5FF51 }
+	#define COLLISION_SPHERE_BLOCK_ID { 0x1168CFD4, 0x1EEC4C7A, 0x85A5FF51, 0x40ABCDAF }
 	TAG_STRUCT(
 		collision_sphere_block,
 		"collision_sphere_block",
@@ -41164,7 +41164,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CLOTH_STRUCT_DEFINITION_ID { 0x00000000, 0x6007B323, 0x1677454C, 0x86B19DA1 }
+	#define CLOTH_STRUCT_DEFINITION_ID { 0x6007B323, 0x1677454C, 0x86B19DA1, 0xCAEC6D8B }
 	TAG_STRUCT(
 		cloth_struct_definition,
 		"cloth_struct_definition",
@@ -41202,7 +41202,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(shader_group_reference_tagref, SHADER_TAG);
 
-	#define G_SINGLE_SCALAR_FUNCTION_EVALUATION_STRUCT_ID { 0x00000000, 0xE5DD9E47, 0x3ECF4316, 0xA03E0324 }
+	#define G_SINGLE_SCALAR_FUNCTION_EVALUATION_STRUCT_ID { 0xE5DD9E47, 0x3ECF4316, 0xA03E0324, 0x62F7B19C }
 	TAG_STRUCT(
 		g_single_scalar_function_evaluation_struct,
 		"g_single_scalar_function_evaluation_struct",
@@ -41218,7 +41218,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FLUID_DYNAMICS_STRUCT_DEFINITION_ID { 0x00000000, 0x3414341E, 0x3222482C, 0x14903442 }
+	#define FLUID_DYNAMICS_STRUCT_DEFINITION_ID { 0x3414341E, 0x3222482C, 0x14903442, 0x0654EB55 }
 	TAG_STRUCT(
 		fluid_dynamics_struct_definition,
 		"fluid_dynamics_struct_definition",
@@ -41280,7 +41280,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(fluid_dynamics_flags, fluid_dynamics_flags_strings, _countof(fluid_dynamics_flags_strings));
 
-	#define FLUID_DYNAMICS_SQUIRTER_BLOCK_ID { 0x00000000, 0x7414343E, 0x3222489C, 0xB4903432 }
+	#define FLUID_DYNAMICS_SQUIRTER_BLOCK_ID { 0x7414343E, 0x3222489C, 0xB4903432, 0x7654EB15 }
 	TAG_STRUCT(
 		fluid_dynamics_squirter_block,
 		"fluid_dynamics_squirter_block",
@@ -41295,7 +41295,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FLUID_DYNAMICS_INFLOW_BLOCK_ID { 0x00000000, 0x74143430, 0x32224891, 0xB4903432 }
+	#define FLUID_DYNAMICS_INFLOW_BLOCK_ID { 0x74143430, 0x32224891, 0xB4903432, 0x7654EB13 }
 	TAG_STRUCT(
 		fluid_dynamics_inflow_block,
 		"fluid_dynamics_inflow_block",
@@ -41311,7 +41311,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FLUID_DYNAMICS_OUTFLOW_BLOCK_ID { 0x00000000, 0x7414343A, 0x3222489B, 0xB490343C }
+	#define FLUID_DYNAMICS_OUTFLOW_BLOCK_ID { 0x7414343A, 0x3222489B, 0xB490343C, 0x7654EB1D }
 	TAG_STRUCT(
 		fluid_dynamics_outflow_block,
 		"fluid_dynamics_outflow_block",
@@ -41324,7 +41324,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FLUID_DYNAMICS_OBSTACLE_BLOCK_ID { 0x00000000, 0x7414341E, 0x3222482C, 0xB4903442 }
+	#define FLUID_DYNAMICS_OBSTACLE_BLOCK_ID { 0x7414341E, 0x3222482C, 0xB4903442, 0x7654EB55 }
 	TAG_STRUCT(
 		fluid_dynamics_obstacle_block,
 		"fluid_dynamics_obstacle_block",
@@ -41337,7 +41337,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_VEHICLE_ENGINE_STRUCT_ID { 0x00000000, 0xB2086F9C, 0xE80E4D79, 0x81DDEB34 }
+	#define GLOBAL_VEHICLE_ENGINE_STRUCT_ID { 0xB2086F9C, 0xE80E4D79, 0x81DDEB34, 0xBA677DA4 }
 	TAG_STRUCT(
 		global_vehicle_engine_struct,
 		"global_vehicle_engine_struct",
@@ -41354,7 +41354,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define TORQUE_CURVE_STRUCT_ID { 0x00000000, 0xA1B86A30, 0x21864A2C, 0xB26E5CA6 }
+	#define TORQUE_CURVE_STRUCT_ID { 0xA1B86A30, 0x21864A2C, 0xB26E5CA6, 0xF2DB9FC3 }
 	TAG_STRUCT(
 		torque_curve_struct,
 		"torque_curve_struct",
@@ -41372,7 +41372,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GEAR_BLOCK_ID { 0x00000000, 0x43A70404, 0x7A0440D7, 0xA12F738C }
+	#define GEAR_BLOCK_ID { 0x43A70404, 0x7A0440D7, 0xA12F738C, 0x29E046A5 }
 	TAG_STRUCT(
 		gear_block,
 		"gear_block",
@@ -41394,7 +41394,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ACTOR_STARTING_LOCATIONS_BLOCK_ID { 0x00000000, 0x2288B874, 0x915E47FC, 0xA59792AF }
+	#define ACTOR_STARTING_LOCATIONS_BLOCK_ID { 0x2288B874, 0x915E47FC, 0xA59792AF, 0x15D83BA8 }
 	TAG_STRUCT(
 		actor_starting_locations_block,
 		"actor_starting_locations_block",
@@ -41538,7 +41538,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(patrol_mode_enum, patrol_mode_enum_strings, _countof(patrol_mode_enum_strings));
 
-	#define FIRE_TEAM_BLOCK_ID { 0x00000000, 0xFAB5C3D2, 0xBEC84C1F, 0xA83A78A9 }
+	#define FIRE_TEAM_BLOCK_ID { 0xFAB5C3D2, 0xBEC84C1F, 0xA83A78A9, 0xAAAD2E97 }
 	TAG_STRUCT(
 		fire_team_block,
 		"fire_team_block",
@@ -41582,7 +41582,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(major_upgrade_enum, major_upgrade_enum_strings, _countof(major_upgrade_enum_strings));
 
-	#define PATROL_POINT_BLOCK_ID { 0x00000000, 0xC516E1B0, 0x97634244, 0x80F25696 }
+	#define PATROL_POINT_BLOCK_ID { 0xC516E1B0, 0x97634244, 0x80F25696, 0x88B435C1 }
 	TAG_STRUCT(
 		patrol_point_block,
 		"patrol_point_block",
@@ -41610,7 +41610,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(patrol_point_flags, patrol_point_flags_strings, _countof(patrol_point_flags_strings));
 
-	#define SQUADS_STRUCT_ID { 0x00000000, 0x4566E9F5, 0x600E49D2, 0x99F5A83C }
+	#define SQUADS_STRUCT_ID { 0x4566E9F5, 0x600E49D2, 0x99F5A83C, 0x68F5AAAB }
 	TAG_STRUCT(
 		squads_struct,
 		"squads_struct",
@@ -41666,7 +41666,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(ai_team_enum, ai_team_enum_strings, _countof(ai_team_enum_strings));
 
-	#define SQUAD_GROUPS_BLOCK_ID { 0x00000000, 0x924C4B16, 0x87A04E62, 0x9A767F70 }
+	#define SQUAD_GROUPS_BLOCK_ID { 0x924C4B16, 0x87A04E62, 0x9A767F70, 0x3116A14F }
 	TAG_STRUCT(
 		squad_groups_block,
 		"squad_groups_block",
@@ -41685,7 +41685,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define BEHAVIOR_NAMES_BLOCK_ID { 0x00000000, 0x3B1809CC, 0x71BE4135, 0xA509EB0E }
+	#define BEHAVIOR_NAMES_BLOCK_ID { 0x3B1809CC, 0x71BE4135, 0xA509EB0E, 0x42358E50 }
 	TAG_STRUCT(
 		behavior_names_block,
 		"behavior_names_block",
@@ -41698,7 +41698,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define STYLE_STRUCT_DEFINITION_ID { 0x00000000, 0xAC59B7DE, 0x455644C8, 0x9268F008 }
+	#define STYLE_STRUCT_DEFINITION_ID { 0xAC59B7DE, 0x455644C8, 0x9268F008, 0x8B74CD54 }
 	TAG_STRUCT(
 		style_struct_definition,
 		"style_struct_definition",
@@ -41980,7 +41980,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(behavior_set7, behavior_set7_strings, _countof(behavior_set7_strings));
 
-	#define STYLE_PALETTE_BLOCK_ID { 0x00000000, 0x3D8C9FE3, 0x023D40AE, 0x968E5BAF }
+	#define STYLE_PALETTE_BLOCK_ID { 0x3D8C9FE3, 0x023D40AE, 0x968E5BAF, 0x3C164F2B }
 	TAG_STRUCT(
 		style_palette_block,
 		"style_palette_block",
@@ -41995,7 +41995,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(style_group_reference_tagref, STYLE_TAG);
 
-	#define FLOCK_PALETTE_BLOCK_ID { 0x00000000, 0xCCF2B116, 0x70BD49A2, 0x8CE686B1 }
+	#define FLOCK_PALETTE_BLOCK_ID { 0xCCF2B116, 0x70BD49A2, 0x8CE686B1, 0xB579473F }
 	TAG_STRUCT(
 		flock_palette_block,
 		"flock_palette_block",
@@ -42010,7 +42010,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(flock_group_reference_tagref, FLOCK_TAG);
 
-	#define FLOCK_SOURCE_BLOCK_ID { 0x00000000, 0x2BFCB061, 0x9A1B4921, 0x890FF041 }
+	#define FLOCK_SOURCE_BLOCK_ID { 0x2BFCB061, 0x9A1B4921, 0x890FF041, 0xA74697FE }
 	TAG_STRUCT(
 		flock_source_block,
 		"flock_source_block",
@@ -42036,7 +42036,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(flock_source_flags, flock_source_flags_strings, _countof(flock_source_flags_strings));
 
-	#define FLOCK_SINK_BLOCK_ID { 0x00000000, 0xD589E46E, 0x232B452B, 0x903E75E4 }
+	#define FLOCK_SINK_BLOCK_ID { 0xD589E46E, 0x232B452B, 0x903E75E4, 0x6F72DBA3 }
 	TAG_STRUCT(
 		flock_sink_block,
 		"flock_sink_block",
@@ -42050,7 +42050,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FLOCK_INSTANCE_BLOCK_ID { 0x00000000, 0x5CBA5AB0, 0x8CE54E4B, 0xA721F105 }
+	#define FLOCK_INSTANCE_BLOCK_ID { 0x5CBA5AB0, 0x8CE54E4B, 0xA721F105, 0xB30B5958 }
 	TAG_STRUCT(
 		flock_instance_block,
 		"flock_instance_block",
@@ -42088,7 +42088,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(flock_flags, flock_flags_strings, _countof(flock_flags_strings));
 
-	#define FLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0xF0130A08, 0xA0EF4DC7, 0xA0CA92E4 }
+	#define FLOCK_STRUCT_DEFINITION_ID { 0xF0130A08, 0xA0EF4DC7, 0xA0CA92E4, 0xBC18D80B }
 	TAG_STRUCT(
 		flock_struct_definition,
 		"flock_struct_definition",
@@ -42125,7 +42125,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_VOICE_BLOCK_ID { 0x00000000, 0x0E9694AE, 0x3ECD47C8, 0x99F06F2E }
+	#define CHARACTER_VOICE_BLOCK_ID { 0x0E9694AE, 0x3ECD47C8, 0x99F06F2E, 0x3C8CF1EA }
 	TAG_STRUCT(
 		character_voice_block,
 		"character_voice_block",
@@ -42142,7 +42142,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(dialogue_group_reference$2_tagref, DIALOGUE_TAG);
 
-	#define CHARACTER_VARIANTS_BLOCK_ID { 0x00000000, 0x1DE40022, 0xD2E54137, 0x8F9E70A1 }
+	#define CHARACTER_VARIANTS_BLOCK_ID { 0x1DE40022, 0xD2E54137, 0x8F9E70A1, 0x0CCD699E }
 	TAG_STRUCT(
 		character_variants_block,
 		"character_variants_block",
@@ -42158,7 +42158,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_VOICE_PROPERTIES_BLOCK_ID { 0x00000000, 0x7759D0CE, 0x3966482F, 0xAF71A161 }
+	#define CHARACTER_VOICE_PROPERTIES_BLOCK_ID { 0x7759D0CE, 0x3966482F, 0xAF71A161, 0x26B935C0 }
 	TAG_STRUCT(
 		character_voice_properties_block,
 		"character_voice_properties_block",
@@ -42171,7 +42171,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_GENERAL_BLOCK_ID { 0x00000000, 0x7BA5643F, 0x6CE843B7, 0xBFB797FF }
+	#define CHARACTER_GENERAL_BLOCK_ID { 0x7BA5643F, 0x6CE843B7, 0xBFB797FF, 0xCCBFCABC }
 	TAG_STRUCT(
 		character_general_block,
 		"character_general_block",
@@ -42246,7 +42246,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(combat_positioning_enum, combat_positioning_enum_strings, _countof(combat_positioning_enum_strings));
 
-	#define CHARACTER_PLACEMENT_BLOCK_ID { 0x00000000, 0xDA6187AF, 0x2AC14914, 0xB36A1D7A }
+	#define CHARACTER_PLACEMENT_BLOCK_ID { 0xDA6187AF, 0x2AC14914, 0xB36A1D7A, 0x5BEAF008 }
 	TAG_STRUCT(
 		character_placement_block,
 		"character_placement_block",
@@ -42271,7 +42271,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_VITALITY_BLOCK_ID { 0x00000000, 0xC3D6238D, 0xF974437D, 0xA9364C31 }
+	#define CHARACTER_VITALITY_BLOCK_ID { 0xC3D6238D, 0xF974437D, 0xA9364C31, 0xB37E2EF3 }
 	TAG_STRUCT(
 		character_vitality_block,
 		"character_vitality_block",
@@ -42324,7 +42324,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(weapon_group_reference$4_tagref, WEAPON_TAG);
 
-	#define CHARACTER_PERCEPTION_BLOCK_ID { 0x00000000, 0x986042C0, 0x183347B3, 0xA05FA26B }
+	#define CHARACTER_PERCEPTION_BLOCK_ID { 0x986042C0, 0x183347B3, 0xA05FA26B, 0xE369E7AB }
 	TAG_STRUCT(
 		character_perception_block,
 		"character_perception_block",
@@ -42360,7 +42360,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(perception_flags, perception_flags_strings, _countof(perception_flags_strings));
 
-	#define CHARACTER_LOOK_BLOCK_ID { 0x00000000, 0x6DC12D24, 0x206E4151, 0x94C93A4E }
+	#define CHARACTER_LOOK_BLOCK_ID { 0x6DC12D24, 0x206E4151, 0x94C93A4E, 0x24BF69B3 }
 	TAG_STRUCT(
 		character_look_block,
 		"character_look_block",
@@ -42384,7 +42384,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_MOVEMENT_BLOCK_ID { 0x00000000, 0x5CD8B49C, 0xA6B74173, 0xA61C4E79 }
+	#define CHARACTER_MOVEMENT_BLOCK_ID { 0x5CD8B49C, 0xA6B74173, 0xA61C4E79, 0x2F6BF8CF }
 	TAG_STRUCT(
 		character_movement_block,
 		"character_movement_block",
@@ -42465,7 +42465,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(movement_hint_enum, movement_hint_enum_strings, _countof(movement_hint_enum_strings));
 
-	#define CHARACTER_FLOCKING_BLOCK_ID { 0x00000000, 0xD497EF97, 0x721C41A5, 0x8BCF6C55 }
+	#define CHARACTER_FLOCKING_BLOCK_ID { 0xD497EF97, 0x721C41A5, 0x8BCF6C55, 0x9EC4938A }
 	TAG_STRUCT(
 		character_flocking_block,
 		"character_flocking_block",
@@ -42483,7 +42483,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_SWARM_BLOCK_ID { 0x00000000, 0xAE465FC2, 0x8CAC4D3A, 0xBF219507 }
+	#define CHARACTER_SWARM_BLOCK_ID { 0xAE465FC2, 0x8CAC4D3A, 0xBF219507, 0x1934DE5A }
 	TAG_STRUCT(
 		character_swarm_block,
 		"character_swarm_block",
@@ -42508,7 +42508,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_ENGAGE_BLOCK_ID { 0x00000000, 0xFFA4E45D, 0x10024F2F, 0xB4987122 }
+	#define CHARACTER_ENGAGE_BLOCK_ID { 0xFFA4E45D, 0x10024F2F, 0xB4987122, 0x213E9865 }
 	TAG_STRUCT(
 		character_engage_block,
 		"character_engage_block",
@@ -42538,7 +42538,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(projectile_group_reference_tagref, PROJECTILE_TAG);
 
-	#define CHARACTER_EVASION_BLOCK_ID { 0x00000000, 0x9687EC75, 0x60294108, 0xAD4F6DCE }
+	#define CHARACTER_EVASION_BLOCK_ID { 0x9687EC75, 0x60294108, 0xAD4F6DCE, 0x6CA5ED35 }
 	TAG_STRUCT(
 		character_evasion_block,
 		"character_evasion_block",
@@ -42557,7 +42557,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_COVER_BLOCK_ID { 0x00000000, 0x1D0E6BC9, 0x2E39471C, 0xA35B152D }
+	#define CHARACTER_COVER_BLOCK_ID { 0x1D0E6BC9, 0x2E39471C, 0xA35B152D, 0x43C54E8A }
 	TAG_STRUCT(
 		character_cover_block,
 		"character_cover_block",
@@ -42597,7 +42597,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(generic_flags, generic_flags_strings, _countof(generic_flags_strings));
 
-	#define CHARACTER_SEARCH_BLOCK_ID { 0x00000000, 0x541F9730, 0x87D3457B, 0xAE101AD3 }
+	#define CHARACTER_SEARCH_BLOCK_ID { 0x541F9730, 0x87D3457B, 0xAE101AD3, 0x7B8B58F6 }
 	TAG_STRUCT(
 		character_search_block,
 		"character_search_block",
@@ -42626,7 +42626,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(character_search_flags, character_search_flags_strings, _countof(character_search_flags_strings));
 
-	#define CHARACTER_PRESEARCH_BLOCK_ID { 0x00000000, 0x4E5E33E3, 0xBD02452D, 0xAA84500D }
+	#define CHARACTER_PRESEARCH_BLOCK_ID { 0x4E5E33E3, 0xBD02452D, 0xAA84500D, 0xA972C742 }
 	TAG_STRUCT(
 		character_presearch_block,
 		"character_presearch_block",
@@ -42646,7 +42646,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_RETREAT_BLOCK_ID { 0x00000000, 0xF0F699B8, 0x2CC14DDC, 0x97D26266 }
+	#define CHARACTER_RETREAT_BLOCK_ID { 0xF0F699B8, 0x2CC14DDC, 0x97D26266, 0x968C2601 }
 	TAG_STRUCT(
 		character_retreat_block,
 		"character_retreat_block",
@@ -42687,7 +42687,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(character_retreat_flags, character_retreat_flags_strings, _countof(character_retreat_flags_strings));
 
-	#define CHARACTER_CHARGE_DIFFICULTY_LIMITS_BLOCK_ID { 0x00000000, 0x7AA4AD54, 0xFA814E3B, 0xA455CB7C }
+	#define CHARACTER_CHARGE_DIFFICULTY_LIMITS_BLOCK_ID { 0x7AA4AD54, 0xFA814E3B, 0xA455CB7C, 0xCCC805A9 }
 	TAG_STRUCT(
 		character_charge_difficulty_limits_block,
 		"character_charge_difficulty_limits_block",
@@ -42703,7 +42703,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_CHARGE_BLOCK_ID { 0x00000000, 0x37963E71, 0xB54C4B51, 0x829761F6 }
+	#define CHARACTER_CHARGE_BLOCK_ID { 0x37963E71, 0xB54C4B51, 0x829761F6, 0xF4E6EACE }
 	TAG_STRUCT(
 		character_charge_block,
 		"character_charge_block",
@@ -42746,7 +42746,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(charge_flags, charge_flags_strings, _countof(charge_flags_strings));
 
-	#define CHARACTER_READY_BLOCK_ID { 0x00000000, 0x978647F9, 0x7640401C, 0x92C9ADB5 }
+	#define CHARACTER_READY_BLOCK_ID { 0x978647F9, 0x7640401C, 0x92C9ADB5, 0xEF9C02E9 }
 	TAG_STRUCT(
 		character_ready_block,
 		"character_ready_block",
@@ -42759,7 +42759,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_FIRING_PATTERN_BLOCK_ID { 0x00000000, 0xFDC8C8F2, 0x93EA4195, 0xB31795C5 }
+	#define CHARACTER_FIRING_PATTERN_BLOCK_ID { 0xFDC8C8F2, 0x93EA4195, 0xB31795C5, 0x1EBD8EE6 }
 	TAG_STRUCT(
 		character_firing_pattern_block,
 		"character_firing_pattern_block",
@@ -42786,7 +42786,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_WEAPONS_BLOCK_ID { 0x00000000, 0x7046E89D, 0xE5944DDB, 0xA3F3667C }
+	#define CHARACTER_WEAPONS_BLOCK_ID { 0x7046E89D, 0xE5944DDB, 0xA3F3667C, 0xAA5DF629 }
 	TAG_STRUCT(
 		character_weapons_block,
 		"character_weapons_block",
@@ -42880,7 +42880,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(damage_effect_group_reference$2_tagref, DAMAGE_EFFECT_TAG);
 
-	#define CHARACTER_FIRING_PATTERN_PROPERTIES_BLOCK_ID { 0x00000000, 0x4E8188E8, 0x5675447A, 0x8BA0A9FD }
+	#define CHARACTER_FIRING_PATTERN_PROPERTIES_BLOCK_ID { 0x4E8188E8, 0x5675447A, 0x8BA0A9FD, 0x607FA555 }
 	TAG_STRUCT(
 		character_firing_pattern_properties_block,
 		"character_firing_pattern_properties_block",
@@ -42895,7 +42895,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_GRENADES_BLOCK_ID { 0x00000000, 0xA92D1ADC, 0x8092499A, 0xBDD03A7B }
+	#define CHARACTER_GRENADES_BLOCK_ID { 0xA92D1ADC, 0x8092499A, 0xBDD03A7B, 0xD2F00083 }
 	TAG_STRUCT(
 		character_grenades_block,
 		"character_grenades_block",
@@ -42935,7 +42935,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(actor_grenade_trajectory_enum, actor_grenade_trajectory_enum_strings, _countof(actor_grenade_trajectory_enum_strings));
 
-	#define CHARACTER_VEHICLE_BLOCK_ID { 0x00000000, 0x503F6E32, 0x10444DF9, 0xAA8B8164 }
+	#define CHARACTER_VEHICLE_BLOCK_ID { 0x503F6E32, 0x10444DF9, 0xAA8B8164, 0xB994B4FA }
 	TAG_STRUCT(
 		character_vehicle_block,
 		"character_vehicle_block",
@@ -43024,7 +43024,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(vehicle_flags, vehicle_flags_strings, _countof(vehicle_flags_strings));
 
-	#define CHARACTER_IDLE_BLOCK_ID { 0x00000000, 0x6C8BCFDB, 0x68E942AB, 0xA9EED157 }
+	#define CHARACTER_IDLE_BLOCK_ID { 0x6C8BCFDB, 0x68E942AB, 0xA9EED157, 0xFC1CE1EA }
 	TAG_STRUCT(
 		character_idle_block,
 		"character_idle_block",
@@ -43039,7 +43039,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_VOCALIZATION_BLOCK_ID { 0x00000000, 0x62F8205D, 0x9E1040FD, 0xAD1ACD08 }
+	#define CHARACTER_VOCALIZATION_BLOCK_ID { 0x62F8205D, 0x9E1040FD, 0xAD1ACD08, 0x9DF2201D }
 	TAG_STRUCT(
 		character_vocalization_block,
 		"character_vocalization_block",
@@ -43055,7 +43055,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_BOARDING_BLOCK_ID { 0x00000000, 0xE8176F59, 0x5987413A, 0x97AD3E48 }
+	#define CHARACTER_BOARDING_BLOCK_ID { 0xE8176F59, 0x5987413A, 0x97AD3E48, 0x138FF9FC }
 	TAG_STRUCT(
 		character_boarding_block,
 		"character_boarding_block",
@@ -43079,7 +43079,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(boarding_flags, boarding_flags_strings, _countof(boarding_flags_strings));
 
-	#define CHARACTER_GUARDIAN_BLOCK_ID { 0x00000000, 0x5124D50F, 0x18964EE9, 0xBF60FEAA }
+	#define CHARACTER_GUARDIAN_BLOCK_ID { 0x5124D50F, 0x18964EE9, 0xBF60FEAA, 0xB4BE29B8 }
 	TAG_STRUCT(
 		character_guardian_block,
 		"character_guardian_block",
@@ -43097,7 +43097,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_COMBATFORM_BLOCK_ID { 0x00000000, 0xD530990F, 0x02934E9C, 0xB698F9AC }
+	#define CHARACTER_COMBATFORM_BLOCK_ID { 0xD530990F, 0x02934E9C, 0xB698F9AC, 0x351A25CE }
 	TAG_STRUCT(
 		character_combatform_block,
 		"character_combatform_block",
@@ -43111,7 +43111,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_SCARAB_BLOCK_ID { 0x00000000, 0x95C20194, 0xFF56496F, 0xBB039DD9 }
+	#define CHARACTER_SCARAB_BLOCK_ID { 0x95C20194, 0xFF56496F, 0xBB039DD9, 0xCE5E69DB }
 	TAG_STRUCT(
 		character_scarab_block,
 		"character_scarab_block",
@@ -43128,7 +43128,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CHARACTER_MORPH_BLOCK_ID { 0x00000000, 0x91634ACB, 0x558445AD, 0xBA969F77 }
+	#define CHARACTER_MORPH_BLOCK_ID { 0x91634ACB, 0x558445AD, 0xBA969F77, 0xA55E1C4C }
 	TAG_STRUCT(
 		character_morph_block,
 		"character_morph_block",
@@ -43178,7 +43178,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(muffin_group_reference$2_tagref, MUFFIN_TAG);
 
-	#define CHARACTER_EQUIPMENT_USAGE_BLOCK_ID { 0x00000000, 0x939EDFAC, 0xD412484C, 0xA111DAFC }
+	#define CHARACTER_EQUIPMENT_USAGE_BLOCK_ID { 0x939EDFAC, 0xD412484C, 0xA111DAFC, 0xFD7D8FBE }
 	TAG_STRUCT(
 		character_equipment_usage_block,
 		"character_equipment_usage_block",
@@ -43218,7 +43218,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(character_equipment_usage_how_enum, character_equipment_usage_how_enum_strings, _countof(character_equipment_usage_how_enum_strings));
 
-	#define CHARACTER_EQUIPMENT_BLOCK_ID { 0x00000000, 0xA874BCDC, 0xB16E4667, 0x8F2752A7 }
+	#define CHARACTER_EQUIPMENT_BLOCK_ID { 0xA874BCDC, 0xB16E4667, 0x8F2752A7, 0x8B39612C }
 	TAG_STRUCT(
 		character_equipment_block,
 		"character_equipment_block",
@@ -43243,7 +43243,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(character_equipment_flags, character_equipment_flags_strings, _countof(character_equipment_flags_strings));
 
-	#define CHARACTER_ACTIVITY_OBJECT_BLOCK_ID { 0x00000000, 0x63D73A39, 0x85744FD1, 0x812FF1AD }
+	#define CHARACTER_ACTIVITY_OBJECT_BLOCK_ID { 0x63D73A39, 0x85744FD1, 0x812FF1AD, 0xA8EEC55A }
 	TAG_STRUCT(
 		character_activity_object_block,
 		"character_activity_object_block",
@@ -43261,7 +43261,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(crate_group_reference$3_tagref, CRATE_TAG, _tag_reference_flag_not_a_dependency);
 
-	#define CHARACTER_STRUCT_DEFINITION_ID { 0x00000000, 0xCE98F60C, 0x831E43A2, 0x97556737 }
+	#define CHARACTER_STRUCT_DEFINITION_ID { 0xCE98F60C, 0x831E43A2, 0x97556737, 0x2D0DA2E2 }
 	TAG_STRUCT(
 		character_struct_definition,
 		"character_struct_definition",
@@ -43332,7 +43332,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(creature_group_reference$2_tagref, CREATURE_TAG);
 
-	#define RESPONSE_BLOCK_ID { 0x00000000, 0x0D94F560, 0x7A584446, 0x8346DEA4 }
+	#define RESPONSE_BLOCK_ID { 0x0D94F560, 0x7A584446, 0x8346DEA4, 0x8A08206A }
 	TAG_STRUCT(
 		response_block,
 		"response_block",
@@ -43368,7 +43368,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(response_type_enum, response_type_enum_strings, _countof(response_type_enum_strings));
 
-	#define VOCALIZATION_DEFINITIONS_BLOCK_ID { 0x00000000, 0xEFA010A4, 0x3EA148E6, 0xA44C41E0 }
+	#define VOCALIZATION_DEFINITIONS_BLOCK_ID { 0xEFA010A4, 0x3EA148E6, 0xA44C41E0, 0x7FA151D5 }
 	TAG_STRUCT(
 		vocalization_definitions_block,
 		"vocalization_definitions_block",
@@ -43501,7 +43501,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(dialogue_emotion_enum, dialogue_emotion_enum_strings, _countof(dialogue_emotion_enum_strings));
 
-	#define VOCALIZATION_PATTERNS_BLOCK_ID { 0x00000000, 0xD957FA41, 0xCD6C43A7, 0x9D2BA7B7 }
+	#define VOCALIZATION_PATTERNS_BLOCK_ID { 0xD957FA41, 0xCD6C43A7, 0x9D2BA7B7, 0xC3ECCB8C }
 	TAG_STRUCT(
 		vocalization_patterns_block,
 		"vocalization_patterns_block",
@@ -43851,7 +43851,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(damage_enum, damage_enum_strings, _countof(damage_enum_strings));
 
-	#define DIALOGUE_DATA_BLOCK_ID { 0x00000000, 0xFCF21C42, 0x169B4D90, 0x98F06443 }
+	#define DIALOGUE_DATA_BLOCK_ID { 0xFCF21C42, 0x169B4D90, 0x98F06443, 0xC4EAC71E }
 	TAG_STRUCT(
 		dialogue_data_block,
 		"dialogue_data_block",
@@ -43865,7 +43865,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define INVOLUNTARY_DATA_BLOCK_ID { 0x00000000, 0x208CDC38, 0x08024456, 0x86F2C9BA }
+	#define INVOLUNTARY_DATA_BLOCK_ID { 0x208CDC38, 0x08024456, 0x86F2C9BA, 0xA73BF240 }
 	TAG_STRUCT(
 		involuntary_data_block,
 		"involuntary_data_block",
@@ -43879,7 +43879,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define AI_DIALOGUE_GLOBALS_STRUCT_DEFINITION_ID { 0x00000000, 0x28A04827, 0x55DC4CE6, 0x95458C49 }
+	#define AI_DIALOGUE_GLOBALS_STRUCT_DEFINITION_ID { 0x28A04827, 0x55DC4CE6, 0x95458C49, 0x9C6549DC }
 	TAG_STRUCT(
 		ai_dialogue_globals_struct_definition,
 		"ai_dialogue_globals_struct_definition",
@@ -43901,7 +43901,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define MISSION_DIALOGUE_VARIANTS_BLOCK_ID { 0x00000000, 0x5DE3B90C, 0xABBB4DE3, 0x870EFC07 }
+	#define MISSION_DIALOGUE_VARIANTS_BLOCK_ID { 0x5DE3B90C, 0xABBB4DE3, 0x870EFC07, 0x7BB2AA80 }
 	TAG_STRUCT(
 		mission_dialogue_variants_block,
 		"mission_dialogue_variants_block",
@@ -43918,7 +43918,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(sound_group_reference$3_tagref, SOUND_TAG, _tag_reference_flag_resolved_by_game);
 
-	#define MISSION_DIALOGUE_LINES_BLOCK_ID { 0x00000000, 0xB95BD27F, 0x5B6545A1, 0xB83D0094 }
+	#define MISSION_DIALOGUE_LINES_BLOCK_ID { 0xB95BD27F, 0x5B6545A1, 0xB83D0094, 0x922D3337 }
 	TAG_STRUCT(
 		mission_dialogue_lines_block,
 		"mission_dialogue_lines_block",
@@ -43933,7 +43933,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define AI_MISSION_DIALOGUE_STRUCT_DEFINITION_ID { 0x00000000, 0x7A2D35B4, 0xCD53450D, 0xAEB0B227 }
+	#define AI_MISSION_DIALOGUE_STRUCT_DEFINITION_ID { 0x7A2D35B4, 0xCD53450D, 0xAEB0B227, 0x6940C1F4 }
 	TAG_STRUCT(
 		ai_mission_dialogue_struct_definition,
 		"ai_mission_dialogue_struct_definition",
@@ -43946,7 +43946,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define AI_SCENE_ROLE_VARIANTS_BLOCK_ID { 0x00000000, 0x20B5EEB2, 0x6BD64491, 0xA3E87909 }
+	#define AI_SCENE_ROLE_VARIANTS_BLOCK_ID { 0x20B5EEB2, 0x6BD64491, 0xA3E87909, 0xC58A4822 }
 	TAG_STRUCT(
 		ai_scene_role_variants_block,
 		"ai_scene_role_variants_block",
@@ -43959,7 +43959,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define AI_SCENE_ROLE_BLOCK_ID { 0x00000000, 0x06C92A6B, 0x349D43D3, 0x8915D8F3 }
+	#define AI_SCENE_ROLE_BLOCK_ID { 0x06C92A6B, 0x349D43D3, 0x8915D8F3, 0x4A28DC0C }
 	TAG_STRUCT(
 		ai_scene_role_block,
 		"ai_scene_role_block",
@@ -43984,7 +43984,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(role_group_enum, role_group_enum_strings, _countof(role_group_enum_strings));
 
-	#define AI_SCENE_TRIGGER_BLOCK_ID { 0x00000000, 0x1D8A8E7B, 0xE8B24BB6, 0x9E90F7D4 }
+	#define AI_SCENE_TRIGGER_BLOCK_ID { 0x1D8A8E7B, 0xE8B24BB6, 0x9E90F7D4, 0x225EF2B1 }
 	TAG_STRUCT(
 		ai_scene_trigger_block,
 		"ai_scene_trigger_block",
@@ -44006,7 +44006,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(combination_rules_enum, combination_rules_enum_strings, _countof(combination_rules_enum_strings));
 
-	#define AI_SCENE_BLOCK_ID { 0x00000000, 0x9265CAD2, 0x80B9454D, 0xB8A86BFD }
+	#define AI_SCENE_BLOCK_ID { 0x9265CAD2, 0x80B9454D, 0xB8A86BFD, 0xB708BD17 }
 	TAG_STRUCT(
 		ai_scene_block,
 		"ai_scene_block",
@@ -44030,7 +44030,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(scene_flags, scene_flags_strings, _countof(scene_flags_strings));
 
-	#define AI_SCENARIO_MISSION_DIALOGUE_BLOCK_ID { 0x00000000, 0xCF7DF219, 0x442542E9, 0xB68E0E7E }
+	#define AI_SCENARIO_MISSION_DIALOGUE_BLOCK_ID { 0xCF7DF219, 0x442542E9, 0xB68E0E7E, 0xDE85A19D }
 	TAG_STRUCT(
 		ai_scenario_mission_dialogue_block,
 		"ai_scenario_mission_dialogue_block",
@@ -44045,7 +44045,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(ai_mission_dialogue_group_reference_tagref, AI_MISSION_DIALOGUE_TAG);
 
-	#define SCRIPT_FRAGMENT_BLOCK_ID { 0x00000000, 0xBE3330E4, 0x1D254941, 0x949273FC }
+	#define SCRIPT_FRAGMENT_BLOCK_ID { 0xBE3330E4, 0x1D254941, 0x949273FC, 0x61A61F94 }
 	TAG_STRUCT(
 		script_fragment_block,
 		"script_fragment_block",
@@ -44069,7 +44069,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(fragment_state_enum, fragment_state_enum_strings, _countof(fragment_state_enum_strings));
 
-	#define TASK_DIRECTION_BLOCK_ID { 0x00000000, 0x3A51BB5D, 0x762A4F3A, 0xA94986B2 }
+	#define TASK_DIRECTION_BLOCK_ID { 0x3A51BB5D, 0x762A4F3A, 0xA94986B2, 0x90CAC74D }
 	TAG_STRUCT(
 		task_direction_block,
 		"task_direction_block",
@@ -44087,7 +44087,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define TASKS_BLOCK_ID { 0x00000000, 0x0C243A66, 0xABF24442, 0x826D572E }
+	#define TASKS_BLOCK_ID { 0x0C243A66, 0xABF24442, 0x826D572E, 0xF1C57BB0 }
 	TAG_STRUCT(
 		tasks_block,
 		"tasks_block",
@@ -44274,7 +44274,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(global_style_enum, global_style_enum_strings, _countof(global_style_enum_strings));
 
-	#define OBJECTIVES_BLOCK_ID { 0x00000000, 0x337629EE, 0xC49F426B, 0xB388142C }
+	#define OBJECTIVES_BLOCK_ID { 0x337629EE, 0xC49F426B, 0xB388142C, 0xD2A66AE8 }
 	TAG_STRUCT(
 		objectives_block,
 		"objectives_block",
@@ -44290,7 +44290,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SECTOR_LINK_BLOCK_ID { 0x00000000, 0x495F859A, 0xD49843B7, 0xA386C327 }
+	#define SECTOR_LINK_BLOCK_ID { 0x495F859A, 0xD49843B7, 0xA386C327, 0x10F0FF01 }
 	TAG_STRUCT(
 		sector_link_block,
 		"sector_link_block",
@@ -44328,7 +44328,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(sector_link_flags, sector_link_flags_strings, _countof(sector_link_flags_strings));
 
-	#define SECTOR_VERTEX_BLOCK_ID { 0x00000000, 0xD0BE6D07, 0xA78F4322, 0x993136EC }
+	#define SECTOR_VERTEX_BLOCK_ID { 0xD0BE6D07, 0xA78F4322, 0x993136EC, 0x1C79F419 }
 	TAG_STRUCT(
 		sector_vertex_block,
 		"sector_vertex_block",
@@ -44341,7 +44341,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SECTOR_BLOCK_ID { 0x00000000, 0xC606A4EC, 0x7CD94CD0, 0xA10452C0 }
+	#define SECTOR_BLOCK_ID { 0xC606A4EC, 0x7CD94CD0, 0xA10452C0, 0x35072F88 }
 	TAG_STRUCT(
 		sector_block,
 		"sector_block",
@@ -44377,7 +44377,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(sector_flags, sector_flags_strings, _countof(sector_flags_strings));
 
-	#define REF_BLOCK_ID { 0x00000000, 0x863A3B7B, 0x67154BA6, 0x95202345 }
+	#define REF_BLOCK_ID { 0x863A3B7B, 0x67154BA6, 0x95202345, 0xA6DC0BD7 }
 	TAG_STRUCT(
 		ref_block,
 		"ref_block",
@@ -44390,7 +44390,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SECTOR_BSP2D_NODES_BLOCK_ID { 0x00000000, 0xB61A54A2, 0x9AD248F8, 0xBE7D434F }
+	#define SECTOR_BSP2D_NODES_BLOCK_ID { 0xB61A54A2, 0x9AD248F8, 0xBE7D434F, 0x5AE8C7F7 }
 	TAG_STRUCT(
 		sector_bsp2d_nodes_block,
 		"sector_bsp2d_nodes_block",
@@ -44405,7 +44405,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ENVIRONMENT_OBJECT_BSP_REFS_ID { 0x00000000, 0x09201D8D, 0x4D154278, 0xA212F1F4 }
+	#define ENVIRONMENT_OBJECT_BSP_REFS_ID { 0x09201D8D, 0x4D154278, 0xA212F1F4, 0xABBC8723 }
 	TAG_STRUCT(
 		environment_object_bsp_refs,
 		"environment_object_bsp_refs",
@@ -44422,7 +44422,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define ENVIRONMENT_OBJECT_REFS_ID { 0x00000000, 0x340E4017, 0xA71F4B4E, 0x990A2F04 }
+	#define ENVIRONMENT_OBJECT_REFS_ID { 0x340E4017, 0xA71F4B4E, 0x990A2F04, 0x26B5CF3E }
 	TAG_STRUCT(
 		environment_object_refs,
 		"environment_object_refs",
@@ -44444,7 +44444,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(environment_object_flags, environment_object_flags_strings, _countof(environment_object_flags_strings));
 
-	#define INSTANCED_GEOMETRY_REFERENCE_BLOCK_ID { 0x00000000, 0x24F2C58D, 0xA3B24934, 0xB41D74BC }
+	#define INSTANCED_GEOMETRY_REFERENCE_BLOCK_ID { 0x24F2C58D, 0xA3B24934, 0xB41D74BC, 0x070A2BF9 }
 	TAG_STRUCT(
 		instanced_geometry_reference_block,
 		"instanced_geometry_reference_block",
@@ -44458,7 +44458,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define GIANT_PATHFINDING_DATA_BLOCK_ID { 0x00000000, 0xE72C3FA0, 0x5A544D2F, 0xA4C5919C }
+	#define GIANT_PATHFINDING_DATA_BLOCK_ID { 0xE72C3FA0, 0x5A544D2F, 0xA4C5919C, 0x38F5D24A }
 	TAG_STRUCT(
 		giant_pathfinding_data_block,
 		"giant_pathfinding_data_block",
@@ -44471,7 +44471,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PF_SEAM_LINK_BLOCK_ID { 0x00000000, 0xE9DF41CF, 0x691E42F9, 0xACB8902F }
+	#define PF_SEAM_LINK_BLOCK_ID { 0xE9DF41CF, 0x691E42F9, 0xACB8902F, 0x4C7FD2CD }
 	TAG_STRUCT(
 		pf_seam_link_block,
 		"pf_seam_link_block",
@@ -44484,7 +44484,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PF_SEAM_BLOCK_ID { 0x00000000, 0x8D665CC3, 0xA04D4C56, 0xA3CDEEE4 }
+	#define PF_SEAM_BLOCK_ID { 0x8D665CC3, 0xA04D4C56, 0xA3CDEEE4, 0xC7F7CD38 }
 	TAG_STRUCT(
 		pf_seam_block,
 		"pf_seam_block",
@@ -44497,7 +44497,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PF_JUMP_INDEX_BLOCK_ID { 0x00000000, 0x01826A22, 0x344C4D2D, 0x966AD5C6 }
+	#define PF_JUMP_INDEX_BLOCK_ID { 0x01826A22, 0x344C4D2D, 0x966AD5C6, 0x521A7E41 }
 	TAG_STRUCT(
 		pf_jump_index_block,
 		"pf_jump_index_block",
@@ -44511,7 +44511,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PF_JUMP_SEAM_BLOCK_ID { 0x00000000, 0x9C962F42, 0xF1414841, 0x8635063A }
+	#define PF_JUMP_SEAM_BLOCK_ID { 0x9C962F42, 0xF1414841, 0x8635063A, 0x85059CE4 }
 	TAG_STRUCT(
 		pf_jump_seam_block,
 		"pf_jump_seam_block",
@@ -44527,7 +44527,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PF_DOOR_BLOCK_ID { 0x00000000, 0xAA16435F, 0x53974C7D, 0x93AE80CD }
+	#define PF_DOOR_BLOCK_ID { 0xAA16435F, 0x53974C7D, 0x93AE80CD, 0xDADC3981 }
 	TAG_STRUCT(
 		pf_door_block,
 		"pf_door_block",
@@ -44541,7 +44541,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PATHFINDING_DATA_BLOCK_ID { 0x00000000, 0xD935AB3C, 0x86AC4216, 0xBCB736BB }
+	#define PATHFINDING_DATA_BLOCK_ID { 0xD935AB3C, 0x86AC4216, 0xBCB736BB, 0x9AE0727C }
 	TAG_STRUCT(
 		pathfinding_data_block,
 		"pathfinding_data_block",
@@ -44566,7 +44566,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define SPECIAL_MOVEMENT_BLOCK_ID { 0x00000000, 0x5AF31295, 0xE49D42AB, 0xA49A9DBC }
+	#define SPECIAL_MOVEMENT_BLOCK_ID { 0x5AF31295, 0xE49D42AB, 0xA49A9DBC, 0x8B6B49C3 }
 	TAG_STRUCT(
 		special_movement_block,
 		"special_movement_block",
@@ -44594,7 +44594,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(special_movement_flags, special_movement_flags_strings, _countof(special_movement_flags_strings));
 
-	#define USER_HINT_LINE_SEGMENT_BLOCK_ID { 0x00000000, 0xA392E29A, 0xEE1145F9, 0x93FDF552 }
+	#define USER_HINT_LINE_SEGMENT_BLOCK_ID { 0xA392E29A, 0xEE1145F9, 0x93FDF552, 0x0799BE4B }
 	TAG_STRUCT(
 		user_hint_line_segment_block,
 		"user_hint_line_segment_block",
@@ -44620,7 +44620,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(user_hint_geometry_flags, user_hint_geometry_flags_strings, _countof(user_hint_geometry_flags_strings));
 
-	#define USER_HINT_PARALLELOGRAM_BLOCK_ID { 0x00000000, 0xDE702C7E, 0x6C544FF7, 0x92C31361 }
+	#define USER_HINT_PARALLELOGRAM_BLOCK_ID { 0xDE702C7E, 0x6C544FF7, 0x92C31361, 0x31033915 }
 	TAG_STRUCT(
 		user_hint_parallelogram_block,
 		"user_hint_parallelogram_block",
@@ -44656,7 +44656,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(parallelogram_points_invalid_flags, parallelogram_points_invalid_flags_strings, _countof(parallelogram_points_invalid_flags_strings));
 
-	#define USER_HINT_JUMP_BLOCK_ID { 0x00000000, 0x5FAFC377, 0xA4B146AC, 0xA6A374C6 }
+	#define USER_HINT_JUMP_BLOCK_ID { 0x5FAFC377, 0xA4B146AC, 0xA6A374C6, 0x0DAFEE5A }
 	TAG_STRUCT(
 		user_hint_jump_block,
 		"user_hint_jump_block",
@@ -44681,7 +44681,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(jump_flags, jump_flags_strings, _countof(jump_flags_strings));
 
-	#define USER_HINT_CLIMB_BLOCK_ID { 0x00000000, 0x6A67CD6B, 0x706D4B61, 0xA2AC7D7F }
+	#define USER_HINT_CLIMB_BLOCK_ID { 0x6A67CD6B, 0x706D4B61, 0xA2AC7D7F, 0x935B4514 }
 	TAG_STRUCT(
 		user_hint_climb_block,
 		"user_hint_climb_block",
@@ -44706,7 +44706,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(forced_hoist_height_enum, forced_hoist_height_enum_strings, _countof(forced_hoist_height_enum_strings));
 
-	#define USER_HINT_WELL_POINT_BLOCK_ID { 0x00000000, 0xEC1F1B2F, 0x3F284D04, 0x8BE174D1 }
+	#define USER_HINT_WELL_POINT_BLOCK_ID { 0xEC1F1B2F, 0x3F284D04, 0x8BE174D1, 0x90862606 }
 	TAG_STRUCT(
 		user_hint_well_point_block,
 		"user_hint_well_point_block",
@@ -44732,7 +44732,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(user_hint_well_point_type_enum, user_hint_well_point_type_enum_strings, _countof(user_hint_well_point_type_enum_strings));
 
-	#define USER_HINT_WELL_BLOCK_ID { 0x00000000, 0xB85E0E09, 0x77864ADD, 0x8518BC91 }
+	#define USER_HINT_WELL_BLOCK_ID { 0xB85E0E09, 0x77864ADD, 0x8518BC91, 0x4109DAC4 }
 	TAG_STRUCT(
 		user_hint_well_block,
 		"user_hint_well_block",
@@ -44752,7 +44752,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(user_hint_well_geometry_flags, user_hint_well_geometry_flags_strings, _countof(user_hint_well_geometry_flags_strings));
 
-	#define USER_HINT_FLIGHT_POINT_BLOCK_ID { 0x00000000, 0x2AA64424, 0xBAF84638, 0x89BFB4AA }
+	#define USER_HINT_FLIGHT_POINT_BLOCK_ID { 0x2AA64424, 0xBAF84638, 0x89BFB4AA, 0x35A278B4 }
 	TAG_STRUCT(
 		user_hint_flight_point_block,
 		"user_hint_flight_point_block",
@@ -44765,7 +44765,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define USER_HINT_FLIGHT_BLOCK_ID { 0x00000000, 0xB581E84E, 0x09FF4697, 0xB58594A3 }
+	#define USER_HINT_FLIGHT_BLOCK_ID { 0xB581E84E, 0x09FF4697, 0xB58594A3, 0xDD4DDF06 }
 	TAG_STRUCT(
 		user_hint_flight_block,
 		"user_hint_flight_block",
@@ -44778,7 +44778,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define USER_HINT_SECTOR_POINT_BLOCK_ID { 0x00000000, 0x33170C5B, 0x126041FF, 0x8EBBD6A4 }
+	#define USER_HINT_SECTOR_POINT_BLOCK_ID { 0x33170C5B, 0x126041FF, 0x8EBBD6A4, 0x4C98464E }
 	TAG_STRUCT(
 		user_hint_sector_point_block,
 		"user_hint_sector_point_block",
@@ -44794,7 +44794,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define USER_HINT_GIANT_SECTOR_BLOCK_ID { 0x00000000, 0x4AD85397, 0xD0D74BDC, 0xB6D37C85 }
+	#define USER_HINT_GIANT_SECTOR_BLOCK_ID { 0x4AD85397, 0xD0D74BDC, 0xB6D37C85, 0x245EB9F3 }
 	TAG_STRUCT(
 		user_hint_giant_sector_block,
 		"user_hint_giant_sector_block",
@@ -44807,7 +44807,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define USER_HINT_GIANT_RAIL_BLOCK_ID { 0x00000000, 0xF2320873, 0x2B8B40FF, 0xBC5FF0CD }
+	#define USER_HINT_GIANT_RAIL_BLOCK_ID { 0xF2320873, 0x2B8B40FF, 0xBC5FF0CD, 0xF5CA7C72 }
 	TAG_STRUCT(
 		user_hint_giant_rail_block,
 		"user_hint_giant_rail_block",
@@ -44821,7 +44821,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define USER_HINT_GIANT_BLOCK_ID { 0x00000000, 0x0BF7986E, 0x826547BE, 0xA38ED044 }
+	#define USER_HINT_GIANT_BLOCK_ID { 0x0BF7986E, 0x826547BE, 0xA38ED044, 0xDB6C3FF2 }
 	TAG_STRUCT(
 		user_hint_giant_block,
 		"user_hint_giant_block",
@@ -44835,7 +44835,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define USER_HINT_FLOOD_SECTOR_BLOCK_ID { 0x00000000, 0xA81E69FD, 0x8F844CEC, 0x90A753B8 }
+	#define USER_HINT_FLOOD_SECTOR_BLOCK_ID { 0xA81E69FD, 0x8F844CEC, 0x90A753B8, 0x5B664D35 }
 	TAG_STRUCT(
 		user_hint_flood_sector_block,
 		"user_hint_flood_sector_block",
@@ -44848,7 +44848,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define USER_HINT_FLOOD_BLOCK_ID { 0x00000000, 0xFBF96DFB, 0xF74A4483, 0x973BB01D }
+	#define USER_HINT_FLOOD_BLOCK_ID { 0xFBF96DFB, 0xF74A4483, 0x973BB01D, 0xCCB4FF83 }
 	TAG_STRUCT(
 		user_hint_flood_block,
 		"user_hint_flood_block",
@@ -44861,7 +44861,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define USER_HINT_BLOCK_ID { 0x00000000, 0x8E857EED, 0xECA14C74, 0xB042E3D8 }
+	#define USER_HINT_BLOCK_ID { 0x8E857EED, 0xECA14C74, 0xB042E3D8, 0x772B85FB }
 	TAG_STRUCT(
 		user_hint_block,
 		"user_hint_block",
@@ -44882,7 +44882,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define PATHFINDING_HINTS_BLOCK_ID { 0x00000000, 0xC96DFA6C, 0xCCE9498D, 0xB5B12FB4 }
+	#define PATHFINDING_HINTS_BLOCK_ID { 0xC96DFA6C, 0xCCE9498D, 0xB5B12FB4, 0xFC4E4BC2 }
 	TAG_STRUCT(
 		pathfinding_hints_block,
 		"pathfinding_hints_block",
@@ -44916,7 +44916,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(hint_type_enum, hint_type_enum_strings, _countof(hint_type_enum_strings));
 
-	#define ORDERS_BLOCK_ID { 0x00000000, 0xAA153229, 0x3F434BB1, 0xA442B744 }
+	#define ORDERS_BLOCK_ID { 0xAA153229, 0x3F434BB1, 0xA442B744, 0xB378C50A }
 	TAG_STRUCT(
 		orders_block,
 		"orders_block",
@@ -44969,7 +44969,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(force_combat_status_enum, force_combat_status_enum_strings, _countof(force_combat_status_enum_strings));
 
-	#define ORDER_COMPLETION_CONDITION_ID { 0x00000000, 0xF28511DE, 0xF3EF4ED6, 0xAA67399F }
+	#define ORDER_COMPLETION_CONDITION_ID { 0xF28511DE, 0xF3EF4ED6, 0xAA67399F, 0x165711C7 }
 	TAG_STRUCT(
 		order_completion_condition,
 		"order_completion_condition",
@@ -45029,7 +45029,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(completion_condition_flags, completion_condition_flags_strings, _countof(completion_condition_flags_strings));
 
-	#define ZONE_SET_BLOCK_ID { 0x00000000, 0xF805BB85, 0x40034CC8, 0xA7CED22B }
+	#define ZONE_SET_BLOCK_ID { 0xF805BB85, 0x40034CC8, 0xA7CED22B, 0xC5D6C669 }
 	TAG_STRUCT(
 		zone_set_block,
 		"zone_set_block",
@@ -45068,7 +45068,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(order_area_reference_character_flags, order_area_reference_character_flags_strings, _countof(order_area_reference_character_flags_strings));
 
-	#define SECONDARY_ZONE_SET_BLOCK_ID { 0x00000000, 0x64437F3D, 0x921A4EA7, 0xB816EB1A }
+	#define SECONDARY_ZONE_SET_BLOCK_ID { 0x64437F3D, 0x921A4EA7, 0xB816EB1A, 0x5F955A46 }
 	TAG_STRUCT(
 		secondary_zone_set_block,
 		"secondary_zone_set_block",
@@ -45085,7 +45085,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define TRIGGERS_BLOCK_ID { 0x00000000, 0xBDCE0188, 0x8F4F4836, 0xB6CB517B }
+	#define TRIGGERS_BLOCK_ID { 0xBDCE0188, 0x8F4F4836, 0xB6CB517B, 0x781A6B59 }
 	TAG_STRUCT(
 		triggers_block,
 		"triggers_block",
@@ -45110,7 +45110,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(trigger_flags, trigger_flags_strings, _countof(trigger_flags_strings));
 
-	#define PUREFORM_DISTRIBUTION_BLOCK_ID { 0x00000000, 0xC8E1FD93, 0x907546AB, 0x9D588091 }
+	#define PUREFORM_DISTRIBUTION_BLOCK_ID { 0xC8E1FD93, 0x907546AB, 0x9D588091, 0xC6E08BE9 }
 	TAG_STRUCT(
 		pureform_distribution_block,
 		"pureform_distribution_block",
@@ -45126,7 +45126,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define TRIGGER_REFERENCES_ID { 0x00000000, 0xE6CF862C, 0xBF56407F, 0x9FB84441 }
+	#define TRIGGER_REFERENCES_ID { 0xE6CF862C, 0xBF56407F, 0x9FB84441, 0x14EE598E }
 	TAG_STRUCT(
 		trigger_references,
 		"trigger_references",
@@ -45147,7 +45147,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(trigger_ref_flags, trigger_ref_flags_strings, _countof(trigger_ref_flags_strings));
 
-	#define ORDER_ENDING_BLOCK_ID { 0x00000000, 0xFB397E2B, 0xE8894CCB, 0x95BBC537 }
+	#define ORDER_ENDING_BLOCK_ID { 0xFB397E2B, 0xE8894CCB, 0x95BBC537, 0x06463876 }
 	TAG_STRUCT(
 		order_ending_block,
 		"order_ending_block",
@@ -45184,7 +45184,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(order_ending_dialogue_enum, order_ending_dialogue_enum_strings, _countof(order_ending_dialogue_enum_strings));
 
-	#define SECONDARY_SET_TRIGGER_BLOCK_ID { 0x00000000, 0xFE527898, 0x39E047EE, 0x8093F855 }
+	#define SECONDARY_SET_TRIGGER_BLOCK_ID { 0xFE527898, 0x39E047EE, 0x8093F855, 0x07FC3092 }
 	TAG_STRUCT(
 		secondary_set_trigger_block,
 		"secondary_set_trigger_block",
@@ -45199,7 +45199,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define AI_REFERENCE_FRAME_BLOCK_ID { 0x00000000, 0x521E8440, 0x839041A8, 0x98579405 }
+	#define AI_REFERENCE_FRAME_BLOCK_ID { 0x521E8440, 0x839041A8, 0x98579405, 0x2B079CEB }
 	TAG_STRUCT(
 		ai_reference_frame_block,
 		"ai_reference_frame_block",
@@ -45222,7 +45222,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(ai_reference_frame_flags, ai_reference_frame_flags_strings, _countof(ai_reference_frame_flags_strings));
 
-	#define CS_POINT_BLOCK_ID { 0x00000000, 0x2E9A6212, 0xC24649F6, 0xB5738072 }
+	#define CS_POINT_BLOCK_ID { 0x2E9A6212, 0xC24649F6, 0xB5738072, 0x69527BF3 }
 	TAG_STRUCT(
 		cs_point_block,
 		"cs_point_block",
@@ -45241,7 +45241,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define CS_POINT_SET_BLOCK_ID { 0x00000000, 0xB3DF7F2E, 0x72DA41E9, 0x9FA27244 }
+	#define CS_POINT_SET_BLOCK_ID { 0xB3DF7F2E, 0x72DA41E9, 0x9FA27244, 0x2AD627D1 }
 	TAG_STRUCT(
 		cs_point_set_block,
 		"cs_point_set_block",
@@ -45266,7 +45266,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(point_set_flags, point_set_flags_strings, _countof(point_set_flags_strings));
 
-	#define CS_SCRIPT_DATA_BLOCK_ID { 0x00000000, 0x667ACAAE, 0x6780495F, 0xB3DDEB61 }
+	#define CS_SCRIPT_DATA_BLOCK_ID { 0x667ACAAE, 0x6780495F, 0xB3DDEB61, 0x86448951 }
 	TAG_STRUCT(
 		cs_script_data_block,
 		"cs_script_data_block",
@@ -45280,7 +45280,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FLIGHT_REFERENCE_BLOCK_ID { 0x00000000, 0xCB74EBB1, 0x491241BB, 0x95438C3E }
+	#define FLIGHT_REFERENCE_BLOCK_ID { 0xCB74EBB1, 0x491241BB, 0x95438C3E, 0x3B97578A }
 	TAG_STRUCT(
 		flight_reference_block,
 		"flight_reference_block",
@@ -45296,7 +45296,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define AREA_CLUSTER_OCCUPANCY_BITVECTOR_ARRAY_STRUCT_DEFINITION_ID { 0x00000000, 0xC8420AC3, 0x96874B81, 0x8F07ACCE }
+	#define AREA_CLUSTER_OCCUPANCY_BITVECTOR_ARRAY_STRUCT_DEFINITION_ID { 0xC8420AC3, 0x96874B81, 0x8F07ACCE, 0xEDD9DE36 }
 	TAG_STRUCT(
 		area_cluster_occupancy_bitvector_array_struct_definition,
 		"area_cluster_occupancy_bitvector_array",
@@ -45309,7 +45309,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define AREAS_BLOCK_ID { 0x00000000, 0x65351716, 0xEEF54EC7, 0xB16396B1 }
+	#define AREAS_BLOCK_ID { 0x65351716, 0xEEF54EC7, 0xB16396B1, 0x2F48E3D7 }
 	TAG_STRUCT(
 		areas_block,
 		"areas_block",
@@ -45342,7 +45342,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(area_flags, area_flags_strings, _countof(area_flags_strings));
 
-	#define ZONE_BLOCK_ID { 0x00000000, 0x661CA582, 0xD7F44761, 0x8100E014 }
+	#define ZONE_BLOCK_ID { 0x661CA582, 0xD7F44761, 0x8100E014, 0x147ECA8B }
 	TAG_STRUCT(
 		zone_block,
 		"zone_block",
@@ -45368,7 +45368,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(zone_flags, zone_flags_strings, _countof(zone_flags_strings));
 
-	#define CHARACTER_PALETTE_BLOCK_ID { 0x00000000, 0xF0B3F635, 0xE3E84977, 0xA29C814A }
+	#define CHARACTER_PALETTE_BLOCK_ID { 0xF0B3F635, 0xE3E84977, 0xA29C814A, 0x90050BA2 }
 	TAG_STRUCT(
 		character_palette_block,
 		"character_palette_block",
@@ -45383,7 +45383,7 @@ namespace halo3_tools {
 
 	TAG_REFERENCE(character_group_reference_tagref, CHARACTER_TAG);
 
-	#define AI_RECORDING_REFERENCE_BLOCK_ID { 0x00000000, 0x5E862427, 0xA53A4CE0, 0xB153EC6F }
+	#define AI_RECORDING_REFERENCE_BLOCK_ID { 0x5E862427, 0xA53A4CE0, 0xB153EC6F, 0x5E93FE9C }
 	TAG_STRUCT(
 		ai_recording_reference_block,
 		"ai_recording_reference_block",
@@ -45397,7 +45397,7 @@ namespace halo3_tools {
 		{ _field_terminator }
 	};
 
-	#define FIRING_POSITIONS_BLOCK_ID { 0x00000000, 0xA8B4FE85, 0xA9034300, 0xAFABFF3A }
+	#define FIRING_POSITIONS_BLOCK_ID { 0xA8B4FE85, 0xA9034300, 0xAFABFF3A, 0xA083CEF9 }
 	TAG_STRUCT(
 		firing_positions_block,
 		"firing_positions_block",
@@ -45443,7 +45443,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(firing_position_posture_flags, firing_position_posture_flags_strings, _countof(firing_position_posture_flags_strings));
 
-	#define WALKER_PHYSICS_LEG_BLOCK_ID { 0x00000000, 0x3DED37EB, 0xB2934219, 0x901F0006 }
+	#define WALKER_PHYSICS_LEG_BLOCK_ID { 0x3DED37EB, 0xB2934219, 0x901F0006, 0x75D3AF53 }
 	TAG_STRUCT(
 		walker_physics_leg_block,
 		"walker_physics_leg_block",
@@ -45501,7 +45501,7 @@ namespace halo3_tools {
 	};
 	STRING_LIST(walker_physics_leg_flags, walker_physics_leg_flags_strings, _countof(walker_physics_leg_flags_strings));
 
-	#define WALKER_PHYSICS_STRUCT_ID { 0x00000000, 0x769D2C0D, 0xAEF54395, 0x86ECFA87 }
+	#define WALKER_PHYSICS_STRUCT_ID { 0x769D2C0D, 0xAEF54395, 0x86ECFA87, 0xB067AB04 }
 	TAG_STRUCT(
 		walker_physics_struct,
 		"walker_physics_struct",
@@ -45519,6 +45519,326 @@ namespace halo3_tools {
 		{ _field_real_vector_3d, "object space pivot position" },
 		{ _field_terminator }
 	};
+
+	TAG_DATA(
+		function_definition_data,
+		"function_definition_data",
+		4,
+		2,
+		872,
+		k_max_function_size);
+
+	TAG_DATA(
+		custom_script_data,
+		"custom_script_data",
+		2,
+		0,
+		4096,
+		HS_MAXIMUM_DYNAMIC_SOURCE_DATA_BYTES);
+
+	TAG_DATA(
+		sound_resource_samples,
+		"sound_resource_samples",
+		6657,
+		11,
+		2147483647,
+		LONG_MAX);
+
+	TAG_DATA(
+		generic_tag_data,
+		"generic_tag_data",
+		0,
+		0,
+		402653184,
+		MAX(MAXIMUM_SOUND_MOUTH_DATA_SIZE, MAXIMUM_SOUND_LIPSYNC_DATA_SIZE)*MAXIMUM_PITCH_RANGES_PER_SOUND*MAXIMUM_PERMUTATIONS_PER_PITCH_RANGE);
+
+	TAG_DATA(
+		sound_samples,
+		"sound_samples",
+		6352,
+		0,
+		134217728,
+		MAXIMUM_SOUND_DATA_SIZE);
+
+	TAG_DATA(
+		sound_mouth_data,
+		"sound_mouth_data",
+		0,
+		0,
+		8192,
+		MAXIMUM_SOUND_MOUTH_DATA_SIZE);
+
+	TAG_DATA(
+		sound_lipsync_data,
+		"sound_lipsync_data",
+		0,
+		0,
+		1048576,
+		MAXIMUM_SOUND_LIPSYNC_DATA_SIZE);
+
+	TAG_DATA(
+		bitmap_group_pixel_data_def,
+		"bitmap_group_pixel_data_def",
+		64,
+		12,
+		1073741824,
+		MAXIMUM_BITMAP_PIXELS_SIZE);
+
+	TAG_DATA(
+		bitmap_group_xenon_pixel_data_def,
+		"bitmap_group_xenon_pixel_data_def",
+		72,
+		12,
+		1073741824,
+		MAXIMUM_BITMAP_PIXELS_SIZE);
+
+	TAG_DATA(
+		bitmap_group_source_data_def,
+		"bitmap_group_source_data_def",
+		65,
+		0,
+		1073741824,
+		MAXIMUM_BITMAP_PIXELS_SIZE);
+
+	TAG_DATA(
+		utf8_string_data,
+		"utf8_string_data",
+		2,
+		0,
+		14745600,
+		k_maximum_multilingual_unicode_strings_per_string_list * k_large_text_buffer_size * 4);
+
+	TAG_DATA(
+		structure_bsp_cluster_encoded_sound_data,
+		"structure_bsp_cluster_encoded_sound_data",
+		0,
+		0,
+		32768,
+		(MAXIMUM_CLUSTERS_PER_STRUCTURE*MAXIMUM_CLUSTERS_PER_STRUCTURE/2)*sizeof(byte));
+
+	TAG_DATA(
+		faux_data_radiance_data,
+		"faux_data_radiance_data",
+		0,
+		0,
+		1073741824,
+		KILO*MEG);
+
+	TAG_DATA(
+		faux_data_lightprobe_data,
+		"faux_data_lightprobe_data",
+		0,
+		0,
+		1073741824,
+		KILO*MEG);
+
+	TAG_DATA(
+		editor_scenario_data_definition,
+		"editor_scenario_data_definition",
+		8,
+		0,
+		65536,
+		MAXIMUM_EDITOR_SCENARIO_DATA_SIZE);
+
+	TAG_DATA(
+		sound_effect_hardware_format_data_definition,
+		"sound_effect_hardware_format_data_definition",
+		0,
+		2,
+		1024,
+		k_maximum_sound_effect_hardware_format_size);
+
+	TAG_DATA(
+		sound_effect_template_explanation,
+		"sound_effect_template_explanation",
+		10,
+		0,
+		65536,
+		64*k_kilo);
+
+	TAG_DATA(
+		aligned_animation_data_definition_v1,
+		"aligned_animation_data_definition_v1",
+		0,
+		4,
+		33724160,
+		k_max_animation_data_size);
+
+	TAG_DATA(
+		error_report_string_data$2,
+		"error_report_string_data",
+		2,
+		0,
+		131072,
+		k_max_error_string_length);
+
+	TAG_DATA(
+		naive_sample_data,
+		"naive_sample_data",
+		0,
+		12,
+		134217728,
+		128*k_meg);
+
+	TAG_DATA(
+		naive_control_data_definition,
+		"naive_control_data_definition",
+		256,
+		5,
+		2147483647,
+		LONG_MAX);
+
+	TAG_DATA(
+		bink_resource_data,
+		"bink_resource_data",
+		0,
+		0,
+		2147483647,
+		k_bink_resource_data_maximum_size);
+
+	TAG_DATA(
+		parameters_text_definition,
+		"parameters_text_definition",
+		10,
+		0,
+		65535,
+		UNSIGNED_SHORT_MAX);
+
+	TAG_DATA(
+		mopp_code_data_definition,
+		"mopp_code_data_definition",
+		256,
+		4,
+		1048576,
+		k_maximum_mopp_code_size);
+
+	TAG_DATA(
+		mesh_pca_data_definition,
+		"mesh_pca_data_definition",
+		0,
+		0,
+		67108864,
+		MAXIMUM_PRT_DATA_SIZE_PER_MESH);
+
+	TAG_DATA(
+		user_data_definition,
+		"user_data_definition",
+		0,
+		0,
+		16384,
+		MAXIMUM_USER_DATA_SIZE);
+
+	TAG_DATA(
+		global_section_mopp_code_data,
+		"global_section_mopp_code_data",
+		256,
+		4,
+		393216,
+		k_maximum_visibility_mopp_code_size);
+
+	TAG_DATA(
+		error_report_string_data,
+		"error_report_string_data",
+		2,
+		0,
+		8192,
+		MAXIMUM_ERROR_REPORT_STRING_LENGTH+1);
+
+	TAG_DATA(
+		hs_source_data_definition,
+		"hs_source_data_definition",
+		2,
+		0,
+		1048576,
+		k_maximum_hs_source_data_per_file);
+
+	TAG_DATA(
+		hs_string_data_definition,
+		"hs_string_data_definition",
+		256,
+		0,
+		819200,
+		k_maximum_hs_string_data_per_scenario);
+
+	TAG_DATA(
+		recorded_animation_event_stream_data,
+		"recorded_animation_event_stream_data",
+		0,
+		0,
+		2097152,
+		MAXIMUM_RECORDED_ANIMATION_DATA_SIZE);
+
+	TAG_DATA(
+		code_block$2,
+		"code_block",
+		10,
+		0,
+		131070,
+		UNSIGNED_SHORT_MAX*2);
+
+	TAG_DATA(
+		code_block,
+		"code_block",
+		10,
+		0,
+		131070,
+		UNSIGNED_SHORT_MAX*2);
+
+	TAG_DATA(
+		dx9_compiled_shader_data,
+		"dx9_compiled_shader_data",
+		0,
+		0,
+		67108864,
+		c_rasterizer_compiled_shader::k_maximum_shader_size);
+
+	TAG_DATA(
+		xenon_compiled_shader_data,
+		"xenon_compiled_shader_data",
+		8,
+		0,
+		67108864,
+		c_rasterizer_compiled_shader::k_maximum_shader_size);
+
+	TAG_DATA(
+		durango_compiled_shader_data,
+		"durango_compiled_shader_data",
+		0,
+		0,
+		67108864,
+		c_rasterizer_compiled_shader::k_maximum_shader_size);
+
+	TAG_DATA(
+		fragment_data,
+		"fragment_data",
+		8,
+		0,
+		1048576,
+		k_meg);
+
+	TAG_DATA(
+		rasterizer_screen_effect_text_definition,
+		"rasterizer_screen_effect_text_definition",
+		10,
+		0,
+		65535,
+		UNSIGNED_SHORT_MAX);
+
+	TAG_DATA(
+		meter_stencil_data_definition,
+		"meter_stencil_data_definition",
+		0,
+		0,
+		65536,
+		MAXIMUM_METER_DEFINITION_ENCODED_STENCIL_SIZE);
+
+	TAG_DATA(
+		cortana_script_data,
+		"cortana_script_data",
+		2,
+		0,
+		4096,
+		HS_MAXIMUM_DYNAMIC_SOURCE_DATA_BYTES);
 
 
 } // namespace blofeld

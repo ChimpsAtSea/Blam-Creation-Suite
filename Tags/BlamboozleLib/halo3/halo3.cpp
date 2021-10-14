@@ -276,6 +276,25 @@ void h3_sort_structures(std::vector<c_h3_tag_group_definition*>& group_definitio
 	}
 }
 
+std::vector<c_h3_tag_data_definition*> exported_data_definitions;
+void h3_clear_exported_datas()
+{
+	exported_data_definitions.clear();
+}
+
+bool is_data_exported(c_h3_tag_data_definition& data_definition)
+{
+	for (c_h3_tag_data_definition* current_data_definition : exported_data_definitions)
+	{
+		if (current_data_definition == &data_definition)
+		{
+			return true;
+		}
+	}
+	exported_data_definitions.push_back(&data_definition);
+	return false;
+}
+
 std::vector<c_h3_tag_struct_definition*> exported_struct_definitions;
 void h3_clear_exported_structs()
 {
@@ -821,6 +840,48 @@ void h3_write_fields(std::stringstream& s, std::vector<c_h3_tag_field*>& fields)
 			s << " }," << std::endl;
 		}
 		break;
+		case _h3_field_type_data:
+		{
+			s << "\t\t{ ";
+			s << field_generic_type_name << ", ";
+			s << "\"" << name.c_str() << "\"";
+			if (write_description)
+			{
+				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
+				else s << ", " << "nullptr";
+			}
+			if (write_units)
+			{
+				if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
+				else s << ", " << "nullptr";
+			}
+			if (write_limits)
+			{
+				if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
+				else s << ", " << "nullptr";
+			}
+			if (write_old_name)
+			{
+				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+			}
+			if (write_flags)
+			{
+				s << ", ";
+				h3_generate_tag_field_flags(s, string_parser);
+			}
+			ASSERT(tag_field->data_definition);
+			if (tag_field->data_definition)
+			{
+				s << ", &blofeld::" << _namespace << "::" << tag_field->data_definition->code_name;
+			}
+			if (write_tag)
+			{
+				s << ", " << tag_field->field_id_string;
+			}
+
+			s << " }," << std::endl;
+		}
+		break;
 		case _h3_field_type_pageable_resource:
 		{
 			s << "\t\t{ ";
@@ -1175,8 +1236,10 @@ void h3_export_header(
 	std::vector<c_h3_tag_group_definition*>& group_definitions,
 	std::vector<c_h3_tag_block_definition*>& block_definitions,
 	std::vector<c_h3_tag_array_definition*>& array_definitions,
-	std::vector<c_h3_tag_struct_definition*>& struct_definitions)
+	std::vector<c_h3_tag_struct_definition*>& struct_definitions,
+	std::vector<c_h3_tag_data_definition*>& data_definitions)
 {
+	h3_clear_exported_datas();
 	h3_clear_exported_structs();
 	h3_clear_exported_groups();
 	h3_clear_exported_blocks();
@@ -1246,6 +1309,16 @@ void h3_export_header(
 			s << std::endl;
 		}
 	}
+	
+	for (auto& data_definition : data_definitions)
+	{
+		if (!is_data_exported(*data_definition))
+		{
+			s << "\textern s_tag_data_definition " << data_definition->code_name << ";" << std::endl;
+
+			s << std::endl;
+		}
+	}
 
 	s << std::endl;
 	s << "} // namespace blofeld" << std::endl;
@@ -1259,8 +1332,10 @@ void h3_export_source(
 	std::vector<c_h3_tag_group_definition*>& group_definitions,
 	std::vector<c_h3_tag_block_definition*>& block_definitions,
 	std::vector<c_h3_tag_array_definition*>& array_definitions,
-	std::vector<c_h3_tag_struct_definition*>& struct_definitions)
+	std::vector<c_h3_tag_struct_definition*>& struct_definitions,
+	std::vector<c_h3_tag_data_definition*>& data_definitions)
 {
+	h3_clear_exported_datas();
 	h3_clear_exported_structs();
 	h3_clear_exported_groups();
 	h3_clear_exported_blocks();
@@ -1384,6 +1459,20 @@ void h3_export_source(
 			h3_write_tag_types_source(s, struct_definition->fields);
 		}
 	}
+	for (auto& data_definition : data_definitions)
+	{
+		if (!is_data_exported(*data_definition))
+		{
+			s << "\tTAG_DATA(" << std::endl;
+			s << "\t\t" << data_definition->code_name << "," << std::endl;
+			s << "\t\t" << "\"" << data_definition->name << "\"," << std::endl;
+			s << "\t\t" << "" << data_definition->flags << "," << std::endl;
+			s << "\t\t" << "" << data_definition->alignment_bit << "," << std::endl;
+			s << "\t\t" << "" << data_definition->maximum_size << "," << std::endl;
+			s << "\t\t" << "" << data_definition->maximum_size_string << ");" << std::endl;
+			s << std::endl;
+		}
+	}
 
 	s << std::endl;
 	s << "} // namespace blofeld" << std::endl;
@@ -1396,7 +1485,8 @@ void h3_export_code(
 	std::vector<c_h3_tag_group_definition*>& group_definitions,
 	std::vector<c_h3_tag_block_definition*>& block_definitions,
 	std::vector<c_h3_tag_array_definition*>& array_definitions,
-	std::vector<c_h3_tag_struct_definition*>& struct_definitions)
+	std::vector<c_h3_tag_struct_definition*>& struct_definitions,
+	std::vector<c_h3_tag_data_definition*>& data_definitions)
 {
 	std::stringstream header_stream;
 	std::stringstream source_stream;
@@ -1404,8 +1494,8 @@ void h3_export_code(
 	h3_sort_group_definitions(group_definitions);
 	h3_sort_structures(sorted_group_definitions);
 
-	h3_export_header(header_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions);
-	h3_export_source(source_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions);
+	h3_export_header(header_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions);
+	h3_export_source(source_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions);
 
 	std::string header_string = header_stream.str();
 	std::string source_string = source_stream.str();

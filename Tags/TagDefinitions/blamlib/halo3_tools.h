@@ -6706,6 +6706,86 @@ namespace halo3_tools {
 
 	extern s_tag_struct_definition walker_physics_struct;
 
+	extern s_tag_data_definition function_definition_data;
+
+	extern s_tag_data_definition custom_script_data;
+
+	extern s_tag_data_definition sound_resource_samples;
+
+	extern s_tag_data_definition generic_tag_data;
+
+	extern s_tag_data_definition sound_samples;
+
+	extern s_tag_data_definition sound_mouth_data;
+
+	extern s_tag_data_definition sound_lipsync_data;
+
+	extern s_tag_data_definition bitmap_group_pixel_data_def;
+
+	extern s_tag_data_definition bitmap_group_xenon_pixel_data_def;
+
+	extern s_tag_data_definition bitmap_group_source_data_def;
+
+	extern s_tag_data_definition utf8_string_data;
+
+	extern s_tag_data_definition structure_bsp_cluster_encoded_sound_data;
+
+	extern s_tag_data_definition faux_data_radiance_data;
+
+	extern s_tag_data_definition faux_data_lightprobe_data;
+
+	extern s_tag_data_definition editor_scenario_data_definition;
+
+	extern s_tag_data_definition sound_effect_hardware_format_data_definition;
+
+	extern s_tag_data_definition sound_effect_template_explanation;
+
+	extern s_tag_data_definition aligned_animation_data_definition_v1;
+
+	extern s_tag_data_definition error_report_string_data$2;
+
+	extern s_tag_data_definition naive_sample_data;
+
+	extern s_tag_data_definition naive_control_data_definition;
+
+	extern s_tag_data_definition bink_resource_data;
+
+	extern s_tag_data_definition parameters_text_definition;
+
+	extern s_tag_data_definition mopp_code_data_definition;
+
+	extern s_tag_data_definition mesh_pca_data_definition;
+
+	extern s_tag_data_definition user_data_definition;
+
+	extern s_tag_data_definition global_section_mopp_code_data;
+
+	extern s_tag_data_definition error_report_string_data;
+
+	extern s_tag_data_definition hs_source_data_definition;
+
+	extern s_tag_data_definition hs_string_data_definition;
+
+	extern s_tag_data_definition recorded_animation_event_stream_data;
+
+	extern s_tag_data_definition code_block$2;
+
+	extern s_tag_data_definition code_block;
+
+	extern s_tag_data_definition dx9_compiled_shader_data;
+
+	extern s_tag_data_definition xenon_compiled_shader_data;
+
+	extern s_tag_data_definition durango_compiled_shader_data;
+
+	extern s_tag_data_definition fragment_data;
+
+	extern s_tag_data_definition rasterizer_screen_effect_text_definition;
+
+	extern s_tag_data_definition meter_stencil_data_definition;
+
+	extern s_tag_data_definition cortana_script_data;
+
 
 } // namespace blofeld
 

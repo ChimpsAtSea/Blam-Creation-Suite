@@ -71,6 +71,9 @@ s_tag_struct_definition symbol##_struct_definition = s_tag_struct_definition(#sy
 s_tag_array_definition symbol = { #symbol, pretty_name, __FILE__, __LINE__, [](s_engine_platform_build engine_platform_build) { using namespace blofeld; return static_cast<unsigned long>(count); }, #count, symbol##_struct_definition }; \
 s_tag_field symbol##_struct_definition_fields[] =
 
+#define TAG_DATA(symbol, pretty_name, flags, alignment_bits, maximum_size, ...) \
+s_tag_data_definition symbol = s_tag_data_definition(#symbol, pretty_name, flags, maximum_size, "", __FILE__, __LINE__, alignment_bits );
+
 //// symbol, group_tag, parent_group, parent_group_tag, max_count, struct_name, persistent_identifier, [aligmnment_bits]
 //#define TAG_GROUP(symbol, group_tag, parent_group, parent_group_tag, max_count, struct_name, persistent_identifier, ...) \
 //extern s_tag_field symbol##_struct_definition_fields[]; \

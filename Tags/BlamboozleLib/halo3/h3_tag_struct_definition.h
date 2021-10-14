@@ -14,6 +14,7 @@ struct s_h3_tag_struct_definition
 	ptr64 name_address;
 	ptr64 filepath_address;
 	long line_number;
+	long padding;
 	s_h3_tag_persistent_identifier persistent_identifier;
 	ptr64 fields_address;
 	unsigned long structure_size;

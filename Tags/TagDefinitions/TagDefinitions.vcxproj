@@ -342,6 +342,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="types\tag_block_definition.cpp" />
+    <ClCompile Include="types\tag_data_definition.cpp" />
     <ClCompile Include="types\tag_group.cpp" />
     <ClCompile Include="types\tag_struct_definition.cpp" />
     <ClCompile Include="definition_migration.cpp" />
@@ -666,6 +667,7 @@
     <ClInclude Include="types\string_list_definition.h" />
     <ClInclude Include="types\tag_array_definition.h" />
     <ClInclude Include="types\tag_block_definition.h" />
+    <ClInclude Include="types\tag_data_definition.h" />
     <ClInclude Include="types\tag_field.h" />
     <ClInclude Include="types\tag_group.h" />
     <ClInclude Include="types\tag_interop_definition.h" />

@@ -29,6 +29,7 @@ public:
 	c_h3_tag_array_definition* array_definition;
 	c_h3_string_list_definition* string_list_definition;
 	c_h3_tag_pageable_resource_definition* pageable_resource_definition;
+	c_h3_tag_data_definition* data_definition;
 
 	unsigned long long padding;
 	unsigned long long skip_length;
