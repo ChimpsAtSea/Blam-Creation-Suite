@@ -88,6 +88,12 @@ BCS_RESULT console_write_line(const char* format, ...)
 	return BCS_S_OK;
 }
 
+BCS_RESULT console_end_line()
+{
+	puts("");
+	return BCS_S_OK;
+}
+
 BCS_RESULT console_write_line_with_debug(const char* format, ...)
 {
 	//if (console_mutex)
