@@ -13,7 +13,7 @@ c_tag_string_id_chunk::c_tag_string_id_chunk(void* chunk_data, c_chunk& parent, 
 
 	log_pad();
 	log_signature();
-	console_write_line("'%s'", string);
+	console_write_line_verbose("'%s'", string);
 }
 
 c_tag_string_id_chunk::~c_tag_string_id_chunk()
@@ -24,5 +24,5 @@ c_tag_string_id_chunk::~c_tag_string_id_chunk()
 void c_tag_string_id_chunk::log_impl(c_string_data_chunk* string_data_chunk) const
 {
 	log_signature();
-	console_write_line("'%s'", string);
+	console_write_line_verbose("'%s'", string);
 }

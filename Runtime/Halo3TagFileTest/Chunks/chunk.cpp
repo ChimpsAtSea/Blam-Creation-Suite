@@ -58,7 +58,7 @@ void c_chunk::log_pad() const
 {
 	for (unsigned long i = 0; i < depth; i++)
 	{
-		printf("  ");
+		console_write_verbose("  ");
 	}
 }
 
@@ -70,13 +70,13 @@ void c_chunk::log_signature() const
 		char _signature[4];
 	};
 	_signature_byteswapped = _byteswap_ulong(signature);
-	console_write("%.4s ", _signature);
+	console_write_verbose("%.4s ", _signature);
 }
 
 void c_chunk::log_impl(c_string_data_chunk* string_data_chunk) const
 {
 	log_signature();
-	console_end_line();
+	console_end_line_verbose();
 }
 
 c_chunk* c_chunk::find_first_chunk(unsigned long type) const
@@ -117,9 +117,9 @@ void c_chunk::parse_children(void* userdata, char* data, bool force_fast)
 	intptr_t bytes_to_parse = chunk_data_end - data;
 	if (bytes_to_parse <= 0x10000 || force_fast)
 	{
-		//children_fast_allocation = 1;
-		//children = create_child_chunks_fast(data, layout_reader, reader);
-		children = create_child_chunks_slow(data, userdata);
+		children_fast_allocation = 1;
+		children = create_child_chunks_fast(data, userdata);
+		//children = create_child_chunks_slow(data, userdata);
 	}
 	else
 	{
@@ -170,12 +170,12 @@ c_chunk** c_chunk::create_child_chunks_fast(char* data_start, void* userdata)
 			STACK_CHUNK_CTOR(c_data_definition_name_chunk, data_position, *this);
 			STACK_CHUNK_CTOR(c_array_definitions_chunk, data_position, *this);
 			STACK_CHUNK_CTOR(c_tag_field_types_chunk, data_position, *this);
-			STACK_CHUNK_CTOR(s_fields_chunk, data_position, *this);
+			STACK_CHUNK_CTOR(c_fields_chunk, data_position, *this);
 			STACK_CHUNK_CTOR(c_block_definitions_chunk, data_position, *this);
 			STACK_CHUNK_CTOR(c_resource_definitions_chunk, data_position, *this);
 			STACK_CHUNK_CTOR(c_interop_definitions_chunk, data_position, *this);
 			STACK_CHUNK_CTOR(c_structure_definitions_chunk, data_position, *this);
-			STACK_CHUNK_CTOR(c_binary_data_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			STACK_CHUNK_CTOR(c_binary_data_chunk, data_position, *this);
 			STACK_CHUNK_CTOR(c_tag_block_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
 			STACK_CHUNK_CTOR(c_tag_struct_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
 			STACK_CHUNK_CTOR(c_tag_string_id_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
@@ -252,12 +252,12 @@ c_chunk** c_chunk::create_child_chunks_slow(char* data_start, void* userdata)
 			STACK_CHUNK_CTOR(c_data_definition_name_chunk, data_position, *this);
 			STACK_CHUNK_CTOR(c_array_definitions_chunk, data_position, *this);
 			STACK_CHUNK_CTOR(c_tag_field_types_chunk, data_position, *this);
-			STACK_CHUNK_CTOR(s_fields_chunk, data_position, *this);
+			STACK_CHUNK_CTOR(c_fields_chunk, data_position, *this);
 			STACK_CHUNK_CTOR(c_block_definitions_chunk, data_position, *this);
 			STACK_CHUNK_CTOR(c_resource_definitions_chunk, data_position, *this);
 			STACK_CHUNK_CTOR(c_interop_definitions_chunk, data_position, *this);
 			STACK_CHUNK_CTOR(c_structure_definitions_chunk, data_position, *this);
-			STACK_CHUNK_CTOR(c_binary_data_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			STACK_CHUNK_CTOR(c_binary_data_chunk, data_position, *this);
 			STACK_CHUNK_CTOR(c_tag_block_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
 			STACK_CHUNK_CTOR(c_tag_struct_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
 			STACK_CHUNK_CTOR(c_tag_string_id_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));

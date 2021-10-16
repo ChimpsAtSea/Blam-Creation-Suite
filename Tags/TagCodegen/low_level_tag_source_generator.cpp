@@ -301,7 +301,7 @@ void c_low_level_tag_source_generator::generate_header() const
 
 							for (size_t group_tag_index = 0; group_tag_index < group_tags.size(); group_tag_index++)
 							{
-								const s_tag_group* tag_group = get_group_tag_by_group_tag(engine_platform_build.engine_type, group_tags[group_tag_index]);
+								const s_tag_group* tag_group = get_tag_group_by_group_tag(engine_platform_build.engine_type, group_tags[group_tag_index]);
 								if (tag_group == nullptr)
 								{
 									debug_point;

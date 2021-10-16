@@ -11,13 +11,13 @@ c_string_lists_chunk::c_string_lists_chunk(void* chunk_data, c_chunk& parent) :
 void c_string_lists_chunk::log_impl(c_string_data_chunk* string_data_chunk) const
 {
 	log_signature();
-	console_write_line("count:0x % 08X", entry_count);
+	console_write_line_verbose("count:0x % 08X", entry_count);
 
 	for (unsigned long index = 0; index < entry_count; index++)
 	{
 		s_string_list_entry& entry = entries[index];
 		char* name = string_data_chunk->chunk_data_begin + entry.name_string_offset;
-		log_pad(); console_write_line(
+		log_pad(); console_write_line_verbose(
 			"\t0x%08X\tstring_offset_start_index:0x%08X\tstring_offset_start_index:0x%08X\t'%s'",
 			index,
 			entry.string_offset_count,

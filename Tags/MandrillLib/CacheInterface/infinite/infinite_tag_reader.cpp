@@ -158,7 +158,7 @@ BCS_RESULT c_infinite_tag_reader::read_tag_instances()
 			ASSERT(file_entry.parent_file_index == -1);
 			s_infinite_tag_instance_info& tag_instance_info = tag_instance_infos[tag_instance_index];
 
-			const blofeld::s_tag_group* tag_group = blofeld::get_group_tag_by_group_tag(cache_reader.engine_platform_build.engine_type, file_entry.group_tag);
+			const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(cache_reader.engine_platform_build.engine_type, file_entry.group_tag);
 			ASSERT(tag_group != nullptr);
 
 			tag_instance_info.file_entry_block_map = &file_entry_block_map;

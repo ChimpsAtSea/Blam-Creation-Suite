@@ -17,7 +17,7 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(c_tag_group_lay
 	data_definition_name_chunk = tag_group_layout_chunk.find_first_chunk<c_data_definition_name_chunk>();
 	block_definitions_chunk = tag_group_layout_chunk.find_first_chunk<c_block_definitions_chunk>();
 	tag_field_types_chunk = tag_group_layout_chunk.find_first_chunk<c_tag_field_types_chunk>();
-	fields_chunk = tag_group_layout_chunk.find_first_chunk<s_fields_chunk>();
+	fields_chunk = tag_group_layout_chunk.find_first_chunk<c_fields_chunk>();
 	structure_definitions_chunk = tag_group_layout_chunk.find_first_chunk<c_structure_definitions_chunk>();
 
 	ASSERT(string_data_chunk != nullptr);
@@ -87,7 +87,7 @@ unsigned long c_single_tag_file_layout_reader::calculate_structure_size_by_entry
 
 		structure_size += field_size;
 
-		//console_write_line("0x%08lX 0x%08lX %s %s", field_size, structure_size, type_string, name_string);
+		//console_write_line_verbose("0x%08lX 0x%08lX %s %s", field_size, structure_size, type_string, name_string);
 
 		debug_point;
 	}

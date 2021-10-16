@@ -8,7 +8,7 @@ class c_array_definitions_chunk;
 class c_data_definition_name_chunk;
 class c_block_definitions_chunk;
 class c_tag_field_types_chunk;
-class s_fields_chunk;
+class c_fields_chunk;
 class c_structure_definitions_chunk;
 
 class c_single_tag_file_layout_reader
@@ -20,7 +20,7 @@ public:
 	c_data_definition_name_chunk* data_definition_name_chunk;
 	c_block_definitions_chunk* block_definitions_chunk;
 	c_tag_field_types_chunk* tag_field_types_chunk;
-	s_fields_chunk* fields_chunk;
+	c_fields_chunk* fields_chunk;
 	c_structure_definitions_chunk* structure_definitions_chunk;
 
 	c_single_tag_file_layout_reader(c_tag_group_layout_chunk& tag_group_layout_chunk);

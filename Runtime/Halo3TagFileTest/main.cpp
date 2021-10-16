@@ -19,8 +19,6 @@ static float4 window_background_color = { 0.130f, 0.141f, 0.167f, 1.0f };
 
 static long _depth = -1;
 
-static bool verbose = false;
-
 struct s_single_tag_file_header;
 class c_chunk;
 class c_tag_group_layout_chunk;
@@ -41,11 +39,6 @@ public:
 	c_tag_group_layout_chunk* tag_group_layout_chunk;
 	c_binary_data_chunk* binary_data_chunk;
 
-	const blofeld::s_tag_group* blofeld_tag_group;
-	const blofeld::s_tag_block_definition* blofeld_tag_block_definition;
-	const blofeld::s_tag_struct_definition* blofeld_tag_group_struct_definition;
-
-
 	c_tag_file_high_level_transplant(const char* filepath)
 	{
 		BCS_FAIL_THROW(filesystem_read_file_to_memory(filepath, tag_file_data, tag_file_data_size));
@@ -57,6 +50,11 @@ public:
 		tag root_node_tag = *reinterpret_cast<tag*>(header_data + 1);
 		ASSERT(root_node_tag == k_tag_file_root_data_stream_tag);
 
+		engine_platform_build = { _engine_type_halo3 };
+
+		c_stopwatch s;
+		s.start();
+
 		root_chunk = new c_tag_header_chunk(header_data + 1);
 		tag_group_layout_chunk = root_chunk->find_first_chunk<c_tag_group_layout_chunk>();
 		binary_data_chunk = root_chunk->find_first_chunk<c_binary_data_chunk>();
@@ -65,26 +63,22 @@ public:
 		ASSERT(binary_data_chunk != nullptr);
 
 		layout_reader = new c_single_tag_file_layout_reader(*tag_group_layout_chunk);
-		tag_group_layout_chunk->log(layout_reader->string_data_chunk);
-		reader = new c_single_tag_file_reader(*layout_reader, *binary_data_chunk);
-		binary_data_chunk->log(layout_reader->string_data_chunk);
 
-		engine_platform_build = { _engine_type_halo3 };
-		blofeld_tag_group = blofeld::get_group_tag_by_group_tag(engine_platform_build.engine_type, header_data->group_tag);
-		ASSERT(blofeld_tag_group != nullptr);
-		blofeld_tag_block_definition = &blofeld_tag_group->block_definition;
-		blofeld_tag_group_struct_definition = &blofeld_tag_block_definition->struct_definition;
-		h_object* high_level = h_object::create_high_level_object(*blofeld_tag_group_struct_definition, engine_platform_build);
-		ASSERT(high_level);
+		reader = new c_single_tag_file_reader(
+			*header_data,
+			engine_platform_build,
+			*layout_reader,
+			*binary_data_chunk);
 
-		const s_block_definition_entry* root_block_definition_entry = layout_reader->block_definitions_chunk->entries + tag_group_layout_chunk->tag_group_layout_header->tag_group_block_index;
-		const char* root_block_definition_name = layout_reader->string_data_chunk->chunk_data_begin + root_block_definition_entry->name_string_offset;
-		ASSERT(strcmp(root_block_definition_name, blofeld_tag_block_definition->name) == 0); // sanity check
-		const s_struct_definition_entry* root_structure_definition_entry = layout_reader->structure_definitions_chunk->entries + root_block_definition_entry->structure_entry_index;
-		ASSERT(root_structure_definition_entry->persistent_identifier == blofeld_tag_group->block_definition.struct_definition.persistent_identifier); // sanity check
-		const char* root_struct_definition_name = layout_reader->string_data_chunk->chunk_data_begin + root_structure_definition_entry->name_string_offset;
-		ASSERT(strcmp(root_struct_definition_name, blofeld_tag_group_struct_definition->name) == 0); // sanity check
+		s.stop();
+		float ms = s.get_miliseconds();
+		console_write_line("Processed chunks in %.2f ms", ms);
 
+		//tag_group_layout_chunk->log(layout_reader->string_data_chunk);
+		//binary_data_chunk->log(layout_reader->string_data_chunk);
+
+		h_tag* high_level_tag;
+		reader->parse_high_level_object(high_level_tag);
 		debug_point;
 	}
 
@@ -102,8 +96,6 @@ int main()
 	BCS_RESULT rs0 = init_command_line();
 	BCS_RESULT rs1 = init_console();
 	if (BCS_SUCCEEDED(rs1)) rs1 = BCS_SUCCEEDED(command_line_has_argument("console")) ? alloc_console("Halo 3 Tag File Test Console") : BCS_S_OK;
-
-	verbose = BCS_SUCCEEDED(command_line_has_argument("verbose"));
 
 	const char* filepath;
 	if (BCS_SUCCEEDED(command_line_get_argument("tagfilepath", filepath)))

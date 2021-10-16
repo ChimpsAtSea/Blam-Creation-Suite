@@ -17,7 +17,7 @@ namespace blofeld
 	constexpr unsigned long INVALID_TAG = 0xFFFFFFFF;
 	constexpr unsigned long ANY_TAG = 0;
 
-	BCS_DEBUG_API const s_tag_group* get_group_tag_by_group_tag(e_engine_type engine_type, unsigned long group_tag);
+	BCS_DEBUG_API const s_tag_group* get_tag_group_by_group_tag(e_engine_type engine_type, unsigned long group_tag);
 	struct s_tag_struct_validation_data
 	{
 		const s_tag_struct_definition& struct_definition;

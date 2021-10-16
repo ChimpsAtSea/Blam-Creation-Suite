@@ -2,9 +2,11 @@
 #include <iostream>
 
 //HANDLE console_mutex;
+static bool console_verbose = false;
 
 BCS_RESULT init_console()
 {
+	console_verbose = BCS_SUCCEEDED(command_line_has_argument("verbose"));
 	//console_mutex = CreateMutexA(NULL, FALSE, "console mutex");
 
 	return BCS_S_OK;
@@ -45,45 +47,21 @@ BCS_RESULT deinit_console()
 
 BCS_RESULT console_write(const char* format, ...)
 {
-	//DWORD wait_for_mutex_result = WaitForSingleObject(console_mutex, INFINITE);
-	//if (wait_for_mutex_result != WAIT_OBJECT_0)
-	//{
-	//	return BCS_E_FAIL;
-	//}
-
 	va_list args;
 	va_start(args, format);
 	vprintf(format, args);
 	va_end(args);
-
-	//BOOL release_mutex_result = ReleaseMutex(console_mutex);
-	//if (release_mutex_result == 0)
-	//{
-	//	return BCS_E_FAIL;
-	//}
 
 	return BCS_S_OK;
 }
 
 BCS_RESULT console_write_line(const char* format, ...)
 {
-	//DWORD wait_for_mutex_result = WaitForSingleObject(console_mutex, INFINITE);
-	//if (wait_for_mutex_result != WAIT_OBJECT_0)
-	//{
-	//	return BCS_E_FAIL;
-	//}
-
 	va_list args;
 	va_start(args, format);
 	vprintf(format, args);
 	va_end(args);
 	puts("");
-
-	//BOOL release_mutex_result = ReleaseMutex(console_mutex);
-	//if (release_mutex_result == 0)
-	//{
-	//	return BCS_E_FAIL;
-	//}
 
 	return BCS_S_OK;
 }
@@ -96,15 +74,6 @@ BCS_RESULT console_end_line()
 
 BCS_RESULT console_write_line_with_debug(const char* format, ...)
 {
-	//if (console_mutex)
-	//{
-	//	DWORD wait_for_mutex_result = WaitForSingleObject(console_mutex, INFINITE);
-	//	if (wait_for_mutex_result != WAIT_OBJECT_0)
-	//	{
-	//		return BCS_E_FAIL;
-	//	}
-	//}
-
 	va_list args;
 	va_start(args, format);
 	int requested_buffer_size = vsnprintf(nullptr, 0, format, args);
@@ -122,14 +91,42 @@ BCS_RESULT console_write_line_with_debug(const char* format, ...)
 	_freea(output_buffer);
 	va_end(args);
 
-	//if (console_mutex)
-	//{
-	//	BOOL release_mutex_result = ReleaseMutex(console_mutex);
-	//	if (release_mutex_result == 0)
-	//	{
-	//		return BCS_E_FAIL;
-	//	}
-	//}
+	return BCS_S_OK;
+}
+
+BCS_RESULT console_write_verbose(const char* format, ...)
+{
+	if (console_verbose)
+	{
+		va_list args;
+		va_start(args, format);
+		vprintf(format, args);
+		va_end(args);
+	}
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT console_write_line_verbose(const char* format, ...)
+{
+	if (console_verbose)
+	{
+		va_list args;
+		va_start(args, format);
+		vprintf(format, args);
+		va_end(args);
+		puts("");
+	}
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT console_end_line_verbose()
+{
+	if (console_verbose)
+	{
+		puts("");
+	}
 
 	return BCS_S_OK;
 }

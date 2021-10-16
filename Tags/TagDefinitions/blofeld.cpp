@@ -2,7 +2,7 @@
 
 namespace blofeld
 {
-	const s_tag_group* get_group_tag_by_group_tag(e_engine_type engine_type, unsigned long group_tag)
+	const s_tag_group* get_tag_group_by_group_tag(e_engine_type engine_type, unsigned long group_tag)
 	{
 		for (const s_tag_group** group = tag_groups[engine_type]; *group; group++)
 		{

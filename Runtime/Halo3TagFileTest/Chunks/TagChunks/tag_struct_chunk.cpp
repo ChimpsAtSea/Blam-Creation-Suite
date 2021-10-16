@@ -11,11 +11,11 @@ c_tag_struct_chunk::c_tag_struct_chunk(void* chunk_data, c_chunk& parent, c_sing
 
 	log_pad();
 	log_signature();
-	console_end_line();
+	console_end_line_verbose();
 }
 
 void c_tag_struct_chunk::log_impl(c_string_data_chunk* string_data_chunk) const
 {
 	log_signature();
-	console_write_line("metadata:0x%08lu chunk_size:0x%08lu", metadata, chunk_size);
+	console_write_line_verbose("metadata:0x%08lu chunk_size:0x%08lu", metadata, chunk_size);
 }

@@ -109,7 +109,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_groups()
 		halo4::xbox360::s_cache_file_tag_group& tag_group = tag_group_info.group = tag_groups_read_pointer[group_index];
 		byteswap(tag_group);
 
-		const blofeld::s_tag_group* blofeld_tag_group = blofeld::get_group_tag_by_group_tag(cache_reader.engine_platform_build.engine_type, tag_group_info.group.group_tags[0]);
+		const blofeld::s_tag_group* blofeld_tag_group = blofeld::get_tag_group_by_group_tag(cache_reader.engine_platform_build.engine_type, tag_group_info.group.group_tags[0]);
 		ASSERT(blofeld_tag_group != nullptr);
 		tag_group_info.blofeld_tag_group = blofeld_tag_group;
 		tag_group_info.tag_group = nullptr; // deferred : init_tag_groups

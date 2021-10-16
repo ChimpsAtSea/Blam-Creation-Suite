@@ -11,7 +11,7 @@ c_tag_data_chunk::c_tag_data_chunk(void* chunk_data, c_chunk& parent, c_single_t
 
 	log_pad();
 	log_signature();
-	console_write_line("size:0x%08lX", data_length);
+	console_write_line_verbose("size:0x%08lX", data_length);
 }
 
 c_tag_data_chunk::~c_tag_data_chunk()
@@ -22,5 +22,5 @@ c_tag_data_chunk::~c_tag_data_chunk()
 void c_tag_data_chunk::log_impl(c_string_data_chunk* string_data_chunk) const
 {
 	log_signature();
-	console_write_line("size:0x%08lX", data_length);
+	console_write_line_verbose("size:0x%08lX", data_length);
 }

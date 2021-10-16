@@ -71,7 +71,7 @@ BCS_RESULT c_halo1_tag_reader::read_tag_instances()
 		halo1::s_cache_file_tag_instance& tag_instance = tag_instance_info.instance = tag_instances_read_pointer[tag_index];
 
 		tag group_tag = tag_instance.group_tags[0];
-		const blofeld::s_tag_group* tag_group = blofeld::get_group_tag_by_group_tag(cache_reader.engine_platform_build.engine_type, group_tag);
+		const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(cache_reader.engine_platform_build.engine_type, group_tag);
 		ASSERT(tag_group != nullptr);
 		tag_instance_info.blofeld_tag_group = tag_group;
 		tag_instance_info.tag_group = nullptr; // deferred : init_tag_groups
