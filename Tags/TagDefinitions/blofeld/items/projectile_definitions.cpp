@@ -193,7 +193,7 @@ namespace blofeld
 	};
 
 	#define KILLCAMCAMERAPARAMTER_STRUCT_DEFINITION_ID { 0xA995235B, 0xDCCD4C49, 0xA780B17C, 0xDB294281 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		KillCamCameraParamter_struct_definition,
 		"KillCamCameraParamter_struct_definition",
 		"KillCamCameraParameterDefinition",
@@ -208,7 +208,7 @@ namespace blofeld
 	};
 
 	#define PROJECTILE_STRUCT_DEFINITION_ID { 0xF7D82E78, 0x19074B8C, 0x80D49472, 0x7BD600C1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		projectile_struct_definition,
 		"projectile",
 		"projectile_group",
@@ -340,7 +340,7 @@ namespace blofeld
 	};
 
 	#define SUPER_DETONATION_DAMAGE_STRUCT_ID { 0xA018816E, 0x4F4F48B3, 0x9A4AEA76, 0x5C479F3A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		super_detonation_damage_struct,
 		"super_detonation_damage_struct",
 		"super_detonation_damage_struct",
@@ -353,7 +353,7 @@ namespace blofeld
 	};
 
 	#define ANGULAR_VELOCITY_LOWER_BOUND_STRUCT_ID { 0x8365B7E9, 0x92B540F0, 0xB71DED6E, 0x1F92083C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		angular_velocity_lower_bound_struct,
 		"angular_velocity_lower_bound_struct",
 		"angular_velocity_lower_bound_struct",

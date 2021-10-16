@@ -132,7 +132,7 @@ namespace blofeld
 	};
 
 	#define AI_MISSION_DIALOGUE_STRUCT_DEFINITION_ID { 0x7A2D35B4, 0xCD53450D, 0xAEB0B227, 0x6940C1F4 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		ai_mission_dialogue_struct_definition,
 		"ai_mission_dialogue_struct_definition",
 		"ai_mission_dialogue",

@@ -20,7 +20,7 @@ namespace blofeld
 		breakable_surface_struct_definition);
 
 	#define BREAKABLE_SURFACE_STRUCT_DEFINITION_ID { 0x7CC19130, 0xBD5344AB, 0x8BA2CB75, 0xDAA60C73 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		breakable_surface_struct_definition,
 		"breakable_surface_struct_definition",
 		"s_breakable_surface_definition",

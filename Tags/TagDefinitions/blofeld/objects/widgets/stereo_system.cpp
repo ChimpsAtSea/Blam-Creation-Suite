@@ -20,7 +20,7 @@ namespace blofeld
 		stereo_system_struct_definition);
 
 	#define STEREO_SYSTEM_STRUCT_DEFINITION_ID { 0x4B58B990, 0x4F154F6F, 0xA32235AE, 0xCFE62423 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		stereo_system_struct_definition,
 		"stereo_system_struct_definition",
 		"stereo_system_definition",

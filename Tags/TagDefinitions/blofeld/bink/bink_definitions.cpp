@@ -34,7 +34,7 @@ namespace blofeld
 	};
 
 	#define BINK_STRUCT_DEFINITION_ID { 0x4F2A6045, 0x63FF4A67, 0x81F2A8BD, 0xCF491D3A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		bink_struct_definition,
 		"bink_struct_definition",
 		"s_bink_definition",
@@ -49,7 +49,7 @@ namespace blofeld
 	};
 
 	#define BINK_RESOURCE_STRUCT_ID { 0xD0B4CCE8, 0x76C64FEB, 0xA54C008A, 0x6D5D24CD }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		bink_resource_struct,
 		"bink_resource_struct",
 		"s_bink_resource_definition",

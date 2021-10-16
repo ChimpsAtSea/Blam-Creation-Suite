@@ -20,7 +20,7 @@ namespace blofeld
 		collision_damage_struct_definition);
 
 	#define COLLISION_DAMAGE_STRUCT_DEFINITION_ID { 0x50FEF768, 0x5E0F4D35, 0x8B165F16, 0xBEAAF2E6 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		collision_damage_struct_definition,
 		"collision_damage_struct_definition",
 		"s_collision_damage_definition",
@@ -55,7 +55,7 @@ namespace blofeld
 	};
 
 	#define COLLISION_DAMAGE_FUNCTION_ID { 0x1DE4BAA4, 0xFBC74C13, 0x9576F17A, 0x8F464147 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		collision_damage_function,
 		"collision_damage_function",
 		"c_function_definition",

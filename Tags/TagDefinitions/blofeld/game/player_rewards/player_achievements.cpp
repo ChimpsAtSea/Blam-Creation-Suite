@@ -52,7 +52,7 @@ namespace blofeld
 	};
 
 	#define ACHIEVEMENTS_STRUCT_DEFINITION_ID { 0x21EA12AC, 0x29164C0A, 0x91892198, 0xD2724D89 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		achievements_struct_definition,
 		"achievements_struct_definition",
 		"s_game_achievements_definition",

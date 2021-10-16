@@ -7,7 +7,7 @@ namespace blofeld
 
 
 	#define PARTICLE_PROPERTY_REAL_POINT3D_STRUCT_NEW_ID { 0x0BEB218F, 0x6CE546FA, 0xA21161F6, 0xE75582FC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		particle_property_real_point3d_struct_new,
 		"particle_property_real_point3d_struct_new",
 		"c_particle_property_real_point3d",
@@ -31,7 +31,7 @@ namespace blofeld
 	};
 
 	#define PARTICLE_PROPERTY_REAL_EULER_ANGLES2D_STRUCT_NEW_ID { 0x937386F6, 0xD5844EB4, 0x82972518, 0xEF8BF01E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		particle_property_real_euler_angles2d_struct_new,
 		"particle_property_real_euler_angles2d_struct_new",
 		"c_particle_property_real_euler_angles2d",
@@ -55,7 +55,7 @@ namespace blofeld
 	};
 
 	#define PARTICLE_PROPERTY_SCALAR_STRUCT_NEW_ID { 0x64607252, 0xE8084E37, 0x8447409D, 0x9411483C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		particle_property_scalar_struct_new,
 		"particle_property_scalar_struct_new",
 		"c_particle_property",
@@ -78,7 +78,7 @@ namespace blofeld
 	};
 
 	#define PARTICLE_PROPERTY_REAL_VECTOR3D_STRUCT_NEW_ID { 0x02581257, 0x6A544BEE, 0xA48450A0, 0xA5C42FB5 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		particle_property_real_vector3d_struct_new,
 		"particle_property_real_vector3d_struct_new",
 		"c_particle_property_real_vector3d",
@@ -102,7 +102,7 @@ namespace blofeld
 	};
 
 	#define PARTICLE_PROPERTY_COLOR_STRUCT_NEW_ID { 0x342C0071, 0xBAFB43CF, 0x9FDA5DD6, 0x630D2DCA }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		particle_property_color_struct_new,
 		"particle_property_color_struct_new",
 		"c_particle_property",

@@ -150,7 +150,7 @@ namespace blofeld
 	};
 
 	#define MULTIPLAYER_OBJECT_TYPE_LIST_STRUCT_DEFINITION_ID { 0x85887EB3, 0x26F44812, 0x81B36A2A, 0x51B63FC9 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		multiplayer_object_type_list_struct_definition,
 		"multiplayer_object_type_list_struct_definition",
 		"s_multiplayer_object_type_list",
@@ -182,7 +182,7 @@ namespace blofeld
 	};
 
 	#define MULTIPLAYER_OBJECT_COLLECTION_STRUCT_ID { 0x929B2F5E, 0x14FD4020, 0x87A0C0BE, 0x54A4F353 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		multiplayer_object_collection_struct,
 		"multiplayer_object_collection_struct",
 		"s_multiplayer_object_collection_entry",

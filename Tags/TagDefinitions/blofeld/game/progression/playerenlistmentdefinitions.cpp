@@ -48,7 +48,7 @@ namespace blofeld
 	};
 
 	#define PLAYER_ENLISTMENT_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0x4F115FB8, 0x7BE8489F, 0xBFFFE0D8, 0x36B4D323 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		player_enlistment_globals_definition_struct_definition,
 		"player_enlistment_globals_definition_struct_definition",
 		"PlayerEnlistmentGlobalsDefinition",

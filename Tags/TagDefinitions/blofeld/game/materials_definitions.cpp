@@ -94,7 +94,7 @@ namespace blofeld
 	};
 
 	#define WET_PROXIES_STRUCT_ID { 0xE5466355, 0x33AF4380, 0x83F0B03D, 0xFC20CC34 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		wet_proxies_struct,
 		"wet_proxies_struct",
 		"s_global_material_wet_proxy",
@@ -110,7 +110,7 @@ namespace blofeld
 	};
 
 	#define MATERIAL_PHYSICS_PROPERTIES_STRUCT_ID { 0x8DB8D6D8, 0x833D4150, 0xA47D3861, 0x5C3FDD97 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		material_physics_properties_struct,
 		"material_physics_properties_struct",
 		"material_physics_properties_struct",
@@ -137,7 +137,7 @@ namespace blofeld
 	};
 
 	#define MATERIALS_SWEETENERS_STRUCT_ID { 0x9F74BAB9, 0xC3664288, 0xB82EFC4F, 0x59924C4B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		materials_sweeteners_struct,
 		"materials_sweeteners_struct",
 		"s_global_material_sweeteners_definition",

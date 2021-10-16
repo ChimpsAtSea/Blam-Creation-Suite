@@ -20,7 +20,7 @@ namespace blofeld
 		ssao_definition_struct_definition);
 
 	#define SSAO_DEFINITION_STRUCT_DEFINITION_ID { 0x677644E3, 0xF3A54E06, 0x84199B42, 0xBA8F8DAF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		ssao_definition_struct_definition,
 		"ssao_definition_struct_definition",
 		"s_ssao_definition",

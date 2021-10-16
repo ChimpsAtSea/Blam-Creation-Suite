@@ -66,7 +66,7 @@ namespace blofeld
 	};
 
 	#define STREAMINGZONESET_STRUCT_DEFINITION_ID { 0x19F43470, 0xE59943F7, 0xBC349E62, 0x10A61807 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		streamingzoneset_struct_definition,
 		"streamingzoneset_struct_definition",
 		"StreamingZoneSet",

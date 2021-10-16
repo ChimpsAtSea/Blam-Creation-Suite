@@ -66,7 +66,7 @@ namespace blofeld
 	};
 
 	#define CELLULAR_AUTOMATA2D_STRUCT_DEFINITION_ID { 0x58015675, 0xB4FA436F, 0xAAB9EC7C, 0x90E51960 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cellular_automata2d_struct_definition,
 		"cellular_automata2d_struct_definition",
 		"ca2d_definition",

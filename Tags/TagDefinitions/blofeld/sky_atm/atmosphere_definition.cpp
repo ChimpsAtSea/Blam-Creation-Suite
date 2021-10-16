@@ -144,7 +144,7 @@ namespace blofeld
 	};
 
 	#define SOLO_FOG_PARAMETERS_STRUCT_DEFINITION_ID { 0xD82AB114, 0x09244998, 0x857CA148, 0x24F24947 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		solo_fog_parameters_struct_definition,
 		"solo_fog_parameters_struct_definition",
 		"s_solo_fog_parameters",
@@ -166,7 +166,7 @@ namespace blofeld
 	};
 
 	#define FOG_LIGHT_STRUCT_DEFINITION_ID { 0x2EA4F208, 0x23EB43DA, 0x96CF1259, 0x7F716CD9 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		fog_light_struct_definition,
 		"fog_light_struct_definition",
 		"s_fog_light_parameters",
@@ -186,7 +186,7 @@ namespace blofeld
 	};
 
 	#define VOLUMEFOGPARAMETERSDEFINITION_ID { 0xB9DBF7F3, 0xD9624CCE, 0xA7F3E00E, 0x010284AE }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		VolumeFogParametersDefinition,
 		"VolumeFogParametersDefinition",
 		"VolumeFogParameters",
@@ -200,7 +200,7 @@ namespace blofeld
 	};
 
 	#define LIGHTSHAFTPARAMETERSDEFINITION_ID { 0x8893D72D, 0xCA8A49CB, 0xA26C4277, 0xF0677728 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		LightShaftParametersDefinition,
 		"LightShaftParametersDefinition",
 		"LightShaftParameters",

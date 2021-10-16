@@ -82,7 +82,7 @@ namespace blofeld
 	};
 
 	#define SOUND_EFFECT_TEMPLATE_STRUCT_DEFINITION_ID { 0xAB4E33F8, 0x77314AE8, 0x9EC2A912, 0x98B0CCCD }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_effect_template_struct_definition,
 		"sound_effect_template_struct_definition",
 		"s_sound_effect_template_collection",

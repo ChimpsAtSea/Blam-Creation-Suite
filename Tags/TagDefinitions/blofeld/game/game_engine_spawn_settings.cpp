@@ -106,7 +106,7 @@ namespace blofeld
 	};
 
 	#define SPAWNSETTINGS_STRUCT_DEFINITION_ID { 0xD4FD6AF4, 0xF1D44565, 0xB4FF38A0, 0xC43A50F8 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		SpawnSettings_struct_definition,
 		"SpawnSettings_struct_definition",
 		"SpawnSettingsTagGroup",

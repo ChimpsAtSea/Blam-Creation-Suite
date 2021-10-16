@@ -34,7 +34,7 @@ namespace blofeld
 	};
 
 	#define WEATHER_GLOBALS_STRUCT_DEFINITION_ID { 0x8C9B19BF, 0x971F413F, 0x8B57DFEF, 0xFC8E152E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weather_globals_struct_definition,
 		"weather_globals_struct_definition",
 		"s_weather_globals",
@@ -51,7 +51,7 @@ namespace blofeld
 	};
 
 	#define RAIN_RIPPLE_SETTING_BLOCK_ID { 0x514BC6BA, 0x360C4B17, 0x8CA56212, 0x9E0BB16A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		rain_ripple_setting_block,
 		"rain_ripple_setting_block",
 		"s_rain_ripple_setting",

@@ -80,7 +80,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_ACOUSTICS_PALETTE_BLOCK_DEFINITION_STRUCT_ID { 0xCADEB9A2, 0x119B467B, 0x82D36013, 0xDE6C1794 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_acoustics_palette_block_definition_struct,
 		"scenario_acoustics_palette_block_definition_struct",
 		"s_scenario_acoustics_palette_entry",
@@ -103,7 +103,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_ACOUSTICS_ENVIRONMENT_DEFINITION_ID { 0x718F78F4, 0x7FB14DA7, 0x88A566D2, 0x3608B533 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_acoustics_environment_definition,
 		"scenario_acoustics_environment_definition",
 		"s_scenario_acoustics_environment",
@@ -122,7 +122,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_ACOUSTICS_AMBIENCE_DEFINITION_ID { 0x35137799, 0x93F24E9E, 0x81364E61, 0xE072BBAB }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_acoustics_ambience_definition,
 		"scenario_acoustics_ambience_definition",
 		"s_scenario_acoustics_ambience",
@@ -156,7 +156,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_ACOUSTIC_LOCATION_DEFINITION_ID { 0xDEE4A7BC, 0xF61B4AED, 0xB8F89514, 0x79034AFF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_acoustic_location_definition,
 		"scenario_acoustic_location_definition",
 		"s_scenario_acoustic_location",
@@ -170,7 +170,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_ACOUSTIC_CLUSTER_REFERENCE_DEFINITION_ID { 0xCD19EBEB, 0x3BC64C0C, 0x86924A34, 0x74C2621D }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_acoustic_cluster_reference_definition,
 		"scenario_acoustic_cluster_reference_definition",
 		"s_cluster_reference",

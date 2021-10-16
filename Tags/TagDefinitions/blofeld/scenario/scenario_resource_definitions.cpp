@@ -47,7 +47,7 @@ namespace blofeld
 	};
 
 	#define SCRIPT_CONTAINER_STRUCT_DEFINITION_ID { 0xC9FA273E, 0x5AA14DD5, 0xBDA32DB0, 0xBD8F8D00 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		script_container_struct_definition,
 		"script_container_struct_definition",
 		"HSScriptContainer",
@@ -60,7 +60,7 @@ namespace blofeld
 	};
 
 	#define SCRIPT_STRUCT_DEFINITION_ID { 0x0BD6B3E2, 0x9B5B4F76, 0xA69CBE21, 0xC8820C61 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		script_struct_definition,
 		"script_struct_definition",
 		"HSCompiledScript",
@@ -81,7 +81,7 @@ namespace blofeld
 	};
 
 	#define HS_SCRIPT_DATA_STRUCT_ID { 0xD87FEF80, 0x07DE47C3, 0x9785FC28, 0x8E53643F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		hs_script_data_struct,
 		"hs_script_data_struct",
 		"HaloScript::ScriptData",

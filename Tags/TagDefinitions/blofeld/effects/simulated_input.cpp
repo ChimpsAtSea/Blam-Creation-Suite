@@ -20,7 +20,7 @@ namespace blofeld
 		simulated_input_struct_definition);
 
 	#define SIMULATED_INPUT_STRUCT_DEFINITION_ID { 0x92B9F13E, 0x845845C7, 0x98EE12D2, 0xEF28014D }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		simulated_input_struct_definition,
 		"simulated_input_struct_definition",
 		"s_simulated_input_definition",
@@ -41,7 +41,7 @@ namespace blofeld
 	};
 
 	#define SIMULATED_INPUT_STICK_STRUCT_ID { 0x259EAC93, 0x0D744048, 0x9B737CB9, 0x55515831 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		simulated_input_stick_struct,
 		"simulated_input_stick_struct",
 		"s_simulated_input_stick_definition",

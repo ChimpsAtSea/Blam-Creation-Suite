@@ -47,7 +47,7 @@ namespace blofeld
 	};
 
 	#define WALKER_PHYSICS_STRUCT_ID { 0x769D2C0D, 0xAEF54395, 0x86ECFA87, 0xB067AB04 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		walker_physics_struct,
 		"walker_physics_struct",
 		"s_walker_physics_definition",

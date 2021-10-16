@@ -42,7 +42,7 @@ namespace blofeld
 	};
 
 	#define SELF_ILLUMINATION_STRUCT_DEFINITION_ID { 0x52AD50EF, 0xED7A4429, 0x89800F3D, 0xF2771A34 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		self_illumination_struct_definition,
 		"self_illumination_struct_definition",
 		"SelfIlluminationDefinition",

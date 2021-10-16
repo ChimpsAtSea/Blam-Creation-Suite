@@ -51,7 +51,7 @@ namespace blofeld
 	};
 
 	#define VARIANT_GLOBALS_STRUCT_DEFINITION_ID { 0xE2391158, 0x992D43DD, 0x997FF513, 0xE90C1932 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		variant_globals_struct_definition,
 		"variant_globals_struct_definition",
 		"s_variant_globals_definition",

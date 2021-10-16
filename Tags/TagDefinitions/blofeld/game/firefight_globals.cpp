@@ -37,7 +37,7 @@ namespace blofeld
 		firefightWaveTemplatesBlock_struct);
 
 	#define FIREFIGHTWAVETEMPLATESBLOCK_STRUCT_ID { 0x0B9922FA, 0x1881452F, 0xB4D24003, 0x5C0B4463 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		firefightWaveTemplatesBlock_struct,
 		"firefightWaveTemplatesBlock_struct",
 		"FirefightWaveTemplateDefinition",

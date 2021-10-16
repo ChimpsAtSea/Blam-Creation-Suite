@@ -39,7 +39,7 @@ namespace blofeld
 		vectorart_asset_block );
 
 	#define VECTORARTVERTEXBUFFERDESCRIPTORSTRUCT_ID { 0x09DC8488, 0x852B4195, 0x8B27777E, 0x98E00F6C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		vectorartVertexBufferDescriptorStruct,
 		"vectorartVertexBufferDescriptorStruct",
 		"VectorartVertexBufferDescriptor",

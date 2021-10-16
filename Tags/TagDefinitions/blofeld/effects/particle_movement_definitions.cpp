@@ -55,7 +55,7 @@ namespace blofeld
 	};
 
 	#define PARTICLE_PHYSICS_STRUCT_DEFINITION_ID { 0xC86CD2D6, 0xEB9C4A4F, 0x96C423E9, 0x48A52870 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		particle_physics_struct_definition,
 		"particle_physics_struct_definition",
 		"c_particle_movement_definition",
@@ -78,7 +78,7 @@ namespace blofeld
 	};
 
 	#define PARTICLE_PHYSICS_STRUCT_ID { 0x2E19EA87, 0xEB8741A8, 0xB25C5661, 0x9D4201DD }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		particle_physics_struct,
 		"particle_physics_struct",
 		"c_particle_movement_definition",

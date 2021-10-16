@@ -287,7 +287,7 @@ namespace blofeld
 	};
 
 	#define CACHE_FILE_SOUND_STRUCT_DEFINITION_ID { 0x063E9C33, 0xDDF646F7, 0xB9AD58DE, 0x19E86FD6 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cache_file_sound_struct_definition,
 		"cache_file_sound_struct_definition",
 		"s_cache_file_sound_definition",
@@ -315,7 +315,7 @@ namespace blofeld
 	};
 
 	#define SOUND_CACHE_FILE_GESTALT_STRUCT_DEFINITION_ID { 0xCF6AEC54, 0x95E846F2, 0x9B3F6246, 0x00AA2223 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_cache_file_gestalt_struct_definition,
 		"sound_cache_file_gestalt_struct_definition",
 		"s_sound_cache_file_gestalt_definition",

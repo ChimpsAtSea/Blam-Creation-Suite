@@ -117,7 +117,7 @@ namespace blofeld
 	};
 
 	#define DETAIL_OBJECT_COLLECTION_STRUCT_DEFINITION_ID { 0x5410E64E, 0x0296459C, 0xAC1594F8, 0xF1099A8B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		detail_object_collection_struct_definition,
 		"detail_object_collection_struct_definition",
 		"detail_object_collection_definition",

@@ -20,7 +20,7 @@ namespace blofeld
 		render_water_ripple_struct_definition);
 
 	#define RENDER_WATER_RIPPLE_STRUCT_DEFINITION_ID { 0xCB60D088, 0x882E4775, 0x883C8C94, 0x8CE7CD58 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		render_water_ripple_struct_definition,
 		"render_water_ripple_struct_definition",
 		"s_render_water_ripple_definition",

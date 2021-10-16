@@ -34,7 +34,7 @@ namespace blofeld
 	};
 
 	#define MAIN_MENU_VOICEOVER_STRUCT_DEFINITION_ID { 0xCA80030F, 0x173E410E, 0x8E0F3585, 0x39D36E05 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		main_menu_voiceover_struct_definition,
 		"main_menu_voiceover_struct_definition",
 		"MainMenuVoiceover",

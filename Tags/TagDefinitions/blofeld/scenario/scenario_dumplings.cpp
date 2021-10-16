@@ -56,7 +56,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_DUMPLING_STRUCT_ID { 0x2FF9A01B, 0xB3764EDA, 0xB70B64FE, 0x1E7F95AD }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_dumpling_struct,
 		"scenario_dumpling_struct",
 		"s_scenario_dumpling",

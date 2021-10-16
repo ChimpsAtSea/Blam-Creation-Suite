@@ -1362,7 +1362,7 @@ void inf_export_source(
 
 			s << "\t#define " << persistent_identifier_name_buffer << " { " << persistent_identifier_buffer << " }" << std::nouppercase << std::endl;
 
-			s << "\tTAG_STRUCT(" << std::endl;
+			s << "\tTAG_STRUCT_V6(" << std::endl;
 			s << "\t\t" << struct_definition->code_name << "," << std::endl;
 			s << "\t\t" << "\"" << struct_definition->name << "\"," << std::endl;
 			s << "\t\t" << "\"s_" << struct_definition->code_name << "\"," << std::endl;

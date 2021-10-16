@@ -75,7 +75,7 @@ namespace blofeld
 	};
 
 	#define PLATFORM_SOUND_PLAYBACK_STRUCT_ID { 0x4A19C737, 0xDB944AA2, 0x9B7BCF04, 0x64F78334 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		platform_sound_playback_struct,
 		"platform_sound_playback_struct",
 		"s_platform_sound_playback_definition",

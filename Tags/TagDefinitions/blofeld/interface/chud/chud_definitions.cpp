@@ -134,7 +134,7 @@ namespace blofeld
 
 	V5_TAG_GROUP_FROM_BLOCK(chud_animation, CHUD_ANIMATION_DEFINITION_TAG, chad_block);
 	V5_TAG_BLOCK_FROM_STRUCT(chad_block, 1, chad_struct_definition_struct_definition)
-	V5_TAG_STRUCT(chad_struct_definition)
+	V5_TAG_STRUCT_V6(chad_struct_definition)
 	{
 		{ _field_legacy, _field_byte_flags, "flags", &chad_flags_definition },
 		{ _field_legacy, _field_byte_integer, "unknown" },
@@ -486,7 +486,7 @@ namespace blofeld
 
 	V5_TAG_GROUP_FROM_BLOCK(chud, CHUD_DEFINITION_TAG, chud_block);
 	V5_TAG_BLOCK_FROM_STRUCT(chud_block, 1, chud_struct_definition_struct_definition);
-	V5_TAG_STRUCT(chud_struct_definition)
+	V5_TAG_STRUCT_V6(chud_struct_definition)
 	{
 		{ _field_legacy, _field_explanation, "Reach HUDs Are Annoying", "The inputs are not defined where they were for Halo 3, but instead are in the \"Compiled Widget Data\" block at the bottom, along with the 3 blocks within \"State Data\"."
 			"...Unless the State Data block is part of HUD Widgets not Bitmap / Text Widgets, which THOSE states are defined at the bottom of the HUD Widgets block."
@@ -765,7 +765,7 @@ namespace blofeld
 
 	V5_TAG_GROUP_FROM_BLOCK(chud_globals, CHUD_GLOBALS_DEFINITION_TAG, chgd_block);
 	V5_TAG_BLOCK_FROM_STRUCT(chgd_block, 1, chgd_struct_definition_struct_definition);
-	V5_TAG_STRUCT(chgd_struct_definition)
+	V5_TAG_STRUCT_V6(chgd_struct_definition)
 	{
 		{ _field_legacy, _field_block, "hud globals", &chgd_hud_globals_block },
 		{ _field_legacy, _field_block, "shaders", &chgd_shaders_block },

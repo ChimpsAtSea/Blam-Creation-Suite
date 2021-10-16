@@ -20,7 +20,7 @@ namespace blofeld
 		grounded_friction_struct_definition);
 
 	#define GROUNDED_FRICTION_STRUCT_DEFINITION_ID { 0xE69A028A, 0x3B434D19, 0x9099E80F, 0xC0A18EC7 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		grounded_friction_struct_definition,
 		"grounded_friction_struct_definition",
 		"s_grounded_friction_definition",

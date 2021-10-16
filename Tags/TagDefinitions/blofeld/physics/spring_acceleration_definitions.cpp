@@ -57,7 +57,7 @@ namespace blofeld
 	};
 
 	#define SPRING_ACCELERATION_STRUCT_DEFINITION_ID { 0x1073ABE0, 0xAD9447BB, 0x8910B4FF, 0x30CD63B1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		spring_acceleration_struct_definition,
 		"spring_acceleration_struct_definition",
 		"s_spring_acceleration_definition",

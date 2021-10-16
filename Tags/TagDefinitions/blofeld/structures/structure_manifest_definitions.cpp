@@ -23,7 +23,7 @@ namespace blofeld
 	};
 
 	#define STRUCTURE_MANIFEST_BUILD_IDENTIFIER_STRUCT_ID { 0xDDFB3371, 0xDA4642BF, 0xCD893004, 0xBCB969EC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_manifest_build_identifier_struct,
 		"structure_manifest_build_identifier_struct",
 		"s_structure_manifest_build_identifier_definition",
@@ -41,7 +41,7 @@ namespace blofeld
 	};
 
 	#define STRUCTURE_MANIFEST_STRUCT_ID { 0xDA667371, 0xDF8B82BF, 0xAC8C4004, 0xBC6D99EC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_manifest_struct,
 		"structure_manifest_struct",
 		"s_structure_manifest_definition",

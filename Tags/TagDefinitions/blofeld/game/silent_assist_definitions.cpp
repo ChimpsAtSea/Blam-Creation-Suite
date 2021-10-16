@@ -45,7 +45,7 @@ namespace blofeld
 	};
 
 	#define SILENT_ASSIST_GLOBALS_STRUCT_DEFINITION_ID { 0xEE88DBE0, 0xD8AA47B3, 0x84A4C71C, 0x8844778E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		silent_assist_globals_struct_definition,
 		"silent_assist_globals_struct_definition",
 		"SilentAssistGlobals",

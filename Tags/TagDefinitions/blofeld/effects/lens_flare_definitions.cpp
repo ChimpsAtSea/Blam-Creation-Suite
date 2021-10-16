@@ -104,7 +104,7 @@ namespace blofeld
 	};
 
 	#define LENS_FLARE_STRUCT_DEFINITION_ID { 0xDA19E8C2, 0xEFC54593, 0xAB4A3192, 0x74E25FCB }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		lens_flare_struct_definition,
 		"lens_flare_struct_definition",
 		"s_lens_flare_definition",
@@ -152,7 +152,7 @@ namespace blofeld
 	};
 
 	#define LENS_FLARE_COLOR_FUNCTION_STRUCT_ID { 0x3DBB7F1A, 0x54F94FD0, 0x9D24DA91, 0x297A3078 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		lens_flare_color_function_struct,
 		"lens_flare_color_function_struct",
 		"s_editing_function",

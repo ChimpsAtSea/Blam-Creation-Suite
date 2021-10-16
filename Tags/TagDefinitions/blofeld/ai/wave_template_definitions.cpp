@@ -34,7 +34,7 @@ namespace blofeld
 		wave_squad_specification_struct_struct);
 
 	#define WAVE_SQUAD_SPECIFICATION_STRUCT_STRUCT_ID { 0x55990120, 0x27804544, 0x9145EB6F, 0xBFA6A0A3 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		wave_squad_specification_struct_struct,
 		"wave_squad_specification_struct_struct",
 		"s_ai_wave_squad_definition",

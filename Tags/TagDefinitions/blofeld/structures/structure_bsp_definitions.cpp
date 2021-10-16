@@ -1244,7 +1244,7 @@ namespace blofeld
 	};
 
 	#define PREFAB_STRUCT_DEFINITION_ID { 0xE161B79D, 0x69904839, 0xBCB1689B, 0x7197C39E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		prefab_struct_definition,
 		"prefab_struct_definition",
 		"structure_prefab",
@@ -1257,7 +1257,7 @@ namespace blofeld
 	};
 
 	#define STRUCTURE_BSP_CLUSTER_PORTAL_ORIENTED_BOUNDS_BLOCK_ID { 0x224A23F3, 0x3B5842F1, 0x421067FE, 0x3C5CE7F2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_bsp_cluster_portal_oriented_bounds_block,
 		"structure_bsp_cluster_portal_oriented_bounds_block",
 		"cluster_portal::s_oriented_bounds",
@@ -1272,7 +1272,7 @@ namespace blofeld
 	};
 
 	#define STRUCTURE_BSP_RESOURCE_INTERFACE_ID { 0xB024FA19, 0x92E24683, 0xB26BDF83, 0x52E5E222 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_bsp_resource_interface,
 		"structure_bsp_resource_interface",
 		"c_structure_bsp_resource_interface",
@@ -1292,7 +1292,7 @@ namespace blofeld
 	};
 
 	#define STRUCTURE_BSP_RESOURCE_STRUCT_ID { 0x03A9EF85, 0x2F7A473A, 0x8A86F093, 0x2DE335AF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_bsp_resource_struct,
 		"structure_bsp_resource_struct",
 		"s_structure_bsp_resources",
@@ -1308,7 +1308,7 @@ namespace blofeld
 	};
 
 	#define STRUCTURE_BSP_TAG_RESOURCES_STRUCT_ID { 0x72D3359D, 0x5BCF4E28, 0xA26904A5, 0xD923E60C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_bsp_tag_resources_struct,
 		"structure_bsp_tag_resources_struct",
 		"s_structure_bsp_resources",
@@ -1321,7 +1321,7 @@ namespace blofeld
 	};
 
 	#define STRUCTURE_BSP_CACHE_FILE_TAG_RESOURCES_STRUCT_ID { 0xF94BEACC, 0xEDAB423F, 0x82675E23, 0xFA14A1AD }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_bsp_cache_file_tag_resources_struct,
 		"structure_bsp_cache_file_tag_resources_struct",
 		"s_structure_bsp_cache_file_resources",

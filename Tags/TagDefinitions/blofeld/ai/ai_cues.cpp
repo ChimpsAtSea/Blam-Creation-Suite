@@ -284,7 +284,7 @@ namespace blofeld
 	};
 
 	#define CUE_DISTRIBUTION_STRUCT_ID { 0xA33A8714, 0x99B0463B, 0xB3A517EF, 0x698F20A2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cue_distribution_struct,
 		"cue_distribution_struct",
 		"s_ai_cue_distribution",
@@ -298,7 +298,7 @@ namespace blofeld
 	};
 
 	#define CUE_STIMULUS_DISTRIBUTION_STRUCT_ID { 0xCBD9EBB5, 0xF4194B72, 0x950D2BF6, 0x26BD4CF9 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cue_stimulus_distribution_struct,
 		"cue_stimulus_distribution_struct",
 		"s_ai_cue_stimulus_distribution",
@@ -314,7 +314,7 @@ namespace blofeld
 	};
 
 	#define CUE_PAYLOAD_STRUCT_ID { 0x26F9B58E, 0x59334FCB, 0x9239438F, 0xB6029B2B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cue_payload_struct,
 		"cue_payload_struct",
 		"s_ai_cue_payload",

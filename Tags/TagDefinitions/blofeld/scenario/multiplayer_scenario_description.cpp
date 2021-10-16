@@ -38,7 +38,7 @@ namespace blofeld
 	};
 
 	#define MULTIPLAYER_SCENARIO_DESCRIPTION_STRUCT_DEFINITION_ID { 0xD647C9B6, 0xBBE94E29, 0xA5059E78, 0x431E3C82 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		multiplayer_scenario_description_struct_definition,
 		"multiplayer_scenario_description_struct_definition",
 		"multiplayer_scenario_description_definition",

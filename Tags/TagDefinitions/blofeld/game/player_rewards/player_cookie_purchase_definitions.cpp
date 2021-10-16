@@ -425,7 +425,7 @@ namespace blofeld
 	};
 
 	#define COOKIE_PURCHASE_GLOBALS_STRUCT_DEFINITION_ID { 0x793B38DC, 0xFD7A4B72, 0xB484A227, 0xE22E9087 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cookie_purchase_globals_struct_definition,
 		"cookie_purchase_globals_struct_definition",
 		"s_cookie_purchase_globals_definition",
@@ -496,7 +496,7 @@ namespace blofeld
 	};
 
 	#define PURCHASEPLAYERORDNANCESTRUCT_ID { 0x9D6BC685, 0x26C04A2E, 0xB2A12034, 0xE3A23772 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PurchasePlayerOrdnanceStruct,
 		"PurchasePlayerOrdnanceStruct",
 		"PurchasePlayerOrdnance",
@@ -510,7 +510,7 @@ namespace blofeld
 	};
 
 	#define PURCHASEPLAYERLOADOUTSTRUCT_ID { 0x8323E16A, 0x197C4288, 0x81964917, 0xCE56F651 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PurchasePlayerLoadoutStruct,
 		"PurchasePlayerLoadoutStruct",
 		"PurchasePlayerLoadout",
@@ -532,7 +532,7 @@ namespace blofeld
 	};
 
 	#define PURCHASEPLAYERAPPEARANCESTRUCT_ID { 0xC34CFE9C, 0x283240B7, 0x83483A7B, 0xBBFE2AB4 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PurchasePlayerAppearanceStruct,
 		"PurchasePlayerAppearanceStruct",
 		"PurchasePlayerAppearance",

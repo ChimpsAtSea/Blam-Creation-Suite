@@ -20,7 +20,7 @@ namespace blofeld
 		vector_hud_definition_struct_definition);
 
 	#define VECTOR_HUD_DEFINITION_STRUCT_DEFINITION_ID { 0xE9E8447E, 0x7C54444A, 0x8C686647, 0xF6B8E4B6 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		vector_hud_definition_struct_definition,
 		"vector_hud_definition_struct_definition",
 		"s_vector_hud_definition",

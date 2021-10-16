@@ -1640,7 +1640,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_STRUCT_DEFINITION_ID { 0xEFAE882E, 0x0DC94D1D, 0xA358CB6A, 0x34875D40 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_struct_definition,
 		"scenario_struct_definition",
 		"Scenario",
@@ -1969,7 +1969,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_REQUIRED_RESOURCE_STRUCT_DEFINITION_ID { 0xA9B90BB8, 0xC5684B2B, 0xA9CD6FDD, 0x9B7C6602 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_required_resource_struct_definition,
 		"scenario_required_resource_struct_definition",
 		"s_scenario_required_resources",
@@ -1982,7 +1982,7 @@ namespace blofeld
 	};
 
 	#define SCENARIOVOLUMETRICLIGHTSHAFTSETTINGSSTRUCT_ID { 0xDF38658D, 0x07724BB3, 0xB0012C2A, 0xACBA277F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenarioVolumetricLightShaftSettingsStruct,
 		"scenarioVolumetricLightShaftSettingsStruct",
 		"scenarioVolumetricLightShaftSettings",
@@ -2000,7 +2000,7 @@ namespace blofeld
 	};
 
 	#define SCENARIOFLOATINGSHADOWSETTINGSSTRUCT_ID { 0x1F09F99A, 0x3F304C08, 0xA8530F29, 0xAA552F0A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenarioFloatingShadowSettingsStruct,
 		"scenarioFloatingShadowSettingsStruct",
 		"scenarioFloatingShadowSettings",
@@ -2018,7 +2018,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_LIGHTMAP_SETTING_STRUCT_ID { 0x125A33B6, 0x658D4812, 0x8893A3A8, 0x7953003D }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_lightmap_setting_struct,
 		"scenario_lightmap_setting_struct",
 		"scenario_lightmap_setting",
@@ -2043,7 +2043,7 @@ namespace blofeld
 	};
 
 	#define MANUALBSPFLAGSREFERENCES_ID { 0x749519ED, 0x976649C5, 0x93B9867B, 0x7A6FAAF2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		manualBspFlagsReferences,
 		"manualBspFlagsReferences",
 		"ManualBspReferenceFlags",
@@ -2057,7 +2057,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	V5_TAG_STRUCT(structured_buffer)
+	V5_TAG_STRUCT_V6(structured_buffer)
 	{
 		{ _field_legacy, _field_data, "data" },
 		{ _field_legacy, _field_long_integer, "entry size" },
@@ -2065,7 +2065,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_TRIGGER_VOLUME_STRUCT_ID { 0xBF59DB68, 0x05A9439E, 0x811C3B2F, 0xADE31F09 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_trigger_volume_struct,
 		"scenario_trigger_volume_struct",
 		"scenario_trigger_volume_struct",
@@ -2105,7 +2105,7 @@ namespace blofeld
 	};
 
 	#define SCENARIOUNITRECORDINGBLOCK_STRUCT_ID { 0x076AC662, 0x1CCA4061, 0x800A10D5, 0x3522A841 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		ScenarioUnitRecordingBlock_struct,
 		"ScenarioUnitRecordingBlock_struct",
 		"ScenarioUnitRecording",

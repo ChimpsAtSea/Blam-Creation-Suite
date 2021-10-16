@@ -11,7 +11,7 @@ namespace blofeld
 	};
 	STRING_LIST(beam_system_output_kind, beam_system_output_kind_strings, _countof(beam_system_output_kind_strings));
 
-	V5_TAG_STRUCT(beam_system_gpu_data_struct)
+	V5_TAG_STRUCT_V6(beam_system_gpu_data_struct)
 	{
 		{ _field_legacy, _field_block, "runtime gpu_property_block!", &gpu_property_block },
 		{ _field_legacy, _field_block, "runtime gpu_functions_block!", &gpu_property_block },
@@ -19,7 +19,7 @@ namespace blofeld
 		{ _field_legacy, _field_terminator }
 	};
 
-	V5_TAG_STRUCT(beam_system_unknown_struct)
+	V5_TAG_STRUCT_V6(beam_system_unknown_struct)
 	{
 		{ _field_legacy, _field_char_integer, "input" },
 		{ _field_legacy, _field_char_integer, "input range" },

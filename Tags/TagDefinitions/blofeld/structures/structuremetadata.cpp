@@ -20,7 +20,7 @@ namespace blofeld
 		structure_meta_struct_definition);
 
 	#define STRUCTURE_META_STRUCT_DEFINITION_ID { 0xAAF021B9, 0xE656432A, 0x971E39DE, 0x0BA1DF54 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_meta_struct_definition,
 		"structure_meta_struct_definition",
 		"StructureMetadata",

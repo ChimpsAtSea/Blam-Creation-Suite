@@ -38,7 +38,7 @@ namespace blofeld
 		hologramLightingBlock_struct);
 
 	#define HOLOGRAMLIGHTFUNCTIONS_ID { 0x8A259276, 0xAA5542A4, 0x8927B452, 0x0A50BEB1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		hologramLightFunctions,
 		"hologramLightFunctions",
 		"HologramLightFunctions",
@@ -54,7 +54,7 @@ namespace blofeld
 	};
 
 	#define HOLOGRAMLIGHTINGBLOCK_STRUCT_ID { 0xE3E332CA, 0xA5E44DFC, 0x81E9FCB6, 0x6198694A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		hologramLightingBlock_struct,
 		"hologramLightingBlock_struct",
 		"HologramLighting",
@@ -82,7 +82,7 @@ namespace blofeld
 	};
 
 	#define HOLOGRAMLIGHT_ID { 0x3906DA32, 0xFC3C45A6, 0xADEDC284, 0x1B292C95 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		hologramLight,
 		"hologramLight",
 		"HologramLight",

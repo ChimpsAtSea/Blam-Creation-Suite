@@ -56,7 +56,7 @@ namespace blofeld
 	};
 
 	#define PLAYER_MODEL_CUSTOMIZATION_GLOBALS_STRUCT_DEFINITION_ID { 0x3E8116B0, 0x7B4242AC, 0xA0790D22, 0x888057AC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		player_model_customization_globals_struct_definition,
 		"player_model_customization_globals_struct_definition",
 		"s_player_model_customization_globals_definition",

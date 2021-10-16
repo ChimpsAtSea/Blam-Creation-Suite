@@ -110,7 +110,7 @@ namespace blofeld
 	};
 
 	#define PURCHASEPREREQUISITESUNIFIEDDEFINITIONBLOCK_ID { 0xF5FA6611, 0xE7704556, 0x9523C551, 0xFC8C0B41 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PurchasePrerequisitesUnifiedDefinitionBlock,
 		"PurchasePrerequisitesUnifiedDefinitionBlock",
 		"PurchasePrerequisitesUnifiedDefinition",
@@ -150,7 +150,7 @@ namespace blofeld
 	};
 
 	#define PURCHASEAPPEARANCEDEFINITIONREFERENCESTRUCT_ID { 0x48833527, 0xA603470E, 0x9BD2329F, 0x76E43668 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PurchaseAppearanceDefinitionReferenceStruct,
 		"PurchaseAppearanceDefinitionReferenceStruct",
 		"s_cookie_purchase_definition_reference",
@@ -164,7 +164,7 @@ namespace blofeld
 	};
 
 	#define PURCHASELOADOUTDEFINITIONREFERENCESTRUCT_ID { 0x074268E4, 0x4CD54AC6, 0xA50A5222, 0xC59797D2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PurchaseLoadoutDefinitionReferenceStruct,
 		"PurchaseLoadoutDefinitionReferenceStruct",
 		"s_cookie_purchase_definition_reference",
@@ -178,7 +178,7 @@ namespace blofeld
 	};
 
 	#define PURCHASEORDNANCEDEFINITIONREFERENCESTRUCT_ID { 0x9B560063, 0x138A4E32, 0x8D089C68, 0x9FB1BF32 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PurchaseOrdnanceDefinitionReferenceStruct,
 		"PurchaseOrdnanceDefinitionReferenceStruct",
 		"s_cookie_purchase_definition_reference",

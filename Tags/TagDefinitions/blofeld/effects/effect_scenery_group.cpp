@@ -20,7 +20,7 @@ namespace blofeld
 		effect_scenery_struct_definition);
 
 	#define EFFECT_SCENERY_STRUCT_DEFINITION_ID { 0x575B0686, 0x25B7457D, 0xBBB14145, 0x173BB6C9 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		effect_scenery_struct_definition,
 		"effect_scenery_struct_definition",
 		"effect_scenery_struct_definition",

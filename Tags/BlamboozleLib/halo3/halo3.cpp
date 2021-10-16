@@ -1521,6 +1521,7 @@ void h3_export_source(
 
 			s << "\tTAG_STRUCT(" << std::endl;
 			s << "\t\t" << struct_definition->code_name << "," << std::endl;
+			s << "\t\t" << "\"" << struct_definition->pretty_name << "\"," << std::endl;
 			s << "\t\t" << "\"" << struct_definition->name << "\"," << std::endl;
 			s << "\t\t" << "\"s_" << struct_definition->code_name << "\"," << std::endl;
 			s << "\t\t" << "SET_DEFAULT," << std::endl;

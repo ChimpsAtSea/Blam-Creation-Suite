@@ -20,7 +20,7 @@ namespace blofeld
 		controller_mapping_struct_definition);
 
 	#define CONTROLLER_MAPPING_STRUCT_DEFINITION_ID { 0x7011BE12, 0xFF694D9C, 0xA21928C1, 0x41187886 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		controller_mapping_struct_definition,
 		"controller_mapping_struct_definition",
 		"s_controller_mapping_definition",

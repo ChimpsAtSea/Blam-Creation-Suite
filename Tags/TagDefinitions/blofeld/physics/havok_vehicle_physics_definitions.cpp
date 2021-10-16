@@ -128,7 +128,7 @@ namespace blofeld
 
 
 	#define HAVOK_VEHICLE_PHYSICS_STRUCT_ID { 0xF61F67DF, 0xEC364DFE, 0x9AB565F7, 0x2D6F7EA8 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		havok_vehicle_physics_struct,
 		"havok_vehicle_physics_struct",
 		"s_havok_vehicle_physics_definition",

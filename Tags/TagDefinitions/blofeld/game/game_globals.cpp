@@ -152,7 +152,7 @@ namespace blofeld
 	};
 
 	#define GLOBALS_STRUCT_DEFINITION_ID { 0x08DE77CB, 0xA2CF4145, 0xBB807A30, 0xB2A866B3 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		globals_struct_definition,
 		"globals_struct_definition",
 		"s_game_globals",
@@ -300,7 +300,7 @@ namespace blofeld
 	};
 
 	#define PATCH_GLOBALS_STRUCT_DEFINITION_ID { 0x61508392, 0x3EAD42E3, 0x8EC54AE9, 0xD301A46B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		patch_globals_struct_definition,
 		"patch_globals_struct_definition",
 		"PatchGlobals",
@@ -329,7 +329,7 @@ namespace blofeld
 	};
 
 	#define ELITE_SPECULAR_COLOR_STRUCT_ID { 0x19358444, 0x61AC41D0, 0x8B134E19, 0x26C63A1B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		elite_specular_color_struct,
 		"elite_specular_color_struct",
 		"s_elite_specular_color",

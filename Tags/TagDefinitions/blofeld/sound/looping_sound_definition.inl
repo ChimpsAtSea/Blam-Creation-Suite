@@ -20,7 +20,7 @@ namespace blofeld
 		sound_looping_struct_definition);
 
 	#define SOUND_LOOPING_STRUCT_DEFINITION_ID { 0xD492E38E, 0x64EC43C3, 0x8F8AC4EC, 0xE04E0DB9 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_looping_struct_definition,
 		"sound_looping_struct_definition",
 		"looping_sound_definition",

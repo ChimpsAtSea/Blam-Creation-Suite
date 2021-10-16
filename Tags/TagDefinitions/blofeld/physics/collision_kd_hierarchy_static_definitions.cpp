@@ -133,7 +133,7 @@ namespace blofeld
 	};
 
 	#define COLLISION_KD_HIERARCHY_STATIC_STRUCT_ID { 0x9AC5DB45, 0x1F934BF3, 0x902C2890, 0x4C76F360 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		collision_kd_hierarchy_static_struct,
 		"collision_kd_hierarchy_static_struct",
 		"s_collision_kd_hierarchy_static",

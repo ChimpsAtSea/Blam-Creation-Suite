@@ -20,7 +20,7 @@ namespace blofeld
 		rumble_struct_definition);
 
 	#define RUMBLE_STRUCT_DEFINITION_ID { 0xA87A0F82, 0xD7044788, 0x8CCC9E6E, 0xC4B87FD1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		rumble_struct_definition,
 		"rumble_struct_definition",
 		"s_rumble_definition",
@@ -34,7 +34,7 @@ namespace blofeld
 	};
 
 	#define RUMBLE_DEFINITION_STRUCT_ID { 0xF1DC7B29, 0x0B7B46B3, 0xBF03AEBC, 0x767187CF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		rumble_definition_struct,
 		"rumble_definition_struct",
 		"s_rumble_definition",
@@ -51,7 +51,7 @@ namespace blofeld
 	};
 
 	#define RUMBLE_FREQUENCY_DEFINITION_STRUCT_ID { 0xEA65C648, 0xFDA541ED, 0x98C4CA63, 0xC70E97CC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		rumble_frequency_definition_struct,
 		"rumble_frequency_definition_struct",
 		"s_rumble_frequency_definition",

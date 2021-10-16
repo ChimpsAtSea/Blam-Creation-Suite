@@ -96,7 +96,7 @@ namespace blofeld
 	};
 
 	#define MULTILINGUAL_UNICODE_STRING_LIST_STRUCT_DEFINITION_ID { 0x257EFBBE, 0x66F84C7A, 0x8922D3CD, 0x800AE80F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		multilingual_unicode_string_list_struct_definition,
 		"multilingual_unicode_string_list_struct_definition",
 		"s_multilingual_unicode_string_list_group_header",
@@ -114,7 +114,7 @@ namespace blofeld
 	};
 
 	#define LANGUAGE_PACK_DEFINITION_ID { 0x75A16A47, 0xDCD04796, 0x8CB23851, 0x14C59991 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		language_pack_definition,
 		"language_pack_definition",
 		"c_language_pack",

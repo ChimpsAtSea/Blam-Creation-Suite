@@ -62,7 +62,7 @@ namespace blofeld
 	};
 
 	#define SOUND_RESPONSE_DEFINITION_STRUCT_ID { 0xA50C3138, 0x066E4CA0, 0x91825778, 0xDCAFD913 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_response_definition_struct,
 		"sound_response_definition_struct",
 		"s_game_engine_event_sound_response_definition",

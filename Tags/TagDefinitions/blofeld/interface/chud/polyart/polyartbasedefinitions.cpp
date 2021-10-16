@@ -52,7 +52,7 @@ namespace blofeld
 		indexBuffersBlock_struct);
 
 	#define VERTEXBUFFERSBLOCK_STRUCT_ID { 0xF38916AB, 0xCA2A435E, 0xBCB353B1, 0x57130D3E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		vertexBuffersBlock_struct,
 		"vertexBuffersBlock_struct",
 		"c_rasterizer_vertex_buffer",
@@ -69,7 +69,7 @@ namespace blofeld
 	};
 
 	#define INDEXBUFFERSBLOCK_STRUCT_ID { 0xFB7AA38B, 0x3CE54625, 0xB96C0003, 0x60812BBC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		indexBuffersBlock_struct,
 		"indexBuffersBlock_struct",
 		"c_rasterizer_index_buffer",

@@ -49,7 +49,7 @@ namespace blofeld
 	};
 
 	#define MODEL_DISSOLVE_DEFINITION_STRUCT_DEFINITION_ID { 0xB46D6344, 0x9E9A42C1, 0xA96370B0, 0xA5728CF5 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		model_dissolve_definition_struct_definition,
 		"model_dissolve_definition_struct_definition",
 		"ModelDissolveDefinition",

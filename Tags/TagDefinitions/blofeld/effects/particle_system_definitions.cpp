@@ -277,7 +277,7 @@ namespace blofeld
 	};
 
 	#define GPU_PROPERTY_FUNCTION_COLOR_STRUCT_ID { 0x33DE2336, 0x7C6242C5, 0xAD5A8C31, 0x992C78EA }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		gpu_property_function_color_struct,
 		"gpu_property_function_color_struct",
 		"c_particle_emitter_definition::s_gpu_data",

@@ -240,7 +240,7 @@ namespace blofeld
 	};
 
 	#define STRUCTUREIOHAVOKDATABLOCK_STRUCT_ID { 0x07320729, 0x546A468D, 0xBDB63F21, 0xF4C58C41 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structureIOHavokDataBlock_struct,
 		"structureIOHavokDataBlock_struct",
 		"StructureIOSerializedHavokData",
@@ -260,7 +260,7 @@ namespace blofeld
 	};
 
 	#define SERIALIZEDHAVOKGEOMETRYDATABLOCK_STRUCT_ID { 0xB831D0B0, 0x123446F2, 0x832BB0CF, 0x6CDDB759 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		SerializedHavokGeometryDataBlock_struct,
 		"SerializedHavokGeometryDataBlock_struct",
 		"SerializedHavokGeometry",

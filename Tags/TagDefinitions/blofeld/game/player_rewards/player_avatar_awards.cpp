@@ -35,7 +35,7 @@ namespace blofeld
 	};
 
 	#define AVATAR_AWARDS_STRUCT_DEFINITION_ID { 0xE7F475A4, 0xCEA745F5, 0xB17719E4, 0x82815003 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		avatar_awards_struct_definition,
 		"avatar_awards_struct_definition",
 		"s_game_avatar_awards_definition",

@@ -20,7 +20,7 @@ namespace blofeld
 		communication_sounds_struct_definition);
 
 	#define COMMUNICATION_SOUNDS_STRUCT_DEFINITION_ID { 0x9889948D, 0xAC0D4FD5, 0x8157FA51, 0xF5BC8577 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		communication_sounds_struct_definition,
 		"communication_sounds_struct_definition",
 		"s_communication_sound_group",

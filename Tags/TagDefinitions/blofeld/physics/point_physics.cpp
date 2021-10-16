@@ -20,7 +20,7 @@ namespace blofeld
 		point_physics_struct_definition);
 
 	#define POINT_PHYSICS_STRUCT_DEFINITION_ID { 0x25622995, 0xA9214233, 0x8BD5DA29, 0xE1C6CC0A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		point_physics_struct_definition,
 		"point_physics_struct_definition",
 		"point_physics_definition",

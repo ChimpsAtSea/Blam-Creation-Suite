@@ -247,7 +247,7 @@ namespace blofeld
 	};
 
 	#define STYLE_SHEET_LIST_STRUCT_DEFINITION_ID { 0xC59ED09C, 0xE2CC4A35, 0xA7C67CF6, 0xBD5B6B99 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		style_sheet_list_struct_definition,
 		"style_sheet_list_struct_definition",
 		"UserInterfaceStyleSheetLanguages",

@@ -185,7 +185,7 @@ namespace blofeld
 	};
 
 	#define AI_DIALOGUE_GLOBALS_STRUCT_DEFINITION_ID { 0x28A04827, 0x55DC4CE6, 0x95458C49, 0x9C6549DC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		ai_dialogue_globals_struct_definition,
 		"ai_dialogue_globals_struct_definition",
 		"ai_dialogue_definitions",

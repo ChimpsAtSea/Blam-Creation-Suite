@@ -20,7 +20,7 @@ namespace blofeld
 		sound_scenery_struct_definition);
 
 	#define SOUND_SCENERY_STRUCT_DEFINITION_ID { 0xD4C4A75B, 0x96954D6A, 0xBB77085F, 0xD4396EF5 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_scenery_struct_definition,
 		"sound_scenery_struct_definition",
 		"_sound_scenery_definition",

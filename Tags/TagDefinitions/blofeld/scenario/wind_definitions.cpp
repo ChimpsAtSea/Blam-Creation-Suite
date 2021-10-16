@@ -37,7 +37,7 @@ namespace blofeld
 		wind_block );
 
 	#define WIND_SCALAR_FUNCTION_STRUCT_ID { 0xC19F77F7, 0xBDE74B5E, 0xA4BA598F, 0x198FA328 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		wind_scalar_function_struct,
 		"wind_scalar_function_struct",
 		"s_wind_function",

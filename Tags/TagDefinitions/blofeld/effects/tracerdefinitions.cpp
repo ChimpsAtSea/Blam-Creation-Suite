@@ -78,7 +78,7 @@ namespace blofeld
 	};
 
 	#define TRACER_SYSTEM_STRUCT_DEFINITION_ID { 0xD599167D, 0x903449CE, 0x94785CCF, 0x2DF03016 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		tracer_system_struct_definition,
 		"tracer_system_struct_definition",
 		"TracerSystemDefinition",
@@ -97,7 +97,7 @@ namespace blofeld
 	};
 
 	#define TRACERPROPERTY_REAL_STRUCT_ID { 0x91513A4E, 0x20A34CBB, 0x9722BA95, 0x3B66FE62 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		tracerProperty_real_Struct,
 		"tracerProperty_real_Struct",
 		"TracerProperty_real",
@@ -119,7 +119,7 @@ namespace blofeld
 	};
 
 	#define TRACERPROPERTY_REAL_VECTOR3D_STRUCT_ID { 0xBE4687B3, 0xC8B74B16, 0x86F2D1AC, 0x27137B34 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		tracerProperty_real_vector3d_Struct,
 		"tracerProperty_real_vector3d_Struct",
 		"TracerProperty_real_vector3d",
@@ -143,7 +143,7 @@ namespace blofeld
 	};
 
 	#define TRACERPROPERTY_REAL_POINT2D_STRUCT_ID { 0x0837F421, 0x9742425D, 0xB30CA589, 0x0DC66361 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		tracerProperty_real_point2d_Struct,
 		"tracerProperty_real_point2d_Struct",
 		"TracerProperty_real_point2d",
@@ -167,7 +167,7 @@ namespace blofeld
 	};
 
 	#define TRACERPROPERTY_REAL_RGB_COLOR_STRUCT_ID { 0xFD7B022D, 0xC01E4F52, 0x9D862B19, 0xC6CBF906 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		tracerProperty_real_rgb_color_Struct,
 		"tracerProperty_real_rgb_color_Struct",
 		"TracerProperty_real_rgb_color",

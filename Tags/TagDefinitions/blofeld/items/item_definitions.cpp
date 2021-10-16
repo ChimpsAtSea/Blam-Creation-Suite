@@ -34,7 +34,7 @@ namespace blofeld
 	};
 
 	#define ITEM_STRUCT_DEFINITION_ID { 0x21CDF7E3, 0xAD94443E, 0xAE80968D, 0x8CFBEBBF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		item_struct_definition,
 		"item_struct_definition",
 		"_item_definition",

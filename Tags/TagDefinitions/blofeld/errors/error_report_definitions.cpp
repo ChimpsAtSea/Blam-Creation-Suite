@@ -223,7 +223,7 @@ namespace blofeld
 	};
 
 	#define ERROR_REPORT_POINT_DEFINITION_ID { 0xB6C2368C, 0x78534A62, 0x9882F40C, 0xE2181EF5 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		error_report_point_definition,
 		"error_report_point_definition",
 		"error_report_point",

@@ -104,7 +104,7 @@ namespace blofeld
 	};
 
 	#define DAMAGE_DECAY_STRUCT_ID { 0x1C1E2343, 0x2E644935, 0xA2CE1C35, 0x2B143905 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		damage_decay_struct,
 		"damage_decay_struct",
 		"s_damage_decay",

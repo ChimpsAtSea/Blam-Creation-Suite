@@ -3,7 +3,7 @@
 
 namespace blofeld
 {
-	V5_TAG_STRUCT(sound_mix_equalizer)
+	V5_TAG_STRUCT_V6(sound_mix_equalizer)
 	{
 		{ _field_legacy, _field_long_integer, "unknown" },
 		{ _field_legacy, _field_real, "base db" },
@@ -657,7 +657,7 @@ namespace blofeld
 	};
 
 	#define SOUND_DIALOGUE_CONSTANTS_STRUCT_DEFINITION_ID { 0x81DF7335, 0x8D55482D, 0xBCD40D38, 0xA8F5D740 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_dialogue_constants_struct_definition,
 		"sound_dialogue_constants_struct_definition",
 		"s_sound_dialogue_constants_definition",
@@ -675,7 +675,7 @@ namespace blofeld
 	};
 
 	#define SOUND_DISTANCE_PARAMETERS_STRUCT_ID { 0x5E198FB1, 0xA69A46FA, 0x8FC2D774, 0xF76DCAAA }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_distance_parameters_struct,
 		"sound_distance_parameters_struct",
 		"s_sound_distance_parameters",
@@ -696,7 +696,7 @@ namespace blofeld
 	};
 
 	#define SOUND_PROPAGATION_DEFINITION_STRUCT_ID { 0xDE42E807, 0x9F174952, 0xA2622269, 0x55663071 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_propagation_definition_struct,
 		"sound_propagation_definition_struct",
 		"s_sound_propagation_definition",
@@ -714,7 +714,7 @@ namespace blofeld
 	};
 
 	#define SOUNDLIPSYNCINFOBLOCK_STRUCT_ID { 0x0CE98746, 0xD3DA483B, 0xAED26267, 0xCD83DD37 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		soundLipSyncInfoBlock_struct,
 		"soundLipSyncInfoBlock_struct",
 		"soundLipSyncInfo",
@@ -730,7 +730,7 @@ namespace blofeld
 	};
 
 	#define DETERMINISTICSPEECHEVENTBLOCK_STRUCT_ID { 0x7EEDB328, 0xCE2543C3, 0xB20B798B, 0xEE2D947A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		deterministicSpeechEventBlock_struct,
 		"deterministicSpeechEventBlock_struct",
 		"deterministicSpeechEventInfo",
@@ -746,7 +746,7 @@ namespace blofeld
 	};
 
 	#define SOUND_PLAYBACK_PARAMETERS_STRUCT_ID { 0x04851E6C, 0x1277447B, 0xB15A0C03, 0x9B5C40CA }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_playback_parameters_struct,
 		"sound_playback_parameters_struct",
 		"s_sound_definition_playback_parameters",
@@ -779,7 +779,7 @@ namespace blofeld
 	};
 
 	#define SOUND_SCALE_MODIFIERS_STRUCT_ID { 0x3ABE3277, 0x90774F0E, 0xA794C831, 0x58D6DACF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_scale_modifiers_struct,
 		"sound_scale_modifiers_struct",
 		"s_sound_definition_scale_modifiers",
@@ -795,7 +795,7 @@ namespace blofeld
 	};
 
 	#define SOUND_PROMOTION_PARAMETERS_STRUCT_ID { 0x2CF97DF2, 0xC0014BDB, 0xAE39ECEA, 0xBA189908 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_promotion_parameters_struct,
 		"sound_promotion_parameters_struct",
 		"sound_promotion_parameters_struct",
@@ -812,7 +812,7 @@ namespace blofeld
 	};
 
 	#define SOUND_TRANSMISSION_DEFINITION_STRUCT_ID { 0x7D2210B1, 0x1E4E416A, 0xA69625D0, 0xDF052335 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_transmission_definition_struct,
 		"sound_transmission_definition_struct",
 		"s_sound_transmission_definition",
@@ -828,7 +828,7 @@ namespace blofeld
 	};
 
 	#define SOUND_STEREO_MIX_STRUCT_ID { 0xF0FFEE52, 0xB30949B6, 0x86208462, 0x42D0E5DB }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_stereo_mix_struct,
 		"sound_stereo_mix_struct",
 		"s_sound_stereo_mix_definition",
@@ -842,7 +842,7 @@ namespace blofeld
 	};
 
 	#define SOUND_SURROUND_MIX_STRUCT_ID { 0xEA4CD876, 0x62334CC1, 0xABC12101, 0x9DCEA290 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_surround_mix_struct,
 		"sound_surround_mix_struct",
 		"s_sound_stereo_mix_definition",
@@ -856,7 +856,7 @@ namespace blofeld
 	};
 
 	#define SOUND_GLOBAL_MIX_STRUCT_ID { 0xA2C05D8F, 0xA92D4D82, 0x9534A331, 0x4BD3EF82 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_global_mix_struct,
 		"sound_global_mix_struct",
 		"s_sound_global_mix_configuration",
@@ -891,7 +891,7 @@ namespace blofeld
 	};
 
 	#define SOUND_CENTER_MIX_STRUCT_ID { 0x5F672B73, 0xEC7142BA, 0xB9066F9F, 0x56A974D9 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_center_mix_struct,
 		"sound_center_mix_struct",
 		"s_sound_center_mix_definition",
@@ -905,7 +905,7 @@ namespace blofeld
 	};
 
 	#define SOUND_RESOURCE_DEFINITION_STRUCT_ID { 0xC0BA15AA, 0xB9CB4B7B, 0x9D98A769, 0xD335C8BB }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_resource_definition_struct,
 		"sound_resource_definition_struct",
 		"s_sound_resource_data",
@@ -918,7 +918,7 @@ namespace blofeld
 	};
 
 	#define FACIAL_ANIMATION_RESOURCE_DEFINITION_STRUCT_ID { 0x268C469E, 0xD68743D8, 0x898CC9F7, 0xC60502E7 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		facial_animation_resource_definition_struct,
 		"facial_animation_resource_definition_struct",
 		"s_facial_animation",

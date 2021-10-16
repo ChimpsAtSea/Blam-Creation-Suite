@@ -34,7 +34,7 @@ namespace blofeld
 	};
 
 	#define USER_INTERFACE_HUD_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0x26873A9C, 0x2C164287, 0xA3863666, 0xDBD13CFC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		user_interface_hud_globals_definition_struct_definition,
 		"user_interface_hud_globals_definition_struct_definition",
 		"UserInterfaceHUDGlobalsDefinitions",

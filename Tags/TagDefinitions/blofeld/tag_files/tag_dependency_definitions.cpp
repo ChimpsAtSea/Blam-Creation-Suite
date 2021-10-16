@@ -34,7 +34,7 @@ namespace blofeld
 	};
 
 	#define DEPENDENCY_STRUCT_DEFINITION_ID { 0xE7E865D4, 0xC1CE4274, 0xAFDC6ECC, 0xCF42D536 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		dependency_struct_definition,
 		"dependency_struct_definition",
 		"s_dependency_list",

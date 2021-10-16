@@ -152,7 +152,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_STRUCTURE_PHYSICS_STRUCT_ID { 0x85AE0045, 0x53D34FA6, 0x8EF153FA, 0x77162294 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_structure_physics_struct,
 		"global_structure_physics_struct",
 		"global_structure_physics_struct",
@@ -172,7 +172,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_STRUCTURE_PHYSICS_DESIGN_STRUCT_ID { 0x85AE0A45, 0x13D34FA6, 0x8EB153FA, 0xA7162294 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_structure_physics_design_struct,
 		"global_structure_physics_design_struct",
 		"global_structure_physics_design_struct",

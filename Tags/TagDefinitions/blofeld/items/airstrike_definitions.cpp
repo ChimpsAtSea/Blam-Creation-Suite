@@ -68,7 +68,7 @@ namespace blofeld
 	};
 
 	#define AIRSTRIKE_STRUCT_DEFINITION_ID { 0x74418E97, 0x4B464172, 0xBA070FC0, 0x21EC279C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		airstrike_struct_definition,
 		"airstrike_struct_definition",
 		"AirStrikeDefinition",

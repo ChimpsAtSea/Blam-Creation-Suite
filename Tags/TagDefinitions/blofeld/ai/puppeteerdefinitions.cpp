@@ -237,7 +237,7 @@ namespace blofeld
 	};
 
 	#define PUPPETHEADERSTRUCT_ID { 0xC023483C, 0x3B97483F, 0x83E7754E, 0x39F683AC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PuppetHeaderStruct,
 		"PuppetHeaderStruct",
 		"PuppetHeader",
@@ -266,7 +266,7 @@ namespace blofeld
 	};
 
 	#define PUPPETPATHPOINTSTRUCT_ID { 0x0AC79CA3, 0x908646D8, 0x98358F46, 0xAA2AEE0F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PuppetPathPointStruct,
 		"PuppetPathPointStruct",
 		"PuppetPathPoint",
@@ -287,7 +287,7 @@ namespace blofeld
 	};
 
 	#define PUPPETACTIONHEADERSTRUCT_ID { 0xFA200369, 0xBB6D48F8, 0x9B156C53, 0x5A91C58B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PuppetActionHeaderStruct,
 		"PuppetActionHeaderStruct",
 		"PuppetActionHeader",
@@ -307,7 +307,7 @@ namespace blofeld
 	};
 
 	#define PUPPETACTIONANIMATIONSTRUCT_ID { 0x5982A171, 0x1CD747BF, 0x990B8738, 0x4F5013E6 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PuppetActionAnimationStruct,
 		"PuppetActionAnimationStruct",
 		"PuppetActionAnimation",
@@ -330,7 +330,7 @@ namespace blofeld
 	};
 
 	#define PUPPETACTIONPATHSTRUCT_ID { 0x7BEF7478, 0x58614EB4, 0x9EFA2425, 0xEFBCD9DA }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PuppetActionPathStruct,
 		"PuppetActionPathStruct",
 		"PuppetActionPath",
@@ -344,7 +344,7 @@ namespace blofeld
 	};
 
 	#define PUPPETSUBACTIONHEADERSTRUCT_ID { 0x939C4DED, 0x98064334, 0xB0808526, 0xE32FC69E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PuppetSubActionHeaderStruct,
 		"PuppetSubActionHeaderStruct",
 		"PuppetSubActionHeader",
@@ -371,7 +371,7 @@ namespace blofeld
 	};
 
 	#define PUPPETSUBACTIONPOINTSTRUCT_ID { 0x584F4F7A, 0x49054FE7, 0x8D7EA9C1, 0xE034E98F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PuppetSubActionPointStruct,
 		"PuppetSubActionPointStruct",
 		"PuppetSubActionPoint",
@@ -387,7 +387,7 @@ namespace blofeld
 	};
 
 	#define PUPPETSUBACTIONBRANCHSTRUCT_ID { 0x726B629A, 0x429D4389, 0x90127AED, 0x78D58747 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PuppetSubActionBranchStruct,
 		"PuppetSubActionBranchStruct",
 		"PuppetSubActionBranch",
@@ -400,7 +400,7 @@ namespace blofeld
 	};
 
 	#define PUPPETSUBACTIONSCRIPTSTRUCT_ID { 0x9481F465, 0xC8D546E8, 0x94DAE439, 0xC1BBE1C9 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PuppetSubActionScriptStruct,
 		"PuppetSubActionScriptStruct",
 		"PuppetSubActionScript",

@@ -36,7 +36,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_TRACK_STRUCT_DEFINITION_ID { 0x3215F817, 0x264E4A98, 0x8165BFA1, 0xAACA3E6F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_track_struct_definition,
 		"camera_track_struct_definition",
 		"s_camera_track_definition",

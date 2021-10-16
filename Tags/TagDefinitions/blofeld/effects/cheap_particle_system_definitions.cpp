@@ -113,7 +113,7 @@ namespace blofeld
 	};
 
 	#define CHEAP_PARTICLE_EMITTER_STRUCT_DEFINITION_ID { 0x03578EF2, 0xE31FA29B, 0x53BAF43A, 0x00E427CA }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cheap_particle_emitter_struct_definition,
 		"cheap_particle_emitter_struct_definition",
 		"s_cheap_particle_emitter",
@@ -169,7 +169,7 @@ namespace blofeld
 	};
 
 	#define CHEAP_PARTICLE_TYPE_LIBRARY_STRUCT_DEFINITION_ID { 0x2BCDE64D, 0xF1374714, 0x8A6A9EB7, 0xAD124FCF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cheap_particle_type_library_struct_definition,
 		"cheap_particle_type_library_struct_definition",
 		"s_cheap_particle_type_library",
@@ -204,7 +204,7 @@ namespace blofeld
 	};
 
 	#define CHEAP_PARTICLE_SCALAR_OBJECT_FUNCTION_STRUCT_ID { 0xE439295B, 0xED024F7F, 0xBA3D7B94, 0x393D4F18 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cheap_particle_scalar_object_function_struct,
 		"cheap_particle_scalar_object_function_struct",
 		"s_cheap_particle_scalar_object_function",

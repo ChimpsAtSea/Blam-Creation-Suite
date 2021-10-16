@@ -158,7 +158,7 @@ namespace blofeld
 	};
 
 	#define TASK_DIRECTION_BLOCK_V2_STRUCT_ID { 0xFD7F6876, 0x58824DDC, 0x9EE64C67, 0xC4D351E4 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		task_direction_block_v2_struct,
 		"task_direction_block_v2_struct",
 		"s_task_direction_v2",

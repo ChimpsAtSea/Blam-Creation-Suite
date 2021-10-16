@@ -13,7 +13,7 @@ namespace blofeld
 		render_texture_format_definition);
 
 	#define RENDER_TEXTURE_INTERLEAVED_INTEROP_DEFINITION_STRUCT_ID { 0x90486D0A, 0x944A4941, 0x9FE79AF0, 0x39E2E611 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		render_texture_interleaved_interop_definition_struct,
 		"render_texture_interleaved_interop_definition_struct",
 		"s_render_texture_interleaved_descriptor",
@@ -31,7 +31,7 @@ namespace blofeld
 	};
 
 	#define RENDER_TEXTURE_FORMAT_DEFINITION_ID { 0xA5D6641E, 0xAC074AA2, 0x9ADEF9FC, 0x336413F7 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		render_texture_format_definition,
 		"render_texture_format_definition",
 		"s_render_texture_format",
@@ -61,7 +61,7 @@ namespace blofeld
 	};
 
 	#define RENDER_TEXTURE_INTEROP_DEFINITION_STRUCT_ID { 0x64017671, 0x437A46F0, 0x9A33C422, 0x517096E3 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		render_texture_interop_definition_struct,
 		"render_texture_interop_definition_struct",
 		"s_render_texture_descriptor",

@@ -977,7 +977,7 @@ namespace blofeld
 	};
 
 	#define EQUIPMENT_STRUCT_DEFINITION_ID { 0x18B70662, 0x869349C3, 0xB79E4FBE, 0xC65A52CB }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		equipment_struct_definition,
 		"equipment_struct_definition",
 		"_equipment_definition",

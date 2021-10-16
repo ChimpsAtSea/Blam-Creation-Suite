@@ -67,7 +67,7 @@ namespace blofeld
 	};
 
 	#define DEATH_PROGRAM_SELECTOR_STRUCT_DEFINITION_ID { 0x4017D7F3, 0x78A848E8, 0x90B37B9F, 0x63AE0A5B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		death_program_selector_struct_definition,
 		"death_program_selector_struct_definition",
 		"s_death_program_selector",

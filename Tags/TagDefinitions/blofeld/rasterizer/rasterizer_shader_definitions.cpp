@@ -341,7 +341,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_CACHE_FILE_PIXEL_SHADERS_STRUCT_DEFINITION_ID { 0xA0F8ADA1, 0x1ACFD5EA, 0xA2DA2122, 0x4AC1DDEE }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_cache_file_pixel_shaders_struct_definition,
 		"global_cache_file_pixel_shaders_struct_definition",
 		"c_global_cache_file_pixel_shaders",
@@ -358,7 +358,7 @@ namespace blofeld
 	};
 
 	#define HLSL_INCLUDE_STRUCT_DEFINITION_ID { 0x7481D09D, 0x2F6D4C89, 0xB397EADA, 0xCEE7E3AE }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		hlsl_include_struct_definition,
 		"hlsl_include_struct_definition",
 		"c_rasterizer_hlsl_include_file",
@@ -371,7 +371,7 @@ namespace blofeld
 	};
 
 	#define RASTERIZER_COMPILED_SHADER_STRUCT_ID { 0xF99B344C, 0x5A344EF5, 0x8D1FB1EE, 0xFC6B0182 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		rasterizer_compiled_shader_struct,
 		"rasterizer_compiled_shader_struct",
 		"c_rasterizer_compiled_shader",

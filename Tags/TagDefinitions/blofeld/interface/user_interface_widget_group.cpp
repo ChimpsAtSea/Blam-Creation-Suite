@@ -498,7 +498,7 @@ namespace blofeld
 	};
 
 	#define INFINITYUIIMAGES_STRUCT_DEFINITION_ID { 0xD223EB5F, 0xCD5E44E1, 0xA3DEEA14, 0x416725BA }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		InfinityUIImages_struct_definition,
 		"InfinityUIImages_struct_definition",
 		"InfinityUIImages",
@@ -511,7 +511,7 @@ namespace blofeld
 	};
 
 	#define PGCR_ENEMY_TO_CATEGORY_MAPPING_DEFINITION_STRUCT_DEFINITION_ID { 0x21E13268, 0x65D94C93, 0xAF53E865, 0x3B4C8BFC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		pgcr_enemy_to_category_mapping_definition_struct_definition,
 		"pgcr_enemy_to_category_mapping_definition_struct_definition",
 		"s_pgcr_enemy_to_category_mapping",
@@ -525,7 +525,7 @@ namespace blofeld
 	};
 
 	#define PGCR_DAMAGE_TYPE_IMAGE_MAPPING_DEFINITION_STRUCT_DEFINITION_ID { 0x1294C4E2, 0x1F1D4FBF, 0xAA479C98, 0xC6592582 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		pgcr_damage_type_image_mapping_definition_struct_definition,
 		"pgcr_damage_type_image_mapping_definition_struct_definition",
 		"PgcrDamageTypeImageMapping",
@@ -538,7 +538,7 @@ namespace blofeld
 	};
 
 	#define PORTRAIT_POSES_DEFINITION_STRUCT_DEFINITION_ID { 0xF0850C93, 0x4E2245F1, 0xB23D8D60, 0xE64B9FE0 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		portrait_poses_definition_struct_definition,
 		"portrait_poses_definition_struct_definition",
 		"UserInterfacePortraitPosesDefinitions",
@@ -551,7 +551,7 @@ namespace blofeld
 	};
 
 	#define USER_INTERFACE_SOUNDS_DEFINITION_STRUCT_DEFINITION_ID { 0x70FFE855, 0x2DE74385, 0x83BAE604, 0x1597E3B6 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		user_interface_sounds_definition_struct_definition,
 		"user_interface_sounds_definition_struct_definition",
 		"s_user_interface_sounds",
@@ -661,7 +661,7 @@ namespace blofeld
 	};
 
 	#define USER_INTERFACE_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0xFF5E4703, 0xC3CE4535, 0xBBBF413E, 0x31D62CBE }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		user_interface_globals_definition_struct_definition,
 		"user_interface_globals_definition_struct_definition",
 		"s_user_interface_tag_globals",
@@ -721,7 +721,7 @@ namespace blofeld
 	};
 
 	#define USER_INTERFACE_SHARED_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0x520DAD1B, 0x3ABC40F7, 0xA25DED9A, 0xB6D09BC7 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		user_interface_shared_globals_definition_struct_definition,
 		"user_interface_shared_globals_definition_struct_definition",
 		"s_user_interface_shared_globals",

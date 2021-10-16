@@ -109,7 +109,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	V5_TAG_STRUCT(havok_shape_struct_2010_2)
+	V5_TAG_STRUCT_V6(havok_shape_struct_2010_2)
 	{
 		// hkBaseObject
 		{ _field_legacy, _field_pointer, "field pointer skip!~" },
@@ -957,7 +957,7 @@ namespace blofeld
 	};
 
 	#define PHYSICS_MODEL_STRUCT_DEFINITION_ID { 0xB3439E17, 0x0DDD4542, 0xB8B59423, 0x9665EE90 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		physics_model_struct_definition,
 		"physics_model_struct_definition",
 		"physics_model_struct_definition",
@@ -1014,7 +1014,7 @@ namespace blofeld
 	};
 
 	#define HAVOK_PRIMITIVE_STRUCT_ID { 0xEA25BEF8, 0x01384DFD, 0x886C4497, 0x7BE57757 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		havok_primitive_struct,
 		"havok_primitive_struct",
 		"s_physics_model_primitive",
@@ -1039,7 +1039,7 @@ namespace blofeld
 	};
 
 	#define HAVOK_SHAPE_STRUCT_ID { 0x2957D592, 0x3C7D4521, 0x830D6134, 0x29B7361B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		havok_shape_struct,
 		"havok_shape_struct",
 		"hkpShape",
@@ -1070,7 +1070,7 @@ namespace blofeld
 	};
 
 	#define HAVOK_SHAPE_REFERENCE_STRUCT_ID { 0x573EF14C, 0x91AC4F07, 0xA1702B47, 0x7875B0E0 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		havok_shape_reference_struct,
 		"havok_shape_reference_struct",
 		"hkpShape *",
@@ -1084,7 +1084,7 @@ namespace blofeld
 	};
 
 	#define HAVOK_CONVEX_SHAPE_STRUCT_ID { 0x65BCED0A, 0xC7424242, 0x98E46503, 0x0E2E0DDA }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		havok_convex_shape_struct,
 		"havok_convex_shape_struct",
 		"hkpConvexShape",
@@ -1098,7 +1098,7 @@ namespace blofeld
 	};
 
 	#define HAVOK_CONVEX_TRANSLATE_SHAPE_STRUCT_ID { 0xCB9F81C2, 0x7F4B47B5, 0x8FE0AB7C, 0x8BB17123 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		havok_convex_translate_shape_struct,
 		"havok_convex_translate_shape_struct",
 		"hkpConvexTranslateShape",
@@ -1116,7 +1116,7 @@ namespace blofeld
 	};
 
 	#define HAVOK_SHAPE_COLLECTION_STRUCT_2010_2_ID { 0xDD6DCE26, 0x88D54E3D, 0x87B805A2, 0xD7E20D10 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		havok_shape_collection_struct_2010_2,
 		"havok_shape_collection_struct_2010_2",
 		"hkpShapeCollection_hk2010_2",
@@ -1137,7 +1137,7 @@ namespace blofeld
 	};
 
 	#define HAVOK_SHAPE_STRUCT_2010_2_ID { 0xCC42E7A1, 0x996A46EB, 0xA0A3AB5E, 0x7120F79C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		havok_shape_struct_2010_2,
 		"havok_shape_struct_2010_2",
 		"hkpShape_hk2010_2",
@@ -1166,7 +1166,7 @@ namespace blofeld
 	};
 
 	#define PHYSICS_MODEL_MOTOR_REFERENCE_STRUCT_ID { 0xAB7B559D, 0x0D744412, 0x84CDF67A, 0x370BCC34 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		physics_model_motor_reference_struct,
 		"physics_model_motor_reference_struct",
 		"s_physics_model_motor_reference",
@@ -1180,7 +1180,7 @@ namespace blofeld
 	};
 
 	#define HAVOK_CONVEX_TRANSFORM_SHAPE_STRUCT_ID { 0x13B806D5, 0x795947E2, 0xBB5E8C84, 0x747D768C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		havok_convex_transform_shape_struct,
 		"havok_convex_transform_shape_struct",
 		"hkpConvexTransformShape",
@@ -1204,7 +1204,7 @@ namespace blofeld
 	};
 
 	#define HAVOK_CONVEX_SHAPE_STRUCT_2010_2_ID { 0x47913899, 0x5D904202, 0x851C913C, 0xE4EB9434 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		havok_convex_shape_struct_2010_2,
 		"havok_convex_shape_struct_2010_2",
 		"hkpConvexShape_hk2010_2",
@@ -1218,7 +1218,7 @@ namespace blofeld
 	};
 
 	#define CONSTRAINT_BODIES_STRUCT_ID { 0x8C776F54, 0x79CD4488, 0xA821DD34, 0xBD455BC0 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		constraint_bodies_struct,
 		"constraint_bodies_struct",
 		"s_physics_model_constraint_bodies",

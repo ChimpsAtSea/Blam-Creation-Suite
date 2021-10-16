@@ -7,7 +7,7 @@ namespace blofeld
 
 
 	#define MIDNIGHT_LIGHT_STRUCT_ID { 0xC74B158E, 0xE0004613, 0x893D65F6, 0xE1E69DA7 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		midnight_light_struct,
 		"midnight_light_struct",
 		"s_midnight_light_definition",

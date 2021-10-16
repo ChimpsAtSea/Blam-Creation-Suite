@@ -66,5 +66,4 @@ s_tag_struct_definition::s_tag_struct_definition(
 	, symbol()
 {
 	symbol_manager_get_public_symbol_by_pointer(this, symbol);
-
 }

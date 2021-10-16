@@ -20,7 +20,7 @@ namespace blofeld
 		camo_struct_definition);
 
 	#define CAMO_STRUCT_DEFINITION_ID { 0xFD484E57, 0xEAA0419E, 0x95BA9341, 0xED21A3D5 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camo_struct_definition,
 		"camo_struct_definition",
 		"s_camo_effect_definition",
@@ -38,7 +38,7 @@ namespace blofeld
 	};
 
 	#define CAMO_SCALAR_FUNCTION_STRUCT_ID { 0xD6E8140F, 0xB16B4278, 0x9B69A726, 0x95B494AC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camo_scalar_function_struct,
 		"camo_scalar_function_struct",
 		"s_camo_function",

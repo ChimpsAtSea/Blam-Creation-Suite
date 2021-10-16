@@ -47,7 +47,7 @@ namespace blofeld
 	};
 
 	#define LIGHTMAP_MODEL_GLOBALS_STRUCT_DEFINITION_ID { 0x6B8CA05A, 0xD02345D2, 0xAB8CB22B, 0x1234EE33 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		lightmap_model_globals_struct_definition,
 		"lightmap_model_globals_struct_definition",
 		"s_lightmap_model_globals",
@@ -60,7 +60,7 @@ namespace blofeld
 	};
 
 	#define LIGHTMAPPER_GLOBALS_STRUCT_DEFINITION_ID { 0x6A05AB8C, 0xD07B4982, 0x8DB8412B, 0x526205C9 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		lightmapper_globals_struct_definition,
 		"lightmapper_globals_struct_definition",
 		"s_lightmapper_globals",
@@ -79,7 +79,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_LIGHTMAP_GLOBAL_SETTINGS_STRUCT_ID { 0xA69EDA5B, 0xE3064186, 0x94E282A7, 0xD06C2225 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_lightmap_global_settings_struct,
 		"global_lightmap_global_settings_struct",
 		"s_lightmap_settings_global",
@@ -101,7 +101,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_LIGHTMAP_LOCAL_SETTINGS_STRUCT_ID { 0xABA94F11, 0x80A74320, 0xB518BB46, 0x12432CF8 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_lightmap_local_settings_struct,
 		"global_lightmap_local_settings_struct",
 		"s_lightmap_settings_local",
@@ -128,7 +128,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_LIGHTMAP_AO_SETTINGS_STRUCT_ID { 0xC4A4F152, 0x645C49A2, 0xA0626D6A, 0x20FA92B2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_lightmap_ao_settings_struct,
 		"global_lightmap_ao_settings_struct",
 		"s_lightmap_settings_ao",
@@ -144,7 +144,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_LIGHTMAP_GLOBAL_ILLUMINATION_FALLOFF_SETTINGS_STRUCT_ID { 0xA062F152, 0x49205CA2, 0xC4A46D6A, 0x6492BFA2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_lightmap_global_illumination_falloff_settings_struct,
 		"global_lightmap_global_illumination_falloff_settings_struct",
 		"s_lightmap_settings_global_illumination_falloff",
@@ -161,7 +161,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_LIGHTMAP_LOCAL_OVERRIDE_SETTINGS_STRUCT_ID { 0xE6C2295B, 0xE3064A64, 0x9EDA82A7, 0xD0218265 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_lightmap_local_override_settings_struct,
 		"global_lightmap_local_override_settings_struct",
 		"s_lightmap_settings_local_overrides",

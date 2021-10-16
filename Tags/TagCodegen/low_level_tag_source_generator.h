@@ -11,6 +11,8 @@ public:
 	void generate_source() const;
 	void generate_enum_header() const;
 
+	std::string format_structure_symbol(const blofeld::s_tag_struct_definition& struct_definition) const;
+
 	static const char* field_type_to_low_level_source_type(e_platform_type platform_type, blofeld::e_field field_type);
 };
 

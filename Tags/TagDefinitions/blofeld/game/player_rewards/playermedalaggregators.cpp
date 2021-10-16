@@ -77,7 +77,7 @@ namespace blofeld
 	};
 
 	#define MEDAL_CHALLENGE_AGGREGATOR_LIST_STRUCT_DEFINITION_ID { 0xD03365AC, 0xF68547BA, 0x9555A47C, 0x88C2D660 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		medal_challenge_aggregator_list_struct_definition,
 		"medal_challenge_aggregator_list_struct_definition",
 		"MedalChallengeAggregatorList",
@@ -90,7 +90,7 @@ namespace blofeld
 	};
 
 	#define MEDAL_COMMENDATION_AGGREGATOR_LIST_STRUCT_DEFINITION_ID { 0x358B415E, 0xA96F4B51, 0xA64F35A0, 0xB280D9B1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		medal_commendation_aggregator_list_struct_definition,
 		"medal_commendation_aggregator_list_struct_definition",
 		"MedalCommendationAggregatorList",
@@ -103,7 +103,7 @@ namespace blofeld
 	};
 
 	#define MEDALAGGREGATOR_ID { 0x76FDA036, 0x899340B2, 0xB8B3DAAE, 0x0F99E191 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		medalAggregator,
 		"medalAggregator",
 		"MedalAggregator",

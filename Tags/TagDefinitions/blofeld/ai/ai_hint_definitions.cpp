@@ -464,7 +464,7 @@ namespace blofeld
 	};
 
 	#define USER_HINT_VOLUME_AVOIDANCE_STRUCT_ID { 0x29245A8E, 0x0A494EC9, 0xBD64B83D, 0x2522CB5D }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		user_hint_volume_avoidance_struct,
 		"user_hint_volume_avoidance_struct",
 		"s_avoidance_volume",

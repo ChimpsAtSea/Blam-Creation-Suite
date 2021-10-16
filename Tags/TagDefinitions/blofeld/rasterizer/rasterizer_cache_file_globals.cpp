@@ -20,7 +20,7 @@ namespace blofeld
 		rasterizer_cache_file_globals_struct_definition);
 
 	#define RASTERIZER_CACHE_FILE_GLOBALS_STRUCT_DEFINITION_ID { 0x3FAFA78E, 0x905B48F5, 0x82089983, 0x561E7C3B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		rasterizer_cache_file_globals_struct_definition,
 		"rasterizer_cache_file_globals_struct_definition",
 		"s_rasterizer_cache_file_globals",

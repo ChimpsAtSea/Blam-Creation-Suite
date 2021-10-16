@@ -350,7 +350,7 @@ namespace blofeld
 	};
 
 	#define UNIT_STRUCT_DEFINITION_ID { 0xC8958077, 0x466A4028, 0x94ACA1E3, 0xDB3BF1B8 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		unit_struct_definition,
 		"unit_struct_definition",
 		"_unit_definition",
@@ -578,7 +578,7 @@ namespace blofeld
 	};
 
 	#define UNIT_CAMERA_STRUCT_ID { 0x382328B4, 0x49B04550, 0x9B1635F2, 0x1B616A06 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		unit_camera_struct,
 		"unit_camera_struct",
 		"s_unit_camera",
@@ -626,7 +626,7 @@ namespace blofeld
 	};
 
 	#define UNIT_CAMERA_ACCELERATION_DISPLACEMENT_FUNCTION_STRUCT_ID { 0x22A7A324, 0xB17C4B45, 0xBBF37B84, 0xD2BD1E36 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		unit_camera_acceleration_displacement_function_struct,
 		"unit_camera_acceleration_displacement_function_struct",
 		"s_unit_camera_acceleration_displacement_function",
@@ -646,7 +646,7 @@ namespace blofeld
 	};
 
 	#define UNIT_ADDITIONAL_NODE_NAMES_STRUCT_ID { 0x35A19301, 0xDCF54C9C, 0x8671ED37, 0x1EF33AE5 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		unit_additional_node_names_struct,
 		"unit_additional_node_names_struct",
 		"unit_additional_node_names_struct",
@@ -671,7 +671,7 @@ namespace blofeld
 	};
 
 	#define UNIT_BOARDING_MELEE_STRUCT_ID { 0xA96C7D6D, 0xD8B54A51, 0xBF99FA0C, 0x13071BCE }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		unit_boarding_melee_struct,
 		"unit_boarding_melee_struct",
 		"unit_boarding_melee_struct",
@@ -701,7 +701,7 @@ namespace blofeld
 	};
 
 	#define UNIT_BOOST_STRUCT_ID { 0x4506D858, 0x370B402D, 0x83F08481, 0xCB943803 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		unit_boost_struct,
 		"unit_boost_struct",
 		"s_unit_boost_definition",
@@ -741,7 +741,7 @@ namespace blofeld
 	};
 
 	#define UNIT_LIPSYNC_SCALES_STRUCT_ID { 0x2E5A89D9, 0xAF1E466B, 0x9F62F58C, 0x8B1BFE32 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		unit_lipsync_scales_struct,
 		"unit_lipsync_scales_struct",
 		"unit_lipsync_scales_struct",
@@ -755,7 +755,7 @@ namespace blofeld
 	};
 
 	#define UNIT_BIRTH_STRUCT_ID { 0x3810C67E, 0xD2B344FD, 0x97ED0AC4, 0x965DA861 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		unit_birth_struct,
 		"unit_birth_struct",
 		"UnitBirthingProperties",

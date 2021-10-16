@@ -71,7 +71,7 @@ namespace blofeld
 	};
 
 	#define PERFORMANCE_THROTTLES_STRUCT_DEFINITION_ID { 0x044A4563, 0x26134854, 0xA54E1DDE, 0x72F14803 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		performance_throttles_struct_definition,
 		"performance_throttles_struct_definition",
 		"c_performance_throttles",

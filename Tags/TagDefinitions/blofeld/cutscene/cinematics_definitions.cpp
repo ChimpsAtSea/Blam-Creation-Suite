@@ -805,7 +805,7 @@ namespace blofeld
 	};
 
 	#define CINEMATIC_SCENE_STRUCT_DEFINITION_ID { 0x2F16CF25, 0xB4144920, 0xAA9CA793, 0x06DFF67F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cinematic_scene_struct_definition,
 		"cinematic_scene_struct_definition",
 		"s_cinematic_scene",
@@ -846,7 +846,7 @@ namespace blofeld
 	};
 
 	#define CINEMATIC_SCENE_DATA_STRUCT_DEFINITION_ID { 0x47C351F7, 0xEBF24619, 0xB563ACCC, 0xE2868568 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cinematic_scene_data_struct_definition,
 		"cinematic_scene_data_struct_definition",
 		"CinematicSceneData",
@@ -863,7 +863,7 @@ namespace blofeld
 	};
 
 	#define CINEMATIC_PLAYBACK_DATA_BLOCK_ID { 0xEBD41AA0, 0x8EDA4FF2, 0x91204D62, 0x3C9BA5B4 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cinematic_playback_data_block,
 		"cinematic_playback_data_block",
 		"s_cinematic_playback_data",
@@ -882,7 +882,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_AND_ZONE_SET_STRUCT_ID { 0x68E9CE6F, 0xC3964CAE, 0xB0D8CDC6, 0xA3F5786D }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_and_zone_set_struct,
 		"scenario_and_zone_set_struct",
 		"s_scenario_and_zone_set",
@@ -897,7 +897,7 @@ namespace blofeld
 	};
 
 	#define CINEMATIC_CUSTOM_SCRIPT_BLOCK_ID { 0xC119D09A, 0x7F5F44A3, 0x9703E8E0, 0x3EFD6987 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cinematic_custom_script_block,
 		"cinematic_custom_script_block",
 		"s_cinematic_custom_script",
@@ -910,7 +910,7 @@ namespace blofeld
 	};
 
 	#define CINEMATICSCENEDATAOBJECTBLOCK_STRUCT_ID { 0xDAB513EC, 0x33A549FA, 0x962D8DE6, 0x722B8799 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cinematicSceneDataObjectBlock_struct,
 		"cinematicSceneDataObjectBlock_struct",
 		"SceneDataObject",
@@ -928,7 +928,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FRAME_STRUCT_ID { 0x24513EF2, 0x4F2E45C3, 0x08BDA4BB, 0xE783FA56 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_frame_struct,
 		"camera_frame_struct",
 		"s_camera_frame",
@@ -942,7 +942,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FRAME_DYNAMIC_STRUCT_ID { 0xC705DD64, 0x32F8496A, 0x824ED19E, 0x17E1B595 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_frame_dynamic_struct,
 		"camera_frame_dynamic_struct",
 		"s_camera_frame_dynamic",
@@ -957,7 +957,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FRAME_CONSTANT_STRUCT_ID { 0x12ABA01E, 0x09C34EC1, 0x09BEE2E9, 0xE1741C6A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_frame_constant_struct,
 		"camera_frame_constant_struct",
 		"s_camera_frame_constant",
@@ -983,7 +983,7 @@ namespace blofeld
 	};
 
 	#define CINEMATIC_TRANSITION_ELEMENT_BLOCK_ID { 0xA7937387, 0x8CDD41A3, 0x9C4CEBD7, 0xBA5E17E9 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cinematic_transition_element_block,
 		"cinematic_transition_element_block",
 		"s_cinematic_transition_element_data",
@@ -1003,7 +1003,7 @@ namespace blofeld
 	};
 
 	#define CINEMATIC_TRANSITION_GLOBAL_FADE_BLOCK_ID { 0xA7E518D2, 0xE67D4F58, 0x9709C7D0, 0xAC2B8E6F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cinematic_transition_global_fade_block,
 		"cinematic_transition_global_fade_block",
 		"s_cinematic_transition_global_fade_data",
@@ -1017,7 +1017,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_CUTSCENE_TITLE_STRUCT_ID { 0x110603E7, 0x74B8410A, 0x8C263BBC, 0xDC0D2541 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_cutscene_title_struct,
 		"scenario_cutscene_title_struct",
 		"s_scenario_cutscene_title",

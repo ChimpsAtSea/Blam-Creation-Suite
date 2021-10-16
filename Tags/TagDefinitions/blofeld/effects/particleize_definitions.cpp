@@ -20,7 +20,7 @@ namespace blofeld
 		particleman_struct_definition);
 
 	#define PARTICLEMAN_STRUCT_DEFINITION_ID { 0x9690B47C, 0x91684047, 0x9760BBA7, 0x242F7513 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		particleman_struct_definition,
 		"particleman_struct_definition",
 		"s_particleize_parameters",
@@ -40,7 +40,7 @@ namespace blofeld
 	};
 
 	#define PARTICLEIZE_SCALAR_FUNCTION_STRUCT_ID { 0xC1CB3A69, 0x25F9489C, 0xB45FE276, 0x00343B2B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		particleize_scalar_function_struct,
 		"particleize_scalar_function_struct",
 		"particleize_function",

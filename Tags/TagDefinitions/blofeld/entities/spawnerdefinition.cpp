@@ -20,7 +20,7 @@ namespace blofeld
 		spawner_struct_definition);
 
 	#define SPAWNER_STRUCT_DEFINITION_ID { 0x46E8CDF0, 0x61314324, 0x991AD00C, 0xB3F53689 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		spawner_struct_definition,
 		"spawner_struct_definition",
 		"SpawnerDefinitionInternal",

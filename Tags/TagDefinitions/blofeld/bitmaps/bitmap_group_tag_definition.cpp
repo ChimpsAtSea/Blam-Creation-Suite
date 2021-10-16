@@ -101,7 +101,7 @@ namespace blofeld
 	};
 
 	#define BITMAP_TEXTURE_INTERLEAVED_INTEROP_RESOURCE_STRUCT_ID { 0x1D36B11D, 0x7C714D24, 0x9EDAE21F, 0xA0629172 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		bitmap_texture_interleaved_interop_resource_struct,
 		"bitmap_texture_interleaved_interop_resource_struct",
 		"c_tag_d3d_texture_interleaved_interop",
@@ -114,7 +114,7 @@ namespace blofeld
 	};
 
 	#define BITMAP_TEXTURE_INTEROP_RESOURCE_STRUCT_ID { 0xA9542662, 0xC80B42AB, 0x89C0049A, 0xF33BFF9C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		bitmap_texture_interop_resource_struct,
 		"bitmap_texture_interop_resource_struct",
 		"c_tag_d3d_texture_interop",
@@ -132,7 +132,7 @@ namespace blofeld
 	};
 
 	#define STITCHABLE_BITMAP_TEXTURE_INTEROP_RESOURCE_STRUCT_ID { 0xACE3533D, 0x8E614A91, 0xB4B123CC, 0xA5065D75 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		stitchable_bitmap_texture_interop_resource_struct,
 		"stitchable_bitmap_texture_interop_resource_struct",
 		"c_tag_d3d_texture_interop",

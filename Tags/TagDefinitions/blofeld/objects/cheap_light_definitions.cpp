@@ -20,7 +20,7 @@ namespace blofeld
 		cheap_light_struct_definition);
 
 	#define CHEAP_LIGHT_STRUCT_DEFINITION_ID { 0x6A1EB2F2, 0xF6AF4F2D, 0x9C2D7F25, 0xE4B6E5AE }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cheap_light_struct_definition,
 		"cheap_light_struct_definition",
 		"s_cheap_light_definition",

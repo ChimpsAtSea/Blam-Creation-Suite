@@ -173,7 +173,7 @@ namespace blofeld
 	};
 
 	#define EMBLEM_LIBRARY_STRUCT_DEFINITION_ID { 0x814BB579, 0x186448AC, 0x92B45BA7, 0x59274B33 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		emblem_library_struct_definition,
 		"emblem_library_struct_definition",
 		"s_emblem_library",
@@ -204,7 +204,7 @@ namespace blofeld
 	};
 
 	#define EMBLEM_TRANSFORM_ID { 0x3B858486, 0xC9084CB7, 0xAA9ED045, 0x0801349C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		emblem_transform,
 		"emblem_transform",
 		"s_emblem_library::s_transform",
@@ -222,7 +222,7 @@ namespace blofeld
 	};
 
 	#define EMBLEM_LAYER_ID { 0x60368EF4, 0xCA0A4F22, 0x9D380D1C, 0x9383D8C0 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		emblem_layer,
 		"emblem_layer",
 		"s_emblem_library::s_layer",

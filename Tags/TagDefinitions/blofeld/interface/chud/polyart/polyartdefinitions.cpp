@@ -57,7 +57,7 @@ namespace blofeld
 	};
 
 	#define POLYARTVERTEXBUFFERDESCRIPTORSTRUCT_ID { 0xDCA698FD, 0x811B4662, 0xA0E506EA, 0x7ED63171 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		polyartVertexBufferDescriptorStruct,
 		"polyartVertexBufferDescriptorStruct",
 		"PolyartVertexBufferDescriptor",
@@ -71,7 +71,7 @@ namespace blofeld
 	};
 
 	#define POLYARTINDEXBUFFERDESCRIPTORSTRUCT_ID { 0xC68DB74F, 0x2B9B4252, 0xB42C6C75, 0x53870BEA }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		polyartIndexBufferDescriptorStruct,
 		"polyartIndexBufferDescriptorStruct",
 		"PolyartIndexBufferDescriptor",

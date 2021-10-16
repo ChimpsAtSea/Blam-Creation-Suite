@@ -720,7 +720,7 @@ namespace blofeld
 	};
 
 	#define AIM_ASSIST_STRUCT_ID { 0xFD3F0BC9, 0x19DE4608, 0xA91A35B8, 0x0AC45727 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		aim_assist_struct,
 		"aim_assist_struct",
 		"aim_assist_parameters",
@@ -757,7 +757,7 @@ namespace blofeld
 	};
 
 	#define WEAPONBARRELIRONSIGHTSSTRUCT_ID { 0x94301EC6, 0x12674924, 0xA2D79AE7, 0x9E4F10DE }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		WeaponBarrelIronSightsStruct,
 		"WeaponBarrelIronSightsStruct",
 		"s_IronSightsParameters",
@@ -773,7 +773,7 @@ namespace blofeld
 	};
 
 	#define WEAPON_INTERFACE_STRUCT_ID { 0xE19D1139, 0xDC6246CC, 0x9B9CDBBB, 0x5D685572 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_interface_struct,
 		"weapon_interface_struct",
 		"weapon_interface_definition_new",
@@ -792,7 +792,7 @@ namespace blofeld
 	};
 
 	#define WEAPON_SHARED_INTERFACE_STRUCT_ID { 0x96C3519E, 0x13604185, 0x9C8C6C87, 0xE8738BE9 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_shared_interface_struct,
 		"weapon_shared_interface_struct",
 		"s_tag_reference",
@@ -805,7 +805,7 @@ namespace blofeld
 	};
 
 	#define WEAPON_BARREL_FIRING_PARAMETERS_STRUCT_ID { 0x85D673EA, 0x92E147FF, 0xB5F3E5BA, 0x101796F3 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_barrel_firing_parameters_struct,
 		"weapon_barrel_firing_parameters_struct",
 		"s_weapon_barrel_firing_params_definition",
@@ -838,7 +838,7 @@ namespace blofeld
 	};
 
 	#define WEAPON_BARREL_FIRING_ERROR_STRUCT_ID { 0xB76772F5, 0x98BB4797, 0xBC2BC6CD, 0x43C3E14E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_barrel_firing_error_struct,
 		"weapon_barrel_firing_error_struct",
 		"real",
@@ -876,7 +876,7 @@ namespace blofeld
 	};
 
 	#define WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_STRUCT_ID { 0x058C5820, 0x7637243A, 0x2D036E58, 0x11C1972B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_barrel_projectile_accuracy_penalty_struct,
 		"weapon_barrel_projectile_accuracy_penalty_struct",
 		"s_projectile_accuracy_penalty_info",
@@ -901,7 +901,7 @@ namespace blofeld
 	};
 
 	#define WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_FUNCTION_STRUCT_ID { 0x7D45A208, 0xAA304F19, 0x847FE6F6, 0x5B453291 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_barrel_projectile_accuracy_penalty_function_struct,
 		"weapon_barrel_projectile_accuracy_penalty_function_struct",
 		"s_projectile_accuracy_penalty_functions",
@@ -918,7 +918,7 @@ namespace blofeld
 	};
 
 	#define WEAPON_BARREL_DAMAGE_EFFECT_STRUCT_ID { 0x0CC000C1, 0x6C214FBD, 0x8B1DF64F, 0xC75CB408 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_barrel_damage_effect_struct,
 		"weapon_barrel_damage_effect_struct",
 		"weapon_barrel_damage_effect_struct",
@@ -931,7 +931,7 @@ namespace blofeld
 	};
 
 	#define WEAPON_TRIGGER_AUTOFIRE_STRUCT_ID { 0x2E880044, 0x234145A2, 0x803AC387, 0xB24AF26C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_trigger_autofire_struct,
 		"weapon_trigger_autofire_struct",
 		"weapon_trigger_definition::s_autofire",
@@ -948,7 +948,7 @@ namespace blofeld
 	};
 
 	#define WEAPON_TRIGGER_CHARGING_STRUCT_ID { 0x2A90D186, 0xD9FD48DD, 0x879003FA, 0x3B897118 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_trigger_charging_struct,
 		"weapon_trigger_charging_struct",
 		"weapon_trigger_definition::s_charging",

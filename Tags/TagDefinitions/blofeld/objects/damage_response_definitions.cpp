@@ -96,7 +96,7 @@ namespace blofeld
 	};
 
 	#define DAMAGE_RESPONSE_DEFINITION_STRUCT_DEFINITION_ID { 0x94C849C2, 0x81F94875, 0x8B4DD2B0, 0x54CD47EF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		damage_response_definition_struct_definition,
 		"damage_response_definition_struct_definition",
 		"s_damage_response_definition",
@@ -110,7 +110,7 @@ namespace blofeld
 	};
 
 	#define DAMAGE_RESPONSE_DIRECTIONAL_FLASH_STRUCT_ID { 0xD18EB7B1, 0xE169416F, 0xB5CA99B6, 0xC316A290 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		damage_response_directional_flash_struct,
 		"damage_response_directional_flash_struct",
 		"s_damage_response_directional_flash_definition",
@@ -137,7 +137,7 @@ namespace blofeld
 	};
 
 	#define DAMAGE_RESPONSE_MOTION_SENSOR_PING_ID { 0x3D5CCA56, 0x0D294C20, 0x8FA7FDB2, 0x012D1CBE }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		damage_response_motion_sensor_ping,
 		"damage_response_motion_sensor_ping",
 		"s_damage_response_motion_sensor_ping_definition",
@@ -151,7 +151,7 @@ namespace blofeld
 	};
 
 	#define AREA_CONTROL_SCALAR_FUNCTION_STRUCT_ID { 0x3EF80F86, 0x0F31468C, 0xB4C40EA2, 0x6E38CA3A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		area_control_scalar_function_struct,
 		"area_control_scalar_function_struct",
 		"s_area_control_scalar_function",
@@ -166,7 +166,7 @@ namespace blofeld
 	};
 
 	#define AREA_CONTROL_SCALAR_OBJECT_FUNCTION_STRUCT_ID { 0x3D2F4F41, 0xF93C4657, 0xA70770A2, 0x07413F8E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		area_control_scalar_object_function_struct,
 		"area_control_scalar_object_function_struct",
 		"s_area_control_scalar_object_function",

@@ -37,7 +37,7 @@ namespace blofeld
 	};
 
 	#define REWARD_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0x78615FBC, 0x4B164E69, 0xA8272FE7, 0x4E40CB80 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		reward_globals_definition_struct_definition,
 		"reward_globals_definition_struct_definition",
 		"RewardGlobalsDefinition",

@@ -166,7 +166,7 @@ namespace blofeld
 	};
 
 	#define NAVMESHATTACHMENTSSTRUCT_ID { 0x39206AE0, 0xEC31496C, 0x8A09F9EF, 0x9A3E893B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		NavMeshAttachmentsStruct,
 		"NavMeshAttachmentsStruct",
 		"NavMeshAttachment",

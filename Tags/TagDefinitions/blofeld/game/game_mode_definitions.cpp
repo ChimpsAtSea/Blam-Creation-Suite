@@ -7,7 +7,7 @@ namespace blofeld
 
 
 	#define GAME_MODE_FLAGS_STRUCT_ID { 0xA7F78373, 0x6E914D1A, 0xA0806AF6, 0xFDC24EA0 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		game_mode_flags_struct,
 		"game_mode_flags_struct",
 		"s_game_mode_flags",

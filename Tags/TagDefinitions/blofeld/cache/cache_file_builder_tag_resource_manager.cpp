@@ -902,7 +902,7 @@ namespace blofeld
 	};
 
 	#define CACHE_FILE_RESOURCE_PAGE_STRUCT_ID { 0xA82CDAB9, 0xAF1B4171, 0x816BA199, 0xDD8E6C9C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cache_file_resource_page_struct,
 		"cache_file_resource_page_struct",
 		"CacheFiles::Resources::FilePage",
@@ -925,7 +925,7 @@ namespace blofeld
 	};
 
 	#define RESOURCE_CHECKSUM_STRUCT_ID { 0x6DA6A4F0, 0x19C443F8, 0x8B233E7F, 0xE4FB0736 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		resource_checksum_struct,
 		"resource_checksum_struct",
 		"s_cache_file_resource_checksum",
@@ -941,7 +941,7 @@ namespace blofeld
 	};
 
 	#define CACHE_FILE_TAG_ZONE_MANIFEST_STRUCT_ID { 0x97526DBD, 0x0D3046F2, 0x846E0460, 0xDADC74B2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cache_file_tag_zone_manifest_struct,
 		"cache_file_tag_zone_manifest_struct",
 		"s_cache_file_zone_manifest",
@@ -991,7 +991,7 @@ namespace blofeld
 	};
 
 	#define DEBUG_CACHE_FILE_ZONE_MANIFEST_STRUCT_ID { 0x4E4AC3CD, 0x598D4EFC, 0xAD44DA5D, 0xEA3DA8F0 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		debug_cache_file_zone_manifest_struct,
 		"debug_cache_file_zone_manifest_struct",
 		"s_debug_tag_cache_file_zone_manifest",
@@ -1007,7 +1007,7 @@ namespace blofeld
 	};
 
 	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_TABLE_ID { 0x8AC05042, 0xF5CF4649, 0x91F59F02, 0xC1CF8172 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cache_file_tag_resource_prediction_table,
 		"cache_file_tag_resource_prediction_table",
 		"s_cache_file_resource_prediction_table",

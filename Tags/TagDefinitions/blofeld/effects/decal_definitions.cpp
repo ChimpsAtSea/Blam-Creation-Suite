@@ -64,7 +64,7 @@ namespace blofeld
 	};
 
 	#define DECAL_SYSTEM_STRUCT_DEFINITION_ID { 0x570BB931, 0x8CB3411C, 0xB0466FBE, 0x7FE4EEE5 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		decal_system_struct_definition,
 		"decal_system_struct_definition",
 		"c_decal_system_definition",

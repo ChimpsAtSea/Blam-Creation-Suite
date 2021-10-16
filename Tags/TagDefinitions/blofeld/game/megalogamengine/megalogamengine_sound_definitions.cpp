@@ -20,7 +20,7 @@ namespace blofeld
 		megalogamengine_sounds_struct_definition);
 
 	#define MEGALOGAMENGINE_SOUNDS_STRUCT_DEFINITION_ID { 0xF6682BF2, 0x0BFF4179, 0xB03B73EF, 0xE781ED60 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		megalogamengine_sounds_struct_definition,
 		"megalogamengine_sounds_struct_definition",
 		"s_megalogamengine_sound_group",

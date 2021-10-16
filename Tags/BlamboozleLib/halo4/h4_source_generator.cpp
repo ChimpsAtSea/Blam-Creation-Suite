@@ -786,7 +786,7 @@ void c_h4_source_generator::create_tag_struct_source(std::stringstream& s, c_h4_
 	std::string memory_flags = create_struct_definition_memory_attributes(tag_struct.memory_attributes.memory_type, tag_struct.memory_attributes.usage_flags, "\n\t\t");
 
 	s << "\t#define " << persistent_identifier_name_buffer << " { " << persistent_identifier_buffer << " }" << std::nouppercase << std::endl;
-	s << "\tTAG_STRUCT(" << std::endl;
+	s << "\tTAG_STRUCT_V6(" << std::endl;
 	s << "\t\t" << tag_struct_container.name << "," << std::endl;
 	s << "\t\t\"" << tag_struct_container.tag_struct.pretty_name << "\"" << "," << std::endl;
 	s << "\t\t\"" << tag_struct_container.struct_name << "\"" << "," << std::endl;

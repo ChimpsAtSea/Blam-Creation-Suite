@@ -4,7 +4,7 @@
 namespace blofeld
 {
 	#define CONSTANT_BUFFER_STRUCT_ID { 0x99CE930A, 0x3F743CE8, 0xFEB554E5, 0xF5613C7F } // #CUSTOM
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		constant_buffer_struct,
 		"constant_buffer_struct",
 		"s_constant_buffer",
@@ -717,7 +717,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_RENDER_GEOMETRY_STRUCT_ID { 0x25CE2A94, 0x081545BA, 0x9E9A2690, 0xEFDBE832 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_render_geometry_struct,
 		"global_render_geometry_struct",
 		"s_render_geometry",
@@ -781,7 +781,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_RENDER_GEOMETRY_USER_DATA_HEADER_STRUCT_ID { 0x90ADB30A, 0xC06E4FA8, 0x96F092C1, 0x020E847F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_render_geometry_user_data_header_struct,
 		"global_render_geometry_user_data_header_struct",
 		"s_render_geometry_user_data_header",
@@ -796,7 +796,7 @@ namespace blofeld
 	};
 
 	#define RENDER_GEOMETRY_API_RESOURCE_DEFINITION_STRUCT_ID { 0x8AEB8021, 0xF60A4164, 0x970C7091, 0x23365545 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		render_geometry_api_resource_definition_struct,
 		"render_geometry_api_resource_definition_struct",
 		"s_render_geometry_api_resource",

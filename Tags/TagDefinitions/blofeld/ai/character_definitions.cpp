@@ -1914,7 +1914,7 @@ namespace blofeld
 	};
 
 	#define CHARACTER_STRUCT_DEFINITION_ID { 0xCE98F60C, 0x831E43A2, 0x97556737, 0x2D0DA2E2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		character_struct_definition,
 		"character_struct_definition",
 		"character_definition",
@@ -2007,7 +2007,7 @@ namespace blofeld
 	};
 
 	#define ACTIVE_CAMO_PERCEPTION_PROPERTIES_ID { 0x2171E4A2, 0xBBD048D7, 0x80519BC3, 0xA65A5598 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		active_camo_perception_properties,
 		"active_camo_perception_properties",
 		"s_active_camo_perception_properties",
@@ -2025,7 +2025,7 @@ namespace blofeld
 	};
 
 	#define CHARACTER_HOP_STRUCT_ID { 0xCC9F15F6, 0x84624A2E, 0xAD8BA6B1, 0x8FA2A9CD }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		character_hop_struct,
 		"character_hop_struct",
 		"CharacterHopDefinition",
@@ -2042,7 +2042,7 @@ namespace blofeld
 	};
 
 	#define SMOOTHTHROTTLESTRUCT_ID { 0xF42E4991, 0x8CCF4EFA, 0x930F7B51, 0x3B875FFE }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		SmoothThrottleStruct,
 		"SmoothThrottleStruct",
 		"CharacterSmoothThrottleDefinition",
@@ -2066,7 +2066,7 @@ namespace blofeld
 	};
 
 	#define SMOOTHSTOPPINGSTRUCT_ID { 0x1C96E22C, 0x1A2446F9, 0x9AAD81A4, 0xD9438878 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		SmoothStoppingStruct,
 		"SmoothStoppingStruct",
 		"CharacterSmoothStoppingDefinition",
@@ -2087,7 +2087,7 @@ namespace blofeld
 	};
 
 	#define CHARACTER_BUNKER_TIMINGS_STRUCT_ID { 0x4C18982B, 0x8FAF437A, 0xA9D9BCDA, 0xAD0B2D85 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		character_bunker_timings_struct,
 		"character_bunker_timings_struct",
 		"s_bunker_timings",

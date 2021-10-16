@@ -5,7 +5,7 @@ namespace blofeld
 {
 
 
-	V5_TAG_STRUCT(render_model_unknown_sky_struct2)
+	V5_TAG_STRUCT_V6(render_model_unknown_sky_struct2)
 	{
 		{ _field_legacy, _field_real, "unknown" },
 		{ _field_legacy, _field_real, "unknown" },
@@ -26,7 +26,7 @@ namespace blofeld
 		{ _field_legacy, _field_terminator }
 	};
 
-	V5_TAG_STRUCT(render_model_unknown_struct)
+	V5_TAG_STRUCT_V6(render_model_unknown_struct)
 	{
 		{ _field_legacy, _field_block, "sky light unknown", &g_null_block },
 		{ _field_legacy, _field_struct, "sh sky red", &render_model_unknown_sky_struct2_struct_definition },
@@ -355,7 +355,7 @@ namespace blofeld
 	};
 
 	#define IMPOSTER_MODEL_STRUCT_DEFINITION_ID { 0x2A12A29F, 0xCF1C431E, 0x9FA1D5D2, 0xB805F111 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		imposter_model_struct_definition,
 		"imposter_model_struct_definition",
 		"s_imposter_model",
@@ -377,7 +377,7 @@ namespace blofeld
 	};
 
 	#define RENDER_MODEL_LIGHTMAP_ATLAS_STRUCT_DEFINITION_ID { 0x00CA337E, 0x43CE7697, 0x0ABE1E3E, 0x1D862276 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		render_model_lightmap_atlas_struct_definition,
 		"render_model_lightmap_atlas_struct_definition",
 		"RenderModelLightmapAtlas",

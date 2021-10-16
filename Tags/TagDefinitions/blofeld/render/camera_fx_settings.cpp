@@ -53,7 +53,7 @@ namespace blofeld
 		camera_fx_settings_block );
 
 	#define CAMERA_FX_EXPOSURE_STRUCT_ID { 0x1FBECC29, 0x38C74B70, 0xAF139847, 0x3C5FD67B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_exposure_struct,
 		"camera_fx_exposure_struct",
 		"c_camera_fx_settings::s_real_exposure_parameter",
@@ -79,7 +79,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_EXPOSURE_SENSITIVITY_STRUCT_ID { 0xB2285D8B, 0x80E54585, 0xA4116DDE, 0x5A2A16B5 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_exposure_sensitivity_struct,
 		"camera_fx_exposure_sensitivity_struct",
 		"c_camera_fx_settings::s_real_instant_parameter",
@@ -95,7 +95,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_BLOOM_HIGHLIGHT_STRUCT_ID { 0x5C28BDB2, 0x7AA74136, 0x95D02E4D, 0x477781EA }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_bloom_highlight_struct,
 		"camera_fx_bloom_highlight_struct",
 		"c_camera_fx_settings::s_real_parameter",
@@ -113,7 +113,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_BLOOM_INHERENT_STRUCT_ID { 0x1889C932, 0xA56D48C8, 0xB0B3D7D4, 0x01DCD5F7 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_bloom_inherent_struct,
 		"camera_fx_bloom_inherent_struct",
 		"c_camera_fx_settings::s_real_parameter",
@@ -131,7 +131,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_BLOOM_SELF_ILLUM_STRUCT_ID { 0xC4818F7F, 0xC84D4C8F, 0x949CB9BD, 0x418899B7 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_bloom_self_illum_struct,
 		"camera_fx_bloom_self_illum_struct",
 		"c_camera_fx_settings::s_real_parameter",
@@ -149,7 +149,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_BLOOM_INTENSITY_STRUCT_ID { 0xA87763D2, 0xF5B240F3, 0xA22524B0, 0xF5DFD719 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_bloom_intensity_struct,
 		"camera_fx_bloom_intensity_struct",
 		"c_camera_fx_settings::s_real_parameter",
@@ -167,7 +167,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_BLOOM_LARGE_COLOR_STRUCT_ID { 0x3318D9F0, 0x02EC4CD5, 0xADE89517, 0x0292B6B5 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_bloom_large_color_struct,
 		"camera_fx_bloom_large_color_struct",
 		"c_camera_fx_settings::s_color_parameter",
@@ -183,7 +183,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_BLOOM_MEDIUM_COLOR_STRUCT_ID { 0xA8C89B4A, 0x156A41DD, 0xBCA2746E, 0x49C59B4A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_bloom_medium_color_struct,
 		"camera_fx_bloom_medium_color_struct",
 		"c_camera_fx_settings::s_color_parameter",
@@ -199,7 +199,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_BLOOM_SMALL_COLOR_STRUCT_ID { 0x36F650D6, 0x8BC24EAA, 0x80D95DD3, 0xC20AACC8 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_bloom_small_color_struct,
 		"camera_fx_bloom_small_color_struct",
 		"c_camera_fx_settings::s_color_parameter",
@@ -215,7 +215,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_BLING_INTENSITY_STRUCT_ID { 0xE8F1A4E1, 0xC00F4456, 0x8EE2967B, 0x6D8FA42B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_bling_intensity_struct,
 		"camera_fx_bling_intensity_struct",
 		"c_camera_fx_settings::s_real_parameter",
@@ -232,7 +232,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_BLING_SIZE_STRUCT_ID { 0xF54F8BED, 0xE5544B4E, 0x926E406D, 0xEFE013B9 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_bling_size_struct,
 		"camera_fx_bling_size_struct",
 		"c_camera_fx_settings::s_real_parameter",
@@ -249,7 +249,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_BLING_ANGLE_STRUCT_ID { 0x31CE204D, 0x092C4581, 0xA500B810, 0x18D31B80 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_bling_angle_struct,
 		"camera_fx_bling_angle_struct",
 		"c_camera_fx_settings::s_real_parameter",
@@ -266,7 +266,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_BLING_COUNT_STRUCT_ID { 0x8457D09C, 0xCB004AEB, 0x87C29399, 0xF221FEF5 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_bling_count_struct,
 		"camera_fx_bling_count_struct",
 		"c_camera_fx_settings::s_word_parameter",
@@ -280,7 +280,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_SELF_ILLUM_PREFERRED_STRUCT_ID { 0xE684AD74, 0xC6D54D23, 0x996036C6, 0xC011911B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_self_illum_preferred_struct,
 		"camera_fx_self_illum_preferred_struct",
 		"c_camera_fx_settings::s_real_parameter",
@@ -298,7 +298,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_SELF_ILLUM_SCALE_STRUCT_ID { 0x4545C700, 0x22624FE4, 0xB9FDE3E7, 0x1696B87B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_self_illum_scale_struct,
 		"camera_fx_self_illum_scale_struct",
 		"c_camera_fx_settings::s_real_parameter",
@@ -316,7 +316,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_COLOR_GRADING_STRUCT_ID { 0x20D7EB22, 0x88C04602, 0xBEB7FEF7, 0x42178564 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_color_grading_struct,
 		"camera_fx_color_grading_struct",
 		"c_camera_fx_settings::s_color_grading_parameter",
@@ -332,7 +332,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_FX_FILMIC_TONE_CURVE_STRUCT_ID { 0x50612BFA, 0x4C8940DC, 0x9911F845, 0x5C3B5FB1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_fx_filmic_tone_curve_struct,
 		"camera_fx_filmic_tone_curve_struct",
 		"c_camera_fx_settings::s_filmic_tone_curve_parameter",

@@ -20,7 +20,7 @@ namespace blofeld
 		coop_spawning_globals_definition_struct_definition);
 
 	#define COOP_SPAWNING_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0x46B00033, 0x267A4982, 0x9B2DADF7, 0x58EC5786 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		coop_spawning_globals_definition_struct_definition,
 		"coop_spawning_globals_definition_struct_definition",
 		"s_coop_spawning_globals_definition",

@@ -81,7 +81,7 @@ namespace blofeld
 	};
 
 	#define CHALLENGE_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0x243AAA96, 0x410741B1, 0xBE0CC69B, 0xAEBFABE2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		challenge_globals_definition_struct_definition,
 		"challenge_globals_definition_struct_definition",
 		"s_challenge_globals_definition",

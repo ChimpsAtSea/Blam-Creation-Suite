@@ -88,7 +88,7 @@ namespace blofeld
 	};
 
 	#define DEVICE_CONTROL_STRUCT_DEFINITION_ID { 0x58F680DD, 0x1B2D4A08, 0xAA1F8640, 0x73F38CEE }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		device_control_struct_definition,
 		"device_control_struct_definition",
 		"_control_definition",
@@ -133,7 +133,7 @@ namespace blofeld
 	};
 
 	#define DEVICE_STRUCT_DEFINITION_ID { 0xB2FE944E, 0x74CF4590, 0x9FE30CED, 0xB1BF6B94 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		device_struct_definition,
 		"device_struct_definition",
 		"_device_definition",
@@ -181,7 +181,7 @@ namespace blofeld
 	};
 
 	#define DEVICE_DISPENSER_STRUCT_DEFINITION_ID { 0x600837DF, 0x9B134AA9, 0xA121E1F6, 0xA72CEA61 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		device_dispenser_struct_definition,
 		"device_dispenser_struct_definition",
 		"RawDispenserDefinition",
@@ -221,7 +221,7 @@ namespace blofeld
 	};
 
 	#define DEVICE_MACHINE_STRUCT_DEFINITION_ID { 0x8D04FAA2, 0xC2034C8D, 0xB2925D27, 0x85AF7748 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		device_machine_struct_definition,
 		"device_machine_struct_definition",
 		"_machine_definition",
@@ -249,7 +249,7 @@ namespace blofeld
 	};
 
 	#define DEVICE_TERMINAL_STRUCT_DEFINITION_ID { 0x99043D50, 0x595A4182, 0xBC0E31FE, 0xF8D1EEE7 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		device_terminal_struct_definition,
 		"device_terminal_struct_definition",
 		"_terminal_definition",

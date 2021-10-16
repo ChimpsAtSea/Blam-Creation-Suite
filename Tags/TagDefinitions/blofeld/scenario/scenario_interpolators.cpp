@@ -44,7 +44,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_INTERPOLATOR_STRUCT_DEFINITION_ID { 0x8A877FF6, 0xEA794454, 0x853A9148, 0x53A71CCF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_interpolator_struct_definition,
 		"scenario_interpolator_struct_definition",
 		"s_scenario_interpolator_tag_definition",

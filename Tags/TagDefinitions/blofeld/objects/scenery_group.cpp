@@ -20,7 +20,7 @@ namespace blofeld
 		scenery_struct_definition);
 
 	#define SCENERY_STRUCT_DEFINITION_ID { 0x8EF5AC73, 0xE1C843B9, 0xA15CC8AA, 0xC9F15E5C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenery_struct_definition,
 		"scenery",
 		"scenery_group",

@@ -138,7 +138,7 @@ namespace blofeld
 	};
 
 	#define PLANAR_FOG_PARAMETERS_STRUCT_DEFINITION_ID { 0x9E9FE02A, 0x81DC4FFC, 0x9D107ADB, 0x0FF0BCF4 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		planar_fog_parameters_struct_definition,
 		"planar_fog_parameters_struct_definition",
 		"s_planar_fog_parameters",
@@ -177,7 +177,7 @@ namespace blofeld
 	};
 
 	#define PLANAR_FOG_SET_DEFINITION_STRUCT_ID { 0xADF66371, 0xDA8642BF, 0xCD987004, 0xBABC69EC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		planar_fog_set_definition_struct,
 		"planar_fog_set_definition_struct",
 		"s_planer_fog_set_definition",

@@ -13,7 +13,7 @@ namespace blofeld
 		scenario_zone_debugger_block_definition_struct);
 
 	#define SCENARIO_ZONE_DEBUGGER_BLOCK_DEFINITION_STRUCT_ID { 0x3736B0FB, 0x4E6A462A, 0xA642E58A, 0x35673446 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_zone_debugger_block_definition_struct,
 		"scenario_zone_debugger_block_definition_struct",
 		"s_scenario_zone_debugger_definition",

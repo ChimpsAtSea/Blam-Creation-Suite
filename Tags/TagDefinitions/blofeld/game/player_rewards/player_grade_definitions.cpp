@@ -56,7 +56,7 @@ namespace blofeld
 	};
 
 	#define PLAYER_GRADE_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0xCE27F00B, 0x5AC44866, 0xA310574D, 0x5912AF36 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		player_grade_globals_definition_struct_definition,
 		"player_grade_globals_definition_struct_definition",
 		"s_player_grade_globals_definition",

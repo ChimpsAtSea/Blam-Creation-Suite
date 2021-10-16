@@ -26,7 +26,7 @@ namespace blofeld
 		survival_mode_wave_templates_struct);
 
 	#define SURVIVAL_MODE_GLOBALS_STRUCT_DEFINITION_ID { 0x85E14A0F, 0xF0534FEA, 0x91B24C4D, 0x74E59924 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		survival_mode_globals_struct_definition,
 		"survival_mode_globals_struct_definition",
 		"s_survival_mode_globals_definition",
@@ -46,7 +46,7 @@ namespace blofeld
 	};
 
 	#define SURVIVAL_MODE_WAVE_TEMPLATES_STRUCT_ID { 0x844D5A8D, 0x3EF44ADE, 0xAB297183, 0x11A7ACC1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		survival_mode_wave_templates_struct,
 		"survival_mode_wave_templates_struct",
 		"s_survival_mode_wave_template_definition",

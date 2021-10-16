@@ -50,7 +50,7 @@ namespace blofeld
 	};
 
 	#define DAMAGE_EFFECT_STRUCT_DEFINITION_ID { 0x902C71FE, 0x22D24D90, 0x94283954, 0x36E07393 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		damage_effect_struct_definition,
 		"damage_effect",
 		"damage_effect_group",
@@ -183,7 +183,7 @@ namespace blofeld
 	};
 
 	#define DAMAGE_OUTER_CONE_ANGLE_STRUCT_ID { 0x728A16DC, 0x5EF1403B, 0x873B7F44, 0xC741A9F2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		damage_outer_cone_angle_struct,
 		"damage_outer_cone_angle_struct",
 		"damage_outer_cone_angle_struct",

@@ -108,7 +108,7 @@ namespace blofeld
 	};
 
 	#define FLOCK_STRUCT_DEFINITION_ID { 0xF0130A08, 0xA0EF4DC7, 0xA0CA92E4, 0xBC18D80B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		flock_struct_definition,
 		"flock_struct_definition",
 		"s_flock_definition",

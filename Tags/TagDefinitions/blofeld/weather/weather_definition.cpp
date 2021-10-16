@@ -20,7 +20,7 @@ namespace blofeld
 		rain_definition_struct_definition);
 
 	#define RAIN_DEFINITION_STRUCT_DEFINITION_ID { 0xFC205D87, 0xB7394393, 0x92C1BD07, 0x91B04875 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		rain_definition_struct_definition,
 		"rain_definition_struct_definition",
 		"s_rain_definition",

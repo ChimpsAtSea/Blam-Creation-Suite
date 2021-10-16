@@ -36,7 +36,7 @@ namespace blofeld
 	};
 
 	#define GAME_PERFORMANCE_THROTTLE_STRUCT_DEFINITION_ID { 0x1073ABE0, 0x3D1447BB, 0x89E0B4FC, 0xB0BD63B1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		game_performance_throttle_struct_definition,
 		"game_performance_throttle_struct_definition",
 		"s_game_performance_throttle_definitions",
@@ -49,7 +49,7 @@ namespace blofeld
 	};
 
 	#define GAME_PERFORMANCE_THROTTLE_FILTER_STRUCT_ID { 0xAAA4CF05, 0x08434959, 0xC0C30D92, 0x12AB070E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		game_performance_throttle_filter_struct,
 		"game_performance_throttle_filter_struct",
 		"s_game_performance_throttle_filter",
@@ -62,7 +62,7 @@ namespace blofeld
 	};
 
 	#define GAME_PERFORMANCE_THROTTLE_PROFILE_STRUCT_ID { 0xA9A4CF05, 0x88434959, 0xB0C30D92, 0x16AB070E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		game_performance_throttle_profile_struct,
 		"game_performance_throttle_profile_struct",
 		"s_game_performance_throttle_profile",

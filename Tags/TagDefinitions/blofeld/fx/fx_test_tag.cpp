@@ -63,7 +63,7 @@ namespace blofeld
 	};
 
 	#define FX_TEST_STRUCT_DEFINITION_ID { 0x330D5FF3, 0xA8A94198, 0x8EAB297D, 0x80E7192C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		fx_test_struct_definition,
 		"fx_test_struct_definition",
 		"s_fx_test",
@@ -76,7 +76,7 @@ namespace blofeld
 	};
 
 	#define FX_TEST_SCALAR_FUNCTION_STRUCT_ID { 0x8F9D626F, 0x60834554, 0xA51B20AB, 0x5E9122B2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		fx_test_scalar_function_struct,
 		"fx_test_scalar_function_struct",
 		"s_fx_test_scalar_function",

@@ -77,13 +77,15 @@ public:
 		h_object* high_level = h_object::create_high_level_object(*blofeld_tag_group_struct_definition, engine_platform_build);
 		ASSERT(high_level);
 
-		//const s_block_definition_entry* root_block_definition_entry = block_definitions_chunk->entries + tag_group_layout_chunk->tag_group_layout_header->tag_group_block_index;
-		//const char* root_block_definition_name = string_data_chunk->chunk_data_begin + root_block_definition_entry->name_string_offset;
-		//ASSERT(strcmp(root_block_definition_name, blofeld_tag_block_definition->name) == 0); // sanity check
-		//const s_struct_definition_entry* root_structure_definition_entry = structure_definitions_chunk->entries + root_block_definition_entry->structure_entry_index;
-		//ASSERT(root_structure_definition_entry->persistent_identifier == blofeld_tag_group->block_definition.struct_definition.persistent_identifier); // sanity check
-		//const char* root_struct_definition_name = string_data_chunk->chunk_data_begin + root_structure_definition_entry->name_string_offset;
-		//ASSERT(strcmp(root_struct_definition_name, blofeld_tag_group_struct_definition->name) == 0); // sanity check
+		const s_block_definition_entry* root_block_definition_entry = layout_reader->block_definitions_chunk->entries + tag_group_layout_chunk->tag_group_layout_header->tag_group_block_index;
+		const char* root_block_definition_name = layout_reader->string_data_chunk->chunk_data_begin + root_block_definition_entry->name_string_offset;
+		ASSERT(strcmp(root_block_definition_name, blofeld_tag_block_definition->name) == 0); // sanity check
+		const s_struct_definition_entry* root_structure_definition_entry = layout_reader->structure_definitions_chunk->entries + root_block_definition_entry->structure_entry_index;
+		ASSERT(root_structure_definition_entry->persistent_identifier == blofeld_tag_group->block_definition.struct_definition.persistent_identifier); // sanity check
+		const char* root_struct_definition_name = layout_reader->string_data_chunk->chunk_data_begin + root_structure_definition_entry->name_string_offset;
+		ASSERT(strcmp(root_struct_definition_name, blofeld_tag_group_struct_definition->name) == 0); // sanity check
+
+		debug_point;
 	}
 
 	~c_tag_file_high_level_transplant()

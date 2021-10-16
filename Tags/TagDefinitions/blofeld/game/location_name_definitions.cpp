@@ -34,7 +34,7 @@ namespace blofeld
 	};
 
 	#define LOCATION_NAME_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0xEB8D99C2, 0xBA8D4F05, 0xBC2A8672, 0xFC4A012A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		location_name_globals_definition_struct_definition,
 		"location_name_globals_definition_struct_definition",
 		"s_location_name_globals_tag_definition",

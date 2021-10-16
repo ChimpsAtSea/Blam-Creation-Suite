@@ -69,7 +69,7 @@ namespace blofeld
 		global_muffin_type_struct);
 
 	#define GLOBAL_MUFFIN_TYPE_STRUCT_ID { 0x0EB31413, 0xE68F4840, 0xB0E7C088, 0x51EED254 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_muffin_type_struct,
 		"global_muffin_type_struct",
 		"s_muffin_type",
@@ -100,7 +100,7 @@ namespace blofeld
 	};
 
 	#define MUFFIN_SCALAR_FUNCTION_STRUCT_ID { 0xE0DF474A, 0xDBEB491C, 0xB0EC54D4, 0x593073E1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		muffin_scalar_function_struct,
 		"muffin_scalar_function_struct",
 		"s_muffin_scalar_function",

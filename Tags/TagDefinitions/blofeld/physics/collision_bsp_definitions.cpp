@@ -340,7 +340,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_COLLISION_BSP_STRUCT_ID { 0x130D16E9, 0xA4684A1E, 0xA91958AD, 0x3BDAA7EC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_collision_bsp_struct,
 		"global_collision_bsp_struct",
 		"collision_bsp",
@@ -361,7 +361,7 @@ namespace blofeld
 	};
 
 	#define COLLISION_LEAF_STRUCT_ID { 0xA5FD8EE3, 0x9A644ECC, 0x9CEBF2FB, 0x45030CA1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		collision_leaf_struct,
 		"collision_leaf_struct",
 		"collision_leaf",

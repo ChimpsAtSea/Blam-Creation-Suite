@@ -20,7 +20,7 @@ namespace blofeld
 		effect_global_force_struct_definition);
 
 	#define EFFECT_GLOBAL_FORCE_STRUCT_DEFINITION_ID { 0x0D721FE1, 0x75B148BB, 0x8B019D51, 0x0CDCE867 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		effect_global_force_struct_definition,
 		"effect_global_force_struct_definition",
 		"EffectGlobalForceDefinition",

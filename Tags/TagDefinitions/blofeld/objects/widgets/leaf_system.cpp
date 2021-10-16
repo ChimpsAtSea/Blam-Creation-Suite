@@ -47,7 +47,7 @@ namespace blofeld
 	};
 
 	#define LEAF_SYSTEM_STRUCT_DEFINITION_ID { 0x0609FC23, 0x1694654C, 0x86B19DA1, 0x00C0A48B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		leaf_system_struct_definition,
 		"leaf_system_struct_definition",
 		"s_leaf_system_definition",

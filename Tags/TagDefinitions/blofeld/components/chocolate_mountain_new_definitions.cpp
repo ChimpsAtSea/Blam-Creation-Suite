@@ -17,7 +17,7 @@ namespace blofeld
 
 	V5_TAG_BLOCK_FROM_STRUCT(chocolate_mountain_block, 1, chocolate_mountain_struct_definition_struct_definition);
 
-	V5_TAG_STRUCT(chocolate_mountain_struct_definition)
+	V5_TAG_STRUCT_V6(chocolate_mountain_struct_definition)
 	{
 		{ _field_legacy, _field_byte_integer, "unknown" },
 		{ _field_legacy, _field_byte_integer, "unknown" },

@@ -20,7 +20,7 @@ namespace blofeld
 		cellular_automata_struct_definition);
 
 	#define CELLULAR_AUTOMATA_STRUCT_DEFINITION_ID { 0xA8E224D3, 0x1BD34E44, 0xBABD0523, 0x5DE7F39D }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cellular_automata_struct_definition,
 		"cellular_automata_struct_definition",
 		"ca_definition",

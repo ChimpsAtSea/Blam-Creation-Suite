@@ -53,7 +53,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_SOUND_LOWPASS_BLOCK_ID { 0xF38F05D9, 0xF9BB4F33, 0x95EAD7FE, 0x61588F25 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_sound_lowpass_block,
 		"global_sound_lowpass_block",
 		"s_sound_lowpass_settings",
@@ -69,7 +69,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_SOUND_REVERB_BLOCK_ID { 0xE4B31E1D, 0xC5A74C51, 0xAE02D86C, 0x2B3F8B06 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_sound_reverb_block,
 		"global_sound_reverb_block",
 		"s_sound_reverb_settings",
@@ -116,7 +116,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_SOUND_LOOK_UP_TABLE_DISTORTION_BLOCK_ID { 0x898FB725, 0x714849A9, 0x8A88EB99, 0x09FC092C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_sound_look_up_table_distortion_block,
 		"global_sound_look_up_table_distortion_block",
 		"s_sound_look_up_table_distortion_settings",
@@ -133,7 +133,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_SOUND_EQUALIZER_BLOCK_ID { 0x9EE2BF8D, 0x8CB54AD8, 0xA7D0F3DA, 0x3FDE09A9 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_sound_equalizer_block,
 		"global_sound_equalizer_block",
 		"s_sound_equalizer_settings",

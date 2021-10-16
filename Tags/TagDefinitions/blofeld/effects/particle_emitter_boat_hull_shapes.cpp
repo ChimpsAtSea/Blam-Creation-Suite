@@ -34,7 +34,7 @@ namespace blofeld
 	};
 
 	#define PARTICLE_EMITTER_BOAT_HULL_SHAPE_STRUCT_DEFINITION_ID { 0xD30AB71D, 0xA7974D90, 0x8547B676, 0x631E2683 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		particle_emitter_boat_hull_shape_struct_definition,
 		"particle_emitter_boat_hull_shape_struct_definition",
 		"s_particle_emitter_boat_hull_shape_data",

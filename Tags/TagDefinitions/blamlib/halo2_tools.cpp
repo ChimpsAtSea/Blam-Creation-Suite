@@ -31179,7 +31179,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		function_definition_struct_definition_v1,
 		"function_definition_v1",
 		"s_function_definition_v1",
@@ -31215,7 +31215,7 @@ namespace halo2 {
 	STRING_LIST(unnamed_enum$31, unnamed_enum$31_strings, _countof(unnamed_enum$31_strings));
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_globals_struct_definition_v1,
 		"sound_globals_v1",
 		"s_sound_globals_definition_v1",
@@ -31244,7 +31244,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		g_sound_permutation_chunk_struct_definition_v1,
 		"g_sound_permutation_chunk_v1",
 		"s_sound_permutation_chunk_v1",
@@ -31261,7 +31261,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_permutation_raw_info_block_struct_definition$2,
 		"sound_permutation_raw_info_block",
 		"s_sound_permutation_raw_info",
@@ -31282,7 +31282,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_promotion_parameter_struct_definition_v1,
 		"sound_promotion_parameter_v1",
 		"s_old_sound_promotion_parameters",
@@ -31298,7 +31298,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		looping_sound_detail_struct_definition_v1,
 		"looping_sound_detail_v1",
 		"looping_sound_detail_v1",
@@ -31320,7 +31320,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		looping_sound_track_struct_definition_v1,
 		"looping_sound_track_v1",
 		"looping_sound_track_v1",
@@ -31343,7 +31343,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		looping_sound_struct_definition_v1,
 		"looping_sound_v1",
 		"looping_sound_definition_v1",
@@ -31366,7 +31366,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		looping_sound_struct_definition_v2$2,
 		"looping_sound_v2",
 		"looping_sound_definition",
@@ -31385,7 +31385,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_netpoint_struct_definition_v1,
 		"scenario_netpoint_v1",
 		"scenario_netpoint_v1",
@@ -31407,7 +31407,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_trigger_volume_struct_definition_v0,
 		"scenario_trigger_volume_v0",
 		"scenario_trigger_volume_v0",
@@ -31424,7 +31424,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_structure_bsp_reference_tags_v1_struct_definition,
 		"scenario_structure_bsp_reference_tags_v1",
 		"scenario_structure_bsp_reference_v1",
@@ -31438,7 +31438,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_tags_v1_struct_definition,
 		"scenario_tags_v1",
 		"scenario_v1",
@@ -31528,7 +31528,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_tags_v2_struct_definition$2,
 		"scenario_tags_v2",
 		"scenario",
@@ -31653,7 +31653,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_bsp_cluster_tags_v1_struct_definition,
 		"structure_bsp_cluster_tags_v1",
 		"structure_cluster_v1",
@@ -31695,7 +31695,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_bsp_cluster_tags_v2_struct_definition,
 		"structure_bsp_cluster_tags_v2",
 		"structure_cluster_v2",
@@ -31736,7 +31736,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_bsp_leaf_tags_v1_struct_definition,
 		"structure_bsp_leaf_tags_v1",
 		"structure_leaf_v1",
@@ -31753,7 +31753,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_bsp_surface_reference_tags_v1_struct_definition,
 		"structure_bsp_surface_reference_tags_v1",
 		"structure_surface_reference_v1",
@@ -31769,7 +31769,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		stupid_edge_struct_definition,
 		"stupid_edge",
 		"stupid_edge",
@@ -31788,7 +31788,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		large_collision_bsp_struct_definition,
 		"large_collision_bsp",
 		"collision_bsp",
@@ -31808,7 +31808,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		small_collision_bsp_struct_definition,
 		"small_collision_bsp",
 		"collision_bsp",
@@ -31828,7 +31828,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		collision_bsp_struct_definition,
 		"collision_bsp",
 		"collision_bsp",
@@ -31848,7 +31848,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		g_new_scenario_object_datum_struct_definition$2,
 		"g_new_scenario_object_datum",
 		"s_scenario_object_datum",
@@ -31870,7 +31870,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_scenery_struct_definition_v1,
 		"scenario_scenery_v1",
 		"s_old_scenario_scenery_datum",
@@ -31894,7 +31894,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_scenery_struct_definition_v2,
 		"scenario_scenery_v2",
 		"s_scenario_scenery_v3",
@@ -31911,7 +31911,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_scenery_struct_definition_v3,
 		"scenario_scenery_v3",
 		"s_scenario_scenery_v3",
@@ -31928,7 +31928,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_scenery_struct_definition_v3$2,
 		"scenario_scenery_v3",
 		"s_scenario_scenery_v3",
@@ -31945,7 +31945,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_equipment_struct_definition_v1,
 		"scenario_equipment_v1",
 		"s_old_scenario_equipment_datum",
@@ -31962,7 +31962,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_equipment_struct_definition_v2$2,
 		"scenario_equipment_v2",
 		"s_scenario_equipment",
@@ -31978,7 +31978,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_weapon_struct_definition_v1,
 		"scenario_weapon_v1",
 		"s_old_scenario_weapon_datum",
@@ -32002,7 +32002,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_weapon_struct_definition_v2$2,
 		"scenario_weapon_v2",
 		"s_scenario_weapon",
@@ -32019,7 +32019,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_biped_struct_definition_v1,
 		"scenario_biped_v1",
 		"s_old_scenario_biped_datum",
@@ -32040,7 +32040,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_biped_struct_definition_v2$2,
 		"scenario_biped_v2",
 		"s_scenario_biped",
@@ -32057,7 +32057,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_vehicle_struct_definition_v1,
 		"scenario_vehicle_v1",
 		"s_old_scenario_vehicle_datum",
@@ -32078,7 +32078,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_vehicle_struct_definition_v2$2,
 		"scenario_vehicle_v2",
 		"s_scenario_vehicle",
@@ -32095,7 +32095,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_machine_struct_definition_v1,
 		"scenario_machine_v1",
 		"s_old_scenario_machine_datum",
@@ -32115,7 +32115,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_machine_struct_definition_v2,
 		"scenario_machine_v2",
 		"s_scenario_machine_v2",
@@ -32132,7 +32132,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_machine_struct_definition_v2$2,
 		"scenario_machine_v2",
 		"s_scenario_machine_v2",
@@ -32149,7 +32149,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_control_struct_definition_v1,
 		"scenario_control_v1",
 		"s_old_scenario_control_datum",
@@ -32172,7 +32172,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_control_struct_definition_v2$2,
 		"scenario_control_v2",
 		"s_scenario_control",
@@ -32189,7 +32189,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_light_fixture_struct_definition_v1,
 		"scenario_light_fixture_v1",
 		"s_old_scenario_light_fixture_datum",
@@ -32212,7 +32212,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_light_fixture_struct_definition_v2$2,
 		"scenario_light_fixture_v2",
 		"s_scenario_light_fixture",
@@ -32229,7 +32229,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_sound_scenery_struct_definition_v1,
 		"scenario_sound_scenery_v1",
 		"s_old_scenario_sound_scenery_datum",
@@ -32246,7 +32246,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_sound_scenery_struct_definition_v2$2,
 		"scenario_sound_scenery_v2",
 		"s_scenario_sound_scenery",
@@ -32262,7 +32262,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_light_struct_definition_v1,
 		"scenario_light_v1",
 		"s_old_scenario_light",
@@ -32293,7 +32293,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_light_struct_definition_v2$2,
 		"scenario_light_v2",
 		"s_scenario_light",
@@ -32313,7 +32313,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_class_struct_definition$2,
 		"sound_class",
 		"s_sound_classes_definition",
@@ -32326,7 +32326,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_graph_node_v0_struct_definition,
 		"animation_graph_node_v0",
 		"animation_graph_node_v0",
@@ -32344,7 +32344,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		s_effect_event_v0_struct_definition,
 		"s_effect_event_v0",
 		"s_effect_event_v0",
@@ -32358,7 +32358,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_pool_v0_struct_definition,
 		"animation_pool_v0",
 		"model_animation_v0",
@@ -32401,7 +32401,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_pool_v1_struct_definition,
 		"animation_pool_v1",
 		"model_animation_v1",
@@ -32433,7 +32433,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_pool_v2_struct_definition,
 		"animation_pool_v2",
 		"model_animation_v2",
@@ -32467,7 +32467,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_pool_v3_struct_definition,
 		"animation_pool_v3",
 		"model_animation_v3",
@@ -32504,7 +32504,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_pool_v4_struct_definition,
 		"animation_pool_v4",
 		"model_animation_v4",
@@ -32541,7 +32541,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_resources_struct_definition_v0,
 		"animation_resources_v0",
 		"c_animation_graph_resources_v0",
@@ -32563,7 +32563,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_resources_struct_definition_v1,
 		"animation_resources_v1",
 		"c_animation_graph_resources_v1",
@@ -32584,7 +32584,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		g_sound_effect_override_parameters_struct_definition_v1,
 		"g_sound_effect_override_parameters_v1",
 		"s_sound_effect_override_parameter_v1",
@@ -32599,7 +32599,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		g_sound_effect_template_struct_definition$2,
 		"g_sound_effect_template",
 		"s_sound_effect_template_definition",
@@ -32618,7 +32618,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		grenade_and_powerup_struct_definition_v1,
 		"grenade_and_powerup_v1",
 		"s_grenade_and_powerup_v1",
@@ -32630,7 +32630,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		multiplayer_runtime_global_struct_definition_v1,
 		"multiplayer_runtime_global_v1",
 		"s_multiplayer_runtime_globals_definition_v1",
@@ -32717,7 +32717,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		material_physics_properties_struct_definition_v1,
 		"material_physics_properties_v1",
 		"s_material_physics_properties_v1",
@@ -32729,7 +32729,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		material_effect_material_struct_definition_v1,
 		"material_effect_material_v1",
 		"s_material_effect_material_v1",
@@ -32746,7 +32746,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		material_effects_tags_v1_struct_definition,
 		"material_effects_tags_v1",
 		"s_material_effects_definition_v1",
@@ -32760,7 +32760,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		hud_widget_inputs_struct_definition_v1,
 		"hud_widget_inputs_v1",
 		"s_hud_widget_inputs_v1",
@@ -32772,7 +32772,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		screen_effect_bonus_struct_definition_v1,
 		"screen_effect_bonus_v1",
 		"s_screen_effect_bonus_v1",
@@ -32784,7 +32784,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_environment_definition_struct_definition$2,
 		"sound_environment_definition",
 		"sound_environment",
@@ -32812,7 +32812,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		bitmap_tags_v1_struct_definition,
 		"bitmap_tags_v1",
 		"bitmap_data_v1",
@@ -32839,7 +32839,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		rigid_bodies_block_struct_definition_v1,
 		"rigid_bodies_block_v1",
 		"s_physics_model_rigid_body_v1",
@@ -32871,7 +32871,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		phantom_type_struct_definition_v0,
 		"phantom_type_v0",
 		"s_physics_model_phantom_type_v0",
@@ -32914,7 +32914,7 @@ namespace halo2 {
 	STRING_LIST(unnamed_enum$340, unnamed_enum$340_strings, _countof(unnamed_enum$340_strings));
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		physics_model_tags_v1_struct_definition,
 		"physics_model_tags_v1",
 		"s_physics_model_definition_v1",
@@ -32950,7 +32950,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		physics_model_tags_v2_struct_definition$2,
 		"physics_model_tags_v2",
 		"s_physics_model_definition",
@@ -32997,7 +32997,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		collision_model_permutation_struct_definition_v0,
 		"collision_model_permutation_v0",
 		"collision_model_permutation_v0",
@@ -33014,7 +33014,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		collision_model_node_struct_definition_v0,
 		"collision_model_node_v0",
 		"collision_model_node_v0",
@@ -33029,7 +33029,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		collision_model_struct_definition_v0,
 		"collision_model_v0",
 		"collision_model_definition_v0",
@@ -33048,7 +33048,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		render_model_section_data_tag_field_old_struct_definition,
 		"render_model_section_data_tag_field_old",
 		"render_model_section_data_old",
@@ -33076,7 +33076,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		model_variant_state_struct_definition_v1,
 		"model_variant_state_v1",
 		"s_model_variant_state_v1",
@@ -33105,7 +33105,7 @@ namespace halo2 {
 	STRING_LIST(unnamed_enum$209, unnamed_enum$209_strings, _countof(unnamed_enum$209_strings));
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		model_group_tags_v1_struct_definition,
 		"model_group_tags_v1",
 		"s_model_definition_v1",
@@ -33141,7 +33141,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		geometry_section_struct_definitionet_old,
 		"geometry_sectionet_old",
 		"geometry_section_old",
@@ -33160,7 +33160,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		large_sound_playback_parameters_struct_definition_v1,
 		"large_sound_playback_parameters_v1",
 		"s_large_sound_definition_playback_parameters_v1",
@@ -33182,7 +33182,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_instanced_geometry_render_info_struct_definition_v1,
 		"structure_instanced_geometry_render_info_v1",
 		"structure_instanced_geometry_render_info_v1",
@@ -33198,7 +33198,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		instanced_geometry_instance_struct_definition_v2,
 		"instanced_geometry_instance_v2",
 		"structure_instanced_geometry_instance_v2",
@@ -33222,7 +33222,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		instanced_geometry_instance_struct_definition_v2$2,
 		"instanced_geometry_instance_v2",
 		"structure_instanced_geometry_instance_v2",
@@ -33246,7 +33246,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		particle_system_definition_block_struct_definition_v1,
 		"particle_system_definition_block_v1",
 		"c_particle_system_definition_v1",
@@ -33266,7 +33266,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_response_extra_sounds_struct_definition_v1,
 		"sound_response_extra_sounds_v1",
 		"s_sound_response_extra_sounds_v1",
@@ -33278,7 +33278,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		instantaneous_response_damage_effect_struct_definition_v1,
 		"instantaneous_response_damage_effect_v1",
 		"s_instantaneous_response_damage_effect_v1",
@@ -33290,7 +33290,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		instantaneous_response_damage_effect_marker_struct_definition_v1,
 		"instantaneous_response_damage_effect_marker_v1",
 		"s_instantaneous_response_damage_effect_marker_v1",
@@ -33302,7 +33302,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_damage_info_block_struct_definition_v1,
 		"global_damage_info_block_v1",
 		"s_model_damage_info_v1",
@@ -33341,7 +33341,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		zone_set_struct_definition_v1,
 		"zone_set_v1",
 		"orders_area_reference_definition_v1",
@@ -33355,7 +33355,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		zone_set_struct_definition_v2,
 		"zone_set_v2",
 		"orders_area_reference_definition",
@@ -33378,7 +33378,7 @@ namespace halo2 {
 	STRING_LIST(unnamed_enum$84, unnamed_enum$84_strings, _countof(unnamed_enum$84_strings));
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		orders_v1_struct_definition,
 		"orders_v1",
 		"orders_definition_v1",
@@ -33405,7 +33405,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		orders_v2_struct_definition,
 		"orders_v2",
 		"orders_definition_v2",
@@ -33431,7 +33431,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cs_point_struct_definition_v1,
 		"cs_point_v1",
 		"cs_point_v1",
@@ -33447,7 +33447,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cs_point_set_struct_definition_v1,
 		"cs_point_set_v1",
 		"cs_point_set_v1",
@@ -33464,7 +33464,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		firing_position_struct_definition_v1,
 		"firing_position_v1",
 		"firing_position_definition_v1",
@@ -33486,7 +33486,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		firing_position_struct_definition_v2,
 		"firing_position_v2",
 		"firing_position_definition_v2",
@@ -33507,7 +33507,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		firing_position_struct_definition_v3,
 		"firing_position_v3",
 		"firing_position_definition_v3",
@@ -33528,7 +33528,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		links_v1_struct_definition,
 		"links_v1",
 		"sector_link_v1",
@@ -33548,7 +33548,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		links_v2_struct_definition$2,
 		"links_v2",
 		"sector_link_v2",
@@ -33568,7 +33568,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		links_v3_struct_definition,
 		"links_v3",
 		"sector_link_v3",
@@ -33588,7 +33588,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sectors_v1_struct_definition,
 		"sectors_v1",
 		"sector_v1",
@@ -33604,7 +33604,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sectors_v2_struct_definition,
 		"sectors_v2",
 		"sector_v2",
@@ -33620,7 +33620,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		environment_object_bsp_ref_struct_definition_v1,
 		"environment_object_bsp_ref_v1",
 		"environment_object_bsp_reference_v1",
@@ -33639,7 +33639,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		environment_object_node_ref_struct_definition_v1,
 		"environment_object_node_ref_v1",
 		"environment_object_node_reference_v1",
@@ -33654,7 +33654,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		environment_object_ref_struct_definition_v1,
 		"environment_object_ref_v1",
 		"environment_object_reference_v1",
@@ -33674,7 +33674,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		area_struct_definition_v1,
 		"area_v1",
 		"area_definition_v1",
@@ -33693,7 +33693,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		zone_v1_struct_definition,
 		"zone_v1",
 		"zone_definition_v1",
@@ -33716,7 +33716,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		actor_starting_location_struct_definition_v1,
 		"actor_starting_location_v1",
 		"actor_starting_location_definition_v1",
@@ -33739,7 +33739,7 @@ namespace halo2 {
 	TAG_REFERENCE(weapon_reference$2, WEAPON_TAG);
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		actor_starting_location_struct_definition_v2,
 		"actor_starting_location_v2",
 		"actor_starting_location_definition_v2",
@@ -33762,7 +33762,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		actor_starting_location_struct_definition_v3,
 		"actor_starting_location_v3",
 		"actor_starting_location_definition_v3",
@@ -33784,7 +33784,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		actor_starting_location_struct_definition_v4,
 		"actor_starting_location_v4",
 		"actor_starting_location_definition_v4",
@@ -33808,7 +33808,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		actor_starting_location_struct_definition_v5,
 		"actor_starting_location_v5",
 		"actor_starting_location_definition_v5",
@@ -33834,7 +33834,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		actor_starting_location_struct_definition_v5$2,
 		"actor_starting_location_v5",
 		"actor_starting_location_definition_v5",
@@ -33860,7 +33860,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		squads_v1_struct_definition,
 		"squads_v1",
 		"squad_definition_v1",
@@ -33894,7 +33894,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		squads_v2_struct_definition,
 		"squads_v2",
 		"squad_definition_v2",
@@ -33924,7 +33924,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		g_vocalization_struct_definition_v1_5,
 		"g_vocalization_v1_5",
 		"vocalization_v1",
@@ -33969,7 +33969,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		g_vocalization_struct_definition_v1_4,
 		"g_vocalization_v1_4",
 		"vocalization_v1",
@@ -34014,7 +34014,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		g_vocalization_struct_definition_v1_3,
 		"g_vocalization_v1_3",
 		"vocalization_v1",
@@ -34059,7 +34059,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		g_vocalization_struct_definition_v1_2,
 		"g_vocalization_v1_2",
 		"vocalization_v1",
@@ -34104,7 +34104,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		g_vocalization_struct_definition_v1_1,
 		"g_vocalization_v1_1",
 		"vocalization_v1",
@@ -34149,7 +34149,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		g_vocalization_struct_definition_v1_0,
 		"g_vocalization_v1_0",
 		"vocalization_v1",
@@ -34194,7 +34194,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		presearch_struct_definition_v1,
 		"presearch_v1",
 		"character_presearch_properties_v1",
@@ -34211,7 +34211,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		charge_struct_definition_v1,
 		"charge_v1",
 		"character_charge_properties_v1",
@@ -34232,7 +34232,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		charge_struct_definition_v2,
 		"charge_v2",
 		"character_charge_properties_v2",
@@ -34254,7 +34254,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		charge_struct_definition_v3,
 		"charge_v3",
 		"character_charge_properties_v3",
@@ -34277,7 +34277,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_struct_definition_v1,
 		"weapon_v1",
 		"character_weapon_properties_v1",
@@ -34334,7 +34334,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		vehicle_struct_definition_v1,
 		"vehicle_v1",
 		"character_vehicle_properties_v1",
@@ -34387,7 +34387,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		character_tag_v1_struct_definition,
 		"character_tag_v1",
 		"character_definition_v1",
@@ -34428,7 +34428,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		character_tag_v2_struct_definition,
 		"character_tag_v2",
 		"character_definition_v2",
@@ -34476,7 +34476,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		g_vocalization_sound_references_struct_definition_v1,
 		"g_vocalization_sound_references_v1",
 		"s_vocalization_sound_v1",
@@ -34493,7 +34493,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		g_dialogue_definition_struct_definition_v1,
 		"g_dialogue_definition_v1",
 		"s_dialogue_definition_v1",
@@ -34510,7 +34510,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		damage_outer_cone_angle_struct_definition_v1,
 		"damage_outer_cone_angle_v1",
 		"s_damage_outer_cone_angle_v1",
@@ -34522,7 +34522,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		damage_effect_struct_definition_v1,
 		"damage_effect_v1",
 		"s_damage_effect_definition_v1",
@@ -34615,7 +34615,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		angular_velocity_lower_bound_struct_definition_v1,
 		"angular_velocity_lower_bound_v1",
 		"s_angular_velocity_lower_bound_v1",
@@ -34627,7 +34627,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		super_detonation_damage_struct_definition_v1,
 		"super_detonation_damage_v1",
 		"s_super_detonation_damage_v1",
@@ -34639,7 +34639,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		projectile_struct_definition_v1,
 		"projectile_v1",
 		"_projectile_definition_v1",
@@ -34700,7 +34700,7 @@ namespace halo2 {
 	STRING_LIST(unnamed_enum$361, unnamed_enum$361_strings, _countof(unnamed_enum$361_strings));
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_ammunition_object_struct_definition_v1,
 		"weapon_ammunition_object_v1",
 		"weapon_ammunition_object_v1",
@@ -34715,7 +34715,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_magazine_struct_definition_v1,
 		"weapon_magazine_v1",
 		"weapon_magazine_definition_v1",
@@ -34743,7 +34743,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		barrel_firing_effect_struct_definition_v1,
 		"barrel_firing_effect_v1",
 		"barrel_firing_effect_v1",
@@ -34764,7 +34764,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_barrel_damage_effect_struct_definition_v1,
 		"weapon_barrel_damage_effect_v1",
 		"s_weapon_barrel_damage_effect_v1",
@@ -34776,7 +34776,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_barrel_definition_struct_definition_v1,
 		"weapon_barrel_definition_v1",
 		"weapon_barrel_definition_v1",
@@ -34842,7 +34842,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_barrel_definition_struct_definition_v2,
 		"weapon_barrel_definition_v2",
 		"weapon_barrel_definition_v2",
@@ -34907,7 +34907,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		melee_aim_assist_struct_definition_v1,
 		"melee_aim_assist_v1",
 		"s_melee_aim_assist_v1",
@@ -34919,7 +34919,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		melee_damage_parameters_struct_definition_v1,
 		"melee_damage_parameters_v1",
 		"s_melee_damage_parameters_v1",
@@ -34931,7 +34931,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_tracking_struct_definition_v1,
 		"weapon_tracking_v1",
 		"s_weapon_tracking_v1",
@@ -34943,7 +34943,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_struct_definition_v1$2,
 		"weapon_v1",
 		"_weapon_definition_v1",
@@ -35028,7 +35028,7 @@ namespace halo2 {
 	TAG_REFERENCE(render_model_reference$6, RENDER_MODEL_TAG);
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_struct_definition_v2$2,
 		"weapon_v2",
 		"_weapon_definition_v2",
@@ -35124,7 +35124,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		weapon_struct_definition_v3,
 		"weapon_v3",
 		"_weapon_definition_v3",
@@ -35225,7 +35225,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenery_struct_definition_v1,
 		"scenery_v1",
 		"_scenery_definition",
@@ -35259,7 +35259,7 @@ namespace halo2 {
 	STRING_LIST(unnamed_enum$389, unnamed_enum$389_strings, _countof(unnamed_enum$389_strings));
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenery_struct_definition_v2,
 		"scenery_v2",
 		"_scenery_definition",
@@ -35279,7 +35279,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		biped_lock_on_data_struct_definition_v1,
 		"biped_lock_on_data_v1",
 		"s_biped_lock_on_data_v1",
@@ -35291,7 +35291,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		biped_definition_tags_v1_struct_definition,
 		"biped_definition_tags_v1",
 		"_biped_definition_v1",
@@ -35378,7 +35378,7 @@ namespace halo2 {
 	STRING_LIST(unnamed_enum$103, unnamed_enum$103_strings, _countof(unnamed_enum$103_strings));
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		unit_seat_struct_definition_v1,
 		"unit_seat_v1",
 		"unit_seat_v1",
@@ -35409,7 +35409,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		unit_seat_struct_definition_v2,
 		"unit_seat_v2",
 		"unit_seat_v2",
@@ -35442,7 +35442,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		unit_seat_struct_definition_v3,
 		"unit_seat_v3",
 		"unit_seat_v3",
@@ -35488,7 +35488,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		unit_boarding_melee_struct_definition_v1,
 		"unit_boarding_melee_v1",
 		"s_unit_boarding_melee_v1",
@@ -35500,7 +35500,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		unit_additional_node_names_v1_struct_definition,
 		"unit_additional_node_names_v1",
 		"s_unit_additional_node_names_v1",
@@ -35512,7 +35512,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		unit_lipsync_scales_v1_struct_definition,
 		"unit_lipsync_scales_v1",
 		"s_unit_lipsync_scales_v1",
@@ -35524,7 +35524,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		user_hint_point_struct_definition_v1,
 		"user_hint_point_v1",
 		"user_hint_point_v1",
@@ -35537,7 +35537,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		user_hint_ray_struct_definition_v1,
 		"user_hint_ray_v1",
 		"user_hint_ray_v1",
@@ -35551,7 +35551,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		user_hint_line_segment_struct_definition_v1,
 		"user_hint_line_segment_v1",
 		"user_hint_line_segment_v1",
@@ -35566,7 +35566,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		user_hint_parallelogram_struct_definition_v1,
 		"user_hint_parallelogram_v1",
 		"user_hint_parallelogram_v1",
@@ -35583,7 +35583,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		hints_v1_struct_definition,
 		"hints_v1",
 		"pathfinding_hint_data_v1",
@@ -35600,7 +35600,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		hints_v2_struct_definition$2,
 		"hints_v2",
 		"pathfinding_hint_data",
@@ -35622,7 +35622,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		hints_v2_struct_definition$3,
 		"hints_v2",
 		"pathfinding_hint_data",
@@ -35644,7 +35644,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		decorator_cache_block_data_v1_struct_definition,
 		"decorator_cache_block_data_v1",
 		"s_decorator_cache_block_data_v1",
@@ -35659,7 +35659,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		decorator_set_struct_definition_v1,
 		"decorator_set_v1",
 		"c_decorator_set_definition_v1",
@@ -35679,7 +35679,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_block_group_block$2_struct_definition$2,
 		"sound_block",
 		"s_sound_block",
@@ -35721,7 +35721,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_block_group_block$2_struct_definition$3,
 		"sound_block",
 		"s_sound_block",
@@ -35748,7 +35748,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_block_group_block$2_struct_definition$4,
 		"sound_block",
 		"s_sound_block",
@@ -35775,7 +35775,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_block_group_block$2_struct_definition$5,
 		"sound_block",
 		"s_sound_block",
@@ -35802,7 +35802,7 @@ namespace halo2 {
 	};
 
 
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_definition_struct_definition_v1,
 		"sound_definition_v1",
 		"sound_definition_v1",

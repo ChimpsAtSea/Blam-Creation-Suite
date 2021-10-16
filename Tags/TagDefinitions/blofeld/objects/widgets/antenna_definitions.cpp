@@ -41,7 +41,7 @@ namespace blofeld
 	};
 
 	#define ANTENNA_STRUCT_DEFINITION_ID { 0xB3BE1D39, 0xEF274B86, 0x866479C8, 0xE030C9EE }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		antenna_struct_definition,
 		"antenna_struct_definition",
 		"antenna_definition",

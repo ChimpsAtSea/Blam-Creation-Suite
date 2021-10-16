@@ -7,7 +7,7 @@ namespace blofeld
 
 
 	#define BOAT_PHYSICS_DEFINITION_STRUCT_ID { 0x10ACB591, 0xC7CEB2A9, 0xA01201F5, 0xE12ABB68 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		boat_physics_definition_struct,
 		"boat_physics_definition_struct",
 		"s_boat_physics_definition",

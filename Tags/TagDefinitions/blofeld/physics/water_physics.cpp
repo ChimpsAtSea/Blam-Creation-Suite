@@ -55,7 +55,7 @@ namespace blofeld
 	};
 
 	#define WATER_PHYSICS_DRAG_PROPERTIES_STRUCT_DEFINITION_ID { 0xAFDC9397, 0x8FD848DB, 0xB431C572, 0xB7A2BEF8 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		water_physics_drag_properties_struct_definition,
 		"water_physics_drag_properties_struct_definition",
 		"s_water_physics_drag_properties",
@@ -69,7 +69,7 @@ namespace blofeld
 	};
 
 	#define WATER_PHYSICS_DRAG_PROPERTIES_STRUCT_ID { 0xFCE5EAF2, 0x3E2D4059, 0x8C4C8BC2, 0x4F5683D6 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		water_physics_drag_properties_struct,
 		"water_physics_drag_properties_struct",
 		"s_water_physics_drag_properties",
@@ -90,7 +90,7 @@ namespace blofeld
 	};
 
 	#define PHYSICS_FORCE_FUNCTION_STRUCT_ID { 0xC5E705F1, 0xAA0C4E01, 0x981B4053, 0x44CC22DC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		physics_force_function_struct,
 		"physics_force_function_struct",
 		"s_physics_force_function",

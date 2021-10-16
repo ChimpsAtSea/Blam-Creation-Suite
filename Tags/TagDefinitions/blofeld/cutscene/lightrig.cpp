@@ -56,7 +56,7 @@ namespace blofeld
 	};
 
 	#define LIGHT_RIG_STRUCT_DEFINITION_ID { 0x0E085FEC, 0xFF264344, 0x9801B28D, 0xE302AD8D }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		light_rig_struct_definition,
 		"light_rig_struct_definition",
 		"LightRig",

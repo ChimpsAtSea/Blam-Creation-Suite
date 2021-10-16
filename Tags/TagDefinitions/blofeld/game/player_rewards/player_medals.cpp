@@ -72,7 +72,7 @@ namespace blofeld
 	};
 
 	#define GAME_MEDAL_GLOBALS_STRUCT_DEFINITION_ID { 0x32C934ED, 0x6C6B4352, 0xB86FFA53, 0x76D54461 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		game_medal_globals_struct_definition,
 		"game_medal_globals_struct_definition",
 		"s_game_medal_globals",

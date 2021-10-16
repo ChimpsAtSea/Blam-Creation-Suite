@@ -35,7 +35,7 @@ namespace blofeld
 	};
 
 	#define MUX_GENERATOR_STRUCT_DEFINITION_ID { 0xA616DC83, 0x5C9B46DF, 0xA97EF406, 0x704B43E8 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		mux_generator_struct_definition,
 		"mux_generator_struct_definition",
 		"s_mux_generator",

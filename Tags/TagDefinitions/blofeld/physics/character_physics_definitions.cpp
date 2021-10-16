@@ -7,7 +7,7 @@ namespace blofeld
 
 
 	#define CHARACTER_PHYSICS_STRUCT_ID { 0x7F1CE04F, 0x93D14DEC, 0xA9872258, 0x04CD6B27 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		character_physics_struct,
 		"character_physics_struct",
 		"s_character_physics_definition",
@@ -43,7 +43,7 @@ namespace blofeld
 	};
 
 	#define CHARACTER_PHYSICS_GROUND_STRUCT_ID { 0xE61D5093, 0x77E5453D, 0x90EC05A0, 0x8B7B778B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		character_physics_ground_struct,
 		"character_physics_ground_struct",
 		"s_character_physics_ground_definition",
@@ -75,7 +75,7 @@ namespace blofeld
 	};
 
 	#define CHARACTER_PHYSICS_FLYING_STRUCT_ID { 0x692E7BDD, 0x59F4483F, 0xAEBF3C6D, 0x645E1EC3 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		character_physics_flying_struct,
 		"character_physics_flying_struct",
 		"s_character_physics_flying_definition",

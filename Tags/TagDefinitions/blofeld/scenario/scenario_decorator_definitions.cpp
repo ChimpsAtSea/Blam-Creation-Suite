@@ -101,7 +101,7 @@ namespace blofeld
 	};
 
 	#define DECORATOR_BRUSH_STRUCT_ID { 0xC3DB84FA, 0xC247443B, 0x9093336D, 0xF7E811A2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		decorator_brush_struct,
 		"decorator_brush_struct",
 		"s_decorator_brush_options",

@@ -20,7 +20,7 @@ namespace blofeld
 		crate_struct_definition);
 
 	#define CRATE_STRUCT_DEFINITION_ID { 0x793C3A87, 0x506C4035, 0xBF3BFC95, 0xF0459BE4 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		crate_struct_definition,
 		"crate_struct_definition",
 		"_crate_definition",

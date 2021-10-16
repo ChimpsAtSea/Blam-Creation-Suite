@@ -337,7 +337,7 @@ namespace blofeld
 	};
 
 	#define AI_GLOBALS_STRUCT_DEFINITION_ID { 0xEFB33B8C, 0x80EC4724, 0x9858CAF2, 0x53DD39B3 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		ai_globals_struct_definition,
 		"ai_globals_struct_definition",
 		"s_ai_globals_definition",

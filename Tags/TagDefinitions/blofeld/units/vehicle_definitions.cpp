@@ -955,7 +955,7 @@ namespace blofeld
 	};
 
 	#define VEHICLE_STRUCT_DEFINITION_ID { 0xC6A4B989, 0x09714F2B, 0xBF522976, 0xF69B2344 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		vehicle_struct_definition,
 		"vehicle",
 		"vehicle_group",
@@ -1032,7 +1032,7 @@ namespace blofeld
 	};
 
 	#define VEHICLE_PHYSICS_TYPES_STRUCT_ID { 0xC319BCC5, 0x75334227, 0x93E7A6C7, 0xCFF0752A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		vehicle_physics_types_struct,
 		"vehicle_physics_types_struct",
 		"s_vehicle_physics_types",
@@ -1075,7 +1075,7 @@ namespace blofeld
 	};
 
 	#define HUMAN_TANK_STRUCT_ID { 0x7AD171CF, 0x889B48FF, 0x9B3677D4, 0xF2E74E3B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		human_tank_struct,
 		"human_tank_struct",
 		"s_vehicle_human_tank_definition",
@@ -1128,7 +1128,7 @@ namespace blofeld
 	};
 
 	#define VEHICLE_STEERING_CONTROL_STRUCT_ID { 0x2B36CF56, 0x040E4806, 0xAE2A1F64, 0x89A6F9B2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		vehicle_steering_control_struct,
 		"vehicle_steering_control_struct",
 		"s_vehicle_steering_control_definition",
@@ -1143,7 +1143,7 @@ namespace blofeld
 	};
 
 	#define VEHICLE_TURNING_CONTROL_STRUCT_ID { 0x36D7646B, 0xE70A47D1, 0x98AF489E, 0x9B5C63F1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		vehicle_turning_control_struct,
 		"vehicle_turning_control_struct",
 		"s_vehicle_turning_control_definition",
@@ -1159,7 +1159,7 @@ namespace blofeld
 	};
 
 	#define STEERING_ANIMATION_STRUCT_ID { 0xA551DA10, 0x1D3F4100, 0x9C4C60D2, 0x46D74662 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		steering_animation_struct,
 		"steering_animation_struct",
 		"s_vehicle_steering_animation_definition",
@@ -1174,7 +1174,7 @@ namespace blofeld
 	};
 
 	#define ENGINE_FUNCTION_STRUCT_ID { 0xFAE37480, 0x13E14F26, 0xA1CB57D9, 0xD755D2D0 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		engine_function_struct,
 		"engine_function_struct",
 		"s_engine_function_definition",
@@ -1191,7 +1191,7 @@ namespace blofeld
 	};
 
 	#define VTOL_DESCENT_FUNCTION_STRUCT_ID { 0x54DB0E84, 0x09D24B82, 0xA95666A4, 0x8EE43895 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		vtol_descent_function_struct,
 		"vtol_descent_function_struct",
 		"s_vtol_descent_function",
@@ -1206,7 +1206,7 @@ namespace blofeld
 	};
 
 	#define FLIGHT_SURFACE_STRUCT_ID { 0xFAEAB480, 0x1A314F26, 0xA1C012D9, 0xD7ABD2D0 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		flight_surface_struct,
 		"flight_surface_struct",
 		"s_flight_surface_definition",
@@ -1230,7 +1230,7 @@ namespace blofeld
 	};
 
 	#define JACKAL_GLIDER_DRAG_STRUCT_ID { 0xFAEAB498, 0x1A314FAB, 0xACD012D9, 0xD7ABD2D0 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		jackal_glider_drag_struct,
 		"jackal_glider_drag_struct",
 		"s_vehicle_jackal_glider_drag_definition",

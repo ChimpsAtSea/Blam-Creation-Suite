@@ -20,7 +20,7 @@ namespace blofeld
 		entity_struct_definition);
 
 	#define ENTITY_STRUCT_DEFINITION_ID { 0xC09EE68E, 0xC51440C4, 0x84421DAA, 0xB13D1D3E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		entity_struct_definition,
 		"entity_struct_definition",
 		"EntityDefinitionInternal",

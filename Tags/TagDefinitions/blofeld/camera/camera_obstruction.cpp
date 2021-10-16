@@ -7,7 +7,7 @@ namespace blofeld
 
 
 	#define CAMERA_OBSTRUCTION_STRUCT_ID { 0x3A9D370F, 0x57744B3B, 0x863CAE2F, 0x93F2A8CC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_obstruction_struct,
 		"camera_obstruction_struct",
 		"s_camera_obstruction_parameters",

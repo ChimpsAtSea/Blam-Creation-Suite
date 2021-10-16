@@ -21,7 +21,7 @@ namespace blofeld
 	};
 
 	#define HALF_RGB_LIGHTPROBE_STRUCT_ID { 0x101E5B0B, 0xD7614F00, 0x817C8CE0, 0x91BB5C69 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		half_rgb_lightprobe_struct,
 		"half_rgb_lightprobe_struct",
 		"half_rgb_lightprobe",

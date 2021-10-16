@@ -40,7 +40,7 @@ namespace blofeld
 	};
 
 	#define PARTICLE_EMITTER_CUSTOM_POINTS_STRUCT_DEFINITION_ID { 0xB96E0D8B, 0xD98049CD, 0xB32EB972, 0x2FBDCDDB }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		particle_emitter_custom_points_struct_definition,
 		"particle_emitter_custom_points_struct_definition",
 		"s_particle_emitter_custom_points",

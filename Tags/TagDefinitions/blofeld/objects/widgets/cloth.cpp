@@ -81,7 +81,7 @@ namespace blofeld
 	};
 
 	#define CLOTH_STRUCT_DEFINITION_ID { 0x6007B323, 0x1677454C, 0x86B19DA1, 0xCAEC6D8B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cloth_struct_definition,
 		"cloth_struct_definition",
 		"cloth_definition",
@@ -110,7 +110,7 @@ namespace blofeld
 	};
 
 	#define CLOTH_PROPERTIES_ID { 0x3654721A, 0x8FDB4A6D, 0x833E911B, 0x06E30928 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cloth_properties,
 		"cloth_properties",
 		"cloth_properties",

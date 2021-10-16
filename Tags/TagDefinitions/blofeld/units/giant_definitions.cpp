@@ -60,7 +60,7 @@ namespace blofeld
 	};
 
 	#define GIANT_STRUCT_DEFINITION_ID { 0xA855591D, 0xA7A2477E, 0xAB97CD08, 0xA97A8C61 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		giant_struct_definition,
 		"giant_struct_definition",
 		"_giant_definition",

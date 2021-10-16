@@ -24,7 +24,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_RASTERIZER_CONSTANT_TABLE_STRUCT_ID { 0x88225AE9, 0x664A4892, 0xA3910819, 0x46CAAEFB }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_rasterizer_constant_table_struct,
 		"global_rasterizer_constant_table_struct",
 		"c_rasterizer_constant_table_definition",

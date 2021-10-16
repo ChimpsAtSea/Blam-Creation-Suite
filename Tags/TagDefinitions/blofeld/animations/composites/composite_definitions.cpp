@@ -145,7 +145,7 @@ namespace blofeld
 	};
 
 	#define G_COMPOSITETAG_STRUCT_ID { 0xCE71BB1A, 0x50AB45ED, 0x90C7C874, 0x047FF664 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		g_compositeTag_struct,
 		"g_compositeTag_struct",
 		"CompositeTag",

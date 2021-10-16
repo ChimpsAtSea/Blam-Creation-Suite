@@ -48,7 +48,7 @@ namespace blofeld
 	};
 
 	#define STYLE_STRUCT_DEFINITION_ID { 0xAC59B7DE, 0x455644C8, 0x9268F008, 0x8B74CD54 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		style_struct_definition,
 		"style_struct_definition",
 		"style_definition",

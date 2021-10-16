@@ -123,7 +123,7 @@ namespace blofeld
 	};
 
 	#define MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_STRUCT_DEFINITION_ID { 0x07D9BF44, 0xA8044D74, 0x9C09C13F, 0xF5077BB7 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		multiplayer_variant_settings_interface_definition_struct_definition,
 		"multiplayer_variant_settings_interface_definition_struct_definition",
 		"s_multiplayer_variant_settings_interface_definition",
@@ -137,7 +137,7 @@ namespace blofeld
 	};
 
 	#define SANDBOX_TEXT_VALUE_PAIR_DEFINITION_STRUCT_DEFINITION_ID { 0x42D0D8BD, 0x41594A07, 0x93653D79, 0x74AD97DD }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sandbox_text_value_pair_definition_struct_definition,
 		"sandbox_text_value_pair_definition_struct_definition",
 		"s_object_properties_tag_block_definition",
@@ -150,7 +150,7 @@ namespace blofeld
 	};
 
 	#define TEXT_VALUE_PAIR_DEFINITION_STRUCT_DEFINITION_ID { 0xDFA0A227, 0xB83A4610, 0x8DF352D1, 0x391AB478 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		text_value_pair_definition_struct_definition,
 		"text_value_pair_definition_struct_definition",
 		"s_text_value_pair_definition",

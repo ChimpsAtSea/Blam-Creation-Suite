@@ -35,7 +35,7 @@ namespace blofeld
 	};
 
 	#define MULTIPLAYEREFFECTS_STRUCT_DEFINITION_ID { 0x32C93FFF, 0x6C6B4352, 0xB86FFA53, 0x76DFFF61 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		multiplayerEffects_struct_definition,
 		"multiplayerEffects_struct_definition",
 		"s_megalogamengine_effect_group",

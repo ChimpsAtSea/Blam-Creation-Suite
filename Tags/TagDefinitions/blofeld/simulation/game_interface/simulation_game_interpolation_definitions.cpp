@@ -20,7 +20,7 @@ namespace blofeld
 		simulation_interpolation_struct_definition);
 
 	#define SIMULATION_INTERPOLATION_STRUCT_DEFINITION_ID { 0x2FACCEF0, 0x5C3B4A32, 0x8DF1C551, 0x349A3F4A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		simulation_interpolation_struct_definition,
 		"simulation_interpolation_struct_definition",
 		"s_simulation_interpolation_definition",
@@ -55,7 +55,7 @@ namespace blofeld
 	};
 
 	#define SINGLE_DOMAIN_CONFIGURATION_STRUCT_ID { 0xE844485C, 0x782542A7, 0xB852650A, 0x3EC8A1C7 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		single_domain_configuration_struct,
 		"single_domain_configuration_struct",
 		"s_simulation_single_domain_interpolation_configuration",
@@ -77,7 +77,7 @@ namespace blofeld
 	};
 
 	#define SINGLE_DOMAIN_VELOCITY_BUMPS_CONFIGURATION_STRUCT_ID { 0xE01ED32B, 0x4AC44923, 0xA38213D0, 0x8598722B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		single_domain_velocity_bumps_configuration_struct,
 		"single_domain_velocity_bumps_configuration_struct",
 		"s_simulation_single_domain_velocity_bumps_configuration",
@@ -96,7 +96,7 @@ namespace blofeld
 	};
 
 	#define SINGLE_DOMAIN_BLENDING_CONFIGURATION_STRUCT_ID { 0x47E921D4, 0x65AB4EBE, 0x8A71EF41, 0x224410B1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		single_domain_blending_configuration_struct,
 		"single_domain_blending_configuration_struct",
 		"s_simulation_single_domain_blending_configuration",

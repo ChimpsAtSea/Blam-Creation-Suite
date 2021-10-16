@@ -20,7 +20,7 @@ namespace blofeld
 		meter_struct_definition);
 
 	#define METER_STRUCT_DEFINITION_ID { 0x3B48AAFB, 0xF0C147FC, 0xAD439E06, 0xEDAF749A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		meter_struct_definition,
 		"meter_struct_definition",
 		"meter_definition",

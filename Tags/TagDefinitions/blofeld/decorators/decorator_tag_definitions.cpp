@@ -127,7 +127,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_DECORATOR_TYPE_STRUCT_ID { 0x02B61C35, 0x457E4970, 0xBB11A050, 0x2DF8A18E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_decorator_type_struct,
 		"global_decorator_type_struct",
 		"s_decorator_type",

@@ -100,7 +100,7 @@ namespace blofeld
 	};
 
 	#define PCA_COEFFICIENTS_RESOURCE_DEFINITION_STRUCT_ID { 0x53EAA5E8, 0x27D74A19, 0xB37E2E13, 0xA022F958 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		pca_coefficients_resource_definition_struct,
 		"pca_coefficients_resource_definition_struct",
 		"PCAImportedFrameData",

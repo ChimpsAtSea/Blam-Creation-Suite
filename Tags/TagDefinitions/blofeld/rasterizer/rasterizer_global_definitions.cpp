@@ -74,7 +74,7 @@ namespace blofeld
 	};
 
 	#define RASTERIZER_GLOBALS_STRUCT_DEFINITION_ID { 0x1E0FE0EA, 0x9D3048D5, 0x9D86E7F7, 0xCAA91C4A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		rasterizer_globals_struct_definition,
 		"rasterizer_globals_struct_definition",
 		"c_rasterizer_globals",

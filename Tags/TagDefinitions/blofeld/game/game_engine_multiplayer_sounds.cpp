@@ -106,7 +106,7 @@ namespace blofeld
 	};
 
 	#define SOUND_RESPONSE_STRUCT_DEFINITION_ID { 0x048F8E35, 0x6C774DA7, 0xA440224B, 0x2E123BAB }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_response_struct_definition,
 		"sound_response_struct_definition",
 		"SoundResponseGroupDefinition",
@@ -119,7 +119,7 @@ namespace blofeld
 	};
 
 	#define SOUND_INCIDENT_RESPONSE_STRUCT_DEFINITION_ID { 0x96ADAD4E, 0xA6074EC6, 0xA626867A, 0x6DE314EF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_incident_response_struct_definition,
 		"sound_incident_response_struct_definition",
 		"SoundIncidentResponseGroupDefinition",

@@ -36,7 +36,7 @@ namespace blofeld
 
 	V5_TAG_GROUP_FROM_BLOCK(chud_widget_animation_data, CHUD_WIDGET_ANIMATION_DATA_TAG, wadt_block);
 	V5_TAG_BLOCK_FROM_STRUCT(wadt_block, 1, wadt_struct_definition_struct_definition);
-	V5_TAG_STRUCT(wadt_struct_definition)
+	V5_TAG_STRUCT_V6(wadt_struct_definition)
 	{
 		{ _field_legacy, _field_block, "animation data", &wadt_data_block },
 		{ _field_legacy, _field_terminator }
@@ -69,7 +69,7 @@ namespace blofeld
 
 	V5_TAG_GROUP_FROM_BLOCK(chud_widget_placement_data, CHUD_WIDGET_PLACEMENT_DATA_TAG, wpdt_block);
 	V5_TAG_BLOCK_FROM_STRUCT(wpdt_block, 1, wpdt_struct_definition_struct_definition);
-	V5_TAG_STRUCT(wpdt_struct_definition)
+	V5_TAG_STRUCT_V6(wpdt_struct_definition)
 	{
 		{ _field_legacy, _field_block, "placement data", &wpdt_data_block },
 		{ _field_legacy, _field_terminator }
@@ -115,7 +115,7 @@ namespace blofeld
 
 	V5_TAG_GROUP_FROM_BLOCK(chud_widget_render_data, CHUD_WIDGET_RENDER_DATA_TAG, wrdt_block);
 	V5_TAG_BLOCK_FROM_STRUCT(wrdt_block, 1, wrdt_struct_definition_struct_definition);
-	V5_TAG_STRUCT(wrdt_struct_definition)
+	V5_TAG_STRUCT_V6(wrdt_struct_definition)
 	{
 		{ _field_legacy, _field_block, "render data", &wrdt_data_block },
 		{ _field_legacy, _field_terminator }
@@ -159,7 +159,7 @@ namespace blofeld
 
 	V5_TAG_GROUP_FROM_BLOCK(chud_widget_state_data, CHUD_WIDGET_STATE_DATA_TAG, wsdt_block);
 	V5_TAG_BLOCK_FROM_STRUCT(wsdt_block, 1, wsdt_struct_definition_struct_definition);
-	V5_TAG_STRUCT(wsdt_struct_definition)
+	V5_TAG_STRUCT_V6(wsdt_struct_definition)
 	{
 		{ _field_legacy, _field_block, "state data", &wsdt_data_block },
 		{ _field_legacy, _field_terminator }

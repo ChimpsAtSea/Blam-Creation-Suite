@@ -592,7 +592,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_WETNESS_BSP_DATA_STRUCT_DEFINITION_ID { 0xC4FBE9A5, 0x725F4AAB, 0xADC5FCB1, 0x1319CF80 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_wetness_bsp_data_struct_definition,
 		"scenario_wetness_bsp_data_struct_definition",
 		"s_scenario_wetness_bsp_data",

@@ -1516,7 +1516,7 @@ namespace blofeld
 	};
 
 	#define FRAME_EVENT_LIST_STRUCT_DEFINITION_ID { 0x65EB9164, 0x6CF74740, 0x9EAEF341, 0x337EB682 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		frame_event_list_struct_definition,
 		"frame_event_list_struct_definition",
 		"c_animation_frame_event_list",
@@ -1532,7 +1532,7 @@ namespace blofeld
 	};
 
 	#define ANIMATION_GRAPH_DEFINITIONS_STRUCT_ID { 0x7378A5C8, 0x70D449B0, 0x88828F27, 0x7D26A6A7 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_graph_definitions_struct,
 		"animation_graph_definitions_struct",
 		"s_animation_graph_definitions",
@@ -1585,7 +1585,7 @@ namespace blofeld
 	};
 
 	#define ANIMATION_AIMING_SCREEN_STRUCT_ID { 0xA933DD9C, 0x21874089, 0xA3990F17, 0x00DD3043 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_aiming_screen_struct,
 		"animation_aiming_screen_struct",
 		"animation_aiming_screen_bounds",
@@ -1605,7 +1605,7 @@ namespace blofeld
 	};
 
 	#define SHARED_ANIMATION_REFERENCE_BLOCK_ID { 0xC0DEFD48, 0x6BB54221, 0xA917E117, 0x8DF0BDAB }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		shared_animation_reference_block,
 		"shared_animation_reference_block",
 		"s_shared_model_animation_reference",
@@ -1621,7 +1621,7 @@ namespace blofeld
 	};
 
 	#define QUANTIZED_ORIENTATION_STRUCT_ID { 0x214A3836, 0x146C45DD, 0x91315D22, 0x78CBEE5D }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		quantized_orientation_struct,
 		"quantized_orientation_struct",
 		"c_quantized_orientation",
@@ -1639,7 +1639,7 @@ namespace blofeld
 	};
 
 	#define ANIMATION_IK_CHAIN_EVENTS_STRUCT_ID { 0x093101E5, 0x2C2B4D5E, 0xB71AF5DE, 0x699BE416 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_ik_chain_events_struct,
 		"animation_ik_chain_events_struct",
 		"s_animation_ik_chain_event",
@@ -1667,7 +1667,7 @@ namespace blofeld
 	};
 
 	#define ANIMATION_IK_CHAIN_PROXIES_STRUCT_ID { 0xCC1A00C4, 0x038D4FBB, 0x8F1F3051, 0xA19647E0 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_ik_chain_proxies_struct,
 		"animation_ik_chain_proxies_struct",
 		"s_animation_ik_chain_proxy",
@@ -1685,7 +1685,7 @@ namespace blofeld
 	};
 
 	#define ANIMATION_FACIAL_WRINKLE_EVENTS_STRUCT_ID { 0x5D78B2BA, 0x41204C75, 0xAAC24254, 0xA7383DE1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_facial_wrinkle_events_struct,
 		"animation_facial_wrinkle_events_struct",
 		"s_animation_wrinkle_event",
@@ -1709,7 +1709,7 @@ namespace blofeld
 	};
 
 	#define ANIMATION_EXTENDED_EVENTS_STRUCT_ID { 0x20B7F541, 0x876B4FA9, 0xAD5F76AC, 0x2667B4FA }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_extended_events_struct,
 		"animation_extended_events_struct",
 		"s_animation_extended_event",
@@ -1729,7 +1729,7 @@ namespace blofeld
 	};
 
 	#define ANIMATION_OBJECT_FUNCTIONS_STRUCT_ID { 0x2C6B2EE2, 0xFC974C48, 0x9127F7F0, 0xEBF8E914 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_object_functions_struct,
 		"animation_object_functions_struct",
 		"s_animation_object_function",
@@ -1747,7 +1747,7 @@ namespace blofeld
 	};
 
 	#define ANIMATION_INDEX_STRUCT_ID { 0x460AC446, 0x6E044055, 0xB5772485, 0xC9FCAEC3 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_index_struct,
 		"animation_index_struct",
 		"c_animation_id",
@@ -1761,7 +1761,7 @@ namespace blofeld
 	};
 
 	#define PCAANIMATIONDATASTRUCT_ID { 0xBB388541, 0xC4374DDA, 0x9ED407B4, 0x4762E780 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		PCAAnimationDataStruct,
 		"PCAAnimationDataStruct",
 		"PCAAnimationData",
@@ -1779,7 +1779,7 @@ namespace blofeld
 	};
 
 	#define ANIMATION_GRAPH_CONTENTS_STRUCT_ID { 0xBC004E8A, 0x1CC048DD, 0xBF08E736, 0x8D4C66FE }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_graph_contents_struct,
 		"animation_graph_contents_struct",
 		"c_model_animation_graph_contents",
@@ -1798,7 +1798,7 @@ namespace blofeld
 	};
 
 	#define MODEL_ANIMATION_RUNTIME_DATA_STRUCT_ID { 0xB1091BBF, 0xFC474475, 0x85A2D6A5, 0x2FAF2F30 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		model_animation_runtime_data_struct,
 		"model_animation_runtime_data_struct",
 		"s_model_animation_runtime_data",
@@ -1817,7 +1817,7 @@ namespace blofeld
 	};
 
 	#define ANIMATION_CODEC_DATA_STRUCT_ID { 0xA5200D6D, 0x10A34D1E, 0xBDB5A4C5, 0x08252592 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_codec_data_struct,
 		"animation_codec_data_struct",
 		"s_animation_codec_data",
@@ -1831,7 +1831,7 @@ namespace blofeld
 	};
 
 	#define SHARED_STATIC_DATA_CODEC_GRAPH_DATA_STRUCT_ID { 0x76EB40D7, 0x2ADD4D4D, 0xB535E99D, 0x62F2704A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		shared_static_data_codec_graph_data_struct,
 		"shared_static_data_codec_graph_data_struct",
 		"s_shared_static_data_codec_graph_data",
@@ -1847,7 +1847,7 @@ namespace blofeld
 	};
 
 	#define MODEL_ANIMATION_TAG_RESOURCE_STRUCT_ID { 0x09439BE6, 0x3BDA48B1, 0x9947AD2E, 0xA1280611 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		model_animation_tag_resource_struct,
 		"model_animation_tag_resource_struct",
 		"c_model_animation_tag_animation_group_resource",
@@ -1860,7 +1860,7 @@ namespace blofeld
 	};
 
 	#define PACKED_DATA_SIZES_STRUCT_ID { 0x1FBE28A2, 0x840641F2, 0x8852141E, 0x02D54A2E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		packed_data_sizes_struct,
 		"packed_data_sizes_struct",
 		"c_animation_data_sizes",

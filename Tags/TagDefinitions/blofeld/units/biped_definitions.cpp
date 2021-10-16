@@ -162,7 +162,7 @@ namespace blofeld
 	};
 
 	#define BIPED_STRUCT_DEFINITION_ID { 0x6855591D, 0xC7A2477E, 0xBB97CD08, 0xE97A8C61 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		biped_struct_definition,
 		"biped",
 		"biped_group",
@@ -315,7 +315,7 @@ namespace blofeld
 	};
 
 	#define BIPED_LEAPING_DATA_STRUCT_ID { 0x8D1584BD, 0xB9A24D94, 0xAB6217DD, 0x65BD78D0 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		biped_leaping_data_struct,
 		"biped_leaping_data_struct",
 		"s_biped_leaping_data",
@@ -339,7 +339,7 @@ namespace blofeld
 	};
 
 	#define BIPED_VAULTING_DATA_STRUCT_ID { 0x34215BE1, 0xC36F4C81, 0x87730F91, 0x58CF50C2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		biped_vaulting_data_struct,
 		"biped_vaulting_data_struct",
 		"s_biped_vaulting_data",
@@ -359,7 +359,7 @@ namespace blofeld
 	};
 
 	#define BIPED_GRAB_BIPED_DATA_STRUCT_ID { 0x3356D931, 0xCB37420D, 0xAC9B3B8F, 0xA4A1CACD }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		biped_grab_biped_data_struct,
 		"biped_grab_biped_data_struct",
 		"s_biped_grab_biped_data",
@@ -377,7 +377,7 @@ namespace blofeld
 	};
 
 	#define BIPED_GRAB_OBJECT_DATA_STRUCT_ID { 0x62E91941, 0x927649BD, 0x93129581, 0x268B9207 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		biped_grab_object_data_struct,
 		"biped_grab_object_data_struct",
 		"s_biped_grab_object_data",
@@ -393,7 +393,7 @@ namespace blofeld
 	};
 
 	#define BIPED_GROUND_FITTING_DATA_STRUCT_ID { 0x8E954938, 0x813744E7, 0xBA856A03, 0x1B7808B0 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		biped_ground_fitting_data_struct,
 		"biped_ground_fitting_data_struct",
 		"biped_ground_fitting_data_struct",
@@ -475,7 +475,7 @@ namespace blofeld
 	};
 
 	#define BIPEDMOVEMENTHIPLEANINGSTRUCT_ID { 0x7BB8ADF6, 0x878942AB, 0xB4814282, 0x2B52E6CB }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		BipedMovementHipLeaningStruct,
 		"BipedMovementHipLeaningStruct",
 		"BipedMovementHipLeaning",

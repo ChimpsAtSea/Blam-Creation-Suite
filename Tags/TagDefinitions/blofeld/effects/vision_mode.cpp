@@ -166,7 +166,7 @@ namespace blofeld
 	};
 
 	#define VISION_MODE_STRUCT_DEFINITION_ID { 0xD73807F4, 0x3EA54508, 0x8524E277, 0xEF130B5C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		vision_mode_struct_definition,
 		"vision_mode_struct_definition",
 		"VisionModeDefinition",

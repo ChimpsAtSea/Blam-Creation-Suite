@@ -357,7 +357,7 @@ namespace blofeld
 	};
 
 	#define SQUAD_DEFINITION_INTERNAL_STRUCT_ID { 0x5DA7C809, 0xB8B849EE, 0x9CE778C1, 0x99C9CDD3 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		squad_definition_internal_struct,
 		"squad_definition_internal_struct",
 		"s_squad_definition_internal",

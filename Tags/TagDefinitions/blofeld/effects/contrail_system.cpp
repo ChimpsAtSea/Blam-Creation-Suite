@@ -39,7 +39,7 @@ namespace blofeld
 	};
 	STRING_LIST(contrail_system_output_kind, contrail_system_output_kind_strings, _countof(contrail_system_output_kind_strings));
 
-	V5_TAG_STRUCT(contrail_system_unknown_struct)
+	V5_TAG_STRUCT_V6(contrail_system_unknown_struct)
 	{
 		{ _field_legacy, _field_char_integer, "input" },
 		{ _field_legacy, _field_char_integer, "input range" },

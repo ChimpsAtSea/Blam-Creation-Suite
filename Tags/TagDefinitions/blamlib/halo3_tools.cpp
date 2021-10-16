@@ -9718,6 +9718,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		shader_contrail_struct_definition,
 		"shader_contrail_struct_definition",
+		"shader_contrail_struct_definition",
 		"s_shader_contrail_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -9731,6 +9732,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		shader_particle_struct_definition,
 		"shader_particle_struct_definition",
+		"shader_particle_struct_definition",
 		"s_shader_particle_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -9743,6 +9745,7 @@ namespace halo3_tools {
 	#define BIPED_GROUP_STRUCT_DEFINITION_ID { 0x6855591D, 0xC7A2477E, 0xBB97CD08, 0xE97A8C61 }
 	TAG_STRUCT(
 		biped_group_struct_definition,
+		"biped",
 		"biped_group",
 		"s_biped_group_struct_definition",
 		SET_DEFAULT,
@@ -9828,6 +9831,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		crate_struct_definition,
 		"crate_struct_definition",
+		"crate_struct_definition",
 		"s_crate_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -9851,6 +9855,7 @@ namespace halo3_tools {
 	#define CREATURE_STRUCT_DEFINITION_ID { 0x83C805FE, 0xCAD24C6A, 0x8781D5EE, 0x18B84ED8 }
 	TAG_STRUCT(
 		creature_struct_definition,
+		"creature_struct_definition",
 		"creature_struct_definition",
 		"s_creature_struct_definition",
 		SET_DEFAULT,
@@ -9922,6 +9927,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		device_control_struct_definition,
 		"device_control_struct_definition",
+		"device_control_struct_definition",
 		"s_device_control_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -9966,6 +9972,7 @@ namespace halo3_tools {
 	#define DEVICE_STRUCT_DEFINITION_ID { 0xB2FE944E, 0x74CF4590, 0x9FE30CED, 0xB1BF6B94 }
 	TAG_STRUCT(
 		device_struct_definition,
+		"device_struct_definition",
 		"device_struct_definition",
 		"s_device_struct_definition",
 		SET_DEFAULT,
@@ -10017,6 +10024,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		effect_scenery_struct_definition,
 		"effect_scenery_struct_definition",
+		"effect_scenery_struct_definition",
 		"s_effect_scenery_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -10029,6 +10037,7 @@ namespace halo3_tools {
 	#define EQUIPMENT_GROUP_STRUCT_DEFINITION_ID { 0x18B70662, 0x869349C3, 0xB79E4FBE, 0xC65A52CB }
 	TAG_STRUCT(
 		equipment_group_struct_definition,
+		"equipment",
 		"equipment_group",
 		"s_equipment_group_struct_definition",
 		SET_DEFAULT,
@@ -10079,6 +10088,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		giant_struct_definition,
 		"giant_struct_definition",
+		"giant_struct_definition",
 		"s_giant_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -10105,6 +10115,7 @@ namespace halo3_tools {
 	#define ITEM_STRUCT_DEFINITION_ID { 0x21CDF7E3, 0xAD94443E, 0xAE80968D, 0x8CFBEBBF }
 	TAG_STRUCT(
 		item_struct_definition,
+		"item_struct_definition",
 		"item_struct_definition",
 		"s_item_struct_definition",
 		SET_DEFAULT,
@@ -10162,6 +10173,7 @@ namespace halo3_tools {
 	#define DEVICE_MACHINE_STRUCT_DEFINITION_ID { 0x8D04FAA2, 0xC2034C8D, 0xB2925D27, 0x85AF7748 }
 	TAG_STRUCT(
 		device_machine_struct_definition,
+		"device_machine_struct_definition",
 		"device_machine_struct_definition",
 		"s_device_machine_struct_definition",
 		SET_DEFAULT,
@@ -10221,6 +10233,7 @@ namespace halo3_tools {
 	#define PROJECTILE_GROUP_STRUCT_DEFINITION_ID { 0xF7D82E78, 0x19074B8C, 0x80D49472, 0x7BD600C1 }
 	TAG_STRUCT(
 		projectile_group_struct_definition,
+		"projectile",
 		"projectile_group",
 		"s_projectile_group_struct_definition",
 		SET_DEFAULT,
@@ -10408,6 +10421,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		shader_beam_struct_definition$2,
 		"shader_beam_struct_definition",
+		"shader_beam_struct_definition",
 		"s_shader_beam_struct_definition$2",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -10420,6 +10434,7 @@ namespace halo3_tools {
 	#define SHADER_CUSTOM_STRUCT_DEFINITION_ID { 0xFF50E364, 0xEB3245FF, 0xA2D4B69B, 0x8BE29BB4 }
 	TAG_STRUCT(
 		shader_custom_struct_definition,
+		"shader_custom_struct_definition",
 		"shader_custom_struct_definition",
 		"s_shader_custom_struct_definition",
 		SET_DEFAULT,
@@ -10435,6 +10450,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		shader_cortana_struct_definition,
 		"shader_cortana_struct_definition",
+		"shader_cortana_struct_definition",
 		"s_shader_cortana_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -10449,6 +10465,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		shader_decal_struct_definition$2,
 		"shader_decal_struct_definition",
+		"shader_decal_struct_definition",
 		"s_shader_decal_struct_definition$2",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -10462,6 +10479,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		shader_light_volume_struct_definition$2,
 		"shader_light_volume_struct_definition",
+		"shader_light_volume_struct_definition",
 		"s_shader_light_volume_struct_definition$2",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -10474,6 +10492,7 @@ namespace halo3_tools {
 	#define SHADER_TERRAIN_STRUCT_DEFINITION_ID { 0xA5E23FFC, 0x86CF4F04, 0x8F9BB910, 0xEC559C56 }
 	TAG_STRUCT(
 		shader_terrain_struct_definition,
+		"shader_terrain_struct_definition",
 		"shader_terrain_struct_definition",
 		"s_shader_terrain_struct_definition",
 		SET_DEFAULT,
@@ -10497,6 +10516,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		shader_struct_definition,
 		"shader_struct_definition",
+		"shader_struct_definition",
 		"s_shader_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -10511,6 +10531,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		shader_foliage_struct_definition,
 		"shader_foliage_struct_definition",
+		"shader_foliage_struct_definition",
 		"s_shader_foliage_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -10524,6 +10545,7 @@ namespace halo3_tools {
 	#define SOUND_SCENERY_STRUCT_DEFINITION_ID { 0xD4C4A75B, 0x96954D6A, 0xBB77085F, 0xD4396EF5 }
 	TAG_STRUCT(
 		sound_scenery_struct_definition,
+		"sound_scenery_struct_definition",
 		"sound_scenery_struct_definition",
 		"s_sound_scenery_struct_definition",
 		SET_DEFAULT,
@@ -10542,6 +10564,7 @@ namespace halo3_tools {
 	#define SCENERY_GROUP_STRUCT_DEFINITION_ID { 0x8EF5AC73, 0xE1C843B9, 0xA15CC8AA, 0xC9F15E5C }
 	TAG_STRUCT(
 		scenery_group_struct_definition,
+		"scenery",
 		"scenery_group",
 		"s_scenery_group_struct_definition",
 		SET_DEFAULT,
@@ -10585,6 +10608,7 @@ namespace halo3_tools {
 	#define UNIT_STRUCT_DEFINITION_ID { 0xC8958077, 0x466A4028, 0x94ACA1E3, 0xDB3BF1B8 }
 	TAG_STRUCT(
 		unit_struct_definition,
+		"unit_struct_definition",
 		"unit_struct_definition",
 		"s_unit_struct_definition",
 		SET_DEFAULT,
@@ -10732,6 +10756,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		shader_water_struct_definition,
 		"shader_water_struct_definition",
+		"shader_water_struct_definition",
 		"s_shader_water_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -10744,6 +10769,7 @@ namespace halo3_tools {
 	#define SHADER_HALOGRAM_STRUCT_DEFINITION_ID { 0xC9823BF8, 0x33A44F28, 0x8307126E, 0xD5E0FA05 }
 	TAG_STRUCT(
 		shader_halogram_struct_definition,
+		"shader_halogram_struct_definition",
 		"shader_halogram_struct_definition",
 		"s_shader_halogram_struct_definition",
 		SET_DEFAULT,
@@ -10759,6 +10785,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		shader_skin_struct_definition,
 		"shader_skin_struct_definition",
+		"shader_skin_struct_definition",
 		"s_shader_skin_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -10772,6 +10799,7 @@ namespace halo3_tools {
 	#define DEVICE_TERMINAL_STRUCT_DEFINITION_ID { 0x99043D50, 0x595A4182, 0xBC0E31FE, 0xF8D1EEE7 }
 	TAG_STRUCT(
 		device_terminal_struct_definition,
+		"device_terminal_struct_definition",
 		"device_terminal_struct_definition",
 		"s_device_terminal_struct_definition",
 		SET_DEFAULT,
@@ -10847,6 +10875,7 @@ namespace halo3_tools {
 	#define VEHICLE_GROUP_STRUCT_DEFINITION_ID { 0xC6A4B989, 0x09714F2B, 0xBF522976, 0xF69B2344 }
 	TAG_STRUCT(
 		vehicle_group_struct_definition,
+		"vehicle",
 		"vehicle_group",
 		"s_vehicle_group_struct_definition",
 		SET_DEFAULT,
@@ -10927,6 +10956,7 @@ namespace halo3_tools {
 	#define WEAPON_GROUP_STRUCT_DEFINITION_ID { 0xFFC6FB66, 0x88904EC8, 0xB98D9160, 0xFA0A7CDE }
 	TAG_STRUCT(
 		weapon_group_struct_definition,
+		"weapon",
 		"weapon_group",
 		"s_weapon_group_struct_definition",
 		SET_DEFAULT,
@@ -11131,6 +11161,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scalar_function_named_struct,
 		"scalar_function_named_struct",
+		"scalar_function_named_struct",
 		"s_scalar_function_named_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11144,6 +11175,7 @@ namespace halo3_tools {
 	#define MAPPING_FUNCTION_ID { 0x5A14A98F, 0x53FA4484, 0x801068D4, 0x0AF1459E }
 	TAG_STRUCT(
 		mapping_function,
+		"mapping_function",
 		"mapping_function",
 		"s_mapping_function",
 		SET_DEFAULT,
@@ -11160,6 +11192,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		g_null_block,
 		"g_null_block",
+		"g_null_block",
 		"s_g_null_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11172,6 +11205,7 @@ namespace halo3_tools {
 	#define SCENARIO_CINEMATICS_BLOCK_ID { 0x59336E8E, 0x27A04735, 0xA9545DF3, 0x921A7282 }
 	TAG_STRUCT(
 		scenario_cinematics_block,
+		"scenario_cinematics_block",
 		"scenario_cinematics_block",
 		"s_scenario_cinematics_block",
 		SET_DEFAULT,
@@ -11187,6 +11221,7 @@ namespace halo3_tools {
 	#define SCENARIO_CUTSCENE_TITLE_STRUCT_ID { 0xD8858602, 0xD42E4FA2, 0x84CB2347, 0xBBA1F96F }
 	TAG_STRUCT(
 		scenario_cutscene_title_struct,
+		"scenario_cutscene_title_struct",
 		"scenario_cutscene_title_struct",
 		"s_scenario_cutscene_title_struct",
 		SET_DEFAULT,
@@ -11244,6 +11279,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cinematic_custom_script_block,
 		"cinematic_custom_script_block",
+		"cinematic_custom_script_block",
 		"s_cinematic_custom_script_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11256,6 +11292,7 @@ namespace halo3_tools {
 	#define CAMERA_FRAME_STRUCT_ID { 0xECDDDE5E, 0x52994BFF, 0xA60B9529, 0x630936B7 }
 	TAG_STRUCT(
 		camera_frame_struct,
+		"camera_frame_struct",
 		"camera_frame_struct",
 		"s_camera_frame_struct",
 		SET_DEFAULT,
@@ -11280,6 +11317,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_and_zone_set_struct,
 		"scenario_and_zone_set_struct",
+		"scenario_and_zone_set_struct",
 		"s_scenario_and_zone_set_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11297,6 +11335,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cinematic_shot_frame_block,
 		"cinematic_shot_frame_block",
+		"cinematic_shot_frame_block",
 		"s_cinematic_shot_frame_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11309,6 +11348,7 @@ namespace halo3_tools {
 	#define CINEMATIC_SHOT_LIGHTING_BLOCK_ID { 0x6F86178C, 0xF5E04C8F, 0xA14C3003, 0xEAADCE78 }
 	TAG_STRUCT(
 		cinematic_shot_lighting_block,
+		"cinematic_shot_lighting_block",
 		"cinematic_shot_lighting_block",
 		"s_cinematic_shot_lighting_block",
 		SET_DEFAULT,
@@ -11327,6 +11367,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cinematic_shot_clip_subject_block,
 		"cinematic_shot_clip_subject_block",
+		"cinematic_shot_clip_subject_block",
 		"s_cinematic_shot_clip_subject_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11339,6 +11380,7 @@ namespace halo3_tools {
 	#define CINEMATIC_SHOT_CLIP_BLOCK_ID { 0xE6CA5E17, 0x64634682, 0x97D7DE14, 0x41724603 }
 	TAG_STRUCT(
 		cinematic_shot_clip_block,
+		"cinematic_shot_clip_block",
 		"cinematic_shot_clip_block",
 		"s_cinematic_shot_clip_block",
 		SET_DEFAULT,
@@ -11357,6 +11399,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cinematic_shot_dialogue_block,
 		"cinematic_shot_dialogue_block",
+		"cinematic_shot_dialogue_block",
 		"s_cinematic_shot_dialogue_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11374,6 +11417,7 @@ namespace halo3_tools {
 	#define CINEMATIC_SHOT_MUSIC_BLOCK_ID { 0xC8BD6E28, 0x7DEA45AA, 0x9861384B, 0xA392711F }
 	TAG_STRUCT(
 		cinematic_shot_music_block,
+		"cinematic_shot_music_block",
 		"cinematic_shot_music_block",
 		"s_cinematic_shot_music_block",
 		SET_DEFAULT,
@@ -11403,6 +11447,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cinematic_shot_effect_block,
 		"cinematic_shot_effect_block",
+		"cinematic_shot_effect_block",
 		"s_cinematic_shot_effect_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11419,6 +11464,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cinematic_shot_cortana_effects_block,
 		"cinematic_shot_cortana_effects_block",
+		"cinematic_shot_cortana_effects_block",
 		"s_cinematic_shot_cortana_effects_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11434,6 +11480,7 @@ namespace halo3_tools {
 	#define CINEMATIC_SHOT_OBJECT_FUNCTION_KEYFRAME_BLOCK_ID { 0x272DF6C5, 0xFB2B42CF, 0x8D0089D4, 0x982001C8 }
 	TAG_STRUCT(
 		cinematic_shot_object_function_keyframe_block,
+		"cinematic_shot_object_function_keyframe_block",
 		"cinematic_shot_object_function_keyframe_block",
 		"s_cinematic_shot_object_function_keyframe_block",
 		SET_DEFAULT,
@@ -11457,6 +11504,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cinematic_shot_object_function_block,
 		"cinematic_shot_object_function_block",
+		"cinematic_shot_object_function_block",
 		"s_cinematic_shot_object_function_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11471,6 +11519,7 @@ namespace halo3_tools {
 	#define CINEMATIC_EXTRA_CAMERA_FRAME_BLOCK_ID { 0x39DDFE90, 0x9DEA4DD3, 0x994B8B1C, 0xECB7261F }
 	TAG_STRUCT(
 		cinematic_extra_camera_frame_block,
+		"cinematic_extra_camera_frame_block",
 		"cinematic_extra_camera_frame_block",
 		"s_cinematic_extra_camera_frame_block",
 		SET_DEFAULT,
@@ -11492,6 +11541,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cinematic_extra_camera_shot_block,
 		"cinematic_extra_camera_shot_block",
+		"cinematic_extra_camera_shot_block",
 		"s_cinematic_extra_camera_shot_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11504,6 +11554,7 @@ namespace halo3_tools {
 	#define CINEMATIC_SHOT_CUSTOM_SCRIPT_BLOCK_ID { 0xBC8133AA, 0xC1F84079, 0x922C7BA9, 0x5FCA1CD2 }
 	TAG_STRUCT(
 		cinematic_shot_custom_script_block,
+		"cinematic_shot_custom_script_block",
 		"cinematic_shot_custom_script_block",
 		"s_cinematic_shot_custom_script_block",
 		SET_DEFAULT,
@@ -11519,6 +11570,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cinematic_shot_extra_camera_block,
 		"cinematic_shot_extra_camera_block",
+		"cinematic_shot_extra_camera_block",
 		"s_cinematic_shot_extra_camera_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11533,6 +11585,7 @@ namespace halo3_tools {
 	#define CINEMATIC_SHOT_BLOCK_ID { 0xCD10E9F0, 0x721C470E, 0x8571C1FE, 0xA88E8AC9 }
 	TAG_STRUCT(
 		cinematic_shot_block,
+		"cinematic_shot_block",
 		"cinematic_shot_block",
 		"s_cinematic_shot_block",
 		SET_DEFAULT,
@@ -11571,6 +11624,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scene_object_attachment_block,
 		"scene_object_attachment_block",
+		"scene_object_attachment_block",
 		"s_scene_object_attachment_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11594,6 +11648,7 @@ namespace halo3_tools {
 	#define CINEMATIC_SCENE_OBJECT_BLOCK_ID { 0x4487BA1E, 0x95274D36, 0xBC49F26F, 0x331B95B2 }
 	TAG_STRUCT(
 		cinematic_scene_object_block,
+		"cinematic_scene_object_block",
 		"cinematic_scene_object_block",
 		"s_cinematic_scene_object_block",
 		SET_DEFAULT,
@@ -11641,6 +11696,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cinematic_scene_struct_definition,
 		"cinematic_scene_struct_definition",
+		"cinematic_scene_struct_definition",
 		"s_cinematic_scene_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11674,6 +11730,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cinematic_scene_reference_block,
 		"cinematic_scene_reference_block",
+		"cinematic_scene_reference_block",
 		"s_cinematic_scene_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11689,6 +11746,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cinematic_shot_playback_data_block,
 		"cinematic_shot_playback_data_block",
+		"cinematic_shot_playback_data_block",
 		"s_cinematic_shot_playback_data_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11701,6 +11759,7 @@ namespace halo3_tools {
 	#define CINEMATIC_PLAYBACK_DATA_BLOCK_ID { 0xEBD41AA0, 0x8EDA4FF2, 0x91204D62, 0x3C9BA5B4 }
 	TAG_STRUCT(
 		cinematic_playback_data_block,
+		"cinematic_playback_data_block",
 		"cinematic_playback_data_block",
 		"s_cinematic_playback_data_block",
 		SET_DEFAULT,
@@ -11715,6 +11774,7 @@ namespace halo3_tools {
 	#define CINEMATIC_STRUCT_DEFINITION_ID { 0xC3B34AC3, 0x066746A9, 0x861EC843, 0xA1016B03 }
 	TAG_STRUCT(
 		cinematic_struct_definition,
+		"cinematic_struct_definition",
 		"cinematic_struct_definition",
 		"s_cinematic_struct_definition",
 		SET_DEFAULT,
@@ -11767,6 +11827,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cinematics_globals_block,
 		"cinematics_globals_block",
+		"cinematics_globals_block",
 		"s_cinematics_globals_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11783,6 +11844,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_platform_sound_playback_block,
 		"sound_platform_sound_playback_block",
+		"sound_platform_sound_playback_block",
 		"s_sound_platform_sound_playback_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11796,6 +11858,7 @@ namespace halo3_tools {
 	#define SOUND_DIALOGUE_CONSTANTS_STRUCT_DEFINITION_ID { 0x81DF7335, 0x8D55482D, 0xBCD40D38, 0xA8F5D740 }
 	TAG_STRUCT(
 		sound_dialogue_constants_struct_definition,
+		"sound_dialogue_constants_struct_definition",
 		"sound_dialogue_constants_struct_definition",
 		"s_sound_dialogue_constants_struct_definition",
 		SET_DEFAULT,
@@ -11814,6 +11877,7 @@ namespace halo3_tools {
 	#define SOUND_PROPAGATION_DEFINITION_STRUCT_ID { 0xDE42E807, 0x9F174952, 0xA2622269, 0x55663071 }
 	TAG_STRUCT(
 		sound_propagation_definition_struct,
+		"sound_propagation_definition_struct",
 		"sound_propagation_definition_struct",
 		"s_sound_propagation_definition_struct",
 		SET_DEFAULT,
@@ -11837,6 +11901,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_global_propagation_block_struct,
 		"sound_global_propagation_block_struct",
+		"sound_global_propagation_block_struct",
 		"s_sound_global_propagation_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11851,6 +11916,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_center_mix_struct,
 		"sound_center_mix_struct",
+		"sound_center_mix_struct",
 		"s_sound_center_mix_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11864,6 +11930,7 @@ namespace halo3_tools {
 	#define SOUND_GLOBAL_MIX_STRUCT_ID { 0xA2C05D8F, 0xA92D4D82, 0x9534A331, 0x4BD3EF82 }
 	TAG_STRUCT(
 		sound_global_mix_struct,
+		"sound_global_mix_struct",
 		"sound_global_mix_struct",
 		"s_sound_global_mix_struct",
 		SET_DEFAULT,
@@ -11895,6 +11962,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_globals_block,
 		"sound_globals_block",
+		"sound_globals_block",
 		"s_sound_globals_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11922,6 +11990,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_stereo_mix_struct,
 		"sound_stereo_mix_struct",
+		"sound_stereo_mix_struct",
 		"s_sound_stereo_mix_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11936,6 +12005,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_surround_mix_struct,
 		"sound_surround_mix_struct",
+		"sound_surround_mix_struct",
 		"s_sound_surround_mix_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11949,6 +12019,7 @@ namespace halo3_tools {
 	#define SOUND_MIX_STRUCT_DEFINITION_ID { 0xE80CFFF1, 0xA42648F0, 0xB072961C, 0x74F379DE }
 	TAG_STRUCT(
 		sound_mix_struct_definition,
+		"sound_mix_struct_definition",
 		"sound_mix_struct_definition",
 		"s_sound_mix_struct_definition",
 		SET_DEFAULT,
@@ -11974,6 +12045,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_resource_definition_struct,
 		"sound_resource_definition_struct",
+		"sound_resource_definition_struct",
 		"s_sound_resource_definition_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -11986,6 +12058,7 @@ namespace halo3_tools {
 	#define SOUND_RESOURCE_LANGUAGE_BLOCK_STRUCT_ID { 0x04F2C501, 0x9D1B4095, 0x92D7588B, 0x0BB6CEA4 }
 	TAG_STRUCT(
 		sound_resource_language_block_struct,
+		"sound_resource_language_block_struct",
 		"sound_resource_language_block_struct",
 		"s_sound_resource_language_block_struct",
 		SET_DEFAULT,
@@ -12019,6 +12092,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_permutation_marker_block,
 		"sound_permutation_marker_block",
+		"sound_permutation_marker_block",
 		"s_sound_permutation_marker_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12034,6 +12108,7 @@ namespace halo3_tools {
 	#define SOUND_XMA2_SEEK_TABLE_BLOCK_ID { 0x6927A11A, 0x10E24EDD, 0x9E681A4E, 0xB2AD185F }
 	TAG_STRUCT(
 		sound_xma2_seek_table_block,
+		"sound_xma2_seek_table_block",
 		"sound_xma2_seek_table_block",
 		"s_sound_xma2_seek_table_block",
 		SET_DEFAULT,
@@ -12053,6 +12128,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		facial_animation_key_block,
 		"facial_animation_key_block",
+		"facial_animation_key_block",
 		"s_facial_animation_key_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12069,6 +12145,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		facial_animation_curve_block,
 		"facial_animation_curve_block",
+		"facial_animation_curve_block",
 		"s_facial_animation_curve_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12081,6 +12158,7 @@ namespace halo3_tools {
 	#define RUNTIME_FACIAL_ANIMATION_KEY_BLOCK_ID { 0x11F6EBE5, 0xB9DC4385, 0x98693D9D, 0xDD504D06 }
 	TAG_STRUCT(
 		runtime_facial_animation_key_block,
+		"runtime_facial_animation_key_block",
 		"runtime_facial_animation_key_block",
 		"s_runtime_facial_animation_key_block",
 		SET_DEFAULT,
@@ -12101,6 +12179,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		facial_animation_block,
 		"facial_animation_block",
+		"facial_animation_block",
 		"s_facial_animation_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12118,6 +12197,7 @@ namespace halo3_tools {
 	#define SOUND_PERMUTATION_RAW_INFO_BLOCK_ID { 0xDC6BFACE, 0x54E5414E, 0xB0B03C61, 0x2ED507A1 }
 	TAG_STRUCT(
 		sound_permutation_raw_info_block,
+		"sound_permutation_raw_info_block",
 		"sound_permutation_raw_info_block",
 		"s_sound_permutation_raw_info_block",
 		SET_DEFAULT,
@@ -12159,6 +12239,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_permutation_dialogue_info_block,
 		"sound_permutation_dialogue_info_block",
+		"sound_permutation_dialogue_info_block",
 		"s_sound_permutation_dialogue_info_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12174,6 +12255,7 @@ namespace halo3_tools {
 	#define SOUND_PERMUTATION_DIALOGUE_INFO_NEW_BLOCK_ID { 0x5FF04F76, 0xBF284BF9, 0x9F6D60E7, 0x90C7B9C2 }
 	TAG_STRUCT(
 		sound_permutation_dialogue_info_new_block,
+		"sound_permutation_dialogue_info_new_block",
 		"sound_permutation_dialogue_info_new_block",
 		"s_sound_permutation_dialogue_info_new_block",
 		SET_DEFAULT,
@@ -12200,6 +12282,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_encoded_dialogue_section_block,
 		"sound_encoded_dialogue_section_block",
+		"sound_encoded_dialogue_section_block",
 		"s_sound_encoded_dialogue_section_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12214,6 +12297,7 @@ namespace halo3_tools {
 	#define SOUND_PERMUTATION_LANGUAGES_BLOCK_ID { 0xABBB81FE, 0xABFB4938, 0xAB0BB7A5, 0xAB3BBDC0 }
 	TAG_STRUCT(
 		sound_permutation_languages_block,
+		"sound_permutation_languages_block",
 		"sound_permutation_languages_block",
 		"s_sound_permutation_languages_block",
 		SET_DEFAULT,
@@ -12230,6 +12314,7 @@ namespace halo3_tools {
 	#define SOUND_PITCH_RANGE_BLOCK_ID { 0x77F72A4F, 0x42D64D55, 0xB4072E44, 0x0E750C29 }
 	TAG_STRUCT(
 		sound_pitch_range_block,
+		"sound_pitch_range_block",
 		"sound_pitch_range_block",
 		"s_sound_pitch_range_block",
 		SET_DEFAULT,
@@ -12261,6 +12346,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_promotion_rule_block,
 		"sound_promotion_rule_block",
+		"sound_promotion_rule_block",
 		"s_sound_promotion_rule_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12278,6 +12364,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_promotion_runtime_timer_block,
 		"sound_promotion_runtime_timer_block",
+		"sound_promotion_runtime_timer_block",
 		"s_sound_promotion_runtime_timer_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12290,6 +12377,7 @@ namespace halo3_tools {
 	#define SOUND_EXTRA_INFO_BLOCK_ID { 0xA88172BA, 0x8BEC4641, 0x8E2A9EDB, 0x3B346B18 }
 	TAG_STRUCT(
 		sound_extra_info_block,
+		"sound_extra_info_block",
 		"sound_extra_info_block",
 		"s_sound_extra_info_block",
 		SET_DEFAULT,
@@ -12305,6 +12393,7 @@ namespace halo3_tools {
 	#define SOUND_BLOCK_STRUCT_ID { 0xFD4F3EEC, 0xA74F4557, 0x95B7892C, 0xFCCB91A0 }
 	TAG_STRUCT(
 		sound_block_struct,
+		"sound_block_struct",
 		"sound_block_struct",
 		"s_sound_block_struct",
 		SET_DEFAULT,
@@ -12456,6 +12545,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_playback_parameters_struct,
 		"sound_playback_parameters_struct",
+		"sound_playback_parameters_struct",
 		"s_sound_playback_parameters_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12500,6 +12590,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_scale_modifiers_struct,
 		"sound_scale_modifiers_struct",
+		"sound_scale_modifiers_struct",
 		"s_sound_scale_modifiers_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12515,6 +12606,7 @@ namespace halo3_tools {
 	#define SOUND_PROMOTION_PARAMETERS_STRUCT_ID { 0x2CF97DF2, 0xC0014BDB, 0xAE39ECEA, 0xBA189908 }
 	TAG_STRUCT(
 		sound_promotion_parameters_struct,
+		"sound_promotion_parameters_struct",
 		"sound_promotion_parameters_struct",
 		"s_sound_promotion_parameters_struct",
 		SET_DEFAULT,
@@ -12532,6 +12624,7 @@ namespace halo3_tools {
 	#define SOUND_PERMUTATION_CHUNK_BLOCK_ID { 0xBDB277FD, 0x04314F54, 0x95098A19, 0x71D29FE5 }
 	TAG_STRUCT(
 		sound_permutation_chunk_block,
+		"sound_permutation_chunk_block",
 		"sound_permutation_chunk_block",
 		"s_sound_permutation_chunk_block",
 		SET_DEFAULT,
@@ -12552,6 +12645,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_definition_language_permutation_info_block,
 		"sound_definition_language_permutation_info_block",
+		"sound_definition_language_permutation_info_block",
 		"s_sound_definition_language_permutation_info_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12564,6 +12658,7 @@ namespace halo3_tools {
 	#define SOUND_PERMUTATIONS_BLOCK_ID { 0x1426CFA4, 0x00DA4206, 0xAD7C0A62, 0xDA270964 }
 	TAG_STRUCT(
 		sound_permutations_block,
+		"sound_permutations_block",
 		"sound_permutations_block",
 		"s_sound_permutations_block",
 		SET_DEFAULT,
@@ -12597,6 +12692,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		looping_sound_detail_block,
 		"looping_sound_detail_block",
+		"looping_sound_detail_block",
 		"s_looping_sound_detail_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12628,6 +12724,7 @@ namespace halo3_tools {
 	#define LOOPING_SOUND_TRACK_BLOCK_ID { 0x274E50ED, 0x4CB34CFA, 0x8469F40F, 0xEDAF50AC }
 	TAG_STRUCT(
 		looping_sound_track_block,
+		"looping_sound_track_block",
 		"looping_sound_track_block",
 		"s_looping_sound_track_block",
 		SET_DEFAULT,
@@ -12676,6 +12773,7 @@ namespace halo3_tools {
 	#define SOUND_LOOPING_GROUP_STRUCT_DEFINITION_ID { 0xD492E38E, 0x64EC43C3, 0x8F8AC4EC, 0xE04E0DB9 }
 	TAG_STRUCT(
 		sound_looping_group_struct_definition,
+		"sound_looping",
 		"sound_looping_group",
 		"s_sound_looping_group_struct_definition",
 		SET_DEFAULT,
@@ -12713,6 +12811,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		bitmap_texture_interop_resource_struct,
 		"bitmap_texture_interop_resource_struct",
+		"bitmap_texture_interop_resource_struct",
 		"s_bitmap_texture_interop_resource_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12725,6 +12824,7 @@ namespace halo3_tools {
 	#define BITMAP_TEXTURE_INTEROP_BLOCK_STRUCT_ID { 0xCBC28AC7, 0x279B478F, 0xAF316019, 0xFD14E270 }
 	TAG_STRUCT(
 		bitmap_texture_interop_block_struct,
+		"bitmap_texture_interop_block_struct",
 		"bitmap_texture_interop_block_struct",
 		"s_bitmap_texture_interop_block_struct",
 		SET_DEFAULT,
@@ -12739,6 +12839,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		bitmap_texture_interleaved_interop_resource_struct,
 		"bitmap_texture_interleaved_interop_resource_struct",
+		"bitmap_texture_interleaved_interop_resource_struct",
 		"s_bitmap_texture_interleaved_interop_resource_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12752,6 +12853,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		bitmap_texture_interleaved_interop_block_struct,
 		"bitmap_texture_interleaved_interop_block_struct",
+		"bitmap_texture_interleaved_interop_block_struct",
 		"s_bitmap_texture_interleaved_interop_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12764,6 +12866,7 @@ namespace halo3_tools {
 	#define BITMAP_BLOCK_STRUCT_ID { 0x2335AB52, 0xC24A4268, 0x94728F7D, 0xD36D1923 }
 	TAG_STRUCT(
 		bitmap_block_struct,
+		"bitmap_block_struct",
 		"bitmap_block_struct",
 		"s_bitmap_block_struct",
 		SET_DEFAULT,
@@ -12906,6 +13009,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		language_pack_definition,
 		"language_pack_definition",
+		"language_pack_definition",
 		"s_language_pack_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12928,6 +13032,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		data_hash_definition_struct_definition,
 		"data_hash_definition",
+		"data_hash_definition",
 		"s_data_hash_definition_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12940,6 +13045,7 @@ namespace halo3_tools {
 	#define MULTILINGUAL_UNICODE_STRING_REFERENCE_BLOCK_ID { 0xC5BC6DA3, 0x37A44EB2, 0xA26A511D, 0x236996E6 }
 	TAG_STRUCT(
 		multilingual_unicode_string_reference_block,
+		"multilingual_unicode_string_reference_block",
 		"multilingual_unicode_string_reference_block",
 		"s_multilingual_unicode_string_reference_block",
 		SET_DEFAULT,
@@ -12966,6 +13072,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		multilingual_unicode_string_list_language_pack_offsets_struct_definition,
 		"multilingual_unicode_string_list_language_pack_offsets",
+		"multilingual_unicode_string_list_language_pack_offsets",
 		"s_multilingual_unicode_string_list_language_pack_offsets_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -12979,6 +13086,7 @@ namespace halo3_tools {
 	#define MULTILINGUAL_UNICODE_STRING_LIST_STRUCT_DEFINITION_ID { 0x257EFBBE, 0x66F84C7A, 0x8922D3CD, 0x800AE80F }
 	TAG_STRUCT(
 		multilingual_unicode_string_list_struct_definition,
+		"multilingual_unicode_string_list_struct_definition",
 		"multilingual_unicode_string_list_struct_definition",
 		"s_multilingual_unicode_string_list_struct_definition",
 		SET_DEFAULT,
@@ -12995,6 +13103,7 @@ namespace halo3_tools {
 	#define BREAKABLE_SURFACE_STRUCT_DEFINITION_ID { 0x7CC19130, 0xBD5344AB, 0x8BA2CB75, 0xDAA60C73 }
 	TAG_STRUCT(
 		breakable_surface_struct_definition,
+		"breakable_surface_struct_definition",
 		"breakable_surface_struct_definition",
 		"s_breakable_surface_struct_definition",
 		SET_DEFAULT,
@@ -13016,6 +13125,7 @@ namespace halo3_tools {
 	#define PLAYER_INFORMATION_BLOCK_ID { 0x45AF4745, 0x4D24477D, 0xA205702C, 0xE5CAEBE7 }
 	TAG_STRUCT(
 		player_information_block,
+		"player_information_block",
 		"player_information_block",
 		"s_player_information_block",
 		SET_DEFAULT,
@@ -13057,6 +13167,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		player_representation_block,
 		"player_representation_block",
+		"player_representation_block",
 		"s_player_representation_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -13078,6 +13189,7 @@ namespace halo3_tools {
 	#define FALLING_DAMAGE_BLOCK_ID { 0x2B7CE12A, 0xC9FD4184, 0xA5B5C911, 0x6D515D0A }
 	TAG_STRUCT(
 		falling_damage_block,
+		"falling_damage_block",
 		"falling_damage_block",
 		"s_falling_damage_block",
 		SET_DEFAULT,
@@ -13101,6 +13213,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		havok_cleanup_resources_block,
 		"havok_cleanup_resources_block",
+		"havok_cleanup_resources_block",
 		"s_havok_cleanup_resources_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -13113,6 +13226,7 @@ namespace halo3_tools {
 	#define INTERFACE_TAG_REFERENCES_ID { 0xEAFCBD42, 0x27264DFB, 0x9C2624C1, 0x928B0D3C }
 	TAG_STRUCT(
 		interface_tag_references,
+		"interface_tag_references",
 		"interface_tag_references",
 		"s_interface_tag_references",
 		SET_DEFAULT,
@@ -13150,6 +13264,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cheat_weapons_block,
 		"cheat_weapons_block",
+		"cheat_weapons_block",
 		"s_cheat_weapons_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -13165,6 +13280,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cheat_powerups_block,
 		"cheat_powerups_block",
+		"cheat_powerups_block",
 		"s_cheat_powerups_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -13179,6 +13295,7 @@ namespace halo3_tools {
 	#define GRENADES_BLOCK_ID { 0xFB5FD410, 0x43B74B07, 0x94CDA4F5, 0x19F43A56 }
 	TAG_STRUCT(
 		grenades_block,
+		"grenades_block",
 		"grenades_block",
 		"s_grenades_block",
 		SET_DEFAULT,
@@ -13199,6 +13316,7 @@ namespace halo3_tools {
 	#define DIFFICULTY_BLOCK_ID { 0x9C84698C, 0xA3CF40B5, 0xB4736069, 0xABD1016B }
 	TAG_STRUCT(
 		difficulty_block,
+		"difficulty_block",
 		"difficulty_block",
 		"s_difficulty_block",
 		SET_DEFAULT,
@@ -13334,6 +13452,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		look_function_block,
 		"look_function_block",
+		"look_function_block",
 		"s_look_function_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -13346,6 +13465,7 @@ namespace halo3_tools {
 	#define PLAYER_CONTROL_BLOCK_ID { 0xAFAD7414, 0x08FE4A96, 0x94E4BCF6, 0x39C2EEFC }
 	TAG_STRUCT(
 		player_control_block,
+		"player_control_block",
 		"player_control_block",
 		"s_player_control_block",
 		SET_DEFAULT,
@@ -13389,6 +13509,7 @@ namespace halo3_tools {
 	#define CAMERA_BLOCK_ID { 0x5544FB06, 0xF3D04476, 0xA51F6257, 0x6BA634E2 }
 	TAG_STRUCT(
 		camera_block,
+		"camera_block",
 		"camera_block",
 		"s_camera_block",
 		SET_DEFAULT,
@@ -13462,6 +13583,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_block,
 		"sound_block",
+		"sound_block",
 		"s_sound_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -13477,6 +13599,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		armor_modifier_block,
 		"armor_modifier_block",
+		"armor_modifier_block",
 		"s_armor_modifier_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -13490,6 +13613,7 @@ namespace halo3_tools {
 	#define DAMAGE_GROUP_BLOCK_ID { 0x34945DAA, 0x3110409D, 0xA4F3330D, 0x4B1BFD04 }
 	TAG_STRUCT(
 		damage_group_block,
+		"damage_group_block",
 		"damage_group_block",
 		"s_damage_group_block",
 		SET_DEFAULT,
@@ -13505,6 +13629,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_globals_damage_block,
 		"game_globals_damage_block",
+		"game_globals_damage_block",
 		"s_game_globals_damage_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -13517,6 +13642,7 @@ namespace halo3_tools {
 	#define AI_GLOBALS_GRAVEMIND_BLOCK_ID { 0x5D6B3B9D, 0x1FC047FE, 0x8CDF19E7, 0xA287DA56 }
 	TAG_STRUCT(
 		ai_globals_gravemind_block,
+		"ai_globals_gravemind_block",
 		"ai_globals_gravemind_block",
 		"s_ai_globals_gravemind_block",
 		SET_DEFAULT,
@@ -13533,6 +13659,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		ai_globals_styles_block,
 		"ai_globals_styles_block",
+		"ai_globals_styles_block",
 		"s_ai_globals_styles_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -13547,6 +13674,7 @@ namespace halo3_tools {
 	#define AI_GLOBALS_BLOCK_ID { 0x1D0F80A0, 0xA5BD4A1B, 0x9A070B18, 0xA8706C11 }
 	TAG_STRUCT(
 		ai_globals_block,
+		"ai_globals_block",
 		"ai_globals_block",
 		"s_ai_globals_block",
 		SET_DEFAULT,
@@ -13617,6 +13745,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		multiplayer_color_block,
 		"multiplayer_color_block",
+		"multiplayer_color_block",
 		"s_multiplayer_color_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -13629,6 +13758,7 @@ namespace halo3_tools {
 	#define GLOBALS_STRUCT_DEFINITION_ID { 0x08DE77CB, 0xA2CF4145, 0xBB807A30, 0xB2A866B3 }
 	TAG_STRUCT(
 		globals_struct_definition,
+		"globals_struct_definition",
 		"globals_struct_definition",
 		"s_globals_struct_definition",
 		SET_DEFAULT,
@@ -13725,6 +13855,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_physics_ground_struct,
 		"character_physics_ground_struct",
+		"character_physics_ground_struct",
 		"s_character_physics_ground_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -13752,6 +13883,7 @@ namespace halo3_tools {
 	#define CHARACTER_PHYSICS_FLYING_STRUCT_ID { 0x692E7BDD, 0x59F4483F, 0xAEBF3C6D, 0x645E1EC3 }
 	TAG_STRUCT(
 		character_physics_flying_struct,
+		"character_physics_flying_struct",
 		"character_physics_flying_struct",
 		"s_character_physics_flying_struct",
 		SET_DEFAULT,
@@ -13782,6 +13914,7 @@ namespace halo3_tools {
 	#define CHARACTER_PHYSICS_STRUCT_ID { 0x7F1CE04F, 0x93D14DEC, 0xA9872258, 0x04CD6B27 }
 	TAG_STRUCT(
 		character_physics_struct,
+		"character_physics_struct",
 		"character_physics_struct",
 		"s_character_physics_struct",
 		SET_DEFAULT,
@@ -13826,6 +13959,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		model_object_data_block,
 		"model_object_data_block",
+		"model_object_data_block",
 		"s_model_object_data_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -13849,6 +13983,7 @@ namespace halo3_tools {
 	#define MODEL_BLOCK_STRUCT_ID { 0xAB569A7E, 0xC76C4EA3, 0x99F00227, 0xD006A3D8 }
 	TAG_STRUCT(
 		model_block_struct,
+		"model_block_struct",
 		"model_block_struct",
 		"s_model_block_struct",
 		SET_DEFAULT,
@@ -13947,6 +14082,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		runtime_region_index_array_struct_definition,
 		"runtime_region_index_array",
+		"runtime_region_index_array",
 		"s_runtime_region_index_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -13959,6 +14095,7 @@ namespace halo3_tools {
 	#define MODEL_INSTANCE_GROUP_MEMBER_BLOCK_ID { 0xB9F452BD, 0xE5364484, 0xBCA75D3E, 0x096AF278 }
 	TAG_STRUCT(
 		model_instance_group_member_block,
+		"instance group member",
 		"model_instance_group_member_block",
 		"s_model_instance_group_member_block",
 		SET_DEFAULT,
@@ -13976,6 +14113,7 @@ namespace halo3_tools {
 	#define GLOBAL_MODEL_INSTANCE_GROUP_BLOCK_ID { 0xE2233121, 0xFA0F464B, 0x93BEE223, 0x29DA60B2 }
 	TAG_STRUCT(
 		global_model_instance_group_block,
+		"instance group",
 		"global_model_instance_group_block",
 		"s_global_model_instance_group_block",
 		SET_DEFAULT,
@@ -13999,6 +14137,7 @@ namespace halo3_tools {
 	#define MODEL_VARIANT_BLOCK_ID { 0x539CDDB4, 0x7412487A, 0x91B85DAA, 0xC3AAF510 }
 	TAG_STRUCT(
 		model_variant_block,
+		"variant",
 		"model_variant_block",
 		"s_model_variant_block",
 		SET_DEFAULT,
@@ -14017,6 +14156,7 @@ namespace halo3_tools {
 	#define MODEL_VARIANT_REGION_BLOCK_ID { 0x070F6AFA, 0x05F64F74, 0xBAFFFFE6, 0x12F8BD5C }
 	TAG_STRUCT(
 		model_variant_region_block,
+		"region",
 		"model_variant_region_block",
 		"s_model_variant_region_block",
 		SET_DEFAULT,
@@ -14054,6 +14194,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		model_state_permutation_index_array_struct_definition,
 		"model_state_permutation_index_array",
+		"model_state_permutation_index_array",
 		"s_model_state_permutation_index_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14066,6 +14207,7 @@ namespace halo3_tools {
 	#define MODEL_VARIANT_PERMUTATION_BLOCK_ID { 0x4ED99004, 0x1D7045CC, 0x98959600, 0x6C3550AD }
 	TAG_STRUCT(
 		model_variant_permutation_block,
+		"permutation",
 		"model_variant_permutation_block",
 		"s_model_variant_permutation_block",
 		SET_DEFAULT,
@@ -14092,6 +14234,7 @@ namespace halo3_tools {
 	#define MODEL_VARIANT_STATE_BLOCK_ID { 0xDD3D5ACB, 0xC81742A9, 0x911C9F78, 0x4A18CA81 }
 	TAG_STRUCT(
 		model_variant_state_block,
+		"model_variant_state_block",
 		"model_variant_state_block",
 		"s_model_variant_state_block",
 		SET_DEFAULT,
@@ -14132,6 +14275,7 @@ namespace halo3_tools {
 	#define MODEL_VARIANT_OBJECT_BLOCK_ID { 0x86B36FDB, 0xEAD546C3, 0xB0190BC3, 0x34938689 }
 	TAG_STRUCT(
 		model_variant_object_block,
+		"object",
 		"model_variant_object_block",
 		"s_model_variant_object_block",
 		SET_DEFAULT,
@@ -14150,6 +14294,7 @@ namespace halo3_tools {
 	#define MODEL_MATERIAL_BLOCK_ID { 0x6513E3D0, 0x26B14AAA, 0x9CC86DC9, 0xB4279C53 }
 	TAG_STRUCT(
 		model_material_block,
+		"material",
 		"model_material_block",
 		"s_model_material_block",
 		SET_DEFAULT,
@@ -14170,6 +14315,7 @@ namespace halo3_tools {
 	#define MODEL_TARGET_LOCK_ON_DATA_STRUCT_ID { 0x3BEBBCB0, 0xF83B4943, 0x9C36F114, 0x2C166B4D }
 	TAG_STRUCT(
 		model_target_lock_on_data_struct,
+		"model_target_lock_on_data_struct",
 		"model_target_lock_on_data_struct",
 		"s_model_target_lock_on_data_struct",
 		SET_DEFAULT,
@@ -14198,6 +14344,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		model_target_block,
 		"model_target_block",
+		"model_target_block",
 		"s_model_target_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14218,6 +14365,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		model_region_block,
 		"model_region_block",
+		"model_region_block",
 		"s_model_region_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14234,6 +14382,7 @@ namespace halo3_tools {
 	#define MODEL_PERMUTATION_BLOCK_ID { 0x72671B5F, 0x63CE4207, 0xBE9A29D5, 0x3EB1033F }
 	TAG_STRUCT(
 		model_permutation_block,
+		"model_permutation_block",
 		"model_permutation_block",
 		"s_model_permutation_block",
 		SET_DEFAULT,
@@ -14257,6 +14406,7 @@ namespace halo3_tools {
 	#define MODEL_NODE_BLOCK_ID { 0xE5E9FB01, 0xF8384408, 0xAFEC9EFF, 0x28E7E6F4 }
 	TAG_STRUCT(
 		model_node_block,
+		"model_node_block",
 		"model_node_block",
 		"s_model_node_block",
 		SET_DEFAULT,
@@ -14282,6 +14432,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		model_self_shadow_region_cast_override_block,
 		"model_self_shadow_region_cast_override_block",
+		"model_self_shadow_region_cast_override_block",
 		"s_model_self_shadow_region_cast_override_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14295,6 +14446,7 @@ namespace halo3_tools {
 	#define MODEL_SELF_SHADOW_REGION_RECEIVE_OVERRIDE_BLOCK_ID { 0x7EB85F6C, 0x6B57414C, 0xAF117275, 0x5EA33656 }
 	TAG_STRUCT(
 		model_self_shadow_region_receive_override_block,
+		"model_self_shadow_region_receive_override_block",
 		"model_self_shadow_region_receive_override_block",
 		"s_model_self_shadow_region_receive_override_block",
 		SET_DEFAULT,
@@ -14318,6 +14470,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		model_occlusion_sphere_block,
 		"model_occlusion_sphere_block",
+		"model_occlusion_sphere_block",
 		"s_model_occlusion_sphere_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14335,6 +14488,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sky_lights_block,
 		"sky_lights_block",
+		"sky_lights_block",
 		"s_sky_lights_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14350,6 +14504,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		radiance_transfer_matrix_struct_definition,
 		"radiance_transfer_matrix",
+		"radiance_transfer_matrix",
 		"s_radiance_transfer_matrix_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14362,6 +14517,7 @@ namespace halo3_tools {
 	#define VOLUME_SAMPLES_BLOCK_ID { 0x069D0DD6, 0x55E6413E, 0xAABD61B5, 0x3168B3C9 }
 	TAG_STRUCT(
 		volume_samples_block,
+		"volume_samples_block",
 		"volume_samples_block",
 		"s_volume_samples_block",
 		SET_DEFAULT,
@@ -14376,6 +14532,7 @@ namespace halo3_tools {
 	#define DEFAULT_NODE_ORIENTATIONS_BLOCK_ID { 0xA3A5979B, 0x41D84244, 0xA1400226, 0xA5CD38C9 }
 	TAG_STRUCT(
 		default_node_orientations_block,
+		"default_node_orientations_block",
 		"default_node_orientations_block",
 		"s_default_node_orientations_block",
 		SET_DEFAULT,
@@ -14392,6 +14549,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		default_lightprobe_struct_definition,
 		"default_lightprobe",
+		"default_lightprobe",
 		"s_default_lightprobe_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14404,6 +14562,7 @@ namespace halo3_tools {
 	#define RENDER_MODEL_BLOCK_STRUCT_ID { 0x69FF7DC3, 0x07F94EB6, 0xA4788DFF, 0xBBF9621C }
 	TAG_STRUCT(
 		render_model_block_struct,
+		"render_model_block_struct",
 		"render_model_block_struct",
 		"s_render_model_block_struct",
 		SET_DEFAULT,
@@ -14447,6 +14606,7 @@ namespace halo3_tools {
 	#define RENDER_MODEL_REGION_BLOCK_ID { 0x5F23BC11, 0xB76B42D7, 0xA38C6C46, 0x1DEE5813 }
 	TAG_STRUCT(
 		render_model_region_block,
+		"region",
 		"render_model_region_block",
 		"s_render_model_region_block",
 		SET_DEFAULT,
@@ -14461,6 +14621,7 @@ namespace halo3_tools {
 	#define RENDER_MODEL_PERMUTATION_BLOCK_ID { 0x7900DDE2, 0x064B40BE, 0x8F806330, 0x878B35EB }
 	TAG_STRUCT(
 		render_model_permutation_block,
+		"permutation",
 		"render_model_permutation_block",
 		"s_render_model_permutation_block",
 		SET_DEFAULT,
@@ -14515,6 +14676,7 @@ namespace halo3_tools {
 	#define RENDER_MODEL_NODE_BLOCK_ID { 0xB74453B7, 0xD6E3402E, 0x8A1587D0, 0xEFBF22EA }
 	TAG_STRUCT(
 		render_model_node_block,
+		"node",
 		"render_model_node_block",
 		"s_render_model_node_block",
 		SET_DEFAULT,
@@ -14541,6 +14703,7 @@ namespace halo3_tools {
 	#define RENDER_MODEL_MARKER_GROUP_BLOCK_ID { 0xE60694FA, 0xA9EC4D0D, 0x89E6238C, 0xF66CBE15 }
 	TAG_STRUCT(
 		render_model_marker_group_block,
+		"marker group",
 		"render_model_marker_group_block",
 		"s_render_model_marker_group_block",
 		SET_DEFAULT,
@@ -14555,6 +14718,7 @@ namespace halo3_tools {
 	#define RENDER_MODEL_MARKER_BLOCK_ID { 0xD7CC940F, 0x39874D92, 0x808A0C39, 0x0AF0AC68 }
 	TAG_STRUCT(
 		render_model_marker_block,
+		"marker",
 		"render_model_marker_block",
 		"s_render_model_marker_block",
 		SET_DEFAULT,
@@ -14574,6 +14738,7 @@ namespace halo3_tools {
 	#define COLLISION_MODEL_MATERIAL_BLOCK_ID { 0x7B10BA44, 0xCCA147A9, 0xBA00D05C, 0x22B0B273 }
 	TAG_STRUCT(
 		collision_model_material_block,
+		"material",
 		"collision_model_material_block",
 		"s_collision_model_material_block",
 		SET_DEFAULT,
@@ -14587,6 +14752,7 @@ namespace halo3_tools {
 	#define COLLISION_MODEL_REGION_BLOCK_ID { 0xA2B3D98B, 0x4F4246CE, 0xA22339FE, 0xC303404E }
 	TAG_STRUCT(
 		collision_model_region_block,
+		"region",
 		"collision_model_region_block",
 		"s_collision_model_region_block",
 		SET_DEFAULT,
@@ -14601,6 +14767,7 @@ namespace halo3_tools {
 	#define COLLISION_MODEL_BSP_BLOCK_ID { 0x036840D2, 0x531648C1, 0x887F7243, 0xB140B84F }
 	TAG_STRUCT(
 		collision_model_bsp_block,
+		"bsp",
 		"collision_model_bsp_block",
 		"s_collision_model_bsp_block",
 		SET_DEFAULT,
@@ -14617,6 +14784,7 @@ namespace halo3_tools {
 	#define COLLISION_MODEL_PATHFINDING_SPHERE_BLOCK_ID { 0xEC25013C, 0xA1934E7A, 0xAD0346BB, 0x515C39B6 }
 	TAG_STRUCT(
 		collision_model_pathfinding_sphere_block,
+		"sphere",
 		"collision_model_pathfinding_sphere_block",
 		"s_collision_model_pathfinding_sphere_block",
 		SET_DEFAULT,
@@ -14643,6 +14811,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		collision_model_struct_definition,
 		"collision_model_struct_definition",
+		"collision_model_struct_definition",
 		"s_collision_model_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14668,6 +14837,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		collision_model_permutation_block,
 		"collision_model_permutation_block",
+		"collision_model_permutation_block",
 		"s_collision_model_permutation_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14683,6 +14853,7 @@ namespace halo3_tools {
 	#define COLLISION_MODEL_NODE_BLOCK_ID { 0x732343D3, 0x041E4597, 0x92128A86, 0x949F6A18 }
 	TAG_STRUCT(
 		collision_model_node_block,
+		"collision_model_node_block",
 		"collision_model_node_block",
 		"s_collision_model_node_block",
 		SET_DEFAULT,
@@ -14700,6 +14871,7 @@ namespace halo3_tools {
 	#define LISTS_BLOCK_ID { 0xD663F86E, 0xB8D94D62, 0x922BA3C3, 0xBB29D488 }
 	TAG_STRUCT(
 		lists_block,
+		"lists_block",
 		"lists_block",
 		"s_lists_block",
 		SET_DEFAULT,
@@ -14721,6 +14893,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		list_shapes_block,
 		"list_shapes_block",
+		"list_shapes_block",
 		"s_list_shapes_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14737,6 +14910,7 @@ namespace halo3_tools {
 	#define MOPPS_BLOCK_ID { 0x0E47FE63, 0x1D7740FD, 0x953287BF, 0x4CB509E9 }
 	TAG_STRUCT(
 		mopps_block,
+		"mopps_block",
 		"mopps_block",
 		"s_mopps_block",
 		SET_DEFAULT,
@@ -14757,6 +14931,7 @@ namespace halo3_tools {
 	#define CONSTRAINT_BODIES_STRUCT_ID { 0x8C776F54, 0x79CD4488, 0xA821DD34, 0xBD455BC0 }
 	TAG_STRUCT(
 		constraint_bodies_struct,
+		"constraint_bodies_struct",
 		"constraint_bodies_struct",
 		"s_constraint_bodies_struct",
 		SET_DEFAULT,
@@ -14785,6 +14960,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		hinge_constraints_block,
 		"hinge_constraints_block",
+		"hinge_constraints_block",
 		"s_hinge_constraints_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14798,6 +14974,7 @@ namespace halo3_tools {
 	#define LIMITED_HINGE_CONSTRAINTS_BLOCK_ID { 0xCA7D0DCC, 0x98DD4A69, 0x99C928CE, 0xB478F286 }
 	TAG_STRUCT(
 		limited_hinge_constraints_block,
+		"limited_hinge_constraints_block",
 		"limited_hinge_constraints_block",
 		"s_limited_hinge_constraints_block",
 		SET_DEFAULT,
@@ -14815,6 +14992,7 @@ namespace halo3_tools {
 	#define RAGDOLL_CONSTRAINTS_BLOCK_ID { 0x71F3DE11, 0xA1B24FB1, 0xAEBDF8E1, 0x2005975C }
 	TAG_STRUCT(
 		ragdoll_constraints_block,
+		"ragdoll_constraints_block",
 		"ragdoll_constraints_block",
 		"s_ragdoll_constraints_block",
 		SET_DEFAULT,
@@ -14837,6 +15015,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		ball_and_socket_constraints_block,
 		"ball_and_socket_constraints_block",
+		"ball_and_socket_constraints_block",
 		"s_ball_and_socket_constraints_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14850,6 +15029,7 @@ namespace halo3_tools {
 	#define STIFF_SPRING_CONSTRAINTS_BLOCK_ID { 0xB171A408, 0xC3E44FA9, 0x9B290904, 0xF448E781 }
 	TAG_STRUCT(
 		stiff_spring_constraints_block,
+		"stiff_spring_constraints_block",
 		"stiff_spring_constraints_block",
 		"s_stiff_spring_constraints_block",
 		SET_DEFAULT,
@@ -14865,6 +15045,7 @@ namespace halo3_tools {
 	#define PRISMATIC_CONSTRAINTS_BLOCK_ID { 0x6514A948, 0x92AC4D16, 0x807D1F7F, 0x6DF5D8A4 }
 	TAG_STRUCT(
 		prismatic_constraints_block,
+		"prismatic_constraints_block",
 		"prismatic_constraints_block",
 		"s_prismatic_constraints_block",
 		SET_DEFAULT,
@@ -14883,6 +15064,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		regions_block,
 		"regions_block",
+		"regions_block",
 		"s_regions_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14896,6 +15078,7 @@ namespace halo3_tools {
 	#define PERMUTATIONS_BLOCK_ID { 0xB9073D8F, 0x99774226, 0x951F4436, 0x864FD834 }
 	TAG_STRUCT(
 		permutations_block,
+		"permutations_block",
 		"permutations_block",
 		"s_permutations_block",
 		SET_DEFAULT,
@@ -14911,6 +15094,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		rigid_body_indices_block,
 		"rigid_body_indices_block",
+		"rigid_body_indices_block",
 		"s_rigid_body_indices_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14923,6 +15107,7 @@ namespace halo3_tools {
 	#define NODES_BLOCK_ID { 0xF92912E1, 0xA4364CD1, 0xA65724A1, 0xBB8A252B }
 	TAG_STRUCT(
 		nodes_block,
+		"nodes_block",
 		"nodes_block",
 		"s_nodes_block",
 		SET_DEFAULT,
@@ -14947,6 +15132,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		point_to_path_curve_point_block,
 		"point_to_path_curve_point_block",
+		"point_to_path_curve_point_block",
 		"s_point_to_path_curve_point_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -14960,6 +15146,7 @@ namespace halo3_tools {
 	#define POINT_TO_PATH_CURVE_BLOCK_ID { 0x295B83E5, 0x915B4FEA, 0xB9C37400, 0xF93E5BD0 }
 	TAG_STRUCT(
 		point_to_path_curve_block,
+		"point_to_path_curve_block",
 		"point_to_path_curve_block",
 		"s_point_to_path_curve_block",
 		SET_DEFAULT,
@@ -14976,6 +15163,7 @@ namespace halo3_tools {
 	#define HAVOK_PRIMITIVE_STRUCT_ID { 0xEA25BEF8, 0x01384DFD, 0x886C4497, 0x7BE57757 }
 	TAG_STRUCT(
 		havok_primitive_struct,
+		"havok_primitive_struct",
 		"havok_primitive_struct",
 		"s_havok_primitive_struct",
 		SET_DEFAULT,
@@ -15006,6 +15194,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		havok_shape_struct,
 		"havok_shape_struct",
+		"havok_shape_struct",
 		"s_havok_shape_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15025,6 +15214,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		havok_shape_collection_struct,
 		"havok_shape_collection_struct",
+		"havok_shape_collection_struct",
 		"s_havok_shape_collection_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15041,6 +15231,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		havok_convex_shape_struct,
 		"havok_convex_shape_struct",
+		"havok_convex_shape_struct",
 		"s_havok_convex_shape_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15055,6 +15246,7 @@ namespace halo3_tools {
 	#define HAVOK_CONVEX_TRANSFORM_SHAPE_STRUCT_ID { 0x5D3A0E84, 0xC3E344C7, 0xBD31E21E, 0x36C2099E }
 	TAG_STRUCT(
 		havok_convex_transform_shape_struct,
+		"havok_convex_transform_shape_struct",
 		"havok_convex_transform_shape_struct",
 		"s_havok_convex_transform_shape_struct",
 		SET_DEFAULT,
@@ -15081,6 +15273,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		havok_convex_translate_shape_struct,
 		"havok_convex_translate_shape_struct",
+		"havok_convex_translate_shape_struct",
 		"s_havok_convex_translate_shape_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15099,6 +15292,7 @@ namespace halo3_tools {
 	#define HAVOK_SHAPE_REFERENCE_STRUCT_ID { 0x573EF14C, 0x91AC4F07, 0xA1702B47, 0x7875B0E0 }
 	TAG_STRUCT(
 		havok_shape_reference_struct,
+		"havok_shape_reference_struct",
 		"havok_shape_reference_struct",
 		"s_havok_shape_reference_struct",
 		SET_DEFAULT,
@@ -15136,6 +15330,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		physics_model_damped_spring_motor_block,
 		"physics_model_damped_spring_motor_block",
+		"physics_model_damped_spring_motor_block",
 		"s_physics_model_damped_spring_motor_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15153,6 +15348,7 @@ namespace halo3_tools {
 	#define PHYSICS_MODEL_POSITION_MOTOR_BLOCK_ID { 0xC0C65573, 0xE34244CE, 0xBFDAC94B, 0xF92ECE8C }
 	TAG_STRUCT(
 		physics_model_position_motor_block,
+		"physics_model_position_motor_block",
 		"physics_model_position_motor_block",
 		"s_physics_model_position_motor_block",
 		SET_DEFAULT,
@@ -15173,6 +15369,7 @@ namespace halo3_tools {
 	#define PHYSICS_MODEL_MOTOR_REFERENCE_STRUCT_ID { 0xAB7B559D, 0x0D744412, 0x84CDF67A, 0x370BCC34 }
 	TAG_STRUCT(
 		physics_model_motor_reference_struct,
+		"physics_model_motor_reference_struct",
 		"physics_model_motor_reference_struct",
 		"s_physics_model_motor_reference_struct",
 		SET_DEFAULT,
@@ -15196,6 +15393,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		physics_model_ragdoll_motors_block,
 		"physics_model_ragdoll_motors_block",
+		"physics_model_ragdoll_motors_block",
 		"s_physics_model_ragdoll_motors_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15214,6 +15412,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		physics_model_limited_hinge_motors_block,
 		"physics_model_limited_hinge_motors_block",
+		"physics_model_limited_hinge_motors_block",
 		"s_physics_model_limited_hinge_motors_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15226,6 +15425,7 @@ namespace halo3_tools {
 	#define PHYSICS_MODEL_CONSTRAINT_EDGE_CONSTRAINT_BLOCK_ID { 0x47C5C654, 0x707F4F7B, 0x956BA9B5, 0xAC3E2279 }
 	TAG_STRUCT(
 		physics_model_constraint_edge_constraint_block,
+		"physics_model_constraint_edge_constraint_block",
 		"physics_model_constraint_edge_constraint_block",
 		"s_physics_model_constraint_edge_constraint_block",
 		SET_DEFAULT,
@@ -15265,6 +15465,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		physics_model_powered_chain_nodes_block,
 		"physics_model_powered_chain_nodes_block",
+		"physics_model_powered_chain_nodes_block",
 		"s_physics_model_powered_chain_nodes_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15277,6 +15478,7 @@ namespace halo3_tools {
 	#define PHYSICS_MODEL_POWERED_CHAIN_CONSTRAINTS_BLOCK_ID { 0xBB331F9B, 0x1CEF4AA0, 0x0A354B86, 0x462AEBB3 }
 	TAG_STRUCT(
 		physics_model_powered_chain_constraints_block,
+		"physics_model_powered_chain_constraints_block",
 		"physics_model_powered_chain_constraints_block",
 		"s_physics_model_powered_chain_constraints_block",
 		SET_DEFAULT,
@@ -15295,6 +15497,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		physics_model_powered_chains_block,
 		"physics_model_powered_chains_block",
+		"physics_model_powered_chains_block",
 		"s_physics_model_powered_chains_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15308,6 +15511,7 @@ namespace halo3_tools {
 	#define PHYSICS_MODEL_NODE_CONSTRAINT_EDGE_BLOCK_ID { 0x1E831F9B, 0x155146A0, 0x9A054B86, 0x462C1033 }
 	TAG_STRUCT(
 		physics_model_node_constraint_edge_block,
+		"physics_model_node_constraint_edge_block",
 		"physics_model_node_constraint_edge_block",
 		"s_physics_model_node_constraint_edge_block",
 		SET_DEFAULT,
@@ -15328,6 +15532,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		phantoms_block,
 		"phantoms_block",
+		"phantoms_block",
 		"s_phantoms_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15344,6 +15549,7 @@ namespace halo3_tools {
 	#define MATERIALS_BLOCK_ID { 0xAC367567, 0x39714E57, 0x9B17ED70, 0x20402724 }
 	TAG_STRUCT(
 		materials_block,
+		"materials_block",
 		"materials_block",
 		"s_materials_block",
 		SET_DEFAULT,
@@ -15376,6 +15582,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		spheres_block_struct,
 		"spheres_block_struct",
+		"spheres_block_struct",
 		"s_spheres_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15392,6 +15599,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		multi_sphere_vector_storage_struct_definition,
 		"multi_sphere_vector_storage",
+		"multi_sphere_vector_storage",
 		"s_multi_sphere_vector_storage_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15405,6 +15613,7 @@ namespace halo3_tools {
 	#define MULTI_SPHERES_BLOCK_ID { 0x323F28C4, 0x46434CC0, 0xB02914D2, 0x75F96E7D }
 	TAG_STRUCT(
 		multi_spheres_block,
+		"multi_spheres_block",
 		"multi_spheres_block",
 		"s_multi_spheres_block",
 		SET_DEFAULT,
@@ -15422,6 +15631,7 @@ namespace halo3_tools {
 	#define PILLS_BLOCK_ID { 0x928FD352, 0x3F1F4972, 0x8A356382, 0x74A2E50F }
 	TAG_STRUCT(
 		pills_block,
+		"pills_block",
 		"pills_block",
 		"s_pills_block",
 		SET_DEFAULT,
@@ -15442,6 +15652,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		boxes_block_struct,
 		"boxes_block_struct",
+		"boxes_block_struct",
 		"s_boxes_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15459,6 +15670,7 @@ namespace halo3_tools {
 	#define TRIANGLES_BLOCK_ID { 0x4232CD5A, 0x55BE4A6B, 0x95E44B7C, 0xE4391DA2 }
 	TAG_STRUCT(
 		triangles_block,
+		"triangles_block",
 		"triangles_block",
 		"s_triangles_block",
 		SET_DEFAULT,
@@ -15485,6 +15697,7 @@ namespace halo3_tools {
 	#define POLYHEDRA_BLOCK_ID { 0x58227F42, 0xA3C74ADF, 0x9AF61488, 0xCC1BE985 }
 	TAG_STRUCT(
 		polyhedra_block,
+		"polyhedra_block",
 		"polyhedra_block",
 		"s_polyhedra_block",
 		SET_DEFAULT,
@@ -15514,6 +15727,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		polyhedron_four_vectors_block,
 		"polyhedron_four_vectors_block",
+		"polyhedron_four_vectors_block",
 		"s_polyhedron_four_vectors_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15532,6 +15746,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		polyhedron_plane_equations_block,
 		"polyhedron_plane_equations_block",
+		"polyhedron_plane_equations_block",
 		"s_polyhedron_plane_equations_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15545,6 +15760,7 @@ namespace halo3_tools {
 	#define MASS_DISTRIBUTIONS_BLOCK_ID { 0xD795D66A, 0x38FD48C4, 0x9283011C, 0xB7D8ACA0 }
 	TAG_STRUCT(
 		mass_distributions_block,
+		"mass_distributions_block",
 		"mass_distributions_block",
 		"s_mass_distributions_block",
 		SET_DEFAULT,
@@ -15565,6 +15781,7 @@ namespace halo3_tools {
 	#define RIGID_BODIES_BLOCK_ID { 0xF902EE13, 0xFEA643C7, 0x9C90BED0, 0xF9D06754 }
 	TAG_STRUCT(
 		rigid_bodies_block,
+		"rigid_bodies_block",
 		"rigid_bodies_block",
 		"s_rigid_bodies_block",
 		SET_DEFAULT,
@@ -15651,6 +15868,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		phantom_types_block,
 		"phantom_types_block",
+		"phantom_types_block",
 		"s_phantom_types_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15722,6 +15940,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		physics_model_struct_definition,
 		"physics_model_struct_definition",
+		"physics_model_struct_definition",
 		"s_physics_model_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15782,6 +16001,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_seam_identifier_struct,
 		"structure_seam_identifier_struct",
+		"structure_seam_identifier_struct",
 		"s_structure_seam_identifier_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15798,6 +16018,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_seam_cluster_mapping_block,
 		"structure_seam_cluster_mapping_block",
+		"structure_seam_cluster_mapping_block",
 		"s_structure_seam_cluster_mapping_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15812,6 +16033,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_seam_edge_mapping_block,
 		"structure_seam_edge_mapping_block",
+		"structure_seam_edge_mapping_block",
 		"s_structure_seam_edge_mapping_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15824,6 +16046,7 @@ namespace halo3_tools {
 	#define STRUCTURE_SEAM_MAPPING_BLOCK_ID { 0xB9EF902E, 0xE89545BC, 0xABE91A74, 0x40C7C1A5 }
 	TAG_STRUCT(
 		structure_seam_mapping_block,
+		"structure_seam_mapping_block",
 		"structure_seam_mapping_block",
 		"s_structure_seam_mapping_block",
 		SET_DEFAULT,
@@ -15840,6 +16063,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_seam_original_vertex_block,
 		"structure_seam_original_vertex_block",
+		"structure_seam_original_vertex_block",
 		"s_structure_seam_original_vertex_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15854,6 +16078,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_seam_original_geometry_struct,
 		"structure_seam_original_geometry_struct",
+		"structure_seam_original_geometry_struct",
 		"s_structure_seam_original_geometry_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15866,6 +16091,7 @@ namespace halo3_tools {
 	#define STRUCTURE_SEAM_FINAL_POINTS_BLOCK_ID { 0xD88A3DB6, 0x83704955, 0xB4012152, 0x3E69CCA7 }
 	TAG_STRUCT(
 		structure_seam_final_points_block,
+		"structure_seam_final_points_block",
 		"structure_seam_final_points_block",
 		"s_structure_seam_final_points_block",
 		SET_DEFAULT,
@@ -15880,6 +16106,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_seam_final_planes_block,
 		"structure_seam_final_planes_block",
+		"structure_seam_final_planes_block",
 		"s_structure_seam_final_planes_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15892,6 +16119,7 @@ namespace halo3_tools {
 	#define STRUCTURE_SEAM_FINAL_TRIANGLES_BLOCK_ID { 0xFA685DE8, 0xA9BF4914, 0xB6C3D98E, 0x0C4B0CED }
 	TAG_STRUCT(
 		structure_seam_final_triangles_block,
+		"structure_seam_final_triangles_block",
 		"structure_seam_final_triangles_block",
 		"s_structure_seam_final_triangles_block",
 		SET_DEFAULT,
@@ -15910,6 +16138,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_seam_final_edges_block,
 		"structure_seam_final_edges_block",
+		"structure_seam_final_edges_block",
 		"s_structure_seam_final_edges_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15923,6 +16152,7 @@ namespace halo3_tools {
 	#define STRUCTURE_SEAM_FINAL_GEOMETRY_STRUCT_ID { 0x89A4CF05, 0x884A4959, 0xB0830D92, 0x161B070E }
 	TAG_STRUCT(
 		structure_seam_final_geometry_struct,
+		"structure_seam_final_geometry_struct",
 		"structure_seam_final_geometry_struct",
 		"s_structure_seam_final_geometry_struct",
 		SET_DEFAULT,
@@ -15940,6 +16170,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_seam_block,
 		"structure_seam_block",
+		"structure_seam_block",
 		"s_structure_seam_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15954,6 +16185,7 @@ namespace halo3_tools {
 	#define STRUCTURE_SEAMS_STRUCT_DEFINITION_ID { 0x1073D9E0, 0x3D9447BB, 0x89E0B4FF, 0x30BD63B1 }
 	TAG_STRUCT(
 		structure_seams_struct_definition,
+		"structure_seams_struct_definition",
 		"structure_seams_struct_definition",
 		"s_structure_seams_struct_definition",
 		SET_DEFAULT,
@@ -15971,6 +16203,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_design_block_struct,
 		"structure_design_block_struct",
+		"structure_design_block_struct",
 		"s_structure_design_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -15983,6 +16216,7 @@ namespace halo3_tools {
 	#define COLOR_BLOCK_ID { 0x68FBD3A8, 0x3C76413C, 0x8C564268, 0x66145DD1 }
 	TAG_STRUCT(
 		color_block,
+		"color_block",
 		"color_block",
 		"s_color_block",
 		SET_DEFAULT,
@@ -15998,6 +16232,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		color_table_struct_definition,
 		"color_table_struct_definition",
+		"color_table_struct_definition",
 		"s_color_table_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -16010,6 +16245,7 @@ namespace halo3_tools {
 	#define CONTRAIL_PROPERTY_SCALAR_ID { 0x93902216, 0x6557452B, 0x963F8D1E, 0xB996CEB2 }
 	TAG_STRUCT(
 		contrail_property_scalar,
+		"contrail_property_scalar",
 		"contrail_property_scalar",
 		"s_contrail_property_scalar",
 		SET_DEFAULT,
@@ -16061,6 +16297,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		contrail_property_color,
 		"contrail_property_color",
+		"contrail_property_color",
 		"s_contrail_property_color",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -16081,6 +16318,7 @@ namespace halo3_tools {
 	#define CONTRAIL_DEFINITION_BLOCK_ID { 0xCD852494, 0x13844D0F, 0xB5769DA2, 0x9C2854E4 }
 	TAG_STRUCT(
 		contrail_definition_block,
+		"contrail_definition_block",
 		"contrail_definition_block",
 		"s_contrail_definition_block",
 		SET_DEFAULT,
@@ -16148,6 +16386,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		contrail_system_struct_definition,
 		"contrail_system_struct_definition",
+		"contrail_system_struct_definition",
 		"s_contrail_system_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -16160,6 +16399,7 @@ namespace halo3_tools {
 	#define CONTRAIL_PROPERTY_REAL_POINT2D_ID { 0xCC27566D, 0xA12641FD, 0xB3ABF300, 0x2BE1E977 }
 	TAG_STRUCT(
 		contrail_property_real_point2d,
+		"contrail_property_real_point2d",
 		"contrail_property_real_point2d",
 		"s_contrail_property_real_point2d",
 		SET_DEFAULT,
@@ -16184,6 +16424,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		contrail_property_real_vector3d,
 		"contrail_property_real_vector3d",
+		"contrail_property_real_vector3d",
 		"s_contrail_property_real_vector3d",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -16206,6 +16447,7 @@ namespace halo3_tools {
 	#define LIGHT_VOLUME_PROPERTY_REAL_ID { 0xBC2E916E, 0x13C1459C, 0x82BC6E0D, 0x888CE0DD }
 	TAG_STRUCT(
 		light_volume_property_real,
+		"light_volume_property_real",
 		"light_volume_property_real",
 		"s_light_volume_property_real",
 		SET_DEFAULT,
@@ -16251,6 +16493,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		light_volume_property_real_rgb_color,
 		"light_volume_property_real_rgb_color",
+		"light_volume_property_real_rgb_color",
 		"s_light_volume_property_real_rgb_color",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -16271,6 +16514,7 @@ namespace halo3_tools {
 	#define LIGHT_VOLUME_DEFINITION_BLOCK_ID { 0x7E3CF99B, 0xB85C4AF7, 0x8F990018, 0xB1E1DD8A }
 	TAG_STRUCT(
 		light_volume_definition_block,
+		"light_volume_definition_block",
 		"light_volume_definition_block",
 		"s_light_volume_definition_block",
 		SET_DEFAULT,
@@ -16306,6 +16550,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		light_volume_system_struct_definition,
 		"light_volume_system_struct_definition",
+		"light_volume_system_struct_definition",
 		"s_light_volume_system_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -16318,6 +16563,7 @@ namespace halo3_tools {
 	#define BEAM_PROPERTY_REAL_ID { 0x608DF497, 0x0DFA493C, 0xBC831C4A, 0x224AFD50 }
 	TAG_STRUCT(
 		beam_property_real,
+		"beam_property_real",
 		"beam_property_real",
 		"s_beam_property_real",
 		SET_DEFAULT,
@@ -16365,6 +16611,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		beam_property_real_rgb_color,
 		"beam_property_real_rgb_color",
+		"beam_property_real_rgb_color",
 		"s_beam_property_real_rgb_color",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -16385,6 +16632,7 @@ namespace halo3_tools {
 	#define BEAM_DEFINITION_BLOCK_ID { 0x8818C9F5, 0x153D4691, 0x99A530C1, 0x6ECB5536 }
 	TAG_STRUCT(
 		beam_definition_block,
+		"beam_definition_block",
 		"beam_definition_block",
 		"s_beam_definition_block",
 		SET_DEFAULT,
@@ -16441,6 +16689,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		beam_system_struct_definition,
 		"beam_system_struct_definition",
+		"beam_system_struct_definition",
 		"s_beam_system_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -16453,6 +16702,7 @@ namespace halo3_tools {
 	#define BEAM_PROPERTY_REAL_POINT2D_ID { 0x0E7740B2, 0xC8494978, 0x9B84F033, 0xBDC2DEEC }
 	TAG_STRUCT(
 		beam_property_real_point2d,
+		"beam_property_real_point2d",
 		"beam_property_real_point2d",
 		"s_beam_property_real_point2d",
 		SET_DEFAULT,
@@ -16476,6 +16726,7 @@ namespace halo3_tools {
 	#define EFFECT_LOCATIONS_BLOCK_ID { 0xF2742E8C, 0xCAA34E8B, 0xBD3E6DF9, 0x3868BCB3 }
 	TAG_STRUCT(
 		effect_locations_block,
+		"effect_locations_block",
 		"effect_locations_block",
 		"s_effect_locations_block",
 		SET_DEFAULT,
@@ -16509,6 +16760,7 @@ namespace halo3_tools {
 	#define EFFECT_ACCELERATIONS_BLOCK_ID { 0x007DDA95, 0x2A084D2A, 0x8AE44F3A, 0x4F217DD2 }
 	TAG_STRUCT(
 		effect_accelerations_block,
+		"effect_accelerations_block",
 		"effect_accelerations_block",
 		"s_effect_accelerations_block",
 		SET_DEFAULT,
@@ -16545,6 +16797,7 @@ namespace halo3_tools {
 	#define EFFECT_PART_BLOCK_ID { 0x10814B9B, 0xE63D42D7, 0x945DD824, 0x6CF277F8 }
 	TAG_STRUCT(
 		effect_part_block,
+		"effect_part_block",
 		"effect_part_block",
 		"s_effect_part_block",
 		SET_DEFAULT,
@@ -16627,6 +16880,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		effect_event_block,
 		"effect_event_block",
+		"effect_event_block",
 		"s_effect_event_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -16656,6 +16910,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		effect_conical_distribution_block,
 		"effect_conical_distribution_block",
+		"effect_conical_distribution_block",
 		"s_effect_conical_distribution_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -16672,6 +16927,7 @@ namespace halo3_tools {
 	#define EFFECT_STRUCT_DEFINITION_ID { 0x02460523, 0x9FC6448B, 0x921ECD13, 0xB1F48215 }
 	TAG_STRUCT(
 		effect_struct_definition,
+		"effect_struct_definition",
 		"effect_struct_definition",
 		"s_effect_struct_definition",
 		SET_DEFAULT,
@@ -16722,6 +16978,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		effect_component_holdback_block,
 		"effect_component_holdback_block",
+		"effect_component_holdback_block",
 		"s_effect_component_holdback_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -16738,6 +16995,7 @@ namespace halo3_tools {
 	#define EFFECT_COMPONENT_HOLDBACKS_BLOCK_ID { 0x8CADDBFF, 0xC0E843FA, 0xB225FFEB, 0xB26D05DA }
 	TAG_STRUCT(
 		effect_component_holdbacks_block,
+		"effect_component_holdbacks_block",
 		"effect_component_holdbacks_block",
 		"s_effect_component_holdbacks_block",
 		SET_DEFAULT,
@@ -16787,6 +17045,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		effect_globals_struct_definition,
 		"effect_globals_struct_definition",
+		"effect_globals_struct_definition",
 		"s_effect_globals_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -16800,6 +17059,7 @@ namespace halo3_tools {
 	#define ATTACHMENT_BLOCK_ID { 0xDB309672, 0x396440FD, 0x8DB1932A, 0xD3071736 }
 	TAG_STRUCT(
 		attachment_block,
+		"attachment_block",
 		"attachment_block",
 		"s_attachment_block",
 		SET_DEFAULT,
@@ -16862,6 +17122,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		gpu_single_constant_register_array_struct_definition,
 		"gpu_single_constant_register_array",
+		"gpu_single_constant_register_array",
 		"s_gpu_single_constant_register_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -16874,6 +17135,7 @@ namespace halo3_tools {
 	#define GPU_SPRITE_BLOCK_ID { 0x821F9C90, 0x95844863, 0x9425371D, 0x7AB8E8DD }
 	TAG_STRUCT(
 		gpu_sprite_block,
+		"gpu_sprite_block",
 		"gpu_sprite_block",
 		"s_gpu_sprite_block",
 		SET_DEFAULT,
@@ -16888,6 +17150,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		gpu_variants_block,
 		"gpu_variants_block",
+		"gpu_variants_block",
 		"s_gpu_variants_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -16900,6 +17163,7 @@ namespace halo3_tools {
 	#define GPU_DATA_STRUCT$2_ID { 0x62F911D6, 0x9725493B, 0x8FFDB178, 0x0608FC7B }
 	TAG_STRUCT(
 		gpu_data_struct$2,
+		"gpu_data_struct",
 		"gpu_data_struct",
 		"s_gpu_data_struct$2",
 		SET_DEFAULT,
@@ -16914,6 +17178,7 @@ namespace halo3_tools {
 	#define PARTICLE_STRUCT_DEFINITION_ID { 0x9ED62376, 0x9F9E4A9D, 0x9DE72B9D, 0x51E76D25 }
 	TAG_STRUCT(
 		particle_struct_definition,
+		"particle_struct_definition",
 		"particle_struct_definition",
 		"s_particle_struct_definition",
 		SET_DEFAULT,
@@ -17011,6 +17276,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		gpu_data_struct,
 		"gpu_data_struct",
+		"gpu_data_struct",
 		"s_gpu_data_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17023,6 +17289,7 @@ namespace halo3_tools {
 	#define PARTICLE_MODEL_STRUCT_DEFINITION_ID { 0xC4C7FDE0, 0xADA64FF1, 0x9CDCC3BE, 0xF1D59F65 }
 	TAG_STRUCT(
 		particle_model_struct_definition,
+		"particle_model_struct_definition",
 		"particle_model_struct_definition",
 		"s_particle_model_struct_definition",
 		SET_DEFAULT,
@@ -17042,6 +17309,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		particle_controller_parameters,
 		"particle_controller_parameters",
+		"particle_controller_parameters",
 		"s_particle_controller_parameters",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17055,6 +17323,7 @@ namespace halo3_tools {
 	#define PARTICLE_CONTROLLER_ID { 0xFFDF1EEA, 0xE003416F, 0xBBE85C7F, 0xA06AFA10 }
 	TAG_STRUCT(
 		particle_controller,
+		"particle_controller",
 		"particle_controller",
 		"s_particle_controller",
 		SET_DEFAULT,
@@ -17081,6 +17350,7 @@ namespace halo3_tools {
 	#define PARTICLE_PHYSICS_STRUCT_ID { 0x2E19EA87, 0xEB8741A8, 0xB25C5661, 0x9D4201DD }
 	TAG_STRUCT(
 		particle_physics_struct,
+		"particle_physics_struct",
 		"particle_physics_struct",
 		"s_particle_physics_struct",
 		SET_DEFAULT,
@@ -17112,6 +17382,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		particle_physics_struct_definition,
 		"particle_physics_struct_definition",
+		"particle_physics_struct_definition",
 		"s_particle_physics_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17127,6 +17398,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		camera_track_control_point_block,
 		"camera_track_control_point_block",
+		"camera_track_control_point_block",
 		"s_camera_track_control_point_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17141,6 +17413,7 @@ namespace halo3_tools {
 	#define CAMERA_TRACK_STRUCT_DEFINITION_ID { 0x3215F817, 0x264E4A98, 0x8165BFA1, 0xAACA3E6F }
 	TAG_STRUCT(
 		camera_track_struct_definition,
+		"camera_track_struct_definition",
 		"camera_track_struct_definition",
 		"s_camera_track_struct_definition",
 		SET_DEFAULT,
@@ -17158,6 +17431,7 @@ namespace halo3_tools {
 	#define POINT_PHYSICS_STRUCT_DEFINITION_ID { 0x25622995, 0xA9214233, 0x8BD5DA29, 0xE1C6CC0A }
 	TAG_STRUCT(
 		point_physics_struct_definition,
+		"point_physics_struct_definition",
 		"point_physics_struct_definition",
 		"s_point_physics_struct_definition",
 		SET_DEFAULT,
@@ -17197,6 +17471,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		transparent_planes_block,
 		"transparent_planes_block",
+		"transparent_planes_block",
 		"s_transparent_planes_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17211,6 +17486,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_WEATHER_PALETTE_BLOCK_ID { 0x3490A48C, 0xDB4840AC, 0xA337AC00, 0xF8669A36 }
 	TAG_STRUCT(
 		structure_bsp_weather_palette_block,
+		"structure_bsp_weather_palette_block",
 		"structure_bsp_weather_palette_block",
 		"s_structure_bsp_weather_palette_block",
 		SET_DEFAULT,
@@ -17233,6 +17509,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_atmosphere_palette_block,
 		"structure_bsp_atmosphere_palette_block",
+		"structure_bsp_atmosphere_palette_block",
 		"s_structure_bsp_atmosphere_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17247,6 +17524,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_CAMERA_FX_PALETTE_BLOCK_ID { 0x391597B7, 0x927B496B, 0xA8EBEFFE, 0x90972B2F }
 	TAG_STRUCT(
 		structure_bsp_camera_fx_palette_block,
+		"structure_bsp_camera_fx_palette_block",
 		"structure_bsp_camera_fx_palette_block",
 		"s_structure_bsp_camera_fx_palette_block",
 		SET_DEFAULT,
@@ -17280,6 +17558,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_weather_polyhedron_plane_block,
 		"structure_bsp_weather_polyhedron_plane_block",
+		"structure_bsp_weather_polyhedron_plane_block",
 		"s_structure_bsp_weather_polyhedron_plane_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17292,6 +17571,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_WEATHER_POLYHEDRON_BLOCK_ID { 0x71280194, 0x1E0E48F2, 0xB9E452BF, 0x2D8E5C31 }
 	TAG_STRUCT(
 		structure_bsp_weather_polyhedron_block,
+		"structure_bsp_weather_polyhedron_block",
 		"structure_bsp_weather_polyhedron_block",
 		"s_structure_bsp_weather_polyhedron_block",
 		SET_DEFAULT,
@@ -17308,6 +17588,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_cluster_portal_vertex_block,
 		"structure_bsp_cluster_portal_vertex_block",
+		"structure_bsp_cluster_portal_vertex_block",
 		"s_structure_bsp_cluster_portal_vertex_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17320,6 +17601,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_CLUSTER_PORTAL_BLOCK_ID { 0x515C51A4, 0x87494090, 0x95104547, 0x3C6C550F }
 	TAG_STRUCT(
 		structure_bsp_cluster_portal_block,
+		"structure_bsp_cluster_portal_block",
 		"structure_bsp_cluster_portal_block",
 		"s_structure_bsp_cluster_portal_block",
 		SET_DEFAULT,
@@ -17351,6 +17633,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_cluster_portal_index_block,
 		"structure_bsp_cluster_portal_index_block",
+		"structure_bsp_cluster_portal_index_block",
 		"s_structure_bsp_cluster_portal_index_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17363,6 +17646,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_PATHFINDING_EDGES_BLOCK_ID { 0xFC7DDF4C, 0x9BFA471B, 0xB7131769, 0x62668E4D }
 	TAG_STRUCT(
 		structure_bsp_pathfinding_edges_block,
+		"structure_bsp_pathfinding_edges_block",
 		"structure_bsp_pathfinding_edges_block",
 		"s_structure_bsp_pathfinding_edges_block",
 		SET_DEFAULT,
@@ -17377,6 +17661,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_conveyor_surface_block,
 		"structure_bsp_conveyor_surface_block",
+		"structure_bsp_conveyor_surface_block",
 		"s_structure_bsp_conveyor_surface_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17390,6 +17675,7 @@ namespace halo3_tools {
 	#define STRUCTURE_COLLISION_MATERIALS_BLOCK_ID { 0x9B46AC25, 0x4F274C73, 0xA712E380, 0x4CCC324B }
 	TAG_STRUCT(
 		structure_collision_materials_block,
+		"structure_collision_materials_block",
 		"structure_collision_materials_block",
 		"s_structure_collision_materials_block",
 		SET_DEFAULT,
@@ -17410,6 +17696,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_marker_block,
 		"structure_bsp_marker_block",
+		"structure_bsp_marker_block",
 		"s_structure_bsp_marker_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17424,6 +17711,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_MARKER_LIGHT_PALETTE_ID { 0xA008D181, 0x9612449F, 0x96D5E611, 0xE4355D97 }
 	TAG_STRUCT(
 		structure_bsp_marker_light_palette,
+		"structure_bsp_marker_light_palette",
 		"structure_bsp_marker_light_palette",
 		"s_structure_bsp_marker_light_palette",
 		SET_DEFAULT,
@@ -17440,6 +17728,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_marker_light_index,
 		"structure_bsp_marker_light_index",
+		"structure_bsp_marker_light_index",
 		"s_structure_bsp_marker_light_index",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17452,6 +17741,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_ENVIRONMENT_OBJECT_PALETTE_BLOCK_ID { 0x37D2FC4A, 0x2E6243F8, 0xB235BEDE, 0x7776BE11 }
 	TAG_STRUCT(
 		structure_bsp_environment_object_palette_block,
+		"structure_bsp_environment_object_palette_block",
 		"structure_bsp_environment_object_palette_block",
 		"s_structure_bsp_environment_object_palette_block",
 		SET_DEFAULT,
@@ -17471,6 +17761,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_ENVIRONMENT_OBJECT_BLOCK_ID { 0x1CDF634D, 0xFD90476F, 0x9133F1DA, 0xCC1B247F }
 	TAG_STRUCT(
 		structure_bsp_environment_object_block,
+		"structure_bsp_environment_object_block",
 		"structure_bsp_environment_object_block",
 		"s_structure_bsp_environment_object_block",
 		SET_DEFAULT,
@@ -17493,6 +17784,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_detail_object_data_block,
 		"structure_bsp_detail_object_data_block",
+		"structure_bsp_detail_object_data_block",
 		"s_structure_bsp_detail_object_data_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17511,6 +17803,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_runtime_decal_block,
 		"structure_bsp_runtime_decal_block",
+		"structure_bsp_runtime_decal_block",
 		"s_structure_bsp_runtime_decal_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17528,6 +17821,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		seam_indices_block_definition,
 		"seam_indices_block_definition",
+		"seam_indices_block_definition",
 		"s_seam_indices_block_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17540,6 +17834,7 @@ namespace halo3_tools {
 	#define PVS_BOUND_OBJECT_REFERENCES_BLOCK_ID { 0xAAB47B87, 0xCD3AA0E9, 0x9BBEFE53, 0x01AD8BCC }
 	TAG_STRUCT(
 		pvs_bound_object_references_block,
+		"pvs_bound_object_references_block",
 		"pvs_bound_object_references_block",
 		"s_pvs_bound_object_references_block",
 		SET_DEFAULT,
@@ -17554,6 +17849,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		pvs_bound_object_identifiers_block,
 		"pvs_bound_object_identifiers_block",
+		"pvs_bound_object_identifiers_block",
 		"s_pvs_bound_object_identifiers_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17566,6 +17862,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_CLUSTER_BLOCK_ID { 0x443EB808, 0xF3A4493E, 0xAAB7DADD, 0x79F9A8DE }
 	TAG_STRUCT(
 		structure_bsp_cluster_block,
+		"structure_bsp_cluster_block",
 		"structure_bsp_cluster_block",
 		"s_structure_bsp_cluster_block",
 		SET_DEFAULT,
@@ -17617,6 +17914,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_debug_info_block,
 		"structure_bsp_debug_info_block",
+		"structure_bsp_debug_info_block",
 		"s_structure_bsp_debug_info_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17632,6 +17930,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_CLUSTER_DEBUG_INFO_BLOCK_ID { 0xB5A0AC69, 0x26934359, 0x9CA55C27, 0x431EC06E }
 	TAG_STRUCT(
 		structure_bsp_cluster_debug_info_block,
+		"structure_bsp_cluster_debug_info_block",
 		"structure_bsp_cluster_debug_info_block",
 		"s_structure_bsp_cluster_debug_info_block",
 		SET_DEFAULT,
@@ -17669,6 +17968,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_fog_plane_debug_info_block,
 		"structure_bsp_fog_plane_debug_info_block",
+		"structure_bsp_fog_plane_debug_info_block",
 		"s_structure_bsp_fog_plane_debug_info_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17686,6 +17986,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_FOG_ZONE_DEBUG_INFO_BLOCK_ID { 0x54513BD1, 0x61374DCB, 0x950FF95C, 0x72B662D5 }
 	TAG_STRUCT(
 		structure_bsp_fog_zone_debug_info_block,
+		"structure_bsp_fog_zone_debug_info_block",
 		"structure_bsp_fog_zone_debug_info_block",
 		"s_structure_bsp_fog_zone_debug_info_block",
 		SET_DEFAULT,
@@ -17705,6 +18006,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_DEBUG_INFO_RENDER_LINE_BLOCK_ID { 0x288FF283, 0x1AB747CD, 0x84A91A1A, 0x49EB05F1 }
 	TAG_STRUCT(
 		structure_bsp_debug_info_render_line_block,
+		"structure_bsp_debug_info_render_line_block",
 		"structure_bsp_debug_info_render_line_block",
 		"s_structure_bsp_debug_info_render_line_block",
 		SET_DEFAULT,
@@ -17736,6 +18038,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_debug_info_indices_block,
 		"structure_bsp_debug_info_indices_block",
+		"structure_bsp_debug_info_indices_block",
 		"s_structure_bsp_debug_info_indices_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17749,6 +18052,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_sky_owner_cluster_block,
 		"structure_bsp_sky_owner_cluster_block",
+		"structure_bsp_sky_owner_cluster_block",
 		"s_structure_bsp_sky_owner_cluster_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17761,6 +18065,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_FAKE_LIGHTPROBES_BLOCK_ID { 0xEA359EEC, 0x5A194498, 0x8E4C7987, 0x7190C23E }
 	TAG_STRUCT(
 		structure_bsp_fake_lightprobes_block,
+		"structure_bsp_fake_lightprobes_block",
 		"structure_bsp_fake_lightprobes_block",
 		"s_structure_bsp_fake_lightprobes_block",
 		SET_DEFAULT,
@@ -17776,6 +18081,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_edge_to_seam_edge_mapping_block,
 		"structure_edge_to_seam_edge_mapping_block",
+		"structure_edge_to_seam_edge_mapping_block",
 		"s_structure_edge_to_seam_edge_mapping_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17789,6 +18095,7 @@ namespace halo3_tools {
 	#define WIDGET_REFERENCE_BLOCK_ID { 0xFE7DCA2C, 0x49136A81, 0xB9652900, 0xABAA5A82 }
 	TAG_STRUCT(
 		widget_reference_block,
+		"widget_reference_block",
 		"widget_reference_block",
 		"s_widget_reference_block",
 		SET_DEFAULT,
@@ -17807,6 +18114,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		runtime_decorator_set_block,
 		"runtime_decorator_set_block",
+		"runtime_decorator_set_block",
 		"s_runtime_decorator_set_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17821,6 +18129,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_RESOURCE_STRUCT_ID { 0x03A9EF85, 0x2F7A473A, 0x8A86F093, 0x2DE335AF }
 	TAG_STRUCT(
 		structure_bsp_resource_struct,
+		"structure_bsp_resource_struct",
 		"structure_bsp_resource_struct",
 		"s_structure_bsp_resource_struct",
 		SET_DEFAULT,
@@ -17838,6 +18147,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_tag_resources_struct,
 		"structure_bsp_tag_resources_struct",
+		"structure_bsp_tag_resources_struct",
 		"s_structure_bsp_tag_resources_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17851,6 +18161,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_raw_resources,
 		"structure_bsp_raw_resources",
+		"structure_bsp_raw_resources",
 		"s_structure_bsp_raw_resources",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17863,6 +18174,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_CACHE_FILE_TAG_RESOURCES_STRUCT_ID { 0xF94BEACC, 0xEDAB423F, 0x82675E23, 0xFA14A1AD }
 	TAG_STRUCT(
 		structure_bsp_cache_file_tag_resources_struct,
+		"structure_bsp_cache_file_tag_resources_struct",
 		"structure_bsp_cache_file_tag_resources_struct",
 		"s_structure_bsp_cache_file_tag_resources_struct",
 		SET_DEFAULT,
@@ -17880,6 +18192,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_resource_interface,
 		"structure_bsp_resource_interface",
+		"structure_bsp_resource_interface",
 		"s_structure_bsp_resource_interface",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17895,6 +18208,7 @@ namespace halo3_tools {
 	#define SCENARIO_STRUCTURE_BSP_BLOCK_STRUCT_ID { 0x5043D2DD, 0xE3624E5A, 0xBB518106, 0x4E2109D4 }
 	TAG_STRUCT(
 		scenario_structure_bsp_block_struct,
+		"scenario_structure_bsp_block_struct",
 		"scenario_structure_bsp_block_struct",
 		"s_scenario_structure_bsp_block_struct",
 		SET_DEFAULT,
@@ -17969,6 +18283,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_leaf_block,
 		"structure_bsp_leaf_block",
+		"structure_bsp_leaf_block",
 		"s_structure_bsp_leaf_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -17981,6 +18296,7 @@ namespace halo3_tools {
 	#define STRUCTURE_SURFACE_BLOCK_ID { 0xE0159FC4, 0xC9AB45E9, 0xB1B58400, 0x24345098 }
 	TAG_STRUCT(
 		structure_surface_block,
+		"structure_surface_block",
 		"structure_surface_block",
 		"s_structure_surface_block",
 		SET_DEFAULT,
@@ -17996,6 +18312,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_surface_small_block,
 		"structure_surface_small_block",
+		"structure_surface_small_block",
 		"s_structure_surface_small_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18010,6 +18327,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_surface_to_triangle_mapping_block,
 		"structure_surface_to_triangle_mapping_block",
+		"structure_surface_to_triangle_mapping_block",
 		"s_structure_surface_to_triangle_mapping_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18023,6 +18341,7 @@ namespace halo3_tools {
 	#define SCENARIO_STRUCTURE_LIGHTING_INFO_STRUCT_DEFINITION_ID { 0xF6DF366B, 0xD04D4A01, 0xA4C203FB, 0xA459CB2F }
 	TAG_STRUCT(
 		scenario_structure_lighting_info_struct_definition,
+		"scenario_structure_lighting_info_struct_definition",
 		"scenario_structure_lighting_info_struct_definition",
 		"s_scenario_structure_lighting_info_struct_definition",
 		SET_DEFAULT,
@@ -18040,6 +18359,7 @@ namespace halo3_tools {
 	#define STRUCTURE_LIGHTING_GENERIC_LIGHT_DEFINITION_BLOCK_ID { 0x5CAD7A73, 0x815E4084, 0xBEC019F8, 0xB6D14D02 }
 	TAG_STRUCT(
 		structure_lighting_generic_light_definition_block,
+		"structure_lighting_generic_light_definition_block",
 		"structure_lighting_generic_light_definition_block",
 		"s_structure_lighting_generic_light_definition_block",
 		SET_DEFAULT,
@@ -18087,6 +18407,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_lighting_generic_light_instance_block,
 		"structure_lighting_generic_light_instance_block",
+		"structure_lighting_generic_light_instance_block",
 		"s_structure_lighting_generic_light_instance_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18103,6 +18424,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_lighting_region_triangle_block,
 		"structure_lighting_region_triangle_block",
+		"structure_lighting_region_triangle_block",
 		"s_structure_lighting_region_triangle_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18118,6 +18440,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_lighting_region_block,
 		"structure_lighting_region_block",
+		"structure_lighting_region_block",
 		"s_structure_lighting_region_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18131,6 +18454,7 @@ namespace halo3_tools {
 	#define STRUCTURE_MATERIAL_LIGHTING_INFO_BLOCK_ID { 0x9DD3CC89, 0xB8374B30, 0xBD6F5C2D, 0xDA247EA0 }
 	TAG_STRUCT(
 		structure_material_lighting_info_block,
+		"structure_material_lighting_info_block",
 		"structure_material_lighting_info_block",
 		"s_structure_material_lighting_info_block",
 		SET_DEFAULT,
@@ -18162,6 +18486,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		lightprobe_terms_struct_definition,
 		"lightprobe_terms",
+		"lightprobe_terms",
 		"s_lightprobe_terms_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18174,6 +18499,7 @@ namespace halo3_tools {
 	#define SCENARIO_LIGHTMAP_LIGHTPROBE_VALUE_ID { 0x8A43FCFC, 0x348747AA, 0xBBFC7C0A, 0xC425DD0C }
 	TAG_STRUCT(
 		scenario_lightmap_lightprobe_value,
+		"scenario_lightmap_lightprobe_value",
 		"scenario_lightmap_lightprobe_value",
 		"s_scenario_lightmap_lightprobe_value",
 		SET_DEFAULT,
@@ -18198,6 +18524,7 @@ namespace halo3_tools {
 	#define SCENARIO_LIGHTMAP_AIRPROBE_VALUE_ID { 0x51851D4A, 0x54A64B69, 0xA6B0BA23, 0xAE40825D }
 	TAG_STRUCT(
 		scenario_lightmap_airprobe_value,
+		"scenario_lightmap_airprobe_value",
 		"scenario_lightmap_airprobe_value",
 		"s_scenario_lightmap_airprobe_value",
 		SET_DEFAULT,
@@ -18227,6 +18554,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_lightmap_scenery_probe_value,
 		"scenario_lightmap_scenery_probe_value",
+		"scenario_lightmap_scenery_probe_value",
 		"s_scenario_lightmap_scenery_probe_value",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18251,6 +18579,7 @@ namespace halo3_tools {
 	#define SCENARIO_LIGHTMAP_DEVICE_MACHINE_PROBE_VALUE_ID { 0x6AD4B1AA, 0xD6554D18, 0x9EB581E4, 0x6721828E }
 	TAG_STRUCT(
 		scenario_lightmap_device_machine_probe_value,
+		"scenario_lightmap_device_machine_probe_value",
 		"scenario_lightmap_device_machine_probe_value",
 		"s_scenario_lightmap_device_machine_probe_value",
 		SET_DEFAULT,
@@ -18277,6 +18606,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_lightmap_device_machine_probe_data_value,
 		"scenario_lightmap_device_machine_probe_data_value",
+		"scenario_lightmap_device_machine_probe_data_value",
 		"s_scenario_lightmap_device_machine_probe_data_value",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18297,6 +18627,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		mini_lightprobe_terms_struct_definition,
 		"mini_lightprobe_terms",
+		"mini_lightprobe_terms",
 		"s_mini_lightprobe_terms_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18310,6 +18641,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		compression_vectors_struct_definition,
 		"compression_vectors",
+		"compression_vectors",
 		"s_compression_vectors_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18322,6 +18654,7 @@ namespace halo3_tools {
 	#define SCENARIO_LIGHTMAP_MINI_LIGHTPROBE_VALUE_STRUCT_ID { 0x84021BFE, 0xFB224484, 0xA9768216, 0xB61042CE }
 	TAG_STRUCT(
 		scenario_lightmap_mini_lightprobe_value_struct,
+		"scenario_lightmap_mini_lightprobe_value_struct",
 		"scenario_lightmap_mini_lightprobe_value_struct",
 		"s_scenario_lightmap_mini_lightprobe_value_struct",
 		SET_DEFAULT,
@@ -18342,6 +18675,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_lightmap_pervertex_data,
 		"scenario_lightmap_pervertex_data",
+		"scenario_lightmap_pervertex_data",
 		"s_scenario_lightmap_pervertex_data",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18356,6 +18690,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_lightmap_cluster_data,
 		"scenario_lightmap_cluster_data",
+		"scenario_lightmap_cluster_data",
 		"s_scenario_lightmap_cluster_data",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18369,6 +18704,7 @@ namespace halo3_tools {
 	#define SCENARIO_LIGHTMAP_INSTANCE_DATA_ID { 0x02B9848C, 0x68E0495A, 0x8BAAD777, 0x64AF9F2F }
 	TAG_STRUCT(
 		scenario_lightmap_instance_data,
+		"scenario_lightmap_instance_data",
 		"scenario_lightmap_instance_data",
 		"s_scenario_lightmap_instance_data",
 		SET_DEFAULT,
@@ -18385,6 +18721,7 @@ namespace halo3_tools {
 	#define SCENARIO_LIGHTMAP_BSP_DATA_BLOCK_STRUCT_ID { 0x750464BE, 0xDF6E4973, 0x8B70B0DD, 0xDB7F6F3D }
 	TAG_STRUCT(
 		scenario_lightmap_bsp_data_block_struct,
+		"scenario_lightmap_bsp_data_block_struct",
 		"scenario_lightmap_bsp_data_block_struct",
 		"s_scenario_lightmap_bsp_data_block_struct",
 		SET_DEFAULT,
@@ -18425,6 +18762,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		obsolete_scenario_lightmap_bsp_data,
 		"obsolete_scenario_lightmap_bsp_data",
+		"obsolete_scenario_lightmap_bsp_data",
 		"s_obsolete_scenario_lightmap_bsp_data",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18448,6 +18786,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_lightmap_bsp_data_reference_block,
 		"scenario_lightmap_bsp_data_reference_block",
+		"scenario_lightmap_bsp_data_reference_block",
 		"s_scenario_lightmap_bsp_data_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18462,6 +18801,7 @@ namespace halo3_tools {
 	#define SCENARIO_LIGHTMAP_BLOCK_STRUCT_ID { 0xD871C433, 0xD2864E9F, 0xB2E8B245, 0x76BE82ED }
 	TAG_STRUCT(
 		scenario_lightmap_block_struct,
+		"scenario_lightmap_block_struct",
 		"scenario_lightmap_block_struct",
 		"s_scenario_lightmap_block_struct",
 		SET_DEFAULT,
@@ -18482,6 +18822,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		faux_data_block_data,
 		"faux_data_block_data",
+		"faux_data_block_data",
 		"s_faux_data_block_data",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18498,6 +18839,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		faux_data_cluster_data,
 		"faux_data_cluster_data",
+		"faux_data_cluster_data",
 		"s_faux_data_cluster_data",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18511,6 +18853,7 @@ namespace halo3_tools {
 	#define FAUX_DATA_INSTANCE_DATA_ID { 0x57E5396A, 0xEB4F46C2, 0x95CA97B1, 0xF74B0C19 }
 	TAG_STRUCT(
 		faux_data_instance_data,
+		"faux_data_instance_data",
 		"faux_data_instance_data",
 		"s_faux_data_instance_data",
 		SET_DEFAULT,
@@ -18526,6 +18869,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		faux_data_global_cluster_instance_data,
 		"faux_data_global_cluster_instance_data",
+		"faux_data_global_cluster_instance_data",
 		"s_faux_data_global_cluster_instance_data",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18538,6 +18882,7 @@ namespace halo3_tools {
 	#define FAUX_DATA_GLOBAL_CLUSTER_DATA_ID { 0xED726D9D, 0x318941F7, 0xA19D75F5, 0x08D374E3 }
 	TAG_STRUCT(
 		faux_data_global_cluster_data,
+		"faux_data_global_cluster_data",
 		"faux_data_global_cluster_data",
 		"s_faux_data_global_cluster_data",
 		SET_DEFAULT,
@@ -18554,6 +18899,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		faux_data_global_instance_definition_data,
 		"faux_data_global_instance_definition_data",
+		"faux_data_global_instance_definition_data",
 		"s_faux_data_global_instance_definition_data",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18566,6 +18912,7 @@ namespace halo3_tools {
 	#define FAUX_DATA_GLOBAL_INSTANCE_DATA_ID { 0x25FE37FA, 0xC4FE44F4, 0xBBD38762, 0x6C2D11DA }
 	TAG_STRUCT(
 		faux_data_global_instance_data,
+		"faux_data_global_instance_data",
 		"faux_data_global_instance_data",
 		"s_faux_data_global_instance_data",
 		SET_DEFAULT,
@@ -18586,6 +18933,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		faux_data_global_material_data,
 		"faux_data_global_material_data",
+		"faux_data_global_material_data",
 		"s_faux_data_global_material_data",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18601,6 +18949,7 @@ namespace halo3_tools {
 	#define FAUX_DATA_BSP_GLOBAL_DATA_ID { 0xC93B128A, 0xEB074D96, 0x844A5887, 0x99224109 }
 	TAG_STRUCT(
 		faux_data_bsp_global_data,
+		"faux_data_bsp_global_data",
 		"faux_data_bsp_global_data",
 		"s_faux_data_bsp_global_data",
 		SET_DEFAULT,
@@ -18623,6 +18972,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		faux_data_object_data,
 		"faux_data_object_data",
+		"faux_data_object_data",
 		"s_faux_data_object_data",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18639,6 +18989,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		faux_data_lightprobe_terms_struct_definition,
 		"faux_data_lightprobe_terms",
+		"faux_data_lightprobe_terms",
 		"s_faux_data_lightprobe_terms_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18651,6 +19002,7 @@ namespace halo3_tools {
 	#define FAUX_DATA_LIGHTPROBE_VALUE_ID { 0x5F273E46, 0xF6734D07, 0x95EB4910, 0x93415963 }
 	TAG_STRUCT(
 		faux_data_lightprobe_value,
+		"faux_data_lightprobe_value",
 		"faux_data_lightprobe_value",
 		"s_faux_data_lightprobe_value",
 		SET_DEFAULT,
@@ -18667,6 +19019,7 @@ namespace halo3_tools {
 	#define FAUX_DATA_AIRPROBE_LIGHTGROUP_VALUE_ID { 0x6BC1733B, 0x4DE84343, 0x8681D549, 0xAD75F6F9 }
 	TAG_STRUCT(
 		faux_data_airprobe_lightgroup_value,
+		"faux_data_airprobe_lightgroup_value",
 		"faux_data_airprobe_lightgroup_value",
 		"s_faux_data_airprobe_lightgroup_value",
 		SET_DEFAULT,
@@ -18686,6 +19039,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		faux_data_scenery_probe_lightgroup_value,
 		"faux_data_scenery_probe_lightgroup_value",
+		"faux_data_scenery_probe_lightgroup_value",
 		"s_faux_data_scenery_probe_lightgroup_value",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18700,6 +19054,7 @@ namespace halo3_tools {
 	#define FAUX_DATA_DEVICE_PROBE_LIGHTGROUP_VALUE_ID { 0xC4017D7A, 0x20A84117, 0xAE7594F0, 0x4D015DFE }
 	TAG_STRUCT(
 		faux_data_device_probe_lightgroup_value,
+		"faux_data_device_probe_lightgroup_value",
 		"faux_data_device_probe_lightgroup_value",
 		"s_faux_data_device_probe_lightgroup_value",
 		SET_DEFAULT,
@@ -18716,6 +19071,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		faux_data_device_probes_lightgroup_value,
 		"faux_data_device_probes_lightgroup_value",
+		"faux_data_device_probes_lightgroup_value",
 		"s_faux_data_device_probes_lightgroup_value",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18729,6 +19085,7 @@ namespace halo3_tools {
 	#define FAUX_DATA_LIGHTMAP_GROUP_DATA_ID { 0x84ADA0A8, 0x8C20429E, 0x8CC82CB3, 0xDA249FB2 }
 	TAG_STRUCT(
 		faux_data_lightmap_group_data,
+		"faux_data_lightmap_group_data",
 		"faux_data_lightmap_group_data",
 		"s_faux_data_lightmap_group_data",
 		SET_DEFAULT,
@@ -18755,6 +19112,7 @@ namespace halo3_tools {
 	#define FAUX_DATA_AIRPROBE_VALUE_ID { 0x839F6FD3, 0xFFE6453B, 0x9BC6DB4A, 0x228CA92C }
 	TAG_STRUCT(
 		faux_data_airprobe_value,
+		"faux_data_airprobe_value",
 		"faux_data_airprobe_value",
 		"s_faux_data_airprobe_value",
 		SET_DEFAULT,
@@ -18784,6 +19142,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		faux_data_scenery_probe_value,
 		"faux_data_scenery_probe_value",
+		"faux_data_scenery_probe_value",
 		"s_faux_data_scenery_probe_value",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18808,6 +19167,7 @@ namespace halo3_tools {
 	#define FAUX_DATA_DEVICE_MACHINE_PROBE_VALUE_ID { 0xF6B010E5, 0xDB634EA1, 0xBB267C72, 0x8747103D }
 	TAG_STRUCT(
 		faux_data_device_machine_probe_value,
+		"faux_data_device_machine_probe_value",
 		"faux_data_device_machine_probe_value",
 		"s_faux_data_device_machine_probe_value",
 		SET_DEFAULT,
@@ -18834,6 +19194,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		faux_data_device_machine_probes_value,
 		"faux_data_device_machine_probes_value",
+		"faux_data_device_machine_probes_value",
 		"s_faux_data_device_machine_probes_value",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18854,6 +19215,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_faux_data_struct_definition,
 		"scenario_faux_data_struct_definition",
+		"scenario_faux_data_struct_definition",
 		"s_scenario_faux_data_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18872,6 +19234,7 @@ namespace halo3_tools {
 	#define SCENARIO_FUNCTION_BLOCK_ID { 0x9B8F92BF, 0xE23F4122, 0xA8821B49, 0xAD8F29FB }
 	TAG_STRUCT(
 		scenario_function_block,
+		"scenario_function_block",
 		"scenario_function_block",
 		"s_scenario_function_block",
 		SET_DEFAULT,
@@ -18944,6 +19307,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_object_names_block,
 		"scenario_object_names_block",
+		"scenario_object_names_block",
 		"s_scenario_object_names_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -18958,6 +19322,7 @@ namespace halo3_tools {
 	#define SCENARIO_SOFT_CEILINGS_BLOCK_ID { 0xB256A9B1, 0x07994E39, 0x90B64DA5, 0x84259A58 }
 	TAG_STRUCT(
 		scenario_soft_ceilings_block,
+		"scenario_soft_ceilings_block",
 		"scenario_soft_ceilings_block",
 		"s_scenario_soft_ceilings_block",
 		SET_DEFAULT,
@@ -18993,6 +19358,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_profiles_block,
 		"scenario_profiles_block",
+		"scenario_profiles_block",
 		"s_scenario_profiles_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19022,6 +19388,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_players_block,
 		"scenario_players_block",
+		"scenario_players_block",
 		"s_scenario_players_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19050,6 +19417,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_kill_trigger_volumes_block,
 		"scenario_kill_trigger_volumes_block",
+		"scenario_kill_trigger_volumes_block",
 		"s_scenario_kill_trigger_volumes_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19063,6 +19431,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_safe_zone_trigger_volumes_block,
 		"scenario_safe_zone_trigger_volumes_block",
+		"scenario_safe_zone_trigger_volumes_block",
 		"s_scenario_safe_zone_trigger_volumes_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19075,6 +19444,7 @@ namespace halo3_tools {
 	#define SCENARIO_ZONE_SET_SWITCH_TRIGGER_VOLUME_BLOCK_ID { 0xDBC2A01B, 0xC1BC44B3, 0xAF8E24E1, 0xBC8618F1 }
 	TAG_STRUCT(
 		scenario_zone_set_switch_trigger_volume_block,
+		"scenario_zone_set_switch_trigger_volume_block",
 		"scenario_zone_set_switch_trigger_volume_block",
 		"s_scenario_zone_set_switch_trigger_volume_block",
 		SET_DEFAULT,
@@ -19098,6 +19468,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		player_spawn_influencer_block,
 		"player_spawn_influencer_block",
+		"player_spawn_influencer_block",
 		"s_player_spawn_influencer_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19114,6 +19485,7 @@ namespace halo3_tools {
 	#define NETGAME_GOAL_INFLUENCER_BLOCK_ID { 0xD5D098D7, 0x963E4017, 0x9E289E11, 0x9EC4978D }
 	TAG_STRUCT(
 		netgame_goal_influencer_block,
+		"netgame_goal_influencer_block",
 		"netgame_goal_influencer_block",
 		"s_netgame_goal_influencer_block",
 		SET_DEFAULT,
@@ -19132,6 +19504,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_decal_palette_block,
 		"scenario_decal_palette_block",
+		"scenario_decal_palette_block",
 		"s_scenario_decal_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19146,6 +19519,7 @@ namespace halo3_tools {
 	#define SCENARIO_DECALS_BLOCK_ID { 0x2F188AAB, 0x722045CB, 0xBB8315AD, 0xA352D120 }
 	TAG_STRUCT(
 		scenario_decals_block,
+		"scenario_decals_block",
 		"scenario_decals_block",
 		"s_scenario_decals_block",
 		SET_DEFAULT,
@@ -19167,6 +19541,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_detail_object_collection_palette_block,
 		"scenario_detail_object_collection_palette_block",
+		"scenario_detail_object_collection_palette_block",
 		"s_scenario_detail_object_collection_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19182,6 +19557,7 @@ namespace halo3_tools {
 	#define SCENARIO_CUTSCENE_FLAG_BLOCK_ID { 0xE5E8BB54, 0x69394856, 0xBCAC9DB6, 0x2C324EB0 }
 	TAG_STRUCT(
 		scenario_cutscene_flag_block,
+		"scenario_cutscene_flag_block",
 		"scenario_cutscene_flag_block",
 		"s_scenario_cutscene_flag_block",
 		SET_DEFAULT,
@@ -19200,6 +19576,7 @@ namespace halo3_tools {
 	#define SCENARIO_CUTSCENE_CAMERA_POINT_BLOCK_ID { 0xC38639D4, 0x24BA4407, 0xB58BCDD4, 0xF728D8DC }
 	TAG_STRUCT(
 		scenario_cutscene_camera_point_block,
+		"scenario_cutscene_camera_point_block",
 		"scenario_cutscene_camera_point_block",
 		"s_scenario_cutscene_camera_point_block",
 		SET_DEFAULT,
@@ -19237,6 +19614,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_sky_reference_block,
 		"scenario_sky_reference_block",
+		"scenario_sky_reference_block",
 		"s_scenario_sky_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19253,6 +19631,7 @@ namespace halo3_tools {
 	#define SCENARIO_STRUCTURE_BSP_REFERENCE_BLOCK_ID { 0xE6CC8C8B, 0x3B6B4E10, 0x897CB89E, 0x1FA22862 }
 	TAG_STRUCT(
 		scenario_structure_bsp_reference_block,
+		"scenario_structure_bsp_reference_block",
 		"scenario_structure_bsp_reference_block",
 		"s_scenario_structure_bsp_reference_block",
 		SET_DEFAULT,
@@ -19322,6 +19701,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		editor_comment_block,
 		"editor_comment_block",
+		"editor_comment_block",
 		"s_editor_comment_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19344,6 +19724,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		dont_use_me_scenario_environment_object_block,
 		"dont_use_me_scenario_environment_object_block",
+		"dont_use_me_scenario_environment_object_block",
 		"s_dont_use_me_scenario_environment_object_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19364,6 +19745,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_cluster_background_sounds_block,
 		"scenario_cluster_background_sounds_block",
+		"scenario_cluster_background_sounds_block",
 		"s_scenario_cluster_background_sounds_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19377,6 +19759,7 @@ namespace halo3_tools {
 	#define SCENARIO_CLUSTER_ACOUSTICS_BLOCK_STRUCT_ID { 0xBF96DEDB, 0xC56E4461, 0x8A27F764, 0x81157DE4 }
 	TAG_STRUCT(
 		scenario_cluster_acoustics_block_struct,
+		"scenario_cluster_acoustics_block_struct",
 		"scenario_cluster_acoustics_block_struct",
 		"s_scenario_cluster_acoustics_block_struct",
 		SET_DEFAULT,
@@ -19392,6 +19775,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_cluster_sound_environments_block,
 		"scenario_cluster_sound_environments_block",
+		"scenario_cluster_sound_environments_block",
 		"s_scenario_cluster_sound_environments_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19405,6 +19789,7 @@ namespace halo3_tools {
 	#define SCENARIO_CLUSTER_WEATHER_PROPERTIES_BLOCK_ID { 0x056A9AF5, 0x81FB408D, 0xA3C9B738, 0x66D4B000 }
 	TAG_STRUCT(
 		scenario_cluster_weather_properties_block,
+		"scenario_cluster_weather_properties_block",
 		"scenario_cluster_weather_properties_block",
 		"s_scenario_cluster_weather_properties_block",
 		SET_DEFAULT,
@@ -19420,6 +19805,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_cluster_atmosphere_properties_block,
 		"scenario_cluster_atmosphere_properties_block",
+		"scenario_cluster_atmosphere_properties_block",
 		"s_scenario_cluster_atmosphere_properties_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19433,6 +19819,7 @@ namespace halo3_tools {
 	#define SCENARIO_CLUSTER_CAMERA_FX_PROPERTIES_BLOCK_ID { 0x04C3DEFF, 0xE1014E4F, 0x95C9EC20, 0x1B0C0C04 }
 	TAG_STRUCT(
 		scenario_cluster_camera_fx_properties_block,
+		"scenario_cluster_camera_fx_properties_block",
 		"scenario_cluster_camera_fx_properties_block",
 		"s_scenario_cluster_camera_fx_properties_block",
 		SET_DEFAULT,
@@ -19448,6 +19835,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_cluster_points_block,
 		"scenario_cluster_points_block",
+		"scenario_cluster_points_block",
 		"s_scenario_cluster_points_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19460,6 +19848,7 @@ namespace halo3_tools {
 	#define SCENARIO_CLUSTER_DATA_BLOCK_ID { 0x2C52EDFB, 0xACFE4C9E, 0xAA66C6ED, 0xD4B370C9 }
 	TAG_STRUCT(
 		scenario_cluster_data_block,
+		"scenario_cluster_data_block",
 		"scenario_cluster_data_block",
 		"s_scenario_cluster_data_block",
 		SET_DEFAULT,
@@ -19481,6 +19870,7 @@ namespace halo3_tools {
 	#define DYNAMIC_SPAWN_ZONE_OVERLOAD_BLOCK_ID { 0x90DFBA93, 0xFA034215, 0x83FFAC3E, 0x002083EE }
 	TAG_STRUCT(
 		dynamic_spawn_zone_overload_block,
+		"dynamic_spawn_zone_overload_block",
 		"dynamic_spawn_zone_overload_block",
 		"s_dynamic_spawn_zone_overload_block",
 		SET_DEFAULT,
@@ -19515,6 +19905,7 @@ namespace halo3_tools {
 	#define STATIC_SPAWN_ZONE_DATA_STRUCT_ID { 0x85521D54, 0x7D0C4412, 0xBDB06B6A, 0xBC9CF25A }
 	TAG_STRUCT(
 		static_spawn_zone_data_struct,
+		"static_spawn_zone_data_struct",
 		"static_spawn_zone_data_struct",
 		"s_static_spawn_zone_data_struct",
 		SET_DEFAULT,
@@ -19569,6 +19960,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		static_spawn_zone_block,
 		"static_spawn_zone_block",
+		"static_spawn_zone_block",
 		"s_static_spawn_zone_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19590,6 +19982,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_spawn_data_block,
 		"scenario_spawn_data_block",
+		"scenario_spawn_data_block",
 		"s_scenario_spawn_data_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19609,6 +20002,7 @@ namespace halo3_tools {
 	#define SCENARIO_INTERPOLATOR_BLOCK_ID { 0x2FA4AF3D, 0x658E4C1D, 0x8B561159, 0xEE9A1051 }
 	TAG_STRUCT(
 		scenario_interpolator_block,
+		"interpolators",
 		"scenario_interpolator_block",
 		"s_scenario_interpolator_block",
 		SET_DEFAULT,
@@ -19627,6 +20021,7 @@ namespace halo3_tools {
 	#define SCENARIO_SCREEN_EFFECT_REFERENCE_BLOCK_ID { 0x4306B484, 0x346D468E, 0xA0819011, 0x270B0D88 }
 	TAG_STRUCT(
 		scenario_screen_effect_reference_block,
+		"screen effect reference",
 		"scenario_screen_effect_reference_block",
 		"s_scenario_screen_effect_reference_block",
 		SET_DEFAULT,
@@ -19648,6 +20043,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		object_salt_storage_array_struct_definition,
 		"object_salt_storage_array",
+		"object_salt_storage_array",
 		"s_object_salt_storage_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19660,6 +20056,7 @@ namespace halo3_tools {
 	#define SCENARIO_ZONE_SET_CLUSTER_PVS_BIT_VECTOR_BLOCK_ID { 0x91455EA9, 0x29C14710, 0x9953A70B, 0x26677B16 }
 	TAG_STRUCT(
 		scenario_zone_set_cluster_pvs_bit_vector_block,
+		"scenario_zone_set_cluster_pvs_bit_vector_block",
 		"scenario_zone_set_cluster_pvs_bit_vector_block",
 		"s_scenario_zone_set_cluster_pvs_bit_vector_block",
 		SET_DEFAULT,
@@ -19674,6 +20071,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_zone_set_bsp_bits_block,
 		"scenario_zone_set_bsp_bits_block",
+		"scenario_zone_set_bsp_bits_block",
 		"s_scenario_zone_set_bsp_bits_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19686,6 +20084,7 @@ namespace halo3_tools {
 	#define SCENARIO_ZONE_SET_CLUSTER_PVS_BLOCK_ID { 0x6ACD70D4, 0x2B484AE0, 0xA1A1A7CB, 0x597648C4 }
 	TAG_STRUCT(
 		scenario_zone_set_cluster_pvs_block,
+		"scenario_zone_set_cluster_pvs_block",
 		"scenario_zone_set_cluster_pvs_block",
 		"s_scenario_zone_set_cluster_pvs_block",
 		SET_DEFAULT,
@@ -19700,6 +20099,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_zone_set_cluster_sky_indices_block,
 		"scenario_zone_set_cluster_sky_indices_block",
+		"scenario_zone_set_cluster_sky_indices_block",
 		"s_scenario_zone_set_cluster_sky_indices_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19712,6 +20112,7 @@ namespace halo3_tools {
 	#define SCENARIO_ZONE_SET_MULTIPLE_SKIES_VISIBLE_BIT_VECTOR_BLOCK_ID { 0x0314FB21, 0x66364916, 0xA82696F3, 0x2BE7B5C5 }
 	TAG_STRUCT(
 		scenario_zone_set_multiple_skies_visible_bit_vector_block,
+		"scenario_zone_set_multiple_skies_visible_bit_vector_block",
 		"scenario_zone_set_multiple_skies_visible_bit_vector_block",
 		"s_scenario_zone_set_multiple_skies_visible_bit_vector_block",
 		SET_DEFAULT,
@@ -19726,6 +20127,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cluster_audio_bit_vector_block,
 		"cluster_audio_bit_vector_block",
+		"cluster_audio_bit_vector_block",
 		"s_cluster_audio_bit_vector_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19738,6 +20140,7 @@ namespace halo3_tools {
 	#define CLUSTER_AUDIO_CLUSTER_INDICES_BLOCK_ID { 0xB84E32B5, 0xA96B458C, 0xA10013DF, 0xED58EB05 }
 	TAG_STRUCT(
 		cluster_audio_cluster_indices_block,
+		"cluster_audio_cluster_indices_block",
 		"cluster_audio_cluster_indices_block",
 		"s_cluster_audio_cluster_indices_block",
 		SET_DEFAULT,
@@ -19752,6 +20155,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cluster_audio_cluster_neighbors_block,
 		"cluster_audio_cluster_neighbors_block",
+		"cluster_audio_cluster_neighbors_block",
 		"s_cluster_audio_cluster_neighbors_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19764,6 +20168,7 @@ namespace halo3_tools {
 	#define SCENARIO_ZONE_SET_BSP_PVS_BLOCK_ID { 0xFF83875C, 0xA9F04229, 0xA769E3B0, 0xE36AB1A8 }
 	TAG_STRUCT(
 		scenario_zone_set_bsp_pvs_block,
+		"scenario_zone_set_bsp_pvs_block",
 		"scenario_zone_set_bsp_pvs_block",
 		"s_scenario_zone_set_bsp_pvs_block",
 		SET_DEFAULT,
@@ -19784,6 +20189,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_zone_set_bsp_checksum_block,
 		"scenario_zone_set_bsp_checksum_block",
+		"scenario_zone_set_bsp_checksum_block",
 		"s_scenario_zone_set_bsp_checksum_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19796,6 +20202,7 @@ namespace halo3_tools {
 	#define SCENARIO_ZONE_SET_PVS_BLOCK_ID { 0x1B4A2C99, 0x8ECA4B38, 0x8A4A2436, 0x5888158E }
 	TAG_STRUCT(
 		scenario_zone_set_pvs_block,
+		"scenario_zone_set_pvs_block",
 		"scenario_zone_set_pvs_block",
 		"s_scenario_zone_set_pvs_block",
 		SET_DEFAULT,
@@ -19820,6 +20227,7 @@ namespace halo3_tools {
 	#define SCENARIO_ZONE_SET_BLOCK_ID { 0x49565D10, 0xEFBE4EE6, 0xB18E7C6D, 0x68053DDB }
 	TAG_STRUCT(
 		scenario_zone_set_block,
+		"scenario_zone_set_block",
 		"scenario_zone_set_block",
 		"s_scenario_zone_set_block",
 		SET_DEFAULT,
@@ -19850,6 +20258,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_lighting_zone_set_block,
 		"scenario_lighting_zone_set_block",
+		"scenario_lighting_zone_set_block",
 		"s_scenario_lighting_zone_set_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19865,6 +20274,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_cinematic_lighting_palette_block,
 		"scenario_cinematic_lighting_palette_block",
+		"scenario_cinematic_lighting_palette_block",
 		"s_scenario_cinematic_lighting_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19879,6 +20289,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_cortana_effect_block,
 		"scenario_cortana_effect_block",
+		"scenario_cortana_effect_block",
 		"s_scenario_cortana_effect_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19891,6 +20302,7 @@ namespace halo3_tools {
 	#define SCENARIO_AIRPROBES_BLOCK_ID { 0x7F6345AD, 0x5BD4425F, 0x8DEEF6ED, 0xF522A677 }
 	TAG_STRUCT(
 		scenario_airprobes_block,
+		"scenario_airprobes_block",
 		"scenario_airprobes_block",
 		"s_scenario_airprobes_block",
 		SET_DEFAULT,
@@ -19908,6 +20320,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_budget_references_block,
 		"scenario_budget_references_block",
+		"scenario_budget_references_block",
 		"s_scenario_budget_references_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19923,6 +20336,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_required_resource_struct_definition,
 		"scenario_required_resource_struct_definition",
+		"scenario_required_resource_struct_definition",
 		"s_scenario_required_resource_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -19935,6 +20349,7 @@ namespace halo3_tools {
 	#define SCENARIO_SCAVENGER_HUNT_OBJECT_BLOCK_ID { 0x236E8B7D, 0x9D0D45DE, 0x9CEAEB74, 0xFEDA3383 }
 	TAG_STRUCT(
 		scenario_scavenger_hunt_object_block,
+		"scenario_scavenger_hunt_object_block",
 		"scenario_scavenger_hunt_object_block",
 		"s_scenario_scavenger_hunt_object_block",
 		SET_DEFAULT,
@@ -19950,6 +20365,7 @@ namespace halo3_tools {
 	#define SCENARIO_STRUCT_DEFINITION_ID { 0xEFAE882E, 0x0DC94D1D, 0xA358CB6A, 0x34875D40 }
 	TAG_STRUCT(
 		scenario_struct_definition,
+		"scenario_struct_definition",
 		"scenario_struct_definition",
 		"s_scenario_struct_definition",
 		SET_DEFAULT,
@@ -20155,6 +20571,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_trigger_volume_struct,
 		"scenario_trigger_volume_struct",
+		"scenario_trigger_volume_struct",
 		"s_scenario_trigger_volume_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -20178,6 +20595,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		screen_effect_scalar_function_struct,
 		"screen_effect_scalar_function_struct",
+		"screen_effect_scalar_function_struct",
 		"s_screen_effect_scalar_function_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -20191,6 +20609,7 @@ namespace halo3_tools {
 	#define SINGLE_SCREEN_EFFECT_ID { 0x2E559B36, 0x4E3546A7, 0xA1AE1E29, 0x90AA239F }
 	TAG_STRUCT(
 		single_screen_effect,
+		"single_screen_effect",
 		"single_screen_effect",
 		"s_single_screen_effect",
 		SET_DEFAULT,
@@ -20234,6 +20653,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		area_screen_effect_struct_definition,
 		"area_screen_effect_struct_definition",
+		"area_screen_effect_struct_definition",
 		"s_area_screen_effect_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -20246,6 +20666,7 @@ namespace halo3_tools {
 	#define ATMOSPHERE_SETTING_BLOCK_ID { 0x05D9F272, 0xDCED4E3D, 0x8346BE0C, 0x45020E2C }
 	TAG_STRUCT(
 		atmosphere_setting_block,
+		"atmosphere_setting_block",
 		"atmosphere_setting_block",
 		"s_atmosphere_setting_block",
 		SET_DEFAULT,
@@ -20300,6 +20721,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		underwater_setting_block,
 		"underwater_setting_block",
+		"underwater_setting_block",
 		"s_underwater_setting_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -20314,6 +20736,7 @@ namespace halo3_tools {
 	#define SKY_ATM_PARAMETERS_STRUCT_DEFINITION_ID { 0xE6F253EA, 0x07C04F2F, 0xBB4AB73C, 0x7089652F }
 	TAG_STRUCT(
 		sky_atm_parameters_struct_definition,
+		"sky_atm_parameters_struct_definition",
 		"sky_atm_parameters_struct_definition",
 		"s_sky_atm_parameters_struct_definition",
 		SET_DEFAULT,
@@ -20357,6 +20780,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cinematic_sh_light_block,
 		"cinematic_sh_light_block",
+		"cinematic_sh_light_block",
 		"s_cinematic_sh_light_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -20380,6 +20804,7 @@ namespace halo3_tools {
 	#define CINEMATIC_DYNAMIC_LIGHT_BLOCK_ID { 0x6D9568FD, 0x448D4F36, 0x9C5940F5, 0x15B39D09 }
 	TAG_STRUCT(
 		cinematic_dynamic_light_block,
+		"cinematic_dynamic_light_block",
 		"cinematic_dynamic_light_block",
 		"s_cinematic_dynamic_light_block",
 		SET_DEFAULT,
@@ -20408,6 +20833,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		new_cinematic_lighting_struct_definition,
 		"new_cinematic_lighting_struct_definition",
+		"new_cinematic_lighting_struct_definition",
 		"s_new_cinematic_lighting_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -20422,6 +20848,7 @@ namespace halo3_tools {
 	#define SHIELD_IMPACT_STRUCT_DEFINITION_ID { 0x0C627936, 0x3C6642FA, 0xAD2D41FD, 0x3F729B2F }
 	TAG_STRUCT(
 		shield_impact_struct_definition,
+		"shield_impact_struct_definition",
 		"shield_impact_struct_definition",
 		"s_shield_impact_struct_definition",
 		SET_DEFAULT,
@@ -20459,6 +20886,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		wind_scalar_function_struct,
 		"wind_scalar_function_struct",
+		"wind_scalar_function_struct",
 		"s_wind_scalar_function_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -20472,6 +20900,7 @@ namespace halo3_tools {
 	#define WIND_BLOCK_ID { 0x4F54D275, 0x39034545, 0xA099DD8C, 0xB8647BC2 }
 	TAG_STRUCT(
 		wind_block,
+		"wind_block",
 		"wind_block",
 		"s_wind_block",
 		SET_DEFAULT,
@@ -20493,6 +20922,7 @@ namespace halo3_tools {
 	#define SOUND_ENVIRONMENT_GROUP_STRUCT_DEFINITION_ID { 0x4CD177FC, 0x8F1042D4, 0xBED5960A, 0x5BFBBABB }
 	TAG_STRUCT(
 		sound_environment_group_struct_definition,
+		"sound_environment",
 		"sound_environment_group",
 		"s_sound_environment_group_struct_definition",
 		SET_DEFAULT,
@@ -20521,6 +20951,7 @@ namespace halo3_tools {
 	#define LENS_FLARE_REFLECTION_BLOCK_ID { 0xFBC30377, 0x4BFC46CA, 0x879F8A99, 0xBC0D240A }
 	TAG_STRUCT(
 		lens_flare_reflection_block,
+		"reflection",
 		"lens_flare_reflection_block",
 		"s_lens_flare_reflection_block",
 		SET_DEFAULT,
@@ -20570,6 +21001,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		lens_flare_scalar_animation_block,
 		"lens_flare_scalar_animation_block",
+		"lens_flare_scalar_animation_block",
 		"s_lens_flare_scalar_animation_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -20582,6 +21014,7 @@ namespace halo3_tools {
 	#define LENS_FLARE_COLOR_FUNCTION_STRUCT_ID { 0x3DBB7F1A, 0x54F94FD0, 0x9D24DA91, 0x297A3078 }
 	TAG_STRUCT(
 		lens_flare_color_function_struct,
+		"lens_flare_color_function_struct",
 		"lens_flare_color_function_struct",
 		"s_lens_flare_color_function_struct",
 		SET_DEFAULT,
@@ -20610,6 +21043,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		lens_flare_color_animation_block,
 		"lens_flare_color_animation_block",
+		"lens_flare_color_animation_block",
 		"s_lens_flare_color_animation_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -20622,6 +21056,7 @@ namespace halo3_tools {
 	#define LENS_FLARE_STRUCT_DEFINITION_ID { 0xDA19E8C2, 0xEFC54593, 0xAB4A3192, 0x74E25FCB }
 	TAG_STRUCT(
 		lens_flare_struct_definition,
+		"lens_flare_struct_definition",
 		"lens_flare_struct_definition",
 		"s_lens_flare_struct_definition",
 		SET_DEFAULT,
@@ -20729,6 +21164,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		planar_fog_patchy_fog_block,
 		"planar_fog_patchy_fog_block",
+		"planar_fog_patchy_fog_block",
 		"s_planar_fog_patchy_fog_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -20750,6 +21186,7 @@ namespace halo3_tools {
 	#define PLANAR_FOG_STRUCT_DEFINITION_ID { 0xA42E0FDD, 0xFDE04C16, 0xB5E02990, 0xFBF0B49D }
 	TAG_STRUCT(
 		planar_fog_struct_definition,
+		"planar_fog_struct_definition",
 		"planar_fog_struct_definition",
 		"s_planar_fog_struct_definition",
 		SET_DEFAULT,
@@ -20806,6 +21243,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		patchy_fog_struct_definition,
 		"patchy_fog_struct_definition",
+		"patchy_fog_struct_definition",
 		"s_patchy_fog_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -20852,6 +21290,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		decal_definition_block,
 		"decal_definition_block",
+		"decal_definition_block",
 		"s_decal_definition_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -20887,6 +21326,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		decal_system_struct_definition,
 		"decal_system_struct_definition",
+		"decal_system_struct_definition",
 		"s_decal_system_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -20919,6 +21359,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_description_block,
 		"scenario_description_block",
+		"scenario_description_block",
 		"s_scenario_description_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -20936,6 +21377,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		multiplayer_scenario_description_struct_definition,
 		"multiplayer_scenario_description_struct_definition",
+		"multiplayer_scenario_description_struct_definition",
 		"s_multiplayer_scenario_description_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -20948,6 +21390,7 @@ namespace halo3_tools {
 	#define DETAIL_OBJECT_TYPE_BLOCK_ID { 0xAD1BA8EC, 0x9D6D4B81, 0x941E1C74, 0x6B46F40A }
 	TAG_STRUCT(
 		detail_object_type_block,
+		"detail_object_type_block",
 		"detail_object_type_block",
 		"s_detail_object_type_block",
 		SET_DEFAULT,
@@ -20984,6 +21427,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		detail_object_collection_struct_definition,
 		"detail_object_collection_struct_definition",
+		"detail_object_collection_struct_definition",
 		"s_detail_object_collection_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21010,6 +21454,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		global_detail_object_cells_block,
 		"global_detail_object_cells_block",
+		"global_detail_object_cells_block",
 		"s_global_detail_object_cells_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21030,6 +21475,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		global_detail_object_block,
 		"global_detail_object_block",
+		"global_detail_object_block",
 		"s_global_detail_object_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21047,6 +21493,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		global_detail_object_counts_block,
 		"global_detail_object_counts_block",
+		"global_detail_object_counts_block",
 		"s_global_detail_object_counts_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21059,6 +21506,7 @@ namespace halo3_tools {
 	#define GLOBAL_Z_REFERENCE_VECTOR_BLOCK_ID { 0x2BDA3AB4, 0x28434572, 0xA6BF6C69, 0x72508C99 }
 	TAG_STRUCT(
 		global_z_reference_vector_block,
+		"global_z_reference_vector_block",
 		"global_z_reference_vector_block",
 		"s_global_z_reference_vector_block",
 		SET_DEFAULT,
@@ -21076,6 +21524,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		mouse_cursor_bitmap_reference_block,
 		"mouse_cursor_bitmap_reference_block",
+		"mouse_cursor_bitmap_reference_block",
 		"s_mouse_cursor_bitmap_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21088,6 +21537,7 @@ namespace halo3_tools {
 	#define MOUSE_CURSOR_DEFINITION_STRUCT_DEFINITION_ID { 0x03387346, 0x82F89A22, 0xE928B22A, 0xBBAF8924 }
 	TAG_STRUCT(
 		mouse_cursor_definition_struct_definition,
+		"mouse_cursor_definition_struct_definition",
 		"mouse_cursor_definition_struct_definition",
 		"s_mouse_cursor_definition_struct_definition",
 		SET_DEFAULT,
@@ -21103,6 +21553,7 @@ namespace halo3_tools {
 	#define OLD_MATERIAL_EFFECT_MATERIAL_BLOCK_ID { 0x4F36A27D, 0x89FD4598, 0x8E5E3AD5, 0xF3F90ADA }
 	TAG_STRUCT(
 		old_material_effect_material_block,
+		"old_material_effect_material_block",
 		"old_material_effect_material_block",
 		"s_old_material_effect_material_block",
 		SET_DEFAULT,
@@ -21139,6 +21590,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		material_effect_block_v2,
 		"material_effect_block_v2",
+		"material_effect_block_v2",
 		"s_material_effect_block_v2",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21154,6 +21606,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		material_effects_block_struct,
 		"material_effects_block_struct",
+		"material_effects_block_struct",
 		"s_material_effects_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21167,6 +21620,7 @@ namespace halo3_tools {
 	#define MATERIAL_EFFECT_MATERIAL_BLOCK_ID { 0x8FCE6765, 0x945C435C, 0x9241DE33, 0xDC8ED887 }
 	TAG_STRUCT(
 		material_effect_material_block,
+		"material_effect_material_block",
 		"material_effect_material_block",
 		"s_material_effect_material_block",
 		SET_DEFAULT,
@@ -21194,6 +21648,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_resource_layer_identifier_struct,
 		"scenario_resource_layer_identifier_struct",
+		"scenario_resource_layer_identifier_struct",
 		"s_scenario_resource_layer_identifier_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21206,6 +21661,7 @@ namespace halo3_tools {
 	#define SCENARIO_SCENERY_RESOURCE_STRUCT_DEFINITION_ID { 0x83575E2A, 0xA4174E8E, 0x9D5936DF, 0x0C265747 }
 	TAG_STRUCT(
 		scenario_scenery_resource_struct_definition,
+		"scenario_scenery_resource_struct_definition",
 		"scenario_scenery_resource_struct_definition",
 		"s_scenario_scenery_resource_struct_definition",
 		SET_DEFAULT,
@@ -21230,6 +21686,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_bipeds_resource_struct_definition,
 		"scenario_bipeds_resource_struct_definition",
+		"scenario_bipeds_resource_struct_definition",
 		"s_scenario_bipeds_resource_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21249,6 +21706,7 @@ namespace halo3_tools {
 	#define SCENARIO_VEHICLES_RESOURCE_STRUCT_DEFINITION_ID { 0xB2122BA7, 0x3E684441, 0xAFBB65B3, 0x7EE745D9 }
 	TAG_STRUCT(
 		scenario_vehicles_resource_struct_definition,
+		"scenario_vehicles_resource_struct_definition",
 		"scenario_vehicles_resource_struct_definition",
 		"s_scenario_vehicles_resource_struct_definition",
 		SET_DEFAULT,
@@ -21270,6 +21728,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_equipment_resource_struct_definition,
 		"scenario_equipment_resource_struct_definition",
+		"scenario_equipment_resource_struct_definition",
 		"s_scenario_equipment_resource_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21289,6 +21748,7 @@ namespace halo3_tools {
 	#define SCENARIO_WEAPONS_RESOURCE_STRUCT_DEFINITION_ID { 0x967807C0, 0x44984362, 0xB2A17DAC, 0x6F86E5C2 }
 	TAG_STRUCT(
 		scenario_weapons_resource_struct_definition,
+		"scenario_weapons_resource_struct_definition",
 		"scenario_weapons_resource_struct_definition",
 		"s_scenario_weapons_resource_struct_definition",
 		SET_DEFAULT,
@@ -21310,6 +21770,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_sound_scenery_resource_struct_definition,
 		"scenario_sound_scenery_resource_struct_definition",
+		"scenario_sound_scenery_resource_struct_definition",
 		"s_scenario_sound_scenery_resource_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21330,6 +21791,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_lights_resource_struct_definition,
 		"scenario_lights_resource_struct_definition",
+		"scenario_lights_resource_struct_definition",
 		"s_scenario_lights_resource_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21349,6 +21811,7 @@ namespace halo3_tools {
 	#define SCENARIO_DEVICES_RESOURCE_STRUCT_DEFINITION_ID { 0xC4AEFD3D, 0xB8E94412, 0xAA9948D1, 0xC793E826 }
 	TAG_STRUCT(
 		scenario_devices_resource_struct_definition,
+		"scenario_devices_resource_struct_definition",
 		"scenario_devices_resource_struct_definition",
 		"s_scenario_devices_resource_struct_definition",
 		SET_DEFAULT,
@@ -21377,6 +21840,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_effect_scenery_resource_struct_definition,
 		"scenario_effect_scenery_resource_struct_definition",
+		"scenario_effect_scenery_resource_struct_definition",
 		"s_scenario_effect_scenery_resource_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21397,6 +21861,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_decals_resource_struct_definition,
 		"scenario_decals_resource_struct_definition",
+		"scenario_decals_resource_struct_definition",
 		"s_scenario_decals_resource_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21412,6 +21877,7 @@ namespace halo3_tools {
 	#define SCENARIO_CINEMATICS_RESOURCE_STRUCT_DEFINITION_ID { 0x3465F018, 0x826144C4, 0x932F5DFC, 0xD3E086C6 }
 	TAG_STRUCT(
 		scenario_cinematics_resource_struct_definition,
+		"scenario_cinematics_resource_struct_definition",
 		"scenario_cinematics_resource_struct_definition",
 		"s_scenario_cinematics_resource_struct_definition",
 		SET_DEFAULT,
@@ -21430,6 +21896,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_trigger_volumes_resource_struct_definition,
 		"scenario_trigger_volumes_resource_struct_definition",
+		"scenario_trigger_volumes_resource_struct_definition",
 		"s_scenario_trigger_volumes_resource_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21445,6 +21912,7 @@ namespace halo3_tools {
 	#define SCENARIO_CLUSTER_DATA_RESOURCE_STRUCT_DEFINITION_ID { 0xB7877AD3, 0x8B904A87, 0xBC400966, 0xCB3DFE3E }
 	TAG_STRUCT(
 		scenario_cluster_data_resource_struct_definition,
+		"scenario_cluster_data_resource_struct_definition",
 		"scenario_cluster_data_resource_struct_definition",
 		"s_scenario_cluster_data_resource_struct_definition",
 		SET_DEFAULT,
@@ -21464,6 +21932,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_sky_references_resource_struct_definition,
 		"scenario_sky_references_resource_struct_definition",
+		"scenario_sky_references_resource_struct_definition",
 		"s_scenario_sky_references_resource_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21478,6 +21947,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_cubemap_resource_struct_definition,
 		"scenario_cubemap_resource_struct_definition",
+		"scenario_cubemap_resource_struct_definition",
 		"s_scenario_cubemap_resource_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21490,6 +21960,7 @@ namespace halo3_tools {
 	#define SCENARIO_AI_RESOURCE_STRUCT_DEFINITION_ID { 0x5F5F4D72, 0x3A654A18, 0x9C0B65E1, 0x2C92E297 }
 	TAG_STRUCT(
 		scenario_ai_resource_struct_definition,
+		"scenario_ai_resource_struct_definition",
 		"scenario_ai_resource_struct_definition",
 		"s_scenario_ai_resource_struct_definition",
 		SET_DEFAULT,
@@ -21522,6 +21993,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_comments_resource_struct_definition,
 		"scenario_comments_resource_struct_definition",
+		"scenario_comments_resource_struct_definition",
 		"s_scenario_comments_resource_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21534,6 +22006,7 @@ namespace halo3_tools {
 	#define SCENARIO_CREATURE_RESOURCE_STRUCT_DEFINITION_ID { 0x653278AF, 0xD8CF4819, 0x8576EFB0, 0x3E621A27 }
 	TAG_STRUCT(
 		scenario_creature_resource_struct_definition,
+		"scenario_creature_resource_struct_definition",
 		"scenario_creature_resource_struct_definition",
 		"s_scenario_creature_resource_struct_definition",
 		SET_DEFAULT,
@@ -21555,6 +22028,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_decorators_resource_struct_definition,
 		"scenario_decorators_resource_struct_definition",
+		"scenario_decorators_resource_struct_definition",
 		"s_scenario_decorators_resource_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21570,6 +22044,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_structure_lighting_resource_struct_definition,
 		"scenario_structure_lighting_resource_struct_definition",
+		"scenario_structure_lighting_resource_struct_definition",
 		"s_scenario_structure_lighting_resource_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21582,6 +22057,7 @@ namespace halo3_tools {
 	#define SCENARIO_HS_SOURCE_REFERENCE_BLOCK_ID { 0x8CF36B3A, 0x8C224FCC, 0xA38A9B83, 0xCEC80ED2 }
 	TAG_STRUCT(
 		scenario_hs_source_reference_block,
+		"scenario_hs_source_reference_block",
 		"scenario_hs_source_reference_block",
 		"s_scenario_hs_source_reference_block",
 		SET_DEFAULT,
@@ -21598,6 +22074,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_ai_resource_reference_block,
 		"scenario_ai_resource_reference_block",
+		"scenario_ai_resource_reference_block",
 		"s_scenario_ai_resource_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21613,6 +22090,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_resource_reference_block,
 		"scenario_resource_reference_block",
+		"scenario_resource_reference_block",
 		"s_scenario_resource_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21627,6 +22105,7 @@ namespace halo3_tools {
 	#define SCENARIO_SPLIT_RESOURCES_BLOCK_STRUCT_ID { 0xFCE6866C, 0xDA914821, 0x80CF9EC5, 0xF526F280 }
 	TAG_STRUCT(
 		scenario_split_resources_block_struct,
+		"scenario_split_resources_block_struct",
 		"scenario_split_resources_block_struct",
 		"s_scenario_split_resources_block_struct",
 		SET_DEFAULT,
@@ -21702,6 +22181,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_resources_block_struct,
 		"scenario_resources_block_struct",
+		"scenario_resources_block_struct",
 		"s_scenario_resources_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21723,6 +22203,7 @@ namespace halo3_tools {
 	#define SOUND_CLASS_BLOCK_ID { 0xBFA3C09A, 0x60FB4329, 0x9B90CCD6, 0x5AA62B3F }
 	TAG_STRUCT(
 		sound_class_block,
+		"sound_class_block",
 		"sound_class_block",
 		"s_sound_class_block",
 		SET_DEFAULT,
@@ -21825,6 +22306,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_classes_block_struct,
 		"sound_classes_block_struct",
+		"sound_classes_block_struct",
 		"s_sound_classes_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21837,6 +22319,7 @@ namespace halo3_tools {
 	#define MULTIPLAYER_COLOR_BLOCK$2_ID { 0x7E9866A8, 0xDE8F426F, 0x9F08988D, 0xFED37A7C }
 	TAG_STRUCT(
 		multiplayer_color_block$2,
+		"multiplayer_color_block",
 		"multiplayer_color_block",
 		"s_multiplayer_color_block$2",
 		SET_DEFAULT,
@@ -21851,6 +22334,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		customized_model_bits_block,
 		"customized_model_bits_block",
+		"customized_model_bits_block",
 		"s_customized_model_bits_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21864,6 +22348,7 @@ namespace halo3_tools {
 	#define CUSTOMIZED_MODEL_SELECTION_BLOCK_ID { 0x2C7D12D1, 0x9F3240C8, 0x9ABAC796, 0xCCF4D351 }
 	TAG_STRUCT(
 		customized_model_selection_block,
+		"customized_model_selection_block",
 		"customized_model_selection_block",
 		"s_customized_model_selection_block",
 		SET_DEFAULT,
@@ -21890,6 +22375,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		customized_model_area_block,
 		"customized_model_area_block",
+		"customized_model_area_block",
 		"s_customized_model_area_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21904,6 +22390,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		customized_model_characters_block,
 		"customized_model_characters_block",
+		"customized_model_characters_block",
 		"s_customized_model_characters_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21917,6 +22404,7 @@ namespace halo3_tools {
 	#define WEAPON_SELECTIONS_BLOCK_ID { 0x414AD761, 0xE53A4C77, 0x8306C25E, 0xFC4A75CD }
 	TAG_STRUCT(
 		weapon_selections_block,
+		"weapon_selections_block",
 		"weapon_selections_block",
 		"s_weapon_selections_block",
 		SET_DEFAULT,
@@ -21935,6 +22423,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		vehicle_selections_block,
 		"vehicle_selections_block",
+		"vehicle_selections_block",
 		"s_vehicle_selections_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21951,6 +22440,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		grenade_selections_block,
 		"grenade_selections_block",
+		"grenade_selections_block",
 		"s_grenade_selections_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21964,6 +22454,7 @@ namespace halo3_tools {
 	#define OBJECT_REMAP_ENTRY_BLOCK_ID { 0xF1BE561E, 0x1171460B, 0xA5395B4D, 0x07E4AC65 }
 	TAG_STRUCT(
 		object_remap_entry_block,
+		"object_remap_entry_block",
 		"object_remap_entry_block",
 		"s_object_remap_entry_block",
 		SET_DEFAULT,
@@ -21979,6 +22470,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		multiplayer_weapon_set_block,
 		"multiplayer_weapon_set_block",
+		"multiplayer_weapon_set_block",
 		"s_multiplayer_weapon_set_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -21993,6 +22485,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		multiplayer_vehicle_set_block,
 		"multiplayer_vehicle_set_block",
+		"multiplayer_vehicle_set_block",
 		"s_multiplayer_vehicle_set_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -22006,6 +22499,7 @@ namespace halo3_tools {
 	#define MULTIPLAYER_UNIVERSAL_BLOCK_ID { 0x2F00F890, 0x345F45B7, 0x879F73D4, 0x0A5D9AEC }
 	TAG_STRUCT(
 		multiplayer_universal_block,
+		"multiplayer_universal_block",
 		"multiplayer_universal_block",
 		"s_multiplayer_universal_block",
 		SET_DEFAULT,
@@ -22042,6 +22536,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		weapon_spawn_influence_block,
 		"weapon_spawn_influence_block",
+		"weapon_spawn_influence_block",
 		"s_weapon_spawn_influence_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -22059,6 +22554,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		vehicle_spawn_influence_block,
 		"vehicle_spawn_influence_block",
+		"vehicle_spawn_influence_block",
 		"s_vehicle_spawn_influence_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -22075,6 +22571,7 @@ namespace halo3_tools {
 	#define PROJECTILE_SPAWN_INFLUENCE_BLOCK_ID { 0x6E14464D, 0x2EB94C80, 0xA81C3654, 0xB772B549 }
 	TAG_STRUCT(
 		projectile_spawn_influence_block,
+		"projectile_spawn_influence_block",
 		"projectile_spawn_influence_block",
 		"s_projectile_spawn_influence_block",
 		SET_DEFAULT,
@@ -22094,6 +22591,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		equipment_spawn_influence_block,
 		"equipment_spawn_influence_block",
+		"equipment_spawn_influence_block",
 		"s_equipment_spawn_influence_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -22109,6 +22607,7 @@ namespace halo3_tools {
 	#define MULTIPLAYER_CONSTANTS_BLOCK_ID { 0x8FFC2A96, 0xD8DF4203, 0xBBF5DD91, 0xE6C61E5A }
 	TAG_STRUCT(
 		multiplayer_constants_block,
+		"multiplayer_constants_block",
 		"multiplayer_constants_block",
 		"s_multiplayer_constants_block",
 		SET_DEFAULT,
@@ -22251,6 +22750,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_engine_status_response_block,
 		"game_engine_status_response_block",
+		"game_engine_status_response_block",
 		"s_game_engine_status_response_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -22311,6 +22811,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sounds_block,
 		"sounds_block",
+		"sounds_block",
 		"s_sounds_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -22323,6 +22824,7 @@ namespace halo3_tools {
 	#define LOOPING_SOUNDS_BLOCK_ID { 0x44B2F1E2, 0x220F4C4E, 0xBBEC6399, 0x48A923A2 }
 	TAG_STRUCT(
 		looping_sounds_block,
+		"looping_sounds_block",
 		"looping_sounds_block",
 		"s_looping_sounds_block",
 		SET_DEFAULT,
@@ -22337,6 +22839,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		multiplayer_globals_struct_definition,
 		"multiplayer_globals_struct_definition",
+		"multiplayer_globals_struct_definition",
 		"s_multiplayer_globals_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -22350,6 +22853,7 @@ namespace halo3_tools {
 	#define MULTIPLAYER_RUNTIME_BLOCK_ID { 0x6F17154D, 0x48564D05, 0xB362026A, 0x93F87F54 }
 	TAG_STRUCT(
 		multiplayer_runtime_block,
+		"multiplayer_runtime_block",
 		"multiplayer_runtime_block",
 		"s_multiplayer_runtime_block",
 		SET_DEFAULT,
@@ -22406,6 +22910,7 @@ namespace halo3_tools {
 	#define PLAYER_TRAIT_SHIELD_VITALITY_BLOCK_ID { 0xC7AA9D86, 0xD4774331, 0x85791E39, 0xB0DD4D7C }
 	TAG_STRUCT(
 		player_trait_shield_vitality_block,
+		"player_trait_shield_vitality_block",
 		"player_trait_shield_vitality_block",
 		"s_player_trait_shield_vitality_block",
 		SET_DEFAULT,
@@ -22488,6 +22993,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		player_trait_weapons_block,
 		"player_trait_weapons_block",
+		"player_trait_weapons_block",
 		"s_player_trait_weapons_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -22560,6 +23066,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		player_trait_movement_block,
 		"player_trait_movement_block",
+		"player_trait_movement_block",
 		"s_player_trait_movement_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -22612,6 +23119,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		player_trait_sensors_block,
 		"player_trait_sensors_block",
+		"player_trait_sensors_block",
 		"s_player_trait_sensors_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -22649,6 +23157,7 @@ namespace halo3_tools {
 	#define PLAYER_TRAIT_APPEARANCE_BLOCK_ID { 0xCCE91B14, 0x72924299, 0xA442173E, 0x1A915FFD }
 	TAG_STRUCT(
 		player_trait_appearance_block,
+		"player_trait_appearance_block",
 		"player_trait_appearance_block",
 		"s_player_trait_appearance_block",
 		SET_DEFAULT,
@@ -22715,6 +23224,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_engine_player_traits_block,
 		"game_engine_player_traits_block",
+		"game_engine_player_traits_block",
 		"s_game_engine_player_traits_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -22732,6 +23242,7 @@ namespace halo3_tools {
 	#define GAME_ENGINE_MISCELLANEOUS_OPTIONS_BLOCK_ID { 0x4E184020, 0x9F9B44E9, 0x9B53D8FA, 0x60936484 }
 	TAG_STRUCT(
 		game_engine_miscellaneous_options_block,
+		"game_engine_miscellaneous_options_block",
 		"game_engine_miscellaneous_options_block",
 		"s_game_engine_miscellaneous_options_block",
 		SET_DEFAULT,
@@ -22764,6 +23275,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_engine_respawn_options_block,
 		"game_engine_respawn_options_block",
+		"game_engine_respawn_options_block",
 		"s_game_engine_respawn_options_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -22795,6 +23307,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_engine_social_options_block,
 		"game_engine_social_options_block",
+		"game_engine_social_options_block",
 		"s_game_engine_social_options_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -22820,6 +23333,7 @@ namespace halo3_tools {
 	#define GAME_ENGINE_MAP_OVERRIDE_OPTIONS_BLOCK_ID { 0xE881D96D, 0xBB884679, 0x9ACC0364, 0xE9D68670 }
 	TAG_STRUCT(
 		game_engine_map_override_options_block,
+		"game_engine_map_override_options_block",
 		"game_engine_map_override_options_block",
 		"s_game_engine_map_override_options_block",
 		SET_DEFAULT,
@@ -22850,6 +23364,7 @@ namespace halo3_tools {
 	#define GAME_ENGINE_SLAYER_VARIANT_BLOCK_ID { 0xC85C9ED6, 0x9BB245AE, 0xAF532367, 0x781EBD22 }
 	TAG_STRUCT(
 		game_engine_slayer_variant_block,
+		"game_engine_slayer_variant_block",
 		"game_engine_slayer_variant_block",
 		"s_game_engine_slayer_variant_block",
 		SET_DEFAULT,
@@ -22893,6 +23408,7 @@ namespace halo3_tools {
 	#define GAME_ENGINE_ODDBALL_VARIANT_BLOCK_ID { 0x88F4A232, 0x599941A1, 0xB4F375C8, 0x85CCA596 }
 	TAG_STRUCT(
 		game_engine_oddball_variant_block,
+		"game_engine_oddball_variant_block",
 		"game_engine_oddball_variant_block",
 		"s_game_engine_oddball_variant_block",
 		SET_DEFAULT,
@@ -22938,6 +23454,7 @@ namespace halo3_tools {
 	#define GAME_ENGINE_CTF_VARIANT_BLOCK_ID { 0x488BD3A9, 0xD26A4D51, 0xA7F43B4B, 0x1B45B434 }
 	TAG_STRUCT(
 		game_engine_ctf_variant_block,
+		"game_engine_ctf_variant_block",
 		"game_engine_ctf_variant_block",
 		"s_game_engine_ctf_variant_block",
 		SET_DEFAULT,
@@ -23025,6 +23542,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_engine_assault_variant_block,
 		"game_engine_assault_variant_block",
+		"game_engine_assault_variant_block",
 		"s_game_engine_assault_variant_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23099,6 +23617,7 @@ namespace halo3_tools {
 	#define GAME_ENGINE_INFECTION_VARIANT_BLOCK_ID { 0xE87FED5C, 0xDA2E4242, 0xB232337D, 0x2291FD7D }
 	TAG_STRUCT(
 		game_engine_infection_variant_block,
+		"game_engine_infection_variant_block",
 		"game_engine_infection_variant_block",
 		"s_game_engine_infection_variant_block",
 		SET_DEFAULT,
@@ -23179,6 +23698,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_engine_king_variant_block,
 		"game_engine_king_variant_block",
+		"game_engine_king_variant_block",
 		"s_game_engine_king_variant_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23242,6 +23762,7 @@ namespace halo3_tools {
 	#define GAME_ENGINE_TERRITORIES_VARIANT_BLOCK_ID { 0xB3AEF918, 0x0EC34019, 0x9B236B5A, 0x9F7C03B2 }
 	TAG_STRUCT(
 		game_engine_territories_variant_block,
+		"game_engine_territories_variant_block",
 		"game_engine_territories_variant_block",
 		"s_game_engine_territories_variant_block",
 		SET_DEFAULT,
@@ -23309,6 +23830,7 @@ namespace halo3_tools {
 	#define GAME_ENGINE_JUGGERNAUT_VARIANT_BLOCK_ID { 0x153EA0D7, 0xEACC442E, 0x8AE7206C, 0xE5C9CA19 }
 	TAG_STRUCT(
 		game_engine_juggernaut_variant_block,
+		"game_engine_juggernaut_variant_block",
 		"game_engine_juggernaut_variant_block",
 		"s_game_engine_juggernaut_variant_block",
 		SET_DEFAULT,
@@ -23391,6 +23913,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_engine_vip_variant_block,
 		"game_engine_vip_variant_block",
+		"game_engine_vip_variant_block",
 		"s_game_engine_vip_variant_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23467,6 +23990,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_engine_sandbox_variant_block,
 		"game_engine_sandbox_variant_block",
+		"game_engine_sandbox_variant_block",
 		"s_game_engine_sandbox_variant_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23519,6 +24043,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_engine_settings_definition_struct_definition,
 		"game_engine_settings_definition_struct_definition",
+		"game_engine_settings_definition_struct_definition",
 		"s_game_engine_settings_definition_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23550,6 +24075,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_effect_struct_definition,
 		"sound_effect_struct_definition",
+		"sound_effect_struct_definition",
 		"s_sound_effect_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23569,6 +24095,7 @@ namespace halo3_tools {
 	#define SOUND_EFFECT_COMPONENT_BLOCK_ID { 0xA4A3D138, 0x566D48A0, 0x88AEB28B, 0x5913927F }
 	TAG_STRUCT(
 		sound_effect_component_block,
+		"sound_effect_component_block",
 		"sound_effect_component_block",
 		"s_sound_effect_component_block",
 		SET_DEFAULT,
@@ -23603,6 +24130,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_effect_overrides_block,
 		"sound_effect_overrides_block",
+		"sound_effect_overrides_block",
 		"s_sound_effect_overrides_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23616,6 +24144,7 @@ namespace halo3_tools {
 	#define SOUND_EFFECT_TEMPLATE_PARAMETER_BLOCK_ID { 0x0C097B16, 0x12DF427A, 0xA170402E, 0xBFD48E4F }
 	TAG_STRUCT(
 		sound_effect_template_parameter_block,
+		"sound_effect_template_parameter_block",
 		"sound_effect_template_parameter_block",
 		"s_sound_effect_template_parameter_block",
 		SET_DEFAULT,
@@ -23653,6 +24182,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_effect_template_additional_sound_input_block,
 		"sound_effect_template_additional_sound_input_block",
+		"sound_effect_template_additional_sound_input_block",
 		"s_sound_effect_template_additional_sound_input_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23669,6 +24199,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_effect_template_struct_definition,
 		"sound_effect_template_struct_definition",
+		"sound_effect_template_struct_definition",
 		"s_sound_effect_template_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23683,6 +24214,7 @@ namespace halo3_tools {
 	#define SOUND_EFFECT_OVERRIDE_PARAMETERS_BLOCK_ID { 0xEC26EA0E, 0xBFC34134, 0xA6C94143, 0xCF9B3F78 }
 	TAG_STRUCT(
 		sound_effect_override_parameters_block,
+		"sound_effect_override_parameters_block",
 		"sound_effect_override_parameters_block",
 		"s_sound_effect_override_parameters_block",
 		SET_DEFAULT,
@@ -23703,6 +24235,7 @@ namespace halo3_tools {
 	#define SOUND_EFFECT_TEMPLATES_BLOCK_ID { 0x5C8458F8, 0x94B84560, 0x93EBB56F, 0xA67E6E02 }
 	TAG_STRUCT(
 		sound_effect_templates_block,
+		"sound_effect_templates_block",
 		"sound_effect_templates_block",
 		"s_sound_effect_templates_block",
 		SET_DEFAULT,
@@ -23729,6 +24262,7 @@ namespace halo3_tools {
 	#define PLATFORM_SOUND_OVERRIDE_MIXBINS_BLOCK_ID { 0xFD5F38E8, 0x5FE84C98, 0x8CB12D71, 0x04F09A92 }
 	TAG_STRUCT(
 		platform_sound_override_mixbins_block,
+		"platform_sound_override_mixbins_block",
 		"platform_sound_override_mixbins_block",
 		"s_platform_sound_override_mixbins_block",
 		SET_DEFAULT,
@@ -23762,6 +24296,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		platform_sound_filter_block,
 		"platform_sound_filter_block",
+		"platform_sound_filter_block",
 		"s_platform_sound_filter_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23793,6 +24328,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		platform_sound_pitch_lfo_block,
 		"platform_sound_pitch_lfo_block",
+		"platform_sound_pitch_lfo_block",
 		"s_platform_sound_pitch_lfo_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23810,6 +24346,7 @@ namespace halo3_tools {
 	#define PLATFORM_SOUND_FILTER_LFO_BLOCK_ID { 0xD55A7151, 0xC4C146FE, 0x8A0DEEEC, 0xECC95EF7 }
 	TAG_STRUCT(
 		platform_sound_filter_lfo_block,
+		"platform_sound_filter_lfo_block",
 		"platform_sound_filter_lfo_block",
 		"s_platform_sound_filter_lfo_block",
 		SET_DEFAULT,
@@ -23831,6 +24368,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_effect_playback_block,
 		"sound_effect_playback_block",
+		"sound_effect_playback_block",
 		"s_sound_effect_playback_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23843,6 +24381,7 @@ namespace halo3_tools {
 	#define PLATFORM_SOUND_PLAYBACK_BLOCK_ID { 0x334A1B38, 0x94C44B5C, 0x9CBD395C, 0x8A7B7F5A }
 	TAG_STRUCT(
 		platform_sound_playback_block,
+		"platform_sound_playback_block",
 		"platform_sound_playback_block",
 		"s_platform_sound_playback_block",
 		SET_DEFAULT,
@@ -23858,6 +24397,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_effect_collection_struct_definition,
 		"sound_effect_collection_struct_definition",
+		"sound_effect_collection_struct_definition",
 		"s_sound_effect_collection_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23870,6 +24410,7 @@ namespace halo3_tools {
 	#define PLATFORM_SOUND_PLAYBACK_STRUCT_ID { 0x59FB9222, 0xC4734528, 0x92692773, 0x190B5506 }
 	TAG_STRUCT(
 		platform_sound_playback_struct,
+		"platform_sound_playback_struct",
 		"platform_sound_playback_struct",
 		"s_platform_sound_playback_struct",
 		SET_DEFAULT,
@@ -23897,6 +24438,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		simple_platform_sound_playback_struct,
 		"simple_platform_sound_playback_struct",
+		"simple_platform_sound_playback_struct",
 		"s_simple_platform_sound_playback_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23916,6 +24458,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		g_node_flag_storage_array_struct_definition,
 		"g_node_flag_storage_array",
+		"g_node_flag_storage_array",
 		"s_g_node_flag_storage_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23928,6 +24471,7 @@ namespace halo3_tools {
 	#define ANIMATION_AIMING_SCREEN_STRUCT_ID { 0xA933DD9C, 0x21874089, 0xA3990F17, 0x00DD3043 }
 	TAG_STRUCT(
 		animation_aiming_screen_struct,
+		"animation_aiming_screen_struct",
 		"animation_aiming_screen_struct",
 		"s_animation_aiming_screen_struct",
 		SET_DEFAULT,
@@ -23948,6 +24492,7 @@ namespace halo3_tools {
 	#define ANIMATION_GRAPH_SOUND_REFERENCE_BLOCK_ID { 0x9E2008A6, 0x15384504, 0x86E98642, 0x770EB5DF }
 	TAG_STRUCT(
 		animation_graph_sound_reference_block,
+		"animation_graph_sound_reference_block",
 		"animation_graph_sound_reference_block",
 		"s_animation_graph_sound_reference_block",
 		SET_DEFAULT,
@@ -23976,6 +24521,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		animation_graph_effect_reference_block,
 		"animation_graph_effect_reference_block",
+		"animation_graph_effect_reference_block",
 		"s_animation_graph_effect_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -23990,6 +24536,7 @@ namespace halo3_tools {
 	#define ANIMATION_FRAME_EVENT_STRUCT_ID { 0x4B542454, 0x08634540, 0x94899D46, 0x7CF531E1 }
 	TAG_STRUCT(
 		animation_frame_event_struct,
+		"animation_frame_event_struct",
 		"animation_frame_event_struct",
 		"s_animation_frame_event_struct",
 		SET_DEFAULT,
@@ -24023,6 +24570,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		animation_sound_event_block,
 		"animation_sound_event_block",
+		"animation_sound_event_block",
 		"s_animation_sound_event_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24037,6 +24585,7 @@ namespace halo3_tools {
 	#define ANIMATION_DIALOGUE_EVENT_BLOCK_ID { 0x2A844863, 0x9AAD473C, 0x93A75C3E, 0xD1BF6F0E }
 	TAG_STRUCT(
 		animation_dialogue_event_block,
+		"animation_dialogue_event_block",
 		"animation_dialogue_event_block",
 		"s_animation_dialogue_event_block",
 		SET_DEFAULT,
@@ -24066,6 +24615,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		animation_blend_screen_block,
 		"animation_blend_screen_block",
+		"animation_blend_screen_block",
 		"s_animation_blend_screen_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24079,6 +24629,7 @@ namespace halo3_tools {
 	#define PACKED_DATA_SIZES_STRUCT_ID { 0x1FBE28A2, 0x840641F2, 0x8852141E, 0x02D54A2E }
 	TAG_STRUCT(
 		packed_data_sizes_struct,
+		"packed_data_sizes_struct",
 		"packed_data_sizes_struct",
 		"s_packed_data_sizes_struct",
 		SET_DEFAULT,
@@ -24099,6 +24650,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		quantized_orientation_struct,
 		"quantized_orientation_struct",
+		"quantized_orientation_struct",
 		"s_quantized_orientation_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24116,6 +24668,7 @@ namespace halo3_tools {
 	#define OBJECT_SPACE_NODE_DATA_BLOCK_ID { 0x27BCCD47, 0x04C147A1, 0x9D4D4A77, 0xFA16E702 }
 	TAG_STRUCT(
 		object_space_node_data_block,
+		"object_space_node_data_block",
 		"object_space_node_data_block",
 		"s_object_space_node_data_block",
 		SET_DEFAULT,
@@ -24139,6 +24692,7 @@ namespace halo3_tools {
 	#define FOOT_TRACKING_MEMBER_BLOCK_ID { 0xD066D043, 0x7AF34927, 0xB01540CE, 0x43143EB4 }
 	TAG_STRUCT(
 		foot_tracking_member_block,
+		"foot_tracking_member_block",
 		"foot_tracking_member_block",
 		"s_foot_tracking_member_block",
 		SET_DEFAULT,
@@ -24165,6 +24719,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		foot_lock_cycle_block,
 		"foot_lock_cycle_block",
+		"foot_lock_cycle_block",
 		"s_foot_lock_cycle_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24182,6 +24737,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		foot_tracking_block,
 		"foot_tracking_block",
+		"foot_tracking_block",
 		"s_foot_tracking_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24197,6 +24753,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		foot_tracking_defaults,
 		"foot_tracking_defaults",
+		"foot_tracking_defaults",
 		"s_foot_tracking_defaults",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24210,6 +24767,7 @@ namespace halo3_tools {
 	#define ANIMATION_POOL_BLOCK_ID { 0x1981C030, 0xF26F4042, 0x8148C7EA, 0xC814F353 }
 	TAG_STRUCT(
 		animation_pool_block,
+		"animation_pool_block",
 		"animation_pool_block",
 		"s_animation_pool_block",
 		SET_DEFAULT,
@@ -24316,6 +24874,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		animation_index_struct,
 		"animation_index_struct",
+		"animation_index_struct",
 		"s_animation_index_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24329,6 +24888,7 @@ namespace halo3_tools {
 	#define ANIMATION_TRANSITION_STATE_STRUCT_ID { 0x462ACFEE, 0x8F2243DC, 0x8DEBA812, 0x22178E9A }
 	TAG_STRUCT(
 		animation_transition_state_struct,
+		"animation_transition_state_struct",
 		"animation_transition_state_struct",
 		"s_animation_transition_state_struct",
 		SET_DEFAULT,
@@ -24345,6 +24905,7 @@ namespace halo3_tools {
 	#define ANIMATION_DESTINATION_STATE_STRUCT_ID { 0x6174C16F, 0xFBBA4D67, 0xBBA6256D, 0x3F1E99E6 }
 	TAG_STRUCT(
 		animation_destination_state_struct,
+		"animation_destination_state_struct",
 		"animation_destination_state_struct",
 		"s_animation_destination_state_struct",
 		SET_DEFAULT,
@@ -24373,6 +24934,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		animation_transition_destination_block,
 		"animation_transition_destination_block",
+		"animation_transition_destination_block",
 		"s_animation_transition_destination_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24389,6 +24951,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		animation_transition_block,
 		"animation_transition_block",
+		"animation_transition_block",
 		"s_animation_transition_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24404,6 +24967,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		animation_ik_block,
 		"animation_ik_block",
+		"animation_ik_block",
 		"s_animation_ik_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24417,6 +24981,7 @@ namespace halo3_tools {
 	#define ANIMATION_ENTRY_BLOCK_ID { 0xED625457, 0xB4F24A9B, 0x864B5469, 0x3C760EF5 }
 	TAG_STRUCT(
 		animation_entry_block,
+		"animation_entry_block",
 		"animation_entry_block",
 		"s_animation_entry_block",
 		SET_DEFAULT,
@@ -24432,6 +24997,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		damage_region_block,
 		"damage_region_block",
+		"damage_region_block",
 		"s_damage_region_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24444,6 +25010,7 @@ namespace halo3_tools {
 	#define DAMAGE_DIRECTION_BLOCK_ID { 0x08E94A96, 0x4DFE4AA9, 0xB50211A8, 0x1BE40FED }
 	TAG_STRUCT(
 		damage_direction_block,
+		"damage_direction_block",
 		"damage_direction_block",
 		"s_damage_direction_block",
 		SET_DEFAULT,
@@ -24458,6 +25025,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		damage_animation_block,
 		"damage_animation_block",
+		"damage_animation_block",
 		"s_damage_animation_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24471,6 +25039,7 @@ namespace halo3_tools {
 	#define VEHICLE_SUSPENSION_BLOCK_ID { 0x8896A049, 0xE9614E59, 0x9E0BC659, 0xA399CF0C }
 	TAG_STRUCT(
 		vehicle_suspension_block,
+		"vehicle_suspension_block",
 		"vehicle_suspension_block",
 		"s_vehicle_suspension_block",
 		SET_DEFAULT,
@@ -24495,6 +25064,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		weapon_type_block,
 		"weapon_type_block",
+		"weapon_type_block",
 		"s_weapon_type_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24512,6 +25082,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		weapon_class_block,
 		"weapon_class_block",
+		"weapon_class_block",
 		"s_weapon_class_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24526,6 +25097,7 @@ namespace halo3_tools {
 	#define ANIMATION_MODE_BLOCK_ID { 0x8D89D744, 0x83E7433C, 0xB92A43A6, 0x063E43E4 }
 	TAG_STRUCT(
 		animation_mode_block,
+		"animation_mode_block",
 		"animation_mode_block",
 		"s_animation_mode_block",
 		SET_DEFAULT,
@@ -24542,6 +25114,7 @@ namespace halo3_tools {
 	#define OBJECT_ANIMATION_BLOCK_ID { 0xC89466F6, 0x7EF04B56, 0xAF1ACD05, 0xDE675B3E }
 	TAG_STRUCT(
 		object_animation_block,
+		"object_animation_block",
 		"object_animation_block",
 		"s_object_animation_block",
 		SET_DEFAULT,
@@ -24567,6 +25140,7 @@ namespace halo3_tools {
 	#define ANIMATION_GRAPH_DEFINITIONS_STRUCT_ID { 0x7378A5C8, 0x70D449B0, 0x88828F27, 0x7D26A6A7 }
 	TAG_STRUCT(
 		animation_graph_definitions_struct,
+		"animation_graph_definitions_struct",
 		"animation_graph_definitions_struct",
 		"s_animation_graph_definitions_struct",
 		SET_DEFAULT,
@@ -24612,6 +25186,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		animation_graph_contents_struct,
 		"animation_graph_contents_struct",
+		"animation_graph_contents_struct",
 		"s_animation_graph_contents_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24629,6 +25204,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		inherited_animation_node_map_block,
 		"inherited_animation_node_map_block",
+		"inherited_animation_node_map_block",
 		"s_inherited_animation_node_map_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24642,6 +25218,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		inherited_animation_node_map_flag_block,
 		"inherited_animation_node_map_flag_block",
+		"inherited_animation_node_map_flag_block",
 		"s_inherited_animation_node_map_flag_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24654,6 +25231,7 @@ namespace halo3_tools {
 	#define INHERITED_ANIMATION_BLOCK_ID { 0xBBA74F4E, 0x94B64EE2, 0xA1DCD8E7, 0x53D89B25 }
 	TAG_STRUCT(
 		inherited_animation_block,
+		"inherited_animation_block",
 		"inherited_animation_block",
 		"s_inherited_animation_block",
 		SET_DEFAULT,
@@ -24672,6 +25250,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		weapon_class_lookup_block,
 		"weapon_class_lookup_block",
+		"weapon_class_lookup_block",
 		"s_weapon_class_lookup_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24685,6 +25264,7 @@ namespace halo3_tools {
 	#define ADDITIONAL_NODE_DATA_BLOCK_ID { 0x29A1DD97, 0xBB8948F7, 0xB606A4F9, 0xA4728C90 }
 	TAG_STRUCT(
 		additional_node_data_block,
+		"additional_node_data_block",
 		"additional_node_data_block",
 		"s_additional_node_data_block",
 		SET_DEFAULT,
@@ -24704,6 +25284,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		model_animation_runtime_data_struct,
 		"model_animation_runtime_data_struct",
+		"model_animation_runtime_data_struct",
 		"s_model_animation_runtime_data_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24720,6 +25301,7 @@ namespace halo3_tools {
 	#define MODEL_ANIMATION_TAG_RESOURCE_MEMBER_ID { 0xF84A790E, 0xBB494C5C, 0xA5D85B12, 0x9758A12C }
 	TAG_STRUCT(
 		model_animation_tag_resource_member,
+		"model_animation_tag_resource_member",
 		"model_animation_tag_resource_member",
 		"s_model_animation_tag_resource_member",
 		SET_DEFAULT,
@@ -24740,6 +25322,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		model_animation_tag_resource_struct,
 		"model_animation_tag_resource_struct",
+		"model_animation_tag_resource_struct",
 		"s_model_animation_tag_resource_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24752,6 +25335,7 @@ namespace halo3_tools {
 	#define MODEL_ANIMATION_TAG_RESOURCE_GROUP_ID { 0x47846C50, 0x26C74AF5, 0x8CBDED72, 0x972458F6 }
 	TAG_STRUCT(
 		model_animation_tag_resource_group,
+		"model_animation_tag_resource_group",
 		"model_animation_tag_resource_group",
 		"s_model_animation_tag_resource_group",
 		SET_DEFAULT,
@@ -24766,6 +25350,7 @@ namespace halo3_tools {
 	#define MODEL_ANIMATION_GRAPH_BLOCK_STRUCT_ID { 0xBC9BFC5F, 0x0D294C40, 0xAD92DA9E, 0xA336E795 }
 	TAG_STRUCT(
 		model_animation_graph_block_struct,
+		"model_animation_graph_block_struct",
 		"model_animation_graph_block_struct",
 		"s_model_animation_graph_block_struct",
 		SET_DEFAULT,
@@ -24785,6 +25370,7 @@ namespace halo3_tools {
 	#define ANIMATION_GRAPH_NODE_BLOCK_ID { 0xA1BC3EC9, 0xA8A1454C, 0x8C893F2D, 0x2CAC1368 }
 	TAG_STRUCT(
 		animation_graph_node_block,
+		"animation_graph_node_block",
 		"animation_graph_node_block",
 		"s_animation_graph_node_block",
 		SET_DEFAULT,
@@ -24826,6 +25412,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		animation_effect_event_block,
 		"animation_effect_event_block",
+		"animation_effect_event_block",
 		"s_animation_effect_event_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24840,6 +25427,7 @@ namespace halo3_tools {
 	#define SOUND_GESTALT_CODEC_BLOCK_ID { 0xEA72FE1B, 0xD8C74A73, 0xB3E54E1C, 0xCF7E2316 }
 	TAG_STRUCT(
 		sound_gestalt_codec_block,
+		"sound_gestalt_codec_block",
 		"sound_gestalt_codec_block",
 		"s_sound_gestalt_codec_block",
 		SET_DEFAULT,
@@ -24856,6 +25444,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_gestalt_playback_block,
 		"sound_gestalt_playback_block",
+		"sound_gestalt_playback_block",
 		"s_sound_gestalt_playback_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24868,6 +25457,7 @@ namespace halo3_tools {
 	#define SOUND_GESTALT_SCALE_BLOCK_ID { 0x293C6CE9, 0x552C4FF1, 0x9FEBA09B, 0x46CD5D15 }
 	TAG_STRUCT(
 		sound_gestalt_scale_block,
+		"sound_gestalt_scale_block",
 		"sound_gestalt_scale_block",
 		"s_sound_gestalt_scale_block",
 		SET_DEFAULT,
@@ -24882,6 +25472,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_gestalt_import_names_block,
 		"sound_gestalt_import_names_block",
+		"sound_gestalt_import_names_block",
 		"s_sound_gestalt_import_names_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24894,6 +25485,7 @@ namespace halo3_tools {
 	#define SOUND_GESTALT_PITCH_RANGE_PARAMETERS_BLOCK_ID { 0xD2578760, 0xAD2B4BD4, 0xBF890920, 0x60A1D630 }
 	TAG_STRUCT(
 		sound_gestalt_pitch_range_parameters_block,
+		"sound_gestalt_pitch_range_parameters_block",
 		"sound_gestalt_pitch_range_parameters_block",
 		"s_sound_gestalt_pitch_range_parameters_block",
 		SET_DEFAULT,
@@ -24910,6 +25502,7 @@ namespace halo3_tools {
 	#define SOUND_GESTALT_PERMUTATIONS_BLOCK_ID { 0x066E48B0, 0x55A34789, 0x8605F561, 0x771453C4 }
 	TAG_STRUCT(
 		sound_gestalt_permutations_block,
+		"sound_gestalt_permutations_block",
 		"sound_gestalt_permutations_block",
 		"s_sound_gestalt_permutations_block",
 		SET_DEFAULT,
@@ -24930,6 +25523,7 @@ namespace halo3_tools {
 	#define SOUND_GESTALT_PERMUTATION_LANGUAGES_BLOCK_STRUCT_ID { 0xC2E50233, 0xA6814C87, 0x8DAE2CAC, 0xAE66E3A1 }
 	TAG_STRUCT(
 		sound_gestalt_permutation_languages_block_struct,
+		"sound_gestalt_permutation_languages_block_struct",
 		"sound_gestalt_permutation_languages_block_struct",
 		"s_sound_gestalt_permutation_languages_block_struct",
 		SET_DEFAULT,
@@ -24980,6 +25574,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_gestalt_pitch_ranges_block,
 		"sound_gestalt_pitch_ranges_block",
+		"sound_gestalt_pitch_ranges_block",
 		"s_sound_gestalt_pitch_ranges_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -24997,6 +25592,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_gestalt_custom_playback_block,
 		"sound_gestalt_custom_playback_block",
+		"sound_gestalt_custom_playback_block",
 		"s_sound_gestalt_custom_playback_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25009,6 +25605,7 @@ namespace halo3_tools {
 	#define SOUND_GESTALT_RUNTIME_PERMUTATION_BIT_VECTOR_BLOCK_ID { 0xBCDA51CD, 0xDBB444BD, 0xB166F6B5, 0x6A59110C }
 	TAG_STRUCT(
 		sound_gestalt_runtime_permutation_bit_vector_block,
+		"sound_gestalt_runtime_permutation_bit_vector_block",
 		"sound_gestalt_runtime_permutation_bit_vector_block",
 		"s_sound_gestalt_runtime_permutation_bit_vector_block",
 		SET_DEFAULT,
@@ -25023,6 +25620,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_gestalt_promotions_block,
 		"sound_gestalt_promotions_block",
+		"sound_gestalt_promotions_block",
 		"s_sound_gestalt_promotions_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25036,6 +25634,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_gestalt_extra_info_block,
 		"sound_gestalt_extra_info_block",
+		"sound_gestalt_extra_info_block",
 		"s_sound_gestalt_extra_info_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25048,6 +25647,7 @@ namespace halo3_tools {
 	#define SOUND_CACHE_FILE_GESTALT_STRUCT_DEFINITION_ID { 0xCF6AEC54, 0x95E846F2, 0x9B3F6246, 0x00AA2223 }
 	TAG_STRUCT(
 		sound_cache_file_gestalt_struct_definition,
+		"sound_cache_file_gestalt_struct_definition",
 		"sound_cache_file_gestalt_struct_definition",
 		"s_sound_cache_file_gestalt_struct_definition",
 		SET_DEFAULT,
@@ -25079,6 +25679,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_sound_struct_definition,
 		"cache_file_sound_struct_definition",
+		"cache_file_sound_struct_definition",
 		"s_cache_file_sound_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25105,6 +25706,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_resource_type_identifier_block,
 		"cache_file_resource_type_identifier_block",
+		"cache_file_resource_type_identifier_block",
 		"s_cache_file_resource_type_identifier_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25125,6 +25727,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_interop_type_identifier_block,
 		"cache_file_interop_type_identifier_block",
+		"cache_file_interop_type_identifier_block",
 		"s_cache_file_interop_type_identifier_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25142,6 +25745,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_codec_identifier_block,
 		"cache_file_codec_identifier_block",
+		"cache_file_codec_identifier_block",
 		"s_cache_file_codec_identifier_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25158,6 +25762,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_resource_fixup_location_block,
 		"cache_file_resource_fixup_location_block",
+		"cache_file_resource_fixup_location_block",
 		"s_cache_file_resource_fixup_location_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25172,6 +25777,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_resource_interop_location_block,
 		"cache_file_resource_interop_location_block",
+		"cache_file_resource_interop_location_block",
 		"s_cache_file_resource_interop_location_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25185,6 +25791,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_SHARED_FILE_BLOCK_ID { 0x13027DEC, 0xFA9E4C11, 0xBD81B8E7, 0xD68881E9 }
 	TAG_STRUCT(
 		cache_file_shared_file_block,
+		"cache_file_shared_file_block",
 		"cache_file_shared_file_block",
 		"s_cache_file_shared_file_block",
 		SET_DEFAULT,
@@ -25211,6 +25818,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_resource_streaming_sublocation_block,
 		"cache_file_resource_streaming_sublocation_block",
+		"cache_file_resource_streaming_sublocation_block",
 		"s_cache_file_resource_streaming_sublocation_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25224,6 +25832,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_RESOURCE_STREAMING_SUBLOCATION_TABLE_BLOCK_ID { 0x41CFEA33, 0xC3564990, 0xABA22B6B, 0xF24EB390 }
 	TAG_STRUCT(
 		cache_file_resource_streaming_sublocation_table_block,
+		"cache_file_resource_streaming_sublocation_table_block",
 		"cache_file_resource_streaming_sublocation_table_block",
 		"s_cache_file_resource_streaming_sublocation_table_block",
 		SET_DEFAULT,
@@ -25239,6 +25848,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		resource_hash_definition_struct_definition,
 		"resource_hash_definition",
+		"resource_hash_definition",
 		"s_resource_hash_definition_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25251,6 +25861,7 @@ namespace halo3_tools {
 	#define RESOURCE_CHECKSUM_STRUCT_ID { 0x6DA6A4F0, 0x19C443F8, 0x8B233E7F, 0xE4FB0736 }
 	TAG_STRUCT(
 		resource_checksum_struct,
+		"resource_checksum_struct",
 		"resource_checksum_struct",
 		"s_resource_checksum_struct",
 		SET_DEFAULT,
@@ -25267,6 +25878,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_RESOURCE_LOCATION_STRUCT_ID { 0xA82CDAB9, 0xAF1B4171, 0x816BA199, 0xDD8E6C9C }
 	TAG_STRUCT(
 		cache_file_resource_location_struct,
+		"cache_file_resource_location_struct",
 		"cache_file_resource_location_struct",
 		"s_cache_file_resource_location_struct",
 		SET_DEFAULT,
@@ -25303,6 +25915,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_resource_patch_lookup_block,
 		"cache_file_resource_patch_lookup_block",
+		"cache_file_resource_patch_lookup_block",
 		"s_cache_file_resource_patch_lookup_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25317,6 +25930,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_RESOURCE_DEFAULT_LOCATION_BLOCK_ID { 0xE8CE3689, 0x412848DF, 0x8D98BA3D, 0x43333461 }
 	TAG_STRUCT(
 		cache_file_resource_default_location_block,
+		"cache_file_resource_default_location_block",
 		"cache_file_resource_default_location_block",
 		"s_cache_file_resource_default_location_block",
 		SET_DEFAULT,
@@ -25335,6 +25949,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_RESOURCE_DATA_BLOCK_ID { 0x07EF6B5D, 0x210B4AD1, 0x9DEC2F43, 0xE9DCB6A4 }
 	TAG_STRUCT(
 		cache_file_resource_data_block,
+		"cache_file_resource_data_block",
 		"cache_file_resource_data_block",
 		"s_cache_file_resource_data_block",
 		SET_DEFAULT,
@@ -25367,6 +25982,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_tag_resources_bitvector_block,
 		"cache_file_tag_resources_bitvector_block",
+		"cache_file_tag_resources_bitvector_block",
 		"s_cache_file_tag_resources_bitvector_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25379,6 +25995,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_TAG_RESOURCE_USAGE_BLOCK_STRUCT_ID { 0x7E3FC27D, 0x0B104D30, 0xBE6C359D, 0xBB4988CB }
 	TAG_STRUCT(
 		cache_file_tag_resource_usage_block_struct,
+		"cache_file_tag_resource_usage_block_struct",
 		"cache_file_tag_resource_usage_block_struct",
 		"s_cache_file_tag_resource_usage_block_struct",
 		SET_DEFAULT,
@@ -25397,6 +26014,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_bsp_reference_block,
 		"cache_file_bsp_reference_block",
+		"cache_file_bsp_reference_block",
 		"s_cache_file_bsp_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25409,6 +26027,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_RESOURCE_OWNER_BLOCK_ID { 0xEEF8F43D, 0x5D8249C7, 0x8CD02DD1, 0x34A61C28 }
 	TAG_STRUCT(
 		cache_file_resource_owner_block,
+		"cache_file_resource_owner_block",
 		"cache_file_resource_owner_block",
 		"s_cache_file_resource_owner_block",
 		SET_DEFAULT,
@@ -25423,6 +26042,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_resource_owner_reference_block,
 		"cache_file_resource_owner_reference_block",
+		"cache_file_resource_owner_reference_block",
 		"s_cache_file_resource_owner_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25436,6 +26056,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_zone_resource_visit_node_link_block,
 		"cache_file_zone_resource_visit_node_link_block",
+		"cache_file_zone_resource_visit_node_link_block",
 		"s_cache_file_zone_resource_visit_node_link_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25448,6 +26069,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_ZONE_RESOURCE_VISIT_NODE_BLOCK_STRUCT_ID { 0x17C375BA, 0xE7B7481F, 0xAF7D1577, 0xFAC6CD4A }
 	TAG_STRUCT(
 		cache_file_zone_resource_visit_node_block_struct,
+		"cache_file_zone_resource_visit_node_block_struct",
 		"cache_file_zone_resource_visit_node_block_struct",
 		"s_cache_file_zone_resource_visit_node_block_struct",
 		SET_DEFAULT,
@@ -25463,6 +26085,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_MODEL_VARIANT_USAGE_BLOCK_ID { 0x2321AB6C, 0xB74547EF, 0x8B8E12EA, 0x7D729350 }
 	TAG_STRUCT(
 		cache_file_model_variant_usage_block,
+		"cache_file_model_variant_usage_block",
 		"cache_file_model_variant_usage_block",
 		"s_cache_file_model_variant_usage_block",
 		SET_DEFAULT,
@@ -25480,6 +26103,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_model_variant_usage_reference_block,
 		"cache_file_model_variant_usage_reference_block",
+		"cache_file_model_variant_usage_reference_block",
 		"s_cache_file_model_variant_usage_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25492,6 +26116,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_CHARACTER_USAGE_BLOCK_ID { 0x7DCD4D50, 0xCCC04A10, 0xA5187197, 0xDCC31708 }
 	TAG_STRUCT(
 		cache_file_character_usage_block,
+		"cache_file_character_usage_block",
 		"cache_file_character_usage_block",
 		"s_cache_file_character_usage_block",
 		SET_DEFAULT,
@@ -25507,6 +26132,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_TAG_ZONE_MANIFEST_STRUCT_ID { 0x97526DBD, 0x0D3046F2, 0x846E0460, 0xDADC74B2 }
 	TAG_STRUCT(
 		cache_file_tag_zone_manifest_struct,
+		"cache_file_tag_zone_manifest_struct",
 		"cache_file_tag_zone_manifest_struct",
 		"s_cache_file_tag_zone_manifest_struct",
 		SET_DEFAULT,
@@ -25534,6 +26160,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_zone_set_zone_usage_block,
 		"cache_file_zone_set_zone_usage_block",
+		"cache_file_zone_set_zone_usage_block",
 		"s_cache_file_zone_set_zone_usage_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25555,6 +26182,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		resource_category_block,
 		"resource_category_block",
+		"resource_category_block",
 		"s_resource_category_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25568,6 +26196,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_debug_resource_definition_block,
 		"cache_file_debug_resource_definition_block",
+		"cache_file_debug_resource_definition_block",
 		"s_cache_file_debug_resource_definition_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25580,6 +26209,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_RESOURCE_LAYOUT_BLOCK_STRUCT_ID { 0xAF086415, 0x9CB7429E, 0xB4D397A6, 0x0AD19864 }
 	TAG_STRUCT(
 		cache_file_resource_layout_block_struct,
+		"cache_file_resource_layout_block_struct",
 		"cache_file_resource_layout_block_struct",
 		"s_cache_file_resource_layout_block_struct",
 		SET_DEFAULT,
@@ -25613,6 +26243,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_tag_resource_named_value_block,
 		"cache_file_tag_resource_named_value_block",
+		"cache_file_tag_resource_named_value_block",
 		"s_cache_file_tag_resource_named_value_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25639,6 +26270,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_tag_resource_properties_block,
 		"cache_file_tag_resource_properties_block",
+		"cache_file_tag_resource_properties_block",
 		"s_cache_file_tag_resource_properties_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25651,6 +26283,7 @@ namespace halo3_tools {
 	#define DEBUG_CACHE_FILE_ZONE_MANIFEST_STRUCT_ID { 0x4E4AC3CD, 0x598D4EFC, 0xAD44DA5D, 0xEA3DA8F0 }
 	TAG_STRUCT(
 		debug_cache_file_zone_manifest_struct,
+		"debug_cache_file_zone_manifest_struct",
 		"debug_cache_file_zone_manifest_struct",
 		"s_debug_cache_file_zone_manifest_struct",
 		SET_DEFAULT,
@@ -25668,6 +26301,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_tag_parentage_reference_block,
 		"cache_file_tag_parentage_reference_block",
+		"cache_file_tag_parentage_reference_block",
 		"s_cache_file_tag_parentage_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25680,6 +26314,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_TAG_PARENTAGE_BLOCK_STRUCT_ID { 0x30B9A8D9, 0x80FD41FD, 0xBE990CAA, 0x8CF7F824 }
 	TAG_STRUCT(
 		cache_file_tag_parentage_block_struct,
+		"cache_file_tag_parentage_block_struct",
 		"cache_file_tag_parentage_block_struct",
 		"s_cache_file_tag_parentage_block_struct",
 		SET_DEFAULT,
@@ -25705,6 +26340,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_tag_resource_prediction_quantum_block,
 		"cache_file_tag_resource_prediction_quantum_block",
+		"cache_file_tag_resource_prediction_quantum_block",
 		"s_cache_file_tag_resource_prediction_quantum_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25717,6 +26353,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_ATOM_BLOCK_ID { 0xD4DF8812, 0xE9CC40B4, 0x83EC0650, 0x0C2C8AC6 }
 	TAG_STRUCT(
 		cache_file_tag_resource_prediction_atom_block,
+		"cache_file_tag_resource_prediction_atom_block",
 		"cache_file_tag_resource_prediction_atom_block",
 		"s_cache_file_tag_resource_prediction_atom_block",
 		SET_DEFAULT,
@@ -25733,6 +26370,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_tag_resource_prediction_molecule_atom_reference_block,
 		"cache_file_tag_resource_prediction_molecule_atom_reference_block",
+		"cache_file_tag_resource_prediction_molecule_atom_reference_block",
 		"s_cache_file_tag_resource_prediction_molecule_atom_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25745,6 +26383,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_MOLECULE_BLOCK_ID { 0x335E8A1B, 0x745046FF, 0xA6B7B810, 0xC0F7C4B7 }
 	TAG_STRUCT(
 		cache_file_tag_resource_prediction_molecule_block,
+		"cache_file_tag_resource_prediction_molecule_block",
 		"cache_file_tag_resource_prediction_molecule_block",
 		"s_cache_file_tag_resource_prediction_molecule_block",
 		SET_DEFAULT,
@@ -25762,6 +26401,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_tag_resource_prediction_molecule_keys_block,
 		"cache_file_tag_resource_prediction_molecule_keys_block",
+		"cache_file_tag_resource_prediction_molecule_keys_block",
 		"s_cache_file_tag_resource_prediction_molecule_keys_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25776,6 +26416,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_TAG_RESOURCE_PREDICTION_TABLE_ID { 0x8AC05042, 0xF5CF4649, 0x91F59F02, 0xC1CF8172 }
 	TAG_STRUCT(
 		cache_file_tag_resource_prediction_table,
+		"cache_file_tag_resource_prediction_table",
 		"cache_file_tag_resource_prediction_table",
 		"s_cache_file_tag_resource_prediction_table",
 		SET_DEFAULT,
@@ -25794,6 +26435,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_bsp_attachment_block,
 		"cache_file_bsp_attachment_block",
+		"cache_file_bsp_attachment_block",
 		"s_cache_file_bsp_attachment_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25806,6 +26448,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_BSP_GAME_ATTACHMENTS_BLOCK_STRUCT_ID { 0xE0BB848D, 0xE4CB4E34, 0x80F3985E, 0x09450C40 }
 	TAG_STRUCT(
 		cache_file_bsp_game_attachments_block_struct,
+		"cache_file_bsp_game_attachments_block_struct",
 		"cache_file_bsp_game_attachments_block_struct",
 		"s_cache_file_bsp_game_attachments_block_struct",
 		SET_DEFAULT,
@@ -25821,6 +26464,7 @@ namespace halo3_tools {
 	#define CACHE_FILE_RESOURCE_GESTALT_BLOCK_STRUCT_ID { 0x84D7FF6E, 0xDE544E80, 0x8139DE61, 0x36DCA9DB }
 	TAG_STRUCT(
 		cache_file_resource_gestalt_block_struct,
+		"cache_file_resource_gestalt_block_struct",
 		"cache_file_resource_gestalt_block_struct",
 		"s_cache_file_resource_gestalt_block_struct",
 		SET_DEFAULT,
@@ -25881,6 +26525,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cache_file_resource_layout_table_block_struct,
 		"cache_file_resource_layout_table_block_struct",
+		"cache_file_resource_layout_table_block_struct",
 		"s_cache_file_resource_layout_table_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25901,6 +26546,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		resource_owner_block_struct,
 		"resource_owner_block_struct",
+		"resource_owner_block_struct",
 		"s_resource_owner_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25913,6 +26559,7 @@ namespace halo3_tools {
 	#define SHARED_CACHE_FILE_ORIGINAL_LOCATION_BLOCK_STRUCT_ID { 0x8E51EF25, 0x8DA5499D, 0x8C428926, 0xE185B4B7 }
 	TAG_STRUCT(
 		shared_cache_file_original_location_block_struct,
+		"shared_cache_file_original_location_block_struct",
 		"shared_cache_file_original_location_block_struct",
 		"s_shared_cache_file_original_location_block_struct",
 		SET_DEFAULT,
@@ -25953,6 +26600,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		shared_cache_file_original_location_reference_block_struct,
 		"shared_cache_file_original_location_reference_block_struct",
+		"shared_cache_file_original_location_reference_block_struct",
 		"s_shared_cache_file_original_location_reference_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -25965,6 +26613,7 @@ namespace halo3_tools {
 	#define SHARED_CACHE_FILE_NEW_LOCATION_BLOCK_STRUCT_ID { 0x2A6EBBE5, 0x372B4119, 0x9D575320, 0x2F65A1AD }
 	TAG_STRUCT(
 		shared_cache_file_new_location_block_struct,
+		"shared_cache_file_new_location_block_struct",
 		"shared_cache_file_new_location_block_struct",
 		"s_shared_cache_file_new_location_block_struct",
 		SET_DEFAULT,
@@ -25996,6 +26645,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		shared_cache_file_creation_date_array_struct_definition,
 		"shared_cache_file_creation_date_array",
+		"shared_cache_file_creation_date_array",
 		"s_shared_cache_file_creation_date_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26009,6 +26659,7 @@ namespace halo3_tools {
 	#define SHARED_CACHE_FILE_LAYOUT_BLOCK_STRUCT_ID { 0xA21AF187, 0x41D04330, 0xA9383314, 0xD53C04B4 }
 	TAG_STRUCT(
 		shared_cache_file_layout_block_struct,
+		"shared_cache_file_layout_block_struct",
 		"shared_cache_file_layout_block_struct",
 		"s_shared_cache_file_layout_block_struct",
 		SET_DEFAULT,
@@ -26054,6 +26705,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		bink_resource_struct,
 		"bink_resource_struct",
+		"bink_resource_struct",
 		"s_bink_resource_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26066,6 +26718,7 @@ namespace halo3_tools {
 	#define BINK_STRUCT_DEFINITION_ID { 0x4F2A6045, 0x63FF4A67, 0x81F2A8BD, 0xCF491D3A }
 	TAG_STRUCT(
 		bink_struct_definition,
+		"bink_struct_definition",
 		"bink_struct_definition",
 		"s_bink_struct_definition",
 		SET_DEFAULT,
@@ -26080,6 +26733,7 @@ namespace halo3_tools {
 	#define PLAYER_TRAINING_ENTRY_DATA_BLOCK_ID { 0x02521B32, 0x611C4819, 0xA1067B6A, 0x683D77BF }
 	TAG_STRUCT(
 		player_training_entry_data_block,
+		"player_training_entry_data_block",
 		"player_training_entry_data_block",
 		"s_player_training_entry_data_block",
 		SET_DEFAULT,
@@ -26106,6 +26760,7 @@ namespace halo3_tools {
 	#define RENDER_TEXTURE_INTEROP_DEFINITION_STRUCT_ID { 0x64017671, 0x437A46F0, 0x9A33C422, 0x517096E3 }
 	TAG_STRUCT(
 		render_texture_interop_definition_struct,
+		"render_texture_interop_definition_struct",
 		"render_texture_interop_definition_struct",
 		"s_render_texture_interop_definition_struct",
 		SET_DEFAULT,
@@ -26147,6 +26802,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_texture_format_definition,
 		"render_texture_format_definition",
+		"render_texture_format_definition",
 		"s_render_texture_format_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26169,6 +26825,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_texture_interleaved_interop_definition_struct,
 		"render_texture_interleaved_interop_definition_struct",
+		"render_texture_interleaved_interop_definition_struct",
 		"s_render_texture_interleaved_interop_definition_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26183,6 +26840,7 @@ namespace halo3_tools {
 	#define BITMAP_USAGE_BLOCK_ID { 0x09E0AE90, 0x64F444D8, 0xAFC0FAB5, 0x0BDCBD57 }
 	TAG_STRUCT(
 		bitmap_usage_block,
+		"bitmap_usage_block",
 		"bitmap_usage_block",
 		"s_bitmap_usage_block",
 		SET_DEFAULT,
@@ -26293,6 +26951,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_permutation_language_info,
 		"sound_permutation_language_info",
+		"sound_permutation_language_info",
 		"s_sound_permutation_language_info",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26305,6 +26964,7 @@ namespace halo3_tools {
 	#define SOUND_PITCH_RANGE_LANGUAGE_INFO_ID { 0x55CF2587, 0xC2A84F0D, 0xA21BD9D4, 0xF3411CAA }
 	TAG_STRUCT(
 		sound_pitch_range_language_info,
+		"sound_pitch_range_language_info",
 		"sound_pitch_range_language_info",
 		"s_sound_pitch_range_language_info",
 		SET_DEFAULT,
@@ -26319,6 +26979,7 @@ namespace halo3_tools {
 	#define SOUND_LANGUAGE_INFO_BLOCK_ID { 0xD69CF235, 0x9A8943DB, 0xBFE85363, 0x9C6857EC }
 	TAG_STRUCT(
 		sound_language_info_block,
+		"sound_language_info_block",
 		"sound_language_info_block",
 		"s_sound_language_info_block",
 		SET_DEFAULT,
@@ -26335,6 +26996,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_playback_parameter_definition,
 		"sound_playback_parameter_definition",
+		"sound_playback_parameter_definition",
 		"s_sound_playback_parameter_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26348,6 +27010,7 @@ namespace halo3_tools {
 	#define BITMAP_GROUP_SPRITE_BLOCK_DEF_ID { 0xBBF4F819, 0xF00A42DC, 0xA731202E, 0x289D9752 }
 	TAG_STRUCT(
 		bitmap_group_sprite_block_def,
+		"bitmap_group_sprite_block_def",
 		"bitmap_group_sprite_block_def",
 		"s_bitmap_group_sprite_block_def",
 		SET_DEFAULT,
@@ -26369,6 +27032,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		bitmap_group_sequence_block_def,
 		"bitmap_group_sequence_block_def",
+		"bitmap_group_sequence_block_def",
 		"s_bitmap_group_sequence_block_def",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26385,6 +27049,7 @@ namespace halo3_tools {
 	#define BITMAP_DATA_BLOCK_DEF_ID { 0xDEB0516A, 0x021C4498, 0x9941C6CD, 0xC294AA69 }
 	TAG_STRUCT(
 		bitmap_data_block_def,
+		"bitmap_data_block_def",
 		"bitmap_data_block_def",
 		"s_bitmap_data_block_def",
 		SET_DEFAULT,
@@ -26482,6 +27147,7 @@ namespace halo3_tools {
 	#define GLOBAL_SCENARIO_LOAD_PARAMETERS_BLOCK_ID { 0x4B6AED51, 0xF0454236, 0x871E52C4, 0xA013780C }
 	TAG_STRUCT(
 		global_scenario_load_parameters_block,
+		"scenario load parameters",
 		"global_scenario_load_parameters_block",
 		"s_global_scenario_load_parameters_block",
 		SET_DEFAULT,
@@ -26501,6 +27167,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		door_encoded_pas_block,
 		"door_encoded_pas_block",
+		"door_encoded_pas_block",
 		"s_door_encoded_pas_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26513,6 +27180,7 @@ namespace halo3_tools {
 	#define CLUSTER_DOOR_PORTAL_ENCODED_PAS_BLOCK_ID { 0xA713EF2B, 0x09DC4EC5, 0xA6AAF397, 0xF331FEEA }
 	TAG_STRUCT(
 		cluster_door_portal_encoded_pas_block,
+		"cluster_door_portal_encoded_pas_block",
 		"cluster_door_portal_encoded_pas_block",
 		"s_cluster_door_portal_encoded_pas_block",
 		SET_DEFAULT,
@@ -26527,6 +27195,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		ai_deafening_encoded_pas_block,
 		"ai_deafening_encoded_pas_block",
+		"ai_deafening_encoded_pas_block",
 		"s_ai_deafening_encoded_pas_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26539,6 +27208,7 @@ namespace halo3_tools {
 	#define ENCODED_CLUSTER_DISTANCES_BLOCK_ID { 0x8C5E9324, 0xC3FC4EA5, 0x81F5E77C, 0xA8E03933 }
 	TAG_STRUCT(
 		encoded_cluster_distances_block,
+		"encoded_cluster_distances_block",
 		"encoded_cluster_distances_block",
 		"s_encoded_cluster_distances_block",
 		SET_DEFAULT,
@@ -26553,6 +27223,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		occluder_to_machine_door_mapping,
 		"occluder_to_machine_door_mapping",
+		"occluder_to_machine_door_mapping",
 		"s_occluder_to_machine_door_mapping",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26565,6 +27236,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_AUDIBILITY_BLOCK_ID { 0xD13EBD44, 0xF32645BD, 0x9B99BC19, 0xE4C46E5C }
 	TAG_STRUCT(
 		structure_bsp_audibility_block,
+		"structure_bsp_audibility_block",
 		"structure_bsp_audibility_block",
 		"s_structure_bsp_audibility_block",
 		SET_DEFAULT,
@@ -26585,6 +27257,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		gpu_function_sub_array_struct_definition,
 		"gpu_function_sub_array",
+		"gpu_function_sub_array",
 		"s_gpu_function_sub_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26597,6 +27270,7 @@ namespace halo3_tools {
 	#define GPU_FUNCTION_BLOCK_ID { 0xE4F4C1FD, 0x776D4521, 0xAACCF4EA, 0x51350BCD }
 	TAG_STRUCT(
 		gpu_function_block,
+		"gpu_function_block",
 		"gpu_function_block",
 		"s_gpu_function_block",
 		SET_DEFAULT,
@@ -26611,6 +27285,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		gpu_color_sub_array_struct_definition,
 		"gpu_color_sub_array",
+		"gpu_color_sub_array",
 		"s_gpu_color_sub_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26623,6 +27298,7 @@ namespace halo3_tools {
 	#define GPU_COLOR_BLOCK_ID { 0x77A26FFB, 0x0C164319, 0x81E4C4D3, 0x69DC3749 }
 	TAG_STRUCT(
 		gpu_color_block,
+		"gpu_color_block",
 		"gpu_color_block",
 		"s_gpu_color_block",
 		SET_DEFAULT,
@@ -26637,6 +27313,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		gpu_property_sub_array_struct_definition,
 		"gpu_property_sub_array",
+		"gpu_property_sub_array",
 		"s_gpu_property_sub_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26650,6 +27327,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		gpu_property_block,
 		"gpu_property_block",
+		"gpu_property_block",
 		"s_gpu_property_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26662,6 +27340,7 @@ namespace halo3_tools {
 	#define GPU_PROPERTY_FUNCTION_COLOR_STRUCT_ID { 0x33DE2336, 0x7C6242C5, 0xAD5A8C31, 0x992C78EA }
 	TAG_STRUCT(
 		gpu_property_function_color_struct,
+		"gpu_property_function_color_struct",
 		"gpu_property_function_color_struct",
 		"s_gpu_property_function_color_struct",
 		SET_DEFAULT,
@@ -26677,6 +27356,7 @@ namespace halo3_tools {
 	#define PARTICLE_SYSTEM_EMITTER_DEFINITION_BLOCK_ID { 0xD274EE53, 0x85814DDA, 0x82E8BD20, 0x70B91AB5 }
 	TAG_STRUCT(
 		particle_system_emitter_definition_block,
+		"particle_system_emitter_definition_block",
 		"particle_system_emitter_definition_block",
 		"s_particle_system_emitter_definition_block",
 		SET_DEFAULT,
@@ -26767,6 +27447,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		particle_system_definition_block_new,
 		"particle_system_definition_block_new",
+		"particle_system_definition_block_new",
 		"s_particle_system_definition_block_new",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26830,6 +27511,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		mopp_code_data_definition_block,
 		"mopp_code_data_definition_block",
+		"mopp_code_data_definition_block",
 		"s_mopp_code_data_definition_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26842,6 +27524,7 @@ namespace halo3_tools {
 	#define MOPP_CODE_DEFINITION_BLOCK_ID { 0xEE2BC898, 0x8AD14E98, 0xB64351E5, 0x635CF676 }
 	TAG_STRUCT(
 		mopp_code_definition_block,
+		"mopp_code_definition_block",
 		"mopp_code_definition_block",
 		"s_mopp_code_definition_block",
 		SET_DEFAULT,
@@ -26868,6 +27551,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		material_physics_drag_properties_block,
 		"material_physics_drag_properties_block",
+		"material_physics_drag_properties_block",
 		"s_material_physics_drag_properties_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26891,6 +27575,7 @@ namespace halo3_tools {
 	#define MATERIALS_SWEETENERS_STRUCT_ID { 0x9F74BAB9, 0xC3664288, 0xB82EFC4F, 0x59924C4B }
 	TAG_STRUCT(
 		materials_sweeteners_struct,
+		"materials_sweeteners_struct",
 		"materials_sweeteners_struct",
 		"s_materials_sweeteners_struct",
 		SET_DEFAULT,
@@ -26947,6 +27632,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		underwater_proxies_block,
 		"underwater_proxies_block",
+		"underwater_proxies_block",
 		"s_underwater_proxies_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -26964,6 +27650,7 @@ namespace halo3_tools {
 	#define MATERIALS_BLOCK$2_ID { 0x4D5F9153, 0x00B947A3, 0xBCAF406F, 0xC56F065C }
 	TAG_STRUCT(
 		materials_block$2,
+		"materials_block",
 		"materials_block",
 		"s_materials_block$2",
 		SET_DEFAULT,
@@ -26998,6 +27685,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		material_physics_properties_struct,
 		"material_physics_properties_struct",
+		"material_physics_properties_struct",
 		"s_material_physics_properties_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27014,6 +27702,7 @@ namespace halo3_tools {
 	#define CAMPAIGN_METAGAME_BUCKET_BLOCK_ID { 0x63D7EE66, 0xCFE44D6F, 0xBC5A8E71, 0x7128E562 }
 	TAG_STRUCT(
 		campaign_metagame_bucket_block,
+		"campaign_metagame_bucket_block",
 		"campaign_metagame_bucket_block",
 		"s_campaign_metagame_bucket_block",
 		SET_DEFAULT,
@@ -27085,6 +27774,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		campaign_metagame_scenario_bonuses_block,
 		"campaign_metagame_scenario_bonuses_block",
+		"campaign_metagame_scenario_bonuses_block",
 		"s_campaign_metagame_scenario_bonuses_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27098,6 +27788,7 @@ namespace halo3_tools {
 	#define CAMPAIGN_METAGAME_SCENARIO_BLOCK_ID { 0x59269CAB, 0x380A4488, 0x9D7D8B32, 0xD61CB01A }
 	TAG_STRUCT(
 		campaign_metagame_scenario_block,
+		"campaign_metagame_scenario_block",
 		"campaign_metagame_scenario_block",
 		"s_campaign_metagame_scenario_block",
 		SET_DEFAULT,
@@ -27113,6 +27804,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		campaign_metagame_style_type_block,
 		"campaign_metagame_style_type_block",
+		"campaign_metagame_style_type_block",
 		"s_campaign_metagame_style_type_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27125,6 +27817,7 @@ namespace halo3_tools {
 	#define CAMPAIGN_METAGAME_DIFFICULTY_SCALE_BLOCK_ID { 0x4C1DFA8F, 0x201E4EAA, 0xAD8B851B, 0x7D67E295 }
 	TAG_STRUCT(
 		campaign_metagame_difficulty_scale_block,
+		"campaign_metagame_difficulty_scale_block",
 		"campaign_metagame_difficulty_scale_block",
 		"s_campaign_metagame_difficulty_scale_block",
 		SET_DEFAULT,
@@ -27139,6 +27832,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		campaign_metagame_primary_skull_block,
 		"campaign_metagame_primary_skull_block",
+		"campaign_metagame_primary_skull_block",
 		"s_campaign_metagame_primary_skull_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27152,6 +27846,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		campaign_metagame_secondary_skull_block,
 		"campaign_metagame_secondary_skull_block",
+		"campaign_metagame_secondary_skull_block",
 		"s_campaign_metagame_secondary_skull_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27164,6 +27859,7 @@ namespace halo3_tools {
 	#define CAMPAIGN_METAGAME_GLOBALS_BLOCK_ID { 0x84D6CB38, 0x9F7147BA, 0x80478800, 0x00026D5C }
 	TAG_STRUCT(
 		campaign_metagame_globals_block,
+		"campaign_metagame_globals_block",
 		"campaign_metagame_globals_block",
 		"s_campaign_metagame_globals_block",
 		SET_DEFAULT,
@@ -27187,6 +27883,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		multisphere_sphere_storage_array_struct_definition,
 		"multisphere_sphere_storage_array",
+		"multisphere_sphere_storage_array",
 		"s_multisphere_sphere_storage_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27200,6 +27897,7 @@ namespace halo3_tools {
 	#define MULTISPHERE_STORAGE_ARRAY_STRUCT_DEFINITION_ID { 0x094E3EB0, 0xF12F4E3F, 0x912A7769, 0xDEF5B91C }
 	TAG_STRUCT(
 		multisphere_storage_array_struct_definition,
+		"multisphere_storage_array",
 		"multisphere_storage_array",
 		"s_multisphere_storage_array_struct_definition",
 		SET_DEFAULT,
@@ -27217,6 +27915,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		list_shape_storage_array_struct_definition,
 		"list_shape_storage_array",
+		"list_shape_storage_array",
 		"s_list_shape_storage_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27233,6 +27932,7 @@ namespace halo3_tools {
 	#define VEHICLE_PHANTOM_SHAPE_BLOCK_ID { 0xE0D519DE, 0x8B1D482D, 0xAE2C2A33, 0xE4044E50 }
 	TAG_STRUCT(
 		vehicle_phantom_shape_block,
+		"vehicle_phantom_shape_block",
 		"vehicle_phantom_shape_block",
 		"s_vehicle_phantom_shape_block",
 		SET_DEFAULT,
@@ -27271,6 +27971,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		anti_gravity_point_definition_block,
 		"anti_gravity_point_definition_block",
+		"anti_gravity_point_definition_block",
 		"s_anti_gravity_point_definition_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27306,6 +28007,7 @@ namespace halo3_tools {
 	#define FRICTION_POINT_DEFINITION_BLOCK_ID { 0x1694B591, 0xC73D42A9, 0x9D1207F5, 0xEFCEF368 }
 	TAG_STRUCT(
 		friction_point_definition_block,
+		"friction_point_definition_block",
 		"friction_point_definition_block",
 		"s_friction_point_definition_block",
 		SET_DEFAULT,
@@ -27355,6 +28057,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		havok_vehicle_physics_struct,
 		"havok_vehicle_physics_struct",
+		"havok_vehicle_physics_struct",
 		"s_havok_vehicle_physics_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27391,6 +28094,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		damage_body_parameters_struct,
 		"damage_body_parameters_struct",
+		"damage_body_parameters_struct",
 		"s_damage_body_parameters_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27407,6 +28111,7 @@ namespace halo3_tools {
 	#define DAMAGE_SHIELD_PARAMETERS_STRUCT_ID { 0xD30C88AC, 0xF030462C, 0x9536E894, 0xA6F752C1 }
 	TAG_STRUCT(
 		damage_shield_parameters_struct,
+		"damage_shield_parameters_struct",
 		"damage_shield_parameters_struct",
 		"s_damage_shield_parameters_struct",
 		SET_DEFAULT,
@@ -27428,6 +28133,7 @@ namespace halo3_tools {
 	#define GLOBAL_DAMAGE_SECTION_BLOCK_ID { 0x62D3077B, 0xC6584BCA, 0x9A4E7C7A, 0x989EB4F1 }
 	TAG_STRUCT(
 		global_damage_section_block,
+		"global_damage_section_block",
 		"global_damage_section_block",
 		"s_global_damage_section_block",
 		SET_DEFAULT,
@@ -27468,6 +28174,7 @@ namespace halo3_tools {
 	#define INSTANTANEOUS_DAMAGE_REPSONSE_BLOCK_ID { 0x2A8C9E6B, 0x10DE4CDB, 0x9C2F98C4, 0xBB69FEED }
 	TAG_STRUCT(
 		instantaneous_damage_repsonse_block,
+		"instantaneous_damage_repsonse_block",
 		"instantaneous_damage_repsonse_block",
 		"s_instantaneous_damage_repsonse_block",
 		SET_DEFAULT,
@@ -27576,6 +28283,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		damage_seat_region_setting_block,
 		"damage_seat_region_setting_block",
+		"damage_seat_region_setting_block",
 		"s_damage_seat_region_setting_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27601,6 +28309,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		damage_seat_info_block,
 		"damage_seat_info_block",
+		"damage_seat_info_block",
 		"s_damage_seat_info_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27618,6 +28327,7 @@ namespace halo3_tools {
 	#define DAMAGE_CONSTRAINT_INFO_BLOCK_ID { 0xB2695CA4, 0x6DBB4594, 0x8CD7C095, 0x292B2763 }
 	TAG_STRUCT(
 		damage_constraint_info_block,
+		"damage_constraint_info_block",
 		"damage_constraint_info_block",
 		"s_damage_constraint_info_block",
 		SET_DEFAULT,
@@ -27637,6 +28347,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		global_damage_nodes_block,
 		"global_damage_nodes_block",
+		"global_damage_nodes_block",
 		"s_global_damage_nodes_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27651,6 +28362,7 @@ namespace halo3_tools {
 	#define GLOBAL_DAMAGE_INFO_BLOCK_ID { 0xF8EA703F, 0x560E438E, 0x903E0A00, 0x1C77B3F2 }
 	TAG_STRUCT(
 		global_damage_info_block,
+		"global_damage_info_block",
 		"global_damage_info_block",
 		"s_global_damage_info_block",
 		SET_DEFAULT,
@@ -27706,6 +28418,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		instantaneous_response_damage_effect_struct,
 		"instantaneous_response_damage_effect_struct",
+		"instantaneous_response_damage_effect_struct",
 		"s_instantaneous_response_damage_effect_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27719,6 +28432,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		instantaneous_response_damage_effect_marker_struct,
 		"instantaneous_response_damage_effect_marker_struct",
+		"instantaneous_response_damage_effect_marker_struct",
 		"s_instantaneous_response_damage_effect_marker_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27731,6 +28445,7 @@ namespace halo3_tools {
 	#define PART_BLOCK_ID { 0x4A81849D, 0xFBEE42B4, 0xA3C956AC, 0xE6530F18 }
 	TAG_STRUCT(
 		part_block,
+		"part_block",
 		"part_block",
 		"s_part_block",
 		SET_DEFAULT,
@@ -27762,6 +28477,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		subpart_block,
 		"subpart_block",
+		"subpart_block",
 		"s_subpart_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27778,6 +28494,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		indices_word_block,
 		"indices_word_block",
+		"indices_word_block",
 		"s_indices_word_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27790,6 +28507,7 @@ namespace halo3_tools {
 	#define NODE_INDICES_ARRAY_STRUCT_DEFINITION_ID { 0x96D9B877, 0x7D854A1A, 0x94447B36, 0x3D993ECB }
 	TAG_STRUCT(
 		node_indices_array_struct_definition,
+		"node_indices_array",
 		"node_indices_array",
 		"s_node_indices_array_struct_definition",
 		SET_DEFAULT,
@@ -27804,6 +28522,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		node_weights_complete_array_struct_definition,
 		"node_weights_complete_array",
+		"node_weights_complete_array",
 		"s_node_weights_complete_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27817,6 +28536,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		node_weights_implicit_array_struct_definition,
 		"node_weights_implicit_array",
+		"node_weights_implicit_array",
 		"s_node_weights_implicit_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27829,6 +28549,7 @@ namespace halo3_tools {
 	#define RAW_VERTEX_BLOCK_ID { 0x98F6C836, 0xCD9343C5, 0xBA313188, 0x05BDBA77 }
 	TAG_STRUCT(
 		raw_vertex_block,
+		"raw_vertex_block",
 		"raw_vertex_block",
 		"s_raw_vertex_block",
 		SET_DEFAULT,
@@ -27851,6 +28572,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		raw_water_append_block,
 		"raw_water_append_block",
+		"raw_water_append_block",
 		"s_raw_water_append_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27866,6 +28588,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		raw_water_block,
 		"raw_water_block",
+		"raw_water_block",
 		"s_raw_water_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27879,6 +28602,7 @@ namespace halo3_tools {
 	#define COMPRESSION_INFO_BLOCK_ID { 0xFE51FDAC, 0x62FF4778, 0xA8C33054, 0xA023A96C }
 	TAG_STRUCT(
 		compression_info_block,
+		"compression_info_block",
 		"compression_info_block",
 		"s_compression_info_block",
 		SET_DEFAULT,
@@ -27906,6 +28630,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sorting_position_block,
 		"sorting_position_block",
+		"sorting_position_block",
 		"s_sorting_position_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27923,6 +28648,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		node_map_byte_block,
 		"node_map_byte_block",
+		"node_map_byte_block",
 		"s_node_map_byte_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27936,6 +28662,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		instance_index_word_block,
 		"instance_index_word_block",
+		"instance_index_word_block",
 		"s_instance_index_word_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27948,6 +28675,7 @@ namespace halo3_tools {
 	#define GLOBAL_INSTANCE_BUCKET_BLOCK_ID { 0x0C556069, 0xC7904BAA, 0xA39F96E0, 0xD9B27120 }
 	TAG_STRUCT(
 		global_instance_bucket_block,
+		"global_instance_bucket_block",
 		"global_instance_bucket_block",
 		"s_global_instance_bucket_block",
 		SET_DEFAULT,
@@ -27964,6 +28692,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		vertex_buffer_indices_word_array_struct_definition,
 		"vertex_buffer_indices_word_array",
+		"vertex_buffer_indices_word_array",
 		"s_vertex_buffer_indices_word_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -27976,6 +28705,7 @@ namespace halo3_tools {
 	#define GLOBAL_MESH_BLOCK_ID { 0xEBB348BB, 0xA7C04CC8, 0xA6E51515, 0xA5A99C7C }
 	TAG_STRUCT(
 		global_mesh_block,
+		"mesh",
 		"global_mesh_block",
 		"s_global_mesh_block",
 		SET_DEFAULT,
@@ -28060,6 +28790,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		per_mesh_raw_data_block,
 		"per_mesh_raw_data_block",
+		"per_mesh_raw_data_block",
 		"s_per_mesh_raw_data_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28085,6 +28816,7 @@ namespace halo3_tools {
 	#define GLOBAL_GEOMETRY_SECTION_STRIP_INDEX_BLOCK_ID { 0x107EF125, 0x11634A1A, 0x82868F02, 0x94A3A3D1 }
 	TAG_STRUCT(
 		global_geometry_section_strip_index_block,
+		"index",
 		"global_geometry_section_strip_index_block",
 		"s_global_geometry_section_strip_index_block",
 		SET_DEFAULT,
@@ -28098,6 +28830,7 @@ namespace halo3_tools {
 	#define PER_MESH_MOPP_BLOCK_ID { 0x7764423C, 0x370E4E3E, 0x8F6460EB, 0xD5CAF9B6 }
 	TAG_STRUCT(
 		per_mesh_mopp_block,
+		"per_mesh_mopp_block",
 		"per_mesh_mopp_block",
 		"s_per_mesh_mopp_block",
 		SET_DEFAULT,
@@ -28113,6 +28846,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		per_mesh_node_map_block,
 		"per_mesh_node_map_block",
+		"per_mesh_node_map_block",
 		"s_per_mesh_node_map_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28125,6 +28859,7 @@ namespace halo3_tools {
 	#define PER_MESH_SUBPART_VISIBILITY_BLOCK_ID { 0x06360432, 0x14BE47E0, 0x818AB223, 0xA6DB06A2 }
 	TAG_STRUCT(
 		per_mesh_subpart_visibility_block,
+		"per_mesh_subpart_visibility_block",
 		"per_mesh_subpart_visibility_block",
 		"s_per_mesh_subpart_visibility_block",
 		SET_DEFAULT,
@@ -28139,6 +28874,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		per_instance_prt_data_block,
 		"per_instance_prt_data_block",
+		"per_instance_prt_data_block",
 		"s_per_instance_prt_data_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28151,6 +28887,7 @@ namespace halo3_tools {
 	#define PER_MESH_PRT_DATA_BLOCK_ID { 0x7ECBA5AF, 0x689D4385, 0xBE237733, 0x820D7068 }
 	TAG_STRUCT(
 		per_mesh_prt_data_block,
+		"per_mesh_prt_data_block",
 		"per_mesh_prt_data_block",
 		"s_per_mesh_prt_data_block",
 		SET_DEFAULT,
@@ -28166,6 +28903,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		per_instance_lightmap_texcoords_block,
 		"per_instance_lightmap_texcoords_block",
+		"per_instance_lightmap_texcoords_block",
 		"s_per_instance_lightmap_texcoords_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28180,6 +28918,7 @@ namespace halo3_tools {
 	#define GLOBAL_RENDER_GEOMETRY_USER_DATA_HEADER_STRUCT_ID { 0x90ADB30A, 0xC06E4FA8, 0x96F092C1, 0x020E847F }
 	TAG_STRUCT(
 		global_render_geometry_user_data_header_struct,
+		"global_render_geometry_user_data_header_struct",
 		"global_render_geometry_user_data_header_struct",
 		"s_global_render_geometry_user_data_header_struct",
 		SET_DEFAULT,
@@ -28202,6 +28941,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		user_data_block,
 		"user_data_block",
+		"user_data_block",
 		"s_user_data_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28215,6 +28955,7 @@ namespace halo3_tools {
 	#define VERTEX_BUFFERS_BLOCK_ID { 0x10DD7329, 0xE07F4880, 0xBC8BB79A, 0x253227EE }
 	TAG_STRUCT(
 		vertex_buffers_block,
+		"vertex_buffers_block",
 		"vertex_buffers_block",
 		"s_vertex_buffers_block",
 		SET_DEFAULT,
@@ -28237,6 +28978,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		index_buffers_block,
 		"index_buffers_block",
+		"index_buffers_block",
 		"s_index_buffers_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28257,6 +28999,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_vertex_buffer_block,
 		"render_vertex_buffer_block",
+		"render_vertex_buffer_block",
 		"s_render_vertex_buffer_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28270,6 +29013,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_index_buffer_block,
 		"render_index_buffer_block",
+		"render_index_buffer_block",
 		"s_render_index_buffer_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28282,6 +29026,7 @@ namespace halo3_tools {
 	#define RENDER_GEOMETRY_API_RESOURCE_DEFINITION_STRUCT_ID { 0x8AEB8021, 0xF60A4164, 0x970C7091, 0x23365545 }
 	TAG_STRUCT(
 		render_geometry_api_resource_definition_struct,
+		"render_geometry_api_resource_definition_struct",
 		"render_geometry_api_resource_definition_struct",
 		"s_render_geometry_api_resource_definition_struct",
 		SET_DEFAULT,
@@ -28298,6 +29043,7 @@ namespace halo3_tools {
 	#define GLOBAL_RENDER_GEOMETRY_STRUCT_ID { 0x25CE2A94, 0x081545BA, 0x9E9A2690, 0xEFDBE832 }
 	TAG_STRUCT(
 		global_render_geometry_struct,
+		"global_render_geometry_struct",
 		"global_render_geometry_struct",
 		"s_global_render_geometry_struct",
 		SET_DEFAULT,
@@ -28332,6 +29078,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_bsp_instanced_geometry_definition_block,
 		"structure_bsp_instanced_geometry_definition_block",
+		"structure_bsp_instanced_geometry_definition_block",
 		"s_structure_bsp_instanced_geometry_definition_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28357,6 +29104,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		global_render_model_instance_placement_block,
 		"global_render_model_instance_placement_block",
+		"global_render_model_instance_placement_block",
 		"s_global_render_model_instance_placement_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28375,6 +29123,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_INSTANCED_GEOMETRY_INSTANCES_BLOCK_ID { 0x1AED06E6, 0xF1AC46B4, 0x8A2AF2D2, 0xDA51B54A }
 	TAG_STRUCT(
 		structure_bsp_instanced_geometry_instances_block,
+		"structure_bsp_instanced_geometry_instances_block",
 		"structure_bsp_instanced_geometry_instances_block",
 		"s_structure_bsp_instanced_geometry_instances_block",
 		SET_DEFAULT,
@@ -28440,6 +29189,7 @@ namespace halo3_tools {
 	#define GLOBAL_ERROR_REPORT_CATEGORIES_BLOCK_ID { 0x3CBB78D5, 0xCA074D83, 0x8994291A, 0x8E13F496 }
 	TAG_STRUCT(
 		global_error_report_categories_block,
+		"error report category",
 		"global_error_report_categories_block",
 		"s_global_error_report_categories_block",
 		SET_DEFAULT,
@@ -28478,6 +29228,7 @@ namespace halo3_tools {
 	#define ERROR_REPORTS_BLOCK_ID { 0xEE6AAB20, 0x3227499F, 0x914508D6, 0x40FCAA9E }
 	TAG_STRUCT(
 		error_reports_block,
+		"error report",
 		"error_reports_block",
 		"s_error_reports_block",
 		SET_DEFAULT,
@@ -28519,6 +29270,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		error_point_node_index_array_struct_definition,
 		"error_point_node_index_array",
+		"error_point_node_index_array",
 		"s_error_point_node_index_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28532,6 +29284,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		error_point_node_weight_array_struct_definition,
 		"error_point_node_weight_array",
+		"error_point_node_weight_array",
 		"s_error_point_node_weight_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28544,6 +29297,7 @@ namespace halo3_tools {
 	#define ERROR_REPORT_POINT_DEFINITION_ID { 0xB6C2368C, 0x78534A62, 0x9882F40C, 0xE2181EF5 }
 	TAG_STRUCT(
 		error_report_point_definition,
+		"error_report_point_definition",
 		"error_report_point_definition",
 		"s_error_report_point_definition",
 		SET_DEFAULT,
@@ -28559,6 +29313,7 @@ namespace halo3_tools {
 	#define ERROR_REPORT_VERTICES_BLOCK_ID { 0xB44D11D1, 0xA884463D, 0xB9552513, 0x0E390450 }
 	TAG_STRUCT(
 		error_report_vertices_block,
+		"error report vertex",
 		"error_report_vertices_block",
 		"s_error_report_vertices_block",
 		SET_DEFAULT,
@@ -28574,6 +29329,7 @@ namespace halo3_tools {
 	#define ERROR_REPORT_VECTORS_BLOCK_ID { 0xF617E038, 0x0B4E4E8D, 0xAF4F86B9, 0x02745E1F }
 	TAG_STRUCT(
 		error_report_vectors_block,
+		"error report vector",
 		"error_report_vectors_block",
 		"s_error_report_vectors_block",
 		SET_DEFAULT,
@@ -28591,6 +29347,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		error_report_line_point_array_struct_definition,
 		"error_report_line_point_array",
+		"error_report_line_point_array",
 		"s_error_report_line_point_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28603,6 +29360,7 @@ namespace halo3_tools {
 	#define ERROR_REPORT_LINES_BLOCK_ID { 0x1C172D3C, 0x604A4356, 0x8F1BDE48, 0xE0CA8284 }
 	TAG_STRUCT(
 		error_report_lines_block,
+		"error report line",
 		"error_report_lines_block",
 		"s_error_report_lines_block",
 		SET_DEFAULT,
@@ -28618,6 +29376,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		error_report_triangle_point_array_struct_definition,
 		"error_report_triangle_point_array",
+		"error_report_triangle_point_array",
 		"s_error_report_triangle_point_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28630,6 +29389,7 @@ namespace halo3_tools {
 	#define ERROR_REPORT_TRIANGLES_BLOCK_ID { 0xF926E761, 0x001244E3, 0x85173116, 0x2B96347A }
 	TAG_STRUCT(
 		error_report_triangles_block,
+		"error report triangle",
 		"error_report_triangles_block",
 		"s_error_report_triangles_block",
 		SET_DEFAULT,
@@ -28645,6 +29405,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		error_report_quad_point_array_struct_definition,
 		"error_report_quad_point_array",
+		"error_report_quad_point_array",
 		"s_error_report_quad_point_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28657,6 +29418,7 @@ namespace halo3_tools {
 	#define ERROR_REPORT_QUADS_BLOCK_ID { 0xD1071621, 0xE7D84305, 0x8AEA9FCC, 0xC52955BF }
 	TAG_STRUCT(
 		error_report_quads_block,
+		"error report quad",
 		"error_report_quads_block",
 		"s_error_report_quads_block",
 		SET_DEFAULT,
@@ -28671,6 +29433,7 @@ namespace halo3_tools {
 	#define ERROR_REPORT_COMMENTS_BLOCK_ID { 0x709A9566, 0xDEA34617, 0x8AFF50B9, 0xDB6DE950 }
 	TAG_STRUCT(
 		error_report_comments_block,
+		"error report comment",
 		"error_report_comments_block",
 		"s_error_report_comments_block",
 		SET_DEFAULT,
@@ -28686,6 +29449,7 @@ namespace halo3_tools {
 	#define GLOBAL_GEOMETRY_MATERIAL_BLOCK_ID { 0xB1135973, 0x34A54DC5, 0x99901631, 0xB0B5E573 }
 	TAG_STRUCT(
 		global_geometry_material_block,
+		"material",
 		"global_geometry_material_block",
 		"s_global_geometry_material_block",
 		SET_DEFAULT,
@@ -28705,6 +29469,7 @@ namespace halo3_tools {
 	#define GLOBAL_GEOMETRY_MATERIAL_PROPERTY_BLOCK_ID { 0xC8582E72, 0x3D064599, 0xB4857A5C, 0xA10618F2 }
 	TAG_STRUCT(
 		global_geometry_material_property_block,
+		"material property",
 		"global_geometry_material_property_block",
 		"s_global_geometry_material_property_block",
 		SET_DEFAULT,
@@ -28736,6 +29501,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		global_collision_bsp_block,
 		"global_collision_bsp_block",
+		"global_collision_bsp_block",
 		"s_global_collision_bsp_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28755,6 +29521,7 @@ namespace halo3_tools {
 	#define GLOBAL_LARGE_COLLISION_BSP_BLOCK_ID { 0xE15AAF1B, 0xBF17422D, 0xB730F6DB, 0xCDE02043 }
 	TAG_STRUCT(
 		global_large_collision_bsp_block,
+		"global_large_collision_bsp_block",
 		"global_large_collision_bsp_block",
 		"s_global_large_collision_bsp_block",
 		SET_DEFAULT,
@@ -28776,6 +29543,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		bsp3d_nodes_block_struct,
 		"bsp3d_nodes_block_struct",
+		"bsp3d_nodes_block_struct",
 		"s_bsp3d_nodes_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28788,6 +29556,7 @@ namespace halo3_tools {
 	#define LARGE_BSP3D_NODES_BLOCK_ID { 0xB16070E2, 0x373C48DD, 0xBC536E38, 0xA979E2E0 }
 	TAG_STRUCT(
 		large_bsp3d_nodes_block,
+		"bsp3d node",
 		"large_bsp3d_nodes_block",
 		"s_large_bsp3d_nodes_block",
 		SET_DEFAULT,
@@ -28804,6 +29573,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		planes_block,
 		"planes_block",
+		"planes_block",
 		"s_planes_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28816,6 +29586,7 @@ namespace halo3_tools {
 	#define COLLISION_LEAF_STRUCT_ID { 0xA5FD8EE3, 0x9A644ECC, 0x9CEBF2FB, 0x45030CA1 }
 	TAG_STRUCT(
 		collision_leaf_struct,
+		"collision_leaf_struct",
 		"collision_leaf_struct",
 		"s_collision_leaf_struct",
 		SET_DEFAULT,
@@ -28838,6 +29609,7 @@ namespace halo3_tools {
 	#define LARGE_LEAVES_BLOCK_ID { 0x6FACAFAA, 0x8B1C4C58, 0x913373AA, 0x7C8A9E94 }
 	TAG_STRUCT(
 		large_leaves_block,
+		"leaf",
 		"large_leaves_block",
 		"s_large_leaves_block",
 		SET_DEFAULT,
@@ -28854,6 +29626,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		bsp2d_references_block,
 		"bsp2d_references_block",
+		"bsp2d_references_block",
 		"s_bsp2d_references_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28867,6 +29640,7 @@ namespace halo3_tools {
 	#define LARGE_BSP2D_REFERENCES_BLOCK_ID { 0x7E600865, 0x481349EE, 0xAA595566, 0x4FD9C2BB }
 	TAG_STRUCT(
 		large_bsp2d_references_block,
+		"bsp2d reference",
 		"large_bsp2d_references_block",
 		"s_large_bsp2d_references_block",
 		SET_DEFAULT,
@@ -28882,6 +29656,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		bsp2d_nodes_block,
 		"bsp2d_nodes_block",
+		"bsp2d_nodes_block",
 		"s_bsp2d_nodes_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28896,6 +29671,7 @@ namespace halo3_tools {
 	#define LARGE_BSP2D_NODES_BLOCK_ID { 0xC17973C7, 0x16C14EE5, 0xA40FA277, 0x212D8050 }
 	TAG_STRUCT(
 		large_bsp2d_nodes_block,
+		"bsp2d node",
 		"large_bsp2d_nodes_block",
 		"s_large_bsp2d_nodes_block",
 		SET_DEFAULT,
@@ -28911,6 +29687,7 @@ namespace halo3_tools {
 	#define SURFACES_BLOCK_ID { 0x7CB81935, 0x01394B88, 0xBF32DE80, 0xD8589139 }
 	TAG_STRUCT(
 		surfaces_block,
+		"surfaces_block",
 		"surfaces_block",
 		"s_surfaces_block",
 		SET_DEFAULT,
@@ -28942,6 +29719,7 @@ namespace halo3_tools {
 	#define LARGE_SURFACES_BLOCK_ID { 0xE4F80B98, 0x0D764C5B, 0xBD4E563D, 0x50414589 }
 	TAG_STRUCT(
 		large_surfaces_block,
+		"surface",
 		"large_surfaces_block",
 		"s_large_surfaces_block",
 		SET_DEFAULT,
@@ -28962,6 +29740,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		edges_block,
 		"edges_block",
+		"edges_block",
 		"s_edges_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -28979,6 +29758,7 @@ namespace halo3_tools {
 	#define LARGE_EDGES_BLOCK_ID { 0x76B24BE8, 0xE1574464, 0xB7C09C61, 0x948F3471 }
 	TAG_STRUCT(
 		large_edges_block,
+		"edge",
 		"large_edges_block",
 		"s_large_edges_block",
 		SET_DEFAULT,
@@ -28998,6 +29778,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		vertices_block,
 		"vertices_block",
+		"vertices_block",
 		"s_vertices_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29012,6 +29793,7 @@ namespace halo3_tools {
 	#define LARGE_VERTICES_BLOCK_ID { 0x0459797B, 0xF03B4186, 0xAA638C78, 0xD41B79DD }
 	TAG_STRUCT(
 		large_vertices_block,
+		"vertex",
 		"large_vertices_block",
 		"s_large_vertices_block",
 		SET_DEFAULT,
@@ -29027,6 +29809,7 @@ namespace halo3_tools {
 	#define GLOBAL_COLLISION_BSP_STRUCT_ID { 0x130D16E9, 0xA4684A1E, 0xA91958AD, 0x3BDAA7EC }
 	TAG_STRUCT(
 		global_collision_bsp_struct,
+		"global_collision_bsp_struct",
 		"global_collision_bsp_struct",
 		"s_global_collision_bsp_struct",
 		SET_DEFAULT,
@@ -29047,6 +29830,7 @@ namespace halo3_tools {
 	#define COLLISION_BSP_PHYSICS_BLOCK_ID { 0xDFDA91AC, 0x1DC240BB, 0x8F8A4DA3, 0x16F98A39 }
 	TAG_STRUCT(
 		collision_bsp_physics_block,
+		"collision_bsp_physics_block",
 		"collision_bsp_physics_block",
 		"s_collision_bsp_physics_block",
 		SET_DEFAULT,
@@ -29079,6 +29863,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_soft_ceiling_triangle_block,
 		"structure_soft_ceiling_triangle_block",
+		"structure_soft_ceiling_triangle_block",
 		"s_structure_soft_ceiling_triangle_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29097,6 +29882,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_soft_ceiling_block,
 		"structure_soft_ceiling_block",
+		"structure_soft_ceiling_block",
 		"s_structure_soft_ceiling_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29112,6 +29898,7 @@ namespace halo3_tools {
 	#define BREAKABLE_SURFACE_KEY_TABLE_BLOCK_ID { 0x9815598B, 0x36884E51, 0x81CF6CB8, 0xAA8F19CD }
 	TAG_STRUCT(
 		breakable_surface_key_table_block,
+		"breakable_surface_key_table_block",
 		"breakable_surface_key_table_block",
 		"s_breakable_surface_key_table_block",
 		SET_DEFAULT,
@@ -29135,6 +29922,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_water_groups_block,
 		"structure_water_groups_block",
+		"structure_water_groups_block",
 		"s_structure_water_groups_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29148,6 +29936,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_water_instance_planes_block,
 		"structure_water_instance_planes_block",
+		"structure_water_instance_planes_block",
 		"s_structure_water_instance_planes_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29160,6 +29949,7 @@ namespace halo3_tools {
 	#define STRUCTURE_WATER_INSTANCE_DEBUG_TRIANGLES_BLOCK_ID { 0xAAFDFA81, 0x0BEF4B20, 0xBC3530CA, 0x1D23FD5D }
 	TAG_STRUCT(
 		structure_water_instance_debug_triangles_block,
+		"structure_water_instance_debug_triangles_block",
 		"structure_water_instance_debug_triangles_block",
 		"s_structure_water_instance_debug_triangles_block",
 		SET_DEFAULT,
@@ -29175,6 +29965,7 @@ namespace halo3_tools {
 	#define STRUCTURE_WATER_INSTANCES_BLOCK_ID { 0xA1FDFC80, 0x07EF4921, 0xBC353CC2, 0x1A23FF53 }
 	TAG_STRUCT(
 		structure_water_instances_block,
+		"structure_water_instances_block",
 		"structure_water_instances_block",
 		"s_structure_water_instances_block",
 		SET_DEFAULT,
@@ -29194,6 +29985,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		soft_surfaces_definition_block,
 		"soft_surfaces_definition_block",
+		"soft_surfaces_definition_block",
 		"s_soft_surfaces_definition_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29211,6 +30003,7 @@ namespace halo3_tools {
 	#define GLOBAL_STRUCTURE_PHYSICS_STRUCT_ID { 0x85AE0045, 0x53D34FA6, 0x8EF153FA, 0x77162294 }
 	TAG_STRUCT(
 		global_structure_physics_struct,
+		"global_structure_physics_struct",
 		"global_structure_physics_struct",
 		"s_global_structure_physics_struct",
 		SET_DEFAULT,
@@ -29230,6 +30023,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		global_structure_physics_design_struct,
 		"global_structure_physics_design_struct",
+		"global_structure_physics_design_struct",
 		"s_global_structure_physics_design_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29247,6 +30041,7 @@ namespace halo3_tools {
 	#define PARTICLE_PROPERTY_SCALAR_STRUCT_NEW_ID { 0x64607252, 0xE8084E37, 0x8447409D, 0x9411483C }
 	TAG_STRUCT(
 		particle_property_scalar_struct_new,
+		"particle_property_scalar_struct_new",
 		"particle_property_scalar_struct_new",
 		"s_particle_property_scalar_struct_new",
 		SET_DEFAULT,
@@ -29277,6 +30072,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		particle_property_color_struct_new,
 		"particle_property_color_struct_new",
+		"particle_property_color_struct_new",
 		"s_particle_property_color_struct_new",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29297,6 +30093,7 @@ namespace halo3_tools {
 	#define PARTICLE_PROPERTY_REAL_POINT3D_STRUCT_NEW_ID { 0x0BEB218F, 0x6CE546FA, 0xA21161F6, 0xE75582FC }
 	TAG_STRUCT(
 		particle_property_real_point3d_struct_new,
+		"particle_property_real_point3d_struct_new",
 		"particle_property_real_point3d_struct_new",
 		"s_particle_property_real_point3d_struct_new",
 		SET_DEFAULT,
@@ -29321,6 +30118,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		particle_property_real_vector3d_struct_new,
 		"particle_property_real_vector3d_struct_new",
+		"particle_property_real_vector3d_struct_new",
 		"s_particle_property_real_vector3d_struct_new",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29343,6 +30141,7 @@ namespace halo3_tools {
 	#define PARTICLE_PROPERTY_REAL_VECTOR3D_SPHERICAL_STRUCT_NEW_ID { 0x177FFA4E, 0x1DF44D58, 0xB4D45610, 0x086CBE4D }
 	TAG_STRUCT(
 		particle_property_real_vector3d_spherical_struct_new,
+		"particle_property_real_vector3d_spherical_struct_new",
 		"particle_property_real_vector3d_spherical_struct_new",
 		"s_particle_property_real_vector3d_spherical_struct_new",
 		SET_DEFAULT,
@@ -29369,6 +30168,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		property_editable_vector3d_interpolator,
 		"property_editable_vector3d_interpolator",
+		"property_editable_vector3d_interpolator",
 		"s_property_editable_vector3d_interpolator",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29382,6 +30182,7 @@ namespace halo3_tools {
 	#define SCENARIO_CUBEMAP_BLOCK_ID { 0x05268782, 0x3F8F473B, 0x87B21BB6, 0x67E5D5EF }
 	TAG_STRUCT(
 		scenario_cubemap_block,
+		"scenario_cubemap_block",
 		"scenario_cubemap_block",
 		"s_scenario_cubemap_block",
 		SET_DEFAULT,
@@ -29408,6 +30209,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_cluster_cubemap,
 		"structure_cluster_cubemap",
+		"structure_cluster_cubemap",
 		"s_structure_cluster_cubemap",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29423,6 +30225,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_sound_cluster_portal_designators,
 		"structure_sound_cluster_portal_designators",
+		"structure_sound_cluster_portal_designators",
 		"s_structure_sound_cluster_portal_designators",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29436,6 +30239,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_sound_cluster_interior_cluster_indices,
 		"structure_sound_cluster_interior_cluster_indices",
+		"structure_sound_cluster_interior_cluster_indices",
 		"s_structure_sound_cluster_interior_cluster_indices",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29448,6 +30252,7 @@ namespace halo3_tools {
 	#define STRUCTURE_BSP_SOUND_CLUSTER_BLOCK_ID { 0x1B60A32F, 0x573342BF, 0x861F64D3, 0xADC5FA35 }
 	TAG_STRUCT(
 		structure_bsp_sound_cluster_block,
+		"structure_bsp_sound_cluster_block",
 		"structure_bsp_sound_cluster_block",
 		"s_structure_bsp_sound_cluster_block",
 		SET_DEFAULT,
@@ -29464,6 +30269,7 @@ namespace halo3_tools {
 	#define SCENARIO_OBJECT_ID_STRUCT_ID { 0xA40A1401, 0xDE4B45AE, 0xB47F4714, 0x99C39E7B }
 	TAG_STRUCT(
 		scenario_object_id_struct,
+		"scenario_object_id_struct",
 		"scenario_object_id_struct",
 		"s_scenario_object_id_struct",
 		SET_DEFAULT,
@@ -29511,6 +30317,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_object_reference_struct,
 		"scenario_object_reference_struct",
+		"scenario_object_reference_struct",
 		"s_scenario_object_reference_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29525,6 +30332,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		pathfinding_object_index_list_block,
 		"pathfinding_object_index_list_block",
+		"pathfinding_object_index_list_block",
 		"s_pathfinding_object_index_list_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29538,6 +30346,7 @@ namespace halo3_tools {
 	#define SCENARIO_OBJECT_PARENT_STRUCT_ID { 0xC16E1FE3, 0xC0AA4656, 0x95075B5F, 0x41BB4DF4 }
 	TAG_STRUCT(
 		scenario_object_parent_struct,
+		"scenario_object_parent_struct",
 		"scenario_object_parent_struct",
 		"s_scenario_object_parent_struct",
 		SET_DEFAULT,
@@ -29555,6 +30364,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_object_node_orientations_bit_vector_block,
 		"scenario_object_node_orientations_bit_vector_block",
+		"scenario_object_node_orientations_bit_vector_block",
 		"s_scenario_object_node_orientations_bit_vector_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29568,6 +30378,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_object_node_orientations_orientations_block,
 		"scenario_object_node_orientations_orientations_block",
+		"scenario_object_node_orientations_orientations_block",
 		"s_scenario_object_node_orientations_orientations_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29580,6 +30391,7 @@ namespace halo3_tools {
 	#define SCENARIO_OBJECT_NODE_ORIENTATIONS_BLOCK_ID { 0xEDA8EC00, 0x4C774AEF, 0xB12F582C, 0x1E39C08A }
 	TAG_STRUCT(
 		scenario_object_node_orientations_block,
+		"scenario_object_node_orientations_block",
 		"scenario_object_node_orientations_block",
 		"s_scenario_object_node_orientations_block",
 		SET_DEFAULT,
@@ -29596,6 +30408,7 @@ namespace halo3_tools {
 	#define SCENARIO_OBJECT_PERMUTATION_STRUCT_ID { 0x03BD8F07, 0x22A74669, 0xA02A4C64, 0x096D3305 }
 	TAG_STRUCT(
 		scenario_object_permutation_struct,
+		"scenario_object_permutation_struct",
 		"scenario_object_permutation_struct",
 		"s_scenario_object_permutation_struct",
 		SET_DEFAULT,
@@ -29624,6 +30437,7 @@ namespace halo3_tools {
 	#define SCENARIO_MULTIPLAYER_OBJECT_STRUCT_ID { 0xD7949B53, 0x207B47B5, 0x99E1EB91, 0x29AF1E16 }
 	TAG_STRUCT(
 		scenario_multiplayer_object_struct,
+		"scenario_multiplayer_object_struct",
 		"scenario_multiplayer_object_struct",
 		"s_scenario_multiplayer_object_struct",
 		SET_DEFAULT,
@@ -29750,6 +30564,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_scenery_palette_block,
 		"scenario_scenery_palette_block",
+		"scenario_scenery_palette_block",
 		"s_scenario_scenery_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29765,6 +30580,7 @@ namespace halo3_tools {
 	#define SCENARIO_SCENERY_DATUM_STRUCT_V4_ID { 0xECD107BB, 0x32A143B7, 0x934D8DC0, 0x0B606F2D }
 	TAG_STRUCT(
 		scenario_scenery_datum_struct_v4,
+		"scenario_scenery_datum_struct_v4",
 		"scenario_scenery_datum_struct_v4",
 		"s_scenario_scenery_datum_struct_v4",
 		SET_DEFAULT,
@@ -29802,6 +30618,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_crate_palette_block,
 		"scenario_crate_palette_block",
+		"scenario_crate_palette_block",
 		"s_scenario_crate_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29818,6 +30635,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_crate_datum_struct,
 		"scenario_crate_datum_struct",
+		"scenario_crate_datum_struct",
 		"s_scenario_crate_datum_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29832,6 +30650,7 @@ namespace halo3_tools {
 	#define SCENARIO_CRATE_BLOCK_ID { 0x64C39900, 0x24D642E9, 0xAB5396A7, 0x50C5FCDE }
 	TAG_STRUCT(
 		scenario_crate_block,
+		"scenario_crate_block",
 		"scenario_crate_block",
 		"s_scenario_crate_block",
 		SET_DEFAULT,
@@ -29853,6 +30672,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_creature_palette_block,
 		"scenario_creature_palette_block",
+		"scenario_creature_palette_block",
 		"s_scenario_creature_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29868,6 +30688,7 @@ namespace halo3_tools {
 	#define SCENARIO_CREATURE_BLOCK_ID { 0x09DFDC77, 0xD7B340DD, 0x98945C37, 0x64786346 }
 	TAG_STRUCT(
 		scenario_creature_block,
+		"scenario_creature_block",
 		"scenario_creature_block",
 		"s_scenario_creature_block",
 		SET_DEFAULT,
@@ -29886,6 +30707,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_equipment_palette_block,
 		"scenario_equipment_palette_block",
+		"scenario_equipment_palette_block",
 		"s_scenario_equipment_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29901,6 +30723,7 @@ namespace halo3_tools {
 	#define SCENARIO_EQUIPMENT_DATUM_STRUCT_ID { 0x48D20C56, 0x8B844C52, 0xA0DA0D7B, 0x0B10F54A }
 	TAG_STRUCT(
 		scenario_equipment_datum_struct,
+		"scenario_equipment_datum_struct",
 		"scenario_equipment_datum_struct",
 		"s_scenario_equipment_datum_struct",
 		SET_DEFAULT,
@@ -29923,6 +30746,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_weapon_palette_block,
 		"scenario_weapon_palette_block",
+		"scenario_weapon_palette_block",
 		"s_scenario_weapon_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29938,6 +30762,7 @@ namespace halo3_tools {
 	#define SCENARIO_WEAPON_DATUM_STRUCT_ID { 0x95BC43BA, 0xC6EF42C5, 0x95BA7855, 0x50A05B6F }
 	TAG_STRUCT(
 		scenario_weapon_datum_struct,
+		"scenario_weapon_datum_struct",
 		"scenario_weapon_datum_struct",
 		"s_scenario_weapon_datum_struct",
 		SET_DEFAULT,
@@ -29962,6 +30787,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_unit_struct,
 		"scenario_unit_struct",
+		"scenario_unit_struct",
 		"s_scenario_unit_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -29984,6 +30810,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_biped_palette_block,
 		"scenario_biped_palette_block",
+		"scenario_biped_palette_block",
 		"s_scenario_biped_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30000,6 +30827,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_giant_datum_struct,
 		"scenario_giant_datum_struct",
+		"scenario_giant_datum_struct",
 		"s_scenario_giant_datum_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30014,6 +30842,7 @@ namespace halo3_tools {
 	#define SCENARIO_GIANT_PALETTE_BLOCK_ID { 0xFCCBF08D, 0xF4FD4CD9, 0xFD7E48BE, 0xFF3F3102 }
 	TAG_STRUCT(
 		scenario_giant_palette_block,
+		"scenario_giant_palette_block",
 		"scenario_giant_palette_block",
 		"s_scenario_giant_palette_block",
 		SET_DEFAULT,
@@ -30030,6 +30859,7 @@ namespace halo3_tools {
 	#define MAP_VARIANT_VEHICLE_PALETTE_BLOCK_ID { 0x32ACE1FB, 0xC80245B7, 0x875FA25B, 0x9C408A82 }
 	TAG_STRUCT(
 		map_variant_vehicle_palette_block,
+		"map_variant_vehicle_palette_block",
 		"map_variant_vehicle_palette_block",
 		"s_map_variant_vehicle_palette_block",
 		SET_DEFAULT,
@@ -30050,6 +30880,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		map_variant_equipment_palette_block,
 		"map_variant_equipment_palette_block",
+		"map_variant_equipment_palette_block",
 		"s_map_variant_equipment_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30068,6 +30899,7 @@ namespace halo3_tools {
 	#define MAP_VARIANT_WEAPON_PALETTE_BLOCK_ID { 0xD15A8403, 0xD2854B0E, 0x8DB1BD06, 0xB215E369 }
 	TAG_STRUCT(
 		map_variant_weapon_palette_block,
+		"map_variant_weapon_palette_block",
 		"map_variant_weapon_palette_block",
 		"s_map_variant_weapon_palette_block",
 		SET_DEFAULT,
@@ -30095,6 +30927,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		map_variant_scenery_palette_block,
 		"map_variant_scenery_palette_block",
+		"map_variant_scenery_palette_block",
 		"s_map_variant_scenery_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30111,6 +30944,7 @@ namespace halo3_tools {
 	#define MAP_VARIANT_TELEPORTER_PALETTE_BLOCK_ID { 0xF17C0EA2, 0xCD014381, 0x98F8615E, 0xD6A0C55F }
 	TAG_STRUCT(
 		map_variant_teleporter_palette_block,
+		"map_variant_teleporter_palette_block",
 		"map_variant_teleporter_palette_block",
 		"s_map_variant_teleporter_palette_block",
 		SET_DEFAULT,
@@ -30129,6 +30963,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		map_variant_goal_palette_block,
 		"map_variant_goal_palette_block",
+		"map_variant_goal_palette_block",
 		"s_map_variant_goal_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30145,6 +30980,7 @@ namespace halo3_tools {
 	#define MAP_VARIANT_SPAWN_OBJECTS_PALETTE_BLOCK_ID { 0xFCC1CC42, 0xE2DC46E9, 0xA7288102, 0x98000419 }
 	TAG_STRUCT(
 		map_variant_spawn_objects_palette_block,
+		"map_variant_spawn_objects_palette_block",
 		"map_variant_spawn_objects_palette_block",
 		"s_map_variant_spawn_objects_palette_block",
 		SET_DEFAULT,
@@ -30163,6 +30999,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_vehicle_palette_block,
 		"scenario_vehicle_palette_block",
+		"scenario_vehicle_palette_block",
 		"s_scenario_vehicle_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30178,6 +31015,7 @@ namespace halo3_tools {
 	#define DEVICE_GROUP_BLOCK_ID { 0xACEBB874, 0x1E6A4C32, 0x839122F6, 0x6729B33B }
 	TAG_STRUCT(
 		device_group_block,
+		"device_group_block",
 		"device_group_block",
 		"s_device_group_block",
 		SET_DEFAULT,
@@ -30200,6 +31038,7 @@ namespace halo3_tools {
 	#define SCENARIO_DEVICE_STRUCT_ID { 0xF3F2B599, 0x93524F63, 0xBF5BD676, 0x6FD79D9E }
 	TAG_STRUCT(
 		scenario_device_struct,
+		"scenario_device_struct",
 		"scenario_device_struct",
 		"s_scenario_device_struct",
 		SET_DEFAULT,
@@ -30226,6 +31065,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_machine_palette_block,
 		"scenario_machine_palette_block",
+		"scenario_machine_palette_block",
 		"s_scenario_machine_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30241,6 +31081,7 @@ namespace halo3_tools {
 	#define SCENARIO_MACHINE_STRUCT_V3_ID { 0x43A76E9A, 0xA1E24E63, 0xA60DD607, 0x83C2C762 }
 	TAG_STRUCT(
 		scenario_machine_struct_v3,
+		"scenario_machine_struct_v3",
 		"scenario_machine_struct_v3",
 		"s_scenario_machine_struct_v3",
 		SET_DEFAULT,
@@ -30280,6 +31121,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_terminal_palette_block,
 		"scenario_terminal_palette_block",
+		"scenario_terminal_palette_block",
 		"s_scenario_terminal_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30296,6 +31138,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_terminal_struct,
 		"scenario_terminal_struct",
+		"scenario_terminal_struct",
 		"s_scenario_terminal_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30308,6 +31151,7 @@ namespace halo3_tools {
 	#define SCENARIO_TERMINAL_BLOCK_ID { 0x9BE62BD0, 0xCD8E4FD7, 0xABCBDF23, 0x3BE7133D }
 	TAG_STRUCT(
 		scenario_terminal_block,
+		"scenario_terminal_block",
 		"scenario_terminal_block",
 		"s_scenario_terminal_block",
 		SET_DEFAULT,
@@ -30328,6 +31172,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_control_palette_block,
 		"scenario_control_palette_block",
+		"scenario_control_palette_block",
 		"s_scenario_control_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30343,6 +31188,7 @@ namespace halo3_tools {
 	#define SCENARIO_CONTROL_STRUCT_ID { 0x4C0DFF56, 0xAB5E4908, 0xBC8FEA48, 0x712465AA }
 	TAG_STRUCT(
 		scenario_control_struct,
+		"scenario_control_struct",
 		"scenario_control_struct",
 		"s_scenario_control_struct",
 		SET_DEFAULT,
@@ -30365,6 +31211,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_sound_scenery_palette_block,
 		"scenario_sound_scenery_palette_block",
+		"scenario_sound_scenery_palette_block",
 		"s_scenario_sound_scenery_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30380,6 +31227,7 @@ namespace halo3_tools {
 	#define SOUND_SCENERY_DATUM_STRUCT_ID { 0xFF6D6F6D, 0x3E6F4BF4, 0xADD8327E, 0x767DAEBA }
 	TAG_STRUCT(
 		sound_scenery_datum_struct,
+		"sound_scenery_datum_struct",
 		"sound_scenery_datum_struct",
 		"s_sound_scenery_datum_struct",
 		SET_DEFAULT,
@@ -30406,6 +31254,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_effect_scenery_datum_struct,
 		"scenario_effect_scenery_datum_struct",
+		"scenario_effect_scenery_datum_struct",
 		"s_scenario_effect_scenery_datum_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30417,6 +31266,7 @@ namespace halo3_tools {
 	#define SCENARIO_EFFECT_SCENERY_PALETTE_BLOCK_ID { 0xD571AA7C, 0xB1C5453D, 0xA4C230A8, 0x510B0C22 }
 	TAG_STRUCT(
 		scenario_effect_scenery_palette_block,
+		"scenario_effect_scenery_palette_block",
 		"scenario_effect_scenery_palette_block",
 		"s_scenario_effect_scenery_palette_block",
 		SET_DEFAULT,
@@ -30434,6 +31284,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_light_palette_block,
 		"scenario_light_palette_block",
+		"scenario_light_palette_block",
 		"s_scenario_light_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30449,6 +31300,7 @@ namespace halo3_tools {
 	#define SCENARIO_LIGHT_STRUCT_ID { 0xBB77795D, 0x33D6469D, 0xB74A00C7, 0xBF78146F }
 	TAG_STRUCT(
 		scenario_light_struct,
+		"scenario_light_struct",
 		"scenario_light_struct",
 		"s_scenario_light_struct",
 		SET_DEFAULT,
@@ -30506,6 +31358,7 @@ namespace halo3_tools {
 	#define SCENARIO_OBJECT_DATUM_STRUCT_ID { 0xB2D98DC9, 0xF27A4A22, 0xB6CD6942, 0x27B43F20 }
 	TAG_STRUCT(
 		scenario_object_datum_struct,
+		"scenario_object_datum_struct",
 		"scenario_object_datum_struct",
 		"s_scenario_object_datum_struct",
 		SET_DEFAULT,
@@ -30566,6 +31419,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_scenery_block,
 		"scenario_scenery_block",
+		"scenario_scenery_block",
 		"s_scenario_scenery_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30586,6 +31440,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_equipment_block,
 		"scenario_equipment_block",
+		"scenario_equipment_block",
 		"s_scenario_equipment_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30604,6 +31459,7 @@ namespace halo3_tools {
 	#define SCENARIO_WEAPON_BLOCK_ID { 0x687A60CA, 0x9BB94DE2, 0xB92F066B, 0x24108BC6 }
 	TAG_STRUCT(
 		scenario_weapon_block,
+		"scenario_weapon_block",
 		"scenario_weapon_block",
 		"s_scenario_weapon_block",
 		SET_DEFAULT,
@@ -30625,6 +31481,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_biped_block,
 		"scenario_biped_block",
+		"scenario_biped_block",
 		"s_scenario_biped_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30643,6 +31500,7 @@ namespace halo3_tools {
 	#define SCENARIO_GIANT_BLOCK_ID { 0xD4AC3CB5, 0x4E5541D4, 0xA63121B6, 0x364F882E }
 	TAG_STRUCT(
 		scenario_giant_block,
+		"scenario_giant_block",
 		"scenario_giant_block",
 		"s_scenario_giant_block",
 		SET_DEFAULT,
@@ -30664,6 +31522,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_vehicle_block,
 		"scenario_vehicle_block",
+		"scenario_vehicle_block",
 		"s_scenario_vehicle_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30684,6 +31543,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_machine_block,
 		"scenario_machine_block",
+		"scenario_machine_block",
 		"s_scenario_machine_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30702,6 +31562,7 @@ namespace halo3_tools {
 	#define SCENARIO_CONTROL_BLOCK_ID { 0x92F483D9, 0x5B3C4AB8, 0xA3EBB7C5, 0x346983EF }
 	TAG_STRUCT(
 		scenario_control_block,
+		"scenario_control_block",
 		"scenario_control_block",
 		"s_scenario_control_block",
 		SET_DEFAULT,
@@ -30722,6 +31583,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_sound_scenery_block,
 		"scenario_sound_scenery_block",
+		"scenario_sound_scenery_block",
 		"s_scenario_sound_scenery_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30740,6 +31602,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_effect_scenery_block,
 		"scenario_effect_scenery_block",
+		"scenario_effect_scenery_block",
 		"s_scenario_effect_scenery_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30757,6 +31620,7 @@ namespace halo3_tools {
 	#define SCENARIO_LIGHT_BLOCK_ID { 0x69972ABE, 0x7F85440A, 0x89F17D4D, 0x769528B5 }
 	TAG_STRUCT(
 		scenario_light_block,
+		"scenario_light_block",
 		"scenario_light_block",
 		"s_scenario_light_block",
 		SET_DEFAULT,
@@ -30780,6 +31644,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_acoustics_environment_palette_block,
 		"scenario_acoustics_environment_palette_block",
+		"scenario_acoustics_environment_palette_block",
 		"s_scenario_acoustics_environment_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30796,6 +31661,7 @@ namespace halo3_tools {
 	#define SCENARIO_ACOUSTICS_AMBIENCE_PALETTE_BLOCK_ID { 0xA4166168, 0x4AC841B8, 0x96D833C4, 0xB097F56C }
 	TAG_STRUCT(
 		scenario_acoustics_ambience_palette_block,
+		"scenario_acoustics_ambience_palette_block",
 		"scenario_acoustics_ambience_palette_block",
 		"s_scenario_acoustics_ambience_palette_block",
 		SET_DEFAULT,
@@ -30829,6 +31695,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_acoustics_environment_definition,
 		"scenario_acoustics_environment_definition",
+		"scenario_acoustics_environment_definition",
 		"s_scenario_acoustics_environment_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30843,6 +31710,7 @@ namespace halo3_tools {
 	#define SCENARIO_ACOUSTICS_AMBIENCE_DEFINITION_ID { 0x35137799, 0x93F24E9E, 0x81364E61, 0xE072BBAB }
 	TAG_STRUCT(
 		scenario_acoustics_ambience_definition,
+		"scenario_acoustics_ambience_definition",
 		"scenario_acoustics_ambience_definition",
 		"s_scenario_acoustics_ambience_definition",
 		SET_DEFAULT,
@@ -30864,6 +31732,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_acoustics_palette_block_definition_struct,
 		"scenario_acoustics_palette_block_definition_struct",
+		"scenario_acoustics_palette_block_definition_struct",
 		"s_scenario_acoustics_palette_block_definition_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30881,6 +31750,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_acoustic_volume_block,
 		"scenario_acoustic_volume_block",
+		"scenario_acoustic_volume_block",
 		"s_scenario_acoustic_volume_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30896,6 +31766,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		map_leaf_face_vertex_block,
 		"map_leaf_face_vertex_block",
+		"map_leaf_face_vertex_block",
 		"s_map_leaf_face_vertex_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30908,6 +31779,7 @@ namespace halo3_tools {
 	#define MAP_LEAF_FACE_BLOCK_ID { 0x76C78229, 0x504B49E6, 0xAE70E1D0, 0x63A16B1E }
 	TAG_STRUCT(
 		map_leaf_face_block,
+		"map_leaf_face_block",
 		"map_leaf_face_block",
 		"s_map_leaf_face_block",
 		SET_DEFAULT,
@@ -30923,6 +31795,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		map_leaf_connection_index_block,
 		"map_leaf_connection_index_block",
+		"map_leaf_connection_index_block",
 		"s_map_leaf_connection_index_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30935,6 +31808,7 @@ namespace halo3_tools {
 	#define GLOBAL_MAP_LEAF_BLOCK_ID { 0x7963BAF0, 0x35ED4A23, 0x91FEC7CC, 0xC9477083 }
 	TAG_STRUCT(
 		global_map_leaf_block,
+		"global_map_leaf_block",
 		"global_map_leaf_block",
 		"s_global_map_leaf_block",
 		SET_DEFAULT,
@@ -30950,6 +31824,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		leaf_connection_vertex_block,
 		"leaf_connection_vertex_block",
+		"leaf_connection_vertex_block",
 		"s_leaf_connection_vertex_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30962,6 +31837,7 @@ namespace halo3_tools {
 	#define GLOBAL_LEAF_CONNECTION_BLOCK_ID { 0x7FE10580, 0x88974F2E, 0x810AB1B9, 0xD47E3481 }
 	TAG_STRUCT(
 		global_leaf_connection_block,
+		"global_leaf_connection_block",
 		"global_leaf_connection_block",
 		"s_global_leaf_connection_block",
 		SET_DEFAULT,
@@ -30980,6 +31856,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		supported_bitfield_struct_definition,
 		"supported_bitfield",
+		"supported_bitfield",
 		"s_supported_bitfield_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -30993,6 +31870,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		breakable_surface_set_block,
 		"breakable_surface_set_block",
+		"breakable_surface_set_block",
 		"s_breakable_surface_set_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31005,6 +31883,7 @@ namespace halo3_tools {
 	#define CLUSTER_INSTANCED_GEOMETRY_SHAPE_STRUCT_ID { 0x6873D774, 0x47B04151, 0x8BAECCB7, 0x8CD024D4 }
 	TAG_STRUCT(
 		cluster_instanced_geometry_shape_struct,
+		"cluster_instanced_geometry_shape_struct",
 		"cluster_instanced_geometry_shape_struct",
 		"s_cluster_instanced_geometry_shape_struct",
 		SET_DEFAULT,
@@ -31024,6 +31903,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		mopp_bv_tree_shape_struct,
 		"mopp_bv_tree_shape_struct",
+		"mopp_bv_tree_shape_struct",
 		"s_mopp_bv_tree_shape_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31040,6 +31920,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		collision_instanced_geometry_struct,
 		"collision_instanced_geometry_struct",
+		"collision_instanced_geometry_struct",
 		"s_collision_instanced_geometry_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31055,6 +31936,7 @@ namespace halo3_tools {
 	#define DECORATOR_BRUSH_STRUCT_ID { 0xC3DB84FA, 0xC247443B, 0x9093336D, 0xF7E811A2 }
 	TAG_STRUCT(
 		decorator_brush_struct,
+		"decorator_brush_struct",
 		"decorator_brush_struct",
 		"s_decorator_brush_struct",
 		SET_DEFAULT,
@@ -31162,6 +32044,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		global_decorator_placement_block,
 		"global_decorator_placement_block",
+		"global_decorator_placement_block",
 		"s_global_decorator_placement_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31197,6 +32080,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		decorator_scenario_set_block,
 		"decorator_scenario_set_block",
+		"decorator_scenario_set_block",
 		"s_decorator_scenario_set_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31210,6 +32094,7 @@ namespace halo3_tools {
 	#define DECORATOR_PALETTE_ID { 0xD416B945, 0x6A6045D6, 0xA46B060A, 0x6D084231 }
 	TAG_STRUCT(
 		decorator_palette,
+		"decorator_palette",
 		"decorator_palette",
 		"s_decorator_palette",
 		SET_DEFAULT,
@@ -31240,6 +32125,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_decorator_block,
 		"scenario_decorator_block",
+		"scenario_decorator_block",
 		"s_scenario_decorator_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31261,6 +32147,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_vertex_buffer_descriptor_struct,
 		"render_vertex_buffer_descriptor_struct",
+		"render_vertex_buffer_descriptor_struct",
 		"s_render_vertex_buffer_descriptor_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31277,6 +32164,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_index_buffer_descriptor_struct,
 		"render_index_buffer_descriptor_struct",
+		"render_index_buffer_descriptor_struct",
 		"s_render_index_buffer_descriptor_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31290,6 +32178,7 @@ namespace halo3_tools {
 	#define SCENARIO_LIGHTMAP_MATCH_PROBE_BLOCK_ID { 0xC81216A3, 0xCA7D43D2, 0xBAFC314E, 0xE4A1A3A9 }
 	TAG_STRUCT(
 		scenario_lightmap_match_probe_block,
+		"scenario_lightmap_match_probe_block",
 		"scenario_lightmap_match_probe_block",
 		"s_scenario_lightmap_match_probe_block",
 		SET_DEFAULT,
@@ -31312,6 +32201,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		biped_block_index_flags_block_struct,
 		"biped_block_index_flags_block_struct",
+		"biped_block_index_flags_block_struct",
 		"s_biped_block_index_flags_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31324,6 +32214,7 @@ namespace halo3_tools {
 	#define VEHICLE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0xD97D47DE, 0x61A34B62, 0x9D457953, 0x3628F7DE }
 	TAG_STRUCT(
 		vehicle_block_index_flags_block_struct,
+		"vehicle_block_index_flags_block_struct",
 		"vehicle_block_index_flags_block_struct",
 		"s_vehicle_block_index_flags_block_struct",
 		SET_DEFAULT,
@@ -31338,6 +32229,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		weapon_block_index_flags_block_struct,
 		"weapon_block_index_flags_block_struct",
+		"weapon_block_index_flags_block_struct",
 		"s_weapon_block_index_flags_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31350,6 +32242,7 @@ namespace halo3_tools {
 	#define EQUIPMENT_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0xB7A7D0B5, 0x849B45D5, 0x9D7AEBD2, 0x7FA02CCB }
 	TAG_STRUCT(
 		equipment_block_index_flags_block_struct,
+		"equipment_block_index_flags_block_struct",
 		"equipment_block_index_flags_block_struct",
 		"s_equipment_block_index_flags_block_struct",
 		SET_DEFAULT,
@@ -31364,6 +32257,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenery_block_index_flags_block_struct,
 		"scenery_block_index_flags_block_struct",
+		"scenery_block_index_flags_block_struct",
 		"s_scenery_block_index_flags_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31376,6 +32270,7 @@ namespace halo3_tools {
 	#define MACHINE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x266621B5, 0xFDB64754, 0x8FC9D2C5, 0xA7FF5BDF }
 	TAG_STRUCT(
 		machine_block_index_flags_block_struct,
+		"machine_block_index_flags_block_struct",
 		"machine_block_index_flags_block_struct",
 		"s_machine_block_index_flags_block_struct",
 		SET_DEFAULT,
@@ -31390,6 +32285,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		terminal_block_index_flags_block_struct,
 		"terminal_block_index_flags_block_struct",
+		"terminal_block_index_flags_block_struct",
 		"s_terminal_block_index_flags_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31402,6 +32298,7 @@ namespace halo3_tools {
 	#define CONTROL_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x6388FD6C, 0x6FE74B66, 0xB04DAAF6, 0x602232D9 }
 	TAG_STRUCT(
 		control_block_index_flags_block_struct,
+		"control_block_index_flags_block_struct",
 		"control_block_index_flags_block_struct",
 		"s_control_block_index_flags_block_struct",
 		SET_DEFAULT,
@@ -31416,6 +32313,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_scenery_block_index_flags_block_struct,
 		"sound_scenery_block_index_flags_block_struct",
+		"sound_scenery_block_index_flags_block_struct",
 		"s_sound_scenery_block_index_flags_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31428,6 +32326,7 @@ namespace halo3_tools {
 	#define CRATE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0xAE2328B4, 0x9AF842AF, 0xB8597C81, 0x177E8F02 }
 	TAG_STRUCT(
 		crate_block_index_flags_block_struct,
+		"crate_block_index_flags_block_struct",
 		"crate_block_index_flags_block_struct",
 		"s_crate_block_index_flags_block_struct",
 		SET_DEFAULT,
@@ -31442,6 +32341,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		creature_block_index_flags_block_struct,
 		"creature_block_index_flags_block_struct",
+		"creature_block_index_flags_block_struct",
 		"s_creature_block_index_flags_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31454,6 +32354,7 @@ namespace halo3_tools {
 	#define GIANT_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x127D1256, 0x0AD44F51, 0xB07D8B34, 0x4496D0A2 }
 	TAG_STRUCT(
 		giant_block_index_flags_block_struct,
+		"giant_block_index_flags_block_struct",
 		"giant_block_index_flags_block_struct",
 		"s_giant_block_index_flags_block_struct",
 		SET_DEFAULT,
@@ -31468,6 +32369,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		effect_scenery_block_index_flags_block_struct,
 		"effect_scenery_block_index_flags_block_struct",
+		"effect_scenery_block_index_flags_block_struct",
 		"s_effect_scenery_block_index_flags_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31480,6 +32382,7 @@ namespace halo3_tools {
 	#define CHARACTER_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x878E0364, 0x3F1F47F2, 0x963CE43C, 0xA3BB5D25 }
 	TAG_STRUCT(
 		character_block_index_flags_block_struct,
+		"character_block_index_flags_block_struct",
 		"character_block_index_flags_block_struct",
 		"s_character_block_index_flags_block_struct",
 		SET_DEFAULT,
@@ -31494,6 +32397,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		budget_reference_block_index_flags_block_struct,
 		"budget_reference_block_index_flags_block_struct",
+		"budget_reference_block_index_flags_block_struct",
 		"s_budget_reference_block_index_flags_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31506,6 +32410,7 @@ namespace halo3_tools {
 	#define SCENARIO_DESIGNER_ZONE_BLOCK_ID { 0xB02184D9, 0xCED54A10, 0xA3980886, 0x739063EC }
 	TAG_STRUCT(
 		scenario_designer_zone_block,
+		"scenario_designer_zone_block",
 		"scenario_designer_zone_block",
 		"s_scenario_designer_zone_block",
 		SET_DEFAULT,
@@ -31553,6 +32458,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		scenario_zone_debugger_block_definition_struct,
 		"scenario_zone_debugger_block_definition_struct",
+		"scenario_zone_debugger_block_definition_struct",
 		"s_scenario_zone_debugger_block_definition_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31565,6 +32471,7 @@ namespace halo3_tools {
 	#define HS_SCRIPT_PARAMETERS_BLOCK_ID { 0x9E0B1B9B, 0xC4DF453F, 0x9C5A8529, 0xFDAB8B17 }
 	TAG_STRUCT(
 		hs_script_parameters_block,
+		"hs_script_parameters_block",
 		"hs_script_parameters_block",
 		"s_hs_script_parameters_block",
 		SET_DEFAULT,
@@ -31669,6 +32576,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		hs_scripts_block,
 		"hs_scripts_block",
+		"hs_scripts_block",
 		"s_hs_scripts_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31698,6 +32606,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		hs_globals_block,
 		"hs_globals_block",
+		"hs_globals_block",
 		"s_hs_globals_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31716,6 +32625,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		hs_references_block,
 		"hs_references_block",
+		"hs_references_block",
 		"s_hs_references_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31731,6 +32641,7 @@ namespace halo3_tools {
 	#define HS_SOURCE_FILES_BLOCK_ID { 0xCB061583, 0x078C4130, 0xA21DDAC3, 0x5C721332 }
 	TAG_STRUCT(
 		hs_source_files_block,
+		"hs_source_files_block",
 		"hs_source_files_block",
 		"s_hs_source_files_block",
 		SET_DEFAULT,
@@ -31755,6 +32666,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		hs_syntax_datum_block,
 		"hs_syntax_datum_block",
+		"hs_syntax_datum_block",
 		"s_hs_syntax_datum_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31776,6 +32688,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		hs_unit_seat_block,
 		"hs_unit_seat_block",
+		"hs_unit_seat_block",
 		"s_hs_unit_seat_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31791,6 +32704,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		door_encoded_pas_block$2,
 		"door_encoded_pas_block",
+		"door_encoded_pas_block",
 		"s_door_encoded_pas_block$2",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31803,6 +32717,7 @@ namespace halo3_tools {
 	#define ROOM_DOOR_PORTAL_ENCODED_PAS_BLOCK_ID { 0x79C40107, 0xC34F4FFE, 0xA9B0E0BA, 0x40627A21 }
 	TAG_STRUCT(
 		room_door_portal_encoded_pas_block,
+		"room_door_portal_encoded_pas_block",
 		"room_door_portal_encoded_pas_block",
 		"s_room_door_portal_encoded_pas_block",
 		SET_DEFAULT,
@@ -31817,6 +32732,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		ai_deafening_encoded_pas_block$2,
 		"ai_deafening_encoded_pas_block",
+		"ai_deafening_encoded_pas_block",
 		"s_ai_deafening_encoded_pas_block$2",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31830,6 +32746,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		encoded_room_distances_block,
 		"encoded_room_distances_block",
+		"encoded_room_distances_block",
 		"s_encoded_room_distances_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31842,6 +32759,7 @@ namespace halo3_tools {
 	#define GAME_PORTAL_TO_DOOR_OCCLUDER_BLOCK_ID { 0xD969E829, 0x574E4545, 0x9AEAA8B4, 0x755A88B9 }
 	TAG_STRUCT(
 		game_portal_to_door_occluder_block,
+		"game_portal_to_door_occluder_block",
 		"game_portal_to_door_occluder_block",
 		"s_game_portal_to_door_occluder_block",
 		SET_DEFAULT,
@@ -31857,6 +32775,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		bsp_cluster_to_room_bounds,
 		"bsp_cluster_to_room_bounds",
+		"bsp_cluster_to_room_bounds",
 		"s_bsp_cluster_to_room_bounds",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31871,6 +32790,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		bsp_cluster_to_room_indices,
 		"bsp_cluster_to_room_indices",
+		"bsp_cluster_to_room_indices",
 		"s_bsp_cluster_to_room_indices",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31883,6 +32803,7 @@ namespace halo3_tools {
 	#define GAME_AUDIBILITY_BLOCK_ID { 0x73FDA6A6, 0x4E2A483E, 0xA308C3B1, 0xAD242965 }
 	TAG_STRUCT(
 		game_audibility_block,
+		"game_audibility_block",
 		"game_audibility_block",
 		"s_game_audibility_block",
 		SET_DEFAULT,
@@ -31906,6 +32827,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		recorded_animation_block,
 		"recorded_animation_block",
+		"recorded_animation_block",
 		"s_recorded_animation_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31927,6 +32849,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		structure_device_portal_association_block,
 		"structure_device_portal_association_block",
+		"structure_device_portal_association_block",
 		"s_structure_device_portal_association_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31942,6 +32865,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_portal_to_portal_mapping_block,
 		"game_portal_to_portal_mapping_block",
+		"game_portal_to_portal_mapping_block",
 		"s_game_portal_to_portal_mapping_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31954,6 +32878,7 @@ namespace halo3_tools {
 	#define STRUCTURE_PORTAL_DEVICE_MAPPING_BLOCK_ID { 0xF9BA6A28, 0xBF964539, 0xBB2BA621, 0x11162D6C }
 	TAG_STRUCT(
 		structure_portal_device_mapping_block,
+		"structure_portal_device_mapping_block",
 		"structure_portal_device_mapping_block",
 		"s_structure_portal_device_mapping_block",
 		SET_DEFAULT,
@@ -31969,6 +32894,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		g_scenario_editor_folder_block,
 		"g_scenario_editor_folder_block",
+		"g_scenario_editor_folder_block",
 		"s_g_scenario_editor_folder_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -31982,6 +32908,7 @@ namespace halo3_tools {
 	#define SOUND_RESPONSE_DEFINITION_BLOCK_ID { 0xDFB84E8C, 0x19834057, 0x80B714A7, 0xEE445191 }
 	TAG_STRUCT(
 		sound_response_definition_block,
+		"sound_response_definition_block",
 		"sound_response_definition_block",
 		"s_sound_response_definition_block",
 		SET_DEFAULT,
@@ -32005,6 +32932,7 @@ namespace halo3_tools {
 	#define GAME_ENGINE_GENERAL_EVENT_BLOCK_ID { 0x6DCC8D0A, 0xDEFE4EDF, 0x8856D209, 0xDB134344 }
 	TAG_STRUCT(
 		game_engine_general_event_block,
+		"game_engine_general_event_block",
 		"game_engine_general_event_block",
 		"s_game_engine_general_event_block",
 		SET_DEFAULT,
@@ -32151,6 +33079,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_engine_flavor_event_block,
 		"game_engine_flavor_event_block",
+		"game_engine_flavor_event_block",
 		"s_game_engine_flavor_event_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -32251,6 +33180,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_engine_slayer_event_block,
 		"game_engine_slayer_event_block",
+		"game_engine_slayer_event_block",
 		"s_game_engine_slayer_event_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -32294,6 +33224,7 @@ namespace halo3_tools {
 	#define GAME_ENGINE_CTF_EVENT_BLOCK_ID { 0x7E220FEC, 0x2E9D441A, 0xA648EA1B, 0xA7C4390A }
 	TAG_STRUCT(
 		game_engine_ctf_event_block,
+		"game_engine_ctf_event_block",
 		"game_engine_ctf_event_block",
 		"s_game_engine_ctf_event_block",
 		SET_DEFAULT,
@@ -32350,6 +33281,7 @@ namespace halo3_tools {
 	#define GAME_ENGINE_ASSAULT_EVENT_BLOCK_ID { 0x491A1321, 0x0C6743AC, 0x9016756A, 0x6C281936 }
 	TAG_STRUCT(
 		game_engine_assault_event_block,
+		"game_engine_assault_event_block",
 		"game_engine_assault_event_block",
 		"s_game_engine_assault_event_block",
 		SET_DEFAULT,
@@ -32410,6 +33342,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_engine_oddball_event_block,
 		"game_engine_oddball_event_block",
+		"game_engine_oddball_event_block",
 		"s_game_engine_oddball_event_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -32460,6 +33393,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_engine_king_event_block,
 		"game_engine_king_event_block",
+		"game_engine_king_event_block",
 		"s_game_engine_king_event_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -32508,6 +33442,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_engine_juggernaut_event_block,
 		"game_engine_juggernaut_event_block",
+		"game_engine_juggernaut_event_block",
 		"s_game_engine_juggernaut_event_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -32552,6 +33487,7 @@ namespace halo3_tools {
 	#define GAME_ENGINE_TERRITORIES_EVENT_BLOCK_ID { 0x23EF636C, 0xC2874E30, 0xB6E57C86, 0xE2CB2948 }
 	TAG_STRUCT(
 		game_engine_territories_event_block,
+		"game_engine_territories_event_block",
 		"game_engine_territories_event_block",
 		"s_game_engine_territories_event_block",
 		SET_DEFAULT,
@@ -32599,6 +33535,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		game_engine_infection_event_block,
 		"game_engine_infection_event_block",
+		"game_engine_infection_event_block",
 		"s_game_engine_infection_event_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -32644,6 +33581,7 @@ namespace halo3_tools {
 	#define GAME_ENGINE_VIP_EVENT_BLOCK_ID { 0xF3E2BE89, 0xDB524E7E, 0x92CAF8C0, 0x04A0A899 }
 	TAG_STRUCT(
 		game_engine_vip_event_block,
+		"game_engine_vip_event_block",
 		"game_engine_vip_event_block",
 		"s_game_engine_vip_event_block",
 		SET_DEFAULT,
@@ -32693,6 +33631,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sound_response_extra_sounds_struct,
 		"sound_response_extra_sounds_struct",
+		"sound_response_extra_sounds_struct",
 		"s_sound_response_extra_sounds_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -32716,6 +33655,7 @@ namespace halo3_tools {
 	#define RENDER_WATER_RIPPLE_STRUCT_DEFINITION_ID { 0xCB60D088, 0x882E4775, 0x883C8C94, 0x8CE7CD58 }
 	TAG_STRUCT(
 		render_water_ripple_struct_definition,
+		"render_water_ripple_struct_definition",
 		"render_water_ripple_struct_definition",
 		"s_render_water_ripple_struct_definition",
 		SET_DEFAULT,
@@ -32779,6 +33719,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		camera_fx_exposure_struct,
 		"camera_fx_exposure_struct",
+		"camera_fx_exposure_struct",
 		"s_camera_fx_exposure_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -32811,6 +33752,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		camera_fx_exposure_sensitivity_struct,
 		"camera_fx_exposure_sensitivity_struct",
+		"camera_fx_exposure_sensitivity_struct",
 		"s_camera_fx_exposure_sensitivity_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -32837,6 +33779,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		camera_fx_exposure_anti_bloom_struct,
 		"camera_fx_exposure_anti_bloom_struct",
+		"camera_fx_exposure_anti_bloom_struct",
 		"s_camera_fx_exposure_anti_bloom_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -32852,6 +33795,7 @@ namespace halo3_tools {
 	#define CAMERA_FX_BLOOM_POINT_STRUCT_ID { 0x5C28BDB2, 0x7AA74136, 0x95D02E4D, 0x477781EA }
 	TAG_STRUCT(
 		camera_fx_bloom_point_struct,
+		"camera_fx_bloom_point_struct",
 		"camera_fx_bloom_point_struct",
 		"s_camera_fx_bloom_point_struct",
 		SET_DEFAULT,
@@ -32871,6 +33815,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		camera_fx_bloom_inherent_struct,
 		"camera_fx_bloom_inherent_struct",
+		"camera_fx_bloom_inherent_struct",
 		"s_camera_fx_bloom_inherent_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -32888,6 +33833,7 @@ namespace halo3_tools {
 	#define CAMERA_FX_BLOOM_INTENSITY_STRUCT_ID { 0xA87763D2, 0xF5B240F3, 0xA22524B0, 0xF5DFD719 }
 	TAG_STRUCT(
 		camera_fx_bloom_intensity_struct,
+		"camera_fx_bloom_intensity_struct",
 		"camera_fx_bloom_intensity_struct",
 		"s_camera_fx_bloom_intensity_struct",
 		SET_DEFAULT,
@@ -32907,6 +33853,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		camera_fx_bloom_large_color_struct,
 		"camera_fx_bloom_large_color_struct",
+		"camera_fx_bloom_large_color_struct",
 		"s_camera_fx_bloom_large_color_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -32922,6 +33869,7 @@ namespace halo3_tools {
 	#define CAMERA_FX_BLOOM_MEDIUM_COLOR_STRUCT_ID { 0xA8C89B4A, 0x156A41DD, 0xBCA2746E, 0x49C59B4A }
 	TAG_STRUCT(
 		camera_fx_bloom_medium_color_struct,
+		"camera_fx_bloom_medium_color_struct",
 		"camera_fx_bloom_medium_color_struct",
 		"s_camera_fx_bloom_medium_color_struct",
 		SET_DEFAULT,
@@ -32939,6 +33887,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		camera_fx_bloom_small_color_struct,
 		"camera_fx_bloom_small_color_struct",
+		"camera_fx_bloom_small_color_struct",
 		"s_camera_fx_bloom_small_color_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -32954,6 +33903,7 @@ namespace halo3_tools {
 	#define CAMERA_FX_BLING_INTENSITY_STRUCT_ID { 0xE8F1A4E1, 0xC00F4456, 0x8EE2967B, 0x6D8FA42B }
 	TAG_STRUCT(
 		camera_fx_bling_intensity_struct,
+		"camera_fx_bling_intensity_struct",
 		"camera_fx_bling_intensity_struct",
 		"s_camera_fx_bling_intensity_struct",
 		SET_DEFAULT,
@@ -32972,6 +33922,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		camera_fx_bling_size_struct,
 		"camera_fx_bling_size_struct",
+		"camera_fx_bling_size_struct",
 		"s_camera_fx_bling_size_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -32989,6 +33940,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		camera_fx_bling_angle_struct,
 		"camera_fx_bling_angle_struct",
+		"camera_fx_bling_angle_struct",
 		"s_camera_fx_bling_angle_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33005,6 +33957,7 @@ namespace halo3_tools {
 	#define CAMERA_FX_BLING_COUNT_STRUCT_ID { 0x8457D09C, 0xCB004AEB, 0x87C29399, 0xF221FEF5 }
 	TAG_STRUCT(
 		camera_fx_bling_count_struct,
+		"camera_fx_bling_count_struct",
 		"camera_fx_bling_count_struct",
 		"s_camera_fx_bling_count_struct",
 		SET_DEFAULT,
@@ -33030,6 +33983,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		camera_fx_self_illum_preferred_struct,
 		"camera_fx_self_illum_preferred_struct",
+		"camera_fx_self_illum_preferred_struct",
 		"s_camera_fx_self_illum_preferred_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33048,6 +34002,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		camera_fx_self_illum_scale_struct,
 		"camera_fx_self_illum_scale_struct",
+		"camera_fx_self_illum_scale_struct",
 		"s_camera_fx_self_illum_scale_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33065,6 +34020,7 @@ namespace halo3_tools {
 	#define CAMERA_FX_SSAO_STRUCT_ID { 0x4545C701, 0x22624FE5, 0xB9FDE3E8, 0x1696B87C }
 	TAG_STRUCT(
 		camera_fx_ssao_struct,
+		"camera_fx_ssao_struct",
 		"camera_fx_ssao_struct",
 		"s_camera_fx_ssao_struct",
 		SET_DEFAULT,
@@ -33093,6 +34049,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		camera_fx_lightshafts_struct,
 		"camera_fx_lightshafts_struct",
+		"camera_fx_lightshafts_struct",
 		"s_camera_fx_lightshafts_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33114,6 +34071,7 @@ namespace halo3_tools {
 	#define CAMERA_FX_SETTINGS_BLOCK_ID { 0xC7122CD7, 0x03134944, 0xAAB3E3D9, 0xBFBE70FD }
 	TAG_STRUCT(
 		camera_fx_settings_block,
+		"camera_fx_settings_block",
 		"camera_fx_settings_block",
 		"s_camera_fx_settings_block",
 		SET_DEFAULT,
@@ -33145,6 +34103,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		per_object_type_relative_min_luminance_block,
 		"per_object_type_relative_min_luminance_block",
+		"per_object_type_relative_min_luminance_block",
 		"s_per_object_type_relative_min_luminance_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33157,6 +34116,7 @@ namespace halo3_tools {
 	#define CHOCOLATE_MOUNTAIN_NEW_STRUCT_DEFINITION_ID { 0x810466A3, 0x93944E38, 0x979E8CD4, 0x627B0411 }
 	TAG_STRUCT(
 		chocolate_mountain_new_struct_definition,
+		"chocolate_mountain_new_struct_definition",
 		"chocolate_mountain_new_struct_definition",
 		"s_chocolate_mountain_new_struct_definition",
 		SET_DEFAULT,
@@ -33172,6 +34132,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		tag_block_index_struct,
 		"tag_block_index_struct",
+		"tag_block_index_struct",
 		"s_tag_block_index_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33184,6 +34145,7 @@ namespace halo3_tools {
 	#define TAG_BLOCK_INDEX_BLOCK_ID { 0x4CD511CB, 0xE05742A6, 0x9B31EFB8, 0x74D7BEE6 }
 	TAG_STRUCT(
 		tag_block_index_block,
+		"tag_block_index_block",
 		"tag_block_index_block",
 		"s_tag_block_index_block",
 		SET_DEFAULT,
@@ -33198,6 +34160,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		short_block,
 		"short_block",
+		"short_block",
 		"s_short_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33210,6 +34173,7 @@ namespace halo3_tools {
 	#define REAL_VECTOR4D_BLOCK_ID { 0xFF9E024C, 0x7D184C50, 0x90D73F8E, 0x22EF3A5D }
 	TAG_STRUCT(
 		real_vector4d_block,
+		"real_vector4d_block",
 		"real_vector4d_block",
 		"s_real_vector4d_block",
 		SET_DEFAULT,
@@ -33225,6 +34189,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		int_block,
 		"int_block",
+		"int_block",
 		"s_int_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33237,6 +34202,7 @@ namespace halo3_tools {
 	#define RENDER_METHOD_DEFINITION_STRUCT_DEFINITION_ID { 0x45573089, 0x681B4D5B, 0xB00F0E44, 0xDE8E72DC }
 	TAG_STRUCT(
 		render_method_definition_struct_definition,
+		"render_method_definition_struct_definition",
 		"render_method_definition_struct_definition",
 		"s_render_method_definition_struct_definition",
 		SET_DEFAULT,
@@ -33270,6 +34236,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_method_category_block,
 		"render_method_category_block",
+		"render_method_category_block",
 		"s_render_method_category_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33286,6 +34253,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_method_options_block,
 		"render_method_options_block",
+		"render_method_options_block",
 		"s_render_method_options_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33301,6 +34269,7 @@ namespace halo3_tools {
 	#define RENDER_METHOD_ENTRY_POINTS_BLOCK_ID { 0xB66B69D3, 0x677844FA, 0xAC873549, 0xC59E32FB }
 	TAG_STRUCT(
 		render_method_entry_points_block,
+		"render_method_entry_points_block",
 		"render_method_entry_points_block",
 		"s_render_method_entry_points_block",
 		SET_DEFAULT,
@@ -33339,6 +34308,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_method_pass_category_dependencies,
 		"render_method_pass_category_dependencies",
+		"render_method_pass_category_dependencies",
 		"s_render_method_pass_category_dependencies",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33351,6 +34321,7 @@ namespace halo3_tools {
 	#define RENDER_METHOD_PASS_BLOCK_ID { 0xF41A0813, 0xBFB7492D, 0x8B50A95B, 0x2474B0C0 }
 	TAG_STRUCT(
 		render_method_pass_block,
+		"render_method_pass_block",
 		"render_method_pass_block",
 		"s_render_method_pass_block",
 		SET_DEFAULT,
@@ -33373,6 +34344,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		entry_point_dependencies_block,
 		"entry_point_dependencies_block",
+		"entry_point_dependencies_block",
 		"s_entry_point_dependencies_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33386,6 +34358,7 @@ namespace halo3_tools {
 	#define VERTEX_TYPES_BLOCK_ID { 0x10D75123, 0xB1E940D6, 0x93113433, 0x80D97C43 }
 	TAG_STRUCT(
 		vertex_types_block,
+		"vertex_types_block",
 		"vertex_types_block",
 		"s_vertex_types_block",
 		SET_DEFAULT,
@@ -33429,6 +34402,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_method_option_struct_definition,
 		"render_method_option_struct_definition",
+		"render_method_option_struct_definition",
 		"s_render_method_option_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33441,6 +34415,7 @@ namespace halo3_tools {
 	#define RENDER_METHOD_OPTION_PARAMETER_BLOCK_ID { 0x11BB68C2, 0x756A4F92, 0xBC2DAAF6, 0xEF1AB32E }
 	TAG_STRUCT(
 		render_method_option_parameter_block,
+		"render_method_option_parameter_block",
 		"render_method_option_parameter_block",
 		"s_render_method_option_parameter_block",
 		SET_DEFAULT,
@@ -33572,6 +34547,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_method_struct_definition,
 		"render_method_struct_definition",
+		"render_method_struct_definition",
 		"s_render_method_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33610,6 +34586,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_method_template_constant_table_block,
 		"render_method_template_constant_table_block",
+		"render_method_template_constant_table_block",
 		"s_render_method_template_constant_table_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33622,6 +34599,7 @@ namespace halo3_tools {
 	#define RENDER_METHOD_TEMPLATE_PLATFORM_BLOCK_ID { 0x1926C436, 0x483246AA, 0x86067626, 0x533DDEA8 }
 	TAG_STRUCT(
 		render_method_template_platform_block,
+		"render_method_template_platform_block",
 		"render_method_template_platform_block",
 		"s_render_method_template_platform_block",
 		SET_DEFAULT,
@@ -33672,6 +34650,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_method_template_struct_definition,
 		"render_method_template_struct_definition",
+		"render_method_template_struct_definition",
 		"s_render_method_template_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33694,6 +34673,7 @@ namespace halo3_tools {
 	#define RENDER_METHOD_ANIMATED_PARAMETER_BLOCK_ID { 0x70665B4B, 0xBE174B76, 0x87B39EE2, 0x0B5CC3A0 }
 	TAG_STRUCT(
 		render_method_animated_parameter_block,
+		"render_method_animated_parameter_block",
 		"render_method_animated_parameter_block",
 		"s_render_method_animated_parameter_block",
 		SET_DEFAULT,
@@ -33728,6 +34708,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_method_parameter_block,
 		"render_method_parameter_block",
+		"render_method_parameter_block",
 		"s_render_method_parameter_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33756,6 +34737,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_method_postprocess_pass_block,
 		"render_method_postprocess_pass_block",
+		"render_method_postprocess_pass_block",
 		"s_render_method_postprocess_pass_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33771,6 +34753,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		runtime_queryable_properties_struct_definition,
 		"runtime_queryable_properties",
+		"runtime_queryable_properties",
 		"s_runtime_queryable_properties_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33784,6 +34767,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		constant_buffers_block,
 		"constant_buffers_block",
+		"constant_buffers_block",
 		"s_constant_buffers_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33796,6 +34780,7 @@ namespace halo3_tools {
 	#define CONSTANT_BUFFER_INDICES_BLOCK_ID { 0xEAE63687, 0xCEBB442E, 0xA2427CE3, 0xE99072E2 }
 	TAG_STRUCT(
 		constant_buffer_indices_block,
+		"constant_buffer_indices_block",
 		"constant_buffer_indices_block",
 		"s_constant_buffer_indices_block",
 		SET_DEFAULT,
@@ -33811,6 +34796,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		constant_buffer_resource_definition_struct,
 		"constant_buffer_resource_definition_struct",
+		"constant_buffer_resource_definition_struct",
 		"s_constant_buffer_resource_definition_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33824,6 +34810,7 @@ namespace halo3_tools {
 	#define RENDER_METHOD_POSTPROCESS_BLOCK_ID { 0x448CE620, 0x8C944D92, 0xBCD05705, 0x362CBBF6 }
 	TAG_STRUCT(
 		render_method_postprocess_block,
+		"render_method_postprocess_block",
 		"render_method_postprocess_block",
 		"s_render_method_postprocess_block",
 		SET_DEFAULT,
@@ -33853,6 +34840,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_method_postprocess_texture_block,
 		"render_method_postprocess_texture_block",
+		"render_method_postprocess_texture_block",
 		"s_render_method_postprocess_texture_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33875,6 +34863,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_method_routing_info_block,
 		"render_method_routing_info_block",
+		"render_method_routing_info_block",
 		"s_render_method_routing_info_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33889,6 +34878,7 @@ namespace halo3_tools {
 	#define RENDER_METHOD_TEMPLATE_PASS_BLOCK_ID { 0x10A89CAE, 0x02C24E53, 0xB26A4E02, 0x2A6E6525 }
 	TAG_STRUCT(
 		render_method_template_pass_block,
+		"render_method_template_pass_block",
 		"render_method_template_pass_block",
 		"s_render_method_template_pass_block",
 		SET_DEFAULT,
@@ -33917,6 +34907,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		layer_bitmaps,
 		"layer_bitmaps",
+		"layer_bitmaps",
 		"s_layer_bitmaps",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33931,6 +34922,7 @@ namespace halo3_tools {
 	#define REPLACE_MATERIAL_ID { 0xFF9E023B, 0x7D174C51, 0x90D73F8E, 0x22EF3A5D }
 	TAG_STRUCT(
 		replace_material,
+		"replace_material",
 		"replace_material",
 		"s_replace_material",
 		SET_DEFAULT,
@@ -33948,6 +34940,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		replace_bitmaps,
 		"replace_bitmaps",
+		"replace_bitmaps",
 		"s_replace_bitmaps",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33962,6 +34955,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		replace_params_material,
 		"replace_params_material",
+		"replace_params_material",
 		"s_replace_params_material",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -33974,6 +34968,7 @@ namespace halo3_tools {
 	#define REAL_VECTOR4D_SKINS_ID { 0xFF9E021C, 0x7D174C50, 0x90D73F8D, 0x22EC3A5A }
 	TAG_STRUCT(
 		real_vector4d_skins,
+		"real_vector4d_skins",
 		"real_vector4d_skins",
 		"s_real_vector4d_skins",
 		SET_DEFAULT,
@@ -33988,6 +34983,7 @@ namespace halo3_tools {
 	#define REPLACE_PARAMS_ID { 0xFF9E034A, 0x7D164B41, 0x90D64F5E, 0x22EF3A2D }
 	TAG_STRUCT(
 		replace_params,
+		"replace_params",
 		"replace_params",
 		"s_replace_params",
 		SET_DEFAULT,
@@ -34040,6 +35036,7 @@ namespace halo3_tools {
 	#define RENDER_SKINS_OBJECT_ID { 0xFF9B034B, 0x7D254B41, 0x91D64F5E, 0x22EF3C2D }
 	TAG_STRUCT(
 		render_skins_object,
+		"render_skin",
 		"render_skins_object",
 		"s_render_skins_object",
 		SET_DEFAULT,
@@ -34094,6 +35091,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		render_skins_object_globals_struct_definition,
 		"render_skins_object_globals_struct_definition",
+		"render_skins_object_globals_struct_definition",
 		"s_render_skins_object_globals_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34107,6 +35105,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		material_type_struct,
 		"material_type_struct",
+		"material_type_struct",
 		"s_material_type_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34119,6 +35118,7 @@ namespace halo3_tools {
 	#define SHADER_PARTICLE_STRUCT_DEFINITION$2_ID { 0x769BE1B8, 0x531C4049, 0x99594583, 0x24A08389 }
 	TAG_STRUCT(
 		shader_particle_struct_definition$2,
+		"shader_particle_struct_definition",
 		"shader_particle_struct_definition",
 		"s_shader_particle_struct_definition$2",
 		SET_DEFAULT,
@@ -34142,6 +35142,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		shader_contrail_struct_definition$2,
 		"shader_contrail_struct_definition",
+		"shader_contrail_struct_definition",
 		"s_shader_contrail_struct_definition$2",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34163,6 +35164,7 @@ namespace halo3_tools {
 	#define SHADER_LIGHT_VOLUME_STRUCT_DEFINITION_ID { 0x0EBF63AF, 0x426B4679, 0x93E4F59B, 0x93BC0FF2 }
 	TAG_STRUCT(
 		shader_light_volume_struct_definition,
+		"shader_light_volume_struct_definition",
 		"shader_light_volume_struct_definition",
 		"s_shader_light_volume_struct_definition",
 		SET_DEFAULT,
@@ -34186,6 +35188,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		shader_beam_struct_definition,
 		"shader_beam_struct_definition",
+		"shader_beam_struct_definition",
 		"s_shader_beam_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34207,6 +35210,7 @@ namespace halo3_tools {
 	#define SHADER_DECAL_STRUCT_DEFINITION_ID { 0xEA087CA7, 0x6D4B455B, 0xA5D40D3C, 0xC2BD313A }
 	TAG_STRUCT(
 		shader_decal_struct_definition,
+		"shader_decal_struct_definition",
 		"shader_decal_struct_definition",
 		"s_shader_decal_struct_definition",
 		SET_DEFAULT,
@@ -34230,6 +35234,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		rasterizer_compiled_shader_struct,
 		"rasterizer_compiled_shader_struct",
+		"rasterizer_compiled_shader_struct",
 		"s_rasterizer_compiled_shader_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34252,6 +35257,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		vertex_types_block$2,
 		"vertex_types_block",
+		"vertex_types_block",
 		"s_vertex_types_block$2",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34265,6 +35271,7 @@ namespace halo3_tools {
 	#define COMPILED_VERTEX_SHADER_BLOCK_ID { 0x3543DB1D, 0x836C4843, 0xB307E446, 0x83BD276F }
 	TAG_STRUCT(
 		compiled_vertex_shader_block,
+		"compiled_vertex_shader_block",
 		"compiled_vertex_shader_block",
 		"s_compiled_vertex_shader_block",
 		SET_DEFAULT,
@@ -34280,6 +35287,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		vertex_entry_point_block,
 		"vertex_entry_point_block",
+		"vertex_entry_point_block",
 		"s_vertex_entry_point_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34292,6 +35300,7 @@ namespace halo3_tools {
 	#define PIXEL_ENTRY_POINT_BLOCK_ID { 0x1E202E95, 0x06BA407D, 0x9B57749D, 0xC19E5EF2 }
 	TAG_STRUCT(
 		pixel_entry_point_block,
+		"pixel_entry_point_block",
 		"pixel_entry_point_block",
 		"s_pixel_entry_point_block",
 		SET_DEFAULT,
@@ -34307,6 +35316,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		compiled_pixel_shader_block,
 		"compiled_pixel_shader_block",
+		"compiled_pixel_shader_block",
 		"s_compiled_pixel_shader_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34320,6 +35330,7 @@ namespace halo3_tools {
 	#define COMPUTE_ENTRY_POINT_BLOCK_ID { 0x8CE4ED92, 0x53A147AC, 0xB55FD1EF, 0xFEA6270B }
 	TAG_STRUCT(
 		compute_entry_point_block,
+		"compute_entry_point_block",
 		"compute_entry_point_block",
 		"s_compute_entry_point_block",
 		SET_DEFAULT,
@@ -34335,6 +35346,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		compiled_compute_shader_block,
 		"compiled_compute_shader_block",
+		"compiled_compute_shader_block",
 		"s_compiled_compute_shader_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34348,6 +35360,7 @@ namespace halo3_tools {
 	#define VERTEX_SHADER_BLOCK_STRUCT_ID { 0x60FD71E9, 0xC5654B09, 0xBE6F6918, 0x7C935A75 }
 	TAG_STRUCT(
 		vertex_shader_block_struct,
+		"vertex_shader_block_struct",
 		"vertex_shader_block_struct",
 		"s_vertex_shader_block_struct",
 		SET_DEFAULT,
@@ -34365,6 +35378,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		pixel_shader_block_struct,
 		"pixel_shader_block_struct",
+		"pixel_shader_block_struct",
 		"s_pixel_shader_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34380,6 +35394,7 @@ namespace halo3_tools {
 	#define COMPUTE_SHADER_BLOCK_STRUCT_ID { 0x50005A90, 0x044E4511, 0xBF67AD6C, 0x5F94CAA0 }
 	TAG_STRUCT(
 		compute_shader_block_struct,
+		"compute_shader_block_struct",
 		"compute_shader_block_struct",
 		"s_compute_shader_block_struct",
 		SET_DEFAULT,
@@ -34397,6 +35412,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		hlsl_include_struct_definition,
 		"hlsl_include_struct_definition",
+		"hlsl_include_struct_definition",
 		"s_hlsl_include_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34409,6 +35425,7 @@ namespace halo3_tools {
 	#define GLOBAL_SHADER_OPTION_DEPENDENCY_ID { 0x36B7BB10, 0x29F2482F, 0xA621D1B7, 0x8FC91F6E }
 	TAG_STRUCT(
 		global_shader_option_dependency,
+		"global_shader_option_dependency",
 		"global_shader_option_dependency",
 		"s_global_shader_option_dependency",
 		SET_DEFAULT,
@@ -34423,6 +35440,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		global_shader_category_dependency,
 		"global_shader_category_dependency",
+		"global_shader_category_dependency",
 		"s_global_shader_category_dependency",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34436,6 +35454,7 @@ namespace halo3_tools {
 	#define GLOBAL_SHADER_ENTRY_POINT_BLOCK_ID { 0xC774B246, 0x4B264463, 0x8F00FFB5, 0xDBF46C9D }
 	TAG_STRUCT(
 		global_shader_entry_point_block,
+		"global_shader_entry_point_block",
 		"global_shader_entry_point_block",
 		"s_global_shader_entry_point_block",
 		SET_DEFAULT,
@@ -34452,6 +35471,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		global_vertex_shader_vertex_types_block,
 		"global_vertex_shader_vertex_types_block",
+		"global_vertex_shader_vertex_types_block",
 		"s_global_vertex_shader_vertex_types_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34464,6 +35484,7 @@ namespace halo3_tools {
 	#define GLOBAL_VERTEX_SHADER_BLOCK_STRUCT_ID { 0x6551E55E, 0x833B4478, 0x87DF6901, 0x1AA92BE2 }
 	TAG_STRUCT(
 		global_vertex_shader_block_struct,
+		"global_vertex_shader_block_struct",
 		"global_vertex_shader_block_struct",
 		"s_global_vertex_shader_block_struct",
 		SET_DEFAULT,
@@ -34480,6 +35501,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		global_pixel_shader_block_struct,
 		"global_pixel_shader_block_struct",
+		"global_pixel_shader_block_struct",
 		"s_global_pixel_shader_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34495,6 +35517,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		fragment_struct_definition,
 		"fragment_struct_definition",
+		"fragment_struct_definition",
 		"s_fragment_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34509,6 +35532,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		decorator_set_instance_name_block,
 		"decorator_set_instance_name_block",
+		"decorator_set_instance_name_block",
 		"s_decorator_set_instance_name_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34521,6 +35545,7 @@ namespace halo3_tools {
 	#define GLOBAL_DECORATOR_TYPE_STRUCT_ID { 0x02B61C35, 0x457E4970, 0xBB11A050, 0x2DF8A18E }
 	TAG_STRUCT(
 		global_decorator_type_struct,
+		"global_decorator_type_struct",
 		"global_decorator_type_struct",
 		"s_global_decorator_type_struct",
 		SET_DEFAULT,
@@ -34560,6 +35585,7 @@ namespace halo3_tools {
 	#define DECORATOR_SET_BLOCK_ID { 0xAF008F9B, 0x6F9E4D28, 0xAD976280, 0x056A47AD }
 	TAG_STRUCT(
 		decorator_set_block,
+		"decorator_set_block",
 		"decorator_set_block",
 		"s_decorator_set_block",
 		SET_DEFAULT,
@@ -34631,6 +35657,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		model_start_index_block,
 		"model_start_index_block",
+		"model_start_index_block",
 		"s_model_start_index_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34643,6 +35670,7 @@ namespace halo3_tools {
 	#define DECORATOR_RUNTIME_CLUSTER_BLOCK_ID { 0xE2543A30, 0xA9E742B9, 0x8F489AF7, 0xC283783F }
 	TAG_STRUCT(
 		decorator_runtime_cluster_block,
+		"decorator_runtime_cluster_block",
 		"decorator_runtime_cluster_block",
 		"s_decorator_runtime_cluster_block",
 		SET_DEFAULT,
@@ -34664,6 +35692,7 @@ namespace halo3_tools {
 	#define DEFAULT_TEXTURES_REFS_BLOCK_ID { 0x7B0790D8, 0xD39D47C8, 0x85721089, 0x8A80F128 }
 	TAG_STRUCT(
 		default_textures_refs_block,
+		"default_textures_refs_block",
 		"default_textures_refs_block",
 		"s_default_textures_refs_block",
 		SET_DEFAULT,
@@ -34687,6 +35716,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		material_textures_refs_block,
 		"material_textures_refs_block",
+		"material_textures_refs_block",
 		"s_material_textures_refs_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34700,6 +35730,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		atmosphere_textures_refs_block,
 		"atmosphere_textures_refs_block",
+		"atmosphere_textures_refs_block",
 		"s_atmosphere_textures_refs_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34712,6 +35743,7 @@ namespace halo3_tools {
 	#define EXPLICIT_SHADER_REFS_BLOCK_ID { 0xD3D3046B, 0xF1924CAB, 0x95BC117B, 0x3CCD846F }
 	TAG_STRUCT(
 		explicit_shader_refs_block,
+		"explicit_shader_refs_block",
 		"explicit_shader_refs_block",
 		"s_explicit_shader_refs_block",
 		SET_DEFAULT,
@@ -34733,6 +35765,7 @@ namespace halo3_tools {
 	#define RASTERIZER_GLOBALS_STRUCT_DEFINITION_ID { 0x1E0FE0EA, 0x9D3048D5, 0x9D86E7F7, 0xCAA91C4A }
 	TAG_STRUCT(
 		rasterizer_globals_struct_definition,
+		"rasterizer_globals_struct_definition",
 		"rasterizer_globals_struct_definition",
 		"s_rasterizer_globals_struct_definition",
 		SET_DEFAULT,
@@ -34776,6 +35809,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		performane_throttle_block,
 		"performane_throttle_block",
+		"performane_throttle_block",
 		"s_performane_throttle_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34816,6 +35850,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		performance_throttles_struct_definition,
 		"performance_throttles_struct_definition",
+		"performance_throttles_struct_definition",
 		"s_performance_throttles_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34829,6 +35864,7 @@ namespace halo3_tools {
 	#define RASTERIZER_SCREEN_EFFECT_TEXCOORD_GENERATION_ADVANCED_CONTROL_BLOCK_ID { 0x9F30D1B4, 0x49C64454, 0x870FD3E8, 0xDE9F3950 }
 	TAG_STRUCT(
 		rasterizer_screen_effect_texcoord_generation_advanced_control_block,
+		"advanced control",
 		"rasterizer_screen_effect_texcoord_generation_advanced_control_block",
 		"s_rasterizer_screen_effect_texcoord_generation_advanced_control_block",
 		SET_DEFAULT,
@@ -34855,6 +35891,7 @@ namespace halo3_tools {
 	#define RASTERIZER_SCREEN_EFFECT_CONVOLUTION_BLOCK_ID { 0xE0B9FF21, 0x684D4731, 0xA8749FE2, 0x0E4B811B }
 	TAG_STRUCT(
 		rasterizer_screen_effect_convolution_block,
+		"convolution",
 		"rasterizer_screen_effect_convolution_block",
 		"s_rasterizer_screen_effect_convolution_block",
 		SET_DEFAULT,
@@ -34885,6 +35922,7 @@ namespace halo3_tools {
 	#define RASTERIZER_SCREEN_EFFECT_PASS_REFERENCE_BLOCK_ID { 0xE53D18A8, 0x41BA446F, 0xA5F9AD21, 0x0E918550 }
 	TAG_STRUCT(
 		rasterizer_screen_effect_pass_reference_block,
+		"pass reference",
 		"rasterizer_screen_effect_pass_reference_block",
 		"s_rasterizer_screen_effect_pass_reference_block",
 		SET_DEFAULT,
@@ -34937,6 +35975,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		screen_effect_struct_definition,
 		"screen_effect_struct_definition",
+		"screen_effect_struct_definition",
 		"s_screen_effect_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34953,6 +35992,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		rasterizer_cache_file_globals_struct_definition,
 		"rasterizer_cache_file_globals_struct_definition",
+		"rasterizer_cache_file_globals_struct_definition",
 		"s_rasterizer_cache_file_globals_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34965,6 +36005,7 @@ namespace halo3_tools {
 	#define CONSTANT_BUFFER_DESCRIPTOR_STRUCT_ID { 0xD74B6090, 0x94294408, 0x9424BBEA, 0x2A560319 }
 	TAG_STRUCT(
 		constant_buffer_descriptor_struct,
+		"constant_buffer_descriptor_struct",
 		"constant_buffer_descriptor_struct",
 		"s_constant_buffer_descriptor_struct",
 		SET_DEFAULT,
@@ -34979,6 +36020,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		color_grading_scalar_function_struct,
 		"color_grading_scalar_function_struct",
+		"color_grading_scalar_function_struct",
 		"s_color_grading_scalar_function_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -34992,6 +36034,7 @@ namespace halo3_tools {
 	#define COLOR_GRADING_CURVES_EDITOR_BLOCK_ID { 0x4545C704, 0x22624FE8, 0xB9FDE3F1, 0x1696B87F }
 	TAG_STRUCT(
 		color_grading_curves_editor_block,
+		"color_grading_curves_editor_block",
 		"color_grading_curves_editor_block",
 		"s_color_grading_curves_editor_block",
 		SET_DEFAULT,
@@ -35024,6 +36067,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		color_grading_brightness_contrast_block,
 		"color_grading_brightness_contrast_block",
+		"color_grading_brightness_contrast_block",
 		"s_color_grading_brightness_contrast_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -35038,6 +36082,7 @@ namespace halo3_tools {
 	#define COLOR_GRADING_HSLV_BLOCK_ID { 0x4545C706, 0x22624FEA, 0xB9FDE3F3, 0x1696B881 }
 	TAG_STRUCT(
 		color_grading_hslv_block,
+		"color_grading_hslv_block",
 		"color_grading_hslv_block",
 		"s_color_grading_hslv_block",
 		SET_DEFAULT,
@@ -35056,6 +36101,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		color_grading_colorize_effect_block,
 		"color_grading_colorize_effect_block",
+		"color_grading_colorize_effect_block",
 		"s_color_grading_colorize_effect_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -35073,6 +36119,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		color_grading_cmyb_struct,
 		"color_grading_cmyb_struct",
+		"color_grading_cmyb_struct",
 		"s_color_grading_cmyb_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -35088,6 +36135,7 @@ namespace halo3_tools {
 	#define COLOR_GRADING_SELECTIVE_COLOR_BLOCK_ID { 0x4545C708, 0x22624FEC, 0xB9FDE3F5, 0x1696B883 }
 	TAG_STRUCT(
 		color_grading_selective_color_block,
+		"color_grading_selective_color_block",
 		"color_grading_selective_color_block",
 		"s_color_grading_selective_color_block",
 		SET_DEFAULT,
@@ -35120,6 +36168,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		color_grading_cmy_struct,
 		"color_grading_cmy_struct",
+		"color_grading_cmy_struct",
 		"s_color_grading_cmy_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -35134,6 +36183,7 @@ namespace halo3_tools {
 	#define COLOR_GRADING_COLOR_BALANCE_BLOCK_ID { 0x4545C70B, 0x22624FEF, 0xB9FDE3F8, 0x1696B886 }
 	TAG_STRUCT(
 		color_grading_color_balance_block,
+		"color_grading_color_balance_block",
 		"color_grading_color_balance_block",
 		"s_color_grading_color_balance_block",
 		SET_DEFAULT,
@@ -35153,6 +36203,7 @@ namespace halo3_tools {
 	#define CAMERA_FX_COLOR_GRADING_STRUCT_ID { 0x4545C702, 0x22624FE6, 0xB9FDE3E9, 0x1696B87D }
 	TAG_STRUCT(
 		camera_fx_color_grading_struct,
+		"camera_fx_color_grading_struct",
 		"camera_fx_color_grading_struct",
 		"s_camera_fx_color_grading_struct",
 		SET_DEFAULT,
@@ -35185,6 +36236,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		rasterizer_constant_block,
 		"rasterizer_constant_block",
+		"rasterizer_constant_block",
 		"s_rasterizer_constant_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -35210,6 +36262,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		global_rasterizer_constant_table_struct,
 		"global_rasterizer_constant_table_struct",
+		"global_rasterizer_constant_table_struct",
 		"s_global_rasterizer_constant_table_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -35234,6 +36287,7 @@ namespace halo3_tools {
 	#define METER_STRUCT_DEFINITION_ID { 0x3B48AAFB, 0xF0C147FC, 0xAD439E06, 0xEDAF749A }
 	TAG_STRUCT(
 		meter_struct_definition,
+		"meter_struct_definition",
 		"meter_struct_definition",
 		"s_meter_struct_definition",
 		SET_DEFAULT,
@@ -35284,6 +36338,7 @@ namespace halo3_tools {
 	#define CHUD_WIDGET_STATE_DATA_BLOCK_ID { 0xF835F4AA, 0xD93B4BAB, 0xA8039E9B, 0x03946C07 }
 	TAG_STRUCT(
 		chud_widget_state_data_block,
+		"chud_widget_state_data_block",
 		"chud_widget_state_data_block",
 		"s_chud_widget_state_data_block",
 		SET_DEFAULT,
@@ -35559,6 +36614,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_widget_placement_data_block,
 		"chud_widget_placement_data_block",
+		"chud_widget_placement_data_block",
 		"s_chud_widget_placement_data_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -35624,6 +36680,7 @@ namespace halo3_tools {
 	#define CHUD_WIDGET_RENDER_DATA_BLOCK_ID { 0x6B0C4008, 0x2B5C42E7, 0x854D15EB, 0x2601FDF2 }
 	TAG_STRUCT(
 		chud_widget_render_data_block,
+		"chud_widget_render_data_block",
 		"chud_widget_render_data_block",
 		"s_chud_widget_render_data_block",
 		SET_DEFAULT,
@@ -35817,6 +36874,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_widget_animation_block_struct,
 		"chud_widget_animation_block_struct",
+		"chud_widget_animation_block_struct",
 		"s_chud_widget_animation_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -35848,6 +36906,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_widget_animation_data_block,
 		"chud_widget_animation_data_block",
+		"chud_widget_animation_data_block",
 		"s_chud_widget_animation_data_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -35871,6 +36930,7 @@ namespace halo3_tools {
 	#define CHUD_WIDGET_BASE_STRUCT_ID { 0x92C89298, 0x4215479E, 0xA60D017D, 0x05C91503 }
 	TAG_STRUCT(
 		chud_widget_base_struct,
+		"chud_widget_base_struct",
 		"chud_widget_base_struct",
 		"s_chud_widget_base_struct",
 		SET_DEFAULT,
@@ -35929,6 +36989,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_widget_bitmap_block,
 		"chud_widget_bitmap_block",
+		"chud_widget_bitmap_block",
 		"s_chud_widget_bitmap_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -35964,6 +37025,7 @@ namespace halo3_tools {
 	#define CHUD_WIDGET_TEXT_BLOCK_ID { 0xD5245524, 0x48904D19, 0x955891F4, 0xED3A7CD5 }
 	TAG_STRUCT(
 		chud_widget_text_block,
+		"chud_widget_text_block",
 		"chud_widget_text_block",
 		"s_chud_widget_text_block",
 		SET_DEFAULT,
@@ -36020,6 +37082,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_widget_collection_block,
 		"chud_widget_collection_block",
+		"chud_widget_collection_block",
 		"s_chud_widget_collection_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36034,6 +37097,7 @@ namespace halo3_tools {
 	#define CHUD_DEFINITION_INFO_STRUCT_ID { 0xAFA695BE, 0x628A4B72, 0xBB7BCD3B, 0xAD3E76C7 }
 	TAG_STRUCT(
 		chud_definition_info_struct,
+		"chud_definition_info_struct",
 		"chud_definition_info_struct",
 		"s_chud_definition_info_struct",
 		SET_DEFAULT,
@@ -36050,6 +37114,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_definition_struct_definition,
 		"chud_definition_struct_definition",
+		"chud_definition_struct_definition",
 		"s_chud_definition_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36064,6 +37129,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_keyframe_base_struct,
 		"chud_keyframe_base_struct",
+		"chud_keyframe_base_struct",
 		"s_chud_keyframe_base_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36076,6 +37142,7 @@ namespace halo3_tools {
 	#define CHUD_KEYFRAME_POSITION_BLOCK_ID { 0xD55B0F4F, 0x5F144EEC, 0x9D5F2F8A, 0xDB60A619 }
 	TAG_STRUCT(
 		chud_keyframe_position_block,
+		"chud_keyframe_position_block",
 		"chud_keyframe_position_block",
 		"s_chud_keyframe_position_block",
 		SET_DEFAULT,
@@ -36091,6 +37158,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_keyframe_rotation_block,
 		"chud_keyframe_rotation_block",
+		"chud_keyframe_rotation_block",
 		"s_chud_keyframe_rotation_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36105,6 +37173,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_keyframe_scale_block,
 		"chud_keyframe_scale_block",
+		"chud_keyframe_scale_block",
 		"s_chud_keyframe_scale_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36118,6 +37187,7 @@ namespace halo3_tools {
 	#define CHUD_KEYFRAME_COLOR_BLOCK_ID { 0xA37EBC6D, 0xA7A444F5, 0x87DAE335, 0x535CB485 }
 	TAG_STRUCT(
 		chud_keyframe_color_block,
+		"chud_keyframe_color_block",
 		"chud_keyframe_color_block",
 		"s_chud_keyframe_color_block",
 		SET_DEFAULT,
@@ -36140,6 +37210,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_keyframe_scalar_block,
 		"chud_keyframe_scalar_block",
+		"chud_keyframe_scalar_block",
 		"s_chud_keyframe_scalar_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36153,6 +37224,7 @@ namespace halo3_tools {
 	#define CHUD_KEYFRAME_TEXTURE_BLOCK_ID { 0x770E5156, 0x640C4802, 0xAECB08CD, 0x04588C14 }
 	TAG_STRUCT(
 		chud_keyframe_texture_block,
+		"chud_keyframe_texture_block",
 		"chud_keyframe_texture_block",
 		"s_chud_keyframe_texture_block",
 		SET_DEFAULT,
@@ -36169,6 +37241,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_animation_position_block,
 		"chud_animation_position_block",
+		"chud_animation_position_block",
 		"s_chud_animation_position_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36183,6 +37256,7 @@ namespace halo3_tools {
 	#define CHUD_ANIMATION_ROTATION_BLOCK_ID { 0x259544B2, 0x2E544680, 0x9F49736C, 0x2900A351 }
 	TAG_STRUCT(
 		chud_animation_rotation_block,
+		"chud_animation_rotation_block",
 		"chud_animation_rotation_block",
 		"s_chud_animation_rotation_block",
 		SET_DEFAULT,
@@ -36199,6 +37273,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_animation_scale_block,
 		"chud_animation_scale_block",
+		"chud_animation_scale_block",
 		"s_chud_animation_scale_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36213,6 +37288,7 @@ namespace halo3_tools {
 	#define CHUD_ANIMATION_COLOR_BLOCK_ID { 0x8EF398B0, 0x4FDC49F0, 0xBC5DA1E1, 0x01FFB526 }
 	TAG_STRUCT(
 		chud_animation_color_block,
+		"chud_animation_color_block",
 		"chud_animation_color_block",
 		"s_chud_animation_color_block",
 		SET_DEFAULT,
@@ -36229,6 +37305,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_animation_scalar_block,
 		"chud_animation_scalar_block",
+		"chud_animation_scalar_block",
 		"s_chud_animation_scalar_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36244,6 +37321,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_animation_texture_block,
 		"chud_animation_texture_block",
+		"chud_animation_texture_block",
 		"s_chud_animation_texture_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36258,6 +37336,7 @@ namespace halo3_tools {
 	#define CHUD_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0xFC2CF9F8, 0xE3764ECE, 0xB06C5328, 0xE7F5F835 }
 	TAG_STRUCT(
 		chud_animation_definition_struct_definition,
+		"chud_animation_definition_struct_definition",
 		"chud_animation_definition_struct_definition",
 		"s_chud_animation_definition_struct_definition",
 		SET_DEFAULT,
@@ -36289,6 +37368,7 @@ namespace halo3_tools {
 	#define CHUD_CURVATURE_INFO_BLOCK_ID { 0x0D690603, 0x66E247ED, 0x97851CEE, 0x755F52CE }
 	TAG_STRUCT(
 		chud_curvature_info_block,
+		"chud_curvature_info_block",
 		"chud_curvature_info_block",
 		"s_chud_curvature_info_block",
 		SET_DEFAULT,
@@ -36338,6 +37418,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_sound_block,
 		"chud_sound_block",
+		"chud_sound_block",
 		"s_chud_sound_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36382,6 +37463,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_medal_name_block,
 		"chud_medal_name_block",
+		"chud_medal_name_block",
 		"s_chud_medal_name_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36394,6 +37476,7 @@ namespace halo3_tools {
 	#define CHUD_CONFIG_INFO_BLOCK_STRUCT_ID { 0x1DA0D877, 0xDE4544E9, 0x81D0D0AC, 0x906D9FB2 }
 	TAG_STRUCT(
 		chud_config_info_block_struct,
+		"chud_config_info_block_struct",
 		"chud_config_info_block_struct",
 		"s_chud_config_info_block_struct",
 		SET_DEFAULT,
@@ -36412,6 +37495,7 @@ namespace halo3_tools {
 	#define CHUD_SKIN_INFO_BLOCK_ID { 0xB95D78AB, 0xA51E48A1, 0x9921C1A3, 0xFB1D9F1F }
 	TAG_STRUCT(
 		chud_skin_info_block,
+		"chud_skin_info_block",
 		"chud_skin_info_block",
 		"s_chud_skin_info_block",
 		SET_DEFAULT,
@@ -36496,6 +37580,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chud_shader_block,
 		"chud_shader_block",
+		"chud_shader_block",
 		"s_chud_shader_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36509,6 +37594,7 @@ namespace halo3_tools {
 	#define CHUD_SUCK_PROFILE_BLOCK_ID { 0x815F7CC2, 0xF5624FA3, 0x8E4A1FD2, 0xC13450FD }
 	TAG_STRUCT(
 		chud_suck_profile_block,
+		"chud_suck_profile_block",
 		"chud_suck_profile_block",
 		"s_chud_suck_profile_block",
 		SET_DEFAULT,
@@ -36538,6 +37624,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cortana_effect_heading_config_struct,
 		"cortana_effect_heading_config_struct",
+		"cortana_effect_heading_config_struct",
 		"s_cortana_effect_heading_config_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36563,6 +37650,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cortana_effect_distance_config_block,
 		"cortana_effect_distance_config_block",
+		"cortana_effect_distance_config_block",
 		"s_cortana_effect_distance_config_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36581,6 +37669,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cortana_effect_config_block,
 		"cortana_effect_config_block",
+		"cortana_effect_config_block",
 		"s_cortana_effect_config_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36594,6 +37683,7 @@ namespace halo3_tools {
 	#define CHUD_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0x42D4D707, 0xA80A45E4, 0x87EA9920, 0x467DF00D }
 	TAG_STRUCT(
 		chud_globals_definition_struct_definition,
+		"chud_globals_definition_struct_definition",
 		"chud_globals_definition_struct_definition",
 		"s_chud_globals_definition_struct_definition",
 		SET_DEFAULT,
@@ -36637,6 +37727,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cortana_keyframe_2d_block,
 		"cortana_keyframe_2d_block",
+		"cortana_keyframe_2d_block",
 		"s_cortana_keyframe_2d_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36650,6 +37741,7 @@ namespace halo3_tools {
 	#define CORTANA_ANIMATION_2D_BLOCK_ID { 0x01EBC65F, 0xF83D4F66, 0xB656171E, 0xC13592E6 }
 	TAG_STRUCT(
 		cortana_animation_2d_block,
+		"cortana_animation_2d_block",
 		"cortana_animation_2d_block",
 		"s_cortana_animation_2d_block",
 		SET_DEFAULT,
@@ -36665,6 +37757,7 @@ namespace halo3_tools {
 	#define CORTANA_EFFECT_2D_BLOCK_ID { 0x9A8339E6, 0xD35942FD, 0x8EE3A485, 0x58169BBE }
 	TAG_STRUCT(
 		cortana_effect_2d_block,
+		"cortana_effect_2d_block",
 		"cortana_effect_2d_block",
 		"s_cortana_effect_2d_block",
 		SET_DEFAULT,
@@ -36689,6 +37782,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cortana_keyframe_3d_block,
 		"cortana_keyframe_3d_block",
+		"cortana_keyframe_3d_block",
 		"s_cortana_keyframe_3d_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36702,6 +37796,7 @@ namespace halo3_tools {
 	#define CORTANA_ANIMATION_3D_BLOCK_ID { 0x3EA4BCB3, 0xCC4C498D, 0xB357E44E, 0xBABAAECC }
 	TAG_STRUCT(
 		cortana_animation_3d_block,
+		"cortana_animation_3d_block",
 		"cortana_animation_3d_block",
 		"s_cortana_animation_3d_block",
 		SET_DEFAULT,
@@ -36717,6 +37812,7 @@ namespace halo3_tools {
 	#define CORTANA_EFFECT_3D_BLOCK_ID { 0x871717F6, 0xF74C44AD, 0xAE8F654B, 0xDEDB6E7F }
 	TAG_STRUCT(
 		cortana_effect_3d_block,
+		"cortana_effect_3d_block",
 		"cortana_effect_3d_block",
 		"s_cortana_effect_3d_block",
 		SET_DEFAULT,
@@ -36734,6 +37830,7 @@ namespace halo3_tools {
 	#define CORTANA_BACKGROUND_EFFECT_PARAMS_BLOCK_ID { 0x4F980F90, 0x86124A75, 0xA3B640BD, 0x0A0777FD }
 	TAG_STRUCT(
 		cortana_background_effect_params_block,
+		"cortana_background_effect_params_block",
 		"cortana_background_effect_params_block",
 		"s_cortana_background_effect_params_block",
 		SET_DEFAULT,
@@ -36759,6 +37856,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cortana_texcam_effect_params_block,
 		"cortana_texcam_effect_params_block",
+		"cortana_texcam_effect_params_block",
 		"s_cortana_texcam_effect_params_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36779,6 +37877,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cortana_widget_block,
 		"cortana_widget_block",
+		"cortana_widget_block",
 		"s_cortana_widget_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36791,6 +37890,7 @@ namespace halo3_tools {
 	#define CORTANA_COMPOSITE_EFFECT_PARAMS_BLOCK_ID { 0x1E2CEA89, 0x381A467D, 0xB6434554, 0x2C77EB32 }
 	TAG_STRUCT(
 		cortana_composite_effect_params_block,
+		"cortana_composite_effect_params_block",
 		"cortana_composite_effect_params_block",
 		"s_cortana_composite_effect_params_block",
 		SET_DEFAULT,
@@ -36810,6 +37910,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cortana_sound_definition_block,
 		"cortana_sound_definition_block",
+		"cortana_sound_definition_block",
 		"s_cortana_sound_definition_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36826,6 +37927,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cortana_script_block,
 		"cortana_script_block",
+		"cortana_script_block",
 		"s_cortana_script_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36838,6 +37940,7 @@ namespace halo3_tools {
 	#define CORTANA_EFFECT_DEFINITION_STRUCT_DEFINITION_ID { 0xC32053DF, 0x36304D96, 0x8F9D2459, 0x07C20F61 }
 	TAG_STRUCT(
 		cortana_effect_definition_struct_definition,
+		"cortana_effect_definition_struct_definition",
 		"cortana_effect_definition_struct_definition",
 		"s_cortana_effect_definition_struct_definition",
 		SET_DEFAULT,
@@ -36867,6 +37970,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		gui_widget_rotation_animation_definition_struct_definition,
 		"gui_widget_rotation_animation_definition_struct_definition",
+		"gui_widget_rotation_animation_definition_struct_definition",
 		"s_gui_widget_rotation_animation_definition_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36889,6 +37993,7 @@ namespace halo3_tools {
 	#define WIDGET_SCALE_ANIMATION_KEYFRAME_BLOCK_ID { 0xF708238C, 0x7A544407, 0x9A9E2E56, 0x3A99EA8F }
 	TAG_STRUCT(
 		widget_scale_animation_keyframe_block,
+		"widget_scale_animation_keyframe_block",
 		"widget_scale_animation_keyframe_block",
 		"s_widget_scale_animation_keyframe_block",
 		SET_DEFAULT,
@@ -36923,6 +38028,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		gui_widget_scale_animation_definition_struct_definition,
 		"gui_widget_scale_animation_definition_struct_definition",
+		"gui_widget_scale_animation_definition_struct_definition",
 		"s_gui_widget_scale_animation_definition_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36939,6 +38045,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		widget_texture_coordinate_animation_keyframe_block,
 		"widget_texture_coordinate_animation_keyframe_block",
+		"widget_texture_coordinate_animation_keyframe_block",
 		"s_widget_texture_coordinate_animation_keyframe_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36953,6 +38060,7 @@ namespace halo3_tools {
 	#define GUI_WIDGET_TEXTURE_COORDINATE_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x45B0B658, 0x45A64E4D, 0xBD02238E, 0xB8CDB04E }
 	TAG_STRUCT(
 		gui_widget_texture_coordinate_animation_definition_struct_definition,
+		"gui_widget_texture_coordinate_animation_definition_struct_definition",
 		"gui_widget_texture_coordinate_animation_definition_struct_definition",
 		"s_gui_widget_texture_coordinate_animation_definition_struct_definition",
 		SET_DEFAULT,
@@ -36970,6 +38078,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		widget_sprite_animation_keyframe_block,
 		"widget_sprite_animation_keyframe_block",
+		"widget_sprite_animation_keyframe_block",
 		"s_widget_sprite_animation_keyframe_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -36986,6 +38095,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		gui_widget_sprite_animation_definition_struct_definition,
 		"gui_widget_sprite_animation_definition_struct_definition",
+		"gui_widget_sprite_animation_definition_struct_definition",
 		"s_gui_widget_sprite_animation_definition_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37001,6 +38111,7 @@ namespace halo3_tools {
 	#define WIDGET_FONT_ANIMATION_KEYFRAME_BLOCK_ID { 0x64F43896, 0x2458428B, 0xBE755612, 0xA9D452BA }
 	TAG_STRUCT(
 		widget_font_animation_keyframe_block,
+		"widget_font_animation_keyframe_block",
 		"widget_font_animation_keyframe_block",
 		"s_widget_font_animation_keyframe_block",
 		SET_DEFAULT,
@@ -37034,6 +38145,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		gui_widget_font_animation_definition_struct_definition,
 		"gui_widget_font_animation_definition_struct_definition",
+		"gui_widget_font_animation_definition_struct_definition",
 		"s_gui_widget_font_animation_definition_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37049,6 +38161,7 @@ namespace halo3_tools {
 	#define GUI_WIDGET_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x9A64C70A, 0x468244E4, 0xB50E6EE5, 0xA875660C }
 	TAG_STRUCT(
 		gui_widget_animation_definition_struct_definition,
+		"gui_widget_animation_definition_struct_definition",
 		"gui_widget_animation_definition_struct_definition",
 		"s_gui_widget_animation_definition_struct_definition",
 		SET_DEFAULT,
@@ -37090,6 +38203,7 @@ namespace halo3_tools {
 	#define GUI_WIDGET_ANIMATION_COLLECTION_DEFINITION_STRUCT_DEFINITION_ID { 0xFF5D3A97, 0x416C4AE3, 0xBA55EBA1, 0xF7C2DC07 }
 	TAG_STRUCT(
 		gui_widget_animation_collection_definition_struct_definition,
+		"gui_widget_animation_collection_definition_struct_definition",
 		"gui_widget_animation_collection_definition_struct_definition",
 		"s_gui_widget_animation_collection_definition_struct_definition",
 		SET_DEFAULT,
@@ -37145,6 +38259,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		gui_text_widget_definition_struct_definition,
 		"gui_text_widget_definition_struct_definition",
+		"gui_text_widget_definition_struct_definition",
 		"s_gui_text_widget_definition_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37196,6 +38311,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		text_widget_block,
 		"text_widget_block",
+		"text_widget_block",
 		"s_text_widget_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37222,6 +38338,7 @@ namespace halo3_tools {
 	#define GUI_BITMAP_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0x20F9D991, 0xB5AB4E51, 0xA451F32F, 0xCBE8813F }
 	TAG_STRUCT(
 		gui_bitmap_widget_definition_struct_definition,
+		"gui_bitmap_widget_definition_struct_definition",
 		"gui_bitmap_widget_definition_struct_definition",
 		"s_gui_bitmap_widget_definition_struct_definition",
 		SET_DEFAULT,
@@ -37285,6 +38402,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		bitmap_widget_block,
 		"bitmap_widget_block",
+		"bitmap_widget_block",
 		"s_bitmap_widget_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37315,6 +38433,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		model_widget_camera_settings_block,
 		"model_widget_camera_settings_block",
+		"model_widget_camera_settings_block",
 		"s_model_widget_camera_settings_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37341,6 +38460,7 @@ namespace halo3_tools {
 	#define GUI_MODEL_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0x32CD1399, 0x79F34B3B, 0xA2B9086C, 0x7139BA84 }
 	TAG_STRUCT(
 		gui_model_widget_definition_struct_definition,
+		"gui_model_widget_definition_struct_definition",
 		"gui_model_widget_definition_struct_definition",
 		"s_gui_model_widget_definition_struct_definition",
 		SET_DEFAULT,
@@ -37371,6 +38491,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		model_widget_block,
 		"model_widget_block",
+		"model_widget_block",
 		"s_model_widget_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37394,6 +38515,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		gui_skin_definition_struct_definition,
 		"gui_skin_definition_struct_definition",
+		"gui_skin_definition_struct_definition",
 		"s_gui_skin_definition_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37414,6 +38536,7 @@ namespace halo3_tools {
 	#define LIST_ITEM_WIDGET_BLOCK_ID { 0x7EEE4BF3, 0xF9F74F3A, 0x80094D69, 0x821CBDD8 }
 	TAG_STRUCT(
 		list_item_widget_block,
+		"list_item_widget_block",
 		"list_item_widget_block",
 		"s_list_item_widget_block",
 		SET_DEFAULT,
@@ -37442,6 +38565,7 @@ namespace halo3_tools {
 	#define GUI_LIST_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0xDE4DC1A3, 0x12DD4725, 0xB96070E6, 0x9C257C2B }
 	TAG_STRUCT(
 		gui_list_widget_definition_struct_definition,
+		"gui_list_widget_definition_struct_definition",
 		"gui_list_widget_definition_struct_definition",
 		"s_gui_list_widget_definition_struct_definition",
 		SET_DEFAULT,
@@ -37483,6 +38607,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		list_widget_block,
 		"list_widget_block",
+		"list_widget_block",
 		"s_list_widget_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37510,6 +38635,7 @@ namespace halo3_tools {
 	#define GUI_GROUP_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0xD3AB72CB, 0xF7F047DB, 0xA55B08E4, 0x1FC03C48 }
 	TAG_STRUCT(
 		gui_group_widget_definition_struct_definition,
+		"gui_group_widget_definition_struct_definition",
 		"gui_group_widget_definition_struct_definition",
 		"s_gui_group_widget_definition_struct_definition",
 		SET_DEFAULT,
@@ -37543,6 +38669,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		group_widget_block,
 		"group_widget_block",
+		"group_widget_block",
 		"s_group_widget_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37568,6 +38695,7 @@ namespace halo3_tools {
 	#define GUI_BUTTON_KEY_DEFINITION_STRUCT_DEFINITION_ID { 0xDC0640AD, 0x5D11477D, 0xAB1D6FB0, 0x8CC12A16 }
 	TAG_STRUCT(
 		gui_button_key_definition_struct_definition,
+		"gui_button_key_definition_struct_definition",
 		"gui_button_key_definition_struct_definition",
 		"s_gui_button_key_definition_struct_definition",
 		SET_DEFAULT,
@@ -37600,6 +38728,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		button_key_block,
 		"button_key_block",
+		"button_key_block",
 		"s_button_key_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37615,6 +38744,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		integer_data_nugget_block,
 		"integer_data_nugget_block",
+		"integer_data_nugget_block",
 		"s_integer_data_nugget_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37628,6 +38758,7 @@ namespace halo3_tools {
 	#define STRING_DATA_NUGGET_BLOCK_ID { 0xFA7B2798, 0x29BC4D22, 0xA69A46FA, 0x10C932A2 }
 	TAG_STRUCT(
 		string_data_nugget_block,
+		"string_data_nugget_block",
 		"string_data_nugget_block",
 		"s_string_data_nugget_block",
 		SET_DEFAULT,
@@ -37643,6 +38774,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		string_id_data_nugget_block,
 		"string_id_data_nugget_block",
+		"string_id_data_nugget_block",
 		"s_string_id_data_nugget_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37656,6 +38788,7 @@ namespace halo3_tools {
 	#define DATASOURCE_ELEMENT_BLOCK_ID { 0x64BBAB6F, 0xCD424FA0, 0x99CD3263, 0x85E99AC7 }
 	TAG_STRUCT(
 		datasource_element_block,
+		"datasource_element_block",
 		"datasource_element_block",
 		"s_datasource_element_block",
 		SET_DEFAULT,
@@ -37673,6 +38806,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		gui_datasource_definition_struct_definition,
 		"gui_datasource_definition_struct_definition",
+		"gui_datasource_definition_struct_definition",
 		"s_gui_datasource_definition_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37687,6 +38821,7 @@ namespace halo3_tools {
 	#define GUI_SCREEN_WIDGET_DEFINITION_STRUCT_DEFINITION_ID { 0x1D2BE911, 0x21904B71, 0xA9E4337B, 0x00698B9B }
 	TAG_STRUCT(
 		gui_screen_widget_definition_struct_definition,
+		"gui_screen_widget_definition_struct_definition",
 		"gui_screen_widget_definition_struct_definition",
 		"s_gui_screen_widget_definition_struct_definition",
 		SET_DEFAULT,
@@ -37735,6 +38870,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		gui_widget_reference_block,
 		"gui_widget_reference_block",
+		"gui_widget_reference_block",
 		"s_gui_widget_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37750,6 +38886,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		color_presets_block,
 		"color_presets_block",
+		"color_presets_block",
 		"s_color_presets_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37764,6 +38901,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		color_list_block,
 		"color_list_block",
+		"color_list_block",
 		"s_color_list_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37776,6 +38914,7 @@ namespace halo3_tools {
 	#define TINT_COLORS_BLOCK_ID { 0x60C481EE, 0x800046A2, 0x8304DA08, 0xAC51C372 }
 	TAG_STRUCT(
 		tint_colors_block,
+		"tint_colors_block",
 		"tint_colors_block",
 		"s_tint_colors_block",
 		SET_DEFAULT,
@@ -37792,6 +38931,7 @@ namespace halo3_tools {
 	#define GUI_ALERT_DESCRIPTION_BLOCK_ID { 0xBE222E19, 0x7F2B4774, 0x8343FCDB, 0x1E293D77 }
 	TAG_STRUCT(
 		gui_alert_description_block,
+		"gui_alert_description_block",
 		"gui_alert_description_block",
 		"s_gui_alert_description_block",
 		SET_DEFAULT,
@@ -37837,6 +38977,7 @@ namespace halo3_tools {
 	#define GUI_DIALOG_DESCRIPTION_BLOCK_ID { 0x7C5393A4, 0x94744F38, 0x8CC51E2D, 0x299DFBF4 }
 	TAG_STRUCT(
 		gui_dialog_description_block,
+		"gui_dialog_description_block",
 		"gui_dialog_description_block",
 		"s_gui_dialog_description_block",
 		SET_DEFAULT,
@@ -37888,6 +39029,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		datasource_definition_block,
 		"datasource_definition_block",
+		"datasource_definition_block",
 		"s_datasource_definition_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -37902,6 +39044,7 @@ namespace halo3_tools {
 	#define USER_INTERFACE_SOUNDS_DEFINITION_STRUCT_DEFINITION_ID { 0x70FFE855, 0x2DE74385, 0x83BAE604, 0x1597E3B6 }
 	TAG_STRUCT(
 		user_interface_sounds_definition_struct_definition,
+		"user_interface_sounds_definition_struct_definition",
 		"user_interface_sounds_definition_struct_definition",
 		"s_user_interface_sounds_definition_struct_definition",
 		SET_DEFAULT,
@@ -37954,6 +39097,7 @@ namespace halo3_tools {
 	#define USER_INTERFACE_SHARED_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0x520DAD1B, 0x3ABC40F7, 0xA25DED9A, 0xB6D09BC7 }
 	TAG_STRUCT(
 		user_interface_shared_globals_definition_struct_definition,
+		"user_interface_shared_globals_definition_struct_definition",
 		"user_interface_shared_globals_definition_struct_definition",
 		"s_user_interface_shared_globals_definition_struct_definition",
 		SET_DEFAULT,
@@ -38014,6 +39158,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		user_interface_globals_definition_struct_definition,
 		"user_interface_globals_definition_struct_definition",
+		"user_interface_globals_definition_struct_definition",
 		"s_user_interface_globals_definition_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -38038,6 +39183,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		keyframe_transition_function_block,
 		"keyframe_transition_function_block",
+		"keyframe_transition_function_block",
 		"s_keyframe_transition_function_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -38051,6 +39197,7 @@ namespace halo3_tools {
 	#define WIDGET_COLOR_ANIMATION_KEYFRAME_BLOCK_ID { 0xEB0EE07C, 0x77AF430F, 0x961C3375, 0x06B31D44 }
 	TAG_STRUCT(
 		widget_color_animation_keyframe_block,
+		"widget_color_animation_keyframe_block",
 		"widget_color_animation_keyframe_block",
 		"s_widget_color_animation_keyframe_block",
 		SET_DEFAULT,
@@ -38066,6 +39213,7 @@ namespace halo3_tools {
 	#define GUI_WIDGET_COLOR_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0x78374874, 0x773348DA, 0x86389481, 0x6D1F08B7 }
 	TAG_STRUCT(
 		gui_widget_color_animation_definition_struct_definition,
+		"gui_widget_color_animation_definition_struct_definition",
 		"gui_widget_color_animation_definition_struct_definition",
 		"s_gui_widget_color_animation_definition_struct_definition",
 		SET_DEFAULT,
@@ -38083,6 +39231,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		widget_position_animation_keyframe_block,
 		"widget_position_animation_keyframe_block",
+		"widget_position_animation_keyframe_block",
 		"s_widget_position_animation_keyframe_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -38097,6 +39246,7 @@ namespace halo3_tools {
 	#define GUI_WIDGET_POSITION_ANIMATION_DEFINITION_STRUCT_DEFINITION_ID { 0xA50A49EB, 0x955D421A, 0x8D1E9C96, 0xEA246AB0 }
 	TAG_STRUCT(
 		gui_widget_position_animation_definition_struct_definition,
+		"gui_widget_position_animation_definition_struct_definition",
 		"gui_widget_position_animation_definition_struct_definition",
 		"s_gui_widget_position_animation_definition_struct_definition",
 		SET_DEFAULT,
@@ -38113,6 +39263,7 @@ namespace halo3_tools {
 	#define WIDGET_ROTATION_ANIMATION_KEYFRAME_BLOCK_ID { 0x8BC613C4, 0xF6F44C13, 0x8B4AA33D, 0xA4BCE677 }
 	TAG_STRUCT(
 		widget_rotation_animation_keyframe_block,
+		"widget_rotation_animation_keyframe_block",
 		"widget_rotation_animation_keyframe_block",
 		"s_widget_rotation_animation_keyframe_block",
 		SET_DEFAULT,
@@ -38131,6 +39282,7 @@ namespace halo3_tools {
 	#define TEXT_VALUE_PAIR_REFERENCE_BLOCK_ID { 0xF7AE82B9, 0xCEA54D49, 0xABC02F9F, 0x5AB01E19 }
 	TAG_STRUCT(
 		text_value_pair_reference_block,
+		"text_value_pair_reference_block",
 		"text_value_pair_reference_block",
 		"s_text_value_pair_reference_block",
 		SET_DEFAULT,
@@ -38164,6 +39316,7 @@ namespace halo3_tools {
 	#define TEXT_VALUE_PAIR_DEFINITION_STRUCT_DEFINITION_ID { 0xDFA0A227, 0xB83A4610, 0x8DF352D1, 0x391AB478 }
 	TAG_STRUCT(
 		text_value_pair_definition_struct_definition,
+		"text_value_pair_definition_struct_definition",
 		"text_value_pair_definition_struct_definition",
 		"s_text_value_pair_definition_struct_definition",
 		SET_DEFAULT,
@@ -38807,6 +39960,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sandbox_property_allowed_values_reference_block,
 		"sandbox_property_allowed_values_reference_block",
+		"sandbox_property_allowed_values_reference_block",
 		"s_sandbox_property_allowed_values_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -38821,6 +39975,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sandbox_text_value_pair_definition_struct_definition,
 		"sandbox_text_value_pair_definition_struct_definition",
+		"sandbox_text_value_pair_definition_struct_definition",
 		"s_sandbox_text_value_pair_definition_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -38833,6 +39988,7 @@ namespace halo3_tools {
 	#define VARIANT_OPTION_BLOCK_ID { 0xE174884E, 0x69AD477F, 0xB879C646, 0x023019A6 }
 	TAG_STRUCT(
 		variant_option_block,
+		"variant_option_block",
 		"variant_option_block",
 		"s_variant_option_block",
 		SET_DEFAULT,
@@ -39081,6 +40237,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		variant_setting_edit_reference_block,
 		"variant_setting_edit_reference_block",
+		"variant_setting_edit_reference_block",
 		"s_variant_setting_edit_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39096,6 +40253,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		multiplayer_variant_settings_interface_definition_struct_definition,
 		"multiplayer_variant_settings_interface_definition_struct_definition",
+		"multiplayer_variant_settings_interface_definition_struct_definition",
 		"s_multiplayer_variant_settings_interface_definition_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39109,6 +40267,7 @@ namespace halo3_tools {
 	#define COLLISION_DAMAGE_STRUCT_DEFINITION_ID { 0x50FEF768, 0x5E0F4D35, 0x8B165F16, 0xBEAAF2E6 }
 	TAG_STRUCT(
 		collision_damage_struct_definition,
+		"collision_damage_struct_definition",
 		"collision_damage_struct_definition",
 		"s_collision_damage_struct_definition",
 		SET_DEFAULT,
@@ -39135,6 +40294,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		unit_hud_reference_block,
 		"unit_hud_reference_block",
+		"unit_hud_reference_block",
 		"s_unit_hud_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39150,6 +40310,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		unit_camera_track_block,
 		"unit_camera_track_block",
+		"unit_camera_track_block",
 		"s_unit_camera_track_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39163,6 +40324,7 @@ namespace halo3_tools {
 	#define UNIT_CAMERA_ACCELERATION_DISPLACMENT_FUNCTION_STRUCT_ID { 0x22A7A324, 0xB17C4B45, 0xBBF37B84, 0xD2BD1E36 }
 	TAG_STRUCT(
 		unit_camera_acceleration_displacment_function_struct,
+		"unit_camera_acceleration_displacment_function_struct",
 		"unit_camera_acceleration_displacment_function_struct",
 		"s_unit_camera_acceleration_displacment_function_struct",
 		SET_DEFAULT,
@@ -39181,6 +40343,7 @@ namespace halo3_tools {
 	#define UNIT_CAMERA_ACCELERATION_DISPLACMENT_FUNCTION_BLOCK_ID { 0x23D5C530, 0x05A548F3, 0x80168453, 0x80F5F3F1 }
 	TAG_STRUCT(
 		unit_camera_acceleration_displacment_function_block,
+		"unit_camera_acceleration_displacment_function_block",
 		"unit_camera_acceleration_displacment_function_block",
 		"s_unit_camera_acceleration_displacment_function_block",
 		SET_DEFAULT,
@@ -39202,6 +40365,7 @@ namespace halo3_tools {
 	#define UNIT_CAMERA_STRUCT_ID { 0x382328B4, 0x49B04550, 0x9B1635F2, 0x1B616A06 }
 	TAG_STRUCT(
 		unit_camera_struct,
+		"unit_camera_struct",
 		"unit_camera_struct",
 		"s_unit_camera_struct",
 		SET_DEFAULT,
@@ -39232,6 +40396,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		unit_postures_block,
 		"unit_postures_block",
+		"unit_postures_block",
 		"s_unit_postures_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39247,6 +40412,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		unit_seat_acceleration_struct,
 		"unit_seat_acceleration_struct",
+		"unit_seat_acceleration_struct",
 		"s_unit_seat_acceleration_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39261,6 +40427,7 @@ namespace halo3_tools {
 	#define UNIT_WEAPON_BLOCK_ID { 0x666B0F35, 0x947942E0, 0x91252FF5, 0xF22266EF }
 	TAG_STRUCT(
 		unit_weapon_block,
+		"unit_weapon_block",
 		"unit_weapon_block",
 		"s_unit_weapon_block",
 		SET_DEFAULT,
@@ -39278,6 +40445,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		powered_seat_block,
 		"powered_seat_block",
+		"powered_seat_block",
 		"s_powered_seat_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39293,6 +40461,7 @@ namespace halo3_tools {
 	#define DIALOGUE_VARIANT_BLOCK_ID { 0xC954BD46, 0x4A9C4A98, 0xAC562A99, 0x9AE5A33F }
 	TAG_STRUCT(
 		dialogue_variant_block,
+		"dialogue_variant_block",
 		"dialogue_variant_block",
 		"s_dialogue_variant_block",
 		SET_DEFAULT,
@@ -39311,6 +40480,7 @@ namespace halo3_tools {
 	#define UNIT_BOOST_STRUCT_ID { 0x4506D858, 0x370B402D, 0x83F08481, 0xCB943803 }
 	TAG_STRUCT(
 		unit_boost_struct,
+		"unit_boost_struct",
 		"unit_boost_struct",
 		"s_unit_boost_struct",
 		SET_DEFAULT,
@@ -39331,6 +40501,7 @@ namespace halo3_tools {
 	#define UNIT_SEAT_BLOCK_ID { 0x0503B218, 0xDE414AF3, 0xAED6B5FD, 0xC83836D9 }
 	TAG_STRUCT(
 		unit_seat_block,
+		"unit_seat_block",
 		"unit_seat_block",
 		"s_unit_seat_block",
 		SET_DEFAULT,
@@ -39432,6 +40603,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		unit_boarding_melee_struct,
 		"unit_boarding_melee_struct",
+		"unit_boarding_melee_struct",
 		"s_unit_boarding_melee_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39451,6 +40623,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		unit_additional_node_names_struct,
 		"unit_additional_node_names_struct",
+		"unit_additional_node_names_struct",
 		"s_unit_additional_node_names_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39463,6 +40636,7 @@ namespace halo3_tools {
 	#define UNIT_LIPSYNC_SCALES_STRUCT_ID { 0x2E5A89D9, 0xAF1E466B, 0x9F62F58C, 0x8B1BFE32 }
 	TAG_STRUCT(
 		unit_lipsync_scales_struct,
+		"unit_lipsync_scales_struct",
 		"unit_lipsync_scales_struct",
 		"s_unit_lipsync_scales_struct",
 		SET_DEFAULT,
@@ -39478,6 +40652,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		contact_point_block,
 		"contact_point_block",
+		"contact_point_block",
 		"s_contact_point_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39491,6 +40666,7 @@ namespace halo3_tools {
 	#define BIPED_LEAPING_DATA_STRUCT_ID { 0x8D1584BD, 0xB9A24D94, 0xAB6217DD, 0x65BD78D0 }
 	TAG_STRUCT(
 		biped_leaping_data_struct,
+		"biped_leaping_data_struct",
 		"biped_leaping_data_struct",
 		"s_biped_leaping_data_struct",
 		SET_DEFAULT,
@@ -39520,6 +40696,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		biped_lock_on_data_struct,
 		"biped_lock_on_data_struct",
+		"biped_lock_on_data_struct",
 		"s_biped_lock_on_data_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39542,6 +40719,7 @@ namespace halo3_tools {
 	#define BIPED_GROUND_FITTING_DATA_STRUCT_ID { 0x8E954938, 0x813744E7, 0xBA856A03, 0x1B7808B0 }
 	TAG_STRUCT(
 		biped_ground_fitting_data_struct,
+		"biped_ground_fitting_data_struct",
 		"biped_ground_fitting_data_struct",
 		"s_biped_ground_fitting_data_struct",
 		SET_DEFAULT,
@@ -39569,6 +40747,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		steering_animation_struct,
 		"steering_animation_struct",
+		"steering_animation_struct",
 		"s_steering_animation_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39583,6 +40762,7 @@ namespace halo3_tools {
 	#define ENGINE_FUNCTION_STRUCT_ID { 0xFAE37480, 0x13E14F26, 0xA1CB57D9, 0xD755D2D0 }
 	TAG_STRUCT(
 		engine_function_struct,
+		"engine_function_struct",
 		"engine_function_struct",
 		"s_engine_function_struct",
 		SET_DEFAULT,
@@ -39601,6 +40781,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		vehicle_steering_control_struct,
 		"vehicle_steering_control_struct",
+		"vehicle_steering_control_struct",
 		"s_vehicle_steering_control_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39615,6 +40796,7 @@ namespace halo3_tools {
 	#define VEHICLE_TURNING_CONTROL_STRUCT_ID { 0x36D7646B, 0xE70A47D1, 0x98AF489E, 0x9B5C63F1 }
 	TAG_STRUCT(
 		vehicle_turning_control_struct,
+		"vehicle_turning_control_struct",
 		"vehicle_turning_control_struct",
 		"s_vehicle_turning_control_struct",
 		SET_DEFAULT,
@@ -39631,6 +40813,7 @@ namespace halo3_tools {
 	#define HUMAN_TANK_BLOCK_ID { 0x7AD171CF, 0x889B48FF, 0x9B3677D4, 0xF2E74E3B }
 	TAG_STRUCT(
 		human_tank_block,
+		"human_tank_block",
 		"human_tank_block",
 		"s_human_tank_block",
 		SET_DEFAULT,
@@ -39661,6 +40844,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		human_jeep_block,
 		"human_jeep_block",
+		"human_jeep_block",
 		"s_human_jeep_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39678,6 +40862,7 @@ namespace halo3_tools {
 	#define HUMAN_PLANE_BLOCK_ID { 0x3F025A0A, 0x7D8B4893, 0xBEE5EAF1, 0x42591680 }
 	TAG_STRUCT(
 		human_plane_block,
+		"human_plane_block",
 		"human_plane_block",
 		"s_human_plane_block",
 		SET_DEFAULT,
@@ -39710,6 +40895,7 @@ namespace halo3_tools {
 	#define ALIEN_SCOUT_BLOCK_ID { 0x44F7199E, 0x44564222, 0xB555F347, 0x2AE7DC1C }
 	TAG_STRUCT(
 		alien_scout_block,
+		"alien_scout_block",
 		"alien_scout_block",
 		"s_alien_scout_block",
 		SET_DEFAULT,
@@ -39763,6 +40949,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		alien_fighter_block,
 		"alien_fighter_block",
+		"alien_fighter_block",
 		"s_alien_fighter_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39802,6 +40989,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		turret_block,
 		"turret_block",
+		"turret_block",
 		"s_turret_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39814,6 +41002,7 @@ namespace halo3_tools {
 	#define MANTIS_BLOCK_ID { 0x3D5289E7, 0xE2554038, 0xA70B311D, 0xAAE49B2B }
 	TAG_STRUCT(
 		mantis_block,
+		"mantis_block",
 		"mantis_block",
 		"s_mantis_block",
 		SET_DEFAULT,
@@ -39858,6 +41047,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		guardian_block,
 		"guardian_block",
+		"guardian_block",
 		"s_guardian_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39880,6 +41070,7 @@ namespace halo3_tools {
 	#define VTOL_BLOCK_ID { 0x3FF3D8BD, 0x885445AB, 0xA71E3BEE, 0x6D8D25EE }
 	TAG_STRUCT(
 		vtol_block,
+		"vtol_block",
 		"vtol_block",
 		"s_vtol_block",
 		SET_DEFAULT,
@@ -39925,6 +41116,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		chopper_block,
 		"chopper_block",
+		"chopper_block",
 		"s_chopper_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39955,6 +41147,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		vehicle_physics_types_struct,
 		"vehicle_physics_types_struct",
+		"vehicle_physics_types_struct",
 		"s_vehicle_physics_types_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39977,6 +41170,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		vehicle_permutation,
 		"vehicle_permutation",
+		"vehicle_permutation",
 		"s_vehicle_permutation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -39994,6 +41188,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		vehicle_collection_struct_definition,
 		"vehicle_collection_struct_definition",
+		"vehicle_collection_struct_definition",
 		"s_vehicle_collection_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40008,6 +41203,7 @@ namespace halo3_tools {
 	#define OBJECT_FUNCTION_BLOCK_ID { 0xD2EFDBE6, 0x41EE4DC2, 0x805F2410, 0x82F5BAD9 }
 	TAG_STRUCT(
 		object_function_block,
+		"object_function_block",
 		"object_function_block",
 		"s_object_function_block",
 		SET_DEFAULT,
@@ -40039,6 +41235,7 @@ namespace halo3_tools {
 	#define OBJECT_ATTACHMENT_BLOCK_ID { 0x11097257, 0x4775429C, 0xA775D933, 0xEE75453F }
 	TAG_STRUCT(
 		object_attachment_block,
+		"object_attachment_block",
 		"object_attachment_block",
 		"s_object_attachment_block",
 		SET_DEFAULT,
@@ -40079,6 +41276,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		object_widget_block,
 		"object_widget_block",
+		"object_widget_block",
 		"s_object_widget_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40104,6 +41302,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		object_change_color_initial_permutation,
 		"object_change_color_initial_permutation",
+		"object_change_color_initial_permutation",
 		"s_object_change_color_initial_permutation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40119,6 +41318,7 @@ namespace halo3_tools {
 	#define OBJECT_CHANGE_COLOR_FUNCTION_ID { 0x9F69CB7C, 0xBA0D4F58, 0x96CEA30C, 0xD0A89C28 }
 	TAG_STRUCT(
 		object_change_color_function,
+		"object_change_color_function",
 		"object_change_color_function",
 		"s_object_change_color_function",
 		SET_DEFAULT,
@@ -40145,6 +41345,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		object_change_colors,
 		"object_change_colors",
+		"object_change_colors",
 		"s_object_change_colors",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40159,6 +41360,7 @@ namespace halo3_tools {
 	#define MULTIPLAYER_OBJECT_BLOCK_ID { 0x027B0263, 0xE97643DE, 0xB173536B, 0x73AEE467 }
 	TAG_STRUCT(
 		multiplayer_object_block,
+		"multiplayer_object_block",
 		"multiplayer_object_block",
 		"s_multiplayer_object_block",
 		SET_DEFAULT,
@@ -40279,6 +41481,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		object_ai_properties_block,
 		"object_ai_properties_block",
+		"object_ai_properties_block",
 		"s_object_ai_properties_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40332,6 +41535,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		object_early_mover_obb_block,
 		"object_early_mover_obb_block",
+		"object_early_mover_obb_block",
 		"s_object_early_mover_obb_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40351,6 +41555,7 @@ namespace halo3_tools {
 	#define OBJECT_STRUCT_DEFINITION_ID { 0x94A95A6C, 0xF5FC457A, 0x88A44257, 0x803394F0 }
 	TAG_STRUCT(
 		object_struct_definition,
+		"object_struct_definition",
 		"object_struct_definition",
 		"s_object_struct_definition",
 		SET_DEFAULT,
@@ -40456,6 +41661,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		giant_buckle_parameters_block,
 		"giant_buckle_parameters_block",
+		"giant_buckle_parameters_block",
 		"s_giant_buckle_parameters_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40506,6 +41712,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		weapon_barrel_first_person_offset_block,
 		"weapon_barrel_first_person_offset_block",
+		"weapon_barrel_first_person_offset_block",
 		"s_weapon_barrel_first_person_offset_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40518,6 +41725,7 @@ namespace halo3_tools {
 	#define WEAPON_BARREL_FIRING_PARAMETERS_STRUCT_ID { 0x85D673EA, 0x92E147FF, 0xB5F3E5BA, 0x101796F3 }
 	TAG_STRUCT(
 		weapon_barrel_firing_parameters_struct,
+		"weapon_barrel_firing_parameters_struct",
 		"weapon_barrel_firing_parameters_struct",
 		"s_weapon_barrel_firing_parameters_struct",
 		SET_DEFAULT,
@@ -40539,6 +41747,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		weapon_barrel_firing_error_struct,
 		"weapon_barrel_firing_error_struct",
+		"weapon_barrel_firing_error_struct",
 		"s_weapon_barrel_firing_error_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40556,6 +41765,7 @@ namespace halo3_tools {
 	#define WEAPON_BARREL_DUAL_WEAPON_ERROR_STRUCT_ID { 0x28B45B8D, 0x2A12454C, 0xAD8F5054, 0x8CED73A5 }
 	TAG_STRUCT(
 		weapon_barrel_dual_weapon_error_struct,
+		"weapon_barrel_dual_weapon_error_struct",
 		"weapon_barrel_dual_weapon_error_struct",
 		"s_weapon_barrel_dual_weapon_error_struct",
 		SET_DEFAULT,
@@ -40575,6 +41785,7 @@ namespace halo3_tools {
 	#define WEAPON_TRIGGER_AUTOFIRE_STRUCT_ID { 0x2E880044, 0x234145A2, 0x803AC387, 0xB24AF26C }
 	TAG_STRUCT(
 		weapon_trigger_autofire_struct,
+		"weapon_trigger_autofire_struct",
 		"weapon_trigger_autofire_struct",
 		"s_weapon_trigger_autofire_struct",
 		SET_DEFAULT,
@@ -40601,6 +41812,7 @@ namespace halo3_tools {
 	#define WEAPON_TRIGGER_CHARGING_STRUCT_ID { 0x2A90D186, 0xD9FD48DD, 0x879003FA, 0x3B897118 }
 	TAG_STRUCT(
 		weapon_trigger_charging_struct,
+		"weapon_trigger_charging_struct",
 		"weapon_trigger_charging_struct",
 		"s_weapon_trigger_charging_struct",
 		SET_DEFAULT,
@@ -40634,6 +41846,7 @@ namespace halo3_tools {
 	#define WEAPON_TRIGGERS_ID { 0x908CED94, 0x29134ADA, 0x9600E10A, 0x2C4ED066 }
 	TAG_STRUCT(
 		weapon_triggers,
+		"weapon_triggers",
 		"weapon_triggers",
 		"s_weapon_triggers",
 		SET_DEFAULT,
@@ -40695,6 +41908,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		aim_assist_struct,
 		"aim_assist_struct",
+		"aim_assist_struct",
 		"s_aim_assist_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40717,6 +41931,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		weapon_first_person_interface_block,
 		"weapon_first_person_interface_block",
+		"weapon_first_person_interface_block",
 		"s_weapon_first_person_interface_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40735,6 +41950,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		weapon_shared_interface_struct,
 		"weapon_shared_interface_struct",
+		"weapon_shared_interface_struct",
 		"s_weapon_shared_interface_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40747,6 +41963,7 @@ namespace halo3_tools {
 	#define WEAPON_INTERFACE_STRUCT_ID { 0xE19D1139, 0xDC6246CC, 0x9B9CDBBB, 0x5D685572 }
 	TAG_STRUCT(
 		weapon_interface_struct,
+		"weapon_interface_struct",
 		"weapon_interface_struct",
 		"s_weapon_interface_struct",
 		SET_DEFAULT,
@@ -40764,6 +41981,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		magazine_objects,
 		"magazine_objects",
+		"magazine_objects",
 		"s_magazine_objects",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40778,6 +41996,7 @@ namespace halo3_tools {
 	#define MAGAZINES_ID { 0xB8FCF9A4, 0xA0194C8E, 0x8CFE64C5, 0xB1CFC041 }
 	TAG_STRUCT(
 		magazines,
+		"magazines",
 		"magazines",
 		"s_magazines",
 		SET_DEFAULT,
@@ -40818,6 +42037,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		barrel_firing_effect_block,
 		"barrel_firing_effect_block",
+		"barrel_firing_effect_block",
 		"s_barrel_firing_effect_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40844,6 +42064,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		weapon_barrel_damage_effect_struct,
 		"weapon_barrel_damage_effect_struct",
+		"weapon_barrel_damage_effect_struct",
 		"s_weapon_barrel_damage_effect_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40856,6 +42077,7 @@ namespace halo3_tools {
 	#define WEAPON_BARRELS_ID { 0x52D6B3B0, 0x3234423B, 0x95125B72, 0xFC44714A }
 	TAG_STRUCT(
 		weapon_barrels,
+		"weapon_barrels",
 		"weapon_barrels",
 		"s_weapon_barrels",
 		SET_DEFAULT,
@@ -40959,6 +42181,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		melee_damage_parameters_struct,
 		"melee_damage_parameters_struct",
+		"melee_damage_parameters_struct",
 		"s_melee_damage_parameters_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -40986,6 +42209,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		weapon_tracking_struct,
 		"weapon_tracking_struct",
+		"weapon_tracking_struct",
 		"s_weapon_tracking_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41007,6 +42231,7 @@ namespace halo3_tools {
 	#define LIGHT_SCALAR_FUNCTION_STRUCT_ID { 0x26AA4A83, 0x42B4434A, 0x93ACA3CB, 0x08A920CD }
 	TAG_STRUCT(
 		light_scalar_function_struct,
+		"light_scalar_function_struct",
 		"light_scalar_function_struct",
 		"s_light_scalar_function_struct",
 		SET_DEFAULT,
@@ -41035,6 +42260,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		light_color_function_struct,
 		"light_color_function_struct",
+		"light_color_function_struct",
 		"s_light_color_function_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41053,6 +42279,7 @@ namespace halo3_tools {
 	#define LIGHT_STRUCT_DEFINITION_ID { 0x671EB9F2, 0xB6AF482D, 0x902D0F25, 0xEDB665A1 }
 	TAG_STRUCT(
 		light_struct_definition,
+		"light_struct_definition",
 		"light_struct_definition",
 		"s_light_struct_definition",
 		SET_DEFAULT,
@@ -41138,6 +42365,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		predicted_bitmaps_block,
 		"predicted_bitmaps_block",
+		"predicted_bitmaps_block",
 		"s_predicted_bitmaps_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41150,6 +42378,7 @@ namespace halo3_tools {
 	#define ITEM_PERMUTATION_ID { 0x40C928A3, 0x624D4955, 0x949FFE89, 0x1BF7BD9C }
 	TAG_STRUCT(
 		item_permutation,
+		"item_permutation",
 		"item_permutation",
 		"s_item_permutation",
 		SET_DEFAULT,
@@ -41168,6 +42397,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		item_collection_struct_definition,
 		"item_collection_struct_definition",
+		"item_collection_struct_definition",
 		"s_item_collection_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41183,6 +42413,7 @@ namespace halo3_tools {
 	#define EQUIPMENT_TYPE_SUPER_SHIELD_BLOCK_ID { 0xE3B9A6B3, 0xEA084D0F, 0x8E98832A, 0x7DE6B2C3 }
 	TAG_STRUCT(
 		equipment_type_super_shield_block,
+		"equipment_type_super_shield_block",
 		"equipment_type_super_shield_block",
 		"s_equipment_type_super_shield_block",
 		SET_DEFAULT,
@@ -41201,6 +42432,7 @@ namespace halo3_tools {
 	#define EQUIPMENT_TYPE_MULTIPLAYER_POWERUP_BLOCK_ID { 0x722536F2, 0xBC644EEF, 0xAD1E23AD, 0x7F611939 }
 	TAG_STRUCT(
 		equipment_type_multiplayer_powerup_block,
+		"equipment_type_multiplayer_powerup_block",
 		"equipment_type_multiplayer_powerup_block",
 		"s_equipment_type_multiplayer_powerup_block",
 		SET_DEFAULT,
@@ -41222,6 +42454,7 @@ namespace halo3_tools {
 	#define EQUIPMENT_TYPE_SPAWNER_BLOCK_ID { 0x094A0C6C, 0xB09B4658, 0xA912F337, 0x82263A70 }
 	TAG_STRUCT(
 		equipment_type_spawner_block,
+		"equipment_type_spawner_block",
 		"equipment_type_spawner_block",
 		"s_equipment_type_spawner_block",
 		SET_DEFAULT,
@@ -41253,6 +42486,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		equipment_type_proximity_mine_block,
 		"equipment_type_proximity_mine_block",
+		"equipment_type_proximity_mine_block",
 		"s_equipment_type_proximity_mine_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41271,6 +42505,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		equipment_type_motion_tracker_noise_block,
 		"equipment_type_motion_tracker_noise_block",
+		"equipment_type_motion_tracker_noise_block",
 		"s_equipment_type_motion_tracker_noise_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41287,6 +42522,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		equipment_type_showme_block,
 		"equipment_type_showme_block",
+		"equipment_type_showme_block",
 		"s_equipment_type_showme_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41299,6 +42535,7 @@ namespace halo3_tools {
 	#define EQUIPMENT_TYPE_INVISIBILITY_MODE_BLOCK_ID { 0x0B32D7AE, 0xC10D4B78, 0x90E7DE1A, 0x2A4AD4DB }
 	TAG_STRUCT(
 		equipment_type_invisibility_mode_block,
+		"equipment_type_invisibility_mode_block",
 		"equipment_type_invisibility_mode_block",
 		"s_equipment_type_invisibility_mode_block",
 		SET_DEFAULT,
@@ -41313,6 +42550,7 @@ namespace halo3_tools {
 	#define EQUIPMENT_TYPE_INVINCIBILITY_BLOCK_ID { 0x0B02D7AE, 0xA10DBB78, 0xC0E7DE1A, 0x2ADAE4DB }
 	TAG_STRUCT(
 		equipment_type_invincibility_block,
+		"equipment_type_invincibility_block",
 		"equipment_type_invincibility_block",
 		"s_equipment_type_invincibility_block",
 		SET_DEFAULT,
@@ -41333,6 +42571,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		equipment_type_treeoflife_block,
 		"equipment_type_treeoflife_block",
+		"equipment_type_treeoflife_block",
 		"s_equipment_type_treeoflife_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41345,6 +42584,7 @@ namespace halo3_tools {
 	#define ANTENNA_VERTEX_BLOCK_ID { 0x5F3BF4F0, 0x7754476A, 0x8359AD41, 0xAB160F49 }
 	TAG_STRUCT(
 		antenna_vertex_block,
+		"antenna_vertex_block",
 		"antenna_vertex_block",
 		"s_antenna_vertex_block",
 		SET_DEFAULT,
@@ -41365,6 +42605,7 @@ namespace halo3_tools {
 	#define ANTENNA_STRUCT_DEFINITION_ID { 0xB3BE1D39, 0xEF274B86, 0x866479C8, 0xE030C9EE }
 	TAG_STRUCT(
 		antenna_struct_definition,
+		"antenna_struct_definition",
 		"antenna_struct_definition",
 		"s_antenna_struct_definition",
 		SET_DEFAULT,
@@ -41393,6 +42634,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		leaf_type_block,
 		"leaf_type_block",
+		"leaf_type_block",
 		"s_leaf_type_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41418,6 +42660,7 @@ namespace halo3_tools {
 	#define LEAF_SYSTEM_STRUCT_DEFINITION_ID { 0x0609FC23, 0x1694654C, 0x86B19DA1, 0x00C0A48B }
 	TAG_STRUCT(
 		leaf_system_struct_definition,
+		"leaf_system_struct_definition",
 		"leaf_system_struct_definition",
 		"s_leaf_system_struct_definition",
 		SET_DEFAULT,
@@ -41453,6 +42696,7 @@ namespace halo3_tools {
 	#define CELLULAR_AUTOMATA_STRUCT_DEFINITION_ID { 0xA8E224D3, 0x1BD34E44, 0xBABD0523, 0x5DE7F39D }
 	TAG_STRUCT(
 		cellular_automata_struct_definition,
+		"cellular_automata_struct_definition",
 		"cellular_automata_struct_definition",
 		"s_cellular_automata_struct_definition",
 		SET_DEFAULT,
@@ -41504,6 +42748,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		states_block,
 		"states_block",
+		"states_block",
 		"s_states_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41532,6 +42777,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		rules_block,
 		"rules_block",
+		"rules_block",
 		"s_rules_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41547,6 +42793,7 @@ namespace halo3_tools {
 	#define CELLULAR_AUTOMATA2D_STRUCT_DEFINITION_ID { 0x58015675, 0xB4FA436F, 0xAAB9EC7C, 0x90E51960 }
 	TAG_STRUCT(
 		cellular_automata2d_struct_definition,
+		"cellular_automata2d_struct_definition",
 		"cellular_automata2d_struct_definition",
 		"s_cellular_automata2d_struct_definition",
 		SET_DEFAULT,
@@ -41591,6 +42838,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		stereo_system_struct_definition,
 		"stereo_system_struct_definition",
+		"stereo_system_struct_definition",
 		"s_stereo_system_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41603,6 +42851,7 @@ namespace halo3_tools {
 	#define BRUTE_GRENADE_BLOCK_ID { 0x7CFB56DB, 0x21F54A49, 0x9344DC0D, 0x0D4B6598 }
 	TAG_STRUCT(
 		brute_grenade_block,
+		"brute_grenade_block",
 		"brute_grenade_block",
 		"s_brute_grenade_block",
 		SET_DEFAULT,
@@ -41628,6 +42877,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		fire_bomb_grenade_block,
 		"fire_bomb_grenade_block",
+		"fire_bomb_grenade_block",
 		"s_fire_bomb_grenade_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41640,6 +42890,7 @@ namespace halo3_tools {
 	#define CONICAL_PROJECTION_BLOCK_ID { 0xC44A9D16, 0x88854B7D, 0x8A5731FD, 0x79F9555F }
 	TAG_STRUCT(
 		conical_projection_block,
+		"conical_projection_block",
 		"conical_projection_block",
 		"s_conical_projection_block",
 		SET_DEFAULT,
@@ -41657,6 +42908,7 @@ namespace halo3_tools {
 	#define PROJECTILE_MATERIAL_RESPONSE_BLOCK_ID { 0x33464F1F, 0x1BE74B67, 0x8A913714, 0x60E78572 }
 	TAG_STRUCT(
 		projectile_material_response_block,
+		"projectile_material_response_block",
 		"projectile_material_response_block",
 		"s_projectile_material_response_block",
 		SET_DEFAULT,
@@ -41729,6 +42981,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		angular_velocity_lower_bound_struct,
 		"angular_velocity_lower_bound_struct",
+		"angular_velocity_lower_bound_struct",
 		"s_angular_velocity_lower_bound_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41741,6 +42994,7 @@ namespace halo3_tools {
 	#define SUPER_DETONATION_DAMAGE_STRUCT_ID { 0xA018816E, 0x4F4F48B3, 0x9A4AEA76, 0x5C479F3A }
 	TAG_STRUCT(
 		super_detonation_damage_struct,
+		"super_detonation_damage_struct",
 		"super_detonation_damage_struct",
 		"s_super_detonation_damage_struct",
 		SET_DEFAULT,
@@ -41755,6 +43009,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		muffin_permutation_name_block,
 		"muffin_permutation_name_block",
+		"muffin_permutation_name_block",
 		"s_muffin_permutation_name_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41767,6 +43022,7 @@ namespace halo3_tools {
 	#define MUFFIN_SCALAR_FUNCTION_STRUCT_ID { 0xE0DF474A, 0xDBEB491C, 0xB0EC54D4, 0x593073E1 }
 	TAG_STRUCT(
 		muffin_scalar_function_struct,
+		"muffin_scalar_function_struct",
 		"muffin_scalar_function_struct",
 		"s_muffin_scalar_function_struct",
 		SET_DEFAULT,
@@ -41781,6 +43037,7 @@ namespace halo3_tools {
 	#define GLOBAL_MUFFIN_TYPE_STRUCT_ID { 0x0EB31413, 0xE68F4840, 0xB0E7C088, 0x51EED254 }
 	TAG_STRUCT(
 		global_muffin_type_struct,
+		"global_muffin_type_struct",
 		"global_muffin_type_struct",
 		"s_global_muffin_type_struct",
 		SET_DEFAULT,
@@ -41819,6 +43076,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		muffin_marker_block,
 		"muffin_marker_block",
+		"muffin_marker_block",
 		"s_muffin_marker_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41833,6 +43091,7 @@ namespace halo3_tools {
 	#define MUFFIN_BLOCK_ID { 0x9457B543, 0xE9544059, 0xB3F1A8B8, 0x4492C9F1 }
 	TAG_STRUCT(
 		muffin_block,
+		"muffin_block",
 		"muffin_block",
 		"s_muffin_block",
 		SET_DEFAULT,
@@ -41854,6 +43113,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		rumble_frequency_definition_struct,
 		"rumble_frequency_definition_struct",
+		"rumble_frequency_definition_struct",
 		"s_rumble_frequency_definition_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41869,6 +43129,7 @@ namespace halo3_tools {
 	#define SCREEN_FLASH_DEFINITION_STRUCT_ID { 0xB63010EE, 0x9BC04113, 0xBDB648E3, 0x9EFB182A }
 	TAG_STRUCT(
 		screen_flash_definition_struct,
+		"screen_flash_definition_struct",
 		"screen_flash_definition_struct",
 		"s_screen_flash_definition_struct",
 		SET_DEFAULT,
@@ -41912,6 +43173,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		rumble_definition_struct,
 		"rumble_definition_struct",
+		"rumble_definition_struct",
 		"s_rumble_definition_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41929,6 +43191,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		damage_effect_sound_effect_definition,
 		"damage_effect_sound_effect_definition",
+		"damage_effect_sound_effect_definition",
 		"s_damage_effect_sound_effect_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41944,6 +43207,7 @@ namespace halo3_tools {
 	#define DAMAGE_EFFECT_PLAYER_RESPONSE_BLOCK_ID { 0xC2FB2B1B, 0x455A4F24, 0x83C39CC6, 0xC002E2CA }
 	TAG_STRUCT(
 		damage_effect_player_response_block,
+		"damage_effect_player_response_block",
 		"damage_effect_player_response_block",
 		"s_damage_effect_player_response_block",
 		SET_DEFAULT,
@@ -41974,6 +43238,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		damage_outer_cone_angle_struct,
 		"damage_outer_cone_angle_struct",
+		"damage_outer_cone_angle_struct",
 		"s_damage_outer_cone_angle_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -41986,6 +43251,7 @@ namespace halo3_tools {
 	#define DAMAGE_EFFECT_GROUP_STRUCT_DEFINITION_ID { 0x902C71FE, 0x22D24D90, 0x94283954, 0x36E07393 }
 	TAG_STRUCT(
 		damage_effect_group_struct_definition,
+		"damage_effect",
 		"damage_effect_group",
 		"s_damage_effect_group_struct_definition",
 		SET_DEFAULT,
@@ -42131,6 +43397,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		damage_response_screen_flash_struct,
 		"damage_response_screen_flash_struct",
+		"damage_response_screen_flash_struct",
 		"s_damage_response_screen_flash_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42170,6 +43437,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		damage_response_motion_blur_struct,
 		"damage_response_motion_blur_struct",
+		"damage_response_motion_blur_struct",
 		"s_damage_response_motion_blur_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42187,6 +43455,7 @@ namespace halo3_tools {
 	#define DAMAGE_RESPONSE_DIRECTIONAL_FLASH_STRUCT_ID { 0xD18EB7B1, 0xE169416F, 0xB5CA99B6, 0xC316A290 }
 	TAG_STRUCT(
 		damage_response_directional_flash_struct,
+		"damage_response_directional_flash_struct",
 		"damage_response_directional_flash_struct",
 		"s_damage_response_directional_flash_struct",
 		SET_DEFAULT,
@@ -42207,6 +43476,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		damage_response_rumble_frequency_struct,
 		"damage_response_rumble_frequency_struct",
+		"damage_response_rumble_frequency_struct",
 		"s_damage_response_rumble_frequency_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42221,6 +43491,7 @@ namespace halo3_tools {
 	#define DAMAGE_RESPONSE_RUMBLE_STRUCT_ID { 0x2AA685EE, 0xF9E0450C, 0x9EC9FD5F, 0x527F607C }
 	TAG_STRUCT(
 		damage_response_rumble_struct,
+		"damage_response_rumble_struct",
 		"damage_response_rumble_struct",
 		"s_damage_response_rumble_struct",
 		SET_DEFAULT,
@@ -42237,6 +43508,7 @@ namespace halo3_tools {
 	#define DAMAGE_RESPONSE_CAMERA_IMPULSE_STRUCT_ID { 0x37A16831, 0xC2C54392, 0x90D930A8, 0x959F7059 }
 	TAG_STRUCT(
 		damage_response_camera_impulse_struct,
+		"damage_response_camera_impulse_struct",
 		"damage_response_camera_impulse_struct",
 		"s_damage_response_camera_impulse_struct",
 		SET_DEFAULT,
@@ -42255,6 +43527,7 @@ namespace halo3_tools {
 	#define DAMAGE_RESPONSE_CAMERA_SHAKE_STRUCT_ID { 0x418D0ED8, 0x5A61428B, 0x81350A9A, 0x657745E4 }
 	TAG_STRUCT(
 		damage_response_camera_shake_struct,
+		"damage_response_camera_shake_struct",
 		"damage_response_camera_shake_struct",
 		"s_damage_response_camera_shake_struct",
 		SET_DEFAULT,
@@ -42276,6 +43549,7 @@ namespace halo3_tools {
 	#define DAMAGE_RESPONSE_CLASS_BLOCK_ID { 0x4B0239EB, 0xE7E44E9F, 0x9A3C8635, 0xA660F69B }
 	TAG_STRUCT(
 		damage_response_class_block,
+		"damage_response_class_block",
 		"damage_response_class_block",
 		"s_damage_response_class_block",
 		SET_DEFAULT,
@@ -42317,6 +43591,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		damage_response_definition_struct_definition,
 		"damage_response_definition_struct_definition",
+		"damage_response_definition_struct_definition",
 		"s_damage_response_definition_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42329,6 +43604,7 @@ namespace halo3_tools {
 	#define SOUND_REFERENCES_BLOCK_ID { 0x6751BC80, 0xAF514348, 0x886AF0F0, 0x68DB8F16 }
 	TAG_STRUCT(
 		sound_references_block,
+		"sound_references_block",
 		"sound_references_block",
 		"s_sound_references_block",
 		SET_DEFAULT,
@@ -42353,6 +43629,7 @@ namespace halo3_tools {
 	#define DIALOGUE_GROUP_STRUCT_DEFINITION_ID { 0xAA0A2CFC, 0xE8A4480C, 0xAFF53536, 0x20BCFEF8 }
 	TAG_STRUCT(
 		dialogue_group_struct_definition,
+		"dialogue",
 		"dialogue_group",
 		"s_dialogue_group_struct_definition",
 		SET_DEFAULT,
@@ -42377,6 +43654,7 @@ namespace halo3_tools {
 	#define CLOTH_PROPERTIES_ID { 0x3654721A, 0x8FDB4A6D, 0x833E911B, 0x06E30928 }
 	TAG_STRUCT(
 		cloth_properties,
+		"cloth_properties",
 		"cloth_properties",
 		"s_cloth_properties",
 		SET_DEFAULT,
@@ -42404,6 +43682,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cloth_vertices_block,
 		"cloth_vertices_block",
+		"cloth_vertices_block",
 		"s_cloth_vertices_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42418,6 +43697,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cloth_indices_block,
 		"cloth_indices_block",
+		"cloth_indices_block",
 		"s_cloth_indices_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42430,6 +43710,7 @@ namespace halo3_tools {
 	#define CLOTH_LINKS_BLOCK_ID { 0x2A08CAD4, 0x1EE64F76, 0x85A6FF91, 0x40E35AAF }
 	TAG_STRUCT(
 		cloth_links_block,
+		"cloth_links_block",
 		"cloth_links_block",
 		"s_cloth_links_block",
 		SET_DEFAULT,
@@ -42446,6 +43727,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		collision_sphere_block,
 		"collision_sphere_block",
+		"collision_sphere_block",
 		"s_collision_sphere_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42459,6 +43741,7 @@ namespace halo3_tools {
 	#define CLOTH_STRUCT_DEFINITION_ID { 0x6007B323, 0x1677454C, 0x86B19DA1, 0xCAEC6D8B }
 	TAG_STRUCT(
 		cloth_struct_definition,
+		"cloth_struct_definition",
 		"cloth_struct_definition",
 		"s_cloth_struct_definition",
 		SET_DEFAULT,
@@ -42498,6 +43781,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		g_single_scalar_function_evaluation_struct,
 		"g_single_scalar_function_evaluation_struct",
+		"g_single_scalar_function_evaluation_struct",
 		"s_g_single_scalar_function_evaluation_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42513,6 +43797,7 @@ namespace halo3_tools {
 	#define FLUID_DYNAMICS_STRUCT_DEFINITION_ID { 0x3414341E, 0x3222482C, 0x14903442, 0x0654EB55 }
 	TAG_STRUCT(
 		fluid_dynamics_struct_definition,
+		"fluid_dynamics_struct_definition",
 		"fluid_dynamics_struct_definition",
 		"s_fluid_dynamics_struct_definition",
 		SET_DEFAULT,
@@ -42576,6 +43861,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		fluid_dynamics_squirter_block,
 		"fluid_dynamics_squirter_block",
+		"fluid_dynamics_squirter_block",
 		"s_fluid_dynamics_squirter_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42590,6 +43876,7 @@ namespace halo3_tools {
 	#define FLUID_DYNAMICS_INFLOW_BLOCK_ID { 0x74143430, 0x32224891, 0xB4903432, 0x7654EB13 }
 	TAG_STRUCT(
 		fluid_dynamics_inflow_block,
+		"fluid_dynamics_inflow_block",
 		"fluid_dynamics_inflow_block",
 		"s_fluid_dynamics_inflow_block",
 		SET_DEFAULT,
@@ -42607,6 +43894,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		fluid_dynamics_outflow_block,
 		"fluid_dynamics_outflow_block",
+		"fluid_dynamics_outflow_block",
 		"s_fluid_dynamics_outflow_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42620,6 +43908,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		fluid_dynamics_obstacle_block,
 		"fluid_dynamics_obstacle_block",
+		"fluid_dynamics_obstacle_block",
 		"s_fluid_dynamics_obstacle_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42632,6 +43921,7 @@ namespace halo3_tools {
 	#define GLOBAL_VEHICLE_ENGINE_STRUCT_ID { 0xB2086F9C, 0xE80E4D79, 0x81DDEB34, 0xBA677DA4 }
 	TAG_STRUCT(
 		global_vehicle_engine_struct,
+		"global_vehicle_engine_struct",
 		"global_vehicle_engine_struct",
 		"s_global_vehicle_engine_struct",
 		SET_DEFAULT,
@@ -42650,6 +43940,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		torque_curve_struct,
 		"torque_curve_struct",
+		"torque_curve_struct",
 		"s_torque_curve_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42667,6 +43958,7 @@ namespace halo3_tools {
 	#define GEAR_BLOCK_ID { 0x43A70404, 0x7A0440D7, 0xA12F738C, 0x29E046A5 }
 	TAG_STRUCT(
 		gear_block,
+		"gear_block",
 		"gear_block",
 		"s_gear_block",
 		SET_DEFAULT,
@@ -42689,6 +43981,7 @@ namespace halo3_tools {
 	#define ACTOR_STARTING_LOCATIONS_BLOCK_ID { 0x2288B874, 0x915E47FC, 0xA59792AF, 0x15D83BA8 }
 	TAG_STRUCT(
 		actor_starting_locations_block,
+		"actor_starting_locations_block",
 		"actor_starting_locations_block",
 		"s_actor_starting_locations_block",
 		SET_DEFAULT,
@@ -42834,6 +44127,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		fire_team_block,
 		"fire_team_block",
+		"fire_team_block",
 		"s_fire_team_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42878,6 +44172,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		patrol_point_block,
 		"patrol_point_block",
+		"patrol_point_block",
 		"s_patrol_point_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42905,6 +44200,7 @@ namespace halo3_tools {
 	#define SQUADS_STRUCT_ID { 0x4566E9F5, 0x600E49D2, 0x99F5A83C, 0x68F5AAAB }
 	TAG_STRUCT(
 		squads_struct,
+		"squads_struct",
 		"squads_struct",
 		"s_squads_struct",
 		SET_DEFAULT,
@@ -42962,6 +44258,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		squad_groups_block,
 		"squad_groups_block",
+		"squad_groups_block",
 		"s_squad_groups_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42981,6 +44278,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		behavior_names_block,
 		"behavior_names_block",
+		"behavior_names_block",
 		"s_behavior_names_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -42993,6 +44291,7 @@ namespace halo3_tools {
 	#define STYLE_STRUCT_DEFINITION_ID { 0xAC59B7DE, 0x455644C8, 0x9268F008, 0x8B74CD54 }
 	TAG_STRUCT(
 		style_struct_definition,
+		"style_struct_definition",
 		"style_struct_definition",
 		"s_style_struct_definition",
 		SET_DEFAULT,
@@ -43276,6 +44575,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		style_palette_block,
 		"style_palette_block",
+		"style_palette_block",
 		"s_style_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -43291,6 +44591,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		flock_palette_block,
 		"flock_palette_block",
+		"flock_palette_block",
 		"s_flock_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -43305,6 +44606,7 @@ namespace halo3_tools {
 	#define FLOCK_SOURCE_BLOCK_ID { 0x2BFCB061, 0x9A1B4921, 0x890FF041, 0xA74697FE }
 	TAG_STRUCT(
 		flock_source_block,
+		"flock_source_block",
 		"flock_source_block",
 		"s_flock_source_block",
 		SET_DEFAULT,
@@ -43332,6 +44634,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		flock_sink_block,
 		"flock_sink_block",
+		"flock_sink_block",
 		"s_flock_sink_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -43345,6 +44648,7 @@ namespace halo3_tools {
 	#define FLOCK_INSTANCE_BLOCK_ID { 0x5CBA5AB0, 0x8CE54E4B, 0xA721F105, 0xB30B5958 }
 	TAG_STRUCT(
 		flock_instance_block,
+		"flock_instance_block",
 		"flock_instance_block",
 		"s_flock_instance_block",
 		SET_DEFAULT,
@@ -43384,6 +44688,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		flock_struct_definition,
 		"flock_struct_definition",
+		"flock_struct_definition",
 		"s_flock_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -43421,6 +44726,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_voice_block,
 		"character_voice_block",
+		"character_voice_block",
 		"s_character_voice_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -43438,6 +44744,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_variants_block,
 		"character_variants_block",
+		"character_variants_block",
 		"s_character_variants_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -43454,6 +44761,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_voice_properties_block,
 		"character_voice_properties_block",
+		"character_voice_properties_block",
 		"s_character_voice_properties_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -43466,6 +44774,7 @@ namespace halo3_tools {
 	#define CHARACTER_GENERAL_BLOCK_ID { 0x7BA5643F, 0x6CE843B7, 0xBFB797FF, 0xCCBFCABC }
 	TAG_STRUCT(
 		character_general_block,
+		"character_general_block",
 		"character_general_block",
 		"s_character_general_block",
 		SET_DEFAULT,
@@ -43542,6 +44851,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_placement_block,
 		"character_placement_block",
+		"character_placement_block",
 		"s_character_placement_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -43566,6 +44876,7 @@ namespace halo3_tools {
 	#define CHARACTER_VITALITY_BLOCK_ID { 0xC3D6238D, 0xF974437D, 0xA9364C31, 0xB37E2EF3 }
 	TAG_STRUCT(
 		character_vitality_block,
+		"character_vitality_block",
 		"character_vitality_block",
 		"s_character_vitality_block",
 		SET_DEFAULT,
@@ -43620,6 +44931,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_perception_block,
 		"character_perception_block",
+		"character_perception_block",
 		"s_character_perception_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -43656,6 +44968,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_look_block,
 		"character_look_block",
+		"character_look_block",
 		"s_character_look_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -43679,6 +44992,7 @@ namespace halo3_tools {
 	#define CHARACTER_MOVEMENT_BLOCK_ID { 0x5CD8B49C, 0xA6B74173, 0xA61C4E79, 0x2F6BF8CF }
 	TAG_STRUCT(
 		character_movement_block,
+		"character_movement_block",
 		"character_movement_block",
 		"s_character_movement_block",
 		SET_DEFAULT,
@@ -43761,6 +45075,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_flocking_block,
 		"character_flocking_block",
+		"character_flocking_block",
 		"s_character_flocking_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -43778,6 +45093,7 @@ namespace halo3_tools {
 	#define CHARACTER_SWARM_BLOCK_ID { 0xAE465FC2, 0x8CAC4D3A, 0xBF219507, 0x1934DE5A }
 	TAG_STRUCT(
 		character_swarm_block,
+		"character_swarm_block",
 		"character_swarm_block",
 		"s_character_swarm_block",
 		SET_DEFAULT,
@@ -43803,6 +45119,7 @@ namespace halo3_tools {
 	#define CHARACTER_ENGAGE_BLOCK_ID { 0xFFA4E45D, 0x10024F2F, 0xB4987122, 0x213E9865 }
 	TAG_STRUCT(
 		character_engage_block,
+		"character_engage_block",
 		"character_engage_block",
 		"s_character_engage_block",
 		SET_DEFAULT,
@@ -43834,6 +45151,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_evasion_block,
 		"character_evasion_block",
+		"character_evasion_block",
 		"s_character_evasion_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -43852,6 +45170,7 @@ namespace halo3_tools {
 	#define CHARACTER_COVER_BLOCK_ID { 0x1D0E6BC9, 0x2E39471C, 0xA35B152D, 0x43C54E8A }
 	TAG_STRUCT(
 		character_cover_block,
+		"character_cover_block",
 		"character_cover_block",
 		"s_character_cover_block",
 		SET_DEFAULT,
@@ -43893,6 +45212,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_search_block,
 		"character_search_block",
+		"character_search_block",
 		"s_character_search_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -43922,6 +45242,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_presearch_block,
 		"character_presearch_block",
+		"character_presearch_block",
 		"s_character_presearch_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -43941,6 +45262,7 @@ namespace halo3_tools {
 	#define CHARACTER_RETREAT_BLOCK_ID { 0xF0F699B8, 0x2CC14DDC, 0x97D26266, 0x968C2601 }
 	TAG_STRUCT(
 		character_retreat_block,
+		"character_retreat_block",
 		"character_retreat_block",
 		"s_character_retreat_block",
 		SET_DEFAULT,
@@ -43983,6 +45305,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_charge_difficulty_limits_block,
 		"character_charge_difficulty_limits_block",
+		"character_charge_difficulty_limits_block",
 		"s_character_charge_difficulty_limits_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -43998,6 +45321,7 @@ namespace halo3_tools {
 	#define CHARACTER_CHARGE_BLOCK_ID { 0x37963E71, 0xB54C4B51, 0x829761F6, 0xF4E6EACE }
 	TAG_STRUCT(
 		character_charge_block,
+		"character_charge_block",
 		"character_charge_block",
 		"s_character_charge_block",
 		SET_DEFAULT,
@@ -44042,6 +45366,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_ready_block,
 		"character_ready_block",
+		"character_ready_block",
 		"s_character_ready_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -44054,6 +45379,7 @@ namespace halo3_tools {
 	#define CHARACTER_FIRING_PATTERN_BLOCK_ID { 0xFDC8C8F2, 0x93EA4195, 0xB31795C5, 0x1EBD8EE6 }
 	TAG_STRUCT(
 		character_firing_pattern_block,
+		"character_firing_pattern_block",
 		"character_firing_pattern_block",
 		"s_character_firing_pattern_block",
 		SET_DEFAULT,
@@ -44081,6 +45407,7 @@ namespace halo3_tools {
 	#define CHARACTER_WEAPONS_BLOCK_ID { 0x7046E89D, 0xE5944DDB, 0xA3F3667C, 0xAA5DF629 }
 	TAG_STRUCT(
 		character_weapons_block,
+		"character_weapons_block",
 		"character_weapons_block",
 		"s_character_weapons_block",
 		SET_DEFAULT,
@@ -44176,6 +45503,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_firing_pattern_properties_block,
 		"character_firing_pattern_properties_block",
+		"character_firing_pattern_properties_block",
 		"s_character_firing_pattern_properties_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -44190,6 +45518,7 @@ namespace halo3_tools {
 	#define CHARACTER_GRENADES_BLOCK_ID { 0xA92D1ADC, 0x8092499A, 0xBDD03A7B, 0xD2F00083 }
 	TAG_STRUCT(
 		character_grenades_block,
+		"character_grenades_block",
 		"character_grenades_block",
 		"s_character_grenades_block",
 		SET_DEFAULT,
@@ -44230,6 +45559,7 @@ namespace halo3_tools {
 	#define CHARACTER_VEHICLE_BLOCK_ID { 0x503F6E32, 0x10444DF9, 0xAA8B8164, 0xB994B4FA }
 	TAG_STRUCT(
 		character_vehicle_block,
+		"character_vehicle_block",
 		"character_vehicle_block",
 		"s_character_vehicle_block",
 		SET_DEFAULT,
@@ -44320,6 +45650,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_idle_block,
 		"character_idle_block",
+		"character_idle_block",
 		"s_character_idle_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -44334,6 +45665,7 @@ namespace halo3_tools {
 	#define CHARACTER_VOCALIZATION_BLOCK_ID { 0x62F8205D, 0x9E1040FD, 0xAD1ACD08, 0x9DF2201D }
 	TAG_STRUCT(
 		character_vocalization_block,
+		"character_vocalization_block",
 		"character_vocalization_block",
 		"s_character_vocalization_block",
 		SET_DEFAULT,
@@ -44350,6 +45682,7 @@ namespace halo3_tools {
 	#define CHARACTER_BOARDING_BLOCK_ID { 0xE8176F59, 0x5987413A, 0x97AD3E48, 0x138FF9FC }
 	TAG_STRUCT(
 		character_boarding_block,
+		"character_boarding_block",
 		"character_boarding_block",
 		"s_character_boarding_block",
 		SET_DEFAULT,
@@ -44375,6 +45708,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_guardian_block,
 		"character_guardian_block",
+		"character_guardian_block",
 		"s_character_guardian_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -44393,6 +45727,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_combatform_block,
 		"character_combatform_block",
+		"character_combatform_block",
 		"s_character_combatform_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -44406,6 +45741,7 @@ namespace halo3_tools {
 	#define CHARACTER_SCARAB_BLOCK_ID { 0x95C20194, 0xFF56496F, 0xBB039DD9, 0xCE5E69DB }
 	TAG_STRUCT(
 		character_scarab_block,
+		"character_scarab_block",
 		"character_scarab_block",
 		"s_character_scarab_block",
 		SET_DEFAULT,
@@ -44423,6 +45759,7 @@ namespace halo3_tools {
 	#define CHARACTER_MORPH_BLOCK_ID { 0x91634ACB, 0x558445AD, 0xBA969F77, 0xA55E1C4C }
 	TAG_STRUCT(
 		character_morph_block,
+		"character_morph_block",
 		"character_morph_block",
 		"s_character_morph_block",
 		SET_DEFAULT,
@@ -44474,6 +45811,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_equipment_usage_block,
 		"character_equipment_usage_block",
+		"character_equipment_usage_block",
 		"s_character_equipment_usage_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -44514,6 +45852,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_equipment_block,
 		"character_equipment_block",
+		"character_equipment_block",
 		"s_character_equipment_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -44539,6 +45878,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_activity_object_block,
 		"character_activity_object_block",
+		"character_activity_object_block",
 		"s_character_activity_object_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -44556,6 +45896,7 @@ namespace halo3_tools {
 	#define CHARACTER_STRUCT_DEFINITION_ID { 0xCE98F60C, 0x831E43A2, 0x97556737, 0x2D0DA2E2 }
 	TAG_STRUCT(
 		character_struct_definition,
+		"character_struct_definition",
 		"character_struct_definition",
 		"s_character_struct_definition",
 		SET_DEFAULT,
@@ -44628,6 +45969,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		response_block,
 		"response_block",
+		"response_block",
 		"s_response_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -44663,6 +46005,7 @@ namespace halo3_tools {
 	#define VOCALIZATION_DEFINITIONS_BLOCK_ID { 0xEFA010A4, 0x3EA148E6, 0xA44C41E0, 0x7FA151D5 }
 	TAG_STRUCT(
 		vocalization_definitions_block,
+		"vocalization_definitions_block",
 		"vocalization_definitions_block",
 		"s_vocalization_definitions_block",
 		SET_DEFAULT,
@@ -44796,6 +46139,7 @@ namespace halo3_tools {
 	#define VOCALIZATION_PATTERNS_BLOCK_ID { 0xD957FA41, 0xCD6C43A7, 0x9D2BA7B7, 0xC3ECCB8C }
 	TAG_STRUCT(
 		vocalization_patterns_block,
+		"vocalization_patterns_block",
 		"vocalization_patterns_block",
 		"s_vocalization_patterns_block",
 		SET_DEFAULT,
@@ -45147,6 +46491,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		dialogue_data_block,
 		"dialogue_data_block",
+		"dialogue_data_block",
 		"s_dialogue_data_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45161,6 +46506,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		involuntary_data_block,
 		"involuntary_data_block",
+		"involuntary_data_block",
 		"s_involuntary_data_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45174,6 +46520,7 @@ namespace halo3_tools {
 	#define AI_DIALOGUE_GLOBALS_STRUCT_DEFINITION_ID { 0x28A04827, 0x55DC4CE6, 0x95458C49, 0x9C6549DC }
 	TAG_STRUCT(
 		ai_dialogue_globals_struct_definition,
+		"ai_dialogue_globals_struct_definition",
 		"ai_dialogue_globals_struct_definition",
 		"s_ai_dialogue_globals_struct_definition",
 		SET_DEFAULT,
@@ -45197,6 +46544,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		mission_dialogue_variants_block,
 		"mission_dialogue_variants_block",
+		"mission_dialogue_variants_block",
 		"s_mission_dialogue_variants_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45214,6 +46562,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		mission_dialogue_lines_block,
 		"mission_dialogue_lines_block",
+		"mission_dialogue_lines_block",
 		"s_mission_dialogue_lines_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45229,6 +46578,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		ai_mission_dialogue_struct_definition,
 		"ai_mission_dialogue_struct_definition",
+		"ai_mission_dialogue_struct_definition",
 		"s_ai_mission_dialogue_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45242,6 +46592,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		ai_scene_role_variants_block,
 		"ai_scene_role_variants_block",
+		"ai_scene_role_variants_block",
 		"s_ai_scene_role_variants_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45254,6 +46605,7 @@ namespace halo3_tools {
 	#define AI_SCENE_ROLE_BLOCK_ID { 0x06C92A6B, 0x349D43D3, 0x8915D8F3, 0x4A28DC0C }
 	TAG_STRUCT(
 		ai_scene_role_block,
+		"ai_scene_role_block",
 		"ai_scene_role_block",
 		"s_ai_scene_role_block",
 		SET_DEFAULT,
@@ -45280,6 +46632,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		ai_scene_trigger_block,
 		"ai_scene_trigger_block",
+		"ai_scene_trigger_block",
 		"s_ai_scene_trigger_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45301,6 +46654,7 @@ namespace halo3_tools {
 	#define AI_SCENE_BLOCK_ID { 0x9265CAD2, 0x80B9454D, 0xB8A86BFD, 0xB708BD17 }
 	TAG_STRUCT(
 		ai_scene_block,
+		"ai_scene_block",
 		"ai_scene_block",
 		"s_ai_scene_block",
 		SET_DEFAULT,
@@ -45326,6 +46680,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		ai_scenario_mission_dialogue_block,
 		"ai_scenario_mission_dialogue_block",
+		"ai_scenario_mission_dialogue_block",
 		"s_ai_scenario_mission_dialogue_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45340,6 +46695,7 @@ namespace halo3_tools {
 	#define SCRIPT_FRAGMENT_BLOCK_ID { 0xBE3330E4, 0x1D254941, 0x949273FC, 0x61A61F94 }
 	TAG_STRUCT(
 		script_fragment_block,
+		"script_fragment_block",
 		"script_fragment_block",
 		"s_script_fragment_block",
 		SET_DEFAULT,
@@ -45365,6 +46721,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		task_direction_block,
 		"task_direction_block",
+		"task_direction_block",
 		"s_task_direction_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45382,6 +46739,7 @@ namespace halo3_tools {
 	#define TASKS_BLOCK_ID { 0x0C243A66, 0xABF24442, 0x826D572E, 0xF1C57BB0 }
 	TAG_STRUCT(
 		tasks_block,
+		"tasks_block",
 		"tasks_block",
 		"s_tasks_block",
 		SET_DEFAULT,
@@ -45570,6 +46928,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		objectives_block,
 		"objectives_block",
+		"objectives_block",
 		"s_objectives_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45585,6 +46944,7 @@ namespace halo3_tools {
 	#define SECTOR_LINK_BLOCK_ID { 0x495F859A, 0xD49843B7, 0xA386C327, 0x10F0FF01 }
 	TAG_STRUCT(
 		sector_link_block,
+		"sector_link_block",
 		"sector_link_block",
 		"s_sector_link_block",
 		SET_DEFAULT,
@@ -45624,6 +46984,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		sector_vertex_block,
 		"sector_vertex_block",
+		"sector_vertex_block",
 		"s_sector_vertex_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45636,6 +46997,7 @@ namespace halo3_tools {
 	#define SECTOR_BLOCK_ID { 0xC606A4EC, 0x7CD94CD0, 0xA10452C0, 0x35072F88 }
 	TAG_STRUCT(
 		sector_block,
+		"sector_block",
 		"sector_block",
 		"s_sector_block",
 		SET_DEFAULT,
@@ -45673,6 +47035,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		ref_block,
 		"ref_block",
+		"ref_block",
 		"s_ref_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45685,6 +47048,7 @@ namespace halo3_tools {
 	#define SECTOR_BSP2D_NODES_BLOCK_ID { 0xB61A54A2, 0x9AD248F8, 0xBE7D434F, 0x5AE8C7F7 }
 	TAG_STRUCT(
 		sector_bsp2d_nodes_block,
+		"sector_bsp2d_nodes_block",
 		"sector_bsp2d_nodes_block",
 		"s_sector_bsp2d_nodes_block",
 		SET_DEFAULT,
@@ -45700,6 +47064,7 @@ namespace halo3_tools {
 	#define ENVIRONMENT_OBJECT_BSP_REFS_ID { 0x09201D8D, 0x4D154278, 0xA212F1F4, 0xABBC8723 }
 	TAG_STRUCT(
 		environment_object_bsp_refs,
+		"environment_object_bsp_refs",
 		"environment_object_bsp_refs",
 		"s_environment_object_bsp_refs",
 		SET_DEFAULT,
@@ -45717,6 +47082,7 @@ namespace halo3_tools {
 	#define ENVIRONMENT_OBJECT_REFS_ID { 0x340E4017, 0xA71F4B4E, 0x990A2F04, 0x26B5CF3E }
 	TAG_STRUCT(
 		environment_object_refs,
+		"environment_object_refs",
 		"environment_object_refs",
 		"s_environment_object_refs",
 		SET_DEFAULT,
@@ -45740,6 +47106,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		instanced_geometry_reference_block,
 		"instanced_geometry_reference_block",
+		"instanced_geometry_reference_block",
 		"s_instanced_geometry_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45754,6 +47121,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		giant_pathfinding_data_block,
 		"giant_pathfinding_data_block",
+		"giant_pathfinding_data_block",
 		"s_giant_pathfinding_data_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45766,6 +47134,7 @@ namespace halo3_tools {
 	#define PF_SEAM_LINK_BLOCK_ID { 0xE9DF41CF, 0x691E42F9, 0xACB8902F, 0x4C7FD2CD }
 	TAG_STRUCT(
 		pf_seam_link_block,
+		"pf_seam_link_block",
 		"pf_seam_link_block",
 		"s_pf_seam_link_block",
 		SET_DEFAULT,
@@ -45780,6 +47149,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		pf_seam_block,
 		"pf_seam_block",
+		"pf_seam_block",
 		"s_pf_seam_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45792,6 +47162,7 @@ namespace halo3_tools {
 	#define PF_JUMP_INDEX_BLOCK_ID { 0x01826A22, 0x344C4D2D, 0x966AD5C6, 0x521A7E41 }
 	TAG_STRUCT(
 		pf_jump_index_block,
+		"pf_jump_index_block",
 		"pf_jump_index_block",
 		"s_pf_jump_index_block",
 		SET_DEFAULT,
@@ -45806,6 +47177,7 @@ namespace halo3_tools {
 	#define PF_JUMP_SEAM_BLOCK_ID { 0x9C962F42, 0xF1414841, 0x8635063A, 0x85059CE4 }
 	TAG_STRUCT(
 		pf_jump_seam_block,
+		"pf_jump_seam_block",
 		"pf_jump_seam_block",
 		"s_pf_jump_seam_block",
 		SET_DEFAULT,
@@ -45823,6 +47195,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		pf_door_block,
 		"pf_door_block",
+		"pf_door_block",
 		"s_pf_door_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45836,6 +47209,7 @@ namespace halo3_tools {
 	#define PATHFINDING_DATA_BLOCK_ID { 0xD935AB3C, 0x86AC4216, 0xBCB736BB, 0x9AE0727C }
 	TAG_STRUCT(
 		pathfinding_data_block,
+		"pathfinding_data_block",
 		"pathfinding_data_block",
 		"s_pathfinding_data_block",
 		SET_DEFAULT,
@@ -45861,6 +47235,7 @@ namespace halo3_tools {
 	#define SPECIAL_MOVEMENT_BLOCK_ID { 0x5AF31295, 0xE49D42AB, 0xA49A9DBC, 0x8B6B49C3 }
 	TAG_STRUCT(
 		special_movement_block,
+		"special_movement_block",
 		"special_movement_block",
 		"s_special_movement_block",
 		SET_DEFAULT,
@@ -45890,6 +47265,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		user_hint_line_segment_block,
 		"user_hint_line_segment_block",
+		"user_hint_line_segment_block",
 		"s_user_hint_line_segment_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45915,6 +47291,7 @@ namespace halo3_tools {
 	#define USER_HINT_PARALLELOGRAM_BLOCK_ID { 0xDE702C7E, 0x6C544FF7, 0x92C31361, 0x31033915 }
 	TAG_STRUCT(
 		user_hint_parallelogram_block,
+		"user_hint_parallelogram_block",
 		"user_hint_parallelogram_block",
 		"s_user_hint_parallelogram_block",
 		SET_DEFAULT,
@@ -45952,6 +47329,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		user_hint_jump_block,
 		"user_hint_jump_block",
+		"user_hint_jump_block",
 		"s_user_hint_jump_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -45977,6 +47355,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		user_hint_climb_block,
 		"user_hint_climb_block",
+		"user_hint_climb_block",
 		"s_user_hint_climb_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46001,6 +47380,7 @@ namespace halo3_tools {
 	#define USER_HINT_WELL_POINT_BLOCK_ID { 0xEC1F1B2F, 0x3F284D04, 0x8BE174D1, 0x90862606 }
 	TAG_STRUCT(
 		user_hint_well_point_block,
+		"user_hint_well_point_block",
 		"user_hint_well_point_block",
 		"s_user_hint_well_point_block",
 		SET_DEFAULT,
@@ -46028,6 +47408,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		user_hint_well_block,
 		"user_hint_well_block",
+		"user_hint_well_block",
 		"s_user_hint_well_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46048,6 +47429,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		user_hint_flight_point_block,
 		"user_hint_flight_point_block",
+		"user_hint_flight_point_block",
 		"s_user_hint_flight_point_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46061,6 +47443,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		user_hint_flight_block,
 		"user_hint_flight_block",
+		"user_hint_flight_block",
 		"s_user_hint_flight_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46073,6 +47456,7 @@ namespace halo3_tools {
 	#define USER_HINT_SECTOR_POINT_BLOCK_ID { 0x33170C5B, 0x126041FF, 0x8EBBD6A4, 0x4C98464E }
 	TAG_STRUCT(
 		user_hint_sector_point_block,
+		"user_hint_sector_point_block",
 		"user_hint_sector_point_block",
 		"s_user_hint_sector_point_block",
 		SET_DEFAULT,
@@ -46090,6 +47474,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		user_hint_giant_sector_block,
 		"user_hint_giant_sector_block",
+		"user_hint_giant_sector_block",
 		"s_user_hint_giant_sector_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46102,6 +47487,7 @@ namespace halo3_tools {
 	#define USER_HINT_GIANT_RAIL_BLOCK_ID { 0xF2320873, 0x2B8B40FF, 0xBC5FF0CD, 0xF5CA7C72 }
 	TAG_STRUCT(
 		user_hint_giant_rail_block,
+		"user_hint_giant_rail_block",
 		"user_hint_giant_rail_block",
 		"s_user_hint_giant_rail_block",
 		SET_DEFAULT,
@@ -46117,6 +47503,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		user_hint_giant_block,
 		"user_hint_giant_block",
+		"user_hint_giant_block",
 		"s_user_hint_giant_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46131,6 +47518,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		user_hint_flood_sector_block,
 		"user_hint_flood_sector_block",
+		"user_hint_flood_sector_block",
 		"s_user_hint_flood_sector_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46144,6 +47532,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		user_hint_flood_block,
 		"user_hint_flood_block",
+		"user_hint_flood_block",
 		"s_user_hint_flood_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46156,6 +47545,7 @@ namespace halo3_tools {
 	#define USER_HINT_BLOCK_ID { 0x8E857EED, 0xECA14C74, 0xB042E3D8, 0x772B85FB }
 	TAG_STRUCT(
 		user_hint_block,
+		"user_hint_block",
 		"user_hint_block",
 		"s_user_hint_block",
 		SET_DEFAULT,
@@ -46177,6 +47567,7 @@ namespace halo3_tools {
 	#define PATHFINDING_HINTS_BLOCK_ID { 0xC96DFA6C, 0xCCE9498D, 0xB5B12FB4, 0xFC4E4BC2 }
 	TAG_STRUCT(
 		pathfinding_hints_block,
+		"pathfinding_hints_block",
 		"pathfinding_hints_block",
 		"s_pathfinding_hints_block",
 		SET_DEFAULT,
@@ -46211,6 +47602,7 @@ namespace halo3_tools {
 	#define ORDERS_BLOCK_ID { 0xAA153229, 0x3F434BB1, 0xA442B744, 0xB378C50A }
 	TAG_STRUCT(
 		orders_block,
+		"orders_block",
 		"orders_block",
 		"s_orders_block",
 		SET_DEFAULT,
@@ -46264,6 +47656,7 @@ namespace halo3_tools {
 	#define ORDER_COMPLETION_CONDITION_ID { 0xF28511DE, 0xF3EF4ED6, 0xAA67399F, 0x165711C7 }
 	TAG_STRUCT(
 		order_completion_condition,
+		"order_completion_condition",
 		"order_completion_condition",
 		"s_order_completion_condition",
 		SET_DEFAULT,
@@ -46325,6 +47718,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		zone_set_block,
 		"zone_set_block",
+		"zone_set_block",
 		"s_zone_set_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46364,6 +47758,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		secondary_zone_set_block,
 		"secondary_zone_set_block",
+		"secondary_zone_set_block",
 		"s_secondary_zone_set_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46380,6 +47775,7 @@ namespace halo3_tools {
 	#define TRIGGERS_BLOCK_ID { 0xBDCE0188, 0x8F4F4836, 0xB6CB517B, 0x781A6B59 }
 	TAG_STRUCT(
 		triggers_block,
+		"triggers_block",
 		"triggers_block",
 		"s_triggers_block",
 		SET_DEFAULT,
@@ -46406,6 +47802,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		pureform_distribution_block,
 		"pureform_distribution_block",
+		"pureform_distribution_block",
 		"s_pureform_distribution_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46421,6 +47818,7 @@ namespace halo3_tools {
 	#define TRIGGER_REFERENCES_ID { 0xE6CF862C, 0xBF56407F, 0x9FB84441, 0x14EE598E }
 	TAG_STRUCT(
 		trigger_references,
+		"trigger_references",
 		"trigger_references",
 		"s_trigger_references",
 		SET_DEFAULT,
@@ -46442,6 +47840,7 @@ namespace halo3_tools {
 	#define ORDER_ENDING_BLOCK_ID { 0xFB397E2B, 0xE8894CCB, 0x95BBC537, 0x06463876 }
 	TAG_STRUCT(
 		order_ending_block,
+		"order_ending_block",
 		"order_ending_block",
 		"s_order_ending_block",
 		SET_DEFAULT,
@@ -46480,6 +47879,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		secondary_set_trigger_block,
 		"secondary_set_trigger_block",
+		"secondary_set_trigger_block",
 		"s_secondary_set_trigger_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46494,6 +47894,7 @@ namespace halo3_tools {
 	#define AI_REFERENCE_FRAME_BLOCK_ID { 0x521E8440, 0x839041A8, 0x98579405, 0x2B079CEB }
 	TAG_STRUCT(
 		ai_reference_frame_block,
+		"ai_reference_frame_block",
 		"ai_reference_frame_block",
 		"s_ai_reference_frame_block",
 		SET_DEFAULT,
@@ -46518,6 +47919,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cs_point_block,
 		"cs_point_block",
+		"cs_point_block",
 		"s_cs_point_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46536,6 +47938,7 @@ namespace halo3_tools {
 	#define CS_POINT_SET_BLOCK_ID { 0xB3DF7F2E, 0x72DA41E9, 0x9FA27244, 0x2AD627D1 }
 	TAG_STRUCT(
 		cs_point_set_block,
+		"cs_point_set_block",
 		"cs_point_set_block",
 		"s_cs_point_set_block",
 		SET_DEFAULT,
@@ -46562,6 +47965,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		cs_script_data_block,
 		"cs_script_data_block",
+		"cs_script_data_block",
 		"s_cs_script_data_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46575,6 +47979,7 @@ namespace halo3_tools {
 	#define FLIGHT_REFERENCE_BLOCK_ID { 0xCB74EBB1, 0x491241BB, 0x95438C3E, 0x3B97578A }
 	TAG_STRUCT(
 		flight_reference_block,
+		"flight_reference_block",
 		"flight_reference_block",
 		"s_flight_reference_block",
 		SET_DEFAULT,
@@ -46592,6 +47997,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		area_cluster_occupancy_bitvector_array_struct_definition,
 		"area_cluster_occupancy_bitvector_array",
+		"area_cluster_occupancy_bitvector_array",
 		"s_area_cluster_occupancy_bitvector_array_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46604,6 +48010,7 @@ namespace halo3_tools {
 	#define AREAS_BLOCK_ID { 0x65351716, 0xEEF54EC7, 0xB16396B1, 0x2F48E3D7 }
 	TAG_STRUCT(
 		areas_block,
+		"areas_block",
 		"areas_block",
 		"s_areas_block",
 		SET_DEFAULT,
@@ -46638,6 +48045,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		zone_block,
 		"zone_block",
+		"zone_block",
 		"s_zone_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46664,6 +48072,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		character_palette_block,
 		"character_palette_block",
+		"character_palette_block",
 		"s_character_palette_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46679,6 +48088,7 @@ namespace halo3_tools {
 	TAG_STRUCT(
 		ai_recording_reference_block,
 		"ai_recording_reference_block",
+		"ai_recording_reference_block",
 		"s_ai_recording_reference_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
@@ -46692,6 +48102,7 @@ namespace halo3_tools {
 	#define FIRING_POSITIONS_BLOCK_ID { 0xA8B4FE85, 0xA9034300, 0xAFABFF3A, 0xA083CEF9 }
 	TAG_STRUCT(
 		firing_positions_block,
+		"firing_positions_block",
 		"firing_positions_block",
 		"s_firing_positions_block",
 		SET_DEFAULT,
@@ -46738,6 +48149,7 @@ namespace halo3_tools {
 	#define WALKER_PHYSICS_LEG_BLOCK_ID { 0x3DED37EB, 0xB2934219, 0x901F0006, 0x75D3AF53 }
 	TAG_STRUCT(
 		walker_physics_leg_block,
+		"walker_physics_leg_block",
 		"walker_physics_leg_block",
 		"s_walker_physics_leg_block",
 		SET_DEFAULT,
@@ -46796,6 +48208,7 @@ namespace halo3_tools {
 	#define WALKER_PHYSICS_STRUCT_ID { 0x769D2C0D, 0xAEF54395, 0x86ECFA87, 0xB067AB04 }
 	TAG_STRUCT(
 		walker_physics_struct,
+		"walker_physics_struct",
 		"walker_physics_struct",
 		"s_walker_physics_struct",
 		SET_DEFAULT,

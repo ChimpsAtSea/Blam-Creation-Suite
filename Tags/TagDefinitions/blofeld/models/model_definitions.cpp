@@ -563,7 +563,7 @@ namespace blofeld
 	};
 
 	#define MODEL_TARGET_LOCK_ON_DATA_STRUCT_ID { 0x3BEBBCB0, 0xF83B4943, 0x9C36F114, 0x2C166B4D }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		model_target_lock_on_data_struct,
 		"model_target_lock_on_data_struct",
 		"s_model_target_lock_on_data",

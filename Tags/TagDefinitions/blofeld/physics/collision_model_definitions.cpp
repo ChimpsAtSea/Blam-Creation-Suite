@@ -142,7 +142,7 @@ namespace blofeld
 		collision_model_bsp_struct);
 
 	#define COLLISION_MODEL_BSP_STRUCT_ID { 0x036840D2, 0x531648C1, 0x887F7243, 0xB140B84F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		collision_model_bsp_struct,
 		"collision_model_bsp_struct",
 		"collision_model_bsp",
@@ -158,7 +158,7 @@ namespace blofeld
 	};
 
 	#define COLLISION_MODEL_RESOURCE_STRUCT_ID { 0x402FD7CD, 0x2E624614, 0x91F8C28F, 0x48E37EB6 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		collision_model_resource_struct,
 		"collision_model_resource_struct",
 		"CollisionModelResource",

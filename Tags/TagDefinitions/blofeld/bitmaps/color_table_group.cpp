@@ -35,7 +35,7 @@ namespace blofeld
 	};
 
 	#define COLOR_TABLE_STRUCT_DEFINITION_ID { 0xD54F00C7, 0x019F497D, 0xA02B0FD4, 0x27691AFA }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		color_table_struct_definition,
 		"color_table_struct_definition",
 		"color_table",

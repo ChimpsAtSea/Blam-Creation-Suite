@@ -20,7 +20,7 @@ namespace blofeld
 		light_cone_struct_definition);
 
 	#define LIGHT_CONE_STRUCT_DEFINITION_ID { 0xEA23F17B, 0x58F148D7, 0xAD1DFE08, 0xBDD37574 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		light_cone_struct_definition,
 		"light_cone_struct_definition",
 		"LightConeDefinition",

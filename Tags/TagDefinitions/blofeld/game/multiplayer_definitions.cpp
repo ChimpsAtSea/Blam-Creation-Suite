@@ -260,7 +260,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	V5_TAG_STRUCT(multiplayer_constants_unknown_struct)
+	V5_TAG_STRUCT_V6(multiplayer_constants_unknown_struct)
 	{
 		{ _field_legacy, _field_real, "unknown0" },
 		{ _field_legacy, _field_real, "unknown4" },
@@ -392,7 +392,7 @@ namespace blofeld
 	};
 
 	#define MULTIPLAYER_GLOBALS_STRUCT_DEFINITION_ID { 0x5DEE8F01, 0xEE20468C, 0xA3EE7C18, 0x2D409CC3 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		multiplayer_globals_struct_definition,
 		"multiplayer_globals_struct_definition",
 		"s_multiplayer_globals_definition",

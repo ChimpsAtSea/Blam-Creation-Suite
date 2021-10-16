@@ -56,7 +56,7 @@ namespace blofeld
 	};
 
 	#define NEW_CINEMATIC_LIGHTING_STRUCT_DEFINITION_ID { 0x6E8A26A1, 0xE0954B7C, 0xA1044895, 0x5B59B00D }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		new_cinematic_lighting_struct_definition,
 		"new_cinematic_lighting_struct_definition",
 		"s_cinematic_lighting",

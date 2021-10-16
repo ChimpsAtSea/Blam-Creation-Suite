@@ -7,7 +7,7 @@ namespace blofeld
 
 
 	#define AI_SPAWN_CONDITIONS_STRUCT_ID { 0xF95BF66A, 0x46764415, 0xB6C52F11, 0xEFDE15CF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		ai_spawn_conditions_struct,
 		"ai_spawn_conditions_struct",
 		"s_ai_spawn_conditions",

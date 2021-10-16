@@ -36,7 +36,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_SHAKE_STRUCT_DEFINITION_ID { 0x85B81D32, 0x7C1249A5, 0x863CDDB2, 0xA7052723 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_shake_struct_definition,
 		"camera_shake_struct_definition",
 		"s_camera_shake_definition",
@@ -53,7 +53,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_IMPULSE_STRUCT_ID { 0xE55AD1CC, 0x22484F82, 0xAAEE9A87, 0xE60B4CDF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_impulse_struct,
 		"camera_impulse_struct",
 		"s_camera_impulse",
@@ -72,7 +72,7 @@ namespace blofeld
 	};
 
 	#define CAMERA_SHAKE_STRUCT_ID { 0x21432949, 0x6E214B80, 0x8BD2D31B, 0x44AC9FAE }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		camera_shake_struct,
 		"camera_shake_struct",
 		"s_camera_shake",

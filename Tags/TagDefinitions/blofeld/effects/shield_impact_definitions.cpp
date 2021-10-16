@@ -20,7 +20,7 @@ namespace blofeld
 		shield_impact_struct_definition);
 
 	#define SHIELD_IMPACT_STRUCT_DEFINITION_ID { 0x0C627936, 0x3C6642FA, 0xAD2D41FD, 0x3F729B2F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		shield_impact_struct_definition,
 		"shield_impact_struct_definition",
 		"s_shield_parameters",
@@ -126,7 +126,7 @@ namespace blofeld
 	};
 
 	#define SHIELD_COLOR_FUNCTION_STRUCT_ID { 0xBDAC1B15, 0x794F4ADF, 0xA4DE2E70, 0x63BBFA9F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		shield_color_function_struct,
 		"shield_color_function_struct",
 		"s_shield_function",
@@ -143,7 +143,7 @@ namespace blofeld
 	};
 
 	#define SHIELD_SCALAR_FUNCTION_STRUCT_ID { 0xEFDDC631, 0xEAB14736, 0x9C10734E, 0x609E19A3 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		shield_scalar_function_struct,
 		"shield_scalar_function_struct",
 		"s_shield_function",

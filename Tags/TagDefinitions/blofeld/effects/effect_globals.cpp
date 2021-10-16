@@ -74,7 +74,7 @@ namespace blofeld
 	};
 
 	#define EFFECT_GLOBALS_STRUCT_DEFINITION_ID { 0xA7E2A204, 0x03B84418, 0xA6A9A385, 0x4797476F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		effect_globals_struct_definition,
 		"effect_globals_struct_definition",
 		"s_effect_globals_definition",

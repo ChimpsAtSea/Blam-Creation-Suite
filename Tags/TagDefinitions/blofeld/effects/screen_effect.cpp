@@ -87,7 +87,7 @@ namespace blofeld
 	};
 
 	#define AREA_SCREEN_EFFECT_STRUCT_DEFINITION_ID { 0xE25095D4, 0x57E84346, 0xAA15B7AB, 0x8088091E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		area_screen_effect_struct_definition,
 		"area_screen_effect_struct_definition",
 		"s_area_screen_effect_definition",
@@ -103,7 +103,7 @@ namespace blofeld
 	};
 
 	#define SCREEN_EFFECT_SCALAR_FUNCTION_STRUCT_ID { 0xD2D2C2B8, 0xA3D24359, 0x8D127DD8, 0x7EB7F3D8 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		screen_effect_scalar_function_struct,
 		"screen_effect_scalar_function_struct",
 		"s_screen_effect_scalar_function",
@@ -118,7 +118,7 @@ namespace blofeld
 	};
 
 	#define SCREEN_EFFECT_SCALAR_OBJECT_FUNCTION_STRUCT_ID { 0x92C128E6, 0x4B424665, 0x80E1707B, 0xCE6CDB1D }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		screen_effect_scalar_object_function_struct,
 		"screen_effect_scalar_object_function_struct",
 		"s_screen_effect_scalar_object_function",

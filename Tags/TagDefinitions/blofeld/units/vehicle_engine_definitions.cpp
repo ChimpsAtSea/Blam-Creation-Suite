@@ -5,7 +5,7 @@ namespace blofeld
 {
 
 
-	V5_TAG_STRUCT(old_torque_struct)
+	V5_TAG_STRUCT_V6(old_torque_struct)
 	{
 		{ _field_legacy, _field_real, "min torque" },
 		{ _field_legacy, _field_real, "max torque" },
@@ -75,7 +75,7 @@ namespace blofeld
 	};
 
 	#define GLOBAL_VEHICLE_ENGINE_STRUCT_ID { 0xB2086F9C, 0xE80E4D79, 0x81DDEB34, 0xBA677DA4 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		global_vehicle_engine_struct,
 		"global_vehicle_engine_struct",
 		"s_vehicle_engine_definition",
@@ -96,7 +96,7 @@ namespace blofeld
 	};
 
 	#define TORQUE_CURVE_STRUCT_ID { 0xA1B86A30, 0x21864A2C, 0xB26E5CA6, 0xF2DB9FC3 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		torque_curve_struct,
 		"torque_curve_struct",
 		"s_toruqe_curve_definition",

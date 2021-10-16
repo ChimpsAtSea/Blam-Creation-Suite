@@ -34,7 +34,7 @@ namespace blofeld
 	};
 
 	#define HAVOK_COLLISION_FILTER_STRUCT_DEFINITION_ID { 0x509AF768, 0xBE0F4CC5, 0xAAA65F16, 0xBEAB01E6 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		havok_collision_filter_struct_definition,
 		"havok_collision_filter_struct_definition",
 		"s_havok_collision_filter_definition",
@@ -50,7 +50,7 @@ namespace blofeld
 	};
 
 	#define HAVOK_GROUP_FILTER_FILTER_STRUCT_ID { 0x14C2A328, 0xA8CD64B0, 0xCDFB8BE7, 0xDBAF80A0 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		havok_group_filter_filter_struct,
 		"havok_group_filter_filter_struct",
 		"hkpGroupFilter",

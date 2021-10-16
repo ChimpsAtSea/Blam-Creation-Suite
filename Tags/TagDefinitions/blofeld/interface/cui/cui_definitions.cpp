@@ -548,7 +548,7 @@ namespace blofeld
 	};
 
 	#define CUI_LOGIC_STRUCT_DEFINITION_ID { 0xAAD80006, 0x56CB4A4F, 0x9D7EF532, 0xAEC09825 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cui_logic_struct_definition,
 		"cui_logic_struct_definition",
 		"CuiLogicDefinition",
@@ -564,7 +564,7 @@ namespace blofeld
 	};
 
 	#define CUI_SCREEN_STRUCT_DEFINITION_ID { 0x7139CC11, 0x87E842E4, 0x94C5ED2B, 0x2A19EAA8 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cui_screen_struct_definition,
 		"cui_screen_struct_definition",
 		"CuiScreenDefinition",
@@ -586,7 +586,7 @@ namespace blofeld
 	};
 
 	#define CUI_STATIC_DATA_STRUCT_DEFINITION_ID { 0xA9592261, 0x3F3E4E98, 0xB9AA7A18, 0x4F381A53 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cui_static_data_struct_definition,
 		"cui_static_data_struct_definition",
 		"s_cui_static_data_group_definition",
@@ -599,7 +599,7 @@ namespace blofeld
 	};
 
 	#define CUI_SYSTEM_ID { 0x923E721C, 0xFE154F87, 0x8C081FF3, 0x2CE0E8E5 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		cui_system,
 		"cui_system",
 		"CuiSystemDefinition",
@@ -624,7 +624,7 @@ namespace blofeld
 	};
 
 	#define PROPERTIES_STRUCT_ID { 0xB1A7EC45, 0xBC3D439E, 0xA6D9F1A4, 0xA30957AF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		properties_struct,
 		"properties_struct",
 		"s_cui_properties_definition",
@@ -646,7 +646,7 @@ namespace blofeld
 	};
 
 	#define ANIMATION_SCALAR_FUNCTION_ID { 0x93DF7492, 0x416A1688, 0x609C91AE, 0xC3D187EE }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		animation_scalar_function,
 		"animation_scalar_function",
 		"s_cui_animation_scalar_function",
@@ -661,7 +661,7 @@ namespace blofeld
 	};
 
 	#define STATIC_DATA_STRUCT_ID { 0x2618E512, 0x8FF9442B, 0x9F93FFB2, 0x90B8121F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		static_data_struct,
 		"static_data_struct",
 		"s_cui_static_data",

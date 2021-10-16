@@ -430,7 +430,7 @@ namespace blofeld
 	};
 
 	#define INSTANTANEOUS_RESPONSE_DAMAGE_EFFECT_STRUCT_ID { 0x16BAF761, 0x451A4914, 0xB508138C, 0x7244DA1E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		instantaneous_response_damage_effect_struct,
 		"instantaneous_response_damage_effect_struct",
 		"instantaneous_response_damage_effect_struct",
@@ -443,7 +443,7 @@ namespace blofeld
 	};
 
 	#define INSTANTANEOUS_RESPONSE_DAMAGE_EFFECT_MARKER_STRUCT_ID { 0x6272DDC9, 0xC8664D2F, 0xB77E21BC, 0xB0C9B9DF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		instantaneous_response_damage_effect_marker_struct,
 		"instantaneous_response_damage_effect_marker_struct",
 		"instantaneous_response_damage_effect_marker_struct",
@@ -456,7 +456,7 @@ namespace blofeld
 	};
 
 	#define DAMAGE_BODY_PARAMETERS_STRUCT_ID { 0x33ECAC95, 0x9A4245E7, 0x8F244955, 0x413516E8 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		damage_body_parameters_struct,
 		"damage_body_parameters_struct",
 		"real",
@@ -473,7 +473,7 @@ namespace blofeld
 	};
 
 	#define DAMAGE_SHIELD_PARAMETERS_STRUCT_ID { 0xD30C88AC, 0xF030462C, 0x9536E894, 0xA6F752C1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		damage_shield_parameters_struct,
 		"damage_shield_parameters_struct",
 		"damage_shield_parameters_struct",
@@ -499,7 +499,7 @@ namespace blofeld
 	};
 
 	#define MODEL_DAMAGE_INFO_STRUCT_ID { 0xDF8AD947, 0xD85A4A9F, 0xA4D8F89C, 0xD3E30B24 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		model_damage_info_struct,
 		"model_damage_info_struct",
 		"s_new_model_damage_info",

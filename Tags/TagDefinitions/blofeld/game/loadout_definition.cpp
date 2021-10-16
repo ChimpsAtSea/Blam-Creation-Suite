@@ -106,7 +106,7 @@ namespace blofeld
 		loadout_definition_struct);
 
 	#define LOADOUT_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0x5693EB43, 0x326642CF, 0x9E14B116, 0x47BA7EC3 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		loadout_globals_definition_struct_definition,
 		"loadout_globals_definition_struct_definition",
 		"s_loadout_globals_tag_definition",
@@ -125,7 +125,7 @@ namespace blofeld
 	};
 
 	#define LOADOUT_DEFINITION_STRUCT_ID { 0x5C0C246C, 0x32674BAA, 0x9C95C60D, 0x7F5607D6 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		loadout_definition_struct,
 		"loadout_definition_struct",
 		"s_static_loadout_tag_definition",

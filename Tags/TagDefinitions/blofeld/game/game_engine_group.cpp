@@ -536,7 +536,7 @@ namespace blofeld
 	};
 
 	#define GAME_ENGINE_GLOBALS_STRUCT_DEFINITION_ID { 0x796F3498, 0x65054DAA, 0x882DA33D, 0xB1677B4E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		game_engine_globals_struct_definition,
 		"game_engine_globals_struct_definition",
 		"s_game_engine_globals_definition",
@@ -551,7 +551,7 @@ namespace blofeld
 	};
 
 	#define GAME_ENGINE_SETTINGS_DEFINITION_STRUCT_DEFINITION_ID { 0x2644FCED, 0xC39A4930, 0xB9F37CB2, 0x70F9BDA5 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		game_engine_settings_definition_struct_definition,
 		"game_engine_settings_definition_struct_definition",
 		"s_game_engine_settings_definition",
@@ -571,7 +571,7 @@ namespace blofeld
 	};
 
 	#define GAMEENGINEFIREFIGHTVARIANTDEFINITION_ID { 0x6CCBE137, 0x5F764396, 0xB5182CE2, 0xA6B2A01C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		gameEngineFirefightVariantDefinition,
 		"gameEngineFirefightVariantDefinition",
 		"s_game_engine_firefight_variant_definition",
@@ -620,7 +620,7 @@ namespace blofeld
 	};
 
 	#define GAME_ENGINE_AI_TRAITS_STRUCT_ID { 0xA7217EE7, 0x772048E4, 0x9BC01D53, 0x380079BA }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		game_engine_ai_traits_struct,
 		"game_engine_ai_traits_struct",
 		"s_game_engine_ai_traits",
@@ -643,7 +643,7 @@ namespace blofeld
 	};
 
 	#define GAME_ENGINE_SURVIVAL_WAVE_PROPERTIES_STRUCT_ID { 0x14F6C0C1, 0x7F794B40, 0x8083C34E, 0x615FA34A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		game_engine_survival_wave_properties_struct,
 		"game_engine_survival_wave_properties_struct",
 		"s_survival_wave_properties_definition",
@@ -659,7 +659,7 @@ namespace blofeld
 	};
 
 	#define GAME_ENGINE_SURVIVAL_BONUS_WAVE_PROPERTIES_STRUCT_ID { 0x38D197D3, 0x5E0D4E20, 0x89138F88, 0x3567D711 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		game_engine_survival_bonus_wave_properties_struct,
 		"game_engine_survival_bonus_wave_properties_struct",
 		"s_survival_bonus_wave_properties_definition",

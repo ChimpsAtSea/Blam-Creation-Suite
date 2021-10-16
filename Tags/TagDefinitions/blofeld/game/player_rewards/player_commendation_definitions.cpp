@@ -147,7 +147,7 @@ namespace blofeld
 	};
 
 	#define COMMENDATION_AGGREGATOR_LIST_STRUCT_DEFINITION_ID { 0x74E71545, 0x00054456, 0xA4FC7176, 0x58FE61F2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		commendation_aggregator_list_struct_definition,
 		"commendation_aggregator_list_struct_definition",
 		"CommendationAggregatorList",
@@ -160,7 +160,7 @@ namespace blofeld
 	};
 
 	#define COMMENDATION_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID { 0xCB5F3608, 0xE8F44DE4, 0x8D3DAD05, 0x61C42080 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		commendation_globals_definition_struct_definition,
 		"commendation_globals_definition_struct_definition",
 		"s_commendation_globals_definition",
@@ -209,7 +209,7 @@ namespace blofeld
 	};
 
 	#define COMMENDATIONAGGREGATORDEPENDENT_STRUCT_ID { 0x75C2D96E, 0x84EA4CC2, 0xBF5E2775, 0xB36E1BD7 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		commendationAggregatorDependent_struct,
 		"commendationAggregatorDependent_struct",
 		"CommendationAggregatorDependent",

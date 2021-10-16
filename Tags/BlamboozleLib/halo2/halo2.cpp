@@ -1020,7 +1020,7 @@ void h2_export_source(
 			}
 			else
 			{
-				s << "\tTAG_STRUCT(" << std::endl;
+				s << "\tTAG_STRUCT_V6(" << std::endl;
 				s << "\t\t" << pseudo_struct_definition->code_name << "," << std::endl;
 				s << "\t\t" << "\"" << pseudo_struct_definition->name << "\"," << std::endl;
 				s << "\t\t" << "\"" << pseudo_struct_definition->struct_name << "\"," << std::endl;

@@ -23,7 +23,7 @@ namespace blofeld
 	};
 
 	#define COLLISION_GEOMETRY_SHAPE_STRUCT_ID { 0x97B622E0, 0xF8AF48BA, 0x85446709, 0x0386FA88 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		collision_geometry_shape_struct,
 		"collision_geometry_shape_struct",
 		"c_collision_geometry_shape",
@@ -62,7 +62,7 @@ namespace blofeld
 	};
 
 	#define MOPP_BV_TREE_SHAPE_STRUCT_ID { 0x662B38A4, 0xAAAC448C, 0x81C491AB, 0xA4E2A6EE }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		mopp_bv_tree_shape_struct,
 		"mopp_bv_tree_shape_struct",
 		"c_mopp_bv_tree_shape",

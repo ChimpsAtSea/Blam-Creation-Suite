@@ -172,7 +172,7 @@ namespace blofeld
 	};
 
 	#define STRUCTURE_SEAMS_STRUCT_DEFINITION_ID { 0x1073D9E0, 0x3D9447BB, 0x89E0B4FF, 0x30BD63B1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_seams_struct_definition,
 		"structure_seams_struct_definition",
 		"s_structure_seams",
@@ -190,7 +190,7 @@ namespace blofeld
 	};
 
 	#define STRUCTURE_SEAM_IDENTIFIER_STRUCT_ID { 0xDDF67371, 0xDF8642BF, 0xAC893004, 0xBC6869EC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_seam_identifier_struct,
 		"structure_seam_identifier_struct",
 		"s_structure_seam_identifier",
@@ -206,7 +206,7 @@ namespace blofeld
 	};
 
 	#define STRUCTURE_SEAM_ORIGINAL_GEOMETRY_STRUCT_ID { 0x94C5DB45, 0x5F934BF3, 0xA02C2890, 0x4C76F360 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_seam_original_geometry_struct,
 		"structure_seam_original_geometry_struct",
 		"s_structure_seam_original_geometry",
@@ -219,7 +219,7 @@ namespace blofeld
 	};
 
 	#define STRUCTURE_SEAM_FINAL_GEOMETRY_STRUCT_ID { 0x89A4CF05, 0x884A4959, 0xB0830D92, 0x161B070E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structure_seam_final_geometry_struct,
 		"structure_seam_final_geometry_struct",
 		"s_structure_seam_final_geometry",

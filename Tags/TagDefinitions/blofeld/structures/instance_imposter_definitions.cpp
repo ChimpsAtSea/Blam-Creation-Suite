@@ -62,7 +62,7 @@ namespace blofeld
 	};
 
 	#define INSTANCE_IMPOSTER_DEFINITION_STRUCT_DEFINITION_ID { 0x5011F34B, 0x64DA4902, 0x8930C061, 0xF724EA33 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		instance_imposter_definition_struct_definition,
 		"instance_imposter_definition_struct_definition",
 		"s_instance_imposter_definition",

@@ -99,7 +99,7 @@ namespace blofeld
 	};
 
 	#define GAME_COMPLETION_REWARDS_GLOBALS_STRUCT_DEFINITION_ID { 0xA8438CD1, 0x10C94898, 0x8C0E4C83, 0x589A8277 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		game_completion_rewards_globals_struct_definition,
 		"game_completion_rewards_globals_struct_definition",
 		"s_game_completion_rewards_globals",

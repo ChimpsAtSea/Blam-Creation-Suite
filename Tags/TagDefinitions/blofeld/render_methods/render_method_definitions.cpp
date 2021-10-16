@@ -486,7 +486,7 @@ namespace blofeld
 	};
 
 	#define RENDER_METHOD_STRUCT_DEFINITION_ID { 0xE5438218, 0x3A6340DC, 0x9DAFA818, 0x761ADDF3 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		render_method_struct_definition,
 		"render_method_struct_definition",
 		"c_render_method",
@@ -518,7 +518,7 @@ namespace blofeld
 	};
 
 	#define RENDER_METHOD_DEFINITION_STRUCT_DEFINITION_ID { 0x45573089, 0x681B4D5B, 0xB00F0E44, 0xDE8E72DC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		render_method_definition_struct_definition,
 		"render_method_definition_struct_definition",
 		"c_render_method_definition",
@@ -540,7 +540,7 @@ namespace blofeld
 	};
 
 	#define RENDER_METHOD_OPTION_STRUCT_DEFINITION_ID { 0x64873A7E, 0x31464CE2, 0xBB5A3107, 0xBCDDB84C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		render_method_option_struct_definition,
 		"render_method_option_struct_definition",
 		"c_render_method_option",
@@ -553,7 +553,7 @@ namespace blofeld
 	};
 
 	#define RENDER_METHOD_TEMPLATE_STRUCT_DEFINITION_ID { 0xE29233A9, 0xAE7B4321, 0x93DFA5CE, 0x4E5BD1D5 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		render_method_template_struct_definition,
 		"render_method_template_struct_definition",
 		"c_render_method_template",
@@ -576,7 +576,7 @@ namespace blofeld
 	};
 
 	#define TAG_BLOCK_INDEX_STRUCT_ID { 0xA7D748C4, 0x6A624229, 0xB70B7DC6, 0x27861D70 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		tag_block_index_struct,
 		"tag_block_index_struct",
 		"s_tag_block_index",

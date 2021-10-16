@@ -180,7 +180,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_STRUCTURE_LIGHTING_INFO_STRUCT_DEFINITION_ID { 0xF6DF366B, 0xD04D4A01, 0xA4C203FB, 0xA459CB2F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_structure_lighting_info_struct_definition,
 		"scenario_structure_lighting_info_struct_definition",
 		"s_structure_lighting_info",
@@ -212,7 +212,7 @@ namespace blofeld
 	};
 
 	#define STRUCTURELIGHTINGCINEMATICLIGHTINSTANCEBLOCK_STRUCT_ID { 0x601943D7, 0xAA2240B1, 0xB21A7725, 0x03A7D78D }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		structureLightingCinematicLightInstanceBlock_struct,
 		"structureLightingCinematicLightInstanceBlock_struct",
 		"StructureLightingCinematicLightInfo",

@@ -20,7 +20,7 @@ namespace blofeld
 		particle_model_struct_definition);
 
 	#define PARTICLE_MODEL_STRUCT_DEFINITION_ID { 0xC4C7FDE0, 0xADA64FF1, 0x9CDCC3BE, 0xF1D59F65 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		particle_model_struct_definition,
 		"particle_model_struct_definition",
 		"c_particle_model_definition",
@@ -39,7 +39,7 @@ namespace blofeld
 	};
 
 	#define GPU_DATA_STRUCT_ID { 0xF0F224FF, 0x7CD04586, 0x9698B35C, 0x7E98B715 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		gpu_data_struct,
 		"gpu_data_struct",
 		"c_particle_model_definition::s_gpu_data",

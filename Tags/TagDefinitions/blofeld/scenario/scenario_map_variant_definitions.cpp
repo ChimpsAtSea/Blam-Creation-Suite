@@ -103,7 +103,7 @@ namespace blofeld
 	};
 
 	#define MAPVARIANTRESOURCEMANIFEST_ID { 0x489BAAF5, 0x2DD44507, 0xB66346C4, 0x27F7ADCB }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		mapVariantResourceManifest,
 		"mapVariantResourceManifest",
 		"MapVariantObjectResourceManifest",

@@ -36,7 +36,7 @@ namespace blofeld
 	};
 
 	#define NARRATIVEGLOBALS_STRUCT_DEFINITION_ID { 0x0F1FDAAB, 0x1EA04A95, 0x956C4623, 0xEDDE356C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		NarrativeGlobals_struct_definition,
 		"NarrativeGlobals_struct_definition",
 		"NarrativeGlobals",

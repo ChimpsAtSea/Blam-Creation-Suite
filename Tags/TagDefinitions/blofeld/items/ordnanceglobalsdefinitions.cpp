@@ -130,7 +130,7 @@ namespace blofeld
 	};
 
 	#define GAME_GLOBALS_ORDNANCE_LIST_STRUCT_DEFINITION_ID { 0x7D88DCED, 0x1F3E433E, 0xB9099675, 0x33B8D47B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		game_globals_ordnance_list_struct_definition,
 		"game_globals_ordnance_list_struct_definition",
 		"GameGlobalsOrdnance",
@@ -148,7 +148,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_ORDNANCE_LIST_STRUCT_DEFINITION_ID { 0x23500DD2, 0x50D74522, 0xBBC8C5FD, 0x21E2B58C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_ordnance_list_struct_definition,
 		"scenario_ordnance_list_struct_definition",
 		"ScenarioOrdnance",

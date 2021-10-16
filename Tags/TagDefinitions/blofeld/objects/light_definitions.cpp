@@ -20,7 +20,7 @@ namespace blofeld
 		light_struct_definition);
 
 	#define LIGHT_STRUCT_DEFINITION_ID { 0x671EB9F2, 0xB6AF482D, 0x902D0F25, 0xEDB665A1 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		light_struct_definition,
 		"light_struct_definition",
 		"dynamic_light_definition",
@@ -105,7 +105,7 @@ namespace blofeld
 	};
 
 	#define LIGHT_COLOR_FUNCTION_STRUCT_ID { 0x3DBB8F1A, 0x54F94FD0, 0x9D24DA91, 0x297A3078 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		light_color_function_struct,
 		"light_color_function_struct",
 		"light_function",
@@ -125,7 +125,7 @@ namespace blofeld
 	};
 
 	#define LIGHT_SCALAR_FUNCTION_STRUCT_ID { 0x26AA4A83, 0x42B4434A, 0x93ACA3CB, 0x08A920CD }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		light_scalar_function_struct,
 		"light_scalar_function_struct",
 		"light_function",

@@ -61,7 +61,7 @@ namespace blofeld
 	};
 
 	#define CUSTOM_APP_GLOBALS_STRUCT_DEFINITION_ID { 0x9C8EE695, 0x95D442FD, 0xAE8AADB4, 0x368822CA }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		custom_app_globals_struct_definition,
 		"custom_app_globals_struct_definition",
 		"s_custom_app_globals_definition",

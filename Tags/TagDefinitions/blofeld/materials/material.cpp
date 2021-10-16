@@ -176,7 +176,7 @@ namespace blofeld
 	};
 
 	#define MATERIAL_STRUCT_ID { 0x13810D23, 0x3C154406, 0xAA769459, 0xA7F03D07 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		material_struct,
 		"material_struct",
 		"material_struct",

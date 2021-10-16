@@ -52,7 +52,7 @@ namespace blofeld
 	};
 
 	#define GAME_GLOBALS_GRENADE_LIST_STRUCT_DEFINITION_ID { 0x6AFD3548, 0xBE4A445D, 0xAA007E0A, 0x90F4AA84 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		game_globals_grenade_list_struct_definition,
 		"game_globals_grenade_list_struct_definition",
 		"GameGlobalsGrenadeList",

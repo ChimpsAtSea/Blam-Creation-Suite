@@ -699,7 +699,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_OBJECT_ID_STRUCT_ID { 0xA40A1401, 0xDE4B45AE, 0xB47F4714, 0x99C39E7B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_object_id_struct,
 		"scenario_object_id_struct",
 		"c_object_identifier",
@@ -715,7 +715,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_OBJECT_DATUM_STRUCT_ID { 0xB2D98DC9, 0xF27A4A22, 0xB6CD6942, 0x27B43F20 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_object_datum_struct,
 		"scenario_object_datum_struct",
 		"scenario_object_datum_struct",
@@ -774,7 +774,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_OBJECT_PARENT_STRUCT_ID { 0xC16E1FE3, 0xC0AA4656, 0x95075B5F, 0x41BB4DF4 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_object_parent_struct,
 		"scenario_object_parent_struct",
 		"s_scenario_object_parent",
@@ -791,7 +791,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_OBJECT_PERMUTATION_STRUCT_ID { 0x03BD8F07, 0x22A74669, 0xA02A4C64, 0x096D3305 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_object_permutation_struct,
 		"scenario_object_permutation_struct",
 		"s_scenario_object_permutation",
@@ -810,7 +810,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_UNIT_STRUCT_ID { 0xF7C25813, 0x7E524E9D, 0x89F06521, 0x97EDBB16 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_unit_struct,
 		"scenario_unit_struct",
 		"s_scenario_unit_datum",
@@ -824,7 +824,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_MULTIPLAYER_OBJECT_STRUCT_ID { 0xD7949B53, 0x207B47B5, 0x99E1EB91, 0x29AF1E16 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_multiplayer_object_struct,
 		"scenario_multiplayer_object_struct",
 		"s_scenario_multiplayer_object_properties",
@@ -890,7 +890,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_VEHICLE_DATUM_STRUCT_ID { 0x252FB584, 0x7A834CE5, 0xA99C3145, 0x49D3CD60 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_vehicle_datum_struct,
 		"scenario_vehicle_datum_struct",
 		"s_scenario_vehicle_datum",
@@ -905,7 +905,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_GIANT_DATUM_STRUCT_ID { 0x89405329, 0x890C4F04, 0xB9B87A12, 0x6E648B53 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_giant_datum_struct,
 		"scenario_giant_datum_struct",
 		"s_scenario_giant_datum",
@@ -920,7 +920,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_OBJECT_REFERENCE_STRUCT_ID { 0xA40BCD01, 0xDE0AB5AE, 0xB12F4714, 0xAAC39E7B }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_object_reference_struct,
 		"scenario_object_reference_struct",
 		"s_scenario_object_reference",
@@ -934,7 +934,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_SCENERY_DATUM_STRUCT_V4_ID { 0xECD107BB, 0x32A143B7, 0x934D8DC0, 0x0B606F2D }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_scenery_datum_struct_v4,
 		"scenario_scenery_datum_struct_v4",
 		"s_scenario_scenery_datum",
@@ -952,7 +952,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_EQUIPMENT_DATUM_STRUCT_ID { 0x48D20C56, 0x8B844C52, 0xA0DA0D7B, 0x0B10F54A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_equipment_datum_struct,
 		"scenario_equipment_datum_struct",
 		"s_scenario_equipment_datum",
@@ -965,7 +965,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_WEAPON_DATUM_STRUCT_ID { 0x95BC43BA, 0xC6EF42C5, 0x95BA7855, 0x50A05B6F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_weapon_datum_struct,
 		"scenario_weapon_datum_struct",
 		"s_scenario_weapon_datum",
@@ -980,7 +980,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_DEVICE_STRUCT_ID { 0xF3F2B599, 0x93524F63, 0xBF5BD676, 0x6FD79D9E }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_device_struct,
 		"scenario_device_struct",
 		"s_scenario_device_datum",
@@ -995,7 +995,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_MACHINE_STRUCT_V3_ID { 0x43A76E9A, 0xA1E24E63, 0xA60DD607, 0x83C2C762 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_machine_struct_v3,
 		"scenario_machine_struct_v3",
 		"s_scenario_machine_datum",
@@ -1011,7 +1011,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_TERMINAL_STRUCT_ID { 0x167BF1D1, 0x8FF44C03, 0xB1C1085B, 0xF16DB71F }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_terminal_struct,
 		"scenario_terminal_struct",
 		"s_scenario_terminal_datum",
@@ -1024,7 +1024,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_CONTROL_STRUCT_ID { 0x4C0DFF56, 0xAB5E4908, 0xBC8FEA48, 0x712465AA }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_control_struct,
 		"scenario_control_struct",
 		"s_scenario_control_datum",
@@ -1041,7 +1041,7 @@ namespace blofeld
 	};
 
 	#define SCENARIODISPENSERSTRUCT_ID { 0x84208927, 0xD6114C54, 0xA8CE7861, 0xB638A761 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		ScenarioDispenserStruct,
 		"ScenarioDispenserStruct",
 		"ScenarioDispenserDatum",
@@ -1055,7 +1055,7 @@ namespace blofeld
 	};
 
 	#define SOUND_SCENERY_DATUM_STRUCT_ID { 0xF092A3CD, 0x392B463A, 0xAA23EE22, 0x2BC855E2 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		sound_scenery_datum_struct,
 		"sound_scenery_datum_struct",
 		"s_scenario_sound_scenery_datum",
@@ -1072,7 +1072,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_EFFECT_SCENERY_DATUM_STRUCT_ID { 0xAECBC47E, 0xC5FD4495, 0x9C908F2E, 0x2C4FAD95 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_effect_scenery_datum_struct,
 		"scenario_effect_scenery_datum_struct",
 		"ScenarioEffectSceneryDatum",
@@ -1085,7 +1085,7 @@ namespace blofeld
 	};
 
 	#define SCENARIOENTITYSTRUCT_ID { 0x5D32E50B, 0x2D59498A, 0xB59C777F, 0x8DE7F945 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		ScenarioEntityStruct,
 		"ScenarioEntityStruct",
 		"ScenarioEntityDatum",
@@ -1098,7 +1098,7 @@ namespace blofeld
 	};
 
 	#define SCENARIOSPAWNERSTRUCT_ID { 0x2A28D8B0, 0x0BA34E72, 0xB05C421E, 0x29871410 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		ScenarioSpawnerStruct,
 		"ScenarioSpawnerStruct",
 		"ScenarioSpawnerDatum",
@@ -1111,7 +1111,7 @@ namespace blofeld
 	};
 
 	#define SCENARIO_CRATE_DATUM_STRUCT_ID { 0x5B721C93, 0xD3E64C22, 0xAA9B2A15, 0x1614421C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		scenario_crate_datum_struct,
 		"scenario_crate_datum_struct",
 		"s_scenario_crate_datum",

@@ -35,7 +35,7 @@ namespace blofeld
 	};
 
 	#define ARMORMOD_GLOBALS_STRUCT_DEFINITION_ID { 0xBA3D69E0, 0x5E314FDE, 0x992D73B7, 0x0B75EB20 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		armormod_globals_struct_definition,
 		"armormod_globals_struct_definition",
 		"ArmorModGlobals",

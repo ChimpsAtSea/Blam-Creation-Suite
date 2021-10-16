@@ -88,7 +88,7 @@ namespace blofeld
 	};
 
 	#define LIGHT_VOLUME_SYSTEM_STRUCT_DEFINITION_ID { 0x668829E0, 0x9E2E4295, 0xACE1F43F, 0x067789BC }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		light_volume_system_struct_definition,
 		"light_volume_system_struct_definition",
 		"c_light_volume_system_definition",
@@ -101,7 +101,7 @@ namespace blofeld
 	};
 
 	#define LIGHT_VOLUME_PROPERTY_REAL_ID { 0xBC2E916E, 0x13C1459C, 0x82BC6E0D, 0x888CE0DD }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		light_volume_property_real,
 		"light_volume_property_real",
 		"c_light_volume_property_real",
@@ -123,7 +123,7 @@ namespace blofeld
 	};
 
 	#define LIGHT_VOLUME_PROPERTY_REAL_RGB_COLOR_ID { 0x59110FA9, 0x9D244BEE, 0x8CBB0FF2, 0x3A822ECF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		light_volume_property_real_rgb_color,
 		"light_volume_property_real_rgb_color",
 		"c_light_volume_property_real_rgb_color",

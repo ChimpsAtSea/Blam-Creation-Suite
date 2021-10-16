@@ -82,7 +82,7 @@ namespace blofeld
 	};
 
 	#define CREATURE_STRUCT_DEFINITION_ID { 0x83C805FE, 0xCAD24C6A, 0x8781D5EE, 0x18B84ED8 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		creature_struct_definition,
 		"creature_struct_definition",
 		"s_creature_definition_internal",

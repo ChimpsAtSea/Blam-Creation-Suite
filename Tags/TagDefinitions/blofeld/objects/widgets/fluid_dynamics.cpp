@@ -81,7 +81,7 @@ namespace blofeld
 	};
 
 	#define FLUID_DYNAMICS_STRUCT_DEFINITION_ID { 0x3414341E, 0x3222482C, 0x14903442, 0x0654EB55 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		fluid_dynamics_struct_definition,
 		"fluid_dynamics_struct_definition",
 		"fluid_dynamics_definition",
@@ -128,7 +128,7 @@ namespace blofeld
 	};
 
 	#define G_SINGLE_SCALAR_FUNCTION_EVALUATION_STRUCT_ID { 0xE5DD9E47, 0x3ECF4316, 0xA03E0324, 0x62F7B19C }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		g_single_scalar_function_evaluation_struct,
 		"g_single_scalar_function_evaluation_struct",
 		"s_single_scalar_function_definition",

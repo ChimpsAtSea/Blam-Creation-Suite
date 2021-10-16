@@ -36,7 +36,7 @@ namespace blofeld
 	};
 
 	#define ATMOSPHERE_GLOBALS_STRUCT_DEFINITION_ID { 0x3EBF8816, 0xC94C4915, 0xB3C990D2, 0x7039F615 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		atmosphere_globals_struct_definition,
 		"atmosphere_globals_struct_definition",
 		"s_atmosphere_globals",

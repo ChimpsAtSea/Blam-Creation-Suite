@@ -364,7 +364,7 @@ namespace blofeld
 	};
 
 	#define INCIDENT_GLOBAL_PROPERTIES_DEFINITION_STRUCT_DEFINITION_ID { 0x249A61F3, 0xA6094D20, 0x94E24664, 0x95C2EF27 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		incident_global_properties_definition_struct_definition,
 		"incident_global_properties_definition_struct_definition",
 		"s_incident_global_properties_definition",
@@ -409,7 +409,7 @@ namespace blofeld
 	};
 
 	#define SUPPRESSEDINCIDENT_STRUCT_DEFINITION_ID { 0xD30BEC71, 0x3F404567, 0x83A6CB68, 0xF2572EFF }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		SuppressedIncident_struct_definition,
 		"SuppressedIncident_struct_definition",
 		"SuppressedIncidentGroupDefinition",

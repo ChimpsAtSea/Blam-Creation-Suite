@@ -384,7 +384,7 @@ namespace blofeld
 	};
 
 	#define OBJECT_STRUCT_DEFINITION_ID { 0x94A95A6C, 0xF5FC457A, 0x88A44257, 0x803394F0 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		object_struct_definition,
 		"object_struct_definition",
 		"_object_definition",
@@ -493,7 +493,7 @@ namespace blofeld
 	};
 
 	#define OBJECT_ABANDONMENT_STRUCT_ID { 0x7F949B78, 0x6EE94045, 0x95026EDA, 0x7FEFA28A }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		object_abandonment_struct,
 		"object_abandonment_struct",
 		"ObjectAbandonmentDefinition",

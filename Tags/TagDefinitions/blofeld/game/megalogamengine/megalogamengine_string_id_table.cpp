@@ -49,7 +49,7 @@ namespace blofeld
 	};
 
 	#define MEGALO_STRING_ID_TABLE_STRUCT_DEFINITION_ID { 0xAE0F2571, 0xF8A94B50, 0x8323DF3D, 0x4D21B8E7 }
-	TAG_STRUCT(
+	TAG_STRUCT_V6(
 		megalo_string_id_table_struct_definition,
 		"megalo_string_id_table_struct_definition",
 		"s_megalo_string_id_table_definition",
