@@ -75,9 +75,27 @@ constexpr decltype(auto) underlying_cast(T value)
 	return static_cast<ResultType>(value);
 }
 
+#define BCS_WIDECHAR_TO_CHAR_STACK(widechar_buffer_name, char_buffer_name) \
+	char* char_buffer_name = nullptr; \
+	if(widechar_buffer_name) \
+	{ \
+		size_t __buffer_length = wcslen(widechar_buffer_name) + 1; \
+		char_buffer_name = static_cast<char*>(alloca(sizeof(char) * (__buffer_length))); \
+		wcstombs(char_buffer_name, widechar_buffer_name, __buffer_length); \
+	}
+
+#define BCS_WIDECHAR_TO_CHAR_HEAP(widechar_buffer_name, char_buffer_name) \
+	char* char_buffer_name = nullptr; \
+	if(widechar_buffer_name) \
+	{ \
+		size_t __buffer_length = wcslen(widechar_buffer_name) + 1; \
+		char_buffer_name = static_cast<char*>(malloc(sizeof(char) * (__buffer_length))); \
+		wcstombs(char_buffer_name, widechar_buffer_name, __buffer_length); \
+	}
+
 #define BCS_CHAR_TO_WIDECHAR_STACK(char_buffer_name, widechar_buffer_name) \
 	wchar_t* widechar_buffer_name = nullptr; \
-	if(char_buffer_name > 0) \
+	if(char_buffer_name) \
 	{ \
 		size_t __buffer_length = strlen(char_buffer_name) + 1; \
 		widechar_buffer_name = static_cast<wchar_t*>(alloca(sizeof(wchar_t) * (__buffer_length))); \
@@ -86,7 +104,7 @@ constexpr decltype(auto) underlying_cast(T value)
 
 #define BCS_CHAR_TO_WIDECHAR_HEAP(char_buffer_name, widechar_buffer_name) \
 	wchar_t* widechar_buffer_name = nullptr; \
-	if(char_buffer_name > 0) \
+	if(char_buffer_name) \
 	{ \
 		size_t __buffer_length = strlen(char_buffer_name) + 1; \
 		widechar_buffer_name = static_cast<wchar_t*>(malloc(sizeof(wchar_t) * (__buffer_length))); \

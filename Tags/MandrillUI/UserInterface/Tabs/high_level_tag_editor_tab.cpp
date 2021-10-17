@@ -795,7 +795,8 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, co
 	}
 	else
 	{
-		group = tag_project.get_group_by_group_tag(group_tag);
+		BCS_RESULT get_group_result = tag_project.get_group_by_group_tag(group_tag, group);
+		ASSERT(group_tag == blofeld::INVALID_TAG || BCS_SUCCEEDED(get_group_result));
 	}
 
 	ImGui::Columns(2, nullptr, false);
@@ -840,19 +841,26 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, co
 				group = nullptr;
 			}
 
-			for (h_group* current_group : tag_project.groups)
+			h_group* const* groups;
+			unsigned long group_count;
+			if (BCS_SUCCEEDED(tag_project.get_tag_groups(groups, group_count)))
 			{
-				bool is_selected = group == current_group;
-				if (ImGui::Selectable(current_group->tag_group.name, is_selected))
+				for (unsigned long group_index = 0; group_index < group_count; group_index++)
 				{
-					if (!is_selected)
+					h_group* current_group = groups[group_index];
+
+					bool is_selected = group == current_group;
+					if (ImGui::Selectable(current_group->tag_group.name, is_selected))
 					{
-						if (tag_reference != nullptr)
+						if (!is_selected)
 						{
-							tag_reference = nullptr; // #TODO: determine inheritance
-							result = true;
+							if (tag_reference != nullptr)
+							{
+								tag_reference = nullptr; // #TODO: determine inheritance
+								result = true;
+							}
+							group = current_group;
 						}
-						group = current_group;
 					}
 				}
 			}
@@ -877,10 +885,22 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, co
 		}
 		if (combo_active)
 		{
-			std::vector<h_tag*>& tags = (group == nullptr) ? tag_project.tags : group->tags;
-
-			for (h_tag* tag : tags)
+			h_tag* const* tag_instances = nullptr;
+			unsigned long num_tag_instances = 0;
+			if (group != nullptr)
 			{
+				tag_instances = group->tags.data();
+				num_tag_instances = static_cast<unsigned long>(group->tags.size());
+			}
+			else
+			{
+				tag_project.get_tag_instances(tag_instances, num_tag_instances);
+			}
+
+			for (unsigned long tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
+			{
+				h_tag* tag = tag_instances[tag_instance_index];
+
 				bool is_selected = tag_reference == tag;
 				const char* current_name = tag->tag_filepath.c_str();
 				if (ImGui::Selectable(current_name, is_selected) && !is_selected)
@@ -1233,7 +1253,9 @@ bool c_high_level_tag_editor_tab::render_tag(::tag& value, const blofeld::s_tag_
 	}
 	ImGui::NextColumn();
 	{
-		h_group* selected_group = tag_project.get_group_by_group_tag(value);
+		h_group* selected_group;
+		BCS_RESULT rs = tag_project.get_group_by_group_tag(value, selected_group);
+		ASSERT(BCS_SUCCEEDED(rs));
 		ASSERT(value == blofeld::INVALID_TAG || selected_group != nullptr);
 
 		const char* selected_string_value = "";
@@ -1245,17 +1267,27 @@ bool c_high_level_tag_editor_tab::render_tag(::tag& value, const blofeld::s_tag_
 
 		if (ImGui::BeginCombo("##tag", selected_string_value))
 		{
-			for (h_group* group : tag_project.groups)
+			h_group* const* groups;
+			unsigned long group_count;
+			if (BCS_SUCCEEDED(tag_project.get_tag_groups(groups, group_count)))
 			{
-				if (ImGui::Selectable(group->tag_group.name))
+				for (unsigned long group_index = 0; group_index < group_count; group_index++)
 				{
-					::tag new_value = group->tag_group.group_tag;
-					if (value != new_value)
+					h_group* group = groups[group_index];
+					if (ImGui::Selectable(group->tag_group.name))
 					{
-						value = new_value;
-						result = true;
+						::tag new_value = group->tag_group.group_tag;
+						if (value != new_value)
+						{
+							value = new_value;
+							result = true;
+						}
 					}
 				}
+			}
+			else
+			{
+				ImGui::Text("c_tag_project::get_tag_groups had an error");
 			}
 
 			ImGui::EndCombo();

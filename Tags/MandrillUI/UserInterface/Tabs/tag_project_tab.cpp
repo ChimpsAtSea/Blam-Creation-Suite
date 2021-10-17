@@ -26,15 +26,21 @@ c_tag_project& c_tag_project_tab::get_tag_project() const
 
 void c_tag_project_tab::open_tag_by_search_name(const char* tag_name)
 {
-	for (h_tag* tag : tag_project.tags)
+	h_tag* const* tag_instances = nullptr;
+	unsigned long num_tag_instances = 0;
+	if (BCS_SUCCEEDED(tag_project.get_tag_instances(tag_instances, num_tag_instances)))
 	{
-		bool is_match =
-			_stricmp(tag_name, tag->tag_filepath.c_str()) == 0 ||
-			_stricmp(tag_name, tag->tag_filename.c_str()) == 0;
-		if (is_match)
+		for (unsigned long tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
 		{
-			open_tag_interface_tab(*tag);
-			return;
+			h_tag* tag = tag_instances[tag_instance_index];
+			bool is_match =
+				_stricmp(tag_name, tag->tag_filepath.c_str()) == 0 ||
+				_stricmp(tag_name, tag->tag_filename.c_str()) == 0;
+			if (is_match)
+			{
+				open_tag_interface_tab(*tag);
+				return;
+			}
 		}
 	}
 }
@@ -86,89 +92,101 @@ void c_tag_project_tab::render_search_box()
 
 void c_tag_project_tab::render_tags_list_search()
 {
-	for (h_tag* tag : tag_project.tags)
+	h_tag* const* tag_instances = nullptr;
+	unsigned long num_tag_instances = 0;
+	if (BCS_SUCCEEDED(tag_project.get_tag_instances(tag_instances, num_tag_instances)))
 	{
-		//const char* tag_path_group_id = tag_interface.get_path_with_group_id_cstr();
-		//const char* tag_path_group_name = tag_interface.get_path_with_group_name_cstr();
-
-		//const char* tag_display_with_group_name = user_interface.get_use_full_file_length_display()
-		//	? tag_interface.get_path_with_group_name_cstr()
-		//	: tag_interface.get_name_with_group_name_cstr();
-
-		if (!search_buffer.empty())
+		for (unsigned long tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
 		{
-			if (strstr(tag->tag_filepath.data, search_buffer.c_str()) == nullptr)
+			h_tag* tag = tag_instances[tag_instance_index];
+			//const char* tag_path_group_id = tag_interface.get_path_with_group_id_cstr();
+			//const char* tag_path_group_name = tag_interface.get_path_with_group_name_cstr();
+
+			//const char* tag_display_with_group_name = user_interface.get_use_full_file_length_display()
+			//	? tag_interface.get_path_with_group_name_cstr()
+			//	: tag_interface.get_name_with_group_name_cstr();
+
+			if (!search_buffer.empty())
 			{
-				continue;
+				if (strstr(tag->tag_filepath.data, search_buffer.c_str()) == nullptr)
+				{
+					continue;
+				}
 			}
-		}
 
-		bool is_active = search_selected_tag_interface == tag;
-		bool selectable_activated = ImGui::Selectable(tag->tag_filepath.c_str(), is_active, ImGuiSelectableFlags_AllowDoubleClick);
+			bool is_active = search_selected_tag_interface == tag;
+			bool selectable_activated = ImGui::Selectable(tag->tag_filepath.c_str(), is_active, ImGuiSelectableFlags_AllowDoubleClick);
 
-		if (ImGui::IsItemHovered())
-		{
-			ImGui::BeginTooltip();
-			ImGui::Text(tag->tag_filepath.c_str());
-			ImGui::EndTooltip();
-		}
-		if (selectable_activated && ImGui::IsMouseDoubleClicked((ImGuiMouseButton_Left)))
-		{
-			search_selected_tag_interface = tag;
-			open_tag_interface_tab(*tag);
-			search_selected_tag_interface = nullptr;
-		}
-		if (ImGui::BeginPopupContextItem()) // <-- This is using IsItemHovered()
-		{
-			if (ImGui::MenuItem("Copy as path")) 
+			if (ImGui::IsItemHovered())
 			{
-				clipboard_set_text(tag->tag_filepath);
+				ImGui::BeginTooltip();
+				ImGui::Text(tag->tag_filepath.c_str());
+				ImGui::EndTooltip();
 			}
-			ImGui::EndPopup();
+			if (selectable_activated && ImGui::IsMouseDoubleClicked((ImGuiMouseButton_Left)))
+			{
+				search_selected_tag_interface = tag;
+				open_tag_interface_tab(*tag);
+				search_selected_tag_interface = nullptr;
+			}
+			if (ImGui::BeginPopupContextItem()) // <-- This is using IsItemHovered()
+			{
+				if (ImGui::MenuItem("Copy as path"))
+				{
+					clipboard_set_text(tag->tag_filepath);
+				}
+				ImGui::EndPopup();
+			}
 		}
 	}
 }
 
 void c_tag_project_tab::render_tags_list_tree()
 {
-	for (h_group* group : tag_project.groups)
+	h_group* const* groups;
+	unsigned long group_count;
+	if (BCS_SUCCEEDED(tag_project.get_tag_groups(groups, group_count)))
 	{
-		const unsigned long tag_interfaces_count = static_cast<unsigned long>(group->tags.size());
-
-		const char* group_name = group->tag_group.name;
-		const char* group_short_name = group->tag_group.group_tag_short_string;
-
-		bool display_group = tag_interfaces_count > 0;
-
-		if (!display_group) continue;
-
-
-		bool tree_node_selected = ImGui::TreeNode(group_short_name, "%s - %s", group_name, group_short_name);
-		if (tree_node_selected)
+		for (unsigned long group_index = 0; group_index < group_count; group_index++)
 		{
-			for (h_tag* tag : group->tags)
+			h_group* group = groups[group_index];
+			const unsigned long tag_interfaces_count = static_cast<unsigned long>(group->tags.size());
+
+			const char* group_name = group->tag_group.name;
+			const char* group_short_name = group->tag_group.group_tag_short_string;
+
+			bool display_group = tag_interfaces_count > 0;
+
+			if (!display_group) continue;
+
+
+			bool tree_node_selected = ImGui::TreeNode(group_short_name, "%s - %s", group_name, group_short_name);
+			if (tree_node_selected)
 			{
-				const char* tag_display_with_group_id = tag->tag_filepath.c_str();
+				for (h_tag* tag : group->tags)
+				{
+					const char* tag_display_with_group_id = tag->tag_filepath.c_str();
 
-				static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
-				if (ImGui::TreeNodeEx(tag, base_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, "%s", tag_display_with_group_id))
-				{
-					if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+					static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
+					if (ImGui::TreeNodeEx(tag, base_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, "%s", tag_display_with_group_id))
 					{
-						open_tag_interface_tab(*tag);
+						if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+						{
+							open_tag_interface_tab(*tag);
+						}
+					}
+					if (ImGui::BeginPopupContextItem()) // <-- This is using IsItemHovered()
+					{
+						if (ImGui::MenuItem("Copy as path"))
+						{
+							clipboard_set_text(tag->tag_filepath);
+						}
+						ImGui::EndPopup();
 					}
 				}
-				if (ImGui::BeginPopupContextItem()) // <-- This is using IsItemHovered()
-				{
-					if (ImGui::MenuItem("Copy as path"))
-					{
-						clipboard_set_text(tag->tag_filepath);
-					}
-					ImGui::EndPopup();
-				}
+
+				ImGui::TreePop();
 			}
-
-			ImGui::TreePop();
 		}
 	}
 }

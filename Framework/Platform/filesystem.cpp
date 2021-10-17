@@ -11,6 +11,16 @@ const wchar_t* filesystem_extract_filepath_filename(const wchar_t* filepath)
 	return PathFindFileNameW(filepath);
 }
 
+const char* filesystem_extract_filepath_extension(const char* filepath)
+{
+	return PathFindExtensionA(filepath);
+}
+
+const wchar_t* filesystem_extract_filepath_extension(const wchar_t* filepath)
+{
+	return PathFindExtensionW(filepath);
+}
+
 BCS_RESULT filesystem_filepath_exists(const char* filepath)
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
@@ -581,15 +591,23 @@ BCS_RESULT filesystem_traverse_directory_files(const wchar_t* directory, const w
 	{
 		do
 		{
-			wchar_t filepath[MAX_PATH];
-			_snwprintf(filepath, MAX_PATH, L"%s\\%s%s", directory_buffer, search_criteria_directory_buffer, find_data.cFileName);
-
-			const wchar_t* relative_filepath = filepath + wcslen(directory_buffer);
-
-			bool continue_search = callback(userdata, filepath, relative_filepath);
-			if (!continue_search)
+			if (!(find_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 			{
-				break;
+				if ((!lstrcmpW(find_data.cFileName, L".")) || (!lstrcmpW(find_data.cFileName, L"..")))
+				{
+					continue;
+				}
+
+				wchar_t filepath[MAX_PATH];
+				_snwprintf(filepath, MAX_PATH, L"%s\\%s%s", directory_buffer, search_criteria_directory_buffer, find_data.cFileName);
+
+				const wchar_t* relative_filepath = filepath + wcslen(directory_buffer);
+
+				bool continue_search = callback(userdata, filepath, relative_filepath);
+				if (!continue_search)
+				{
+					break;
+				}
 			}
 
 		} while (FindNextFile(find_file_handle, &find_data));

@@ -8,6 +8,8 @@ enum e_filesystem_write_mode
 
 BCS_DEBUG_API const char* filesystem_extract_filepath_filename(const char* filepath);
 BCS_DEBUG_API const wchar_t* filesystem_extract_filepath_filename(const wchar_t* filepath);
+BCS_DEBUG_API const char* filesystem_extract_filepath_extension(const char* filepath);
+BCS_DEBUG_API const wchar_t* filesystem_extract_filepath_extension(const wchar_t* filepath);
 
 BCS_DEBUG_API BCS_RESULT filesystem_filepath_exists(const char* filepath);
 BCS_DEBUG_API BCS_RESULT filesystem_filepath_exists(const wchar_t* filepath);

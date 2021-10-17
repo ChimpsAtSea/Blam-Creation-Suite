@@ -5,6 +5,8 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 	step(),
 	directory(directory),
 	is_all_selected(true),
+	is_single_tag_file_directory(false),
+	is_cache_file_directory(false),
 	entries(),
 	selected_entries(),
 	cache_cluster(),
@@ -12,10 +14,21 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 {
 	using namespace std::placeholders;
 
+	c_fixed_wide_path tags_directory = directory;
+	tags_directory += L"tags\\";
+
+	c_fixed_wide_path guerilla_directory = directory;
+	guerilla_directory += L"guerilla.exe";
+
 	c_fixed_wide_path deploy_directory = directory;
 	deploy_directory += L"deploy\\";
 
-	if (BCS_SUCCEEDED(filesystem_directory_exists(deploy_directory)))
+	if (BCS_SUCCEEDED(filesystem_directory_exists(tags_directory)) && BCS_SUCCEEDED(filesystem_filepath_exists(guerilla_directory)))
+	{
+		is_single_tag_file_directory = true;
+		debug_point;
+	}
+	else if (BCS_SUCCEEDED(filesystem_directory_exists(deploy_directory)))
 	{
 		filesystem_traverse_directory_folders(
 			deploy_directory,
@@ -44,8 +57,8 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 				return true;
 			},
 			this);
+		is_cache_file_directory = true;
 		debug_point;
-
 	}
 	else
 	{
@@ -57,13 +70,13 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 				return static_cast<c_tag_project_configurator_tab*>(userdata)->process_directory(path, relative_path);
 			},
 			this);
+		is_cache_file_directory = true;
 	}
 
 	const wchar_t* modules[128] = {};
 	unsigned long num_modules = _countof(modules);
 	if (BCS_SUCCEEDED(command_line_get_arguments(L"autoproject-module", modules, num_modules)) && num_modules > 0)
 	{
-
 		for (s_cache_file_list_entry& entry : entries)
 		{
 			entry.selected = false;
@@ -336,6 +349,11 @@ void c_tag_project_configurator_tab::render_display_tags()
 
 void c_tag_project_configurator_tab::create_cache_cluster()
 {
+	if (!is_cache_file_directory)
+	{
+		return;
+	}
+
 	DEBUG_ASSERT(cache_cluster == nullptr);
 
 	selected_entries.clear();
@@ -398,7 +416,14 @@ void c_tag_project_configurator_tab::create_tag_project()
 	{
 		if (cache_cluster_transplant)
 		{
-			c_tag_project* tag_project = new c_tag_project(*cache_cluster_transplant);
+			c_cache_file_tag_project* tag_project = new c_cache_file_tag_project(*cache_cluster_transplant);
+			c_tag_project_tab* tag_project_tab = new c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
+			mandrill_user_interface->add_tab(*tag_project_tab);
+			mandrill_user_interface->set_next_selected_tab(*tag_project_tab);
+		}
+		if (is_single_tag_file_directory)
+		{
+			c_filesystem_tag_project* tag_project = new c_filesystem_tag_project(directory);
 			c_tag_project_tab* tag_project_tab = new c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
 			mandrill_user_interface->add_tab(*tag_project_tab);
 			mandrill_user_interface->set_next_selected_tab(*tag_project_tab);

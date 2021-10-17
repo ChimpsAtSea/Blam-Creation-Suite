@@ -228,6 +228,7 @@ public:
 	~h_group();
 
 	h_tag& create_tag_instance(const char* filepath);
+	void associate_tag_instance(h_tag& tag_instance);
 
 	std::vector<h_tag*> tags;
 	s_engine_platform_build const engine_platform_build;

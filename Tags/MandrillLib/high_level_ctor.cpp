@@ -101,6 +101,15 @@ h_tag& h_group::create_tag_instance(const char* filepath)
 	return *tag;
 }
 
+void h_group::associate_tag_instance(h_tag& tag_instance)
+{
+	// #TODO: check that tag has no group already
+	// #TODO: check that tag hasn't already been added
+
+	tag_instance.group = this;
+	tags.push_back(&tag_instance);
+}
+
 h_object* h_object::create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition, s_engine_platform_build engine_platform_build)
 {
 	h_object* object = nullptr;
