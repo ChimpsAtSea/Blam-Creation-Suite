@@ -17,7 +17,8 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	blofeld_tag_block_definition(),
 	blofeld_tag_group_struct_definition()
 {
-	metadata_stack.push(layout_reader.tag_group_layout_chunk.tag_group_layout_header->tag_group_block_index);
+	unsigned long tag_group_block_index = layout_reader.tag_group_layout_chunk->get_tag_group_block_index();
+	metadata_stack.push(tag_group_block_index);
 	debug_point;
 
 	binary_data_chunk.parse_children(this);
@@ -27,18 +28,22 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	blofeld_tag_block_definition = &blofeld_tag_group->block_definition;
 	blofeld_tag_group_struct_definition = &blofeld_tag_block_definition->struct_definition;
 
-	const s_block_definition_entry* root_block_definition_entry = layout_reader.block_definitions_chunk->entries + layout_reader.tag_group_layout_chunk.tag_group_layout_header->tag_group_block_index;
-	const char* root_block_definition_name = layout_reader.string_data_chunk->chunk_data_begin + root_block_definition_entry->name_string_offset;
+	//const s_tag_persist_block_definition* root_block_definition_entry = layout_reader.block_definitions_chunk->entries + tag_group_block_index;
+	//const char* root_block_definition_name = layout_reader.get_string_by_string_character_index(root_block_definition_entry->string_character_index;
+	const s_tag_persist_block_definition* root_block_definition_entry = layout_reader.get_block_definition_by_index(tag_group_block_index);
+	const char* root_block_definition_name = layout_reader.get_string_by_string_character_index(root_block_definition_entry->string_character_index);
 	ASSERT(strcmp(root_block_definition_name, blofeld_tag_block_definition->name) == 0); // sanity check
-	const s_struct_definition_entry* root_structure_definition_entry = layout_reader.structure_definitions_chunk->entries + root_block_definition_entry->structure_entry_index;
+	//const s_tag_persist_struct_definition* root_structure_definition_entry = layout_reader.structure_definitions_chunk->entries + root_block_definition_entry->structure_entry_index;
+	const s_tag_persist_struct_definition* root_structure_definition_entry = layout_reader.get_struct_definition_by_index(root_block_definition_entry->structure_entry_index);
 	ASSERT(root_structure_definition_entry->persistent_identifier == blofeld_tag_group->block_definition.struct_definition.persistent_identifier); // sanity check
-	const char* root_struct_definition_name = layout_reader.string_data_chunk->chunk_data_begin + root_structure_definition_entry->name_string_offset;
+	//const char* root_struct_definition_name = layout_reader.get_string_by_string_character_index(root_structure_definition_entry->string_character_index;
+	const char* root_struct_definition_name = layout_reader.get_string_by_string_character_index(root_structure_definition_entry->string_character_index);
 	ASSERT(strcmp(root_struct_definition_name, blofeld_tag_group_struct_definition->name) == 0); // sanity check
 
 	tag_struct_definitions = blofeld::get_tag_struct_definitions(engine_platform_build);
 	ASSERT(tag_struct_definitions != nullptr);
 
-	struct_entries_data = new s_single_tag_file_reader_structure_entry[layout_reader.structure_definitions_chunk->entry_count];
+	struct_entries_data = new s_single_tag_file_reader_structure_entry[layout_reader.get_struct_definition_count()];
 
 	for (
 		const blofeld::s_tag_struct_definition** tag_struct_definition_iter = tag_struct_definitions;
@@ -52,12 +57,12 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 
 	debug_point;
 
-	for (unsigned long structure_entry_index = 0; structure_entry_index < layout_reader.structure_definitions_chunk->entry_count; structure_entry_index++)
+	for (unsigned long structure_entry_index = 0; structure_entry_index < layout_reader.get_struct_definition_count(); structure_entry_index++)
 	{
 		s_single_tag_file_reader_structure_entry& reader_structure_entry = struct_entries_data[structure_entry_index];
-		const s_struct_definition_entry& structure_entry = layout_reader.structure_definitions_chunk->entries[structure_entry_index];
+		const s_tag_persist_struct_definition& structure_entry = *layout_reader.get_struct_definition_by_index(structure_entry_index);
 
-		const char* structure_name = layout_reader.string_data_chunk->chunk_data_begin + structure_entry.name_string_offset;
+		const char* structure_name = layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
 
 		const blofeld::s_tag_struct_definition* tag_struct_definition;
 		if (BCS_SUCCEEDED(get_tag_struct_definition_by_persistent_identifier(structure_entry.persistent_identifier, tag_struct_definition)))
@@ -94,7 +99,7 @@ BCS_RESULT c_single_tag_file_reader::get_tag_struct_definition_by_index(
 	unsigned long index,
 	const blofeld::s_tag_struct_definition*& tag_struct_definition) const
 {
-	if (index >= layout_reader.structure_definitions_chunk->entry_count)
+	if (index >= layout_reader.get_struct_definition_count())
 	{
 		return BCS_E_OUT_OF_RANGE;
 	}
@@ -108,7 +113,7 @@ BCS_RESULT c_single_tag_file_reader::get_tag_struct_definition_by_index(
 
 BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 	h_object& high_level_object,
-	s_struct_definition_entry& structure_entry,
+	s_tag_persist_struct_definition& structure_entry,
 	char* const structure_data_begin,
 	c_tag_struct_chunk* structure_chunk)
 {
@@ -118,7 +123,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 	unsigned long file_tag_field_index = structure_entry.fields_start_index;
 	unsigned long blofeld_tag_field_index = 0;
 
-	const char* struct_entry_name = layout_reader.string_data_chunk->chunk_data_begin + structure_entry.name_string_offset;
+	const char* struct_entry_name = layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
 
 	const blofeld::s_tag_struct_definition* blofeld_struct_definition;
 	BCS_FAIL_RETURN(get_tag_struct_definition_by_persistent_identifier(structure_entry.persistent_identifier, blofeld_struct_definition));
@@ -140,12 +145,12 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 			//	continue;
 		}
 
-		const s_field_entry& field_entry = layout_reader.fields_chunk->entries[file_tag_field_index];
-		const char* field_entry_name = layout_reader.string_data_chunk->chunk_data_begin + field_entry.name_string_offset;
-		const s_tag_field_type_entry& field_type_entry = layout_reader.tag_field_types_chunk->entries[field_entry.tag_field_type_index];
-		const char* field_type_entry_name = layout_reader.string_data_chunk->chunk_data_begin + field_type_entry.name_string_offset;
+		const s_tag_persist_field& field_entry = *layout_reader.get_field_by_index(file_tag_field_index);
+		const char* field_entry_name = layout_reader.get_string_by_string_character_index(field_entry.string_character_index);
+		const s_tag_persist_field_type& field_type_entry = *layout_reader.get_field_type_by_index(field_entry.field_type_index);
+		const char* field_type_entry_name = layout_reader.get_string_by_string_character_index(field_type_entry.string_character_index);
 
-		console_write_line("%s %s", blofeld_field_name, field_entry_name);
+		//console_write_line("%s %s", blofeld_field_name, field_entry_name);
 
 		blofeld::e_field blofeld_field_type;
 		ASSERT(BCS_SUCCEEDED(blofeld::tag_field_type_to_field(field_type_entry_name, blofeld_field_type)));
@@ -190,7 +195,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 			c_tag_struct_chunk* field_tag_struct_chunk = dynamic_cast<c_tag_struct_chunk*>(field_chunk);
 			ASSERT(field_tag_struct_chunk != nullptr);
 
-			s_struct_definition_entry& field_struct_entry = layout_reader.structure_definitions_chunk->entries[field_entry.metadata];
+			s_tag_persist_struct_definition& field_struct_entry = *layout_reader.get_struct_definition_by_index(field_entry.metadata);
 
 			unsigned long structure_size = layout_reader.calculate_structure_size_by_index(field_entry.metadata);
 			field_size = structure_size;
@@ -204,7 +209,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 		break;
 		case blofeld::_field_array:
 		{
-			s_array_entry& array_entry = layout_reader.array_definitions_chunk->entries[field_entry.metadata];
+			s_tag_persist_array_definition& array_entry = *layout_reader.get_array_definition_by_index(field_entry.metadata);
 			unsigned long array_structure_size = layout_reader.calculate_structure_size_by_index(array_entry.structure_index);
 			unsigned long array_size = array_structure_size * array_entry.count;
 			field_size = array_size;

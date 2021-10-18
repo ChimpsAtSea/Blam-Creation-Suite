@@ -23,4 +23,12 @@ protected:
 	wchar_t tags_directory[0x10000u];
 	std::vector<h_group*> groups;
 	std::vector<h_tag*> tags;
+
+	struct s_tag_candidate
+	{
+		h_group* group;
+		const wchar_t* filepath;
+		const wchar_t* relative_filepath;
+	};
+	std::vector<s_tag_candidate> candidates;
 };

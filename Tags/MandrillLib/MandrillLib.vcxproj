@@ -31,8 +31,10 @@
     <ClInclude Include="Filesystem\Chunks\LayoutChunks\string_lists_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\LayoutChunks\string_offsets_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\LayoutChunks\structure_definitions_chunk.h" />
-    <ClInclude Include="Filesystem\Chunks\LayoutChunks\tag_field_types_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\LayoutChunks\field_types_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\LayoutChunks\tag_group_layout_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\LayoutChunks\tag_layout_prechunk_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\LayoutChunks\tag_layout_preinterop_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\LayoutChunks\tag_layout_v3_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\TagChunks\binary_data_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\TagChunks\tag_block_chunk.h" />
@@ -122,8 +124,10 @@
     <ClCompile Include="Filesystem\Chunks\LayoutChunks\string_lists_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\LayoutChunks\string_offsets_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\LayoutChunks\structure_definitions_chunk.cpp" />
-    <ClCompile Include="Filesystem\Chunks\LayoutChunks\tag_field_types_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\LayoutChunks\field_types_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\LayoutChunks\tag_group_layout_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\LayoutChunks\tag_layout_prechunk_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\LayoutChunks\tag_layout_preinterop_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\LayoutChunks\tag_layout_v3_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\TagChunks\binary_data_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\TagChunks\tag_block_chunk.cpp" />

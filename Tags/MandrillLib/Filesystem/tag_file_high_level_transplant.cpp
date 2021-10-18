@@ -16,20 +16,13 @@ c_tag_file_high_level_transplant::c_tag_file_high_level_transplant(const char* f
 	c_stopwatch s;
 	s.start();
 
-	root_chunk = new c_tag_header_chunk(header_data + 1);
-	tag_group_layout_chunk = root_chunk->find_first_chunk<c_tag_group_layout_chunk>();
-	binary_data_chunk = root_chunk->find_first_chunk<c_binary_data_chunk>();
-
-	ASSERT(tag_group_layout_chunk != nullptr);
-	ASSERT(binary_data_chunk != nullptr);
-
-	layout_reader = new c_single_tag_file_layout_reader(*tag_group_layout_chunk);
+	layout_reader = new c_single_tag_file_layout_reader(header_data);
 
 	reader = new c_single_tag_file_reader(
 		*header_data,
 		engine_platform_build,
 		*layout_reader,
-		*binary_data_chunk);
+		*layout_reader->binary_data_chunk);
 
 	s.stop();
 	float ms = s.get_miliseconds();

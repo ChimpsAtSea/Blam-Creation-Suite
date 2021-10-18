@@ -18,9 +18,6 @@ public:
 	c_single_tag_file_reader* reader;
 
 	s_engine_platform_build engine_platform_build;
-	c_chunk* root_chunk;
-	c_tag_group_layout_chunk* tag_group_layout_chunk;
-	c_binary_data_chunk* binary_data_chunk;
 
 	c_tag_file_high_level_transplant(const char* filepath);
 	~c_tag_file_high_level_transplant();

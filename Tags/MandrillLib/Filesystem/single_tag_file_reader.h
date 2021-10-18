@@ -11,7 +11,7 @@ class c_tag_struct_chunk;
 struct s_single_tag_file_reader_structure_entry
 {
 	const blofeld::s_tag_struct_definition* tag_struct_definition;
-	const s_struct_definition_entry* struct_definition_entry;
+	const s_tag_persist_struct_definition* struct_definition_entry;
 	blofeld::s_tag_persistent_identifier persistent_identifier;
 };
 
@@ -51,7 +51,7 @@ public:
 
 	BCS_RESULT read_tag_struct_to_high_level_object_ref(
 		h_object& high_level_object,
-		s_struct_definition_entry& structure_entry,
+		s_tag_persist_struct_definition& structure_entry,
 		char* const structure_data_begin,
 		c_tag_struct_chunk* structure_chunk);
 

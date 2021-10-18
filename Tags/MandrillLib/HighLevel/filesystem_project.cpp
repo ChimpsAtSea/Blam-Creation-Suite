@@ -15,7 +15,34 @@ c_filesystem_tag_project::c_filesystem_tag_project(const wchar_t* directory) :
 	wcscpy(tags_directory, directory);
 	wcscat(tags_directory, L"tags\\");
 
+	c_stopwatch stopwatch;
+	stopwatch.start();
 	try_open_tag_files();
+	stopwatch.stop();
+	float miliseconds = stopwatch.get_miliseconds();
+
+	stopwatch.start();
+	for (auto& candidate : candidates)
+	{
+		const wchar_t* filepath = candidate.filepath;
+		const wchar_t* relative_filepath = candidate.relative_filepath;
+
+		//if (strcmp(candidate.group->tag_group.name, "vehicle_group") == 0)
+		{
+			if (h_tag* high_level_tag = try_parse_tag_file(filepath))
+			{
+				BCS_WIDECHAR_TO_CHAR_STACK(relative_filepath, relative_filepath_mb);
+
+				high_level_tag->tag_filename = filesystem_extract_filepath_filename(relative_filepath_mb);
+				high_level_tag->tag_filepath = relative_filepath_mb;
+
+				candidate.group->associate_tag_instance(*high_level_tag);
+				debug_point;
+			}
+		}
+	}
+	stopwatch.stop();
+	float tag_parse_time = stopwatch.get_miliseconds();
 
 	debug_point;
 }
@@ -70,7 +97,6 @@ void c_filesystem_tag_project::try_open_single_tag_file(const wchar_t* filepath,
 
 	const wchar_t* group_name = extension + 1;
 	BCS_WIDECHAR_TO_CHAR_STACK(group_name, group_name_mb);
-	BCS_WIDECHAR_TO_CHAR_STACK(relative_filepath, relative_filepath_mb);
 
 	h_group* group;
 	if (BCS_FAILED(get_group_by_file_extension(group_name_mb, group)))
@@ -78,17 +104,7 @@ void c_filesystem_tag_project::try_open_single_tag_file(const wchar_t* filepath,
 		return;
 	}
 
-	if (wcscmp(group_name, L"vehicle") == 0)
-	{
-		if(h_tag* high_level_tag = try_parse_tag_file(filepath))
-		{
-			high_level_tag->tag_filename = filesystem_extract_filepath_filename(relative_filepath_mb);
-			high_level_tag->tag_filepath = relative_filepath_mb;
-
-			group->associate_tag_instance(*high_level_tag);
-			debug_point;
-		}
-	}
+	candidates.push_back({ group, wcsdup(filepath), wcsdup(relative_filepath) });
 
 	debug_point;
 }
@@ -103,9 +119,6 @@ h_tag* c_filesystem_tag_project::try_parse_tag_file(const wchar_t* filepath)
 	c_single_tag_file_reader* reader;
 
 	s_engine_platform_build engine_platform_build;
-	c_chunk* root_chunk;
-	c_tag_group_layout_chunk* tag_group_layout_chunk;
-	c_binary_data_chunk* binary_data_chunk;
 
 	BCS_FAIL_THROW(filesystem_read_file_to_memory(filepath, tag_file_data, tag_file_data_size));
 	ASSERT(tag_file_data_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
@@ -121,20 +134,13 @@ h_tag* c_filesystem_tag_project::try_parse_tag_file(const wchar_t* filepath)
 	c_stopwatch s;
 	s.start();
 
-	root_chunk = new c_tag_header_chunk(header_data + 1);
-	tag_group_layout_chunk = root_chunk->find_first_chunk<c_tag_group_layout_chunk>();
-	binary_data_chunk = root_chunk->find_first_chunk<c_binary_data_chunk>();
-
-	ASSERT(tag_group_layout_chunk != nullptr);
-	ASSERT(binary_data_chunk != nullptr);
-
-	layout_reader = new c_single_tag_file_layout_reader(*tag_group_layout_chunk);
+	layout_reader = new c_single_tag_file_layout_reader(header_data);
 
 	reader = new c_single_tag_file_reader(
 		*header_data,
 		engine_platform_build,
 		*layout_reader,
-		*binary_data_chunk);
+		*layout_reader->binary_data_chunk);
 
 	s.stop();
 	float ms = s.get_miliseconds();

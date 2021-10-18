@@ -23,10 +23,10 @@ public:
 	c_chunk(void* chunk_data, c_chunk* parent);
 	virtual ~c_chunk();
 
-	void log(c_string_data_chunk* string_data_chunk) const;
+	void log(c_single_tag_file_layout_reader& layout_reader) const;
 	void log_pad() const;
 	void log_signature() const;
-	virtual void log_impl(c_string_data_chunk* string_data_chunk) const;
+	virtual void log_impl(c_single_tag_file_layout_reader& layout_reader) const;
 
 	c_chunk* find_first_chunk(tag type) const;
 	c_chunk* get_chunk(unsigned long index) const;

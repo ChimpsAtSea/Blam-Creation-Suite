@@ -14,7 +14,7 @@ c_tag_struct_chunk::c_tag_struct_chunk(void* chunk_data, c_chunk& parent, c_sing
 	console_end_line_verbose();
 }
 
-void c_tag_struct_chunk::log_impl(c_string_data_chunk* string_data_chunk) const
+void c_tag_struct_chunk::log_impl(c_single_tag_file_layout_reader& layout_reader) const
 {
 	log_signature();
 	console_write_line_verbose("metadata:0x%08lu chunk_size:0x%08lu", metadata, chunk_size);

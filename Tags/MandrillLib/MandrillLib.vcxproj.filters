@@ -228,7 +228,7 @@
     <ClInclude Include="Filesystem\Chunks\LayoutChunks\structure_definitions_chunk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Filesystem\Chunks\LayoutChunks\tag_field_types_chunk.h">
+    <ClInclude Include="Filesystem\Chunks\LayoutChunks\field_types_chunk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Filesystem\Chunks\LayoutChunks\tag_group_layout_chunk.h">
@@ -280,6 +280,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Filesystem\tag_file_high_level_transplant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Filesystem\Chunks\LayoutChunks\tag_layout_preinterop_chunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Filesystem\Chunks\LayoutChunks\tag_layout_prechunk_chunk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -491,7 +497,7 @@
     <ClCompile Include="Filesystem\Chunks\LayoutChunks\structure_definitions_chunk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Filesystem\Chunks\LayoutChunks\tag_field_types_chunk.cpp">
+    <ClCompile Include="Filesystem\Chunks\LayoutChunks\field_types_chunk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Filesystem\Chunks\LayoutChunks\tag_group_layout_chunk.cpp">
@@ -534,6 +540,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Filesystem\tag_file_high_level_transplant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Filesystem\Chunks\LayoutChunks\tag_layout_preinterop_chunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Filesystem\Chunks\LayoutChunks\tag_layout_prechunk_chunk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
