@@ -34,7 +34,22 @@ public:
 	template<typename t_chunk>
 	t_chunk* find_first_chunk() const
 	{
-		return static_cast<t_chunk*>(find_first_chunk(t_chunk::signature));
+		for (c_chunk** children_iter = children; children_iter && *children_iter; children_iter++)
+		{
+			if (t_chunk* child = dynamic_cast<t_chunk*>(*children_iter))
+			{
+				return child;
+			}
+		}
+		for (c_chunk** children_iter = children; children_iter && *children_iter; children_iter++)
+		{
+			c_chunk& child = **children_iter;
+			if (t_chunk* child_search_result = child.find_first_chunk<t_chunk>())
+			{
+				return child_search_result;
+			}
+		}
+		return nullptr;
 	}
 
 	template<typename t_chunk>

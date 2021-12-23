@@ -106,12 +106,14 @@ unsigned long c_tag_group_layout_chunk::get_field_count() const
 
 unsigned long c_tag_group_layout_chunk::get_block_definition_count() const
 {
+	if (layout_header_prechunk) return layout_header_prechunk->aggregate_definition_count;
 	if (layout_header_preinterop) return layout_header_preinterop->block_definition_count;
 	return 0;
 }
 
 unsigned long c_tag_group_layout_chunk::get_struct_definition_count() const
 {
+	if (layout_header_prechunk) return layout_header_prechunk->aggregate_definition_count;
 	if (layout_header_preinterop) return layout_header_preinterop->struct_definition_count;
 	return 0;
 }

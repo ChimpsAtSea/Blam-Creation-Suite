@@ -4,16 +4,22 @@ struct s_tag_persist_aggregate_prechunk
 {
 	blofeld::s_tag_persistent_identifier persistent_identifier;
 	s_tag_persist_string_character_index string_character_index;
+	unsigned long count;
 	unsigned long fields_start_index;
-	unsigned long unknown18;
 };
 
-class s_tag_persist_string_character_index;
-class s_tag_persist_string_list;
-class s_tag_persist_array_definition;
-class s_tag_persist_field_type;
-class s_tag_persist_field;
-class s_tag_persist_aggregate_prechunk;
+struct s_tag_persist_aggregate_fixup
+{
+	s_tag_persist_struct_definition struct_definition;
+	s_tag_persist_block_definition block_definition;
+};
+
+struct s_tag_persist_string_character_index;
+struct s_tag_persist_string_list;
+struct s_tag_persist_array_definition;
+struct s_tag_persist_field_type;
+struct s_tag_persist_field;
+struct s_tag_persist_aggregate_prechunk;
 
 class c_tag_layout_prechunk_chunk : public c_typed_chunk<'tgly'>
 {

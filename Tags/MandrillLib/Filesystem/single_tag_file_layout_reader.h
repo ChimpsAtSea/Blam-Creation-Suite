@@ -23,6 +23,8 @@ struct s_tag_persist_resource_definition;
 struct s_tag_persist_interop_definition;
 struct s_tag_persist_field;
 struct s_tag_persist_field_type;
+struct s_tag_persist_aggregate_prechunk;
+struct s_tag_persist_aggregate_fixup;
 
 class c_single_tag_file_layout_reader
 {
@@ -32,6 +34,7 @@ public:
 	c_binary_data_chunk* binary_data_chunk;
 
 	c_single_tag_file_layout_reader(s_single_tag_file_header* header);
+	~c_single_tag_file_layout_reader();
 
 	unsigned long calculate_structure_size_by_index(unsigned long structure_index);
 	unsigned long calculate_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry);
@@ -39,22 +42,18 @@ public:
 	char* get_string_by_string_character_index(const s_tag_persist_string_character_index& string_character_index) const;
 	char* get_custom_block_index_search_name_by_index(unsigned long custom_block_index_search_name_index) const;
 	char* get_data_definition_name_by_index(unsigned long data_definition_index) const;
-	s_tag_persist_block_definition* get_block_definition_by_index(unsigned long index) const;
-	s_tag_persist_struct_definition* get_struct_definition_by_index(unsigned long index) const;
-	s_tag_persist_array_definition* get_array_definition_by_index(unsigned long index) const;
-	s_tag_persist_resource_definition* get_resource_definition_by_index(unsigned long index) const;
-	s_tag_persist_interop_definition* get_interop_definition_by_index(unsigned long index) const;
-	s_tag_persist_field* get_field_by_index(unsigned long index) const;
-	s_tag_persist_field_type* get_field_type_by_index(unsigned long index) const;
+	s_tag_persist_block_definition& get_block_definition_by_index(unsigned long index) const;
+	s_tag_persist_struct_definition& get_struct_definition_by_index(unsigned long index) const;
+	s_tag_persist_array_definition& get_array_definition_by_index(unsigned long index) const;
+	s_tag_persist_resource_definition& get_resource_definition_by_index(unsigned long index) const;
+	s_tag_persist_interop_definition& get_interop_definition_by_index(unsigned long index) const;
+	s_tag_persist_aggregate_prechunk& get_aggregate_by_index(unsigned long index) const;
+	s_tag_persist_field& get_field_by_index(unsigned long index) const;
+	s_tag_persist_field_type& get_field_type_by_index(unsigned long index) const;
 
-	unsigned long get_block_definition_count() const;
-	unsigned long get_struct_definition_count() const;
-	unsigned long get_array_definition_count() const;
-	unsigned long get_resource_definition_count() const;
-	unsigned long get_interop_definition_count() const;
-
-protected:
 	c_tag_layout_prechunk_chunk* tag_layout_prechunk_chunk;
+protected:
+	s_tag_persist_aggregate_fixup* aggregate_entries;
 	c_string_data_chunk* string_data_chunk;
 	c_custom_block_index_search_names_chunk* custom_block_index_search_names_chunk;
 	c_array_definitions_chunk* array_definitions_chunk;

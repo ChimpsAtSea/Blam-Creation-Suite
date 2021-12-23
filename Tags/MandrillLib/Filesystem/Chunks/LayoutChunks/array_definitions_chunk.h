@@ -4,7 +4,7 @@ struct s_tag_persist_array_definition
 {
 	s_tag_persist_string_character_index string_character_index;
 	unsigned long count;
-	unsigned long structure_index;
+	unsigned long structure_entry_index;
 };
 
 class c_array_definitions_chunk : public c_typed_chunk<'arr!'>

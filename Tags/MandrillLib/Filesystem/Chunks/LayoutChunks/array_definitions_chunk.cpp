@@ -17,6 +17,6 @@ void c_array_definitions_chunk::log_impl(c_single_tag_file_layout_reader& layout
 	{
 		s_tag_persist_array_definition entry = entries[index];
 		const char* string = layout_reader.get_string_by_string_character_index(entry.string_character_index);
-		log_pad(); console_write_line_verbose("\t0x%08X\tcount:0x%08X structure_index:0x%08X %s", index, entry.count, entry.structure_index, string);
+		log_pad(); console_write_line_verbose("\t0x%08X\tcount:0x%08X structure_entry_index:0x%08X %s", index, entry.count, entry.structure_entry_index, string);
 	}
 }

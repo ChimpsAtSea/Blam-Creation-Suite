@@ -40,8 +40,8 @@ struct s_tag_persist_layout_header_preinterop
 	unsigned long array_definition_count;
 	unsigned long field_type_count;
 	unsigned long field_count;
-	unsigned long block_definition_count;
 	unsigned long struct_definition_count;
+	unsigned long block_definition_count;
 	unsigned long resource_definition_count;
 };
 static_assert(sizeof(s_tag_persist_layout_header_preinterop) == 0x30);

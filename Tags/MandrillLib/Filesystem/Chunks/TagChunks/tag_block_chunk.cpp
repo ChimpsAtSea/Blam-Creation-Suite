@@ -24,9 +24,9 @@ c_tag_block_chunk::c_tag_block_chunk(void* chunk_data, c_chunk& parent, c_single
 	unsigned long current_block_index = reader.metadata_stack.top();
 	reader.metadata_stack.pop();
 
-	block_entry = reader.layout_reader.get_block_definition_by_index(current_block_index);
+	block_entry = &reader.layout_reader.get_block_definition_by_index(current_block_index);
 	block_name = reader.layout_reader.get_string_by_string_character_index(block_entry->string_character_index);
-	structure_entry = reader.layout_reader.get_struct_definition_by_index(block_entry->structure_entry_index);
+	structure_entry = &reader.layout_reader.get_struct_definition_by_index(block_entry->structure_entry_index);
 	struct_name = reader.layout_reader.get_string_by_string_character_index(structure_entry->string_character_index);
 	struct_size = reader.layout_reader.calculate_structure_size_by_index(block_entry->structure_entry_index);
 	block_data_size = struct_size * tag_block_chunk_header.count;
@@ -128,8 +128,8 @@ void c_tag_block_chunk::read_structure_metadata_impl(s_tag_persist_struct_defini
 {
 	for (unsigned long field_index = structure_entry.fields_start_index;; field_index++)
 	{
-		s_tag_persist_field& field_entry = *reader.layout_reader.get_field_by_index(field_index);
-		s_tag_persist_field_type& field_type = *reader.layout_reader.get_field_type_by_index(field_entry.field_type_index);
+		s_tag_persist_field& field_entry = reader.layout_reader.get_field_by_index(field_index);
+		s_tag_persist_field_type& field_type = reader.layout_reader.get_field_type_by_index(field_entry.field_type_index);
 
 		const char* type_string = reader.layout_reader.get_string_by_string_character_index(field_type.string_character_index);
 		const char* name_string = reader.layout_reader.get_string_by_string_character_index(field_entry.string_character_index);
@@ -145,7 +145,7 @@ void c_tag_block_chunk::read_structure_metadata_impl(s_tag_persist_struct_defini
 			case blofeld::_field_block:
 			{
 				debug_point;
-				s_tag_persist_block_definition& block_entry = *reader.layout_reader.get_block_definition_by_index(field_entry.metadata);
+				s_tag_persist_block_definition& block_entry = reader.layout_reader.get_block_definition_by_index(field_entry.metadata);
 				const char* block_name = reader.layout_reader.get_string_by_string_character_index(block_entry.string_character_index);
 				/*if (verbose)*/ { log_pad(); console_write_line_verbose("\tpushing block %s", block_name); }
 				metadata_stack.push(field_entry.metadata);
@@ -160,7 +160,7 @@ void c_tag_block_chunk::read_structure_metadata_impl(s_tag_persist_struct_defini
 			case blofeld::_field_struct:
 			{
 				unsigned long structure_entry_index = field_entry.metadata;
-				s_tag_persist_struct_definition& structure_entry = *reader.layout_reader.get_struct_definition_by_index(structure_entry_index);
+				s_tag_persist_struct_definition& structure_entry = reader.layout_reader.get_struct_definition_by_index(structure_entry_index);
 				read_structure_metadata_impl(structure_entry, metadata_stack);
 			}
 			break;
@@ -186,8 +186,8 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 	unsigned long metadata_child_index = 0;
 	for (unsigned long field_index = structure_entry.fields_start_index;; field_index++)
 	{
-		s_tag_persist_field& field_entry = *reader.layout_reader.get_field_by_index(field_index);
-		s_tag_persist_field_type& field_type = *reader.layout_reader.get_field_type_by_index(field_entry.field_type_index);
+		s_tag_persist_field& field_entry = reader.layout_reader.get_field_by_index(field_index);
+		s_tag_persist_field_type& field_type = reader.layout_reader.get_field_type_by_index(field_entry.field_type_index);
 
 		const char* type_string = reader.layout_reader.get_string_by_string_character_index(field_type.string_character_index);
 		const char* name_string = reader.layout_reader.get_string_by_string_character_index(field_entry.string_character_index);
@@ -214,8 +214,8 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 		break;
 		case blofeld::_field_array:
 		{
-			s_tag_persist_array_definition& array_entry = *reader.layout_reader.get_array_definition_by_index(field_entry.metadata);
-			unsigned long array_structure_size = reader.layout_reader.calculate_structure_size_by_index(array_entry.structure_index);
+			s_tag_persist_array_definition& array_entry = reader.layout_reader.get_array_definition_by_index(field_entry.metadata);
+			unsigned long array_structure_size = reader.layout_reader.calculate_structure_size_by_index(array_entry.structure_entry_index);
 			unsigned long array_size = array_structure_size * array_entry.count;
 			field_size = array_size;
 		}
@@ -238,7 +238,7 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 			ASSERT(tag_struct_chunk != nullptr);
 
 			unsigned long structure_entry_index = field_entry.metadata;
-			auto& structure_entry = *reader.layout_reader.get_struct_definition_by_index(structure_entry_index);
+			auto& structure_entry = reader.layout_reader.get_struct_definition_by_index(structure_entry_index);
 			char* struct_name = reader.layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
 
 			read_structure_data(structure_entry, structure_data_pos, tag_struct_chunk);
@@ -287,8 +287,8 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 			c_tag_block_chunk* tag_block_chunk = dynamic_cast<c_tag_block_chunk*>(field_chunk);
 			ASSERT(tag_block_chunk != nullptr);
 
-			s_tag_persist_block_definition& block_entry = *reader.layout_reader.get_block_definition_by_index(field_entry.metadata);
-			auto& structure_entry = *reader.layout_reader.get_struct_definition_by_index(block_entry.structure_entry_index);
+			s_tag_persist_block_definition& block_entry = reader.layout_reader.get_block_definition_by_index(field_entry.metadata);
+			auto& structure_entry = reader.layout_reader.get_struct_definition_by_index(block_entry.structure_entry_index);
 			char* block_name = reader.layout_reader.get_string_by_string_character_index(block_entry.string_character_index);
 			char* struct_name = reader.layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
 

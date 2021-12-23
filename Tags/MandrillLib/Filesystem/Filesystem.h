@@ -17,9 +17,6 @@
 #include "Chunks\LayoutChunks\string_lists_chunk.h"
 
 #include "Chunks\LayoutChunks\tag_group_layout_chunk.h"
-#include "Chunks\LayoutChunks\tag_layout_prechunk_chunk.h"
-#include "Chunks\LayoutChunks\tag_layout_preinterop_chunk.h"
-#include "Chunks\LayoutChunks\tag_layout_v3_chunk.h"
 #include "Chunks\LayoutChunks\custom_block_index_search_names_chunk.h"
 #include "Chunks\LayoutChunks\data_definition_name_chunk.h"
 #include "Chunks\LayoutChunks\array_definitions_chunk.h"
@@ -29,6 +26,9 @@
 #include "Chunks\LayoutChunks\resource_definitions_chunk.h"
 #include "Chunks\LayoutChunks\interop_definitions_chunk.h"
 #include "Chunks\LayoutChunks\structure_definitions_chunk.h"
+#include "Chunks\LayoutChunks\tag_layout_prechunk_chunk.h"
+#include "Chunks\LayoutChunks\tag_layout_preinterop_chunk.h"
+#include "Chunks\LayoutChunks\tag_layout_v3_chunk.h"
 
 #include "Chunks\TagChunks\binary_data_chunk.h"
 #include "Chunks\TagChunks\tag_string_id_chunk.h"

@@ -37,13 +37,13 @@ void execute_callback_list(
 		{
 		case 0: execute_callback(); break;
 		case 1: execute_userdata_callback(userdata[0]); break;
-		case 2: execute_userdata_callback(userdata[0], userdata[0]); break;
-		case 3: execute_userdata_callback(userdata[0], userdata[0], userdata[0]); break;
-		case 4: execute_userdata_callback(userdata[0], userdata[0], userdata[0], userdata[0]); break;
-		case 5: execute_userdata_callback(userdata[0], userdata[0], userdata[0], userdata[0], userdata[0]); break;
-		case 6: execute_userdata_callback(userdata[0], userdata[0], userdata[0], userdata[0], userdata[0], userdata[0]); break;
-		case 7: execute_userdata_callback(userdata[0], userdata[0], userdata[0], userdata[0], userdata[0], userdata[0], userdata[0]); break;
-		case 8: execute_userdata_callback(userdata[0], userdata[0], userdata[0], userdata[0], userdata[0], userdata[0], userdata[0], userdata[0]); break;
+		case 2: execute_userdata_callback(userdata[0], userdata[1]); break;
+		case 3: execute_userdata_callback(userdata[0], userdata[1], userdata[2]); break;
+		case 4: execute_userdata_callback(userdata[0], userdata[1], userdata[2], userdata[3]); break;
+		case 5: execute_userdata_callback(userdata[0], userdata[1], userdata[2], userdata[3], userdata[4]); break;
+		case 6: execute_userdata_callback(userdata[0], userdata[1], userdata[2], userdata[3], userdata[4], userdata[5]); break;
+		case 7: execute_userdata_callback(userdata[0], userdata[1], userdata[2], userdata[3], userdata[4], userdata[5], userdata[6]); break;
+		case 8: execute_userdata_callback(userdata[0], userdata[1], userdata[2], userdata[3], userdata[4], userdata[5], userdata[6], userdata[7]); break;
 		}
 
 		entry = entry->next_entry;
