@@ -7,8 +7,8 @@ struct s_tag_block_chunk_header
 };
 
 class c_single_tag_file_reader;
-class s_tag_persist_block_definition;
-class s_tag_persist_struct_definition;
+struct s_tag_persist_block_definition;
+struct s_tag_persist_struct_definition;
 
 class c_tag_block_chunk : public c_typed_single_tag_file_reader_chunk<'tgbl'>
 {

@@ -1,8 +1,8 @@
 #pragma once
 
 struct s_single_tag_file_header;
-struct c_single_tag_file_reader;
-struct c_single_tag_file_layout_reader;
+class c_single_tag_file_reader;
+class c_single_tag_file_layout_reader;
 class c_chunk;
 class c_tag_group_layout_chunk;
 class c_binary_data_chunk;
