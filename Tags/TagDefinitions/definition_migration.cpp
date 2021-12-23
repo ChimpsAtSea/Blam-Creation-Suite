@@ -101,8 +101,15 @@ bool definition_migration_compare_struct(
 
 			switch (old_field.field_type)
 			{
+			case _field_pad:
+				if (old_field.padding != new_field.padding)
+				{
+					console_write_line_with_debug("%s(%i): warning DM07: OLD[0] padding missmatch %i -> %i", old_field.filename, old_field.line, old_field.padding, new_field.padding);
+					console_write_line_with_debug("%s(%i): warning DM07: NEW[1] padding missmatch %i -> %i", new_field.filename, new_field.line, old_field.padding, new_field.padding);
+				}
+				break;
 			case _field_pageable:
-				if (old_field.struct_definition) // #TODO: export flight 1 pageables again
+				if (old_field.struct_definition)
 				{
 					if ((old_field.struct_definition == nullptr) != (new_field.struct_definition == nullptr))
 					{

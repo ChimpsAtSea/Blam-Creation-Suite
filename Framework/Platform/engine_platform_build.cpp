@@ -86,8 +86,9 @@ s_build_and_id builds_and_ids[] =
 	{ _build_halo5_forge_1_114_4592_2, HASH_VERSION(0xc64ebca380e26cdd)},
 	{ _build_halo5_forge_1_194_6192_2, HASH_VERSION(0xf1bafafca2ec154b)},
 	{ _build_midnight_tag_test_untracked_november_13_2013, HASH_VERSION(0x4ecd85f51db2868a)},
-	{ _build_infinite_FLT002INT_199229_21_07_20_0001, MAKE_FILE_VERSION(1,2621, 21, 720)}, // Halo Infinite Flight 30/7/2021
-	{ _build_infinite_HIFLTA_202700_21_09_06_0001, MAKE_FILE_VERSION(6,10020, 12700, 0)}, // Halo Infinite Flight 24/9/2021
+	{ _build_infinite_FLT002INT_199229_21_07_20_0001, MAKE_FILE_VERSION(1, 2621, 21, 720)}, // Halo Infinite Flight 30/7/2021
+	{ _build_infinite_HIFLTA_202700_21_09_06_0001, MAKE_FILE_VERSION(6, 10020, 12700, 0)}, // Halo Infinite Flight 24/9/2021
+	{ _build_infinite_HIREL_209048_21_12_09_1546, MAKE_FILE_VERSION(6, 10020, 19048, 0)}, // Halo Infinite Release 21/12/2021
 };
 static_assert(_countof(builds_and_ids) == k_number_of_build_types);
 

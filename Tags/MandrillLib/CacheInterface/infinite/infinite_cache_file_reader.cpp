@@ -149,13 +149,21 @@ BCS_RESULT c_infinite_module_file_reader::get_buffer(e_cache_file_buffer_index b
 	case _module_file_buffer_data2:
 	case _module_file_buffer_data3:
 	{
-		unsigned long file_info_index = buffer_index - _module_file_buffer_data0;
-		buffer_info.begin = file_infos[file_info_index].file_view_begin;
-		buffer_info.end = file_infos[file_info_index].file_view_end;
-		buffer_info.size = static_cast<unsigned long>(file_infos[file_info_index].file_size);
-
-		if (buffer_index == _module_file_buffer_data0)
+		if (buffer_index == _module_file_buffer_data1)
 		{
+			unsigned long file_info_index = buffer_index - _module_file_buffer_data0;
+			buffer_info.begin = file_infos[file_info_index].file_view_begin;
+			buffer_info.end = file_infos[file_info_index].file_view_end;
+			buffer_info.size = static_cast<unsigned long>(file_infos[file_info_index].file_size);
+		}
+		else /*if (buffer_index == _module_file_buffer_data0)*/
+		{
+			// #TODO: This is pretty terrible??? Why is index 2 used now, but the data is inside of file 0
+			unsigned long file_info_index = 0; // _module_file_buffer_data0
+			buffer_info.begin = file_infos[file_info_index].file_view_begin;
+			buffer_info.end = file_infos[file_info_index].file_view_end;
+			buffer_info.size = static_cast<unsigned long>(file_infos[file_info_index].file_size);
+
 			unsigned long file_entry_size;
 			if (BCS_FAILED(rs = get_module_file_entry_structure_size(file_entry_size)))
 			{

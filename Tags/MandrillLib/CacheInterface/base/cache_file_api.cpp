@@ -42,7 +42,10 @@ BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filepath, s_
 		switch (header.file_version)
 		{
 		case 48: engine_platform_build->build = _build_infinite_FLT002INT_199229_21_07_20_0001; break;
-		case 51: engine_platform_build->build = _build_infinite_HIFLTA_202700_21_09_06_0001; break;
+		case 51:
+			engine_platform_build->build = _build_infinite_HIFLTA_202700_21_09_06_0001;
+			engine_platform_build->build = _build_infinite_HIREL_209048_21_12_09_1546; // #TODO: detect version of 51
+			break;
 		default: throw(BCS_E_UNSUPPORTED);
 		}
 

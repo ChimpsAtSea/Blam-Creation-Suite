@@ -25,6 +25,7 @@
 #include "blofeld/tag_groups.h"
 #include "slipspace/infinite_flight1.h"
 #include "slipspace/infinite_flight2.h"
+#include "slipspace/infinite_release.h"
 #include "slipspace/infinite.h"
 #include "blamlib/halo3_tools.h"
 #include "blamlib/halo2_tools.h"

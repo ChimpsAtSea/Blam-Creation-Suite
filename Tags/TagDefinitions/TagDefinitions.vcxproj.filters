@@ -969,6 +969,9 @@
     <ClCompile Include="types\tag_interop_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="slipspace\infinite_release.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld.h">
@@ -1952,6 +1955,9 @@
     <ClInclude Include="types\tag_data_definition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="slipspace\infinite_release.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="types\tag_field.ctor.inl">
@@ -2003,6 +2009,9 @@
       <Filter>Header Files</Filter>
     </None>
     <None Include="tag_groups\tag_groups.stubbs.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="slipspace\tag_groups.infinite_release.inl">
       <Filter>Header Files</Filter>
     </None>
   </ItemGroup>

@@ -90,6 +90,11 @@ BCS_RESULT c_infinite_file_entry_block_map::unpack_blocks(char*& data)
 		return rs;
 	}
 
+	if (file_entry.packed_data_offset.data_file_index > 1)
+	{
+		return BCS_S_OK;
+	}
+
 	if (file_entry.group_tag != blofeld::INVALID_TAG)
 	{
 		unsigned long expected_total_data_size = 0;
@@ -101,6 +106,7 @@ BCS_RESULT c_infinite_file_entry_block_map::unpack_blocks(char*& data)
 	}
 
 	const char* read_data_buffer = data_module_buffer.begin;
+	ASSERT(read_data_buffer != nullptr);
 	char* write_data_buffer = new char[file_entry.uncompressed_size];
 	memset(write_data_buffer, 0xAC, file_entry.uncompressed_size);
 	if (file_entry.block_count > 0)
@@ -122,6 +128,7 @@ BCS_RESULT c_infinite_file_entry_block_map::unpack_blocks(char*& data)
 
 			if (block_entry.uncompressed_size > block_entry.compressed_size)
 			{
+				ASSERT(read_data_position != nullptr);
 				BCS_RESULT decompress_result = decompress_buffer_oodle(read_data_position, block_entry.compressed_size, write_data_position, block_entry.uncompressed_size);
 				ASSERT(BCS_SUCCEEDED(decompress_result));
 				debug_point;

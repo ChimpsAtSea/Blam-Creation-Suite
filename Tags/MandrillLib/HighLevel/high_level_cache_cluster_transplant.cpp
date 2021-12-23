@@ -1142,14 +1142,17 @@ public:
 							BCS_RESULT rst1 = resource_file_entry_block_map->map(external_resource_data);
 							ASSERT(BCS_SUCCEEDED(rst1));
 
-							debug_point;
-							char* data_start = static_cast<char*>(external_resource_data);
-							char* data_end = data_start + resource_file_entry_block_map->file_entry.uncompressed_size;
+							if (external_resource_data)
+							{
+								debug_point;
+								char* data_start = static_cast<char*>(external_resource_data);
+								char* data_end = data_start + resource_file_entry_block_map->file_entry.uncompressed_size;
 
-							resource_storage->data.insert(resource_storage->data.end(), data_start, data_end);
+								resource_storage->data.insert(resource_storage->data.end(), data_start, data_end);
 
-							BCS_RESULT rst2 = resource_file_entry_block_map->unmap(external_resource_data);
-							ASSERT(BCS_SUCCEEDED(rst2));
+								BCS_RESULT rst2 = resource_file_entry_block_map->unmap(external_resource_data);
+								ASSERT(BCS_SUCCEEDED(rst2));
+							}
 
 							index++;
 
@@ -1185,45 +1188,60 @@ public:
 
 						if (_tag_block_data->type == _infinite_ucs_tag_block_type_resource)
 						{
-							ASSERT(ucs_pageable_resource_field.unknownC == 0);
-							// standard resources have no tag data associated with them
-
-							if (resource_storage->data.size() > 0)
+							if (ucs_pageable_resource_field.unknownC == 0)
 							{
-								ASSERT(resource_storage->data.size() > sizeof(s_infinite_ucs_header));
-								s_infinite_ucs_header& resource_ucs_header = *reinterpret_cast<s_infinite_ucs_header*>(resource_storage->data.data());
-								ASSERT(resource_ucs_header.magic == 'hscu');
-								resource_ucs_header.magic;
-								c_infinite_ucs_reader resource_ucs_reader = c_infinite_ucs_reader(&resource_ucs_header);
+								ASSERT(ucs_pageable_resource_field.unknownC == 0);
+								// standard resources have no tag data associated with them
+
+								if (resource_storage->data.size() > 0)
+								{
+									ASSERT(resource_storage->data.size() > sizeof(s_infinite_ucs_header));
+									s_infinite_ucs_header& resource_ucs_header = *reinterpret_cast<s_infinite_ucs_header*>(resource_storage->data.data());
+									ASSERT(resource_ucs_header.magic == 'hscu');
+									resource_ucs_header.magic;
+									c_infinite_ucs_reader resource_ucs_reader = c_infinite_ucs_reader(&resource_ucs_header);
 
 
-								debug_point;
+									debug_point;
+								}
+							}
+							else
+							{
+								debug_point; // #TODO: some of these are 2, why?
 							}
 
 						}
 						else if (_tag_block_data->type == _infinite_ucs_tag_block_type_custom)
 						{
 							ASSERT(ucs_pageable_resource_field.unknownC == 1);
-							ASSERT(_tag_block_data->nugget_index >= 0);
 
-							const s_infinite_ucs_nugget& nugget = ucs_reader.nuggets[_tag_block_data->nugget_index];
-							ASSERT(nugget.size == total_block_struct_storage_size);
+							if (_tag_block_data->nugget_index >= 0)
+							{
+								ASSERT(_tag_block_data->nugget_index >= 0);
 
-							const char* const root_tag_data = static_cast<const char*>(ucs_reader.tag_data);
-							const char* const pageable_resource_data = root_tag_data + nugget.offset;
+								const s_infinite_ucs_nugget& nugget = ucs_reader.nuggets[_tag_block_data->nugget_index];
+								ASSERT(nugget.size == total_block_struct_storage_size);
 
-							h_object* pageable_resource_object = h_object::create_high_level_object(pageable_resource_struct_definition, engine_platform_build);
-							ASSERT(pageable_resource_object != nullptr);
+								const char* const root_tag_data = static_cast<const char*>(ucs_reader.tag_data);
+								const char* const pageable_resource_data = root_tag_data + nugget.offset;
 
-							resource_storage->object = pageable_resource_object;
+								h_object* pageable_resource_object = h_object::create_high_level_object(pageable_resource_struct_definition, engine_platform_build);
+								ASSERT(pageable_resource_object != nullptr);
 
-							transplant_module_file_data(
-								*pageable_resource_object,
-								_tag_block_index,
-								pageable_resource_data,
-								_tag_block_data->nugget_index,
-								pageable_resource_data,
-								pageable_resource_struct_definition);
+								resource_storage->object = pageable_resource_object;
+
+								transplant_module_file_data(
+									*pageable_resource_object,
+									_tag_block_index,
+									pageable_resource_data,
+									_tag_block_data->nugget_index,
+									pageable_resource_data,
+									pageable_resource_struct_definition);
+							}
+							else
+							{
+								// #TODO: why is this -1 sometimes?
+							}
 						}
 						else
 						{

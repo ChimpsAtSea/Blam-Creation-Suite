@@ -13,6 +13,7 @@ infinite::c_infinite_generic_module_file_entry::c_infinite_generic_module_file_e
 		new(this) c_infinite_generic_module_file_entry(*static_cast<const infinite::s_module_file_entry_48*>(data));
 		break;
 	case _build_infinite_HIFLTA_202700_21_09_06_0001:
+	case _build_infinite_HIREL_209048_21_12_09_1546:
 		new(this) c_infinite_generic_module_file_entry(*static_cast<const infinite::s_module_file_entry_51*>(data));
 		break;
 	default:

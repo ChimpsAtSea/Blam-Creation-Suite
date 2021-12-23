@@ -20,6 +20,12 @@ c_blamboozle_infinite::c_blamboozle_infinite(const wchar_t* _output_directory, c
 		infinite_tag_layout_table_address = 0x00000285c43c4000;
 		infinite_num_tag_layouts = 474;
 	}
+	if (build == _build_infinite_HIREL_209048_21_12_09_1546)
+	{
+		infinite_dump_base_address = 0x00007FF6F65E0000;
+		infinite_tag_layout_table_address = 0x000001e922524000;
+		infinite_num_tag_layouts = 474;
+	}
 }
 
 c_blamboozle_infinite::~c_blamboozle_infinite()

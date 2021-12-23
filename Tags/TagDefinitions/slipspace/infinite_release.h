@@ -2,7 +2,7 @@
 
 namespace blofeld
 {
-namespace infinite {
+namespace infinite_release {
 
 	static constexpr unsigned long ANYTAG_TAG = 'aTag';
 	extern s_tag_group AnyTag_group;
@@ -627,9 +627,6 @@ namespace infinite {
 
 	static constexpr unsigned long LUA_SCRIPT_TAG = 'luas';
 	extern s_tag_group lua_script_group;
-
-	static constexpr unsigned long INGAMEMAPRENDER_TAG = 'mapr';
-	extern s_tag_group InGameMapRender_group;
 
 	static constexpr unsigned long INGAMEMAPASSETS_TAG = 'mapa';
 	extern s_tag_group InGameMapAssets_group;
@@ -1593,6 +1590,8 @@ namespace infinite {
 
 	extern s_tag_block_definition c_character_locomotionoverrides_properties_internal_block;
 
+	extern s_tag_block_definition animationexception_block;
+
 	extern s_tag_block_definition c_character_movementtweak_properties_internal_block;
 
 	extern s_tag_block_definition c_character_throttle_style_properties_internal_block;
@@ -1604,8 +1603,6 @@ namespace infinite {
 	extern s_tag_block_definition c_character_flocking_properties_internal_block;
 
 	extern s_tag_block_definition c_character_swarm_properties_internal_block;
-
-	extern s_tag_block_definition animationexception_block;
 
 	extern s_tag_block_definition c_character_engage_properties_internal_block;
 
@@ -3731,12 +3728,6 @@ namespace infinite {
 
 	extern s_tag_block_definition i343itemsshroudgeneratordefinition_block;
 
-	extern s_tag_block_definition i343itemswallbuilderwallvertmarkernames_block;
-
-	extern s_tag_block_definition i343itemswallbuilderwallcellmapping_block;
-
-	extern s_tag_block_definition i343itemswallbuilderwalldefinition_block;
-
 	extern s_tag_block_definition i343weaponbarrelsweetheatparam_block;
 
 	extern s_tag_block_definition i343objectsindirectlightingcomponentdefinition_block;
@@ -4873,8 +4864,6 @@ namespace infinite {
 
 	extern s_tag_block_definition cuidonotcreatecomponentdefinition_block;
 
-	extern s_tag_block_definition cuidonotcreatescreendefinition_block;
-
 	extern s_tag_block_definition s_cui_component_properties_definition_block;
 
 	extern s_tag_block_definition s_cui_overlay_definition_block;
@@ -5425,8 +5414,6 @@ namespace infinite {
 
 	extern s_tag_block_definition render_model_node_block;
 
-	extern s_tag_block_definition streamingbitmapinfo_block;
-
 	extern s_tag_block_definition structure_instanced_geometry_instance_block;
 
 	extern s_tag_block_definition structurelightdefinition_block;
@@ -5524,10 +5511,6 @@ namespace infinite {
 	extern s_tag_block_definition i343graphicsclustermaskblock_block;
 
 	extern s_tag_block_definition i343graphicsclusternodecount_block;
-
-	extern s_tag_block_definition i343graphicsindexlistblock_block;
-
-	extern s_tag_block_definition i343graphicshierarchynode_block;
 
 	extern s_tag_block_definition i343graphicsforwardfastlight_block;
 
@@ -6389,8 +6372,6 @@ namespace infinite {
 
 	extern s_tag_block_definition ingamemapsettingstag_group_block;
 
-	extern s_tag_block_definition ingamemaprendertag_group_block;
-
 	extern s_tag_block_definition ingamemapmaterialvariationstag_group_block;
 
 	extern s_tag_block_definition luascripttagdefinition_group_block;
@@ -6735,8 +6716,6 @@ namespace infinite {
 
 	extern s_tag_array_definition psodata;
 
-	extern s_tag_array_definition psobucketdata;
-
 	extern s_tag_struct_definition aihintsectorpoint;
 
 	extern s_tag_struct_definition s_ai_sector_point;
@@ -6986,6 +6965,8 @@ namespace infinite {
 
 	extern s_tag_struct_definition c_character_locomotionoverrides_properties_internal;
 
+	extern s_tag_struct_definition animationexception;
+
 	extern s_tag_struct_definition c_character_movementtweak_properties_internal;
 	extern s_string_list_definition characterjumpheight;
 
@@ -6998,8 +6979,6 @@ namespace infinite {
 	extern s_tag_struct_definition c_character_flocking_properties_internal;
 
 	extern s_tag_struct_definition c_character_swarm_properties_internal;
-
-	extern s_tag_struct_definition animationexception;
 
 	extern s_tag_struct_definition c_character_engage_properties_internal;
 	extern s_string_list_definition characterengageflags;
@@ -7752,7 +7731,6 @@ namespace infinite {
 	extern s_string_list_definition animationnodemodelflags;
 
 	extern s_tag_struct_definition s_import_frame_event;
-	extern s_string_list_definition animationframeeventtype;
 
 	extern s_tag_struct_definition s_sound_event_extended_deprecated;
 
@@ -8531,16 +8509,16 @@ namespace infinite {
 	extern s_tag_struct_definition unicodestringlistgroup;
 
 	extern s_tag_struct_definition i343valorrewardsiconbitmap;
-	extern s_tag_reference_definition bitmap_reference$80_tagref;
+	extern s_tag_reference_definition bitmap_reference$81_tagref;
 
 	extern s_tag_struct_definition i343valorrewardsbackgroundbitmap;
-	extern s_tag_reference_definition bitmap_reference$81_tagref;
+	extern s_tag_reference_definition bitmap_reference$82_tagref;
 
 	extern s_tag_struct_definition i343valorrewardsreward;
 	extern s_string_list_definition i343valorrewardsdamagetype;
-	extern s_tag_reference_definition bitmap_reference$82_tagref;
 	extern s_tag_reference_definition bitmap_reference$83_tagref;
 	extern s_tag_reference_definition bitmap_reference$84_tagref;
+	extern s_tag_reference_definition bitmap_reference$85_tagref;
 
 	extern s_tag_struct_definition i343valorrewardspoints;
 
@@ -9384,8 +9362,8 @@ namespace infinite {
 	extern s_tag_struct_definition s_single_screen_effect_definition;
 	extern s_string_list_definition s_single_screen_effect_definitionc_single_screen_effect_flags;
 	extern s_string_list_definition s_single_screen_effect_definitionc_single_screen_effect_hidden_flags;
-	extern s_tag_reference_definition bitmap_reference$69_tagref;
 	extern s_tag_reference_definition bitmap_reference$70_tagref;
+	extern s_tag_reference_definition bitmap_reference$71_tagref;
 	extern s_tag_reference_definition material_reference$24_tagref;
 
 	extern s_tag_struct_definition s_area_screen_effect_definition;
@@ -9487,11 +9465,9 @@ namespace infinite {
 
 	extern s_tag_struct_definition hsbytecode;
 
-	extern s_tag_struct_definition hssource_v1;
 	extern s_tag_struct_definition hssource;
-	extern s_tag_struct_definition hssymbol_v1;
-	extern s_tag_struct_definition hssymbol;
 
+	extern s_tag_struct_definition hssymbol;
 
 	extern s_tag_struct_definition hsdebugresource;
 
@@ -10007,7 +9983,7 @@ namespace infinite {
 	extern s_tag_struct_definition s_wind_function;
 
 	extern s_tag_struct_definition s_wind_definition;
-	extern s_tag_reference_definition bitmap_reference$88_tagref;
+	extern s_tag_reference_definition bitmap_reference$89_tagref;
 
 	extern s_tag_struct_definition mapleaffacevertex;
 
@@ -10071,7 +10047,7 @@ namespace infinite {
 	extern s_tag_struct_definition gpuvisibilitybitfield;
 
 	extern s_tag_struct_definition bspbitmapreference;
-	extern s_tag_reference_definition bitmap_reference$68_tagref;
+	extern s_tag_reference_definition bitmap_reference$69_tagref;
 
 	extern s_tag_struct_definition streamingbitmapscale;
 
@@ -11010,10 +10986,10 @@ namespace infinite {
 	extern s_tag_struct_definition objectfunctionnodedata;
 
 	extern s_tag_struct_definition oneshotsoundnodedata;
-	extern s_tag_reference_definition sound_reference$224_tagref;
+	extern s_tag_reference_definition sound_reference$228_tagref;
 
 	extern s_tag_struct_definition oneshotsoundreferencenodedata;
-	extern s_tag_reference_definition sound_reference$225_tagref;
+	extern s_tag_reference_definition sound_reference$229_tagref;
 
 	extern s_tag_struct_definition persistentrandomfloatnodedata;
 
@@ -11124,7 +11100,6 @@ namespace infinite {
 	extern s_tag_struct_definition i343terraininputstag;
 
 	extern s_tag_struct_definition i343terraintiletag;
-	extern s_tag_reference_definition terrain_system_reference$3_tagref;
 
 	extern s_tag_struct_definition i343terraintilereference;
 	extern s_tag_reference_definition terrain_tile_reference_tagref;
@@ -11321,7 +11296,7 @@ namespace infinite {
 
 	extern s_tag_struct_definition i343surfacinginput;
 	extern s_string_list_definition i343surfacinginputtype;
-	extern s_tag_reference_definition bitmap_reference$64_tagref;
+	extern s_tag_reference_definition bitmap_reference$65_tagref;
 
 	extern s_tag_struct_definition i343layergpuinterpreterbytecode;
 
@@ -11342,13 +11317,13 @@ namespace infinite {
 	extern s_tag_struct_definition i343terrainquadtreenodedata;
 
 	extern s_tag_struct_definition i343gpumateriallayerbitmapreference;
-	extern s_tag_reference_definition bitmap_reference$66_tagref;
-
-	extern s_tag_struct_definition i343sharedgpuinterpreterbitmapreference;
 	extern s_tag_reference_definition bitmap_reference$67_tagref;
 
+	extern s_tag_struct_definition i343sharedgpuinterpreterbitmapreference;
+	extern s_tag_reference_definition bitmap_reference$68_tagref;
+
 	extern s_tag_struct_definition i343terrainruntimetag;
-	extern s_tag_reference_definition bitmap_reference$65_tagref;
+	extern s_tag_reference_definition bitmap_reference$66_tagref;
 	extern s_tag_reference_definition material_reference$22_tagref;
 	extern s_tag_reference_definition material_reference$23_tagref;
 
@@ -11421,17 +11396,11 @@ namespace infinite {
 	extern s_tag_reference_definition effect_reference$12_tagref;
 	extern s_tag_reference_definition object_reference$3_tagref;
 
-	extern s_tag_struct_definition i343itemswallbuilderwallvertmarkernames;
-
-	extern s_tag_struct_definition i343itemswallbuilderwallcellmapping;
-
-	extern s_tag_struct_definition i343itemswallbuilderwalldefinition;
-
 	extern s_tag_struct_definition i343weaponaltfirecomponentdefinition;
 	extern s_string_list_definition i343weaponaltfireflags;
-	extern s_tag_reference_definition outlinetypedefinition_reference$17_tagref;
-	extern s_tag_reference_definition sound_reference$217_tagref;
-	extern s_tag_reference_definition sound_reference$218_tagref;
+	extern s_tag_reference_definition outlinetypedefinition_reference$20_tagref;
+	extern s_tag_reference_definition sound_reference$221_tagref;
+	extern s_tag_reference_definition sound_reference$222_tagref;
 
 	extern s_tag_struct_definition i343weaponbarrelsweetheatdefinition;
 	extern s_tag_reference_definition projectile_reference$10_tagref;
@@ -11496,7 +11465,7 @@ namespace infinite {
 	extern s_tag_struct_definition i343objectsselfdestructhandlerdefinition;
 
 	extern s_tag_struct_definition i343highlightservicehighlightserviceglobalsdefinition_type;
-	extern s_tag_reference_definition outlinetypedefinition_reference$11_tagref;
+	extern s_tag_reference_definition outlinetypedefinition_reference$14_tagref;
 
 	extern s_tag_struct_definition i343highlightservicehighlightserviceglobalsdefinition;
 
@@ -11719,7 +11688,7 @@ namespace infinite {
 	extern s_string_list_definition i343weaponweaponsoundflags;
 	extern s_tag_reference_definition _reference$163_tagref;
 	extern s_tag_reference_definition _reference$164_tagref;
-	extern s_tag_reference_definition sound_reference$219_tagref;
+	extern s_tag_reference_definition sound_reference$223_tagref;
 
 	extern s_tag_struct_definition i343weapontiggerchargingfirefractions;
 
@@ -11811,12 +11780,12 @@ namespace infinite {
 
 	extern s_tag_struct_definition i343weaponsightcomponentdefinition;
 	extern s_string_list_definition i343weaponsightcomponentdefinitionflags;
-	extern s_tag_reference_definition outlinetypedefinition_reference$18_tagref;
+	extern s_tag_reference_definition outlinetypedefinition_reference$21_tagref;
 	extern s_tag_reference_definition cui_screen_reference$17_tagref;
 	extern s_tag_reference_definition cui_screen_reference$18_tagref;
 	extern s_tag_reference_definition cui_screen_reference$19_tagref;
 	extern s_tag_reference_definition weapon_depth_of_field_reference_tagref;
-	extern s_tag_reference_definition sound_reference$220_tagref;
+	extern s_tag_reference_definition sound_reference$224_tagref;
 
 	extern s_tag_struct_definition i343weaponattachmentsightdefinition;
 
@@ -11847,8 +11816,8 @@ namespace infinite {
 
 	extern s_tag_struct_definition i343weaponzoomleveldefinition;
 	extern s_string_list_definition i343weaponzoommagnificationprofilesetting;
-	extern s_tag_reference_definition sound_reference$221_tagref;
-	extern s_tag_reference_definition sound_reference$222_tagref;
+	extern s_tag_reference_definition sound_reference$225_tagref;
+	extern s_tag_reference_definition sound_reference$226_tagref;
 	extern s_string_list_definition i343weaponzoomleveldefinitionscreeneffectflags;
 	extern s_tag_reference_definition effect_reference$184_tagref;
 	extern s_tag_reference_definition area_screen_effect_reference$7_tagref;
@@ -12111,7 +12080,7 @@ namespace infinite {
 	extern s_string_list_definition spawnpointflags;
 
 	extern s_tag_struct_definition terminalredeemableobjectdefinition;
-	extern s_tag_reference_definition object_reference$18_tagref;
+	extern s_tag_reference_definition object_reference$16_tagref;
 
 	extern s_tag_struct_definition s_scenario_multiplayer_object_properties;
 	extern s_string_list_definition i343netprotocolbondenumhelper_i343netprotocolmapvariantplacementmode_enum;
@@ -12119,8 +12088,8 @@ namespace infinite {
 	extern s_string_list_definition c_multiplayer_object_placement_spawn_flags;
 	extern s_string_list_definition i343netprotocolbondenumhelper_i343netprotocolphonetic_enum;
 	extern s_string_list_definition multiplayerobjectpropertyflags;
-	extern s_tag_reference_definition object_reference$17_tagref;
-	extern s_tag_reference_definition object_configuration_reference$4_tagref;
+	extern s_tag_reference_definition object_reference$15_tagref;
+	extern s_tag_reference_definition object_configuration_reference$3_tagref;
 	extern s_string_list_definition multiplayerpropertiesmapzoneflags;
 	extern s_string_list_definition multiplayerpropertiesmapzoneconfigurationflags;
 
@@ -12289,12 +12258,12 @@ namespace infinite {
 	extern s_string_list_definition i343outlineserviceoutlinerenderflags;
 	extern s_string_list_definition i343outlineservicechildoutlinebehaviour;
 	extern s_string_list_definition i343outlineserviceocclusionmode;
-	extern s_tag_reference_definition outlinetypedefinition_reference$13_tagref;
-	extern s_tag_reference_definition outlinetypedefinition_reference$14_tagref;
-	extern s_tag_reference_definition outlinetypedefinition_reference$15_tagref;
+	extern s_tag_reference_definition outlinetypedefinition_reference$16_tagref;
+	extern s_tag_reference_definition outlinetypedefinition_reference$17_tagref;
+	extern s_tag_reference_definition outlinetypedefinition_reference$18_tagref;
 
 	extern s_tag_struct_definition i343outlineserviceoutlineserviceglobalsdefinition;
-	extern s_tag_reference_definition outlinetypedefinition_reference$12_tagref;
+	extern s_tag_reference_definition outlinetypedefinition_reference$15_tagref;
 	extern s_string_list_definition i343outlineserviceoutlineglobalflags;
 	extern s_tag_reference_definition bitmap_reference$55_tagref;
 	extern s_tag_reference_definition bitmap_reference$56_tagref;
@@ -12640,7 +12609,7 @@ namespace infinite {
 
 	extern s_tag_struct_definition i343spartantrackingpingdefinition;
 	extern s_tag_reference_definition effect_reference$178_tagref;
-	extern s_tag_reference_definition outlinetypedefinition_reference$16_tagref;
+	extern s_tag_reference_definition outlinetypedefinition_reference$19_tagref;
 	extern s_string_list_definition i343outlineservicesystemid;
 
 	extern s_tag_struct_definition s_unit_camera;
@@ -12811,9 +12780,9 @@ namespace infinite {
 	extern s_string_list_definition vehiclesize;
 	extern s_tag_reference_definition soundbank_reference$14_tagref;
 	extern s_tag_reference_definition material_effects_reference$6_tagref;
-	extern s_tag_reference_definition sound_reference$214_tagref;
-	extern s_tag_reference_definition sound_reference$215_tagref;
-	extern s_tag_reference_definition sound_reference$216_tagref;
+	extern s_tag_reference_definition sound_reference$218_tagref;
+	extern s_tag_reference_definition sound_reference$219_tagref;
+	extern s_tag_reference_definition sound_reference$220_tagref;
 	extern s_tag_reference_definition effect_reference$179_tagref;
 	extern s_tag_reference_definition _reference$120_tagref;
 	extern s_tag_reference_definition _reference$121_tagref;
@@ -12822,13 +12791,13 @@ namespace infinite {
 	extern s_tag_struct_definition s_toruqe_curve_definition;
 
 	extern s_tag_struct_definition s_vehicle_gear_definition;
-	extern s_tag_reference_definition sound_reference$211_tagref;
-	extern s_tag_reference_definition sound_reference$212_tagref;
+	extern s_tag_reference_definition sound_reference$215_tagref;
+	extern s_tag_reference_definition sound_reference$216_tagref;
 
 	extern s_tag_struct_definition s_vehicle_load_and_cruise_definition;
 
 	extern s_tag_struct_definition s_vehicle_engine_definition;
-	extern s_tag_reference_definition sound_reference$213_tagref;
+	extern s_tag_reference_definition sound_reference$217_tagref;
 
 	extern s_tag_struct_definition s_scenario_vehicle_datum;
 	extern s_tag_reference_definition vehicleconfiguration_reference$2_tagref;
@@ -13144,7 +13113,7 @@ namespace infinite {
 	extern s_tag_reference_definition cui_screen_reference$14_tagref;
 	extern s_tag_reference_definition cui_screen_reference$15_tagref;
 	extern s_tag_reference_definition cui_screen_reference$16_tagref;
-	extern s_tag_reference_definition bitmap_reference$85_tagref;
+	extern s_tag_reference_definition bitmap_reference$86_tagref;
 
 	extern s_tag_struct_definition s_scenario_weapon_datum;
 	extern s_string_list_definition weaponaccelerateoverride;
@@ -13173,7 +13142,7 @@ namespace infinite {
 
 	extern s_tag_struct_definition terminal_definition;
 	extern s_tag_reference_definition sound_reference$122_tagref;
-	extern s_tag_reference_definition bitmap_reference$73_tagref;
+	extern s_tag_reference_definition bitmap_reference$74_tagref;
 	extern s_tag_reference_definition multilingual_unicode_string_list_reference$12_tagref;
 
 	extern s_tag_struct_definition control_definition;
@@ -13593,6 +13562,9 @@ namespace infinite {
 	extern s_tag_reference_definition outlinetypedefinition_reference$8_tagref;
 	extern s_tag_reference_definition outlinetypedefinition_reference$9_tagref;
 	extern s_tag_reference_definition outlinetypedefinition_reference$10_tagref;
+	extern s_tag_reference_definition outlinetypedefinition_reference$11_tagref;
+	extern s_tag_reference_definition outlinetypedefinition_reference$12_tagref;
+	extern s_tag_reference_definition outlinetypedefinition_reference$13_tagref;
 
 	extern s_tag_struct_definition i343playerinventorylimits;
 
@@ -14059,7 +14031,6 @@ namespace infinite {
 	extern s_tag_struct_definition inheritablefloat;
 	extern s_string_list_definition inheritfromparent;
 
-	extern s_tag_struct_definition s_material_physics_properties_v1;
 	extern s_tag_struct_definition s_material_physics_properties;
 	extern s_tag_reference_definition water_physics_drag_properties_reference_tagref;
 
@@ -14067,8 +14038,8 @@ namespace infinite {
 	extern s_tag_reference_definition sound_reference$90_tagref;
 	extern s_tag_reference_definition sound_reference$91_tagref;
 	extern s_tag_reference_definition sound_reference$92_tagref;
-	extern s_tag_reference_definition sound_looping_reference$6_tagref;
 	extern s_tag_reference_definition sound_looping_reference$7_tagref;
+	extern s_tag_reference_definition sound_looping_reference$8_tagref;
 	extern s_tag_reference_definition sound_reference$93_tagref;
 	extern s_tag_reference_definition sound_reference$94_tagref;
 	extern s_tag_reference_definition sound_reference$95_tagref;
@@ -14288,7 +14259,7 @@ namespace infinite {
 	extern s_tag_reference_definition sound_reference$71_tagref;
 
 	extern s_tag_struct_definition interfacefasthudsoundloopdefinition;
-	extern s_tag_reference_definition sound_looping_reference$5_tagref;
+	extern s_tag_reference_definition sound_looping_reference$6_tagref;
 
 	extern s_tag_struct_definition interfacefasthudnavpointlayoutreferencedefinition;
 	extern s_tag_reference_definition navpointlayoutdefinition_reference_tagref;
@@ -14392,7 +14363,6 @@ namespace infinite {
 	extern s_tag_struct_definition ingamemapgaksettings;
 
 	extern s_tag_struct_definition ingamemapsettingstag;
-	extern s_tag_struct_definition ingamemaprendertag;
 	extern s_tag_reference_definition structure_lightmap_reference$4_tagref;
 	extern s_tag_reference_definition dynamicworldstateglobals_reference$2_tagref;
 	extern s_tag_reference_definition ingamemapmaterialvariations_reference_tagref;
@@ -14682,7 +14652,6 @@ namespace infinite {
 
 	extern s_tag_struct_definition s_cui_component_index_definition;
 
-	extern s_tag_struct_definition cuidonotcreatescreendefinition;
 	extern s_tag_struct_definition cuidonotcreatecomponentdefinition;
 
 	extern s_tag_struct_definition s_cui_component_properties_definition;
@@ -14738,8 +14707,6 @@ namespace infinite {
 
 	extern s_tag_struct_definition interfaceemblemthemeglobals;
 
-	extern s_tag_struct_definition interfacefasthudgamertagdisplayoverrides;
-
 	extern s_tag_struct_definition interfacestringidoverride;
 
 	extern s_tag_struct_definition navpointpresentationtagblock;
@@ -14759,13 +14726,13 @@ namespace infinite {
 
 	extern s_tag_struct_definition userinterfacehudglobalsdefinitions;
 	extern s_string_list_definition hudmotionsensorglobalshudmotionsensorglobalsflags;
-	extern s_tag_reference_definition bitmap_reference$74_tagref;
-	extern s_string_list_definition hudscreenblobglobalshudscreenblobglobalsflags;
 	extern s_tag_reference_definition bitmap_reference$75_tagref;
+	extern s_string_list_definition hudscreenblobglobalshudscreenblobglobalsflags;
 	extern s_tag_reference_definition bitmap_reference$76_tagref;
 	extern s_tag_reference_definition bitmap_reference$77_tagref;
 	extern s_tag_reference_definition bitmap_reference$78_tagref;
 	extern s_tag_reference_definition bitmap_reference$79_tagref;
+	extern s_tag_reference_definition bitmap_reference$80_tagref;
 	extern s_tag_reference_definition _reference$111_tagref;
 	extern s_string_list_definition highcontrastflags;
 	extern s_tag_reference_definition sound_reference$125_tagref;
@@ -14881,6 +14848,10 @@ namespace infinite {
 	extern s_tag_reference_definition sound_looping_reference$12_tagref;
 	extern s_tag_reference_definition sound_reference$209_tagref;
 	extern s_tag_reference_definition sound_reference$210_tagref;
+	extern s_tag_reference_definition sound_reference$211_tagref;
+	extern s_tag_reference_definition sound_reference$212_tagref;
+	extern s_tag_reference_definition sound_reference$213_tagref;
+	extern s_tag_reference_definition sound_reference$214_tagref;
 
 	extern s_tag_struct_definition userinterfacegamescreensequencestep;
 	extern s_string_list_definition i343netprotocolset_i343netprotocolgameoptionsscreensequencestepflags_;
@@ -14930,7 +14901,7 @@ namespace infinite {
 
 	extern s_tag_struct_definition loadingscreensettings;
 	extern s_string_list_definition e_loadingscreencategory;
-	extern s_tag_reference_definition bitmap_reference$86_tagref;
+	extern s_tag_reference_definition bitmap_reference$87_tagref;
 
 	extern s_tag_struct_definition s_user_interface_shared_globals;
 	extern s_tag_reference_definition multilingual_unicode_string_list_reference$13_tagref;
@@ -14939,11 +14910,11 @@ namespace infinite {
 	extern s_tag_reference_definition user_interface_sounds_definition_reference_tagref;
 	extern s_tag_reference_definition sound_response_reference$6_tagref;
 	extern s_tag_reference_definition sound_response_reference$7_tagref;
-	extern s_tag_reference_definition sound_reference$223_tagref;
+	extern s_tag_reference_definition sound_reference$227_tagref;
 	extern s_tag_reference_definition typeface_reference_tagref;
 	extern s_tag_reference_definition cui_screen_reference$21_tagref;
 	extern s_tag_reference_definition cui_screen_reference$22_tagref;
-	extern s_tag_reference_definition bitmap_reference$87_tagref;
+	extern s_tag_reference_definition bitmap_reference$88_tagref;
 	extern s_tag_reference_definition emblem_theme_globals_reference_tagref;
 	extern s_tag_reference_definition uri_lookup_table_reference_tagref;
 	extern s_tag_reference_definition narrationphonemes_reference_tagref;
@@ -14951,7 +14922,6 @@ namespace infinite {
 
 	extern s_tag_struct_definition s_user_interface_tag_globals;
 	extern s_tag_reference_definition user_interface_hud_globals_definition_reference_tagref;
-	extern s_tag_reference_definition ingamemaprender_reference_tagref;
 	extern s_tag_reference_definition ingamemapsettings_reference_tagref;
 
 	extern s_tag_struct_definition i343physicscharacterclamberingparameters;
@@ -15089,7 +15059,7 @@ namespace infinite {
 	extern s_tag_reference_definition terrain_cell_geo_reference_tagref;
 
 	extern s_tag_struct_definition i343physicsterraincollisiongeoinputssettag;
-	extern s_tag_reference_definition bitmap_reference$72_tagref;
+	extern s_tag_reference_definition bitmap_reference$73_tagref;
 	extern s_tag_reference_definition runtime_terrain_reference$2_tagref;
 	extern s_tag_reference_definition terrain_collision_cgo_params_reference_tagref;
 
@@ -15352,7 +15322,7 @@ namespace infinite {
 	extern s_tag_struct_definition soundplacement;
 	extern s_string_list_definition soundplacementlayerflags;
 	extern s_string_list_definition soundplacementruntimeflags;
-	extern s_tag_reference_definition sound_looping_reference$8_tagref;
+	extern s_tag_reference_definition sound_looping_reference$4_tagref;
 
 	extern s_tag_struct_definition soundscenarioconstantstagsoundbankloadinfoblock;
 	extern s_tag_reference_definition soundbank_reference$13_tagref;
@@ -15545,7 +15515,7 @@ namespace infinite {
 	extern s_tag_struct_definition forgenamedtaglists;
 
 	extern s_tag_struct_definition loopingsounddefinition_blocksize32;
-	extern s_tag_reference_definition sound_looping_reference$4_tagref;
+	extern s_tag_reference_definition sound_looping_reference$5_tagref;
 
 	extern s_tag_struct_definition loopingsounddefinition_blocksize64;
 	extern s_tag_reference_definition sound_looping_reference$3_tagref;
@@ -15602,7 +15572,7 @@ namespace infinite {
 
 	extern s_tag_struct_definition forgeengineforgeobjectdefinitionvariant;
 	extern s_tag_reference_definition _reference$71_tagref;
-	extern s_tag_reference_definition object_reference$15_tagref;
+	extern s_tag_reference_definition object_reference$17_tagref;
 	extern s_tag_reference_definition forgeobjectscriptpropertymenuitemdefinitions_reference$2_tagref;
 
 	extern s_tag_struct_definition forgeengineforgeobjectdata;
@@ -15832,7 +15802,7 @@ namespace infinite {
 	extern s_tag_struct_definition bakeddwsirradianceresource;
 
 	extern s_tag_struct_definition structurelightmap;
-	extern s_tag_reference_definition bitmap_reference$71_tagref;
+	extern s_tag_reference_definition bitmap_reference$72_tagref;
 
 	extern s_tag_struct_definition goboscalarfunction;
 	extern s_string_list_definition lightoutputmodifier;
@@ -15903,8 +15873,6 @@ namespace infinite {
 	extern s_tag_struct_definition structureinstancematerialoverridedata;
 
 	extern s_tag_struct_definition lodinfooverrides;
-
-	extern s_tag_struct_definition streamingbitmapinfo;
 
 	extern s_tag_struct_definition structure_instanced_geometry_instance;
 	extern s_tag_reference_definition runtime_geo_reference$12_tagref;
@@ -16024,6 +15992,7 @@ namespace infinite {
 	extern s_tag_reference_definition bitmap_reference$61_tagref;
 	extern s_tag_reference_definition bitmap_reference$62_tagref;
 	extern s_tag_reference_definition bitmap_reference$63_tagref;
+	extern s_tag_reference_definition bitmap_reference$64_tagref;
 
 	extern s_tag_struct_definition rasterizerglobalstag;
 	extern s_tag_reference_definition explicitshaders_reference_tagref;
@@ -16118,10 +16087,6 @@ namespace infinite {
 
 	extern s_tag_struct_definition i343graphicsclusternodecount;
 
-	extern s_tag_struct_definition i343graphicsindexlistblock;
-
-	extern s_tag_struct_definition i343graphicshierarchynode;
-
 	extern s_tag_struct_definition i343graphicsforwardfastlight;
 
 	extern s_tag_struct_definition i343graphicsforwardfastlightingtag;
@@ -16201,7 +16166,7 @@ namespace infinite {
 	extern s_tag_struct_definition shaderrootsignature;
 
 	extern s_tag_struct_definition shaderreference;
-	extern s_tag_reference_definition shader_bytecode_reference_tagref;
+	extern s_tag_reference_definition shader_bytecode_reference$2_tagref;
 
 	extern s_tag_struct_definition shadergroup;
 	extern s_tag_reference_definition shader_root_signature_reference$2_tagref;
@@ -16250,8 +16215,8 @@ namespace infinite {
 	extern s_tag_struct_definition modelvariantmutednodeblock;
 
 	extern s_tag_struct_definition i343modelmodelvariantobject;
-	extern s_tag_reference_definition object_reference$16_tagref;
-	extern s_tag_reference_definition object_configuration_reference$3_tagref;
+	extern s_tag_reference_definition object_reference$18_tagref;
+	extern s_tag_reference_definition object_configuration_reference$4_tagref;
 
 	extern s_tag_struct_definition runtimeregionindex;
 
@@ -16427,6 +16392,9 @@ namespace infinite {
 
 	extern s_tag_struct_definition explicitshaders;
 
+	extern s_tag_struct_definition i343graphicspipelinestateprecacheshaderref;
+	extern s_tag_reference_definition shader_bytecode_reference_tagref;
+
 	extern s_tag_struct_definition i343graphicspipelinestateprecachedata;
 	extern s_tag_reference_definition shader_root_signature_reference_tagref;
 
@@ -16450,9 +16418,9 @@ namespace infinite {
 
 	extern s_tag_struct_definition i343graphicsvectorarttag;
 
-	extern s_tag_struct_definition s_anytagguts;
-
 	extern s_tag_struct_definition anytag_struct_definition;
+
+	extern s_tag_struct_definition s_anytagguts;
 
 
 } // namespace blofeld

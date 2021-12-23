@@ -33,6 +33,7 @@ int blamboozle_run()
 	const wchar_t* halo5_forge_file;
 	const wchar_t* infinite_flight1_preview_file;
 	const wchar_t* infinite_flight2_preview_file;
+	const wchar_t* infinite_release_file;
 
 	BCS_RESULT rs_halo1_guerilla			= command_line_get_argument(L"blamboozle-halo1-guerilla",		halo1_guerilla_file);
 	BCS_RESULT rs_halo2_guerilla			= command_line_get_argument(L"blamboozle-halo2-guerilla",		halo2_guerilla_file);
@@ -41,6 +42,8 @@ int blamboozle_run()
 	BCS_RESULT rs_halo5_forge				= command_line_get_argument(L"blamboozle-halo5-forge",			halo5_forge_file);
 	BCS_RESULT rs_infinite_flight1_preview	= command_line_get_argument(L"blamboozle-infinite-flight1",		infinite_flight1_preview_file);
 	BCS_RESULT rs_infinite_flight2_preview	= command_line_get_argument(L"blamboozle-infinite-flight2",		infinite_flight2_preview_file);
+	BCS_RESULT rs_infinite_release			= command_line_get_argument(L"blamboozle-infinite-release",		infinite_release_file);
+	
 
 	if(
 		BCS_FAILED(rs_halo1_guerilla		  ) &&
@@ -49,7 +52,8 @@ int blamboozle_run()
 		BCS_FAILED(rs_halo4_tags_test		  ) &&
 		BCS_FAILED(rs_halo5_forge			  ) &&
 		BCS_FAILED(rs_infinite_flight1_preview) &&
-		BCS_FAILED(rs_infinite_flight2_preview))
+		BCS_FAILED(rs_infinite_flight2_preview) &&
+		BCS_FAILED(rs_infinite_release))
 	{
 		console_write_line("No binary file(s) specified");
 		console_write_line("Usage <output directory> <binary ...>");
@@ -91,6 +95,11 @@ int blamboozle_run()
 	if (BCS_SUCCEEDED(rs_infinite_flight2_preview))
 	{
 		result += blamboozle_run(output_directory, infinite_flight2_preview_file, _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001, true);
+	}
+
+	if (BCS_SUCCEEDED(rs_infinite_release))
+	{
+		result += blamboozle_run(output_directory, infinite_release_file, _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546, true);
 	}
 
 	return result;

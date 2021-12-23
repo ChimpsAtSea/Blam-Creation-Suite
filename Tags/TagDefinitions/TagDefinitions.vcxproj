@@ -329,6 +329,7 @@
     <ClCompile Include="blofeld\__unknown\tag_references.cpp" />
     <ClCompile Include="slipspace\infinite.cpp" />
     <ClCompile Include="slipspace\infinite_flight2.cpp" />
+    <ClCompile Include="slipspace\infinite_release.cpp" />
     <ClCompile Include="tag_byteswap.cpp" />
     <ClCompile Include="tag_groups\tag_groups.cpp" />
     <ClCompile Include="tag_group_info.haloreach.cpp" />
@@ -656,6 +657,7 @@
     <ClInclude Include="blofeld\__unknown\tag_references.h" />
     <ClInclude Include="slipspace\infinite.h" />
     <ClInclude Include="slipspace\infinite_flight2.h" />
+    <ClInclude Include="slipspace\infinite_release.h" />
     <ClInclude Include="tagdefinitions-private-pch.h" />
     <ClInclude Include="blofeld.h" />
     <ClInclude Include="blofeld_field_type_override.h" />
@@ -683,6 +685,7 @@
     <None Include="slipspace\tag_groups.infinite.inl" />
     <None Include="slipspace\tag_groups.infinite_flight1.inl" />
     <None Include="slipspace\tag_groups.infinite_flight2.inl" />
+    <None Include="slipspace\tag_groups.infinite_release.inl" />
     <None Include="tag_groups\tag_groups.eldorado.inl" />
     <None Include="tag_groups\tag_groups.gen3_xbox360.inl" />
     <None Include="tag_groups\tag_groups.groundhog.inl" />
