@@ -42,7 +42,7 @@ c_window_windows::c_window_windows(
 	}
 
 	{
-		WNDCLASS window_class = {};
+		WNDCLASSW window_class = {};
 		window_class.lpfnWndProc = window_procedure_callback;
 		window_class.hInstance = instance_handle;
 		window_class.lpszClassName = window_id_wc;

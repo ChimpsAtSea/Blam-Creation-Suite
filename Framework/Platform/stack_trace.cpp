@@ -3,7 +3,7 @@
 static UINT64 file_get_image_base_address(LPCWSTR filename)
 {
 	UINT64 result = 0ull;
-	HANDLE file = CreateFile(filename, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+	HANDLE file = CreateFileW(filename, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 	if (file != INVALID_HANDLE_VALUE)
 	{
 		HANDLE file_mapping = CreateFileMapping(file, NULL, PAGE_READONLY, 0, 0, NULL);
@@ -51,7 +51,7 @@ void write_stack_back_trace(const char* calling_function, unsigned long depth, u
 						if (module_offset = (UINT64)traces[trace_index] - (UINT64)module_information.lpBaseOfDll)
 						{
 							wchar_t module_filepath[MAX_PATH];
-							if (GetModuleFileNameEx(current_process, modules[module_index], module_filepath, sizeof(module_filepath) / sizeof(wchar_t)))
+							if (GetModuleFileNameExW(current_process, modules[module_index], module_filepath, sizeof(module_filepath) / sizeof(wchar_t)))
 							{
 								const wchar_t* module_filename = PathFindFileNameW(module_filepath);
 								UINT64 module_base_address = file_get_image_base_address(module_filepath) + module_offset;

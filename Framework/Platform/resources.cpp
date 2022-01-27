@@ -33,10 +33,10 @@ BCS_RESULT resources_get_resource_type(e_bcs_resource_type type, LPCWSTR& resour
 	case _bcs_resource_type_icon_application:
 	case _bcs_resource_type_icon_blam_creation_suite:
 	case _bcs_resource_type_icon_mandrill:
-		resource_type = RT_ICON;
+		resource_type = reinterpret_cast<LPCWSTR>(RT_ICON);
 		break;
 	default:
-		resource_type = RT_RCDATA;
+		resource_type = reinterpret_cast<LPCWSTR>(RT_RCDATA);
 		break;
 	}
 
@@ -94,7 +94,7 @@ BCS_RESULT resources_get_resource_icon_handle(e_bcs_resource_type type, HICON& r
 		return rs;
 	}
 
-	if (resource_type != RT_ICON)
+	if (resource_type != reinterpret_cast<LPCWSTR>(RT_ICON))
 	{
 		return BCS_E_FAIL;
 	}
@@ -258,7 +258,7 @@ BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buf
 	unsigned long process_resource_size = SizeofResource(static_cast<HMODULE>(process_module), resource_handle);
 	if (LPVOID process_resource_data = LockResource(resource))
 	{
-		unsigned long read_data_size = __min(process_resource_size, buffer_size);
+		unsigned long long read_data_size = __min(process_resource_size, buffer_size);
 
 		memcpy(buffer, process_resource_data, read_data_size);
 		buffer_size = read_data_size;
@@ -338,7 +338,7 @@ BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const 
 		resource_int,
 		MAKELANGID(LANG_NEUTRAL, SUBLANG_NEUTRAL),
 		const_cast<void*>(buffer),
-		buffer_size);
+		static_cast<DWORD>(buffer_size));
 	if (update_resource_result != TRUE)
 	{
 		rs = BCS_E_FAIL;

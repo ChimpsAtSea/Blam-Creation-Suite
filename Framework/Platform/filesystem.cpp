@@ -610,7 +610,7 @@ BCS_RESULT filesystem_traverse_directory_files(const wchar_t* directory, const w
 				}
 			}
 
-		} while (FindNextFile(find_file_handle, &find_data));
+		} while (FindNextFileW(find_file_handle, &find_data));
 	}
 
 	FindClose(find_file_handle);

@@ -356,9 +356,9 @@ static BCS_RESULT get_engine_info_impl(s_engine_platform_build engine_platform_b
 
 		WCHAR Path[MAX_PATH + 1];
 		HMODULE module = GetModuleHandleA(engine_module_filename);
-		DWORD dwRet = GetModuleFileName(module, Path, MAX_PATH);
+		DWORD dwRet = GetModuleFileNameW(module, Path, MAX_PATH);
 
-		HANDLE file = CreateFile(Path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+		HANDLE file = CreateFileW(Path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 		if (file != INVALID_HANDLE_VALUE)
 		{
 			HANDLE file_mapping = CreateFileMapping(file, NULL, PAGE_READONLY, 0, 0, NULL);
