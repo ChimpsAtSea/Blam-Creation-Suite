@@ -1,6 +1,6 @@
 #pragma once
 
-template<typename t_underlying, bool byteswap>
+template<typename t_underlying, bool bigendian>
 struct t_pointer
 {
 	constexpr t_pointer() : raw_value() {}
@@ -20,12 +20,12 @@ struct t_pointer
 
 	t_underlying value() const
 	{
-		if constexpr (byteswap && sizeof(t_underlying) == 4)
+		if constexpr (bigendian && sizeof(t_underlying) == 4)
 		{
 			unsigned long byteswap_value = _byteswap_ulong(*reinterpret_cast<const unsigned long*>(&raw_value));
 			return *reinterpret_cast<t_underlying*>(&byteswap_value);
 		}
-		else if constexpr (byteswap && sizeof(t_underlying) == 8)
+		else if constexpr (bigendian && sizeof(t_underlying) == 8)
 		{
 			unsigned long long byteswap_value = _byteswap_uint64(*reinterpret_cast<const unsigned long long*>(&raw_value));
 			return *reinterpret_cast<t_underlying*>(&byteswap_value);
@@ -34,6 +34,11 @@ struct t_pointer
 		{
 			return raw_value;
 		}
+	}
+
+	operator t_pointer<t_underlying, false>() const
+	{
+		return value();
 	}
 
 private:

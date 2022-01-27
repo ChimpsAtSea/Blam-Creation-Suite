@@ -29,28 +29,31 @@ int blamboozle_run()
 	const wchar_t* halo1_guerilla_file;
 	const wchar_t* halo2_guerilla_file;
 	const wchar_t* halo3_guerilla_file;
+	const wchar_t* reach_tags_test_360_file;
 	const wchar_t* halo4_midnight_tags_test;
 	const wchar_t* halo5_forge_file;
 	const wchar_t* infinite_flight1_preview_file;
 	const wchar_t* infinite_flight2_preview_file;
 	const wchar_t* infinite_release_file;
 
-	BCS_RESULT rs_halo1_guerilla			= command_line_get_argument(L"blamboozle-halo1-guerilla",		halo1_guerilla_file);
-	BCS_RESULT rs_halo2_guerilla			= command_line_get_argument(L"blamboozle-halo2-guerilla",		halo2_guerilla_file);
-	BCS_RESULT rs_halo3_guerilla			= command_line_get_argument(L"blamboozle-halo3-guerilla",		halo3_guerilla_file);
-	BCS_RESULT rs_halo4_tags_test			= command_line_get_argument(L"blamboozle-halo4-tag-test",		halo4_midnight_tags_test);
-	BCS_RESULT rs_halo5_forge				= command_line_get_argument(L"blamboozle-halo5-forge",			halo5_forge_file);
-	BCS_RESULT rs_infinite_flight1_preview	= command_line_get_argument(L"blamboozle-infinite-flight1",		infinite_flight1_preview_file);
-	BCS_RESULT rs_infinite_flight2_preview	= command_line_get_argument(L"blamboozle-infinite-flight2",		infinite_flight2_preview_file);
-	BCS_RESULT rs_infinite_release			= command_line_get_argument(L"blamboozle-infinite-release",		infinite_release_file);
+	BCS_RESULT rs_halo1_guerilla			= command_line_get_argument(L"blamboozle-halo1-guerilla",				halo1_guerilla_file);
+	BCS_RESULT rs_halo2_guerilla			= command_line_get_argument(L"blamboozle-halo2-guerilla",				halo2_guerilla_file);
+	BCS_RESULT rs_halo3_guerilla			= command_line_get_argument(L"blamboozle-halo3-guerilla",				halo3_guerilla_file);
+	BCS_RESULT rs_reach_tags_test_360		= command_line_get_argument(L"blamboozle-haloreach",					reach_tags_test_360_file);
+	BCS_RESULT rs_halo4_tags_test			= command_line_get_argument(L"blamboozle-halo4-tag-test",				halo4_midnight_tags_test);
+	BCS_RESULT rs_halo5_forge				= command_line_get_argument(L"blamboozle-halo5-forge",					halo5_forge_file);
+	BCS_RESULT rs_infinite_flight1_preview	= command_line_get_argument(L"blamboozle-infinite-flight1",				infinite_flight1_preview_file);
+	BCS_RESULT rs_infinite_flight2_preview	= command_line_get_argument(L"blamboozle-infinite-flight2",				infinite_flight2_preview_file);
+	BCS_RESULT rs_infinite_release			= command_line_get_argument(L"blamboozle-infinite-release",				infinite_release_file);
 	
 
 	if(
-		BCS_FAILED(rs_halo1_guerilla		  ) &&
-		BCS_FAILED(rs_halo2_guerilla		  ) &&
-		BCS_FAILED(rs_halo3_guerilla		  ) &&
-		BCS_FAILED(rs_halo4_tags_test		  ) &&
-		BCS_FAILED(rs_halo5_forge			  ) &&
+		BCS_FAILED(rs_halo1_guerilla) &&
+		BCS_FAILED(rs_halo2_guerilla) &&
+		BCS_FAILED(rs_halo3_guerilla) &&
+		BCS_FAILED(rs_reach_tags_test_360) &&
+		BCS_FAILED(rs_halo4_tags_test) &&
+		BCS_FAILED(rs_halo5_forge) &&
 		BCS_FAILED(rs_infinite_flight1_preview) &&
 		BCS_FAILED(rs_infinite_flight2_preview) &&
 		BCS_FAILED(rs_infinite_release))
@@ -75,6 +78,11 @@ int blamboozle_run()
 	if (BCS_SUCCEEDED(rs_halo3_guerilla))
 	{
 		result += blamboozle_run(output_directory, halo3_guerilla_file, _engine_type_halo3, _build_halo3_guerilla, true);
+	}
+
+	if (BCS_SUCCEEDED(rs_reach_tags_test_360))
+	{
+		result += blamboozle_run(output_directory, reach_tags_test_360_file, _engine_type_haloreach, _build_reach_tags, true);
 	}
 
 	if (BCS_SUCCEEDED(rs_halo4_tags_test))
@@ -208,6 +216,12 @@ int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepa
 	{
 		c_blamboozle_h3_guerilla h3_guerilla = c_blamboozle_h3_guerilla(output_directory, binary_filepath, build);
 		h3_guerilla.run();
+	}
+	break;
+	case _engine_type_haloreach:
+	{
+		c_blamboozle_reach_tags_test_x360 reach_tags_test_x360 = c_blamboozle_reach_tags_test_x360(output_directory, binary_filepath, build);
+		reach_tags_test_x360.run();
 	}
 	break;
 	case _engine_type_halo4:
