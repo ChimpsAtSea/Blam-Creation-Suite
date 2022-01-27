@@ -27,6 +27,7 @@
 #include "slipspace/infinite_flight2.h"
 #include "slipspace/infinite_release.h"
 #include "slipspace/infinite.h"
+#include "blamlib/haloreach_tags_test_x360.h"
 #include "blamlib/halo3_tools.h"
 #include "blamlib/halo2_tools.h"
 #include "blamlib/halo1_tools.h"
@@ -38,8 +39,6 @@
 #endif
 #include "tag_groups/tag_groups.h"
 #include "blofeld/validation.h"
-
-#include "tag_group_info.h"
 
 #include "tag_byteswap.h"
 #include "definition_migration.h"

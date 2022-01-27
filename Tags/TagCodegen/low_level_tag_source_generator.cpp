@@ -13,7 +13,7 @@ std::string c_low_level_tag_source_generator::format_structure_symbol(const blof
 {
 	std::string result = "s_";
 	// #TODO: reexport other definitions
-	if (engine_platform_build.engine_type == _engine_type_halo3)
+	if (engine_platform_build.engine_type == _engine_type_halo3 || engine_platform_build.engine_type == _engine_type_haloreach)
 	{
 		result += struct_definition.struct_name + 2;
 	}

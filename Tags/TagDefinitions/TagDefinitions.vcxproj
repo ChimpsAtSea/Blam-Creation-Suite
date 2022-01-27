@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="blamlib\halo3_tools.cpp" />
+    <ClCompile Include="blamlib\haloreach_tags_test_x360.cpp" />
     <ClCompile Include="blofeld.cpp" />
     <ClCompile Include="blofeld\ai\ai.cpp" />
     <ClCompile Include="blofeld\ai\ai_cues.cpp" />
@@ -332,7 +333,6 @@
     <ClCompile Include="slipspace\infinite_release.cpp" />
     <ClCompile Include="tag_byteswap.cpp" />
     <ClCompile Include="tag_groups\tag_groups.cpp" />
-    <ClCompile Include="tag_group_info.haloreach.cpp" />
     <ClCompile Include="types\field_id.cpp" />
     <ClCompile Include="types\field_type.cpp" />
     <ClCompile Include="types\string_list_definitions.cpp" />
@@ -351,6 +351,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blamlib\halo3_tools.h" />
+    <ClInclude Include="blamlib\haloreach_tags_test_x360.h" />
     <ClInclude Include="blofeld\ai\ai.h" />
     <ClInclude Include="blofeld\ai\ai_cues.h" />
     <ClInclude Include="blofeld\ai\ai_dialogue_definitions.h" />
@@ -664,7 +665,6 @@
     <ClInclude Include="tagdefinitions-public-pch.h" />
     <ClInclude Include="tag_byteswap.h" />
     <ClInclude Include="tag_groups\tag_groups.h" />
-    <ClInclude Include="tag_group_info.h" />
     <ClInclude Include="types\field_id.h" />
     <ClInclude Include="types\field_type.h" />
     <ClInclude Include="types\string_list_definition.h" />

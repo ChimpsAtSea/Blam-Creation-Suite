@@ -100,6 +100,7 @@ enum e_build : unsigned short
 	_build_halo1_guerilla,
 	_build_halo2_guerilla,
 	_build_halo3_guerilla,
+	_build_reach_tags,
 	_build_halo5_forge_1_114_4592_2,
 	_build_halo5_forge_1_194_6192_2,
 	_build_midnight_tag_test_untracked_november_13_2013,

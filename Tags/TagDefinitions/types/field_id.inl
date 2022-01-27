@@ -102,6 +102,8 @@ const char* blofeld::field_id_to_string(blofeld::e_field_id field)
 	FIELD_ID_TO_STRING(_field_id_cflt);
 	FIELD_ID_TO_STRING(_field_id_filx);
 	FIELD_ID_TO_STRING(_field_id_auds);
+	FIELD_ID_TO_STRING(_field_id_cseb);
+	FIELD_ID_TO_STRING(_field_id_creb);
 	
 	
 #undef FIELD_ID_TO_STRING

@@ -83,6 +83,7 @@ s_build_and_id builds_and_ids[] =
 	{ _build_halo1_guerilla, MAKE_TOOL_VERSION(1, 0, 0, 609, "Guerilla MFC Application", "Guerilla Application")},
 	{ _build_halo2_guerilla, MAKE_TOOL_VERSION(1, 89, 0, 0, "Tag Editor", "Halo 2 for Windows Vista")},
 	{ _build_halo3_guerilla, MAKE_TOOL_VERSION(1, 89, 0, 0, "Halo: The Master Chief Collection", "Halo: The Master Chief Collection")},
+	{ _build_reach_tags, _build_reach_tags},
 	{ _build_halo5_forge_1_114_4592_2, HASH_VERSION(0xc64ebca380e26cdd)},
 	{ _build_halo5_forge_1_194_6192_2, HASH_VERSION(0xf1bafafca2ec154b)},
 	{ _build_midnight_tag_test_untracked_november_13_2013, HASH_VERSION(0x4ecd85f51db2868a)},

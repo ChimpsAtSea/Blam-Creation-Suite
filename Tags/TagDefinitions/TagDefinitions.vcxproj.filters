@@ -36,9 +36,6 @@
     <ClCompile Include="types\field_type.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tag_group_info.haloreach.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tag_byteswap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -972,6 +969,9 @@
     <ClCompile Include="slipspace\infinite_release.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="blamlib\haloreach_tags_test_x360.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld.h">
@@ -1011,9 +1011,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="types\tag_interop_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tag_group_info.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blofeld_field_type_override.h">
@@ -1956,6 +1953,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="slipspace\infinite_release.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blamlib\haloreach_tags_test_x360.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

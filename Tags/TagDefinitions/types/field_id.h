@@ -120,8 +120,10 @@ namespace blofeld
 		_field_id_cflt = 'cflt',
 		_field_id_filx = 'filx',
 		_field_id_auds = 'auds',
+		_field_id_cseb = 'cseb',
+		_field_id_creb = 'creb',
 			
-			
+
 
 	};
 
