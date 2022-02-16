@@ -1,16 +1,17 @@
 #pragma once
 
-#include "crc32.h"
-
 #include "tag_file_high_level_transplant.h"
 
 #include "single_tag_file_header.h"
 #include "single_tag_file_layout_reader.h"
 #include "single_tag_file_reader.h"
 
+#include "system_global_unique_identifier.h"
+
 #include "Chunks\chunk.h"
 #include "Chunks\typed_chunk.h"
 #include "Chunks\tag_header_chunk.h"
+#include "Chunks\monolithic_tag_backend_chunk.h"
 
 #include "Chunks\LayoutChunks\string_data_chunk.h"
 #include "Chunks\LayoutChunks\string_offsets_chunk.h"
@@ -36,3 +37,22 @@
 #include "Chunks\TagChunks\tag_reference_chunk.h"
 #include "Chunks\TagChunks\tag_struct_chunk.h"
 #include "Chunks\TagChunks\tag_block_chunk.h"
+
+#include "Chunks\MonolithicChunks\monolithic_tag_file_index_chunk.h"
+#include "Chunks\MonolithicChunks\tag_file_index_chunk.h"
+#include "Chunks\MonolithicChunks\tag_heap_chunk.h"
+#include "Chunks\MonolithicChunks\cache_heap_chunk.h"
+#include "Chunks\MonolithicChunks\tag_file_blocks_chunk.h"
+#include "Chunks\MonolithicChunks\build_identifier_chunk.h"
+#include "Chunks\MonolithicChunks\monolithic_index_chunk.h"
+#include "Chunks\MonolithicChunks\tag_file_persistent_heap_chunk.h"
+#include "Chunks\MonolithicChunks\tag_file_heap_partition_config_chunk.h"
+#include "Chunks\MonolithicChunks\partitioned_persistent_heap_backend_chunk.h"
+#include "Chunks\MonolithicChunks\partition_list_chunk.h"
+#include "Chunks\MonolithicChunks\partition_chunk.h"
+#include "Chunks\MonolithicChunks\partitioned_heap_entry_list_chunk.h"
+#include "Chunks\MonolithicChunks\tag_dependency_index_loader_chunk.h"
+#include "Chunks\MonolithicChunks\tag_dependency_chunk.h"
+#include "Chunks\MonolithicChunks\exploded_dependencies_chunk.h"
+#include "Chunks\MonolithicChunks\optimized_dependencies_chunk.h"
+#include "Chunks\MonolithicChunks\monolithic_tag_file_layout_registry_chunk.h"

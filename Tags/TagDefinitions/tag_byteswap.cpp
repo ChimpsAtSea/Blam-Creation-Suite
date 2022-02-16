@@ -1,256 +1,256 @@
 #include "tagdefinitions-private-pch.h"
 
-template<> BCS_DEBUG_API void byteswap<unsigned char>(unsigned char& value)
+template<> BCS_DEBUG_API void byteswap_inplace<unsigned char>(unsigned char& value)
 {
 
 }
 
-template<> BCS_DEBUG_API void byteswap<unsigned short>(unsigned short& value)
+template<> BCS_DEBUG_API void byteswap_inplace<unsigned short>(unsigned short& value)
 {
 	value = _byteswap_ushort(value);
 }
 
-template<> BCS_DEBUG_API void byteswap<unsigned int>(unsigned int& value)
+template<> BCS_DEBUG_API void byteswap_inplace<unsigned int>(unsigned int& value)
 {
 	static_assert(sizeof(value) == sizeof(unsigned long));
 	value = _byteswap_ulong(value);
 }
 
-template<> BCS_DEBUG_API void byteswap<unsigned long>(unsigned long& value)
+template<> BCS_DEBUG_API void byteswap_inplace<unsigned long>(unsigned long& value)
 {
 	value = _byteswap_ulong(value);
 }
 
-template<> BCS_DEBUG_API void byteswap<unsigned long long>(unsigned long long& value)
+template<> BCS_DEBUG_API void byteswap_inplace<unsigned long long>(unsigned long long& value)
 {
 	value = _byteswap_uint64(value);
 }
 
-template<> BCS_DEBUG_API void byteswap<char>(char& value)
+template<> BCS_DEBUG_API void byteswap_inplace<char>(char& value)
 {
 
 }
 
-template<> BCS_DEBUG_API void byteswap<short>(short& value)
+template<> BCS_DEBUG_API void byteswap_inplace<short>(short& value)
 {
 	value = static_cast<short>(_byteswap_ushort(static_cast<unsigned short>(value)));
 }
 
-template<> BCS_DEBUG_API void byteswap<long>(long& value)
+template<> BCS_DEBUG_API void byteswap_inplace<long>(long& value)
 {
 	value = static_cast<long>(_byteswap_ulong(static_cast<unsigned long>(value)));
 }
 
-template<> BCS_DEBUG_API void byteswap<int>(int& value)
+template<> BCS_DEBUG_API void byteswap_inplace<int>(int& value)
 {
 	static_assert(sizeof(value) == sizeof(long));
 	value = _byteswap_ulong(value);
 }
 
-template<> BCS_DEBUG_API void byteswap<long long>(long long& value)
+template<> BCS_DEBUG_API void byteswap_inplace<long long>(long long& value)
 {
 	value = static_cast<long long>(_byteswap_uint64(static_cast<unsigned long long>(value)));
 }
 
-template<> BCS_DEBUG_API void byteswap<bool>(bool& value)
+template<> BCS_DEBUG_API void byteswap_inplace<bool>(bool& value)
 {
 
 }
 
-template<> BCS_DEBUG_API void byteswap<s_tag_reference>(s_tag_reference& value)
+template<> BCS_DEBUG_API void byteswap_inplace<s_tag_reference>(s_tag_reference& value)
 {
-	byteswap(value.group_tag);
-	byteswap(value.name);
-	byteswap(value.name_length);
-	byteswap(value.datum_index);
+	byteswap_inplace(value.group_tag);
+	byteswap_inplace(value.name);
+	byteswap_inplace(value.name_length);
+	byteswap_inplace(value.datum_index);
 }
 
-template<> BCS_DEBUG_API void byteswap<s_tag_block>(s_tag_block& value)
+template<> BCS_DEBUG_API void byteswap_inplace<s_tag_block>(s_tag_block& value)
 {
-	byteswap(value.count);
-	byteswap(value.address);
-	byteswap(value.definition_address);
+	byteswap_inplace(value.count);
+	byteswap_inplace(value.address);
+	byteswap_inplace(value.definition_address);
 }
 
-template<> BCS_DEBUG_API void byteswap<s_tag_data>(s_tag_data& value)
+template<> BCS_DEBUG_API void byteswap_inplace<s_tag_data>(s_tag_data& value)
 {
-	byteswap(value.size);
-	byteswap(value.stream_flags);
-	byteswap(value.stream_offset);
-	byteswap(value.address);
-	byteswap(value.definition);
+	byteswap_inplace(value.size);
+	byteswap_inplace(value.stream_flags);
+	byteswap_inplace(value.stream_offset);
+	byteswap_inplace(value.address);
+	byteswap_inplace(value.definition);
 }
 
-template<> BCS_DEBUG_API void byteswap<s_tag_interop>(s_tag_interop& value)
+template<> BCS_DEBUG_API void byteswap_inplace<s_tag_interop>(s_tag_interop& value)
 {
-	byteswap(value.descriptor);
-	byteswap(value.address);
-	byteswap(value.definition_address);
+	byteswap_inplace(value.descriptor);
+	byteswap_inplace(value.address);
+	byteswap_inplace(value.definition_address);
 }
 
-template<> BCS_DEBUG_API void byteswap<c_datum_handle>(c_datum_handle& value)
+template<> BCS_DEBUG_API void byteswap_inplace<c_datum_handle>(c_datum_handle& value)
 {
-	byteswap(*reinterpret_cast<unsigned long*>(&value));
+	byteswap_inplace(*reinterpret_cast<unsigned long*>(&value));
 }
 
-template<> BCS_DEBUG_API void byteswap<s_tag_resource>(s_tag_resource& value)
+template<> BCS_DEBUG_API void byteswap_inplace<s_tag_resource>(s_tag_resource& value)
 {
-	byteswap(value.resource_handle);
-	byteswap(value.definition_address);
+	byteswap_inplace(value.resource_handle);
+	byteswap_inplace(value.definition_address);
 }
 
-template<> BCS_DEBUG_API void byteswap<float>(float& value)
+template<> BCS_DEBUG_API void byteswap_inplace<float>(float& value)
 {
 
 }
 
-template<> BCS_DEBUG_API void byteswap<real_point2d>(real_point2d& value)
+template<> BCS_DEBUG_API void byteswap_inplace<real_point2d>(real_point2d& value)
 {
-	byteswap(value.x);
-	byteswap(value.y);
+	byteswap_inplace(value.x);
+	byteswap_inplace(value.y);
 }
 
-template<> BCS_DEBUG_API void byteswap<real_point3d>(real_point3d& value)
+template<> BCS_DEBUG_API void byteswap_inplace<real_point3d>(real_point3d& value)
 {
-	byteswap(value.x);
-	byteswap(value.y);
-	byteswap(value.z);
+	byteswap_inplace(value.x);
+	byteswap_inplace(value.y);
+	byteswap_inplace(value.z);
 }
 
-template<> BCS_DEBUG_API void byteswap<s_point2d>(s_point2d& value)
+template<> BCS_DEBUG_API void byteswap_inplace<s_point2d>(s_point2d& value)
 {
-	byteswap(value.x);
-	byteswap(value.y);
+	byteswap_inplace(value.x);
+	byteswap_inplace(value.y);
 }
 
-template<> BCS_DEBUG_API void byteswap<real_quaternion>(real_quaternion& value)
+template<> BCS_DEBUG_API void byteswap_inplace<real_quaternion>(real_quaternion& value)
 {
-	byteswap(value.i);
-	byteswap(value.j);
-	byteswap(value.k);
-	byteswap(value.w);
+	byteswap_inplace(value.i);
+	byteswap_inplace(value.j);
+	byteswap_inplace(value.k);
+	byteswap_inplace(value.w);
 }
 
-template<> BCS_DEBUG_API void byteswap<real_vector2d>(real_vector2d& value)
+template<> BCS_DEBUG_API void byteswap_inplace<real_vector2d>(real_vector2d& value)
 {
-	byteswap(value.i);
-	byteswap(value.j);
+	byteswap_inplace(value.i);
+	byteswap_inplace(value.j);
 }
 
-template<> BCS_DEBUG_API void byteswap<real_vector3d>(real_vector3d& value)
+template<> BCS_DEBUG_API void byteswap_inplace<real_vector3d>(real_vector3d& value)
 {
-	byteswap(value.i);
-	byteswap(value.j);
-	byteswap(value.k);
+	byteswap_inplace(value.i);
+	byteswap_inplace(value.j);
+	byteswap_inplace(value.k);
 }
 
-template<> BCS_DEBUG_API void byteswap<real_vector4d>(real_vector4d& value)
+template<> BCS_DEBUG_API void byteswap_inplace<real_vector4d>(real_vector4d& value)
 {
-	byteswap(value.i);
-	byteswap(value.j);
-	byteswap(value.k);
-	byteswap(value.w);
+	byteswap_inplace(value.i);
+	byteswap_inplace(value.j);
+	byteswap_inplace(value.k);
+	byteswap_inplace(value.w);
 }
 
-template<> BCS_DEBUG_API void byteswap<short_bounds>(short_bounds& value)
+template<> BCS_DEBUG_API void byteswap_inplace<short_bounds>(short_bounds& value)
 {
-	byteswap(value.lower);
-	byteswap(value.upper);
+	byteswap_inplace(value.lower);
+	byteswap_inplace(value.upper);
 }
 
-template<> BCS_DEBUG_API void byteswap<angle_bounds>(angle_bounds& value)
+template<> BCS_DEBUG_API void byteswap_inplace<angle_bounds>(angle_bounds& value)
 {
-	byteswap(value.lower);
-	byteswap(value.upper);
+	byteswap_inplace(value.lower);
+	byteswap_inplace(value.upper);
 }
 
-template<> BCS_DEBUG_API void byteswap<argb_color>(argb_color& value)
+template<> BCS_DEBUG_API void byteswap_inplace<argb_color>(argb_color& value)
 {
-	byteswap(value.alpha);
-	byteswap(value.red);
-	byteswap(value.green);
-	byteswap(value.blue);
+	byteswap_inplace(value.alpha);
+	byteswap_inplace(value.red);
+	byteswap_inplace(value.green);
+	byteswap_inplace(value.blue);
 }
 
-template<> BCS_DEBUG_API void byteswap<real_ahsv_color>(real_ahsv_color& value)
+template<> BCS_DEBUG_API void byteswap_inplace<real_ahsv_color>(real_ahsv_color& value)
 {
-	byteswap(value.alpha);
-	byteswap(value.hue);
-	byteswap(value.saturation);
-	byteswap(value.value);
+	byteswap_inplace(value.alpha);
+	byteswap_inplace(value.hue);
+	byteswap_inplace(value.saturation);
+	byteswap_inplace(value.value);
 }
 
-template<> BCS_DEBUG_API void byteswap<real_bounds>(real_bounds& value)
+template<> BCS_DEBUG_API void byteswap_inplace<real_bounds>(real_bounds& value)
 {
-	byteswap(value.lower);
-	byteswap(value.upper);
+	byteswap_inplace(value.lower);
+	byteswap_inplace(value.upper);
 }
 
-template<> BCS_DEBUG_API void byteswap<real_euler_angles2d>(real_euler_angles2d& value)
+template<> BCS_DEBUG_API void byteswap_inplace<real_euler_angles2d>(real_euler_angles2d& value)
 {
-	byteswap(value.yaw);
-	byteswap(value.pitch);
+	byteswap_inplace(value.yaw);
+	byteswap_inplace(value.pitch);
 }
 
-template<> BCS_DEBUG_API void byteswap<real_euler_angles3d>(real_euler_angles3d& value)
+template<> BCS_DEBUG_API void byteswap_inplace<real_euler_angles3d>(real_euler_angles3d& value)
 {
-	byteswap(value.yaw);
-	byteswap(value.pitch);
-	byteswap(value.roll);
+	byteswap_inplace(value.yaw);
+	byteswap_inplace(value.pitch);
+	byteswap_inplace(value.roll);
 }
 
-template<> BCS_DEBUG_API void byteswap<real_fraction_bounds>(real_fraction_bounds& value)
+template<> BCS_DEBUG_API void byteswap_inplace<real_fraction_bounds>(real_fraction_bounds& value)
 {
-	byteswap(value.lower);
-	byteswap(value.upper);
+	byteswap_inplace(value.lower);
+	byteswap_inplace(value.upper);
 }
 
-template<> BCS_DEBUG_API void byteswap<real_hsv_color>(real_hsv_color& value)
+template<> BCS_DEBUG_API void byteswap_inplace<real_hsv_color>(real_hsv_color& value)
 {
-	byteswap(value.hue);
-	byteswap(value.saturation);
-	byteswap(value.value);
+	byteswap_inplace(value.hue);
+	byteswap_inplace(value.saturation);
+	byteswap_inplace(value.value);
 }
 
-template<> BCS_DEBUG_API void byteswap<real_plane2d>(real_plane2d& value)
+template<> BCS_DEBUG_API void byteswap_inplace<real_plane2d>(real_plane2d& value)
 {
-	byteswap(value.distance);
-	byteswap(value.normal);
+	byteswap_inplace(value.distance);
+	byteswap_inplace(value.normal);
 }
 
-template<> BCS_DEBUG_API void byteswap<real_plane3d>(real_plane3d& value)
+template<> BCS_DEBUG_API void byteswap_inplace<real_plane3d>(real_plane3d& value)
 {
-	byteswap(value.distance);
-	byteswap(value.normal);
+	byteswap_inplace(value.distance);
+	byteswap_inplace(value.normal);
 }
 
-template<> BCS_DEBUG_API void byteswap<pixel32>(pixel32& value)
+template<> BCS_DEBUG_API void byteswap_inplace<pixel32>(pixel32& value)
 {
-	byteswap(value.value);
+	byteswap_inplace(value.value);
 }
 
-template<> BCS_DEBUG_API void byteswap<rgb_color>(rgb_color& value)
+template<> BCS_DEBUG_API void byteswap_inplace<rgb_color>(rgb_color& value)
 {
-	byteswap(value.red);
-	byteswap(value.green);
-	byteswap(value.blue);
+	byteswap_inplace(value.red);
+	byteswap_inplace(value.green);
+	byteswap_inplace(value.blue);
 }
 
-template<> BCS_DEBUG_API void byteswap<s_rectangle2d>(s_rectangle2d& value)
+template<> BCS_DEBUG_API void byteswap_inplace<s_rectangle2d>(s_rectangle2d& value)
 {
-	byteswap(value.top);
-	byteswap(value.left);
-	byteswap(value.bottom);
-	byteswap(value.right);
+	byteswap_inplace(value.top);
+	byteswap_inplace(value.left);
+	byteswap_inplace(value.bottom);
+	byteswap_inplace(value.right);
 }
 
-template<> BCS_DEBUG_API void byteswap<c_old_string_id>(c_old_string_id& value)
+template<> BCS_DEBUG_API void byteswap_inplace<c_old_string_id>(c_old_string_id& value)
 {
-	byteswap(value.value);
+	byteswap_inplace(value.value);
 }
 
-template<> BCS_DEBUG_API void byteswap<c_tag_resource_fixup>(c_tag_resource_fixup& value)
+template<> BCS_DEBUG_API void byteswap_inplace<c_tag_resource_fixup>(c_tag_resource_fixup& value)
 {
 	static_assert(sizeof(c_tag_resource_fixup) == sizeof(unsigned long));
-	byteswap(*reinterpret_cast<unsigned long*>(&value));
+	byteswap_inplace(*reinterpret_cast<unsigned long*>(&value));
 }

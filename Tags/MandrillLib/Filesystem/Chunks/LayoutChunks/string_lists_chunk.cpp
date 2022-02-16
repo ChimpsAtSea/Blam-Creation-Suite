@@ -8,7 +8,7 @@ c_string_lists_chunk::c_string_lists_chunk(void* chunk_data, c_chunk& parent) :
 	debug_point;
 }
 
-void c_string_lists_chunk::log_impl(c_single_tag_file_layout_reader& layout_reader) const
+void c_string_lists_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
 {
 	log_signature();
 	console_write_line_verbose("count:0x % 08X", entry_count);
@@ -16,13 +16,24 @@ void c_string_lists_chunk::log_impl(c_single_tag_file_layout_reader& layout_read
 	for (unsigned long index = 0; index < entry_count; index++)
 	{
 		s_tag_persist_string_list& entry = entries[index];
-		char* name = layout_reader.get_string_by_string_character_index(entry.string_character_index);
-		log_pad(); console_write_line_verbose(
-			"\t0x%08X\tstring_offset_start_index:0x%08X\tstring_offset_start_index:0x%08X\t'%s'",
-			index,
-			entry.string_offset_count,
-			entry.string_offset_start_index,
-			name);
+		if (layout_reader)
+		{
+			char* name = layout_reader->get_string_by_string_character_index(entry.string_character_index);
+			log_pad(); console_write_line_verbose(
+				"\t0x%08X\tstring_offset_start_index:0x%08X\tstring_offset_start_index:0x%08X\t'%s'",
+				index,
+				entry.string_offset_count,
+				entry.string_offset_start_index,
+				name);
+		}
+		else
+		{
+			log_pad(); console_write_line_verbose(
+				"\t0x%08X\tstring_offset_start_index:0x%08X\tstring_offset_start_index:0x%08X",
+				index,
+				entry.string_offset_count,
+				entry.string_offset_start_index);
+		}
 		debug_point;
 	}
 }

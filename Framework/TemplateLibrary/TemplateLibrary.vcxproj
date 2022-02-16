@@ -26,6 +26,7 @@
     <ClInclude Include="compile_time_accumulator.h" />
     <ClInclude Include="fixed_string.h" />
     <ClInclude Include="macros.h" />
+    <ClInclude Include="pointers.h" />
     <ClInclude Include="stack_string.h" />
     <ClInclude Include="stopwatch.h" />
     <ClInclude Include="templatelibrary-private-pch.h" />

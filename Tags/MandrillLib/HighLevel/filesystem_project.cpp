@@ -1,11 +1,11 @@
 #include "mandrilllib-private-pch.h"
 
-c_filesystem_tag_project::c_filesystem_tag_project(const wchar_t* directory) :
-	c_tag_project({ _engine_type_halo3 }),
+c_filesystem_tag_project::c_filesystem_tag_project(const wchar_t* directory, s_engine_platform_build engine_platform_build) :
+	c_tag_project(engine_platform_build),
 	groups(),
 	tags()
 {
-	for (const blofeld::s_tag_group** tag_group_iter = blofeld::tag_groups[_engine_type_halo3]; *tag_group_iter; tag_group_iter++)
+	for (const blofeld::s_tag_group** tag_group_iter = blofeld::tag_groups[engine_platform_build.engine_type]; *tag_group_iter; tag_group_iter++)
 	{
 		h_group* group = new h_group(engine_platform_build, **tag_group_iter);
 		groups.push_back(group);
@@ -118,18 +118,17 @@ h_tag* c_filesystem_tag_project::try_parse_tag_file(const wchar_t* filepath)
 	c_single_tag_file_layout_reader* layout_reader;
 	c_single_tag_file_reader* reader;
 
-	s_engine_platform_build engine_platform_build;
-
 	BCS_FAIL_THROW(filesystem_read_file_to_memory(filepath, tag_file_data, tag_file_data_size));
 	ASSERT(tag_file_data_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
 	header_data = static_cast<s_single_tag_file_header*>(tag_file_data);
 	ASSERT(header_data->blam == 'BLAM');
 
 	static constexpr tag k_tag_file_root_data_stream_tag = 'tag!';
-	tag root_node_tag = *reinterpret_cast<tag*>(header_data + 1);
-	ASSERT(root_node_tag == k_tag_file_root_data_stream_tag);
 
-	engine_platform_build = { _engine_type_halo3 };
+	tag root_node_tag = *reinterpret_cast<tag*>(header_data + 1);
+	bool is_little_endian_tag = root_node_tag == k_tag_file_root_data_stream_tag;
+	bool is_big_endian_tag = byteswap(root_node_tag) == k_tag_file_root_data_stream_tag;
+	ASSERT(is_little_endian_tag || is_big_endian_tag);
 
 	c_stopwatch s;
 	s.start();

@@ -28,6 +28,7 @@
     <ClInclude Include="clipboard.h" />
     <ClInclude Include="command_line.h" />
     <ClInclude Include="console.h" />
+    <ClInclude Include="crc32.h" />
     <ClInclude Include="debug_point.h" />
     <ClInclude Include="engine_platform_build.h" />
     <ClInclude Include="filesystem.h" />
@@ -63,6 +64,7 @@
     <ClCompile Include="clipboard.cpp" />
     <ClCompile Include="command_line.cpp" />
     <ClCompile Include="console.cpp" />
+    <ClCompile Include="crc32.cpp" />
     <ClCompile Include="debug_point.cpp" />
     <ClCompile Include="engine_platform_build.cpp" />
     <ClCompile Include="filesystem.cpp" />

@@ -6,7 +6,7 @@ c_string_data_chunk::c_string_data_chunk(void* chunk_data, c_chunk& parent) :
 	debug_point;
 }
 
-void c_string_data_chunk::log_impl(c_single_tag_file_layout_reader& layout_reader) const
+void c_string_data_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
 {
 	log_signature();
 	console_write_line_verbose("size:%08X\n", chunk_size);

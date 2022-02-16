@@ -20,7 +20,7 @@ bool custom_structure_codegen(
 
 #define CODEGEN_HELPER_LOW_LEVEL(field_name, type, variable_name) \
 	CODEGEN_HELPER(_custom_structure_codegen_low_level_header, field_name, { s << tabs << #type " " #variable_name ";" << std::endl; }) \
-	CODEGEN_HELPER(_custom_structure_codegen_low_level_byteswap, field_name, { s << tabs << "byteswap(value." #variable_name ");" << std::endl; })
+	CODEGEN_HELPER(_custom_structure_codegen_low_level_byteswap, field_name, { s << tabs << "byteswap_inplace(value." #variable_name ");" << std::endl; })
 
 #define CODEGEN_HELPER_HIGH_LEVEL(field_name, type, variable_name) \
 	CODEGEN_HELPER(_custom_structure_codegen_high_level_header, field_name, { s << tabs << "h_field<" << #type << ", h_" << struct_definition.name << ", " << field_index << "> " #variable_name ";" << std::endl; }) \

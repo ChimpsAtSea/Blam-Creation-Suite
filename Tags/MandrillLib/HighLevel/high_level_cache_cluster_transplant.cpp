@@ -345,8 +345,8 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(h_o
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-#define use_byteswap() (engine_platform_build.platform_type == _platform_type_xbox_360)
-#define byteswap_helper_func(value) if (use_byteswap()) byteswap(value)
+#define use_byteswap_inplace() (engine_platform_build.platform_type == _platform_type_xbox_360)
+#define byteswap_helper_func(value) if (use_byteswap_inplace()) byteswap_inplace(value)
 #define basic_memory_read(type) \
 	{ \
 		type _value = *reinterpret_cast<const type*>(current_data_position); \
@@ -818,8 +818,8 @@ public:
 	{
 		BCS_RESULT rs = BCS_S_OK;
 
-#define use_byteswap() (engine_platform_build.platform_type == _platform_type_xbox_360)
-#define byteswap_helper_func(value) if (use_byteswap()) byteswap(value)
+#define use_byteswap_inplace() (engine_platform_build.platform_type == _platform_type_xbox_360)
+#define byteswap_helper_func(value) if (use_byteswap_inplace()) byteswap_inplace(value)
 #define basic_memory_read(type) \
 		{ \
 			type _value = *reinterpret_cast<const type*>(current_data_position); \

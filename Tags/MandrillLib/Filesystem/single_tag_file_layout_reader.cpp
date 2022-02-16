@@ -18,7 +18,7 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 	resource_definitions_chunk(),
 	interop_definitions_chunk()
 {
-	root_chunk = new c_tag_header_chunk(header + 1);
+	root_chunk = new c_tag_header_chunk(next_contiguous_pointer(header));
 
 	root_chunk->parse_children(this, nullptr, true);
 

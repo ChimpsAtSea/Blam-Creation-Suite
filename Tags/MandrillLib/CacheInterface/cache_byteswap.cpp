@@ -1,7 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
-template<> void byteswap<s_basic_buffer32>(s_basic_buffer32& value)
+template<> void byteswap_inplace<s_basic_buffer32>(s_basic_buffer32& value)
 {
-	byteswap(value.elements);
-	byteswap(value.size);
+	byteswap_inplace(value.elements);
+	byteswap_inplace(value.size);
 }

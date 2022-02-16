@@ -110,7 +110,7 @@ c_halo4_vectorart_vertex_buffer_interop::c_halo4_vectorart_vertex_buffer_interop
 	/*
 	using namespace blofeld::xbox360_gen3;
 	s_vectorartVertexBufferDescriptorStruct interop_data = *static_cast<const s_vectorartVertexBufferDescriptorStruct*>(data);
-	byteswap(interop_data);
+	byteswap_inplace(interop_data);
 
 	const void* source_vertex_data;
 	tag_reader.page_offset_to_pointer(interop_data.vertices.address, source_vertex_data);
@@ -138,7 +138,7 @@ c_halo4_polyart_vertex_buffer_interop::c_halo4_polyart_vertex_buffer_interop(c_h
 	/*
 	using namespace blofeld::xbox360_gen3;
 	s_polyartVertexBufferDescriptorStruct interop_data = *static_cast<const s_polyartVertexBufferDescriptorStruct*>(data);
-	byteswap(interop_data);
+	byteswap_inplace(interop_data);
 
 	const void* source_vertex_data;
 	tag_reader.page_offset_to_pointer(interop_data.vertices.address, source_vertex_data);
@@ -166,7 +166,7 @@ c_halo4_polyart_index_buffer_interop::c_halo4_polyart_index_buffer_interop(c_hal
 	/*
 	using namespace blofeld::xbox360_gen3;
 	s_polyartIndexBufferDescriptorStruct interop_data = *static_cast<const s_polyartIndexBufferDescriptorStruct*>(data);
-	byteswap(interop_data);
+	byteswap_inplace(interop_data);
 
 	const void* source_index_data;
 	tag_reader.page_offset_to_pointer(interop_data.index_data.address, source_index_data);

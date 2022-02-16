@@ -5,6 +5,7 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 	step(),
 	directory(directory),
 	is_all_selected(true),
+	is_monolithic_tag_file_directory(false),
 	is_single_tag_file_directory(false),
 	is_cache_file_directory(false),
 	entries(),
@@ -17,13 +18,21 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 	c_fixed_wide_path tags_directory = directory;
 	tags_directory += L"tags\\";
 
+	c_fixed_wide_path tag_cache_directory = directory;
+	tag_cache_directory += L"tag_cache\\";
+
 	c_fixed_wide_path guerilla_directory = directory;
 	guerilla_directory += L"guerilla.exe";
 
 	c_fixed_wide_path deploy_directory = directory;
 	deploy_directory += L"deploy\\";
 
-	if (BCS_SUCCEEDED(filesystem_directory_exists(tags_directory)) && BCS_SUCCEEDED(filesystem_filepath_exists(guerilla_directory)))
+	if (BCS_SUCCEEDED(filesystem_directory_exists(tag_cache_directory)))
+	{
+		is_monolithic_tag_file_directory = true;
+		debug_point;
+	}
+	else if (BCS_SUCCEEDED(filesystem_directory_exists(tags_directory)) && BCS_SUCCEEDED(filesystem_filepath_exists(guerilla_directory)))
 	{
 		is_single_tag_file_directory = true;
 		debug_point;
@@ -191,7 +200,7 @@ void c_tag_project_configurator_tab::render_impl()
 		else if (step == _tag_project_configurator_step_project_settings)
 		{
 			static bool run_once = auto_proceed = true;
-		} 
+		}
 		else if (step == _tag_project_configurator_step_display_tags)
 		{
 			static bool run_once = auto_proceed = true;
@@ -339,12 +348,12 @@ void c_tag_project_configurator_tab::render_project_settings()
 
 void c_tag_project_configurator_tab::render_display_tags()
 {
-	if(cache_cluster_transplant)
-	for (s_tag_transplant_instance& transplant_instance : cache_cluster_transplant->instances)
-	{
-		h_tag* tag = transplant_instance.high_level;
-		ImGui::Text("%s.%s", tag->tag_filepath, tag->group->tag_group.name);
-	}
+	if (cache_cluster_transplant)
+		for (s_tag_transplant_instance& transplant_instance : cache_cluster_transplant->instances)
+		{
+			h_tag* tag = transplant_instance.high_level;
+			ImGui::Text("%s.%s", tag->tag_filepath, tag->group->tag_group.name);
+		}
 }
 
 void c_tag_project_configurator_tab::create_cache_cluster()
@@ -423,7 +432,14 @@ void c_tag_project_configurator_tab::create_tag_project()
 		}
 		if (is_single_tag_file_directory)
 		{
-			c_filesystem_tag_project* tag_project = new c_filesystem_tag_project(directory);
+			c_filesystem_tag_project* tag_project = new c_filesystem_tag_project(directory, { _engine_type_halo3 });
+			c_tag_project_tab* tag_project_tab = new c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
+			mandrill_user_interface->add_tab(*tag_project_tab);
+			mandrill_user_interface->set_next_selected_tab(*tag_project_tab);
+		}
+		if (is_monolithic_tag_file_directory)
+		{
+			c_monolithic_tag_project* tag_project = new c_monolithic_tag_project(directory, { _engine_type_haloreach });
 			c_tag_project_tab* tag_project_tab = new c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
 			mandrill_user_interface->add_tab(*tag_project_tab);
 			mandrill_user_interface->set_next_selected_tab(*tag_project_tab);

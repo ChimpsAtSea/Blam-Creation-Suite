@@ -26,7 +26,7 @@ c_tag_reference_chunk::~c_tag_reference_chunk()
 	delete[] tag_filepath_without_extension;
 }
 
-void c_tag_reference_chunk::log_impl(c_single_tag_file_layout_reader& layout_reader) const
+void c_tag_reference_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
 {
 	log_signature();
 	console_write_line_verbose("'%s'", tag_filepath_without_extension);

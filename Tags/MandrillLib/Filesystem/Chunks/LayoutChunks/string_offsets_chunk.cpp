@@ -8,14 +8,21 @@ c_string_offsets_chunk::c_string_offsets_chunk(void* chunk_data, c_chunk& parent
 	debug_point;
 }
 
-void c_string_offsets_chunk::log_impl(c_single_tag_file_layout_reader& layout_reader) const
+void c_string_offsets_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
 {
 	log_signature();
 	console_write_line_verbose("count:0x%08X", entry_count);
 	for (unsigned long index = 0; index < entry_count; index++)
 	{
 		s_tag_persist_string_character_index string_character_index = offsets[index];
-		const char* string = layout_reader.get_string_by_string_character_index(string_character_index);
-		log_pad(); console_write_line_verbose("\t0x%08X\t0x%08X\t%s", index, string_character_index.offset, string);
+		if (layout_reader)
+		{
+			const char* string = layout_reader->get_string_by_string_character_index(string_character_index);
+			log_pad(); console_write_line_verbose("\t0x%08X\t0x%08X\t%s", index, string_character_index.offset, string);
+		}
+		else
+		{
+			log_pad(); console_write_line_verbose("\t0x%08X\t0x%08X", index, string_character_index.offset);
+		}
 	}
 }

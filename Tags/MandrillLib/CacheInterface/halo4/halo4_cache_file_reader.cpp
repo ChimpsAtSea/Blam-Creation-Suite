@@ -19,7 +19,7 @@ c_halo4_cache_file_reader::c_halo4_cache_file_reader(const wchar_t* filepath, s_
 	}
 
 	cache_file_header = *reinterpret_cast<halo4::xbox360::s_cache_file_header*>(file_info.file_view_begin); // #TODO: move this into a wrapper?
-	byteswap(cache_file_header);
+	byteswap_inplace(cache_file_header);
 }
 
 c_halo4_cache_file_reader::~c_halo4_cache_file_reader()

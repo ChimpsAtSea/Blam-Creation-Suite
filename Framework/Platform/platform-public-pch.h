@@ -12,6 +12,7 @@ using namespace xxhash::literals;
 
 #include "intrinsics.h"
 #include "macros.h"
+#include "crc32.h"
 #include "integral_limits.h"
 #include "bcs_assert.h"
 #include "bcs_result_handle.h"

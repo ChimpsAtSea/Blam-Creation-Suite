@@ -457,7 +457,7 @@ void c_low_level_tag_source_generator::generate_source() const
 	{
 		std::string low_level_structure_name = format_structure_symbol(*struct_definition);
 
-		stream << "template<> void byteswap<blofeld::" << namespace_name << "::" << low_level_structure_name << ">(blofeld::" << namespace_name << "::" << low_level_structure_name << "& value)" << std::endl;
+		stream << "template<> void byteswap_inplace<blofeld::" << namespace_name << "::" << low_level_structure_name << ">(blofeld::" << namespace_name << "::" << low_level_structure_name << "& value)" << std::endl;
 		stream << "{" << std::endl;
 
 		std::map<std::string, int> field_name_unique_counter;
@@ -506,12 +506,12 @@ void c_low_level_tag_source_generator::generate_source() const
 					unsigned long field_struct_size = calculate_struct_size(engine_platform_build, *current_field->struct_definition);
 					if (field_struct_size == 0)
 					{
-						stream << "\t// byteswap(value." << field_formatter.code_name.c_str() << "); // empty struct" << std::endl;
+						stream << "\t// byteswap_inplace(value." << field_formatter.code_name.c_str() << "); // empty struct" << std::endl;
 						break;
 					}
 				}
 				default:
-					stream << "\tbyteswap(value." << field_formatter.code_name.c_str() << ");" << std::endl;
+					stream << "\tbyteswap_inplace(value." << field_formatter.code_name.c_str() << ");" << std::endl;
 				}
 			}
 		}

@@ -3,18 +3,19 @@
 #define _signature *reinterpret_cast<tag*>(static_cast<char*>(chunk_data))
 #define _metadata *reinterpret_cast<unsigned long*>(static_cast<char*>(chunk_data) + 4)
 #define _chunk_size *reinterpret_cast<unsigned long*>(static_cast<char*>(chunk_data) + 8)
-c_chunk::c_chunk(void* chunk_data, c_chunk* parent) :
+c_chunk::c_chunk(void* chunk_data, c_chunk* parent, bool is_big_endian) :
 	chunk_data(static_cast<char*>(chunk_data)),
 	children(nullptr),
-	signature(_signature),
-	metadata(_metadata),
-	chunk_size(_chunk_size),
-	depth(parent ? parent->depth + 1 : 0),
+	is_big_endian(is_big_endian),
 	children_fast_allocation(),
+	depth(parent ? parent->depth + 1 : 0),
+	signature(chunk_byteswap(_signature)),
+	metadata(chunk_byteswap(_metadata)),
+	chunk_size(chunk_byteswap(_chunk_size)),
 	chunk_data_begin(static_cast<char*>(chunk_data) + 12),
 	chunk_data_end(chunk_data_begin + chunk_size)
 {
-
+	
 }
 #undef _signature
 #undef _metadata
@@ -42,7 +43,7 @@ c_chunk::~c_chunk()
 	}
 }
 
-void c_chunk::log(c_single_tag_file_layout_reader& layout_reader) const
+void c_chunk::log(c_single_tag_file_layout_reader* layout_reader) const
 {
 	log_pad();
 	log_impl(layout_reader);
@@ -73,9 +74,10 @@ void c_chunk::log_signature() const
 	console_write_verbose("%.4s ", _signature);
 }
 
-void c_chunk::log_impl(c_single_tag_file_layout_reader& layout_reader) const
+void c_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
 {
 	log_signature();
+	console_write_verbose("0x%X ", chunk_size);
 	console_end_line_verbose();
 }
 
@@ -143,7 +145,7 @@ c_chunk** c_chunk::create_child_chunks_fast(char* data_start, void* userdata)
 
 	for (char* data_position = data_start; data_position < chunk_data_end;)
 	{
-#define CHUNK_CTOR(_signature, t_structure, ...) \
+#define CHUNK_CTOR_EX(_signature, t_structure, ...) \
 		case (_signature): \
 		{ \
 			DEBUG_ASSERT(signature == c_tag_header_chunk::signature || this != nullptr); \
@@ -157,43 +159,63 @@ c_chunk** c_chunk::create_child_chunks_fast(char* data_start, void* userdata)
 			data_position = chunk->chunk_data_end; \
 			break; \
 		}
-		unsigned long& signature = *reinterpret_cast<unsigned long*>(data_position);
+#define CHUNK_CTOR(t_structure, ...) CHUNK_CTOR_EX(t_structure::signature, t_structure, __VA_ARGS__)
+		unsigned long signature = chunk_byteswap(*reinterpret_cast<unsigned long*>(data_position));
 		if (signature == c_tag_layout_v3_chunk::signature)
 		{
 			s_tag_group_layout_header* tag_group_layout_header = static_cast<s_tag_group_layout_header*>(userdata);
 			ASSERT(tag_group_layout_header != nullptr);
 			switch (tag_group_layout_header->layout_version)
 			{
-				CHUNK_CTOR(_tag_persist_layout_version_prechunk, c_tag_layout_prechunk_chunk, data_position, *this);
-				CHUNK_CTOR(_tag_persist_layout_version_preinterop, c_tag_layout_preinterop_chunk, data_position, *this);
-				CHUNK_CTOR(_tag_persist_layout_version_v3, c_tag_layout_v3_chunk, data_position, *this);
+				CHUNK_CTOR_EX(_tag_persist_layout_version_prechunk, c_tag_layout_prechunk_chunk, data_position, *this);
+				CHUNK_CTOR_EX(_tag_persist_layout_version_preinterop, c_tag_layout_preinterop_chunk, data_position, *this);
+				CHUNK_CTOR_EX(_tag_persist_layout_version_v3, c_tag_layout_v3_chunk, data_position, *this);
 			}
 		}
 		else switch (signature)
 		{
-			CHUNK_CTOR(c_tag_header_chunk::signature, c_tag_header_chunk, data_position);
-			CHUNK_CTOR(c_tag_group_layout_chunk::signature, c_tag_group_layout_chunk, data_position, *this);
-			CHUNK_CTOR(c_string_data_chunk::signature, c_string_data_chunk, data_position, *this);
-			CHUNK_CTOR(c_string_offsets_chunk::signature, c_string_offsets_chunk, data_position, *this);
-			CHUNK_CTOR(c_string_lists_chunk::signature, c_string_lists_chunk, data_position, *this);
-			CHUNK_CTOR(c_custom_block_index_search_names_chunk::signature, c_custom_block_index_search_names_chunk, data_position, *this);
-			CHUNK_CTOR(c_data_definition_name_chunk::signature, c_data_definition_name_chunk, data_position, *this);
-			CHUNK_CTOR(c_array_definitions_chunk::signature, c_array_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_field_types_chunk::signature, c_field_types_chunk, data_position, *this);
-			CHUNK_CTOR(c_fields_chunk::signature, c_fields_chunk, data_position, *this);
-			CHUNK_CTOR(c_block_definitions_chunk::signature, c_block_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_resource_definitions_chunk::signature, c_resource_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_interop_definitions_chunk::signature, c_interop_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_structure_definitions_chunk::signature, c_structure_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_binary_data_chunk::signature, c_binary_data_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_block_chunk::signature, c_tag_block_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_struct_chunk::signature, c_tag_struct_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_string_id_chunk::signature, c_tag_string_id_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_reference_chunk::signature, c_tag_reference_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_data_chunk::signature, c_tag_data_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			CHUNK_CTOR(c_tag_header_chunk, data_position);
+			CHUNK_CTOR(c_tag_group_layout_chunk, data_position, *this);
+			CHUNK_CTOR(c_string_data_chunk, data_position, *this);
+			CHUNK_CTOR(c_string_offsets_chunk, data_position, *this);
+			CHUNK_CTOR(c_string_lists_chunk, data_position, *this);
+			CHUNK_CTOR(c_custom_block_index_search_names_chunk, data_position, *this);
+			CHUNK_CTOR(c_data_definition_name_chunk, data_position, *this);
+			CHUNK_CTOR(c_array_definitions_chunk, data_position, *this);
+			CHUNK_CTOR(c_field_types_chunk, data_position, *this);
+			CHUNK_CTOR(c_fields_chunk, data_position, *this);
+			CHUNK_CTOR(c_block_definitions_chunk, data_position, *this);
+			CHUNK_CTOR(c_resource_definitions_chunk, data_position, *this);
+			CHUNK_CTOR(c_interop_definitions_chunk, data_position, *this);
+			CHUNK_CTOR(c_structure_definitions_chunk, data_position, *this);
+			CHUNK_CTOR(c_binary_data_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_block_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			CHUNK_CTOR(c_tag_struct_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			CHUNK_CTOR(c_tag_string_id_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			CHUNK_CTOR(c_tag_reference_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			CHUNK_CTOR(c_tag_data_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			CHUNK_CTOR(c_monolithic_tag_file_index_chunk, data_position, *this);
+			CHUNK_CTOR(c_monolithic_index_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_file_index_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_heap_chunk, data_position, *this);
+			CHUNK_CTOR(c_cache_heap_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_file_blocks_chunk, data_position, *this);
+			CHUNK_CTOR(c_build_identifier_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_file_persistent_heap_chunk, data_position, *this);
+			CHUNK_CTOR(c_partitioned_persistent_heap_backend_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_file_heap_partition_config_chunk, data_position, *this);
+			CHUNK_CTOR(c_partition_list_chunk, data_position, *this);
+			CHUNK_CTOR(c_partition_chunk, data_position, *this);
+			CHUNK_CTOR(c_partitioned_heap_entry_list_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_dependency_index_loader_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_dependency_chunk, data_position, *this);
+			CHUNK_CTOR(c_exploded_dependencies_chunk, data_position, *this);
+			CHUNK_CTOR(c_optimized_dependencies_chunk, data_position, *this);
+			CHUNK_CTOR(c_monolithic_tag_file_layout_registry_chunk, data_position, *this);
 		default: FATAL_ERROR("Unknown tag file chunk signature");
 		}
 #undef CHUNK_CTOR
+#undef CHUNK_CTOR_EX
 	}
 
 	c_chunk** chunk_pointers;
@@ -237,7 +259,7 @@ c_chunk** c_chunk::create_child_chunks_slow(char* data_start, void* userdata)
 
 	for (char* data_position = data_start; data_position < chunk_data_end;)
 	{
-#define CHUNK_CTOR(_signature, t_structure, ...) \
+#define CHUNK_CTOR_EX(_signature, t_structure, ...) \
 		case (_signature): \
 		{ \
 			s_stack_chunk_list_entry* chunk_list_entry = new s_stack_chunk_list_entry; \
@@ -248,43 +270,63 @@ c_chunk** c_chunk::create_child_chunks_slow(char* data_start, void* userdata)
 			data_position = chunk->chunk_data_end; \
 			break; \
 		}
-		unsigned long& signature = *reinterpret_cast<unsigned long*>(data_position);
+#define CHUNK_CTOR(t_structure, ...) CHUNK_CTOR_EX(t_structure::signature, t_structure, __VA_ARGS__)
+		unsigned long signature = chunk_byteswap(*reinterpret_cast<unsigned long*>(data_position));
 		if (signature == c_tag_layout_v3_chunk::signature)
 		{
 			s_tag_group_layout_header* tag_group_layout_header = static_cast<s_tag_group_layout_header*>(userdata);
 			ASSERT(tag_group_layout_header != nullptr);
 			switch (tag_group_layout_header->layout_version)
 			{
-				CHUNK_CTOR(_tag_persist_layout_version_prechunk, c_tag_layout_prechunk_chunk, data_position, *this);
-				CHUNK_CTOR(_tag_persist_layout_version_preinterop, c_tag_layout_preinterop_chunk, data_position, *this);
-				CHUNK_CTOR(_tag_persist_layout_version_v3, c_tag_layout_v3_chunk, data_position, *this);
+				CHUNK_CTOR_EX(_tag_persist_layout_version_prechunk, c_tag_layout_prechunk_chunk, data_position, *this);
+				CHUNK_CTOR_EX(_tag_persist_layout_version_preinterop, c_tag_layout_preinterop_chunk, data_position, *this);
+				CHUNK_CTOR_EX(_tag_persist_layout_version_v3, c_tag_layout_v3_chunk, data_position, *this);
 			}
 		}
 		else switch (signature)
 		{
-			CHUNK_CTOR(c_tag_header_chunk::signature, c_tag_header_chunk, data_position);
-			CHUNK_CTOR(c_tag_group_layout_chunk::signature, c_tag_group_layout_chunk, data_position, *this);
-			CHUNK_CTOR(c_string_data_chunk::signature, c_string_data_chunk, data_position, *this);
-			CHUNK_CTOR(c_string_offsets_chunk::signature, c_string_offsets_chunk, data_position, *this);
-			CHUNK_CTOR(c_string_lists_chunk::signature, c_string_lists_chunk, data_position, *this);
-			CHUNK_CTOR(c_custom_block_index_search_names_chunk::signature, c_custom_block_index_search_names_chunk, data_position, *this);
-			CHUNK_CTOR(c_data_definition_name_chunk::signature, c_data_definition_name_chunk, data_position, *this);
-			CHUNK_CTOR(c_array_definitions_chunk::signature, c_array_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_field_types_chunk::signature, c_field_types_chunk, data_position, *this);
-			CHUNK_CTOR(c_fields_chunk::signature, c_fields_chunk, data_position, *this);
-			CHUNK_CTOR(c_block_definitions_chunk::signature, c_block_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_resource_definitions_chunk::signature, c_resource_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_interop_definitions_chunk::signature, c_interop_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_structure_definitions_chunk::signature, c_structure_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_binary_data_chunk::signature, c_binary_data_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_block_chunk::signature, c_tag_block_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_struct_chunk::signature, c_tag_struct_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_string_id_chunk::signature, c_tag_string_id_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_reference_chunk::signature, c_tag_reference_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_data_chunk::signature, c_tag_data_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-		default: FATAL_ERROR("Unknown tag file chunk signature");
+			CHUNK_CTOR(c_tag_header_chunk, data_position);
+			CHUNK_CTOR(c_tag_group_layout_chunk, data_position, *this);
+			CHUNK_CTOR(c_string_data_chunk, data_position, *this);
+			CHUNK_CTOR(c_string_offsets_chunk, data_position, *this);
+			CHUNK_CTOR(c_string_lists_chunk, data_position, *this);
+			CHUNK_CTOR(c_custom_block_index_search_names_chunk, data_position, *this);
+			CHUNK_CTOR(c_data_definition_name_chunk, data_position, *this);
+			CHUNK_CTOR(c_array_definitions_chunk, data_position, *this);
+			CHUNK_CTOR(c_field_types_chunk, data_position, *this);
+			CHUNK_CTOR(c_fields_chunk, data_position, *this);
+			CHUNK_CTOR(c_block_definitions_chunk, data_position, *this);
+			CHUNK_CTOR(c_resource_definitions_chunk, data_position, *this);
+			CHUNK_CTOR(c_interop_definitions_chunk, data_position, *this);
+			CHUNK_CTOR(c_structure_definitions_chunk, data_position, *this);
+			CHUNK_CTOR(c_binary_data_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_block_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			CHUNK_CTOR(c_tag_struct_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			CHUNK_CTOR(c_tag_string_id_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			CHUNK_CTOR(c_tag_reference_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			CHUNK_CTOR(c_tag_data_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			CHUNK_CTOR(c_monolithic_tag_file_index_chunk, data_position, *this);
+			CHUNK_CTOR(c_monolithic_index_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_file_index_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_heap_chunk, data_position, *this);
+			CHUNK_CTOR(c_cache_heap_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_file_blocks_chunk, data_position, *this);
+			CHUNK_CTOR(c_build_identifier_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_file_persistent_heap_chunk, data_position, *this);
+			CHUNK_CTOR(c_partitioned_persistent_heap_backend_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_file_heap_partition_config_chunk, data_position, *this);
+			CHUNK_CTOR(c_partition_list_chunk, data_position, *this);
+			CHUNK_CTOR(c_partition_chunk, data_position, *this);
+			CHUNK_CTOR(c_partitioned_heap_entry_list_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_dependency_index_loader_chunk, data_position, *this);
+			CHUNK_CTOR(c_tag_dependency_chunk, data_position, *this);
+			CHUNK_CTOR(c_exploded_dependencies_chunk, data_position, *this);
+			CHUNK_CTOR(c_optimized_dependencies_chunk, data_position, *this);
+			CHUNK_CTOR(c_monolithic_tag_file_layout_registry_chunk, data_position, *this);
+			default: FATAL_ERROR("Unknown tag file chunk signature");
 		}
 #undef CHUNK_CTOR
+#undef CHUNK_CTOR_EX
 	}
 
 	c_chunk** chunk_pointers;

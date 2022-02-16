@@ -19,6 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\exploded_dependencies_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\tag_file_persistent_heap_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\build_identifier_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\cache_heap_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\monolithic_tag_file_index_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\chunk.h" />
     <ClInclude Include="Filesystem\Chunks\LayoutChunks\array_definitions_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\LayoutChunks\block_definitions_chunk.h" />
@@ -44,7 +49,6 @@
     <ClInclude Include="Filesystem\Chunks\TagChunks\tag_struct_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\tag_header_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\typed_chunk.h" />
-    <ClInclude Include="Filesystem\crc32.h" />
     <ClInclude Include="Filesystem\Filesystem.h" />
     <ClInclude Include="Filesystem\single_tag_file_header.h" />
     <ClInclude Include="Filesystem\single_tag_file_layout_reader.h" />
@@ -99,6 +103,7 @@
     <ClInclude Include="HighLevel\HighLevel.h" />
     <ClInclude Include="HighLevel\infinite_string_id_manager.h" />
     <ClInclude Include="HighLevel\legacy_string_id_manager.h" />
+    <ClInclude Include="HighLevel\monolithic_project.h" />
     <ClInclude Include="HighLevel\tag_project.h" />
     <ClInclude Include="HighLevel\string_id_manager.h" />
     <ClInclude Include="CacheInterface\memory_mapped_file.h" />
@@ -110,8 +115,28 @@
     <ClInclude Include="CacheInterface\CacheInterface.h" />
     <ClInclude Include="mandrilllib-private-pch.h" />
     <ClInclude Include="mandrilllib-public-pch.h" />
+    <ClInclude Include="Filesystem\Chunks\monolithic_tag_backend_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\monolithic_index_chunk.h" />
+    <ClInclude Include="Filesystem\system_global_unique_identifier.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\tag_file_index_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\tag_file_blocks_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\tag_heap_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\partitioned_persistent_heap_backend_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\tag_file_heap_partition_config_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\partition_list_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\partition_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\partitioned_heap_entry_list_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\tag_dependency_index_loader_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\optimized_dependencies_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\tag_dependency_chunk.h" />
+    <ClInclude Include="Filesystem\Chunks\MonolithicChunks\monolithic_tag_file_layout_registry_chunk.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\exploded_dependencies_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\tag_file_persistent_heap_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\build_identifier_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\cache_heap_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\monolithic_tag_file_index_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\LayoutChunks\array_definitions_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\LayoutChunks\block_definitions_chunk.cpp" />
@@ -136,7 +161,6 @@
     <ClCompile Include="Filesystem\Chunks\TagChunks\tag_string_id_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\TagChunks\tag_struct_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\tag_header_chunk.cpp" />
-    <ClCompile Include="Filesystem\crc32.cpp" />
     <ClCompile Include="Filesystem\single_tag_file_layout_reader.cpp" />
     <ClCompile Include="Filesystem\single_tag_file_reader.cpp" />
     <ClCompile Include="Filesystem\tag_file_high_level_transplant.cpp" />
@@ -188,6 +212,7 @@
     <ClCompile Include="HighLevel\filesystem_project.cpp" />
     <ClCompile Include="HighLevel\infinite_string_id_manager.cpp" />
     <ClCompile Include="HighLevel\legacy_string_id_manager.cpp" />
+    <ClCompile Include="HighLevel\monolithic_project.cpp" />
     <ClCompile Include="HighLevel\tag_project.cpp" />
     <ClCompile Include="HighLevel\string_id_manager.cpp" />
     <ClCompile Include="CacheInterface\memory_mapped_file.cpp" />
@@ -203,6 +228,21 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Filesystem\Chunks\monolithic_tag_backend_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\monolithic_index_chunk.cpp" />
+    <ClCompile Include="Filesystem\system_global_unique_identifier.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\tag_file_index_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\tag_file_blocks_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\tag_heap_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\partitioned_persistent_heap_backend_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\tag_file_heap_partition_config_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\partition_list_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\partition_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\partitioned_heap_entry_list_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\tag_dependency_index_loader_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\optimized_dependencies_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\tag_dependency_chunk.cpp" />
+    <ClCompile Include="Filesystem\Chunks\MonolithicChunks\monolithic_tag_file_layout_registry_chunk.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="CacheInterface\halo4\halo4.natvis" />
