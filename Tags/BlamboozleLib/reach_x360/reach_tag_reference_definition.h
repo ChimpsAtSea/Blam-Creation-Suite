@@ -14,7 +14,7 @@ enum e_reach_x360_tag_reference_definition_flags // #TODO: Check these. Strings 
 struct s_reach_x360_tag_reference_definition
 {
 	c_flags<e_reach_x360_tag_reference_definition_flags, unsigned long> flags;
-	tag group_tag;
+	btag group_tag;
 	ptr32 group_tags_address;
 };
 

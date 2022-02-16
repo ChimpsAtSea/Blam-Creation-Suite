@@ -5,6 +5,8 @@ std::map<ptr32, c_reach_x360_tag_group_definition*> c_reach_x360_tag_group_defin
 c_reach_x360_tag_group_definition::c_reach_x360_tag_group_definition(const char* guerilla_data, const char* tag_layout_data) :
 	tag_group_definition(reinterpret_cast<const s_reach_x360_tag_group_definition*>(tag_layout_data)),
 	name(reach_x360_pa_to_pointer(guerilla_data, tag_group_definition->name_address)),
+	group_tag(tag_group_definition->group_tag),
+	parent_group_tag(tag_group_definition->parent_group_tag),
 	code_name(reach_x360_convert_to_code_name(name).c_str()),
 	tag_symbol_name(code_name)
 {
@@ -50,7 +52,7 @@ c_reach_x360_tag_group_definition* c_reach_x360_tag_group_definition::reach_x360
 	for (auto& keyval : tag_group_definitions)
 	{
 		c_reach_x360_tag_group_definition* tag_group_definition = keyval.second;
-		if (tag_group_definition->tag_group_definition->group_tag.value == group_tag)
+		if (tag_group_definition->group_tag == group_tag)
 		{
 			return tag_group_definition;
 		}

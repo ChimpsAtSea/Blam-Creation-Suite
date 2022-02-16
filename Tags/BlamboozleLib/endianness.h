@@ -59,3 +59,5 @@ using bchar = bigendian_type<char>;
 using bshort = bigendian_type<short>;
 using blong = bigendian_type<long>;
 using blonglong = bigendian_type<long long>;
+
+using btag = bigendian_type<tag>;

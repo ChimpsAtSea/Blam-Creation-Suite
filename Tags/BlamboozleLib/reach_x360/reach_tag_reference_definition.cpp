@@ -12,9 +12,9 @@ c_reach_x360_tag_reference_definition::c_reach_x360_tag_reference_definition(con
 	{
 		group_tags.push_back(tag_reference_definition.group_tag);
 	}
-	else if (const tag* group_tag_pointer_begin = reinterpret_cast<const tag*>(reach_x360_va_to_pointer(guerilla_data, tag_reference_definition.group_tags_address)))
+	else if (const btag* group_tag_pointer_begin = reinterpret_cast<const btag*>(reach_x360_va_to_pointer(guerilla_data, tag_reference_definition.group_tags_address)))
 	{
-		for (const tag* group_tag_pointer = group_tag_pointer_begin; *group_tag_pointer != 0xFFFFFFFFu; group_tag_pointer++)
+		for (const btag* group_tag_pointer = group_tag_pointer_begin; *group_tag_pointer != 0xFFFFFFFFu; group_tag_pointer++)
 		{
 			group_tags.push_back(*group_tag_pointer);
 		}
@@ -23,6 +23,7 @@ c_reach_x360_tag_reference_definition::c_reach_x360_tag_reference_definition(con
 	for (tag group_tag : group_tags)
 	{
 		c_reach_x360_tag_group_definition* group_definition = c_reach_x360_tag_group_definition::reach_x360_get_tag_group_definition_by_group_tag(group_tag);
+		ASSERT(group_definition != nullptr);
 		group_tags2.push_back(group_definition);
 
 		if (!name.empty())

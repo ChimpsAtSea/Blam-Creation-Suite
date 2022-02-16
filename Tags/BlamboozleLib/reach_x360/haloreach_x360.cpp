@@ -292,7 +292,7 @@ c_reach_x360_tag_group_definition* get_sorted_group_definition_by_group_tag(tag 
 {
 	for (c_reach_x360_tag_group_definition* current_group_definition : sorted_group_definitions)
 	{
-		if (current_group_definition->tag_group_definition->group_tag.value == group_tag)
+		if (current_group_definition->group_tag == group_tag)
 		{
 			return current_group_definition;
 		}
@@ -302,11 +302,11 @@ c_reach_x360_tag_group_definition* get_sorted_group_definition_by_group_tag(tag 
 
 bool reach_x360_sort_group_definition(c_reach_x360_tag_group_definition& group_definition)
 {
-	if (!get_sorted_group_definition_by_group_tag(group_definition.tag_group_definition->group_tag.value))
+	if (!get_sorted_group_definition_by_group_tag(group_definition.group_tag))
 	{
 		bool include = false;
-		include |= group_definition.tag_group_definition->parent_group_tag.value == 0xFFFFFFFFu;
-		include |= get_sorted_group_definition_by_group_tag(group_definition.tag_group_definition->parent_group_tag.value) != nullptr;
+		include |= group_definition.parent_group_tag == 0xFFFFFFFFu;
+		include |= get_sorted_group_definition_by_group_tag(group_definition.parent_group_tag) != nullptr;
 		if (include)
 		{
 			sorted_group_definitions.push_back(&group_definition);
@@ -1198,7 +1198,7 @@ void reach_x360_export_header(
 				unsigned long long _byteswap_group_tag;
 				char _group_tag_str[sizeof(_byteswap_group_tag)];
 			};
-			_byteswap_group_tag = _byteswap_ulong(group_definition->tag_group_definition->group_tag.value);
+			_byteswap_group_tag = _byteswap_ulong(group_definition->group_tag);
 			const char* group_tag_string = _group_tag_str;
 			while (*group_tag_string == 0)
 			{
@@ -1309,7 +1309,7 @@ void reach_x360_export_source(
 			s << "\t\t" << group_definition->code_name << "," << std::endl;
 			//s << "\t\t" << group_definition->name << "_group," << std::endl;
 			s << "\t\t" << group_definition->tag_symbol_name.c_str() << "," << std::endl;
-			if (c_reach_x360_tag_group_definition* parent_group_definition = get_sorted_group_definition_by_group_tag(group_definition->tag_group_definition->parent_group_tag.value))
+			if (c_reach_x360_tag_group_definition* parent_group_definition = get_sorted_group_definition_by_group_tag(group_definition->parent_group_tag))
 			{
 				s << "\t\t&" << parent_group_definition->code_name << "," << std::endl;
 				//s << "\t\t&" << parent_group_definition->name << "_group," << std::endl;

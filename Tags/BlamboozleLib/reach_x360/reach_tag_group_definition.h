@@ -4,8 +4,8 @@ struct s_reach_x360_tag_group_definition
 {
 	bptr32 name_address;
 	unsigned long flags;
-	tag_group group_tag;
-	tag_group parent_group_tag;
+	bulong group_tag;
+	bulong parent_group_tag;
 	unsigned short version;
 	bptr32 vtable_shim;
 	bptr32 block_definition_address;
@@ -20,6 +20,8 @@ class c_reach_x360_tag_group_definition
 public:
 	const s_reach_x360_tag_group_definition* tag_group_definition;
 	const char* name;
+	tag group_tag;
+	tag parent_group_tag;
 	c_fixed_string_512 code_name;
 	c_fixed_string_512 tag_symbol_name;
 	c_reach_x360_tag_block_definition* tag_block_definition;
