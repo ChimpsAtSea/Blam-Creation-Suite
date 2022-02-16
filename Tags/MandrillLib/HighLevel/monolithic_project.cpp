@@ -3,7 +3,13 @@
 c_monolithic_tag_project::c_monolithic_tag_project(const wchar_t* directory, s_engine_platform_build engine_platform_build) :
 	c_tag_project(engine_platform_build),
 	groups(),
-	tags()
+	tags(),
+	num_tag_partitions(),
+	tag_memory_mapped_files(),
+	tag_memory_mapped_file_infos(),
+	num_cache_partitions(),
+	cache_memory_mapped_files(),
+	cache_memory_mapped_file_infos()
 {
 	for (const blofeld::s_tag_group** tag_group_iter = blofeld::tag_groups[engine_platform_build.engine_type]; *tag_group_iter; tag_group_iter++)
 	{
@@ -17,9 +23,15 @@ c_monolithic_tag_project::c_monolithic_tag_project(const wchar_t* directory, s_e
 	wcscpy(blob_index_file_path, tag_cache_directory);
 	wcscat(blob_index_file_path, L"blob_index.dat");
 
+
 	c_stopwatch stopwatch;
 	stopwatch.start();
+
 	parse_tag_blob();
+	init_monolithic_tag_file_views();
+	init_monolithic_cache_file_views();
+	read_tags();
+
 	stopwatch.stop();
 	float tag_parse_time = stopwatch.get_miliseconds();
 
@@ -28,6 +40,9 @@ c_monolithic_tag_project::c_monolithic_tag_project(const wchar_t* directory, s_e
 
 c_monolithic_tag_project::~c_monolithic_tag_project()
 {
+	ASSERT_NO_THROW(BCS_SUCCEEDED(deinit_monolithic_tag_file_views()));
+	ASSERT_NO_THROW(BCS_SUCCEEDED(deinit_monolithic_cache_file_views()));
+
 	for (h_tag* tag : tags)
 	{
 		delete tag;
@@ -46,6 +61,114 @@ c_partition_list_chunk* tag_partition_list_chunk;
 c_cache_heap_chunk* cache_heap_chunk;
 c_partitioned_heap_entry_list_chunk* cache_heap_list_chunk;
 c_partition_list_chunk* cache_partition_list_chunk;
+
+BCS_RESULT c_monolithic_tag_project::init_monolithic_tag_file_views()
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	num_tag_partitions = tag_partition_list_chunk->get_chunk_count();
+	tag_memory_mapped_files = new t_memory_mapped_file * [num_tag_partitions];
+	tag_memory_mapped_file_infos = new s_memory_mapped_file_info[num_tag_partitions];
+
+	for (unsigned long tag_partition_index = 0; tag_partition_index < num_tag_partitions; tag_partition_index++)
+	{
+		c_partition_chunk* partition_chunk = dynamic_cast<c_partition_chunk*>(tag_partition_list_chunk->children[tag_partition_index]);
+		ASSERT(partition_chunk != nullptr);
+		ASSERT(partition_chunk->partition_header.file_index == tag_partition_index);
+
+		wchar_t partition_filepath[0x10000];
+		swprintf(partition_filepath, L"%sblobs\\tags_%i", tag_cache_directory, partition_chunk->partition_header.file_index);
+
+		t_memory_mapped_file*& tag_memory_mapped_file = tag_memory_mapped_files[tag_partition_index];
+		s_memory_mapped_file_info& tag_memory_mapped_file_info = tag_memory_mapped_file_infos[tag_partition_index];
+
+		if (BCS_FAILED(rs = create_memory_mapped_file(partition_filepath, true, tag_memory_mapped_file)))
+		{
+			return rs;
+		}
+
+		if (BCS_FAILED(rs = get_memory_mapped_file_info(tag_memory_mapped_file, tag_memory_mapped_file_info)))
+		{
+			return rs;
+		}
+	}
+
+	return rs;
+}
+
+BCS_RESULT c_monolithic_tag_project::init_monolithic_cache_file_views()
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	num_cache_partitions = cache_partition_list_chunk->get_chunk_count();
+	cache_memory_mapped_files = new t_memory_mapped_file * [num_cache_partitions];
+	cache_memory_mapped_file_infos = new s_memory_mapped_file_info[num_cache_partitions];
+
+	for (unsigned long cache_partition_index = 0; cache_partition_index < num_cache_partitions; cache_partition_index++)
+	{
+		c_partition_chunk* partition_chunk = dynamic_cast<c_partition_chunk*>(cache_partition_list_chunk->children[cache_partition_index]);
+		ASSERT(partition_chunk != nullptr);
+		ASSERT(partition_chunk->partition_header.file_index == cache_partition_index);
+
+		wchar_t partition_filepath[0x10000];
+		swprintf(partition_filepath, L"%sblobs\\cache_%i", tag_cache_directory, partition_chunk->partition_header.file_index);
+
+		t_memory_mapped_file*& cache_memory_mapped_file = cache_memory_mapped_files[cache_partition_index];
+		s_memory_mapped_file_info& cache_memory_mapped_file_info = cache_memory_mapped_file_infos[cache_partition_index];
+
+		if (BCS_FAILED(rs = create_memory_mapped_file(partition_filepath, true, cache_memory_mapped_file)))
+		{
+			return rs;
+		}
+
+		if(BCS_FAILED(rs = get_memory_mapped_file_info(cache_memory_mapped_file, cache_memory_mapped_file_info)))
+		{
+			return rs;
+		}
+	}
+
+	return rs;
+}
+
+BCS_RESULT c_monolithic_tag_project::deinit_monolithic_tag_file_views()
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	delete[] tag_memory_mapped_files;
+	delete[] tag_memory_mapped_file_infos;
+
+	for (unsigned long tag_partition_index = 0; tag_partition_index < num_tag_partitions; tag_partition_index++)
+	{
+		t_memory_mapped_file*& tag_memory_mapped_file = tag_memory_mapped_files[tag_partition_index];
+
+		if (BCS_FAILED(rs = destroy_memory_mapped_file(tag_memory_mapped_file)))
+		{
+			return rs;
+		}
+	}
+
+	return rs;
+}
+
+BCS_RESULT c_monolithic_tag_project::deinit_monolithic_cache_file_views()
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	delete[] cache_memory_mapped_files;
+	delete[] cache_memory_mapped_file_infos;
+
+	for (unsigned long cache_partition_index = 0; cache_partition_index < num_cache_partitions; cache_partition_index++)
+	{
+		t_memory_mapped_file*& cache_memory_mapped_file = cache_memory_mapped_files[cache_partition_index];
+
+		if (BCS_FAILED(rs = destroy_memory_mapped_file(cache_memory_mapped_file)))
+		{
+			return rs;
+		}
+	}
+
+	return rs;
+}
 
 BCS_RESULT c_monolithic_tag_project::parse_tag_blob()
 {
@@ -75,6 +198,15 @@ BCS_RESULT c_monolithic_tag_project::parse_tag_blob()
 	cache_heap_list_chunk = cache_heap_chunk->find_first_chunk<c_partitioned_heap_entry_list_chunk>();
 	cache_partition_list_chunk = cache_heap_chunk->find_first_chunk<c_partition_list_chunk>();
 
+	root_chunk->log();
+
+	debug_point;
+}
+
+BCS_RESULT c_monolithic_tag_project::read_tags()
+{
+	BCS_RESULT rs = BCS_S_OK;
+
 	for (unsigned long index = 0; index < tag_file_index_chunk->tag_file_index_header.compressed_entry_count; index++)
 	{
 		s_compressed_tag_file_index_entry& tag_file_index_entry = tag_file_index_chunk->compressed_tag_file_index_entries[index];
@@ -103,7 +235,7 @@ BCS_RESULT c_monolithic_tag_project::parse_tag_blob()
 
 		if (wide_data_cache_block.tag_heap_entry_index != 0xFFFFFFFF)
 		{
-			s_partitioned_heap_entry& tag_heap_entry = cache_heap_list_chunk->entries[wide_data_cache_block.tag_heap_entry_index];
+			s_partitioned_heap_entry& tag_heap_entry = tag_heap_list_chunk->entries[wide_data_cache_block.tag_heap_entry_index];
 			c_partition_chunk* partition_chunk = dynamic_cast<c_partition_chunk*>(tag_partition_list_chunk->children[tag_heap_entry.partition_index]);
 			ASSERT(partition_chunk != nullptr);
 			ASSERT(partition_chunk->partition_header.file_index == tag_heap_entry.partition_index);
@@ -111,13 +243,7 @@ BCS_RESULT c_monolithic_tag_project::parse_tag_blob()
 			unsigned short heap_index = DATUM_INDEX_TO_ABSOLUTE_INDEX(tag_heap_entry.heap_datum);
 			s_lruv_cache_block_ex& lruv_cache_block = partition_chunk->lruv_cache_blocks[heap_index];
 
-			wchar_t partition_filepath[0x10000];
-			swprintf(partition_filepath, L"%sblobs\\tags_%i", tag_cache_directory, partition_chunk->partition_header.file_index);
-
-			t_memory_mapped_file* file;
-			s_memory_mapped_file_info file_info;
-			ASSERT(BCS_SUCCEEDED(create_memory_mapped_file(partition_filepath, true, file)));
-			ASSERT(BCS_SUCCEEDED(get_memory_mapped_file_info(file, file_info)));
+			s_memory_mapped_file_info& file_info = tag_memory_mapped_file_infos[tag_heap_entry.partition_index];
 
 			char* data = file_info.file_view_begin + lruv_cache_block.offset;
 
@@ -125,14 +251,16 @@ BCS_RESULT c_monolithic_tag_project::parse_tag_blob()
 			ASSERT(BCS_SUCCEEDED(get_group_by_group_tag(tag_file_index_entry.group_tag, tag_group)));
 
 			wchar_t tag_filepath_buf[0x10000];
-			swprintf(tag_filepath_buf, L"%S.%S", tag_name, tag_group->tag_group.group_tag_code_string);
-			const wchar_t* tag_filepath = filesystem_extract_filepath_filename(tag_filepath_buf);
+			swprintf(tag_filepath_buf, L"tags\\%S.%S", tag_name, tag_group->tag_group.name);
+			wchar_t* tag_filepath2 = const_cast<wchar_t*>(filesystem_extract_filepath_filename(tag_filepath_buf));
+			tag_filepath2[wcslen(tag_filepath2) - strlen("_group")] = 0;
 
-			ASSERT(BCS_SUCCEEDED(filesystem_write_file_from_memory(tag_filepath, data, lruv_cache_block.size)));
+			wchar_t tag_filepath[0x10000];
+			swprintf(tag_filepath, L"tags\\%s", tag_filepath2);
+
+			//ASSERT(BCS_SUCCEEDED(filesystem_write_file_from_memory(tag_filepath, data, lruv_cache_block.size)));
 
 			debug_point;
-
-			ASSERT(BCS_SUCCEEDED(destroy_memory_mapped_file(file)));
 		}
 
 		if (wide_data_cache_block.cache_heap_entry_index != 0xFFFFFFFF)
@@ -152,11 +280,9 @@ BCS_RESULT c_monolithic_tag_project::parse_tag_blob()
 		debug_point;
 	}
 
-
-	c_chunk* x = root_chunk->find_first_chunk<c_monolithic_tag_file_index_chunk>();
-	root_chunk->log();
-
 	debug_point;
+
+	return rs;
 }
 
 h_tag* c_monolithic_tag_project::try_parse_tag_file(const wchar_t* filepath)

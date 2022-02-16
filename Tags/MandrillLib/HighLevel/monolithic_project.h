@@ -16,11 +16,24 @@ public:
 	virtual BCS_RESULT get_tag_groups(h_group* const*& groups, unsigned long& group_count) const override;
 
 	BCS_RESULT parse_tag_blob();
+	BCS_RESULT read_tags();
 	h_tag* try_parse_tag_file(const wchar_t* filepath);
 
 protected:
+	BCS_RESULT init_monolithic_tag_file_views();
+	BCS_RESULT init_monolithic_cache_file_views();
+	BCS_RESULT deinit_monolithic_tag_file_views();
+	BCS_RESULT deinit_monolithic_cache_file_views();
+
 	wchar_t tag_cache_directory[0x10000];
 	wchar_t blob_index_file_path[0x10000];
 	std::vector<h_group*> groups;
 	std::vector<h_tag*> tags;
+
+	unsigned long num_tag_partitions;
+	t_memory_mapped_file** tag_memory_mapped_files;
+	s_memory_mapped_file_info* tag_memory_mapped_file_infos;
+	unsigned long num_cache_partitions;
+	t_memory_mapped_file** cache_memory_mapped_files;
+	s_memory_mapped_file_info* cache_memory_mapped_file_infos;
 };

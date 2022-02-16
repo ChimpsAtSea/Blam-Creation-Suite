@@ -31,6 +31,7 @@ public:
 
 	c_chunk* find_first_chunk(tag type) const;
 	c_chunk* get_chunk(unsigned long index) const;
+	unsigned long get_chunk_count() const;
 
 	template<typename t_chunk>
 	t_chunk* find_first_chunk() const

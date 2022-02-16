@@ -81,6 +81,16 @@ void c_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
 	console_end_line_verbose();
 }
 
+unsigned long c_chunk::get_chunk_count() const
+{
+	unsigned long child_count = 0;
+	for (c_chunk** children_iter = children; children_iter && *children_iter; children_iter++)
+	{
+		child_count++;
+	}
+	return child_count;
+}
+
 c_chunk* c_chunk::find_first_chunk(unsigned long type) const
 {
 	for (c_chunk** children_iter = children; children_iter && *children_iter; children_iter++)
