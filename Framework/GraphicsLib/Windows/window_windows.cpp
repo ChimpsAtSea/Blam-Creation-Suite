@@ -89,6 +89,13 @@ c_window_windows::c_window_windows(
 
 c_window_windows::~c_window_windows()
 {
+	if (window_handle != NULL)
+	{
+		DestroyWindow(window_handle);
+	}
+
+	ASSERT(window_handle == NULL);
+
 	BOOL delete_brush_result = DeleteObject(window_brush);
 	if (delete_brush_result == FALSE)
 	{
@@ -146,6 +153,10 @@ LRESULT c_window_windows::window_procedure(HWND window_handle, UINT message, WPA
 	return 0;
 	case WM_DESTROY:
 	{
+		if (this->window_handle == window_handle)
+		{
+			this->window_handle = NULL;
+		}
 		PostQuitMessage(0);
 	}
 	return 0;

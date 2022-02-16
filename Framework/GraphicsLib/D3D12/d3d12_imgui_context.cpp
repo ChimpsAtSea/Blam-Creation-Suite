@@ -80,8 +80,8 @@ void c_imgui_context_d3d12::init_imgui_font()
 	imgui_io.Fonts->Build();
 	ImGui::SetCurrentFont(imgui_font);
 
-	delete default_font_resource_data;
-	delete font_awesome_font_resource_data;
+	//delete default_font_resource_data;
+	//delete font_awesome_font_resource_data;
 }
 
 void c_imgui_context_d3d12::deinit_imgui_font()

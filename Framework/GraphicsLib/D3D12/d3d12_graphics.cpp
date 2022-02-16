@@ -48,7 +48,18 @@ c_graphics_d3d12::c_graphics_d3d12(bool use_debug_layer) :
 
 c_graphics_d3d12::~c_graphics_d3d12()
 {
-
+	//deinit_debug_geometry();
+	//deinit_default_pipeline();
+	//deinit_depth_stencil_target();
+	deinit_synchronization_objects();
+	deinit_root_signature();
+	deinit_command_list();
+	deinit_command_allocator();
+	deinit_command_queue();
+	deinit_descriptor_heap_allocator();
+	deinit_hardware_capabilities();
+	deinit_hardware();
+	deinit_debug_layer();
 }
 
 void c_graphics_d3d12::init_debug_layer()
@@ -165,7 +176,7 @@ void c_graphics_d3d12::init_descriptor_heap_allocator()
 	cbv_srv_uav_descriptor_heap_allocator_cpu = new c_descriptor_heap_allocator_d3d12(
 		*this,
 		D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV,
-		D3D12_DESCRIPTOR_HEAP_FLAG_NONE,
+		D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE,
 		131072,
 		L"c_graphics_d3d12::cbv_srv_uav_descriptor_heap_allocator_cpu"
 	);
