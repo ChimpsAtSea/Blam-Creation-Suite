@@ -10,9 +10,11 @@ struct s_tag_persist_string_list
 class c_string_lists_chunk : public c_typed_chunk<'sz[]'>
 {
 public:
-	s_tag_persist_string_list* const entries;
+	s_tag_persist_string_list* entries;
 	unsigned long const entry_count;
 
-	c_string_lists_chunk(void* chunk_data, c_chunk& parent);
+	c_string_lists_chunk(const void* chunk_data, c_chunk& parent);
+	~c_string_lists_chunk();
+
 	virtual void log_impl(c_single_tag_file_layout_reader* layout_reader) const override;
 };

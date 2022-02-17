@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-c_tag_reference_chunk::c_tag_reference_chunk(void* chunk_data, c_chunk& parent, c_single_tag_file_reader& reader) :
+c_tag_reference_chunk::c_tag_reference_chunk(const void* chunk_data, c_chunk& parent, c_single_tag_file_reader& reader) :
 	c_typed_single_tag_file_reader_chunk(chunk_data, parent, reader),
 	group_tag(blofeld::INVALID_TAG),
 	tag_filepath_without_extension()
@@ -9,7 +9,7 @@ c_tag_reference_chunk::c_tag_reference_chunk(void* chunk_data, c_chunk& parent, 
 	if (data_length >= 4)
 	{
 		intptr_t string_length = data_length - 4;
-		group_tag = *reinterpret_cast<tag*>(chunk_data_begin);
+		group_tag = chunk_byteswap(*reinterpret_cast<const tag*>(chunk_data_begin));
 		tag_filepath_without_extension = new char[string_length + 1];
 		memcpy(tag_filepath_without_extension, chunk_data_begin + sizeof(tag), string_length);
 		tag_filepath_without_extension[string_length] = 0;

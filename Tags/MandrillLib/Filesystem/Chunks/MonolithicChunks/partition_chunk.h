@@ -51,7 +51,7 @@ public:
 	s_data_array_persist_header data_array_persist_header;
 	s_lruv_cache_block_ex* lruv_cache_blocks;
 
-	c_partition_chunk(void* chunk_data, c_chunk& parent);
+	c_partition_chunk(const void* chunk_data, c_chunk& parent);
 	~c_partition_chunk();
 };
 

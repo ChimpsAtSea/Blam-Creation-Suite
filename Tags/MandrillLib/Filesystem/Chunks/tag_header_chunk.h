@@ -3,6 +3,6 @@
 class c_tag_header_chunk : public c_typed_chunk<'tag!'>
 {
 public:
-	c_tag_header_chunk(void* chunk_data);
+	c_tag_header_chunk(const void* chunk_data);
 };
 

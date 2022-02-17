@@ -44,8 +44,9 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	ASSERT(tag_struct_definitions != nullptr);
 
 	//struct_entries_data = new s_single_tag_file_reader_structure_entry[layout_reader.tag_group_layout_chunk->get_struct_definition_count()];
-	struct_entries_data.resize(layout_reader.tag_group_layout_chunk->get_struct_definition_count());
-	ASSERT(layout_reader.tag_group_layout_chunk->get_struct_definition_count() > 0);
+	unsigned long struct_definition_count = layout_reader.tag_group_layout_chunk->get_struct_definition_count();
+	struct_entries_data.resize(struct_definition_count);
+	ASSERT(struct_definition_count > 0);
 	for (
 		const blofeld::s_tag_struct_definition** tag_struct_definition_iter = tag_struct_definitions;
 		*tag_struct_definition_iter;
@@ -303,10 +304,10 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 	h_object& high_level_object,
 	unsigned long structure_entry_index,
 	s_tag_persist_struct_definition& structure_entry,
-	char* const structure_data_begin,
+	const char* const structure_data_begin,
 	c_tag_struct_chunk* structure_chunk)
 {
-	char* structure_data_position = structure_data_begin;
+	const char* structure_data_position = structure_data_begin;
 	unsigned long structure_chunk_child_index = 0;
 
 	s_single_tag_file_reader_structure_entry& reader_structure_entry = struct_entries_data[structure_entry_index];
@@ -757,7 +758,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_block_structure_to_high_level_obje
 	h_object* high_level_object = h_object::create_high_level_object(*blofeld_struct_definition, engine_platform_build);
 	ASSERT(high_level_object != nullptr);
 
-	char* structure_data_begin = tag_block_chunk.get_sturcutre_data_by_index(tag_block_index);
+	const char* structure_data_begin = tag_block_chunk.get_sturcutre_data_by_index(tag_block_index);
 	c_tag_struct_chunk* structure_chunk = tag_block_chunk.get_sturcutre_chunk_by_index(tag_block_index);
 
 	read_tag_struct_to_high_level_object_ref(

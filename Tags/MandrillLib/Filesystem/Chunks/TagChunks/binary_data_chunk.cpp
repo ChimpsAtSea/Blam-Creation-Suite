@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-c_binary_data_chunk::c_binary_data_chunk(void* chunk_data, c_chunk& parent) :
+c_binary_data_chunk::c_binary_data_chunk(const void* chunk_data, c_chunk& parent) :
 	c_typed_chunk(chunk_data, &parent)
 {
 	debug_point;

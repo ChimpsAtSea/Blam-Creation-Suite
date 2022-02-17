@@ -10,9 +10,11 @@ struct s_tag_persist_resource_definition
 class c_resource_definitions_chunk : public c_typed_chunk<'rcv2'>
 {
 public:
-	s_tag_persist_resource_definition* const entries;
+	s_tag_persist_resource_definition* entries;
 	unsigned long const entry_count;
 
-	c_resource_definitions_chunk(void* chunk_data, c_chunk& parent);
+	c_resource_definitions_chunk(const void* chunk_data, c_chunk& parent);
+	~c_resource_definitions_chunk();
+
 	virtual void log_impl(c_single_tag_file_layout_reader* layout_reader) const override;
 };

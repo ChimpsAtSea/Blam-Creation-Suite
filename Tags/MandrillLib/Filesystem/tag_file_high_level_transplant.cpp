@@ -16,7 +16,7 @@ c_tag_file_high_level_transplant::c_tag_file_high_level_transplant(const char* f
 	c_stopwatch s;
 	s.start();
 
-	layout_reader = new c_single_tag_file_layout_reader(header_data);
+	layout_reader = new c_single_tag_file_layout_reader(*header_data, header_data);
 
 	reader = new c_single_tag_file_reader(
 		*header_data,

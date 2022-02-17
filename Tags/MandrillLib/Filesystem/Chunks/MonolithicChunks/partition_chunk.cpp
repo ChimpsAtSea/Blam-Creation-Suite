@@ -1,16 +1,16 @@
 #include "mandrilllib-private-pch.h"
 
-c_partition_chunk::c_partition_chunk(void* chunk_data, c_chunk& parent) :
+c_partition_chunk::c_partition_chunk(const void* chunk_data, c_chunk& parent) :
 	c_typed_chunk(chunk_data, &parent),
 	partition_header(),
 	lruv_persist_header(),
 	data_array_persist_header(),
 	lruv_cache_blocks()
 {
-	s_partition_header* src_partition_header = reinterpret_cast<s_partition_header*>(chunk_data_begin);
-	s_lruv_persist_header* src_lruv_persist_header = next_contiguous_pointer<s_lruv_persist_header>(src_partition_header);
-	s_data_array_persist_header* src_data_array_persist_header = next_contiguous_pointer<s_data_array_persist_header>(src_lruv_persist_header);
-	s_lruv_cache_block* src_lruv_cache_blocks = next_contiguous_pointer<s_lruv_cache_block>(src_data_array_persist_header);
+	const s_partition_header* src_partition_header = reinterpret_cast<const s_partition_header*>(chunk_data_begin);
+	const s_lruv_persist_header* src_lruv_persist_header = next_contiguous_pointer<s_lruv_persist_header>(src_partition_header);
+	const s_data_array_persist_header* src_data_array_persist_header = next_contiguous_pointer<s_data_array_persist_header>(src_lruv_persist_header);
+	const s_lruv_cache_block* src_lruv_cache_blocks = next_contiguous_pointer<s_lruv_cache_block>(src_data_array_persist_header);
 
 	partition_header = chunk_byteswap(*src_partition_header);
 	lruv_persist_header = chunk_byteswap(*src_lruv_persist_header);

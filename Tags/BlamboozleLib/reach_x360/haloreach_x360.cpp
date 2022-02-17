@@ -1367,10 +1367,10 @@ void reach_x360_export_source(
 				persistent_identifier_buffer,
 				256,
 				"0x%08X, 0x%08X, 0x%08X, 0x%08X",
-				struct_definition->persistent_identifier.data[0],
-				struct_definition->persistent_identifier.data[1],
-				struct_definition->persistent_identifier.data[2],
-				struct_definition->persistent_identifier.data[3]);
+				static_cast<unsigned long>(struct_definition->persistent_identifier.data[0]),
+				static_cast<unsigned long>(struct_definition->persistent_identifier.data[1]),
+				static_cast<unsigned long>(struct_definition->persistent_identifier.data[2]),
+				static_cast<unsigned long>(struct_definition->persistent_identifier.data[3]));
 
 			char persistent_identifier_name_buffer[256];
 			snprintf(

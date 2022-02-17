@@ -10,8 +10,8 @@ class c_typed_chunk :
 public:
 	static constexpr unsigned long signature = _signature_t;
 
-#define _signature *reinterpret_cast<tag*>(static_cast<char*>(chunk_data))
-	c_typed_chunk(void* chunk_data, c_chunk* parent) :
+#define _signature *reinterpret_cast<const tag*>(static_cast<const char*>(chunk_data))
+	c_typed_chunk(const void* chunk_data, c_chunk* parent) :
 		c_chunk(chunk_data, parent, byteswap(_signature) == signature)
 	{
 
@@ -26,7 +26,7 @@ class c_typed_single_tag_file_reader_chunk :
 public:
 	c_single_tag_file_reader& reader;
 
-	c_typed_single_tag_file_reader_chunk(void* chunk_data, c_chunk& parent, c_single_tag_file_reader& reader) :
+	c_typed_single_tag_file_reader_chunk(const void* chunk_data, c_chunk& parent, c_single_tag_file_reader& reader) :
 		c_typed_chunk<_signature>(chunk_data, &parent),
 		reader(reader)
 	{

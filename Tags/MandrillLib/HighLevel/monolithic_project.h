@@ -17,7 +17,6 @@ public:
 
 	BCS_RESULT parse_tag_blob();
 	BCS_RESULT read_tags();
-	h_tag* try_parse_tag_file(const wchar_t* filepath);
 
 protected:
 	BCS_RESULT init_monolithic_tag_file_views();

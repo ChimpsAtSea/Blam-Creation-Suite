@@ -1,6 +1,12 @@
 #include "mandrilllib-private-pch.h"
 
-c_tag_block_chunk::c_tag_block_chunk(void* chunk_data, c_chunk& parent, c_single_tag_file_reader& reader) :
+template<> void byteswap_inplace(s_tag_block_chunk_header& value)
+{
+	byteswap_inplace(value.count);
+	byteswap_inplace(value.struct_index);
+}
+
+c_tag_block_chunk::c_tag_block_chunk(const void* chunk_data, c_chunk& parent, c_single_tag_file_reader& reader) :
 	c_typed_single_tag_file_reader_chunk(chunk_data, parent, reader),
 	block_structure_data_begin(),
 	block_structure_data_position(),
@@ -16,8 +22,8 @@ c_tag_block_chunk::c_tag_block_chunk(void* chunk_data, c_chunk& parent, c_single
 {
 	REFERENCE_ASSERT(reader);
 
-	tag_block_chunk_header = *reinterpret_cast<s_tag_block_chunk_header*>(chunk_data_begin);
-	chunk_data_begin += sizeof(s_tag_block_chunk_header);
+	const s_tag_block_chunk_header* src_tag_block_chunk_header = reinterpret_cast<const s_tag_block_chunk_header*>(chunk_data_begin);
+	tag_block_chunk_header = chunk_byteswap(*src_tag_block_chunk_header);
 
 	debug_point;
 
@@ -31,7 +37,7 @@ c_tag_block_chunk::c_tag_block_chunk(void* chunk_data, c_chunk& parent, c_single
 	struct_size = reader.layout_reader.calculate_structure_size_by_index(block_entry->structure_entry_index);
 	block_data_size = struct_size * tag_block_chunk_header.count;
 
-	block_structure_data_begin = chunk_data_begin;
+	block_structure_data_begin = next_contiguous_pointer<char>(src_tag_block_chunk_header);
 	block_structure_data_position = block_structure_data_begin;
 
 	block_child_chunk_data_begin = block_structure_data_begin + block_data_size;
@@ -85,9 +91,10 @@ c_tag_block_chunk::~c_tag_block_chunk()
 {
 
 }
-char* c_tag_block_chunk::get_sturcutre_data_by_index(unsigned long index) const
+
+const char* c_tag_block_chunk::get_sturcutre_data_by_index(unsigned long index) const
 {
-	char* result = block_structure_data_begin + struct_size * index;
+	const char* result = block_structure_data_begin + struct_size * index;
 	return result;
 }
 
@@ -180,7 +187,7 @@ void c_tag_block_chunk::read_structure_metadata_impl(s_tag_persist_struct_defini
 #define verbose true
 void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& structure_entry, const char* structure_data_pos, c_tag_struct_chunk* tag_struct_chunk)
 {
-	char* struct_name = reader.layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
+	const char* struct_name = reader.layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
 	if (verbose) { write_pad(); console_write_line_verbose("STRUCT> %s", struct_name); }
 
 	unsigned long metadata_child_index = 0;
@@ -239,7 +246,7 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 
 			unsigned long structure_entry_index = field_entry.metadata;
 			auto& structure_entry = reader.layout_reader.get_struct_definition_by_index(structure_entry_index);
-			char* struct_name = reader.layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
+			const char* struct_name = reader.layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
 
 			read_structure_data(structure_entry, structure_data_pos, tag_struct_chunk);
 			debug_point;
@@ -275,8 +282,8 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 			c_tag_data_chunk* tag_data_chunk = dynamic_cast<c_tag_data_chunk*>(field_chunk);
 			ASSERT(tag_data_chunk != nullptr);
 
-			const s_tag_data* data = reinterpret_cast<const s_tag_data*>(structure_data_pos);
-			if (verbose) { write_pad(); console_write_line_verbose("%s %s size:%li", type_string, name_string, data->size); }
+			s_tag_data data = chunk_byteswap(*reinterpret_cast<const s_tag_data*>(structure_data_pos));
+			if (verbose) { write_pad(); console_write_line_verbose("%s %s size:%li", type_string, name_string, data.size); }
 			debug_point;
 		}
 		break;
@@ -289,11 +296,11 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 
 			s_tag_persist_block_definition& block_entry = reader.layout_reader.get_block_definition_by_index(field_entry.metadata);
 			auto& structure_entry = reader.layout_reader.get_struct_definition_by_index(block_entry.structure_entry_index);
-			char* block_name = reader.layout_reader.get_string_by_string_character_index(block_entry.string_character_index);
-			char* struct_name = reader.layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
+			const char* block_name = reader.layout_reader.get_string_by_string_character_index(block_entry.string_character_index);
+			const char* struct_name = reader.layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
 
-			const s_tag_block* block = reinterpret_cast<const s_tag_block*>(structure_data_pos);
-			if (verbose) { write_pad(); console_write_line_verbose("%s %s count:%li", type_string, name_string, block->count); }
+			s_tag_block block = chunk_byteswap(*reinterpret_cast<const s_tag_block*>(structure_data_pos));
+			if (verbose) { write_pad(); console_write_line_verbose("%s %s count:%li", type_string, name_string, block.count); }
 
 			debug_point;
 
@@ -304,8 +311,9 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 		case blofeld::_field_char_integer:
 		case blofeld::_field_char_enum:
 		{
-			const long _number = *reinterpret_cast<const char*>(structure_data_pos);
-			if (verbose) { write_pad(); console_write_line_verbose("%s %s %li", type_string, name_string, _number); }
+			long number = chunk_byteswap(*reinterpret_cast<const char*>(structure_data_pos));
+			
+			if (verbose) { write_pad(); console_write_line_verbose("%s %s %li", type_string, name_string, number); }
 			debug_point;
 			break;
 		}
@@ -313,36 +321,39 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 		case blofeld::_field_word_flags:
 		case blofeld::_field_enum:
 		{
-			const long _number = *reinterpret_cast<const short*>(structure_data_pos);
-			if (verbose) { write_pad(); console_write_line_verbose("%s %s %li", type_string, name_string, _number); }
+			long number = chunk_byteswap(*reinterpret_cast<const short*>(structure_data_pos));
+
+			if (verbose) { write_pad(); console_write_line_verbose("%s %s %li", type_string, name_string, number); }
 			debug_point;
 			break;
 		}
 		case blofeld::_field_long_integer:
 		{
-			const long _number = *reinterpret_cast<const long*>(structure_data_pos);
-			if (verbose) { write_pad(); console_write_line_verbose("%s %s %li", type_string, name_string, _number); }
+			long number = chunk_byteswap(*reinterpret_cast<const long*>(structure_data_pos));
+
+			if (verbose) { write_pad(); console_write_line_verbose("%s %s %li", type_string, name_string, number); }
 			debug_point;
 			break;
 		}
 		case blofeld::_field_real:
 		case blofeld::_field_real_fraction:
 		{
-			const real _real = *reinterpret_cast<const real*>(structure_data_pos);
+			real _real = chunk_byteswap(*reinterpret_cast<const real*>(structure_data_pos));
+
 			if (verbose) { write_pad(); console_write_line_verbose("%s %s %f", type_string, name_string, _real); }
 			debug_point;
 			break;
 		}
 		case blofeld::_field_real_point_3d:
 		{
-			const real_vector3d _real3 = *reinterpret_cast<const real_vector3d*>(structure_data_pos);
+			real_vector3d _real3 = chunk_byteswap(*reinterpret_cast<const real_vector3d*>(structure_data_pos));
 			if (verbose) { write_pad(); console_write_line_verbose("%s %s %f %f %f", type_string, name_string, _real3.i, _real3.j, _real3.k); }
 			debug_point;
 			break;
 		}
 		case blofeld::_field_real_plane_3d:
 		{
-			const real_vector4d _real4 = *reinterpret_cast<const real_vector4d*>(structure_data_pos);
+			real_vector4d _real4 = chunk_byteswap(*reinterpret_cast<const real_vector4d*>(structure_data_pos));
 			if (verbose) { write_pad(); console_write_line_verbose("%s %s %f %f %f %f", type_string, name_string, _real4.i, _real4.j, _real4.k, _real4.w); }
 			debug_point;
 			break;

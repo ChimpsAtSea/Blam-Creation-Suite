@@ -1,10 +1,22 @@
 #include "mandrilllib-private-pch.h"
 
-c_data_definition_name_chunk::c_data_definition_name_chunk(void* chunk_data, c_chunk& parent) :
+c_data_definition_name_chunk::c_data_definition_name_chunk(const void* chunk_data, c_chunk& parent) :
 	c_typed_chunk(chunk_data, &parent),
-	offsets(reinterpret_cast<s_tag_persist_string_character_index*>(chunk_data_begin)),
+	offsets(),
 	entry_count(chunk_size / sizeof(*offsets))
 {
+	if (entry_count > 0)
+	{
+		const s_tag_persist_string_character_index* src_offsets = reinterpret_cast<const s_tag_persist_string_character_index*>(chunk_data_begin);
+		offsets = new s_tag_persist_string_character_index[entry_count];
+		for (unsigned long entry_index = 0; entry_index < entry_count; entry_index++)
+		{
+			s_tag_persist_string_character_index& offset = offsets[entry_index];
+			offset = src_offsets[entry_index];
+			byteswap_inplace(offset);
+		}
+	}
+
 	debug_point;
 }
 

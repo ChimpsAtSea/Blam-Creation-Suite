@@ -1,7 +1,6 @@
 #include "mandrilllib-private-pch.h"
-#include "single_tag_file_layout_reader.h"
 
-c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_file_header* header) :
+c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_file_header& header, const void* tag_file_data) :
 	root_chunk(),
 	tag_group_layout_chunk(),
 	aggregate_entries(),
@@ -18,7 +17,8 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 	resource_definitions_chunk(),
 	interop_definitions_chunk()
 {
-	root_chunk = new c_tag_header_chunk(next_contiguous_pointer(header));
+	const s_single_tag_file_header* src_header = static_cast<const s_single_tag_file_header*>(tag_file_data);
+	root_chunk = new c_tag_header_chunk(next_contiguous_pointer(src_header));
 
 	root_chunk->parse_children(this, nullptr, true);
 
@@ -33,9 +33,9 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 
 	if (tag_layout_prechunk_chunk != nullptr)
 	{
-		aggregate_entries = new s_tag_persist_aggregate_fixup[tag_layout_prechunk_chunk->layout_header_prechunk->aggregate_definition_count];
+		aggregate_entries = new s_tag_persist_aggregate_fixup[tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count];
 
-		for (unsigned long aggregate_index = 0; aggregate_index < tag_layout_prechunk_chunk->layout_header_prechunk->aggregate_definition_count; aggregate_index++)
+		for (unsigned long aggregate_index = 0; aggregate_index < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count; aggregate_index++)
 		{
 			s_tag_persist_aggregate_prechunk& aggregate = get_aggregate_by_index(aggregate_index);
 			s_tag_persist_aggregate_fixup& aggregate_fixup = aggregate_entries[aggregate_index];
@@ -51,14 +51,14 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 
 		s_tag_persist_aggregate_prechunk& tag_group_aggregate = get_aggregate_by_index(0);
 
-		const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(_engine_type_halo3, header->group_tag);
+		const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(_engine_type_halo3, header.group_tag);
 		//ASSERT(tag_group_aggregate.persistent_identifier == tag_group->block_definition.struct_definition.persistent_identifier);
 		if (tag_group_aggregate.persistent_identifier == tag_group->block_definition.struct_definition.persistent_identifier)
 		{
 			console_write_line("ERROR> Prechunk Definition Tag Group Base Structure Persistent Identifier Not Found! Attempting crazyness!");
 		}
 
-		for (unsigned long i = 0; i < tag_layout_prechunk_chunk->layout_header_prechunk->aggregate_definition_count; i++)
+		for (unsigned long i = 0; i < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count; i++)
 		{
 			s_tag_persist_aggregate_prechunk& aggregate = get_aggregate_by_index(i);
 
@@ -186,7 +186,7 @@ end:;
 	return structure_size;
 }
 
-char* c_single_tag_file_layout_reader::get_string_by_string_character_index(const s_tag_persist_string_character_index& string_character_index) const
+const char* c_single_tag_file_layout_reader::get_string_by_string_character_index(const s_tag_persist_string_character_index& string_character_index) const
 {
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
@@ -198,7 +198,7 @@ char* c_single_tag_file_layout_reader::get_string_by_string_character_index(cons
 	}
 }
 
-char* c_single_tag_file_layout_reader::get_custom_block_index_search_name_by_index(unsigned long custom_block_index_search_name_index) const
+const char* c_single_tag_file_layout_reader::get_custom_block_index_search_name_by_index(unsigned long custom_block_index_search_name_index) const
 {
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
@@ -210,7 +210,7 @@ char* c_single_tag_file_layout_reader::get_custom_block_index_search_name_by_ind
 	}
 }
 
-char* c_single_tag_file_layout_reader::get_data_definition_name_by_index(unsigned long data_definition_index) const
+const char* c_single_tag_file_layout_reader::get_data_definition_name_by_index(unsigned long data_definition_index) const
 {
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
@@ -231,7 +231,7 @@ s_tag_persist_block_definition& c_single_tag_file_layout_reader::get_block_defin
 	}
 	else
 	{
-		ASSERT(index < tag_layout_prechunk_chunk->layout_header_prechunk->aggregate_definition_count);
+		ASSERT(index < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count);
 		return aggregate_entries[index].block_definition;
 	}
 }
@@ -245,7 +245,7 @@ s_tag_persist_struct_definition& c_single_tag_file_layout_reader::get_struct_def
 	}
 	else
 	{
-		ASSERT(index < tag_layout_prechunk_chunk->layout_header_prechunk->aggregate_definition_count);
+		ASSERT(index < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count);
 		return aggregate_entries[index].struct_definition;
 	}
 }
@@ -259,7 +259,7 @@ s_tag_persist_array_definition& c_single_tag_file_layout_reader::get_array_defin
 	}
 	else
 	{
-		ASSERT(index < tag_layout_prechunk_chunk->layout_header_prechunk->array_definition_count);
+		ASSERT(index < tag_layout_prechunk_chunk->layout_header_prechunk.array_definition_count);
 		return tag_layout_prechunk_chunk->array_definitions[index];
 	}
 }
@@ -310,10 +310,12 @@ s_tag_persist_field_type& c_single_tag_file_layout_reader::get_field_type_by_ind
 {
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
+		ASSERT(index < field_types_chunk->entry_count);
 		return field_types_chunk->entries[index];
 	}
 	else
 	{
+		ASSERT(index < tag_layout_prechunk_chunk->layout_header_prechunk.field_type_count);
 		return tag_layout_prechunk_chunk->field_types[index];
 	}
 }

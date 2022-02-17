@@ -1,10 +1,10 @@
 #include "mandrilllib-private-pch.h"
 
-#define _signature *reinterpret_cast<tag*>(static_cast<char*>(chunk_data))
-#define _metadata *reinterpret_cast<unsigned long*>(static_cast<char*>(chunk_data) + 4)
-#define _chunk_size *reinterpret_cast<unsigned long*>(static_cast<char*>(chunk_data) + 8)
-c_chunk::c_chunk(void* chunk_data, c_chunk* parent, bool is_big_endian) :
-	chunk_data(static_cast<char*>(chunk_data)),
+#define _signature *reinterpret_cast<const tag*>(static_cast<const char*>(chunk_data))
+#define _metadata *reinterpret_cast<const unsigned long*>(static_cast<const char*>(chunk_data) + 4)
+#define _chunk_size *reinterpret_cast<const unsigned long*>(static_cast<const char*>(chunk_data) + 8)
+c_chunk::c_chunk(const void* chunk_data, c_chunk* parent, bool is_big_endian) :
+	chunk_data(static_cast<const char*>(chunk_data)),
 	children(nullptr),
 	is_big_endian(is_big_endian),
 	children_fast_allocation(),
@@ -12,7 +12,7 @@ c_chunk::c_chunk(void* chunk_data, c_chunk* parent, bool is_big_endian) :
 	signature(chunk_byteswap(_signature)),
 	metadata(chunk_byteswap(_metadata)),
 	chunk_size(chunk_byteswap(_chunk_size)),
-	chunk_data_begin(static_cast<char*>(chunk_data) + 12),
+	chunk_data_begin(static_cast<const char*>(chunk_data) + 12),
 	chunk_data_end(chunk_data_begin + chunk_size)
 {
 	
@@ -119,27 +119,27 @@ c_chunk* c_chunk::get_chunk(unsigned long index) const
 	return children[index];
 }
 
-void c_chunk::parse_children(void* userdata, char* data, bool force_fast)
+void c_chunk::parse_children(void* userdata, const char* data, bool force_fast)
 {
 	if (data == nullptr)
 	{
 		data = chunk_data_begin;
 	}
 
-	intptr_t bytes_to_parse = chunk_data_end - data;
-	if (bytes_to_parse <= 0x10000 || force_fast)
-	{
-		children_fast_allocation = 1;
-		children = create_child_chunks_fast(data, userdata);
-		//children = create_child_chunks_slow(data, userdata);
-	}
-	else
+	//intptr_t bytes_to_parse = chunk_data_end - data;
+	//if (bytes_to_parse <= 0x10000 || force_fast)
+	//{
+	//	children_fast_allocation = 1;
+	//	children = create_child_chunks_fast(data, userdata);
+	//	//children = create_child_chunks_slow(data, userdata);
+	//}
+	//else
 	{
 		children = create_child_chunks_slow(data, userdata);
 	}
 }
 
-c_chunk** c_chunk::create_child_chunks_fast(char* data_start, void* userdata)
+c_chunk** c_chunk::create_child_chunks_fast(const char* data_start, void* userdata)
 {
 #pragma pack(push, 1)
 	struct s_stack_chunk_list_entry
@@ -153,7 +153,7 @@ c_chunk** c_chunk::create_child_chunks_fast(char* data_start, void* userdata)
 	unsigned long chunk_list_length = 0;
 	unsigned long chunk_list_data_size = 0;
 
-	for (char* data_position = data_start; data_position < chunk_data_end;)
+	for (const char* data_position = data_start; data_position < chunk_data_end;)
 	{
 #define CHUNK_CTOR_EX(_signature, t_structure, ...) \
 		case (_signature): \
@@ -170,7 +170,7 @@ c_chunk** c_chunk::create_child_chunks_fast(char* data_start, void* userdata)
 			break; \
 		}
 #define CHUNK_CTOR(t_structure, ...) CHUNK_CTOR_EX(t_structure::signature, t_structure, __VA_ARGS__)
-		unsigned long signature = chunk_byteswap(*reinterpret_cast<unsigned long*>(data_position));
+		unsigned long signature = chunk_byteswap(*reinterpret_cast<const unsigned long*>(data_position));
 		if (signature == c_tag_layout_v3_chunk::signature)
 		{
 			s_tag_group_layout_header* tag_group_layout_header = static_cast<s_tag_group_layout_header*>(userdata);
@@ -255,7 +255,7 @@ c_chunk** c_chunk::create_child_chunks_fast(char* data_start, void* userdata)
 	return chunk_pointers;
 }
 
-c_chunk** c_chunk::create_child_chunks_slow(char* data_start, void* userdata)
+c_chunk** c_chunk::create_child_chunks_slow(const char* data_start, void* userdata)
 {
 #pragma pack(push, 1)
 	struct s_stack_chunk_list_entry
@@ -267,7 +267,7 @@ c_chunk** c_chunk::create_child_chunks_slow(char* data_start, void* userdata)
 	s_stack_chunk_list_entry* chunk_list_start = nullptr;
 	unsigned long chunk_list_length = 0;
 
-	for (char* data_position = data_start; data_position < chunk_data_end;)
+	for (const char* data_position = data_start; data_position < chunk_data_end;)
 	{
 #define CHUNK_CTOR_EX(_signature, t_structure, ...) \
 		case (_signature): \
@@ -281,7 +281,7 @@ c_chunk** c_chunk::create_child_chunks_slow(char* data_start, void* userdata)
 			break; \
 		}
 #define CHUNK_CTOR(t_structure, ...) CHUNK_CTOR_EX(t_structure::signature, t_structure, __VA_ARGS__)
-		unsigned long signature = chunk_byteswap(*reinterpret_cast<unsigned long*>(data_position));
+		unsigned long signature = chunk_byteswap(*reinterpret_cast<const unsigned long*>(data_position));
 		if (signature == c_tag_layout_v3_chunk::signature)
 		{
 			s_tag_group_layout_header* tag_group_layout_header = static_cast<s_tag_group_layout_header*>(userdata);

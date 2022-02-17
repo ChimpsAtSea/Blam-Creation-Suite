@@ -101,7 +101,7 @@ template<> BCS_DEBUG_API void byteswap_inplace<s_tag_resource>(s_tag_resource& v
 
 template<> BCS_DEBUG_API void byteswap_inplace<float>(float& value)
 {
-
+	byteswap_inplace(*reinterpret_cast<unsigned long*>(&value));
 }
 
 template<> BCS_DEBUG_API void byteswap_inplace<real_point2d>(real_point2d& value)

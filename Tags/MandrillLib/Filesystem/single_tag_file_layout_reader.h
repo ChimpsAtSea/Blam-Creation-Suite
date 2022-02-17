@@ -33,15 +33,15 @@ public:
 	c_tag_group_layout_chunk* tag_group_layout_chunk;
 	c_binary_data_chunk* binary_data_chunk;
 
-	c_single_tag_file_layout_reader(s_single_tag_file_header* header);
+	c_single_tag_file_layout_reader(s_single_tag_file_header& header, const void* tag_file_data);
 	~c_single_tag_file_layout_reader();
 
 	unsigned long calculate_structure_size_by_index(unsigned long structure_index);
 	unsigned long calculate_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry);
 
-	char* get_string_by_string_character_index(const s_tag_persist_string_character_index& string_character_index) const;
-	char* get_custom_block_index_search_name_by_index(unsigned long custom_block_index_search_name_index) const;
-	char* get_data_definition_name_by_index(unsigned long data_definition_index) const;
+	const char* get_string_by_string_character_index(const s_tag_persist_string_character_index& string_character_index) const;
+	const char* get_custom_block_index_search_name_by_index(unsigned long custom_block_index_search_name_index) const;
+	const char* get_data_definition_name_by_index(unsigned long data_definition_index) const;
 	s_tag_persist_block_definition& get_block_definition_by_index(unsigned long index) const;
 	s_tag_persist_struct_definition& get_struct_definition_by_index(unsigned long index) const;
 	s_tag_persist_array_definition& get_array_definition_by_index(unsigned long index) const;

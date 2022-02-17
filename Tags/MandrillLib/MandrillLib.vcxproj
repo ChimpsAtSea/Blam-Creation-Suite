@@ -161,6 +161,7 @@
     <ClCompile Include="Filesystem\Chunks\TagChunks\tag_string_id_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\TagChunks\tag_struct_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\tag_header_chunk.cpp" />
+    <ClCompile Include="Filesystem\single_tag_file_header.cpp" />
     <ClCompile Include="Filesystem\single_tag_file_layout_reader.cpp" />
     <ClCompile Include="Filesystem\single_tag_file_reader.cpp" />
     <ClCompile Include="Filesystem\tag_file_high_level_transplant.cpp" />

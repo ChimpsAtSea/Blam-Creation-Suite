@@ -70,7 +70,7 @@ public:
 		h_object& high_level_object,
 		unsigned long structure_entry_index,
 		s_tag_persist_struct_definition& structure_entry,
-		char* const structure_data_begin,
+		const char* const structure_data_begin,
 		c_tag_struct_chunk* structure_chunk);
 
 	BCS_RESULT get_tag_struct_definition_by_persistent_identifier(

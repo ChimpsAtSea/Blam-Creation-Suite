@@ -7,7 +7,7 @@ class c_single_tag_file_reader;
 class c_chunk
 {
 public:
-	void* const chunk_data;
+	const void* const chunk_data;
 	c_chunk** children;
 	//c_chunk* parent;
 
@@ -18,10 +18,10 @@ public:
 	unsigned long metadata;
 	unsigned long chunk_size;
 
-	char* chunk_data_begin;
-	char* const chunk_data_end;
+	const char* chunk_data_begin;
+	const char* const chunk_data_end;
 
-	c_chunk(void* chunk_data, c_chunk* parent, bool is_big_endian);
+	c_chunk(const void* chunk_data, c_chunk* parent, bool is_big_endian);
 	virtual ~c_chunk();
 
 	void log(c_single_tag_file_layout_reader* layout_reader = nullptr) const;
@@ -93,10 +93,10 @@ public:
 		}
 	}
 
-	void parse_children(void* userdata, char* data = nullptr, bool force_fast = false);
+	void parse_children(void* userdata, const char* data = nullptr, bool force_fast = false);
 
 protected:
-	c_chunk** create_child_chunks_fast(char* data, void* userdata);
-	c_chunk** create_child_chunks_slow(char* data, void* userdata);
+	c_chunk** create_child_chunks_fast(const char* data, void* userdata);
+	c_chunk** create_child_chunks_slow(const char* data, void* userdata);
 };
 static constexpr size_t k_chunk_size = sizeof(c_chunk);

@@ -24,9 +24,9 @@ struct s_tag_persist_aggregate_prechunk;
 class c_tag_layout_prechunk_chunk : public c_typed_chunk<'tgly'>
 {
 public:
-	s_tag_persist_layout_header_prechunk* layout_header_prechunk;
+	s_tag_persist_layout_header_prechunk layout_header_prechunk;
 
-	char* string_data;
+	const char* string_data;
 	s_tag_persist_string_character_index* string_offsets;
 	s_tag_persist_string_list* string_list;
 	s_tag_persist_string_character_index* custom_block_index_search_names;
@@ -36,5 +36,6 @@ public:
 	s_tag_persist_field* fields;
 	s_tag_persist_aggregate_prechunk* aggregate_definitions;
 
-	c_tag_layout_prechunk_chunk(void* chunk_data, c_chunk& parent);
+	c_tag_layout_prechunk_chunk(const void* chunk_data, c_chunk& parent);
+	~c_tag_layout_prechunk_chunk();
 };

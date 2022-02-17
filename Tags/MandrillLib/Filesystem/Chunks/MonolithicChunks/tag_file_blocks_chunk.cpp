@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(void* chunk_data, c_chunk& parent) :
+c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(const void* chunk_data, c_chunk& parent) :
 	c_typed_chunk(chunk_data, &parent),
 	wide_data_array_header(),
 	data_array_persist_header(),
@@ -8,15 +8,15 @@ c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(void* chunk_data, c_chunk& pare
 	wide_data_cache_blocks(),
 	num_wide_data_cache_blocks()
 {
-	s_wide_data_array_header* src_wide_data_array_header = reinterpret_cast<s_wide_data_array_header*>(chunk_data_begin);
-	s_data_array_persist_header* src_data_array_persist_header = next_contiguous_pointer<s_data_array_persist_header>(src_wide_data_array_header);
+	const s_wide_data_array_header* src_wide_data_array_header = reinterpret_cast<const s_wide_data_array_header*>(chunk_data_begin);
+	const s_data_array_persist_header* src_data_array_persist_header = next_contiguous_pointer<s_data_array_persist_header>(src_wide_data_array_header);
 	
 	wide_data_array_header = chunk_byteswap(*src_wide_data_array_header);
 	data_array_persist_header = chunk_byteswap(*src_data_array_persist_header);
 
 	if (data_array_persist_header.count > 0)
 	{
-		s_wide_data_datum* src_current_wide_data_datum;
+		const s_wide_data_datum* src_current_wide_data_datum;
 		{
 			src_current_wide_data_datum = next_contiguous_pointer<s_wide_data_datum>(src_data_array_persist_header);
 
@@ -30,10 +30,10 @@ c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(void* chunk_data, c_chunk& pare
 
 				num_wide_data_cache_blocks += wide_data_datum.data_header.count;
 
-				s_wide_data_cache_block* src_wide_data_cache_block = next_contiguous_pointer<s_wide_data_cache_block>(src_current_wide_data_datum);
+				const s_wide_data_cache_block* src_wide_data_cache_block = next_contiguous_pointer<s_wide_data_cache_block>(src_current_wide_data_datum);
 
-				unsigned long* src_signature0 = reinterpret_cast<unsigned long*>(src_wide_data_cache_block + wide_data_datum.data_header.count);
-				unsigned long* src_signature1 = next_contiguous_pointer(src_signature0);
+				const unsigned long* src_signature0 = reinterpret_cast<const unsigned long*>(src_wide_data_cache_block + wide_data_datum.data_header.count);
+				const unsigned long* src_signature1 = next_contiguous_pointer(src_signature0);
 				ASSERT(chunk_byteswap(*src_signature0) == 'd@ft');
 				ASSERT(chunk_byteswap(*src_signature1) == '!@#$');
 
@@ -55,7 +55,7 @@ c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(void* chunk_data, c_chunk& pare
 				wide_data_datum = *src_current_wide_data_datum;
 				chunk_byteswap_inplace(wide_data_datum);
 
-				s_wide_data_cache_block* src_wide_data_cache_block = next_contiguous_pointer<s_wide_data_cache_block>(src_current_wide_data_datum);
+				const s_wide_data_cache_block* src_wide_data_cache_block = next_contiguous_pointer<s_wide_data_cache_block>(src_current_wide_data_datum);
 				for (unsigned long wide_data_cache_block_index = 0; wide_data_cache_block_index < wide_data_datum.data_header.count; wide_data_cache_block_index++)
 				{
 					s_wide_data_cache_block& wide_data_cache_block = *wide_data_cache_blocks_pos;
@@ -67,8 +67,8 @@ c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(void* chunk_data, c_chunk& pare
 					debug_point;
 				}
 
-				unsigned long* src_signature0 = reinterpret_cast<unsigned long*>(src_wide_data_cache_block + wide_data_datum.data_header.count);
-				unsigned long* src_signature1 = next_contiguous_pointer(src_signature0);
+				const unsigned long* src_signature0 = reinterpret_cast<const unsigned long*>(src_wide_data_cache_block + wide_data_datum.data_header.count);
+				const unsigned long* src_signature1 = next_contiguous_pointer(src_signature0);
 				ASSERT(chunk_byteswap(*src_signature0) == 'd@ft');
 				ASSERT(chunk_byteswap(*src_signature1) == '!@#$');
 
@@ -78,12 +78,12 @@ c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(void* chunk_data, c_chunk& pare
 			}
 		}
 
-		unsigned long* src_signature0 = reinterpret_cast<unsigned long*>(src_current_wide_data_datum);
-		unsigned long* src_signature1 = next_contiguous_pointer(src_signature0);
+		const unsigned long* src_signature0 = reinterpret_cast<const unsigned long*>(src_current_wide_data_datum);
+		const unsigned long* src_signature1 = next_contiguous_pointer(src_signature0);
 		ASSERT(chunk_byteswap(*src_signature0) == 'd@ft');
 		ASSERT(chunk_byteswap(*src_signature1) == 'load');
 
-		void* current_read_position = next_contiguous_pointer(src_signature1);
+		const void* current_read_position = next_contiguous_pointer(src_signature1);
 		ASSERT(current_read_position == chunk_data_end);
 
 		debug_point;

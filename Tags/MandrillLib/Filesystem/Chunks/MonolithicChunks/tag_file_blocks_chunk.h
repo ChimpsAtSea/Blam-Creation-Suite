@@ -59,7 +59,7 @@ public:
 	s_wide_data_cache_block* wide_data_cache_blocks;
 	unsigned long num_wide_data_cache_blocks;
 
-	c_tag_file_blocks_chunk(void* chunk_data, c_chunk& parent);
+	c_tag_file_blocks_chunk(const void* chunk_data, c_chunk& parent);
 	~c_tag_file_blocks_chunk();
 
 protected:

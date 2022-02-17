@@ -210,7 +210,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 	for (unsigned long index = 0; index < tag_file_index_chunk->tag_file_index_header.compressed_entry_count; index++)
 	{
 		s_compressed_tag_file_index_entry& tag_file_index_entry = tag_file_index_chunk->compressed_tag_file_index_entries[index];
-		
+
 		const char* tag_name = tag_file_index_chunk->name_buffer + tag_file_index_entry.name_offset;
 
 		if (tag_file_index_entry.wide_block_index == 0xFFFFFFFF)
@@ -233,6 +233,8 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 
 		ASSERT(wide_data_cache_block.current_datum == tag_file_index_entry.wide_block_datum_index);
 
+		const void* tag_file_data;
+		unsigned long long tag_file_data_size;
 		if (wide_data_cache_block.tag_heap_entry_index != 0xFFFFFFFF)
 		{
 			s_partitioned_heap_entry& tag_heap_entry = tag_heap_list_chunk->entries[wide_data_cache_block.tag_heap_entry_index];
@@ -261,6 +263,9 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			//ASSERT(BCS_SUCCEEDED(filesystem_write_file_from_memory(tag_filepath, data, lruv_cache_block.size)));
 
 			debug_point;
+
+			tag_file_data = data;
+			tag_file_data_size = lruv_cache_block.size;
 		}
 
 		if (wide_data_cache_block.cache_heap_entry_index != 0xFFFFFFFF)
@@ -276,58 +281,66 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			debug_point;
 		}
 
+		h_tag* high_level_tag = nullptr;
+		{
+			ASSERT(tag_file_data_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
+
+			const s_single_tag_file_header* src_header = static_cast<const s_single_tag_file_header*>(tag_file_data);
+			bool is_little_endian_tag = src_header->blam == 'BLAM';
+			bool is_big_endian_tag = byteswap(src_header->blam) == 'BLAM';
+			ASSERT(is_little_endian_tag || is_big_endian_tag);
+
+			s_single_tag_file_header header = *src_header;
+			if (is_big_endian_tag)
+			{
+				byteswap_inplace(header);
+			}
+
+			c_stopwatch s;
+			s.start();
+
+			c_single_tag_file_layout_reader* layout_reader = new c_single_tag_file_layout_reader(header, tag_file_data);
+
+			c_single_tag_file_reader*  reader = new c_single_tag_file_reader(
+				header,
+				engine_platform_build,
+				*layout_reader,
+				*layout_reader->binary_data_chunk);
+
+			s.stop();
+			float ms = s.get_miliseconds();
+			console_write_line("Processed chunks in %.2f ms", ms);
+
+			//tag_group_layout_chunk->log(layout_reader->string_data_chunk);
+			//binary_data_chunk->log(layout_reader->string_data_chunk);
+
+			reader->parse_high_level_object(high_level_tag);
+			debug_point;
+
+		}
+
+		if (high_level_tag)
+		{
+			h_group* tag_group;
+			ASSERT(BCS_SUCCEEDED(get_group_by_group_tag(tag_file_index_entry.group_tag, tag_group)));
+			char relative_filepath_mb[0x10000];
+			sprintf(relative_filepath_mb, "%s.%s", tag_name, tag_group->tag_group.name);
+
+			high_level_tag->tag_filename = filesystem_extract_filepath_filename(relative_filepath_mb);
+			high_level_tag->tag_filepath = relative_filepath_mb;
+
+			tag_group->associate_tag_instance(*high_level_tag);
+			debug_point;
+		}
 
 		debug_point;
+
+		break;
 	}
 
 	debug_point;
 
 	return rs;
-}
-
-h_tag* c_monolithic_tag_project::try_parse_tag_file(const wchar_t* filepath)
-{
-	s_single_tag_file_header* header_data;
-	c_single_tag_file_layout_reader* layout_reader;
-	c_single_tag_file_reader* reader;
-
-	void* tag_file_data;
-	unsigned long long tag_file_data_size;
-	BCS_FAIL_THROW(filesystem_read_file_to_memory(filepath, tag_file_data, tag_file_data_size));
-	ASSERT(tag_file_data_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
-	header_data = static_cast<s_single_tag_file_header*>(tag_file_data);
-	ASSERT(header_data->blam == 'BLAM');
-
-	static constexpr tag k_tag_file_root_data_stream_tag = 'tag!';
-
-	tag root_node_tag = *reinterpret_cast<tag*>(header_data + 1);
-	bool is_little_endian_tag = root_node_tag == k_tag_file_root_data_stream_tag;
-	bool is_big_endian_tag = byteswap(root_node_tag) == k_tag_file_root_data_stream_tag;
-	ASSERT(is_little_endian_tag || is_big_endian_tag);
-
-	c_stopwatch s;
-	s.start();
-
-	layout_reader = new c_single_tag_file_layout_reader(header_data);
-
-	reader = new c_single_tag_file_reader(
-		*header_data,
-		engine_platform_build,
-		*layout_reader,
-		*layout_reader->binary_data_chunk);
-
-	s.stop();
-	float ms = s.get_miliseconds();
-	console_write_line("Processed chunks in %.2f ms", ms);
-
-	//tag_group_layout_chunk->log(layout_reader->string_data_chunk);
-	//binary_data_chunk->log(layout_reader->string_data_chunk);
-
-	h_tag* high_level_tag;
-	reader->parse_high_level_object(high_level_tag);
-	debug_point;
-
-	return high_level_tag;
 }
 
 BCS_RESULT c_monolithic_tag_project::get_group_by_group_tag(tag group_tag, h_group*& group) const

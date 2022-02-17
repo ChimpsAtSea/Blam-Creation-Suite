@@ -5,7 +5,7 @@ class c_reach_x360_tag_group_definition;
 
 struct s_reach_x360_tag_struct_persistent_identifier
 {
-	unsigned long data[4];
+	bulong data[4];
 };
 
 struct s_reach_x360_tag_struct_definition

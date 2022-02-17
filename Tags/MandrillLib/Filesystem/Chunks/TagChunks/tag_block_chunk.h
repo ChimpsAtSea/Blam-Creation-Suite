@@ -13,23 +13,23 @@ struct s_tag_persist_struct_definition;
 class c_tag_block_chunk : public c_typed_single_tag_file_reader_chunk<'tgbl'>
 {
 public:
-	char* block_structure_data_begin;
-	char* block_structure_data_position;
-	char* block_child_chunk_data_begin;
-	char* block_child_chunk_data_position;
+	const char* block_structure_data_begin;
+	const char* block_structure_data_position;
+	const char* block_child_chunk_data_begin;
+	const char* block_child_chunk_data_position;
 	s_tag_persist_block_definition* block_entry;
 	s_tag_persist_struct_definition* structure_entry;
-	char* block_name;
-	char* struct_name;
+	const char* block_name;
+	const char* struct_name;
 	s_tag_block_chunk_header tag_block_chunk_header;
 	unsigned long block_data_size;
 	unsigned long struct_size;
 
-	c_tag_block_chunk(void* chunk_data, c_chunk& parent, c_single_tag_file_reader& reader);
+	c_tag_block_chunk(const void* chunk_data, c_chunk& parent, c_single_tag_file_reader& reader);
 	~c_tag_block_chunk();
 	virtual void log_impl(c_single_tag_file_layout_reader* layout_reader) const override;
 
-	char* get_sturcutre_data_by_index(unsigned long index) const;
+	const char* get_sturcutre_data_by_index(unsigned long index) const;
 	c_tag_struct_chunk* get_sturcutre_chunk_by_index(unsigned long index) const;
 
 	void read_structure_metadata(s_tag_persist_struct_definition& structure_entry);

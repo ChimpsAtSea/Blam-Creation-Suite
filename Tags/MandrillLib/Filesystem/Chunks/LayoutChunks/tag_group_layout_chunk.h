@@ -56,7 +56,7 @@ static_assert(sizeof(s_tag_persist_layout_header_v3) == 0x34);
 class c_tag_group_layout_chunk : public c_typed_chunk<'blay'>
 {
 public:
-	s_tag_group_layout_header* tag_group_layout_header;
+	s_tag_group_layout_header tag_group_layout_header;
 
 	s_tag_persist_layout_header_prechunk* layout_header_prechunk;
 	s_tag_persist_layout_header_preinterop* layout_header_preinterop;
@@ -77,5 +77,14 @@ public:
 	unsigned long get_interop_definition_count() const;
 	unsigned long get_aggregate_definition_count() const;
 
-	c_tag_group_layout_chunk(void* chunk_data, c_chunk& parent);
+	c_tag_group_layout_chunk(const void* chunk_data, c_chunk& parent);
+	~c_tag_group_layout_chunk();
+
+protected:
+	union
+	{
+		s_tag_persist_layout_header_prechunk layout_header_prechunk_data;
+		s_tag_persist_layout_header_preinterop layout_header_preinterop_data;
+		s_tag_persist_layout_header_v3 layout_header_v3_data;
+	};
 };
