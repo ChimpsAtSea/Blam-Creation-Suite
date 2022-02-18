@@ -4,7 +4,7 @@ class c_reach_x360_tag_struct_definition;
 
 struct s_reach_x360_tag_api_interop_persistent_identifier
 {
-	blong data[4];
+	bulong data[4];
 };
 
 struct s_reach_x360_tag_api_interop_definition
@@ -24,7 +24,7 @@ public:
 	std::string name;
 	std::string code_name;
 	c_reach_x360_tag_struct_definition& struct_definition;
-	s_tag_persistent_identifier persistent_identifier;
+	blofeld::s_tag_persistent_identifier persistent_identifier;
 	const s_reach_x360_tag_api_interop_definition& interop_definition;
 
 	c_reach_x360_tag_api_interop_definition(const char* guerilla_data, const s_reach_x360_tag_api_interop_definition& definition_header);

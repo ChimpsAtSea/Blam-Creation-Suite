@@ -84,7 +84,7 @@ namespace halo4
 //			
 //			tag footer_signature;
 //
-//			void byteswap_inplace();
+//			byteswap_inplace();
 //		};
 //#pragma pack(pop)
 //

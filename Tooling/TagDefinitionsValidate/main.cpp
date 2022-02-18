@@ -31,6 +31,8 @@ static BCS_RESULT tag_defintions_validate()
 		blofeld::tag_groups[_engine_type_infinite],
 		{ _engine_type_infinite, _platform_type_pc_64bit, _build_infinite_HIREL_209048_21_12_09_1546 });
 
+	failed_validation |= BCS_FAILED(definition_duplicate_check({ _engine_type_haloreach, _platform_type_xbox_360, _build_reach_tags }));
+
 	static bool const fatal_validation = BCS_SUCCEEDED(command_line_has_argument("fatal-validation"));
 	if (failed_validation && fatal_validation)
 	{

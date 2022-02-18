@@ -950,6 +950,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 			stream << "\t\t" << "void* " << high_level_structure_name << "::get_field_data(const blofeld::s_tag_field& field)" << std::endl;
 			stream << "\t\t{" << std::endl;
 			stream << "\t\t\tintptr_t const _index = &field - " << struct_definition->symbol->symbol_name << ".fields;" << std::endl;
+			stream << "\t\t\tDEBUG_ASSERT(_index >= 0);" << std::endl;
 			stream << std::endl;
 			stream << "\t\t\tswitch (_index)" << std::endl;
 			stream << "\t\t\t{" << std::endl;
@@ -1014,6 +1015,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 			stream << "\t\t" << "bool " << high_level_structure_name << "::is_field_active(const blofeld::s_tag_field& field) const" << std::endl;
 			stream << "\t\t{" << std::endl;
 			stream << "\t\t\tintptr_t const _index = &field - " << struct_definition->symbol->symbol_name << ".fields;" << std::endl;
+			stream << "\t\t\tDEBUG_ASSERT(_index >= 0);" << std::endl;
 			stream << std::endl;
 			stream << "\t\t\tswitch (_index)" << std::endl;
 			stream << "\t\t\t{" << std::endl;

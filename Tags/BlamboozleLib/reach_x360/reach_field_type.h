@@ -64,6 +64,7 @@ enum e_reach_x360_field_type : unsigned long
 	_reach_x360_field_type_pageable_resource,
 	_reach_x360_field_type_api_interop,
 	_reach_x360_field_type_terminator,
+	k_num_reach_x360_field_types
 };
 
 extern const char* reach_x360_field_type_to_string(e_reach_x360_field_type field_type);

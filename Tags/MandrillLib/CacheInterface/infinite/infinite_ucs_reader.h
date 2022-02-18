@@ -166,7 +166,7 @@ public:
 	c_infinite_ucs_reader(const void* ucs_data);
 	~c_infinite_ucs_reader();
 	
-	long get_root_tag_block_entry_index() const;
+	unsigned long get_root_tag_block_entry_index() const;
 
 	const void* header_data;
 	const void* tag_data;

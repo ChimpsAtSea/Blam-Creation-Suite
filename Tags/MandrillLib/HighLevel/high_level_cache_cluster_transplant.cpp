@@ -981,7 +981,7 @@ public:
 
 						const s_infinite_ucs_tag_block_data* _tag_block_data = nullptr;
 						long _tag_block_index = 01;
-						for (long block_index = 0; block_index < ucs_reader.ucs_header->tag_block_count; block_index++)
+						for (unsigned long block_index = 0; block_index < ucs_reader.ucs_header->tag_block_count; block_index++)
 						{
 							const s_infinite_ucs_tag_block_data& current_tag_block_data = ucs_reader.tag_block_instances[block_index];
 							const s_infinite_ucs_nugget& current_nugget = ucs_reader.nuggets[current_tag_block_data.nugget_index];
@@ -989,7 +989,7 @@ public:
 							if (current_tag_block_data.owner_block_index == nugget_index && current_tag_block_data.owner_block_offset == offset)
 							{
 								_tag_block_data = &current_tag_block_data;
-								_tag_block_index = block_index;
+								_tag_block_index = static_cast<long>(block_index);
 								debug_point;
 								break;
 							}
@@ -1167,7 +1167,7 @@ public:
 							ASSERT(tag_block_data != nullptr);
 							long offset = static_cast<long>(current_data_position - tag_block_data);
 
-							for (long block_index = 0; block_index < ucs_reader.ucs_header->tag_block_count; block_index++)
+							for (unsigned long block_index = 0; block_index < ucs_reader.ucs_header->tag_block_count; block_index++)
 							{
 								const s_infinite_ucs_tag_block_data& current_tag_block_data = ucs_reader.tag_block_instances[block_index];
 								const s_infinite_ucs_nugget& current_nugget = ucs_reader.nuggets[current_tag_block_data.nugget_index];
@@ -1175,7 +1175,7 @@ public:
 								if (current_tag_block_data.owner_block_index == nugget_index && current_tag_block_data.owner_block_offset == offset)
 								{
 									_tag_block_data = &current_tag_block_data;
-									_tag_block_index = block_index;
+									_tag_block_index = static_cast<long>(block_index);
 									debug_point;
 									break;
 								}

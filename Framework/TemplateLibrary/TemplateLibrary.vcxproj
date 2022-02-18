@@ -22,6 +22,7 @@
     <ClInclude Include="atomic_lock.h" />
     <ClInclude Include="auto_delete.h" />
     <ClInclude Include="bitfield_allocator.h" />
+    <ClInclude Include="byteswap.h" />
     <ClInclude Include="callback.h" />
     <ClInclude Include="compile_time_accumulator.h" />
     <ClInclude Include="fixed_string.h" />
@@ -37,6 +38,7 @@
   <ItemGroup>
     <ClCompile Include="atomic_lock.cpp" />
     <ClCompile Include="bitfield_allocator.cpp" />
+    <ClCompile Include="byteswap.cpp" />
     <ClCompile Include="stack_string.cpp" />
     <ClCompile Include="stopwatch.cpp" />
     <ClCompile Include="templatelibrary-private-pch.cpp">

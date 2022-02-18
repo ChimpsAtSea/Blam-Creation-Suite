@@ -178,6 +178,7 @@
     <ClCompile Include="blamboozle_infinite.cpp" />
     <ClCompile Include="blamboozle_reach_x360.cpp" />
     <ClCompile Include="blamlib_string_parser.cpp" />
+    <ClCompile Include="endianness.cpp" />
     <ClCompile Include="field_id.cpp" />
     <ClCompile Include="halo1\h1_pseudo_field_definition.cpp" />
     <ClCompile Include="halo1\h1_pseudo_field_type.cpp" />

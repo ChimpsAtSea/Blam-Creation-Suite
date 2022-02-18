@@ -154,6 +154,7 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 					{
 					case blofeld::_field_custom:
 					case blofeld::_field_explanation:
+					case blofeld::_field_useless_pad:
 						continue;
 					}
 

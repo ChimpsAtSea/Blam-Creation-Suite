@@ -2,7 +2,7 @@
 
 template<> void byteswap_inplace<halo4::xbox360::s_cache_file_header>(halo4::xbox360::s_cache_file_header& header)
 {
-	byteswap<::s_cache_file_header>(header);
+	byteswap_inplace(header);
 
 	byteswap_inplace(header.header_signature);
 	byteswap_inplace(header.file_version);

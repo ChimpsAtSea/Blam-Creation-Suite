@@ -1,5 +1,17 @@
 #include "mandrilllib-private-pch.h"
 
+template<> void byteswap_inplace(s_partitioned_heap_entry_list_header& value)
+{
+	byteswap_inplace(value.count);
+	byteswap_inplace(value.maximum_count);
+}
+
+template<> void byteswap_inplace(s_partitioned_heap_entry& value)
+{
+	byteswap_inplace(value.partition_index);
+	byteswap_inplace(value.heap_datum);
+}
+
 c_partitioned_heap_entry_list_chunk::c_partitioned_heap_entry_list_chunk(const void* chunk_data, c_chunk& parent) :
 	c_typed_chunk(chunk_data, &parent),
 	header(),
@@ -20,16 +32,4 @@ c_partitioned_heap_entry_list_chunk::c_partitioned_heap_entry_list_chunk(const v
 			chunk_byteswap_inplace(entries[entry_index]);
 		}
 	}
-}
-
-template<> void byteswap_inplace(s_partitioned_heap_entry_list_header& value)
-{
-	byteswap_inplace(value.count);
-	byteswap_inplace(value.maximum_count);
-}
-
-template<> void byteswap_inplace(s_partitioned_heap_entry& value)
-{
-	byteswap_inplace(value.partition_index);
-	byteswap_inplace(value.heap_datum);
 }

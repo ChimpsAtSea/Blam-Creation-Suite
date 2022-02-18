@@ -104,7 +104,7 @@ void c_filesystem_tag_project::try_open_single_tag_file(const wchar_t* filepath,
 		return;
 	}
 
-	candidates.push_back({ group, wcsdup(filepath), wcsdup(relative_filepath) });
+	candidates.push_back({ group, _wcsdup(filepath), _wcsdup(relative_filepath) });
 
 	debug_point;
 }

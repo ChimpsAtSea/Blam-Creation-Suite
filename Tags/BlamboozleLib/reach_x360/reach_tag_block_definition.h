@@ -7,7 +7,7 @@ struct s_reach_x360_tag_block_definition
 {
 	bptr32 pretty_name_address;
 	bptr32 name_address;
-	unsigned long max_count;
+	bulong max_count;
 	bptr32 max_count_string_address;
 	bptr32 structure_definition_address;
 };

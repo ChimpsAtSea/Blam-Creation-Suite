@@ -1,5 +1,28 @@
 #include "mandrilllib-private-pch.h"
 
+template<> void byteswap_inplace(s_wide_data_array_header& value)
+{
+	byteswap_inplace(value.count);
+	byteswap_inplace(value.__unknown28);
+	byteswap_inplace(value.__unknown2C);
+	byteswap_inplace(value.signature);
+}
+
+template<> void byteswap_inplace(s_wide_data_datum& value)
+{
+	byteswap_inplace(value.datum_index);
+	byteswap_inplace(value.data_header);
+}
+
+template<> void byteswap_inplace(s_wide_data_cache_block& value)
+{
+	byteswap_inplace(value.current_datum);
+	byteswap_inplace(value.unknown_datum);
+	byteswap_inplace(value.tag_heap_entry_index);
+	byteswap_inplace(value.cache_heap_entry_index);
+	byteswap_inplace(value.footer);
+}
+
 c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(const void* chunk_data, c_chunk& parent) :
 	c_typed_chunk(chunk_data, &parent),
 	wide_data_array_header(),
@@ -95,27 +118,4 @@ c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(const void* chunk_data, c_chunk
 c_tag_file_blocks_chunk::~c_tag_file_blocks_chunk()
 {
 	delete[] wide_data_datums;
-}
-
-template<> void byteswap_inplace(s_wide_data_array_header& value)
-{
-	byteswap_inplace(value.count);
-	byteswap_inplace(value.__unknown28);
-	byteswap_inplace(value.__unknown2C);
-	byteswap_inplace(value.signature);
-}
-
-template<> void byteswap_inplace(s_wide_data_datum& value)
-{
-	byteswap_inplace(value.datum_index);
-	byteswap_inplace(value.data_header);
-}
-
-template<> void byteswap_inplace(s_wide_data_cache_block& value)
-{
-	byteswap_inplace(value.current_datum);
-	byteswap_inplace(value.unknown_datum);
-	byteswap_inplace(value.tag_heap_entry_index);
-	byteswap_inplace(value.cache_heap_entry_index);
-	byteswap_inplace(value.footer);
 }

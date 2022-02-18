@@ -2,6 +2,7 @@
 
 #define BCS_DEBUG_API
 #include <Tags\TagDefinitions\types\field_id.h>
+#include <Tags\TagDefinitions\types\persistent_identifier.h>
 #undef BCS_DEBUG_API
 
 #define WIN32_LEAN_AND_MEAN
@@ -21,6 +22,8 @@
 #include "blamboozlelib-public-pch.h"
 
 #include "blamlib_string_parser.h"
+
+#include <Tags\TagDefinitions\blamlib_byteswap.h>
 
 // #TODO: Common
 struct tag_group

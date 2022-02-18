@@ -7,6 +7,7 @@
 
 #include "macros.h"
 #include "pointers.h"
+#include "byteswap.h"
 #include "compile_time_accumulator.h"
 #include "stopwatch.h"
 #include "callback.h"

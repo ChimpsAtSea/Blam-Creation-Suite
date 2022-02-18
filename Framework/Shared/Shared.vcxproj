@@ -27,7 +27,6 @@
     <ClInclude Include="Blam\legacy\blamfile_header.h" />
     <ClInclude Include="Blam\legacy\blamfile_level_chunk.h" />
     <ClInclude Include="Blam\legacy\blamfile_level_chunk_flags.h" />
-    <ClInclude Include="Blam\legacy\cache_file_magic.h" />
     <ClInclude Include="Blam\legacy\campaign_difficulty_level.h" />
     <ClInclude Include="Blam\legacy\campaign_metagame_bucket_type.h" />
     <ClInclude Include="Blam\legacy\damage_reporting_type.h" />
@@ -37,7 +36,6 @@
     <ClInclude Include="Blam\legacy\network_session_class.h" />
     <ClInclude Include="Blam\legacy\network_session_parameter_type.h" />
     <ClInclude Include="Blam\legacy\network_session_peer_state.h" />
-    <ClInclude Include="Blam\legacy\observer_camera.h" />
     <ClInclude Include="Blam\mcc_skull.h" />
     <ClInclude Include="IconsFontAwesome5.h" />
     <ClInclude Include="shared-types-pch.h" />

@@ -3,10 +3,10 @@
 struct s_reach_x360_tag_group_definition
 {
 	bptr32 name_address;
-	unsigned long flags;
+	bulong flags;
 	bulong group_tag;
 	bulong parent_group_tag;
-	unsigned short version;
+	bushort version;
 	bptr32 vtable_shim;
 	bptr32 block_definition_address;
 };

@@ -54,9 +54,6 @@
     <ClInclude Include="Blam\legacy\blamfile_level_chunk_flags.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Blam\legacy\cache_file_magic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Blam\legacy\campaign_difficulty_level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -79,9 +76,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Blam\legacy\network_session_peer_state.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Blam\legacy\observer_camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Blam\blamlib-public-pch.h">

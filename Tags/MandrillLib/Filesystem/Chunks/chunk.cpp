@@ -315,6 +315,9 @@ c_chunk** c_chunk::create_child_chunks_slow(const char* data_start, void* userda
 			CHUNK_CTOR(c_tag_string_id_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
 			CHUNK_CTOR(c_tag_reference_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
 			CHUNK_CTOR(c_tag_data_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			CHUNK_CTOR(c_tag_resource_null_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			CHUNK_CTOR(c_tag_resource_exploded_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+			CHUNK_CTOR(c_tag_resource_xsynced_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
 			CHUNK_CTOR(c_monolithic_tag_file_index_chunk, data_position, *this);
 			CHUNK_CTOR(c_monolithic_index_chunk, data_position, *this);
 			CHUNK_CTOR(c_tag_file_index_chunk, data_position, *this);

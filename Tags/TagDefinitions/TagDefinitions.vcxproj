@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="blamlib\halo3_tools.cpp" />
     <ClCompile Include="blamlib\haloreach_tags_test_x360.cpp" />
+    <ClCompile Include="blamlib_byteswap.cpp" />
     <ClCompile Include="blofeld.cpp" />
     <ClCompile Include="blofeld\ai\ai.cpp" />
     <ClCompile Include="blofeld\ai\ai_cues.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="blamlib\halo2_tools.cpp" />
     <ClCompile Include="blofeld\hs\hs_scenario_definitions.cpp" />
     <ClCompile Include="blofeld\interface\chud\cortana_definitions.cpp" />
+    <ClCompile Include="types\persistent_identifier.cpp" />
     <ClCompile Include="slipspace\infinite_flight1.cpp" />
     <ClCompile Include="blofeld\inline_files.cpp" />
     <ClCompile Include="blofeld\interface\chud\chud_definitions.cpp" />
@@ -331,7 +333,6 @@
     <ClCompile Include="slipspace\infinite.cpp" />
     <ClCompile Include="slipspace\infinite_flight2.cpp" />
     <ClCompile Include="slipspace\infinite_release.cpp" />
-    <ClCompile Include="tag_byteswap.cpp" />
     <ClCompile Include="tag_groups\tag_groups.cpp" />
     <ClCompile Include="types\field_id.cpp" />
     <ClCompile Include="types\field_type.cpp" />
@@ -352,6 +353,7 @@
   <ItemGroup>
     <ClInclude Include="blamlib\halo3_tools.h" />
     <ClInclude Include="blamlib\haloreach_tags_test_x360.h" />
+    <ClInclude Include="blamlib_byteswap.h" />
     <ClInclude Include="blofeld\ai\ai.h" />
     <ClInclude Include="blofeld\ai\ai_cues.h" />
     <ClInclude Include="blofeld\ai\ai_dialogue_definitions.h" />
@@ -496,6 +498,7 @@
     <ClInclude Include="blamlib\halo2_tools.h" />
     <ClInclude Include="blofeld\hs\hs_scenario_definitions.h" />
     <ClInclude Include="blofeld\interface\chud\cortana_definitions.h" />
+    <ClInclude Include="types\persistent_identifier.h" />
     <ClInclude Include="slipspace\infinite_flight1.h" />
     <ClInclude Include="blofeld\interface\chud\chud_definitions.h" />
     <ClInclude Include="blofeld\interface\chud\chud_widgets.h" />
@@ -663,7 +666,6 @@
     <ClInclude Include="blofeld.h" />
     <ClInclude Include="blofeld_field_type_override.h" />
     <ClInclude Include="tagdefinitions-public-pch.h" />
-    <ClInclude Include="tag_byteswap.h" />
     <ClInclude Include="tag_groups\tag_groups.h" />
     <ClInclude Include="types\field_id.h" />
     <ClInclude Include="types\field_type.h" />
@@ -679,6 +681,7 @@
     <ClInclude Include="definition_migration.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="blamlib_byteswap.inl" />
     <None Include="blofeld\sound\looping_sound_definition.inl" />
     <None Include="blofeld\sound\looping_sound_detail_definition.inl" />
     <None Include="blofeld\sound\looping_sound_track_definition.inl" />
@@ -782,7 +785,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;SymbolsRuntime.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;SymbolsRuntime.lib;xxhash.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
@@ -811,7 +814,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;SymbolsRuntime.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;SymbolsRuntime.lib;xxhash.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>

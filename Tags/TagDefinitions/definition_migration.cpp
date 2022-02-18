@@ -1,5 +1,53 @@
 #include "tagdefinitions-private-pch.h"
 
+enum e_definition_error_code
+{
+	_definition_error_code_none,
+	_definition_error_code_string_list_mismatch,
+	_definition_error_code_string_list_count_mismatch,
+	_definition_error_code_field_type_mismatch,
+	_definition_error_code_field_name_mismatch,
+	_definition_error_code_field_id_mismatch,
+	_definition_error_code_padding_mismatch,
+	_definition_error_code_structure_mismatch,
+	_definition_error_code_structure_mismatch_nulled,
+	_definition_error_code_block_count_mismatch,
+	_definition_error_code_tag_group_missing,
+	_definition_error_code_persistent_id_duplicate,
+	k_num_definition_error_codes
+};
+
+#define DEFINITION_ERROR_CODE_STRING(error_type, string) string
+static const char* definition_error_code_strings[]
+{
+	DEFINITION_ERROR_CODE_STRING(_definition_error_code_none, "none"),
+	DEFINITION_ERROR_CODE_STRING(_definition_error_code_string_list_mismatch, "string list mismatch"),
+	DEFINITION_ERROR_CODE_STRING(_definition_error_code_string_list_count_mismatch, "string list count mismatch"),
+	DEFINITION_ERROR_CODE_STRING(_definition_error_code_field_type_mismatch, "structure field type mismatch"),
+	DEFINITION_ERROR_CODE_STRING(_definition_error_code_field_name_mismatch, "structure field name mismatch"),
+	DEFINITION_ERROR_CODE_STRING(_definition_error_code_field_id_mismatch, "structure field id mismatch"),
+	DEFINITION_ERROR_CODE_STRING(_definition_error_code_padding_mismatch, "padding mismatch"),
+	DEFINITION_ERROR_CODE_STRING(_definition_error_code_structure_mismatch, "structure mismatch"),
+	DEFINITION_ERROR_CODE_STRING(_definition_error_code_structure_mismatch_nulled, "structure mismatch nulled"),
+	DEFINITION_ERROR_CODE_STRING(_definition_error_code_block_count_mismatch, "new block count incorrect for old version"),
+	DEFINITION_ERROR_CODE_STRING(_definition_error_code_tag_group_missing, "tag group missing"),
+	DEFINITION_ERROR_CODE_STRING(_definition_error_code_persistent_id_duplicate, "persistent id duplicate"),
+	
+};
+static_assert(_countof(definition_error_code_strings) == k_num_definition_error_codes);
+#undef DEFINITION_ERROR_CODE_STRING
+
+
+#define DEFINITION_ERROR_OLD(error_type, file_path, line_number, format, ...) \
+console_write_line_with_debug("%s(%i): warning CHIMP%02i: [OLD] %s " format, file_path, line_number, error_type, definition_error_code_strings[error_type], __VA_ARGS__)
+
+#define DEFINITION_ERROR_NEW(error_type, file_path, line_number, format, ...) \
+console_write_line_with_debug("%s(%i): warning CHIMP%02i: [NEW] %s " format, file_path, line_number, error_type, definition_error_code_strings[error_type], __VA_ARGS__)
+
+#define DEFINITION_ERROR(error_type, file_path, line_number, format, ...) \
+console_write_line_with_debug("%s(%i): warning CHIMP%02i: %s " format, file_path, line_number, error_type, definition_error_code_strings[error_type], __VA_ARGS__)
+
+
 using namespace blofeld;
 
 bool definition_migration_compare_string_list(
@@ -18,8 +66,21 @@ bool definition_migration_compare_string_list(
 			const char* new_string = new_string_list_definition.get_string(engine_platform_build, string_index);
 			if (strcmp(old_string, new_string) != 0)
 			{
-				console_write_line_with_debug("%s(%i): warning DM05: OLD[0] string list mismatch %s -> %s", old_string_list_definition.filename, old_string_list_definition.line, old_string, new_string);
-				console_write_line_with_debug("%s(%i): warning DM05: NEW[1] string list mismatch %s -> %s", new_string_list_definition.filename, new_string_list_definition.line, old_string, new_string);
+				DEFINITION_ERROR_OLD(
+					_definition_error_code_string_list_mismatch,
+					old_string_list_definition.filename,
+					old_string_list_definition.line,
+					"%s -> %s",
+					old_string,
+					new_string);
+
+				DEFINITION_ERROR_NEW(
+					_definition_error_code_string_list_mismatch,
+					new_string_list_definition.filename,
+					new_string_list_definition.line,
+					"%s -> %s",
+					old_string,
+					new_string);
 
 				return true;
 			}
@@ -29,8 +90,20 @@ bool definition_migration_compare_string_list(
 	}
 	else
 	{
-		console_write_line_with_debug("%s(%i): warning DM05: OLD[0] string list count mismatch %u -> %u", old_string_list_definition.filename, old_string_list_definition.line, old_string_list_count, new_string_list_count);
-		console_write_line_with_debug("%s(%i): warning DM05: NEW[1] string list count mismatch %u -> %u", new_string_list_definition.filename, new_string_list_definition.line, old_string_list_count, new_string_list_count);
+		DEFINITION_ERROR_OLD(
+			_definition_error_code_string_list_count_mismatch,
+			old_string_list_definition.filename,
+			old_string_list_definition.line,
+			"%s -> %s",
+			old_string_list_count,
+			new_string_list_count);
+		DEFINITION_ERROR_NEW(
+			_definition_error_code_string_list_count_mismatch,
+			new_string_list_definition.filename,
+			new_string_list_definition.line,
+			"%s -> %s",
+			old_string_list_count,
+			new_string_list_count);
 	}
 
 	return true;
@@ -71,19 +144,56 @@ bool definition_migration_compare_struct(
 				const char* new_field_type_name;
 				ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(old_field.field_type, old_field_type_name)));
 				ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(new_field.field_type, new_field_type_name)));
-				console_write_line_with_debug("%s(%i): warning DM04: OLD[0] structure field missmatch [%s] [%s %s] -> [%s %s]", old_field.filename, old_field.line, new_struct_definition.name, old_field_type_name, old_field.name, new_field_type_name, new_field.name);
-				console_write_line_with_debug("%s(%i): warning DM04: NEW[1] structure field missmatch [%s] [%s %s] -> [%s %s]", new_field.filename, new_field.line, old_struct_definition.name, old_field_type_name, old_field.name, new_field_type_name, new_field.name);
+
+				DEFINITION_ERROR_OLD(
+					_definition_error_code_field_type_mismatch,
+					old_field.filename,
+					old_field.line,
+					"[%s] [%s %s] -> [%s %s]",
+					old_struct_definition.name,
+					old_field_type_name,
+					old_field.name,
+					new_field_type_name,
+					new_field.name);
+
+				DEFINITION_ERROR_NEW(
+					_definition_error_code_field_type_mismatch,
+					new_field.filename,
+					new_field.line,
+					"[%s] [%s %s] -> [%s %s]",
+					new_struct_definition.name,
+					old_field_type_name,
+					old_field.name,
+					new_field_type_name,
+					new_field.name);
+
 				result = true;
 				break;
 			}
-
 			
 			if (
 				old_field.field_type != _field_pad &&
 				!(old_field.name == new_field.name || (old_field.name && new_field.name && strcmp(old_field.name, new_field.name) == 0)))
 			{
-				console_write_line_with_debug("%s(%i): warning DM06: OLD[0] structure field name missmatch [%s] %s -> %s", old_field.filename, old_field.line, new_struct_definition.name, old_field.name, new_field.name);
-				console_write_line_with_debug("%s(%i): warning DM06: NEW[1] structure field name missmatch [%s] %s -> %s", new_field.filename, new_field.line, old_struct_definition.name, old_field.name, new_field.name);
+				DEFINITION_ERROR_OLD(
+					_definition_error_code_field_name_mismatch,
+					old_field.filename,
+					old_field.line,
+					"[%s] %s -> %s",
+					old_struct_definition.name,
+					old_field.name, 
+					new_field.name);
+
+				DEFINITION_ERROR_NEW(
+					_definition_error_code_field_name_mismatch,
+					new_field.filename,
+					new_field.line,
+					"[%s] %s -> %s",
+					"[%s] %s -> %s",
+					new_struct_definition.name,
+					old_field.name,
+					new_field.name);
+
 				result = true;
 				break;
 			}
@@ -93,8 +203,27 @@ bool definition_migration_compare_struct(
 			{
 				const char* old_field_id_name = field_id_to_string(old_field.id);
 				const char* new_field_id_name = field_id_to_string(new_field.id);
-				console_write_line_with_debug("%s(%i): warning DM04: OLD[0] structure field id missmatch [%s] [%s] %s -> [%s] %s", old_field.filename, old_field.line, new_struct_definition.name, old_field.name, old_field_id_name, new_field.name, new_field_id_name);
-				console_write_line_with_debug("%s(%i): warning DM04: NEW[1] structure field id missmatch [%s] [%s] %s -> [%s] %s", new_field.filename, new_field.line, old_struct_definition.name, old_field.name, old_field_id_name, new_field.name, new_field_id_name);
+				DEFINITION_ERROR_OLD(
+					_definition_error_code_field_id_mismatch,
+					old_field.filename,
+					old_field.line,
+					"[%s] [%s] %s -> [%s] %s",
+					old_struct_definition.name,
+					old_field.name, 
+					old_field_id_name, 
+					new_field.name, 
+					new_field_id_name);
+				DEFINITION_ERROR_NEW(
+					_definition_error_code_field_id_mismatch,
+					new_field.filename,
+					new_field.line,
+					"[%s] [%s] %s -> [%s] %s",
+					new_struct_definition.name,
+					old_field.name,
+					old_field_id_name,
+					new_field.name,
+					new_field_id_name);
+
 				result = true;
 				break;
 			}
@@ -104,8 +233,8 @@ bool definition_migration_compare_struct(
 			case _field_pad:
 				if (old_field.padding != new_field.padding)
 				{
-					console_write_line_with_debug("%s(%i): warning DM07: OLD[0] padding missmatch %i -> %i", old_field.filename, old_field.line, old_field.padding, new_field.padding);
-					console_write_line_with_debug("%s(%i): warning DM07: NEW[1] padding missmatch %i -> %i", new_field.filename, new_field.line, old_field.padding, new_field.padding);
+					DEFINITION_ERROR_OLD(_definition_error_code_padding_mismatch, old_field.filename, old_field.line, "%i -> %i", old_field.padding, new_field.padding);
+					DEFINITION_ERROR_NEW(_definition_error_code_padding_mismatch, new_field.filename, new_field.line, "%i -> %i", old_field.padding, new_field.padding);
 				}
 				break;
 			case _field_pageable:
@@ -113,14 +242,14 @@ bool definition_migration_compare_struct(
 				{
 					if ((old_field.struct_definition == nullptr) != (new_field.struct_definition == nullptr))
 					{
-						console_write_line_with_debug("%s(%i): warning DM03: OLD[0] structure missmatch null", old_field.filename, old_field.line);
-						console_write_line_with_debug("%s(%i): warning DM03: NEW[1] structure missmatch null", new_field.filename, new_field.line);
+						DEFINITION_ERROR_OLD(_definition_error_code_structure_mismatch_nulled, old_field.filename, old_field.line, "");
+						DEFINITION_ERROR_NEW(_definition_error_code_structure_mismatch_nulled, new_field.filename, new_field.line, "");
 						result = true;
 					}
 					else if (old_field.struct_definition->persistent_identifier != new_field.struct_definition->persistent_identifier)
 					{
-						console_write_line_with_debug("%s(%i): warning DM03: OLD[0] structure missmatch %s -> %s", old_field.filename, old_field.line, old_field.struct_definition->name, new_field.struct_definition->name);
-						console_write_line_with_debug("%s(%i): warning DM03: NEW[1] structure missmatch %s -> %s", new_field.filename, new_field.line, old_field.struct_definition->name, new_field.struct_definition->name);
+						DEFINITION_ERROR_OLD(_definition_error_code_structure_mismatch, old_field.filename, old_field.line, "%s -> %s", old_field.struct_definition->name, new_field.struct_definition->name);
+						DEFINITION_ERROR_NEW(_definition_error_code_structure_mismatch, new_field.filename, new_field.line, "%s -> %s", old_field.struct_definition->name, new_field.struct_definition->name);
 						result = true;
 					}
 					else
@@ -135,14 +264,14 @@ bool definition_migration_compare_struct(
 			case _field_struct:
 				if ((old_field.struct_definition == nullptr) != (new_field.struct_definition == nullptr))
 				{
-					console_write_line_with_debug("%s(%i): warning DM03: OLD[0] structure missmatch null", old_field.filename, old_field.line);
-					console_write_line_with_debug("%s(%i): warning DM03: NEW[1] structure missmatch null", new_field.filename, new_field.line);
+					DEFINITION_ERROR_OLD(_definition_error_code_structure_mismatch_nulled, old_field.filename, old_field.line, "");
+					DEFINITION_ERROR_NEW(_definition_error_code_structure_mismatch_nulled, new_field.filename, new_field.line, "");
 					result = true;
 				}
 				else if (old_field.struct_definition->persistent_identifier != new_field.struct_definition->persistent_identifier)
 				{
-					console_write_line_with_debug("%s(%i): warning DM03: OLD[0] structure missmatch %s -> %s", old_field.filename, old_field.line, old_field.struct_definition->name, new_field.struct_definition->name);
-					console_write_line_with_debug("%s(%i): warning DM03: NEW[1] structure missmatch %s -> %s", new_field.filename, new_field.line, old_field.struct_definition->name, new_field.struct_definition->name);
+					DEFINITION_ERROR_OLD(_definition_error_code_structure_mismatch, old_field.filename, old_field.line, "%s -> %s", old_field.struct_definition->name, new_field.struct_definition->name);
+					DEFINITION_ERROR_NEW(_definition_error_code_structure_mismatch, new_field.filename, new_field.line, "%s -> %s", old_field.struct_definition->name, new_field.struct_definition->name);
 					result = true;
 				}
 				else
@@ -182,8 +311,8 @@ bool definition_migration_compare_struct(
 	}
 	else
 	{
-		console_write_line_with_debug("%s(%i): warning DM03: OLD[0] structure missmatch %s -> %s", old_struct_definition.filename, old_struct_definition.line, old_struct_definition.name, new_struct_definition.name);
-		console_write_line_with_debug("%s(%i): warning DM03: NEW[1] structure missmatch %s -> %s", new_struct_definition.filename, new_struct_definition.line, old_struct_definition.name, new_struct_definition.name);
+		DEFINITION_ERROR_OLD(_definition_error_code_structure_mismatch, old_struct_definition.filename, old_struct_definition.line, "%s -> %s", old_struct_definition.name, new_struct_definition.name);
+		DEFINITION_ERROR_NEW(_definition_error_code_structure_mismatch, new_struct_definition.filename, new_struct_definition.line, "%s -> %s", old_struct_definition.name, new_struct_definition.name);
 	}
 
 	debug_point;
@@ -201,8 +330,8 @@ bool definition_migration_compare_block(
 	unsigned long new_block_count = new_block_definition.max_count(engine_platform_build);
 	if (old_block_count != new_block_count)
 	{
-		console_write_line_with_debug("%s(%i): warning DM02: OLD[0] new block count incorrect for old version %u -> %u", old_block_definition.filename, old_block_definition.line, old_block_count, new_block_count);
-		console_write_line_with_debug("%s(%i): warning DM02: NEW[1] new block count incorrect for old version %u -> %u", new_block_definition.filename, new_block_definition.line, old_block_count, new_block_count);
+		DEFINITION_ERROR_OLD(_definition_error_code_block_count_mismatch, old_block_definition.filename, old_block_definition.line, "%u -> %u", old_block_count, new_block_count);
+		DEFINITION_ERROR_NEW(_definition_error_code_block_count_mismatch, new_block_definition.filename, new_block_definition.line, "%u -> %u", old_block_count, new_block_count);
 	}
 
 	result |= definition_migration_compare_struct(
@@ -240,7 +369,7 @@ bool definition_migration(
 		}
 		
 		// Warning here for a missing tag group
-		console_write_line_with_debug("%s(%i): warning DM01: tag group missing", old_tag_group.filename, old_tag_group.line, old_tag_group.name);
+		DEFINITION_ERROR(_definition_error_code_tag_group_missing, old_tag_group.filename, old_tag_group.line, "[%s]", old_tag_group.name);
 
 	matched:;
 	}
@@ -257,4 +386,59 @@ bool definition_migration(
 
 	debug_point;
 	return result;
+}
+
+BCS_RESULT definition_duplicate_check(s_engine_platform_build engine_platform_build)
+{
+	const s_tag_struct_definition** tag_struct_definitions = blofeld::get_tag_struct_definitions(engine_platform_build);
+	if (tag_struct_definitions == nullptr)
+	{
+		return BCS_E_FAIL;
+	}
+
+	using t_tag_struct_definition_table = std::map<XXH64_hash_t, const blofeld::s_tag_struct_definition*>;
+	t_tag_struct_definition_table tag_struct_definitions_lookup_table;
+
+	BCS_RESULT rs = BCS_S_OK;
+
+	for (
+		const blofeld::s_tag_struct_definition** tag_struct_definition_iter = tag_struct_definitions;
+		*tag_struct_definition_iter;
+		tag_struct_definition_iter++)
+	{
+		const blofeld::s_tag_struct_definition& tag_struct_definition = **tag_struct_definition_iter;
+		XXH64_hash_t hash = XXH64(&tag_struct_definition.persistent_identifier, sizeof(blofeld::s_tag_persistent_identifier), 0);
+		t_tag_struct_definition_table::const_iterator iterator = tag_struct_definitions_lookup_table.find(hash);
+		if (iterator != tag_struct_definitions_lookup_table.cend())
+		{
+			const blofeld::s_tag_struct_definition& previous_struct_definition = *iterator->second;
+
+			DEFINITION_ERROR_OLD(
+				_definition_error_code_persistent_id_duplicate,
+				previous_struct_definition.filename,
+				previous_struct_definition.line,
+				"[%08X %08X %08X %08X] %s",
+				previous_struct_definition.persistent_identifier.identifier_part_0,
+				previous_struct_definition.persistent_identifier.identifier_part_1,
+				previous_struct_definition.persistent_identifier.identifier_part_2,
+				previous_struct_definition.persistent_identifier.identifier_part_3,
+				previous_struct_definition.name);
+			DEFINITION_ERROR_NEW(
+				_definition_error_code_persistent_id_duplicate,
+				tag_struct_definition.filename,
+				tag_struct_definition.line,
+				"[%08X %08X %08X %08X] %s",
+				tag_struct_definition.persistent_identifier.identifier_part_0,
+				tag_struct_definition.persistent_identifier.identifier_part_1,
+				tag_struct_definition.persistent_identifier.identifier_part_2,
+				tag_struct_definition.persistent_identifier.identifier_part_3,
+				tag_struct_definition.name);
+
+			rs = BCS_E_FAIL;
+		}
+
+		tag_struct_definitions_lookup_table[hash] = &tag_struct_definition;
+	}
+
+	return rs;
 }

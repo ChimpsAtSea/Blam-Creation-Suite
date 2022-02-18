@@ -285,6 +285,9 @@
     <ClCompile Include="reach_x360\reach_tag_struct_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="endianness.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blamboozle_h1_guerilla.h">

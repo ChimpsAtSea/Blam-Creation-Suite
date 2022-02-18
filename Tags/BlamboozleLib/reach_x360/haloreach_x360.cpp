@@ -1367,10 +1367,10 @@ void reach_x360_export_source(
 				persistent_identifier_buffer,
 				256,
 				"0x%08X, 0x%08X, 0x%08X, 0x%08X",
-				static_cast<unsigned long>(struct_definition->persistent_identifier.data[0]),
-				static_cast<unsigned long>(struct_definition->persistent_identifier.data[1]),
-				static_cast<unsigned long>(struct_definition->persistent_identifier.data[2]),
-				static_cast<unsigned long>(struct_definition->persistent_identifier.data[3]));
+				struct_definition->persistent_identifier.identifier_part_0,
+				struct_definition->persistent_identifier.identifier_part_1,
+				struct_definition->persistent_identifier.identifier_part_2,
+				struct_definition->persistent_identifier.identifier_part_3);
 
 			char persistent_identifier_name_buffer[256];
 			snprintf(
@@ -1434,10 +1434,10 @@ void reach_x360_export_source(
 				persistent_identifier_buffer,
 				256,
 				"0x%08X, 0x%08X, 0x%08X, 0x%08X",
-				api_interop_definition->persistent_identifier.data[0],
-				api_interop_definition->persistent_identifier.data[1],
-				api_interop_definition->persistent_identifier.data[2],
-				api_interop_definition->persistent_identifier.data[3]);
+				api_interop_definition->persistent_identifier.identifier_part_0,
+				api_interop_definition->persistent_identifier.identifier_part_1,
+				api_interop_definition->persistent_identifier.identifier_part_2,
+				api_interop_definition->persistent_identifier.identifier_part_3);
 
 			char persistent_identifier_name_buffer[256];
 			snprintf(

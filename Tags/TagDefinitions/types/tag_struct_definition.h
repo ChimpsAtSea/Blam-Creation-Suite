@@ -95,31 +95,6 @@ namespace blofeld
 #define TAG_MEMORY_ATTRIBUTES_PHYSICAL_READ_WRITE TAG_MEMORY_ATTRIBUTES(_tag_memory_default, TAG_MEMORY_USAGE_PHYSICAL | TAG_MEMORY_USAGE_WRITEABLE)
 #define TAG_MEMORY_ATTRIBUTES_PHYSICAL_WRITE_COMBINED TAG_MEMORY_ATTRIBUTES(_tag_memory_default, TAG_MEMORY_USAGE_PHYSICAL | TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_COMBINED)
 
-	struct s_tag_persistent_identifier
-	{
-		unsigned long identifier_part_0;
-		unsigned long identifier_part_1;
-		unsigned long identifier_part_2;
-		unsigned long identifier_part_3;
-
-		inline bool operator==(const s_tag_persistent_identifier& value) const
-		{
-			return 
-				identifier_part_0 == value.identifier_part_0 &&
-				identifier_part_1 == value.identifier_part_1 &&
-				identifier_part_2 == value.identifier_part_2 &&
-				identifier_part_3 == value.identifier_part_3;
-		}
-		inline bool operator!=(const s_tag_persistent_identifier& value) const
-		{
-			return
-				identifier_part_0 != value.identifier_part_0 ||
-				identifier_part_1 != value.identifier_part_1 ||
-				identifier_part_2 != value.identifier_part_2 ||
-				identifier_part_3 != value.identifier_part_3;
-		}
-	};
-
 	struct s_tag_struct_definition
 	{
 		s_tag_struct_definition(

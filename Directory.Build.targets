@@ -34,15 +34,15 @@
 	  <IncludePath>$(SolutionDir)ThirdParty\imgui\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\imgui\imgui\;$(IncludePath)</IncludePath>
 	  
-	  <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(LibraryPath)</LibraryPath>
-	  <LibraryPath>$(SolutionDir)$(PlatformName)\$(CustomConfiguration)\;$(LibraryPath)</LibraryPath>
-	  <LibraryPath>$(SolutionDir)ThirdParty\lib\$(PlatformShortName)\;$(LibraryPath)</LibraryPath>
-	  <LibraryPath>$(SolutionDir)ThirdParty\tbb-build\cmake_$(PlatformShortName)\$(CustomConfiguration)\;$(LibraryPath)</LibraryPath>
-	  <LibraryPath>$(SolutionDir)ThirdParty\llvm-build\cmake_$(PlatformShortName)\$(CustomConfiguration)\lib\;$(LibraryPath)</LibraryPath>
-	  <LibraryPath>$(SolutionDir)ThirdParty\discord-rpc-build\cmake_$(PlatformShortName)\src\$(Configuration)\;$(LibraryPath)</LibraryPath>
-	  <LibraryPath>$(SolutionDir)ThirdParty\pugixml-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
-	  <LibraryPath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-windows-static\$(Configuration)\lib\;$(LibraryPath)</LibraryPath>
 	  <LibraryPath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-windows-static\lib\;$(LibraryPath)</LibraryPath>
+	  <LibraryPath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-windows-static\$(Configuration)\lib\;$(LibraryPath)</LibraryPath>
+	  <LibraryPath>$(SolutionDir)ThirdParty\pugixml-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+	  <LibraryPath>$(SolutionDir)ThirdParty\discord-rpc-build\cmake_$(PlatformShortName)\src\$(Configuration)\;$(LibraryPath)</LibraryPath>
+	  <LibraryPath>$(SolutionDir)ThirdParty\llvm-build\cmake_$(PlatformShortName)\$(CustomConfiguration)\lib\;$(LibraryPath)</LibraryPath>
+	  <LibraryPath>$(SolutionDir)$(PlatformName)\$(CustomConfiguration)\;$(LibraryPath)</LibraryPath>
+	  <LibraryPath>$(SolutionDir)ThirdParty\tbb-build\cmake_$(PlatformShortName)\$(CustomConfiguration)\;$(LibraryPath)</LibraryPath>
+	  <LibraryPath>$(SolutionDir)ThirdParty\lib\$(PlatformShortName)\;$(LibraryPath)</LibraryPath>
+	  <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>

@@ -1,13 +1,5 @@
 #include "tagdefinitions-private-pch.h"
 
-template<> BCS_DEBUG_API void byteswap_inplace(blofeld::s_tag_persistent_identifier& value)
-{
-	byteswap_inplace(value.identifier_part_0);
-	byteswap_inplace(value.identifier_part_1);
-	byteswap_inplace(value.identifier_part_2);
-	byteswap_inplace(value.identifier_part_3);
-}
-
 #pragma optimize("", off)
 
 using namespace blofeld;

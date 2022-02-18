@@ -4,6 +4,7 @@
 #include "blofeld/constants.h"
 #include "types/field_type.h"
 #include "types/field_id.h"
+#include "types/persistent_identifier.h"
 #include "types/tag_group.h"
 #include "types/tag_data_definition.h"
 #include "types/tag_struct_definition.h"
@@ -40,5 +41,5 @@
 #include "tag_groups/tag_groups.h"
 #include "blofeld/validation.h"
 
-#include "tag_byteswap.h"
+#include "blamlib_byteswap.h"
 #include "definition_migration.h"

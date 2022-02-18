@@ -45,6 +45,12 @@ private:
 	t_underlying raw_value;
 };
 
+template<typename t_underlying, bool bigendian>
+void byteswap_inplace(t_pointer<t_underlying, bigendian>& value)
+{
+	byteswap_inplace(*reinterpret_cast<t_underlying*>(&value));
+}
+
 using ptr32 = t_pointer<unsigned long, false>;
 using ptr64 = t_pointer<unsigned long long, false>;
 using bptr32 = t_pointer<unsigned long, true>;

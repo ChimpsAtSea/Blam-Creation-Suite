@@ -1668,1974 +1668,1974 @@ namespace haloreach {
 		camera_fx_settings_block_group_block,
 		"camera_fx_settings_block",
 		"camera_fx_settings_block",
-		16777216,
+		1,
 		camera_fx_settings_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		performane_throttle_block_block,
 		"performane_throttle_block",
 		"performane_throttle_block",
-		67108864,
+		4,
 		performane_throttle_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		performance_throttles_block_group_block,
 		"performance_throttles_block",
 		"performance_throttles_block",
-		16777216,
+		1,
 		performance_throttles_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		default_textures_refs_block_block,
 		"default_textures_refs_block",
 		"default_textures_refs_block",
-		268435456,
+		16,
 		default_textures_refs_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		material_textures_refs_block_block,
 		"material_textures_refs_block",
 		"material_textures_refs_block",
-		268435456,
+		16,
 		material_textures_refs_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		atmosphere_textures_refs_block_block,
 		"atmosphere_textures_refs_block",
 		"atmosphere_textures_refs_block",
-		50331648,
+		3,
 		atmosphere_textures_refs_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		explicit_shader_refs_block_block,
 		"explicit_shader_refs_block",
 		"explicit_shader_refs_block",
-		3221225472,
+		192,
 		explicit_shader_refs_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		rasterizer_globals_block_group_block,
 		"rasterizer_globals_block",
 		"rasterizer_globals_block",
-		16777216,
+		1,
 		rasterizer_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		rasterizer_constant_block_block,
 		"rasterizer_constant_block",
 		"rasterizer_constant_block",
-		2852192256,
+		426,
 		rasterizer_constant_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vertex_types_block_block$2,
 		"vertex_types_block",
 		"vertex_types_block",
-		262144,
+		1024,
 		vertex_types_block$2);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		compiled_vertex_shader_block_block,
 		"compiled_vertex_shader_block",
 		"compiled_vertex_shader_block",
-		262144,
+		1024,
 		compiled_vertex_shader_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vertex_entry_point_block_block,
 		"vertex_entry_point_block",
 		"vertex_entry_point_block",
-		1040187392,
+		62,
 		vertex_entry_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pixel_entry_point_block_block,
 		"pixel_entry_point_block",
 		"pixel_entry_point_block",
-		262144,
+		1024,
 		pixel_entry_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		compiled_pixel_shader_block_block,
 		"compiled_pixel_shader_block",
 		"compiled_pixel_shader_block",
-		1048576,
+		4096,
 		compiled_pixel_shader_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vertex_shader_block_group_block,
 		"vertex_shader_block",
 		"vertex_shader_block",
-		16777216,
+		1,
 		vertex_shader_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pixel_shader_block_group_block,
 		"pixel_shader_block",
 		"pixel_shader_block",
-		16777216,
+		1,
 		pixel_shader_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_cache_file_pixel_shaders_block_group_block,
 		"global_cache_file_pixel_shaders_block",
 		"global_cache_file_pixel_shaders_block",
-		16777216,
+		1,
 		global_cache_file_pixel_shaders_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		hlsl_include_block_group_block,
 		"hlsl_include_block",
 		"hlsl_include_block",
-		16777216,
+		1,
 		hlsl_include_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_shader_option_dependency_block,
 		"global_shader_option_dependency",
 		"global_shader_option_dependency",
-		536870912,
+		32,
 		global_shader_option_dependency);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_shader_category_dependency_block,
 		"global_shader_category_dependency",
 		"global_shader_category_dependency",
-		268435456,
+		16,
 		global_shader_category_dependency);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_shader_entry_point_block_block,
 		"global_shader_entry_point_block",
 		"global_shader_entry_point_block",
-		805306368,
+		48,
 		global_shader_entry_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_vertex_shader_vertex_types_block_block,
 		"global_vertex_shader_vertex_types_block",
 		"global_vertex_shader_vertex_types_block",
-		1040187392,
+		62,
 		global_vertex_shader_vertex_types_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_vertex_shader_block_group_block,
 		"global_vertex_shader_block",
 		"global_vertex_shader_block",
-		16777216,
+		1,
 		global_vertex_shader_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_pixel_shader_block_group_block,
 		"global_pixel_shader_block",
 		"global_pixel_shader_block",
-		16777216,
+		1,
 		global_pixel_shader_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_block_group_block,
 		"shader_block",
 		"shader_block",
-		16777216,
+		1,
 		shader_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_custom_block_group_block,
 		"shader_custom_block",
 		"shader_custom_block",
-		16777216,
+		1,
 		shader_custom_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_halogram_block_group_block,
 		"shader_halogram_block",
 		"shader_halogram_block",
-		16777216,
+		1,
 		shader_halogram_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_fur_block_group_block,
 		"shader_fur_block",
 		"shader_fur_block",
-		16777216,
+		1,
 		shader_fur_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_fur_stencil_block_group_block,
 		"shader_fur_stencil_block",
 		"shader_fur_stencil_block",
-		16777216,
+		1,
 		shader_fur_stencil_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_foliage_block_group_block,
 		"shader_foliage_block",
 		"shader_foliage_block",
-		16777216,
+		1,
 		shader_foliage_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_glass_block_group_block,
 		"shader_glass_block",
 		"shader_glass_block",
-		16777216,
+		1,
 		shader_glass_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_skin_block_group_block,
 		"shader_skin_block",
 		"shader_skin_block",
-		16777216,
+		1,
 		shader_skin_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_cortana_block_group_block,
 		"shader_cortana_block",
 		"shader_cortana_block",
-		16777216,
+		1,
 		shader_cortana_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_terrain_block_group_block,
 		"shader_terrain_block",
 		"shader_terrain_block",
-		16777216,
+		1,
 		shader_terrain_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_mux_material_block_group_block,
 		"shader_mux_material_block",
 		"shader_mux_material_block",
-		16777216,
+		1,
 		shader_mux_material_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_mux_block_group_block,
 		"shader_mux_block",
 		"shader_mux_block",
-		16777216,
+		1,
 		shader_mux_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_particle_block_group_block,
 		"shader_particle_block",
 		"shader_particle_block",
-		16777216,
+		1,
 		shader_particle_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_contrail_block_group_block,
 		"shader_contrail_block",
 		"shader_contrail_block",
-		16777216,
+		1,
 		shader_contrail_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_light_volume_block_group_block,
 		"shader_light_volume_block",
 		"shader_light_volume_block",
-		16777216,
+		1,
 		shader_light_volume_struct_definition$2);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_beam_block_group_block,
 		"shader_beam_block",
 		"shader_beam_block",
-		16777216,
+		1,
 		shader_beam_struct_definition$2);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_decal_block_group_block,
 		"shader_decal_block",
 		"shader_decal_block",
-		16777216,
+		1,
 		shader_decal_struct_definition$2);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_water_block_group_block,
 		"shader_water_block",
 		"shader_water_block",
-		16777216,
+		1,
 		shader_water_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_screen_block_group_block,
 		"shader_screen_block",
 		"shader_screen_block",
-		16777216,
+		1,
 		shader_screen_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		tag_block_index_block_block,
 		"tag_block_index_block",
 		"tag_block_index_block",
-		262144,
+		1024,
 		tag_block_index_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		short_block_block,
 		"short_block",
 		"short_block",
-		262144,
+		1024,
 		short_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		real_vector4d_block_block,
 		"real_vector4d_block",
 		"real_vector4d_block",
-		262144,
+		1024,
 		real_vector4d_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		int_block_block,
 		"int_block",
 		"int_block",
-		262144,
+		1024,
 		int_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_options_block_block,
 		"render_method_options_block",
 		"render_method_options_block",
-		536870912,
+		32,
 		render_method_options_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_category_block_block,
 		"render_method_category_block",
 		"render_method_category_block",
-		268435456,
+		16,
 		render_method_category_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_pass_category_dependencies_block,
 		"render_method_pass_category_dependencies",
 		"render_method_pass_category_dependencies",
-		16777216,
+		1,
 		render_method_pass_category_dependencies);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_pass_block_block,
 		"render_method_pass_block",
 		"render_method_pass_block",
-		262144,
+		1024,
 		render_method_pass_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_entry_points_block_block,
 		"render_method_entry_points_block",
 		"render_method_entry_points_block",
-		536870912,
+		32,
 		render_method_entry_points_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vertex_types_block_block,
 		"vertex_types_block",
 		"vertex_types_block",
-		520093696,
+		31,
 		vertex_types_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_definition_block_group_block,
 		"render_method_definition_block",
 		"render_method_definition_block",
-		16777216,
+		1,
 		render_method_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_option_parameter_block_block,
 		"render_method_option_parameter_block",
 		"render_method_option_parameter_block",
-		536870912,
+		32,
 		render_method_option_parameter_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_option_block_group_block,
 		"render_method_option_block",
 		"render_method_option_block",
-		16777216,
+		1,
 		render_method_option_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_locked_parameter_block_block,
 		"render_method_locked_parameter_block",
 		"render_method_locked_parameter_block",
-		536870912,
+		32,
 		render_method_locked_parameter_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_animated_parameter_block_block,
 		"render_method_animated_parameter_block",
 		"render_method_animated_parameter_block",
-		262144,
+		1024,
 		render_method_animated_parameter_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_parameter_block_block,
 		"render_method_parameter_block",
 		"render_method_parameter_block",
-		1073741824,
+		64,
 		render_method_parameter_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_postprocess_texture_block_block,
 		"render_method_postprocess_texture_block",
 		"render_method_postprocess_texture_block",
-		1073741824,
+		64,
 		render_method_postprocess_texture_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_postprocess_pass_block_block,
 		"render_method_postprocess_pass_block",
 		"render_method_postprocess_pass_block",
-		262144,
+		1024,
 		render_method_postprocess_pass_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_routing_info_block_block,
 		"render_method_routing_info_block",
 		"render_method_routing_info_block",
-		196608,
+		768,
 		render_method_routing_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_postprocess_block_block,
 		"render_method_postprocess_block",
 		"render_method_postprocess_block",
-		16777216,
+		1,
 		render_method_postprocess_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_block_group_block,
 		"render_method_block",
 		"render_method_block",
-		16777216,
+		1,
 		render_method_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_template_constant_table_block_block,
 		"render_method_template_constant_table_block",
 		"render_method_template_constant_table_block",
-		4261412864,
+		254,
 		render_method_template_constant_table_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_template_pass_block_block,
 		"render_method_template_pass_block",
 		"render_method_template_pass_block",
-		1073741824,
+		64,
 		render_method_template_pass_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_template_platform_block_block,
 		"render_method_template_platform_block",
 		"render_method_template_platform_block",
-		16777216,
+		1,
 		render_method_template_platform_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_method_template_block_group_block,
 		"render_method_template_block",
 		"render_method_template_block",
-		16777216,
+		1,
 		render_method_template_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		planar_fog_parameters_block_group_block,
 		"planar_fog_parameters_block",
 		"planar_fog_parameters_block",
-		16777216,
+		1,
 		planar_fog_parameters_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		planar_fog_vertex_block_block,
 		"planar_fog_vertex_block",
 		"planar_fog_vertex_block",
-		393216,
+		1536,
 		planar_fog_vertex_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		planar_fog_triangle_planes_block_block,
 		"planar_fog_triangle_planes_block",
 		"planar_fog_triangle_planes_block",
-		131072,
+		512,
 		planar_fog_triangle_planes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		planar_fog_triangle_block_block,
 		"planar_fog_triangle_block",
 		"planar_fog_triangle_block",
-		4286513152,
+		32767,
 		planar_fog_triangle_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		planar_fog_definition_block_block,
 		"planar_fog_definition_block",
 		"planar_fog_definition_block",
-		2147483648,
+		128,
 		planar_fog_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		planar_fog_reference_definition_block_block,
 		"planar_fog_reference_definition_block",
 		"planar_fog_reference_definition_block",
-		4286513152,
+		32767,
 		planar_fog_reference_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		planar_fog_cluster_visibility_definition_block_block,
 		"planar_fog_cluster_visibility_definition_block",
 		"planar_fog_cluster_visibility_definition_block",
-		4278190080,
+		255,
 		planar_fog_cluster_visibility_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		planar_fog_structure_visibility_definition_block_block,
 		"planar_fog_structure_visibility_definition_block",
 		"planar_fog_structure_visibility_definition_block",
-		268435456,
+		16,
 		planar_fog_structure_visibility_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		planar_fog_zone_set_visibility_definition_block_block,
 		"planar_fog_zone_set_visibility_definition_block",
 		"planar_fog_zone_set_visibility_definition_block",
-		16777216,
+		1,
 		planar_fog_zone_set_visibility_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ssao_definition_block_group_block,
 		"ssao_definition_block",
 		"ssao_definition_block",
-		16777216,
+		1,
 		ssao_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		underwater_setting_block_block,
 		"underwater_setting_block",
 		"underwater_setting_block",
-		268435456,
+		16,
 		underwater_setting_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		atmosphere_globals_block_group_block,
 		"atmosphere_globals_block",
 		"atmosphere_globals_block",
-		16777216,
+		1,
 		atmosphere_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		per_object_type_relative_min_luminance_block_block,
 		"per_object_type_relative_min_luminance_block",
 		"per_object_type_relative_min_luminance_block",
-		234881024,
+		14,
 		per_object_type_relative_min_luminance_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chocolate_mountain_new_block_group_block,
 		"chocolate_mountain_new_block",
 		"chocolate_mountain_new_block",
-		16777216,
+		1,
 		chocolate_mountain_new_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_textures_refs_block_block,
 		"global_textures_refs_block",
 		"global_textures_refs_block",
-		4278190080,
+		255,
 		global_textures_refs_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weather_globals_block_group_block,
 		"weather_globals_block",
 		"weather_globals_block",
-		16777216,
+		1,
 		weather_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		decorator_set_instance_name_block_block,
 		"decorator_set_instance_name_block",
 		"decorator_set_instance_name_block",
-		4286513152,
+		32767,
 		decorator_set_instance_name_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_decorator_type_block_block,
 		"global_decorator_type_block",
 		"global_decorator_type_block",
-		4261412864,
+		254,
 		global_decorator_type_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		decorator_set_block_group_block,
 		"decorator_set_block",
 		"decorator_set_block",
-		805306368,
+		48,
 		decorator_set_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		decorator_runtime_cluster_block_block,
 		"decorator_runtime_cluster_block",
 		"decorator_runtime_cluster_block",
-		3503363328,
+		1429968,
 		decorator_runtime_cluster_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		atmosphere_definition_block_group_block,
 		"atmosphere_definition_block",
 		"atmosphere_definition_block",
-		268435456,
+		16,
 		atmosphere_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		rain_definition_block_group_block,
 		"rain_definition_block",
 		"rain_definition_block",
-		16777216,
+		1,
 		rain_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		light_block_group_block,
 		"light_block",
 		"light_block",
-		16777216,
+		1,
 		light_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_multiplayer_powerup_block_block,
 		"equipment_type_multiplayer_powerup_block",
 		"equipment_type_multiplayer_powerup_block",
-		16777216,
+		1,
 		equipment_type_multiplayer_powerup_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_spawner_block_block,
 		"equipment_type_spawner_block",
 		"equipment_type_spawner_block",
-		16777216,
+		1,
 		equipment_type_spawner_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_proximity_mine_block_block,
 		"equipment_type_proximity_mine_block",
 		"equipment_type_proximity_mine_block",
-		16777216,
+		1,
 		equipment_type_proximity_mine_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_motion_tracker_noise_block_block,
 		"equipment_type_motion_tracker_noise_block",
 		"equipment_type_motion_tracker_noise_block",
-		16777216,
+		1,
 		equipment_type_motion_tracker_noise_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_showme_block_block,
 		"equipment_type_showme_block",
 		"equipment_type_showme_block",
-		16777216,
+		1,
 		equipment_type_showme_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_effect_with_threshold_block_block,
 		"equipment_effect_with_threshold_block",
 		"equipment_effect_with_threshold_block",
-		167772160,
+		10,
 		equipment_effect_with_threshold_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_invincibility_block_block,
 		"equipment_type_invincibility_block",
 		"equipment_type_invincibility_block",
-		16777216,
+		1,
 		equipment_type_invincibility_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_treeoflife_block_block,
 		"equipment_type_treeoflife_block",
 		"equipment_type_treeoflife_block",
-		16777216,
+		1,
 		equipment_type_treeoflife_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_shapeshifter_block_block,
 		"equipment_type_shapeshifter_block",
 		"equipment_type_shapeshifter_block",
-		16777216,
+		1,
 		equipment_type_shapeshifter_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_player_trait_field_block_block,
 		"equipment_type_player_trait_field_block",
 		"equipment_type_player_trait_field_block",
-		16777216,
+		1,
 		equipment_type_player_trait_field_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_equipment_trait_appearance_block_block,
 		"ai_equipment_trait_appearance_block",
 		"ai_equipment_trait_appearance_block",
-		16777216,
+		1,
 		ai_equipment_trait_appearance_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_equipment_traits_block_block,
 		"ai_equipment_traits_block",
 		"ai_equipment_traits_block",
-		16777216,
+		1,
 		ai_equipment_traits_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_ai_trait_field_block_block,
 		"equipment_type_ai_trait_field_block",
 		"equipment_type_ai_trait_field_block",
-		16777216,
+		1,
 		equipment_type_ai_trait_field_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_repulsor_field_block_block,
 		"equipment_type_repulsor_field_block",
 		"equipment_type_repulsor_field_block",
-		16777216,
+		1,
 		equipment_type_repulsor_field_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_daddy_block_block,
 		"equipment_type_daddy_block",
 		"equipment_type_daddy_block",
-		16777216,
+		1,
 		equipment_type_daddy_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_laser_designation_block_block,
 		"equipment_type_laser_designation_block",
 		"equipment_type_laser_designation_block",
-		16777216,
+		1,
 		equipment_type_laser_designation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_super_jump_block_block,
 		"equipment_type_super_jump_block",
 		"equipment_type_super_jump_block",
-		16777216,
+		1,
 		equipment_type_super_jump_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_ammo_pack_block_block,
 		"equipment_type_ammo_pack_block",
 		"equipment_type_ammo_pack_block",
-		16777216,
+		1,
 		equipment_type_ammo_pack_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_power_fist_block_block,
 		"equipment_type_power_fist_block",
 		"equipment_type_power_fist_block",
-		16777216,
+		1,
 		equipment_type_power_fist_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_health_pack_block_block,
 		"equipment_type_health_pack_block",
 		"equipment_type_health_pack_block",
-		16777216,
+		1,
 		equipment_type_health_pack_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_jet_pack_block_block,
 		"equipment_type_jet_pack_block",
 		"equipment_type_jet_pack_block",
-		16777216,
+		1,
 		equipment_type_jet_pack_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_hologram_block_block,
 		"equipment_type_hologram_block",
 		"equipment_type_hologram_block",
-		16777216,
+		1,
 		equipment_type_hologram_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_special_weapon_block_block,
 		"equipment_type_special_weapon_block",
 		"equipment_type_special_weapon_block",
-		16777216,
+		1,
 		equipment_type_special_weapon_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_special_move_block_block,
 		"equipment_type_special_move_block",
 		"equipment_type_special_move_block",
-		16777216,
+		1,
 		equipment_type_special_move_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_engineer_shields_block_block,
 		"equipment_type_engineer_shields_block",
 		"equipment_type_engineer_shields_block",
-		16777216,
+		1,
 		equipment_type_engineer_shields_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_type_sprint_block_block,
 		"equipment_type_sprint_block",
 		"equipment_type_sprint_block",
-		16777216,
+		1,
 		equipment_type_sprint_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		optional_unit_camera_block_block,
 		"optional_unit_camera_block",
 		"optional_unit_camera_block",
-		16777216,
+		1,
 		optional_unit_camera_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_block_group_block,
 		"equipment",
 		"equipment_block",
-		16777216,
+		1,
 		equipment_group_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		airstrike_fire_location_block_block,
 		"airstrike_fire_location_block",
 		"airstrike_fire_location_block",
-		268435456,
+		16,
 		airstrike_fire_location_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		airstrike_battery_block_block,
 		"airstrike_battery_block",
 		"airstrike_battery_block",
-		16777216,
+		1,
 		airstrike_battery_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		airstrike_block_group_block,
 		"airstrike_block",
 		"airstrike_block",
-		16777216,
+		1,
 		airstrike_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		brute_grenade_block_block,
 		"brute_grenade_block",
 		"brute_grenade_block",
-		16777216,
+		1,
 		brute_grenade_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		fire_bomb_grenade_block_block,
 		"fire_bomb_grenade_block",
 		"fire_bomb_grenade_block",
-		16777216,
+		1,
 		fire_bomb_grenade_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		conical_projection_block_block,
 		"conical_projection_block",
 		"conical_projection_block",
-		16777216,
+		1,
 		conical_projection_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		old_projectile_material_response_block_block,
 		"old_projectile_material_response_block",
 		"old_projectile_material_response_block",
-		3355443200,
+		200,
 		old_projectile_material_response_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		projectile_material_response_block_block,
 		"projectile_material_response_block",
 		"projectile_material_response_block",
-		3355443200,
+		200,
 		projectile_material_response_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		projectile_block_group_block,
 		"projectile",
 		"projectile_block",
-		16777216,
+		1,
 		projectile_group_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		tracking_type_block_block,
 		"tracking_type_block",
 		"tracking_type_block",
-		268435456,
+		16,
 		tracking_type_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_target_tracking_parameters_block_block,
 		"global_target_tracking_parameters_block",
 		"global_target_tracking_parameters_block",
-		16777216,
+		1,
 		global_target_tracking_parameters_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		magazine_objects_block,
 		"magazine_objects",
 		"magazine_objects",
-		134217728,
+		8,
 		magazine_objects);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		magazines_block,
 		"magazines",
 		"magazines",
-		33554432,
+		2,
 		magazines);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_barrel_first_person_offset_block_block,
 		"weapon_barrel_first_person_offset_block",
 		"weapon_barrel_first_person_offset_block",
-		50331648,
+		3,
 		weapon_barrel_first_person_offset_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		barrel_firing_effect_block_block,
 		"barrel_firing_effect_block",
 		"barrel_firing_effect_block",
-		67108864,
+		4,
 		barrel_firing_effect_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_barrel_function_block_block,
 		"weapon_barrel_function_block",
 		"weapon_barrel_function_block",
-		16777216,
+		1,
 		weapon_barrel_function_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_barrels_block,
 		"weapon_barrels",
 		"weapon_barrels",
-		33554432,
+		2,
 		weapon_barrels);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_trigger_charging_fire_fraction_block,
 		"weapon_trigger_charging_fire_fraction",
 		"weapon_trigger_charging_fire_fraction",
-		268435456,
+		16,
 		weapon_trigger_charging_fire_fraction);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_triggers_block,
 		"weapon_triggers",
 		"weapon_triggers",
-		33554432,
+		2,
 		weapon_triggers);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		melee_damage_parameters_block_block,
 		"melee_damage_parameters_block",
 		"melee_damage_parameters_block",
-		33554432,
+		2,
 		melee_damage_parameters_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_first_person_interface_block_block,
 		"weapon_first_person_interface_block",
 		"weapon_first_person_interface_block",
-		33554432,
+		2,
 		weapon_first_person_interface_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_screen_effect_block_block,
 		"weapon_screen_effect_block",
 		"weapon_screen_effect_block",
-		67108864,
+		4,
 		weapon_screen_effect_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_block_group_block,
 		"weapon_block",
 		"weapon_block",
-		16777216,
+		1,
 		weapon_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		garbage_collection_block_block,
 		"garbage_collection_block",
 		"garbage_collection_block",
-		16777216,
+		1,
 		garbage_collection_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_hud_reference_block_block,
 		"unit_hud_reference_block",
 		"unit_hud_reference_block",
-		33554432,
+		2,
 		unit_hud_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_camera_track_block_block,
 		"unit_camera_track_block",
 		"unit_camera_track_block",
-		33554432,
+		2,
 		unit_camera_track_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_camera_acceleration_displacement_block_block,
 		"unit_camera_acceleration_displacement_block",
 		"unit_camera_acceleration_displacement_block",
-		16777216,
+		1,
 		unit_camera_acceleration_displacement_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_postures_block_block,
 		"unit_postures_block",
 		"unit_postures_block",
-		335544320,
+		20,
 		unit_postures_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_seat_block_block,
 		"unit_seat_block",
 		"unit_seat_block",
-		1073741824,
+		64,
 		unit_seat_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		boarding_seat_block_block,
 		"boarding_seat_block",
 		"boarding_seat_block",
-		1073741824,
+		64,
 		boarding_seat_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_weapon_block_block,
 		"unit_weapon_block",
 		"unit_weapon_block",
-		67108864,
+		4,
 		unit_weapon_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		powered_seat_block_block,
 		"powered_seat_block",
 		"powered_seat_block",
-		33554432,
+		2,
 		powered_seat_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		dialogue_variant_block_block,
 		"dialogue_variant_block",
 		"dialogue_variant_block",
-		268435456,
+		16,
 		dialogue_variant_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_screen_effect_block_block,
 		"unit_screen_effect_block",
 		"unit_screen_effect_block",
-		67108864,
+		4,
 		unit_screen_effect_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_block_group_block,
 		"unit_block",
 		"unit_block",
-		16777216,
+		1,
 		unit_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		area_control_block_block,
 		"area_control_block",
 		"area_control_block",
-		16777216,
+		1,
 		area_control_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_response_global_sound_effect_block_block,
 		"damage_response_global_sound_effect_block",
 		"damage_response_global_sound_effect_block",
-		16777216,
+		1,
 		damage_response_global_sound_effect_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_response_class_block_block,
 		"damage_response_class_block",
 		"damage_response_class_block",
-		33554432,
+		2,
 		damage_response_class_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_response_definition_block_group_block,
 		"damage_response_definition_block",
 		"damage_response_definition_block",
-		16777216,
+		1,
 		damage_response_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		custom_damage_response_label_block_block,
 		"custom_damage_response_label_block",
 		"custom_damage_response_label_block",
-		134217728,
+		8,
 		custom_damage_response_label_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_effect_sound_block_block,
 		"damage_effect_sound_block",
 		"damage_effect_sound_block",
-		67108864,
+		4,
 		damage_effect_sound_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_effect_block_group_block,
 		"damage_effect",
 		"damage_effect_block",
-		16777216,
+		1,
 		damage_effect_group_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		muffin_permutation_name_block_block,
 		"muffin_permutation_name_block",
 		"muffin_permutation_name_block",
-		4286513152,
+		32767,
 		muffin_permutation_name_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_muffin_type_block_block,
 		"global_muffin_type_block",
 		"global_muffin_type_block",
-		268435456,
+		16,
 		global_muffin_type_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		muffin_marker_block_block,
 		"muffin_marker_block",
 		"muffin_marker_block",
-		4286513152,
+		32767,
 		muffin_marker_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		muffin_block_group_block,
 		"muffin_block",
 		"muffin_block",
-		16777216,
+		1,
 		muffin_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		leaf_type_block_block,
 		"leaf_type_block",
 		"leaf_type_block",
-		268435456,
+		16,
 		leaf_type_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		leaf_system_block_group_block,
 		"leaf_system_block",
 		"leaf_system_block",
-		16777216,
+		1,
 		leaf_system_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cloth_vertices_block_block,
 		"cloth_vertices_block",
 		"cloth_vertices_block",
-		2030043136,
+		121,
 		cloth_vertices_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cloth_indices_block_block,
 		"cloth_indices_block",
 		"cloth_indices_block",
-		3120824320,
+		1210,
 		cloth_indices_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cloth_links_block_block,
 		"cloth_links_block",
 		"cloth_links_block",
-		3120824320,
+		1210,
 		cloth_links_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_sphere_block_block,
 		"collision_sphere_block",
 		"collision_sphere_block",
-		134217728,
+		8,
 		collision_sphere_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cloth_block_group_block,
 		"cloth_block",
 		"cloth_block",
-		16777216,
+		1,
 		cloth_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		creature_scalar_timing_block_block,
 		"creature_scalar_timing_block",
 		"creature_scalar_timing_block",
-		16777216,
+		1,
 		creature_scalar_timing_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		creature_block_group_block,
 		"creature_block",
 		"creature_block",
-		16777216,
+		1,
 		creature_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		big_battle_creature_block_group_block,
 		"big_battle_creature_block",
 		"big_battle_creature_block",
-		16777216,
+		1,
 		big_battle_creature_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		device_block_group_block,
 		"device_block",
 		"device_block",
-		16777216,
+		1,
 		device_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		device_machine_block_group_block,
 		"device_machine_block",
 		"device_machine_block",
-		16777216,
+		1,
 		device_machine_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		terminal_page_block_definition_block,
 		"terminal_page_block_definition",
 		"terminal_page_block_definition",
-		536870912,
+		32,
 		terminal_page_block_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		device_terminal_block_group_block,
 		"device_terminal_block",
 		"device_terminal_block",
-		16777216,
+		1,
 		device_terminal_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		device_control_block_group_block,
 		"device_control_block",
 		"device_control_block",
-		16777216,
+		1,
 		device_control_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		human_tank_block_block,
 		"human_tank_block",
 		"human_tank_block",
-		16777216,
+		1,
 		human_tank_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		human_jeep_block_block,
 		"human_jeep_block",
 		"human_jeep_block",
-		16777216,
+		1,
 		human_jeep_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		wolverine_block_block,
 		"wolverine_block",
 		"wolverine_block",
-		16777216,
+		1,
 		wolverine_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		human_plane_block_block,
 		"human_plane_block",
 		"human_plane_block",
-		16777216,
+		1,
 		human_plane_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		alien_scout_block_block,
 		"alien_scout_block",
 		"alien_scout_block",
-		16777216,
+		1,
 		alien_scout_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		jackal_glider_block_block,
 		"jackal_glider_block",
 		"jackal_glider_block",
-		16777216,
+		1,
 		jackal_glider_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		alien_fighter_block_block,
 		"alien_fighter_block",
 		"alien_fighter_block",
-		16777216,
+		1,
 		alien_fighter_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		turret_block_block,
 		"turret_block",
 		"turret_block",
-		16777216,
+		1,
 		turret_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		mantis_block_block,
 		"mantis_block",
 		"mantis_block",
-		16777216,
+		1,
 		mantis_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		guardian_block_block,
 		"guardian_block",
 		"guardian_block",
-		16777216,
+		1,
 		guardian_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vtol_speed_interpolated_block_block,
 		"vtol_speed_interpolated_block",
 		"vtol_speed_interpolated_block",
-		33554432,
+		2,
 		vtol_speed_interpolated_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vtol_block_block,
 		"vtol_block",
 		"vtol_block",
-		16777216,
+		1,
 		vtol_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chopper_block_block,
 		"chopper_block",
 		"chopper_block",
-		16777216,
+		1,
 		chopper_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		boat_block_block,
 		"boat_block",
 		"boat_block",
-		16777216,
+		1,
 		boat_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		space_fighter_block_block,
 		"space_fighter_block",
 		"space_fighter_block",
-		16777216,
+		1,
 		space_fighter_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		revenant_block_block,
 		"revenant_block",
 		"revenant_block",
-		16777216,
+		1,
 		revenant_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vehicle_block_group_block,
 		"vehicle",
 		"vehicle_block",
-		16777216,
+		1,
 		vehicle_group_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		contact_point_block_block,
 		"contact_point_block",
 		"contact_point_block",
-		50331648,
+		3,
 		contact_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		biped_movement_gate_block_block,
 		"biped_movement_gate_block",
 		"biped_movement_gate_block",
-		268435456,
+		16,
 		biped_movement_gate_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		biped_camera_height_block_block,
 		"biped_camera_height_block",
 		"biped_camera_height_block",
-		268435456,
+		16,
 		biped_camera_height_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		biped_wall_proximity_block_block,
 		"biped_wall_proximity_block",
 		"biped_wall_proximity_block",
-		67108864,
+		4,
 		biped_wall_proximity_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		biped_block_group_block,
 		"biped",
 		"biped_block",
-		16777216,
+		1,
 		biped_group_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		object_function_interpolation_block_block,
 		"object_function_interpolation_block",
 		"object_function_interpolation_block",
-		33554432,
+		2,
 		object_function_interpolation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		object_runtime_interpolator_functions_block_block,
 		"object_runtime_interpolator_functions_block",
 		"object_runtime_interpolator_functions_block",
-		65536,
+		256,
 		object_runtime_interpolator_functions_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		object_function_block_block,
 		"object_function_block",
 		"object_function_block",
-		65536,
+		256,
 		object_function_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_object_attachment_block_block,
 		"global_object_attachment_block",
 		"global_object_attachment_block",
-		402653184,
+		24,
 		global_object_attachment_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		object_widget_block_block,
 		"object_widget_block",
 		"object_widget_block",
-		67108864,
+		4,
 		object_widget_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		object_change_color_initial_permutation_block,
 		"object_change_color_initial_permutation",
 		"object_change_color_initial_permutation",
-		536870912,
+		32,
 		object_change_color_initial_permutation);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		object_change_color_function_block,
 		"object_change_color_function",
 		"object_change_color_function",
-		67108864,
+		4,
 		object_change_color_function);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		object_change_colors_block,
 		"object_change_colors",
 		"object_change_colors",
-		67108864,
+		4,
 		object_change_colors);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_object_block_block,
 		"multiplayer_object_block",
 		"multiplayer_object_block",
-		16777216,
+		1,
 		multiplayer_object_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		object_ai_properties_block_block,
 		"object_ai_properties_block",
 		"object_ai_properties_block",
-		16777216,
+		1,
 		object_ai_properties_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		object_spawn_effects_block_block,
 		"object_spawn_effects_block",
 		"object_spawn_effects_block",
-		16777216,
+		1,
 		object_spawn_effects_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		object_early_mover_obb_block_block,
 		"object_early_mover_obb_block",
 		"object_early_mover_obb_block",
-		16777216,
+		1,
 		object_early_mover_obb_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		object_block_group_block,
 		"object_block",
 		"object_block",
-		16777216,
+		1,
 		object_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		unit_trick_definition_block_block,
 		"unit_trick_definition_block",
 		"unit_trick_definition_block",
-		134217728,
+		8,
 		unit_trick_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		gear_block_block,
 		"gear_block",
 		"gear_block",
-		268435456,
+		16,
 		gear_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		load_and_cruise_block_block,
 		"load_and_cruise_block",
 		"load_and_cruise_block",
-		33554432,
+		2,
 		load_and_cruise_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		death_program_velocity_gate_block_block,
 		"death_program_velocity_gate_block",
 		"death_program_velocity_gate_block",
-		33554432,
+		2,
 		death_program_velocity_gate_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		death_program_damage_reporting_block_block,
 		"death_program_damage_reporting_block",
 		"death_program_damage_reporting_block",
-		201326592,
+		12,
 		death_program_damage_reporting_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		death_program_special_block_block,
 		"death_program_special_block",
 		"death_program_special_block",
-		83886080,
+		5,
 		death_program_special_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		death_program_selector_block_group_block,
 		"death_program_selector_block",
 		"death_program_selector_block",
-		16777216,
+		1,
 		death_program_selector_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_lighting_generic_light_definition_block_block$2,
 		"structure_lighting_generic_light_definition_block",
 		"structure_lighting_generic_light_definition_block",
-		4286513152,
+		32767,
 		structure_lighting_generic_light_definition_block$2);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_lighting_generic_light_instance_block_block,
 		"structure_lighting_generic_light_instance_block",
 		"structure_lighting_generic_light_instance_block",
-		4286513152,
+		32767,
 		structure_lighting_generic_light_instance_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		screen_space_light_shader_override_block_block,
 		"screen_space_light_shader_override_block",
 		"screen_space_light_shader_override_block",
-		4286513152,
+		32767,
 		screen_space_light_shader_override_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_lighting_region_triangle_block_block,
 		"structure_lighting_region_triangle_block",
 		"structure_lighting_region_triangle_block",
-		4286513152,
+		32767,
 		structure_lighting_region_triangle_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_lighting_region_block_block,
 		"structure_lighting_region_block",
 		"structure_lighting_region_block",
-		4286513152,
+		32767,
 		structure_lighting_region_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_material_lighting_info_block_block,
 		"structure_material_lighting_info_block",
 		"structure_material_lighting_info_block",
-		4286513152,
+		32767,
 		structure_material_lighting_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_instance_imposter_info_block_block,
 		"structure_instance_imposter_info_block",
 		"structure_instance_imposter_info_block",
-		2097152,
+		8192,
 		structure_instance_imposter_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_structure_lighting_info_block_group_block,
 		"scenario_structure_lighting_info_block",
 		"scenario_structure_lighting_info_block",
-		16777216,
+		1,
 		scenario_structure_lighting_info_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_component_holdback_block_block,
 		"effect_component_holdback_block",
 		"effect_component_holdback_block",
-		50331648,
+		3,
 		effect_component_holdback_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_component_holdbacks_block_block,
 		"effect_component_holdbacks_block",
 		"effect_component_holdbacks_block",
-		469762048,
+		28,
 		effect_component_holdbacks_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_global_spawn_effects_block_block,
 		"effect_global_spawn_effects_block",
 		"effect_global_spawn_effects_block",
-		16777216,
+		1,
 		effect_global_spawn_effects_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_globals_block_group_block,
 		"effect_globals_block",
 		"effect_globals_block",
-		16777216,
+		1,
 		effect_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		light_volume_precompiled_vert_block_block,
 		"light_volume_precompiled_vert_block",
 		"light_volume_precompiled_vert_block",
-		2147483648,
+		128,
 		light_volume_precompiled_vert_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		light_volume_definition_block_block,
 		"light_volume_definition_block",
 		"light_volume_definition_block",
-		268435456,
+		16,
 		light_volume_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		light_volume_system_block_group_block,
 		"light_volume_system_block",
 		"light_volume_system_block",
-		16777216,
+		1,
 		light_volume_system_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		attachment_block_block,
 		"attachment_block",
 		"attachment_block",
-		67108864,
+		4,
 		attachment_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		gpu_sprite_block_block,
 		"gpu_sprite_block",
 		"gpu_sprite_block",
-		16777216,
+		1,
 		gpu_sprite_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		gpu_variants_block_block,
 		"gpu_variants_block",
 		"gpu_variants_block",
-		268435456,
+		16,
 		gpu_variants_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_block_group_block,
 		"particle_block",
 		"particle_block",
-		16777216,
+		1,
 		particle_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_controller_parameters_block,
 		"particle_controller_parameters",
 		"particle_controller_parameters",
-		150994944,
+		9,
 		particle_controller_parameters);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_controller_block,
 		"particle_controller",
 		"particle_controller",
-		117440512,
+		7,
 		particle_controller);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_physics_block_group_block,
 		"particle_physics_block",
 		"particle_physics_block",
-		16777216,
+		1,
 		particle_physics_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		gpu_function_block_block,
 		"gpu_function_block",
 		"gpu_function_block",
-		419430400,
+		25,
 		gpu_function_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		gpu_color_block_block,
 		"gpu_color_block",
 		"gpu_color_block",
-		134217728,
+		8,
 		gpu_color_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		gpu_property_block_block,
 		"gpu_property_block",
 		"gpu_property_block",
-		251658240,
+		15,
 		gpu_property_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_system_emitter_definition_block_block,
 		"particle_system_emitter_definition_block",
 		"particle_system_emitter_definition_block",
-		134217728,
+		8,
 		particle_system_emitter_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_system_definition_block_new_block,
 		"particle_system_definition_block_new",
 		"particle_system_definition_block_new",
-		536870912,
+		32,
 		particle_system_definition_block_new);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_model_block_group_block,
 		"particle_model_block",
 		"particle_model_block",
-		16777216,
+		1,
 		particle_model_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sorting_position_block_block,
 		"sorting_position_block",
 		"sorting_position_block",
-		4294901760,
+		65535,
 		sorting_position_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		part_block_block,
 		"part_block",
 		"part_block",
-		4278190080,
+		255,
 		part_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		subpart_block_block,
 		"subpart_block",
 		"subpart_block",
-		4294901760,
+		65535,
 		subpart_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		indices_word_block_block,
 		"indices_word_block",
 		"indices_word_block",
-		4294967167,
+		2147483647,
 		indices_word_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		indices_dword_block_block,
 		"indices_dword_block",
 		"indices_dword_block",
-		4294967167,
+		2147483647,
 		indices_dword_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		raw_vertex_block_block,
 		"raw_vertex_block",
 		"raw_vertex_block",
-		4278189824,
+		16777214,
 		raw_vertex_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		raw_water_append_block_block,
 		"raw_water_append_block",
 		"raw_water_append_block",
-		4294901760,
+		65535,
 		raw_water_append_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		raw_water_block_block,
 		"raw_water_block",
 		"raw_water_block",
-		262144,
+		1024,
 		raw_water_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		raw_imposter_brdf_block_block,
 		"raw_imposter_brdf_block",
 		"raw_imposter_brdf_block",
-		4294901760,
+		65535,
 		raw_imposter_brdf_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		raw_instance_imposter_block_block,
 		"raw_instance_imposter_block",
 		"raw_instance_imposter_block",
-		4294901760,
+		65535,
 		raw_instance_imposter_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		compression_info_block_block,
 		"compression_info_block",
 		"compression_info_block",
-		256,
+		65536,
 		compression_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		node_map_byte_block_block,
 		"node_map_byte_block",
 		"node_map_byte_block",
-		4278190080,
+		255,
 		node_map_byte_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		instance_index_word_block_block,
 		"instance_index_word_block",
 		"instance_index_word_block",
-		4294901760,
+		65535,
 		instance_index_word_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_instance_bucket_block_block,
 		"global_instance_bucket_block",
 		"global_instance_bucket_block",
-		524288,
+		2048,
 		global_instance_bucket_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_mesh_block_block,
 		"mesh",
 		"global_mesh_block",
-		4280221696,
+		8191,
 		global_mesh_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		per_mesh_raw_data_block_block,
 		"per_mesh_raw_data_block",
 		"per_mesh_raw_data_block",
-		4280221696,
+		8191,
 		per_mesh_raw_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		per_mesh_node_map_block_block,
 		"per_mesh_node_map_block",
 		"per_mesh_node_map_block",
-		4280221696,
+		8191,
 		per_mesh_node_map_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		per_mesh_subpart_visibility_block_block,
 		"per_mesh_subpart_visibility_block",
 		"per_mesh_subpart_visibility_block",
-		1073741824,
+		64,
 		per_mesh_subpart_visibility_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		per_instance_prt_data_block_block,
 		"per_instance_prt_data_block",
 		"per_instance_prt_data_block",
-		4294901760,
+		65535,
 		per_instance_prt_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		per_mesh_prt_data_block_block,
 		"per_mesh_prt_data_block",
 		"per_mesh_prt_data_block",
-		4280221696,
+		8191,
 		per_mesh_prt_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		per_instance_lightmap_texcoords_block_block,
 		"per_instance_lightmap_texcoords_block",
 		"per_instance_lightmap_texcoords_block",
-		4294901760,
+		65535,
 		per_instance_lightmap_texcoords_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		per_instance_lightmap_texcoords_vertex_buffer_block_block,
 		"per_instance_lightmap_texcoords_vertex_buffer_block",
 		"per_instance_lightmap_texcoords_vertex_buffer_block",
-		4294901760,
+		65535,
 		per_instance_lightmap_texcoords_vertex_buffer_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		water_bounding_box_block_block,
 		"water_bounding_box_block",
 		"water_bounding_box_block",
-		4280221696,
+		8191,
 		water_bounding_box_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_data_block_block,
 		"user_data_block",
 		"user_data_block",
-		1073741824,
+		64,
 		user_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vertex_buffers_block_block,
 		"vertex_buffers_block",
 		"vertex_buffers_block",
-		4294901760,
+		65535,
 		vertex_buffers_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		index_buffers_block_block,
 		"index_buffers_block",
 		"index_buffers_block",
-		4280221696,
+		8191,
 		index_buffers_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_vertex_buffer_block_block,
 		"render_vertex_buffer_block",
 		"render_vertex_buffer_block",
-		4294901760,
+		65535,
 		render_vertex_buffer_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_index_buffer_block_block,
 		"render_index_buffer_block",
 		"render_index_buffer_block",
-		4280221696,
+		8191,
 		render_index_buffer_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		player_training_entry_data_block_block,
 		"player_training_entry_data_block",
 		"player_training_entry_data_block",
-		587202560,
+		35,
 		player_training_entry_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vision_mode_block_group_block,
 		"vision_mode_block",
 		"vision_mode_block",
-		16777216,
+		1,
 		vision_mode_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		single_screen_effect_block,
 		"single_screen_effect",
 		"single_screen_effect",
-		134217728,
+		8,
 		single_screen_effect);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		area_screen_effect_block_group_block,
 		"area_screen_effect_block",
 		"area_screen_effect_block",
-		16777216,
+		1,
 		area_screen_effect_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
@@ -3649,8764 +3649,8764 @@ namespace haloreach {
 		scenario_interpolator_data_block_block,
 		"scenario_interpolator_data_block",
 		"scenario_interpolator_data_block",
-		536870912,
+		32,
 		scenario_interpolator_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_interpolator_block_group_block,
 		"scenario_interpolator_block",
 		"scenario_interpolator_block",
-		16777216,
+		1,
 		scenario_interpolator_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		full_lightprobe_block,
 		"full_lightprobe",
 		"full_lightprobe",
-		4278189824,
+		16777214,
 		full_lightprobe);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		converted_lightprobe_block,
 		"converted_lightprobe",
 		"converted_lightprobe",
-		4278189824,
+		16777214,
 		converted_lightprobe);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_lightprobe_value_block,
 		"scenario_lightmap_lightprobe_value",
 		"scenario_lightmap_lightprobe_value",
-		4294901760,
+		65535,
 		scenario_lightmap_lightprobe_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_airprobe_value_block,
 		"scenario_lightmap_airprobe_value",
 		"scenario_lightmap_airprobe_value",
-		131072,
+		512,
 		scenario_lightmap_airprobe_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_scenery_probe_value_block,
 		"scenario_lightmap_scenery_probe_value",
 		"scenario_lightmap_scenery_probe_value",
-		3490119680,
+		2000,
 		scenario_lightmap_scenery_probe_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_device_machine_probe_value_block,
 		"scenario_lightmap_device_machine_probe_value",
 		"scenario_lightmap_device_machine_probe_value",
-		4294901760,
+		65535,
 		scenario_lightmap_device_machine_probe_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_device_machine_probe_data_value_block,
 		"scenario_lightmap_device_machine_probe_data_value",
 		"scenario_lightmap_device_machine_probe_data_value",
-		4294901760,
+		65535,
 		scenario_lightmap_device_machine_probe_data_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_pervertex_data_block,
 		"scenario_lightmap_pervertex_data",
 		"scenario_lightmap_pervertex_data",
-		8388608,
+		32768,
 		scenario_lightmap_pervertex_data);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_pervertex_data_run_time_block,
 		"scenario_lightmap_pervertex_data_run_time",
 		"scenario_lightmap_pervertex_data_run_time",
-		8388608,
+		32768,
 		scenario_lightmap_pervertex_data_run_time);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_cluster_data_block,
 		"scenario_lightmap_cluster_data",
 		"scenario_lightmap_cluster_data",
-		4294901760,
+		65535,
 		scenario_lightmap_cluster_data);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_instance_data_block,
 		"scenario_lightmap_instance_data",
 		"scenario_lightmap_instance_data",
-		4294901760,
+		65535,
 		scenario_lightmap_instance_data);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		wentness_bit_vector_block,
 		"wentness_bit_vector",
 		"wentness_bit_vector",
-		4294901760,
+		65535,
 		wentness_bit_vector);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		wentness_byte_vector_block,
 		"wentness_byte_vector",
 		"wentness_byte_vector",
-		4294901760,
+		65535,
 		wentness_byte_vector);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cluster_wetness_offset_block_block,
 		"cluster_wetness_offset_block",
 		"cluster_wetness_offset_block",
-		4294901760,
+		65535,
 		cluster_wetness_offset_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		instance_wetness_instance_block_block,
 		"instance_wetness_instance_block",
 		"instance_wetness_instance_block",
-		4294901760,
+		65535,
 		instance_wetness_instance_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		triangle_mapping_block_block,
 		"triangle_mapping_block",
 		"triangle_mapping_block",
-		4294967167,
+		2147483647,
 		triangle_mapping_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		triangle_mapping_per_mesh_block_block,
 		"triangle_mapping_per_mesh_block",
 		"triangle_mapping_per_mesh_block",
-		4280221696,
+		8191,
 		triangle_mapping_per_mesh_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_bsp_data_block_group_block,
 		"scenario_lightmap_bsp_data_block",
 		"scenario_lightmap_bsp_data_block",
-		16777216,
+		1,
 		scenario_lightmap_bsp_data_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_wetness_bsp_data_block_group_block,
 		"scenario_wetness_bsp_data_block",
 		"scenario_wetness_bsp_data_block",
-		16777216,
+		1,
 		scenario_wetness_bsp_data_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		obsolete_scenario_lightmap_bsp_data_block,
 		"obsolete_scenario_lightmap_bsp_data",
 		"obsolete_scenario_lightmap_bsp_data",
-		536870912,
+		32,
 		obsolete_scenario_lightmap_bsp_data);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		uber_light_index_mapping_data_block,
 		"uber_light_index_mapping_data",
 		"uber_light_index_mapping_data",
-		16777216,
+		1,
 		uber_light_index_mapping_data);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_bsp_data_reference_block_block,
 		"scenario_lightmap_bsp_data_reference_block",
 		"scenario_lightmap_bsp_data_reference_block",
-		536870912,
+		32,
 		scenario_lightmap_bsp_data_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lightmap_block_group_block,
 		"scenario_lightmap_block",
 		"scenario_lightmap_block",
-		16777216,
+		1,
 		scenario_lightmap_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		polyhedron_with_material_block_block,
 		"polyhedron_with_material_block",
 		"polyhedron_with_material_block",
-		3355443200,
+		200,
 		polyhedron_with_material_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_instanced_geometry_definition_block_block,
 		"structure_bsp_instanced_geometry_definition_block",
 		"structure_bsp_instanced_geometry_definition_block",
-		262144,
+		1024,
 		structure_bsp_instanced_geometry_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_geometry_shape_block_block,
 		"collision_geometry_shape_block",
 		"collision_geometry_shape_block",
-		16777216,
+		1,
 		collision_geometry_shape_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		decomposed_poop_physics_block_block,
 		"decomposed_poop_physics_block",
 		"decomposed_poop_physics_block",
-		16777216,
+		1,
 		decomposed_poop_physics_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		instanced_geometry_physics_block_block,
 		"instanced_geometry_physics_block",
 		"instanced_geometry_physics_block",
-		16777216,
+		1,
 		instanced_geometry_physics_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_instanced_geometry_instances_block_block,
 		"structure_bsp_instanced_geometry_instances_block",
 		"structure_bsp_instanced_geometry_instances_block",
-		2097152,
+		8192,
 		structure_bsp_instanced_geometry_instances_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_instanced_geometry_instances_without_names_block_block,
 		"structure_bsp_instanced_geometry_instances_without_names_block",
 		"structure_bsp_instanced_geometry_instances_without_names_block",
-		2097152,
+		8192,
 		structure_bsp_instanced_geometry_instances_without_names_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_instanced_geometry_instances_names_block_block,
 		"structure_bsp_instanced_geometry_instances_names_block",
 		"structure_bsp_instanced_geometry_instances_names_block",
-		2097152,
+		8192,
 		structure_bsp_instanced_geometry_instances_names_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_render_model_instance_placement_block_block,
 		"global_render_model_instance_placement_block",
 		"global_render_model_instance_placement_block",
-		2147483648,
+		128,
 		global_render_model_instance_placement_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		breakable_surface_block_group_block,
 		"breakable_surface_block",
 		"breakable_surface_block",
-		16777216,
+		1,
 		breakable_surface_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		dumpling_point_block_block,
 		"dumpling_point_block",
 		"dumpling_point_block",
-		536870912,
+		32,
 		dumpling_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_atmosphere_dumpling_block_block,
 		"scenario_atmosphere_dumpling_block",
 		"scenario_atmosphere_dumpling_block",
-		1677721600,
+		100,
 		scenario_atmosphere_dumpling_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_weather_dumpling_block_block,
 		"scenario_weather_dumpling_block",
 		"scenario_weather_dumpling_block",
-		1677721600,
+		100,
 		scenario_weather_dumpling_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_function_block_block,
 		"scenario_function_block",
 		"scenario_function_block",
-		536870912,
+		32,
 		scenario_function_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_object_names_block_block,
 		"scenario_object_names_block",
 		"scenario_object_names_block",
-		524288,
+		2048,
 		scenario_object_names_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_soft_ceilings_block_block,
 		"scenario_soft_ceilings_block",
 		"scenario_soft_ceilings_block",
-		2147483648,
+		128,
 		scenario_soft_ceilings_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_profiles_block_block,
 		"scenario_profiles_block",
 		"scenario_profiles_block",
-		65536,
+		256,
 		scenario_profiles_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_players_block_block,
 		"scenario_players_block",
 		"scenario_players_block",
-		65536,
+		256,
 		scenario_players_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_trigger_volume_block_block,
 		"scenario_trigger_volume_block",
 		"scenario_trigger_volume_block",
-		1577123840,
+		350,
 		scenario_trigger_volume_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_kill_trigger_volumes_block_block,
 		"scenario_kill_trigger_volumes_block",
 		"scenario_kill_trigger_volumes_block",
-		1577123840,
+		350,
 		scenario_kill_trigger_volumes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_safe_zone_trigger_volumes_block_block,
 		"scenario_safe_zone_trigger_volumes_block",
 		"scenario_safe_zone_trigger_volumes_block",
-		1577123840,
+		350,
 		scenario_safe_zone_trigger_volumes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_requisition_trigger_volumes_block_block,
 		"scenario_requisition_trigger_volumes_block",
 		"scenario_requisition_trigger_volumes_block",
-		1577123840,
+		350,
 		scenario_requisition_trigger_volumes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_location_name_trigger_volumes_block_block,
 		"scenario_location_name_trigger_volumes_block",
 		"scenario_location_name_trigger_volumes_block",
-		1577123840,
+		350,
 		scenario_location_name_trigger_volumes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		trigger_volume_point_block_block,
 		"trigger_volume_point_block",
 		"trigger_volume_point_block",
-		536870912,
+		32,
 		trigger_volume_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		trigger_volume_runtime_triangles_block_block,
 		"trigger_volume_runtime_triangles_block",
 		"trigger_volume_runtime_triangles_block",
-		503316480,
+		30,
 		trigger_volume_runtime_triangles_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_bsp_checksum_block_block,
 		"scenario_zone_set_bsp_checksum_block",
 		"scenario_zone_set_bsp_checksum_block",
-		268435456,
+		16,
 		scenario_zone_set_bsp_checksum_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_cluster_pvs_bit_vector_block_block,
 		"scenario_zone_set_cluster_pvs_bit_vector_block",
 		"scenario_zone_set_cluster_pvs_bit_vector_block",
-		134217728,
+		8,
 		scenario_zone_set_cluster_pvs_bit_vector_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_bsp_bits_block_block,
 		"scenario_zone_set_bsp_bits_block",
 		"scenario_zone_set_bsp_bits_block",
-		268435456,
+		16,
 		scenario_zone_set_bsp_bits_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_cluster_pvs_block_block,
 		"scenario_zone_set_cluster_pvs_block",
 		"scenario_zone_set_cluster_pvs_block",
-		4278190080,
+		255,
 		scenario_zone_set_cluster_pvs_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_structure_bsp_reference_block_block,
 		"scenario_structure_bsp_reference_block",
 		"scenario_structure_bsp_reference_block",
-		268435456,
+		16,
 		scenario_structure_bsp_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_sky_reference_block_block,
 		"scenario_sky_reference_block",
 		"scenario_sky_reference_block",
-		536870912,
+		32,
 		scenario_sky_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_cluster_sky_indices_block_block,
 		"scenario_zone_set_cluster_sky_indices_block",
 		"scenario_zone_set_cluster_sky_indices_block",
-		4278190080,
+		255,
 		scenario_zone_set_cluster_sky_indices_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_multiple_skies_visible_bit_vector_block_block,
 		"scenario_zone_set_multiple_skies_visible_bit_vector_block",
 		"scenario_zone_set_multiple_skies_visible_bit_vector_block",
-		4278190080,
+		255,
 		scenario_zone_set_multiple_skies_visible_bit_vector_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_cluster_reference_block_block,
 		"scenario_zone_set_cluster_reference_block",
 		"scenario_zone_set_cluster_reference_block",
-		4027514880,
+		4080,
 		scenario_zone_set_cluster_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_bsp_seam_cluster_mappings_block_block,
 		"scenario_zone_set_bsp_seam_cluster_mappings_block",
 		"scenario_zone_set_bsp_seam_cluster_mappings_block",
-		4278190080,
+		255,
 		scenario_zone_set_bsp_seam_cluster_mappings_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_bsp_pvs_block_block,
 		"scenario_zone_set_bsp_pvs_block",
 		"scenario_zone_set_bsp_pvs_block",
-		268435456,
+		16,
 		scenario_zone_set_bsp_pvs_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_pvs_block_block,
 		"scenario_zone_set_pvs_block",
 		"scenario_zone_set_pvs_block",
-		822083584,
+		49,
 		scenario_zone_set_pvs_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_design_reference_block_block,
 		"scenario_design_reference_block",
 		"scenario_design_reference_block",
-		134217728,
+		8,
 		scenario_design_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_block_block,
 		"scenario_zone_set_block",
 		"scenario_zone_set_block",
-		805306368,
+		48,
 		scenario_zone_set_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_set_switch_trigger_volume_block_block,
 		"scenario_zone_set_switch_trigger_volume_block",
 		"scenario_zone_set_switch_trigger_volume_block",
-		1577123840,
+		350,
 		scenario_zone_set_switch_trigger_volume_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		player_spawn_influencer_block_block,
 		"player_spawn_influencer_block",
 		"player_spawn_influencer_block",
-		16777216,
+		1,
 		player_spawn_influencer_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_performance_actor_block_block,
 		"scenario_performance_actor_block",
 		"scenario_performance_actor_block",
-		268435456,
+		16,
 		scenario_performance_actor_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_performance_line_animation_block_block,
 		"scenario_performance_line_animation_block",
 		"scenario_performance_line_animation_block",
-		134217728,
+		8,
 		scenario_performance_line_animation_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_performance_line_sync_action_actor_block_block,
 		"scenario_performance_line_sync_action_actor_block",
 		"scenario_performance_line_sync_action_actor_block",
-		268435456,
+		16,
 		scenario_performance_line_sync_action_actor_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_performance_line_sync_action_block_block,
 		"scenario_performance_line_sync_action_block",
 		"scenario_performance_line_sync_action_block",
-		134217728,
+		8,
 		scenario_performance_line_sync_action_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_performance_line_scenery_sync_action_block_block,
 		"scenario_performance_line_scenery_sync_action_block",
 		"scenario_performance_line_scenery_sync_action_block",
-		134217728,
+		8,
 		scenario_performance_line_scenery_sync_action_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_performance_line_dialog_block_block,
 		"scenario_performance_line_dialog_block",
 		"scenario_performance_line_dialog_block",
-		67108864,
+		4,
 		scenario_performance_line_dialog_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_performance_line_sound_block_block,
 		"scenario_performance_line_sound_block",
 		"scenario_performance_line_sound_block",
-		67108864,
+		4,
 		scenario_performance_line_sound_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_performance_line_script_fragment_block_block,
 		"scenario_performance_line_script_fragment_block",
 		"scenario_performance_line_script_fragment_block",
-		268435456,
+		16,
 		scenario_performance_line_script_fragment_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_performance_line_point_interaction_block_block,
 		"scenario_performance_line_point_interaction_block",
 		"scenario_performance_line_point_interaction_block",
-		268435456,
+		16,
 		scenario_performance_line_point_interaction_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_performance_line_block_block,
 		"scenario_performance_line_block",
 		"scenario_performance_line_block",
-		65536,
+		256,
 		scenario_performance_line_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_performance_task_block_block,
 		"scenario_performance_task_block",
 		"scenario_performance_task_block",
-		134217728,
+		8,
 		scenario_performance_task_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_performances_block_block,
 		"scenario_performances_block",
 		"scenario_performances_block",
-		65536,
+		256,
 		scenario_performances_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		performance_template_point_block_block,
 		"performance_template_point_block",
 		"performance_template_point_block",
-		536870912,
+		32,
 		performance_template_point_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		performance_template_actor_block_block,
 		"performance_template_actor_block",
 		"performance_template_actor_block",
-		268435456,
+		16,
 		performance_template_actor_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		performance_template_block_group_block,
 		"performance_template_block",
 		"performance_template_block",
-		16777216,
+		1,
 		performance_template_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_decal_palette_block_block,
 		"scenario_decal_palette_block",
 		"scenario_decal_palette_block",
-		2147483648,
+		128,
 		scenario_decal_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_decals_block_block,
 		"scenario_decals_block",
 		"scenario_decals_block",
-		256,
+		65536,
 		scenario_decals_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_detail_object_collection_palette_block_block,
 		"scenario_detail_object_collection_palette_block",
 		"scenario_detail_object_collection_palette_block",
-		536870912,
+		32,
 		scenario_detail_object_collection_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cheap_particle_system_palette_block_block,
 		"scenario_cheap_particle_system_palette_block",
 		"scenario_cheap_particle_system_palette_block",
-		335544320,
+		20,
 		scenario_cheap_particle_system_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cheap_particle_systems_block_block,
 		"scenario_cheap_particle_systems_block",
 		"scenario_cheap_particle_systems_block",
-		1677721600,
+		100,
 		scenario_cheap_particle_systems_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cutscene_flag_block_block,
 		"scenario_cutscene_flag_block",
 		"scenario_cutscene_flag_block",
-		131072,
+		512,
 		scenario_cutscene_flag_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cutscene_camera_point_block_block,
 		"scenario_cutscene_camera_point_block",
 		"scenario_cutscene_camera_point_block",
-		131072,
+		512,
 		scenario_cutscene_camera_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		editor_comment_block_block,
 		"editor_comment_block",
 		"editor_comment_block",
-		256,
+		65536,
 		editor_comment_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		dont_use_me_scenario_environment_object_block_block,
 		"dont_use_me_scenario_environment_object_block",
 		"dont_use_me_scenario_environment_object_block",
-		1048576,
+		4096,
 		dont_use_me_scenario_environment_object_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_acoustics_block_block,
 		"scenario_cluster_acoustics_block",
 		"scenario_cluster_acoustics_block",
-		4278190080,
+		255,
 		scenario_cluster_acoustics_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_atmosphere_palette_block_block,
 		"scenario_atmosphere_palette_block",
 		"scenario_atmosphere_palette_block",
-		536870912,
+		32,
 		scenario_atmosphere_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_atmosphere_properties_block_block,
 		"scenario_cluster_atmosphere_properties_block",
 		"scenario_cluster_atmosphere_properties_block",
-		4278190080,
+		255,
 		scenario_cluster_atmosphere_properties_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_weather_palette_block_block,
 		"scenario_weather_palette_block",
 		"scenario_weather_palette_block",
-		536870912,
+		32,
 		scenario_weather_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_weather_properties_block_block,
 		"scenario_cluster_weather_properties_block",
 		"scenario_cluster_weather_properties_block",
-		4278190080,
+		255,
 		scenario_cluster_weather_properties_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_camera_fx_palette_block_block,
 		"scenario_camera_fx_palette_block",
 		"scenario_camera_fx_palette_block",
-		1073741824,
+		64,
 		scenario_camera_fx_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_camera_fx_properties_block_block,
 		"scenario_cluster_camera_fx_properties_block",
 		"scenario_cluster_camera_fx_properties_block",
-		4278190080,
+		255,
 		scenario_cluster_camera_fx_properties_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_points_block_block,
 		"scenario_cluster_points_block",
 		"scenario_cluster_points_block",
-		4278190080,
+		255,
 		scenario_cluster_points_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_data_block_block,
 		"scenario_cluster_data_block",
 		"scenario_cluster_data_block",
-		268435456,
+		16,
 		scenario_cluster_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_spawn_data_block_block,
 		"scenario_spawn_data_block",
 		"scenario_spawn_data_block",
-		16777216,
+		1,
 		scenario_spawn_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lighting_zone_set_block_block,
 		"scenario_lighting_zone_set_block",
 		"scenario_lighting_zone_set_block",
-		805306368,
+		48,
 		scenario_lighting_zone_set_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cinematic_lighting_palette_block_block,
 		"scenario_cinematic_lighting_palette_block",
 		"scenario_cinematic_lighting_palette_block",
-		2147483648,
+		128,
 		scenario_cinematic_lighting_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_references_block_block,
 		"model_references_block",
 		"model_references_block",
-		4286513152,
+		32767,
 		model_references_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		trigger_volume_mopp_code_block_block,
 		"trigger_volume_mopp_code_block",
 		"trigger_volume_mopp_code_block",
-		16777216,
+		1,
 		trigger_volume_mopp_code_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_airprobes_block_block,
 		"scenario_airprobes_block",
 		"scenario_airprobes_block",
-		131072,
+		512,
 		scenario_airprobes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_budget_references_block_block,
 		"scenario_budget_references_block",
 		"scenario_budget_references_block",
-		2147483648,
+		128,
 		scenario_budget_references_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_required_resource_block_group_block,
 		"scenario_required_resource_block",
 		"scenario_required_resource_block",
-		16777216,
+		1,
 		scenario_required_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_block_group_block,
 		"scenario_block",
 		"scenario_block",
-		16777216,
+		1,
 		scenario_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		map_leaf_face_vertex_block_block,
 		"map_leaf_face_vertex_block",
 		"map_leaf_face_vertex_block",
-		131072,
+		512,
 		map_leaf_face_vertex_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		map_leaf_face_block_block,
 		"map_leaf_face_block",
 		"map_leaf_face_block",
-		4096,
+		1048576,
 		map_leaf_face_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		map_leaf_connection_index_block_block,
 		"map_leaf_connection_index_block",
 		"map_leaf_connection_index_block",
-		4096,
+		1048576,
 		map_leaf_connection_index_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_map_leaf_block_block,
 		"global_map_leaf_block",
 		"global_map_leaf_block",
-		8,
+		134217728,
 		global_map_leaf_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		leaf_connection_vertex_block_block,
 		"leaf_connection_vertex_block",
 		"leaf_connection_vertex_block",
-		131072,
+		512,
 		leaf_connection_vertex_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_leaf_connection_block_block,
 		"global_leaf_connection_block",
 		"global_leaf_connection_block",
-		64,
+		1073741824,
 		global_leaf_connection_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		mopp_code_data_definition_block_block,
 		"mopp_code_data_definition_block",
 		"mopp_code_data_definition_block",
-		1,
+		16777216,
 		mopp_code_data_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		mopp_code_definition_block_block,
 		"mopp_code_definition_block",
 		"mopp_code_definition_block",
-		4286513152,
+		32767,
 		mopp_code_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		transparent_planes_block_block,
 		"transparent_planes_block",
 		"transparent_planes_block",
-		8388608,
+		32768,
 		transparent_planes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_cluster_portal_vertex_block_block,
 		"structure_bsp_cluster_portal_vertex_block",
 		"structure_bsp_cluster_portal_vertex_block",
-		2147483648,
+		128,
 		structure_bsp_cluster_portal_vertex_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_cluster_portal_index_block_block,
 		"structure_bsp_cluster_portal_index_block",
 		"structure_bsp_cluster_portal_index_block",
-		131072,
+		512,
 		structure_bsp_cluster_portal_index_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		seam_indices_block_definition_block,
 		"seam_indices_block_definition",
 		"seam_indices_block_definition",
-		2147483648,
+		128,
 		seam_indices_block_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cheap_light_reference_block_block,
 		"cheap_light_reference_block",
 		"cheap_light_reference_block",
-		262144,
+		1024,
 		cheap_light_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cheap_light_marker_ref_block_block,
 		"cheap_light_marker_ref_block",
 		"cheap_light_marker_ref_block",
-		262144,
+		1024,
 		cheap_light_marker_ref_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pvs_bound_object_identifiers_block_block,
 		"pvs_bound_object_identifiers_block",
 		"pvs_bound_object_identifiers_block",
-		4162256896,
+		6136,
 		pvs_bound_object_identifiers_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pvs_bound_object_references_block_block,
 		"pvs_bound_object_references_block",
 		"pvs_bound_object_references_block",
-		4162256896,
+		6136,
 		pvs_bound_object_references_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_cluster_block_block,
 		"structure_bsp_cluster_block",
 		"structure_bsp_cluster_block",
-		4278190080,
+		255,
 		structure_bsp_cluster_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_cluster_portal_block_block,
 		"structure_bsp_cluster_portal_block",
 		"structure_bsp_cluster_portal_block",
-		262144,
+		1024,
 		structure_bsp_cluster_portal_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_pathfinding_edges_block_block,
 		"structure_bsp_pathfinding_edges_block",
 		"structure_bsp_pathfinding_edges_block",
-		10240,
+		2621440,
 		structure_bsp_pathfinding_edges_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_conveyor_surface_block_block,
 		"structure_bsp_conveyor_surface_block",
 		"structure_bsp_conveyor_surface_block",
-		131072,
+		512,
 		structure_bsp_conveyor_surface_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_collision_materials_block_block,
 		"structure_collision_materials_block",
 		"structure_collision_materials_block",
-		131072,
+		512,
 		structure_collision_materials_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_marker_block_block,
 		"structure_bsp_marker_block",
 		"structure_bsp_marker_block",
-		262144,
+		1024,
 		structure_bsp_marker_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_marker_light_palette_block,
 		"structure_bsp_marker_light_palette",
 		"structure_bsp_marker_light_palette",
-		262144,
+		1024,
 		structure_bsp_marker_light_palette);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_marker_light_index_block,
 		"structure_bsp_marker_light_index",
 		"structure_bsp_marker_light_index",
-		262144,
+		1024,
 		structure_bsp_marker_light_index);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_environment_object_palette_block_block,
 		"structure_bsp_environment_object_palette_block",
 		"structure_bsp_environment_object_palette_block",
-		262144,
+		1024,
 		structure_bsp_environment_object_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_environment_object_block_block,
 		"structure_bsp_environment_object_block",
 		"structure_bsp_environment_object_block",
-		4194304,
+		16384,
 		structure_bsp_environment_object_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_detail_object_data_block_block,
 		"structure_bsp_detail_object_data_block",
 		"structure_bsp_detail_object_data_block",
-		16777216,
+		1,
 		structure_bsp_detail_object_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_runtime_decal_block_block,
 		"structure_bsp_runtime_decal_block",
 		"structure_bsp_runtime_decal_block",
-		1572864,
+		6144,
 		structure_bsp_runtime_decal_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bsp_preplaced_decal_set_reference_block_block,
 		"bsp_preplaced_decal_set_reference_block",
 		"bsp_preplaced_decal_set_reference_block",
-		1572864,
+		6144,
 		bsp_preplaced_decal_set_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bsp_preplaced_decal_reference_block_block,
 		"bsp_preplaced_decal_reference_block",
 		"bsp_preplaced_decal_reference_block",
-		1572864,
+		6144,
 		bsp_preplaced_decal_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_leaf_block_block,
 		"structure_bsp_leaf_block",
 		"structure_bsp_leaf_block",
-		8,
+		134217728,
 		structure_bsp_leaf_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		super_node_recursable_masks_block_block,
 		"super_node_recursable_masks_block",
 		"super_node_recursable_masks_block",
-		524288,
+		2048,
 		super_node_recursable_masks_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_super_node_traversal_geometry_indices_block_block,
 		"structure_super_node_traversal_geometry_indices_block",
 		"structure_super_node_traversal_geometry_indices_block",
-		262144,
+		1024,
 		structure_super_node_traversal_geometry_indices_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_super_node_aabbs_block_block,
 		"structure_super_node_aabbs_block",
 		"structure_super_node_aabbs_block",
-		8388608,
+		32768,
 		structure_super_node_aabbs_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		super_node_mappings_block_block,
 		"super_node_mappings_block",
 		"super_node_mappings_block",
-		524288,
+		2048,
 		super_node_mappings_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_super_node_traversal_geometry_block_block,
 		"structure_super_node_traversal_geometry_block",
 		"structure_super_node_traversal_geometry_block",
-		4286513152,
+		32767,
 		structure_super_node_traversal_geometry_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_surface_block_block,
 		"structure_surface_block",
 		"structure_surface_block",
-		4177462016,
+		262136,
 		structure_surface_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_surface_to_triangle_mapping_block_block,
 		"structure_surface_to_triangle_mapping_block",
 		"structure_surface_to_triangle_mapping_block",
-		3237945088,
+		2097088,
 		structure_surface_to_triangle_mapping_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_debug_info_render_line_block_block,
 		"structure_bsp_debug_info_render_line_block",
 		"structure_bsp_debug_info_render_line_block",
-		4286513152,
+		32767,
 		structure_bsp_debug_info_render_line_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_debug_info_indices_block_block,
 		"structure_bsp_debug_info_indices_block",
 		"structure_bsp_debug_info_indices_block",
-		4286513152,
+		32767,
 		structure_bsp_debug_info_indices_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_cluster_debug_info_block_block,
 		"structure_bsp_cluster_debug_info_block",
 		"structure_bsp_cluster_debug_info_block",
-		4278190080,
+		255,
 		structure_bsp_cluster_debug_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_fog_plane_debug_info_block_block,
 		"structure_bsp_fog_plane_debug_info_block",
 		"structure_bsp_fog_plane_debug_info_block",
-		2130706432,
+		127,
 		structure_bsp_fog_plane_debug_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_fog_zone_debug_info_block_block,
 		"structure_bsp_fog_zone_debug_info_block",
 		"structure_bsp_fog_zone_debug_info_block",
-		2130706432,
+		127,
 		structure_bsp_fog_zone_debug_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_debug_info_block_block,
 		"structure_bsp_debug_info_block",
 		"structure_bsp_debug_info_block",
-		16777216,
+		1,
 		structure_bsp_debug_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_sky_owner_cluster_block_block,
 		"structure_bsp_sky_owner_cluster_block",
 		"structure_bsp_sky_owner_cluster_block",
-		536870912,
+		32,
 		structure_bsp_sky_owner_cluster_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_fake_lightprobes_block_block,
 		"structure_bsp_fake_lightprobes_block",
 		"structure_bsp_fake_lightprobes_block",
-		524288,
+		2048,
 		structure_bsp_fake_lightprobes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_edge_to_seam_edge_mapping_block_block,
 		"structure_edge_to_seam_edge_mapping_block",
 		"structure_edge_to_seam_edge_mapping_block",
-		10240,
+		2621440,
 		structure_edge_to_seam_edge_mapping_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		widget_reference_block_block,
 		"widget_reference_block",
 		"widget_reference_block",
-		262144,
+		1024,
 		widget_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		runtime_decorator_set_block_block,
 		"runtime_decorator_set_block",
 		"runtime_decorator_set_block",
-		805306368,
+		48,
 		runtime_decorator_set_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_raw_resources_block,
 		"structure_bsp_raw_resources",
 		"structure_bsp_raw_resources",
-		16777216,
+		1,
 		structure_bsp_raw_resources);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		index_list_block_block,
 		"index_list_block",
 		"index_list_block",
-		1048576,
+		4096,
 		index_list_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_instance_cluster_definition_block,
 		"structure_instance_cluster_definition",
 		"structure_instance_cluster_definition",
-		1048576,
+		4096,
 		structure_instance_cluster_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_instance_group_definition_block,
 		"structure_instance_group_definition",
 		"structure_instance_group_definition",
-		1048576,
+		4096,
 		structure_instance_group_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_cookie_cutter_definition_block,
 		"structure_cookie_cutter_definition",
 		"structure_cookie_cutter_definition",
-		262144,
+		1024,
 		structure_cookie_cutter_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_structure_bsp_block_group_block,
 		"scenario_structure_bsp_block",
 		"scenario_structure_bsp_block",
-		16777216,
+		1,
 		scenario_structure_bsp_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_cluster_mapping_block_block,
 		"structure_seam_cluster_mapping_block",
 		"structure_seam_cluster_mapping_block",
-		4278190080,
+		255,
 		structure_seam_cluster_mapping_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_edge_mapping_block_block,
 		"structure_seam_edge_mapping_block",
 		"structure_seam_edge_mapping_block",
-		4286513152,
+		32767,
 		structure_seam_edge_mapping_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_mapping_block_block,
 		"structure_seam_mapping_block",
 		"structure_seam_mapping_block",
-		2147483648,
+		128,
 		structure_seam_mapping_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_original_vertex_plane_normals_block_block,
 		"structure_seam_original_vertex_plane_normals_block",
 		"structure_seam_original_vertex_plane_normals_block",
-		262144,
+		1024,
 		structure_seam_original_vertex_plane_normals_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_original_vertex_block_block,
 		"structure_seam_original_vertex_block",
 		"structure_seam_original_vertex_block",
-		4286513152,
+		32767,
 		structure_seam_original_vertex_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_final_points_block_block,
 		"structure_seam_final_points_block",
 		"structure_seam_final_points_block",
-		4286513152,
+		32767,
 		structure_seam_final_points_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_final_planes_block_block,
 		"structure_seam_final_planes_block",
 		"structure_seam_final_planes_block",
-		4286513152,
+		32767,
 		structure_seam_final_planes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_final_triangles_block_block,
 		"structure_seam_final_triangles_block",
 		"structure_seam_final_triangles_block",
-		4286513152,
+		32767,
 		structure_seam_final_triangles_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_final_edges_block_block,
 		"structure_seam_final_edges_block",
 		"structure_seam_final_edges_block",
-		4286513152,
+		32767,
 		structure_seam_final_edges_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seam_block_block,
 		"structure_seam_block",
 		"structure_seam_block",
-		2147483648,
+		128,
 		structure_seam_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_seams_block_group_block,
 		"structure_seams_block",
 		"structure_seams_block",
-		16777216,
+		1,
 		structure_seams_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		water_physics_material_override_block,
 		"water_physics_material_override",
 		"water_physics_material_override",
-		131072,
+		512,
 		water_physics_material_override);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		water_physics_hull_surface_definition_block_block,
 		"water_physics_hull_surface_definition_block",
 		"water_physics_hull_surface_definition_block",
-		1073741824,
+		64,
 		water_physics_hull_surface_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		water_physics_drag_properties_block_group_block,
 		"water_physics_drag_properties_block",
 		"water_physics_drag_properties_block",
-		16777216,
+		1,
 		water_physics_drag_properties_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_acoustics_palette_block_definition_block,
 		"scenario_acoustics_palette_block_definition",
 		"scenario_acoustics_palette_block_definition",
-		131072,
+		512,
 		scenario_acoustics_palette_block_definition_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		acoustic_sector_point_block_block,
 		"acoustic_sector_point_block",
 		"acoustic_sector_point_block",
-		536870912,
+		32,
 		acoustic_sector_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_acoustic_sector_block_block,
 		"scenario_acoustic_sector_block",
 		"scenario_acoustic_sector_block",
-		738263040,
+		300,
 		scenario_acoustic_sector_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_acoustic_transition_block_block,
 		"scenario_acoustic_transition_block",
 		"scenario_acoustic_transition_block",
-		738263040,
+		300,
 		scenario_acoustic_transition_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		wind_block_group_block,
 		"wind_block",
 		"wind_block",
-		16777216,
+		1,
 		wind_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cubemap_reference_points_block_block,
 		"cubemap_reference_points_block",
 		"cubemap_reference_points_block",
-		251658240,
+		15,
 		cubemap_reference_points_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cubemap_block_block,
 		"scenario_cubemap_block",
 		"scenario_cubemap_block",
-		262144,
+		1024,
 		scenario_cubemap_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_cluster_cubemap_block,
 		"structure_cluster_cubemap",
 		"structure_cluster_cubemap",
-		536870912,
+		32,
 		structure_cluster_cubemap);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_locations_block_block,
 		"effect_locations_block",
 		"effect_locations_block",
-		134217728,
+		8,
 		effect_locations_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_accelerations_block_block,
 		"effect_accelerations_block",
 		"effect_accelerations_block",
-		536870912,
+		32,
 		effect_accelerations_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_part_block_block,
 		"effect_part_block",
 		"effect_part_block",
-		536870912,
+		32,
 		effect_part_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_event_block_block,
 		"effect_event_block",
 		"effect_event_block",
-		536870912,
+		32,
 		effect_event_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_conical_distribution_block_block,
 		"effect_conical_distribution_block",
 		"effect_conical_distribution_block",
-		16777216,
+		1,
 		effect_conical_distribution_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_looping_sound_block_block,
 		"effect_looping_sound_block",
 		"effect_looping_sound_block",
-		67108864,
+		4,
 		effect_looping_sound_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_block_group_block,
 		"effect_block",
 		"effect_block",
-		16777216,
+		1,
 		effect_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multilingual_unicode_string_reference_block_block,
 		"multilingual_unicode_string_reference_block",
 		"multilingual_unicode_string_reference_block",
-		6291456,
+		24576,
 		multilingual_unicode_string_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		string_substitution_pair_block_block,
 		"string_substitution_pair_block",
 		"string_substitution_pair_block",
-		524288,
+		2048,
 		string_substitution_pair_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multilingual_unicode_string_list_block_group_block,
 		"multilingual_unicode_string_list_block",
 		"multilingual_unicode_string_list_block",
-		16777216,
+		1,
 		multilingual_unicode_string_list_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		havok_cleanup_resources_block_block,
 		"havok_cleanup_resources_block",
 		"havok_cleanup_resources_block",
-		16777216,
+		1,
 		havok_cleanup_resources_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cheat_weapons_block_block,
 		"cheat_weapons_block",
 		"cheat_weapons_block",
-		335544320,
+		20,
 		cheat_weapons_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cheat_powerups_block_block,
 		"cheat_powerups_block",
 		"cheat_powerups_block",
-		335544320,
+		20,
 		cheat_powerups_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		grenades_block_block,
 		"grenades_block",
 		"grenades_block",
-		67108864,
+		4,
 		grenades_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		soft_ceiling_globals_block_block,
 		"soft_ceiling_globals_block",
 		"soft_ceiling_globals_block",
-		16777216,
+		1,
 		soft_ceiling_globals_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_block_block,
 		"sound_block",
 		"sound_block",
-		33554432,
+		2,
 		sound_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_color_block_block,
 		"multiplayer_color_block",
 		"multiplayer_color_block",
-		536870912,
+		32,
 		multiplayer_color_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		visor_color_block_block,
 		"visor_color_block",
 		"visor_color_block",
-		536870912,
+		32,
 		visor_color_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		named_rgb_color_block_block,
 		"named_rgb_color_block",
 		"named_rgb_color_block",
-		134217728,
+		8,
 		named_rgb_color_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		globals_block_group_block,
 		"globals_block",
 		"globals_block",
-		16777216,
+		1,
 		globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		customized_model_player_bits_block_block,
 		"customized_model_player_bits_block",
 		"customized_model_player_bits_block",
-		134217728,
+		8,
 		customized_model_player_bits_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		customized_model_selection_block_block,
 		"customized_model_selection_block",
 		"customized_model_selection_block",
-		1610612736,
+		96,
 		customized_model_selection_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		player_model_customization_globals_block_group_block,
 		"player_model_customization_globals_block",
 		"player_model_customization_globals_block",
-		16777216,
+		1,
 		player_model_customization_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		spawn_influence_weight_falloff_function_block_block,
 		"spawn_influence_weight_falloff_function_block",
 		"spawn_influence_weight_falloff_function_block",
-		16777216,
+		1,
 		spawn_influence_weight_falloff_function_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_color_block_block$2,
 		"multiplayer_color_block",
 		"multiplayer_color_block",
-		536870912,
+		32,
 		multiplayer_color_block$2);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_universal_block_block,
 		"multiplayer_universal_block",
 		"multiplayer_universal_block",
-		16777216,
+		1,
 		multiplayer_universal_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_spawn_influence_block_block,
 		"weapon_spawn_influence_block",
 		"weapon_spawn_influence_block",
-		536870912,
+		32,
 		weapon_spawn_influence_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vehicle_spawn_influence_block_block,
 		"vehicle_spawn_influence_block",
 		"vehicle_spawn_influence_block",
-		301989888,
+		18,
 		vehicle_spawn_influence_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		projectile_spawn_influence_block_block,
 		"projectile_spawn_influence_block",
 		"projectile_spawn_influence_block",
-		536870912,
+		32,
 		projectile_spawn_influence_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_spawn_influence_block_block,
 		"equipment_spawn_influence_block",
 		"equipment_spawn_influence_block",
-		301989888,
+		18,
 		equipment_spawn_influence_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		requisition_constants_block_block,
 		"requisition_constants_block",
 		"requisition_constants_block",
-		16777216,
+		1,
 		requisition_constants_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_constants_block_block,
 		"multiplayer_constants_block",
 		"multiplayer_constants_block",
-		16777216,
+		1,
 		multiplayer_constants_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_status_response_block_block,
 		"game_engine_status_response_block",
 		"game_engine_status_response_block",
-		536870912,
+		32,
 		game_engine_status_response_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sounds_block_block,
 		"sounds_block",
 		"sounds_block",
-		1006632960,
+		60,
 		sounds_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		looping_sounds_block_block,
 		"looping_sounds_block",
 		"looping_sounds_block",
-		1006632960,
+		60,
 		looping_sounds_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_runtime_block_block,
 		"multiplayer_runtime_block",
 		"multiplayer_runtime_block",
-		16777216,
+		1,
 		multiplayer_runtime_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_globals_block_group_block,
 		"multiplayer_globals_block",
 		"multiplayer_globals_block",
-		16777216,
+		1,
 		multiplayer_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		single_achievement_restricted_level_block_block,
 		"single_achievement_restricted_level_block",
 		"single_achievement_restricted_level_block",
-		83886080,
+		5,
 		single_achievement_restricted_level_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		single_achievement_definition_block_block,
 		"single_achievement_definition_block",
 		"single_achievement_definition_block",
-		65536,
+		256,
 		single_achievement_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		achievements_block_group_block,
 		"achievements_block",
 		"achievements_block",
-		16777216,
+		1,
 		achievements_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		lens_flare_reflection_block_block,
 		"reflection",
 		"lens_flare_reflection_block",
-		536870912,
+		32,
 		lens_flare_reflection_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		lens_flare_scalar_animation_block_block,
 		"lens_flare_scalar_animation_block",
 		"lens_flare_scalar_animation_block",
-		16777216,
+		1,
 		lens_flare_scalar_animation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		lens_flare_color_animation_block_block,
 		"lens_flare_color_animation_block",
 		"lens_flare_color_animation_block",
-		16777216,
+		1,
 		lens_flare_color_animation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		lens_flare_block_group_block,
 		"lens_flare_block",
 		"lens_flare_block",
-		16777216,
+		1,
 		lens_flare_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		region_name_block_block,
 		"region_name_block",
 		"region_name_block",
-		262144,
+		1024,
 		region_name_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_variant_state_block_block,
 		"model_variant_state_block",
 		"model_variant_state_block",
-		167772160,
+		10,
 		model_variant_state_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_variant_permutation_block_block,
 		"permutation",
 		"model_variant_permutation_block",
-		536870912,
+		32,
 		model_variant_permutation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_variant_region_block_block,
 		"region",
 		"model_variant_region_block",
-		268435456,
+		16,
 		model_variant_region_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_variant_object_block_block,
 		"object",
 		"model_variant_object_block",
-		268435456,
+		16,
 		model_variant_object_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_instance_group_member_block_block,
 		"instance group member",
 		"model_instance_group_member_block",
-		536870912,
+		32,
 		model_instance_group_member_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_model_instance_group_block_block,
 		"instance group",
 		"global_model_instance_group_block",
-		65536,
+		256,
 		global_model_instance_group_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_variant_block_block,
 		"variant",
 		"model_variant_block",
-		1073741824,
+		64,
 		model_variant_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_material_block_old_block,
 		"material",
 		"model_material_block_old",
-		536870912,
+		32,
 		model_material_block_old);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_material_block_new_block,
 		"material",
 		"model_material_block_new",
-		536870912,
+		32,
 		model_material_block_new);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_target_block_old_block,
 		"model_target_block_old",
 		"model_target_block_old",
-		536870912,
+		32,
 		model_target_block_old);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_target_block_new_block,
 		"model_target_block_new",
 		"model_target_block_new",
-		536870912,
+		32,
 		model_target_block_new);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_permutation_block_block,
 		"model_permutation_block",
 		"model_permutation_block",
-		536870912,
+		32,
 		model_permutation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_region_block_block,
 		"model_region_block",
 		"model_region_block",
-		268435456,
+		16,
 		model_region_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_node_block_block,
 		"model_node_block",
 		"model_node_block",
-		4278190080,
+		255,
 		model_node_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_self_shadow_region_cast_override_block_block,
 		"model_self_shadow_region_cast_override_block",
 		"model_self_shadow_region_cast_override_block",
-		268435456,
+		16,
 		model_self_shadow_region_cast_override_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_self_shadow_region_receive_override_block_block,
 		"model_self_shadow_region_receive_override_block",
 		"model_self_shadow_region_receive_override_block",
-		268435456,
+		16,
 		model_self_shadow_region_receive_override_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_occlusion_sphere_block_block,
 		"model_occlusion_sphere_block",
 		"model_occlusion_sphere_block",
-		268435456,
+		16,
 		model_occlusion_sphere_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_block_group_block,
 		"model_block",
 		"model_block",
-		16777216,
+		1,
 		model_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sky_lights_block_block,
 		"sky_lights_block",
 		"sky_lights_block",
-		262144,
+		1024,
 		sky_lights_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		instance_node_map_mapping_block_block,
 		"instance_node_map_mapping_block",
 		"instance_node_map_mapping_block",
-		4278190080,
+		255,
 		instance_node_map_mapping_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		volume_samples_block_block,
 		"volume_samples_block",
 		"volume_samples_block",
-		2147483648,
+		128,
 		volume_samples_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		default_node_orientations_block_block,
 		"default_node_orientations_block",
 		"default_node_orientations_block",
-		4278190080,
+		255,
 		default_node_orientations_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_model_permutation_block_block,
 		"permutation",
 		"render_model_permutation_block",
-		536870912,
+		32,
 		render_model_permutation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_model_region_block_block,
 		"region",
 		"render_model_region_block",
-		268435456,
+		16,
 		render_model_region_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_model_node_block_block,
 		"node",
 		"render_model_node_block",
-		4278190080,
+		255,
 		render_model_node_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_model_marker_block_block,
 		"marker",
 		"render_model_marker_block",
-		65536,
+		256,
 		render_model_marker_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_model_marker_group_block_block,
 		"marker group",
 		"render_model_marker_group_block",
-		1048576,
+		4096,
 		render_model_marker_group_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_model_block_group_block,
 		"render_model_block",
 		"render_model_block",
-		16777216,
+		1,
 		render_model_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		imposter_mode_node_block_block,
 		"imposter_mode_node_block",
 		"imposter_mode_node_block",
-		262144,
+		1024,
 		imposter_mode_node_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		imposter_model_block_group_block,
 		"imposter_model_block",
 		"imposter_model_block",
-		16777216,
+		1,
 		imposter_model_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_object_type_block_block,
 		"multiplayer_object_type_block",
 		"multiplayer_object_type_block",
-		524288,
+		2048,
 		multiplayer_object_type_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_object_collection_block_block,
 		"multiplayer_object_collection_block",
 		"multiplayer_object_collection_block",
-		524288,
+		2048,
 		multiplayer_object_collection_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_weapon_remap_table_entry_block_block,
 		"multiplayer_weapon_remap_table_entry_block",
 		"multiplayer_weapon_remap_table_entry_block",
-		536870912,
+		32,
 		multiplayer_weapon_remap_table_entry_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_vehicle_remap_table_entry_block_block,
 		"multiplayer_vehicle_remap_table_entry_block",
 		"multiplayer_vehicle_remap_table_entry_block",
-		536870912,
+		32,
 		multiplayer_vehicle_remap_table_entry_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_weapon_remap_table_block_block,
 		"multiplayer_weapon_remap_table_block",
 		"multiplayer_weapon_remap_table_block",
-		536870912,
+		32,
 		multiplayer_weapon_remap_table_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_vehicle_remap_table_block_block,
 		"multiplayer_vehicle_remap_table_block",
 		"multiplayer_vehicle_remap_table_block",
-		536870912,
+		32,
 		multiplayer_vehicle_remap_table_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_object_type_list_block_group_block,
 		"multiplayer_object_type_list_block",
 		"multiplayer_object_type_list_block",
-		16777216,
+		1,
 		multiplayer_object_type_list_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_metagame_bucket_block_block,
 		"campaign_metagame_bucket_block",
 		"campaign_metagame_bucket_block",
-		16777216,
+		1,
 		campaign_metagame_bucket_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_metagame_scenario_bonuses_block_block,
 		"campaign_metagame_scenario_bonuses_block",
 		"campaign_metagame_scenario_bonuses_block",
-		134217728,
+		8,
 		campaign_metagame_scenario_bonuses_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_metagame_scenario_block_block,
 		"campaign_metagame_scenario_block",
 		"campaign_metagame_scenario_block",
-		16777216,
+		1,
 		campaign_metagame_scenario_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_metagame_style_type_block_block,
 		"campaign_metagame_style_type_block",
 		"campaign_metagame_style_type_block",
-		1677721600,
+		100,
 		campaign_metagame_style_type_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_metagame_difficulty_scale_block_block,
 		"campaign_metagame_difficulty_scale_block",
 		"campaign_metagame_difficulty_scale_block",
-		67108864,
+		4,
 		campaign_metagame_difficulty_scale_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_metagame_skull_block_block,
 		"campaign_metagame_skull_block",
 		"campaign_metagame_skull_block",
-		285212672,
+		17,
 		campaign_metagame_skull_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_metagame_globals_block_block,
 		"campaign_metagame_globals_block",
 		"campaign_metagame_globals_block",
-		16777216,
+		1,
 		campaign_metagame_globals_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		loadout_definition_block_block,
 		"loadout_definition_block",
 		"loadout_definition_block",
-		2147483648,
+		128,
 		loadout_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		loadout_index_block_block,
 		"loadout_index_block",
 		"loadout_index_block",
-		83886080,
+		5,
 		loadout_index_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		loadout_name_block_block,
 		"loadout_name_block",
 		"loadout_name_block",
-		2147483648,
+		128,
 		loadout_name_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		loadout_palette_definition_block_block,
 		"loadout_palette_definition_block",
 		"loadout_palette_definition_block",
-		1073741824,
+		64,
 		loadout_palette_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		loadout_globals_definition_block_group_block,
 		"loadout_globals_definition_block",
 		"loadout_globals_definition_block",
-		16777216,
+		1,
 		loadout_globals_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_loadout_palette_entry_block_block,
 		"game_engine_loadout_palette_entry_block",
 		"game_engine_loadout_palette_entry_block",
-		100663296,
+		6,
 		game_engine_loadout_palette_entry_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_loadout_options_block_block,
 		"game_engine_loadout_options_block",
 		"game_engine_loadout_options_block",
-		16777216,
+		1,
 		game_engine_loadout_options_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_platform_sound_playback_block_block,
 		"sound_platform_sound_playback_block",
 		"sound_platform_sound_playback_block",
-		16777216,
+		1,
 		sound_platform_sound_playback_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_dialogue_constants_block_group_block,
 		"sound_dialogue_constants_block",
 		"sound_dialogue_constants_block",
-		16777216,
+		1,
 		sound_dialogue_constants_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_global_propagation_block_group_block,
 		"sound_global_propagation_block",
 		"sound_global_propagation_block",
-		16777216,
+		1,
 		sound_global_propagation_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_unspatialized_sounds_block_block,
 		"campaign_unspatialized_sounds_block",
 		"campaign_unspatialized_sounds_block",
-		1073741824,
+		64,
 		campaign_unspatialized_sounds_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_globals_block_block,
 		"sound_globals_block",
 		"sound_globals_block",
-		16777216,
+		1,
 		sound_globals_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_mix_block_group_block,
 		"sound_mix_block",
 		"sound_mix_block",
-		16777216,
+		1,
 		sound_mix_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_permutation_chunk_block_block,
 		"sound_permutation_chunk_block",
 		"sound_permutation_chunk_block",
-		4244570880,
+		262140,
 		sound_permutation_chunk_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_permutation_marker_block_block,
 		"sound_permutation_marker_block",
 		"sound_permutation_marker_block",
-		4294901760,
+		65535,
 		sound_permutation_marker_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_xma2_seek_table_block_block,
 		"sound_xma2_seek_table_block",
 		"sound_xma2_seek_table_block",
-		4194304,
+		16384,
 		sound_xma2_seek_table_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		facial_animation_curve_block_block,
 		"facial_animation_curve_block",
 		"facial_animation_curve_block",
-		570425344,
+		34,
 		facial_animation_curve_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		facial_animation_permutation_block_block,
 		"facial_animation_permutation_block",
 		"facial_animation_permutation_block",
-		2147549184,
+		384,
 		facial_animation_permutation_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		facial_animation_language_block_block,
 		"facial_animation_language_block",
 		"facial_animation_language_block",
-		201326592,
+		12,
 		facial_animation_language_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_permutation_raw_info_block_block,
 		"sound_permutation_raw_info_block",
 		"sound_permutation_raw_info_block",
-		402653184,
+		24,
 		sound_permutation_raw_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_definition_language_permutation_info_block_block,
 		"sound_definition_language_permutation_info_block",
 		"sound_definition_language_permutation_info_block",
-		196608,
+		768,
 		sound_definition_language_permutation_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_permutation_languages_block_block,
 		"sound_permutation_languages_block",
 		"sound_permutation_languages_block",
-		201326592,
+		12,
 		sound_permutation_languages_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_permutations_block_block,
 		"sound_permutations_block",
 		"sound_permutations_block",
-		536870912,
+		32,
 		sound_permutations_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_pitch_range_block_block,
 		"sound_pitch_range_block",
 		"sound_pitch_range_block",
-		201326592,
+		12,
 		sound_pitch_range_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_promotion_rule_block_block,
 		"sound_promotion_rule_block",
 		"sound_promotion_rule_block",
-		201326592,
+		12,
 		sound_promotion_rule_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_promotion_runtime_timer_block_block,
 		"sound_promotion_runtime_timer_block",
 		"sound_promotion_runtime_timer_block",
-		201326592,
+		12,
 		sound_promotion_runtime_timer_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_extra_info_block_block,
 		"sound_extra_info_block",
 		"sound_extra_info_block",
-		16777216,
+		1,
 		sound_extra_info_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_block_group_block,
 		"sound_block",
 		"sound_block",
-		16777216,
+		1,
 		sound_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		looping_sound_detail_block_block,
 		"looping_sound_detail_block",
 		"looping_sound_detail_block",
-		201326592,
+		12,
 		looping_sound_detail_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		looping_sound_track_block_block,
 		"looping_sound_track_block",
 		"looping_sound_track_block",
-		67108864,
+		4,
 		looping_sound_track_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_looping_block_group_block,
 		"sound_looping_block",
 		"sound_looping_block",
-		16777216,
+		1,
 		sound_looping_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		havok_collision_filter_group_block_block,
 		"havok_collision_filter_group_block",
 		"havok_collision_filter_group_block",
-		452984832,
+		27,
 		havok_collision_filter_group_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		havok_collision_filter_block_group_block,
 		"havok_collision_filter_block",
 		"havok_collision_filter_block",
-		16777216,
+		1,
 		havok_collision_filter_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		player_trait_shield_vitality_block_block,
 		"player_trait_shield_vitality_block",
 		"player_trait_shield_vitality_block",
-		16777216,
+		1,
 		player_trait_shield_vitality_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		player_trait_weapons_block_block,
 		"player_trait_weapons_block",
 		"player_trait_weapons_block",
-		16777216,
+		1,
 		player_trait_weapons_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		player_trait_movement_block_block,
 		"player_trait_movement_block",
 		"player_trait_movement_block",
-		16777216,
+		1,
 		player_trait_movement_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		player_trait_sensors_block_block,
 		"player_trait_sensors_block",
 		"player_trait_sensors_block",
-		16777216,
+		1,
 		player_trait_sensors_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		player_trait_appearance_block_block,
 		"player_trait_appearance_block",
 		"player_trait_appearance_block",
-		16777216,
+		1,
 		player_trait_appearance_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_player_traits_block_block,
 		"game_engine_player_traits_block",
 		"game_engine_player_traits_block",
-		16777216,
+		1,
 		game_engine_player_traits_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_player_traits_list_block_block,
 		"game_engine_player_traits_list_block",
 		"game_engine_player_traits_list_block",
-		1073741824,
+		64,
 		game_engine_player_traits_list_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pathfinding_object_index_list_block_block,
 		"pathfinding_object_index_list_block",
 		"pathfinding_object_index_list_block",
-		268435456,
+		16,
 		pathfinding_object_index_list_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_object_node_orientations_bit_vector_block_block,
 		"scenario_object_node_orientations_bit_vector_block",
 		"scenario_object_node_orientations_bit_vector_block",
-		1073741824,
+		64,
 		scenario_object_node_orientations_bit_vector_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_object_node_orientations_orientations_block_block,
 		"scenario_object_node_orientations_orientations_block",
 		"scenario_object_node_orientations_orientations_block",
-		4177920000,
+		1785,
 		scenario_object_node_orientations_orientations_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_object_node_orientations_block_block,
 		"scenario_object_node_orientations_block",
 		"scenario_object_node_orientations_block",
-		16777216,
+		1,
 		scenario_object_node_orientations_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_scenery_palette_block_block,
 		"scenario_scenery_palette_block",
 		"scenario_scenery_palette_block",
-		65536,
+		256,
 		scenario_scenery_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_scenery_block_block,
 		"scenario_scenery_block",
 		"scenario_scenery_block",
-		3490119680,
+		2000,
 		scenario_scenery_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_crate_palette_block_block,
 		"scenario_crate_palette_block",
 		"scenario_crate_palette_block",
-		65536,
+		256,
 		scenario_crate_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_crate_block_block,
 		"scenario_crate_block",
 		"scenario_crate_block",
-		393216,
+		1536,
 		scenario_crate_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_creature_palette_block_block,
 		"scenario_creature_palette_block",
 		"scenario_creature_palette_block",
-		65536,
+		256,
 		scenario_creature_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_creature_block_block,
 		"scenario_creature_block",
 		"scenario_creature_block",
-		2147483648,
+		128,
 		scenario_creature_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_equipment_palette_block_block,
 		"scenario_equipment_palette_block",
 		"scenario_equipment_palette_block",
-		65536,
+		256,
 		scenario_equipment_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_equipment_block_block,
 		"scenario_equipment_block",
 		"scenario_equipment_block",
-		65536,
+		256,
 		scenario_equipment_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_weapon_palette_block_block,
 		"scenario_weapon_palette_block",
 		"scenario_weapon_palette_block",
-		65536,
+		256,
 		scenario_weapon_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_weapon_block_block,
 		"scenario_weapon_block",
 		"scenario_weapon_block",
-		2147483648,
+		128,
 		scenario_weapon_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_biped_palette_block_block,
 		"scenario_biped_palette_block",
 		"scenario_biped_palette_block",
-		65536,
+		256,
 		scenario_biped_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_biped_block_block,
 		"scenario_biped_block",
 		"scenario_biped_block",
-		65536,
+		256,
 		scenario_biped_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_giant_palette_block_block,
 		"scenario_giant_palette_block",
 		"scenario_giant_palette_block",
-		65536,
+		256,
 		scenario_giant_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_giant_block_block,
 		"scenario_giant_block",
 		"scenario_giant_block",
-		536870912,
+		32,
 		scenario_giant_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_requisition_palette_block_block,
 		"scenario_requisition_palette_block",
 		"scenario_requisition_palette_block",
-		65536,
+		256,
 		scenario_requisition_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_vehicle_palette_block_block,
 		"scenario_vehicle_palette_block",
 		"scenario_vehicle_palette_block",
-		65536,
+		256,
 		scenario_vehicle_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_vehicle_block_block,
 		"scenario_vehicle_block",
 		"scenario_vehicle_block",
-		65536,
+		256,
 		scenario_vehicle_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		device_group_block_block,
 		"device_group_block",
 		"device_group_block",
-		2147483648,
+		128,
 		device_group_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_machine_palette_block_block,
 		"scenario_machine_palette_block",
 		"scenario_machine_palette_block",
-		65536,
+		256,
 		scenario_machine_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_machine_block_block,
 		"scenario_machine_block",
 		"scenario_machine_block",
-		2415984640,
+		400,
 		scenario_machine_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_terminal_palette_block_block,
 		"scenario_terminal_palette_block",
 		"scenario_terminal_palette_block",
-		65536,
+		256,
 		scenario_terminal_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_terminal_block_block,
 		"scenario_terminal_block",
 		"scenario_terminal_block",
-		335544320,
+		20,
 		scenario_terminal_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_control_palette_block_block,
 		"scenario_control_palette_block",
 		"scenario_control_palette_block",
-		65536,
+		256,
 		scenario_control_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_control_block_block,
 		"scenario_control_block",
 		"scenario_control_block",
-		1677721600,
+		100,
 		scenario_control_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_sound_scenery_palette_block_block,
 		"scenario_sound_scenery_palette_block",
 		"scenario_sound_scenery_palette_block",
-		65536,
+		256,
 		scenario_sound_scenery_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_sound_scenery_block_block,
 		"scenario_sound_scenery_block",
 		"scenario_sound_scenery_block",
-		131072,
+		512,
 		scenario_sound_scenery_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_effect_scenery_palette_block_block,
 		"scenario_effect_scenery_palette_block",
 		"scenario_effect_scenery_palette_block",
-		65536,
+		256,
 		scenario_effect_scenery_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_effect_scenery_block_block,
 		"scenario_effect_scenery_block",
 		"scenario_effect_scenery_block",
-		131072,
+		512,
 		scenario_effect_scenery_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_light_palette_block_block,
 		"scenario_light_palette_block",
 		"scenario_light_palette_block",
-		65536,
+		256,
 		scenario_light_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_light_block_block,
 		"scenario_light_block",
 		"scenario_light_block",
-		4093706240,
+		500,
 		scenario_light_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		instantaneous_damage_repsonse_block_block,
 		"instantaneous_damage_repsonse_block",
 		"instantaneous_damage_repsonse_block",
-		268435456,
+		16,
 		instantaneous_damage_repsonse_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_damage_section_block_block,
 		"global_damage_section_block",
 		"global_damage_section_block",
-		268435456,
+		16,
 		global_damage_section_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_damage_nodes_block_block,
 		"global_damage_nodes_block",
 		"global_damage_nodes_block",
-		4278190080,
+		255,
 		global_damage_nodes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_seat_region_setting_block_block,
 		"damage_seat_region_setting_block",
 		"damage_seat_region_setting_block",
-		16777216,
+		1,
 		damage_seat_region_setting_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_seat_info_block_block,
 		"damage_seat_info_block",
 		"damage_seat_info_block",
-		268435456,
+		16,
 		damage_seat_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_constraint_info_block_block,
 		"damage_constraint_info_block",
 		"damage_constraint_info_block",
-		268435456,
+		16,
 		damage_constraint_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_damage_info_block_block,
 		"global_damage_info_block",
 		"global_damage_info_block",
-		16777216,
+		1,
 		global_damage_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_section_recharge_speed_curve_block_block,
 		"damage_section_recharge_speed_curve_block",
 		"damage_section_recharge_speed_curve_block",
-		16777216,
+		1,
 		damage_section_recharge_speed_curve_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_section_segmented_recharge_fraction_block,
 		"damage_section_segmented_recharge_fraction",
 		"damage_section_segmented_recharge_fraction",
-		268435456,
+		16,
 		damage_section_segmented_recharge_fraction);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_response_region_transition_block_block,
 		"damage_response_region_transition_block",
 		"damage_response_region_transition_block",
-		268435456,
+		16,
 		damage_response_region_transition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_transfer_block_block,
 		"damage_transfer_block",
 		"damage_transfer_block",
-		536870912,
+		32,
 		damage_transfer_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		seat_ejection_block_block,
 		"seat_ejection_block",
 		"seat_ejection_block",
-		134217728,
+		8,
 		seat_ejection_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		new_instantaneous_damage_response_block_block,
 		"new_instantaneous_damage_response_block",
 		"new_instantaneous_damage_response_block",
-		268435456,
+		16,
 		new_instantaneous_damage_response_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_section_rendering_paramters_block,
 		"damage_section_rendering_paramters",
 		"damage_section_rendering_paramters",
-		16777216,
+		1,
 		damage_section_rendering_paramters);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		new_global_damage_section_block_block,
 		"new_global_damage_section_block",
 		"new_global_damage_section_block",
-		268435456,
+		16,
 		new_global_damage_section_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		phantom_types_block_block,
 		"phantom_types_block",
 		"phantom_types_block",
-		268435456,
+		16,
 		phantom_types_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		materials_block_block,
 		"materials_block",
 		"materials_block",
-		1073741824,
+		64,
 		materials_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		phantoms_block_block,
 		"phantoms_block",
 		"phantoms_block",
-		262144,
+		1024,
 		phantoms_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_damped_spring_motor_block_block,
 		"physics_model_damped_spring_motor_block",
 		"physics_model_damped_spring_motor_block",
-		1073741824,
+		64,
 		physics_model_damped_spring_motor_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_position_motor_block_block,
 		"physics_model_position_motor_block",
 		"physics_model_position_motor_block",
-		1073741824,
+		64,
 		physics_model_position_motor_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_ragdoll_motors_block_block,
 		"physics_model_ragdoll_motors_block",
 		"physics_model_ragdoll_motors_block",
-		16777216,
+		1,
 		physics_model_ragdoll_motors_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_limited_hinge_motors_block_block,
 		"physics_model_limited_hinge_motors_block",
 		"physics_model_limited_hinge_motors_block",
-		16777216,
+		1,
 		physics_model_limited_hinge_motors_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_constraint_edge_constraint_block_block,
 		"physics_model_constraint_edge_constraint_block",
 		"physics_model_constraint_edge_constraint_block",
-		1073741824,
+		64,
 		physics_model_constraint_edge_constraint_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		nodes_block_block,
 		"nodes_block",
 		"nodes_block",
-		4278190080,
+		255,
 		nodes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_powered_chain_nodes_block_block,
 		"physics_model_powered_chain_nodes_block",
 		"physics_model_powered_chain_nodes_block",
-		4278190080,
+		255,
 		physics_model_powered_chain_nodes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_powered_chain_constraints_block_block,
 		"physics_model_powered_chain_constraints_block",
 		"physics_model_powered_chain_constraints_block",
-		1073741824,
+		64,
 		physics_model_powered_chain_constraints_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_powered_chains_block_block,
 		"physics_model_powered_chains_block",
 		"physics_model_powered_chains_block",
-		1073741824,
+		64,
 		physics_model_powered_chains_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_node_constraint_edge_block_block,
 		"physics_model_node_constraint_edge_block",
 		"physics_model_node_constraint_edge_block",
-		1048576,
+		4096,
 		physics_model_node_constraint_edge_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		rigid_bodies_block_block,
 		"rigid_bodies_block",
 		"rigid_bodies_block",
-		1073741824,
+		64,
 		rigid_bodies_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		rigid_body_indices_block_block,
 		"rigid_body_indices_block",
 		"rigid_body_indices_block",
-		1073741824,
+		64,
 		rigid_body_indices_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		permutations_block_block,
 		"permutations_block",
 		"permutations_block",
-		536870912,
+		32,
 		permutations_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		regions_block_block,
 		"regions_block",
 		"regions_block",
-		268435456,
+		16,
 		regions_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		spheres_block_block,
 		"spheres_block",
 		"spheres_block",
-		262144,
+		1024,
 		spheres_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multi_spheres_block_block,
 		"multi_spheres_block",
 		"multi_spheres_block",
-		262144,
+		1024,
 		multi_spheres_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pills_block_block,
 		"pills_block",
 		"pills_block",
-		262144,
+		1024,
 		pills_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		boxes_block_block,
 		"boxes_block",
 		"boxes_block",
-		262144,
+		1024,
 		boxes_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		triangles_block_block,
 		"triangles_block",
 		"triangles_block",
-		262144,
+		1024,
 		triangles_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		polyhedra_block_block,
 		"polyhedra_block",
 		"polyhedra_block",
-		262144,
+		1024,
 		polyhedra_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		polyhedron_four_vectors_block_block,
 		"polyhedron_four_vectors_block",
 		"polyhedron_four_vectors_block",
-		2097152,
+		8192,
 		polyhedron_four_vectors_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		polyhedron_plane_equations_block_block,
 		"polyhedron_plane_equations_block",
 		"polyhedron_plane_equations_block",
-		1048576,
+		4096,
 		polyhedron_plane_equations_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		mass_distributions_block_block,
 		"mass_distributions_block",
 		"mass_distributions_block",
-		262144,
+		1024,
 		mass_distributions_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		lists_block_block,
 		"lists_block",
 		"lists_block",
-		1073741824,
+		64,
 		lists_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		list_shapes_block_block,
 		"list_shapes_block",
 		"list_shapes_block",
-		524288,
+		2048,
 		list_shapes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		mopps_block_block,
 		"mopps_block",
 		"mopps_block",
-		1073741824,
+		64,
 		mopps_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		hinge_constraints_block_block,
 		"hinge_constraints_block",
 		"hinge_constraints_block",
-		1073741824,
+		64,
 		hinge_constraints_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		limited_hinge_constraints_block_block,
 		"limited_hinge_constraints_block",
 		"limited_hinge_constraints_block",
-		1073741824,
+		64,
 		limited_hinge_constraints_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ragdoll_constraints_block_block,
 		"ragdoll_constraints_block",
 		"ragdoll_constraints_block",
-		1073741824,
+		64,
 		ragdoll_constraints_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ball_and_socket_constraints_block_block,
 		"ball_and_socket_constraints_block",
 		"ball_and_socket_constraints_block",
-		1073741824,
+		64,
 		ball_and_socket_constraints_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		stiff_spring_constraints_block_block,
 		"stiff_spring_constraints_block",
 		"stiff_spring_constraints_block",
-		1073741824,
+		64,
 		stiff_spring_constraints_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		prismatic_constraints_block_block,
 		"prismatic_constraints_block",
 		"prismatic_constraints_block",
-		1073741824,
+		64,
 		prismatic_constraints_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		point_to_path_curve_point_block_block,
 		"point_to_path_curve_point_block",
 		"point_to_path_curve_point_block",
-		262144,
+		1024,
 		point_to_path_curve_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		point_to_path_curve_block_block,
 		"point_to_path_curve_block",
 		"point_to_path_curve_block",
-		1073741824,
+		64,
 		point_to_path_curve_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		physics_model_block_group_block,
 		"physics_model_block",
 		"physics_model_block",
-		16777216,
+		1,
 		physics_model_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_graph_node_block_block,
 		"animation_graph_node_block",
 		"animation_graph_node_block",
-		4278190080,
+		255,
 		animation_graph_node_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_node_mask_entry_block_block,
 		"animation_node_mask_entry_block",
 		"animation_node_mask_entry_block",
-		4278190080,
+		255,
 		animation_node_mask_entry_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_node_mask_block_block,
 		"animation_node_mask_block",
 		"animation_node_mask_block",
-		134217728,
+		8,
 		animation_node_mask_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_function_block_block,
 		"animation_function_block",
 		"animation_function_block",
-		268435456,
+		16,
 		animation_function_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_graph_sound_reference_block_block,
 		"animation_graph_sound_reference_block",
 		"animation_graph_sound_reference_block",
-		131072,
+		512,
 		animation_graph_sound_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_graph_effect_reference_block_block,
 		"animation_graph_effect_reference_block",
 		"animation_graph_effect_reference_block",
-		131072,
+		512,
 		animation_graph_effect_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_frame_event_block_block,
 		"animation_frame_event_block",
 		"animation_frame_event_block",
-		131072,
+		512,
 		animation_frame_event_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_sound_event_block_block,
 		"animation_sound_event_block",
 		"animation_sound_event_block",
-		131072,
+		512,
 		animation_sound_event_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_effect_event_block_block,
 		"animation_effect_event_block",
 		"animation_effect_event_block",
-		131072,
+		512,
 		animation_effect_event_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_dialogue_event_block_block,
 		"animation_dialogue_event_block",
 		"animation_dialogue_event_block",
-		131072,
+		512,
 		animation_dialogue_event_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_blend_screen_block_block,
 		"animation_blend_screen_block",
 		"animation_blend_screen_block",
-		262144,
+		1024,
 		animation_blend_screen_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		object_space_node_data_block_block,
 		"object_space_node_data_block",
 		"object_space_node_data_block",
-		4278190080,
+		255,
 		object_space_node_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		foot_tracking_member_block_block,
 		"foot_tracking_member_block",
 		"foot_tracking_member_block",
-		536870912,
+		32,
 		foot_tracking_member_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		foot_lock_cycle_block_block,
 		"foot_lock_cycle_block",
 		"foot_lock_cycle_block",
-		1073741824,
+		64,
 		foot_lock_cycle_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		foot_tracking_block_block,
 		"foot_tracking_block",
 		"foot_tracking_block",
-		536870912,
+		32,
 		foot_tracking_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		foot_tracking_defaults_block,
 		"foot_tracking_defaults",
 		"foot_tracking_defaults",
-		536870912,
+		32,
 		foot_tracking_defaults);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		object_space_offset_node_block_block,
 		"object_space_offset_node_block",
 		"object_space_offset_node_block",
-		268435456,
+		16,
 		object_space_offset_node_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		fik_anchor_node_block_block,
 		"fik_anchor_node_block",
 		"fik_anchor_node_block",
-		83886080,
+		5,
 		fik_anchor_node_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_ik_chain_events_block,
 		"animation_ik_chain_events",
 		"animation_ik_chain_events",
-		536870912,
+		32,
 		animation_ik_chain_events_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_facial_wrinkle_events_block,
 		"animation_facial_wrinkle_events",
 		"animation_facial_wrinkle_events",
-		536870912,
+		32,
 		animation_facial_wrinkle_events_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_extended_events_block,
 		"animation_extended_events",
 		"animation_extended_events",
-		67108864,
+		4,
 		animation_extended_events_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_object_functions_block,
 		"animation_object_functions",
 		"animation_object_functions",
-		67108864,
+		4,
 		animation_object_functions_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_ik_chain_proxies_block,
 		"animation_ik_chain_proxies",
 		"animation_ik_chain_proxies",
-		134217728,
+		8,
 		animation_ik_chain_proxies_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shared_model_animation_block_block,
 		"shared_model_animation_block",
 		"shared_model_animation_block",
-		16777216,
+		1,
 		shared_model_animation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_pool_block_block,
 		"animation_pool_block",
 		"animation_pool_block",
-		524288,
+		2048,
 		animation_pool_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		import_frame_event_block_block,
 		"import_frame_event_block",
 		"import_frame_event_block",
-		131072,
+		512,
 		import_frame_event_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_sound_event_block_extended_block,
 		"animation_sound_event_block_extended",
 		"animation_sound_event_block_extended",
-		131072,
+		512,
 		animation_sound_event_block_extended);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_effects_event_block_extended_block,
 		"animation_effects_event_block_extended",
 		"animation_effects_event_block_extended",
-		131072,
+		512,
 		animation_effects_event_block_extended);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_dialogue_event_block_extended_block,
 		"animation_dialogue_event_block_extended",
 		"animation_dialogue_event_block_extended",
-		131072,
+		512,
 		animation_dialogue_event_block_extended);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		import_animation_event_block_block,
 		"import_animation_event_block",
 		"import_animation_event_block",
-		524288,
+		2048,
 		import_animation_event_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_transition_destination_block_block,
 		"animation_transition_destination_block",
 		"animation_transition_destination_block",
-		536870912,
+		32,
 		animation_transition_destination_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_transition_source_block_block,
 		"animation_transition_source_block",
 		"animation_transition_source_block",
-		65536,
+		256,
 		animation_transition_source_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		new_animation_blend_screen_block_block,
 		"new_animation_blend_screen_block",
 		"new_animation_blend_screen_block",
-		262144,
+		1024,
 		new_animation_blend_screen_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		new_animation_function_overlay_block_block,
 		"new_animation_function_overlay_block",
 		"new_animation_function_overlay_block",
-		536870912,
+		32,
 		new_animation_function_overlay_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		blend_screen_item_definition_block_block,
 		"blend_screen_item_definition_block",
 		"blend_screen_item_definition_block",
-		167772160,
+		10,
 		blend_screen_item_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		function_overlay_item_definition_block_block,
 		"function_overlay_item_definition_block",
 		"function_overlay_item_definition_block",
-		536870912,
+		32,
 		function_overlay_item_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		overlay_group_definition_block_block,
 		"overlay_group_definition_block",
 		"overlay_group_definition_block",
-		537133056,
+		1056,
 		overlay_group_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_gait_block_block,
 		"animation_gait_block",
 		"animation_gait_block",
-		536870912,
+		32,
 		animation_gait_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_gait_item_block_block,
 		"animation_gait_item_block",
 		"animation_gait_item_block",
-		536870912,
+		32,
 		animation_gait_item_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_gait_group_block_block,
 		"animation_gait_group_block",
 		"animation_gait_group_block",
-		536870912,
+		32,
 		animation_gait_group_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_ik_block_v1_block,
 		"animation_ik_block_v1",
 		"animation_ik_block_v1",
-		1073741824,
+		64,
 		animation_ik_block_v1);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_ik_block_block,
 		"animation_ik_block",
 		"animation_ik_block",
-		1073741824,
+		64,
 		animation_ik_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_ik_set_item_block,
 		"animation_ik_set_item",
 		"animation_ik_set_item",
-		134217728,
+		8,
 		animation_ik_set_item);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_ik_set_block,
 		"animation_ik_set",
 		"animation_ik_set",
-		536870912,
+		32,
 		animation_ik_set);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_sync_action_same_type_participant_block,
 		"animation_sync_action_same_type_participant",
 		"animation_sync_action_same_type_participant",
-		100663296,
+		6,
 		animation_sync_action_same_type_participant);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_sync_action_other_type_participant_block,
 		"animation_sync_action_other_type_participant",
 		"animation_sync_action_other_type_participant",
-		100663296,
+		6,
 		animation_sync_action_other_type_participant);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_sync_action_block_block,
 		"animation_sync_action_block",
 		"animation_sync_action_block",
-		536870912,
+		32,
 		animation_sync_action_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_sync_action_group_block_block,
 		"animation_sync_action_group_block",
 		"animation_sync_action_group_block",
-		268435456,
+		16,
 		animation_sync_action_group_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_entry_block_block,
 		"animation_entry_block",
 		"animation_entry_block",
-		65536,
+		256,
 		animation_entry_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ranged_animation_entry_block_block,
 		"ranged_animation_entry_block",
 		"ranged_animation_entry_block",
-		65536,
+		256,
 		ranged_animation_entry_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_region_block_block,
 		"damage_region_block",
 		"damage_region_block",
-		184549376,
+		11,
 		damage_region_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_direction_block_block,
 		"damage_direction_block",
 		"damage_direction_block",
-		67108864,
+		4,
 		damage_direction_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_animation_block_block,
 		"damage_animation_block",
 		"damage_animation_block",
-		134217728,
+		8,
 		damage_animation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vehicle_suspension_block_block,
 		"vehicle_suspension_block",
 		"vehicle_suspension_block",
-		536870912,
+		32,
 		vehicle_suspension_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_velocity_boundaries_block_block,
 		"animation_velocity_boundaries_block",
 		"animation_velocity_boundaries_block",
-		16777216,
+		1,
 		animation_velocity_boundaries_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_set_block_block,
 		"animation_set_block",
 		"animation_set_block",
-		1073741824,
+		64,
 		animation_set_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_type_block_block,
 		"weapon_type_block",
 		"weapon_type_block",
-		1073741824,
+		64,
 		weapon_type_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		triangulation_point_block_block,
 		"triangulation_point_block",
 		"triangulation_point_block",
-		4278190080,
+		255,
 		triangulation_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		triangulation_triangle_block_block,
 		"triangulation_triangle_block",
 		"triangulation_triangle_block",
-		4278190080,
+		255,
 		triangulation_triangle_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		triangulation_entry_block_block,
 		"triangulation_entry_block",
 		"triangulation_entry_block",
-		16777216,
+		1,
 		triangulation_entry_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_ranged_action_block_block,
 		"animation_ranged_action_block",
 		"animation_ranged_action_block",
-		268435456,
+		16,
 		animation_ranged_action_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_class_block_block,
 		"weapon_class_block",
 		"weapon_class_block",
-		1073741824,
+		64,
 		weapon_class_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_mode_block_block,
 		"animation_mode_block",
 		"animation_mode_block",
-		131072,
+		512,
 		animation_mode_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		function_overlay_animation_block_block,
 		"function_overlay_animation_block",
 		"function_overlay_animation_block",
-		536870912,
+		32,
 		function_overlay_animation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_usage_block_block,
 		"animation_usage_block",
 		"animation_usage_block",
-		369098752,
+		22,
 		animation_usage_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		mode_or_stance_alias_block_block,
 		"mode_or_stance_alias_block",
 		"mode_or_stance_alias_block",
-		1073741824,
+		64,
 		mode_or_stance_alias_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_animation_variant_block_block,
 		"model_animation_variant_block",
 		"model_animation_variant_block",
-		1073741824,
+		64,
 		model_animation_variant_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_ik_chain_block_block,
 		"animation_ik_chain_block",
 		"animation_ik_chain_block",
-		67108864,
+		4,
 		animation_ik_chain_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		inherited_animation_node_map_block_block,
 		"inherited_animation_node_map_block",
 		"inherited_animation_node_map_block",
-		4278190080,
+		255,
 		inherited_animation_node_map_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		inherited_animation_node_map_flag_block_block,
 		"inherited_animation_node_map_flag_block",
 		"inherited_animation_node_map_flag_block",
-		4278190080,
+		255,
 		inherited_animation_node_map_flag_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		inherited_animation_block_block,
 		"inherited_animation_block",
 		"inherited_animation_block",
-		134217728,
+		8,
 		inherited_animation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_class_lookup_block_block,
 		"weapon_class_lookup_block",
 		"weapon_class_lookup_block",
-		1073741824,
+		64,
 		weapon_class_lookup_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		additional_node_data_block_block,
 		"additional_node_data_block",
 		"additional_node_data_block",
-		4278190080,
+		255,
 		additional_node_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_animation_tag_resource_member_block,
 		"model_animation_tag_resource_member",
 		"model_animation_tag_resource_member",
-		524288,
+		2048,
 		model_animation_tag_resource_member);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_animation_tag_resource_group_block,
 		"model_animation_tag_resource_group",
 		"model_animation_tag_resource_group",
-		1572864,
+		6144,
 		model_animation_tag_resource_group);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		frame_event_list_block_group_block,
 		"frame_event_list_block",
 		"frame_event_list_block",
-		16777216,
+		1,
 		frame_event_list_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		model_animation_graph_block_group_block,
 		"model_animation_graph_block",
 		"model_animation_graph_block",
-		16777216,
+		1,
 		model_animation_graph_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		grounded_friction_block_group_block,
 		"grounded_friction_block",
 		"grounded_friction_block",
-		16777216,
+		1,
 		grounded_friction_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		old_material_effect_material_block_block,
 		"old_material_effect_material_block",
 		"old_material_effect_material_block",
-		553648128,
+		33,
 		old_material_effect_material_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		material_effect_material_block_block,
 		"material_effect_material_block",
 		"material_effect_material_block",
-		4093706240,
+		500,
 		material_effect_material_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		material_effect_block_v2_block,
 		"material_effect_block_v2",
 		"material_effect_block_v2",
-		402653184,
+		24,
 		material_effect_block_v2);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		material_effects_block_group_block,
 		"material_effects_block",
 		"material_effects_block",
-		16777216,
+		1,
 		material_effects_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		player_information_block_block,
 		"player_information_block",
 		"player_information_block",
-		50331648,
+		3,
 		player_information_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		player_representation_block_block,
 		"player_representation_block",
 		"player_representation_block",
-		50331648,
+		3,
 		player_representation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		location_name_block_block,
 		"location_name_block",
 		"location_name_block",
-		4278190080,
+		255,
 		location_name_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		location_name_globals_definition_block_group_block,
 		"location_name_globals_definition_block",
 		"location_name_globals_definition_block",
-		16777216,
+		1,
 		location_name_globals_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		input_mapping_function_block_block,
 		"input_mapping_function_block",
 		"input_mapping_function_block",
-		16777216,
+		1,
 		input_mapping_function_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		gamepad_stick_info_block_block,
 		"gamepad_stick_info_block",
 		"gamepad_stick_info_block",
-		16777216,
+		1,
 		gamepad_stick_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		controller_input_block_block,
 		"controller_input_block",
 		"controller_input_block",
-		16777216,
+		1,
 		controller_input_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		player_control_block_block,
 		"player_control_block",
 		"player_control_block",
-		16777216,
+		1,
 		player_control_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		camera_track_control_point_block_block,
 		"camera_track_control_point_block",
 		"camera_track_control_point_block",
-		268435456,
+		16,
 		camera_track_control_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		camera_track_block_group_block,
 		"camera_track_block",
 		"camera_track_block",
-		16777216,
+		1,
 		camera_track_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		simulated_input_block_group_block,
 		"simulated_input_block",
 		"simulated_input_block",
-		16777216,
+		1,
 		simulated_input_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_camera_impulse_block_block,
 		"global_camera_impulse_block",
 		"global_camera_impulse_block",
-		16777216,
+		1,
 		global_camera_impulse_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		camera_shake_block_group_block,
 		"camera_shake_block",
 		"camera_shake_block",
-		16777216,
+		1,
 		camera_shake_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		rumble_block_group_block,
 		"rumble_block",
 		"rumble_block",
-		16777216,
+		1,
 		rumble_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		point_physics_block_group_block,
 		"point_physics_block",
 		"point_physics_block",
-		16777216,
+		1,
 		point_physics_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cheap_particle_emitter_block_group_block,
 		"cheap_particle_emitter_block",
 		"cheap_particle_emitter_block",
-		16777216,
+		1,
 		cheap_particle_emitter_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cheap_particle_bitmap_reference_block_block,
 		"cheap_particle_bitmap_reference_block",
 		"cheap_particle_bitmap_reference_block",
-		1056964608,
+		63,
 		cheap_particle_bitmap_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cheap_particle_type_block_block,
 		"cheap_particle_type_block",
 		"cheap_particle_type_block",
-		4278190080,
+		255,
 		cheap_particle_type_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cheap_particle_type_library_block_group_block,
 		"cheap_particle_type_library_block",
 		"cheap_particle_type_library_block",
-		16777216,
+		1,
 		cheap_particle_type_library_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		anti_gravity_point_definition_block_block,
 		"anti_gravity_point_definition_block",
 		"anti_gravity_point_definition_block",
-		268435456,
+		16,
 		anti_gravity_point_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		friction_point_definition_block_block,
 		"friction_point_definition_block",
 		"friction_point_definition_block",
-		268435456,
+		16,
 		friction_point_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		walker_physics_leg_block_block,
 		"walker_physics_leg_block",
 		"walker_physics_leg_block",
-		536870912,
+		32,
 		walker_physics_leg_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		boat_engine_definition_block_block,
 		"boat_engine_definition_block",
 		"boat_engine_definition_block",
-		16777216,
+		1,
 		boat_engine_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		jetwash_definition_block_block,
 		"jetwash_definition_block",
 		"jetwash_definition_block",
-		67108864,
+		4,
 		jetwash_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_kd_hierarchy_static_hash_table_headers_block_block,
 		"collision_kd_hierarchy_static_hash_table_headers_block",
 		"collision_kd_hierarchy_static_hash_table_headers_block",
-		4286513152,
+		32767,
 		collision_kd_hierarchy_static_hash_table_headers_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_kd_hierarchy_static_nodes_block_block,
 		"collision_kd_hierarchy_static_nodes_block",
 		"collision_kd_hierarchy_static_nodes_block",
-		4286513152,
+		32767,
 		collision_kd_hierarchy_static_nodes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		super_node_mappings_block_block$2,
 		"super_node_mappings_block",
 		"super_node_mappings_block",
-		4286513152,
+		32767,
 		super_node_mappings_block$2);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cluster_table_block_block,
 		"cluster_table_block",
 		"cluster_table_block",
-		4286513152,
+		32767,
 		cluster_table_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_kd_hierarchy_static_hash_table_short_block_block,
 		"collision_kd_hierarchy_static_hash_table_short_block",
 		"collision_kd_hierarchy_static_hash_table_short_block",
-		4286513152,
+		32767,
 		collision_kd_hierarchy_static_hash_table_short_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_kd_hierarchy_static_hash_table_data_block_block,
 		"collision_kd_hierarchy_static_hash_table_data_block",
 		"collision_kd_hierarchy_static_hash_table_data_block",
-		4286513152,
+		32767,
 		collision_kd_hierarchy_static_hash_table_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_kd_hierarchy_static_in_use_masks_block_block,
 		"collision_kd_hierarchy_static_in_use_masks_block",
 		"collision_kd_hierarchy_static_in_use_masks_block",
-		524288,
+		2048,
 		collision_kd_hierarchy_static_in_use_masks_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_scenery_resource_block_group_block,
 		"scenario_scenery_resource_block",
 		"scenario_scenery_resource_block",
-		16777216,
+		1,
 		scenario_scenery_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_bipeds_resource_block_group_block,
 		"scenario_bipeds_resource_block",
 		"scenario_bipeds_resource_block",
-		16777216,
+		1,
 		scenario_bipeds_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_vehicles_resource_block_group_block,
 		"scenario_vehicles_resource_block",
 		"scenario_vehicles_resource_block",
-		16777216,
+		1,
 		scenario_vehicles_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_equipment_resource_block_group_block,
 		"scenario_equipment_resource_block",
 		"scenario_equipment_resource_block",
-		16777216,
+		1,
 		scenario_equipment_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_weapons_resource_block_group_block,
 		"scenario_weapons_resource_block",
 		"scenario_weapons_resource_block",
-		16777216,
+		1,
 		scenario_weapons_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_sound_scenery_resource_block_group_block,
 		"scenario_sound_scenery_resource_block",
 		"scenario_sound_scenery_resource_block",
-		16777216,
+		1,
 		scenario_sound_scenery_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_lights_resource_block_group_block,
 		"scenario_lights_resource_block",
 		"scenario_lights_resource_block",
-		16777216,
+		1,
 		scenario_lights_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_devices_resource_block_group_block,
 		"scenario_devices_resource_block",
 		"scenario_devices_resource_block",
-		16777216,
+		1,
 		scenario_devices_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_effect_scenery_resource_block_group_block,
 		"scenario_effect_scenery_resource_block",
 		"scenario_effect_scenery_resource_block",
-		16777216,
+		1,
 		scenario_effect_scenery_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_decals_resource_block_group_block,
 		"scenario_decals_resource_block",
 		"scenario_decals_resource_block",
-		16777216,
+		1,
 		scenario_decals_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cinematics_resource_block_group_block,
 		"scenario_cinematics_resource_block",
 		"scenario_cinematics_resource_block",
-		16777216,
+		1,
 		scenario_cinematics_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_trigger_volumes_resource_block_group_block,
 		"scenario_trigger_volumes_resource_block",
 		"scenario_trigger_volumes_resource_block",
-		16777216,
+		1,
 		scenario_trigger_volumes_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_performances_resource_block_group_block,
 		"scenario_performances_resource_block",
 		"scenario_performances_resource_block",
-		16777216,
+		1,
 		scenario_performances_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_dumplings_resource_block_group_block,
 		"scenario_dumplings_resource_block",
 		"scenario_dumplings_resource_block",
-		16777216,
+		1,
 		scenario_dumplings_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cluster_data_resource_block_group_block,
 		"scenario_cluster_data_resource_block",
 		"scenario_cluster_data_resource_block",
-		16777216,
+		1,
 		scenario_cluster_data_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_sky_references_resource_block_group_block,
 		"scenario_sky_references_resource_block",
 		"scenario_sky_references_resource_block",
-		16777216,
+		1,
 		scenario_sky_references_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cubemap_resource_block_group_block,
 		"scenario_cubemap_resource_block",
 		"scenario_cubemap_resource_block",
-		16777216,
+		1,
 		scenario_cubemap_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_ai_resource_block_group_block,
 		"scenario_ai_resource_block",
 		"scenario_ai_resource_block",
-		16777216,
+		1,
 		scenario_ai_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_comments_resource_block_group_block,
 		"scenario_comments_resource_block",
 		"scenario_comments_resource_block",
-		16777216,
+		1,
 		scenario_comments_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_creature_resource_block_group_block,
 		"scenario_creature_resource_block",
 		"scenario_creature_resource_block",
-		16777216,
+		1,
 		scenario_creature_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_decorators_resource_block_group_block,
 		"scenario_decorators_resource_block",
 		"scenario_decorators_resource_block",
-		16777216,
+		1,
 		scenario_decorators_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_structure_lighting_resource_block_group_block,
 		"scenario_structure_lighting_resource_block",
 		"scenario_structure_lighting_resource_block",
-		16777216,
+		1,
 		scenario_structure_lighting_resource_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_hs_source_reference_block_block,
 		"scenario_hs_source_reference_block",
 		"scenario_hs_source_reference_block",
-		268435456,
+		16,
 		scenario_hs_source_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_ai_resource_reference_block_block,
 		"scenario_ai_resource_reference_block",
 		"scenario_ai_resource_reference_block",
-		33554432,
+		2,
 		scenario_ai_resource_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_split_resources_block_block,
 		"scenario_split_resources_block",
 		"scenario_split_resources_block",
-		16777216,
+		1,
 		scenario_split_resources_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_resources_block_block,
 		"scenario_resources_block",
 		"scenario_resources_block",
-		16777216,
+		1,
 		scenario_resources_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_manifest_bsp_block_block,
 		"structure_manifest_bsp_block",
 		"structure_manifest_bsp_block",
-		1073741824,
+		64,
 		structure_manifest_bsp_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_scenario_load_parameters_block_block,
 		"scenario load parameters",
 		"global_scenario_load_parameters_block",
-		536870912,
+		32,
 		global_scenario_load_parameters_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_class_block_block,
 		"sound_class_block",
 		"sound_class_block",
-		1191182336,
+		71,
 		sound_class_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_classes_block_group_block,
 		"sound_classes_block",
 		"sound_classes_block",
-		16777216,
+		1,
 		sound_classes_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_equalizer_band_settings_block_block,
 		"sound_equalizer_band_settings_block",
 		"sound_equalizer_band_settings_block",
-		50331648,
+		3,
 		sound_equalizer_band_settings_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_radio_settings_block_group_block,
 		"sound_radio_settings_block",
 		"sound_radio_settings_block",
-		16777216,
+		1,
 		sound_radio_settings_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		single_variant_block_block,
 		"single_variant_block",
 		"single_variant_block",
-		262144,
+		1024,
 		single_variant_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		variant_globals_block_group_block,
 		"variant_globals_block",
 		"variant_globals_block",
-		16777216,
+		1,
 		variant_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		single_avatar_award_definition_block_block,
 		"single_avatar_award_definition_block",
 		"single_avatar_award_definition_block",
-		83886080,
+		5,
 		single_avatar_award_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		avatar_awards_block_group_block,
 		"avatar_awards_block",
 		"avatar_awards_block",
-		16777216,
+		1,
 		avatar_awards_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		tag_patch_block_block,
 		"tag_patch_block",
 		"tag_patch_block",
-		262144,
+		1024,
 		tag_patch_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		tag_package_manifest_block_group_block,
 		"tag_package_manifest_block",
 		"tag_package_manifest_block",
-		16777216,
+		1,
 		tag_package_manifest_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		megalo_string_id_block_block,
 		"megalo_string_id_block",
 		"megalo_string_id_block",
-		4278190080,
+		255,
 		megalo_string_id_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		megalo_string_id_table_block_group_block,
 		"megalo_string_id_table_block",
 		"megalo_string_id_table_block",
-		16777216,
+		1,
 		megalo_string_id_table_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_completion_rewards_falloff_point_block_block,
 		"game_completion_rewards_falloff_point_block",
 		"game_completion_rewards_falloff_point_block",
-		251658240,
+		15,
 		game_completion_rewards_falloff_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_completion_rewards_definition_block_block,
 		"game_completion_rewards_definition_block",
 		"game_completion_rewards_definition_block",
-		16777216,
+		1,
 		game_completion_rewards_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_completion_rewards_difficulty_block_block,
 		"game_completion_rewards_difficulty_block",
 		"game_completion_rewards_difficulty_block",
-		16777216,
+		1,
 		game_completion_rewards_difficulty_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_completion_rewards_multiplayer_block_block,
 		"game_completion_rewards_multiplayer_block",
 		"game_completion_rewards_multiplayer_block",
-		16777216,
+		1,
 		game_completion_rewards_multiplayer_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_completion_rewards_never_online_block_block,
 		"game_completion_rewards_never_online_block",
 		"game_completion_rewards_never_online_block",
-		16777216,
+		1,
 		game_completion_rewards_never_online_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_completion_rewards_globals_block_group_block,
 		"game_completion_rewards_globals_block",
 		"game_completion_rewards_globals_block",
-		16777216,
+		1,
 		game_completion_rewards_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		challenge_block_block,
 		"challenge_block",
 		"challenge_block",
-		3355443200,
+		200,
 		challenge_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		challenge_category_block_block,
 		"challenge_category_block",
 		"challenge_category_block",
-		167772160,
+		10,
 		challenge_category_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		challenge_globals_definition_block_group_block,
 		"challenge_globals_definition_block",
 		"challenge_globals_definition_block",
-		16777216,
+		1,
 		challenge_globals_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_medal_block_block,
 		"game_medal_block",
 		"game_medal_block",
-		2147483648,
+		128,
 		game_medal_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_medal_globals_block_group_block,
 		"game_medal_globals_block",
 		"game_medal_globals_block",
-		16777216,
+		1,
 		game_medal_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		coop_spawning_globals_definition_block_group_block,
 		"coop_spawning_globals_definition_block",
 		"coop_spawning_globals_definition_block",
-		16777216,
+		1,
 		coop_spawning_globals_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		purchase_player_appearance_effect_model_permutation_block_block,
 		"purchase_player_appearance_effect_model_permutation_block",
 		"purchase_player_appearance_effect_model_permutation_block",
-		16777216,
+		1,
 		purchase_player_appearance_effect_model_permutation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		purchase_player_appearance_effect_non_model_permutation_block_block,
 		"purchase_player_appearance_effect_non_model_permutation_block",
 		"purchase_player_appearance_effect_non_model_permutation_block",
-		33554432,
+		2,
 		purchase_player_appearance_effect_non_model_permutation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		purchase_player_appearance_effect_visor_tint_block_block,
 		"purchase_player_appearance_effect_visor_tint_block",
 		"purchase_player_appearance_effect_visor_tint_block",
-		16777216,
+		1,
 		purchase_player_appearance_effect_visor_tint_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		purchase_player_appearance_effect_emblem_index_block_block,
 		"purchase_player_appearance_effect_emblem_index_block",
 		"purchase_player_appearance_effect_emblem_index_block",
-		16777216,
+		1,
 		purchase_player_appearance_effect_emblem_index_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		purchase_player_appearance_effect_voice_block_block,
 		"purchase_player_appearance_effect_voice_block",
 		"purchase_player_appearance_effect_voice_block",
-		16777216,
+		1,
 		purchase_player_appearance_effect_voice_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		purchase_prerequisite_grade_definition_block_block,
 		"purchase_prerequisite_grade_definition_block",
 		"purchase_prerequisite_grade_definition_block",
-		16777216,
+		1,
 		purchase_prerequisite_grade_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		purchase_prerequisite_purchased_item_definition_block_block,
 		"purchase_prerequisite_purchased_item_definition_block",
 		"purchase_prerequisite_purchased_item_definition_block",
-		335544320,
+		20,
 		purchase_prerequisite_purchased_item_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		purchase_prerequisites_unlockable_definition_block_block,
 		"purchase_prerequisites_unlockable_definition_block",
 		"purchase_prerequisites_unlockable_definition_block",
-		167772160,
+		10,
 		purchase_prerequisites_unlockable_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cookie_purchase_definition_block_block,
 		"cookie_purchase_definition_block",
 		"cookie_purchase_definition_block",
-		65536,
+		256,
 		cookie_purchase_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cookie_purchase_definition_reference_block_block,
 		"cookie_purchase_definition_reference_block",
 		"cookie_purchase_definition_reference_block",
-		335544320,
+		20,
 		cookie_purchase_definition_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cookie_purchase_family_definition_block_block,
 		"cookie_purchase_family_definition_block",
 		"cookie_purchase_family_definition_block",
-		503316480,
+		30,
 		cookie_purchase_family_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cookie_purchase_external_unlockable_block_definition_block,
 		"cookie_purchase_external_unlockable_block_definition",
 		"cookie_purchase_external_unlockable_block_definition",
-		536870912,
+		32,
 		cookie_purchase_external_unlockable_block_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cookie_purchase_globals_block_group_block,
 		"cookie_purchase_globals_block",
 		"cookie_purchase_globals_block",
-		16777216,
+		1,
 		cookie_purchase_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cookie_award_definition_block_block,
 		"cookie_award_definition_block",
 		"cookie_award_definition_block",
-		65536,
+		256,
 		cookie_award_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cookie_globals_definition_block_group_block,
 		"cookie_globals_definition_block",
 		"cookie_globals_definition_block",
-		16777216,
+		1,
 		cookie_globals_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		commendation_block_block,
 		"commendation_block",
 		"commendation_block",
-		4093706240,
+		500,
 		commendation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		commendation_globals_definition_block_group_block,
 		"commendation_globals_definition_block",
 		"commendation_globals_definition_block",
-		16777216,
+		1,
 		commendation_globals_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_ai_traits_list_block_block,
 		"game_engine_ai_traits_list_block",
 		"game_engine_ai_traits_list_block",
-		1073741824,
+		64,
 		game_engine_ai_traits_list_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_miscellaneous_options_block_block,
 		"game_engine_miscellaneous_options_block",
 		"game_engine_miscellaneous_options_block",
-		16777216,
+		1,
 		game_engine_miscellaneous_options_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_respawn_options_block_block,
 		"game_engine_respawn_options_block",
 		"game_engine_respawn_options_block",
-		16777216,
+		1,
 		game_engine_respawn_options_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_social_options_block_block,
 		"game_engine_social_options_block",
 		"game_engine_social_options_block",
-		16777216,
+		1,
 		game_engine_social_options_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_map_override_options_block_block,
 		"game_engine_map_override_options_block",
 		"game_engine_map_override_options_block",
-		16777216,
+		1,
 		game_engine_map_override_options_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_team_options_block_block,
 		"game_engine_team_options_block",
 		"game_engine_team_options_block",
-		16777216,
+		1,
 		game_engine_team_options_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_sandbox_variant_block_block,
 		"game_engine_sandbox_variant_block",
 		"game_engine_sandbox_variant_block",
-		536870912,
+		32,
 		game_engine_sandbox_variant_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_survival_set_properties_block_block,
 		"game_engine_survival_set_properties_block",
 		"game_engine_survival_set_properties_block",
-		167772160,
+		10,
 		game_engine_survival_set_properties_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		survival_wave_squad_block_block,
 		"survival_wave_squad_block",
 		"survival_wave_squad_block",
-		201326592,
+		12,
 		survival_wave_squad_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_survival_round_properties_block_block,
 		"game_engine_survival_round_properties_block",
 		"game_engine_survival_round_properties_block",
-		50331648,
+		3,
 		game_engine_survival_round_properties_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_survival_custom_skull_block_block,
 		"game_engine_survival_custom_skull_block",
 		"game_engine_survival_custom_skull_block",
-		50331648,
+		3,
 		game_engine_survival_custom_skull_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_survival_variant_block_block,
 		"game_engine_survival_variant_block",
 		"game_engine_survival_variant_block",
-		536870912,
+		32,
 		game_engine_survival_variant_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_campaign_variant_block_block,
 		"game_engine_campaign_variant_block",
 		"game_engine_campaign_variant_block",
-		536870912,
+		32,
 		game_engine_campaign_variant_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_settings_definition_block_group_block,
 		"game_engine_settings_definition_block",
 		"game_engine_settings_definition_block",
-		16777216,
+		1,
 		game_engine_settings_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_globals_block_group_block,
 		"game_engine_globals_block",
 		"game_engine_globals_block",
-		16777216,
+		1,
 		game_engine_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		player_sub_grade_definition_block_block,
 		"player_sub_grade_definition_block",
 		"player_sub_grade_definition_block",
-		83886080,
+		5,
 		player_sub_grade_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		player_grade_definition_block_block,
 		"player_grade_definition_block",
 		"player_grade_definition_block",
-		352321536,
+		21,
 		player_grade_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		player_grade_globals_definition_block_group_block,
 		"player_grade_globals_definition_block",
 		"player_grade_globals_definition_block",
-		16777216,
+		1,
 		player_grade_globals_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		suppressed_incident_block_block,
 		"suppressed_incident_block",
 		"suppressed_incident_block",
-		3892510720,
+		1000,
 		suppressed_incident_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		specialized_incident_kill_implement_block_block,
 		"specialized_incident_kill_implement_block",
 		"specialized_incident_kill_implement_block",
-		838860800,
+		50,
 		specialized_incident_kill_implement_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		specialized_incident_object_properties_block_block,
 		"specialized_incident_object_properties_block",
 		"specialized_incident_object_properties_block",
-		167772160,
+		10,
 		specialized_incident_object_properties_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		specialized_incident_special_kill_type_block_block,
 		"specialized_incident_special_kill_type_block",
 		"specialized_incident_special_kill_type_block",
-		167772160,
+		10,
 		specialized_incident_special_kill_type_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		specialized_incident_block_block,
 		"specialized_incident_block",
 		"specialized_incident_block",
-		16777216,
+		1,
 		specialized_incident_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		incident_accumulator_child_incident_block_block,
 		"incident_accumulator_child_incident_block",
 		"incident_accumulator_child_incident_block",
-		1006632960,
+		60,
 		incident_accumulator_child_incident_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		incident_accumulator_block_block,
 		"incident_accumulator_block",
 		"incident_accumulator_block",
-		16777216,
+		1,
 		incident_accumulator_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		incident_definition_block_block,
 		"incident_definition_block",
 		"incident_definition_block",
-		3892510720,
+		1000,
 		incident_definition_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		incident_globals_definition_block_group_block,
 		"incident_globals_definition_block",
 		"incident_globals_definition_block",
-		16777216,
+		1,
 		incident_globals_definition_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		incident_globals_block_block,
 		"incident_globals_block",
 		"incident_globals_block",
-		167772160,
+		10,
 		incident_globals_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		incident_global_properties_definition_block_group_block,
 		"incident_global_properties_definition_block",
 		"incident_global_properties_definition_block",
-		16777216,
+		1,
 		incident_global_properties_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		survival_mode_wave_templates_block,
 		"survival_mode_wave_templates",
 		"survival_mode_wave_templates",
-		2147483648,
+		128,
 		survival_mode_wave_templates_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		survival_spartan_voice_block,
 		"survival_spartan_voice",
 		"survival_spartan_voice",
-		268435456,
+		16,
 		survival_spartan_voice);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		survival_mode_globals_block_group_block,
 		"survival_mode_globals_block",
 		"survival_mode_globals_block",
-		16777216,
+		1,
 		survival_mode_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bink_block_group_block,
 		"bink_block",
 		"bink_block",
-		16777216,
+		1,
 		bink_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cutscene_title_block_block,
 		"scenario_cutscene_title_block",
 		"scenario_cutscene_title_block",
-		2147483648,
+		128,
 		scenario_cutscene_title_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_characters_block_block,
 		"cinematic_characters_block",
 		"cinematic_characters_block",
-		268435456,
+		16,
 		cinematic_characters_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematics_globals_block_block,
 		"cinematics_globals_block",
 		"cinematics_globals_block",
-		16777216,
+		1,
 		cinematics_globals_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_frame_block_block,
 		"cinematic_shot_frame_block",
 		"cinematic_shot_frame_block",
-		270991360,
+		10000,
 		cinematic_shot_frame_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_frame_dynamic_block_block,
 		"cinematic_shot_frame_dynamic_block",
 		"cinematic_shot_frame_dynamic_block",
-		270991360,
+		10000,
 		cinematic_shot_frame_dynamic_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_frame_constant_block_block,
 		"cinematic_shot_frame_constant_block",
 		"cinematic_shot_frame_constant_block",
-		270991360,
+		10000,
 		cinematic_shot_frame_constant_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_lighting_block_block,
 		"cinematic_shot_lighting_block",
 		"cinematic_shot_lighting_block",
-		270991360,
+		10000,
 		cinematic_shot_lighting_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_clip_subject_block_block,
 		"cinematic_shot_clip_subject_block",
 		"cinematic_shot_clip_subject_block",
-		402653184,
+		24,
 		cinematic_shot_clip_subject_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_clip_block_block,
 		"cinematic_shot_clip_block",
 		"cinematic_shot_clip_block",
-		536870912,
+		32,
 		cinematic_shot_clip_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_dialogue_block_block,
 		"cinematic_shot_dialogue_block",
 		"cinematic_shot_dialogue_block",
-		270991360,
+		10000,
 		cinematic_shot_dialogue_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_music_block_block,
 		"cinematic_shot_music_block",
 		"cinematic_shot_music_block",
-		270991360,
+		10000,
 		cinematic_shot_music_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_effect_block_block,
 		"cinematic_shot_effect_block",
 		"cinematic_shot_effect_block",
-		270991360,
+		10000,
 		cinematic_shot_effect_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_object_function_keyframe_block_block,
 		"cinematic_shot_object_function_keyframe_block",
 		"cinematic_shot_object_function_keyframe_block",
-		270991360,
+		10000,
 		cinematic_shot_object_function_keyframe_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_object_function_block_block,
 		"cinematic_shot_object_function_block",
 		"cinematic_shot_object_function_block",
-		270991360,
+		10000,
 		cinematic_shot_object_function_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_screen_effect_block_block,
 		"cinematic_shot_screen_effect_block",
 		"cinematic_shot_screen_effect_block",
-		270991360,
+		10000,
 		cinematic_shot_screen_effect_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_custom_script_block_block,
 		"cinematic_shot_custom_script_block",
 		"cinematic_shot_custom_script_block",
-		270991360,
+		10000,
 		cinematic_shot_custom_script_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_user_input_constraints_block_block,
 		"cinematic_shot_user_input_constraints_block",
 		"cinematic_shot_user_input_constraints_block",
-		270991360,
+		10000,
 		cinematic_shot_user_input_constraints_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_block_block,
 		"cinematic_shot_block",
 		"cinematic_shot_block",
-		536870912,
+		32,
 		cinematic_shot_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scene_object_attachment_block_block,
 		"scene_object_attachment_block",
 		"scene_object_attachment_block",
-		270991360,
+		10000,
 		scene_object_attachment_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_scene_object_block_block,
 		"cinematic_scene_object_block",
 		"cinematic_scene_object_block",
-		270991360,
+		10000,
 		cinematic_scene_object_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_extra_camera_frame_block_block,
 		"cinematic_extra_camera_frame_block",
 		"cinematic_extra_camera_frame_block",
-		270991360,
+		10000,
 		cinematic_extra_camera_frame_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_extra_camera_shot_block_block,
 		"cinematic_extra_camera_shot_block",
 		"cinematic_extra_camera_shot_block",
-		270991360,
+		10000,
 		cinematic_extra_camera_shot_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_extra_camera_block_block,
 		"cinematic_shot_extra_camera_block",
 		"cinematic_shot_extra_camera_block",
-		270991360,
+		10000,
 		cinematic_shot_extra_camera_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_scene_block_group_block,
 		"cinematic_scene_block",
 		"cinematic_scene_block",
-		16777216,
+		1,
 		cinematic_scene_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_scene_reference_block_block,
 		"cinematic_scene_reference_block",
 		"cinematic_scene_reference_block",
-		536870912,
+		32,
 		cinematic_scene_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_shot_playback_data_block_block,
 		"cinematic_shot_playback_data_block",
 		"cinematic_shot_playback_data_block",
-		536870912,
+		32,
 		cinematic_shot_playback_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_transition_global_gain_block_block,
 		"cinematic_transition_global_gain_block",
 		"cinematic_transition_global_gain_block",
-		16777216,
+		1,
 		cinematic_transition_global_gain_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_transition_sound_class_gain_block_block,
 		"cinematic_transition_sound_class_gain_block",
 		"cinematic_transition_sound_class_gain_block",
-		134217728,
+		8,
 		cinematic_transition_sound_class_gain_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_transition_sound_reference_block_block,
 		"cinematic_transition_sound_reference_block",
 		"cinematic_transition_sound_reference_block",
-		67108864,
+		4,
 		cinematic_transition_sound_reference_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_transition_looping_sound_reference_block_block,
 		"cinematic_transition_looping_sound_reference_block",
 		"cinematic_transition_looping_sound_reference_block",
-		67108864,
+		4,
 		cinematic_transition_looping_sound_reference_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_transition_looping_sound_state_block_block,
 		"cinematic_transition_looping_sound_state_block",
 		"cinematic_transition_looping_sound_state_block",
-		67108864,
+		4,
 		cinematic_transition_looping_sound_state_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_transition_block_group_block,
 		"cinematic_transition_block",
 		"cinematic_transition_block",
-		16777216,
+		1,
 		cinematic_transition_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_block_group_block,
 		"cinematic_block",
 		"cinematic_block",
-		16777216,
+		1,
 		cinematic_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_cinematics_block_block,
 		"scenario_cinematics_block",
 		"scenario_cinematics_block",
-		536870912,
+		32,
 		scenario_cinematics_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_type_identifier_block_block,
 		"cache_file_resource_type_identifier_block",
 		"cache_file_resource_type_identifier_block",
-		268435456,
+		16,
 		cache_file_resource_type_identifier_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_interop_type_identifier_block_block,
 		"cache_file_interop_type_identifier_block",
 		"cache_file_interop_type_identifier_block",
-		268435456,
+		16,
 		cache_file_interop_type_identifier_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_codec_identifier_block_block,
 		"cache_file_codec_identifier_block",
 		"cache_file_codec_identifier_block",
-		2130706432,
+		127,
 		cache_file_codec_identifier_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_fixup_location_block_block,
 		"cache_file_resource_fixup_location_block",
 		"cache_file_resource_fixup_location_block",
-		4286513152,
+		32767,
 		cache_file_resource_fixup_location_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_interop_location_block_block,
 		"cache_file_resource_interop_location_block",
 		"cache_file_resource_interop_location_block",
-		4286513152,
+		32767,
 		cache_file_resource_interop_location_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_shared_file_block_block,
 		"cache_file_shared_file_block",
 		"cache_file_shared_file_block",
-		117440512,
+		7,
 		cache_file_shared_file_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_streaming_sublocation_block_block,
 		"cache_file_resource_streaming_sublocation_block",
 		"cache_file_resource_streaming_sublocation_block",
-		4286513152,
+		32767,
 		cache_file_resource_streaming_sublocation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_streaming_sublocation_table_block_block,
 		"cache_file_resource_streaming_sublocation_table_block",
 		"cache_file_resource_streaming_sublocation_table_block",
-		4286513152,
+		32767,
 		cache_file_resource_streaming_sublocation_table_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_file_location_block_block,
 		"cache_file_resource_file_location_block",
 		"cache_file_resource_file_location_block",
-		4294901760,
+		65535,
 		cache_file_resource_location_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_default_location_block_block,
 		"cache_file_resource_default_location_block",
 		"cache_file_resource_default_location_block",
-		4286513152,
+		32767,
 		cache_file_resource_default_location_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_data_block_block,
 		"cache_file_resource_data_block",
 		"cache_file_resource_data_block",
-		4286513152,
+		32767,
 		cache_file_resource_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resources_bitvector_block_block,
 		"cache_file_tag_resources_bitvector_block",
 		"cache_file_tag_resources_bitvector_block",
-		4286513152,
+		32767,
 		cache_file_tag_resources_bitvector_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_usage_block_block,
 		"cache_file_tag_resource_usage_block",
 		"cache_file_tag_resource_usage_block",
-		268435456,
+		16,
 		cache_file_tag_resource_usage_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_bsp_reference_block_block,
 		"cache_file_bsp_reference_block",
 		"cache_file_bsp_reference_block",
-		268435456,
+		16,
 		cache_file_bsp_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_owner_block_block,
 		"cache_file_resource_owner_block",
 		"cache_file_resource_owner_block",
-		4286513152,
+		32767,
 		cache_file_resource_owner_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_owner_reference_block_block,
 		"cache_file_resource_owner_reference_block",
 		"cache_file_resource_owner_reference_block",
-		4286513152,
+		32767,
 		cache_file_resource_owner_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_zone_resource_visit_node_link_block_block,
 		"cache_file_zone_resource_visit_node_link_block",
 		"cache_file_zone_resource_visit_node_link_block",
-		4286513152,
+		32767,
 		cache_file_zone_resource_visit_node_link_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_zone_resource_visit_node_block_block,
 		"cache_file_zone_resource_visit_node_block",
 		"cache_file_zone_resource_visit_node_block",
-		4286513152,
+		32767,
 		cache_file_zone_resource_visit_node_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_model_variant_usage_block_block,
 		"cache_file_model_variant_usage_block",
 		"cache_file_model_variant_usage_block",
-		4286513152,
+		32767,
 		cache_file_model_variant_usage_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_model_variant_usage_reference_block_block,
 		"cache_file_model_variant_usage_reference_block",
 		"cache_file_model_variant_usage_reference_block",
-		4286513152,
+		32767,
 		cache_file_model_variant_usage_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_character_usage_block_block,
 		"cache_file_character_usage_block",
 		"cache_file_character_usage_block",
-		4286513152,
+		32767,
 		cache_file_character_usage_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_zone_block_block,
 		"cache_file_tag_zone_block",
 		"cache_file_tag_zone_block",
-		4286513152,
+		32767,
 		cache_file_tag_zone_manifest_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_global_zone_block_block,
 		"cache_file_global_zone_block",
 		"cache_file_global_zone_block",
-		16777216,
+		1,
 		cache_file_tag_zone_manifest_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_bsp_zone_block_block,
 		"cache_file_bsp_zone_block",
 		"cache_file_bsp_zone_block",
-		268435456,
+		16,
 		cache_file_tag_zone_manifest_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_designer_zone_block_block,
 		"cache_file_designer_zone_block",
 		"cache_file_designer_zone_block",
-		536870912,
+		32,
 		cache_file_tag_zone_manifest_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_cinematic_zone_block_block,
 		"cache_file_cinematic_zone_block",
 		"cache_file_cinematic_zone_block",
-		536870912,
+		32,
 		cache_file_tag_zone_manifest_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_full_zone_sets_block_block,
 		"cache_file_full_zone_sets_block",
 		"cache_file_full_zone_sets_block",
-		805306368,
+		48,
 		cache_file_tag_zone_manifest_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_zone_set_zone_usage_block_block,
 		"cache_file_zone_set_zone_usage_block",
 		"cache_file_zone_set_zone_usage_block",
-		805306368,
+		48,
 		cache_file_zone_set_zone_usage_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		resource_category_block_block,
 		"resource_category_block",
 		"resource_category_block",
-		536870912,
+		32,
 		resource_category_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_debug_resource_definition_block_block,
 		"cache_file_debug_resource_definition_block",
 		"cache_file_debug_resource_definition_block",
-		268435456,
+		16,
 		cache_file_debug_resource_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_layout_block_block,
 		"cache_file_resource_layout_block",
 		"cache_file_resource_layout_block",
-		4286513152,
+		32767,
 		cache_file_resource_layout_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_named_value_block_block,
 		"cache_file_tag_resource_named_value_block",
 		"cache_file_tag_resource_named_value_block",
-		1048576,
+		4096,
 		cache_file_tag_resource_named_value_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_properties_block_block,
 		"cache_file_tag_resource_properties_block",
 		"cache_file_tag_resource_properties_block",
-		4286513152,
+		32767,
 		cache_file_tag_resource_properties_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		debug_cache_file_tag_zone_block_block,
 		"debug_cache_file_tag_zone_block",
 		"debug_cache_file_tag_zone_block",
-		541982720,
+		20000,
 		debug_cache_file_zone_manifest_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		debug_cache_file_model_variant_zone_block_block,
 		"debug_cache_file_model_variant_zone_block",
 		"debug_cache_file_model_variant_zone_block",
-		541982720,
+		20000,
 		debug_cache_file_zone_manifest_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		debug_cache_file_combat_dialogue_zone_block_block,
 		"debug_cache_file_combat_dialogue_zone_block",
 		"debug_cache_file_combat_dialogue_zone_block",
-		541982720,
+		20000,
 		debug_cache_file_zone_manifest_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_parentage_reference_block_block,
 		"cache_file_tag_parentage_reference_block",
 		"cache_file_tag_parentage_reference_block",
-		1083965440,
+		40000,
 		cache_file_tag_parentage_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_parentage_block_block,
 		"cache_file_tag_parentage_block",
 		"cache_file_tag_parentage_block",
-		1083965440,
+		40000,
 		cache_file_tag_parentage_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_prediction_quantum_block_block,
 		"cache_file_tag_resource_prediction_quantum_block",
 		"cache_file_tag_resource_prediction_quantum_block",
-		4286513152,
+		32767,
 		cache_file_tag_resource_prediction_quantum_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_prediction_atom_block_block,
 		"cache_file_tag_resource_prediction_atom_block",
 		"cache_file_tag_resource_prediction_atom_block",
-		541982720,
+		20000,
 		cache_file_tag_resource_prediction_atom_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_prediction_molecule_atom_reference_block_block,
 		"cache_file_tag_resource_prediction_molecule_atom_reference_block",
 		"cache_file_tag_resource_prediction_molecule_atom_reference_block",
-		4286513152,
+		32767,
 		cache_file_tag_resource_prediction_molecule_atom_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_prediction_molecule_block_block,
 		"cache_file_tag_resource_prediction_molecule_block",
 		"cache_file_tag_resource_prediction_molecule_block",
-		4286513152,
+		32767,
 		cache_file_tag_resource_prediction_molecule_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_tag_resource_prediction_molecule_keys_block_block,
 		"cache_file_tag_resource_prediction_molecule_keys_block",
 		"cache_file_tag_resource_prediction_molecule_keys_block",
-		2097152,
+		8192,
 		cache_file_tag_resource_prediction_molecule_keys_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_bsp_attachment_block_block,
 		"cache_file_bsp_attachment_block",
 		"cache_file_bsp_attachment_block",
-		4286513152,
+		32767,
 		cache_file_bsp_attachment_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_bsp_game_attachments_block_block,
 		"cache_file_bsp_game_attachments_block",
 		"cache_file_bsp_game_attachments_block",
-		268435456,
+		16,
 		cache_file_bsp_game_attachments_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_gestalt_block_group_block,
 		"cache_file_resource_gestalt_block",
 		"cache_file_resource_gestalt_block",
-		16777216,
+		1,
 		cache_file_resource_gestalt_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_resource_layout_table_block_group_block,
 		"cache_file_resource_layout_table_block",
 		"cache_file_resource_layout_table_block",
-		16777216,
+		1,
 		cache_file_resource_layout_table_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_codec_block_block,
 		"sound_gestalt_codec_block",
 		"sound_gestalt_codec_block",
-		4286513152,
+		32767,
 		sound_gestalt_codec_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_playback_block_block,
 		"sound_gestalt_playback_block",
 		"sound_gestalt_playback_block",
-		4286513152,
+		32767,
 		sound_gestalt_playback_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_scale_block_block,
 		"sound_gestalt_scale_block",
 		"sound_gestalt_scale_block",
-		4286513152,
+		32767,
 		sound_gestalt_scale_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_import_names_block_block,
 		"sound_gestalt_import_names_block",
 		"sound_gestalt_import_names_block",
-		4286513152,
+		32767,
 		sound_gestalt_import_names_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_pitch_range_distances_block_block,
 		"sound_pitch_range_distances_block",
 		"sound_pitch_range_distances_block",
-		4286513152,
+		32767,
 		sound_distance_parameters_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_pitch_range_parameters_block_block,
 		"sound_gestalt_pitch_range_parameters_block",
 		"sound_gestalt_pitch_range_parameters_block",
-		4286513152,
+		32767,
 		sound_gestalt_pitch_range_parameters_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_permutations_block_block,
 		"sound_gestalt_permutations_block",
 		"sound_gestalt_permutations_block",
-		4294905600,
+		1048575,
 		sound_gestalt_permutations_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_permutation_languages_block_block,
 		"sound_gestalt_permutation_languages_block",
 		"sound_gestalt_permutation_languages_block",
-		4294905600,
+		1048575,
 		sound_gestalt_permutation_languages_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_pitch_ranges_block_block,
 		"sound_gestalt_pitch_ranges_block",
 		"sound_gestalt_pitch_ranges_block",
-		4286513152,
+		32767,
 		sound_gestalt_pitch_ranges_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_custom_playback_block_block,
 		"sound_gestalt_custom_playback_block",
 		"sound_gestalt_custom_playback_block",
-		4286513152,
+		32767,
 		sound_gestalt_custom_playback_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_runtime_permutation_bit_vector_block_block,
 		"sound_gestalt_runtime_permutation_bit_vector_block",
 		"sound_gestalt_runtime_permutation_bit_vector_block",
-		4286513152,
+		32767,
 		sound_gestalt_runtime_permutation_bit_vector_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_promotions_block_block,
 		"sound_gestalt_promotions_block",
 		"sound_gestalt_promotions_block",
-		2147483648,
+		128,
 		sound_gestalt_promotions_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_facial_animation_block_block,
 		"sound_gestalt_facial_animation_block",
 		"sound_gestalt_facial_animation_block",
-		4286513152,
+		32767,
 		sound_gestalt_facial_animation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_gestalt_layer_markers_block_block,
 		"sound_gestalt_layer_markers_block",
 		"sound_gestalt_layer_markers_block",
-		4286513152,
+		32767,
 		sound_gestalt_layer_markers_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_cache_file_gestalt_block_group_block,
 		"sound_cache_file_gestalt_block",
 		"sound_cache_file_gestalt_block",
-		16777216,
+		1,
 		sound_cache_file_gestalt_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cache_file_sound_block_group_block,
 		"cache_file_sound_block",
 		"cache_file_sound_block",
-		16777216,
+		1,
 		cache_file_sound_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		platform_sound_playback_component_block_block,
 		"platform_sound_playback_component_block",
 		"platform_sound_playback_component_block",
-		268435456,
+		16,
 		platform_sound_playback_component_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		platform_sound_playback_lowpass_block_block,
 		"platform_sound_playback_lowpass_block",
 		"platform_sound_playback_lowpass_block",
-		16777216,
+		1,
 		platform_sound_playback_lowpass_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		platform_sound_playback_block_block,
 		"platform_sound_playback_block",
 		"platform_sound_playback_block",
-		2147483648,
+		128,
 		platform_sound_playback_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_effect_collection_block_group_block,
 		"sound_effect_collection_block",
 		"sound_effect_collection_block",
-		16777216,
+		1,
 		sound_effect_collection_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_effect_template_parameter_block_block,
 		"sound_effect_template_parameter_block",
 		"sound_effect_template_parameter_block",
-		2147483648,
+		128,
 		sound_effect_template_parameter_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_effect_templates_block_block,
 		"sound_effect_templates_block",
 		"sound_effect_templates_block",
-		134217728,
+		8,
 		sound_effect_templates_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_effect_template_additional_sound_input_block_block,
 		"sound_effect_template_additional_sound_input_block",
 		"sound_effect_template_additional_sound_input_block",
-		16777216,
+		1,
 		sound_effect_template_additional_sound_input_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_effect_template_block_group_block,
 		"sound_effect_template_block",
 		"sound_effect_template_block",
-		16777216,
+		1,
 		sound_effect_template_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		communication_sounds_block_group_block,
 		"communication_sounds_block",
 		"communication_sounds_block",
-		16777216,
+		1,
 		communication_sounds_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		megalogamengine_sounds_block_group_block,
 		"megalogamengine_sounds_block",
 		"megalogamengine_sounds_block",
-		16777216,
+		1,
 		megalogamengine_sounds_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_scenery_block_group_block,
 		"sound_scenery_block",
 		"sound_scenery_block",
-		16777216,
+		1,
 		sound_scenery_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		detail_object_type_block_block,
 		"detail_object_type_block",
 		"detail_object_type_block",
-		268435456,
+		16,
 		detail_object_type_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		detail_object_collection_block_group_block,
 		"detail_object_collection_block",
 		"detail_object_collection_block",
-		16777216,
+		1,
 		detail_object_collection_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_detail_object_cells_block_block,
 		"global_detail_object_cells_block",
 		"global_detail_object_cells_block",
-		1024,
+		262144,
 		global_detail_object_cells_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_detail_object_block_block,
 		"global_detail_object_block",
 		"global_detail_object_block",
-		8192,
+		2097152,
 		global_detail_object_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_detail_object_counts_block_block,
 		"global_detail_object_counts_block",
 		"global_detail_object_counts_block",
-		32768,
+		8388608,
 		global_detail_object_counts_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_z_reference_vector_block_block,
 		"global_z_reference_vector_block",
 		"global_z_reference_vector_block",
-		1024,
+		262144,
 		global_z_reference_vector_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_description_block_block,
 		"scenario_description_block",
 		"scenario_description_block",
-		536870912,
+		32,
 		scenario_description_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_scenario_description_block_group_block,
 		"multiplayer_scenario_description_block",
 		"multiplayer_scenario_description_block",
-		16777216,
+		1,
 		multiplayer_scenario_description_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		decal_definition_block_block,
 		"decal_definition_block",
 		"decal_definition_block",
-		268435456,
+		16,
 		decal_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		decal_system_block_group_block,
 		"decal_system_block",
 		"decal_system_block",
-		16777216,
+		1,
 		decal_system_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_environment_block_group_block,
 		"sound_environment_block",
 		"sound_environment_block",
-		16777216,
+		1,
 		sound_environment_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		camo_block_group_block,
 		"camo_block",
 		"camo_block",
-		16777216,
+		1,
 		camo_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shield_impact_block_group_block,
 		"shield_impact_block",
 		"shield_impact_block",
-		16777216,
+		1,
 		shield_impact_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cinematic_dynamic_light_block_block,
 		"cinematic_dynamic_light_block",
 		"cinematic_dynamic_light_block",
-		268435456,
+		16,
 		cinematic_dynamic_light_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		new_cinematic_lighting_block_group_block,
 		"new_cinematic_lighting_block",
 		"new_cinematic_lighting_block",
-		16777216,
+		1,
 		new_cinematic_lighting_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_cluster_data_block,
 		"faux_data_cluster_data",
 		"faux_data_cluster_data",
-		4294901760,
+		65535,
 		faux_data_cluster_data);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_instance_data_block,
 		"faux_data_instance_data",
 		"faux_data_instance_data",
-		4294901760,
+		65535,
 		faux_data_instance_data);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_global_cluster_instance_data_block,
 		"faux_data_global_cluster_instance_data",
 		"faux_data_global_cluster_instance_data",
-		4294901760,
+		65535,
 		faux_data_global_cluster_instance_data);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_global_cluster_data_block,
 		"faux_data_global_cluster_data",
 		"faux_data_global_cluster_data",
-		4294901760,
+		65535,
 		faux_data_global_cluster_data);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_global_instance_definition_data_block,
 		"faux_data_global_instance_definition_data",
 		"faux_data_global_instance_definition_data",
-		4294901760,
+		65535,
 		faux_data_global_instance_definition_data);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_global_instance_data_block,
 		"faux_data_global_instance_data",
 		"faux_data_global_instance_data",
-		4294901760,
+		65535,
 		faux_data_global_instance_data);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_global_material_data_block,
 		"faux_data_global_material_data",
 		"faux_data_global_material_data",
-		4294901760,
+		65535,
 		faux_data_global_material_data);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_bsp_global_data_block,
 		"faux_data_bsp_global_data",
 		"faux_data_bsp_global_data",
-		536870912,
+		32,
 		faux_data_bsp_global_data);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_object_data_block,
 		"faux_data_object_data",
 		"faux_data_object_data",
-		4294901760,
+		65535,
 		faux_data_object_data);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_airprobe_lightgroup_value_block,
 		"faux_data_airprobe_lightgroup_value",
 		"faux_data_airprobe_lightgroup_value",
-		131072,
+		512,
 		faux_data_airprobe_lightgroup_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_scenery_probe_lightgroup_value_block,
 		"faux_data_scenery_probe_lightgroup_value",
 		"faux_data_scenery_probe_lightgroup_value",
-		3490119680,
+		2000,
 		faux_data_scenery_probe_lightgroup_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_device_probe_lightgroup_value_block,
 		"faux_data_device_probe_lightgroup_value",
 		"faux_data_device_probe_lightgroup_value",
-		4294901760,
+		65535,
 		faux_data_device_probe_lightgroup_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_device_probes_lightgroup_value_block,
 		"faux_data_device_probes_lightgroup_value",
 		"faux_data_device_probes_lightgroup_value",
-		4294901760,
+		65535,
 		faux_data_device_probes_lightgroup_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_lightmap_group_data_block,
 		"faux_data_lightmap_group_data",
 		"faux_data_lightmap_group_data",
-		4294901760,
+		65535,
 		faux_data_lightmap_group_data);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_airprobe_value_block,
 		"faux_data_airprobe_value",
 		"faux_data_airprobe_value",
-		131072,
+		512,
 		faux_data_airprobe_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_scenery_probe_value_block,
 		"faux_data_scenery_probe_value",
 		"faux_data_scenery_probe_value",
-		3490119680,
+		2000,
 		faux_data_scenery_probe_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_device_machine_probe_value_block,
 		"faux_data_device_machine_probe_value",
 		"faux_data_device_machine_probe_value",
-		4294901760,
+		65535,
 		faux_data_device_machine_probe_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		faux_data_device_machine_probes_value_block,
 		"faux_data_device_machine_probes_value",
 		"faux_data_device_machine_probes_value",
-		4294901760,
+		65535,
 		faux_data_device_machine_probes_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_faux_data_block_group_block,
 		"scenario_faux_data_block",
 		"scenario_faux_data_block",
-		16777216,
+		1,
 		scenario_faux_data_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_combiner_definition_entry_block_block,
 		"sound_combiner_definition_entry_block",
 		"sound_combiner_definition_entry_block",
-		536870912,
+		32,
 		sound_combiner_definition_entry_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_combiner_block_group_block,
 		"sound_combiner_block",
 		"sound_combiner_block",
-		16777216,
+		1,
 		sound_combiner_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_emitter_boat_hull_group_block_block,
 		"particle_emitter_boat_hull_group_block",
 		"particle_emitter_boat_hull_group_block",
-		268435456,
+		16,
 		particle_emitter_boat_hull_group_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_emitter_boat_hull_shape_block_group_block,
 		"particle_emitter_boat_hull_shape_block",
 		"particle_emitter_boat_hull_shape_block",
-		16777216,
+		1,
 		particle_emitter_boat_hull_shape_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_emitter_custom_point_block_block,
 		"particle_emitter_custom_point_block",
 		"particle_emitter_custom_point_block",
-		8388608,
+		32768,
 		particle_emitter_custom_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		particle_emitter_custom_points_block_group_block,
 		"particle_emitter_custom_points_block",
 		"particle_emitter_custom_points_block",
-		16777216,
+		1,
 		particle_emitter_custom_points_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		fx_property_default_block_block,
 		"fx_property_default_block",
 		"fx_property_default_block",
-		1073741824,
+		64,
 		fx_property_default_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		fx_property_block_block,
 		"fx_property_block",
 		"fx_property_block",
-		65536,
+		256,
 		fx_property_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		fx_test_block_group_block,
 		"fx_test_block",
 		"fx_test_block",
-		16777216,
+		1,
 		fx_test_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bolt_definition_block_block,
 		"bolt_definition_block",
 		"bolt_definition_block",
-		268435456,
+		16,
 		bolt_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		lightning_system_block_group_block,
 		"lightning_system_block",
 		"lightning_system_block",
-		16777216,
+		1,
 		lightning_system_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		beam_definition_block_block,
 		"beam_definition_block",
 		"beam_definition_block",
-		268435456,
+		16,
 		beam_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		beam_system_block_group_block,
 		"beam_system_block",
 		"beam_system_block",
-		16777216,
+		1,
 		beam_system_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		contrail_definition_block_block,
 		"contrail_definition_block",
 		"contrail_definition_block",
-		268435456,
+		16,
 		contrail_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		contrail_system_block_group_block,
 		"contrail_system_block",
 		"contrail_system_block",
-		16777216,
+		1,
 		contrail_system_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_scenery_block_group_block,
 		"effect_scenery_block",
 		"effect_scenery_block",
-		16777216,
+		1,
 		effect_scenery_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		color_block_block,
 		"color_block",
 		"color_block",
-		131072,
+		512,
 		color_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		color_table_block_group_block,
 		"color_table_block",
 		"color_table_block",
-		16777216,
+		1,
 		color_table_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_texture_interop_block_block,
 		"bitmap_texture_interop_block",
 		"bitmap_texture_interop_block",
-		256,
+		65536,
 		bitmap_texture_interop_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_texture_interleaved_interop_block_block,
 		"bitmap_texture_interleaved_interop_block",
 		"bitmap_texture_interleaved_interop_block",
-		256,
+		65536,
 		bitmap_texture_interleaved_interop_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_block_group_block,
 		"bitmap_block",
 		"bitmap_block",
-		16777216,
+		1,
 		bitmap_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_design_block_group_block,
 		"structure_design_block",
 		"structure_design_block",
-		16777216,
+		1,
 		structure_design_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		spring_linear_acceleration_block_block,
 		"spring_linear_acceleration_block",
 		"spring_linear_acceleration_block",
-		50331648,
+		3,
 		spring_linear_acceleration_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		spring_acceleration_block_group_block,
 		"spring_acceleration_block",
 		"spring_acceleration_block",
-		16777216,
+		1,
 		spring_acceleration_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_performance_throttle_entries_block_block,
 		"game_performance_throttle_entries_block",
 		"game_performance_throttle_entries_block",
-		536870912,
+		32,
 		game_performance_throttle_entries_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_performance_throttle_block_group_block,
 		"game_performance_throttle_block",
 		"game_performance_throttle_block",
-		16777216,
+		1,
 		game_performance_throttle_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_model_material_block_block,
 		"material",
 		"collision_model_material_block",
-		536870912,
+		32,
 		collision_model_material_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_model_permutation_block_block,
 		"collision_model_permutation_block",
 		"collision_model_permutation_block",
-		536870912,
+		32,
 		collision_model_permutation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_model_region_block_block,
 		"region",
 		"collision_model_region_block",
-		268435456,
+		16,
 		collision_model_region_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_model_node_block_block,
 		"collision_model_node_block",
 		"collision_model_node_block",
-		4278190080,
+		255,
 		collision_model_node_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_model_pathfinding_sphere_block_block,
 		"sphere",
 		"collision_model_pathfinding_sphere_block",
-		65536,
+		256,
 		collision_model_pathfinding_sphere_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_model_block_group_block,
 		"collision_model_block",
 		"collision_model_block",
-		16777216,
+		1,
 		collision_model_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_model_bsp_block_block,
 		"bsp",
 		"collision_model_bsp_block",
-		1073741824,
+		64,
 		collision_model_bsp_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		instance_imposter_block_block,
 		"instance_imposter_block",
 		"instance_imposter_block",
-		2097152,
+		8192,
 		instance_imposter_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		instance_imposter_checksum_block_block,
 		"instance_imposter_checksum_block",
 		"instance_imposter_checksum_block",
-		2097152,
+		8192,
 		instance_imposter_checksum_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		instance_imposter_definition_block_group_block,
 		"instance_imposter_definition_block",
 		"instance_imposter_definition_block",
-		16777216,
+		1,
 		instance_imposter_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_usage_block_block,
 		"bitmap_usage_block",
 		"bitmap_usage_block",
-		16777216,
+		1,
 		bitmap_usage_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		camera_block_block,
 		"camera_block",
 		"camera_block",
-		16777216,
+		1,
 		camera_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_geometry_material_block_block,
 		"material",
 		"global_geometry_material_block",
-		262144,
+		1024,
 		global_geometry_material_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_self_track_block_block,
 		"self track log",
 		"global_self_track_block",
-		4294901760,
+		65535,
 		global_self_track_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		error_report_vertices_block_block,
 		"error report vertex",
 		"error_report_vertices_block",
-		4096,
+		1048576,
 		error_report_vertices_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		error_report_vectors_block_block,
 		"error report vector",
 		"error_report_vectors_block",
-		4096,
+		1048576,
 		error_report_vectors_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		error_report_lines_block_block,
 		"error report line",
 		"error_report_lines_block",
-		4096,
+		1048576,
 		error_report_lines_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		error_report_triangles_block_block,
 		"error report triangle",
 		"error_report_triangles_block",
-		4096,
+		1048576,
 		error_report_triangles_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		error_report_quads_block_block,
 		"error report quad",
 		"error_report_quads_block",
-		4096,
+		1048576,
 		error_report_quads_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		error_report_comments_block_block,
 		"error report comment",
 		"error_report_comments_block",
-		4096,
+		1048576,
 		error_report_comments_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		error_reports_block_block,
 		"error report",
 		"error_reports_block",
-		4096,
+		1048576,
 		error_reports_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_error_report_categories_block_block,
 		"error report category",
 		"global_error_report_categories_block",
-		131072,
+		512,
 		global_error_report_categories_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_bsp_physics_block_block,
 		"collision_bsp_physics_block",
 		"collision_bsp_physics_block",
-		262144,
+		1024,
 		collision_bsp_physics_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		breakable_surface_set_block_block,
 		"breakable_surface_set_block",
 		"breakable_surface_set_block",
-		524288,
+		2048,
 		breakable_surface_set_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bsp3d_nodes_block_block,
 		"bsp3d_nodes_block",
 		"bsp3d_nodes_block",
-		32768,
+		8388608,
 		bsp3d_nodes_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bsp3d_kd_supdernodes_block_block,
 		"bsp3d_kd_supdernodes_block",
 		"bsp3d_kd_supdernodes_block",
-		524288,
+		2048,
 		bsp3d_kd_supdernodes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		planes_block_block,
 		"planes_block",
 		"planes_block",
-		4294967071,
+		536870911,
 		planes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		leaves_block_block,
 		"leaves_block",
 		"leaves_block",
-		32768,
+		8388608,
 		collision_leaf_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bsp2d_references_block_block,
 		"bsp2d_references_block",
 		"bsp2d_references_block",
-		768,
+		196608,
 		bsp2d_references_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bsp2d_nodes_block_block,
 		"bsp2d_nodes_block",
 		"bsp2d_nodes_block",
-		4286513152,
+		32767,
 		bsp2d_nodes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		surfaces_block_block,
 		"surfaces_block",
 		"surfaces_block",
-		4286513152,
+		32767,
 		surfaces_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		edges_block_block,
 		"edges_block",
 		"edges_block",
-		4294901760,
+		65535,
 		edges_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vertices_block_block,
 		"vertices_block",
 		"vertices_block",
-		512,
+		131072,
 		vertices_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_collision_bsp_block_block,
 		"global_collision_bsp_block",
 		"global_collision_bsp_block",
-		16777216,
+		1,
 		global_collision_bsp_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		large_bsp3d_nodes_block_block,
 		"bsp3d node",
 		"large_bsp3d_nodes_block",
-		4294967071,
+		536870911,
 		large_bsp3d_nodes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		large_leaves_block_block,
 		"leaf",
 		"large_leaves_block",
-		8,
+		134217728,
 		large_leaves_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		large_bsp2d_references_block_block,
 		"bsp2d reference",
 		"large_bsp2d_references_block",
-		4294967071,
+		536870911,
 		large_bsp2d_references_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		large_bsp2d_nodes_block_block,
 		"bsp2d node",
 		"large_bsp2d_nodes_block",
-		4294967071,
+		536870911,
 		large_bsp2d_nodes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		large_surfaces_block_block,
 		"large_surfaces_block",
 		"large_surfaces_block",
-		4177462016,
+		262136,
 		large_surfaces_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		large_edges_block_block,
 		"edge",
 		"large_edges_block",
-		10240,
+		2621440,
 		large_edges_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		large_vertices_block_block,
 		"vertex",
 		"large_vertices_block",
-		5120,
+		1310720,
 		large_vertices_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_large_collision_bsp_block_block,
 		"global_large_collision_bsp_block",
 		"global_large_collision_bsp_block",
-		16777216,
+		1,
 		global_large_collision_bsp_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_soft_ceiling_triangle_block_block,
 		"structure_soft_ceiling_triangle_block",
 		"structure_soft_ceiling_triangle_block",
-		4286513152,
+		32767,
 		structure_soft_ceiling_triangle_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_soft_ceiling_block_block,
 		"structure_soft_ceiling_block",
 		"structure_soft_ceiling_block",
-		2147483648,
+		128,
 		structure_soft_ceiling_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		breakable_surface_key_table_block_block,
 		"breakable_surface_key_table_block",
 		"breakable_surface_key_table_block",
-		4286513152,
+		32767,
 		breakable_surface_key_table_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_water_groups_block_block,
 		"structure_water_groups_block",
 		"structure_water_groups_block",
-		262144,
+		1024,
 		structure_water_groups_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_water_instance_planes_block_block,
 		"structure_water_instance_planes_block",
 		"structure_water_instance_planes_block",
-		262144,
+		1024,
 		structure_water_instance_planes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_water_instance_debug_triangles_block_block,
 		"structure_water_instance_debug_triangles_block",
 		"structure_water_instance_debug_triangles_block",
-		2097152,
+		8192,
 		structure_water_instance_debug_triangles_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_water_instances_block_block,
 		"structure_water_instances_block",
 		"structure_water_instances_block",
-		262144,
+		1024,
 		structure_water_instances_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		soft_surfaces_definition_block_block,
 		"soft_surfaces_definition_block",
 		"soft_surfaces_definition_block",
-		16777216,
+		1,
 		soft_surfaces_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		global_decorator_placement_block_block,
 		"global_decorator_placement_block",
 		"global_decorator_placement_block",
-		1024,
+		262144,
 		global_decorator_placement_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		decorator_scenario_set_block_block,
 		"decorator_scenario_set_block",
 		"decorator_scenario_set_block",
-		805306368,
+		48,
 		decorator_scenario_set_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		decorator_palette_block,
 		"decorator_palette",
 		"decorator_palette",
-		134217728,
+		8,
 		decorator_palette);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_decorator_block_block,
 		"scenario_decorator_block",
 		"scenario_decorator_block",
-		16777216,
+		1,
 		scenario_decorator_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_zone_debugger_block_definition_block,
 		"scenario_zone_debugger_block_definition",
 		"scenario_zone_debugger_block_definition",
-		16777216,
+		1,
 		scenario_zone_debugger_block_definition_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		hs_script_parameters_block_block,
 		"hs_script_parameters_block",
 		"hs_script_parameters_block",
-		134217728,
+		8,
 		hs_script_parameters_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		hs_scripts_block_block,
 		"hs_scripts_block",
 		"hs_scripts_block",
-		262144,
+		1024,
 		hs_scripts_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		hs_globals_block_block,
 		"hs_globals_block",
 		"hs_globals_block",
-		131072,
+		512,
 		hs_globals_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		hs_references_block_block,
 		"hs_references_block",
 		"hs_references_block",
-		131072,
+		512,
 		hs_references_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		hs_source_files_block_group_block,
 		"hs_source_files_block",
 		"hs_source_files_block",
-		268435456,
+		16,
 		hs_source_files_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		hs_syntax_datum_block_block,
 		"hs_syntax_datum_block",
 		"hs_syntax_datum_block",
-		15728640,
+		61440,
 		hs_syntax_datum_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		hs_unit_seat_block_block,
 		"hs_unit_seat_block",
 		"hs_unit_seat_block",
-		256,
+		65536,
 		hs_unit_seat_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		named_location_volume_point_block_block,
 		"named_location_volume_point_block",
 		"named_location_volume_point_block",
-		536870912,
+		32,
 		named_location_volume_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_named_location_volume_block_block,
 		"scenario_named_location_volume_block",
 		"scenario_named_location_volume_block",
-		2147483648,
+		128,
 		scenario_named_location_volume_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		recorded_animation_block_block,
 		"recorded_animation_block",
 		"recorded_animation_block",
-		262144,
+		1024,
 		recorded_animation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		map_variant_object_variant_block_block,
 		"map_variant_object_variant_block",
 		"map_variant_object_variant_block",
-		536870912,
+		32,
 		map_variant_object_variant_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		map_variant_palette_entry_block_block,
 		"map_variant_palette_entry_block",
 		"map_variant_palette_entry_block",
-		65536,
+		256,
 		map_variant_palette_entry_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		map_variant_palette_block_block,
 		"map_variant_palette_block",
 		"map_variant_palette_block",
-		268435456,
+		16,
 		map_variant_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		door_encoded_pas_block_block,
 		"door_encoded_pas_block",
 		"door_encoded_pas_block",
-		2097152,
+		8192,
 		door_encoded_pas_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		room_door_portal_encoded_pas_block_block,
 		"room_door_portal_encoded_pas_block",
 		"room_door_portal_encoded_pas_block",
-		1048576,
+		4096,
 		room_door_portal_encoded_pas_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_deafening_encoded_pas_block_block,
 		"ai_deafening_encoded_pas_block",
 		"ai_deafening_encoded_pas_block",
-		4030660608,
+		16368,
 		ai_deafening_encoded_pas_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		encoded_room_distances_block_block,
 		"encoded_room_distances_block",
 		"encoded_room_distances_block",
-		16647936,
+		523776,
 		encoded_room_distances_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_portal_to_door_occluder_block_block,
 		"game_portal_to_door_occluder_block",
 		"game_portal_to_door_occluder_block",
-		268435456,
+		16,
 		game_portal_to_door_occluder_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bsp_cluster_to_room_bounds_block,
 		"bsp_cluster_to_room_bounds",
 		"bsp_cluster_to_room_bounds",
-		268435456,
+		16,
 		bsp_cluster_to_room_bounds);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bsp_cluster_to_room_indices_block,
 		"bsp_cluster_to_room_indices",
 		"bsp_cluster_to_room_indices",
-		262144,
+		1024,
 		bsp_cluster_to_room_indices);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_audibility_block_block,
 		"game_audibility_block",
 		"game_audibility_block",
-		805306368,
+		48,
 		game_audibility_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		biped_block_index_flags_block_block,
 		"biped_block_index_flags_block",
 		"biped_block_index_flags_block",
-		65536,
+		256,
 		biped_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vehicle_block_index_flags_block_block,
 		"vehicle_block_index_flags_block",
 		"vehicle_block_index_flags_block",
-		65536,
+		256,
 		vehicle_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_block_index_flags_block_block,
 		"weapon_block_index_flags_block",
 		"weapon_block_index_flags_block",
-		65536,
+		256,
 		weapon_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_block_index_flags_block_block,
 		"equipment_block_index_flags_block",
 		"equipment_block_index_flags_block",
-		65536,
+		256,
 		equipment_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenery_block_index_flags_block_block,
 		"scenery_block_index_flags_block",
 		"scenery_block_index_flags_block",
-		65536,
+		256,
 		scenery_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		machine_block_index_flags_block_block,
 		"machine_block_index_flags_block",
 		"machine_block_index_flags_block",
-		65536,
+		256,
 		machine_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		terminal_block_index_flags_block_block,
 		"terminal_block_index_flags_block",
 		"terminal_block_index_flags_block",
-		65536,
+		256,
 		terminal_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		control_block_index_flags_block_block,
 		"control_block_index_flags_block",
 		"control_block_index_flags_block",
-		65536,
+		256,
 		control_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_scenery_block_index_flags_block_block,
 		"sound_scenery_block_index_flags_block",
 		"sound_scenery_block_index_flags_block",
-		65536,
+		256,
 		sound_scenery_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		crate_block_index_flags_block_block,
 		"crate_block_index_flags_block",
 		"crate_block_index_flags_block",
-		65536,
+		256,
 		crate_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		creature_block_index_flags_block_block,
 		"creature_block_index_flags_block",
 		"creature_block_index_flags_block",
-		65536,
+		256,
 		creature_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		giant_block_index_flags_block_block,
 		"giant_block_index_flags_block",
 		"giant_block_index_flags_block",
-		65536,
+		256,
 		giant_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		effect_scenery_block_index_flags_block_block,
 		"effect_scenery_block_index_flags_block",
 		"effect_scenery_block_index_flags_block",
-		65536,
+		256,
 		effect_scenery_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_block_index_flags_block_block,
 		"character_block_index_flags_block",
 		"character_block_index_flags_block",
-		1073741824,
+		64,
 		character_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		budget_reference_block_index_flags_block_block,
 		"budget_reference_block_index_flags_block",
 		"budget_reference_block_index_flags_block",
-		131072,
+		512,
 		budget_reference_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenario_designer_zone_block_block,
 		"scenario_designer_zone_block",
 		"scenario_designer_zone_block",
-		536870912,
+		32,
 		scenario_designer_zone_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_device_portal_association_block_block,
 		"structure_device_portal_association_block",
 		"structure_device_portal_association_block",
-		2147483648,
+		128,
 		structure_device_portal_association_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_portal_to_portal_mapping_block_block,
 		"game_portal_to_portal_mapping_block",
 		"game_portal_to_portal_mapping_block",
-		2147483648,
+		128,
 		game_portal_to_portal_mapping_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		occluding_portal_to_portal_mapping_block_block,
 		"occluding_portal_to_portal_mapping_block",
 		"occluding_portal_to_portal_mapping_block",
-		2147483648,
+		128,
 		occluding_portal_to_portal_mapping_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_portal_device_mapping_block_block,
 		"structure_portal_device_mapping_block",
 		"structure_portal_device_mapping_block",
-		268435456,
+		16,
 		structure_portal_device_mapping_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		g_scenario_editor_folder_block_block,
 		"g_scenario_editor_folder_block",
 		"g_scenario_editor_folder_block",
-		4286513152,
+		32767,
 		g_scenario_editor_folder_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_sound_cluster_portal_designators_block,
 		"structure_sound_cluster_portal_designators",
 		"structure_sound_cluster_portal_designators",
-		262144,
+		1024,
 		structure_sound_cluster_portal_designators);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_sound_cluster_interior_cluster_indices_block,
 		"structure_sound_cluster_interior_cluster_indices",
 		"structure_sound_cluster_interior_cluster_indices",
-		4278190080,
+		255,
 		structure_sound_cluster_interior_cluster_indices);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_bsp_sound_cluster_block_block,
 		"structure_bsp_sound_cluster_block",
 		"structure_bsp_sound_cluster_block",
-		4278190080,
+		255,
 		structure_bsp_sound_cluster_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		object_type_drag_properties_block_block,
 		"object_type_drag_properties_block",
 		"object_type_drag_properties_block",
-		234881024,
+		14,
 		object_type_drag_properties_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		underwater_proxies_block_block,
 		"underwater_proxies_block",
 		"underwater_proxies_block",
-		131072,
+		512,
 		underwater_proxies_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		materials_block_block$2,
 		"materials_block",
 		"materials_block",
-		65536,
+		256,
 		materials_block$2);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		runtime_materials_block_block,
 		"runtime_materials_block",
 		"runtime_materials_block",
-		131072,
+		512,
 		runtime_materials_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		active_camo_level_definition_block_block,
 		"active_camo_level_definition_block",
 		"active_camo_level_definition_block",
-		83886080,
+		5,
 		active_camo_level_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		active_camo_globals_block_block,
 		"active_camo_globals_block",
 		"active_camo_globals_block",
-		16777216,
+		1,
 		active_camo_globals_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_globals_block_block,
 		"damage_globals_block",
 		"damage_globals_block",
-		16777216,
+		1,
 		damage_globals_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shield_boost_block_block,
 		"shield_boost_block",
 		"shield_boost_block",
-		16777216,
+		1,
 		shield_boost_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		armor_modifier_block_block,
 		"armor_modifier_block",
 		"armor_modifier_block",
-		131072,
+		512,
 		armor_modifier_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		damage_group_block_block,
 		"damage_group_block",
 		"damage_group_block",
-		131072,
+		512,
 		damage_group_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_globals_damage_block_block,
 		"game_globals_damage_block",
 		"game_globals_damage_block",
-		33554432,
+		2,
 		game_globals_damage_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		interface_tag_references_block,
 		"interface_tag_references",
 		"interface_tag_references",
-		16777216,
+		1,
 		interface_tag_references);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		difficulty_block_block,
 		"difficulty_block",
 		"difficulty_block",
-		16777216,
+		1,
 		difficulty_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		coop_difficulty_block_block,
 		"coop_difficulty_block",
 		"coop_difficulty_block",
-		16777216,
+		1,
 		coop_difficulty_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_permutation_language_info_block,
 		"sound_permutation_language_info",
 		"sound_permutation_language_info",
-		4294901760,
+		65535,
 		sound_permutation_language_info);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_pitch_range_language_info_block,
 		"sound_pitch_range_language_info",
 		"sound_pitch_range_language_info",
-		4294901760,
+		65535,
 		sound_pitch_range_language_info);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_language_info_block_block,
 		"sound_language_info_block",
 		"sound_language_info_block",
-		201326592,
+		12,
 		sound_language_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_response_definition_block_block,
 		"sound_response_definition_block",
 		"sound_response_definition_block",
-		167772160,
+		10,
 		sound_response_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_engine_event_block_block,
 		"game_engine_event_block",
 		"game_engine_event_block",
-		3892510720,
+		1000,
 		game_engine_event_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_incident_daily_challenge_to_increment_block_block,
 		"game_incident_daily_challenge_to_increment_block",
 		"game_incident_daily_challenge_to_increment_block",
-		1073741824,
+		64,
 		game_incident_daily_challenge_to_increment_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		game_incident_response_block_block,
 		"game_incident_response_block",
 		"game_incident_response_block",
-		536870912,
+		32,
 		game_incident_response_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_data_block_def_block,
 		"bitmap_data_block_def",
 		"bitmap_data_block_def",
-		256,
+		65536,
 		bitmap_data_block_def);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_tight_bounds_block_def_block,
 		"bitmap_tight_bounds_block_def",
 		"bitmap_tight_bounds_block_def",
-		134217728,
+		8,
 		bitmap_tight_bounds_block_def);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_group_sprite_block_def_block,
 		"bitmap_group_sprite_block_def",
 		"bitmap_group_sprite_block_def",
-		2147483648,
+		128,
 		bitmap_group_sprite_block_def);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		bitmap_group_sequence_block_def_block,
 		"bitmap_group_sequence_block_def",
 		"bitmap_group_sequence_block_def",
-		65536,
+		256,
 		bitmap_group_sequence_block_def);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_voice_region_permutation_filter_block_block,
 		"character_voice_region_permutation_filter_block",
 		"character_voice_region_permutation_filter_block",
-		536870912,
+		32,
 		character_voice_region_permutation_filter_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_voice_region_filter_block_block,
 		"character_voice_region_filter_block",
 		"character_voice_region_filter_block",
-		268435456,
+		16,
 		character_voice_region_filter_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_voice_block_block,
 		"character_voice_block",
 		"character_voice_block",
-		1073741824,
+		64,
 		character_voice_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_variants_block_block,
 		"character_variants_block",
 		"character_variants_block",
-		1073741824,
+		64,
 		character_variants_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_voice_properties_block_block,
 		"character_voice_properties_block",
 		"character_voice_properties_block",
-		16777216,
+		1,
 		character_voice_properties_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		disallowed_weapons_for_trading_block_block,
 		"disallowed_weapons_for_trading_block",
 		"disallowed_weapons_for_trading_block",
-		536870912,
+		32,
 		disallowed_weapons_for_trading_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_general_block_block,
 		"character_general_block",
 		"character_general_block",
-		16777216,
+		1,
 		character_general_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_interact_block_block,
 		"character_interact_block",
 		"character_interact_block",
-		16777216,
+		1,
 		character_interact_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_emotions_situational_danger_block_block,
 		"character_emotions_situational_danger_block",
 		"character_emotions_situational_danger_block",
-		234881024,
+		14,
 		character_emotions_situational_danger_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_emotions_block_block,
 		"character_emotions_block",
 		"character_emotions_block",
-		16777216,
+		1,
 		character_emotions_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_placement_block_block,
 		"character_placement_block",
 		"character_placement_block",
-		16777216,
+		1,
 		character_placement_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_vitality_block_block,
 		"character_vitality_block",
 		"character_vitality_block",
-		16777216,
+		1,
 		character_vitality_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_perception_block_block,
 		"character_perception_block",
 		"character_perception_block",
-		134217728,
+		8,
 		character_perception_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_target_block_block,
 		"character_target_block",
 		"character_target_block",
-		16777216,
+		1,
 		character_target_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_look_block_block,
 		"character_look_block",
 		"character_look_block",
-		16777216,
+		1,
 		character_look_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		movement_stationary_pause_block_block,
 		"movement_stationary_pause_block",
 		"movement_stationary_pause_block",
-		134217728,
+		8,
 		movement_stationary_pause_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		movement_throttle_block_block,
 		"movement_throttle_block",
 		"movement_throttle_block",
-		268435456,
+		16,
 		movement_throttle_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		movement_throttle_control_block_block,
 		"movement_throttle_control_block",
 		"movement_throttle_control_block",
-		167772160,
+		10,
 		movement_throttle_control_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_movement_block_block,
 		"character_movement_block",
 		"character_movement_block",
-		16777216,
+		1,
 		character_movement_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_throttle_style_block_block,
 		"character_throttle_style_block",
 		"character_throttle_style_block",
-		65536,
+		256,
 		character_throttle_style_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		movement_mapping_block_block,
 		"movement_mapping_block",
 		"movement_mapping_block",
-		134217728,
+		8,
 		movement_mapping_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_movement_set_block_block,
 		"character_movement_set_block",
 		"character_movement_set_block",
-		134217728,
+		8,
 		character_movement_set_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_flocking_block_block,
 		"character_flocking_block",
 		"character_flocking_block",
-		16777216,
+		1,
 		character_flocking_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_swarm_block_block,
 		"character_swarm_block",
 		"character_swarm_block",
-		16777216,
+		1,
 		character_swarm_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		evaluator_definition_block_block,
 		"evaluator_definition_block",
 		"evaluator_definition_block",
-		973078528,
+		58,
 		evaluator_definition_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_firing_point_evaluator_block_block,
 		"character_firing_point_evaluator_block",
 		"character_firing_point_evaluator_block",
-		150994944,
+		9,
 		character_firing_point_evaluator_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_engage_block_block,
 		"character_engage_block",
 		"character_engage_block",
-		16777216,
+		1,
 		character_engage_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_evasion_block_block,
 		"character_evasion_block",
 		"character_evasion_block",
-		16777216,
+		1,
 		character_evasion_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_cover_block_block,
 		"character_cover_block",
 		"character_cover_block",
-		16777216,
+		1,
 		character_cover_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_search_block_block,
 		"character_search_block",
 		"character_search_block",
-		16777216,
+		1,
 		character_search_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_presearch_block_block,
 		"character_presearch_block",
 		"character_presearch_block",
-		16777216,
+		1,
 		character_presearch_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_retreat_block_block,
 		"character_retreat_block",
 		"character_retreat_block",
-		16777216,
+		1,
 		character_retreat_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_charge_difficulty_limits_block_block,
 		"character_charge_difficulty_limits_block",
 		"character_charge_difficulty_limits_block",
-		67108864,
+		4,
 		character_charge_difficulty_limits_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_charge_block_block,
 		"character_charge_block",
 		"character_charge_block",
-		16777216,
+		1,
 		character_charge_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_ready_block_block,
 		"character_ready_block",
 		"character_ready_block",
-		16777216,
+		1,
 		character_ready_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_weapons_block_block,
 		"character_weapons_block",
 		"character_weapons_block",
-		1677721600,
+		100,
 		character_weapons_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_firing_pattern_block_block,
 		"character_firing_pattern_block",
 		"character_firing_pattern_block",
-		67108864,
+		4,
 		character_firing_pattern_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_firing_pattern_properties_block_block,
 		"character_firing_pattern_properties_block",
 		"character_firing_pattern_properties_block",
-		1677721600,
+		100,
 		character_firing_pattern_properties_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_grenades_block_block,
 		"character_grenades_block",
 		"character_grenades_block",
-		167772160,
+		10,
 		character_grenades_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_vehicle_block_block,
 		"character_vehicle_block",
 		"character_vehicle_block",
-		1677721600,
+		100,
 		character_vehicle_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_flying_movement_block_block,
 		"character_flying_movement_block",
 		"character_flying_movement_block",
-		536870912,
+		32,
 		character_flying_movement_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_idle_block_block,
 		"character_idle_block",
 		"character_idle_block",
-		16777216,
+		1,
 		character_idle_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_vocalization_block_block,
 		"character_vocalization_block",
 		"character_vocalization_block",
-		16777216,
+		1,
 		character_vocalization_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_vehicle_boarding_block_block,
 		"character_vehicle_boarding_block",
 		"character_vehicle_boarding_block",
-		536870912,
+		32,
 		character_vehicle_boarding_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_boarding_block_block,
 		"character_boarding_block",
 		"character_boarding_block",
-		16777216,
+		1,
 		character_boarding_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_kungfu_block_block,
 		"character_kungfu_block",
 		"character_kungfu_block",
-		16777216,
+		1,
 		character_kungfu_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_bunker_block_block,
 		"character_bunker_block",
 		"character_bunker_block",
-		16777216,
+		1,
 		character_bunker_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_guardian_block_block,
 		"character_guardian_block",
 		"character_guardian_block",
-		16777216,
+		1,
 		character_guardian_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_combatform_block_block,
 		"character_combatform_block",
 		"character_combatform_block",
-		16777216,
+		1,
 		character_combatform_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_engineer_block_block,
 		"character_engineer_block",
 		"character_engineer_block",
-		16777216,
+		1,
 		character_engineer_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_inspect_block_block,
 		"character_inspect_block",
 		"character_inspect_block",
-		16777216,
+		1,
 		character_inspect_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_scarab_block_block,
 		"character_scarab_block",
 		"character_scarab_block",
-		16777216,
+		1,
 		character_scarab_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_morph_block_block,
 		"character_morph_block",
 		"character_morph_block",
-		16777216,
+		1,
 		character_morph_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_equipment_usage_block_block,
 		"character_equipment_usage_block",
 		"character_equipment_usage_block",
-		134217728,
+		8,
 		character_equipment_usage_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_equipment_block_block,
 		"character_equipment_block",
 		"character_equipment_block",
-		134217728,
+		8,
 		character_equipment_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_stimuli_response_block_block,
 		"character_stimuli_response_block",
 		"character_stimuli_response_block",
-		268435456,
+		16,
 		character_stimuli_response_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_activity_object_block_block,
 		"character_activity_object_block",
 		"character_activity_object_block",
-		536870912,
+		32,
 		character_activity_object_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_pain_screen_block_block,
 		"character_pain_screen_block",
 		"character_pain_screen_block",
-		16777216,
+		1,
 		character_pain_screen_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_block_group_block,
 		"character_block",
 		"character_block",
-		16777216,
+		1,
 		character_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_globals_gravemind_block_block,
 		"ai_globals_gravemind_block",
 		"ai_globals_gravemind_block",
-		16777216,
+		1,
 		ai_globals_gravemind_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_globals_formation_block_block,
 		"ai_globals_formation_block",
 		"ai_globals_formation_block",
-		2147483648,
+		128,
 		ai_globals_formation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_globals_squad_template_block_block,
 		"ai_globals_squad_template_block",
 		"ai_globals_squad_template_block",
-		2147483648,
+		128,
 		ai_globals_squad_template_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_globals_squad_template_sub_folder_block_block,
 		"ai_globals_squad_template_sub_folder_block",
 		"ai_globals_squad_template_sub_folder_block",
-		536870912,
+		32,
 		ai_globals_squad_template_sub_folder_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_globals_squad_template_folder_block_block,
 		"ai_globals_squad_template_folder_block",
 		"ai_globals_squad_template_folder_block",
-		536870912,
+		32,
 		ai_globals_squad_template_folder_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_globals_performance_template_block_block,
 		"ai_globals_performance_template_block",
 		"ai_globals_performance_template_block",
-		2147483648,
+		128,
 		ai_globals_performance_template_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_globals_performance_template_sub_folder_block_block,
 		"ai_globals_performance_template_sub_folder_block",
 		"ai_globals_performance_template_sub_folder_block",
-		536870912,
+		32,
 		ai_globals_performance_template_sub_folder_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_globals_performance_template_folder_block_block,
 		"ai_globals_performance_template_folder_block",
 		"ai_globals_performance_template_folder_block",
-		536870912,
+		32,
 		ai_globals_performance_template_folder_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_globals_custom_stimuli_block_block,
 		"ai_globals_custom_stimuli_block",
 		"ai_globals_custom_stimuli_block",
-		2147483648,
+		128,
 		ai_globals_custom_stimuli_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_trait_vision_block_block,
 		"ai_trait_vision_block",
 		"ai_trait_vision_block",
-		50331648,
+		3,
 		ai_trait_vision_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_trait_sound_block_block,
 		"ai_trait_sound_block",
 		"ai_trait_sound_block",
-		33554432,
+		2,
 		ai_trait_sound_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_trait_luck_block_block,
 		"ai_trait_luck_block",
 		"ai_trait_luck_block",
-		50331648,
+		3,
 		ai_trait_luck_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_trait_grenade_block_block,
 		"ai_trait_grenade_block",
 		"ai_trait_grenade_block",
-		33554432,
+		2,
 		ai_trait_grenade_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_globals_data_block_block,
 		"ai_globals_data_block",
 		"ai_globals_data_block",
-		16777216,
+		1,
 		ai_globals_data_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_globals_block_group_block,
 		"ai_globals_block",
 		"ai_globals_block",
-		16777216,
+		1,
 		ai_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_palette_block_block,
 		"character_palette_block",
 		"character_palette_block",
-		1073741824,
+		64,
 		character_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		big_battle_creature_palette_block_block,
 		"big_battle_creature_palette_block",
 		"big_battle_creature_palette_block",
-		65536,
+		256,
 		big_battle_creature_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_recording_reference_block_block,
 		"ai_recording_reference_block",
 		"ai_recording_reference_block",
-		2147483648,
+		128,
 		ai_recording_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_line_segment_block_block,
 		"user_hint_line_segment_block",
 		"user_hint_line_segment_block",
-		3892510720,
+		1000,
 		user_hint_line_segment_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_parallelogram_block_block,
 		"user_hint_parallelogram_block",
 		"user_hint_parallelogram_block",
-		3892510720,
+		1000,
 		user_hint_parallelogram_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_jump_block_block,
 		"user_hint_jump_block",
 		"user_hint_jump_block",
-		3892510720,
+		1000,
 		user_hint_jump_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_climb_block_block,
 		"user_hint_climb_block",
 		"user_hint_climb_block",
-		3355443200,
+		200,
 		user_hint_climb_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_well_point_block_block,
 		"user_hint_well_point_block",
 		"user_hint_well_point_block",
-		3892510720,
+		1000,
 		user_hint_well_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_well_block_block,
 		"user_hint_well_block",
 		"user_hint_well_block",
-		3892510720,
+		1000,
 		user_hint_well_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_flight_point_block_block,
 		"user_hint_flight_point_block",
 		"user_hint_flight_point_block",
-		167772160,
+		10,
 		user_hint_flight_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_flight_block_block,
 		"user_hint_flight_block",
 		"user_hint_flight_block",
-		65536,
+		256,
 		user_hint_flight_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_volume_avoidance_block,
 		"user_hint_volume_avoidance",
 		"user_hint_volume_avoidance",
-		131072,
+		512,
 		user_hint_volume_avoidance_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_spline_control_point_block_block,
 		"user_hint_spline_control_point_block",
 		"user_hint_spline_control_point_block",
-		536870912,
+		32,
 		user_hint_spline_control_point_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_spline_intersect_point_block_block,
 		"user_hint_spline_intersect_point_block",
 		"user_hint_spline_intersect_point_block",
-		33554432,
+		2,
 		user_hint_spline_intersect_point_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_spline_block_block,
 		"user_hint_spline_block",
 		"user_hint_spline_block",
-		65536,
+		256,
 		user_hint_spline_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_sector_point_block_block,
 		"user_hint_sector_point_block",
 		"user_hint_sector_point_block",
-		536870912,
+		32,
 		user_hint_sector_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_cookie_cutter_block_block,
 		"user_hint_cookie_cutter_block",
 		"user_hint_cookie_cutter_block",
-		131072,
+		512,
 		user_hint_cookie_cutter_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_flood_sector_block_block,
 		"user_hint_flood_sector_block",
 		"user_hint_flood_sector_block",
-		3892510720,
+		1000,
 		user_hint_flood_sector_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_giant_sector_block_block,
 		"user_hint_giant_sector_block",
 		"user_hint_giant_sector_block",
-		3892510720,
+		1000,
 		user_hint_giant_sector_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_giant_rail_block_block,
 		"user_hint_giant_rail_block",
 		"user_hint_giant_rail_block",
-		3892510720,
+		1000,
 		user_hint_giant_rail_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_flood_block_block,
 		"user_hint_flood_block",
 		"user_hint_flood_block",
-		16777216,
+		1,
 		user_hint_flood_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_giant_block_block,
 		"user_hint_giant_block",
 		"user_hint_giant_block",
-		16777216,
+		1,
 		user_hint_giant_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_hint_block_block,
 		"user_hint_block",
 		"user_hint_block",
-		16777216,
+		1,
 		user_hint_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pathfinding_hints_block_block,
 		"pathfinding_hints_block",
 		"pathfinding_hints_block",
-		4286513152,
+		32767,
 		pathfinding_hints_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		special_movement_block_block,
 		"special_movement_block",
 		"special_movement_block",
-		16777216,
+		1,
 		special_movement_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_reference_frame_block_block,
 		"ai_reference_frame_block",
 		"ai_reference_frame_block",
-		2516582400,
+		150,
 		ai_reference_frame_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		wave_squad_specification_struct_block,
 		"wave_squad_specification_struct",
 		"wave_squad_specification_struct",
-		268435456,
+		16,
 		wave_squad_specification_struct_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		wave_template_block_group_block,
 		"wave_template_block",
 		"wave_template_block",
-		16777216,
+		1,
 		wave_template_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		patrol_point_block_block,
 		"patrol_point_block",
 		"patrol_point_block",
-		536870912,
+		32,
 		patrol_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		spawn_points_block_block,
 		"spawn_points_block",
 		"spawn_points_block",
-		2147483648,
+		128,
 		spawn_points_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		spawn_formation_block_block,
 		"spawn_formation_block",
 		"spawn_formation_block",
-		134217728,
+		8,
 		spawn_formation_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_palette_choice_block_block,
 		"character_palette_choice_block",
 		"character_palette_choice_block",
-		134217728,
+		8,
 		character_palette_choice_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_palette_choice_block_block,
 		"weapon_palette_choice_block",
 		"weapon_palette_choice_block",
-		134217728,
+		8,
 		weapon_palette_choice_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_palette_choice_block_block,
 		"equipment_palette_choice_block",
 		"equipment_palette_choice_block",
-		134217728,
+		8,
 		equipment_palette_choice_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cell_block_block,
 		"cell_block",
 		"cell_block",
-		167772160,
+		10,
 		cell_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		squad_groups_block_block,
 		"squad_groups_block",
 		"squad_groups_block",
-		2181038080,
+		130,
 		squad_groups_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		squads_block_block,
 		"squads_block",
 		"squads_block",
-		65536,
+		256,
 		squads_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_ref_choice_block_block,
 		"character_ref_choice_block",
 		"character_ref_choice_block",
-		134217728,
+		8,
 		character_ref_choice_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_ref_choice_block_block,
 		"weapon_ref_choice_block",
 		"weapon_ref_choice_block",
-		134217728,
+		8,
 		weapon_ref_choice_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		equipment_ref_choice_block_block,
 		"equipment_ref_choice_block",
 		"equipment_ref_choice_block",
-		134217728,
+		8,
 		equipment_ref_choice_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cell_template_block_block,
 		"cell_template_block",
 		"cell_template_block",
-		167772160,
+		10,
 		cell_template_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		squad_template_block_group_block,
 		"squad_template_block",
 		"squad_template_block",
-		16777216,
+		1,
 		squad_template_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		formation_point_definition_block,
 		"formation_point_definition",
 		"formation_point_definition",
-		134217728,
+		8,
 		formation_point_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		formation_primitive_definition_block,
 		"formation_primitive_definition",
 		"formation_primitive_definition",
-		67108864,
+		4,
 		formation_primitive_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		formation_block_group_block,
 		"formation_block",
 		"formation_block",
-		16777216,
+		1,
 		formation_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		flock_palette_block_block,
 		"flock_palette_block",
 		"flock_palette_block",
-		838860800,
+		50,
 		flock_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		flock_source_block_block,
 		"flock_source_block",
 		"flock_source_block",
-		167772160,
+		10,
 		flock_source_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		flock_destination_block_block,
 		"flock_destination_block",
 		"flock_destination_block",
-		167772160,
+		10,
 		flock_destination_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		flock_instance_block_block,
 		"flock_instance_block",
 		"flock_instance_block",
-		838860800,
+		50,
 		flock_instance_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		flock_block_group_block,
 		"flock_block",
 		"flock_block",
-		16777216,
+		1,
 		flock_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		mission_dialogue_variants_block_block,
 		"mission_dialogue_variants_block",
 		"mission_dialogue_variants_block",
-		167772160,
+		10,
 		mission_dialogue_variants_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		mission_dialogue_lines_block_block,
 		"mission_dialogue_lines_block",
 		"mission_dialogue_lines_block",
-		4093706240,
+		500,
 		mission_dialogue_lines_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_mission_dialogue_block_group_block,
 		"ai_mission_dialogue_block",
 		"ai_mission_dialogue_block",
-		16777216,
+		1,
 		ai_mission_dialogue_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_scene_role_variants_block_block,
 		"ai_scene_role_variants_block",
 		"ai_scene_role_variants_block",
-		167772160,
+		10,
 		ai_scene_role_variants_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_scene_role_block_block,
 		"ai_scene_role_block",
 		"ai_scene_role_block",
-		167772160,
+		10,
 		ai_scene_role_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_scene_trigger_block_block,
 		"ai_scene_trigger_block",
 		"ai_scene_trigger_block",
-		16777216,
+		1,
 		ai_scene_trigger_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_scene_block_block,
 		"ai_scene_block",
 		"ai_scene_block",
-		1677721600,
+		100,
 		ai_scene_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_scenario_mission_dialogue_block_block,
 		"ai_scenario_mission_dialogue_block",
 		"ai_scenario_mission_dialogue_block",
-		16777216,
+		1,
 		ai_scenario_mission_dialogue_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		response_block_block,
 		"response_block",
 		"response_block",
-		335544320,
+		20,
 		response_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vocalization_definitions_block_block,
 		"vocalization_definitions_block",
 		"vocalization_definitions_block",
-		4093706240,
+		500,
 		vocalization_definitions_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vocalization_patterns_block_block,
 		"vocalization_patterns_block",
 		"vocalization_patterns_block",
-		3892510720,
+		1000,
 		vocalization_patterns_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		dialogue_data_block_block,
 		"dialogue_data_block",
 		"dialogue_data_block",
-		2617245696,
+		156,
 		dialogue_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		involuntary_data_block_block,
 		"involuntary_data_block",
 		"involuntary_data_block",
-		1677721600,
+		100,
 		involuntary_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		predicted_data_block_block,
 		"predicted_data_block",
 		"predicted_data_block",
-		536870912,
+		32,
 		predicted_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		default_stimulus_suppressor_block_block,
 		"default_stimulus_suppressor_block",
 		"default_stimulus_suppressor_block",
-		67108864,
+		4,
 		default_stimulus_suppressor_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_dialogue_globals_block_group_block,
 		"ai_dialogue_globals_block",
 		"ai_dialogue_globals_block",
-		16777216,
+		1,
 		ai_dialogue_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		behavior_names_block_block,
 		"behavior_names_block",
 		"behavior_names_block",
-		65536,
+		256,
 		behavior_names_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		style_block_group_block,
 		"style_block",
 		"style_block",
-		16777216,
+		1,
 		style_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		style_palette_block_block,
 		"style_palette_block",
 		"style_palette_block",
-		838860800,
+		50,
 		style_palette_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		order_completion_condition_block,
 		"order_completion_condition",
 		"order_completion_condition",
-		83886080,
+		5,
 		order_completion_condition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		triggers_block_block,
 		"triggers_block",
 		"triggers_block",
-		65536,
+		256,
 		triggers_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		trigger_references_block,
 		"trigger_references",
 		"trigger_references",
-		167772160,
+		10,
 		trigger_references);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		secondary_set_trigger_block_block,
 		"secondary_set_trigger_block",
 		"secondary_set_trigger_block",
-		16777216,
+		1,
 		secondary_set_trigger_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		order_ending_block_block,
 		"order_ending_block",
 		"order_ending_block",
-		201326592,
+		12,
 		order_ending_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		orders_block_block,
 		"orders_block",
 		"orders_block",
-		738263040,
+		300,
 		orders_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cs_point_block_block,
 		"cs_point_block",
 		"cs_point_block",
-		536870912,
+		32,
 		cs_point_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cs_point_set_block_block,
 		"cs_point_set_block",
 		"cs_point_set_block",
-		3355443200,
+		200,
 		cs_point_set_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cs_script_data_block_block,
 		"cs_script_data_block",
 		"cs_script_data_block",
-		16777216,
+		1,
 		cs_script_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sector_link_block_block,
 		"sector_link_block",
 		"sector_link_block",
-		10240,
+		2621440,
 		sector_link_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sector_vertex_block_block,
 		"sector_vertex_block",
 		"sector_vertex_block",
-		4294901760,
+		65535,
 		sector_vertex_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sector_block_block,
 		"sector_block",
 		"sector_block",
-		4278124544,
+		65534,
 		sector_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ref_block_block,
 		"ref_block",
 		"ref_block",
-		4177462016,
+		262136,
 		ref_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sector_bsp2d_nodes_block_block,
 		"sector_bsp2d_nodes_block",
 		"sector_bsp2d_nodes_block",
-		4294967071,
+		536870911,
 		sector_bsp2d_nodes_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		environment_object_bsp_refs_block,
 		"environment_object_bsp_refs",
 		"environment_object_bsp_refs",
-		262144,
+		1024,
 		environment_object_bsp_refs);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		environment_object_refs_block,
 		"environment_object_refs",
 		"environment_object_refs",
-		2097152,
+		8192,
 		environment_object_refs);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		instanced_geometry_reference_block_block,
 		"instanced_geometry_reference_block",
 		"instanced_geometry_reference_block",
-		2097152,
+		8192,
 		instanced_geometry_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		giant_pathfinding_data_block_block,
 		"giant_pathfinding_data_block",
 		"giant_pathfinding_data_block",
-		16777216,
+		1,
 		giant_pathfinding_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pf_seam_link_block_block,
 		"pf_seam_link_block",
 		"pf_seam_link_block",
-		4286513152,
+		32767,
 		pf_seam_link_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pf_seam_block_block,
 		"pf_seam_block",
 		"pf_seam_block",
-		2147483648,
+		128,
 		pf_seam_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pf_jump_index_block_block,
 		"pf_jump_index_block",
 		"pf_jump_index_block",
-		201326592,
+		12,
 		pf_jump_index_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pf_jump_seam_block_block,
 		"pf_jump_seam_block",
 		"pf_jump_seam_block",
-		1677721600,
+		100,
 		pf_jump_seam_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pf_door_block_block,
 		"pf_door_block",
 		"pf_door_block",
-		2415984640,
+		400,
 		pf_door_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pathfinding_data_block_block,
 		"pathfinding_data_block",
 		"pathfinding_data_block",
-		268435456,
+		16,
 		pathfinding_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		firing_point_payload_block_block,
 		"firing_point_payload_block",
 		"firing_point_payload_block",
-		16777216,
+		1,
 		firing_point_payload_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		script_payload_block_block,
 		"script_payload_block",
 		"script_payload_block",
-		16777216,
+		1,
 		script_payload_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		combat_sync_action_group_payload_block_block,
 		"combat_sync_action_group_payload_block",
 		"combat_sync_action_group_payload_block",
-		16777216,
+		1,
 		combat_sync_action_group_payload_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		stimulus_payload_block_block,
 		"stimulus_payload_block",
 		"stimulus_payload_block",
-		16777216,
+		1,
 		stimulus_payload_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		combat_cue_payload_block_block,
 		"combat_cue_payload_block",
 		"combat_cue_payload_block",
-		16777216,
+		1,
 		combat_cue_payload_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		task_distribution_block_block,
 		"task_distribution_block",
 		"task_distribution_block",
-		268435456,
+		16,
 		task_distribution_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		radial_distribution_block_block,
 		"radial_distribution_block",
 		"radial_distribution_block",
-		16777216,
+		1,
 		radial_distribution_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		probability_distribution_block_block,
 		"probability_distribution_block",
 		"probability_distribution_block",
-		16777216,
+		1,
 		probability_distribution_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		character_distribution_block_block,
 		"character_distribution_block",
 		"character_distribution_block",
-		134217728,
+		8,
 		character_distribution_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		weapon_distribution_block_block,
 		"weapon_distribution_block",
 		"weapon_distribution_block",
-		134217728,
+		8,
 		weapon_distribution_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_cue_block_block,
 		"ai_cue_block",
 		"ai_cue_block",
-		65536,
+		256,
 		ai_cue_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_full_cue_block_block,
 		"ai_full_cue_block",
 		"ai_full_cue_block",
-		65536,
+		256,
 		ai_full_cue_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_quick_cue_block_block,
 		"ai_quick_cue_block",
 		"ai_quick_cue_block",
-		65536,
+		256,
 		ai_quick_cue_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		ai_cue_template_block_block,
 		"ai_cue_template_block",
 		"ai_cue_template_block",
-		268435456,
+		16,
 		ai_cue_template_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		squad_patrol_member_block_block,
 		"squad_patrol_member_block",
 		"squad_patrol_member_block",
-		1073741824,
+		64,
 		squad_patrol_member_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		squad_patrol_point_block_block,
 		"squad_patrol_point_block",
 		"squad_patrol_point_block",
-		805306368,
+		48,
 		squad_patrol_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		squad_patrol_waypoint_block_block,
 		"squad_patrol_waypoint_block",
 		"squad_patrol_waypoint_block",
-		167772160,
+		10,
 		squad_patrol_waypoint_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		squad_patrol_transition_block_block,
 		"squad_patrol_transition_block",
 		"squad_patrol_transition_block",
-		65536,
+		256,
 		squad_patrol_transition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		squad_patrol_block_block,
 		"squad_patrol_block",
 		"squad_patrol_block",
-		268435456,
+		16,
 		squad_patrol_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		flight_reference_block_block,
 		"flight_reference_block",
 		"flight_reference_block",
-		167772160,
+		10,
 		flight_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		area_sector_point_block_block,
 		"area_sector_point_block",
 		"area_sector_point_block",
-		536870912,
+		32,
 		area_sector_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		areas_block_block,
 		"areas_block",
 		"areas_block",
-		2147483648,
+		128,
 		areas_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		zone_block_block,
 		"zone_block",
 		"zone_block",
-		2147483648,
+		128,
 		zone_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		script_fragment_block_block,
 		"script_fragment_block",
 		"script_fragment_block",
-		16777216,
+		1,
 		script_fragment_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		task_direction_point_block_block,
 		"task_direction_point_block",
 		"task_direction_point_block",
-		134217728,
+		8,
 		task_direction_point_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		task_direction_block_v2_block,
 		"task_direction_block_v2",
 		"task_direction_block_v2",
-		16777216,
+		1,
 		task_direction_block_v2_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		zone_set_block_block,
 		"zone_set_block",
 		"zone_set_block",
-		1073741824,
+		64,
 		zone_set_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		tasks_block_block,
 		"tasks_block",
 		"tasks_block",
-		1677721600,
+		100,
 		tasks_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		opposing_objective_block_block,
 		"opposing_objective_block",
 		"opposing_objective_block",
-		67108864,
+		4,
 		opposing_objective_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		objectives_block_block,
 		"objectives_block",
 		"objectives_block",
-		1073741824,
+		64,
 		objectives_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		firing_positions_block_block,
 		"firing_positions_block",
 		"firing_positions_block",
-		524288,
+		2048,
 		firing_positions_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		emblem_bitmap_list_block,
 		"emblem_bitmap_list",
 		"emblem_bitmap_list",
-		65536,
+		256,
 		emblem_bitmap_list);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		emblem_shape_list_block,
 		"emblem_shape_list",
 		"emblem_shape_list",
-		131072,
+		512,
 		emblem_shape_list);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		emblem_front_list_block,
 		"emblem_front_list",
 		"emblem_front_list",
-		65536,
+		256,
 		emblem_front_list);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		emblem_back_list_block,
 		"emblem_back_list",
 		"emblem_back_list",
-		65536,
+		256,
 		emblem_back_list);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		emblem_runtime_back_list_block,
 		"emblem_runtime_back_list",
 		"emblem_runtime_back_list",
-		65536,
+		256,
 		emblem_runtime_back_list);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		emblem_runtime_front_list_block,
 		"emblem_runtime_front_list",
 		"emblem_runtime_front_list",
-		65536,
+		256,
 		emblem_runtime_front_list);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		emblem_library_block_group_block,
 		"emblem_library_block",
 		"emblem_library_block",
-		16777216,
+		1,
 		emblem_library_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_state_or_block_block,
 		"chud_widget_state_or_block",
 		"chud_widget_state_or_block",
-		167772160,
+		10,
 		chud_widget_state_or_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_state_and_block_block,
 		"chud_widget_state_and_block",
 		"chud_widget_state_and_block",
-		167772160,
+		10,
 		chud_widget_state_and_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_state_editor_block_block,
 		"chud_widget_state_editor_block",
 		"chud_widget_state_editor_block",
-		3826188288,
+		4068,
 		chud_widget_state_editor_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_state_data_base_block_block,
 		"chud_widget_state_data_base_block",
 		"chud_widget_state_data_base_block",
-		16777216,
+		1,
 		chud_widget_state_data_base_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_state_data_template_block_group_block,
 		"chud_widget_state_data_template_block",
 		"chud_widget_state_data_template_block",
-		16777216,
+		1,
 		chud_widget_state_data_template_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_placement_data_base_block_block,
 		"chud_widget_placement_data_base_block",
 		"chud_widget_placement_data_base_block",
-		83886080,
+		5,
 		chud_widget_placement_data_base_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_placement_data_template_block_group_block,
 		"chud_widget_placement_data_template_block",
 		"chud_widget_placement_data_template_block",
-		16777216,
+		1,
 		chud_widget_placement_data_template_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_datasource_position_block_block,
 		"chud_datasource_position_block",
 		"chud_datasource_position_block",
-		536870912,
+		32,
 		chud_datasource_position_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_datasource_resolution_block_block,
 		"chud_datasource_resolution_block",
 		"chud_datasource_resolution_block",
-		83886080,
+		5,
 		chud_datasource_resolution_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_datasource_base_block_block,
 		"chud_widget_datasource_base_block",
 		"chud_widget_datasource_base_block",
-		16777216,
+		1,
 		chud_widget_datasource_base_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_datasource_template_block_group_block,
 		"chud_widget_datasource_template_block",
 		"chud_widget_datasource_template_block",
-		16777216,
+		1,
 		chud_widget_datasource_template_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_render_data_base_block_block,
 		"chud_widget_render_data_base_block",
 		"chud_widget_render_data_base_block",
-		16777216,
+		1,
 		chud_widget_render_data_base_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_render_data_template_block_group_block,
 		"chud_widget_render_data_template_block",
 		"chud_widget_render_data_template_block",
-		16777216,
+		1,
 		chud_widget_render_data_template_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_animation_data_base_block_block,
 		"chud_widget_animation_data_base_block",
 		"chud_widget_animation_data_base_block",
-		33554432,
+		2,
 		chud_widget_animation_data_base_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_animation_data_template_block_group_block,
 		"chud_widget_animation_data_template_block",
 		"chud_widget_animation_data_template_block",
-		16777216,
+		1,
 		chud_widget_animation_data_template_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_bitmap_block_block,
 		"chud_widget_bitmap_block",
 		"chud_widget_bitmap_block",
-		536870912,
+		32,
 		chud_widget_bitmap_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_text_block_block,
 		"chud_widget_text_block",
 		"chud_widget_text_block",
-		1006632960,
+		60,
 		chud_widget_text_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_object_highlight_block_block,
 		"chud_widget_object_highlight_block",
 		"chud_widget_object_highlight_block",
-		67108864,
+		4,
 		chud_widget_object_highlight_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_collection_block_block,
 		"chud_widget_collection_block",
 		"chud_widget_collection_block",
-		536870912,
+		32,
 		chud_widget_collection_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_widget_update_cache_block_block,
 		"chud_widget_update_cache_block",
 		"chud_widget_update_cache_block",
-		4194304000,
+		250,
 		chud_widget_update_cache_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_definition_block_group_block,
 		"chud_definition_block",
 		"chud_definition_block",
-		16777216,
+		1,
 		chud_definition_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_keyframe_position_block_block,
 		"chud_keyframe_position_block",
 		"chud_keyframe_position_block",
-		536870912,
+		32,
 		chud_keyframe_position_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_keyframe_rotation_block_block,
 		"chud_keyframe_rotation_block",
 		"chud_keyframe_rotation_block",
-		536870912,
+		32,
 		chud_keyframe_rotation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_keyframe_scale_block_block,
 		"chud_keyframe_scale_block",
 		"chud_keyframe_scale_block",
-		536870912,
+		32,
 		chud_keyframe_scale_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_keyframe_color_block_block,
 		"chud_keyframe_color_block",
 		"chud_keyframe_color_block",
-		536870912,
+		32,
 		chud_keyframe_color_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_keyframe_scalar_block_block,
 		"chud_keyframe_scalar_block",
 		"chud_keyframe_scalar_block",
-		536870912,
+		32,
 		chud_keyframe_scalar_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_keyframe_texture_block_block,
 		"chud_keyframe_texture_block",
 		"chud_keyframe_texture_block",
-		536870912,
+		32,
 		chud_keyframe_texture_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_keyframe_external_input_block_block,
 		"chud_keyframe_external_input_block",
 		"chud_keyframe_external_input_block",
-		536870912,
+		32,
 		chud_keyframe_external_input_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_position_block_block,
 		"chud_animation_position_block",
 		"chud_animation_position_block",
-		16777216,
+		1,
 		chud_animation_position_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_rotation_block_block,
 		"chud_animation_rotation_block",
 		"chud_animation_rotation_block",
-		16777216,
+		1,
 		chud_animation_rotation_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_scale_block_block,
 		"chud_animation_scale_block",
 		"chud_animation_scale_block",
-		16777216,
+		1,
 		chud_animation_scale_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_scalar_block_block,
 		"chud_animation_scalar_block",
 		"chud_animation_scalar_block",
-		16777216,
+		1,
 		chud_animation_scalar_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_texture_block_block,
 		"chud_animation_texture_block",
 		"chud_animation_texture_block",
-		16777216,
+		1,
 		chud_animation_texture_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_external_input_a_block_block,
 		"chud_animation_external_input_a_block",
 		"chud_animation_external_input_a_block",
-		16777216,
+		1,
 		chud_animation_external_input_a_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_external_input_b_block_block,
 		"chud_animation_external_input_b_block",
 		"chud_animation_external_input_b_block",
-		16777216,
+		1,
 		chud_animation_external_input_b_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_color_block_block,
 		"chud_animation_color_block",
 		"chud_animation_color_block",
-		16777216,
+		1,
 		chud_animation_color_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_animation_definition_block_group_block,
 		"chud_animation_definition_block",
 		"chud_animation_definition_block",
-		16777216,
+		1,
 		chud_animation_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_curvature_info_block_block,
 		"chud_curvature_info_block",
 		"chud_curvature_info_block",
-		1073741824,
+		64,
 		chud_curvature_info_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_sound_block_block,
 		"chud_sound_block",
 		"chud_sound_block",
-		268435456,
+		16,
 		chud_sound_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_scripted_object_priority_definition_block,
 		"chud_scripted_object_priority_definition",
 		"chud_scripted_object_priority_definition",
-		486539264,
+		29,
 		chud_scripted_object_priority_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_skin_info_block_block,
 		"chud_skin_info_block",
 		"chud_skin_info_block",
-		50331648,
+		3,
 		chud_skin_info_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_shader_block_block,
 		"chud_shader_block",
 		"chud_shader_block",
-		1073741824,
+		64,
 		chud_shader_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_suck_profile_block_block,
 		"chud_suck_profile_block",
 		"chud_suck_profile_block",
-		1073741824,
+		64,
 		chud_suck_profile_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_state_category_block_block,
 		"chud_state_category_block",
 		"chud_state_category_block",
-		1048576,
+		4096,
 		chud_state_category_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		chud_globals_definition_block_group_block,
 		"chud_globals_definition_block",
 		"chud_globals_definition_block",
-		16777216,
+		1,
 		chud_globals_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		property_long_value_block,
 		"property_long_value",
 		"property_long_value",
-		2097152,
+		8192,
 		property_long_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		property_real_value_block,
 		"property_real_value",
 		"property_real_value",
-		2097152,
+		8192,
 		property_real_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		property_string_id_value_block,
 		"property_string_id_value",
 		"property_string_id_value",
-		2097152,
+		8192,
 		property_string_id_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		property_tag_reference_value_block,
 		"property_tag_reference_value",
 		"property_tag_reference_value",
-		2097152,
+		8192,
 		property_tag_reference_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		property_text_value_block,
 		"property_text_value",
 		"property_text_value",
-		2097152,
+		8192,
 		property_text_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		property_argb_color_value_block,
 		"property_argb_color_value",
 		"property_argb_color_value",
-		2097152,
+		8192,
 		property_argb_color_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		property_binding_block,
 		"property_binding",
 		"property_binding",
-		2097152,
+		8192,
 		property_binding);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		binding_conversion_long_comparison_block_definition_block,
 		"binding_conversion_long_comparison_block_definition",
 		"binding_conversion_long_comparison_block_definition",
-		2097152,
+		8192,
 		binding_conversion_long_comparison_block_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_property_keyframe_real_value_block,
 		"animation_property_keyframe_real_value",
 		"animation_property_keyframe_real_value",
-		2097152,
+		8192,
 		animation_property_keyframe_real_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_property_keyframe_argb_color_value_block,
 		"animation_property_keyframe_argb_color_value",
 		"animation_property_keyframe_argb_color_value",
-		2097152,
+		8192,
 		animation_property_keyframe_argb_color_value);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_component_real_property_block,
 		"animation_component_real_property",
 		"animation_component_real_property",
-		2097152,
+		8192,
 		animation_component_real_property);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_component_argb_color_property_block,
 		"animation_component_argb_color_property",
 		"animation_component_argb_color_property",
-		2097152,
+		8192,
 		animation_component_argb_color_property);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_component_definition_block,
 		"animation_component_definition",
 		"animation_component_definition",
-		2097152,
+		8192,
 		animation_component_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_definition_block,
 		"animation_definition",
 		"animation_definition",
-		2097152,
+		8192,
 		animation_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		static_data_column_block,
 		"static_data_column",
 		"static_data_column",
-		2147483648,
+		128,
 		static_data_column);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		static_data_row_block,
 		"static_data_row",
 		"static_data_row",
-		65536,
+		256,
 		properties_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cui_static_data_block_group_block,
 		"cui_static_data_block",
 		"cui_static_data_block",
-		16777216,
+		1,
 		cui_static_data_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		static_data_table_block,
 		"static_data_table",
 		"static_data_table",
-		2147483648,
+		128,
 		static_data_table);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		expression_step_block,
 		"expression_step",
 		"expression_step",
-		536870912,
+		32,
 		expression_step);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		expression_block,
 		"expression",
 		"expression",
-		2147483648,
+		128,
 		expression);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		template_instantiation_block_definition_block,
 		"template_instantiation_block_definition",
 		"template_instantiation_block_definition",
-		2097152,
+		8192,
 		template_instantiation_block_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		component_definition_block,
 		"component_definition",
 		"component_definition",
-		2097152,
+		8192,
 		component_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		component_index_block_definition_block,
 		"component_index_block_definition",
 		"component_index_block_definition",
-		2097152,
+		8192,
 		component_index_block_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		component_properties_definition_block,
 		"component_properties_definition",
 		"component_properties_definition",
-		2097152,
+		8192,
 		component_properties_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		overlay_definition_block,
 		"overlay_definition",
 		"overlay_definition",
-		402653184,
+		24,
 		overlay_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		property_editor_only_definition_block,
 		"property_editor_only_definition",
 		"property_editor_only_definition",
-		2097152,
+		8192,
 		property_editor_only_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		component_editor_only_definition_block,
 		"component_editor_only_definition",
 		"component_editor_only_definition",
-		2097152,
+		8192,
 		component_editor_only_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		animation_editor_only_definition_block,
 		"animation_editor_only_definition",
 		"animation_editor_only_definition",
-		2097152,
+		8192,
 		animation_editor_only_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		overlay_editor_only_definition_block,
 		"overlay_editor_only_definition",
 		"overlay_editor_only_definition",
-		402653184,
+		24,
 		overlay_editor_only_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cui_screen_block_group_block,
 		"cui_screen_block",
 		"cui_screen_block",
-		16777216,
+		1,
 		cui_screen_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		color_presets_block_block,
 		"color_presets_block",
 		"color_presets_block",
-		1073741824,
+		64,
 		color_presets_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		color_list_block_block,
 		"color_list_block",
 		"color_list_block",
-		536870912,
+		32,
 		color_list_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		tint_colors_block_block,
 		"tint_colors_block",
 		"tint_colors_block",
-		16777216,
+		1,
 		tint_colors_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_alert_description_block_block,
 		"gui_alert_description_block",
 		"gui_alert_description_block",
-		131072,
+		512,
 		gui_alert_description_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		gui_dialog_description_block_block,
 		"gui_dialog_description_block",
 		"gui_dialog_description_block",
-		65536,
+		256,
 		gui_dialog_description_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_interface_sounds_definition_block_group_block,
 		"user_interface_sounds_definition_block",
 		"user_interface_sounds_definition_block",
-		16777216,
+		1,
 		user_interface_sounds_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pgcr_incident_block_block,
 		"pgcr_incident_block",
 		"pgcr_incident_block",
-		838860800,
+		50,
 		pgcr_incident_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pgcr_player_to_category_entry_block_block,
 		"pgcr_player_to_category_entry_block",
 		"pgcr_player_to_category_entry_block",
-		16777216,
+		1,
 		pgcr_player_to_category_entry_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pgcr_enemy_to_category_entry_block_block,
 		"pgcr_enemy_to_category_entry_block",
 		"pgcr_enemy_to_category_entry_block",
-		268435456,
+		16,
 		pgcr_enemy_to_category_entry_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pgcr_enemy_to_category_list_block_block,
 		"pgcr_enemy_to_category_list_block",
 		"pgcr_enemy_to_category_list_block",
-		2147483648,
+		128,
 		pgcr_enemy_to_category_list_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		pgcr_enemy_to_category_mapping_definition_block_group_block,
 		"pgcr_enemy_to_category_mapping_definition_block",
 		"pgcr_enemy_to_category_mapping_definition_block",
-		16777216,
+		1,
 		pgcr_enemy_to_category_mapping_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_interface_shared_globals_definition_block_group_block,
 		"user_interface_shared_globals_definition_block",
 		"user_interface_shared_globals_definition_block",
-		16777216,
+		1,
 		user_interface_shared_globals_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cui_component_screen_reference_block_definition_block,
 		"cui_component_screen_reference_block_definition",
 		"cui_component_screen_reference_block_definition",
-		65536,
+		256,
 		cui_component_screen_reference_block_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cui_overlay_camera_block_definition_block,
 		"cui_overlay_camera_block_definition",
 		"cui_overlay_camera_block_definition",
-		402653184,
+		24,
 		cui_overlay_camera_block_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cui_player_model_camera_settings_definition_block,
 		"cui_player_model_camera_settings_definition",
 		"cui_player_model_camera_settings_definition",
-		536870912,
+		32,
 		cui_player_model_camera_settings_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cui_player_model_controller_settings_definition_block,
 		"cui_player_model_controller_settings_definition",
 		"cui_player_model_controller_settings_definition",
-		536870912,
+		32,
 		cui_player_model_controller_settings_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cui_player_model_transition_settings_definition_block,
 		"cui_player_model_transition_settings_definition",
 		"cui_player_model_transition_settings_definition",
-		16777216,
+		1,
 		cui_player_model_transition_settings_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cui_active_roster_settings_block_block,
 		"cui_active_roster_settings_block",
 		"cui_active_roster_settings_block",
-		16777216,
+		1,
 		cui_active_roster_settings_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		campaign_state_screen_script_block_definition_block,
 		"campaign_state_screen_script_block_definition",
 		"campaign_state_screen_script_block_definition",
-		1073741824,
+		64,
 		campaign_state_screen_script_block_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		user_interface_globals_definition_block_group_block,
 		"user_interface_globals_definition_block",
 		"user_interface_globals_definition_block",
-		16777216,
+		1,
 		user_interface_globals_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		text_value_pair_reference_block_block,
 		"text_value_pair_reference_block",
 		"text_value_pair_reference_block",
-		1677721600,
+		100,
 		text_value_pair_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		text_value_pair_definition_block_group_block,
 		"text_value_pair_definition_block",
 		"text_value_pair_definition_block",
-		16777216,
+		1,
 		text_value_pair_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sandbox_property_allowed_values_reference_block_block,
 		"sandbox_property_allowed_values_reference_block",
 		"sandbox_property_allowed_values_reference_block",
-		1073741824,
+		64,
 		sandbox_property_allowed_values_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sandbox_text_value_pair_definition_block_group_block,
 		"sandbox_text_value_pair_definition_block",
 		"sandbox_text_value_pair_definition_block",
-		16777216,
+		1,
 		sandbox_text_value_pair_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		variant_option_block_block,
 		"variant_option_block",
 		"variant_option_block",
-		268435456,
+		16,
 		variant_option_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		variant_setting_edit_reference_block_block,
 		"variant_setting_edit_reference_block",
 		"variant_setting_edit_reference_block",
-		2315321344,
+		394,
 		variant_setting_edit_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		multiplayer_variant_settings_interface_definition_block_group_block,
 		"multiplayer_variant_settings_interface_definition_block",
 		"multiplayer_variant_settings_interface_definition_block",
-		16777216,
+		1,
 		multiplayer_variant_settings_interface_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		meter_block_group_block,
 		"meter_block",
 		"meter_block",
-		16777216,
+		1,
 		meter_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		load_screen_data_block_block,
 		"load_screen_data_block",
 		"load_screen_data_block",
-		16777216,
+		1,
 		load_screen_data_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		load_screen_globals_block_group_block,
 		"load_screen_globals_block",
 		"load_screen_globals_block",
-		16777216,
+		1,
 		load_screen_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		rasterizer_cache_file_globals_block_group_block,
 		"rasterizer_cache_file_globals_block",
 		"rasterizer_cache_file_globals_block",
-		16777216,
+		1,
 		rasterizer_cache_file_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		structure_lighting_generic_light_definition_block_block,
 		"structure_lighting_generic_light_definition_block",
 		"structure_lighting_generic_light_definition_block",
-		4286513152,
+		32767,
 		structure_lighting_generic_light_definition_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		lightmapper_globals_block_group_block,
 		"lightmapper_globals_block",
 		"lightmapper_globals_block",
-		16777216,
+		1,
 		lightmapper_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		atmosphere_setting_block_block,
 		"atmosphere_setting_block",
 		"atmosphere_setting_block",
-		268435456,
+		16,
 		atmosphere_setting_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		underwater_setting_block_block$2,
 		"underwater_setting_block",
 		"underwater_setting_block",
-		268435456,
+		16,
 		underwater_setting_block$2);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sky_atm_parameters_block_group_block,
 		"sky_atm_parameters_block",
 		"sky_atm_parameters_block",
-		16777216,
+		1,
 		sky_atm_parameters_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		mux_generator_material_block_block,
 		"mux_generator_material_block",
 		"mux_generator_material_block",
-		268435456,
+		16,
 		mux_generator_material_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		mux_generator_block_group_block,
 		"mux_generator_block",
 		"mux_generator_block",
-		16777216,
+		1,
 		mux_generator_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		render_water_ripple_block_group_block,
 		"render_water_ripple_block",
 		"render_water_ripple_block",
-		16777216,
+		1,
 		render_water_ripple_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		simulation_interpolation_block_group_block,
 		"simulation_interpolation_block",
 		"simulation_interpolation_block",
-		16777216,
+		1,
 		simulation_interpolation_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		fluid_dynamics_squirter_block_block,
 		"fluid_dynamics_squirter_block",
 		"fluid_dynamics_squirter_block",
-		268435456,
+		16,
 		fluid_dynamics_squirter_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		fluid_dynamics_inflow_block_block,
 		"fluid_dynamics_inflow_block",
 		"fluid_dynamics_inflow_block",
-		268435456,
+		16,
 		fluid_dynamics_inflow_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		fluid_dynamics_outflow_block_block,
 		"fluid_dynamics_outflow_block",
 		"fluid_dynamics_outflow_block",
-		268435456,
+		16,
 		fluid_dynamics_outflow_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		fluid_dynamics_obstacle_block_block,
 		"fluid_dynamics_obstacle_block",
 		"fluid_dynamics_obstacle_block",
-		536870912,
+		32,
 		fluid_dynamics_obstacle_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		fluid_dynamics_block_group_block,
 		"fluid_dynamics_block",
 		"fluid_dynamics_block",
-		16777216,
+		1,
 		fluid_dynamics_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		vocalization_stimuli_block_definition_block,
 		"vocalization_stimuli_block_definition",
 		"vocalization_stimuli_block_definition",
-		100663296,
+		6,
 		vocalization_stimuli_block_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		sound_references_block_block,
 		"sound_references_block",
 		"sound_references_block",
-		4093706240,
+		500,
 		sound_references_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		dialogue_block_group_block,
 		"dialogue_block",
 		"dialogue_block",
-		16777216,
+		1,
 		dialogue_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		stereo_system_block_group_block,
 		"stereo_system_block",
 		"stereo_system_block",
-		16777216,
+		1,
 		stereo_system_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		states_block_block,
 		"states_block",
 		"states_block",
-		268435456,
+		16,
 		states_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		rules_block_block,
 		"rules_block",
 		"rules_block",
-		268435456,
+		16,
 		rules_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cellular_automata2d_block_group_block,
 		"cellular_automata2d_block",
 		"cellular_automata2d_block",
-		16777216,
+		1,
 		cellular_automata2d_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cellular_automata_block_group_block,
 		"cellular_automata_block",
 		"cellular_automata_block",
-		16777216,
+		1,
 		cellular_automata_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		antenna_vertex_block_block,
 		"antenna_vertex_block",
 		"antenna_vertex_block",
-		335544320,
+		20,
 		antenna_vertex_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		antenna_block_group_block,
 		"antenna_block",
 		"antenna_block",
-		16777216,
+		1,
 		antenna_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		predicted_bitmaps_block_block,
 		"predicted_bitmaps_block",
 		"predicted_bitmaps_block",
-		134217728,
+		8,
 		predicted_bitmaps_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		item_block_group_block,
 		"item_block",
 		"item_block",
-		16777216,
+		1,
 		item_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		cheap_light_block_group_block,
 		"cheap_light_block",
 		"cheap_light_block",
-		16777216,
+		1,
 		cheap_light_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		giant_buckle_parameters_block_block,
 		"giant_buckle_parameters_block",
 		"giant_buckle_parameters_block",
-		50331648,
+		3,
 		giant_buckle_parameters_block);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		giant_block_group_block,
 		"giant_block",
 		"giant_block",
-		16777216,
+		1,
 		giant_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		crate_block_group_block,
 		"crate_block",
 		"crate_block",
-		16777216,
+		1,
 		crate_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		scenery_block_group_block,
 		"scenery",
 		"scenery_block",
-		16777216,
+		1,
 		scenery_group_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		collision_damage_block_group_block,
 		"collision_damage_block",
 		"collision_damage_block",
-		16777216,
+		1,
 		collision_damage_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
@@ -21955,7 +21955,8 @@ namespace haloreach {
 		"s_gpu_sprite_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GPU_SPRITE_BLOCK_ID)
+		GPU_SPRITE_BLOCK_ID,
+		4)
 	{
 		{ _field_array, "runtime gpu_sprite_array", &blofeld::haloreach::gpu_single_constant_register_array },
 		{ _field_terminator }
@@ -21969,7 +21970,8 @@ namespace haloreach {
 		"s_gpu_variants_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GPU_VARIANTS_BLOCK_ID)
+		GPU_VARIANTS_BLOCK_ID,
+		4)
 	{
 		{ _field_array, "runtime m_count", &blofeld::haloreach::gpu_single_constant_register_array },
 		{ _field_terminator }
@@ -22218,7 +22220,8 @@ namespace haloreach {
 		"s_gpu_function_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GPU_FUNCTION_BLOCK_ID)
+		GPU_FUNCTION_BLOCK_ID,
+		4)
 	{
 		{ _field_array, "runtime gpu_function_sub_array", &blofeld::haloreach::gpu_function_sub_array },
 		{ _field_terminator }
@@ -22246,7 +22249,8 @@ namespace haloreach {
 		"s_gpu_color_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GPU_COLOR_BLOCK_ID)
+		GPU_COLOR_BLOCK_ID,
+		4)
 	{
 		{ _field_array, "runtime gpu_color_sub_array", &blofeld::haloreach::gpu_color_sub_array },
 		{ _field_terminator }
@@ -22274,7 +22278,8 @@ namespace haloreach {
 		"s_gpu_property_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GPU_PROPERTY_BLOCK_ID)
+		GPU_PROPERTY_BLOCK_ID,
+		4)
 	{
 		{ _field_array, "runtime gpu_property_sub_array", &blofeld::haloreach::gpu_property_sub_array },
 		{ _field_terminator }
@@ -24097,7 +24102,8 @@ namespace haloreach {
 		"s_polyhedron_with_material_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		POLYHEDRON_WITH_MATERIAL_BLOCK_ID)
+		POLYHEDRON_WITH_MATERIAL_BLOCK_ID,
+		4)
 	{
 		{ _field_struct, "polyhedron", &blofeld::haloreach::polyhedron_shape_struct },
 		{ _field_long_integer, "material index" },
@@ -24154,7 +24160,8 @@ namespace haloreach {
 		"s_decomposed_poop_physics_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DECOMPOSED_POOP_PHYSICS_BLOCK_ID)
+		DECOMPOSED_POOP_PHYSICS_BLOCK_ID,
+		4)
 	{
 		{ _field_struct, "base", &blofeld::haloreach::havok_shape_collection_struct },
 		FIELD_PAD("foobar666", 8),
@@ -24176,7 +24183,8 @@ namespace haloreach {
 		"s_instanced_geometry_physics_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		INSTANCED_GEOMETRY_PHYSICS_BLOCK_ID)
+		INSTANCED_GEOMETRY_PHYSICS_BLOCK_ID,
+		4)
 	{
 		{ _field_struct, "mopp bv tree shape", &blofeld::haloreach::mopp_bv_tree_shape_struct },
 		{ _field_block, "collision geometry shape", &blofeld::haloreach::collision_geometry_shape_block_block },
@@ -24754,7 +24762,8 @@ namespace haloreach {
 		"s_trigger_volume_runtime_triangles_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		TRIGGER_VOLUME_RUNTIME_TRIANGLES_BLOCK_ID)
+		TRIGGER_VOLUME_RUNTIME_TRIANGLES_BLOCK_ID,
+		4)
 	{
 		{ _field_real_plane_3d, "plane 0" },
 		{ _field_real_plane_3d, "plane 1" },
@@ -26418,7 +26427,8 @@ namespace haloreach {
 		"s_mopp_code_definition_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MOPP_CODE_DEFINITION_BLOCK_ID)
+		MOPP_CODE_DEFINITION_BLOCK_ID,
+		4)
 	{
 		{ _field_long_integer, "field pointer skip", _field_id_zero_data },
 		{ _field_short_integer, "size" },
@@ -30237,7 +30247,8 @@ namespace haloreach {
 		"s_default_node_orientations_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DEFAULT_NODE_ORIENTATIONS_BLOCK_ID)
+		DEFAULT_NODE_ORIENTATIONS_BLOCK_ID,
+		4)
 	{
 		{ _field_real_quaternion, "rotation" },
 		{ _field_real_point_3d, "translation" },
@@ -34863,7 +34874,8 @@ namespace haloreach {
 		"s_spheres_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SPHERES_BLOCK_STRUCT_ID)
+		SPHERES_BLOCK_STRUCT_ID,
+		4)
 	{
 		{ _field_struct, "base", &blofeld::haloreach::havok_primitive_struct },
 		{ _field_struct, "sphere shape", &blofeld::haloreach::havok_convex_shape_struct },
@@ -34895,7 +34907,8 @@ namespace haloreach {
 		"s_multi_spheres_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MULTI_SPHERES_BLOCK_ID)
+		MULTI_SPHERES_BLOCK_ID,
+		4)
 	{
 		{ _field_struct, "base", &blofeld::haloreach::havok_primitive_struct },
 		{ _field_struct, "sphere rep shape", &blofeld::haloreach::havok_shape_struct },
@@ -34913,7 +34926,8 @@ namespace haloreach {
 		"s_pills_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PILLS_BLOCK_ID)
+		PILLS_BLOCK_ID,
+		4)
 	{
 		{ _field_struct, "base", &blofeld::haloreach::havok_primitive_struct },
 		{ _field_struct, "capsule shape", &blofeld::haloreach::havok_convex_shape_struct },
@@ -34933,7 +34947,8 @@ namespace haloreach {
 		"s_boxes_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		BOXES_BLOCK_STRUCT_ID)
+		BOXES_BLOCK_STRUCT_ID,
+		4)
 	{
 		{ _field_struct, "base", &blofeld::haloreach::havok_primitive_struct },
 		{ _field_struct, "box shape", &blofeld::haloreach::havok_convex_shape_struct },
@@ -34952,7 +34967,8 @@ namespace haloreach {
 		"s_triangles_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		TRIANGLES_BLOCK_ID)
+		TRIANGLES_BLOCK_ID,
+		4)
 	{
 		{ _field_struct, "base", &blofeld::haloreach::havok_primitive_struct },
 		{ _field_struct, "triangle shape", &blofeld::haloreach::havok_convex_shape_struct },
@@ -34979,7 +34995,8 @@ namespace haloreach {
 		"s_polyhedron_shape_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		POLYHEDRON_SHAPE_STRUCT_ID)
+		POLYHEDRON_SHAPE_STRUCT_ID,
+		4)
 	{
 		{ _field_struct, "polyhedron shape", &blofeld::haloreach::havok_convex_shape_struct },
 		FIELD_PAD("algn743", 12),
@@ -35008,7 +35025,8 @@ namespace haloreach {
 		"s_polyhedra_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		POLYHEDRA_BLOCK_ID)
+		POLYHEDRA_BLOCK_ID,
+		4)
 	{
 		{ _field_struct, "base", &blofeld::haloreach::havok_primitive_struct },
 		{ _field_struct, "polyhedron shape", &blofeld::haloreach::havok_convex_shape_struct },
@@ -35038,7 +35056,8 @@ namespace haloreach {
 		"s_polyhedron_four_vectors_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		POLYHEDRON_FOUR_VECTORS_BLOCK_ID)
+		POLYHEDRON_FOUR_VECTORS_BLOCK_ID,
+		4)
 	{
 		{ _field_real_vector_3d, "four vectors x" },
 		{ _field_real, "havok w four vectors x" },
@@ -35057,7 +35076,8 @@ namespace haloreach {
 		"s_polyhedron_plane_equations_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		POLYHEDRON_PLANE_EQUATIONS_BLOCK_ID)
+		POLYHEDRON_PLANE_EQUATIONS_BLOCK_ID,
+		4)
 	{
 		{ _field_real_vector_3d, "plane equations" },
 		{ _field_real, "havok w plane equations" },
@@ -35072,7 +35092,8 @@ namespace haloreach {
 		"s_mass_distributions_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MASS_DISTRIBUTIONS_BLOCK_ID)
+		MASS_DISTRIBUTIONS_BLOCK_ID,
+		4)
 	{
 		{ _field_real_vector_3d, "center of mass" },
 		{ _field_real, "havok w center of mass" },
@@ -35093,7 +35114,8 @@ namespace haloreach {
 		"s_lists_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		LISTS_BLOCK_ID)
+		LISTS_BLOCK_ID,
+		4)
 	{
 		{ _field_struct, "base", &blofeld::haloreach::havok_shape_collection_struct },
 		{ _field_long_integer, "field pointer skip", _field_id_zero_data },
@@ -35140,7 +35162,8 @@ namespace haloreach {
 		"s_mopps_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MOPPS_BLOCK_ID)
+		MOPPS_BLOCK_ID,
+		4)
 	{
 		{ _field_struct, "base", &blofeld::haloreach::havok_shape_struct },
 		FIELD_PAD("m_bvTreeType", 1),
@@ -35332,7 +35355,8 @@ namespace haloreach {
 		"s_rigid_bodies_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		RIGID_BODIES_BLOCK_ID)
+		RIGID_BODIES_BLOCK_ID,
+		4)
 	{
 		{ _field_short_block_index, "node", &blofeld::haloreach::nodes_block_block },
 		{ _field_short_block_index, "region", &blofeld::haloreach::regions_block_block },
@@ -47184,7 +47208,8 @@ namespace haloreach {
 		"s_collision_geometry_shape_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		COLLISION_GEOMETRY_SHAPE_STRUCT_ID)
+		COLLISION_GEOMETRY_SHAPE_STRUCT_ID,
+		4)
 	{
 		{ _field_struct, "base", &blofeld::haloreach::havok_shape_collection_struct },
 		FIELD_PAD("foobar666", 8),
@@ -47211,7 +47236,8 @@ namespace haloreach {
 		"s_mopp_bv_tree_shape_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MOPP_BV_TREE_SHAPE_STRUCT_ID)
+		MOPP_BV_TREE_SHAPE_STRUCT_ID,
+		4)
 	{
 		{ _field_struct, "mopp bv tree shape", &blofeld::haloreach::havok_shape_struct },
 		FIELD_PAD("m_bvTreeType", 1),
@@ -47238,7 +47264,8 @@ namespace haloreach {
 		"s_collision_bsp_physics_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		COLLISION_BSP_PHYSICS_BLOCK_ID)
+		COLLISION_BSP_PHYSICS_BLOCK_ID,
+		4)
 	{
 		{ _field_struct, "collision bsp shape", &blofeld::haloreach::collision_geometry_shape_struct },
 		{ _field_struct, "mopp bv tree shap", &blofeld::haloreach::mopp_bv_tree_shape_struct },
@@ -47281,7 +47308,8 @@ namespace haloreach {
 		"s_bsp3d_nodes_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		BSP3D_NODES_BLOCK_STRUCT_ID)
+		BSP3D_NODES_BLOCK_STRUCT_ID,
+		3)
 	{
 		{ _field_int64_integer, "node data designator" },
 		{ _field_terminator }
@@ -47295,7 +47323,8 @@ namespace haloreach {
 		"s_bsp3d_kd_supdernodes_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		BSP3D_KD_SUPDERNODES_BLOCK_ID)
+		BSP3D_KD_SUPDERNODES_BLOCK_ID,
+		7)
 	{
 		{ _field_real, "plane 0" },
 		{ _field_real, "plane 1" },
@@ -47340,7 +47369,8 @@ namespace haloreach {
 		"s_planes_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PLANES_BLOCK_ID)
+		PLANES_BLOCK_ID,
+		4)
 	{
 		{ _field_real_plane_3d, "plane" },
 		{ _field_terminator }
@@ -47354,7 +47384,8 @@ namespace haloreach {
 		"s_collision_leaf_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		COLLISION_LEAF_STRUCT_ID)
+		COLLISION_LEAF_STRUCT_ID,
+		2)
 	{
 		{ _field_byte_flags, "flags", &blofeld::haloreach::leaf_flags },
 		FIELD_PAD("pad", 1),
@@ -47377,7 +47408,8 @@ namespace haloreach {
 		"s_bsp2d_references_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		BSP2D_REFERENCES_BLOCK_ID)
+		BSP2D_REFERENCES_BLOCK_ID,
+		2)
 	{
 		{ _field_short_integer, "plane" },
 		{ _field_short_integer, "bsp2d node" },
@@ -47392,7 +47424,8 @@ namespace haloreach {
 		"s_bsp2d_nodes_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		BSP2D_NODES_BLOCK_ID)
+		BSP2D_NODES_BLOCK_ID,
+		4)
 	{
 		{ _field_real_plane_2d, "plane" },
 		{ _field_short_integer, "left child" },
@@ -47460,7 +47493,8 @@ namespace haloreach {
 		"s_vertices_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		VERTICES_BLOCK_ID)
+		VERTICES_BLOCK_ID,
+		4)
 	{
 		{ _field_real_point_3d, "point" },
 		{ _field_short_integer, "first edge" },

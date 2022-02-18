@@ -77,7 +77,7 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_tag_file_views()
 		ASSERT(partition_chunk->partition_header.file_index == tag_partition_index);
 
 		wchar_t partition_filepath[0x10000];
-		swprintf(partition_filepath, L"%sblobs\\tags_%i", tag_cache_directory, partition_chunk->partition_header.file_index);
+		swprintf(partition_filepath, _countof(partition_filepath), L"%sblobs\\tags_%i", tag_cache_directory, partition_chunk->partition_header.file_index);
 
 		t_memory_mapped_file*& tag_memory_mapped_file = tag_memory_mapped_files[tag_partition_index];
 		s_memory_mapped_file_info& tag_memory_mapped_file_info = tag_memory_mapped_file_infos[tag_partition_index];
@@ -111,7 +111,7 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_cache_file_views()
 		ASSERT(partition_chunk->partition_header.file_index == cache_partition_index);
 
 		wchar_t partition_filepath[0x10000];
-		swprintf(partition_filepath, L"%sblobs\\cache_%i", tag_cache_directory, partition_chunk->partition_header.file_index);
+		swprintf(partition_filepath, _countof(partition_filepath), L"%sblobs\\cache_%i", tag_cache_directory, partition_chunk->partition_header.file_index);
 
 		t_memory_mapped_file*& cache_memory_mapped_file = cache_memory_mapped_files[cache_partition_index];
 		s_memory_mapped_file_info& cache_memory_mapped_file_info = cache_memory_mapped_file_infos[cache_partition_index];
@@ -201,6 +201,8 @@ BCS_RESULT c_monolithic_tag_project::parse_tag_blob()
 	root_chunk->log();
 
 	debug_point;
+
+	return rs;
 }
 
 BCS_RESULT c_monolithic_tag_project::read_tags()
@@ -253,12 +255,12 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			ASSERT(BCS_SUCCEEDED(get_group_by_group_tag(tag_file_index_entry.group_tag, tag_group)));
 
 			wchar_t tag_filepath_buf[0x10000];
-			swprintf(tag_filepath_buf, L"tags\\%S.%S", tag_name, tag_group->tag_group.name);
+			swprintf(tag_filepath_buf, _countof(tag_filepath_buf), L"tags\\%S.%S", tag_name, tag_group->tag_group.name);
 			wchar_t* tag_filepath2 = const_cast<wchar_t*>(filesystem_extract_filepath_filename(tag_filepath_buf));
 			tag_filepath2[wcslen(tag_filepath2) - strlen("_group")] = 0;
 
 			wchar_t tag_filepath[0x10000];
-			swprintf(tag_filepath, L"tags\\%s", tag_filepath2);
+			swprintf(tag_filepath, _countof(tag_filepath), L"tags\\%s", tag_filepath2);
 
 			//ASSERT(BCS_SUCCEEDED(filesystem_write_file_from_memory(tag_filepath, data, lruv_cache_block.size)));
 

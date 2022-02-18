@@ -61,9 +61,9 @@ c_infinite_ucs_reader::~c_infinite_ucs_reader()
 
 }
 
-long c_infinite_ucs_reader::get_root_tag_block_entry_index() const
+unsigned long c_infinite_ucs_reader::get_root_tag_block_entry_index() const
 {
-	for (long struct_index = 0; struct_index < ucs_header->tag_block_count; struct_index++)
+	for (unsigned long struct_index = 0; struct_index < ucs_header->tag_block_count; struct_index++)
 	{
 		const s_infinite_ucs_tag_block_data& struct_entry = tag_block_instances[struct_index];
 

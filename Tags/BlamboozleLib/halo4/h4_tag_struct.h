@@ -162,9 +162,9 @@ struct c_h4_tag_memory_attributes
 	e_h4_tag_memory_usage_bit usage_flags;
 };
 
-struct s_tag_persistent_identifier
+struct b_h4_tag_persistent_identifier
 {
-	long data[4];
+	blong data[4];
 };
 
 struct b_h4_tag_memory_attributes
@@ -175,7 +175,7 @@ struct b_h4_tag_memory_attributes
 
 struct s_h4_tag_persistent_identifier
 {
-	blong data[4];
+	long data[4];
 };
 
 struct s_h4_byte_swap_definition
@@ -189,7 +189,7 @@ struct s_h4_tag_struct_definition
 	typed_bptr32<const char*> name;
 	typed_bptr32<const char*> filepath;
 	bulong line_number;
-	s_h4_tag_persistent_identifier persistent_identifier;
+	b_h4_tag_persistent_identifier persistent_identifier;
 	typed_bptr32<void*> fields_address;
 	bulong size;
 	typed_bptr32<const char*> size_string_address;
@@ -251,7 +251,7 @@ public:
 	unsigned long offset;
 	e_h4_tag_field_set_bit const runtime_flags;
 	c_h4_tag_memory_attributes memory_attributes;
-	s_tag_persistent_identifier persistent_identifier;
+	s_h4_tag_persistent_identifier persistent_identifier;
 
 protected:
 	c_h4_tag_struct(const char* h4_data, const s_h4_tag_struct_definition* struct_header, unsigned long offset);
