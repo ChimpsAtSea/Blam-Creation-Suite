@@ -37,11 +37,11 @@ namespace blofeld
 	{
 		{ _field_block, "styles", &campaign_metagame_style_type_block },
 		{ _field_block, "difficulty", &campaign_metagame_difficulty_scale_block },
-		{ _field_block, "skulls", MAKE_OLD_NAMES("Primary Skulls"), &campaign_metagame_skull_block },
+		{ _field_block, "skulls", MAKE_ALT_NAMES("Primary Skulls"), &campaign_metagame_skull_block },
 		{ _field_long_integer, "friendly_death_point_count" },
 		{ _field_long_integer, "player_death_point_count" },
 		{ _field_long_integer, "player_betrayal_point_count" },
-		{ _field_real, "transient score time", "how long does transient score stay onscreen", "s", MAKE_OLD_NAMES("multi kill window") },
+		{ _field_real, "transient score time", "how long does transient score stay onscreen", "s", MAKE_ALT_NAMES("multi kill window") },
 		{ _field_real, "EMP kill window", "time after taking a guys shields down with emp damage you have to get the emp kill bonus (seconds)" },
 		{ _field_terminator }
 	};

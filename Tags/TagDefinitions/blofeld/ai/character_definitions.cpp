@@ -835,7 +835,7 @@ namespace blofeld
 		{ _field_real, "unreachable enemy danger threshold", "When danger from an unreachable enemy surpasses threshold, actor cover (assuming unreachable_enemy_cover impulse is enabled)" },
 		{ _field_real, "unassailable enemy danger threshold", "When target is unassailable, and danger goes over this value - cover (assuming unassailable_enemy_cover impulse is enabled)" },
 		{ _field_real, "scary target threshold", "When target is aware of me and surpasses the given scariness, self-preserve (assuming scary_target_cover_impulse is enabled)" },
-		{ _field_real, "Vitality fraction shield equipment", "Fraction of vitality below which an equipped shield equipment (instant cover/bubbleshield) will be activated (once damage has died down, and assuming shield_equipment_impulse is enabled)", MAKE_OLD_NAMES("Vitality fraction bubbleshield") },
+		{ _field_real, "Vitality fraction shield equipment", "Fraction of vitality below which an equipped shield equipment (instant cover/bubbleshield) will be activated (once damage has died down, and assuming shield_equipment_impulse is enabled)", MAKE_ALT_NAMES("Vitality fraction bubbleshield") },
 		{ _field_real, "Recent damage shield equipment", "Must have less than this amount of recent body damage before we can deploy our equipped shield equipment." },
 		{ _field_terminator }
 	};
@@ -1295,7 +1295,7 @@ namespace blofeld
 		{ _field_real, "ai avoidance radius", "If 0, uses pathfinding radius.", "world units (Ground vehicles)" },
 
 		{ _field_real, "ai destination radius", "Distance within which goal is considered reached", "world units (All vehicles)" },
-		{ _field_real, "ai deceleration distance", "Distance from goal at which AI starts to decelerate", "world units (All vehicles)", MAKE_OLD_NAMES("ai deceleration distanceworld units") },
+		{ _field_real, "ai deceleration distance", "Distance from goal at which AI starts to decelerate", "world units (All vehicles)", MAKE_ALT_NAMES("ai deceleration distanceworld units") },
 
 		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "roughly, the time it would take this vehicle to stop; default is 2 seconds" },

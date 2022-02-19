@@ -117,7 +117,7 @@ namespace blofeld
 		{ _field_long_enum, "type", &sound_class_acoustics_string_definition },
 
 		{ _field_real, "cutoff distance" },
-		{ _field_real, "interpolation time", nullptr, "seconds", MAKE_OLD_NAMES("interpolation speed") },
+		{ _field_real, "interpolation time", nullptr, "seconds", MAKE_ALT_NAMES("interpolation speed") },
 		{ _field_terminator }
 	};
 
@@ -138,7 +138,7 @@ namespace blofeld
 		{ _field_tag_reference, "exit sound", "plays when leaving this area", &global_sound_reference },
 
 		{ _field_real, "cutoff distance" },
-		{ _field_real, "interpolation time", nullptr, "seconds", MAKE_OLD_NAMES("interpolation speed") },
+		{ _field_real, "interpolation time", nullptr, "seconds", MAKE_ALT_NAMES("interpolation speed") },
 
 		{ _version_mode_less_or_equal, _engine_type_haloreach, 4 },
 		{ _field_long_flags, "scale flags", FIELD_FLAG_UNKNOWN0, &background_sound_scale_flags_definition },

@@ -270,7 +270,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_COLLISION_MATERIALS_BLOCK_ID)
 	{
-		{ _field_tag_reference, "render method", MAKE_OLD_NAMES("old shader"), FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &structure_collision_materials_block_render_method_reference },
+		{ _field_tag_reference, "render method", MAKE_ALT_NAMES("old shader"), FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &structure_collision_materials_block_render_method_reference },
 
 		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_string_id, "override material name" },
@@ -793,7 +793,7 @@ namespace blofeld
 		{ _field_legacy, _field_real, "scale*" },
 
 		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
-		{ _field_real, "scale_x", MAKE_OLD_NAMES("scale"), FIELD_FLAG_READ_ONLY },
+		{ _field_real, "scale_x", MAKE_ALT_NAMES("scale"), FIELD_FLAG_READ_ONLY },
 		{ _field_real, "scale_y", FIELD_FLAG_READ_ONLY },
 
 		{ _version_mode_greater, _engine_type_haloreach, 1 },

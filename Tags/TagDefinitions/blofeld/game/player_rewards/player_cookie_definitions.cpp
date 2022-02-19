@@ -45,7 +45,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		REWARD_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_block, "reward definitions", MAKE_OLD_NAMES("cookie awards"), &rewardDefinitionBlock_block },
+		{ _field_block, "reward definitions", MAKE_ALT_NAMES("cookie awards"), &rewardDefinitionBlock_block },
 		{ _field_terminator }
 	};
 

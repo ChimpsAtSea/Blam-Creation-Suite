@@ -87,6 +87,9 @@ s_tag_data_definition symbol = s_tag_data_definition(#symbol, pretty_name, flags
 //s_tag_group symbol = s_tag_group(#symbol, group_tag, parent_group_tag, symbol##_block, parent_group); \
 //s_tag_field symbol##_struct_definition_fields[] =
 
+#define TAG_GROUP_V2(name, symbol, group_tag, parent_group, parent_group_tag, block) \
+s_tag_group symbol = s_tag_group(name, __FILE__, __LINE__, #group_tag, group_tag, parent_group_tag, block, parent_group);
+
 // symbol, group_tag, parent_group, parent_group_tag, block
 #define TAG_GROUP(symbol, group_tag, parent_group, parent_group_tag, block) \
 s_tag_group symbol = s_tag_group(#symbol, __FILE__, __LINE__, #group_tag, group_tag, parent_group_tag, block, parent_group);

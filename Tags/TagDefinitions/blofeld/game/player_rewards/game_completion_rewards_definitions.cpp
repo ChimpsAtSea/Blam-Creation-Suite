@@ -50,7 +50,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_COMPLETION_REWARDS_DEFINITION_BLOCK_ID)
 	{
-		{ _field_long_integer, "initial amount per minute", "base amount of reward given for each minute of play up until the start of the falloff curve", MAKE_OLD_NAMES("initial cookies per minute") },
+		{ _field_long_integer, "initial amount per minute", "base amount of reward given for each minute of play up until the start of the falloff curve", MAKE_ALT_NAMES("initial cookies per minute") },
 		{ _field_real, "hopper scaling factor", "the player's time-based reward value is multiplied by this factor before being awarded; this value can be overridden by the hopper" },
 		{ _field_real, "winner scaling factor", "if the player is an unambiguous winner, their time-based reward value is multiplied by (this factor - 1) and the result is awarded as a bonus; this value can be overridden by the hopper" },
 		{ _field_real, "performance scaling factor", "if the player is not a winner, but is in the top half of the standings, their time-based reward is multiplied by (this factor - 1) and the result is awarded as a bonus; this value can be overriden by the hopper" },
@@ -58,7 +58,7 @@ namespace blofeld
 		{ _version_mode_greater, _engine_type_haloreach }, // #TODO: Unsure if this is 100% correct
 		{ _field_real, "score scaling factor", "for score-based modes, the player's normalized score (0..1) is multiplied by this scaling factor and the result is awarded to the player as a bonus; this value can be overridden by the hopper" },
 
-		{ _field_block, "apm falloff curve", "amount per minute falloff curve; used to provide diminishing returns for longer play time", MAKE_OLD_NAMES("cpm falloff curve"), &game_completion_rewards_falloff_point_block },
+		{ _field_block, "apm falloff curve", "amount per minute falloff curve; used to provide diminishing returns for longer play time", MAKE_ALT_NAMES("cpm falloff curve"), &game_completion_rewards_falloff_point_block },
 		{ _field_terminator }
 	};
 
@@ -73,7 +73,7 @@ namespace blofeld
 		GAME_COMPLETION_REWARDS_FALLOFF_POINT_BLOCK_ID)
 	{
 		{ _field_short_integer, "start time", "minutes into the game after which this new reward rate applies" },
-		{ _field_short_integer, "amount per minute", "points awarded per minute once the given time is reached", MAKE_OLD_NAMES("cookies per minute") },
+		{ _field_short_integer, "amount per minute", "points awarded per minute once the given time is reached", MAKE_ALT_NAMES("cookies per minute") },
 		{ _field_terminator }
 	};
 

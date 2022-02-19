@@ -5,1659 +5,1896 @@ namespace blofeld
 {
 namespace haloreach {
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cache_file_sound",
 		cache_file_sound_group,
 		CACHE_FILE_SOUND_TAG,
 		nullptr,
 		INVALID_TAG,
 		cache_file_sound_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_scenery_resource",
 		scenario_scenery_resource_group,
 		SCENARIO_SCENERY_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_scenery_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_weapons_resource",
 		scenario_weapons_resource_group,
 		SCENARIO_WEAPONS_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_weapons_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_vehicles_resource",
 		scenario_vehicles_resource_group,
 		SCENARIO_VEHICLES_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_vehicles_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_effect_scenery_resource",
 		scenario_effect_scenery_resource_group,
 		SCENARIO_EFFECT_SCENERY_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_effect_scenery_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_lights_resource",
 		scenario_lights_resource_group,
 		SCENARIO_LIGHTS_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_lights_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_bipeds_resource",
 		scenario_bipeds_resource_group,
 		SCENARIO_BIPEDS_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_bipeds_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_equipment_resource",
 		scenario_equipment_resource_group,
 		SCENARIO_EQUIPMENT_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_equipment_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_creature_resource",
 		scenario_creature_resource_group,
 		SCENARIO_CREATURE_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_creature_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_sound_scenery_resource",
 		scenario_sound_scenery_resource_group,
 		SCENARIO_SOUND_SCENERY_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_sound_scenery_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_comments_resource",
 		scenario_comments_resource_group,
 		SCENARIO_COMMENTS_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_comments_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"sound_effect_template",
 		sound_effect_template_group,
 		SOUND_EFFECT_TEMPLATE_TAG,
 		nullptr,
 		INVALID_TAG,
 		sound_effect_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"stereo_system",
 		stereo_system_group,
 		STEREO_SYSTEM_TAG,
 		nullptr,
 		INVALID_TAG,
 		stereo_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"lightmapper_globals",
 		lightmapper_globals_group,
 		LIGHTMAPPER_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		lightmapper_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_lightmap_bsp_data",
 		scenario_lightmap_bsp_data_group,
 		SCENARIO_LIGHTMAP_BSP_DATA_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_lightmap_bsp_data_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"lightning_system",
 		lightning_system_group,
 		LIGHTNING_SYSTEM_TAG,
 		nullptr,
 		INVALID_TAG,
 		lightning_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"achievements",
 		achievements_group,
 		ACHIEVEMENTS_TAG,
 		nullptr,
 		INVALID_TAG,
 		achievements_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"ai_dialogue_globals",
 		ai_dialogue_globals_group,
 		AI_DIALOGUE_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		ai_dialogue_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_ai_resource",
 		scenario_ai_resource_group,
 		SCENARIO_AI_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_ai_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"ai_globals",
 		ai_globals_group,
 		AI_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		ai_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"airstrike",
 		airstrike_group,
 		AIRSTRIKE_TAG,
 		nullptr,
 		INVALID_TAG,
 		airstrike_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"antenna",
 		antenna_group,
 		ANTENNA_TAG,
 		nullptr,
 		INVALID_TAG,
 		antenna_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"atmosphere_globals",
 		atmosphere_globals_group,
 		ATMOSPHERE_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		atmosphere_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"avatar_awards",
 		avatar_awards_group,
 		AVATAR_AWARDS_TAG,
 		nullptr,
 		INVALID_TAG,
 		avatar_awards_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"big_battle_creature",
 		big_battle_creature_group,
 		BIG_BATTLE_CREATURE_TAG,
 		nullptr,
 		INVALID_TAG,
 		big_battle_creature_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"death_program_selector",
 		death_program_selector_group,
 		DEATH_PROGRAM_SELECTOR_TAG,
 		nullptr,
 		INVALID_TAG,
 		death_program_selector_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"beam_system",
 		beam_system_group,
 		BEAM_SYSTEM_TAG,
 		nullptr,
 		INVALID_TAG,
 		beam_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"bink",
 		bink_group,
 		BINK_TAG,
 		nullptr,
 		INVALID_TAG,
 		bink_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"bitmap",
 		bitmap_group,
 		BITMAP_TAG,
 		nullptr,
 		INVALID_TAG,
 		bitmap_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"breakable_surface",
 		breakable_surface_group,
 		BREAKABLE_SURFACE_TAG,
 		nullptr,
 		INVALID_TAG,
 		breakable_surface_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"collision_damage",
 		collision_damage_group,
 		COLLISION_DAMAGE_TAG,
 		nullptr,
 		INVALID_TAG,
 		collision_damage_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"camera_fx_settings",
 		camera_fx_settings_group,
 		CAMERA_FX_SETTINGS_TAG,
 		nullptr,
 		INVALID_TAG,
 		camera_fx_settings_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"chud_animation_definition",
 		chud_animation_definition_group,
 		CHUD_ANIMATION_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		chud_animation_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"character",
 		character_group,
 		CHARACTER_TAG,
 		nullptr,
 		INVALID_TAG,
 		character_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"challenge_globals_definition",
 		challenge_globals_definition_group,
 		CHALLENGE_GLOBALS_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		challenge_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"chud_definition",
 		chud_definition_group,
 		CHUD_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		chud_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"chud_globals_definition",
 		chud_globals_definition_group,
 		CHUD_GLOBALS_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		chud_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"chocolate_mountain_new",
 		chocolate_mountain_new_group,
 		CHOCOLATE_MOUNTAIN_NEW_TAG,
 		nullptr,
 		INVALID_TAG,
 		chocolate_mountain_new_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_cinematics_resource",
 		scenario_cinematics_resource_group,
 		SCENARIO_CINEMATICS_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_cinematics_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cinematic",
 		cinematic_group,
 		CINEMATIC_TAG,
 		nullptr,
 		INVALID_TAG,
 		cinematic_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cinematic_scene",
 		cinematic_scene_group,
 		CINEMATIC_SCENE_TAG,
 		nullptr,
 		INVALID_TAG,
 		cinematic_scene_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cinematic_transition",
 		cinematic_transition_group,
 		CINEMATIC_TRANSITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		cinematic_transition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_cluster_data_resource",
 		scenario_cluster_data_resource_group,
 		SCENARIO_CLUSTER_DATA_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_cluster_data_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cloth",
 		cloth_group,
 		CLOTH_TAG,
 		nullptr,
 		INVALID_TAG,
 		cloth_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"camo",
 		camo_group,
 		CAMO_TAG,
 		nullptr,
 		INVALID_TAG,
 		camo_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"contrail_system",
 		contrail_system_group,
 		CONTRAIL_SYSTEM_TAG,
 		nullptr,
 		INVALID_TAG,
 		contrail_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"collision_model",
 		collision_model_group,
 		COLLISION_MODEL_TAG,
 		nullptr,
 		INVALID_TAG,
 		collision_model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"color_table",
 		color_table_group,
 		COLOR_TABLE_TAG,
 		nullptr,
 		INVALID_TAG,
 		color_table_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"commendation_globals_definition",
 		commendation_globals_definition_group,
 		COMMENDATION_GLOBALS_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		commendation_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"communication_sounds",
 		communication_sounds_group,
 		COMMUNICATION_SOUNDS_TAG,
 		nullptr,
 		INVALID_TAG,
 		communication_sounds_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cookie_globals_definition",
 		cookie_globals_definition_group,
 		COOKIE_GLOBALS_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		cookie_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"coop_spawning_globals_definition",
 		coop_spawning_globals_definition_group,
 		COOP_SPAWNING_GLOBALS_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		coop_spawning_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cheap_particle_emitter",
 		cheap_particle_emitter_group,
 		CHEAP_PARTICLE_EMITTER_TAG,
 		nullptr,
 		INVALID_TAG,
 		cheap_particle_emitter_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cookie_purchase_globals",
 		cookie_purchase_globals_group,
 		COOKIE_PURCHASE_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		cookie_purchase_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cheap_particle_type_library",
 		cheap_particle_type_library_group,
 		CHEAP_PARTICLE_TYPE_LIBRARY_TAG,
 		nullptr,
 		INVALID_TAG,
 		cheap_particle_type_library_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"camera_shake",
 		camera_shake_group,
 		CAMERA_SHAKE_TAG,
 		nullptr,
 		INVALID_TAG,
 		camera_shake_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_cubemap_resource",
 		scenario_cubemap_resource_group,
 		SCENARIO_CUBEMAP_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_cubemap_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cui_screen",
 		cui_screen_group,
 		CUI_SCREEN_TAG,
 		nullptr,
 		INVALID_TAG,
 		cui_screen_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cui_static_data",
 		cui_static_data_group,
 		CUI_STATIC_DATA_TAG,
 		nullptr,
 		INVALID_TAG,
 		cui_static_data_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_decorators_resource",
 		scenario_decorators_resource_group,
 		SCENARIO_DECORATORS_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_decorators_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"decorator_set",
 		decorator_set_group,
 		DECORATOR_SET_TAG,
 		nullptr,
 		INVALID_TAG,
 		decorator_set_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_decals_resource",
 		scenario_decals_resource_group,
 		SCENARIO_DECALS_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_decals_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"decal_system",
 		decal_system_group,
 		DECAL_SYSTEM_TAG,
 		nullptr,
 		INVALID_TAG,
 		decal_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cellular_automata",
 		cellular_automata_group,
 		CELLULAR_AUTOMATA_TAG,
 		nullptr,
 		INVALID_TAG,
 		cellular_automata_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_devices_resource",
 		scenario_devices_resource_group,
 		SCENARIO_DEVICES_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_devices_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_dumplings_resource",
 		scenario_dumplings_resource_group,
 		SCENARIO_DUMPLINGS_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_dumplings_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"detail_object_collection",
 		detail_object_collection_group,
 		DETAIL_OBJECT_COLLECTION_TAG,
 		nullptr,
 		INVALID_TAG,
 		detail_object_collection_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"rasterizer_cache_file_globals",
 		rasterizer_cache_file_globals_group,
 		RASTERIZER_CACHE_FILE_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		rasterizer_cache_file_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"damage_response_definition",
 		damage_response_definition_group,
 		DAMAGE_RESPONSE_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		damage_response_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"particle_emitter_boat_hull_shape",
 		particle_emitter_boat_hull_shape_group,
 		PARTICLE_EMITTER_BOAT_HULL_SHAPE_TAG,
 		nullptr,
 		INVALID_TAG,
 		particle_emitter_boat_hull_shape_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"effect",
 		effect_group,
 		EFFECT_TAG,
 		nullptr,
 		INVALID_TAG,
 		effect_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"effect_globals",
 		effect_globals_group,
 		EFFECT_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		effect_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"flock",
 		flock_group,
 		FLOCK_TAG,
 		nullptr,
 		INVALID_TAG,
 		flock_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"fluid_dynamics",
 		fluid_dynamics_group,
 		FLUID_DYNAMICS_TAG,
 		nullptr,
 		INVALID_TAG,
 		fluid_dynamics_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"atmosphere_fog",
 		atmosphere_fog_group,
 		ATMOSPHERE_FOG_TAG,
 		nullptr,
 		INVALID_TAG,
 		atmosphere_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"material_effects",
 		material_effects_group,
 		MATERIAL_EFFECTS_TAG,
 		nullptr,
 		INVALID_TAG,
 		material_effects_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"formation",
 		formation_group,
 		FORMATION_TAG,
 		nullptr,
 		INVALID_TAG,
 		formation_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"frame_event_list",
 		frame_event_list_group,
 		FRAME_EVENT_LIST_TAG,
 		nullptr,
 		INVALID_TAG,
 		frame_event_list_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"fx_test",
 		fx_test_group,
 		FX_TEST_TAG,
 		nullptr,
 		INVALID_TAG,
 		fx_test_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"game_completion_rewards_globals",
 		game_completion_rewards_globals_group,
 		GAME_COMPLETION_REWARDS_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		game_completion_rewards_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"game_engine_globals",
 		game_engine_globals_group,
 		GAME_ENGINE_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		game_engine_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cheap_light",
 		cheap_light_group,
 		CHEAP_LIGHT_TAG,
 		nullptr,
 		INVALID_TAG,
 		cheap_light_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"global_pixel_shader",
 		global_pixel_shader_group,
 		GLOBAL_PIXEL_SHADER_TAG,
 		nullptr,
 		INVALID_TAG,
 		global_pixel_shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"global_vertex_shader",
 		global_vertex_shader_group,
 		GLOBAL_VERTEX_SHADER_TAG,
 		nullptr,
 		INVALID_TAG,
 		global_vertex_shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"game_medal_globals",
 		game_medal_globals_group,
 		GAME_MEDAL_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		game_medal_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"multiplayer_variant_settings_interface_definition",
 		multiplayer_variant_settings_interface_definition_group,
 		MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		multiplayer_variant_settings_interface_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"global_cache_file_pixel_shaders",
 		global_cache_file_pixel_shaders_group,
 		GLOBAL_CACHE_FILE_PIXEL_SHADERS_TAG,
 		nullptr,
 		INVALID_TAG,
 		global_cache_file_pixel_shaders_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"game_performance_throttle",
 		game_performance_throttle_group,
 		GAME_PERFORMANCE_THROTTLE_TAG,
 		nullptr,
 		INVALID_TAG,
 		game_performance_throttle_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"grounded_friction",
 		grounded_friction_group,
 		GROUNDED_FRICTION_TAG,
 		nullptr,
 		INVALID_TAG,
 		grounded_friction_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"havok_collision_filter",
 		havok_collision_filter_group,
 		HAVOK_COLLISION_FILTER_TAG,
 		nullptr,
 		INVALID_TAG,
 		havok_collision_filter_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"model",
 		model_group,
 		MODEL_TAG,
 		nullptr,
 		INVALID_TAG,
 		model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"hlsl_include",
 		hlsl_include_group,
 		HLSL_INCLUDE_TAG,
 		nullptr,
 		INVALID_TAG,
 		hlsl_include_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_hs_source_file",
 		scenario_hs_source_file_group,
 		SCENARIO_HS_SOURCE_FILE_TAG,
 		nullptr,
 		INVALID_TAG,
 		hs_source_files_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"incident_global_properties_definition",
 		incident_global_properties_definition_group,
 		INCIDENT_GLOBAL_PROPERTIES_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		incident_global_properties_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"instance_imposter_definition",
 		instance_imposter_definition_group,
 		INSTANCE_IMPOSTER_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		instance_imposter_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"imposter_model",
 		imposter_model_group,
 		IMPOSTER_MODEL_TAG,
 		nullptr,
 		INVALID_TAG,
 		imposter_model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"incident_globals_definition",
 		incident_globals_definition_group,
 		INCIDENT_GLOBALS_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		incident_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"model_animation_graph",
 		model_animation_graph_group,
 		MODEL_ANIMATION_GRAPH_TAG,
 		nullptr,
 		INVALID_TAG,
 		model_animation_graph_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"sandbox_text_value_pair_definition",
 		sandbox_text_value_pair_definition_group,
 		SANDBOX_TEXT_VALUE_PAIR_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		sandbox_text_value_pair_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"damage_effect",
 		damage_effect_group,
 		DAMAGE_EFFECT_TAG,
 		nullptr,
 		INVALID_TAG,
 		damage_effect_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"load_screen_globals",
 		load_screen_globals_group,
 		LOAD_SCREEN_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		load_screen_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"lens_flare",
 		lens_flare_group,
 		LENS_FLARE_TAG,
 		nullptr,
 		INVALID_TAG,
 		lens_flare_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"loadout_globals_definition",
 		loadout_globals_definition_group,
 		LOADOUT_GLOBALS_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		loadout_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"light",
 		light_group,
 		LIGHT_TAG,
 		nullptr,
 		INVALID_TAG,
 		light_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"location_name_globals_definition",
 		location_name_globals_definition_group,
 		LOCATION_NAME_GLOBALS_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		location_name_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"sound_looping",
 		sound_looping_group,
 		SOUND_LOOPING_TAG,
 		nullptr,
 		INVALID_TAG,
 		sound_looping_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"leaf_system",
 		leaf_system_group,
 		LEAF_SYSTEM_TAG,
 		nullptr,
 		INVALID_TAG,
 		leaf_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"light_volume_system",
 		light_volume_system_group,
 		LIGHT_VOLUME_SYSTEM_TAG,
 		nullptr,
 		INVALID_TAG,
 		light_volume_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"globals",
 		globals_group,
 		GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"ai_mission_dialogue",
 		ai_mission_dialogue_group,
 		AI_MISSION_DIALOGUE_TAG,
 		nullptr,
 		INVALID_TAG,
 		ai_mission_dialogue_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"meter",
 		meter_group,
 		METER_TAG,
 		nullptr,
 		INVALID_TAG,
 		meter_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"muffin",
 		muffin_group,
 		MUFFIN_TAG,
 		nullptr,
 		INVALID_TAG,
 		muffin_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"megalogamengine_sounds",
 		megalogamengine_sounds_group,
 		MEGALOGAMENGINE_SOUNDS_TAG,
 		nullptr,
 		INVALID_TAG,
 		megalogamengine_sounds_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"emblem_library",
 		emblem_library_group,
 		EMBLEM_LIBRARY_TAG,
 		nullptr,
 		INVALID_TAG,
 		emblem_library_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"render_model",
 		render_model_group,
 		RENDER_MODEL_TAG,
 		nullptr,
 		INVALID_TAG,
 		render_model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"multiplayer_object_type_list",
 		multiplayer_object_type_list_group,
 		MULTIPLAYER_OBJECT_TYPE_LIST_TAG,
 		nullptr,
 		INVALID_TAG,
 		multiplayer_object_type_list_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"multiplayer_scenario_description",
 		multiplayer_scenario_description_group,
 		MULTIPLAYER_SCENARIO_DESCRIPTION_TAG,
 		nullptr,
 		INVALID_TAG,
 		multiplayer_scenario_description_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"megalo_string_id_table",
 		megalo_string_id_table_group,
 		MEGALO_STRING_ID_TABLE_TAG,
 		nullptr,
 		INVALID_TAG,
 		megalo_string_id_table_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"multiplayer_globals",
 		multiplayer_globals_group,
 		MULTIPLAYER_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		multiplayer_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"mux_generator",
 		mux_generator_group,
 		MUX_GENERATOR_TAG,
 		nullptr,
 		INVALID_TAG,
 		mux_generator_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"new_cinematic_lighting",
 		new_cinematic_lighting_group,
 		NEW_CINEMATIC_LIGHTING_TAG,
 		nullptr,
 		INVALID_TAG,
 		new_cinematic_lighting_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"object",
 		object_group,
 		OBJECT_TAG,
 		nullptr,
 		INVALID_TAG,
 		object_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"tag_package_manifest",
 		tag_package_manifest_group,
 		TAG_PACKAGE_MANIFEST_TAG,
 		nullptr,
 		INVALID_TAG,
 		tag_package_manifest_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"pgcr_enemy_to_category_mapping_definition",
 		pgcr_enemy_to_category_mapping_definition_group,
 		PGCR_ENEMY_TO_CATEGORY_MAPPING_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		pgcr_enemy_to_category_mapping_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"particle_emitter_custom_points",
 		particle_emitter_custom_points_group,
 		PARTICLE_EMITTER_CUSTOM_POINTS_TAG,
 		nullptr,
 		INVALID_TAG,
 		particle_emitter_custom_points_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"performance_throttles",
 		performance_throttles_group,
 		PERFORMANCE_THROTTLES_TAG,
 		nullptr,
 		INVALID_TAG,
 		performance_throttles_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"performance_template",
 		performance_template_group,
 		PERFORMANCE_TEMPLATE_TAG,
 		nullptr,
 		INVALID_TAG,
 		performance_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"planar_fog_parameters",
 		planar_fog_parameters_group,
 		PLANAR_FOG_PARAMETERS_TAG,
 		nullptr,
 		INVALID_TAG,
 		planar_fog_parameters_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"player_grade_globals_definition",
 		player_grade_globals_definition_group,
 		PLAYER_GRADE_GLOBALS_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		player_grade_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"physics_model",
 		physics_model_group,
 		PHYSICS_MODEL_TAG,
 		nullptr,
 		INVALID_TAG,
 		physics_model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"pixel_shader",
 		pixel_shader_group,
 		PIXEL_SHADER_TAG,
 		nullptr,
 		INVALID_TAG,
 		pixel_shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cache_file_resource_layout_table",
 		cache_file_resource_layout_table_group,
 		CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG,
 		nullptr,
 		INVALID_TAG,
 		cache_file_resource_layout_table_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"player_model_customization_globals",
 		player_model_customization_globals_group,
 		PLAYER_MODEL_CUSTOMIZATION_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		player_model_customization_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"particle_model",
 		particle_model_group,
 		PARTICLE_MODEL_TAG,
 		nullptr,
 		INVALID_TAG,
 		particle_model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"particle_physics",
 		particle_physics_group,
 		PARTICLE_PHYSICS_TAG,
 		nullptr,
 		INVALID_TAG,
 		particle_physics_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"point_physics",
 		point_physics_group,
 		POINT_PHYSICS_TAG,
 		nullptr,
 		INVALID_TAG,
 		point_physics_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_performances_resource",
 		scenario_performances_resource_group,
 		SCENARIO_PERFORMANCES_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_performances_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"projectile",
 		projectile_group,
 		PROJECTILE_TAG,
 		&object_group,
 		OBJECT_TAG,
 		projectile_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"particle",
 		particle_group,
 		PARTICLE_TAG,
 		nullptr,
 		INVALID_TAG,
 		particle_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"rain_definition",
 		rain_definition_group,
 		RAIN_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		rain_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"rasterizer_globals",
 		rasterizer_globals_group,
 		RASTERIZER_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		rasterizer_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"render_method",
 		render_method_group,
 		RENDER_METHOD_TAG,
 		nullptr,
 		INVALID_TAG,
 		render_method_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_beam",
 		shader_beam_group,
 		SHADER_BEAM_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_beam_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"rumble",
 		rumble_group,
 		RUMBLE_TAG,
 		nullptr,
 		INVALID_TAG,
 		rumble_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_custom",
 		shader_custom_group,
 		SHADER_CUSTOM_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_custom_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_cortana",
 		shader_cortana_group,
 		SHADER_CORTANA_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_cortana_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_decal",
 		shader_decal_group,
 		SHADER_DECAL_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_decal_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"render_method_definition",
 		render_method_definition_group,
 		RENDER_METHOD_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		render_method_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_foliage",
 		shader_foliage_group,
 		SHADER_FOLIAGE_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_foliage_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_fur_stencil",
 		shader_fur_stencil_group,
 		SHADER_FUR_STENCIL_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_fur_stencil_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_fur",
 		shader_fur_group,
 		SHADER_FUR_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_fur_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_glass",
 		shader_glass_group,
 		SHADER_GLASS_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_glass_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_halogram",
 		shader_halogram_group,
 		SHADER_HALOGRAM_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_halogram_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_light_volume",
 		shader_light_volume_group,
 		SHADER_LIGHT_VOLUME_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_light_volume_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_mux_material",
 		shader_mux_material_group,
 		SHADER_MUX_MATERIAL_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_mux_material_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_mux",
 		shader_mux_group,
 		SHADER_MUX_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_mux_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"render_method_option",
 		render_method_option_group,
 		RENDER_METHOD_OPTION_TAG,
 		nullptr,
 		INVALID_TAG,
 		render_method_option_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader",
 		shader_group,
 		SHADER_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_skin",
 		shader_skin_group,
 		SHADER_SKIN_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_skin_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_screen",
 		shader_screen_group,
 		SHADER_SCREEN_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_screen_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"render_method_template",
 		render_method_template_group,
 		RENDER_METHOD_TEMPLATE_TAG,
 		nullptr,
 		INVALID_TAG,
 		render_method_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_terrain",
 		shader_terrain_group,
 		SHADER_TERRAIN_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_terrain_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_water",
 		shader_water_group,
 		SHADER_WATER_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_water_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"render_water_ripple",
 		render_water_ripple_group,
 		RENDER_WATER_RIPPLE_TAG,
 		nullptr,
 		INVALID_TAG,
 		render_water_ripple_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_faux_data",
 		scenario_faux_data_group,
 		SCENARIO_FAUX_DATA_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_faux_data_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_lightmap",
 		scenario_lightmap_group,
 		SCENARIO_LIGHTMAP_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_lightmap_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"spring_acceleration",
 		spring_acceleration_group,
 		SPRING_ACCELERATION_TAG,
 		nullptr,
 		INVALID_TAG,
 		spring_acceleration_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_structure_bsp",
 		scenario_structure_bsp_group,
 		SCENARIO_STRUCTURE_BSP_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_structure_bsp_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenery",
 		scenery_group,
 		SCENERY_TAG,
 		&object_group,
 		OBJECT_TAG,
 		scenery_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"sound_combiner",
 		sound_combiner_group,
 		SOUND_COMBINER_TAG,
 		nullptr,
 		INVALID_TAG,
 		sound_combiner_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario",
 		scenario_group,
 		SCENARIO_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"structure_design",
 		structure_design_group,
 		STRUCTURE_DESIGN_TAG,
 		nullptr,
 		INVALID_TAG,
 		structure_design_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_required_resource",
 		scenario_required_resource_group,
 		SCENARIO_REQUIRED_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_required_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"area_screen_effect",
 		area_screen_effect_group,
 		AREA_SCREEN_EFFECT_TAG,
 		nullptr,
 		INVALID_TAG,
 		area_screen_effect_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"sound_effect_collection",
 		sound_effect_collection_group,
 		SOUND_EFFECT_COLLECTION_TAG,
 		nullptr,
 		INVALID_TAG,
 		sound_effect_collection_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"sound_global_propagation",
 		sound_global_propagation_group,
 		SOUND_GLOBAL_PROPAGATION_TAG,
 		nullptr,
 		INVALID_TAG,
 		sound_global_propagation_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shield_impact",
 		shield_impact_group,
 		SHIELD_IMPACT_TAG,
 		nullptr,
 		INVALID_TAG,
 		shield_impact_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"simulated_input",
 		simulated_input_group,
 		SIMULATED_INPUT_TAG,
 		nullptr,
 		INVALID_TAG,
 		simulated_input_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"simulation_interpolation",
 		simulation_interpolation_group,
 		SIMULATION_INTERPOLATION_TAG,
 		nullptr,
 		INVALID_TAG,
 		simulation_interpolation_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"text_value_pair_definition",
 		text_value_pair_definition_group,
 		TEXT_VALUE_PAIR_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		text_value_pair_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_interpolator",
 		scenario_interpolator_group,
 		SCENARIO_INTERPOLATOR_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_interpolator_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_sky_references_resource",
 		scenario_sky_references_resource_group,
 		SCENARIO_SKY_REFERENCES_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_sky_references_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"sky_atm_parameters",
 		sky_atm_parameters_group,
 		SKY_ATM_PARAMETERS_TAG,
 		nullptr,
 		INVALID_TAG,
 		sky_atm_parameters_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"survival_mode_globals",
 		survival_mode_globals_group,
 		SURVIVAL_MODE_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		survival_mode_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"sound_classes",
 		sound_classes_group,
 		SOUND_CLASSES_TAG,
 		nullptr,
 		INVALID_TAG,
 		sound_classes_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"sound",
 		sound_group,
 		SOUND_TAG,
 		nullptr,
 		INVALID_TAG,
 		sound_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"sound_environment",
 		sound_environment_group,
 		SOUND_ENVIRONMENT_TAG,
 		nullptr,
 		INVALID_TAG,
 		sound_environment_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"sound_mix",
 		sound_mix_group,
 		SOUND_MIX_TAG,
 		nullptr,
 		INVALID_TAG,
 		sound_mix_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"sound_dialogue_constants",
 		sound_dialogue_constants_group,
 		SOUND_DIALOGUE_CONSTANTS_TAG,
 		nullptr,
 		INVALID_TAG,
 		sound_dialogue_constants_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"squad_template",
 		squad_template_group,
 		SQUAD_TEMPLATE_TAG,
 		nullptr,
 		INVALID_TAG,
 		squad_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"sound_radio_settings",
 		sound_radio_settings_group,
 		SOUND_RADIO_SETTINGS_TAG,
 		nullptr,
 		INVALID_TAG,
 		sound_radio_settings_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"ssao_definition",
 		ssao_definition_group,
 		SSAO_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		ssao_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"sound_scenery",
 		sound_scenery_group,
 		SOUND_SCENERY_TAG,
 		&object_group,
 		OBJECT_TAG,
 		sound_scenery_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_structure_lighting_resource",
 		scenario_structure_lighting_resource_group,
 		SCENARIO_STRUCTURE_LIGHTING_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_structure_lighting_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_structure_lighting_info",
 		scenario_structure_lighting_info_group,
 		SCENARIO_STRUCTURE_LIGHTING_INFO_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_structure_lighting_info_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"structure_seams",
 		structure_seams_group,
 		STRUCTURE_SEAMS_TAG,
 		nullptr,
 		INVALID_TAG,
 		structure_seams_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"style",
 		style_group,
 		STYLE_TAG,
 		nullptr,
 		INVALID_TAG,
 		style_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"camera_track",
 		camera_track_group,
 		CAMERA_TRACK_TAG,
 		nullptr,
 		INVALID_TAG,
 		camera_track_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_trigger_volumes_resource",
 		scenario_trigger_volumes_resource_group,
 		SCENARIO_TRIGGER_VOLUMES_RESOURCE_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_trigger_volumes_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"dialogue",
 		dialogue_group,
 		DIALOGUE_TAG,
 		nullptr,
 		INVALID_TAG,
 		dialogue_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"sound_cache_file_gestalt",
 		sound_cache_file_gestalt_group,
 		SOUND_CACHE_FILE_GESTALT_TAG,
 		nullptr,
 		INVALID_TAG,
 		sound_cache_file_gestalt_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"user_interface_sounds_definition",
 		user_interface_sounds_definition_group,
 		USER_INTERFACE_SOUNDS_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		user_interface_sounds_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"multilingual_unicode_string_list",
 		multilingual_unicode_string_list_group,
 		MULTILINGUAL_UNICODE_STRING_LIST_TAG,
 		nullptr,
 		INVALID_TAG,
 		multilingual_unicode_string_list_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"unit",
 		unit_group,
 		UNIT_TAG,
 		&object_group,
 		OBJECT_TAG,
 		unit_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"vehicle",
 		vehicle_group,
 		VEHICLE_TAG,
 		&unit_group,
 		UNIT_TAG,
 		vehicle_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"vision_mode",
 		vision_mode_group,
 		VISION_MODE_TAG,
 		nullptr,
 		INVALID_TAG,
 		vision_mode_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"variant_globals",
 		variant_globals_group,
 		VARIANT_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		variant_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"vertex_shader",
 		vertex_shader_group,
 		VERTEX_SHADER_TAG,
 		nullptr,
 		INVALID_TAG,
 		vertex_shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"chud_widget_animation_data_template",
 		chud_widget_animation_data_template_group,
 		CHUD_WIDGET_ANIMATION_DATA_TEMPLATE_TAG,
 		nullptr,
 		INVALID_TAG,
 		chud_widget_animation_data_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"wave_template",
 		wave_template_group,
 		WAVE_TEMPLATE_TAG,
 		nullptr,
 		INVALID_TAG,
 		wave_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"chud_widget_datasource_template",
 		chud_widget_datasource_template_group,
 		CHUD_WIDGET_DATASOURCE_TEMPLATE_TAG,
 		nullptr,
 		INVALID_TAG,
 		chud_widget_datasource_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"scenario_wetness_bsp_data",
 		scenario_wetness_bsp_data_group,
 		SCENARIO_WETNESS_BSP_DATA_TAG,
 		nullptr,
 		INVALID_TAG,
 		scenario_wetness_bsp_data_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"game_engine_settings_definition",
 		game_engine_settings_definition_group,
 		GAME_ENGINE_SETTINGS_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		game_engine_settings_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"user_interface_globals_definition",
 		user_interface_globals_definition_group,
 		USER_INTERFACE_GLOBALS_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		user_interface_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cellular_automata2d",
 		cellular_automata2d_group,
 		CELLULAR_AUTOMATA2D_TAG,
 		nullptr,
 		INVALID_TAG,
 		cellular_automata2d_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"user_interface_shared_globals_definition",
 		user_interface_shared_globals_definition_group,
 		USER_INTERFACE_SHARED_GLOBALS_DEFINITION_TAG,
 		nullptr,
 		INVALID_TAG,
 		user_interface_shared_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"wind",
 		wind_group,
 		WIND_TAG,
 		nullptr,
 		INVALID_TAG,
 		wind_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"water_physics_drag_properties",
 		water_physics_drag_properties_group,
 		WATER_PHYSICS_DRAG_PROPERTIES_TAG,
 		nullptr,
 		INVALID_TAG,
 		water_physics_drag_properties_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"chud_widget_placement_data_template",
 		chud_widget_placement_data_template_group,
 		CHUD_WIDGET_PLACEMENT_DATA_TEMPLATE_TAG,
 		nullptr,
 		INVALID_TAG,
 		chud_widget_placement_data_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"chud_widget_render_data_template",
 		chud_widget_render_data_template_group,
 		CHUD_WIDGET_RENDER_DATA_TEMPLATE_TAG,
 		nullptr,
 		INVALID_TAG,
 		chud_widget_render_data_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"chud_widget_state_data_template",
 		chud_widget_state_data_template_group,
 		CHUD_WIDGET_STATE_DATA_TEMPLATE_TAG,
 		nullptr,
 		INVALID_TAG,
 		chud_widget_state_data_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"weather_globals",
 		weather_globals_group,
 		WEATHER_GLOBALS_TAG,
 		nullptr,
 		INVALID_TAG,
 		weather_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"cache_file_resource_gestalt",
 		cache_file_resource_gestalt_group,
 		CACHE_FILE_RESOURCE_GESTALT_TAG,
 		nullptr,
 		INVALID_TAG,
 		cache_file_resource_gestalt_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_contrail",
 		shader_contrail_group,
 		SHADER_CONTRAIL_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_contrail_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"shader_particle",
 		shader_particle_group,
 		SHADER_PARTICLE_TAG,
 		&render_method_group,
 		RENDER_METHOD_TAG,
 		shader_particle_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"biped",
 		biped_group,
 		BIPED_TAG,
 		&unit_group,
 		UNIT_TAG,
 		biped_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"crate",
 		crate_group,
 		CRATE_TAG,
 		&object_group,
 		OBJECT_TAG,
 		crate_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"creature",
 		creature_group,
 		CREATURE_TAG,
 		&object_group,
 		OBJECT_TAG,
 		creature_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"device",
 		device_group,
 		DEVICE_TAG,
 		&object_group,
 		OBJECT_TAG,
 		device_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"effect_scenery",
 		effect_scenery_group,
 		EFFECT_SCENERY_TAG,
 		&object_group,
 		OBJECT_TAG,
 		effect_scenery_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"giant",
 		giant_group,
 		GIANT_TAG,
 		&unit_group,
 		UNIT_TAG,
 		giant_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"item",
 		item_group,
 		ITEM_TAG,
 		&object_group,
 		OBJECT_TAG,
 		item_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"device_machine",
 		device_machine_group,
 		DEVICE_MACHINE_TAG,
 		&device_group,
 		DEVICE_TAG,
 		device_machine_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"device_terminal",
 		device_terminal_group,
 		DEVICE_TERMINAL_TAG,
 		&device_group,
 		DEVICE_TAG,
 		device_terminal_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"weapon",
 		weapon_group,
 		WEAPON_TAG,
 		&item_group,
 		ITEM_TAG,
 		weapon_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"device_control",
 		device_control_group,
 		DEVICE_CONTROL_TAG,
 		&device_group,
 		DEVICE_TAG,
 		device_control_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V2(
+		"equipment",
 		equipment_group,
 		EQUIPMENT_TAG,
 		&item_group,
@@ -12663,7 +12900,7 @@ namespace haloreach {
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &blofeld::haloreach::g_null_block_block },
 
-		{ _version_mode_tag_group_equal, &blofeld::haloreach::shader_contrail_group, 1 },
+		{ _version_mode_tag_group_not_equal, &blofeld::haloreach::shader_contrail_group, 1 },
 		{ _field_struct, "render_method", &blofeld::haloreach::render_method_struct_definition },
 
 		{ _field_terminator }
@@ -13536,7 +13773,7 @@ namespace haloreach {
 		{ _field_real_fraction, "targeted leading fraction" },
 		{ _field_real, "guided projectile (outer range) error radius" },
 		{ _field_real, "autoaim leading max lead time" },
-		{ _field_block, "old material responses", MAKE_OLD_NAMES("material responses"), FIELD_FLAG_UNKNOWN0, &blofeld::haloreach::old_projectile_material_response_block_block, _field_id_sort },
+		{ _field_block, "old material responses", MAKE_ALT_NAMES("material responses"), FIELD_FLAG_UNKNOWN0, &blofeld::haloreach::old_projectile_material_response_block_block, _field_id_sort },
 		{ _field_block, "material response", &blofeld::haloreach::projectile_material_response_block_block },
 		{ _field_block, "brute grenade", &blofeld::haloreach::brute_grenade_block_block },
 		{ _field_block, "fire bomb grenade", &blofeld::haloreach::fire_bomb_grenade_block_block },
@@ -13689,7 +13926,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_DECAL_STRUCT_DEFINITION_ID)
 	{
-		{ _version_mode_tag_group_equal, &blofeld::haloreach::shader_decal_group, 1 },
+		{ _version_mode_tag_group_not_equal, &blofeld::haloreach::shader_decal_group, 1 },
 		{ _field_struct, "render_method", &blofeld::haloreach::render_method_struct_definition },
 
 		{ _version_mode_tag_group_equal, &blofeld::haloreach::decal_system_group, 14 },
@@ -13797,7 +14034,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_LIGHT_VOLUME_STRUCT_DEFINITION_ID)
 	{
-		{ _version_mode_tag_group_equal, &blofeld::haloreach::shader_light_volume_group, 1 },
+		{ _version_mode_tag_group_not_equal, &blofeld::haloreach::shader_light_volume_group, 1 },
 		{ _field_struct, "render_method", &blofeld::haloreach::render_method_struct_definition },
 
 		{ _version_mode_tag_group_equal, &blofeld::haloreach::light_volume_system_group, 14 },
@@ -14614,7 +14851,7 @@ namespace haloreach {
 		FIELD_EXPLANATION("HIGHLIGHT BLOOM", "These parameters control bloom off the highlights (really bright stuff)"),
 		{ _field_word_flags, "flags", &blofeld::haloreach::camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("LOTPRER", 2),
-		{ _field_real, "highlight bloom", MAKE_OLD_NAMES("bloom point") },
+		{ _field_real, "highlight bloom", MAKE_ALT_NAMES("bloom point") },
 		{ _field_real, "maximum change" },
 		{ _field_real, "blend speed (0-1)" },
 		{ _field_terminator }
@@ -14838,7 +15075,7 @@ namespace haloreach {
 	{
 		{ _field_struct, "exposure", &blofeld::haloreach::camera_fx_exposure_struct },
 		{ _field_struct, "auto_exposure_sensitivity", &blofeld::haloreach::camera_fx_exposure_sensitivity_struct },
-		{ _field_struct, "bloom_highlight", MAKE_OLD_NAMES("bloom_point"), &blofeld::haloreach::camera_fx_bloom_highlight_struct },
+		{ _field_struct, "bloom_highlight", MAKE_ALT_NAMES("bloom_point"), &blofeld::haloreach::camera_fx_bloom_highlight_struct },
 		{ _field_struct, "bloom_inherent", &blofeld::haloreach::camera_fx_bloom_inherent_struct },
 		{ _field_struct, "bloom_intensity", &blofeld::haloreach::camera_fx_bloom_intensity_struct },
 		{ _field_struct, "bloom_large_color", &blofeld::haloreach::camera_fx_bloom_large_color_struct },
@@ -14866,7 +15103,7 @@ namespace haloreach {
 		{ _field_long_flags, "flags", &blofeld::haloreach::performance_throttle_flags },
 		{ _field_real, "water lod" },
 		{ _field_real, "decorator fade dist scale", nullptr, "0 = off" },
-		{ _field_real, "effect lod distance scale", MAKE_OLD_NAMES("effect lod limit") },
+		{ _field_real, "effect lod distance scale", MAKE_ALT_NAMES("effect lod limit") },
 		{ _field_real, "instance fade modifier" },
 		{ _field_real, "object fade modifier" },
 		{ _field_real, "object detail fade modifier" },
@@ -14881,7 +15118,7 @@ namespace haloreach {
 		{ _field_real, "screenspace light fade distance scale", "scales the size used for distance-fade (set smaller to make it fade earlier)" },
 		{ _field_long_integer, "max shadow casting objects", nullptr, "0 = off" },
 		{ _field_real, "shadow quality lod" },
-		{ _field_real, "coop 3 & 4 way campaign object and instance multiplier", "also affects firefight" },
+		{ _field_real, "coop 3 ", "also affects firefight", MAKE_ALT_NAMES(" 4 way campaign object and instance multiplier") },
 		{ _field_terminator }
 	};
 
@@ -15017,8 +15254,8 @@ namespace haloreach {
 		{ _field_tag_reference, "Cheap Particle Type Library", &blofeld::haloreach::cheap_particle_type_library_group_reference$2_tagref },
 		{ _field_tag_reference, "Emblem Library", &blofeld::haloreach::emblem_library_group_reference_tagref },
 		FIELD_EXPLANATION("Motion blur parameters", "max blur:............  max amount to blur, as a percentage of the screen\nblur scale:..........  scales blur for a given velocity\ncenter falloff:....... reduces motion blur around the screen center (larger values give smaller reduction regions...)\nexpected dt:.......... expected time per tick, in seconds (used to correct motion blur in fast/slow frames)\n"),
-		{ _field_real, "max blur", "max amount to blur, as a percentage of the screen", nullptr, "[0 - 0.2]", MAKE_OLD_NAMES("max blur x") },
-		{ _field_real, "blur scale", "scales blur for a given velocity", nullptr, "[0 - 0.5]", MAKE_OLD_NAMES("blur scale x") },
+		{ _field_real, "max blur", "max amount to blur, as a percentage of the screen", nullptr, "[0 - 0.2]", MAKE_ALT_NAMES("max blur x") },
+		{ _field_real, "blur scale", "scales blur for a given velocity", nullptr, "[0 - 0.5]", MAKE_ALT_NAMES("blur scale x") },
 		{ _field_real, "center falloff x", "larger values make smaller areas of no blur", nullptr, "[0 - 20]" },
 		{ _field_real, "center falloff y", "larger values make smaller areas of no blur", nullptr, "[0 - 20]" },
 		{ _field_real, "expected dt", "this is not currently used, but may be in the future", "0.3333 for 30 fps" },
@@ -15099,13 +15336,13 @@ namespace haloreach {
 		RASTERIZER_COMPILED_SHADER_STRUCT_ID)
 	{
 		{ _field_long_flags, "shader flags", &blofeld::haloreach::shader_flags },
-		{ _field_data, "xenon compiled shader", MAKE_OLD_NAMES("..:xenon compiled shader"), &blofeld::haloreach::xenon_compiled_shader_data },
-		{ _field_data, "dx9 compiled shader", MAKE_OLD_NAMES("..:dx9 compiled shader"), &blofeld::haloreach::dx9_compiled_shader_data },
+		{ _field_data, "xenon compiled shader", MAKE_ALT_NAMES("..:xenon compiled shader"), &blofeld::haloreach::xenon_compiled_shader_data },
+		{ _field_data, "dx9 compiled shader", MAKE_ALT_NAMES("..:dx9 compiled shader"), &blofeld::haloreach::dx9_compiled_shader_data },
 		FIELD_EXPLANATION("Xenon constant table", nullptr),
 		{ _field_struct, "xenon rasterizer constant table", &blofeld::haloreach::global_rasterizer_constant_table_struct },
 		FIELD_EXPLANATION("DX9 constant table", nullptr),
 		{ _field_struct, "dx9 rasterizer constant table", &blofeld::haloreach::global_rasterizer_constant_table_struct },
-		{ _field_long_integer, "gprs", MAKE_OLD_NAMES("..:gprs") },
+		{ _field_long_integer, "gprs", MAKE_ALT_NAMES("..:gprs") },
 		{ _field_long_integer, "cache file reference" },
 		{ _field_terminator }
 	};
@@ -15522,7 +15759,7 @@ namespace haloreach {
 	{
 		{ _field_word_flags, "flags", &blofeld::haloreach::render_method_pass_flags },
 		FIELD_PAD("nothing", 2),
-		{ _field_block, "category dependencies&shared PS category dependencies", &blofeld::haloreach::render_method_pass_category_dependencies_block },
+		{ _field_block, "category dependencies", MAKE_ALT_NAMES("shared PS category dependencies"), &blofeld::haloreach::render_method_pass_category_dependencies_block },
 		{ _field_block, "shared VS category dependencies", &blofeld::haloreach::render_method_pass_category_dependencies_block },
 		{ _field_terminator }
 	};
@@ -16126,7 +16363,7 @@ namespace haloreach {
 	{
 		{ _field_word_flags, "flags", &blofeld::haloreach::planar_fog_flags },
 		FIELD_PAD("ABCDadf", 2),
-		{ _field_real, "fog thickness" },
+		{ _field_real, "fog thickness", MAKE_ALT_NAMES("fog thickness [0.0 to 1.0]") },
 		{ _field_real, "per-vertex fog thickness modulation", nullptr, "(only for transparents)" },
 		{ _field_real, "full fog depth", nullptr, "world units" },
 		{ _field_real_rgb_color, "fog color" },
@@ -16547,10 +16784,10 @@ namespace haloreach {
 	{
 		FIELD_CUSTOM("link to render model", _field_id_unknown_compile),
 		FIELD_EXPLANATION("Render models", nullptr),
-		{ _field_tag_reference, "Base", MAKE_OLD_NAMES("render model"), FIELD_FLAG_READ_ONLY, &blofeld::haloreach::render_model_group_reference_tagref },
-		{ _field_tag_reference, "Lod2", MAKE_OLD_NAMES("render model_lod1"), FIELD_FLAG_READ_ONLY, &blofeld::haloreach::render_model_group_reference_tagref },
-		{ _field_tag_reference, "Lod3", MAKE_OLD_NAMES("render model_lod2"), FIELD_FLAG_READ_ONLY, &blofeld::haloreach::render_model_group_reference_tagref },
-		{ _field_tag_reference, "Lod4", MAKE_OLD_NAMES("render model_lod3"), FIELD_FLAG_READ_ONLY, &blofeld::haloreach::render_model_group_reference_tagref },
+		{ _field_tag_reference, "Base", MAKE_ALT_NAMES("render model"), FIELD_FLAG_READ_ONLY, &blofeld::haloreach::render_model_group_reference_tagref },
+		{ _field_tag_reference, "Lod2", MAKE_ALT_NAMES("render model_lod1"), FIELD_FLAG_READ_ONLY, &blofeld::haloreach::render_model_group_reference_tagref },
+		{ _field_tag_reference, "Lod3", MAKE_ALT_NAMES("render model_lod2"), FIELD_FLAG_READ_ONLY, &blofeld::haloreach::render_model_group_reference_tagref },
+		{ _field_tag_reference, "Lod4", MAKE_ALT_NAMES("render model_lod3"), FIELD_FLAG_READ_ONLY, &blofeld::haloreach::render_model_group_reference_tagref },
 		{ _field_block, "render model instance names", &blofeld::haloreach::decorator_set_instance_name_block_block },
 		{ _field_long_integer, "render model instance name valid count" },
 		{ _field_tag_reference, "texture", &blofeld::haloreach::bitmap_group_reference$7_tagref },
@@ -16576,29 +16813,29 @@ namespace haloreach {
 		{ _field_real, "cull block size", "decorators are grouped into blocks to be culled in large batches, this determines how much ground each batch covers.  Should be small if you expect to have very dense decorators, and large if you expect them to be sparse", nullptr, "[0.5-100]world units" },
 		{ _field_real, "decimation speed", "1 is default", nullptr, "[0 - infinite]" },
 		{ _field_real, "decimation start distance", "[block size by default] decimation offset of the starting point" },
-		{ _field_real, "decimate to", "0 means all the way removed. 100 means nothing", MAKE_OLD_NAMES("max decimation percentage") },
+		{ _field_real, "decimate to", "0 means all the way removed. 100 means nothing", MAKE_ALT_NAMES("max decimation percentage") },
 		{ _field_real, "decimation start", nullptr, "world units" },
 		{ _field_real, "decimation end", nullptr, "world units" },
 		{ _field_long_integer, "max valid lod" },
 		FIELD_EXPLANATION("Lod transitions", nullptr),
 		FIELD_EXPLANATION("Base to LOD2", nullptr),
-		{ _field_real, "start point0", MAKE_OLD_NAMES("Base to LOD1 cross fading start point") },
-		{ _field_real, "end point0", MAKE_OLD_NAMES("Base to LOD1 cross fading end point") },
+		{ _field_real, "start point0", MAKE_ALT_NAMES("Base to LOD1 cross fading start point") },
+		{ _field_real, "end point0", MAKE_ALT_NAMES("Base to LOD1 cross fading end point") },
 		{ _field_real, "scale0" },
 		{ _field_real, "offset0" },
 		FIELD_EXPLANATION("LOD2 to LOD3", nullptr),
-		{ _field_real, "start point1", MAKE_OLD_NAMES("LOD1 to LOD2 cross fading start point") },
-		{ _field_real, "end point1", MAKE_OLD_NAMES("LOD1 to LOD2 cross fading end point") },
+		{ _field_real, "start point1", MAKE_ALT_NAMES("LOD1 to LOD2 cross fading start point") },
+		{ _field_real, "end point1", MAKE_ALT_NAMES("LOD1 to LOD2 cross fading end point") },
 		{ _field_real, "scale1" },
 		{ _field_real, "offset1" },
 		FIELD_EXPLANATION("LOD3 to LOD4", nullptr),
-		{ _field_real, "start point2", MAKE_OLD_NAMES("LOD2 to LOD3 cross fading start point") },
-		{ _field_real, "end point2", MAKE_OLD_NAMES("LOD2 to LOD3 cross fading end point") },
+		{ _field_real, "start point2", MAKE_ALT_NAMES("LOD2 to LOD3 cross fading start point") },
+		{ _field_real, "end point2", MAKE_ALT_NAMES("LOD2 to LOD3 cross fading end point") },
 		{ _field_real, "scale2" },
 		{ _field_real, "offset2" },
 		FIELD_EXPLANATION("LOD4 to nothing", nullptr),
-		{ _field_real, "start point3", MAKE_OLD_NAMES("LOD3 to nothing cross fading start point") },
-		{ _field_real, "end point3", MAKE_OLD_NAMES("LOD3 to nothing cross fading end point") },
+		{ _field_real, "start point3", MAKE_ALT_NAMES("LOD3 to nothing cross fading start point") },
+		{ _field_real, "end point3", MAKE_ALT_NAMES("LOD3 to nothing cross fading end point") },
 		{ _field_real, "scale3" },
 		{ _field_real, "offset3" },
 		FIELD_EXPLANATION("DECORATOR TYPES", "These describe the randomized settings for your decorator meshes.\n\nTHIS ONLY AFFECTS DECORATORS WHEN YOU PLACE THEM DOWN INITIALLY\nChanging these settings will not affect already placed decorators unless you use the \'reapply-type-settings\' brush\n\nWARNING: Re-arranging the order of these types after placing decorators\nin your level will cause the placed decorators to change types.\n\nDO NOT DELETE!  DO NOT INSERT!  OR YOUR PLACED DECORATORS WILL BE CHANGED!\n"),
@@ -16671,7 +16908,7 @@ namespace haloreach {
 	{
 		{ _field_real, "base height", nullptr, "world units" },
 		{ _field_real, "fog height", nullptr, "world units" },
-		{ _field_real, "fog thickness" },
+		{ _field_real, "fog thickness", MAKE_ALT_NAMES("fog thickness [0.0 to 1.0]") },
 		{ _field_real, "max fog distance" },
 		{ _field_real_rgb_color, "fog color" },
 		{ _field_real, "fog color intensity" },
@@ -16688,9 +16925,9 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FOG_LIGHT_STRUCT_DEFINITION_ID)
 	{
-		{ _field_real, "pitch angle", nullptr, "degree" },
-		{ _field_real, "yaw angle", nullptr, "degree" },
-		{ _field_real, "angular radius", nullptr, "degree" },
+		{ _field_real, "pitch angle", nullptr, "degree", MAKE_ALT_NAMES("pitch angle [-90 to 90]") },
+		{ _field_real, "yaw angle", nullptr, "degree", MAKE_ALT_NAMES("yaw angle [0 to 360]") },
+		{ _field_real, "angular radius", nullptr, "degree", MAKE_ALT_NAMES("angular radius [0 to 180]") },
 		{ _field_real_rgb_color, "tint color" },
 		{ _field_real, "tint color intensity" },
 		{ _field_real, "angular falloff steepness" },
@@ -16800,7 +17037,7 @@ namespace haloreach {
 		{ _field_real, "rain sheet intensity" },
 		{ _field_real, "rain texture tile scale" },
 		{ _field_real, "rain sheet parallax speed" },
-		{ _field_real, "rain sheet depth fade", MAKE_OLD_NAMES("rain sheet fade factor") },
+		{ _field_real, "rain sheet depth fade", MAKE_ALT_NAMES("rain sheet fade factor") },
 		{ _field_real, "transparent sort distance" },
 		{ _field_real, "transparent sort layer" },
 		FIELD_GROUP_END(),
@@ -16901,13 +17138,13 @@ namespace haloreach {
 		FIELD_EXPLANATION("SHAPE", "shape of the light"),
 		{ _field_enum, "type", &blofeld::haloreach::light_type_enum_definition },
 		FIELD_PAD("BUCU", 2),
-		{ _field_real, "attenuation end distance", "maximum distance the light reaches (the light can become very dark well before this distance if you set your distance diffusion low)", "world units", MAKE_OLD_NAMES("maximum distance") },
+		{ _field_real, "attenuation end distance", "maximum distance the light reaches (the light can become very dark well before this distance if you set your distance diffusion low)", "world units", MAKE_ALT_NAMES("maximum distance") },
 		{ _field_real, "attenuation start distance", "linear attenuation start", "world units" },
 		{ _field_real, "light/rain volume range", "0 is far attenuation start point, 1 is the end point" },
 		{ _field_real, "frustum near width", "width of the frustum at the near plane", "world units" },
 		{ _field_real, "frustum height scale", "how much the gel is stretched vertically (0.0 or 1.0 = aspect ratio same as gel)" },
 		{ _field_real, "frustum field of view", "horizontal angle that the frustum light covers (0.0 = no spread, a straight beam of light)", "degrees" },
-		{ _field_real, "angular hotspot", "inner falloff angle", MAKE_OLD_NAMES("angular smoothness") },
+		{ _field_real, "angular hotspot", "inner falloff angle", MAKE_ALT_NAMES("angular smoothness") },
 		{ _field_real, "angular falloff speed", "1.0 for sharp edges, greater than 1.0 for smooth edges", nullptr, "[1 - 12]" },
 		{ _field_real, "distance diffusion", "approximately the physical size in world units of the light source itself.  small values cause the light to become very bright close to the light source, but quickly die off as you move away", nullptr, "[0.01 - 10.0+]" },
 		{ _field_real, "near fading distance", nullptr, "world units" },
@@ -18359,7 +18596,7 @@ namespace haloreach {
 		{ _field_real, "ejection port recovery time", "the amount of time (in seconds) it takes for the ejection port to transition from 1.0 (open) to 0.0 (closed) after a shot has been fired" },
 		{ _field_real, "illumination recovery time", "the amount of time (in seconds) it takes the illumination function to transition from 1.0 (bright) to 0.0 (dark) after a shot has been fired" },
 		{ _field_real_fraction, "heat generated per round", "the amount of heat generated each time the barrel fires. Unlike the name suggests, this amount of heat is NOT applied per projectile created.", nullptr, "[0,1]" },
-		{ _field_string_id, "heat generated per round function&heat generated per round", "function value sets the amount of heat to add to the weapon each tick the barrel is firing" },
+		{ _field_string_id, "heat generated per round function", "function value sets the amount of heat to add to the weapon each tick the barrel is firing", MAKE_ALT_NAMES("heat generated per round") },
 		{ _field_real_fraction, "age generated per round", "the amount the weapon ages each time the trigger is fired", nullptr, "[0,1]" },
 		{ _field_real_fraction, "CAMPAIGN age generated per round", "the amount the weapon ages each time the trigger is fired", nullptr, "[0,1]" },
 		{ _field_real, "overload time", "the next trigger fires this often while holding down this trigger", "seconds" },
@@ -18818,7 +19055,7 @@ namespace haloreach {
 		{ _field_tag_reference, "flurry melee damage", &blofeld::haloreach::damage_effect_group_reference_tagref },
 		{ _field_tag_reference, "obstacle smash damage", &blofeld::haloreach::damage_effect_group_reference_tagref },
 		{ _field_tag_reference, "assassination primary damage", &blofeld::haloreach::damage_effect_group_reference_tagref },
-		{ _field_tag_reference, "assassination ragdoll damage", MAKE_OLD_NAMES("assassination damage"), &blofeld::haloreach::damage_effect_group_reference_tagref },
+		{ _field_tag_reference, "assassination ragdoll damage", MAKE_ALT_NAMES("assassination damage"), &blofeld::haloreach::damage_effect_group_reference_tagref },
 		{ _field_terminator }
 	};
 
@@ -18867,11 +19104,11 @@ namespace haloreach {
 		{ _field_enum, "fade function", &blofeld::haloreach::global_reverse_transition_functions_enum },
 		FIELD_PAD("ZASSFACE", 2),
 		{ _field_real, "center size" },
-		{ _field_real, "offscreen size", MAKE_OLD_NAMES("size") },
+		{ _field_real, "offscreen size", MAKE_ALT_NAMES("size") },
 		{ _field_real, "center alpha" },
 		{ _field_real, "offscreen alpha" },
-		{ _field_real, "inner alpha", MAKE_OLD_NAMES("inner scale") },
-		{ _field_real, "outer alpha", MAKE_OLD_NAMES("outer scale") },
+		{ _field_real, "inner alpha", MAKE_ALT_NAMES("inner scale") },
+		{ _field_real, "outer alpha", MAKE_ALT_NAMES("outer scale") },
 		{ _field_real_argb_color, "flash color" },
 		{ _field_real_argb_color, "arrow color" },
 		{ _field_terminator }
@@ -19002,9 +19239,9 @@ namespace haloreach {
 		FIELD_EXPLANATION("motion sensor ping", nullptr),
 		{ _field_struct, "motion sensor ping", &blofeld::haloreach::damage_response_motion_sensor_ping },
 		FIELD_EXPLANATION("rumble", nullptr),
-		{ _field_tag_reference, "rumble", MAKE_OLD_NAMES("rumble data"), &blofeld::haloreach::rumble_group_reference_tagref },
+		{ _field_tag_reference, "rumble", MAKE_ALT_NAMES("rumble data"), &blofeld::haloreach::rumble_group_reference_tagref },
 		FIELD_EXPLANATION("camera shake and impulse data", nullptr),
-		{ _field_tag_reference, "camera shake", MAKE_OLD_NAMES("camera shake data"), &blofeld::haloreach::camera_shake_group_reference_tagref },
+		{ _field_tag_reference, "camera shake", MAKE_ALT_NAMES("camera shake data"), &blofeld::haloreach::camera_shake_group_reference_tagref },
 		FIELD_EXPLANATION("simulated input", nullptr),
 		{ _field_tag_reference, "simulated_input", &blofeld::haloreach::simulated_input_group_reference_tagref },
 		FIELD_EXPLANATION("global sound effect", nullptr),
@@ -19153,7 +19390,7 @@ namespace haloreach {
 		FIELD_EXPLANATION("damage response", nullptr),
 		{ _field_tag_reference, "damage response", &blofeld::haloreach::damage_response_definition_group_reference$2_tagref },
 		FIELD_EXPLANATION("sound", nullptr),
-		{ _field_tag_reference, "old melee sound", MAKE_OLD_NAMES("sound"), &blofeld::haloreach::_reference_tagref },
+		{ _field_tag_reference, "old melee sound", MAKE_ALT_NAMES("sound"), &blofeld::haloreach::_reference_tagref },
 		{ _field_block, "damage sounds", &blofeld::haloreach::damage_effect_sound_block_block },
 		{ _field_useless_pad, "value" },
 		FIELD_EXPLANATION("breaking effect", "Controls particle velocities when a damage effect shatters a materal.\n\nAll particles created within \'forward radius\' will be kicked along the\ndamage direction with a speed equivalent to \'forward velocity\' at the\nepicenter of the damage and 0 at the outer radius.  \'Forward exponent\'\nis used to modify the velocity scale.  A low exponent (like 0.5) means that\nparticles between the epicenter and the radius will be kicked out with a speed\ncloser to \'forward velocity\' than if a higher exponent (like 2.0) was used\n\nThe outward fields work in a similar way, except instead of kicking along the\ndamage direction, they get kick away from the damage epicenter."),
@@ -19349,7 +19586,7 @@ namespace haloreach {
 		{ _field_tag_reference, "render model", &blofeld::haloreach::render_model_group_reference$4_tagref },
 		{ _field_block, "render model permutation names", &blofeld::haloreach::muffin_permutation_name_block_block },
 		{ _field_long_integer, "render model permutation name valid count" },
-		{ _field_block, "muffin markers", "defines where muffins appear, how often, and which types", MAKE_OLD_NAMES("default markers"), &blofeld::haloreach::muffin_marker_block_block },
+		{ _field_block, "muffin markers", "defines where muffins appear, how often, and which types", MAKE_ALT_NAMES("default markers"), &blofeld::haloreach::muffin_marker_block_block },
 		{ _field_block, "muffin types", &blofeld::haloreach::global_muffin_type_block_block },
 		{ _field_terminator }
 	};
@@ -20493,7 +20730,7 @@ namespace haloreach {
 		FIELD_EXPLANATION("ground fitting data", nullptr),
 		{ _field_long_flags, "ground fitting flags", &blofeld::haloreach::biped_ground_fitting_flags_definition },
 		{ _field_real_fraction, "ground normal dampening", nullptr, "react to slope changes (0=slow, 1= fast)" },
-		{ _field_real, "root offset max scale idle", nullptr, "vertical drop to ground allowed (0=none, 1=full)", MAKE_OLD_NAMES("root offset max scale") },
+		{ _field_real, "root offset max scale idle", nullptr, "vertical drop to ground allowed (0=none, 1=full)", MAKE_ALT_NAMES("root offset max scale") },
 		{ _field_real, "root offset max scale moving", nullptr, "vertical drop to ground allowed (0=none, 1=full)" },
 		{ _field_real_fraction, "root offset dampening", nullptr, "react to root changes (0=slow, 1= fast)" },
 		{ _field_real_fraction, "following cam scale", nullptr, "root offset effect on following cam (0=none, 1=full)" },
@@ -20744,11 +20981,11 @@ namespace haloreach {
 		{ _field_char_enum, "type", &blofeld::haloreach::multiplayer_object_type },
 		{ _field_byte_flags, "teleporter passability", nullptr, "used only for teleporters", &blofeld::haloreach::teleporter_passability_flags },
 		FIELD_PAD("pad1", 1),
-		FIELD_EXPLANATION("GOAL & RESPAWN ZONE OBJECT BOUNDARY", "These fields are only used for goal area objects with boundaries, and for respawn zones"),
+		FIELD_EXPLANATION("GOAL ", "These fields are only used for goal area objects with boundaries, and for respawn zones"),
 		{ _field_real, "boundary width/radius" },
 		{ _field_real, "boundary box length" },
-		{ _field_real, "boundary positive height" },
-		{ _field_real, "boundary negative height" },
+		{ _field_real, "boundary positive height", MAKE_ALT_NAMES("boundary +height") },
+		{ _field_real, "boundary negative height", MAKE_ALT_NAMES("boundary -height") },
 		{ _field_char_enum, "boundary shape", &blofeld::haloreach::multiplayer_object_boundary_shape },
 		FIELD_EXPLANATION("SPAWNING DATA", "These fields are used for default spawning times and remapping"),
 		{ _field_char_enum, "spawn timer type", &blofeld::haloreach::multiplayer_object_spawn_timer_types },
@@ -20976,7 +21213,7 @@ namespace haloreach {
 		{ _field_long_flags, "flags", &blofeld::haloreach::object_definition_flags },
 		{ _field_real, "bounding radius", nullptr, "world units" },
 		{ _field_real_point_3d, "bounding offset" },
-		{ _field_real, "horizontal acceleration scale", nullptr, nullptr, "[0,+inf]", MAKE_OLD_NAMES("acceleration scale") },
+		{ _field_real, "horizontal acceleration scale", nullptr, nullptr, "[0,+inf]", MAKE_ALT_NAMES("acceleration scale") },
 		{ _field_real, "vertical acceleration scale" },
 		{ _field_real, "angular acceleration scale" },
 		{ _field_enum, "lightmap shadow mode", &blofeld::haloreach::lightmap_shadow_mode_enum },
@@ -21350,7 +21587,7 @@ namespace haloreach {
 		{ _field_real_rgb_color, "color" },
 		{ _field_real, "intensity" },
 		{ _field_real, "hotspot size" },
-		{ _field_real, "hotspot cutoff size", MAKE_OLD_NAMES("hotspot falloff size") },
+		{ _field_real, "hotspot cutoff size", MAKE_ALT_NAMES("hotspot falloff size") },
 		{ _field_real, "hotspot falloff speed" },
 		{ _field_real_bounds, "near attenuation bounds" },
 		{ _field_real_bounds, "far attenuation bounds" },
@@ -22291,9 +22528,9 @@ namespace haloreach {
 		{ _field_struct, "particle movement", &blofeld::haloreach::particle_physics_struct },
 		FIELD_HIDE_END(),
 		{ _field_struct, "particle self-acceleration", nullptr, "world units per second per second", &blofeld::haloreach::particle_property_real_vector3d_struct_new },
-		{ _field_struct, "particle initial velocity", nullptr, "world units per second", MAKE_OLD_NAMES("particle velocity"), &blofeld::haloreach::particle_property_scalar_struct_new },
+		{ _field_struct, "particle initial velocity", nullptr, "world units per second", MAKE_ALT_NAMES("particle velocity"), &blofeld::haloreach::particle_property_scalar_struct_new },
 		{ _field_struct, "particle rotation", nullptr, ".25=90°, .5=180°, 1=360° ... adds to physics", &blofeld::haloreach::particle_property_scalar_struct_new },
-		{ _field_struct, "particle initial rotation rate", nullptr, "360 degree rotations per second", MAKE_OLD_NAMES("particle angular velocity"), &blofeld::haloreach::particle_property_scalar_struct_new },
+		{ _field_struct, "particle initial rotation rate", nullptr, "360 degree rotations per second", MAKE_ALT_NAMES("particle angular velocity"), &blofeld::haloreach::particle_property_scalar_struct_new },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("PARTICLE APPEARANCE"),
 		{ _field_struct, "particle size", nullptr, "world units", &blofeld::haloreach::particle_property_scalar_struct_new },
@@ -24840,7 +25077,7 @@ namespace haloreach {
 		{ _field_tag_reference, "wind", &blofeld::haloreach::wind_group_reference_tagref },
 		FIELD_EXPLANATION("Clones", "Describes which other bsps are physical \'clones\' of this bsp\nThis is used to determine how to attach \'position-only\' elements, like decorators, to the bsps:\nEach clone gets a separate copy of decorators that are in both.\nNon-cloned bsps cannot split decorators this way - the decorator will be given to the lowest numbered bsp\n"),
 		{ _field_long_block_flags, "cloned bsp flags" },
-		{ _field_struct, "lightmap setting", MAKE_OLD_NAMES("lightmap resolution buckets"), &blofeld::haloreach::scenario_lightmap_setting_struct },
+		{ _field_struct, "lightmap setting", MAKE_ALT_NAMES("lightmap resolution buckets"), &blofeld::haloreach::scenario_lightmap_setting_struct },
 		{ _field_real, "custom gravity scale", "0==nogravity, 1==full, set the custom gravity scale flag to make this parameter active" },
 		{ _field_terminator }
 	};
@@ -25044,7 +25281,7 @@ namespace haloreach {
 		{ _field_long_block_flags, "structure design zone flags" },
 		{ _field_long_block_flags, "runtime bsp zone flags" },
 		{ _field_long_block_flags, "sruntime tructure design zone flags" },
-		{ _field_long_block_flags, "required designer zones", MAKE_OLD_NAMES("designer zone flags") },
+		{ _field_long_block_flags, "required designer zones", MAKE_ALT_NAMES("designer zone flags") },
 		{ _field_long_block_flags, "forbidden designer zones" },
 		{ _field_long_block_flags, "cinematic zones" },
 		{ _field_long_block_index, "hint previous zone set", &blofeld::haloreach::scenario_zone_set_block_block },
@@ -25398,7 +25635,7 @@ namespace haloreach {
 		{ _field_block, "Lines", &blofeld::haloreach::scenario_performance_line_block_block },
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_2d, "template facing" },
-		{ _field_real, "thespian radius", "The radius inside which actors have to be in order to start.", MAKE_OLD_NAMES("performance radius") },
+		{ _field_real, "thespian radius", "The radius inside which actors have to be in order to start.", MAKE_ALT_NAMES("performance radius") },
 		{ _field_real, "attraction radius", "The radius inside which actors become attracted to the thespian origin." },
 		{ _field_real_fraction, "attraction probability per second", "The probability that an actor be attracted once inside the thespian radius, every second.", nullptr, "[0,1]" },
 		{ _field_string_id, "template" },
@@ -25510,7 +25747,7 @@ namespace haloreach {
 		{ _field_word_block_flags, "manual bsp flags", _field_id_manual_bsp_flags },
 		{ _field_real_quaternion, "rotation" },
 		{ _field_real_point_3d, "position" },
-		{ _field_real, "scale x", MAKE_OLD_NAMES("scale") },
+		{ _field_real, "scale x", MAKE_ALT_NAMES("scale") },
 		{ _field_real, "scale y" },
 		{ _field_terminator }
 	};
@@ -25820,7 +26057,7 @@ namespace haloreach {
 		{ _field_long_integer, "bsp checksum" },
 		{ _field_block, "cluster centroids", &blofeld::haloreach::scenario_cluster_points_block_block },
 		{ _field_long_block_index, "default acoustic palette", &blofeld::haloreach::scenario_acoustics_palette_block_definition_block },
-		{ _field_block, "acoustics", MAKE_OLD_NAMES("background sounds"), FIELD_FLAG_READ_ONLY, &blofeld::haloreach::scenario_cluster_acoustics_block_block },
+		{ _field_block, "acoustics", MAKE_ALT_NAMES("background sounds"), FIELD_FLAG_READ_ONLY, &blofeld::haloreach::scenario_cluster_acoustics_block_block },
 		{ _field_block, "atmospheric properties", &blofeld::haloreach::scenario_cluster_atmosphere_properties_block_block },
 		{ _field_block, "camera fx properties", &blofeld::haloreach::scenario_cluster_camera_fx_properties_block_block },
 		{ _field_block, "weather properties", &blofeld::haloreach::scenario_cluster_weather_properties_block_block },
@@ -25993,7 +26230,7 @@ namespace haloreach {
 		{ _field_real_point_3d, "sandbox origin point", "forge coordinates are relative to this point" },
 		{ _field_real, "sandbox budget" },
 		{ _field_string_id, "default vehicle set", "when vehicle set is \"map default,\" this vehicle set is used" },
-		{ _field_tag_reference, "game performance throttles", MAKE_OLD_NAMES("performance thorttles"), &blofeld::haloreach::game_performance_throttle_group_reference$2_tagref },
+		{ _field_tag_reference, "game performance throttles", MAKE_ALT_NAMES("performance thorttles"), &blofeld::haloreach::game_performance_throttle_group_reference$2_tagref },
 		{ _field_block, "structure bsps", &blofeld::haloreach::scenario_structure_bsp_reference_block_block },
 		{ _field_block, "structure designs", &blofeld::haloreach::scenario_design_reference_block_block },
 		{ _field_tag_reference, "structure seams", &blofeld::haloreach::structure_seams_group_reference_tagref },
@@ -26070,7 +26307,7 @@ namespace haloreach {
 		{ _field_block, "zones", &blofeld::haloreach::zone_block_block },
 		{ _field_block, "squad patrols", &blofeld::haloreach::squad_patrol_block_block },
 		{ _field_block, "actual cues", &blofeld::haloreach::ai_cue_block_block },
-		{ _field_block, "full cues", MAKE_OLD_NAMES("cues"), &blofeld::haloreach::ai_full_cue_block_block },
+		{ _field_block, "full cues", MAKE_ALT_NAMES("cues"), &blofeld::haloreach::ai_full_cue_block_block },
 		{ _field_block, "quick cues", &blofeld::haloreach::ai_quick_cue_block_block },
 		{ _field_block, "mission scenes", &blofeld::haloreach::ai_scene_block_block },
 		{ _field_block, "character palette", &blofeld::haloreach::character_palette_block_block, _field_id_sort },
@@ -26098,7 +26335,7 @@ namespace haloreach {
 		{ _field_block, "hs syntax datums", &blofeld::haloreach::hs_syntax_datum_block_block },
 		{ _field_block, "Orders", &blofeld::haloreach::orders_block_block },
 		{ _field_block, "Triggers", &blofeld::haloreach::triggers_block_block },
-		{ _field_block, "acoustics palette", MAKE_OLD_NAMES("background sound palette"), &blofeld::haloreach::scenario_acoustics_palette_block_definition_block, _field_id_sort },
+		{ _field_block, "acoustics palette", MAKE_ALT_NAMES("background sound palette"), &blofeld::haloreach::scenario_acoustics_palette_block_definition_block, _field_id_sort },
 		{ _field_block, "atmosphere", &blofeld::haloreach::scenario_atmosphere_palette_block_block, _field_id_sort },
 		{ _field_block, "camera fx palette", &blofeld::haloreach::scenario_camera_fx_palette_block_block, _field_id_sort },
 		{ _field_block, "weather palette", &blofeld::haloreach::scenario_weather_palette_block_block, _field_id_sort },
@@ -26124,7 +26361,7 @@ namespace haloreach {
 		{ _field_tag_reference, "camera effects", &blofeld::haloreach::camera_fx_settings_group_reference_tagref },
 		{ _field_tag_reference, "global screen effect", "ignores the falloff curves", &blofeld::haloreach::area_screen_effect_group_reference_tagref },
 		{ _field_tag_reference, "global ssao", &blofeld::haloreach::ssao_definition_group_reference_tagref },
-		{ _field_tag_reference, "old atmosphere", MAKE_OLD_NAMES("atmospheric"), &blofeld::haloreach::sky_atm_parameters_group_reference_tagref },
+		{ _field_tag_reference, "old atmosphere", MAKE_ALT_NAMES("atmospheric"), &blofeld::haloreach::sky_atm_parameters_group_reference_tagref },
 		{ _field_tag_reference, "atmosphere globals", "settings that apply to the entire scenario", &blofeld::haloreach::atmosphere_globals_group_reference_tagref },
 		{ _field_tag_reference, "chocalate mountain", &blofeld::haloreach::chocolate_mountain_new_group_reference_tagref },
 		{ _field_tag_reference, "new lightmaps", &blofeld::haloreach::scenario_lightmap_group_reference_tagref },
@@ -26145,7 +26382,7 @@ namespace haloreach {
 		{ _field_block, "airprobes", &blofeld::haloreach::scenario_airprobes_block_block },
 		{ _field_block, "budget references", &blofeld::haloreach::scenario_budget_references_block_block },
 		{ _field_block, "model references", &blofeld::haloreach::model_references_block_block },
-		{ _field_block, "thespian", MAKE_OLD_NAMES("performances"), &blofeld::haloreach::scenario_performances_block_block },
+		{ _field_block, "thespian", MAKE_ALT_NAMES("performances"), &blofeld::haloreach::scenario_performances_block_block },
 		{ _field_tag_reference, "location name globals", &blofeld::haloreach::location_name_globals_definition_group_reference_tagref },
 		FIELD_EXPLANATION("garbage collection", "specify zero for values that should use the data in the globals tag."),
 		{ _field_block, "garbage collection", &blofeld::haloreach::garbage_collection_block_block, _field_id_slap },
@@ -26651,7 +26888,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_COLLISION_MATERIALS_BLOCK_ID)
 	{
-		{ _field_tag_reference, "render method", MAKE_OLD_NAMES("old shader"), FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &blofeld::haloreach::render_method_group_reference$6_tagref },
+		{ _field_tag_reference, "render method", MAKE_ALT_NAMES("old shader"), FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &blofeld::haloreach::render_method_group_reference$6_tagref },
 		{ _field_short_integer, "runtime global material index" },
 		{ _field_short_block_index, "conveyor surface index", &blofeld::haloreach::structure_bsp_conveyor_surface_block_block },
 		{ _field_short_block_index, "seam mapping index", &blofeld::haloreach::structure_seam_mapping_block_block },
@@ -26802,7 +27039,7 @@ namespace haloreach {
 		{ _field_short_integer, "manual bsp flags" },
 		{ _field_real_quaternion, "rotation" },
 		{ _field_real_point_3d, "position" },
-		{ _field_real, "scale_x", MAKE_OLD_NAMES("scale"), FIELD_FLAG_READ_ONLY },
+		{ _field_real, "scale_x", MAKE_ALT_NAMES("scale"), FIELD_FLAG_READ_ONLY },
 		{ _field_real, "scale_y" },
 		{ _field_terminator }
 	};
@@ -27789,7 +28026,7 @@ namespace haloreach {
 		{ _field_tag_reference, "sound environment", &blofeld::haloreach::sound_environment_group_reference_tagref },
 		{ _field_long_enum, "type", &blofeld::haloreach::sound_class_acoustics_string_definition },
 		{ _field_real, "cutoff distance" },
-		{ _field_real, "interpolation time", nullptr, "seconds", MAKE_OLD_NAMES("interpolation speed") },
+		{ _field_real, "interpolation time", nullptr, "seconds", MAKE_ALT_NAMES("interpolation speed") },
 		{ _field_terminator }
 	};
 
@@ -27817,7 +28054,7 @@ namespace haloreach {
 		{ _field_tag_reference, "entry sound", "plays when entering this area", &blofeld::haloreach::_reference_tagref },
 		{ _field_tag_reference, "exit sound", "plays when leaving this area", &blofeld::haloreach::_reference_tagref },
 		{ _field_real, "cutoff distance" },
-		{ _field_real, "interpolation time", nullptr, "seconds", MAKE_OLD_NAMES("interpolation speed") },
+		{ _field_real, "interpolation time", nullptr, "seconds", MAKE_ALT_NAMES("interpolation speed") },
 		{ _field_long_flags, "scale flags DEPRICATED", &blofeld::haloreach::background_sound_scale_flags_definition },
 		{ _field_real_fraction, "interior scale DEPRICATED" },
 		{ _field_real_fraction, "portal scale DEPRICATED" },
@@ -28265,7 +28502,7 @@ namespace haloreach {
 	{
 		{ _field_long_flags, "flags", &blofeld::haloreach::effect_flags },
 		{ _field_long_integer, "fixed random seed", "If this is non-zero, the effect will usually be exactly repeatable" },
-		{ _field_real, "restart if within", nullptr, "world units", MAKE_OLD_NAMES("overlap threshold") },
+		{ _field_real, "restart if within", nullptr, "world units", MAKE_ALT_NAMES("overlap threshold") },
 		{ _field_real, "continue if within", nullptr, "world units" },
 		{ _field_real, "death_delay" },
 		{ _field_short_block_index, "loop start event", &blofeld::haloreach::effect_event_block_block },
@@ -28582,7 +28819,7 @@ namespace haloreach {
 		{ _field_block, "havok cleanup resources", &blofeld::haloreach::havok_cleanup_resources_block_block },
 		{ _field_block, "sound globals", &blofeld::haloreach::sound_globals_block_block },
 		FIELD_EXPLANATION("AI globals", "I have moved the ai globals out of this tag, and into its own tag which is referenced here."),
-		{ _field_block, "DEPRECATED", MAKE_OLD_NAMES("ai globals"), FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &blofeld::haloreach::ai_globals_data_block_block, _field_id_slap },
+		{ _field_block, "DEPRECATED", MAKE_ALT_NAMES("ai globals"), FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &blofeld::haloreach::ai_globals_data_block_block, _field_id_slap },
 		{ _field_tag_reference, "ai globals ref", &blofeld::haloreach::ai_globals_group_reference_tagref },
 		{ _field_block, "damage table", &blofeld::haloreach::game_globals_damage_block_block },
 		{ _field_tag_reference, "load screen globals ref", &blofeld::haloreach::load_screen_globals_group_reference_tagref },
@@ -28601,7 +28838,7 @@ namespace haloreach {
 		{ _field_block, "@cheat powerups", &blofeld::haloreach::cheat_powerups_block_block },
 		{ _field_block, "@player information", &blofeld::haloreach::player_information_block_block },
 		{ _field_block, "@player representation", &blofeld::haloreach::player_representation_block_block },
-		{ _field_block, "damage", MAKE_OLD_NAMES("falling damage"), &blofeld::haloreach::damage_globals_block_block },
+		{ _field_block, "damage", MAKE_ALT_NAMES("falling damage"), &blofeld::haloreach::damage_globals_block_block },
 		{ _field_block, "shield boost", &blofeld::haloreach::shield_boost_block_block },
 		{ _field_block, "materials", &blofeld::haloreach::materials_block_block$2, _field_id_sort },
 		{ _field_block, "profile colors", &blofeld::haloreach::multiplayer_color_block_block },
@@ -29174,8 +29411,8 @@ namespace haloreach {
 		{ _field_tag_reference, "in game text", &blofeld::haloreach::multilingual_unicode_string_list_group_reference_tagref },
 		{ _field_block, "sounds", &blofeld::haloreach::sounds_block_block },
 		{ _field_block, "looping sounds", &blofeld::haloreach::looping_sounds_block_block },
-		{ _field_tag_reference, "megalo sounds", MAKE_OLD_NAMES("english"), &blofeld::haloreach::megalogamengine_sounds_group_reference_tagref },
-		{ _field_tag_reference, "communication sounds", MAKE_OLD_NAMES("comm english"), &blofeld::haloreach::communication_sounds_group_reference_tagref },
+		{ _field_tag_reference, "megalo sounds", MAKE_ALT_NAMES("english"), &blofeld::haloreach::megalogamengine_sounds_group_reference_tagref },
+		{ _field_tag_reference, "communication sounds", MAKE_ALT_NAMES("comm english"), &blofeld::haloreach::communication_sounds_group_reference_tagref },
 		{ _field_long_integer, "maximum frag count" },
 		{ _field_long_integer, "maximum plasma count" },
 		{ _field_block, "requisition constants", &blofeld::haloreach::requisition_constants_block_block },
@@ -30019,11 +30256,11 @@ namespace haloreach {
 		{ _field_block, "variants", &blofeld::haloreach::model_variant_block_block },
 		{ _field_block, "region sort", &blofeld::haloreach::region_name_block_block },
 		{ _field_block, "instance groups", &blofeld::haloreach::global_model_instance_group_block_block },
-		{ _field_block, "materials old", MAKE_OLD_NAMES("materials"), FIELD_FLAG_UNKNOWN0, &blofeld::haloreach::model_material_block_old_block },
+		{ _field_block, "materials old", MAKE_ALT_NAMES("materials"), FIELD_FLAG_UNKNOWN0, &blofeld::haloreach::model_material_block_old_block },
 		{ _field_block, "model materials", &blofeld::haloreach::model_material_block_new_block },
 		{ _field_block, "new damage info", &blofeld::haloreach::global_damage_info_block_block },
 		{ _field_struct, "damage info", &blofeld::haloreach::model_damage_info_struct },
-		{ _field_block, "targets old", MAKE_OLD_NAMES("targets"), FIELD_FLAG_UNKNOWN0, &blofeld::haloreach::model_target_block_old_block },
+		{ _field_block, "targets old", MAKE_ALT_NAMES("targets"), FIELD_FLAG_UNKNOWN0, &blofeld::haloreach::model_target_block_old_block },
 		{ _field_block, "model targets", &blofeld::haloreach::model_target_block_new_block },
 		{ _field_block, "runtime regions", &blofeld::haloreach::model_region_block_block },
 		{ _field_block, "runtime nodes", &blofeld::haloreach::model_node_block_block },
@@ -30214,7 +30451,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DEFAULT_LIGHTPROBE_STRUCT_DEFINITION_ID)
 	{
-		{ _field_real, "spherical harmonic", MAKE_OLD_NAMES("coefficient"), FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "spherical harmonic", MAKE_ALT_NAMES("coefficient"), FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -30228,7 +30465,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DEFAULT_DUAL_VMF_STRUCT_DEFINITION_ID)
 	{
-		{ _field_real, "dual vmf", MAKE_OLD_NAMES("coefficient"), FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "dual vmf", MAKE_ALT_NAMES("coefficient"), FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -30242,7 +30479,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUN_DIRECTION_INTENSITY_STRUCT_DEFINITION_ID)
 	{
-		{ _field_real, "sun dir or intensity", MAKE_OLD_NAMES("coefficient") },
+		{ _field_real, "sun dir or intensity", MAKE_ALT_NAMES("coefficient") },
 		{ _field_terminator }
 	};
 
@@ -30761,11 +30998,11 @@ namespace haloreach {
 	{
 		{ _field_block, "styles", &blofeld::haloreach::campaign_metagame_style_type_block_block },
 		{ _field_block, "difficulty", &blofeld::haloreach::campaign_metagame_difficulty_scale_block_block },
-		{ _field_block, "skulls", MAKE_OLD_NAMES("Primary Skulls"), &blofeld::haloreach::campaign_metagame_skull_block_block },
+		{ _field_block, "skulls", MAKE_ALT_NAMES("Primary Skulls"), &blofeld::haloreach::campaign_metagame_skull_block_block },
 		{ _field_long_integer, "friendly_death_point_count" },
 		{ _field_long_integer, "player_death_point_count" },
 		{ _field_long_integer, "player_betrayal_point_count" },
-		{ _field_real, "transient score time", "how long does transient score stay onscreen", "s", MAKE_OLD_NAMES("multi kill window") },
+		{ _field_real, "transient score time", "how long does transient score stay onscreen", "s", MAKE_ALT_NAMES("multi kill window") },
 		{ _field_real, "EMP kill window", "time after taking a guys shields down with emp damage you have to get the emp kill bonus (seconds)" },
 		{ _field_terminator }
 	};
@@ -31476,7 +31713,7 @@ namespace haloreach {
 		{ _field_long_integer, "internal flags" },
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this sound that will be ignored (0 means always play.)" },
 		{ _field_real, "maximum bend per second", nullptr, "cents", _field_id_cents },
-		{ _field_struct, "distance parameters", MAKE_OLD_NAMES("."), &blofeld::haloreach::sound_distance_parameters_struct },
+		{ _field_struct, "distance parameters", MAKE_ALT_NAMES("."), &blofeld::haloreach::sound_distance_parameters_struct },
 		FIELD_CUSTOM("value", _field_id_default),
 		FIELD_CUSTOM("value", _field_id_default),
 		FIELD_EXPLANATION("randomization", "these settings control random variation of volume and pitch.\n the second parameter gets clipped to the first."),
@@ -33694,7 +33931,7 @@ namespace haloreach {
 		{ _field_real_fraction, "damage threshold", "response fires after crossing this threshold.  1=full health" },
 		{ _field_long_flags, "body threshold flags", &blofeld::haloreach::damage_response_body_threshold_flags_definition },
 		{ _field_real, "body damage threshold", "response fires after object body damage crosses this threshold, numbers can be negative.  You need to set the flag \"body threshold active\" for this number to be used. 1=full health" },
-		{ _field_tag_reference, "transition effect (generic)", MAKE_OLD_NAMES("transition effect"), &blofeld::haloreach::effect_group_reference_tagref },
+		{ _field_tag_reference, "transition effect (generic)", MAKE_ALT_NAMES("transition effect"), &blofeld::haloreach::effect_group_reference_tagref },
 		{ _field_tag_reference, "transition effect (specific)", &blofeld::haloreach::effect_group_reference_tagref },
 		{ _field_struct, "damage effect", &blofeld::haloreach::instantaneous_response_damage_effect_struct },
 		{ _field_string_id, "region" },
@@ -34064,8 +34301,8 @@ namespace haloreach {
 		{ _field_long_flags, "flags", &blofeld::haloreach::new_damage_response_flags_definition },
 		{ _field_string_id, "label" },
 		{ _field_real_fraction, "damage threshold", "response fires after crossing this threshold.  1=full health" },
-		{ _field_tag_reference, "transition effect (generic)", MAKE_OLD_NAMES("transition effect"), &blofeld::haloreach::effect_group_reference_tagref },
-		{ _field_string_id, "generic effect marker", MAKE_OLD_NAMES("effect marker name") },
+		{ _field_tag_reference, "transition effect (generic)", MAKE_ALT_NAMES("transition effect"), &blofeld::haloreach::effect_group_reference_tagref },
+		{ _field_string_id, "generic effect marker", MAKE_ALT_NAMES("effect marker name") },
 		{ _field_tag_reference, "transition effect (specific)", &blofeld::haloreach::effect_group_reference_tagref },
 		{ _field_string_id, "specific effect marker" },
 		{ _field_struct, "damage effect", &blofeld::haloreach::instantaneous_response_damage_effect_struct },
@@ -35812,9 +36049,9 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_SPACE_NODE_DATA_BLOCK_ID)
 	{
-		{ _field_short_block_index, "node index", MAKE_OLD_NAMES("node_index"), FIELD_FLAG_INDEX, &blofeld::haloreach::animation_graph_node_block_block },
+		{ _field_short_block_index, "node index", MAKE_ALT_NAMES("node_index"), FIELD_FLAG_INDEX, &blofeld::haloreach::animation_graph_node_block_block },
 		{ _field_word_flags, "flags", &blofeld::haloreach::object_space_node_flags },
-		{ _field_struct, "parent orientation", MAKE_OLD_NAMES("orientation"), FIELD_FLAG_READ_ONLY, &blofeld::haloreach::quantized_orientation_struct },
+		{ _field_struct, "parent orientation", MAKE_ALT_NAMES("orientation"), FIELD_FLAG_READ_ONLY, &blofeld::haloreach::quantized_orientation_struct },
 		{ _field_terminator }
 	};
 
@@ -36213,8 +36450,8 @@ namespace haloreach {
 		FIELD_CUSTOM("value", _field_id_default),
 		{ _field_real, "weight" },
 		{ _field_short_integer, "loop frame index" },
-		{ _field_word_flags, "user flags", MAKE_OLD_NAMES("playback flags"), &blofeld::haloreach::animation_index_flags },
-		{ _field_real, "override blend in time", MAKE_OLD_NAMES("override blend time") },
+		{ _field_word_flags, "user flags", MAKE_ALT_NAMES("playback flags"), &blofeld::haloreach::animation_index_flags },
+		{ _field_real, "override blend in time", MAKE_ALT_NAMES("override blend time") },
 		{ _field_real, "override blend out time" },
 		{ _field_short_block_index, "parent animation", &blofeld::haloreach::animation_pool_block_block },
 		{ _field_short_block_index, "next animation", &blofeld::haloreach::animation_pool_block_block },
@@ -36422,7 +36659,7 @@ namespace haloreach {
 		{ _field_string_id, "weight source object function" },
 		{ _field_short_block_index, "weight function", "Function applied to input from weight function source", &blofeld::haloreach::animation_function_block_block },
 		FIELD_PAD("nabsbfp1", 2),
-		{ _field_struct, "animation", MAKE_OLD_NAMES("animation info"), &blofeld::haloreach::animation_index_struct },
+		{ _field_struct, "animation", MAKE_ALT_NAMES("animation info"), &blofeld::haloreach::animation_index_struct },
 		{ _field_terminator }
 	};
 
@@ -36585,7 +36822,7 @@ namespace haloreach {
 		OVERLAY_GROUP_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_block, "blend screens", MAKE_OLD_NAMES("blend screen"), &blofeld::haloreach::blend_screen_item_definition_block_block },
+		{ _field_block, "blend screens", MAKE_ALT_NAMES("blend screen"), &blofeld::haloreach::blend_screen_item_definition_block_block },
 		{ _field_block, "function overlays", &blofeld::haloreach::function_overlay_item_definition_block_block },
 		{ _field_terminator }
 	};
@@ -36824,7 +37061,7 @@ namespace haloreach {
 		ANIMATION_ENTRY_BLOCK_ID)
 	{
 		{ _field_string_id, "label" },
-		{ _field_short_block_index, "overlay group", MAKE_OLD_NAMES("pose overlay|overlay"), &blofeld::haloreach::overlay_group_definition_block_block },
+		{ _field_short_block_index, "overlay group", MAKE_ALT_NAMES("pose overlay|overlay"), &blofeld::haloreach::overlay_group_definition_block_block },
 		{ _field_short_block_index, "ik set", &blofeld::haloreach::animation_ik_set_block },
 		{ _field_struct, "animation", &blofeld::haloreach::animation_index_struct },
 		{ _field_terminator }
@@ -36840,7 +37077,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RANGED_ANIMATION_ENTRY_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "overlay group", MAKE_OLD_NAMES("pose overlay|overlay"), &blofeld::haloreach::overlay_group_definition_block_block },
+		{ _field_short_block_index, "overlay group", MAKE_ALT_NAMES("pose overlay|overlay"), &blofeld::haloreach::overlay_group_definition_block_block },
 		{ _field_short_block_index, "ik set", &blofeld::haloreach::animation_ik_set_block },
 		{ _field_struct, "animation", &blofeld::haloreach::animation_index_struct },
 		{ _field_real, "animation parameter", "Numerical value associated with the ranged action animation (e.g. velocity for jumps)" },
@@ -36958,12 +37195,12 @@ namespace haloreach {
 		ANIMATION_SET_BLOCK_ID)
 	{
 		{ _field_string_id, "label" },
-		{ _field_short_block_index, "overlay group", MAKE_OLD_NAMES("pose overlay|overlay"), &blofeld::haloreach::overlay_group_definition_block_block },
+		{ _field_short_block_index, "overlay group", MAKE_ALT_NAMES("pose overlay|overlay"), &blofeld::haloreach::overlay_group_definition_block_block },
 		{ _field_short_block_index, "ik set", &blofeld::haloreach::animation_ik_set_block },
 		{ _field_short_block_index, "gait group", &blofeld::haloreach::animation_gait_group_block_block },
 		FIELD_PAD("asbfap", 2),
 		{ _field_block, "actions", &blofeld::haloreach::animation_entry_block_block },
-		{ _field_block, "overlay animations", MAKE_OLD_NAMES("overlays"), &blofeld::haloreach::animation_entry_block_block },
+		{ _field_block, "overlay animations", MAKE_ALT_NAMES("overlays"), &blofeld::haloreach::animation_entry_block_block },
 		{ _field_block, "death and damage", &blofeld::haloreach::damage_animation_block_block },
 		{ _field_block, "transitions", &blofeld::haloreach::animation_transition_source_block_block },
 		{ _field_block, "velocity boundaries", &blofeld::haloreach::animation_velocity_boundaries_block_block },
@@ -36981,7 +37218,7 @@ namespace haloreach {
 		WEAPON_TYPE_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "label" },
-		{ _field_short_block_index, "overlay group", MAKE_OLD_NAMES("pose overlay|overlay"), &blofeld::haloreach::overlay_group_definition_block_block },
+		{ _field_short_block_index, "overlay group", MAKE_ALT_NAMES("pose overlay|overlay"), &blofeld::haloreach::overlay_group_definition_block_block },
 		{ _field_short_block_index, "ik set", &blofeld::haloreach::animation_ik_set_block },
 		{ _field_block, "sets", &blofeld::haloreach::animation_set_block_block },
 		{ _field_terminator }
@@ -37079,7 +37316,7 @@ namespace haloreach {
 		WEAPON_CLASS_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "label" },
-		{ _field_short_block_index, "overlay group", MAKE_OLD_NAMES("pose overlay|overlay"), &blofeld::haloreach::overlay_group_definition_block_block },
+		{ _field_short_block_index, "overlay group", MAKE_ALT_NAMES("pose overlay|overlay"), &blofeld::haloreach::overlay_group_definition_block_block },
 		{ _field_short_block_index, "ik set", &blofeld::haloreach::animation_ik_set_block },
 		{ _field_block, "weapon type", &blofeld::haloreach::weapon_type_block_block },
 		{ _field_block, "weapon ik", &blofeld::haloreach::animation_ik_block_v1_block },
@@ -37099,7 +37336,7 @@ namespace haloreach {
 		ANIMATION_MODE_BLOCK_ID)
 	{
 		{ _field_string_id, "label" },
-		{ _field_short_block_index, "overlay group", MAKE_OLD_NAMES("pose overlay|overlay"), &blofeld::haloreach::overlay_group_definition_block_block },
+		{ _field_short_block_index, "overlay group", MAKE_ALT_NAMES("pose overlay|overlay"), &blofeld::haloreach::overlay_group_definition_block_block },
 		{ _field_short_block_index, "ik set", &blofeld::haloreach::animation_ik_set_block },
 		{ _field_long_flags, "flags", &blofeld::haloreach::animation_mode_flags },
 		{ _field_block, "weapon class", &blofeld::haloreach::weapon_class_block_block },
@@ -37232,7 +37469,7 @@ namespace haloreach {
 		{ _field_string_id, "name" },
 		{ _field_enum, "type", &blofeld::haloreach::animation_ik_chain_type_enumeration },
 		FIELD_PAD("aikcbp", 2),
-		{ _field_short_block_index, "start node", MAKE_OLD_NAMES("grandparent node"), &blofeld::haloreach::animation_graph_node_block_block },
+		{ _field_short_block_index, "start node", MAKE_ALT_NAMES("grandparent node"), &blofeld::haloreach::animation_graph_node_block_block },
 		{ _field_short_block_index, "effector node", &blofeld::haloreach::animation_graph_node_block_block },
 		{ _field_short_integer, "rank", "calculated during post process where rank is default ordinal for solving" },
 		{ _field_short_integer, "antecedents", "calculated during post process where bit index represents chain index" },
@@ -37269,7 +37506,7 @@ namespace haloreach {
 		{ _field_block, "animations", &blofeld::haloreach::animation_pool_block_block, _field_id_wide },
 		{ _field_block, "NEW blend screens", &blofeld::haloreach::new_animation_blend_screen_block_block },
 		{ _field_block, "NEW function overlays", &blofeld::haloreach::new_animation_function_overlay_block_block },
-		{ _field_block, "overlay groups", MAKE_OLD_NAMES("pose overlays|NEW overlays"), &blofeld::haloreach::overlay_group_definition_block_block },
+		{ _field_block, "overlay groups", MAKE_ALT_NAMES("pose overlays|NEW overlays"), &blofeld::haloreach::overlay_group_definition_block_block },
 		{ _field_block, "gaits", &blofeld::haloreach::animation_gait_block_block },
 		{ _field_block, "gait groups", &blofeld::haloreach::animation_gait_group_block_block },
 		{ _field_block, "ik data", &blofeld::haloreach::animation_ik_block_block },
@@ -37325,7 +37562,7 @@ namespace haloreach {
 		{ _field_block, "modes", &blofeld::haloreach::animation_mode_block_block },
 		FIELD_EXPLANATION("SPECIAL CASE ANIMS", nullptr),
 		{ _field_block, "vehicle suspension", &blofeld::haloreach::vehicle_suspension_block_block },
-		{ _field_block, "function overlays", MAKE_OLD_NAMES("object overlays"), &blofeld::haloreach::function_overlay_animation_block_block },
+		{ _field_block, "function overlays", MAKE_ALT_NAMES("object overlays"), &blofeld::haloreach::function_overlay_animation_block_block },
 		{ _field_terminator }
 	};
 
@@ -37820,8 +38057,8 @@ namespace haloreach {
 		{ _field_tag_reference, "hologram death effect", &blofeld::haloreach::effect_group_reference_tagref },
 		{ _field_long_integer, "binoculars zoom count" },
 		{ _field_real_bounds, "binoculars zoom range" },
-		{ _field_tag_reference, "night vision on", MAKE_OLD_NAMES("flashlight on"), &blofeld::haloreach::_reference_tagref },
-		{ _field_tag_reference, "night vision off", MAKE_OLD_NAMES("flashlight off"), &blofeld::haloreach::_reference_tagref },
+		{ _field_tag_reference, "night vision on", MAKE_ALT_NAMES("flashlight on"), &blofeld::haloreach::_reference_tagref },
+		{ _field_tag_reference, "night vision off", MAKE_ALT_NAMES("flashlight off"), &blofeld::haloreach::_reference_tagref },
 		{ _field_real, "fire team objective range" },
 		{ _field_real, "fire team sandbox range" },
 		{ _field_real, "fire team cone angle", nullptr, "in degrees" },
@@ -37927,7 +38164,7 @@ namespace haloreach {
 	{
 		{ _field_char_enum, "input shape", &blofeld::haloreach::input_mapping_shape_enum },
 		FIELD_PAD("F", 3),
-		{ _field_real_fraction, "peg threshold", "magnitude of analog input for pegged acceleration to kick in" },
+		{ _field_real_fraction, "peg threshold", "magnitude of analog input for pegged acceleration to kick in", MAKE_ALT_NAMES("peg threshold [0,1]") },
 		{ _field_real_point_2d, "pegged time", "time for a pegged look to reach maximum effect" },
 		{ _field_real_point_2d, "pegged scale", "the maximum effect achieved over the duration of the pegged time." },
 		{ _field_angle, "peg max angular velocity", "the maximum turning speed during peg", "degrees per sec" },
@@ -38475,7 +38712,7 @@ namespace haloreach {
 		{ _field_long_enum, "damping", &blofeld::haloreach::anti_gravity_point_definition_damping },
 		{ _field_real, "antigrav strength" },
 		{ _field_real, "antigrav height" },
-		{ _field_real, "antigrav compression damping", MAKE_OLD_NAMES("antigrav damp factor") },
+		{ _field_real, "antigrav compression damping", MAKE_ALT_NAMES("antigrav damp factor") },
 		{ _field_real, "antigrav extension damping" },
 		{ _field_real, "antigrav normal k1" },
 		{ _field_real, "antigrav normal k0" },
@@ -39152,7 +39389,7 @@ namespace haloreach {
 	{
 		{ _field_block, "character palette", &blofeld::haloreach::character_palette_block_block },
 		{ _field_block, "script data", &blofeld::haloreach::cs_script_data_block_block },
-		{ _field_block, "thespian", MAKE_OLD_NAMES("performances"), &blofeld::haloreach::scenario_performances_block_block },
+		{ _field_block, "thespian", MAKE_ALT_NAMES("performances"), &blofeld::haloreach::scenario_performances_block_block },
 		{ _field_block, "editor folders", &blofeld::haloreach::g_scenario_editor_folder_block_block },
 		{ _field_terminator }
 	};
@@ -39183,7 +39420,7 @@ namespace haloreach {
 		SCENARIO_CLUSTER_DATA_RESOURCE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "cluster data", &blofeld::haloreach::scenario_cluster_data_block_block },
-		{ _field_block, "acoustics palette", MAKE_OLD_NAMES("background sound palette"), &blofeld::haloreach::scenario_acoustics_palette_block_definition_block },
+		{ _field_block, "acoustics palette", MAKE_ALT_NAMES("background sound palette"), &blofeld::haloreach::scenario_acoustics_palette_block_definition_block },
 		{ _field_block, "atmosphere palette", &blofeld::haloreach::scenario_atmosphere_palette_block_block },
 		{ _field_block, "camera fx palette", &blofeld::haloreach::scenario_camera_fx_palette_block_block },
 		{ _field_block, "weather palette", &blofeld::haloreach::scenario_weather_palette_block_block },
@@ -39528,10 +39765,10 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_CLASS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_integer, "max sounds per tag", "maximum number of sounds playing per individual sound tag" },
-		{ _field_short_integer, "max sounds per object per tag", "maximum number of sounds per individual sound tag playing on an object", MAKE_OLD_NAMES("max sounds per object [1,16]") },
-		{ _field_short_integer, "max sounds per class", "maximum number of sounds playing of this class. zero means ignore." },
-		{ _field_short_integer, "max sounds per object per class", "maximum number of sounds of this class playing on an object. zero means ignore." },
+		{ _field_short_integer, "max sounds per tag", "maximum number of sounds playing per individual sound tag", MAKE_ALT_NAMES("max sounds per tag [1,16]") },
+		{ _field_short_integer, "max sounds per object per tag", "maximum number of sounds per individual sound tag playing on an object", MAKE_ALT_NAMES("max sounds per object per tag [1,16]", "max sounds per object [1,16]") },
+		{ _field_short_integer, "max sounds per class", "maximum number of sounds playing of this class. zero means ignore.", MAKE_ALT_NAMES("max sounds per class [0,16]") },
+		{ _field_short_integer, "max sounds per object per class", "maximum number of sounds of this class playing on an object. zero means ignore.", MAKE_ALT_NAMES("max sounds per object per class [0,16]") },
 		{ _field_long_integer, "preemption time", "replaces other instances after this many milliseconds", "ms" },
 		{ _field_word_flags, "internal flags", &blofeld::haloreach::sound_class_internal_flags_definition },
 		{ _field_word_flags, "flags", &blofeld::haloreach::sound_class_external_flags_definition },
@@ -39541,7 +39778,7 @@ namespace haloreach {
 		{ _field_byte_flags, "suppress spatialization", &blofeld::haloreach::sound_class_suppress_spatialization_string_defintion },
 		FIELD_PAD("sadf", 3),
 		FIELD_EXPLANATION("air propagation", nullptr),
-		{ _field_real, "air reverb gain", "how much reverb applies to this sound class", "dB", MAKE_OLD_NAMES("reverb gain"), _field_id_decibels },
+		{ _field_real, "air reverb gain", "how much reverb applies to this sound class", "dB", MAKE_ALT_NAMES("reverb gain"), _field_id_decibels },
 		{ _field_real, "air direct path gain", "how much goes to direct path (dry)", "dB", _field_id_decibels },
 		{ _field_real, "air base obstruction" },
 		{ _field_real, "air base occlusion" },
@@ -39556,9 +39793,9 @@ namespace haloreach {
 		{ _field_real_bounds, "gain bounds", nullptr, "dB", FIELD_FLAG_UNKNOWN3, _field_id_decibels },
 		FIELD_EXPLANATION("lowpass wetmixes", nullptr),
 		FIELD_CUSTOM_EX("equipment lowpass", "sets the lowpass wet mix when an equiment is active", _field_id_slider_editor, FIELD_FLAG_NONE),
-		{ _field_real, "equipment lowpass", "sets the lowpass wet mix when an equiment is active", "wetmix", MAKE_OLD_NAMES("equipment channel occlusion factor"), _field_id_slider_editor },
+		{ _field_real, "equipment lowpass", "sets the lowpass wet mix when an equiment is active", "wetmix", MAKE_ALT_NAMES("equipment channel occlusion factor"), _field_id_slider_editor },
 		FIELD_CUSTOM_EX("environment forced lowpass", "sets the lowpass wet mix when an environment forced lowpass is active", _field_id_slider_editor, FIELD_FLAG_NONE),
-		{ _field_real, "environment forced lowpass", "sets the lowpass wet mix when an environment forced lowpass is active", "wetmix", MAKE_OLD_NAMES("forced lowpass wet mix"), _field_id_slider_editor },
+		{ _field_real, "environment forced lowpass", "sets the lowpass wet mix when an environment forced lowpass is active", "wetmix", MAKE_ALT_NAMES("forced lowpass wet mix"), _field_id_slider_editor },
 		FIELD_CUSTOM_EX("effect lowpass", "sets the lowpass wet mix when a lowpass effect is active", _field_id_slider_editor, FIELD_FLAG_NONE),
 		{ _field_real, "effect lowpass", "sets the lowpass wet mix when a lowpass effect is active", "wetmix", _field_id_slider_editor },
 		FIELD_EXPLANATION("ducking", nullptr),
@@ -40040,8 +40277,8 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_COMPLETION_REWARDS_GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_block, "campaign&campaign matchmaking", &blofeld::haloreach::game_completion_rewards_difficulty_block_block },
-		{ _field_block, "firefight&firefight matchmaking", &blofeld::haloreach::game_completion_rewards_difficulty_block_block },
+		{ _field_block, "campaign", MAKE_ALT_NAMES("campaign matchmaking"), &blofeld::haloreach::game_completion_rewards_difficulty_block_block },
+		{ _field_block, "firefight", MAKE_ALT_NAMES("firefight matchmaking"), &blofeld::haloreach::game_completion_rewards_difficulty_block_block },
 		{ _field_block, "multiplayer", &blofeld::haloreach::game_completion_rewards_multiplayer_block_block },
 		{ _field_block, "never_online", &blofeld::haloreach::game_completion_rewards_never_online_block_block },
 		{ _field_terminator }
@@ -40661,7 +40898,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIE_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_block, "cookie awards", MAKE_OLD_NAMES("cookies"), &blofeld::haloreach::cookie_award_definition_block_block },
+		{ _field_block, "cookie awards", MAKE_ALT_NAMES("cookies"), &blofeld::haloreach::cookie_award_definition_block_block },
 		{ _field_terminator }
 	};
 
@@ -41101,7 +41338,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_SET_PROPERTIES_BLOCK_ID)
 	{
-		{ _field_long_flags, "skulls", MAKE_OLD_NAMES("primary skulls"), &blofeld::haloreach::skull_flags },
+		{ _field_long_flags, "skulls", MAKE_ALT_NAMES("primary skulls"), &blofeld::haloreach::skull_flags },
 		{ _field_terminator }
 	};
 
@@ -41181,7 +41418,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_BONUS_WAVE_PROPERTIES_STRUCT_ID)
 	{
-		{ _field_long_flags, "skulls", MAKE_OLD_NAMES("primary skulls"), &blofeld::haloreach::skull_flags },
+		{ _field_long_flags, "skulls", MAKE_ALT_NAMES("primary skulls"), &blofeld::haloreach::skull_flags },
 		{ _field_short_integer, "duration", nullptr, "s" },
 		FIELD_PAD("CLKJSDF", 2),
 		{ _field_struct, "base properties", &blofeld::haloreach::game_engine_survival_wave_properties_struct },
@@ -41198,7 +41435,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_ROUND_PROPERTIES_BLOCK_ID)
 	{
-		{ _field_long_flags, "skulls", MAKE_OLD_NAMES("primary skulls"), &blofeld::haloreach::skull_flags },
+		{ _field_long_flags, "skulls", MAKE_ALT_NAMES("primary skulls"), &blofeld::haloreach::skull_flags },
 		FIELD_GROUP_BEGIN("initial wave"),
 		{ _field_struct, "initial waves", &blofeld::haloreach::game_engine_survival_wave_properties_struct },
 		FIELD_GROUP_END(),
@@ -41576,7 +41813,7 @@ namespace haloreach {
 		{ _field_real, "time remaining", nullptr, "s" },
 		{ _field_block, "kill implements", &blofeld::haloreach::specialized_incident_kill_implement_block_block },
 		{ _field_block, "cause object", &blofeld::haloreach::specialized_incident_object_properties_block_block },
-		{ _field_block, "effect object", MAKE_OLD_NAMES("kill bucket"), &blofeld::haloreach::specialized_incident_object_properties_block_block },
+		{ _field_block, "effect object", MAKE_ALT_NAMES("kill bucket"), &blofeld::haloreach::specialized_incident_object_properties_block_block },
 		{ _field_block, "special kill type", &blofeld::haloreach::specialized_incident_special_kill_type_block_block },
 		{ _field_terminator }
 	};
@@ -41916,7 +42153,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_CUSTOM_SCRIPT_BLOCK_ID)
 	{
-		{ _field_data, "script", MAKE_OLD_NAMES(" "), &blofeld::haloreach::custom_script_data },
+		{ _field_data, "script", MAKE_ALT_NAMES(" "), &blofeld::haloreach::custom_script_data },
 		{ _field_terminator }
 	};
 
@@ -44061,7 +44298,7 @@ namespace haloreach {
 		SOUND_EFFECT_TEMPLATE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "template collection", &blofeld::haloreach::sound_effect_templates_block_block },
-		{ _field_string_id, "internal dsp effect name", MAKE_OLD_NAMES("input effect name") },
+		{ _field_string_id, "internal dsp effect name", MAKE_ALT_NAMES("input effect name") },
 		{ _field_block, "additional sound inputs", &blofeld::haloreach::sound_effect_template_additional_sound_input_block_block },
 		{ _field_terminator }
 	};
@@ -44874,10 +45111,10 @@ namespace haloreach {
 		{ _field_real_rgb_color, "Directional Color" },
 		FIELD_CUSTOM("Directional scale", _field_id_slider_editor),
 		{ _field_real, "Directional scale", _field_id_slider_editor },
-		FIELD_CUSTOM("Direction&Direction(D)", _field_id_slider_editor),
-		{ _field_real, "Direction&Direction(D)", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back&Front-Back(D)", _field_id_slider_editor),
-		{ _field_real, "Front-Back&Front-Back(D)", _field_id_slider_editor },
+		FIELD_CUSTOM("Direction", _field_id_slider_editor),
+		{ _field_real, "Direction", MAKE_ALT_NAMES("Direction(D)"), _field_id_slider_editor },
+		FIELD_CUSTOM("Front-Back", _field_id_slider_editor),
+		{ _field_real, "Front-Back", MAKE_ALT_NAMES("Front-Back(D)"), _field_id_slider_editor },
 		FIELD_CUSTOM_EX("Bandwidth", "0-Ambient, 1-Directional", _field_id_slider_editor, FIELD_FLAG_NONE),
 		{ _field_real, "Bandwidth", "0-Ambient, 1-Directional", _field_id_slider_editor },
 		{ _field_real_rgb_color, "Analytical color" },
@@ -45600,7 +45837,7 @@ namespace haloreach {
 		{ _field_real, "angle fade begin", "radial (from beam axis) degrees away from face-on where fade begins", "degrees" },
 		{ _field_short_integer, "sort bias", "use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
 		FIELD_PAD("pad0", 2),
-		{ _field_real, "origin fade range", "distance beyond cutoff over which beams fade", "world units", MAKE_OLD_NAMES("origin fade distance") },
+		{ _field_real, "origin fade range", "distance beyond cutoff over which beams fade", "world units", MAKE_ALT_NAMES("origin fade distance") },
 		{ _field_real, "origin fade cutoff", "distance from beam origin where fade begins", "world units" },
 		{ _field_real, "edge fade range", "degrees beyond cutoff over which beams fade", "degrees" },
 		{ _field_real, "edge fade cutoff", "degrees away from edge-on where fade is total", "degrees" },
@@ -45758,7 +45995,7 @@ namespace haloreach {
 		CONTRAIL_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "contrail name" },
-		{ _field_real, "origin fade range", "distance beyond cutoff over which contrails fade", "world units", MAKE_OLD_NAMES("origin fade distance") },
+		{ _field_real, "origin fade range", "distance beyond cutoff over which contrails fade", "world units", MAKE_ALT_NAMES("origin fade distance") },
 		{ _field_real, "origin fade cutoff", "distance from contrail origin where fade begins", "world units" },
 		{ _field_real, "edge fade range", "degrees beyond cutoff over which contrails fade", "degrees" },
 		{ _field_real, "edge fade cutoff", "degrees away from edge-on where fade is total", "degrees" },
@@ -49175,8 +49412,8 @@ namespace haloreach {
 		{ _field_tag_reference, "hard landing damage", &blofeld::haloreach::damage_effect_group_reference_tagref },
 		{ _field_tag_reference, "hs damage", &blofeld::haloreach::damage_effect_group_reference_tagref },
 		{ _field_real, "terminal velocity", "you die if you fall faster than this (non-multiplayer only)", "wu/s" },
-		{ _field_tag_reference, "terminal velocity damage", MAKE_OLD_NAMES("distance damage"), &blofeld::haloreach::damage_effect_group_reference_tagref },
-		{ _field_tag_reference, "default damage response", "fall back if none is specified in damage effect tags", MAKE_OLD_NAMES("damage response"), &blofeld::haloreach::damage_response_definition_group_reference$2_tagref },
+		{ _field_tag_reference, "terminal velocity damage", MAKE_ALT_NAMES("distance damage"), &blofeld::haloreach::damage_effect_group_reference_tagref },
+		{ _field_tag_reference, "default damage response", "fall back if none is specified in damage effect tags", MAKE_ALT_NAMES("damage response"), &blofeld::haloreach::damage_response_definition_group_reference$2_tagref },
 		{ _field_tag_reference, "friendly fire damage response", "anytime your teammate shoots you", &blofeld::haloreach::damage_response_definition_group_reference$2_tagref },
 		{ _field_real, "player shield spillover", "the minimum amount of shield vitality needed to prevent spillover from damage types that do not spillover." },
 		FIELD_GROUP_BEGIN("damage decay"),
@@ -49585,7 +49822,7 @@ namespace haloreach {
 	{
 		{ _field_byte_flags, "sound flags", &blofeld::haloreach::game_engine_sound_response_flags_definition },
 		FIELD_PAD("AGQD", 3),
-		{ _field_tag_reference, "sound", MAKE_OLD_NAMES("english sound"), FIELD_FLAG_INDEX, &blofeld::haloreach::_reference_tagref },
+		{ _field_tag_reference, "sound", MAKE_ALT_NAMES("english sound"), FIELD_FLAG_INDEX, &blofeld::haloreach::_reference_tagref },
 		{ _field_real, "probability", "Ignored for the default sound - used for sound permutation block entries only." },
 		{ _field_terminator }
 	};
@@ -49620,7 +49857,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_EVENT_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name", MAKE_OLD_NAMES("incident"), FIELD_FLAG_INDEX },
+		{ _field_string_id, "name", MAKE_ALT_NAMES("incident"), FIELD_FLAG_INDEX },
 		{ _field_char_enum, "audience", &blofeld::haloreach::game_engine_event_audience_enum_definition },
 		{ _field_char_enum, "display context", &blofeld::haloreach::game_engine_event_response_context_enum_definition },
 		FIELD_PAD("pad0", 2),
@@ -50345,7 +50582,7 @@ namespace haloreach {
 		{ _field_real, "notice projectile chance", "random chance of noticing a dangerous enemy projectile (e.g. grenade)", nullptr, "[0,1]" },
 		{ _field_real, "notice vehicle chance", "random chance of noticing a dangerous vehicle", nullptr, "[0,1]" },
 		{ _field_real, "perception time", "time required to acknowledge a visible enemy at optimal range", "seconds" },
-		{ _field_real, "awareness glance level", "How aware of you while acknowledging an AI must be to glance at you" },
+		{ _field_real, "awareness glance level", "How aware of you while acknowledging an AI must be to glance at you", MAKE_ALT_NAMES("awareness glance level[0,1]") },
 		{ _field_real, "awareness glance delta", "While acknowledging, the awareness delta at which an AI will glance at you" },
 		{ _field_real_fraction, "identify hologram chance", "The chance that an AI identifies a unit is actually a hologram", nullptr, "[0, 1]" },
 		{ _field_real_bounds, "hologram ignore timer", "The time after which we will ignore the hologram once seen", "seconds" },
@@ -50922,7 +51159,7 @@ namespace haloreach {
 		{ _field_real, "unreachable enemy danger threshold", "When danger from an unreachable enemy surpasses threshold, actor cover (assuming unreachable_enemy_cover impulse is enabled)" },
 		{ _field_real, "unassailable enemy danger threshold", "When target is unassailable, and danger goes over this value - cover (assuming unassailable_enemy_cover impulse is enabled)" },
 		{ _field_real, "scary target threshold", "When target is aware of me and surpasses the given scariness, self-preserve (assuming scary_target_cover_impulse is enabled)" },
-		{ _field_real, "Vitality fraction shield equipment", "Fraction of vitality below which an equipped shield equipment (instant cover/bubbleshield) will be activated (once damage has died down, and assuming shield_equipment_impulse is enabled)", MAKE_OLD_NAMES("Vitality fraction bubbleshield") },
+		{ _field_real, "Vitality fraction shield equipment", "Fraction of vitality below which an equipped shield equipment (instant cover/bubbleshield) will be activated (once damage has died down, and assuming shield_equipment_impulse is enabled)", MAKE_ALT_NAMES("Vitality fraction bubbleshield") },
 		{ _field_real, "Recent damage shield equipment", "Must have less than this amount of recent body damage before we can deploy our equipped shield equipment." },
 		{ _field_terminator }
 	};
@@ -51325,7 +51562,7 @@ namespace haloreach {
 		FIELD_EXPLANATION("Pathfinding", nullptr),
 		{ _field_real, "ai pathfinding radius", nullptr, "world units (Ground vehicles)" },
 		{ _field_real, "ai destination radius", "Distance within which goal is considered reached", "world units (All vehicles)" },
-		{ _field_real, "ai deceleration distance", "Distance from goal at which AI starts to decelerate", "world units (All vehicles)", MAKE_OLD_NAMES("ai deceleration distanceworld units") },
+		{ _field_real, "ai deceleration distance", "Distance from goal at which AI starts to decelerate", "world units (All vehicles)", MAKE_ALT_NAMES("ai deceleration distanceworld units") },
 		FIELD_EXPLANATION("Turning", nullptr),
 		{ _field_real, "ai turning radius", "Idealized average turning radius (should reflect actual vehicle physics)", "world units (Warthog, Pelican, Ghost)" },
 		{ _field_real, "ai inner turning radius (< tr)", "Idealized minimum turning radius (should reflect actual vehicle physics)", "(Warthogs)" },
@@ -52539,7 +52776,7 @@ namespace haloreach {
 		USER_HINT_VOLUME_AVOIDANCE_STRUCT_ID)
 	{
 		{ _field_long_enum, "type", &blofeld::haloreach::user_hint_avoidance_volume_enum },
-		{ _field_real_point_3d, "origin", MAKE_OLD_NAMES("center") },
+		{ _field_real_point_3d, "origin", MAKE_ALT_NAMES("center") },
 		{ _field_real, "radius" },
 		{ _field_real_vector_3d, "facing vector", "for pills" },
 		{ _field_real, "height", "for pills" },
@@ -52992,7 +53229,7 @@ namespace haloreach {
 		{ _field_short_block_index, "emitter vehicle", &blofeld::haloreach::scenario_vehicle_block_block },
 		{ _field_short_block_index, "giant body", &blofeld::haloreach::scenario_giant_block_block },
 		{ _field_short_block_index, "biped body", &blofeld::haloreach::scenario_biped_block_block },
-		{ _field_string_id, "placement script", MAKE_OLD_NAMES("Placement script"), _field_id_halo_script_block },
+		{ _field_string_id, "placement script", MAKE_ALT_NAMES("Placement script"), _field_id_halo_script_block },
 		{ _field_short_integer, "placement script index" },
 		FIELD_PAD("post-placement-script-pad", 2),
 		{ _field_string_id, "activity name" },
@@ -53064,7 +53301,7 @@ namespace haloreach {
 		{ _field_real, "initial movement distance", "before doing anything else, the actor will travel the given distance in its forward direction" },
 		{ _field_enum, "initial movement mode", &blofeld::haloreach::actor_movement_modes },
 		{ _field_short_integer, "placement script index" },
-		{ _field_string_id, "placement script", MAKE_OLD_NAMES("Placement script"), _field_id_halo_script_block },
+		{ _field_string_id, "placement script", MAKE_ALT_NAMES("Placement script"), _field_id_halo_script_block },
 		{ _field_string_id, "activity name" },
 		{ _field_string_id, "movement set" },
 		{ _field_custom_short_block_index, "point set" },
@@ -53507,7 +53744,7 @@ namespace haloreach {
 		{ _field_word_flags, "flags", &blofeld::haloreach::flock_flags },
 		{ _field_real, "ecology margin", "distance from ecology boundary that creature begins to be repulsed", "wus" },
 		{ _field_block, "sources", &blofeld::haloreach::flock_source_block_block },
-		{ _field_block, "destinations", MAKE_OLD_NAMES("sinks"), &blofeld::haloreach::flock_destination_block_block },
+		{ _field_block, "destinations", MAKE_ALT_NAMES("sinks"), &blofeld::haloreach::flock_destination_block_block },
 		{ _field_real_bounds, "production frequency bounds", "How frequently boids are produced at one of the sources (limited by the max boid count)", "boids/sec" },
 		{ _field_real_bounds, "scale" },
 		{ _field_real, "source scale to 0 radius", "Distance from a source at which the creature scales to full size", "wus" },
@@ -53546,29 +53783,29 @@ namespace haloreach {
 		FLOCK_STRUCT_DEFINITION_ID)
 	{
 		FIELD_EXPLANATION("Simple flocking", nullptr),
-		{ _field_real, "forward weight", "weight given to boid's desire to fly straight ahead", nullptr, "[0..1]", MAKE_OLD_NAMES("forward scale") },
-		{ _field_real, "leveling force weight", "weight given to boids desire to fly level", nullptr, "[0..1]", MAKE_OLD_NAMES("leveling force scale") },
-		{ _field_real, "destination weight", "weight given to boid's desire to fly towards its sinks", nullptr, "[0..1]", MAKE_OLD_NAMES("sink scale") },
+		{ _field_real, "forward weight", "weight given to boid's desire to fly straight ahead", nullptr, "[0..1]", MAKE_ALT_NAMES("forward scale") },
+		{ _field_real, "leveling force weight", "weight given to boids desire to fly level", nullptr, "[0..1]", MAKE_ALT_NAMES("leveling force scale") },
+		{ _field_real, "destination weight", "weight given to boid's desire to fly towards its sinks", nullptr, "[0..1]", MAKE_ALT_NAMES("sink scale") },
 		{ _field_real, "average throttle", "throttle at which boids will naturally fly", nullptr, "[0..1]" },
 		{ _field_real, "maximum throttle", "maximum throttle applicable", nullptr, "[0..1]" },
 		{ _field_real, "movement weight threshold", "The threshold of accumulated weight over which movement occurs" },
 		{ _field_real, "danger radius", "distance within which boids will avoid a dangerous object (e.g. the player)", "wus" },
-		{ _field_real, "danger weight", "weight given to boid's desire to avoid danger", MAKE_OLD_NAMES("danger scale") },
-		{ _field_real, "target weight", "weight given to boid's desire to attack fly after their target, if they have one", nullptr, "[0..1]", MAKE_OLD_NAMES("target scale") },
+		{ _field_real, "danger weight", "weight given to boid's desire to avoid danger", MAKE_ALT_NAMES("danger scale") },
+		{ _field_real, "target weight", "weight given to boid's desire to attack fly after their target, if they have one", nullptr, "[0..1]", MAKE_ALT_NAMES("target scale") },
 		{ _field_real, "target distance", "distance within which we aggressively pursue a target", "wus" },
 		{ _field_real, "target delay time", "amount of time we need to be locked onto a target before we might start killing it", "seconds" },
 		{ _field_real, "target kill chance", "probability of killing your target in one second", "chance per second" },
 		{ _field_real, "ai destroy chance", "if targetted by AI, the probability of dying in one second", "chance per second" },
 		FIELD_EXPLANATION("Perlin noise parameters", "Recommended initial values: \n\trandom offset scale= 0.2 \n\toffset period bounds= 1, 3"),
-		{ _field_real, "random offset weight", "weight given to boid's random heading offset", nullptr, "[0..1]", MAKE_OLD_NAMES("random offset scale") },
+		{ _field_real, "random offset weight", "weight given to boid's random heading offset", nullptr, "[0..1]", MAKE_ALT_NAMES("random offset scale") },
 		{ _field_real_bounds, "random offset period", nullptr, "seconds" },
 		FIELD_EXPLANATION("Complex Flocking", "WARNING: In flocks with a neighborhood radius of 0, creatures are not influenced by the other creatures around them. THESE ARE MUCH CHEAPER.\n"),
 		{ _field_real, "neighborhood radius", "distance within which one boid is affected by another", "world units" },
 		{ _field_angle, "perception angle", "angle-from-forward within which one boid can perceive and react to another", "degrees" },
-		{ _field_real, "avoidance weight", "weight given to boid's desire to avoid collisions with other boids, when within the avoidance radius", nullptr, "[0..1]", MAKE_OLD_NAMES("avoidance scale") },
+		{ _field_real, "avoidance weight", "weight given to boid's desire to avoid collisions with other boids, when within the avoidance radius", nullptr, "[0..1]", MAKE_ALT_NAMES("avoidance scale") },
 		{ _field_real, "avoidance radius", "distance that a boid tries to maintain from another", "world units" },
-		{ _field_real, "alignment weight", "weight given to boid's desire to align itself with neighboring boids", nullptr, "[0..1]", MAKE_OLD_NAMES("alignment scale") },
-		{ _field_real, "position weight", "weight given to boid's desire to be near flock center", nullptr, "[0..1]", MAKE_OLD_NAMES("position scale") },
+		{ _field_real, "alignment weight", "weight given to boid's desire to align itself with neighboring boids", nullptr, "[0..1]", MAKE_ALT_NAMES("alignment scale") },
+		{ _field_real, "position weight", "weight given to boid's desire to be near flock center", nullptr, "[0..1]", MAKE_ALT_NAMES("position scale") },
 		{ _field_real, "position min radius", "distance to flock center beyond which an attracting force is applied", "wus" },
 		{ _field_real, "position max radius", "distance to flock center at which the maximum attracting force is applied", "wus" },
 		{ _field_terminator }
@@ -55636,7 +55873,7 @@ namespace haloreach {
 		{ _field_short_block_index, "objective", &blofeld::haloreach::objectives_block_block },
 		FIELD_PAD("post-objective-pad", 2),
 		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_real, "hold time", "How long the AI should pause at this point before searching", "seconds", MAKE_OLD_NAMES("occupy time") },
+		{ _field_real, "hold time", "How long the AI should pause at this point before searching", "seconds", MAKE_ALT_NAMES("occupy time") },
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_real, "search time", "How long the AI should search at this point before returning", "seconds" },
 		FIELD_CUSTOM("value", _field_id_filter),
@@ -57435,7 +57672,7 @@ namespace haloreach {
 		{ _field_char_enum, "scripting class", &blofeld::haloreach::chud_scripting_class_enum },
 		{ _field_char_integer, "postprocessed intermediate list index" },
 		{ _field_byte_flags, "base flags", &blofeld::haloreach::chud_widget_base_flags },
-		{ _field_char_integer, "sort layer", MAKE_OLD_NAMES("new sort layer") },
+		{ _field_char_integer, "sort layer", MAKE_ALT_NAMES("new sort layer") },
 		{ _field_enum, "external input A", &blofeld::haloreach::chud_render_external_input_enum },
 		{ _field_enum, "external input B", &blofeld::haloreach::chud_render_external_input_enum },
 		{ _field_struct, "state data", &blofeld::haloreach::chud_widget_state_data_struct },
@@ -58173,7 +58410,7 @@ namespace haloreach {
 		{ _field_long_integer, "virtual height" },
 		{ _field_real_point_2d, "sensor origin" },
 		{ _field_real, "sensor radius" },
-		{ _field_real, "vehicle 3d sensor radius", nullptr, "pixels", MAKE_OLD_NAMES("3d sensor radius") },
+		{ _field_real, "vehicle 3d sensor radius", nullptr, "pixels", MAKE_ALT_NAMES("3d sensor radius") },
 		{ _field_real, "blip radius" },
 		{ _field_real_point_2d, "minimap world UL", "World space upper left coordinates that will map to the hud space upper left (see below)" },
 		{ _field_real_point_2d, "minimap world LR", "World space lower right coordinates that will map to the hud space lower right (see below)" },
@@ -58207,7 +58444,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHUD_SOUND_BLOCK_ID)
 	{
-		{ _field_tag_reference, "sound", MAKE_OLD_NAMES("chief sound"), FIELD_FLAG_INDEX, &blofeld::haloreach::_reference$5_tagref },
+		{ _field_tag_reference, "sound", MAKE_ALT_NAMES("chief sound"), FIELD_FLAG_INDEX, &blofeld::haloreach::_reference$5_tagref },
 		{ _field_long_flags, "latched to", &blofeld::haloreach::chud_sound_cue_flags },
 		{ _field_real, "scale" },
 		{ _field_terminator }
@@ -58405,14 +58642,14 @@ namespace haloreach {
 		{ _field_real, "dir. damage arrow size" },
 		{ _field_real, "dir. damage distance from crosshair" },
 		{ _field_real, "dir. damage duration modifier" },
-		{ _field_real, "dir. damage pitch min", "domain of height function", MAKE_OLD_NAMES("dir. damage height min") },
-		{ _field_real, "dir. damage pitch max", "domain of height function", MAKE_OLD_NAMES("dir. damage height max") },
+		{ _field_real, "dir. damage pitch min", "domain of height function", MAKE_ALT_NAMES("dir. damage height min") },
+		{ _field_real, "dir. damage pitch max", "domain of height function", MAKE_ALT_NAMES("dir. damage height max") },
 		FIELD_CUSTOM("value", _field_id_null),
-		{ _field_struct, "directional damage pitch", MAKE_OLD_NAMES("directional damage height"), &blofeld::haloreach::mapping_function },
+		{ _field_struct, "directional damage pitch", MAKE_ALT_NAMES("directional damage height"), &blofeld::haloreach::mapping_function },
 		{ _field_tag_reference, "navpoints reference", &blofeld::haloreach::bitmap_group_reference$2_tagref },
 		{ _field_tag_reference, "mini-scoreboard reference", &blofeld::haloreach::chud_definition_group_reference_tagref },
 		{ _field_tag_reference, "SVE uberassault scoreboard reference", &blofeld::haloreach::chud_definition_group_reference_tagref },
-		{ _field_tag_reference, "campaign scoreboard", MAKE_OLD_NAMES("meta-scoreboard reference"), &blofeld::haloreach::chud_definition_group_reference_tagref },
+		{ _field_tag_reference, "campaign scoreboard", MAKE_ALT_NAMES("meta-scoreboard reference"), &blofeld::haloreach::chud_definition_group_reference_tagref },
 		{ _field_tag_reference, "survival-scoreboard reference", &blofeld::haloreach::chud_definition_group_reference_tagref },
 		{ _field_tag_reference, "saved-film reference", &blofeld::haloreach::chud_definition_group_reference_tagref },
 		{ _field_tag_reference, "sandbox reference", &blofeld::haloreach::chud_definition_group_reference_tagref },
@@ -58534,23 +58771,23 @@ namespace haloreach {
 		{ _field_block, "player training data", &blofeld::haloreach::player_training_entry_data_block_block },
 		FIELD_EXPLANATION("Miscellany", nullptr),
 		{ _field_tag_reference, "metagame emblems", &blofeld::haloreach::bitmap_group_reference$2_tagref },
-		{ _field_char_enum, "medal basis", MAKE_OLD_NAMES("metagame medal basis"), &blofeld::haloreach::chud_anchor_type_enum },
+		{ _field_char_enum, "medal basis", MAKE_ALT_NAMES("metagame medal basis"), &blofeld::haloreach::chud_anchor_type_enum },
 		FIELD_PAD("padding", 3),
-		{ _field_real, "medal scale", MAKE_OLD_NAMES("metagame medal scale") },
-		{ _field_real, "medal width", MAKE_OLD_NAMES("metagame medal width") },
-		{ _field_real, "medal horizontal offset", MAKE_OLD_NAMES("metagame medal h.offset") },
-		{ _field_real, "medal vertical offset", MAKE_OLD_NAMES("metagame medal v.offset") },
+		{ _field_real, "medal scale", MAKE_ALT_NAMES("metagame medal scale") },
+		{ _field_real, "medal width", MAKE_ALT_NAMES("metagame medal width") },
+		{ _field_real, "medal horizontal offset", MAKE_ALT_NAMES("metagame medal h.offset") },
+		{ _field_real, "medal vertical offset", MAKE_ALT_NAMES("metagame medal v.offset") },
 		{ _field_real, "metagame s.b. primary height" },
 		{ _field_real, "metagame s.b. other height" },
 		{ _field_tag_reference, "survival mode multiplayer intro", &blofeld::haloreach::chud_definition_group_reference_tagref },
-		{ _field_real, "progression toast time", nullptr, "s", MAKE_OLD_NAMES("achievement toast time") },
+		{ _field_real, "progression toast time", nullptr, "s", MAKE_ALT_NAMES("achievement toast time") },
 		FIELD_GROUP_BEGIN("Motion Sensor"),
-		{ _field_byte_flags, "motion sensor flags&flags", &blofeld::haloreach::motion_sensor_flags },
+		{ _field_byte_flags, "motion sensor flags", MAKE_ALT_NAMES("flags"), &blofeld::haloreach::motion_sensor_flags },
 		FIELD_PAD("motion sensor pad flags", 3),
 		{ _field_real, "medium blip scale" },
 		{ _field_real, "small blip scale" },
 		{ _field_real, "large blip scale" },
-		{ _field_real, "vehicle 3d motion tracker range", nullptr, "wu", MAKE_OLD_NAMES("3d motion tracker range") },
+		{ _field_real, "vehicle 3d motion tracker range", nullptr, "wu", MAKE_ALT_NAMES("3d motion tracker range") },
 		{ _field_real, "3d motion tracker tilt", nullptr, "degrees" },
 		{ _field_real, "up movement registration percentage" },
 		{ _field_real, "down movement registration percentage" },
@@ -58570,7 +58807,7 @@ namespace haloreach {
 		{ _field_tag_reference, "blip texture reference", &blofeld::haloreach::bitmap_group_reference$2_tagref },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Minimap"),
-		{ _field_byte_flags, "minimap flags&flags", &blofeld::haloreach::minimap_flags },
+		{ _field_byte_flags, "minimap flags", MAKE_ALT_NAMES("flags"), &blofeld::haloreach::minimap_flags },
 		FIELD_PAD("minimap pad flags", 3),
 		{ _field_real, "active time", "How long the minimap stays up after it is manually activated (after the user releases the activation button)." },
 		FIELD_GROUP_BEGIN("Ping Configuration"),
@@ -59257,7 +59494,7 @@ namespace haloreach {
 		{ _field_char_enum, "operator", &blofeld::haloreach::step_operator },
 		{ _field_char_enum, "variable", &blofeld::haloreach::step_variable },
 		FIELD_PAD("pad0", 1),
-		{ _field_real, "value&real value" },
+		{ _field_real, "value", MAKE_ALT_NAMES("real value") },
 		{ _field_string_id, "string id value" },
 		{ _field_terminator }
 	};
@@ -59875,7 +60112,7 @@ namespace haloreach {
 		FIELD_EXPLANATION("Global Text Strings", "Global UI Text goes here"),
 		{ _field_tag_reference, "unicode string list tag", &blofeld::haloreach::multilingual_unicode_string_list_group_reference_tagref },
 		{ _field_tag_reference, "unicode damage reporting string list tag", &blofeld::haloreach::multilingual_unicode_string_list_group_reference_tagref },
-		{ _field_tag_reference, "unicode fire team member name string list", MAKE_OLD_NAMES("unicode fire team member string list tag"), &blofeld::haloreach::multilingual_unicode_string_list_group_reference_tagref },
+		{ _field_tag_reference, "unicode fire team member name string list", MAKE_ALT_NAMES("unicode fire team member string list tag"), &blofeld::haloreach::multilingual_unicode_string_list_group_reference_tagref },
 		{ _field_tag_reference, "unicode fire team member service tag string list", &blofeld::haloreach::multilingual_unicode_string_list_group_reference_tagref },
 		FIELD_EXPLANATION("Main menu music", "Looping sound that plays while the main menu is active"),
 		{ _field_tag_reference, "main menu music", &blofeld::haloreach::sound_looping_group_reference_tagref },
@@ -62091,7 +62328,7 @@ namespace haloreach {
 	{
 		{ _field_real, "base height", nullptr, "world units" },
 		{ _field_real, "fog height", nullptr, "world units" },
-		{ _field_real, "fog thickness" },
+		{ _field_real, "fog thickness", MAKE_ALT_NAMES("fog thickness [0.0 to 1.0]") },
 		{ _field_real, "max fog distance" },
 		{ _field_real_rgb_color, "fog color" },
 		{ _field_real, "fog color intensity" },
@@ -62108,9 +62345,9 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FOG_LIGHT_STRUCT_DEFINITION$2_ID)
 	{
-		{ _field_real, "pitch angle", nullptr, "degree" },
-		{ _field_real, "yaw angle", nullptr, "degree" },
-		{ _field_real, "angular radius", nullptr, "degree" },
+		{ _field_real, "pitch angle", nullptr, "degree", MAKE_ALT_NAMES("pitch angle [-90 to 90]") },
+		{ _field_real, "yaw angle", nullptr, "degree", MAKE_ALT_NAMES("yaw angle [0 to 360]") },
+		{ _field_real, "angular radius", nullptr, "degree", MAKE_ALT_NAMES("angular radius [0 to 180]") },
 		{ _field_real_rgb_color, "tint color" },
 		{ _field_real, "tint color intensity" },
 		{ _field_real_vector_3d, "direction" },
@@ -62270,8 +62507,8 @@ namespace haloreach {
 		FIELD_EXPLANATION("TYPE FLAGS", nullptr),
 		{ _field_long_flags, "flags", &blofeld::haloreach::ripple_behavior_flags },
 		FIELD_EXPLANATION("INITIAL SETTINGS", nullptr),
-		{ _field_real, "initial radius", MAKE_OLD_NAMES("radius") },
-		{ _field_real, "initial amplitude", MAKE_OLD_NAMES("amplitude") },
+		{ _field_real, "initial radius", MAKE_ALT_NAMES("radius") },
+		{ _field_real, "initial amplitude", MAKE_ALT_NAMES("amplitude") },
 		{ _field_real, "spread speed" },
 		{ _field_real, "speed bias" },
 		{ _field_real, "position random range" },

@@ -34,9 +34,11 @@ private:
 	void setup_code_name();
 
 public:
-	c_fixed_string_2048 name;
+	c_fixed_string_2048 pretty_name;
+	c_fixed_string_2048 tag_file_name;
 	c_fixed_string_512 old_name;
 	c_fixed_string_512 old_name2;
+	c_fixed_string_512 old_name3;
 	c_fixed_string_2048 flags;
 	c_fixed_string_2048 units;
 	c_fixed_string_2048 limits;

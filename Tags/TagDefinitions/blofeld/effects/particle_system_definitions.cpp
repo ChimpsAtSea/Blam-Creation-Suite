@@ -130,9 +130,9 @@ namespace blofeld
 		{ _field_block, "particle clip sphere", &emitterClipSphereBlock_block },
 
 		{ _field_struct, "particle self-acceleration", nullptr, "world units per second per second", &particle_property_real_vector3d_struct_new },
-		{ _field_struct, "particle initial velocity", nullptr, "world units per second", MAKE_OLD_NAMES("particle velocity"), &particle_property_scalar_struct_new },
+		{ _field_struct, "particle initial velocity", nullptr, "world units per second", MAKE_ALT_NAMES("particle velocity"), &particle_property_scalar_struct_new },
 		{ _field_struct, "particle rotation", nullptr, ".25=90°, .5=180°, 1=360° ... adds to physics", &particle_property_scalar_struct_new },
-		{ _field_struct, "particle initial rotation rate", nullptr, "360 degree rotations per second", MAKE_OLD_NAMES("particle angular velocity"), &particle_property_scalar_struct_new },
+		{ _field_struct, "particle initial rotation rate", nullptr, "360 degree rotations per second", MAKE_ALT_NAMES("particle angular velocity"), &particle_property_scalar_struct_new },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		FIELD_CUSTOM_EX("PARTICLE APPEARANCE", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "particle size", nullptr, "world units", &particle_property_scalar_struct_new },

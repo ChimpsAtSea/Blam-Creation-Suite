@@ -138,7 +138,7 @@ namespace blofeld
 
 		{ _field_block, "kill implements", &specialized_incident_kill_implement_block },
 		{ _field_block, "cause object", &specialized_incident_object_properties_block },
-		{ _field_block, "effect object", MAKE_OLD_NAMES("kill bucket"), &specialized_incident_object_properties_block },
+		{ _field_block, "effect object", MAKE_ALT_NAMES("kill bucket"), &specialized_incident_object_properties_block },
 		{ _field_block, "special kill type", &specialized_incident_special_kill_type_block },
 
 		{ _version_mode_greater, _engine_type_haloreach, 4 },

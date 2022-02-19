@@ -43,12 +43,12 @@ namespace blofeld
 		{ _version_mode_less_or_equal, _engine_type_haloreach, 3 },
 		{ _field_legacy, _field_struct, "radius", &light_scalar_function_struct },
 		{ _field_real, "Falloff Begin Ratio", "Ratio of falloff start to falloff end", nullptr, "[0-1]" },
-		{ _field_real, "near fade distance", nullptr, "world units", MAKE_OLD_NAMES("closeup fading distance") }, // #TODO: unconfirmed
+		{ _field_real, "near fade distance", nullptr, "world units", MAKE_ALT_NAMES("closeup fading distance") }, // #TODO: unconfirmed
 
 		{ _version_mode_greater, _engine_type_haloreach, 5 },
-		{ _field_struct, "Falloff End", MAKE_OLD_NAMES("radius"), &light_scalar_function_struct },
+		{ _field_struct, "Falloff End", MAKE_ALT_NAMES("radius"), &light_scalar_function_struct },
 		{ _field_real, "Falloff Begin Ratio", "Ratio of falloff start to falloff end", nullptr, "[0-1]" },
-		{ _field_real, "near fade distance", nullptr, "world units", MAKE_OLD_NAMES("closeup fading distance") },
+		{ _field_real, "near fade distance", nullptr, "world units", MAKE_ALT_NAMES("closeup fading distance") },
 		{ _field_real, "far fade begin", nullptr, "world units" },
 		{ _field_real, "far fade cutoff", nullptr, "world units" },
 		{ _field_terminator }

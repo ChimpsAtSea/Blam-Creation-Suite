@@ -9,7 +9,8 @@ c_reach_x360_tag_group_definition::c_reach_x360_tag_group_definition(const char*
 	group_tag(tag_group_definition->group_tag),
 	parent_group_tag(tag_group_definition->parent_group_tag),
 	code_name(reach_x360_convert_to_code_name(name).c_str()),
-	tag_symbol_name(code_name)
+	tag_symbol_name(code_name),
+	tag_block_definition(nullptr)
 {
 	tag_symbol_name += "_TAG";
 	code_name += "_group";

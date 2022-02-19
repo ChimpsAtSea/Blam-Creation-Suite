@@ -538,7 +538,7 @@ void c_h4_source_generator::create_tag_group_source(std::stringstream& s, c_h4_t
 
 void c_h4_source_generator::create_tag_enum_header(std::stringstream& hs, c_h4_tag_enum_container& tag_enum_container)
 {
-	//hs << "\t//extern t_string_list " << tag_enum_container.name << "_strings;" << std::endl;
+	//hs << "\t//extern t_string_list " << tag_enum_container.pretty_name << "_strings;" << std::endl;
 	hs << "\textern s_string_list_definition " << tag_enum_container.name << ";" << std::endl;
 }
 
@@ -999,7 +999,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 		size_t escaped_buffer_length = tag_field->name ? strlen(tag_field->name) * 2 : 0;
 		ASSERT(escaped_buffer_length < 4096);
 
-		c_fixed_string_4096 name;
+		c_fixed_string_4096 pretty_name;
 		c_fixed_string_4096 description;
 		c_fixed_string_4096 units;
 		c_fixed_string_4096 limits;
@@ -1008,7 +1008,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 
 		if (tag_field->name)
 		{
-			escape_string(string_parser.name, name, true, true);
+			escape_string(string_parser.pretty_name, pretty_name, true, true);
 			escape_string(string_parser.description, description, true, true);
 			escape_string(string_parser.units, units, true, true);
 			escape_string(string_parser.limits, limits, true, true);
@@ -1016,7 +1016,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 			escape_string(string_parser.old_name, old_name, true, true);
 		}
 
-		name.trim_front();
+		pretty_name.trim_front();
 		description.trim_front();
 		units.trim_front();
 		limits.trim_front();
@@ -1093,7 +1093,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -1111,7 +1111,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -1140,7 +1140,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -1158,7 +1158,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -1185,7 +1185,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -1203,7 +1203,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -1222,7 +1222,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 			//ASSERT(!write_units);
 
 			s << "\t\tFIELD_CUSTOM_EX(";
-			if (!name.empty()) s << "\"" << name.c_str() << "\"";
+			if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 			else s << "nullptr";
 			if (!description.empty()) s << ", \"" << description.c_str() << "\"";
 			else s << ", nullptr";
@@ -1240,7 +1240,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 			c_h4_tag_field_pad* pad_field = dynamic_cast<c_h4_tag_field_pad*>(tag_field);
 
 			s << "\t\tFIELD_PAD_EX(";
-			if (!name.empty()) s << "\"" << name.c_str() << "\"";
+			if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 			else s << "nullptr";
 			if (!description.empty()) s << ", \"" << description.c_str() << "\"";
 			else s << ", nullptr";
@@ -1258,7 +1258,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 			c_h4_tag_field_skip* skip_field = dynamic_cast<c_h4_tag_field_skip*>(tag_field);
 
 			s << "\t\tFIELD_SKIP(";
-			if (!name.empty()) s << "\"" << name.c_str() << "\"";
+			if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 			else s << "nullptr";
 			if (!description.empty()) s << ", \"" << description.c_str() << "\"";
 			else s << ", nullptr";
@@ -1279,7 +1279,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 
 			s << "\t\tFIELD_EXPLANATION(";
 			if (write_units) s << "\"" << tag_field->name << "\"";
-			else if (!name.empty()) s << "\"" << name.c_str() << "\"";
+			else if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 			else s << "nullptr";
 			if (!description.empty()) s << ", \"" << description.c_str() << "\"";
 			else s << ", nullptr";
@@ -1305,7 +1305,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -1323,7 +1323,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -1347,7 +1347,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -1365,7 +1365,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -1390,7 +1390,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -1408,7 +1408,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -1431,7 +1431,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -1449,7 +1449,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -1474,7 +1474,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -1492,7 +1492,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& s, std
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{

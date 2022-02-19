@@ -90,8 +90,12 @@ c_reach_x360_tag_field::c_reach_x360_tag_field(const char* guerilla_data, const 
 	}
 }
 
-c_reach_x360_tag_field_combined_fixup::c_reach_x360_tag_field_combined_fixup(c_reach_x360_tag_group_definition& group_definition, unsigned long count) :
+c_reach_x360_tag_field_combined_fixup::c_reach_x360_tag_field_combined_fixup(
+	c_reach_x360_tag_group_definition& group_definition,
+	unsigned long count,
+	e_reach_x360_tag_field_combined_fixup_type fixup_type) :
 	group_definition(group_definition),
-	count(count)
+	count(count),
+	fixup_type(fixup_type)
 {
 }

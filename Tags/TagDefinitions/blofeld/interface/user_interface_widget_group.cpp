@@ -689,7 +689,7 @@ namespace blofeld
 		{ _field_tag_reference, "purchase globals", &cookie_purchase_globals_reference },
 
 		{ _version_mode_greater, _engine_type_haloreach },
-		{ _field_tag_reference, "infinity mission images", MAKE_OLD_NAMES("infinity mission images ref"), &Tag::Reference<struct InfinityUIImages>::s_defaultDefinition },
+		{ _field_tag_reference, "infinity mission images", MAKE_ALT_NAMES("infinity mission images ref"), &Tag::Reference<struct InfinityUIImages>::s_defaultDefinition },
 
 		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "active roster settings", &cui_active_roster_settings_block },
@@ -739,7 +739,7 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("Global Text Strings", nullptr, FIELD_FLAG_NONE, "Global UI Text goes here"),
 		{ _field_tag_reference, "unicode string list tag", &global_multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "unicode damage reporting string list tag", &global_multilingual_unicode_string_list_reference },
-		{ _field_tag_reference, "unicode fire team member name string list", MAKE_OLD_NAMES("unicode fire team member string list tag"), &global_multilingual_unicode_string_list_reference },
+		{ _field_tag_reference, "unicode fire team member name string list", MAKE_ALT_NAMES("unicode fire team member string list tag"), &global_multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "unicode fire team member service tag string list", &global_multilingual_unicode_string_list_reference },
 		FIELD_EXPLANATION_EX("Main menu music", nullptr, FIELD_FLAG_NONE, "Looping sound that plays while the main menu is active"),
 		{ _field_tag_reference, "main menu music", &global_looping_sound_reference },

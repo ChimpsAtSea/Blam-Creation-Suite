@@ -33,7 +33,7 @@ namespace blofeld
 		{ _field_real, "grenade radius" },
 		{ _field_real, "assist award bias", "multiplier for attributed-damage during assist calculation" },
 		{ _field_real, "weapon spread" },
-		{ _field_real, "headshot aim assist", "increases autoaim for headshot weapons", MAKE_OLD_NAMES("headshot magnetism") },
+		{ _field_real, "headshot aim assist", "increases autoaim for headshot weapons", MAKE_ALT_NAMES("headshot magnetism") },
 		{ _field_real, "melee cone" },
 		{ _field_real, "aim assist", "unimplemented" },
 		FIELD_EXPLANATION_EX("Level Change", nullptr, FIELD_FLAG_NONE, "These fields show how many kills/deaths it takes to move between levels"),

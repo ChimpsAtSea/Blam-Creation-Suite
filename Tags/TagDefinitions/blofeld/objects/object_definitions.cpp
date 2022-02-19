@@ -418,7 +418,7 @@ namespace blofeld
 		{ _field_legacy, _field_real, "acceleration scale:[0,+inf]" },
 
 		{ _version_mode_greater_or_equal, {_engine_type_haloreach}, 3 },
-		{ _field_real, "horizontal acceleration scale", nullptr, nullptr, "[0,+inf]", MAKE_OLD_NAMES("acceleration scale") },
+		{ _field_real, "horizontal acceleration scale", nullptr, nullptr, "[0,+inf]", MAKE_ALT_NAMES("acceleration scale") },
 		{ _field_real, "vertical acceleration scale" },
 		{ _field_real, "angular acceleration scale" },
 		

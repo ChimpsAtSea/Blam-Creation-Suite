@@ -11285,7 +11285,7 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_CUSTOM_SCRIPT_BLOCK_ID)
 	{
-		{ _field_data, "script", MAKE_OLD_NAMES(" "), &blofeld::halo3_tools::custom_script_data },
+		{ _field_data, "script", MAKE_ALT_NAMES(" "), &blofeld::halo3_tools::custom_script_data },
 		{ _field_terminator }
 	};
 
@@ -16326,7 +16326,7 @@ namespace halo3_tools {
 		CONTRAIL_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "contrail name" },
-		{ _field_real, "origin fade range", "distance beyond cutoff over which contrails fade", "world units", MAKE_OLD_NAMES("origin fade distance") },
+		{ _field_real, "origin fade range", "distance beyond cutoff over which contrails fade", "world units", MAKE_ALT_NAMES("origin fade distance") },
 		{ _field_real, "origin fade cutoff", "distance from contrail origin where fade begins", "world units" },
 		{ _field_real, "edge fade range", "degrees beyond cutoff over which contrails fade", "degrees" },
 		{ _field_real, "edge fade cutoff", "degrees away from edge-on where fade is total", "degrees" },
@@ -16649,7 +16649,7 @@ namespace halo3_tools {
 		{ _field_char_integer, "number of n-gon sides" },
 		{ _field_real_vector_2d, "uv tiling", "u is tiles/world unit, v is absolute tiles", "u lengthwise, v crosswise" },
 		{ _field_real_vector_2d, "uv scrolling", nullptr, "tiles per second" },
-		{ _field_real, "origin fade range", "distance beyond cutoff over which beams fade", "world units", MAKE_OLD_NAMES("origin fade distance") },
+		{ _field_real, "origin fade range", "distance beyond cutoff over which beams fade", "world units", MAKE_ALT_NAMES("origin fade distance") },
 		{ _field_real, "origin fade cutoff", "distance from beam origin where fade begins", "world units" },
 		{ _field_real, "edge fade range", "degrees beyond cutoff over which beams fade", "degrees" },
 		{ _field_real, "edge fade cutoff", "degrees away from edge-on where fade is total", "degrees" },
@@ -16936,7 +16936,7 @@ namespace halo3_tools {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo3_tools::effect_flags },
 		{ _field_long_integer, "fixed random seed", "If this is non-zero, the effect will usually be exactly repeatable" },
-		{ _field_real, "restart if within", nullptr, "world units", MAKE_OLD_NAMES("overlap threshold") },
+		{ _field_real, "restart if within", nullptr, "world units", MAKE_ALT_NAMES("overlap threshold") },
 		{ _field_real, "continue if within", nullptr, "world units" },
 		{ _field_real, "death_delay" },
 		{ _field_char_enum, "priority", &blofeld::halo3_tools::global_effect_priority_enum },
@@ -17682,7 +17682,7 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_COLLISION_MATERIALS_BLOCK_ID)
 	{
-		{ _field_tag_reference, "render method", MAKE_OLD_NAMES("old shader"), FIELD_FLAG_READ_ONLY, &blofeld::halo3_tools::render_method_group_reference$6_tagref },
+		{ _field_tag_reference, "render method", MAKE_ALT_NAMES("old shader"), FIELD_FLAG_READ_ONLY, &blofeld::halo3_tools::render_method_group_reference$6_tagref },
 		{ _field_short_integer, "runtime global material index" },
 		{ _field_short_block_index, "conveyor surface index", &blofeld::halo3_tools::structure_bsp_conveyor_surface_block_block },
 		{ _field_short_block_index, "seam mapping index", &blofeld::halo3_tools::structure_seam_mapping_block_block },
@@ -19856,7 +19856,7 @@ namespace halo3_tools {
 		SCENARIO_CLUSTER_DATA_BLOCK_ID)
 	{
 		{ _field_tag_reference, "bsp", &blofeld::halo3_tools::scenario_structure_bsp_group_reference_tagref },
-		{ _field_block, "acoustics", MAKE_OLD_NAMES("background sounds"), FIELD_FLAG_READ_ONLY, &blofeld::halo3_tools::scenario_cluster_acoustics_block_block },
+		{ _field_block, "acoustics", MAKE_ALT_NAMES("background sounds"), FIELD_FLAG_READ_ONLY, &blofeld::halo3_tools::scenario_cluster_acoustics_block_block },
 		{ _field_block, "OLD background sounds", &blofeld::halo3_tools::scenario_cluster_background_sounds_block_block },
 		{ _field_block, "sound environments", &blofeld::halo3_tools::scenario_cluster_sound_environments_block_block },
 		{ _field_long_integer, "bsp checksum" },
@@ -20238,7 +20238,7 @@ namespace halo3_tools {
 		{ _field_long_block_index, "pvs index", &blofeld::halo3_tools::scenario_zone_set_pvs_block_block },
 		{ _field_long_flags, "flags", &blofeld::halo3_tools::scenario_zone_set_flags_definition },
 		{ _field_long_block_flags, "bsp zone flags" },
-		{ _field_long_block_flags, "required designer zones", MAKE_OLD_NAMES("designer zone flags") },
+		{ _field_long_block_flags, "required designer zones", MAKE_ALT_NAMES("designer zone flags") },
 		{ _field_long_block_flags, "forbidden designer zones" },
 		{ _field_long_block_flags, "cinematic zones" },
 		{ _field_long_block_index, "hint previous zone set", &blofeld::halo3_tools::scenario_zone_set_block_block },
@@ -20478,7 +20478,7 @@ namespace halo3_tools {
 		{ _field_block, "hs syntax datums", &blofeld::halo3_tools::hs_syntax_datum_block_block },
 		{ _field_block, "Orders", &blofeld::halo3_tools::orders_block_block },
 		{ _field_block, "Triggers", &blofeld::halo3_tools::triggers_block_block },
-		{ _field_block, "acoustics palette", MAKE_OLD_NAMES("background sound palette"), &blofeld::halo3_tools::scenario_acoustics_palette_block_definition_block, _field_id_sort },
+		{ _field_block, "acoustics palette", MAKE_ALT_NAMES("background sound palette"), &blofeld::halo3_tools::scenario_acoustics_palette_block_definition_block, _field_id_sort },
 		{ _field_block, "OLD background sound palette", &blofeld::halo3_tools::scenario_acoustics_ambience_palette_block_block, _field_id_sort },
 		{ _field_block, "sound environment palette", &blofeld::halo3_tools::scenario_acoustics_environment_palette_block_block, _field_id_sort },
 		{ _field_block, "weather palette", &blofeld::halo3_tools::structure_bsp_weather_palette_block_block, _field_id_sort },
@@ -21920,7 +21920,7 @@ namespace halo3_tools {
 		SCENARIO_CLUSTER_DATA_RESOURCE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "cluster data", &blofeld::halo3_tools::scenario_cluster_data_block_block },
-		{ _field_block, "acoustics palette", MAKE_OLD_NAMES("background sound palette"), FIELD_FLAG_READ_ONLY, &blofeld::halo3_tools::scenario_acoustics_palette_block_definition_block },
+		{ _field_block, "acoustics palette", MAKE_ALT_NAMES("background sound palette"), FIELD_FLAG_READ_ONLY, &blofeld::halo3_tools::scenario_acoustics_palette_block_definition_block },
 		{ _field_block, "sound environment palette", &blofeld::halo3_tools::scenario_acoustics_environment_palette_block_block },
 		{ _field_block, "weather palette", &blofeld::halo3_tools::structure_bsp_weather_palette_block_block },
 		{ _field_block, "atmosphere palette", &blofeld::halo3_tools::structure_bsp_atmosphere_palette_block_block },
@@ -22218,7 +22218,7 @@ namespace halo3_tools {
 		{ _field_short_integer, "priority", "higher means more important" },
 		{ _field_enum, "cache miss mode", &blofeld::halo3_tools::sound_class_cache_miss_mode_definition },
 		FIELD_EXPLANATION("AIR PROPAGATION", nullptr),
-		{ _field_real, "air reverb gain", "how much reverb applies to this sound class", "dB", MAKE_OLD_NAMES("reverb gain"), _field_id_decibels },
+		{ _field_real, "air reverb gain", "how much reverb applies to this sound class", "dB", MAKE_ALT_NAMES("reverb gain"), _field_id_decibels },
 		{ _field_real, "air direct path gain", "how much goes to direct path (dry)", "dB", _field_id_decibels },
 		{ _field_real, "air base obstruction" },
 		{ _field_real, "air base occlusion" },
@@ -24206,7 +24206,7 @@ namespace halo3_tools {
 		SOUND_EFFECT_TEMPLATE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "template collection", &blofeld::halo3_tools::sound_effect_templates_block_block },
-		{ _field_string_id, "internal dsp effect name", MAKE_OLD_NAMES("input effect name") },
+		{ _field_string_id, "internal dsp effect name", MAKE_ALT_NAMES("input effect name") },
 		{ _field_block, "additional sound inputs", &blofeld::halo3_tools::sound_effect_template_additional_sound_input_block_block },
 		{ _field_terminator }
 	};
@@ -27390,9 +27390,9 @@ namespace halo3_tools {
 		{ _field_struct, "particle movement", &blofeld::halo3_tools::particle_physics_struct },
 		FIELD_HIDE_END(),
 		{ _field_struct, "particle self-acceleration", nullptr, "world units per second per second", &blofeld::halo3_tools::particle_property_real_vector3d_struct_new },
-		{ _field_struct, "particle initial velocity", nullptr, "world units per second", MAKE_OLD_NAMES("particle velocity"), &blofeld::halo3_tools::particle_property_scalar_struct_new },
+		{ _field_struct, "particle initial velocity", nullptr, "world units per second", MAKE_ALT_NAMES("particle velocity"), &blofeld::halo3_tools::particle_property_scalar_struct_new },
 		{ _field_struct, "particle rotation", nullptr, ".25=90°, .5=180°, 1=360° ... adds to physics", &blofeld::halo3_tools::particle_property_scalar_struct_new },
-		{ _field_struct, "particle initial rotation rate", nullptr, "360 degree rotations per second", MAKE_OLD_NAMES("particle angular velocity"), &blofeld::halo3_tools::particle_property_scalar_struct_new },
+		{ _field_struct, "particle initial rotation rate", nullptr, "360 degree rotations per second", MAKE_ALT_NAMES("particle angular velocity"), &blofeld::halo3_tools::particle_property_scalar_struct_new },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("PARTICLE APPEARANCE"),
 		{ _field_struct, "particle size", nullptr, "world units", &blofeld::halo3_tools::particle_property_scalar_struct_new },
@@ -28189,7 +28189,7 @@ namespace halo3_tools {
 		FIELD_EXPLANATION("Damage response flags", "* kills object: when the response fires the object dies regardless of its current health\n* inhibits <x>: from halo 1 - disallows basic behaviors for a unit\n* forces drop weapon: from halo 1 - makes the unit drop its current weapon\n* kills weapon <x> trigger: destroys the <x> trigger on the unit\'s current weapon\n* destroys object: when the response fires the object is destroyed"),
 		{ _field_long_flags, "flags", &blofeld::halo3_tools::damage_response_flags_definition },
 		{ _field_real, "damage threshold", "repsonse fires after crossing this threshold.  1=full health" },
-		{ _field_tag_reference, "transition effect (generic)", MAKE_OLD_NAMES("transition effect"), &blofeld::halo3_tools::effect_group_reference_tagref },
+		{ _field_tag_reference, "transition effect (generic)", MAKE_ALT_NAMES("transition effect"), &blofeld::halo3_tools::effect_group_reference_tagref },
 		{ _field_tag_reference, "transition effect (specific)", &blofeld::halo3_tools::effect_group_reference_tagref },
 		{ _field_struct, "damage effect", &blofeld::halo3_tools::instantaneous_response_damage_effect_struct },
 		{ _field_string_id, "region" },
@@ -31703,7 +31703,7 @@ namespace halo3_tools {
 	{
 		{ _field_tag_reference, "sound environment", &blofeld::halo3_tools::sound_environment_group_reference_tagref },
 		{ _field_real, "cutoff distance" },
-		{ _field_real, "interpolation time", nullptr, "seconds", MAKE_OLD_NAMES("interpolation speed") },
+		{ _field_real, "interpolation time", nullptr, "seconds", MAKE_ALT_NAMES("interpolation speed") },
 		{ _field_terminator }
 	};
 
@@ -31724,7 +31724,7 @@ namespace halo3_tools {
 		{ _field_real_fraction, "interior scale" },
 		{ _field_real_fraction, "portal scale" },
 		{ _field_real_fraction, "exterior scale" },
-		{ _field_real, "interpolation time", nullptr, "seconds", MAKE_OLD_NAMES("interpolation speed") },
+		{ _field_real, "interpolation time", nullptr, "seconds", MAKE_ALT_NAMES("interpolation speed") },
 		{ _field_terminator }
 	};
 
@@ -33665,8 +33665,8 @@ namespace halo3_tools {
 		FIELD_EXPLANATION("TYPE FLAGS", nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo3_tools::ripple_behavior_flags },
 		FIELD_EXPLANATION("INITIAL SETTINGS", nullptr),
-		{ _field_real, "initial radius", MAKE_OLD_NAMES("radius") },
-		{ _field_real, "initial amplitude", MAKE_OLD_NAMES("amplitude") },
+		{ _field_real, "initial radius", MAKE_ALT_NAMES("radius") },
+		{ _field_real, "initial amplitude", MAKE_ALT_NAMES("amplitude") },
 		{ _field_real, "spread speed" },
 		{ _field_real, "speed bias" },
 		{ _field_real, "position random range" },
@@ -35240,16 +35240,16 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RASTERIZER_COMPILED_SHADER_STRUCT_ID)
 	{
-		{ _field_data, "xenon compiled shader", MAKE_OLD_NAMES("..:xenon compiled shader"), &blofeld::halo3_tools::xenon_compiled_shader_data },
-		{ _field_data, "dx9 compiled shader", MAKE_OLD_NAMES("..:dx9 compiled shader"), &blofeld::halo3_tools::dx9_compiled_shader_data },
-		{ _field_data, "durango compiled shader", MAKE_OLD_NAMES("..:durango compiled shader"), &blofeld::halo3_tools::durango_compiled_shader_data },
+		{ _field_data, "xenon compiled shader", MAKE_ALT_NAMES("..:xenon compiled shader"), &blofeld::halo3_tools::xenon_compiled_shader_data },
+		{ _field_data, "dx9 compiled shader", MAKE_ALT_NAMES("..:dx9 compiled shader"), &blofeld::halo3_tools::dx9_compiled_shader_data },
+		{ _field_data, "durango compiled shader", MAKE_ALT_NAMES("..:durango compiled shader"), &blofeld::halo3_tools::durango_compiled_shader_data },
 		FIELD_EXPLANATION("Xenon constant table", nullptr),
 		{ _field_struct, "xenon rasterizer constant table", &blofeld::halo3_tools::global_rasterizer_constant_table_struct },
 		FIELD_EXPLANATION("DX9 constant table", nullptr),
 		{ _field_struct, "dx9 rasterizer constant table", &blofeld::halo3_tools::global_rasterizer_constant_table_struct },
 		FIELD_EXPLANATION("Durango constant table", nullptr),
 		{ _field_struct, "durango rasterizer constant table", &blofeld::halo3_tools::global_rasterizer_constant_table_struct },
-		{ _field_long_integer, "gprs", MAKE_OLD_NAMES("..:gprs") },
+		{ _field_long_integer, "gprs", MAKE_ALT_NAMES("..:gprs") },
 		{ _field_terminator }
 	};
 
@@ -35818,7 +35818,7 @@ namespace halo3_tools {
 		{ _field_long_flags, "flags", &blofeld::halo3_tools::performance_throttle_flags },
 		{ _field_real, "water lod" },
 		{ _field_real, "decorator fade dist scale", nullptr, "0 = off" },
-		{ _field_real, "effect lod distance scale", MAKE_OLD_NAMES("effect lod limit") },
+		{ _field_real, "effect lod distance scale", MAKE_ALT_NAMES("effect lod limit") },
 		{ _field_real, "instance fade modifier" },
 		{ _field_real, "object fade modifier" },
 		{ _field_real, "object lod threshold modifier" },
@@ -37933,7 +37933,7 @@ namespace halo3_tools {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CORTANA_SCRIPT_BLOCK_ID)
 	{
-		{ _field_data, "script", MAKE_OLD_NAMES(" "), &blofeld::halo3_tools::cortana_script_data },
+		{ _field_data, "script", MAKE_ALT_NAMES(" "), &blofeld::halo3_tools::cortana_script_data },
 		{ _field_terminator }
 	};
 
@@ -43102,7 +43102,7 @@ namespace halo3_tools {
 		{ _field_tag_reference, "render model", &blofeld::halo3_tools::render_model_group_reference$4_tagref },
 		{ _field_block, "render model permutation names", &blofeld::halo3_tools::muffin_permutation_name_block_block },
 		{ _field_long_integer, "render model permutation name valid count" },
-		{ _field_block, "muffin markers", "defines where muffins appear, how often, and which types", MAKE_OLD_NAMES("default markers"), &blofeld::halo3_tools::muffin_marker_block_block },
+		{ _field_block, "muffin markers", "defines where muffins appear, how often, and which types", MAKE_ALT_NAMES("default markers"), &blofeld::halo3_tools::muffin_marker_block_block },
 		{ _field_block, "muffin types", &blofeld::halo3_tools::global_muffin_type_block_block },
 		{ _field_terminator }
 	};
@@ -45197,7 +45197,7 @@ namespace halo3_tools {
 		{ _field_real, "unreachable enemy danger threshold", "When danger from an unreachable enemy surpasses threshold, actor cover (assuming unreachable_enemy_cover impulse is enabled)" },
 		{ _field_real, "scary target threshold", "When target is aware of me and surpasses the given scariness, self-preserve (assuming scary_target_cover_impulse is enabled)" },
 		{ _field_real, "Shield depleted cover chance", "Probability of going straight into cover when shield is depleted (assuming shield_depleted_cover_impulse is enabled)" },
-		{ _field_real, "Vitality fraction shield equipment", "Fraction of vitality below which an equipped shield equipment (instant cover/bubbleshield) will be activated (once damage has died down, and assuming shield_equipment_impulse is enabled)", MAKE_OLD_NAMES("Vitality fraction bubbleshield") },
+		{ _field_real, "Vitality fraction shield equipment", "Fraction of vitality below which an equipped shield equipment (instant cover/bubbleshield) will be activated (once damage has died down, and assuming shield_equipment_impulse is enabled)", MAKE_ALT_NAMES("Vitality fraction bubbleshield") },
 		{ _field_real, "Recent damage shield equipment", "Must have less than this amount of recent body damage before we can deploy our equipped shield equipment." },
 		{ _field_terminator }
 	};

@@ -319,7 +319,7 @@ namespace blofeld
 		{ _field_real_fraction, "targeted leading fraction" },
 		{ _field_real, "guided projectile (outer range) error radius" },
 		{ _field_real, "autoaim leading max lead time" },
-		{ _field_block, "old material responses", MAKE_OLD_NAMES("material responses"), FIELD_FLAG_UNKNOWN0, &old_projectile_material_response_block, _field_id_sort },
+		{ _field_block, "old material responses", MAKE_ALT_NAMES("material responses"), FIELD_FLAG_UNKNOWN0, &old_projectile_material_response_block, _field_id_sort },
 
 		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "material response", &projectile_material_response_block },

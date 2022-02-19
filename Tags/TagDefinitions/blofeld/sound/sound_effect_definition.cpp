@@ -91,7 +91,7 @@ namespace blofeld
 		SOUND_EFFECT_TEMPLATE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "template collection", &sound_effect_templates_block },
-		{ _field_string_id, "internal dsp effect name", MAKE_OLD_NAMES("input effect name") },
+		{ _field_string_id, "internal dsp effect name", MAKE_ALT_NAMES("input effect name") },
 		{ _field_block, "additional sound inputs", &sound_effect_template_additional_sound_input_block },
 		{ _field_terminator }
 	};

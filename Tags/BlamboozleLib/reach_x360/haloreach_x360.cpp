@@ -379,6 +379,44 @@ extern void escape_string(
 
 extern std::string escape_string(std::string str);
 
+enum e_alt_name_type
+{
+	_alt_name_type_tag_name,
+	_alt_name_type_upgrade_name,
+};
+struct s_alt_name
+{
+	e_alt_name_type type;
+	const char* string;
+};
+using t_alt_names = std::vector<s_alt_name>;
+
+void reach_x360_write_alt_names(std::stringstream& s, t_alt_names& alt_names)
+{
+	s << ", MAKE_ALT_NAMES(";
+	t_alt_names::iterator alt_name_iterator = alt_names.begin();
+	if (alt_name_iterator != alt_names.end())
+	{
+		goto first;
+		do
+		{
+			s << ", ";
+		first:
+			s_alt_name& alt_name = *alt_name_iterator;
+			switch (alt_name.type)
+			{
+			case _alt_name_type_tag_name:
+				s << "\"" << alt_name.string << "\"";
+				break;
+			case _alt_name_type_upgrade_name:
+				s << "\"" << alt_name.string << "\"";
+				break;
+			}
+		} while (++alt_name_iterator != alt_names.end());
+	}
+	s << ")";
+}
+
 void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_field*>& fields)
 {
 	const char* _namespace = "haloreach";
@@ -388,7 +426,15 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 	{
 		if (c_reach_x360_tag_field_combined_fixup* combined_fixup_field = dynamic_cast<c_reach_x360_tag_field_combined_fixup*>(_field))
 		{
-			s << "\t\t{ _version_mode_tag_group_equal, &blofeld::" << _namespace << "::" << combined_fixup_field->group_definition.code_name << ", " << combined_fixup_field->count << " }," << std::endl;
+			switch(combined_fixup_field->fixup_type)
+			{
+				case _reach_x360_tag_field_combined_fixup_type_equal:
+					s << "\t\t{ _version_mode_tag_group_equal, &blofeld::" << _namespace << "::" << combined_fixup_field->group_definition.code_name << ", " << combined_fixup_field->count << " }," << std::endl;
+					break;
+				case _reach_x360_tag_field_combined_fixup_type_not_equal:
+					s << "\t\t{ _version_mode_tag_group_not_equal, &blofeld::" << _namespace << "::" << combined_fixup_field->group_definition.code_name << ", " << combined_fixup_field->count << " }," << std::endl;
+					break;
+			}
 
 			debug_point;
 		}
@@ -405,31 +451,38 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 
 			c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(tag_field->name);
 
-			c_fixed_string_4096 name;
+			c_fixed_string_4096 pretty_name;
+			c_fixed_string_4096 tag_file_name;
 			c_fixed_string_4096 description;
 			c_fixed_string_4096 units;
 			c_fixed_string_4096 limits;
 			c_fixed_string_4096 limits_legacy;
 			c_fixed_string_4096 old_name;
+			c_fixed_string_4096 old_name3;
 
 			if (tag_field->name)
 			{
-				escape_string(string_parser.name, name, true, true);
+				escape_string(string_parser.pretty_name, pretty_name, true, true);
+				escape_string(string_parser.tag_file_name, tag_file_name, true, true);
 				escape_string(string_parser.description, description, true, true);
 				escape_string(string_parser.units, units, true, true);
 				escape_string(string_parser.limits, limits, true, true);
 				escape_string(string_parser.limits_legacy, limits_legacy, true, true);
 				escape_string(string_parser.old_name, old_name, true, true);
+				escape_string(string_parser.old_name3, old_name3, true, true);
 			}
-			if (name.empty())
-			{
-				name = "value";
-			}
+
+
+			std::vector<s_alt_name> alt_names;
+			if (!tag_file_name.empty() && strcmp(pretty_name, tag_file_name) != 0) alt_names.push_back({ _alt_name_type_tag_name, tag_file_name });
+			if (!old_name3.empty()) alt_names.push_back({ _alt_name_type_upgrade_name, old_name3 });
+			if (!old_name.empty()) alt_names.push_back({ _alt_name_type_upgrade_name, old_name });
 
 			bool write_limits = !limits.empty();
 			bool write_units = write_limits || !units.empty();
 			bool write_description = write_units || !description.empty();
-			bool write_old_name = !old_name.empty();
+			bool write_tag_name = strcmp(tag_file_name, pretty_name) != 0;
+			bool write_alt_names = !alt_names.empty();
 			bool write_flags =
 				string_parser.flag_unknown0 ||
 				string_parser.flag_read_only ||
@@ -439,6 +492,11 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 			bool write_pointer = false; // todo
 			bool write_tag = tag_field->field_id != 0;
 
+			if (pretty_name.empty())
+			{
+				pretty_name = "value";
+			}
+
 			switch (tag_field->field_type)
 			{
 			case _reach_x360_field_type_custom:
@@ -447,78 +505,78 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 
 				if (tag_field->field_id == blofeld::_field_id_field_group_begin)
 				{
-					ASSERT(!name.empty());
+					ASSERT(!pretty_name.empty());
 					ASSERT(description.empty());
 					s << "\t\tFIELD_GROUP_BEGIN(";
-					if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 					s << ")," << std::endl;
 				}
 				else if (tag_field->field_id == blofeld::_field_id_field_group_end)
 				{
-					//ASSERT(name == "value" || name.empty());
+					//ASSERT(pretty_name == "value" || pretty_name.empty());
 					ASSERT(description.empty());
 
-					if (name.empty() || strcmp(name, "value") == 0) // #TODO: improve this with function
+					if (pretty_name.empty() || strcmp(pretty_name, "value") == 0) // #TODO: improve this with function
 					{
 						s << "\t\tFIELD_GROUP_END()," << std::endl;
 					}
 					else
 					{
 						s << "\t\tFIELD_GROUP_END2(";
-						s << "\"" << name.c_str() << "\"";
+						s << "\"" << pretty_name.c_str() << "\"";
 						s << ")," << std::endl;
 					}
 
 					//s << "\t\tFIELD_GROUP_END(";
-					//if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+					//if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 					//s << ")," << std::endl;
 				}
 				else if (tag_field->field_id == blofeld::_field_id_hide_begin)
 				{
-					ASSERT(name.empty() || strcmp(name, "value") == 0);
+					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
 					ASSERT(description.empty());
 					s << "\t\tFIELD_HIDE_BEGIN(";
-					if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 					s << ")," << std::endl;
 				}
 				else if (tag_field->field_id == blofeld::_field_id_hide_end)
 				{
-					ASSERT(name.empty() || strcmp(name, "value") == 0);
+					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
 					ASSERT(description.empty());
 					s << "\t\tFIELD_HIDE_END(";
-					if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 					s << ")," << std::endl;
 				}
 				else if (tag_field->field_id == blofeld::_field_id_ifp_begin)
 				{
-					ASSERT(name.empty() || strcmp(name, "value") == 0);
+					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
 					ASSERT(description.empty());
 					s << "\t\tFIELD_IFP_BEGIN(";
-					if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 					s << ")," << std::endl;
 				}
 				else if (tag_field->field_id == blofeld::_field_id_ifp_end)
 				{
-					ASSERT(name.empty() || strcmp(name, "value") == 0);
+					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
 					ASSERT(description.empty());
 					s << "\t\tFIELD_IFP_END(";
-					if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 					s << ")," << std::endl;
 				}
 				else if (tag_field->field_id == blofeld::_field_id_dont_checksum_begin)
 				{
-					ASSERT(name.empty() || strcmp(name, "value") == 0);
+					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
 					ASSERT(description.empty());
 					s << "\t\tFIELD_DONT_CHECKSUM_BEGIN(";
-					if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 					s << ")," << std::endl;
 				}
 				else if (tag_field->field_id == blofeld::_field_id_dont_checksum_end)
 				{
-					ASSERT(name.empty() || strcmp(name, "value") == 0);
+					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
 					ASSERT(description.empty());
 					s << "\t\tFIELD_DONT_CHECKSUM_END(";
-					if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 					s << ")," << std::endl;
 				}
 				else
@@ -526,9 +584,9 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 					if (description.empty() && !write_flags)
 					{
 						s << "\t\tFIELD_CUSTOM(";
-						if (!name.empty())
+						if (!pretty_name.empty())
 						{
-							if (!name.empty()) s << "\"" << name.c_str() << "\"";
+							if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 						}
 						s << ", " << (tag_field->field_id_string ? tag_field->field_id_string : "_field_id_default");
 						s << ")," << std::endl;
@@ -536,7 +594,7 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 					else
 					{
 						s << "\t\tFIELD_CUSTOM_EX(";
-						if (!name.empty()) s << "\"" << name.c_str() << "\"";
+						if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 						else s << "nullptr";
 						if (!description.empty()) s << ", \"" << description.c_str() << "\"";
 						else s << ", nullptr";
@@ -557,9 +615,9 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 				ASSERT(!write_units);
 
 				s << "\t\tFIELD_PAD(";
-				if (!name.empty())
+				if (!pretty_name.empty())
 				{
-					if (!name.empty()) s << "\"" << name.c_str() << "\"";
+					if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 				}
 				if (!description.empty())
 				{
@@ -580,9 +638,9 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 				ASSERT(!write_flags);
 
 				s << "\t\tFIELD_SKIP(";
-				if (!name.empty())
+				if (!pretty_name.empty())
 				{
-					if (!name.empty()) s << "\"" << name.c_str() << "\"";
+					if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 				}
 				if (!description.empty())
 				{
@@ -600,9 +658,9 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 			{
 
 				s << "\t\tFIELD_EXPLANATION(";
-				if (!name.empty())
+				if (!pretty_name.empty())
 				{
-					if (!name.empty()) s << "\"" << name.c_str() << "\"";
+					if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 				}
 				if (!description.empty())
 				{
@@ -625,7 +683,7 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 			{
 				s << "\t\t{ ";
 				s << field_generic_type_name << ", ";
-				s << "\"" << name.c_str() << "\"";
+				s << "\"" << pretty_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -641,9 +699,9 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
 					else s << ", " << "nullptr";
 				}
-				if (write_old_name)
+				if (write_alt_names)
 				{
-					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+					reach_x360_write_alt_names(s, alt_names);
 				}
 				if (write_flags)
 				{
@@ -669,7 +727,7 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 			{
 				s << "\t\t{ ";
 				s << field_generic_type_name << ", ";
-				s << "\"" << name.c_str() << "\"";
+				s << "\"" << pretty_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -685,9 +743,9 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
 					else s << ", " << "nullptr";
 				}
-				if (write_old_name)
+				if (write_alt_names)
 				{
-					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+					reach_x360_write_alt_names(s, alt_names);
 				}
 				if (write_flags)
 				{
@@ -711,7 +769,7 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 			{
 				s << "\t\t{ ";
 				s << field_generic_type_name << ", ";
-				s << "\"" << name.c_str() << "\"";
+				s << "\"" << pretty_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -727,9 +785,9 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
 					else s << ", " << "nullptr";
 				}
-				if (write_old_name)
+				if (write_alt_names)
 				{
-					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+					reach_x360_write_alt_names(s, alt_names);
 				}
 				if (write_flags)
 				{
@@ -753,7 +811,7 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 			{
 				s << "\t\t{ ";
 				s << field_generic_type_name << ", ";
-				s << "\"" << name.c_str() << "\"";
+				s << "\"" << pretty_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -769,9 +827,9 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
 					else s << ", " << "nullptr";
 				}
-				if (write_old_name)
+				if (write_alt_names)
 				{
-					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+					reach_x360_write_alt_names(s, alt_names);
 				}
 				if (write_flags)
 				{
@@ -795,7 +853,7 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 			{
 				s << "\t\t{ ";
 				s << field_generic_type_name << ", ";
-				s << "\"" << name.c_str() << "\"";
+				s << "\"" << pretty_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -811,9 +869,9 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
 					else s << ", " << "nullptr";
 				}
-				if (write_old_name)
+				if (write_alt_names)
 				{
-					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+					reach_x360_write_alt_names(s, alt_names);
 				}
 				if (write_flags)
 				{
@@ -837,7 +895,7 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 			{
 				s << "\t\t{ ";
 				s << field_generic_type_name << ", ";
-				s << "\"" << name.c_str() << "\"";
+				s << "\"" << pretty_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -853,9 +911,9 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
 					else s << ", " << "nullptr";
 				}
-				if (write_old_name)
+				if (write_alt_names)
 				{
-					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+					reach_x360_write_alt_names(s, alt_names);
 				}
 				if (write_flags)
 				{
@@ -879,7 +937,7 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 			{
 				s << "\t\t{ ";
 				s << field_generic_type_name << ", ";
-				s << "\"" << name.c_str() << "\"";
+				s << "\"" << pretty_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -895,9 +953,9 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
 					else s << ", " << "nullptr";
 				}
-				if (write_old_name)
+				if (write_alt_names)
 				{
-					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+					reach_x360_write_alt_names(s, alt_names);
 				}
 				if (write_flags)
 				{
@@ -930,7 +988,7 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 			case _reach_x360_field_type_byte_flags:
 				s << "\t\t{ ";
 				s << field_generic_type_name << ", ";
-				s << "\"" << name.c_str() << "\"";
+				s << "\"" << pretty_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -946,9 +1004,9 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
 					else s << ", " << "nullptr";
 				}
-				if (write_old_name)
+				if (write_alt_names)
 				{
-					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+					reach_x360_write_alt_names(s, alt_names);
 				}
 				if (write_flags)
 				{
@@ -971,7 +1029,7 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 			{
 				s << "\t\t{ ";
 				s << field_generic_type_name << ", ";
-				s << "\"" << name.c_str() << "\"";
+				s << "\"" << pretty_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -987,9 +1045,9 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
 					else s << ", " << "nullptr";
 				}
-				if (write_old_name)
+				if (write_alt_names)
 				{
-					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+					reach_x360_write_alt_names(s, alt_names);
 				}
 				if (write_flags)
 				{
@@ -1239,7 +1297,7 @@ void reach_x360_export_header(
 
 			s << "\tstatic constexpr unsigned long " << group_definition->tag_symbol_name << " = '" << group_tag_string << "';" << std::endl;
 			s << "\textern s_tag_group " << group_definition->code_name << ";" << std::endl;
-			//s << "\textern s_tag_group " << group_definition->name << "_group;" << std::endl;
+			//s << "\textern s_tag_group " << group_definition->pretty_name << "_group;" << std::endl;
 
 			s << std::endl;
 		}
@@ -1337,14 +1395,14 @@ void reach_x360_export_source(
 			c_reach_x360_tag_block_definition* block_definition = group_definition->tag_block_definition;
 			c_reach_x360_tag_struct_definition* struct_definition = &block_definition->struct_definition;
 
-			s << "\tTAG_GROUP(" << std::endl;
+			s << "\tTAG_GROUP_V2(" << std::endl;
+			s << "\t\t\"" << group_definition->name << "\"," << std::endl;
 			s << "\t\t" << group_definition->code_name << "," << std::endl;
-			//s << "\t\t" << group_definition->name << "_group," << std::endl;
 			s << "\t\t" << group_definition->tag_symbol_name.c_str() << "," << std::endl;
 			if (c_reach_x360_tag_group_definition* parent_group_definition = get_sorted_group_definition_by_group_tag(group_definition->parent_group_tag))
 			{
 				s << "\t\t&" << parent_group_definition->code_name << "," << std::endl;
-				//s << "\t\t&" << parent_group_definition->name << "_group," << std::endl;
+				//s << "\t\t&" << parent_group_definition->pretty_name << "_group," << std::endl;
 				s << "\t\t" << parent_group_definition->tag_symbol_name.c_str() << "," << std::endl;
 			}
 			else

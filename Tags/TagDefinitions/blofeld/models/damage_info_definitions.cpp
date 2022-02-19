@@ -131,8 +131,8 @@ namespace blofeld
 
 		{ _field_string_id, "label" },
 		{ _field_real_fraction, "damage threshold", "response fires after crossing this threshold.  1=full health" },
-		{ _field_tag_reference, "transition effect (generic)", MAKE_OLD_NAMES("transition effect"), &global_effect_reference },
-		{ _field_string_id, "generic effect marker", MAKE_OLD_NAMES("effect marker name") },
+		{ _field_tag_reference, "transition effect (generic)", MAKE_ALT_NAMES("transition effect"), &global_effect_reference },
+		{ _field_string_id, "generic effect marker", MAKE_ALT_NAMES("effect marker name") },
 		{ _field_tag_reference, "transition effect (specific)", &global_effect_reference },
 		{ _field_string_id, "specific effect marker" },
 		{ _field_struct, "damage effect", &instantaneous_response_damage_effect_struct },
@@ -316,7 +316,7 @@ namespace blofeld
 		{ _field_long_flags, "body threshold flags", &damage_response_body_threshold_flags_definition },
 		{ _field_real, "body damage threshold", "response fires after object body damage crosses this threshold, numbers can be negative.  You need to set the flag \"body threshold active\" for this number to be used. 1=full health" },
 
-		{ _field_tag_reference, "transition effect (generic)", MAKE_OLD_NAMES("transition effect"), &global_effect_reference },
+		{ _field_tag_reference, "transition effect (generic)", MAKE_ALT_NAMES("transition effect"), &global_effect_reference },
 		{ _field_tag_reference, "transition effect (specific)", &global_effect_reference },
 		{ _field_struct, "damage effect", &instantaneous_response_damage_effect_struct },
 		{ _field_string_id, "region" },

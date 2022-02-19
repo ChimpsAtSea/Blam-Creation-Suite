@@ -36,12 +36,12 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("motion sensor ping", nullptr, FIELD_FLAG_NONE, "WARNING \'motion sensor ping\' section no longer functions post CHUD-2-CUI switchover!"),
 		{ _field_struct, "motion sensor ping", &damage_response_motion_sensor_ping },
 		FIELD_EXPLANATION_EX("rumble", nullptr, FIELD_FLAG_NONE, ""),
-		{ _field_tag_reference, "rumble", MAKE_OLD_NAMES("rumble data"), &global_rumble_reference },
+		{ _field_tag_reference, "rumble", MAKE_ALT_NAMES("rumble data"), &global_rumble_reference },
 		FIELD_EXPLANATION_EX("camera shake and impulse data", nullptr, FIELD_FLAG_NONE, ""),
-		{ _field_tag_reference, "camera shake", MAKE_OLD_NAMES("camera shake data"), &global_camera_shake_reference },
+		{ _field_tag_reference, "camera shake", MAKE_ALT_NAMES("camera shake data"), &global_camera_shake_reference },
 
 		{ _version_mode_greater, _engine_type_haloreach },
-		{ _field_tag_reference, "camera shake zoomed", "falls back on camerashake if untuned", MAKE_OLD_NAMES("camera shake data"), &global_camera_shake_reference },
+		{ _field_tag_reference, "camera shake zoomed", "falls back on camerashake if untuned", MAKE_ALT_NAMES("camera shake data"), &global_camera_shake_reference },
 
 		FIELD_EXPLANATION_EX("simulated input", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "simulated_input", &global_simulated_input_reference },
@@ -121,16 +121,16 @@ namespace blofeld
 		{ _field_real, "indicator duration" },
 
 		{ _version_mode_greater, _engine_type_haloreach },
-		{ _field_real, "flash duration ", MAKE_OLD_NAMES("duration") },
+		{ _field_real, "flash duration ", MAKE_ALT_NAMES("duration") },
 
 		{ _field_enum, "fade function", &global_reverse_transition_functions_enum },
 		FIELD_PAD_EX("ZASSFACE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "center size" },
-		{ _field_real, "offscreen size", MAKE_OLD_NAMES("size") },
+		{ _field_real, "offscreen size", MAKE_ALT_NAMES("size") },
 		{ _field_real, "center alpha" },
 		{ _field_real, "offscreen alpha" },
-		{ _field_real, "inner alpha", MAKE_OLD_NAMES("inner scale") },
-		{ _field_real, "outer alpha", MAKE_OLD_NAMES("outer scale") },
+		{ _field_real, "inner alpha", MAKE_ALT_NAMES("inner scale") },
+		{ _field_real, "outer alpha", MAKE_ALT_NAMES("outer scale") },
 		{ _field_real_argb_color, "flash color" },
 		{ _field_real_argb_color, "arrow color" },
 		{ _field_terminator }

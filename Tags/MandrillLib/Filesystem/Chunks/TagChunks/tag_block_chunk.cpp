@@ -363,6 +363,7 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 		case blofeld::_field_pad:
 		case blofeld::_field_terminator:
 			break;
+		//default: FATAL_ERROR("Unhandled field");
 		}
 
 		structure_data_pos += field_size;

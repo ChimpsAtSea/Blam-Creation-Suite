@@ -16,7 +16,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_EVENT_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name", MAKE_OLD_NAMES("incident"), FIELD_FLAG_INDEX },
+		{ _field_string_id, "name", MAKE_ALT_NAMES("incident"), FIELD_FLAG_INDEX },
 		{ _field_char_enum, "audience", FIELD_FLAG_INDEX, &game_engine_event_audience_enum_definition },
 
 		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 },
@@ -72,7 +72,7 @@ namespace blofeld
 	{
 		{ _field_byte_flags, "sound flags", &game_engine_sound_response_flags_definition },
 		FIELD_PAD_EX("AGQD", nullptr, FIELD_FLAG_NONE, 3),
-		{ _field_tag_reference, "sound", MAKE_OLD_NAMES("english sound"), FIELD_FLAG_INDEX, &global_sound_reference },
+		{ _field_tag_reference, "sound", MAKE_ALT_NAMES("english sound"), FIELD_FLAG_INDEX, &global_sound_reference },
 		{ _field_real, "probability", "Ignored for the default sound - used for sound permutation block entries only." },
 		{ _field_terminator }
 	};

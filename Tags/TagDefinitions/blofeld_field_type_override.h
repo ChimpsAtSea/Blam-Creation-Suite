@@ -58,7 +58,7 @@ inline blofeld::s_tag_field _make_field_custom()
 #define FIELD_PAD_EX(name, description, flags, size) __FIELD_MACRO_HELPER(_field_pad, name, description, flags, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
 #define FIELD_SKIP_EX(name, description, flags, size) __FIELD_MACRO_HELPER(_field_skip, name, description, flags, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
 #define FIELD_EXPLANATION_EX(name, description, flags, explanation) __FIELD_MACRO_HELPER(_field_explanation, name, description, flags, static_cast<const void*>(explanation))
-#define MAKE_OLD_NAMES(...) ([]() { static const char* old_names[] = { __VA_ARGS__ }; return old_names; })()
+#define MAKE_ALT_NAMES(...) ([]() { static const char* old_names[] = { "" __VA_ARGS__ , nullptr }; return old_names; })()
 
 #ifndef __INTELLISENSE__
 

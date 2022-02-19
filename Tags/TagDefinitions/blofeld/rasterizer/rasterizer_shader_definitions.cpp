@@ -382,10 +382,10 @@ namespace blofeld
 		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_long_flags, "shader flags", &shader_flags },
 
-		{ _field_data, "xenon compiled shader", MAKE_OLD_NAMES("..:xenon compiled shader") },
+		{ _field_data, "xenon compiled shader", MAKE_ALT_NAMES("..:xenon compiled shader") },
 
 		{ _version_mode_equal, _engine_type_gen3_xbox360 },
-		{ _field_data, "dx9 compiled shader", MAKE_OLD_NAMES("..:dx9 compiled shader") },
+		{ _field_data, "dx9 compiled shader", MAKE_ALT_NAMES("..:dx9 compiled shader") },
 
 		{ _version_mode_not_equal, _engine_type_gen3_xbox360, 2 },
 		{ _field_legacy, _field_data, "dx11 compiled shader{..:dx11 compiled shader}" },
@@ -404,7 +404,7 @@ namespace blofeld
 		{ _field_legacy, _field_explanation, "durango constant table", "" },
 		{ _field_legacy, _field_struct, "durango rasterizer constant table*!", &global_rasterizer_constant_table_struct },
 
-		{ _field_dword_integer, "gprs", MAKE_OLD_NAMES("..:gprs") },
+		{ _field_dword_integer, "gprs", MAKE_ALT_NAMES("..:gprs") },
 		{ _field_long_integer, "cache file reference", FIELD_FLAG_READ_ONLY },
 
 		{ _version_mode_equal, _engine_type_haloreach },

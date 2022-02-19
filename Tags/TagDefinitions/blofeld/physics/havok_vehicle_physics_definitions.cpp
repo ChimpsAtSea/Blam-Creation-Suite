@@ -35,7 +35,7 @@ namespace blofeld
 		{ _field_legacy, _field_real, "antigrav damp factor" },
 
 		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
-		{ _field_real, "antigrav compression damping", MAKE_OLD_NAMES("antigrav damp factor") },
+		{ _field_real, "antigrav compression damping", MAKE_ALT_NAMES("antigrav damp factor") },
 		{ _field_real, "antigrav extension damping" },
 
 		{ _field_real, "antigrav normal k1" },

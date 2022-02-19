@@ -155,7 +155,7 @@ namespace blofeld
 		{ _field_real, "base height", nullptr, "world units" },
 		{ _field_real, "fog height", nullptr, "world units" },
 		{ _field_real, "fog thickness" },
-		{ _field_real, "fog falloff end", MAKE_OLD_NAMES("max fog distance") },
+		{ _field_real, "fog falloff end", MAKE_ALT_NAMES("max fog distance") },
 		{ _field_real_rgb_color, "fog color" },
 		{ _field_real, "fog color intensity", "scales color up or down to allow for HDR values" },
 

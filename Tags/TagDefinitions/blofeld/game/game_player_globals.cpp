@@ -41,8 +41,8 @@ namespace blofeld
 		{ _field_tag_reference, "hologram death effect", &global_effect_reference },
 		{ _field_long_integer, "binoculars zoom count" },
 		{ _field_real_bounds, "binoculars zoom range" },
-		{ _field_tag_reference, "night vision on", MAKE_OLD_NAMES("flashlight on"), &global_sound_reference },
-		{ _field_tag_reference, "night vision off", MAKE_OLD_NAMES("flashlight off"), &global_sound_reference },
+		{ _field_tag_reference, "night vision on", MAKE_ALT_NAMES("flashlight on"), &global_sound_reference },
+		{ _field_tag_reference, "night vision off", MAKE_ALT_NAMES("flashlight off"), &global_sound_reference },
 
 		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_real, "fire team objective range" },

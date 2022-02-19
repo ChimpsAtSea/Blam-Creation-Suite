@@ -1,5 +1,6 @@
 c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool is_block, std::map<std::string, int>* string_list_value_unique_counter) :
-	name(),
+	pretty_name(),
+	tag_file_name(),
 	old_name(),
 	old_name2(),
 	flags(),
@@ -30,9 +31,9 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 	struct s_string_replacement { const char* const old_string; const char* const new_string; };
 	const s_string_replacement bad_strings[] =
 	{
-		{ "class crates + vehicles", "class crates and vehicles" },
-		{ "boundary -height", "boundary negative height" },
-		{ "boundary +height", "boundary positive height" },
+		{ "class crates + vehicles", "class crates and vehicles{class crates + vehicles}" },
+		{ "boundary -height", "boundary negative height{boundary -height}" },
+		{ "boundary +height", "boundary positive height{boundary +height}" },
 		{ "@weapon list (update _weapon_list enum in game_globals.h)", "weapon list"},
 		{ "scale_x(scale}*", "scale_x{scale}*" }, // what a bag of dicks
 		{ "pivot stride length scale: leg length * this = stride length", "pivot stride length scale#leg length * this = stride length" },
@@ -51,6 +52,10 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 	{
 		debug_point;
 	}
+	if (strcmp("awareness glance level[0,1]#How aware of you while acknowledging an AI must be to glance at you", string) == 0)
+	{
+		debug_point;
+	}
 
 	const char* read_position = string;
 
@@ -61,22 +66,22 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 #define FLAGS_SEARCH_PATTERN " %[^][:|#] "
 		
 		// read name, alt names, and flags
-		int search_for_name_and_alt_name_try1 = sscanf(read_position, NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN FLAGS_SEARCH_PATTERN, name.data, old_name.data, flags.data);
+		int search_for_name_and_alt_name_try1 = sscanf(read_position, NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN FLAGS_SEARCH_PATTERN, pretty_name.data, old_name.data, flags.data);
 
 		// read name, alt names, and flags
-		int search_for_name_and_alt_name_try2 = sscanf(read_position, NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN FLAGS_SEARCH_PATTERN, name.data, old_name.data, old_name2.data, flags.data);
+		int search_for_name_and_alt_name_try2 = sscanf(read_position, NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN FLAGS_SEARCH_PATTERN, pretty_name.data, old_name.data, old_name2.data, flags.data);
 
 		int found_elements = __min(search_for_name_and_alt_name_try1, search_for_name_and_alt_name_try2);
 		bool has_second_old_name = search_for_name_and_alt_name_try2 >= search_for_name_and_alt_name_try1;
 
 		if (found_elements >= 1) // found name
 		{
-			read_position = strstr(read_position, name) + strlen(name);
+			read_position = strstr(read_position, pretty_name) + strlen(pretty_name);
 
 			// name flags cleanup
-			fixup_flags(name);
+			fixup_flags(pretty_name);
 		}
-		else *name = 0;
+		else *pretty_name = 0;
 		if (found_elements >= 2) // found old_name
 		{
 			read_position = strstr(read_position, old_name) + strlen(old_name);
@@ -95,6 +100,29 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 		}
 		else *flags = 0;
 
+		{
+			// scan for & in tag file name
+			tag_file_name = pretty_name;
+
+			if (tag_file_name == "category dependencies&shared PS category dependencies")
+			{
+				debug_point;
+			}
+
+			//#define NAME_SEARCH_PATTERN "%[^][:|#{]"
+#define NAME_SEARCH_PATTERN " %[^&] "
+#define OLD_NAME_SEARCH_PATTERN " &%[^|#] "
+
+		// read name, old name 3
+			int search_for_name_and_old_name3 = sscanf(pretty_name, NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN, tag_file_name.data, old_name3.data);
+
+			if (search_for_name_and_old_name3 > 1)
+			{
+				pretty_name = tag_file_name;
+				debug_point;
+			}
+		}
+
 		debug_point;
 
 #undef NAME_SEARCH_PATTERN
@@ -104,9 +132,10 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 #define NAME_IGNORE_SEARCH_PATTERN " %*[^[] "
 #define LIMITS_LEGACY_SEARCH_PATTERN " [%[^]]] "
 
+		// #NOTE: Tag include this junk inside of them.
 		{
 			// limits_legacy
-			int search_for_limits_legacy = sscanf(name, NAME_IGNORE_SEARCH_PATTERN LIMITS_LEGACY_SEARCH_PATTERN, limits_legacy.data);
+			int search_for_limits_legacy = sscanf(pretty_name, NAME_IGNORE_SEARCH_PATTERN LIMITS_LEGACY_SEARCH_PATTERN, limits_legacy.data);
 
 			// only try to fixup specific formats
 			// otherwise some fields with array names will break eg. 'havok w m_pad256[1]*~!!'
@@ -114,9 +143,9 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 			{
 				if (search_for_limits_legacy >= 1)
 				{
-					char* name_end = strstr(name, limits_legacy) - 1;
-					while (name_end > name && isspace(name_end[-1])) name_end--; // remove any whitespace from name
-					*name_end = 0; // terminator
+					char* pretty_name_end = strstr(pretty_name, limits_legacy) - 1;
+					while (pretty_name_end > pretty_name && isspace(pretty_name_end[-1])) pretty_name_end--; // remove any whitespace from name
+					*pretty_name_end = 0; // terminator
 					debug_point;
 				}
 			}
@@ -299,7 +328,7 @@ void c_blamlib_string_parser_v2::setup_code_name()
 {
 #define assign_string_array(_array, value) strncpy(_array, value, _countof(_array)); _array[_countof(_array) - 1] = 0;
 
-	code_name = name;
+	code_name = pretty_name;
 
 	cleanup_code_name();
 

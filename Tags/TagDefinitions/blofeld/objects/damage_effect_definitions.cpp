@@ -164,7 +164,7 @@ namespace blofeld
 		{ _field_tag_reference, "damage response", &global_damage_response_definition_reference },
 
 		FIELD_EXPLANATION_EX("sound", nullptr, FIELD_FLAG_NONE, ""),
-		{ _field_tag_reference, "old melee sound", MAKE_OLD_NAMES("sound"), &global_sound_reference },
+		{ _field_tag_reference, "old melee sound", MAKE_ALT_NAMES("sound"), &global_sound_reference },
 
 		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "damage sounds", &damage_effect_sound_block },

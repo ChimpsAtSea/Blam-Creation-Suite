@@ -113,8 +113,8 @@ namespace blofeld
 		{ _field_legacy, _field_long_integer, "unknown@" },
 
 		FIELD_EXPLANATION_EX("Motion blur parameters", nullptr, FIELD_FLAG_NONE, "max blur:............  max amount to blur, as a percentage of the screen\nblur scale:..........  scales blur for a given velocity\ncenter falloff:....... reduces motion blur around the screen center (larger values give smaller reduction regions...)\nexpected dt:.......... expected time per tick, in seconds (used to correct motion blur in fast/slow frames)\n"),
-		{ _field_real, "max blur", "max amount to blur, as a percentage of the screen", nullptr, "[0 - 0.2]", MAKE_OLD_NAMES("max blur x") },
-		{ _field_real, "blur scale", "scales blur for a given velocity", nullptr, "[0 - 0.5]", MAKE_OLD_NAMES("blur scale x") },
+		{ _field_real, "max blur", "max amount to blur, as a percentage of the screen", nullptr, "[0 - 0.2]", MAKE_ALT_NAMES("max blur x") },
+		{ _field_real, "blur scale", "scales blur for a given velocity", nullptr, "[0 - 0.5]", MAKE_ALT_NAMES("blur scale x") },
 		{ _field_real, "center falloff x", "larger values make smaller areas of no blur", nullptr, "[0 - 20]" },
 		{ _field_real, "center falloff y", "larger values make smaller areas of no blur", nullptr, "[0 - 20]" },
 		FIELD_EXPLANATION_EX("screen space light parameters", nullptr, FIELD_FLAG_NONE, ""),

@@ -209,7 +209,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	for (unsigned long index = 0; index < tag_file_index_chunk->tag_file_index_header.compressed_entry_count; index++)
+	for (unsigned long index = 0; index < __min(9200, tag_file_index_chunk->tag_file_index_header.compressed_entry_count); index++)
 	{
 		s_compressed_tag_file_index_entry& tag_file_index_entry = tag_file_index_chunk->compressed_tag_file_index_entries[index];
 
@@ -311,7 +311,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 
 			s.stop();
 			float ms = s.get_miliseconds();
-			console_write_line("Processed chunks in %.2f ms", ms);
+			console_write_line_verbose("Processed chunks in %.2f ms", ms);
 
 			//tag_group_layout_chunk->log(layout_reader->string_data_chunk);
 			//binary_data_chunk->log(layout_reader->string_data_chunk);
@@ -333,9 +333,14 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 
 			tag_group->associate_tag_instance(*high_level_tag);
 			debug_point;
+
+			console_write_line("Read tag %s", relative_filepath_mb);
 		}
 
 		debug_point;
+
+		//break;
+
 	}
 
 	debug_point;

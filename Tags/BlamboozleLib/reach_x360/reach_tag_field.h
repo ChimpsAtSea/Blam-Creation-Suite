@@ -51,14 +51,24 @@ public:
 	c_reach_x360_tag_field(const char* guerilla_data, const s_reach_x360_tag_field& field_definition);
 };
 
+enum e_reach_x360_tag_field_combined_fixup_type
+{
+	_reach_x360_tag_field_combined_fixup_type_equal,
+	_reach_x360_tag_field_combined_fixup_type_not_equal,
+};
+
 class c_reach_x360_tag_field_combined_fixup :
 	public t_reach_x360_tag_field
 {
 public:
 	c_reach_x360_tag_group_definition& group_definition;
 	unsigned long count;
+	e_reach_x360_tag_field_combined_fixup_type fixup_type;
 
-	c_reach_x360_tag_field_combined_fixup(c_reach_x360_tag_group_definition& group_definition, unsigned long count);
+	c_reach_x360_tag_field_combined_fixup(
+		c_reach_x360_tag_group_definition& group_definition, 
+		unsigned long count,
+		e_reach_x360_tag_field_combined_fixup_type fixup_type);
 };
 
 class c_reach_x360_tag_field_dummy_space :

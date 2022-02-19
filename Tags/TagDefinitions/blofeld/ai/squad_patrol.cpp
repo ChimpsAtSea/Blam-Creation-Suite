@@ -54,7 +54,7 @@ namespace blofeld
 		{ _field_short_block_index, "objective", FIELD_FLAG_INDEX, &objectives_block },
 		FIELD_PAD_EX("post-objective-pad", nullptr, FIELD_FLAG_NONE, 2),
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
-		{ _field_real, "hold time", "How long the AI should pause at this point before searching", "seconds", MAKE_OLD_NAMES("occupy time") },
+		{ _field_real, "hold time", "How long the AI should pause at this point before searching", "seconds", MAKE_ALT_NAMES("occupy time") },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),
 		{ _field_real, "search time", "How long the AI should search at this point before returning", "seconds" },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_filter),

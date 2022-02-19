@@ -290,7 +290,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 
 		c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(tag_field->name, false, nullptr);
 
-		c_fixed_string_4096 name;
+		c_fixed_string_4096 pretty_name;
 		c_fixed_string_4096 description;
 		c_fixed_string_4096 units;
 		c_fixed_string_4096 limits;
@@ -299,16 +299,16 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 
 		if (tag_field->name)
 		{
-			escape_string(string_parser.name, name, true, true);
+			escape_string(string_parser.pretty_name, pretty_name, true, true);
 			escape_string(string_parser.description, description, true, true);
 			escape_string(string_parser.units, units, true, true);
 			escape_string(string_parser.limits, limits, true, true);
 			escape_string(string_parser.limits_legacy, limits_legacy, true, true);
 			escape_string(string_parser.old_name, old_name, true, true);
 		}
-		if (name.empty())
+		if (pretty_name.empty())
 		{
-			name = "value";
+			pretty_name = "value";
 		}
 
 		bool write_limits = !limits.empty();
@@ -332,7 +332,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 			ASSERT(!write_units);
 
 			s << "\t\tFIELD_PAD_EX(";
-			if (!name.empty()) s << "\"" << name.c_str() << "\"";
+			if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 			else s << "nullptr";
 			if (!description.empty()) s << ", \"" << description.c_str() << "\"";
 			else s << ", nullptr";
@@ -347,7 +347,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 			ASSERT(!write_units);
 
 			s << "\t\tFIELD_SKIP(";
-			if (!name.empty()) s << "\"" << name.c_str() << "\"";
+			if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 			else s << "nullptr";
 			if (!description.empty()) s << ", \"" << description.c_str() << "\"";
 			else s << ", nullptr";
@@ -360,7 +360,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 		{
 			s << "\t\tFIELD_EXPLANATION(";
 			if (write_units) s << "\"" << tag_field->name << "\"";
-			else if (!name.empty()) s << "\"" << name.c_str() << "\"";
+			else if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 			else s << "nullptr";
 			if (!description.empty()) s << ", \"" << description.c_str() << "\"";
 			else s << ", nullptr";
@@ -378,7 +378,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 		{
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -396,7 +396,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -417,7 +417,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 		{
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -435,7 +435,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -456,7 +456,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 		{
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -474,7 +474,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -495,7 +495,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 		{
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -513,7 +513,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -543,7 +543,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 		case _h2_pseudo_field_type_byte_flags:
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -561,7 +561,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -581,7 +581,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 		{
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -599,7 +599,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{

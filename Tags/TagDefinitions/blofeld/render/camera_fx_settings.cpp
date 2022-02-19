@@ -20,7 +20,7 @@ namespace blofeld
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
 		{ _field_struct, "exposure", &camera_fx_exposure_struct },
 		{ _field_struct, "auto_exposure_sensitivity", &camera_fx_exposure_sensitivity_struct },
-		{ _field_struct, "bloom_highlight", MAKE_OLD_NAMES("bloom_point"), &camera_fx_bloom_highlight_struct },
+		{ _field_struct, "bloom_highlight", MAKE_ALT_NAMES("bloom_point"), &camera_fx_bloom_highlight_struct },
 		{ _field_struct, "bloom_inherent", &camera_fx_bloom_inherent_struct },
 
 		{ _version_mode_greater, _engine_type_haloreach },
@@ -106,7 +106,7 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("HIGHLIGHT BLOOM", nullptr, FIELD_FLAG_NONE, "These parameters control bloom off the highlights (really bright stuff)"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD_EX("LOTPRER", nullptr, FIELD_FLAG_NONE, 2),
-		{ _field_real, "highlight bloom", MAKE_OLD_NAMES("bloom point") },
+		{ _field_real, "highlight bloom", MAKE_ALT_NAMES("bloom point") },
 		{ _field_real, "maximum change" },
 		{ _field_real, "blend speed (0-1)" },
 		{ _field_terminator }

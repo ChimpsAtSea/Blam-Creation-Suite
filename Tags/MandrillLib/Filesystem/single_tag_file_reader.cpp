@@ -103,7 +103,7 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 		unsigned long last_blofeld_field_index = 0;
 		unsigned long next_blofeld_field_index = 0;
 
-		console_write_line("Prematching '%s' -> '%s'", structure_name, reader_structure_entry.tag_struct_definition->name);
+		console_write_line_verbose("Prematching '%s' -> '%s'", structure_name, reader_structure_entry.tag_struct_definition->name);
 
 		for (unsigned long file_field_index = structure_entry.fields_start_index; ; file_field_index++)
 		{
@@ -175,12 +175,28 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 						blofeld_field = &candidate_blofeld_field;
 						last_blofeld_field_index = blofeld_field_index;
 						next_blofeld_field_index = blofeld_field_index + 1;
-						break;
 					}
 					else
 					{
+						for (const char** alt_name_iter = candidate_blofeld_field.old_names; alt_name_iter && *alt_name_iter; alt_name_iter++)
+						{
+							const char* alt_name = *alt_name_iter;
+
+							if (strcmp(file_field_name, alt_name) == 0)
+							{
+								blofeld_field = &candidate_blofeld_field;
+								last_blofeld_field_index = blofeld_field_index;
+								next_blofeld_field_index = blofeld_field_index + 1;
+								break;
+							}
+						}
+					}
+
+					if (blofeld_field == nullptr)
+					{
 						console_write_line("\tWARN> Failed to find blofeld field '%s' inside of file definition. Default will be used.", candidate_blofeld_field.name);
 					}
+					else break;
 				}
 			}
 			if (blofeld_field == nullptr)
@@ -195,7 +211,7 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 
 				const char* blofeld_field_type_name;
 				ASSERT(BCS_SUCCEEDED(blofeld::field_to_tag_field_type(blofeld_field->field_type, blofeld_field_type_name)));
-				console_write_line("\tSuccessfully matched b[%s %s] f[%s %s]", blofeld_field_type_name, blofeld_field->name, file_field_type_name, file_field_name);
+				console_write_line_verbose("\tSuccessfully matched b[%s %s] f[%s %s]", blofeld_field_type_name, blofeld_field->name, file_field_type_name, file_field_name);
 
 				debug_point;
 			}
@@ -448,6 +464,14 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 				debug_point;
 			}
 			break;
+			case blofeld::_field_pageable:
+			{
+				h_resource*& tag_resource_storage = *reinterpret_cast<decltype(&tag_resource_storage)>(high_level_field_data);
+
+				debug_point;
+
+				break;
+			}
 			case blofeld::_field_string:
 			{
 				//ASSERT(field_tag_string_id_chunk != nullptr);

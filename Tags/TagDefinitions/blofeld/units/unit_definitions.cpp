@@ -695,7 +695,7 @@ namespace blofeld
 
 		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_tag_reference, "assassination primary damage", &global_damage_reference },
-		{ _field_tag_reference, "assassination ragdoll damage", MAKE_OLD_NAMES("assassination damage"), &global_damage_reference },
+		{ _field_tag_reference, "assassination ragdoll damage", MAKE_ALT_NAMES("assassination damage"), &global_damage_reference },
 
 		{ _field_terminator }
 	};

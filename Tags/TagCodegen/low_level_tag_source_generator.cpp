@@ -562,7 +562,7 @@ void c_low_level_tag_source_generator::generate_enum_header() const
 			const char* string = string_list_definition->get_string(engine_platform_build, string_index);
 			c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(string, false, &string_list_value_unique_counter);
 
-			stream << "\t\t\t/* " << string_parser.name.c_str() << " */" << std::endl;
+			stream << "\t\t\t/* " << string_parser.pretty_name.c_str() << " */" << std::endl;
 
 			stream << "\t\t\t_" << string_list_definition->name << "_" << string_parser.code_name.c_str() << ",";
 			if (!string_parser.description.empty())

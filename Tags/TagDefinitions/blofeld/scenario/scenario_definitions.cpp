@@ -364,7 +364,7 @@ namespace blofeld
 
 		FIELD_EXPLANATION_EX("Clones", nullptr, FIELD_FLAG_NONE, "Describes which other bsps are physical \'clones\' of this bsp\nThis is used to determine how to attach \'position-only\' elements, like decorators, to the bsps:\nEach clone gets a separate copy of decorators that are in both.\nNon-cloned bsps cannot split decorators this way - the decorator will be given to the lowest numbered bsp\n"),
 		{ _field_long_block_flags, "cloned bsp flags", &scenario_structure_bsp_reference_block },
-		{ _field_struct, "lightmap setting", MAKE_OLD_NAMES("lightmap resolution buckets"), &scenario_lightmap_setting_struct },
+		{ _field_struct, "lightmap setting", MAKE_ALT_NAMES("lightmap resolution buckets"), &scenario_lightmap_setting_struct },
 		{ _field_real, "custom gravity scale", "0==nogravity, 1==full, set the custom gravity scale flag to make this parameter active" },
 		{ _field_terminator }
 	};
@@ -615,7 +615,7 @@ namespace blofeld
 		{ _field_long_block_flags, "sruntime tructure design zone flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_design_reference_block }, // dear person at 343 or Bungie, you originally named this field "sruntime tructure design zone flags" and I think you're stupid
 
 		{ _version_mode_greater, _engine_type_haloreach },
-		{ _field_long_block_flags, "required designer zones", MAKE_OLD_NAMES("designer zone flags"), &scenario_designer_zone_block, _field_id_block_flags_32bit }, // #TODO: Research this. Not entirely what what flags are here or removed???
+		{ _field_long_block_flags, "required designer zones", MAKE_ALT_NAMES("designer zone flags"), &scenario_designer_zone_block, _field_id_block_flags_32bit }, // #TODO: Research this. Not entirely what what flags are here or removed???
 
 		{ _field_qword_integer, "runtime designer zone flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY }, // could this just be 32bit in reach instead?
 		{ _field_long_block_flags, "cinematic zones", &scenario_cinematics_block },
@@ -998,7 +998,7 @@ namespace blofeld
 
 		{ _field_real_quaternion, "rotation", FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "position", FIELD_FLAG_READ_ONLY },
-		{ _field_real, "scale x", MAKE_OLD_NAMES("scale") },
+		{ _field_real, "scale x", MAKE_ALT_NAMES("scale") },
 		{ _field_real, "scale y" },
 
 		{ _version_mode_greater, _engine_type_haloreach },
@@ -1285,7 +1285,7 @@ namespace blofeld
 		{ _field_long_integer, "bsp checksum", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "cluster centroids", FIELD_FLAG_READ_ONLY, &scenario_cluster_points_block },
 		{ _field_long_block_index, "default acoustic palette", &scenario_acoustics_palette_block_definition_block },
-		{ _field_block, "acoustics", MAKE_OLD_NAMES("background sounds"), FIELD_FLAG_READ_ONLY, &scenario_cluster_acoustics_block },
+		{ _field_block, "acoustics", MAKE_ALT_NAMES("background sounds"), FIELD_FLAG_READ_ONLY, &scenario_cluster_acoustics_block },
 		{ _field_block, "atmospheric properties", FIELD_FLAG_READ_ONLY, &scenario_cluster_atmosphere_properties_block },
 		{ _field_block, "camera fx properties", FIELD_FLAG_READ_ONLY, &scenario_cluster_camera_fx_properties_block },
 		{ _field_block, "weather properties", FIELD_FLAG_READ_ONLY, &scenario_cluster_weather_properties_block },
@@ -1493,7 +1493,7 @@ namespace blofeld
 		{ _field_block, "Lines", &scenario_performance_line_block },
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_2d, "template facing" },
-		{ _field_real, "thespian radius", "The radius inside which actors have to be in order to start.", MAKE_OLD_NAMES("performance radius") },
+		{ _field_real, "thespian radius", "The radius inside which actors have to be in order to start.", MAKE_ALT_NAMES("performance radius") },
 		{ _field_real, "attraction radius", "The radius inside which actors become attracted to the thespian origin." },
 		{ _field_real_fraction, "attraction probability per second", "The probability that an actor be attracted once inside the thespian radius, every second.", nullptr, "[0,1]" },
 		{ _field_string_id, "template" },
@@ -1677,7 +1677,7 @@ namespace blofeld
 		{ _field_real_point_3d, "sandbox origin point", "forge coordinates are relative to this point" },
 		{ _field_real, "sandbox budget" },
 		{ _field_string_id, "default vehicle set", "when vehicle set is \"map default,\" this vehicle set is used" },
-		{ _field_tag_reference, "game performance throttles", MAKE_OLD_NAMES("performance thorttles"), &game_performance_throttle_reference$2 },
+		{ _field_tag_reference, "game performance throttles", MAKE_ALT_NAMES("performance thorttles"), &game_performance_throttle_reference$2 },
 		{ _field_block, "structure bsps", &scenario_structure_bsp_reference_block },
 		{ _field_block, "structure designs", &scenario_design_reference_block },
 		{ _field_tag_reference, "structure seams", &structure_seams_reference },
@@ -1786,7 +1786,7 @@ namespace blofeld
 		{ _field_block, "zones", &zone_block },
 		{ _field_block, "squad patrols", &squad_patrol_block },
 		{ _field_block, "actual cues", FIELD_FLAG_UNKNOWN0, &ai_cue_block },
-		{ _field_block, "full cues", MAKE_OLD_NAMES("cues"), &ai_full_cue_block },
+		{ _field_block, "full cues", MAKE_ALT_NAMES("cues"), &ai_full_cue_block },
 		{ _field_block, "quick cues", &ai_quick_cue_block },
 		{ _field_block, "mission scenes", &ai_scene_block },
 		{ _field_block, "character palette", &character_palette_block, _field_id_sort },
@@ -1839,7 +1839,7 @@ namespace blofeld
 
 		{ _field_block, "Orders", &orders_block },
 		{ _field_block, "Triggers", &triggers_block },
-		{ _field_block, "acoustics palette", MAKE_OLD_NAMES("background sound palette"), &scenario_acoustics_palette_block_definition_block, _field_id_sort },
+		{ _field_block, "acoustics palette", MAKE_ALT_NAMES("background sound palette"), &scenario_acoustics_palette_block_definition_block, _field_id_sort },
 		{ _field_block, "atmosphere", &scenario_atmosphere_palette_block, _field_id_sort },
 		{ _field_block, "camera fx palette", &scenario_camera_fx_palette_block, _field_id_sort },
 		{ _field_block, "weather palette", &scenario_weather_palette_block, _field_id_sort },
@@ -1916,7 +1916,7 @@ namespace blofeld
 		{ _field_block, "airprobes", &scenario_airprobes_block },
 		{ _field_block, "budget references", &scenario_budget_references_block },
 		{ _field_block, "model references", FIELD_FLAG_READ_ONLY, &model_references_block },
-		{ _field_block, "thespian", MAKE_OLD_NAMES("performances"), &scenario_performances_block },
+		{ _field_block, "thespian", MAKE_ALT_NAMES("performances"), &scenario_performances_block },
 
 		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "puppetShows", &PuppetShowsBlock_block },

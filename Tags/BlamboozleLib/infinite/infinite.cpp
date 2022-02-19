@@ -487,7 +487,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 
 		c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(tag_field->name);
 
-		c_fixed_string_4096 name;
+		c_fixed_string_4096 pretty_name;
 		c_fixed_string_4096 description;
 		c_fixed_string_4096 units;
 		c_fixed_string_4096 limits;
@@ -496,16 +496,16 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 
 		if (tag_field->name)
 		{
-			escape_string(string_parser.name, name, true, true);
+			escape_string(string_parser.pretty_name, pretty_name, true, true);
 			escape_string(string_parser.description, description, true, true);
 			escape_string(string_parser.units, units, true, true);
 			escape_string(string_parser.limits, limits, true, true);
 			escape_string(string_parser.limits_legacy, limits_legacy, true, true);
 			escape_string(string_parser.old_name, old_name, true, true);
 		}
-		if (name.empty())
+		if (pretty_name.empty())
 		{
-			name = "value";
+			pretty_name = "value";
 		}
 
 		bool write_limits = !limits.empty();
@@ -529,86 +529,86 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 
 			if (tag_field->field_id == blofeld::_field_id_field_group_begin)
 			{
-				ASSERT(!name.empty());
+				ASSERT(!pretty_name.empty());
 				ASSERT(description.empty());
 				s << "\t\tFIELD_GROUP_BEGIN(";
-				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 				s << ")," << std::endl;
 			}
 			else if (tag_field->field_id == blofeld::_field_id_field_group_end)
 			{
-				//ASSERT(name == "value" || name.empty());
+				//ASSERT(pretty_name == "value" || pretty_name.empty());
 				ASSERT(description.empty());
 
-				if (name.empty() || strcmp(name, "value") == 0) // #TODO: improve this with function
+				if (pretty_name.empty() || strcmp(pretty_name, "value") == 0) // #TODO: improve this with function
 				{
 				s << "\t\tFIELD_GROUP_END()," << std::endl;
 				}
 				else
 				{
 				s << "\t\tFIELD_GROUP_END2(";
-				s << "\"" << name.c_str() << "\"";
+				s << "\"" << pretty_name.c_str() << "\"";
 				s << ")," << std::endl;
 				}
 
 				//s << "\t\tFIELD_GROUP_END(";
-				//if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				//if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 				//s << ")," << std::endl;
 			}
 			else if (tag_field->field_id == blofeld::_field_id_hide_begin)
 			{
-				ASSERT(name.empty() || strcmp(name, "value") == 0);
+				ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
 				ASSERT(description.empty());
 				s << "\t\tFIELD_HIDE_BEGIN(";
-				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 				s << ")," << std::endl;
 			}
 			else if (tag_field->field_id == blofeld::_field_id_hide_end)
 			{
-				ASSERT(name.empty() || strcmp(name, "value") == 0);
+				ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
 				ASSERT(description.empty());
 				s << "\t\tFIELD_HIDE_END(";
-				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 				s << ")," << std::endl;
 			}
 			else if (tag_field->field_id == blofeld::_field_id_ifp_begin)
 			{
-				ASSERT(name.empty() || strcmp(name, "value") == 0);
+				ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
 				ASSERT(description.empty());
 				s << "\t\tFIELD_IFP_BEGIN(";
-				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 				s << ")," << std::endl;
 			}
 			else if (tag_field->field_id == blofeld::_field_id_ifp_end)
 			{
-				ASSERT(name.empty() || strcmp(name, "value") == 0);
+				ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
 				ASSERT(description.empty());
 				s << "\t\tFIELD_IFP_END(";
-				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 				s << ")," << std::endl;
 			}
 			else if (tag_field->field_id == blofeld::_field_id_dont_checksum_begin)
 			{
-				ASSERT(name.empty() || strcmp(name, "value") == 0);
+				ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
 				ASSERT(description.empty());
 				s << "\t\tFIELD_DONT_CHECKSUM_BEGIN(";
-				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 				s << ")," << std::endl;
 			}
 			else if (tag_field->field_id == blofeld::_field_id_dont_checksum_end)
 			{
-				ASSERT(name.empty() || strcmp(name, "value") == 0);
+				ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
 				ASSERT(description.empty());
 				s << "\t\tFIELD_DONT_CHECKSUM_END(";
-				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+				if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) s << "\"" << pretty_name.c_str() << "\"";
 				s << ")," << std::endl;
 			}
 			else
 			{
 				s << "\t\tFIELD_CUSTOM(";
-				if (!name.empty())
+				if (!pretty_name.empty())
 				{
-					if (!name.empty()) s << "\"" << name.c_str() << "\"";
+					if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 				}
 				if (!description.empty())
 				{
@@ -629,9 +629,9 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 			ASSERT(!write_units);
 
 			s << "\t\tFIELD_PAD(";
-			if (!name.empty())
+			if (!pretty_name.empty())
 			{
-				if (!name.empty()) s << "\"" << name.c_str() << "\"";
+				if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 			}
 			if (!description.empty())
 			{
@@ -652,9 +652,9 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 			ASSERT(!write_flags);
 
 			s << "\t\tFIELD_SKIP(";
-			if (!name.empty())
+			if (!pretty_name.empty())
 			{
-				if (!name.empty()) s << "\"" << name.c_str() << "\"";
+				if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 			}
 			if (!description.empty())
 			{
@@ -672,9 +672,9 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 		{
 
 			s << "\t\tFIELD_EXPLANATION(";
-			if (!name.empty())
+			if (!pretty_name.empty())
 			{
-				if (!name.empty()) s << "\"" << name.c_str() << "\"";
+				if (!pretty_name.empty()) s << "\"" << pretty_name.c_str() << "\"";
 			}
 			if (!description.empty())
 			{
@@ -697,7 +697,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 		{
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -715,7 +715,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -743,7 +743,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 		{
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -761,7 +761,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -785,7 +785,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 		{
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -803,7 +803,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -828,7 +828,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 		{
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -846,7 +846,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -872,7 +872,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 		{
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -890,7 +890,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -923,7 +923,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 		case _inf_field_type_byte_flags:
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -941,7 +941,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -964,7 +964,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 		{
 			s << "\t\t{ ";
 			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
+			s << "\"" << pretty_name.c_str() << "\"";
 			if (write_description)
 			{
 				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
@@ -982,7 +982,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 			}
 			if (write_old_name)
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{

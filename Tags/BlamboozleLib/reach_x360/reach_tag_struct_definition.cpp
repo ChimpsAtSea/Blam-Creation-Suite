@@ -171,8 +171,30 @@ void c_reach_x360_tag_struct_definition::handle_conflict(const char* data, const
 
 		if (num_insert_fields > 0)
 		{
-			
-			c_reach_x360_tag_field_combined_fixup* versioning_field_wrapper = new c_reach_x360_tag_field_combined_fixup(tag_group_definition, num_insert_fields);
+			e_reach_x360_tag_field_combined_fixup_type fixup_type = _reach_x360_tag_field_combined_fixup_type_equal;
+			{
+				// #TODO: Is there a better way to automatically detect this?
+				static const char* fixups[] =
+				{
+					"shader_contrail",
+					"shader_particle"
+					"shader_beam",
+					"shader_decal",
+					"shader_light_volume",
+				};
+				for (const char* fixup : fixups)
+				{
+					c_reach_x360_tag_field* field_wrapper = new c_reach_x360_tag_field(data, *field_definition);
+					if (strcmp(tag_group_definition.name,  fixup) == 0)
+					{
+						fixup_type = _reach_x360_tag_field_combined_fixup_type_not_equal;
+					}
+				}
+
+			is_end_fixup:;
+			}
+
+			c_reach_x360_tag_field_combined_fixup* versioning_field_wrapper = new c_reach_x360_tag_field_combined_fixup(tag_group_definition, num_insert_fields, fixup_type);
 			temp_fields.push_back(versioning_field_wrapper);
 
 			// #TODO: This might be way more complicated than assuming that these fields are always at the front

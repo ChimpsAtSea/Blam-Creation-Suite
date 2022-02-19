@@ -67,10 +67,10 @@ bool blofeld::execute_tag_field_versioning(
 		skip_versioning_field = engine_platform_build >= versioning.engine_platform_build;
 		break;
 	case _version_mode_tag_group_equal:
-		skip_versioning_field = group_tag != blofeld::ANY_TAG && versioning.group->group_tag == group_tag;
+		skip_versioning_field = group_tag == blofeld::ANY_TAG || versioning.group->group_tag == group_tag;
 		break;
 	case _version_mode_tag_group_not_equal:
-		skip_versioning_field = group_tag != blofeld::ANY_TAG && versioning.group->group_tag != group_tag;
+		skip_versioning_field = group_tag == blofeld::ANY_TAG || versioning.group->group_tag != group_tag;
 		break;
 	}
 

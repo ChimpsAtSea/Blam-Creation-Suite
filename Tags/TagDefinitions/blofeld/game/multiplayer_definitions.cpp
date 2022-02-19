@@ -196,8 +196,8 @@ namespace blofeld
 		{ _field_tag_reference, "in game text", &global_multilingual_unicode_string_list_reference },
 		{ _field_block, "sounds", &sounds_block },
 		{ _field_block, "looping sounds", &looping_sounds_block },
-		{ _field_tag_reference, "megalo sounds", MAKE_OLD_NAMES("english"), &global_megalogamengine_sound_group_reference },
-		{ _field_tag_reference, "communication sounds", MAKE_OLD_NAMES("comm english"), &global_communication_sound_group_reference },
+		{ _field_tag_reference, "megalo sounds", MAKE_ALT_NAMES("english"), &global_megalogamengine_sound_group_reference },
+		{ _field_tag_reference, "communication sounds", MAKE_ALT_NAMES("comm english"), &global_communication_sound_group_reference },
 		{ _field_long_integer, "maximum frag count" },
 		{ _field_long_integer, "maximum plasma count" },
 

@@ -41,7 +41,7 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("Optional Static Lightmap", nullptr, FIELD_FLAG_NONE, "\n"),
 		{ _field_tag_reference, "Lighting Info", FIELD_FLAG_INDEX, &structure_lighting_bsp_reference },
 		{ _field_long_enum, "Size Class", &scenario_structure_size_enum },
-		{ _field_long_flags, "Lightmap Flags", MAKE_OLD_NAMES("PVS flags"), &model_lightmap_flags_definition },
+		{ _field_long_flags, "Lightmap Flags", MAKE_ALT_NAMES("PVS flags"), &model_lightmap_flags_definition },
 		{ _field_long_block_index, "Lightmap Variant", &model_variant_block },
 
 		{ _version_mode_greater, _engine_type_haloreach, 5 },
@@ -97,7 +97,7 @@ namespace blofeld
 		{ _field_legacy, _field_block, "targets!", &model_target_block_old_block },
 
 		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
-		{ _field_block, "targets old", MAKE_OLD_NAMES("targets"), FIELD_FLAG_UNKNOWN0, &model_target_block_old_block },
+		{ _field_block, "targets old", MAKE_ALT_NAMES("targets"), FIELD_FLAG_UNKNOWN0, &model_target_block_old_block },
 		{ _field_block, "model targets", &model_target_block_new_block },
 
 		{ _field_block, "runtime regions", FIELD_FLAG_UNKNOWN0, &model_region_block },
