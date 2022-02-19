@@ -336,8 +336,6 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 		}
 
 		debug_point;
-
-		break;
 	}
 
 	debug_point;

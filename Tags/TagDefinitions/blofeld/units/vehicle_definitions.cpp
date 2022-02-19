@@ -40,14 +40,14 @@ namespace blofeld
 		{ _field_struct, "turning control", &vehicle_turning_control_struct },
 		{ _field_struct, "engine", &global_vehicle_engine_struct },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "boat engine", &boat_engine_definition_block },
 
 		FIELD_EXPLANATION_EX("wheel circumferance", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "wheel circumferance" },
 		{ _field_real, "gravity adjust", "0-1 fraction by which we scale gravity that is not along the ground plane" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "antiroll torque factor", "how much torque should be applied to prevent a vehicle from rolling. Default should be 0.0, 1.0 is a good value for making it hard to roll." },
 
 		{ _field_terminator }
@@ -69,7 +69,7 @@ namespace blofeld
 		{ _field_real, "speed acceleration" },
 		{ _field_real, "speed deceleration" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "speed accel against direction", "acceleration when trying to throttle against current speed direction" },
 		{ _field_real, "maximum forward speed during boost" },
 
@@ -78,7 +78,7 @@ namespace blofeld
 		{ _field_real, "slide acceleration" },
 		{ _field_real, "slide deceleration" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "slide accel against direction", "acceleration when trying to throttle against current slide direction" },
 		{ _field_real, "maximum slide speed during boost" },
 
@@ -87,7 +87,7 @@ namespace blofeld
 		{ _field_real, "rise acceleration" },
 		{ _field_real, "rise deceleration" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "rise accel against direction", "acceleration when trying to throttle against current rise direction" },
 		{ _field_real, "maximum rise speed during boost" },
 
@@ -149,10 +149,10 @@ namespace blofeld
 		{ _field_real, "slide acceleration" },
 		{ _field_real, "slide deceleration" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "slide accel against direction", "acceleration when trying to throttle against current slide direction" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "slide speed at top speed", "the slide speeds are interpolated down to this value, reaching it when the vehicle is moving at its top speed", "wu/s" },
 
 		FIELD_EXPLANATION_EX("specific types", nullptr, FIELD_FLAG_NONE, "different types are treated differently alien scout controller"),
@@ -295,7 +295,7 @@ namespace blofeld
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "thrust marker" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 19 }, // #TODO: vtol block needs research badly
+		{ _version_mode_less, _engine_type_haloreach, 19 }, // #TODO: vtol block needs research badly
 		{ _field_legacy, _field_angle, "@unknown" },
 		{ _field_legacy, _field_angle, "@unknown" },
 		{ _field_legacy, _field_angle, "@unknown" },
@@ -317,7 +317,7 @@ namespace blofeld
 		{ _field_legacy, _field_real, "@unknown" },
 
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 18 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 18 },
 		{ _field_struct, "trigger to throttle", &scalar_function_named_struct },
 		{ _field_struct, "descent to boost", &vtol_descent_function_struct },
 		FIELD_EXPLANATION_EX("minimum and maximum up acceleration", nullptr, FIELD_FLAG_NONE, ""),
@@ -340,11 +340,11 @@ namespace blofeld
 		{ _field_angle, "lift angles acc", "how fast can the engine animations accelerate their turn in degress/SQR(sec)" },
 		{ _field_angle, "render lift angles acc", "how fast can the engine animations accelerate their turn in degress/SQR(sec)" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 2 }, // More research needed
+		{ _version_mode_less, _engine_type_haloreach, 2 }, // More research needed
 		{ _field_legacy, _field_real, "@unknown" },
 		{ _field_legacy, _field_real, "@unknown" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 9 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 9 },
 		{ _field_real, "alt. lock offset coefficient", "scalar for altitude lock based on distance to target - higher numbers reach the target more quickly but may cause bounciness" },
 		{ _field_real, "alt. lock velocity coefficient", "scalar for altitude lock based on velocity.  Acts like friction, trying to remove vertical velocity from the system" },
 		FIELD_EXPLANATION_EX("prop rotation", nullptr, FIELD_FLAG_NONE, "propeller speed data to drive propeller animations"),
@@ -545,7 +545,7 @@ namespace blofeld
 		{ _field_real, "slide acceleration" },
 		{ _field_real, "slide deceleration" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "slide accel against direction", "acceleration when trying to throttle against current slide direction" },
 
 		FIELD_EXPLANATION_EX("torque scale", nullptr, FIELD_FLAG_NONE, "how hard the vehicle trys to rotate to it\'s desired rotation"),
@@ -581,7 +581,7 @@ namespace blofeld
 		{ _field_real, "cosmetic roll spring k", "controls relationship between displacement and acceleration - higher values mean faster acceleration when the desired position is far from current position" },
 		{ _field_real, "cosmetic roll spring c", "controls relationship between velocity and friction - higher values will slow the system down, lower values may let the system oscillate" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 8 },
+		{ _version_mode_greater, _engine_type_haloreach, 8 },
 		FIELD_EXPLANATION_EX("new roll", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_flags, "roll flags", &space_fighter_roll_flags },
 		{ _field_angle, "maximum left stick roll angle" },
@@ -973,10 +973,10 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("friction and antigravity points", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "havok vehicle physics", &havok_vehicle_physics_struct },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "havok phantom shapes", &phantom_shapes_block }, // #TODO: replace with actual global havok block
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "tricks", &unit_trick_definition_block },
 
 		{ _field_char_enum, "player training vehicle type", &player_training_vehicle_type_enum },
@@ -984,7 +984,7 @@ namespace blofeld
 		{ _field_char_integer, "complex suspension sample count", "How many additional raycasts to perform per side of a tire." },
 		FIELD_PAD_EX("VQWHV", nullptr, FIELD_FLAG_NONE, 1),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_angle, "complex suspension distribution angle", "0-90 degrees of the wedge portion of the wheel to test suspension", "degrees" },
 		{ _field_real, "complex suspension wheel diameter" },
 		{ _field_real, "complex suspension wheel width" },
@@ -996,21 +996,21 @@ namespace blofeld
 		{ _field_real, "seat enterance acceleration scale", "how much do we scale the force the vehicle the applies down on the seat when he enters. 0 == no acceleration" },
 		{ _field_real, "seat exit accelersation scale", "how much do we scale the force the vehicle the applies down on the seat when he exits. 0 == no acceleration" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "blur speed" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_real, "flip time" }, // assembly #TODO: VALIDATE
 
 		{ _field_string_id, "flip message" },
 		FIELD_EXPLANATION_EX("sounds and effects", nullptr, FIELD_FLAG_NONE, ""),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "Player vehicle sound bank", "High quality player sound bank to be prefetched. Can be empty.", &global_soundbank_reference },
 
 		{ _field_tag_reference, "suspension sound", &global_sound_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 7 },
+		{ _version_mode_greater, _engine_type_haloreach, 7 },
 		{ _field_real, "fake audio speed - speed increase amount", "amount to increase per frame while speeding up(.002 is a good number)" },
 		{ _field_real, "fake audio speed - boost speed increase amount", "amount to increase per frame while boosting (.006 is a good number)" },
 		{ _field_real, "fake audio speed - speed decrease amount", "amount to decrease per frame while slowing down (.002 is a good number)" },
@@ -1023,7 +1023,7 @@ namespace blofeld
 		{ _field_tag_reference, "driver boost damage effect or response", &global_damage_effect_or_response_definition_reference },
 		{ _field_tag_reference, "rider boost damage effect or response", &global_damage_effect_or_response_definition_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_string_id, "vehicle name" },
 		{ _field_block, "physics transitions", &physics_transitions_block },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
@@ -1045,26 +1045,26 @@ namespace blofeld
 		{ _field_block, "type-human_jeep", &human_jeep_block },
 		{ _field_block, "type-human_plane", &human_plane_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "type-wolverine", &wolverine_block },
 
 		{ _field_block, "type-alien_scout", &alien_scout_block },
 		{ _field_block, "type-alien_fighter", &alien_fighter_block },
 		{ _field_block, "type-turret", &turret_block },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 3 }, // #TODO: Research this, another physics type IMPORTANT!!!
+		{ _version_mode_less, _engine_type_haloreach, 3 }, // #TODO: Research this, another physics type IMPORTANT!!!
 		{ _field_legacy, _field_long_integer, "unknown@" }, // Cloud be padding from a removed type
 		{ _field_legacy, _field_long_integer, "unknown@" }, // Cloud be padding from a removed type
 		{ _field_legacy, _field_long_integer, "unknown@" }, // Cloud be padding from a removed type
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "type-mantis", &mantis_block },
 
 		{ _field_block, "type-vtol", &vtol_block },
 		{ _field_block, "type-chopper", &chopper_block },
 		{ _field_block, "type-guardian", &guardian_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_block, "type-jackal-glider", &jackal_glider_block },
 		{ _field_block, "type-boat", &boat_block },
 		{ _field_block, "type-space-fighter", &space_fighter_block },
@@ -1087,10 +1087,10 @@ namespace blofeld
 		{ _field_angle, "forward arc", "outside of this arc the vehicle reverse direciton, around 110 degrees seems to be nice..." },
 		{ _field_angle, "perpendicular forward arc", "this is the value of forward arc when turned sideways.  We interpolate from forward arc to this value when camera becomes perpendicular to the vehicle" },
 		
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_angle, "reverse turning scale", "Think of this as oversteer, similar to the field above" }, // Assembly
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_real, "flip window", "seconds" },
 		{ _field_real, "pegged fraction", "0-1" },
 		{ _field_real, "forward turn scale", "think of this as oversteer" },
@@ -1111,7 +1111,7 @@ namespace blofeld
 		{ _field_real, "wheel circumferance" },
 		{ _field_real, "gravity adjust", "0-1 fraction by which we scale gravity that is not along the ground plane" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 11 },
+		{ _version_mode_greater, _engine_type_haloreach, 11 },
 		FIELD_EXPLANATION_EX("New Tank Controls", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_byte_flags, "control flags", &tank_flags },
 		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 3),

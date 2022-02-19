@@ -65,11 +65,11 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		NEW_CINEMATIC_LIGHTING_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 38 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 38 },
 		FIELD_CUSTOM_EX("Cinematic Lighting", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_CUSTOM_EX("Cinema Lighting", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_version),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_integer, "version", FIELD_FLAG_UNKNOWN0 },
 
 		FIELD_CUSTOM_EX("Direction&Direction(D)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
@@ -92,7 +92,7 @@ namespace blofeld
 		FIELD_CUSTOM_EX("Direct intensity", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Direct intensity", _field_id_slider_editor },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "unknown" },
 
 		{ _field_real_rgb_color, "Indirect color" },
@@ -101,23 +101,23 @@ namespace blofeld
 		FIELD_CUSTOM_EX("Interpolation", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Interpolation", _field_id_slider_editor },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 3 },
 		{ _field_legacy, _field_real, "unknown" },
 		{ _field_legacy, _field_real, "unknown" },
 		{ _field_legacy, _field_real, "unknown" },
 
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "Authored Light Probe", &authored_light_probe_block },
 		{ _field_block, "Cortana Lighting", &hologramLightingBlock_block },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 1 },
+		{ _version_mode_less, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_block, "sh lights!", &cinematic_sh_light_block },
 
 		{ _field_block, "dynamic lights", FIELD_FLAG_UNKNOWN0, &cinematic_dynamic_light_block },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "sampled lighting scale" },
 
 		{ _field_terminator }

@@ -2,98 +2,35 @@
 
 namespace blofeld
 {
+	//#TODO: String Entry Filename/Line
 	s_string_entry::s_string_entry(const char* string) :
-		type(_string_entry_type_string),
-		string(string)
+		string(string),
+		filename("unknown"),
+		line(),
+		is_versioning_entry(false)
 	{
-
 	}
 
 	s_string_entry::s_string_entry(
-		e_field_legacy,
-		e_field _field_type,
+		e_version_mode version_mode,
 #ifndef __INTELLISENSE__
-		const char* _filename,
-		int _line,
+		const char* filename,
+		int line,
 #endif
-		c_engine_platform_build _engine_platform_build,
-		unsigned long _version_field_skip_count) :
-		type(_string_entry_type_version),
-		string(nullptr)
+		c_engine_platform_build engine_platform_build,
+		unsigned long version_field_skip_count) :
+		string(string),
+#ifndef __INTELLISENSE__
+		filename(filename),
+		line(line),
+#endif
+		is_versioning_entry(true)
 	{
-		version_type = _field_type;
-		filename = _filename;
-		line = _line;
-		engine_platform_build = _engine_platform_build;
-		version_field_skip_count = _version_field_skip_count;
-	}
-
-	bool s_string_entry::skip_tag_field_version(s_engine_platform_build _engine_platform_build, unsigned long& skip_count) const
-	{
-		if (type != _string_entry_type_version)
-		{
-			return false;
-		}
-		if (version_type > _field_type_non_standard)
-		{
-			bool skip_versioning_field = false;
-			skip_count = version_field_skip_count;
-
-			/*if (field_type == _field_version_custom)
-			{
-				ASSERT(_custom_version_callback);
-				skip_count = _custom_version_callback(engine_platform_build);
-				skip_versioning_field = false;
-			}
-			else */
-			if (version_type == _field_version_platform_include)
-			{
-				if (_engine_platform_build.platform_type != _platform_type_not_set && engine_platform_build.platform_type != _platform_type_not_set)
-				{
-					skip_versioning_field = (_engine_platform_build.platform_type & engine_platform_build.platform_type) != 0;
-				}
-			}
-			else if (version_type == _field_version_platform_exclude)
-			{
-				if (_engine_platform_build.platform_type != _platform_type_not_set && engine_platform_build.platform_type != _platform_type_not_set)
-				{
-					skip_versioning_field = (_engine_platform_build.platform_type & engine_platform_build.platform_type) != 0;
-				}
-			}
-			else
-			{
-				switch (version_type)
-				{
-				case _field_version_equal:
-					skip_versioning_field = _engine_platform_build == engine_platform_build;
-					break;
-				case _field_version_not_equal:
-					skip_versioning_field = _engine_platform_build != engine_platform_build;
-					break;
-				case _field_version_less:
-					skip_versioning_field = _engine_platform_build < engine_platform_build;
-					break;
-				case _field_version_greater:
-					skip_versioning_field = _engine_platform_build > engine_platform_build;
-					break;
-				case _field_version_less_or_equal:
-					skip_versioning_field = _engine_platform_build <= engine_platform_build;
-					break;
-				case _field_version_greater_or_equal:
-					skip_versioning_field = _engine_platform_build >= engine_platform_build;
-					break;
-				}
-			}
-
-			if (skip_versioning_field)
-			{
-				skip_count = 0;
-			}
-
-			return true;
-		}
-		skip_count = 0;
-		return false;
+		versioning.group = nullptr;
+		versioning.custom_version_callback = nullptr;
+		versioning.version_field_skip_count = version_field_skip_count;
+		versioning.engine_platform_build = engine_platform_build;
+		versioning.mode = version_mode;
 	}
 
 	s_string_list_definition::s_string_list_definition(const char* name, const char* filename, int line, s_string_entry* string_entries, unsigned long num_string_entries, long start_offset, long end_offset) :
@@ -115,7 +52,7 @@ namespace blofeld
 		{
 			s_string_entry& string_entry = string_entries[entry_index];
 			unsigned long skip_count;
-			if (string_entry.type == _string_entry_type_version && string_entry.skip_tag_field_version(engine_platform_build, skip_count))
+			if (string_entry.is_versioning_entry && blofeld::execute_tag_field_versioning(string_entry.versioning, engine_platform_build, blofeld::ANY_TAG, skip_count))
 			{
 				entry_index += skip_count;
 				continue;
@@ -137,7 +74,7 @@ namespace blofeld
 		{
 			s_string_entry& string_entry = string_entries[entry_index];
 			unsigned long skip_count;
-			if (string_entry.type == _string_entry_type_version && string_entry.skip_tag_field_version(engine_platform_build, skip_count))
+			if (string_entry.is_versioning_entry && blofeld::execute_tag_field_versioning(string_entry.versioning, engine_platform_build, blofeld::ANY_TAG, skip_count))
 			{
 				entry_index += skip_count;
 				continue;

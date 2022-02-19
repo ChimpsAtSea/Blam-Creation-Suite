@@ -30,6 +30,7 @@ public:
 	void traverse(const char* guerilla_data);
 
 	static std::map<ptr32, c_reach_x360_tag_group_definition*> tag_group_definitions;
+	static c_reach_x360_tag_group_definition* current_group_traverse_hack;
 	static c_reach_x360_tag_group_definition* reach_x360_get_tag_group_definition(const char* guerilla_data, ptr32 virtual_address);
 	static c_reach_x360_tag_group_definition* reach_x360_get_tag_group_definition_by_group_tag(tag group_tag);
 };

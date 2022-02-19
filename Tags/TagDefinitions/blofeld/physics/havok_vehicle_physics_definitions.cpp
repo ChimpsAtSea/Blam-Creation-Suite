@@ -20,21 +20,21 @@ namespace blofeld
 		{ _field_string_id, "marker name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "flags", &anti_gravity_point_definition_flags },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_long_enum, "damping", &anti_gravity_point_definition_damping },
 
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
 		{ _field_real, "antigrav strength" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach }, // Source?
+		{ _version_mode_less, _engine_type_haloreach }, // Source?
 		{ _field_legacy, _field_real, "antigrav offset" },
 
 		{ _field_real, "antigrav height" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "antigrav damp factor" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_real, "antigrav compression damping", MAKE_OLD_NAMES("antigrav damp factor") },
 		{ _field_real, "antigrav extension damping" },
 
@@ -42,14 +42,14 @@ namespace blofeld
 		{ _field_real, "antigrav normal k0" },
 		{ _field_real, "radius" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 5 }, // Source?
+		{ _version_mode_less, _engine_type_haloreach, 5 }, // Source?
 		{ _field_legacy, _field_long_integer, "unused!" },
 		{ _field_legacy, _field_long_integer, "unused!" },
 		{ _field_legacy, _field_long_integer, "unused!" },
 		{ _field_legacy, _field_pad, "pad", 2 },
 		{ _field_legacy, _field_short_integer, "runtime damage source region index" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 4 },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
 		{ _field_string_id, "collision global material name" },
 		{ _field_short_integer, "runtime global material index", FIELD_FLAG_UNKNOWN0 },
@@ -82,19 +82,19 @@ namespace blofeld
 		{ _field_real, "radius" },
 		{ _field_real, "damaged radius", "radius when the tire is blown off." },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_enum, "friction type", &friction_type_enum }, //h2ek
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "ground friction scale", "scale the non sliding friction on this friction point" },
 		{ _field_real, "AI ground friction scale override", "use this value when an AI is driving" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_short_integer, "@unknown" },
 
 		{ _field_real, "moving friction velocity diff" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "moving friction scale", "scale the sliding friction on this friction point, active when velocity is greater than moving friction velocity diff" },
 		{ _field_real, "AI moving friction scale override", "use this value when an AI is driving" },
 
@@ -102,7 +102,7 @@ namespace blofeld
 		{ _field_real, "e-brake friction" },
 		{ _field_real, "e-brake moving friction vel diff" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 5 },
+		{ _version_mode_less, _engine_type_haloreach, 5 },
 		{ _field_legacy, _field_long_integer, "unknown@" },
 		{ _field_legacy, _field_long_integer, "unknown@" },
 		{ _field_legacy, _field_long_integer, "unknown@" },
@@ -149,13 +149,13 @@ namespace blofeld
 		{ _field_real, "steering_bank_reaction_scale", "how quickly we bank when we steer " },
 		{ _field_real, "gravity scale", "value of 0 defaults to 1.  .5 is half gravity" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 4 },
+		{ _version_mode_less, _engine_type_haloreach, 4 },
 		{ _field_real, "radius" },
 		{ _field_real, "@unknown" },
 		{ _field_real, "@unknown" },
 		{ _field_real, "@unknown" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 5 }, // rip field id end, fix this later #temp for UpgradeMacaque to continue
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 5 }, // rip field id end, fix this later #temp for UpgradeMacaque to continue
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
 		{ _field_enum, "maximum update period ticks", "ticks. 0 is default of 2", &physics_update_period_enum },
 		{ _field_enum, "maximum remote update period ticks", "ticks. when controlled by an ai or remote player. 0 defaults to 4", &physics_update_period_enum },
@@ -165,7 +165,7 @@ namespace blofeld
 		{ _field_block, "anti gravity points", &anti_gravity_point_definition_block },
 		{ _field_block, "friction points", &friction_point_definition_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 1 },
 		{ _field_struct, "boat physics", &boat_physics_definition_struct },
 		{ _field_terminator }
 	};

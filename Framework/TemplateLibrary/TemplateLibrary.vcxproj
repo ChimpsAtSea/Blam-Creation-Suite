@@ -33,6 +33,7 @@
     <ClInclude Include="templatelibrary-private-pch.h" />
     <ClInclude Include="templatelibrary-public-pch.h" />
     <ClInclude Include="thread_safe_queue.h" />
+    <ClInclude Include="virtual.h" />
     <ClInclude Include="xxhash_cx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +48,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="virtual.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

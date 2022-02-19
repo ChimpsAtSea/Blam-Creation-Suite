@@ -28,7 +28,7 @@ namespace blofeld
 		{ _field_short_integer, "maximum alternate shots loaded", "if the second trigger loads alternate ammunition, this is the maximum number of shots that can be loaded at a time" },
 		{ _field_real, "turn on time", "how long after being readied it takes this weapon to switch its 'turned_on' attachment to 1.0" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		FIELD_EXPLANATION_EX("weapon vision mode settings", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "vision mode", "activated when this weapon is charging", &Tag::Reference<struct VisionModeDefinition>::s_defaultDefinition },
 		{ _field_real, "vision cooldown time", nullptr, "seconds" },
@@ -44,7 +44,7 @@ namespace blofeld
 		{ _field_real_fraction, "heat detonation fraction", "the percent chance (between 0.0 and 1.0) the weapon will explode when fired over the heat detonation threshold", nullptr, "[0,1]" },
 		{ _field_real_fraction, "heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_string_id, "heat loss", "function values sets the current heat loss per second" },
 		{ _field_string_id, "heat loss venting", "function value sets the heat loss per second while weapon is being vented" },
 		{ _field_real, "heat venting time", nullptr, "seconds" },
@@ -52,16 +52,16 @@ namespace blofeld
 
 		{ _field_real_fraction, "heat illumination", "the amount of illumination given off when the weapon is overheated", nullptr, "[0,1]" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real_fraction, "heat warning threshold", "the amount of heat at which a warning will be displayed on the hud" },
 
-		{ _field_legacy, _field_version_equal, _engine_type_groundhog, 2 }, // #TODO: Definition Research, where did these come from?
+		{ _version_mode_equal, _engine_type_groundhog, 2 }, // #TODO: Definition Research, where did these come from?
 		{ _field_legacy, _field_real, "@unknown" },
 		{ _field_legacy, _field_real, "@unknown" },
 
 		{ _field_real_fraction, "overheated heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_string_id, "overheated heat loss", "function values sets the heat loss per second when weapon is overheated" },
 
 		{ _field_tag_reference, "overheated", &weapon_block_struct_ready_effect_reference },
@@ -69,10 +69,10 @@ namespace blofeld
 		{ _field_tag_reference, "detonation", &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "detonation damage effect", &global_damage_effect_or_response_definition_reference },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_struct, "melee damage parameters", &melee_damage_parameters_block_struct_definition }, // sourced from assembly
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach }, // Later field, becomes a block rather than a struct
+		{ _version_mode_greater_or_equal, _engine_type_haloreach }, // Later field, becomes a block rather than a struct
 		{ _field_block, "melee damage parameters", &melee_damage_parameters_block },
 
 		{ _field_tag_reference, "clang effect", "effect that is played in the air between two players that clang with this weapon", &weapon_block_struct_ready_effect_reference },
@@ -82,7 +82,7 @@ namespace blofeld
 		{ _field_short_integer, "magnification levels", "the number of magnification levels this weapon allows" },
 		{ _field_real_bounds, "magnification range" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_char_integer, "zoom effect ticks", "how often 'zoom effect' will be triggered (while zoomed)" },
 		FIELD_PAD_EX("wzt", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "zoom effect", "effect that is played while zoomed", &weapon_block_struct_ready_effect_reference },
@@ -90,18 +90,18 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("weapon aim assist", "DEPRECATED -- this will go away in favor of aim assist modes below", FIELD_FLAG_UNKNOWN0, "DEPRECATED -- this will go away in favor of aim assist modes below"),
 		{ _field_struct, "weapon aim assist", &aim_assist_struct },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_struct, "iron sights modifiers", &WeaponBarrelIronSightsStruct },
 		{ _field_block, "aim assist modes", "First mode is normal, second mode is iron sights/scoped", &globalAimAssistBlock_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "target tracking", &global_target_tracking_parameters_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		FIELD_EXPLANATION_EX("aim swim indexing", nullptr, FIELD_FLAG_NONE, "swim index 0 used when unzoomed, index 1 is for first zoom level, index 2 is 2nd zoom, etc."),
 		{ _field_block, "aim swim", &globalAimSwimBlock_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 3 },
 		FIELD_EXPLANATION_EX("ballistics", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_bounds, "ballistic arcing firing bounds", "At the min range (or closer), the minimum ballistic arcing is used, at the max (or farther away), the maximum arcing is used", "world units" },
 		{ _field_real_bounds, "ballistic arcing fraction bounds", "Controls speed and degree of arc. 0 = low, fast, 1 = high, slow", nullptr, "[0-1]" },
@@ -112,7 +112,7 @@ namespace blofeld
 		{ _field_real_fraction, "forward movement penalty", "percent slowdown to forward movement for units carrying this weapon" },
 		{ _field_real_fraction, "sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 6 },
+		{ _version_mode_greater, _engine_type_haloreach, 6 },
 		{ _field_real_fraction, "gunner armor mod forward movement penalty", "percent slowdown to forward movement for units carrying this weapon with the gunner armor mod active" },
 		{ _field_real_fraction, "gunner armor mod sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon with the gunner armor mod active" },
 		FIELD_EXPLANATION_EX("Aiming", nullptr, FIELD_FLAG_NONE, ""),
@@ -136,7 +136,7 @@ namespace blofeld
 		{ _field_tag_reference, "zoom-out sound", &global_sound_reference },
 		{ _field_real, "active camo ding", "how much to decrease active camo when a round is fired" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "active camo regrowth rate" }, // assembly
 
 		{ _field_string_id, "handle node", "the node that get's attached to the unit's hand" },
@@ -145,16 +145,16 @@ namespace blofeld
 		{ _field_string_id, "weapon name" },
 		FIELD_EXPLANATION_EX("more miscellaneous", nullptr, FIELD_FLAG_NONE, ""),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_char_enum, "first time pickup type", &first_time_pickup_types },
 		FIELD_PAD_EX("PAD", nullptr, FIELD_FLAG_NONE, 3),
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_enum, "multiplayer weapon type", &multiplayer_weapon_types },
 
 		{ _field_enum, "weapon type", &weapon_types },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_enum, "tracking type", &weapon_tracking_types }, // Upgrade: Where was this sourced from? H2EK?
 
 		{ _field_short_integer, "low ammo threshold" },
@@ -164,7 +164,7 @@ namespace blofeld
 		{ _field_block, "new triggers", &weapon_triggers_block },
 		{ _field_block, "barrels", &weapon_barrels_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		FIELD_EXPLANATION_EX("scaleshot", nullptr, FIELD_FLAG_NONE, "Allows the weapon to scale up and fire different projectiles based upon how many hits you get etc."),
 		{ _field_block, "scaleshot parameters", &weaponScaleshotStruct_block },
 
@@ -182,24 +182,24 @@ namespace blofeld
 		{ _field_tag_reference, "aged weapon", &global_weapon_reference },
 		{ _field_tag_reference, "aged material effects", &global_material_effects_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "per kill or hit aging amount", "aging applied for 'weapon ages when damage is inflicted' or 'weapon ages with each kill' flags" },
 
 		{ _field_real, "external aging amount" },
 		{ _field_real, "campaign external aging amount" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "external heat amount" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_real_fraction, "age recovered per second", "the amount of age the weapon recovers per second", nullptr, "[0,1]" },
 		{ _field_tag_reference, "age fully recovered (sound or effect)", "the sound or effect played when the weapon's age reaches fully recovered", &weapon_block_struct_ready_effect_reference },
 
 		{ _field_real_vector_3d, "first person weapon offset" },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 3 },
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo3, 2 },
-		{ _field_legacy, _field_version_not_equal, _engine_type_groundhog, 1 },
+		{ _version_mode_platform_include, _platform_type_pc_64bit, 3 },
+		{ _version_mode_greater_or_equal, _engine_type_halo3, 2 },
+		{ _version_mode_not_equal, _engine_type_groundhog, 1 },
 		{ _field_legacy, _field_real_vector_3d, "centered first person weapon offset" }, // Added in mcc duh
 
 		{ _field_real_vector_2d, "first person scope size" },
@@ -207,17 +207,17 @@ namespace blofeld
 		{ _field_real, "weapon zoom time", "seconds" },
 		{ _field_real, "weapon ready-for-use time", "seconds" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_real, "weapon ready 1st person animation playback scale", "e.g. - 2.0 makes playspeed twice as fast" },
 		{ _field_real, "tether transition to linked time", "begins when tethered projectile is LNKED", "seconds" },
 		{ _field_real, "tether transition from linked time", "begins when tethered projectile becomes non-LNKED", "seconds" },
 
 		{ _field_string_id, "unit stow anchor name" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "screen effects", &weapon_screen_effect_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 12 },
+		{ _version_mode_greater, _engine_type_haloreach, 12 },
 		{ _field_tag_reference, "Player sound bank", "High quality player sound bank to be prefetched. Can be empty.", &global_soundbank_reference },
 		{ _field_string_id, "Player EQ preset name", "Name of the EQ shareset in WWise to apply when this weapon is active" },
 		{ _field_long_integer, "Player EQ preset hash", FIELD_FLAG_UNKNOWN0 },
@@ -252,14 +252,14 @@ namespace blofeld
 	{
 		FIELD_EXPLANATION_EX("melee damage parameters", nullptr, FIELD_FLAG_NONE, "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_halo3odst, 2 },
+		{ _version_mode_less_or_equal, _engine_type_halo3odst, 2 },
 		{ _field_legacy, _field_tag_reference, "player melee damage", &global_damage_reference }, // source: assembly
 		{ _field_legacy, _field_tag_reference, "player melee response", &global_damage_reference }, // source: assembly
 
 		{ _field_real_euler_angles_2d, "damage pyramid angles" },
 		{ _field_real, "damage pyramid depth", "0 defaults to 0.8f", "wu" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_real, "maximum lunge range", "0 defaults to 1.22f", "wu" },
 		{ _field_real, "damage lunge explosive depth", "the distance out from the pyramid center to spawn explosive effects.  This value will be clamped to the damage pyramid depth. 0 defaults to the damage pyramid depth", "wu" },
 		{ _field_real, "runtime damage lunge explosive fraction", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -276,7 +276,7 @@ namespace blofeld
 		{ _field_tag_reference, "clang melee against melee weapon damage response", "e.g. used by AR to damage sword guy when clanging sword attack", &global_damage_effect_or_response_definition_reference },
 		{ _field_tag_reference, "lunge melee explosive damage", &global_effect_reference },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_halo3odst, 1 },
+		{ _version_mode_less_or_equal, _engine_type_halo3odst, 1 },
 		{ _field_legacy, _field_tag_reference, "lunge melee explosive response", &global_effect_reference }, // source: assembly
 
 		{ _field_terminator }
@@ -348,7 +348,7 @@ namespace blofeld
 		{ _field_tag_reference, "first person model", &render_model_reference$10 },
 		{ _field_tag_reference, "first person animations", &model_animation_graph_reference$4 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "first person fov scale", "the multiplier by the standard first person FOV to use when this weapon is held" },
 		{ _field_real, "first person dof distance", "the distance to apply depth of field to the weapon" },
 		{ _field_terminator }
@@ -371,7 +371,7 @@ namespace blofeld
 		{ _field_short_integer, "rounds loaded maximum" },
 		{ _field_short_integer, "runtime rounds inventory maximum" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_short_integer, "Ammopack rounds total initial", "AmmoPack armormod - alternate total_initial value due to AmmoPack" },
 		{ _field_short_integer, "Ammopack rounds total maximum", "AmmoPack armormod - alternate total_maximum value due to armor mod AmmoPack" },
 
@@ -428,12 +428,12 @@ namespace blofeld
 		{ _field_struct, "autofire", &weapon_trigger_autofire_struct },
 		{ _field_struct, "charging", &weapon_trigger_charging_struct },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 3 }, // Cheers camden, ya mad lad
+		{ _version_mode_less, _engine_type_haloreach, 3 }, // Cheers camden, ya mad lad
 		{ _field_legacy, _field_real, "lock on hold time" },
 		{ _field_legacy, _field_real, "lock on acquire time" },
 		{ _field_legacy, _field_real, "lock on grace period" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_tag_reference, "double latch projectile releasable effect", "created once player is able to release the tethered projectile", &global_effect_reference },
 		{ _field_tag_reference, "double latch projectile released effect", "created when player releases the tethered projectile", &global_effect_reference },
 
@@ -461,12 +461,12 @@ namespace blofeld
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "optional barrel marker name" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 3 },
+		{ _version_mode_less, _engine_type_haloreach, 3 },
 		{ _field_legacy, _field_explanation, "prediction properties", "what the behavior of this barrel is in a predicted network game" },
 		{ _field_legacy, _field_enum, "prediction type", &barrel_prediction_type_enum },
 		{ _field_legacy, _field_enum, "firing noise#how loud this weapon appears to the AI", &ai_sound_volume_enum },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 5 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 5 },
 		{ _field_legacy, _field_enum, "firing noise#how loud this weapon appears to the AI", &ai_sound_volume_enum },
 		{ _field_legacy, _field_explanation, "prediction properties", "what the behavior of this barrel is in a predicted network game" },
 		{ _field_legacy, _field_enum, "prediction type", &barrel_prediction_type_enum },
@@ -479,14 +479,14 @@ namespace blofeld
 		{ _field_enum, "distribution function", &weapon_barrel_distribution_functions },
 		{ _field_short_integer, "projectiles per shot" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "custom vectors", "Custom vectors must be set in distribution function above", &projectileDistributionCustomVector_block },
 
 		{ _field_real, "distribution angle", "used by distribution function 'horizontal fan' above", "degrees" },
 		{ _field_angle, "minimum error", "projectile direction is randomly selected between this and max_error_angle below", "degrees" },
 		{ _field_angle_bounds, "error angle", "current barrel_error is linearly interpolated between these to generate max_error_angle", "degrees (max_error_angle)" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_struct, "accuracy penalties", &weapon_barrel_projectile_accuracy_penalty_struct },
 
 		{ _field_block, "first person offset", &weapon_barrel_first_person_offset_block },
@@ -502,7 +502,7 @@ namespace blofeld
 		{ _field_real, "illumination recovery time", "the amount of time (in seconds) it takes the illumination function to transition from 1.0 (bright) to 0.0 (dark) after a shot has been fired" },
 		{ _field_real_fraction, "heat generated per round", "the amount of heat generated each time the barrel fires. Unlike the name suggests, this amount of heat is NOT applied per projectile created.", nullptr, "[0,1]" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_string_id, "heat generated per round function&heat generated per round", "function value sets the amount of heat to add to the weapon each tick the barrel is firing" },
 
 		{ _field_real_fraction, "age generated per round", "the amount the weapon ages each time the trigger is fired", nullptr, "[0,1]" },
@@ -523,12 +523,12 @@ namespace blofeld
 		{ _field_real, "runtime rate of fire acceleration rate", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "runtime rate of fire deceleration rate", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "runtime error acceleration rate!" },
 
 		{ _field_real, "runtime error deceleration rate", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_equal, _engine_type_groundhog },
+		{ _version_mode_equal, _engine_type_groundhog },
 		{ _field_legacy, _field_real, "runtime dual error deceleration rate!" },
 
 		{ _field_block, "firing effects", "firing effects determine what happens when this trigger is fired", &barrel_firing_effect_block },
@@ -592,7 +592,7 @@ namespace blofeld
 		{ _field_short_integer, "shot count upper bound", "the maximum number of times this firing effect will be used, once it has been chosen" },
 		{ _field_tag_reference, "firing effect", "this effect is used when the weapon is loaded and fired normally", FIELD_FLAG_INDEX, &weapon_block_struct_ready_effect_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "critical effect", "this effect is used when the weapon is loaded and will do critical damage", FIELD_FLAG_INDEX, &weapon_block_struct_ready_effect_reference },
 
 		{ _field_tag_reference, "misfire effect", "this effect is used when the weapon is loaded but fired while overheated", &weapon_block_struct_ready_effect_reference },
@@ -600,7 +600,7 @@ namespace blofeld
 		{ _field_tag_reference, "optional secondary firing effect", "this effect is used when the weapon is not loaded", &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "firing damage", "this effect is used when the weapon is loaded and fired normally", &global_damage_effect_or_response_definition_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "critical damage", "this effect is used when the weapon is loaded and will do critical damage", FIELD_FLAG_INDEX, &weapon_block_struct_ready_effect_reference },
 
 		{ _field_tag_reference, "misfire damage", "this effect is used when the weapon is loaded but fired while overheated", &global_damage_effect_or_response_definition_reference },
@@ -608,7 +608,7 @@ namespace blofeld
 		{ _field_tag_reference, "optional secondary firing damage", "this effect is used when the weapon is loaded and fired normally", &global_damage_effect_or_response_definition_reference },
 		{ _field_tag_reference, "firing rider damage", "this effect is used when the weapon is loaded and fired normally", &global_damage_effect_or_response_definition_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "critical rider damage", "this effect is used when the weapon is loaded and will do critical damage", FIELD_FLAG_INDEX, &weapon_block_struct_ready_effect_reference },
 
 		{ _field_tag_reference, "misfire rider damage", "this effect is used when the weapon is loaded but fired while overheated", &global_damage_effect_or_response_definition_reference },
@@ -728,7 +728,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AIM_ASSIST_STRUCT_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2},
+		{ _version_mode_greater, _engine_type_haloreach, 2},
 		{ _field_real, "autoaim stick time", "the number of seconds that the crosshair needs to be on target before the larger autoaim stick kicks in", "seconds", FIELD_FLAG_UNKNOWN0 },
 		{ _field_angle, "autoaim stick angle", "the maximum angle that autoaim works to 'stick' a target.  set to zero to use default behavior.", "degrees", FIELD_FLAG_UNKNOWN0 },
 
@@ -736,19 +736,19 @@ namespace blofeld
 		{ _field_real, "autoaim range", "the maximum distance that autoaim works at full strength", "world units", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "autoaim falloff range", "at what point the autoaim starts falling off", "world units", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "autoaim near falloff range", "at what point the autoaim reaches full power", "world units", FIELD_FLAG_UNKNOWN0 },
 
 		{ _field_angle, "magnetism angle", "the maximum angle that magnetism works at full strength", "degrees", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "magnetism range", "the maximum distance that magnetism works at full strength", "world units", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "magnetism falloff range", "at what point magnetism starts falling off", "world units", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "magnetism near falloff range", "at what point magnetism reaches full power", "world units", FIELD_FLAG_UNKNOWN0 },
 
 		{ _field_angle, "deviation angle", "the maximum angle that a projectile is allowed to deviate from the gun barrel due to autoaim OR network lead vector reconstruction", "degrees", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		FIELD_PAD_EX("ZHV", nullptr, FIELD_FLAG_NONE, 4),
 
 		FIELD_PAD_EX("CVYGPMLMX", nullptr, FIELD_FLAG_NONE, 16),
@@ -786,7 +786,7 @@ namespace blofeld
 		{ _field_block, "first person", &weapon_first_person_interface_block },
 		{ _field_tag_reference, "hud screen reference", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_tag_reference, "alternate hud screen reference", "the parent of the weapon can indicate that this hud should be used instead of the default", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
 		{ _field_terminator }
 	};
@@ -815,12 +815,12 @@ namespace blofeld
 	{
 		{ _field_real_bounds, "rounds per second", "the number of firing effects created per second" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_string_id, "rate of fire acceleration", "function value sets the current rate of fire when the barrel is firing" },
 
 		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final rounds per second", "seconds" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_string_id, "rate of fire deceleration", "function value sets the current rate of fire when the barrel is not firing" },
 
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return from its final rounds per second to its initial", "seconds" },
@@ -830,7 +830,7 @@ namespace blofeld
 		{ _field_real, "fire recovery time", "how long after a set of shots it takes before the barrel can fire again", "seconds" },
 		{ _field_real_fraction, "soft recovery fraction", "how much of the recovery allows shots to be queued" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_real, "melee  fire recovery time", "how long after a set of shots it takes before the weapon can melee", "seconds" },
 		{ _field_real_fraction, "melee soft recovery fraction", "how much of the melee recovery allows melee to be queued" },
 
@@ -846,7 +846,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_BARREL_FIRING_ERROR_STRUCT_ID)
 	{
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" }, // Upgraded
 
 		{ _field_real, "deceleration time", "the continuous idle time it would take for a barrel_error of 1.0 to return to its minimum value.\nMinimum value is usually 0.0 but sprinting can override this. See\n'globals@Player information.momentum and sprinting.min weapon error'", "seconds" },
@@ -855,19 +855,19 @@ namespace blofeld
 		{ _field_angle, "full error look pitch rate", "yaw rate is doubled" },
 		{ _field_real, "look pitch error power", "use to soften or sharpen the rate ding" },
 
-		{ _field_legacy, _field_version_equal, _engine_type_groundhog },
+		{ _version_mode_equal, _engine_type_groundhog },
 		{ _field_legacy, _field_explanation, "dual weapon error" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" }, // Upgraded
 
-		{ _field_legacy, _field_version_equal, _engine_type_groundhog },
+		{ _version_mode_equal, _engine_type_groundhog },
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial error", "seconds" }, // Upgraded
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_pad, "IIJ", 8 },
 
-		{ _field_legacy, _field_version_equal, _engine_type_groundhog, 3 },
+		{ _version_mode_equal, _engine_type_groundhog, 3 },
 		{ _field_angle, "minimum error" }, // Upgraded
 		{ _field_angle_bounds, "error angle" }, // Upgraded
 		{ _field_real_fraction, "dual wield damage scale" }, // Upgraded
@@ -960,20 +960,20 @@ namespace blofeld
 		{ _field_real, "charging time", "the amount of time it takes for this trigger to become fully charged", "seconds" },
 		{ _field_real, "charged time", "the amount of time this trigger can be charged before becoming overcharged", "seconds" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 2 },
+		{ _version_mode_less, _engine_type_haloreach, 2 },
 		{ _field_enum, "overcharged action", &weapon_trigger_overcharged_actions },
 		{ _field_word_flags, "flags", &weapon_trigger_charging_flags },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_char_enum, "overcharged action", &weapon_trigger_overcharged_actions },
 		{ _field_byte_flags, "flags", &weapon_trigger_charging_flags },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_short_integer, "cancelled trigger throw", "96 was the constant in code for the pp" },
 
 		{ _field_real, "charged illumination", "the amount of illumination given off when the weapon is fully charged", nullptr, "[0,1]" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_real, "spew time" },
 
 		{ _field_tag_reference, "charging effect", "the charging effect is created once when the trigger begins to charge", &weapon_block_struct_ready_effect_reference },
@@ -983,7 +983,7 @@ namespace blofeld
 		{ _field_tag_reference, "discharge effect", "the discharging effect is created once when the trigger releases its charge", &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "discharge damage effect", "the discharging effect is created once when the trigger releases its charge", &global_damage_effect_or_response_definition_reference },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach }, //Versioned for H3
+		{ _version_mode_greater_or_equal, _engine_type_haloreach }, //Versioned for H3
 		{ _field_block, "fire fractions", &weapon_trigger_charging_fire_fraction_block },
 
 		{ _field_terminator }

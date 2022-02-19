@@ -20,7 +20,7 @@ uint32_t c_gen3_cache_file_validator2::get_struct_size(const blofeld::s_tag_stru
 	for (const blofeld::s_tag_field* current_field = struct_definition.fields; current_field->field_type != blofeld::_field_terminator; current_field++)
 	{
 		uint32_t field_skip_count;
-		if (skip_tag_field_version(*current_field, engine_type, platform_type, _build_not_set, field_skip_count))
+		if (execute_tag_field_versioning(*current_field, engine_type, platform_type, _build_not_set, field_skip_count))
 		{
 			current_field += field_skip_count;
 			continue;
@@ -615,7 +615,7 @@ void c_gen3_cache_file_validator2::traverse_tag_struct(
 	for (const blofeld::s_tag_field* current_field = struct_definition.fields; current_field->field_type != blofeld::_field_terminator; current_field++)
 	{
 		uint32_t field_skip_count;
-		if (skip_tag_field_version(*current_field, engine_type, platform_type, _build_not_set, field_skip_count))
+		if (execute_tag_field_versioning(*current_field, engine_type, platform_type, _build_not_set, field_skip_count))
 		{
 			current_field += field_skip_count;
 			continue;

@@ -132,15 +132,15 @@ inline blofeld::s_tag_field _make_field_custom()
 
 #define _legacy_field_pointer blofeld::_field_pointer, __FILE__, __LINE__
 #define _legacy_field_half blofeld::_field_half, __FILE__, __LINE__
-#define _legacy_field_version_equal blofeld::_field_version_equal, __FILE__, __LINE__
-#define _legacy_field_version_not_equal blofeld::_field_version_not_equal, __FILE__, __LINE__
-#define _legacy_field_version_less blofeld::_field_version_less, __FILE__, __LINE__
-#define _legacy_field_version_greater blofeld::_field_version_greater, __FILE__, __LINE__
-#define _legacy_field_version_less_or_equal blofeld::_field_version_less_or_equal, __FILE__, __LINE__
-#define _legacy_field_version_greater_or_equal blofeld::_field_version_greater_or_equal, __FILE__, __LINE__
-#define _legacy_field_version_custom blofeld::_field_version_custom, __FILE__, __LINE__
-#define _legacy_field_version_platform_include blofeld::_field_version_platform_include, __FILE__, __LINE__
-#define _legacy_field_version_platform_exclude blofeld::_field_version_platform_exclude, __FILE__, __LINE__
+#define _legacy_version_mode_equal blofeld::_version_mode_equal, __FILE__, __LINE__
+#define _legacy_version_mode_not_equal blofeld::_version_mode_not_equal, __FILE__, __LINE__
+#define _legacy_version_mode_less blofeld::_version_mode_less, __FILE__, __LINE__
+#define _legacy_version_mode_greater blofeld::_version_mode_greater, __FILE__, __LINE__
+#define _legacy_version_mode_less_or_equal blofeld::_version_mode_less_or_equal, __FILE__, __LINE__
+#define _legacy_version_mode_greater_or_equal blofeld::_version_mode_greater_or_equal, __FILE__, __LINE__
+#define _legacy_version_mode_custom blofeld::_version_mode_custom, __FILE__, __LINE__
+#define _legacy_version_mode_platform_include blofeld::_version_mode_platform_include, __FILE__, __LINE__
+#define _legacy_version_mode_platform_exclude blofeld::_version_mode_platform_exclude, __FILE__, __LINE__
 
 #define _field_string blofeld::_field_string, __FILE__, __LINE__
 #define _field_long_string blofeld::_field_long_string, __FILE__, __LINE__
@@ -215,15 +215,19 @@ inline blofeld::s_tag_field _make_field_custom()
 
 #define _field_pointer blofeld::_field_pointer, __FILE__, __LINE__
 #define _field_half blofeld::_field_half, __FILE__, __LINE__
-#define _field_version_equal blofeld::_field_version_equal, __FILE__, __LINE__
-#define _field_version_not_equal blofeld::_field_version_not_equal, __FILE__, __LINE__
-#define _field_version_less blofeld::_field_version_less, __FILE__, __LINE__
-#define _field_version_greater blofeld::_field_version_greater, __FILE__, __LINE__
-#define _field_version_less_or_equal blofeld::_field_version_less_or_equal, __FILE__, __LINE__
-#define _field_version_greater_or_equal blofeld::_field_version_greater_or_equal, __FILE__, __LINE__
-#define _field_version_custom blofeld::_field_version_custom, __FILE__, __LINE__
-#define _field_version_platform_include blofeld::_field_version_platform_include, __FILE__, __LINE__
-#define _field_version_platform_exclude blofeld::_field_version_platform_exclude, __FILE__, __LINE__
+
+#define _version_mode_equal blofeld::_version_mode_equal, __FILE__, __LINE__
+#define _version_mode_not_equal blofeld::_version_mode_not_equal, __FILE__, __LINE__
+#define _version_mode_less blofeld::_version_mode_less, __FILE__, __LINE__
+#define _version_mode_greater blofeld::_version_mode_greater, __FILE__, __LINE__
+#define _version_mode_less_or_equal blofeld::_version_mode_less_or_equal, __FILE__, __LINE__
+#define _version_mode_greater_or_equal blofeld::_version_mode_greater_or_equal, __FILE__, __LINE__
+#define _version_mode_custom blofeld::_version_mode_custom, __FILE__, __LINE__
+#define _version_mode_platform_include blofeld::_version_mode_platform_include, __FILE__, __LINE__
+#define _version_mode_platform_exclude blofeld::_version_mode_platform_exclude, __FILE__, __LINE__
+
+#define _version_mode_tag_group_equal blofeld::_version_mode_tag_group_equal, __FILE__, __LINE__
+#define _version_mode_tag_group_not_equal blofeld::_version_mode_tag_group_not_equal, __FILE__, __LINE__
 
 #define int32 int
 #define uint32 unsigned int

@@ -34,7 +34,7 @@ namespace blofeld
 		{ _field_short_integer, "sprite index" },
 		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 2),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "time played multiplier", "This is an additional multiplier to rewards given for time played for players at this grade" },
 		{ _field_block, "level up rewards", "These rewards will be given to the player when they reach this grade", &rewardBlock_block },
 
@@ -64,10 +64,10 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_GRADE_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_block, "player ranks", &player_rank_globals_definition_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "player grades", &player_grade_definition_block },
 
 		{ _field_terminator }

@@ -88,7 +88,7 @@ namespace blofeld
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "description" },
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 21 }, // #TODO: Research these fields. Based on assembly's plugins for now ew.
+		{ _version_mode_equal, _engine_type_haloreach, 21 }, // #TODO: Research these fields. Based on assembly's plugins for now ew.
 		{ _field_legacy, _field_long_integer, "credits earned before silver" },
 		{ _field_legacy, _field_long_integer, "credits earned after silver" },
 		{ _field_legacy, _field_short_integer, "unknown@" },
@@ -111,7 +111,7 @@ namespace blofeld
 		{ _field_legacy, _field_char_enum, "category", &commendationCategoryEnum },
 		{ _field_legacy, _field_pad, "pad", 1 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 12 },
+		{ _version_mode_greater, _engine_type_haloreach, 12 },
 		{ _field_byte_flags, "flags", &commendationFlags },
 		FIELD_PAD_EX("CB_PAD0", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_char_enum, "category", &commendationCategoryEnum },
@@ -170,7 +170,7 @@ namespace blofeld
 	{
 		{ _field_tag_reference, "commendation aggregators", &Tag::Reference<struct CommendationAggregatorList>::s_defaultDefinition },
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 26 },
+		{ _version_mode_equal, _engine_type_haloreach, 26 },
 		{ _field_legacy, _field_char_integer, "unknown@" },
 		{ _field_legacy, _field_char_integer, "unknown@" },
 		{ _field_legacy, _field_char_integer, "unknown@" },
@@ -198,7 +198,7 @@ namespace blofeld
 		{ _field_legacy, _field_custom },
 		{ _field_legacy, _field_real_argb_color, "onyx" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
+		{ _version_mode_greater, _engine_type_haloreach, 4 },
 		{ _field_tag_reference, "medal aggregators", &Tag::Reference<struct MedalCommendationAggregatorList>::s_defaultDefinition },
 		{ _field_tag_reference, "commendation text", &global_multilingual_unicode_string_list_reference },
 		{ _field_short_integer, "progress display time", nullptr, "seconds", MAKE_OLD_NAMES("progression display time") },
@@ -225,12 +225,12 @@ namespace blofeld
 
 	STRINGS(commendationCategoryEnum)
 	{
-		{ _field_legacy, _field_version_less, _engine_type_gen3_xbox360 },
+		{ _version_mode_less, _engine_type_gen3_xbox360 },
 		"campaign",
 		"firefight",
 		"multiplayer",
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_gen3_xbox360 },
+		{ _version_mode_greater_or_equal, _engine_type_gen3_xbox360 },
 		"default",
 		"weapons",
 		"ordnance",

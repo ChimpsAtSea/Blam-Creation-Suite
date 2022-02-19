@@ -162,13 +162,13 @@ void c_high_level_tag_source_generator::generate_header() const
 		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
 			unsigned long field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
+			if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;
 			}
 
-			if (current_field->field_type > _field_type_non_standard)
+			if (current_field->field_type >= k_number_of_blofeld_field_types)
 			{
 				continue;
 			}
@@ -236,14 +236,14 @@ void c_high_level_tag_source_generator::generate_header() const
 		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 		{
 			unsigned long field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
+			if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
 			{
 				current_field += field_skip_count;
 				field_index += field_skip_count;
 				continue;
 			}
 
-			if (current_field->field_type > _field_type_non_standard)
+			if (current_field->field_type >= k_number_of_blofeld_field_types)
 			{
 				continue;
 			}
@@ -347,13 +347,13 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 	for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 	{
 		unsigned long field_skip_count;
-		if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
+		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
 		{
 			current_field += field_skip_count;
 			continue;
 		}
 
-		if (current_field->field_type > _field_type_non_standard)
+		if (current_field->field_type >= k_number_of_blofeld_field_types)
 		{
 			continue;
 		}
@@ -545,14 +545,14 @@ void c_high_level_tag_source_generator::generate_ctor_source(unsigned long sourc
 				for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 				{
 					unsigned long field_skip_count;
-					if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
+					if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
 					{
 						current_field += field_skip_count;
 						field_index += field_skip_count;
 						continue;
 					}
 
-					if (current_field->field_type > _field_type_non_standard)
+					if (current_field->field_type >= k_number_of_blofeld_field_types)
 					{
 						continue;
 					}
@@ -699,13 +699,13 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
 			unsigned long field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
+			if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;
 			}
 
-			if (current_field->field_type > _field_type_non_standard)
+			if (current_field->field_type >= k_number_of_blofeld_field_types)
 			{
 				continue;
 			}
@@ -726,14 +726,14 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 			for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 			{
 				unsigned long field_skip_count;
-				if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
+				if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
 				{
 					current_field += field_skip_count;
 					field_index += field_skip_count;
 					continue;
 				}
 
-				if (current_field->field_type > _field_type_non_standard)
+				if (current_field->field_type >= k_number_of_blofeld_field_types)
 				{
 					continue;
 				}
@@ -782,14 +782,14 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 				for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 				{
 					unsigned long field_skip_count;
-					if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
+					if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
 					{
 						current_field += field_skip_count;
 						field_index += field_skip_count;
 						continue;
 					}
 
-					if (current_field->field_type > _field_type_non_standard)
+					if (current_field->field_type >= k_number_of_blofeld_field_types)
 					{
 						continue;
 					}
@@ -961,14 +961,14 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 			for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 			{
 				unsigned long field_skip_count;
-				if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
+				if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
 				{
 					current_field += field_skip_count;
 					field_index += field_skip_count;
 					continue;
 				}
 
-				if (current_field->field_type > _field_type_non_standard)
+				if (current_field->field_type >= k_number_of_blofeld_field_types)
 				{
 					continue;
 				}
@@ -1025,14 +1025,14 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 			for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 			{
 				unsigned long field_skip_count;
-				if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
+				if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
 				{
 					current_field += field_skip_count;
 					field_index += field_skip_count;
 					continue;
 				}
 
-				if (current_field->field_type > _field_type_non_standard)
+				if (current_field->field_type >= k_number_of_blofeld_field_types)
 				{
 					continue;
 				}

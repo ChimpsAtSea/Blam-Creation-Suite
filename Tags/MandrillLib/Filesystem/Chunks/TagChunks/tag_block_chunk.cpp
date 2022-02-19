@@ -172,7 +172,8 @@ void c_tag_block_chunk::read_structure_metadata_impl(s_tag_persist_struct_defini
 			}
 			break;
 			default:
-				throw;
+				//throw;
+				break;
 			}
 		}
 

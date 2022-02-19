@@ -78,7 +78,7 @@ struct s_reach_x360_tag_struct_runtime
 	ptr32 combined_fields;																									//144				90
 	unsigned long cache_file_struct_size;																					//148				94
 	unsigned long unknown98;																								//152				98
-	unsigned long unknown9C;																								//156				9C
+	unsigned long num_combined_fields;																						//156				9C
 	unsigned long unknownA0;																								//160				A0
 	unsigned long unique_index;																								//164				A4
 	c_big_flags_typed<long, k_num_reach_x360_field_types> inlined_field_types;												//168				A8
@@ -144,8 +144,9 @@ public:
 	unsigned long structure_size;
 	unsigned long alignment_bits;
 	blofeld::s_tag_persistent_identifier persistent_identifier;
-	std::vector<s_reach_x360_tag_struct_definition> struct_definitions;
-	std::vector<c_reach_x360_tag_field*> fields;
+	std::vector<std::pair<s_reach_x360_tag_struct_definition, c_reach_x360_tag_group_definition*>> struct_definitions;
+	using t_fields = std::vector<t_reach_x360_tag_field*>;
+	t_fields fields;
 
 	c_reach_x360_tag_struct_definition(const char* guerilla_data, const s_reach_x360_tag_struct_definition& definition_header);
 	~c_reach_x360_tag_struct_definition();
@@ -155,5 +156,8 @@ public:
 	static std::map<ptr32, c_reach_x360_tag_struct_definition*> tag_struct_definitions;
 	static c_reach_x360_tag_struct_definition* reach_x360_get_tag_struct_definition(const char* guerilla_data, ptr32 virtual_address);
 	static c_reach_x360_tag_struct_definition* reach_x360_find_tag_struct_definition_by_persistent_id(blofeld::s_tag_persistent_identifier persistent_identifier);
+
+protected:
+	void clear_fields();
 };
 

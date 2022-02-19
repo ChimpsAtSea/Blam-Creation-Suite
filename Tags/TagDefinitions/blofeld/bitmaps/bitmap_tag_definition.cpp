@@ -33,18 +33,18 @@ namespace blofeld
 		{ _field_long_integer, "pixels offset", "DO NOT CHANGE (offset of the beginning of this bitmap, into pixel data)", "bytes", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "pixels size", "DO NOT CHANGE (total bytes used by this bitmap)", "bytes", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4 },
+		{ _version_mode_greater_or_equal, _engine_type_halo4 },
 		{ _field_long_integer, "medium res pixels size", "DO NOT CHANGE", FIELD_FLAG_UNKNOWN0 },
 		
 		{ _field_long_integer, "high res pixels size", "DO NOT CHANGE", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "hardware format", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "runtime tag base address", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4, 1 },
+		{ _version_mode_platform_include, _platform_type_pc_64bit, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_halo4, 1 },
 		{ _field_legacy, _field_pad, "pad", 4 },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 4 },
 		{ _field_legacy, _field_long_integer, "unknown" },
 		{ _field_legacy, _field_long_integer, "unknown" },
 		{ _field_legacy, _field_long_integer, "unknown" },

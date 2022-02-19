@@ -52,13 +52,13 @@ namespace blofeld
 		{ _field_real_point_3d, "cubemap position" },
 		{ _field_enum, "cubemap resolution", &cubemap_resolution_enum },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_short_integer, "unknown" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		FIELD_PAD_EX("post-cubemap-resolution-pad", nullptr, FIELD_FLAG_NONE, 2),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		FIELD_EXPLANATION_EX("bsps it could belong to", nullptr, FIELD_FLAG_NONE, "empty masks mean automatic selection."),
 		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences },
 

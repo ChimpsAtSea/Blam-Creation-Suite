@@ -46,7 +46,7 @@ namespace blofeld
 		{ _field_struct, "object falloff", &screen_effect_scalar_object_function_struct },
 		FIELD_EXPLANATION_EX("EFFECTS", nullptr, FIELD_FLAG_NONE, "a selection of effects to choose from\nin the case of overlapping effects, the maximum will be taken"),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_tag_reference, "color grading look-up-texture", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
 		{ _field_real, "runtime color grading strength", "do not edit", nullptr, "[do not edit]", FIELD_FLAG_UNKNOWN0 },
 
@@ -64,14 +64,14 @@ namespace blofeld
 		{ _field_real_rgb_color, "color filter", "this color is multiplied on top" },
 		{ _field_real_rgb_color, "color floor", "this color is subtracted" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_real_fraction, "color replace strength", "used to blend in the color replace below", nullptr, "[0-1]" },
 		{ _field_real_rgb_color, "color replace", "this color is blended in place of the screen's color" },
 
 		{ _field_real, "tron", "adds a full-screen tron effect", nullptr, "[0-1]" },
 		{ _field_real, "motion suck", "adds motion-blur towards or away from this screen effect", nullptr, "[-2, 2]" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach }, // This or the field above could be wrong.
+		{ _version_mode_greater, _engine_type_haloreach }, // This or the field above could be wrong.
 		{ _field_real, "bloom buffer motion suck", "adds cheap bloom buffer motion-blur towards or away from this screen effect", nullptr, "[-2, 2]" },
 
 		{ _field_real_vector_3d, "motion suck direction", "do not edit", nullptr, "[do not edit]", FIELD_FLAG_UNKNOWN0 },

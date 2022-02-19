@@ -29,7 +29,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_DAMAGE_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_flags, "Flags", &collisionDamageFlags },
 
 		FIELD_EXPLANATION_EX("Applying collision damage", nullptr, FIELD_FLAG_NONE, "for things that want to cause more or less collision damage"),
@@ -47,7 +47,7 @@ namespace blofeld
 		{ _field_struct, "absolute collision damage", &collision_damage_function },
 		{ _field_real_bounds, "absolute acceleration", "0-Infinity" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		FIELD_EXPLANATION_EX("Alternative damage effect", nullptr, FIELD_FLAG_NONE, "Overrides the damage effect from globals.globals"),
 		{ _field_tag_reference, "alternative damage effect", &Tag::Reference<struct s_damage_effect_definition>::s_defaultDefinition },
 

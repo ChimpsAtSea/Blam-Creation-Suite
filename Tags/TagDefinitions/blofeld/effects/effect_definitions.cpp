@@ -24,20 +24,20 @@ namespace blofeld
 		{ _field_real, "death_delay" },
 		{ _field_short_block_index, "loop start event", &effect_event_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_char_integer, "unknown" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_char_enum, "priority", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_effect_priority_enum },
 
 		FIELD_PAD_EX("asdfsdf", nullptr, FIELD_FLAG_NONE, 1),
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "unknown" },
 
 		{ _field_real, "global size scale" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_string_id, "scale A override", "Handle with care. FYI only works if the effect is attached to an object" },
 		{ _field_string_id, "scale B override", "Handle with care. FYI only works if the effect is attached to an object" },
 		{ _field_real, "runtime danger radius", FIELD_FLAG_UNKNOWN0 },
@@ -99,7 +99,7 @@ namespace blofeld
 		FIELD_CUSTOM_EX("duration bounds", "duration of this event", FIELD_FLAG_NONE, _field_id_unknown_mela),
 		{ _field_real_bounds, "duration bounds", "duration of this event", "seconds" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		FIELD_EXPLANATION_EX("event age duration override", nullptr, FIELD_FLAG_NONE, "Parts and particle systems can take \"event age\" as a function input.  Typically that goes from 0 to 1 over the event duration.  If you want a different time, specify it here.  0 means use the duration bounds above."),
 		{ _field_real, "event age duration override", "the amount of time over which the \"event age\" function input goes from 0 to 1", "seconds" },
 
@@ -144,7 +144,7 @@ namespace blofeld
 		{ _field_long_flags, "A scales values", &effect_part_scaleable_values },
 		{ _field_long_flags, "B scales values", &effect_part_scaleable_values },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "particleize", "optional particleization effect definition, if you want this to particleize on spawn", &global_particleize_parameters_reference },
 
 		{ _field_terminator }

@@ -44,7 +44,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYDATUM_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 21 },
+		{ _version_mode_greater, _engine_type_haloreach, 21 },
 		FIELD_CUSTOM_EX("Timers", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "duration", "use negative numbers for infinite duration", "seconds" },
 		{ _field_real, "warmup time", "time before the equipment truly becomes active", "seconds" },
@@ -71,13 +71,13 @@ namespace blofeld
 		{ _field_block, "multiplayer powerup", &equipmentAbilityTypeMultiplayerPowerupBlock_block },
 		{ _field_block, "spawner", &equipmentAbilityTypeSpawnerBlock_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "ai spawner", &equipmentAbilityTypeAiSpawnerBlock_block },
 
 		{ _field_block, "proximity mine", &equipmentAbilityTypeProximityMineBlock_block },
 		{ _field_block, "moition tracker noise", &equipmentAbilityTypeMotionTrackerNoiseBlock_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "unknown@", &g_null_block },
 
 		{ _field_block, "invincibility mode", &equipmentAbilityTypeInvincibilityBlock_block },
@@ -87,7 +87,7 @@ namespace blofeld
 		{ _field_block, "ai trait field", &equipmentAbilityTypeAiTraitFieldBlock_block },
 		{ _field_block, "repulsor field", &equipmentAbilityTypeRepulsorFieldBlock_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "stasis field", &equipmentAbilityTypeStasisFieldBlock_block },
 		{ _field_block, "ball lightning", &equipmentAbilityTypeBallLightningBlock_block },
 
@@ -104,7 +104,7 @@ namespace blofeld
 		{ _field_block, "engineer shields", &equipmentAbilityTypeEngineerShieldsBlock_block },
 		{ _field_block, "sprint", &equipmentAbilityTypeSprintBlock_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 19 },
+		{ _version_mode_greater, _engine_type_haloreach, 19 },
 		{ _field_block, "teleporter", &equipmentAbilityTypeTeleporterBlock_block },
 		{ _field_block, "auto turret", &equipmentAbilityTypeAutoTurretBlock_block },
 		{ _field_block, "vision mode", &equipmentAbilityTypeVisionModeBlock_block },
@@ -152,7 +152,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPESPAWNERBLOCK_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2},
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2},
 		{ _field_legacy, _field_tag_reference, "spawned object", &object_reference$4 },
 		{ _field_legacy, _field_tag_reference, "spawned effect", &global_effect_reference },
 
@@ -163,7 +163,7 @@ namespace blofeld
 		{ _field_enum, "type", &equipment_spawner_spawn_type },
 		FIELD_PAD_EX("LSJ", nullptr, FIELD_FLAG_NONE, 2),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_tag_reference, "spawned object", &object_reference$4 },
 		{ _field_tag_reference, "spawned effect", &global_effect_reference },
 
@@ -219,7 +219,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEMOTIONTRACKERNOISEBLOCK_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_flags, "flags", &equipmentAbilityType_MotionTrackerNoise_flags },
 
 		{ _field_real, "arm time", "time before it starts making noise" },
@@ -547,13 +547,13 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEJETPACKBLOCK_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_byte_flags, "flags", &equipmentAbilityTypeJetPackFlags },
 		FIELD_PAD_EX("pad after useCamAndMoveForThrustDirection", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_struct, "thrust to acceleration function", &scalar_function_named_struct },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_struct, "Infinite energy thrust to acceleration function", &scalar_function_named_struct },
 
 		{ _field_real, "thrust attack time", nullptr, "s" },
@@ -563,7 +563,7 @@ namespace blofeld
 		{ _field_real, "grounded acceleration magnitude", "how hard to kick you upwards if you activate while grounded" },
 		{ _field_real, "landing anticipation time", "how many seconds before landing the jetpack user enters the airborne arc", "s" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 10 },
+		{ _version_mode_greater, _engine_type_haloreach, 10 },
 		FIELD_EXPLANATION_EX("Zero-G jet pack", nullptr, FIELD_FLAG_NONE, "These apply if \'Use camera and movement for thrust dir\' flag is checked"),
 		{ _field_real, "camera vs move input thrust control", "Camera direction (0.0) VS movement input (1.0) interpolation" },
 		{ _field_real, "min speed", "drag will be applied above this" },
@@ -621,7 +621,7 @@ namespace blofeld
 		{ _field_real, "shimmer bullet ping", "how much to ping shimmer when hit by a bullet", "0-1" },
 		{ _field_struct, "shimmer to camo function", "this is a periodic function with a period of 1 second\nthe shimmer value is used as the range input (interpolates between green and red)", &scalar_function_named_struct },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_byte_flags, "flags", &equipmentAbilityTypeHologramFlags },
 		FIELD_PAD_EX("pad after hologram flags", nullptr, FIELD_FLAG_NONE, 3),
 
@@ -657,7 +657,7 @@ namespace blofeld
 		{ _field_string_id, "backward" },
 		{ _field_string_id, "right" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
+		{ _version_mode_greater, _engine_type_haloreach, 5 },
 		{ _field_char_enum, "default direction", &EquipmentSpecialMoveDefaultDirectionDefinition },
 		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "directional effect", &Tag::Reference<struct effect_definition>::s_defaultDefinition },
@@ -990,7 +990,7 @@ namespace blofeld
 		{ _field_struct, "item", &item_struct_definition },
 		FIELD_CUSTOM_EX("$$$ EQUIPMENT $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 21 }, // BEEG UPGRADES MY BOIIIIII
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 21 }, // BEEG UPGRADES MY BOIIIIII
 		FIELD_CUSTOM_EX("Timers", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "duration", "use negative numbers for infinite duration", "seconds" },
 		{ _field_real, "warmup time", "time before the equipment truly becomes active", "seconds" },
@@ -1013,7 +1013,7 @@ namespace blofeld
 		{ _field_char_enum, "activation mode", FIELD_FLAG_INDEX, &equipment_activation_mode },
 		{ _field_char_integer, "object noise adjustment", "for AI perception.\nwhile active, adjusts noises made by the owner unit by this many 'notches'.\nnote that this is additive, so a positive number is louder and a negative number is quieter" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 6 },
+		{ _version_mode_greater, _engine_type_haloreach, 6 },
 		FIELD_CUSTOM_EX("Energy", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "initial energy" },
 		{ _field_real, "energy recovery time", "after deactivation, energy stays constant for this long before starting to change by 'inactive energy rate'", "seconds" },
@@ -1023,7 +1023,7 @@ namespace blofeld
 
 		{ _field_string_id, "unit stow marker name", "the marker on the unit to attach this equipment to when it is stowed.\nThe equipment should have a marker named \"equipment_stow_anchor\"" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_char_enum, "pickup behavior", &equipment_pickup_behavior },
 		FIELD_PAD_EX("IJKMOP", nullptr, FIELD_FLAG_NONE, 3),
 
@@ -1038,10 +1038,10 @@ namespace blofeld
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_block, "override camera", &optionalUnitCameraBlock_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_struct, "abilities", &equipmentAbilityDatum_block_struct_definition },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "abilities", &equipmentAbilityDatum_block },
 
 		{ _field_char_enum, "damage reporting type", &global_damage_reporting_enum_definition },
@@ -1049,7 +1049,7 @@ namespace blofeld
 		{ _field_tag_reference, "hud screen reference", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
 		{ _field_tag_reference, "pickup sound", &global_sound_reference },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 4 },
 		{ _field_legacy, _field_tag_reference, "activation while disabled by player traits sound", &global_sound_reference },
 		{ _field_legacy, _field_tag_reference, "activate effect", &global_effect_reference },
 		{ _field_legacy, _field_tag_reference, "looping effect", &global_effect_reference },
@@ -1057,13 +1057,13 @@ namespace blofeld
 
 		{ _field_tag_reference, "energy charged effect", &global_effect_reference },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 4 },
 		{ _field_legacy, _field_string_id, "activation animation" },
 		{ _field_legacy, _field_string_id, "active animation" },
 		{ _field_legacy, _field_string_id, "deactivate animation" },
 		{ _field_legacy, _field_string_id, "active animation stance" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
+		{ _version_mode_greater, _engine_type_haloreach, 4 },
 		{ _field_tag_reference, "unable to activate sound", &global_sound_reference },
 		{ _field_tag_reference, "Player sound bank", "High quality player sound bank to be prefetched. Can be empty.", &global_soundbank_reference },
 		{ _field_block, "Sound RTPCs", &EquipmentSoundRTPCBlock_block },

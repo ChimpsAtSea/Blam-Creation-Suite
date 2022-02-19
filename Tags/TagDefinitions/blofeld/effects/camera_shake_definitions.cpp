@@ -96,7 +96,7 @@ namespace blofeld
 		{ _field_tag_reference, "animation graph", &global_animation_graph_reference },
 		{ _field_string_id, "animation name" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "zoom penalty linear ", "multiplier penalty that increases linearly with zoom over 1" },
 		{ _field_real, "zoom penalty squareroot ", "multiplier penalty that increases with square root of zoom over 1" },
 

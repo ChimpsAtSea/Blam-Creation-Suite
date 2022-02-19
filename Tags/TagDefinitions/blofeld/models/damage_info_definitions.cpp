@@ -73,7 +73,7 @@ namespace blofeld
 		{ _field_block, "instant responses", &new_instantaneous_damage_response_block },
 		{ _field_block, "section damage transfers", &damage_transfer_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "health transfers", &health_transfers_block },
 
 		{ _field_block, "rendering", &damage_section_rendering_paramters_block },
@@ -126,7 +126,7 @@ namespace blofeld
 	{
 		{ _field_long_flags, "flags", &newDamageResponseFlagsPart1, _field_id_dumb },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_flags, "flags2", &newDamageResponseFlagsPart2, _field_id_dumb },
 
 		{ _field_string_id, "label" },
@@ -248,11 +248,11 @@ namespace blofeld
 		{ _field_short_integer, "runtime shield material type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "runtime indirect material type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 2 },
+		{ _version_mode_less, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_real, "@unknown" },
 		{ _field_legacy, _field_real, "@unknown" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_real, "runtime shield recharge velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "runtime overcharge velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "runtime health recharge velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -307,12 +307,12 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("Damage response flags", nullptr, FIELD_FLAG_NONE, "* kills object: when the response fires the object dies regardless of its current health\n* inhibits <x>: from halo 1 - disallows basic behaviors for a unit\n* forces drop weapon: from halo 1 - makes the unit drop its current weapon\n* kills weapon <x> trigger: destroys the <x> trigger on the unit\'s current weapon\n* destroys object: when the response fires the object is destroyed"),
 		{ _field_long_flags, "flags", &damage_response_set1, _field_id_dumb },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_flags, "flags2", &damage_response_set2, _field_id_dumb },
 
 		{ _field_real_fraction, "damage threshold", "response fires after crossing this threshold.  1=full health" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_long_flags, "body threshold flags", &damage_response_body_threshold_flags_definition },
 		{ _field_real, "body damage threshold", "response fires after object body damage crosses this threshold, numbers can be negative.  You need to set the flag \"body threshold active\" for this number to be used. 1=full health" },
 
@@ -335,7 +335,7 @@ namespace blofeld
 		{ _field_tag_reference, "delay effect", &global_effect_reference },
 		{ _field_string_id, "delay effect marker name" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "response delay premature damage threshold" },
 
 		FIELD_EXPLANATION_EX("seat ejaculation", nullptr, FIELD_FLAG_NONE, ""),
@@ -487,7 +487,7 @@ namespace blofeld
 		{ _field_real, "stun time", "the length of time the shields stay stunned (do not recharge) after taking damage", "seconds" },
 		{ _field_real, "recharge time", "the length of time it would take for the shields to fully recharge after being completely depleted", "seconds" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_real, "shield overcharge fraction", "fraction to which shields will automatically overcharge, values <= 1.0 are ignored" },
 		{ _field_real, "shield overcharge time", "time it takes to reach full \"shield overcharge fraction\"" },
 

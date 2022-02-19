@@ -20,7 +20,7 @@ namespace blofeld
 		{ _field_struct, "allowed game modes", &game_mode_flags_struct },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
+		{ _version_mode_greater, _engine_type_haloreach, 4 },
 		FIELD_CUSTOM_EX("allowed campaign and firefight", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_string_id, "allowed level name", "Can only be triggered on this level." },
 		{ _field_long_flags, "required skulls", "These skulls must be enabled to trigger.", &skull_flags_definition },
@@ -37,7 +37,7 @@ namespace blofeld
 		{ _field_short_integer, "internal hs script index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		FIELD_PAD_EX("VHSLKJNE", nullptr, FIELD_FLAG_NONE, 2),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "fanfare", &specialized_incident_fanfare_block },
 		{ _field_tag_reference, "sound response", &sound_incident_response_group_reference },
 

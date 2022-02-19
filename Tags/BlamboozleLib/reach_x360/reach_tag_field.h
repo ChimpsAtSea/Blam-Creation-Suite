@@ -16,7 +16,10 @@ class c_reach_x360_tag_pageable_resource_definition;
 class c_reach_x360_tag_data_definition;
 class c_reach_x360_tag_api_interop_definition;
 
-class c_reach_x360_tag_field
+using t_reach_x360_tag_field = t_virtual;
+
+class c_reach_x360_tag_field :
+	public t_reach_x360_tag_field
 {
 public:
 	const char* name;
@@ -47,3 +50,20 @@ public:
 
 	c_reach_x360_tag_field(const char* guerilla_data, const s_reach_x360_tag_field& field_definition);
 };
+
+class c_reach_x360_tag_field_combined_fixup :
+	public t_reach_x360_tag_field
+{
+public:
+	c_reach_x360_tag_group_definition& group_definition;
+	unsigned long count;
+
+	c_reach_x360_tag_field_combined_fixup(c_reach_x360_tag_group_definition& group_definition, unsigned long count);
+};
+
+class c_reach_x360_tag_field_dummy_space :
+	public t_reach_x360_tag_field
+{
+public:
+};
+

@@ -3862,6 +3862,11 @@ namespace haloreach {
 	extern s_tag_array_definition screen_transform_basis_array_definition;
 
 	extern s_tag_struct_definition shader_contrail_struct_definition;
+	extern s_tag_reference_definition render_method_definition_group_reference_tagref;
+	extern s_tag_reference_definition render_method_group_reference_tagref;
+	extern s_string_list_definition global_render_method_lock_option_flags_defintion;
+	extern s_string_list_definition global_render_method_flags_defintion;
+	extern s_string_list_definition global_sort_layer_enum_defintion;
 
 	extern s_tag_struct_definition shader_particle_struct_definition;
 	extern s_tag_reference_definition bitmap_group_reference$2_tagref;
@@ -3922,13 +3927,13 @@ namespace haloreach {
 	extern s_string_list_definition object_type_enum_definition;
 	extern s_tag_reference_definition damage_response_definition_group_reference$2_tagref;
 
-	extern s_tag_struct_definition shader_beam_struct_definition$2;
+	extern s_tag_struct_definition shader_beam_struct_definition;
 
 	extern s_tag_struct_definition shader_custom_struct_definition;
 
 	extern s_tag_struct_definition shader_cortana_struct_definition;
 
-	extern s_tag_struct_definition shader_decal_struct_definition$2;
+	extern s_tag_struct_definition shader_decal_struct_definition;
 
 	extern s_tag_struct_definition shader_foliage_struct_definition;
 
@@ -3940,7 +3945,7 @@ namespace haloreach {
 
 	extern s_tag_struct_definition shader_halogram_struct_definition;
 
-	extern s_tag_struct_definition shader_light_volume_struct_definition$2;
+	extern s_tag_struct_definition shader_light_volume_struct_definition;
 
 	extern s_tag_struct_definition shader_mux_material_struct_definition;
 
@@ -4097,21 +4102,6 @@ namespace haloreach {
 	extern s_tag_struct_definition global_pixel_shader_block_struct;
 
 	extern s_tag_struct_definition material_type_struct;
-
-	extern s_tag_struct_definition shader_particle_struct_definition$2;
-	extern s_tag_reference_definition render_method_definition_group_reference_tagref;
-	extern s_tag_reference_definition render_method_group_reference_tagref;
-	extern s_string_list_definition global_render_method_lock_option_flags_defintion;
-	extern s_string_list_definition global_render_method_flags_defintion;
-	extern s_string_list_definition global_sort_layer_enum_defintion;
-
-	extern s_tag_struct_definition shader_contrail_struct_definition$2;
-
-	extern s_tag_struct_definition shader_light_volume_struct_definition;
-
-	extern s_tag_struct_definition shader_beam_struct_definition;
-
-	extern s_tag_struct_definition shader_decal_struct_definition;
 
 	extern s_tag_struct_definition tag_block_index_struct;
 

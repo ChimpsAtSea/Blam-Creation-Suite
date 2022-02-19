@@ -27,19 +27,19 @@ namespace blofeld
 		{ _field_enum, "disposition", &effect_dispositions },
 		{ _field_enum, "camera mode", &effect_camera_modes },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_char_enum, "game mode", &effectPartGameModeDefinition },
 		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 1),
 
 		{ _field_short_integer, "sort bias", "use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 4 },
 		{ _field_legacy, _field_word_flags, "flags", &particle_system_flags },
 		{ _field_legacy, _field_short_integer, "unknown" },
 		{ _field_legacy, _field_short_integer, "unknown" },
 		{ _field_legacy, _field_real, "unknown" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_long_flags, "flags", &particle_system_flags },
 		{ _field_real_bounds, "percent velocity to inherit", "flag must be checked above" },
 
@@ -53,7 +53,7 @@ namespace blofeld
 		{ _field_real, "far fade range", "distance before cutoff over which particles fade", "world units" },
 		{ _field_real, "far fade cutoff", "distance from camera where fade is complete", "world units" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_real, "LOD in distance" },
 		{ _field_real, "LOD feather in delta", "minimum is 0.0001" },
 		{ _field_real, "inverse LOD feather in", FIELD_FLAG_UNKNOWN0 },
@@ -62,7 +62,7 @@ namespace blofeld
 		{ _field_real, "LOD feather out delta", "0 defaults to 5.0, minimum is 0.0001" },
 		{ _field_real, "inverse LOD feather out", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "unknown" },
 
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_end),
@@ -102,7 +102,7 @@ namespace blofeld
 		{ _field_struct, "translational offset", "XYZ controls that offset the emitter's origin from the original location", "world units", &particle_property_real_point3d_struct_new },
 		{ _field_struct, "relative direction", "yaw/pitch that changes the initial rotation of the emitter", &particle_property_real_euler_angles2d_struct_new },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_long_integer, "unknown@" },
 		{ _field_legacy, _field_long_integer, "unknown@" },
 
@@ -116,7 +116,7 @@ namespace blofeld
 		{ _field_struct, "particle max count", "max number of particles allowed to exist at one time", "0=unlimited", &particle_property_scalar_struct_new },
 		{ _field_struct, "particle emission rate", "number of particles that are spawned every second from the emitters", "particles per second", &particle_property_scalar_struct_new },
 		{ _field_struct, "particle emission per distance", "number of particles that are spawned every world unit of motion from the emitters", "particles per world unit", &particle_property_scalar_struct_new },
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach }, // #TODO: Which one of these properties was removed?
+		{ _version_mode_greater, _engine_type_haloreach }, // #TODO: Which one of these properties was removed?
 		{ _field_struct, "particle lifespan", "the number of seconds a particle will live after emission", "seconds", &particle_property_scalar_struct_new },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		FIELD_CUSTOM_EX("PARTICLE MOTION", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
@@ -125,7 +125,7 @@ namespace blofeld
 		{ _field_struct, "particle movement", &particle_physics_struct },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "particle attractor/repulsor", &emitterGlobalForceBlock_block },
 		{ _field_block, "particle clip sphere", &emitterClipSphereBlock_block },
 
@@ -138,7 +138,7 @@ namespace blofeld
 		{ _field_struct, "particle size", nullptr, "world units", &particle_property_scalar_struct_new },
 		{ _field_struct, "particle scale", nullptr, "multiple of size", &particle_property_scalar_struct_new },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_struct, "particle scale x", nullptr, "multiple of size", &particle_property_scalar_struct_new },
 		{ _field_struct, "particle scale y", nullptr, "multiple of size", &particle_property_scalar_struct_new },
 
@@ -146,7 +146,7 @@ namespace blofeld
 		{ _field_struct, "particle alpha", &particle_property_scalar_struct_new },
 		{ _field_struct, "particle alpha black point", nullptr, "0=normal, 1=clamped", &particle_property_scalar_struct_new },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_struct, "particle alpha white point", nullptr, "1=normal, 0=clamped", &particle_property_scalar_struct_new },
 
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
@@ -285,12 +285,12 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_PROPERTY_FUNCTION_COLOR_STRUCT_ID)
 	{
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 3  },
+		{ _version_mode_platform_include, _platform_type_pc_64bit, 3  },
 		{ _field_legacy, _field_api_interop, "runtime gpu data"/*, &constant_buffer_struct*/ },
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
+		{ _version_mode_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "@unknown" },
 
-		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc_64bit, 3 },
+		{ _version_mode_platform_exclude, _platform_type_pc_64bit, 3 },
 		{ _field_block, "runtime gpu_property_block", FIELD_FLAG_UNKNOWN0, &gpu_property_block },
 		{ _field_block, "runtime gpu_functions_block", FIELD_FLAG_UNKNOWN0, &gpu_function_block },
 		{ _field_block, "runtime gpu_colors_block", FIELD_FLAG_UNKNOWN0, &gpu_color_block },

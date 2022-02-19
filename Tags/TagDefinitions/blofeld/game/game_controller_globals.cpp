@@ -66,7 +66,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_CONTROL_BLOCK_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "controller button mappings", &controller_mapping_reference_block },
 
 		{ _field_block, "move stick info", &gamepad_stick_info_block },
@@ -77,7 +77,7 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("crosshair", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_point_2d, "crosshair location", "-1..1, 0 is middle of the screen" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_real, "unknown@" },
 		{ _field_legacy, _field_real, "unknown@" },
 
@@ -94,7 +94,7 @@ namespace blofeld
 		{ _field_real, "minimum action hold time for teammates", "teammates of player who dropped/spawned weapon", "seconds" },
 		{ _field_real, "minimum action hold time for opponents", "opponents of player who dropped/spawned weapon", "seconds" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "pegged zoom supression threshold", "for spinny-shotgun goodness" },
 
 		FIELD_EXPLANATION_EX("double/triple jump", nullptr, FIELD_FLAG_NONE, ""),
@@ -112,7 +112,7 @@ namespace blofeld
 		{ _field_real, "flick peg jump max time", "max time you can be pegged and then press jump to activate", "s" },
 		{ _field_real, "double tap interval time", "to engage double-tap, user must press jump twice in this much time", "s" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 55 },
+		{ _version_mode_greater, _engine_type_haloreach, 55 },
 		FIELD_EXPLANATION_EX("Jump Assist", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "vault_speed_gain" },
 		{ _field_real, "vaultSprint_speed_gain" },

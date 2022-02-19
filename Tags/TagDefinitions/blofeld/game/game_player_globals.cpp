@@ -28,7 +28,7 @@ namespace blofeld
 		{ _field_real, "sneak acceleration", nullptr, "world units per second squared" },
 		{ _field_real, "airborne acceleration", nullptr, "world units per second squared" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "weapon ready anim scaler" },
 
 		{ _field_real_point_3d, "grenade origin" },
@@ -44,16 +44,16 @@ namespace blofeld
 		{ _field_tag_reference, "night vision on", MAKE_OLD_NAMES("flashlight on"), &global_sound_reference },
 		{ _field_tag_reference, "night vision off", MAKE_OLD_NAMES("flashlight off"), &global_sound_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_real, "fire team objective range" },
 		{ _field_real, "fire team sandbox range" },
 		{ _field_real, "fire team cone angle", nullptr, "in degrees" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		FIELD_EXPLANATION_EX("sprinting/momentum", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_block, "momentum and sprinting", &player_momentum_data_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 3 },
 		{ _field_legacy, _field_long_integer, "unknown@" },
 		{ _field_legacy, _field_long_integer, "unknown@" },
 		{ _field_struct, "momentum and sprinting", &player_momentum_data_block_struct_definition }, // // H4 moved this into a tagblock
@@ -79,7 +79,7 @@ namespace blofeld
 		{ _field_real, "full speed multiplier", "how much faster we actually go when at full momentum" },
 		{ _field_real, "sprint turn multiplier", "how much faster to turn when sprinting" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "pegged magnitude", "how far the stick needs to be pressed before being considered pegged" },
 		{ _field_real, "pegged angular threshold", "how far off straight up (in degrees) we consider pegged" },
 
@@ -89,7 +89,7 @@ namespace blofeld
 		{ _field_real, "look window length", "period of time over which we record the biped's look angle for deciding if we should drop him out of momentum", "seconds" },
 		{ _field_string_id, "momentum animation stance" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "min weapon error", "[0, 1] while using this type of momentum, the player's weapon error cannot drop below this value" },
 
 		{ _field_terminator }
@@ -109,19 +109,19 @@ namespace blofeld
 		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "hud screen reference", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_tag_reference, "first person hands model", &model_reference$4 },
 		{ _field_string_id, "first person multiplayer hands variant" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_tag_reference, "first person hands model", &model_reference$4 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_tag_reference, "first person body model", &model_reference$4 },
 		{ _field_string_id, "first person multiplayer body variant" },
 		{ _field_block, "hidden fpBody regions", &firstPersonpHiddenBodyRegionsBlock_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_tag_reference, "first person body model", &model_reference$4 },
 
 		{ _field_tag_reference, "third person unit", &unit_reference$3 },

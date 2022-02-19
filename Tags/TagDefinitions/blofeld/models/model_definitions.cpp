@@ -32,19 +32,19 @@ namespace blofeld
 		{ _field_tag_reference, "animation", &global_animation_graph_reference },
 		{ _field_tag_reference, "physics_model", &physics_model_reference },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_tag_reference, "imposter model", &imposter_model_reference$2 },
 		{ _field_long_integer, "runtime render checksum", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "runtime collision checksum", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
+		{ _version_mode_greater, _engine_type_haloreach, 5 },
 		FIELD_EXPLANATION_EX("Optional Static Lightmap", nullptr, FIELD_FLAG_NONE, "\n"),
 		{ _field_tag_reference, "Lighting Info", FIELD_FLAG_INDEX, &structure_lighting_bsp_reference },
 		{ _field_long_enum, "Size Class", &scenario_structure_size_enum },
 		{ _field_long_flags, "Lightmap Flags", MAKE_OLD_NAMES("PVS flags"), &model_lightmap_flags_definition },
 		{ _field_long_block_index, "Lightmap Variant", &model_variant_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
+		{ _version_mode_greater, _engine_type_haloreach, 5 },
 		FIELD_EXPLANATION_EX("PVS", nullptr, FIELD_FLAG_NONE, "\n"),
 		{ _field_real, "PVS bounding box extension factor ", "How much we extend the PVS region around the objects AABB : [good initial value 2.5]" },
 		{ _field_real_vector_3d, "PVS block size ", "How big a single PVS block is, in world units : [good initial value (2.0,2.0,2.0)]" },
@@ -56,7 +56,7 @@ namespace blofeld
 		{ _field_real, "animation lod distance", nullptr, "world units" },
 		{ _field_real, "shadow fade distance", "NOTE this is only a maximum distance, shadows may fade closer when you exceed the shadow budget, you should balance the total shadows in a scene", "world units" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_real, "imposter render distance", nullptr, "world units" },
 		{ _field_enum, "imposter quality", &imposter_quality_definition },
 		{ _field_enum, "imposter policy", &imposter_policy_definition },
@@ -64,39 +64,39 @@ namespace blofeld
 
 		{ _field_real, "instance disappear distance", nullptr, "world units" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 1 },
+		{ _version_mode_less, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_tag_reference, "lod render model", &render_model_reference$2 },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_real, "midrange detail disappear distance", "distance at which the midrange detail disappears", "world units" },
 		{ _field_real, "close detail disappear distance", "distance at which the close detail disappears", "world units" },
 		{ _field_real, "tessellation max draw distance", nullptr, "world units" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_long_flags, "resource distance override flags", &model_lod_resource_distance_flags_definition },
 		{ _field_real, "medium priority distance" },
 		{ _field_real, "low priority distance" },
 
 		{ _field_block, "variants", &model_variant_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "region sort", &region_name_block },
 
 		{ _field_block, "instance groups", &global_model_instance_group_block },
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
+		{ _version_mode_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "old materials", &model_material_block_new_block },
 
 		{ _field_block, "model materials", FIELD_FLAG_READ_ONLY, &model_material_block_new_block },
 		{ _field_block, "new damage info", FIELD_FLAG_UNKNOWN0, &global_damage_info_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_struct, "damage info", &model_damage_info_struct },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "targets!", &model_target_block_old_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_block, "targets old", MAKE_OLD_NAMES("targets"), FIELD_FLAG_UNKNOWN0, &model_target_block_old_block },
 		{ _field_block, "model targets", &model_target_block_new_block },
 
@@ -104,7 +104,7 @@ namespace blofeld
 		{ _field_block, "runtime nodes", FIELD_FLAG_UNKNOWN0, &model_node_block },
 		{ _field_long_integer, "runtime node list checksum", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "model object data", &model_object_data_block },
 
 		FIELD_EXPLANATION_EX("more stuff", nullptr, FIELD_FLAG_NONE, ""),
@@ -117,10 +117,10 @@ namespace blofeld
 		{ _field_long_flags, "runtime flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &model_private_flags_definition },
 		{ _field_block, "scenario load parameters", &global_scenario_load_parameters_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "game mode render model override", &model_game_mode_render_model_override_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 5 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 5 },
 		{ _field_real_fraction, "Sky parallax percent", "If flag checked % between sky pos and camera pos 0=camera" },
 		{ _field_real, "shadow depth compare bias", "Default is 0.002" },
 		{ _field_real, "shadow slope scale bias", "controls cutoff point for shadows around edges.  Default is 81 degrees", "degrees" },
@@ -138,7 +138,7 @@ namespace blofeld
 		{ _field_tag_reference, "shield impact parameter override", FIELD_FLAG_UNKNOWN0, &global_shield_parameters_reference },
 		{ _field_tag_reference, "1st person shield impact parameter override", FIELD_FLAG_UNKNOWN0, &global_shield_parameters_reference },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_real, "runtime bounding radius", nullptr, "world units", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "runtime bounding offset", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 
@@ -175,7 +175,7 @@ namespace blofeld
 		{ _field_block, "objects", &model_variant_object_block },
 		{ _field_long_block_index, "instance group", "selects an instance group for this variant", &global_model_instance_group_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "muted nodes", "turn off animation on these named nodes and children", &model_variant_muted_node_block },
 
 		{ _field_array, "muted flag", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &g_node_flag_storage_array }, // #TODO: Fix this garbage, its 2:20am 
@@ -238,7 +238,7 @@ namespace blofeld
 		{ _field_byte_flags, "property flags", &model_state_property_flags_definition },
 		{ _field_enum, "state", FIELD_FLAG_INDEX, &model_state_enum_definition },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 2 },
+		{ _version_mode_less, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_tag_reference, "looping effect", &effect_reference },
 		{ _field_legacy, _field_string_id, "looping effect marker name" },
 
@@ -259,7 +259,7 @@ namespace blofeld
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "parent marker", FIELD_FLAG_INDEX },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_string_id, "parent controlling seat label", "the seat in my parent that will control me", FIELD_FLAG_INDEX },
 
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
@@ -267,7 +267,7 @@ namespace blofeld
 		{ _field_string_id, "child variant name", "optional" },
 		{ _field_tag_reference, "child object", &object_reference$5 },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_short_block_index, "damage section", &new_global_damage_section_block },
 		{ _field_byte_flags, "flags", &ModelVariantObjectFlagsDefinition },
 		FIELD_PAD_EX("MVOBP1", nullptr, FIELD_FLAG_NONE, 1),
@@ -573,16 +573,16 @@ namespace blofeld
 	{
 		FIELD_EXPLANATION_EX("lock-on fields", nullptr, FIELD_FLAG_NONE, ""),
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_long_flags, "flags", &model_target_lock_on_flags_definition },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_byte_flags, "flags", &model_target_lock_on_flags_definition },
 		FIELD_PAD_EX("SVLKJERAF", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_real, "lock on distance" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_string_id, "tracking type", "a weapon can track/lock on this target if this string is in the weapon's tracking block" },
 
 		{ _field_terminator }

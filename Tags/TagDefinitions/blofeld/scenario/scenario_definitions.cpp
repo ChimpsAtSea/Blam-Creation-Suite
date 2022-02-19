@@ -73,14 +73,14 @@ namespace blofeld
 		{ _field_short_integer, "primaryrounds loaded", "-1 = weapon default" },
 		{ _field_short_integer, "primaryrounds total", "-1 = weapon default" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "primaryage remaining", "0.0 = default, 1.0 = full" },
 
 		{ _field_tag_reference, "secondary weapon", &weapon_reference$5 },
 		{ _field_short_integer, "secondaryrounds loaded", "-1 = weapon default" },
 		{ _field_short_integer, "secondaryrounds total", "-1 = weapon default" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "secondaryage remaining", "0.0 = default, 1.0 = full" },
 
 		{ _field_char_integer, "starting fragmentation grenade count" },
@@ -88,7 +88,7 @@ namespace blofeld
 		{ _field_char_integer, "starting grenade 3 count" },
 		{ _field_char_integer, "starting grenade 4 count" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
+		{ _version_mode_greater, _engine_type_haloreach, 4 },
 		{ _field_char_integer, "starting grenade 5 count" },
 		{ _field_char_integer, "starting grenade 6 count" },
 		{ _field_char_integer, "starting grenade 7 count" },
@@ -96,7 +96,7 @@ namespace blofeld
 
 		{ _field_tag_reference, "starting equipment", &equipment_reference$2 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_string_id, "starting tactical package" },
 		{ _field_string_id, "starting support upgrade" },
 
@@ -327,14 +327,14 @@ namespace blofeld
 		{ _field_tag_reference, "structure bsp", FIELD_FLAG_INDEX, &structure_bsp_reference_non_resolving },
 		{ _field_tag_reference, "local structure bsp", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &structure_bsp_reference_non_resolving },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_tag_reference, "structure bsp lighting^*!", &structure_lighting_bsp_reference },
 
 		{ _field_tag_reference, "structure metadata", FIELD_FLAG_READ_ONLY, &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
 		FIELD_EXPLANATION_EX("Size Class", nullptr, FIELD_FLAG_NONE, "Tells lightmapper desired res for structure bitmaps.\nNumbers in parens are final sizes after compression"),
 		{ _field_long_enum, "size class", &scenario_structure_size_enum },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_enum, "refinement size class", &scenario_structure_refinement_size_enum },
 
 		{ _field_real, "hacky ambient min luminance" },
@@ -344,13 +344,13 @@ namespace blofeld
 		{ _field_word_flags, "flags", &scenario_structure_bsp_reference_flags_definition },
 		{ _field_short_block_index, "default sky", &scenario_sky_reference_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "unknown@" },
 
 		{ _field_tag_reference, "bsp specific cubemap", &scenario_cubemap_bitmap_reference },
 		{ _field_tag_reference, "wind", &global_wind_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 10 },
+		{ _version_mode_greater, _engine_type_haloreach, 10 },
 		{ _field_tag_reference, "authored light probe", &AuthoredLightProbeReference },
 		{ _field_tag_reference, "vehicle authored light probe", &AuthoredLightProbeReference },
 		{ _field_real, "max shadow count scale", "scale up or down the max number of shadows as set in the throttle tag per bsp" },
@@ -386,10 +386,10 @@ namespace blofeld
 		{ _field_tag_reference, "cloud texture", "red channel is used", &global_bitmap_reference },
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_word_block_flags, "active on bsps!" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		FIELD_PAD_EX("post-name-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_block_flags, "active on bsps", FIELD_FLAG_UNKNOWN0, &scenario_structure_bsp_reference_block },
 
@@ -513,7 +513,7 @@ namespace blofeld
 		{ _field_block, "cluster pvs", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_zone_set_cluster_pvs_block },
 		{ _field_block, "cluster pvs doors closed", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_zone_set_cluster_pvs_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 3 },
 		{ _field_legacy, _field_block, "sky index", &cluster_sky_index_block },
 		{ _field_legacy, _field_block, "visible sky index", &cluster_sky_index_block },
 		{ _field_legacy, _field_block, "unknown", &scenario_zone_set_bsp_pvs_unknown_block },
@@ -614,7 +614,7 @@ namespace blofeld
 		{ _field_long_block_flags, "runtime bsp zone flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_structure_bsp_reference_block },
 		{ _field_long_block_flags, "sruntime tructure design zone flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_design_reference_block }, // dear person at 343 or Bungie, you originally named this field "sruntime tructure design zone flags" and I think you're stupid
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_block_flags, "required designer zones", MAKE_OLD_NAMES("designer zone flags"), &scenario_designer_zone_block, _field_id_block_flags_32bit }, // #TODO: Research this. Not entirely what what flags are here or removed???
 
 		{ _field_qword_integer, "runtime designer zone flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY }, // could this just be 32bit in reach instead?
@@ -623,7 +623,7 @@ namespace blofeld
 		{ _field_long_block_index, "audibility index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &game_audibility_block },
 		{ _field_block, "planar fog visibility", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &planar_fog_zone_set_visibility_definition_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 8 },
+		{ _version_mode_greater, _engine_type_haloreach, 8 },
 		{ _field_block, "budget overrides", &scenario_zone_set_budget_override_block },
 		{ _field_tag_reference, "streaming_reference_tag", &streamingzoneset_reference },
 		{ _field_real_point_3d, "world bounds min", "Physics world will include this min point" },
@@ -852,7 +852,7 @@ namespace blofeld
 	{
 		{ _field_real_point_3d, "position" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 
@@ -989,10 +989,10 @@ namespace blofeld
 		{ _field_short_block_index, "decal palette index", &scenario_decal_palette_block },
 		{ _field_byte_flags, "flags", &decal_placement_flags },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_char_integer, "unknown" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		FIELD_PAD_EX("post-decal-palette-index-pad", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_struct, "manual bsp flags", FIELD_FLAG_READ_ONLY, &manualBspFlagsReferences },
 
@@ -1001,7 +1001,7 @@ namespace blofeld
 		{ _field_real, "scale x", MAKE_OLD_NAMES("scale") },
 		{ _field_real, "scale y" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "cull angle" },
 
 		{ _field_terminator }
@@ -1019,7 +1019,7 @@ namespace blofeld
 	{
 		{ _field_tag_reference, "reference", FIELD_FLAG_INDEX, &decal_system_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_integer, "max static bucket size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 
 		{ _field_terminator }
@@ -1054,10 +1054,10 @@ namespace blofeld
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_real_point_3d, "position" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_real_euler_angles_2d, "facing" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real_euler_angles_3d, "facing" },
 
 		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
@@ -1082,10 +1082,10 @@ namespace blofeld
 
 	V5_TAG_BLOCK(scenario_resources_reference_block, NUMBER_OF_SCENARIO_RESOURCE_TYPES)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_halo2 },
+		{ _version_mode_less_or_equal, _engine_type_halo2 },
 		{ _field_legacy, _field_tag_reference, "reference*", &scenario_resources_reference_block_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_halo2, 21 },
+		{ _version_mode_greater, _engine_type_halo2, 21 },
 		{ _field_legacy, _field_tag_reference, "scenery reference", &scenario_resources_reference_block_reference },
 		{ _field_legacy, _field_tag_reference, "bipeds reference", &scenario_resources_reference_block_reference },
 		{ _field_legacy, _field_tag_reference, "vehicles reference", &scenario_resources_reference_block_reference },
@@ -1129,18 +1129,18 @@ namespace blofeld
 
 	V5_TAG_BLOCK(scenario_resources_block, 1)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_halo2, 2 },
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_halo2, 2 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_long_integer, "unknown" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_halo2 },
+		{ _version_mode_less_or_equal, _engine_type_halo2 },
 		{ _field_legacy, _field_block, "references*", &scenario_resources_reference_block },
 
 		{ _field_legacy, _field_block, "Script Source*", &scenario_hs_source_reference_block },
 		{ _field_legacy, _field_block, "AI Resources*", &scenario_ai_resource_reference_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_halo2, 2 },
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_halo2, 2 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_block, "references*", &scenario_resources_reference_block },
 
 		{ _field_legacy, _field_terminator }
@@ -1164,7 +1164,7 @@ namespace blofeld
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "orientation" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
+		{ _version_mode_greater, _engine_type_haloreach, 4 },
 		{ _field_short_block_index, "zone set", &scenario_zone_set_block },
 		FIELD_PAD_EX("padd", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "" },
@@ -1649,7 +1649,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		SCENARIO_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "child scenarios", &scenario_child_references_block },
 
 		FIELD_CUSTOM_EX("link to scenario lightmap", nullptr, FIELD_FLAG_NONE, _field_id_unknown_compile),
@@ -1660,7 +1660,7 @@ namespace blofeld
 		{ _field_long_integer, "map id" },
 		{ _field_string_id, "map name", "Used to associate external resources with this map - e.g. PDA camera setting block names." },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 6 },
+		{ _version_mode_greater, _engine_type_haloreach, 6 },
 		{ _field_tag_reference, "Scenario sound bank", "Scenario-specific sound bank.", &global_soundbank_reference },
 		{ _field_tag_reference, "Scenario sound bank Number 2", "Another scenario-specific sound bank. All will be loaded.", &global_soundbank_reference },
 		{ _field_tag_reference, "Scenario sound bank Number 3", "Another scenario-specific sound bank. All will be loaded.", &global_soundbank_reference },
@@ -1711,7 +1711,7 @@ namespace blofeld
 		{ _field_block, "controls", &scenario_control_block },
 		{ _field_block, "control palette", &scenario_control_palette_block, _field_id_sort },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "dispensers", &ScenarioDispenserBlock_block },
 		{ _field_block, "dispenser palette", &ScenarioDispenserPaletteBlock_block, _field_id_sort },
 
@@ -1724,7 +1724,7 @@ namespace blofeld
 		{ _field_block, "spawners", &scenario_spawner_block },
 		{ _field_block, "spawner palette", &scenario_spawner_palette_block, _field_id_sort },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
+		{ _version_mode_greater, _engine_type_haloreach, 4 },
 		{ _field_block, "bink palette", &binkPaletteBlock_block, _field_id_sort },
 		{ _field_block, "scenario attached effects", &scenarioAttachedEffectsBlock_block },
 		{ _field_block, "scenario attached lens flares", &scenarioAttachedLensFlaresBlock_block },
@@ -1732,14 +1732,14 @@ namespace blofeld
 
 		{ _field_block, "map variant palettes", &map_variant_palette_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "legacy map variant palette info", &map_variant_legacy_palette_info_block },
 
 		{ _field_tag_reference, "multiplayer object types", &global_multiplayer_object_type_list_reference },
 		{ _field_char_enum, "multiplayer map size", &multiplayer_map_size_enum },
 		FIELD_PAD_EX("mulmapsizepad", nullptr, FIELD_FLAG_NONE, 3),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "Playtest req palette", "requisition for SvE, activated via an init.txt option for playtest balance", &scenario_requisition_palette_block, _field_id_sort },
 
 		{ _field_real, "player requisition frequency", nullptr, "seconds" },
@@ -1758,7 +1758,7 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("SPAWN INFLUENCE OVERRIDES", nullptr, FIELD_FLAG_NONE, "You can use the following to override multiplayer global spawn influencers for the scenario.  Default settings are defined in multiplayer/multiplayer_globals.multiplayer_globals."),
 		{ _field_tag_reference, "Spawn Settings", &g_spawnSettingsReference },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 10 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 10 },
 		{ _field_legacy, _field_block, "unknown@", &g_null_block }, // assumed
 		{ _field_legacy, _field_block, "unknown", &scenario_unknown_block },
 		{ _field_legacy, _field_block, "unknown", &scenario_unknown_block },
@@ -1774,7 +1774,7 @@ namespace blofeld
 		{ _field_block, "decals", &scenario_decals_block },
 		{ _field_block, "decal palette", &scenario_decal_palette_block, _field_id_sort },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_long_integer, "largest zoneset static decal memory size", "this is memory for the largest possible zoneset - default (0) is 2048", "kilobytes" },
 		{ _field_data, "static decal memory data", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "decal depth bias override (USE WITH CAUTION)", "you should not need to do this -- this is for a mission with strange collision geo" },
@@ -1791,23 +1791,23 @@ namespace blofeld
 		{ _field_block, "mission scenes", &ai_scene_block },
 		{ _field_block, "character palette", &character_palette_block, _field_id_sort },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "ai pathfinding data", &Tag::Reference<struct ai_pathfinding>::s_defaultDefinition },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "unknown@", &g_null_block }, // assumed
 
 		{ _field_block, "ai user hint data", &user_hint_block },
 		{ _field_block, "ai recording references", &ai_recording_reference_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 5 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 5 },
 		{ _field_legacy, _field_data, "script data" },
 		{ _field_legacy, _field_block, "scripts*", &hs_scripts_block },
 		{ _field_legacy, _field_block, "globals*", &hs_globals_block },
 		{ _field_legacy, _field_block, "references*", &hs_references_block },
 		{ _field_legacy, _field_block, "unknown@", &g_null_block }, // assumed
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_struct, "script data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &hs_script_data_struct },
 		{ _field_block, "manual script file references", &hs_source_reference_block },
 		{ _field_tag_reference, "compiled global scripts", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &Tag::Reference<struct HSScriptContainer>::s_defaultDefinition },
@@ -1819,7 +1819,7 @@ namespace blofeld
 		{ _field_tag_reference, "custom object names", &global_multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "chapter title text", &global_multilingual_unicode_string_list_reference },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_block, "scenario resources", &scenario_resources_block },
 		{ _field_legacy, _field_block, "hs unit seats!", &hs_unit_seat_block }, // gets moved into the new h4 tag group iirc
 
@@ -1829,10 +1829,10 @@ namespace blofeld
 		{ _field_block, "scenario requisition triggers", &scenario_requisition_trigger_volumes_block },
 		{ _field_block, "scenario location name triggers", &scenario_location_name_trigger_volumes_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "hs syntax datums", &hs_syntax_datum_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_block, "scenario unsafe spawn trigger volumes", &scenarioUnsafeSpawnZoneTriggerVolumesBlock_block },
 		{ _field_short_block_index, "scenario ordnance bounds trigger volume", &scenario_trigger_volume_block },
 		FIELD_PAD_EX("ordnandy", nullptr, FIELD_FLAG_NONE, 2),
@@ -1853,7 +1853,7 @@ namespace blofeld
 		{ _field_block, "flocks", &flock_instance_block },
 		{ _field_tag_reference, "subtitles", &global_multilingual_unicode_string_list_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_block, "soundSubtitles", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &SoundSubtitleBlock_block },
 
 		{ _field_block, "creatures", &scenario_creature_block },
@@ -1862,15 +1862,15 @@ namespace blofeld
 		{ _field_block, "editor folders", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
 		{ _field_tag_reference, "game engine strings", &global_multilingual_unicode_string_list_reference },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		FIELD_PAD_EX("QVUC", nullptr, FIELD_FLAG_NONE, 8),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		FIELD_PAD_EX("QVUC", nullptr, FIELD_FLAG_NONE, 4),
 
 		{ _field_block, "mission dialogue", &ai_scenario_mission_dialogue_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "voiceover", &Tag::Reference<struct MainMenuVoiceover>::s_defaultDefinition },
 
 		{ _field_tag_reference, "objectives", &global_multilingual_unicode_string_list_reference },
@@ -1880,18 +1880,18 @@ namespace blofeld
 		{ _field_tag_reference, "global screen effect", "ignores the falloff curves", &global_area_screen_effect_reference },
 		{ _field_tag_reference, "global ssao", &global_ssao_definition_reference },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_tag_reference, "sky atmosphere parameters", &global_sky_atmosphere_definition_reference },
 
 		{ _field_tag_reference, "atmosphere globals", "settings that apply to the entire scenario", &global_atmosphere_globals_reference },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_tag_reference, "global lighting", &global_chocolate_mountain_reference },
 
 		{ _field_tag_reference, "new lightmaps", &scenario_lightmap_reference },
 		{ _field_tag_reference, "performance throttles", &global_performance_throttles_reference },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "scenario unknown object", &scenario_unknown_object_reference_block }, // #TODO: ai related? (see ObjectReferenceFrames in tagtool for more information)
 
 		{ _field_block, "ai objectives", &objectives_block },
@@ -1899,11 +1899,11 @@ namespace blofeld
 		{ _field_block, "zone debugger", FIELD_FLAG_UNKNOWN0, &scenario_zone_debugger_block_definition_block },
 		{ _field_block, "decorators", &scenario_decorator_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_block, "neuticle palette", &scenario_cheap_particle_system_palette_block },
 		{ _field_block, "neuticles", &scenario_cheap_particle_systems_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		FIELD_EXPLANATION_EX("Scriptable Light Rigs", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_block, "scriptable light rigs", &scriptableLightRigBlock_block },
 
@@ -1918,7 +1918,7 @@ namespace blofeld
 		{ _field_block, "model references", FIELD_FLAG_READ_ONLY, &model_references_block },
 		{ _field_block, "thespian", MAKE_OLD_NAMES("performances"), &scenario_performances_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "puppetShows", &PuppetShowsBlock_block },
 
 		{ _field_tag_reference, "location name globals", &global_location_name_globals_reference },
@@ -1928,10 +1928,10 @@ namespace blofeld
 		{ _field_tag_reference, "required resources", &scenario_required_resource_reference },
 		{ _field_tag_reference, "variant globals", &variant_globals_reference },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_block, "structured buffer interops", &scenario_structured_buffer_interops_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 21 },
+		{ _version_mode_greater, _engine_type_haloreach, 21 },
 		{ _field_tag_reference, "ordnance map bitmap", &global_bitmap_reference },
 		{ _field_real_fraction_bounds, "ordnance map depth bounds" },
 		FIELD_EXPLANATION_EX("Random ordnance", nullptr, FIELD_FLAG_NONE, "Drops randomly selected set of ordnance at positions marked by drop_point objects."),
@@ -2084,7 +2084,7 @@ namespace blofeld
 		{ _field_real_vector_3d, "up", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real_point_3d, "position" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 

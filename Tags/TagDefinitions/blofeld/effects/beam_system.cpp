@@ -50,7 +50,7 @@ namespace blofeld
 		{ _field_legacy, _field_real, "edge fade range:degrees#degrees beyond cutoff over which tracers fade" },
 		{ _field_legacy, _field_real, "edge fade cutoff:degrees#degrees away from edge-on where fade is total" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_legacy, _field_real, "unknown" },
 		{ _field_legacy, _field_real, "unknown" },
 		{ _field_legacy, _field_real, "unknown" },

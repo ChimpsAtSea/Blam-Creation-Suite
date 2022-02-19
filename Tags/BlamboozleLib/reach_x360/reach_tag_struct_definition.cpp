@@ -36,7 +36,7 @@ template<> void byteswap_inplace(s_reach_x360_tag_struct_runtime& value)
 	byteswap_inplace(value.combined_fields);
 	byteswap_inplace(value.cache_file_struct_size);
 	byteswap_inplace(value.unknown98);
-	byteswap_inplace(value.unknown9C);
+	byteswap_inplace(value.num_combined_fields);
 	byteswap_inplace(value.unknownA0);
 	byteswap_inplace(value.unique_index);
 	byteswap_inplace(value.inlined_field_types);
@@ -94,7 +94,7 @@ c_reach_x360_tag_struct_definition::c_reach_x360_tag_struct_definition(const cha
 	structure_size(definition_header.type.structure_size),
 	alignment_bits(definition_header.type.alignment_bits),
 	persistent_identifier(definition_header.type.persistent_identifier),
-	struct_definitions{ definition_header },
+	struct_definitions{ { definition_header, c_reach_x360_tag_group_definition::current_group_traverse_hack } },
 	fields()
 {
 
@@ -109,20 +109,7 @@ c_reach_x360_tag_struct_definition::c_reach_x360_tag_struct_definition(const cha
 	}
 
 	ptr32 fields_address = definition_header.type.fields_address;
-	//if (pretty_name == "shader_particle_struct_definition")
-	if (definition_header.runtime.original_fields && definition_header.runtime.combined_fields)
-	{
-		const s_reach_x360_tag_field* combined_fields = (const s_reach_x360_tag_field*)reach_x360_pa_to_pointer(data, definition_header.runtime.combined_fields);
-		const s_reach_x360_tag_field* original_fields = (const s_reach_x360_tag_field*)reach_x360_pa_to_pointer(data, definition_header.runtime.original_fields);
-
-		c_reach_x360_tag_field* afield_wrapper = new c_reach_x360_tag_field(data, *combined_fields);
-		c_reach_x360_tag_field* bfield_wrapper = new c_reach_x360_tag_field(data, *original_fields);
-
-		debug_point;
-	}
-
 	const s_reach_x360_tag_field* const field_definitions = (const s_reach_x360_tag_field*)reach_x360_pa_to_pointer(data, fields_address);
-
 	const s_reach_x360_tag_field* field_definition = field_definitions;
 	ASSERT(field_definition);
 	do
@@ -134,15 +121,84 @@ c_reach_x360_tag_struct_definition::c_reach_x360_tag_struct_definition(const cha
 
 c_reach_x360_tag_struct_definition::~c_reach_x360_tag_struct_definition()
 {
-	for (c_reach_x360_tag_field* field_wrapper : fields)
-	{
-		delete field_wrapper;
-	}
+	clear_fields();
 }
 
-void c_reach_x360_tag_struct_definition::handle_conflict(const char* data, const s_reach_x360_tag_struct_definition& definition_header)
+void c_reach_x360_tag_struct_definition::handle_conflict(const char* data, const s_reach_x360_tag_struct_definition& conflicting_tag_struct_definition)
 {
-	struct_definitions.push_back(definition_header);
+	clear_fields(); // clear fields, they will be rebuild
+
+	// push the current definition header onto the back of the queue
+	struct_definitions.insert(struct_definitions.end(), { conflicting_tag_struct_definition, c_reach_x360_tag_group_definition::current_group_traverse_hack });
+
+	// make sure that we can compare with the original otherwise all hope is lost
+	// and poor squaresome might have to rewrite the tag system again
+	ASSERT(struct_definitions.front().first.runtime.original_fields == conflicting_tag_struct_definition.runtime.original_fields);
+	ASSERT(struct_definitions.front().second != c_reach_x360_tag_group_definition::current_group_traverse_hack);
+
+	// insert the original fields
+	{
+		ptr32 fields_address = conflicting_tag_struct_definition.runtime.original_fields;
+		const s_reach_x360_tag_field* const field_definitions = (const s_reach_x360_tag_field*)reach_x360_pa_to_pointer(data, fields_address);
+		const s_reach_x360_tag_field* field_definition = field_definitions;
+		ASSERT(field_definition);
+		do
+		{
+			c_reach_x360_tag_field* field_wrapper = new c_reach_x360_tag_field(data, *field_definition);
+			fields.push_back(field_wrapper);
+		} while ((field_definition++)->field_type != _reach_x360_field_type_terminator);
+	}
+	unsigned long num_original_fields = static_cast<unsigned long>(fields.size());
+
+	
+
+	// insert bespoke field fixups
+	for (auto& kv : struct_definitions)
+	{
+		const s_reach_x360_tag_struct_definition& definition_header = kv.first;
+		c_reach_x360_tag_group_definition& tag_group_definition = *kv.second;
+
+		unsigned long num_combined_fields = definition_header.runtime.num_combined_fields;
+		unsigned long num_insert_fields = num_combined_fields - num_original_fields;
+
+		ptr32 fields_address = definition_header.runtime.combined_fields;
+		const s_reach_x360_tag_field* const field_definitions = (const s_reach_x360_tag_field*)reach_x360_pa_to_pointer(data, fields_address);
+
+		const s_reach_x360_tag_field* field_definition = field_definitions;
+		ASSERT(field_definition);
+
+		t_fields temp_fields;
+
+		if (num_insert_fields > 0)
+		{
+			
+			c_reach_x360_tag_field_combined_fixup* versioning_field_wrapper = new c_reach_x360_tag_field_combined_fixup(tag_group_definition, num_insert_fields);
+			temp_fields.push_back(versioning_field_wrapper);
+
+			// #TODO: This might be way more complicated than assuming that these fields are always at the front
+			// but this fixup codepath is only required for a handful of tags
+			for (unsigned long combined_field_index = 0; combined_field_index < num_insert_fields; combined_field_index++, field_definition++)
+			{
+				c_reach_x360_tag_field* field_wrapper = new c_reach_x360_tag_field(data, *field_definition);
+				temp_fields.push_back(field_wrapper);
+			}
+
+			c_reach_x360_tag_field_dummy_space* dummy_space_wrapper = new c_reach_x360_tag_field_dummy_space();
+			temp_fields.push_back(dummy_space_wrapper);
+			
+			fields.insert(fields.begin(), temp_fields.begin(), temp_fields.end());
+
+		}
+
+		debug_point;
+	}
+
+
+
+	ASSERT(fields.size() > 0);
+	c_reach_x360_tag_field* last_field = dynamic_cast<c_reach_x360_tag_field*>(fields.back());
+	ASSERT(last_field != nullptr);
+	ASSERT(last_field->field_type == _reach_x360_field_type_terminator);
 
 	debug_point;
 }
@@ -201,4 +257,13 @@ c_reach_x360_tag_struct_definition* c_reach_x360_tag_struct_definition::reach_x3
 	}
 
 	return nullptr;
+}
+
+void c_reach_x360_tag_struct_definition::clear_fields()
+{
+	for (t_reach_x360_tag_field* field_wrapper : fields)
+	{
+		delete field_wrapper;
+	}
+	fields.clear();
 }

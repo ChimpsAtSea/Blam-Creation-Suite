@@ -51,7 +51,7 @@ namespace blofeld
 		{ _field_tag_reference, "sandbox text", &global_multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "sandbox object properties values", &g_sandbox_object_properties_interface_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
+		{ _version_mode_greater, _engine_type_haloreach, 4 },
 		{ _field_tag_reference, "effects", &global_multiplayer_effect_group_reference },
 		{ _field_block, "multiplayer roles", &global_team_role_block },
 		{ _field_block, "requisition constants", &requisition_constants_block },
@@ -70,10 +70,10 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TEAMDEFINITIONBLOCK_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real_rgb_color, "color" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 12 },
+		{ _version_mode_greater, _engine_type_haloreach, 12 },
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_real_rgb_color, "primary color" },
 		{ _field_real_rgb_color, "secondary color" },
@@ -201,7 +201,7 @@ namespace blofeld
 		{ _field_long_integer, "maximum frag count" },
 		{ _field_long_integer, "maximum plasma count" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "unknown", &multiplayer_unknown_block },
 
 		{ _field_block, "multiplayer constants", &multiplayer_constants_block },
@@ -210,7 +210,7 @@ namespace blofeld
 		{ _field_tag_reference, "scoreboard dead emblem bitmap", &global_bitmap_reference },
 		{ _field_tag_reference, "hill shader", &multiplayer_runtime_block_hill_shader_reference },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 5 }, // These will fucking break if you move macaque out of the blofeld namespace LMAO
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 5 }, // These will fucking break if you move macaque out of the blofeld namespace LMAO
 		{ _field_legacy, _field_tag_reference, "null intro hud", &chud_reference },
 		{ _field_legacy, _field_tag_reference, "sandbox intro hud", &chud_reference },
 		{ _field_legacy, _field_tag_reference, "megalo intro hud", &chud_reference },
@@ -226,7 +226,7 @@ namespace blofeld
 		{ _field_tag_reference, "co-op spawning globals", &global_coop_spawning_globals_reference },
 		{ _field_tag_reference, "megalo string_id table", &global_megalo_string_id_table_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "killcam parameters", "Used for non projectile killcams.", &Tag::Reference<struct KillCamCameraParameterDefinition>::s_defaultDefinition },
 
 		{ _field_terminator }
@@ -312,7 +312,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_CONSTANTS_BLOCK_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 14 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 14 },
 		{ _field_legacy, _field_struct, "unknown0", &multiplayer_constants_unknown_struct_struct_definition },
 		{ _field_legacy, _field_struct, "unknown1", &multiplayer_constants_unknown_struct_struct_definition },
 		{ _field_legacy, _field_struct, "unknown2", &multiplayer_constants_unknown_struct_struct_definition },
@@ -328,7 +328,7 @@ namespace blofeld
 		{ _field_legacy, _field_real, "unknownE4" },
 		{ _field_legacy, _field_real, "unknownE4" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		FIELD_EXPLANATION_EX("PLAYER SPAWN INFLUENCERS", nullptr, FIELD_FLAG_NONE, "These are the default spawn influencer settings which can be overridden by scenario tags"),
 		{ _field_tag_reference, "Default Spawn Settings", &g_spawnSettingsReference },
 

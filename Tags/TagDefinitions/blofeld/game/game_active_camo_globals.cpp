@@ -24,7 +24,7 @@ namespace blofeld
 		{ _field_struct, "camo value to transparency", "maps active-camo percentage to alpha for THIRD PERSON rendering", &scalar_function_named_struct },
 		{ _field_struct, "camo value to fp transparency", "maps active-camo percentage to alpha for FIRST PERSON rendering", &scalar_function_named_struct },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 6 },
+		{ _version_mode_greater, _engine_type_haloreach, 6 },
 		{ _field_struct, "camo distortion texture strength", &scalar_function_named_struct },
 		{ _field_real_vector_2d, "camo distortion scale" },
 		{ _field_real_vector_2d, "camo distortion translate speed" },

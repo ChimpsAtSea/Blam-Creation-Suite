@@ -19992,7 +19992,7 @@ namespace infinite {
 		{ _field_real, "AI player vehicle-on-AI weapon damage scale" },
 		{ _field_real, "Absolute Maximum AI Hearing Distance " },
 		{ _field_real, "Absolute Maximum AI Speech Distance " },
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Maximum Individual Prop Perceived Danger" },
 		FIELD_EXPLANATION("Sound Fraction", nullptr),
 		{ _field_real, "Quiet Perception Distance Fraction" },
@@ -20292,7 +20292,7 @@ namespace infinite {
 		"Launching",
 		"PreAndPostFire",
 		"AnimatedPosture",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Boarding"
 	};
 	STRING_LIST(i343actionsystemactiontype, i343actionsystemactiontype_strings, _countof(i343actionsystemactiontype_strings));
@@ -20669,7 +20669,7 @@ namespace infinite {
 		"BotTraversalBehavior",
 		"BotAcquireWeapon",
 		"BotAcquireEquipment",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"BotContestItem",
 		"BotGoToDebugGoalPosition",
 		"BotPickupObjective",
@@ -20677,7 +20677,7 @@ namespace infinite {
 		"BotAvoidBehavior",
 		"BotMeleeBehavior",
 		"BotGrenadeBehavior",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"BotThrowWeaponBehavior",
 		"BotDisengageBehavior",
 		"BotSeekTargetBehavior",
@@ -20937,7 +20937,7 @@ namespace infinite {
 		"Trigger latches",
 		"Melee weapon",
 		"Held objective (Flag, ball, etc)",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Should Throw Weapon"
 	};
 	STRING_LIST(botweaponusageflags, botweaponusageflags_strings, _countof(botweaponusageflags_strings));
@@ -20965,10 +20965,10 @@ namespace infinite {
 		{ _field_real, "Waypoint path distance" },
 		{ _field_angle, "Jump hint facing threshold (no clamber)" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Low weapon desirabilty to gear up" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		{ _field_real, "Objective path distance correction threshold" },
 		{ _field_real, "Hunt look at ambition distance" },
 
@@ -21032,7 +21032,7 @@ namespace infinite {
 		FIELD_GROUP_BEGIN("Combat"),
 		{ _field_struct, "Melee", &blofeld::infinite::botmeleetuningdefinition },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		FIELD_GROUP_BEGIN("Combat Dance"),
 		{ _field_real, "Reset initial combat dance delay time" },
 			
@@ -21054,7 +21054,7 @@ namespace infinite {
 		{ _field_angle, "Target is aiming check threshold" },
 		{ _field_real, "Avoid dangerous object jump chance" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_GROUP_END(),
 
 		FIELD_GROUP_END(),
@@ -21067,7 +21067,7 @@ namespace infinite {
 		{ _field_real, "'Low ground' height threshold" },
 		FIELD_GROUP_END(),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 11 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 11 },
 		FIELD_GROUP_BEGIN("Thrown Weapons"),
 		{ _field_real, "Thrown weapon delay min time" },
 		{ _field_real, "Thrown weapon delay noise time" },
@@ -21098,16 +21098,16 @@ namespace infinite {
 		{ _field_real, "Combat weapon switch desirability delta" },
 		{ _field_real, "Combat weapon switch distance delta" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_real, "Weapon switch from objective confidence limit" },
 		{ _field_real, "Weapon switch from objective combat distance limit" },
 
 		{ _field_real, "Initial hide point search radius" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Location Sensor Activation Distance Sq" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 5 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 5 },
 		{ _field_real, "Location Sensor Min Activation Distance Sq" },
 		{ _field_real, "Location Sensor Max Activation Distance Sq" },
 		{ _field_real, "Min location sensor delay time" },
@@ -21179,7 +21179,7 @@ namespace infinite {
 		{ _field_real, "Max ground awareness distance" },
 		{ _field_real, "Max air awareness distance" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_real, "Max shared awareness distance" },
 
 		{ _field_angle, "FOV Degrees" },
@@ -21221,7 +21221,7 @@ namespace infinite {
 		{ _field_real, "Max patrol pause time" },
 		{ _field_real, "Min Guard Distance" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Guard height difference threshold" },
 
 		FIELD_GROUP_END(),
@@ -21284,7 +21284,7 @@ namespace infinite {
 		{ _field_struct, "Awareness Tuning", &blofeld::infinite::botawarenesstuningdefinition },
 		{ _field_struct, "Guard Behavior Tuning", &blofeld::infinite::botguardbehaviortuningdefinition },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_struct, "Guard Ranked Behavior Tuning", &blofeld::infinite::botguardrankedbehaviortuningdefinition },
 
 		{ _field_struct, "Pickup Tuning", &blofeld::infinite::botpickuptuningdefinition },
@@ -21317,7 +21317,7 @@ namespace infinite {
 		"can use grapple back smack finisher",
 		"can use motion tracker",
 		"can avoid dangerous objects",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 4 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 4 },
 		"can avoid their own or teammates\' dangerous objects",
 		"can be aware of their teammates\' targets",
 		"can use guard ranking system",
@@ -21969,7 +21969,7 @@ namespace infinite {
 		{ _field_real, "Combat Status Active Cooldown" },
 		{ _field_real, "Postcombat clump state time" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 6 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 6 },
 		FIELD_EXPLANATION("Perceived Danger Impulses", nullptr),
 		{ _field_real, "Weapon Impact Danger Impulse" },
 		{ _field_real, "Bullet Impact Danger Impulse" },
@@ -22344,9 +22344,9 @@ namespace infinite {
 		"disallow hard stop",
 		"Disable velocity/throttle alignment",
 		"Fixed facing hunker",
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Zero Smash Cost",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Zero Smash Cost In Combat"
 	};
 	STRING_LIST(charactermovementflags, charactermovementflags_strings, _countof(charactermovementflags_strings));
@@ -22500,7 +22500,7 @@ namespace infinite {
 		{ _field_enum, "jump height", &blofeld::infinite::characterjumpheight },
 		FIELD_PAD("generated_pad113f", 2),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_block, "Full Body Animation Jump Preventers", &blofeld::infinite::animationexception_block },
 
 		{ _field_terminator }
@@ -22714,7 +22714,7 @@ namespace infinite {
 	STRINGS(longrangeattackflags)
 	{
 		"Take potshots while running",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Do not take cover"
 	};
 	STRING_LIST(longrangeattackflags, longrangeattackflags_strings, _countof(longrangeattackflags_strings));
@@ -23416,7 +23416,7 @@ namespace infinite {
 		"Allow anim when stuck and already berserked",
 		"Can berserk when no target visible",
 		"Stop berserk when target unassailable",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Ignore Hard Pings"
 	};
 	STRING_LIST(c_character_berserk_properties_internalberserkflags, c_character_berserk_properties_internalberserkflags_strings, _countof(c_character_berserk_properties_internalberserkflags_strings));
@@ -23510,7 +23510,7 @@ namespace infinite {
 		{ _field_real, "Min abort time" },
 		{ _field_real, "Min abort dist travelled" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Vertical Range Scalar" },
 
 		{ _field_real_fraction, "Zig-zag chance" },
@@ -23553,7 +23553,7 @@ namespace infinite {
 		{ _field_real, "Swoop accel time" },
 		{ _field_angle, "Swoop max deviation" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Swoop prediction" },
 
 		{ _field_terminator }
@@ -24552,7 +24552,7 @@ namespace infinite {
 		{ _field_real, "movement cooldown max" },
 
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		{ _field_real, "min reload chance" },
 		{ _field_real, "max reload chance" },
 
@@ -25308,7 +25308,7 @@ namespace infinite {
 		{ _field_real, "Search range" },
 		{ _field_real, "Minimum target range" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_real, "Desired target range" },
 		{ _field_real_fraction, "Search chance" },
 
@@ -25663,14 +25663,14 @@ namespace infinite {
 	{
 		"Explore",
 		"Hide",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Objective Path"
 	};
 	STRING_LIST(i343botsbotmarkuppointtype, i343botsbotmarkuppointtype_strings, _countof(i343botsbotmarkuppointtype_strings));
 
 	STRINGS(i343netprotocolgameoptionsmultiplayerteamdesignatorenum)
 	{
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 9 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 9 },
 		"defender",
 		"attacker",
 		"third party",
@@ -25681,7 +25681,7 @@ namespace infinite {
 		"eighth party",
 		"neutral",
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 9 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 9 },
 		"Defender",
 		"Attacker",
 		"ThirdParty",
@@ -25812,7 +25812,7 @@ namespace infinite {
 		NAVIGATIONGLOBALSDATA_ID,
 		1)
 	{
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		{ _field_byte_flags, "Clearance Flags", &blofeld::infinite::i343navigationclearanceflags },
 		FIELD_PAD("generated_pad9bf6", 3),
 
@@ -27290,7 +27290,7 @@ namespace infinite {
 		"force walk link",
 		"force movement link",
 		"vehicle link",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"crouch link"
 	};
 	STRING_LIST(pathfindinghinttype, pathfindinghinttype_strings, _countof(pathfindinghinttype_strings));
@@ -27439,7 +27439,7 @@ namespace infinite {
 		"ready_plasma_launcher",
 		"ready_weapon",
 		"weapon_pickup",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"spartan_equipment_pickup",
 		"surprised",
 		"lost_contact",
@@ -27977,7 +27977,7 @@ namespace infinite {
 		"team",
 		"root",
 		"everyone",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"mp_squad"
 	};
 	STRING_LIST(audiencetype, audiencetype_strings, _countof(audiencetype_strings));
@@ -28289,7 +28289,7 @@ namespace infinite {
 		{ _field_real, "player shoot min interval" },
 		{ _field_real, "actor shoot min interval" },
 		{ _field_real, "cover curse chance" },
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "2D speaker duration buffer" },
 		FIELD_EXPLANATION("Player look settings", nullptr),
 		{ _field_real, "player look max distance" },
@@ -28316,7 +28316,7 @@ namespace infinite {
 		{ _field_block, "default stimulus suppressors", &blofeld::infinite::defaultstimulussuppressorparam_block },
 		FIELD_EXPLANATION("Dialogue System Data Tags", nullptr),
 		{ _field_block, "DSD tags", &blofeld::infinite::dialoguesystemdatatagreference_block },
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pade870", 4),
 		{ _field_int64_integer, "runtime dialogue system data" },
 		{ _field_terminator }
@@ -29404,7 +29404,7 @@ namespace infinite {
 		"force walk link",
 		"force movement link",
 		"vehicle link",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"crouch link"
 	};
 	STRING_LIST(specialmovementflags, specialmovementflags_strings, _countof(specialmovementflags_strings));
@@ -30023,7 +30023,7 @@ namespace infinite {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		C_ANIMATION_DATA_SIZES_ID)
 	{
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 1 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 1 },
 		FIELD_EXPLANATION("Bad Names Warning", nullptr),
 
 		{ _field_long_integer, "static_node_flags" },
@@ -30694,11 +30694,11 @@ namespace infinite {
 	{
 		{ _field_long_block_index, "leg ik chain", &blofeld::infinite::s_animation_ik_chain_block },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_real, "standing compression limit" },
 		{ _field_real, "crouching compression limit" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_real_bounds, "standing compression limits" },
 		{ _field_real_bounds, "crouching compression limits" },
 
@@ -33405,12 +33405,12 @@ namespace infinite {
 	{
 		{ _field_struct, "AnyTag", &blofeld::infinite::anytag_struct_definition },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "parent", &blofeld::infinite::asset_category_globals_reference_tagref, _field_id_parent },
 
 		{ _field_block, "Asset Category Globals", &blofeld::infinite::assetcategorysetting_block },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad66d4", 4),
 
 		{ _field_terminator }
@@ -33453,7 +33453,7 @@ namespace infinite {
 		{ _field_string_id, "Variant Curve Name" },
 		{ _field_string_id, "Variant Name" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_string_id, "Invisible Curve Name" },
 
 		{ _field_real, "Animation Time" },
@@ -34118,7 +34118,7 @@ namespace infinite {
 		{ _field_real, "Cubemap Transition Far" },
 		{ _field_real, "Cubemap Transition Near" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_real, "Cubemap Max Count" },
 
 		{ _field_terminator }
@@ -34128,7 +34128,7 @@ namespace infinite {
 	{
 		"Override Cubemap Transition Far",
 		"Override Cubemap Transition Near",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Override Cubemap Max Count"
 	};
 	STRING_LIST(dynamiccubemaptransitionoverrideflagsdefinition, dynamiccubemaptransitionoverrideflagsdefinition_strings, _countof(dynamiccubemaptransitionoverrideflagsdefinition_strings));
@@ -34224,10 +34224,10 @@ namespace infinite {
 		{ _field_real, "Probe Lighting Depth Scalar Far" },
 		{ _field_real, "Probe Lighting Depth Scalar Far Distance" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_long_integer, "Only Evaluate Terrain Following Probe Volumes" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 4 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 4 },
 		{ _field_real, "Indirect Lighting Master Scalar Near" },
 		{ _field_real, "Indirect Lighting Master Scalar Near Distance" },
 		{ _field_real, "Indirect Lighting Master Scalar Far" },
@@ -34259,9 +34259,9 @@ namespace infinite {
 		"Override Probe Lighting Depth Scalar Near Distance",
 		"Override Probe Lighting Depth Scalar Far",
 		"Override Probe Lighting Depth Scalar Far Distance",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Override Only Evaluate Terrain Following Probes",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 4 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 4 },
 		"Override Master Scalar Near",
 		"Override Master Scalar Near Distance",
 		"Override Master Scalar Far",
@@ -34669,7 +34669,7 @@ namespace infinite {
 		"Override SSR Tonemap Strength",
 		"Override SSR Tonemap Clamp",
 		"Override Resolution",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Override SSR Enabled"
 	};
 	STRING_LIST(deferredreflectionsoverrideflagsdefinition, deferredreflectionsoverrideflagsdefinition_strings, _countof(deferredreflectionsoverrideflagsdefinition_strings));
@@ -34731,14 +34731,14 @@ namespace infinite {
 		"Override Shadow Fade End Distance",
 		"Override Global Opacity",
 		"Override Global Opacity First Person",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Override Global Opacity Fade Multiplier",
 		"Override Ray Start Bias",
 		"Override Ray Start Bias Far Distance",
 		"Override Ray Start Bias Offset At Far Distance",
 		"Override Ray Start Bias First Person",
 		"Override Bias Scalar For First Person Transitions",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 5 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 5 },
 		"Override Normal Bias First Person",
 		"Override Normal Bias Near Scalar",
 		"Override Normal Bias Far Scalar",
@@ -35211,7 +35211,7 @@ namespace infinite {
 		{ _field_struct, "Sky Fog", &blofeld::infinite::depthfogparameterdefinition },
 		{ _field_struct, "Volumetric Fog", &blofeld::infinite::volumetricfogparameterdefinition },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_struct, "Volumetric Fog Fade", &blofeld::infinite::volumetricfogfadeparameterdefinition },
 
 		{ _field_struct, "Volumetric Fog Performance", &blofeld::infinite::volumetricfogperformancedefinition },
@@ -35230,7 +35230,7 @@ namespace infinite {
 		"Override Ground Fog",
 		"Override Sky Fog",
 		"Override Volumetric Fog",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Override Volumetric Fog Fade",
 		"OverrideVolumetricFogPerformance",
 		"Override Fog Light",
@@ -35252,30 +35252,30 @@ namespace infinite {
 		{ _field_word_flags, "Flags", &blofeld::infinite::cloudshapeflagsdefinition },
 		FIELD_PAD("generated_padeb47", 2),
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Low Frequency Noise Scale" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_struct, "Low Frequency Noise Scale", &blofeld::infinite::speccontrolnodefloatexact },
 
 		{ _field_real, "Low Frequency Noise Strength" },
 		{ _field_real_vector_3d, "Low Frequency Noise Axis Scale" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "High Frequency Noise Scale" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_struct, "High Frequency Noise Scale", &blofeld::infinite::speccontrolnodefloatexact },
 
 		{ _field_real, "High Frequency Noise Strength" },
 		{ _field_real, "Curl Noise Scale" },
 		{ _field_real, "Curl Noise Strength" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_real, "Bottom Erosion Strength" },
 		{ _field_real, "Top Erosion Strength" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_struct, "Bottom Erosion Strength", &blofeld::infinite::speccontrolnodefloatexact },
 		{ _field_struct, "Top Erosion Strength", &blofeld::infinite::speccontrolnodefloatexact },
 
@@ -35310,12 +35310,12 @@ namespace infinite {
 		{ _field_word_flags, "Flags", &blofeld::infinite::cloudlightingflagsdefinition },
 		FIELD_PAD("generated_padf4f8", 2),
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 3 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 3 },
 		{ _field_real, "Beer Strength" },
 		{ _field_real, "Powder Strength" },
 		{ _field_real, "Cornette Shanks Strength" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 3 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 3 },
 		{ _field_struct, "Beer Strength", &blofeld::infinite::speccontrolnodefloatexact },
 		{ _field_struct, "Powder Strength", &blofeld::infinite::speccontrolnodefloatexact },
 		{ _field_struct, "Cornette Shanks Strength", &blofeld::infinite::speccontrolnodefloatexact },
@@ -35324,18 +35324,18 @@ namespace infinite {
 		{ _field_real, "Bottom Light" },
 		{ _field_real, "Clouds Fog Scale" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Clouds Fog Intensity" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_struct, "Clouds Fog Intensity", &blofeld::infinite::speccontrolnodefloatexact },
 
 		{ _field_real, "Clouds Mie Intensity" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Sunlight Intensity" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_struct, "Sunlight Intensity", &blofeld::infinite::speccontrolnodefloatexact },
 
 		{ _field_real_rgb_color, "Sunlight Color Tint" },
@@ -35386,7 +35386,7 @@ namespace infinite {
 		{ _field_real, "Opacity" },
 		{ _field_real, "Panning Clouds Shadows Scalar" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_real, "Panning Clouds Shadows Tilt" },
 
 		{ _field_terminator }
@@ -35401,7 +35401,7 @@ namespace infinite {
 		"Override Contrast Threshold",
 		"Override Opacity",
 		"Override Panning Clouds Shadows Scalar",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Override Panning Clouds Shadows Tilt"
 	};
 	STRING_LIST(cloudshadowsflagsdefinition, cloudshadowsflagsdefinition_strings, _countof(cloudshadowsflagsdefinition_strings));
@@ -35421,19 +35421,19 @@ namespace infinite {
 		{ _field_real_vector_2d, "Coverage Offset" },
 		{ _field_real_vector_2d, "Coverage Scroll Speed" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Coverage Strength" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_struct, "Coverage Strength", &blofeld::infinite::speccontrolnodefloatexact },
 
 		{ _field_real, "Horizon Distance" },
 		{ _field_real, "Atmosphere Start Height" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Atmosphere End Height" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_struct, "Atmosphere End Height", &blofeld::infinite::speccontrolnodefloatexact },
 
 		{ _field_real, "LOD Distance" },
@@ -35530,7 +35530,7 @@ namespace infinite {
 		FIELD_GROUP_BEGIN("PCSS Settings"),
 		{ _field_real, "PCSS Light Size" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "PCSS Minimum Filter Width" },
 
 		{ _field_real, "PCSS Maximum Filter Width" },
@@ -35558,7 +35558,7 @@ namespace infinite {
 		"Override Cascade Overlap",
 		"Override Min Shadow Caster Pixel Radius",
 		"Override PCSS Light Size",
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Override PCSS Minimum Filter Width",
 		"Override PCSS Maximum Filter Width",
 		"Override Number of Cascades",
@@ -35747,11 +35747,11 @@ namespace infinite {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STATEDEFINITION_ID)
 	{
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_word_flags, "Flags", &blofeld::infinite::stateflagsdefinition },
 		FIELD_PAD("generated_pad9190", 2),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_long_flags, "Flags", &blofeld::infinite::stateflagsdefinition },
 
 		{ _field_long_integer, "Interpolation Steps" },
@@ -35761,7 +35761,7 @@ namespace infinite {
 		{ _field_struct, "Dynamic Atmosphere", &blofeld::infinite::dynamicatmospheredefinition },
 		{ _field_struct, "Dynamic Cubemap Tinting", &blofeld::infinite::dynamiccubemaptintingdefinition },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_struct, "Dynamic Cubemap Transition", &blofeld::infinite::dynamiccubemaptransitiondefinition },
 
 		{ _field_struct, "Dynamic Camera FX", &blofeld::infinite::dynamiccamerafxdefinition },
@@ -35774,7 +35774,7 @@ namespace infinite {
 		{ _field_struct, "Dynamic Vista", &blofeld::infinite::dynamicvistadefinition },
 		{ _field_struct, "UI", &blofeld::infinite::dwsuidefinition },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_struct, "Dynamic Waterfall", &blofeld::infinite::dynamicwaterfalldefinition },
 
 		{ _field_terminator }
@@ -35788,7 +35788,7 @@ namespace infinite {
 		"Override Weather",
 		"Override Atmosphere",
 		"Override Cubemap Tinting",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Override Cubemap Transition",
 		"Override Camera FX",
 		"Override Fog",
@@ -35799,7 +35799,7 @@ namespace infinite {
 		"Override CVW Light Controls",
 		"Override Vista",
 		"Override UI",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Override Waterfall"
 	};
 	STRING_LIST(stateflagsdefinition, stateflagsdefinition_strings, _countof(stateflagsdefinition_strings));
@@ -35840,10 +35840,10 @@ namespace infinite {
 		{ _field_long_integer, "Priority" },
 		{ _field_byte_flags, "Flags", &blofeld::infinite::eventlistflagsdefinition },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		FIELD_PAD("generated_pad3e4a", 3),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		{ _field_byte_flags, "Disable Sun Angle Estimation", &blofeld::infinite::disablesunangleestimationflag },
 		FIELD_PAD("generated_pad3e4a", 2),
 
@@ -35917,8 +35917,8 @@ namespace infinite {
 		{ _field_block, "Event Lists", &blofeld::infinite::eventlistdefinition_block },
 		{ _field_block, "Event List Mappings", &blofeld::infinite::eventlistmapping_block },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } }, // don't apply below version rule
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } }, // don't apply below version rule
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_paddc42", 4),
 
 		{ _field_terminator }
@@ -37035,7 +37035,7 @@ namespace infinite {
 		"is grid enabled",
 		"is procedurally generated",
 		"exclude from default map variant",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		"generate navdata for crouching characters",
 		"generate navdata on smaller areas"
 	};
@@ -37293,7 +37293,7 @@ namespace infinite {
 		{ _field_long_flags, "flags", &blofeld::infinite::kitplacementflags },
 		{ _field_block, "String Properties", &blofeld::infinite::kitplacementlabel_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_char_enum, "bsp policy", &blofeld::infinite_f2::c_kit_bsp_placement_policy, _field_id_enum },
 		FIELD_PAD("generated_padd877", 3),
 
@@ -37336,7 +37336,7 @@ namespace infinite {
 		{ _field_long_flags, "flags", &blofeld::infinite::kitplacementflags },
 		{ _field_block, "String Properties", &blofeld::infinite::kitplacementlabel_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_char_enum, "bsp policy", &blofeld::infinite_f2::c_kit_bsp_placement_policy, _field_id_enum },
 		FIELD_PAD("generated_padd877", 3),
 
@@ -37522,13 +37522,13 @@ namespace infinite {
 		{ _field_long_integer, "guid" },
 		{ _field_dword_integer, "hlodIndex" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_word_flags, "placementFlags", &blofeld::infinite::placementflagsdefinition },
 		FIELD_PAD("generated_padce83", 2),
 
 		{ _field_string_id, "styleId" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad1b38", 4),
 
 		{ _field_int64_integer, "styleTagOverride" },
@@ -37560,7 +37560,7 @@ namespace infinite {
 		"exclude from intel map",
 		"Exclude from broadphase calculation",
 		"can generate decorators",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"isHLOD"
 	};
 	STRING_LIST(instancedgeometryflags, instancedgeometryflags_strings, _countof(instancedgeometryflags_strings));
@@ -37737,7 +37737,7 @@ namespace infinite {
 		{ _field_short_block_index, "Background", &blofeld::infinite::i343valorrewardsbackgroundbitmap_block },
 		{ _field_long_integer, "Sprite Index" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_enum, "Damage Type", &blofeld::infinite::i343valorrewardsdamagetype },
 		FIELD_PAD("generated_pad0c76", 2),
 
@@ -37858,7 +37858,7 @@ namespace infinite {
 		FIELD_PAD("generated_pad77b4", 2),
 		{ _field_block, "BSPs", &blofeld::infinite::hlodbsp_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_block, "BSPs involved by all children", &blofeld::infinite::hlodbsp_block },
 
 		{ _field_real, "SwitchDistance" },
@@ -37869,7 +37869,7 @@ namespace infinite {
 		FIELD_PAD("generated_pad9195", 2),
 		{ _field_struct, "Visibility Camera Sphere Settings", &blofeld::infinite::hlodsimplygoncustomspherecamerapath },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_padde4a", 4),
 
 		{ _field_terminator }
@@ -38048,7 +38048,7 @@ namespace infinite {
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("HLOD settings"),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 3 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 3 },
 		FIELD_GROUP_BEGIN("Multi BSP HLOD Settings"),
 		{ _field_struct, "Multi BSP HLOD Settings", &blofeld::infinite::autohlodlevelsettings },
 		FIELD_GROUP_END(),
@@ -38136,7 +38136,7 @@ namespace infinite {
 		{ _field_struct, "Aggregation", &blofeld::infinite::hlodsimplygonaggregationsettings },
 		FIELD_GROUP_END(),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 3 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 3 },
 		FIELD_GROUP_BEGIN("Shadow Settings"),
 		{ _field_struct, "Shadow", &blofeld::infinite::hlodshadowsettings },
 		FIELD_GROUP_END(),
@@ -39074,13 +39074,13 @@ namespace infinite {
 	{
 		{ _field_struct, "AnyTag", &blofeld::infinite::anytag_struct_definition },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_GROUP_BEGIN("Regions"),
 
 		{ _field_block, "Visual region names", &blofeld::infinite::visualregionnameblock_block },
 		{ _field_block, "Property regions", &blofeld::infinite::propertyregion_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_GROUP_END(),
 
 		FIELD_GROUP_BEGIN("Component Tags/Files"),
@@ -39106,7 +39106,7 @@ namespace infinite {
 		{ _field_char_enum, "HLOD policy", &blofeld::infinite::hlodpolicy },
 		FIELD_PAD("generated_padebca", 3),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 6 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 6 },
 		FIELD_GROUP_BEGIN("Streaming Settings"),
 		{ _field_long_integer, "Number of LODS to make required" },
 		{ _field_char_enum, "Default Load Variant Policy", &blofeld::infinite::rendermodeldefaultloadvariantpolicy },
@@ -39119,17 +39119,17 @@ namespace infinite {
 		{ _field_string_id, "Default variant name", _field_id_sted },
 		{ _field_block, "Asset variants", &blofeld::infinite::assetvariant_block },
 		{ _field_block, "Unique geometry", &blofeld::infinite::uniqueassetgeometryvariant_block },
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_char_enum, "Default Load Variant Policy", &blofeld::infinite::rendermodeldefaultloadvariantpolicy },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Static Collision Generation Settings"),
 		{ _field_char_enum, "Static collision build policy", &blofeld::infinite::staticcollisionbuildpolicy },
 		{ _field_char_enum, "Static collision decals policy", &blofeld::infinite::staticcollisiondecalspolicy },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad8534", 2),
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad387f", 1),
 
 		FIELD_GROUP_END(),
@@ -39139,7 +39139,7 @@ namespace infinite {
 		{ _field_word_flags, "Converted Play Collision LOD flags", &blofeld::infinite::meshlodflagsdefinition },
 		FIELD_GROUP_END(),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 3 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 3 },
 		FIELD_GROUP_BEGIN("Model Generation Settings"),
 		{ _field_long_enum, "Generate Customization Damage Variant", &blofeld::infinite::assetgeneratecustomizationdamagevariantpolicy },
 		FIELD_GROUP_END(),
@@ -39157,8 +39157,8 @@ namespace infinite {
 		{ _field_struct, "Validation", &blofeld::infinite::contentvalidationblockdata },
 		FIELD_GROUP_END(),
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_padd1e9", 4),
 
 		{ _field_terminator }
@@ -39764,7 +39764,7 @@ namespace infinite {
 		"Reset Motion to First Frame",
 		"Hide for First Frame",
 		"Blend Root Bone in Inertialization",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Use Linear Blend"
 	};
 	STRING_LIST(composeranimationflags, composeranimationflags_strings, _countof(composeranimationflags_strings));
@@ -40266,7 +40266,7 @@ namespace infinite {
 		{ _field_string_id, "Cage Camera Blend-Out Variant" },
 		{ _field_real, "Cinematic LOD Scale" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 6 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 6 },
 		FIELD_GROUP_BEGIN("Transition Fade Overrides"),
 		{ _field_real, "Vehicle Transition Fade Time Override" },
 		{ _field_real, "Support Transition Fade Time Override" },
@@ -40332,7 +40332,7 @@ namespace infinite {
 		"Split-Screen Camera",
 		"Skip All Scenes",
 		"Disable Fade-In After Skip",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 3 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 3 },
 		"Fade Vehicle Transition",
 		"Fade Support Transition",
 		"Fade Airborne Transition"
@@ -40400,18 +40400,18 @@ namespace infinite {
 		FIELD_GROUP_END(),
 		{ _field_block, "Stage Cleanup Preserve", &blofeld::infinite::composerstagecleanupreference_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_block, "Stage Cleanup Destroy", &blofeld::infinite::composerstagecleanupreference_block },
 			
 		FIELD_GROUP_BEGIN("Streaming Ranges"),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Stream Composition Resources Radius" },
 
 		{ _field_real, "Stream Pinned Resources Radius" },
 		FIELD_GROUP_END(),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 6 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 6 },
 		FIELD_GROUP_BEGIN("Transition Fade Times"),
 		{ _field_real, "Default Vehicle Transition Fade Time" },
 		{ _field_real, "Default Support Transition Fade Time" },
@@ -40658,7 +40658,7 @@ namespace infinite {
 		FIELD_PAD("generated_pad6634", 3),
 		FIELD_GROUP_BEGIN("Streaming Range Overrides"),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Stream Composition Resources Radius Override" },
 
 		{ _field_real, "Stream Pinned Resources Radius Override" },
@@ -40684,7 +40684,7 @@ namespace infinite {
 		"Carried Items",
 		"Vehicles",
 		"Enemy AI",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Disallowed Objects"
 	};
 	STRING_LIST(stagevolumeflags, stagevolumeflags_strings, _countof(stagevolumeflags_strings));
@@ -40693,7 +40693,7 @@ namespace infinite {
 	{
 		"Manual Streaming",
 		"Pin On Level Load",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Preload On Layer Load",
 		"Unload When Finished",
 		"Use Volume for Position"
@@ -40881,7 +40881,7 @@ namespace infinite {
 		"Create If Missing",
 		"Destroy When Finished",
 		"Hide On End",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Keep Enabled When Finished"
 	};
 	STRING_LIST(subactionobjectflags, subactionobjectflags_strings, _countof(subactionobjectflags_strings));
@@ -41724,7 +41724,7 @@ namespace infinite {
 		"Deathless",
 		"Invincible",
 		"AI Vehicle",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		"AI Aware Of Player On Release",
 		"AI Look At Player On Release",
 		"Preserve Velocity",
@@ -41733,7 +41733,7 @@ namespace infinite {
 		"Blend World Position",
 		"No Ready Weapon",
 		"No Restore Limbo",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Use Player Action Pose Weapon"
 	};
 	STRING_LIST(composerpuppetflags, composerpuppetflags_strings, _countof(composerpuppetflags_strings));
@@ -41968,7 +41968,7 @@ namespace infinite {
 		"Use Time Instead",
 		"Transition Out Trigger on Event",
 		"Don\'t Wait for HUD",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Don\'t Hide FPS HUD Elements"
 	};
 	STRING_LIST(composercagetransitionflags, composercagetransitionflags_strings, _countof(composercagetransitionflags_strings));
@@ -43207,7 +43207,7 @@ namespace infinite {
 		{ _field_tag, "runtime base group tag" },
 		{ _field_char_enum, "game mode", &blofeld::infinite::effectgamemode },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 5 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 5 },
 		{ _field_char_enum, "secondary position type", &blofeld::infinite::effectsecondarypositiontype },
 		{ _field_char_enum, "secondary rotation type", &blofeld::infinite::effectsecondaryrotationtype },
 		FIELD_PAD("generated_padae78", 1),
@@ -43216,10 +43216,10 @@ namespace infinite {
 
 		{ _field_char_enum, "Accessibility Type", &blofeld::infinite::partaccessibilitytype },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad61c3", 3),
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_padae78", 2),
 
 		{ _field_tag_reference, "type", &blofeld::infinite::_reference$64_tagref },
@@ -43285,7 +43285,7 @@ namespace infinite {
 		"any",
 		"campaign only",
 		"multiplayer only",
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 5 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 5 },
 		"campaign only not cinematics",
 		"campaign cinematics only",
 		"campaign solo only",
@@ -45995,7 +45995,7 @@ namespace infinite {
 		{ _field_struct, "AnyTag", &blofeld::infinite::anytag_struct_definition },
 		{ _field_int64_integer, "hash" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 14 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 14 },
 		{ _field_pageable, "sourceResource", &blofeld::infinite::hssource_v1 },
 		{ _field_byte_flags, "sourceDirectiveFlags", &blofeld::infinite::hssourcedirectiveflags },
 		{ _field_struct, "objectScriptDefinition", &blofeld::infinite::objectscriptdefinition },
@@ -46011,7 +46011,7 @@ namespace infinite {
 		{ _field_block, "Postprocess Error Messages", &blofeld::infinite::hssourceruntimeerrormessage_block },
 		FIELD_PAD("generated_pad2f27", 4),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 12 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 12 },
 		{ _field_byte_flags, "sourceDirectiveFlags", &blofeld::infinite::hssourcedirectiveflags },
 		{ _field_struct, "objectScriptDefinition", &blofeld::infinite::objectscriptdefinition },
 		FIELD_PAD("generated_pade272", 3),
@@ -46445,7 +46445,7 @@ namespace infinite {
 		{ _field_enum, "Tintable", &blofeld::infinite::cubemapboolean },
 		FIELD_PAD("generated_pad93d5", 2),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_real, "Relevancy Radius" },
 
 		{ _field_terminator }
@@ -47405,7 +47405,7 @@ namespace infinite {
 		{ _field_struct, "Force shadow LOD. 0 = Use default behavior, 1 = Force lowest LOD, 2 = Next higher LOD, and so forth.", &blofeld::infinite::speccontrolnodeshort },
 		{ _field_struct, "HexGrid shadows. 0 = render as hexes, 1 = render simplified, anything else = disable hex shadows", &blofeld::infinite::speccontrolnodeshort },
 		
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_struct, "PCSS Minimum Filter Width", &blofeld::infinite::speccontrolnodefloatexact },
 		
 		FIELD_GROUP_END(),
@@ -47481,7 +47481,7 @@ namespace infinite {
 		FIELD_GROUP_BEGIN("PCSS Settings"),
 		{ _field_real, "PCSS Light Size" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "PCSS Minimum Filter Width" },
 
 		{ _field_real, "PCSS Maximum Filter Width" },
@@ -47895,7 +47895,7 @@ namespace infinite {
 		FIELD_GROUP_END(),
 		{ _field_struct, "Indirect irradiance probe settings", &blofeld::infinite::indirectirradianceprobesettings },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad54e9", 4),
 
 		{ _field_terminator }
@@ -48491,7 +48491,7 @@ namespace infinite {
 		"Stream Atomically",
 		"Contains unsupported objects",
 		"Contains always placed objects",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Stream With Target Bsp"
 	};
 	STRING_LIST(runtimelayerflags, runtimelayerflags_strings, _countof(runtimelayerflags_strings));
@@ -48600,7 +48600,7 @@ namespace infinite {
 		{ _field_tag_reference, "structure metadata", &blofeld::infinite::structure_meta_reference_tagref },
 		{ _field_string_id, "load variant name" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "streaming distance expansion" },
 
 		{ _field_word_flags, "flags", &blofeld::infinite::scenariostructurebspreferenceflags },
@@ -48963,9 +48963,9 @@ namespace infinite {
 		"Decouple DWS / Sky Hand Painted",
 		"Decouple DWS / Sky Atm. Scattering",
 		"Decouple DWS / Sky Vol. Clouds",
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Disable Sun Shadows",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Disable Sun"
 	};
 	STRING_LIST(scenariorenderdataflags, scenariorenderdataflags_strings, _countof(scenariorenderdataflags_strings));
@@ -49618,7 +49618,7 @@ namespace infinite {
 		{ _field_block, "scenario cluster data", &blofeld::infinite::s_scenario_cluster_data_block },
 		{ _field_tag_reference, "multiplayer object types", &blofeld::infinite::multiplayer_object_type_list_reference_tagref },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		FIELD_PAD("generated_pad6f1f", 4),
 		{ _field_int64_integer, "lightConeConstants" },
 
@@ -49678,7 +49678,7 @@ namespace infinite {
 		{ _field_block, "Preimported Animation Node Graphs", &blofeld::infinite::preimportedanimnodegraphreference_block },
 		{ _field_block, "Sorted Module Lookup Table", &blofeld::infinite::modulelookupkey_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		FIELD_EXPLANATION("Lua User Libraries", nullptr),
 		{ _field_block, "Lua User Libraries", &blofeld::infinite::s_luauserlibrary_block },
 
@@ -50723,7 +50723,7 @@ namespace infinite {
 		{ _field_long_integer, "base material count" },
 		{ _field_block, "obb volume list", &blofeld::infinite::s_structure_bsp_obb_volume_block },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 4 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 4 },
 		{ _field_block, "IO hierarchy", &blofeld::infinite::i343graphicshierarchynode_block },
 		{ _field_long_integer, "IO hierarchy Flags", _field_id_zero_data },
 		{ _field_long_integer, "IO hierarchy Vector1", _field_id_zero_data },
@@ -50760,7 +50760,7 @@ namespace infinite {
 		{ _field_long_integer, "bitmaps Vector1", _field_id_zero_data },
 		{ _field_long_integer, "bitmaps Vector2", _field_id_zero_data },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 8 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 8 },
 		{ _field_block, "uniqueIos", &blofeld::infinite_f2::bspuniquestreamingio_block },
 		{ _field_long_integer, "uniqueIos Flags", _field_id_zero_data },
 		{ _field_long_integer, "uniqueIos Vector1", _field_id_zero_data },
@@ -50773,10 +50773,10 @@ namespace infinite {
 		{ _field_block, "decorator sets", &blofeld::infinite::s_decorator_scenario_set_placements_block },
 		{ _field_block, "decorator runtime", &blofeld::infinite::i343decoratorsdecoratorruntime_block },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		FIELD_PAD("generated_pad8b4a", 4),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		{ _field_byte_flags, "render flags", &blofeld::infinite::structurebsprenderflags },
 		FIELD_PAD("generated_pad8b4a", 3),
 
@@ -53477,7 +53477,7 @@ namespace infinite {
 		"Notify End Of Loop",
 		"Enable Input Smoothing",
 		"Opt Out Of Procedural Footsteps",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Enable Aimscreen Style Triangle Limits"
 	};
 	STRING_LIST(blendspaceflags, blendspaceflags_strings, _countof(blendspaceflags_strings));
@@ -55307,7 +55307,7 @@ namespace infinite {
 	{
 		"Make physical children keyframed",
 		"Use physics for collision",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Use aggressive deactivation for havok bodies"
 	};
 	STRING_LIST(i343assetphysicsassetphysicsflags, i343assetphysicsassetphysicsflags_strings, _countof(i343assetphysicsassetphysicsflags_strings));
@@ -56065,7 +56065,7 @@ namespace infinite {
 		"Use as dynamic collision geometry",
 		"Use as invisible wall",
 		"Use as custom shadow caster geometry",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Use as custom shadow caster geometry (alpha support)"
 	};
 	STRING_LIST(meshusageflagsdefinition, meshusageflagsdefinition_strings, _countof(meshusageflagsdefinition_strings));
@@ -57849,7 +57849,7 @@ namespace infinite {
 	STRINGS(materialstylestagpreloadswatchoptionflags)
 	{
 		"Preload All Swatches",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Dont Preload Swatches"
 	};
 	STRING_LIST(materialstylestagpreloadswatchoptionflags, materialstylestagpreloadswatchoptionflags_strings, _countof(materialstylestagpreloadswatchoptionflags_strings));
@@ -58850,7 +58850,7 @@ namespace infinite {
 		FIELD_PAD("generated_padfca1", 3),
 		{ _field_real, "Priority Factor" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_byte_flags, "Graph Flags", &blofeld::infinite::exportedobjectnodegraphgraphflags },
 		FIELD_PAD("generated_pad4956", 3),
 
@@ -58911,7 +58911,7 @@ namespace infinite {
 		{ _field_block, "Set Graph Update Mode Nodes", &blofeld::infinite::setgraphupdatemodedata_block },
 		{ _field_block, "Wind Speed Nodes", &blofeld::infinite::windspeednodedata_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad6337", 4),
 
 		{ _field_terminator }
@@ -59027,11 +59027,11 @@ namespace infinite {
 	{
 		{ _field_long_block_index, "IK Chain", &blofeld::infinite::skeletonikchain_block },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_real, "Standing Compression Limit" },
 		{ _field_real, "Crouching Compression Limit" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_real_bounds, "Standing Compression Limits" },
 		{ _field_real_bounds, "Crouching Compression Limits" },
 
@@ -59398,14 +59398,14 @@ namespace infinite {
 	{
 		{ _field_struct, "AnyTag", &blofeld::infinite::anytag_struct_definition },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "Terrain System", &blofeld::infinite::terrain_system_reference$3_tagref },
 
 		{ _field_dword_integer, "Tile X Index" },
 		{ _field_dword_integer, "Tile Y Index" },
 		{ _field_block, "Parameters", &blofeld::infinite::i343graphicsrendergraphparameterdefinitionb_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad4100", 4),
 
 		{ _field_terminator }
@@ -59736,10 +59736,10 @@ namespace infinite {
 		{ _field_block, "bounding spheres", &blofeld::infinite::materialconstant_block },
 		FIELD_PAD("generated_padb0cd", 4),
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_int64_integer, "m_pipelineStates" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_int64_integer, "m_runtimeState" },
 
 		{ _field_terminator }
@@ -60323,7 +60323,7 @@ namespace infinite {
 		{ _field_real, "SSR Tonemap Clamp" },
 		{ _field_struct, "Resolution", &blofeld::infinite::speccontrolnodefloat },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_struct, "SSR Enabled", &blofeld::infinite::speccontrolnodeboolexact },
 		FIELD_PAD("generated_pad2316", 3),
 
@@ -60366,7 +60366,7 @@ namespace infinite {
 		{ _field_real, "Global Opacity" },
 		{ _field_real, "Global Opacity First Person" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_struct, "Global Opacity Fade Multiplier", &blofeld::infinite::speccontrolnodefloatexact },
 
 		{ _field_real, "Ray Start Bias" },
@@ -60375,7 +60375,7 @@ namespace infinite {
 		{ _field_real, "Ray Start Bias First Person" },
 		{ _field_real, "First Person Transition Scalar" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 5 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 5 },
 		{ _field_real, "Normal Bias First Person" },
 		{ _field_real, "Normal Bias Near" },
 		{ _field_real, "Normal Bias Far" },
@@ -60467,7 +60467,7 @@ namespace infinite {
 		{ _field_struct, "contact shadows", &blofeld::infinite::camera_fx_settingscontactshadowsparameter },
 		FIELD_IFP_END(),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		FIELD_PAD("generated_pad3e12", 4),
 
 		{ _field_terminator }
@@ -60563,7 +60563,7 @@ namespace infinite {
 
 	STRINGS(i343hexgridhexsidehiddenflags)
 	{
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		"top cap",
 		"bottom cap",
 		"side 0",
@@ -60572,7 +60572,7 @@ namespace infinite {
 		"side 3",
 		"side 4",
 		"side 5",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		"top cap",
 		"bottom cap"
 	};
@@ -61245,12 +61245,12 @@ namespace infinite {
 	{
 		{ _field_block, "Material Layers Indices", &blofeld::infinite::i343terrainnodelayerindex_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_block, "Placement Layers Indices", &blofeld::infinite::i343terrainnodelayerindex_block },
 
 		{ _field_block, "Texture Remap Info", &blofeld::infinite::i343terrainquadtreenodebitmapremapinfo_block },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_block, "Placement Layers", &blofeld::infinite::i343surfacingplacementlayer_block },
 
 		{ _field_block, "Input Bitmap Indices", &blofeld::infinite::i343terrainnodebitmapindex_block },
@@ -61321,7 +61321,7 @@ namespace infinite {
 		{ _field_block, "Shared Gpu Interpreter Instructions", &blofeld::infinite::i343layergpuinterpreterbytecode_block },
 		{ _field_block, "Shared Node Material Layers", &blofeld::infinite::i343terrainruntimetagsharednodemateriallayerblock_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_block, "Shared Node Placement Layers", &blofeld::infinite::i343terrainruntimetagsharednodeplacementlayerblock_block },
 
 		{ _field_data, "Material Layer Data" },
@@ -61334,7 +61334,7 @@ namespace infinite {
 		{ _field_struct, "Micro Height Mip Level", &blofeld::infinite::s_basic_spec_control_setting_int },
 		{ _field_real, "Micro Height Scale" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_padfa1a", 4),
 
 		{ _field_int64_integer, "Runtime Terrain System" },
@@ -61552,7 +61552,7 @@ namespace infinite {
 		{ _field_real, "VolFog Local Light Range Near" },
 		{ _field_real, "VolFog Local Light Range Far" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_real, "VolFog Start Fade Distance" },
 		{ _field_real, "VolFog Fade Range" },
 
@@ -61739,7 +61739,7 @@ namespace infinite {
 		{ _field_string_id, "Notify Overheated" },
 		{ _field_string_id, "Heat Warning" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_long_integer, "damage sprite index" },
 
 		{ _field_terminator }
@@ -62924,7 +62924,7 @@ namespace infinite {
 		"enemy",
 		"must have an unobstructed path to target",
 		"can target neutral",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"can target last impacted object"
 	};
 	STRING_LIST(i343projectilestargetacquisitionfilterflags, i343projectilestargetacquisitionfilterflags_strings, _countof(i343projectilestargetacquisitionfilterflags_strings));
@@ -62960,16 +62960,16 @@ namespace infinite {
 		{ _field_enum, "orientation", &blofeld::infinite::i343projectilesesubmunitionorientation },
 		{ _field_enum, "trigger", &blofeld::infinite::i343projectilesesubmunitiontrigger },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_byte_flags, "flags", &blofeld::infinite::i343projectilessubmunitionflags },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_word_flags, "flags", &blofeld::infinite::i343projectilessubmunitionflags },
 
 		{ _field_char_enum, "crit mode", &blofeld::infinite::i343projectilessubmunitioncritmode },
 		{ _field_byte_integer, "max recursion depth" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad564d", 1),
 			
 		FIELD_CUSTOM("delay bounds", _field_id_unknown_mela),
@@ -63058,7 +63058,7 @@ namespace infinite {
 		"only spawn if charged",
 		"inherit parent damage properties",
 		"spawn at impact location",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		"effects only submunition",
 		"spawn before detonation"
 	};
@@ -64312,7 +64312,7 @@ namespace infinite {
 	STRINGS(i343weaponweaponsoundflags)
 	{
 		"Orient audio with controlling unit",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Melee attacks use only material effects"
 	};
 	STRING_LIST(i343weaponweaponsoundflags, i343weaponweaponsoundflags_strings, _countof(i343weaponweaponsoundflags_strings));
@@ -66709,7 +66709,7 @@ namespace infinite {
 	{
 		{ _field_struct, "AnyTag", &blofeld::infinite::anytag_struct_definition },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "parent", &blofeld::infinite::damage_effect_reference$33_tagref, _field_id_parent },
 
 		{ _field_real_bounds, "radius" },
@@ -66794,7 +66794,7 @@ namespace infinite {
 		{ _field_real, "visual damage radius" },
 		{ _field_real, "visual damage intensity" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad4b2e", 4),
 
 		{ _field_terminator }
@@ -67258,7 +67258,7 @@ namespace infinite {
 		"script brain",
 		"static io",
 		"fx",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		"bot navigation marker",
 		"jump hint volume"
 	};
@@ -67304,7 +67304,7 @@ namespace infinite {
 		"Force render in Forge",
 		"respawn player spawn",
 		"fallback player spawn",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"jump hint volume is one-way"
 	};
 	STRING_LIST(c_multiplayer_object_data_flags, c_multiplayer_object_data_flags_strings, _countof(c_multiplayer_object_data_flags_strings));
@@ -67850,12 +67850,12 @@ namespace infinite {
 
 	STRINGS(i343objectsattachmentdefinitionflags)
 	{
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"force always on",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"always create",
 		"effect size scale from object scale",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		"update on create",
 		"always update"
 	};
@@ -68065,7 +68065,7 @@ namespace infinite {
 	{
 		{ _field_string_id, "Marker" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Max Compression" },
 
 		{ _field_real, "Planted Threshold" },
@@ -68200,7 +68200,7 @@ namespace infinite {
 		FIELD_GROUP_END(),
 		{ _field_tag_reference, "melee sound", &blofeld::infinite::sound_reference_tagref },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		{ _field_real, "Damage Shader Min Vitality" },
 		{ _field_real, "Damage Shader Intensity Scalar" },
 
@@ -68210,7 +68210,7 @@ namespace infinite {
 		{ _field_block, "ai properties", &blofeld::infinite::object_ai_properties_block },
 		{ _field_block, "functions", &blofeld::infinite::s_object_function_definition_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_long_integer, "num predicted runtime interpolator functions" },
 
 		{ _field_block, "runtime interpolator functions", &blofeld::infinite::objectruntimeinterpolatorfunctionsblock_block },
@@ -68251,7 +68251,7 @@ namespace infinite {
 		{ _field_char_enum, "Animated mesh animation type", &blofeld::infinite::_object_definitions_animatedmeshinfoeanimationtype },
 		FIELD_PAD("generated_pad805e", 3),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Placement cost multiplier" },
 
 		{ _field_tag_reference, "Trigger volume component info", &blofeld::infinite::trigger_volume_component_reference_tagref },
@@ -68272,7 +68272,7 @@ namespace infinite {
 		{ _field_real, "Ground IK marker above ground tolerance" },
 		{ _field_real, "Ground Probe Start Position Height Scale for Ground IK" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Ground Probe Additional Height Distance" },
 
 		{ _field_data, "Anim Set Nodegraph Metadata" },
@@ -68302,7 +68302,7 @@ namespace infinite {
 		FIELD_GROUP_BEGIN("Ability Components"),
 		{ _field_block, "location sensor", &blofeld::infinite::i343itemslocationsensordefinition_block },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_block, "wall builder wall", &blofeld::infinite::i343itemswallbuilderwalldefinition_block },
 
 		{ _field_block, "shroud generator", &blofeld::infinite::i343itemsshroudgeneratordefinition_block },
@@ -68348,7 +68348,7 @@ namespace infinite {
 		"force collide with camera",
 		"damage not blocked by obstructions",
 		"early mover localize projectiles",
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"requires shadow bounds visibility test",
 		"grab parent object in forge editing",
 		"Hoistable from stand",
@@ -68357,7 +68357,7 @@ namespace infinite {
 		"collides with own projectiles",
 		"object rejects dynamic decals",
 		"Do not network",
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		"Renderer should send visibility up to game thread",
 		"Play effect when spotted",
 		"Wake when visible to player",
@@ -68368,7 +68368,7 @@ namespace infinite {
 		"is permeable to projectiles",
 		"Destroy on player contact",
 		"Use the new action and animation system",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Allow delayed placement and deletion"
 	};
 	STRING_LIST(c_object_definition_flags, c_object_definition_flags_strings, _countof(c_object_definition_flags_strings));
@@ -68454,7 +68454,7 @@ namespace infinite {
 		"All Markers Use Unique Acoustic Sound Sources",
 		"Damage ignores owning unit",
 		"Enable doppler audio",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 4 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 4 },
 		"blocks AOE if the AOE\'s epicenter is blocked",
 		"Enable Damage Hit Ticks",
 		"Blocks grapple aim assist",
@@ -68580,7 +68580,7 @@ namespace infinite {
 		{ _field_long_flags, "flags", &blofeld::infinite::objectfunctionflags },
 		{ _field_string_id, "import name", _field_id_sted },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "no import default" },
 
 		{ _field_string_id, "export name" },
@@ -68605,7 +68605,7 @@ namespace infinite {
 		"random time offset",
 		"always exports value",
 		"turn off with uses magnitude",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"cannot be predicted"
 	};
 	STRING_LIST(objectfunctionflags, objectfunctionflags_strings, _countof(objectfunctionflags_strings));
@@ -69465,7 +69465,7 @@ namespace infinite {
 		"always show ally nav point shield and health",
 		"not allowed to use dynamic input assignment",
 		"delete on reaching zero uses",
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"show on equipment swapper"
 	};
 	STRING_LIST(i343objectsframeattachmentflags, i343objectsframeattachmentflags_strings, _countof(i343objectsframeattachmentflags_strings));
@@ -69898,10 +69898,10 @@ namespace infinite {
 	{
 		{ _field_char_enum, "camo level", &blofeld::infinite::i343activecamouflageeffectiveness },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad06e4", 3),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_byte_flags, "flags", &blofeld::infinite::i343activecamouflageactivecamouflageflags },
 		FIELD_PAD("generated_pad06e4", 2),
 
@@ -70030,7 +70030,7 @@ namespace infinite {
 		I343BIPEDLOCOMOTIONPROPERTIESDEFINITION_ID,
 		5)
 	{
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_byte_flags, "Flags", &blofeld::infinite::i343bipedlocomotionflags },
 		FIELD_PAD("generated_pad2640", 3),
 
@@ -70052,7 +70052,7 @@ namespace infinite {
 		{ _field_real, "maximum crouch acceleration" },
 		{ _field_real, "maximum crouch deceleration" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "minimum slip recovery acceleration" },
 
 		FIELD_EXPLANATION("Airborne Acceleration/Deceleration", nullptr),
@@ -70142,11 +70142,11 @@ namespace infinite {
 		FIELD_CUSTOM("acceleration airborne scalar", _field_id_malleablepropertybasefloat),
 		{ _field_struct, "acceleration airborne scalar", &blofeld::infinite::i343malleablepropertybasefloatstructdefinition },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		FIELD_CUSTOM("slide max distance scalar", _field_id_malleablepropertybasefloat),
 		{ _field_struct, "slide max distance scalar", &blofeld::infinite::i343malleablepropertybasefloatstructdefinition },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		FIELD_CUSTOM("slide duration scalar", _field_id_malleablepropertybasefloat),
 		{ _field_struct, "slide duration scalar", &blofeld::infinite::i343malleablepropertybasefloatstructdefinition },
 
@@ -71304,7 +71304,7 @@ namespace infinite {
 		{ _field_block, "default damage", &blofeld::infinite::s_melee_damage_parameters_block },
 		FIELD_GROUP_END(),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 8 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 8 },
 		FIELD_GROUP_BEGIN("predictable rebound"),
 		FIELD_EXPLANATION("predictable rebound", nullptr),
 		{ _field_char_enum, "rebound direction basis", &blofeld::infinite::i343meleerebounddirectionbasis },
@@ -71320,7 +71320,7 @@ namespace infinite {
 	STRINGS(i343meleemeleeglobalsdefinitionflags)
 	{
 		"clang save both if both died",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 3 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 3 },
 		"enable predictable rebound",
 		"use predictable collision pill",
 		"calculate head position as offset"
@@ -71505,7 +71505,7 @@ namespace infinite {
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("attaching"),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_string_id, "biped attach marker" },
 
 		{ _field_real_vector_3d, "biped attach offset" },
@@ -71588,7 +71588,7 @@ namespace infinite {
 		{ _field_real, "pull line of sight break time" },
 		FIELD_GROUP_END(),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 10 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 10 },
 		FIELD_GROUP_BEGIN("pull aftermath stage"),
 		FIELD_EXPLANATION("pull aftermath stage", nullptr),
 		{ _field_real, "pull aftermath duration" },
@@ -71739,7 +71739,7 @@ namespace infinite {
 		{ _field_struct, "AnyTag", &blofeld::infinite::anytag_struct_definition },
 		{ _field_struct, "data", &blofeld::infinite::i343spartanabilitiesgrapplehookdefinition },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad6d7d", 4),
 
 		{ _field_terminator }
@@ -72723,14 +72723,14 @@ namespace infinite {
 		FIELD_CUSTOM("weapon empty reload speed scalar", _field_id_malleablepropertybasefloat),
 		{ _field_struct, "weapon empty reload speed scalar", &blofeld::infinite::i343malleablepropertybasefloatstructdefinition },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		FIELD_CUSTOM("weapon overheat loss scalar", _field_id_malleablepropertybasefloat),
 		{ _field_struct, "weapon overheat loss scalar", &blofeld::infinite::i343malleablepropertybasefloatstructdefinition },
 
 		FIELD_CUSTOM("weapon tactical reload speed scalar", _field_id_malleablepropertybasefloat),
 		{ _field_struct, "weapon tactical reload speed scalar", &blofeld::infinite::i343malleablepropertybasefloatstructdefinition },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		FIELD_CUSTOM("weapon tactical cooling scalar", _field_id_malleablepropertybasefloat),
 		{ _field_struct, "weapon tactical cooling scalar", &blofeld::infinite::i343malleablepropertybasefloatstructdefinition },
 
@@ -73026,7 +73026,7 @@ namespace infinite {
 		"ejectable seat",
 		"kill on ejection",
 		"use head marker for navpoint",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"allows equipment and grenade switching"
 	};
 	STRING_LIST(c_unit_seat_secondary_flags, c_unit_seat_secondary_flags_strings, _countof(c_unit_seat_secondary_flags_strings));
@@ -74159,7 +74159,7 @@ namespace infinite {
 		{ _field_struct, "unit", &blofeld::infinite::unitdefinition },
 		FIELD_GROUP_BEGIN("$$$ VEHICLE $$$"),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "parent", &blofeld::infinite::vehicle_reference$11_tagref, _field_id_parent },
 
 		{ _field_long_flags, "flags", &blofeld::infinite::c_vehicle_definition_flags },
@@ -74211,7 +74211,7 @@ namespace infinite {
 		{ _field_long_enum, "Vehicle Nav Point Sequence Index", &blofeld::infinite::interfacenavpointespritesequence },
 		FIELD_GROUP_END(),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pade54b", 4),
 
 		{ _field_terminator }
@@ -75164,7 +75164,7 @@ namespace infinite {
 		{ _field_struct, "item", &blofeld::infinite::itemdefinition },
 		FIELD_GROUP_BEGIN("$$$ EQUIPMENT $$$"),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "parent", &blofeld::infinite::equipment_reference$6_tagref, _field_id_parent },
 
 		{ _field_long_enum, "input", &blofeld::infinite::i343unitsarmorinput },
@@ -75206,7 +75206,7 @@ namespace infinite {
 		{ _field_block, "Object functions exposed to unit", &blofeld::infinite::i343equipmentobjectfunctionremapping_block },
 		FIELD_GROUP_END(),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_padcf77", 4),
 
 		{ _field_terminator }
@@ -75229,7 +75229,7 @@ namespace infinite {
 		"play animations from ground",
 		"has at rest activation ability",
 		"does not play ability cooldown complete notifications",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"ignore suppression from weapons"
 	};
 	STRING_LIST(c_equipment_flags, c_equipment_flags_strings, _countof(c_equipment_flags_strings));
@@ -76156,10 +76156,10 @@ namespace infinite {
 		FIELD_EXPLANATION("knockback", nullptr),
 		FIELD_GROUP_BEGIN("target searching"),
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_real, "search radius" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		{ _field_real, "search radius (units)" },
 		{ _field_real, "search radius (non-units)" },
 
@@ -76267,7 +76267,7 @@ namespace infinite {
 		{ _field_string_id, "Notify Overheated" },
 		{ _field_string_id, "Heat Warning" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_long_integer, "damage sprite index" },
 
 		{ _field_string_id, "pickup message" },
@@ -76313,7 +76313,7 @@ namespace infinite {
 		FIELD_GROUP_END(),
 		FIELD_GROUP_END(),
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		FIELD_PAD("generated_pad9d08", 4),
 
 		{ _field_terminator }
@@ -76427,7 +76427,7 @@ namespace infinite {
 		{ _field_angle, "spread" },
 		{ _field_tag_reference, "Per Conical Projectile Firing Effect", &blofeld::infinite::effect_reference$141_tagref },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "Per Conical Projectile Firing Effect (Charged)", &blofeld::infinite::effect_reference$142_tagref },
 
 		{ _field_terminator }
@@ -76465,7 +76465,7 @@ namespace infinite {
 		{ _field_struct, "object", &blofeld::infinite::objectdefinition },
 		FIELD_GROUP_BEGIN("$$$ PROJECTILE $$$"),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "parent", &blofeld::infinite::projectile_reference$5_tagref, _field_id_parent },
 
 		{ _field_long_flags, "flags", &blofeld::infinite::c_projectile_definition_flags },
@@ -76593,7 +76593,7 @@ namespace infinite {
 		{ _field_real, "charged damage scale" },
 		FIELD_GROUP_END(),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad5ac7", 4),
 
 		{ _field_terminator }
@@ -76663,7 +76663,7 @@ namespace infinite {
 		"AI can avoid this projectile",
 		"Disable physical interactions",
 		"does not attach to EMP active targets",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		"does not detonate when parent damage section depletes",
 		"always hits child objects"
 	};
@@ -76837,7 +76837,7 @@ namespace infinite {
 		{ _field_struct, "item", &blofeld::infinite::itemdefinition },
 		FIELD_GROUP_BEGIN("$$$ WEAPON $$$"),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "parent", &blofeld::infinite::weapon_reference$33_tagref, _field_id_parent },
 
 		FIELD_EXPLANATION("value", nullptr),
@@ -76847,7 +76847,7 @@ namespace infinite {
 		FIELD_PAD("generated_paddf4e", 3),
 		{ _field_long_flags, "animation flags", &blofeld::infinite::i343weaponanimationflags },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_char_enum, "overcharge behavior", &blofeld::infinite::i343weaponoverchargebehavior },
 		FIELD_PAD("generated_pad2c03", 3),
 
@@ -76975,7 +76975,7 @@ namespace infinite {
 		{ _field_struct, "animation base properties", &blofeld::infinite::i343weaponanimationbasepropertiesdefinition },
 		{ _field_real, "sprint exit disable weapon duration" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "grapple hook exit disable weapon duration" },
 
 		{ _field_real, "tether transition to linked time" },
@@ -77024,7 +77024,7 @@ namespace infinite {
 		{ _field_struct, "sound", &blofeld::infinite::i343weaponweaponsounddefinition },
 		{ _field_real, "ammo pickup delay" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad94b1", 4),
 
 		{ _field_terminator }
@@ -77394,7 +77394,7 @@ namespace infinite {
 		"huge device",
 		"interactor can\'t move",
 		"Disable Weapon Down/Up Animations on Interact",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		"Disable Unit Interaction Animations",
 		"high priority interaction device"
 	};
@@ -77599,7 +77599,7 @@ namespace infinite {
 	{
 		"toggle secondary strings on use",
 		"is scannable",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Allow press to start interact"
 	};
 	STRING_LIST(devicecontrolflags, devicecontrolflags_strings, _countof(devicecontrolflags_strings));
@@ -78047,7 +78047,7 @@ namespace infinite {
 
 	STRINGS(i343collectiblesgameskull)
 	{
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Iron",
 		"BlackEye",
 		"Catch",
@@ -78241,7 +78241,7 @@ namespace infinite {
 		"Banished",
 		"Forerunner",
 		"Covenant",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Lasky"
 	};
 	STRING_LIST(i343gameplaymenufaction, i343gameplaymenufaction_strings, _countof(i343gameplaymenufaction_strings));
@@ -78719,10 +78719,10 @@ namespace infinite {
 		{ _field_real_bounds, "large 4K subtitle background border X" },
 		{ _field_real_bounds, "large 4K subtitle background border Y" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_real, "minimum subtitle display threshold in seconds" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 7 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 7 },
 		{ _field_real, "minimum display time per word" },
 		{ _field_real, "minimum display time per page of subtitles" },
 		{ _field_char_enum, "use uniform durations for autopaginated subtitles", &blofeld::infinite::i343subtitleuseequalautopaginationdurations },
@@ -78731,13 +78731,13 @@ namespace infinite {
 		{ _field_real, "duplicate subtitles requests are allowed only after this many seconds" },
 		{ _field_real, "priority lock cooldown duration" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 4 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 4 },
 		{ _field_long_integer, "minimum subtitle priority threshold" },
 		{ _field_char_enum, "pending preservation mode", &blofeld::infinite::i343subtitlequeuepreservationsettings },
 		FIELD_PAD("generated_padf9a9", 3),
 		{ _field_real, "percent of a subtitle duration required to pass before we allow it to be ejected" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		{ _field_short_integer, "max lines of text per page of subtitles" },
 		FIELD_PAD("generated_pad9313", 2),
 
@@ -78746,7 +78746,7 @@ namespace infinite {
 		{ _field_real_rgb_color, "Default subtitle speaker color" },
 		{ _field_block, "Subtitle speaker colors", &blofeld::infinite::i343subtitlespeakercolors_block },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_padf9a9", 4),
 
 		{ _field_terminator }
@@ -79389,7 +79389,7 @@ namespace infinite {
 		{ _field_tag_reference, "soft landing damage", &blofeld::infinite::damage_effect_reference$25_tagref },
 		{ _field_tag_reference, "hard landing damage", &blofeld::infinite::damage_effect_reference$26_tagref },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "transfer damage", &blofeld::infinite::damage_effect_reference$27_tagref },
 
 		{ _field_tag_reference, "hs damage", &blofeld::infinite::damage_effect_reference$28_tagref },
@@ -79405,7 +79405,7 @@ namespace infinite {
 		{ _field_tag_reference, "friendly fire damage response", &blofeld::infinite::damage_response_definition_reference$2_tagref },
 		{ _field_real, "player shield spillover" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_real, "ex-driver considered vehicle damage owner window" },
 
 		FIELD_GROUP_BEGIN("damage decay"),
@@ -80725,7 +80725,7 @@ namespace infinite {
 		{ _field_tag_reference, "bot reference", &blofeld::infinite::character_reference$11_tagref },
 		{ _field_tag_reference, "outline to use for enemy", &blofeld::infinite::outlinetypedefinition_reference$4_tagref },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 3 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 3 },
 		{ _field_tag_reference, "non-occluded outline to use for enemy", &blofeld::infinite::outlinetypedefinition_reference$5_tagref },
 		{ _field_tag_reference, "outline to use when we need only characters", &blofeld::infinite::outlinetypedefinition_reference$6_tagref },
 		{ _field_tag_reference, "non-occluded outline to use when we need only characters", &blofeld::infinite::outlinetypedefinition_reference$7_tagref },
@@ -80736,10 +80736,10 @@ namespace infinite {
 		{ _field_tag_reference, "outline to use for friendly near reticle", &blofeld::infinite::outlinetypedefinition_reference$8_tagref },
 		{ _field_tag_reference, "outline to use when viewed by spectators", &blofeld::infinite::outlinetypedefinition_reference$9_tagref },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_tag_reference, "outline to use when we need only characters", &blofeld::infinite::outlinetypedefinition_reference$10_tagref },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_tag_reference, "non-occluded outline to use when viewed by spectators", &blofeld::infinite::outlinetypedefinition_reference$13_tagref },
 		
 		{ _field_terminator }
@@ -81100,7 +81100,7 @@ namespace infinite {
 		{ _field_real, "Area Light Radius" },
 		{ _field_real, "Area Light Length" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Override Source Intensity Multiplier" },
 
 		{ _field_terminator }
@@ -81164,7 +81164,7 @@ namespace infinite {
 		{ _field_enum, "Item Type", &blofeld::infinite::interfacecustomizationsocketitemtype },
 		{ _field_real, "Dimmer transition time" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		{ _field_byte_flags, "Skip Light Transition", &blofeld::infinite::interfacecustomizationskiplighttransitionflag },
 		FIELD_PAD("generated_pad7823", 3),
 
@@ -81371,7 +81371,7 @@ namespace infinite {
 		{ _field_tag_reference, "Sound", &blofeld::infinite::sound_reference$123_tagref },
 		{ _field_real, "Transition sound time" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_enum, "Platform type", &blofeld::infinite::interfacecustomizationplatforms },
 		{ _field_enum, "Platform direction", &blofeld::infinite::interfacecustomizationplatformdirection },
 
@@ -81614,7 +81614,7 @@ namespace infinite {
 		{ _field_tag_reference, "Camera Transition Sounds", &blofeld::infinite::uitransitionsounds_reference_tagref },
 		{ _field_tag_reference, "Spartan Voice Sounds", &blofeld::infinite::uitransitionsounds_reference$2_tagref },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "Ai Voice Sounds", &blofeld::infinite::uipersonalaisounds_reference_tagref },
 
 		{ _field_string_id, "Idling Marine Composition" },
@@ -81630,7 +81630,7 @@ namespace infinite {
 		{ _field_tag_reference, "Inspect Player Customization", &blofeld::infinite::uiobjectcustomization_reference$8_tagref },
 		{ _field_tag_reference, "PGCR", &blofeld::infinite::uiobjectcustomization_reference$9_tagref },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "RTT Forward Fast Lighting Presets", &blofeld::infinite::forwardfastlighting_reference_tagref },
 
 		{ _field_block, "RTT Camera Scenes", &blofeld::infinite::interfacecustomizationuirttregiondata_block },
@@ -81639,7 +81639,7 @@ namespace infinite {
 		{ _field_block, "CoreType order", &blofeld::infinite::interfacecustomizationcoretypeitem_block },
 		{ _field_block, "MythicFx Composer Names", &blofeld::infinite::interfacecustomizationcomposerscenenames_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_block, "Weapon Death Composer Names", &blofeld::infinite::interfacecustomizationcomposerscenenames_block },
 
 		{ _field_tag_reference, "Inspect Data", &blofeld::infinite::uiiteminspect_reference_tagref },
@@ -82012,21 +82012,21 @@ namespace infinite {
 		{ _field_block, "@player camera", &blofeld::infinite::i343playercameraglobals_block },
 		{ _field_block, "@first person weapon", &blofeld::infinite::i343firstpersonweaponglobals_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_block, "@predictable collisions", &blofeld::infinite::i343bipedpredictablecollisionglobals_block },
 
 		{ _field_struct, "participant malleable properties", &blofeld::infinite::i343participantmalleablepropertiesdefinition },
 		{ _field_struct, "inventory limits", &blofeld::infinite::i343playerinventorylimits },
 		{ _field_struct, "interaction priorities", &blofeld::infinite::i343playerinteractionpriorities },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad9d6c", 2),
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 3 },
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 3 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad9d6c", 6),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		FIELD_PAD("generated_pad9d6c", 5),
 
 		{ _field_terminator }
@@ -82635,7 +82635,7 @@ namespace infinite {
 		"Disable Weapon Messaging",
 		"Disable HUD Wires",
 		"Disable Splash Banner",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Disable Splash Banner and Objective Tracker"
 	};
 	STRING_LIST(i343narrativebeatplayerhudflags, i343narrativebeatplayerhudflags_strings, _countof(i343narrativebeatplayerhudflags_strings));
@@ -83628,7 +83628,7 @@ namespace infinite {
 		{ _field_byte_integer, "PickUpMultiplayerObject" },
 		{ _field_byte_integer, "FlipVehicle" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_byte_integer, "HighPriorityDevice" },
 
 		{ _field_byte_integer, "LookingAt" },
@@ -84938,10 +84938,10 @@ namespace infinite {
 		{ _field_short_integer, "runtime dry base material index" },
 		FIELD_PAD("generated_pad230c", 2),
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_struct, "physics properties", &blofeld::infinite::s_material_physics_properties_v1 },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_struct, "physics properties", &blofeld::infinite::s_material_physics_properties },
 
 		{ _field_struct, "sweeteners", &blofeld::infinite::s_global_material_sweeteners_definition },
@@ -84954,7 +84954,7 @@ namespace infinite {
 	{
 		"does not block spawning",
 		"does not block grapple line of sight",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		"does not block callout raycasts",
 		"blocks grapple aim assist"
 	};
@@ -85642,7 +85642,7 @@ namespace infinite {
 		{ _field_block, "Friendly Colors", &blofeld::infinite::dispositioncolorentry_block },
 		{ _field_block, "Fireteam Colors", &blofeld::infinite::dispositioncolorentry_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_block, "Observer Team Colors", &blofeld::infinite::dispositioncolorentry_block },
 			
 		FIELD_GROUP_BEGIN("Neutral Colors"),
@@ -85652,7 +85652,7 @@ namespace infinite {
 		{ _field_struct, "Self Colors", &blofeld::infinite::dispositioncolorentry },
 		FIELD_GROUP_END(),
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_padbd10", 4),
 
 		{ _field_terminator }
@@ -86537,7 +86537,7 @@ namespace infinite {
 		{ _field_string_id, "Unlock Weapon Description" },
 		{ _field_long_integer, "Unlock Weapon Sprite Index" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_long_integer, "Unlock Weapon Damage Type" },
 
 		{ _field_terminator }
@@ -86571,15 +86571,15 @@ namespace infinite {
 		{ _field_block, "High Value Target UI Info", &blofeld::infinite::i343gameplaymenuhighvaluetargetuiinfo_block },
 		{ _field_struct, "DeepLink Info", &blofeld::infinite::i343gameplaymenuhighvaluetargetdeeplinkinfo },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_byte_integer, "Unlock Compare Value" },
 		{ _field_byte_integer, "Alive Compare Value" },
 		FIELD_GROUP_END(),
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_padcad7", 4),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_padcad7", 2),
 		{ _field_terminator }
 	};
@@ -86904,7 +86904,7 @@ namespace infinite {
 		{ _field_real, "Edge Pan Screen Margin Y" },
 		{ _field_real, "Help Bar Height" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "Back Menu Tab Bar Height" },
 
 		{ _field_terminator }
@@ -86930,7 +86930,7 @@ namespace infinite {
 		{ _field_real, "innerRadius" },
 		{ _field_real, "outerRadius" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "darkenRatio" },
 
 		{ _field_terminator }
@@ -87257,7 +87257,7 @@ namespace infinite {
 		{ _field_block, "Area of Interest Settings", &blofeld::infinite::i343ingamemapsmarkersettings_block },
 		{ _field_block, "Async Loaded Display Assets", &blofeld::infinite::ingamemapdisplayassetdefinition_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "Async Loaded Asset List", &blofeld::infinite::ingamemapassets_reference_tagref },
 
 		{ _field_block, "Collectible Settings", &blofeld::infinite::i343ingamemapscollectiblesettings_block },
@@ -87266,16 +87266,16 @@ namespace infinite {
 		{ _field_block, "Model Dictionary", &blofeld::infinite::ingamemapmodellookup_block },
 		{ _field_struct, "Transition Settings", &blofeld::infinite::ingamemaptransitionsettings },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_struct, "POI Visual Settings", &blofeld::infinite::ingamemappoivisualsettings },
 
 		{ _field_struct, "Gak Settings", &blofeld::infinite::ingamemapgaksettings },
 		{ _field_struct, "Player Position Override Settings", &blofeld::infinite::i343ingamemapsplayerpositionoverridesettings },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_long_integer, "TacMap Tab Index" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		FIELD_PAD("generated_padbfcb", 4),
 
 		{ _field_terminator }
@@ -88859,18 +88859,18 @@ namespace infinite {
 	{
 		{ _field_struct, "AnyTag", &blofeld::infinite::anytag_struct_definition },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_string_id, "Primary Pickup Message" },
 
 		{ _field_string_id, "Sub Pickup Message" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_string_id, "Secondary Pickup Message" },
 		{ _field_string_id, "Primary Swap Message" },
 
 		{ _field_string_id, "Sub Swap Message" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_string_id, "Secondary Swap Message" },
 
 		{ _field_string_id, "Picked Up Message" },
@@ -90051,10 +90051,10 @@ namespace infinite {
 		{ _field_block, "components", &blofeld::infinite::s_cui_component_definition_block },
 		{ _field_block, "component indices", &blofeld::infinite::s_cui_component_index_definition_block },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_block, "do not create list", &blofeld::infinite::cuidonotcreatescreendefinition_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_block, "do not create list", &blofeld::infinite::cuidonotcreatecomponentdefinition_block },
 
 		{ _field_block, "overlays", &blofeld::infinite::s_cui_overlay_definition_block },
@@ -90417,7 +90417,7 @@ namespace infinite {
 		{ _field_long_integer, "tessellation X" },
 		{ _field_long_integer, "tessellation Y" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "warp descale in ultrawide factor" },
 
 		{ _field_byte_flags, "flags", &blofeld::infinite::interfacefasthudenablewarpflags },
@@ -90531,14 +90531,14 @@ namespace infinite {
 		{ _field_real, "damage state reset time (milliseconds)" },
 		{ _field_real, "firing state reset time (milliseconds)" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 3 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 3 },
 		{ _field_real, "Enemy Name Visibility Distance" },
 		{ _field_real, "Fireteam Name Visibility Distance" },
 		{ _field_real, "Friendly Name Visibility Distance" },
 
 		{ _field_block, "navpoint presentations", &blofeld::infinite::navpointpresentationtagblock_block },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 6 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 6 },
 		FIELD_GROUP_BEGIN("Gamertag Visibility"),
 		FIELD_EXPLANATION("value", nullptr),
 		{ _field_block, "Friendly", &blofeld::infinite::interfacefasthudgamertagdisplayoverrides_block },
@@ -90580,7 +90580,7 @@ namespace infinite {
 		FIELD_EXPLANATION("Reticule globals", nullptr),
 		{ _field_real, "Reticule maximum spread angle" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_real, "Hit tick persist time" },
 
 		FIELD_EXPLANATION("Sounds", nullptr),
@@ -90614,7 +90614,7 @@ namespace infinite {
 		{ _field_real_argb_color, "Legendary Killfeed Color" },
 		{ _field_real_argb_color, "Mythic Killfeed Color " },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_block, "keyboard mouse string id overrides", &blofeld::infinite::interfacestringidoverride_block },
 
 		FIELD_EXPLANATION("Player Training", nullptr),
@@ -90635,8 +90635,8 @@ namespace infinite {
 		{ _field_real, "threat tracker range" },
 
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad28bd", 4),
 
 		{ _field_terminator }
@@ -90915,7 +90915,7 @@ namespace infinite {
 		{ _field_tag_reference, "campaign started", &blofeld::infinite::_reference$116_tagref },
 		{ _field_tag_reference, "campaign stopped", &blofeld::infinite::_reference$117_tagref },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_tag_reference, "forge started", &blofeld::infinite::_reference$118_tagref },
 		{ _field_tag_reference, "forge stopped", &blofeld::infinite::_reference$119_tagref },
 
@@ -90935,7 +90935,7 @@ namespace infinite {
 		{ _field_tag_reference, "rewards", &blofeld::infinite::sound_reference$210_tagref },
 		FIELD_GROUP_END(),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 6 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 6 },
 		FIELD_GROUP_BEGIN("Storefront"),
 		{ _field_tag_reference, "purchase item bundle", &blofeld::infinite::sound_reference$211_tagref },
 		{ _field_tag_reference, "purchase item storefront", &blofeld::infinite::sound_reference$212_tagref },
@@ -91162,7 +91162,7 @@ namespace infinite {
 		"show scoreboard",
 		"show hud",
 		"show final kill cam",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Hide UI for Observers"
 	};
 	STRING_LIST(i343netprotocolset_i343netprotocolgameoptionsscreensequencestepflags_, i343netprotocolset_i343netprotocolgameoptionsscreensequencestepflags__strings, _countof(i343netprotocolset_i343netprotocolgameoptionsscreensequencestepflags__strings));
@@ -91326,21 +91326,21 @@ namespace infinite {
 		"Sensitivity",
 		"ZoomedSensitivity",
 		"InputAcceleration",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		"MoveDeadzone",
 		"LookDeadzone",
 		"Player",
 		"Vehicle",
 		"Communication",
 		"Observer",
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Theater",
 		"ForgeMovement",
 		"ForgeActions",
 		"Miscellaneous",
 		"EquipmentSwapper",
 		"GrenadeSwapper",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Theater",
 		"TacMap"
 	};
@@ -91581,13 +91581,13 @@ namespace infinite {
 		FIELD_GROUP_BEGIN("Loading Screen"),
 		{ _field_tag_reference, "Loading screen tag", &blofeld::infinite::cui_screen_reference$21_tagref },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 4 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 4 },
 		{ _field_real, "fade from level to loading screen (seconds)" },
 		{ _field_real, "fade from level to blocking load (seconds)" },
 		{ _field_real, "fade in to loading screen (seconds)" },
 		{ _field_real, "fade out from loading screen (seconds)" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 4 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 4 },
 		{ _field_block, "Loading Screen Settings", &blofeld::infinite::loadingscreensettings_block },
 		{ _field_real, "Crossfade Into Black" },
 		{ _field_real, "Crossfade Out Of Black Screen" },
@@ -91625,7 +91625,7 @@ namespace infinite {
 		{ _field_block, "equipment swapper selection inputs", &blofeld::infinite::swapperinput_block },
 		{ _field_block, "grenade swapper selection inputs", &blofeld::infinite::swapperinput_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_block, "Input copy mapping", &blofeld::infinite::copybindingpair_block },
 
 		{ _field_block, "Drop Shadow Parameters", &blofeld::infinite::dropshadowparameters_block },
@@ -91633,7 +91633,7 @@ namespace infinite {
 		{ _field_block, "Settings Menu Slider Settings", &blofeld::infinite::settingsmenuslidersettings_block },
 		{ _field_tag_reference, "Narration Phonemes Tag", &blofeld::infinite::narrationphonemes_reference_tagref },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_tag_reference, "Skip UI tag", &blofeld::infinite::cui_screen_reference$23_tagref },
 
 		FIELD_PAD("generated_pad6e00", 4),
@@ -91706,12 +91706,12 @@ namespace infinite {
 		{ _field_tag_reference, "HUD globals", &blofeld::infinite::user_interface_hud_globals_definition_reference_tagref },
 		{ _field_long_integer, "Total object count budget" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "In-Game Map Render Tag", &blofeld::infinite::ingamemaprender_reference_tagref },
 
 		{ _field_tag_reference, "In-Game Map Settings Tag", &blofeld::infinite::ingamemapsettings_reference_tagref },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad86bd", 4),
 
 		{ _field_terminator }
@@ -91754,7 +91754,7 @@ namespace infinite {
 		{ _field_real, "post exit block time" },
 		{ _field_real, "cancel weapon block time" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "melee clamber delay" },
 
 		{ _field_struct, "common parameters", &blofeld::infinite::i343physicscharactercommonmobilityparameters },
@@ -91781,7 +91781,7 @@ namespace infinite {
 		{ _field_struct, "AnyTag", &blofeld::infinite::anytag_struct_definition },
 		{ _field_struct, "parameters", &blofeld::infinite::i343physicscharacterclamberingparameters },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_padba18", 4),
 
 		{ _field_terminator }
@@ -92389,7 +92389,7 @@ namespace infinite {
 		"has damaging phantoms",
 		"force sight blocking",
 		"this physics model has phantoms that require the object to stay awake",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"use aggressive deactivation for havok bodies"
 	};
 	STRING_LIST(i343physicsmodelphysicsmodelflag, i343physicsmodelphysicsmodelflag_strings, _countof(i343physicsmodelphysicsmodelflag_strings));
@@ -93250,7 +93250,7 @@ namespace infinite {
 		{ _field_real, "airborne reaction time" },
 		{ _field_real, "airborne reaction time (slide)" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_real, "airborne reaction time (slide off ledge)" },
 
 		{ _field_real, "airborne reaction time (slide) max height" },
@@ -93265,7 +93265,7 @@ namespace infinite {
 		{ _field_real, "successive slide delay" },
 		{ _field_real, "minimum slide trigger sprint fraction" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 4 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 4 },
 		FIELD_EXPLANATION("Slide distance function", nullptr),
 		FIELD_CUSTOM("Slide distance function", _field_id_function_editor),
 		{ _field_struct, "Slide distance function", &blofeld::infinite::functiondefinition },
@@ -93274,7 +93274,7 @@ namespace infinite {
 		{ _field_angle, "maximum direction change during slide" },
 		{ _field_angle, "maximum turn during slide" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 3 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 3 },
 		{ _field_real, "slide duration" },
 		FIELD_EXPLANATION("Slide sprint fraction scaling", nullptr),
 		{ _field_real_fraction, "slide sprint fraction scalar min" },
@@ -94460,11 +94460,11 @@ namespace infinite {
 		{ _field_long_integer, "detail" },
 		{ _field_real, "tolerance" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_byte_flags, "flags", &blofeld::infinite::acousticstagportalacousticportalflags },
 		FIELD_PAD("generated_pad4de9", 3),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_word_flags, "flags", &blofeld::infinite::acousticstagportalacousticportalflags },
 		FIELD_PAD("generated_pad4de9", 2),
 
@@ -94473,10 +94473,10 @@ namespace infinite {
 		{ _field_real, "min openness" },
 		{ _field_real, "max openness" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real_vector_2d, "door centre offset" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real_vector_3d, "door center offset" },
 
 		{ _field_tag_reference, "front entry sound", &blofeld::infinite::sound_reference$106_tagref },
@@ -94512,7 +94512,7 @@ namespace infinite {
 		"Ray Cast Thru",
 		"Kit Subtract",
 		"On All Bsps",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Check Portal Is Geo Blocked"
 	};
 	STRING_LIST(acousticstagportalacousticportalflags, acousticstagportalacousticportalflags_strings, _countof(acousticstagportalacousticportalflags_strings));
@@ -94538,7 +94538,7 @@ namespace infinite {
 		{ _field_long_integer, "generated front zone" },
 		{ _field_long_integer, "generated back zone" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_byte_flags, "generated data flags", &blofeld::infinite::acousticstagportaldataacousticportaldataflags },
 		FIELD_PAD("generated_pad25f8", 3),
 
@@ -94569,7 +94569,7 @@ namespace infinite {
 		{ _field_real, "Acoustics LOD Distance Multiplier" },
 		{ _field_long_integer, "Max Listener Count To Enable Voxel Obstruction" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_long_integer, "Number of serial acoustic propagation jobs" },
 
 		{ _field_terminator }
@@ -94582,7 +94582,7 @@ namespace infinite {
 		"Acoustics Disable Portal Raycasting",
 		"Acoustics Enable Flood Fill Diagonals",
 		"Acoustics Enable Flood Fill Sorted Frontier",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Acoustics Disable Dynamic Objects For Line-of-sight Raycasts"
 	};
 	STRING_LIST(audiogameacousticsqualitypresettagstructflag, audiogameacousticsqualitypresettagstructflag_strings, _countof(audiogameacousticsqualitypresettagstructflag_strings));
@@ -94895,10 +94895,10 @@ namespace infinite {
 		{ _field_string_id, "Level unloaded event name" },
 		{ _field_string_id, "Game preload event name" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_string_id, "Game quit event name" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		{ _field_string_id, "Live theater scrub begin event" },
 		{ _field_string_id, "Live theater scrub end event" },
 
@@ -94922,7 +94922,7 @@ namespace infinite {
 		{ _field_struct, "Quality Presets", &blofeld::infinite::audioqualitypresetstagstruct },
 		FIELD_GROUP_END(),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 5 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 5 },
 		FIELD_GROUP_BEGIN("Wwise Bus/Device Names"),
 		{ _field_long_string, "System device" },
 		{ _field_long_string, "Spatial device" },
@@ -95081,9 +95081,9 @@ namespace infinite {
 
 	STRINGS(musiccontrolflag)
 	{
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Don\'t play in splitscreen",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Only play when all local players are aligned",
 		"Don\'t restore priority on load"
 	};
@@ -95462,7 +95462,7 @@ namespace infinite {
 		"Play on hidden objects",
 		"Sphere only affects acoustics",
 		"Disable Source portal occlusion",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Player sound is non-positional"
 	};
 	STRING_LIST(soundcategorytagflags, soundcategorytagflags_strings, _countof(soundcategorytagflags_strings));
@@ -95900,7 +95900,7 @@ namespace infinite {
 		{ _field_real_euler_angles_3d, "Rotation" },
 		{ _field_real_vector_3d, "Scale" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_block, "Scenario Data", &blofeld::infinite::forgeengineforgekitobjectscenariodata_block },
 
 		{ _field_terminator }
@@ -95931,7 +95931,7 @@ namespace infinite {
 		{ _field_struct, "Scriptable Properties", &blofeld::infinite::s_property_collection },
 		{ _field_block, "Objects", &blofeld::infinite::forgeengineforgekitobject_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_block, "Sound Placements", &blofeld::infinite::soundplacement_block },
 
 		{ _field_terminator }
@@ -96474,7 +96474,7 @@ namespace infinite {
 	{
 		{ _field_string_id, "Name" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_long_string, "String Literal" },
 
 		{ _field_tag_reference, "Tag", &blofeld::infinite::anytag_reference$5_tagref },
@@ -96759,7 +96759,7 @@ namespace infinite {
 		{ _field_block, "Forge NodeGraph Schema", &blofeld::infinite::forgenodegraphschemadefinition_block },
 		{ _field_tag_reference, "Forge Script Brain Tag Reference", &blofeld::infinite::forgeobjectdata_reference$2_tagref },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "Forge Bot Navigation Marker Tag Reference", &blofeld::infinite::forgeobjectdata_reference$3_tagref },
 
 		{ _field_tag_reference, "Forge Sound Tag Reference", &blofeld::infinite::forge_sounds_reference_tagref },
@@ -96767,7 +96767,7 @@ namespace infinite {
 		{ _field_tag_reference, "Forge Looping Sound Categories", &blofeld::infinite::forge_looping_sound_categories_reference_tagref },
 		{ _field_tag_reference, "Forge Sound Response Sounds", &blofeld::infinite::forge_sound_response_sounds_reference_tagref },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad1f7f", 4),
 
 		{ _field_terminator }
@@ -96853,14 +96853,14 @@ namespace infinite {
 		{ _field_word_flags, "Property Flags", &blofeld::infinite::forgeengineforgeobjectdatapropertyflags },
 		FIELD_PAD("generated_padffaf", 2),
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "Configuration", &blofeld::infinite::_reference$71_tagref },
 
 		{ _field_real_vector_3d, "Starting yaw/pitch/roll" },
 		{ _field_enum, "Default Physics Mode", &blofeld::infinite::forgeenginedefaultphysicsmode },
 		{ _field_enum, "Collision Mode", &blofeld::infinite::forgeenginecollisionmode },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_GROUP_BEGIN("Scale Limits"),
 
 		{ _field_enum, "Scale Limit Type", &blofeld::infinite::forgeenginescalelimittype },
@@ -96869,7 +96869,7 @@ namespace infinite {
 		{ _field_real_vector_3d, "Minimum Scale" },
 		{ _field_real_vector_3d, "Maximum Scale" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_real_vector_3d, "Unscaled Size" },
 		FIELD_GROUP_END(),
 			
@@ -96959,7 +96959,7 @@ namespace infinite {
 		{ _field_string_id, "Representation Name" },
 		{ _field_string_id, "Crate Variant" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "Configuration", &blofeld::infinite::_reference$71_tagref },
 
 		{ _field_tag_reference, "Object Definition (Crate)", &blofeld::infinite::object_reference$15_tagref },
@@ -97245,7 +97245,7 @@ namespace infinite {
 		{ _field_char_enum, "ScaleConstraint", &blofeld::infinite::forgeenginetelescopingscaleconstraint },
 		FIELD_PAD("generated_pad9337", 3),
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real_vector_3d, "Starting Scale" },
 
 		{ _field_real_vector_3d, "Minimum Scale" },
@@ -97253,7 +97253,7 @@ namespace infinite {
 		{ _field_tag_reference, "Runtime Underlying Collision Geo (Static IO)", &blofeld::infinite::static_collision_reference$8_tagref },
 		{ _field_tag_reference, "Runtime Underlying Material Palette (Static IO)", &blofeld::infinite::rtmp_reference$7_tagref },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_paddfec", 4),
 
 		{ _field_terminator }
@@ -97273,7 +97273,7 @@ namespace infinite {
 		"XZ",
 		"YZ",
 		"XYZ",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"Unscalable"
 	};
 	STRING_LIST(forgeenginetelescopingscaleconstraint, forgeenginetelescopingscaleconstraint_strings, _countof(forgeenginetelescopingscaleconstraint_strings));
@@ -97300,7 +97300,7 @@ namespace infinite {
 		{ _field_real, "Exit Delay" },
 		{ _field_real, "Vicinity Trigger Distance" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_real, "Up Vicinity Trigger Additional Distance" },
 
 		{ _field_block, "Runtime Triangles", &blofeld::infinite::s_trigger_volume_triangle_block },
@@ -97401,10 +97401,10 @@ namespace infinite {
 		{ _field_struct, "interpolation max values", &blofeld::infinite::i343simulationucnauthoritytrustinterpolatedsettings },
 		{ _field_real_fraction, "cumulative limit fraction" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		FIELD_PAD("generated_pad799c", 4),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_block, "situational overrides", &blofeld::infinite::i343simulationucnauthoritytrustinterpolatedsettingsoverride_block },
 
 		{ _field_terminator }
@@ -98745,10 +98745,10 @@ namespace infinite {
 		{ _field_string_id, "asset category name" },
 		{ _field_long_integer, "asset category index" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad7614", 4),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_long_integer, "Number of LODS to make required" },
 
 		{ _field_terminator }
@@ -99234,7 +99234,7 @@ namespace infinite {
 		"always on for weapon",
 		"induces translucency in subsurface scattering materials",
 		"ignore optimization and force update every frame",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"disable shadow on particles"
 	};
 	STRING_LIST(lightdefinitionflags, lightdefinitionflags_strings, _countof(lightdefinitionflags_strings));
@@ -99402,7 +99402,7 @@ namespace infinite {
 		{ _field_char_enum, "Default Load Variant Policy", &blofeld::infinite::rendermodeldefaultloadvariantpolicy },
 		FIELD_PAD("generated_padd53e", 3),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_long_integer, "Number of LODS to make required memory" },
 
 		FIELD_DONT_CHECKSUM_BEGIN(),
@@ -99417,7 +99417,7 @@ namespace infinite {
 		{ _field_block, "errors", &blofeld::infinite::error_report_category_block, _field_id_slap },
 		{ _field_real, "don't draw over camera cosine angle" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad21f3", 4),
 
 		{ _field_struct, "render geometry", &blofeld::infinite::s_render_geometry },
@@ -99659,16 +99659,16 @@ namespace infinite {
 		{ _field_tag_reference, "Runtime geo mesh reference", &blofeld::infinite::runtime_geo_reference$12_tagref },
 		{ _field_tag_reference, "Foliage material palette reference", &blofeld::infinite::rtmp_reference$12_tagref },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_word_integer, "Runtime geo mesh index" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_short_integer, "Runtime geo mesh index" },
 		{ _field_short_integer, "unique io index" },
 
 		{ _field_word_flags, "flags", &blofeld::infinite::instancedgeometryflags },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad89b2", 2),
 
 		{ _field_real, "bounds x0" },
@@ -99680,7 +99680,7 @@ namespace infinite {
 		{ _field_real_point_3d, "world bounding sphere center" },
 		{ _field_real, "world bounding sphere radius" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_padd667", 4),
 
 		{ _field_int64_integer, "Placement Checksum" },
@@ -99701,7 +99701,7 @@ namespace infinite {
 		{ _field_int64_integer, "coating entry" },
 		{ _field_int64_integer, "editorData" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 6 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 6 },
 		{ _field_block, "StreamingBitmapInfo Block", &blofeld::infinite::streamingbitmapinfo_block },
 		{ _field_long_integer, "StreamingBitmapInfo Block Flags", _field_id_zero_data },
 		{ _field_long_integer, "StreamingBitmapInfo Block Vector1", _field_id_zero_data },
@@ -99723,7 +99723,7 @@ namespace infinite {
 		"is quick deleted",
 		"Supports Coatings",
 		"wants hologram override",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Coatings Setup On Initial Frame"
 	};
 	STRING_LIST(instancedgeometrygfxflags, instancedgeometrygfxflags_strings, _countof(instancedgeometrygfxflags_strings));
@@ -99892,7 +99892,7 @@ namespace infinite {
 		"is_two_sided_shader",
 		"decorator_requires_zpp",
 		"uses_terrain_sampling",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"decal_use_uav_normal"
 	};
 	STRING_LIST(shaderflags, shaderflags_strings, _countof(shaderflags_strings));
@@ -99973,7 +99973,7 @@ namespace infinite {
 	{
 		"Controller",
 		"Keyboard/Mouse",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		"TextChat/PushToTalk on Enter"
 	};
 	STRING_LIST(invalidbitmapmultiactiontypeflags, invalidbitmapmultiactiontypeflags_strings, _countof(invalidbitmapmultiactiontypeflags_strings));
@@ -100678,13 +100678,13 @@ namespace infinite {
 		{ _field_struct, "mip settings", &blofeld::infinite::s_basic_spec_control_setting_int },
 		FIELD_EXPLANATION("Required Resolution", nullptr),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_char_enum, "Use Required Resolution Policy", &blofeld::infinite::i343graphicsuserequiredresolutionpolicy },
 		FIELD_PAD("generated_pad6823", 3),
 
 		{ _field_struct, "required resolution settings", &blofeld::infinite::s_basic_spec_control_setting_int },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		FIELD_EXPLANATION("Minimum Resolution", nullptr),
 		{ _field_struct, "minimum resolution settings", &blofeld::infinite::s_basic_spec_control_setting_int },
 
@@ -101002,7 +101002,7 @@ namespace infinite {
 		{ _field_tag_reference, "HDR to LDR LUT", &blofeld::infinite::bitmap_reference$62_tagref },
 		{ _field_tag_reference, "HDR Output LUT", &blofeld::infinite::bitmap_reference$63_tagref },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_tag_reference, "HDR Output LUT 10K", &blofeld::infinite::bitmap_reference$64_tagref },
 
 		{ _field_terminator }
@@ -101053,10 +101053,10 @@ namespace infinite {
 		{ _field_tag_reference, "Empty Swatch Tag", &blofeld::infinite::materialswatch_reference$5_tagref },
 		{ _field_tag_reference, "Hair Profile tag", &blofeld::infinite::hair_reference_tagref },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_tag_reference, "pso dictionary", &blofeld::infinite::psodictionary_reference_tagref },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_block, "psoFeatureTags", &blofeld::infinite::i343graphicspipelinestatedictionaryreference_block },
 
 		{ _field_terminator }
@@ -101674,7 +101674,7 @@ namespace infinite {
 		{ _field_block, "raw blendshapes triangle and edge index info", &blofeld::infinite::rawtriangleedgeindexinfo_block },
 		{ _field_long_flags, "flags", &blofeld::infinite::permeshrawdataflags },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_block, "level breakdown data", &blofeld::infinite::i343levelbreakdownruntimegeolevelbreakdowndata_block },
 
 		{ _field_terminator }
@@ -102207,7 +102207,7 @@ namespace infinite {
 		"DeferredDecalsResolve",
 		"decal_ao_opaque",
 		"decal_ao_alpha_blend",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 2 },
 		"decal_sss_blend",
 		"Hud Damage Alpha Blend"
 	};
@@ -102334,7 +102334,7 @@ namespace infinite {
 		"mask TAA for transparents",
 		"force render velocity for TAA",
 		"render depth info when transparent",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"part material DOES NOT override depth write behavior"
 	};
 	STRING_LIST(materialmaterialrenderflags, materialmaterialrenderflags_strings, _countof(materialmaterialrenderflags_strings));
@@ -102978,7 +102978,7 @@ namespace infinite {
 		{ _field_string_id, "name" },
 		{ _field_string_id, "style" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		{ _field_long_integer, "Damage Style Index" },
 
 		{ _field_long_flags, "model variant flags", &blofeld::infinite::modelvariantflags },
@@ -103098,7 +103098,7 @@ namespace infinite {
 		{ _field_real, "medium priority distance" },
 		{ _field_real, "low priority distance" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_long_integer, "lod index override for damage draw" },
 
 		{ _field_block, "variants", &blofeld::infinite::s_model_variant_block },
@@ -103131,7 +103131,7 @@ namespace infinite {
 		{ _field_real, "runtime bounding radius" },
 		{ _field_real_point_3d, "runtime bounding offset" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad57cd", 4),
 
 		{ _field_int64_integer, "reload hash" },
@@ -103232,7 +103232,7 @@ namespace infinite {
 	{
 		"None",
 		"SSR",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"SSR Full Resolution"
 	};
 	STRING_LIST(reflectionpresetdefinitionmodes, reflectionpresetdefinitionmodes_strings, _countof(reflectionpresetdefinitionmodes_strings));
@@ -103319,10 +103319,10 @@ namespace infinite {
 		{ _field_byte_flags, "Contact Shadows", &blofeld::infinite::shadowpresetdefinitionenablecontactshadowsflag },
 		{ _field_byte_flags, "Local Lights Low Shadow Sampling", &blofeld::infinite::shadowpresetdefinitionenablelocallightslowshadowsamplingflag },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad91b0", 1),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_byte_flags, "Shadows For Non-Visible Objects", &blofeld::infinite::shadowpresetdefinitionenableshadowsfornonvisibleobjectsflag },
 
 		{ _field_real, "Local Lights Shadow Sampling Falloff" },
@@ -103384,10 +103384,10 @@ namespace infinite {
 		{ _field_byte_flags, "Contact Shadows", &blofeld::infinite::shadowpresetdefinitionenablecontactshadowsflag },
 		{ _field_byte_flags, "Local Lights Low Shadow Sampling", &blofeld::infinite::shadowpresetdefinitionenablelocallightslowshadowsamplingflag },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_padf8ff", 1),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_byte_flags, "Shadows For Non-Visible Objects", &blofeld::infinite::shadowpresetdefinitionenableshadowsfornonvisibleobjectsflag },
 
 		{ _field_real, "Local Lights Shadow Sampling Falloff" },
@@ -103409,10 +103409,10 @@ namespace infinite {
 		{ _field_long_integer, "Volumetric Clouds RT Width Resolution" },
 		{ _field_long_integer, "Volumetric Clouds RT Height Resolution" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_long_integer, "Volumetric Clouds Depth RT Resolution" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_long_integer, "Volumetric Clouds Coverage RT Resolution" },
 
 		{ _field_long_integer, "Perlin Worley Noise Resolution" },
@@ -103462,10 +103462,10 @@ namespace infinite {
 		{ _field_long_integer, "Volumetric Clouds RT Width Resolution" },
 		{ _field_long_integer, "Volumetric Clouds RT Height Resolution" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_long_integer, "Volumetric Clouds Depth RT Resolution" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_long_integer, "Volumetric Clouds Coverage RT Resolution" },
 
 		{ _field_long_integer, "Perlin Worley Noise Resolution" },
@@ -103904,7 +103904,7 @@ namespace infinite {
 		{ _field_string, "Preset" },
 		{ _field_real, "HLOD Switch Distance Multiplier" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_real, "HLOD Switch Distance Buffer" },
 		{ _field_real, "HLOD Texture Streaming Multiplier" },
 
@@ -104145,7 +104145,7 @@ namespace infinite {
 	{
 		{ _field_string, "Preset" },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 3 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 3 },
 		FIELD_GROUP_BEGIN("VRAM"),
 		{ _field_struct, "vram", &blofeld::infinite::speccontrolvramsettings },
 		FIELD_GROUP_END(),
@@ -104356,7 +104356,7 @@ namespace infinite {
 		FIELD_GROUP_BEGIN("VRAM"),
 		{ _field_struct, "vram", &blofeld::infinite::speccontrolvramsettings },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_long_integer, "Fudge Factor Size" },
 
 		FIELD_GROUP_END(),
@@ -104483,7 +104483,7 @@ namespace infinite {
 		{ _field_char_enum, "Decals", &blofeld::infinite::decalspresetdefinitionpresets },
 		{ _field_char_enum, "Shader Quality", &blofeld::infinite::shaderqualitypresetdefinitionpresets },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 4 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 4 },
 		FIELD_PAD("generated_pad3000", 3),
 		FIELD_GROUP_BEGIN("VRAM"),
 		{ _field_struct, "vram", &blofeld::infinite::speccontrolvramsettings },
@@ -104498,7 +104498,7 @@ namespace infinite {
 		"Low",
 		"Medium",
 		"High",
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Ultra"
 	};
 	STRING_LIST(reflectionpresetdefinitionpresets, reflectionpresetdefinitionpresets_strings, _countof(reflectionpresetdefinitionpresets_strings));
@@ -104533,7 +104533,7 @@ namespace infinite {
 	STRINGS(temporalaapresetdefinitionpresets)
 	{
 		"Low",
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Medium",
 		"High"
 	};
@@ -104622,13 +104622,13 @@ namespace infinite {
 
 	STRINGS(animationqualitypresetdefinitionpresets)
 	{
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 4 },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 4 },
 		"Low",
 		"Medium",
 		"High",
 		"Ultra",
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		"Auto",
 		"Max"
 	};
@@ -104676,7 +104676,7 @@ namespace infinite {
 		"Low",
 		"Medium",
 		"High",
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIREL_209048_21_12_09_1546 } },
 		"Ultra"
 	};
 	STRING_LIST(decalspresetdefinitionpresets, decalspresetdefinitionpresets_strings, _countof(decalspresetdefinitionpresets_strings));
@@ -104830,18 +104830,18 @@ namespace infinite {
 	{
 		{ _field_struct, "AnyTag", &blofeld::infinite::anytag_struct_definition },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_array, "psoBucketData", &blofeld::infinite::psobucketdata },
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_struct, "psoBucketData", &blofeld::infinite::i343graphicspipelinestatebucketdata },
 
 		{ _field_long_integer, "numPipelineStates" },
 
-		{ _field_legacy, _field_version_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
+		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad1d21", 4),
 
-		{ _field_legacy, _field_version_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
+		{ _version_mode_greater_or_equal, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
 		{ _field_char_enum, "contentBucket", &blofeld::infinite::i343graphicspipelinestatebucket },
 		FIELD_PAD("generated_pad1d21", 3),
 		{ _field_terminator }

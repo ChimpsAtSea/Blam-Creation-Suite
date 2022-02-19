@@ -132,7 +132,7 @@ namespace blofeld
 		{ _field_array, "string data checksum", FIELD_FLAG_UNKNOWN0, &data_hash_definition_array },
 		{ _field_long_integer, "data loaded boolean", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "unknown@" },
 
 		{ _field_terminator }

@@ -107,7 +107,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_RUNTIME_FRONT_LIST_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_string_id, "name0" },
 
 		{ _field_short_integer, "bitmap0_index" },
@@ -123,7 +123,7 @@ namespace blofeld
 		{ _field_real_quaternion, "bitmap_params0" },
 		{ _field_real_quaternion, "bitmap_params1" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_string_id, "name1" },
 
 		{ _field_short_integer, "bitmap2_index" },
@@ -154,7 +154,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_RUNTIME_BACK_LIST_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_string_id, "name" },
 
 		{ _field_short_integer, "bitmap0_index" },

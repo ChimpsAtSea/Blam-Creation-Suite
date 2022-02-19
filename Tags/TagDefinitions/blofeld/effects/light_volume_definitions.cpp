@@ -33,11 +33,11 @@ namespace blofeld
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_ifp_begin),
 		{ _field_string_id, "light_volume name", FIELD_FLAG_INDEX },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_explanation, "Render Method" },
 		{ _field_legacy, _field_struct, "render method", &render_method_struct_definition },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
+		{ _version_mode_greater, _engine_type_haloreach, 4 },
 		FIELD_CUSTOM_EX("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual material?", &material_struct },

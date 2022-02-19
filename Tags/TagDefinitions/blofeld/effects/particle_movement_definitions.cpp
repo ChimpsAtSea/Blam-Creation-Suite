@@ -68,7 +68,7 @@ namespace blofeld
 		{ _field_char_integer, "collision controller index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_char_integer, "turbulence controller index", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_char_integer, "global force controller index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD_EX("pphys", nullptr, FIELD_FLAG_NONE, 3),
 
@@ -91,7 +91,7 @@ namespace blofeld
 		{ _field_char_integer, "collision controller index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_char_integer, "turbulence controller index", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_char_integer, "global force controller index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD_EX("pphys", nullptr, FIELD_FLAG_NONE, 3),
 
@@ -114,8 +114,8 @@ namespace blofeld
 		"turbulence",
 		"global force",
 		"disable swarm collision"
-		//{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
-		//{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4, 1 },
+		//{ _version_mode_platform_include, _platform_type_pc_64bit, 2 },
+		//{ _version_mode_greater_or_equal, _engine_type_halo4, 1 },
 		//"unknown bit 13"
 	};
 	STRING_LIST(particle_movement_flags, particle_movement_flags_strings, _countof(particle_movement_flags_strings));

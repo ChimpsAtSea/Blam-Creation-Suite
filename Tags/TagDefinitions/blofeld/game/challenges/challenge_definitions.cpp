@@ -55,7 +55,7 @@ namespace blofeld
 		{ _field_long_integer, "cookies reward", "cookies for completing this challenge; can be overridden by LSP" },
 		{ _field_long_integer, "XP reward", "XP for completing this challenge; can be overridden by LSP" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_integer, "progress_tracking_interval", "Frequency we toast your progress (think pink and deadly)." },
 
 		{ _field_string_id, "chud_progress_string", "progress toast string (presumably very concise)." },
@@ -89,7 +89,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHALLENGE_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "medal aggregators", &Tag::Reference<struct MedalChallengeAggregatorList>::s_defaultDefinition },
 
 		{ _field_block, "challenge_categories", &challenge_category_block },

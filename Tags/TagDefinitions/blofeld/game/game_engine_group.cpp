@@ -63,21 +63,21 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_MISCELLANEOUS_OPTIONS_BLOCK_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_byte_flags, "flags", &game_engine_miscellaneous_options_flags },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_word_flags, "flags", &game_engine_miscellaneous_options_flags },
 
 		{ _field_char_integer, "early victory win count" },
 		{ _field_char_integer, "round time limit", nullptr, "minutes" },
 		{ _field_char_integer, "number of rounds" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_short_integer, "sudden death" },
 		{ _field_legacy, _field_short_integer, "grace period" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_char_enum, "mosh difficulty level", &mosh_difficulty },
 		{ _field_byte_integer, "overshield deplete time" },
 		FIELD_PAD_EX("RXXH", nullptr, FIELD_FLAG_NONE, 1),
@@ -118,7 +118,7 @@ namespace blofeld
 		{ _field_char_integer, "lives per round" },
 		{ _field_char_integer, "team lives per round" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_char_integer, "min respawn time", nullptr, "seconds" },
 
 		{ _field_char_integer, "respawn time", nullptr, "seconds" },
@@ -126,7 +126,7 @@ namespace blofeld
 		{ _field_char_integer, "betrayal penalty", nullptr, "seconds" },
 		{ _field_char_integer, "respawn growth", nullptr, "seconds" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		FIELD_PAD_EX("EOTOTRXV", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_string_id, "respawn player traits name" },
@@ -163,16 +163,16 @@ namespace blofeld
 		{ _field_string_id, "player traits name" },
 		{ _field_string_id, "weapon set name" },
 
-		{ _field_legacy, _field_version_less, _engine_type_groundhog },
+		{ _version_mode_less, _engine_type_groundhog },
 		{ _field_string_id, "vehicle set name" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_groundhog, 4 },
+		{ _version_mode_greater_or_equal, _engine_type_groundhog, 4 },
 		{ _field_legacy, _field_string_id, "light vehicle set name" },
 		{ _field_legacy, _field_string_id, "tank set name" },
 		{ _field_legacy, _field_string_id, "aircraft set name" },
 		{ _field_legacy, _field_string_id, "turret set name" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 6 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 6 },
 		{ _field_legacy, _field_string_id, "overshield powerup traits name" },
 		{ _field_legacy, _field_string_id, "active camo powerup traits name" },
 		{ _field_legacy, _field_string_id, "custom powerup traits name" },
@@ -180,7 +180,7 @@ namespace blofeld
 		{ _field_char_integer, "active camo powerup duration", nullptr, "seconds" },
 		{ _field_char_integer, "custom powerup duration", nullptr, "seconds" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 17 },
+		{ _version_mode_greater, _engine_type_haloreach, 17 },
 		{ _field_string_id, "equipment set name" },
 		{ _field_string_id, "red powerup traits name" },
 		{ _field_string_id, "blue powerup traits name" },
@@ -201,7 +201,7 @@ namespace blofeld
 
 		{ _field_byte_flags, "flags", &game_engine_map_override_options_flags },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_terminator }
@@ -323,7 +323,7 @@ namespace blofeld
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &game_engine_miscellaneous_options_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "prototype options", &game_engine_prototype_options_block },
 
 		{ _field_block, "respawn options", &game_engine_respawn_options_block },
@@ -332,7 +332,7 @@ namespace blofeld
 		{ _field_block, "team options", &game_engine_team_options_block },
 		{ _field_block, "loadout options", &game_engine_loadout_options_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "ordnance options", &gameEngineOrdnanceOptionsBlock_block },
 
 		{ _field_long_flags, "flags", &sandbox_flags },
@@ -356,7 +356,7 @@ namespace blofeld
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &game_engine_miscellaneous_options_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "prototype options", &game_engine_prototype_options_block },
 
 		{ _field_block, "respawn options", &game_engine_respawn_options_block },
@@ -365,16 +365,16 @@ namespace blofeld
 		{ _field_block, "team options", &game_engine_team_options_block },
 		{ _field_block, "loadout options", &game_engine_loadout_options_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "ordnance options", &gameEngineOrdnanceOptionsBlock_block },
 
 		{ _field_byte_flags, "flags", &game_engine_survival_variant_flags },
 		{ _field_char_enum, "game difficulty", &global_campaign_difficulty_enum },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		FIELD_PAD_EX("SDFHJREN", nullptr, FIELD_FLAG_NONE, 2),
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_char_integer, "time limit" },
 		{ _field_legacy, _field_char_integer, "unknown" }, // #TODO: Do some research
 
@@ -387,10 +387,10 @@ namespace blofeld
 		{ _field_short_integer, "elite life count" },
 		{ _field_short_integer, "maximum lives" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_enum, "generator count", &game_engine_survival_generator_count },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_short_integer, "generator count" },
 
 		{ _field_string_id, "spartan player traits" },
@@ -529,7 +529,7 @@ namespace blofeld
 		{ _field_rgb_color, "secondary color override" },
 		{ _field_argb_color, "ui text tint color override" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_argb_color, "ui bitmap tint color override" },
 
 		{ _field_terminator }
@@ -583,7 +583,7 @@ namespace blofeld
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &game_engine_miscellaneous_options_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "prototype options", &game_engine_prototype_options_block },
 
 		{ _field_block, "respawn options", &game_engine_respawn_options_block },
@@ -592,7 +592,7 @@ namespace blofeld
 		{ _field_block, "team options", &game_engine_team_options_block },
 		{ _field_block, "loadout options", &game_engine_loadout_options_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "ordnance options", &gameEngineOrdnanceOptionsBlock_block },
 
 		{ _field_long_integer, "mission_id" },

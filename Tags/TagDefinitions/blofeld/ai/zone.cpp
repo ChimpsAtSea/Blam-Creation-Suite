@@ -17,7 +17,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		AREAS_BLOCK_STRUCT_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 7 },
+		{ _version_mode_greater, _engine_type_haloreach, 7 },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
@@ -35,11 +35,11 @@ namespace blofeld
 		{ _field_short_integer, "runtime starting index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "runtime count", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 }, // #TODO: commom pattern
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 }, // #TODO: commom pattern
 		{ _field_legacy, _field_short_integer, "unknown" },
 		{ _field_legacy, _field_short_integer, "unknown" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_struct, "Nav Mesh Attachments", FIELD_FLAG_READ_ONLY, &NavMeshAttachmentsStruct },
 
 		{ _field_array, "cluster occupancy", FIELD_FLAG_UNKNOWN0, &area_cluster_occupancy_bitvector_array },
@@ -48,10 +48,10 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("Generation Properties", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "preset", &generate_preset_enum, _field_id_ugpc },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_pad, "pad", 2 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_short_integer, "runtimeCarverInversion", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 
 		{ _field_long_flags, "flags", &generate_flags },
@@ -60,7 +60,7 @@ namespace blofeld
 		{ _field_angle, "firing point orientation" },
 		{ _field_angle, "grid orientation" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_real, "nav volume cell size" },
 
 		{ _field_real, "spacing", FIELD_FLAG_READ_ONLY },
@@ -140,11 +140,11 @@ namespace blofeld
 		{ _field_block, "firing positions", &firing_positions_block },
 		{ _field_block, "areas", &areas_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 }, // #TODO: commom pattern
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 }, // #TODO: commom pattern
 		{ _field_legacy, _field_short_integer, "unknown" },
 		{ _field_legacy, _field_short_integer, "unknown" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_struct, "Nav Mesh Attachments", FIELD_FLAG_READ_ONLY, &NavMeshAttachmentsStruct },
 		{ _field_struct, "disallowed attachment bsps", &manualBspFlagsReferences },
 

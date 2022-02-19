@@ -68,7 +68,7 @@ namespace blofeld
 		{ _field_struct, "unit data", &scenario_unit_struct },
 		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_struct, "vehicle data", &scenario_vehicle_datum_struct },
 
 		{ _field_terminator }
@@ -221,7 +221,7 @@ namespace blofeld
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "unit data", &scenario_unit_struct },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct },
 
 		{ _field_terminator }
@@ -592,7 +592,7 @@ namespace blofeld
 		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_struct, "effect scenery data", &scenario_effect_scenery_datum_struct },
 
 		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct },
@@ -731,13 +731,13 @@ namespace blofeld
 		{ _field_real, "scale", _field_id_scale },
 		{ _field_block, "node orientations", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_object_node_orientations_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 4 },
 		FIELD_PAD_EX("YEE", nullptr, FIELD_FLAG_NONE, 3), // #TODO: Poke around these values
 		{ _field_char_enum, "bsp policy", &scenario_object_bsp_placement_policy_definition, _field_id_enum },
 		{ _field_legacy, _field_short_integer, "manual bsp flags*" },
 		FIELD_PAD_EX("YEET", nullptr, FIELD_FLAG_NONE, 2), // #TODO: Poke around these values
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 8 },
+		{ _version_mode_greater, _engine_type_haloreach, 8 },
 		{ _field_real, "gravity override" },
 		{ _field_byte_flags, "gravity flags", &object_gravity_flags },
 		FIELD_PAD_EX("ZEE", nullptr, FIELD_FLAG_NONE, 1),
@@ -747,7 +747,7 @@ namespace blofeld
 		{ _field_block, "disabled scripts", &scriptListBlock_block },
 		{ _field_struct, "manual bsp flags", FIELD_FLAG_READ_ONLY, &manualBspFlagsReferences },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
+		{ _version_mode_greater, _engine_type_haloreach, 5 },
 		{ _field_word_flags, "transform flags", FIELD_FLAG_UNKNOWN0, &object_transform_flags },
 		{ _field_char_enum, "Nav Mesh Cutting", &NavMeshCuttingOverrideEnum },
 		{ _field_char_enum, "Nav Mesh Obstacle", &BooleanOverrideEnum },
@@ -757,7 +757,7 @@ namespace blofeld
 		{ _field_string_id, "light airprobe name" },
 		{ _field_struct, "object id", &scenario_object_id_struct },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_long_flags, "Light Channels", &channelDefinitionFlags },
 		{ _field_non_cache_runtime_value, "runtimeObjectHandle", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 
@@ -766,7 +766,7 @@ namespace blofeld
 		{ _field_struct, "parent id", &scenario_object_parent_struct },
 		{ _field_long_block_flags, "can attach to bsp flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_structure_bsp_reference_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "Directional Acceleration Mult. ", "Multiplier applied to all phantoms' direction acceleration factors.  Used to scale man-cannon strength." },
 		{ _field_block, "Command Links", &commandLinkBlock_block },
 
@@ -832,7 +832,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_MULTIPLAYER_OBJECT_STRUCT_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 23 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 23 },
 		{ _field_legacy, _field_explanation, "Multiplayer Data", "object data for multiplayer game use" },
 		{ _field_legacy, _field_string, "megalo label" },
 		{ _field_legacy, _field_long_enum, "game engine symmetric placement", &game_engine_symmetry_placement_flags },
@@ -857,7 +857,7 @@ namespace blofeld
 		{ _field_legacy, _field_struct, "map variant parent", &scenario_object_parent_struct },
 		{ _field_legacy, _field_pad, "unknown", 4 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 27 },
+		{ _version_mode_greater, _engine_type_haloreach, 27 },
 		FIELD_EXPLANATION_EX("Multiplayer Data", nullptr, FIELD_FLAG_NONE, "object data for multiplayer game use"),
 		{ _field_string, "megalo label" },
 		{ _field_string, "megalo label 2" },

@@ -5,8 +5,6 @@
 
 namespace blofeld
 {
-	using t_tag_field_custom_version_callback = long(*)(s_engine_platform_build engine_platform_build);
-
 	struct s_tag_field
 	{
 		e_field const field_type;
@@ -31,6 +29,7 @@ namespace blofeld
 			const char* const explanation; // #todo remove from union
 			unsigned long padding; // #todo remove from union
 			unsigned long length; // #todo remove from union
+			s_tag_field_versioning versioning;
 		};
 		union
 		{
@@ -41,11 +40,7 @@ namespace blofeld
 		//enum e_build const min_version;
 		//enum e_build const max_version;
 
-		s_engine_platform_build engine_platform_build;
-		unsigned long _version_field_skip_count;
-		t_tag_field_custom_version_callback _custom_version_callback;
 		//c_blamlib_string_parser string_parser;
-
 	public:
 		template<typename A, typename B>
 		s_tag_field(
@@ -68,13 +63,9 @@ namespace blofeld
 			filename(filename),
 			line(line),
 			pointer((void*)(pointer)),
-			extra_value((void*)(extra_value)),
-			engine_platform_build(),
-			_version_field_skip_count(0),
-			_custom_version_callback(nullptr)
-			//string_parser(name)
+			extra_value((void*)(extra_value))
 		{
-			ASSERT(field_type < _field_type_non_standard);
+
 		}
 
 		template<typename A>
@@ -97,13 +88,9 @@ namespace blofeld
 			filename(filename),
 			line(line),
 			pointer((void*)(pointer)),
-			extra_value(nullptr),
-			engine_platform_build(),
-			_version_field_skip_count(0),
-			_custom_version_callback(nullptr)
-			//string_parser(name)
+			extra_value(nullptr)
 		{
-			ASSERT(field_type < _field_type_non_standard);
+
 		}
 
 		s_tag_field(
@@ -124,13 +111,9 @@ namespace blofeld
 			filename(filename),
 			line(line),
 			pointer(nullptr),
-			extra_value(nullptr),
-			engine_platform_build(),
-			_version_field_skip_count(0),
-			_custom_version_callback(nullptr)
-			//string_parser(name)
+			extra_value(nullptr)
 		{
-			ASSERT(field_type < _field_type_non_standard);
+
 		}
 
 		s_tag_field(
@@ -151,25 +134,20 @@ namespace blofeld
 			filename(filename),
 			line(line),
 			pointer(nullptr),
-			extra_value(nullptr),
-			engine_platform_build(),
-			_version_field_skip_count(0),
-			_custom_version_callback(nullptr)
-			//string_parser("")
+			extra_value(nullptr)
 		{
-			ASSERT(field_type < _field_type_non_standard);
+
 		}
 
 		s_tag_field(
-			e_field_legacy,
-			e_field field_type,
+			e_version_mode mode,
 #ifndef __INTELLISENSE__
 			const char* filename,
 			long line,
 #endif
 			c_engine_platform_build engine_type_and_build,
 			unsigned long version_field_skip_count = 1) :
-			field_type(field_type),
+			field_type(_field_version),
 			name(nullptr),
 			description(),
 			units(),
@@ -179,24 +157,53 @@ namespace blofeld
 			filename(filename),
 			line(line),
 			pointer(nullptr),
-			extra_value(nullptr),
-			engine_platform_build(engine_type_and_build),
-			_version_field_skip_count(version_field_skip_count),
-			_custom_version_callback(nullptr)
-			//string_parser(name)
+			extra_value(nullptr)
 		{
-			ASSERT(field_type > _field_type_non_standard);
+			versioning.group = nullptr;
+			versioning.custom_version_callback = nullptr;
+			versioning.version_field_skip_count = version_field_skip_count;
+			versioning.engine_platform_build = engine_type_and_build;
+			versioning.mode = mode;
 		}
 
 		s_tag_field(
-			e_field_legacy,
-			e_field field_type,
+			e_version_mode mode,
+#ifndef __INTELLISENSE__
+			const char* filename,
+			long line,
+#endif
+			const s_tag_group* tag_group,
+			unsigned long version_field_skip_count = 1) :
+			field_type(_field_version),
+			name(nullptr),
+			description(),
+			units(),
+			limits(),
+			old_names(),
+			flags(),
+			filename(filename),
+			line(line),
+			pointer(nullptr),
+			extra_value(nullptr)
+		{
+			versioning.group = tag_group;
+			versioning.custom_version_callback = nullptr;
+			versioning.version_field_skip_count = version_field_skip_count;
+			versioning.engine_platform_build = {};
+			versioning.mode = mode;
+			DEBUG_ASSERT(
+				mode == _version_mode_tag_group_equal ||
+				mode == _version_mode_tag_group_not_equal);
+		}
+
+		s_tag_field(
+			e_version_mode mode,
 #ifndef __INTELLISENSE__
 			const char* filename,
 			long line,
 #endif
 			t_tag_field_custom_version_callback custom_version_callback) :
-			field_type(field_type),
+			field_type(_field_version),
 			name(nullptr),
 			description(),
 			units(),
@@ -206,13 +213,15 @@ namespace blofeld
 			filename(filename),
 			line(line),
 			pointer(nullptr),
-			extra_value(nullptr),
-			engine_platform_build(),
-			_version_field_skip_count(0),
-			_custom_version_callback(custom_version_callback)
+			extra_value(nullptr)
 			//string_parser("")
 		{
-			ASSERT(field_type == _field_version_custom);
+			versioning.group = nullptr;
+			versioning.custom_version_callback = custom_version_callback;
+			versioning.version_field_skip_count = 0;
+			versioning.engine_platform_build = {};
+			versioning.mode = mode;
+			ASSERT(mode == _version_mode_custom);
 		}
 
 		// type #WARN: Must only be used with _field_terminator
@@ -382,77 +391,24 @@ namespace blofeld
 #endif
 			pointer(pointer), // union
 			extra_value(nullptr), // union
-			id(id),
-			engine_platform_build(),
-			_version_field_skip_count(0),
-			_custom_version_callback(nullptr)
+			id(id)
 			//string_parser(name)
 		{
 		}
 	};
 
-	inline bool skip_tag_field_version(s_tag_field const& tag_field, s_engine_platform_build engine_platform_build, unsigned long& skip_count)
-	{
-		if (tag_field.field_type > _field_type_non_standard)
-		{
-			bool skip_versioning_field = false;
-			skip_count = tag_field._version_field_skip_count;
+	BCS_DEBUG_API bool execute_tag_field_versioning(
+		s_tag_field const& tag_field,
+		s_engine_platform_build engine_platform_build,
+		tag group_tag,
+		unsigned long& skip_count);
 
-			if (tag_field.field_type == _field_version_custom)
-			{
-				ASSERT(tag_field._custom_version_callback);
-				skip_count = tag_field._custom_version_callback(engine_platform_build);
-				skip_versioning_field = false;
-			}
-			else if (tag_field.field_type == _field_version_platform_include)
-			{
-				if (tag_field.engine_platform_build.platform_type != _platform_type_not_set && engine_platform_build.platform_type != _platform_type_not_set)
-				{
-					skip_versioning_field = (tag_field.engine_platform_build.platform_type & engine_platform_build.platform_type) != 0;
-				}
-			}
-			else if (tag_field.field_type == _field_version_platform_exclude)
-			{
-				if (tag_field.engine_platform_build.platform_type != _platform_type_not_set && engine_platform_build.platform_type != _platform_type_not_set)
-				{
-					skip_versioning_field = (tag_field.engine_platform_build.platform_type & engine_platform_build.platform_type) != 0;
-				}
-			}
-			else
-			{
-				switch (tag_field.field_type)
-				{
-				case _field_version_equal:
-					skip_versioning_field = engine_platform_build == tag_field.engine_platform_build;
-					break;
-				case _field_version_not_equal:
-					skip_versioning_field = engine_platform_build != tag_field.engine_platform_build;
-					break;
-				case _field_version_less:
-					skip_versioning_field = engine_platform_build < tag_field.engine_platform_build;
-					break;
-				case _field_version_greater:
-					skip_versioning_field = engine_platform_build > tag_field.engine_platform_build;
-					break;
-				case _field_version_less_or_equal:
-					skip_versioning_field = engine_platform_build <= tag_field.engine_platform_build;
-					break;
-				case _field_version_greater_or_equal:
-					skip_versioning_field = engine_platform_build >= tag_field.engine_platform_build;
-					break;
-				}
-			}
+	BCS_DEBUG_API bool execute_tag_field_versioning(
+		s_tag_field_versioning const& versioning,
+		s_engine_platform_build engine_platform_build,
+		tag group_tag,
+		unsigned long& skip_count);
 
-			if (skip_versioning_field)
-			{
-				skip_count = 0;
-			}
-
-			return true;
-		}
-		skip_count = 0;
-		return false;
-	}
 }
 
 #pragma warning( pop )

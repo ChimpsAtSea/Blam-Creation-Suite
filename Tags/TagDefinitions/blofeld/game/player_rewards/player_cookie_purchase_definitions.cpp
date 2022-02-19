@@ -33,7 +33,7 @@ namespace blofeld
 		{ _field_string_id, "display name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "display description" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_string_id, "Exit Experience Aggregate Group Name" },
 
 		{ _field_byte_flags, "flags", &cookie_purchase_flags },
@@ -41,12 +41,12 @@ namespace blofeld
 		{ _field_tag_reference, "display bitmap", &global_bitmap_reference },
 		{ _field_long_integer, "sprite index" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "detail display bitmap", &global_bitmap_reference },
 
 		{ _field_long_integer, "cookie cost" },
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
+		{ _version_mode_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_struct, "purchase player appearance", &PurchasePlayerAppearanceStruct }, // moved
 
 		FIELD_CUSTOM_EX("Prerequisites for visibility", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
@@ -56,7 +56,7 @@ namespace blofeld
 		{ _field_struct, "purchasable prerequisites", &PurchasePrerequisitesUnifiedDefinitionBlock },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_struct, "purchase player appearance", &PurchasePlayerAppearanceStruct }, // moved
 
 		{ _field_terminator }
@@ -439,12 +439,12 @@ namespace blofeld
 		{ _field_block, "Right shoulder purchasable appearance families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
 		{ _field_block, "Chest purchasable appearance families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "Legs purchasable appearance families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
 
 		{ _field_block, "Arms purchasable appearance families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 7 },
+		{ _version_mode_greater, _engine_type_haloreach, 7 },
 		{ _field_block, "App 1 loadout families", &CookiePurchaseFamilyLoadoutDefinitionBlock_block },
 		{ _field_block, "App 2 loadout families", &CookiePurchaseFamilyLoadoutDefinitionBlock_block },
 		{ _field_block, "Primary weapon loadout families", &CookiePurchaseFamilyLoadoutDefinitionBlock_block },
@@ -453,12 +453,12 @@ namespace blofeld
 		{ _field_block, "Equipment purchasable loadout families", &CookiePurchaseFamilyLoadoutDefinitionBlock_block },
 		{ _field_block, "Slot purchasable loadout families", &CookiePurchaseFamilyLoadoutDefinitionBlock_block },
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
+		{ _version_mode_equal, _engine_type_haloreach },
 		{ _field_block, "Legs purchasable appearance families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
 
 		{ _field_block, "Visor tint purchasable appearance families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_block, "Knee guard purchasable appearance families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
 		{ _field_legacy, _field_block, "Armor effect purchasable appearance families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
 
@@ -466,10 +466,10 @@ namespace blofeld
 		{ _field_block, "Primary emblem purchasable appearance families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
 		{ _field_block, "Secondary emblem purchasable appearance families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_block, "Firefight voice purchasable appearance families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_block, "Ordnance slot purchasable families", &CookiePurchaseFamilyOrdnanceDefinitionBlock_block },
 		{ _field_block, "Ordnance purchasable families", &CookiePurchaseFamilyOrdnanceDefinitionBlock_block },
 		{ _field_block, "Portrait pose purchasable families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
@@ -481,7 +481,7 @@ namespace blofeld
 		{ _field_block, "Waypoint appearance unlockables", &CookiePurchaseExternalUnlockableBlockAppearanceDefinition_block },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 9 },
+		{ _version_mode_greater, _engine_type_haloreach, 9 },
 		FIELD_CUSTOM_EX("Loadout Items", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_block, "purchasable loadout items", &CookiePurchaseLoadoutDefinitionBlock_block },
 		{ _field_block, "DLC loadout unlockables", &CookiePurchaseExternalUnlockableBlockLoadoutDefinition_block },
@@ -545,10 +545,10 @@ namespace blofeld
 		{ _field_block, "visor tints", &purchase_player_appearance_effect_visor_tint_block },
 		{ _field_block, "emblem indices", &purchase_player_appearance_effect_emblem_index_block },
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
+		{ _version_mode_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "firefight voices", &purchase_player_appearance_effect_firefight_voice_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "portrait poses", &PurchasePlayerAppearancePoseBlock_block },
 
 		{ _field_terminator }

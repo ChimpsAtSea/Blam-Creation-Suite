@@ -27,7 +27,7 @@ void c_structure_relationship_node::populate()
 	for (const blofeld::s_tag_field* current_field = tag_struct_definition.fields; current_field->field_type != blofeld::_field_terminator; current_field++)
 	{
 		unsigned long field_skip_count;
-		if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
+		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
 		{
 			current_field += field_skip_count;
 			continue;

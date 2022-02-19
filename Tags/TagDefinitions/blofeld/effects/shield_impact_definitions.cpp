@@ -31,7 +31,7 @@ namespace blofeld
 	{
 		// H3, ODST. Based on Assembly definitions.
 		// #TODO: merge shield_impact_struct definition versions
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 27 },
+		{ _version_mode_less, _engine_type_haloreach, 27 },
 		{ _field_legacy, _field_tag_reference, "Plasma Noise Texture 0", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
 		{ _field_legacy, _field_tag_reference, "Plasma Noise Texture 1", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
 		{ _field_legacy, _field_real, "Offset Amount" },
@@ -61,7 +61,7 @@ namespace blofeld
 		{ _field_legacy, _field_real, "Hit Plasma Intensity" },
 
 		// Reach, H4
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 48 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 48 },
 		FIELD_EXPLANATION_EX("Shield Controls", nullptr, FIELD_FLAG_NONE, "You can use the following variables as inputs to the functions here, in addition to any object variables\n    shield_vitality        percentage of shield remaining\n    shield_intensity       mixture of recent and current damage (see below)\n    current_shield_damage\n    recent_shield_damage\n"),
 		{ _field_word_flags, "flags", &shield_flags },
 		{ _field_short_integer, "version", FIELD_FLAG_UNKNOWN0 },
@@ -111,12 +111,12 @@ namespace blofeld
 		{ _field_struct, "Hit Color", &shield_color_function_struct },
 		{ _field_struct, "Hit Intensity", &shield_scalar_function_struct },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_struct, "Hit Radius", &shield_scalar_function_struct },
 		{ _field_tag_reference, "hit blob texture (adds significant cost)", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_real_quaternion, "edge_scales", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real_quaternion, "edge_offsets", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real_quaternion, "plasma_scales", FIELD_FLAG_UNKNOWN0 },

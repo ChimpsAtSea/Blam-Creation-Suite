@@ -121,7 +121,7 @@ namespace blofeld
 		{ _field_enum, "behavior tree root", &behavior_tree_root_enum },
 		{ _field_block, "disallowed weapons from trading", &disallowed_weapons_for_trading_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_tag_reference, "Initial Primary Weapon ", "Overrides initial primary weapon set in unit tag.", &weapon_reference$3 },
 		{ _field_tag_reference, "Initial Secondary Weapon ", "Overrides initial secondary weapon set in unit tag.", &weapon_reference$3 },
 		{ _field_tag_reference, "Initial Equipment ", "Fallback used if initial equipment not specified as drop item or in scenario.", &equipment_reference },
@@ -236,7 +236,7 @@ namespace blofeld
 		{ _field_tag_reference, "resurrect weapon", "If I'm being automatically resurrected then I pull out a ...", &weapon_reference$3 },
 		{ _field_real, "player damage_scale", "If the player is hurting me, scale the damage by this amount. (0 value defaults to 1)", nullptr, "[0-1]" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "projectile attached detonation time scale" },
 
 		{ _field_terminator }
@@ -403,7 +403,7 @@ namespace blofeld
 		{ _field_long_flags, "movement flags", &movement_flags },
 		{ _field_real, "pathfinding radius" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "avoidance radius", "If 0, uses pathfinding radius." },
 
 		{ _field_real, "destination radius" },
@@ -446,7 +446,7 @@ namespace blofeld
 		{ _field_real, "turn and run distance to destination", "Firing point must be at least this distance away from the actor for him to consider turning and running to it", "wus" },
 		{ _field_real, "follow unit buffer distance", "When following a unit, such as the player, this is the additional buffer outside of the task follow radius that we are allowed to position ourselves before full firing position avoidance kicks in", "wus" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 14 },
+		{ _version_mode_greater, _engine_type_haloreach, 14 },
 		FIELD_CUSTOM_EX("Phasing", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "phase chance" },
 		{ _field_real, "phase delay seconds", "don't attempt again before given time since last phase" },
@@ -701,7 +701,7 @@ namespace blofeld
 		{ _field_real_bounds, "default combat range", "If we are not holding a weapon, or we don't know how to use our weapon, use these bounds on my combat range", "wus" },
 		{ _field_real_bounds, "default firing range", "If we don't know how to use our weapon, use these bounds on my firing range", "wus" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_real_fraction, "Preferred engage fraction ", "0 will default to .3, other is ratio from min to max combat range preferred" },
 		{ _field_real, "Active Shield Fire Cutoff Delay", "Number of seconds elapsed before stop firing at active shielded target." },
 
@@ -734,7 +734,7 @@ namespace blofeld
 		{ _field_real, "melee delay timer", "time between melee leaps", "seconds" },
 		{ _field_real, "melee leap prediction time", "how far ahead (seconds) do we look at target for translational prediction?" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "leader abandoned berserk chance", "chance for a leader to berserk when all his followers die (actually charge, NOT berserk, but I'm not changing the name of the variable)" },
 
 		{ _field_real_bounds, "shield-down berserk chance", "lower bound is chance to berserk at max range, upper bound is chance to berserk at min range, requires shield depleted berserk impulse" },
@@ -744,7 +744,7 @@ namespace blofeld
 		{ _field_real_fraction, "leader killed berserk chance", "Chance that we will go berserk if we see a friendly AI of the same type (brute, etc) with higher standing get killed", nullptr, "[0,1]" },
 		{ _field_tag_reference, "berserk weapon", "when I berserk, I pull out a ...", &weapon_reference$3 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real_fraction, "Play Berserk Anim Chance When Stuck ", "Chance that AI will play berserk anim after getting stuck with a grenade.  Zero is 50%" },
 
 		{ _field_real, "Beserk cooldown", "Time that I will stay in beserk after losing my target, and then revert back to normal", "seconds" },
@@ -758,7 +758,7 @@ namespace blofeld
 		{ _field_real, "Perimeter Damage Timeout", "How long will we take damage from our target before either seeking cover or berserking (defaults to 3secs)", "secs" },
 		{ _field_block, "difficulty limits", &character_charge_difficulty_limits_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
+		{ _version_mode_greater, _engine_type_haloreach, 4 },
 		{ _field_real_bounds, "balling melee leap range" },
 		{ _field_real, "balling melee leap attack range" },
 		{ _field_real, "balling melee leap chance" },
@@ -1136,7 +1136,7 @@ namespace blofeld
 		{ _field_real, "Max extreme target distance", "within this distance actor will be able to do fallback engagement firing patterns. Use for extreme range engagements not otherwise permitted.", "world units" },
 		FIELD_EXPLANATION_EX("Ballistic Firing", nullptr, FIELD_FLAG_NONE, ""),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "super-ballistic range", "we try to aim our shots super-ballistically if target is outside this range (zero = never)" },
 
 		{ _field_real_bounds, "Ballistic firing bounds", "At the min range, the min ballistic fraction is used, at the max, the max ballistic fraction is used", "world units" },
@@ -1150,7 +1150,7 @@ namespace blofeld
 		{ _field_real_vector_3d, "custom stand gun offset", "custom standing gun offset for overriding the default in the base actor" },
 		{ _field_real_vector_3d, "custom crouch gun offset", "custom crouching gun offset for overriding the default in the base actor" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_integer, "Blocked Shot Count", "Number of projectiles blocked before the character is considered blocked. Zero defaults to 6." },
 
 		FIELD_EXPLANATION_EX("special-case firing properties", nullptr, FIELD_FLAG_NONE, ""),
@@ -1164,7 +1164,7 @@ namespace blofeld
 		{ _field_real_bounds, "drop weapon loaded", "amount of ammo loaded into the weapon that we drop (in fractions of a clip, e.g. 0.3 to 0.5)" },
 		{ _field_short_bounds, "drop weapon ammo", "total number of rounds in the weapon that we drop (ignored for energy weapons)" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		FIELD_EXPLANATION_EX("Accuracy", nullptr, FIELD_FLAG_NONE, "Parameters control how accuracy changes over the duration of a series of bursts\nAccuracy is an analog value between 0 and 1. At zero, the parameters of the first\nfiring-pattern block is used. At 1, the parameters in the second block is used. In\nbetween, all the values are linearly interpolated"),
 
 		{ _field_real_bounds, "normal accuracy bounds", "Indicates starting and ending accuracies at normal difficulty" },
@@ -1240,7 +1240,7 @@ namespace blofeld
 		{ _field_real_bounds, "grenade ranges", "ranges within which we will consider throwing a grenade", "world units" },
 		{ _field_real, "collateral damage radius", "we won't throw if there are friendlies around our target within this range", "world units" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real_fraction, "grenade chance", "how likely we are to throw a grenade in one second", nullptr, "[0,1]" },
 
 		{ _field_real, "Active Shield Modifier", "Throw chance multiplied by this value when target is using active shield." },
@@ -1291,13 +1291,13 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("Pathfinding", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "ai pathfinding radius", nullptr, "world units (Ground vehicles)" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "ai avoidance radius", "If 0, uses pathfinding radius.", "world units (Ground vehicles)" },
 
 		{ _field_real, "ai destination radius", "Distance within which goal is considered reached", "world units (All vehicles)" },
 		{ _field_real, "ai deceleration distance", "Distance from goal at which AI starts to decelerate", "world units (All vehicles)", MAKE_OLD_NAMES("ai deceleration distanceworld units") },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "roughly, the time it would take this vehicle to stop; default is 2 seconds" },
 
 		FIELD_EXPLANATION_EX("Turning", nullptr, FIELD_FLAG_NONE, ""),
@@ -1316,7 +1316,7 @@ namespace blofeld
 		{ _field_angle, "destination behind angle", "The angle from facing that is considered to be behind us (we do the ugly floaty slidey turn to things behind us)", "(dropships)" },
 		{ _field_real, "skid scale", "When approaching a corner at speed, we may want to skid around that corner, by turning slightly too early. This is (roughly) how many seconds ahead we should start turning.", "(warthogs)" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_angle, "aiming velocity maximum", nullptr, "degrees per second" },
 		{ _field_angle, "aiming acceleration maximum", nullptr, "degrees per second squared" },
 
@@ -1342,7 +1342,7 @@ namespace blofeld
 		{ _field_real, "ai charge consider distance", "Consider charging the target when it is within this range (0 = infinite distance)", "(all vehicles)" },
 		{ _field_real, "ai charge abort distance", "Abort the charge when the target get more than this far away (0 = never abort)", "(all vehicles)" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "ai charge abort close distance", "Abort the charge when the target gets closer than this far away (0 = 3 times destination radius for historical purposes.)", "(all vehicles)" },
 
 		{ _field_real, "ai charge armor locked target chance", "Probability that we decide to charge a target even if they are armor locked", nullptr, "[0-1] (all vehicles)" },
@@ -1932,7 +1932,7 @@ namespace blofeld
 		{ _field_block, "voice", &character_voice_properties_block },
 		{ _field_block, "general properties", &character_general_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "proto spawn properties", &character_proto_spawn_block },
 
 		{ _field_block, "interact properties", &character_interact_block },
@@ -1943,7 +1943,7 @@ namespace blofeld
 		{ _field_block, "target properties", &character_target_block },
 		{ _field_block, "look properties", &character_look_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "hopping properties", &character_hopping_block },
 
 		{ _field_block, "movement properties", &character_movement_block },
@@ -1974,7 +1974,7 @@ namespace blofeld
 		{ _field_block, "weapons properties", &character_weapons_block, _field_id_sort },
 		{ _field_block, "firing pattern properties", &character_firing_pattern_properties_block, _field_id_sort },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "extreme range firing pattern properties", &character_firing_pattern_properties_block, _field_id_sort },
 
 		{ _field_block, "grenades properties", &character_grenades_block, _field_id_sort },
@@ -1987,7 +1987,7 @@ namespace blofeld
 		{ _field_block, "activity objects", &character_activity_object_block },
 		{ _field_block, "pain screen properties", &character_pain_screen_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 14 },
+		{ _version_mode_greater, _engine_type_haloreach, 14 },
 		{ _field_block, "bishop properties", &character_bishop_block },
 		{ _field_block, "combotron parent properties", &character_combotron_parent_block },
 		{ _field_block, "combotron child properties", &character_combotron_child_block },

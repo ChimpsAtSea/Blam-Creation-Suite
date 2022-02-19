@@ -44,12 +44,12 @@ namespace blofeld
 	{
 		FIELD_EXPLANATION_EX("default result", nullptr, FIELD_FLAG_NONE, "(if the potential result, below, fails to happen)"),
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_word_flags, "flags", &projectile_material_response_flags },
 
 		{ _field_enum, "default response", &material_response },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		FIELD_PAD_EX("KJSH", nullptr, FIELD_FLAG_NONE, 2),
 
 		{ _field_string_id, "material name" },
@@ -72,7 +72,7 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("penetration", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "initial friction", "the fraction of the projectile's velocity lost on penetration" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach }, // Source?
+		{ _version_mode_less, _engine_type_haloreach }, // Source?
 		{ _field_legacy, _field_real, "maximum distance" },
 
 		FIELD_EXPLANATION_EX("reflection", nullptr, FIELD_FLAG_NONE, ""),
@@ -222,13 +222,13 @@ namespace blofeld
 		FIELD_CUSTOM_EX("$$$ PROJECTILE $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &projectile_flags },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_flags, "secondary flags", &secondary_projectile_flags },
 
 		{ _field_enum, "detonation timer starts", &projectile_detonation_timer_modes },
 		{ _field_enum, "impact noise", &ai_sound_volume_enum },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "detonation biped proximity", "if >0, both 'detonation timer starts' + a biped must be within this proximity for condition to be met; see 'biped proximity enemies only' flag", "wu" },
 		{ _field_real, "max lifetime to detonate", "if >0, projectile will detonate regardless of other conditions after this total time", "seconds" },
 
@@ -237,7 +237,7 @@ namespace blofeld
 		{ _field_real, "arming time", "won't detonate before this time elapses", "seconds" },
 		{ _field_real, "danger radius", nullptr, "world units" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_real, "danger stimuli radius", "Overrides the danger radius when non-zero for stimuli related danger radius calculations.", "world units" },
 		{ _field_short_integer, "danger group burst count", "The number of projectiles in this burst before this burst is considered dangerous" },
 		{ _field_short_integer, "danger group burst max count", "The maximum number of projectiles we allow in a group" },
@@ -247,7 +247,7 @@ namespace blofeld
 		{ _field_real, "maximum range", "detonates after travelling this distance", "world units" },
 		{ _field_real, "bounce maximum range", "detonates after travelling this distance, but is reset after a bounce.  Combines with maximum range", "world units" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_real, "max latch time to detonate", "projectile will detonate regardless of weapon latching after this total time", "seconds" },
 		{ _field_real, "max latch time to arm", "projectile will arm itself regardless of detonation mode if latched for this amount of time.", "seconds" },
 
@@ -255,7 +255,7 @@ namespace blofeld
 		{ _field_short_integer, "super det. projectile count" },
 		{ _field_real, "super det. time" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_real_bounds, "super det. range", "The range within which supercombine will happen - outside this range, no supercombine", "world units" },
 		{ _field_tag_reference, "super det. behavior", "An equipment reference that is attached to the target upon super detonation", &behavior_object_reference },
 		{ _field_real, "tether release safety delay", "if the weapon the projectile is tethered to loses its owner, this amount of time will pass before detonation" },
@@ -266,7 +266,7 @@ namespace blofeld
 		{ _field_tag_reference, "detonation effect (ground)", &global_effect_reference },
 		{ _field_tag_reference, "detonation damage", &global_damage_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "detonation behavior", "An equipment reference that is attached to the target upon detonation", &behavior_object_reference },
 
 		{ _field_tag_reference, "attached detonation damage", &global_damage_reference },
@@ -282,12 +282,12 @@ namespace blofeld
 		{ _field_tag_reference, "flyby sound", &global_sound_reference },
 		{ _field_tag_reference, "flyby damage response", &global_damage_response_definition_reference },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "flyby damage response max distance" },
 
 		{ _field_tag_reference, "impact effect", &global_effect_reference },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_tag_reference, "object impact effect", &global_effect_reference },
 
 		{ _field_tag_reference, "impact damage", &global_damage_reference },
@@ -303,7 +303,7 @@ namespace blofeld
 		{ _field_real, "initial velocity", "bullet's velocity when inflicting maximum damage", "world units per second" },
 		{ _field_real, "final velocity", "bullet's velocity when inflicting minimum damage", "world units per second" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_real, "indirect fire velocity", "base velocity used for ballistics calculations for indirect firing.", "world units per second" },
 		{ _field_real, "ai velocity scale (normal)", "scale on the initial velocity when fired by the ai on normal difficulty (0 defaults to 1.0", nullptr, "[0-1]" },
 		{ _field_real, "ai velocity scale (heroic)", "scale on the initial velocity when fired by the ai on heroic difficulty (0 defaults to 1.0)", nullptr, "[0-1]" },
@@ -321,17 +321,17 @@ namespace blofeld
 		{ _field_real, "autoaim leading max lead time" },
 		{ _field_block, "old material responses", MAKE_OLD_NAMES("material responses"), FIELD_FLAG_UNKNOWN0, &old_projectile_material_response_block, _field_id_sort },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "material response", &projectile_material_response_block },
 
 		{ _field_block, "brute grenade", &brute_grenade_block },
 		{ _field_block, "fire bomb grenade", &fire_bomb_grenade_block },
 		{ _field_block, "conical spread", &conical_projection_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_tag_reference, "grounded friction settings", "If not present, the default from global.globals is used.", &global_grounded_friction_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_tag_reference, "killcam parameters", "if not present, first person will be used.", &Tag::Reference<struct KillCamCameraParameterDefinition>::s_defaultDefinition },
 		{ _field_block, "Sound RTPCs", &ProjectileSoundRTPCBlock_block },
 

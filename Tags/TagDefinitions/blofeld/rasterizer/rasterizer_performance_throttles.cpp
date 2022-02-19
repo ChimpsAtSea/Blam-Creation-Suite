@@ -43,7 +43,7 @@ namespace blofeld
 		{ _field_real, "IO fade modifier", "scales down the distances at which IOs imposter" },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "instanced geometry modifier" },
 
 		FIELD_CUSTOM_EX("Dynamic light settings", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
@@ -54,7 +54,7 @@ namespace blofeld
 		{ _field_long_integer, "max effect lights (screenspace)", "limits the number of effect lights we allow to be active at a time (eg. needler needles lighting up objects):0 = off" },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "unknown" },
 
 		FIELD_CUSTOM_EX("Shadow settings", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
@@ -62,8 +62,8 @@ namespace blofeld
 		{ _field_real, "shadow quality lod", "scales resolution of object shadows:[0.0 to 1.0]" },
 		{ _field_real, "floating shadow quality lod", "scales resolution of floating shadow:[0.0 to 1.0], 0 = off" },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_platform_include, _platform_type_pc_64bit, 2 },
+		{ _version_mode_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_real, "anisotropic filtering" },
 
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
@@ -79,7 +79,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PERFORMANCE_THROTTLES_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "unknown" },
 
 		FIELD_EXPLANATION_EX("Performance Throttles", nullptr, FIELD_FLAG_NONE, "Split-screen throttle settings should be more aggresive than non-local co-op settings\nblock index 0:\tdefault non split screen\nblock index 1: two way split screen\nblock index 2: three way split screen\nblock index 3: four way split screen\nblock index 4: one additional non-local player\nblock index 5: two additional non-local players\nblock index 6: three additional non-local players\n\n"),

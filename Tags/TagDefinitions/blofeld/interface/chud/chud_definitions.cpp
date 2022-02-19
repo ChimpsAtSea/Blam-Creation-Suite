@@ -13,10 +13,10 @@ namespace blofeld
 	};
 	V5_TAG_BLOCK(chad_texture_coords_animation_block, 65536)
 	{
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "frame number" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "frame number" },
 
 		{ _field_legacy, _field_real, "movement 1 x" },
@@ -33,10 +33,10 @@ namespace blofeld
 	};
 	V5_TAG_BLOCK(chad_position_animation_block, 65536)
 	{
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "frame number" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "frame number" },
 
 		{ _field_legacy, _field_real, "position x" },
@@ -46,10 +46,10 @@ namespace blofeld
 	};
 	V5_TAG_BLOCK(chad_alpha_animation_block, 65536)
 	{
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "frame number" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "frame number" },
 
 		{ _field_legacy, _field_real, "alpha" },
@@ -57,10 +57,10 @@ namespace blofeld
 	};
 	V5_TAG_BLOCK(chad_rotation_animation_block, 65536)
 	{
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "frame number" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "frame number" },
 
 		{ _field_legacy, _field_angle, "x angle" },
@@ -70,10 +70,10 @@ namespace blofeld
 	};
 	V5_TAG_BLOCK(chad_ammo_counter_block, 65536)
 	{
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "frame number" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "frame number" },
 
 		{ _field_legacy, _field_real, "boot progress fraction" },
@@ -81,10 +81,10 @@ namespace blofeld
 	};
 	V5_TAG_BLOCK(chad_color_animation_block, 65536)
 	{
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "frame number" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "frame number" },
 
 		{ _field_legacy, _field_terminator }
@@ -97,10 +97,10 @@ namespace blofeld
 	};
 	V5_TAG_BLOCK(chad_size_animation_block, 65536)
 	{
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "frame number" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "frame number" },
 
 		{ _field_legacy, _field_real, "stretch x" },
@@ -147,10 +147,10 @@ namespace blofeld
 		{ _field_legacy, _field_block, "alpha unknown", &chad_alpha_block },
 		{ _field_legacy, _field_block, "texture coordinates", &chad_texture_coords_block },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "number of frames" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 5 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 5 },
 		{ _field_legacy, _field_block, "ammo counter boot", &chad_ammo_counter_boot_block },
 		{ _field_legacy, _field_long_integer, "unknown animation block" },
 		{ _field_legacy, _field_long_integer, "unknown animation block" },

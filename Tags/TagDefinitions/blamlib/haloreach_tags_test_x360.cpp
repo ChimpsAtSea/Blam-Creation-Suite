@@ -1935,21 +1935,21 @@ namespace haloreach {
 		"shader_light_volume_block",
 		"shader_light_volume_block",
 		1,
-		shader_light_volume_struct_definition$2);
+		shader_light_volume_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_beam_block_group_block,
 		"shader_beam_block",
 		"shader_beam_block",
 		1,
-		shader_beam_struct_definition$2);
+		shader_beam_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_decal_block_group_block,
 		"shader_decal_block",
 		"shader_decal_block",
 		1,
-		shader_decal_struct_definition$2);
+		shader_decal_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT_V2(
 		shader_water_block_group_block,
@@ -12647,9 +12647,87 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_CONTRAIL_STRUCT_DEFINITION_ID)
 	{
+		{ _version_mode_tag_group_equal, &blofeld::haloreach::contrail_system_group, 14 },
+		FIELD_CUSTOM("value", _field_id_default),
+		{ _field_tag_reference, "definition", &blofeld::haloreach::render_method_definition_group_reference_tagref },
+		{ _field_tag_reference, "reference", &blofeld::haloreach::render_method_group_reference_tagref },
+		{ _field_block, "options", &blofeld::haloreach::short_block_block },
+		{ _field_block, "parameters", &blofeld::haloreach::render_method_parameter_block_block },
+		{ _field_block, "postprocess", &blofeld::haloreach::render_method_postprocess_block_block },
+		{ _field_long_integer, "is template" },
+		{ _field_long_flags, "locked options", &blofeld::haloreach::global_render_method_lock_option_flags_defintion },
+		{ _field_block, "locked parameters", &blofeld::haloreach::render_method_locked_parameter_block_block },
+		{ _field_word_flags, "shader flags", &blofeld::haloreach::global_render_method_flags_defintion },
+		{ _field_char_enum, "sort layer", &blofeld::haloreach::global_sort_layer_enum_defintion },
+		{ _field_char_integer, "version" },
+		{ _field_long_integer, "Custom fog setting index" },
+		{ _field_long_block_index, "prediction atom index", &blofeld::haloreach::g_null_block_block },
+
+		{ _version_mode_tag_group_equal, &blofeld::haloreach::shader_contrail_group, 1 },
 		{ _field_struct, "render_method", &blofeld::haloreach::render_method_struct_definition },
+
 		{ _field_terminator }
 	};
+
+	TAG_REFERENCE(render_method_definition_group_reference_tagref, RENDER_METHOD_DEFINITION_TAG);
+
+	TAG_REFERENCE(render_method_group_reference_tagref, RENDER_METHOD_TAG);
+
+	STRINGS(global_render_method_lock_option_flags_defintion)
+	{
+		"option 0",
+		"option 1",
+		"option 2",
+		"option 3",
+		"option 4",
+		"option 5",
+		"option 6",
+		"option 7",
+		"option 8",
+		"option 9",
+		"option 10",
+		"option 11",
+		"option 12",
+		"option 13",
+		"option 14",
+		"option 15",
+		"option 16",
+		"option 17",
+		"option 18",
+		"option 19",
+		"option 20",
+		"option 21",
+		"option 22",
+		"option 23",
+		"option 24",
+		"option 25",
+		"option 26",
+		"option 27",
+		"option 28",
+		"option 29",
+		"option 30",
+		"option 31"
+	};
+	STRING_LIST(global_render_method_lock_option_flags_defintion, global_render_method_lock_option_flags_defintion_strings, _countof(global_render_method_lock_option_flags_defintion_strings));
+
+	STRINGS(global_render_method_flags_defintion)
+	{
+		"don\'t fog me",
+		"use custom setting",
+		"calculate Z camera",
+		"never render for shields",
+		"only render for shields"
+	};
+	STRING_LIST(global_render_method_flags_defintion, global_render_method_flags_defintion_strings, _countof(global_render_method_flags_defintion_strings));
+
+	STRINGS(global_sort_layer_enum_defintion)
+	{
+		"invalid",
+		"pre-pass",
+		"normal",
+		"post-pass"
+	};
+	STRING_LIST(global_sort_layer_enum_defintion, global_sort_layer_enum_defintion_strings, _countof(global_sort_layer_enum_defintion_strings));
 
 	#define SHADER_PARTICLE_STRUCT_DEFINITION_ID { 0x769BE1B8, 0x531C4049, 0x99594583, 0x24A08389 }
 	TAG_STRUCT(
@@ -12661,7 +12739,25 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_PARTICLE_STRUCT_DEFINITION_ID)
 	{
+		{ _version_mode_tag_group_equal, &blofeld::haloreach::particle_group, 14 },
+		FIELD_CUSTOM("value", _field_id_default),
+		{ _field_tag_reference, "definition", &blofeld::haloreach::render_method_definition_group_reference_tagref },
+		{ _field_tag_reference, "reference", &blofeld::haloreach::render_method_group_reference_tagref },
+		{ _field_block, "options", &blofeld::haloreach::short_block_block },
+		{ _field_block, "parameters", &blofeld::haloreach::render_method_parameter_block_block },
+		{ _field_block, "postprocess", &blofeld::haloreach::render_method_postprocess_block_block },
+		{ _field_long_integer, "is template" },
+		{ _field_long_flags, "locked options", &blofeld::haloreach::global_render_method_lock_option_flags_defintion },
+		{ _field_block, "locked parameters", &blofeld::haloreach::render_method_locked_parameter_block_block },
+		{ _field_word_flags, "shader flags", &blofeld::haloreach::global_render_method_flags_defintion },
+		{ _field_char_enum, "sort layer", &blofeld::haloreach::global_sort_layer_enum_defintion },
+		{ _field_char_integer, "version" },
+		{ _field_long_integer, "Custom fog setting index" },
+		{ _field_long_block_index, "prediction atom index", &blofeld::haloreach::g_null_block_block },
+
+		{ _version_mode_tag_group_equal, &blofeld::haloreach::shader_particle_group, 1 },
 		{ _field_struct, "render_method", &blofeld::haloreach::render_method_struct_definition },
+
 		{ _field_real_rgb_color, "bright tint" },
 		{ _field_real_rgb_color, "ambient tint" },
 		{ _field_real, "contrast" },
@@ -13521,17 +13617,35 @@ namespace haloreach {
 
 	TAG_REFERENCE(damage_response_definition_group_reference$2_tagref, DAMAGE_RESPONSE_DEFINITION_TAG);
 
-	#define SHADER_BEAM_STRUCT_DEFINITION$2_ID { 0x0592DCD9, 0x37FA4BC4, 0xA738BF8A, 0x3D5A5091 }
+	#define SHADER_BEAM_STRUCT_DEFINITION_ID { 0x0592DCD9, 0x37FA4BC4, 0xA738BF8A, 0x3D5A5091 }
 	TAG_STRUCT(
-		shader_beam_struct_definition$2,
+		shader_beam_struct_definition,
 		"shader_beam_struct_definition",
 		"shader_beam_struct_definition",
-		"s_shader_beam_struct_definition$2",
+		"s_shader_beam_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_BEAM_STRUCT_DEFINITION$2_ID)
+		SHADER_BEAM_STRUCT_DEFINITION_ID)
 	{
+		{ _version_mode_tag_group_equal, &blofeld::haloreach::shader_beam_group, 1 },
 		{ _field_struct, "render_method", &blofeld::haloreach::render_method_struct_definition },
+
+		{ _version_mode_tag_group_equal, &blofeld::haloreach::beam_system_group, 14 },
+		FIELD_CUSTOM("value", _field_id_default),
+		{ _field_tag_reference, "definition", &blofeld::haloreach::render_method_definition_group_reference_tagref },
+		{ _field_tag_reference, "reference", &blofeld::haloreach::render_method_group_reference_tagref },
+		{ _field_block, "options", &blofeld::haloreach::short_block_block },
+		{ _field_block, "parameters", &blofeld::haloreach::render_method_parameter_block_block },
+		{ _field_block, "postprocess", &blofeld::haloreach::render_method_postprocess_block_block },
+		{ _field_long_integer, "is template" },
+		{ _field_long_flags, "locked options", &blofeld::haloreach::global_render_method_lock_option_flags_defintion },
+		{ _field_block, "locked parameters", &blofeld::haloreach::render_method_locked_parameter_block_block },
+		{ _field_word_flags, "shader flags", &blofeld::haloreach::global_render_method_flags_defintion },
+		{ _field_char_enum, "sort layer", &blofeld::haloreach::global_sort_layer_enum_defintion },
+		{ _field_char_integer, "version" },
+		{ _field_long_integer, "Custom fog setting index" },
+		{ _field_long_block_index, "prediction atom index", &blofeld::haloreach::g_null_block_block },
+
 		{ _field_terminator }
 	};
 
@@ -13565,17 +13679,35 @@ namespace haloreach {
 		{ _field_terminator }
 	};
 
-	#define SHADER_DECAL_STRUCT_DEFINITION$2_ID { 0xEA087CA7, 0x6D4B455B, 0xA5D40D3C, 0xC2BD313A }
+	#define SHADER_DECAL_STRUCT_DEFINITION_ID { 0xEA087CA7, 0x6D4B455B, 0xA5D40D3C, 0xC2BD313A }
 	TAG_STRUCT(
-		shader_decal_struct_definition$2,
+		shader_decal_struct_definition,
 		"shader_decal_struct_definition",
 		"shader_decal_struct_definition",
-		"s_shader_decal_struct_definition$2",
+		"s_shader_decal_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_DECAL_STRUCT_DEFINITION$2_ID)
+		SHADER_DECAL_STRUCT_DEFINITION_ID)
 	{
+		{ _version_mode_tag_group_equal, &blofeld::haloreach::shader_decal_group, 1 },
 		{ _field_struct, "render_method", &blofeld::haloreach::render_method_struct_definition },
+
+		{ _version_mode_tag_group_equal, &blofeld::haloreach::decal_system_group, 14 },
+		FIELD_CUSTOM("value", _field_id_default),
+		{ _field_tag_reference, "definition", &blofeld::haloreach::render_method_definition_group_reference_tagref },
+		{ _field_tag_reference, "reference", &blofeld::haloreach::render_method_group_reference_tagref },
+		{ _field_block, "options", &blofeld::haloreach::short_block_block },
+		{ _field_block, "parameters", &blofeld::haloreach::render_method_parameter_block_block },
+		{ _field_block, "postprocess", &blofeld::haloreach::render_method_postprocess_block_block },
+		{ _field_long_integer, "is template" },
+		{ _field_long_flags, "locked options", &blofeld::haloreach::global_render_method_lock_option_flags_defintion },
+		{ _field_block, "locked parameters", &blofeld::haloreach::render_method_locked_parameter_block_block },
+		{ _field_word_flags, "shader flags", &blofeld::haloreach::global_render_method_flags_defintion },
+		{ _field_char_enum, "sort layer", &blofeld::haloreach::global_sort_layer_enum_defintion },
+		{ _field_char_integer, "version" },
+		{ _field_long_integer, "Custom fog setting index" },
+		{ _field_long_block_index, "prediction atom index", &blofeld::haloreach::g_null_block_block },
+
 		{ _field_long_integer, "specular_modulate" },
 		{ _field_terminator }
 	};
@@ -13655,17 +13787,35 @@ namespace haloreach {
 		{ _field_terminator }
 	};
 
-	#define SHADER_LIGHT_VOLUME_STRUCT_DEFINITION$2_ID { 0x0EBF63AF, 0x426B4679, 0x93E4F59B, 0x93BC0FF2 }
+	#define SHADER_LIGHT_VOLUME_STRUCT_DEFINITION_ID { 0x0EBF63AF, 0x426B4679, 0x93E4F59B, 0x93BC0FF2 }
 	TAG_STRUCT(
-		shader_light_volume_struct_definition$2,
+		shader_light_volume_struct_definition,
 		"shader_light_volume_struct_definition",
 		"shader_light_volume_struct_definition",
-		"s_shader_light_volume_struct_definition$2",
+		"s_shader_light_volume_struct_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_LIGHT_VOLUME_STRUCT_DEFINITION$2_ID)
+		SHADER_LIGHT_VOLUME_STRUCT_DEFINITION_ID)
 	{
+		{ _version_mode_tag_group_equal, &blofeld::haloreach::shader_light_volume_group, 1 },
 		{ _field_struct, "render_method", &blofeld::haloreach::render_method_struct_definition },
+
+		{ _version_mode_tag_group_equal, &blofeld::haloreach::light_volume_system_group, 14 },
+		FIELD_CUSTOM("value", _field_id_default),
+		{ _field_tag_reference, "definition", &blofeld::haloreach::render_method_definition_group_reference_tagref },
+		{ _field_tag_reference, "reference", &blofeld::haloreach::render_method_group_reference_tagref },
+		{ _field_block, "options", &blofeld::haloreach::short_block_block },
+		{ _field_block, "parameters", &blofeld::haloreach::render_method_parameter_block_block },
+		{ _field_block, "postprocess", &blofeld::haloreach::render_method_postprocess_block_block },
+		{ _field_long_integer, "is template" },
+		{ _field_long_flags, "locked options", &blofeld::haloreach::global_render_method_lock_option_flags_defintion },
+		{ _field_block, "locked parameters", &blofeld::haloreach::render_method_locked_parameter_block_block },
+		{ _field_word_flags, "shader flags", &blofeld::haloreach::global_render_method_flags_defintion },
+		{ _field_char_enum, "sort layer", &blofeld::haloreach::global_sort_layer_enum_defintion },
+		{ _field_char_integer, "version" },
+		{ _field_long_integer, "Custom fog setting index" },
+		{ _field_long_block_index, "prediction atom index", &blofeld::haloreach::g_null_block_block },
+
 		{ _field_terminator }
 	};
 
@@ -15236,208 +15386,6 @@ namespace haloreach {
 		MATERIAL_TYPE_STRUCT_ID)
 	{
 		{ _field_short_integer, "global material index" },
-		{ _field_terminator }
-	};
-
-	#define SHADER_PARTICLE_STRUCT_DEFINITION$2_ID { 0x769BE1B8, 0x531C4049, 0x99594583, 0x24A08389 }
-	TAG_STRUCT(
-		shader_particle_struct_definition$2,
-		"shader_particle_struct_definition",
-		"shader_particle_struct_definition",
-		"s_shader_particle_struct_definition$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_PARTICLE_STRUCT_DEFINITION$2_ID)
-	{
-		FIELD_CUSTOM("value", _field_id_default),
-		{ _field_tag_reference, "definition", &blofeld::haloreach::render_method_definition_group_reference_tagref },
-		{ _field_tag_reference, "reference", &blofeld::haloreach::render_method_group_reference_tagref },
-		{ _field_block, "options", &blofeld::haloreach::short_block_block },
-		{ _field_block, "parameters", &blofeld::haloreach::render_method_parameter_block_block },
-		{ _field_block, "postprocess", &blofeld::haloreach::render_method_postprocess_block_block },
-		{ _field_long_integer, "is template" },
-		{ _field_long_flags, "locked options", &blofeld::haloreach::global_render_method_lock_option_flags_defintion },
-		{ _field_block, "locked parameters", &blofeld::haloreach::render_method_locked_parameter_block_block },
-		{ _field_word_flags, "shader flags", &blofeld::haloreach::global_render_method_flags_defintion },
-		{ _field_char_enum, "sort layer", &blofeld::haloreach::global_sort_layer_enum_defintion },
-		{ _field_char_integer, "version" },
-		{ _field_long_integer, "Custom fog setting index" },
-		{ _field_long_block_index, "prediction atom index", &blofeld::haloreach::g_null_block_block },
-		{ _field_real_rgb_color, "bright tint" },
-		{ _field_real_rgb_color, "ambient tint" },
-		{ _field_real, "contrast" },
-		{ _field_real, "blur weight" },
-		{ _field_real, "intensity scale" },
-		{ _field_tag_reference, "palette", &blofeld::haloreach::bitmap_group_reference$2_tagref },
-		{ _field_terminator }
-	};
-
-	TAG_REFERENCE(render_method_definition_group_reference_tagref, RENDER_METHOD_DEFINITION_TAG);
-
-	TAG_REFERENCE(render_method_group_reference_tagref, RENDER_METHOD_TAG);
-
-	STRINGS(global_render_method_lock_option_flags_defintion)
-	{
-		"option 0",
-		"option 1",
-		"option 2",
-		"option 3",
-		"option 4",
-		"option 5",
-		"option 6",
-		"option 7",
-		"option 8",
-		"option 9",
-		"option 10",
-		"option 11",
-		"option 12",
-		"option 13",
-		"option 14",
-		"option 15",
-		"option 16",
-		"option 17",
-		"option 18",
-		"option 19",
-		"option 20",
-		"option 21",
-		"option 22",
-		"option 23",
-		"option 24",
-		"option 25",
-		"option 26",
-		"option 27",
-		"option 28",
-		"option 29",
-		"option 30",
-		"option 31"
-	};
-	STRING_LIST(global_render_method_lock_option_flags_defintion, global_render_method_lock_option_flags_defintion_strings, _countof(global_render_method_lock_option_flags_defintion_strings));
-
-	STRINGS(global_render_method_flags_defintion)
-	{
-		"don\'t fog me",
-		"use custom setting",
-		"calculate Z camera",
-		"never render for shields",
-		"only render for shields"
-	};
-	STRING_LIST(global_render_method_flags_defintion, global_render_method_flags_defintion_strings, _countof(global_render_method_flags_defintion_strings));
-
-	STRINGS(global_sort_layer_enum_defintion)
-	{
-		"invalid",
-		"pre-pass",
-		"normal",
-		"post-pass"
-	};
-	STRING_LIST(global_sort_layer_enum_defintion, global_sort_layer_enum_defintion_strings, _countof(global_sort_layer_enum_defintion_strings));
-
-	#define SHADER_CONTRAIL_STRUCT_DEFINITION$2_ID { 0xB938733A, 0x10934017, 0x9931B3E4, 0xE1B1434C }
-	TAG_STRUCT(
-		shader_contrail_struct_definition$2,
-		"shader_contrail_struct_definition",
-		"shader_contrail_struct_definition",
-		"s_shader_contrail_struct_definition$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_CONTRAIL_STRUCT_DEFINITION$2_ID)
-	{
-		FIELD_CUSTOM("value", _field_id_default),
-		{ _field_tag_reference, "definition", &blofeld::haloreach::render_method_definition_group_reference_tagref },
-		{ _field_tag_reference, "reference", &blofeld::haloreach::render_method_group_reference_tagref },
-		{ _field_block, "options", &blofeld::haloreach::short_block_block },
-		{ _field_block, "parameters", &blofeld::haloreach::render_method_parameter_block_block },
-		{ _field_block, "postprocess", &blofeld::haloreach::render_method_postprocess_block_block },
-		{ _field_long_integer, "is template" },
-		{ _field_long_flags, "locked options", &blofeld::haloreach::global_render_method_lock_option_flags_defintion },
-		{ _field_block, "locked parameters", &blofeld::haloreach::render_method_locked_parameter_block_block },
-		{ _field_word_flags, "shader flags", &blofeld::haloreach::global_render_method_flags_defintion },
-		{ _field_char_enum, "sort layer", &blofeld::haloreach::global_sort_layer_enum_defintion },
-		{ _field_char_integer, "version" },
-		{ _field_long_integer, "Custom fog setting index" },
-		{ _field_long_block_index, "prediction atom index", &blofeld::haloreach::g_null_block_block },
-		{ _field_terminator }
-	};
-
-	#define SHADER_LIGHT_VOLUME_STRUCT_DEFINITION_ID { 0x0EBF63AF, 0x426B4679, 0x93E4F59B, 0x93BC0FF2 }
-	TAG_STRUCT(
-		shader_light_volume_struct_definition,
-		"shader_light_volume_struct_definition",
-		"shader_light_volume_struct_definition",
-		"s_shader_light_volume_struct_definition",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_LIGHT_VOLUME_STRUCT_DEFINITION_ID)
-	{
-		FIELD_CUSTOM("value", _field_id_default),
-		{ _field_tag_reference, "definition", &blofeld::haloreach::render_method_definition_group_reference_tagref },
-		{ _field_tag_reference, "reference", &blofeld::haloreach::render_method_group_reference_tagref },
-		{ _field_block, "options", &blofeld::haloreach::short_block_block },
-		{ _field_block, "parameters", &blofeld::haloreach::render_method_parameter_block_block },
-		{ _field_block, "postprocess", &blofeld::haloreach::render_method_postprocess_block_block },
-		{ _field_long_integer, "is template" },
-		{ _field_long_flags, "locked options", &blofeld::haloreach::global_render_method_lock_option_flags_defintion },
-		{ _field_block, "locked parameters", &blofeld::haloreach::render_method_locked_parameter_block_block },
-		{ _field_word_flags, "shader flags", &blofeld::haloreach::global_render_method_flags_defintion },
-		{ _field_char_enum, "sort layer", &blofeld::haloreach::global_sort_layer_enum_defintion },
-		{ _field_char_integer, "version" },
-		{ _field_long_integer, "Custom fog setting index" },
-		{ _field_long_block_index, "prediction atom index", &blofeld::haloreach::g_null_block_block },
-		{ _field_terminator }
-	};
-
-	#define SHADER_BEAM_STRUCT_DEFINITION_ID { 0x0592DCD9, 0x37FA4BC4, 0xA738BF8A, 0x3D5A5091 }
-	TAG_STRUCT(
-		shader_beam_struct_definition,
-		"shader_beam_struct_definition",
-		"shader_beam_struct_definition",
-		"s_shader_beam_struct_definition",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_BEAM_STRUCT_DEFINITION_ID)
-	{
-		FIELD_CUSTOM("value", _field_id_default),
-		{ _field_tag_reference, "definition", &blofeld::haloreach::render_method_definition_group_reference_tagref },
-		{ _field_tag_reference, "reference", &blofeld::haloreach::render_method_group_reference_tagref },
-		{ _field_block, "options", &blofeld::haloreach::short_block_block },
-		{ _field_block, "parameters", &blofeld::haloreach::render_method_parameter_block_block },
-		{ _field_block, "postprocess", &blofeld::haloreach::render_method_postprocess_block_block },
-		{ _field_long_integer, "is template" },
-		{ _field_long_flags, "locked options", &blofeld::haloreach::global_render_method_lock_option_flags_defintion },
-		{ _field_block, "locked parameters", &blofeld::haloreach::render_method_locked_parameter_block_block },
-		{ _field_word_flags, "shader flags", &blofeld::haloreach::global_render_method_flags_defintion },
-		{ _field_char_enum, "sort layer", &blofeld::haloreach::global_sort_layer_enum_defintion },
-		{ _field_char_integer, "version" },
-		{ _field_long_integer, "Custom fog setting index" },
-		{ _field_long_block_index, "prediction atom index", &blofeld::haloreach::g_null_block_block },
-		{ _field_terminator }
-	};
-
-	#define SHADER_DECAL_STRUCT_DEFINITION_ID { 0xEA087CA7, 0x6D4B455B, 0xA5D40D3C, 0xC2BD313A }
-	TAG_STRUCT(
-		shader_decal_struct_definition,
-		"shader_decal_struct_definition",
-		"shader_decal_struct_definition",
-		"s_shader_decal_struct_definition",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_DECAL_STRUCT_DEFINITION_ID)
-	{
-		FIELD_CUSTOM("value", _field_id_default),
-		{ _field_tag_reference, "definition", &blofeld::haloreach::render_method_definition_group_reference_tagref },
-		{ _field_tag_reference, "reference", &blofeld::haloreach::render_method_group_reference_tagref },
-		{ _field_block, "options", &blofeld::haloreach::short_block_block },
-		{ _field_block, "parameters", &blofeld::haloreach::render_method_parameter_block_block },
-		{ _field_block, "postprocess", &blofeld::haloreach::render_method_postprocess_block_block },
-		{ _field_long_integer, "is template" },
-		{ _field_long_flags, "locked options", &blofeld::haloreach::global_render_method_lock_option_flags_defintion },
-		{ _field_block, "locked parameters", &blofeld::haloreach::render_method_locked_parameter_block_block },
-		{ _field_word_flags, "shader flags", &blofeld::haloreach::global_render_method_flags_defintion },
-		{ _field_char_enum, "sort layer", &blofeld::haloreach::global_sort_layer_enum_defintion },
-		{ _field_char_integer, "version" },
-		{ _field_long_integer, "Custom fog setting index" },
-		{ _field_long_block_index, "prediction atom index", &blofeld::haloreach::g_null_block_block },
-		{ _field_long_integer, "specular_modulate" },
 		{ _field_terminator }
 	};
 
@@ -22021,7 +21969,7 @@ namespace haloreach {
 		{ _field_real, "motion blur aspect scale", "affects aspect ratio stretching from particle and observer motion" },
 		FIELD_CUSTOM("shader", _field_id_shader_template),
 		FIELD_HIDE_BEGIN(),
-		{ _field_struct, "actual shader?", &blofeld::haloreach::shader_particle_struct_definition$2 },
+		{ _field_struct, "actual shader?", &blofeld::haloreach::shader_particle_struct_definition },
 		FIELD_HIDE_END(),
 		{ _field_struct, "aspect ratio", &blofeld::haloreach::particle_property_scalar_struct_new },
 		{ _field_struct, "color", "controls how the color of the particle changes as a function of its input", "RGB", &blofeld::haloreach::particle_property_color_struct_new },
@@ -45834,7 +45782,7 @@ namespace haloreach {
 		{ _field_char_integer, "number of n-gon sides" },
 		FIELD_CUSTOM("shader", _field_id_shader_template),
 		FIELD_HIDE_BEGIN(),
-		{ _field_struct, "actual shader?", &blofeld::haloreach::shader_contrail_struct_definition$2 },
+		{ _field_struct, "actual shader?", &blofeld::haloreach::shader_contrail_struct_definition },
 		FIELD_HIDE_END(),
 		{ _field_real_vector_2d, "uv tiling", "u is tiles/world unit, v is absolute tiles", "u lengthwise, v crosswise" },
 		{ _field_real_vector_2d, "uv scrolling", nullptr, "tiles per second" },

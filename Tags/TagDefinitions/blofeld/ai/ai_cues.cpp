@@ -18,7 +18,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_flags, "template_flags", &cue_template_flags },
 		
 		{ _field_block, "firing points", &firing_point_payload_block },
@@ -67,7 +67,7 @@ namespace blofeld
 	{
 		{ _field_real_point_3d, "position", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
+		{ _version_mode_greater, _engine_type_haloreach, 4 },
 		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_word_flags, "flags", FIELD_FLAG_UNKNOWN0, &g_firing_position_flags },
@@ -79,7 +79,7 @@ namespace blofeld
 		{ _field_char_integer, "bits and pad", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD_EX("PAD1", nullptr, FIELD_FLAG_NONE, 1),
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "unknown" },
 
 		{ _field_real_euler_angles_2d, "normal", FIELD_FLAG_UNKNOWN0 },

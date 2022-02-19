@@ -21,8 +21,8 @@ namespace blofeld
 		{ _field_block, "file pages", &cache_file_resource_file_page_block, _field_id_wide },
 		{ _field_block, "streaming subpage tables", &cache_file_resource_streaming_subpage_table_block },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_platform_include, _platform_type_pc_64bit, 2 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_block, "unknown@", &g_null_block },
 
 		{ _field_block, "sections", &cache_file_resource_section_block },
@@ -57,8 +57,8 @@ namespace blofeld
 		{ _field_block, "file pages", &cache_file_resource_file_page_block, _field_id_wide },
 		{ _field_block, "streaming subpage tables", &cache_file_resource_streaming_subpage_table_block },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_platform_include, _platform_type_pc_64bit, 2 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_block, "@unknown", &g_null_block },
 
 		{ _field_block, "sections", &cache_file_resource_section_block },
@@ -74,7 +74,7 @@ namespace blofeld
 		{ _field_block, "dynamic bsp zone manifests", FIELD_FLAG_READ_ONLY, &cache_file_tag_zone_block },
 		{ _field_block, "cinematic zone manifests", FIELD_FLAG_READ_ONLY, &cache_file_cinematic_zone_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "required map variant manifests", FIELD_FLAG_READ_ONLY, &cache_file_tag_zone_block },
 		{ _field_block, "sandbox map variant manifests", FIELD_FLAG_READ_ONLY, &cache_file_tag_zone_block },
 
@@ -194,12 +194,12 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_SECTION_BLOCK_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_array, "page offsets", &location_offsets_array_definition_array },
 
 		{ _field_array, "file page indexes", &file_location_indexes_array_definition_array },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_array, "page offsets", &location_offsets_array_definition_array }, // moved
 
 		{ _field_array, "subpage table indexes", &sublocation_table_indexes_array_definition_array },
@@ -222,12 +222,12 @@ namespace blofeld
 		{ _field_long_integer, "identifier part 3" },
 		{ _field_long_integer, "definition flags" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_array, "page alignment bits", &tag_resource_alignment_bits_array_definition_array },
 
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_array, "page alignment bits", &tag_resource_alignment_bits_array_definition_array },
 		FIELD_PAD_EX("pad0", nullptr, FIELD_FLAG_NONE, 2),
 
@@ -267,12 +267,12 @@ namespace blofeld
 		{ _field_char_block_index, "resource type index", FIELD_FLAG_READ_ONLY, &cache_file_resource_type_identifier_block },
 		{ _field_char_integer, "control alignment bits" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_long_integer, "naive data offset" },
 
 		{ _field_long_integer, "control size" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_long_integer, "secondary control size" },
 
 		{ _field_word_flags, "flags", &cache_file_resource_data_flags_definition },
@@ -281,7 +281,7 @@ namespace blofeld
 		{ _field_block, "control fixups", &cache_file_resource_fixup_location_block },
 		{ _field_block, "interop locations", &cache_file_resource_interop_location_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "priority level data", &cache_file_resource_priority_data_block },
 
 		{ _field_terminator }
@@ -459,11 +459,11 @@ namespace blofeld
 		{ _field_long_block_flags, "required bsp zones", &cache_file_bsp_zone_block },
 		{ _field_long_block_flags, "expected touched bsp zones", &cache_file_bsp_zone_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_qword_integer, "required designer zones" }, // #NOTE: 64bit block flags
 		{ _field_qword_integer, "expected designer zones" }, // #NOTE: 64bit block flags
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 3 },
 		{ _field_legacy, _field_long_block_flags, "required designer zones" },
 		{ _field_legacy, _field_long_block_flags, "expected designer zones" },
 		{ _field_legacy, _field_long_block_flags, "expected designer zones (inverted)" }, // #NOTE: named from observation of data
@@ -951,20 +951,20 @@ namespace blofeld
 	{
 		{ _field_block, "cached resource bitvector", &cache_file_tag_resources_bitvector_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_block, "unknown resource bitvector", &cache_file_tag_resources_bitvector_block },
 
 		{ _field_block, "streamed resource bitvector", &cache_file_tag_resources_bitvector_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_block, "unknown resource bitvector", &cache_file_tag_resources_bitvector_block },
 
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_array, "page sizes", &resource_usage_page_size_array_definition_array },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 }, // this needs to be setup properly as a _field_array with a count of 2
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 }, // this needs to be setup properly as a _field_array with a count of 2
 		{  _field_long_integer, "page sizes" },
 		{  _field_long_integer, "page sizes" },
 
@@ -981,10 +981,10 @@ namespace blofeld
 		{ _field_long_integer, "touched bsp mask", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "cinematic zone mask", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_qword_integer, "designer zone mask", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach }, // fuck formating because upgrade.exe
+		{ _version_mode_less_or_equal, _engine_type_haloreach }, // fuck formating because upgrade.exe
 		{ _field_long_integer, "designer zone mask", FIELD_FLAG_UNKNOWN0 },
 
 		{ _field_terminator }

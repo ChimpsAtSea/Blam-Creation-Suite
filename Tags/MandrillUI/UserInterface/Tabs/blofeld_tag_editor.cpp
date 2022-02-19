@@ -30,7 +30,7 @@
 //		char* const current_game_tag_memory_position = game_tag_memory + bytes_traversed;
 //
 //		unsigned long field_skip_count;
-//		if (skip_tag_field_version(*current_field, engine_platform_build, _build_not_set, field_skip_count))
+//		if (execute_tag_field_versioning(*current_field, engine_platform_build, _build_not_set, field_skip_count))
 //		{
 //			current_field += field_skip_count;
 //			continue;
@@ -1481,7 +1481,7 @@
 //		char* current_data_position = structure_data + bytes_traversed;
 //
 //		unsigned long field_skip_count;
-//		if (skip_tag_field_version(*current_field, engine_platform_build, _build_not_set, field_skip_count))
+//		if (execute_tag_field_versioning(*current_field, engine_platform_build, _build_not_set, field_skip_count))
 //		{
 //			current_field += field_skip_count;
 //			continue;

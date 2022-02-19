@@ -104,8 +104,14 @@ void reach_x360_sort_structures_array(c_reach_x360_tag_group_definition& group_d
 
 void reach_x360_sort_structures_struct(c_reach_x360_tag_group_definition& group_definition, c_reach_x360_tag_struct_definition& struct_definition)
 {
-	for (auto& field : struct_definition.fields)
+	for (t_reach_x360_tag_field* _field : struct_definition.fields)
 	{
+		c_reach_x360_tag_field* field = dynamic_cast<c_reach_x360_tag_field*>(_field);
+		if (field == nullptr)
+		{
+			continue;
+		}
+
 		if (field->field_type == _reach_x360_field_type_struct)
 		{
 			ASSERT(field->struct_definition != nullptr);
@@ -373,616 +379,632 @@ extern void escape_string(
 
 extern std::string escape_string(std::string str);
 
-void reach_x360_write_fields(std::stringstream& s, std::vector<c_reach_x360_tag_field*>& fields)
+void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_field*>& fields)
 {
 	const char* _namespace = "haloreach";
 	command_line_get_argument("blamboozle-haloreach-namespace", _namespace);
 
-	for (auto& tag_field : fields)
+	for (auto& _field : fields)
 	{
-		const char* field_generic_type_name = reach_x360_field_type_to_generic_field_type(tag_field->field_type);
-
-		c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(tag_field->name);
-
-		c_fixed_string_4096 name;
-		c_fixed_string_4096 description;
-		c_fixed_string_4096 units;
-		c_fixed_string_4096 limits;
-		c_fixed_string_4096 limits_legacy;
-		c_fixed_string_4096 old_name;
-
-		if (tag_field->name)
+		if (c_reach_x360_tag_field_combined_fixup* combined_fixup_field = dynamic_cast<c_reach_x360_tag_field_combined_fixup*>(_field))
 		{
-			escape_string(string_parser.name, name, true, true);
-			escape_string(string_parser.description, description, true, true);
-			escape_string(string_parser.units, units, true, true);
-			escape_string(string_parser.limits, limits, true, true);
-			escape_string(string_parser.limits_legacy, limits_legacy, true, true);
-			escape_string(string_parser.old_name, old_name, true, true);
+			s << "\t\t{ _version_mode_tag_group_equal, &blofeld::" << _namespace << "::" << combined_fixup_field->group_definition.code_name << ", " << combined_fixup_field->count << " }," << std::endl;
+
+			debug_point;
 		}
-		if (name.empty())
+		else if (c_reach_x360_tag_field_dummy_space* dummy_space_field = dynamic_cast<c_reach_x360_tag_field_dummy_space*>(_field))
 		{
-			name = "value";
+			s << std::endl;
+
+			debug_point;
 		}
-
-		bool write_limits = !limits.empty();
-		bool write_units = write_limits || !units.empty();
-		bool write_description = write_units || !description.empty();
-		bool write_old_name = !old_name.empty();
-		bool write_flags =
-			string_parser.flag_unknown0 ||
-			string_parser.flag_read_only ||
-			string_parser.flag_index ||
-			string_parser.flag_unknown3 ||
-			string_parser.flag_pointer;
-		bool write_pointer = false; // todo
-		bool write_tag = tag_field->field_id != 0;
-
-		switch (tag_field->field_type)
+		else if (c_reach_x360_tag_field* tag_field = dynamic_cast<c_reach_x360_tag_field*>(_field))
 		{
-		case _reach_x360_field_type_custom:
-		{
-			ASSERT(!write_flags);
 
-			if (tag_field->field_id == blofeld::_field_id_field_group_begin)
+			const char* field_generic_type_name = reach_x360_field_type_to_generic_field_type(tag_field->field_type);
+
+			c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(tag_field->name);
+
+			c_fixed_string_4096 name;
+			c_fixed_string_4096 description;
+			c_fixed_string_4096 units;
+			c_fixed_string_4096 limits;
+			c_fixed_string_4096 limits_legacy;
+			c_fixed_string_4096 old_name;
+
+			if (tag_field->name)
 			{
-				ASSERT(!name.empty());
-				ASSERT(description.empty());
-				s << "\t\tFIELD_GROUP_BEGIN(";
-				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
-				s << ")," << std::endl;
+				escape_string(string_parser.name, name, true, true);
+				escape_string(string_parser.description, description, true, true);
+				escape_string(string_parser.units, units, true, true);
+				escape_string(string_parser.limits, limits, true, true);
+				escape_string(string_parser.limits_legacy, limits_legacy, true, true);
+				escape_string(string_parser.old_name, old_name, true, true);
 			}
-			else if (tag_field->field_id == blofeld::_field_id_field_group_end)
+			if (name.empty())
 			{
-				//ASSERT(name == "value" || name.empty());
-				ASSERT(description.empty());
+				name = "value";
+			}
 
-				if (name.empty() || strcmp(name, "value") == 0) // #TODO: improve this with function
+			bool write_limits = !limits.empty();
+			bool write_units = write_limits || !units.empty();
+			bool write_description = write_units || !description.empty();
+			bool write_old_name = !old_name.empty();
+			bool write_flags =
+				string_parser.flag_unknown0 ||
+				string_parser.flag_read_only ||
+				string_parser.flag_index ||
+				string_parser.flag_unknown3 ||
+				string_parser.flag_pointer;
+			bool write_pointer = false; // todo
+			bool write_tag = tag_field->field_id != 0;
+
+			switch (tag_field->field_type)
+			{
+			case _reach_x360_field_type_custom:
+			{
+				ASSERT(!write_flags);
+
+				if (tag_field->field_id == blofeld::_field_id_field_group_begin)
 				{
-				s << "\t\tFIELD_GROUP_END()," << std::endl;
+					ASSERT(!name.empty());
+					ASSERT(description.empty());
+					s << "\t\tFIELD_GROUP_BEGIN(";
+					if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+					s << ")," << std::endl;
 				}
-				else
+				else if (tag_field->field_id == blofeld::_field_id_field_group_end)
 				{
-				s << "\t\tFIELD_GROUP_END2(";
-				s << "\"" << name.c_str() << "\"";
-				s << ")," << std::endl;
-				}
+					//ASSERT(name == "value" || name.empty());
+					ASSERT(description.empty());
 
-				//s << "\t\tFIELD_GROUP_END(";
-				//if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
-				//s << ")," << std::endl;
-			}
-			else if (tag_field->field_id == blofeld::_field_id_hide_begin)
-			{
-				ASSERT(name.empty() || strcmp(name, "value") == 0);
-				ASSERT(description.empty());
-				s << "\t\tFIELD_HIDE_BEGIN(";
-				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
-				s << ")," << std::endl;
-			}
-			else if (tag_field->field_id == blofeld::_field_id_hide_end)
-			{
-				ASSERT(name.empty() || strcmp(name, "value") == 0);
-				ASSERT(description.empty());
-				s << "\t\tFIELD_HIDE_END(";
-				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
-				s << ")," << std::endl;
-			}
-			else if (tag_field->field_id == blofeld::_field_id_ifp_begin)
-			{
-				ASSERT(name.empty() || strcmp(name, "value") == 0);
-				ASSERT(description.empty());
-				s << "\t\tFIELD_IFP_BEGIN(";
-				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
-				s << ")," << std::endl;
-			}
-			else if (tag_field->field_id == blofeld::_field_id_ifp_end)
-			{
-				ASSERT(name.empty() || strcmp(name, "value") == 0);
-				ASSERT(description.empty());
-				s << "\t\tFIELD_IFP_END(";
-				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
-				s << ")," << std::endl;
-			}
-			else if (tag_field->field_id == blofeld::_field_id_dont_checksum_begin)
-			{
-				ASSERT(name.empty() || strcmp(name, "value") == 0);
-				ASSERT(description.empty());
-				s << "\t\tFIELD_DONT_CHECKSUM_BEGIN(";
-				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
-				s << ")," << std::endl;
-			}
-			else if (tag_field->field_id == blofeld::_field_id_dont_checksum_end)
-			{
-				ASSERT(name.empty() || strcmp(name, "value") == 0);
-				ASSERT(description.empty());
-				s << "\t\tFIELD_DONT_CHECKSUM_END(";
-				if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
-				s << ")," << std::endl;
-			}
-			else
-			{
-				if (description.empty() && !write_flags)
-				{
-					s << "\t\tFIELD_CUSTOM(";
-					if (!name.empty())
+					if (name.empty() || strcmp(name, "value") == 0) // #TODO: improve this with function
 					{
-						if (!name.empty()) s << "\"" << name.c_str() << "\"";
+						s << "\t\tFIELD_GROUP_END()," << std::endl;
 					}
-					s << ", " << (tag_field->field_id_string ? tag_field->field_id_string : "_field_id_default");
+					else
+					{
+						s << "\t\tFIELD_GROUP_END2(";
+						s << "\"" << name.c_str() << "\"";
+						s << ")," << std::endl;
+					}
+
+					//s << "\t\tFIELD_GROUP_END(";
+					//if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+					//s << ")," << std::endl;
+				}
+				else if (tag_field->field_id == blofeld::_field_id_hide_begin)
+				{
+					ASSERT(name.empty() || strcmp(name, "value") == 0);
+					ASSERT(description.empty());
+					s << "\t\tFIELD_HIDE_BEGIN(";
+					if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+					s << ")," << std::endl;
+				}
+				else if (tag_field->field_id == blofeld::_field_id_hide_end)
+				{
+					ASSERT(name.empty() || strcmp(name, "value") == 0);
+					ASSERT(description.empty());
+					s << "\t\tFIELD_HIDE_END(";
+					if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+					s << ")," << std::endl;
+				}
+				else if (tag_field->field_id == blofeld::_field_id_ifp_begin)
+				{
+					ASSERT(name.empty() || strcmp(name, "value") == 0);
+					ASSERT(description.empty());
+					s << "\t\tFIELD_IFP_BEGIN(";
+					if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+					s << ")," << std::endl;
+				}
+				else if (tag_field->field_id == blofeld::_field_id_ifp_end)
+				{
+					ASSERT(name.empty() || strcmp(name, "value") == 0);
+					ASSERT(description.empty());
+					s << "\t\tFIELD_IFP_END(";
+					if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+					s << ")," << std::endl;
+				}
+				else if (tag_field->field_id == blofeld::_field_id_dont_checksum_begin)
+				{
+					ASSERT(name.empty() || strcmp(name, "value") == 0);
+					ASSERT(description.empty());
+					s << "\t\tFIELD_DONT_CHECKSUM_BEGIN(";
+					if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
+					s << ")," << std::endl;
+				}
+				else if (tag_field->field_id == blofeld::_field_id_dont_checksum_end)
+				{
+					ASSERT(name.empty() || strcmp(name, "value") == 0);
+					ASSERT(description.empty());
+					s << "\t\tFIELD_DONT_CHECKSUM_END(";
+					if (!name.empty() && strcmp(name, "value") != 0) s << "\"" << name.c_str() << "\"";
 					s << ")," << std::endl;
 				}
 				else
 				{
-					s << "\t\tFIELD_CUSTOM_EX(";
+					if (description.empty() && !write_flags)
+					{
+						s << "\t\tFIELD_CUSTOM(";
+						if (!name.empty())
+						{
+							if (!name.empty()) s << "\"" << name.c_str() << "\"";
+						}
+						s << ", " << (tag_field->field_id_string ? tag_field->field_id_string : "_field_id_default");
+						s << ")," << std::endl;
+					}
+					else
+					{
+						s << "\t\tFIELD_CUSTOM_EX(";
+						if (!name.empty()) s << "\"" << name.c_str() << "\"";
+						else s << "nullptr";
+						if (!description.empty()) s << ", \"" << description.c_str() << "\"";
+						else s << ", nullptr";
+						s << ", " << (tag_field->field_id_string ? tag_field->field_id_string : "_field_id_default");
+						s << ", "; reach_x360_generate_tag_field_flags(s, string_parser);
+						s << ")," << std::endl;
+					}
+
+
+
+
+				}
+				break;
+			}
+			case _reach_x360_field_type_pad:
+			{
+				ASSERT(!write_limits);
+				ASSERT(!write_units);
+
+				s << "\t\tFIELD_PAD(";
+				if (!name.empty())
+				{
 					if (!name.empty()) s << "\"" << name.c_str() << "\"";
-					else s << "nullptr";
+				}
+				if (!description.empty())
+				{
 					if (!description.empty()) s << ", \"" << description.c_str() << "\"";
-					else s << ", nullptr";
-					s << ", " << (tag_field->field_id_string ? tag_field->field_id_string : "_field_id_default");
+				}
+				s << ", " << tag_field->padding;
+				if (write_flags)
+				{
 					s << ", "; reach_x360_generate_tag_field_flags(s, string_parser);
-					s << ")," << std::endl;
+				}
+				s << ")," << std::endl;
+			}
+			break;
+			case _reach_x360_field_type_skip:
+			{
+				ASSERT(!write_limits);
+				ASSERT(!write_units);
+				ASSERT(!write_flags);
+
+				s << "\t\tFIELD_SKIP(";
+				if (!name.empty())
+				{
+					if (!name.empty()) s << "\"" << name.c_str() << "\"";
+				}
+				if (!description.empty())
+				{
+					if (!description.empty()) s << ", \"" << description.c_str() << "\"";
+				}
+				s << ", " << tag_field->skip_length;
+				if (write_flags)
+				{
+					s << ", "; reach_x360_generate_tag_field_flags(s, string_parser);
+				}
+				s << ")," << std::endl;
+			}
+			break;
+			case _reach_x360_field_type_explanation:
+			{
+
+				s << "\t\tFIELD_EXPLANATION(";
+				if (!name.empty())
+				{
+					if (!name.empty()) s << "\"" << name.c_str() << "\"";
+				}
+				if (!description.empty())
+				{
+					if (!description.empty()) s << ", \"" << description.c_str() << "\"";
+				}
+				if (tag_field->explanation != nullptr && *tag_field->explanation)
+				{
+					std::string explanation = escape_string(tag_field->explanation);
+					s << ", \"" << explanation << "\"";
+				}
+				else s << ", nullptr";
+				if (write_flags)
+				{
+					s << ", "; reach_x360_generate_tag_field_flags(s, string_parser);
+				}
+				s << ")," << std::endl;
+			}
+			break;
+			case _reach_x360_field_type_array:
+			{
+				s << "\t\t{ ";
+				s << field_generic_type_name << ", ";
+				s << "\"" << name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					s << ", ";
+					reach_x360_generate_tag_field_flags(s, string_parser);
+				}
+				ASSERT(tag_field->array_definition);
+				if (tag_field->array_definition)
+				{
+					s << ", &blofeld::" << _namespace << "::" << tag_field->array_definition->code_name;
+				}
+				if (write_tag)
+				{
+					s << ", " << tag_field->field_id_string;
 				}
 
-
-
-
+				s << " }," << std::endl;
 			}
 			break;
-		}
-		case _reach_x360_field_type_pad:
-		{
-			ASSERT(!write_limits);
-			ASSERT(!write_units);
+			case _reach_x360_field_type_short_block_index:
+			case _reach_x360_field_type_long_block_index:
+			case _reach_x360_field_type_block:
+			{
+				s << "\t\t{ ";
+				s << field_generic_type_name << ", ";
+				s << "\"" << name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					s << ", ";
+					reach_x360_generate_tag_field_flags(s, string_parser);
+				}
+				ASSERT(tag_field->block_definition);
+				if (tag_field->block_definition)
+				{
+					s << ", &blofeld::" << _namespace << "::" << tag_field->block_definition->code_name;
+				}
+				if (write_tag)
+				{
+					s << ", " << tag_field->field_id_string;
+				}
 
-			s << "\t\tFIELD_PAD(";
-			if (!name.empty())
-			{
-				if (!name.empty()) s << "\"" << name.c_str() << "\"";
+				s << " }," << std::endl;
 			}
-			if (!description.empty())
-			{
-				if (!description.empty()) s << ", \"" << description.c_str() << "\"";
-			}
-			s << ", " << tag_field->padding;
-			if (write_flags)
-			{
-				s << ", "; reach_x360_generate_tag_field_flags(s, string_parser);
-			}
-			s << ")," << std::endl;
-		}
-		break;
-		case _reach_x360_field_type_skip:
-		{
-			ASSERT(!write_limits);
-			ASSERT(!write_units);
-			ASSERT(!write_flags);
-
-			s << "\t\tFIELD_SKIP(";
-			if (!name.empty())
-			{
-				if (!name.empty()) s << "\"" << name.c_str() << "\"";
-			}
-			if (!description.empty())
-			{
-				if (!description.empty()) s << ", \"" << description.c_str() << "\"";
-			}
-			s << ", " << tag_field->skip_length;
-			if (write_flags)
-			{
-				s << ", "; reach_x360_generate_tag_field_flags(s, string_parser);
-			}
-			s << ")," << std::endl;
-		}
-		break;
-		case _reach_x360_field_type_explanation:
-		{
-
-			s << "\t\tFIELD_EXPLANATION(";
-			if (!name.empty())
-			{
-				if (!name.empty()) s << "\"" << name.c_str() << "\"";
-			}
-			if (!description.empty())
-			{
-				if (!description.empty()) s << ", \"" << description.c_str() << "\"";
-			}
-			if (tag_field->explanation != nullptr && *tag_field->explanation)
-			{
-				std::string explanation = escape_string(tag_field->explanation);
-				s << ", \"" << explanation << "\"";
-			}
-			else s << ", nullptr";
-			if (write_flags)
-			{
-				s << ", "; reach_x360_generate_tag_field_flags(s, string_parser);
-			}
-			s << ")," << std::endl;
-		}
-		break;
-		case _reach_x360_field_type_array:
-		{
-			s << "\t\t{ ";
-			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				s << ", ";
-				reach_x360_generate_tag_field_flags(s, string_parser);
-			}
-			ASSERT(tag_field->array_definition);
-			if (tag_field->array_definition)
-			{
-				s << ", &blofeld::" << _namespace << "::" << tag_field->array_definition->code_name;
-			}
-			if (write_tag)
-			{
-				s << ", " << tag_field->field_id_string;
-			}
-
-			s << " }," << std::endl;
-		}
-		break;
-		case _reach_x360_field_type_short_block_index:
-		case _reach_x360_field_type_long_block_index:
-		case _reach_x360_field_type_block:
-		{
-			s << "\t\t{ ";
-			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				s << ", ";
-				reach_x360_generate_tag_field_flags(s, string_parser);
-			}
-			ASSERT(tag_field->block_definition);
-			if (tag_field->block_definition)
-			{
-				s << ", &blofeld::" << _namespace << "::" << tag_field->block_definition->code_name;
-			}
-			if (write_tag)
-			{
-				s << ", " << tag_field->field_id_string;
-			}
-
-			s << " }," << std::endl;
-		}
-		break;
-		case _reach_x360_field_type_struct:
-		{
-			s << "\t\t{ ";
-			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				s << ", ";
-				reach_x360_generate_tag_field_flags(s, string_parser);
-			}
-			ASSERT(tag_field->struct_definition);
-			if (tag_field->struct_definition)
-			{
-				s << ", &blofeld::" << _namespace << "::" << tag_field->struct_definition->code_name;
-			}
-			if (write_tag)
-			{
-				s << ", " << tag_field->field_id_string;
-			}
-
-			s << " }," << std::endl;
-		}
-		break;
-		case _reach_x360_field_type_api_interop:
-		{
-			s << "\t\t{ ";
-			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				s << ", ";
-				reach_x360_generate_tag_field_flags(s, string_parser);
-			}
-			ASSERT(tag_field->api_interop_definition);
-			if (tag_field->api_interop_definition)
-			{
-				s << ", &blofeld::" << _namespace << "::" << tag_field->api_interop_definition->code_name;
-			}
-			if (write_tag)
-			{
-				s << ", " << tag_field->field_id_string;
-			}
-
-			s << " }," << std::endl;
-		}
-		break;
-		case _reach_x360_field_type_data:
-		{
-			s << "\t\t{ ";
-			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				s << ", ";
-				reach_x360_generate_tag_field_flags(s, string_parser);
-			}
-			ASSERT(tag_field->data_definition);
-			if (tag_field->data_definition)
-			{
-				s << ", &blofeld::" << _namespace << "::" << tag_field->data_definition->code_name;
-			}
-			if (write_tag)
-			{
-				s << ", " << tag_field->field_id_string;
-			}
-
-			s << " }," << std::endl;
-		}
-		break;
-		case _reach_x360_field_type_pageable_resource:
-		{
-			s << "\t\t{ ";
-			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				s << ", ";
-				reach_x360_generate_tag_field_flags(s, string_parser);
-			}
-			ASSERT(tag_field->pageable_resource_definition);
-			if (tag_field->pageable_resource_definition)
-			{
-				s << ", &blofeld::" << _namespace << "::" << tag_field->pageable_resource_definition->struct_definition.code_name;
-			}
-			if (write_tag)
-			{
-				s << ", " << tag_field->field_id_string;
-			}
-
-			s << " }," << std::endl;
-		}
-		break;
-		case _reach_x360_field_type_tag_reference:
-		{
-			s << "\t\t{ ";
-			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				s << ", ";
-				reach_x360_generate_tag_field_flags(s, string_parser);
-			}
-			ASSERT(tag_field->tag_reference_definition);
-			if (tag_field->tag_reference_definition)
-			{
-				s << ", &blofeld::" << _namespace << "::" << tag_field->tag_reference_definition->code_name;
-			}
-			if (write_tag)
-			{
-				s << ", " << tag_field->field_id_string;
-			}
-
-			s << " }," << std::endl;
-		}
-		break;
-		case _reach_x360_field_type_terminator:
-		{
-			s << "\t\t{ _field_terminator }" << std::endl;
-		}
-		break;
-		case _reach_x360_field_type_char_enum:
-		case _reach_x360_field_type_short_enum:
-		case _reach_x360_field_type_long_enum:
-		case _reach_x360_field_type_long_flags:
-		case _reach_x360_field_type_word_flags:
-		case _reach_x360_field_type_byte_flags:
-			s << "\t\t{ ";
-			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
-				else s << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				s << ", ";
-				reach_x360_generate_tag_field_flags(s, string_parser);
-			}
-			ASSERT(tag_field->string_list_definition);
-			if (tag_field->string_list_definition)
-			{
-				s << ", &blofeld::" << _namespace << "::" << tag_field->string_list_definition->code_name;
-			}
-			if (write_tag)
-			{
-				s << ", " << tag_field->field_id_string;
-			}
-
-			s << " }," << std::endl;
 			break;
-		default:
-		{
-			s << "\t\t{ ";
-			s << field_generic_type_name << ", ";
-			s << "\"" << name.c_str() << "\"";
-			if (write_description)
+			case _reach_x360_field_type_struct:
 			{
-				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
-				else s << ", " << "nullptr";
+				s << "\t\t{ ";
+				s << field_generic_type_name << ", ";
+				s << "\"" << name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					s << ", ";
+					reach_x360_generate_tag_field_flags(s, string_parser);
+				}
+				ASSERT(tag_field->struct_definition);
+				if (tag_field->struct_definition)
+				{
+					s << ", &blofeld::" << _namespace << "::" << tag_field->struct_definition->code_name;
+				}
+				if (write_tag)
+				{
+					s << ", " << tag_field->field_id_string;
+				}
+
+				s << " }," << std::endl;
 			}
-			if (write_units)
+			break;
+			case _reach_x360_field_type_api_interop:
 			{
-				if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
-				else s << ", " << "nullptr";
+				s << "\t\t{ ";
+				s << field_generic_type_name << ", ";
+				s << "\"" << name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					s << ", ";
+					reach_x360_generate_tag_field_flags(s, string_parser);
+				}
+				ASSERT(tag_field->api_interop_definition);
+				if (tag_field->api_interop_definition)
+				{
+					s << ", &blofeld::" << _namespace << "::" << tag_field->api_interop_definition->code_name;
+				}
+				if (write_tag)
+				{
+					s << ", " << tag_field->field_id_string;
+				}
+
+				s << " }," << std::endl;
 			}
-			if (write_limits)
+			break;
+			case _reach_x360_field_type_data:
 			{
-				if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
-				else s << ", " << "nullptr";
+				s << "\t\t{ ";
+				s << field_generic_type_name << ", ";
+				s << "\"" << name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					s << ", ";
+					reach_x360_generate_tag_field_flags(s, string_parser);
+				}
+				ASSERT(tag_field->data_definition);
+				if (tag_field->data_definition)
+				{
+					s << ", &blofeld::" << _namespace << "::" << tag_field->data_definition->code_name;
+				}
+				if (write_tag)
+				{
+					s << ", " << tag_field->field_id_string;
+				}
+
+				s << " }," << std::endl;
 			}
-			if (write_old_name)
+			break;
+			case _reach_x360_field_type_pageable_resource:
 			{
-				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				s << "\t\t{ ";
+				s << field_generic_type_name << ", ";
+				s << "\"" << name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					s << ", ";
+					reach_x360_generate_tag_field_flags(s, string_parser);
+				}
+				ASSERT(tag_field->pageable_resource_definition);
+				if (tag_field->pageable_resource_definition)
+				{
+					s << ", &blofeld::" << _namespace << "::" << tag_field->pageable_resource_definition->struct_definition.code_name;
+				}
+				if (write_tag)
+				{
+					s << ", " << tag_field->field_id_string;
+				}
+
+				s << " }," << std::endl;
 			}
-			if (write_flags)
+			break;
+			case _reach_x360_field_type_tag_reference:
 			{
-				s << ", ";
-				reach_x360_generate_tag_field_flags(s, string_parser);
+				s << "\t\t{ ";
+				s << field_generic_type_name << ", ";
+				s << "\"" << name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					s << ", ";
+					reach_x360_generate_tag_field_flags(s, string_parser);
+				}
+				ASSERT(tag_field->tag_reference_definition);
+				if (tag_field->tag_reference_definition)
+				{
+					s << ", &blofeld::" << _namespace << "::" << tag_field->tag_reference_definition->code_name;
+				}
+				if (write_tag)
+				{
+					s << ", " << tag_field->field_id_string;
+				}
+
+				s << " }," << std::endl;
 			}
-			if (write_pointer) s << ", " << "nullptr";
-			if (write_tag)
+			break;
+			case _reach_x360_field_type_terminator:
 			{
-				s << ", " << tag_field->field_id_string;
+				s << "\t\t{ _field_terminator }" << std::endl;
 			}
-			s << " }," << std::endl;
-		}
-		break;
+			break;
+			case _reach_x360_field_type_char_enum:
+			case _reach_x360_field_type_short_enum:
+			case _reach_x360_field_type_long_enum:
+			case _reach_x360_field_type_long_flags:
+			case _reach_x360_field_type_word_flags:
+			case _reach_x360_field_type_byte_flags:
+				s << "\t\t{ ";
+				s << field_generic_type_name << ", ";
+				s << "\"" << name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					s << ", ";
+					reach_x360_generate_tag_field_flags(s, string_parser);
+				}
+				ASSERT(tag_field->string_list_definition);
+				if (tag_field->string_list_definition)
+				{
+					s << ", &blofeld::" << _namespace << "::" << tag_field->string_list_definition->code_name;
+				}
+				if (write_tag)
+				{
+					s << ", " << tag_field->field_id_string;
+				}
+
+				s << " }," << std::endl;
+				break;
+			default:
+			{
+				s << "\t\t{ ";
+				s << field_generic_type_name << ", ";
+				s << "\"" << name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
+					else s << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					s << ", ";
+					reach_x360_generate_tag_field_flags(s, string_parser);
+				}
+				if (write_pointer) s << ", " << "nullptr";
+				if (write_tag)
+				{
+					s << ", " << tag_field->field_id_string;
+				}
+				s << " }," << std::endl;
+			}
+			break;
+			}
 		}
 	}
 }
@@ -1032,131 +1054,141 @@ void reach_x360_write_tag_reference_flags(std::stringstream& s, c_reach_x360_tag
 	}
 }
 
-void reach_x360_write_tag_types_header(std::stringstream& s, std::vector<c_reach_x360_tag_field*>& fields)
+void reach_x360_write_tag_types_header(std::stringstream& s, std::vector<t_reach_x360_tag_field*>& fields)
 {
-	for (auto& tag_field : fields)
+	for (auto& _field : fields)
 	{
-		switch (tag_field->field_type)
+		if(c_reach_x360_tag_field* tag_field = dynamic_cast<c_reach_x360_tag_field*>(_field))
 		{
-		case _reach_x360_field_type_char_enum:
-		case _reach_x360_field_type_short_enum:
-		case _reach_x360_field_type_long_enum:
-		case _reach_x360_field_type_long_flags:
-		case _reach_x360_field_type_word_flags:
-		case _reach_x360_field_type_byte_flags:
-		{
-			ASSERT(tag_field->string_list_definition != nullptr);
-			c_reach_x360_string_list_definition& string_list_definition = *tag_field->string_list_definition;
-			if (!is_string_list_exported(string_list_definition))
+			switch (tag_field->field_type)
 			{
-				//s << "\t//extern t_string_list " << string_list_definition.code_name << "_strings;" << std::endl;
-				s << "\textern s_string_list_definition " << string_list_definition.code_name << ";" << std::endl;
+			case _reach_x360_field_type_char_enum:
+			case _reach_x360_field_type_short_enum:
+			case _reach_x360_field_type_long_enum:
+			case _reach_x360_field_type_long_flags:
+			case _reach_x360_field_type_word_flags:
+			case _reach_x360_field_type_byte_flags:
+			{
+				ASSERT(tag_field->string_list_definition != nullptr);
+				c_reach_x360_string_list_definition& string_list_definition = *tag_field->string_list_definition;
+				if (!is_string_list_exported(string_list_definition))
+				{
+					//s << "\t//extern t_string_list " << string_list_definition.code_name << "_strings;" << std::endl;
+					s << "\textern s_string_list_definition " << string_list_definition.code_name << ";" << std::endl;
+				}
 			}
-		}
-		break;
-		case _reach_x360_field_type_tag_reference:
-		{
-			ASSERT(tag_field->tag_reference_definition != nullptr);
-			c_reach_x360_tag_reference_definition& tag_reference_definition = *tag_field->tag_reference_definition;
-			if (!is_tag_reference_exported(tag_reference_definition))
+			break;
+			case _reach_x360_field_type_tag_reference:
 			{
-				s << "\textern s_tag_reference_definition " << tag_reference_definition.code_name << ";";
+				ASSERT(tag_field->tag_reference_definition != nullptr);
+				c_reach_x360_tag_reference_definition& tag_reference_definition = *tag_field->tag_reference_definition;
+				if (!is_tag_reference_exported(tag_reference_definition))
+				{
+					s << "\textern s_tag_reference_definition " << tag_reference_definition.code_name << ";";
 
-				s << std::endl;
+					s << std::endl;
+				}
 			}
-		}
-		break;
+			break;
+			}
 		}
 	}
 }
 
-void reach_x360_write_tag_types_source(std::stringstream& s, std::vector<c_reach_x360_tag_field*>& fields)
+void reach_x360_write_tag_types_source(std::stringstream& s, std::vector<t_reach_x360_tag_field*>& fields)
 {
-	for (auto& tag_field : fields)
+	for (auto& _field : fields)
 	{
-		switch (tag_field->field_type)
+		if (c_reach_x360_tag_field_combined_fixup* combined_fixup_field = dynamic_cast<c_reach_x360_tag_field_combined_fixup*>(_field))
 		{
-		case _reach_x360_field_type_char_enum:
-		case _reach_x360_field_type_short_enum:
-		case _reach_x360_field_type_long_enum:
-		case _reach_x360_field_type_long_flags:
-		case _reach_x360_field_type_word_flags:
-		case _reach_x360_field_type_byte_flags:
-		{
-			ASSERT(tag_field->string_list_definition != nullptr);
-			c_reach_x360_string_list_definition& string_list_definition = *tag_field->string_list_definition;
-			if (!is_string_list_exported(string_list_definition))
-			{
-				if (string_list_definition.options.size() > 0)
-				{
-					s << "\tSTRINGS(" << string_list_definition.code_name << ")" << std::endl;
-					s << "\t{" << std::endl;
-					for (unsigned long i = 0; i < string_list_definition.options.size(); i++)
-					{
-						const char* option = string_list_definition.options[i];
-						std::string escaped_option = escape_string(option);
-						if (escaped_option.empty()) escaped_option = "unused";
-						if (i != string_list_definition.options.size() - 1)
-						{
-							s << "\t\t\"" << escaped_option << "\"," << std::endl;
-						}
-						else
-						{
-							s << "\t\t\"" << escaped_option << "\"" << std::endl;
-						}
-					}
-					s << "\t};" << std::endl;
 
-					s << "\tSTRING_LIST(" << string_list_definition.code_name << ", " << string_list_definition.code_name << "_strings, _countof(" << string_list_definition.code_name << "_strings));" << std::endl;
-				}
-				else
-				{
-					s << "\tSTRING_LIST(" << string_list_definition.code_name << ", empty_string_list, 0);" << std::endl;
-				}
-
-				s << std::endl;
-			}
 		}
-		break;
-		case _reach_x360_field_type_tag_reference:
+		else if (c_reach_x360_tag_field* tag_field = dynamic_cast<c_reach_x360_tag_field*>(_field))
 		{
-			ASSERT(tag_field->tag_reference_definition != nullptr);
-			c_reach_x360_tag_reference_definition& tag_reference_definition = *tag_field->tag_reference_definition;
-			if (!is_tag_reference_exported(tag_reference_definition))
+			switch (tag_field->field_type)
 			{
-				if (tag_reference_definition.group_tags.size() > 1)
+			case _reach_x360_field_type_char_enum:
+			case _reach_x360_field_type_short_enum:
+			case _reach_x360_field_type_long_enum:
+			case _reach_x360_field_type_long_flags:
+			case _reach_x360_field_type_word_flags:
+			case _reach_x360_field_type_byte_flags:
+			{
+				ASSERT(tag_field->string_list_definition != nullptr);
+				c_reach_x360_string_list_definition& string_list_definition = *tag_field->string_list_definition;
+				if (!is_string_list_exported(string_list_definition))
 				{
-					s << "\tTAG_REFERENCE_GROUP(" << tag_reference_definition.code_name;
-					reach_x360_write_tag_reference_flags(s, tag_reference_definition);
-					s << ")" << std::endl;
-					s << "\t{" << std::endl;
-					bool first = true;
-					for (c_reach_x360_tag_group_definition* group_definition : tag_reference_definition.group_tags2)
+					if (string_list_definition.options.size() > 0)
 					{
-						s << "\t\t" << group_definition->tag_symbol_name << "," << std::endl;
-						first = false;
+						s << "\tSTRINGS(" << string_list_definition.code_name << ")" << std::endl;
+						s << "\t{" << std::endl;
+						for (unsigned long i = 0; i < string_list_definition.options.size(); i++)
+						{
+							const char* option = string_list_definition.options[i];
+							std::string escaped_option = escape_string(option);
+							if (escaped_option.empty()) escaped_option = "unused";
+							if (i != string_list_definition.options.size() - 1)
+							{
+								s << "\t\t\"" << escaped_option << "\"," << std::endl;
+							}
+							else
+							{
+								s << "\t\t\"" << escaped_option << "\"" << std::endl;
+							}
+						}
+						s << "\t};" << std::endl;
+
+						s << "\tSTRING_LIST(" << string_list_definition.code_name << ", " << string_list_definition.code_name << "_strings, _countof(" << string_list_definition.code_name << "_strings));" << std::endl;
 					}
-					s << "\t\tINVALID_TAG" << std::endl;
+					else
+					{
+						s << "\tSTRING_LIST(" << string_list_definition.code_name << ", empty_string_list, 0);" << std::endl;
+					}
 
-					s << "\t};" << std::endl;
+					s << std::endl;
 				}
-				else if (tag_reference_definition.group_tags.size() == 1)
-				{
-					s << "\tTAG_REFERENCE(" << tag_reference_definition.code_name << ", " << tag_reference_definition.group_tags2[0]->tag_symbol_name;
-					reach_x360_write_tag_reference_flags(s, tag_reference_definition);
-					s << ");" << std::endl;
-				}
-				else
-				{
-					s << "\tTAG_REFERENCE(" << tag_reference_definition.code_name << ", INVALID_TAG";
-					reach_x360_write_tag_reference_flags(s, tag_reference_definition);
-					s << ");" << std::endl;
-				}
-
-				s << std::endl;
 			}
-		}
-		break;
+			break;
+			case _reach_x360_field_type_tag_reference:
+			{
+				ASSERT(tag_field->tag_reference_definition != nullptr);
+				c_reach_x360_tag_reference_definition& tag_reference_definition = *tag_field->tag_reference_definition;
+				if (!is_tag_reference_exported(tag_reference_definition))
+				{
+					if (tag_reference_definition.group_tags.size() > 1)
+					{
+						s << "\tTAG_REFERENCE_GROUP(" << tag_reference_definition.code_name;
+						reach_x360_write_tag_reference_flags(s, tag_reference_definition);
+						s << ")" << std::endl;
+						s << "\t{" << std::endl;
+						bool first = true;
+						for (c_reach_x360_tag_group_definition* group_definition : tag_reference_definition.group_tags2)
+						{
+							s << "\t\t" << group_definition->tag_symbol_name << "," << std::endl;
+							first = false;
+						}
+						s << "\t\tINVALID_TAG" << std::endl;
+
+						s << "\t};" << std::endl;
+					}
+					else if (tag_reference_definition.group_tags.size() == 1)
+					{
+						s << "\tTAG_REFERENCE(" << tag_reference_definition.code_name << ", " << tag_reference_definition.group_tags2[0]->tag_symbol_name;
+						reach_x360_write_tag_reference_flags(s, tag_reference_definition);
+						s << ");" << std::endl;
+					}
+					else
+					{
+						s << "\tTAG_REFERENCE(" << tag_reference_definition.code_name << ", INVALID_TAG";
+						reach_x360_write_tag_reference_flags(s, tag_reference_definition);
+						s << ");" << std::endl;
+					}
+
+					s << std::endl;
+				}
+			}
+			break;
+			}
 		}
 	}
 }
@@ -1409,6 +1441,7 @@ void reach_x360_export_source(
 
 			reach_x360_write_tag_types_source(s, struct_definition->fields);
 		}
+
 	}
 	for (auto& data_definition : data_definitions)
 	{

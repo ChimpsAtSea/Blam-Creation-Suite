@@ -23,7 +23,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		INCIDENT_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "unknown" },
 
 		{ _field_block, "incidents", &incident_definition_block },
@@ -75,7 +75,7 @@ namespace blofeld
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_block, "suppressed incidents", &suppressed_incident_block, _field_id_slap },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "suppressed incident blocks", &SuppressedIncidentBlockReferenceDefinition_block, _field_id_slap },
 
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
@@ -83,7 +83,7 @@ namespace blofeld
 		{ _field_block, "specialized incidents", &specialized_incident_block, _field_id_slap },
 		{ _field_block, "accumulator incidents", &incident_accumulator_block, _field_id_slap },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "sum accumulator incidents", &incident_sum_accumulator_block, _field_id_slap },
 
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
@@ -133,7 +133,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "base incident", FIELD_FLAG_INDEX },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "unknown@" },
 
 		{ _field_block, "kill implements", &specialized_incident_kill_implement_block },
@@ -141,7 +141,7 @@ namespace blofeld
 		{ _field_block, "effect object", MAKE_OLD_NAMES("kill bucket"), &specialized_incident_object_properties_block },
 		{ _field_block, "special kill type", &specialized_incident_special_kill_type_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
+		{ _version_mode_greater, _engine_type_haloreach, 4 },
 		{ _field_block, "game over filter", &specializedIncidentGameOverBlock_block },
 		{ _field_block, "ordnance filter", &specializedIncidentRandomOrdnanceBlock_block },
 		{ _field_block, "custom data filter", &specializedIncidentCustomDataFilterBlock_block },
@@ -175,13 +175,13 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIALIZED_INCIDENT_OBJECT_PROPERTIES_BLOCK_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 4},
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 4},
 		{ _field_word_flags, "flags", &specialized_incident_kill_bucket_flags },
 		{ _field_char_enum, "bucket type", FIELD_FLAG_INDEX, &campaign_metagame_bucket_type_with_none_enum },
 		{ _field_char_enum, "bucket class", FIELD_FLAG_INDEX, &campaign_metagame_bucket_class_with_none_enum },
 		{ _field_string, "profile name" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 6 },
+		{ _version_mode_greater, _engine_type_haloreach, 6 },
 		{ _field_long_flags, "flags", &specialized_incident_kill_bucket_flags },
 		{ _field_char_enum, "bucket type", FIELD_FLAG_INDEX, &campaign_metagame_bucket_type_with_none_enum },
 		{ _field_char_enum, "bucket class", FIELD_FLAG_INDEX, &campaign_metagame_bucket_class_with_none_enum },
@@ -316,7 +316,7 @@ namespace blofeld
 		{ _field_long_integer, "count" },
 		{ _field_string_id, "incident name" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_string_id, "reset incident name" },
 		{ _field_real, "reset timeout" },
 
@@ -380,7 +380,7 @@ namespace blofeld
 		{ _field_real, "maximum vengeance time", nullptr, "s" },
 		{ _field_real, "lifesaver damage threshold", nullptr, nullptr, "[0,2]" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 8 },
+		{ _version_mode_greater, _engine_type_haloreach, 8 },
 		{ _field_real, "avenger dead time", nullptr, "s" },
 		{ _field_real, "hologram recently used maximum time", nullptr, "s" },
 		{ _field_long_enum, "active camouflage incident minimum level", &active_camo_enum_definition },
@@ -399,10 +399,10 @@ namespace blofeld
 		{ _field_real, "betrayal heat stun time", "seconds from the time you are at maximum heat until it starts decaying again", "s" },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "incident definitions", &incident_global_properties_incident_definitions_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "incident definitions", &incident_globals_definition_reference },
 		{ _field_block, "default incident definition", "generated in code", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &incident_definition_block },
 		{ _field_terminator }
@@ -453,7 +453,7 @@ namespace blofeld
 
 	STRINGS(specialized_incident_kill_bucket_flags)
 	{
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4, 32 },
+		{ _version_mode_greater_or_equal, _engine_type_halo4, 32 },
 		"player",
 		"ai",
 		"343i employee{bungie employee}",

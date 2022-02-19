@@ -2,6 +2,7 @@
 
 #include "blofeld.h"
 #include "blofeld/constants.h"
+#include "types/tag_versioning.h"
 #include "types/field_type.h"
 #include "types/field_id.h"
 #include "types/persistent_identifier.h"

@@ -161,7 +161,7 @@ namespace blofeld
 		{ _field_real, "dt weight" },
 		{ _field_real, "dead teammate influence duration", nullptr, "seconds" },
 
-		{ _field_legacy, _field_version_less, _engine_type_groundhog, 7 },
+		{ _version_mode_less, _engine_type_groundhog, 7 },
 		FIELD_EXPLANATION_EX("DROP POD BIAS", nullptr, FIELD_FLAG_NONE, "Drop pods influences are cylinders centered on unclaimed ordnance."),
 		{ _field_real, "Drop Pod full weight radius", nullptr, "wu" },
 		{ _field_real, "Drop Pod fall-off radius", nullptr, "wu" },
@@ -170,7 +170,7 @@ namespace blofeld
 		{ _field_real, "Drop Pod lower height", nullptr, "wu" },
 		{ _field_real, "Drop Pod weight" },
 
-		{ _field_legacy, _field_version_less, _engine_type_groundhog, 7 },
+		{ _version_mode_less, _engine_type_groundhog, 7 },
 		FIELD_EXPLANATION_EX("PLAYER AUTO TURRET BIAS", nullptr, FIELD_FLAG_NONE, "Auto Turret influences are cylinders centered on players\' auto turrets."),
 		{ _field_real, "Auto Turret full weight radius", nullptr, "wu" },
 		{ _field_real, "Auto Turret fall-off radius", nullptr, "wu" },
@@ -179,7 +179,7 @@ namespace blofeld
 		{ _field_real, "Auto Turret lower height", nullptr, "wu" },
 		{ _field_real, "Auto Turret weight" },
 
-		{ _field_legacy, _field_version_equal, _engine_type_groundhog, 8 },
+		{ _version_mode_equal, _engine_type_groundhog, 8 },
 		{ _field_legacy, _field_explanation, "UNKNOWN BIAS" },
 		{ _field_legacy, _field_real, "@unknown full weight radius:wu" },
 		{ _field_legacy, _field_real, "@unknown fall-off radius:wu" },

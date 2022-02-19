@@ -196,7 +196,7 @@ namespace blofeld
 		{ _field_long_integer, "polish first chunk index" },
 		{ _field_long_integer, "polish chunk count" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 15 },
+		{ _version_mode_greater, _engine_type_haloreach, 15 },
 		{ _field_long_integer, "russian uncompressed sample count" },
 		{ _field_long_integer, "russian first chunk index" },
 		{ _field_long_integer, "russian chunk count" },
@@ -323,7 +323,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_CACHE_FILE_GESTALT_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "@unknown" }, // likely an import version requirement or some silly bollocks
 
 		{ _field_block, "codecs", &sound_gestalt_codec_block },

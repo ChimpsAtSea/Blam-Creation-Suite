@@ -40,13 +40,13 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("camera shake and impulse data", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "camera shake", MAKE_OLD_NAMES("camera shake data"), &global_camera_shake_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "camera shake zoomed", "falls back on camerashake if untuned", MAKE_OLD_NAMES("camera shake data"), &global_camera_shake_reference },
 
 		FIELD_EXPLANATION_EX("simulated input", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "simulated_input", &global_simulated_input_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "simulated_input zoomed ", "falls back on simulated input if untuned", &global_simulated_input_reference },
 
 		FIELD_EXPLANATION_EX("global sound effect", nullptr, FIELD_FLAG_NONE, ""),
@@ -120,7 +120,7 @@ namespace blofeld
 	{
 		{ _field_real, "indicator duration" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "flash duration ", MAKE_OLD_NAMES("duration") },
 
 		{ _field_enum, "fade function", &global_reverse_transition_functions_enum },

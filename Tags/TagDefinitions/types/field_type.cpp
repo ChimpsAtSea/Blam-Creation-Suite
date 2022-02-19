@@ -4,10 +4,6 @@ using namespace blofeld;
 
 unsigned long blofeld::get_blofeld_field_size(e_platform_type platform_type, e_field field)
 {
-	if (field > _field_type_non_standard)
-	{
-		return 0;
-	}
 	switch (field)
 	{
 	case _field_string:							return sizeof(::c_static_string<32>);
@@ -196,7 +192,7 @@ BCS_DEBUG_API BCS_RESULT blofeld::field_to_tag_field_type(e_field field, const c
 
 BCS_DEBUG_API BCS_RESULT blofeld::tag_field_type_to_field(const char* tag_field_type, e_field& field)
 {
-	for (underlying(e_field) field_type = 0; field_type < _field_type_non_standard_custom_type; field_type++)
+	for (underlying(e_field) field_type = 0; field_type < k_number_of_blofeld_field_types; field_type++)
 	{
 		e_field current_field_type = static_cast<e_field>(field_type);
 		const char* current_tag_field_type;

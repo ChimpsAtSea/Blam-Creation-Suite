@@ -59,62 +59,62 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_STRUCTURE_BSP_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_struct, "build identifier", FIELD_FLAG_READ_ONLY, &structure_manifest_build_identifier_struct },
 		{ _field_struct, "parent build identifier", FIELD_FLAG_READ_ONLY, &structure_manifest_build_identifier_struct },
 
 		{ _field_long_integer, "import info checksum", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "structure lighting_info", FIELD_FLAG_INDEX, &structure_lighting_bsp_reference },
 
 		{ _field_long_integer, "import version", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "structure meta data", FIELD_FLAG_READ_ONLY, &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_word_flags, "flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_flags_definition },
 		{ _field_word_flags, "content policy flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_content_policy_flag },
 		{ _field_word_flags, "failed content policy flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_content_policy_flag },
 		FIELD_PAD_EX("faild policy pad", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, 2),
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_long_flags, "flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_flags_definition },
 
 		{ _field_block, "seam identifiers", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_seam_mapping_block },
 		{ _field_block, "edge to seam edge", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_edge_to_seam_edge_mapping_block },
 		{ _field_block, "collision materials", FIELD_FLAG_READ_ONLY, &structure_collision_materials_block },
 
-		{ _field_legacy, _field_version_equal, _engine_type_halo3 },
+		{ _version_mode_equal, _engine_type_halo3 },
 		{ _field_legacy, _field_block, "collision bsp*", &global_collision_bsp_block },
 
 		{ _field_block, "leaves", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_leaf_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 5 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 5 },
 		{ _field_block, "super aabbs", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_super_node_aabbs_block },
 		{ _field_block, "super node parent mappings", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &super_node_mappings_block },
 		{ _field_block, "super node recursable_masks", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &super_node_recursable_masks_block },
 		{ _field_block, "structure_super_node_traversal_geometry_block", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_super_node_traversal_geometry_block },
 		{ _field_struct, "instance kd hierarchy", FIELD_FLAG_UNKNOWN0, &collision_kd_hierarchy_static_struct },
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
+		{ _version_mode_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "unknown@" },
 
 		{ _field_real_bounds, "world bounds x", FIELD_FLAG_READ_ONLY },
 		{ _field_real_bounds, "world bounds y", FIELD_FLAG_READ_ONLY },
 		{ _field_real_bounds, "world bounds z", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_block, "structure surfaces", FIELD_FLAG_READ_ONLY, &structure_surface_block }, //assumed readonly reach and below
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_block, "large structure surfaces", FIELD_FLAG_READ_ONLY, &structure_surface_block },
 
 		{ _field_block, "structure surface to triangle mapping", FIELD_FLAG_READ_ONLY, &structure_surface_to_triangle_mapping_block },
 		{ _field_block, "cluster portals", FIELD_FLAG_READ_ONLY, &structure_bsp_cluster_portal_block },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 4 },
+		{ _version_mode_less, _engine_type_haloreach, 4 },
 		{ _field_legacy, _field_block, "unknown", &haloreach_sbsp_unknown_block },
 		{ _field_legacy, _field_block, "atmosphere palette*", &scenario_atmosphere_palette_block },
 		{ _field_legacy, _field_block, "camera fx palette", &scenario_camera_fx_palette_block },
@@ -124,7 +124,7 @@ namespace blofeld
 		{ _field_block, "clusters", FIELD_FLAG_READ_ONLY, &structure_bsp_cluster_block },
 		{ _field_block, "materials", FIELD_FLAG_READ_ONLY, &global_geometry_material_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_block, "emissive materials", FIELD_FLAG_READ_ONLY, &structure_material_lighting_info_block },
 
 		{ _field_block, "sky owner cluster", FIELD_FLAG_READ_ONLY, &structure_bsp_sky_owner_cluster_block },
@@ -132,16 +132,16 @@ namespace blofeld
 		{ _field_block, "breakable surface sets", FIELD_FLAG_READ_ONLY, &breakable_surface_set_block },
 		{ _field_block, "pathfinding data", &pathfinding_data_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_block, "unknown@", &g_null_block }, // unknown, potentially 
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 1 },
 		{ _field_block, "cookie cutters", &structure_cookie_cutter_definition_block },
 
 		{ _field_block, "acoustics palette", &scenario_acoustics_palette_block_definition_block },
 		{ _field_data, "sound PAS data", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 2 }, // #TODO: this data is pure speculation, these might not even be tag blocks!!!
+		{ _version_mode_less, _engine_type_haloreach, 2 }, // #TODO: this data is pure speculation, these might not even be tag blocks!!!
 		{ _field_legacy, _field_block, "unknown@", &g_null_block },
 		{ _field_legacy, _field_block, "unknown@", &g_null_block },
 
@@ -150,11 +150,11 @@ namespace blofeld
 		{ _field_block, "marker light palette index", FIELD_FLAG_READ_ONLY, &structure_bsp_marker_light_index_block },
 		{ _field_block, "runtime decals", FIELD_FLAG_READ_ONLY, &structure_bsp_runtime_decal_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_block, "environment object palette", FIELD_FLAG_READ_ONLY, &structure_bsp_environment_object_palette_block },
 		{ _field_block, "environment objects", FIELD_FLAG_READ_ONLY, &structure_bsp_environment_object_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "(DEPRECATED) environment object palette", FIELD_FLAG_READ_ONLY, &structure_bsp_environment_object_palette_block },
 		{ _field_block, "(DEPRECATED) environment objects", FIELD_FLAG_READ_ONLY, &structure_bsp_environment_object_block },
 
@@ -163,7 +163,7 @@ namespace blofeld
 		{ _field_block, "leaf map connections", FIELD_FLAG_READ_ONLY, &global_leaf_connection_block },
 		{ _field_block, "errors", FIELD_FLAG_READ_ONLY, &global_error_report_categories_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_block, "cluster to instance group mopps", &mopp_code_definition_block },
 		{ _field_block, "instance group to instance mopps", &mopp_code_definition_block },
 		{ _field_block, "cluster to instance group spheres", &structure_instance_cluster_definition_block },
@@ -171,11 +171,11 @@ namespace blofeld
 
 		{ _field_block, "instanced geometry instances", FIELD_FLAG_READ_ONLY, &structure_bsp_instanced_geometry_instances_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_block, "instanced geometry instance names", FIELD_FLAG_READ_ONLY, &structure_bsp_instanced_geometry_instances_names_block },
 		{ _field_tag_reference, "instance imposters", &global_instance_imposter_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "instance imposter infos", &structure_instance_imposter_info_block },
 		{ _field_long_integer, "Instance Geometry Tag Instance Count", FIELD_FLAG_UNKNOWN0 },
 
@@ -184,7 +184,7 @@ namespace blofeld
 		{ _field_struct, "decorator instance buffer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 5 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 5 },
 		FIELD_CUSTOM_EX("decals info", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_block, "preplaced decal sets", FIELD_FLAG_READ_ONLY, &bsp_preplaced_decal_set_reference_block },
 		{ _field_block, "preplaced decals", FIELD_FLAG_READ_ONLY, &bsp_preplaced_decal_reference_block },
@@ -193,7 +193,7 @@ namespace blofeld
 
 		{ _field_block, "acoustics sound clusters", FIELD_FLAG_UNKNOWN0, &structure_bsp_sound_cluster_block },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 2 },
+		{ _version_mode_less, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_block, "acoustics sound clusters 2!", &structure_bsp_sound_cluster_block },
 		{ _field_legacy, _field_block, "acoustics sound clusters 3!", &structure_bsp_sound_cluster_block },
 
@@ -201,24 +201,24 @@ namespace blofeld
 		{ _field_block, "debug info", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_block },
 		{ _field_struct, "structure_physics", FIELD_FLAG_READ_ONLY, &global_structure_physics_struct },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 1 }, // #TODO: this data is pure speculation!!!
+		{ _version_mode_less, _engine_type_haloreach, 1 }, // #TODO: this data is pure speculation!!!
 		{ _field_legacy, _field_block, "unknown@", &g_null_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 }, // #TODO: this data is pure speculation!!!
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 1 }, // #TODO: this data is pure speculation!!!
 		{ _field_legacy, _field_block, "unknown@", &g_null_block },
 
 		{ _field_struct, "render geometry", FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
 		{ _field_block, "widget references", &widget_reference_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "cheap light references", &cheap_light_reference_block },
 
 		{ _field_struct, "resource interface", &structure_bsp_resource_interface },
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
+		{ _version_mode_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "unknown@" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 9 },
+		{ _version_mode_greater, _engine_type_haloreach, 9 },
 		FIELD_CUSTOM_EX("Any Platform Temporary Storage", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_block, "Any Platform Temp Havok Data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structureIOHavokDataBlock_block },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
@@ -272,7 +272,7 @@ namespace blofeld
 	{
 		{ _field_tag_reference, "render method", MAKE_OLD_NAMES("old shader"), FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &structure_collision_materials_block_render_method_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_string_id, "override material name" },
 
 		{ _field_short_integer, "runtime global material index", FIELD_FLAG_UNKNOWN0 },
@@ -434,7 +434,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CLUSTER_PORTAL_BLOCK_ID)
 	{
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 1 },
 		{ _field_struct, "oriented bounds", &structure_bsp_cluster_portal_oriented_bounds_block },
 
 		{ _field_short_integer, "back cluster", FIELD_FLAG_READ_ONLY },
@@ -495,10 +495,10 @@ namespace blofeld
 		{ _field_real_bounds, "bounds y", FIELD_FLAG_READ_ONLY },
 		{ _field_real_bounds, "bounds z", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_char_integer, "unknown" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		FIELD_PAD_EX("DING", nullptr, FIELD_FLAG_NONE, 1),
 
 		{ _field_char_integer, "atmosphere index", FIELD_FLAG_READ_ONLY },
@@ -507,7 +507,7 @@ namespace blofeld
 		{ _field_short_block_index, "acoustics", FIELD_FLAG_READ_ONLY, &scenario_acoustics_palette_block_definition_block },
 		{ _field_short_integer, "acoustics sound cluster index" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 5 },
+		{ _version_mode_less, _engine_type_haloreach, 5 },
 		{ _field_legacy, _field_short_integer, "unknown" },
 		{ _field_legacy, _field_short_integer, "unknown" },
 		{ _field_legacy, _field_short_integer, "unknown" },
@@ -518,13 +518,13 @@ namespace blofeld
 		{ _field_short_integer, "runtime decal cound", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_flags, "flags", &structure_cluster_flags },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 1 },
 		FIELD_PAD_EX("ERERRFQ", nullptr, FIELD_FLAG_NONE, 2),
 
 		{ _field_block, "predicted resources", FIELD_FLAG_READ_ONLY, &g_null_block },
 		{ _field_block, "portals", FIELD_FLAG_READ_ONLY, &structure_bsp_cluster_portal_index_block },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 33 },
+		{ _version_mode_less, _engine_type_haloreach, 33 },
 		{ _field_legacy, _field_long_integer, "unknown" },
 		{ _field_legacy, _field_long_integer, "unknown" },
 		{ _field_legacy, _field_short_integer, "unknown size" },
@@ -567,7 +567,7 @@ namespace blofeld
 		{ _field_block, "pvs bound object identifiers", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &pvs_bound_object_identifiers_block },
 		{ _field_block, "pvs bound object references", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &pvs_bound_object_references_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "cluster cubemaps", &structure_cluster_cubemap_block },
 
 		{ _field_terminator }
@@ -656,7 +656,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PVS_BOUND_OBJECT_REFERENCES_BLOCK_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real_point_3d, "unknown#position?" },
 
 		{ _field_struct, "scenario object reference", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_object_reference_struct },
@@ -779,24 +779,24 @@ namespace blofeld
 			is a 32bits flags inside of manualBspFlagsReferences
 		*/
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_short_integer, "flags" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		FIELD_PAD_EX("post-decal-palette-index-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences },
 
 		{ _field_real_quaternion, "rotation", FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "position", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 1 },
+		{ _version_mode_less, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_real, "scale*" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_real, "scale_x", MAKE_OLD_NAMES("scale"), FIELD_FLAG_READ_ONLY },
 		{ _field_real, "scale_y", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_real, "cull angle" },
 
 		{ _field_terminator }
@@ -838,10 +838,10 @@ namespace blofeld
 		{ _field_long_integer, "unique id", FIELD_FLAG_READ_ONLY },
 		{ _field_tag, "exported object type" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_pad, "unknown", 32 }, // #TODO: Are there string id's in here???
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_string_id, "scenario object name" },
 		{ _field_string_id, "variant name" },
 
@@ -894,7 +894,7 @@ namespace blofeld
 		{ _field_real, "maximum imposter distance", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "minimum centrifugal distance from group center", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "minimum imposter distance squared", FIELD_FLAG_READ_ONLY },
 
 		{ _field_block, "instance indices", &index_list_block },
@@ -1283,7 +1283,7 @@ namespace blofeld
 	{
 		{ _field_block, "raw_resources", &structure_bsp_raw_resources_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 1 },
 		{ _field_pageable, "tag_resources", &structure_bsp_tag_resources_struct },
 
 		{ _field_pageable, "cache_file_resources", &structure_bsp_cache_file_tag_resources_struct },

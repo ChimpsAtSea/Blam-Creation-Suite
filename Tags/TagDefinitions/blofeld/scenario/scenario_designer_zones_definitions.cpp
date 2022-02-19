@@ -18,10 +18,10 @@ namespace blofeld
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_long_integer, "unknown" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_block, "references", FIELD_FLAG_READ_ONLY, &scenarioDesignerZoneTagReferenceBlock_block },
 
 		FIELD_CUSTOM_EX("biped", nullptr, FIELD_FLAG_NONE, _field_id_block_index_flags),
@@ -41,7 +41,7 @@ namespace blofeld
 		FIELD_CUSTOM_EX("control", nullptr, FIELD_FLAG_NONE, _field_id_block_index_flags),
 		{ _field_block, "control", &control_block_index_flags_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		FIELD_CUSTOM_EX("dispenser", nullptr, FIELD_FLAG_NONE, _field_id_block_index_flags),
 		{ _field_block, "dispenser", &dispenser_block_index_flags_block },
 
@@ -60,7 +60,7 @@ namespace blofeld
 		FIELD_CUSTOM_EX("spawner", nullptr, FIELD_FLAG_NONE, _field_id_block_index_flags),
 		{ _field_block, "spawner", &spawner_block_index_flags_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
+		{ _version_mode_greater, _engine_type_haloreach, 5 },
 		FIELD_CUSTOM_EX("budget_reference", nullptr, FIELD_FLAG_NONE, _field_id_block_index_flags),
 		{ _field_block, "budget_reference", &budget_reference_block_index_flags_block },
 		FIELD_CUSTOM_EX("bink", nullptr, FIELD_FLAG_NONE, _field_id_block_index_flags),

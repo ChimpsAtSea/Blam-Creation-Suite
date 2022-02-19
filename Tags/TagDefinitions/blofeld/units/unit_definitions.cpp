@@ -45,7 +45,7 @@ namespace blofeld
 	{
 		{ _field_tag_reference, "track", &global_camera_track_reference },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_tag_reference, "screen effect", &global_area_screen_effect_reference },
 		{ _field_terminator }
 	};
@@ -149,10 +149,10 @@ namespace blofeld
 	{
 		{ _field_tag_reference, "weapon", FIELD_FLAG_INDEX, &weapon_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_halo3 },
+		{ _version_mode_greater, _engine_type_halo3 },
 		{ _field_string_id, "variant name" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 32 },
+		{ _version_mode_greater, _engine_type_haloreach, 32 },
 		{ _field_long_enum, "position", &initial_weapon_position },
 		{ _field_real, "maximum firing cone angle", "must be greater than zero for turret to fire", "degrees" },
 		{ _field_real, "minimum retarget time", "minimum time before autoturret will change targets", "seconds" },
@@ -239,7 +239,7 @@ namespace blofeld
 	{
 		{ _field_long_flags, "flags", &unit_seat_flags },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_flags, "secondary flags", &unit_seat_secondary_flags },
 
 		{ _field_old_string_id, "label", FIELD_FLAG_INDEX },
@@ -248,7 +248,7 @@ namespace blofeld
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "entry marker(s) name" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "ui marker name" },
 		{ _field_string_id, "ui navpoint name" },
@@ -264,19 +264,19 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("seat acceleration spring", nullptr, FIELD_FLAG_NONE, ""),
 
 		// Reach and above live in a new seperate tag group, see physics/spring_acceleration_definitions.cpp
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 3 },
+		{ _version_mode_less, _engine_type_haloreach, 3 },
 		{ _field_legacy, _field_real_vector_3d, "acceleration range:world units" },
 		{ _field_legacy, _field_real, "acceleration action scale#0 defaults to 1, scale the acceleration the object itself applies on this system." },
 		{ _field_legacy, _field_real, "acceleration attach scale#0 defaults to 1, scale the acceleration the object itself applies on this system." },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_tag_reference, "seat acceleration", &spring_acceleration_reference },
 
 		{ _field_real, "AI scariness" },
 		{ _field_enum, "ai seat type", &global_ai_seat_type_enum },
 		{ _field_short_block_index, "boarding seat", &unit_seat_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "additional boarding seats", "additional seats to eject", &boarding_seat_block },
 
 		{ _field_real_fraction, "listener interpolation factor", "how far to interpolate listener position from camera to occupant's head" },
@@ -291,10 +291,10 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("camera fields", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "unit camera", &unit_camera_struct },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "hud screen references", &hud_screen_reference_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "hud screen reference", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
 
 		{ _field_string_id, "enter seat string" },
@@ -302,7 +302,7 @@ namespace blofeld
 		{ _field_angle, "yaw minimum" },
 		{ _field_angle, "yaw maximum" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_angle, "yaw minimum for AI operator", "only applies when an NPC is considering using this seat" },
 		{ _field_angle, "yaw maximum for AI operator", "only applies when an NPC is considering using this seat" },
 
@@ -315,7 +315,7 @@ namespace blofeld
 		{ _field_real, "maximum relative velocity" },
 		{ _field_useless_pad, "" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 5 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 5 },
 		{ _field_real, "open time", nullptr, "seconds" },
 		{ _field_real, "close time", nullptr, "seconds" },
 		{ _field_string_id, "open function name", "creates an object function with this name that you can use to query the open state of this seat" },
@@ -325,7 +325,7 @@ namespace blofeld
 		{ _field_string_id, "invisible seat region" },
 		{ _field_long_integer, "runtime invisible seat region index", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
+		{ _version_mode_greater, _engine_type_haloreach, 4 },
 		FIELD_EXPLANATION_EX("seat death grab crate", nullptr, FIELD_FLAG_NONE, "If this unit dies while this seat is occupied, the occupant will be handed an instance of this crate for throwing purposes."),
 		{ _field_tag_reference, "seat death grab crate", &crate_reference$2 },
 		{ _field_string_id, "Seat Selection String" },
@@ -364,32 +364,32 @@ namespace blofeld
 		FIELD_CUSTOM_EX("$$$ UNIT $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &unit_flags_part1, _field_id_dumb },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_flags, "flags2", &unit_flags_part2, _field_id_dumb },
 		
 		{ _field_enum, "default team", &unit_default_teams },
 		{ _field_enum, "constant sound volume", &ai_sound_volume_enum },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_tag_reference, "hologram unit reference", &unit_struct_definition_hologram_unit_reference_reference },
 		
 		{ _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "screen effects", &unit_screen_effect_block },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 2 },
+		{ _version_mode_less, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_tag_reference, "integrated_light_toggle", &integrated_light_toggle_reference },
 		{ _field_legacy, _field_angle, "camera field of view" },
 		
 		{ _field_real, "camera stiffness" },
 		{ _field_struct, "unit camera", &unit_camera_struct },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		FIELD_EXPLANATION_EX("sync action camera fields", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "sync action camera", &unit_camera_struct },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 9 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 9 },
 		{ _field_tag_reference, "assasination start damage response", &damage_response_definition_reference },
 		{ _field_tag_reference, "assassination weapon", &weapon_reference },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
@@ -400,7 +400,7 @@ namespace blofeld
 		{ _field_string_id, "assassination weapon anchor marker", "the marker on the knife that we anchor to the biped" },
 		{ _field_tag_reference, "seat acceleration", &spring_acceleration_reference },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 3 },
+		{ _version_mode_less, _engine_type_haloreach, 3 },
 		{ _field_legacy, _field_real_vector_3d, "acceleration range#ranges i,j,k" },
 		{ _field_legacy, _field_real, "acceleration action scale" },
 		{ _field_legacy, _field_real, "acceleration attach scale" },
@@ -411,14 +411,14 @@ namespace blofeld
 		{ _field_real, "hard ping threshold", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "hard ping interrupt time", nullptr, "seconds" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_real, "soft death direction speed threshold", "moving faster than this means you will soft death in the movement direction. zero defaults to damage direction.", "wu/s" },
 		{ _field_real, "hard death threshold", nullptr, nullptr, "[0,1]" },
 
 		{ _field_real, "feign death threshold", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "feign death time", nullptr, "seconds" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 7 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 7 },
 		{ _field_real, "pain screen duration", "The duration of the pain function\n0 defaults to 0.5", "seconds" },
 		{ _field_real, "pain screen region fade out duration", "The time it takes to fade out a damage region that is no longer the most recent damage region to be hit", "seconds" },
 		{ _field_real_fraction, "pain screen region fade out weight threshold", "The threshold weight below which the focus channel must fall before we can cross fade to another region.", nullptr, "[0,1]" },
@@ -427,19 +427,19 @@ namespace blofeld
 		{ _field_real, "defensive screen duration", "The duration of the defensive function\n0 defaults to 2.0", "seconds" },
 		{ _field_real_fraction, "defensive screen scrub fallback fraction", "When receiving multiple pings, this is the min percentage of the defensive screen scrub value will fallback to.", nullptr, "[0,1]" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "distance of evade anim:world units#this must be set to tell the AI how far it should expect our evade animation to move us" },
 
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_real, "distance of dive anim", "this must be set to tell the AI how far it should expect our dive animation to move us", "world units" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real_fraction, "terminal velocity fall ratio", "ratio of airborne_arc animation to switch off falling overlay" },
 
 		FIELD_CUSTOM_EX("stun", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "stun movement penalty", "1.0 prevents moving while stunned", nullptr, "[0,1]" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_real, "stun turning penalty", "1.0 prevents turning while stunned", nullptr, "[0,1]" },
 		{ _field_real, "stun jumping penalty", "1.0 prevents jumping while stunned", nullptr, "[0,1]" },
 		{ _field_real, "minimum stun time", "all stunning damage will last for at least this long", "seconds" },
@@ -453,7 +453,7 @@ namespace blofeld
 		{ _field_real, "spawned velocity", "velocity at which we throw spawned actors" },
 		FIELD_CUSTOM_EX("aiming/looking", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_string_id, "target aiming pivot marker name", "set this to have your weapon barrel point at its calcualed target instead of matching the aiming of the unit controlling it.  This marker should be along the barrel at point that doesn't move when the barrel pitches up and down." },
 
 		{ _field_angle, "aiming velocity maximum", nullptr, "degrees per second" },
@@ -463,21 +463,21 @@ namespace blofeld
 		{ _field_angle, "looking acceleration maximum", nullptr, "degrees per second squared" },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "object velocity maximum", "Debug value for object velocity that corresponds to a blend screen weight of 1, 0 defaults to 5.0", "world units per second", FIELD_FLAG_UNKNOWN0 },
 
 		{ _field_string_id, "right_hand_node", "where the primary weapon is attached" },
 		{ _field_string_id, "left_hand_node", "where the seconday weapon is attached (for dual-pistol modes)" },
 		{ _field_struct, "more damn nodes", &unit_additional_node_names_struct },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_enum, "melee damage class", &global_melee_class_enum_definition },
 		FIELD_PAD_EX("PAD", nullptr, FIELD_FLAG_NONE, 2),
 		
 		FIELD_CUSTOM_EX("melee damage", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_tag_reference, "melee damage", &global_damage_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "native melee override", "when set, characters will melee with these settings rather than their actual held weapon. (for characters that melee with an off hand)", &weapon_reference },
 
 		{ _field_struct, "your momma", &unit_boarding_melee_struct },
@@ -485,22 +485,22 @@ namespace blofeld
 		{ _field_enum, "motion sensor blip size", &global_chud_blip_type_definition },
 		{ _field_enum, "item owner size", &unit_item_owner_size_enum },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_string_id, "equipment variant name" },
 		{ _field_string_id, "grounded equipment variant name" },
 		
 		{ _field_block, "postures", &unit_postures_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "HUD Interfaces", &unit_hud_interfaces_block },
 		
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "Hud audio cues", &hud_unit_sound_block },
 
 		{ _field_block, "dialogue variants", &dialogue_variant_block },
 		FIELD_CUSTOM_EX("standard grenade throw", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_real, "grenade angle", nullptr, "degrees" },
 		{ _field_real, "grenade angle max elevation", nullptr, "degrees" },
 		{ _field_real, "grenade angle min elevation", nullptr, "degrees" },
@@ -508,7 +508,7 @@ namespace blofeld
 		{ _field_real, "grenade velocity", nullptr, "world units per second" },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 6 },
+		{ _version_mode_greater, _engine_type_haloreach, 6 },
 		FIELD_CUSTOM_EX("sprinting grenade throw", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "grenade angle (sprinting)", nullptr, "degrees" },
 		{ _field_real, "grenade angle max elevation (sprinting)", nullptr, "degrees" },
@@ -516,7 +516,7 @@ namespace blofeld
 		{ _field_real, "grenade velocity (sprinting)", nullptr, "world units per second" },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 6 },
+		{ _version_mode_greater, _engine_type_haloreach, 6 },
 		FIELD_CUSTOM_EX("primary weapon toss", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "weapon angle", nullptr, "degrees" },
 		{ _field_real, "weapon angle max elevation", nullptr, "degrees" },
@@ -529,12 +529,12 @@ namespace blofeld
 		{ _field_block, "powered seats", &powered_seat_block },
 		{ _field_block, "weapons", &unit_weapon_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "target tracking", &global_target_tracking_parameters_block },
 		
 		{ _field_block, "seats", &unit_seat_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 }, // custom fields are factored into the versioning
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 4 }, // custom fields are factored into the versioning
 		FIELD_CUSTOM_EX("open/close", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "opening time", "how long the unit takes to open when the hs_function unit_open is called\nThe current open state can be retrieved from the object function unit_open", "s" },
 		{ _field_real, "closing time", "you don't have to go home, but you can't stay here", "s" },
@@ -543,7 +543,7 @@ namespace blofeld
 		FIELD_CUSTOM_EX("EMP Disabling", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "emp disabled time", nullptr, "seconds" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "emp disabled time (PVP)", "Set to -1 for not disabled in MP but disabled in SP", "seconds " },
 		
 		{ _field_tag_reference, "emp disabled effect", &global_effect_reference },
@@ -557,7 +557,7 @@ namespace blofeld
 		{ _field_tag_reference, "exit and detach damage", &global_damage_reference },
 		{ _field_tag_reference, "exit and detach weapon", &global_weapon_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
+		{ _version_mode_greater, _engine_type_haloreach, 5 },
 		FIELD_EXPLANATION_EX("Experience", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_short_integer, "experience for kill" },
 		{ _field_short_integer, "experience for assist" },
@@ -566,10 +566,10 @@ namespace blofeld
 
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end), // end unit group
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real_fraction, "iron sight weapon dampening", "when using iron sights, how much to scale the weapon overlays to steady the gun (0 = rock steady, 1= no dampening)", "(0-1)" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		FIELD_CUSTOM_EX("Birthing", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "birth", &unit_birth_struct },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
@@ -593,7 +593,7 @@ namespace blofeld
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_old_string_id, "camera marker name" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_old_string_id, "camera submerged marker name" },
 
 		{ _field_angle, "pitch auto-level" },
@@ -603,10 +603,10 @@ namespace blofeld
 		{ _field_angle, "pitch mmaximum spring" },
 		{ _field_angle, "spring velocity" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 1 },
+		{ _version_mode_less, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_block, "unknown@", &g_null_block }, // #TODO: Research
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 8 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 8 },
 		{ _field_angle, "look acceleration", "if non-zero, limits the change in look velocity per second while the user is pushing the look stick in the current direction of looking", "deg/s/s" },
 		{ _field_angle, "look deceleration", "if non-zero, limits the change in look velocity per second while the user is not pushing the look stick or changing directions", "deg/s/s" },
 		{ _field_real_fraction, "look acc smoothing fraction", "if non-zero, when the desired velocity change is less than this fraction of the acceleration, starts interpolating the maximum acceleration towards zero.\nYou can think of this as a time in seconds where if the velocity would reach its target in this amount of time or less, it will start taking longer." },
@@ -657,13 +657,13 @@ namespace blofeld
 		{ _field_string_id, "preferred_gun_node", "if found, use this gun marker" },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 
-		{ _field_legacy, _field_version_equal, _engine_type_groundhog },
+		{ _version_mode_equal, _engine_type_groundhog },
 		{ _field_legacy, _field_string_id, "preferred_dual_gun_node" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_string_id, "preferred_grenade_marker", "if found, use this marker to attach live grenades to" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		FIELD_EXPLANATION_EX("Weapon Specific Markers", nullptr, FIELD_FLAG_NONE, "These will override the righthand/lefthand nodes when the weapon matches the one used by the unit"),
 		{ _field_block, "weapon specific markers", &WeaponSpecificMarkersBlock_block },
 
@@ -687,13 +687,13 @@ namespace blofeld
 		{ _field_tag_reference, "flurry melee damage", &global_damage_reference },
 		{ _field_tag_reference, "obstacle smash damage", &global_damage_reference },
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
+		{ _version_mode_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_tag_reference, "shield pop melee damage", &global_damage_reference },
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
+		{ _version_mode_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_tag_reference, "assassination damage", &global_damage_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_tag_reference, "assassination primary damage", &global_damage_reference },
 		{ _field_tag_reference, "assassination ragdoll damage", MAKE_OLD_NAMES("assassination damage"), &global_damage_reference },
 
@@ -712,26 +712,26 @@ namespace blofeld
 	{
 		{ _field_tag_reference, "boost collision damage", &collision_damage_reference$2 },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_long_flags, "flags", &boost_flags },
 
 		{ _field_real, "boost peak power" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_real, "boost rise time", "if the trigger is fully down, takes this long to reach peak power", "s" },
 		{ _field_real, "boost fall time", "if the trigger is let go (or peak time expires), takes this long to reach 0 power", "s" },
 		{ _field_real, "boost power per second", "1, means you burn all your power in one sec.  .1 means you can boost for 10 seconds." },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "boost low warning threshold" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 4 }, // want sure if/how to fit these against new definition
+		{ _version_mode_less, _engine_type_haloreach, 4 }, // want sure if/how to fit these against new definition
 		{ _field_legacy, _field_real, "boost peak power" },	// assembly
 		{ _field_legacy, _field_real, "boost rise power" },	// assembly
 		{ _field_legacy, _field_real, "boost peak time" },		// assembly
 		{ _field_legacy, _field_real, "boost fall power" },	// assembly
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_real, "recharge rate", "1 means you recharge fully in 1 second.  .1 means you rechage fully in 10 seconds" },
 		{ _field_real, "recharge delay", "how long do you have to be off the tirgger for before boost starts recharging", "s" },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),

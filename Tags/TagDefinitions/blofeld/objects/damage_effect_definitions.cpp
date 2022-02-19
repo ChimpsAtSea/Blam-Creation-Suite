@@ -59,7 +59,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_EFFECT_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "area of effect behavior equipment", "if a reference is here, area of effect damage will attach the equipment to the target", &behavior_object_reference },
 
 		{ _field_real_bounds, "radius", nullptr, "world units" },
@@ -69,12 +69,12 @@ namespace blofeld
 		{ _field_enum, "side effect", &damage_side_effects },
 		{ _field_enum, "category", &damage_categories },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_long_enum, "death vocalization", &damage_death_vocalizations },
 
 		{ _field_long_flags, "flags", &damage_flags },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_long_flags, "secondary flags", &damageSecondaryFlags },
 		{ _field_real, "headshot damage multiplier", "ignored if zero or if headshot flag is not set above; \notherwise, makes headshot not instantly lethal, but multiplies damage done to head by this much.  \n2 does 2x damage to head for headshot.  note that head still has different health than body." },
 
@@ -82,15 +82,15 @@ namespace blofeld
 		{ _field_real, "damage lower bound" },
 		{ _field_real_bounds, "damage upper bound" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_struct, "damage falloff function", &scalar_function_named_struct },
 
 		{ _field_angle, "dmg inner cone angle" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_angle, "dmg inner cone angle" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_struct, "blah", &damage_outer_cone_angle_struct },
 
 		{ _field_real, "active camouflage damage", "how much more visible this damage makes a player who is active camouflaged", nullptr, "[0,1]" },
@@ -98,12 +98,12 @@ namespace blofeld
 		{ _field_real, "maximum stun", "damaged unit's stun will never exceed this amount", nullptr, "[0,1]" },
 		{ _field_real, "stun time", "duration of stun due to this damage", "seconds" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_long_integer, "damage stun", "how long we stun recovering current body damage", "ticks" },
 
 		{ _field_real, "instantaneous acceleration", nullptr, nullptr, "[0,+inf]" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "alt instantaneous acceleration", "This field can be used for an alternative acceleration if the corresponding flags are set, e.g. check vehicle->flags.vehicle wants reduced weapon impulse when airborne", nullptr, "[0,+inf]" },
 		{ _field_real, "acceleration cap", "set to zero to disable cap" },
 
@@ -114,20 +114,20 @@ namespace blofeld
 		{ _field_real, "rider maximum transfer damage scale" },
 		{ _field_real, "rider minimum transfer damage scale" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "vehicle damage multiplier" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real_fraction, "soft ping pain screen scale", "The maximum amount to apply the pain screen pose overlay", nullptr, "[0,1]" },
 
 		{ _field_useless_pad, "" },
 		{ _field_string_id, "general_damage" },
 		{ _field_string_id, "specific_damage" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_string_id, "custom response label" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "custom response labels", &custom_damage_response_label_block },
 
 		{ _field_real, "AI stun radius", nullptr, "world units" },
@@ -137,10 +137,10 @@ namespace blofeld
 		{ _field_real, "aoe spike radius" },
 		{ _field_real, "aoe spike damage bump" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "shield render effects scale" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 17 },
+		{ _version_mode_greater, _engine_type_haloreach, 17 },
 		{ _field_long_integer, "stasis time", "duration of stasis due to this damage, zero disables", "ticks" },
 		{ _field_real, "stasis time dilation" },
 		{ _field_real, "stasis max biped turning rate" },
@@ -166,7 +166,7 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("sound", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "old melee sound", MAKE_OLD_NAMES("sound"), &global_sound_reference },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "damage sounds", &damage_effect_sound_block },
 
 		{ _field_useless_pad, "" },

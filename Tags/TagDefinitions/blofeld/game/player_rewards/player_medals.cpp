@@ -49,7 +49,7 @@ namespace blofeld
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "description" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 8 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 8 },
 		{ _field_legacy, _field_real, "scale x" },
 		{ _field_legacy, _field_real, "scale y" },
 		{ _field_legacy, _field_char_integer, "sequence index" },
@@ -59,7 +59,7 @@ namespace blofeld
 		{ _field_legacy, _field_short_integer, "override point value#if greater than zero, this point value will be awarded to players instead of the tier\'s point value" },
 		{ _field_legacy, _field_pad, "PAD1", 2 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 7 },
+		{ _version_mode_greater, _engine_type_haloreach, 7 },
 		{ _field_short_integer, "sequence index" },
 		{ _field_char_enum, "medal class", &medal_class_enum },
 		FIELD_PAD_EX("PAD1", nullptr, FIELD_FLAG_NONE, 1),
@@ -80,7 +80,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_MEDAL_GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "tiers", &gameMedalTiers_block },
 
 		{ _field_block, "medals", &game_medal_block },

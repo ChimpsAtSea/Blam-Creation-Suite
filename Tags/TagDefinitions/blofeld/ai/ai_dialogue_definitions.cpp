@@ -122,10 +122,10 @@ namespace blofeld
 		{ _field_char_enum, "speaker/subject position", &spatial_relation_enum },
 		{ _field_char_enum, "speaker/cause position", &spatial_relation_enum },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "unknown" }, // likely a block index. #todo that seems sketchy - Squaresome
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_flags, "Conditions", &dialogue_condition_flags },
 		
 		FIELD_EXPLANATION_EX("Matching", nullptr, FIELD_FLAG_NONE, ""),

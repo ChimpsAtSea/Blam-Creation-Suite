@@ -14,33 +14,22 @@ namespace blofeld
 	public:
 		s_string_entry(const char* string);
 		s_string_entry(
-			e_field_legacy,
+			e_version_mode version_mode,
 #ifndef __INTELLISENSE__
-			e_field _field_type,
 			const char* _filename,
-#endif
 			int _line,
+#endif
 			c_engine_platform_build _engine_platform_build,
 			unsigned long _version_field_skip_count = 1);
 
-		bool skip_tag_field_version(s_engine_platform_build _engine_platform_build, unsigned long& skip_count) const;
-
-		e_string_entry_type type;
 		union
 		{
-			struct
-			{
-				const char* string;
-			};
-			struct
-			{
-				e_field version_type;
-				const char* filename;
-				int line;
-				c_engine_platform_build engine_platform_build;
-				unsigned long version_field_skip_count;
-			};
+			const char* string;
+			s_tag_field_versioning versioning;
 		};
+		const char* filename;
+		int line;
+		bool is_versioning_entry;
 	};
 
 	struct s_string_list_definition

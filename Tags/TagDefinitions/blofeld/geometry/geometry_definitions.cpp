@@ -46,7 +46,7 @@ namespace blofeld
 		{ _field_array, "vertex buffer indices", FIELD_FLAG_READ_ONLY, &vertex_buffer_indices_word_array },
 		{ _field_short_integer, "index buffer index", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_short_integer, "index buffer tessellation", FIELD_FLAG_READ_ONLY },
 		
 		{ _field_word_flags, "mesh flags", FIELD_FLAG_READ_ONLY, &mesh_flags },
@@ -56,10 +56,10 @@ namespace blofeld
 		{ _field_char_enum, "lighting policy", &mesh_lighting_policy_type_definition },
 		{ _field_char_enum, "index buffer type", FIELD_FLAG_READ_ONLY, &mesh_index_buffer_type_definition },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_char_integer, "pca mesh index*" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		FIELD_PAD_EX("BAASDFIR", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "pca mesh index", FIELD_FLAG_READ_ONLY },
 		
@@ -68,7 +68,7 @@ namespace blofeld
 		{ _field_real, "runtime bounding radius", nullptr, "world units", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "runtime bounding offset", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_block, "vertex keys", FIELD_FLAG_READ_ONLY, &vertexKeyBlock_block },
 		{ _field_short_block_index, "clone index", FIELD_FLAG_READ_ONLY, &global_mesh_block },
 		{ _field_short_integer, "cumulative part count (initialized by PVS building code)" },
@@ -89,24 +89,24 @@ namespace blofeld
 		{ _field_short_block_index, "render method index", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &global_geometry_material_block },
 		{ _field_short_block_index, "transparent sorting index", FIELD_FLAG_READ_ONLY, &sorting_position_block },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 2 },
+		{ _version_mode_less, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_short_integer, "index start*" },
 		{ _field_legacy, _field_short_integer, "index count*" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_long_integer, "index start", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "index count", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "subpart start", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "subpart count", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_char_integer, "part type", FIELD_FLAG_READ_ONLY },
 		{ _field_char_enum, "specialized render", &specialized_render_definition },
 		
 		{ _field_word_flags, "part flags", FIELD_FLAG_READ_ONLY, &part_flags },
 		{ _field_word_integer, "budget vertex count" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_enum, "tessellation", &tessellation_mode_definition },
 		
 		{ _field_terminator }
@@ -140,18 +140,18 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUBPART_BLOCK_ID)
 	{
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 2 },
+		{ _version_mode_less, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_short_integer, "index start*" },
 		{ _field_legacy, _field_short_integer, "index count*" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_long_integer, "index start", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "index count", FIELD_FLAG_READ_ONLY },
 		
 		{ _field_short_block_index, "part index", FIELD_FLAG_READ_ONLY, &part_block },
 		{ _field_word_integer, "budget vertex count" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_dword_integer, "analytical light index" },
 		
 		{ _field_terminator }
@@ -492,7 +492,7 @@ namespace blofeld
 	{
 		{ _field_block, "texture coordinates", &raw_vertex_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "texture coordinates (concise)", &raw_texcoord_block },
 		
 		{ _field_short_integer, "vertex buffer index", FIELD_FLAG_READ_ONLY },
@@ -730,7 +730,7 @@ namespace blofeld
 		{ _field_long_flags, "runtime flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &render_geometry_flags },
 		{ _field_block, "meshes", FIELD_FLAG_READ_ONLY, &global_mesh_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_block, "PCA Mesh Indices", FIELD_FLAG_READ_ONLY, &PCAMeshIndexBlock_block },
 		
 		{ _field_block, "compression info", FIELD_FLAG_READ_ONLY, &compression_info_block },
@@ -743,24 +743,24 @@ namespace blofeld
 		{ _field_block, "per_mesh_prt_data", FIELD_FLAG_READ_ONLY, &per_mesh_prt_data_block },
 		{ _field_block, "per_instance_lightmap_texcoords", FIELD_FLAG_READ_ONLY, &per_instance_lightmap_texcoords_block },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 1 }, // assembly. #TODO: Verify this
+		{ _version_mode_less, _engine_type_haloreach, 1 }, // assembly. #TODO: Verify this
 		{ _field_legacy, _field_block, "unknown meshes", &global_render_geometry_unknown_meshes_block }, // Unknown Meshes
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 1 }, // assembly. #TODO: Verify this
+		{ _version_mode_equal, _engine_type_haloreach, 1 }, // assembly. #TODO: Verify this
 		{ _field_legacy, _field_block, "unknown meshes", &global_render_geometry_unknown_meshes2_block }, // Unknown Meshes
 		
 		{ _field_block, "water bounding box block", FIELD_FLAG_READ_ONLY, &water_bounding_box_block },
 		{ _field_pageable, "api resource", &render_geometry_api_resource_definition_struct },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "Optional PVS data", &render_geometry_pvs_data_block },
 		{ _field_block, "shapeNames", FIELD_FLAG_READ_ONLY, &shapeNameBlock_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "constant buffer interop", &constant_buffer_interops_block }, // assembly
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 3 },
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4, 2 },
+		{ _version_mode_platform_include, _platform_type_pc_64bit, 3 },
+		{ _version_mode_greater_or_equal, _engine_type_halo4, 2 },
 		{ _field_legacy, _field_block, "@unknown", &g_null_block },
 		{ _field_legacy, _field_block, "@unknown", &g_null_block },
 		

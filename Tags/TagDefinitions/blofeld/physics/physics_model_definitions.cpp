@@ -33,7 +33,7 @@ namespace blofeld
 		{ _field_struct, "base", &havok_primitive_struct },
 		{ _field_struct, "sphere shape", &havok_convex_shape_struct },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "unknown padding", 4 },
 		
 		FIELD_PAD_EX("algn344", nullptr, FIELD_FLAG_NONE, 12),
@@ -94,10 +94,10 @@ namespace blofeld
 		{ _field_real, "orbit acc", "negative values spin the opposite direction from positive ones" },
 		{ _field_real, "orbit max vel" },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		FIELD_PAD_EX("TF", nullptr, FIELD_FLAG_NONE, 20),
 
-		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc_64bit },
+		{ _version_mode_platform_exclude, _platform_type_pc_64bit },
 		FIELD_PAD_EX("TF", nullptr, FIELD_FLAG_NONE, 28),
 
 		FIELD_EXPLANATION_EX("Angular Motion", nullptr, FIELD_FLAG_NONE, "0 - means do nothing\nALIGNMENT: algin objects in the phantom with the marker\nSPIN: spin the object about the marker axis"),
@@ -118,14 +118,14 @@ namespace blofeld
 		{ _field_legacy, _field_short_integer, "size*~!" },
 		{ _field_legacy, _field_short_integer, "count*~!" },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "hkReferencedObject 8byte alignment", 4 },
 
 			// hkpShape
 		{ _field_legacy, _field_pointer, "user data*~!" }, // TYPE_ULONG
 		{ _field_legacy, _field_long_integer, "type*~!" },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "hkpShape 8byte alignment", 4 },
 
 		{ _field_legacy, _field_terminator }
@@ -141,24 +141,24 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		PHANTOMS_BLOCK_STRUCT_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_struct, "bv shape", &havok_shape_struct_2010_2 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_struct, "bv shape", &havok_shape_struct },
 
 		{ _field_struct, "havok shape reference struct1", &havok_shape_reference_struct },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "unknown" }, // likely "child size"
 
 		{ _field_pointer, "field pointer skip", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_pointer, "child shape pointer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_struct, "phantom shape", &havok_shape_struct_2010_2 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_struct, "phantom shape", &havok_shape_struct },
 
 		{ _field_terminator }
@@ -178,7 +178,7 @@ namespace blofeld
 		{ _field_struct, "base", &havok_primitive_struct },
 		{ _field_struct, "capsule shape", &havok_convex_shape_struct },
 
-		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc_64bit },
+		{ _version_mode_platform_exclude, _platform_type_pc_64bit },
 		FIELD_PAD_EX("algn243", nullptr, FIELD_FLAG_NONE, 12),
 		
 		{ _field_real_vector_3d, "bottom", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -206,7 +206,7 @@ namespace blofeld
 		{ _field_long_integer, "child shapes capacity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD_EX("nail_in_dick", nullptr, FIELD_FLAG_NONE, 12), // lol
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		FIELD_PAD_EX("8byte alignment", nullptr, FIELD_FLAG_NONE, 4),
 
 		{ _field_real_vector_3d, "aabb half extents", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -457,10 +457,10 @@ namespace blofeld
 		{ _field_real, "water physics z0", "z0 value of the water physics aabb" },
 		{ _field_real, "water physics z1", "z1 value of the water physics aabb" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_pointer, "Runtime Shape Pointer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_pad, "padding", 4 },
 
 		{ _field_real_vector_3d, "center of mass", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -473,12 +473,12 @@ namespace blofeld
 		{ _field_real, "havok w intertia tensor z", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "runtime havok group mask ", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_pad, "padding", 4 },
 
 		{ _field_struct, "shape reference", &havok_shape_reference_struct },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "unknown" }, // likely "child size"
 
 		{ _field_real, "mass", nullptr, "kg", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -490,7 +490,7 @@ namespace blofeld
 		{ _field_real, "Mass body override" },
 		FIELD_PAD_EX("pad4", nullptr, FIELD_FLAG_NONE, 8),
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_pad, "unknown", 8 }, // assumed
 
 		{ _field_terminator }
@@ -605,7 +605,7 @@ namespace blofeld
 		{ _field_struct, "base", &havok_primitive_struct },
 		{ _field_struct, "box shape", &havok_convex_shape_struct },
 
-		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc_64bit },
+		{ _version_mode_platform_exclude, _platform_type_pc_64bit },
 		FIELD_PAD_EX("algn3473", nullptr, FIELD_FLAG_NONE, 12),
 
 		{ _field_real_vector_3d, "half extents", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -657,7 +657,7 @@ namespace blofeld
 		{ _field_struct, "base", &havok_primitive_struct },
 		{ _field_struct, "polyhedron shape", &havok_convex_shape_struct },
 
-		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc_64bit },
+		{ _version_mode_platform_exclude, _platform_type_pc_64bit },
 		FIELD_PAD_EX("algn743", nullptr, FIELD_FLAG_NONE, 12),
 
 		// aabbHalfExtents
@@ -673,14 +673,14 @@ namespace blofeld
 		// numVertices
 		{ _field_long_integer, "num vertices", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "hkReferencedObject 8byte alignment", 4 },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		// convexPiece
 		{ _field_legacy, _field_pointer, "convex piece pointer skip!~" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		// useSpuBuffer
 		{ _field_char_integer, "m_useSpuBuffer", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD_EX("algn434", nullptr, FIELD_FLAG_NONE, 3),
@@ -691,10 +691,10 @@ namespace blofeld
 		{ _field_long_integer, "plane equations capacity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_pointer, "connectivity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_POINTER, _field_id_zero_data },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		FIELD_PAD_EX("SAMTRA", nullptr, FIELD_FLAG_NONE, 8),
 
-		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc_64bit },
+		{ _version_mode_platform_exclude, _platform_type_pc_64bit },
 		FIELD_PAD_EX("SAMTRA", nullptr, FIELD_FLAG_NONE, 12),
 
 		{ _field_terminator }
@@ -773,7 +773,7 @@ namespace blofeld
 		FIELD_PAD_EX("m_bvTreeType", nullptr, FIELD_FLAG_NONE, 1),
 		FIELD_PAD_EX("3 other bytes", nullptr, FIELD_FLAG_NONE, 3),
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "8byte alignment", 4 },
 
 		// hkMoppBvTreeShapeBase
@@ -781,7 +781,7 @@ namespace blofeld
 		{ _field_pointer, "mopp data skip", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "mopp data size", FIELD_FLAG_UNKNOWN3 },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "8byte alignment", 4 },
 
 		{ _field_real_vector_3d, "m_codeInfoCopy", FIELD_FLAG_READ_ONLY },
@@ -792,14 +792,14 @@ namespace blofeld
 		{ _field_struct, "childShapePointer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3, &havok_shape_reference_struct },
 		{ _field_long_integer, "child size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "8byte alignment", 4 },
 
 		FIELD_PAD_EX("mopp alignment", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, 4),
 		{ _field_real, "scale", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD_EX("final alignment", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, 12),
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "16 byte align pad", 8 },
 
 		{ _field_terminator }
@@ -1007,7 +1007,7 @@ namespace blofeld
 		{ _field_block, "prismatic constraints", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &prismatic_constraints_block },
 		{ _field_block, "phantoms", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &phantoms_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_block, "RigidBody Serialized Shapes", FIELD_FLAG_READ_ONLY, &RigidBodySerializedShapesBlock_block },
 
 		{ _field_terminator }
@@ -1054,7 +1054,7 @@ namespace blofeld
 		{ _field_short_integer, "size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_short_integer, "count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "hkReferencedObject 8byte alignment", 4 },
 
 		{ _field_char_integer, "type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
@@ -1062,7 +1062,7 @@ namespace blofeld
 		{ _field_char_integer, "bitsPerKey", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_char_integer, "codecType", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "hkReferencedObject 8byte alignment", 4 },
 
 		{ _field_pointer, "user data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
@@ -1130,7 +1130,7 @@ namespace blofeld
 		{ _field_char_integer, "collection type", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		FIELD_PAD_EX("VDVAPBSS", nullptr, FIELD_FLAG_NONE, 2),
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "hkReferencedObjectClass 8byte alignment", 4 },
 
 		{ _field_terminator }
@@ -1152,14 +1152,14 @@ namespace blofeld
 		{ _field_short_integer, "size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_short_integer, "count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "hkReferencedObject 8byte alignment", 4 },
 
 		// hkpShape
 		{ _field_pointer, "user data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 }, // TYPE_ULONG
 		{ _field_long_integer, "type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "hkpShape 8byte alignment", 4 },
 
 		{ _field_terminator }

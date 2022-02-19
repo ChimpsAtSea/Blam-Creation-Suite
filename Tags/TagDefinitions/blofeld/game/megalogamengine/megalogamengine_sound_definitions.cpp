@@ -124,7 +124,7 @@ namespace blofeld
 		{ _field_tag_reference, "bravo_under_attack", &global_sound_reference },
 		{ _field_tag_reference, "charlie_under_attack", &global_sound_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 145 },
+		{ _version_mode_greater, _engine_type_haloreach, 145 },
 		{ _field_tag_reference, "dom_base1", &global_sound_reference },
 		{ _field_tag_reference, "dom_base2", &global_sound_reference },
 		{ _field_tag_reference, "dom_base3", &global_sound_reference },

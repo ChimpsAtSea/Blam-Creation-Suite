@@ -76,7 +76,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PIXEL_SHADER_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_dword_integer, "unknown@" },
 
 		{ _field_block, "entry points", &pixel_entry_point_block },
@@ -102,7 +102,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEX_SHADER_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_dword_integer, "unknown@" },
 
 		{ _field_block, "entry points", &vertex_entry_point_block },
@@ -128,7 +128,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPUTE_SHADER_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_dword_integer, "unknown@" },
 
 		{ _field_block, "entry points", &compute_entry_point_block },
@@ -220,8 +220,8 @@ namespace blofeld
 		{ _field_struct, "compiled shader splut", &rasterizer_compiled_shader_struct },
 		{ _field_long_integer, "runtime shader ", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, _field_id_shader_unknown },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4, 1 },
+		{ _version_mode_platform_include, _platform_type_pc_64bit, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_halo4, 1 },
 		{ _field_legacy, _field_pad, "padding", 4 },
 
 		{ _field_terminator }
@@ -254,8 +254,8 @@ namespace blofeld
 		{ _field_struct, "compiled shader splut", &rasterizer_compiled_shader_struct },
 		{ _field_long_integer, "runtime shader ", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, _field_id_shader_unknown },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4, 1 },
+		{ _version_mode_platform_include, _platform_type_pc_64bit, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_halo4, 1 },
 		{ _field_legacy, _field_pad, "padding", 4 },
 
 		{ _field_terminator }
@@ -274,8 +274,8 @@ namespace blofeld
 		{ _field_struct, "compiled shader splut", &rasterizer_compiled_shader_struct },
 		{ _field_long_integer, "runtime shader ", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, _field_id_shader_unknown },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4, 1 },
+		{ _version_mode_platform_include, _platform_type_pc_64bit, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_halo4, 1 },
 		{ _field_legacy, _field_pad, "padding", 4 },
 
 		{ _field_terminator }
@@ -379,26 +379,26 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RASTERIZER_COMPILED_SHADER_STRUCT_ID)
 	{
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_long_flags, "shader flags", &shader_flags },
 
 		{ _field_data, "xenon compiled shader", MAKE_OLD_NAMES("..:xenon compiled shader") },
 
-		{ _field_legacy, _field_version_equal, _engine_type_gen3_xbox360 },
+		{ _version_mode_equal, _engine_type_gen3_xbox360 },
 		{ _field_data, "dx9 compiled shader", MAKE_OLD_NAMES("..:dx9 compiled shader") },
 
-		{ _field_legacy, _field_version_not_equal, _engine_type_gen3_xbox360, 2 },
+		{ _version_mode_not_equal, _engine_type_gen3_xbox360, 2 },
 		{ _field_legacy, _field_data, "dx11 compiled shader{..:dx11 compiled shader}" },
 		{ _field_legacy, _field_data, "durango compiled shader{..:durango compiled shader}" },
 
 		FIELD_EXPLANATION_EX("Xenon constant table", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "xenon rasterizer constant table", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_rasterizer_constant_table_struct },
 
-		{ _field_legacy, _field_version_equal, _engine_type_gen3_xbox360, 2 },
+		{ _version_mode_equal, _engine_type_gen3_xbox360, 2 },
 		FIELD_EXPLANATION_EX("DX9 constant table", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "dx9 rasterizer constant table", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_rasterizer_constant_table_struct },
 
-		{ _field_legacy, _field_version_not_equal, _engine_type_gen3_xbox360, 4 },
+		{ _version_mode_not_equal, _engine_type_gen3_xbox360, 4 },
 		{ _field_legacy, _field_explanation, "dx11 constant table", "" },
 		{ _field_legacy, _field_struct, "dx11 rasterizer constant table*!", &global_rasterizer_constant_table_struct },
 		{ _field_legacy, _field_explanation, "durango constant table", "" },
@@ -407,7 +407,7 @@ namespace blofeld
 		{ _field_dword_integer, "gprs", MAKE_OLD_NAMES("..:gprs") },
 		{ _field_long_integer, "cache file reference", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
+		{ _version_mode_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_dword_integer, "unknown@" },
 
 		{ _field_terminator }

@@ -81,13 +81,13 @@ namespace blofeld
 		{ _field_struct, "render geometry", FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
 		{ _field_block, "node map mapping", FIELD_FLAG_READ_ONLY, &instance_node_map_mapping_block, _field_id_slap },
 
-		{ _field_legacy, _field_version_less_or_equal , _engine_type_haloreach },
+		{ _version_mode_less_or_equal , _engine_type_haloreach },
 		{ _field_legacy, _field_struct, "unknown", &render_model_unknown_struct_struct_definition },
 
 		{ _field_block, "volume samples", &volume_samples_block, _field_id_slap },
 		{ _field_block, "runtime node orientations", FIELD_FLAG_UNKNOWN0, &default_node_orientations_block, _field_id_slap },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
+		{ _version_mode_greater, _engine_type_haloreach, 5 },
 		{ _field_block, "bone groups", &RenderModelBoneGroupBlock_block, _field_id_slap },
 		FIELD_EXPLANATION_EX("Static Lightmap", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "structure meta data", FIELD_FLAG_READ_ONLY, &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
@@ -136,10 +136,10 @@ namespace blofeld
 		{ _field_string_id, "name" },
 		{ _field_short_integer, "base node index" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_short_integer, "unknown" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		FIELD_PAD_EX("WAXI", nullptr, FIELD_FLAG_NONE, 2),
 
 		{ _field_terminator }
@@ -174,7 +174,7 @@ namespace blofeld
 		{ _field_short_integer, "mesh index", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "mesh count", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_string_id, "clone name", FIELD_FLAG_READ_ONLY },
 
 		{ _field_long_flags, "instance mask 0-31", FIELD_FLAG_READ_ONLY, &render_model_instance_bitfield_flags_definition },
@@ -202,7 +202,7 @@ namespace blofeld
 		{ _field_real_point_3d, "default translation", FIELD_FLAG_READ_ONLY },
 		{ _field_real_quaternion, "default rotation", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_real, "scale", FIELD_FLAG_READ_ONLY },	// yes its read only, dont question it dumdum
 
 		{ _field_real_vector_3d, "inverse forward", FIELD_FLAG_READ_ONLY },
@@ -210,12 +210,12 @@ namespace blofeld
 		{ _field_real_vector_3d, "inverse up", FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "inverse position", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "inverse scale", FIELD_FLAG_READ_ONLY },
 
 		{ _field_real, "distance from parent", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 9 },
+		{ _version_mode_greater, _engine_type_haloreach, 9 },
 		FIELD_CUSTOM_EX("Procedural Joint", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_char_enum, "procedure", &procedure_enum_definition },
 		{ _field_char_enum, "procedure axis", &procedure_axis_enum_definition },

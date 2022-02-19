@@ -44,7 +44,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ATTACHMENT_BLOCK_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_byte_flags, "flags", &attachment_flags },
 		FIELD_PAD_EX("gerrrrr", nullptr, FIELD_FLAG_NONE, 3),
 
@@ -113,16 +113,16 @@ namespace blofeld
 		{ _field_real, "motion blur rotation scale", "affects billboard tilt from observer turning" },
 		{ _field_real, "motion blur aspect scale", "affects aspect ratio stretching from particle and observer motion" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_explanation, "Render Method" }, // Unknown field ID, leaving as legacy
 		{ _field_legacy, _field_struct, "render method", &render_method_struct_definition },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		FIELD_CUSTOM_EX("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual material?", &material_struct },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 10 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 10 },
 		{ _field_legacy, _field_real, "unknown@" },
 		{ _field_legacy, _field_real, "unknown@" },
 		{ _field_legacy, _field_real, "unknown@" },
@@ -141,7 +141,7 @@ namespace blofeld
 		{ _field_struct, "intensity", "multiplies color to give dynamic range outside [0,1]", &particle_property_scalar_struct_new },
 		{ _field_struct, "alpha", "separate from color, controls how the particle fades as a function of its input", &particle_property_scalar_struct_new },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_real, "tint factor", "switches between modulate (multiply) and tint(preserve whites)", "0=modulate, 1=tint" },
 
 		FIELD_EXPLANATION_EX("PARTICLE ANIMATION", nullptr, FIELD_FLAG_NONE, ""),
@@ -153,7 +153,7 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("Mesh data, if this is a mesh particle", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "Model", &particle_model_reference$2 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 6 },
+		{ _version_mode_greater, _engine_type_haloreach, 6 },
 		FIELD_CUSTOM_EX("OLD DEPRECATED shader definition", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_CUSTOM_EX("shader", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
@@ -190,7 +190,7 @@ namespace blofeld
 		"dies in air",
 		"has sweetener",
 		"uses cheap shader"
-		// { _field_version_platform_include, _platform_type_pc_64bit, 4 },
+		// { _version_mode_platform_include, _platform_type_pc_64bit, 4 },
 		// "bit 7",
 		// "bit 8",
 		// "bit 9",
@@ -214,7 +214,7 @@ namespace blofeld
 		"low res tighter mask#requires depth fade",
 		"never kill verts on GPU (expensive)",
 		"particle velocity relative to camera#makes parallel and perpindicular to velocity behave differently based upon camera motion"
-		// { _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 9 },
+		// { _version_mode_platform_include, _platform_type_pc_64bit, 9 },
 		// "unknown bit 15",
 		// "unknown bit 16",
 		// "unknown bit 17",
@@ -232,7 +232,7 @@ namespace blofeld
 	{
 		"frame animation one shot",
 		"can animate backwards"
-		// { _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
+		// { _version_mode_platform_include, _platform_type_pc_64bit, 2 },
 		// "bit 3",
 		// "bit 4"
 	};

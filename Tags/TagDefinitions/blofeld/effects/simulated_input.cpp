@@ -50,7 +50,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SIMULATED_INPUT_STICK_STRUCT_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_flags, "flags", &simulated_input_flags },
 
 		{ _field_enum, "response type", &direction_type_enum_definition },
@@ -60,7 +60,7 @@ namespace blofeld
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "duration", nullptr, "seconds" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
+		{ _version_mode_greater, _engine_type_haloreach, 5 },
 		{ _field_real, "inverse duration", "if >0.f, accumulated inpulse will be 'undone' over the give time span", "seconds" },
 		{ _field_real, "inverse random length", "15.0 would randomly adjust length of accumulated impulse +/-15%", "percent" },
 		{ _field_real_bounds, "inverse random angle", "apply random adjustment to direction of accumulated impulse", "degrees" },

@@ -19,11 +19,11 @@ namespace blofeld
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "flags", &map_variant_palette_flags },
 
-		{ _field_legacy, _field_version_not_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_not_equal, _engine_type_haloreach, 1 },
 		FIELD_PAD_EX("pad", nullptr, FIELD_FLAG_NONE, 3),
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 4 },
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 3 },
+		{ _version_mode_equal, _engine_type_haloreach, 4 },
+		{ _version_mode_platform_include, _platform_type_pc_64bit, 3 },
 		{ _field_legacy, _field_pad, "pad", 1 },
 		{ _field_legacy, _field_char_integer, "thorage" },
 		{ _field_legacy, _field_pad, "pad", 1 },
@@ -47,8 +47,8 @@ namespace blofeld
 		{ _field_long_integer, "maximum allowed", "if this is <= 0, these are 'unlimited' (up to a reasonable code-defined maximum)" },
 		{ _field_long_integer, "price per instance" },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_platform_include, _platform_type_pc_64bit, 2 },
+		{ _version_mode_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_long_integer, "thorage" },
 
 		{ _field_terminator }
@@ -68,7 +68,7 @@ namespace blofeld
 		{ _field_tag_reference, "object", &object_reference$9 },
 		{ _field_string_id, "variant name" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_struct, "resource dependencies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &mapVariantResourceManifest },
 
 		{ _field_terminator }

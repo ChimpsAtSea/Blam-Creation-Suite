@@ -54,7 +54,7 @@ namespace blofeld
 		{ _field_char_enum, "Transparent sort layer", &global_sort_layer_enum_defintion },
 			FIELD_PAD_EX("UNdfdfdSED", nullptr, FIELD_FLAG_NONE, 3),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_struct, "wind strength across distance", &scalar_function_named_struct_default_one },
 		
 		{ _field_block, "underwater settings", &underwater_setting_block },

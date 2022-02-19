@@ -105,7 +105,6 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 
 		console_write_line("Prematching '%s' -> '%s'", structure_name, reader_structure_entry.tag_struct_definition->name);
 
-
 		for (unsigned long file_field_index = structure_entry.fields_start_index; ; file_field_index++)
 		{
 			s_blofeld_field_transpose_entry& transpose_entry = reader_structure_entry.transpose_entries.emplace_back();
@@ -138,13 +137,24 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 				continue;
 			}
 
-
 			const blofeld::s_tag_field* blofeld_field = nullptr;
 			if (reader_structure_entry.tag_struct_definition)
 			{
 				for (unsigned long blofeld_field_index = next_blofeld_field_index; ; blofeld_field_index++)
 				{
 					const blofeld::s_tag_field& candidate_blofeld_field = reader_structure_entry.tag_struct_definition->fields[blofeld_field_index];
+
+					if (candidate_blofeld_field.field_type == blofeld::_field_version)
+					{
+						debug_point;
+					}
+
+					unsigned long field_skip_count;
+					if (blofeld::execute_tag_field_versioning(candidate_blofeld_field, engine_platform_build, blofeld_tag_group->group_tag, field_skip_count))
+					{
+						blofeld_field_index += field_skip_count;
+						continue;
+					}
 
 					if (candidate_blofeld_field.field_type == blofeld::_field_terminator)
 					{
@@ -156,6 +166,8 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 					case blofeld::_field_explanation:
 					case blofeld::_field_useless_pad:
 						continue;
+					case blofeld::_field_version:
+						throw;
 					}
 
 					if (strcmp(file_field_name, candidate_blofeld_field.name) == 0)
@@ -189,6 +201,8 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 			}
 
 		}
+
+		debug_point;
 
 		//for (unsigned long blofeld_field_index = 0; ; blofeld_field_index++)
 		//{

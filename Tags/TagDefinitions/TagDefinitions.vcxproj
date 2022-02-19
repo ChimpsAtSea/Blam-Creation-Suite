@@ -345,6 +345,7 @@
     </ClCompile>
     <ClCompile Include="types\tag_block_definition.cpp" />
     <ClCompile Include="types\tag_data_definition.cpp" />
+    <ClCompile Include="types\tag_versioning.cpp" />
     <ClCompile Include="types\tag_group.cpp" />
     <ClCompile Include="types\tag_interop_definition.cpp" />
     <ClCompile Include="types\tag_struct_definition.cpp" />
@@ -679,6 +680,7 @@
     <ClInclude Include="types\tag_reference_definition.h" />
     <ClInclude Include="types\tag_struct_definition.h" />
     <ClInclude Include="definition_migration.h" />
+    <ClInclude Include="types\tag_versioning.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="blamlib_byteswap.inl" />

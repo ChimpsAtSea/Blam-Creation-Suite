@@ -89,3 +89,9 @@ c_reach_x360_tag_field::c_reach_x360_tag_field(const char* guerilla_data, const 
 		ASSERT(field_definition.definition_address == 0);
 	}
 }
+
+c_reach_x360_tag_field_combined_fixup::c_reach_x360_tag_field_combined_fixup(c_reach_x360_tag_group_definition& group_definition, unsigned long count) :
+	group_definition(group_definition),
+	count(count)
+{
+}

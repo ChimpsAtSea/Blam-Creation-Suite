@@ -180,7 +180,7 @@ namespace blofeld
 		{ _field_useless_pad, "" },
 		{ _field_useless_pad, "" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_tag_reference, "death program selector", &death_program_selector_reference },
 		{ _field_string_id, "ragdoll region name", "when the biped transitions to ragdoll, this region will change to the destroyed state" },
 		{ _field_string_id, "assassination chud text", "The string id for the assassination action text in the CHUD" },
@@ -188,11 +188,11 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("jumping and landing", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "jump velocity", nullptr, "world units per second" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "tricks", &unit_trick_definition_block },
 
 		// #TODO: This is assumed to be a tag block. Assert on these values and check if they are non zero
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_equal, _engine_type_haloreach, 3 },
 		{ _field_legacy, _field_long_integer, "unknown@" }, // assembly
 		{ _field_legacy, _field_long_integer, "unknown@" }, // assembly
 		{ _field_legacy, _field_long_integer, "unknown@" }, // assembly
@@ -204,7 +204,7 @@ namespace blofeld
 		{ _field_real, "minimum hard landing velocity", "below this velocity the biped will not do a soft landing when returning to the ground", "world units per second" },
 		{ _field_real, "maximum hard landing velocity", "the velocity corresponding to the maximum landing time", "world units per second" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "death hard landing velocity" },
 		
 		{ _field_useless_pad, "" },
@@ -212,17 +212,17 @@ namespace blofeld
 		FIELD_EXPLANATION_EX("camera, collision, and autoaim", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "standing camera height", nullptr, "world units" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "running camera height", nullptr, "world units" },
 		
 		{ _field_real, "crouching camera height", nullptr, "world units" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "crouch walking camera height", nullptr, "world units" },
 		
 		{ _field_real, "crouch transition time", nullptr, "seconds" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 3 },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "camera height velocity function", &mapping_function },
 		{ _field_block, "camera heights", &biped_camera_height_block },
@@ -231,16 +231,16 @@ namespace blofeld
 		{ _field_angle, "camera interpolation end", "looking-downward angle at which camera interpolation to fp position is complete", "degrees" },
 		{ _field_real_vector_3d, "camera offset", "amount of fp camera movement in (forward, right, down) when pitched down by 'camera interpolation end' above", "wu" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach }, //h2ek
+		{ _version_mode_less, _engine_type_haloreach }, //h2ek
 		{ _field_legacy, _field_real, "camera exclusion distance" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_real, "root offset camera scale" },
 		{ _field_real, "root offset camera dampening" },
 		
 		{ _field_real, "autoaim width", nullptr, "world units" },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach, 2 }, // h2ek / assembly
+		{ _version_mode_less, _engine_type_haloreach, 2 }, // h2ek / assembly
 		{ _field_legacy, _field_long_flags, "lock-on flags", &biped_lock_on_flags_definition },
 		{ _field_legacy, _field_real, "lock-on distance" },
 		
@@ -249,22 +249,22 @@ namespace blofeld
 		{ _field_real, "runtime cosine stationary turning threshold", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "runtime crouch transition velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "runtime_camera_height_velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		
 		{ _field_short_integer, "runtime pelvis node index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "runtime head node index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_useless_pad, "" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "wall proximity feelers", &biped_wall_proximity_block },
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "headshot acceleration scale" },
 		
 		{ _field_tag_reference, "area damage effect", &global_effect_reference },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 9 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 9 },
 		{ _field_tag_reference, "health station recharge effect", &global_effect_reference },
 		{ _field_block, "movement gates", &biped_movement_gate_block },
 		{ _field_block, "movement gates crouching", &biped_movement_gate_block },
@@ -284,21 +284,21 @@ namespace blofeld
 		FIELD_PAD_EX("TQYQEWG", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "leaping data", &biped_leaping_data_struct },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_struct, "vaulting data", &biped_vaulting_data_struct },
 		{ _field_struct, "grab biped data", &biped_grab_biped_data_struct },
 		{ _field_struct, "grab object data", &biped_grab_object_data_struct },
 		
 		{ _field_struct, "ground fitting data", &biped_ground_fitting_data_struct },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_tag_reference, "death particleize", "optional particleization effect definition, if you want this to particleize when it dies", &global_particleize_parameters_reference },
 		{ _field_real, "movement speed scale" },
 		{ _field_struct, "movement hip lean", &BipedMovementHipLeaningStruct },
 		
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 11 },
+		{ _version_mode_greater, _engine_type_haloreach, 11 },
 		{ _field_tag_reference, "Player biped sound bank", "Intended for biped vehicles (ie mantis)", &global_soundbank_reference },
 		{ _field_tag_reference, "RegenField Looping Sound", "plays when player is inside a RegenField", &global_looping_sound_reference },
 		{ _field_tag_reference, "Crouch down sound", "plays when player starts crouching", &global_sound_reference },
@@ -404,26 +404,26 @@ namespace blofeld
 		FIELD_CUSTOM_EX("ground fitting", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_EXPLANATION_EX("ground fitting data", nullptr, FIELD_FLAG_NONE, ""),
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_long_flags, "ground fitting flags", &biped_ground_fitting_flags_definition },
 
 		{ _field_real_fraction, "ground normal dampening", nullptr, "react to slope changes (0=slow, 1= fast)" },
 		{ _field_real, "root offset max scale idle", nullptr, "vertical drop to ground allowed (0=none, 1=full)", MAKE_OLD_NAMES("root offset max scale") },
 		{ _field_real, "root offset max scale moving", nullptr, "vertical drop to ground allowed (0=none, 1=full)" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real_fraction, "root offset dampening", nullptr, "react to root changes (0=slow, 1= fast)" },
 
 		{ _field_real_fraction, "following cam scale", nullptr, "root offset effect on following cam (0=none, 1=full)" },
 		{ _field_real_fraction, "root leaning scale", nullptr, "lean into slopes (0=none, 1=full)" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "stance width scale", nullptr, "scale pill width to use as stance radius" },
 
 		{ _field_angle, "foot roll max", nullptr, "orient to ground slope (degrees)" },
 		{ _field_angle, "foot pitch max", nullptr, "orient to ground slope (degrees)" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 13 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 13 },
 		{ _field_real_fraction, "foot normal dampening", nullptr, "(0=slow, 1= fast)" },
 		{ _field_real, "foot fitting test distance" },
 		{ _field_real_fraction, "foot displacement upward dampening", nullptr, "(0=slow, 1= fast)" },
@@ -438,7 +438,7 @@ namespace blofeld
 		{ _field_real, "foot turn blend on time", nullptr, "time to blend on the foot turn effect (seconds)" },
 		{ _field_real, "foot turn blend off time", nullptr, "time to blend off the foot turn effect (seconds)" },
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_real, "unknown@" },
 		{ _field_legacy, _field_real, "unknown@" },
 
@@ -451,7 +451,7 @@ namespace blofeld
 		{ _field_real_fraction, "pivot throttle scale", nullptr, "pivoting slows throttle (0=none, 1= full)" },
 		{ _field_real_fraction, "pivot offset dampening", nullptr, "react to pivot changes (0=slow, 1= fast)" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 17 },
+		{ _version_mode_greater, _engine_type_haloreach, 17 },
 		{ _field_real_fraction, "pivot force turn rate", nullptr, "turn no matter what the pivot state is (0=control turn, 1= always turn)" },
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		FIELD_CUSTOM_EX("Ground fitting pelvis elevation settings", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),

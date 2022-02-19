@@ -34,11 +34,11 @@ namespace blofeld
 		{ _field_tag_reference, "singleplayer ui globals", &g_user_interface_globals_reference },
 		{ _field_tag_reference, "multiplayer ui globals", &g_user_interface_globals_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_tag_reference, "firefight ui globals", &g_user_interface_globals_reference },
 		{ _field_tag_reference, "style sheet globals", &style_sheets_global_reference },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_tag_reference, "HUD globals", &character_reference }, // chgd
 
 		{ _field_terminator }

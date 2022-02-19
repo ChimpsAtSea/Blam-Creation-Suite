@@ -92,7 +92,7 @@ namespace blofeld
 		{ _field_short_block_index, "instance definition", FIELD_FLAG_READ_ONLY, &structure_bsp_instanced_geometry_definition_block },
 		{ _field_word_flags, "flags", &instanced_geometry_flags },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_long_flags, "Light Channels", &channelDefinitionFlags },
 
 		{ _field_short_integer, "mesh_index" },
@@ -111,7 +111,7 @@ namespace blofeld
 		{ _field_real, "world bounding sphere radius", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "imposter transition complete distance", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_real, "imposter brightness", FIELD_FLAG_UNKNOWN0 },
 
 		{ _field_long_integer, "checksum", FIELD_FLAG_READ_ONLY },
@@ -120,26 +120,26 @@ namespace blofeld
 		{ _field_char_enum, "imposter policy", FIELD_FLAG_READ_ONLY, &instanced_geometry_imposter_policy_enum },
 		FIELD_PAD_EX("SDFSDFE", nullptr, FIELD_FLAG_NONE, 1),
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_char_enum, "streaming priority", FIELD_FLAG_READ_ONLY, &instanced_geometry_streamingpriority_enum },
 		FIELD_PAD_EX("strpad", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "cubemap 0 bitmap index" },
 
 		{ _field_real, "lightmap resolution scale" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_block, "collision definition", &structure_bsp_instanced_geometry_collision_definition_block },
 
 		{ _field_short_integer, "group_index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "group_list_index", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_long_integer, "unknown@" },
 		{ _field_legacy, _field_long_integer, "unknown@" },
 
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_long_string, "source file name", FIELD_FLAG_READ_ONLY },
 
 		{ _field_terminator }

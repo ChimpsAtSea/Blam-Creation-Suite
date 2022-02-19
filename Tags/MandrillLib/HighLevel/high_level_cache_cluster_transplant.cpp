@@ -359,7 +359,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(h_o
 	for (const s_tag_field* field = struct_definition.fields; field->field_type != _field_terminator; field++)
 	{
 		unsigned long field_skip_count;
-		if (skip_tag_field_version(*field, engine_platform_build, field_skip_count))
+		if (execute_tag_field_versioning(*field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
 		{
 			field += field_skip_count;
 			continue;
@@ -831,7 +831,7 @@ public:
 		for (const s_tag_field* field = struct_definition.fields; field->field_type != _field_terminator; field++)
 		{
 			unsigned long field_skip_count;
-			if (skip_tag_field_version(*field, engine_platform_build, field_skip_count))
+			if (execute_tag_field_versioning(*field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
 			{
 				field += field_skip_count;
 				continue;

@@ -1,6 +1,7 @@
 #include "blamboozlelib-private-pch.h"
 
 std::map<ptr32, c_reach_x360_tag_group_definition*> c_reach_x360_tag_group_definition::tag_group_definitions;
+c_reach_x360_tag_group_definition* c_reach_x360_tag_group_definition::current_group_traverse_hack;
 
 c_reach_x360_tag_group_definition::c_reach_x360_tag_group_definition(const char* guerilla_data, const char* tag_layout_data) :
 	tag_group_definition(reinterpret_cast<const s_reach_x360_tag_group_definition*>(tag_layout_data)),
@@ -17,12 +18,16 @@ c_reach_x360_tag_group_definition::c_reach_x360_tag_group_definition(const char*
 
 void c_reach_x360_tag_group_definition::traverse(const char* guerilla_data)
 {
+	current_group_traverse_hack = this;
+
 	tag_block_definition = c_reach_x360_tag_block_definition::reach_x360_get_tag_block_definition(guerilla_data, tag_group_definition->block_definition_address, this);
 	
 	if (strcmp(code_name.c_str(), tag_block_definition->struct_definition.code_name.c_str()) == 0)
 	{
 		tag_block_definition->struct_definition.code_name += "_struct_definition";
 	}
+
+	current_group_traverse_hack = nullptr;
 }
 
 c_reach_x360_tag_group_definition* c_reach_x360_tag_group_definition::reach_x360_get_tag_group_definition(const char* guerilla_data, ptr32 virtual_address)

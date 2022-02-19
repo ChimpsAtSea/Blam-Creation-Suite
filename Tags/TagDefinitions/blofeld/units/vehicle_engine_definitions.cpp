@@ -29,18 +29,18 @@ namespace blofeld
 	{
 		FIELD_EXPLANATION_EX("loaded torque", nullptr, FIELD_FLAG_NONE, ""),
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_struct, "loaded torque", &old_torque_struct_struct_definition },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_struct, "loaded torque curve", &torque_curve_struct },
 
 		FIELD_EXPLANATION_EX("cruising torque", nullptr, FIELD_FLAG_NONE, ""),
 
-		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _version_mode_less, _engine_type_haloreach },
 		{ _field_legacy, _field_struct, "cruising torque", &old_torque_struct_struct_definition },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_struct, "cruising torque curve", &torque_curve_struct },
 
 		FIELD_EXPLANATION_EX("gearing", nullptr, FIELD_FLAG_NONE, ""),
@@ -50,10 +50,10 @@ namespace blofeld
 		{ _field_real, "min time to downshift", "seconds" },
 		{ _field_real, "engine down-shift scale", "0-1" },
 
-		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
+		{ _version_mode_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_real, "@unknown" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _version_mode_greater, _engine_type_haloreach, 2 },
 		{ _field_tag_reference, "gear shift sound - shifting up", &global_sound_reference },
 		{ _field_tag_reference, "gear shift sound - shifting down", &global_sound_reference },
 		{ _field_terminator }
@@ -89,7 +89,7 @@ namespace blofeld
 		{ _field_block, "gears", &gear_block },
 		{ _field_tag_reference, "gear shift sound", &global_sound_reference },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "load and cruise sound", &load_and_cruise_block },
 
 		{ _field_terminator }

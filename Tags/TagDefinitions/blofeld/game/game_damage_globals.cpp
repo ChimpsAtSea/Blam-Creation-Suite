@@ -66,7 +66,7 @@ namespace blofeld
 		{ _field_tag_reference, "hard landing damage", &global_damage_reference },
 		{ _field_tag_reference, "hs damage", &global_damage_reference },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _version_mode_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "hs fire damage", &global_damage_reference },
 
 		{ _field_real, "terminal velocity", "you die if you fall faster than this (non-multiplayer only)", "wu/s" },

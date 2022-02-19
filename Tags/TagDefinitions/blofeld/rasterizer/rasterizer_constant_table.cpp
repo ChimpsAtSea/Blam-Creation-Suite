@@ -34,7 +34,7 @@ namespace blofeld
 	{
 		{ _field_block, "constants", FIELD_FLAG_READ_ONLY, &rasterizer_constant_block },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_dword_integer, "unknown@" },
 		{ _field_legacy, _field_dword_integer, "unknown@" },
 

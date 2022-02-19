@@ -38,7 +38,7 @@ namespace blofeld
 		{ _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block },
 		{ _field_long_integer, "self destruction timer", nullptr, "seconds" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
+		{ _version_mode_greater, _engine_type_haloreach, 4 },
 		{ _field_tag_reference, "particleize", "optional particleization effect definition, if you want this to particleize when it takes damage", &global_particleize_parameters_reference },
 		{ _field_string_id, "grab animation set", "the animation set to use when this crate is grabbed" },
 		{ _field_string_id, "grab pickup string", "the string to display when the player can grab this object, from ui/hud/hud_messages" },

@@ -145,7 +145,7 @@ namespace blofeld
 		{ _field_long_integer, "im_so_fired_pad", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_array, "runtime queryable properties table", &runtime_queryable_properties_array },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_pageable, "unknown pageable" },
 
 		{ _field_terminator }
@@ -325,7 +325,7 @@ namespace blofeld
 		FIELD_PAD_EX("nothing", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "category dependencies&shared PS category dependencies", &render_method_pass_category_dependencies_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "shared VS category dependencies", &render_method_pass_category_dependencies_block },
 
 		{ _field_terminator }
@@ -372,7 +372,7 @@ namespace blofeld
 	{
 		{ _field_string_id, "parameter name" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_string_id, "parameter ui override name" },
 
 		{ _field_long_enum, "parameter type", &render_method_parameter_type_enum },
@@ -393,12 +393,12 @@ namespace blofeld
 		{ _field_real, "suggested real max" },
 		{ _field_long_integer, "ticks from min to max" },
 
-		{ _field_legacy, _field_version_equal, _engine_type_halo3odst, 4 },
+		{ _version_mode_equal, _engine_type_halo3odst, 4 },
 		{ _field_legacy, _field_long_integer, "@unknown" },
 		{ _field_legacy, _field_long_integer, "@unknown" },
 		{ _field_legacy, _field_long_integer, "@unknown" },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_data, "help text" },
 
 		{ _field_terminator }
@@ -428,7 +428,7 @@ namespace blofeld
 		{ _field_word_integer, "extern pixel int constants", "divide by 1024 for count, remainder is start index" },
 		{ _field_long_integer, "alpha blend mode" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _version_mode_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "unknown@" },
 
 		{ _field_terminator }
@@ -497,14 +497,14 @@ namespace blofeld
 		FIELD_CUSTOM_EX(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_tag_reference, "definition", FIELD_FLAG_READ_ONLY, &render_method_definition_reference },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach },
 		{ _field_tag_reference, "reference", &render_method_reference },
 		
 		{ _field_block, "options", &short_block },
 		{ _field_block, "parameters", &render_method_parameter_block },
 		{ _field_block, "postprocess", &render_method_postprocess_block },
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_long_integer, "is template" },
 		{ _field_long_flags, "locked options", &global_render_method_lock_option_flags_defintion },
 		{ _field_block, "locked parameters", &render_method_locked_parameter_block },

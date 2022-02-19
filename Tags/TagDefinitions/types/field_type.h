@@ -88,21 +88,14 @@ namespace blofeld
 		_field_data_path,
 		_field_embedded_tag,
 
-		_field_type_non_standard_custom_type, // custom fields begin here
+		// custom types
 		_field_pointer,
 		_field_half,
-		_field_type_non_standard, // custom fields begin here
-		_field_version_equal,
-		_field_version_not_equal,
-		_field_version_less,
-		_field_version_greater,
-		_field_version_less_or_equal,
-		_field_version_greater_or_equal,
-		_field_version_platform_include,
-		_field_version_platform_exclude,
-		_field_version_custom,
-		k_number_of_blofeld_field_types
+
+		k_number_of_blofeld_field_types,
+		_field_version
 	};
+	
 
 	BCS_DEBUG_API unsigned long get_blofeld_field_size(e_platform_type platform_type, e_field field);
 	BCS_DEBUG_API unsigned long get_blofeld_field_size(const s_tag_field& field, s_engine_platform_build engine_platform_build);

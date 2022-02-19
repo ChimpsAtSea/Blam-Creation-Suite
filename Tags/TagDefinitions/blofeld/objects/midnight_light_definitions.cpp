@@ -166,7 +166,7 @@ namespace blofeld
 		"never priority cull#never cull this light because of low priority",						//_light_ignores_priority_bit,
 		"affected by game_can_use_flashlights",														//_light_uses_game_flashlight_scripting_bit,
 
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_greater_or_equal, _engine_type_haloreach, 2 },
 		"screenspace specular lighting#uses expensive specular lighting on screenspace lights",
 		"always on for weapon#even it is dropped"
 	};

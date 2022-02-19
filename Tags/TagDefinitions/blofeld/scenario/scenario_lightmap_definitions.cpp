@@ -18,7 +18,7 @@ namespace blofeld
 		{ _field_short_integer, "bsp reference index" },
 		{ _field_long_integer, "Checksum from Structure BSP" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 6 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 6 },
 		{ _field_legacy, _field_tag_reference, "unknown", &lightmap_bitmap_reference },
 		{ _field_legacy, _field_real, "unknown" },
 		{ _field_legacy, _field_tag_reference, "vMF dual probe data direction", &lightmap_bitmap_reference },
@@ -26,7 +26,7 @@ namespace blofeld
 		{ _field_legacy, _field_block, "unknown", &g_null_block },
 		{ _field_legacy, _field_block, "unknown", &scenario_lightmap_bsp_data_unknown0_block }, // #TODO
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 17 },
+		{ _version_mode_greater, _engine_type_haloreach, 17 },
 		{ _field_long_integer, "general structure lighting import checksum" },
 		{ _field_long_integer, "skydome structure lighting import checksum" },
 		{ _field_long_integer, "combined extra structure lighting import checksum" },
@@ -49,7 +49,7 @@ namespace blofeld
 		{ _field_block, "instances", &scenario_lightmap_instance_data_block },
 		{ _field_block, "probes", &scenario_lightmap_lightprobe_value_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 12 },
+		{ _version_mode_greater, _engine_type_haloreach, 12 },
 		{ _field_block, "shadow geometry excluded instance indices", &scenario_lightmap_instance_index_block },
 		{ _field_block, "per-pixel padding", FIELD_FLAG_UNKNOWN0, &scenario_lightmap_global_perpixel_padding_data_block },
 		{ _field_block, "per-pixel rasterized charts", FIELD_FLAG_UNKNOWN0, &scenario_lightmap_rasterized_chart_data_block },
@@ -66,10 +66,10 @@ namespace blofeld
 		{ _field_struct, "imported geometry", FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
 		{ _field_block, "per mesh triangle mapping", &triangle_mapping_per_mesh_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _version_mode_greater, _engine_type_haloreach, 1 },
 		{ _field_struct, "shadow geometry", FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 6 },
+		{ _version_mode_greater, _engine_type_haloreach, 6 },
 		{ _field_struct, "Dynamic Light Shadow Geometry", FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
 		{ _field_block, "light instance data", &scenario_lightmap_dynamic_light_instance_block },
 		{ _field_block, "structure light instance data", &scenario_lightmap_structure_light_instance_block },
@@ -79,15 +79,15 @@ namespace blofeld
 		
 		{ _field_block, "airprobes", &scenario_lightmap_airprobe_value_block },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 3 },
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_platform_include, _platform_type_pc_64bit, 3 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_block, "unknown", &scenario_lightmap_bsp_data_unknown1_block },
 		{ _field_legacy, _field_block, "unknown", &scenario_lightmap_bsp_data_unknown2_block },
 		
 		{ _field_block, "errors", FIELD_FLAG_READ_ONLY, &global_error_report_categories_block },
 		{ _field_block, "self_track", &global_self_track_block },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_tag_reference, "forge per-pixel color", &lightmap_bitmap_reference },
 		{ _field_tag_reference, "forge per-pixel sun", &lightmap_bitmap_reference },
 		{ _field_real, "world scale ratio" },
@@ -167,11 +167,11 @@ namespace blofeld
 		{ _field_short_integer, "pervertex block index" },
 		{ _field_short_integer, "probe block index" },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_short_integer, "unknown@" }, // padding?
 		{ _field_legacy, _field_long_integer, "unknown" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 7 },
+		{ _version_mode_greater, _engine_type_haloreach, 7 },
 		{ _field_char_integer, "analytical light collision warning" },
 		{ _field_char_enum, "lightmap debug uv policy", FIELD_FLAG_READ_ONLY, &lightmapDebugUVPolicyDefinition },
 		{ _field_long_integer, "analytical light index" },
@@ -193,7 +193,7 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_LIGHTPROBE_VALUE_ID)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 10 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 10 },
 		{ _field_legacy, _field_real_quaternion, "unknown" },
 		{ _field_legacy, _field_short_integer, "unknown@" },
 		{ _field_legacy, _field_short_integer, "unknown@" },
@@ -205,7 +205,7 @@ namespace blofeld
 		{ _field_legacy, _field_pad, "pad", 2 }, // assumed
 		{ _field_legacy, _field_long_integer, "unknown" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_array, "vmf terms", &dual_vmf_terms_array },
 		{ _field_dword_integer, "analytical light index" },
 		{ _field_struct, "sh terms", &half_rgb_lightprobe_struct },
@@ -350,13 +350,13 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIANGLE_MAPPING_PER_MESH_BLOCK_ID)
 	{
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
-		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4 },
+		{ _version_mode_platform_include, _platform_type_pc_64bit },
+		{ _version_mode_greater_or_equal, _engine_type_halo4 },
 		{ _field_legacy, _field_api_interop, "mesh" },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
-		{ _field_legacy, _field_version_not_equal, _engine_type_groundhog, 2 },
-		{ _field_legacy, _field_version_not_equal, _engine_type_halo4 },
+		{ _version_mode_platform_include, _platform_type_pc_64bit, 2 },
+		{ _version_mode_not_equal, _engine_type_groundhog, 2 },
+		{ _version_mode_not_equal, _engine_type_halo4 },
 		{ _field_block, "mesh", &triangle_mapping_block },
 		
 		{ _field_terminator }
@@ -482,7 +482,7 @@ namespace blofeld
 		{ _field_real_point_3d, "airprobe position" },
 		{ _field_string_id, "airprobe name", FIELD_FLAG_INDEX },
 
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 12 },
+		{ _version_mode_less_or_equal, _engine_type_haloreach, 12 },
 		{ _field_legacy, _field_short_integer, "bsp index^" },
 		{ _field_legacy, _field_pad, "post-bsp-index-pad", 2 },
 		{ _field_legacy, _field_long_integer, "unknown" },
@@ -495,7 +495,7 @@ namespace blofeld
 		{ _field_legacy, _field_long_integer, "unknown" },
 		{ _field_legacy, _field_long_integer, "unknown" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		{ _version_mode_greater, _engine_type_haloreach, 3 },
 		{ _field_long_integer, "BSP index", FIELD_FLAG_INDEX },
 		{ _field_dword_integer, "analytical light index" },
 		{ _field_struct, "sh terms", &half_rgb_lightprobe_struct },
