@@ -42,49 +42,7 @@
     <ClInclude Include="Blam\legacy\basic_buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Blam\legacy\blamfile_chunk_type.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Blam\legacy\blamfile_header.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Blam\legacy\blamfile_level_chunk.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Blam\legacy\blamfile_level_chunk_flags.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Blam\legacy\campaign_difficulty_level.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Blam\legacy\campaign_metagame_bucket_type.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Blam\legacy\damage_reporting_type.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Blam\legacy\life_cycle_join_result.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Blam\legacy\network_message_type.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Blam\legacy\network_session_class.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Blam\legacy\network_session_parameter_type.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Blam\legacy\network_session_peer_state.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Blam\blamlib-public-pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Blam\mcc_skull.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Blam\mcc_game_mode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="shared-types-pch.h">
