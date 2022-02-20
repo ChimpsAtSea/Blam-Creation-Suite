@@ -209,7 +209,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	for (unsigned long index = 0; index < __min(9200, tag_file_index_chunk->tag_file_index_header.compressed_entry_count); index++)
+	for (unsigned long index = 0; index < tag_file_index_chunk->tag_file_index_header.compressed_entry_count; index++)
 	{
 		s_compressed_tag_file_index_entry& tag_file_index_entry = tag_file_index_chunk->compressed_tag_file_index_entries[index];
 
@@ -235,8 +235,8 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 
 		ASSERT(wide_data_cache_block.current_datum == tag_file_index_entry.wide_block_datum_index);
 
-		const void* tag_file_data;
-		unsigned long long tag_file_data_size;
+		const void* tag_file_data = nullptr;
+		unsigned long long tag_file_data_size = 0;
 		if (wide_data_cache_block.tag_heap_entry_index != 0xFFFFFFFF)
 		{
 			s_partitioned_heap_entry& tag_heap_entry = tag_heap_list_chunk->entries[wide_data_cache_block.tag_heap_entry_index];
@@ -283,7 +283,11 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			debug_point;
 		}
 
+		c_stopwatch s;
+		s.start();
+
 		h_tag* high_level_tag = nullptr;
+		if (wide_data_cache_block.tag_heap_entry_index != 0xFFFFFFFF)
 		{
 			ASSERT(tag_file_data_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
 
@@ -298,8 +302,6 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 				byteswap_inplace(header);
 			}
 
-			c_stopwatch s;
-			s.start();
 
 			c_single_tag_file_layout_reader* layout_reader = new c_single_tag_file_layout_reader(header, tag_file_data);
 
@@ -309,9 +311,6 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 				*layout_reader,
 				*layout_reader->binary_data_chunk);
 
-			s.stop();
-			float ms = s.get_miliseconds();
-			console_write_line_verbose("Processed chunks in %.2f ms", ms);
 
 			//tag_group_layout_chunk->log(layout_reader->string_data_chunk);
 			//binary_data_chunk->log(layout_reader->string_data_chunk);
@@ -320,6 +319,10 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			debug_point;
 
 		}
+
+		s.stop();
+		float ms = s.get_miliseconds();
+		console_write_line_verbose("Processed chunks in %.2f ms", ms);
 
 		if (high_level_tag)
 		{
@@ -334,7 +337,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			tag_group->associate_tag_instance(*high_level_tag);
 			debug_point;
 
-			console_write_line("Read tag %s", relative_filepath_mb);
+			console_write_line("Read tag %s (%.2f ms)", relative_filepath_mb, ms);
 		}
 
 		debug_point;

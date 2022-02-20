@@ -124,6 +124,12 @@ unsigned long c_single_tag_file_layout_reader::calculate_structure_size_by_index
 	return calculate_structure_size_by_entry(struct_definition);
 }
 
+unsigned long c_single_tag_file_layout_reader::calculate_structure_expected_children(unsigned long structure_index)
+{
+	s_tag_persist_struct_definition& struct_definition = get_struct_definition_by_index(structure_index);
+	return calculate_structure_expected_children_by_entry(struct_definition);
+}
+
 unsigned long c_single_tag_file_layout_reader::calculate_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry)
 {
 	unsigned long structure_size = 0;
@@ -184,6 +190,48 @@ unsigned long c_single_tag_file_layout_reader::calculate_structure_size_by_entry
 	}
 end:;
 	return structure_size;
+}
+
+unsigned long c_single_tag_file_layout_reader::calculate_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry)
+{
+	unsigned long child_entry_count = 0;
+	for (unsigned long field_index = structure_entry.fields_start_index;; field_index++)
+	{
+
+		s_tag_persist_field& field_entry = get_field_by_index(field_index);
+		s_tag_persist_field_type& field_type = get_field_type_by_index(field_entry.field_type_index);
+
+		const char* type_string = get_string_by_string_character_index(field_type.string_character_index);
+		const char* name_string = get_string_by_string_character_index(field_entry.string_character_index);
+
+		blofeld::e_field blofeld_field_type;
+		BCS_RESULT rs = blofeld::tag_field_type_to_field(type_string, blofeld_field_type);
+		ASSERT(BCS_SUCCEEDED(rs));
+
+		if (blofeld_field_type == blofeld::_field_terminator)
+		{
+			goto end;
+		}
+
+		unsigned long field_size = field_type.size;
+
+		switch (blofeld_field_type)
+		{
+		case blofeld::_field_struct:
+		case blofeld::_field_tag_reference:
+		case blofeld::_field_old_string_id:
+		case blofeld::_field_string_id:
+		case blofeld::_field_data:
+		case blofeld::_field_block:
+		case blofeld::_field_pageable:
+			child_entry_count++;
+			break;
+		}
+
+		debug_point;
+	}
+end:;
+	return child_entry_count;
 }
 
 const char* c_single_tag_file_layout_reader::get_string_by_string_character_index(const s_tag_persist_string_character_index& string_character_index) const

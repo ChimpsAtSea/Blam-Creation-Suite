@@ -38,6 +38,8 @@ public:
 
 	unsigned long calculate_structure_size_by_index(unsigned long structure_index);
 	unsigned long calculate_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry);
+	unsigned long calculate_structure_expected_children(unsigned long structure_index);
+	unsigned long calculate_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry);
 
 	const char* get_string_by_string_character_index(const s_tag_persist_string_character_index& string_character_index) const;
 	const char* get_custom_block_index_search_name_by_index(unsigned long custom_block_index_search_name_index) const;

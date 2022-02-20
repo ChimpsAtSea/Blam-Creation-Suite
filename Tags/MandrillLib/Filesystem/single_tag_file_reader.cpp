@@ -371,9 +371,23 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 		{
 		case blofeld::_field_struct:
 		{
-			c_chunk* field_chunk = structure_chunk->children[structure_chunk_child_index++];
-			field_tag_struct_chunk = dynamic_cast<c_tag_struct_chunk*>(field_chunk);
+			unsigned long expected_children = layout_reader.calculate_structure_expected_children(field_entry.metadata);
+
+			c_tag_struct_chunk* next_tag_struct_chunk = nullptr;
+			unsigned long num_children;
+			do
+			{
+				c_chunk* field_chunk = structure_chunk->children[structure_chunk_child_index++];
+				field_tag_struct_chunk = dynamic_cast<c_tag_struct_chunk*>(field_chunk);
+				num_children = field_tag_struct_chunk->get_chunk_count();
+				if (num_children < expected_children && num_children == 0)
+				{
+					field_tag_struct_chunk = nullptr; // skip over to the next struct definition
+					debug_point;
+				}
+			} while (field_tag_struct_chunk == nullptr && structure_chunk->children[structure_chunk_child_index]);
 			ASSERT(field_tag_struct_chunk != nullptr);
+			ASSERT(num_children >= expected_children);
 		}
 		break;
 		case blofeld::_field_tag_reference:
@@ -404,6 +418,14 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 			c_chunk* field_chunk = structure_chunk->children[structure_chunk_child_index++];
 			field_tag_data_chunk = dynamic_cast<c_tag_data_chunk*>(field_chunk);
 			ASSERT(field_tag_data_chunk != nullptr);
+		}
+		break;
+		case blofeld::_field_pageable:
+		{
+			c_chunk* field_chunk = structure_chunk->children[structure_chunk_child_index++];
+			c_tag_resource_xsynced_chunk* resource_xsynced_chunk = dynamic_cast<c_tag_resource_xsynced_chunk*>(field_chunk);
+			c_tag_resource_null_chunk* resource_null_chunk = dynamic_cast<c_tag_resource_null_chunk*>(field_chunk);
+			ASSERT(resource_xsynced_chunk != nullptr || resource_null_chunk != nullptr);
 		}
 		break;
 		case blofeld::_field_block:

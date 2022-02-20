@@ -240,16 +240,30 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 		{
 		case blofeld::_field_struct:
 		{
-			ASSERT(tag_struct_chunk != nullptr);
-			c_chunk* field_chunk = tag_struct_chunk->children[metadata_child_index++];
-			c_tag_struct_chunk* tag_struct_chunk = dynamic_cast<c_tag_struct_chunk*>(field_chunk);
-			ASSERT(tag_struct_chunk != nullptr);
-
 			unsigned long structure_entry_index = field_entry.metadata;
-			auto& structure_entry = reader.layout_reader.get_struct_definition_by_index(structure_entry_index);
+			s_tag_persist_struct_definition& structure_entry = reader.layout_reader.get_struct_definition_by_index(structure_entry_index);
 			const char* struct_name = reader.layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
+			unsigned long structure_size = reader.layout_reader.calculate_structure_size_by_index(field_entry.metadata);
+			unsigned long expected_children = reader.layout_reader.calculate_structure_expected_children(field_entry.metadata);
 
-			read_structure_data(structure_entry, structure_data_pos, tag_struct_chunk);
+			c_tag_struct_chunk* next_tag_struct_chunk = nullptr;
+			unsigned long num_children;
+			do
+			{
+				ASSERT(tag_struct_chunk != nullptr);
+				c_chunk* field_chunk = tag_struct_chunk->children[metadata_child_index++];
+				next_tag_struct_chunk = dynamic_cast<c_tag_struct_chunk*>(field_chunk);
+				num_children = next_tag_struct_chunk->get_chunk_count();
+				if (num_children < expected_children && num_children == 0)
+				{
+					next_tag_struct_chunk = nullptr; // skip over to the next struct definition
+					debug_point;
+				}
+			} while (next_tag_struct_chunk == nullptr && tag_struct_chunk->children[metadata_child_index]);
+			ASSERT(next_tag_struct_chunk != nullptr);
+			ASSERT(num_children >= expected_children);
+
+			read_structure_data(structure_entry, structure_data_pos, next_tag_struct_chunk);
 			debug_point;
 
 		}
@@ -286,6 +300,15 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 			s_tag_data data = chunk_byteswap(*reinterpret_cast<const s_tag_data*>(structure_data_pos));
 			if (verbose) { write_pad(); console_write_line_verbose("%s %s size:%li", type_string, name_string, data.size); }
 			debug_point;
+		}
+		break;
+		case blofeld::_field_pageable:
+		{
+			ASSERT(tag_struct_chunk != nullptr);
+			c_chunk* field_chunk = tag_struct_chunk->children[metadata_child_index++];
+			c_tag_resource_xsynced_chunk* resource_xsynced_chunk = dynamic_cast<c_tag_resource_xsynced_chunk*>(field_chunk);
+			c_tag_resource_null_chunk* resource_null_chunk = dynamic_cast<c_tag_resource_null_chunk*>(field_chunk);
+			ASSERT(resource_xsynced_chunk != nullptr || resource_null_chunk != nullptr);
 		}
 		break;
 		case blofeld::_field_block:
@@ -374,4 +397,5 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 		}
 	}
 end:;
+	debug_point;
 }
