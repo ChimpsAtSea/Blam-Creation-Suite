@@ -57,6 +57,8 @@ struct s_reach_tag_memory_attributes
 	c_enum<e_reach_tag_memory_allocation_type, unsigned long, _reach_tag_memory_default, k_num_reach_tag_memory_type> memory_type;
 	c_flags<e_reach_tag_memory_usage_bit, unsigned long, k_num_reach_tag_memory_usage_bits> usage_flags;
 };
+constexpr size_t k_reach_tag_memory_attributes_size = sizeof(s_reach_tag_memory_attributes);
+static_assert(k_reach_tag_memory_attributes_size == 0x8);
 
 struct s_reach_x360_byte_swap_definition
 {
@@ -68,6 +70,8 @@ struct s_reach_x360_byte_swap_definition
 	unsigned long signature;
 	unsigned long unknown14;
 };
+constexpr size_t k_reach_x360_byte_swap_definition_size = sizeof(s_reach_x360_byte_swap_definition);
+static_assert(k_reach_x360_byte_swap_definition_size == 0x1C);
 
 struct s_reach_x360_tag_struct_runtime
 {
@@ -85,6 +89,8 @@ struct s_reach_x360_tag_struct_runtime
 	c_big_flags_typed<long, k_num_reach_x360_field_types> unknown_field_types;												//176				B0
 	ptr32 descendent_definition;																							//184				B8
 };
+constexpr size_t k_reach_x360_tag_struct_runtime_size = sizeof(s_reach_x360_tag_struct_runtime);
+static_assert(k_reach_x360_tag_struct_runtime_size == 0x54);
 
 struct s_reach_x360_tag_struct_legacy
 {
@@ -100,6 +106,8 @@ struct s_reach_x360_tag_struct_legacy
 	bool padding4E;																											//78				4E
 	bool padding4F;																											//79				4F
 };
+constexpr size_t k_reach_x360_tag_struct_legacy_size = sizeof(s_reach_x360_tag_struct_legacy);
+static_assert(k_reach_x360_tag_struct_legacy_size == 0x20);
 
 struct s_reach_x360_tag_struct_type
 {
@@ -114,6 +122,8 @@ struct s_reach_x360_tag_struct_type
 	unsigned long alignment_bits;																							//44				2C
 	s_reach_x360_tag_struct_legacy legacy;																					//48				30
 };
+constexpr size_t k_reach_x360_tag_struct_type_size = sizeof(s_reach_x360_tag_struct_type);
+static_assert(k_reach_x360_tag_struct_type_size == 0x50);
 
 struct s_reach_x360_tag_struct_definition
 {
@@ -122,7 +132,7 @@ struct s_reach_x360_tag_struct_definition
 	unsigned long unknown54;																								//84				54
 	unsigned long exploded_struct_size;																						//88				58
 	unsigned long unknown5C;																								//92				5C
-	s_reach_tag_memory_attributes memory_attributes;																				//96				60
+	s_reach_tag_memory_attributes memory_attributes;																		//96				60
 	s_reach_x360_tag_struct_runtime runtime;																				//104				68
 	unsigned long unknownBC;																								//104				BC
 };

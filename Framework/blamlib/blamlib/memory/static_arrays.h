@@ -66,17 +66,15 @@ public:
 	}
 };
 
-template <const long k_number_of_bits>
-class c_big_flags
-{
-
-};
-
 template <typename t_storage, const long k_number_of_bits>
 class c_big_flags_typed_no_init
 {
+public:
+	static constexpr long k_number_of_storage_bits = sizeof(t_storage) * 8;
+	static constexpr long k_storage_bit_shift = k_number_of_storage_bits == 64 ? 6 : k_number_of_storage_bits == 32 ? 5 : k_number_of_storage_bits == 16 ? 4 : 3;
+	static constexpr long k_number_of_storage_elements = (k_number_of_bits + k_number_of_storage_bits - 1) / k_number_of_storage_bits;
 protected:
-	t_storage m_storage[k_number_of_bits >> 5];
+	t_storage m_storage[k_number_of_storage_elements];
 
 public:
 	// TODO
@@ -85,6 +83,13 @@ public:
 template <typename t_storage, const long k_number_of_bits>
 class c_big_flags_typed :
 	public c_big_flags_typed_no_init<t_storage, k_number_of_bits>
+{
+
+};
+
+template <const long k_number_of_bits>
+class c_big_flags :
+	public c_big_flags_typed<long, k_number_of_bits>
 {
 
 };
