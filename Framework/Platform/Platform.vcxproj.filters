@@ -102,6 +102,12 @@
     <ClInclude Include="crc32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="memory_tracking.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="banned.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform-private-pch.cpp">
@@ -171,6 +177,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="crc32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="memory_tracking.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

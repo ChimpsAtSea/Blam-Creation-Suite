@@ -9,13 +9,13 @@ c_graphics_shader_binary_d3d12::c_graphics_shader_binary_d3d12(
 	shader_binary_data(),
 	shader_binary_data_size(src_shader_binary_data_size)
 {
-	shader_binary_data = malloc(src_shader_binary_data_size);
+	shader_binary_data = tracked_malloc(&library_tracked_memory, src_shader_binary_data_size);
 	memcpy(shader_binary_data, src_shader_binary_data, shader_binary_data_size);
 }
 
 c_graphics_shader_binary_d3d12::~c_graphics_shader_binary_d3d12()
 {
-	free(shader_binary_data);
+	tracked_free(shader_binary_data);
 }
 
 BCS_RESULT graphics_d3d12_shader_binary_create(

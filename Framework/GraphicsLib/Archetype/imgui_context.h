@@ -3,6 +3,8 @@
 class c_window;
 class c_graphics;
 
+struct ImGuiContext;
+
 class c_imgui_context
 {
 protected:

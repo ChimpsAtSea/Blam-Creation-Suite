@@ -2,6 +2,10 @@
 
 #include "warnings.h"
 
+#ifndef PLATFORM_EXCLUDE_BANNED
+#include "banned.h"
+#endif
+
 #include <vadefs.h>
 #include <xxhash/xxhash.h>
 #include <xxhash/xxhash_cx.h>
@@ -12,6 +16,7 @@ using namespace xxhash::literals;
 
 #include "intrinsics.h"
 #include "macros.h"
+#include "memory_tracking.h"
 #include "crc32.h"
 #include "integral_limits.h"
 #include "bcs_assert.h"

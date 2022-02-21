@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="!Resources\resource.h" />
+    <ClInclude Include="banned.h" />
     <ClInclude Include="bcs_api.h" />
     <ClInclude Include="bcs_assert.h" />
     <ClInclude Include="bcs_result.h" />
@@ -37,6 +38,7 @@
     <ClInclude Include="intrinsics.h" />
     <ClInclude Include="keys.h" />
     <ClInclude Include="macros.h" />
+    <ClInclude Include="memory_tracking.h" />
     <ClInclude Include="platform-exports-pch.h" />
     <ClInclude Include="platform-private-pch.h" />
     <ClInclude Include="platform-public-pch.h" />
@@ -70,6 +72,7 @@
     <ClCompile Include="filesystem.cpp" />
     <ClCompile Include="float16.cpp" />
     <ClCompile Include="keys.cpp" Condition="!Exists('$(OutDir)Keys.lib') Or '$(Configuration)'!='Release'" />
+    <ClCompile Include="memory_tracking.cpp" />
     <ClCompile Include="platform-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

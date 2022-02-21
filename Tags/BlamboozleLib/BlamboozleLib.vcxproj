@@ -171,6 +171,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="blamboozle.cpp" />
+    <ClCompile Include="blamboozlelib_tracked_memory.cpp" />
     <ClCompile Include="blamboozle_base.cpp" />
     <ClCompile Include="blamboozle_h1_guerilla.cpp" />
     <ClCompile Include="blamboozle_h2_guerilla.cpp" />

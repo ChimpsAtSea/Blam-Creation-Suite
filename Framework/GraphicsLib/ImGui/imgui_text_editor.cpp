@@ -1,3 +1,5 @@
+#include "graphicslib-private-pch.h"
+
 //// original source https://github.com/BalazsJako/ImGuiColorTextEdit
 //
 //#include <algorithm>

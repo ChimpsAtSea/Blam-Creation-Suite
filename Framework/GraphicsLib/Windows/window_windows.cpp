@@ -106,7 +106,7 @@ c_window_windows::~c_window_windows()
 	{
 		throw BCS_E_FAIL;
 	}
-	free(const_cast<wchar_t*>(window_class_name));
+	tracked_free(const_cast<wchar_t*>(window_class_name));
 }
 
 bool c_window_windows::update()

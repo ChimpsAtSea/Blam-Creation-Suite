@@ -10,10 +10,16 @@
 #include <strsafe.h>
 #include <psapi.h>
 
-#include <malloc.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+
+#include <iostream>
+
+#define __TBB_SOURCE_DIRECTLY_INCLUDED 1
+#include <tbb/tbb.h>
+#include <tbb/parallel_for.h>
+#include <tbb/blocked_range.h>
 
 #if _DEBUG
 #define BCS_DEBUG_API __declspec(dllexport)

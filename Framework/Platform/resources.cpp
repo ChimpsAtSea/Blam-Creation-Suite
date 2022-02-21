@@ -3,6 +3,8 @@
 
 #pragma optimize("", off)
 
+static s_tracked_memory_stats platform_resources_memory_stats = { "Platform Resources" };
+
 #define RESOURCE_ENTRY(resource_type, filename, int_resource) { #resource_type, filename, int_resource }
 struct s_resource_entry { const char* name; const char* filename; LPWSTR resource_int; };
 static s_resource_entry resource_entries[] =
@@ -286,10 +288,10 @@ BCS_RESULT resources_read_resource_to_memory(e_bcs_resource_type type, void*& ou
 		return rs;
 	}
 
-	void* buffer = malloc(buffer_size);
+	void* buffer = tracked_malloc(&platform_resources_memory_stats, buffer_size);
 	if (BCS_FAILED(rs = resources_copy_resource_to_buffer(type, buffer, buffer_size)))
 	{
-		free(buffer);
+		tracked_free(buffer);
 		return rs;
 	}
 

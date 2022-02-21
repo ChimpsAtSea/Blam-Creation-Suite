@@ -19,36 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ImGuiAddons\BeginPopupModalEx.h" />
     <ClInclude Include="Blam\blamlib-public-pch.h" />
     <ClInclude Include="Blam\legacy\basic_buffer.h" />
     <ClInclude Include="Blam\Blam.h" />
-    <ClInclude Include="IconsFontAwesome5.h" />
     <ClInclude Include="shared-types-pch.h" />
-    <ClInclude Include="string_helpers.h" />
-    <ClInclude Include="ImGuiAddons\dirent\dirent.h" />
-    <ClInclude Include="ImGuiAddons\!imgui_addons.h" />
-    <ClInclude Include="ImGuiAddons\imgui_file_browser.h" />
-    <ClInclude Include="ImGuiAddons\imgui_text_editor.h" />
     <ClInclude Include="shared-private-pch.h" />
     <ClInclude Include="shared-public-pch.h" />
     <ClInclude Include="shared-system-pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ImGuiAddons\BeginPopupModalEx.cpp" />
-    <ClCompile Include="string_helpers.cpp" />
-    <ClCompile Include="ImGuiAddons\imgui_file_browser.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ImGuiAddons\imgui_text_editor.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="shared-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

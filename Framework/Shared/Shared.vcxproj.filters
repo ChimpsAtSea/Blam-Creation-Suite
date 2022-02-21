@@ -27,18 +27,6 @@
     <ClInclude Include="Blam\Blam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ImGuiAddons\imgui_file_browser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGuiAddons\imgui_text_editor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGuiAddons\!imgui_addons.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGuiAddons\dirent\dirent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Blam\legacy\basic_buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -48,30 +36,9 @@
     <ClInclude Include="shared-types-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="string_helpers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IconsFontAwesome5.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGuiAddons\BeginPopupModalEx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="shared-private-pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGuiAddons\imgui_file_browser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGuiAddons\imgui_text_editor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="string_helpers.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGuiAddons\BeginPopupModalEx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

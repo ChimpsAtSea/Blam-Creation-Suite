@@ -1,5 +1,4 @@
 #include "platform-private-pch.h"
-#include <iostream>
 
 //HANDLE console_mutex;
 static bool console_verbose = false;
@@ -81,14 +80,14 @@ BCS_RESULT console_write_line_with_debug(const char* format, ...)
 	{
 		return BCS_E_FAIL;
 	}
-	char* output_buffer = static_cast<char*>(_malloca(requested_buffer_size + 2));
+	char* output_buffer = static_cast<char*>(tracked_malloca(requested_buffer_size + 2));
 	int written_buffer_size = vsnprintf(output_buffer, requested_buffer_size + 1, format, args);
 	output_buffer[requested_buffer_size + 1] = 0; // make sure null terminated
 	output_buffer[requested_buffer_size] = '\n'; // append new line
 	OutputDebugStringA(output_buffer);
 	output_buffer[requested_buffer_size] = 0; // make sure null terminated
 	puts(output_buffer);
-	_freea(output_buffer);
+	tracked_freea(output_buffer);
 	va_end(args);
 
 	return BCS_S_OK;

@@ -188,10 +188,9 @@ void c_reach_x360_tag_struct_definition::handle_conflict(const char* data, const
 					if (strcmp(tag_group_definition.name,  fixup) == 0)
 					{
 						fixup_type = _reach_x360_tag_field_combined_fixup_type_not_equal;
+						break;
 					}
 				}
-
-			is_end_fixup:;
 			}
 
 			c_reach_x360_tag_field_combined_fixup* versioning_field_wrapper = new c_reach_x360_tag_field_combined_fixup(tag_group_definition, num_insert_fields, fixup_type);

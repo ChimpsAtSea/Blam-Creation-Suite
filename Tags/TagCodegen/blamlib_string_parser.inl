@@ -100,6 +100,10 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 		}
 		else *flags = 0;
 
+#undef NAME_SEARCH_PATTERN
+#undef OLD_NAME_SEARCH_PATTERN
+#undef FLAGS_SEARCH_PATTERN
+
 		{
 			// scan for & in tag file name
 			tag_file_name = pretty_name;
@@ -127,7 +131,6 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 
 #undef NAME_SEARCH_PATTERN
 #undef OLD_NAME_SEARCH_PATTERN
-#undef FLAGS_SEARCH_PATTERN
 
 #define NAME_IGNORE_SEARCH_PATTERN " %*[^[] "
 #define LIMITS_LEGACY_SEARCH_PATTERN " [%[^]]] "
