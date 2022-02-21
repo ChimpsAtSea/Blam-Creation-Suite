@@ -179,7 +179,7 @@ BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_bui
 			case _platform_type_xbox:
 			case _platform_type_pc_32bit:
 			case _platform_type_pc_64bit:
-				*cache_file = new c_halo1_cache_file_reader(filepath, engine_platform_build);
+				*cache_file = new() c_halo1_cache_file_reader(filepath, engine_platform_build);
 				return BCS_S_OK;
 			}
 		}
@@ -188,14 +188,14 @@ BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_bui
 		case _engine_type_gen3_xbox360:
 			if (engine_platform_build.platform_type == _platform_type_xbox_360)
 			{
-				*cache_file = new c_halo4_cache_file_reader(filepath, engine_platform_build);
+				*cache_file = new() c_halo4_cache_file_reader(filepath, engine_platform_build);
 				return BCS_S_OK;
 			}
 
 		case _engine_type_infinite:
 			if (engine_platform_build.platform_type == _platform_type_pc_64bit)
 			{
-				*cache_file = new c_infinite_module_file_reader(filepath, engine_platform_build);
+				*cache_file = new() c_infinite_module_file_reader(filepath, engine_platform_build);
 				return BCS_S_OK;
 			}
 		}
@@ -258,19 +258,19 @@ BCS_RESULT create_cache_cluster(c_cache_file_reader** cache_readers, unsigned lo
 	{
 		if (c_halo1_cache_file_reader* halo1_cache_file = dynamic_cast<c_halo1_cache_file_reader*>(*cache_readers))
 		{
-			*cache_cluster = new c_halo1_cache_cluster(reinterpret_cast<c_halo1_cache_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
+			*cache_cluster = new() c_halo1_cache_cluster(reinterpret_cast<c_halo1_cache_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
 
 			return BCS_S_OK;
 		}
 		if (c_halo4_cache_file_reader* halo4_cache_file = dynamic_cast<c_halo4_cache_file_reader*>(*cache_readers))
 		{
-			*cache_cluster = new c_halo4_cache_cluster(reinterpret_cast<c_halo4_cache_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
+			*cache_cluster = new() c_halo4_cache_cluster(reinterpret_cast<c_halo4_cache_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
 
 			return BCS_S_OK;
 		}
 		if (c_infinite_module_file_reader* infinite_module_file = dynamic_cast<c_infinite_module_file_reader*>(*cache_readers))
 		{
-			*cache_cluster = new c_infinite_cache_cluster(reinterpret_cast<c_infinite_module_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
+			*cache_cluster = new() c_infinite_cache_cluster(reinterpret_cast<c_infinite_module_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
 
 			return BCS_S_OK;
 		}

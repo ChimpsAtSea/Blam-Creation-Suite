@@ -10,6 +10,7 @@
 #include <TagValidate\tagvalidate-public-pch.h>
 #include <MandrillLib\mandrilllib-public-pch.h>
 
+#include <Platform\platform-exports-pch.h>
 #include "mandrilllib-public-pch.h"
 
 #define ZLIB_CONST
@@ -17,3 +18,7 @@
 #include <oozle/oozle.h>
 
 #include <murmur3.h>
+
+#include <CacheInterface\cache_interface_tracked_memory.h>
+
+#include "mandrilllib_tracked_memory.h"

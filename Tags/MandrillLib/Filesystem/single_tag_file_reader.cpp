@@ -43,7 +43,7 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	tag_struct_definitions = blofeld::get_tag_struct_definitions(engine_platform_build);
 	ASSERT(tag_struct_definitions != nullptr);
 
-	//struct_entries_data = new s_single_tag_file_reader_structure_entry[layout_reader.tag_group_layout_chunk->get_struct_definition_count()];
+	//struct_entries_data = new() s_single_tag_file_reader_structure_entry[layout_reader.tag_group_layout_chunk->get_struct_definition_count()];
 	unsigned long struct_definition_count = layout_reader.tag_group_layout_chunk->get_struct_definition_count();
 	struct_entries_data.resize(struct_definition_count);
 	ASSERT(struct_definition_count > 0);

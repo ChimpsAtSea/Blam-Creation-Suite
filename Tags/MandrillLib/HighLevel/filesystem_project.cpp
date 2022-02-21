@@ -7,7 +7,7 @@ c_filesystem_tag_project::c_filesystem_tag_project(const wchar_t* directory, s_e
 {
 	for (const blofeld::s_tag_group** tag_group_iter = blofeld::tag_groups[engine_platform_build.engine_type]; *tag_group_iter; tag_group_iter++)
 	{
-		h_group* group = new h_group(engine_platform_build, **tag_group_iter);
+		h_group* group = new() h_group(engine_platform_build, **tag_group_iter);
 		groups.push_back(group);
 		debug_point;
 	}
@@ -133,9 +133,9 @@ h_tag* c_filesystem_tag_project::try_parse_tag_file(const wchar_t* filepath)
 	c_stopwatch s;
 	s.start();
 
-	layout_reader = new c_single_tag_file_layout_reader(*header_data, header_data);
+	layout_reader = new() c_single_tag_file_layout_reader(*header_data, header_data);
 
-	reader = new c_single_tag_file_reader(
+	reader = new() c_single_tag_file_reader(
 		*header_data,
 		engine_platform_build,
 		*layout_reader,

@@ -127,11 +127,11 @@ BCS_RESULT c_infinite_tag_reader::read_tag_instances()
 	const infinite::s_module_block_entry* block_entries = reinterpret_cast<const infinite::s_module_block_entry*>(resource_entries + module_file_header->num_resources);
 
 
-	file_entry_block_maps = new c_infinite_file_entry_block_map*[module_file_header->num_files];
+	file_entry_block_maps = new() c_infinite_file_entry_block_map*[module_file_header->num_files];
 	for (long file_entry_index = 0; file_entry_index < module_file_header->num_files; file_entry_index++)
 	{
 		const char* file_entry_pointer = file_entries + file_entry_size * file_entry_index;
-		c_infinite_file_entry_block_map* file_entry_block_map = new c_infinite_file_entry_block_map(
+		c_infinite_file_entry_block_map* file_entry_block_map = new() c_infinite_file_entry_block_map(
 			file_entry_index,
 			cache_reader,
 			string_buffer,
@@ -148,7 +148,7 @@ BCS_RESULT c_infinite_tag_reader::read_tag_instances()
 		}
 	}
 
-	tag_instance_infos = new s_infinite_tag_instance_info[num_tag_instance_infos]{};
+	tag_instance_infos = new() s_infinite_tag_instance_info[num_tag_instance_infos]{};
 	for (long file_entry_index = 0, tag_instance_index = 0; file_entry_index < module_file_header->num_files; file_entry_index++)
 	{
 		c_infinite_file_entry_block_map& file_entry_block_map = *file_entry_block_maps[file_entry_index];
@@ -232,7 +232,7 @@ BCS_RESULT c_infinite_tag_reader::init_tag_groups()
 				}
 			}
 
-			tag_group = new c_infinite_tag_group(cache_cluster, blofeld_tag_group, parent_tag_group);
+			tag_group = new() c_infinite_tag_group(cache_cluster, blofeld_tag_group, parent_tag_group);
 			tag_groups.push_back(tag_group);
 			added_tag_group = true;
 		}
@@ -263,7 +263,7 @@ BCS_RESULT c_infinite_tag_reader::init_tag_instances()
 			return rs;
 		}
 
-		c_infinite_tag_instance* tag_instance = new c_infinite_tag_instance(
+		c_infinite_tag_instance* tag_instance = new() c_infinite_tag_instance(
 			cache_cluster,
 			*tag_group,
 			tag_instance_info.filepath,

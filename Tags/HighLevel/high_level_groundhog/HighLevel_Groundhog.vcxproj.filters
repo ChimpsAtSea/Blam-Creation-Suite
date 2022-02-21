@@ -24,6 +24,9 @@
     <ClInclude Include="generated\groundhog_high_level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="groundhog_tracked_memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="highlevel-groundhog-private-pch.cpp">
@@ -225,6 +228,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="generated\groundhog_high_level.ctor16.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="groundhog_tracked_memory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

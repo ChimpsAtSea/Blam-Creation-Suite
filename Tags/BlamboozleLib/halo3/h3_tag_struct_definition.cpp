@@ -33,7 +33,7 @@ c_h3_tag_struct_definition::c_h3_tag_struct_definition(const char* data, const s
 	const s_h3_tag_field* field_definition = field_definitions;
 	do
 	{
-		c_h3_tag_field* field_wrapper = new c_h3_tag_field(data, *field_definition);
+		c_h3_tag_field* field_wrapper = new() c_h3_tag_field(data, *field_definition);
 		fields.push_back(field_wrapper);
 	} while ((field_definition++)->field_type != _h3_field_type_terminator_X);
 }

@@ -395,7 +395,7 @@ void c_tag_project_configurator_tab::create_cache_cluster()
 
 		//if (c_halo4_cache_cluster* halo4_cache_cluster = dynamic_cast<c_halo4_cache_cluster*>(cache_cluster))
 		{
-			cache_cluster_transplant = new c_high_level_cache_cluster_transplant(*cache_cluster);
+			cache_cluster_transplant = new() c_high_level_cache_cluster_transplant(*cache_cluster);
 		}
 
 		debug_point;
@@ -425,22 +425,22 @@ void c_tag_project_configurator_tab::create_tag_project()
 	{
 		if (cache_cluster_transplant)
 		{
-			c_cache_file_tag_project* tag_project = new c_cache_file_tag_project(*cache_cluster_transplant);
-			c_tag_project_tab* tag_project_tab = new c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
+			c_cache_file_tag_project* tag_project = new() c_cache_file_tag_project(*cache_cluster_transplant);
+			c_tag_project_tab* tag_project_tab = new() c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
 			mandrill_user_interface->add_tab(*tag_project_tab);
 			mandrill_user_interface->set_next_selected_tab(*tag_project_tab);
 		}
 		if (is_single_tag_file_directory)
 		{
-			c_filesystem_tag_project* tag_project = new c_filesystem_tag_project(directory, { _engine_type_halo3 });
-			c_tag_project_tab* tag_project_tab = new c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
+			c_filesystem_tag_project* tag_project = new() c_filesystem_tag_project(directory, { _engine_type_halo3 });
+			c_tag_project_tab* tag_project_tab = new() c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
 			mandrill_user_interface->add_tab(*tag_project_tab);
 			mandrill_user_interface->set_next_selected_tab(*tag_project_tab);
 		}
 		if (is_monolithic_tag_file_directory)
 		{
-			c_monolithic_tag_project* tag_project = new c_monolithic_tag_project(directory, { _engine_type_haloreach });
-			c_tag_project_tab* tag_project_tab = new c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
+			c_monolithic_tag_project* tag_project = new() c_monolithic_tag_project(directory, { _engine_type_haloreach });
+			c_tag_project_tab* tag_project_tab = new() c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
 			mandrill_user_interface->add_tab(*tag_project_tab);
 			mandrill_user_interface->set_next_selected_tab(*tag_project_tab);
 		}

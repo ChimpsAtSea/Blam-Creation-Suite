@@ -10,3 +10,4 @@
 #include <TagReflection\tagreflection-public-pch.h>
 
 #include "highlevel-stubbs-public-pch.h"
+#include "stubbs_tracked_memory.h"

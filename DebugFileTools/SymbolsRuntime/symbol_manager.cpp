@@ -69,7 +69,7 @@ static BCS_RESULT symbol_manager_load_symbol_file_instance_by_module_handle(HMOD
 	s_symbol_file_instance& symbol_file_instance = symbol_file_instances[symbol_file_instance_index];
 
 	symbol_file_instance.module_handle = module_handle;
-	symbol_file_instance.runtime_symbols = new c_runtime_symbols(module_handle, symbol_binary_buffer, symbol_binary_buffer_size);
+	symbol_file_instance.runtime_symbols = new() c_runtime_symbols(module_handle, symbol_binary_buffer, symbol_binary_buffer_size);
 	symbol_file_instance.symbol_binary_buffer = symbol_binary_buffer;
 	symbol_file_instance.symbol_binary_buffer_size = symbol_binary_buffer_size;
 

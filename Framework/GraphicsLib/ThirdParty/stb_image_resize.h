@@ -63,9 +63,9 @@
 
          See stbir_filter in the header-file section for the list of filters.
 
-      NEW FILTERS
+      new(graphics_tracked_memory) FILTERS
          A number of 1D filter kernels are used. For a list of
-         supported filters see the stbir_filter enum. To add a new filter,
+         supported filters see the stbir_filter enum. To add a new(graphics_tracked_memory) filter,
          write a filter function and add it to stbir__filter_info_table.
 
       PROGRESS
@@ -2100,7 +2100,7 @@ static void stbir__buffer_loop_upsample(stbir__info* stbir_info)
             }
         }
 
-        // Load in new ones.
+        // Load in new(graphics_tracked_memory) ones.
         if (stbir_info->ring_buffer_begin_index < 0)
             stbir__decode_and_resample_upsample(stbir_info, in_first_scanline);
 
@@ -2186,7 +2186,7 @@ static void stbir__buffer_loop_downsample(stbir__info* stbir_info)
 
         stbir__decode_and_resample_downsample(stbir_info, y);
 
-        // Load in new ones.
+        // Load in new(graphics_tracked_memory) ones.
         if (stbir_info->ring_buffer_begin_index < 0)
             stbir__add_empty_ring_buffer_entry(stbir_info, out_first_scanline);
 

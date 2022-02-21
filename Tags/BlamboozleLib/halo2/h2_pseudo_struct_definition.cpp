@@ -184,7 +184,7 @@ void c_h2_pseudo_struct_definition::process_fields(const char* guerilla_data)
 	const s_h2_tag_field* field = fields_begin;
 	for (; field->field_type != _h2_field_type_terminator; field++)
 	{
-		c_h2_pseudo_field_definition* pseudo_field = new c_h2_pseudo_field_definition(guerilla_data, *field);
+		c_h2_pseudo_field_definition* pseudo_field = new() c_h2_pseudo_field_definition(guerilla_data, *field);
 
 		switch (field->field_type)
 		{
@@ -221,7 +221,7 @@ void c_h2_pseudo_struct_definition::process_fields(const char* guerilla_data)
 		break;
 		case _h2_field_type_array_start:
 		{
-			c_h2_pseudo_array_definition* pseudo_array_definition = new c_h2_pseudo_array_definition(guerilla_data, field, *this);
+			c_h2_pseudo_array_definition* pseudo_array_definition = new() c_h2_pseudo_array_definition(guerilla_data, field, *this);
 			pseudo_field->pseudo_array_definition = pseudo_array_definition;
 			field = pseudo_array_definition->array_pseudo_struct_definition->fields_end;
 		}
@@ -307,7 +307,7 @@ array_end:;
 
 	ASSERT(field->field_type == _h2_field_type_terminator || field->field_type == _h2_field_type_array_end);
 	{
-		c_h2_pseudo_field_definition* pseudo_field = new c_h2_pseudo_field_definition(guerilla_data, *field);
+		c_h2_pseudo_field_definition* pseudo_field = new() c_h2_pseudo_field_definition(guerilla_data, *field);
 		pseudo_fields.emplace_back(pseudo_field);
 	}
 

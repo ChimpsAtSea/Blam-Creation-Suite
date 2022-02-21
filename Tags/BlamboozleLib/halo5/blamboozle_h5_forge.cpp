@@ -34,7 +34,7 @@ c_h5_tag_block_definition* c_blamboozle_h5_forge::get_tag_block_definition(
 		return tag_block_definition_iterator->second;
 	}
 
-	c_h5_tag_block_definition* tag_block_definition = new c_h5_tag_block_definition(halo5_forge_data, tag_block_definition_header, tag_layout_header);
+	c_h5_tag_block_definition* tag_block_definition = new() c_h5_tag_block_definition(halo5_forge_data, tag_block_definition_header, tag_layout_header);
 
 	tag_block_definitions[virtual_address] = tag_block_definition;
 
@@ -72,7 +72,7 @@ int c_blamboozle_h5_forge::run()
 	for (const s_h5_tag_layout_entry& tag_layout_entry : layout_addresses)
 	{
 		ASSERT(tag_layout_entry._unknown == 0);
-		c_h5_tag_layout* tag_layout = new c_h5_tag_layout(halo5_forge_data, tag_layout_entry.layout_header);
+		c_h5_tag_layout* tag_layout = new() c_h5_tag_layout(halo5_forge_data, tag_layout_entry.layout_header);
 		tag_layouts.emplace_back(tag_layout);
 	}
 

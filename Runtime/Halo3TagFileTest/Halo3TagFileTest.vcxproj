@@ -22,31 +22,27 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{3E5E0B86-4D91-402F-A84F-C4E4F4463646}</ProjectGuid>
     <RootNamespace>Halo3TagFileTest</RootNamespace>
-    <ProjectName>Halo3TagFileTest (Tag Editor)</ProjectName>
+    <ProjectName>Halo3TagFileTest</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -87,7 +83,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -96,7 +91,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Version.lib;Shared.lib;GraphicsLib.lib;TagDefinitions.lib;TagReflection.lib;SymbolsRuntime.lib;MandrillUI.lib;MandrillLib.lib;murmur3.lib;d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;zlib.lib;oozle.lib;lzxlib.lib;blamlib.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;pugixml.lib;xxhash.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;tbb.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Version.lib;Shared.lib;GraphicsLib.lib;TagDefinitions.lib;TagReflection.lib;SymbolsRuntime.lib;MandrillLib.lib;MandrillUI.lib;murmur3.lib;d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;oozle.lib;lzxlib.lib;blamlib.lib;imgui.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;pugixml.lib;xxhash.lib;tbb.lib;zlib.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
@@ -116,7 +111,6 @@ rem lib /ignore:4006 /NOLOGO /OUT:$(OutDir)Halo3TagFileTestSDK.lib Halo3TagFileT
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -125,7 +119,7 @@ rem lib /ignore:4006 /NOLOGO /OUT:$(OutDir)Halo3TagFileTestSDK.lib Halo3TagFileT
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Version.lib;Shared.lib;GraphicsLib.lib;TagDefinitions.lib;TagReflection.lib;SymbolsRuntime.lib;MandrillUI.lib;MandrillLib.lib;murmur3.lib;d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;zlib.lib;oozle.lib;lzxlib.lib;blamlib.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;pugixml.lib;xxhash.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;tbb.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Version.lib;Shared.lib;GraphicsLib.lib;TagDefinitions.lib;TagReflection.lib;SymbolsRuntime.lib;MandrillLib.lib;MandrillUI.lib;murmur3.lib;d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;oozle.lib;lzxlib.lib;blamlib.lib;imgui.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;pugixml.lib;xxhash.lib;tbb.lib;zlib.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
@@ -147,7 +141,6 @@ rem lib /ignore:4006 /NOLOGO /OUT:$(OutDir)Halo3TagFileTestSDK.lib Halo3TagFileT
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -156,7 +149,7 @@ rem lib /ignore:4006 /NOLOGO /OUT:$(OutDir)Halo3TagFileTestSDK.lib Halo3TagFileT
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Version.lib;Shared.lib;GraphicsLib.lib;TagDefinitions.lib;TagReflection.lib;SymbolsRuntime.lib;MandrillUI.lib;MandrillLib.lib;murmur3.lib;d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;zlib.lib;oozle.lib;lzxlib.lib;blamlib.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;pugixml.lib;xxhash.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;tbb.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Version.lib;Shared.lib;GraphicsLib.lib;TagDefinitions.lib;TagReflection.lib;SymbolsRuntime.lib;MandrillLib.lib;MandrillUI.lib;murmur3.lib;d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;oozle.lib;lzxlib.lib;blamlib.lib;imgui.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;pugixml.lib;xxhash.lib;tbb.lib;zlib.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
@@ -178,7 +171,6 @@ rem lib /ignore:4006 /NOLOGO /OUT:$(OutDir)Halo3TagFileTestSDK.lib Halo3TagFileT
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -187,7 +179,7 @@ rem lib /ignore:4006 /NOLOGO /OUT:$(OutDir)Halo3TagFileTestSDK.lib Halo3TagFileT
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Version.lib;Shared.lib;GraphicsLib.lib;TagDefinitions.lib;TagReflection.lib;SymbolsRuntime.lib;MandrillUI.lib;MandrillLib.lib;murmur3.lib;d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;zlib.lib;oozle.lib;lzxlib.lib;blamlib.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;pugixml.lib;xxhash.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;tbb.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Version.lib;Shared.lib;GraphicsLib.lib;TagDefinitions.lib;TagReflection.lib;SymbolsRuntime.lib;MandrillLib.lib;MandrillUI.lib;murmur3.lib;d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;oozle.lib;lzxlib.lib;blamlib.lib;imgui.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;pugixml.lib;xxhash.lib;tbb.lib;zlib.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>

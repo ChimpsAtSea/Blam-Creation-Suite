@@ -320,6 +320,9 @@
     <ClInclude Include="ImGui\font_awesome_icons.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="graphicslib_tracked_memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="HLSL\cpp_types.hlsli" />

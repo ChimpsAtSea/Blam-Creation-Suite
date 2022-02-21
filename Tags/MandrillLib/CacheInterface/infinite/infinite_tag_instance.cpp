@@ -85,7 +85,7 @@ BCS_RESULT c_infinite_tag_instance::map_data()
 	if (file_entry.resource_data_size == 0) resource_data = nullptr;
 	if (file_entry.unknown_data_size == 0) unknown_data = nullptr;
 
-	ucs_reader = new c_infinite_ucs_reader(header_data/*, tag_data, resource_data, unknown_data*/);
+	ucs_reader = new() c_infinite_ucs_reader(header_data/*, tag_data, resource_data, unknown_data*/);
 	ASSERT(ucs_reader->tag_data == tag_data);
 
 	return BCS_S_OK;

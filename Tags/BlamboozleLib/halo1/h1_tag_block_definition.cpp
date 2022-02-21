@@ -10,7 +10,7 @@ c_h1_tag_block_definition::c_h1_tag_block_definition(const char* guerilla_data, 
 	tag_group_definition(tag_group_definition)
 {
 	const s_h1_tag_field* fields = reinterpret_cast<const s_h1_tag_field*>(h1_va_to_pointer(guerilla_data, definition_header->fields_address));
-	pseudo_struct_definition = new c_h1_pseudo_struct_definition(guerilla_data, fields, *this);
+	pseudo_struct_definition = new() c_h1_pseudo_struct_definition(guerilla_data, fields, *this);
 
 	if (tag_group_definition)
 	{
@@ -59,7 +59,7 @@ void h1_fixup_tag_inheritance_structures()
 		c_h1_tag_group_definition* parent_tag_group_definition = h1_get_tag_group_definition_by_group_tag(tag_group_definition->tag_group_definition->parent_group_tag.value);
 		if (!parent_tag_group_definition) continue;
 
-		c_h1_pseudo_field_definition* structure_field_definition = new c_h1_pseudo_field_definition(*parent_tag_group_definition);
+		c_h1_pseudo_field_definition* structure_field_definition = new() c_h1_pseudo_field_definition(*parent_tag_group_definition);
 
 		std::vector<c_h1_pseudo_field_definition*>& pseudo_fields = tag_block_definition->pseudo_struct_definition->pseudo_fields;
 		pseudo_fields.insert(pseudo_fields.begin(), structure_field_definition);

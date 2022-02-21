@@ -167,7 +167,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_groups()
 
 	for (const blofeld::s_tag_group** tag_group = tag_groups; *tag_group; tag_group++)
 	{
-		auto high_level_group = new h_group(engine_platform_build, **tag_group);
+		auto high_level_group = new() h_group(engine_platform_build, **tag_group);
 		groups.push_back(high_level_group);
 	}
 
@@ -1117,7 +1117,7 @@ public:
 
 					if (c_infinite_tag_instance* infinite_tag_instance = dynamic_cast<c_infinite_tag_instance*>(&tag_instance))
 					{
-						resource_storage = new h_resource();
+						resource_storage = new() h_resource();
 
 						const blofeld::s_tag_struct_definition& pageable_resource_struct_definition = *field->struct_definition;
 						unsigned long const pageable_resource_struct_size = cache_file_reader.calculate_struct_size(pageable_resource_struct_definition);

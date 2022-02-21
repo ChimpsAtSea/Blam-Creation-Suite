@@ -96,6 +96,9 @@
     <ClInclude Include="UserInterface\Editors\infinite_tag_model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mandrillui_tracked_memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HaloScript\halo_script_function_definition.cpp">
@@ -162,6 +165,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UserInterface\Editors\infinite_tag_model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mandrillui_tracked_memory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

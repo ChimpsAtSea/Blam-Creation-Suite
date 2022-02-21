@@ -89,7 +89,7 @@ constexpr decltype(auto) underlying_cast(T value)
 	if(widechar_buffer_name) \
 	{ \
 		size_t __buffer_length = wcslen(widechar_buffer_name) + 1; \
-		char_buffer_name = static_cast<char*>(tracked_malloc(&platform_tracked_memory, sizeof(char) * (__buffer_length))); \
+		char_buffer_name = static_cast<char*>(tracked_malloc(platform_tracked_memory, sizeof(char) * (__buffer_length))); \
 		wcstombs(char_buffer_name, widechar_buffer_name, __buffer_length); \
 	}
 
@@ -107,7 +107,7 @@ constexpr decltype(auto) underlying_cast(T value)
 	if(char_buffer_name) \
 	{ \
 		size_t __buffer_length = strlen(char_buffer_name) + 1; \
-		widechar_buffer_name = static_cast<wchar_t*>(tracked_malloc(&platform_tracked_memory, sizeof(wchar_t) * (__buffer_length))); \
+		widechar_buffer_name = static_cast<wchar_t*>(tracked_malloc(platform_tracked_memory, sizeof(wchar_t) * (__buffer_length))); \
 		mbstowcs(widechar_buffer_name, char_buffer_name, __buffer_length); \
 	}
 

@@ -19,8 +19,8 @@ struct s_tag_transplant_instance
 class c_high_level_cache_cluster_transplant
 {
 public:
-	c_high_level_cache_cluster_transplant(c_cache_cluster& cache_cluster);
-	~c_high_level_cache_cluster_transplant();
+	BCS_DEBUG_API c_high_level_cache_cluster_transplant(c_cache_cluster& cache_cluster);
+	BCS_DEBUG_API ~c_high_level_cache_cluster_transplant();
 
 	BCS_RESULT transplant_cache_file_data(h_object& high_level, const char* low_level_data, c_cache_file_reader& cache_file_reader, const blofeld::s_tag_struct_definition& struct_definition);
 	BCS_RESULT transplant_module_file_data(

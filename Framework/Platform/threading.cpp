@@ -1,5 +1,6 @@
 #include "platform-private-pch.h"
 
+static s_tracked_memory_stats threading_tracked_memory = { "threading", &platform_tracked_memory };
 
 #pragma warning( push )
 #pragma warning( disable : 4180 )
@@ -35,7 +36,7 @@ void parallel_invoke(unsigned long long start, unsigned long long end, t_paralle
 BCS_RESULT task_group_create(t_task_group*& task_group)
 {
 	tbb::task_group*& tbb_task_group = *reinterpret_cast<tbb::task_group**>(&task_group);
-	tbb_task_group = new tbb::task_group();
+	tbb_task_group = new(threading_tracked_memory) tbb::task_group();
 	return BCS_S_OK;
 }
 

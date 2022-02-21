@@ -28,7 +28,7 @@ c_mandrill_user_interface::c_mandrill_user_interface(c_render_context& imgui_vie
 	{
 		previous_file_path.clear();
 	}
-	//file_browser = new ImGuiAddons::ImGuiFileBrowser(previous_file_path.c_str());
+	//file_browser = new() ImGuiAddons::ImGuiFileBrowser(previous_file_path.c_str());
 
 	restore_previous_session(false);
 	restore_previous_session(true);
@@ -91,7 +91,7 @@ BCS_RESULT c_mandrill_user_interface::open_tag_project_tab(const wchar_t* filepa
 
 BCS_RESULT c_mandrill_user_interface::open_tag_project_configurator_tab(const wchar_t* directory)
 {
-	c_tag_project_configurator_tab* tag_project_configurator_tab = new c_tag_project_configurator_tab(directory, *this);
+	c_tag_project_configurator_tab* tag_project_configurator_tab = new() c_tag_project_configurator_tab(directory, *this);
 	add_tab(*tag_project_configurator_tab);
 	next_selected_tab = tag_project_configurator_tab;
 	return BCS_S_OK; // #TODO: return result from add_tab
@@ -119,7 +119,7 @@ BCS_RESULT c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepat
 
 	if (c_cache_file* cache_file = c_cache_file::create_cache_file(filepath))
 	{
-		c_cache_file_tab* cache_file_tab = new c_cache_file_tab(*cache_file, *this, tag_list);
+		c_cache_file_tab* cache_file_tab = new() c_cache_file_tab(*cache_file, *this, tag_list);
 		cache_file_tab->on_tab_added.register_callback(cache_file, [this](c_mandrill_tab& tab)
 			{
 				save_current_session();

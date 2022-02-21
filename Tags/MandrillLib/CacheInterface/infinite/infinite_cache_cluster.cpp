@@ -32,22 +32,22 @@ c_infinite_cache_cluster::c_infinite_cache_cluster(c_infinite_module_file_reader
 
 		if (BCS_SUCCEEDED(cache_reader->get_buffer(_debug_section_buffer, temp_info)))
 		{
-			debug_readers[cache_reader] = new c_infinite_debug_reader(*this, *cache_reader);
+			debug_readers[cache_reader] = new() c_infinite_debug_reader(*this, *cache_reader);
 		}
 
 		if (BCS_SUCCEEDED(cache_reader->get_buffer(_resources_section_buffer, temp_info)))
 		{
-			resource_readers[cache_reader] = new c_infinite_resource_reader(*this, *cache_reader);
+			resource_readers[cache_reader] = new() c_infinite_resource_reader(*this, *cache_reader);
 		}
 
 		if (BCS_SUCCEEDED(cache_reader->get_buffer(_localization_section_buffer, temp_info)))
 		{
-			localization_readers[cache_reader] = new c_infinite_localization_reader(*this, *cache_reader);
+			localization_readers[cache_reader] = new() c_infinite_localization_reader(*this, *cache_reader);
 		}
 
 		if (BCS_SUCCEEDED(cache_reader->get_buffer(_tag_section_buffer, temp_info)))
 		{
-			tag_readers[cache_reader] = new c_infinite_tag_reader(*this, *cache_reader);
+			tag_readers[cache_reader] = new() c_infinite_tag_reader(*this, *cache_reader);
 		}
 
 		debug_point;

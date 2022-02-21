@@ -179,7 +179,7 @@ BCS_RESULT window_render_context_window_create(
 {
 	try
 	{
-		render_context = new c_window_render_context(
+		render_context = new(graphics_tracked_memory) c_window_render_context(
 			window, 
 			background_color);
 	}

@@ -302,7 +302,7 @@ RECENT REVISION HISTORY:
 //        STBI_NO_PNM   (.ppm and .pgm)
 //
 //  - You can request *only* certain decoders and suppress all other ones
-//    (this will be more forward-compatible, as addition of new decoders
+//    (this will be more forward-compatible, as addition of new(graphics_tracked_memory) decoders
 //    doesn't require you to disable them explicitly):
 //
 //        STBI_ONLY_JPEG
@@ -646,7 +646,7 @@ typedef unsigned char validate_uint32[sizeof(stbi__uint32)==4 ? 1 : -1];
 // but previous attempts to provide the SSE2 functions with runtime
 // detection caused numerous issues. The way architecture extensions are
 // exposed in GCC/Clang is, sadly, not really suited for one-file libs.
-// New behavior: if compiled with -msse2, we use SSE2 without any
+// new(graphics_tracked_memory) behavior: if compiled with -msse2, we use SSE2 without any
 // detection; if not, we don't use it at all.
 #define STBI_NO_SIMD
 #endif
@@ -1048,7 +1048,7 @@ STBIDEF void stbi_set_flip_vertically_on_load_thread(int flag_true_if_should_fli
 
 static void *stbi__load_main(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri, int bpc)
 {
-   memset(ri, 0, sizeof(*ri)); // make sure it's initialized if we add new fields
+   memset(ri, 0, sizeof(*ri)); // make sure it's initialized if we add new(graphics_tracked_memory) fields
    ri->bits_per_channel = 8; // default is 8 so most paths don't have to be changed
    ri->channel_order = STBI_ORDER_RGB; // all current input & output are this, but this is here so we can add BGR order
    ri->num_channels = 0;
@@ -1639,7 +1639,7 @@ static stbi__uint32 stbi__get32le(stbi__context *s)
 //    and it never has alpha, so very few cases ). png can automatically
 //    interleave an alpha=255 channel, but falls back to this for other cases
 //
-//  assume data buffer is malloced, so malloc a new one and free that one
+//  assume data buffer is malloced, so malloc a new(graphics_tracked_memory) one and free that one
 //  only failure mode is malloc failing
 
 static stbi_uc stbi__compute_y(int r, int g, int b)
@@ -6443,7 +6443,7 @@ static stbi_uc *stbi__process_gif_raster(stbi__context *s, stbi__gif *g)
    for(;;) {
       if (valid_bits < codesize) {
          if (len == 0) {
-            len = stbi__get8(s); // start new block
+            len = stbi__get8(s); // start new(graphics_tracked_memory) block
             if (len == 0)
                return g->out;
          }
@@ -6552,7 +6552,7 @@ static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, i
          }
       } else {
          // This is a non-disposal case eithe way, so just
-         // leave the pixels as is, and they will become the new background
+         // leave the pixels as is, and they will become the new(graphics_tracked_memory) background
          // 1: do not dispose
          // 0:  not specified.
       }

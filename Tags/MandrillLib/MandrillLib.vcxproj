@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CacheInterface\cache_interface_tracked_memory.h" />
     <ClInclude Include="Filesystem\Chunks\MonolithicChunks\exploded_dependencies_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\MonolithicChunks\tag_file_persistent_heap_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\MonolithicChunks\build_identifier_chunk.h" />
@@ -106,7 +107,6 @@
     <ClInclude Include="HighLevel\monolithic_project.h" />
     <ClInclude Include="HighLevel\tag_project.h" />
     <ClInclude Include="HighLevel\string_id_manager.h" />
-    <ClInclude Include="CacheInterface\memory_mapped_file.h" />
     <ClInclude Include="CacheInterface\base\tag_group.h" />
     <ClInclude Include="CacheInterface\base\tag_instance.h" />
     <ClInclude Include="CacheInterface\infinite\infinite_generic_module_file_entry.h" />
@@ -133,8 +133,10 @@
     <ClInclude Include="Filesystem\Chunks\TagChunks\tag_resource_exploded_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\TagChunks\tag_resource_null_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\TagChunks\tag_resource_xsynced_chunk.h" />
+    <ClInclude Include="mandrilllib_tracked_memory.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CacheInterface\cache_interface_tracked_memory.cpp" />
     <ClCompile Include="Filesystem\Chunks\MonolithicChunks\exploded_dependencies_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\MonolithicChunks\tag_file_persistent_heap_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\MonolithicChunks\build_identifier_chunk.cpp" />
@@ -219,7 +221,6 @@
     <ClCompile Include="HighLevel\monolithic_project.cpp" />
     <ClCompile Include="HighLevel\tag_project.cpp" />
     <ClCompile Include="HighLevel\string_id_manager.cpp" />
-    <ClCompile Include="CacheInterface\memory_mapped_file.cpp" />
     <ClCompile Include="CacheInterface\base\tag_group.cpp" />
     <ClCompile Include="CacheInterface\base\tag_instance.cpp" />
     <ClCompile Include="CacheInterface\infinite\infinite_generic_module_file_entry.cpp" />
@@ -250,6 +251,7 @@
     <ClCompile Include="Filesystem\Chunks\TagChunks\tag_resource_exploded_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\TagChunks\tag_resource_null_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\TagChunks\tag_resource_xsynced_chunk.cpp" />
+    <ClCompile Include="mandrilllib_tracked_memory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="CacheInterface\halo4\halo4.natvis" />
@@ -262,26 +264,22 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -320,13 +318,13 @@
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mandrilllib-private-pch.h</PrecompiledHeaderFile>
       <DisableSpecificWarnings>4200</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;TagDefinitions.lib;TagReflection.lib;murmur3.lib;oozle.lib;lzxlib.lib;blamlib.lib;Rhesus.lib;pugixml.lib;xxhash.lib;tbb.lib;zlib.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -347,13 +345,13 @@
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mandrilllib-private-pch.h</PrecompiledHeaderFile>
       <DisableSpecificWarnings>4200</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;TagDefinitions.lib;TagReflection.lib;murmur3.lib;oozle.lib;lzxlib.lib;blamlib.lib;Rhesus.lib;pugixml.lib;xxhash.lib;tbb.lib;zlib.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -376,7 +374,6 @@
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mandrilllib-private-pch.h</PrecompiledHeaderFile>
       <DisableSpecificWarnings>4200</DisableSpecificWarnings>
@@ -404,7 +401,6 @@
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mandrilllib-private-pch.h</PrecompiledHeaderFile>
       <DisableSpecificWarnings>4200</DisableSpecificWarnings>

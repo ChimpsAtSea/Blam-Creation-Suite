@@ -59,7 +59,7 @@ c_partition_chunk::c_partition_chunk(const void* chunk_data, c_chunk& parent) :
 	partition_header = chunk_byteswap(*src_partition_header);
 	lruv_persist_header = chunk_byteswap(*src_lruv_persist_header);
 	data_array_persist_header = chunk_byteswap(*src_data_array_persist_header);
-	lruv_cache_blocks = new s_lruv_cache_block_ex[data_array_persist_header.count];
+	lruv_cache_blocks = new() s_lruv_cache_block_ex[data_array_persist_header.count];
 
 	for (unsigned long lruv_cache_block_index = 0; lruv_cache_block_index < data_array_persist_header.count; lruv_cache_block_index++)
 	{

@@ -51,7 +51,7 @@ BCS_RESULT init_command_line(const wchar_t* command_line)
 		command_line_arguments_string_buffer_pos += mb_buffer_length + 1;
 	}
 
-	command_line_arguments = new s_command_line_argument[command_line_arguments_count];
+	command_line_arguments = new() s_command_line_argument[command_line_arguments_count];
 	for (int argument_index = 0; argument_index < command_line_arguments_count; argument_index++)
 	{
 		s_command_line_argument& command_line_argument = command_line_arguments[argument_index];

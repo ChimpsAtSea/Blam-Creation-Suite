@@ -114,7 +114,7 @@ c_reach_x360_tag_struct_definition::c_reach_x360_tag_struct_definition(const cha
 	ASSERT(field_definition);
 	do
 	{
-		c_reach_x360_tag_field* field_wrapper = new c_reach_x360_tag_field(data, *field_definition);
+		c_reach_x360_tag_field* field_wrapper = new() c_reach_x360_tag_field(data, *field_definition);
 		fields.push_back(field_wrapper);
 	} while ((field_definition++)->field_type != _reach_x360_field_type_terminator);
 }
@@ -144,7 +144,7 @@ void c_reach_x360_tag_struct_definition::handle_conflict(const char* data, const
 		ASSERT(field_definition);
 		do
 		{
-			c_reach_x360_tag_field* field_wrapper = new c_reach_x360_tag_field(data, *field_definition);
+			c_reach_x360_tag_field* field_wrapper = new() c_reach_x360_tag_field(data, *field_definition);
 			fields.push_back(field_wrapper);
 		} while ((field_definition++)->field_type != _reach_x360_field_type_terminator);
 	}
@@ -184,7 +184,7 @@ void c_reach_x360_tag_struct_definition::handle_conflict(const char* data, const
 				};
 				for (const char* fixup : fixups)
 				{
-					c_reach_x360_tag_field* field_wrapper = new c_reach_x360_tag_field(data, *field_definition);
+					c_reach_x360_tag_field* field_wrapper = new() c_reach_x360_tag_field(data, *field_definition);
 					if (strcmp(tag_group_definition.name,  fixup) == 0)
 					{
 						fixup_type = _reach_x360_tag_field_combined_fixup_type_not_equal;
@@ -193,18 +193,18 @@ void c_reach_x360_tag_struct_definition::handle_conflict(const char* data, const
 				}
 			}
 
-			c_reach_x360_tag_field_combined_fixup* versioning_field_wrapper = new c_reach_x360_tag_field_combined_fixup(tag_group_definition, num_insert_fields, fixup_type);
+			c_reach_x360_tag_field_combined_fixup* versioning_field_wrapper = new() c_reach_x360_tag_field_combined_fixup(tag_group_definition, num_insert_fields, fixup_type);
 			temp_fields.push_back(versioning_field_wrapper);
 
 			// #TODO: This might be way more complicated than assuming that these fields are always at the front
 			// but this fixup codepath is only required for a handful of tags
 			for (unsigned long combined_field_index = 0; combined_field_index < num_insert_fields; combined_field_index++, field_definition++)
 			{
-				c_reach_x360_tag_field* field_wrapper = new c_reach_x360_tag_field(data, *field_definition);
+				c_reach_x360_tag_field* field_wrapper = new() c_reach_x360_tag_field(data, *field_definition);
 				temp_fields.push_back(field_wrapper);
 			}
 
-			c_reach_x360_tag_field_dummy_space* dummy_space_wrapper = new c_reach_x360_tag_field_dummy_space();
+			c_reach_x360_tag_field_dummy_space* dummy_space_wrapper = new() c_reach_x360_tag_field_dummy_space();
 			temp_fields.push_back(dummy_space_wrapper);
 			
 			fields.insert(fields.begin(), temp_fields.begin(), temp_fields.end());

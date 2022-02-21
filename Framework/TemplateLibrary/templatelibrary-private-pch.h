@@ -6,6 +6,9 @@
 #include <string.h>
 #include <intrin.h>
 
+#include <chrono>
+
+#define PLATFORM_ENABLE_DEFAULT_NEW
 #define PLATFORM_EXCLUDE_BANNED
 #include <Platform/platform-public-pch.h>
 
@@ -14,3 +17,5 @@
 #include "templatelibrary-public-pch.h"
 
 #include <Platform/banned.h>
+
+#include "templatelibrary_tracked_memory.h"

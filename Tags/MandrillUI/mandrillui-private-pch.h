@@ -13,3 +13,6 @@
 #include "mandrillui-public-pch.h"
 
 #include <HighLevel/high_level_infinite/highlevel-infinite-public-pch.h>
+
+#include "mandrillui_tracked_memory.h"
+

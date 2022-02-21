@@ -15,7 +15,7 @@ c_string_lists_chunk::c_string_lists_chunk(const void* chunk_data, c_chunk& pare
 	if (entry_count > 0)
 	{
 		const s_tag_persist_string_list* src_entries = reinterpret_cast<const s_tag_persist_string_list*>(chunk_data_begin);
-		entries = new s_tag_persist_string_list[entry_count];
+		entries = new() s_tag_persist_string_list[entry_count];
 		for (unsigned long entry_index = 0; entry_index < entry_count; entry_index++)
 		{
 			s_tag_persist_string_list& entry = entries[entry_index];

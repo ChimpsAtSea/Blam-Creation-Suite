@@ -32,7 +32,7 @@ void write_stack_back_trace(const char* calling_function, unsigned long depth, u
 	depth++;
 	console_write_line("TRACE(%s)\n{", calling_function);
 
-	LPVOID* traces = new LPVOID[size];
+	LPVOID* traces = new() LPVOID[size];
 	for (int trace_index = 0; trace_index < CaptureStackBackTrace(depth, size, traces, NULL); trace_index++)
 	{
 		HANDLE current_process = GetCurrentProcess();

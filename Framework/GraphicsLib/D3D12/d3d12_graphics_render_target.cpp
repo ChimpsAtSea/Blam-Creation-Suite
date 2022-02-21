@@ -25,7 +25,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	swap_chain_resize_start_handle(),
 	swap_chain_resize_finish_handle()
 {
-	descriptor_heap_cpu = new c_descriptor_heap_d3d12(
+	descriptor_heap_cpu = new(graphics_tracked_memory) c_descriptor_heap_d3d12(
 		graphics,
 		D3D12_DESCRIPTOR_HEAP_TYPE_RTV,
 		D3D12_DESCRIPTOR_HEAP_FLAG_NONE,
@@ -93,7 +93,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	swap_chain_resize_start_handle(),
 	swap_chain_resize_finish_handle()
 {
-	descriptor_heap_cpu = new c_descriptor_heap_d3d12(
+	descriptor_heap_cpu = new(graphics_tracked_memory) c_descriptor_heap_d3d12(
 		graphics,
 		D3D12_DESCRIPTOR_HEAP_TYPE_RTV,
 		D3D12_DESCRIPTOR_HEAP_FLAG_NONE,
@@ -160,7 +160,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	swap_chain_resize_start_handle(),
 	swap_chain_resize_finish_handle()
 {
-	descriptor_heap_cpu = new c_descriptor_heap_d3d12(
+	descriptor_heap_cpu = new(graphics_tracked_memory) c_descriptor_heap_d3d12(
 		graphics,
 		D3D12_DESCRIPTOR_HEAP_TYPE_DSV,
 		D3D12_DESCRIPTOR_HEAP_FLAG_NONE,
@@ -356,7 +356,7 @@ BCS_RESULT graphics_d3d12_swapchain_color_render_target_create(
 {
 	try
 	{
-		render_target = new c_graphics_render_target_d3d12(
+		render_target = new(graphics_tracked_memory) c_graphics_render_target_d3d12(
 			*graphics,
 			*swap_chain,
 			swap_chain_buffer_index,
@@ -385,7 +385,7 @@ BCS_RESULT graphics_d3d12_color_render_target_create(
 {
 	try
 	{
-		render_target = new c_graphics_render_target_d3d12(
+		render_target = new(graphics_tracked_memory) c_graphics_render_target_d3d12(
 			*graphics,
 			width,
 			height,
@@ -418,7 +418,7 @@ BCS_RESULT graphics_d3d12_depth_stencil_render_target_create(
 {
 	try
 	{
-		render_target = new c_graphics_render_target_d3d12(
+		render_target = new(graphics_tracked_memory) c_graphics_render_target_d3d12(
 			*graphics,
 			width,
 			height,

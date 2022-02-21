@@ -194,9 +194,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="!Resources\HLSL\BoxShader.hlsli" />
-    <None Include="filesystem.deprecated.inl">
-      <Filter>Header Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Font Include="!Resources\Cousine-Regular.ttf" />

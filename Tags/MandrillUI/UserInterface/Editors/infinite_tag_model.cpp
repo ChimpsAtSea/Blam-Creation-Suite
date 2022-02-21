@@ -10,7 +10,7 @@ c_infinite_tag_model::c_infinite_tag_model(
 	graphics_shader_pipeline(),
 	render_instance()
 {
-	mesh = new c_infinite_tag_mesh(graphics, render_model, mesh_index);
+	mesh = new() c_infinite_tag_mesh(graphics, render_model, mesh_index);
 
 	c_graphics_shader_binary* graphics_shader_binaries[2];
 	BCS_RESULT vertex_shader_binary_result = graphics_shader_binary_create(&graphics, _bcs_resource_type_generic_infinite_vertex_shader, graphics_shader_binaries[0]);

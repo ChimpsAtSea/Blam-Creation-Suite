@@ -18,7 +18,7 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 	interop_definitions_chunk()
 {
 	const s_single_tag_file_header* src_header = static_cast<const s_single_tag_file_header*>(tag_file_data);
-	root_chunk = new c_tag_header_chunk(next_contiguous_pointer(src_header));
+	root_chunk = new() c_tag_header_chunk(next_contiguous_pointer(src_header));
 
 	root_chunk->parse_children(this, nullptr, true);
 
@@ -33,7 +33,7 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 
 	if (tag_layout_prechunk_chunk != nullptr)
 	{
-		aggregate_entries = new s_tag_persist_aggregate_fixup[tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count];
+		aggregate_entries = new() s_tag_persist_aggregate_fixup[tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count];
 
 		for (unsigned long aggregate_index = 0; aggregate_index < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count; aggregate_index++)
 		{

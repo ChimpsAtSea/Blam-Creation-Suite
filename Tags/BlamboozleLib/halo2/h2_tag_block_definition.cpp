@@ -84,7 +84,7 @@ void c_h2_tag_block_definition::h2_fixup_tag_inheritance_structures()
 
 		for (c_h2_pseudo_struct_definition* pseudo_struct_definition : tag_block_definition->pseudo_struct_definitions)
 		{
-			c_h2_pseudo_field_definition* structure_field_definition = new c_h2_pseudo_field_definition(*parent_pseudo_struct_definition);
+			c_h2_pseudo_field_definition* structure_field_definition = new() c_h2_pseudo_field_definition(*parent_pseudo_struct_definition);
 
 			std::vector<c_h2_pseudo_field_definition*>& pseudo_fields = pseudo_struct_definition->pseudo_fields;
 			pseudo_fields.insert(pseudo_fields.begin(), structure_field_definition);

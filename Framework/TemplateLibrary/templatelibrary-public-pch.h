@@ -11,7 +11,6 @@
 #include "byteswap.h"
 #include "compile_time_accumulator.h"
 #include "stopwatch.h"
-#include "callback.h"
 #include "stack_string.h"
 #include "fixed_string.h"
 #include "atomic_lock.h"

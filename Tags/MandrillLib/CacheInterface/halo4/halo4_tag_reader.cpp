@@ -340,7 +340,7 @@ BCS_RESULT c_halo4_tag_reader::init_tag_groups()
 				}
 			}
 
-			tag_group = new c_halo4_tag_group(cache_cluster, blofeld_tag_group, parent_tag_group);
+			tag_group = new() c_halo4_tag_group(cache_cluster, blofeld_tag_group, parent_tag_group);
 			tag_groups.push_back(tag_group);
 
 			s_halo4_tag_group_info* tag_group_info;
@@ -370,7 +370,7 @@ BCS_RESULT c_halo4_tag_reader::init_tag_instances()
 		ASSERT(tag_instance_info.group_info != nullptr);
 		ASSERT(tag_instance_info.group_info->tag_group != nullptr);
 
-		c_halo4_tag_instance* tag_instance = new c_halo4_tag_instance(
+		c_halo4_tag_instance* tag_instance = new() c_halo4_tag_instance(
 			cache_cluster,
 			*tag_instance_info.group_info->tag_group,
 			tag_instance_info.index,
@@ -592,7 +592,7 @@ BCS_RESULT c_halo4_tag_reader::init_interop_table()
 		return rs;
 	}
 
-	_resource_type_index_to_halo4_resource_type = new e_halo4_resource_type[resource_gestalt.resource_type_identifiers_block.count];
+	_resource_type_index_to_halo4_resource_type = new() e_halo4_resource_type[resource_gestalt.resource_type_identifiers_block.count];
 	for (unsigned long index = 0; index < resource_gestalt.resource_type_identifiers_block.count; index++)
 	{
 		s_cache_file_resource_type_identifier_block_struct_definition resource_type_identifier = resource_type_identifiers[index];
@@ -648,7 +648,7 @@ BCS_RESULT c_halo4_tag_reader::init_interops()
 
 	unsigned long interop_count = static_cast<unsigned long>(tag_interop_infos.size());
 
-	interop_containers = new c_halo4_interop_container * [interop_count + 1];
+	interop_containers = new() c_halo4_interop_container * [interop_count + 1];
 	interop_containers[interop_count] = nullptr;
 	for (unsigned long interop_index = 0; interop_index < interop_count; interop_index++)
 	{
@@ -697,13 +697,13 @@ BCS_RESULT c_halo4_tag_reader::init_interops()
 		switch (interop_type)
 		{
 		case _halo4_vectorart_vertex_buffer_interop:
-			interop_containers[interop_index] = new c_halo4_vectorart_vertex_buffer_interop(*this, tag_interop.descriptor, interop_data);
+			interop_containers[interop_index] = new() c_halo4_vectorart_vertex_buffer_interop(*this, tag_interop.descriptor, interop_data);
 			break;
 		case _halo4_polyart_index_buffer_interop:
-			interop_containers[interop_index] = new c_halo4_polyart_index_buffer_interop(*this, tag_interop.descriptor, interop_data);
+			interop_containers[interop_index] = new() c_halo4_polyart_index_buffer_interop(*this, tag_interop.descriptor, interop_data);
 			break;
 		case _halo4_polyart_vertex_buffer_interop:
-			interop_containers[interop_index] = new c_halo4_polyart_vertex_buffer_interop(*this, tag_interop.descriptor, interop_data);
+			interop_containers[interop_index] = new() c_halo4_polyart_vertex_buffer_interop(*this, tag_interop.descriptor, interop_data);
 			break;
 		case _halo4_d3d_vertex_buffer_interop:
 		case _halo4_d3d_index_buffer_interop:
@@ -771,7 +771,7 @@ BCS_RESULT c_halo4_tag_reader::init_resource_table()
 		throw(rs);
 	}
 
-	_interop_type_index_to_halo4_interop_type = new e_halo4_interop_type[resource_gestalt.interop_type_identifiers_block.count];
+	_interop_type_index_to_halo4_interop_type = new() e_halo4_interop_type[resource_gestalt.interop_type_identifiers_block.count];
 	for (unsigned long index = 0; index < resource_gestalt.interop_type_identifiers_block.count; index++)
 	{
 		s_cache_file_interop_type_identifier_block_struct_definition interop_type_identifier = interop_type_identifiers[index];
@@ -971,40 +971,40 @@ BCS_RESULT c_halo4_tag_reader::init_resources()
 				switch (resource_type)
 				{
 				case _halo4_bitmap_texture_interop_resource:
-					resource_container = new c_halo4_bitmap_texture_interop_resource(*tag_instance, resource_priority_datas);
+					resource_container = new() c_halo4_bitmap_texture_interop_resource(*tag_instance, resource_priority_datas);
 					break;
 				case _halo4_sound_resource_definition:
-					resource_container = new c_halo4_sound_resource_definition(*tag_instance, resource_priority_datas);
+					resource_container = new() c_halo4_sound_resource_definition(*tag_instance, resource_priority_datas);
 					break;
 				case _halo4_facial_animation_resource_definition:
-					resource_container = new c_halo4_facial_animation_resource_definition(*tag_instance, resource_priority_datas);
+					resource_container = new() c_halo4_facial_animation_resource_definition(*tag_instance, resource_priority_datas);
 					break;
 				case _halo4_model_animation_tag_resource:
-					resource_container = new c_halo4_model_animation_tag_resource(*tag_instance, resource_priority_datas);
+					resource_container = new() c_halo4_model_animation_tag_resource(*tag_instance, resource_priority_datas);
 					break;
 				case _halo4_render_geometry_api_resource_definition:
-					resource_container = new c_halo4_render_geometry_api_resource_definition(*tag_instance, resource_priority_datas);
+					resource_container = new() c_halo4_render_geometry_api_resource_definition(*tag_instance, resource_priority_datas);
 					break;
 				case _halo4_bitmap_texture_interleaved_interop_resource:
-					resource_container = new c_halo4_bitmap_texture_interleaved_interop_resource(*tag_instance, resource_priority_datas);
+					resource_container = new() c_halo4_bitmap_texture_interleaved_interop_resource(*tag_instance, resource_priority_datas);
 					break;
 				case _halo4_structure_bsp_tag_resources:
-					resource_container = new c_halo4_structure_bsp_tag_resources(*tag_instance, resource_priority_datas);
+					resource_container = new() c_halo4_structure_bsp_tag_resources(*tag_instance, resource_priority_datas);
 					break;
 				case _halo4_structure_bsp_cache_file_tag_resources:
-					resource_container = new c_halo4_structure_bsp_cache_file_tag_resources(*tag_instance, resource_priority_datas);
+					resource_container = new() c_halo4_structure_bsp_cache_file_tag_resources(*tag_instance, resource_priority_datas);
 					break;
 				case _halo4_bink_resource:
-					resource_container = new c_halo4_bink_resource(*tag_instance, resource_priority_datas);
+					resource_container = new() c_halo4_bink_resource(*tag_instance, resource_priority_datas);
 					break;
 				case _halo4_pca_coefficients_resource_definition:
-					resource_container = new c_halo4_pca_coefficients_resource_definition(*tag_instance, resource_priority_datas);
+					resource_container = new() c_halo4_pca_coefficients_resource_definition(*tag_instance, resource_priority_datas);
 					break;
 				case _halo4_stitchable_bitmap_texture_interop_resource:
-					resource_container = new c_halo4_stitchable_bitmap_texture_interop_resource(*tag_instance, resource_priority_datas);
+					resource_container = new() c_halo4_stitchable_bitmap_texture_interop_resource(*tag_instance, resource_priority_datas);
 					break;
 				case _halo4_collision_model_resource:
-					resource_container = new c_halo4_collision_model_resource(*tag_instance, resource_priority_datas);
+					resource_container = new() c_halo4_collision_model_resource(*tag_instance, resource_priority_datas);
 					break;
 				default:
 					return BCS_E_UNSUPPORTED;
@@ -1136,7 +1136,7 @@ BCS_RESULT c_halo4_tag_reader::export_resources()
 
 		if (file_page.shared_file != -1) continue; // #TODO: traverse external files
 
-		char* page_data = new char[__max(0x8000, file_page.size)];
+		char* page_data = new() char[__max(0x8000, file_page.size)];
 		const char* page_file_data = buffer_info.begin + file_page.file_offset;
 
 		e_halo4_compression_codec compression_codec = _halo4_compression_uncompressed;
@@ -1240,7 +1240,7 @@ BCS_RESULT c_halo4_tag_reader::init_shared_files_table()
 		return rs;
 	}
 
-	_shared_file_index_to_cache_file_reader = new c_halo4_cache_file_reader * [shared_files_block.count];
+	_shared_file_index_to_cache_file_reader = new() c_halo4_cache_file_reader * [shared_files_block.count];
 	_shared_file_count = shared_files_block.count;
 
 	for (unsigned long shared_file_index = 0; shared_file_index < shared_files_block.count; shared_file_index++)

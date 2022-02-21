@@ -165,7 +165,7 @@ void c_gen3_cache_file_validator2::validate_tag_instances()
 	std::vector<s_tag_validation_data*> validation_datas;
 	validation_datas.resize(cache_file.get_tag_count());
 
-	volatile uint32_t* current_validation_data_index = new uint32_t();
+	volatile uint32_t* current_validation_data_index = new() uint32_t();
 	s_tag_validation_data** current_validation_datas = validation_datas.data();
 
 	//tbb::task_group g;
@@ -323,7 +323,7 @@ s_tag_validation_data* c_gen3_cache_file_validator2::validate_tag_group(c_tag_in
 		return nullptr;
 	}
 
-	s_tag_validation_data* validation_data = new s_tag_validation_data
+	s_tag_validation_data* validation_data = new() s_tag_validation_data
 	{
 		tag_interface
 	};
@@ -346,7 +346,7 @@ void c_gen3_cache_file_validator2::validate_tag_struct(
 	uint32_t struct_size = calculate_struct_size(engine_type, platform_type, _build_not_set, struct_definition);
 	char* start_data = data;
 	char* end_data = data + struct_size;
-	s_memory_region* memory_region = new s_memory_region
+	s_memory_region* memory_region = new() s_memory_region
 	{
 		&struct_definition,
 		nullptr,
@@ -393,7 +393,7 @@ void c_gen3_cache_file_validator2::validate_tag_block(
 	ASSERT(start_data);
 
 	char* end_data = current_block_data_position + struct_size * struct_count;
-	s_memory_region* memory_region = new s_memory_region
+	s_memory_region* memory_region = new() s_memory_region
 	{
 		&block_definition.struct_definition,
 		&block_definition,
@@ -427,7 +427,7 @@ void c_gen3_cache_file_validator2::traverse_tag_array(
 	char* const start_data = data;
 	char* const end_data = start_data + struct_size * struct_count;
 
-	//s_memory_region* memory_region = new s_memory_region
+	//s_memory_region* memory_region = new() s_memory_region
 	//{
 	//	&array_definition.struct_definition,
 	//	nullptr,
@@ -477,7 +477,7 @@ void c_gen3_cache_file_validator2::validate_tag_api_interop(
 
 	ASSERT(start_data);
 
-	s_memory_region* memory_region = new s_memory_region
+	s_memory_region* memory_region = new() s_memory_region
 	{
 		nullptr,
 		nullptr,
@@ -552,7 +552,7 @@ void c_gen3_cache_file_validator2::validate_tag_pageable(
 
 	//ASSERT(start_data);
 
-	//s_memory_region* memory_region = new s_memory_region
+	//s_memory_region* memory_region = new() s_memory_region
 	//{
 	//	nullptr,
 	//	nullptr,
@@ -590,7 +590,7 @@ void c_gen3_cache_file_validator2::validate_tag_data(s_tag_validation_data& vali
 	char* current_data_position = cache_file.get_tag_data(tag_data);
 	char* start_data = current_data_position;
 	char* end_data = start_data + tag_data.size;
-	s_memory_region* memory_region = new s_memory_region
+	s_memory_region* memory_region = new() s_memory_region
 	{
 		nullptr,
 		nullptr,

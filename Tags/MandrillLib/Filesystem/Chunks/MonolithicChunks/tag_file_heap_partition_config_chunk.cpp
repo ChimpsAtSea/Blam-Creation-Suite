@@ -8,7 +8,7 @@ c_tag_file_heap_partition_config_chunk::c_tag_file_heap_partition_config_chunk(c
 {
 	if (string_length > 0)
 	{
-		string = new char[string_length + 1];
+		string = new() char[string_length + 1];
 		memcpy(string, string_buffer, string_length);
 		string[string_length] = 0;
 	}

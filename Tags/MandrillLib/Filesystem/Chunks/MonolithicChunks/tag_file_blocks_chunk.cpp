@@ -43,7 +43,7 @@ c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(const void* chunk_data, c_chunk
 		{
 			src_current_wide_data_datum = next_contiguous_pointer<s_wide_data_datum>(src_data_array_persist_header);
 
-			wide_data_datums = new s_wide_data_datum[data_array_persist_header.count];
+			wide_data_datums = new() s_wide_data_datum[data_array_persist_header.count];
 
 			for (unsigned long wide_data_datum_index = 0; wide_data_datum_index < data_array_persist_header.count; wide_data_datum_index++)
 			{
@@ -69,7 +69,7 @@ c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(const void* chunk_data, c_chunk
 		{
 			src_current_wide_data_datum = next_contiguous_pointer<s_wide_data_datum>(src_data_array_persist_header);
 
-			wide_data_cache_blocks = new s_wide_data_cache_block[num_wide_data_cache_blocks];
+			wide_data_cache_blocks = new() s_wide_data_cache_block[num_wide_data_cache_blocks];
 			s_wide_data_cache_block* wide_data_cache_blocks_pos = wide_data_cache_blocks;
 
 			for (unsigned long wide_data_datum_index = 0; wide_data_datum_index < data_array_persist_header.count; wide_data_datum_index++)

@@ -15,3 +15,5 @@
 #include <MandrillLib\mandrilllib-public-pch.h>
 #include <MandrillUI\mandrillui-public-pch.h>
 #include <Rhesus\rhesus-public-pch.h>
+
+#include "mandrill_tracked_memory.h"

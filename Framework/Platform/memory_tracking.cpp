@@ -9,10 +9,12 @@
 
 static volatile LONG tracked_memory_entries_spin_lock;
 static s_tracked_memory_entry* tracked_memory_entries;
+
 s_tracked_memory_stats platform_tracked_memory = { "platform" };
 s_tracked_memory_stats malloca_tracked_memory = { "malloca" };
+s_tracked_memory_stats& _library_tracked_memory = platform_tracked_memory;
 
-void* tracked_aligned_malloc(s_tracked_memory_stats* stats, size_t size, size_t alignment)
+void* _tracked_aligned_malloc(s_tracked_memory_stats& stats, size_t size, size_t alignment, const char* filepath, long line)
 {
 	const char* stack_trace = "hello world hello world hello world";
 	size_t stack_trace_size = strlen(stack_trace) + 1;
@@ -29,7 +31,7 @@ void* tracked_aligned_malloc(s_tracked_memory_stats* stats, size_t size, size_t 
 
 	tracked_memory_entry->next = nullptr;
 	tracked_memory_entry->previous = nullptr;
-	tracked_memory_entry->stats = stats;
+	tracked_memory_entry->stats = &stats;
 	tracked_memory_entry->tracked_memory = tracked_memory;
 	tracked_memory_entry->memory = memory;
 	tracked_memory_entry->stack_trace_size = stack_trace_size;
@@ -39,6 +41,8 @@ void* tracked_aligned_malloc(s_tracked_memory_stats* stats, size_t size, size_t 
 	tracked_memory_entry->total_memory_aligned_size = total_memory_aligned_size;
 	tracked_memory_entry->stack_trace = stack_trace_memory;
 	memcpy(tracked_memory_entry->stack_trace, stack_trace, stack_trace_size);
+	tracked_memory_entry->filepath = filepath;
+	tracked_memory_entry->line = line;
 
 	DWORD thread_id = GetCurrentThreadId();
 	while (InterlockedCompareExchange(&tracked_memory_entries_spin_lock, thread_id, 0));
@@ -94,7 +98,7 @@ void tracked_aligned_free(void* allocated_memory)
 	}
 }
 
-void* tracked_malloc(s_tracked_memory_stats* stats, size_t size)
+void* _tracked_malloc(s_tracked_memory_stats& stats, size_t size, const char* filepath, long line)
 {
 	size_t alignment = 1;
 	const char* stack_trace = "hello world hello world hello world";
@@ -112,7 +116,7 @@ void* tracked_malloc(s_tracked_memory_stats* stats, size_t size)
 
 	tracked_memory_entry->next = nullptr;
 	tracked_memory_entry->previous = nullptr;
-	tracked_memory_entry->stats = stats;
+	tracked_memory_entry->stats = &stats;
 	tracked_memory_entry->tracked_memory = tracked_memory;
 	tracked_memory_entry->memory = memory;
 	tracked_memory_entry->stack_trace_size = stack_trace_size;
@@ -122,6 +126,8 @@ void* tracked_malloc(s_tracked_memory_stats* stats, size_t size)
 	tracked_memory_entry->total_memory_aligned_size = total_memory_aligned_size;
 	tracked_memory_entry->stack_trace = stack_trace_memory;
 	memcpy(tracked_memory_entry->stack_trace, stack_trace, stack_trace_size);
+	tracked_memory_entry->filepath = filepath;
+	tracked_memory_entry->line = line;
 
 	DWORD thread_id = GetCurrentThreadId();
 	while (InterlockedCompareExchange(&tracked_memory_entries_spin_lock, thread_id, 0));

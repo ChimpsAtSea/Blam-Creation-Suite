@@ -49,7 +49,7 @@ c_model_preview_test::c_model_preview_test(
 {
 	if (render_model)
 	{
-		viewport = new c_viewport();
+		viewport = new() c_viewport();
 
 		float4 background_color = { 0.16f, 0.10f, 0.16f, 1.0f };
 		BCS_FAIL_THROW(render_context_imgui_create(
@@ -74,7 +74,7 @@ c_model_preview_test::c_model_preview_test(
 		unsigned long mesh_count = render_model->render_geometry.meshes_block.size();
 		for (unsigned long mesh_index = 0; mesh_index < mesh_count; mesh_index++)
 		{
-			c_infinite_tag_model* infinite_tag_model = new c_infinite_tag_model(*graphics, *render_model, mesh_index);
+			c_infinite_tag_model* infinite_tag_model = new() c_infinite_tag_model(*graphics, *render_model, mesh_index);
 
 			model_parts.push_back(infinite_tag_model);
 		}

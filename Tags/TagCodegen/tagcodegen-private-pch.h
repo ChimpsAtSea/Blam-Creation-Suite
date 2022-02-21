@@ -23,3 +23,5 @@
 #include "high_level_tag_source_generator.h"
 #include "structure_relationship_node.h"
 #include "filesystem_helper.h"
+
+#include "tagcodegen_tracked_memory.h"

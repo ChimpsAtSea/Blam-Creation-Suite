@@ -42,6 +42,9 @@
     <ClCompile Include="filesystem_helper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tagcodegen_tracked_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tagcodegen-private-pch.h">
@@ -69,6 +72,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="filesystem_helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tagcodegen_tracked_memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -21,7 +21,7 @@ c_h1_pseudo_field_definition::c_h1_pseudo_field_definition(const char* guerilla_
 			ASSERT(strstr(name, "(") == nullptr);
 			const char* bad_description = h1_va_to_pointer(guerilla_data, field.definition_address);
 			size_t new_name_buffer_size = strlen(name) + strlen(bad_description) + 2;
-			char* new_name_buffer = new char[new_name_buffer_size];
+			char* new_name_buffer = new() char[new_name_buffer_size];
 			snprintf(new_name_buffer, new_name_buffer_size, "%s#%s", name, bad_description);
 			new_name_buffer[new_name_buffer_size - 1] = 0;
 

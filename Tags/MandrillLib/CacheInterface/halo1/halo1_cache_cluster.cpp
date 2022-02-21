@@ -29,22 +29,22 @@ c_halo1_cache_cluster::c_halo1_cache_cluster(c_halo1_cache_file_reader** cache_r
 
 		if (BCS_SUCCEEDED(cache_reader->get_buffer(_debug_section_buffer, temp_info)))
 		{
-			debug_readers[cache_reader] = new c_halo1_debug_reader(*this, *cache_reader);
+			debug_readers[cache_reader] = new() c_halo1_debug_reader(*this, *cache_reader);
 		}
 
 		if (BCS_SUCCEEDED(cache_reader->get_buffer(_resources_section_buffer, temp_info)))
 		{
-			resource_readers[cache_reader] = new c_halo1_resource_reader(*this, *cache_reader);
+			resource_readers[cache_reader] = new() c_halo1_resource_reader(*this, *cache_reader);
 		}
 
 		if (BCS_SUCCEEDED(cache_reader->get_buffer(_localization_section_buffer, temp_info)))
 		{
-			localization_readers[cache_reader] = new c_halo1_localization_reader(*this, *cache_reader);
+			localization_readers[cache_reader] = new() c_halo1_localization_reader(*this, *cache_reader);
 		}
 
 		if (BCS_SUCCEEDED(cache_reader->get_buffer(_tag_section_buffer, temp_info)))
 		{
-			tag_readers[cache_reader] = new c_halo1_tag_reader(*this, *cache_reader);
+			tag_readers[cache_reader] = new() c_halo1_tag_reader(*this, *cache_reader);
 		}
 
 		debug_point;

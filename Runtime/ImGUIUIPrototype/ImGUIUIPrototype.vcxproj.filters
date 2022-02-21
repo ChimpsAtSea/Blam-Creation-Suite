@@ -21,12 +21,20 @@
     <ClCompile Include="mandrill_ui_prototype.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="imguiuiprototype_tracked_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ResourceCompile Include="$(ResourcesFilepath)" />
+    <ResourceCompile Include="$(ResourcesFilepath)" />
     <ResourceCompile Include="$(ResourcesFilepath)" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imguiuiprototype-private-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imguiuiprototype_tracked_memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -10,7 +10,7 @@ c_tag_file_index_chunk::c_tag_file_index_chunk(const void* chunk_data, c_chunk& 
 	const s_compressed_tag_file_index_entry* src_compressed_tag_file_index_entry = next_contiguous_pointer<s_compressed_tag_file_index_entry>(src_tag_file_index_header);
 
 	tag_file_index_header = chunk_byteswap(*src_tag_file_index_header);
-	compressed_tag_file_index_entries = new s_compressed_tag_file_index_entry[tag_file_index_header.compressed_entry_count];
+	compressed_tag_file_index_entries = new() s_compressed_tag_file_index_entry[tag_file_index_header.compressed_entry_count];
 	name_buffer = reinterpret_cast<const char*>(src_compressed_tag_file_index_entry + tag_file_index_header.compressed_entry_count);
 
 	for (unsigned long compressed_entry_index = 0; compressed_entry_index < tag_file_index_header.compressed_entry_count; compressed_entry_index++)

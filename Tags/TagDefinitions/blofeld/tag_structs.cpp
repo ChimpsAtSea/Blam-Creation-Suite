@@ -96,7 +96,7 @@ namespace blofeld
 
 		get_tag_struct_definition_count(engine_platform_build);
 
-		tag_struct_definitions[engine_platform_build.engine_type] = new const s_tag_struct_definition * [tag_struct_definition_counts[engine_platform_build.engine_type] + 1]{};
+		tag_struct_definitions[engine_platform_build.engine_type] = new() const s_tag_struct_definition * [tag_struct_definition_counts[engine_platform_build.engine_type] + 1]{};
 		const s_tag_struct_definition** tag_struct_definition_write_position = tag_struct_definitions[engine_platform_build.engine_type];
 
 		s_tag_struct_definition_search_callback_userdata userdata;

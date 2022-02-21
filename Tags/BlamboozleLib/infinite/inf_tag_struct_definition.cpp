@@ -33,7 +33,7 @@ c_inf_tag_struct_definition::c_inf_tag_struct_definition(const char* data, const
 	const s_inf_tag_field* field_definition = field_definitions;
 	do
 	{
-		c_inf_tag_field* field_wrapper = new c_inf_tag_field(data, *field_definition);
+		c_inf_tag_field* field_wrapper = new() c_inf_tag_field(data, *field_definition);
 		fields.push_back(field_wrapper);
 	} while ((field_definition++)->field_type != _inf_field_type_terminator_X);
 }

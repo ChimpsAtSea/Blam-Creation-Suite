@@ -1,5 +1,7 @@
 #include "platform-private-pch.h"
 
+static s_tracked_memory_stats filesystem_tracked_memory = { "filesystem", &platform_tracked_memory };
+
 
 const char* filesystem_extract_filepath_filename(const char* filepath)
 {
@@ -207,7 +209,7 @@ static BCS_RESULT filesystem_read_file_to_memory(HANDLE file_handle, void*& buff
 	}
 	else
 	{
-		char* file_data_buffer = new char[buffer_size];
+		char* file_data_buffer = new(filesystem_tracked_memory) char[buffer_size];
 		buffer = file_data_buffer;
 		unsigned long long number_of_bytes_remaining = file_size.QuadPart;
 		while (number_of_bytes_remaining > 0)
@@ -462,7 +464,7 @@ BCS_RESULT create_memory_mapped_file(const wchar_t* filepath, bool read_only, t_
 		return BCS_E_FAIL;
 	}
 
-	t_memory_mapped_file& file_storage = *(file = new t_memory_mapped_file());
+	t_memory_mapped_file& file_storage = *(file = new(filesystem_tracked_memory) t_memory_mapped_file());
 	file_storage.file_handle = file_handle;
 	file_storage.file_map_handle = file_map_handle;
 	file_storage.file_size = mapped_file_size.QuadPart;
@@ -617,5 +619,3 @@ BCS_RESULT filesystem_traverse_directory_files(const wchar_t* directory, const w
 
 	return BCS_S_OK;
 }
-
-#include "filesystem.deprecated.inl"

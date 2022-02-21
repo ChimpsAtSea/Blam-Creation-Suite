@@ -288,7 +288,7 @@ BCS_RESULT resources_read_resource_to_memory(e_bcs_resource_type type, void*& ou
 		return rs;
 	}
 
-	void* buffer = tracked_malloc(&platform_resources_memory_stats, buffer_size);
+	void* buffer = tracked_malloc(platform_resources_memory_stats, buffer_size);
 	if (BCS_FAILED(rs = resources_copy_resource_to_buffer(type, buffer, buffer_size)))
 	{
 		tracked_free(buffer);

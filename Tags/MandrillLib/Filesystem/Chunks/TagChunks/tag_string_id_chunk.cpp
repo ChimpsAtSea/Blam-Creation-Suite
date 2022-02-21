@@ -5,7 +5,7 @@ c_tag_string_id_chunk::c_tag_string_id_chunk(const void* chunk_data, c_chunk& pa
 	string()
 {
 	intptr_t string_length = chunk_data_end - chunk_data_begin;
-	char* string_bufer = new char[string_length + 1];
+	char* string_bufer = new() char[string_length + 1];
 	memcpy(string_bufer, chunk_data_begin, string_length);
 	string_bufer[string_length] = 0;
 

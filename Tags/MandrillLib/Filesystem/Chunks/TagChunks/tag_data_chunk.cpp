@@ -5,7 +5,7 @@ c_tag_data_chunk::c_tag_data_chunk(const void* chunk_data, c_chunk& parent, c_si
 	data()
 {
 	data_length = static_cast<unsigned long>(chunk_data_end - chunk_data_begin);
-	data = new char[data_length];
+	data = new() char[data_length];
 	memcpy(data, chunk_data_begin, data_length);
 	debug_point;
 

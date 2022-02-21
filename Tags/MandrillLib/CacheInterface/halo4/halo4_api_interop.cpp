@@ -116,7 +116,7 @@ c_halo4_vectorart_vertex_buffer_interop::c_halo4_vectorart_vertex_buffer_interop
 	tag_reader.page_offset_to_pointer(interop_data.vertices.address, source_vertex_data);
 
 	vertex_data_size = interop_data.vertices.size;
-	vertex_data = new char[vertex_data_size];
+	vertex_data = new() char[vertex_data_size];
 	memcpy(vertex_data, source_vertex_data, vertex_data_size);
 
 	debug_point;
@@ -144,7 +144,7 @@ c_halo4_polyart_vertex_buffer_interop::c_halo4_polyart_vertex_buffer_interop(c_h
 	tag_reader.page_offset_to_pointer(interop_data.vertices.address, source_vertex_data);
 
 	vertex_data_size = interop_data.vertices.size;
-	vertex_data = new char[vertex_data_size];
+	vertex_data = new() char[vertex_data_size];
 	memcpy(vertex_data, source_vertex_data, vertex_data_size);
 	vertex_type = interop_data.vertex_type;
 
@@ -172,7 +172,7 @@ c_halo4_polyart_index_buffer_interop::c_halo4_polyart_index_buffer_interop(c_hal
 	tag_reader.page_offset_to_pointer(interop_data.index_data.address, source_index_data);
 
 	index_data_size = interop_data.index_data.size;
-	index_data = new char[index_data_size];
+	index_data = new() char[index_data_size];
 	memcpy(index_data, source_index_data, index_data_size);
 
 	debug_point;

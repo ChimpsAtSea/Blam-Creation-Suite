@@ -1465,7 +1465,7 @@
 //	{
 //		if (custom_tool == nullptr)
 //		{
-//			custom_tool = new c_custom_tool_render_model(cache_file, reinterpret_cast<blofeld::haloreach::s_object_struct_definition*>(structure_data));
+//			custom_tool = new() c_custom_tool_render_model(cache_file, reinterpret_cast<blofeld::haloreach::s_object_struct_definition*>(structure_data));
 //		}
 //		custom_tool->render();
 //	}

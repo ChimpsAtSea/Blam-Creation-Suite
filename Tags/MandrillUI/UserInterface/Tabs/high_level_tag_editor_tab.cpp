@@ -72,7 +72,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 
 		if (model_tag)
 		{
-			model_preview_test = new c_model_preview_test(mandrill_user_interface->imgui_viewport_render_context, *model_tag, object_tag);
+			model_preview_test = new() c_model_preview_test(mandrill_user_interface->imgui_viewport_render_context, *model_tag, object_tag);
 		}
 	}
 }
@@ -1311,7 +1311,7 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& o
 	{
 		if (custom_tool == nullptr)
 		{
-			//custom_tool = new c_custom_tool_render_model(cache_file, reinterpret_cast<haloreach::s_object_struct_definition*>(structure_data));
+			//custom_tool = new() c_custom_tool_render_model(cache_file, reinterpret_cast<haloreach::s_object_struct_definition*>(structure_data));
 		}
 		//custom_tool->render();
 		ImGui::Text("CUSTOM TOOL!!!");

@@ -1,5 +1,7 @@
 #include "platform-private-pch.h"
 
+static s_tracked_memory_stats callback_tracked_memory = { "c_callback", &platform_tracked_memory };
+
 unsigned long long c_callback::next_unique_id = 1;
 
 c_callback::c_callback() :
@@ -20,7 +22,7 @@ c_callback::~c_callback()
 
 BCS_RESULT c_callback::add_callback(void* callback, t_callback_handle& callback_handle)
 {
-	s_callback_entry* new_entry = new s_callback_entry{};
+	s_callback_entry* new_entry = new(callback_tracked_memory) s_callback_entry{};
 	new_entry->num_userdata = 0;
 	new_entry->callback = callback;
 	new_entry->unique_id = next_unique_id++;
@@ -34,7 +36,7 @@ BCS_RESULT c_callback::add_callback(void* callback, t_callback_handle& callback_
 
 BCS_RESULT c_callback::add_callback(void* callback, void* userdata, t_callback_handle& callback_handle)
 {
-	s_callback_entry* new_entry = new s_callback_entry{};
+	s_callback_entry* new_entry = new(callback_tracked_memory) s_callback_entry{};
 	new_entry->num_userdata = 1;
 	new_entry->userdata[0] = userdata;
 	new_entry->callback = callback;
@@ -49,7 +51,7 @@ BCS_RESULT c_callback::add_callback(void* callback, void* userdata, t_callback_h
 
 BCS_RESULT c_callback::add_callback(void* callback, void* userdata0, void* userdata1, t_callback_handle& callback_handle)
 {
-	s_callback_entry* new_entry = new s_callback_entry{};
+	s_callback_entry* new_entry = new(callback_tracked_memory) s_callback_entry{};
 	new_entry->num_userdata = 2;
 	new_entry->userdata[0] = userdata0;
 	new_entry->userdata[1] = userdata1;
@@ -65,7 +67,7 @@ BCS_RESULT c_callback::add_callback(void* callback, void* userdata0, void* userd
 
 BCS_RESULT c_callback::add_callback(void* callback, void* userdata0, void* userdata1, void* userdata2, t_callback_handle& callback_handle)
 {
-	s_callback_entry* new_entry = new s_callback_entry{};
+	s_callback_entry* new_entry = new(callback_tracked_memory) s_callback_entry{};
 	new_entry->num_userdata = 3;
 	new_entry->userdata[0] = userdata0;
 	new_entry->userdata[1] = userdata1;
@@ -82,7 +84,7 @@ BCS_RESULT c_callback::add_callback(void* callback, void* userdata0, void* userd
 
 BCS_RESULT c_callback::add_callback(void* callback, void* userdata0, void* userdata1, void* userdata2, void* userdata3, t_callback_handle& callback_handle)
 {
-	s_callback_entry* new_entry = new s_callback_entry{};
+	s_callback_entry* new_entry = new(callback_tracked_memory) s_callback_entry{};
 	new_entry->num_userdata = 4;
 	new_entry->userdata[0] = userdata0;
 	new_entry->userdata[1] = userdata1;
@@ -100,7 +102,7 @@ BCS_RESULT c_callback::add_callback(void* callback, void* userdata0, void* userd
 
 BCS_RESULT c_callback::add_callback(void* callback, void* userdata0, void* userdata1, void* userdata2, void* userdata3, void* userdata4, t_callback_handle& callback_handle)
 {
-	s_callback_entry* new_entry = new s_callback_entry{};
+	s_callback_entry* new_entry = new(callback_tracked_memory) s_callback_entry{};
 	new_entry->num_userdata = 5;
 	new_entry->userdata[0] = userdata0;
 	new_entry->userdata[1] = userdata1;
@@ -119,7 +121,7 @@ BCS_RESULT c_callback::add_callback(void* callback, void* userdata0, void* userd
 
 BCS_RESULT c_callback::add_callback(void* callback, void* userdata0, void* userdata1, void* userdata2, void* userdata3, void* userdata4, void* userdata5, t_callback_handle& callback_handle)
 {
-	s_callback_entry* new_entry = new s_callback_entry{};
+	s_callback_entry* new_entry = new(callback_tracked_memory) s_callback_entry{};
 	new_entry->num_userdata = 6;
 	new_entry->userdata[0] = userdata0;
 	new_entry->userdata[1] = userdata1;
@@ -139,7 +141,7 @@ BCS_RESULT c_callback::add_callback(void* callback, void* userdata0, void* userd
 
 BCS_RESULT c_callback::add_callback(void* callback, void* userdata0, void* userdata1, void* userdata2, void* userdata3, void* userdata4, void* userdata5, void* userdata6, t_callback_handle& callback_handle)
 {
-	s_callback_entry* new_entry = new s_callback_entry{};
+	s_callback_entry* new_entry = new(callback_tracked_memory) s_callback_entry{};
 	new_entry->num_userdata = 7;
 	new_entry->userdata[0] = userdata0;
 	new_entry->userdata[1] = userdata1;
@@ -160,7 +162,7 @@ BCS_RESULT c_callback::add_callback(void* callback, void* userdata0, void* userd
 
 BCS_RESULT c_callback::add_callback(void* callback, void* userdata0, void* userdata1, void* userdata2, void* userdata3, void* userdata4, void* userdata5, void* userdata6, void* userdata7, t_callback_handle& callback_handle)
 {
-	s_callback_entry* new_entry = new s_callback_entry{};
+	s_callback_entry* new_entry = new(callback_tracked_memory) s_callback_entry{};
 	new_entry->num_userdata = 8;
 	new_entry->userdata[0] = userdata0;
 	new_entry->userdata[1] = userdata1;

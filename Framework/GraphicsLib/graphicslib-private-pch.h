@@ -18,6 +18,7 @@
 #include <d3d12.h>
 #include <directx\d3dx12.h>
 
+#define PLATFORM_ENABLE_THROW_NEW
 #include <Platform\platform-public-pch.h>
 #include <TemplateLibrary\templatelibrary-public-pch.h>
 #include <Shared\shared-public-pch.h>
@@ -34,3 +35,5 @@
 #include "Scenes\window_render_context.h"
 
 #include <DirectXMath.h>
+
+#include "graphicslib_tracked_memory.h"

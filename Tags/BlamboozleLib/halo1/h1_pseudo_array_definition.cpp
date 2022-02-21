@@ -26,7 +26,7 @@ c_h1_pseudo_array_definition::c_h1_pseudo_array_definition(const char* guerilla_
 	}
 	code_name += "_array";
 
-	pseudo_struct_definition = new c_h1_pseudo_struct_definition(guerilla_data, fields_begin + 1, block_definition, this);
+	pseudo_struct_definition = new() c_h1_pseudo_struct_definition(guerilla_data, fields_begin + 1, block_definition, this);
 	pseudo_struct_definition->pseudo_array_definition = this;
 
 	ASSERT(pseudo_struct_definition->fields_end->field_type == _h1_field_type_array_end);

@@ -13,7 +13,7 @@ c_string_offsets_chunk::c_string_offsets_chunk(const void* chunk_data, c_chunk& 
 	if (entry_count > 0)
 	{
 		const s_tag_persist_string_character_index* src_offsets = reinterpret_cast<const s_tag_persist_string_character_index*>(chunk_data_begin);
-		offsets = new s_tag_persist_string_character_index[entry_count];
+		offsets = new() s_tag_persist_string_character_index[entry_count];
 		for (unsigned long entry_index = 0; entry_index < entry_count; entry_index++)
 		{
 			s_tag_persist_string_character_index& offset = offsets[entry_index];

@@ -24,8 +24,8 @@ c_tag_group_layout_chunk::c_tag_group_layout_chunk(const void* chunk_data, c_chu
 
 		// #HACK: The same data for this chunk is passed down to the child. This means that the child chunk has the same data
 		// begin and end positions as this current chunk.
-		c_tag_layout_prechunk_chunk* layout_prechunk_chunk = new c_tag_layout_prechunk_chunk(chunk_data, *this);
-		children = new c_chunk * [2]{ layout_prechunk_chunk, nullptr };
+		c_tag_layout_prechunk_chunk* layout_prechunk_chunk = new() c_tag_layout_prechunk_chunk(chunk_data, *this);
+		children = new() c_chunk * [2]{ layout_prechunk_chunk, nullptr };
 	}
 	break;
 	case _tag_persist_layout_version_preinterop:

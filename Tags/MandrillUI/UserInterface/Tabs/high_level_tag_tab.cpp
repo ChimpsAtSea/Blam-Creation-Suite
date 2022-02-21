@@ -7,12 +7,12 @@ c_high_level_tag_tab::c_high_level_tag_tab(c_tag_project& tag_project, h_tag& ta
 	tag_project(tag_project),
 	tag(tag)
 {
-	c_high_level_tag_editor_tab* blofeld_tag_editor_gui_tab = new c_high_level_tag_editor_tab(tag_project, tag, *this);
+	c_high_level_tag_editor_tab* blofeld_tag_editor_gui_tab = new() c_high_level_tag_editor_tab(tag_project, tag, *this);
 	add_tab(*blofeld_tag_editor_gui_tab);
 
 	if (blofeld::halo1::h_bitmap_struct_definition* halo1_bitmap_tag = dynamic_cast<decltype(halo1_bitmap_tag)>(&tag))
 	{
-		c_halo1_bitmap_tag_viewer_tab* bitmap_tag_viewer_tab = new c_halo1_bitmap_tag_viewer_tab(tag_project, *halo1_bitmap_tag, *this);
+		c_halo1_bitmap_tag_viewer_tab* bitmap_tag_viewer_tab = new() c_halo1_bitmap_tag_viewer_tab(tag_project, *halo1_bitmap_tag, *this);
 		add_tab(*bitmap_tag_viewer_tab);
 
 		this->set_next_selected_tab(*bitmap_tag_viewer_tab);

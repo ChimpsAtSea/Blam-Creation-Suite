@@ -155,7 +155,7 @@ c_halo4_debug_reader::c_halo4_debug_reader(c_halo4_cache_cluster& cache_cluster,
 	long string_id_buffer_relative_offset = cache_file_header.string_id_string_storage_offset - buffers_info.debug_section_buffer.offset;
 	const char* encrypted_string_id_buffer = reinterpret_cast<const char*>(buffers_info.debug_section_buffer.begin + string_id_buffer_relative_offset);
 
-	string_id_buffer = static_cast<char*>(_aligned_malloc(cache_file_header.string_id_string_storage_size, sizeof(__m128i)));
+	string_id_buffer = static_cast<char*>(tracked_aligned_malloc(halo4_cache_interface_tracked_memory, cache_file_header.string_id_string_storage_size, sizeof(__m128i)));
 	if (string_id_buffer == nullptr)
 	{
 		throw(BCS_E_FAIL);
@@ -170,7 +170,7 @@ c_halo4_debug_reader::c_halo4_debug_reader(c_halo4_cache_cluster& cache_cluster,
 	long file_table_buffer_relative_offset = cache_file_header.file_table_offset - buffers_info.debug_section_buffer.offset;
 	const char* encrypted_file_table_buffer = reinterpret_cast<const char*>(buffers_info.debug_section_buffer.begin + file_table_buffer_relative_offset);
 
-	file_table_buffer = static_cast<char*>(_aligned_malloc(cache_file_header.file_table_length, sizeof(__m128i)));
+	file_table_buffer = static_cast<char*>(tracked_aligned_malloc(halo4_cache_interface_tracked_memory, cache_file_header.file_table_length, sizeof(__m128i)));
 	if (file_table_buffer == nullptr)
 	{
 		throw(BCS_E_FAIL);
@@ -179,7 +179,7 @@ c_halo4_debug_reader::c_halo4_debug_reader(c_halo4_cache_cluster& cache_cluster,
 	halo4_aes128_decrypt(encrypted_file_table_buffer, file_table_buffer, cache_file_header.file_table_length, c_halo4_cache_file_reader::k_file_name_encryption_key);
 
 	//DEBUG_ASSERT(cache_file_header.string_id_index_buffer_count >= k_engine_string_ids_total);
-	//string_id_table_buffer = new const char* [cache_file_header.string_id_index_buffer_count];
+	//string_id_table_buffer = new() const char* [cache_file_header.string_id_index_buffer_count];
 
 	//unsigned long const cache_file_string_id_count = cache_file_header.string_id_index_buffer_count - k_engine_string_ids_total;
 
@@ -233,9 +233,9 @@ c_halo4_debug_reader::c_halo4_debug_reader(c_halo4_cache_cluster& cache_cluster,
 
 c_halo4_debug_reader::~c_halo4_debug_reader()
 {
-	_aligned_free(string_id_buffer);
-	//_aligned_free(string_id_index_buffer);
-	_aligned_free(file_table_buffer);
+	tracked_aligned_free(string_id_buffer);
+	//tracked_aligned_free(string_id_index_buffer);
+	tracked_aligned_free(file_table_buffer);
 }
 
 BCS_RESULT c_halo4_debug_reader::string_id_to_string(string_id stringid, const char*& string)

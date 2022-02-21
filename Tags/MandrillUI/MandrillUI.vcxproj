@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="mandrillui_tracked_memory.h" />
     <ClInclude Include="UserInterface\Editors\infinite_tag_model.h" />
     <ClInclude Include="UserInterface\Editors\infinite_tag_mesh.h" />
     <ClInclude Include="UserInterface\Editors\model_preview_test.h" />
@@ -48,6 +49,7 @@
     <ClInclude Include="UserInterface\UserInterface.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="mandrillui_tracked_memory.cpp" />
     <ClCompile Include="UserInterface\Editors\infinite_tag_model.cpp" />
     <ClCompile Include="UserInterface\Editors\infinite_tag_mesh.cpp" />
     <ClCompile Include="UserInterface\Editors\model_preview_test.cpp" />
@@ -84,26 +86,22 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -142,13 +140,13 @@
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mandrillui-private-pch.h</PrecompiledHeaderFile>
       <DisableSpecificWarnings>4200</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;TagDefinitions.lib;TagReflection.lib;GraphicsLib.lib;imgui.lib;blamlib.lib;MandrillLib.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -169,13 +167,13 @@
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mandrillui-private-pch.h</PrecompiledHeaderFile>
       <DisableSpecificWarnings>4200</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;TagDefinitions.lib;TagReflection.lib;GraphicsLib.lib;imgui.lib;blamlib.lib;MandrillLib.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -198,7 +196,6 @@
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mandrillui-private-pch.h</PrecompiledHeaderFile>
       <DisableSpecificWarnings>4200</DisableSpecificWarnings>
@@ -226,7 +223,6 @@
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mandrillui-private-pch.h</PrecompiledHeaderFile>
       <DisableSpecificWarnings>4200</DisableSpecificWarnings>

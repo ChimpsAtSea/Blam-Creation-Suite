@@ -224,7 +224,7 @@ c_h4_tag_block* c_h4_blamboozle::get_tag_block_definition(
 		return tag_block_definition_iterator->second;
 	}
 
-	c_h4_tag_block* tag_block_definition = reinterpret_cast<c_h4_tag_block*>(tracked_malloc(&library_tracked_memory, sizeof(c_h4_tag_block)));
+	c_h4_tag_block* tag_block_definition = reinterpret_cast<c_h4_tag_block*>(tracked_malloc(blamboozlelib_tracked_memory, sizeof(c_h4_tag_block)));
 	tag_block_definitions[definition_header] = tag_block_definition;
 	new(tag_block_definition) c_h4_tag_block(h4_data, definition_header, tag_layout_header);
 
@@ -246,7 +246,7 @@ c_h4_tag_array* c_h4_blamboozle::get_tag_array_definition(const char* h4_data, c
 		return tag_block_definition_iterator->second;
 	}
 
-	c_h4_tag_block* tag_block_definition = reinterpret_cast<c_h4_tag_block*>(tracked_malloc(&library_tracked_memory, sizeof(c_h4_tag_block)));
+	c_h4_tag_block* tag_block_definition = reinterpret_cast<c_h4_tag_block*>(tracked_malloc(blamboozlelib_tracked_memory, sizeof(c_h4_tag_block)));
 	tag_block_definitions[definition_header] = tag_block_definition;
 	new(tag_block_definition) c_h4_tag_block(h4_data, definition_header);
 
@@ -279,7 +279,7 @@ c_h4_tag_interop* c_h4_blamboozle::get_tag_api_interop_definition(
 		}
 	}
 
-	c_h4_tag_interop* tag_api_interop_definition = reinterpret_cast<c_h4_tag_interop*>(tracked_malloc(&library_tracked_memory, sizeof(c_h4_tag_interop)));
+	c_h4_tag_interop* tag_api_interop_definition = reinterpret_cast<c_h4_tag_interop*>(tracked_malloc(blamboozlelib_tracked_memory, sizeof(c_h4_tag_interop)));
 	tag_api_interop_definitions[definition_header] = tag_api_interop_definition;
 	new(tag_api_interop_definition) c_h4_tag_interop(h4_data, definition_header);
 
@@ -313,7 +313,7 @@ c_h4_tag_resource* c_h4_blamboozle::get_tag_resource_definition(
 		}
 	}
 
-	c_h4_tag_resource* tag_resource_definition = reinterpret_cast<c_h4_tag_resource*>(tracked_malloc(&library_tracked_memory, sizeof(c_h4_tag_resource)));
+	c_h4_tag_resource* tag_resource_definition = reinterpret_cast<c_h4_tag_resource*>(tracked_malloc(blamboozlelib_tracked_memory, sizeof(c_h4_tag_resource)));
 	tag_resource_definitions[definition_header] = tag_resource_definition;
 	new(tag_resource_definition) c_h4_tag_resource(h4_data, definition_header);
 
@@ -352,7 +352,7 @@ c_h4_tag_struct* c_h4_blamboozle::get_tag_struct_definition(
 		}
 	}
 
-	c_h4_tag_struct* tag_struct_definition = reinterpret_cast<c_h4_tag_struct*>(tracked_malloc(&library_tracked_memory, sizeof(c_h4_tag_struct)));
+	c_h4_tag_struct* tag_struct_definition = reinterpret_cast<c_h4_tag_struct*>(tracked_malloc(blamboozlelib_tracked_memory, sizeof(c_h4_tag_struct)));
 	tag_struct_definitions[definition_header] = tag_struct_definition;
 	new(tag_struct_definition) c_h4_tag_struct(h4_data, definition_header, offset);
 
@@ -390,7 +390,7 @@ c_h4_tag_enum* c_h4_blamboozle::get_tag_enum_definition(
 		}
 	}
 
-	c_h4_tag_enum* tag_enum_definition = reinterpret_cast<c_h4_tag_enum*>(tracked_malloc(&library_tracked_memory, sizeof(c_h4_tag_enum)));
+	c_h4_tag_enum* tag_enum_definition = reinterpret_cast<c_h4_tag_enum*>(tracked_malloc(blamboozlelib_tracked_memory, sizeof(c_h4_tag_enum)));
 	tag_enum_definitions[definition_header] = tag_enum_definition;
 	new(tag_enum_definition) c_h4_tag_enum(h4_data, definition_header);
 
@@ -413,7 +413,7 @@ c_h4_tag_reference* c_h4_blamboozle::get_tag_reference_definition(const char* h4
 		return tag_reference_definition_iterator->second;
 	}
 
-	c_h4_tag_reference* tag_reference_definition = reinterpret_cast<c_h4_tag_reference*>(tracked_malloc(&library_tracked_memory, sizeof(c_h4_tag_reference)));
+	c_h4_tag_reference* tag_reference_definition = reinterpret_cast<c_h4_tag_reference*>(tracked_malloc(blamboozlelib_tracked_memory, sizeof(c_h4_tag_reference)));
 	tag_reference_definitions[definition_header] = tag_reference_definition;
 	new(tag_reference_definition) c_h4_tag_reference(h4_data, definition_header, definition_address);
 
@@ -471,7 +471,7 @@ int c_h4_blamboozle::run()
 		//if (layout_header->group_tag.value == 'dpib')
 		//if (_byteswap_ulong(layout_header->group_tag.value) == 'hlmt')
 		{
-			c_h4_tag_group* tag_layout = new c_h4_tag_group(h4_data, layout_header);
+			c_h4_tag_group* tag_layout = new() c_h4_tag_group(h4_data, layout_header);
 			tag_groups.emplace_back(tag_layout);
 		}
 	}

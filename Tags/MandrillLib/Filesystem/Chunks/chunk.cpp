@@ -234,7 +234,7 @@ c_chunk** c_chunk::create_child_chunks_fast(const char* data_start, void* userda
 		size_t chunk_pointer_list_size = sizeof(c_chunk*) * (chunk_list_length + 1);
 		size_t chunk_allocation_size = chunk_pointer_list_size + chunk_list_data_size;
 
-		char* chunk_data_allocation = new char[chunk_allocation_size];
+		char* chunk_data_allocation = new() char[chunk_allocation_size];
 		char* chunk_data_pos = chunk_data_allocation + chunk_pointer_list_size;
 		chunk_pointers = reinterpret_cast<c_chunk**>(chunk_data_pos); // list stored in reverse
 
@@ -272,9 +272,9 @@ c_chunk** c_chunk::create_child_chunks_slow(const char* data_start, void* userda
 #define CHUNK_CTOR_EX(_signature, t_structure, ...) \
 		case (_signature): \
 		{ \
-			s_stack_chunk_list_entry* chunk_list_entry = new s_stack_chunk_list_entry; \
+			s_stack_chunk_list_entry* chunk_list_entry = new() s_stack_chunk_list_entry; \
 			chunk_list_length++; \
-			c_chunk* chunk = chunk_list_entry->chunk = new t_structure(__VA_ARGS__); \
+			c_chunk* chunk = chunk_list_entry->chunk = new() t_structure(__VA_ARGS__); \
 			chunk_list_entry->previous = chunk_list_start; \
 			chunk_list_start = chunk_list_entry; \
 			data_position = chunk->chunk_data_end; \
@@ -345,7 +345,7 @@ c_chunk** c_chunk::create_child_chunks_slow(const char* data_start, void* userda
 	c_chunk** chunk_pointers;
 	// allocate memory and copy to heap
 	{
-		c_chunk** chunk_pointers_alloc = chunk_pointers = new c_chunk * [chunk_list_length + 1];
+		c_chunk** chunk_pointers_alloc = chunk_pointers = new() c_chunk * [chunk_list_length + 1];
 		chunk_pointers += chunk_list_length + 1;
 
 		*(--chunk_pointers) = nullptr;

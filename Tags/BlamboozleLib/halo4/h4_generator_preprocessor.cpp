@@ -382,7 +382,7 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 		const char* filepath = blofeld_path + strlen("blofeld\\");
 
 		c_h4_source_file& source_file = get_source_file(filepath, *this);
-		c_h4_tag_group_container* group_container = new c_h4_tag_group_container(*tag_group, *this, source_file);
+		c_h4_tag_group_container* group_container = new() c_h4_tag_group_container(*tag_group, *this, source_file);
 		group_containers.push_back(group_container);
 	}
 
@@ -450,7 +450,7 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 		c_h4_tag_enum_container* tag_enum_container = find_existing_tag_enum_container(tag_enum);
 		if (tag_enum_container == nullptr)
 		{
-			tag_enum_container = new c_h4_tag_enum_container(tag_enum, *this);
+			tag_enum_container = new() c_h4_tag_enum_container(tag_enum, *this);
 		}
 	}
 
@@ -473,7 +473,7 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 		c_h4_tag_reference_container* tag_reference_container = find_existing_tag_reference_container(tag_reference);
 		if (tag_reference_container == nullptr)
 		{
-			tag_reference_container = new c_h4_tag_reference_container(tag_reference, *this);
+			tag_reference_container = new() c_h4_tag_reference_container(tag_reference, *this);
 		}
 	}
 
@@ -603,7 +603,7 @@ void c_h4_generator_preprocessor::process_tag_reference_field(c_h4_tag_field* ta
 	c_h4_tag_reference_container* tag_reference_container = find_existing_tag_reference_container(*tag_reference);
 	if (tag_reference_container == nullptr)
 	{
-		tag_reference_container = new c_h4_tag_reference_container(*tag_reference, *this);
+		tag_reference_container = new() c_h4_tag_reference_container(*tag_reference, *this);
 	}
 
 	if (tag_reference_container->name.empty())
@@ -679,7 +679,7 @@ c_h4_tag_block_container& c_h4_generator_preprocessor::traverse_tag_blocks(c_h4_
 	c_h4_tag_block_container* tag_block_container = find_existing_tag_block_container(tag_block);
 	if (tag_block_container == nullptr)
 	{
-		tag_block_container = new c_h4_tag_block_container(tag_block, *this, group_container, defined_by_tag_group);
+		tag_block_container = new() c_h4_tag_block_container(tag_block, *this, group_container, defined_by_tag_group);
 	}
 	if(traverse && !tag_block_container->has_traversed)
 	{
@@ -754,7 +754,7 @@ c_h4_tag_struct_container& c_h4_generator_preprocessor::traverse_tag_structs(c_h
 	c_h4_tag_struct_container* tag_struct_container = find_existing_tag_struct_container(tag_struct);
 	if (tag_struct_container == nullptr)
 	{
-		tag_struct_container = new c_h4_tag_struct_container(tag_struct, *this, block_container, is_tag_group, is_block, is_array, is_interop, is_resource);
+		tag_struct_container = new() c_h4_tag_struct_container(tag_struct, *this, block_container, is_tag_group, is_block, is_array, is_interop, is_resource);
 	}
 	if (traverse && !tag_struct_container->has_traversed)
 	{
@@ -800,7 +800,7 @@ c_h4_source_file& c_h4_generator_preprocessor::get_source_file(const char* filep
 
 	if (source_file == nullptr)
 	{
-		source_file = new c_h4_source_file(filepath, preprocessor);
+		source_file = new() c_h4_source_file(filepath, preprocessor);
 		source_files.push_back(source_file);
 	}
 

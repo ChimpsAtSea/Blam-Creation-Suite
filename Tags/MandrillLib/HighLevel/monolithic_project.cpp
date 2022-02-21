@@ -13,7 +13,7 @@ c_monolithic_tag_project::c_monolithic_tag_project(const wchar_t* directory, s_e
 {
 	for (const blofeld::s_tag_group** tag_group_iter = blofeld::tag_groups[engine_platform_build.engine_type]; *tag_group_iter; tag_group_iter++)
 	{
-		h_group* group = new h_group(engine_platform_build, **tag_group_iter);
+		h_group* group = new() h_group(engine_platform_build, **tag_group_iter);
 		groups.push_back(group);
 		debug_point;
 	}
@@ -67,8 +67,8 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_tag_file_views()
 	BCS_RESULT rs = BCS_S_OK;
 
 	num_tag_partitions = tag_partition_list_chunk->get_chunk_count();
-	tag_memory_mapped_files = new t_memory_mapped_file * [num_tag_partitions];
-	tag_memory_mapped_file_infos = new s_memory_mapped_file_info[num_tag_partitions];
+	tag_memory_mapped_files = new() t_memory_mapped_file * [num_tag_partitions];
+	tag_memory_mapped_file_infos = new() s_memory_mapped_file_info[num_tag_partitions];
 
 	for (unsigned long tag_partition_index = 0; tag_partition_index < num_tag_partitions; tag_partition_index++)
 	{
@@ -101,8 +101,8 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_cache_file_views()
 	BCS_RESULT rs = BCS_S_OK;
 
 	num_cache_partitions = cache_partition_list_chunk->get_chunk_count();
-	cache_memory_mapped_files = new t_memory_mapped_file * [num_cache_partitions];
-	cache_memory_mapped_file_infos = new s_memory_mapped_file_info[num_cache_partitions];
+	cache_memory_mapped_files = new() t_memory_mapped_file * [num_cache_partitions];
+	cache_memory_mapped_file_infos = new() s_memory_mapped_file_info[num_cache_partitions];
 
 	for (unsigned long cache_partition_index = 0; cache_partition_index < num_cache_partitions; cache_partition_index++)
 	{
@@ -183,7 +183,7 @@ BCS_RESULT c_monolithic_tag_project::parse_tag_blob()
 
 	blofeld::s_tag_persistent_identifier* session_identifier = static_cast<blofeld::s_tag_persistent_identifier*>(tag_file_data);
 
-	root_chunk = new c_monolithic_tag_backend_chunk(next_contiguous_pointer(session_identifier));
+	root_chunk = new() c_monolithic_tag_backend_chunk(next_contiguous_pointer(session_identifier));
 
 	root_chunk->parse_children(this, nullptr, true);
 
@@ -303,9 +303,9 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			}
 
 
-			c_single_tag_file_layout_reader* layout_reader = new c_single_tag_file_layout_reader(header, tag_file_data);
+			c_single_tag_file_layout_reader* layout_reader = new() c_single_tag_file_layout_reader(header, tag_file_data);
 
-			c_single_tag_file_reader*  reader = new c_single_tag_file_reader(
+			c_single_tag_file_reader*  reader = new() c_single_tag_file_reader(
 				header,
 				engine_platform_build,
 				*layout_reader,

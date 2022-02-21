@@ -44,7 +44,7 @@ BCS_RESULT symbol_file_parser_create(
 {
 	try
 	{
-		symbol_file_parser = new t_symbol_file_parser(mapping_filepath, excluded_libs, excluded_libs_count);
+		symbol_file_parser = new() t_symbol_file_parser(mapping_filepath, excluded_libs, excluded_libs_count);
 		return BCS_S_OK;
 	}
 	catch (BCS_RESULT rs)
@@ -111,8 +111,8 @@ t_symbol_file_parser::t_symbol_file_parser(
 	{
 		formatted_excluded_libs_buffer_size += snprintf(nullptr, 0, "%s:", _original_excluded_libs[i]) + 1;
 	}
-	formatted_excluded_libs = new const char* [excluded_libs_count];
-	char* const formatted_excluded_libs_buffer = new char[formatted_excluded_libs_buffer_size];
+	formatted_excluded_libs = new() const char* [excluded_libs_count];
+	char* const formatted_excluded_libs_buffer = new() char[formatted_excluded_libs_buffer_size];
 	char* formatted_excluded_libs_buffer_pos = formatted_excluded_libs_buffer;
 	for (size_t i = 0; i < excluded_libs_count; i++)
 	{

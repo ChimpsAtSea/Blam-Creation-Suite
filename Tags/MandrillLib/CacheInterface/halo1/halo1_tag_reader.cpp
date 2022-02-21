@@ -179,7 +179,7 @@ BCS_RESULT c_halo1_tag_reader::init_tag_groups()
 				}
 			}
 
-			tag_group = new c_halo1_tag_group(cache_cluster, blofeld_tag_group, parent_tag_group);
+			tag_group = new() c_halo1_tag_group(cache_cluster, blofeld_tag_group, parent_tag_group);
 			tag_groups.push_back(tag_group);
 			added_tag_group = true;
 		}
@@ -207,7 +207,7 @@ BCS_RESULT c_halo1_tag_reader::init_tag_instances()
 			return rs;
 		}
 
-		c_halo1_tag_instance* tag_instance = new c_halo1_tag_instance(
+		c_halo1_tag_instance* tag_instance = new() c_halo1_tag_instance(
 			cache_cluster,
 			*tag_group,
 			tag_instance_info.index,

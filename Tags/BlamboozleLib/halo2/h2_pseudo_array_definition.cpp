@@ -29,7 +29,7 @@ c_h2_pseudo_array_definition::c_h2_pseudo_array_definition(
 	}
 	code_name += "_array";
 
-	array_pseudo_struct_definition = new c_h2_pseudo_struct_definition(guerilla_data, fields_begin + 1, *this);
+	array_pseudo_struct_definition = new() c_h2_pseudo_struct_definition(guerilla_data, fields_begin + 1, *this);
 	array_pseudo_struct_definition->pseudo_array_definition = this;
 
 	ASSERT(array_pseudo_struct_definition->fields_end->field_type == _h2_field_type_array_end);

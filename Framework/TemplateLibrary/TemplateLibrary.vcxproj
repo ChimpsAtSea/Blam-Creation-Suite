@@ -23,7 +23,6 @@
     <ClInclude Include="auto_delete.h" />
     <ClInclude Include="bitfield_allocator.h" />
     <ClInclude Include="byteswap.h" />
-    <ClInclude Include="callback.h" />
     <ClInclude Include="compile_time_accumulator.h" />
     <ClInclude Include="fixed_string.h" />
     <ClInclude Include="macros.h" />
@@ -32,6 +31,7 @@
     <ClInclude Include="stopwatch.h" />
     <ClInclude Include="templatelibrary-private-pch.h" />
     <ClInclude Include="templatelibrary-public-pch.h" />
+    <ClInclude Include="templatelibrary_tracked_memory.h" />
     <ClInclude Include="thread_safe_queue.h" />
     <ClInclude Include="virtual.h" />
     <ClInclude Include="xxhash_cx.h" />
@@ -48,6 +48,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="templatelibrary_tracked_memory.cpp" />
     <ClCompile Include="virtual.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -59,24 +60,20 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -119,7 +116,6 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>templatelibrary-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -146,7 +142,6 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>templatelibrary-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -175,7 +170,6 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>templatelibrary-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -200,7 +194,6 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>templatelibrary-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>

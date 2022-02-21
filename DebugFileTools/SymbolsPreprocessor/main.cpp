@@ -2,6 +2,9 @@
 #include <SymbolsRuntime\symbolsruntime-public-pch.h>
 #include <SymbolsLib\symbolslib-public-pch.h>
 
+s_tracked_memory_stats symbolspreprocessor_tracked_memory = { "symbols preprocessor" };
+s_tracked_memory_stats& _library_tracked_memory = symbolspreprocessor_tracked_memory;
+
 #define CHECK_ARGUMENT(argument) \
 	if (BCS_FAILED(rs = command_line_has_argument(argument))) \
 	{ \

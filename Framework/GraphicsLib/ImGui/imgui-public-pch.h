@@ -1,8 +1,11 @@
 #pragma once
 
+#pragma push_macro("new")
+#undef new
 #define IM_ASSERT(_EXPR) ASSERT_NO_THROW(_EXPR)
 #include <imgui\imgui.h>
 #include <imgui\imgui_internal.h>
+#pragma pop_macro("new") 
 
 #include "font_awesome_icons.h"
 #include "imgui_memory_editor.h"

@@ -1,0 +1,8 @@
+#pragma once
+
+extern s_tracked_memory_stats graphics_tracked_memory;
+extern s_tracked_memory_stats graphics_d3d11_tracked_memory;
+extern s_tracked_memory_stats graphics_d3d12_tracked_memory;
+extern s_tracked_memory_stats graphics_imgui_tracked_memory;
+extern s_tracked_memory_stats graphics_windows_tracked_memory;
+extern s_tracked_memory_stats graphics_third_party_tracked_memory;

@@ -10,6 +10,9 @@
 #include <TagDefinitions/slipspace/tag_groups.infinite_flight2.inl>
 #include <TagDefinitions/slipspace/tag_groups.infinite_release.inl>
 
+s_tracked_memory_stats tagdefinitions_validate_tracked_memory = { "tag definitions validate" };
+s_tracked_memory_stats& _library_tracked_memory = tagdefinitions_validate_tracked_memory;
+
 static BCS_RESULT tag_defintions_validate()
 {
 	std::map<const blofeld::s_tag_field*, uint64_t> warnings_tracking;

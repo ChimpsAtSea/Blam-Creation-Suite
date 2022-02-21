@@ -7,8 +7,8 @@ class c_cache_file_tag_project :
 	public c_tag_project
 {
 public:
-	c_cache_file_tag_project(c_high_level_cache_cluster_transplant& transplant);
-	~c_cache_file_tag_project();
+	BCS_DEBUG_API c_cache_file_tag_project(c_high_level_cache_cluster_transplant& transplant);
+	BCS_DEBUG_API ~c_cache_file_tag_project();
 
 	virtual BCS_RESULT get_group_by_group_tag(tag group_tag, h_group*& group) const override;
 	virtual BCS_RESULT get_tag_instances(h_tag* const*& tag_instances, unsigned long& tag_instance_count) const override;

@@ -15,7 +15,7 @@ c_fields_chunk::c_fields_chunk(const void* chunk_data, c_chunk& parent) :
 	if (entry_count > 0)
 	{
 		const s_tag_persist_field* src_entries = reinterpret_cast<const s_tag_persist_field*>(chunk_data_begin);
-		entries = new s_tag_persist_field[entry_count];
+		entries = new() s_tag_persist_field[entry_count];
 		for (unsigned long entry_index = 0; entry_index < entry_count; entry_index++)
 		{
 			s_tag_persist_field& entry = entries[entry_index];

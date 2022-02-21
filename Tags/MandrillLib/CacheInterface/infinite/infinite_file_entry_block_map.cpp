@@ -7,14 +7,14 @@ BCS_RESULT decompress_buffer_oodle(
 	unsigned long uncompressed_buffer_size)
 {
 	BCS_RESULT result = BCS_E_FAIL;
-	void* hack_tastic_buffer = _malloca(uncompressed_buffer_size + 4096);
+	void* hack_tastic_buffer = tracked_malloca(uncompressed_buffer_size + 4096);
 	auto decompress_result = Kraken_Decompress(static_cast<const byte*>(compressed_buffer), compressed_buffer_size, static_cast<byte*>(hack_tastic_buffer), uncompressed_buffer_size);
 	if (decompress_result == uncompressed_buffer_size)
 	{
 		memcpy(uncompressed_buffer, hack_tastic_buffer, uncompressed_buffer_size);
 		result = BCS_S_OK;
 	}
-	_freea(hack_tastic_buffer);
+	tracked_freea(hack_tastic_buffer);
 	return result;
 
 }
@@ -107,7 +107,7 @@ BCS_RESULT c_infinite_file_entry_block_map::unpack_blocks(char*& data)
 
 	const char* read_data_buffer = data_module_buffer.begin;
 	ASSERT(read_data_buffer != nullptr);
-	char* write_data_buffer = new char[file_entry.uncompressed_size];
+	char* write_data_buffer = new() char[file_entry.uncompressed_size];
 	memset(write_data_buffer, 0xAC, file_entry.uncompressed_size);
 	if (file_entry.block_count > 0)
 	{

@@ -23,6 +23,7 @@
     <ResourceCompile Include="$(ResourcesFilepath)" />
     <ResourceCompile Include="$(ResourcesFilepath)" />
     <ResourceCompile Include="$(ResourcesFilepath)" />
+    <ResourceCompile Include="$(ResourcesFilepath)" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blamboozle-private-pch.h">

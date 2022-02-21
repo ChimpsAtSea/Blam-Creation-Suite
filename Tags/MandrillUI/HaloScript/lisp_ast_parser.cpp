@@ -229,7 +229,7 @@ const char* c_lisp_node::traverse(
 	if (found_node)
 	{
 
-		c_lisp_node* new_node = new c_lisp_node(current_node);
+		c_lisp_node* new_node = new() c_lisp_node(current_node);
 		new_node->type = search_type;
 		if (current_node == nullptr) root_arguments.push_back(new_node);
 		current_node = new_node;

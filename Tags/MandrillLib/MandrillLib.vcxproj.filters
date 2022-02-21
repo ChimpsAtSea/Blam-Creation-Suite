@@ -42,9 +42,6 @@
     <ClInclude Include="CacheInterface\cache_byteswap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CacheInterface\memory_mapped_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CacheInterface\halo4\halo4_debug_reader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -357,6 +354,12 @@
     <ClInclude Include="Filesystem\Chunks\TagChunks\tag_resource_null_chunk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CacheInterface\cache_interface_tracked_memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mandrilllib_tracked_memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mandrilllib-private-pch.cpp">
@@ -375,9 +378,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CacheInterface\cache_byteswap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\memory_mapped_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CacheInterface\halo4\halo4_debug_reader.cpp">
@@ -687,6 +687,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Filesystem\Chunks\TagChunks\tag_resource_null_chunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\cache_interface_tracked_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mandrilllib_tracked_memory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

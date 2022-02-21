@@ -44,3 +44,5 @@ using btag_group = bigendian_type<tag_group>;
 #include "halo3/halo3.h"
 #include "halo2/halo2.h"
 #include "halo1/halo1.h"
+
+#include "blamboozlelib_tracked_memory.h"

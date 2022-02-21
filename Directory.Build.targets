@@ -47,7 +47,8 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/Zc:__cplusplus /Zc:char8_t- %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>IMGUI_USER_CONFIG="imgui_user_config.h";%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>

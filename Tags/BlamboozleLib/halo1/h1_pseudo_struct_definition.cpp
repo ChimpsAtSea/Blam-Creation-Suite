@@ -29,7 +29,7 @@ c_h1_pseudo_struct_definition::c_h1_pseudo_struct_definition(
 	const s_h1_tag_field* field = fields;
 	for (; field->field_type != _h1_field_type_terminator; field++)
 	{
-		c_h1_pseudo_field_definition* pseudo_field = new c_h1_pseudo_field_definition(guerilla_data, *field);
+		c_h1_pseudo_field_definition* pseudo_field = new(blamboozlelib_tracked_memory) c_h1_pseudo_field_definition(guerilla_data, *field);
 
 		switch (field->field_type)
 		{
@@ -47,7 +47,7 @@ c_h1_pseudo_struct_definition::c_h1_pseudo_struct_definition(
 			break;
 		case _h1_field_type_array_start:
 		{
-			c_h1_pseudo_array_definition* pseudo_array_definition = new c_h1_pseudo_array_definition(guerilla_data, field, block_definition);
+			c_h1_pseudo_array_definition* pseudo_array_definition = new() c_h1_pseudo_array_definition(guerilla_data, field, block_definition);
 			pseudo_field->pseudo_array_definition = pseudo_array_definition;
 			field = pseudo_array_definition->pseudo_struct_definition->fields_end;
 		}
@@ -128,7 +128,7 @@ array_end:;
 
 	ASSERT(field->field_type == _h1_field_type_terminator || field->field_type == _h1_field_type_array_end);
 	{
-		c_h1_pseudo_field_definition* pseudo_field = new c_h1_pseudo_field_definition(guerilla_data, *field);
+		c_h1_pseudo_field_definition* pseudo_field = new() c_h1_pseudo_field_definition(guerilla_data, *field);
 		pseudo_fields.emplace_back(pseudo_field);
 	}
 

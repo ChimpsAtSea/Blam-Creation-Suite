@@ -1,5 +1,4 @@
 #include "templatelibrary-private-pch.h"
-#include <chrono>
 
 c_stopwatch::c_stopwatch() :
 	time_point_start(),

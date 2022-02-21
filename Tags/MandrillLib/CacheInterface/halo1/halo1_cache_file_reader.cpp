@@ -23,7 +23,7 @@ c_halo1_cache_file_reader::c_halo1_cache_file_reader(const wchar_t* filepath, s_
 	if (engine_platform_build.build == _build_halo1_demo)
 	{
 		halo1::demo::s_cache_file_header& demo_cache_file_header = *reinterpret_cast<halo1::demo::s_cache_file_header*>(file_info.file_view_begin);
-		cache_file_header = new c_halo1_header_wrapper(demo_cache_file_header);
+		cache_file_header = new() c_halo1_header_wrapper(demo_cache_file_header);
 	}
 	else
 	{
@@ -31,7 +31,7 @@ c_halo1_cache_file_reader::c_halo1_cache_file_reader(const wchar_t* filepath, s_
 
 		if (pc_cache_file_header.header_signature == k_cache_header_signature)
 		{
-			cache_file_header = new c_halo1_header_wrapper(pc_cache_file_header);
+			cache_file_header = new() c_halo1_header_wrapper(pc_cache_file_header);
 		}
 		else
 		{

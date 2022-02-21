@@ -18,8 +18,14 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mandrill_tracked_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ResourceCompile Include="$(ResourcesFilepath)" />
+    <ResourceCompile Include="$(ResourcesFilepath)" />
+    <ResourceCompile Include="$(ResourcesFilepath)" />
     <ResourceCompile Include="$(ResourcesFilepath)" />
     <ResourceCompile Include="$(ResourcesFilepath)" />
     <ResourceCompile Include="$(ResourcesFilepath)" />
@@ -33,6 +39,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mandrill-private-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mandrill_tracked_memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

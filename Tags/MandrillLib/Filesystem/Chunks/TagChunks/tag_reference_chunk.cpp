@@ -10,7 +10,7 @@ c_tag_reference_chunk::c_tag_reference_chunk(const void* chunk_data, c_chunk& pa
 	{
 		intptr_t string_length = data_length - 4;
 		group_tag = chunk_byteswap(*reinterpret_cast<const tag*>(chunk_data_begin));
-		tag_filepath_without_extension = new char[string_length + 1];
+		tag_filepath_without_extension = new() char[string_length + 1];
 		memcpy(tag_filepath_without_extension, chunk_data_begin + sizeof(tag), string_length);
 		tag_filepath_without_extension[string_length] = 0;
 	}

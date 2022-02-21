@@ -29,7 +29,7 @@ int WINAPI wWinMain(
 	BCS_RESULT rs2 = window_create(window_title, "mandrill", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, window);
 	BCS_RESULT rs3 = render_context_window_create(*window, graphics_background_color, window_render_context);
 
-	mandrill_user_interface = new c_mandrill_user_interface(
+	mandrill_user_interface = new() c_mandrill_user_interface(
 		*window_render_context,
 		false, 
 		launch_filepath_command_line_argument);

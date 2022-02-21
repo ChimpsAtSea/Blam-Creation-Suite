@@ -170,7 +170,7 @@ BCS_RESULT graphics_d3d12_imgui_context_create(
 {
 	try
 	{
-		imgui_context = new c_imgui_context_d3d12(
+		imgui_context = new(graphics_tracked_memory) c_imgui_context_d3d12(
 			*window,
 			*graphics);
 	}

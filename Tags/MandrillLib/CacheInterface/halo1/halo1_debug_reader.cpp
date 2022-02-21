@@ -62,7 +62,7 @@ c_halo1_debug_reader::c_halo1_debug_reader(c_halo1_cache_cluster& cache_cluster,
 	//halo1_aes128_decrypt(encrypted_file_table_buffer, file_table_buffer, cache_file_header.file_table_length, c_halo1_cache_file_reader::k_file_name_encryption_key);
 
 	////DEBUG_ASSERT(cache_file_header.string_id_index_buffer_count >= k_engine_string_ids_total);
-	////string_id_table_buffer = new const char* [cache_file_header.string_id_index_buffer_count];
+	////string_id_table_buffer = new() const char* [cache_file_header.string_id_index_buffer_count];
 
 	////unsigned long const cache_file_string_id_count = cache_file_header.string_id_index_buffer_count - k_engine_string_ids_total;
 
@@ -116,9 +116,9 @@ c_halo1_debug_reader::c_halo1_debug_reader(c_halo1_cache_cluster& cache_cluster,
 
 c_halo1_debug_reader::~c_halo1_debug_reader()
 {
-	_aligned_free(string_id_buffer);
-	//_aligned_free(string_id_index_buffer);
-	_aligned_free(file_table_buffer);
+	tracked_aligned_free(string_id_buffer);
+	//tracked_aligned_free(string_id_index_buffer);
+	tracked_aligned_free(file_table_buffer);
 }
 
 BCS_RESULT c_halo1_debug_reader::string_id_to_string(string_id stringid, const char*& string)

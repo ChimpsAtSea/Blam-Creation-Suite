@@ -131,7 +131,7 @@ BCS_RESULT graphics_d3d12_render_instance_create(
 	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
 	try
 	{
-		render_instance = new c_graphics_render_instance_d3d12(
+		render_instance = new(graphics_tracked_memory) c_graphics_render_instance_d3d12(
 			*graphics,
 			debug_name_wc
 		);

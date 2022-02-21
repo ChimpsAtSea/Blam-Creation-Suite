@@ -15,7 +15,7 @@ c_block_definitions_chunk::c_block_definitions_chunk(const void* chunk_data, c_c
 	if (entry_count > 0)
 	{
 		const s_tag_persist_block_definition* src_entries = reinterpret_cast<const s_tag_persist_block_definition*>(chunk_data_begin);
-		entries = new s_tag_persist_block_definition[entry_count];
+		entries = new() s_tag_persist_block_definition[entry_count];
 		for (unsigned long entry_index = 0; entry_index < entry_count; entry_index++)
 		{
 			s_tag_persist_block_definition& entry = entries[entry_index];

@@ -9,7 +9,7 @@
   <PropertyGroup>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <MultiProcFXC>true</MultiProcFXC>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
     <OutDir>$(SolutionDir)$(Platform)\$(CustomConfiguration)\</OutDir>
@@ -20,7 +20,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/Zm500 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>

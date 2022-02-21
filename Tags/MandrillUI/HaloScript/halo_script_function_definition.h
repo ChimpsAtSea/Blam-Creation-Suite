@@ -2085,7 +2085,7 @@ public:
 		parse_argument(arg15);
 #undef parse_argument
 
-		generate_documentation();
+		//generate_documentation();
 	}
 
 	void generate_documentation();

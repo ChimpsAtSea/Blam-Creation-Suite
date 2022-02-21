@@ -10,3 +10,4 @@
 #include <TagReflection\tagreflection-public-pch.h>
 
 #include "highlevel-groundhog-public-pch.h"
+#include "groundhog_tracked_memory.h"

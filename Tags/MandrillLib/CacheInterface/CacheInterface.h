@@ -2,8 +2,6 @@
 
 
 #include "cache_byteswap.h"
-#include "memory_mapped_file.h"
-
 #include "gen3\gen3_cache_file_header.h"
 
 #include "base\cache_file_header.h"

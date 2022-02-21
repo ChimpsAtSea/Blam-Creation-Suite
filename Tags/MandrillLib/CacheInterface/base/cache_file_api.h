@@ -13,12 +13,12 @@ class c_cache_cluster;
 //{
 //	void* userdata;
 //};
-//BCS_RESULT register_cache_file_reader_plugin_callbacks(s_cache_file_reader_plugin_callbacks_info* plugin_callbacks_info);
+//BCS_DEBUG_API BCS_RESULT register_cache_file_reader_plugin_callbacks(s_cache_file_reader_plugin_callbacks_info* plugin_callbacks_info);
 
-BCS_RESULT get_cache_file_reader_engine_and_platform(const char* filepath, s_engine_platform_build* engine_platform_build);
-BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filepath, s_engine_platform_build* engine_platform_build);
+BCS_DEBUG_API BCS_RESULT get_cache_file_reader_engine_and_platform(const char* filepath, s_engine_platform_build* engine_platform_build);
+BCS_DEBUG_API BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filepath, s_engine_platform_build* engine_platform_build);
 
-BCS_RESULT open_cache_file_reader(
+BCS_DEBUG_API BCS_RESULT open_cache_file_reader(
 	const char* filepath,
 	s_engine_platform_build engine_platform_build,
 	bool read_only,
@@ -26,7 +26,7 @@ BCS_RESULT open_cache_file_reader(
 	c_cache_file_reader** cache_file
 );
 
-BCS_RESULT open_cache_file_reader(
+BCS_DEBUG_API BCS_RESULT open_cache_file_reader(
 	const wchar_t* filepath,
 	s_engine_platform_build engine_platform_build,
 	bool read_only,
@@ -34,7 +34,7 @@ BCS_RESULT open_cache_file_reader(
 	c_cache_file_reader** cache_file
 );
 
-BCS_RESULT close_cache_file_reader(
+BCS_DEBUG_API BCS_RESULT close_cache_file_reader(
 	c_cache_file_reader* cache_reader
 );
 
@@ -58,7 +58,8 @@ struct s_cache_file_build_info
 	gen3::s_network_http_request_hash hash;
 	gen3::s_rsa_signature rsa;
 };
-BCS_RESULT get_cache_file_reader_build_info(
+
+BCS_DEBUG_API BCS_RESULT get_cache_file_reader_build_info(
 	c_cache_file_reader* cache_reader,
 	s_cache_file_build_info* build_info
 );
@@ -68,7 +69,8 @@ struct s_cache_file_debug_info
 	const char*** string_ids; // [set][index]
 	const char** tag_names;
 };
-BCS_RESULT get_cache_file_reader_debug_info(
+
+BCS_DEBUG_API BCS_RESULT get_cache_file_reader_debug_info(
 	c_cache_file_reader* cache_reader,
 	s_cache_file_debug_info* debug_info
 );
@@ -103,7 +105,7 @@ enum e_cache_file_buffer_index
 	k_num_cache_file_buffers
 };
 
-BCS_RESULT get_cache_file_reader_buffer(
+BCS_DEBUG_API BCS_RESULT get_cache_file_reader_buffer(
 	c_cache_file_reader* cache_reader,
 	e_cache_file_buffer_index buffer_index,
 	s_cache_file_buffer_info* buffer_info
@@ -128,58 +130,58 @@ union s_cache_file_buffers_info
 	};
 };
 
-BCS_RESULT get_cache_file_reader_buffers(
+BCS_DEBUG_API BCS_RESULT get_cache_file_reader_buffers(
 	c_cache_file_reader* cache_reader,
 	s_cache_file_buffers_info* buffers_info
 );
 
-BCS_RESULT create_cache_cluster(
+BCS_DEBUG_API BCS_RESULT create_cache_cluster(
 	c_cache_file_reader** cache_readers,
 	unsigned long cache_reader_count,
 	s_engine_platform_build engine_platform_build,
 	c_cache_cluster** cache_cluster
 );
 
-BCS_RESULT destroy_cache_cluster(
+BCS_DEBUG_API BCS_RESULT destroy_cache_cluster(
 	c_cache_cluster* cache_cluster
 );
 
-BCS_RESULT create_cache_file_debug_reader(
+BCS_DEBUG_API BCS_RESULT create_cache_file_debug_reader(
 	c_cache_cluster* cache_cluster,
 	c_cache_file_reader* cache_reader,
 	c_debug_reader** debug_reader
 );
 
-BCS_RESULT destroy_cache_file_debug_reader(
+BCS_DEBUG_API BCS_RESULT destroy_cache_file_debug_reader(
 	c_debug_reader* debug_reader
 );
 
-BCS_RESULT create_cache_file_tag_reader(
+BCS_DEBUG_API BCS_RESULT create_cache_file_tag_reader(
 	c_cache_cluster* cache_cluster,
 	c_cache_file_reader* cache_reader,
 	c_tag_reader** tag_reader
 );
 
-BCS_RESULT destroy_cache_file_tag_reader(
+BCS_DEBUG_API BCS_RESULT destroy_cache_file_tag_reader(
 	c_tag_reader* tag_reader
 );
 
-BCS_RESULT create_cache_file_resource_reader(
+BCS_DEBUG_API BCS_RESULT create_cache_file_resource_reader(
 	c_cache_cluster* cache_cluster,
 	c_cache_file_reader* cache_reader,
 	c_resource_reader** resource_reader
 );
 
-BCS_RESULT destroy_cache_file_resource_reader(
+BCS_DEBUG_API BCS_RESULT destroy_cache_file_resource_reader(
 	c_resource_reader* resource_reader
 );
 
-BCS_RESULT create_cache_file_localization_reader(
+BCS_DEBUG_API BCS_RESULT create_cache_file_localization_reader(
 	c_cache_cluster* cache_cluster,
 	c_cache_file_reader* cache_reader,
 	c_localization_reader** localization_reader
 );
 
-BCS_RESULT destroy_cache_file_localization_reader(
+BCS_DEBUG_API BCS_RESULT destroy_cache_file_localization_reader(
 	c_localization_reader* localization_reader
 );

@@ -21,7 +21,7 @@ c_h5_tag_block_definition::c_h5_tag_block_definition(const char* halo5_forge_dat
 	//for (unsigned long set_index = 0; set_index < definition_header->field_set_count; set_index++)
 	{
 		const s_h5_tag_field_set_header* field_set = field_sets + set_index;
-		c_h5_tag_field_set* tag_field_set = new c_h5_tag_field_set(halo5_forge_data, field_sets + set_index);
+		c_h5_tag_field_set* tag_field_set = new() c_h5_tag_field_set(halo5_forge_data, field_sets + set_index);
 		tag_field_sets.emplace_back(tag_field_set);
 	}
 }

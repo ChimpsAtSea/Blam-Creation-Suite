@@ -83,7 +83,7 @@ void h_type::add_notification_listener(s_notification_listener_func callback, vo
 		notification_listener = &(*notification_listener)->next;
 	}
 
-	*notification_listener = new s_notification_listener{};
+	*notification_listener = new() s_notification_listener{};
 	(*notification_listener)->callback = callback;
 	(*notification_listener)->userdata = userdata;
 	(*notification_listener)->next = nullptr;
