@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="blamlib.h" />
+    <ClInclude Include="blamlib\algorithms\binary_search.h" />
+    <ClInclude Include="blamlib\cache\cache_files.h" />
+    <ClInclude Include="blamlib\cseries\asserts\assert_handler.h" />
+    <ClInclude Include="blamlib\cseries\cseries.h" />
+    <ClInclude Include="blamlib\cseries\cseries_asserts.h" />
+    <ClInclude Include="blamlib\cseries\cseries_memory.h" />
+    <ClInclude Include="blamlib\cseries\cseries_string.h" />
+    <ClInclude Include="blamlib\cseries\cseries_traits.h" />
+    <ClInclude Include="blamlib\cseries\events\event_handler.h" />
+    <ClInclude Include="blamlib\cseries\language.h" />
+    <ClInclude Include="blamlib\datatypes\enum.h" />
+    <ClInclude Include="blamlib\datatypes\flags.h" />
+    <ClInclude Include="blamlib\datatypes\result.h" />
+    <ClInclude Include="blamlib\datatypes\static_array.h" />
+    <ClInclude Include="blamlib\datatypes\static_hash_table.h" />
+    <ClInclude Include="blamlib\datatypes\static_hash_table_data.h" />
+    <ClInclude Include="blamlib\datatypes\static_string.h" />
+    <ClInclude Include="blamlib\datatypes\static_wide_string.h" />
+    <ClInclude Include="blamlib\haloreach\ai\ai.h" />
+    <ClInclude Include="blamlib\haloreach\ai\ai_dialogue.h" />
+    <ClInclude Include="blamlib\haloreach\ai\ai_globals.h" />
+    <ClInclude Include="blamlib\haloreach\ai\ai_traits.h" />
+    <ClInclude Include="blamlib\haloreach\ai\character_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\animations\animation_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\big_battle_squad\big_battle_squad.h" />
+    <ClInclude Include="blamlib\haloreach\bink\bink_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\bitmaps\bitmap_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\cutscene\cinematics_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\devices\devices.h" />
+    <ClInclude Include="blamlib\haloreach\devices\device_controls.h" />
+    <ClInclude Include="blamlib\haloreach\devices\device_machines.h" />
+    <ClInclude Include="blamlib\haloreach\editor\editor_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\effects\camo_effect_definition.h" />
+    <ClInclude Include="blamlib\haloreach\effects\cheap_particle_system.h" />
+    <ClInclude Include="blamlib\haloreach\effects\effects.h" />
+    <ClInclude Include="blamlib\haloreach\effects\effect_scenery.h" />
+    <ClInclude Include="blamlib\haloreach\effects\jetwash.h" />
+    <ClInclude Include="blamlib\haloreach\effects\material_effect_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\effects\screen_effect.h" />
+    <ClInclude Include="blamlib\haloreach\game\campaign_metagame.h" />
+    <ClInclude Include="blamlib\haloreach\game\challenges\challenge_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\game\game.h" />
+    <ClInclude Include="blamlib\haloreach\game\game_allegiance.h" />
+    <ClInclude Include="blamlib\haloreach\game\game_engine_player_traits.h" />
+    <ClInclude Include="blamlib\haloreach\game\game_globals.h" />
+    <ClInclude Include="blamlib\haloreach\game\game_powerups.h" />
+    <ClInclude Include="blamlib\haloreach\game\multiplayer_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\game\player_achievements.h" />
+    <ClInclude Include="blamlib\haloreach\game\player_avatar_awards.h" />
+    <ClInclude Include="blamlib\haloreach\geometry\geometry_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\geometry\vertex_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\interface\chud\chud_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\items\airstrike.h" />
+    <ClInclude Include="blamlib\haloreach\items\equipment_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\items\item_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\items\projectile_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\items\weapon_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\models\model_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\models\render_model_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\motor\death_program_selection_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\motor\mover.h" />
+    <ClInclude Include="blamlib\haloreach\objects\crates.h" />
+    <ClInclude Include="blamlib\haloreach\objects\damage.h" />
+    <ClInclude Include="blamlib\haloreach\objects\damage_new.h" />
+    <ClInclude Include="blamlib\haloreach\objects\multiplayer_game_objects.h" />
+    <ClInclude Include="blamlib\haloreach\objects\object_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\objects\object_recycling.h" />
+    <ClInclude Include="blamlib\haloreach\objects\object_types.h" />
+    <ClInclude Include="blamlib\haloreach\objects\scenery.h" />
+    <ClInclude Include="blamlib\haloreach\objects\widgets\antenna.h" />
+    <ClInclude Include="blamlib\haloreach\objects\widgets\cloth.h" />
+    <ClInclude Include="blamlib\haloreach\physics\breakable_surfaces.h" />
+    <ClInclude Include="blamlib\haloreach\physics\character_physics_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\physics\collision_bsp.h" />
+    <ClInclude Include="blamlib\haloreach\physics\collision_kd_hierarchy_types.h" />
+    <ClInclude Include="blamlib\haloreach\physics\grounded_friction.h" />
+    <ClInclude Include="blamlib\haloreach\physics\havok_collision_damage.h" />
+    <ClInclude Include="blamlib\haloreach\physics\havok_mopp_code_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\physics\spring_acceleration.h" />
+    <ClInclude Include="blamlib\haloreach\physics\water_physics.h" />
+    <ClInclude Include="blamlib\haloreach\render\camera_fx_settings.h" />
+    <ClInclude Include="blamlib\haloreach\render_methods\render_method_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\scenario\scenario_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\scenario\scenario_lightmap_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\sky_atm\atmosphere_globals.h" />
+    <ClInclude Include="blamlib\haloreach\sound\sound_acoustics_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\sound\sound_classes.h" />
+    <ClInclude Include="blamlib\haloreach\sound\sound_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\sound\sound_scenery.h" />
+    <ClInclude Include="blamlib\haloreach\structures\cluster_reference_packed.h" />
+    <ClInclude Include="blamlib\haloreach\structures\structure_bsp_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\structures\structure_seams.h" />
+    <ClInclude Include="blamlib\haloreach\units\biped_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\units\giant_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\units\unit_definitions.h" />
+    <ClInclude Include="blamlib\haloreach\units\unit_dialogue.h" />
+    <ClInclude Include="blamlib\haloreach\units\vehicle_definitions.h" />
+    <ClInclude Include="blamlib\math\color_math.h" />
+    <ClInclude Include="blamlib\haloreach\math\function_definitions.h" />
+    <ClInclude Include="blamlib\math\integer_math.h" />
+    <ClInclude Include="blamlib\math\polygon_math.h" />
+    <ClInclude Include="blamlib\math\real_math.h" />
+    <ClInclude Include="blamlib\memory\allocation_interface.h" />
+    <ClInclude Include="blamlib\memory\data.h" />
+    <ClInclude Include="blamlib\memory\memory_interface.h" />
+    <ClInclude Include="blamlib\memory\ptr32.h" />
+    <ClInclude Include="blamlib\memory\static_arrays.h" />
+    <ClInclude Include="blamlib\memory\wrapped_arrays.h" />
+    <ClInclude Include="blamlib\multithreading\primitives\synchronized_value.h" />
+    <ClInclude Include="blamlib\system\system_os_interface.h" />
+    <ClInclude Include="blamlib\tag_files\string_ids.h" />
+    <ClInclude Include="blamlib\tag_files\tag_api_interop.h" />
+    <ClInclude Include="blamlib\tag_files\tag_groups.h" />
+    <ClInclude Include="blamlib\tag_files\tag_resource_internals.h" />
+    <ClInclude Include="blamlib\tag_files\tag_vertex_buffers.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="blamlib\cache\cache_files.cpp" />
+    <ClCompile Include="blamlib\cseries\asserts\assert_handler.cpp" />
+    <ClCompile Include="blamlib\cseries\cseries.cpp" />
+    <ClCompile Include="blamlib\cseries\cseries_asserts.cpp" />
+    <ClCompile Include="blamlib\cseries\cseries_memory.cpp" />
+    <ClCompile Include="blamlib\cseries\cseries_string.cpp" />
+    <ClCompile Include="blamlib\cseries\events\event_handler.cpp" />
+    <ClCompile Include="blamlib\haloreach\geometry\vertex_definitions.cpp" />
+    <ClCompile Include="blamlib\math\integer_math.cpp" />
+    <ClCompile Include="blamlib\math\polygon_math.cpp" />
+    <ClCompile Include="blamlib\math\real_math.cpp" />
+    <ClCompile Include="blamlib\memory\data.cpp" />
+    <ClCompile Include="blamlib\system\system_os_interface.cpp" />
+    <ClCompile Include="blamlib\tag_files\tag_api_interop.cpp" />
+    <ClCompile Include="blamlib\tag_files\tag_groups.cpp" />
+    <ClCompile Include="blamlib\tag_files\tag_resource_internals.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="blamlib\datatypes\enum.natvis" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{6686F215-AB57-434D-85E0-8AAA5AB68D36}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>blamlib</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeaderOutputFile />
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4711;4820;5039;5045;5219;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeaderOutputFile />
+      <ExceptionHandling>false</ExceptionHandling>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4711;4820;5039;5045;5219;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeaderOutputFile />
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4711;4820;5039;5045;5219;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeaderOutputFile />
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4711;4820;5039;5045;5219;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
