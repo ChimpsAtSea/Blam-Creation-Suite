@@ -48,5 +48,7 @@ int WINAPI wWinMain(
 	BCS_FAIL_RETURN(rs1);
 	BCS_FAIL_RETURN(rs0);
 	
+	print_memory_allocations(nullptr);
+
 	return 0;
 }

@@ -1,5 +1,7 @@
 #include "graphicslib-private-pch.h"
 
+static s_tracked_memory_stats imgui_memory_tracker = { "imgui" };
+
 c_imgui_context::c_imgui_context()
 {
 
@@ -10,11 +12,23 @@ c_imgui_context::~c_imgui_context()
 
 }
 
+static void* imgui_malloc(size_t sz, void* user_data)
+{
+	return tracked_malloc(imgui_memory_tracker, sz);
+}
+
+static void imgui_free(void* ptr, void* user_data)
+{
+	tracked_free(ptr);
+}
+
 BCS_RESULT graphics_imgui_context_create(
 	c_window* window,
 	c_graphics* graphics,
 	c_imgui_context*& imgui_context)
 {
+	ImGui::SetAllocatorFunctions(imgui_malloc, imgui_free, nullptr);
+
 	if (c_graphics_d3d12* graphics_d3d12 = dynamic_cast<c_graphics_d3d12*>(graphics))
 	{
 		c_window_windows* window_windows = dynamic_cast<c_window_windows*>(window);

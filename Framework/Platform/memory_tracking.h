@@ -105,13 +105,9 @@ inline void operator delete[](void* data)
 	return tracked_free(data);
 }
 
-#ifdef __INTELLISENSE__
-#define tracked_aligned_malloc _tracked_aligned_malloc
-#define tracked_malloc _tracked_malloc
-#else
 #define tracked_aligned_malloc(stats, size, alignment) _tracked_aligned_malloc(stats, size, alignment, __FILE__, __LINE__)
 #define tracked_malloc(stats, size) _tracked_malloc(stats, size, __FILE__, __LINE__)
-#endif
+
 #define new(...) new(__FILE__, __LINE__, __VA_ARGS__ )
 
 void* __cdecl _alloca(size_t _Size);

@@ -194,13 +194,16 @@ void print_memory_allocations(s_tracked_memory_stats* stats)
 		console_write_line("\t tracked_allocated_memory: %lli", stats->tracked_allocated_memory);
 		console_write_line("\t allocation_count:         %i", stats->allocation_count);
 	}
-	for (s_tracked_memory_entry* tracked_memory_entry = tracked_memory_entries; tracked_memory_entry; tracked_memory_entry = tracked_memory_entry->next)
+	for (s_tracked_memory_entry* tracked_memory_entry = tracked_memory_entries; tracked_memory_entry; tracked_memory_entry = tracked_memory_entry->previous)
 	{
 		if (stats == nullptr || stats == tracked_memory_entry->stats)
 		{
+			if (tracked_memory_entry->filepath)
+			{
 
+				debug_point;
 
-
+			}
 		}
 	}
 	LONG lock_release_result = InterlockedCompareExchange(&tracked_memory_entries_spin_lock, 0, thread_id);
