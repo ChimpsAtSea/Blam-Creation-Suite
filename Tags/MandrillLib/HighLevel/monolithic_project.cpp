@@ -1,5 +1,19 @@
 #include "mandrilllib-private-pch.h"
 
+
+c_chunk* root_chunk;
+
+c_tag_file_index_chunk* tag_file_index_chunk;
+c_tag_file_blocks_chunk* tag_file_blocks_chunk;
+
+c_tag_heap_chunk* tag_heap_chunk;
+c_partitioned_heap_entry_list_chunk* tag_heap_list_chunk;
+c_partition_list_chunk* tag_partition_list_chunk;
+
+c_cache_heap_chunk* cache_heap_chunk;
+c_partitioned_heap_entry_list_chunk* cache_heap_list_chunk;
+c_partition_list_chunk* cache_partition_list_chunk;
+
 c_monolithic_tag_project::c_monolithic_tag_project(const wchar_t* directory, s_engine_platform_build engine_platform_build) :
 	c_tag_project(engine_platform_build),
 	groups(),
@@ -27,10 +41,23 @@ c_monolithic_tag_project::c_monolithic_tag_project(const wchar_t* directory, s_e
 	c_stopwatch stopwatch;
 	stopwatch.start();
 
-	parse_tag_blob();
+
+	void* tag_file_data;
+	unsigned long long tag_file_data_size;
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_FAILED(rs = filesystem_read_file_to_memory(blob_index_file_path, tag_file_data, tag_file_data_size)))
+	{
+		throw rs;
+	}
+	ASSERT(tag_file_data_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
+
+	parse_tag_blob(tag_file_data, tag_file_data_size);
 	init_monolithic_tag_file_views();
 	init_monolithic_cache_file_views();
 	read_tags();
+
+	delete root_chunk;
+	tracked_free(tag_file_data);
 
 	stopwatch.stop();
 	float tag_parse_time = stopwatch.get_miliseconds();
@@ -47,20 +74,12 @@ c_monolithic_tag_project::~c_monolithic_tag_project()
 	{
 		delete tag;
 	}
+
+	for (h_group* group : groups)
+	{
+		delete group;
+	}
 }
-
-c_chunk* root_chunk;
-
-c_tag_file_index_chunk* tag_file_index_chunk;
-c_tag_file_blocks_chunk* tag_file_blocks_chunk;
-
-c_tag_heap_chunk* tag_heap_chunk;
-c_partitioned_heap_entry_list_chunk* tag_heap_list_chunk;
-c_partition_list_chunk* tag_partition_list_chunk;
-
-c_cache_heap_chunk* cache_heap_chunk;
-c_partitioned_heap_entry_list_chunk* cache_heap_list_chunk;
-c_partition_list_chunk* cache_partition_list_chunk;
 
 BCS_RESULT c_monolithic_tag_project::init_monolithic_tag_file_views()
 {
@@ -134,9 +153,6 @@ BCS_RESULT c_monolithic_tag_project::deinit_monolithic_tag_file_views()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	delete[] tag_memory_mapped_files;
-	delete[] tag_memory_mapped_file_infos;
-
 	for (unsigned long tag_partition_index = 0; tag_partition_index < num_tag_partitions; tag_partition_index++)
 	{
 		t_memory_mapped_file*& tag_memory_mapped_file = tag_memory_mapped_files[tag_partition_index];
@@ -147,15 +163,15 @@ BCS_RESULT c_monolithic_tag_project::deinit_monolithic_tag_file_views()
 		}
 	}
 
+	delete[] tag_memory_mapped_files;
+	delete[] tag_memory_mapped_file_infos;
+
 	return rs;
 }
 
 BCS_RESULT c_monolithic_tag_project::deinit_monolithic_cache_file_views()
 {
 	BCS_RESULT rs = BCS_S_OK;
-
-	delete[] cache_memory_mapped_files;
-	delete[] cache_memory_mapped_file_infos;
 
 	for (unsigned long cache_partition_index = 0; cache_partition_index < num_cache_partitions; cache_partition_index++)
 	{
@@ -167,21 +183,17 @@ BCS_RESULT c_monolithic_tag_project::deinit_monolithic_cache_file_views()
 		}
 	}
 
+	delete[] cache_memory_mapped_files;
+	delete[] cache_memory_mapped_file_infos;
+
 	return rs;
 }
 
-BCS_RESULT c_monolithic_tag_project::parse_tag_blob()
+BCS_RESULT c_monolithic_tag_project::parse_tag_blob(const void* tag_file_data, unsigned long long tag_file_data_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
-	void* tag_file_data;
-	unsigned long long tag_file_data_size;
-	if (BCS_FAILED(rs = filesystem_read_file_to_memory(blob_index_file_path, tag_file_data, tag_file_data_size)))
-	{
-		return rs;
-	}
-	ASSERT(tag_file_data_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
 
-	blofeld::s_tag_persistent_identifier* session_identifier = static_cast<blofeld::s_tag_persistent_identifier*>(tag_file_data);
+	const blofeld::s_tag_persistent_identifier* session_identifier = static_cast<const blofeld::s_tag_persistent_identifier*>(tag_file_data);
 
 	root_chunk = new() c_monolithic_tag_backend_chunk(next_contiguous_pointer(session_identifier));
 
@@ -318,6 +330,8 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			reader->parse_high_level_object(high_level_tag);
 			debug_point;
 
+			delete reader;
+			delete layout_reader;
 		}
 
 		s.stop();

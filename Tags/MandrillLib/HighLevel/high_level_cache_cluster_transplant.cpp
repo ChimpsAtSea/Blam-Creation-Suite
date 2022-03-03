@@ -778,20 +778,20 @@ BCS_RESULT c_high_level_cache_cluster_transplant::get_cluster_transplant_instanc
 	return BCS_E_FAIL;
 }
 
-const blofeld::s_tag_struct_definition* inf_get_tag_struct_definition_by_persistent_id(const s_tag_persistent_identifier& persistent_identifier)
-{
-	for (const s_tag_struct_definition** tag_struct_definitions = blofeld::get_tag_struct_definitions({ _engine_type_infinite }); *tag_struct_definitions; tag_struct_definitions++)
-	{
-		const s_tag_struct_definition& tag_struct_definition = **tag_struct_definitions;
-
-		if (tag_struct_definition.persistent_identifier == persistent_identifier)
-		{
-			return &tag_struct_definition;
-		}
-	}
-
-	return nullptr;
-}
+//const blofeld::s_tag_struct_definition* inf_get_tag_struct_definition_by_persistent_id(const s_tag_persistent_identifier& persistent_identifier)
+//{
+//	for (const s_tag_struct_definition** tag_struct_definitions = blofeld::get_tag_struct_definitions({ _engine_type_infinite }); *tag_struct_definitions; tag_struct_definitions++)
+//	{
+//		const s_tag_struct_definition& tag_struct_definition = **tag_struct_definitions;
+//
+//		if (tag_struct_definition.persistent_identifier == persistent_identifier)
+//		{
+//			return &tag_struct_definition;
+//		}
+//	}
+//
+//	return nullptr;
+//}
 
 static c_infinite_string_id_manager infinite_string_id_manager;
 class c_module_file_transplant

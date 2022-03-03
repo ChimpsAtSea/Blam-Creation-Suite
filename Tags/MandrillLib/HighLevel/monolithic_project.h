@@ -15,7 +15,7 @@ public:
 	virtual BCS_RESULT get_tag_instances(h_tag* const*& tag_instances, unsigned long& tag_instance_count) const override;
 	virtual BCS_RESULT get_tag_groups(h_group* const*& groups, unsigned long& group_count) const override;
 
-	BCS_RESULT parse_tag_blob();
+	BCS_RESULT parse_tag_blob(const void* tag_file_data, unsigned long long tag_file_data_size);
 	BCS_RESULT read_tags();
 
 protected:

@@ -26,9 +26,11 @@ struct s_tag_persist_field_type;
 struct s_tag_persist_aggregate_prechunk;
 struct s_tag_persist_aggregate_fixup;
 
+class c_single_tag_file_reader;
 class c_single_tag_file_layout_reader
 {
 public:
+	friend c_single_tag_file_reader;
 	c_chunk* root_chunk;
 	c_tag_group_layout_chunk* tag_group_layout_chunk;
 	c_binary_data_chunk* binary_data_chunk;

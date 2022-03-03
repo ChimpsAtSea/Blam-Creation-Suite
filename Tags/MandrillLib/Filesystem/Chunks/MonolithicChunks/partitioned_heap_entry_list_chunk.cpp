@@ -33,3 +33,8 @@ c_partitioned_heap_entry_list_chunk::c_partitioned_heap_entry_list_chunk(const v
 		}
 	}
 }
+
+c_partitioned_heap_entry_list_chunk::~c_partitioned_heap_entry_list_chunk()
+{
+	delete[] entries;
+}

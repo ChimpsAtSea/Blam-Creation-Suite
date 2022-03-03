@@ -47,8 +47,12 @@ int WINAPI wWinMain(
 	BCS_FAIL_RETURN(rs2);
 	BCS_FAIL_RETURN(rs1);
 	BCS_FAIL_RETURN(rs0);
+
+	BCS_RESULT symbol_manager_cleanup_result = symbol_manager_cleanup();
+	BCS_FAIL_RETURN(symbol_manager_cleanup_result);
 	
 	print_memory_allocations(nullptr);
+	write_memory_allocations(nullptr);
 
 	return 0;
 }

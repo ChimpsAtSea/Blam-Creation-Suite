@@ -146,7 +146,8 @@ BCS_RESULT create_source_file()
 	ASSERT(BCS_SUCCEEDED(task_group_create(task_group)));
 	for (s_engine_platform_build engine_platform_build : engine_and_platform_types)
 	{
-		c_structure_relationship_node::create_structure_relationships(engine_platform_build);
+		c_tag_struct_definition_view tag_structs_view(engine_platform_build);
+		c_structure_relationship_node::create_structure_relationships(tag_structs_view, engine_platform_build);
 		c_structure_relationship_node::create_sorted_tag_struct_definitions(engine_platform_build);
 		c_structure_relationship_node::create_sorted_tag_enum_definitions(engine_platform_build);
 		c_structure_relationship_node::create_sorted_tag_block_definitions(engine_platform_build);

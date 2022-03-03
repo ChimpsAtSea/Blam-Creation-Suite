@@ -900,9 +900,6 @@
     <ClCompile Include="blofeld\manual_tag_references.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="blofeld\tag_structs.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="blofeld\constants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -979,6 +976,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tagdefinitions_tracked_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tag_struct_definition_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1898,9 +1898,6 @@
     <ClInclude Include="blofeld\tag_groups.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="blofeld\tag_structs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="blofeld\constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1974,6 +1971,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tagdefinitions_tracked_memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tag_struct_definition_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

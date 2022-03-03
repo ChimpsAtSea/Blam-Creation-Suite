@@ -117,5 +117,6 @@ c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(const void* chunk_data, c_chunk
 
 c_tag_file_blocks_chunk::~c_tag_file_blocks_chunk()
 {
+	delete[] wide_data_cache_blocks;
 	delete[] wide_data_datums;
 }

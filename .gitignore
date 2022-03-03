@@ -434,3 +434,5 @@ Tags/LowLevel/low_level_infinite/infinite.cpp
 
 Tags/Virtual/virtual_*/*_virtual.h
 Tags/Virtual/virtual_*/*_virtual.cpp
+
+*memory_allocations.txt

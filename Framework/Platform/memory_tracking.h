@@ -34,6 +34,7 @@ BCS_DEBUG_API void tracked_aligned_free(void* allocated_memory);
 BCS_DEBUG_API void* _tracked_malloc(s_tracked_memory_stats& stats, size_t size, const char* filepath, long line);
 BCS_DEBUG_API void tracked_free(void* allocated_memory);
 BCS_DEBUG_API void print_memory_allocations(s_tracked_memory_stats* stats);
+BCS_DEBUG_API void write_memory_allocations(s_tracked_memory_stats* stats);
 
 BCS_DEBUG_API extern s_tracked_memory_stats unknown_tracked_memory;
 BCS_DEBUG_API extern s_tracked_memory_stats platform_tracked_memory;

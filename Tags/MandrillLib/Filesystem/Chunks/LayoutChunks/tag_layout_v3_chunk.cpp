@@ -7,3 +7,7 @@ c_tag_layout_v3_chunk::c_tag_layout_v3_chunk(const void* chunk_data, c_chunk& pa
 
 	parse_children(nullptr);
 }
+
+c_tag_layout_v3_chunk::~c_tag_layout_v3_chunk()
+{
+}

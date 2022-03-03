@@ -13,6 +13,7 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	struct_entries_data(),
 	tag_struct_definitions_lookup_table(),
 	engine_platform_build(engine_platform_build),
+	tag_structs_view(nullptr),
 	blofeld_tag_group(),
 	blofeld_tag_block_definition(),
 	blofeld_tag_group_struct_definition()
@@ -40,7 +41,9 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	//const char* root_struct_definition_name = layout_reader.get_string_by_string_character_index(root_structure_definition_entry.string_character_index);
 	//ASSERT(strcmp(root_struct_definition_name, blofeld_tag_group_struct_definition->name) == 0); // sanity check
 
-	tag_struct_definitions = blofeld::get_tag_struct_definitions(engine_platform_build);
+
+	tag_structs_view = new c_tag_struct_definition_view(engine_platform_build, blofeld_tag_group);
+	tag_struct_definitions = tag_structs_view->get_tag_struct_definitions();
 	ASSERT(tag_struct_definitions != nullptr);
 
 	//struct_entries_data = new() s_single_tag_file_reader_structure_entry[layout_reader.tag_group_layout_chunk->get_struct_definition_count()];
@@ -54,8 +57,17 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	{
 		const blofeld::s_tag_struct_definition& tag_struct_definition = **tag_struct_definition_iter;
 		XXH64_hash_t hash = XXH64(&tag_struct_definition.persistent_identifier, sizeof(blofeld::s_tag_persistent_identifier), 0);
+
+		auto it = tag_struct_definitions_lookup_table.find(hash);
+		ASSERT(it == tag_struct_definitions_lookup_table.end());
+
+		//console_write_line(tag_struct_definition.name);
 		tag_struct_definitions_lookup_table[hash] = &tag_struct_definition;
 	}
+
+	unsigned long blofeld_structure_count = tag_structs_view->get_num_tag_struct_definitions();
+	unsigned long tag_file_structure_count = layout_reader.structure_definitions_chunk->entry_count;
+	ASSERT(blofeld_structure_count >= tag_file_structure_count);
 
 	debug_point;
 

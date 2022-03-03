@@ -173,6 +173,7 @@
     <ClCompile Include="blofeld\hs\hs_scenario_definitions.cpp" />
     <ClCompile Include="blofeld\interface\chud\cortana_definitions.cpp" />
     <ClCompile Include="tagdefinitions_tracked_memory.cpp" />
+    <ClCompile Include="tag_struct_definition_view.cpp" />
     <ClCompile Include="types\persistent_identifier.cpp" />
     <ClCompile Include="slipspace\infinite_flight1.cpp" />
     <ClCompile Include="blofeld\inline_files.cpp" />
@@ -315,7 +316,6 @@
     <ClCompile Include="blofeld\tag_files\tag_dependency_definitions.cpp" />
     <ClCompile Include="blofeld\tag_files\tag_group_definitions.cpp" />
     <ClCompile Include="blofeld\tag_files\tag_vertex_buffers.cpp" />
-    <ClCompile Include="blofeld\tag_structs.cpp" />
     <ClCompile Include="blofeld\text\font_list.cpp" />
     <ClCompile Include="blofeld\text\text_group.cpp" />
     <ClCompile Include="blofeld\units\biped_definitions.cpp" />
@@ -501,6 +501,7 @@
     <ClInclude Include="blofeld\hs\hs_scenario_definitions.h" />
     <ClInclude Include="blofeld\interface\chud\cortana_definitions.h" />
     <ClInclude Include="tagdefinitions_tracked_memory.h" />
+    <ClInclude Include="tag_struct_definition_view.h" />
     <ClInclude Include="types\persistent_identifier.h" />
     <ClInclude Include="slipspace\infinite_flight1.h" />
     <ClInclude Include="blofeld\interface\chud\chud_definitions.h" />
@@ -646,7 +647,6 @@
     <ClInclude Include="blofeld\tag_files\tag_group_definitions.h" />
     <ClInclude Include="blofeld\tag_files\tag_vertex_buffers.h" />
     <ClInclude Include="blofeld\tag_groups.h" />
-    <ClInclude Include="blofeld\tag_structs.h" />
     <ClInclude Include="blofeld\text\font_list.h" />
     <ClInclude Include="blofeld\text\text_group.h" />
     <ClInclude Include="blofeld\units\biped_definitions.h" />

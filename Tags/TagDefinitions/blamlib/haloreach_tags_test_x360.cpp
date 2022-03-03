@@ -16154,7 +16154,7 @@ namespace haloreach {
 		{ _field_char_integer, "address mode" },
 		{ _field_char_integer, "filter mode" },
 		{ _field_char_integer, "extern texture mode" },
-		{ _field_char_block_index, "texture transform constant index" },
+		{ _field_char_block_index, "texture transform constant index", &blofeld::haloreach::g_null_block_block },
 		{ _field_struct, "texture transform overlay indices", &blofeld::haloreach::tag_block_index_struct },
 		{ _field_terminator }
 	};
@@ -19568,7 +19568,7 @@ namespace haloreach {
 	{
 		{ _field_string_id, "name" },
 		{ _field_short_integer, "muffinage chance", "how often muffins will appear on this marker", "percent ", "[0 - 100]" },
-		{ _field_word_block_flags, "allowed muffin types" },
+		{ _field_word_block_flags, "allowed muffin types", &blofeld::haloreach::global_muffin_type_block_block },
 		{ _field_terminator }
 	};
 
@@ -25040,7 +25040,7 @@ namespace haloreach {
 		FIELD_PAD("pad the byte flag", 3),
 		{ _field_real, "analytical light bounce modifier (when per bsp flag is on)" },
 		{ _field_real, "non analytical light bounce modifier (when per bsp flag is on)" },
-		{ _field_long_block_flags, "extra lighting bsp flags", "neighbor bsp that occlude or contribute light (including bounce light)" },
+		{ _field_long_block_flags, "extra lighting bsp flags", "neighbor bsp that occlude or contribute light (including bounce light)", &blofeld::haloreach::scenario_structure_bsp_reference_block_block },
 		{ _field_terminator }
 	};
 
@@ -25076,7 +25076,7 @@ namespace haloreach {
 		{ _field_tag_reference, "cubemap bitmap group reference", &blofeld::haloreach::bitmap_group_reference$3_tagref },
 		{ _field_tag_reference, "wind", &blofeld::haloreach::wind_group_reference_tagref },
 		FIELD_EXPLANATION("Clones", "Describes which other bsps are physical \'clones\' of this bsp\nThis is used to determine how to attach \'position-only\' elements, like decorators, to the bsps:\nEach clone gets a separate copy of decorators that are in both.\nNon-cloned bsps cannot split decorators this way - the decorator will be given to the lowest numbered bsp\n"),
-		{ _field_long_block_flags, "cloned bsp flags" },
+		{ _field_long_block_flags, "cloned bsp flags", &blofeld::haloreach::scenario_structure_bsp_reference_block_block },
 		{ _field_struct, "lightmap setting", MAKE_ALT_NAMES("lightmap resolution buckets"), &blofeld::haloreach::scenario_lightmap_setting_struct },
 		{ _field_real, "custom gravity scale", "0==nogravity, 1==full, set the custom gravity scale flag to make this parameter active" },
 		{ _field_terminator }
@@ -25137,7 +25137,7 @@ namespace haloreach {
 		{ _field_real, "cloud direction", "cloud movement direction, 0-360 degree" },
 		{ _field_tag_reference, "cloud texture", "red channel is used", &blofeld::haloreach::bitmap_group_reference$2_tagref },
 		{ _field_short_block_index, "name", &blofeld::haloreach::scenario_object_names_block_block, _field_id_name },
-		{ _field_word_block_flags, "active on bsps" },
+		{ _field_word_block_flags, "active on bsps", &blofeld::haloreach::scenario_structure_bsp_reference_block_block },
 		{ _field_terminator }
 	};
 
@@ -25153,7 +25153,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_CLUSTER_SKY_INDICES_BLOCK_ID)
 	{
-		{ _field_char_block_index, "sky index" },
+		{ _field_char_block_index, "sky index", &blofeld::haloreach::scenario_sky_reference_block_block },
 		{ _field_terminator }
 	};
 
@@ -25277,13 +25277,13 @@ namespace haloreach {
 		{ _field_long_string, "name string" },
 		{ _field_long_block_index, "pvs index", &blofeld::haloreach::scenario_zone_set_pvs_block_block },
 		{ _field_long_flags, "flags", &blofeld::haloreach::scenario_zone_set_flags_definition },
-		{ _field_long_block_flags, "bsp zone flags" },
-		{ _field_long_block_flags, "structure design zone flags" },
-		{ _field_long_block_flags, "runtime bsp zone flags" },
-		{ _field_long_block_flags, "sruntime tructure design zone flags" },
-		{ _field_long_block_flags, "required designer zones", MAKE_ALT_NAMES("designer zone flags") },
-		{ _field_long_block_flags, "forbidden designer zones" },
-		{ _field_long_block_flags, "cinematic zones" },
+		{ _field_long_block_flags, "bsp zone flags", &blofeld::haloreach::scenario_structure_bsp_reference_block_block },
+		{ _field_long_block_flags, "structure design zone flags", &blofeld::haloreach::scenario_design_reference_block_block },
+		{ _field_long_block_flags, "runtime bsp zone flags", &blofeld::haloreach::scenario_structure_bsp_reference_block_block },
+		{ _field_long_block_flags, "sruntime tructure design zone flags", &blofeld::haloreach::scenario_design_reference_block_block },
+		{ _field_long_block_flags, "required designer zones", MAKE_ALT_NAMES("designer zone flags"), &blofeld::haloreach::scenario_designer_zone_block_block },
+		{ _field_long_block_flags, "forbidden designer zones", &blofeld::haloreach::scenario_designer_zone_block_block },
+		{ _field_long_block_flags, "cinematic zones", &blofeld::haloreach::scenario_cinematics_block_block },
 		{ _field_long_block_index, "hint previous zone set", &blofeld::haloreach::scenario_zone_set_block_block },
 		{ _field_long_block_index, "audibility index", &blofeld::haloreach::game_audibility_block_block },
 		{ _field_block, "planar fog visibility", &blofeld::haloreach::planar_fog_zone_set_visibility_definition_block_block },
@@ -25744,7 +25744,7 @@ namespace haloreach {
 	{
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_short_block_index, "decal palette index", &blofeld::haloreach::scenario_decal_palette_block_block },
-		{ _field_word_block_flags, "manual bsp flags", _field_id_manual_bsp_flags },
+		{ _field_word_block_flags, "manual bsp flags", &blofeld::haloreach::scenario_structure_bsp_reference_block_block, _field_id_manual_bsp_flags },
 		{ _field_real_quaternion, "rotation" },
 		{ _field_real_point_3d, "position" },
 		{ _field_real, "scale x", MAKE_ALT_NAMES("scale") },
@@ -26103,8 +26103,8 @@ namespace haloreach {
 		SCENARIO_LIGHTING_ZONE_SET_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_long_block_flags, "rendered bsp flags" },
-		{ _field_long_block_flags, "extra bsp flags" },
+		{ _field_long_block_flags, "rendered bsp flags", &blofeld::haloreach::scenario_structure_bsp_reference_block_block },
+		{ _field_long_block_flags, "extra bsp flags", &blofeld::haloreach::scenario_structure_bsp_reference_block_block },
 		{ _field_terminator }
 	};
 
@@ -26168,7 +26168,7 @@ namespace haloreach {
 	{
 		{ _field_real_point_3d, "airprobe position" },
 		{ _field_string_id, "airprobe name" },
-		{ _field_word_block_flags, "manual bsp flags", _field_id_manual_bsp_flags },
+		{ _field_word_block_flags, "manual bsp flags", &blofeld::haloreach::scenario_structure_bsp_reference_block_block, _field_id_manual_bsp_flags },
 		FIELD_PAD("probe_pad", 2),
 		{ _field_tag_reference, "manual lighting", &blofeld::haloreach::new_cinematic_lighting_group_reference_tagref },
 		{ _field_terminator }
@@ -28282,7 +28282,7 @@ namespace haloreach {
 		{ _field_real_point_3d, "cubemap position" },
 		{ _field_enum, "cubemap resolution", &blofeld::haloreach::cubemap_resolution_enum },
 		FIELD_EXPLANATION("bsps it could belong to", "empty masks mean automatic selection."),
-		{ _field_word_block_flags, "manual bsp flags", _field_id_manual_bsp_flags },
+		{ _field_word_block_flags, "manual bsp flags", &blofeld::haloreach::scenario_structure_bsp_reference_block_block, _field_id_manual_bsp_flags },
 		{ _field_block, "reference points", &blofeld::haloreach::cubemap_reference_points_block_block },
 		{ _field_terminator }
 	};
@@ -33638,14 +33638,14 @@ namespace haloreach {
 		{ _field_block, "node orientations", &blofeld::haloreach::scenario_object_node_orientations_block_block },
 		FIELD_PAD("ZEE", 3),
 		{ _field_char_enum, "bsp policy", &blofeld::haloreach::scenario_object_bsp_placement_policy_definition, _field_id_enum },
-		{ _field_word_block_flags, "manual bsp flags", _field_id_manual_bsp_flags },
+		{ _field_word_block_flags, "manual bsp flags", &blofeld::haloreach::scenario_structure_bsp_reference_block_block, _field_id_manual_bsp_flags },
 		{ _field_word_flags, "transform flags", &blofeld::haloreach::object_transform_flags },
 		{ _field_string_id, "light airprobe name" },
 		{ _field_struct, "object id", &blofeld::haloreach::scenario_object_id_struct },
 		{ _field_short_block_index, "editor folder", &blofeld::haloreach::g_scenario_editor_folder_block_block, _field_id_hide },
 		FIELD_PAD("NCIUNE", 2),
 		{ _field_struct, "parent id", &blofeld::haloreach::scenario_object_parent_struct },
-		{ _field_word_block_flags, "can attach to bsp flags" },
+		{ _field_word_block_flags, "can attach to bsp flags", &blofeld::haloreach::scenario_structure_bsp_reference_block_block },
 		FIELD_PAD("asdf", 2),
 		{ _field_terminator }
 	};
@@ -34689,7 +34689,7 @@ namespace haloreach {
 		HAVOK_PRIMITIVE_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_char_block_index, "material" },
+		{ _field_char_block_index, "material", &blofeld::haloreach::materials_block_block },
 		{ _field_byte_flags, "material flags", &blofeld::haloreach::physics_material_flags },
 		{ _field_short_integer, "runtime material type" },
 		{ _field_real, "relative mass scale" },
@@ -34698,7 +34698,7 @@ namespace haloreach {
 		{ _field_real, "volume " },
 		{ _field_real, "mass" },
 		{ _field_short_integer, "mass distribution index" },
-		{ _field_char_block_index, "phantom" },
+		{ _field_char_block_index, "phantom", &blofeld::haloreach::phantoms_block_block },
 		{ _field_char_integer, "runtime collision group" },
 		{ _field_terminator }
 	};
@@ -36456,7 +36456,7 @@ namespace haloreach {
 		{ _field_short_block_index, "parent animation", &blofeld::haloreach::animation_pool_block_block },
 		{ _field_short_block_index, "next animation", &blofeld::haloreach::animation_pool_block_block },
 		{ _field_word_flags, "production flags", &blofeld::haloreach::production_status_flags },
-		{ _field_char_block_index, "blend screen" },
+		{ _field_char_block_index, "blend screen", &blofeld::haloreach::animation_blend_screen_block_block },
 		FIELD_PAD("apbap", 1),
 		{ _field_struct, "shared animation reference", &blofeld::haloreach::shared_animation_reference_block },
 		{ _field_block, "shared animation data", &blofeld::haloreach::shared_model_animation_block_block },
@@ -42566,8 +42566,8 @@ namespace haloreach {
 		{ _field_tag_reference, "model animation graph", &blofeld::haloreach::model_animation_graph_group_reference_tagref },
 		{ _field_tag_reference, "object type", &blofeld::haloreach::_reference$6_tagref },
 		{ _field_long_flags, "flags", &blofeld::haloreach::scene_object_flags },
-		{ _field_long_block_flags, "shots active flags" },
-		{ _field_long_block_flags, "lightmap shadow flags" },
+		{ _field_long_block_flags, "shots active flags", &blofeld::haloreach::cinematic_shot_block_block },
+		{ _field_long_block_flags, "lightmap shadow flags", &blofeld::haloreach::cinematic_shot_block_block },
 		{ _field_long_flags, "override creation flags", &blofeld::haloreach::cinematic_coop_type_flags },
 		FIELD_EXPLANATION("Custom override creation condition", "Used in combination with the override creation flags above"),
 		{ _field_struct, "custom don't create condition", &blofeld::haloreach::cinematic_custom_script_block },
@@ -42732,7 +42732,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_PLAYBACK_DATA_BLOCK_ID)
 	{
-		{ _field_long_block_flags, "shots" },
+		{ _field_long_block_flags, "shots", &blofeld::haloreach::cinematic_shot_block_block },
 		{ _field_terminator }
 	};
 
@@ -42746,8 +42746,8 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_PLAYBACK_DATA_BLOCK_ID)
 	{
-		{ _field_long_block_flags, "scenes" },
-		{ _field_long_block_flags, "scenes expanded" },
+		{ _field_long_block_flags, "scenes", &blofeld::haloreach::cinematic_scene_reference_block_block },
+		{ _field_long_block_flags, "scenes expanded", &blofeld::haloreach::cinematic_scene_reference_block_block },
 		{ _field_block, "shots", &blofeld::haloreach::cinematic_shot_playback_data_block_block },
 		{ _field_terminator }
 	};
@@ -43195,7 +43195,7 @@ namespace haloreach {
 	{
 		{ _field_short_integer, "header salt at runtime" },
 		{ _field_byte_flags, "flags", &blofeld::haloreach::cache_file_tag_resource_location_flags },
-		{ _field_char_block_index, "codec" },
+		{ _field_char_block_index, "codec", &blofeld::haloreach::cache_file_codec_identifier_block_block },
 		{ _field_short_block_index, "shared file", &blofeld::haloreach::cache_file_shared_file_block_block },
 		{ _field_short_integer, "shared file location index" },
 		{ _field_long_integer, "file offset" },
@@ -43249,7 +43249,7 @@ namespace haloreach {
 	{
 		{ _field_tag_reference, "owner tag", &blofeld::haloreach::_reference$15_tagref },
 		{ _field_short_integer, "resource salt" },
-		{ _field_char_block_index, "resource type index" },
+		{ _field_char_block_index, "resource type index", &blofeld::haloreach::cache_file_resource_type_identifier_block_block },
 		{ _field_char_integer, "control alignment bits" },
 		{ _field_long_integer, "control offset offset" },
 		{ _field_long_integer, "control size" },
@@ -43467,12 +43467,12 @@ namespace haloreach {
 	{
 		{ _field_string_id, "name" },
 		{ _field_long_flags, "flags", &blofeld::haloreach::scenario_zone_set_flags_definition },
-		{ _field_long_block_flags, "required bsp zones" },
-		{ _field_long_block_flags, "expected touched bsp zones" },
-		{ _field_long_block_flags, "required designer zones" },
-		{ _field_long_block_flags, "expected designer zones" },
-		{ _field_long_block_flags, "forbidden designer zones" },
-		{ _field_long_block_flags, "required cinematic zones" },
+		{ _field_long_block_flags, "required bsp zones", &blofeld::haloreach::cache_file_bsp_zone_block_block },
+		{ _field_long_block_flags, "expected touched bsp zones", &blofeld::haloreach::cache_file_bsp_zone_block_block },
+		{ _field_long_block_flags, "required designer zones", &blofeld::haloreach::cache_file_designer_zone_block_block },
+		{ _field_long_block_flags, "expected designer zones", &blofeld::haloreach::cache_file_designer_zone_block_block },
+		{ _field_long_block_flags, "forbidden designer zones", &blofeld::haloreach::cache_file_designer_zone_block_block },
+		{ _field_long_block_flags, "required cinematic zones", &blofeld::haloreach::cache_file_cinematic_zone_block_block },
 		{ _field_long_block_index, "hint previous zone set", &blofeld::haloreach::cache_file_zone_set_zone_usage_block_block },
 		{ _field_terminator }
 	};
@@ -43522,9 +43522,9 @@ namespace haloreach {
 		{ _field_long_integer, "pageable compressed size" },
 		{ _field_long_integer, "optional compressed size" },
 		{ _field_word_flags, "global zone attachment", &blofeld::haloreach::cache_file_resource_global_zone_attachment_flags },
-		{ _field_word_block_flags, "bsp zone attachment" },
-		{ _field_long_block_flags, "designer zone attachment" },
-		{ _field_long_block_flags, "cinematic zone attachment" },
+		{ _field_word_block_flags, "bsp zone attachment", &blofeld::haloreach::cache_file_bsp_zone_block_block },
+		{ _field_long_block_flags, "designer zone attachment", &blofeld::haloreach::cache_file_designer_zone_block_block },
+		{ _field_long_block_flags, "cinematic zone attachment", &blofeld::haloreach::cache_file_cinematic_zone_block_block },
 		{ _field_terminator }
 	};
 
@@ -48283,7 +48283,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_DEBUGGER_BLOCK_DEFINITION_STRUCT_ID)
 	{
-		{ _field_long_block_flags, "active designer zones" },
+		{ _field_long_block_flags, "active designer zones", &blofeld::haloreach::scenario_designer_zone_block_block },
 		{ _field_terminator }
 	};
 
@@ -49990,7 +49990,7 @@ namespace haloreach {
 		{ _field_point_2d, "registration point", "the 'center' of the bitmap - i.e. for particles" },
 		{ _field_char_integer, "mipmap count", "DO NOT CHANGE (not counting the highest resolution)" },
 		{ _field_char_enum, "curve", "how to convert from pixel value to linear", &blofeld::haloreach::bitmap_curve_enum },
-		{ _field_char_block_index, "interleaved interop" },
+		{ _field_char_block_index, "interleaved interop", &blofeld::haloreach::bitmap_texture_interleaved_interop_block_block },
 		{ _field_char_integer, "interleaved texture index" },
 		{ _field_long_integer, "pixels offset", "DO NOT CHANGE (offset of the beginning of this bitmap, into pixel data)", "bytes" },
 		{ _field_long_integer, "pixels size", "DO NOT CHANGE (total bytes used by this bitmap)", "bytes" },
@@ -56080,10 +56080,10 @@ namespace haloreach {
 		FIELD_CUSTOM("value", _field_id_default),
 		{ _field_string, "name" },
 		{ _field_word_flags, "flags", &blofeld::haloreach::zone_flags },
-		{ _field_word_block_flags, "runtime bsp flags", _field_id_manual_bsp_flags },
+		{ _field_word_block_flags, "runtime bsp flags", &blofeld::haloreach::scenario_structure_bsp_reference_block_block, _field_id_manual_bsp_flags },
 		{ _field_block, "firing positions", &blofeld::haloreach::firing_positions_block_block },
 		{ _field_block, "areas", &blofeld::haloreach::areas_block_block },
-		{ _field_word_block_flags, "disallowed attachment bsps", _field_id_manual_bsp_flags },
+		{ _field_word_block_flags, "disallowed attachment bsps", &blofeld::haloreach::scenario_structure_bsp_reference_block_block, _field_id_manual_bsp_flags },
 		FIELD_PAD("pad0", 2),
 		{ _field_terminator }
 	};

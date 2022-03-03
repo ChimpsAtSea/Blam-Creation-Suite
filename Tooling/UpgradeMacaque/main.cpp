@@ -1,5 +1,8 @@
 #include "upgrademacaque-private-pch.h"
 
+s_tracked_memory_stats upgrademacaque_tracked_memory = { "upgrade macaque" };
+s_tracked_memory_stats& _library_tracked_memory = upgrademacaque_tracked_memory;
+
 // console_write_line("%s(%i): warning V0002: s_tag_struct '%s' failed validation. computed size 0x%x expected 0x%x", struct_definition.filename, struct_definition.line, block_name, computed_size, expected_size);
 
 std::map<const blofeld::s_tag_struct_definition*, const blofeld::s_tag_struct_definition*> structure_definitions;

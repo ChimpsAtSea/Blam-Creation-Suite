@@ -19,4 +19,5 @@ public:
 	s_partitioned_heap_entry* entries;
 
 	c_partitioned_heap_entry_list_chunk(const void* chunk_data, c_chunk& parent);
+	~c_partitioned_heap_entry_list_chunk();
 };

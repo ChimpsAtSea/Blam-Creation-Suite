@@ -10,6 +10,10 @@
 static volatile LONG tracked_memory_entries_spin_lock;
 static s_tracked_memory_entry* tracked_memory_entries;
 
+volatile long long allocated_memory;
+volatile long long tracked_allocated_memory;
+volatile long allocation_count;
+
 s_tracked_memory_stats platform_tracked_memory = { "platform" };
 s_tracked_memory_stats malloca_tracked_memory = { "malloca" };
 s_tracked_memory_stats& _library_tracked_memory = platform_tracked_memory;
@@ -54,9 +58,13 @@ void* _tracked_aligned_malloc(s_tracked_memory_stats& stats, size_t size, size_t
 		previous->next = tracked_memory_entry;
 	}
 
-	InterlockedAdd64(&tracked_memory_entry->stats->allocated_memory, allocated_memory_aligned_size);
-	InterlockedAdd64(&tracked_memory_entry->stats->tracked_allocated_memory, tracking_memory_aligned_size);
-	InterlockedIncrement(&tracked_memory_entry->stats->allocation_count);
+	InterlockedAdd64(&stats.allocated_memory, allocated_memory_aligned_size);
+	InterlockedAdd64(&stats.tracked_allocated_memory, tracking_memory_aligned_size);
+	InterlockedIncrement(&stats.allocation_count);
+
+	InterlockedAdd64(&allocated_memory, allocated_memory_aligned_size);
+	InterlockedAdd64(&tracked_allocated_memory, tracking_memory_aligned_size);
+	InterlockedIncrement(&allocation_count);
 
 	LONG lock_release_result = InterlockedExchange(&tracked_memory_entries_spin_lock, 0);
 	if (lock_release_result != thread_id) throw;
@@ -64,11 +72,11 @@ void* _tracked_aligned_malloc(s_tracked_memory_stats& stats, size_t size, size_t
 	return memory;
 }
 
-void tracked_aligned_free(void* allocated_memory)
+void tracked_aligned_free(void* pointer)
 {
-	if (allocated_memory)
+	if (pointer)
 	{
-		s_tracked_memory_entry* tracked_memory_entry = static_cast<s_tracked_memory_entry*>(allocated_memory) - 1;
+		s_tracked_memory_entry* tracked_memory_entry = static_cast<s_tracked_memory_entry*>(pointer) - 1;
 
 		DWORD thread_id = GetCurrentThreadId();
 		while (InterlockedCompareExchange(&tracked_memory_entries_spin_lock, thread_id, 0));
@@ -88,6 +96,10 @@ void tracked_aligned_free(void* allocated_memory)
 		InterlockedAdd64(&tracked_memory_entry->stats->allocated_memory, -static_cast<LONG64>(tracked_memory_entry->allocated_memory_aligned_size));
 		InterlockedAdd64(&tracked_memory_entry->stats->tracked_allocated_memory, -static_cast<LONG64>(tracked_memory_entry->tracking_memory_aligned_size));
 		InterlockedAdd(&tracked_memory_entry->stats->allocation_count, -1);
+
+		InterlockedAdd64(&allocated_memory, -static_cast<LONG64>(tracked_memory_entry->allocated_memory_aligned_size));
+		InterlockedAdd64(&tracked_allocated_memory, -static_cast<LONG64>(tracked_memory_entry->tracking_memory_aligned_size));
+		InterlockedAdd(&allocation_count, -1);
 
 		LONG lock_release_result = InterlockedCompareExchange(&tracked_memory_entries_spin_lock, 0, thread_id);
 		if (lock_release_result != thread_id) throw;
@@ -143,17 +155,21 @@ void* _tracked_malloc(s_tracked_memory_stats& stats, size_t size, const char* fi
 	InterlockedAdd64(&tracked_memory_entry->stats->tracked_allocated_memory, tracking_memory_aligned_size);
 	InterlockedIncrement(&tracked_memory_entry->stats->allocation_count);
 
+	InterlockedAdd64(&allocated_memory, allocated_memory_aligned_size);
+	InterlockedAdd64(&tracked_allocated_memory, tracking_memory_aligned_size);
+	InterlockedIncrement(&allocation_count);
+
 	LONG lock_release_result = InterlockedExchange(&tracked_memory_entries_spin_lock, 0);
 	if (lock_release_result != thread_id) throw;
 
 	return memory;
 }
 
-void tracked_free(void* allocated_memory)
+void tracked_free(void* pointer)
 {
-	if (allocated_memory)
+	if (pointer)
 	{
-		s_tracked_memory_entry* tracked_memory_entry = static_cast<s_tracked_memory_entry*>(allocated_memory) - 1;
+		s_tracked_memory_entry* tracked_memory_entry = static_cast<s_tracked_memory_entry*>(pointer) - 1;
 
 		DWORD thread_id = GetCurrentThreadId();
 		while (InterlockedCompareExchange(&tracked_memory_entries_spin_lock, thread_id, 0));
@@ -173,6 +189,10 @@ void tracked_free(void* allocated_memory)
 		InterlockedAdd64(&tracked_memory_entry->stats->allocated_memory, -static_cast<LONG64>(tracked_memory_entry->allocated_memory_aligned_size));
 		InterlockedAdd64(&tracked_memory_entry->stats->tracked_allocated_memory, -static_cast<LONG64>(tracked_memory_entry->tracking_memory_aligned_size));
 		InterlockedAdd(&tracked_memory_entry->stats->allocation_count, -1);
+
+		InterlockedAdd64(&allocated_memory, -static_cast<LONG64>(tracked_memory_entry->allocated_memory_aligned_size));
+		InterlockedAdd64(&tracked_allocated_memory, -static_cast<LONG64>(tracked_memory_entry->tracking_memory_aligned_size));
+		InterlockedAdd(&allocation_count, -1);
 
 		LONG lock_release_result = InterlockedCompareExchange(&tracked_memory_entries_spin_lock, 0, thread_id);
 		if (lock_release_result != thread_id) throw;
@@ -194,15 +214,27 @@ void print_memory_allocations(s_tracked_memory_stats* stats)
 		console_write_line("\t tracked_allocated_memory: %lli", stats->tracked_allocated_memory);
 		console_write_line("\t allocation_count:         %i", stats->allocation_count);
 	}
+	else
+	{
+		console_write_line("Global memory stats");
+		console_write_line("\t allocated_memory:         %lli", allocated_memory);
+		console_write_line("\t tracked_allocated_memory: %lli", tracked_allocated_memory);
+		console_write_line("\t allocation_count:         %i", allocation_count);
+	}
+	unsigned long output_count = 0;
 	for (s_tracked_memory_entry* tracked_memory_entry = tracked_memory_entries; tracked_memory_entry; tracked_memory_entry = tracked_memory_entry->previous)
 	{
 		if (stats == nullptr || stats == tracked_memory_entry->stats)
 		{
 			if (tracked_memory_entry->filepath)
 			{
+				console_write_line("%s(%i): warning MLEAK: memory leak detected", tracked_memory_entry->filepath, tracked_memory_entry->line);
 
 				debug_point;
-
+				if (++output_count > 10)
+				{
+					break;
+				}
 			}
 		}
 	}
@@ -210,3 +242,57 @@ void print_memory_allocations(s_tracked_memory_stats* stats)
 	if (lock_release_result != thread_id) throw;
 }
 
+void write_memory_allocations(s_tracked_memory_stats* stats)
+{
+	FILE* output = fopen("memory_allocations.txt", "w");
+#define file_write_line(file, format, ...) fprintf(file, format "\n", __VA_ARGS__);
+
+	DWORD thread_id = GetCurrentThreadId();
+	while (InterlockedCompareExchange(&tracked_memory_entries_spin_lock, thread_id, 0));
+	if (stats != nullptr)
+	{
+		file_write_line(output, "Memory stats for %s", stats->name);
+		file_write_line(output, "\t allocated_memory:         %lli", stats->allocated_memory);
+		file_write_line(output, "\t tracked_allocated_memory: %lli", stats->tracked_allocated_memory);
+		file_write_line(output, "\t allocation_count:         %i", stats->allocation_count);
+	}
+	else
+	{
+		file_write_line(output, "Global memory stats");
+		file_write_line(output, "\t allocated_memory:         %lli", allocated_memory);
+		file_write_line(output, "\t tracked_allocated_memory: %lli", tracked_allocated_memory);
+		file_write_line(output, "\t allocation_count:         %i", allocation_count);
+	}
+	unsigned long missed_output_entries = 0;
+	for (s_tracked_memory_entry* tracked_memory_entry = tracked_memory_entries; tracked_memory_entry; tracked_memory_entry = tracked_memory_entry->previous)
+	{
+		if (stats == nullptr || stats == tracked_memory_entry->stats)
+		{
+			if (tracked_memory_entry->filepath)
+			{
+				if (tracked_memory_entry->stats)
+				{
+					file_write_line(output, "%s(%i): warning MLEAK: memory leak detected [%s]", tracked_memory_entry->filepath, tracked_memory_entry->line, tracked_memory_entry->stats->name);
+				}
+				else
+				{
+					file_write_line(output, "%s(%i): warning MLEAK: memory leak detected", tracked_memory_entry->filepath, tracked_memory_entry->line);
+				}
+
+				debug_point;
+			}
+			else missed_output_entries++;
+		}
+	}
+	LONG lock_release_result = InterlockedCompareExchange(&tracked_memory_entries_spin_lock, 0, thread_id);
+	if (lock_release_result != thread_id) throw;
+
+	if(missed_output_entries > 0)
+	{
+		file_write_line(output, "%u entries had no file/line data", missed_output_entries);
+	}
+
+	fclose(output);
+
+#undef file_write_line
+}

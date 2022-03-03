@@ -1,7 +1,8 @@
 #include "platform-private-pch.h"
 
-static s_tracked_memory_stats filesystem_tracked_memory = { "filesystem", &platform_tracked_memory };
+#define FILESYSTEM_DEBUG_ARGS DEBUG_ONLY(, const char* _debug_file_path, long _debug_line_number)
 
+static s_tracked_memory_stats filesystem_tracked_memory = { "filesystem", &platform_tracked_memory };
 
 const char* filesystem_extract_filepath_filename(const char* filepath)
 {
@@ -195,7 +196,7 @@ BCS_RESULT filesystem_copy_file_to_buffer(const wchar_t* filepath, void* buffer,
 	return rs;
 }
 
-static BCS_RESULT filesystem_read_file_to_memory(HANDLE file_handle, void*& buffer, unsigned long long& buffer_size)
+static BCS_RESULT filesystem_read_file_to_memory(HANDLE file_handle, void*& buffer, unsigned long long& buffer_size FILESYSTEM_DEBUG_ARGS)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -209,7 +210,7 @@ static BCS_RESULT filesystem_read_file_to_memory(HANDLE file_handle, void*& buff
 	}
 	else
 	{
-		char* file_data_buffer = new(filesystem_tracked_memory) char[buffer_size];
+		char* file_data_buffer = static_cast<char*>(_tracked_malloc(platform_tracked_memory, buffer_size, _debug_file_path, _debug_line_number));
 		buffer = file_data_buffer;
 		unsigned long long number_of_bytes_remaining = file_size.QuadPart;
 		while (number_of_bytes_remaining > 0)
@@ -243,7 +244,7 @@ static BCS_RESULT filesystem_read_file_to_memory(HANDLE file_handle, void*& buff
 	return rs;
 }
 
-BCS_RESULT filesystem_read_file_to_memory(const char* filepath, void*& buffer, unsigned long long& buffer_size)
+BCS_RESULT filesystem_read_file_to_memory(const char* filepath, void*& buffer, unsigned long long& buffer_size FILESYSTEM_DEBUG_ARGS)
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
 	//BCS_FAIL_RETURN(filesystem_filepath_exists(filepath));
@@ -262,10 +263,10 @@ BCS_RESULT filesystem_read_file_to_memory(const char* filepath, void*& buffer, u
 		return BCS_E_FAIL;
 	}
 
-	return filesystem_read_file_to_memory(file_handle, buffer, buffer_size);
+	return filesystem_read_file_to_memory(file_handle, buffer, buffer_size DEBUG_ONLY(, _debug_file_path, _debug_line_number));
 }
 
-BCS_RESULT filesystem_read_file_to_memory(const wchar_t* filepath, void*& buffer, unsigned long long& buffer_size)
+BCS_RESULT filesystem_read_file_to_memory(const wchar_t* filepath, void*& buffer, unsigned long long& buffer_size FILESYSTEM_DEBUG_ARGS)
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
 	//BCS_FAIL_RETURN(filesystem_filepath_exists(filepath));
@@ -283,7 +284,7 @@ BCS_RESULT filesystem_read_file_to_memory(const wchar_t* filepath, void*& buffer
 		return BCS_E_FAIL;
 	}
 
-	return filesystem_read_file_to_memory(file_handle, buffer, buffer_size);
+	return filesystem_read_file_to_memory(file_handle, buffer, buffer_size DEBUG_ONLY(, _debug_file_path, _debug_line_number));
 }
 
 static BCS_RESULT filesystem_write_file_from_memory(HANDLE file_handle, const void* buffer, unsigned long long buffer_size)
@@ -619,3 +620,5 @@ BCS_RESULT filesystem_traverse_directory_files(const wchar_t* directory, const w
 
 	return BCS_S_OK;
 }
+
+#undef FILESYSTEM_DEBUG_ARGS

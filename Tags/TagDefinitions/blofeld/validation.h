@@ -19,14 +19,14 @@ namespace blofeld
 		_validation_result_field_missing_tag_reference,
 	};
 
-	void iterate_structure_fields(
+	void validation_iterate_structure_fields(
 		s_engine_platform_build engine_platform_build,
 		const s_tag_struct_definition& struct_definition,
 		bool recursive,
 		bool recursive_block,
 		t_iterate_structure_fields_callback* callback,
 		void* userdata = nullptr);
-	void iterate_structure_fields(
+	void validation_iterate_structure_fields(
 		const s_tag_struct_definition& struct_definition,
 		bool recursive,
 		bool recursive_block,

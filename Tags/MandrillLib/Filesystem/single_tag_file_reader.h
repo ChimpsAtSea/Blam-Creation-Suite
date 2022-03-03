@@ -47,6 +47,7 @@ public:
 	t_tag_struct_definition_table tag_struct_definitions_lookup_table;
 
 	s_engine_platform_build engine_platform_build;
+	c_tag_struct_definition_view* tag_structs_view;
 
 	const blofeld::s_tag_group* blofeld_tag_group;
 	const blofeld::s_tag_block_definition* blofeld_tag_block_definition;

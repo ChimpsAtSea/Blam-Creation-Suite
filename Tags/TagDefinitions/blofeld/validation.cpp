@@ -2,7 +2,7 @@
 
 namespace blofeld
 {
-	void iterate_structure_fields(
+	void validation_iterate_structure_fields(
 		s_engine_platform_build engine_platform_build,
 		const s_tag_struct_definition& struct_definition,
 		bool recursive,
@@ -63,11 +63,19 @@ namespace blofeld
 						}
 						break;
 					}
+				//case _field_char_block_index:
+				//case _field_short_block_index:
+				//case _field_long_block_index:
+				//	if (current_field->block_definition)
+				//	{
+				//		callback(current_field->block_definition->struct_definition, userdata);
+				//	}
+					break;
 				}
 
-				if (next_struct_definition != nullptr)
+				if (next_struct_definition != nullptr && next_struct_definition != &struct_definition)
 				{
-					iterate_structure_fields(
+					validation_iterate_structure_fields(
 						engine_platform_build,
 						*next_struct_definition,
 						recursive,
@@ -79,14 +87,14 @@ namespace blofeld
 		}
 	}
 
-	void iterate_structure_fields(
+	void validation_iterate_structure_fields(
 		const s_tag_struct_definition& struct_definition,
 		bool recursive,
 		bool recursive_block,
 		t_iterate_structure_fields_callback* callback,
 		void* userdata)
 	{
-		iterate_structure_fields({}, struct_definition, recursive, recursive_block, callback, userdata);
+		validation_iterate_structure_fields({}, struct_definition, recursive, recursive_block, callback, userdata);
 	}
 
 	enum e_validation_warnings
@@ -284,7 +292,9 @@ namespace blofeld
 		{
 			e_engine_type engine_type = static_cast<e_engine_type>(engine_type_index);
 
-			for (const s_tag_struct_definition** struct_definition_iter = blofeld::get_tag_struct_definitions({ engine_type }); *struct_definition_iter; struct_definition_iter++)
+			c_tag_struct_definition_view tag_struct_view({ engine_type });
+
+			for (const s_tag_struct_definition** struct_definition_iter = tag_struct_view.get_tag_struct_definitions(); *struct_definition_iter; struct_definition_iter++)
 			{
 				const s_tag_struct_definition& struct_definition = **struct_definition_iter;
 

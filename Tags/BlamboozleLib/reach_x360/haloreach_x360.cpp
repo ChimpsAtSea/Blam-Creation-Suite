@@ -721,8 +721,12 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 				s << " }," << std::endl;
 			}
 			break;
+			case _reach_x360_field_type_char_block_index:
 			case _reach_x360_field_type_short_block_index:
 			case _reach_x360_field_type_long_block_index:
+			case _reach_x360_field_type_long_block_flags:
+			case _reach_x360_field_type_word_block_flags:
+			case _reach_x360_field_type_byte_block_flags:
 			case _reach_x360_field_type_block:
 			{
 				s << "\t\t{ ";

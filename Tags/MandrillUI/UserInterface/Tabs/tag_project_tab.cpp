@@ -16,7 +16,7 @@ c_tag_project_tab::c_tag_project_tab(const wchar_t* filepath, c_tag_project& tag
 
 c_tag_project_tab::~c_tag_project_tab()
 {
-
+	delete& tag_project;
 }
 
 c_tag_project& c_tag_project_tab::get_tag_project() const

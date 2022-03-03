@@ -115,6 +115,7 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 
 c_single_tag_file_layout_reader::~c_single_tag_file_layout_reader()
 {
+	delete root_chunk;
 	delete[] aggregate_entries;
 }
 

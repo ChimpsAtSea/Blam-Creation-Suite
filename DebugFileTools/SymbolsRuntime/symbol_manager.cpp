@@ -78,6 +78,17 @@ static BCS_RESULT symbol_manager_load_symbol_file_instance_by_module_handle(HMOD
 	return BCS_S_OK;
 }
 
+BCS_DEBUG_API BCS_RESULT symbol_manager_cleanup()
+{
+	for (unsigned long symbol_file_instance_index = 0; symbol_file_instance_index < num_symbol_file_instances; symbol_file_instance_index++)
+	{
+		s_symbol_file_instance& symbol_file_instance = symbol_file_instances[symbol_file_instance_index];
+		delete symbol_file_instance.runtime_symbols;
+		tracked_free(symbol_file_instance.symbol_binary_buffer);
+	}
+	return BCS_S_OK;
+}
+
 BCS_RESULT symbol_manager_get_public_symbol_by_pointer(const void* pointer, s_symbol_file_public*& public_symbol)
 {
 	HMODULE module_handle;

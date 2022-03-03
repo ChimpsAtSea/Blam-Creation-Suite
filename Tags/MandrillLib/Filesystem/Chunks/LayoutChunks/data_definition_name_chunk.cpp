@@ -20,6 +20,11 @@ c_data_definition_name_chunk::c_data_definition_name_chunk(const void* chunk_dat
 	debug_point;
 }
 
+c_data_definition_name_chunk::~c_data_definition_name_chunk()
+{
+	delete[] offsets;
+}
+
 void c_data_definition_name_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
 {
 	log_signature();

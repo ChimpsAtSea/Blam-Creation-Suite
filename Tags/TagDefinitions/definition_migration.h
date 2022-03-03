@@ -21,4 +21,5 @@ BCS_DEBUG_API bool definition_migration(
 	const blofeld::s_tag_group** new_tag_groups,
 	s_engine_platform_build engine_platform_build);
 
-BCS_DEBUG_API BCS_RESULT definition_duplicate_check(s_engine_platform_build engine_platform_build);
+class c_tag_struct_definition_view;
+BCS_DEBUG_API BCS_RESULT definition_duplicate_check(c_tag_struct_definition_view& tag_structs_view);

@@ -20,6 +20,11 @@ c_custom_block_index_search_names_chunk::c_custom_block_index_search_names_chunk
 	debug_point;
 }
 
+c_custom_block_index_search_names_chunk::~c_custom_block_index_search_names_chunk()
+{
+	delete[] offsets;
+}
+
 void c_custom_block_index_search_names_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
 {
 	log_signature();

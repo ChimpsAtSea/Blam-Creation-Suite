@@ -388,9 +388,9 @@ bool definition_migration(
 	return result;
 }
 
-BCS_RESULT definition_duplicate_check(s_engine_platform_build engine_platform_build)
+BCS_RESULT definition_duplicate_check(c_tag_struct_definition_view& tag_structs_view)
 {
-	const s_tag_struct_definition** tag_struct_definitions = blofeld::get_tag_struct_definitions(engine_platform_build);
+	const s_tag_struct_definition** tag_struct_definitions = tag_structs_view.get_tag_struct_definitions();
 	if (tag_struct_definitions == nullptr)
 	{
 		return BCS_E_FAIL;

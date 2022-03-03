@@ -114,9 +114,9 @@ c_structure_relationship_node& c_structure_relationship_node::get_node_by_struct
 	throw;
 }
 
-void c_structure_relationship_node::create_structure_relationships(s_engine_platform_build engine_platform_build)
+void c_structure_relationship_node::create_structure_relationships(c_tag_struct_definition_view& tag_structs_view, s_engine_platform_build engine_platform_build)
 {
-	for (const s_tag_struct_definition** tag_struct_definition_iter = get_tag_struct_definitions(engine_platform_build); *tag_struct_definition_iter; tag_struct_definition_iter++)
+	for (const s_tag_struct_definition** tag_struct_definition_iter = tag_structs_view.get_tag_struct_definitions(); *tag_struct_definition_iter; tag_struct_definition_iter++)
 	{
 		const s_tag_struct_definition& tag_struct_definition = **tag_struct_definition_iter;
 

@@ -6,6 +6,8 @@ enum e_filesystem_write_mode
 	_filesystem_write_mode_check_for_changes
 };
 
+#define FILESYSTEM_DEBUG_ARGS DEBUG_ONLY(, const char* _debug_file_path = __builtin_FILE(), long _debug_line_number = __builtin_LINE())
+
 BCS_DEBUG_API const char* filesystem_extract_filepath_filename(const char* filepath);
 BCS_DEBUG_API const wchar_t* filesystem_extract_filepath_filename(const wchar_t* filepath);
 BCS_DEBUG_API const char* filesystem_extract_filepath_extension(const char* filepath);
@@ -19,10 +21,10 @@ BCS_DEBUG_API BCS_RESULT filesystem_get_file_size(const char* filepath, unsigned
 BCS_DEBUG_API BCS_RESULT filesystem_get_file_size(const wchar_t* filepath, unsigned long long& file_size);
 BCS_DEBUG_API BCS_RESULT filesystem_copy_file_to_buffer(const char* filepath, void* buffer, unsigned long long& buffer_size);
 BCS_DEBUG_API BCS_RESULT filesystem_copy_file_to_buffer(const wchar_t* filepath, void* buffer, unsigned long long& buffer_size);
-BCS_DEBUG_API BCS_RESULT filesystem_read_file_to_memory(const char* filepath, void*& buffer, unsigned long long& buffer_size);
-BCS_DEBUG_API BCS_RESULT filesystem_read_file_to_memory(const wchar_t* filepath, void*& buffer, unsigned long long& buffer_size);
+BCS_DEBUG_API BCS_RESULT filesystem_read_file_to_memory(const char* filepath, void*& buffer, unsigned long long& buffer_size FILESYSTEM_DEBUG_ARGS);
+BCS_DEBUG_API BCS_RESULT filesystem_read_file_to_memory(const wchar_t* filepath, void*& buffer, unsigned long long& buffer_size FILESYSTEM_DEBUG_ARGS);
 BCS_DEBUG_API BCS_RESULT filesystem_write_file_from_memory(const char* filepath, const void* buffer, unsigned long long buffer_size, e_filesystem_write_mode mode = _filesystem_write_mode_default);
-BCS_DEBUG_API BCS_RESULT filesystem_write_file_from_memory(const wchar_t* filepath, const void* buffer, unsigned long long buffer_size, e_filesystem_write_mode mode = _filesystem_write_mode_default);
+BCS_DEBUG_API BCS_RESULT filesystem_write_file_from_memory(const wchar_t* filepath, const void* buffer, unsigned long long buffer_size, e_filesystem_write_mode mode = _filesystem_write_mode_default );
 
 typedef struct
 {
@@ -48,3 +50,5 @@ BCS_DEBUG_API BCS_RESULT filesystem_traverse_directory_files(const wchar_t* dire
 BCS_DEBUG_API HRESULT filesystem_resolve_shell_link(HWND hwnd, LPCSTR lpszLinkFile, LPSTR lpszPath, int iPathBufferSize);
 BCS_DEBUG_API HRESULT filesystem_resolve_shell_link_wide(HWND hwnd, LPCSTR lpszLinkFile, LPWSTR lpszPath, int iPathBufferSize);
 #endif
+
+#undef FILESYSTEM_DEBUG_ARGS
