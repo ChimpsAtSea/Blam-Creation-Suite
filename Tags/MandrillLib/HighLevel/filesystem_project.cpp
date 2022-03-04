@@ -139,7 +139,8 @@ h_tag* c_filesystem_tag_project::try_parse_tag_file(const wchar_t* filepath)
 		*header_data,
 		engine_platform_build,
 		*layout_reader,
-		*layout_reader->binary_data_chunk);
+		*layout_reader->binary_data_chunk,
+		nullptr);
 
 	s.stop();
 	float ms = s.get_miliseconds();

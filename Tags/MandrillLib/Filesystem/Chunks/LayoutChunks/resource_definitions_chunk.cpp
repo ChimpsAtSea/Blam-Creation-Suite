@@ -3,7 +3,7 @@
 template<> void byteswap_inplace(s_tag_persist_resource_definition& value)
 {
 	byteswap_inplace(value.string_character_index);
-	byteswap_inplace(value.unknown);
+	byteswap_inplace(value.flags);
 	byteswap_inplace(value.structure_entry_index);
 }
 
@@ -43,11 +43,11 @@ void c_resource_definitions_chunk::log_impl(c_single_tag_file_layout_reader* lay
 		if (layout_reader)
 		{
 			const char* string = layout_reader->get_string_by_string_character_index(entry.string_character_index);
-			log_pad(); console_write_line_verbose("\t0x%08X\tunknown:0x%08X structure_entry_index:0x%08X %s", index, entry.unknown, entry.structure_entry_index, string);
+			log_pad(); console_write_line_verbose("\t0x%08X\tunknown:0x%08X structure_entry_index:0x%08X %s", index, entry.flags.get_unsafe(), entry.structure_entry_index, string);
 		}
 		else
 		{
-			log_pad(); console_write_line_verbose("\t0x%08X\tunknown:0x%08X structure_entry_index:0x%08X", index, entry.unknown, entry.structure_entry_index);
+			log_pad(); console_write_line_verbose("\t0x%08X\tunknown:0x%08X structure_entry_index:0x%08X", index, entry.flags.get_unsafe(), entry.structure_entry_index);
 		}
 	}
 }

@@ -196,3 +196,8 @@ template<> BCS_DEBUG_API void byteswap_inplace<c_tag_resource_fixup>(c_tag_resou
 	static_assert(sizeof(c_tag_resource_fixup) == sizeof(unsigned long));
 	byteswap_inplace(*reinterpret_cast<unsigned long*>(&value));
 }
+
+template<> BCS_DEBUG_API void byteswap_inplace<s_tag_d3d_vertex_buffer>(s_tag_d3d_vertex_buffer& value)
+{
+	byteswap_inplace(value.data);
+}

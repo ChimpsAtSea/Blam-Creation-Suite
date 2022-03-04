@@ -4,7 +4,8 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	s_single_tag_file_header& header,
 	s_engine_platform_build engine_platform_build,
 	c_single_tag_file_layout_reader& layout_reader,
-	c_binary_data_chunk& binary_data_chunk) :
+	c_binary_data_chunk& binary_data_chunk,
+	const void* _monolithic_resource_data) :
 	header(header),
 	layout_reader(layout_reader),
 	binary_data_chunk(binary_data_chunk),
@@ -16,7 +17,8 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	tag_structs_view(nullptr),
 	blofeld_tag_group(),
 	blofeld_tag_block_definition(),
-	blofeld_tag_group_struct_definition()
+	blofeld_tag_group_struct_definition(),
+	monolithic_resource_data(static_cast<const char*>(_monolithic_resource_data))
 {
 	unsigned long tag_group_block_index = layout_reader.tag_group_layout_chunk->get_tag_group_block_index();
 	metadata_stack.push(tag_group_block_index);
@@ -374,6 +376,8 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 		c_tag_string_id_chunk* field_tag_string_id_chunk = nullptr;
 		c_tag_data_chunk* field_tag_data_chunk = nullptr;
 		c_tag_block_chunk* field_tag_block_chunk = nullptr;
+		c_tag_resource_xsynced_chunk* resource_xsynced_chunk = nullptr;
+		c_tag_resource_null_chunk* resource_null_chunk = nullptr;
 
 		if (transpose.src_file_blofeld_field_type == blofeld::_field_terminator)
 		{
@@ -435,8 +439,8 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 		case blofeld::_field_pageable:
 		{
 			c_chunk* field_chunk = structure_chunk->children[structure_chunk_child_index++];
-			c_tag_resource_xsynced_chunk* resource_xsynced_chunk = dynamic_cast<c_tag_resource_xsynced_chunk*>(field_chunk);
-			c_tag_resource_null_chunk* resource_null_chunk = dynamic_cast<c_tag_resource_null_chunk*>(field_chunk);
+			resource_xsynced_chunk = dynamic_cast<c_tag_resource_xsynced_chunk*>(field_chunk);
+			resource_null_chunk = dynamic_cast<c_tag_resource_null_chunk*>(field_chunk);
 			ASSERT(resource_xsynced_chunk != nullptr || resource_null_chunk != nullptr);
 		}
 		break;
@@ -501,6 +505,25 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 			case blofeld::_field_pageable:
 			{
 				h_resource*& tag_resource_storage = *reinterpret_cast<decltype(&tag_resource_storage)>(high_level_field_data);
+
+				resource_xsynced_chunk;
+				resource_null_chunk;
+				ASSERT(resource_xsynced_chunk != nullptr || resource_null_chunk != nullptr);
+
+				if (resource_xsynced_chunk)
+				{
+					ASSERT(monolithic_resource_data != nullptr);
+
+					tag_resource_storage = new() h_resource();
+
+					const char* resource_data_start = monolithic_resource_data + resource_xsynced_chunk->resource_xsync_state_v2.cache_location_offset;
+					const char* resource_data_end = resource_data_start + resource_xsynced_chunk->resource_xsync_state_v2.cache_location_size;
+
+					tag_resource_storage->data.insert(tag_resource_storage->data.end(), resource_data_start, resource_data_end);
+
+					debug_point;
+
+				}
 
 				debug_point;
 
@@ -572,9 +595,11 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 				debug_point;
 			}
 			break;
+
 			default:
 			{
 				memcpy(high_level_field_data, structure_data_position, src_field_size);
+				blofeld::byteswap_field_data_inplace(blofeld_field.field_type, high_level_field_data, engine_platform_build);
 			}
 			break;
 			}

@@ -22,7 +22,8 @@ c_tag_file_high_level_transplant::c_tag_file_high_level_transplant(const char* f
 		*header_data,
 		engine_platform_build,
 		*layout_reader,
-		*layout_reader->binary_data_chunk);
+		*layout_reader->binary_data_chunk,
+		nullptr);
 
 	s.stop();
 	float ms = s.get_miliseconds();

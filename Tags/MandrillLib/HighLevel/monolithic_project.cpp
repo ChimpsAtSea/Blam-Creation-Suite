@@ -247,14 +247,15 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 
 		ASSERT(wide_data_cache_block.current_datum == tag_file_index_entry.wide_block_datum_index);
 
-		const void* tag_file_data = nullptr;
-		unsigned long long tag_file_data_size = 0;
+		const void* tag_data = nullptr;
+		unsigned long long tag_data_size = 0;
 		if (wide_data_cache_block.tag_heap_entry_index != 0xFFFFFFFF)
 		{
 			s_partitioned_heap_entry& tag_heap_entry = tag_heap_list_chunk->entries[wide_data_cache_block.tag_heap_entry_index];
 			c_partition_chunk* partition_chunk = dynamic_cast<c_partition_chunk*>(tag_partition_list_chunk->children[tag_heap_entry.partition_index]);
 			ASSERT(partition_chunk != nullptr);
 			ASSERT(partition_chunk->partition_header.file_index == tag_heap_entry.partition_index);
+			ASSERT(tag_heap_entry.partition_index < num_tag_partitions);
 
 			unsigned short heap_index = DATUM_INDEX_TO_ABSOLUTE_INDEX(tag_heap_entry.heap_datum);
 			s_lruv_cache_block_ex& lruv_cache_block = partition_chunk->lruv_cache_blocks[heap_index];
@@ -278,21 +279,31 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 
 			debug_point;
 
-			tag_file_data = data;
-			tag_file_data_size = lruv_cache_block.size;
+			tag_data = data;
+			tag_data_size = lruv_cache_block.size;
 		}
 
+		const void* resource_data = nullptr;
+		unsigned long long resource_data_size = 0;
 		if (wide_data_cache_block.cache_heap_entry_index != 0xFFFFFFFF)
 		{
 			s_partitioned_heap_entry& cache_heap_entry = cache_heap_list_chunk->entries[wide_data_cache_block.cache_heap_entry_index];
 			c_partition_chunk* partition_chunk = dynamic_cast<c_partition_chunk*>(cache_partition_list_chunk->children[cache_heap_entry.partition_index]);
 			ASSERT(partition_chunk != nullptr);
 			ASSERT(partition_chunk->partition_header.file_index == cache_heap_entry.partition_index);
+			ASSERT(cache_heap_entry.partition_index < num_cache_partitions);
 
 			unsigned short heap_index = DATUM_INDEX_TO_ABSOLUTE_INDEX(cache_heap_entry.heap_datum);
 			s_lruv_cache_block_ex& lruv_cache_block = partition_chunk->lruv_cache_blocks[heap_index];
 
+			s_memory_mapped_file_info& file_info = cache_memory_mapped_file_infos[cache_heap_entry.partition_index];
+
+			char* data = file_info.file_view_begin + lruv_cache_block.offset;
+
 			debug_point;
+
+			resource_data = data;
+			resource_data_size = lruv_cache_block.size;
 		}
 
 		c_stopwatch s;
@@ -301,9 +312,9 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 		h_tag* high_level_tag = nullptr;
 		if (wide_data_cache_block.tag_heap_entry_index != 0xFFFFFFFF)
 		{
-			ASSERT(tag_file_data_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
+			ASSERT(tag_data_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
 
-			const s_single_tag_file_header* src_header = static_cast<const s_single_tag_file_header*>(tag_file_data);
+			const s_single_tag_file_header* src_header = static_cast<const s_single_tag_file_header*>(tag_data);
 			bool is_little_endian_tag = src_header->blam == 'BLAM';
 			bool is_big_endian_tag = byteswap(src_header->blam) == 'BLAM';
 			ASSERT(is_little_endian_tag || is_big_endian_tag);
@@ -315,17 +326,17 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			}
 
 
-			c_single_tag_file_layout_reader* layout_reader = new() c_single_tag_file_layout_reader(header, tag_file_data);
+			c_single_tag_file_layout_reader* layout_reader = new() c_single_tag_file_layout_reader(header, tag_data);
 
 			c_single_tag_file_reader*  reader = new() c_single_tag_file_reader(
 				header,
 				engine_platform_build,
 				*layout_reader,
-				*layout_reader->binary_data_chunk);
+				*layout_reader->binary_data_chunk,
+				resource_data);
 
-
-			//tag_group_layout_chunk->log(layout_reader->string_data_chunk);
-			//binary_data_chunk->log(layout_reader->string_data_chunk);
+			layout_reader->tag_group_layout_chunk->log(layout_reader);
+			layout_reader->binary_data_chunk->log(layout_reader);
 
 			reader->parse_high_level_object(high_level_tag);
 			debug_point;
@@ -352,6 +363,8 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			debug_point;
 
 			console_write_line("Read tag %s (%.2f ms)", relative_filepath_mb, ms);
+
+			tags.push_back(high_level_tag);
 		}
 
 		debug_point;

@@ -15,7 +15,8 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 	tag(tag),
 	viewport_size(),
 	custom_tool(nullptr),
-	model_preview_test(nullptr)
+	model_preview_test(nullptr),
+	haloreach_bitmap_test(nullptr)
 {
 	if (c_mandrill_user_interface* mandrill_user_interface = search_parent_tab_type<c_mandrill_user_interface>())
 	{
@@ -68,6 +69,10 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 			{
 				object_tag = &equipment_definition->item.object;
 			}
+		}
+		if (blofeld::haloreach::h_bitmap_block_struct* bitmap_definition = dynamic_cast<decltype(bitmap_definition)>(&tag))
+		{
+			haloreach_bitmap_test = new() c_haloreach_bitmap_test(mandrill_user_interface->imgui_viewport_render_context, *bitmap_definition);
 		}
 
 		if (model_tag)
@@ -1170,15 +1175,22 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 	}
 	ImGui::NextColumn();
 	{
-		unsigned long const string_list_count = string_list_definition.get_count(tag_project.engine_platform_build);
+		long const string_list_count = static_cast<long>(string_list_definition.get_count(tag_project.engine_platform_build));
 
 		const char* selected_string_value = "<INVALID VALUE>";
 		bool current_string_has_tooltip = false;
 
 		// #TODO: replace string parser for the enum
-		if (static_cast<unsigned long>(value) < string_list_count)
+		if (value < string_list_count)
 		{
 			selected_string_value = string_list_definition.get_string(tag_project.engine_platform_build, value);
+		}
+		else
+		{
+			int buffer_length = snprintf(nullptr, 0, "<INVALID VALUE> 0x%08X", selected_string_value) + 1;
+			char* buffer = static_cast<char*>(alloca(buffer_length));
+			sprintf(buffer, "<INVALID VALUE> 0x%08X", value);
+			selected_string_value = buffer;
 		}
 
 		if (ImGui::BeginCombo("##enum", selected_string_value))
@@ -1531,6 +1543,10 @@ void c_high_level_tag_editor_tab::render_tag_group()
 	if (model_preview_test)
 	{
 		model_preview_test->draw_ui();
+	}
+	if (haloreach_bitmap_test)
+	{
+		haloreach_bitmap_test->draw_ui();
 	}
 	render_object(0, tag);
 	ImGui::Dummy({ 0.0f, 10.0f });

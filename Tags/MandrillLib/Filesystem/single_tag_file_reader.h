@@ -52,12 +52,14 @@ public:
 	const blofeld::s_tag_group* blofeld_tag_group;
 	const blofeld::s_tag_block_definition* blofeld_tag_block_definition;
 	const blofeld::s_tag_struct_definition* blofeld_tag_group_struct_definition;
+	const char* monolithic_resource_data;
 
 	c_single_tag_file_reader(
 		s_single_tag_file_header& header,
 		s_engine_platform_build engine_platform_build,
 		c_single_tag_file_layout_reader& layout_reader,
-		c_binary_data_chunk& binary_data_chunk);
+		c_binary_data_chunk& binary_data_chunk,
+		const void* monolithic_resource_data);
 	~c_single_tag_file_reader();
 
 	BCS_RESULT parse_high_level_object(h_tag*& high_level_tag);

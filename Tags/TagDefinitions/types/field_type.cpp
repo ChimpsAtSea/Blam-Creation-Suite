@@ -207,3 +207,99 @@ BCS_DEBUG_API BCS_RESULT blofeld::tag_field_type_to_field(const char* tag_field_
 	}
 	return BCS_E_NOT_FOUND;
 }
+
+BCS_DEBUG_API BCS_RESULT blofeld::byteswap_field_data_inplace(e_field field, void* data, s_engine_platform_build engine_platform_build)
+{
+#define FIELD_BYTESWAP(_field, _field_typename) if(_field == field) { byteswap_inplace(*static_cast<_field_typename*>(data)); return BCS_S_OK; }
+#define FIELD_BYTESWAP_NO_CHANGE(_field) if(_field == field) { return BCS_S_NO_CHANGES_MADE; }
+
+	FIELD_BYTESWAP_NO_CHANGE(_field_string);
+	FIELD_BYTESWAP_NO_CHANGE(_field_long_string);
+	FIELD_BYTESWAP(_field_string_id, string_id);
+	FIELD_BYTESWAP(_field_old_string_id, ::c_old_string_id);
+	FIELD_BYTESWAP(_field_char_integer, char);
+	FIELD_BYTESWAP(_field_short_integer, short);
+	FIELD_BYTESWAP(_field_long_integer, long);
+	FIELD_BYTESWAP(_field_int64_integer, long long);
+	FIELD_BYTESWAP(_field_angle, angle);
+	FIELD_BYTESWAP(_field_tag, tag);
+	FIELD_BYTESWAP(_field_char_enum, char);
+	FIELD_BYTESWAP(_field_enum, short);
+	FIELD_BYTESWAP(_field_long_enum, long);
+	FIELD_BYTESWAP(_field_long_flags, long);
+	FIELD_BYTESWAP(_field_word_flags, word);
+	FIELD_BYTESWAP(_field_byte_flags, byte);
+	FIELD_BYTESWAP(_field_point_2d, ::s_point2d);
+	FIELD_BYTESWAP(_field_rectangle_2d, ::s_rectangle2d);
+	FIELD_BYTESWAP(_field_rgb_color, ::pixel32);
+	FIELD_BYTESWAP(_field_argb_color, ::pixel32);
+	FIELD_BYTESWAP(_field_real, ::real);
+	FIELD_BYTESWAP(_field_real_fraction, ::real_fraction);
+	FIELD_BYTESWAP(_field_real_point_2d, ::real_point2d);
+	FIELD_BYTESWAP(_field_real_point_3d, ::real_point3d);
+	FIELD_BYTESWAP(_field_real_vector_2d, ::real_vector2d);
+	FIELD_BYTESWAP(_field_real_vector_3d, ::real_vector3d);
+	FIELD_BYTESWAP(_field_real_quaternion, ::real_quaternion);
+	FIELD_BYTESWAP(_field_real_euler_angles_2d, ::real_euler_angles2d);
+	FIELD_BYTESWAP(_field_real_euler_angles_3d, ::real_euler_angles3d);
+	FIELD_BYTESWAP(_field_real_plane_2d, ::real_plane2d);
+	FIELD_BYTESWAP(_field_real_plane_3d, ::real_plane3d);
+	FIELD_BYTESWAP(_field_real_rgb_color, ::rgb_color);
+	FIELD_BYTESWAP(_field_real_argb_color, ::argb_color);
+	FIELD_BYTESWAP(_field_real_hsv_color, ::real_hsv_color);
+	FIELD_BYTESWAP(_field_real_ahsv_color, ::real_ahsv_color);
+	FIELD_BYTESWAP(_field_short_bounds, ::short_bounds);
+	FIELD_BYTESWAP(_field_angle_bounds, ::angle_bounds);
+	FIELD_BYTESWAP(_field_real_bounds, ::real_bounds);
+	FIELD_BYTESWAP(_field_real_fraction_bounds, ::real_fraction_bounds);
+	FIELD_BYTESWAP(_field_tag_reference, ::s_tag_reference);
+	FIELD_BYTESWAP(_field_block, ::s_tag_block);
+	FIELD_BYTESWAP(_field_long_block_flags, long);
+	FIELD_BYTESWAP(_field_word_block_flags, word);
+	FIELD_BYTESWAP(_field_byte_block_flags, byte);
+	FIELD_BYTESWAP(_field_char_block_index, char);
+	FIELD_BYTESWAP(_field_custom_char_block_index, char);
+	FIELD_BYTESWAP(_field_short_block_index, short);
+	FIELD_BYTESWAP(_field_custom_short_block_index, short);
+	FIELD_BYTESWAP(_field_long_block_index, long);
+	FIELD_BYTESWAP(_field_custom_long_block_index, long);
+	FIELD_BYTESWAP(_field_data, ::s_tag_data);
+	FIELD_BYTESWAP(_field_vertex_buffer, ::s_tag_d3d_vertex_buffer);
+	FIELD_BYTESWAP_NO_CHANGE(_field_pad);
+	FIELD_BYTESWAP_NO_CHANGE(_field_useless_pad);
+	FIELD_BYTESWAP_NO_CHANGE(_field_skip);
+	FIELD_BYTESWAP_NO_CHANGE(_field_non_cache_runtime_value);
+	FIELD_BYTESWAP_NO_CHANGE(_field_explanation);
+	FIELD_BYTESWAP_NO_CHANGE(_field_custom);
+	FIELD_BYTESWAP_NO_CHANGE(_field_struct);
+	FIELD_BYTESWAP_NO_CHANGE(_field_array);
+	FIELD_BYTESWAP(_field_pageable, ::s_tag_resource);
+	FIELD_BYTESWAP(_field_api_interop, ::s_tag_interop);
+	FIELD_BYTESWAP_NO_CHANGE(_field_terminator);
+	FIELD_BYTESWAP(_field_byte_integer, byte);
+	FIELD_BYTESWAP(_field_word_integer, word);
+	FIELD_BYTESWAP(_field_dword_integer, dword);
+	FIELD_BYTESWAP(_field_qword_integer, qword);
+	FIELD_BYTESWAP(_field_embedded_tag, ::s_tag_reference);
+	FIELD_BYTESWAP_NO_CHANGE(_field_data_path);
+
+	if (field == _field_pointer)
+	{
+		unsigned long pointer_size;
+		ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(engine_platform_build.platform_type, &pointer_size)));
+		if (pointer_size == 4)
+		{
+			byteswap_inplace(*static_cast<unsigned long*>(data));
+		}
+		else if (pointer_size == 8)
+		{
+			byteswap_inplace(*static_cast<unsigned long long*>(data));
+		}
+		else return BCS_S_NO_CHANGES_MADE;
+	};
+	FIELD_BYTESWAP(_field_half, word);
+
+#undef FIELD_BYTESWAP
+#undef FIELD_BYTESWAP_NO_CHANGE
+	return BCS_E_FAIL;
+}

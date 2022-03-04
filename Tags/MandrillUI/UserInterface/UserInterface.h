@@ -19,3 +19,4 @@
 #include "Editors\model_preview_test.h"
 #include "Editors\infinite_tag_model.h"
 #include "Editors\infinite_tag_mesh.h"
+#include "Editors\haloreach_bitmap_test.h"

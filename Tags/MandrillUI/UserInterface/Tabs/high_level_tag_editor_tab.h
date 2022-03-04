@@ -5,6 +5,7 @@ class h_block;
 class h_enumerable;
 class c_custom_tool_render_model;
 class c_model_preview_test;
+class c_haloreach_bitmap_test;
 
 class c_high_level_tag_editor_tab :
 	public c_mandrill_tab
@@ -45,4 +46,5 @@ protected:
 
 	c_custom_tool_render_model* custom_tool;
 	c_model_preview_test* model_preview_test;
+	c_haloreach_bitmap_test* haloreach_bitmap_test;
 };
