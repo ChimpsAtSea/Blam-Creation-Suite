@@ -44,14 +44,32 @@ template<> void byteswap_inplace(s_lruv_cache_block& value)
 	byteswap_inplace(value.footer);
 }
 
-c_partition_chunk::c_partition_chunk(const void* chunk_data, c_chunk& parent) :
-	c_typed_chunk(chunk_data, &parent),
+c_partition_chunk::c_partition_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent),
 	partition_header(),
 	lruv_persist_header(),
 	data_array_persist_header(),
 	lruv_cache_blocks()
 {
-	const s_partition_header* src_partition_header = reinterpret_cast<const s_partition_header*>(chunk_data_begin);
+
+
+	debug_point;
+}
+
+c_partition_chunk::~c_partition_chunk()
+{
+	delete[] lruv_cache_blocks;
+}
+
+BCS_RESULT c_partition_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)
+{
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_FAILED(rs = c_typed_chunk::read_chunk(userdata, data, use_read_only, parse_children)))
+	{
+		return rs;
+	}
+
+	const s_partition_header* src_partition_header = reinterpret_cast<const s_partition_header*>(get_chunk_data_start());
 	const s_lruv_persist_header* src_lruv_persist_header = next_contiguous_pointer<s_lruv_persist_header>(src_partition_header);
 	const s_data_array_persist_header* src_data_array_persist_header = next_contiguous_pointer<s_data_array_persist_header>(src_lruv_persist_header);
 	const s_lruv_cache_block* src_lruv_cache_blocks = next_contiguous_pointer<s_lruv_cache_block>(src_data_array_persist_header);
@@ -71,10 +89,5 @@ c_partition_chunk::c_partition_chunk(const void* chunk_data, c_chunk& parent) :
 		lruv_cache_block_ex.offset = static_cast<unsigned long long>(lruv_cache_block_ex.lruv_cache_block.offset) * 512ull;
 	}
 
-	debug_point;
-}
-
-c_partition_chunk::~c_partition_chunk()
-{
-	delete[] lruv_cache_blocks;
+	return rs;
 }

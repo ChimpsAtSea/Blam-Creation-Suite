@@ -51,10 +51,14 @@ c_monolithic_tag_project::c_monolithic_tag_project(const wchar_t* directory, s_e
 	}
 	ASSERT(tag_file_data_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
 
-	parse_tag_blob(tag_file_data, tag_file_data_size);
-	init_monolithic_tag_file_views();
-	init_monolithic_cache_file_views();
-	read_tags();
+	BCS_RESULT parse_tag_blob_result = parse_tag_blob(tag_file_data, tag_file_data_size);
+	BCS_FAIL_THROW(parse_tag_blob_result);
+	BCS_RESULT init_monolithic_tag_file_views_result = init_monolithic_tag_file_views();
+	BCS_FAIL_THROW(init_monolithic_tag_file_views_result);
+	BCS_RESULT init_monolithic_cache_file_views_result = init_monolithic_cache_file_views();
+	BCS_FAIL_THROW(init_monolithic_cache_file_views_result);
+	BCS_RESULT read_tags_result = read_tags();
+	BCS_FAIL_THROW(read_tags_result);
 
 	delete root_chunk;
 	tracked_free(tag_file_data);
@@ -85,13 +89,13 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_tag_file_views()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	num_tag_partitions = tag_partition_list_chunk->get_chunk_count();
+	num_tag_partitions = tag_partition_list_chunk->get_num_children_unsafe();
 	tag_memory_mapped_files = new() t_memory_mapped_file * [num_tag_partitions];
 	tag_memory_mapped_file_infos = new() s_memory_mapped_file_info[num_tag_partitions];
 
 	for (unsigned long tag_partition_index = 0; tag_partition_index < num_tag_partitions; tag_partition_index++)
 	{
-		c_partition_chunk* partition_chunk = dynamic_cast<c_partition_chunk*>(tag_partition_list_chunk->children[tag_partition_index]);
+		c_partition_chunk* partition_chunk = tag_partition_list_chunk->get_child_unsafe<c_partition_chunk>(tag_partition_index);
 		ASSERT(partition_chunk != nullptr);
 		ASSERT(partition_chunk->partition_header.file_index == tag_partition_index);
 
@@ -119,13 +123,13 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_cache_file_views()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	num_cache_partitions = cache_partition_list_chunk->get_chunk_count();
+	num_cache_partitions = cache_partition_list_chunk->get_num_children_unsafe();
 	cache_memory_mapped_files = new() t_memory_mapped_file * [num_cache_partitions];
 	cache_memory_mapped_file_infos = new() s_memory_mapped_file_info[num_cache_partitions];
 
 	for (unsigned long cache_partition_index = 0; cache_partition_index < num_cache_partitions; cache_partition_index++)
 	{
-		c_partition_chunk* partition_chunk = dynamic_cast<c_partition_chunk*>(cache_partition_list_chunk->children[cache_partition_index]);
+		c_partition_chunk* partition_chunk = cache_partition_list_chunk->get_child_unsafe<c_partition_chunk>(cache_partition_index);
 		ASSERT(partition_chunk != nullptr);
 		ASSERT(partition_chunk->partition_header.file_index == cache_partition_index);
 
@@ -195,20 +199,28 @@ BCS_RESULT c_monolithic_tag_project::parse_tag_blob(const void* tag_file_data, u
 
 	const blofeld::s_tag_persistent_identifier* session_identifier = static_cast<const blofeld::s_tag_persistent_identifier*>(tag_file_data);
 
-	root_chunk = new() c_monolithic_tag_backend_chunk(next_contiguous_pointer(session_identifier));
+	root_chunk = new() c_monolithic_tag_backend_chunk();
+	root_chunk->read_chunk(nullptr, next_contiguous_pointer(session_identifier), true, true);
 
-	root_chunk->parse_children(this, nullptr, true);
+	tag_file_index_chunk = root_chunk->get_child_by_type_unsafe<c_tag_file_index_chunk>();
+	tag_file_blocks_chunk = root_chunk->get_child_by_type_unsafe<c_tag_file_blocks_chunk>();
 
-	tag_file_index_chunk = root_chunk->find_first_chunk<c_tag_file_index_chunk>();
-	tag_file_blocks_chunk = root_chunk->find_first_chunk<c_tag_file_blocks_chunk>();
+	tag_heap_chunk = root_chunk->get_child_by_type_unsafe<c_tag_heap_chunk>();
+	tag_heap_list_chunk = tag_heap_chunk->get_child_by_type_unsafe<c_partitioned_heap_entry_list_chunk>();
+	tag_partition_list_chunk = tag_heap_chunk->get_child_by_type_unsafe<c_partition_list_chunk>();
 
-	tag_heap_chunk = root_chunk->find_first_chunk<c_tag_heap_chunk>();
-	tag_heap_list_chunk = tag_heap_chunk->find_first_chunk<c_partitioned_heap_entry_list_chunk>();
-	tag_partition_list_chunk = tag_heap_chunk->find_first_chunk<c_partition_list_chunk>();
+	cache_heap_chunk = root_chunk->get_child_by_type_unsafe<c_cache_heap_chunk>();
+	cache_heap_list_chunk = cache_heap_chunk->get_child_by_type_unsafe<c_partitioned_heap_entry_list_chunk>();
+	cache_partition_list_chunk = cache_heap_chunk->get_child_by_type_unsafe<c_partition_list_chunk>();
 
-	cache_heap_chunk = root_chunk->find_first_chunk<c_cache_heap_chunk>();
-	cache_heap_list_chunk = cache_heap_chunk->find_first_chunk<c_partitioned_heap_entry_list_chunk>();
-	cache_partition_list_chunk = cache_heap_chunk->find_first_chunk<c_partition_list_chunk>();
+	ASSERT(tag_file_index_chunk != nullptr);
+	ASSERT(tag_file_blocks_chunk != nullptr);
+	ASSERT(tag_heap_chunk != nullptr);
+	ASSERT(tag_heap_list_chunk != nullptr);
+	ASSERT(tag_partition_list_chunk != nullptr);
+	ASSERT(cache_heap_chunk != nullptr);
+	ASSERT(cache_heap_list_chunk != nullptr);
+	ASSERT(cache_partition_list_chunk != nullptr);
 
 	root_chunk->log();
 
@@ -252,7 +264,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 		if (wide_data_cache_block.tag_heap_entry_index != 0xFFFFFFFF)
 		{
 			s_partitioned_heap_entry& tag_heap_entry = tag_heap_list_chunk->entries[wide_data_cache_block.tag_heap_entry_index];
-			c_partition_chunk* partition_chunk = dynamic_cast<c_partition_chunk*>(tag_partition_list_chunk->children[tag_heap_entry.partition_index]);
+			c_partition_chunk* partition_chunk = tag_partition_list_chunk->get_child_unsafe<c_partition_chunk>(tag_heap_entry.partition_index);
 			ASSERT(partition_chunk != nullptr);
 			ASSERT(partition_chunk->partition_header.file_index == tag_heap_entry.partition_index);
 			ASSERT(tag_heap_entry.partition_index < num_tag_partitions);
@@ -288,7 +300,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 		if (wide_data_cache_block.cache_heap_entry_index != 0xFFFFFFFF)
 		{
 			s_partitioned_heap_entry& cache_heap_entry = cache_heap_list_chunk->entries[wide_data_cache_block.cache_heap_entry_index];
-			c_partition_chunk* partition_chunk = dynamic_cast<c_partition_chunk*>(cache_partition_list_chunk->children[cache_heap_entry.partition_index]);
+			c_partition_chunk* partition_chunk = cache_partition_list_chunk->get_child_unsafe<c_partition_chunk>(cache_heap_entry.partition_index);
 			ASSERT(partition_chunk != nullptr);
 			ASSERT(partition_chunk->partition_header.file_index == cache_heap_entry.partition_index);
 			ASSERT(cache_heap_entry.partition_index < num_cache_partitions);
@@ -369,7 +381,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 
 		debug_point;
 
-		//break;
+		break;
 
 	}
 

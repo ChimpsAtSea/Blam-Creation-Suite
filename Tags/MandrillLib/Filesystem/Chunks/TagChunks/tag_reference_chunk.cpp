@@ -1,21 +1,10 @@
 #include "mandrilllib-private-pch.h"
 
-c_tag_reference_chunk::c_tag_reference_chunk(const void* chunk_data, c_chunk& parent, c_single_tag_file_reader& reader) :
-	c_typed_single_tag_file_reader_chunk(chunk_data, parent, reader),
+c_tag_reference_chunk::c_tag_reference_chunk(c_chunk& parent, c_single_tag_file_reader& reader) :
+	c_typed_single_tag_file_reader_chunk(parent, reader),
 	group_tag(blofeld::INVALID_TAG),
 	tag_filepath_without_extension()
 {
-	intptr_t data_length = chunk_data_end - chunk_data_begin;
-	if (data_length >= 4)
-	{
-		intptr_t string_length = data_length - 4;
-		group_tag = chunk_byteswap(*reinterpret_cast<const tag*>(chunk_data_begin));
-		tag_filepath_without_extension = new() char[string_length + 1];
-		memcpy(tag_filepath_without_extension, chunk_data_begin + sizeof(tag), string_length);
-		tag_filepath_without_extension[string_length] = 0;
-	}
-	debug_point;
-
 	log_pad();
 	log_signature();
 	console_write_line_verbose("'%s'", tag_filepath_without_extension);
@@ -24,6 +13,29 @@ c_tag_reference_chunk::c_tag_reference_chunk(const void* chunk_data, c_chunk& pa
 c_tag_reference_chunk::~c_tag_reference_chunk()
 {
 	delete[] tag_filepath_without_extension;
+}
+
+BCS_RESULT c_tag_reference_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)
+{
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_FAILED(rs = c_typed_chunk::read_chunk(userdata, data, use_read_only, parse_children)))
+	{
+		return rs;
+	}
+
+	const char* chunk_data_start = get_chunk_data_start();
+	intptr_t data_length = chunk_size;
+	if (data_length >= 4)
+	{
+		intptr_t string_length = data_length - 4;
+		group_tag = chunk_byteswap(*reinterpret_cast<const tag*>(chunk_data_start));
+		tag_filepath_without_extension = new() char[string_length + 1];
+		memcpy(tag_filepath_without_extension, chunk_data_start + sizeof(tag), string_length);
+		tag_filepath_without_extension[string_length] = 0;
+	}
+	debug_point;
+
+	return rs;
 }
 
 void c_tag_reference_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const

@@ -1,7 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
-c_string_data_chunk::c_string_data_chunk(const void* chunk_data, c_chunk& parent) :
-	c_typed_chunk(chunk_data, &parent)
+c_string_data_chunk::c_string_data_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent)
 {
 	debug_point;
 }
@@ -9,11 +9,13 @@ c_string_data_chunk::c_string_data_chunk(const void* chunk_data, c_chunk& parent
 void c_string_data_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
 {
 	log_signature();
-	console_write_line_verbose("size:%08X\n", chunk_size);
+	console_write_line_verbose("size:%08X", chunk_size);
 	unsigned long offset = 0;
-	for (const char* current_position = chunk_data_begin; current_position < chunk_data_end; current_position++)
+	const char* chunk_data_start = get_chunk_data_start();
+	const char* chunk_data_end = get_chunk_data_end();
+	for (const char* current_position = chunk_data_start; current_position < chunk_data_end; current_position++)
 	{
-		intptr_t offset = current_position - chunk_data_begin;
+		intptr_t offset = current_position - chunk_data_start;
 		log_pad(); console_write_line_verbose("\t0x%zX\t%s", offset, current_position);
 		current_position += strlen(current_position);
 	}

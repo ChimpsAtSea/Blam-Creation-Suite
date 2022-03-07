@@ -21,7 +21,7 @@ struct s_tag_persist_field_type;
 struct s_tag_persist_field;
 struct s_tag_persist_aggregate_prechunk;
 
-class c_tag_layout_prechunk_chunk : public c_typed_chunk<'tgly'>
+class c_tag_layout_prechunk_chunk : public c_typed_chunk<'tgly', false>
 {
 public:
 	s_tag_persist_layout_header_prechunk layout_header_prechunk;
@@ -36,6 +36,7 @@ public:
 	s_tag_persist_field* fields;
 	s_tag_persist_aggregate_prechunk* aggregate_definitions;
 
-	c_tag_layout_prechunk_chunk(const void* chunk_data, c_chunk& parent);
+	c_tag_layout_prechunk_chunk(c_chunk& parent);
 	~c_tag_layout_prechunk_chunk();
+	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
 };

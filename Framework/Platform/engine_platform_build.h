@@ -110,11 +110,24 @@ enum e_build : unsigned short
 	k_number_of_build_types
 };
 
+enum t_engine_platform_build : unsigned long;
+
 struct s_engine_platform_build
 {
 	e_engine_type engine_type;
 	e_platform_type platform_type;
 	e_build build;
+
+	explicit constexpr operator t_engine_platform_build() const
+	{
+		using t_underlying = __underlying_type(t_engine_platform_build);
+
+		t_underlying result = engine_type;
+		result |= static_cast<t_underlying>(platform_type) << (sizeof(engine_type) * 8);
+		result |= static_cast<t_underlying>(build) << ((sizeof(engine_type) + sizeof(platform_type)) * 8);
+
+		return static_cast<t_engine_platform_build>(result);
+	}
 
 	BCS_DEBUG_API operator bool() const;
 	BCS_DEBUG_API bool operator ==(const s_engine_platform_build& value) const;
@@ -124,6 +137,8 @@ struct s_engine_platform_build
 	BCS_DEBUG_API bool operator <=(const s_engine_platform_build& value) const;
 	BCS_DEBUG_API bool operator >=(const s_engine_platform_build& value) const;
 };
+
+#define t_engine_platform_build(...) t_engine_platform_build(s_engine_platform_build __VA_ARGS__)
 
 class c_engine_platform_build :
 	public s_engine_platform_build

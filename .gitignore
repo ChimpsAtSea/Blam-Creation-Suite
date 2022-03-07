@@ -437,3 +437,4 @@ Tags/Virtual/virtual_*/*_virtual.cpp
 
 *memory_allocations.txt
 *bitmap_test.dds
+*tag_file_writer_test.bitmap

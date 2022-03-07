@@ -29,13 +29,14 @@ struct s_compressed_tag_file_index_entry
 	unsigned long name_offset;
 };
 
-class c_tag_file_index_chunk : public c_typed_chunk<'indx'>
+class c_tag_file_index_chunk : public c_typed_chunk<'indx', false>
 {
 public:
 	s_tag_file_index_header tag_file_index_header;
 	s_compressed_tag_file_index_entry* compressed_tag_file_index_entries;
 	const char* name_buffer;
 
-	c_tag_file_index_chunk(const void* chunk_data, c_chunk& parent);
+	c_tag_file_index_chunk(c_chunk& parent);
 	~c_tag_file_index_chunk();
+	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
 };

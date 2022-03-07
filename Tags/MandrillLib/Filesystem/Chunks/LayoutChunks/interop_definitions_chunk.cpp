@@ -7,14 +7,31 @@ template<> void byteswap_inplace(s_tag_persist_interop_definition& value)
 	byteswap_inplace(value.persistent_identifier);
 }
 
-c_interop_definitions_chunk::c_interop_definitions_chunk(const void* chunk_data, c_chunk& parent) :
-	c_typed_chunk(chunk_data, &parent),
+c_interop_definitions_chunk::c_interop_definitions_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent),
 	entries(),
-	entry_count(chunk_size / sizeof(*entries))
+	entry_count()
 {
+	debug_point;
+}
+
+c_interop_definitions_chunk::~c_interop_definitions_chunk()
+{
+	delete[] entries;
+}
+
+BCS_RESULT c_interop_definitions_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)
+{
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_FAILED(rs = c_typed_chunk::read_chunk(userdata, data, use_read_only, parse_children)))
+	{
+		return rs;
+	}
+
+	entry_count = chunk_size / sizeof(*entries);
 	if (entry_count > 0)
 	{
-		const s_tag_persist_interop_definition* src_entries = reinterpret_cast<const s_tag_persist_interop_definition*>(chunk_data_begin);
+		const s_tag_persist_interop_definition* src_entries = reinterpret_cast<const s_tag_persist_interop_definition*>(get_chunk_data_start());
 		entries = new() s_tag_persist_interop_definition[entry_count];
 		for (unsigned long entry_index = 0; entry_index < entry_count; entry_index++)
 		{
@@ -24,12 +41,7 @@ c_interop_definitions_chunk::c_interop_definitions_chunk(const void* chunk_data,
 		}
 	}
 
-	debug_point;
-}
-
-c_interop_definitions_chunk::~c_interop_definitions_chunk()
-{
-	delete[] entries;
+	return rs;
 }
 
 void c_interop_definitions_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const

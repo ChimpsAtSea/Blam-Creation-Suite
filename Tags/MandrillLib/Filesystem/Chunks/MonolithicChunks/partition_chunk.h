@@ -43,7 +43,7 @@ struct s_lruv_cache_block_ex
 	unsigned long long offset;
 };
 
-class c_partition_chunk : public c_typed_chunk<'part'>
+class c_partition_chunk : public c_typed_chunk<'part', false>
 {
 public:
 	s_partition_header partition_header;
@@ -51,7 +51,8 @@ public:
 	s_data_array_persist_header data_array_persist_header;
 	s_lruv_cache_block_ex* lruv_cache_blocks;
 
-	c_partition_chunk(const void* chunk_data, c_chunk& parent);
+	c_partition_chunk(c_chunk& parent);
 	~c_partition_chunk();
+	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
 };
 

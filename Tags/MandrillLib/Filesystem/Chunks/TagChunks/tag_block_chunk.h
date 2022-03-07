@@ -10,12 +10,12 @@ class c_single_tag_file_reader;
 struct s_tag_persist_block_definition;
 struct s_tag_persist_struct_definition;
 
-class c_tag_block_chunk : public c_typed_single_tag_file_reader_chunk<'tgbl'>
+class c_tag_block_chunk : public c_typed_single_tag_file_reader_chunk<'tgbl', true>
 {
 public:
 	const char* block_structure_data_begin;
 	const char* block_structure_data_position;
-	const char* block_child_chunk_data_begin;
+	const char* block_child_chunk_data_start;
 	const char* block_child_chunk_data_position;
 	s_tag_persist_block_definition* block_entry;
 	s_tag_persist_struct_definition* structure_entry;
@@ -25,8 +25,9 @@ public:
 	unsigned long block_data_size;
 	unsigned long struct_size;
 
-	c_tag_block_chunk(const void* chunk_data, c_chunk& parent, c_single_tag_file_reader& reader);
+	c_tag_block_chunk(c_chunk& parent, c_single_tag_file_reader& reader);
 	~c_tag_block_chunk();
+	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
 	virtual void log_impl(c_single_tag_file_layout_reader* layout_reader) const override;
 
 	const char* get_sturcutre_data_by_index(unsigned long index) const;

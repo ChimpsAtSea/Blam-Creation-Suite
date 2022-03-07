@@ -5,6 +5,7 @@
 #include "single_tag_file_header.h"
 #include "single_tag_file_layout_reader.h"
 #include "single_tag_file_reader.h"
+#include "high_level_tag_file_writer.h"
 
 #include "system_global_unique_identifier.h"
 

@@ -1,7 +1,7 @@
 #pragma once
 
-class c_exploded_dependencies_chunk : public c_typed_chunk<'expl'>
+class c_exploded_dependencies_chunk : public c_typed_chunk<'expl', false>
 {
 public:
-	c_exploded_dependencies_chunk(const void* chunk_data, c_chunk& parent);
+	c_exploded_dependencies_chunk(c_chunk& parent);
 };

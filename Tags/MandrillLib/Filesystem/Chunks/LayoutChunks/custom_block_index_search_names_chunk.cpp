@@ -1,13 +1,13 @@
 #include "mandrilllib-private-pch.h"
 
-c_custom_block_index_search_names_chunk::c_custom_block_index_search_names_chunk(const void* chunk_data, c_chunk& parent) :
-	c_typed_chunk(chunk_data, &parent),
+c_custom_block_index_search_names_chunk::c_custom_block_index_search_names_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent),
 	offsets(),
 	entry_count(chunk_size / sizeof(*offsets))
 {
 	if (entry_count > 0)
 	{
-		const s_tag_persist_string_character_index* src_offsets = reinterpret_cast<const s_tag_persist_string_character_index*>(chunk_data_begin);
+		const s_tag_persist_string_character_index* src_offsets = reinterpret_cast<const s_tag_persist_string_character_index*>(get_chunk_data_start());
 		offsets = new() s_tag_persist_string_character_index[entry_count];
 		for (unsigned long entry_index = 0; entry_index < entry_count; entry_index++)
 		{

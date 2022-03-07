@@ -50,7 +50,7 @@ struct s_wide_data_cache_block
 	s_datum_footer footer;
 };
 
-class c_tag_file_blocks_chunk : public c_typed_chunk<'blok'>
+class c_tag_file_blocks_chunk : public c_typed_chunk<'blok', false>
 {
 public:
 	s_wide_data_array_header wide_data_array_header;
@@ -59,8 +59,10 @@ public:
 	s_wide_data_cache_block* wide_data_cache_blocks;
 	unsigned long num_wide_data_cache_blocks;
 
-	c_tag_file_blocks_chunk(const void* chunk_data, c_chunk& parent);
+	c_tag_file_blocks_chunk(c_chunk& parent);
 	~c_tag_file_blocks_chunk();
+
+	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
 
 protected:
 	void read_data_array(unsigned long count, s_wide_data_datum* src_wide_data_datums);

@@ -6,11 +6,11 @@ template<> void byteswap_inplace(s_tag_block_chunk_header& value)
 	byteswap_inplace(value.struct_index);
 }
 
-c_tag_block_chunk::c_tag_block_chunk(const void* chunk_data, c_chunk& parent, c_single_tag_file_reader& reader) :
-	c_typed_single_tag_file_reader_chunk(chunk_data, parent, reader),
+c_tag_block_chunk::c_tag_block_chunk(c_chunk& parent, c_single_tag_file_reader& reader) :
+	c_typed_single_tag_file_reader_chunk(parent, reader),
 	block_structure_data_begin(),
 	block_structure_data_position(),
-	block_child_chunk_data_begin(),
+	block_child_chunk_data_start(),
 	block_child_chunk_data_position(),
 	block_entry(),
 	structure_entry(),
@@ -21,8 +21,30 @@ c_tag_block_chunk::c_tag_block_chunk(const void* chunk_data, c_chunk& parent, c_
 	struct_size()
 {
 	REFERENCE_ASSERT(reader);
+}
 
-	const s_tag_block_chunk_header* src_tag_block_chunk_header = reinterpret_cast<const s_tag_block_chunk_header*>(chunk_data_begin);
+c_tag_block_chunk::~c_tag_block_chunk()
+{
+
+}
+
+BCS_RESULT c_tag_block_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)
+{
+	if (userdata == nullptr)
+	{
+		userdata = &reader;
+	}
+
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_FAILED(rs = c_typed_chunk::read_chunk(userdata, data, use_read_only, false)))
+	{
+		return rs;
+	}
+
+	const char* const chunk_data_start = get_chunk_data_start();
+	const char* const chunk_data_end = get_chunk_data_end();
+
+	const s_tag_block_chunk_header* src_tag_block_chunk_header = reinterpret_cast<const s_tag_block_chunk_header*>(chunk_data_start);
 	tag_block_chunk_header = chunk_byteswap(*src_tag_block_chunk_header);
 
 	debug_point;
@@ -40,8 +62,8 @@ c_tag_block_chunk::c_tag_block_chunk(const void* chunk_data, c_chunk& parent, c_
 	block_structure_data_begin = next_contiguous_pointer<char>(src_tag_block_chunk_header);
 	block_structure_data_position = block_structure_data_begin;
 
-	block_child_chunk_data_begin = block_structure_data_begin + block_data_size;
-	block_child_chunk_data_position = block_child_chunk_data_begin;
+	block_child_chunk_data_start = block_structure_data_begin + block_data_size;
+	block_child_chunk_data_position = block_child_chunk_data_start;
 
 	log_pad(); log_signature(); console_write_line_verbose("count:0x%08X\tstruct_index:0x%08X\t%s", tag_block_chunk_header.count, tag_block_chunk_header.struct_index, block_name);
 	log_pad(); console_write_line_verbose("calculated structure size for %s", struct_name);
@@ -58,16 +80,13 @@ c_tag_block_chunk::c_tag_block_chunk(const void* chunk_data, c_chunk& parent, c_
 	bool has_children = block_child_chunk_data_position < chunk_data_end;
 	if (has_children)
 	{
-		parse_children(&reader, block_child_chunk_data_position);
-		ASSERT(children != nullptr);
-		unsigned long child_count = 0;
-		for (c_chunk** child_iter = children; children && *child_iter; child_iter++)
+		if (parse_children)
 		{
-			c_tag_struct_chunk* tag_struct_chunk = dynamic_cast<c_tag_struct_chunk*>(*child_iter);
-			ASSERT(tag_struct_chunk != nullptr);
-			child_count++;
+			read_child_chunks(userdata, use_read_only, block_child_chunk_data_position);
+
+			unsigned long child_count = get_num_children_unsafe();
+			ASSERT(child_count == tag_block_chunk_header.count);
 		}
-		ASSERT(child_count == tag_block_chunk_header.count);
 	}
 
 	auto stack_end_size = reader.metadata_stack.size();
@@ -85,11 +104,8 @@ c_tag_block_chunk::c_tag_block_chunk(const void* chunk_data, c_chunk& parent, c_
 		read_structure_data(*structure_entry, block_structure_data_position, tag_struct_chunk);
 		block_structure_data_position += struct_size;
 	}
-}
 
-c_tag_block_chunk::~c_tag_block_chunk()
-{
-
+	return rs;
 }
 
 const char* c_tag_block_chunk::get_sturcutre_data_by_index(unsigned long index) const
@@ -246,20 +262,20 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 			unsigned long structure_size = reader.layout_reader.calculate_structure_size_by_index(field_entry.metadata);
 			unsigned long expected_children = reader.layout_reader.calculate_structure_expected_children(field_entry.metadata);
 
+			ASSERT(tag_struct_chunk != nullptr);
 			c_tag_struct_chunk* next_tag_struct_chunk = nullptr;
 			unsigned long num_children;
 			do
 			{
-				ASSERT(tag_struct_chunk != nullptr);
-				c_chunk* field_chunk = tag_struct_chunk->children[metadata_child_index++];
-				next_tag_struct_chunk = dynamic_cast<c_tag_struct_chunk*>(field_chunk);
-				num_children = next_tag_struct_chunk->get_chunk_count();
+				next_tag_struct_chunk = tag_struct_chunk->get_child_unsafe<c_tag_struct_chunk>(metadata_child_index++);
+				ASSERT(next_tag_struct_chunk != nullptr);
+				num_children = next_tag_struct_chunk->get_num_children_unsafe();
 				if (num_children < expected_children && num_children == 0)
 				{
 					next_tag_struct_chunk = nullptr; // skip over to the next struct definition
 					debug_point;
 				}
-			} while (next_tag_struct_chunk == nullptr && tag_struct_chunk->children[metadata_child_index]);
+			} while (next_tag_struct_chunk == nullptr && tag_struct_chunk->get_child_unsafe(metadata_child_index));
 			ASSERT(next_tag_struct_chunk != nullptr);
 			ASSERT(num_children >= expected_children);
 
@@ -271,8 +287,7 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 		case blofeld::_field_tag_reference:
 		{
 			ASSERT(tag_struct_chunk != nullptr);
-			c_chunk* field_chunk = tag_struct_chunk->children[metadata_child_index++];
-			c_tag_reference_chunk* tag_reference_chunk = dynamic_cast<c_tag_reference_chunk*>(field_chunk);
+			c_tag_reference_chunk* tag_reference_chunk = tag_struct_chunk->get_child_unsafe<c_tag_reference_chunk>(metadata_child_index++);
 			ASSERT(tag_reference_chunk != nullptr);
 
 		}
@@ -281,8 +296,7 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 		case blofeld::_field_string_id:
 		{
 			ASSERT(tag_struct_chunk != nullptr);
-			c_chunk* field_chunk = tag_struct_chunk->children[metadata_child_index++];
-			c_tag_string_id_chunk* tag_string_id_chunk = dynamic_cast<c_tag_string_id_chunk*>(field_chunk);
+			c_tag_string_id_chunk* tag_string_id_chunk = tag_struct_chunk->get_child_unsafe<c_tag_string_id_chunk>(metadata_child_index++);
 			ASSERT(tag_string_id_chunk != nullptr);
 
 			const s_tag_data* data = reinterpret_cast<const s_tag_data*>(structure_data_pos);
@@ -293,8 +307,7 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 		case blofeld::_field_data:
 		{
 			ASSERT(tag_struct_chunk != nullptr);
-			c_chunk* field_chunk = tag_struct_chunk->children[metadata_child_index++];
-			c_tag_data_chunk* tag_data_chunk = dynamic_cast<c_tag_data_chunk*>(field_chunk);
+			c_tag_data_chunk* tag_data_chunk = tag_struct_chunk->get_child_unsafe<c_tag_data_chunk>(metadata_child_index++);
 			ASSERT(tag_data_chunk != nullptr);
 
 			s_tag_data data = chunk_byteswap(*reinterpret_cast<const s_tag_data*>(structure_data_pos));
@@ -305,17 +318,18 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 		case blofeld::_field_pageable:
 		{
 			ASSERT(tag_struct_chunk != nullptr);
-			c_chunk* field_chunk = tag_struct_chunk->children[metadata_child_index++];
-			c_tag_resource_xsynced_chunk* resource_xsynced_chunk = dynamic_cast<c_tag_resource_xsynced_chunk*>(field_chunk);
-			c_tag_resource_null_chunk* resource_null_chunk = dynamic_cast<c_tag_resource_null_chunk*>(field_chunk);
-			ASSERT(resource_xsynced_chunk != nullptr || resource_null_chunk != nullptr);
+			c_tag_resource_xsynced_chunk* resource_xsynced_chunk = tag_struct_chunk->get_child_unsafe<c_tag_resource_xsynced_chunk>(metadata_child_index);
+			c_tag_resource_null_chunk* resource_null_chunk = tag_struct_chunk->get_child_unsafe<c_tag_resource_null_chunk>(metadata_child_index);
+			ASSERT(resource_xsynced_chunk != nullptr || resource_null_chunk != nullptr); 
+			metadata_child_index++;
+
+
 		}
 		break;
 		case blofeld::_field_block:
 		{
 			ASSERT(tag_struct_chunk != nullptr);
-			c_chunk* field_chunk = tag_struct_chunk->children[metadata_child_index++];
-			c_tag_block_chunk* tag_block_chunk = dynamic_cast<c_tag_block_chunk*>(field_chunk);
+			c_tag_block_chunk* tag_block_chunk = tag_struct_chunk->get_child_unsafe<c_tag_block_chunk>(metadata_child_index++);
 			ASSERT(tag_block_chunk != nullptr);
 
 			s_tag_persist_block_definition& block_entry = reader.layout_reader.get_block_definition_by_index(field_entry.metadata);

@@ -7,58 +7,81 @@ class c_single_tag_file_reader;
 class c_chunk
 {
 public:
-	const void* const chunk_data;
-	c_chunk** children;
-	//c_chunk* parent;
-
-	unsigned long is_big_endian : 1;
-	unsigned long children_fast_allocation : 1;
-	unsigned long depth : 16;
-	tag signature;
-	unsigned long metadata;
-	unsigned long chunk_size;
-
-	const char* chunk_data_begin;
-	const char* const chunk_data_end;
-
-	c_chunk(const void* chunk_data, c_chunk* parent, bool is_big_endian);
+	c_chunk(tag signature, c_chunk* parent);
 	virtual ~c_chunk();
+
+	using t_chunk_child_iterator = c_chunk* const*;
+
+	BCS_RESULT add_child(c_chunk& chunk);
+	BCS_RESULT remove_child(c_chunk& chunk);
+	BCS_RESULT get_children(c_chunk* const*& children, unsigned long& num_children);
+
+	c_chunk* const* get_children_unsafe() const;
+	c_chunk* get_child_unsafe(unsigned long index) const;
+	c_chunk* get_child_by_signature_unsafe(tag signature, t_chunk_child_iterator* iterator = nullptr) const;
+	c_chunk* get_child_by_signature_recursive_unsafe(tag signature, t_chunk_child_iterator* iterator = nullptr) const;
+	unsigned long get_num_children_unsafe() const;
+
+	const char* get_chunk_data_start() const;
+	const char* get_chunk_data_end() const;
+
+	BCS_RESULT set_data(const void* data, unsigned long data_size);
+	BCS_RESULT get_data(const void*& data, unsigned long& data_size);
+
+	virtual BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
+	BCS_RESULT read_child_chunks(void* userdata, bool use_read_only, const char* data = nullptr);
 
 	void log(c_single_tag_file_layout_reader* layout_reader = nullptr) const;
 	void log_pad() const;
 	void log_signature() const;
 	virtual void log_impl(c_single_tag_file_layout_reader* layout_reader) const;
 
-	c_chunk* find_first_chunk(tag type) const;
-	c_chunk* get_chunk(unsigned long index) const;
-	unsigned long get_chunk_count() const;
-
 	template<typename t_chunk>
-	t_chunk* find_first_chunk() const
+	t_chunk* get_child_by_type_unsafe() const
 	{
-		for (c_chunk** children_iter = children; children_iter && *children_iter; children_iter++)
+		if (children)
 		{
-			if (t_chunk* child = dynamic_cast<t_chunk*>(*children_iter))
+			for (c_chunk** children_iter = children; *children_iter; children_iter++)
 			{
-				return child;
+				if (t_chunk* child = dynamic_cast<t_chunk*>(*children_iter))
+				{
+					return child;
+				}
 			}
-		}
-		for (c_chunk** children_iter = children; children_iter && *children_iter; children_iter++)
-		{
-			c_chunk& child = **children_iter;
-			if (t_chunk* child_search_result = child.find_first_chunk<t_chunk>())
+			for (c_chunk** children_iter = children; *children_iter; children_iter++)
 			{
-				return child_search_result;
+				c_chunk& child = **children_iter;
+				if (t_chunk* child_search_result = child.get_child_by_type_unsafe<t_chunk>())
+				{
+					return child_search_result;
+				}
 			}
 		}
 		return nullptr;
 	}
 
 	template<typename t_chunk>
-	t_chunk* get_chunk(unsigned long index) const
+	t_chunk* get_child_unsafe(unsigned long index) const
 	{
-		return static_cast<t_chunk*>(get_chunk(index));
+		return dynamic_cast<t_chunk*>(get_child_unsafe(index));
 	}
+
+protected:
+
+	c_chunk* parent;
+	c_chunk** children;
+
+	const void* chunk_data;
+	unsigned long chunk_size;
+	unsigned long metadata;
+	tag signature;
+
+	unsigned long is_read_only : 1;
+	unsigned long is_big_endian : 1;
+	unsigned long is_data_allocated : 1;
+	unsigned long is_data_valid : 1;
+	unsigned long depth : 16;
+
 
 	template<typename t_element>
 	t_element chunk_byteswap(t_element value)
@@ -93,10 +116,22 @@ public:
 		}
 	}
 
-	void parse_children(void* userdata, const char* data = nullptr, bool force_fast = false);
+	template<typename t_chunk>
+	unsigned long get_num_children_by_type_unsafe() const
+	{
+		unsigned long num_children = get_num_children_unsafe();
+		unsigned long num_typed_children = 0;
+		for (unsigned long child_index = 0; child_index < num_children; child_index++)
+		{
+			if (dynamic_cast<t_chunk>(children[child_index]))
+			{
+				num_typed_children++;
+			}
+		}
+		return num_typed_children;
+	}
 
-protected:
-	c_chunk** create_child_chunks_fast(const char* data, void* userdata);
-	c_chunk** create_child_chunks_slow(const char* data, void* userdata);
+private:
+	static c_chunk* const children_list_empty[];
 };
 static constexpr size_t k_chunk_size = sizeof(c_chunk);

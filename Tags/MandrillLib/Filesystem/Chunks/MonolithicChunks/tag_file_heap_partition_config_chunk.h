@@ -1,12 +1,12 @@
 #pragma once
 
-class c_tag_file_heap_partition_config_chunk : public c_typed_chunk<'prpf'>
+class c_tag_file_heap_partition_config_chunk : public c_typed_chunk<'prpf', false>
 {
 public:
 	unsigned long string_length;
-	const char* string_buffer;
 	char* string;
 
-	c_tag_file_heap_partition_config_chunk(const void* chunk_data, c_chunk& parent);
+	c_tag_file_heap_partition_config_chunk(c_chunk& parent);
 	~c_tag_file_heap_partition_config_chunk();
+	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
 };

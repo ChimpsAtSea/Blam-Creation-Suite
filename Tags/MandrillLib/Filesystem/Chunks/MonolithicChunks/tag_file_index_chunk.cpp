@@ -1,12 +1,28 @@
 #include "mandrilllib-private-pch.h"
 
-c_tag_file_index_chunk::c_tag_file_index_chunk(const void* chunk_data, c_chunk& parent) :
-	c_typed_chunk(chunk_data, &parent),
+c_tag_file_index_chunk::c_tag_file_index_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent),
 	tag_file_index_header(),
 	compressed_tag_file_index_entries(),
 	name_buffer()
 {
-	const s_tag_file_index_header* src_tag_file_index_header = reinterpret_cast<const s_tag_file_index_header*>(chunk_data_begin);
+	debug_point;
+}
+
+c_tag_file_index_chunk::~c_tag_file_index_chunk()
+{
+	delete[] compressed_tag_file_index_entries;
+}
+
+BCS_RESULT c_tag_file_index_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)
+{
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_FAILED(rs = c_typed_chunk::read_chunk(userdata, data, use_read_only, parse_children)))
+	{
+		return rs;
+	}
+
+	const s_tag_file_index_header* src_tag_file_index_header = reinterpret_cast<const s_tag_file_index_header*>(get_chunk_data_start());
 	const s_compressed_tag_file_index_entry* src_compressed_tag_file_index_entry = next_contiguous_pointer<s_compressed_tag_file_index_entry>(src_tag_file_index_header);
 
 	tag_file_index_header = chunk_byteswap(*src_tag_file_index_header);
@@ -25,12 +41,7 @@ c_tag_file_index_chunk::c_tag_file_index_chunk(const void* chunk_data, c_chunk& 
 
 	}
 
-	debug_point;
-}
-
-c_tag_file_index_chunk::~c_tag_file_index_chunk()
-{
-	delete[] compressed_tag_file_index_entries;
+	return rs;
 }
 
 template<> void byteswap_inplace(s_tag_file_index_header& value)

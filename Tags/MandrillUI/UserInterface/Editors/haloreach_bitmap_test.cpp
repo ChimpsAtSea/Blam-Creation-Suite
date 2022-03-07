@@ -47,7 +47,7 @@ void c_haloreach_bitmap_test::draw_ui()
 			}
 
 			size_t dds_file_buffer_size = sizeof(unsigned long) + sizeof(DirectX::DDS_HEADER) + resource->data.size() * 2;
-			char* dds_file_buffer = static_cast<char*>(tracked_malloc(_library_tracked_memory, dds_file_buffer_size));
+			char* const dds_file_buffer = static_cast<char*>(tracked_malloc(_library_tracked_memory, dds_file_buffer_size));
 
 			unsigned long* magic_ptr = reinterpret_cast<unsigned long*>(dds_file_buffer);
 			DirectX::DDS_HEADER* dds_header_ptr = next_contiguous_pointer<DirectX::DDS_HEADER>(magic_ptr);
@@ -68,7 +68,7 @@ void c_haloreach_bitmap_test::draw_ui()
 
 
 			unsigned long num_src_bytes = resource->data.size();
-			unsigned char* src_untiled_texture_data = static_cast<unsigned char*>(tracked_malloc(_library_tracked_memory, num_src_bytes));
+			unsigned char* const src_untiled_texture_data = static_cast<unsigned char*>(tracked_malloc(_library_tracked_memory, num_src_bytes));
 			{
 				const unsigned char* src_texture_data = reinterpret_cast<const unsigned char*>(resource->data.data());
 
@@ -86,18 +86,19 @@ void c_haloreach_bitmap_test::draw_ui()
 			}
 
 			unsigned long num_dst_pixels = dds_header_ptr->width * dds_header_ptr->height;
-			unsigned char* pixel_block_data = static_cast<unsigned char*>(tracked_malloc(_library_tracked_memory, num_dst_pixels));
+			unsigned char* const pixel_block_data = static_cast<unsigned char*>(tracked_malloc(_library_tracked_memory, num_dst_pixels));
 			{
 				unsigned char* dst_texture_data = pixel_block_data;
+				unsigned char* src_untiled_texture_data_pos = src_untiled_texture_data;
 				for (unsigned long pixel_index = 0; pixel_index < num_dst_pixels; pixel_index += 4)
 				{
-					unsigned char p1 = *src_untiled_texture_data >> 4;
-					unsigned char p0 = *src_untiled_texture_data & 0xF;
-					src_untiled_texture_data++;
+					unsigned char p1 = *src_untiled_texture_data_pos >> 4;
+					unsigned char p0 = *src_untiled_texture_data_pos & 0xF;
+					src_untiled_texture_data_pos++;
 
-					unsigned char p3 = *src_untiled_texture_data >> 4;
-					unsigned char p2 = *src_untiled_texture_data & 0xF;
-					src_untiled_texture_data++;
+					unsigned char p3 = *src_untiled_texture_data_pos >> 4;
+					unsigned char p2 = *src_untiled_texture_data_pos & 0xF;
+					src_untiled_texture_data_pos++;
 
 
 					*dst_texture_data = p0;
@@ -131,7 +132,7 @@ void c_haloreach_bitmap_test::draw_ui()
 				for (unsigned long pixel_index = 0; pixel_index < num_dst_pixels; pixel_index++)
 				{
 					unsigned long pixel_x = pixel_index % dds_header_ptr->width;
-					unsigned long pixel_y = pixel_index / dds_header_ptr->width;
+					unsigned long pixel_y = pixel_index / dds_header_ptr->height;
 
 					unsigned long block_width = 4;
 					unsigned long block_height = 4;
@@ -161,12 +162,18 @@ void c_haloreach_bitmap_test::draw_ui()
 			bitmap_struct.hardware_textures_block.clear();
 
 			debug_point;
+
+			tracked_free(pixel_block_data);
+			tracked_free(src_untiled_texture_data);
+			tracked_free(dds_file_buffer);
 		}
 	}
 
 	// serialize the tag
 	if (ImGui::Button("Serialize Bitmap Data") || auto_run_restore_bitmap_test)
 	{
+		c_high_level_tag_file_writer tag_file_writer("", bitmap_struct);
+
 		debug_point;
 	}
 }

@@ -8,8 +8,8 @@ template<> void byteswap_inplace(s_tag_persist_aggregate_prechunk& value)
 	byteswap_inplace(value.fields_start_index);
 }
 
-c_tag_layout_prechunk_chunk::c_tag_layout_prechunk_chunk(const void* chunk_data, c_chunk& parent) :
-	c_typed_chunk(chunk_data, &parent),
+c_tag_layout_prechunk_chunk::c_tag_layout_prechunk_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent),
 	layout_header_prechunk(),
 	string_data(),
 	string_offsets(),
@@ -20,10 +20,29 @@ c_tag_layout_prechunk_chunk::c_tag_layout_prechunk_chunk(const void* chunk_data,
 	fields(),
 	aggregate_definitions()
 {
-	// #FIXUP
-	c_chunk::signature = c_tag_layout_prechunk_chunk::signature;
+}
 
-	const s_tag_group_layout_header* src_tag_group_layout_header = reinterpret_cast<const s_tag_group_layout_header*>(chunk_data_begin);
+c_tag_layout_prechunk_chunk::~c_tag_layout_prechunk_chunk()
+{
+	delete[] string_offsets;
+	delete[] string_list;
+	delete[] custom_block_index_search_names;
+	delete[] data_definition_names;
+	delete[] array_definitions;
+	delete[] field_types;
+	delete[] fields;
+	delete[] aggregate_definitions;
+}
+
+BCS_RESULT c_tag_layout_prechunk_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)
+{
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_FAILED(rs = c_typed_chunk::read_chunk(userdata, data, use_read_only, parse_children)))
+	{
+		return rs;
+	}
+
+	const s_tag_group_layout_header* src_tag_group_layout_header = reinterpret_cast<const s_tag_group_layout_header*>(get_chunk_data_start());
 	s_tag_group_layout_header tag_group_layout_header = chunk_byteswap(*src_tag_group_layout_header);
 	ASSERT(tag_group_layout_header.layout_version == _tag_persist_layout_version_prechunk);
 
@@ -117,19 +136,9 @@ c_tag_layout_prechunk_chunk::c_tag_layout_prechunk_chunk(const void* chunk_data,
 	}
 
 	char* expected_data_end = reinterpret_cast<char*>(aggregate_definitions + layout_header_prechunk.aggregate_definition_count);
-	ASSERT(expected_data_end == chunk_data_end);
+	ASSERT(expected_data_end == get_chunk_data_end());
 
 	debug_point;
-}
 
-c_tag_layout_prechunk_chunk::~c_tag_layout_prechunk_chunk()
-{
-	delete[] string_offsets;
-	delete[] string_list;
-	delete[] custom_block_index_search_names;
-	delete[] data_definition_names;
-	delete[] array_definitions;
-	delete[] field_types;
-	delete[] fields;
-	delete[] aggregate_definitions;
+	return rs;
 }

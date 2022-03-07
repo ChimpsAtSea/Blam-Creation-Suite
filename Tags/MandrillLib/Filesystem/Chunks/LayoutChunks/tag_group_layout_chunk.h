@@ -53,7 +53,7 @@ struct s_tag_persist_layout_header_v3 :
 };
 static_assert(sizeof(s_tag_persist_layout_header_v3) == 0x34);
 
-class c_tag_group_layout_chunk : public c_typed_chunk<'blay'>
+class c_tag_group_layout_chunk : public c_typed_chunk<'blay', true>
 {
 public:
 	s_tag_group_layout_header tag_group_layout_header;
@@ -77,8 +77,10 @@ public:
 	unsigned long get_interop_definition_count() const;
 	unsigned long get_aggregate_definition_count() const;
 
-	c_tag_group_layout_chunk(const void* chunk_data, c_chunk& parent);
+	c_tag_group_layout_chunk(c_chunk& parent);
 	~c_tag_group_layout_chunk();
+
+	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
 
 protected:
 	union

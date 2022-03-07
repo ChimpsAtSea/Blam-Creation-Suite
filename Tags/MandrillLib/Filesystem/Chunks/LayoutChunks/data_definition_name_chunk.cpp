@@ -1,13 +1,32 @@
 #include "mandrilllib-private-pch.h"
 
-c_data_definition_name_chunk::c_data_definition_name_chunk(const void* chunk_data, c_chunk& parent) :
-	c_typed_chunk(chunk_data, &parent),
+c_data_definition_name_chunk::c_data_definition_name_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent),
 	offsets(),
-	entry_count(chunk_size / sizeof(*offsets))
+	entry_count()
 {
+
+
+	debug_point;
+}
+
+c_data_definition_name_chunk::~c_data_definition_name_chunk()
+{
+	delete[] offsets;
+}
+
+BCS_RESULT c_data_definition_name_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)
+{
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_FAILED(rs = c_typed_chunk::read_chunk(userdata, data, use_read_only, parse_children)))
+	{
+		return rs;
+	}
+
+	entry_count = chunk_size / sizeof(*offsets);
 	if (entry_count > 0)
 	{
-		const s_tag_persist_string_character_index* src_offsets = reinterpret_cast<const s_tag_persist_string_character_index*>(chunk_data_begin);
+		const s_tag_persist_string_character_index* src_offsets = reinterpret_cast<const s_tag_persist_string_character_index*>(get_chunk_data_start());
 		offsets = new() s_tag_persist_string_character_index[entry_count];
 		for (unsigned long entry_index = 0; entry_index < entry_count; entry_index++)
 		{
@@ -17,12 +36,7 @@ c_data_definition_name_chunk::c_data_definition_name_chunk(const void* chunk_dat
 		}
 	}
 
-	debug_point;
-}
-
-c_data_definition_name_chunk::~c_data_definition_name_chunk()
-{
-	delete[] offsets;
+	return rs;
 }
 
 void c_data_definition_name_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const

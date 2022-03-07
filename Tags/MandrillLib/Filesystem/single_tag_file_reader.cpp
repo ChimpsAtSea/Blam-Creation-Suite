@@ -24,7 +24,8 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	metadata_stack.push(tag_group_block_index);
 	debug_point;
 
-	binary_data_chunk.parse_children(this);
+	binary_data_chunk.read_child_chunks(this, true);
+	//binary_data_chunk.parse_children(this);
 
 	blofeld_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build.engine_type, header.group_tag);
 	ASSERT(blofeld_tag_group != nullptr);
@@ -389,26 +390,43 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 		{
 			unsigned long expected_children = layout_reader.calculate_structure_expected_children(field_entry.metadata);
 
+			ASSERT(structure_chunk != nullptr);
 			c_tag_struct_chunk* next_tag_struct_chunk = nullptr;
 			unsigned long num_children;
 			do
 			{
-				c_chunk* field_chunk = structure_chunk->children[structure_chunk_child_index++];
-				field_tag_struct_chunk = dynamic_cast<c_tag_struct_chunk*>(field_chunk);
-				num_children = field_tag_struct_chunk->get_chunk_count();
+				next_tag_struct_chunk = structure_chunk->get_child_unsafe<c_tag_struct_chunk>(structure_chunk_child_index++);
+				ASSERT(next_tag_struct_chunk != nullptr);
+				num_children = next_tag_struct_chunk->get_num_children_unsafe();
 				if (num_children < expected_children && num_children == 0)
 				{
-					field_tag_struct_chunk = nullptr; // skip over to the next struct definition
+					next_tag_struct_chunk = nullptr; // skip over to the next struct definition
 					debug_point;
 				}
-			} while (field_tag_struct_chunk == nullptr && structure_chunk->children[structure_chunk_child_index]);
-			ASSERT(field_tag_struct_chunk != nullptr);
+			} while (next_tag_struct_chunk == nullptr && structure_chunk->get_child_unsafe(structure_chunk_child_index));
+			ASSERT(next_tag_struct_chunk != nullptr);
 			ASSERT(num_children >= expected_children);
+
+			//c_tag_struct_chunk* next_tag_struct_chunk = nullptr;
+			//unsigned long num_children;
+			//do
+			//{
+			//	c_chunk* field_chunk = structure_chunk->children[structure_chunk_child_index++];
+			//	field_tag_struct_chunk = dynamic_cast<c_tag_struct_chunk*>(field_chunk);
+			//	num_children = field_tag_struct_chunk->get_chunk_count();
+			//	if (num_children < expected_children && num_children == 0)
+			//	{
+			//		field_tag_struct_chunk = nullptr; // skip over to the next struct definition
+			//		debug_point;
+			//	}
+			//} while (field_tag_struct_chunk == nullptr && structure_chunk->children[structure_chunk_child_index]);
+			//ASSERT(field_tag_struct_chunk != nullptr);
+			//ASSERT(num_children >= expected_children);
 		}
 		break;
 		case blofeld::_field_tag_reference:
 		{
-			c_chunk* field_chunk = structure_chunk->children[structure_chunk_child_index++];
+			c_chunk* field_chunk = structure_chunk->get_child_unsafe(structure_chunk_child_index++);
 			field_tag_reference_chunk = dynamic_cast<c_tag_reference_chunk*>(field_chunk);
 			ASSERT(field_tag_reference_chunk != nullptr);
 		}
@@ -424,21 +442,21 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 		case blofeld::_field_old_string_id:
 		case blofeld::_field_string_id:
 		{
-			c_chunk* field_chunk = structure_chunk->children[structure_chunk_child_index++];
+			c_chunk* field_chunk = structure_chunk->get_child_unsafe(structure_chunk_child_index++);
 			field_tag_string_id_chunk = dynamic_cast<c_tag_string_id_chunk*>(field_chunk);
 			ASSERT(field_tag_string_id_chunk != nullptr);
 		}
 		break;
 		case blofeld::_field_data:
 		{
-			c_chunk* field_chunk = structure_chunk->children[structure_chunk_child_index++];
+			c_chunk* field_chunk = structure_chunk->get_child_unsafe(structure_chunk_child_index++);
 			field_tag_data_chunk = dynamic_cast<c_tag_data_chunk*>(field_chunk);
 			ASSERT(field_tag_data_chunk != nullptr);
 		}
 		break;
 		case blofeld::_field_pageable:
 		{
-			c_chunk* field_chunk = structure_chunk->children[structure_chunk_child_index++];
+			c_chunk* field_chunk = structure_chunk->get_child_unsafe(structure_chunk_child_index++);
 			resource_xsynced_chunk = dynamic_cast<c_tag_resource_xsynced_chunk*>(field_chunk);
 			resource_null_chunk = dynamic_cast<c_tag_resource_null_chunk*>(field_chunk);
 			ASSERT(resource_xsynced_chunk != nullptr || resource_null_chunk != nullptr);
@@ -446,7 +464,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 		break;
 		case blofeld::_field_block:
 		{
-			c_chunk* field_chunk = structure_chunk->children[structure_chunk_child_index++];
+			c_chunk* field_chunk = structure_chunk->get_child_unsafe(structure_chunk_child_index++);
 			field_tag_block_chunk = dynamic_cast<c_tag_block_chunk*>(field_chunk);
 			ASSERT(field_tag_block_chunk != nullptr);
 		}
@@ -571,7 +589,10 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 
 				h_data& data_storage = *reinterpret_cast<decltype(&data_storage)>(high_level_field_data);
 
-				data_storage.insert(data_storage.begin(), field_tag_data_chunk->chunk_data_begin, field_tag_data_chunk->chunk_data_end);
+				const char* data_chunk_data_start = field_tag_data_chunk->get_chunk_data_start();
+				const char* data_chunk_data_end = field_tag_data_chunk->get_chunk_data_end();
+
+				data_storage.insert(data_storage.begin(), data_chunk_data_start, data_chunk_data_end);
 
 				debug_point;
 			}
@@ -800,7 +821,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 	//
 	//			h_data& data_storage = *reinterpret_cast<decltype(&data_storage)>(high_level_field_data);
 	//
-	//			data_storage.insert(data_storage.begin(), field_tag_data_chunk->chunk_data_begin, field_tag_data_chunk->chunk_data_end);
+	//			data_storage.insert(data_storage.begin(), field_tag_data_chunk->chunk_data_start, field_tag_data_chunk->chunk_data_end);
 	//			
 	//			debug_point;
 	//		}
@@ -872,7 +893,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_block_structure_to_high_level_obje
 
 BCS_RESULT c_single_tag_file_reader::parse_high_level_object(h_tag*& out_high_level_tag)
 {
-	c_tag_block_chunk* tag_group_block_chunk = binary_data_chunk.find_first_chunk<c_tag_block_chunk>();
+	c_tag_block_chunk* tag_group_block_chunk = binary_data_chunk.get_child_by_type_unsafe<c_tag_block_chunk>();
 	ASSERT(tag_group_block_chunk != nullptr);
 	ASSERT(tag_group_block_chunk->tag_block_chunk_header.count == 1);
 	ASSERT(blofeld_tag_group_struct_definition->persistent_identifier == tag_group_block_chunk->structure_entry->persistent_identifier);

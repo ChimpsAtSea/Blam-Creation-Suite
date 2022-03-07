@@ -1,38 +1,49 @@
 #include "mandrilllib-private-pch.h"
 
-c_tag_resource_xsynced_chunk::c_tag_resource_xsynced_chunk(const void* chunk_data, c_chunk& parent, c_single_tag_file_reader& reader) :
-	c_typed_single_tag_file_reader_chunk(chunk_data, parent, reader),
+c_tag_resource_xsynced_chunk::c_tag_resource_xsynced_chunk(c_chunk& parent, c_single_tag_file_reader& reader) :
+	c_typed_single_tag_file_reader_chunk(parent, reader),
 	resource_xsync_state_v2()
 {
+	debug_point;
+}
+
+c_tag_resource_xsynced_chunk::~c_tag_resource_xsynced_chunk()
+{
+}
+
+BCS_RESULT c_tag_resource_xsynced_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)
+{
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_FAILED(rs = c_typed_chunk::read_chunk(userdata, data, use_read_only, parse_children)))
+	{
+		return rs;
+	}
+
 	unsigned long xsync_version = metadata;
 	switch (xsync_version)
 	{
 	case 0:
 	{
 		throw; // #TODO: check for streaming using the resource definition, check flag (flag & 2)
-		s_monolithic_resource_xsync_state_v0 resource_xsync_state_v0 = chunk_byteswap(*reinterpret_cast<const s_monolithic_resource_xsync_state_v0*>(chunk_data_begin));
+		s_monolithic_resource_xsync_state_v0 resource_xsync_state_v0 = chunk_byteswap(*reinterpret_cast<const s_monolithic_resource_xsync_state_v0*>(get_chunk_data_start()));
 		convert_paged_v0_to_monolithic_xsync_state_v2(resource_xsync_state_v0, resource_xsync_state_v2);
 		break;
 	}
 	case 1:
 	{
-		s_monolithic_resource_xsync_state_v1 resource_xsync_state_v1 = chunk_byteswap(*reinterpret_cast<const s_monolithic_resource_xsync_state_v1*>(chunk_data_begin));
+		s_monolithic_resource_xsync_state_v1 resource_xsync_state_v1 = chunk_byteswap(*reinterpret_cast<const s_monolithic_resource_xsync_state_v1*>(get_chunk_data_start()));
 		convert_paged_v1_to_current_monolithic_xsync_state(resource_xsync_state_v1, resource_xsync_state_v2);
 		break;
 	}
 	case 2:
 	{
-		resource_xsync_state_v2 = chunk_byteswap(*reinterpret_cast<const s_monolithic_resource_xsync_state_v2*>(chunk_data_begin));
+		resource_xsync_state_v2 = chunk_byteswap(*reinterpret_cast<const s_monolithic_resource_xsync_state_v2*>(get_chunk_data_start()));
 		break;
 	}
 	default: FATAL_ERROR("Unsupported xsync version %lu", xsync_version);
 	}
 
-	debug_point;
-}
-
-c_tag_resource_xsynced_chunk::~c_tag_resource_xsynced_chunk()
-{
+	return rs;
 }
 
 void c_tag_resource_xsynced_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const

@@ -23,17 +23,36 @@ template<> void byteswap_inplace(s_wide_data_cache_block& value)
 	byteswap_inplace(value.footer);
 }
 
-c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(const void* chunk_data, c_chunk& parent) :
-	c_typed_chunk(chunk_data, &parent),
+c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent),
 	wide_data_array_header(),
 	data_array_persist_header(),
 	wide_data_datums(),
 	wide_data_cache_blocks(),
 	num_wide_data_cache_blocks()
 {
-	const s_wide_data_array_header* src_wide_data_array_header = reinterpret_cast<const s_wide_data_array_header*>(chunk_data_begin);
+
+
+	debug_point;
+}
+
+c_tag_file_blocks_chunk::~c_tag_file_blocks_chunk()
+{
+	delete[] wide_data_cache_blocks;
+	delete[] wide_data_datums;
+}
+
+BCS_RESULT c_tag_file_blocks_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)
+{
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_FAILED(rs = c_typed_chunk::read_chunk(userdata, data, use_read_only, parse_children)))
+	{
+		return rs;
+	}
+
+	const s_wide_data_array_header* src_wide_data_array_header = reinterpret_cast<const s_wide_data_array_header*>(get_chunk_data_start());
 	const s_data_array_persist_header* src_data_array_persist_header = next_contiguous_pointer<s_data_array_persist_header>(src_wide_data_array_header);
-	
+
 	wide_data_array_header = chunk_byteswap(*src_wide_data_array_header);
 	data_array_persist_header = chunk_byteswap(*src_data_array_persist_header);
 
@@ -107,16 +126,10 @@ c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(const void* chunk_data, c_chunk
 		ASSERT(chunk_byteswap(*src_signature1) == 'load');
 
 		const void* current_read_position = next_contiguous_pointer(src_signature1);
-		ASSERT(current_read_position == chunk_data_end);
+		ASSERT(current_read_position == get_chunk_data_end());
 
 		debug_point;
 	}
 
-	debug_point;
-}
-
-c_tag_file_blocks_chunk::~c_tag_file_blocks_chunk()
-{
-	delete[] wide_data_cache_blocks;
-	delete[] wide_data_datums;
+	return rs;
 }

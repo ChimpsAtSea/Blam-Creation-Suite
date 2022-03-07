@@ -32,7 +32,8 @@ struct s_tracked_memory_entry
 BCS_DEBUG_API void* _tracked_aligned_malloc(s_tracked_memory_stats& stats, size_t size, size_t alignment, const char* filepath, long line);
 BCS_DEBUG_API void tracked_aligned_free(void* allocated_memory);
 BCS_DEBUG_API void* _tracked_malloc(s_tracked_memory_stats& stats, size_t size, const char* filepath, long line);
-BCS_DEBUG_API void tracked_free(void* allocated_memory);
+BCS_DEBUG_API void tracked_free(const void* allocated_memory);
+BCS_DEBUG_API void untracked_free(const void* allocated_memory);
 BCS_DEBUG_API void print_memory_allocations(s_tracked_memory_stats* stats);
 BCS_DEBUG_API void write_memory_allocations(s_tracked_memory_stats* stats);
 

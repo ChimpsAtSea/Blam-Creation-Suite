@@ -7,14 +7,16 @@ struct s_tag_persist_field
 	unsigned long metadata;
 };
 
-class c_fields_chunk : public c_typed_chunk<'gras'>
+class c_fields_chunk : public c_typed_chunk<'gras', false>
 {
 public:
 	s_tag_persist_field* entries;
-	unsigned long const entry_count;
+	unsigned long entry_count;
 
-	c_fields_chunk(const void* chunk_data, c_chunk& parent);
+	c_fields_chunk(c_chunk& parent);
 	~c_fields_chunk();
+
+	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
 
 	virtual void log_impl(c_single_tag_file_layout_reader* layout_reader) const override;
 

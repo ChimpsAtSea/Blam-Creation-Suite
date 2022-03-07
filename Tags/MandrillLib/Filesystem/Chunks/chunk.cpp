@@ -1,46 +1,384 @@
 #include "mandrilllib-private-pch.h"
 
-#define _signature *reinterpret_cast<const tag*>(static_cast<const char*>(chunk_data))
-#define _metadata *reinterpret_cast<const unsigned long*>(static_cast<const char*>(chunk_data) + 4)
-#define _chunk_size *reinterpret_cast<const unsigned long*>(static_cast<const char*>(chunk_data) + 8)
-c_chunk::c_chunk(const void* chunk_data, c_chunk* parent, bool is_big_endian) :
-	chunk_data(static_cast<const char*>(chunk_data)),
+c_chunk* const c_chunk::children_list_empty[1] = { nullptr };
+
+c_chunk::c_chunk(tag signature, c_chunk* parent) :
+	parent(parent),
 	children(nullptr),
-	is_big_endian(is_big_endian),
-	children_fast_allocation(),
-	depth(parent ? parent->depth + 1 : 0),
-	signature(chunk_byteswap(_signature)),
-	metadata(chunk_byteswap(_metadata)),
-	chunk_size(chunk_byteswap(_chunk_size)),
-	chunk_data_begin(static_cast<const char*>(chunk_data) + 12),
-	chunk_data_end(chunk_data_begin + chunk_size)
+	chunk_data(nullptr),
+	chunk_size(0),
+	metadata(),
+	signature(signature),
+	is_read_only(false),
+	is_big_endian(false),
+	is_data_allocated(false),
+	depth(parent ? parent->depth + 1 : 0)
 {
-	
+
 }
-#undef _signature
-#undef _metadata
-#undef _chunk_size
 
 c_chunk::~c_chunk()
 {
-	if (children != nullptr)
+	if (is_data_allocated)
 	{
-		if (children_fast_allocation)
+		tracked_free(chunk_data);
+	}
+
+	if (children)
+	{
+		for (c_chunk** current_chunk = children; *current_chunk; current_chunk++)
 		{
-			for (c_chunk** current_chunk = children; *current_chunk; current_chunk++)
-			{
-				(*current_chunk)->~c_chunk();
-			}
-		}
-		else
-		{
-			for (c_chunk** current_chunk = children; *current_chunk; current_chunk++)
-			{
-				delete* current_chunk;
-			}
+			delete* current_chunk;
 		}
 		delete children;
 	}
+}
+
+BCS_RESULT c_chunk::add_child(c_chunk& chunk)
+{
+	unsigned long old_child_count = get_num_children_unsafe();
+	unsigned long new_child_count = old_child_count + 1;
+
+	c_chunk** new_children = new() c_chunk * [new_child_count + 1];
+	memcpy(new_children, children, sizeof(*children) * new_child_count);
+
+	new_children[old_child_count] = &chunk;
+	new_children[new_child_count] = nullptr;
+
+	// #TODO: is it okay to allow duplicate entries of the same pointer?
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_chunk::remove_child(c_chunk& chunk)
+{
+	unsigned long old_child_count = get_num_children_unsafe();
+	if (old_child_count >= 0)
+	{
+		unsigned long new_child_count = old_child_count;
+		{
+			for (c_chunk** current_chunk = children; *current_chunk; current_chunk++)
+			{
+				if (*current_chunk == &chunk)
+				{
+					delete* current_chunk;
+					*current_chunk = nullptr;
+					new_child_count--;
+				}
+			}
+		}
+
+		if (new_child_count < old_child_count)
+		{
+			c_chunk** new_children = new() c_chunk * [new_child_count + 1];
+			{
+				unsigned long destination_index = 0;
+				for (unsigned long child_index = 0; child_index < old_child_count; child_index++)
+				{
+					c_chunk* current_chunk = children[child_index];
+					if (current_chunk != &chunk)
+					{
+						new_children[destination_index] == current_chunk;
+						destination_index++;
+					}
+				}
+				new_children[new_child_count] = nullptr;
+			}
+
+			delete[] children;
+			children = new_children;
+
+			return BCS_S_OK;
+		}
+	}
+
+	return BCS_E_NOT_FOUND;
+}
+
+BCS_RESULT c_chunk::get_children(c_chunk* const*& out_children, unsigned long& num_children)
+{
+	if (children != nullptr)
+	{
+		out_children = children;
+		num_children = get_num_children_unsafe();
+	}
+	else
+	{
+		out_children = children_list_empty;
+		num_children = 0;
+	}
+	return BCS_S_OK;
+}
+
+c_chunk* const* c_chunk::get_children_unsafe() const
+{
+	return children != nullptr ? children : children_list_empty;
+}
+
+c_chunk* c_chunk::get_child_unsafe(unsigned long index) const
+{
+	DEBUG_ONLY(unsigned long num_children = get_num_children_unsafe());
+	DEBUG_ASSERT(index < num_children);
+
+	c_chunk* child = get_children_unsafe()[index];
+
+	return child;
+}
+
+c_chunk* c_chunk::get_child_by_signature_unsafe(tag signature, t_chunk_child_iterator* _iterator) const
+{
+	for (t_chunk_child_iterator iterator = _iterator != nullptr ? *_iterator : get_children_unsafe(); *iterator; iterator++)
+	{
+		c_chunk& child = **iterator;
+
+		if (child.signature == signature)
+		{
+			return &child;
+		}
+	}
+	return nullptr;
+}
+
+c_chunk* c_chunk::get_child_by_signature_recursive_unsafe(tag signature, t_chunk_child_iterator* _iterator) const
+{
+	if (c_chunk* child = get_child_by_signature_unsafe(signature, _iterator))
+	{
+		return child;
+	}
+	for (t_chunk_child_iterator iterator = _iterator != nullptr ? *_iterator : get_children_unsafe(); *iterator; iterator++)
+	{
+		c_chunk& child = **iterator;
+
+		if (c_chunk* recursive_child = child.get_child_by_signature_unsafe(signature))
+		{
+			return recursive_child;
+		}
+	}
+	return nullptr;
+}
+
+unsigned long c_chunk::get_num_children_unsafe() const
+{
+	unsigned long num_children = 0;
+	for (c_chunk** children_iter = children; children_iter && *children_iter; children_iter++)
+	{
+		num_children++;
+	}
+	return num_children;
+}
+
+const char* c_chunk::get_chunk_data_start() const
+{
+	ASSERT(is_data_valid);
+	return static_cast<const char*>(chunk_data);
+}
+
+const char* c_chunk::get_chunk_data_end() const
+{
+	ASSERT(is_data_valid);
+	return static_cast<const char*>(chunk_data) + chunk_size;
+}
+
+BCS_RESULT c_chunk::set_data(const void* data, unsigned long data_size)
+{
+	if (is_data_allocated)
+	{
+		tracked_free(chunk_data);
+	}
+
+	void* _chunk_data = tracked_malloc(mandrilllib_tracked_memory, data_size);
+	memcpy(_chunk_data, data, data_size);
+
+	chunk_data = _chunk_data;
+	chunk_size = data_size;
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_chunk::get_data(const void*& data, unsigned long& data_size)
+{
+	if (chunk_data == nullptr)
+	{
+		return BCS_E_FAIL;
+	}
+
+	data = chunk_data;
+	data_size = chunk_size;
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)
+{
+	BCS_VALIDATE_ARGUMENT(data);
+
+	BCS_RESULT rs = BCS_S_OK;
+
+	const tag* signature_ptr = static_cast<const tag*>(data);
+	const unsigned long* metadata_ptr = next_contiguous_pointer<unsigned long>(signature_ptr);
+	const unsigned long* chunk_size_ptr = next_contiguous_pointer<unsigned long>(metadata_ptr);
+	const char* chunk_data_ptr = next_contiguous_pointer<char>(chunk_size_ptr);
+
+	is_big_endian = signature == byteswap(*signature_ptr);
+
+	tag read_signature = chunk_byteswap(*signature_ptr);
+	ASSERT(read_signature == signature);
+	//bool test1 = read_signature == signature;
+	//bool test2 = read_signature != signature;
+	//if (test2);
+	//{
+	//	return BCS_E_FAIL;
+	//}
+
+	metadata = chunk_byteswap(*metadata_ptr);
+	chunk_size = chunk_byteswap(*chunk_size_ptr);
+	chunk_data = chunk_data_ptr;
+
+	is_data_valid = true;
+
+	if (!use_read_only)
+	{
+		set_data(chunk_data, chunk_size);
+	}
+
+	if (parse_children)
+	{
+		read_child_chunks(userdata, use_read_only);
+	}
+
+	return rs;
+}
+
+BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const char* data_start)
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	if (data_start == nullptr)
+	{
+		data_start = get_chunk_data_start();
+	}
+	ASSERT(data_start != nullptr);
+
+	try
+	{
+#pragma pack(push, 1)
+		struct s_stack_chunk_list_entry
+		{
+			s_stack_chunk_list_entry* previous;
+			c_chunk* chunk;
+		};
+#pragma pack(push, pop)
+		s_stack_chunk_list_entry* chunk_list_start = nullptr;
+		unsigned long chunk_list_length = 0;
+
+		const void* chunk_data_end = get_chunk_data_end();
+		for (const char* data_position = data_start; data_position < chunk_data_end;)
+		{
+#define CHUNK_CTOR_EX(_signature, t_structure, ...) \
+		case (_signature): \
+		{ \
+			s_stack_chunk_list_entry* chunk_list_entry = new() s_stack_chunk_list_entry; \
+			chunk_list_length++; \
+			c_chunk* chunk = chunk_list_entry->chunk = new() t_structure(__VA_ARGS__); \
+			chunk_list_entry->previous = chunk_list_start; \
+			chunk_list_start = chunk_list_entry; \
+			chunk->read_chunk(userdata, data_position, use_read_only, t_structure::k_should_parse_children); \
+			data_position = chunk->get_chunk_data_end(); \
+			break; \
+		}
+#define CHUNK_CTOR(t_structure, ...) CHUNK_CTOR_EX(t_structure::k_signature, t_structure, __VA_ARGS__)
+			unsigned long signature = chunk_byteswap(*reinterpret_cast<const unsigned long*>(data_position));
+			if (signature == c_tag_layout_v3_chunk::k_signature)
+			{
+				s_tag_group_layout_header* tag_group_layout_header = static_cast<s_tag_group_layout_header*>(userdata);
+				ASSERT(tag_group_layout_header != nullptr);
+				switch (tag_group_layout_header->layout_version)
+				{
+					CHUNK_CTOR_EX(_tag_persist_layout_version_prechunk, c_tag_layout_prechunk_chunk, *this);
+					CHUNK_CTOR_EX(_tag_persist_layout_version_preinterop, c_tag_layout_preinterop_chunk, *this);
+					CHUNK_CTOR_EX(_tag_persist_layout_version_v3, c_tag_layout_v3_chunk, *this);
+				}
+			}
+			else switch (signature)
+			{
+				CHUNK_CTOR(c_tag_header_chunk);
+				CHUNK_CTOR(c_tag_group_layout_chunk, *this);
+				CHUNK_CTOR(c_string_data_chunk, *this);
+				CHUNK_CTOR(c_string_offsets_chunk, *this);
+				CHUNK_CTOR(c_string_lists_chunk, *this);
+				CHUNK_CTOR(c_custom_block_index_search_names_chunk, *this);
+				CHUNK_CTOR(c_data_definition_name_chunk, *this);
+				CHUNK_CTOR(c_array_definitions_chunk, *this);
+				CHUNK_CTOR(c_field_types_chunk, *this);
+				CHUNK_CTOR(c_fields_chunk, *this);
+				CHUNK_CTOR(c_block_definitions_chunk, *this);
+				CHUNK_CTOR(c_resource_definitions_chunk, *this);
+				CHUNK_CTOR(c_interop_definitions_chunk, *this);
+				CHUNK_CTOR(c_structure_definitions_chunk, *this);
+				CHUNK_CTOR(c_binary_data_chunk, *this);
+				CHUNK_CTOR(c_tag_block_chunk, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+				CHUNK_CTOR(c_tag_struct_chunk, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+				CHUNK_CTOR(c_tag_string_id_chunk, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+				CHUNK_CTOR(c_tag_reference_chunk, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+				CHUNK_CTOR(c_tag_data_chunk, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+				CHUNK_CTOR(c_tag_resource_null_chunk, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+				CHUNK_CTOR(c_tag_resource_exploded_chunk, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+				CHUNK_CTOR(c_tag_resource_xsynced_chunk, *this, *static_cast<c_single_tag_file_reader*>(userdata));
+				CHUNK_CTOR(c_monolithic_tag_file_index_chunk, *this);
+				CHUNK_CTOR(c_monolithic_index_chunk, *this);
+				CHUNK_CTOR(c_tag_file_index_chunk, *this);
+				CHUNK_CTOR(c_tag_heap_chunk, *this);
+				CHUNK_CTOR(c_cache_heap_chunk, *this);
+				CHUNK_CTOR(c_tag_file_blocks_chunk, *this);
+				CHUNK_CTOR(c_build_identifier_chunk, *this);
+				CHUNK_CTOR(c_tag_file_persistent_heap_chunk, *this);
+				CHUNK_CTOR(c_partitioned_persistent_heap_backend_chunk, *this);
+				CHUNK_CTOR(c_tag_file_heap_partition_config_chunk, *this);
+				CHUNK_CTOR(c_partition_list_chunk, *this);
+				CHUNK_CTOR(c_partition_chunk, *this);
+				CHUNK_CTOR(c_partitioned_heap_entry_list_chunk, *this);
+				CHUNK_CTOR(c_tag_dependency_index_loader_chunk, *this);
+				CHUNK_CTOR(c_tag_dependency_chunk, *this);
+				CHUNK_CTOR(c_exploded_dependencies_chunk, *this);
+				CHUNK_CTOR(c_optimized_dependencies_chunk, *this);
+				CHUNK_CTOR(c_monolithic_tag_file_layout_registry_chunk, *this);
+			default: FATAL_ERROR("Unknown tag file chunk signature");
+			}
+#undef CHUNK_CTOR
+#undef CHUNK_CTOR_EX
+		}
+
+		c_chunk** chunk_pointers;
+		// allocate memory and copy to heap
+		{
+			c_chunk** chunk_pointers_alloc = chunk_pointers = new() c_chunk * [chunk_list_length + 1];
+			chunk_pointers += chunk_list_length + 1;
+
+			*(--chunk_pointers) = nullptr;
+			while (chunk_list_start)
+			{
+				s_stack_chunk_list_entry* current_chunk_list_entry = chunk_list_start;
+				*(--chunk_pointers) = current_chunk_list_entry->chunk;
+				chunk_list_start = current_chunk_list_entry->previous;
+				delete current_chunk_list_entry;
+			}
+
+			ASSERT(chunk_pointers_alloc == chunk_pointers);
+
+			debug_point;
+		}
+
+		children = chunk_pointers;
+	}
+	catch (BCS_RESULT rs)
+	{
+		return rs;
+	}
+	catch (...)
+	{
+		return BCS_E_FATAL;
+	}
+	return rs;
 }
 
 void c_chunk::log(c_single_tag_file_layout_reader* layout_reader) const
@@ -79,287 +417,4 @@ void c_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
 	log_signature();
 	console_write_verbose("0x%X ", chunk_size);
 	console_end_line_verbose();
-}
-
-unsigned long c_chunk::get_chunk_count() const
-{
-	unsigned long child_count = 0;
-	for (c_chunk** children_iter = children; children_iter && *children_iter; children_iter++)
-	{
-		child_count++;
-	}
-	return child_count;
-}
-
-c_chunk* c_chunk::find_first_chunk(unsigned long type) const
-{
-	for (c_chunk** children_iter = children; children_iter && *children_iter; children_iter++)
-	{
-		c_chunk& child = **children_iter;
-		if (child.signature == type)
-		{
-			return &child;
-		}
-	}
-	for (c_chunk** children_iter = children; children_iter && *children_iter; children_iter++)
-	{
-		c_chunk& child = **children_iter;
-
-		c_chunk* child_search_result = child.find_first_chunk(type);
-		if (child_search_result)
-		{
-			return child_search_result;
-		}
-	}
-	return nullptr;
-}
-
-c_chunk* c_chunk::get_chunk(unsigned long index) const
-{
-	return children[index];
-}
-
-void c_chunk::parse_children(void* userdata, const char* data, bool force_fast)
-{
-	if (data == nullptr)
-	{
-		data = chunk_data_begin;
-	}
-
-	//intptr_t bytes_to_parse = chunk_data_end - data;
-	//if (bytes_to_parse <= 0x10000 || force_fast)
-	//{
-	//	children_fast_allocation = 1;
-	//	children = create_child_chunks_fast(data, userdata);
-	//	//children = create_child_chunks_slow(data, userdata);
-	//}
-	//else
-	{
-		children = create_child_chunks_slow(data, userdata);
-	}
-}
-
-c_chunk** c_chunk::create_child_chunks_fast(const char* data_start, void* userdata)
-{
-#pragma pack(push, 1)
-	struct s_stack_chunk_list_entry
-	{
-		s_stack_chunk_list_entry* previous;
-		unsigned long chunk_size;
-		char chunk_data[];
-	};
-#pragma pack(push, pop)
-	s_stack_chunk_list_entry* chunk_list_start = nullptr;
-	unsigned long chunk_list_length = 0;
-	unsigned long chunk_list_data_size = 0;
-
-	for (const char* data_position = data_start; data_position < chunk_data_end;)
-	{
-#define CHUNK_CTOR_EX(_signature, t_structure, ...) \
-		case (_signature): \
-		{ \
-			DEBUG_ASSERT(signature == c_tag_header_chunk::signature || this != nullptr); \
-			s_stack_chunk_list_entry* chunk_list_entry = (s_stack_chunk_list_entry*)alloca(sizeof(s_stack_chunk_list_entry) + sizeof(t_structure)); \
-			chunk_list_length++; \
-			chunk_list_entry->chunk_size = sizeof(t_structure); \
-			chunk_list_data_size += sizeof(t_structure); \
-			t_structure* chunk = new(chunk_list_entry->chunk_data) t_structure(__VA_ARGS__); \
-			chunk_list_entry->previous = chunk_list_start; \
-			chunk_list_start = chunk_list_entry; \
-			data_position = chunk->chunk_data_end; \
-			break; \
-		}
-#define CHUNK_CTOR(t_structure, ...) CHUNK_CTOR_EX(t_structure::signature, t_structure, __VA_ARGS__)
-		unsigned long signature = chunk_byteswap(*reinterpret_cast<const unsigned long*>(data_position));
-		if (signature == c_tag_layout_v3_chunk::signature)
-		{
-			s_tag_group_layout_header* tag_group_layout_header = static_cast<s_tag_group_layout_header*>(userdata);
-			ASSERT(tag_group_layout_header != nullptr);
-			switch (tag_group_layout_header->layout_version)
-			{
-				CHUNK_CTOR_EX(_tag_persist_layout_version_prechunk, c_tag_layout_prechunk_chunk, data_position, *this);
-				CHUNK_CTOR_EX(_tag_persist_layout_version_preinterop, c_tag_layout_preinterop_chunk, data_position, *this);
-				CHUNK_CTOR_EX(_tag_persist_layout_version_v3, c_tag_layout_v3_chunk, data_position, *this);
-			}
-		}
-		else switch (signature)
-		{
-			CHUNK_CTOR(c_tag_header_chunk, data_position);
-			CHUNK_CTOR(c_tag_group_layout_chunk, data_position, *this);
-			CHUNK_CTOR(c_string_data_chunk, data_position, *this);
-			CHUNK_CTOR(c_string_offsets_chunk, data_position, *this);
-			CHUNK_CTOR(c_string_lists_chunk, data_position, *this);
-			CHUNK_CTOR(c_custom_block_index_search_names_chunk, data_position, *this);
-			CHUNK_CTOR(c_data_definition_name_chunk, data_position, *this);
-			CHUNK_CTOR(c_array_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_field_types_chunk, data_position, *this);
-			CHUNK_CTOR(c_fields_chunk, data_position, *this);
-			CHUNK_CTOR(c_block_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_resource_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_interop_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_structure_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_binary_data_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_block_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_struct_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_string_id_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_reference_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_data_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_monolithic_tag_file_index_chunk, data_position, *this);
-			CHUNK_CTOR(c_monolithic_index_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_file_index_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_heap_chunk, data_position, *this);
-			CHUNK_CTOR(c_cache_heap_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_file_blocks_chunk, data_position, *this);
-			CHUNK_CTOR(c_build_identifier_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_file_persistent_heap_chunk, data_position, *this);
-			CHUNK_CTOR(c_partitioned_persistent_heap_backend_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_file_heap_partition_config_chunk, data_position, *this);
-			CHUNK_CTOR(c_partition_list_chunk, data_position, *this);
-			CHUNK_CTOR(c_partition_chunk, data_position, *this);
-			CHUNK_CTOR(c_partitioned_heap_entry_list_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_dependency_index_loader_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_dependency_chunk, data_position, *this);
-			CHUNK_CTOR(c_exploded_dependencies_chunk, data_position, *this);
-			CHUNK_CTOR(c_optimized_dependencies_chunk, data_position, *this);
-			CHUNK_CTOR(c_monolithic_tag_file_layout_registry_chunk, data_position, *this);
-		default: FATAL_ERROR("Unknown tag file chunk signature");
-		}
-#undef CHUNK_CTOR
-#undef CHUNK_CTOR_EX
-	}
-
-	c_chunk** chunk_pointers;
-	// allocate memory and copy to heap
-	{
-		size_t chunk_pointer_list_size = sizeof(c_chunk*) * (chunk_list_length + 1);
-		size_t chunk_allocation_size = chunk_pointer_list_size + chunk_list_data_size;
-
-		char* chunk_data_allocation = new() char[chunk_allocation_size];
-		char* chunk_data_pos = chunk_data_allocation + chunk_pointer_list_size;
-		chunk_pointers = reinterpret_cast<c_chunk**>(chunk_data_pos); // list stored in reverse
-
-		*(--chunk_pointers) = nullptr;
-		while (chunk_list_start)
-		{
-			c_chunk* chunk_data = (c_chunk*)(chunk_data_pos);
-			memcpy(chunk_data, chunk_list_start->chunk_data, chunk_list_start->chunk_size);
-			chunk_data_pos += chunk_list_start->chunk_size;
-			*(--chunk_pointers) = chunk_data;
-			chunk_list_start = chunk_list_start->previous;
-		}
-
-		ASSERT(static_cast<void*>(chunk_data_allocation) == static_cast<void*>(chunk_pointers));
-
-		debug_point;
-	}
-	return chunk_pointers;
-}
-
-c_chunk** c_chunk::create_child_chunks_slow(const char* data_start, void* userdata)
-{
-#pragma pack(push, 1)
-	struct s_stack_chunk_list_entry
-	{
-		s_stack_chunk_list_entry* previous;
-		c_chunk* chunk;
-	};
-#pragma pack(push, pop)
-	s_stack_chunk_list_entry* chunk_list_start = nullptr;
-	unsigned long chunk_list_length = 0;
-
-	for (const char* data_position = data_start; data_position < chunk_data_end;)
-	{
-#define CHUNK_CTOR_EX(_signature, t_structure, ...) \
-		case (_signature): \
-		{ \
-			s_stack_chunk_list_entry* chunk_list_entry = new() s_stack_chunk_list_entry; \
-			chunk_list_length++; \
-			c_chunk* chunk = chunk_list_entry->chunk = new() t_structure(__VA_ARGS__); \
-			chunk_list_entry->previous = chunk_list_start; \
-			chunk_list_start = chunk_list_entry; \
-			data_position = chunk->chunk_data_end; \
-			break; \
-		}
-#define CHUNK_CTOR(t_structure, ...) CHUNK_CTOR_EX(t_structure::signature, t_structure, __VA_ARGS__)
-		unsigned long signature = chunk_byteswap(*reinterpret_cast<const unsigned long*>(data_position));
-		if (signature == c_tag_layout_v3_chunk::signature)
-		{
-			s_tag_group_layout_header* tag_group_layout_header = static_cast<s_tag_group_layout_header*>(userdata);
-			ASSERT(tag_group_layout_header != nullptr);
-			switch (tag_group_layout_header->layout_version)
-			{
-				CHUNK_CTOR_EX(_tag_persist_layout_version_prechunk, c_tag_layout_prechunk_chunk, data_position, *this);
-				CHUNK_CTOR_EX(_tag_persist_layout_version_preinterop, c_tag_layout_preinterop_chunk, data_position, *this);
-				CHUNK_CTOR_EX(_tag_persist_layout_version_v3, c_tag_layout_v3_chunk, data_position, *this);
-			}
-		}
-		else switch (signature)
-		{
-			CHUNK_CTOR(c_tag_header_chunk, data_position);
-			CHUNK_CTOR(c_tag_group_layout_chunk, data_position, *this);
-			CHUNK_CTOR(c_string_data_chunk, data_position, *this);
-			CHUNK_CTOR(c_string_offsets_chunk, data_position, *this);
-			CHUNK_CTOR(c_string_lists_chunk, data_position, *this);
-			CHUNK_CTOR(c_custom_block_index_search_names_chunk, data_position, *this);
-			CHUNK_CTOR(c_data_definition_name_chunk, data_position, *this);
-			CHUNK_CTOR(c_array_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_field_types_chunk, data_position, *this);
-			CHUNK_CTOR(c_fields_chunk, data_position, *this);
-			CHUNK_CTOR(c_block_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_resource_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_interop_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_structure_definitions_chunk, data_position, *this);
-			CHUNK_CTOR(c_binary_data_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_block_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_struct_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_string_id_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_reference_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_data_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_resource_null_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_resource_exploded_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_tag_resource_xsynced_chunk, data_position, *this, *static_cast<c_single_tag_file_reader*>(userdata));
-			CHUNK_CTOR(c_monolithic_tag_file_index_chunk, data_position, *this);
-			CHUNK_CTOR(c_monolithic_index_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_file_index_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_heap_chunk, data_position, *this);
-			CHUNK_CTOR(c_cache_heap_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_file_blocks_chunk, data_position, *this);
-			CHUNK_CTOR(c_build_identifier_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_file_persistent_heap_chunk, data_position, *this);
-			CHUNK_CTOR(c_partitioned_persistent_heap_backend_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_file_heap_partition_config_chunk, data_position, *this);
-			CHUNK_CTOR(c_partition_list_chunk, data_position, *this);
-			CHUNK_CTOR(c_partition_chunk, data_position, *this);
-			CHUNK_CTOR(c_partitioned_heap_entry_list_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_dependency_index_loader_chunk, data_position, *this);
-			CHUNK_CTOR(c_tag_dependency_chunk, data_position, *this);
-			CHUNK_CTOR(c_exploded_dependencies_chunk, data_position, *this);
-			CHUNK_CTOR(c_optimized_dependencies_chunk, data_position, *this);
-			CHUNK_CTOR(c_monolithic_tag_file_layout_registry_chunk, data_position, *this);
-			default: FATAL_ERROR("Unknown tag file chunk signature");
-		}
-#undef CHUNK_CTOR
-#undef CHUNK_CTOR_EX
-	}
-
-	c_chunk** chunk_pointers;
-	// allocate memory and copy to heap
-	{
-		c_chunk** chunk_pointers_alloc = chunk_pointers = new() c_chunk * [chunk_list_length + 1];
-		chunk_pointers += chunk_list_length + 1;
-
-		*(--chunk_pointers) = nullptr;
-		while (chunk_list_start)
-		{
-			s_stack_chunk_list_entry* current_chunk_list_entry = chunk_list_start;
-			*(--chunk_pointers) = current_chunk_list_entry->chunk;
-			chunk_list_start = current_chunk_list_entry->previous;
-			delete current_chunk_list_entry;
-		}
-
-		ASSERT(chunk_pointers_alloc == chunk_pointers);
-
-		debug_point;
-	}
-	return chunk_pointers;
 }

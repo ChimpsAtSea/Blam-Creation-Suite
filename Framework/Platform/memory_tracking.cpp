@@ -165,11 +165,11 @@ void* _tracked_malloc(s_tracked_memory_stats& stats, size_t size, const char* fi
 	return memory;
 }
 
-void tracked_free(void* pointer)
+void tracked_free(const void* pointer)
 {
 	if (pointer)
 	{
-		s_tracked_memory_entry* tracked_memory_entry = static_cast<s_tracked_memory_entry*>(pointer) - 1;
+		const s_tracked_memory_entry* tracked_memory_entry = static_cast<const s_tracked_memory_entry*>(pointer) - 1;
 
 		DWORD thread_id = GetCurrentThreadId();
 		while (InterlockedCompareExchange(&tracked_memory_entries_spin_lock, thread_id, 0));
@@ -201,6 +201,11 @@ void tracked_free(void* pointer)
 
 		debug_point;
 	}
+}
+
+void untracked_free(const void* pointer)
+{
+	free(const_cast<void*>(pointer));
 }
 
 void print_memory_allocations(s_tracked_memory_stats* stats)

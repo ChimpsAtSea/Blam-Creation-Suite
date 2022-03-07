@@ -84,7 +84,14 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 
 c_high_level_tag_editor_tab::~c_high_level_tag_editor_tab()
 {
-
+	if (haloreach_bitmap_test)
+	{
+		delete haloreach_bitmap_test;
+	}
+	if (model_preview_test)
+	{
+		delete model_preview_test;
+	}
 }
 
 void c_high_level_tag_editor_tab::render_impl()

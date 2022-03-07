@@ -7,14 +7,32 @@ template<> void byteswap_inplace(s_tag_persist_field_type& value)
 	byteswap_inplace(value.metadata);
 }
 
-c_field_types_chunk::c_field_types_chunk(const void* chunk_data, c_chunk& parent) :
-	c_typed_chunk(chunk_data, &parent),
+c_field_types_chunk::c_field_types_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent),
 	entries(),
-	entry_count(chunk_size / sizeof(*entries))
+	entry_count()
 {
+
+	debug_point;
+}
+
+c_field_types_chunk::~c_field_types_chunk()
+{
+	delete[] entries;
+}
+
+BCS_RESULT c_field_types_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)
+{
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_FAILED(rs = c_typed_chunk::read_chunk(userdata, data, use_read_only, parse_children)))
+	{
+		return rs;
+	}
+
+	entry_count = chunk_size / sizeof(*entries);
 	if (entry_count > 0)
 	{
-		const s_tag_persist_field_type* src_entries = reinterpret_cast<const s_tag_persist_field_type*>(chunk_data_begin);
+		const s_tag_persist_field_type* src_entries = reinterpret_cast<const s_tag_persist_field_type*>(get_chunk_data_start());
 		entries = new() s_tag_persist_field_type[entry_count];
 		for (unsigned long entry_index = 0; entry_index < entry_count; entry_index++)
 		{
@@ -24,12 +42,7 @@ c_field_types_chunk::c_field_types_chunk(const void* chunk_data, c_chunk& parent
 		}
 	}
 
-	debug_point;
-}
-
-c_field_types_chunk::~c_field_types_chunk()
-{
-	delete[] entries;
+	return rs;
 }
 
 void c_field_types_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const

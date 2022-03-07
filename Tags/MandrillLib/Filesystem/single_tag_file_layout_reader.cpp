@@ -18,18 +18,20 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 	interop_definitions_chunk()
 {
 	const s_single_tag_file_header* src_header = static_cast<const s_single_tag_file_header*>(tag_file_data);
-	root_chunk = new() c_tag_header_chunk(next_contiguous_pointer(src_header));
+	root_chunk = new() c_tag_header_chunk();
+	// #TODO: Combine c_single_tag_file_layout_reader and c_single_tag_file_reader together
+	// then pass the first argument as [this]
+	// then convert to a reference
+	root_chunk->read_chunk(nullptr, next_contiguous_pointer(src_header), true, true);
 
-	root_chunk->parse_children(this, nullptr, true);
+	tag_group_layout_chunk = root_chunk->get_child_by_type_unsafe<c_tag_group_layout_chunk>();
 
-	tag_group_layout_chunk = root_chunk->find_first_chunk<c_tag_group_layout_chunk>();
-
-	binary_data_chunk = root_chunk->find_first_chunk<c_binary_data_chunk>();
+	binary_data_chunk = root_chunk->get_child_by_type_unsafe<c_binary_data_chunk>();
 
 	ASSERT(tag_group_layout_chunk != nullptr);
 	ASSERT(binary_data_chunk != nullptr);
 
-	tag_layout_prechunk_chunk = tag_group_layout_chunk->find_first_chunk<c_tag_layout_prechunk_chunk>();
+	tag_layout_prechunk_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_tag_layout_prechunk_chunk>();
 
 	if (tag_layout_prechunk_chunk != nullptr)
 	{
@@ -92,16 +94,16 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
-		string_data_chunk = tag_group_layout_chunk->find_first_chunk<c_string_data_chunk>();
-		custom_block_index_search_names_chunk = tag_group_layout_chunk->find_first_chunk<c_custom_block_index_search_names_chunk>();
-		array_definitions_chunk = tag_group_layout_chunk->find_first_chunk<c_array_definitions_chunk>();
-		data_definition_name_chunk = tag_group_layout_chunk->find_first_chunk<c_data_definition_name_chunk>();
-		block_definitions_chunk = tag_group_layout_chunk->find_first_chunk<c_block_definitions_chunk>();
-		field_types_chunk = tag_group_layout_chunk->find_first_chunk<c_field_types_chunk>();
-		fields_chunk = tag_group_layout_chunk->find_first_chunk<c_fields_chunk>();
-		structure_definitions_chunk = tag_group_layout_chunk->find_first_chunk<c_structure_definitions_chunk>();
-		resource_definitions_chunk = tag_group_layout_chunk->find_first_chunk<c_resource_definitions_chunk>();
-		interop_definitions_chunk = tag_group_layout_chunk->find_first_chunk<c_interop_definitions_chunk>();
+		string_data_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_string_data_chunk>();
+		custom_block_index_search_names_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_custom_block_index_search_names_chunk>();
+		array_definitions_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_array_definitions_chunk>();
+		data_definition_name_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_data_definition_name_chunk>();
+		block_definitions_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_block_definitions_chunk>();
+		field_types_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_field_types_chunk>();
+		fields_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_fields_chunk>();
+		structure_definitions_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_structure_definitions_chunk>();
+		resource_definitions_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_resource_definitions_chunk>();
+		interop_definitions_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_interop_definitions_chunk>();
 
 		ASSERT(string_data_chunk != nullptr);
 		ASSERT(array_definitions_chunk != nullptr);
@@ -239,7 +241,14 @@ const char* c_single_tag_file_layout_reader::get_string_by_string_character_inde
 {
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
-		return string_data_chunk->chunk_data_begin + string_character_index.offset;
+		BCS_RESULT rs = BCS_S_OK;
+
+		const void* chunk_data;
+		unsigned long chunk_data_size;
+		rs = string_data_chunk->get_data(chunk_data, chunk_data_size);
+		ASSERT(BCS_SUCCEEDED(rs));
+
+		return static_cast<const char*>(chunk_data) + string_character_index.offset;
 	}
 	else
 	{

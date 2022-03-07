@@ -1,13 +1,29 @@
 #include "mandrilllib-private-pch.h"
 
-c_tag_group_layout_chunk::c_tag_group_layout_chunk(const void* chunk_data, c_chunk& parent) :
-	c_typed_chunk(chunk_data, &parent),
+c_tag_group_layout_chunk::c_tag_group_layout_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent),
 	tag_group_layout_header(),
 	layout_header_prechunk(),
 	layout_header_preinterop(),
 	layout_header_v3()
 {
-	const s_tag_group_layout_header* src_tag_group_layout_header = reinterpret_cast<const s_tag_group_layout_header*>(chunk_data_begin);
+}
+
+c_tag_group_layout_chunk::~c_tag_group_layout_chunk()
+{
+	debug_point;
+}
+
+BCS_RESULT c_tag_group_layout_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)
+{
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_FAILED(rs = c_typed_chunk::read_chunk(userdata, data, use_read_only, false)))
+	{
+		return rs;
+	}
+
+
+	const s_tag_group_layout_header* src_tag_group_layout_header = reinterpret_cast<const s_tag_group_layout_header*>(get_chunk_data_start());
 	tag_group_layout_header = chunk_byteswap(*src_tag_group_layout_header);
 
 	debug_point;
@@ -20,12 +36,13 @@ c_tag_group_layout_chunk::c_tag_group_layout_chunk(const void* chunk_data, c_chu
 		layout_header_prechunk_data = chunk_byteswap(*src_layout_header_prechunk);
 		layout_header_prechunk = &layout_header_prechunk_data;
 
-		chunk_data_begin = next_contiguous_pointer<char>(src_layout_header_prechunk);
+		const char* chunk_children_start = next_contiguous_pointer<char>(src_layout_header_prechunk);
 
 		// #HACK: The same data for this chunk is passed down to the child. This means that the child chunk has the same data
 		// begin and end positions as this current chunk.
-		c_tag_layout_prechunk_chunk* layout_prechunk_chunk = new() c_tag_layout_prechunk_chunk(chunk_data, *this);
-		children = new() c_chunk * [2]{ layout_prechunk_chunk, nullptr };
+		FATAL_ERROR("TODO: RESTORE THIS");
+		//c_tag_layout_prechunk_chunk* layout_prechunk_chunk = new() c_tag_layout_prechunk_chunk(chunk_data, *this);
+		//children = new() c_chunk * [2]{ layout_prechunk_chunk, nullptr };
 	}
 	break;
 	case _tag_persist_layout_version_preinterop:
@@ -34,8 +51,11 @@ c_tag_group_layout_chunk::c_tag_group_layout_chunk(const void* chunk_data, c_chu
 		layout_header_preinterop_data = chunk_byteswap(*src_layout_header_preinterop);
 		layout_header_preinterop = &layout_header_preinterop_data;
 
-		chunk_data_begin = next_contiguous_pointer<char>(src_layout_header_preinterop);
-		parse_children(&tag_group_layout_header);
+		const char* chunk_children_start = next_contiguous_pointer<char>(src_layout_header_preinterop);
+		if (parse_children)
+		{
+			read_child_chunks(&tag_group_layout_header, use_read_only, chunk_children_start);
+		}
 	}
 	break;
 	case _tag_persist_layout_version_v3:
@@ -45,17 +65,17 @@ c_tag_group_layout_chunk::c_tag_group_layout_chunk(const void* chunk_data, c_chu
 		layout_header_v3 = &layout_header_v3_data;
 
 		layout_header_preinterop = layout_header_v3;
-		chunk_data_begin = next_contiguous_pointer<char>(src_layout_header_v3);
-		parse_children(&tag_group_layout_header);
+		const char* chunk_children_start = next_contiguous_pointer<char>(src_layout_header_v3);
+		if (parse_children)
+		{
+			read_child_chunks(&tag_group_layout_header, use_read_only, chunk_children_start);
+		}
 	}
 	break;
 	default: FATAL_ERROR("Unknown layout version");
 	}
-}
 
-c_tag_group_layout_chunk::~c_tag_group_layout_chunk()
-{
-	debug_point;
+	return rs;
 }
 
 unsigned long c_tag_group_layout_chunk::get_tag_group_block_index() const
