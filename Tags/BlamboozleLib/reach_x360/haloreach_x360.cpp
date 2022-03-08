@@ -445,14 +445,14 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 	{
 		if (c_reach_x360_tag_field_combined_fixup* combined_fixup_field = dynamic_cast<c_reach_x360_tag_field_combined_fixup*>(_field))
 		{
-			switch(combined_fixup_field->fixup_type)
+			switch (combined_fixup_field->fixup_type)
 			{
-				case _reach_x360_tag_field_combined_fixup_type_equal:
-					s << "\t\t{ _version_mode_tag_group_equal, &blofeld::" << _namespace << "::" << combined_fixup_field->group_definition.code_name << ", " << combined_fixup_field->count << " }," << std::endl;
-					break;
-				case _reach_x360_tag_field_combined_fixup_type_not_equal:
-					s << "\t\t{ _version_mode_tag_group_not_equal, &blofeld::" << _namespace << "::" << combined_fixup_field->group_definition.code_name << ", " << combined_fixup_field->count << " }," << std::endl;
-					break;
+			case _reach_x360_tag_field_combined_fixup_type_equal:
+				s << "\t\t{ _version_mode_tag_group_equal, &blofeld::" << _namespace << "::" << combined_fixup_field->group_definition.code_name << ", " << combined_fixup_field->count << " }," << std::endl;
+				break;
+			case _reach_x360_tag_field_combined_fixup_type_not_equal:
+				s << "\t\t{ _version_mode_tag_group_not_equal, &blofeld::" << _namespace << "::" << combined_fixup_field->group_definition.code_name << ", " << combined_fixup_field->count << " }," << std::endl;
+				break;
 			}
 
 			debug_point;
@@ -1139,7 +1139,7 @@ void reach_x360_write_tag_types_header(std::stringstream& s, std::vector<t_reach
 {
 	for (auto& _field : fields)
 	{
-		if(c_reach_x360_tag_field* tag_field = dynamic_cast<c_reach_x360_tag_field*>(_field))
+		if (c_reach_x360_tag_field* tag_field = dynamic_cast<c_reach_x360_tag_field*>(_field))
 		{
 			switch (tag_field->field_type)
 			{
@@ -1356,7 +1356,7 @@ void reach_x360_export_header(
 			s << std::endl;
 		}
 	}
-	
+
 	for (auto& data_definition : data_definitions)
 	{
 		if (!is_data_exported(*data_definition))
@@ -1376,7 +1376,7 @@ void reach_x360_export_header(
 			s << std::endl;
 		}
 	}
-	
+
 	for (auto& api_interop_definition : api_interop_definitions)
 	{
 		if (!is_api_interop_exported(*api_interop_definition))
@@ -1392,6 +1392,34 @@ void reach_x360_export_header(
 	s << std::endl;
 	s << "} // namespace haloreach" << std::endl;
 	s << std::endl;
+}
+
+static const char* reach_tag_field_set_bit_to_field_set_bit_macro(e_reach_tag_field_set_bit runtime_flag)
+{
+	switch (runtime_flag)
+	{
+	case _reach_tag_field_set_unknown0:										return "SET_UNKNOWN0";
+	case _reach_tag_field_set_unknown1:										return "SET_UNKNOWN1";
+	case _reach_tag_field_set_has_inlined_children_with_placement_new_bit:	return "SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW";
+	case _reach_tag_field_set_unknown3:										return "SET_UNKNOWN3";
+	case _reach_tag_field_set_unknown4:										return "SET_UNKNOWN4";
+	case _reach_tag_field_set_unknown5:										return "SET_UNKNOWN5";
+	case _reach_tag_field_set_is_temporary_bit:								return "SET_IS_TEMPORARY";
+	case _reach_tag_field_set_unknown7:										return "SET_UNKNOWN7";
+	case _reach_tag_field_set_unknown8:										return "SET_UNKNOWN8";
+	case _reach_tag_field_set_delete_recursively_bit:						return "SET_DELETE_RECURSIVELY";
+	case _reach_tag_field_set_postprocess_recursively_bit:					return "SET_POSTPROCESS_RECURSIVELY";
+	case _reach_tag_field_set_is_memcpyable_bit:							return "SET_IS_MEMCPYABLE";
+	case _reach_tag_field_set_unknown12:									return "SET_UNKNOWN12";
+	case _reach_tag_field_set_has_resources:								return "SET_HAS_RESOURCES";
+	case _reach_tag_field_set_unknown14:									return "SET_UNKNOWN14";
+	case _reach_tag_field_set_unknown15:									return "SET_UNKNOWN15";
+	case _reach_tag_field_set_has_level_specific_fields_bit:				return "SET_HAS_LEVEL_SPECIFIC_FIELDS";
+	case _reach_tag_field_set_can_memset_to_initialize_bit:					return "SET_CAN_MEMSET_TO_INITIALIZE";
+	case _reach_tag_field_set_unknown18:									return "SET_UNKNOWN18";
+	case _reach_tag_field_set_unknown19:									return "SET_UNKNOWN19";
+	}
+	throw;
 }
 
 void reach_x360_export_source(
@@ -1520,7 +1548,41 @@ void reach_x360_export_source(
 			s << "\t\t" << "\"" << struct_definition->pretty_name << "\"," << std::endl;
 			s << "\t\t" << "\"" << struct_definition->name << "\"," << std::endl;
 			s << "\t\t" << "\"s_" << struct_definition->code_name << "\"," << std::endl;
-			s << "\t\t" << "SET_DEFAULT," << std::endl;
+
+			c_flags<e_reach_tag_field_set_bit, long, k_num_reach_runtime_flags> default_flags;
+			default_flags.set(_reach_tag_field_set_unknown0, true);
+			default_flags.set(_reach_tag_field_set_unknown1, true);
+			default_flags.set(_reach_tag_field_set_unknown5, true);
+			default_flags.set(_reach_tag_field_set_delete_recursively_bit, true);
+			default_flags.set(_reach_tag_field_set_postprocess_recursively_bit, true);
+			
+			if (struct_definition->struct_definitions.front().first.runtime.flags == default_flags)
+			{
+				s << "\t\t" << "SET_DEFAULT," << std::endl;
+			}
+			else
+			{
+				s << "\t\t";
+				bool is_first = true;
+				for (long _reach_tag_field_set = 0; _reach_tag_field_set < k_num_reach_runtime_flags; _reach_tag_field_set++)
+				{
+					e_reach_tag_field_set_bit reach_tag_field_set = static_cast<e_reach_tag_field_set_bit>(_reach_tag_field_set);
+					if (struct_definition->struct_definitions.front().first.runtime.flags.test(reach_tag_field_set))
+					{
+						const char* macro = reach_tag_field_set_bit_to_field_set_bit_macro(reach_tag_field_set);
+
+						if (!is_first)
+						{
+							s << " | ";
+						}
+
+						s << macro;
+
+						is_first = false;
+					}
+				}
+				s << "," << std::endl;
+			}
 			s << "\t\t" << "TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY)," << std::endl;
 			s << "\t\t" << persistent_identifier_name_buffer;
 			if (struct_definition->alignment_bits)
@@ -1564,7 +1626,7 @@ void reach_x360_export_source(
 			s << std::endl;
 		}
 	}
-	
+
 	for (auto& api_interop_definition : api_interop_definitions)
 	{
 		if (!is_api_interop_exported(*api_interop_definition))
@@ -1595,7 +1657,7 @@ void reach_x360_export_source(
 			s << "\tTAG_INTEROP(" << std::endl;
 			s << "\t\t" << api_interop_definition->code_name << "," << std::endl;
 			s << "\t\t" << "\"" << api_interop_definition->name << "\"," << std::endl;
-			s << "\t\t" << api_interop_definition->struct_definition.code_name  << "," << std::endl;
+			s << "\t\t" << api_interop_definition->struct_definition.code_name << "," << std::endl;
 			s << "\t\t" << persistent_identifier_name_buffer << ");" << std::endl;
 			s << std::endl;
 		}

@@ -97,7 +97,6 @@ c_reach_x360_tag_struct_definition::c_reach_x360_tag_struct_definition(const cha
 	struct_definitions{ { definition_header, c_reach_x360_tag_group_definition::current_group_traverse_hack } },
 	fields()
 {
-
 	unsigned long existing_count = 0;
 	for (auto& keyval : tag_struct_definitions) if (name == keyval.second->name) existing_count++;
 	if (existing_count > 1)
@@ -107,6 +106,9 @@ c_reach_x360_tag_struct_definition::c_reach_x360_tag_struct_definition(const cha
 		_itoa(existing_count, existing_count_buffer, 10);
 		code_name += existing_count_buffer;
 	}
+
+	bool is_runtime_flags_valid = struct_definitions.front().first.runtime.flags.valid();
+	ASSERT(is_runtime_flags_valid);
 
 	ptr32 fields_address = definition_header.type.fields_address;
 	const s_reach_x360_tag_field* const field_definitions = (const s_reach_x360_tag_field*)reach_x360_pa_to_pointer(data, fields_address);

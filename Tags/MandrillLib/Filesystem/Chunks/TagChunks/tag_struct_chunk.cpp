@@ -1,9 +1,9 @@
 #include "mandrilllib-private-pch.h"
 
-c_tag_struct_chunk::c_tag_struct_chunk(c_chunk& parent, c_single_tag_file_reader& reader) :
-	c_typed_single_tag_file_reader_chunk(parent, reader)
+c_tag_struct_chunk::c_tag_struct_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent)
 {
-	REFERENCE_ASSERT(reader);
+	
 
 	debug_point;
 

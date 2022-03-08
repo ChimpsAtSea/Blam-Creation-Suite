@@ -4,6 +4,7 @@
 #include <array>
 #include <map>
 #include <functional>
+#include <initializer_list>
 
 #include "macros.h"
 #include "pointers.h"

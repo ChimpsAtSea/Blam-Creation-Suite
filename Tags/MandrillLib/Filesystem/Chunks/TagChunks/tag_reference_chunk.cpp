@@ -1,7 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
-c_tag_reference_chunk::c_tag_reference_chunk(c_chunk& parent, c_single_tag_file_reader& reader) :
-	c_typed_single_tag_file_reader_chunk(parent, reader),
+c_tag_reference_chunk::c_tag_reference_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent),
 	group_tag(blofeld::INVALID_TAG),
 	tag_filepath_without_extension()
 {

@@ -47,6 +47,7 @@ public:
 
 	FILE* file_handle;
 
+	s_single_tag_file_header tag_file_header;
 	c_tag_header_chunk* header_chunk;
 	c_tag_group_layout_chunk* tag_group_layout_chunk;
 	c_tag_layout_v3_chunk* tag_layout_chunk;
@@ -76,4 +77,12 @@ public:
 
 	unsigned long enqueue_string(const char* string);
 	unsigned long enqueue_string_list(s_tag_persist_string_list& string_list);
+
+	void serialize_tag_group(const h_tag& tag, c_binary_data_chunk& parent_chunk);
+	void serialize_tag_block(const h_block& block, c_tag_struct_chunk& parent_chunk);
+	void serialize_tag_struct(const h_object& object, c_tag_block_chunk& parent_chunk);
+	void serialize_tag_data(const h_data& data, c_tag_struct_chunk& parent_chunk);
+
+	unsigned long calculate_structure_size(const h_object& object);
+	unsigned long calculate_structure_size(const blofeld::s_tag_struct_definition& tag_struct_definition);
 };

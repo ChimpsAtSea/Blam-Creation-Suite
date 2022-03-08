@@ -207,8 +207,8 @@ void c_high_level_tag_source_generator::generate_header() const
 			stream << "\t\t\t\t" << "virtual const blofeld::s_tag_group& get_blofeld_group_definition() const;" << std::endl;
 			//stream << "\t\t\t\t" << "virtual const blofeld::s_tag_group& get_blofeld_group_definition() const final;" << std::endl;
 		}
-		stream << "\t\t\t\t" << "virtual unsigned long get_high_level_type_size() const;" << std::endl;
-		stream << "\t\t\t\t" << "virtual unsigned long get_low_level_type_size() const;" << std::endl;
+		//stream << "\t\t\t\t" << "virtual unsigned long get_high_level_type_size() const;" << std::endl;
+		//stream << "\t\t\t\t" << "virtual unsigned long get_low_level_type_size() const;" << std::endl;
 		stream << "\t\t\t\t" << "virtual void* get_field_data(const blofeld::s_tag_field& field);" << std::endl;
 		stream << "\t\t\t\t" << "virtual bool is_field_active(const blofeld::s_tag_field& field) const;" << std::endl;
 		stream << "\t\t\t\t" << "virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const;" << std::endl;
@@ -226,6 +226,7 @@ void c_high_level_tag_source_generator::generate_header() const
 
 		stream << std::endl;
 
+		stream << "\t\t\t\t" << "static const blofeld::s_tag_struct_definition& tag_struct_definition;" << std::endl;
 		stream << "\t\t\t\t" << "static unsigned long const high_level_type_size;" << std::endl;
 		stream << "\t\t\t\t" << "static unsigned long const low_level_type_size;" << std::endl;
 		//stream << "\t\t\t\t" << "static const blofeld::s_tag_field* const blofeld_field_list[" << blofeld_field_list_size << "];" << std::endl;
@@ -456,12 +457,12 @@ void c_high_level_tag_source_generator::generate_ctor_source(unsigned long sourc
 			if ((structure_index++ % source_count) == source_index)
 			{
 				std::string high_level_structure_name = format_structure_symbol(*struct_definition);
-
+				
 				stream << "_h_typed_block_ctor_impl(blofeld::" << namespace_name << "::" << high_level_structure_name << ");" << std::endl;
+				stream << "_h_typed_block_get_tag_struct_definition_impl(blofeld::" << namespace_name << "::" << high_level_structure_name << ");" << std::endl;
 				stream << "_h_typed_block_array_operator_impl(blofeld::" << namespace_name << "::" << high_level_structure_name << ");" << std::endl;
 				stream << "_h_typed_block_get_impl(blofeld::" << namespace_name << "::" << high_level_structure_name << ");" << std::endl;
 				stream << "_h_typed_block_data_impl(blofeld::" << namespace_name << "::" << high_level_structure_name << ");" << std::endl;
-				stream << "_h_typed_block_type_size_impl(blofeld::" << namespace_name << "::" << high_level_structure_name << ");" << std::endl;
 				stream << "_h_typed_block_size_impl(blofeld::" << namespace_name << "::" << high_level_structure_name << ");" << std::endl;
 				stream << "_h_typed_block_data_size_impl(blofeld::" << namespace_name << "::" << high_level_structure_name << ");" << std::endl;
 				stream << "_h_typed_block_emplace_back_impl(blofeld::" << namespace_name << "::" << high_level_structure_name << ");" << std::endl;
@@ -717,6 +718,7 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 
 		std::string high_level_structure_name = format_structure_symbol(*struct_definition);
 
+		stream << "\t\t" << "const blofeld::s_tag_struct_definition& " << high_level_structure_name << "::tag_struct_definition = " << struct_definition->symbol->symbol_name << ";" << std::endl;
 		stream << "\t\t" << "unsigned long const " << high_level_structure_name << "::high_level_type_size = sizeof(" << high_level_structure_name << ");" << std::endl;
 		stream << "\t\t" << "unsigned long const " << high_level_structure_name << "::low_level_type_size = " << low_level_type_size << "u;" << std::endl;
 		/*stream << "\t\t" << "const blofeld::s_tag_field* const " << high_level_structure_name << "::blofeld_field_list[" << blofeld_field_list_count << "] = " << std::endl;
@@ -753,18 +755,6 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 			stream << "\t\t}" << std::endl;
 			stream << std::endl;
 		}
-
-		stream << "\t\t" << "unsigned long " << high_level_structure_name << "::get_high_level_type_size() const" << std::endl;
-		stream << "\t\t{" << std::endl;
-		stream << "\t\t\treturn high_level_type_size;" << std::endl;
-		stream << "\t\t}" << std::endl;
-		stream << std::endl;
-
-		stream << "\t\t" << "unsigned long " << high_level_structure_name << "::get_low_level_type_size() const" << std::endl;
-		stream << "\t\t{" << std::endl;
-		stream << "\t\t\treturn low_level_type_size;" << std::endl;
-		stream << "\t\t}" << std::endl;
-		stream << std::endl;
 
 		stream << "\t\t" << "const blofeld::s_tag_struct_definition& " << high_level_structure_name << "::get_blofeld_struct_definition() const" << std::endl;
 		stream << "\t\t{" << std::endl;

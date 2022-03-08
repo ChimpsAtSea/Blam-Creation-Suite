@@ -110,9 +110,15 @@ public:
 		m_stored = static_cast<t_storage>(0);
 	}
 
-    c_flags(const t_storage &value)
-    {
-        m_stored = value;
+	c_flags(const t_storage& value)
+	{
+		m_stored = value;
+	}
+
+	c_flags(const t_enum& value)
+	{
+		m_stored = static_cast<t_storage>(0);
+		this->set(value, true);
 	}
 
 	c_flags operator|(c_flags value) const

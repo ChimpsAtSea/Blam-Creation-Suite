@@ -51,12 +51,12 @@ struct s_monolithic_resource_xsync_state_v2
 static constexpr size_t k_monolithic_resource_xsync_state_v2_size = sizeof(s_monolithic_resource_xsync_state_v2);
 static_assert(k_monolithic_resource_xsync_state_v2_size == 0x24);
 
-class c_tag_resource_xsynced_chunk : public c_typed_single_tag_file_reader_chunk<'tgxc', false>
+class c_tag_resource_xsynced_chunk : public c_typed_chunk<'tgxc', false>
 {
 public:
 	s_monolithic_resource_xsync_state_v2 resource_xsync_state_v2;
 	
-	c_tag_resource_xsynced_chunk(c_chunk& parent, c_single_tag_file_reader& reader);
+	c_tag_resource_xsynced_chunk(c_chunk& parent);
 	~c_tag_resource_xsynced_chunk();
 	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
 	virtual void log_impl(c_tag_file_string_debugger* string_debugger) const;

@@ -1,7 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
-c_tag_string_id_chunk::c_tag_string_id_chunk(c_chunk& parent, c_single_tag_file_reader& reader) :
-	c_typed_single_tag_file_reader_chunk(parent, reader),
+c_tag_string_id_chunk::c_tag_string_id_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent),
 	string()
 {
 	debug_point;
@@ -26,9 +26,11 @@ BCS_RESULT c_tag_string_id_chunk::read_chunk(void* userdata, const void* data, b
 
 	const char* chunk_data_start = get_chunk_data_start();
 	intptr_t string_length = chunk_size;
-	char* string_bufer = new() char[string_length + 1];
-	memcpy(string_bufer, chunk_data_start, string_length);
-	string_bufer[string_length] = 0;
+	char* string_buffer = new() char[string_length + 1];
+	memcpy(string_buffer, chunk_data_start, string_length);
+	string_buffer[string_length] = 0;
+
+	string = string_buffer;
 
 	return rs;
 }

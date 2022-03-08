@@ -3,11 +3,11 @@
 template<> void byteswap_inplace(s_tag_block_chunk_header& value)
 {
 	byteswap_inplace(value.count);
-	byteswap_inplace(value.struct_index);
+	byteswap_inplace(value.is_simple_data_type);
 }
 
-c_tag_block_chunk::c_tag_block_chunk(c_chunk& parent, c_single_tag_file_reader& reader) :
-	c_typed_single_tag_file_reader_chunk(parent, reader),
+c_tag_block_chunk::c_tag_block_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent),
 	block_structure_data_begin(),
 	block_structure_data_position(),
 	block_child_chunk_data_start(),
@@ -20,7 +20,7 @@ c_tag_block_chunk::c_tag_block_chunk(c_chunk& parent, c_single_tag_file_reader& 
 	block_data_size(),
 	struct_size()
 {
-	REFERENCE_ASSERT(reader);
+	
 }
 
 c_tag_block_chunk::~c_tag_block_chunk()
@@ -30,10 +30,8 @@ c_tag_block_chunk::~c_tag_block_chunk()
 
 BCS_RESULT c_tag_block_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)
 {
-	if (userdata == nullptr)
-	{
-		userdata = &reader;
-	}
+	ASSERT(userdata != nullptr);
+	c_single_tag_file_reader& reader = *static_cast<c_single_tag_file_reader*>(userdata);
 
 	BCS_RESULT rs = BCS_S_OK;
 	if (BCS_FAILED(rs = c_typed_chunk::read_chunk(userdata, data, use_read_only, false)))
@@ -65,7 +63,7 @@ BCS_RESULT c_tag_block_chunk::read_chunk(void* userdata, const void* data, bool 
 	block_child_chunk_data_start = block_structure_data_begin + block_data_size;
 	block_child_chunk_data_position = block_child_chunk_data_start;
 
-	log_pad(); log_signature(); console_write_line_verbose("count:0x%08X\tstruct_index:0x%08X\t%s", tag_block_chunk_header.count, tag_block_chunk_header.struct_index, block_name);
+	log_pad(); log_signature(); console_write_line_verbose("count:0x%08X\tis_simple_data_type:0x%08X\t%s", tag_block_chunk_header.count, tag_block_chunk_header.is_simple_data_type, block_name);
 	log_pad(); console_write_line_verbose("calculated structure size for %s", struct_name);
 	log_pad(); console_write_line_verbose("> 0x%08lX", struct_size);
 
@@ -74,7 +72,7 @@ BCS_RESULT c_tag_block_chunk::read_chunk(void* userdata, const void* data, bool 
 
 	for (unsigned long block_index = 0; block_index < tag_block_chunk_header.count; block_index++)
 	{
-		read_structure_metadata(*structure_entry);
+		read_structure_metadata(reader, *structure_entry);
 	}
 
 	bool has_children = block_child_chunk_data_position < chunk_data_end;
@@ -101,7 +99,7 @@ BCS_RESULT c_tag_block_chunk::read_chunk(void* userdata, const void* data, bool 
 			tag_struct_chunk = dynamic_cast<c_tag_struct_chunk*>(children[block_index]);
 			ASSERT(tag_struct_chunk != nullptr);
 		}
-		read_structure_data(*structure_entry, block_structure_data_position, tag_struct_chunk);
+		read_structure_data(reader, *structure_entry, block_structure_data_position, tag_struct_chunk);
 		block_structure_data_position += struct_size;
 	}
 
@@ -127,15 +125,16 @@ c_tag_struct_chunk* c_tag_block_chunk::get_sturcutre_chunk_by_index(unsigned lon
 
 void c_tag_block_chunk::log_impl(c_tag_file_string_debugger* string_debugger) const
 {
-	console_write_line_verbose("count:0x%08X\tstruct_index:0x%08X\t%s", tag_block_chunk_header.count, tag_block_chunk_header.struct_index, block_name);
+	log_signature();
+	console_write_line_verbose("metadata:0x%08X\tcount:0x%08X\tis_simple_data_type:0x%08X\t%s", metadata, tag_block_chunk_header.count, tag_block_chunk_header.is_simple_data_type, block_name);
 
 	debug_point;
 }
 
-void c_tag_block_chunk::read_structure_metadata(s_tag_persist_struct_definition& structure_entry)
+void c_tag_block_chunk::read_structure_metadata(c_single_tag_file_reader& reader, s_tag_persist_struct_definition& structure_entry)
 {
 	std::stack<unsigned long> metadata_stack;
-	read_structure_metadata_impl(structure_entry, metadata_stack);
+	read_structure_metadata_impl(reader, structure_entry, metadata_stack);
 
 	/*if (verbose)*/ { log_pad(); console_write_verbose("> read_structure_metadata %u", static_cast<unsigned long>(metadata_stack.size())); }
 	while (metadata_stack.size() > 0)
@@ -147,7 +146,7 @@ void c_tag_block_chunk::read_structure_metadata(s_tag_persist_struct_definition&
 	/*if (verbose)*/ { console_write_line_verbose(" %u", static_cast<unsigned long>(reader.metadata_stack.size())); }
 }
 
-void c_tag_block_chunk::read_structure_metadata_impl(s_tag_persist_struct_definition& structure_entry, std::stack<unsigned long>& metadata_stack) const
+void c_tag_block_chunk::read_structure_metadata_impl(c_single_tag_file_reader& reader, s_tag_persist_struct_definition& structure_entry, std::stack<unsigned long>& metadata_stack) const
 {
 	for (unsigned long field_index = structure_entry.fields_start_index;; field_index++)
 	{
@@ -184,7 +183,7 @@ void c_tag_block_chunk::read_structure_metadata_impl(s_tag_persist_struct_defini
 			{
 				unsigned long structure_entry_index = field_entry.metadata;
 				s_tag_persist_struct_definition& structure_entry = reader.layout_reader.get_struct_definition_by_index(structure_entry_index);
-				read_structure_metadata_impl(structure_entry, metadata_stack);
+				read_structure_metadata_impl(reader, structure_entry, metadata_stack);
 			}
 			break;
 			default:
@@ -202,7 +201,7 @@ void c_tag_block_chunk::read_structure_metadata_impl(s_tag_persist_struct_defini
 
 #define write_pad()
 #define verbose true
-void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& structure_entry, const char* structure_data_pos, c_tag_struct_chunk* tag_struct_chunk)
+void c_tag_block_chunk::read_structure_data(c_single_tag_file_reader& reader, s_tag_persist_struct_definition& structure_entry, const char* structure_data_pos, c_tag_struct_chunk* tag_struct_chunk)
 {
 	const char* struct_name = reader.layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
 	if (verbose) { write_pad(); console_write_line_verbose("STRUCT> %s", struct_name); }
@@ -279,7 +278,7 @@ void c_tag_block_chunk::read_structure_data(s_tag_persist_struct_definition& str
 			ASSERT(next_tag_struct_chunk != nullptr);
 			ASSERT(num_children >= expected_children);
 
-			read_structure_data(structure_entry, structure_data_pos, next_tag_struct_chunk);
+			read_structure_data(reader, structure_entry, structure_data_pos, next_tag_struct_chunk);
 			debug_point;
 
 		}

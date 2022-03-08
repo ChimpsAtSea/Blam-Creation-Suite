@@ -111,8 +111,6 @@ public:
 
 	static h_object* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition, s_engine_platform_build engine_platform_build);
 
-	virtual unsigned long get_high_level_type_size() const = 0;
-	virtual unsigned long get_low_level_type_size() const = 0;
 	virtual void* get_field_data(const blofeld::s_tag_field& field) = 0;
 	inline const void* get_field_data(const blofeld::s_tag_field& field) const
 	{
@@ -249,8 +247,6 @@ public:
 	virtual h_object& get(unsigned long index) = 0;
 	virtual const h_object& get(unsigned long index) const = 0;
 	virtual const h_object* data() = 0;
-	virtual unsigned long get_high_level_type_size() const = 0;
-	virtual unsigned long get_low_level_type_size() const = 0;
 	virtual unsigned long size() const = 0;
 	virtual unsigned long data_size() const = 0;
 
@@ -300,16 +296,6 @@ public:
 		return std::array<h_custom_type, _size>::data();
 	}
 
-	virtual unsigned long get_high_level_type_size() const final
-	{
-		return h_custom_type::high_level_type_size;
-	}
-
-	virtual unsigned long get_low_level_type_size() const final
-	{
-		return h_custom_type::low_level_type_size;
-	}
-
 	virtual unsigned long size() const final
 	{
 		return _size;
@@ -337,6 +323,7 @@ public:
 	virtual void insert_hole(unsigned long index, unsigned long count) = 0;
 	virtual void remove(unsigned long index) = 0;
 	virtual void clear() = 0;
+	virtual const blofeld::s_tag_struct_definition& get_tag_struct_definition() const = 0;
 
 	//protected:
 	//	h_block(h_block const&) = default;
@@ -355,8 +342,6 @@ public:
 	BCS_DEBUG_API virtual h_custom_type& get(unsigned long index) final;
 	BCS_DEBUG_API virtual const h_custom_type& get(unsigned long index) const final;
 	BCS_DEBUG_API virtual const h_custom_type* data() final;
-	BCS_DEBUG_API virtual unsigned long get_high_level_type_size() const final;
-	BCS_DEBUG_API virtual unsigned long get_low_level_type_size() const final;
 	BCS_DEBUG_API virtual unsigned long size() const final;
 	BCS_DEBUG_API virtual unsigned long data_size() const final;
 	BCS_DEBUG_API virtual h_custom_type& emplace_back() final;
@@ -366,6 +351,7 @@ public:
 	BCS_DEBUG_API virtual void insert_hole(unsigned long index, unsigned long count) final;
 	BCS_DEBUG_API virtual void remove(unsigned long index) final;
 	BCS_DEBUG_API virtual void clear() final;
+	BCS_DEBUG_API virtual const blofeld::s_tag_struct_definition& get_tag_struct_definition() const final;
 
 	//protected:
 	//	h_typed_block(h_typed_block const&) = default;
@@ -377,6 +363,13 @@ h_typed_block<h_custom_type>::h_typed_block(h_type* parent) :																			
 	std::vector<h_custom_type>(),																														\
 	h_block(parent)																																		\
 { }
+
+#define _h_typed_block_get_tag_struct_definition_impl(h_custom_type)																					\
+template<>																																				\
+const blofeld::s_tag_struct_definition& h_typed_block<h_custom_type>::get_tag_struct_definition() const													\
+{																																						\
+	return h_custom_type::tag_struct_definition;																										\
+}
 
 #define _h_typed_block_array_operator_impl(h_custom_type)																								\
 template<>																																				\
@@ -408,19 +401,6 @@ const h_custom_type* h_typed_block<h_custom_type>::data()																							
 {																																						\
 	auto values = std::vector<h_custom_type>::data();																									\
 	return values;																																		\
-}																																						
-
-#define _h_typed_block_type_size_impl(h_custom_type)																									\
-template<>																																				\
-unsigned long h_typed_block<h_custom_type>::get_high_level_type_size() const																			\
-{																																						\
-	return h_custom_type::high_level_type_size;																											\
-}																																						\
-																																						\
-template<>																																				\
-unsigned long h_typed_block<h_custom_type>::get_low_level_type_size() const																				\
-{																																						\
-	return h_custom_type::low_level_type_size;																											\
 }																																						
 
 #define _h_typed_block_size_impl(h_custom_type)																											\

@@ -78,7 +78,7 @@ struct s_reach_x360_tag_struct_runtime
 	ptr32 original_fields;																									//104				68
 	s_reach_x360_byte_swap_definition byte_swap_definition;																	//108				6C
 	unsigned long structure_size;																							//136				88
-	unsigned long flags;																									//140				8C
+	c_flags<e_reach_tag_field_set_bit, long, k_num_reach_runtime_flags> flags;												//140				8C
 	ptr32 combined_fields;																									//144				90
 	unsigned long cache_file_struct_size;																					//148				94
 	unsigned long unknown98;																								//152				98

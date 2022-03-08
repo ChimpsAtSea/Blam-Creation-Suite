@@ -1,7 +1,8 @@
 #include "mandrilllib-private-pch.h"
 
-c_tag_data_chunk::c_tag_data_chunk(c_chunk& parent, c_single_tag_file_reader& reader) :
-	c_typed_single_tag_file_reader_chunk(parent, reader),
+c_tag_data_chunk::c_tag_data_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent),
+	data_length(),
 	data()
 {
 
@@ -20,12 +21,7 @@ BCS_RESULT c_tag_data_chunk::read_chunk(void* userdata, const void* _data, bool 
 		return rs;
 	}
 	
-	const char* src_data_ptr = get_chunk_data_start();
-
-	data_length = chunk_size;
-	data = new() char[data_length];
-	memcpy(data, src_data_ptr, data_length);
-	debug_point;
+	read_data();
 
 	log_pad();
 	log_signature();
@@ -38,4 +34,34 @@ void c_tag_data_chunk::log_impl(c_tag_file_string_debugger* string_debugger) con
 {
 	log_signature();
 	console_write_line_verbose("size:0x%08lX", data_length);
+}
+
+BCS_RESULT c_tag_data_chunk::set_data(const void* data, unsigned long data_size)
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	if (BCS_FAILED(rs = c_chunk::set_data(data, data_size)))
+	{
+		return rs;
+	}
+
+	is_big_endian = false;
+	read_data();
+
+	return rs;
+}
+
+void c_tag_data_chunk::read_data()
+{
+	if (data)
+	{
+		delete[] data;
+	}
+
+	const char* src_data_ptr = get_chunk_data_start();
+
+	data_length = chunk_size;
+	data = new() char[data_length];
+	memcpy(data, src_data_ptr, data_length);
+	debug_point;
 }

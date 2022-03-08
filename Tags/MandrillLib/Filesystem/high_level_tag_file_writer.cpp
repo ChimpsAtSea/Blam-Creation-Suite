@@ -27,14 +27,62 @@ c_high_level_tag_file_writer::c_high_level_tag_file_writer(s_engine_platform_bui
 	structure_definitions_chunk(),
 	binary_data_chunk()
 {
-	file_handle = fopen("tag_file_writer_test.bitmap", "wb");
+	file_handle = fopen("B:\\Program Files (x86)\\Steam\\steamapps\\common\\H3EK\\tags\\tag_file_writer_test.bitmap", "wb");
 
 	init_chunks();
 
 	enqueue_string("");
 
 	const blofeld::s_tag_group& group_definition = tag.get_blofeld_group_definition();
-	enqueue_block_definition(group_definition.block_definition);
+	unsigned long tag_group_block_index = enqueue_block_definition(group_definition.block_definition);
+	serialize_tag_group(tag, *binary_data_chunk);
+
+	tag_file_header.unknown0 = 0;
+	tag_file_header.unknown4 = 0;
+	tag_file_header.unknown8 = 0;
+	tag_file_header.unknownC = 0;
+	tag_file_header.unknown10 = 0;
+	tag_file_header.unknown14 = 0;
+	tag_file_header.unknown18 = 0;
+	tag_file_header.unknown1C = 0;
+	tag_file_header.unknown20 = 0;
+	tag_file_header.unknown24 = 1;
+	tag_file_header.unknown28 = 1;
+	tag_file_header.unknown2C = ULONG_MAX;
+	tag_file_header.group_tag = tag.group->tag_group.group_tag;
+	//tag_file_header.group_version = tag.group->tag_group.version;
+	tag_file_header.group_version = 7; // #TODO: How to handle this? This has been written specifically for the Bitmap group
+	tag_file_header.crc32 = 0; // #TODO: Calculate this just before writing the data
+	tag_file_header.blam = 'BLAM';
+
+	tag_group_layout_chunk->metadata = 2;
+	tag_layout_chunk->metadata = _tag_persist_layout_version_v3;
+
+	struct
+	{
+		s_tag_group_layout_header tag_group_layout_header = {};
+		s_tag_persist_layout_header_v3 tag_persist_layout_header = {};
+	} tag_group_layout_chunk_data;
+
+	tag_group_layout_chunk_data.tag_group_layout_header.unknown;
+	tag_group_layout_chunk_data.tag_group_layout_header.guid;
+	tag_group_layout_chunk_data.tag_group_layout_header.layout_version = _tag_persist_layout_version_v3;
+
+	tag_group_layout_chunk_data.tag_persist_layout_header.tag_group_block_index = tag_group_block_index;
+	tag_group_layout_chunk_data.tag_persist_layout_header.string_data_size = string_data_chunk->chunk_size;
+	tag_group_layout_chunk_data.tag_persist_layout_header.string_offset_count = string_offsets_chunk->entry_count;
+	tag_group_layout_chunk_data.tag_persist_layout_header.string_list_count = string_lists_chunk->entry_count;
+	tag_group_layout_chunk_data.tag_persist_layout_header.custom_block_index_search_names_count = custom_block_index_search_names_chunk->entry_count;
+	tag_group_layout_chunk_data.tag_persist_layout_header.data_definition_name_count = data_definition_name_chunk->entry_count;
+	tag_group_layout_chunk_data.tag_persist_layout_header.array_definition_count = array_definitions_chunk->entry_count;
+	tag_group_layout_chunk_data.tag_persist_layout_header.field_type_count = field_types_chunk->entry_count;
+	tag_group_layout_chunk_data.tag_persist_layout_header.field_count = fields_chunk->entry_count;
+	tag_group_layout_chunk_data.tag_persist_layout_header.struct_definition_count = structure_definitions_chunk->entry_count;
+	tag_group_layout_chunk_data.tag_persist_layout_header.block_definition_count = block_definitions_chunk->entry_count;
+	tag_group_layout_chunk_data.tag_persist_layout_header.resource_definition_count = resource_definitions_chunk->entry_count;
+	tag_group_layout_chunk_data.tag_persist_layout_header.interop_definition_count = interop_definitions_chunk->entry_count;
+
+	tag_group_layout_chunk->set_data(&tag_group_layout_chunk_data, sizeof(tag_group_layout_chunk_data));
 
 	write_file();
 
@@ -93,41 +141,13 @@ void c_high_level_tag_file_writer::init_chunks()
 			}
 		}
 
-		c_binary_data_chunk* binary_data_chunk = new c_binary_data_chunk(*header_chunk);
+		binary_data_chunk = new c_binary_data_chunk(*header_chunk);
 		header_chunk->add_child(*binary_data_chunk);
 	}
 }
 
 void c_high_level_tag_file_writer::write_file()
 {
-	s_single_tag_file_header tag_file_header;
-
-	tag_file_header.unknown0 = 0;
-	tag_file_header.unknown4 = 0;
-	tag_file_header.unknown8 = 0;
-	tag_file_header.unknownC = 0;
-	tag_file_header.unknown10 = 0;
-	tag_file_header.unknown14 = 0;
-	tag_file_header.unknown18 = 0;
-	tag_file_header.unknown1C = 0;
-	tag_file_header.unknown20 = 0;
-	tag_file_header.unknown24 = 1;
-	tag_file_header.unknown28 = 1;
-	tag_file_header.unknown2C = ULONG_MAX;
-	tag_file_header.group_tag = tag.group->tag_group.group_tag;
-	//tag_file_header.group_version = tag.group->tag_group.version;
-	tag_file_header.group_version = 7; // #TODO: How to handle this? This has been written specifically for the Bitmap group
-	tag_file_header.crc32 = 0; // #TODO: Calculate this just before writing the data
-	tag_file_header.blam = 'BLAM';
-
-	tag_group_layout_chunk->metadata = _tag_persist_layout_version_v3;
-	struct
-	{
-		s_tag_group_layout_header tag_group_layout_header = {};
-		s_tag_persist_layout_header_v3 tag_persist_layout_header = {};
-	} tag_group_layout_chunk_data;
-	tag_group_layout_chunk->set_data(&tag_group_layout_chunk_data, sizeof(tag_group_layout_chunk_data));
-
 	fwrite(&tag_file_header, sizeof(tag_file_header), 1, file_handle);
 
 	header_chunk->write_chunk(*this);
@@ -500,5 +520,253 @@ unsigned long c_high_level_tag_file_writer::enqueue_string(const char* string)
 
 	return existing_data_size;
 }
+
+void c_high_level_tag_file_writer::serialize_tag_group(const h_tag& tag, c_binary_data_chunk& parent_chunk)
+{
+	c_tag_block_chunk& tag_block_chunk = *new() c_tag_block_chunk(parent_chunk);
+	parent_chunk.add_child(tag_block_chunk);
+
+	const blofeld::s_tag_struct_definition& tag_struct_definition = tag.get_blofeld_struct_definition();
+
+	s_tag_block_chunk_header& tag_block_chunk_header = tag_block_chunk.tag_block_chunk_header;
+	tag_block_chunk_header.count = 1;
+	tag_block_chunk_header.is_simple_data_type = enqueue_struct_definition(tag_struct_definition);
+
+	tag_block_chunk.set_data(&tag_block_chunk_header, sizeof(tag_block_chunk_header));
+
+	serialize_tag_struct(tag, tag_block_chunk);
+
+	debug_point;
+}
+
+void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_tag_struct_chunk& parent_chunk)
+{
+	unsigned long block_count = block.size();
+
+	c_tag_block_chunk& tag_block_chunk = *new() c_tag_block_chunk(parent_chunk);
+	parent_chunk.add_child(tag_block_chunk);
+
+	const blofeld::s_tag_struct_definition& tag_struct_definition = block.get_tag_struct_definition();
+
+	s_tag_block_chunk_header& tag_block_chunk_header = tag_block_chunk.tag_block_chunk_header;
+	tag_block_chunk_header.count = block_count;
+	tag_block_chunk_header.is_simple_data_type = !tag_struct_definition.runtime_flags.test(blofeld::_tag_field_set_unknown0_bit);
+
+	tag_block_chunk.set_data(&tag_block_chunk_header, sizeof(tag_block_chunk_header));
+
+	for (unsigned long block_index = 0; block_index < block_count; block_index++)
+	{
+		const h_object& object = block[block_index];
+
+		serialize_tag_struct(object, tag_block_chunk);
+
+		debug_point;
+	}
+}
+
+void c_high_level_tag_file_writer::serialize_tag_struct(const h_object& object, c_tag_block_chunk& parent_chunk)
+{
+	// #TODO: cache this?
+	unsigned long structure_size = calculate_structure_size(object);
+
+	char* const structure_data = static_cast<char*>(tracked_malloc(_library_tracked_memory, structure_size));
+	DEBUG_ONLY(memset(structure_data, 0xDD, structure_size));
+
+	c_tag_struct_chunk* tag_struct_chunk = nullptr;
+	if (!parent_chunk.tag_block_chunk_header.is_simple_data_type)
+	{
+		tag_struct_chunk = new() c_tag_struct_chunk(parent_chunk);
+		parent_chunk.add_child(*tag_struct_chunk);
+	}
+
+	char* dst_field_data = structure_data;
+	unsigned long field_index = 0;
+	for (const blofeld::s_tag_field* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++, field_index++)
+	{
+		const blofeld::s_tag_field& field = **field_pointer;
+
+		const void* src_field_data = object.get_field_data(field);
+		blofeld::e_field field_type = field.field_type;
+		unsigned long field_size = ULONG_MAX;
+		ASSERT(BCS_SUCCEEDED(blofeld::get_blofeld_tag_file_field_size(field_type, engine_platform_build, field_size)));
+
+		switch (field.field_type)
+		{
+		case blofeld::_field_struct:
+		{
+			const blofeld::s_tag_struct_definition& struct_definition = *field.struct_definition;
+			field_size = calculate_structure_size(struct_definition);
+		}
+		break;
+		case blofeld::_field_array:
+		{
+			const blofeld::s_tag_array_definition& array_definition = *field.array_definition;
+			unsigned long structure_size = calculate_structure_size(array_definition.struct_definition);
+			field_size = structure_size * array_definition.count(engine_platform_build);
+		}
+		break;
+		case blofeld::_field_pad:
+		{
+			unsigned long pad_size = field.padding;
+			field_size = pad_size;
+		}
+		break;
+		case blofeld::_field_block:
+		{
+			ASSERT(tag_struct_chunk != nullptr);
+			const h_block& block = *static_cast<const h_block*>(src_field_data);
+			serialize_tag_block(block, *tag_struct_chunk);
+
+			s_tag_block* tag_block = reinterpret_cast<s_tag_block*>(dst_field_data);
+			DEBUG_ONLY(memset(tag_block, 0xBB, sizeof(*tag_block)));
+
+			tag_block->count = block.size();
+			tag_block->address = 0;
+			tag_block->definition_address = 0;
+
+			debug_point;
+		}
+		break;
+		case blofeld::_field_data:
+		{
+			ASSERT(tag_struct_chunk != nullptr);
+			const h_data& data = *static_cast<const h_data*>(src_field_data);
+			serialize_tag_data(data, *tag_struct_chunk);
+
+			s_tag_data* tag_data = reinterpret_cast<s_tag_data*>(dst_field_data);
+			DEBUG_ONLY(memset(tag_data, 0xCC, sizeof(*tag_data)));
+
+			tag_data->size = data.size();
+			tag_data->stream_flags = 0; // unused
+			tag_data->stream_offset = 0; // unused
+			tag_data->address = 0;
+			tag_data->definition = 0; // unused
+		}
+		break;
+		default:
+		{
+			memcpy(dst_field_data, src_field_data, field_size);
+		}
+		break;
+		}
+
+		dst_field_data += field_size;
+	}
+
+	parent_chunk.append_data(structure_data, structure_size);
+
+	debug_point;
+}
+
+void c_high_level_tag_file_writer::serialize_tag_data(const h_data& data, c_tag_struct_chunk& parent_chunk)
+{
+	c_tag_data_chunk& tag_data_chunk = *new() c_tag_data_chunk(parent_chunk);
+	parent_chunk.add_child(tag_data_chunk);
+
+	if (!data.empty())
+	{
+		tag_data_chunk.set_data(data.data(), data.size());
+	}
+
+	debug_point;
+}
+
+unsigned long c_high_level_tag_file_writer::calculate_structure_size(const h_object& object)
+{
+	unsigned long structure_size = 0;
+	for (const blofeld::s_tag_field* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++)
+	{
+		const blofeld::s_tag_field* current_field = *field_pointer;
+
+		unsigned long field_size = ULONG_MAX;
+		blofeld::e_field field_type = current_field->field_type;
+
+		switch (field_type)
+		{
+		case blofeld::_field_struct:
+		{
+			const blofeld::s_tag_struct_definition& struct_definition = *current_field->struct_definition;
+			field_size = calculate_structure_size(struct_definition);
+		}
+		break;
+		case blofeld::_field_array:
+		{
+			const blofeld::s_tag_array_definition& array_definition = *current_field->array_definition;
+			unsigned long structure_size = calculate_structure_size(array_definition.struct_definition);
+			field_size = structure_size * array_definition.count(engine_platform_build);
+		}
+		break;
+		case blofeld::_field_pad:
+		{
+			unsigned long pad_size = current_field->padding;
+			field_size = pad_size;
+		}
+		break;
+		default:
+		{
+			ASSERT(BCS_SUCCEEDED(blofeld::get_blofeld_tag_file_field_size(field_type, engine_platform_build, field_size)));
+		}
+		break;
+		}
+
+		ASSERT(field_size != ULONG_MAX);
+
+		structure_size += field_size;
+	}
+
+	return structure_size;
+}
+
+unsigned long c_high_level_tag_file_writer::calculate_structure_size(const blofeld::s_tag_struct_definition& tag_struct_definition)
+{
+	unsigned long structure_size = 0;
+	for (const blofeld::s_tag_field* current_field = tag_struct_definition.fields; current_field->field_type != blofeld::_field_terminator; current_field++)
+	{
+		unsigned long field_skip_count;
+		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
+		{
+			current_field += field_skip_count;
+			continue;
+		}
+
+		unsigned long field_size = ULONG_MAX;
+		blofeld::e_field field_type = current_field->field_type;
+
+		switch (field_type)
+		{
+		case blofeld::_field_struct:
+		{
+			const blofeld::s_tag_struct_definition& struct_definition = *current_field->struct_definition;
+			field_size = calculate_structure_size(struct_definition);
+		}
+		break;
+		case blofeld::_field_array:
+		{
+			const blofeld::s_tag_array_definition& array_definition = *current_field->array_definition;
+			unsigned long structure_size = calculate_structure_size(array_definition.struct_definition);
+			field_size = structure_size * array_definition.count(engine_platform_build);
+		}
+		break;
+		case blofeld::_field_pad:
+		{
+			unsigned long pad_size = current_field->padding;
+			field_size = pad_size;
+		}
+		break;
+		default:
+		{
+			ASSERT(BCS_SUCCEEDED(blofeld::get_blofeld_tag_file_field_size(field_type, engine_platform_build, field_size)));
+		}
+		break;
+		}
+
+		ASSERT(field_size != ULONG_MAX);
+
+		structure_size += field_size;
+	}
+
+	return structure_size;
+}
+
 
 

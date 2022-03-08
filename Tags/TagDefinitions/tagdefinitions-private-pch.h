@@ -5,8 +5,8 @@
 #endif
 
 #include <Platform\platform-public-pch.h>
-#include <Shared\Blam\blamlib-public-pch.h>
 #include <TemplateLibrary\templatelibrary-public-pch.h>
+#include <Shared\Blam\blamlib-public-pch.h>
 #include <SymbolsRuntime\symbolsruntime-public-pch.h>
 
 #define BLOFELD_DLL_EXPORT

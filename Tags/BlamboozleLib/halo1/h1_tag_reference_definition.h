@@ -2,7 +2,7 @@
 
 struct s_h1_tag_reference_definition
 {
-	c_flags< e_h4_tag_reference_definition_flags, unsigned long> flags;
+	c_flags<e_h4_tag_reference_definition_flags, unsigned long> flags;
 	tag group_tag;
 	ptr32 group_tags_address;
 };

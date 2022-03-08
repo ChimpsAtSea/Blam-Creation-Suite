@@ -1,8 +1,8 @@
 #pragma once
 
-class c_tag_struct_chunk : public c_typed_single_tag_file_reader_chunk<'tgst', true>
+class c_tag_struct_chunk : public c_typed_chunk<'tgst', true>
 {
 public:
-	c_tag_struct_chunk(c_chunk& parent, c_single_tag_file_reader& reader);
+	c_tag_struct_chunk(c_chunk& parent);
 	virtual void log_impl(c_tag_file_string_debugger* string_debugger) const override;
 };

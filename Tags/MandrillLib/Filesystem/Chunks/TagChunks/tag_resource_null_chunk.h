@@ -1,8 +1,8 @@
 #pragma once
 
-class c_tag_resource_null_chunk : public c_typed_single_tag_file_reader_chunk<'tg\0c', false>
+class c_tag_resource_null_chunk : public c_typed_chunk<'tg\0c', false>
 {
 public:
-	c_tag_resource_null_chunk(c_chunk& parent, c_single_tag_file_reader& reader);
+	c_tag_resource_null_chunk(c_chunk& parent);
 	~c_tag_resource_null_chunk();
 };

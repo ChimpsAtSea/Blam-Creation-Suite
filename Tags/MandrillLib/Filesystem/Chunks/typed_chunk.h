@@ -23,18 +23,3 @@ public:
 		return c_chunk::read_chunk(userdata, data, use_read_only, parse_children && k_should_parse_children);
 	}
 };
-
-template<tag _signature, bool _should_parse_children>
-class c_typed_single_tag_file_reader_chunk :
-	public c_typed_chunk<_signature, _should_parse_children>
-{
-public:
-	c_single_tag_file_reader& reader;
-
-	c_typed_single_tag_file_reader_chunk(c_chunk& parent, c_single_tag_file_reader& reader) :
-		c_typed_chunk<_signature, _should_parse_children>(&parent),
-		reader(reader)
-	{
-
-	}
-};

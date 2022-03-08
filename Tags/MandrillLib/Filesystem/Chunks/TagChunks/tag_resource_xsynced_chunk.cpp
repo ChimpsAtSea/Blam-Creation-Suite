@@ -1,7 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
-c_tag_resource_xsynced_chunk::c_tag_resource_xsynced_chunk(c_chunk& parent, c_single_tag_file_reader& reader) :
-	c_typed_single_tag_file_reader_chunk(parent, reader),
+c_tag_resource_xsynced_chunk::c_tag_resource_xsynced_chunk(c_chunk& parent) :
+	c_typed_chunk(&parent),
 	resource_xsync_state_v2()
 {
 	debug_point;
@@ -52,16 +52,16 @@ void c_tag_resource_xsynced_chunk::log_impl(c_tag_file_string_debugger* string_d
 	dword root_address_fixup_value = resource_xsync_state_v2.root_address.get_fixup_value();
 
 	log_signature();
-	console_write_line_verbose("xsync_version:0x%08X", metadata);
-	console_write_line_verbose("cache_location_offset:0x%08X", resource_xsync_state_v2.cache_location_offset);
-	console_write_line_verbose("optional_location_offset:0x%08X", resource_xsync_state_v2.optional_location_offset);
-	console_write_line_verbose("optional_location_offset:0x%08X", resource_xsync_state_v2.optional_location_offset);
-	console_write_line_verbose("optional_location_size:0x%08X", resource_xsync_state_v2.optional_location_size);
-	console_write_line_verbose("control_align_bits:0x%08X", resource_xsync_state_v2.control_align_bits);
-	console_write_line_verbose("control_data_size:0x%08X", resource_xsync_state_v2.control_data_size);
-	console_write_line_verbose("control_fixup_count:0x%08X", resource_xsync_state_v2.control_fixup_count);
-	console_write_line_verbose("interop_usage_count:0x%08X", resource_xsync_state_v2.interop_usage_count);
-	console_write_line("root_address:0x%08X 0x%08X", static_cast<dword>(root_address_type), root_address_fixup_value);
+	log_pad(); console_write_line_verbose("\txsync_version:0x%08X", metadata);
+	log_pad(); console_write_line_verbose("\tcache_location_offset:0x%08X", resource_xsync_state_v2.cache_location_offset);
+	log_pad(); console_write_line_verbose("\toptional_location_offset:0x%08X", resource_xsync_state_v2.optional_location_offset);
+	log_pad(); console_write_line_verbose("\toptional_location_offset:0x%08X", resource_xsync_state_v2.optional_location_offset);
+	log_pad(); console_write_line_verbose("\toptional_location_size:0x%08X", resource_xsync_state_v2.optional_location_size);
+	log_pad(); console_write_line_verbose("\tcontrol_align_bits:0x%08X", resource_xsync_state_v2.control_align_bits);
+	log_pad(); console_write_line_verbose("\tcontrol_data_size:0x%08X", resource_xsync_state_v2.control_data_size);
+	log_pad(); console_write_line_verbose("\tcontrol_fixup_count:0x%08X", resource_xsync_state_v2.control_fixup_count);
+	log_pad(); console_write_line_verbose("\tinterop_usage_count:0x%08X", resource_xsync_state_v2.interop_usage_count);
+	log_pad(); console_write_line_verbose("\troot_address:0x%08X 0x%08X", static_cast<dword>(root_address_type), root_address_fixup_value);
 
 	if (root_address_type != _tag_resource_fixup_type_unknown1)
 	{

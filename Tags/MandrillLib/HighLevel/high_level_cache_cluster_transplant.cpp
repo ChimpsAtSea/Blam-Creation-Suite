@@ -341,7 +341,12 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 	return rs;
 }
 
-BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(h_object& high_level, const char* const low_level_data, c_cache_file_reader& cache_file_reader, const blofeld::s_tag_struct_definition& struct_definition)
+BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
+	h_object& high_level, 
+	const char* const low_level_data, 
+	c_cache_file_reader& cache_file_reader, 
+	const blofeld::s_tag_struct_definition& struct_definition,
+	const char** final_low_level_data_pos)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -610,9 +615,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(h_o
 				{
 					h_object& array_element_storage = array_storage[array_index];
 
-					transplant_cache_file_data(array_element_storage, raw_array_data_position, cache_file_reader, field->array_definition->struct_definition);
-
-					raw_array_data_position += array_element_storage.get_low_level_type_size();
+					transplant_cache_file_data(array_element_storage, raw_array_data_position, cache_file_reader, field->array_definition->struct_definition, &raw_array_data_position);
 				}
 			}
 			break;
@@ -747,6 +750,11 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(h_o
 		}
 
 		current_data_position += field_size;
+	}
+
+	if (final_low_level_data_pos)
+	{
+		*final_low_level_data_pos = current_data_position;
 	}
 
 	return rs;
