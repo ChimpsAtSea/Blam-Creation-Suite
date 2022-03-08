@@ -113,6 +113,8 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 		ASSERT(fields_chunk != nullptr);
 		ASSERT(structure_definitions_chunk != nullptr);
 	}
+
+	root_chunk->log(this);
 }
 
 c_single_tag_file_layout_reader::~c_single_tag_file_layout_reader()

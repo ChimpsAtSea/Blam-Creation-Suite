@@ -59,3 +59,20 @@ BCS_RESULT string_compare(const wchar_t* string_a, const char* string_b, e_strin
 	BCS_CHAR_TO_WIDECHAR_STACK(string_b, string_b_wc);
 	return string_compare(string_a, string_b_wc, flags);
 }
+
+void* memmem(const void* haystack, size_t haystack_length, const void* const needle, const size_t needle_length)
+{
+	if (haystack == NULL) return nullptr;
+	if (haystack_length == 0) return nullptr;
+	if (needle == NULL) return nullptr;
+	if (needle_length == 0) return nullptr;
+
+	for (const char* h = reinterpret_cast<const char*>(haystack); haystack_length >= needle_length; h++, haystack_length--)
+	{
+		if (!memcmp(h, needle, needle_length))
+		{
+			return const_cast<char*>(h);
+		}
+	}
+	return nullptr;
+}

@@ -6716,6 +6716,46 @@ namespace infinite_release {
 
 	extern s_tag_array_definition psodata;
 
+	extern s_tag_resource_definition navmeshresource_resource_definition;
+
+	extern s_tag_resource_definition navvolumeresource_resource_definition;
+
+	extern s_tag_resource_definition c_model_animation_tag_animation_group_resource_resource_definition;
+
+	extern s_tag_resource_definition pcaimportedframedata_resource_definition;
+
+	extern s_tag_resource_definition unicodestringlistresource_resource_definition;
+
+	extern s_tag_resource_definition hsdebugresource_resource_definition;
+
+	extern s_tag_resource_definition i343scenariozonesetbakedpvsresource_resource_definition;
+
+	extern s_tag_resource_definition legacybspkdtree_resource_definition;
+
+	extern s_tag_resource_definition structurebsptagresources_resource_definition;
+
+	extern s_tag_resource_definition s_basic_resource_resource_definition;
+
+	extern s_tag_resource_definition wpffontfiledata_resource_definition;
+
+	extern s_tag_resource_definition i343physicsterraincollisiongeodata_resource_definition;
+
+	extern s_tag_resource_definition collisionmodelresource_resource_definition;
+
+	extern s_tag_resource_definition soundbankdataresource_resource_definition;
+
+	extern s_tag_resource_definition s_facial_animation_resource_definition;
+
+	extern s_tag_resource_definition s_model_animations_resource_definition;
+
+	extern s_tag_resource_definition animatedmeshrigidbodyresouce_resource_definition;
+
+	extern s_tag_resource_definition s_render_geometry_api_resource_resource_definition;
+
+	extern s_tag_resource_definition bakeddwsirradianceresource_resource_definition;
+
+	extern s_tag_resource_definition bitmapdataresource_resource_definition;
+
 	extern s_tag_struct_definition aihintsectorpoint;
 
 	extern s_tag_struct_definition s_ai_sector_point;

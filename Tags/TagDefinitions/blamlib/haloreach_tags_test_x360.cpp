@@ -23456,7 +23456,7 @@ namespace haloreach {
 		{ _field_block, "per_instance_lightmap_texcoords", &blofeld::haloreach::per_instance_lightmap_texcoords_block_block },
 		{ _field_block, "per_instance_lightmap_texcoords_vertex_buffer", &blofeld::haloreach::per_instance_lightmap_texcoords_vertex_buffer_block_block },
 		{ _field_block, "water bounding box block", &blofeld::haloreach::water_bounding_box_block_block },
-		{ _field_pageable, "api resource", &blofeld::haloreach::render_geometry_api_resource_definition_struct },
+		{ _field_pageable, "api resource", &blofeld::haloreach::render_geometry_api_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -27489,8 +27489,8 @@ namespace haloreach {
 		STRUCTURE_BSP_RESOURCE_INTERFACE_ID)
 	{
 		{ _field_block, "raw_resources", &blofeld::haloreach::structure_bsp_raw_resources_block },
-		{ _field_pageable, "tag_resources", &blofeld::haloreach::structure_bsp_tag_resources_struct },
-		{ _field_pageable, "cache_file_resources", &blofeld::haloreach::structure_bsp_cache_file_tag_resources_struct },
+		{ _field_pageable, "tag_resources", &blofeld::haloreach::structure_bsp_tag_resources },
+		{ _field_pageable, "cache_file_resources", &blofeld::haloreach::structure_bsp_cache_file_tag_resources },
 		{ _field_long_integer, "use resource items" },
 		{ _field_terminator }
 	};
@@ -31525,7 +31525,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FACIAL_ANIMATION_LANGUAGE_BLOCK_STRUCT_ID)
 	{
-		{ _field_pageable, "facial animation resource", &blofeld::haloreach::facial_animation_resource_definition_struct },
+		{ _field_pageable, "facial animation resource", &blofeld::haloreach::facial_animation_resource_definition },
 		{ _field_long_enum, "language", &blofeld::haloreach::sound_language_enum_definition },
 		{ _field_terminator }
 	};
@@ -31835,7 +31835,7 @@ namespace haloreach {
 		FIELD_PAD("runtime pad", 4),
 		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::haloreach::sound_pitch_range_block_block },
 		{ _field_block, "platform parameters", &blofeld::haloreach::sound_platform_sound_playback_block_block },
-		{ _field_pageable, "sound data resource", &blofeld::haloreach::sound_resource_definition_struct },
+		{ _field_pageable, "sound data resource", &blofeld::haloreach::sound_resource_definition },
 		{ _field_block, "extra info", &blofeld::haloreach::sound_extra_info_block_block },
 		{ _field_block, "language info", &blofeld::haloreach::sound_language_info_block_block },
 		{ _field_terminator }
@@ -37709,7 +37709,7 @@ namespace haloreach {
 		MODEL_ANIMATION_TAG_RESOURCE_GROUP_ID)
 	{
 		{ _field_long_integer, "reference_count" },
-		{ _field_pageable, "tag_resource", &blofeld::haloreach::model_animation_tag_resource_struct },
+		{ _field_pageable, "tag_resource", &blofeld::haloreach::model_animation_tag_resource },
 		{ _field_terminator }
 	};
 
@@ -42065,7 +42065,7 @@ namespace haloreach {
 		BINK_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "frame count" },
-		{ _field_pageable, "bink resource", &blofeld::haloreach::bink_resource_struct },
+		{ _field_pageable, "bink resource", &blofeld::haloreach::bink_resource },
 		{ _field_terminator }
 	};
 
@@ -44058,7 +44058,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_FACIAL_ANIMATION_BLOCK_ID)
 	{
-		{ _field_pageable, "facial animation resource", &blofeld::haloreach::facial_animation_resource_definition_struct },
+		{ _field_pageable, "facial animation resource", &blofeld::haloreach::facial_animation_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -44133,7 +44133,7 @@ namespace haloreach {
 		{ _field_short_integer, "extra info index" },
 		FIELD_PAD("pad", 2),
 		{ _field_long_integer, "maximum play time", nullptr, "ms" },
-		{ _field_pageable, "sound data resource", &blofeld::haloreach::sound_resource_definition_struct },
+		{ _field_pageable, "sound data resource", &blofeld::haloreach::sound_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -46168,7 +46168,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_TEXTURE_INTEROP_BLOCK_STRUCT_ID)
 	{
-		{ _field_pageable, "texture resource", &blofeld::haloreach::bitmap_texture_interop_resource_struct },
+		{ _field_pageable, "texture resource", &blofeld::haloreach::bitmap_texture_interop_resource },
 		{ _field_terminator }
 	};
 
@@ -46196,7 +46196,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_TEXTURE_INTERLEAVED_INTEROP_BLOCK_STRUCT_ID)
 	{
-		{ _field_pageable, "interleaved texture resource", &blofeld::haloreach::bitmap_texture_interleaved_interop_resource_struct },
+		{ _field_pageable, "interleaved texture resource", &blofeld::haloreach::bitmap_texture_interleaved_interop_resource },
 		{ _field_terminator }
 	};
 
@@ -62943,8 +62943,8 @@ namespace haloreach {
 		FIELD_EXPLANATION("height map", nullptr),
 		{ _field_short_integer, "width", nullptr, "cells" },
 		{ _field_short_integer, "height", nullptr, "cells" },
-		{ _field_real, "cell width", nullptr, "world units" },
-		{ _field_real, "height", nullptr, "world units" },
+		{ _field_real, "cell width", nullptr, "world units", MAKE_ALT_NAMES(" cell width") },
+		{ _field_real, "height", nullptr, "world units", MAKE_ALT_NAMES(" height") },
 		{ _field_real_vector_2d, "velocity", nullptr, "cells/update" },
 		FIELD_PAD("KHXCI", 28),
 		{ _field_old_string_id, "marker" },
@@ -62953,12 +62953,12 @@ namespace haloreach {
 		{ _field_real_rgb_color, "peak color" },
 		FIELD_PAD("IXKLNR", 76),
 		FIELD_EXPLANATION("detail map", nullptr),
-		{ _field_short_integer, "width", nullptr, "cells" },
-		{ _field_short_integer, "height", nullptr, "cells" },
-		{ _field_real, "cell width", nullptr, "world units" },
-		{ _field_real_vector_2d, "velocity", nullptr, "cells/update" },
+		{ _field_short_integer, "width", nullptr, "cells", MAKE_ALT_NAMES("  width") },
+		{ _field_short_integer, "height", nullptr, "cells", MAKE_ALT_NAMES("  height") },
+		{ _field_real, "cell width", nullptr, "world units", MAKE_ALT_NAMES("  cell width") },
+		{ _field_real_vector_2d, "velocity", nullptr, "cells/update", MAKE_ALT_NAMES(" velocity") },
 		FIELD_PAD("JXB", 48),
-		{ _field_old_string_id, "marker" },
+		{ _field_old_string_id, "marker", MAKE_ALT_NAMES(" marker") },
 		{ _field_short_integer, "texture width", nullptr, "cells" },
 		FIELD_PAD("HNOIXYJ", 2),
 		FIELD_PAD("DDIGC", 48),
@@ -62980,9 +62980,9 @@ namespace haloreach {
 	{
 		FIELD_EXPLANATION("parameters", nullptr),
 		{ _field_short_integer, "updates per second", nullptr, "Hz" },
-		{ _field_short_integer, "x (width)", nullptr, "cells" },
-		{ _field_short_integer, "y (depth)", nullptr, "cells" },
-		{ _field_short_integer, "z (height)", nullptr, "cells" },
+		{ _field_short_integer, "x (width)", nullptr, "cells", MAKE_ALT_NAMES(" x (width)") },
+		{ _field_short_integer, "y (depth)", nullptr, "cells", MAKE_ALT_NAMES(" y (depth)") },
+		{ _field_short_integer, "z (height)", nullptr, "cells", MAKE_ALT_NAMES(" z (height)") },
 		{ _field_real, "x (width)", nullptr, "world units" },
 		{ _field_real, "y (depth)", nullptr, "world units" },
 		{ _field_real, "z (height)", nullptr, "world units" },
@@ -63477,6 +63477,51 @@ namespace haloreach {
 		0,
 		65536,
 		MAXIMUM_METER_DEFINITION_ENCODED_STENCIL_SIZE);
+
+	TAG_RESOURCE(
+		render_geometry_api_resource_definition,
+		"render_geometry_api_resource_definition",
+		render_geometry_api_resource_definition_struct);
+
+	TAG_RESOURCE(
+		structure_bsp_tag_resources,
+		"structure_bsp_tag_resources",
+		structure_bsp_tag_resources_struct);
+
+	TAG_RESOURCE(
+		structure_bsp_cache_file_tag_resources,
+		"structure_bsp_cache_file_tag_resources",
+		structure_bsp_cache_file_tag_resources_struct);
+
+	TAG_RESOURCE(
+		sound_resource_definition,
+		"sound_resource_definition",
+		sound_resource_definition_struct);
+
+	TAG_RESOURCE(
+		facial_animation_resource_definition,
+		"facial_animation_resource_definition",
+		facial_animation_resource_definition_struct);
+
+	TAG_RESOURCE(
+		model_animation_tag_resource,
+		"model_animation_tag_resource",
+		model_animation_tag_resource_struct);
+
+	TAG_RESOURCE(
+		bink_resource,
+		"bink_resource",
+		bink_resource_struct);
+
+	TAG_RESOURCE(
+		bitmap_texture_interop_resource,
+		"bitmap_texture_interop_resource",
+		bitmap_texture_interop_resource_struct);
+
+	TAG_RESOURCE(
+		bitmap_texture_interleaved_interop_resource,
+		"bitmap_texture_interleaved_interop_resource",
+		bitmap_texture_interleaved_interop_resource_struct);
 
 	#define RENDER_VERTEX_BUFFER_INTEROP_DEFINITION_ID { 0x12721193, 0x798F4648, 0xB08E254D, 0xFB5907DF }
 	TAG_INTEROP(

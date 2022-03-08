@@ -27,7 +27,8 @@ struct s_tag_persist_aggregate_prechunk;
 struct s_tag_persist_aggregate_fixup;
 
 class c_single_tag_file_reader;
-class c_single_tag_file_layout_reader
+class c_single_tag_file_layout_reader :
+	public c_tag_file_string_debugger
 {
 public:
 	friend c_single_tag_file_reader;
@@ -43,7 +44,7 @@ public:
 	unsigned long calculate_structure_expected_children(unsigned long structure_index);
 	unsigned long calculate_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry);
 
-	const char* get_string_by_string_character_index(const s_tag_persist_string_character_index& string_character_index) const;
+	virtual const char* get_string_by_string_character_index(const s_tag_persist_string_character_index& offset) const override;
 	const char* get_custom_block_index_search_name_by_index(unsigned long custom_block_index_search_name_index) const;
 	const char* get_data_definition_name_by_index(unsigned long data_definition_index) const;
 	s_tag_persist_block_definition& get_block_definition_by_index(unsigned long index) const;

@@ -62,7 +62,7 @@ c_h3_tag_field::c_h3_tag_field(const char* guerilla_data, const s_h3_tag_field& 
 		break;
 	case _h3_field_type_pageable_resource:
 		ASSERT(field_definition.definition_address != 0);
-		pageable_resource_definition = c_h3_tag_pageable_resource_definition::h3_get_tag_pageable_resource_definition(guerilla_data, field_definition.definition_address);
+		pageable_resource_definition = c_h3_tag_resource_definition::h3_get_tag_resource_definition(guerilla_data, field_definition.definition_address);
 		break;
 	case _h3_field_type_custom_char_block_index:
 	case _h3_field_type_custom_short_block_index:

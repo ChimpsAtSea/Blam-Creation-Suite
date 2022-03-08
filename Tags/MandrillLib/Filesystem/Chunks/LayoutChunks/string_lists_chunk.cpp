@@ -28,6 +28,64 @@ BCS_RESULT c_string_lists_chunk::read_chunk(void* userdata, const void* data, bo
 		return rs;
 	}
 
+	read_entries();
+
+	return rs;
+}
+
+void c_string_lists_chunk::log_impl(c_tag_file_string_debugger* string_debugger) const
+{
+	log_signature();
+	console_write_line_verbose("count:0x%08X", entry_count);
+
+	for (unsigned long index = 0; index < entry_count; index++)
+	{
+		s_tag_persist_string_list& entry = entries[index];
+		if (string_debugger)
+		{
+			const char* name = string_debugger->get_string_by_string_character_index(entry.string_character_index);
+			log_pad(); console_write_line_verbose(
+				"\t0x%08X\tstring_offset_start_index:0x%08X\tstring_offset_count:0x%08X\t'%s'",
+				index,
+				entry.string_offset_start_index,
+				entry.string_offset_count,
+				name);
+		}
+		else
+		{
+			log_pad(); console_write_line_verbose(
+				"\t0x%08X\tstring_offset_start_index:0x%08X\tstring_offset_count:0x%08X\tstring_character_index:0x%08X",
+				index,
+				entry.string_offset_start_index,
+				entry.string_offset_count,
+				entry.string_character_index.offset);
+		}
+		debug_point;
+	}
+}
+
+BCS_RESULT c_string_lists_chunk::set_data(const void* data, unsigned long data_size)
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	if (BCS_FAILED(rs = c_chunk::set_data(data, data_size)))
+	{
+		return rs;
+	}
+
+	is_big_endian = false;
+	read_entries();
+
+	return rs;
+}
+
+void c_string_lists_chunk::read_entries()
+{
+	if (entries)
+	{
+		delete[] entries;
+	}
+
 	entry_count = chunk_size / sizeof(*entries);
 	if (entry_count > 0)
 	{
@@ -37,39 +95,7 @@ BCS_RESULT c_string_lists_chunk::read_chunk(void* userdata, const void* data, bo
 		{
 			s_tag_persist_string_list& entry = entries[entry_index];
 			entry = src_entries[entry_index];
-			byteswap_inplace(entry);
+			chunk_byteswap_inplace(entry);
 		}
-	}
-
-	return rs;
-}
-
-void c_string_lists_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
-{
-	log_signature();
-	console_write_line_verbose("count:0x % 08X", entry_count);
-
-	for (unsigned long index = 0; index < entry_count; index++)
-	{
-		s_tag_persist_string_list& entry = entries[index];
-		if (layout_reader)
-		{
-			const char* name = layout_reader->get_string_by_string_character_index(entry.string_character_index);
-			log_pad(); console_write_line_verbose(
-				"\t0x%08X\tstring_offset_start_index:0x%08X\tstring_offset_start_index:0x%08X\t'%s'",
-				index,
-				entry.string_offset_count,
-				entry.string_offset_start_index,
-				name);
-		}
-		else
-		{
-			log_pad(); console_write_line_verbose(
-				"\t0x%08X\tstring_offset_start_index:0x%08X\tstring_offset_start_index:0x%08X",
-				index,
-				entry.string_offset_count,
-				entry.string_offset_start_index);
-		}
-		debug_point;
 	}
 }

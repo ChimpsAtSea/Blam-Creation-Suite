@@ -91,7 +91,8 @@ static void iterate_structure_fields_impl(
 		}
 		case _field_pageable:
 		{
-			next_struct_definition = current_field->struct_definition;
+			ASSERT(current_field->tag_resource_definition);
+			next_struct_definition = &current_field->tag_resource_definition->struct_definition;
 			break;
 		}
 		case _field_block:
@@ -120,6 +121,7 @@ static void iterate_structure_fields_impl(
 				*next_struct_definition,
 				callback,
 				userdata);
+			debug_point;
 		}
 	}
 }

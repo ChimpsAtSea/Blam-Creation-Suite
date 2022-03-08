@@ -66,10 +66,10 @@ void c_structure_relationship_node::populate()
 		}
 		case _field_pageable:
 		{
-			if (current_field->struct_definition) // some of these are not finished
+			if (current_field->tag_resource_definition) // some of these are not finished
 			{
 				//c_structure_relationship_node& structure_relationship_node = get_node_by_structure(current_field->tag_interop_definition->struct_definition);
-				c_structure_relationship_node& structure_relationship_node = get_node_by_structure(engine_platform_build, *current_field->struct_definition);
+				c_structure_relationship_node& structure_relationship_node = get_node_by_structure(engine_platform_build, current_field->tag_resource_definition->struct_definition);
 				child_nodes.emplace_back(&structure_relationship_node);
 			}
 

@@ -24,5 +24,7 @@ public:
 
 	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
 
-	virtual void log_impl(c_single_tag_file_layout_reader* layout_reader) const override;
+	virtual void log_impl(c_tag_file_string_debugger* string_debugger) const override;
+	virtual BCS_RESULT set_data(const void* data, unsigned long data_size) override;
+	void read_entries();
 };

@@ -27049,7 +27049,7 @@ namespace infinite {
 		NAVMESHDATA_ID,
 		2)
 	{
-		{ _field_pageable, "resource data", &blofeld::infinite::navmeshresource },
+		{ _field_pageable, "resource data", &blofeld::infinite::navmeshresource_resource_definition },
 		{ _field_short_integer, "major version" },
 		{ _field_short_integer, "minor version" },
 		{ _field_long_integer, "structure checksum" },
@@ -27066,7 +27066,7 @@ namespace infinite {
 		MOBILENAVMESHDATA_ID,
 		2)
 	{
-		{ _field_pageable, "resource data", &blofeld::infinite::navmeshresource },
+		{ _field_pageable, "resource data", &blofeld::infinite::navmeshresource_resource_definition },
 		{ _field_short_integer, "major version" },
 		{ _field_short_integer, "minor version" },
 		{ _field_struct, "object id", &blofeld::infinite::c_object_identifier },
@@ -27105,7 +27105,7 @@ namespace infinite {
 		NAVVOLUMEBUCKET_ID,
 		3)
 	{
-		{ _field_pageable, "resource data", &blofeld::infinite::navvolumeresource },
+		{ _field_pageable, "resource data", &blofeld::infinite::navvolumeresource_resource_definition },
 		{ _field_char_integer, "bucketID" },
 		FIELD_PAD("generated_padfba7", 3),
 		{ _field_terminator }
@@ -31696,7 +31696,7 @@ namespace infinite {
 		C_MODEL_ANIMATION_TAG_REFRENCE_COUNTED_RESOURCE_ID)
 	{
 		{ _field_long_integer, "reference_count" },
-		{ _field_pageable, "tag_resource", &blofeld::infinite::c_model_animation_tag_animation_group_resource },
+		{ _field_pageable, "tag_resource", &blofeld::infinite::c_model_animation_tag_animation_group_resource_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -33243,7 +33243,7 @@ namespace infinite {
 		{ _field_long_integer, "PCA Shape Offset" },
 		{ _field_long_integer, "PCA coefficient Count" },
 		FIELD_EXPLANATION("Resource Data", nullptr),
-		{ _field_pageable, "CoefficientResource", &blofeld::infinite::pcaimportedframedata },
+		{ _field_pageable, "CoefficientResource", &blofeld::infinite::pcaimportedframedata_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -33296,7 +33296,7 @@ namespace infinite {
 		{ _field_block, "frame data", &blofeld::infinite::pcaimportedframedataelement_block },
 		{ _field_block, "mesh data", &blofeld::infinite::pcaimportedmeshdata_block },
 		FIELD_EXPLANATION("Resource Data", nullptr),
-		{ _field_pageable, "api resource", &blofeld::infinite::s_render_geometry_api_resource },
+		{ _field_pageable, "api resource", &blofeld::infinite::s_render_geometry_api_resource_resource_definition },
 		FIELD_PAD("generated_pad7a1a", 4),
 		{ _field_terminator }
 	};
@@ -37647,7 +37647,7 @@ namespace infinite {
 		1)
 	{
 		{ _field_long_enum, "language", &blofeld::infinite::e_language },
-		{ _field_pageable, "string list resource", &blofeld::infinite::unicodestringlistresource },
+		{ _field_pageable, "string list resource", &blofeld::infinite::unicodestringlistresource_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -45996,7 +45996,7 @@ namespace infinite {
 		{ _field_int64_integer, "hash" },
 
 		{ _version_mode_less, { _engine_type_infinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 14 },
-		{ _field_pageable, "sourceResource", &blofeld::infinite::hssource_v1 },
+		{ _field_pageable, "sourceResource", &blofeld::infinite::hssource_v1_resource_definition },
 		{ _field_byte_flags, "sourceDirectiveFlags", &blofeld::infinite::hssourcedirectiveflags },
 		{ _field_struct, "objectScriptDefinition", &blofeld::infinite::objectscriptdefinition },
 		FIELD_PAD("generated_pade272", 3),
@@ -46007,7 +46007,7 @@ namespace infinite {
 		{ _field_block, "server remotes", &blofeld::infinite::hsremotefunctionblock_block },
 		{ _field_block, "client remotes", &blofeld::infinite::hsremotefunctionblock_block },
 		{ _field_block, "hstructs", &blofeld::infinite::hstructblock_block },
-		{ _field_pageable, "symbolResource", &blofeld::infinite::hssymbol_v1 },
+		{ _field_pageable, "symbolResource", &blofeld::infinite::hssymbol_resource_definition },
 		{ _field_block, "Postprocess Error Messages", &blofeld::infinite::hssourceruntimeerrormessage_block },
 		FIELD_PAD("generated_pad2f27", 4),
 
@@ -46022,7 +46022,7 @@ namespace infinite {
 		{ _field_block, "hstructs", &blofeld::infinite::hstructblock_block },
 		{ _field_block, "Postprocess Error Messages", &blofeld::infinite::hssourceruntimeerrormessage_block },
 		{ _field_struct, "m_byteCode", &blofeld::infinite::hsbytecode },
-		{ _field_pageable, "m_debugResource", &blofeld::infinite::hsdebugresource },
+		{ _field_pageable, "m_debugResource", &blofeld::infinite::hsdebugresource_resource_definition },
 		FIELD_PAD("generated_pad2f27", 4),
 
 		{ _field_terminator }
@@ -47329,7 +47329,7 @@ namespace infinite {
 		{ _field_struct, "AnyTag", &blofeld::infinite::anytag_struct_definition },
 		{ _field_block, "BSP index map", &blofeld::infinite::i343scenariozonesetbakedpvssubregionlongparam_block },
 		{ _field_block, "Per BSP data", &blofeld::infinite::i343scenariozonesetbakedpvsperbspdata_block },
-		{ _field_pageable, "resource data", &blofeld::infinite::i343scenariozonesetbakedpvsresource },
+		{ _field_pageable, "resource data", &blofeld::infinite::i343scenariozonesetbakedpvsresource_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -49206,7 +49206,7 @@ namespace infinite {
 		{ _field_tag_reference, "bsp", &blofeld::infinite::scenario_structure_bsp_reference$18_tagref },
 		{ _field_long_integer, "bsp checksum" },
 		{ _field_block, "cluster centroids", &blofeld::infinite::scenarioclusterpointsblock_block },
-		{ _field_pageable, "Legacy Bsp KD Tree", &blofeld::infinite::legacybspkdtree },
+		{ _field_pageable, "Legacy Bsp KD Tree", &blofeld::infinite::legacybspkdtree_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -50283,7 +50283,7 @@ namespace infinite {
 		C_STRUCTURE_BSP_RESOURCE_INTERFACE_ID)
 	{
 		{ _field_block, "raw_resources", &blofeld::infinite::structurebsprawresources_block },
-		{ _field_pageable, "tag_resources", &blofeld::infinite::structurebsptagresources },
+		{ _field_pageable, "tag_resources", &blofeld::infinite::structurebsptagresources_resource_definition },
 		{ _field_long_integer, "use resource items" },
 		{ _field_terminator }
 	};
@@ -51678,7 +51678,7 @@ namespace infinite {
 		FIELD_EXPLANATION("explanation", nullptr),
 		{ _field_struct, "basic struct", &blofeld::infinite::s_basic_struct },
 		{ _field_array, "basic array", &blofeld::infinite::basic_array },
-		{ _field_pageable, "basic resource", &blofeld::infinite::s_basic_resource },
+		{ _field_pageable, "basic resource", &blofeld::infinite::s_basic_resource_resource_definition },
 		{ _field_block, "block with struct", &blofeld::infinite::s_block_with_struct_block },
 		{ _field_block, "complex block", &blofeld::infinite::s_complex_block_block },
 		{ _field_struct, "complex struct", &blofeld::infinite::s_complex_struct },
@@ -88959,7 +88959,7 @@ namespace infinite {
 		{ _field_long_enum, "render mode", &blofeld::infinite::efontrendermode },
 		FIELD_EXPLANATION("Vector Font Antialiasing Tweakables", nullptr),
 		{ _field_array, "anti alias data", &blofeld::infinite::anti_alias_data },
-		{ _field_pageable, "font file resource", &blofeld::infinite::wpffontfiledata },
+		{ _field_pageable, "font file resource", &blofeld::infinite::wpffontfiledata_resource_definition },
 		FIELD_PAD("generated_padbe8d", 4),
 		{ _field_terminator }
 	};
@@ -93032,7 +93032,7 @@ namespace infinite {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343PHYSICSTERRAINCOLLISIONGEORESOURCE_ID)
 	{
-		{ _field_pageable, "TerrainCollisionGeoData resource", &blofeld::infinite::i343physicsterraincollisiongeodata },
+		{ _field_pageable, "TerrainCollisionGeoData resource", &blofeld::infinite::i343physicsterraincollisiongeodata_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -93789,7 +93789,7 @@ namespace infinite {
 		{ _field_block, "cookie cutters", &blofeld::infinite::collision_model_region_block },
 		{ _field_block, "pathfinding spheres", &blofeld::infinite::collision_model_pathfinding_sphere_block },
 		{ _field_block, "nodes", &blofeld::infinite::collision_model_node_block },
-		{ _field_pageable, "regions resource", &blofeld::infinite::collisionmodelresource },
+		{ _field_pageable, "regions resource", &blofeld::infinite::collisionmodelresource_resource_definition },
 		{ _field_array, "flags for nodes driving collision geo", &blofeld::infinite::flags_for_nodes_driving_collision_geo },
 		{ _field_terminator }
 	};
@@ -94764,7 +94764,7 @@ namespace infinite {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUNDBANKRESOURCEBLOCKDEFINITION_ID)
 	{
-		{ _field_pageable, "Sound bank resource", &blofeld::infinite::soundbankdataresource },
+		{ _field_pageable, "Sound bank resource", &blofeld::infinite::soundbankdataresource_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -94781,7 +94781,7 @@ namespace infinite {
 		{ _field_struct, "AnyTag", &blofeld::infinite::anytag_struct_definition },
 		{ _field_long_flags, "flags", &blofeld::infinite::soundbanktagflag },
 		{ _field_block, "Sound bank list", &blofeld::infinite::soundbankblockdefinition_block },
-		{ _field_pageable, "Sound bank sfx resource", &blofeld::infinite::soundbankdataresource },
+		{ _field_pageable, "Sound bank sfx resource", &blofeld::infinite::soundbankdataresource_resource_definition },
 		{ _field_block, "Sound bank loc resources", &blofeld::infinite::soundbankresourceblockdefinition_block },
 		{ _field_long_integer, "Bank priority" },
 		{ _field_long_integer, "Bank unique ID" },
@@ -95763,8 +95763,8 @@ namespace infinite {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_FACIAL_ANIMATION_LANGUAGE_ID)
 	{
-		{ _field_pageable, "facial animation resource", &blofeld::infinite::s_facial_animation },
-		{ _field_pageable, "model animation resource", &blofeld::infinite::s_model_animations },
+		{ _field_pageable, "facial animation resource", &blofeld::infinite::s_facial_animation_resource_definition },
+		{ _field_pageable, "model animation resource", &blofeld::infinite::s_model_animations_resource_definition },
 		{ _field_long_enum, "language", &blofeld::infinite::e_language },
 		{ _field_terminator }
 	};
@@ -98012,7 +98012,7 @@ namespace infinite {
 		{ _field_byte_integer, "Version" },
 		{ _field_byte_integer, "Authored FPS" },
 		{ _field_word_integer, "Resource frame count" },
-		{ _field_pageable, "Perframe rigid body resources", &blofeld::infinite::animatedmeshrigidbodyresouce },
+		{ _field_pageable, "Perframe rigid body resources", &blofeld::infinite::animatedmeshrigidbodyresouce_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -98491,7 +98491,7 @@ namespace infinite {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDERGEOMETRYMESHPACKAGERESOURCEGROUP_ID)
 	{
-		{ _field_pageable, "mesh resource", &blofeld::infinite::s_render_geometry_api_resource },
+		{ _field_pageable, "mesh resource", &blofeld::infinite::s_render_geometry_api_resource_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -98925,7 +98925,7 @@ namespace infinite {
 		{ _field_block, "runtime lights", &blofeld::infinite::structurelightdefinition_block },
 		{ _field_short_integer, "floating sun index" },
 		FIELD_PAD("generated_pad9145", 2),
-		{ _field_pageable, "Baked DWS Irradiance Data", &blofeld::infinite::bakeddwsirradianceresource },
+		{ _field_pageable, "Baked DWS Irradiance Data", &blofeld::infinite::bakeddwsirradianceresource_resource_definition },
 		FIELD_PAD("generated_pad7764", 4),
 		{ _field_terminator }
 	};
@@ -100379,7 +100379,7 @@ namespace infinite {
 		{ _field_real, "streaming scale" },
 		{ _field_short_integer, "sourceWidth" },
 		{ _field_short_integer, "sourceHeight" },
-		{ _field_pageable, "bitmap resource handle", &blofeld::infinite_f2::bitmapdataresource },
+		{ _field_pageable, "bitmap resource handle", &blofeld::infinite_f2::bitmapdataresource_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -104982,6 +104982,121 @@ namespace infinite {
 		{ _field_struct, "internal struct", &blofeld::infinite::s_anytagguts },
 		{ _field_terminator }
 	};
+
+	TAG_RESOURCE(
+		navmeshresource_resource_definition,
+		"NavMeshResource",
+		navmeshresource);
+
+	TAG_RESOURCE(
+		navvolumeresource_resource_definition,
+		"NavVolumeResource",
+		navvolumeresource);
+
+	TAG_RESOURCE(
+		c_model_animation_tag_animation_group_resource_resource_definition,
+		"c_model_animation_tag_animation_group_resource",
+		c_model_animation_tag_animation_group_resource);
+
+	TAG_RESOURCE(
+		pcaimportedframedata_resource_definition,
+		"PCAImportedFrameData",
+		pcaimportedframedata);
+
+	TAG_RESOURCE(
+		unicodestringlistresource_resource_definition,
+		"UnicodeStringListResource",
+		unicodestringlistresource);
+
+	TAG_RESOURCE(
+		hsdebugresource_resource_definition,
+		"HsDebugResource",
+		hsdebugresource);
+
+	TAG_RESOURCE(
+		hssource_resource_definition,
+		"HsSource",
+		hssource);
+
+	TAG_RESOURCE(
+		hssource_v1_resource_definition,
+		"HsSource",
+		hssource_v1);
+
+	TAG_RESOURCE(
+		hssymbol_resource_definition,
+		"HsSymbol",
+		hssymbol);
+
+	TAG_RESOURCE(
+		i343scenariozonesetbakedpvsresource_resource_definition,
+		"i343::ScenarioZoneSetBakedPVS::Resource",
+		i343scenariozonesetbakedpvsresource);
+
+	TAG_RESOURCE(
+		legacybspkdtree_resource_definition,
+		"LegacyBspKDTree",
+		legacybspkdtree);
+
+	TAG_RESOURCE(
+		structurebsptagresources_resource_definition,
+		"StructureBspTagResources",
+		structurebsptagresources);
+
+	TAG_RESOURCE(
+		s_basic_resource_resource_definition,
+		"s_basic_resource",
+		s_basic_resource);
+
+	TAG_RESOURCE(
+		wpffontfiledata_resource_definition,
+		"WPFFontFileData",
+		wpffontfiledata);
+
+	TAG_RESOURCE(
+		i343physicsterraincollisiongeodata_resource_definition,
+		"i343::Physics::TerrainCollisionGeoData",
+		i343physicsterraincollisiongeodata);
+
+	TAG_RESOURCE(
+		collisionmodelresource_resource_definition,
+		"CollisionModelResource",
+		collisionmodelresource);
+
+	TAG_RESOURCE(
+		soundbankdataresource_resource_definition,
+		"SoundBankDataResource",
+		soundbankdataresource);
+
+	TAG_RESOURCE(
+		s_facial_animation_resource_definition,
+		"s_facial_animation",
+		s_facial_animation);
+
+	TAG_RESOURCE(
+		s_model_animations_resource_definition,
+		"s_model_animations",
+		s_model_animations);
+
+	TAG_RESOURCE(
+		animatedmeshrigidbodyresouce_resource_definition,
+		"AnimatedMeshRigidBodyResouce",
+		animatedmeshrigidbodyresouce);
+
+	TAG_RESOURCE(
+		s_render_geometry_api_resource_resource_definition,
+		"s_render_geometry_api_resource",
+		s_render_geometry_api_resource);
+
+	TAG_RESOURCE(
+		bakeddwsirradianceresource_resource_definition,
+		"BakedDWSIrradianceResource",
+		bakeddwsirradianceresource);
+
+	TAG_RESOURCE(
+		bitmapdataresource_resource_definition,
+		"BitmapDataResource",
+		bitmapdataresource);
 
 
 } // namespace blofeld

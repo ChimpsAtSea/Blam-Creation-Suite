@@ -125,7 +125,7 @@ c_tag_struct_chunk* c_tag_block_chunk::get_sturcutre_chunk_by_index(unsigned lon
 }
 
 
-void c_tag_block_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
+void c_tag_block_chunk::log_impl(c_tag_file_string_debugger* string_debugger) const
 {
 	console_write_line_verbose("count:0x%08X\tstruct_index:0x%08X\t%s", tag_block_chunk_header.count, tag_block_chunk_header.struct_index, block_name);
 

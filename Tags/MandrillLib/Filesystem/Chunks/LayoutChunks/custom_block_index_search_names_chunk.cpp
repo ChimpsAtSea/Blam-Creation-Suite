@@ -25,7 +25,7 @@ c_custom_block_index_search_names_chunk::~c_custom_block_index_search_names_chun
 	delete[] offsets;
 }
 
-void c_custom_block_index_search_names_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
+void c_custom_block_index_search_names_chunk::log_impl(c_tag_file_string_debugger* string_debugger) const
 {
 	log_signature();
 	console_write_line_verbose("entry_count:0x%08X", entry_count);
@@ -33,9 +33,9 @@ void c_custom_block_index_search_names_chunk::log_impl(c_single_tag_file_layout_
 	for (unsigned long index = 0; index < entry_count; index++)
 	{
 		s_tag_persist_string_character_index string_character_index = offsets[index];
-		if (layout_reader)
+		if (string_debugger)
 		{
-			const char* string = layout_reader->get_string_by_string_character_index(string_character_index);
+			const char* string = string_debugger->get_string_by_string_character_index(string_character_index);
 			log_pad(); console_write_line_verbose("\t0x%08X\t0x%08X\t%s", index, string_character_index.offset, string);
 		}
 		else

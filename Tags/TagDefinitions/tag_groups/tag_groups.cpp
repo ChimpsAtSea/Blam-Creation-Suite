@@ -5,11 +5,11 @@
 #include "tag_groups.halo2.inl"
 #include "tag_groups.halo3.inl"
 #include "tag_groups.halo3odst.inl"
-#include "tag_groups.eldorado.inl"
+//#include "tag_groups.eldorado.inl"
 #include "tag_groups.haloreach.inl"
-#include "tag_groups.halo4.inl"
-#include "tag_groups.gen3_xbox360.inl"
-#include "tag_groups.groundhog.inl"
+//#include "tag_groups.halo4.inl"
+//#include "tag_groups.gen3_xbox360.inl"
+//#include "tag_groups.groundhog.inl"
 #include <slipspace/tag_groups.infinite.inl>
 
 namespace blofeld
@@ -17,6 +17,11 @@ namespace blofeld
 	const s_tag_group* tag_groups_not_set[] = { nullptr };
 	const s_tag_group* tag_groups_mcc[] = { nullptr };
 	const s_tag_group* tag_groups_halo5[] = { nullptr };
+
+	const s_tag_group* tag_groups_eldorado[] = { nullptr };
+	const s_tag_group* tag_groups_gen3_xbox360[] = { nullptr };
+	const s_tag_group* tag_groups_halo4[] = { nullptr };
+	const s_tag_group* tag_groups_groundhog[] = { nullptr };
 
 	const s_tag_group** tag_groups[k_number_of_engine_types] =
 	{

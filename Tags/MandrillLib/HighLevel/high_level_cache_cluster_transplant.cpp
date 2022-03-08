@@ -701,7 +701,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(h_o
 					return rs;
 				}
 
-				if (c_halo4_tag_reader* halo4_tag_reader = dynamic_cast<c_halo4_tag_reader*>(tag_reader))
+				/*if (c_halo4_tag_reader* halo4_tag_reader = dynamic_cast<c_halo4_tag_reader*>(tag_reader))
 				{
 					debug_point;
 
@@ -726,7 +726,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(h_o
 					interop_storage = interop_container;
 
 					debug_point;
-				}
+				}*/
 			}
 			break;
 			case _field_vertex_buffer:

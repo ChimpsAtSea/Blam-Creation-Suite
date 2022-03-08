@@ -303,3 +303,91 @@ BCS_DEBUG_API BCS_RESULT blofeld::byteswap_field_data_inplace(e_field field, voi
 #undef FIELD_BYTESWAP_NO_CHANGE
 	return BCS_E_FAIL;
 }
+
+BCS_DEBUG_API BCS_RESULT blofeld::get_blofeld_tag_file_field_size(e_field field, s_engine_platform_build engine_platform_build, unsigned long& field_size)
+{
+#define FIELD_TO_TAG_FILE_FIELD_SIZE(_field, size) if(_field == field) { field_size = (size); return BCS_S_OK; }
+
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_string, sizeof(::c_static_string<32>));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_long_string, sizeof(::c_static_string<256>));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_string_id, sizeof(string_id));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_old_string_id, sizeof(::c_old_string_id));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_char_integer, sizeof(char));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_short_integer, sizeof(short));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_long_integer, sizeof(long));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_int64_integer, sizeof(long long));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_angle, sizeof(angle));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_tag, sizeof(tag));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_char_enum, sizeof(char));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_enum, sizeof(short));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_long_enum, sizeof(long));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_long_flags, sizeof(long));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_word_flags, sizeof(word));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_byte_flags, sizeof(byte));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_point_2d, sizeof(::s_point2d));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_rectangle_2d, sizeof(::s_rectangle2d));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_rgb_color, sizeof(::pixel32));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_argb_color, sizeof(::pixel32));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real, sizeof(::real));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_fraction, sizeof(::real_fraction));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_point_2d, sizeof(::real_point2d));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_point_3d, sizeof(::real_point3d));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_vector_2d, sizeof(::real_vector2d));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_vector_3d, sizeof(::real_vector3d));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_quaternion, sizeof(::real_quaternion));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_euler_angles_2d, sizeof(::real_euler_angles2d));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_euler_angles_3d, sizeof(::real_euler_angles3d));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_plane_2d, sizeof(::real_plane2d));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_plane_3d, sizeof(::real_plane3d));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_rgb_color, sizeof(::rgb_color));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_argb_color, sizeof(::argb_color));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_hsv_color, sizeof(::real_hsv_color));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_ahsv_color, sizeof(::real_ahsv_color));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_short_bounds, sizeof(::short_bounds));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_angle_bounds, sizeof(::angle_bounds));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_bounds, sizeof(::real_bounds));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_fraction_bounds, sizeof(::real_fraction_bounds));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_tag_reference, sizeof(::s_tag_reference));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_block, sizeof(::s_tag_block));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_long_block_flags, sizeof(long));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_word_block_flags, sizeof(word));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_byte_block_flags, sizeof(byte));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_char_block_index, sizeof(char));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_custom_char_block_index, sizeof(char));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_short_block_index, sizeof(short));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_custom_short_block_index, sizeof(short));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_long_block_index, sizeof(long));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_custom_long_block_index, sizeof(long));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_data, sizeof(::s_tag_data));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_vertex_buffer, sizeof(::s_tag_d3d_vertex_buffer));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_pad, 0);
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_useless_pad, 0);
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_skip, 0);
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_non_cache_runtime_value, 0);
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_explanation, 0);
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_custom, 0);
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_struct, 0);
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_array, 0);
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_pageable, sizeof(::s_tag_resource));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_api_interop, sizeof(::s_tag_interop));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_terminator, 0);
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_byte_integer, sizeof(byte));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_word_integer, sizeof(word));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_dword_integer, sizeof(dword));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_qword_integer, sizeof(qword));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_embedded_tag, sizeof(::s_tag_reference));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_data_path, sizeof(::c_static_string<256>));
+	if (field == _field_pointer)
+	{
+		ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(engine_platform_build.platform_type, &field_size)));
+		return BCS_S_OK;
+	};
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_half, sizeof(word));
+
+#undef FIELD_TO_TAG_FILE_FIELD_SIZE
+	return BCS_E_FAIL;
+}
+
+
+
+

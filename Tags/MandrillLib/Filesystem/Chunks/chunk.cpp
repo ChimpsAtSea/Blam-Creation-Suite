@@ -12,6 +12,7 @@ c_chunk::c_chunk(tag signature, c_chunk* parent) :
 	is_read_only(false),
 	is_big_endian(false),
 	is_data_allocated(false),
+	is_data_valid(false),
 	depth(parent ? parent->depth + 1 : 0)
 {
 
@@ -40,12 +41,15 @@ BCS_RESULT c_chunk::add_child(c_chunk& chunk)
 	unsigned long new_child_count = old_child_count + 1;
 
 	c_chunk** new_children = new() c_chunk * [new_child_count + 1];
-	memcpy(new_children, children, sizeof(*children) * new_child_count);
+	memcpy(new_children, children, sizeof(*children) * old_child_count);
 
 	new_children[old_child_count] = &chunk;
 	new_children[new_child_count] = nullptr;
 
 	// #TODO: is it okay to allow duplicate entries of the same pointer?
+
+	delete[] children;
+	children = new_children;
 
 	return BCS_S_OK;
 }
@@ -179,6 +183,31 @@ const char* c_chunk::get_chunk_data_end() const
 	return static_cast<const char*>(chunk_data) + chunk_size;
 }
 
+BCS_RESULT c_chunk::append_data(const void* new_data, unsigned long new_data_size)
+{
+	if (!is_data_valid)
+	{
+		return set_data(new_data, new_data_size);
+	}
+	else if (new_data_size > 0)
+	{
+		unsigned long data_size = chunk_size + new_data_size;
+		char* _chunk_data_temp = static_cast<char*>(tracked_malloc(mandrilllib_tracked_memory, data_size));
+
+		char* old_chunk_data = _chunk_data_temp;
+		memcpy(old_chunk_data, chunk_data, chunk_size);
+
+		char* new_chunk_data = _chunk_data_temp + chunk_size;
+		memcpy(new_chunk_data, new_data, new_data_size);
+
+		set_data(_chunk_data_temp, data_size);
+
+		tracked_free(_chunk_data_temp);
+	}
+
+	return BCS_S_OK;
+}
+
 BCS_RESULT c_chunk::set_data(const void* data, unsigned long data_size)
 {
 	if (is_data_allocated)
@@ -191,6 +220,9 @@ BCS_RESULT c_chunk::set_data(const void* data, unsigned long data_size)
 
 	chunk_data = _chunk_data;
 	chunk_size = data_size;
+
+	is_data_valid = true;
+	is_data_allocated = true;
 
 	return BCS_S_OK;
 }
@@ -381,15 +413,58 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 	return rs;
 }
 
-void c_chunk::log(c_single_tag_file_layout_reader* layout_reader) const
+void c_chunk::write_chunk(c_high_level_tag_file_writer& tag_file_writer)
+{
+	unsigned long chunk_file_data_size = chunk_size;
+
+	fwrite(&signature, sizeof(signature), 1, tag_file_writer.file_handle);
+	fwrite(&metadata, sizeof(metadata), 1, tag_file_writer.file_handle);
+	long chunk_size_pos = ftell(tag_file_writer.file_handle);
+	fwrite(&chunk_file_data_size, sizeof(chunk_file_data_size), 1, tag_file_writer.file_handle);
+
+	write_chunk_data(tag_file_writer);
+	write_child_chunks(tag_file_writer);
+
+	long current_pos = ftell(tag_file_writer.file_handle);
+	chunk_file_data_size = current_pos - chunk_size_pos - 4;
+
+	fseek(tag_file_writer.file_handle, chunk_size_pos, SEEK_SET);
+	fwrite(&chunk_file_data_size, sizeof(chunk_file_data_size), 1, tag_file_writer.file_handle);
+	fseek(tag_file_writer.file_handle, current_pos, SEEK_SET);
+	fflush(tag_file_writer.file_handle);
+
+	debug_point;
+}
+
+void c_chunk::write_chunk_data(c_high_level_tag_file_writer& tag_file_writer)
+{
+	if (is_data_valid)
+	{
+		fwrite(chunk_data, chunk_size, 1, tag_file_writer.file_handle);
+	}
+}
+
+void c_chunk::write_child_chunks(c_high_level_tag_file_writer& tag_file_writer)
+{
+	unsigned long num_children;
+	c_chunk* const* children;
+	get_children(children, num_children);
+	for (unsigned long child_index = 0; child_index < num_children; child_index++)
+	{
+		c_chunk& child_chunk = *children[child_index];
+		child_chunk.write_chunk(tag_file_writer);
+	}
+}
+
+void c_chunk::log(c_tag_file_string_debugger* string_debugger) const
 {
 	log_pad();
-	log_impl(layout_reader);
+	log_impl(string_debugger);
 
 	for (c_chunk** children_iter = children; children && *children_iter; children_iter++)
 	{
 		c_chunk& child = **children_iter;
-		child.log(layout_reader);
+		child.log(string_debugger);
 	}
 }
 
@@ -412,7 +487,7 @@ void c_chunk::log_signature() const
 	console_write_verbose("%.4s ", _signature);
 }
 
-void c_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
+void c_chunk::log_impl(c_tag_file_string_debugger* string_debugger) const
 {
 	log_signature();
 	console_write_verbose("0x%X ", chunk_size);

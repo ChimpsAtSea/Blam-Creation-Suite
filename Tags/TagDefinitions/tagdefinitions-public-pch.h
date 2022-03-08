@@ -12,6 +12,7 @@
 #include "types/tag_block_definition.h"
 #include "types/tag_array_definition.h"
 #include "types/tag_reference_definition.h"
+#include "types/tag_resource_definition.h"
 #include "types/tag_interop_definition.h"
 #include "types/string_list_definition.h"
 #include "types/tag_field.h"
@@ -24,7 +25,7 @@
 #define s_tag_struct_definition BCS_DEBUG_API s_tag_struct_definition
 #define s_tag_data_definition BCS_DEBUG_API s_tag_data_definition
 #define s_tag_group BCS_DEBUG_API s_tag_group
-#include "blofeld/tag_groups.h"
+//#include "blofeld/tag_groups.h"
 #include "slipspace/infinite_flight1.h"
 #include "slipspace/infinite_flight2.h"
 #include "slipspace/infinite_release.h"

@@ -49,7 +49,7 @@ struct s_resource_priority_datas
 	const char* naive_resource_control_data;
 	c_halo4_tag_instance* tag_instance;
 	unsigned long resource_index;
-	c_flags<blofeld::xbox360_gen3::e_cache_file_resource_data_flags_definition, short, blofeld::xbox360_gen3::k_cache_file_resource_data_flags_definition_count> flags;
+	//c_flags<blofeld::xbox360_gen3::e_cache_file_resource_data_flags_definition, short, blofeld::xbox360_gen3::k_cache_file_resource_data_flags_definition_count> flags;
 
 	void make_id();
 };

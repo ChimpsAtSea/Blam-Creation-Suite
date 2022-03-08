@@ -2,6 +2,7 @@
 
 #include "tag_file_high_level_transplant.h"
 
+#include "tag_file_string_debugger.h"
 #include "single_tag_file_header.h"
 #include "single_tag_file_layout_reader.h"
 #include "single_tag_file_reader.h"

@@ -9,6 +9,6 @@ public:
 	c_custom_block_index_search_names_chunk(c_chunk& parent);
 	~c_custom_block_index_search_names_chunk();
 
-	virtual void log_impl(c_single_tag_file_layout_reader* layout_reader) const override;
+	virtual void log_impl(c_tag_file_string_debugger* string_debugger) const override;
 
 };

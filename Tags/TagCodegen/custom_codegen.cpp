@@ -28,16 +28,16 @@ bool custom_structure_codegen(
 	CODEGEN_HELPER(_custom_structure_codegen_high_level_ctor, field_name, { s << tabs << ", " #variable_name "()" << std::endl; }) \
 	CODEGEN_HELPER(_custom_structure_codegen_high_level_field_impl, field_name, { s << tabs << "h_field_func_impl(" #type ", blofeld::" << namespace_name << "::h_" << struct_definition.name << ", " << field_index << ", " #variable_name ");" << std::endl; })
 
-	CODEGEN_HELPER_STRUCT(blofeld::cache_file_resource_fixup_location_block_struct_definition)
-	{
-		CODEGEN_HELPER_LOW_LEVEL("encoded fixup value", c_tag_resource_fixup, fixup);
-		CODEGEN_HELPER_HIGH_LEVEL("encoded fixup value", c_tag_resource_fixup, fixup);
-	}
-	CODEGEN_HELPER_STRUCT(blofeld::cache_file_resource_data_block_struct_definition)
-	{
-		CODEGEN_HELPER_LOW_LEVEL("root fixup", c_tag_resource_fixup, root_fixup);
-		CODEGEN_HELPER_HIGH_LEVEL("root fixup", c_tag_resource_fixup, root_fixup);
-	}
+	//CODEGEN_HELPER_STRUCT(blofeld::cache_file_resource_fixup_location_block_struct_definition)
+	//{
+	//	CODEGEN_HELPER_LOW_LEVEL("encoded fixup value", c_tag_resource_fixup, fixup);
+	//	CODEGEN_HELPER_HIGH_LEVEL("encoded fixup value", c_tag_resource_fixup, fixup);
+	//}
+	//CODEGEN_HELPER_STRUCT(blofeld::cache_file_resource_data_block_struct_definition)
+	//{
+	//	CODEGEN_HELPER_LOW_LEVEL("root fixup", c_tag_resource_fixup, root_fixup);
+	//	CODEGEN_HELPER_HIGH_LEVEL("root fixup", c_tag_resource_fixup, root_fixup);
+	//}
 
 #undef CODEGEN_HELPER_STRUCT
 #undef CODEGEN_HELPER

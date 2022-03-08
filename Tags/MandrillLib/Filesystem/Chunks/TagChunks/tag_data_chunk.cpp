@@ -34,7 +34,7 @@ BCS_RESULT c_tag_data_chunk::read_chunk(void* userdata, const void* _data, bool 
 	return rs;
 }
 
-void c_tag_data_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
+void c_tag_data_chunk::log_impl(c_tag_file_string_debugger* string_debugger) const
 {
 	log_signature();
 	console_write_line_verbose("size:0x%08lX", data_length);

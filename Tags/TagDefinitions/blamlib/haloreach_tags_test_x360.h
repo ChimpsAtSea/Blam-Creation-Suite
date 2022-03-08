@@ -8696,6 +8696,24 @@ namespace haloreach {
 
 	extern s_tag_data_definition meter_stencil_data_definition;
 
+	extern s_tag_resource_definition render_geometry_api_resource_definition;
+
+	extern s_tag_resource_definition structure_bsp_tag_resources;
+
+	extern s_tag_resource_definition structure_bsp_cache_file_tag_resources;
+
+	extern s_tag_resource_definition sound_resource_definition;
+
+	extern s_tag_resource_definition facial_animation_resource_definition;
+
+	extern s_tag_resource_definition model_animation_tag_resource;
+
+	extern s_tag_resource_definition bink_resource;
+
+	extern s_tag_resource_definition bitmap_texture_interop_resource;
+
+	extern s_tag_resource_definition bitmap_texture_interleaved_interop_resource;
+
 	extern s_tag_interop_definition render_vertex_buffer_interop_definition;
 
 	extern s_tag_interop_definition render_index_buffer_interop_definition;

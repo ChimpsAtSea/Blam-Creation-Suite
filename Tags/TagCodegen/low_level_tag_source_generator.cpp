@@ -318,6 +318,9 @@ void c_low_level_tag_source_generator::generate_header() const
 
 								//stream << tag_group_name.data;
 
+
+								stream << "blofeld::" << namespace_name << "::" << std::endl;
+
 								stream << tag_group->group_tag_code_string;
 							}
 							stream << "> " << field_formatter.code_name.c_str() << ";";

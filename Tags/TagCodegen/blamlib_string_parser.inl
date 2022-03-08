@@ -56,32 +56,37 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 	{
 		debug_point;
 	}
+	if (strcmp("   Channel Mask (3-bit Color + 1-bit Alpha)", string) == 0)
+	{
+		debug_point;
+	}
 
 	const char* read_position = string;
 
+	c_fixed_string_2048 temp_buffer;
 	{
 		//#define NAME_SEARCH_PATTERN "%[^][:|#{]"
-#define NAME_SEARCH_PATTERN " %[^:|#{] "
+#define NAME_SEARCH_PATTERN "%[^:|#{] "
 #define OLD_NAME_SEARCH_PATTERN " {%[^}]} "
 #define FLAGS_SEARCH_PATTERN " %[^][:|#] "
 		
 		// read name, alt names, and flags
-		int search_for_name_and_alt_name_try1 = sscanf(read_position, NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN FLAGS_SEARCH_PATTERN, pretty_name.data, old_name.data, flags.data);
+		int search_for_name_and_alt_name_try1 = sscanf(read_position, NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN FLAGS_SEARCH_PATTERN, temp_buffer.data, old_name.data, flags.data);
 
 		// read name, alt names, and flags
-		int search_for_name_and_alt_name_try2 = sscanf(read_position, NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN FLAGS_SEARCH_PATTERN, pretty_name.data, old_name.data, old_name2.data, flags.data);
+		int search_for_name_and_alt_name_try2 = sscanf(read_position, NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN FLAGS_SEARCH_PATTERN, temp_buffer.data, old_name.data, old_name2.data, flags.data);
 
 		int found_elements = __min(search_for_name_and_alt_name_try1, search_for_name_and_alt_name_try2);
 		bool has_second_old_name = search_for_name_and_alt_name_try2 >= search_for_name_and_alt_name_try1;
 
 		if (found_elements >= 1) // found name
 		{
-			read_position = strstr(read_position, pretty_name) + strlen(pretty_name);
+			read_position = strstr(read_position, temp_buffer) + strlen(temp_buffer);
 
 			// name flags cleanup
-			fixup_flags(pretty_name);
+			fixup_flags(temp_buffer);
 		}
-		else *pretty_name = 0;
+		else *temp_buffer = 0;
 		if (found_elements >= 2) // found old_name
 		{
 			read_position = strstr(read_position, old_name) + strlen(old_name);
@@ -106,7 +111,7 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 
 		{
 			// scan for & in tag file name
-			tag_file_name = pretty_name;
+			tag_file_name = temp_buffer;
 
 			if (tag_file_name == "category dependencies&shared PS category dependencies")
 			{
@@ -114,15 +119,15 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 			}
 
 			//#define NAME_SEARCH_PATTERN "%[^][:|#{]"
-#define NAME_SEARCH_PATTERN " %[^&] "
+#define NAME_SEARCH_PATTERN "%[^&] "
 #define OLD_NAME_SEARCH_PATTERN " &%[^|#] "
 
-		// read name, old name 3
-			int search_for_name_and_old_name3 = sscanf(pretty_name, NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN, tag_file_name.data, old_name3.data);
+			// read name, old name 3
+			int search_for_name_and_old_name3 = sscanf(temp_buffer, NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN, tag_file_name.data, old_name3.data);
 
 			if (search_for_name_and_old_name3 > 1)
 			{
-				pretty_name = tag_file_name;
+				temp_buffer = tag_file_name;
 				debug_point;
 			}
 		}
@@ -138,7 +143,7 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 		// #NOTE: Tag include this junk inside of them.
 		{
 			// limits_legacy
-			int search_for_limits_legacy = sscanf(pretty_name, NAME_IGNORE_SEARCH_PATTERN LIMITS_LEGACY_SEARCH_PATTERN, limits_legacy.data);
+			int search_for_limits_legacy = sscanf(temp_buffer, NAME_IGNORE_SEARCH_PATTERN LIMITS_LEGACY_SEARCH_PATTERN, limits_legacy.data);
 
 			// only try to fixup specific formats
 			// otherwise some fields with array names will break eg. 'havok w m_pad256[1]*~!!'
@@ -146,8 +151,8 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 			{
 				if (search_for_limits_legacy >= 1)
 				{
-					char* pretty_name_end = strstr(pretty_name, limits_legacy) - 1;
-					while (pretty_name_end > pretty_name && isspace(pretty_name_end[-1])) pretty_name_end--; // remove any whitespace from name
+					char* pretty_name_end = strstr(temp_buffer, limits_legacy) - 1;
+					while (pretty_name_end > temp_buffer && isspace(pretty_name_end[-1])) pretty_name_end--; // remove any whitespace from name
 					*pretty_name_end = 0; // terminator
 					debug_point;
 				}
@@ -273,6 +278,15 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 		debug_point;
 	}
 
+	// cleanup pretty name whitespace
+	{
+#define NAME_SEARCH_PATTERN " %[^:|#{] "
+
+		int search_for_name_and_alt_name_try1 = sscanf(temp_buffer, NAME_SEARCH_PATTERN, pretty_name.data);
+
+		debug_point;
+	}
+
 	setup_code_name();
 }
 
@@ -300,6 +314,7 @@ void c_blamlib_string_parser_v2::fixup_flags(char* string)
 		&& !(
 			isalnum(*flags_search_position) ||
 			isspace(*flags_search_position) ||
+			*flags_search_position == '-' ||
 			*flags_search_position == '\'' ||
 			*flags_search_position == '\"' ||
 			*flags_search_position == ' ' ||

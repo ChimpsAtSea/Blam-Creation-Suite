@@ -324,80 +324,80 @@ namespace blofeld
 		return any_block_failed_validation;
 	}
 
-	bool validate_gen3_definitions(std::map<const s_tag_field*, uint64_t>* warnings_tracking)
-	{
-		bool any_block_failed_validation = false;
-		unsigned long successful_validation_attempts = 0;
-		for (s_tag_struct_validation_data& struct_validation_data : gen3_xbox360_tag_struct_validation_data)
-		{
-			e_validation_result block_failed_validation = _validation_result_ok;
-			const s_tag_struct_definition& struct_definition = struct_validation_data.struct_definition;
-			const char* const block_name = struct_definition.name;
-			unsigned long const expected_size = struct_validation_data.size;
+	//bool validate_gen3_definitions(std::map<const s_tag_field*, uint64_t>* warnings_tracking)
+	//{
+	//	bool any_block_failed_validation = false;
+	//	unsigned long successful_validation_attempts = 0;
+	//	for (s_tag_struct_validation_data& struct_validation_data : gen3_xbox360_tag_struct_validation_data)
+	//	{
+	//		e_validation_result block_failed_validation = _validation_result_ok;
+	//		const s_tag_struct_definition& struct_definition = struct_validation_data.struct_definition;
+	//		const char* const block_name = struct_definition.name;
+	//		unsigned long const expected_size = struct_validation_data.size;
 
-			e_engine_type engine_type = _engine_type_gen3_xbox360;
-			e_platform_type platform_type = _platform_type_xbox_360;
-			unsigned long computed_size = calculate_struct_size({ engine_type, platform_type, _build_not_set }, struct_definition, &block_failed_validation, platform_type == _platform_type_not_set, warnings_tracking);
+	//		e_engine_type engine_type = _engine_type_gen3_xbox360;
+	//		e_platform_type platform_type = _platform_type_xbox_360;
+	//		unsigned long computed_size = calculate_struct_size({ engine_type, platform_type, _build_not_set }, struct_definition, &block_failed_validation, platform_type == _platform_type_not_set, warnings_tracking);
 
-			if (computed_size != expected_size)
-			{
-				block_failed_validation = _validation_result_struct_invalid_size;
-				console_write_line("%s(%i): warning V0002: s_tag_struct '%s' failed validation. computed size 0x%x expected 0x%x", struct_definition.filename, struct_definition.line, block_name, computed_size, expected_size);
-			}
+	//		if (computed_size != expected_size)
+	//		{
+	//			block_failed_validation = _validation_result_struct_invalid_size;
+	//			console_write_line("%s(%i): warning V0002: s_tag_struct '%s' failed validation. computed size 0x%x expected 0x%x", struct_definition.filename, struct_definition.line, block_name, computed_size, expected_size);
+	//		}
 
-			if (block_failed_validation == _validation_result_ok)
-			{
-				successful_validation_attempts++;
-			}
-			else
-			{
-				any_block_failed_validation = true;
-			}
-		}
-		float percentage = 100.0f * float(successful_validation_attempts) / float(_countof(gen3_xbox360_tag_struct_validation_data));
-		if (percentage != 100.0f)
-		{
-			console_write_line("warning V0001: failed to validate all tags. success rate %.1f.", percentage);
-		}
-		return any_block_failed_validation;
-	}
+	//		if (block_failed_validation == _validation_result_ok)
+	//		{
+	//			successful_validation_attempts++;
+	//		}
+	//		else
+	//		{
+	//			any_block_failed_validation = true;
+	//		}
+	//	}
+	//	float percentage = 100.0f * float(successful_validation_attempts) / float(_countof(gen3_xbox360_tag_struct_validation_data));
+	//	if (percentage != 100.0f)
+	//	{
+	//		console_write_line("warning V0001: failed to validate all tags. success rate %.1f.", percentage);
+	//	}
+	//	return any_block_failed_validation;
+	//}
 
-	bool validate_halo4_xbox360_definitions(std::map<const s_tag_field*, uint64_t>* warnings_tracking)
-	{
-		bool any_block_failed_validation = false;
-		unsigned long successful_validation_attempts = 0;
-		for (s_tag_struct_validation_data& struct_validation_data : gen3_xbox360_tag_struct_validation_data)
-		{
-			e_validation_result block_failed_validation = _validation_result_ok;
-			const s_tag_struct_definition& struct_definition = struct_validation_data.struct_definition;
-			const char* const block_name = struct_definition.name;
-			unsigned long const expected_size = struct_validation_data.size;
+	//bool validate_halo4_xbox360_definitions(std::map<const s_tag_field*, uint64_t>* warnings_tracking)
+	//{
+	//	bool any_block_failed_validation = false;
+	//	unsigned long successful_validation_attempts = 0;
+	//	for (s_tag_struct_validation_data& struct_validation_data : gen3_xbox360_tag_struct_validation_data)
+	//	{
+	//		e_validation_result block_failed_validation = _validation_result_ok;
+	//		const s_tag_struct_definition& struct_definition = struct_validation_data.struct_definition;
+	//		const char* const block_name = struct_definition.name;
+	//		unsigned long const expected_size = struct_validation_data.size;
 
-			e_engine_type engine_type = _engine_type_halo4;
-			e_platform_type platform_type = _platform_type_xbox_360;
-			unsigned long computed_size = calculate_struct_size({ engine_type, platform_type, _build_not_set }, struct_definition, &block_failed_validation, platform_type == _platform_type_not_set, warnings_tracking);
+	//		e_engine_type engine_type = _engine_type_halo4;
+	//		e_platform_type platform_type = _platform_type_xbox_360;
+	//		unsigned long computed_size = calculate_struct_size({ engine_type, platform_type, _build_not_set }, struct_definition, &block_failed_validation, platform_type == _platform_type_not_set, warnings_tracking);
 
-			if (computed_size != expected_size)
-			{
-				block_failed_validation = _validation_result_struct_invalid_size;
-				console_write_line("%s(%i): warning V0002: s_tag_struct '%s' failed validation. computed size 0x%x expected 0x%x", struct_definition.filename, struct_definition.line, block_name, computed_size, expected_size);
-			}
+	//		if (computed_size != expected_size)
+	//		{
+	//			block_failed_validation = _validation_result_struct_invalid_size;
+	//			console_write_line("%s(%i): warning V0002: s_tag_struct '%s' failed validation. computed size 0x%x expected 0x%x", struct_definition.filename, struct_definition.line, block_name, computed_size, expected_size);
+	//		}
 
-			if (block_failed_validation == _validation_result_ok)
-			{
-				successful_validation_attempts++;
-			}
-			else
-			{
-				any_block_failed_validation = true;
-			}
-		}
-		float percentage = 100.0f * float(successful_validation_attempts) / float(_countof(gen3_xbox360_tag_struct_validation_data));
-		if (percentage != 100.0f)
-		{
-			console_write_line("warning V0001: failed to validate all tags. success rate %.1f.", percentage);
-		}
-		return any_block_failed_validation;
-	}
+	//		if (block_failed_validation == _validation_result_ok)
+	//		{
+	//			successful_validation_attempts++;
+	//		}
+	//		else
+	//		{
+	//			any_block_failed_validation = true;
+	//		}
+	//	}
+	//	float percentage = 100.0f * float(successful_validation_attempts) / float(_countof(gen3_xbox360_tag_struct_validation_data));
+	//	if (percentage != 100.0f)
+	//	{
+	//		console_write_line("warning V0001: failed to validate all tags. success rate %.1f.", percentage);
+	//	}
+	//	return any_block_failed_validation;
+	//}
 
 }

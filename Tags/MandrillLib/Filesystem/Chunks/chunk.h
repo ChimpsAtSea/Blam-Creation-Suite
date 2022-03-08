@@ -25,16 +25,20 @@ public:
 	const char* get_chunk_data_start() const;
 	const char* get_chunk_data_end() const;
 
-	BCS_RESULT set_data(const void* data, unsigned long data_size);
-	BCS_RESULT get_data(const void*& data, unsigned long& data_size);
+	virtual BCS_RESULT append_data(const void* data, unsigned long data_size);
+	virtual BCS_RESULT set_data(const void* data, unsigned long data_size);
+	virtual BCS_RESULT get_data(const void*& data, unsigned long& data_size);
 
 	virtual BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
-	BCS_RESULT read_child_chunks(void* userdata, bool use_read_only, const char* data = nullptr);
+	virtual BCS_RESULT read_child_chunks(void* userdata, bool use_read_only, const char* data = nullptr);
+	virtual void write_chunk(c_high_level_tag_file_writer& tag_file_writer);
+	virtual void write_chunk_data(c_high_level_tag_file_writer& tag_file_writer);
+	virtual void write_child_chunks(c_high_level_tag_file_writer& tag_file_writer);
 
-	void log(c_single_tag_file_layout_reader* layout_reader = nullptr) const;
+	void log(c_tag_file_string_debugger* string_debugger = nullptr) const;
 	void log_pad() const;
 	void log_signature() const;
-	virtual void log_impl(c_single_tag_file_layout_reader* layout_reader) const;
+	virtual void log_impl(c_tag_file_string_debugger* string_debugger) const;
 
 	template<typename t_chunk>
 	t_chunk* get_child_by_type_unsafe() const
@@ -66,7 +70,7 @@ public:
 		return dynamic_cast<t_chunk*>(get_child_unsafe(index));
 	}
 
-protected:
+//protected:
 
 	c_chunk* parent;
 	c_chunk** children;

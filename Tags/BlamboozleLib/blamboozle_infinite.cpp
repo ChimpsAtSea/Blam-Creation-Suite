@@ -64,6 +64,7 @@ int c_blamboozle_infinite::run()
 	std::vector<c_inf_tag_block_definition*> block_definitions;
 	std::vector<c_inf_tag_array_definition*> array_definitions;
 	std::vector<c_inf_tag_struct_definition*> struct_definitions;
+	std::vector<c_inf_tag_resource_definition*> resource_definitions;
 
 	for (auto& tag_block_definition_kp : c_inf_tag_block_definition::tag_block_definitions)
 	{
@@ -80,8 +81,18 @@ int c_blamboozle_infinite::run()
 		auto& tag_struct_definition = tag_struct_definition_kp.second;
 		struct_definitions.push_back(tag_struct_definition);
 	}
+	for (auto& tag_resource_definition_kp : c_inf_tag_resource_definition::tag_resource_definitions)
+	{
+		auto& tag_resource_definition = tag_resource_definition_kp.second;
+		resource_definitions.push_back(tag_resource_definition);
+	}
 
-	inf_export_code(group_definitions, block_definitions, array_definitions, struct_definitions);
+	inf_export_code(
+		group_definitions, 
+		block_definitions, 
+		array_definitions, 
+		resource_definitions, 
+		struct_definitions);
 
 	debug_point;
 

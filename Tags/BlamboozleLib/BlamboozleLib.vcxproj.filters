@@ -189,9 +189,6 @@
     <ClCompile Include="memory_dump.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="infinite\inf_tag_pageable_resource_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="field_id.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -214,9 +211,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="halo3\h3_tag_field.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="halo3\h3_tag_pageable_resource_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="halo3\h3_tag_reference_definition.cpp">
@@ -273,9 +267,6 @@
     <ClCompile Include="reach_x360\reach_tag_group_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="reach_x360\reach_tag_pageable_resource_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="reach_x360\reach_tag_reference_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -289,6 +280,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="blamboozlelib_tracked_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo3\h3_tag_resource_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="infinite\inf_tag_resource_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="reach_x360\reach_tag_resource_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -503,9 +503,6 @@
     <ClInclude Include="memory_dump.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="infinite\inf_tag_pageable_resource_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="endianness.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -528,9 +525,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="halo3\h3_tag_field.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="halo3\h3_tag_pageable_resource_definition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="halo3\h3_tag_reference_definition.h">
@@ -587,9 +581,6 @@
     <ClInclude Include="reach_x360\reach_tag_group_definition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="reach_x360\reach_tag_pageable_resource_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="reach_x360\reach_tag_reference_definition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -597,6 +588,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="reach_x360\reach_tag_struct_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo3\h3_tag_resource_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="infinite\inf_tag_resource_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="reach_x360\reach_tag_resource_definition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

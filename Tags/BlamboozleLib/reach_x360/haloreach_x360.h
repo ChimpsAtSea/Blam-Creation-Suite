@@ -33,7 +33,7 @@ bool reach_x360_find_address(const char* data, ptr32 address, std::vector<s_reac
 #include "reach_tag_data_definition.h"
 #include "reach_tag_api_interop_definition.h"
 #include "reach_tag_struct_definition.h"
-#include "reach_tag_pageable_resource_definition.h"
+#include "reach_tag_resource_definition.h"
 
 void reach_x360_export_code(
 	std::vector<c_reach_x360_tag_group_definition*>& group_definitions,
@@ -41,5 +41,6 @@ void reach_x360_export_code(
 	std::vector<c_reach_x360_tag_array_definition*>& array_definitions,
 	std::vector<c_reach_x360_tag_struct_definition*>& struct_definitions,
 	std::vector<c_reach_x360_tag_data_definition*>& data_definitions,
+	std::vector<c_reach_x360_tag_resource_definition*>& resource_definitions,
 	std::vector<c_reach_x360_tag_api_interop_definition*>& api_interop_definitions);
 std::string reach_x360_convert_to_code_name(std::string name);

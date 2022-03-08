@@ -82,7 +82,7 @@ int blamboozle_run()
 
 	if (BCS_SUCCEEDED(rs_reach_tags_test_360))
 	{
-		result += blamboozle_run(output_directory, reach_tags_test_360_file, _engine_type_haloreach, _build_reach_tags, true);
+		result += blamboozle_run(output_directory, reach_tags_test_360_file, _engine_type_haloreach, _build_haloreach_tags, true);
 	}
 
 	if (BCS_SUCCEEDED(rs_halo4_tags_test))

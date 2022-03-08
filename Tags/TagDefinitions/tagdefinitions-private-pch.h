@@ -11,7 +11,7 @@
 
 #define BLOFELD_DLL_EXPORT
 #include "tagdefinitions-public-pch.h"
-#include "blofeld/gen3_xbox360_validation_data.h"
+//#include "blofeld/gen3_xbox360_validation_data.h"
 
 #include "tagdefinitions_tracked_memory.h"
 
@@ -185,6 +185,9 @@ s_tag_interop_definition tag_interop_name = { STRINGIFY(tag_interop_name), __FIL
 
 #define TAG_INTEROP(symbol, tag_interop_name, tag_interop_structure, persistent_identifier) \
 s_tag_interop_definition symbol = { #symbol, tag_interop_name, __FILE__, __LINE__, tag_interop_structure, persistent_identifier }
+
+#define TAG_RESOURCE(symbol, tag_resource_name, tag_resource_structure) \
+s_tag_resource_definition symbol = { #symbol, tag_resource_name, __FILE__, __LINE__, tag_resource_structure }
 
 
 }

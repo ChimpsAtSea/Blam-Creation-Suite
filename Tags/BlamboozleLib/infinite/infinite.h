@@ -31,11 +31,12 @@ bool inf_find_address(const char* data, ptr64 address, std::vector<s_find_result
 #include "inf_tag_block_definition.h"
 #include "inf_tag_array_definition.h"
 #include "inf_tag_struct_definition.h"
-#include "inf_tag_pageable_resource_definition.h"
+#include "inf_tag_resource_definition.h"
 
 void inf_export_code(
 	std::vector<c_inf_tag_group_definition*>& group_definitions,
 	std::vector<c_inf_tag_block_definition*>& block_definitions,
 	std::vector<c_inf_tag_array_definition*>& array_definitions,
+	std::vector<c_inf_tag_resource_definition*>& resource_definitions,
 	std::vector<c_inf_tag_struct_definition*>& struct_definitions);
 std::string inf_convert_to_code_name(std::string name);

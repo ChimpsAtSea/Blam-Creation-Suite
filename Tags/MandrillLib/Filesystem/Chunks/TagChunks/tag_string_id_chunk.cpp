@@ -33,7 +33,7 @@ BCS_RESULT c_tag_string_id_chunk::read_chunk(void* userdata, const void* data, b
 	return rs;
 }
 
-void c_tag_string_id_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
+void c_tag_string_id_chunk::log_impl(c_tag_file_string_debugger* string_debugger) const
 {
 	log_signature();
 	console_write_line_verbose("'%s'", string);

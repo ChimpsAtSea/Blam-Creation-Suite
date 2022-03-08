@@ -1326,15 +1326,15 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& o
 
 	const s_tag_struct_definition& struct_definition = object.get_blofeld_struct_definition();
 
-	if (&struct_definition == &object_struct_definition)
-	{
-		if (custom_tool == nullptr)
-		{
-			//custom_tool = new() c_custom_tool_render_model(cache_file, reinterpret_cast<haloreach::s_object_struct_definition*>(structure_data));
-		}
-		//custom_tool->render();
-		ImGui::Text("CUSTOM TOOL!!!");
-	}
+	//if (&struct_definition == &object_struct_definition)
+	//{
+	//	if (custom_tool == nullptr)
+	//	{
+	//		//custom_tool = new() c_custom_tool_render_model(cache_file, reinterpret_cast<haloreach::s_object_struct_definition*>(structure_data));
+	//	}
+	//	//custom_tool->render();
+	//	ImGui::Text("CUSTOM TOOL!!!");
+	//}
 
 	constexpr float indent = 25.0f;
 	unsigned long field_index = 0;

@@ -5,7 +5,7 @@ c_blamboozle_reach_tags_test_x360::c_blamboozle_reach_tags_test_x360(const wchar
 {
 	output_directory += L"haloreach\\";
 
-	if (build == _build_reach_tags)
+	if (build == _build_haloreach_tags)
 	{
 		haloreach_dump_base_address = 0x82000000; // #TODO: get this dynamically?
 		haloreach_tag_layout_table_address = 0x83FA8F40; // #TODO: get this dynamically?
@@ -52,6 +52,7 @@ int c_blamboozle_reach_tags_test_x360::run()
 	std::vector<c_reach_x360_tag_array_definition*> array_definitions;
 	std::vector<c_reach_x360_tag_struct_definition*> struct_definitions;
 	std::vector<c_reach_x360_tag_data_definition*> data_definitions;
+	std::vector<c_reach_x360_tag_resource_definition*> resource_definitions;
 	std::vector<c_reach_x360_tag_api_interop_definition*> api_interop_definitions;
 
 	for (auto& tag_block_definition_kp : c_reach_x360_tag_block_definition::tag_block_definitions)
@@ -74,6 +75,11 @@ int c_blamboozle_reach_tags_test_x360::run()
 		auto& tag_data_definition = tag_data_definition_kp.second;
 		data_definitions.push_back(tag_data_definition);
 	}
+	for (auto& tag_resource_definition_kp : c_reach_x360_tag_resource_definition::tag_resource_definitions)
+	{
+		auto& tag_resource_definition = tag_resource_definition_kp.second;
+		resource_definitions.push_back(tag_resource_definition);
+	}
 	for (auto& tag_api_interop_definition_kp : c_reach_x360_tag_api_interop_definition::tag_api_interop_definitions)
 	{
 		auto& tag_api_interop_definition = tag_api_interop_definition_kp.second;
@@ -86,6 +92,7 @@ int c_blamboozle_reach_tags_test_x360::run()
 		array_definitions, 
 		struct_definitions, 
 		data_definitions, 
+		resource_definitions,
 		api_interop_definitions);
 
 	debug_point;

@@ -65,7 +65,7 @@ c_inf_tag_field::c_inf_tag_field(const char* guerilla_data, const s_inf_tag_fiel
 	case _inf_field_type_pageable_resource:
 	case _inf_field_type_pageable_resource_64:
 		ASSERT(field_definition.definition_address != 0);
-		pageable_resource_definition = c_inf_tag_pageable_resource_definition::inf_get_tag_pageable_resource_definition(guerilla_data, field_definition.definition_address);
+		pageable_resource_definition = c_inf_tag_resource_definition::inf_get_tag_resource_definition(guerilla_data, field_definition.definition_address);
 		break;
 	//case _inf_field_type_data_path:
 	//case _inf_field_type_embedded_tag:

@@ -268,6 +268,25 @@ void inf_sort_structures_struct(c_inf_tag_group_definition& group_definition, c_
 	_struct_definitions.insert(_struct_definitions.begin(), &struct_definition);
 }
 
+std::vector<c_inf_tag_resource_definition*> exported_resource_definitions;
+void inf_clear_exported_resources()
+{
+	exported_resource_definitions.clear();
+}
+
+bool is_resource_exported(c_inf_tag_resource_definition& resource_definition)
+{
+	for (c_inf_tag_resource_definition* current_resource_definition : exported_resource_definitions)
+	{
+		if (current_resource_definition == &resource_definition)
+		{
+			return true;
+		}
+	}
+	exported_resource_definitions.push_back(&resource_definition);
+	return false;
+}
+
 void inf_sort_structures(std::vector<c_inf_tag_group_definition*>& group_definitions)
 {
 	for (auto& group_definition : group_definitions)
@@ -856,7 +875,7 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 			ASSERT(tag_field->pageable_resource_definition);
 			if (tag_field->pageable_resource_definition)
 			{
-				s << ", &blofeld::" << _namespace << "::" << tag_field->pageable_resource_definition->struct_definition.code_name;
+				s << ", &blofeld::" << _namespace << "::" << tag_field->pageable_resource_definition->code_name << "_resource_definition";
 			}
 			if (write_tag)
 			{
@@ -1184,8 +1203,10 @@ void inf_export_header(
 	std::vector<c_inf_tag_group_definition*>& group_definitions,
 	std::vector<c_inf_tag_block_definition*>& block_definitions,
 	std::vector<c_inf_tag_array_definition*>& array_definitions,
+	std::vector<c_inf_tag_resource_definition*>& resource_definitions,
 	std::vector<c_inf_tag_struct_definition*>& struct_definitions)
 {
+	inf_clear_exported_resources();
 	inf_clear_exported_structs();
 	inf_clear_exported_groups();
 	inf_clear_exported_blocks();
@@ -1236,6 +1257,17 @@ void inf_export_header(
 			s << std::endl;
 		}
 	}
+
+	for (auto& resource_definition : resource_definitions)
+	{
+		if (!is_resource_exported(*resource_definition))
+		{
+			s << "\textern s_tag_resource_definition " << resource_definition->code_name << "_resource_definition" << ";" << std::endl;
+
+			s << std::endl;
+		}
+	}
+
 	for (auto& struct_definition : struct_definitions)
 	{
 		if (!is_struct_exported(*struct_definition))
@@ -1260,8 +1292,10 @@ void inf_export_source(
 	std::vector<c_inf_tag_group_definition*>& group_definitions,
 	std::vector<c_inf_tag_block_definition*>& block_definitions,
 	std::vector<c_inf_tag_array_definition*>& array_definitions,
+	std::vector<c_inf_tag_resource_definition*>& resource_definitions,
 	std::vector<c_inf_tag_struct_definition*>& struct_definitions)
 {
+	inf_clear_exported_resources();
 	inf_clear_exported_structs();
 	inf_clear_exported_groups();
 	inf_clear_exported_blocks();
@@ -1384,6 +1418,18 @@ void inf_export_source(
 		}
 	}
 
+	for (auto& resource_definition : resource_definitions)
+	{
+		if (!is_resource_exported(*resource_definition))
+		{
+			s << "\tTAG_RESOURCE(" << std::endl;
+			s << "\t\t" << resource_definition->code_name << "_resource_definition" << "," << std::endl;
+			s << "\t\t" << "\"" << resource_definition->name << "\"," << std::endl;
+			s << "\t\t" << resource_definition->struct_definition.code_name << ");" << std::endl;
+			s << std::endl;
+		}
+	}
+
 	s << std::endl;
 	s << "} // namespace blofeld" << std::endl;
 	s << std::endl;
@@ -1395,6 +1441,7 @@ void inf_export_code(
 	std::vector<c_inf_tag_group_definition*>& group_definitions,
 	std::vector<c_inf_tag_block_definition*>& block_definitions,
 	std::vector<c_inf_tag_array_definition*>& array_definitions,
+	std::vector<c_inf_tag_resource_definition*>& resource_definitions,
 	std::vector<c_inf_tag_struct_definition*>& struct_definitions)
 {
 	std::stringstream header_stream;
@@ -1403,8 +1450,8 @@ void inf_export_code(
 	inf_sort_group_definitions(group_definitions);
 	inf_sort_structures(sorted_group_definitions);
 
-	inf_export_header(header_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions);
-	inf_export_source(source_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions);
+	inf_export_header(header_stream, sorted_group_definitions, block_definitions, array_definitions, resource_definitions, struct_definitions);
+	inf_export_source(source_stream, sorted_group_definitions, block_definitions, array_definitions, resource_definitions, struct_definitions);
 
 	std::string header_string = header_stream.str();
 	std::string source_string = source_stream.str();

@@ -84,7 +84,7 @@ BCS_RESULT c_halo1_tag_reader::read_tag_instances()
 		}
 
 		const void* instance_data;
-		if (!tag_instance.in_data_file || tag_instance.group_tags[0] == blofeld::SOUND_TAG)
+		if (!tag_instance.in_data_file || tag_instance.group_tags[0] == blofeld::halo1::SOUND_TAG)
 		{
 			if (BCS_FAILED(rs = page_offset_to_pointer(tag_instance_info.instance.address, instance_data)))
 			{
@@ -96,10 +96,10 @@ BCS_RESULT c_halo1_tag_reader::read_tag_instances()
 			const char* relative_cache_file_path = nullptr;
 			switch (tag_instance.group_tags[0])
 			{
-			case blofeld::BITMAP_TAG:
+			case blofeld::halo1::BITMAP_TAG:
 				relative_cache_file_path = "maps\\bitmaps.map";
 				break;
-			case blofeld::SOUND_TAG:
+			case blofeld::halo1::SOUND_TAG:
 				relative_cache_file_path = "maps\\sounds.map";
 				break;
 			case blofeld::halo1::FONT_TAG:

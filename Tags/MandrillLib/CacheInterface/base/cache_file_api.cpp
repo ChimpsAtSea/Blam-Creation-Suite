@@ -185,13 +185,13 @@ BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_bui
 		}
 		// #TODO: generate xbox360 version of halo 4 high/virtual/low
 		// then replace _engine_type_gen3_xbox360 with _engine_type_gen3_halo4
-		case _engine_type_gen3_xbox360:
+		/*case _engine_type_gen3_xbox360:
 			if (engine_platform_build.platform_type == _platform_type_xbox_360)
 			{
 				*cache_file = new() c_halo4_cache_file_reader(filepath, engine_platform_build);
 				return BCS_S_OK;
 			}
-
+			*/
 		case _engine_type_infinite:
 			if (engine_platform_build.platform_type == _platform_type_pc_64bit)
 			{
@@ -262,12 +262,12 @@ BCS_RESULT create_cache_cluster(c_cache_file_reader** cache_readers, unsigned lo
 
 			return BCS_S_OK;
 		}
-		if (c_halo4_cache_file_reader* halo4_cache_file = dynamic_cast<c_halo4_cache_file_reader*>(*cache_readers))
+		/*if (c_halo4_cache_file_reader* halo4_cache_file = dynamic_cast<c_halo4_cache_file_reader*>(*cache_readers))
 		{
 			*cache_cluster = new() c_halo4_cache_cluster(reinterpret_cast<c_halo4_cache_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
 
 			return BCS_S_OK;
-		}
+		}*/
 		if (c_infinite_module_file_reader* infinite_module_file = dynamic_cast<c_infinite_module_file_reader*>(*cache_readers))
 		{
 			*cache_cluster = new() c_infinite_cache_cluster(reinterpret_cast<c_infinite_module_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
@@ -303,12 +303,12 @@ BCS_RESULT get_cache_file_debug_reader(c_cache_cluster* cache_cluster, c_cache_f
 	BCS_VALIDATE_ARGUMENT(debug_reader);
 
 	BCS_RESULT result = BCS_E_NOT_IMPLEMENTED;
-	if (c_halo4_cache_cluster* halo4_cache_cluster = dynamic_cast<c_halo4_cache_cluster*>(cache_cluster))
+	/*if (c_halo4_cache_cluster* halo4_cache_cluster = dynamic_cast<c_halo4_cache_cluster*>(cache_cluster))
 	{
 		result = halo4_cache_cluster->get_debug_reader(
 			*static_cast<c_halo4_cache_file_reader*>(cache_reader),
 			*reinterpret_cast<c_halo4_debug_reader**>(debug_reader));
-	}
+	}*/
 	return result;
 }
 

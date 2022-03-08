@@ -141,6 +141,25 @@ void reach_x360_sort_structures(std::vector<c_reach_x360_tag_group_definition*>&
 	}
 }
 
+std::vector<c_reach_x360_tag_resource_definition*> exported_resource_definitions;
+void reach_x360_clear_exported_resources()
+{
+	exported_resource_definitions.clear();
+}
+
+bool is_resource_exported(c_reach_x360_tag_resource_definition& resource_definition)
+{
+	for (c_reach_x360_tag_resource_definition* current_resource_definition : exported_resource_definitions)
+	{
+		if (current_resource_definition == &resource_definition)
+		{
+			return true;
+		}
+	}
+	exported_resource_definitions.push_back(&resource_definition);
+	return false;
+}
+
 std::vector<c_reach_x360_tag_api_interop_definition*> exported_api_interop_definitions;
 void reach_x360_clear_exported_api_interops()
 {
@@ -927,7 +946,7 @@ void reach_x360_write_fields(std::stringstream& s, std::vector<t_reach_x360_tag_
 				ASSERT(tag_field->pageable_resource_definition);
 				if (tag_field->pageable_resource_definition)
 				{
-					s << ", &blofeld::" << _namespace << "::" << tag_field->pageable_resource_definition->struct_definition.code_name;
+					s << ", &blofeld::" << _namespace << "::" << tag_field->pageable_resource_definition->code_name;
 				}
 				if (write_tag)
 				{
@@ -1262,8 +1281,10 @@ void reach_x360_export_header(
 	std::vector<c_reach_x360_tag_array_definition*>& array_definitions,
 	std::vector<c_reach_x360_tag_struct_definition*>& struct_definitions,
 	std::vector<c_reach_x360_tag_data_definition*>& data_definitions,
+	std::vector<c_reach_x360_tag_resource_definition*>& resource_definitions,
 	std::vector<c_reach_x360_tag_api_interop_definition*>& api_interop_definitions)
 {
+	reach_x360_clear_exported_resources();
 	reach_x360_clear_exported_api_interops();
 	reach_x360_clear_exported_datas();
 	reach_x360_clear_exported_structs();
@@ -1345,6 +1366,16 @@ void reach_x360_export_header(
 			s << std::endl;
 		}
 	}
+
+	for (auto& resource_definition : resource_definitions)
+	{
+		if (!is_resource_exported(*resource_definition))
+		{
+			s << "\textern s_tag_resource_definition " << resource_definition->code_name << ";" << std::endl;
+
+			s << std::endl;
+		}
+	}
 	
 	for (auto& api_interop_definition : api_interop_definitions)
 	{
@@ -1370,8 +1401,10 @@ void reach_x360_export_source(
 	std::vector<c_reach_x360_tag_array_definition*>& array_definitions,
 	std::vector<c_reach_x360_tag_struct_definition*>& struct_definitions,
 	std::vector<c_reach_x360_tag_data_definition*>& data_definitions,
+	std::vector<c_reach_x360_tag_resource_definition*>& resource_definitions,
 	std::vector<c_reach_x360_tag_api_interop_definition*>& api_interop_definitions)
 {
+	reach_x360_clear_exported_resources();
 	reach_x360_clear_exported_api_interops();
 	reach_x360_clear_exported_datas();
 	reach_x360_clear_exported_structs();
@@ -1519,6 +1552,18 @@ void reach_x360_export_source(
 			s << std::endl;
 		}
 	}
+
+	for (auto& resource_definition : resource_definitions)
+	{
+		if (!is_resource_exported(*resource_definition))
+		{
+			s << "\tTAG_RESOURCE(" << std::endl;
+			s << "\t\t" << resource_definition->code_name << "," << std::endl;
+			s << "\t\t" << "\"" << resource_definition->name << "\"," << std::endl;
+			s << "\t\t" << resource_definition->struct_definition.code_name << ");" << std::endl;
+			s << std::endl;
+		}
+	}
 	
 	for (auto& api_interop_definition : api_interop_definitions)
 	{
@@ -1569,6 +1614,7 @@ void reach_x360_export_code(
 	std::vector<c_reach_x360_tag_array_definition*>& array_definitions,
 	std::vector<c_reach_x360_tag_struct_definition*>& struct_definitions,
 	std::vector<c_reach_x360_tag_data_definition*>& data_definitions,
+	std::vector<c_reach_x360_tag_resource_definition*>& resource_definitions,
 	std::vector<c_reach_x360_tag_api_interop_definition*>& api_interop_definitions)
 {
 	std::stringstream header_stream;
@@ -1577,8 +1623,8 @@ void reach_x360_export_code(
 	reach_x360_sort_group_definitions(group_definitions);
 	reach_x360_sort_structures(sorted_group_definitions);
 
-	reach_x360_export_header(header_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions, api_interop_definitions);
-	reach_x360_export_source(source_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions, api_interop_definitions);
+	reach_x360_export_header(header_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions, resource_definitions, api_interop_definitions);
+	reach_x360_export_source(source_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions, resource_definitions, api_interop_definitions);
 
 	std::string header_string = header_stream.str();
 	std::string source_string = source_stream.str();

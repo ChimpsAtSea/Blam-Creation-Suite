@@ -28,7 +28,7 @@ public:
 	c_tag_block_chunk(c_chunk& parent, c_single_tag_file_reader& reader);
 	~c_tag_block_chunk();
 	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
-	virtual void log_impl(c_single_tag_file_layout_reader* layout_reader) const override;
+	virtual void log_impl(c_tag_file_string_debugger* string_debugger) const override;
 
 	const char* get_sturcutre_data_by_index(unsigned long index) const;
 	c_tag_struct_chunk* get_sturcutre_chunk_by_index(unsigned long index) const;

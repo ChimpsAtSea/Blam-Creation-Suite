@@ -46,7 +46,7 @@ BCS_RESULT c_tag_resource_xsynced_chunk::read_chunk(void* userdata, const void* 
 	return rs;
 }
 
-void c_tag_resource_xsynced_chunk::log_impl(c_single_tag_file_layout_reader* layout_reader) const
+void c_tag_resource_xsynced_chunk::log_impl(c_tag_file_string_debugger* string_debugger) const
 {
 	e_tag_resource_fixup_type root_address_type = resource_xsync_state_v2.root_address.get_type();
 	dword root_address_fixup_value = resource_xsync_state_v2.root_address.get_fixup_value();

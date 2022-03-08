@@ -276,6 +276,25 @@ void h3_sort_structures(std::vector<c_h3_tag_group_definition*>& group_definitio
 	}
 }
 
+std::vector<c_h3_tag_resource_definition*> exported_resource_definitions;
+void h3_clear_exported_resources()
+{
+	exported_resource_definitions.clear();
+}
+
+bool is_resource_exported(c_h3_tag_resource_definition& resource_definition)
+{
+	for (c_h3_tag_resource_definition* current_resource_definition : exported_resource_definitions)
+	{
+		if (current_resource_definition == &resource_definition)
+		{
+			return true;
+		}
+	}
+	exported_resource_definitions.push_back(&resource_definition);
+	return false;
+}
+
 std::vector<c_h3_tag_api_interop_definition*> exported_api_interop_definitions;
 void h3_clear_exported_api_interops()
 {
@@ -975,7 +994,7 @@ void h3_write_fields(std::stringstream& s, std::vector<c_h3_tag_field*>& fields)
 			ASSERT(tag_field->pageable_resource_definition);
 			if (tag_field->pageable_resource_definition)
 			{
-				s << ", &blofeld::" << _namespace << "::" << tag_field->pageable_resource_definition->struct_definition.code_name;
+				s << ", &blofeld::" << _namespace << "::" << tag_field->pageable_resource_definition->code_name;
 			}
 			if (write_tag)
 			{
@@ -1299,8 +1318,10 @@ void h3_export_header(
 	std::vector<c_h3_tag_array_definition*>& array_definitions,
 	std::vector<c_h3_tag_struct_definition*>& struct_definitions,
 	std::vector<c_h3_tag_data_definition*>& data_definitions,
+	std::vector<c_h3_tag_resource_definition*>& resource_definitions,
 	std::vector<c_h3_tag_api_interop_definition*>& api_interop_definitions)
 {
+	h3_clear_exported_resources();
 	h3_clear_exported_api_interops();
 	h3_clear_exported_datas();
 	h3_clear_exported_structs();
@@ -1382,6 +1403,16 @@ void h3_export_header(
 			s << std::endl;
 		}
 	}
+
+	for (auto& resource_definition : resource_definitions)
+	{
+		if (!is_resource_exported(*resource_definition))
+		{
+			s << "\textern s_tag_resource_definition " << resource_definition->code_name << ";" << std::endl;
+
+			s << std::endl;
+		}
+	}
 	
 	for (auto& api_interop_definition : api_interop_definitions)
 	{
@@ -1407,8 +1438,10 @@ void h3_export_source(
 	std::vector<c_h3_tag_array_definition*>& array_definitions,
 	std::vector<c_h3_tag_struct_definition*>& struct_definitions,
 	std::vector<c_h3_tag_data_definition*>& data_definitions,
+	std::vector<c_h3_tag_resource_definition*>& resource_definitions,
 	std::vector<c_h3_tag_api_interop_definition*>& api_interop_definitions)
 {
+	h3_clear_exported_resources();
 	h3_clear_exported_api_interops();
 	h3_clear_exported_datas();
 	h3_clear_exported_structs();
@@ -1555,6 +1588,18 @@ void h3_export_source(
 			s << std::endl;
 		}
 	}
+
+	for (auto& resource_definition : resource_definitions)
+	{
+		if (!is_resource_exported(*resource_definition))
+		{
+			s << "\tTAG_RESOURCE(" << std::endl;
+			s << "\t\t" << resource_definition->code_name << "," << std::endl;
+			s << "\t\t" << "\"" << resource_definition->name << "\"," << std::endl;
+			s << "\t\t" << resource_definition->struct_definition.code_name << ");" << std::endl;
+			s << std::endl;
+		}
+	}
 	
 	for (auto& api_interop_definition : api_interop_definitions)
 	{
@@ -1605,6 +1650,7 @@ void h3_export_code(
 	std::vector<c_h3_tag_array_definition*>& array_definitions,
 	std::vector<c_h3_tag_struct_definition*>& struct_definitions,
 	std::vector<c_h3_tag_data_definition*>& data_definitions,
+	std::vector<c_h3_tag_resource_definition*>& resource_definitions,
 	std::vector<c_h3_tag_api_interop_definition*>& api_interop_definitions)
 {
 	std::stringstream header_stream;
@@ -1613,8 +1659,8 @@ void h3_export_code(
 	h3_sort_group_definitions(group_definitions);
 	h3_sort_structures(sorted_group_definitions);
 
-	h3_export_header(header_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions, api_interop_definitions);
-	h3_export_source(source_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions, api_interop_definitions);
+	h3_export_header(header_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions, resource_definitions, api_interop_definitions);
+	h3_export_source(source_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions, resource_definitions, api_interop_definitions);
 
 	std::string header_string = header_stream.str();
 	std::string source_string = source_stream.str();

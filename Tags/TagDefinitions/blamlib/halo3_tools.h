@@ -2,7 +2,7 @@
 
 namespace blofeld
 {
-namespace halo3_tools {
+namespace halo3 {
 
 	static constexpr unsigned long CACHE_FILE_SOUND_TAG = '$#!+';
 	extern s_tag_group cache_file_sound_group;
@@ -6810,6 +6810,24 @@ namespace halo3_tools {
 	extern s_tag_data_definition meter_stencil_data_definition;
 
 	extern s_tag_data_definition cortana_script_data;
+
+	extern s_tag_resource_definition sound_resource_definition;
+
+	extern s_tag_resource_definition bitmap_texture_interop_resource;
+
+	extern s_tag_resource_definition bitmap_texture_interleaved_interop_resource;
+
+	extern s_tag_resource_definition structure_bsp_tag_resources;
+
+	extern s_tag_resource_definition structure_bsp_cache_file_tag_resources;
+
+	extern s_tag_resource_definition model_animation_tag_resource;
+
+	extern s_tag_resource_definition bink_resource;
+
+	extern s_tag_resource_definition render_geometry_api_resource_definition;
+
+	extern s_tag_resource_definition constant_buffer_resource_definition;
 
 	extern s_tag_interop_definition render_texture_interop_definition;
 

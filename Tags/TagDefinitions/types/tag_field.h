@@ -24,6 +24,7 @@ namespace blofeld
 			const s_tag_array_definition* const array_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
 			const s_string_list_definition* const string_list_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
 			const s_tag_reference_definition* const tag_reference_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
+			const s_tag_resource_definition* const tag_resource_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
 			const s_tag_interop_definition* const tag_interop_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
 			const s_tag_data_definition* const tag_data_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
 			const char* const explanation; // #todo remove from union
@@ -366,6 +367,10 @@ namespace blofeld
 #undef __tag_field_pointer_type__
 		
 #define __tag_field_pointer_type__ s_tag_data_definition
+#include "tag_field.ctor.inl"
+#undef __tag_field_pointer_type__
+
+#define __tag_field_pointer_type__ s_tag_resource_definition
 #include "tag_field.ctor.inl"
 #undef __tag_field_pointer_type__
 		

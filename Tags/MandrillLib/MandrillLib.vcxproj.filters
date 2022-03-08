@@ -36,34 +36,7 @@
     <ClInclude Include="CacheInterface\gen3\gen3_cache_file_header.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CacheInterface\halo4\halo4_cache_file_header.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CacheInterface\cache_byteswap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\halo4\halo4_debug_reader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\halo4\halo4_cache_file_reader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\halo4\halo4_localization_reader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\halo4\halo4_resource_reader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\halo4\halo4_tag_reader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\halo4\halo4_cache_cluster.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\halo4\halo4_tag_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\halo4\halo4_tag_instance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CacheInterface\base\cache_cluster.h">
@@ -99,19 +72,7 @@
     <ClInclude Include="CacheInterface\base\api_interop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CacheInterface\halo4\halo4_api_interop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\halo4\halo4_tag_group_hierarchy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="HighLevel\high_level_cache_cluster_transplant.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\halo4\halo4_resource_container.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\halo4\halo4_codec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CacheInterface\halo1\halo1_cache_cluster.h">
@@ -363,6 +324,9 @@
     <ClInclude Include="Filesystem\high_level_tag_file_writer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Filesystem\tag_file_string_debugger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mandrilllib-private-pch.cpp">
@@ -377,34 +341,7 @@
     <ClCompile Include="CacheInterface\gen3\gen3_cache_file_header.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CacheInterface\halo4\halo4_cache_file_header.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CacheInterface\cache_byteswap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\halo4\halo4_debug_reader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\halo4\halo4_cache_file_reader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\halo4\halo4_localization_reader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\halo4\halo4_resource_reader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\halo4\halo4_tag_reader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\halo4\halo4_cache_cluster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\halo4\halo4_tag_group.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\halo4\halo4_tag_instance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CacheInterface\base\cache_cluster.cpp">
@@ -440,19 +377,7 @@
     <ClCompile Include="CacheInterface\base\api_interop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CacheInterface\halo4\halo4_api_interop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\halo4\halo4_tag_group_hierarchy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="HighLevel\high_level_cache_cluster_transplant.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\halo4\halo4_resource_container.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\halo4\halo4_codec.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CacheInterface\halo1\halo1_cache_cluster.cpp">
@@ -701,8 +626,8 @@
     <ClCompile Include="Filesystem\high_level_tag_file_writer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Natvis Include="CacheInterface\halo4\halo4.natvis" />
+    <ClCompile Include="Filesystem\tag_file_string_debugger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -12,7 +12,7 @@ class c_reach_x360_tag_block_definition;
 class c_reach_x360_tag_reference_definition;
 class c_reach_x360_tag_array_definition;
 class c_reach_x360_tag_struct_definition;
-class c_reach_x360_tag_pageable_resource_definition;
+class c_reach_x360_tag_resource_definition;
 class c_reach_x360_tag_data_definition;
 class c_reach_x360_tag_api_interop_definition;
 
@@ -33,7 +33,7 @@ public:
 	c_reach_x360_tag_struct_definition* struct_definition;
 	c_reach_x360_tag_array_definition* array_definition;
 	c_reach_x360_string_list_definition* string_list_definition;
-	c_reach_x360_tag_pageable_resource_definition* pageable_resource_definition;
+	c_reach_x360_tag_resource_definition* pageable_resource_definition;
 	c_reach_x360_tag_data_definition* data_definition;
 	c_reach_x360_tag_api_interop_definition* api_interop_definition;
 
