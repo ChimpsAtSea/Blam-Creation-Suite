@@ -14,6 +14,7 @@
 #include "types/tag_reference_definition.h"
 #include "types/tag_resource_definition.h"
 #include "types/tag_interop_definition.h"
+#include "types/block_index_custom_search_definition.h"
 #include "types/string_list_definition.h"
 #include "types/tag_field.h"
 

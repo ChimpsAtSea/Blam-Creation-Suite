@@ -6839,6 +6839,34 @@ namespace halo3 {
 
 	extern s_tag_interop_definition constant_buffer_interop_definition;
 
+	extern s_block_index_custom_search_definition _void;
+
+	extern s_block_index_custom_search_definition permutation_info_search_definition;
+
+	extern s_block_index_custom_search_definition damage_section_search_definition;
+
+	extern s_block_index_custom_search_definition shape_search;
+
+	extern s_block_index_custom_search_definition permutation_search;
+
+	extern s_block_index_custom_search_definition custom_constraint_reference_block_index_definition;
+
+	extern s_block_index_custom_search_definition custom_physics_model_motor_reference_block_index_definition;
+
+	extern s_block_index_custom_search_definition custom_powered_chain_constraint_reference_block_index_definition;
+
+	extern s_block_index_custom_search_definition scenario_object_name_search;
+
+	extern s_block_index_custom_search_definition custom_patrol_point_block_index_definition;
+
+	extern s_block_index_custom_search_definition custom_point_set_block_index_definition;
+
+	extern s_block_index_custom_search_definition custom_task_block_index_definition;
+
+	extern s_block_index_custom_search_definition custom_jump_seam_block_index_definition;
+
+	extern s_block_index_custom_search_definition custom_area_block_index_definition;
+
 
 } // namespace blofeld
 

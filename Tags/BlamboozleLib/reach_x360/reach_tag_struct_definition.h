@@ -64,11 +64,11 @@ struct s_reach_x360_byte_swap_definition
 {
 	bptr32 name;
 	unsigned long size;
-	bptr32 byte_swap_traits;
+	bptr32 byte_swap_traits; // codes
 	bptr32 filepath;
 	unsigned long line;
 	unsigned long signature;
-	unsigned long unknown14;
+	unsigned long unknown14; // should_byteswap : bool
 };
 constexpr size_t k_reach_x360_byte_swap_definition_size = sizeof(s_reach_x360_byte_swap_definition);
 static_assert(k_reach_x360_byte_swap_definition_size == 0x1C);
@@ -83,7 +83,7 @@ struct s_reach_x360_tag_struct_runtime
 	unsigned long cache_file_struct_size;																					//148				94
 	unsigned long unknown98;																								//152				98
 	unsigned long num_combined_fields;																						//156				9C
-	unsigned long unknownA0;																								//160				A0
+	ptr32 unknownA0;																										//160				A0
 	unsigned long unique_index;																								//164				A4
 	c_big_flags_typed<long, k_num_reach_x360_field_types> inlined_field_types;												//168				A8
 	c_big_flags_typed<long, k_num_reach_x360_field_types> unknown_field_types;												//176				B0

@@ -388,23 +388,21 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 		{
 		case blofeld::_field_struct:
 		{
-			unsigned long expected_children = layout_reader.calculate_structure_expected_children(field_entry.metadata);
+			unsigned long expected_children = layout_reader.get_structure_expected_children_by_index(field_entry.metadata);
 
 			ASSERT(structure_chunk != nullptr);
-			c_tag_struct_chunk* next_tag_struct_chunk = nullptr;
 			unsigned long num_children;
 			do
 			{
-				next_tag_struct_chunk = structure_chunk->get_child_unsafe<c_tag_struct_chunk>(structure_chunk_child_index++);
-				ASSERT(next_tag_struct_chunk != nullptr);
-				num_children = next_tag_struct_chunk->get_num_children_unsafe();
+				field_tag_struct_chunk = structure_chunk->get_child_unsafe<c_tag_struct_chunk>(structure_chunk_child_index++);
+				num_children = field_tag_struct_chunk->get_num_children_unsafe();
 				if (num_children < expected_children && num_children == 0)
 				{
-					next_tag_struct_chunk = nullptr; // skip over to the next struct definition
+					field_tag_struct_chunk = nullptr; // skip over to the next struct definition
 					debug_point;
 				}
-			} while (next_tag_struct_chunk == nullptr && structure_chunk->get_child_unsafe(structure_chunk_child_index));
-			ASSERT(next_tag_struct_chunk != nullptr);
+			} while (field_tag_struct_chunk == nullptr && structure_chunk->get_child_unsafe(structure_chunk_child_index));
+			ASSERT(field_tag_struct_chunk != nullptr);
 			ASSERT(num_children >= expected_children);
 
 			//c_tag_struct_chunk* next_tag_struct_chunk = nullptr;
@@ -493,7 +491,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 
 				s_tag_persist_struct_definition& field_struct_entry = layout_reader.get_struct_definition_by_index(field_entry.metadata);
 
-				unsigned long structure_size = layout_reader.calculate_structure_size_by_index(field_entry.metadata);
+				unsigned long structure_size = layout_reader.get_structure_size_by_index(field_entry.metadata);
 				src_field_size = structure_size;
 
 				h_object& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
@@ -506,7 +504,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 			case blofeld::_field_array:
 			{
 				s_tag_persist_array_definition& array_entry = layout_reader.get_array_definition_by_index(field_entry.metadata);
-				unsigned long array_structure_size = layout_reader.calculate_structure_size_by_index(array_entry.structure_entry_index);
+				unsigned long array_structure_size = layout_reader.get_structure_size_by_index(array_entry.structure_entry_index);
 				unsigned long array_size = array_structure_size * array_entry.count;
 				src_field_size = array_size;
 			}
@@ -524,23 +522,25 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 			{
 				h_resource*& tag_resource_storage = *reinterpret_cast<decltype(&tag_resource_storage)>(high_level_field_data);
 
-				resource_xsynced_chunk;
-				resource_null_chunk;
-				ASSERT(resource_xsynced_chunk != nullptr || resource_null_chunk != nullptr);
-
-				if (resource_xsynced_chunk)
+				if (resource_xsynced_chunk != nullptr)
 				{
-					ASSERT(monolithic_resource_data != nullptr);
-
 					tag_resource_storage = new() h_resource();
 
-					const char* resource_data_start = monolithic_resource_data + resource_xsynced_chunk->resource_xsync_state_v2.cache_location_offset;
-					const char* resource_data_end = resource_data_start + resource_xsynced_chunk->resource_xsync_state_v2.cache_location_size;
+					if (resource_xsynced_chunk->resource_xsync_state_v2.cache_location_size > 0)
+					{
+						const char* resource_data_start = monolithic_resource_data + resource_xsynced_chunk->resource_xsync_state_v2.cache_location_offset;
+						const char* resource_data_end = resource_data_start + resource_xsynced_chunk->resource_xsync_state_v2.cache_location_size;
 
-					tag_resource_storage->data.insert(tag_resource_storage->data.end(), resource_data_start, resource_data_end);
-
-					debug_point;
-
+						tag_resource_storage->data.insert(tag_resource_storage->data.end(), resource_data_start, resource_data_end);
+					}
+				}
+				else if (resource_null_chunk != nullptr)
+				{
+					tag_resource_storage = new() h_resource();
+				}
+				else
+				{
+					FATAL_ERROR("Unknown pageable resource type");
 				}
 
 				debug_point;
@@ -620,7 +620,10 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 			default:
 			{
 				memcpy(high_level_field_data, structure_data_position, src_field_size);
-				blofeld::byteswap_field_data_inplace(blofeld_field.field_type, high_level_field_data, engine_platform_build);
+				if (engine_platform_build.engine_type == _platform_type_xbox_360)
+				{
+					blofeld::byteswap_field_data_inplace(blofeld_field.field_type, high_level_field_data, engine_platform_build);
+				}
 			}
 			break;
 			}

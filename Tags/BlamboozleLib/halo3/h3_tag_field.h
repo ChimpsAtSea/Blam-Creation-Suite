@@ -15,6 +15,7 @@ class c_h3_tag_struct_definition;
 class c_h3_tag_resource_definition;
 class c_h3_tag_data_definition;
 class c_h3_tag_api_interop_definition;
+class c_h3_block_index_custom_search_definition;
 
 class c_h3_tag_field
 {
@@ -33,6 +34,7 @@ public:
 	c_h3_tag_resource_definition* pageable_resource_definition;
 	c_h3_tag_data_definition* data_definition;
 	c_h3_tag_api_interop_definition* api_interop_definition;
+	c_h3_block_index_custom_search_definition* block_index_custom_search_definition;
 
 	unsigned long long padding;
 	unsigned long long skip_length;

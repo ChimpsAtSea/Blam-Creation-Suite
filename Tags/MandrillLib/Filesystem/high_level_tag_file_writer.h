@@ -74,14 +74,16 @@ public:
 	unsigned long enqueue_data_definition(const blofeld::s_tag_data_definition& tag_data_definition);
 	unsigned long enqueue_resource_definition(const blofeld::s_tag_resource_definition& tag_resource_definition);
 	unsigned long enqueue_interop_definition(const blofeld::s_tag_interop_definition& tag_interop_definition);
+	unsigned long enqueue_block_index_custom_search_definition(const blofeld::s_block_index_custom_search_definition& block_index_custom_search_definition);
 
 	unsigned long enqueue_string(const char* string);
 	unsigned long enqueue_string_list(s_tag_persist_string_list& string_list);
 
 	void serialize_tag_group(const h_tag& tag, c_binary_data_chunk& parent_chunk);
 	void serialize_tag_block(const h_block& block, c_tag_struct_chunk& parent_chunk);
-	void serialize_tag_struct(const h_object& object, c_tag_block_chunk& parent_chunk);
+	void serialize_tag_struct(const h_object& object, char* const structure_data, c_chunk& parent_chunk, c_tag_struct_chunk* tag_struct_chunk);
 	void serialize_tag_data(const h_data& data, c_tag_struct_chunk& parent_chunk);
+	void serialize_string_id(const h_string_id& string_id, c_tag_struct_chunk& parent_chunk);
 
 	unsigned long calculate_structure_size(const h_object& object);
 	unsigned long calculate_structure_size(const blofeld::s_tag_struct_definition& tag_struct_definition);

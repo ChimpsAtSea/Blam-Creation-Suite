@@ -276,6 +276,25 @@ void h3_sort_structures(std::vector<c_h3_tag_group_definition*>& group_definitio
 	}
 }
 
+std::vector<c_h3_block_index_custom_search_definition*> exported_block_index_custom_search_definitions;
+void h3_clear_exported_block_index_custom_search_definitions()
+{
+	exported_block_index_custom_search_definitions.clear();
+}
+
+bool is_block_index_custom_search_definition_exported(c_h3_block_index_custom_search_definition& exported_block_index_custom_search_definition)
+{
+	for (c_h3_block_index_custom_search_definition* current_exported_block_index_custom_search_definition : exported_block_index_custom_search_definitions)
+	{
+		if (current_exported_block_index_custom_search_definition == &exported_block_index_custom_search_definition)
+		{
+			return true;
+		}
+	}
+	exported_block_index_custom_search_definitions.push_back(&exported_block_index_custom_search_definition);
+	return false;
+}
+
 std::vector<c_h3_tag_resource_definition*> exported_resource_definitions;
 void h3_clear_exported_resources()
 {
@@ -962,6 +981,50 @@ void h3_write_fields(std::stringstream& s, std::vector<c_h3_tag_field*>& fields)
 			s << " }," << std::endl;
 		}
 		break;
+		case _h3_field_type_custom_char_block_index:
+		case _h3_field_type_custom_short_block_index:
+		case _h3_field_type_custom_long_block_index:
+		{
+			s << "\t\t{ ";
+			s << field_generic_type_name << ", ";
+			s << "\"" << pretty_name.c_str() << "\"";
+			if (write_description)
+			{
+				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
+				else s << ", " << "nullptr";
+			}
+			if (write_units)
+			{
+				if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
+				else s << ", " << "nullptr";
+			}
+			if (write_limits)
+			{
+				if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
+				else s << ", " << "nullptr";
+			}
+			if (write_old_name)
+			{
+				s << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+			}
+			if (write_flags)
+			{
+				s << ", ";
+				h3_generate_tag_field_flags(s, string_parser);
+			}
+			ASSERT(tag_field->block_index_custom_search_definition);
+			if (tag_field->block_index_custom_search_definition)
+			{
+				s << ", &blofeld::" << _namespace << "::" << tag_field->block_index_custom_search_definition->code_name;
+			}
+			if (write_tag)
+			{
+				s << ", " << tag_field->field_id_string;
+			}
+
+			s << " }," << std::endl;
+		}
+		break;
 		case _h3_field_type_pageable_resource:
 		{
 			s << "\t\t{ ";
@@ -1319,8 +1382,10 @@ void h3_export_header(
 	std::vector<c_h3_tag_struct_definition*>& struct_definitions,
 	std::vector<c_h3_tag_data_definition*>& data_definitions,
 	std::vector<c_h3_tag_resource_definition*>& resource_definitions,
-	std::vector<c_h3_tag_api_interop_definition*>& api_interop_definitions)
+	std::vector<c_h3_tag_api_interop_definition*>& api_interop_definitions,
+	std::vector<c_h3_block_index_custom_search_definition*>& block_index_custom_search_definitions)
 {
+	h3_clear_exported_block_index_custom_search_definitions();
 	h3_clear_exported_resources();
 	h3_clear_exported_api_interops();
 	h3_clear_exported_datas();
@@ -1413,7 +1478,7 @@ void h3_export_header(
 			s << std::endl;
 		}
 	}
-	
+
 	for (auto& api_interop_definition : api_interop_definitions)
 	{
 		if (!is_api_interop_exported(*api_interop_definition))
@@ -1424,11 +1489,50 @@ void h3_export_header(
 		}
 	}
 
+	for (auto& block_index_custom_search_definition : block_index_custom_search_definitions)
+	{
+		if (!is_block_index_custom_search_definition_exported(*block_index_custom_search_definition))
+		{
+			s << "\textern s_block_index_custom_search_definition " << block_index_custom_search_definition->code_name << ";" << std::endl;
+
+			s << std::endl;
+		}
+	}
+	
+
 	s << std::endl;
 	s << "} // namespace blofeld" << std::endl;
 	s << std::endl;
 	s << "} // namespace halo3" << std::endl;
 	s << std::endl;
+}
+
+static const char* halo3_tag_field_set_bit_to_field_set_bit_macro(e_h3_tag_field_set_bit runtime_flag)
+{
+	switch (runtime_flag)
+	{
+	case _h3_tag_field_set_unknown0:										return "SET_UNKNOWN0";
+	case _h3_tag_field_set_unknown1:										return "SET_UNKNOWN1";
+	case _h3_tag_field_set_has_inlined_children_with_placement_new_bit:	return "SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW";
+	case _h3_tag_field_set_unknown3:										return "SET_UNKNOWN3";
+	case _h3_tag_field_set_unknown4:										return "SET_UNKNOWN4";
+	case _h3_tag_field_set_unknown5:										return "SET_UNKNOWN5";
+	case _h3_tag_field_set_is_temporary_bit:								return "SET_IS_TEMPORARY";
+	case _h3_tag_field_set_unknown7:										return "SET_UNKNOWN7";
+	case _h3_tag_field_set_unknown8:										return "SET_UNKNOWN8";
+	case _h3_tag_field_set_delete_recursively_bit:						return "SET_DELETE_RECURSIVELY";
+	case _h3_tag_field_set_postprocess_recursively_bit:					return "SET_POSTPROCESS_RECURSIVELY";
+	case _h3_tag_field_set_is_memcpyable_bit:							return "SET_IS_MEMCPYABLE";
+	case _h3_tag_field_set_unknown12:									return "SET_UNKNOWN12";
+	case _h3_tag_field_set_has_resources:								return "SET_HAS_RESOURCES";
+	case _h3_tag_field_set_unknown14:									return "SET_UNKNOWN14";
+	case _h3_tag_field_set_unknown15:									return "SET_UNKNOWN15";
+	case _h3_tag_field_set_has_level_specific_fields_bit:				return "SET_HAS_LEVEL_SPECIFIC_FIELDS";
+	case _h3_tag_field_set_can_memset_to_initialize_bit:					return "SET_CAN_MEMSET_TO_INITIALIZE";
+	case _h3_tag_field_set_unknown18:									return "SET_UNKNOWN18";
+	case _h3_tag_field_set_unknown19:									return "SET_UNKNOWN19";
+	}
+	throw;
 }
 
 void h3_export_source(
@@ -1439,8 +1543,10 @@ void h3_export_source(
 	std::vector<c_h3_tag_struct_definition*>& struct_definitions,
 	std::vector<c_h3_tag_data_definition*>& data_definitions,
 	std::vector<c_h3_tag_resource_definition*>& resource_definitions,
-	std::vector<c_h3_tag_api_interop_definition*>& api_interop_definitions)
+	std::vector<c_h3_tag_api_interop_definition*>& api_interop_definitions,
+	std::vector<c_h3_block_index_custom_search_definition*>& block_index_custom_search_definitions)
 {
+	h3_clear_exported_block_index_custom_search_definitions();
 	h3_clear_exported_resources();
 	h3_clear_exported_api_interops();
 	h3_clear_exported_datas();
@@ -1557,7 +1663,41 @@ void h3_export_source(
 			s << "\t\t" << "\"" << struct_definition->pretty_name << "\"," << std::endl;
 			s << "\t\t" << "\"" << struct_definition->name << "\"," << std::endl;
 			s << "\t\t" << "\"s_" << struct_definition->code_name << "\"," << std::endl;
-			s << "\t\t" << "SET_DEFAULT," << std::endl;
+
+			c_flags<e_h3_tag_field_set_bit, long, k_num_h3_runtime_flags> default_flags;
+			default_flags.set(_h3_tag_field_set_unknown0, true);
+			default_flags.set(_h3_tag_field_set_unknown1, true);
+			default_flags.set(_h3_tag_field_set_unknown5, true);
+			default_flags.set(_h3_tag_field_set_delete_recursively_bit, true);
+			default_flags.set(_h3_tag_field_set_postprocess_recursively_bit, true);
+
+			if (struct_definition->struct_definition.runtime.flags == default_flags)
+			{
+				s << "\t\t" << "SET_DEFAULT," << std::endl;
+			}
+			else
+			{
+				s << "\t\t";
+				bool is_first = true;
+				for (long _h3_tag_field_set = 0; _h3_tag_field_set < k_num_h3_runtime_flags; _h3_tag_field_set++)
+				{
+					e_h3_tag_field_set_bit halo3_tag_field_set = static_cast<e_h3_tag_field_set_bit>(_h3_tag_field_set);
+					if (struct_definition->struct_definition.runtime.flags.test(halo3_tag_field_set))
+					{
+						const char* macro = halo3_tag_field_set_bit_to_field_set_bit_macro(halo3_tag_field_set);
+
+						if (!is_first)
+						{
+							s << " | ";
+						}
+
+						s << macro;
+
+						is_first = false;
+					}
+				}
+				s << "," << std::endl;
+			}
 			s << "\t\t" << "TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY)," << std::endl;
 			s << "\t\t" << persistent_identifier_name_buffer;
 			if (struct_definition->alignment_bits)
@@ -1637,6 +1777,17 @@ void h3_export_source(
 		}
 	}
 
+	for (auto& block_index_custom_search_definition : block_index_custom_search_definitions)
+	{
+		if (!is_block_index_custom_search_definition_exported(*block_index_custom_search_definition))
+		{
+			s << "\tBLOCK_INDEX_CUSTOM_SEARCH_DEFINITION(" << std::endl;
+			s << "\t\t" << block_index_custom_search_definition->code_name << "," << std::endl;
+			s << "\t\t" << "\"" << block_index_custom_search_definition->name << "\");" << std::endl;
+			s << std::endl;
+		}
+	}
+
 	s << std::endl;
 	s << "} // namespace blofeld" << std::endl;
 	s << std::endl;
@@ -1651,7 +1802,8 @@ void h3_export_code(
 	std::vector<c_h3_tag_struct_definition*>& struct_definitions,
 	std::vector<c_h3_tag_data_definition*>& data_definitions,
 	std::vector<c_h3_tag_resource_definition*>& resource_definitions,
-	std::vector<c_h3_tag_api_interop_definition*>& api_interop_definitions)
+	std::vector<c_h3_tag_api_interop_definition*>& api_interop_definitions,
+	std::vector<c_h3_block_index_custom_search_definition*>& block_index_custom_search_definitions)
 {
 	std::stringstream header_stream;
 	std::stringstream source_stream;
@@ -1659,8 +1811,27 @@ void h3_export_code(
 	h3_sort_group_definitions(group_definitions);
 	h3_sort_structures(sorted_group_definitions);
 
-	h3_export_header(header_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions, resource_definitions, api_interop_definitions);
-	h3_export_source(source_stream, sorted_group_definitions, block_definitions, array_definitions, struct_definitions, data_definitions, resource_definitions, api_interop_definitions);
+	h3_export_header(
+		header_stream, 
+		sorted_group_definitions,
+		block_definitions, 
+		array_definitions,
+		struct_definitions,
+		data_definitions, 
+		resource_definitions,
+		api_interop_definitions,
+		block_index_custom_search_definitions);
+
+	h3_export_source(
+		source_stream, 
+		sorted_group_definitions,
+		block_definitions, 
+		array_definitions, 
+		struct_definitions, 
+		data_definitions, 
+		resource_definitions, 
+		api_interop_definitions, 
+		block_index_custom_search_definitions);
 
 	std::string header_string = header_stream.str();
 	std::string source_string = source_stream.str();

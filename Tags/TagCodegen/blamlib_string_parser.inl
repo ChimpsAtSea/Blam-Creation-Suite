@@ -349,7 +349,8 @@ void c_blamlib_string_parser_v2::setup_code_name()
 	code_name = pretty_name;
 
 	cleanup_code_name();
-
+	
+	if (strcmp(code_name, "void") == 0)											code_name = "_void";
 	if (strcmp(code_name, "char") == 0)											code_name = "_char";
 	if (strcmp(code_name, "short") == 0)										code_name = "_short";
 	if (strcmp(code_name, "long") == 0)											code_name = "_long";

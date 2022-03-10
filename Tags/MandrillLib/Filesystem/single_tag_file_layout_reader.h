@@ -39,15 +39,16 @@ public:
 	c_single_tag_file_layout_reader(s_single_tag_file_header& header, const void* tag_file_data);
 	~c_single_tag_file_layout_reader();
 
-	unsigned long calculate_structure_size_by_index(unsigned long structure_index);
-	unsigned long calculate_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry);
-	unsigned long calculate_structure_expected_children(unsigned long structure_index);
-	unsigned long calculate_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry);
+	unsigned long get_structure_size_by_index(unsigned long structure_index);
+	unsigned long get_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry);
+	unsigned long get_structure_expected_children_by_index(unsigned long structure_index);
+	unsigned long get_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry);
 
 	virtual const char* get_string_by_string_character_index(const s_tag_persist_string_character_index& offset) const override;
 	const char* get_custom_block_index_search_name_by_index(unsigned long custom_block_index_search_name_index) const;
 	const char* get_data_definition_name_by_index(unsigned long data_definition_index) const;
 	s_tag_persist_block_definition& get_block_definition_by_index(unsigned long index) const;
+	unsigned long get_struct_definition_count() const;
 	s_tag_persist_struct_definition& get_struct_definition_by_index(unsigned long index) const;
 	s_tag_persist_array_definition& get_array_definition_by_index(unsigned long index) const;
 	s_tag_persist_resource_definition& get_resource_definition_by_index(unsigned long index) const;
@@ -69,4 +70,16 @@ protected:
 	c_structure_definitions_chunk* structure_definitions_chunk;
 	c_resource_definitions_chunk* resource_definitions_chunk;
 	c_interop_definitions_chunk* interop_definitions_chunk;
+
+	using t_persistent_id_to_ulong_map = std::map<XXH64_hash_t, unsigned long>;
+	unsigned long* structure_size_by_index;
+	unsigned long* structure_expected_children_by_index;
+	t_persistent_id_to_ulong_map structure_size_by_persistent_identifier;
+	t_persistent_id_to_ulong_map structure_expected_children_persistent_identifier;
+
+	void calculate_structure_size_and_children();
+	unsigned long _calculate_structure_size_by_index(unsigned long structure_index) const;
+	unsigned long _calculate_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry)const;
+	unsigned long _calculate_structure_expected_children_by_index(unsigned long structure_index)const;
+	unsigned long _calculate_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry)const;
 };

@@ -22,6 +22,7 @@
     <ClCompile Include="blamlib\halo3_tools.cpp" />
     <ClCompile Include="blamlib\haloreach_tags_test_x360.cpp" />
     <ClCompile Include="blamlib_byteswap.cpp" />
+    <ClCompile Include="types\block_index_custom_search_definition.cpp" />
     <ClCompile Include="blofeld.cpp" />
     <ClCompile Include="blofeld\constants.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -63,6 +64,7 @@
     <ClInclude Include="blamlib\halo3_tools.h" />
     <ClInclude Include="blamlib\haloreach_tags_test_x360.h" />
     <ClInclude Include="blamlib_byteswap.h" />
+    <ClInclude Include="types\block_index_custom_search_definition.h" />
     <ClInclude Include="blofeld\constants.h" />
     <ClInclude Include="blamlib\halo1_tools.h" />
     <ClInclude Include="blamlib\halo2_tools.h" />

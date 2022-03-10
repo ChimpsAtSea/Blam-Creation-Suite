@@ -65,6 +65,7 @@ enum e_h3_field_type : unsigned long
 	_h3_field_type_pageable_resource,
 	_h3_field_type_api_interop,
 	_h3_field_type_terminator_X,
+	k_num_h3_field_types
 };
 
 extern const char* h3_field_type_to_string(e_h3_field_type field_type);

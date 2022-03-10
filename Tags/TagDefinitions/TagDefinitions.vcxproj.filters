@@ -102,6 +102,9 @@
     <ClCompile Include="types\tag_resource_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="types\block_index_custom_search_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld.h">
@@ -210,6 +213,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="types\tag_resource_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\block_index_custom_search_definition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

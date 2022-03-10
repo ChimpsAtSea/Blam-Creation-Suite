@@ -291,6 +291,9 @@
     <ClCompile Include="reach_x360\reach_tag_resource_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="halo3\h3_block_index_custom_search_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blamboozle_h1_guerilla.h">
@@ -597,6 +600,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="reach_x360\reach_tag_resource_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo3\h3_block_index_custom_search_definition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -34,6 +34,7 @@ bool h3_find_address(const char* data, ptr64 address, std::vector<s_h3_find_resu
 #include "h3_tag_api_interop_definition.h"
 #include "h3_tag_struct_definition.h"
 #include "h3_tag_resource_definition.h"
+#include "h3_block_index_custom_search_definition.h"
 
 void h3_export_code(
 	std::vector<c_h3_tag_group_definition*>& group_definitions,
@@ -42,5 +43,6 @@ void h3_export_code(
 	std::vector<c_h3_tag_struct_definition*>& struct_definitions,
 	std::vector<c_h3_tag_data_definition*>& data_definitions,
 	std::vector<c_h3_tag_resource_definition*>& resource_definitions,
-	std::vector<c_h3_tag_api_interop_definition*>& api_interop_definitions);
+	std::vector<c_h3_tag_api_interop_definition*>& api_interop_definitions,
+	std::vector<c_h3_block_index_custom_search_definition*>& block_index_custom_search_definitions);
 std::string h3_convert_to_code_name(std::string name);

@@ -1,6 +1,12 @@
 #include "mandrilllib-private-pch.h"
 
-c_tag_file_high_level_transplant::c_tag_file_high_level_transplant(const char* filepath)
+c_tag_file_high_level_transplant::c_tag_file_high_level_transplant(const char* filepath, s_engine_platform_build engine_platform_build) :
+	tag_file_data(),
+	tag_file_data_size(),
+	header_data(),
+	layout_reader(),
+	reader(),
+	engine_platform_build(engine_platform_build)
 {
 	BCS_FAIL_THROW(filesystem_read_file_to_memory(filepath, tag_file_data, tag_file_data_size));
 	ASSERT(tag_file_data_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
@@ -10,8 +16,6 @@ c_tag_file_high_level_transplant::c_tag_file_high_level_transplant(const char* f
 	static constexpr tag k_tag_file_root_data_stream_tag = 'tag!';
 	tag root_node_tag = *reinterpret_cast<tag*>(header_data + 1);
 	ASSERT(root_node_tag == k_tag_file_root_data_stream_tag);
-
-	engine_platform_build = { _engine_type_halo3 };
 
 	c_stopwatch s;
 	s.start();
@@ -32,12 +36,25 @@ c_tag_file_high_level_transplant::c_tag_file_high_level_transplant(const char* f
 	//tag_group_layout_chunk->log(layout_reader->string_data_chunk);
 	//binary_data_chunk->log(layout_reader->string_data_chunk);
 
-	h_tag* high_level_tag;
-	reader->parse_high_level_object(high_level_tag);
+
 	debug_point;
 }
 
 c_tag_file_high_level_transplant::~c_tag_file_high_level_transplant()
 {
 
+}
+
+h_tag* c_tag_file_high_level_transplant::parse_tag()
+{
+	const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build.engine_type, header_data->group_tag);
+	h_group* high_level_group = new() h_group(engine_platform_build, *tag_group);
+
+	h_tag* high_level_tag;
+	reader->parse_high_level_object(high_level_tag);
+	debug_point;
+
+	high_level_group->associate_tag_instance(*high_level_tag);
+
+	return high_level_tag;
 }

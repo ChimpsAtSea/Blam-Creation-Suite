@@ -14,6 +14,8 @@ c_h3_tag_field::c_h3_tag_field(const char* guerilla_data, const s_h3_tag_field& 
 	array_definition(nullptr),
 	string_list_definition(nullptr),
 	data_definition(nullptr),
+	api_interop_definition(nullptr),
+	block_index_custom_search_definition(nullptr),
 	padding(0),
 	skip_length(0),
 	explanation(0),
@@ -67,6 +69,7 @@ c_h3_tag_field::c_h3_tag_field(const char* guerilla_data, const s_h3_tag_field& 
 	case _h3_field_type_custom_char_block_index:
 	case _h3_field_type_custom_short_block_index:
 	case _h3_field_type_custom_long_block_index:
+		block_index_custom_search_definition = c_h3_block_index_custom_search_definition::h3_get_block_index_custom_search_definition(guerilla_data, field_definition.definition_address);
 		break;
 	case _h3_field_type_custom:
 		break;

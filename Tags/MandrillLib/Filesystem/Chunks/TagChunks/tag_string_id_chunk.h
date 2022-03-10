@@ -11,4 +11,9 @@ public:
 	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
 
 	virtual void log_impl(c_tag_file_string_debugger* string_debugger) const override;
+	virtual BCS_RESULT set_string(const char* string);
+	void read_data();
+
+protected:
+	virtual BCS_RESULT set_data(const void* data, unsigned long data_size) override;
 };

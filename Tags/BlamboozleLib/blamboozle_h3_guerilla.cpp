@@ -55,7 +55,8 @@ int c_blamboozle_h3_guerilla::run()
 	std::vector<c_h3_tag_data_definition*> data_definitions;
 	std::vector<c_h3_tag_resource_definition*> resource_definitions;
 	std::vector<c_h3_tag_api_interop_definition*> api_interop_definitions;
-
+	std::vector<c_h3_block_index_custom_search_definition*> block_index_custom_search_definitions;
+	
 	for (auto& tag_block_definition_kp : c_h3_tag_block_definition::tag_block_definitions)
 	{
 		auto& tag_block_definition = tag_block_definition_kp.second;
@@ -86,7 +87,12 @@ int c_blamboozle_h3_guerilla::run()
 		auto& tag_api_interop_definition = tag_api_interop_definition_kp.second;
 		api_interop_definitions.push_back(tag_api_interop_definition);
 	}
-
+	for (auto& block_index_custom_search_definition_kp : c_h3_block_index_custom_search_definition::block_index_custom_search_definitions)
+	{
+		auto& block_index_custom_search_definition = block_index_custom_search_definition_kp.second;
+		block_index_custom_search_definitions.push_back(block_index_custom_search_definition);
+	}
+	
 	h3_export_code(
 		group_definitions, 
 		block_definitions, 
@@ -94,7 +100,8 @@ int c_blamboozle_h3_guerilla::run()
 		struct_definitions,
 		data_definitions,
 		resource_definitions,
-		api_interop_definitions);
+		api_interop_definitions,
+		block_index_custom_search_definitions);
 
 	debug_point;
 

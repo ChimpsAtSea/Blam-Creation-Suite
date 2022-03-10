@@ -173,6 +173,7 @@
     <ClCompile Include="blamlib_string_parser.cpp" />
     <ClCompile Include="endianness.cpp" />
     <ClCompile Include="field_id.cpp" />
+    <ClCompile Include="halo3\h3_block_index_custom_search_definition.cpp" />
     <ClCompile Include="halo1\h1_pseudo_field_definition.cpp" />
     <ClCompile Include="halo1\h1_pseudo_field_type.cpp" />
     <ClCompile Include="halo1\h1_pseudo_struct_definition.cpp" />
@@ -267,6 +268,7 @@
     <ClInclude Include="blamboozle_reach_x360.h" />
     <ClInclude Include="blamlib_string_parser.h" />
     <ClInclude Include="endianness.h" />
+    <ClInclude Include="halo3\h3_block_index_custom_search_definition.h" />
     <ClInclude Include="halo1\h1_pseudo_field_definition.h" />
     <ClInclude Include="halo1\h1_pseudo_struct_definition.h" />
     <ClInclude Include="halo1\h1_tag_string_list_definition.h" />

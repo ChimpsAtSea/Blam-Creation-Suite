@@ -3,13 +3,19 @@
 std::map<ptr64, c_h3_tag_struct_definition*> c_h3_tag_struct_definition::tag_struct_definitions;
 
 c_h3_tag_struct_definition::c_h3_tag_struct_definition(const char* data, const s_h3_tag_struct_definition& definition_header) :
-	pretty_name(h3_pa_to_pointer(data, definition_header.pretty_name_address)),
-	name(h3_pa_to_pointer(data, definition_header.name_address)),
+	pretty_name(h3_pa_to_pointer(data, definition_header.type.pretty_name_address)),
+	name(h3_pa_to_pointer(data, definition_header.type.name_address)),
 	code_name(h3_convert_to_code_name(name)),
-	structure_size(definition_header.structure_size),
-	alignment_bits(definition_header.alignment_bits),
+	structure_size(definition_header.type.structure_size),
+	alignment_bits(definition_header.type.alignment_bits),
 	struct_definition(definition_header),
-	persistent_identifier(definition_header.persistent_identifier),
+	persistent_identifier
+	{
+		definition_header.type.persistent_identifier.identifier_part_0,
+		definition_header.type.persistent_identifier.identifier_part_1,
+		definition_header.type.persistent_identifier.identifier_part_2,
+		definition_header.type.persistent_identifier.identifier_part_3,
+	},
 	//block_definition(nullptr),
 	//array_definition(nullptr),
 	fields()
@@ -28,7 +34,7 @@ c_h3_tag_struct_definition::c_h3_tag_struct_definition(const char* data, const s
 		code_name += existing_count_buffer;
 	}
 
-	const s_h3_tag_field* const field_definitions = (const s_h3_tag_field*)h3_pa_to_pointer(data, definition_header.fields_address);
+	const s_h3_tag_field* const field_definitions = (const s_h3_tag_field*)h3_pa_to_pointer(data, definition_header.type.fields_address);
 
 	const s_h3_tag_field* field_definition = field_definitions;
 	do

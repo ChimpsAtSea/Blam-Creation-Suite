@@ -189,5 +189,6 @@ s_tag_interop_definition symbol = { #symbol, tag_interop_name, __FILE__, __LINE_
 #define TAG_RESOURCE(symbol, tag_resource_name, tag_resource_structure) \
 s_tag_resource_definition symbol = { #symbol, tag_resource_name, __FILE__, __LINE__, tag_resource_structure }
 
-
+#define BLOCK_INDEX_CUSTOM_SEARCH_DEFINITION(symbol, block_index_custom_search_name) \
+s_block_index_custom_search_definition symbol = { #symbol, block_index_custom_search_name, __FILE__, __LINE__ }
 }

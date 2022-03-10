@@ -15,7 +15,11 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 	fields_chunk(),
 	structure_definitions_chunk(),
 	resource_definitions_chunk(),
-	interop_definitions_chunk()
+	interop_definitions_chunk(),
+	structure_size_by_index(),
+	structure_expected_children_by_index(),
+	structure_size_by_persistent_identifier(),
+	structure_expected_children_persistent_identifier()
 {
 	const s_single_tag_file_header* src_header = static_cast<const s_single_tag_file_header*>(tag_file_data);
 	root_chunk = new() c_tag_header_chunk();
@@ -114,6 +118,8 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 		ASSERT(structure_definitions_chunk != nullptr);
 	}
 
+	calculate_structure_size_and_children();
+
 	root_chunk->log(this);
 }
 
@@ -121,21 +127,70 @@ c_single_tag_file_layout_reader::~c_single_tag_file_layout_reader()
 {
 	delete root_chunk;
 	delete[] aggregate_entries;
+	delete[] structure_size_by_index;
+	delete[] structure_expected_children_by_index;
 }
 
-unsigned long c_single_tag_file_layout_reader::calculate_structure_size_by_index(unsigned long structure_index)
+unsigned long c_single_tag_file_layout_reader::get_structure_size_by_index(unsigned long structure_index)
+{
+	return structure_size_by_index[structure_index];
+}
+
+unsigned long c_single_tag_file_layout_reader::get_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry)
+{
+	XXH64_hash_t persistent_identifier_hash = XXH64(&structure_entry.persistent_identifier, sizeof(structure_entry.persistent_identifier), 0);
+	t_persistent_id_to_ulong_map::const_iterator iterator = structure_size_by_persistent_identifier.find(persistent_identifier_hash);
+	ASSERT(iterator != structure_size_by_persistent_identifier.end());
+	return iterator->second;
+}
+
+unsigned long c_single_tag_file_layout_reader::get_structure_expected_children_by_index(unsigned long structure_index)
+{
+	return structure_expected_children_by_index[structure_index];
+}
+
+unsigned long c_single_tag_file_layout_reader::get_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry)
+{
+	XXH64_hash_t persistent_identifier_hash = XXH64(&structure_entry.persistent_identifier, sizeof(structure_entry.persistent_identifier), 0);
+	t_persistent_id_to_ulong_map::const_iterator iterator = structure_expected_children_persistent_identifier.find(persistent_identifier_hash);
+	ASSERT(iterator != structure_expected_children_persistent_identifier.end());
+	return iterator->second;
+}
+
+void c_single_tag_file_layout_reader::calculate_structure_size_and_children()
+{
+	unsigned long structure_count = get_struct_definition_count();
+	structure_size_by_index = new() unsigned long[structure_count];
+	structure_expected_children_by_index = new() unsigned long[structure_count];
+
+	for (unsigned long structure_index = 0; structure_index < structure_count; structure_index++)
+	{
+		s_tag_persist_struct_definition& structure_entry = get_struct_definition_by_index(structure_index);
+		XXH64_hash_t persistent_identifier_hash = XXH64(&structure_entry.persistent_identifier, sizeof(structure_entry.persistent_identifier), 0);
+
+		unsigned long structure_size = _calculate_structure_size_by_index(structure_index);
+		unsigned long expected_children = _calculate_structure_expected_children_by_index(structure_index);
+
+		structure_size_by_index[structure_index] = structure_size;
+		structure_expected_children_by_index[structure_index] = expected_children;
+		structure_size_by_persistent_identifier[persistent_identifier_hash] = structure_size;
+		structure_expected_children_persistent_identifier[persistent_identifier_hash] = expected_children;
+	}
+}
+
+unsigned long c_single_tag_file_layout_reader::_calculate_structure_size_by_index(unsigned long structure_index) const
 {
 	s_tag_persist_struct_definition& struct_definition = get_struct_definition_by_index(structure_index);
-	return calculate_structure_size_by_entry(struct_definition);
+	return _calculate_structure_size_by_entry(struct_definition);
 }
 
-unsigned long c_single_tag_file_layout_reader::calculate_structure_expected_children(unsigned long structure_index)
+unsigned long c_single_tag_file_layout_reader::_calculate_structure_expected_children_by_index(unsigned long structure_index) const
 {
 	s_tag_persist_struct_definition& struct_definition = get_struct_definition_by_index(structure_index);
-	return calculate_structure_expected_children_by_entry(struct_definition);
+	return _calculate_structure_expected_children_by_entry(struct_definition);
 }
 
-unsigned long c_single_tag_file_layout_reader::calculate_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry)
+unsigned long c_single_tag_file_layout_reader::_calculate_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry) const
 {
 	unsigned long structure_size = 0;
 	for (unsigned long field_index = structure_entry.fields_start_index;; field_index++)
@@ -164,7 +219,7 @@ unsigned long c_single_tag_file_layout_reader::calculate_structure_size_by_entry
 			{
 			case blofeld::_field_struct:
 			{
-				unsigned long structure_size = calculate_structure_size_by_index(field_entry.metadata);
+				unsigned long structure_size = _calculate_structure_size_by_index(field_entry.metadata);
 				field_size = structure_size;
 			}
 			break;
@@ -172,7 +227,7 @@ unsigned long c_single_tag_file_layout_reader::calculate_structure_size_by_entry
 			{
 				s_tag_persist_array_definition& array_entry = get_array_definition_by_index(field_entry.metadata);
 				//s_tag_persist_array_definition& array_entry = array_definitions_chunk->entries[field_entry.metadata];
-				unsigned long array_structure_size = calculate_structure_size_by_index(array_entry.structure_entry_index);
+				unsigned long array_structure_size = _calculate_structure_size_by_index(array_entry.structure_entry_index);
 				unsigned long array_size = array_structure_size * array_entry.count;
 				field_size = array_size;
 			}
@@ -197,7 +252,7 @@ end:;
 	return structure_size;
 }
 
-unsigned long c_single_tag_file_layout_reader::calculate_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry)
+unsigned long c_single_tag_file_layout_reader::_calculate_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry) const
 {
 	unsigned long child_entry_count = 0;
 	for (unsigned long field_index = structure_entry.fields_start_index;; field_index++)
@@ -293,6 +348,18 @@ s_tag_persist_block_definition& c_single_tag_file_layout_reader::get_block_defin
 	{
 		ASSERT(index < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count);
 		return aggregate_entries[index].block_definition;
+	}
+}
+
+unsigned long c_single_tag_file_layout_reader::get_struct_definition_count() const
+{
+	if (tag_layout_prechunk_chunk == nullptr)
+	{
+		return structure_definitions_chunk->entry_count;
+	}
+	else
+	{
+		return tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count;
 	}
 }
 
