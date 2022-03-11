@@ -37,7 +37,7 @@ public:
 
 	void log(c_tag_file_string_debugger* string_debugger = nullptr) const;
 	void log_pad() const;
-	void log_signature() const;
+	virtual void log_signature() const;
 	virtual void log_impl(c_tag_file_string_debugger* string_debugger) const;
 
 	template<typename t_chunk>

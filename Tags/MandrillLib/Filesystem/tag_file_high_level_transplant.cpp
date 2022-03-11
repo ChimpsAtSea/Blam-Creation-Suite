@@ -15,7 +15,9 @@ c_tag_file_high_level_transplant::c_tag_file_high_level_transplant(const char* f
 
 	static constexpr tag k_tag_file_root_data_stream_tag = 'tag!';
 	tag root_node_tag = *reinterpret_cast<tag*>(header_data + 1);
-	ASSERT(root_node_tag == k_tag_file_root_data_stream_tag);
+	bool is_little_endian_tag = root_node_tag == k_tag_file_root_data_stream_tag;
+	bool is_big_endian_tag = byteswap(root_node_tag) == k_tag_file_root_data_stream_tag;
+	ASSERT(is_little_endian_tag || is_big_endian_tag);
 
 	c_stopwatch s;
 	s.start();
@@ -25,6 +27,7 @@ c_tag_file_high_level_transplant::c_tag_file_high_level_transplant(const char* f
 	reader = new() c_single_tag_file_reader(
 		*header_data,
 		engine_platform_build,
+		is_big_endian_tag,
 		*layout_reader,
 		*layout_reader->binary_data_chunk,
 		nullptr);

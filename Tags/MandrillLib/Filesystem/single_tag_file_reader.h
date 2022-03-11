@@ -38,6 +38,8 @@ public:
 	c_single_tag_file_layout_reader& layout_reader;
 	c_binary_data_chunk& binary_data_chunk;
 
+	bool is_big_endian;
+
 	std::stack<unsigned long> metadata_stack;
 
 	const blofeld::s_tag_struct_definition** tag_struct_definitions;
@@ -57,6 +59,7 @@ public:
 	c_single_tag_file_reader(
 		s_single_tag_file_header& header,
 		s_engine_platform_build engine_platform_build,
+		bool is_big_endian,
 		c_single_tag_file_layout_reader& layout_reader,
 		c_binary_data_chunk& binary_data_chunk,
 		const void* monolithic_resource_data);

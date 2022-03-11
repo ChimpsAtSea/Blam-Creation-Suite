@@ -3,12 +3,14 @@
 c_single_tag_file_reader::c_single_tag_file_reader(
 	s_single_tag_file_header& header,
 	s_engine_platform_build engine_platform_build,
+	bool is_big_endian,
 	c_single_tag_file_layout_reader& layout_reader,
 	c_binary_data_chunk& binary_data_chunk,
 	const void* _monolithic_resource_data) :
 	header(header),
 	layout_reader(layout_reader),
 	binary_data_chunk(binary_data_chunk),
+	is_big_endian(is_big_endian),
 	metadata_stack(),
 	tag_struct_definitions(),
 	struct_entries_data(),
@@ -536,7 +538,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 				}
 				else if (resource_null_chunk != nullptr)
 				{
-					tag_resource_storage = new() h_resource();
+					tag_resource_storage = nullptr;
 				}
 				else
 				{
@@ -620,7 +622,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 			default:
 			{
 				memcpy(high_level_field_data, structure_data_position, src_field_size);
-				if (engine_platform_build.engine_type == _platform_type_xbox_360)
+				if (is_big_endian)
 				{
 					blofeld::byteswap_field_data_inplace(blofeld_field.field_type, high_level_field_data, engine_platform_build);
 				}

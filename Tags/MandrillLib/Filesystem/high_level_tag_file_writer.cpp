@@ -577,7 +577,7 @@ void c_high_level_tag_file_writer::serialize_tag_group(const h_tag& tag, c_binar
 	c_tag_struct_chunk* tag_struct_chunk = new() c_tag_struct_chunk(tag_block_chunk);
 	tag_block_chunk.add_child(*tag_struct_chunk);
 
-	serialize_tag_struct(tag, structure_data, tag_block_chunk, tag_struct_chunk);
+	serialize_tag_struct(tag, structure_data, tag_struct_chunk);
 
 	tag_block_chunk.append_data(structure_data, structure_size);
 	debug_point;
@@ -612,11 +612,10 @@ void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_t
 		if (!tag_block_chunk_header.is_simple_data_type)
 		{
 			tag_struct_chunk = new() c_tag_struct_chunk(tag_block_chunk);
-			tag_struct_chunk->debug_string = tag_struct_definition.name;
 			tag_block_chunk.add_child(*tag_struct_chunk);
 		}
 
-		serialize_tag_struct(object, structure_data, tag_block_chunk, tag_struct_chunk);
+		serialize_tag_struct(object, structure_data, tag_struct_chunk);
 
 		debug_point;
 	}
@@ -624,7 +623,7 @@ void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_t
 	tag_block_chunk.append_data(block_data, block_data_size);
 }
 
-void c_high_level_tag_file_writer::serialize_tag_struct(const h_object& object, char* const structure_data, c_chunk& parent_chunk, c_tag_struct_chunk* tag_struct_chunk)
+void c_high_level_tag_file_writer::serialize_tag_struct(const h_object& object, char* const structure_data, c_tag_struct_chunk* tag_struct_chunk)
 {
 	char* dst_field_data = structure_data;
 	unsigned long field_index = 0;
@@ -648,10 +647,9 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_object& object, 
 
 			ASSERT(tag_struct_chunk != nullptr);
 			c_tag_struct_chunk* _tag_struct_chunk = new() c_tag_struct_chunk(*static_cast<c_chunk*>(tag_struct_chunk));
-			_tag_struct_chunk->debug_string = struct_definition.name;
 			tag_struct_chunk->add_child(*_tag_struct_chunk);
 
-			serialize_tag_struct(object, dst_field_data, *tag_struct_chunk, _tag_struct_chunk);
+			serialize_tag_struct(object, dst_field_data, _tag_struct_chunk);
 
 			debug_point;
 		}
@@ -711,6 +709,20 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_object& object, 
 			memset(dst_field_data, 0, field_size);
 		}
 		break;
+		case blofeld::_field_pageable:
+		{
+			const h_resource& resource = *static_cast<const h_resource*>(src_field_data);
+
+			ASSERT(tag_struct_chunk != nullptr);
+			serialize_tag_resource(resource, *tag_struct_chunk);
+
+			memset(dst_field_data, 0, field_size);
+		}
+		break;
+		case blofeld::_field_api_interop:
+		case blofeld::_field_tag_reference:
+			throw; // not implemented
+			break;
 		default:
 		{
 			memcpy(dst_field_data, src_field_data, field_size);
@@ -734,6 +746,14 @@ void c_high_level_tag_file_writer::serialize_tag_data(const h_data& data, c_tag_
 	}
 
 	debug_point;
+}
+
+void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource& resource, c_tag_struct_chunk& parent_chunk)
+{
+	// #TODO
+
+	c_tag_resource_null_chunk* tag_resource_null_chunk = new() c_tag_resource_null_chunk(parent_chunk);
+	parent_chunk.add_child(*tag_resource_null_chunk);
 }
 
 void c_high_level_tag_file_writer::serialize_string_id(const h_string_id& string_id, c_tag_struct_chunk& parent_chunk)

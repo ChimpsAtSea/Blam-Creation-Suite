@@ -343,6 +343,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			c_single_tag_file_reader*  reader = new() c_single_tag_file_reader(
 				header,
 				engine_platform_build,
+				is_big_endian_tag,
 				*layout_reader,
 				*layout_reader->binary_data_chunk,
 				resource_data);
