@@ -190,7 +190,7 @@ BCS_RESULT c_halo1_cache_file_reader::associate_cache_cluster(c_halo1_cache_clus
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo1_cache_file_reader::virtual_address_to_relative_offset(int64_t virtual_address, int32_t& relative_offset) const
+BCS_RESULT c_halo1_cache_file_reader::virtual_address_to_relative_offset(long long virtual_address, long& relative_offset) const
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -202,12 +202,12 @@ BCS_RESULT c_halo1_cache_file_reader::virtual_address_to_relative_offset(int64_t
 
 	halo1::s_cache_file_tags_header tags_header = *reinterpret_cast<const halo1::s_cache_file_tags_header*>(buffer_info.begin);
 
-	relative_offset = static_cast<int32_t>(virtual_address - tags_header.tag_instances_address + sizeof(halo1::s_cache_file_tags_header));
+	relative_offset = static_cast<long>(virtual_address - tags_header.tag_instances_address + sizeof(halo1::s_cache_file_tags_header));
 
 	return rs;
 }
 
-BCS_RESULT c_halo1_cache_file_reader::page_offset_to_virtual_address(unsigned long page_offset, int64_t& virtual_address) const
+BCS_RESULT c_halo1_cache_file_reader::page_offset_to_virtual_address(unsigned long page_offset, long long& virtual_address) const
 {
 	virtual_address = page_offset; // -cache_file_header->expected_base_address;
 

@@ -36,5 +36,6 @@ using namespace xxhash::literals;
 #include "url.h"
 #include "strings.h"
 #include "keys.h"
+#include "aes128.h"
 
 #include "engine_platform_build.h"

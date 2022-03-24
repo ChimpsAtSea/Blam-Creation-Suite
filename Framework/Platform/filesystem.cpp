@@ -328,6 +328,13 @@ BCS_RESULT filesystem_write_file_from_memory(const char* filepath, const void* b
 	BCS_VALIDATE_ARGUMENT(filepath);
 	//BCS_FAIL_RETURN(filesystem_filepath_exists(filepath));
 
+	char* directorypath = _strdup(filepath);
+	PathRemoveFileSpecA(directorypath);
+	char full_directory_path[MAX_PATH];
+	GetFullPathNameA(directorypath, MAX_PATH, full_directory_path, NULL);
+	int x = SHCreateDirectoryExA(NULL, full_directory_path, NULL);
+	untracked_free(directorypath);
+	
 	if (mode == _filesystem_write_mode_check_for_changes)
 	{
 		t_memory_mapped_file* memory_mapped_file;
@@ -348,16 +355,33 @@ BCS_RESULT filesystem_write_file_from_memory(const char* filepath, const void* b
 				return BCS_S_NO_CHANGES_MADE;
 			}
 		}
+		mode = _filesystem_write_mode_default;
 	}
 
-	HANDLE file_handle = CreateFileA(
-		filepath,
-		GENERIC_WRITE,
-		FILE_SHARE_WRITE,
-		NULL,
-		CREATE_ALWAYS,
-		FILE_ATTRIBUTE_NORMAL,
-		NULL);
+	HANDLE file_handle;
+	if (mode == _filesystem_write_mode_append)
+	{
+		file_handle = CreateFileA(
+			filepath,
+			FILE_APPEND_DATA,
+			FILE_SHARE_WRITE,
+			NULL,
+			OPEN_EXISTING,
+			FILE_ATTRIBUTE_NORMAL,
+			NULL);
+	}
+	else
+	{
+		file_handle = CreateFileA(
+			filepath,
+			GENERIC_WRITE,
+			FILE_SHARE_WRITE,
+			NULL,
+			CREATE_ALWAYS,
+			FILE_ATTRIBUTE_NORMAL,
+			NULL);
+	}
+
 	if (file_handle == INVALID_HANDLE_VALUE)
 	{
 		DWORD last_error = GetLastError();
@@ -581,7 +605,9 @@ BCS_RESULT filesystem_traverse_directory_files(const wchar_t* directory, const w
 	PathRemoveFileSpecW(search_criteria_directory_buffer);
 	if (*search_criteria_directory_buffer)
 	{
-		wcsncpy(search_criteria_directory_buffer, L"\\", MAX_PATH);
+		unsigned long search_criteria_directory_buffer_len = wcslen(search_criteria_directory_buffer);
+		wchar_t* search_criteria_directory_buffer_end = search_criteria_directory_buffer + search_criteria_directory_buffer_len;
+		wcsncpy(search_criteria_directory_buffer_end, L"\\", MAX_PATH - search_criteria_directory_buffer_len);
 	}
 
 	wchar_t search_buffer[MAX_PATH];

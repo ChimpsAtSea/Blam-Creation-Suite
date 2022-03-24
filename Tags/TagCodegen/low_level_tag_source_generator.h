@@ -8,6 +8,7 @@ public:
 
 	c_low_level_tag_source_generator(s_engine_platform_build engine_platform_build);
 	void generate_header() const;
+	void generate_ida_header() const;
 	void generate_source() const;
 	void generate_enum_header() const;
 

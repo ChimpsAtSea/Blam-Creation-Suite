@@ -342,13 +342,13 @@ BCS_RESULT c_infinite_tag_reader::page_offset_to_pointer(long page_offset, const
 		return rs;
 	}
 
-	int64_t virtual_address;
+	long long virtual_address;
 	if (BCS_FAILED(rs = cache_reader.page_offset_to_virtual_address(page_offset, virtual_address)))
 	{
 		return rs;
 	}
 
-	int32_t relative_offset;
+	long relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(virtual_address, relative_offset)))
 	{
 		return rs;

@@ -41,6 +41,7 @@
 #include "Chunks\TagChunks\tag_block_chunk.h"
 #include "Chunks\TagChunks\tag_resource_null_chunk.h"
 #include "Chunks\TagChunks\tag_resource_exploded_chunk.h"
+#include "Chunks\TagChunks\tag_resource_data_chunk.h"
 #include "Chunks\TagChunks\tag_resource_xsynced_chunk.h"
 
 #include "Chunks\MonolithicChunks\monolithic_tag_file_index_chunk.h"

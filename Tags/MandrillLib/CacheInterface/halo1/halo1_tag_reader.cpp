@@ -57,7 +57,7 @@ BCS_RESULT c_halo1_tag_reader::read_tag_instances()
 		return BCS_E_FAIL;
 	}
 
-	int32_t tag_instances_relative_offset;
+	long tag_instances_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(tags_header.tag_instances_address, tag_instances_relative_offset)))
 	{
 		return rs;
@@ -283,13 +283,13 @@ BCS_RESULT c_halo1_tag_reader::page_offset_to_pointer(long page_offset, const vo
 		return rs;
 	}
 
-	int64_t virtual_address;
+	long long virtual_address;
 	if (BCS_FAILED(rs = cache_reader.page_offset_to_virtual_address(page_offset, virtual_address)))
 	{
 		return rs;
 	}
 
-	int32_t relative_offset;
+	long relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(virtual_address, relative_offset)))
 	{
 		return rs;

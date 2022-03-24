@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="!Resources\resource.h" />
+    <ClInclude Include="aes128.h" />
     <ClInclude Include="banned.h" />
     <ClInclude Include="bcs_api.h" />
     <ClInclude Include="bcs_assert.h" />
@@ -52,6 +53,7 @@
     <ClInclude Include="warnings.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="aes128.cpp" />
     <ClCompile Include="bcs_api.cpp" />
     <ClCompile Include="bcs_assert.cpp" />
     <ClCompile Include="bcs_result.cpp" />

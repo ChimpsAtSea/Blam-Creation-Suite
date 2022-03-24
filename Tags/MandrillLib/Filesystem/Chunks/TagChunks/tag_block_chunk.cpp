@@ -186,6 +186,14 @@ void c_tag_block_chunk::read_structure_metadata_impl(c_single_tag_file_reader& r
 				read_structure_metadata_impl(reader, structure_entry, metadata_stack);
 			}
 			break;
+			case blofeld::_field_pageable:
+			{
+				unsigned long resource_entry_index = field_entry.metadata;
+				s_tag_persist_resource_definition& resource_entry = reader.layout_reader.get_resource_definition_by_index(resource_entry_index);
+				s_tag_persist_struct_definition& structure_entry = reader.layout_reader.get_struct_definition_by_index(resource_entry.structure_entry_index);
+				read_structure_metadata_impl(reader, structure_entry, metadata_stack);
+			}
+			break;
 			default:
 				//throw;
 				break;
@@ -320,12 +328,13 @@ void c_tag_block_chunk::read_structure_data(c_single_tag_file_reader& reader, s_
 		case blofeld::_field_pageable:
 		{
 			ASSERT(tag_struct_chunk != nullptr);
-			c_tag_resource_xsynced_chunk* resource_xsynced_chunk = tag_struct_chunk->get_child_unsafe<c_tag_resource_xsynced_chunk>(metadata_child_index);
-			c_tag_resource_null_chunk* resource_null_chunk = tag_struct_chunk->get_child_unsafe<c_tag_resource_null_chunk>(metadata_child_index);
-			ASSERT(resource_xsynced_chunk != nullptr || resource_null_chunk != nullptr); 
-			metadata_child_index++;
+			c_chunk* resource_chunk = tag_struct_chunk->get_child_unsafe(metadata_child_index++);
+			c_tag_resource_exploded_chunk* resource_exploded_chunk = dynamic_cast<c_tag_resource_exploded_chunk*>(resource_chunk);
+			c_tag_resource_xsynced_chunk* resource_xsynced_chunk = dynamic_cast<c_tag_resource_xsynced_chunk*>(resource_chunk);
+			c_tag_resource_null_chunk* resource_null_chunk = dynamic_cast<c_tag_resource_null_chunk*>(resource_chunk);
+			ASSERT(resource_exploded_chunk != nullptr || resource_xsynced_chunk != nullptr || resource_null_chunk != nullptr);
 
-
+			debug_point;
 		}
 		break;
 		case blofeld::_field_block:

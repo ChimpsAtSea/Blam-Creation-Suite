@@ -37,6 +37,9 @@ c_chunk::~c_chunk()
 
 BCS_RESULT c_chunk::add_child(c_chunk& chunk)
 {
+	ASSERT(chunk.parent == nullptr || chunk.parent == this);
+	chunk.parent = this;
+
 	unsigned long old_child_count = get_num_children_unsafe();
 	unsigned long new_child_count = old_child_count + 1;
 
@@ -355,6 +358,7 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 				CHUNK_CTOR(c_tag_data_chunk, *this);
 				CHUNK_CTOR(c_tag_resource_null_chunk, *this);
 				CHUNK_CTOR(c_tag_resource_exploded_chunk, *this);
+				CHUNK_CTOR(c_tag_resource_data_chunk, *this);
 				CHUNK_CTOR(c_tag_resource_xsynced_chunk, *this);
 				CHUNK_CTOR(c_monolithic_tag_file_index_chunk, *this);
 				CHUNK_CTOR(c_monolithic_index_chunk, *this);

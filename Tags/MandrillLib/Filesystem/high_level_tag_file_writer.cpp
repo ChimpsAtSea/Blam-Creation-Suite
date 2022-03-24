@@ -1,5 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
+#include <HighLevel\high_level_halo3\highlevel-halo3-public-pch.h>
 #include <TagCodegen\blamlib_string_parser.h>
 #include <TagCodegen\blamlib_string_parser.inl>
 
@@ -8,7 +9,7 @@ static constexpr size_t y = sizeof(s_engine_platform_build);
 c_high_level_tag_file_writer::c_high_level_tag_file_writer(s_engine_platform_build engine_platform_build, const char* _filepath, h_tag& tag) :
 	tag(tag),
 	filepath(strdup(_filepath)),
-	engine_platform_build(),
+	engine_platform_build(engine_platform_build),
 	header_chunk(),
 	file_handle(),
 	tag_group_layout_chunk(),
@@ -105,12 +106,12 @@ const char* c_high_level_tag_file_writer::get_string_by_string_character_index(c
 
 void c_high_level_tag_file_writer::init_chunks()
 {
-	header_chunk = new c_tag_header_chunk();
+	header_chunk = new() c_tag_header_chunk();
 	{
-		tag_group_layout_chunk = new c_tag_group_layout_chunk(*header_chunk);
+		tag_group_layout_chunk = new() c_tag_group_layout_chunk(*header_chunk);
 		header_chunk->add_child(*tag_group_layout_chunk);
 		{
-			tag_layout_chunk = new c_tag_layout_v3_chunk(*tag_group_layout_chunk);
+			tag_layout_chunk = new() c_tag_layout_v3_chunk(*tag_group_layout_chunk);
 			tag_group_layout_chunk->add_child(*tag_layout_chunk);
 			{
 				string_data_chunk = new() c_string_data_chunk(*tag_layout_chunk);
@@ -141,7 +142,7 @@ void c_high_level_tag_file_writer::init_chunks()
 			}
 		}
 
-		binary_data_chunk = new c_binary_data_chunk(*header_chunk);
+		binary_data_chunk = new() c_binary_data_chunk(*header_chunk);
 		header_chunk->add_child(*binary_data_chunk);
 	}
 }
@@ -711,12 +712,22 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_object& object, 
 		break;
 		case blofeld::_field_pageable:
 		{
-			const h_resource& resource = *static_cast<const h_resource*>(src_field_data);
+			const h_resource* const& resource = *static_cast<const h_resource* const*>(src_field_data);
 
 			ASSERT(tag_struct_chunk != nullptr);
-			serialize_tag_resource(resource, *tag_struct_chunk);
+			ASSERT(field.tag_resource_definition != nullptr);
+
+			serialize_tag_resource(resource, *field.tag_resource_definition, *tag_struct_chunk);
 
 			memset(dst_field_data, 0, field_size);
+
+			if (resource != nullptr)
+			{
+				s_tag_resource* tag_resource = reinterpret_cast<s_tag_resource*>(dst_field_data);
+				tag_resource->resource_handle = 0;
+
+				debug_point;
+			}
 		}
 		break;
 		case blofeld::_field_api_interop:
@@ -748,12 +759,45 @@ void c_high_level_tag_file_writer::serialize_tag_data(const h_data& data, c_tag_
 	debug_point;
 }
 
-void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource& resource, c_tag_struct_chunk& parent_chunk)
+void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* resource, const blofeld::s_tag_resource_definition& tag_resource_definition, c_tag_struct_chunk& parent_chunk)
 {
-	// #TODO
+	//if (resource != nullptr)
+	if(const c_simple_resource_container* simple_resource_container = dynamic_cast<const c_simple_resource_container*>(resource))
+	{
+		c_tag_resource_exploded_chunk* tag_resource_exploded_chunk = new() c_tag_resource_exploded_chunk(parent_chunk);
+		c_tag_resource_data_chunk* tag_resource_data_chunk = new() c_tag_resource_data_chunk(*tag_resource_exploded_chunk);
+		c_tag_struct_chunk* tag_struct_chunk = new() c_tag_struct_chunk(*tag_resource_exploded_chunk);
 
-	c_tag_resource_null_chunk* tag_resource_null_chunk = new() c_tag_resource_null_chunk(parent_chunk);
-	parent_chunk.add_child(*tag_resource_null_chunk);
+		h_object* object = h_object::create_high_level_object(tag_resource_definition.struct_definition, engine_platform_build);
+		if (blofeld::halo3::h_sound_resource_definition_struct* sound_resource_definition_struct = dynamic_cast<decltype(sound_resource_definition_struct)>(object))
+		{
+			sound_resource_definition_struct->sample_data.insert(
+				sound_resource_definition_struct->sample_data.begin(), 
+				static_cast<const char*>(simple_resource_container->data.data()), 
+				static_cast<const char*>(simple_resource_container->data.data()) + simple_resource_container->data.size());
+		}
+		else 
+		{
+			throw; // not implemented
+		}
+
+		unsigned long structure_size = calculate_structure_size(tag_resource_definition.struct_definition);
+		char* const structure_data = static_cast<char*>(tracked_malloc(_library_tracked_memory, structure_size));
+		DEBUG_ONLY(memset(structure_data, 0xDD, structure_size));
+
+		serialize_tag_struct(*object, structure_data, tag_struct_chunk);
+
+		tag_resource_data_chunk->set_data(structure_data, structure_size);
+
+		tag_resource_exploded_chunk->add_child(*tag_resource_data_chunk);
+		tag_resource_exploded_chunk->add_child(*tag_struct_chunk);
+		parent_chunk.add_child(*tag_resource_exploded_chunk);
+	}
+	else
+	{
+		c_tag_resource_null_chunk* tag_resource_null_chunk = new() c_tag_resource_null_chunk(parent_chunk);
+		parent_chunk.add_child(*tag_resource_null_chunk);
+	}
 }
 
 void c_high_level_tag_file_writer::serialize_string_id(const h_string_id& string_id, c_tag_struct_chunk& parent_chunk)

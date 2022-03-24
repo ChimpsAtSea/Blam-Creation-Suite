@@ -268,8 +268,8 @@ namespace halo4
 
 		struct s_cache_file_tag_instance
 		{
-			uint16_t group_index;
-			uint16_t identifier;
+			unsigned short group_index;
+			unsigned short identifier;
 			unsigned long address;
 		};
 		static_assert(sizeof(s_cache_file_tag_instance) == 0x8);

@@ -159,7 +159,7 @@ BCS_RESULT c_halo1_debug_reader::get_tag_filepath(unsigned long tag_index, const
 
 	halo1::s_cache_file_tags_header tags_header = *reinterpret_cast<const halo1::s_cache_file_tags_header*>(buffer_info.begin);
 
-	int32_t tag_instances_relative_offset;
+	long tag_instances_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(tags_header.tag_instances_address, tag_instances_relative_offset)))
 	{
 		return rs;
@@ -170,7 +170,7 @@ BCS_RESULT c_halo1_debug_reader::get_tag_filepath(unsigned long tag_index, const
 	const halo1::s_cache_file_tag_instance& tag_instance = tag_instances_read_pointer[tag_index];
 
 
-	int32_t name_relative_offset;
+	long name_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(tag_instance.name_address, name_relative_offset)))
 	{
 		return rs;

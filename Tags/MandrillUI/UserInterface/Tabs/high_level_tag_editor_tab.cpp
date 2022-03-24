@@ -1484,44 +1484,50 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& o
 			break;
 		case _field_pageable:
 		{
-			h_resource*& struct_object = *static_cast<h_resource**>(field_data);
-			if (struct_object)
+			h_resource*& resource = *static_cast<h_resource**>(field_data);
+
+			ImGui::PushID(&field);
 			{
-				ImGui::PushID(&field);
+				ImGui::Columns(2, NULL, false);
+				ImGui::SetColumnWidth(0, 400);
+				ImGui::SetColumnWidth(1, 900);
 				{
-					ImGui::Columns(2, NULL, false);
-					ImGui::SetColumnWidth(0, 400);
-					ImGui::SetColumnWidth(1, 900);
+					ImGui::TextUnformatted(field.name);
+				}
+				ImGui::NextColumn();
+				{
+					ImGui::Dummy(ImVec2(0.0f, 3.0f));
+					if (resource)
 					{
-						ImGui::TextUnformatted(field.name);
-					}
-					ImGui::NextColumn();
-					{
-						ImGui::Dummy(ImVec2(0.0f, 3.0f));
-						if (ImGui::BeginChild("##data", { 0.0f, ImGui::GetTextLineHeight() * 9.5f }, false))
+						const char* debug_type_string = resource->get_debug_type_string();
+						ImGui::Text("Resource Type: %s", debug_type_string);
+
+						if (ImGui::Button("Dump (resourcedump.bin)"))
 						{
-							static s_imgui_memory_editor_settings settings;
-							imgui_memory_editor(settings, struct_object->data.data(), struct_object->data.size());
+							const void* resource_data;
+							unsigned long resource_data_size;
+							if (BCS_SUCCEEDED(resource->add_reference(resource_data, resource_data_size)))
+							{
+								filesystem_write_file_from_memory("resourcedump.bin", resource_data, resource_data_size);
+								ASSERT(BCS_SUCCEEDED(resource->remove_reference()));
+							}
 						}
-						ImGui::EndChild();
-						ImGui::Dummy(ImVec2(0.0f, 3.0f));
+
+						if (resource->object)
+						{
+							render_object(level + 1, *resource->object);
+						}
 					}
-					ImGui::Columns(1);
+					else
+					{
+						ImGui::TextUnformatted("Resource Type: null");
+					}
+					ImGui::Dummy(ImVec2(0.0f, 3.0f));
 				}
-
-				if (ImGui::Button("Yeeeeeet"))
-				{
-					filesystem_write_file_from_memory("yeet.bin", struct_object->data.data(), struct_object->data.size());
-				}
-
-				ImGui::PopID();
-
-				if (struct_object->object)
-				{
-					render_object(level + 1, *struct_object->object);
-				}
+				ImGui::Columns(1);
 			}
-			else ImGui::TextUnformatted("Pageable is nulled!!!!");
+
+			ImGui::PopID();
 		}
 		break;
 		default:

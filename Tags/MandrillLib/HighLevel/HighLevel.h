@@ -8,3 +8,4 @@
 #include "string_id_manager.h"
 #include "legacy_string_id_manager.h"
 #include "infinite_string_id_manager.h"
+#include "simple_resource_container.h"

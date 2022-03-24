@@ -165,6 +165,22 @@ static BCS_RESULT get_engine_type_string_impl(e_engine_type engine_type, e_engin
 	return BCS_E_NOT_IMPLEMENTED;
 }
 
+BCS_DEBUG_API bool get_platform_is_big_endian(s_engine_platform_build engine_platform_build)
+{
+	return get_platform_is_big_endian(engine_platform_build.platform_type);
+}
+
+BCS_DEBUG_API bool get_platform_is_big_endian(e_platform_type platform_type)
+{
+	switch (platform_type)
+	{
+	case _platform_type_xbox_360:
+		return true;
+	default:
+		return false;
+	}
+}
+
 BCS_RESULT get_engine_type_pretty_string(e_engine_type engine_type, const char** result)
 {
 	return get_engine_type_string_impl(engine_type, _engine_type_string_type_pretty, result);

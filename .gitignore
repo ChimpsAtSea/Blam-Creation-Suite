@@ -337,6 +337,9 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 
+# Windows
+*desktop.ini
+
 #LLVM
 **/llvm-build/cmake
 **/llvm-build/cmake_x86
@@ -360,17 +363,6 @@ ASALocalRun/
 **/discord-rpc-build/cmake
 **/discord-rpc-build/cmake_x86
 **/discord-rpc-build/cmake_x64
-               
-#Mantle
-MantleGen/LegacyGen/reflection_data_legacy.h
-MantleGen/LegacyGen/reflection_data_legacy.cpp
-MantleGen/LegacyGen/generated_conversion_legacy.cpp
-MantleGen/LegacyGen/generated_conversion_legacy.h
-MantleGen/LegacyGen/generated_gui_legacy.cpp
-MantleGen/LegacyGen/generated_gui_legacy.h
-MantleGen/LegacyGen/virtual_tag_interfaces_legacy.cpp
-MantleGen/LegacyGen/virtual_tag_interfaces_legacy.h
-MantleGen/LegacyGen/tag_groups_legacy.h
 
 #CommandLineOptions Plugin
 *.args.json
@@ -432,9 +424,21 @@ Tags/LowLevel/low_level_xbox360_gen3/xbox360_gen3.cpp
 Tags/LowLevel/low_level_stubbs/stubbs.cpp
 Tags/LowLevel/low_level_infinite/infinite.cpp
 
+Tags/LowLevel/low_level_groundhog/groundhog_ida.h
+Tags/LowLevel/low_level_halo1/halo1_ida.h
+Tags/LowLevel/low_level_halo2/halo2_ida.h
+Tags/LowLevel/low_level_halo3/halo3_ida.h
+Tags/LowLevel/low_level_halo3odst/halo3odst_ida.h
+Tags/LowLevel/low_level_halo4/halo4_ida.h
+Tags/LowLevel/low_level_haloreach/haloreach_ida.h
+Tags/LowLevel/low_level_infinite/infinite_ida.h
+Tags/LowLevel/low_level_stubbs/stubbs_ida.h
+Tags/LowLevel/low_level_xbox360_gen3/xbox360_gen3_ida.h
+
 Tags/Virtual/virtual_*/*_virtual.h
 Tags/Virtual/virtual_*/*_virtual.cpp
 
 *memory_allocations.txt
 *bitmap_test.dds
 *tag_file_writer_test.bitmap
+Runtime/Mandrill/resourcedump.bin

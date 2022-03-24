@@ -246,7 +246,7 @@ void c_low_level_tag_source_generator::generate_header() const
 					std::string field_source_type = format_structure_symbol(*current_field->struct_definition);
 					if (field_struct_size > 0)
 					{
-						stream << "\t\t\t" << field_source_type << " " << field_formatter.code_name.c_str() << "; // test";
+						stream << "\t\t\t" << field_source_type << " " << field_formatter.code_name.c_str() << ";";
 					}
 					else
 					{
@@ -435,6 +435,259 @@ void c_low_level_tag_source_generator::generate_header() const
 	const char* output;
 	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
 	std::string output_filepath = std::string(output) + "LowLevel/low_level_" + namespace_name + "/" + namespace_name + ".h";
+
+	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
+	ASSERT(BCS_SUCCEEDED(rs));
+}
+
+void c_low_level_tag_source_generator::generate_ida_header() const
+{
+	std::stringstream stream;
+
+	const char* namespace_name;
+	BCS_RESULT engine_type_to_folder_name_result = get_engine_type_folder_string(engine_platform_build.engine_type, &namespace_name);
+	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result));
+
+	stream << "#pragma once" << std::endl;
+	stream << std::endl;
+	stream << std::endl;
+
+	stream << "#pragma pack(push, 1)" << std::endl << std::endl;
+
+	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
+	{
+		std::string low_level_structure_name = format_structure_symbol(*struct_definition);
+
+		stream << "struct " << low_level_structure_name << std::endl;
+		stream << "{" << std::endl;
+
+		std::map<std::string, int> field_name_unique_counter;
+
+		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
+		{
+			unsigned long field_skip_count;
+			if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
+			{
+				current_field += field_skip_count;
+				continue;
+			}
+
+			std::map<std::string, int>* field_name_unique_counter_ptr = nullptr;
+			switch (current_field->field_type)
+			{
+			case _field_custom:
+				break;
+			default:
+				field_name_unique_counter_ptr = &field_name_unique_counter;
+				break;
+			}
+
+			c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
+				current_field->name,
+				current_field->field_type == blofeld::_field_block,
+				&field_name_unique_counter);
+
+			const char* field_type_string;
+			ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(current_field->field_type, field_type_string)));
+
+			if (!custom_structure_codegen(_custom_structure_codegen_low_level_header, stream, "\t\t\t", &field_formatter, *struct_definition, *current_field, namespace_name))
+			{
+				switch (current_field->field_type)
+				{
+				case _field_pad:
+					stream << "\tchar " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // padding" << std::endl;
+					break;
+				case _field_skip:
+					stream << "\tchar " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // skip" << std::endl;
+					break;
+				case _field_useless_pad:
+					stream << "\t// char " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // useless padding" << std::endl;
+					break;
+				case _field_non_cache_runtime_value:
+					stream << "\t// " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // non cache runtime value" << std::endl;
+					break;
+				case _field_custom:
+					stream << "\t// " << field_type_string;
+					if (!field_formatter.code_name.empty())
+					{
+						stream << " " << field_formatter.code_name.c_str();
+					}
+					stream << std::endl;
+					break;
+				case _field_terminator:
+					stream << "\t// " << field_type_string << std::endl;
+					break;
+				case _field_explanation:
+				{
+					if (current_field->name)
+					{
+						if (current_field->explanation && *current_field->explanation)
+						{
+							stream << std::endl << "\t\t\t/* " << current_field->name << std::endl;
+							stream << "\t ";
+							const char* current_pos = current_field->explanation;
+							while (*current_pos)
+							{
+								switch (*current_pos)
+								{
+								case '\n':
+									stream << *current_pos;
+									stream << "\t ";
+									break;
+								default:
+									stream << *current_pos;
+								}
+								current_pos++;
+							}
+							stream << std::endl;
+							stream << "\t*/" << std::endl << std::endl;
+						}
+						else
+						{
+							stream << std::endl << "\t\t\t/* " << current_field->name << " */" << std::endl << std::endl;
+						}
+					}
+					break;
+				}
+				case _field_array:
+				{
+
+					std::string field_source_type = format_structure_symbol(current_field->array_definition->struct_definition);
+					unsigned long count = current_field->array_definition->count(engine_platform_build);
+					if (count == 0)
+					{
+						debug_point;
+					}
+					stream << "\t" << field_source_type << " " << field_formatter.code_name.c_str() << "[" << count << "];";
+					break;
+				}
+				case _field_struct:
+				{
+					unsigned long field_struct_size = calculate_struct_size(engine_platform_build, *current_field->struct_definition);
+					std::string field_source_type = format_structure_symbol(*current_field->struct_definition);
+					if (field_struct_size > 0)
+					{
+						stream << "\t" << field_source_type << " " << field_formatter.code_name.c_str() << ";";
+					}
+					else
+					{
+						stream << "\t// " << field_source_type << " " << field_formatter.code_name.c_str() << "; // empty struct";
+					}
+					break;
+				}
+				case _field_block:
+				{
+					std::string field_source_type = format_structure_symbol(current_field->block_definition->struct_definition);
+					stream << "\ts_tag_block " << field_formatter.code_name.c_str() << "; // " << field_source_type;
+					break;
+				}
+				case _field_tag_reference:
+				{
+					stream << "\ts_tag_reference " << field_formatter.code_name.c_str() << ";";
+					break;
+				}
+				case _field_char_enum:
+				{
+					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+					stream << "\tchar " << field_formatter.code_name.data << "; // e_" << string_list.name;
+					break;
+				}
+				case _field_enum:
+				{
+					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+					stream << "\tshort " << field_formatter.code_name.data << "; // e_" << string_list.name;
+					break;
+				}
+				case _field_long_enum:
+				{
+					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+					stream << "\tlong " << field_formatter.code_name.data << "; // e_" << string_list.name;
+					break;
+				}
+				case _field_byte_flags:
+				{
+					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+					stream << "\tunsigned char " << field_formatter.code_name.data << "; // " << string_list.name;
+					break;
+				}
+				case _field_word_flags:
+				{
+					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+					stream << "\tunsigned short " << field_formatter.code_name.data << "; // " << string_list.name;
+					break;
+				}
+				case _field_long_flags:
+				{
+
+					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+					stream << "\tlong " << field_formatter.code_name.data << "; // " << string_list.name;
+
+					break;
+				}
+				default:
+				{
+					std::string field_source_type = field_type_to_low_level_source_type(engine_platform_build.platform_type, current_field->field_type);
+					ASSERT(!field_formatter.code_name.empty());
+					stream << "\t" << field_source_type << " " << field_formatter.code_name.data << ";";
+				}
+				}
+
+				constexpr bool k_write_field_types = false;
+				switch (current_field->field_type)
+				{
+				case _field_pad:
+				case _field_skip:
+				case _field_useless_pad:
+				case _field_custom:
+				case _field_terminator:
+				case _field_explanation:
+				case _field_non_cache_runtime_value:
+					break;
+				default:
+					if (!field_formatter.description.empty() || k_write_field_types)
+					{
+						stream << " // ";
+						if constexpr (k_write_field_types) stream << field_type_string << " ";
+						const char* current_pos = field_formatter.description.data;
+						while (*current_pos)
+						{
+							switch (*current_pos)
+							{
+							case '\n':
+								stream << ' ';
+								break;
+							default:
+								stream << *current_pos;
+							}
+							current_pos++;
+						}
+					}
+					stream << std::endl;
+				}
+
+			}
+		}
+
+		stream << "};" << std::endl;
+
+		//unsigned long struct_size = calculate_struct_size(engine_platform_build, *struct_definition);
+
+		// stream << "static constexpr size_t " << tag_struct_definition->name << "_size = sizeof(s_" << tag_struct_definition->name << ");" << std::endl;
+		// stream << "static_assert(" << tag_struct_definition->name << "_size == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct s_" << tag_struct_definition->name << " is invalid size\");" << std::endl;
+
+		//stream << "static_assert(sizeof(" << low_level_structure_name << ") == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct " << low_level_structure_name << " is invalid size\");" << std::endl;
+
+		stream << std::endl;
+
+
+	}
+
+	stream << "#pragma pack(pop)" << std::endl;
+
+	std::string source_code = stream.str();
+	const char* output;
+	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
+	std::string output_filepath = std::string(output) + "LowLevel/low_level_" + namespace_name + "/" + namespace_name + "_ida.h";
 
 	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));

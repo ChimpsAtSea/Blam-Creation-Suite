@@ -12262,6 +12262,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PERMUTATION_DIALOGUE_INFO_NEW_BLOCK_ID)
 	{
+		{ _version_mode_equal, _platform_type_pc_64bit, 12 },
 		{ _field_long_integer, "english index" },
 		{ _field_long_integer, "japanese index" },
 		{ _field_long_integer, "german index" },
@@ -12274,6 +12275,7 @@ namespace halo3 {
 		{ _field_long_integer, "chinese-simplified index" },
 		{ _field_long_integer, "portuguese index" },
 		{ _field_long_integer, "polish index" },
+
 		{ _field_block, "facial animation", &blofeld::halo3::facial_animation_block_block },
 		{ _field_terminator }
 	};
@@ -12636,8 +12638,11 @@ namespace halo3 {
 		{ _field_long_block_index, "cache index", &blofeld::halo3::g_null_block_block },
 		{ _field_long_integer, "xma2_source_buffer_sample_start" },
 		{ _field_long_integer, "xma2_source_buffer_sample_end" },
+
+		{ _version_mode_equal, _platform_type_pc_64bit, 2 },
 		{ _field_long_integer, "fmod_bank_subsound_id_hash" },
 		{ _field_long_integer, "fmod_bank_type" },
+
 		{ _field_terminator }
 	};
 
@@ -25529,7 +25534,10 @@ namespace halo3 {
 		{ _field_short_integer, "chunk count" },
 		{ _field_char_integer, "encoded gain", nullptr, "dB" },
 		{ _field_char_integer, "permutation info index" },
+
+		{ _version_mode_equal, _platform_type_pc_64bit },
 		{ _field_long_integer, "fmod bank subsound id hash" },
+
 		{ _field_terminator }
 	};
 
@@ -25667,7 +25675,9 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_CACHE_FILE_GESTALT_STRUCT_DEFINITION_ID)
 	{
+		{ _version_mode_equal, _platform_type_pc_64bit },
 		{ _field_long_integer, "content type" },
+
 		{ _field_block, "codecs", &blofeld::halo3::sound_gestalt_codec_block_block },
 		{ _field_block, "playbacks", &blofeld::halo3::sound_gestalt_playback_block_block },
 		{ _field_block, "scales", &blofeld::halo3::sound_gestalt_scale_block_block },
@@ -25675,7 +25685,10 @@ namespace halo3 {
 		{ _field_block, "pitch range parameters", &blofeld::halo3::sound_gestalt_pitch_range_parameters_block_block },
 		{ _field_block, "pitch ranges", &blofeld::halo3::sound_gestalt_pitch_ranges_block_block },
 		{ _field_block, "permutations", &blofeld::halo3::sound_gestalt_permutations_block_block },
+
+		{ _version_mode_equal, _platform_type_pc_64bit },
 		{ _field_block, "permutations languages", &blofeld::halo3::sound_gestalt_permutation_languages_block_block },
+
 		{ _field_block, "custom playbacks", &blofeld::halo3::sound_gestalt_custom_playback_block_block },
 		{ _field_block, "language durations", &blofeld::halo3::sound_language_info_block_block },
 		{ _field_block, "runtime permutation flags", &blofeld::halo3::sound_gestalt_runtime_permutation_bit_vector_block_block },
@@ -26492,7 +26505,10 @@ namespace halo3 {
 		{ _field_block, "shared files", &blofeld::halo3::cache_file_shared_file_block_block },
 		{ _field_block, "file locations", &blofeld::halo3::cache_file_resource_file_location_block_block, _field_id_wide },
 		{ _field_block, "streaming sublocation tables", &blofeld::halo3::cache_file_resource_streaming_sublocation_table_block_block },
+
+		{ _version_mode_equal, _platform_type_pc_64bit },
 		{ _field_block, "file locations patch lookup", &blofeld::halo3::cache_file_resource_patch_lookup_block_block },
+
 		{ _field_block, "default locations", &blofeld::halo3::cache_file_resource_default_location_block_block },
 		{ _field_block, "resources", &blofeld::halo3::cache_file_resource_data_block_block, _field_id_wide },
 		{ _field_block, "designer zone manifests", &blofeld::halo3::cache_file_designer_zone_block_block },
@@ -26548,7 +26564,10 @@ namespace halo3 {
 		{ _field_block, "shared files", &blofeld::halo3::cache_file_shared_file_block_block },
 		{ _field_block, "file locations", &blofeld::halo3::cache_file_resource_file_location_block_block, _field_id_wide },
 		{ _field_block, "streaming sublocation tables", &blofeld::halo3::cache_file_resource_streaming_sublocation_table_block_block },
+
+		{ _version_mode_equal, _platform_type_pc_64bit },
 		{ _field_block, "file locations patch lookup", &blofeld::halo3::cache_file_resource_patch_lookup_block_block },
+
 		{ _field_block, "default locations", &blofeld::halo3::cache_file_resource_default_location_block_block },
 		{ _field_long_integer, "required location count" },
 		{ _field_long_integer, "required dvd location count" },

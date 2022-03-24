@@ -27,6 +27,18 @@
 #include "halo1\halo1_tag_group.h"
 #include "halo1\halo1_tag_instance.h"
 
+#include "halo3\halo3_codec.h"
+#include "halo3\halo3_api_interop.h"
+#include "halo3\halo3_cache_file_header.h"
+#include "halo3\halo3_cache_file_reader.h"
+#include "halo3\halo3_cache_cluster.h"
+#include "halo3\halo3_debug_reader.h"
+#include "halo3\halo3_localization_reader.h"
+#include "halo3\halo3_resource_reader.h"
+#include "halo3\halo3_tag_reader.h"
+#include "halo3\halo3_tag_group.h"
+#include "halo3\halo3_tag_instance.h"
+
 /*
 #include "halo4\halo4_codec.h"
 #include "halo4\halo4_resource_container.h"

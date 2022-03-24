@@ -256,6 +256,8 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_instances()
 		}
 
 		debug_point;
+
+		break;
 	}
 
 	return rs;
@@ -336,6 +338,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 
 			debug_point;
 		}
+		break;
 	}
 
 	return rs;
@@ -537,13 +540,13 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 								return rs;
 							}
 
-							int64_t virtual_address;
+							long long virtual_address;
 							if (BCS_FAILED(rs = cache_file_reader.page_offset_to_virtual_address(tag_block.address, virtual_address)))
 							{
 								return rs;
 							}
 
-							int32_t relative_offset;
+							long relative_offset;
 							if (BCS_FAILED(rs = cache_file_reader.virtual_address_to_relative_offset(virtual_address, relative_offset)))
 							{
 								return rs;
@@ -683,11 +686,21 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 				}
 				debug_point;
 
-				h_resource* resource_container = nullptr;
+				unsigned short resource_index = tag_resource.resource_handle.get_absolute_index();
+				if (resource_index != USHRT_MAX)
+				{
+					if (c_halo3_cache_file_reader* reader = dynamic_cast<c_halo3_cache_file_reader*>(&cache_file_reader))
+					{
+						c_halo3_tag_reader* tag_reader;
+						BCS_RESULT get_tag_reader_result = reader->cache_cluster->get_tag_reader(*reader, tag_reader);
+						ASSERT(BCS_SUCCEEDED(get_tag_reader_result));
 
-				// #TODO
-
-				resource_storage = resource_container;
+						// #TODO: create a copy of this, or register these resources?
+						// #TODO: should a reference be accumulated on assignment?
+						// #TODO: how does the message system handle this?
+						resource_storage = tag_reader->high_level_resources[resource_index];
+					}
+				}
 			}
 			break;
 			case _field_api_interop:
@@ -1125,7 +1138,8 @@ public:
 
 					if (c_infinite_tag_instance* infinite_tag_instance = dynamic_cast<c_infinite_tag_instance*>(&tag_instance))
 					{
-						resource_storage = new() h_resource();
+						c_simple_resource_container* simple_resource_container = new() c_simple_resource_container();
+						resource_storage = simple_resource_container;
 
 						const blofeld::s_tag_struct_definition& pageable_resource_struct_definition = *field->struct_definition;
 						unsigned long const pageable_resource_struct_size = cache_file_reader.calculate_struct_size(pageable_resource_struct_definition);
@@ -1156,7 +1170,7 @@ public:
 								char* data_start = static_cast<char*>(external_resource_data);
 								char* data_end = data_start + resource_file_entry_block_map->file_entry.uncompressed_size;
 
-								resource_storage->data.insert(resource_storage->data.end(), data_start, data_end);
+								simple_resource_container->data.insert(simple_resource_container->data.end(), data_start, data_end);
 
 								BCS_RESULT rst2 = resource_file_entry_block_map->unmap(external_resource_data);
 								ASSERT(BCS_SUCCEEDED(rst2));
@@ -1201,10 +1215,10 @@ public:
 								ASSERT(ucs_pageable_resource_field.unknownC == 0);
 								// standard resources have no tag data associated with them
 
-								if (resource_storage->data.size() > 0)
+								if (simple_resource_container->data.size() > 0)
 								{
-									ASSERT(resource_storage->data.size() > sizeof(s_infinite_ucs_header));
-									s_infinite_ucs_header& resource_ucs_header = *reinterpret_cast<s_infinite_ucs_header*>(resource_storage->data.data());
+									ASSERT(simple_resource_container->data.size() > sizeof(s_infinite_ucs_header));
+									s_infinite_ucs_header& resource_ucs_header = *reinterpret_cast<s_infinite_ucs_header*>(simple_resource_container->data.data());
 									ASSERT(resource_ucs_header.magic == 'hscu');
 									resource_ucs_header.magic;
 									c_infinite_ucs_reader resource_ucs_reader = c_infinite_ucs_reader(&resource_ucs_header);

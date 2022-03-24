@@ -81,7 +81,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_groups()
 
 	halo4::xbox360::s_cache_file_header& cache_file_header = cache_reader.cache_file_header;
 
-	int32_t tags_header_relative_offset;
+	long tags_header_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(cache_file_header.tags_header_address, tags_header_relative_offset)))
 	{
 		return rs;
@@ -95,7 +95,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_groups()
 		return BCS_E_FAIL;
 	}
 
-	int32_t tag_groups_relative_offset;
+	long tag_groups_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(tags_header.tag_groups.address, tag_groups_relative_offset)))
 	{
 		return rs;
@@ -143,7 +143,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_instances()
 
 	halo4::xbox360::s_cache_file_header& cache_file_header = cache_reader.cache_file_header;
 
-	int32_t tags_header_relative_offset;
+	long tags_header_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(cache_file_header.tags_header_address, tags_header_relative_offset)))
 	{
 		return rs;
@@ -157,7 +157,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_instances()
 		return BCS_E_FAIL;
 	}
 
-	int32_t tag_instances_relative_offset;
+	long tag_instances_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(tags_header.tag_instances.address, tag_instances_relative_offset)))
 	{
 		return rs;
@@ -212,7 +212,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_global_instances()
 
 	halo4::xbox360::s_cache_file_header& cache_file_header = cache_reader.cache_file_header;
 
-	int32_t tags_header_relative_offset;
+	long tags_header_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(cache_file_header.tags_header_address, tags_header_relative_offset)))
 	{
 		return rs;
@@ -226,7 +226,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_global_instances()
 		return BCS_E_FAIL;
 	}
 
-	int32_t tag_global_instances_relative_offset;
+	long tag_global_instances_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(tags_header.global_tag_instances.address, tag_global_instances_relative_offset)))
 	{
 		return rs;
@@ -268,7 +268,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_interops()
 
 	halo4::xbox360::s_cache_file_header& cache_file_header = cache_reader.cache_file_header;
 
-	int32_t tags_header_relative_offset;
+	long tags_header_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(cache_file_header.tags_header_address, tags_header_relative_offset)))
 	{
 		return rs;
@@ -282,7 +282,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_interops()
 		return BCS_E_FAIL;
 	}
 
-	int32_t tag_interops_relative_offset;
+	long tag_interops_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(tags_header.tag_interop_table.address, tag_interops_relative_offset)))
 	{
 		return rs;
@@ -505,7 +505,7 @@ BCS_RESULT c_halo4_tag_reader::page_offset_to_pointer(long page_offset, const vo
 		return rs;
 	}
 
-	int32_t relative_offset;
+	long relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(virtual_address, relative_offset)))
 	{
 		return rs;

@@ -79,8 +79,8 @@ public:
 	virtual BCS_RESULT associate_cache_cluster(c_cache_cluster& cache_cluster);
 	virtual BCS_RESULT associate_cache_cluster(c_halo1_cache_cluster& cache_cluster);
 
-	virtual BCS_RESULT virtual_address_to_relative_offset(int64_t virtual_address, int32_t& relative_offset) const;
-	virtual BCS_RESULT page_offset_to_virtual_address(unsigned long page_offset, int64_t& virtual_address) const;
+	virtual BCS_RESULT virtual_address_to_relative_offset(long long virtual_address, long& relative_offset) const;
+	virtual BCS_RESULT page_offset_to_virtual_address(unsigned long page_offset, long long& virtual_address) const;
 
 	virtual BCS_RESULT get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const;
 

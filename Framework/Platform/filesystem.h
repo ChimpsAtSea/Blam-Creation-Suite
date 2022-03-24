@@ -3,7 +3,8 @@
 enum e_filesystem_write_mode
 {
 	_filesystem_write_mode_default,
-	_filesystem_write_mode_check_for_changes
+	_filesystem_write_mode_check_for_changes,
+	_filesystem_write_mode_append,
 };
 
 #define FILESYSTEM_DEBUG_ARGS DEBUG_ONLY(, const char* _debug_file_path = __builtin_FILE(), long _debug_line_number = __builtin_LINE())

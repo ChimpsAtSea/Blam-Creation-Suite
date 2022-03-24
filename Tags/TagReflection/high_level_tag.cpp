@@ -192,9 +192,7 @@ h_enumerable::h_enumerable(h_type* parent) :
 
 h_resource::h_resource(h_type* parent) :
 	h_type(parent),
-	_original_resource(),
-	object(),
-	data()
+	object(nullptr)
 {
 
 }

@@ -150,9 +150,9 @@ BCS_RESULT c_halo4_cache_file_reader::associate_cache_cluster(c_halo4_cache_clus
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo4_cache_file_reader::virtual_address_to_relative_offset(int64_t virtual_address, int32_t& relative_offset) const
+BCS_RESULT c_halo4_cache_file_reader::virtual_address_to_relative_offset(int64_t virtual_address, long& relative_offset) const
 {
-	relative_offset = static_cast<int32_t>(virtual_address - cache_file_header.expected_base_address);
+	relative_offset = static_cast<long>(virtual_address - cache_file_header.expected_base_address);
 
 	return BCS_S_OK;
 }

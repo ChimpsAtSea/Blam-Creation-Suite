@@ -168,6 +168,9 @@ public:
 	}
 };
 
+BCS_DEBUG_API extern bool get_platform_is_big_endian(s_engine_platform_build engine_platform_build);
+BCS_DEBUG_API extern bool get_platform_is_big_endian(e_platform_type platform_type);
+
 BCS_DEBUG_API extern BCS_RESULT get_engine_type_pretty_string(e_engine_type engine_type, const char** result);
 BCS_DEBUG_API extern BCS_RESULT get_engine_type_folder_string(e_engine_type engine_type, const char** result);
 BCS_DEBUG_API extern BCS_RESULT get_engine_type_source_string(e_engine_type engine_type, const char** result);
