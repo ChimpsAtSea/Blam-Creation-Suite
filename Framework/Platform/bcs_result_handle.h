@@ -21,6 +21,7 @@ enum BCS_RESULT
 	BCS_S_OK = 0,
 	BCS_S_SEARCH_STOP = 1,
 	BCS_S_NO_CHANGES_MADE = 2,
+	BCS_S_CONTINUE = 3,
 };
 
 //#define BCS_VALIDATE_ARGUMENT_THROW(expression) \

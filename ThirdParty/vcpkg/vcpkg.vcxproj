@@ -99,17 +99,13 @@
     "$(ProjectDir)vcpkg\bootstrap-vcpkg.bat"
 )
 
-if exist "$(ProjectDir)vcpkg\installed\$(PlatformTarget)-windows-static\lib\libcurl.lib" (
-    echo libcurl is already built
-) else (
-    "$(ProjectDir)vcpkg\vcpkg.exe" install curl:$(PlatformTarget)-windows-static
-)
+"$(ProjectDir)vcpkg\vcpkg.exe" install ^
+curl:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+rapidjson:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+ffmpeg[core,avcodec,swresample]:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+--overlay-triplets=custom-triplets --recurse
 
-if exist "$(ProjectDir)vcpkg\installed\$(PlatformTarget)-windows-static\lib\rapidjson.lib" (
-    echo rapidjson is already built
-) else (
-    "$(ProjectDir)vcpkg\vcpkg.exe" install rapidjson:$(PlatformTarget)-windows-static
-)
+xcopy "$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-$(Configuration.ToLower())-bcs\bin\*.dll" "$(OutDir)" /s /d /y
 </Command>
     </PostBuildEvent>
     <Lib>
@@ -134,17 +130,13 @@ if exist "$(ProjectDir)vcpkg\installed\$(PlatformTarget)-windows-static\lib\rapi
     "$(ProjectDir)vcpkg\bootstrap-vcpkg.bat"
 )
 
-if exist "$(ProjectDir)vcpkg\installed\$(PlatformTarget)-windows-static\lib\libcurl.lib" (
-    echo libcurl is already built
-) else (
-    "$(ProjectDir)vcpkg\vcpkg.exe" install curl:$(PlatformTarget)-windows-static
-)
+"$(ProjectDir)vcpkg\vcpkg.exe" install ^
+curl:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+rapidjson:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+ffmpeg[core,avcodec,swresample]:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+--overlay-triplets=custom-triplets --recurse
 
-if exist "$(ProjectDir)vcpkg\installed\$(PlatformTarget)-windows-static\lib\rapidjson.lib" (
-    echo rapidjson is already built
-) else (
-    "$(ProjectDir)vcpkg\vcpkg.exe" install rapidjson:$(PlatformTarget)-windows-static
-)
+xcopy "$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-$(Configuration.ToLower())-bcs\bin\*.dll" "$(OutDir)" /s /d /y
 </Command>
     </PostBuildEvent>
     <Lib>
@@ -173,17 +165,13 @@ if exist "$(ProjectDir)vcpkg\installed\$(PlatformTarget)-windows-static\lib\rapi
     "$(ProjectDir)vcpkg\bootstrap-vcpkg.bat"
 )
 
-if exist "$(ProjectDir)vcpkg\installed\$(PlatformTarget)-windows-static\lib\libcurl.lib" (
-    echo libcurl is already built
-) else (
-    "$(ProjectDir)vcpkg\vcpkg.exe" install curl:$(PlatformTarget)-windows-static
-)
+"$(ProjectDir)vcpkg\vcpkg.exe" install ^
+curl:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+rapidjson:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+ffmpeg[core,avcodec,swresample]:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+--overlay-triplets=custom-triplets --recurse
 
-if exist "$(ProjectDir)vcpkg\installed\$(PlatformTarget)-windows-static\lib\rapidjson.lib" (
-    echo rapidjson is already built
-) else (
-    "$(ProjectDir)vcpkg\vcpkg.exe" install rapidjson:$(PlatformTarget)-windows-static
-)
+xcopy "$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-$(Configuration.ToLower())-bcs\bin\*.dll" "$(OutDir)" /s /d /y
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -209,17 +197,13 @@ if exist "$(ProjectDir)vcpkg\installed\$(PlatformTarget)-windows-static\lib\rapi
     "$(ProjectDir)vcpkg\bootstrap-vcpkg.bat"
 )
 
-if exist "$(ProjectDir)vcpkg\installed\$(PlatformTarget)-windows-static\lib\libcurl.lib" (
-    echo libcurl is already built
-) else (
-    "$(ProjectDir)vcpkg\vcpkg.exe" install curl:$(PlatformTarget)-windows-static
-)
+"$(ProjectDir)vcpkg\vcpkg.exe" install ^
+curl:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+rapidjson:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+ffmpeg[core,avcodec,swresample]:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+--overlay-triplets=custom-triplets --recurse
 
-if exist "$(ProjectDir)vcpkg\installed\$(PlatformTarget)-windows-static\lib\rapidjson.lib" (
-    echo rapidjson is already built
-) else (
-    "$(ProjectDir)vcpkg\vcpkg.exe" install rapidjson:$(PlatformTarget)-windows-static
-)
+xcopy "$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-$(Configuration.ToLower())-bcs\bin\*.dll" "$(OutDir)" /s /d /y
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

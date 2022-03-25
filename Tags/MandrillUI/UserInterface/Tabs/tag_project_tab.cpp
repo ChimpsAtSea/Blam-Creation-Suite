@@ -1,37 +1,10 @@
 #include "mandrillui-private-pch.h"
 
 #include <high_level_halo3/highlevel-halo3-public-pch.h>
-#include <xaudio2.h>
+#include <AudioConversion\audioconversion-platform-pch.h>
+#include <AudioConversion\audioconversion-public-pch.h>
 
-#define WAVE_FORMAT_XMA2 0x166
-
-typedef struct XMA2WAVEFORMATEX
-{
-	WAVEFORMATEX wfx;
-	// Meaning of the WAVEFORMATEX fields here:
-	//    wFormatTag;        // Audio format type; always WAVE_FORMAT_XMA2
-	//    nChannels;         // Channel count of the decoded audio
-	//    nSamplesPerSec;    // Sample rate of the decoded audio
-	//    nAvgBytesPerSec;   // Used internally by the XMA encoder
-	//    nBlockAlign;       // Decoded sample size; channels * wBitsPerSample / 8
-	//    wBitsPerSample;    // Bits per decoded mono sample; always 16 for XMA
-	//    cbSize;            // Size in bytes of the rest of this structure (34)
-
-	WORD  NumStreams;        // Number of audio streams (1 or 2 channels each)
-	DWORD ChannelMask;       // Spatial positions of the channels in this file,
-							 // stored as SPEAKER_xxx values (see audiodefs.h)
-	DWORD SamplesEncoded;    // Total number of PCM samples the file decodes to
-	DWORD BytesPerBlock;     // XMA block size (but the last one may be shorter)
-	DWORD PlayBegin;         // First valid sample in the decoded audio
-	DWORD PlayLength;        // Length of the valid part of the decoded audio
-	DWORD LoopBegin;         // Beginning of the loop region in decoded sample terms
-	DWORD LoopLength;        // Length of the loop region in decoded sample terms
-	BYTE  LoopCount;         // Number of loop repetitions; 255 = infinite
-	BYTE  EncoderVersion;    // Version of XMA encoder that generated the file
-	WORD  BlockCount;        // XMA blocks in file (and entries in its seek table)
-} XMA2WAVEFORMATEX, * PXMA2WAVEFORMATEX;
-
-static void export_sounds(c_tag_project& tag_project)
+static void export_sounds(c_tag_project& tag_project, bool export_wav, bool export_xma)
 {
 	h_tag* const* tag_instances;
 	unsigned long tag_instance_count;
@@ -116,90 +89,146 @@ static void export_sounds(c_tag_project& tag_project)
 									const char* sample_data_start = static_cast<const char*>(resource_buffer) + file_offset;
 									const char* sample_data_end = sample_data_start + sample_size;
 
-									c_fixed_path output_filepath;
-									output_filepath.format("data\\%s\\%s.xma", _tag_filepath, permutation_name);
-
-									struct
-									{
-										DWORD riff_chunk_header = _byteswap_ulong('RIFF');
-										DWORD riff_chunk_size = 0;
-
-										DWORD wave_chunk_header = _byteswap_ulong('WAVE');
-
-										DWORD format_chunk_header = _byteswap_ulong('fmt ');
-										DWORD format_chunk_size = sizeof(XMA2WAVEFORMATEX);
-										XMA2WAVEFORMATEX format_chunk = {};
-
-										DWORD data_chunk_header = _byteswap_ulong('data');
-										DWORD data_chunk_size = 0;
-									} xma2_header;
-
-									xma2_header.format_chunk.wfx.wFormatTag = WAVE_FORMAT_XMA2;
+									long number_of_channels = 0;
 									switch (codec.encoding.value)
 									{
 									case _sound_encoding_enum_mono:
-										xma2_header.format_chunk.wfx.nChannels = 1;
+										number_of_channels = 1;
 										break;
 									case _sound_encoding_enum_stereo:
-										xma2_header.format_chunk.wfx.nChannels = 2;
+										number_of_channels = 2;
 										break;
 									case _sound_encoding_enum_quad:
-										xma2_header.format_chunk.wfx.nChannels = 4;
+										number_of_channels = 4;
 										break;
 									case _sound_encoding_enum__51:
-										xma2_header.format_chunk.wfx.nChannels = 6;
+										number_of_channels = 6;
 										break;
 									case _sound_encoding_enum_codec:
-										xma2_header.format_chunk.wfx.nChannels = 1;
+										number_of_channels = 1;
 										break;
 									}
+
+									long samples_per_second = 0;
 									switch (codec.sample_rate.value)
 									{
-										case _sound_sample_rate_enum__22khz:
-											xma2_header.format_chunk.wfx.nSamplesPerSec = 22050;
+									case _sound_sample_rate_enum__22khz:
+										samples_per_second = 22050;
 										break;
-										case _sound_sample_rate_enum__44khz:
-											xma2_header.format_chunk.wfx.nSamplesPerSec = 44100;
+									case _sound_sample_rate_enum__44khz:
+										samples_per_second = 44100;
 										break;
-										case _sound_sample_rate_enum__32khz:
-											xma2_header.format_chunk.wfx.nSamplesPerSec = 32000;
+									case _sound_sample_rate_enum__32khz:
+										samples_per_second = 32000;
 										break;
-										case _sound_sample_rate_enum__48khz:
-											xma2_header.format_chunk.wfx.nSamplesPerSec = 48000;
+									case _sound_sample_rate_enum__48khz:
+										samples_per_second = 48000;
 										break;
 									}
-									xma2_header.format_chunk.wfx.nAvgBytesPerSec;
-									xma2_header.format_chunk.wfx.nBlockAlign = 2;
-									xma2_header.format_chunk.wfx.wBitsPerSample = 16;
-									xma2_header.format_chunk.wfx.cbSize = 34;
 
-									// Meaning of the WAVEFORMATEX fields here:
-									//    wFormatTag;        // Audio format type; always WAVE_FORMAT_XMA2
-									//    nChannels;         // Channel count of the decoded audio
-									//    nSamplesPerSec;    // Sample rate of the decoded audio
-									//    nAvgBytesPerSec;   // Used internally by the XMA encoder
-									//    nBlockAlign;       // Decoded sample size; channels * wBitsPerSample / 8
-									//    wBitsPerSample;    // Bits per decoded mono sample; always 16 for XMA
-									//    cbSize;            // Size in bytes of the rest of this structure (34)
+									long riff_chunk_id = byteswap('RIFF');
+									long riff_chunk_size = 0;
+									long riff_chunk_data = byteswap('WAVE');
 
-									xma2_header.format_chunk.NumStreams = 1;				// Number of audio streams (1 or 2 channels each)
-									xma2_header.format_chunk.ChannelMask = 0;			// Spatial positions of the channels in this file,
-																		// stored as SPEAKER_xxx values (see audiodefs.h)
-									xma2_header.format_chunk.SamplesEncoded = permutation.uncompressed_sample_count.value;			// Total number of PCM samples the file decodes to
-									xma2_header.format_chunk.BytesPerBlock = 2048;													// XMA block size (but the last one may be shorter)
-									xma2_header.format_chunk.PlayBegin = chunk.xma2_source_buffer_sample_start.value;				// First valid sample in the decoded audio
-									xma2_header.format_chunk.PlayLength = chunk.xma2_source_buffer_sample_end.value;				// Length of the valid part of the decoded audio
-									xma2_header.format_chunk.LoopBegin = 0;															// Beginning of the loop region in decoded sample terms
-									xma2_header.format_chunk.LoopLength = 0;														// Length of the loop region in decoded sample terms
-									xma2_header.format_chunk.LoopCount = 0;															// Number of loop repetitions; 255 = infinite
-									xma2_header.format_chunk.EncoderVersion = 4;													// Version of XMA encoder that generated the file
-									xma2_header.format_chunk.BlockCount = sample_size / 2048;										// XMA blocks in file (and entries in its seek table)
+									long format_chunk_id = byteswap('fmt ');
+									long format_chunk_size = sizeof(XMA2WAVEFORMATEX);
 
-									xma2_header.riff_chunk_size = sizeof(xma2_header) + sample_size - 8;
-									xma2_header.data_chunk_size = sample_size;
+									long data_chunk_header = byteswap('data');
+									long data_chunk_size = sample_size;
+									XMA2WAVEFORMATEX xma2_wave_format = {};
 
-									filesystem_write_file_from_memory(output_filepath, &xma2_header, sizeof(xma2_header));
-									filesystem_write_file_from_memory(output_filepath, sample_data_start, sample_size, _filesystem_write_mode_append);
+									riff_chunk_size += sizeof(riff_chunk_data);
+									riff_chunk_size += sizeof(format_chunk_id);
+									riff_chunk_size += sizeof(format_chunk_size);
+									riff_chunk_size += format_chunk_size;
+									riff_chunk_size += sizeof(data_chunk_header);
+									riff_chunk_size += sizeof(data_chunk_size);
+									riff_chunk_size += data_chunk_size;
+
+									{
+										xma2_wave_format.wfx.wFormatTag = WAVE_FORMAT_XMA2;										//    wFormatTag;        // Audio format type; always WAVE_FORMAT_XMA2														
+										xma2_wave_format.wfx.nChannels = number_of_channels;									//    nChannels;         // Channel count of the decoded audio
+										xma2_wave_format.wfx.nSamplesPerSec = samples_per_second;								//    nSamplesPerSec;    // Sample rate of the decoded audio
+										xma2_wave_format.wfx.nAvgBytesPerSec = 0;												//    nAvgBytesPerSec;   // Used internally by the XMA encoder
+										xma2_wave_format.wfx.nBlockAlign = 2;													//    nBlockAlign;       // Decoded sample size; channels * wBitsPerSample / 8
+										xma2_wave_format.wfx.wBitsPerSample = 16;												//    wBitsPerSample;    // Bits per decoded mono sample; always 16 for XMA
+										xma2_wave_format.wfx.cbSize = sizeof(xma2_wave_format) - sizeof(WAVEFORMATEX);			//    cbSize;            // Size in bytes of the rest of this structure (34)
+
+										xma2_wave_format.NumStreams = 1;														// Number of audio streams (1 or 2 channels each)
+										xma2_wave_format.ChannelMask = 0;														// Spatial positions of the channels in this file,
+																																// stored as SPEAKER_xxx values (see audiodefs.h)
+										xma2_wave_format.SamplesEncoded = permutation.uncompressed_sample_count.value;			// Total number of PCM samples the file decodes to
+										xma2_wave_format.BytesPerBlock = 2048;													// XMA block size (but the last one may be shorter)
+										xma2_wave_format.PlayBegin = chunk.xma2_source_buffer_sample_start.value;				// First valid sample in the decoded audio
+										xma2_wave_format.PlayLength = chunk.xma2_source_buffer_sample_end.value;				// Length of the valid part of the decoded audio
+										xma2_wave_format.LoopBegin = 0;															// Beginning of the loop region in decoded sample terms
+										xma2_wave_format.LoopLength = 0;														// Length of the loop region in decoded sample terms
+										xma2_wave_format.LoopCount = 0;															// Number of loop repetitions; 255 = infinite
+										xma2_wave_format.EncoderVersion = 4;													// Version of XMA encoder that generated the file
+										xma2_wave_format.BlockCount = sample_size / 2048;										// XMA blocks in file (and entries in its seek table)
+									}
+									char* xma_file_data;
+									unsigned long xma_file_data_size = 0;
+									{
+#define enqueue_size(size) xma_file_data_size += (size)
+										enqueue_size(sizeof(riff_chunk_id));
+										enqueue_size(sizeof(riff_chunk_size));
+										enqueue_size(sizeof(riff_chunk_data));
+										enqueue_size(sizeof(format_chunk_id));
+										enqueue_size(sizeof(format_chunk_size));
+										enqueue_size(sizeof(xma2_wave_format));
+										enqueue_size(sizeof(data_chunk_header));
+										enqueue_size(sizeof(data_chunk_size));
+										enqueue_size(data_chunk_size);
+#undef enqueue_size
+
+										xma_file_data = new() char[xma_file_data_size];
+										char* xma_file_data_pos = xma_file_data;
+#define enqueue_data(pointer, size) memcpy(xma_file_data_pos, (pointer), (size)); xma_file_data_pos += (size)
+										enqueue_data(&riff_chunk_id, sizeof(riff_chunk_id));
+										enqueue_data(&riff_chunk_size, sizeof(riff_chunk_size));
+										enqueue_data(&riff_chunk_data, sizeof(riff_chunk_data));
+										enqueue_data(&format_chunk_id, sizeof(format_chunk_id));
+										enqueue_data(&format_chunk_size, sizeof(format_chunk_size));
+										enqueue_data(&xma2_wave_format, sizeof(xma2_wave_format));
+										enqueue_data(&data_chunk_header, sizeof(data_chunk_header));
+										enqueue_data(&data_chunk_size, sizeof(data_chunk_size));
+										enqueue_data(sample_data_start, sample_size);
+#undef enqueue_data
+
+									}
+
+									debug_point;
+
+									if (export_xma)
+									{
+										c_fixed_path xma_output_filepath;
+										xma_output_filepath.format("data\\%s\\%s.xma", _tag_filepath, permutation_name);
+
+										filesystem_write_file_from_memory(xma_output_filepath, xma_file_data, xma_file_data_size);
+
+										tracked_free(xma_file_data);
+
+										debug_point;
+									}
+									if (export_wav)
+									{
+										void* wave_file_data;
+										unsigned long long wave_file_data_size;
+										BCS_RESULT decode_rs = decode_xma2_to_wav(xma_file_data, xma_file_data_size, wave_file_data, wave_file_data_size);
+										if (BCS_SUCCEEDED(decode_rs))
+										{
+											c_fixed_path wav_output_filepath;
+											wav_output_filepath.format("data\\%s\\%s.wav", _tag_filepath, permutation_name);
+											filesystem_write_file_from_memory(wav_output_filepath, wave_file_data, wave_file_data_size);
+
+											tracked_free(wave_file_data);
+										}
+
+										debug_point;
+									}
+
+
 
 									debug_point;
 								}
@@ -214,8 +243,6 @@ static void export_sounds(c_tag_project& tag_project)
 						debug_point;
 					}
 
-
-
 					debug_point;
 
 					resource->remove_reference();
@@ -225,11 +252,6 @@ static void export_sounds(c_tag_project& tag_project)
 			{
 				debug_point;
 			}
-
-
-
-
-
 
 			debug_point;
 		}
@@ -251,9 +273,11 @@ c_tag_project_tab::c_tag_project_tab(const wchar_t* filepath, c_tag_project& tag
 	}
 	if (tag_project.engine_platform_build.engine_type == _engine_type_halo3)
 	{
-		if (BCS_SUCCEEDED(command_line_has_argument("autoexportsounds")))
+		bool export_wav = BCS_SUCCEEDED(command_line_has_argument("autoexportsoundswav"));
+		bool export_xma = BCS_SUCCEEDED(command_line_has_argument("autoexportsoundsxma"));
+		if (export_wav || export_xma)
 		{
-			export_sounds(tag_project);
+			export_sounds(tag_project, export_wav, export_xma);
 		}
 	}
 
@@ -556,7 +580,15 @@ void c_tag_project_tab::render_menu_gui_impl(e_menu_render_type menu_render_type
 		{
 			if (ImGui::MenuItem("Export Sounds"))
 			{
-				export_sounds(tag_project);
+				export_sounds(tag_project, true, true);
+			}
+			if (ImGui::MenuItem("Export Sounds (WAV only)"))
+			{
+				export_sounds(tag_project, true, false);
+			}
+			if (ImGui::MenuItem("Export Sounds (XMA only)"))
+			{
+				export_sounds(tag_project, false, true);
 			}
 		}
 

@@ -150,7 +150,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;TagDefinitions.lib;TagReflection.lib;GraphicsLib.lib;imgui.lib;blamlib.lib;MandrillLib.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;TagDefinitions.lib;TagReflection.lib;GraphicsLib.lib;AudioConversion.lib;imgui.lib;blamlib.lib;MandrillLib.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -177,7 +177,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;TagDefinitions.lib;TagReflection.lib;GraphicsLib.lib;imgui.lib;blamlib.lib;MandrillLib.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;TagDefinitions.lib;TagReflection.lib;GraphicsLib.lib;AudioConversion.lib;imgui.lib;blamlib.lib;MandrillLib.lib;HighLevel_Halo1.lib;HighLevel_Halo2.lib;HighLevel_Stubbs.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;HighLevel_Infinite.lib;LowLevel_Halo1.lib;LowLevel_Halo2.lib;LowLevel_Stubbs.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;LowLevel_Infinite.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>

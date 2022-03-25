@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	
-  <PropertyGroup Condition="'$(MSBuildProjectName)'!='blamlib'">
+  <PropertyGroup>
 	  <ResourcesFilepath>$(SolutionDir)\Framework\Platform\!Resources\Resource.rc</ResourcesFilepath>
 	  
 	  <IncludePath>$(SolutionDir);$(IncludePath)</IncludePath>
@@ -20,6 +20,7 @@
 	  <IncludePath>$(SolutionDir)Tooling\Blender\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)Framework\blamlib\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)CTS\;$(IncludePath)</IncludePath>
+	  <IncludePath>$(SolutionDir)ContentFramework\;$(IncludePath)</IncludePath>
 	  
 	  <IncludePath>$(SolutionDir)ThirdParty\tbb\include\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\include\;$(IncludePath)</IncludePath>
@@ -28,14 +29,13 @@
 	  <IncludePath>$(SolutionDir)ThirdParty\llvm-build\cmake_$(PlatformShortName)\include\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\llvm-build\cmake_$(PlatformShortName)\tools\clang\include\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\discord-rpc\include\;$(IncludePath)</IncludePath>
-	  <IncludePath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-windows-static\include\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\DirectX-Headers\include\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\murmur3\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\imgui\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\imgui\imgui\;$(IncludePath)</IncludePath>
 	  
-	  <LibraryPath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-windows-static\lib\;$(LibraryPath)</LibraryPath>
-	  <LibraryPath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-windows-static\$(Configuration)\lib\;$(LibraryPath)</LibraryPath>
+	  <IncludePath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-$(Configuration.ToLower())-bcs\include\;$(IncludePath)</IncludePath>
+	  <LibraryPath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-$(Configuration.ToLower())-bcs\lib\;$(LibraryPath)</LibraryPath>
 	  <LibraryPath>$(SolutionDir)ThirdParty\pugixml-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
 	  <LibraryPath>$(SolutionDir)ThirdParty\discord-rpc-build\cmake_$(PlatformShortName)\src\$(Configuration)\;$(LibraryPath)</LibraryPath>
 	  <LibraryPath>$(SolutionDir)ThirdParty\llvm-build\cmake_$(PlatformShortName)\$(CustomConfiguration)\lib\;$(LibraryPath)</LibraryPath>
