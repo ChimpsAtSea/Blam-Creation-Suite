@@ -4,7 +4,7 @@
 #include <AudioConversion\audioconversion-platform-pch.h>
 #include <AudioConversion\audioconversion-public-pch.h>
 
-static void export_sounds(c_tag_project& tag_project, bool export_wav, bool export_xma)
+static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_project, bool export_wav, bool export_xma)
 {
 	h_tag* const* tag_instances;
 	unsigned long tag_instance_count;
@@ -200,17 +200,6 @@ static void export_sounds(c_tag_project& tag_project, bool export_wav, bool expo
 
 									debug_point;
 
-									if (export_xma)
-									{
-										c_fixed_path xma_output_filepath;
-										xma_output_filepath.format("data\\%s\\%s.xma", _tag_filepath, permutation_name);
-
-										filesystem_write_file_from_memory(xma_output_filepath, xma_file_data, xma_file_data_size);
-
-										tracked_free(xma_file_data);
-
-										debug_point;
-									}
 									if (export_wav)
 									{
 										void* wave_file_data;
@@ -219,7 +208,7 @@ static void export_sounds(c_tag_project& tag_project, bool export_wav, bool expo
 										if (BCS_SUCCEEDED(decode_rs))
 										{
 											c_fixed_path wav_output_filepath;
-											wav_output_filepath.format("data\\%s\\%s.wav", _tag_filepath, permutation_name);
+											wav_output_filepath.format("%Sdata\\%s\\%s.wav", export_directory, _tag_filepath, permutation_name);
 											filesystem_write_file_from_memory(wav_output_filepath, wave_file_data, wave_file_data_size);
 
 											tracked_free(wave_file_data);
@@ -227,7 +216,17 @@ static void export_sounds(c_tag_project& tag_project, bool export_wav, bool expo
 
 										debug_point;
 									}
+									if (export_xma)
+									{
+										c_fixed_path xma_output_filepath;
+										xma_output_filepath.format("%Sdata\\%s\\%s.xma", export_directory, _tag_filepath, permutation_name);
 
+										filesystem_write_file_from_memory(xma_output_filepath, xma_file_data, xma_file_data_size);
+
+										tracked_free(xma_file_data);
+
+										debug_point;
+									}
 
 
 									debug_point;
@@ -264,7 +263,11 @@ c_tag_project_tab::c_tag_project_tab(const wchar_t* filepath, c_tag_project& tag
 	tag_project(tag_project),
 	user_interface(*search_parent_tab_type<c_mandrill_user_interface>()),
 	project_filepath(filepath),
-	search_buffer()
+	search_buffer(),
+	file_browser(),
+	show_export_sounds_file_dialogue(),
+	sound_export_wav(),
+	sound_export_xma()
 {
 	const char* auto_open_tag;
 	if (BCS_SUCCEEDED(command_line_get_argument("autotag", auto_open_tag)))
@@ -277,7 +280,7 @@ c_tag_project_tab::c_tag_project_tab(const wchar_t* filepath, c_tag_project& tag
 		bool export_xma = BCS_SUCCEEDED(command_line_has_argument("autoexportsoundsxma"));
 		if (export_wav || export_xma)
 		{
-			export_sounds(tag_project, export_wav, export_xma);
+			export_sounds(L"", tag_project, export_wav, export_xma);
 		}
 	}
 
@@ -580,15 +583,21 @@ void c_tag_project_tab::render_menu_gui_impl(e_menu_render_type menu_render_type
 		{
 			if (ImGui::MenuItem("Export Sounds"))
 			{
-				export_sounds(tag_project, true, true);
+				show_export_sounds_file_dialogue = true;
+				sound_export_wav = true;
+				sound_export_xma = true;
 			}
 			if (ImGui::MenuItem("Export Sounds (WAV only)"))
 			{
-				export_sounds(tag_project, true, false);
+				show_export_sounds_file_dialogue = true;
+				sound_export_wav = true;
+				sound_export_xma = false;
 			}
 			if (ImGui::MenuItem("Export Sounds (XMA only)"))
 			{
-				export_sounds(tag_project, false, true);
+				show_export_sounds_file_dialogue = true;
+				sound_export_wav = false;
+				sound_export_xma = true;
 			}
 		}
 
@@ -616,7 +625,21 @@ void c_tag_project_tab::render_menu_gui_impl(e_menu_render_type menu_render_type
 
 void c_tag_project_tab::render_file_dialogue_gui_impl()
 {
+	if (ImGui::BeginAsyncFolderDialog(&file_browser, "Export Sounds Directory", show_export_sounds_file_dialogue))
+	{
+		if (ImGui::AsyncFileDialogIsValid())
+		{
+			const wchar_t* export_directory = ImGui::AsyncFileDialogGetFilepathWideChar();
 
+			export_sounds(export_directory, tag_project, sound_export_wav, sound_export_xma);
+
+			debug_point;
+		}
+		debug_point;
+
+		ImGui::EndAsyncFileDialog();
+	}
+	show_export_sounds_file_dialogue = false;
 }
 
 void c_tag_project_tab::render_game_layer_impl()

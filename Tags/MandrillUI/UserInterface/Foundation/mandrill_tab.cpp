@@ -77,6 +77,8 @@ void c_mandrill_tab::render_menu_gui(e_menu_render_type menu_render_type)
 
 void c_mandrill_tab::render_file_dialogue_gui()
 {
+	render_file_dialogue_gui_impl();
+
 	for (c_mandrill_tab* tab : children)
 	{
 		tab->render_file_dialogue_gui();
@@ -102,4 +104,17 @@ const char* c_mandrill_tab::get_title() const
 const char* c_mandrill_tab::get_description() const 
 { 
 	return description.c_str(); 
+}
+
+void c_mandrill_tab::render_file_dialogue_gui_impl()
+{
+	
+}
+
+void c_mandrill_tab::render_game_layer_impl()
+{
+	for (c_mandrill_tab* tab : children)
+	{
+		tab->render_game_layer();
+	}
 }

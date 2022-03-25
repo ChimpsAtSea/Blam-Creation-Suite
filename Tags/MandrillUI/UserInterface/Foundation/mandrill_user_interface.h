@@ -86,10 +86,10 @@ protected:
 	bool is_game_mode;
 	bool window_open;
 	bool show_create_tag_project_file_dialogue;
-	bool show_open_cache_file_dialogue;
+	bool show_open_tag_project_file_dialogue;
 	int mandrill_theme_color_count;
 	int mandrill_theme_var_count;
-	//ImGuiAddons::ImGuiFileBrowser* file_browser;
+	t_imgui_async_file_dialog_handle file_browser;
 
 public:
 	static t_get_tag_game_memory_callback* s_get_tag_game_memory;

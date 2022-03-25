@@ -411,7 +411,7 @@ void c_graphics_d3d12::get_hardware_adapter(IDXGIFactory4* dxgi_factory, D3D_FEA
 
 		DXGI_ADAPTER_DESC1 adapter_description{};
 		dxgi_adapter->GetDesc1(&adapter_description);
-		printf("Adapter %u '%S'\n", adapter_index, adapter_description.Description);
+		console_write_line_verbose("Adapter %u '%S'", adapter_index, adapter_description.Description);
 
 		ID3D12Device8* device = nullptr;
 		HRESULT create_device_result = D3D12CreateDevice(

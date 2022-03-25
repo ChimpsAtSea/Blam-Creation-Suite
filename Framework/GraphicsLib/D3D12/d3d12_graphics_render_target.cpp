@@ -223,7 +223,7 @@ void c_graphics_render_target_d3d12::init_resource()
 {
 	if (render_target_type == _graphics_render_target_type_d3d12_swapchain && swap_chain->dxgi_swap_chain != nullptr)
 	{
-		console_write_line("swap_chain_buffer_index %u ", swap_chain_buffer_index);
+		console_write_line_verbose("swap_chain_buffer_index %u ", swap_chain_buffer_index);
 		HRESULT get_buffer_result = swap_chain->dxgi_swap_chain->GetBuffer(swap_chain_buffer_index, IID_PPV_ARGS(&resource));
 		ASSERT(SUCCEEDED(get_buffer_result));
 

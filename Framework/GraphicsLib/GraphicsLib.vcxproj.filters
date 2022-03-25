@@ -153,6 +153,9 @@
     <ClCompile Include="graphicslib_tracked_memory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ImGui\imgui_async_file_dialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphicslib-public-pch.h">
@@ -321,6 +324,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="graphicslib_tracked_memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_async_file_dialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

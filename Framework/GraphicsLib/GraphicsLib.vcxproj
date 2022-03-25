@@ -62,6 +62,7 @@
     <ClCompile Include="ImGui\begin_popup_modal_ex.cpp" />
     <ClCompile Include="ImGui\imgui_memory_editor.cpp" />
     <ClCompile Include="ImGui\imgui_text_editor.cpp" />
+    <ClCompile Include="ImGui\imgui_async_file_dialog.cpp" />
     <ClCompile Include="Scenes\imgui_viewport_render_context.cpp" />
     <ClCompile Include="Scenes\render_context.cpp" />
     <ClCompile Include="Windows\window_windows.cpp" />
@@ -133,6 +134,7 @@
     <ClInclude Include="ImGui\imgui-public-pch.h" />
     <ClInclude Include="ImGui\imgui_memory_editor.h" />
     <ClInclude Include="ImGui\imgui_text_editor.h" />
+    <ClInclude Include="ImGui\imgui_async_file_dialog.h" />
     <ClInclude Include="Scenes\imgui_viewport_render_context.h" />
     <ClInclude Include="Scenes\render_context.h" />
     <ClInclude Include="Windows\window_windows.h" />

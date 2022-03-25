@@ -253,16 +253,6 @@ void c_tag_project_configurator_tab::render_menu_gui_impl(e_menu_render_type men
 
 }
 
-void c_tag_project_configurator_tab::render_file_dialogue_gui_impl()
-{
-
-}
-
-void c_tag_project_configurator_tab::render_game_layer_impl()
-{
-
-}
-
 void c_tag_project_configurator_tab::render_cache_file_selection()
 {
 

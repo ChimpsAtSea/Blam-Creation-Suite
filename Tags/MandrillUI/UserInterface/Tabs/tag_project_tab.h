@@ -50,4 +50,8 @@ protected:
 	h_tag* search_selected_tag_interface;
 	c_mandrill_tab* next_selected_tab;
 	c_fixed_string_1024 search_buffer;
+	t_imgui_async_file_dialog_handle file_browser;
+	bool show_export_sounds_file_dialogue;
+	bool sound_export_wav;
+	bool sound_export_xma;
 };

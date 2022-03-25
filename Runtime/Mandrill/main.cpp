@@ -23,11 +23,12 @@ int WINAPI wWinMain(
 	const wchar_t* launch_filepath_command_line_argument = nullptr; // #TODO: implement this with the command line API
 
 	BCS_FAIL_RETURN(register_process_module_by_pointer(wWinMain));
-	BCS_RESULT rs0 = init_command_line(lpCmdLine);
-	BCS_RESULT rs1 = init_console();
-	if(BCS_SUCCEEDED(rs1)) rs1 = BCS_SUCCEEDED(command_line_has_argument("console")) ? alloc_console("Mandrill") : BCS_S_OK;
-	BCS_RESULT rs2 = window_create(window_title, "mandrill", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, window);
-	BCS_RESULT rs3 = render_context_window_create(*window, graphics_background_color, window_render_context);
+	BCS_RESULT rs0 = init_platform();
+	BCS_RESULT rs1 = init_command_line(lpCmdLine);
+	BCS_RESULT rs2 = init_console();
+	if(BCS_SUCCEEDED(rs2)) rs2 = BCS_SUCCEEDED(command_line_has_argument("console")) ? alloc_console("Mandrill") : BCS_S_OK;
+	BCS_RESULT rs3 = window_create(window_title, "mandrill", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, window);
+	BCS_RESULT rs4 = render_context_window_create(*window, graphics_background_color, window_render_context);
 
 	mandrill_user_interface = new() c_mandrill_user_interface(
 		*window_render_context,
@@ -38,11 +39,13 @@ int WINAPI wWinMain(
 
 	delete mandrill_user_interface;
 
-	if (BCS_SUCCEEDED(rs3)) rs3 = render_context_destroy(window_render_context);
-	if (BCS_SUCCEEDED(rs2)) rs2 = window_destroy(window);
-	if (BCS_SUCCEEDED(rs1)) rs1 = deinit_console();
-	if (BCS_SUCCEEDED(rs0)) rs0 = deinit_command_line();
+	if (BCS_SUCCEEDED(rs4)) rs4 = render_context_destroy(window_render_context);
+	if (BCS_SUCCEEDED(rs3)) rs3 = window_destroy(window);
+	if (BCS_SUCCEEDED(rs2)) rs2 = deinit_console();
+	if (BCS_SUCCEEDED(rs1)) rs1 = deinit_command_line();
+	if (BCS_SUCCEEDED(rs0)) rs0 = deinit_platform();
 
+	BCS_FAIL_RETURN(rs4);
 	BCS_FAIL_RETURN(rs3);
 	BCS_FAIL_RETURN(rs2);
 	BCS_FAIL_RETURN(rs1);

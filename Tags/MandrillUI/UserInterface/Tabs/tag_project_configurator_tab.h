@@ -29,8 +29,6 @@ public:
 protected:
 	virtual void render_impl() override final;
 	virtual void render_menu_gui_impl(e_menu_render_type menu_render_type) override final;
-	virtual void render_file_dialogue_gui_impl() override final;
-	virtual void render_game_layer_impl() override final;
 
 	void render_cache_file_selection();
 	void render_project_settings();

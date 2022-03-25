@@ -43,6 +43,7 @@
     <ClInclude Include="platform-exports-pch.h" />
     <ClInclude Include="platform-private-pch.h" />
     <ClInclude Include="platform-public-pch.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="process_module.h" />
     <ClInclude Include="resources.h" />
     <ClInclude Include="settings.h" />
@@ -81,6 +82,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="platform.cpp" />
     <ClCompile Include="process_module.cpp" />
     <ClCompile Include="resources.cpp" />
     <ClCompile Include="settings.cpp" />

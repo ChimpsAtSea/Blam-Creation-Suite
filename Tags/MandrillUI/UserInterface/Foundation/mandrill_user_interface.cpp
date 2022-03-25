@@ -15,12 +15,12 @@ c_mandrill_user_interface::c_mandrill_user_interface(c_render_context& imgui_vie
 	is_game_mode(is_game_mode),
 	window_open(true),
 	show_create_tag_project_file_dialogue(false),
-	show_open_cache_file_dialogue(false),
+	show_open_tag_project_file_dialogue(false),
 	on_close(),
 	on_render_foreground_handle(),
 	mandrill_theme_color_count(0),
-	mandrill_theme_var_count(0)//,
-	//file_browser(nullptr)
+	mandrill_theme_var_count(0),
+	file_browser()
 {
 	c_fixed_path previous_file_path;
 	settings_read_string(_settings_section_mandrill, k_previous_open_filepath_setting, previous_file_path.str(), previous_file_path.capacity(), "");
@@ -441,12 +441,11 @@ void c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 				{
 					show_create_tag_project_file_dialogue = true;
 				}
-				ImGui::Separator();
-				//ImGui::MenuItem("New");
-				if (ImGui::MenuItem("View Cache File", "Ctrl+O"))
+				if (ImGui::MenuItem("Open Project"))
 				{
-					show_open_cache_file_dialogue = true;
+					show_open_tag_project_file_dialogue = true;
 				}
+				ImGui::Separator();
 				for (c_mandrill_tab* tab : children)
 				{
 					tab->render_menu_gui(_menu_render_type_root_file);
@@ -507,74 +506,43 @@ void c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 
 void c_mandrill_user_interface::render_file_dialogue_gui_impl()
 {
-	if (show_create_tag_project_file_dialogue)
+	if (ImGui::BeginAsyncFolderDialog(&file_browser, "Create Tag Project", show_create_tag_project_file_dialogue))
 	{
-		static long user_type = keys_user_type();
-		if (user_type)
+		if (ImGui::AsyncFileDialogIsValid())
 		{
-			//float file_browser_window_width = std::clamp(window.get_width_float(), 700.0f, 1200.0f);
-			//float file_browser_window_height = std::clamp(window.get_height_float(), 310.0f, 675.0f);
-			//if (file_browser->show_open_file_dialog("Create Tag Project", ImVec2(file_browser_window_width, file_browser_window_height), ".exe,.xex,.dll"))
-			//{
-			//	show_create_tag_project_file_dialogue = false;
+			const wchar_t* filepath = ImGui::AsyncFileDialogGetFilepathWideChar();
 
-			//	std::string selected_path = file_browser->get_current_path();
-			//	if (!selected_path.empty())
-			//	{
-			//		settings_write_string(_settings_section_mandrill, k_previous_open_filepath_setting, selected_path.c_str());
-			//		c_fixed_wide_path selected_path_buffer;
-			//		selected_path_buffer.format(L"%S", selected_path.c_str());
-			//		open_tag_project_configurator_tab(selected_path_buffer.c_str());
-			//	}
-			//}
+			settings_write_wstring(_settings_section_mandrill, k_previous_open_filepath_setting, filepath);
+			open_tag_project_configurator_tab(filepath);
+
+			debug_point;
 		}
-		else
-		{
-			ImVec2 window_position = { 100, 100 };
-			ImVec2 window_size = { 800, 600 };
+		debug_point;
 
-			ImGui::SetNextWindowPos(window_position, ImGuiCond_Always);
-			ImGui::SetNextWindowSize(window_size, ImGuiCond_Always);
-			ImGui::SetNextWindowFocus();
-			
-			if (ImGui::Begin("Join Chimps at Sea", &show_create_tag_project_file_dialogue, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse))
-			{
-				ImGui::TextUnformatted("This build of Mandrill requires Discord verification to use");
-				ImGui::Spacing();
-
-				if (ImGui::Button("Join Discord"))
-				{
-					open_url("https://discord.gg/XhPcuhCSYB");
-				}
-			}
-			ImGui::End();
-		}
-
+		ImGui::EndAsyncFileDialog();
 	}
-	else if (show_open_cache_file_dialogue)
-	{
-		//float file_browser_window_width = std::clamp(window.get_width_float(), 700.0f, 1200.0f);
-		//float file_browser_window_height = std::clamp(window.get_height_float(), 310.0f, 675.0f);
-		//if (file_browser->show_open_file_dialog("Open File", ImVec2(file_browser_window_width, file_browser_window_height), ".map"))
-		//{
-		//	show_open_cache_file_dialogue = false;
+	show_create_tag_project_file_dialogue = false;
 
-		//	const char* selected_file_path = file_browser->get_selected_file_name();
-		//	if (selected_file_path)
-		//	{
-		//		settings_write_string(_settings_section_mandrill, k_previous_open_filepath_setting, file_browser->get_current_path().c_str());
-		//		c_fixed_wide_path selected_file_path_buffer;
-		//		selected_file_path_buffer.format(L"%S", selected_file_path);
-		//		open_cache_file_tab(selected_file_path_buffer.c_str());
-		//	}
-		//}
-	}
-	else
+	if (ImGui::BeginAsyncFileDialog(&file_browser, "Open Tag Project", show_open_tag_project_file_dialogue))
 	{
-		for (c_mandrill_tab* tab : children)
+		if (ImGui::AsyncFileDialogIsValid())
 		{
-			tab->render_file_dialogue_gui();
+			const wchar_t* filepath = ImGui::AsyncFileDialogGetFilepathWideChar();
+
+			settings_write_wstring(_settings_section_mandrill, k_previous_open_filepath_setting, filepath);
+			//open_tag_project_configurator_tab(filepath);
+
+			debug_point;
 		}
+		debug_point;
+
+		ImGui::EndAsyncFileDialog();
+	}
+	show_open_tag_project_file_dialogue = false;
+
+	for (c_mandrill_tab* tab : children)
+	{
+		tab->render_file_dialogue_gui();
 	}
 }
 

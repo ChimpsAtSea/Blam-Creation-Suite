@@ -1,0 +1,57 @@
+#pragma once
+
+#ifndef __IMGUI_ASYNC_FILE_DIALOG_IMPL__
+
+struct s_imgui_async_file_dialog_handle;
+
+#else 
+
+struct s_imgui_async_file_dialog_handle
+{
+	unsigned long ready_to_dispose : 1;
+	unsigned long user_cancelled : 1;
+	unsigned long error : 1;
+	unsigned long is_file_dialog : 1;
+	unsigned long is_folder_dialog : 1;
+	HANDLE thread_handle;
+	HRESULT thread_wait_result;
+	ImGuiID imgui_id;
+	union
+	{
+		struct // parameters
+		{
+			const char* window_title;
+			HWND owner_window;
+		};
+		struct // results
+		{
+			HRESULT file_dialog_result;
+			wchar_t* filepath_widechar;
+			char* filepath_multibyte;
+		};
+	};
+};
+
+#endif
+
+using t_imgui_async_file_dialog_handle = s_imgui_async_file_dialog_handle*;
+
+namespace ImGui
+{
+	BCS_DEBUG_API extern bool BeginAsyncFileDialog(
+		t_imgui_async_file_dialog_handle* file_dialog_handle,
+		const char* window_title,
+		bool show,
+		void* owner_window_handle = nullptr);
+	BCS_DEBUG_API extern bool BeginAsyncFolderDialog(
+		t_imgui_async_file_dialog_handle* file_dialog_handle,
+		const char* window_title,
+		bool show,
+		void* owner_window_handle = nullptr);
+	BCS_DEBUG_API extern bool AsyncFileDialogIsValid();
+	BCS_DEBUG_API extern bool AsyncFileDialogIsError();
+	BCS_DEBUG_API extern bool AsyncFileDialogUserCancelled();
+	BCS_DEBUG_API extern const char* AsyncFileDialogGetFilepathMultiByte();
+	BCS_DEBUG_API extern const wchar_t* AsyncFileDialogGetFilepathWideChar();
+	BCS_DEBUG_API extern void EndAsyncFileDialog();
+}

@@ -1,5 +1,7 @@
 #pragma once
 
+#define __IMGUI_ASYNC_FILE_DIALOG_IMPL__
+
 #define _CRT_SECURE_NO_WARNINGS
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>

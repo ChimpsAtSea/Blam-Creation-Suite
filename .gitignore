@@ -442,3 +442,4 @@ Tags/Virtual/virtual_*/*_virtual.cpp
 *bitmap_test.dds
 *tag_file_writer_test.bitmap
 Runtime/Mandrill/resourcedump.bin
+Runtime/Mandrill/data*
