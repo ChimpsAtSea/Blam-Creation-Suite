@@ -270,7 +270,7 @@ void c_halo_script_editor::render_impl()
 }
 
 
-void c_halo_script_editor::render_menu_gui_impl(e_menu_render_type menu_render_type)
+bool c_halo_script_editor::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
 	if (menu_render_type == _menu_render_type_root)
 	{
@@ -284,6 +284,7 @@ void c_halo_script_editor::render_menu_gui_impl(e_menu_render_type menu_render_t
 			ImGui::EndMenu();
 		}
 	}
+	return true;
 }
 
 

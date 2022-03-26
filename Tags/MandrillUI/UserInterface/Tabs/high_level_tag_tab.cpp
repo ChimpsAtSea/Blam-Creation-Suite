@@ -54,9 +54,9 @@ void c_high_level_tag_tab::render_impl()
 	}
 }
 
-void c_high_level_tag_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
+bool c_high_level_tag_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
-
+	return true;
 }
 
 void c_high_level_tag_tab::render_file_dialogue_gui_impl()

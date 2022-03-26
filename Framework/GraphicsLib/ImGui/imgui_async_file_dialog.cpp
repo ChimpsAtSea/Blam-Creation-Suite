@@ -28,12 +28,25 @@ DWORD WINAPI file_dialogue_routine(LPVOID lpThreadParameter)
 	// #NOTE: make sure to pull parameters out before they get squashed
 	const char* window_title = imgui_file_dialog_handle->window_title;
 	HWND owner_window = imgui_file_dialog_handle->owner_window;
+	bool is_open_file_dialog = imgui_file_dialog_handle->is_open_file_dialog;
+	bool is_save_file_dialog = imgui_file_dialog_handle->is_save_file_dialog;
 	BCS_CHAR_TO_WIDECHAR_STACK(window_title, window_title_wc);
 
-	if (FAILED(thread_result = CoCreateInstance(__uuidof(FileOpenDialog), NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&file_dialog))))
+	if (is_open_file_dialog)
 	{
-		goto done;
+		if (FAILED(thread_result = CoCreateInstance(__uuidof(FileOpenDialog), NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&file_dialog))))
+		{
+			goto done;
+		}
 	}
+	else if (is_save_file_dialog)
+	{
+		if (FAILED(thread_result = CoCreateInstance(__uuidof(FileSaveDialog), NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&file_dialog))))
+		{
+			goto done;
+		}
+	}
+	else FATAL_ERROR("Unknown dialog type");
 
 	if (imgui_file_dialog_handle->is_folder_dialog)
 	{
@@ -115,7 +128,9 @@ bool BeginAsyncFileFolderDialog(
 	bool show,
 	void* owner_window_handle,
 	bool is_file_dialog,
-	bool is_folder_dialog)
+	bool is_folder_dialog,
+	bool is_open_file_dialog,
+	bool is_save_file_dialog)
 {
 	current_file_dialog_handle = _file_dialog_handle;
 
@@ -136,6 +151,8 @@ bool BeginAsyncFileFolderDialog(
 		file_dialog_handle->owner_window = reinterpret_cast<HWND>(owner_window_handle);
 		file_dialog_handle->is_folder_dialog = is_folder_dialog;
 		file_dialog_handle->is_file_dialog = is_file_dialog;
+		file_dialog_handle->is_open_file_dialog = is_open_file_dialog;
+		file_dialog_handle->is_save_file_dialog = is_save_file_dialog;
 		file_dialog_handle->imgui_id = imgui_id;
 
 	}
@@ -163,7 +180,7 @@ bool BeginAsyncFileFolderDialog(
 	return file_dialog_handle && file_dialog_handle->ready_to_dispose;
 }
 
-bool ImGui::BeginAsyncFileDialog(
+bool ImGui::BeginAsyncOpenFileDialog(
 	t_imgui_async_file_dialog_handle* file_dialog_handle,
 	const char* window_title, 
 	bool show,
@@ -175,10 +192,12 @@ bool ImGui::BeginAsyncFileDialog(
 		show,
 		owner_window_handle,
 		true,
+		false,
+		true,
 		false);
 }
 
-bool ImGui::BeginAsyncFolderDialog(
+bool ImGui::BeginAsyncOpenFolderDialog(
 	t_imgui_async_file_dialog_handle* file_dialog_handle,
 	const char* window_title,
 	bool show,
@@ -189,6 +208,42 @@ bool ImGui::BeginAsyncFolderDialog(
 		window_title,
 		show,
 		owner_window_handle,
+		false,
+		true,
+		true,
+		false);
+}
+
+bool ImGui::BeginAsyncSaveFileDialog(
+	t_imgui_async_file_dialog_handle* file_dialog_handle,
+	const char* window_title,
+	bool show,
+	void* owner_window_handle)
+{
+	return BeginAsyncFileFolderDialog(
+		file_dialog_handle,
+		window_title,
+		show,
+		owner_window_handle,
+		true,
+		false,
+		false,
+		true);
+}
+
+bool ImGui::BeginAsyncSaveFolderDialog(
+	t_imgui_async_file_dialog_handle* file_dialog_handle,
+	const char* window_title,
+	bool show,
+	void* owner_window_handle)
+{
+	return BeginAsyncFileFolderDialog(
+		file_dialog_handle,
+		window_title,
+		show,
+		owner_window_handle,
+		false,
+		true,
 		false,
 		true);
 }

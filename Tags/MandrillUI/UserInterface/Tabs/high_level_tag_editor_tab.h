@@ -24,7 +24,7 @@ protected:
 	static constexpr float k_field_display_name_width = 400.0f;
 
 	virtual void render_impl() override final;
-	virtual void render_menu_gui_impl(e_menu_render_type menu_render_type) override final;
+	virtual bool render_menu_gui_impl(e_menu_render_type menu_render_type) override final;
 	virtual void render_file_dialogue_gui_impl() override final;
 	virtual void render_game_layer_impl() override final;
 
@@ -47,4 +47,6 @@ protected:
 	c_custom_tool_render_model* custom_tool;
 	c_model_preview_test* model_preview_test;
 	c_haloreach_bitmap_test* haloreach_bitmap_test;
+	bool show_bitmap_export_file_dialog;
+	t_imgui_async_file_dialog_handle file_browser;
 };

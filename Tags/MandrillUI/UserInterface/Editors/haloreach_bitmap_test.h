@@ -22,4 +22,5 @@ public:
 	blofeld::haloreach::h_bitmap_block_struct& bitmap_struct;
 
 	void draw_ui();
+	void _export(const char* filepath);
 };

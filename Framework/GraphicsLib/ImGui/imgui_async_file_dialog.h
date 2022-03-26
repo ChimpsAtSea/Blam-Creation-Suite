@@ -22,6 +22,8 @@ struct s_imgui_async_file_dialog_handle
 		{
 			const char* window_title;
 			HWND owner_window;
+			bool is_open_file_dialog;
+			bool is_save_file_dialog;
 		};
 		struct // results
 		{
@@ -38,12 +40,22 @@ using t_imgui_async_file_dialog_handle = s_imgui_async_file_dialog_handle*;
 
 namespace ImGui
 {
-	BCS_DEBUG_API extern bool BeginAsyncFileDialog(
+	BCS_DEBUG_API extern bool BeginAsyncOpenFileDialog(
 		t_imgui_async_file_dialog_handle* file_dialog_handle,
 		const char* window_title,
 		bool show,
 		void* owner_window_handle = nullptr);
-	BCS_DEBUG_API extern bool BeginAsyncFolderDialog(
+	BCS_DEBUG_API extern bool BeginAsyncOpenFolderDialog(
+		t_imgui_async_file_dialog_handle* file_dialog_handle,
+		const char* window_title,
+		bool show,
+		void* owner_window_handle = nullptr);
+	BCS_DEBUG_API extern bool BeginAsyncSaveFileDialog(
+		t_imgui_async_file_dialog_handle* file_dialog_handle,
+		const char* window_title,
+		bool show,
+		void* owner_window_handle = nullptr);
+	BCS_DEBUG_API extern bool BeginAsyncSaveFolderDialog(
 		t_imgui_async_file_dialog_handle* file_dialog_handle,
 		const char* window_title,
 		bool show,

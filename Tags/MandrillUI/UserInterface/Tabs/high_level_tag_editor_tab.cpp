@@ -16,7 +16,9 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 	viewport_size(),
 	custom_tool(nullptr),
 	model_preview_test(nullptr),
-	haloreach_bitmap_test(nullptr)
+	haloreach_bitmap_test(nullptr),
+	show_bitmap_export_file_dialog(),
+	file_browser()
 {
 	if (c_mandrill_user_interface* mandrill_user_interface = search_parent_tab_type<c_mandrill_user_interface>())
 	{
@@ -217,14 +219,43 @@ void c_high_level_tag_editor_tab::render_impl()
 	ImGui::EndChild();
 }
 
-void c_high_level_tag_editor_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
+bool c_high_level_tag_editor_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
+	if (menu_render_type == _menu_render_type_root_file && is_selected())
+	{
+		if (haloreach_bitmap_test)
+		{
+			if (ImGui::MenuItem("Export Tag"))
+			{
+				show_bitmap_export_file_dialog = true;
+			}
 
+			ImGui::Separator();
+		}
+	}
+	return true;
 }
 
 void c_high_level_tag_editor_tab::render_file_dialogue_gui_impl()
 {
+	if (ImGui::BeginAsyncSaveFileDialog(&file_browser, "Export Bitmap Tag", show_bitmap_export_file_dialog))
+	{
+		if (ImGui::AsyncFileDialogIsValid())
+		{
+			const char* filepath = ImGui::AsyncFileDialogGetFilepathMultiByte();
 
+			if (haloreach_bitmap_test)
+			{
+				haloreach_bitmap_test->_export(filepath);
+			}
+
+			debug_point;
+		}
+		debug_point;
+
+		ImGui::EndAsyncFileDialog();
+	}
+	show_bitmap_export_file_dialog = false;
 }
 
 void c_high_level_tag_editor_tab::render_game_layer_impl()

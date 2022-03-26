@@ -33,9 +33,9 @@ void c_halo1_bitmap_tag_viewer_tab::render_impl()
 	render_bitmap_enumerable(halo1_bitmap_tag.bitmaps_block);
 }
 
-void c_halo1_bitmap_tag_viewer_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
+bool c_halo1_bitmap_tag_viewer_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
-
+	return true;
 }
 
 void c_halo1_bitmap_tag_viewer_tab::render_file_dialogue_gui_impl()

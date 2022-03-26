@@ -72,7 +72,13 @@ void c_mandrill_tab::render(bool set_selected)
 
 void c_mandrill_tab::render_menu_gui(e_menu_render_type menu_render_type)
 {
-	render_menu_gui_impl(menu_render_type);
+	if (render_menu_gui_impl(menu_render_type))
+	{
+		for (c_mandrill_tab* tab : children)
+		{
+			tab->render_menu_gui(menu_render_type);
+		}
+	}
 }
 
 void c_mandrill_tab::render_file_dialogue_gui()

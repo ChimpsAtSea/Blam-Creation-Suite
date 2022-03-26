@@ -248,9 +248,9 @@ void c_tag_project_configurator_tab::render_impl()
 	}
 }
 
-void c_tag_project_configurator_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
+bool c_tag_project_configurator_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
-
+	return true;
 }
 
 void c_tag_project_configurator_tab::render_cache_file_selection()

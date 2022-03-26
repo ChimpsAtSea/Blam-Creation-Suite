@@ -47,7 +47,7 @@ public:
 
 protected:
 	virtual void render_impl() = 0;
-	virtual void render_menu_gui_impl(e_menu_render_type menu_render_type) = 0;
+	virtual bool render_menu_gui_impl(e_menu_render_type menu_render_type) = 0;
 	virtual void render_file_dialogue_gui_impl();
 	virtual void render_game_layer_impl();
 

@@ -170,9 +170,13 @@ void c_haloreach_bitmap_test::draw_ui()
 	// serialize the tag
 	if (ImGui::Button("Serialize Bitmap Data") || auto_run_restore_bitmap_test)
 	{
-		s_engine_platform_build engine_platform_build = { _engine_type_haloreach, _platform_type_pc_64bit, _build_haloreach_tags };
-		c_high_level_tag_file_writer tag_file_writer(engine_platform_build, "", bitmap_struct);
 
 		debug_point;
 	}
+}
+
+void c_haloreach_bitmap_test::_export(const char* filepath)
+{
+	s_engine_platform_build engine_platform_build = { _engine_type_haloreach, _platform_type_pc_64bit, _build_haloreach_tags };
+	c_high_level_tag_file_writer tag_file_writer(engine_platform_build, filepath, bitmap_struct);
 }

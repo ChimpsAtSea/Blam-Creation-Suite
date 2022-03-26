@@ -429,7 +429,7 @@ void c_mandrill_user_interface::render_impl()
 	}
 }
 
-void c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_render_type)
+bool c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
 	if (menu_render_type == _menu_render_type_root)
 	{
@@ -502,11 +502,12 @@ void c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 			ImGui::EndMenuBar();
 		}
 	}
+	return false;
 }
 
 void c_mandrill_user_interface::render_file_dialogue_gui_impl()
 {
-	if (ImGui::BeginAsyncFolderDialog(&file_browser, "Create Tag Project", show_create_tag_project_file_dialogue))
+	if (ImGui::BeginAsyncOpenFolderDialog(&file_browser, "Create Tag Project", show_create_tag_project_file_dialogue))
 	{
 		if (ImGui::AsyncFileDialogIsValid())
 		{
@@ -523,7 +524,7 @@ void c_mandrill_user_interface::render_file_dialogue_gui_impl()
 	}
 	show_create_tag_project_file_dialogue = false;
 
-	if (ImGui::BeginAsyncFileDialog(&file_browser, "Open Tag Project", show_open_tag_project_file_dialogue))
+	if (ImGui::BeginAsyncOpenFileDialog(&file_browser, "Open Tag Project", show_open_tag_project_file_dialogue))
 	{
 		if (ImGui::AsyncFileDialogIsValid())
 		{
