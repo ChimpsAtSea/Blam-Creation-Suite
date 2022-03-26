@@ -44,6 +44,11 @@ BCS_RESULT deinit_console()
 	return rs;
 }
 
+bool console_is_verbose()
+{
+	return console_verbose;
+}
+
 BCS_RESULT console_write(const char* format, ...)
 {
 	va_list args;

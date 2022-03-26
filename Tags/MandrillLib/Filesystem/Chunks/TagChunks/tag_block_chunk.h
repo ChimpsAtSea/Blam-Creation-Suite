@@ -33,8 +33,13 @@ public:
 	const char* get_sturcutre_data_by_index(unsigned long index) const;
 	c_tag_struct_chunk* get_sturcutre_chunk_by_index(unsigned long index) const;
 
-	void read_structure_metadata(c_single_tag_file_reader& reader, s_tag_persist_struct_definition& structure_entry);
-	void read_structure_metadata_impl(c_single_tag_file_reader& reader, s_tag_persist_struct_definition& structure_entry, std::stack<unsigned long>& metadata_stack) const;
+	void read_structure_metadata(
+		c_single_tag_file_reader& reader,
+		s_tag_persist_struct_definition& structure_entry);
+	void read_structure_metadata_impl(
+		c_single_tag_file_reader& reader,
+		s_tag_persist_struct_definition& structure_entry, 
+		t_tag_file_reader_metadata_stack& metadata_stack) const;
 	void read_structure_data(c_single_tag_file_reader& reader, s_tag_persist_struct_definition& structure_entry, const char* structure_data_pos, c_tag_struct_chunk* tag_struct_chunk);
 
 };

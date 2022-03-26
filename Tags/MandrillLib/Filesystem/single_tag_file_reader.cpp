@@ -23,7 +23,10 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	monolithic_resource_data(static_cast<const char*>(_monolithic_resource_data))
 {
 	unsigned long tag_group_block_index = layout_reader.tag_group_layout_chunk->get_tag_group_block_index();
-	metadata_stack.push(tag_group_block_index);
+	t_tag_file_reader_metadata_entry metadata_entry = {};
+	metadata_entry.entry_type = _tag_file_reader_metadata_entry_type_block;
+	metadata_entry.id = tag_group_block_index;
+	metadata_stack.push(metadata_entry);
 	debug_point;
 
 	binary_data_chunk.read_child_chunks(this, true);
@@ -622,7 +625,9 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 
 				h_block& block_storage = *reinterpret_cast<decltype(&block_storage)>(high_level_field_data);
 
-				for (unsigned long block_index = 0; block_index < field_tag_block_chunk->tag_block_chunk_header.count; block_index++)
+				unsigned long block_count = field_tag_block_chunk->tag_block_chunk_header.count;
+				block_storage.reserve(block_count);
+				for (unsigned long block_index = 0; block_index < block_count; block_index++)
 				{
 					h_object* high_level_object;
 					BCS_RESULT rs = read_tag_block_structure_to_high_level_object(*field_tag_block_chunk, block_index, high_level_object);

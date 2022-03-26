@@ -21,9 +21,11 @@
   <ItemGroup>
     <ClInclude Include="atomic_lock.h" />
     <ClInclude Include="auto_delete.h" />
+    <ClInclude Include="benchmark.h" />
     <ClInclude Include="bitfield_allocator.h" />
     <ClInclude Include="byteswap.h" />
     <ClInclude Include="compile_time_accumulator.h" />
+    <ClInclude Include="fast_ascii_lookup.h" />
     <ClInclude Include="fixed_string.h" />
     <ClInclude Include="macros.h" />
     <ClInclude Include="pointers.h" />
@@ -38,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="atomic_lock.cpp" />
+    <ClCompile Include="benchmark.cpp" />
     <ClCompile Include="bitfield_allocator.cpp" />
     <ClCompile Include="byteswap.cpp" />
     <ClCompile Include="stack_string.cpp" />

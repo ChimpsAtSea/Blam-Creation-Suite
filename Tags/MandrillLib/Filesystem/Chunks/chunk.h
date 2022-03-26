@@ -34,6 +34,7 @@ public:
 	virtual void write_chunk(c_high_level_tag_file_writer& tag_file_writer);
 	virtual void write_chunk_data(c_high_level_tag_file_writer& tag_file_writer);
 	virtual void write_child_chunks(c_high_level_tag_file_writer& tag_file_writer);
+	virtual bool should_parse_children() const = 0;
 
 	void log(c_tag_file_string_debugger* string_debugger = nullptr) const;
 	void log_pad() const;

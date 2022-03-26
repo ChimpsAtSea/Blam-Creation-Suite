@@ -20,7 +20,7 @@ c_tag_block_chunk::c_tag_block_chunk(c_chunk& parent) :
 	block_data_size(),
 	struct_size()
 {
-	
+
 }
 
 c_tag_block_chunk::~c_tag_block_chunk()
@@ -47,7 +47,10 @@ BCS_RESULT c_tag_block_chunk::read_chunk(void* userdata, const void* data, bool 
 
 	debug_point;
 
-	unsigned long current_block_index = reader.metadata_stack.top();
+	t_tag_file_reader_metadata_entry& _metadata_entry = reader.metadata_stack.top();
+	unsigned long current_block_index = _metadata_entry.id;
+	e_tag_file_reader_metadata_entry_type entry_type = _metadata_entry.entry_type;
+	ASSERT(entry_type == _tag_file_reader_metadata_entry_type_block);
 	reader.metadata_stack.pop();
 
 	block_entry = &reader.layout_reader.get_block_definition_by_index(current_block_index);
@@ -69,7 +72,6 @@ BCS_RESULT c_tag_block_chunk::read_chunk(void* userdata, const void* data, bool 
 
 	auto stack_start_size = reader.metadata_stack.size();
 
-
 	for (unsigned long block_index = 0; block_index < tag_block_chunk_header.count; block_index++)
 	{
 		read_structure_metadata(reader, *structure_entry);
@@ -86,6 +88,8 @@ BCS_RESULT c_tag_block_chunk::read_chunk(void* userdata, const void* data, bool 
 			ASSERT(child_count == tag_block_chunk_header.count);
 		}
 	}
+
+	log();
 
 	auto stack_end_size = reader.metadata_stack.size();
 	ASSERT(stack_start_size == stack_end_size);
@@ -131,23 +135,32 @@ void c_tag_block_chunk::log_impl(c_tag_file_string_debugger* string_debugger) co
 	debug_point;
 }
 
-void c_tag_block_chunk::read_structure_metadata(c_single_tag_file_reader& reader, s_tag_persist_struct_definition& structure_entry)
+void c_tag_block_chunk::read_structure_metadata(
+	c_single_tag_file_reader& reader,
+	s_tag_persist_struct_definition& structure_entry)
 {
-	std::stack<unsigned long> metadata_stack;
+	t_tag_file_reader_metadata_stack metadata_stack;
 	read_structure_metadata_impl(reader, structure_entry, metadata_stack);
 
-	/*if (verbose)*/ { log_pad(); console_write_verbose("> read_structure_metadata %u", static_cast<unsigned long>(metadata_stack.size())); }
+	{ log_pad(); console_write_verbose("> read_structure_metadata %u", static_cast<unsigned long>(metadata_stack.size())); }
 	while (metadata_stack.size() > 0)
 	{
-		unsigned long metadata = metadata_stack.top();
-		metadata_stack.pop();
+		t_tag_file_reader_metadata_entry& metadata = metadata_stack.top();
 		reader.metadata_stack.push(metadata);
+		metadata_stack.pop();
 	}
-	/*if (verbose)*/ { console_write_line_verbose(" %u", static_cast<unsigned long>(reader.metadata_stack.size())); }
+	{ console_write_line_verbose(" %u", static_cast<unsigned long>(reader.metadata_stack.size())); }
 }
 
-void c_tag_block_chunk::read_structure_metadata_impl(c_single_tag_file_reader& reader, s_tag_persist_struct_definition& structure_entry, std::stack<unsigned long>& metadata_stack) const
+void c_tag_block_chunk::read_structure_metadata_impl(
+	c_single_tag_file_reader& reader,
+	s_tag_persist_struct_definition& structure_entry,
+	t_tag_file_reader_metadata_stack& metadata_stack) const
 {
+	unsigned long expected_children = reader.layout_reader.get_structure_expected_children_by_entry(structure_entry);
+
+	unsigned long metadata_child_index = 0;
+
 	for (unsigned long field_index = structure_entry.fields_start_index;; field_index++)
 	{
 		s_tag_persist_field& field_entry = reader.layout_reader.get_field_by_index(field_index);
@@ -164,34 +177,82 @@ void c_tag_block_chunk::read_structure_metadata_impl(c_single_tag_file_reader& r
 		{
 			switch (blofeld_field_type)
 			{
-			case blofeld::_field_block:
-			{
-				debug_point;
-				s_tag_persist_block_definition& block_entry = reader.layout_reader.get_block_definition_by_index(field_entry.metadata);
-				const char* block_name = reader.layout_reader.get_string_by_string_character_index(block_entry.string_character_index);
-				/*if (verbose)*/ { log_pad(); console_write_line_verbose("\tpushing block %s", block_name); }
-				metadata_stack.push(field_entry.metadata);
-				debug_point;
-			}
-			break;
-			case blofeld::_field_tag_reference:
-			case blofeld::_field_string_id:
-			case blofeld::_field_old_string_id:
-			case blofeld::_field_data:
-				break;
 			case blofeld::_field_struct:
 			{
+				//ASSERT(tag_struct_chunk != nullptr);
+				//c_tag_struct_chunk* next_tag_struct_chunk = tag_struct_chunk->get_child_unsafe<c_tag_struct_chunk>(metadata_child_index++);
+				//ASSERT(next_tag_struct_chunk != nullptr);
+
 				unsigned long structure_entry_index = field_entry.metadata;
 				s_tag_persist_struct_definition& structure_entry = reader.layout_reader.get_struct_definition_by_index(structure_entry_index);
 				read_structure_metadata_impl(reader, structure_entry, metadata_stack);
 			}
 			break;
+			case blofeld::_field_tag_reference:
+			{
+				//ASSERT(tag_struct_chunk != nullptr);
+				//c_tag_reference_chunk* tag_reference_chunk = tag_struct_chunk->get_child_unsafe<c_tag_reference_chunk>(metadata_child_index++);
+				//ASSERT(tag_reference_chunk != nullptr);
+
+			}
+			break;
+			case blofeld::_field_old_string_id:
+			case blofeld::_field_string_id:
+			{
+				//ASSERT(tag_struct_chunk != nullptr);
+				//c_tag_string_id_chunk* tag_string_id_chunk = tag_struct_chunk->get_child_unsafe<c_tag_string_id_chunk>(metadata_child_index++);
+				//ASSERT(tag_string_id_chunk != nullptr);
+			}
+			break;
+			case blofeld::_field_data:
+			{
+				//ASSERT(tag_struct_chunk != nullptr);
+				//c_tag_data_chunk* tag_data_chunk = tag_struct_chunk->get_child_unsafe<c_tag_data_chunk>(metadata_child_index++);
+				//ASSERT(tag_data_chunk != nullptr);
+			}
+			break;
 			case blofeld::_field_pageable:
 			{
-				unsigned long resource_entry_index = field_entry.metadata;
-				s_tag_persist_resource_definition& resource_entry = reader.layout_reader.get_resource_definition_by_index(resource_entry_index);
-				s_tag_persist_struct_definition& structure_entry = reader.layout_reader.get_struct_definition_by_index(resource_entry.structure_entry_index);
-				read_structure_metadata_impl(reader, structure_entry, metadata_stack);
+				//ASSERT(tag_struct_chunk != nullptr);
+				//c_chunk* resource_chunk = tag_struct_chunk->get_child_unsafe(metadata_child_index++);
+				//c_tag_resource_exploded_chunk* resource_exploded_chunk = dynamic_cast<c_tag_resource_exploded_chunk*>(resource_chunk);
+				//c_tag_resource_xsynced_chunk* resource_xsynced_chunk = dynamic_cast<c_tag_resource_xsynced_chunk*>(resource_chunk);
+				//c_tag_resource_null_chunk* resource_null_chunk = dynamic_cast<c_tag_resource_null_chunk*>(resource_chunk);
+				//ASSERT(resource_exploded_chunk != nullptr || resource_xsynced_chunk != nullptr || resource_null_chunk != nullptr);
+
+				//if (resource_null_chunk != nullptr) // nulled chunks don't include any structure data
+				{
+					debug_point;
+					unsigned long resource_entry_index = field_entry.metadata;
+					s_tag_persist_resource_definition& resource_entry = reader.layout_reader.get_resource_definition_by_index(resource_entry_index);
+					const char* resource_name = reader.layout_reader.get_string_by_string_character_index(resource_entry.string_character_index);
+					{ log_pad(); console_write_line_verbose("\tpushing resource %s", block_name); }
+					t_tag_file_reader_metadata_entry metadata_entry = {};
+					metadata_entry.id = field_entry.metadata;
+					metadata_entry.entry_type = _tag_file_reader_metadata_entry_type_resource;
+					metadata_stack.push(metadata_entry);
+
+					//s_tag_persist_struct_definition& structure_entry = reader.layout_reader.get_struct_definition_by_index(resource_entry.structure_entry_index);
+					//read_structure_metadata_impl(reader, structure_entry, metadata_stack);
+					debug_point;
+				}
+			}
+			break;
+			case blofeld::_field_block:
+			{
+				//ASSERT(tag_struct_chunk != nullptr);
+				//c_tag_block_chunk* tag_block_chunk = tag_struct_chunk->get_child_unsafe<c_tag_block_chunk>(metadata_child_index++);
+				//ASSERT(tag_block_chunk != nullptr);
+
+				debug_point;
+				s_tag_persist_block_definition& block_entry = reader.layout_reader.get_block_definition_by_index(field_entry.metadata);
+				const char* block_name = reader.layout_reader.get_string_by_string_character_index(block_entry.string_character_index);
+				{ log_pad(); console_write_line_verbose("\tpushing block %s", block_name); }
+				t_tag_file_reader_metadata_entry metadata_entry = {};
+				metadata_entry.id = field_entry.metadata;
+				metadata_entry.entry_type = _tag_file_reader_metadata_entry_type_block;
+				metadata_stack.push(metadata_entry);
+				debug_point;
 			}
 			break;
 			default:
@@ -361,7 +422,7 @@ void c_tag_block_chunk::read_structure_data(c_single_tag_file_reader& reader, s_
 		case blofeld::_field_char_enum:
 		{
 			long number = chunk_byteswap(*reinterpret_cast<const char*>(structure_data_pos));
-			
+
 			if (verbose) { write_pad(); console_write_line_verbose("%s %s %li", type_string, name_string, number); }
 			debug_point;
 			break;
@@ -411,7 +472,7 @@ void c_tag_block_chunk::read_structure_data(c_single_tag_file_reader& reader, s_
 		case blofeld::_field_pad:
 		case blofeld::_field_terminator:
 			break;
-		//default: FATAL_ERROR("Unhandled field");
+			//default: FATAL_ERROR("Unhandled field");
 		}
 
 		structure_data_pos += field_size;

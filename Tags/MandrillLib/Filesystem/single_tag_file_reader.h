@@ -31,6 +31,19 @@ struct s_single_tag_file_reader_structure_entry
 	std::vector<s_blofeld_field_transpose_entry> transpose_entries;
 };
 
+enum e_tag_file_reader_metadata_entry_type
+{
+	_tag_file_reader_metadata_entry_type_block,
+	_tag_file_reader_metadata_entry_type_resource,
+};
+
+struct t_tag_file_reader_metadata_entry
+{
+	e_tag_file_reader_metadata_entry_type entry_type;
+	unsigned long id;
+};
+using t_tag_file_reader_metadata_stack = std::stack<t_tag_file_reader_metadata_entry>;
+
 class c_single_tag_file_reader
 {
 public:
@@ -40,7 +53,7 @@ public:
 
 	bool is_big_endian;
 
-	std::stack<unsigned long> metadata_stack;
+	t_tag_file_reader_metadata_stack metadata_stack;
 
 	const blofeld::s_tag_struct_definition** tag_struct_definitions;
 	using t_tag_struct_definition_table = std::map<XXH64_hash_t, const blofeld::s_tag_struct_definition*>;

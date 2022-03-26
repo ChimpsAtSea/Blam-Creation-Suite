@@ -18,3 +18,5 @@
 #include "auto_delete.h"
 #include "bitfield_allocator.h"
 #include "thread_safe_queue.h"
+#include "benchmark.h"
+#include "fast_ascii_lookup.h"

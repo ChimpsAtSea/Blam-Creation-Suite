@@ -243,7 +243,11 @@ BCS_RESULT c_chunk::get_data(const void*& data, unsigned long& data_size)
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)
+BCS_RESULT c_chunk::read_chunk(
+	void* userdata, 
+	const void* data, 
+	bool use_read_only, 
+	bool parse_children)
 {
 	BCS_VALIDATE_ARGUMENT(data);
 
@@ -309,6 +313,13 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 		const void* chunk_data_end = get_chunk_data_end();
 		for (const char* data_position = data_start; data_position < chunk_data_end;)
 		{
+			const unsigned long* signature_pointer = reinterpret_cast<const unsigned long*>(data_position);
+			const unsigned long* metadata_pointer = next_contiguous_pointer(signature_pointer);
+			const unsigned long* chunk_size_pointer = next_contiguous_pointer(metadata_pointer);
+			unsigned long signature = chunk_byteswap(*signature_pointer);
+			unsigned long metadata = chunk_byteswap(*metadata_pointer);
+			unsigned long chunk_size = chunk_byteswap(*chunk_size_pointer) + sizeof(unsigned long[3]);
+			debug_point;
 #define CHUNK_CTOR_EX(_signature, t_structure, ...) \
 		case (_signature): \
 		{ \
@@ -318,11 +329,11 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 			chunk_list_entry->previous = chunk_list_start; \
 			chunk_list_start = chunk_list_entry; \
 			chunk->read_chunk(userdata, data_position, use_read_only, t_structure::k_should_parse_children); \
-			data_position = chunk->get_chunk_data_end(); \
+			data_position += chunk_size; \
+			ASSERT(data_position == chunk->get_chunk_data_end()); \
 			break; \
 		}
 #define CHUNK_CTOR(t_structure, ...) CHUNK_CTOR_EX(t_structure::k_signature, t_structure, __VA_ARGS__)
-			unsigned long signature = chunk_byteswap(*reinterpret_cast<const unsigned long*>(data_position));
 			if (signature == c_tag_layout_v3_chunk::k_signature)
 			{
 				s_tag_group_layout_header* tag_group_layout_header = static_cast<s_tag_group_layout_header*>(userdata);
@@ -462,6 +473,11 @@ void c_chunk::write_child_chunks(c_high_level_tag_file_writer& tag_file_writer)
 
 void c_chunk::log(c_tag_file_string_debugger* string_debugger) const
 {
+	if (!console_is_verbose())
+	{
+		return;
+	}
+
 	log_pad();
 	log_impl(string_debugger);
 

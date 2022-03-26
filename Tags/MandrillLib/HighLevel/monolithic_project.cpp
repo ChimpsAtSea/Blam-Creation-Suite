@@ -144,7 +144,7 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_cache_file_views()
 			return rs;
 		}
 
-		if(BCS_FAILED(rs = get_memory_mapped_file_info(cache_memory_mapped_file, cache_memory_mapped_file_info)))
+		if (BCS_FAILED(rs = get_memory_mapped_file_info(cache_memory_mapped_file, cache_memory_mapped_file_info)))
 		{
 			return rs;
 		}

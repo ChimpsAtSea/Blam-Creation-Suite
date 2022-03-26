@@ -22,4 +22,9 @@ public:
 	{
 		return c_chunk::read_chunk(userdata, data, use_read_only, parse_children && k_should_parse_children);
 	}
+
+	virtual bool should_parse_children() const
+	{
+		return k_should_parse_children;
+	}
 };
