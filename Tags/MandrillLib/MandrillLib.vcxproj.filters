@@ -366,6 +366,12 @@
     <ClInclude Include="HighLevel\simple_resource_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="status_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="logging_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mandrilllib-private-pch.cpp">
@@ -705,6 +711,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HighLevel\simple_resource_container.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="status_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="logging_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -9,6 +9,7 @@ float c_mandrill_user_interface::explorer_bar_width = settings_read_float(_setti
 
 c_mandrill_user_interface::c_mandrill_user_interface(c_render_context& imgui_viewport_render_context, bool is_game_mode, const wchar_t* startup_file) :
 	c_mandrill_tab("Mandrill", "", nullptr),
+	c_imgui_status_interface(),
 	imgui_viewport_render_context(imgui_viewport_render_context),
 	is_session_restored(false),
 	is_exiting(false),
@@ -341,8 +342,9 @@ void c_mandrill_user_interface::render_impl()
 	}
 	else
 	{
+		float status_bar_height = ImGui::GetFrameHeight();
 		ImGui::SetNextWindowPos({ margin, margin }, ImGuiCond_Always);
-		ImGui::SetNextWindowSize({ imgui_viewport_render_context.get_width_float() - margin * 2.0f, imgui_viewport_render_context.get_height_float() - margin * 2.0f }, ImGuiCond_Always);
+		ImGui::SetNextWindowSize({ imgui_viewport_render_context.get_width_float() - margin * 2.0f, imgui_viewport_render_context.get_height_float() - margin * 2.0f - status_bar_height }, ImGuiCond_Always);
 
 		imgui_window_flags |= ImGuiWindowFlags_NoTitleBar;
 		imgui_window_flags |= ImGuiWindowFlags_NoMove;
@@ -358,6 +360,7 @@ void c_mandrill_user_interface::render_impl()
 		ImVec2 window_start_position = ImGui::GetCursorPos();
 
 		render_menu_gui_impl(_menu_render_type_root);
+		render_menu_gui_impl(_menu_render_type_status_bar);
 
 		if (ImGui::BeginTabBar("##root"))
 		{
@@ -500,6 +503,20 @@ bool c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 				ImGui::EndMenu();
 			}
 			ImGui::EndMenuBar();
+		}
+	}
+	if (menu_render_type == _menu_render_type_status_bar)
+	{
+		ImGuiViewportP* viewport = (ImGuiViewportP*)(void*)ImGui::GetMainViewport();
+		ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_MenuBar;
+		float height = ImGui::GetFrameHeight();
+
+		if (ImGui::BeginViewportSideBar("##MainStatusBar", viewport, ImGuiDir_Down, height, window_flags)) {
+			if (ImGui::BeginMenuBar()) {
+				ImGui::TextUnformatted(get_status_bar_text());
+				ImGui::EndMenuBar();
+			}
+			ImGui::End();
 		}
 	}
 	return false;

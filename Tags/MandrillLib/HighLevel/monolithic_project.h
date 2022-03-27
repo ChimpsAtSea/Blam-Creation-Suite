@@ -7,7 +7,10 @@ class c_monolithic_tag_project :
 	public c_tag_project
 {
 public:
-	BCS_DEBUG_API c_monolithic_tag_project(const wchar_t* directory, s_engine_platform_build engine_platform_build);
+	BCS_DEBUG_API c_monolithic_tag_project(
+		const wchar_t* directory, 
+		s_engine_platform_build engine_platform_build,
+		c_status_interface* status_interface);
 	BCS_DEBUG_API ~c_monolithic_tag_project();
 
 	virtual BCS_RESULT get_group_by_group_tag(tag group_tag, h_group*& group) const override;
@@ -24,6 +27,7 @@ protected:
 	BCS_RESULT deinit_monolithic_tag_file_views();
 	BCS_RESULT deinit_monolithic_cache_file_views();
 
+	wchar_t root_directory[0x10000];
 	wchar_t tag_cache_directory[0x10000];
 	wchar_t blob_index_file_path[0x10000];
 	std::vector<h_group*> groups;

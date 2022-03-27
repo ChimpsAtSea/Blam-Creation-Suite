@@ -29,6 +29,7 @@
     <ClInclude Include="fixed_string.h" />
     <ClInclude Include="macros.h" />
     <ClInclude Include="pointers.h" />
+    <ClInclude Include="runtime_task.h" />
     <ClInclude Include="stack_string.h" />
     <ClInclude Include="stopwatch.h" />
     <ClInclude Include="templatelibrary-private-pch.h" />
@@ -43,6 +44,7 @@
     <ClCompile Include="benchmark.cpp" />
     <ClCompile Include="bitfield_allocator.cpp" />
     <ClCompile Include="byteswap.cpp" />
+    <ClCompile Include="runtime_task.cpp" />
     <ClCompile Include="stack_string.cpp" />
     <ClCompile Include="stopwatch.cpp" />
     <ClCompile Include="templatelibrary-private-pch.cpp">

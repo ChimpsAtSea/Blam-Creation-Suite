@@ -11,7 +11,9 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 	entries(),
 	selected_entries(),
 	cache_cluster(),
-	cache_cluster_transplant()
+	cache_cluster_transplant(),
+	runtime_task(nullptr),
+	tag_project(nullptr)
 {
 	using namespace std::placeholders;
 
@@ -158,11 +160,19 @@ void c_tag_project_configurator_tab::render_impl()
 		break;
 	case _tag_project_configurator_step_display_tags:
 		previous_step = _tag_project_configurator_step_project_settings;
+		next_step = _tag_project_configurator_step_display_project_setup;
+		break;
+	case _tag_project_configurator_step_display_project_setup:
+		previous_step = _tag_project_configurator_step_display_tags;
 		next_step = _tag_project_configurator_step_project_creation;
 		break;
 	case _tag_project_configurator_step_project_creation:
-		previous_step = _tag_project_configurator_step_display_tags;
-		next_step = _tag_project_configurator_step_project_creation;
+		previous_step = _tag_project_configurator_step_display_project_setup;
+		next_step = _tag_project_configurator_step_project_finished;
+		break;
+	case _tag_project_configurator_step_project_finished:
+		previous_step = _tag_project_configurator_step_display_project_setup;
+		next_step = _tag_project_configurator_step_project_finished;
 		break;
 	}
 
@@ -193,18 +203,15 @@ void c_tag_project_configurator_tab::render_impl()
 	bool auto_proceed = false;
 	if (BCS_SUCCEEDED(command_line_has_argument("autoprojectinit")))
 	{
-		if (step == _tag_project_configurator_step_cache_file_selection)
-		{
-			static bool run_once = auto_proceed = true;
-		}
-		else if (step == _tag_project_configurator_step_project_settings)
-		{
-			static bool run_once = auto_proceed = true;
-		}
-		else if (step == _tag_project_configurator_step_display_tags)
-		{
-			static bool run_once = auto_proceed = true;
-		}
+#define AUTO_PROJECT_INIT_STEP(_step) else if (step == _step) { static bool run_once = auto_proceed = true; }
+		if (false) {}
+		AUTO_PROJECT_INIT_STEP(_tag_project_configurator_step_cache_file_selection)
+			AUTO_PROJECT_INIT_STEP(_tag_project_configurator_step_project_settings)
+			AUTO_PROJECT_INIT_STEP(_tag_project_configurator_step_display_tags)
+			//AUTO_PROJECT_INIT_STEP(_tag_project_configurator_step_display_project_setup)
+			AUTO_PROJECT_INIT_STEP(_tag_project_configurator_step_project_creation)
+			AUTO_PROJECT_INIT_STEP(_tag_project_configurator_step_project_finished)
+#undef AUTO_PROJECT_INIT_STEP
 	}
 
 	bool disable_next_step = next_step == step;
@@ -222,7 +229,15 @@ void c_tag_project_configurator_tab::render_impl()
 		case _tag_project_configurator_step_project_settings:
 			break;
 		case _tag_project_configurator_step_display_tags:
-			create_tag_project();
+			init_tag_project();
+			break;
+		case _tag_project_configurator_step_display_project_setup:
+			break;
+		case _tag_project_configurator_step_project_creation:
+			create_tag_project_tab();
+			break;
+		case _tag_project_configurator_step_project_finished:
+			// #TODO: destroy this
 			break;
 		}
 		step = next_step;
@@ -243,7 +258,13 @@ void c_tag_project_configurator_tab::render_impl()
 	case _tag_project_configurator_step_display_tags:
 		render_display_tags();
 		break;
+	case _tag_project_configurator_step_display_project_setup:
+		render_tag_project_status();
+		break;
 	case _tag_project_configurator_step_project_creation:
+		break;
+	case _tag_project_configurator_step_project_finished:
+		ImGui::TextUnformatted("Finished");
 		break;
 	}
 }
@@ -409,30 +430,95 @@ void c_tag_project_configurator_tab::destroy_cache_cluster()
 	}
 }
 
+c_tag_project_configurator_tab::c_tag_project_configurator_tab_task::c_tag_project_configurator_tab_task(c_tag_project_configurator_tab& project_configurator_tab) :
+	c_runtime_task(),
+	project_configurator_tab(project_configurator_tab),
+	task_group(),
+	stopwatch(),
+	running(true)
+{
+	BCS_FAIL_THROW(task_group_create(task_group));
+
+	task_group_run(
+		task_group,
+		[](void* userdata)
+		{
+			ASSERT(userdata != nullptr);
+			c_tag_project_configurator_tab_task& task = *static_cast<c_tag_project_configurator_tab_task*>(userdata);
+			task.stopwatch.start();
+			task.project_configurator_tab.create_tag_project();
+			task.running = false;
+			task.stopwatch.stop();
+		},
+		this);
+}
+
+c_tag_project_configurator_tab::c_tag_project_configurator_tab_task::~c_tag_project_configurator_tab_task()
+{
+	BCS_FAIL_THROW(task_group_wait(task_group));
+	BCS_FAIL_THROW(task_group_destroy(task_group));
+}
+
+bool c_tag_project_configurator_tab::c_tag_project_configurator_tab_task::is_running() const
+{
+	return running;
+}
+
+float c_tag_project_configurator_tab::c_tag_project_configurator_tab_task::get_runtime_duration() const
+{
+	return stopwatch.get_seconds();
+}
+
+void c_tag_project_configurator_tab::init_tag_project()
+{
+	runtime_task = new c_tag_project_configurator_tab_task(*this);
+}
+
+void c_tag_project_configurator_tab::render_tag_project_status()
+{
+	if (c_mandrill_user_interface* mandrill_user_interface = search_parent_tab_type<c_mandrill_user_interface>())
+	{
+		if (runtime_task->is_running())
+		{
+			ImGui::Text("Running");
+		}
+		else
+		{
+			ImGui::Text("Finished %f", runtime_task->get_runtime_duration());
+			step = _tag_project_configurator_step_project_creation;
+		}
+		debug_point;
+	}
+}
+
 void c_tag_project_configurator_tab::create_tag_project()
 {
 	if (c_mandrill_user_interface* mandrill_user_interface = search_parent_tab_type<c_mandrill_user_interface>())
 	{
 		if (cache_cluster_transplant)
 		{
-			c_cache_file_tag_project* tag_project = new() c_cache_file_tag_project(*cache_cluster_transplant);
-			c_tag_project_tab* tag_project_tab = new() c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
-			mandrill_user_interface->add_tab(*tag_project_tab);
-			mandrill_user_interface->set_next_selected_tab(*tag_project_tab);
+			tag_project = new() c_cache_file_tag_project(*cache_cluster_transplant, mandrill_user_interface);
 		}
 		if (is_single_tag_file_directory)
 		{
-			c_filesystem_tag_project* tag_project = new() c_filesystem_tag_project(directory, { _engine_type_halo3 });
-			c_tag_project_tab* tag_project_tab = new() c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
-			mandrill_user_interface->add_tab(*tag_project_tab);
-			mandrill_user_interface->set_next_selected_tab(*tag_project_tab);
+			tag_project = new() c_filesystem_tag_project(directory, { _engine_type_halo3 }, mandrill_user_interface);
 		}
 		if (is_monolithic_tag_file_directory)
 		{
-			c_monolithic_tag_project* tag_project = new() c_monolithic_tag_project(directory, { _engine_type_haloreach });
-			c_tag_project_tab* tag_project_tab = new() c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
-			mandrill_user_interface->add_tab(*tag_project_tab);
-			mandrill_user_interface->set_next_selected_tab(*tag_project_tab);
+			tag_project = new() c_monolithic_tag_project(directory, { _engine_type_haloreach }, mandrill_user_interface);
 		}
+	}
+}
+
+void c_tag_project_configurator_tab::create_tag_project_tab()
+{
+	ASSERT(!runtime_task->is_running());
+	if (c_mandrill_user_interface* mandrill_user_interface = search_parent_tab_type<c_mandrill_user_interface>())
+	{
+		c_tag_project_tab* tag_project_tab = new() c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
+		mandrill_user_interface->add_tab(*tag_project_tab);
+		mandrill_user_interface->set_next_selected_tab(*tag_project_tab);
+		tag_project = nullptr; // hand off the memory to the child tab
+		// #TODO: Is it worth implementing a reference counting system?
 	}
 }

@@ -1,7 +1,9 @@
 #include "mandrilllib-private-pch.h"
 
-c_cache_file_tag_project::c_cache_file_tag_project(c_high_level_cache_cluster_transplant& transplant) :
-	c_tag_project(transplant.engine_platform_build),
+c_cache_file_tag_project::c_cache_file_tag_project(
+	c_high_level_cache_cluster_transplant& transplant,
+	c_status_interface* status_interface) :
+	c_tag_project(transplant.engine_platform_build, status_interface),
 	groups(transplant.groups),
 	tags()
 {

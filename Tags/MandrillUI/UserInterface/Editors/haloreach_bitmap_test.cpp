@@ -27,7 +27,6 @@ void c_haloreach_bitmap_test::draw_ui()
 
 	if (!bitmap_struct.hardware_textures_block.empty())
 	{
-
 		if (ImGui::Button("Restore Bitmap Data from Resource") || auto_run_restore_bitmap_test)
 		{
 			h_resource* resource = bitmap_struct.hardware_textures_block.front().texture_resource.value;

@@ -3,6 +3,7 @@
 struct s_traverse_directory_result;
 
 class c_cache_file_reader;
+class c_runtime_task;
 
 struct s_cache_file_list_entry
 {
@@ -39,12 +40,17 @@ protected:
 		_tag_project_configurator_step_cache_file_selection,
 		_tag_project_configurator_step_project_settings,
 		_tag_project_configurator_step_display_tags,
+		_tag_project_configurator_step_display_project_setup,
 		_tag_project_configurator_step_project_creation,
+		_tag_project_configurator_step_project_finished,
 	};
 
 	void create_cache_cluster();
 	void destroy_cache_cluster();
+	void init_tag_project();
+	void render_tag_project_status();
 	void create_tag_project();
+	void create_tag_project_tab();
 
 	e_tag_project_configurator_step step;
 	c_fixed_wide_path directory;
@@ -56,4 +62,24 @@ protected:
 	std::vector<s_cache_file_list_entry> selected_entries;
 	c_cache_cluster* cache_cluster;
 	c_high_level_cache_cluster_transplant* cache_cluster_transplant;
+	c_runtime_task* runtime_task;
+	c_tag_project* tag_project;
+
+public:
+
+	class c_tag_project_configurator_tab_task :
+		public c_runtime_task
+	{
+	public:
+		c_tag_project_configurator_tab& project_configurator_tab;
+		t_task_group* task_group;
+		c_stopwatch stopwatch;
+		bool running;
+
+		c_tag_project_configurator_tab_task(c_tag_project_configurator_tab& project_configurator_tab);
+		~c_tag_project_configurator_tab_task();
+		virtual bool is_running() const override;
+		virtual float get_runtime_duration() const override;
+	};
+
 };

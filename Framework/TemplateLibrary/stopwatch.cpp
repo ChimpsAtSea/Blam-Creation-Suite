@@ -19,7 +19,7 @@ void c_stopwatch::stop()
 	time_point_stop = now.time_since_epoch().count();
 }
 
-float c_stopwatch::get_seconds()
+float c_stopwatch::get_seconds() const
 {
 	long long duration = time_point_stop - time_point_start;
 	double nanoseconds = static_cast<double>(duration);
@@ -27,7 +27,7 @@ float c_stopwatch::get_seconds()
 	return static_cast<float>(seconds);
 }
 
-float c_stopwatch::get_miliseconds()
+float c_stopwatch::get_miliseconds() const
 {
 	long long duration = time_point_stop - time_point_start;
 	double nanoseconds = static_cast<double>(duration);

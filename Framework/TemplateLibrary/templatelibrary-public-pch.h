@@ -20,3 +20,4 @@
 #include "thread_safe_queue.h"
 #include "benchmark.h"
 #include "fast_ascii_lookup.h"
+#include "runtime_task.h"

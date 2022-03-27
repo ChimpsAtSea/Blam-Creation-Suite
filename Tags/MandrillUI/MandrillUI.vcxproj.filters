@@ -105,6 +105,9 @@
     <ClInclude Include="UserInterface\Editors\surface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UserInterface\imgui_status_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HaloScript\halo_script_function_definition.cpp">
@@ -180,6 +183,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UserInterface\Editors\surface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\imgui_status_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

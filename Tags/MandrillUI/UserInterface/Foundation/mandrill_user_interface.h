@@ -25,7 +25,8 @@ namespace ImGuiAddons
 }
 
 class c_mandrill_user_interface :
-	public c_mandrill_tab
+	public c_mandrill_tab,
+	public c_imgui_status_interface
 {
 public:
 	c_mandrill_user_interface() = delete;

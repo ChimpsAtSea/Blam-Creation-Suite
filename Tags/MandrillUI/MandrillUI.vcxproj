@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="UserInterface\imgui_status_interface.h" />
     <ClInclude Include="UserInterface\Editors\haloreach_bitmap_test.h" />
     <ClInclude Include="mandrillui_tracked_memory.h" />
     <ClInclude Include="UserInterface\Editors\infinite_tag_model.h" />
@@ -51,6 +52,7 @@
     <ClInclude Include="UserInterface\UserInterface.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="UserInterface\imgui_status_interface.cpp" />
     <ClCompile Include="UserInterface\Editors\haloreach_bitmap_test.cpp" />
     <ClCompile Include="mandrillui_tracked_memory.cpp" />
     <ClCompile Include="UserInterface\Editors\infinite_tag_model.cpp" />

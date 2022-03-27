@@ -14,8 +14,11 @@ c_cache_heap_chunk* cache_heap_chunk;
 c_partitioned_heap_entry_list_chunk* cache_heap_list_chunk;
 c_partition_list_chunk* cache_partition_list_chunk;
 
-c_monolithic_tag_project::c_monolithic_tag_project(const wchar_t* directory, s_engine_platform_build engine_platform_build) :
-	c_tag_project(engine_platform_build),
+c_monolithic_tag_project::c_monolithic_tag_project(
+	const wchar_t* directory, 
+	s_engine_platform_build engine_platform_build,
+	c_status_interface* status_interface) :
+	c_tag_project(engine_platform_build, status_interface),
 	groups(),
 	tags(),
 	num_tag_partitions(),
@@ -32,11 +35,11 @@ c_monolithic_tag_project::c_monolithic_tag_project(const wchar_t* directory, s_e
 		debug_point;
 	}
 
-	wcscpy(tag_cache_directory, directory);
-	wcscat(tag_cache_directory, L"tag_cache\\");
-	wcscpy(blob_index_file_path, tag_cache_directory);
-	wcscat(blob_index_file_path, L"blob_index.dat");
-
+	wcscpy_s(root_directory, directory);
+	wcscpy_s(tag_cache_directory, directory);
+	wcscat_s(tag_cache_directory, L"tag_cache\\");
+	wcscpy_s(blob_index_file_path, tag_cache_directory);
+	wcscat_s(blob_index_file_path, L"blob_index.dat");
 
 	c_stopwatch stopwatch;
 	stopwatch.start();
@@ -201,6 +204,7 @@ BCS_RESULT c_monolithic_tag_project::parse_tag_blob(const void* tag_file_data, u
 
 	root_chunk = new() c_monolithic_tag_backend_chunk();
 	root_chunk->read_chunk(nullptr, next_contiguous_pointer(session_identifier), true, true);
+	root_chunk->log();
 
 	tag_file_index_chunk = root_chunk->get_child_by_type_unsafe<c_tag_file_index_chunk>();
 	tag_file_blocks_chunk = root_chunk->get_child_by_type_unsafe<c_tag_file_blocks_chunk>();
@@ -351,11 +355,17 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			layout_reader->tag_group_layout_chunk->log(layout_reader);
 			layout_reader->binary_data_chunk->log(layout_reader);
 
+			// BENCHMARK_STOP(reader_log);
+
+			// BENCHMARK_STOP(tag_read_chunks);
+			// BENCHMARK_START(parse_high_level_object);
 			reader->parse_high_level_object(high_level_tag);
 			debug_point;
 
 			delete reader;
 			delete layout_reader;
+
+			// BENCHMARK_STOP(cleanup);
 		}
 
 		s.stop();
@@ -375,7 +385,11 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			tag_group->associate_tag_instance(*high_level_tag);
 			debug_point;
 
-			console_write_line("Read tag %s (%.2f ms)", relative_filepath_mb, ms);
+			console_write_line("Read tag %s (%.2f ms)", relative_filepath_mb, BENCHMARK_GET_TIME(tag_read));
+			if (status_interface)
+			{
+				status_interface->set_status_bar_status(_status_interface_priority_low, 15.0f, "Read tag %s (%.2f ms)", relative_filepath_mb, BENCHMARK_GET_TIME(tag_read));
+			}
 
 			tags.push_back(high_level_tag);
 		}
@@ -384,6 +398,11 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 
 		break;
 
+	}
+
+	if (status_interface)
+	{
+		status_interface->set_status_bar_status(_status_interface_priority_low, 5.0f, "Finished creating project %S", root_directory);
 	}
 
 	debug_point;

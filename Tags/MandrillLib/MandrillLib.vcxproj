@@ -114,6 +114,7 @@
     <ClInclude Include="HighLevel\high_level_cache_cluster_transplant.h" />
     <ClInclude Include="CacheInterface\CacheInterface.h" />
     <ClInclude Include="Filesystem\high_level_tag_file_writer.h" />
+    <ClInclude Include="logging_interface.h" />
     <ClInclude Include="mandrilllib-private-pch.h" />
     <ClInclude Include="mandrilllib-public-pch.h" />
     <ClInclude Include="Filesystem\Chunks\monolithic_tag_backend_chunk.h" />
@@ -136,6 +137,7 @@
     <ClInclude Include="Filesystem\Chunks\TagChunks\tag_resource_xsynced_chunk.h" />
     <ClInclude Include="mandrilllib_tracked_memory.h" />
     <ClInclude Include="Filesystem\tag_file_string_debugger.h" />
+    <ClInclude Include="status_interface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CacheInterface\cache_interface_tracked_memory.cpp" />
@@ -230,6 +232,7 @@
     <ClCompile Include="HighLevel\high_level_cache_cluster_transplant.cpp" />
     <ClCompile Include="high_level_ctor.cpp" />
     <ClCompile Include="Filesystem\high_level_tag_file_writer.cpp" />
+    <ClCompile Include="logging_interface.cpp" />
     <ClCompile Include="mandrilllib-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -256,6 +259,7 @@
     <ClCompile Include="Filesystem\Chunks\TagChunks\tag_resource_xsynced_chunk.cpp" />
     <ClCompile Include="mandrilllib_tracked_memory.cpp" />
     <ClCompile Include="Filesystem\tag_file_string_debugger.cpp" />
+    <ClCompile Include="status_interface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CacheInterface\halo3\halo3_cache_file_header.byteswap.inl" />

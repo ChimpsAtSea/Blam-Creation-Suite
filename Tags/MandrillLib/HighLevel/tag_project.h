@@ -7,8 +7,11 @@ class c_tag_project
 {
 public:
 	s_engine_platform_build engine_platform_build;
+	c_status_interface* status_interface;
 
-	c_tag_project(s_engine_platform_build engine_platform_build);
+	c_tag_project(
+		s_engine_platform_build engine_platform_build,
+		c_status_interface* status_interface);
 	virtual ~c_tag_project();
 
 	virtual BCS_RESULT get_group_by_group_tag(tag group_tag, h_group*& group) const = 0;

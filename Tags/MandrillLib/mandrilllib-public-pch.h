@@ -1,6 +1,7 @@
 #pragma once
 
-#include <low_level_xbox360_gen3/lowlevel-xbox360gen3-public-pch.h>
+#include "logging_interface.h"
+#include "status_interface.h"
 
 #include <Shared/Blam/Blam.h>
 #include "HighLevel/HighLevel.h"

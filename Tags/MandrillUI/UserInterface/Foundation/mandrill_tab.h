@@ -5,6 +5,7 @@ enum e_menu_render_type
 	_menu_render_type_root,
 	_menu_render_type_child,
 	_menu_render_type_root_file,
+	_menu_render_type_status_bar
 };
 
 class c_mandrill_tab :

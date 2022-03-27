@@ -1,6 +1,7 @@
 #pragma once
 
 #include "shader_profile.h"
+#include "imgui_status_interface.h"
 
 #include "Foundation\mandrill_event_queue.h"
 #include "Foundation\mandrill_tab_container.h"

@@ -1,7 +1,10 @@
 #include "mandrilllib-private-pch.h"
 
-c_filesystem_tag_project::c_filesystem_tag_project(const wchar_t* directory, s_engine_platform_build engine_platform_build) :
-	c_tag_project(engine_platform_build),
+c_filesystem_tag_project::c_filesystem_tag_project(
+	const wchar_t* directory, 
+	s_engine_platform_build engine_platform_build,
+	c_status_interface* status_interface) :
+	c_tag_project(engine_platform_build, status_interface),
 	groups(),
 	tags()
 {

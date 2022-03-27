@@ -565,6 +565,7 @@ void c_tag_project_tab::render_impl()
 }
 
 void c_tag_project_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
+bool c_tag_project_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
 	if (menu_render_type == _menu_render_type_root_file && is_selected())
 	{
@@ -621,11 +622,12 @@ void c_tag_project_tab::render_menu_gui_impl(e_menu_render_type menu_render_type
 			tab->render_menu_gui(_menu_render_type_root);
 		}
 	}
+	return true;
 }
 
 void c_tag_project_tab::render_file_dialogue_gui_impl()
 {
-	if (ImGui::BeginAsyncFolderDialog(&file_browser, "Export Sounds Directory", show_export_sounds_file_dialogue))
+	if (ImGui::BeginAsyncOpenFolderDialog(&file_browser, "Export Sounds Directory", show_export_sounds_file_dialogue))
 	{
 		if (ImGui::AsyncFileDialogIsValid())
 		{
