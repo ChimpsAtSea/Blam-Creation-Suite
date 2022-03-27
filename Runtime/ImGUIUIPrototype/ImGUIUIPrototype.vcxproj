@@ -142,14 +142,12 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mandrill_ui_prototype.cpp" />
-    <ClCompile Include="imguiuiprototype_tracked_memory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ResourcesFilepath)" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imguiuiprototype-private-pch.h" />
-    <ClInclude Include="imguiuiprototype_tracked_memory.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

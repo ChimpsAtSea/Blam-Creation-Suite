@@ -315,12 +315,6 @@
     <ClInclude Include="Filesystem\Chunks\TagChunks\tag_resource_null_chunk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CacheInterface\cache_interface_tracked_memory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mandrilllib_tracked_memory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Filesystem\high_level_tag_file_writer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -370,6 +364,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="logging_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Monolithic\monolithic_resource_handle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Monolithic\Monolithic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Monolithic\monolithic_partition_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -662,12 +665,6 @@
     <ClCompile Include="Filesystem\Chunks\TagChunks\tag_resource_null_chunk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CacheInterface\cache_interface_tracked_memory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mandrilllib_tracked_memory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Filesystem\high_level_tag_file_writer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -717,6 +714,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="logging_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Monolithic\monolithic_resource_handle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Monolithic\monolithic_partition_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

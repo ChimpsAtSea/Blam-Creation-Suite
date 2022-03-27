@@ -238,25 +238,25 @@ bool definition_migration_compare_struct(
 				}
 				break;
 			case _field_pageable:
-				if (old_field.struct_definition)
+				if (old_field.tag_resource_definition)
 				{
-					if ((old_field.struct_definition == nullptr) != (new_field.struct_definition == nullptr))
+					if ((old_field.tag_resource_definition == nullptr) != (new_field.tag_resource_definition == nullptr))
 					{
 						DEFINITION_ERROR_OLD(_definition_error_code_structure_mismatch_nulled, old_field.filename, old_field.line, "");
 						DEFINITION_ERROR_NEW(_definition_error_code_structure_mismatch_nulled, new_field.filename, new_field.line, "");
 						result = true;
 					}
-					else if (old_field.struct_definition->persistent_identifier != new_field.struct_definition->persistent_identifier)
+					else if (old_field.tag_resource_definition->struct_definition.persistent_identifier != new_field.tag_resource_definition->struct_definition.persistent_identifier)
 					{
-						DEFINITION_ERROR_OLD(_definition_error_code_structure_mismatch, old_field.filename, old_field.line, "%s -> %s", old_field.struct_definition->name, new_field.struct_definition->name);
-						DEFINITION_ERROR_NEW(_definition_error_code_structure_mismatch, new_field.filename, new_field.line, "%s -> %s", old_field.struct_definition->name, new_field.struct_definition->name);
+						DEFINITION_ERROR_OLD(_definition_error_code_structure_mismatch, old_field.filename, old_field.line, "%s -> %s", old_field.tag_resource_definition->struct_definition.name, new_field.tag_resource_definition->struct_definition.name);
+						DEFINITION_ERROR_NEW(_definition_error_code_structure_mismatch, new_field.filename, new_field.line, "%s -> %s", old_field.tag_resource_definition->struct_definition.name, new_field.tag_resource_definition->struct_definition.name);
 						result = true;
 					}
 					else
 					{
 						result |= definition_migration_compare_struct(
-							*old_field.struct_definition,
-							*new_field.struct_definition,
+							old_field.tag_resource_definition->struct_definition,
+							new_field.tag_resource_definition->struct_definition,
 							engine_platform_build);
 					}
 				}

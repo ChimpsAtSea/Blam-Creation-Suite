@@ -104,6 +104,7 @@ static_assert(sizeof(intptr64_t) == 0x8);
 	(((value) >= (min)) && ((value) <= (max)))
 
 #define MAX_INDEX_WITH_BITS(bits) \
+	__pragma(warning(suppress: 4307)) \
 	((1 << (bits)) - 1)
 
 #define FLAG(bit) \

@@ -93,9 +93,6 @@
     <ClCompile Include="types\tag_versioning.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tagdefinitions_tracked_memory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tag_struct_definition_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -204,9 +201,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="types\tag_versioning.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tagdefinitions_tracked_memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tag_struct_definition_view.h">

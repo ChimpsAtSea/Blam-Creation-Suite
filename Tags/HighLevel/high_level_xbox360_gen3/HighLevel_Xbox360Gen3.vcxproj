@@ -186,7 +186,6 @@
     <ClInclude Include="highlevel-xbox360gen3-private-pch.h" />
     <ClInclude Include="highlevel-xbox360gen3-public-pch.h" />
     <ClInclude Include="generated\xbox360_gen3_high_level.h" />
-    <ClInclude Include="xbox360gen3_tracked_memory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="generated\xbox360_gen3_high_level.ctor16.cpp" />
@@ -261,7 +260,6 @@
     <ClCompile Include="generated\xbox360_gen3_high_level.ctor9.cpp" />
     <ClCompile Include="generated\xbox360_gen3_high_level.misc.cpp" />
     <ClCompile Include="generated\xbox360_gen3_high_level.virtual.cpp" />
-    <ClCompile Include="xbox360gen3_tracked_memory.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

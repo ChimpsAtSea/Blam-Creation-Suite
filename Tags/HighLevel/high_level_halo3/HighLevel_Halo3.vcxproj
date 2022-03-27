@@ -186,7 +186,6 @@
     <ClInclude Include="generated\halo3_high_level.h" />
     <ClInclude Include="highlevel-halo3-private-pch.h" />
     <ClInclude Include="highlevel-halo3-public-pch.h" />
-    <ClInclude Include="halo3_tracked_memory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="generated\halo3_high_level.ctor0.cpp" />
@@ -261,7 +260,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="halo3_tracked_memory.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

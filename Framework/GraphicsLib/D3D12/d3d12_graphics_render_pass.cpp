@@ -34,7 +34,7 @@ c_graphics_render_pass_d3d12::c_graphics_render_pass_d3d12(
 	BCS_VALIDATE_ARGUMENT_THROW(num_color_render_targets >= expected_num_color_render_targets);
 	BCS_VALIDATE_ARGUMENT_THROW(num_depth_render_targets >= 1);
 
-	color_render_targets = new(graphics_tracked_memory) c_graphics_render_target_d3d12 * [num_color_render_targets];
+	color_render_targets = new() c_graphics_render_target_d3d12 * [num_color_render_targets];
 	for (unsigned long color_render_target_index = 0; color_render_target_index < num_color_render_targets; color_render_target_index++)
 	{
 		c_graphics_render_target_d3d12* color_render_target = _color_render_targets[color_render_target_index];
@@ -47,7 +47,7 @@ c_graphics_render_pass_d3d12::c_graphics_render_pass_d3d12(
 		color_render_targets[color_render_target_index] = color_render_target;
 	}
 
-	depth_render_targets = new(graphics_tracked_memory) c_graphics_render_target_d3d12 * [num_depth_render_targets];
+	depth_render_targets = new() c_graphics_render_target_d3d12 * [num_depth_render_targets];
 	for (unsigned long depth_render_target_index = 0; depth_render_target_index < num_depth_render_targets; depth_render_target_index++)
 	{
 		c_graphics_render_target_d3d12* depth_render_target = _depth_render_targets[depth_render_target_index];
@@ -85,7 +85,7 @@ void c_graphics_render_pass_d3d12::setup_viewport()
 
 BCS_RESULT c_graphics_render_pass_d3d12::init_descriptor_handles()
 {
-	color_render_target_cpu_handles = new(graphics_tracked_memory) D3D12_CPU_DESCRIPTOR_HANDLE[num_color_render_targets];
+	color_render_target_cpu_handles = new() D3D12_CPU_DESCRIPTOR_HANDLE[num_color_render_targets];
 	for (unsigned long color_render_target_index = 0; color_render_target_index < num_color_render_targets; color_render_target_index++)
 	{
 		c_graphics_render_target_d3d12* color_render_target = color_render_targets[color_render_target_index];
@@ -98,7 +98,7 @@ BCS_RESULT c_graphics_render_pass_d3d12::init_descriptor_handles()
 		color_render_target_cpu_handles[color_render_target_index] = color_render_target->descriptor_heap_cpu->cpu_descriptor_handle;
 	}
 
-	depth_render_target_cpu_handles = new(graphics_tracked_memory) D3D12_CPU_DESCRIPTOR_HANDLE[num_depth_render_targets];
+	depth_render_target_cpu_handles = new() D3D12_CPU_DESCRIPTOR_HANDLE[num_depth_render_targets];
 	for (unsigned long depth_render_target_index = 0; depth_render_target_index < num_depth_render_targets; depth_render_target_index++)
 	{
 		c_graphics_render_target_d3d12* depth_render_target = depth_render_targets[depth_render_target_index];
@@ -214,7 +214,7 @@ BCS_RESULT graphics_d3d12_render_pass_create(
 	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
 	try
 	{
-		render_pass = new(graphics_tracked_memory) c_graphics_render_pass_d3d12(
+		render_pass = new() c_graphics_render_pass_d3d12(
 			*graphics,
 			*viewport,
 			color_render_targets,

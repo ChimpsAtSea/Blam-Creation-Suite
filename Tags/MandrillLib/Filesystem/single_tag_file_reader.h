@@ -7,6 +7,7 @@ class c_single_tag_file_layout_reader;
 class c_binary_data_chunk;
 class c_tag_block_chunk;
 class c_tag_struct_chunk;
+class c_monolithic_partition_view;
 
 struct s_blofeld_field_transpose_entry
 {
@@ -67,7 +68,8 @@ public:
 	const blofeld::s_tag_group* blofeld_tag_group;
 	const blofeld::s_tag_block_definition* blofeld_tag_block_definition;
 	const blofeld::s_tag_struct_definition* blofeld_tag_group_struct_definition;
-	const char* monolithic_resource_data;
+	c_monolithic_partition_view* tag_partition_view;
+	c_monolithic_partition_view* resource_partition_view;
 
 	c_single_tag_file_reader(
 		s_single_tag_file_header& header,
@@ -75,7 +77,8 @@ public:
 		bool is_big_endian,
 		c_single_tag_file_layout_reader& layout_reader,
 		c_binary_data_chunk& binary_data_chunk,
-		const void* monolithic_resource_data);
+		c_monolithic_partition_view* tag_partition_view,
+		c_monolithic_partition_view* resource_partition_view);
 	~c_single_tag_file_reader();
 
 	BCS_RESULT parse_high_level_object(h_tag*& high_level_tag);

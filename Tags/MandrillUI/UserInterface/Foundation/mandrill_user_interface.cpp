@@ -349,6 +349,7 @@ void c_mandrill_user_interface::render_impl()
 		imgui_window_flags |= ImGuiWindowFlags_NoTitleBar;
 		imgui_window_flags |= ImGuiWindowFlags_NoMove;
 		imgui_window_flags |= ImGuiWindowFlags_NoResize;
+		imgui_window_flags |= ImGuiWindowFlags_NoScrollbar;
 	}
 
 	render_file_dialogue_gui_impl();

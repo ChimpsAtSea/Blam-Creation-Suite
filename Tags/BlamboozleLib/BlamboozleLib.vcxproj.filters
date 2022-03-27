@@ -279,9 +279,6 @@
     <ClCompile Include="endianness.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="blamboozlelib_tracked_memory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="halo3\h3_tag_resource_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

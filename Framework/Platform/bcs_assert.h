@@ -10,7 +10,7 @@ BCS_DEBUG_API extern void(*__bcs_write_debug_string)(wchar_t const* message);
 #define __bcs_write_debug_string(...) false
 #endif
 
-#define ASSERT(statement) \
+#define ASSERT(statement, ...) \
 						do  \
 						{  \
 							if(!(statement)) \

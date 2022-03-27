@@ -10,4 +10,3 @@
 #include <TagReflection\tagreflection-public-pch.h>
 
 #include "highlevel-halo2-public-pch.h"
-#include "halo2_tracked_memory.h"

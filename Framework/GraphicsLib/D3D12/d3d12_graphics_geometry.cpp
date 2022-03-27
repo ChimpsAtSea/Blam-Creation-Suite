@@ -19,8 +19,8 @@ c_graphics_geometry_d3d12::c_graphics_geometry_d3d12(
 {
 	BCS_VALIDATE_ARGUMENT_THROW(num_vertex_buffers >= vertex_layout.num_layout_descriptions);
 
-	vertex_buffers = new(graphics_tracked_memory) c_graphics_buffer_d3d12 * [num_vertex_buffers];
-	vertex_buffer_views = new(graphics_tracked_memory) D3D12_VERTEX_BUFFER_VIEW[num_vertex_buffers];
+	vertex_buffers = new() c_graphics_buffer_d3d12 * [num_vertex_buffers];
+	vertex_buffer_views = new() D3D12_VERTEX_BUFFER_VIEW[num_vertex_buffers];
 	for (unsigned long vertex_buffer_index = 0; vertex_buffer_index < num_vertex_buffers; vertex_buffer_index++)
 	{
 		c_graphics_buffer_d3d12* vertex_buffer = in_vertex_buffers[vertex_buffer_index];
@@ -74,7 +74,7 @@ BCS_RESULT graphics_d3d12_geometry_create(
 	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
 	try
 	{
-		geometry = new(graphics_tracked_memory) c_graphics_geometry_d3d12(
+		geometry = new() c_graphics_geometry_d3d12(
 			*graphics,
 			index_buffer,
 			num_primitives,

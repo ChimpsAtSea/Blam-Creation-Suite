@@ -226,7 +226,7 @@ BCS_RESULT graphics_d3d12_buffer_create(
 	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
 	try
 	{
-		buffer = new(graphics_tracked_memory) c_graphics_buffer_d3d12(
+		buffer = new() c_graphics_buffer_d3d12(
 			*graphics,
 			buffer_type,
 			element_size,
@@ -255,7 +255,7 @@ BCS_RESULT graphics_d3d12_buffer_create(
 	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
 	try
 	{
-		buffer = new(graphics_tracked_memory) c_graphics_buffer_d3d12(
+		buffer = new() c_graphics_buffer_d3d12(
 			*graphics,
 			buffer_type,
 			1,

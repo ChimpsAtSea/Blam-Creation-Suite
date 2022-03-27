@@ -39,9 +39,6 @@
     <ClInclude Include="runtime_symbols.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="symbolsruntime_tracked_memory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="symbolsruntime-private-pch.cpp">
@@ -51,9 +48,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="runtime_symbols.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="symbolsruntime_tracked_memory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

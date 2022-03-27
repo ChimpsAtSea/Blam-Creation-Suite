@@ -30,6 +30,7 @@ c_tag_file_high_level_transplant::c_tag_file_high_level_transplant(const char* f
 		is_big_endian_tag,
 		*layout_reader,
 		*layout_reader->binary_data_chunk,
+		nullptr,
 		nullptr);
 
 	s.stop();

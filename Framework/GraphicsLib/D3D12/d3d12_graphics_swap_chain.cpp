@@ -150,7 +150,7 @@ BCS_DEBUG_API BCS_RESULT graphics_d3d12_swap_chain_create(
 {
 	try
 	{
-		swap_chain = new(graphics_tracked_memory) c_graphics_swap_chain_d3d12(
+		swap_chain = new() c_graphics_swap_chain_d3d12(
 			*graphics,
 			*window,
 			num_back_buffers,
@@ -182,7 +182,7 @@ BCS_DEBUG_API BCS_RESULT graphics_d3d12_swap_chain_create(
 	}
 	try
 	{
-		swap_chain = new(graphics_tracked_memory) c_graphics_swap_chain_d3d12(
+		swap_chain = new() c_graphics_swap_chain_d3d12(
 			*graphics,
 			*imgui_viewport_render_context,
 			*viewport,

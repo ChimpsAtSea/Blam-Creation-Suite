@@ -1225,7 +1225,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 		}
 		else
 		{
-			int buffer_length = snprintf(nullptr, 0, "<INVALID VALUE> 0x%08X", selected_string_value) + 1;
+			int buffer_length = snprintf(nullptr, 0, "<INVALID VALUE> 0x%p", selected_string_value) + 1;
 			char* buffer = static_cast<char*>(alloca(buffer_length));
 			sprintf(buffer, "<INVALID VALUE> 0x%08X", value);
 			selected_string_value = buffer;
@@ -1233,9 +1233,9 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 
 		if (ImGui::BeginCombo("##enum", selected_string_value))
 		{
-			for (unsigned long string_index = 0; string_index < string_list_count; string_index++)
+			for (long string_index = 0; string_index < string_list_count; string_index++)
 			{
-				const char* current_string = string_list_definition.get_string(tag_project.engine_platform_build, string_index);
+				const char* current_string = string_list_definition.get_string(tag_project.engine_platform_build, static_cast<unsigned long>(string_index));
 
 				bool const current_string_has_tooltip = false; // !current_string_parser.description.empty();
 				if (current_string_has_tooltip)

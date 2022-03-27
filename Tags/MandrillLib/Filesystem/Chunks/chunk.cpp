@@ -85,7 +85,7 @@ BCS_RESULT c_chunk::remove_child(c_chunk& chunk)
 					c_chunk* current_chunk = children[child_index];
 					if (current_chunk != &chunk)
 					{
-						new_children[destination_index] == current_chunk;
+						new_children[destination_index] = current_chunk;
 						destination_index++;
 					}
 				}
@@ -195,7 +195,7 @@ BCS_RESULT c_chunk::append_data(const void* new_data, unsigned long new_data_siz
 	else if (new_data_size > 0)
 	{
 		unsigned long data_size = chunk_size + new_data_size;
-		char* _chunk_data_temp = static_cast<char*>(tracked_malloc(mandrilllib_tracked_memory, data_size));
+		char* _chunk_data_temp = static_cast<char*>(tracked_malloc(data_size));
 
 		char* old_chunk_data = _chunk_data_temp;
 		memcpy(old_chunk_data, chunk_data, chunk_size);
@@ -218,7 +218,7 @@ BCS_RESULT c_chunk::set_data(const void* data, unsigned long data_size)
 		tracked_free(chunk_data);
 	}
 
-	void* _chunk_data = tracked_malloc(mandrilllib_tracked_memory, data_size);
+	void* _chunk_data = tracked_malloc(data_size);
 	memcpy(_chunk_data, data, data_size);
 
 	chunk_data = _chunk_data;

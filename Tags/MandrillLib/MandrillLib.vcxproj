@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CacheInterface\cache_interface_tracked_memory.h" />
     <ClInclude Include="CacheInterface\halo3\halo3_api_interop.h" />
     <ClInclude Include="CacheInterface\halo3\halo3_cache_cluster.h" />
     <ClInclude Include="CacheInterface\halo3\halo3_cache_file_header.h" />
@@ -31,6 +30,8 @@
     <ClInclude Include="CacheInterface\halo3\halo3_tag_group.h" />
     <ClInclude Include="CacheInterface\halo3\halo3_tag_instance.h" />
     <ClInclude Include="CacheInterface\halo3\halo3_tag_reader.h" />
+    <ClInclude Include="Monolithic\Monolithic.h" />
+    <ClInclude Include="Monolithic\monolithic_resource_handle.h" />
     <ClInclude Include="HighLevel\simple_resource_container.h" />
     <ClInclude Include="Filesystem\Chunks\MonolithicChunks\exploded_dependencies_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\MonolithicChunks\tag_file_persistent_heap_chunk.h" />
@@ -135,12 +136,11 @@
     <ClInclude Include="Filesystem\Chunks\TagChunks\tag_resource_exploded_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\TagChunks\tag_resource_null_chunk.h" />
     <ClInclude Include="Filesystem\Chunks\TagChunks\tag_resource_xsynced_chunk.h" />
-    <ClInclude Include="mandrilllib_tracked_memory.h" />
     <ClInclude Include="Filesystem\tag_file_string_debugger.h" />
+    <ClInclude Include="Monolithic\monolithic_partition_view.h" />
     <ClInclude Include="status_interface.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CacheInterface\cache_interface_tracked_memory.cpp" />
     <ClCompile Include="CacheInterface\halo3\halo3_api_interop.cpp" />
     <ClCompile Include="CacheInterface\halo3\halo3_cache_cluster.cpp" />
     <ClCompile Include="CacheInterface\halo3\halo3_cache_file_header.cpp" />
@@ -152,6 +152,7 @@
     <ClCompile Include="CacheInterface\halo3\halo3_tag_group.cpp" />
     <ClCompile Include="CacheInterface\halo3\halo3_tag_instance.cpp" />
     <ClCompile Include="CacheInterface\halo3\halo3_tag_reader.cpp" />
+    <ClCompile Include="Monolithic\monolithic_resource_handle.cpp" />
     <ClCompile Include="HighLevel\simple_resource_container.cpp" />
     <ClCompile Include="Filesystem\Chunks\MonolithicChunks\exploded_dependencies_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\MonolithicChunks\tag_file_persistent_heap_chunk.cpp" />
@@ -257,8 +258,8 @@
     <ClCompile Include="Filesystem\Chunks\TagChunks\tag_resource_exploded_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\TagChunks\tag_resource_null_chunk.cpp" />
     <ClCompile Include="Filesystem\Chunks\TagChunks\tag_resource_xsynced_chunk.cpp" />
-    <ClCompile Include="mandrilllib_tracked_memory.cpp" />
     <ClCompile Include="Filesystem\tag_file_string_debugger.cpp" />
+    <ClCompile Include="Monolithic\monolithic_partition_view.cpp" />
     <ClCompile Include="status_interface.cpp" />
   </ItemGroup>
   <ItemGroup>

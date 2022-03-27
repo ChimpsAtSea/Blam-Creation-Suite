@@ -147,7 +147,7 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 
 									{
 										xma2_wave_format.wfx.wFormatTag = WAVE_FORMAT_XMA2;										//    wFormatTag;        // Audio format type; always WAVE_FORMAT_XMA2														
-										xma2_wave_format.wfx.nChannels = number_of_channels;									//    nChannels;         // Channel count of the decoded audio
+										xma2_wave_format.wfx.nChannels = static_cast<WORD>(number_of_channels);					//    nChannels;         // Channel count of the decoded audio
 										xma2_wave_format.wfx.nSamplesPerSec = samples_per_second;								//    nSamplesPerSec;    // Sample rate of the decoded audio
 										xma2_wave_format.wfx.nAvgBytesPerSec = 0;												//    nAvgBytesPerSec;   // Used internally by the XMA encoder
 										xma2_wave_format.wfx.nBlockAlign = 2;													//    nBlockAlign;       // Decoded sample size; channels * wBitsPerSample / 8
@@ -165,7 +165,7 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 										xma2_wave_format.LoopLength = 0;														// Length of the loop region in decoded sample terms
 										xma2_wave_format.LoopCount = 0;															// Number of loop repetitions; 255 = infinite
 										xma2_wave_format.EncoderVersion = 4;													// Version of XMA encoder that generated the file
-										xma2_wave_format.BlockCount = sample_size / 2048;										// XMA blocks in file (and entries in its seek table)
+										xma2_wave_format.BlockCount = static_cast<WORD>(sample_size / 2048);					// XMA blocks in file (and entries in its seek table)
 									}
 									char* xma_file_data;
 									unsigned long xma_file_data_size = 0;
@@ -564,7 +564,6 @@ void c_tag_project_tab::render_impl()
 	}
 }
 
-void c_tag_project_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 bool c_tag_project_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
 	if (menu_render_type == _menu_render_type_root_file && is_selected())

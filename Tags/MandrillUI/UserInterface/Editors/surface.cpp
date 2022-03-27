@@ -4,17 +4,17 @@
 
 #include "surface.h"
 
-static long long Log2TexelPitch(unsigned long a1)
+static unsigned long Log2TexelPitch(unsigned long a1)
 {
 	return (a1 >> 1 >> (a1 >> 2)) + (a1 >> 2);
 }
 
-static long long Log2MicroTileWidth(unsigned long a1)
+static unsigned long Log2MicroTileWidth(unsigned long a1)
 {
 	return 3 - ((a1 >> 2) - (a1 >> 4));
 }
 
-static unsigned char* TiledTexelAddress2D(unsigned char* a1, char a2, long a3, long a4, unsigned long a5, unsigned long a6, unsigned long a7, unsigned long a8, unsigned long a9)
+static unsigned char* TiledTexelAddress2D(unsigned char* a1, unsigned long a2, long a3, long a4, unsigned long a5, unsigned long a6, unsigned long a7, unsigned long a8, unsigned long a9)
 {
 	long v9; // ecx
 	unsigned long v10; // edx
@@ -31,7 +31,7 @@ static unsigned char* TiledTexelAddress2D(unsigned char* a1, char a2, long a3, l
 		+ ((8 * (v10 + v9)) & 0xFFFFF000)];
 }
 
-static unsigned char* LinearTexelAddress(unsigned char* a1, long a2, long a3, char a4)
+static unsigned char* LinearTexelAddress(unsigned char* a1, long a2, unsigned long a3, unsigned long a4)
 {
 	return &a1[a2 + (a3 << a4)];
 }
@@ -39,7 +39,7 @@ static unsigned char* LinearTexelAddress(unsigned char* a1, long a2, long a3, ch
 // local variable allocation has failed, the output may be wrong!
 static void UntileSurface(unsigned char* pDestination, unsigned long RowPitch, POINT* pPoint, void* pSource, unsigned long Width, unsigned long Height, RECT* pRect, unsigned long TexelPitch)
 {
-	char v8; // al
+	unsigned long v8; // al
 	unsigned long v9; // [rsp+50h] [rbp-B8h]
 	unsigned long v10; // [rsp+54h] [rbp-B4h]
 	unsigned long v11; // [rsp+58h] [rbp-B0h]
@@ -99,7 +99,7 @@ static void UntileSurface(unsigned char* pDestination, unsigned long RowPitch, P
 	if (pSource == pDestination)
 	{
 		v34 = (TexelPitch * v25 * v20 + 4095) & 0xFFFFF000;
-		pTempDestination = (unsigned char*)tracked_malloc(_library_tracked_memory, v34);
+		pTempDestination = (unsigned char*)tracked_malloc(v34);
 		ASSERT(pTempDestination, "Failed to allocate source data buffer for in-place surface untiling.");
 		memcpy(pTempDestination, (unsigned char*)pSource, v34);
 	}
@@ -129,20 +129,20 @@ static void UntileSurface(unsigned char* pDestination, unsigned long RowPitch, P
 		v22 = 16 * (v31 & 1);
 		v29 = 2 * v13;
 		v11 = (v31 >> 4) & 1;
-		v33 = RowPitch * (i + pPoint->y);
+		v33 = RowPitch * (i + static_cast<unsigned long>(pPoint->y));
 		Src = TiledTexelAddress2D(pTempDestination, v19, v13, v30, v26, v22, 2 * v13, v11, pRect->left);
-		v27 = LinearTexelAddress(pDestination, v33, pPoint->x, v23);
+		v27 = LinearTexelAddress(pDestination, v33, static_cast<unsigned long>(pPoint->x), v23);
 		memcpy(v27, Src, v28);
 		for (j = v10; (long)j < v12; j += v18)
 		{
 			Src = TiledTexelAddress2D(pTempDestination, v19, v13, v30, v26, v22, v29, v11, j + pRect->left);
-			v27 = LinearTexelAddress(pDestination, v33, j + pPoint->x, v23);
+			v27 = LinearTexelAddress(pDestination, v33, j + static_cast<unsigned long>(pPoint->x), v23);
 			memcpy(v27, Src, (unsigned long)(v18 << v23));
 		}
 		if (j < v9)
 		{
 			Src = TiledTexelAddress2D(pTempDestination, v19, v13, v30, v26, v22, v29, v11, j + pRect->left);
-			v27 = LinearTexelAddress(pDestination, v33, j + pPoint->x, v23);
+			v27 = LinearTexelAddress(pDestination, v33, j + static_cast<unsigned long>(pPoint->x), v23);
 			memcpy(v27, Src, (v9 - j) << v23);
 		}
 	}
@@ -164,8 +164,8 @@ void UntileSurface(
 		!pRect ||
 		(pRect->left >= 0 &&
 		pRect->top >= 0 &&
-		pRect->right <= Width &&
-		pRect->bottom <= Height) &&
+		pRect->right <= static_cast<LONG>(Width) &&
+		pRect->bottom <= static_cast<LONG>(Height)) &&
 		Width <= 32 &&
 		Height <= 32,
 		"Source rectangle out of bounds (rectangle must be entirely contained within the source surface).");

@@ -188,14 +188,12 @@ rem lib /ignore:4006 /NOLOGO /OUT:$(OutDir)MandrillSDK.lib Mandrill.lib tbb_stat
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="mandrill_tracked_memory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ResourcesFilepath)" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mandrill-private-pch.h" />
-    <ClInclude Include="mandrill_tracked_memory.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

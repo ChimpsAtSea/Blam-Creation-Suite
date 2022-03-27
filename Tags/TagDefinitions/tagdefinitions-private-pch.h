@@ -13,8 +13,6 @@
 #include "tagdefinitions-public-pch.h"
 //#include "blofeld/gen3_xbox360_validation_data.h"
 
-#include "tagdefinitions_tracked_memory.h"
-
 namespace blofeld
 {
 #define _countof_safe(value) (sizeof(value) / sizeof(value[0]))

@@ -17,5 +17,3 @@
 #include "templatelibrary-public-pch.h"
 
 #include <Platform/banned.h>
-
-#include "templatelibrary_tracked_memory.h"

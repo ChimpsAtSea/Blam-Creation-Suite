@@ -24,9 +24,6 @@
     <ClInclude Include="generated\halo4_high_level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="halo4_tracked_memory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="highlevel-halo4-private-pch.cpp">
@@ -228,9 +225,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="generated\halo4_high_level.ctor63.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="halo4_tracked_memory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

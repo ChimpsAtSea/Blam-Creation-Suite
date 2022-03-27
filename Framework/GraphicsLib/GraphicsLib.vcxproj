@@ -58,7 +58,6 @@
     <ClCompile Include="Archetype\imgui_context.cpp" />
     <ClCompile Include="Archetype\graphics_swap_chain.cpp" />
     <ClCompile Include="Archetype\graphics_vertex_layout.cpp" />
-    <ClCompile Include="graphicslib_tracked_memory.cpp" />
     <ClCompile Include="ImGui\begin_popup_modal_ex.cpp" />
     <ClCompile Include="ImGui\imgui_memory_editor.cpp" />
     <ClCompile Include="ImGui\imgui_text_editor.cpp" />
@@ -128,7 +127,6 @@
     <ClInclude Include="Archetype\imgui_context.h" />
     <ClInclude Include="Archetype\graphics_swap_chain.h" />
     <ClInclude Include="Archetype\graphics_vertex_layout.h" />
-    <ClInclude Include="graphicslib_tracked_memory.h" />
     <ClInclude Include="ImGui\begin_popup_modal_ex.h" />
     <ClInclude Include="ImGui\font_awesome_icons.h" />
     <ClInclude Include="ImGui\imgui-public-pch.h" />

@@ -14,7 +14,7 @@ c_imgui_context::~c_imgui_context()
 
 static void* imgui_malloc(size_t sz, void* user_data)
 {
-	return tracked_malloc(imgui_memory_tracker, sz);
+	return tracked_malloc(sz);
 }
 
 static void imgui_free(void* ptr, void* user_data)

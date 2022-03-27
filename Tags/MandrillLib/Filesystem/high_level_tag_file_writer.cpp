@@ -8,7 +8,7 @@ static constexpr size_t y = sizeof(s_engine_platform_build);
 
 c_high_level_tag_file_writer::c_high_level_tag_file_writer(s_engine_platform_build engine_platform_build, const char* _filepath, h_tag& tag) :
 	tag(tag),
-	filepath(strdup(_filepath)),
+	filepath(_strdup(_filepath)),
 	engine_platform_build(engine_platform_build),
 	header_chunk(),
 	file_handle(),
@@ -225,7 +225,7 @@ unsigned long c_high_level_tag_file_writer::enqueue_struct_definition(const blof
 	}
 
 	unsigned long fields_start_index = fields_chunk->entry_count;
-	fields_chunk->append_data(tag_persist_fields.data(), sizeof(tag_persist_fields[0]) * tag_persist_fields.size());
+	fields_chunk->append_data(tag_persist_fields.data(), static_cast<unsigned long>(sizeof(tag_persist_fields[0]) * tag_persist_fields.size()));
 
 
 	s_tag_persist_struct_definition tag_persist_struct_definition;
@@ -540,7 +540,7 @@ unsigned long c_high_level_tag_file_writer::enqueue_string(const char* string)
 
 	BCS_RESULT rs = BCS_S_OK;
 
-	unsigned long string_data_length = strlen(string) + 1;
+	unsigned long string_data_length = static_cast<unsigned long>(strlen(string) + 1);
 	const void* existing_data = nullptr;
 	unsigned long existing_data_size = 0;
 	if (BCS_SUCCEEDED(rs = string_data_chunk->get_data(existing_data, existing_data_size)))
@@ -548,7 +548,7 @@ unsigned long c_high_level_tag_file_writer::enqueue_string(const char* string)
 		const char* existing_substring = (const char*)memmem(existing_data, existing_data_size, string, string_data_length);
 		if (existing_substring)
 		{
-			unsigned long offset = static_cast<unsigned long>(existing_substring - existing_data);
+			unsigned long offset = static_cast<unsigned long>(existing_substring - static_cast<const char*>(existing_data));
 			return offset;
 		}
 	}
@@ -572,7 +572,7 @@ void c_high_level_tag_file_writer::serialize_tag_group(const h_tag& tag, c_binar
 	tag_block_chunk.set_data(&tag_block_chunk_header, sizeof(tag_block_chunk_header));
 
 	unsigned long structure_size = calculate_structure_size(tag_struct_definition);
-	char* const structure_data = static_cast<char*>(tracked_malloc(_library_tracked_memory, structure_size));
+	char* const structure_data = static_cast<char*>(tracked_malloc(structure_size));
 	DEBUG_ONLY(memset(structure_data, 0xDD, structure_size));
 
 	c_tag_struct_chunk* tag_struct_chunk = new() c_tag_struct_chunk(tag_block_chunk);
@@ -601,7 +601,7 @@ void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_t
 
 	unsigned long structure_size = calculate_structure_size(tag_struct_definition);
 	unsigned long block_data_size = structure_size * block_count;
-	char* const block_data = static_cast<char*>(tracked_malloc(_library_tracked_memory, block_data_size));
+	char* const block_data = static_cast<char*>(tracked_malloc(block_data_size));
 	char* structure_data = block_data;
 
 	for (unsigned long block_index = 0; block_index < block_count; block_index++, structure_data += structure_size)
@@ -694,7 +694,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_object& object, 
 			s_tag_data* tag_data = reinterpret_cast<s_tag_data*>(dst_field_data);
 			DEBUG_ONLY(memset(tag_data, 0xCC, sizeof(*tag_data)));
 
-			tag_data->size = data.size();
+			tag_data->size = static_cast<long>(data.size());
 			tag_data->stream_flags = 0; // unused
 			tag_data->stream_offset = 0; // unused
 			tag_data->address = 0;
@@ -753,7 +753,7 @@ void c_high_level_tag_file_writer::serialize_tag_data(const h_data& data, c_tag_
 
 	if (!data.empty())
 	{
-		tag_data_chunk.set_data(data.data(), data.size());
+		tag_data_chunk.set_data(data.data(), static_cast<unsigned long>(data.size()));
 	}
 
 	debug_point;
@@ -782,7 +782,7 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 		}
 
 		unsigned long structure_size = calculate_structure_size(tag_resource_definition.struct_definition);
-		char* const structure_data = static_cast<char*>(tracked_malloc(_library_tracked_memory, structure_size));
+		char* const structure_data = static_cast<char*>(tracked_malloc(structure_size));
 		DEBUG_ONLY(memset(structure_data, 0xDD, structure_size));
 
 		serialize_tag_struct(*object, structure_data, tag_struct_chunk);

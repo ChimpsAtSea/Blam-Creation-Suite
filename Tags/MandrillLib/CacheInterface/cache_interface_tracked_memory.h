@@ -1,8 +1,0 @@
-#pragma once
-
-extern s_tracked_memory_stats cache_interface_tracked_memory;
-extern s_tracked_memory_stats halo1_cache_interface_tracked_memory;
-extern s_tracked_memory_stats halo3_cache_interface_tracked_memory;
-extern s_tracked_memory_stats haloreach_cache_interface_tracked_memory;
-extern s_tracked_memory_stats halo4_cache_interface_tracked_memory;
-extern s_tracked_memory_stats infinite_cache_interface_tracked_memory;

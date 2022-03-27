@@ -1,6 +1,8 @@
 #pragma once
 
 class c_high_level_cache_cluster_transplant;
+class c_monolithic_partition_view;
+
 class h_tag;
 
 class c_monolithic_tag_project :
@@ -36,7 +38,9 @@ protected:
 	unsigned long num_tag_partitions;
 	t_memory_mapped_file** tag_memory_mapped_files;
 	s_memory_mapped_file_info* tag_memory_mapped_file_infos;
+	c_monolithic_partition_view** tag_partition_views;
 	unsigned long num_cache_partitions;
 	t_memory_mapped_file** cache_memory_mapped_files;
 	s_memory_mapped_file_info* cache_memory_mapped_file_infos;
+	c_monolithic_partition_view** cache_partition_views;
 };

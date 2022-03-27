@@ -166,21 +166,21 @@ void c_graphics_d3d12::deinit_command_allocator()
 
 void c_graphics_d3d12::init_descriptor_heap_allocator()
 {
-	cbv_srv_uav_descriptor_heap_allocator_gpu = new(graphics_tracked_memory) c_descriptor_heap_allocator_d3d12(
+	cbv_srv_uav_descriptor_heap_allocator_gpu = new() c_descriptor_heap_allocator_d3d12(
 		*this,
 		D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV,
 		D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE,
 		131072,
 		L"c_graphics_d3d12::cbv_srv_uav_descriptor_heap_allocator_gpu"
 	);
-	cbv_srv_uav_descriptor_heap_allocator_cpu = new(graphics_tracked_memory) c_descriptor_heap_allocator_d3d12(
+	cbv_srv_uav_descriptor_heap_allocator_cpu = new() c_descriptor_heap_allocator_d3d12(
 		*this,
 		D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV,
 		D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE,
 		131072,
 		L"c_graphics_d3d12::cbv_srv_uav_descriptor_heap_allocator_cpu"
 	);
-	sampler_descriptor_heap_allocator_gpu = new(graphics_tracked_memory) c_descriptor_heap_allocator_d3d12(
+	sampler_descriptor_heap_allocator_gpu = new() c_descriptor_heap_allocator_d3d12(
 		*this,
 		D3D12_DESCRIPTOR_HEAP_TYPE_SAMPLER,
 		D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE,
@@ -459,7 +459,7 @@ BCS_RESULT graphics_d3d12_create(bool use_debug_layer, c_graphics_d3d12*& graphi
 {
 	try
 	{
-		graphics = new(graphics_tracked_memory) c_graphics_d3d12(use_debug_layer);
+		graphics = new() c_graphics_d3d12(use_debug_layer);
 	}
 	catch (BCS_RESULT rs)
 	{

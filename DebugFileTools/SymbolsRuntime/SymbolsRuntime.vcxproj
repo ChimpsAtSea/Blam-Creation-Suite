@@ -191,14 +191,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="symbolsruntime_tracked_memory.cpp" />
     <ClCompile Include="symbol_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="runtime_symbols.h" />
     <ClInclude Include="symbolsruntime-private-pch.h" />
     <ClInclude Include="symbolsruntime-public-pch.h" />
-    <ClInclude Include="symbolsruntime_tracked_memory.h" />
     <ClInclude Include="symbol_file_header.h" />
     <ClInclude Include="symbol_file_public.h" />
     <ClInclude Include="symbol_file_section.h" />

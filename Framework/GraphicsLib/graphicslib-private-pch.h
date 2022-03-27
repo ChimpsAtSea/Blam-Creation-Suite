@@ -37,5 +37,3 @@
 #include "Scenes\window_render_context.h"
 
 #include <DirectXMath.h>
-
-#include "graphicslib_tracked_memory.h"

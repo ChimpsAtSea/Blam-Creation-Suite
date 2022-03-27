@@ -209,7 +209,7 @@ BCS_RESULT graphics_d3d12_camera_create(
 	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
 	try
 	{
-		camera = new(graphics_tracked_memory) c_graphics_camera_d3d12(
+		camera = new() c_graphics_camera_d3d12(
 			*graphics,
 			viewport,
 			debug_name_wc

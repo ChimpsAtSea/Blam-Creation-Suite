@@ -6,7 +6,8 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	bool is_big_endian,
 	c_single_tag_file_layout_reader& layout_reader,
 	c_binary_data_chunk& binary_data_chunk,
-	const void* _monolithic_resource_data) :
+	c_monolithic_partition_view* tag_partition_view,
+	c_monolithic_partition_view* resource_partition_view) :
 	header(header),
 	layout_reader(layout_reader),
 	binary_data_chunk(binary_data_chunk),
@@ -20,7 +21,8 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	blofeld_tag_group(),
 	blofeld_tag_block_definition(),
 	blofeld_tag_group_struct_definition(),
-	monolithic_resource_data(static_cast<const char*>(_monolithic_resource_data))
+	tag_partition_view(tag_partition_view),
+	resource_partition_view(resource_partition_view)
 {
 	unsigned long tag_group_block_index = layout_reader.tag_group_layout_chunk->get_tag_group_block_index();
 	t_tag_file_reader_metadata_entry metadata_entry = {};
@@ -545,16 +547,26 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 				}
 				else if (resource_xsynced_chunk != nullptr)
 				{
-					c_simple_resource_container* simple_resource_container = new() c_simple_resource_container();
-					tag_resource_storage = simple_resource_container;
-
-					if (resource_xsynced_chunk->resource_xsync_state_v2.cache_location_size > 0)
+					if (resource_partition_view != nullptr)
 					{
-						const char* resource_data_start = monolithic_resource_data + resource_xsynced_chunk->resource_xsync_state_v2.cache_location_offset;
-						const char* resource_data_end = resource_data_start + resource_xsynced_chunk->resource_xsync_state_v2.cache_location_size;
-
-						simple_resource_container->data.insert(simple_resource_container->data.end(), resource_data_start, resource_data_end);
+						c_monolithic_resource_handle* resource_handle = new() c_monolithic_resource_handle(*resource_partition_view, resource_xsynced_chunk->resource_xsync_state_v2);
+						tag_resource_storage = resource_handle;
 					}
+					else
+					{
+						ASSERT(resource_xsynced_chunk->resource_xsync_state_v2.cache_location_size == 0);
+					}
+
+					//c_simple_resource_container* simple_resource_container = new() c_simple_resource_container();
+					//tag_resource_storage = simple_resource_container;
+
+					//if (resource_xsynced_chunk->resource_xsync_state_v2.cache_location_size > 0)
+					//{
+					//	const char* resource_data_start = monolithic_resource_data + resource_xsynced_chunk->resource_xsync_state_v2.cache_location_offset;
+					//	const char* resource_data_end = resource_data_start + resource_xsynced_chunk->resource_xsync_state_v2.cache_location_size;
+
+					//	simple_resource_container->data.insert(simple_resource_container->data.end(), resource_data_start, resource_data_end);
+					//}
 				}
 				else if (resource_null_chunk != nullptr)
 				{

@@ -32,7 +32,6 @@
     </ClCompile>
     <ClCompile Include="blamlib\halo1_tools.cpp" />
     <ClCompile Include="blamlib\halo2_tools.cpp" />
-    <ClCompile Include="tagdefinitions_tracked_memory.cpp" />
     <ClCompile Include="types\tag_resource_definition.cpp" />
     <ClCompile Include="tag_struct_definition_view.cpp" />
     <ClCompile Include="types\persistent_identifier.cpp" />
@@ -68,7 +67,6 @@
     <ClInclude Include="blofeld\constants.h" />
     <ClInclude Include="blamlib\halo1_tools.h" />
     <ClInclude Include="blamlib\halo2_tools.h" />
-    <ClInclude Include="tagdefinitions_tracked_memory.h" />
     <ClInclude Include="types\tag_resource_definition.h" />
     <ClInclude Include="tag_struct_definition_view.h" />
     <ClInclude Include="types\persistent_identifier.h" />
@@ -192,12 +190,14 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tagdefinitions-private-pch.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <DisableSpecificWarnings>4273</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;SymbolsRuntime.lib;xxhash.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
+      <AdditionalOptions>/IGNORE:4286 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -220,12 +220,14 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tagdefinitions-private-pch.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <DisableSpecificWarnings>4273</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;SymbolsRuntime.lib;xxhash.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
+      <AdditionalOptions>/IGNORE:4286 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -250,6 +252,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tagdefinitions-private-pch.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <DisableSpecificWarnings>4273</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -279,6 +282,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tagdefinitions-private-pch.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <DisableSpecificWarnings>4273</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -95,6 +95,7 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_tag_file_views()
 	num_tag_partitions = tag_partition_list_chunk->get_num_children_unsafe();
 	tag_memory_mapped_files = new() t_memory_mapped_file * [num_tag_partitions];
 	tag_memory_mapped_file_infos = new() s_memory_mapped_file_info[num_tag_partitions];
+	tag_partition_views = new c_monolithic_partition_view * [num_tag_partitions];
 
 	for (unsigned long tag_partition_index = 0; tag_partition_index < num_tag_partitions; tag_partition_index++)
 	{
@@ -107,6 +108,8 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_tag_file_views()
 
 		t_memory_mapped_file*& tag_memory_mapped_file = tag_memory_mapped_files[tag_partition_index];
 		s_memory_mapped_file_info& tag_memory_mapped_file_info = tag_memory_mapped_file_infos[tag_partition_index];
+
+		c_monolithic_partition_view& partition_view = *(tag_partition_views[tag_partition_index] = new c_monolithic_partition_view(partition_filepath));
 
 		if (BCS_FAILED(rs = create_memory_mapped_file(partition_filepath, true, tag_memory_mapped_file)))
 		{
@@ -129,6 +132,7 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_cache_file_views()
 	num_cache_partitions = cache_partition_list_chunk->get_num_children_unsafe();
 	cache_memory_mapped_files = new() t_memory_mapped_file * [num_cache_partitions];
 	cache_memory_mapped_file_infos = new() s_memory_mapped_file_info[num_cache_partitions];
+	cache_partition_views = new c_monolithic_partition_view*[num_cache_partitions];
 
 	for (unsigned long cache_partition_index = 0; cache_partition_index < num_cache_partitions; cache_partition_index++)
 	{
@@ -141,6 +145,8 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_cache_file_views()
 
 		t_memory_mapped_file*& cache_memory_mapped_file = cache_memory_mapped_files[cache_partition_index];
 		s_memory_mapped_file_info& cache_memory_mapped_file_info = cache_memory_mapped_file_infos[cache_partition_index];
+
+		c_monolithic_partition_view& partition_view = *(cache_partition_views[cache_partition_index] = new c_monolithic_partition_view(partition_filepath));
 
 		if (BCS_FAILED(rs = create_memory_mapped_file(partition_filepath, true, cache_memory_mapped_file)))
 		{
@@ -265,6 +271,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 
 		const void* tag_data = nullptr;
 		unsigned long long tag_data_size = 0;
+		c_monolithic_partition_view* tag_partition_view = nullptr;
 		if (wide_data_cache_block.tag_heap_entry_index != 0xFFFFFFFF)
 		{
 			s_partitioned_heap_entry& tag_heap_entry = tag_heap_list_chunk->entries[wide_data_cache_block.tag_heap_entry_index];
@@ -277,6 +284,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			s_lruv_cache_block_ex& lruv_cache_block = partition_chunk->lruv_cache_blocks[heap_index];
 
 			s_memory_mapped_file_info& file_info = tag_memory_mapped_file_infos[tag_heap_entry.partition_index];
+			tag_partition_view = tag_partition_views[tag_heap_entry.partition_index];
 
 			char* data = file_info.file_view_begin + lruv_cache_block.offset;
 
@@ -301,6 +309,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 
 		const void* resource_data = nullptr;
 		unsigned long long resource_data_size = 0;
+		c_monolithic_partition_view* resource_partition_view = nullptr;
 		if (wide_data_cache_block.cache_heap_entry_index != 0xFFFFFFFF)
 		{
 			s_partitioned_heap_entry& cache_heap_entry = cache_heap_list_chunk->entries[wide_data_cache_block.cache_heap_entry_index];
@@ -313,6 +322,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			s_lruv_cache_block_ex& lruv_cache_block = partition_chunk->lruv_cache_blocks[heap_index];
 
 			s_memory_mapped_file_info& file_info = cache_memory_mapped_file_infos[cache_heap_entry.partition_index];
+			resource_partition_view = cache_partition_views[cache_heap_entry.partition_index];
 
 			char* data = file_info.file_view_begin + lruv_cache_block.offset;
 
@@ -350,7 +360,8 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 				is_big_endian_tag,
 				*layout_reader,
 				*layout_reader->binary_data_chunk,
-				resource_data);
+				tag_partition_view,
+				resource_partition_view);
 
 			layout_reader->tag_group_layout_chunk->log(layout_reader);
 			layout_reader->binary_data_chunk->log(layout_reader);
@@ -385,10 +396,10 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			tag_group->associate_tag_instance(*high_level_tag);
 			debug_point;
 
-			console_write_line("Read tag %s (%.2f ms)", relative_filepath_mb, BENCHMARK_GET_TIME(tag_read));
+			console_write_line("Read tag %s (%.2f ms)", relative_filepath_mb, ms);
 			if (status_interface)
 			{
-				status_interface->set_status_bar_status(_status_interface_priority_low, 15.0f, "Read tag %s (%.2f ms)", relative_filepath_mb, BENCHMARK_GET_TIME(tag_read));
+				status_interface->set_status_bar_status(_status_interface_priority_low, 15.0f, "Read tag %s (%.2f ms)", relative_filepath_mb, ms);
 			}
 
 			tags.push_back(high_level_tag);
@@ -396,7 +407,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 
 		debug_point;
 
-		break;
+		//break;
 
 	}
 

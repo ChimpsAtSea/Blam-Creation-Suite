@@ -948,8 +948,8 @@ public:
 		//BCS_CHAR_TO_WIDECHAR_STACK(_optional_cache_file_path, optional_cache_file_path_wc);
 		//required_cache_file_path = wcsdup(required_cache_file_path_wc);
 		//optional_cache_file_path = wcsdup(optional_cache_file_path_wc);
-		required_cache_file_path = wcsdup(_required_cache_file_path);
-		optional_cache_file_path = wcsdup(_optional_cache_file_path);
+		required_cache_file_path = _wcsdup(_required_cache_file_path);
+		optional_cache_file_path = _wcsdup(_optional_cache_file_path);
 	}
 
 	~c_halo3_pageable_streaming_resource()
@@ -1046,7 +1046,7 @@ public:
 		{
 			reference_count++;
 			buffer = data_buffer;
-			buffer_size = data_buffer_size;
+			buffer_size = static_cast<unsigned long>(data_buffer_size);
 		}
 
 		return resource_state;

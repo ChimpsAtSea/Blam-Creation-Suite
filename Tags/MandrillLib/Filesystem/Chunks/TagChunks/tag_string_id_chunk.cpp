@@ -37,7 +37,7 @@ void c_tag_string_id_chunk::log_impl(c_tag_file_string_debugger* string_debugger
 
 BCS_RESULT c_tag_string_id_chunk::set_string(const char* string)
 {
-	return set_data(string, strlen(string));
+	return set_data(string, static_cast<unsigned long>(strlen(string)));
 }
 
 BCS_RESULT c_tag_string_id_chunk::set_data(const void* data, unsigned long data_size)

@@ -184,7 +184,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="tagcodegen_tracked_memory.cpp" />
     <ClCompile Include="virtual_tag_source_generator.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -196,7 +195,6 @@
     <ClInclude Include="structure_relationship_node.h" />
     <ClInclude Include="tagcodegen-private-pch.h" />
     <ClInclude Include="tagcodegen-public-pch.h" />
-    <ClInclude Include="tagcodegen_tracked_memory.h" />
     <ClInclude Include="virtual_tag_source_generator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

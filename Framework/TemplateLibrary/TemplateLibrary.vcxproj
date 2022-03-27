@@ -34,7 +34,6 @@
     <ClInclude Include="stopwatch.h" />
     <ClInclude Include="templatelibrary-private-pch.h" />
     <ClInclude Include="templatelibrary-public-pch.h" />
-    <ClInclude Include="templatelibrary_tracked_memory.h" />
     <ClInclude Include="thread_safe_queue.h" />
     <ClInclude Include="virtual.h" />
     <ClInclude Include="xxhash_cx.h" />
@@ -53,7 +52,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="templatelibrary_tracked_memory.cpp" />
     <ClCompile Include="virtual.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

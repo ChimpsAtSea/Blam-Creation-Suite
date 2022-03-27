@@ -29,7 +29,7 @@ c_h1_pseudo_struct_definition::c_h1_pseudo_struct_definition(
 	const s_h1_tag_field* field = fields;
 	for (; field->field_type != _h1_field_type_terminator; field++)
 	{
-		c_h1_pseudo_field_definition* pseudo_field = new(blamboozlelib_tracked_memory) c_h1_pseudo_field_definition(guerilla_data, *field);
+		c_h1_pseudo_field_definition* pseudo_field = new() c_h1_pseudo_field_definition(guerilla_data, *field);
 
 		switch (field->field_type)
 		{

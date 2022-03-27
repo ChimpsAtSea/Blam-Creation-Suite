@@ -25,7 +25,7 @@ THE SOFTWARE.
 */
 
 //
-// version 2.0.0 : Add new(graphics_tracked_memory) object oriented API. 1.x API is still provided.
+// version 2.0.0 : Add new() object oriented API. 1.x API is still provided.
 //                 * Support line primitive.
 //                 * Support points primitive.
 //                 * Support multiple search path for .mtl(v1 API).
@@ -1754,7 +1754,7 @@ namespace tinyobj {
 
             if (token[0] == '#') continue;  // comment line
 
-            // new(graphics_tracked_memory) mtl
+            // new() mtl
             if ((0 == strncmp(token, "newmtl", 6)) && IS_SPACE((token[6]))) {
                 // flush previous material.
                 if (!material.name.empty()) {
@@ -1769,7 +1769,7 @@ namespace tinyobj {
                 has_d = false;
                 has_tr = false;
 
-                // set new(graphics_tracked_memory) mtl name
+                // set new() mtl name
                 token += 7;
                 {
                     std::stringstream sstr;

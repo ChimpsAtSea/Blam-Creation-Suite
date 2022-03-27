@@ -24,9 +24,6 @@
     <ClInclude Include="generated\infinite_high_level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="infinite_tracked_memory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="generated\infinite_high_level.ctor16.cpp">
@@ -228,9 +225,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="generated\infinite_high_level.virtual.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="infinite_tracked_memory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

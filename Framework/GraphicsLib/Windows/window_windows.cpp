@@ -177,7 +177,7 @@ BCS_RESULT window_windows_create(
 {
 	try
 	{
-		window = new(graphics_tracked_memory) c_window_windows(
+		window = new() c_window_windows(
 			window_title,
 			window_id,
 			window_icon,

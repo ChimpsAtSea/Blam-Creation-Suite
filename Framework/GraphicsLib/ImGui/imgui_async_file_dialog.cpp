@@ -147,7 +147,7 @@ bool BeginAsyncFileFolderDialog(
 		file_dialog_handle->file_dialog_result = S_OK;
 		file_dialog_handle->filepath_multibyte = nullptr;
 		file_dialog_handle->filepath_widechar = nullptr;
-		file_dialog_handle->window_title = strdup(window_title); // freed in thread
+		file_dialog_handle->window_title = _strdup(window_title); // freed in thread
 		file_dialog_handle->owner_window = reinterpret_cast<HWND>(owner_window_handle);
 		file_dialog_handle->is_folder_dialog = is_folder_dialog;
 		file_dialog_handle->is_file_dialog = is_file_dialog;

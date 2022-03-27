@@ -24,9 +24,6 @@
     <ClInclude Include="xma2_to_wave.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="audioconversion_tracked_memory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="xma2defs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -39,9 +36,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="xma2_to_wave.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="audioconversion_tracked_memory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -96,9 +96,6 @@
     <ClInclude Include="UserInterface\Editors\infinite_tag_model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mandrillui_tracked_memory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UserInterface\Editors\haloreach_bitmap_test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -174,9 +171,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UserInterface\Editors\infinite_tag_model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mandrillui_tracked_memory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UserInterface\Editors\haloreach_bitmap_test.cpp">

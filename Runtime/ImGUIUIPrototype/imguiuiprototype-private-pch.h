@@ -8,5 +8,3 @@
 #include <TemplateLibrary\templatelibrary-public-pch.h>
 #include <Shared\shared-public-pch.h>
 #include <GraphicsLib\graphicslib-public-pch.h>
-
-#include "imguiuiprototype_tracked_memory.h"

@@ -178,7 +178,7 @@ BCS_RESULT render_context_imgui_viewport_create(
 {
 	try
 	{
-		render_context = new(graphics_tracked_memory) c_imgui_viewport_render_context(
+		render_context = new() c_imgui_viewport_render_context(
 			parent_render_context, 
 			viewport,
 			clear_color);

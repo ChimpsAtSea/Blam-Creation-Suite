@@ -91,7 +91,7 @@ BCS_RESULT graphics_d3d12_shader_pipeline_create(
 	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
 	try
 	{
-		shader_pipeline = new(graphics_tracked_memory) c_graphics_shader_pipeline_d3d12(
+		shader_pipeline = new() c_graphics_shader_pipeline_d3d12(
 			*graphics,
 			shader_binaries,
 			num_shader_binaries,

@@ -143,6 +143,7 @@ h_tag* c_filesystem_tag_project::try_parse_tag_file(const wchar_t* filepath)
 		is_big_endian_tag,
 		*layout_reader,
 		*layout_reader->binary_data_chunk,
+		nullptr,
 		nullptr);
 
 	s.stop();

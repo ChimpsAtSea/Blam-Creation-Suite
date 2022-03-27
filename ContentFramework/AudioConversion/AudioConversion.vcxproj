@@ -148,7 +148,6 @@
   <ItemGroup>
     <ClInclude Include="audioconversion-public-pch.h" />
     <ClInclude Include="audioconversion-private-pch.h" />
-    <ClInclude Include="audioconversion_tracked_memory.h" />
     <ClInclude Include="audioconversion-platform-pch.h" />
     <ClInclude Include="xma2defs.h" />
     <ClInclude Include="xma2_to_wave.h" />
@@ -158,7 +157,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="audioconversion_tracked_memory.cpp" />
     <ClCompile Include="xma2_to_wave.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

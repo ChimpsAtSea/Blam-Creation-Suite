@@ -42,7 +42,7 @@ void c_haloreach_bitmap_test::draw_ui()
 			if (BCS_SUCCEEDED(resource->add_reference(resource_data, resource_data_size)))
 			{
 				size_t dds_file_buffer_size = sizeof(unsigned long) + sizeof(DirectX::DDS_HEADER) + resource_data_size * 2;
-				char* const dds_file_buffer = static_cast<char*>(tracked_malloc(_library_tracked_memory, dds_file_buffer_size));
+				char* const dds_file_buffer = static_cast<char*>(tracked_malloc(dds_file_buffer_size));
 
 				unsigned long* magic_ptr = reinterpret_cast<unsigned long*>(dds_file_buffer);
 				DirectX::DDS_HEADER* dds_header_ptr = next_contiguous_pointer<DirectX::DDS_HEADER>(magic_ptr);
@@ -63,7 +63,7 @@ void c_haloreach_bitmap_test::draw_ui()
 
 
 				unsigned long num_src_bytes = resource_data_size;
-				unsigned char* const src_untiled_texture_data = static_cast<unsigned char*>(tracked_malloc(_library_tracked_memory, num_src_bytes));
+				unsigned char* const src_untiled_texture_data = static_cast<unsigned char*>(tracked_malloc(num_src_bytes));
 				{
 					const unsigned char* src_texture_data = reinterpret_cast<const unsigned char*>(resource_data);
 
@@ -81,7 +81,7 @@ void c_haloreach_bitmap_test::draw_ui()
 				}
 
 				unsigned long num_dst_pixels = dds_header_ptr->width * dds_header_ptr->height;
-				unsigned char* const pixel_block_data = static_cast<unsigned char*>(tracked_malloc(_library_tracked_memory, num_dst_pixels));
+				unsigned char* const pixel_block_data = static_cast<unsigned char*>(tracked_malloc(num_dst_pixels));
 				{
 					unsigned char* dst_texture_data = pixel_block_data;
 					unsigned char* src_untiled_texture_data_pos = src_untiled_texture_data;

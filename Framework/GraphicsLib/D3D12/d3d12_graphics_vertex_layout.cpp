@@ -9,7 +9,7 @@ c_graphics_vertex_layout_d3d12::c_graphics_vertex_layout_d3d12(
 	vertex_layout_descriptions(),
 	num_layout_descriptions(num_descriptions)
 {
-	vertex_layout_descriptions = new(graphics_tracked_memory) D3D12_INPUT_ELEMENT_DESC[num_layout_descriptions]{};
+	vertex_layout_descriptions = new() D3D12_INPUT_ELEMENT_DESC[num_layout_descriptions]{};
 	for (unsigned long vertex_layout_index = 0; vertex_layout_index < num_layout_descriptions; vertex_layout_index++)
 	{
 		D3D12_INPUT_ELEMENT_DESC& d3d12_vertex_layout_description = vertex_layout_descriptions[vertex_layout_index];
@@ -62,7 +62,7 @@ BCS_RESULT graphics_d3d12_vertex_layout_create(
 	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
 	try
 	{
-		vertex_layout = new(graphics_tracked_memory) c_graphics_vertex_layout_d3d12(
+		vertex_layout = new() c_graphics_vertex_layout_d3d12(
 			*graphics,
 			descriptions,
 			num_layout_descriptions,

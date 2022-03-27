@@ -186,7 +186,6 @@
     <ClInclude Include="generated\groundhog_high_level.h" />
     <ClInclude Include="highlevel-groundhog-private-pch.h" />
     <ClInclude Include="highlevel-groundhog-public-pch.h" />
-    <ClInclude Include="groundhog_tracked_memory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="generated\groundhog_high_level.ctor0.cpp" />
@@ -261,7 +260,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="groundhog_tracked_memory.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
