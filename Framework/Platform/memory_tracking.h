@@ -36,10 +36,6 @@ BCS_DEBUG_API extern void  (*untracked_free_ptr)(const void* allocated_memory);
 
 #endif
 
-
-
-
-
 inline void* operator new(size_t size, const char* filepath, int line, void* data)
 {
 	return data;

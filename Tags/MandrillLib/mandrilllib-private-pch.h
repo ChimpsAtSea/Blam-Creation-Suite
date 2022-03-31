@@ -14,7 +14,7 @@
 #include "mandrilllib-public-pch.h"
 
 #define ZLIB_CONST
-#include <zlib/zlib/zlib.h>
+#include <zlib/zlib.h>
 #include <oozle/oozle.h>
 
 #include <murmur3.h>

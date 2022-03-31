@@ -379,6 +379,9 @@ ASALocalRun/
 #Temp Folder
 [Tt]emp/
 
+#CMake
+build/
+
 *Mustard.exe
 MantleGen/BlamlibGen/reflection_data.cpp
 MantleGen/BlamlibGen/reflection_data.h

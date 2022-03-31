@@ -3,7 +3,7 @@
 #define BCS_DEBUG_API_EXPORT __declspec(dllexport)
 #define BCS_DEBUG_API_IMPORT __declspec(dllimport)
 
-#if _DEBUG
+#if BCS_USE_SHARED_LIBRARIES
 #ifndef BCS_DEBUG_API
 #define BCS_DEBUG_API BCS_DEBUG_API_IMPORT
 #endif

@@ -4,24 +4,15 @@
 [submodule "pugixml"]
 	path = ThirdParty/pugixml
 	url = https://github.com/zeux/pugixml.git
-[submodule "blamlib"]
-	path = Framework/blamlib
-	url = https://github.com/Assault-on-the-Control-Room/blamlib.git
 [submodule "discord-rpc"]
 	path = ThirdParty/discord-rpc
 	url = https://github.com/Assault-on-the-Control-Room/discord-rpc.git
-[submodule "ThirdParty/vcpkg/vcpkg"]
-	path = ThirdParty/vcpkg/vcpkg
-	url = https://github.com/Microsoft/vcpkg.git
-[submodule "ThirdParty/Oozle"]
-	path = ThirdParty/Oozle
-	url = https://github.com/ChimpsAtSea/Oozle.git
 [submodule "ThirdParty/imgui/imgui"]
 	path = ThirdParty/imgui/imgui
 	url = https://github.com/ocornut/imgui.git
-[submodule "ThirdParty/murmur3"]
-	path = ThirdParty/murmur3
-	url = https://github.com/ChimpsAtSea/murmur3.git
-[submodule "ThirdParty\\IconFontCppHeaders"]
-	path = ThirdParty\\IconFontCppHeaders
+[submodule "ThirdParty/IconFontCppHeaders"]
+	path = ThirdParty/IconFontCppHeaders
 	url = https://github.com/juliettef/IconFontCppHeaders.git
+[submodule "ThirdParty/vcpkg"]
+	path = ThirdParty/vcpkg
+	url = https://github.com/Microsoft/vcpkg.git

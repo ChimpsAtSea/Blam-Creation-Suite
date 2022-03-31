@@ -1,6 +1,6 @@
 #pragma once
 
-#if _DEBUG
+#if BCS_USE_SHARED_LIBRARIES
 #ifdef BCS_DEBUG_API
 #undef BCS_DEBUG_API
 #endif

@@ -1,1 +1,0 @@
-#include "devicecommunication-private-pch.h"
