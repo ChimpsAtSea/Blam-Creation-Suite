@@ -130,21 +130,29 @@ static void _parallel_invoke_multi_threaded(t_index_type start, t_index_type end
 	// #TODO: Create a task system for this and queue jobs
 
 	unsigned long processors_thread_count = get_processors_thread_count();
-	unsigned long thread_count = static_cast<unsigned long>(__min(static_cast<unsigned long long>(job_count), __max(processors_thread_count, MINIMUM_PARALLEL_THREADS)));
+	unsigned long thread_count = static_cast<unsigned long>(__min(static_cast<unsigned long long>(job_count), __max(processors_thread_count, MINIMUM_PARALLEL_THREADS))) - 1;
 
-	HANDLE* threads = new(alloca(sizeof(HANDLE) * thread_count)) HANDLE[thread_count];
-	for (size_t thread_index = 0; thread_index < thread_count; thread_index++)
+	if (job_count <= 1)
 	{
-		threads[thread_index] = CreateThread(NULL, 0, _parallel_invoke_multi_threaded_worker<t_index_type>, &worker_userdata, 0, NULL);
+		_parallel_invoke_multi_threaded_worker<t_index_type>(&worker_userdata);
 	}
-	_parallel_invoke_multi_threaded_worker<t_index_type>(&worker_userdata);
-	for (unsigned long wait_index = 0, wait_amount = __min(MAXIMUM_WAIT_OBJECTS, thread_count); wait_index < thread_count; wait_index -= wait_amount)
+	else
 	{
-		DWORD result = WaitForMultipleObjects(wait_amount, threads + wait_index, TRUE, INFINITE);
-		ASSERT(result == WAIT_OBJECT_0);
-		DWORD error = GetLastError();
-		debug_point;
+		HANDLE* threads = new(alloca(sizeof(HANDLE) * thread_count)) HANDLE[thread_count];
+		for (size_t thread_index = 0; thread_index < thread_count; thread_index++)
+		{
+			threads[thread_index] = CreateThread(NULL, 0, _parallel_invoke_multi_threaded_worker<t_index_type>, &worker_userdata, 0, NULL);
+		}
+		_parallel_invoke_multi_threaded_worker<t_index_type>(&worker_userdata);
+		for (unsigned long wait_index = 0, wait_amount = __min(MAXIMUM_WAIT_OBJECTS, thread_count); wait_index < thread_count; wait_index -= wait_amount)
+		{
+			DWORD result = WaitForMultipleObjects(wait_amount, threads + wait_index, TRUE, INFINITE);
+			ASSERT(result == WAIT_OBJECT_0);
+			DWORD error = GetLastError();
+			debug_point;
+		}
 	}
+
 	debug_point;
 }
 
