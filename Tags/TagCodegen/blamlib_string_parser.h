@@ -25,7 +25,7 @@ private:
 
 public:
 
-	c_blamlib_string_parser_v2(const char* string, bool is_block = false, std::map<std::string, int>* string_list_value_unique_counter = nullptr);
+	c_blamlib_string_parser_v2(const char* string, bool is_block = false, std::unordered_map<std::string, int>* string_list_value_unique_counter = nullptr);
 	~c_blamlib_string_parser_v2();
 	void fixup_flags(char* string);
 
@@ -56,6 +56,6 @@ public:
 
 	bool is_block;
 	unsigned long code_index;
-	std::map<std::string, int>* string_list_value_unique_counter;
+	std::unordered_map<std::string, int>* string_list_value_unique_counter;
 };
 

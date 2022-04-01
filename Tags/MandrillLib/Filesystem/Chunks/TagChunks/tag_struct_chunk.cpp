@@ -4,12 +4,6 @@ c_tag_struct_chunk::c_tag_struct_chunk(c_chunk& parent) :
 	c_typed_chunk(&parent)
 {
 	
-
-	debug_point;
-
-	log_pad();
-	log_signature();
-	console_end_line_verbose();
 }
 
 void c_tag_struct_chunk::log_impl(c_tag_file_string_debugger* string_debugger) const

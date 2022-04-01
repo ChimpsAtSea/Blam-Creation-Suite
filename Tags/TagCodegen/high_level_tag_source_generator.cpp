@@ -148,7 +148,7 @@ void c_high_level_tag_source_generator::generate_header() const
 	stream << "\t\tBCS_DEBUG_API h_tag* create_high_level_tag(h_group& group, const char* tag_filepath);" << std::endl << std::endl;
 	stream << "\t\tBCS_DEBUG_API h_object* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition);" << std::endl << std::endl;
 
-	std::map<std::string, int> field_name_unique_counter;
+	std::unordered_map<std::string, int> field_name_unique_counter;
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
 		const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
@@ -311,6 +311,14 @@ void c_high_level_tag_source_generator::generate_header() const
 					stream << "\t\t\t\t" << "h_field<e_" << string_list.name << ", " << high_level_structure_name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
 				}
 				break;
+				case _field_pageable:
+				{
+					const char* field_source_type = field_type_to_high_level_source_type(engine_platform_build.platform_type, current_field->field_type);
+					ASSERT(field_source_type != nullptr);
+					std::string struct_field_source_type = format_structure_symbol(current_field->tag_resource_definition->struct_definition);
+					stream << "\t\t\t\t" << "h_resource_container<" << struct_field_source_type << ", " << high_level_structure_name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
+				}
+				break;
 				default:
 				{
 					const char* field_source_type = field_type_to_high_level_source_type(engine_platform_build.platform_type, current_field->field_type);
@@ -344,7 +352,7 @@ void c_high_level_tag_source_generator::generate_header() const
 
 void c_high_level_tag_source_generator::generate_tag_constructor_params(std::stringstream& stream, const s_tag_struct_definition& struct_definition) const
 {
-	std::map<std::string, int> field_name_unique_counter;
+	std::unordered_map<std::string, int> field_name_unique_counter;
 	for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 	{
 		unsigned long field_skip_count;
@@ -457,7 +465,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(unsigned long sourc
 			if ((structure_index++ % source_count) == source_index)
 			{
 				std::string high_level_structure_name = format_structure_symbol(*struct_definition);
-				
+
 				stream << "_h_typed_block_ctor_impl(blofeld::" << namespace_name << "::" << high_level_structure_name << ");" << std::endl;
 				stream << "_h_typed_block_get_tag_struct_definition_impl(blofeld::" << namespace_name << "::" << high_level_structure_name << ");" << std::endl;
 				stream << "_h_typed_block_array_operator_impl(blofeld::" << namespace_name << "::" << high_level_structure_name << ");" << std::endl;
@@ -484,7 +492,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(unsigned long sourc
 	stream << "\t{" << std::endl << std::endl;
 
 	{
-		std::map<std::string, int> field_name_unique_counter;
+		std::unordered_map<std::string, int> field_name_unique_counter;
 		unsigned long structure_index = 0;
 		for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 		{
@@ -533,7 +541,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(unsigned long sourc
 	stream << std::endl << "} // end namespace blofeld" << std::endl;
 
 	{
-		std::map<std::string, int> field_name_unique_counter;
+		std::unordered_map<std::string, int> field_name_unique_counter;
 		unsigned long structure_index = 0;
 		for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 		{
@@ -686,7 +694,7 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 	stream << "#ifndef __INTELLISENSE__" << std::endl;
 	stream << std::endl;
 
-	std::map<std::string, int> field_name_unique_counter;
+	std::unordered_map<std::string, int> field_name_unique_counter;
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
 		const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
@@ -851,11 +859,11 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 		if (tag_group == nullptr) continue;
 
 		std::string high_level_structure_name = format_structure_symbol(*struct_definition);
-		stream << "\t\t" << "static h_tag* " << high_level_structure_name << "_tag_group_ctor(h_group& group, const char* tag_filepath) { return new " << high_level_structure_name << "(group, tag_filepath); }" << std::endl;
+		stream << "\t\t" << "static h_tag* " << high_level_structure_name << "_tag_group_ctor(h_group& group, const char* tag_filepath) { return new() " << high_level_structure_name << "(group, tag_filepath); }" << std::endl;
 	}
 
 	stream << "\t\t" << "using t_create_high_level_tag_group_ctor = h_tag * (h_group& group, const char* tag_filepath);" << std::endl;
-	stream << "\t\t" << "static std::map<const blofeld::s_tag_group*, t_create_high_level_tag_group_ctor*> tag_group_ctors = " << std::endl;
+	stream << "\t\t" << "static std::unordered_map<const blofeld::s_tag_group*, t_create_high_level_tag_group_ctor*> tag_group_ctors = " << std::endl;
 	stream << "\t\t" << "{" << std::endl;
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
@@ -875,7 +883,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 		if (tag_group == nullptr) continue;
 
 		stream << "\t\t\t" << "if (&group.tag_group == &" << tag_group->symbol->symbol_name << ")";
-		stream << " " << "return new " << high_level_structure_name << "(group, tag_filepath);" << std::endl;
+		stream << " " << "return new() " << high_level_structure_name << "(group, tag_filepath);" << std::endl;
 	}
 	stream << std::endl;
 	stream << "\t\t\t" << "return nullptr;" << std::endl;*/
@@ -894,11 +902,11 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
 		std::string high_level_structure_name = format_structure_symbol(*struct_definition);
-		stream << "\t\t" << "static h_object* " << high_level_structure_name << "_object_ctor() { return new " << high_level_structure_name << "(); }" << std::endl;
+		stream << "\t\t" << "static h_object* " << high_level_structure_name << "_object_ctor() { return new() " << high_level_structure_name << "(); }" << std::endl;
 	}
 
 	stream << "\t\t" << "using t_create_high_level_object_ctor = h_object * ();" << std::endl;
-	stream << "\t\t" << "static std::map<const blofeld::s_tag_struct_definition*, t_create_high_level_object_ctor*> object_ctors = " << std::endl;
+	stream << "\t\t" << "static std::unordered_map<const blofeld::s_tag_struct_definition*, t_create_high_level_object_ctor*> object_ctors = " << std::endl;
 	stream << "\t\t" << "{" << std::endl;
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
@@ -916,7 +924,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 		const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
 
 		stream << "\t\t\t" << "if (&struct_definition == &" << struct_definition->symbol->symbol_name << ")";
-		stream << " " << "return new " << high_level_structure_name << "();" << std::endl;
+		stream << " " << "return new() " << high_level_structure_name << "();" << std::endl;
 	}
 	stream << std::endl;
 	stream << "\t\t\t" << "return nullptr;" << std::endl;*/
@@ -931,7 +939,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 	stream << std::endl;
 
 	{
-		std::map<std::string, int> field_name_unique_counter;
+		std::unordered_map<std::string, int> field_name_unique_counter;
 		for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 		{
 			const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
@@ -996,7 +1004,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 	}
 
 	{
-		std::map<std::string, int> field_name_unique_counter;
+		std::unordered_map<std::string, int> field_name_unique_counter;
 		for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 		{
 			const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);

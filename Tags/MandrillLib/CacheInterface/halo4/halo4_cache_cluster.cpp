@@ -49,7 +49,7 @@ c_halo4_cache_cluster::c_halo4_cache_cluster(c_halo4_cache_file_reader** cache_r
 			tag_readers[cache_reader] = new() c_halo4_tag_reader(*this, *cache_reader);
 		}
 
-		debug_point;
+		
 	}
 
 	for (c_halo4_cache_file_reader* cache_reader : this->cache_readers)

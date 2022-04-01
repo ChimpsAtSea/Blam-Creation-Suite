@@ -26,7 +26,10 @@
     <ClInclude Include="byteswap.h" />
     <ClInclude Include="compile_time_accumulator.h" />
     <ClInclude Include="fast_ascii_lookup.h" />
+    <ClInclude Include="fast_byte_lookup.h" />
     <ClInclude Include="fixed_string.h" />
+    <ClInclude Include="hybrid_chunked_resizable_array.h" />
+    <ClInclude Include="inplace_wrapper.h" />
     <ClInclude Include="macros.h" />
     <ClInclude Include="pointers.h" />
     <ClInclude Include="runtime_task.h" />

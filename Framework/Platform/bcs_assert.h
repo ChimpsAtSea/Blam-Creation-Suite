@@ -27,6 +27,25 @@ BCS_DEBUG_API extern void(*__bcs_write_debug_string)(wchar_t const* message);
 							} \
 						} while(false)
 
+#define ASSERT_ONCE(statement, ...) \
+						do  \
+						{  \
+							static bool __first_run = true; \
+							if(__first_run && !(statement)) \
+							{ \
+								__first_run = false; \
+								if (__bcs_is_debugger_present()) \
+								{ \
+									__bcs_write_debug_string(L"" __FILE__ "(" STRINGIFY(__LINE__) "): assert " #statement "\n"); \
+									__debugbreak(); \
+								} \
+								else \
+								{ \
+									__bcs_assertfunc(L"" __FILE__ "(" STRINGIFY(__LINE__) "): assert " #statement, _CRT_WIDE(__FILE__), __LINE__); \
+								} \
+							} \
+						} while(false)
+
 #define FATAL_ERROR_NO_THROW(reason, ...) \
 						do  \
 						{  \

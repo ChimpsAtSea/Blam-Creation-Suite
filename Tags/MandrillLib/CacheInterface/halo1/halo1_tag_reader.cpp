@@ -128,13 +128,13 @@ BCS_RESULT c_halo1_tag_reader::read_tag_instances()
 
 			ASSERT(strcmp(tag_instance_info.instance_name, resource_tag_instance_name) == 0);
 
-			debug_point;
+			
 		}
 
 		//ASSERT(instance_data != nullptr);
 		tag_instance_info.instance_data = instance_data;
 
-		debug_point;
+		
 	}
 
 	return rs;

@@ -22,3 +22,6 @@
 [submodule "ThirdParty/murmur3"]
 	path = ThirdParty/murmur3
 	url = https://github.com/ChimpsAtSea/murmur3.git
+[submodule "ThirdParty\\IconFontCppHeaders"]
+	path = ThirdParty\\IconFontCppHeaders
+	url = https://github.com/juliettef/IconFontCppHeaders.git

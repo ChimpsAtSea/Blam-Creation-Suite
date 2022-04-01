@@ -1,4 +1,4 @@
-c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool is_block, std::map<std::string, int>* string_list_value_unique_counter) :
+c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool is_block, std::unordered_map<std::string, int>* string_list_value_unique_counter) :
 	pretty_name(),
 	tag_file_name(),
 	old_name(),

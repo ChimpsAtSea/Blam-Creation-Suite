@@ -202,7 +202,7 @@ BCS_RESULT c_halo3_tag_reader::read_tag_groups()
 		tag group_tag = tag_group_info.group.group_tags[0];
 		if (group_tag == blofeld::halo3::CACHE_FILE_SOUND_TAG)
 		{
-			debug_point;
+			
 		}
 
 		const blofeld::s_tag_group* blofeld_tag_group = blofeld::get_tag_group_by_group_tag(cache_reader.engine_platform_build.engine_type, group_tag);
@@ -215,7 +215,7 @@ BCS_RESULT c_halo3_tag_reader::read_tag_groups()
 			return rs;
 		}
 
-		debug_point;
+		
 	}
 
 	return rs;
@@ -267,7 +267,7 @@ BCS_RESULT c_halo3_tag_reader::read_tag_instances()
 			if (tag_instance_info.group_info->group.group_tags[0] == blofeld::halo3::SOUND_TAG)
 			{
 				ASSERT(BCS_SUCCEEDED(rs = get_tag_group_info_by_group_tag(blofeld::halo3::CACHE_FILE_SOUND_TAG, tag_instance_info.group_info)));
-				debug_point;
+				
 			}
 
 			if (BCS_FAILED(rs = debug_reader->get_tag_filepath(tag_index, tag_instance_info.instance_name)))
@@ -289,7 +289,7 @@ BCS_RESULT c_halo3_tag_reader::read_tag_instances()
 			tag_instance_info.instance_data = nullptr;
 		}
 
-		debug_point;
+		
 	}
 
 	return rs;
@@ -335,7 +335,7 @@ BCS_RESULT c_halo3_tag_reader::read_tag_global_instances()
 
 		global_instance_info.instance_info = &tag_instance_infos[tag_index];
 
-		debug_point;
+		
 	}
 
 	return rs;
@@ -376,7 +376,7 @@ BCS_RESULT c_halo3_tag_reader::read_tag_interops()
 		::halo3::s_cache_file_tag_interop& tag_interop = tag_interop_infos[interop_index] = tag_interops_read_pointer[interop_index];
 		cache_reader.byteswap_inplace(tag_interop);
 
-		debug_point;
+		
 	}
 
 	return rs;
@@ -431,7 +431,7 @@ BCS_RESULT c_halo3_tag_reader::init_tag_groups()
 			}
 			else
 			{
-				debug_point;
+				
 			}
 			added_tag_group = true;
 		}
@@ -716,7 +716,7 @@ BCS_RESULT c_halo3_tag_reader::init_interop_table()
 
 	//	_resource_type_index_to_halo3_resource_type[index] = resource_type;
 
-	//	debug_point;
+	//	
 	//}
 
 	return rs;
@@ -808,7 +808,7 @@ BCS_RESULT c_halo3_tag_reader::init_interops()
 			break;
 		}
 
-		debug_point;
+		
 	}
 
 	return rs;
@@ -895,7 +895,7 @@ BCS_RESULT c_halo3_tag_reader::init_resource_table()
 
 		_interop_type_index_to_halo3_interop_type[index] = interop_type;
 
-		debug_point;
+		
 	}
 
 	return rs;
@@ -1001,7 +1001,7 @@ public:
 
 			delete resource_cache_file;
 
-			debug_point;
+			
 		}
 
 		if (default_location.optional_location >= 0)
@@ -1023,7 +1023,7 @@ public:
 
 			delete resource_cache_file;
 
-			debug_point;
+			
 		}
 
 		return rs;
@@ -1203,7 +1203,7 @@ BCS_RESULT c_halo3_tag_reader::init_resources()
 						optional_sublocation_table);
 					high_level_resources[resource_index] = pageable_streaming_resource;
 
-					debug_point;
+					
 				}
 				else
 				{
@@ -1211,13 +1211,13 @@ BCS_RESULT c_halo3_tag_reader::init_resources()
 				}
 			}
 
-			debug_point;
+			
 
 		}
 
 	}
 
-	debug_point;
+	
 
 	return rs;
 }
@@ -1280,7 +1280,7 @@ BCS_RESULT c_halo3_tag_reader::init_shared_files_table()
 
 		_shared_file_index_to_cache_file_reader[shared_file_index] = cache_file_reader;
 
-		debug_point;
+		
 	}
 
 	return rs;

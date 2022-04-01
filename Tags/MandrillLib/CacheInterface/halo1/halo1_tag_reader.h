@@ -38,7 +38,7 @@ private:
 
 	using t_tag_groups = std::vector<c_halo1_tag_group*>;
 	using t_tag_instances = std::vector<c_halo1_tag_instance*>;
-	using t_tag_instances_by_index = std::map<unsigned long, c_halo1_tag_instance*>;
+	using t_tag_instances_by_index = std::unordered_map<unsigned long, c_halo1_tag_instance*>;
 
 	t_tag_groups tag_groups;
 	t_tag_instances tag_instances;

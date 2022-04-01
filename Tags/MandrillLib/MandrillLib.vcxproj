@@ -139,6 +139,7 @@
     <ClInclude Include="Filesystem\tag_file_string_debugger.h" />
     <ClInclude Include="Monolithic\monolithic_partition_view.h" />
     <ClInclude Include="status_interface.h" />
+    <ClInclude Include="tag_file_reader_stack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CacheInterface\halo3\halo3_api_interop.cpp" />
@@ -261,6 +262,7 @@
     <ClCompile Include="Filesystem\tag_file_string_debugger.cpp" />
     <ClCompile Include="Monolithic\monolithic_partition_view.cpp" />
     <ClCompile Include="status_interface.cpp" />
+    <ClCompile Include="tag_file_reader_stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CacheInterface\halo3\halo3_cache_file_header.byteswap.inl" />

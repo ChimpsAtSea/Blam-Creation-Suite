@@ -5,9 +5,6 @@ c_tag_reference_chunk::c_tag_reference_chunk(c_chunk& parent) :
 	group_tag(blofeld::INVALID_TAG),
 	tag_filepath_without_extension()
 {
-	log_pad();
-	log_signature();
-	console_write_line_verbose("'%s'", tag_filepath_without_extension);
 }
 
 c_tag_reference_chunk::~c_tag_reference_chunk()
@@ -33,7 +30,7 @@ BCS_RESULT c_tag_reference_chunk::read_chunk(void* userdata, const void* data, b
 		memcpy(tag_filepath_without_extension, chunk_data_start + sizeof(tag), string_length);
 		tag_filepath_without_extension[string_length] = 0;
 	}
-	debug_point;
+	
 
 	return rs;
 }

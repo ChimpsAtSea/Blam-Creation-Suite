@@ -42,10 +42,10 @@ protected:
 
 protected:
 	using t_cache_readers = std::vector<c_halo1_cache_file_reader*>;
-	using t_debug_readers = std::map<c_halo1_cache_file_reader*, c_halo1_debug_reader*>;
-	using t_tag_readers = std::map<c_halo1_cache_file_reader*, c_halo1_tag_reader*>;
-	using t_resource_readers = std::map<c_halo1_cache_file_reader*, c_halo1_resource_reader*>;
-	using t_localization_readers = std::map<c_halo1_cache_file_reader*, c_halo1_localization_reader*>;
+	using t_debug_readers = std::unordered_map<c_halo1_cache_file_reader*, c_halo1_debug_reader*>;
+	using t_tag_readers = std::unordered_map<c_halo1_cache_file_reader*, c_halo1_tag_reader*>;
+	using t_resource_readers = std::unordered_map<c_halo1_cache_file_reader*, c_halo1_resource_reader*>;
+	using t_localization_readers = std::unordered_map<c_halo1_cache_file_reader*, c_halo1_localization_reader*>;
 
 	t_cache_readers cache_readers;
 	t_debug_readers debug_readers;

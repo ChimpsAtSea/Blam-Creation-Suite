@@ -9,7 +9,7 @@ c_monolithic_resource_handle::c_monolithic_resource_handle(
 	tag_memory_mapped_file(),
 	tag_memory_mapped_file_info()
 {
-	debug_point;
+	
 }
 
 c_monolithic_resource_handle::~c_monolithic_resource_handle()

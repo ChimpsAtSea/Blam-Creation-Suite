@@ -4,11 +4,7 @@ c_tag_string_id_chunk::c_tag_string_id_chunk(c_chunk& parent) :
 	c_typed_chunk(&parent),
 	string()
 {
-	debug_point;
-
-	log_pad();
-	log_signature();
-	console_write_line_verbose("'%s'", string);
+	
 }
 
 c_tag_string_id_chunk::~c_tag_string_id_chunk()
@@ -69,6 +65,6 @@ void c_tag_string_id_chunk::read_data()
 	string_buffer[string_length] = 0;
 
 	string = string_buffer;
-	debug_point;
+	
 }
 

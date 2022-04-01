@@ -33,7 +33,7 @@ c_infinite_tag_reader::c_infinite_tag_reader(c_infinite_cache_cluster& cache_clu
 
 c_infinite_tag_reader::~c_infinite_tag_reader()
 {
-	debug_point;
+	
 
 	for (unsigned long file_entry_block_index = 0; file_entry_block_index < num_file_entry_block_maps; file_entry_block_index++)
 	{
@@ -188,7 +188,7 @@ BCS_RESULT c_infinite_tag_reader::read_tag_instances()
 			parent_file_entry_block_map.resource_file_entry_block_maps.push_back(&file_entry_block_map);
 		}
 	}
-	debug_point;
+	
 
 	return rs;
 }
@@ -433,7 +433,7 @@ BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_global_tag_id_and_group_ta
 			{
 				if (strcmp(tag_instance->instance_name, "objects\\characters\\marine\\attachments\\helmet_goggles\\helmet_goggles.render_model") == 0)
 				{
-					debug_point;
+					
 				}
 				long _global_tag_id;
 				if (BCS_FAILED(rs = tag_instance->get_global_tag_id(_global_tag_id)))

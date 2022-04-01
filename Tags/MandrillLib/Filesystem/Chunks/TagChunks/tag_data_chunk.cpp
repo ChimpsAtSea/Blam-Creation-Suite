@@ -23,10 +23,6 @@ BCS_RESULT c_tag_data_chunk::read_chunk(void* userdata, const void* _data, bool 
 	
 	read_data();
 
-	log_pad();
-	log_signature();
-	console_write_line_verbose("size:0x%08lX", data_length);
-
 	return rs;
 }
 
@@ -63,5 +59,5 @@ void c_tag_data_chunk::read_data()
 	data_length = chunk_size;
 	data = new() char[data_length];
 	memcpy(data, src_data_ptr, data_length);
-	debug_point;
+	
 }

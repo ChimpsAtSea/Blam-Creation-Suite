@@ -44,7 +44,7 @@ c_infinite_module_file_reader::c_infinite_module_file_reader(const wchar_t* file
 
 	module_file_header = static_cast<infinite::s_module_file_header*>(module_file_header_base);
 
-	debug_point;
+	
 }
 
 c_infinite_module_file_reader::~c_infinite_module_file_reader()

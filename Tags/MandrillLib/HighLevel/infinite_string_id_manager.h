@@ -20,7 +20,7 @@ public:
 	};
 
 	using t_string_id_entries = std::vector<s_infinite_string_id_entry*>;
-	using t_hash_to_string = std::map<unsigned long, s_infinite_string_id_entry*>;
+	using t_hash_to_string = std::unordered_map<unsigned long, s_infinite_string_id_entry*>;
 
 	t_string_id_entries string_id_entries;
 	t_hash_to_string hash_to_string;

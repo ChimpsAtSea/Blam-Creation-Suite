@@ -45,10 +45,10 @@ protected:
 
 protected:
 	using t_cache_readers = std::vector<c_halo4_cache_file_reader*>;
-	using t_debug_readers = std::map<c_halo4_cache_file_reader*, c_halo4_debug_reader*>;
-	using t_tag_readers = std::map<c_halo4_cache_file_reader*, c_halo4_tag_reader*>;
-	using t_resource_readers = std::map<c_halo4_cache_file_reader*, c_halo4_resource_reader*>;
-	using t_localization_readers = std::map<c_halo4_cache_file_reader*, c_halo4_localization_reader*>;
+	using t_debug_readers = std::unordered_map<c_halo4_cache_file_reader*, c_halo4_debug_reader*>;
+	using t_tag_readers = std::unordered_map<c_halo4_cache_file_reader*, c_halo4_tag_reader*>;
+	using t_resource_readers = std::unordered_map<c_halo4_cache_file_reader*, c_halo4_resource_reader*>;
+	using t_localization_readers = std::unordered_map<c_halo4_cache_file_reader*, c_halo4_localization_reader*>;
 
 	t_cache_readers cache_readers;
 	t_debug_readers debug_readers;
@@ -59,8 +59,8 @@ protected:
 	s_engine_platform_build engine_platform_build;
 
 
-	using t_resource_container_by_id_map = std::map<unsigned long long, c_halo4_resource_container*>;
-	using t_resource_container_cache_reader_map = std::map<c_halo4_cache_file_reader*, std::vector<c_halo4_resource_container*>>;
+	using t_resource_container_by_id_map = std::unordered_map<unsigned long long, c_halo4_resource_container*>;
+	using t_resource_container_cache_reader_map = std::unordered_map<c_halo4_cache_file_reader*, std::vector<c_halo4_resource_container*>>;
 
 	t_resource_container_by_id_map resource_containers_by_id;
 	t_resource_container_cache_reader_map resource_containers_by_cache_reader;

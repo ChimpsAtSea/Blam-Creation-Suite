@@ -20,4 +20,7 @@
 #include "thread_safe_queue.h"
 #include "benchmark.h"
 #include "fast_ascii_lookup.h"
+#include "fast_byte_lookup.h"
 #include "runtime_task.h"
+#include "inplace_wrapper.h"
+#include "hybrid_chunked_resizable_array.h"

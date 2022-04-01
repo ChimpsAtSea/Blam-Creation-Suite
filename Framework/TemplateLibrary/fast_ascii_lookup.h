@@ -32,7 +32,14 @@ public:
 		next_value_index(),
 		next_entry_index()
 	{
-
+		for (s_lookup_entry& lookup_entry : values)
+		{
+			lookup_entry.value_index = USHRT_MAX;
+		}
+		for (t_value& value : values)
+		{
+			value = default_value;
+		}
 	}
 
 	c_fast_ascii_lookup(std::initializer_list<std::pair<const char*, const t_value>> initializer_list)
@@ -45,15 +52,10 @@ public:
 
 	void enqueue_string(const char* string, const t_value& value)
 	{
-		if (strcmp(string, "custom") == 0)
-		{
-			debug_point;
-		}
 		s_lookup_entry* current_entry = lookup_entries;
-		for (const char* s = string; *s; s++)
+		for (const unsigned char* s = reinterpret_cast<const unsigned char*>(string); *s; s++)
 		{
-			char index = (*s & 0x7F) - 32;
-			ASSERT(index >= 0);
+			unsigned char index = (*s & 0x7Fui8) - 32ui8;
 			ASSERT(index < (_countof(s_lookup_entry::entry_indices) - 1));
 			unsigned short& entry_index = current_entry->entry_indices[index];
 			if (entry_index == 0)
@@ -64,32 +66,30 @@ public:
 			current_entry = lookup_entries + entry_index;
 		}
 
-		if (current_entry->value_index == 0)
+		if (current_entry->value_index == USHRT_MAX)
 		{
 			unsigned short value_index = next_value_index++;
 			ASSERT(value_index < value_table_count);
-			current_entry->value_index = value_index + 1;
+			current_entry->value_index = value_index;
 			values[value_index] = value;
 		}
-
-		debug_point;
 	}
 
 	bool get_value(const char* string, t_value& value)
 	{
 		unsigned short current_entry_index = 0;
-		for (const char* s = string; *s; s++)
+		for (const unsigned char* s = reinterpret_cast<const unsigned char*>(string); *s; s++)
 		{
-			current_entry_index = lookup_entries[current_entry_index].entry_indices[(*s & 0x7F) - 32];
+			current_entry_index = lookup_entries[current_entry_index].entry_indices[(*s & 0x7Fui8) - 32ui8];
 			if (current_entry_index == 0)
 			{
 				return false;
 			}
 		}
 		unsigned short value_index = lookup_entries[current_entry_index].value_index;
-		if (value_index != 0)
+		if (value_index != USHRT_MAX)
 		{
-			value = values[value_index - 1];
+			value = values[value_index];
 			return true;
 		};
 		return false;

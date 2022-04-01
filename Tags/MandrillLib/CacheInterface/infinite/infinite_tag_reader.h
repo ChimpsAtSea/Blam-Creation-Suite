@@ -41,7 +41,7 @@ private:
 
 	using t_tag_groups = std::vector<c_infinite_tag_group*>;
 	using t_tag_instances = std::vector<c_infinite_tag_instance*>;
-	using t_tag_instances_by_filename = std::map<std::string, c_infinite_tag_instance*>;
+	using t_tag_instances_by_filename = std::unordered_map<std::string, c_infinite_tag_instance*>;
 
 	t_tag_groups tag_groups;
 	t_tag_instances tag_instances;

@@ -58,6 +58,7 @@ public:
 
 	static constexpr const char* k_use_developer_features = "use_developer_features";
 	static constexpr const char* k_show_explorer_bar = "show_explorer_bar";
+	static constexpr const char* k_show_console_bar = "show_console_bar";
 	static constexpr const char* k_explorer_bar_width = "explorer_bar_width";
 	static constexpr const char* k_previous_open_filepath_setting = "previous_open_filepath";
 	static constexpr const char* k_previous_open_maps_setting = "open_maps";
@@ -66,6 +67,7 @@ public:
 	static bool use_developer_features;
 	static bool show_explorer_bar;
 	static float explorer_bar_width;
+	static bool show_console_bar;
 
 protected:
 	void mandrill_theme_push();

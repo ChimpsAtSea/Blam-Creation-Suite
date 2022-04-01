@@ -5,6 +5,18 @@ class c_monolithic_partition_view;
 
 class h_tag;
 
+union u_read_tags_callback_data;
+
+class c_chunk;
+class c_tag_file_index_chunk;
+class c_tag_file_blocks_chunk;
+class c_tag_heap_chunk;
+class c_partitioned_heap_entry_list_chunk;
+class c_partition_list_chunk;
+class c_cache_heap_chunk;
+class c_partitioned_heap_entry_list_chunk;
+class c_partition_list_chunk;
+
 class c_monolithic_tag_project :
 	public c_tag_project
 {
@@ -24,10 +36,22 @@ public:
 	BCS_RESULT read_tags();
 
 protected:
+	BCS_RESULT init_monolithic_tag_file_views_result;
+	static void init_monolithic_tag_file_views_impl(void* userdata, unsigned long index);
 	BCS_RESULT init_monolithic_tag_file_views();
 	BCS_RESULT init_monolithic_cache_file_views();
 	BCS_RESULT deinit_monolithic_tag_file_views();
 	BCS_RESULT deinit_monolithic_cache_file_views();
+
+	BCS_RESULT get_tag_partition_view(
+		unsigned long tag_heap_entry_index,
+		c_monolithic_partition_view*& tag_partition_view) const;
+	BCS_RESULT get_cache_partition_view(
+		unsigned long cache_heap_entry_index,
+		c_monolithic_partition_view*& cache_partition_view) const;
+
+	BCS_RESULT read_tag(unsigned long index, h_tag*& out_tag, h_group*& out_tag_group) const;
+	static void read_tags_callback(u_read_tags_callback_data* userdata, long index);
 
 	wchar_t root_directory[0x10000];
 	wchar_t tag_cache_directory[0x10000];
@@ -36,11 +60,22 @@ protected:
 	std::vector<h_tag*> tags;
 
 	unsigned long num_tag_partitions;
-	t_memory_mapped_file** tag_memory_mapped_files;
-	s_memory_mapped_file_info* tag_memory_mapped_file_infos;
 	c_monolithic_partition_view** tag_partition_views;
 	unsigned long num_cache_partitions;
-	t_memory_mapped_file** cache_memory_mapped_files;
-	s_memory_mapped_file_info* cache_memory_mapped_file_infos;
+	//t_memory_mapped_file** cache_memory_mapped_files;
+	//s_memory_mapped_file_info* cache_memory_mapped_file_infos;
 	c_monolithic_partition_view** cache_partition_views;
+
+	c_chunk* root_chunk;
+
+	c_tag_file_index_chunk* tag_file_index_chunk;
+	c_tag_file_blocks_chunk* tag_file_blocks_chunk;
+
+	c_tag_heap_chunk* tag_heap_chunk;
+	c_partitioned_heap_entry_list_chunk* tag_heap_list_chunk;
+	c_partition_list_chunk* tag_partition_list_chunk;
+
+	c_cache_heap_chunk* cache_heap_chunk;
+	c_partitioned_heap_entry_list_chunk* cache_heap_list_chunk;
+	c_partition_list_chunk* cache_partition_list_chunk;
 };

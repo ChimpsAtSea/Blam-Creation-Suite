@@ -50,7 +50,7 @@ c_infinite_cache_cluster::c_infinite_cache_cluster(c_infinite_module_file_reader
 			tag_readers[cache_reader] = new() c_infinite_tag_reader(*this, *cache_reader);
 		}
 
-		debug_point;
+		
 	}
 
 	for (c_infinite_module_file_reader* cache_reader : this->cache_readers)

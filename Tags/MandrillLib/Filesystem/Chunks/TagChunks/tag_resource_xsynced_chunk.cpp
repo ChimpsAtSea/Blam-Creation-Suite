@@ -4,7 +4,7 @@ c_tag_resource_xsynced_chunk::c_tag_resource_xsynced_chunk(c_chunk& parent) :
 	c_typed_chunk(&parent),
 	resource_xsync_state_v2()
 {
-	debug_point;
+	
 }
 
 c_tag_resource_xsynced_chunk::~c_tag_resource_xsynced_chunk()
@@ -22,11 +22,10 @@ BCS_RESULT c_tag_resource_xsynced_chunk::read_chunk(void* userdata, const void* 
 		return rs;
 	}
 
-	t_tag_file_reader_metadata_entry& _metadata_entry = reader.metadata_stack.top();
+	t_tag_file_reader_metadata_entry& _metadata_entry = reader.metadata_stack._pop_unsafe();
 	unsigned long current_block_index = _metadata_entry.id;
 	e_tag_file_reader_metadata_entry_type entry_type = _metadata_entry.entry_type;
 	ASSERT(entry_type == _tag_file_reader_metadata_entry_type_resource);
-	reader.metadata_stack.pop();
 
 	unsigned long xsync_version = metadata;
 	switch (xsync_version)
@@ -74,10 +73,10 @@ void c_tag_resource_xsynced_chunk::log_impl(c_tag_file_string_debugger* string_d
 
 	if (root_address_type != _tag_resource_fixup_type_unknown1)
 	{
-		debug_point;
+		
 	}
 
-	debug_point;
+	
 }
 
 static c_tag_resource_fixup convert_v0_to_v2_fixup(const c_tag_resource_fixup_v0& v0)

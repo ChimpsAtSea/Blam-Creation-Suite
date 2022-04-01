@@ -198,7 +198,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_groups()
 				//return rs;
 			}
 
-			debug_point;
+			
 		}
 	}
 
@@ -252,10 +252,10 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_instances()
 			high_level_tag_instances.push_back(transplant_instance);
 			instances.push_back(transplant_instance);
 
-			debug_point;
+			
 		}
 
-		debug_point;
+		
 
 		break;
 	}
@@ -336,7 +336,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 				}
 			}
 
-			debug_point;
+			
 		}
 		break;
 	}
@@ -584,9 +584,9 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 						//	tbb::parallel_for(0u, static_cast<unsigned long>(tag_block.count), transplant_high_level_block);
 						//}
 
-						debug_point;
+						
 					}
-				debug_point;
+				
 
 			}
 			break;
@@ -677,14 +677,14 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 				byteswap_helper_func(tag_resource);
 
 				h_resource*& resource_storage = *reinterpret_cast<decltype(&resource_storage)>(high_level_field_data);
-				debug_point;
+				
 
 				c_tag_reader* tag_reader;
 				if (BCS_FAILED(rs = cache_cluster.get_tag_reader(cache_file_reader, tag_reader)))
 				{
 					return rs;
 				}
-				debug_point;
+				
 
 				unsigned short resource_index = tag_resource.resource_handle.get_absolute_index();
 				if (resource_index != USHRT_MAX)
@@ -709,7 +709,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 				byteswap_helper_func(tag_interop);
 
 				h_interop*& interop_storage = *reinterpret_cast<decltype(&interop_storage)>(high_level_field_data);
-				debug_point;
+				
 
 				c_tag_reader* tag_reader;
 				if (BCS_FAILED(rs = cache_cluster.get_tag_reader(cache_file_reader, tag_reader)))
@@ -719,7 +719,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 
 				/*if (c_halo4_tag_reader* halo4_tag_reader = dynamic_cast<c_halo4_tag_reader*>(tag_reader))
 				{
-					debug_point;
+					
 
 					e_halo4_interop_type interop_type = k_num_halo4_interop_types;
 					if (field->struct_definition == &blofeld::polyartVertexBufferDescriptorStruct)
@@ -741,7 +741,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 
 					interop_storage = interop_container;
 
-					debug_point;
+					
 				}*/
 			}
 			break;
@@ -814,7 +814,6 @@ BCS_RESULT c_high_level_cache_cluster_transplant::get_cluster_transplant_instanc
 //	return nullptr;
 //}
 
-static c_infinite_string_id_manager infinite_string_id_manager;
 class c_module_file_transplant
 {
 public:
@@ -826,6 +825,7 @@ public:
 	const blofeld::s_tag_struct_definition& root_struct_definition;
 	c_infinite_cache_cluster& cache_cluster;
 	c_infinite_module_file_reader& cache_file_reader;
+	c_infinite_string_id_manager infinite_string_id_manager;
 
 	unsigned long root_struct_size;
 
@@ -1011,11 +1011,11 @@ public:
 							{
 								_tag_block_data = &current_tag_block_data;
 								_tag_block_index = static_cast<long>(block_index);
-								debug_point;
+								
 								break;
 							}
 
-							debug_point;
+							
 						}
 						ASSERT(_tag_block_data != nullptr);
 
@@ -1045,7 +1045,7 @@ public:
 									block_struct_definition);
 							}
 
-							debug_point;
+							
 						}
 
 					}
@@ -1067,10 +1067,10 @@ public:
 							if (current_ucs_data_reference.parent_tag_block_index == tag_block_index && current_ucs_data_reference.owner_block_offset == offset)
 							{
 								ucs_data_reference = &current_ucs_data_reference;
-								debug_point;
+								
 							}
 
-							debug_point;
+							
 						}
 						ASSERT(ucs_data_reference != nullptr);
 						const s_infinite_ucs_nugget& nugget = ucs_reader.nuggets[ucs_data_reference->nugget_index];
@@ -1084,10 +1084,10 @@ public:
 						h_data& data_storage = *reinterpret_cast<decltype(&data_storage)>(high_level_field_data);
 						data_storage.insert(data_storage.begin(), block_data, block_data_end);
 
-						debug_point;
+						
 					}
 
-					debug_point;
+					
 				}
 				break;
 				case _field_tag_reference:
@@ -1111,7 +1111,7 @@ public:
 						{
 							if (root_high_level.tag_filepath == "objects\\characters\\marine\\attachments\\helmet_goggles\\helmet_goggles.model")
 							{
-								debug_point;
+								
 							}
 						}
 						else
@@ -1120,13 +1120,13 @@ public:
 							{
 								return rs;
 							}
-							debug_point;
+							
 						}
 					}
 
 					tag_ref_storage = tag_reference_high_level_tag;
 
-					debug_point;
+					
 				}
 				break;
 				case _field_pageable:
@@ -1134,7 +1134,7 @@ public:
 					s_infinite_ucs_pageable_resource_field ucs_pageable_resource_field = *reinterpret_cast<const s_infinite_ucs_pageable_resource_field*>(current_data_position);
 
 					h_resource*& resource_storage = *reinterpret_cast<decltype(&resource_storage)>(high_level_field_data);
-					debug_point;
+					
 
 					if (BCS_SUCCEEDED(command_line_has_argument("loadinfiniteresources")))
 					{
@@ -1168,7 +1168,7 @@ public:
 
 								if (external_resource_data)
 								{
-									debug_point;
+									
 									char* data_start = static_cast<char*>(external_resource_data);
 									char* data_end = data_start + resource_file_entry_block_map->file_entry.uncompressed_size;
 
@@ -1180,7 +1180,7 @@ public:
 
 								index++;
 
-								debug_point;
+								
 							}
 
 							// read tag data
@@ -1200,11 +1200,11 @@ public:
 									{
 										_tag_block_data = &current_tag_block_data;
 										_tag_block_index = static_cast<long>(block_index);
-										debug_point;
+										
 										break;
 									}
 
-									debug_point;
+									
 								}
 								ASSERT(_tag_block_data != nullptr);
 								ASSERT(_tag_block_data->persistent_identifier == pageable_resource_struct_definition.persistent_identifier);
@@ -1226,12 +1226,12 @@ public:
 										c_infinite_ucs_reader resource_ucs_reader = c_infinite_ucs_reader(&resource_ucs_header);
 
 
-										debug_point;
+										
 									}
 								}
 								else
 								{
-									debug_point; // #TODO: some of these are 2, why?
+									 // #TODO: some of these are 2, why?
 								}
 
 							}
@@ -1275,12 +1275,12 @@ public:
 							}
 
 
-							debug_point;
+							
 						}
 
 					}
 
-					debug_point;
+					
 				}
 				break;
 				case _field_string_id:
@@ -1347,7 +1347,7 @@ public:
 
 		if (root_high_level.tag_filepath == "objects\\characters\\marine\\attachments\\helmet_goggles\\helmet_goggles.render_model")
 		{
-			debug_point;
+			
 		}
 
 		transplant_module_file_data(

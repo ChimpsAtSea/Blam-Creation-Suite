@@ -33,7 +33,7 @@ c_tag_file_blocks_chunk::c_tag_file_blocks_chunk(c_chunk& parent) :
 {
 
 
-	debug_point;
+	
 }
 
 c_tag_file_blocks_chunk::~c_tag_file_blocks_chunk()
@@ -81,7 +81,7 @@ BCS_RESULT c_tag_file_blocks_chunk::read_chunk(void* userdata, const void* data,
 
 				src_current_wide_data_datum = next_contiguous_pointer<s_wide_data_datum>(src_signature1);
 
-				debug_point;
+				
 			}
 		}
 
@@ -106,7 +106,7 @@ BCS_RESULT c_tag_file_blocks_chunk::read_chunk(void* userdata, const void* data,
 
 					wide_data_cache_blocks_pos++;
 
-					debug_point;
+					
 				}
 
 				const unsigned long* src_signature0 = reinterpret_cast<const unsigned long*>(src_wide_data_cache_block + wide_data_datum.data_header.count);
@@ -116,7 +116,7 @@ BCS_RESULT c_tag_file_blocks_chunk::read_chunk(void* userdata, const void* data,
 
 				src_current_wide_data_datum = next_contiguous_pointer<s_wide_data_datum>(src_signature1);
 
-				debug_point;
+				
 			}
 		}
 
@@ -128,7 +128,7 @@ BCS_RESULT c_tag_file_blocks_chunk::read_chunk(void* userdata, const void* data,
 		const void* current_read_position = next_contiguous_pointer(src_signature1);
 		ASSERT(current_read_position == get_chunk_data_end());
 
-		debug_point;
+		
 	}
 
 	return rs;

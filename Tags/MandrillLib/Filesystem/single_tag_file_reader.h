@@ -43,7 +43,8 @@ struct t_tag_file_reader_metadata_entry
 	e_tag_file_reader_metadata_entry_type entry_type;
 	unsigned long id;
 };
-using t_tag_file_reader_metadata_stack = std::stack<t_tag_file_reader_metadata_entry>;
+
+#include "tag_file_reader_stack.h"
 
 class c_single_tag_file_reader
 {
@@ -57,13 +58,19 @@ public:
 	t_tag_file_reader_metadata_stack metadata_stack;
 
 	const blofeld::s_tag_struct_definition** tag_struct_definitions;
-	using t_tag_struct_definition_table = std::map<XXH64_hash_t, const blofeld::s_tag_struct_definition*>;
+	s_single_tag_file_reader_structure_entry* struct_entries_data;
+	unsigned long structure_entries_data_count;
+	c_fast_byte_lookup<const blofeld::s_tag_struct_definition*, 4096, 1024> tag_struct_definitions_lookup_table;
+
+	//using t_tag_struct_definition_table = std::unordered_map<XXH64_hash_t, const blofeld::s_tag_struct_definition*>;
 	//s_single_tag_file_reader_structure_entry* struct_entries_data;
-	std::vector< s_single_tag_file_reader_structure_entry> struct_entries_data;
-	t_tag_struct_definition_table tag_struct_definitions_lookup_table;
+	//std::vector<s_single_tag_file_reader_structure_entry> struct_entries_data;
+	//t_tag_struct_definition_table tag_struct_definitions_lookup_table;
 
 	s_engine_platform_build engine_platform_build;
-	c_tag_struct_definition_view* tag_structs_view;
+
+	c_tag_struct_definition_view& tag_structs_view;
+	t_inplace_wrapper<c_tag_struct_definition_view> tag_structs_view_wrapper;
 
 	const blofeld::s_tag_group* blofeld_tag_group;
 	const blofeld::s_tag_block_definition* blofeld_tag_block_definition;
@@ -86,7 +93,7 @@ public:
 	BCS_RESULT read_tag_block_structure_to_high_level_object(
 		c_tag_block_chunk& tag_group_block,
 		unsigned long tag_block_index,
-		h_object*& high_level_object);
+		h_object& high_level_object);
 
 	BCS_RESULT read_tag_struct_to_high_level_object_ref(
 		h_object& high_level_object,
@@ -99,8 +106,6 @@ public:
 		const blofeld::s_tag_persistent_identifier& persistent_identifier,
 		const blofeld::s_tag_struct_definition*& tag_struct_definition) const;
 
-	BCS_RESULT get_tag_struct_definition_by_index(
-		unsigned long index,
-		const blofeld::s_tag_struct_definition*& tag_struct_definition) const;
+	const blofeld::s_tag_struct_definition& get_tag_struct_definition_by_index(unsigned long index) const;
 	
 };

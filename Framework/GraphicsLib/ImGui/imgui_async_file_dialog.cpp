@@ -32,6 +32,9 @@ DWORD WINAPI file_dialogue_routine(LPVOID lpThreadParameter)
 	bool is_save_file_dialog = imgui_file_dialog_handle->is_save_file_dialog;
 	BCS_CHAR_TO_WIDECHAR_STACK(window_title, window_title_wc);
 
+	imgui_file_dialog_handle->filepath_widechar = nullptr;
+	imgui_file_dialog_handle->filepath_multibyte = nullptr;
+
 	if (is_open_file_dialog)
 	{
 		if (FAILED(thread_result = CoCreateInstance(__uuidof(FileOpenDialog), NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&file_dialog))))

@@ -119,7 +119,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_groups()
 			return rs;
 		}
 
-		debug_point;
+		
 	}
 
 	return rs;
@@ -188,7 +188,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_instances()
 
 		tag_instance_info.instance_data = instance_data;
 
-		debug_point;
+		
 	}
 
 	return rs;
@@ -244,7 +244,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_global_instances()
 
 		global_instance_info.instance_info = &tag_instance_infos[tag_index];
 
-		debug_point;
+		
 	}
 
 	return rs;
@@ -295,7 +295,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_interops()
 		halo4::xbox360::s_cache_file_tag_interop& tag_interop = tag_interop_infos[interop_index] = tag_interops_read_pointer[interop_index];
 		byteswap_inplace(tag_interop);
 
-		debug_point;
+		
 	}
 
 	return rs;
@@ -625,7 +625,7 @@ BCS_RESULT c_halo4_tag_reader::init_interop_table()
 
 		_resource_type_index_to_halo4_resource_type[index] = resource_type;
 
-		debug_point;
+		
 	}
 
 	return rs;
@@ -717,7 +717,7 @@ BCS_RESULT c_halo4_tag_reader::init_interops()
 			break;
 		}
 
-		debug_point;
+		
 	}
 
 	return rs;
@@ -804,7 +804,7 @@ BCS_RESULT c_halo4_tag_reader::init_resource_table()
 
 		_interop_type_index_to_halo4_interop_type[index] = interop_type;
 
-		debug_point;
+		
 	}
 
 	return rs;
@@ -906,7 +906,7 @@ BCS_RESULT c_halo4_tag_reader::init_resources()
 
 			s_cache_file_resource_priority_data_block_struct_definition priority_level_data = (*priority_level_datas)[0];
 			byteswap_inplace(priority_level_data);
-			debug_point;
+			
 
 			s_resource_priority_datas resource_priority_datas = {};
 			resource_priority_datas.resource_index = resource_index;
@@ -1031,7 +1031,7 @@ BCS_RESULT c_halo4_tag_reader::init_resources()
 			ASSERT(resource.control_fixups_block.count == 0);
 			ASSERT(resource.interop_locations_block.count == 0);
 			ASSERT(resource.priority_level_data_block.count == 0);
-			debug_point;
+			
 		}
 	}
 
@@ -1057,12 +1057,12 @@ BCS_RESULT c_halo4_tag_reader::init_resources()
 	//
 	////FATAL_ERROR("not implemented");
 
-	//debug_point;
+	//
 
 	//e_tag_resource_fixup_type root_fixup_type = resource.root_fixup.get_type();
 	//dword root_fixup_value = resource.root_fixup.get_fixup_value();
 
-	debug_point;
+	
 
 	return rs;
 }
@@ -1259,7 +1259,7 @@ BCS_RESULT c_halo4_tag_reader::init_shared_files_table()
 
 		_shared_file_index_to_cache_file_reader[shared_file_index] = cache_file_reader;
 
-		debug_point;
+		
 	}
 
 	return rs;

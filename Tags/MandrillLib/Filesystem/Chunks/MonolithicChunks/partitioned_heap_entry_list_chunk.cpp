@@ -17,7 +17,7 @@ c_partitioned_heap_entry_list_chunk::c_partitioned_heap_entry_list_chunk(c_chunk
 	header(),
 	entries()
 {
-	debug_point;
+	
 
 
 }

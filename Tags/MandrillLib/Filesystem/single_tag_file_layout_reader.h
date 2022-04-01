@@ -44,18 +44,9 @@ public:
 	unsigned long get_structure_expected_children_by_index(unsigned long structure_index);
 	unsigned long get_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry);
 
-	virtual const char* get_string_by_string_character_index(const s_tag_persist_string_character_index& offset) const override;
-	const char* get_custom_block_index_search_name_by_index(unsigned long custom_block_index_search_name_index) const;
-	const char* get_data_definition_name_by_index(unsigned long data_definition_index) const;
-	s_tag_persist_block_definition& get_block_definition_by_index(unsigned long index) const;
-	unsigned long get_struct_definition_count() const;
-	s_tag_persist_struct_definition& get_struct_definition_by_index(unsigned long index) const;
-	s_tag_persist_array_definition& get_array_definition_by_index(unsigned long index) const;
-	s_tag_persist_resource_definition& get_resource_definition_by_index(unsigned long index) const;
-	s_tag_persist_interop_definition& get_interop_definition_by_index(unsigned long index) const;
-	s_tag_persist_aggregate_prechunk& get_aggregate_by_index(unsigned long index) const;
-	s_tag_persist_field& get_field_by_index(unsigned long index) const;
-	s_tag_persist_field_type& get_field_type_by_index(unsigned long index) const;
+
+
+	blofeld::e_field get_blofeld_type_by_field_type_index(unsigned long field_type_index) const;
 
 	c_tag_layout_prechunk_chunk* tag_layout_prechunk_chunk;
 protected:
@@ -71,15 +62,80 @@ protected:
 	c_resource_definitions_chunk* resource_definitions_chunk;
 	c_interop_definitions_chunk* interop_definitions_chunk;
 
-	using t_persistent_id_to_ulong_map = std::map<XXH64_hash_t, unsigned long>;
-	unsigned long* structure_size_by_index;
-	unsigned long* structure_expected_children_by_index;
-	t_persistent_id_to_ulong_map structure_size_by_persistent_identifier;
-	t_persistent_id_to_ulong_map structure_expected_children_persistent_identifier;
+	using t_persistent_id_to_ulong_map = std::unordered_map<XXH64_hash_t, unsigned long>;
+	struct s_structure_precomputed_info
+	{
+		unsigned long structure_size;
+		unsigned long expected_children;
+	};
+	s_structure_precomputed_info* structure_precomputed_info_by_index;
+	c_fast_byte_lookup<s_structure_precomputed_info, 4096, 1024> structure_precomputed_info_by_persistent_identifier;
+	unsigned long field_type_to_blofeld_field_type_count;
+	blofeld::e_field* field_type_to_blofeld_field_type;
 
 	void calculate_structure_size_and_children();
 	unsigned long _calculate_structure_size_by_index(unsigned long structure_index) const;
 	unsigned long _calculate_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry)const;
 	unsigned long _calculate_structure_expected_children_by_index(unsigned long structure_index)const;
 	unsigned long _calculate_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry)const;
+	void init_structure_type_to_blofeld_type_lookup();
+
+public:
+	virtual const char* get_string_by_string_character_index(const s_tag_persist_string_character_index& offset) const override;
+	const char* get_custom_block_index_search_name_by_index(unsigned long custom_block_index_search_name_index) const;
+	const char* get_data_definition_name_by_index(unsigned long data_definition_index) const;
+	s_tag_persist_block_definition& get_block_definition_by_index(unsigned long index) const;
+	unsigned long get_struct_definition_count() const;
+	s_tag_persist_struct_definition& get_struct_definition_by_index(unsigned long index) const;
+	s_tag_persist_array_definition& get_array_definition_by_index(unsigned long index) const;
+	s_tag_persist_resource_definition& get_resource_definition_by_index(unsigned long index) const;
+	s_tag_persist_interop_definition& get_interop_definition_by_index(unsigned long index) const;
+	s_tag_persist_aggregate_prechunk& get_aggregate_by_index(unsigned long index) const;
+	s_tag_persist_field& get_field_by_index(unsigned long index) const;
+	s_tag_persist_field_type& get_field_type_by_index(unsigned long index) const;
+
+protected:
+	void init_string_by_string_character_index();
+	void init_custom_block_index_search_name_by_index();
+	void init_data_definition_name_by_index();
+	void init_block_definition_by_index();
+	void init_struct_definition_count();
+	void init_struct_definition_by_index();
+	void init_array_definition_by_index();
+	void init_resource_definition_by_index();
+	void init_interop_definition_by_index();
+	void init_field_by_index();
+	void init_field_type_by_index();
+
+	const char* string_by_string_character_index;
+	unsigned long string_by_string_character_index_size;
+
+	s_tag_persist_string_character_index* custom_block_index_search_name_by_index;
+	unsigned long custom_block_index_search_name_by_index_count;
+
+	s_tag_persist_string_character_index* data_definition_name_by_index;
+	unsigned long data_definition_name_by_index_count;
+
+	s_tag_persist_block_definition* block_definition_by_index; // make sure to free if tag_layout_prechunk is not null
+	unsigned long block_definition_by_index_count;
+
+	unsigned long struct_definition_count;
+
+	s_tag_persist_struct_definition* struct_definition_by_index; // make sure to free if tag_layout_prechunk is not null
+	unsigned long struct_definition_by_index_count;
+
+	s_tag_persist_array_definition* array_definition_by_index;
+	unsigned long array_definition_by_index_count;
+
+	s_tag_persist_resource_definition* resource_definition_by_index;
+	unsigned long resource_definition_by_index_count;
+
+	s_tag_persist_interop_definition* interop_definition_by_index;
+	unsigned long interop_definition_by_index_count;
+
+	s_tag_persist_field* field_by_index;
+	unsigned long field_by_index_count;
+
+	s_tag_persist_field_type* field_type_by_index;
+	unsigned long field_type_by_index_count;
 };

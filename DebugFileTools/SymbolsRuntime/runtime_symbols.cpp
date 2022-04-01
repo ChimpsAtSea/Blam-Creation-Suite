@@ -63,6 +63,7 @@ void c_runtime_symbols::init()
 	}
 
 	s_symbol_file_public* public_symbols = symbol_file_header->public_symbols;
+	public_symbol_lookup_by_rva_plus_base.reserve(symbol_file_header->public_symbols_count * 2);
 	for (unsigned long public_symbol_index = 0; public_symbol_index < symbol_file_header->public_symbols_count; public_symbol_index++)
 	{
 		s_symbol_file_public& public_symbol = public_symbols[public_symbol_index];

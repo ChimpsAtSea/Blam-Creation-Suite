@@ -38,5 +38,5 @@ public:
 
 	c_tag_layout_prechunk_chunk(c_chunk& parent);
 	~c_tag_layout_prechunk_chunk();
-	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
+	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children) override final;
 };

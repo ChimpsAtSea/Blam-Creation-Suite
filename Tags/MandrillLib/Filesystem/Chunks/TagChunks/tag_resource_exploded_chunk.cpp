@@ -3,7 +3,7 @@
 c_tag_resource_exploded_chunk::c_tag_resource_exploded_chunk(c_chunk& parent) :
 	c_typed_chunk(&parent)
 {
-	debug_point;
+	
 }
 
 c_tag_resource_exploded_chunk::~c_tag_resource_exploded_chunk()
@@ -21,11 +21,11 @@ BCS_RESULT c_tag_resource_exploded_chunk::read_chunk(void* userdata, const void*
 		return rs;
 	}
 
-	t_tag_file_reader_metadata_entry& _metadata_entry = reader.metadata_stack.top();
+
+	t_tag_file_reader_metadata_entry& _metadata_entry = reader.metadata_stack._pop_unsafe();
 	unsigned long current_block_index = _metadata_entry.id;
 	e_tag_file_reader_metadata_entry_type entry_type = _metadata_entry.entry_type;
 	ASSERT(entry_type == _tag_file_reader_metadata_entry_type_resource);
-	reader.metadata_stack.pop();
 
 	throw; // #TODO: implement the logic here to fix the block issue
 

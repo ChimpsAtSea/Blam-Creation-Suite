@@ -9,6 +9,7 @@
 #include <ShlObj.h>
 #include <strsafe.h>
 #include <psapi.h>
+#include <dbghelp.h>
 
 #include <stdlib.h>
 #include <stdio.h>

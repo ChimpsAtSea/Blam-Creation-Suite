@@ -53,7 +53,7 @@ c_partition_chunk::c_partition_chunk(c_chunk& parent) :
 {
 
 
-	debug_point;
+	
 }
 
 c_partition_chunk::~c_partition_chunk()

@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <shlwapi.h>
 
-#include <map>
+#include <unordered_map>
 
 #include <Platform\platform-public-pch.h>
 

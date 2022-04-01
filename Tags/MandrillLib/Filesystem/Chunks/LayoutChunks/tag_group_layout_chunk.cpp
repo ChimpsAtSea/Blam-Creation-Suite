@@ -11,7 +11,7 @@ c_tag_group_layout_chunk::c_tag_group_layout_chunk(c_chunk& parent) :
 
 c_tag_group_layout_chunk::~c_tag_group_layout_chunk()
 {
-	debug_point;
+	
 }
 
 BCS_RESULT c_tag_group_layout_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)
@@ -26,7 +26,7 @@ BCS_RESULT c_tag_group_layout_chunk::read_chunk(void* userdata, const void* data
 	const s_tag_group_layout_header* src_tag_group_layout_header = reinterpret_cast<const s_tag_group_layout_header*>(get_chunk_data_start());
 	tag_group_layout_header = chunk_byteswap(*src_tag_group_layout_header);
 
-	debug_point;
+	
 
 	switch (tag_group_layout_header.layout_version)
 	{

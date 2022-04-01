@@ -33,6 +33,7 @@
 	  <IncludePath>$(SolutionDir)ThirdParty\murmur3\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\imgui\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\imgui\imgui\;$(IncludePath)</IncludePath>
+	  <IncludePath>$(SolutionDir)ThirdParty\IconFontCppHeaders\;$(IncludePath)</IncludePath>
 	  
 	  <IncludePath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-$(Configuration.ToLower())-bcs\include\;$(IncludePath)</IncludePath>
 	  <LibraryPath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-$(Configuration.ToLower())-bcs\lib\;$(LibraryPath)</LibraryPath>
@@ -49,7 +50,9 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/Zc:__cplusplus /Zc:char8_t- %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>IMGUI_USER_CONFIG="imgui_user_config.h";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IMGUI_USER_CONFIG="imgui_user_config.h";_HAS_ITERATOR_DEBUGGING=0;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <!--<PrecompiledHeader>Use</PrecompiledHeader>-->
+      <!--<PrecompiledHeaderFile>$(ProjectName.toLower)-private-pch.h</PrecompiledHeaderFile>-->
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="Exists('$(OutDir)Keys.lib') And '$(Configuration)'=='Release'">

@@ -12,7 +12,7 @@ c_string_lists_chunk::c_string_lists_chunk(c_chunk& parent) :
 	entries(),
 	entry_count()
 {
-	debug_point;
+	
 }
 
 c_string_lists_chunk::~c_string_lists_chunk()
@@ -60,7 +60,7 @@ void c_string_lists_chunk::log_impl(c_tag_file_string_debugger* string_debugger)
 				entry.string_offset_count,
 				entry.string_character_index.offset);
 		}
-		debug_point;
+		
 	}
 }
 

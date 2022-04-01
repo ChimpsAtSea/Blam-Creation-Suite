@@ -354,7 +354,7 @@ void c_tag_project_tab::render_search_box()
 		draw_list->AddText({ pos.x + 4.0f, pos.y + 4.0f }, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_TEXT(0.25)), search_reccomendation);
 	}
 	ImGui::SameLine();
-	if (ImGui::Button(ICON_FA_TIMES))
+	if (ImGui::Button(ICON_FA_XMARK))
 	{
 		search_buffer.clear();
 	}

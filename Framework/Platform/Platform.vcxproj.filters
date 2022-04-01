@@ -210,6 +210,8 @@
   <ItemGroup>
     <Font Include="!Resources\Cousine-Regular.ttf" />
     <Font Include="!Resources\fa-regular-400.ttf" />
+    <Font Include="!Resources\fa-brands-400.ttf" />
+    <Font Include="!Resources\fa-solid-900.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="!Resources\mandrill_icon_debug.ico">

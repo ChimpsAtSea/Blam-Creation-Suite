@@ -21,7 +21,7 @@ protected:
 	void* symbol_file_buffer;
 	unsigned long long symbol_file_buffer_size;
 
-	using t_public_symbol_lookup_by_rva_plus_base = std::map<unsigned long long, s_symbol_file_public*>;
+	using t_public_symbol_lookup_by_rva_plus_base = std::unordered_map<unsigned long long, s_symbol_file_public*>;
 	t_public_symbol_lookup_by_rva_plus_base public_symbol_lookup_by_rva_plus_base;
 
 	void init();

@@ -5,7 +5,7 @@ c_tag_file_heap_partition_config_chunk::c_tag_file_heap_partition_config_chunk(c
 	string_length(),
 	string()
 {
-	debug_point;
+	
 }
 
 c_tag_file_heap_partition_config_chunk::~c_tag_file_heap_partition_config_chunk()
@@ -32,7 +32,7 @@ BCS_RESULT c_tag_file_heap_partition_config_chunk::read_chunk(void* userdata, co
 		memcpy(string, string_buffer_ptr, string_length);
 		string[string_length] = 0;
 	}
-	debug_point;
+	
 
 	return rs;
 }

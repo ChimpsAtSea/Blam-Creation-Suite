@@ -53,7 +53,7 @@ private:
 
 	using t_tag_groups = std::vector<c_halo4_tag_group*>;
 	using t_tag_instances = std::vector<c_halo4_tag_instance*>;
-	using t_tag_instances_by_index = std::map<unsigned long, c_halo4_tag_instance*>;
+	using t_tag_instances_by_index = std::unordered_map<unsigned long, c_halo4_tag_instance*>;
 
 	t_tag_groups tag_groups;
 	t_tag_instances tag_instances;
@@ -63,7 +63,7 @@ private:
 	using t_tag_instance_infos = std::vector<s_halo4_tag_instance_info>;
 	using t_tag_global_instance_infos = std::vector<s_halo4_tag_global_instance_info>;
 	using t_tag_interop_infos = std::vector<halo4::xbox360::s_cache_file_tag_interop>;
-	using t_tag_instance_infos_by_index = std::map<unsigned long, s_halo4_tag_global_instance_info*>;
+	using t_tag_instance_infos_by_index = std::unordered_map<unsigned long, s_halo4_tag_global_instance_info*>;
 
 	t_tag_group_infos tag_group_infos;
 	t_tag_instance_infos tag_instance_infos;

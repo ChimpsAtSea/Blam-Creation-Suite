@@ -375,6 +375,9 @@
     <ClInclude Include="Monolithic\monolithic_partition_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tag_file_reader_stack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mandrilllib-private-pch.cpp">
@@ -720,6 +723,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Monolithic\monolithic_partition_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tag_file_reader_stack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

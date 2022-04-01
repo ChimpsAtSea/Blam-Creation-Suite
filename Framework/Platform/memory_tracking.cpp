@@ -20,10 +20,152 @@ s_tracked_memory_stats& _library_tracked_memory = platform_tracked_memory;
 
 s_tracked_memory_stats tracked_memory_stats;
 
-void* tracked_aligned_malloc(size_t size, size_t alignment, const char* filepath, long line)
+#define SHOULD_TRACK_HACK (strstr(GetCommandLineA(), "-trackmemory") != nullptr) // terrible shitty awful hack tastic spazz)
+
+#define MEMORY_TRACKING_FIRST_RUN_FIXUP(target_pointer, tracked_function, untracked_function)	\
+DWORD thread_id = GetCurrentThreadId();                                                         \
+if (InterlockedCompareExchange(&tracked_memory_entries_spin_lock, thread_id, 0) == 0)           \
+{																								\
+	if (SHOULD_TRACK_HACK)																		\
+	{																							\
+		target_pointer = tracked_function;														\
+	}																							\
+	else																						\
+	{																							\
+		target_pointer = reinterpret_cast<decltype(target_pointer)>(untracked_function);		\
+	}																							\
+}																								\
+else																							\
+{																								\
+	while (InterlockedCompareExchange(&tracked_memory_entries_spin_lock, thread_id, 0));		\
+}																								\
+LONG lock_release_result = InterlockedExchange(&tracked_memory_entries_spin_lock, 0);			\
+if (lock_release_result != thread_id) throw;
+
+
+
+
+typedef _Return_type_success_(return >= 0) LONG NTSTATUS;
+#define NTAPI __stdcall
+
+typedef NTSTATUS
+(NTAPI* PRTL_HEAP_COMMIT_ROUTINE)(
+	IN PVOID Base,
+	IN OUT PVOID* CommitAddress,
+	IN OUT PSIZE_T CommitSize
+	);
+
+typedef struct _RTL_HEAP_PARAMETERS {
+	ULONG Length;
+	SIZE_T SegmentReserve;
+	SIZE_T SegmentCommit;
+	SIZE_T DeCommitFreeBlockThreshold;
+	SIZE_T DeCommitTotalFreeThreshold;
+	SIZE_T MaximumAllocationSize;
+	SIZE_T VirtualMemoryThreshold;
+	SIZE_T InitialCommit;
+	SIZE_T InitialReserve;
+	PRTL_HEAP_COMMIT_ROUTINE CommitRoutine;
+	SIZE_T Reserved[2];
+} RTL_HEAP_PARAMETERS, * PRTL_HEAP_PARAMETERS;
+
+PVOID(*RtlCreateHeap)(
+	/*[in]           */ ULONG                Flags,
+	/*[in, optional] */ PVOID                HeapBase,
+	/*[in, optional] */ SIZE_T               ReserveSize,
+	/*[in, optional] */ SIZE_T               CommitSize,
+	/*[in, optional] */ PVOID                Lock,
+	/*[in, optional] */ PRTL_HEAP_PARAMETERS Parameters
+	);
+
+PVOID(*RtlAllocateHeap)(
+	/*[in]           */ PVOID  HeapHandle,
+	/*[in, optional] */ ULONG  Flags,
+	/*[in]           */ SIZE_T Size
+	);
+ULONG(*RtlFreeHeap)(
+	/*[in]           */ PVOID                 HeapHandle,
+	/*[in, optional] */ ULONG                 Flags,
+	/*_Frees_ptr_opt_*/  PVOID BaseAddress
+	);
+
+PVOID(*RtlDestroyHeap)(
+	/*[in]           */ PVOID HeapHandle
+	);
+
+
+
+
+HANDLE process_heap;
+thread_local PVOID nt_api_thread_heap = NULL;
+void* lightweight_malloc(size_t size)
 {
-	const char* stack_trace = "hello world hello world hello world";
-	size_t stack_trace_size = strlen(stack_trace) + 1;
+	void* memory = HeapAlloc(process_heap, 0, size);
+	return memory;
+}
+
+void lightweight_free(void* memory)
+{
+	if (memory)
+	{
+		BOOL free_result = HeapFree(process_heap, 0, memory);
+		ASSERT(free_result != FALSE);
+	}
+}
+
+void lightweight_aligned_malloc()
+{
+
+}
+
+void lightweight_aligned_free()
+{
+
+}
+
+void* tracked_aligned_malloc_firstrun(size_t size, size_t alignment, const char* filepath, long line)
+{
+	MEMORY_TRACKING_FIRST_RUN_FIXUP(tracked_aligned_malloc_ptr, _tracked_aligned_malloc, _aligned_malloc);
+	return tracked_aligned_malloc_ptr(size, alignment, filepath, line);
+}
+
+void  tracked_aligned_free_firstrun(void* allocated_memory)
+{
+	MEMORY_TRACKING_FIRST_RUN_FIXUP(tracked_aligned_free_ptr, _tracked_aligned_free, _aligned_free);
+	return tracked_aligned_free_ptr(allocated_memory);
+}
+
+void* tracked_malloc_firstrun(size_t size, const char* filepath, long line)
+{
+	InterlockedExchangePointer(&process_heap, GetProcessHeap());
+	MEMORY_TRACKING_FIRST_RUN_FIXUP(tracked_malloc_ptr, _tracked_malloc, lightweight_malloc);
+	return tracked_malloc_ptr(size, filepath, line);
+}
+
+void  tracked_free_firstrun(const void* allocated_memory)
+{
+	MEMORY_TRACKING_FIRST_RUN_FIXUP(tracked_free_ptr, _tracked_free, lightweight_free);
+	return tracked_free_ptr(allocated_memory);
+}
+
+void  untracked_free_firstrun(const void* allocated_memory)
+{
+	MEMORY_TRACKING_FIRST_RUN_FIXUP(untracked_free_ptr, _untracked_free, free);
+	return untracked_free_ptr(allocated_memory);
+}
+
+void* (*tracked_aligned_malloc_ptr)(size_t size, size_t alignment, const char* filepath, long line) = tracked_aligned_malloc_firstrun;
+void  (*tracked_aligned_free_ptr)(void* allocated_memory) = tracked_aligned_free_firstrun;
+void* (*tracked_malloc_ptr)(size_t size, const char* filepath, long line) = tracked_malloc_firstrun;
+void  (*tracked_free_ptr)(const void* allocated_memory) = tracked_free_firstrun;
+void  (*untracked_free_ptr)(const void* allocated_memory) = untracked_free_firstrun;
+
+void* _tracked_aligned_malloc(size_t size, size_t alignment, const char* filepath, long line)
+{
+	PVOID stack_frames[USHRT_MAX];
+	unsigned short num_stack_frames = CaptureStackBackTrace(1, USHRT_MAX, stack_frames, NULL);
+
+	size_t stack_trace_size = sizeof(PVOID) * num_stack_frames;
 	size_t tracking_memory_size = sizeof(s_tracked_memory_entry) + stack_trace_size;
 	size_t tracking_memory_aligned_size = ROUNDUP(tracking_memory_size, __max(16, alignment)) + 16;
 	size_t allocated_memory_aligned_size = ROUNDUP(size, alignment);
@@ -31,21 +173,21 @@ void* tracked_aligned_malloc(size_t size, size_t alignment, const char* filepath
 
 	void* tracked_memory = _aligned_malloc(total_memory_aligned_size, __max(16, alignment));
 	memset(tracked_memory, 'T', tracking_memory_aligned_size);
-	char* stack_trace_memory = static_cast<char*>(tracked_memory);
-	void* memory = static_cast<void*>(stack_trace_memory + tracking_memory_aligned_size);
+	PVOID* stack_frames_memory = static_cast<PVOID*>(tracked_memory);
+	void* memory = static_cast<void*>(reinterpret_cast<char*>(stack_frames_memory) + tracking_memory_aligned_size);
 	s_tracked_memory_entry* tracked_memory_entry = static_cast<s_tracked_memory_entry*>(memory) - 1;
 
 	tracked_memory_entry->next = nullptr;
 	tracked_memory_entry->previous = nullptr;
 	tracked_memory_entry->tracked_memory = tracked_memory;
 	tracked_memory_entry->memory = memory;
-	tracked_memory_entry->stack_trace_size = stack_trace_size;
 	tracked_memory_entry->tracking_memory_size = tracking_memory_size;
 	tracked_memory_entry->tracking_memory_aligned_size = tracking_memory_aligned_size;
 	tracked_memory_entry->allocated_memory_aligned_size = allocated_memory_aligned_size;
 	tracked_memory_entry->total_memory_aligned_size = total_memory_aligned_size;
-	tracked_memory_entry->stack_trace = stack_trace_memory;
-	memcpy(tracked_memory_entry->stack_trace, stack_trace, stack_trace_size);
+	tracked_memory_entry->stack_frames = stack_frames_memory;
+	tracked_memory_entry->num_stack_frames = num_stack_frames;
+	memcpy(tracked_memory_entry->stack_frames, stack_frames, sizeof(PVOID) * num_stack_frames);
 	tracked_memory_entry->filepath = filepath;
 	tracked_memory_entry->line = line;
 
@@ -59,6 +201,9 @@ void* tracked_aligned_malloc(size_t size, size_t alignment, const char* filepath
 		previous->next = tracked_memory_entry;
 	}
 
+	LONG lock_release_result = InterlockedExchange(&tracked_memory_entries_spin_lock, 0);
+	if (lock_release_result != thread_id) throw;
+
 	InterlockedAdd64(&tracked_memory_stats.allocated_memory, allocated_memory_aligned_size);
 	InterlockedAdd64(&tracked_memory_stats.tracked_allocated_memory, tracking_memory_aligned_size);
 	InterlockedIncrement(&tracked_memory_stats.allocation_count);
@@ -67,13 +212,10 @@ void* tracked_aligned_malloc(size_t size, size_t alignment, const char* filepath
 	InterlockedAdd64(&tracked_allocated_memory, tracking_memory_aligned_size);
 	InterlockedIncrement(&allocation_count);
 
-	LONG lock_release_result = InterlockedExchange(&tracked_memory_entries_spin_lock, 0);
-	if (lock_release_result != thread_id) throw;
-
 	return memory;
 }
 
-void tracked_aligned_free(void* pointer)
+void _tracked_aligned_free(void* pointer)
 {
 	if (pointer)
 	{
@@ -94,6 +236,9 @@ void tracked_aligned_free(void* pointer)
 			tracked_memory_entries = tracked_memory_entry->previous;
 		}
 
+		LONG lock_release_result = InterlockedCompareExchange(&tracked_memory_entries_spin_lock, 0, thread_id);
+		if (lock_release_result != thread_id) throw;
+
 		InterlockedAdd64(&tracked_memory_stats.allocated_memory, -static_cast<LONG64>(tracked_memory_entry->allocated_memory_aligned_size));
 		InterlockedAdd64(&tracked_memory_stats.tracked_allocated_memory, -static_cast<LONG64>(tracked_memory_entry->tracking_memory_aligned_size));
 		InterlockedAdd(&tracked_memory_stats.allocation_count, -1);
@@ -102,20 +247,20 @@ void tracked_aligned_free(void* pointer)
 		InterlockedAdd64(&tracked_allocated_memory, -static_cast<LONG64>(tracked_memory_entry->tracking_memory_aligned_size));
 		InterlockedAdd(&allocation_count, -1);
 
-		LONG lock_release_result = InterlockedCompareExchange(&tracked_memory_entries_spin_lock, 0, thread_id);
-		if (lock_release_result != thread_id) throw;
-
 		_aligned_free(tracked_memory_entry->tracked_memory);
 
 		debug_point;
 	}
 }
 
-void* tracked_malloc(size_t size, const char* filepath, long line)
+void* _tracked_malloc(size_t size, const char* filepath, long line)
 {
 	size_t alignment = 1;
-	const char* stack_trace = "hello world hello world hello world";
-	size_t stack_trace_size = strlen(stack_trace) + 1;
+
+	PVOID stack_frames[USHRT_MAX];
+	unsigned short num_stack_frames = CaptureStackBackTrace(1, USHRT_MAX, stack_frames, NULL);
+
+	size_t stack_trace_size = sizeof(PVOID) * num_stack_frames;
 	size_t tracking_memory_size = sizeof(s_tracked_memory_entry) + stack_trace_size;
 	size_t tracking_memory_aligned_size = ROUNDUP(tracking_memory_size, __max(16, alignment)) + 16;
 	size_t allocated_memory_aligned_size = ROUNDUP(size, alignment);
@@ -123,26 +268,30 @@ void* tracked_malloc(size_t size, const char* filepath, long line)
 
 	void* tracked_memory = malloc(total_memory_aligned_size);
 	memset(tracked_memory, 'T', tracking_memory_aligned_size);
-	char* stack_trace_memory = static_cast<char*>(tracked_memory);
-	void* memory = static_cast<void*>(stack_trace_memory + tracking_memory_aligned_size);
+	PVOID* stack_frames_memory = static_cast<PVOID*>(tracked_memory);
+	void* memory = static_cast<void*>(reinterpret_cast<char*>(stack_frames_memory) + tracking_memory_aligned_size);
 	s_tracked_memory_entry* tracked_memory_entry = static_cast<s_tracked_memory_entry*>(memory) - 1;
 
 	tracked_memory_entry->next = nullptr;
 	tracked_memory_entry->previous = nullptr;
 	tracked_memory_entry->tracked_memory = tracked_memory;
 	tracked_memory_entry->memory = memory;
-	tracked_memory_entry->stack_trace_size = stack_trace_size;
 	tracked_memory_entry->tracking_memory_size = tracking_memory_size;
 	tracked_memory_entry->tracking_memory_aligned_size = tracking_memory_aligned_size;
 	tracked_memory_entry->allocated_memory_aligned_size = allocated_memory_aligned_size;
 	tracked_memory_entry->total_memory_aligned_size = total_memory_aligned_size;
-	tracked_memory_entry->stack_trace = stack_trace_memory;
-	memcpy(tracked_memory_entry->stack_trace, stack_trace, stack_trace_size);
+	tracked_memory_entry->stack_frames = stack_frames_memory;
+	tracked_memory_entry->num_stack_frames = num_stack_frames;
+	memcpy(tracked_memory_entry->stack_frames, stack_frames, stack_trace_size);
 	tracked_memory_entry->filepath = filepath;
 	tracked_memory_entry->line = line;
 
 	DWORD thread_id = GetCurrentThreadId();
-	while (InterlockedCompareExchange(&tracked_memory_entries_spin_lock, thread_id, 0));
+	unsigned long long spins = 0;
+	static unsigned long long max_spins = 0;
+	while (InterlockedCompareExchange(&tracked_memory_entries_spin_lock, thread_id, 0)) spins++;
+	max_spins = __max(max_spins, spins);
+
 	s_tracked_memory_entry* previous = tracked_memory_entries;
 	tracked_memory_entries = tracked_memory_entry;
 	tracked_memory_entry->previous = previous;
@@ -150,6 +299,9 @@ void* tracked_malloc(size_t size, const char* filepath, long line)
 	{
 		previous->next = tracked_memory_entry;
 	}
+
+	LONG lock_release_result = InterlockedExchange(&tracked_memory_entries_spin_lock, 0);
+	if (lock_release_result != thread_id) throw;
 
 	InterlockedAdd64(&tracked_memory_stats.allocated_memory, allocated_memory_aligned_size);
 	InterlockedAdd64(&tracked_memory_stats.tracked_allocated_memory, tracking_memory_aligned_size);
@@ -159,13 +311,11 @@ void* tracked_malloc(size_t size, const char* filepath, long line)
 	InterlockedAdd64(&tracked_allocated_memory, tracking_memory_aligned_size);
 	InterlockedIncrement(&allocation_count);
 
-	LONG lock_release_result = InterlockedExchange(&tracked_memory_entries_spin_lock, 0);
-	if (lock_release_result != thread_id) throw;
 
 	return memory;
 }
 
-void tracked_free(const void* pointer)
+void _tracked_free(const void* pointer)
 {
 	if (pointer)
 	{
@@ -186,6 +336,9 @@ void tracked_free(const void* pointer)
 			tracked_memory_entries = tracked_memory_entry->previous;
 		}
 
+		LONG lock_release_result = InterlockedCompareExchange(&tracked_memory_entries_spin_lock, 0, thread_id);
+		if (lock_release_result != thread_id) throw;
+
 		InterlockedAdd64(&tracked_memory_stats.allocated_memory, -static_cast<LONG64>(tracked_memory_entry->allocated_memory_aligned_size));
 		InterlockedAdd64(&tracked_memory_stats.tracked_allocated_memory, -static_cast<LONG64>(tracked_memory_entry->tracking_memory_aligned_size));
 		InterlockedAdd(&tracked_memory_stats.allocation_count, -1);
@@ -194,16 +347,13 @@ void tracked_free(const void* pointer)
 		InterlockedAdd64(&tracked_allocated_memory, -static_cast<LONG64>(tracked_memory_entry->tracking_memory_aligned_size));
 		InterlockedAdd(&allocation_count, -1);
 
-		LONG lock_release_result = InterlockedCompareExchange(&tracked_memory_entries_spin_lock, 0, thread_id);
-		if (lock_release_result != thread_id) throw;
-
 		free(tracked_memory_entry->tracked_memory);
 
 		debug_point;
 	}
 }
 
-void untracked_free(const void* pointer)
+void _untracked_free(const void* pointer)
 {
 	free(const_cast<void*>(pointer));
 }
@@ -235,10 +385,124 @@ void print_memory_allocations()
 	if (lock_release_result != thread_id) throw;
 }
 
+unsigned long write_stack_trace(PVOID* frames, unsigned long num_frames, char* buffer, unsigned long buffer_length)
+{
+	unsigned long buffer_length_used = 0;
+	char* buffer_position = buffer;
+	char* buffer_end = buffer + buffer_length;
+
+	HANDLE current_process = GetCurrentProcess();
+	HMODULE* modules_buffer = nullptr;
+	DWORD bytes_required = 0;
+	BOOL enum_process_modules_result0 = EnumProcessModules(current_process, modules_buffer, 0, &bytes_required);
+	if (enum_process_modules_result0 == FALSE)
+	{
+		throw;
+	}
+	modules_buffer = static_cast<HMODULE*>(_alloca(bytes_required));
+	BOOL enum_process_modules_result1 = EnumProcessModules(current_process, modules_buffer, 0, &bytes_required);
+	if (enum_process_modules_result1 == FALSE)
+	{
+		throw;
+	}
+
+	IMAGEHLP_SYMBOL64* symbol = static_cast<IMAGEHLP_SYMBOL64*>(_alloca(sizeof(IMAGEHLP_SYMBOL64) + MAX_SYM_NAME * sizeof(CHAR) + 1024));
+	symbol->SizeOfStruct = sizeof(IMAGEHLP_SYMBOL64);
+	symbol->MaxNameLength = MAX_SYM_NAME;
+
+	for (unsigned long frame_index = 0; frame_index < num_frames; frame_index++)
+	{
+		PVOID frame = frames[frame_index];
+
+		HMODULE module;
+		BOOL get_module_handle_result = GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, static_cast<LPCSTR>(frame), &module);
+		if (get_module_handle_result == FALSE)
+		{
+			throw;
+		}
+
+		char module_filepath[0x10000];
+		DWORD get_module_filename_result = GetModuleFileNameExA(current_process, module, module_filepath, _countof(module_filepath));
+		if (get_module_filename_result == 0)
+		{
+			strcpy_s(module_filepath, "<unknown>");
+		}
+		char* module_filename = PathFindFileNameA(module_filepath);
+
+		DWORD64 address = (DWORD64)frame;
+		BOOL symbol_from_address_result = SymGetSymFromAddr(current_process, address, NULL, symbol);
+		if (symbol_from_address_result != FALSE)
+		{
+			IMAGEHLP_LINE64 line;
+			line.SizeOfStruct = sizeof(IMAGEHLP_LINE64);
+			DWORD displacement;
+			BOOL symbol_line_from_address_result = SymGetLineFromAddr64(current_process, address, &displacement, &line);
+
+			if (buffer)
+			{
+				buffer_position += snprintf(buffer_position, buffer_end - buffer_position, "%s!%s()", module_filename, symbol->Name);
+				if (symbol_line_from_address_result)
+				{
+					buffer_position += snprintf(buffer_position, buffer_end - buffer_position, " Line %i", line.LineNumber);
+				}
+				if (frame_index != (num_frames - 1))
+				{
+					buffer_position += snprintf(buffer_position, buffer_end - buffer_position, "\n");
+				}
+			}
+			else
+			{
+				buffer_length_used += snprintf(nullptr, 0, "%s!%s()", module_filename, symbol->Name);
+				if (symbol_line_from_address_result)
+				{
+					buffer_length_used += snprintf(nullptr, 0, " Line %i", line.LineNumber);
+				}
+				if (frame_index != (num_frames - 1))
+				{
+					buffer_length_used += snprintf(nullptr, 0, "\n");
+				}
+			}
+		}
+		else
+		{
+			if (buffer)
+			{
+				buffer_position += snprintf(buffer_position, buffer_end - buffer_position, "%s!%p()", module_filename, frame);
+				if (frame_index != (num_frames - 1))
+				{
+					buffer_position += snprintf(buffer_position, buffer_end - buffer_position, "\n");
+				}
+			}
+			else
+			{
+				buffer_length_used += snprintf(nullptr, 0, "%s!%p()", module_filename, frame);
+				if (frame_index != (num_frames - 1))
+				{
+					buffer_length_used += snprintf(nullptr, 0, "\n");
+				}
+			}
+		}
+
+		debug_point;
+	}
+
+	debug_point;
+
+	if (buffer && buffer_length > 0)
+	{
+		buffer[buffer_length - 1] = 0;
+		return static_cast<unsigned long>(buffer_position - buffer);
+	}
+	else
+	{
+		return buffer_length_used;
+	}
+}
+
 void write_memory_allocations()
 {
 	FILE* output = fopen("memory_allocations.txt", "w");
-#define file_write_line(file, format, ...) fprintf(file, format "\n", __VA_ARGS__);
+#define file_write_line(file, format, ...) fprintf(file, format, __VA_ARGS__); fprintf(file, "\n")
 
 	DWORD thread_id = GetCurrentThreadId();
 	while (InterlockedCompareExchange(&tracked_memory_entries_spin_lock, thread_id, 0));
@@ -246,6 +510,18 @@ void write_memory_allocations()
 	file_write_line(output, "\t allocated_memory:         %lli", allocated_memory);
 	file_write_line(output, "\t tracked_allocated_memory: %lli", tracked_allocated_memory);
 	file_write_line(output, "\t allocation_count:         %i", allocation_count);
+
+	HANDLE current_process = GetCurrentProcess();
+	DWORD sym_current_options_mask = SymGetOptions();
+	sym_current_options_mask |= SYMOPT_LOAD_LINES;
+	sym_current_options_mask |= SYMOPT_UNDNAME;
+	DWORD sym_old_options_mask = SymSetOptions(sym_current_options_mask);
+
+	BOOL sym_initialize_result = SymInitialize(current_process, NULL, TRUE);
+	if (sym_initialize_result == FALSE)
+	{
+		throw;
+	}
 
 	unsigned long missed_output_entries = 0;
 	for (s_tracked_memory_entry* tracked_memory_entry = tracked_memory_entries; tracked_memory_entry; tracked_memory_entry = tracked_memory_entry->previous)
@@ -256,7 +532,17 @@ void write_memory_allocations()
 
 			debug_point;
 		}
-		else missed_output_entries++;
+		fflush(output);
+		if (tracked_memory_entry->num_stack_frames > 0)
+		{
+			unsigned long stack_trace_size = write_stack_trace(tracked_memory_entry->stack_frames, tracked_memory_entry->num_stack_frames, nullptr, 0) + 1;
+			char* stack_trace = static_cast<char*>(_alloca(stack_trace_size));
+			unsigned long stack_trace_size1 = write_stack_trace(tracked_memory_entry->stack_frames, tracked_memory_entry->num_stack_frames, stack_trace, stack_trace_size);
+			debug_point;
+
+			file_write_line(output, stack_trace);
+		}
+		fflush(output);
 	}
 	LONG lock_release_result = InterlockedCompareExchange(&tracked_memory_entries_spin_lock, 0, thread_id);
 	if (lock_release_result != thread_id) throw;
@@ -264,6 +550,12 @@ void write_memory_allocations()
 	if(missed_output_entries > 0)
 	{
 		file_write_line(output, "%u entries had no file/line data", missed_output_entries);
+	}
+
+	BOOL sym_cleanup_result = SymCleanup(current_process);
+	if (sym_cleanup_result == FALSE)
+	{
+		throw;
 	}
 
 	fclose(output);

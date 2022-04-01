@@ -1,5 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
+#define make_64bit_persistent_id(persistent_identifier) (reinterpret_cast<const long long*>(&persistent_identifier)[0] ^ reinterpret_cast<const long long*>(&persistent_identifier)[1])
+
 c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_file_header& header, const void* tag_file_data) :
 	root_chunk(),
 	tag_group_layout_chunk(),
@@ -16,10 +18,32 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 	structure_definitions_chunk(),
 	resource_definitions_chunk(),
 	interop_definitions_chunk(),
-	structure_size_by_index(),
-	structure_expected_children_by_index(),
-	structure_size_by_persistent_identifier(),
-	structure_expected_children_persistent_identifier()
+	structure_precomputed_info_by_index(),
+	structure_precomputed_info_by_persistent_identifier(),
+	field_type_to_blofeld_field_type_count(),
+	field_type_to_blofeld_field_type(),
+	string_by_string_character_index(),
+	string_by_string_character_index_size(),
+	custom_block_index_search_name_by_index(),
+	custom_block_index_search_name_by_index_count(),
+	data_definition_name_by_index(),
+	data_definition_name_by_index_count(),
+	block_definition_by_index(),
+	block_definition_by_index_count(),
+	struct_definition_count(),
+	struct_definition_by_index(),
+	struct_definition_by_index_count(),
+	array_definition_by_index(),
+	array_definition_by_index_count(),
+	resource_definition_by_index(),
+	resource_definition_by_index_count(),
+	interop_definition_by_index(),
+	interop_definition_by_index_count(),
+	field_by_index(),
+	field_by_index_count(),
+	field_type_by_index(),
+	field_type_by_index_count()
+
 {
 	const s_single_tag_file_header* src_header = static_cast<const s_single_tag_file_header*>(tag_file_data);
 	root_chunk = new() c_tag_header_chunk();
@@ -64,7 +88,7 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 			console_write_line("ERROR> Prechunk Definition Tag Group Base Structure Persistent Identifier Not Found! Attempting crazyness!");
 		}
 
-		for (unsigned long i = 0; i < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count; i++)
+		/*for (unsigned long i = 0; i < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count; i++)
 		{
 			s_tag_persist_aggregate_prechunk& aggregate = get_aggregate_by_index(i);
 
@@ -82,7 +106,7 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 
 				console_write_line("\t%s %s %u", field_type_name, field_name, field.metadata);
 
-				debug_point;
+				
 
 				if (strcmp(field_type_name, "terminator X") == 0)
 				{
@@ -90,10 +114,10 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 				}
 			}
 
-			debug_point;
-		}
+			
+		}*/
 
-		debug_point;
+		
 	}
 
 	if (tag_layout_prechunk_chunk == nullptr)
@@ -118,6 +142,19 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 		ASSERT(structure_definitions_chunk != nullptr);
 	}
 
+	init_string_by_string_character_index();
+	init_custom_block_index_search_name_by_index();
+	init_data_definition_name_by_index();
+	init_block_definition_by_index();
+	init_struct_definition_count();
+	init_struct_definition_by_index();
+	init_array_definition_by_index();
+	init_resource_definition_by_index();
+	init_interop_definition_by_index();
+	init_field_by_index();
+	init_field_type_by_index();
+
+	init_structure_type_to_blofeld_type_lookup();
 	calculate_structure_size_and_children();
 
 	root_chunk->log(this);
@@ -127,54 +164,56 @@ c_single_tag_file_layout_reader::~c_single_tag_file_layout_reader()
 {
 	delete root_chunk;
 	delete[] aggregate_entries;
-	delete[] structure_size_by_index;
-	delete[] structure_expected_children_by_index;
+	delete[] structure_precomputed_info_by_index;
+	delete[] field_type_to_blofeld_field_type;
 }
 
 unsigned long c_single_tag_file_layout_reader::get_structure_size_by_index(unsigned long structure_index)
 {
-	return structure_size_by_index[structure_index];
+	return structure_precomputed_info_by_index[structure_index].structure_size;
 }
 
 unsigned long c_single_tag_file_layout_reader::get_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry)
 {
-	XXH64_hash_t persistent_identifier_hash = XXH64(&structure_entry.persistent_identifier, sizeof(structure_entry.persistent_identifier), 0);
-	t_persistent_id_to_ulong_map::const_iterator iterator = structure_size_by_persistent_identifier.find(persistent_identifier_hash);
-	ASSERT(iterator != structure_size_by_persistent_identifier.end());
-	return iterator->second;
+	long long _64bit_id = make_64bit_persistent_id(structure_entry.persistent_identifier);
+	const s_structure_precomputed_info* structure_precomputed_info;
+	bool success = structure_precomputed_info_by_persistent_identifier.fetch_ref(&_64bit_id, sizeof(_64bit_id), structure_precomputed_info);
+	ASSERT(success);
+	return structure_precomputed_info->structure_size;
 }
 
 unsigned long c_single_tag_file_layout_reader::get_structure_expected_children_by_index(unsigned long structure_index)
 {
-	return structure_expected_children_by_index[structure_index];
+	return structure_precomputed_info_by_index[structure_index].expected_children;
 }
 
 unsigned long c_single_tag_file_layout_reader::get_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry)
 {
-	XXH64_hash_t persistent_identifier_hash = XXH64(&structure_entry.persistent_identifier, sizeof(structure_entry.persistent_identifier), 0);
-	t_persistent_id_to_ulong_map::const_iterator iterator = structure_expected_children_persistent_identifier.find(persistent_identifier_hash);
-	ASSERT(iterator != structure_expected_children_persistent_identifier.end());
-	return iterator->second;
+	long long _64bit_id = make_64bit_persistent_id(structure_entry.persistent_identifier);
+	const s_structure_precomputed_info* structure_precomputed_info;
+	bool success = structure_precomputed_info_by_persistent_identifier.fetch_ref(&_64bit_id, sizeof(_64bit_id), structure_precomputed_info);
+	ASSERT(success);
+	return structure_precomputed_info->expected_children;
 }
 
 void c_single_tag_file_layout_reader::calculate_structure_size_and_children()
 {
 	unsigned long structure_count = get_struct_definition_count();
-	structure_size_by_index = new() unsigned long[structure_count];
-	structure_expected_children_by_index = new() unsigned long[structure_count];
+	structure_precomputed_info_by_index = new() s_structure_precomputed_info[structure_count];
 
 	for (unsigned long structure_index = 0; structure_index < structure_count; structure_index++)
 	{
 		s_tag_persist_struct_definition& structure_entry = get_struct_definition_by_index(structure_index);
-		XXH64_hash_t persistent_identifier_hash = XXH64(&structure_entry.persistent_identifier, sizeof(structure_entry.persistent_identifier), 0);
 
 		unsigned long structure_size = _calculate_structure_size_by_index(structure_index);
 		unsigned long expected_children = _calculate_structure_expected_children_by_index(structure_index);
 
-		structure_size_by_index[structure_index] = structure_size;
-		structure_expected_children_by_index[structure_index] = expected_children;
-		structure_size_by_persistent_identifier[persistent_identifier_hash] = structure_size;
-		structure_expected_children_persistent_identifier[persistent_identifier_hash] = expected_children;
+		s_structure_precomputed_info& structure_precomputed_info = structure_precomputed_info_by_index[structure_index];
+		structure_precomputed_info.structure_size = structure_size;
+		structure_precomputed_info.expected_children = expected_children;
+
+		long long _64bit_id = make_64bit_persistent_id(structure_entry.persistent_identifier);
+		structure_precomputed_info_by_persistent_identifier.enqueue(&_64bit_id, sizeof(_64bit_id), structure_precomputed_info);
 	}
 }
 
@@ -199,22 +238,16 @@ unsigned long c_single_tag_file_layout_reader::_calculate_structure_size_by_entr
 		s_tag_persist_field& field_entry = get_field_by_index(field_index);
 		s_tag_persist_field_type& field_type = get_field_type_by_index(field_entry.field_type_index);
 
-		const char* type_string = get_string_by_string_character_index(field_type.string_character_index);
-		const char* name_string = get_string_by_string_character_index(field_entry.string_character_index);
-
-		blofeld::e_field blofeld_field_type;
-		BCS_RESULT rs = blofeld::tag_field_type_to_field(type_string, blofeld_field_type);
-		ASSERT(BCS_SUCCEEDED(rs));
-
-		if (blofeld_field_type == blofeld::_field_terminator)
-		{
-			goto end;
-		}
-
 		unsigned long field_size = field_type.size;
-
-		//if (field_type.metadata)
+		if (field_size == 0)
 		{
+			blofeld::e_field blofeld_field_type = get_blofeld_type_by_field_type_index(field_entry.field_type_index);
+
+			if (blofeld_field_type == blofeld::_field_terminator)
+			{
+				goto end;
+			}
+
 			switch (blofeld_field_type)
 			{
 			case blofeld::_field_struct:
@@ -241,12 +274,11 @@ unsigned long c_single_tag_file_layout_reader::_calculate_structure_size_by_entr
 			}
 		}
 
-
 		structure_size += field_size;
 
 		//console_write_line_verbose("0x%08lX 0x%08lX %s %s", field_size, structure_size, type_string, name_string);
 
-		debug_point;
+		
 	}
 end:;
 	return structure_size;
@@ -261,158 +293,211 @@ unsigned long c_single_tag_file_layout_reader::_calculate_structure_expected_chi
 		s_tag_persist_field& field_entry = get_field_by_index(field_index);
 		s_tag_persist_field_type& field_type = get_field_type_by_index(field_entry.field_type_index);
 
-		const char* type_string = get_string_by_string_character_index(field_type.string_character_index);
-		const char* name_string = get_string_by_string_character_index(field_entry.string_character_index);
-
-		blofeld::e_field blofeld_field_type;
-		BCS_RESULT rs = blofeld::tag_field_type_to_field(type_string, blofeld_field_type);
-		ASSERT(BCS_SUCCEEDED(rs));
-
-		if (blofeld_field_type == blofeld::_field_terminator)
+		if (field_type.has_child_chunk)
 		{
-			goto end;
-		}
-
-		unsigned long field_size = field_type.size;
-
-		switch (blofeld_field_type)
-		{
-		case blofeld::_field_struct:
-		case blofeld::_field_tag_reference:
-		case blofeld::_field_old_string_id:
-		case blofeld::_field_string_id:
-		case blofeld::_field_data:
-		case blofeld::_field_block:
-		case blofeld::_field_pageable:
 			child_entry_count++;
-			break;
 		}
-
-		debug_point;
+		else if (field_type.size == 0)
+		{
+			blofeld::e_field blofeld_field_type = get_blofeld_type_by_field_type_index(field_entry.field_type_index);
+			if (blofeld_field_type == blofeld::_field_terminator)
+			{
+				goto end;
+			}
+		}
 	}
 end:;
 	return child_entry_count;
 }
 
-const char* c_single_tag_file_layout_reader::get_string_by_string_character_index(const s_tag_persist_string_character_index& string_character_index) const
+void c_single_tag_file_layout_reader::init_string_by_string_character_index()
 {
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
 		BCS_RESULT rs = BCS_S_OK;
-
-		const void* chunk_data;
-		unsigned long chunk_data_size;
-		rs = string_data_chunk->get_data(chunk_data, chunk_data_size);
+		rs = string_data_chunk->get_data(*reinterpret_cast<const void**>(&string_by_string_character_index), string_by_string_character_index_size);
 		ASSERT(BCS_SUCCEEDED(rs));
-
-		return static_cast<const char*>(chunk_data) + string_character_index.offset;
 	}
 	else
 	{
-		return tag_layout_prechunk_chunk->string_data + string_character_index.offset;
+		string_by_string_character_index = tag_layout_prechunk_chunk->string_data;
+		string_by_string_character_index_size = tag_layout_prechunk_chunk->layout_header_prechunk.string_data_size;
+	}
+}
+
+const char* c_single_tag_file_layout_reader::get_string_by_string_character_index(const s_tag_persist_string_character_index& string_character_index) const
+{
+	ASSERT(string_character_index.offset < string_by_string_character_index_size);
+	return string_by_string_character_index + string_character_index.offset;
+}
+
+void c_single_tag_file_layout_reader::init_custom_block_index_search_name_by_index()
+{
+	if (tag_layout_prechunk_chunk == nullptr)
+	{
+		custom_block_index_search_name_by_index = custom_block_index_search_names_chunk->offsets;
+		custom_block_index_search_name_by_index_count = custom_block_index_search_names_chunk->entry_count;
+	}
+	else
+	{
+		custom_block_index_search_name_by_index = tag_layout_prechunk_chunk->custom_block_index_search_names;
+		custom_block_index_search_name_by_index_count = tag_layout_prechunk_chunk->layout_header_prechunk.custom_block_index_search_names_count;
 	}
 }
 
 const char* c_single_tag_file_layout_reader::get_custom_block_index_search_name_by_index(unsigned long custom_block_index_search_name_index) const
 {
+	ASSERT(custom_block_index_search_name_index < custom_block_index_search_name_by_index_count);
+	return get_string_by_string_character_index(custom_block_index_search_name_by_index[custom_block_index_search_name_index]);
+}
+
+void  c_single_tag_file_layout_reader::init_data_definition_name_by_index()
+{
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
-		return get_string_by_string_character_index(custom_block_index_search_names_chunk->offsets[custom_block_index_search_name_index]);
+		data_definition_name_by_index = data_definition_name_chunk->offsets;
+		data_definition_name_by_index_count = data_definition_name_chunk->entry_count;
 	}
 	else
 	{
-		return get_string_by_string_character_index(tag_layout_prechunk_chunk->custom_block_index_search_names[custom_block_index_search_name_index]);
+		data_definition_name_by_index = tag_layout_prechunk_chunk->data_definition_names;
+		data_definition_name_by_index_count = tag_layout_prechunk_chunk->layout_header_prechunk.data_definition_name_count;
 	}
 }
 
 const char* c_single_tag_file_layout_reader::get_data_definition_name_by_index(unsigned long data_definition_index) const
 {
+	ASSERT(data_definition_index < data_definition_name_by_index_count);
+	return get_string_by_string_character_index(data_definition_name_by_index[data_definition_index]);
+}
+
+void c_single_tag_file_layout_reader::init_block_definition_by_index()
+{
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
-		return get_string_by_string_character_index(data_definition_name_chunk->offsets[data_definition_index]);
+		block_definition_by_index = block_definitions_chunk->entries;
+		block_definition_by_index_count = block_definitions_chunk->entry_count;
 	}
 	else
 	{
-		return get_string_by_string_character_index(tag_layout_prechunk_chunk->data_definition_names[data_definition_index]);
+		block_definition_by_index_count = tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count;
+		block_definition_by_index = trivial_malloc(s_tag_persist_block_definition, block_definition_by_index_count);
+
+		for (unsigned long block_index = 0; block_index < block_definition_by_index_count; block_index++)
+		{
+			block_definition_by_index[block_index] = aggregate_entries[block_index].block_definition;
+		}
 	}
 }
 
 s_tag_persist_block_definition& c_single_tag_file_layout_reader::get_block_definition_by_index(unsigned long index) const
 {
+	ASSERT(index < block_definition_by_index_count);
+	return block_definition_by_index[index];
+}
+
+void c_single_tag_file_layout_reader::init_struct_definition_count()
+{
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
-		ASSERT(index < block_definitions_chunk->entry_count);
-		return block_definitions_chunk->entries[index];
+		struct_definition_count = structure_definitions_chunk->entry_count;
 	}
 	else
 	{
-		ASSERT(index < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count);
-		return aggregate_entries[index].block_definition;
+		struct_definition_count = tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count;
 	}
 }
 
 unsigned long c_single_tag_file_layout_reader::get_struct_definition_count() const
 {
+	return struct_definition_count;
+}
+
+void c_single_tag_file_layout_reader::init_struct_definition_by_index()
+{
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
-		return structure_definitions_chunk->entry_count;
+		struct_definition_by_index = structure_definitions_chunk->entries;
+		struct_definition_by_index_count = structure_definitions_chunk->entry_count;
 	}
 	else
 	{
-		return tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count;
+		struct_definition_by_index_count = tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count;
+		struct_definition_by_index = trivial_malloc(s_tag_persist_struct_definition, struct_definition_by_index_count);
+
+		for (unsigned long struct_index = 0; struct_index < block_definition_by_index_count; struct_index++)
+		{
+			struct_definition_by_index[struct_index] = aggregate_entries[struct_index].struct_definition;
+		}
 	}
 }
 
 s_tag_persist_struct_definition& c_single_tag_file_layout_reader::get_struct_definition_by_index(unsigned long index) const
 {
+	ASSERT(index < struct_definition_by_index_count);
+	return struct_definition_by_index[index];
+}
+
+void c_single_tag_file_layout_reader::init_array_definition_by_index()
+{
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
-		ASSERT(index < structure_definitions_chunk->entry_count);
-		return structure_definitions_chunk->entries[index];
+		array_definition_by_index = array_definitions_chunk->entries;
+		array_definition_by_index_count = array_definitions_chunk->entry_count;
 	}
 	else
 	{
-		ASSERT(index < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count);
-		return aggregate_entries[index].struct_definition;
+		array_definition_by_index = tag_layout_prechunk_chunk->array_definitions;
+		array_definition_by_index_count = tag_layout_prechunk_chunk->layout_header_prechunk.array_definition_count;
 	}
 }
 
 s_tag_persist_array_definition& c_single_tag_file_layout_reader::get_array_definition_by_index(unsigned long index) const
 {
+	ASSERT(index < array_definition_by_index_count);
+	return array_definition_by_index[index];
+}
+
+void c_single_tag_file_layout_reader::init_resource_definition_by_index()
+{
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
-		ASSERT(index < array_definitions_chunk->entry_count);
-		return array_definitions_chunk->entries[index];
+		resource_definition_by_index = resource_definitions_chunk->entries;
+		resource_definition_by_index_count = resource_definitions_chunk->entry_count;
 	}
 	else
 	{
-		ASSERT(index < tag_layout_prechunk_chunk->layout_header_prechunk.array_definition_count);
-		return tag_layout_prechunk_chunk->array_definitions[index];
+		FATAL_ERROR("Not sure what to do here yet");
+		//resource_definition_by_index = ;
+		//resource_definition_by_index_count = ;
 	}
 }
 
 s_tag_persist_resource_definition& c_single_tag_file_layout_reader::get_resource_definition_by_index(unsigned long index) const
 {
+	ASSERT(index < resource_definition_by_index_count);
+	return resource_definition_by_index[index];
+}
+
+void c_single_tag_file_layout_reader::init_interop_definition_by_index()
+{
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
-		return resource_definitions_chunk->entries[index];
+		interop_definition_by_index = interop_definitions_chunk->entries;
+		interop_definition_by_index_count = interop_definitions_chunk->entry_count;
 	}
 	else
 	{
 		FATAL_ERROR("Not sure what to do here yet");
+		//interop_definition_by_index = ;
+		//interop_definition_by_index_count = ;
 	}
 }
 
 s_tag_persist_interop_definition& c_single_tag_file_layout_reader::get_interop_definition_by_index(unsigned long index) const
 {
-	if (tag_layout_prechunk_chunk == nullptr)
-	{
-		return interop_definitions_chunk->entries[index];
-	}
-	else
-	{
-		FATAL_ERROR("Not sure what to do here yet");
-	}
+	ASSERT(index < interop_definition_by_index_count);
+	return interop_definition_by_index[index];
 }
 
 s_tag_persist_aggregate_prechunk& c_single_tag_file_layout_reader::get_aggregate_by_index(unsigned long index) const
@@ -421,28 +506,67 @@ s_tag_persist_aggregate_prechunk& c_single_tag_file_layout_reader::get_aggregate
 	return tag_layout_prechunk_chunk->aggregate_definitions[index];
 }
 
-s_tag_persist_field& c_single_tag_file_layout_reader::get_field_by_index(unsigned long index) const
+void c_single_tag_file_layout_reader::init_field_by_index()
 {
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
-		return fields_chunk->entries[index];
+		field_by_index = fields_chunk->entries;
+		field_by_index_count = fields_chunk->entry_count;
 	}
 	else
 	{
-		return tag_layout_prechunk_chunk->fields[index];
+		field_by_index = tag_layout_prechunk_chunk->fields;
+		field_by_index_count = tag_layout_prechunk_chunk->layout_header_prechunk.field_count;
+	}
+}
+
+s_tag_persist_field& c_single_tag_file_layout_reader::get_field_by_index(unsigned long index) const
+{
+	ASSERT(index < field_by_index_count);
+	return field_by_index[index];
+}
+
+void c_single_tag_file_layout_reader::init_field_type_by_index()
+{
+	if (tag_layout_prechunk_chunk == nullptr)
+	{
+		field_type_by_index = field_types_chunk->entries;
+		field_type_by_index_count = field_types_chunk->entry_count;
+	}
+	else
+	{
+		field_type_by_index = tag_layout_prechunk_chunk->field_types;
+		field_type_by_index_count = tag_layout_prechunk_chunk->layout_header_prechunk.field_type_count;
 	}
 }
 
 s_tag_persist_field_type& c_single_tag_file_layout_reader::get_field_type_by_index(unsigned long index) const
 {
-	if (tag_layout_prechunk_chunk == nullptr)
+	ASSERT(index < field_type_by_index_count);
+	return field_type_by_index[index];
+}
+
+blofeld::e_field c_single_tag_file_layout_reader::get_blofeld_type_by_field_type_index(unsigned long field_type_index) const
+{
+	ASSERT(field_type_index < field_type_to_blofeld_field_type_count);
+	blofeld::e_field field_type = field_type_to_blofeld_field_type[field_type_index];
+	return field_type;
+}
+
+void c_single_tag_file_layout_reader::init_structure_type_to_blofeld_type_lookup()
+{
+	field_type_to_blofeld_field_type_count = tag_group_layout_chunk->get_field_type_count();
+	field_type_to_blofeld_field_type = new blofeld::e_field[field_type_to_blofeld_field_type_count];
+	for (unsigned long field_type_index = 0; field_type_index < field_type_to_blofeld_field_type_count; field_type_index++)
 	{
-		ASSERT(index < field_types_chunk->entry_count);
-		return field_types_chunk->entries[index];
-	}
-	else
-	{
-		ASSERT(index < tag_layout_prechunk_chunk->layout_header_prechunk.field_type_count);
-		return tag_layout_prechunk_chunk->field_types[index];
+		s_tag_persist_field_type& field_type = get_field_type_by_index(field_type_index);
+
+		const char* type_string = get_string_by_string_character_index(field_type.string_character_index);
+
+		blofeld::e_field blofeld_field_type;
+		BCS_RESULT rs = blofeld::tag_field_type_to_field(type_string, blofeld_field_type);
+		ASSERT(BCS_SUCCEEDED(rs));
+
+		field_type_to_blofeld_field_type[field_type_index] = blofeld_field_type;
 	}
 }

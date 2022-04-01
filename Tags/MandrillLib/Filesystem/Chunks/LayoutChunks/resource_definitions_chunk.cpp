@@ -14,7 +14,7 @@ c_resource_definitions_chunk::c_resource_definitions_chunk(c_chunk& parent) :
 {
 	
 
-	debug_point;
+	
 }
 
 c_resource_definitions_chunk::~c_resource_definitions_chunk()

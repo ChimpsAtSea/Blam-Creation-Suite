@@ -129,7 +129,9 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="!Resources\Cousine-Regular.ttf" />
+    <Font Include="!Resources\fa-brands-400.ttf" />
     <Font Include="!Resources\fa-regular-400.ttf" />
+    <Font Include="!Resources\fa-solid-900.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="!Resources\bcs_icon.ico" />
@@ -208,7 +210,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>tbb.lib;Version.lib;Shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tbb.lib;Version.lib;Shlwapi.lib;DbgHelp.Lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
@@ -235,7 +237,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>tbb.lib;Version.lib;Shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tbb.lib;Version.lib;Shlwapi.lib;DbgHelp.Lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>

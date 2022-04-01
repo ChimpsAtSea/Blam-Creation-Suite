@@ -4,7 +4,7 @@ c_build_identifier_chunk::c_build_identifier_chunk(c_chunk& parent) :
 	c_typed_chunk(&parent),
 	id()
 {
-	debug_point;
+	
 }
 
 BCS_RESULT c_build_identifier_chunk::read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children)

@@ -119,7 +119,7 @@ c_halo3_vectorart_vertex_buffer_interop::c_halo3_vectorart_vertex_buffer_interop
 	vertex_data = new() char[vertex_data_size];
 	memcpy(vertex_data, source_vertex_data, vertex_data_size);
 
-	debug_point;
+	
 	*/
 }
 
@@ -148,7 +148,7 @@ c_halo3_polyart_vertex_buffer_interop::c_halo3_polyart_vertex_buffer_interop(c_h
 	memcpy(vertex_data, source_vertex_data, vertex_data_size);
 	vertex_type = interop_data.vertex_type;
 
-	debug_point;
+	
 	*/
 }
 
@@ -175,7 +175,7 @@ c_halo3_polyart_index_buffer_interop::c_halo3_polyart_index_buffer_interop(c_hal
 	index_data = new() char[index_data_size];
 	memcpy(index_data, source_index_data, index_data_size);
 
-	debug_point;
+	
 	*/
 }
 

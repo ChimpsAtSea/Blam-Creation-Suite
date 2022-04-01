@@ -85,7 +85,7 @@ c_halo4_debug_reader::c_halo4_debug_reader(c_halo4_cache_cluster& cache_cluster,
 
 	//			string_id_table_buffer[string_buffer_index++] = string_id;
 
-	//			debug_point;
+	//			
 	//			string_index++;
 	//		}
 	//		if (set_index == 0)
@@ -93,7 +93,7 @@ c_halo4_debug_reader::c_halo4_debug_reader(c_halo4_cache_cluster& cache_cluster,
 	//			set_total_strings += cache_file_string_id_count;
 	//			string_buffer_index += cache_file_string_id_count;
 	//		}
-	//		debug_point;
+	//		
 	//	}
 	//}
 	//{ // process cache string ids
@@ -107,11 +107,11 @@ c_halo4_debug_reader::c_halo4_debug_reader(c_halo4_cache_cluster& cache_cluster,
 
 	//		string_id_table_buffer[string_buffer_index++] = string_id;
 
-	//		debug_point;
+	//		
 	//	}
 	//}
 
-	debug_point;
+	
 }
 
 c_halo4_debug_reader::~c_halo4_debug_reader()

@@ -164,7 +164,7 @@ void c_halo1_bitmap_tag_viewer_tab::render_bitmap_enumerable(h_enumerable& enume
 		{
 			ImGui::Dummy({ 0.0f, 3.0f });
 			ImGui::SetNextItemWidth(-1);
-			ImGui::Button(ICON_FA_COG);
+			ImGui::Button(ICON_FA_GEAR);
 		}
 		ImGui::NextColumn();
 		{

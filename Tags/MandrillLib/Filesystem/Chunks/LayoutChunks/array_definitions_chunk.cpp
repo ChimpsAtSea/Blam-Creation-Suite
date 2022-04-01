@@ -12,7 +12,7 @@ c_array_definitions_chunk::c_array_definitions_chunk(c_chunk& parent) :
 	entries(),
 	entry_count()
 {
-	debug_point;
+	
 }
 
 c_array_definitions_chunk::~c_array_definitions_chunk()

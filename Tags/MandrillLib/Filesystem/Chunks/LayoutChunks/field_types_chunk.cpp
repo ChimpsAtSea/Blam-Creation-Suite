@@ -4,7 +4,7 @@ template<> void byteswap_inplace(s_tag_persist_field_type& value)
 {
 	byteswap_inplace(value.string_character_index);
 	byteswap_inplace(value.size);
-	byteswap_inplace(value.metadata);
+	byteswap_inplace(value.has_child_chunk);
 }
 
 c_field_types_chunk::c_field_types_chunk(c_chunk& parent) :
@@ -13,7 +13,7 @@ c_field_types_chunk::c_field_types_chunk(c_chunk& parent) :
 	entry_count()
 {
 
-	debug_point;
+	
 }
 
 c_field_types_chunk::~c_field_types_chunk()
@@ -44,11 +44,11 @@ void c_field_types_chunk::log_impl(c_tag_file_string_debugger* string_debugger) 
 		if (string_debugger)
 		{
 			const char* _typename = string_debugger->get_string_by_string_character_index(entry.string_character_index);
-			log_pad(); console_write_line_verbose("\t0x%08X\tsize:0x%08X metadata:%i %s", index, entry.size, static_cast<int>(entry.metadata), _typename);
+			log_pad(); console_write_line_verbose("\t0x%08X\tsize:0x%08X metadata:%i %s", index, entry.size, static_cast<int>(entry.has_child_chunk), _typename);
 		}
 		else
 		{
-			log_pad(); console_write_line_verbose("\t0x%08X\tsize:0x%08X metadata:%i string_character_index:0x%08X", index, entry.size, static_cast<int>(entry.metadata), entry.string_character_index.offset);
+			log_pad(); console_write_line_verbose("\t0x%08X\tsize:0x%08X metadata:%i string_character_index:0x%08X", index, entry.size, static_cast<int>(entry.has_child_chunk), entry.string_character_index.offset);
 		}
 	}
 }

@@ -27,5 +27,5 @@ public:
 
 	unsigned long engine_set_counts[k_num_sets];
 	std::vector<std::string> string_ids[k_num_sets];
-	std::map<std::string, unsigned long> string_id_table;
+	std::unordered_map<std::string, unsigned long> string_id_table;
 };

@@ -154,7 +154,7 @@ void c_high_level_tag_editor_tab::render_impl()
 			content_width += field_search_width + ImGui::GetStyle().ItemSpacing.x; // "text input"
 			content_width += ImGui::CalcTextSize(ICON_FA_ARROW_LEFT).x + ImGui::GetStyle().FramePadding.x * 2.0f + ImGui::GetStyle().ItemSpacing.x; // "button1"
 			content_width += ImGui::CalcTextSize(ICON_FA_ARROW_RIGHT).x + ImGui::GetStyle().FramePadding.x * 2.0f + ImGui::GetStyle().ItemSpacing.x; // "button2"
-			content_width += ImGui::CalcTextSize(ICON_FA_TIMES).x + ImGui::GetStyle().FramePadding.x * 2.0f + ImGui::GetStyle().ItemSpacing.x; // "button3"
+			content_width += ImGui::CalcTextSize(ICON_FA_XMARK).x + ImGui::GetStyle().FramePadding.x * 2.0f + ImGui::GetStyle().ItemSpacing.x; // "button3"
 
 			search_pos.x = finish_pos.x - content_width;
 		}
@@ -170,7 +170,7 @@ void c_high_level_tag_editor_tab::render_impl()
 		ImGui::SameLine();
 		ImGui::Button(ICON_FA_ARROW_RIGHT);
 		ImGui::SameLine();
-		ImGui::Button(ICON_FA_TIMES);
+		ImGui::Button(ICON_FA_XMARK);
 
 		finish_pos.x = start_pos.x;
 		ImGui::SetCursorScreenPos(finish_pos);
@@ -560,7 +560,7 @@ void c_high_level_tag_editor_tab::render_enumerable(h_enumerable& enumerable, co
 		{
 			ImGui::Dummy({ 0.0f, 3.0f });
 			ImGui::SetNextItemWidth(-1);
-			ImGui::Button(ICON_FA_COG);
+			ImGui::Button(ICON_FA_GEAR);
 		}
 		ImGui::NextColumn();
 		{

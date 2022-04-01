@@ -12,7 +12,7 @@ c_filesystem_tag_project::c_filesystem_tag_project(
 	{
 		h_group* group = new() h_group(engine_platform_build, **tag_group_iter);
 		groups.push_back(group);
-		debug_point;
+		
 	}
 
 	wcscpy(tags_directory, directory);
@@ -40,14 +40,14 @@ c_filesystem_tag_project::c_filesystem_tag_project(
 				high_level_tag->tag_filepath = relative_filepath_mb;
 
 				candidate.group->associate_tag_instance(*high_level_tag);
-				debug_point;
+				
 			}
 		}
 	}
 	stopwatch.stop();
 	float tag_parse_time = stopwatch.get_miliseconds();
 
-	debug_point;
+	
 }
 
 c_filesystem_tag_project::~c_filesystem_tag_project()
@@ -109,7 +109,7 @@ void c_filesystem_tag_project::try_open_single_tag_file(const wchar_t* filepath,
 
 	candidates.push_back({ group, _wcsdup(filepath), _wcsdup(relative_filepath) });
 
-	debug_point;
+	
 }
 
 h_tag* c_filesystem_tag_project::try_parse_tag_file(const wchar_t* filepath)
@@ -155,7 +155,7 @@ h_tag* c_filesystem_tag_project::try_parse_tag_file(const wchar_t* filepath)
 
 	h_tag* high_level_tag;
 	reader->parse_high_level_object(high_level_tag);
-	debug_point;
+	
 
 	return high_level_tag;
 }

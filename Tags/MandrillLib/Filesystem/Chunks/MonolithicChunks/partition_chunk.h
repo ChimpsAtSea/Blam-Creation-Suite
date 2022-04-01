@@ -53,6 +53,6 @@ public:
 
 	c_partition_chunk(c_chunk& parent);
 	~c_partition_chunk();
-	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
+	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children) override final;
 };
 

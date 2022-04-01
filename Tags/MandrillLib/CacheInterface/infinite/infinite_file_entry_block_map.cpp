@@ -131,18 +131,18 @@ BCS_RESULT c_infinite_file_entry_block_map::unpack_blocks(char*& data)
 				ASSERT(read_data_position != nullptr);
 				BCS_RESULT decompress_result = decompress_buffer_oodle(read_data_position, block_entry.compressed_size, write_data_position, block_entry.uncompressed_size);
 				ASSERT(BCS_SUCCEEDED(decompress_result));
-				debug_point;
+				
 			}
 			else
 			{
 				ASSERT(block_entry.uncompressed_size <= block_entry.compressed_size);
 				memcpy(write_data_position, read_data_position, block_entry.uncompressed_size);
-				debug_point;
+				
 			}
 
 			total_bytes_written += block_entry.uncompressed_size;
 
-			debug_point;
+			
 		}
 		ASSERT(total_bytes_written == file_entry.uncompressed_size);
 	}
@@ -169,7 +169,7 @@ BCS_RESULT c_infinite_file_entry_block_map::unpack_blocks(char*& data)
 				return BCS_E_FAIL;
 			}
 			//ASSERT(BCS_SUCCEEDED(decompress_result));
-			debug_point;
+			
 		}
 		else
 		{

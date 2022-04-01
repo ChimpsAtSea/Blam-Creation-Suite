@@ -41,7 +41,7 @@ c_tag_file_high_level_transplant::c_tag_file_high_level_transplant(const char* f
 	//binary_data_chunk->log(layout_reader->string_data_chunk);
 
 
-	debug_point;
+	
 }
 
 c_tag_file_high_level_transplant::~c_tag_file_high_level_transplant()
@@ -56,7 +56,7 @@ h_tag* c_tag_file_high_level_transplant::parse_tag()
 
 	h_tag* high_level_tag;
 	reader->parse_high_level_object(high_level_tag);
-	debug_point;
+	
 
 	high_level_group->associate_tag_instance(*high_level_tag);
 

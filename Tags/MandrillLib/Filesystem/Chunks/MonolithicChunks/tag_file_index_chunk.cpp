@@ -6,7 +6,7 @@ c_tag_file_index_chunk::c_tag_file_index_chunk(c_chunk& parent) :
 	compressed_tag_file_index_entries(),
 	name_buffer()
 {
-	debug_point;
+	
 }
 
 c_tag_file_index_chunk::~c_tag_file_index_chunk()
@@ -37,7 +37,7 @@ BCS_RESULT c_tag_file_index_chunk::read_chunk(void* userdata, const void* data, 
 
 		const char* name = name_buffer + compressed_tag_file_index_entry.name_offset;
 
-		debug_point;
+		
 
 	}
 

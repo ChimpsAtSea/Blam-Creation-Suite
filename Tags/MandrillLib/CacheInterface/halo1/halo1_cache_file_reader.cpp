@@ -89,7 +89,7 @@ BCS_RESULT c_halo1_cache_file_reader::get_build_info(s_cache_file_build_info& bu
 		}
 	}
 
-	debug_point;
+	
 
 	return BCS_S_OK;
 }

@@ -7,7 +7,9 @@
 #include <imgui\imgui_internal.h>
 #pragma pop_macro("new") 
 
-#include "font_awesome_icons.h"
+#include "imgui_math.h"
+#include <IconsFontAwesome6.h>
+#include <IconsFontAwesome6Brands.h>
 #include "imgui_memory_editor.h"
 #include "begin_popup_modal_ex.h"
 #include "imgui_text_editor.h"

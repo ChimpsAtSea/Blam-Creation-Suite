@@ -30,7 +30,7 @@ void c_virtual_tag_source_generator::generate_header() const
 	stream << std::endl << "\t} // end namespace " << namespace_name << std::endl;
 	stream << std::endl << "} // end namespace blofeld" << std::endl;
 
-	std::map<std::string, int> field_name_unique_counter;
+	std::unordered_map<std::string, int> field_name_unique_counter;
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
 		stream << "\t\t" << "template<>" << std::endl;
@@ -50,7 +50,7 @@ void c_virtual_tag_source_generator::generate_header() const
 				continue;
 			}
 
-			std::map<std::string, int>* field_name_unique_counter_ptr = nullptr;
+			std::unordered_map<std::string, int>* field_name_unique_counter_ptr = nullptr;
 			switch (current_field->field_type)
 			{
 			case _field_custom:
@@ -201,7 +201,7 @@ void c_virtual_tag_source_generator::generate_source() const
 	stream << std::endl;
 	stream << std::endl;
 
-	std::map<std::string, int> field_name_unique_counter;
+	std::unordered_map<std::string, int> field_name_unique_counter;
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
 		//hs << "\t\t" << "template<>" << std::endl;
@@ -221,7 +221,7 @@ void c_virtual_tag_source_generator::generate_source() const
 				continue;
 			}
 
-			std::map<std::string, int>* field_name_unique_counter_ptr = nullptr;
+			std::unordered_map<std::string, int>* field_name_unique_counter_ptr = nullptr;
 			switch (current_field->field_type)
 			{
 			case _field_custom:

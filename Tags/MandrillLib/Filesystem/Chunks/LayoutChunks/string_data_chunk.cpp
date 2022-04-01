@@ -3,7 +3,7 @@
 c_string_data_chunk::c_string_data_chunk(c_chunk& parent) :
 	c_typed_chunk(&parent)
 {
-	debug_point;
+	
 }
 
 void c_string_data_chunk::log_impl(c_tag_file_string_debugger* string_debugger) const

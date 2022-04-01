@@ -255,7 +255,7 @@ void search_box()
 		draw_list->AddText({ pos.x + 4.0f, pos.y + 4.0f }, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_TEXT(0.25)), search_reccomendation);
 	}
 	ImGui::SameLine();
-	ImGui::Button(ICON_FA_TIMES);
+	ImGui::Button(ICON_FA_XMARK);
 	ImGui::SameLine();
 	ImGui::Dummy({ 10.0f, 0.0f });
 }
@@ -373,7 +373,7 @@ void tag_editor()
 			content_width += field_search_width + ImGui::GetStyle().ItemSpacing.x; // "text input"
 			content_width += ImGui::CalcTextSize(ICON_FA_ARROW_LEFT).x + ImGui::GetStyle().FramePadding.x * 2.0f + ImGui::GetStyle().ItemSpacing.x; // "button1"
 			content_width += ImGui::CalcTextSize(ICON_FA_ARROW_RIGHT).x + ImGui::GetStyle().FramePadding.x * 2.0f + ImGui::GetStyle().ItemSpacing.x; // "button2"
-			content_width += ImGui::CalcTextSize(ICON_FA_TIMES).x + ImGui::GetStyle().FramePadding.x * 2.0f + ImGui::GetStyle().ItemSpacing.x; // "button3"
+			content_width += ImGui::CalcTextSize(ICON_FA_XMARK).x + ImGui::GetStyle().FramePadding.x * 2.0f + ImGui::GetStyle().ItemSpacing.x; // "button3"
 
 			search_pos.x = finish_pos.x - content_width;
 		}
@@ -389,7 +389,7 @@ void tag_editor()
 		ImGui::SameLine();
 		ImGui::Button(ICON_FA_ARROW_RIGHT);
 		ImGui::SameLine();
-		ImGui::Button(ICON_FA_TIMES);
+		ImGui::Button(ICON_FA_XMARK);
 
 		finish_pos.x = start_pos.x;
 		ImGui::SetCursorScreenPos(finish_pos);

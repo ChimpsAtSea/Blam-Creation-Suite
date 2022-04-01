@@ -62,7 +62,7 @@ public:
 	c_tag_file_blocks_chunk(c_chunk& parent);
 	~c_tag_file_blocks_chunk();
 
-	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
+	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children) override final;
 
 protected:
 	void read_data_array(unsigned long count, s_wide_data_datum* src_wide_data_datums);

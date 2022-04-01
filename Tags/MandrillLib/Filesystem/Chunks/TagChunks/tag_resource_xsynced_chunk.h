@@ -58,7 +58,7 @@ public:
 	
 	c_tag_resource_xsynced_chunk(c_chunk& parent);
 	~c_tag_resource_xsynced_chunk();
-	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
+	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children) override final;
 	virtual void log_impl(c_tag_file_string_debugger* string_debugger) const;
 
 	static void convert_paged_v0_to_monolithic_xsync_state_v2(const s_monolithic_resource_xsync_state_v0& v0, s_monolithic_resource_xsync_state_v2& v2);

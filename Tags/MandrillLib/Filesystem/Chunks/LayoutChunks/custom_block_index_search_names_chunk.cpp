@@ -5,7 +5,7 @@ c_custom_block_index_search_names_chunk::c_custom_block_index_search_names_chunk
 	offsets(),
 	entry_count()
 {
-	debug_point;
+	
 }
 
 c_custom_block_index_search_names_chunk::~c_custom_block_index_search_names_chunk()

@@ -48,12 +48,12 @@ protected:
 
 protected:
 	using t_cache_readers = std::vector<c_infinite_module_file_reader*>;
-	using t_debug_readers = std::map<c_infinite_module_file_reader*, c_infinite_debug_reader*>;
-	using t_tag_readers = std::map<c_infinite_module_file_reader*, c_infinite_tag_reader*>;
-	using t_resource_readers = std::map<c_infinite_module_file_reader*, c_infinite_resource_reader*>;
-	using t_localization_readers = std::map<c_infinite_module_file_reader*, c_infinite_localization_reader*>;
-	using t_tag_instances_by_global_id = std::map<long, c_tag_instance*>;
-	using t_tag_instances_by_global_id64 = std::map<long long, c_tag_instance*>;
+	using t_debug_readers = std::unordered_map<c_infinite_module_file_reader*, c_infinite_debug_reader*>;
+	using t_tag_readers = std::unordered_map<c_infinite_module_file_reader*, c_infinite_tag_reader*>;
+	using t_resource_readers = std::unordered_map<c_infinite_module_file_reader*, c_infinite_resource_reader*>;
+	using t_localization_readers = std::unordered_map<c_infinite_module_file_reader*, c_infinite_localization_reader*>;
+	using t_tag_instances_by_global_id = std::unordered_map<long, c_tag_instance*>;
+	using t_tag_instances_by_global_id64 = std::unordered_map<long long, c_tag_instance*>;
 
 	t_cache_readers cache_readers;
 	t_debug_readers debug_readers;

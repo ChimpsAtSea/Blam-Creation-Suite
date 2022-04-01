@@ -53,29 +53,62 @@ void c_imgui_context_d3d12::init_imgui_font()
 
 	imgui_io.Fonts->Clear();
 
-	ImFontConfig default_font_configuration = {};
-	default_font_configuration.MergeMode = false;
-	//font_awesome_font_configuration.GlyphMinAdvanceX = font_size; // Use if you want to make the icon monospaced
-	default_font_configuration.PixelSnapH = true;
+	{
+		ImFontConfig default_font_configuration = {};
+		default_font_configuration.MergeMode = false;
+		//font_awesome_font_configuration.GlyphMinAdvanceX = font_size; // Use if you want to make the icon monospaced
+		default_font_configuration.PixelSnapH = true;
 
-	void* default_font_resource_data;
-	unsigned long long default_font_resource_data_size;
-	resources_read_resource_to_memory(_bcs_resource_type_font_cousine_regular, default_font_resource_data, default_font_resource_data_size);
+		void* default_font_resource_data;
+		unsigned long long default_font_resource_data_size;
+		BCS_RESULT resource_read_result = resources_read_resource_to_memory(_bcs_resource_type_font_cousine_regular, default_font_resource_data, default_font_resource_data_size);
+		ASSERT(BCS_SUCCEEDED(resource_read_result));
 
-	imgui_font = imgui_io.Fonts->AddFontFromMemoryTTF(default_font_resource_data, static_cast<int>(default_font_resource_data_size), default_font_size, &default_font_configuration, imgui_io.Fonts->GetGlyphRangesDefault());
+		imgui_font = imgui_io.Fonts->AddFontFromMemoryTTF(default_font_resource_data, static_cast<int>(default_font_resource_data_size), default_font_size, &default_font_configuration, imgui_io.Fonts->GetGlyphRangesDefault());
+	}
+	{
+		ImFontConfig font_awesome_regular_font_configuration;
+		font_awesome_regular_font_configuration.MergeMode = true;
+		font_awesome_regular_font_configuration.GlyphMinAdvanceX = font_awesome_font_size * 1.25f; // Use if you want to make the icon monospaced
+		font_awesome_regular_font_configuration.PixelSnapH = true;
 
+		void* font_awesome_regular_font_resource_data;
+		unsigned long long font_awesome_regular_font_resource_data_size;
+		BCS_RESULT resource_read_result = resources_read_resource_to_memory(_bcs_resource_type_font_font_awesome_regular, font_awesome_regular_font_resource_data, font_awesome_regular_font_resource_data_size);
+		ASSERT(BCS_SUCCEEDED(resource_read_result));
 
-	ImFontConfig font_awesome_font_configuration;
-	font_awesome_font_configuration.MergeMode = true;
-	font_awesome_font_configuration.GlyphMinAdvanceX = font_awesome_font_size * 1.25f; // Use if you want to make the icon monospaced
-	font_awesome_font_configuration.PixelSnapH = true;
+		//const ImWchar font_awesome_regular_font_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
+		const ImWchar font_awesome_regular_font_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
+		imgui_font = imgui_io.Fonts->AddFontFromMemoryTTF(
+			font_awesome_regular_font_resource_data,
+			static_cast<int>(font_awesome_regular_font_resource_data_size),
+			font_awesome_font_size,
+			&font_awesome_regular_font_configuration,
+			font_awesome_regular_font_ranges);
 
-	void* font_awesome_font_resource_data;
-	unsigned long long font_awesome_font_resource_data_size;
-	resources_read_resource_to_memory(_bcs_resource_type_font_font_awesome, font_awesome_font_resource_data, font_awesome_font_resource_data_size);
+		debug_point;
+	}
+	{
+		ImFontConfig font_awesome_brands_font_configuration;
+		font_awesome_brands_font_configuration.MergeMode = true;
+		font_awesome_brands_font_configuration.GlyphMinAdvanceX = font_awesome_font_size * 1.25f; // Use if you want to make the icon monospaced
+		font_awesome_brands_font_configuration.PixelSnapH = true;
 
-	static const ImWchar icon_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
-	imgui_font = imgui_io.Fonts->AddFontFromMemoryTTF(font_awesome_font_resource_data, static_cast<int>(font_awesome_font_resource_data_size), font_awesome_font_size, &font_awesome_font_configuration, icon_ranges);
+		void* font_awesome_brands_font_resource_data;
+		unsigned long long font_awesome_brands_font_resource_data_size;
+		BCS_RESULT resource_read_result = resources_read_resource_to_memory(_bcs_resource_type_font_font_awesome_brands, font_awesome_brands_font_resource_data, font_awesome_brands_font_resource_data_size);
+		ASSERT(BCS_SUCCEEDED(resource_read_result));
+
+		const ImWchar font_awesome_brands_font_ranges[] = { ICON_MIN_FAB, ICON_MAX_FAB, 0 };
+		imgui_font = imgui_io.Fonts->AddFontFromMemoryTTF(
+			font_awesome_brands_font_resource_data,
+			static_cast<int>(font_awesome_brands_font_resource_data_size),
+			font_awesome_font_size,
+			&font_awesome_brands_font_configuration,
+			font_awesome_brands_font_ranges);
+
+		debug_point;
+	}
 
 	imgui_io.Fonts->Build();
 	ImGui::SetCurrentFont(imgui_font);
@@ -147,7 +180,7 @@ float c_imgui_context_d3d12::calculate_font_scale_factor()
 {
 	HMONITOR monitor;
 	EnumDisplayMonitors(NULL, NULL, monitor_enum_procedure, reinterpret_cast<LPARAM>(&monitor));
-	
+
 
 	UINT monitor_dpi_raw[2];
 	GetDpiForMonitor(monitor, MDT_EFFECTIVE_DPI, &monitor_dpi_raw[0], &monitor_dpi_raw[1]);
@@ -165,7 +198,7 @@ float c_imgui_context_d3d12::calculate_font_scale_factor()
 
 BCS_RESULT graphics_d3d12_imgui_context_create(
 	c_window_windows* window,
-	c_graphics_d3d12* graphics, 
+	c_graphics_d3d12* graphics,
 	c_imgui_context_d3d12*& imgui_context)
 {
 	try

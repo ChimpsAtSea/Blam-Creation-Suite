@@ -138,7 +138,7 @@ BCS_RESULT c_tag_layout_prechunk_chunk::read_chunk(void* userdata, const void* d
 	char* expected_data_end = reinterpret_cast<char*>(aggregate_definitions + layout_header_prechunk.aggregate_definition_count);
 	ASSERT(expected_data_end == get_chunk_data_end());
 
-	debug_point;
+	
 
 	return rs;
 }

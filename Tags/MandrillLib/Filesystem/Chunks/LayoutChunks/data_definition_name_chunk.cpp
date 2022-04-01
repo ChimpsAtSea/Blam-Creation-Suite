@@ -7,7 +7,7 @@ c_data_definition_name_chunk::c_data_definition_name_chunk(c_chunk& parent) :
 {
 
 
-	debug_point;
+	
 }
 
 c_data_definition_name_chunk::~c_data_definition_name_chunk()

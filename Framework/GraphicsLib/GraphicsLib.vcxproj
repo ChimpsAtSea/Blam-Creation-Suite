@@ -128,8 +128,8 @@
     <ClInclude Include="Archetype\graphics_swap_chain.h" />
     <ClInclude Include="Archetype\graphics_vertex_layout.h" />
     <ClInclude Include="ImGui\begin_popup_modal_ex.h" />
-    <ClInclude Include="ImGui\font_awesome_icons.h" />
     <ClInclude Include="ImGui\imgui-public-pch.h" />
+    <ClInclude Include="ImGui\imgui_math.h" />
     <ClInclude Include="ImGui\imgui_memory_editor.h" />
     <ClInclude Include="ImGui\imgui_text_editor.h" />
     <ClInclude Include="ImGui\imgui_async_file_dialog.h" />

@@ -91,7 +91,7 @@ c_high_level_tag_file_writer::c_high_level_tag_file_writer(s_engine_platform_bui
 
 	header_chunk->log(this);
 
-	debug_point;
+	
 }
 
 c_high_level_tag_file_writer::~c_high_level_tag_file_writer()
@@ -326,7 +326,7 @@ unsigned long c_high_level_tag_file_writer::enqueue_field_type(blofeld::e_field 
 	s_tag_persist_field_type tag_persist_field_type = {};
 	tag_persist_field_type.string_character_index.offset = enqueue_string(tag_field_type);
 	ASSERT(BCS_SUCCEEDED(blofeld::get_blofeld_tag_file_field_size(field_type, engine_platform_build, tag_persist_field_type.size)));
-	tag_persist_field_type.metadata = false;
+	tag_persist_field_type.has_child_chunk = false;
 
 	switch (field_type)
 	{
@@ -338,7 +338,7 @@ unsigned long c_high_level_tag_file_writer::enqueue_field_type(blofeld::e_field 
 	case blofeld::_field_tag_reference:
 	case blofeld::_field_string_id:
 	case blofeld::_field_old_string_id:
-		tag_persist_field_type.metadata = true;
+		tag_persist_field_type.has_child_chunk = true;
 		break;
 	}
 
@@ -581,7 +581,7 @@ void c_high_level_tag_file_writer::serialize_tag_group(const h_tag& tag, c_binar
 	serialize_tag_struct(tag, structure_data, tag_struct_chunk);
 
 	tag_block_chunk.append_data(structure_data, structure_size);
-	debug_point;
+	
 }
 
 void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_tag_struct_chunk& parent_chunk)
@@ -618,7 +618,7 @@ void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_t
 
 		serialize_tag_struct(object, structure_data, tag_struct_chunk);
 
-		debug_point;
+		
 	}
 
 	tag_block_chunk.append_data(block_data, block_data_size);
@@ -652,7 +652,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_object& object, 
 
 			serialize_tag_struct(object, dst_field_data, _tag_struct_chunk);
 
-			debug_point;
+			
 		}
 		break;
 		case blofeld::_field_array:
@@ -682,7 +682,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_object& object, 
 			tag_block->address = 0;
 			tag_block->definition_address = 0;
 
-			debug_point;
+			
 		}
 		break;
 		case blofeld::_field_data:
@@ -726,7 +726,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_object& object, 
 				s_tag_resource* tag_resource = reinterpret_cast<s_tag_resource*>(dst_field_data);
 				tag_resource->resource_handle = 0;
 
-				debug_point;
+				
 			}
 		}
 		break;
@@ -756,7 +756,7 @@ void c_high_level_tag_file_writer::serialize_tag_data(const h_data& data, c_tag_
 		tag_data_chunk.set_data(data.data(), static_cast<unsigned long>(data.size()));
 	}
 
-	debug_point;
+	
 }
 
 void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* resource, const blofeld::s_tag_resource_definition& tag_resource_definition, c_tag_struct_chunk& parent_chunk)
@@ -807,7 +807,7 @@ void c_high_level_tag_file_writer::serialize_string_id(const h_string_id& string
 
 	tag_string_id_chunk.set_string(string_id.c_str());
 
-	debug_point;
+	
 }
 
 unsigned long c_high_level_tag_file_writer::calculate_structure_size(const h_object& object)

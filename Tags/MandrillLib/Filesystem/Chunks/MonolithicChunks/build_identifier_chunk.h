@@ -7,5 +7,5 @@ public:
 
 	c_build_identifier_chunk(c_chunk& parent);
 
-	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
+	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children) override final;
 };

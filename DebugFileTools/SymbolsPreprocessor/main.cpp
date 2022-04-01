@@ -2,6 +2,10 @@
 #include <SymbolsRuntime\symbolsruntime-public-pch.h>
 #include <SymbolsLib\symbolslib-public-pch.h>
 
+#if _HAS_ITERATOR_DEBUGGING
+#error fuck
+#endif
+
 s_tracked_memory_stats symbolspreprocessor_tracked_memory = { "symbols preprocessor" };
 s_tracked_memory_stats& _library_tracked_memory = symbolspreprocessor_tracked_memory;
 

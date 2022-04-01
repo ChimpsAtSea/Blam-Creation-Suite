@@ -12,7 +12,7 @@ c_fields_chunk::c_fields_chunk(c_chunk& parent) :
 	entries(),
 	entry_count()
 {
-	debug_point;
+	
 }
 
 c_fields_chunk::~c_fields_chunk()

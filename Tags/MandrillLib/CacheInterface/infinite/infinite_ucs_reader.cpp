@@ -42,7 +42,7 @@ c_infinite_ucs_reader::c_infinite_ucs_reader(const void* ucs_data) :
 	if (ucs_header->string_table_size == 0) string_table = nullptr;
 	if (ucs_header->zoneset_data_size == 0) zoneset_data = nullptr;
 
-	debug_point;
+	
 
 	root_tag_block_entry_index = get_root_tag_block_entry_index();
 	ASSERT(root_tag_block_entry_index >= 0);

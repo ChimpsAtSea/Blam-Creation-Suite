@@ -77,7 +77,7 @@ public:
 		bool running;
 
 		c_tag_project_configurator_tab_task(c_tag_project_configurator_tab& project_configurator_tab);
-		~c_tag_project_configurator_tab_task();
+		virtual ~c_tag_project_configurator_tab_task();
 		virtual bool is_running() const override;
 		virtual float get_runtime_duration() const override;
 	};

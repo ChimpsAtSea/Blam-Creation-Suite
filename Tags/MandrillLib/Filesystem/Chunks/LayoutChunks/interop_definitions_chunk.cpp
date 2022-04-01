@@ -12,7 +12,7 @@ c_interop_definitions_chunk::c_interop_definitions_chunk(c_chunk& parent) :
 	entries(),
 	entry_count()
 {
-	debug_point;
+	
 }
 
 c_interop_definitions_chunk::~c_interop_definitions_chunk()
@@ -65,7 +65,7 @@ void c_interop_definitions_chunk::log_impl(c_tag_file_string_debugger* string_de
 				entry.structure_entry_index,
 				entry.string_character_index.offset);
 		}
-		debug_point;
+		
 	}
 }
 

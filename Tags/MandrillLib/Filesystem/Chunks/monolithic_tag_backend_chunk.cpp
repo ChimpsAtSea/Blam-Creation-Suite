@@ -3,7 +3,7 @@
 c_monolithic_tag_backend_chunk::c_monolithic_tag_backend_chunk() :
 	c_typed_chunk(nullptr)
 {
-	debug_point;
+	
 }
 
 c_monolithic_tag_backend_chunk::~c_monolithic_tag_backend_chunk()

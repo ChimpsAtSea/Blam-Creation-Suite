@@ -520,5 +520,6 @@ void c_tag_project_configurator_tab::create_tag_project_tab()
 		mandrill_user_interface->set_next_selected_tab(*tag_project_tab);
 		tag_project = nullptr; // hand off the memory to the child tab
 		// #TODO: Is it worth implementing a reference counting system?
+		delete runtime_task; // cleaup task
 	}
 }

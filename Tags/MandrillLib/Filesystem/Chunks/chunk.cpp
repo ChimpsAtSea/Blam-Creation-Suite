@@ -31,7 +31,7 @@ c_chunk::~c_chunk()
 		{
 			delete* current_chunk;
 		}
-		delete children;
+		trivial_free(children);
 	}
 }
 
@@ -43,7 +43,7 @@ BCS_RESULT c_chunk::add_child(c_chunk& chunk)
 	unsigned long old_child_count = get_num_children_unsafe();
 	unsigned long new_child_count = old_child_count + 1;
 
-	c_chunk** new_children = new() c_chunk * [new_child_count + 1];
+	c_chunk** new_children = trivial_malloc(c_chunk*, new_child_count + 1);
 	memcpy(new_children, children, sizeof(*children) * old_child_count);
 
 	new_children[old_child_count] = &chunk;
@@ -51,7 +51,7 @@ BCS_RESULT c_chunk::add_child(c_chunk& chunk)
 
 	// #TODO: is it okay to allow duplicate entries of the same pointer?
 
-	delete[] children;
+	trivial_free(children);
 	children = new_children;
 
 	return BCS_S_OK;
@@ -77,7 +77,7 @@ BCS_RESULT c_chunk::remove_child(c_chunk& chunk)
 
 		if (new_child_count < old_child_count)
 		{
-			c_chunk** new_children = new() c_chunk * [new_child_count + 1];
+			c_chunk** new_children = trivial_malloc(c_chunk*, new_child_count + 1);
 			{
 				unsigned long destination_index = 0;
 				for (unsigned long child_index = 0; child_index < old_child_count; child_index++)
@@ -92,7 +92,7 @@ BCS_RESULT c_chunk::remove_child(c_chunk& chunk)
 				new_children[new_child_count] = nullptr;
 			}
 
-			delete[] children;
+			trivial_free(children);
 			children = new_children;
 
 			return BCS_S_OK;
@@ -288,6 +288,93 @@ BCS_RESULT c_chunk::read_chunk(
 	return rs;
 }
 
+#pragma pack(push, 1)
+//struct s_stack_chunk_list_entry2
+//{
+//	s_stack_chunk_list_entry* previous;
+//	c_chunk* chunk;
+//};
+struct s_stack_chunk_list_entry
+{
+	//s_stack_chunk_list_entry* previous;
+	c_chunk* chunk;
+};
+#pragma pack(push, pop)
+
+constexpr unsigned long _max_size = 0x80000;
+constexpr unsigned long _chunk_count = 1024;
+constexpr unsigned long k_fixed_chunk = 1;
+constexpr unsigned long k_dynamic_chunks = _max_size / _chunk_count;
+constexpr bool k_simple_alloc = __is_trivially_constructible(s_stack_chunk_list_entry) && __is_trivially_copyable(s_stack_chunk_list_entry);
+class c_dynamic_chunked_array
+{
+public:
+	unsigned long current_size;
+	s_stack_chunk_list_entry* entries[k_dynamic_chunks];
+	s_stack_chunk_list_entry fixed_entries[_chunk_count];
+
+	c_dynamic_chunked_array() :
+		current_size(0),
+		entries{ fixed_entries }
+	{
+
+	}
+
+	~c_dynamic_chunked_array()
+	{
+		unsigned long chunks = current_size / _chunk_count;
+		for (unsigned long chunk_index = 1; chunk_index < chunks; chunk_index++)
+		{
+			if constexpr (k_simple_alloc)
+			{
+				tracked_free(entries[chunk_index]);
+			}
+			else
+			{
+				delete[] entries[chunk_index];
+			}
+		}
+	}
+
+	unsigned long get_size()
+	{
+		return current_size;
+	}
+
+	s_stack_chunk_list_entry& operator[](unsigned long index)
+	{
+		ASSERT(index < current_size);
+		unsigned long chunk = index / _chunk_count;
+		unsigned long chunk_index = index % _chunk_count;
+
+		return entries[chunk][chunk_index];
+	}
+
+	s_stack_chunk_list_entry& emplace_back()
+	{
+		unsigned long index = current_size;
+		unsigned long chunk = index / _chunk_count;
+		unsigned long chunk_index = index % _chunk_count;
+
+		s_stack_chunk_list_entry*& entry = entries[chunk];
+		if (entry == nullptr)
+		{
+			if constexpr (k_simple_alloc)
+			{
+				entry = static_cast<s_stack_chunk_list_entry*>(tracked_malloc(sizeof(s_stack_chunk_list_entry) * _chunk_count));
+			}
+			else
+			{
+				entry = new s_stack_chunk_list_entry[_chunk_count];
+			}
+		}
+
+		current_size++;
+
+		return entries[chunk][chunk_index];
+	}
+};
+
 BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const char* data_start)
 {
 	BCS_RESULT rs = BCS_S_OK;
@@ -300,15 +387,7 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 
 	try
 	{
-#pragma pack(push, 1)
-		struct s_stack_chunk_list_entry
-		{
-			s_stack_chunk_list_entry* previous;
-			c_chunk* chunk;
-		};
-#pragma pack(push, pop)
-		s_stack_chunk_list_entry* chunk_list_start = nullptr;
-		unsigned long chunk_list_length = 0;
+		c_hybrid_chunked_resizable_array<c_chunk*, 1024, 1024, 512> chunk_list;
 
 		const void* chunk_data_end = get_chunk_data_end();
 		for (const char* data_position = data_start; data_position < chunk_data_end;)
@@ -319,15 +398,13 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 			unsigned long signature = chunk_byteswap(*signature_pointer);
 			unsigned long metadata = chunk_byteswap(*metadata_pointer);
 			unsigned long chunk_size = chunk_byteswap(*chunk_size_pointer) + sizeof(unsigned long[3]);
-			debug_point;
+
 #define CHUNK_CTOR_EX(_signature, t_structure, ...) \
 		case (_signature): \
 		{ \
-			s_stack_chunk_list_entry* chunk_list_entry = new() s_stack_chunk_list_entry; \
-			chunk_list_length++; \
-			c_chunk* chunk = chunk_list_entry->chunk = new() t_structure(__VA_ARGS__); \
-			chunk_list_entry->previous = chunk_list_start; \
-			chunk_list_start = chunk_list_entry; \
+			c_chunk*& chunk_storage = chunk_list.emplace_back(); \
+			t_structure* chunk = new() t_structure(__VA_ARGS__); \
+			chunk_storage = chunk; \
 			chunk->read_chunk(userdata, data_position, use_read_only, t_structure::k_should_parse_children); \
 			data_position += chunk_size; \
 			ASSERT(data_position == chunk->get_chunk_data_end()); \
@@ -347,8 +424,13 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 			}
 			else switch (signature)
 			{
-				CHUNK_CTOR(c_tag_header_chunk);
+				CHUNK_CTOR(c_tag_block_chunk, *this);
+				CHUNK_CTOR(c_tag_struct_chunk, *this);
 				CHUNK_CTOR(c_tag_group_layout_chunk, *this);
+				CHUNK_CTOR(c_tag_string_id_chunk, *this);
+				CHUNK_CTOR(c_tag_data_chunk, *this);
+				CHUNK_CTOR(c_tag_reference_chunk, *this);
+				CHUNK_CTOR(c_tag_resource_null_chunk, *this);
 				CHUNK_CTOR(c_string_data_chunk, *this);
 				CHUNK_CTOR(c_string_offsets_chunk, *this);
 				CHUNK_CTOR(c_string_lists_chunk, *this);
@@ -362,15 +444,10 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 				CHUNK_CTOR(c_interop_definitions_chunk, *this);
 				CHUNK_CTOR(c_structure_definitions_chunk, *this);
 				CHUNK_CTOR(c_binary_data_chunk, *this);
-				CHUNK_CTOR(c_tag_block_chunk, *this);
-				CHUNK_CTOR(c_tag_struct_chunk, *this);
-				CHUNK_CTOR(c_tag_string_id_chunk, *this);
-				CHUNK_CTOR(c_tag_reference_chunk, *this);
-				CHUNK_CTOR(c_tag_data_chunk, *this);
-				CHUNK_CTOR(c_tag_resource_null_chunk, *this);
 				CHUNK_CTOR(c_tag_resource_exploded_chunk, *this);
 				CHUNK_CTOR(c_tag_resource_data_chunk, *this);
 				CHUNK_CTOR(c_tag_resource_xsynced_chunk, *this);
+				CHUNK_CTOR(c_tag_header_chunk);
 				CHUNK_CTOR(c_monolithic_tag_file_index_chunk, *this);
 				CHUNK_CTOR(c_monolithic_index_chunk, *this);
 				CHUNK_CTOR(c_tag_file_index_chunk, *this);
@@ -395,24 +472,14 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 #undef CHUNK_CTOR_EX
 		}
 
-		c_chunk** chunk_pointers;
-		// allocate memory and copy to heap
+		unsigned long chunk_list_length = chunk_list.size;
+		c_chunk** chunk_pointers = trivial_malloc(c_chunk*, chunk_list_length + 1);
+		chunk_pointers[chunk_list_length] = 0;
+
+		for (unsigned long chunk_index = 0; chunk_index < chunk_list_length; chunk_index++)
 		{
-			c_chunk** chunk_pointers_alloc = chunk_pointers = new() c_chunk * [chunk_list_length + 1];
-			chunk_pointers += chunk_list_length + 1;
-
-			*(--chunk_pointers) = nullptr;
-			while (chunk_list_start)
-			{
-				s_stack_chunk_list_entry* current_chunk_list_entry = chunk_list_start;
-				*(--chunk_pointers) = current_chunk_list_entry->chunk;
-				chunk_list_start = current_chunk_list_entry->previous;
-				delete current_chunk_list_entry;
-			}
-
-			ASSERT(chunk_pointers_alloc == chunk_pointers);
-
-			debug_point;
+			c_chunk* chunk = chunk_list[chunk_index];
+			chunk_pointers[chunk_index] = chunk;
 		}
 
 		children = chunk_pointers;
@@ -448,7 +515,7 @@ void c_chunk::write_chunk(c_high_level_tag_file_writer& tag_file_writer)
 	fseek(tag_file_writer.file_handle, current_pos, SEEK_SET);
 	fflush(tag_file_writer.file_handle);
 
-	debug_point;
+	
 }
 
 void c_chunk::write_chunk_data(c_high_level_tag_file_writer& tag_file_writer)

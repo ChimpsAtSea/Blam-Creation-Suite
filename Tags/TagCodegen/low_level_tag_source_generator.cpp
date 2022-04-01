@@ -140,7 +140,7 @@ void c_low_level_tag_source_generator::generate_header() const
 		stream << "\t\tstruct " << low_level_structure_name << std::endl;
 		stream << "\t\t{" << std::endl;
 
-		std::map<std::string, int> field_name_unique_counter;
+		std::unordered_map<std::string, int> field_name_unique_counter;
 
 		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
@@ -151,7 +151,7 @@ void c_low_level_tag_source_generator::generate_header() const
 				continue;
 			}
 
-			std::map<std::string, int>* field_name_unique_counter_ptr = nullptr;
+			std::unordered_map<std::string, int>* field_name_unique_counter_ptr = nullptr;
 			switch (current_field->field_type)
 			{
 			case _field_custom:
@@ -461,7 +461,7 @@ void c_low_level_tag_source_generator::generate_ida_header() const
 		stream << "struct " << low_level_structure_name << std::endl;
 		stream << "{" << std::endl;
 
-		std::map<std::string, int> field_name_unique_counter;
+		std::unordered_map<std::string, int> field_name_unique_counter;
 
 		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
@@ -472,7 +472,7 @@ void c_low_level_tag_source_generator::generate_ida_header() const
 				continue;
 			}
 
-			std::map<std::string, int>* field_name_unique_counter_ptr = nullptr;
+			std::unordered_map<std::string, int>* field_name_unique_counter_ptr = nullptr;
 			switch (current_field->field_type)
 			{
 			case _field_custom:
@@ -716,7 +716,7 @@ void c_low_level_tag_source_generator::generate_source() const
 		stream << "template<> void byteswap_inplace<blofeld::" << namespace_name << "::" << low_level_structure_name << ">(blofeld::" << namespace_name << "::" << low_level_structure_name << "& value)" << std::endl;
 		stream << "{" << std::endl;
 
-		std::map<std::string, int> field_name_unique_counter;
+		std::unordered_map<std::string, int> field_name_unique_counter;
 
 		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
@@ -727,7 +727,7 @@ void c_low_level_tag_source_generator::generate_source() const
 				continue;
 			}
 
-			std::map<std::string, int>* field_name_unique_counter_ptr = nullptr;
+			std::unordered_map<std::string, int>* field_name_unique_counter_ptr = nullptr;
 			switch (current_field->field_type)
 			{
 			case _field_custom:
@@ -803,7 +803,7 @@ void c_low_level_tag_source_generator::generate_enum_header() const
 	stream << "\t{" << std::endl;
 	stream << "#pragma pack(push, 1)" << std::endl << std::endl;
 
-	std::map<std::string, int> string_list_value_unique_counter;
+	std::unordered_map<std::string, int> string_list_value_unique_counter;
 	for (const s_string_list_definition* string_list_definition : c_structure_relationship_node::sorted_string_list_definitions[engine_platform_build.engine_type])
 	{
 		string_list_value_unique_counter.clear();

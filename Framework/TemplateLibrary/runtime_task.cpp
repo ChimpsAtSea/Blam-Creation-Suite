@@ -3,3 +3,7 @@
 c_runtime_task::c_runtime_task()
 {
 }
+
+c_runtime_task::~c_runtime_task()
+{
+}

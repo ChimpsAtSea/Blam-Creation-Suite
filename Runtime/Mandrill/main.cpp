@@ -23,12 +23,13 @@ int WINAPI wWinMain(
 	const wchar_t* launch_filepath_command_line_argument = nullptr; // #TODO: implement this with the command line API
 
 	BCS_FAIL_RETURN(register_process_module_by_pointer(wWinMain));
-	BCS_RESULT rs0 = init_platform();
-	BCS_RESULT rs1 = init_command_line(lpCmdLine);
-	BCS_RESULT rs2 = init_console();
-	if(BCS_SUCCEEDED(rs2)) rs2 = BCS_SUCCEEDED(command_line_has_argument("console")) ? alloc_console("Mandrill") : BCS_S_OK;
-	BCS_RESULT rs3 = window_create(window_title, "mandrill", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, window);
-	BCS_RESULT rs4 = render_context_window_create(*window, graphics_background_color, window_render_context);
+	BCS_RESULT platform_result = init_platform();
+	BCS_RESULT command_line_result = init_command_line(lpCmdLine);
+	BCS_RESULT console_result = init_console();
+	BCS_RESULT device_communication_result = init_device_communication();
+	if(BCS_SUCCEEDED(console_result)) console_result = BCS_SUCCEEDED(command_line_has_argument("commandline")) ? alloc_console("Mandrill") : BCS_S_OK;
+	BCS_RESULT window_create_result = window_create(window_title, "mandrill", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, window);
+	BCS_RESULT render_context_window_create_result = render_context_window_create(*window, graphics_background_color, window_render_context);
 
 	mandrill_user_interface = new() c_mandrill_user_interface(
 		*window_render_context,
@@ -39,17 +40,18 @@ int WINAPI wWinMain(
 
 	delete mandrill_user_interface;
 
-	if (BCS_SUCCEEDED(rs4)) rs4 = render_context_destroy(window_render_context);
-	if (BCS_SUCCEEDED(rs3)) rs3 = window_destroy(window);
-	if (BCS_SUCCEEDED(rs2)) rs2 = deinit_console();
-	if (BCS_SUCCEEDED(rs1)) rs1 = deinit_command_line();
-	if (BCS_SUCCEEDED(rs0)) rs0 = deinit_platform();
+	if (BCS_SUCCEEDED(render_context_window_create_result)) render_context_window_create_result = render_context_destroy(window_render_context);
+	if (BCS_SUCCEEDED(window_create_result)) window_create_result = window_destroy(window);
+	if (BCS_SUCCEEDED(console_result)) console_result = deinit_console();
+	if (BCS_SUCCEEDED(device_communication_result)) device_communication_result = deinit_device_communication();
+	if (BCS_SUCCEEDED(command_line_result)) command_line_result = deinit_command_line();
+	if (BCS_SUCCEEDED(platform_result)) platform_result = deinit_platform();
 
-	BCS_FAIL_RETURN(rs4);
-	BCS_FAIL_RETURN(rs3);
-	BCS_FAIL_RETURN(rs2);
-	BCS_FAIL_RETURN(rs1);
-	BCS_FAIL_RETURN(rs0);
+	BCS_FAIL_RETURN(render_context_window_create_result);
+	BCS_FAIL_RETURN(window_create_result);
+	BCS_FAIL_RETURN(console_result);
+	BCS_FAIL_RETURN(command_line_result);
+	BCS_FAIL_RETURN(platform_result);
 
 	BCS_RESULT symbol_manager_cleanup_result = symbol_manager_cleanup();
 	BCS_FAIL_RETURN(symbol_manager_cleanup_result);

@@ -47,7 +47,7 @@ BCS_RESULT c_halo4_cache_file_reader::get_build_info(s_cache_file_build_info& bu
 	build_info.hash = cache_file_header.hash;
 	build_info.rsa = cache_file_header.rsa;
 
-	debug_point;
+	
 
 	return BCS_S_OK;
 }

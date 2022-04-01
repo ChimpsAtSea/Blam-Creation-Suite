@@ -11,7 +11,7 @@ c_string_offsets_chunk::c_string_offsets_chunk(c_chunk& parent) :
 	entry_count()
 {
 
-	debug_point;
+	
 }
 
 c_string_offsets_chunk::~c_string_offsets_chunk()

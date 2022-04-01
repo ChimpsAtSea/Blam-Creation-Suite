@@ -6,6 +6,7 @@ t_get_tag_section_address_callback* c_mandrill_user_interface::s_get_tag_section
 bool c_mandrill_user_interface::use_developer_features = settings_read_boolean(_settings_section_mandrill, k_use_developer_features, false);
 bool c_mandrill_user_interface::show_explorer_bar = settings_read_boolean(_settings_section_mandrill, k_show_explorer_bar, true);
 float c_mandrill_user_interface::explorer_bar_width = settings_read_float(_settings_section_mandrill, k_explorer_bar_width, 500.0f);
+bool c_mandrill_user_interface::show_console_bar = settings_read_boolean(_settings_section_mandrill, k_show_console_bar, false);
 
 c_mandrill_user_interface::c_mandrill_user_interface(c_render_context& imgui_viewport_render_context, bool is_game_mode, const wchar_t* startup_file) :
 	c_mandrill_tab("Mandrill", "", nullptr),
@@ -23,6 +24,8 @@ c_mandrill_user_interface::c_mandrill_user_interface(c_render_context& imgui_vie
 	mandrill_theme_var_count(0),
 	file_browser()
 {
+	show_console_bar |= BCS_SUCCEEDED(command_line_has_argument("console"));
+
 	c_fixed_path previous_file_path;
 	settings_read_string(_settings_section_mandrill, k_previous_open_filepath_setting, previous_file_path.str(), previous_file_path.capacity(), "");
 	if (!filesystem_directory_exists(previous_file_path.c_str()))
@@ -331,30 +334,43 @@ void c_mandrill_user_interface::render_impl()
 
 	float margin = 4.0f;
 
-	ImGuiWindowFlags imgui_window_flags = 0;
-	imgui_window_flags |= ImGuiWindowFlags_NoCollapse;
-	imgui_window_flags |= ImGuiWindowFlags_MenuBar;
-	imgui_window_flags |= ImGuiWindowFlags_NoSavedSettings;
+	ImGuiWindowFlags imgui_main_window_flags = 0;
+	imgui_main_window_flags |= ImGuiWindowFlags_NoCollapse;
+	imgui_main_window_flags |= ImGuiWindowFlags_MenuBar;
+	imgui_main_window_flags |= ImGuiWindowFlags_NoSavedSettings;
+	ImVec2 main_window_position = { margin, margin };
+	ImVec2 main_window_size;
+	float console_bar_height = show_console_bar ? 500.0f : 0.0f;
 	if (is_game_mode)
 	{
-		ImGui::SetNextWindowPos({ margin, margin }, ImGuiCond_FirstUseEver);
-		ImGui::SetNextWindowSize({ imgui_viewport_render_context.get_width_float() - margin * 2.0f, imgui_viewport_render_context.get_height_float() - margin * 2.0f }, ImGuiCond_FirstUseEver);
+		ImGui::SetNextWindowPos(main_window_position, ImGuiCond_FirstUseEver);
+		main_window_size =
+		{
+			imgui_viewport_render_context.get_width_float() - margin * 2.0f,
+			imgui_viewport_render_context.get_height_float() - margin * 2.0f
+		};
+		ImGui::SetNextWindowSize(main_window_size, ImGuiCond_FirstUseEver);
 	}
 	else
 	{
 		float status_bar_height = ImGui::GetFrameHeight();
-		ImGui::SetNextWindowPos({ margin, margin }, ImGuiCond_Always);
-		ImGui::SetNextWindowSize({ imgui_viewport_render_context.get_width_float() - margin * 2.0f, imgui_viewport_render_context.get_height_float() - margin * 2.0f - status_bar_height }, ImGuiCond_Always);
+		ImGui::SetNextWindowPos(main_window_position, ImGuiCond_Always);
+		main_window_size =
+		{
+			imgui_viewport_render_context.get_width_float() - margin * 2.0f, 
+			imgui_viewport_render_context.get_height_float() - margin * 2.0f - status_bar_height - console_bar_height
+		};
+		ImGui::SetNextWindowSize(main_window_size, ImGuiCond_Always);
 
-		imgui_window_flags |= ImGuiWindowFlags_NoTitleBar;
-		imgui_window_flags |= ImGuiWindowFlags_NoMove;
-		imgui_window_flags |= ImGuiWindowFlags_NoResize;
-		imgui_window_flags |= ImGuiWindowFlags_NoScrollbar;
+		imgui_main_window_flags |= ImGuiWindowFlags_NoTitleBar;
+		imgui_main_window_flags |= ImGuiWindowFlags_NoMove;
+		imgui_main_window_flags |= ImGuiWindowFlags_NoResize;
+		imgui_main_window_flags |= ImGuiWindowFlags_NoScrollbar;
 	}
 
 	render_file_dialogue_gui_impl();
 
-	if (ImGui::Begin("Mandrill", &window_open, imgui_window_flags))
+	if (ImGui::Begin("Mandrill", &window_open, imgui_main_window_flags))
 	{
 		ImGuiIO& io = ImGui::GetIO();
 
@@ -424,6 +440,31 @@ void c_mandrill_user_interface::render_impl()
 		ImGui::SetCursorPos(cursor_start_position);
 	}
 	ImGui::End();
+	if (show_console_bar)
+	{
+		ImGuiWindowFlags imgui_console_window_flags = 0;
+		imgui_console_window_flags |= ImGuiWindowFlags_NoCollapse;
+		imgui_console_window_flags |= ImGuiWindowFlags_NoSavedSettings;
+		imgui_console_window_flags |= ImGuiWindowFlags_NoMove;
+		imgui_console_window_flags |= ImGuiWindowFlags_NoResize;
+		imgui_console_window_flags |= ImGuiWindowFlags_NoScrollbar;
+
+		ImVec2 console_window_position = main_window_position + ImVec2{ 0.0f, main_window_size.y + margin };
+		ImVec2 console_window_size = { main_window_size.x, console_bar_height - margin };
+
+		ImGui::SetNextWindowPos(console_window_position, ImGuiCond_Always);
+		ImGui::SetNextWindowSize(console_window_size, ImGuiCond_Always);
+
+		if (ImGui::Begin("Console", &show_console_bar, imgui_console_window_flags))
+		{
+
+		}
+		if (!show_console_bar)
+		{
+			settings_write_boolean(_settings_section_mandrill, k_show_console_bar, show_console_bar);
+		}
+		ImGui::End();
+	}
 
 	mandrill_theme_pop();
 
@@ -515,6 +556,50 @@ bool c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 		if (ImGui::BeginViewportSideBar("##MainStatusBar", viewport, ImGuiDir_Down, height, window_flags)) {
 			if (ImGui::BeginMenuBar()) {
 				ImGui::TextUnformatted(get_status_bar_text());
+
+				static ImVec2 gamepad_size;
+				static ImVec2 terminal_size;
+
+				ImVec2 start_cursor_pos = ImGui::GetCursorPos();
+				float content_region_width = ImGui::GetContentRegionAvailWidth();
+				start_cursor_pos.x += content_region_width;
+				start_cursor_pos.x -= gamepad_size.x;
+				start_cursor_pos.x -= terminal_size.x;
+				ImGui::SetCursorPosX(start_cursor_pos.x);
+
+				if (ImGui::BeginMenu(ICON_FA_NETWORK_WIRED))
+				{
+					s_xbox360_device_entry const* devices;
+					unsigned long device_count;
+					if (BCS_SUCCEEDED(xbox360_device_manager_get_devices(devices, device_count)))
+					{
+						for (unsigned long device_index = 0; device_index < device_count; device_index++)
+						{
+							s_xbox360_device_entry const& device = devices[device_index];
+							size_t buffer_length = snprintf(nullptr, 0, ICON_FA_XBOX " %s", device.console_value_name_buffer_mb) + 1;
+							char* device_display_buffer = new char[buffer_length];
+							sprintf(device_display_buffer, ICON_FA_XBOX " %s", device.console_value_name_buffer_mb);
+							ImGui::MenuItem(device_display_buffer);
+							delete[] device_display_buffer;
+						}
+						ImGui::Separator();
+					}
+					ImGui::BeginDisabled(true);
+					ImGui::MenuItem("Add Xbox 360 Console");
+					ImGui::EndDisabled();
+					ImGui::EndMenu();
+				}
+				ImVec2 gamepad_end_pos = ImGui::GetCursorPos();
+				if (ImGui::MenuItem(ICON_FA_TERMINAL))
+				{
+					show_console_bar = !show_console_bar;
+					settings_write_boolean(_settings_section_mandrill, k_show_console_bar, show_console_bar);
+				}
+				ImVec2 terminal_end_pos = ImGui::GetCursorPos();
+
+				gamepad_size = gamepad_end_pos - start_cursor_pos;
+				terminal_size = terminal_end_pos - gamepad_end_pos;
+
 				ImGui::EndMenuBar();
 			}
 			ImGui::End();

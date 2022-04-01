@@ -60,7 +60,7 @@ c_halo3_debug_reader::c_halo3_debug_reader(c_halo3_cache_cluster& cache_cluster,
 	memcpy(file_table_buffer, encrypted_file_table_buffer, file_table_length);
 	//aes128_decrypt(encrypted_file_table_buffer, file_table_buffer, cache_file_header.file_table_length, c_halo3_cache_file_reader::k_file_name_encryption_key);
 
-	debug_point;
+	
 }
 
 c_halo3_debug_reader::~c_halo3_debug_reader()
