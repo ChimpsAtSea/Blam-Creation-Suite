@@ -208,7 +208,12 @@ static BCS_RESULT filesystem_read_file_to_memory(HANDLE file_handle, void*& buff
 	}
 	else
 	{
-		char* file_data_buffer = static_cast<char*>(tracked_malloc_ptr(buffer_size, _debug_file_path, _debug_line_number));
+		char* file_data_buffer =
+#ifdef _DEBUG
+			static_cast<char*>(tracked_malloc_ptr(buffer_size, _debug_file_path, _debug_line_number));
+#else
+			static_cast<char*>(tracked_malloc(buffer_size));
+#endif
 		buffer = file_data_buffer;
 		unsigned long long number_of_bytes_remaining = file_size.QuadPart;
 		while (number_of_bytes_remaining > 0)

@@ -96,7 +96,13 @@ set_source_files_properties(
 bcs_use_vcpkg_directories(Platform)
 
 target_link_libraries(Platform PRIVATE
-	tbb_static Version Shlwapi Dbghelp mimalloc)
+	tbb_static
+	Version
+	Shlwapi
+	Dbghelp
+	$<$<CONFIG:DEBUG>:mimalloc>
+	$<$<NOT:$<CONFIG:DEBUG>>:mimalloc-static>
+	)
 
 target_link_libraries(Platform PUBLIC
 	xxhash)

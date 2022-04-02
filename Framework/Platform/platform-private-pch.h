@@ -22,7 +22,7 @@
 #include <tbb/parallel_for.h>
 #include <tbb/blocked_range.h>
 
-#if _DEBUG
+#if BCS_USE_SHARED_LIBRARIES
 #define BCS_DEBUG_API __declspec(dllexport)
 #endif
 #ifdef __cplusplus
