@@ -36,11 +36,12 @@ endfunction()
 set(TBB_BUILD_TBBMALLOC ON)
 set(TBB_BUILD_TBBMALLOC_PROXY OFF)
 set(TBB_BUILD_TESTS OFF)
-set(TBB_BUILD_SHARED OFF)
-set(TBB_BUILD_STATIC ON)
+set(TBB_BUILD_SHARED ON)
+set(TBB_BUILD_STATIC OFF)
 add_subdirectory(tbb)
 
-set_target_properties(tbb_static tbbmalloc_static tbb_def_files PROPERTIES
+#set_target_properties(tbb_static tbbmalloc_static tbb_def_files PROPERTIES
+set_target_properties(tbb tbbmalloc tbb_def_files PROPERTIES
 	FOLDER "ThirdParty")
 
 add_subdirectory(DirectX-Headers)

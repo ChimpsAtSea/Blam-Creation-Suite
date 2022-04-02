@@ -68,26 +68,7 @@ target_link_libraries(MandrillUI PRIVATE
 	AudioConversion
 	imgui
 	MandrillLib
-	HighLevel_Halo1
-	HighLevel_Halo2
-	HighLevel_Stubbs
-	HighLevel_Halo3
-	HighLevel_Halo3ODST
-	HighLevel_HaloReach
-	HighLevel_Halo4
-	HighLevel_Groundhog
-	HighLevel_Xbox360Gen3
-	HighLevel_Infinite
-	LowLevel_Halo1
-	LowLevel_Halo2
-	LowLevel_Stubbs
-	LowLevel_Halo3
-	LowLevel_Halo3ODST
-	LowLevel_HaloReach
-	LowLevel_Halo4
-	LowLevel_Groundhog
-	LowLevel_Xbox360Gen3
-	LowLevel_Infinite)
+	${BCS_GENERATED_TAG_PROJECTS})
 
 target_precompile_headers(MandrillUI PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:mandrillui-private-pch.h>")

@@ -33,6 +33,9 @@ function(bcs_macro_low_level_project TARGET_NAME PCH_NAME GEN_NAME)
 		
 	set_target_properties(${TARGET_NAME} PROPERTIES
 		FOLDER "Tags/LowLevel")
+		
+	list(APPEND BCS_GENERATED_TAG_PROJECTS ${TARGET_NAME})
+	set(BCS_GENERATED_TAG_PROJECTS ${BCS_GENERATED_TAG_PROJECTS} PARENT_SCOPE)
 endfunction()
 
 bcs_macro_low_level_project("LowLevel_Groundhog" "lowlevel-groundhog" "groundhog")
@@ -45,3 +48,5 @@ bcs_macro_low_level_project("LowLevel_HaloReach" "lowlevel-haloreach" "haloreach
 bcs_macro_low_level_project("LowLevel_Infinite" "lowlevel-infinite" "infinite")
 bcs_macro_low_level_project("LowLevel_Stubbs" "lowlevel-stubbs" "stubbs")
 bcs_macro_low_level_project("LowLevel_Xbox360Gen3" "lowlevel-xbox360gen3" "xbox360_gen3")
+
+set(BCS_GENERATED_TAG_PROJECTS ${BCS_GENERATED_TAG_PROJECTS} PARENT_SCOPE)

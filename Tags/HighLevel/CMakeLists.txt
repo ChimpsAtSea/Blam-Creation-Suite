@@ -159,6 +159,9 @@ function(bcs_macro_high_level_project TARGET_NAME PCH_NAME GEN_NAME)
 		
 	set_target_properties(${TARGET_NAME} PROPERTIES
 		FOLDER "Tags/HighLevel")
+		
+	list(APPEND BCS_GENERATED_TAG_PROJECTS ${TARGET_NAME})
+	set(BCS_GENERATED_TAG_PROJECTS ${BCS_GENERATED_TAG_PROJECTS} PARENT_SCOPE)
 endfunction()
 
 bcs_macro_high_level_project("HighLevel_Groundhog" "highlevel-groundhog" "groundhog")
@@ -171,3 +174,5 @@ bcs_macro_high_level_project("HighLevel_HaloReach" "highlevel-haloreach" "halore
 bcs_macro_high_level_project("HighLevel_Infinite" "highlevel-infinite" "infinite")
 bcs_macro_high_level_project("HighLevel_Stubbs" "highlevel-stubbs" "stubbs")
 bcs_macro_high_level_project("HighLevel_Xbox360Gen3" "highlevel-xbox360gen3" "xbox360_gen3")
+
+set(BCS_GENERATED_TAG_PROJECTS ${BCS_GENERATED_TAG_PROJECTS} PARENT_SCOPE)

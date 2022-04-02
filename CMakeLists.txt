@@ -35,6 +35,8 @@ function(bcs_set_compile_properties TARGET_NAME)
 		$<$<BOOL:BCS_BUILD_SHARED_LIBRARIES>:BCS_USE_SHARED_LIBRARIES>
 		UNICODE
 		_UNICODE
+		_HAS_ITERATOR_DEBUGGING=0
+		_SECURE_SCL=0
 		IMGUI_USER_CONFIG="imgui_user_config.h")
 		
 	target_compile_features(${TARGET_NAME} PRIVATE
