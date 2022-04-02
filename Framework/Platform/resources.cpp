@@ -3,8 +3,6 @@
 
 #pragma optimize("", off)
 
-static s_tracked_memory_stats platform_resources_memory_stats = { "Platform Resources" };
-
 #define RESOURCE_ENTRY(resource_type, filename, int_resource) { #resource_type, filename, int_resource }
 struct s_resource_entry { const char* name; const char* filename; LPWSTR resource_int; };
 static s_resource_entry resource_entries[] =

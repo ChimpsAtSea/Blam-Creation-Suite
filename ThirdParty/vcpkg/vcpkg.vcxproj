@@ -103,6 +103,7 @@
 curl:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
 rapidjson:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
 ffmpeg[core,avcodec,swresample]:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+mimalloc:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
 --overlay-triplets=custom-triplets --recurse
 
 xcopy "$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-$(Configuration.ToLower())-bcs\bin\*.dll" "$(OutDir)" /s /d /y
@@ -134,6 +135,7 @@ xcopy "$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-$(Config
 curl:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
 rapidjson:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
 ffmpeg[core,avcodec,swresample]:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+mimalloc:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
 --overlay-triplets=custom-triplets --recurse
 
 xcopy "$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-$(Configuration.ToLower())-bcs\bin\*.dll" "$(OutDir)" /s /d /y
@@ -169,6 +171,7 @@ xcopy "$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-$(Config
 curl:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
 rapidjson:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
 ffmpeg[core,avcodec,swresample]:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+mimalloc:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
 --overlay-triplets=custom-triplets --recurse
 
 xcopy "$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-$(Configuration.ToLower())-bcs\bin\*.dll" "$(OutDir)" /s /d /y
@@ -201,6 +204,7 @@ xcopy "$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-$(Config
 curl:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
 rapidjson:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
 ffmpeg[core,avcodec,swresample]:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
+mimalloc:$(PlatformTarget)-$(Configuration.ToLower())-bcs ^
 --overlay-triplets=custom-triplets --recurse
 
 xcopy "$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-$(Configuration.ToLower())-bcs\bin\*.dll" "$(OutDir)" /s /d /y

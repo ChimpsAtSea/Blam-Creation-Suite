@@ -22,7 +22,7 @@ BCS_RESULT c_tag_file_heap_partition_config_chunk::read_chunk(void* userdata, co
 	}
 
 	const unsigned long* string_length_ptr = reinterpret_cast<const unsigned long*>(get_chunk_data_start());
-	const char* string_buffer_ptr = next_contiguous_pointer<char>(string_length_ptr);
+	const char* string_buffer_ptr = next_contiguous_pointer(char, string_length_ptr);
 
 	string_length = chunk_byteswap(*string_length_ptr);
 

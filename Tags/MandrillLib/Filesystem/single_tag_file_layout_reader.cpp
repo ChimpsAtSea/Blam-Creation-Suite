@@ -50,7 +50,7 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 	// #TODO: Combine c_single_tag_file_layout_reader and c_single_tag_file_reader together
 	// then pass the first argument as [this]
 	// then convert to a reference
-	root_chunk->read_chunk(nullptr, next_contiguous_pointer(src_header), true, true);
+	root_chunk->read_chunk(nullptr, next_contiguous_pointer(s_single_tag_file_header, src_header), true, true);
 
 	tag_group_layout_chunk = root_chunk->get_child_by_type_unsafe<c_tag_group_layout_chunk>();
 

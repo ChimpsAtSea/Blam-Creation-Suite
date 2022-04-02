@@ -46,10 +46,10 @@ BCS_RESULT c_tag_layout_prechunk_chunk::read_chunk(void* userdata, const void* d
 	s_tag_group_layout_header tag_group_layout_header = chunk_byteswap(*src_tag_group_layout_header);
 	ASSERT(tag_group_layout_header.layout_version == _tag_persist_layout_version_prechunk);
 
-	const s_tag_persist_layout_header_prechunk* src_tag_persist_layout_header_prechunk = next_contiguous_pointer<s_tag_persist_layout_header_prechunk>(src_tag_group_layout_header);
+	const s_tag_persist_layout_header_prechunk* src_tag_persist_layout_header_prechunk = next_contiguous_pointer(s_tag_persist_layout_header_prechunk, src_tag_group_layout_header);
 	layout_header_prechunk = chunk_byteswap(*src_tag_persist_layout_header_prechunk);
 
-	const char* src_string_data = next_contiguous_pointer<char>(src_tag_persist_layout_header_prechunk);
+	const char* src_string_data = next_contiguous_pointer(char, src_tag_persist_layout_header_prechunk);
 	if (layout_header_prechunk.string_data_size > 0)
 	{
 		string_data = src_string_data;

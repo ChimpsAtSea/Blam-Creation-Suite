@@ -41,7 +41,7 @@ BCS_RESULT c_partitioned_heap_entry_list_chunk::read_chunk(void* userdata, const
 	if (header.count > 0)
 	{
 		entries = new() s_partitioned_heap_entry[header.count];
-		const s_partitioned_heap_entry* read_entries = next_contiguous_pointer<s_partitioned_heap_entry>(reinterpret_cast<const s_partitioned_heap_entry_list_header*>(src_header));
+		const s_partitioned_heap_entry* read_entries = next_contiguous_pointer(s_partitioned_heap_entry, reinterpret_cast<const s_partitioned_heap_entry_list_header*>(src_header));
 		for (unsigned long entry_index = 0; entry_index < header.count; entry_index++)
 		{
 			entries[entry_index] = read_entries[entry_index];

@@ -6,9 +6,6 @@
 #include <Platform\platform-public-pch.h>
 #include <SymbolsLib\symbolslib-public-pch.h>
 
-s_tracked_memory_stats resource_packager_tracked_memory = { "resource packager" };
-s_tracked_memory_stats& _library_tracked_memory = resource_packager_tracked_memory;
-
 #define CHECK_ARGUMENT(argument) \
 	if (BCS_FAILED(rs = command_line_has_argument(argument))) \
 	{ \

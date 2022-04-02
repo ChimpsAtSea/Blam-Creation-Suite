@@ -23,7 +23,7 @@ BCS_RESULT c_tag_file_index_chunk::read_chunk(void* userdata, const void* data, 
 	}
 
 	const s_tag_file_index_header* src_tag_file_index_header = reinterpret_cast<const s_tag_file_index_header*>(get_chunk_data_start());
-	const s_compressed_tag_file_index_entry* src_compressed_tag_file_index_entry = next_contiguous_pointer<s_compressed_tag_file_index_entry>(src_tag_file_index_header);
+	const s_compressed_tag_file_index_entry* src_compressed_tag_file_index_entry = next_contiguous_pointer(s_compressed_tag_file_index_entry, src_tag_file_index_header);
 
 	tag_file_index_header = chunk_byteswap(*src_tag_file_index_header);
 	compressed_tag_file_index_entries = new() s_compressed_tag_file_index_entry[tag_file_index_header.compressed_entry_count];

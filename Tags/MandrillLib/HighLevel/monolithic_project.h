@@ -42,6 +42,7 @@ protected:
 	BCS_RESULT init_monolithic_cache_file_views();
 	BCS_RESULT deinit_monolithic_tag_file_views();
 	BCS_RESULT deinit_monolithic_cache_file_views();
+	static void destroy_tags(h_tag*const* tags, size_t index);
 
 	BCS_RESULT get_tag_partition_view(
 		unsigned long tag_heap_entry_index,

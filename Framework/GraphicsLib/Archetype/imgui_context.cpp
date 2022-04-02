@@ -1,7 +1,5 @@
 #include "graphicslib-private-pch.h"
 
-static s_tracked_memory_stats imgui_memory_tracker = { "imgui" };
-
 c_imgui_context::c_imgui_context()
 {
 

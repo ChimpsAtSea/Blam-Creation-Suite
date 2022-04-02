@@ -1,5 +1,6 @@
 #pragma once
 
+#include <intrin.h>
 #include <mmintrin.h>
 #include <xmmintrin.h>
 #include <emmintrin.h>
@@ -12,3 +13,7 @@
 #include <immintrin.h>
 
 #define __int128 __m128
+
+#pragma intrinsic(_byteswap_ushort)
+#pragma intrinsic(_byteswap_ulong)
+#pragma intrinsic(_byteswap_uint64)

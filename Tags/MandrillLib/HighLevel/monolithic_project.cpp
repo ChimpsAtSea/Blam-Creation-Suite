@@ -68,15 +68,18 @@ c_monolithic_tag_project::c_monolithic_tag_project(
 	
 }
 
+void c_monolithic_tag_project::destroy_tags(h_tag* const* tags, size_t index)
+{
+	h_tag* tag = tags[index];
+	delete tag;
+}
+
 c_monolithic_tag_project::~c_monolithic_tag_project()
 {
 	ASSERT_NO_THROW(BCS_SUCCEEDED(deinit_monolithic_tag_file_views()));
 	ASSERT_NO_THROW(BCS_SUCCEEDED(deinit_monolithic_cache_file_views()));
 
-	for (h_tag* tag : tags)
-	{
-		delete tag;
-	}
+	parallel_invoke(size_t(0), tags.size(), (t_parallel_invoke_func<size_t>)destroy_tags, tags.data());
 
 	for (h_group* group : groups)
 	{
@@ -131,7 +134,7 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_tag_file_views()
 		status_interface->set_status_bar_status(_status_interface_priority_low, INFINITY, "Loading monolithic tag blobs");
 	}
 
-	num_tag_partitions = tag_partition_list_chunk->get_num_children_unsafe();
+	num_tag_partitions = tag_partition_list_chunk->num_children;
 	tag_partition_views = new() c_monolithic_partition_view * [num_tag_partitions];
 
 	s_init_monolithic_tag_file_views_userdata userdata = {};
@@ -156,7 +159,7 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_cache_file_views()
 		status_interface->set_status_bar_status(_status_interface_priority_low, INFINITY, "Loading monolithic cache blobs");
 	}
 
-	num_cache_partitions = cache_partition_list_chunk->get_num_children_unsafe();
+	num_cache_partitions = cache_partition_list_chunk->num_children;
 	cache_partition_views = new() c_monolithic_partition_view*[num_cache_partitions];
 	for (unsigned long cache_partition_index = 0; cache_partition_index < num_cache_partitions; cache_partition_index++)
 	{
@@ -216,7 +219,7 @@ BCS_RESULT c_monolithic_tag_project::parse_tag_blob(const void* tag_file_data, u
 	const blofeld::s_tag_persistent_identifier* session_identifier = static_cast<const blofeld::s_tag_persistent_identifier*>(tag_file_data);
 
 	root_chunk = new() c_monolithic_tag_backend_chunk();
-	root_chunk->read_chunk(nullptr, next_contiguous_pointer(session_identifier), true, true);
+	root_chunk->read_chunk(nullptr, next_contiguous_pointer(blofeld::s_tag_persistent_identifier, session_identifier), true, true);
 	root_chunk->log();
 
 	tag_file_index_chunk = root_chunk->get_child_by_type_unsafe<c_tag_file_index_chunk>();

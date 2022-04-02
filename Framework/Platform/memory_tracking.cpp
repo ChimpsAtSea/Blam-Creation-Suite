@@ -1,26 +1,14 @@
 #include "platform-private-pch.h"
 
+#include <mimalloc.h>
+
 #undef _aligned_malloc
 #undef _aligned_free
 #undef malloc
 #undef free
 
 #define ROUNDUP(n , width) (((n) + (width) - 1) & ~((width) - 1))
-
-static volatile LONG tracked_memory_entries_spin_lock;
-static s_tracked_memory_entry* tracked_memory_entries;
-
-volatile long long allocated_memory;
-volatile long long tracked_allocated_memory;
-volatile long allocation_count;
-
-s_tracked_memory_stats platform_tracked_memory = { "platform" };
-s_tracked_memory_stats malloca_tracked_memory = { "malloca" };
-s_tracked_memory_stats& _library_tracked_memory = platform_tracked_memory;
-
-s_tracked_memory_stats tracked_memory_stats;
-
-#define SHOULD_TRACK_HACK (strstr(GetCommandLineA(), "-trackmemory") != nullptr) // terrible shitty awful hack tastic spazz)
+#define SHOULD_TRACK_HACK (strstr(GetCommandLineA(), "-trackmemory") != nullptr) // terrible shitty awful hack tastic spazz
 
 #define MEMORY_TRACKING_FIRST_RUN_FIXUP(target_pointer, tracked_function, untracked_function)	\
 DWORD thread_id = GetCurrentThreadId();                                                         \
@@ -42,109 +30,59 @@ else																							\
 LONG lock_release_result = InterlockedExchange(&tracked_memory_entries_spin_lock, 0);			\
 if (lock_release_result != thread_id) throw;
 
-
-
-
-typedef _Return_type_success_(return >= 0) LONG NTSTATUS;
-#define NTAPI __stdcall
-
-typedef NTSTATUS
-(NTAPI* PRTL_HEAP_COMMIT_ROUTINE)(
-	IN PVOID Base,
-	IN OUT PVOID* CommitAddress,
-	IN OUT PSIZE_T CommitSize
-	);
-
-typedef struct _RTL_HEAP_PARAMETERS {
-	ULONG Length;
-	SIZE_T SegmentReserve;
-	SIZE_T SegmentCommit;
-	SIZE_T DeCommitFreeBlockThreshold;
-	SIZE_T DeCommitTotalFreeThreshold;
-	SIZE_T MaximumAllocationSize;
-	SIZE_T VirtualMemoryThreshold;
-	SIZE_T InitialCommit;
-	SIZE_T InitialReserve;
-	PRTL_HEAP_COMMIT_ROUTINE CommitRoutine;
-	SIZE_T Reserved[2];
-} RTL_HEAP_PARAMETERS, * PRTL_HEAP_PARAMETERS;
-
-PVOID(*RtlCreateHeap)(
-	/*[in]           */ ULONG                Flags,
-	/*[in, optional] */ PVOID                HeapBase,
-	/*[in, optional] */ SIZE_T               ReserveSize,
-	/*[in, optional] */ SIZE_T               CommitSize,
-	/*[in, optional] */ PVOID                Lock,
-	/*[in, optional] */ PRTL_HEAP_PARAMETERS Parameters
-	);
-
-PVOID(*RtlAllocateHeap)(
-	/*[in]           */ PVOID  HeapHandle,
-	/*[in, optional] */ ULONG  Flags,
-	/*[in]           */ SIZE_T Size
-	);
-ULONG(*RtlFreeHeap)(
-	/*[in]           */ PVOID                 HeapHandle,
-	/*[in, optional] */ ULONG                 Flags,
-	/*_Frees_ptr_opt_*/  PVOID BaseAddress
-	);
-
-PVOID(*RtlDestroyHeap)(
-	/*[in]           */ PVOID HeapHandle
-	);
-
-
-
-
-HANDLE process_heap;
-thread_local PVOID nt_api_thread_heap = NULL;
-void* lightweight_malloc(size_t size)
+struct s_tracked_memory_stats
 {
-	void* memory = HeapAlloc(process_heap, 0, size);
-	return memory;
-}
+	volatile long long allocated_memory;
+	volatile long long tracked_allocated_memory;
+	volatile long allocation_count;
+};
 
-void lightweight_free(void* memory)
+struct s_tracked_memory_entry
 {
-	if (memory)
-	{
-		BOOL free_result = HeapFree(process_heap, 0, memory);
-		ASSERT(free_result != FALSE);
-	}
-}
+	s_tracked_memory_entry* next;
+	s_tracked_memory_entry* previous;
+	void* tracked_memory;
+	void* memory;
+	size_t tracking_memory_size;
+	size_t tracking_memory_aligned_size;
+	size_t allocated_memory_aligned_size;
+	size_t total_memory_aligned_size;
+	void** stack_frames;
+	const char* filepath;
+	long line;
+	unsigned long num_stack_frames;
+};
 
-void lightweight_aligned_malloc()
-{
+static volatile LONG tracked_memory_entries_spin_lock;
+static s_tracked_memory_entry* tracked_memory_entries;
 
-}
+volatile long long allocated_memory;
+volatile long long tracked_allocated_memory;
+volatile long allocation_count;
 
-void lightweight_aligned_free()
-{
-
-}
+s_tracked_memory_stats tracked_memory_stats;
 
 void* tracked_aligned_malloc_firstrun(size_t size, size_t alignment, const char* filepath, long line)
 {
-	MEMORY_TRACKING_FIRST_RUN_FIXUP(tracked_aligned_malloc_ptr, _tracked_aligned_malloc, _aligned_malloc);
+	MEMORY_TRACKING_FIRST_RUN_FIXUP(tracked_aligned_malloc_ptr, _tracked_aligned_malloc, mi_aligned_alloc);
 	return tracked_aligned_malloc_ptr(size, alignment, filepath, line);
 }
 
 void  tracked_aligned_free_firstrun(void* allocated_memory)
 {
-	MEMORY_TRACKING_FIRST_RUN_FIXUP(tracked_aligned_free_ptr, _tracked_aligned_free, _aligned_free);
+	MEMORY_TRACKING_FIRST_RUN_FIXUP(tracked_aligned_free_ptr, _tracked_aligned_free, mi_free);
 	return tracked_aligned_free_ptr(allocated_memory);
 }
 
 void* tracked_malloc_firstrun(size_t size, const char* filepath, long line)
 {
-	InterlockedExchangePointer(&process_heap, GetProcessHeap());
-	MEMORY_TRACKING_FIRST_RUN_FIXUP(tracked_malloc_ptr, _tracked_malloc, lightweight_malloc);
+	MEMORY_TRACKING_FIRST_RUN_FIXUP(tracked_malloc_ptr, _tracked_malloc, mi_malloc);
 	return tracked_malloc_ptr(size, filepath, line);
 }
 
 void  tracked_free_firstrun(const void* allocated_memory)
 {
-	MEMORY_TRACKING_FIRST_RUN_FIXUP(tracked_free_ptr, _tracked_free, lightweight_free);
+	MEMORY_TRACKING_FIRST_RUN_FIXUP(tracked_free_ptr, _tracked_free, mi_free);
 	return tracked_free_ptr(allocated_memory);
 }
 
@@ -171,7 +109,7 @@ void* _tracked_aligned_malloc(size_t size, size_t alignment, const char* filepat
 	size_t allocated_memory_aligned_size = ROUNDUP(size, alignment);
 	size_t total_memory_aligned_size = allocated_memory_aligned_size + tracking_memory_aligned_size;
 
-	void* tracked_memory = _aligned_malloc(total_memory_aligned_size, __max(16, alignment));
+	void* tracked_memory = mi_aligned_alloc(total_memory_aligned_size, __max(16, alignment));
 	memset(tracked_memory, 'T', tracking_memory_aligned_size);
 	PVOID* stack_frames_memory = static_cast<PVOID*>(tracked_memory);
 	void* memory = static_cast<void*>(reinterpret_cast<char*>(stack_frames_memory) + tracking_memory_aligned_size);
@@ -247,8 +185,8 @@ void _tracked_aligned_free(void* pointer)
 		InterlockedAdd64(&tracked_allocated_memory, -static_cast<LONG64>(tracked_memory_entry->tracking_memory_aligned_size));
 		InterlockedAdd(&allocation_count, -1);
 
-		_aligned_free(tracked_memory_entry->tracked_memory);
-
+		mi_free(tracked_memory_entry->tracked_memory);
+		
 		debug_point;
 	}
 }
@@ -266,7 +204,7 @@ void* _tracked_malloc(size_t size, const char* filepath, long line)
 	size_t allocated_memory_aligned_size = ROUNDUP(size, alignment);
 	size_t total_memory_aligned_size = allocated_memory_aligned_size + tracking_memory_aligned_size;
 
-	void* tracked_memory = malloc(total_memory_aligned_size);
+	void* tracked_memory = mi_malloc(total_memory_aligned_size);
 	memset(tracked_memory, 'T', tracking_memory_aligned_size);
 	PVOID* stack_frames_memory = static_cast<PVOID*>(tracked_memory);
 	void* memory = static_cast<void*>(reinterpret_cast<char*>(stack_frames_memory) + tracking_memory_aligned_size);
@@ -347,7 +285,7 @@ void _tracked_free(const void* pointer)
 		InterlockedAdd64(&tracked_allocated_memory, -static_cast<LONG64>(tracked_memory_entry->tracking_memory_aligned_size));
 		InterlockedAdd(&allocation_count, -1);
 
-		free(tracked_memory_entry->tracked_memory);
+		mi_free(tracked_memory_entry->tracked_memory);
 
 		debug_point;
 	}
@@ -385,7 +323,7 @@ void print_memory_allocations()
 	if (lock_release_result != thread_id) throw;
 }
 
-unsigned long write_stack_trace(PVOID* frames, unsigned long num_frames, char* buffer, unsigned long buffer_length)
+unsigned long write_stack_trace(PVOID * frames, unsigned long num_frames, char* buffer, unsigned long buffer_length)
 {
 	unsigned long buffer_length_used = 0;
 	char* buffer_position = buffer;
@@ -547,7 +485,7 @@ void write_memory_allocations()
 	LONG lock_release_result = InterlockedCompareExchange(&tracked_memory_entries_spin_lock, 0, thread_id);
 	if (lock_release_result != thread_id) throw;
 
-	if(missed_output_entries > 0)
+	if (missed_output_entries > 0)
 	{
 		file_write_line(output, "%u entries had no file/line data", missed_output_entries);
 	}

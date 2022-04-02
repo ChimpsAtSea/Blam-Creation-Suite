@@ -91,7 +91,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Version.lib;TagDefinitions.lib;SymbolsRuntime.lib;Version.lib;Shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Version.lib;TagDefinitions.lib;SymbolsRuntime.lib;Shlwapi.lib;xxhash.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
@@ -137,7 +137,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Version.lib;TagDefinitions.lib;SymbolsRuntime.lib;Version.lib;Shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Version.lib;TagDefinitions.lib;SymbolsRuntime.lib;Shlwapi.lib;xxhash.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>

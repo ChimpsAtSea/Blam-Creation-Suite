@@ -45,8 +45,8 @@ void c_haloreach_bitmap_test::draw_ui()
 				char* const dds_file_buffer = static_cast<char*>(tracked_malloc(dds_file_buffer_size));
 
 				unsigned long* magic_ptr = reinterpret_cast<unsigned long*>(dds_file_buffer);
-				DirectX::DDS_HEADER* dds_header_ptr = next_contiguous_pointer<DirectX::DDS_HEADER>(magic_ptr);
-				unsigned char* texture_data = next_contiguous_pointer<unsigned char>(dds_header_ptr);
+				DirectX::DDS_HEADER* dds_header_ptr = next_contiguous_pointer(DirectX::DDS_HEADER, magic_ptr);
+				unsigned char* texture_data = next_contiguous_pointer(unsigned char, dds_header_ptr);
 
 				*magic_ptr = DirectX::DDS_MAGIC;
 

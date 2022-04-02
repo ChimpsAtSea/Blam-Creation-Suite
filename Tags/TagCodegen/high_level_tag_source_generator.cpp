@@ -149,8 +149,20 @@ void c_high_level_tag_source_generator::generate_header() const
 	stream << "\t\tBCS_DEBUG_API h_object* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition);" << std::endl << std::endl;
 
 	std::unordered_map<std::string, int> field_name_unique_counter;
+	union
+	{
+		struct
+		{
+			unsigned long engine_platform_build_hash;
+			long structure_index;
+		};
+		unsigned long long structure_guid;
+	};
+	engine_platform_build_hash = XXH32(&engine_platform_build, sizeof(engine_platform_build), 0);
+	structure_index = -1;
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
+		structure_index++;
 		const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
 
 		//if (struct_definition == &blofeld::rasterizer_compiled_shader_struct_struct_definition)
@@ -205,31 +217,19 @@ void c_high_level_tag_source_generator::generate_header() const
 		if (tag_group != nullptr)
 		{
 			stream << "\t\t\t\t" << "virtual const blofeld::s_tag_group& get_blofeld_group_definition() const;" << std::endl;
-			//stream << "\t\t\t\t" << "virtual const blofeld::s_tag_group& get_blofeld_group_definition() const final;" << std::endl;
 		}
-		//stream << "\t\t\t\t" << "virtual unsigned long get_high_level_type_size() const;" << std::endl;
-		//stream << "\t\t\t\t" << "virtual unsigned long get_low_level_type_size() const;" << std::endl;
+
 		stream << "\t\t\t\t" << "virtual void* get_field_data(const blofeld::s_tag_field& field);" << std::endl;
 		stream << "\t\t\t\t" << "virtual bool is_field_active(const blofeld::s_tag_field& field) const;" << std::endl;
 		stream << "\t\t\t\t" << "virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const;" << std::endl;
 		stream << "\t\t\t\t" << "virtual const blofeld::s_tag_field* const* get_blofeld_field_list() const;" << std::endl;
-		stream << "\t\t\t\t" << "virtual void copy_from_memory(const void* data);" << std::endl;
-		stream << "\t\t\t\t" << "virtual void copy_to_memory(void* data) const;" << std::endl;
-		//stream << "\t\t\t\t" << "virtual unsigned long get_high_level_type_size() const final;" << std::endl;
-		//stream << "\t\t\t\t" << "virtual unsigned long get_low_level_type_size() const final;" << std::endl;
-		//stream << "\t\t\t\t" << "virtual void* get_field_data(const blofeld::s_tag_field& field) final;" << std::endl;
-		//stream << "\t\t\t\t" << "virtual bool is_field_active(const blofeld::s_tag_field& field) const final;" << std::endl;
-		//stream << "\t\t\t\t" << "virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const final;" << std::endl;
-		//stream << "\t\t\t\t" << "virtual const blofeld::s_tag_field* const* get_blofeld_field_list() const final;" << std::endl;
-		//stream << "\t\t\t\t" << "virtual void copy_from_memory(const void* data) final;" << std::endl;
-		//stream << "\t\t\t\t" << "virtual void copy_to_memory(void* data) const final;" << std::endl;
+		stream << "\t\t\t\t" << "virtual unsigned long long get_type_guid() const;" << std::endl;
 
 		stream << std::endl;
 
 		stream << "\t\t\t\t" << "static const blofeld::s_tag_struct_definition& tag_struct_definition;" << std::endl;
-		stream << "\t\t\t\t" << "static unsigned long const high_level_type_size;" << std::endl;
 		stream << "\t\t\t\t" << "static unsigned long const low_level_type_size;" << std::endl;
-		//stream << "\t\t\t\t" << "static const blofeld::s_tag_field* const blofeld_field_list[" << blofeld_field_list_size << "];" << std::endl;
+		stream << "\t\t\t\t" << "static constexpr unsigned long long type_guid = 0x" << std::hex << structure_guid << std::dec << ";" << std::endl;
 
 		stream << std::endl;
 
@@ -695,8 +695,20 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 	stream << std::endl;
 
 	std::unordered_map<std::string, int> field_name_unique_counter;
+	union
+	{
+		struct
+		{
+			unsigned long engine_platform_build_hash;
+			long structure_index;
+		};
+		unsigned long long structure_guid;
+	};
+	engine_platform_build_hash = XXH32(&engine_platform_build, sizeof(engine_platform_build), 0);
+	structure_index = -1;
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
+		structure_index++;
 		const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
 
 		//if (struct_definition == &blofeld::rasterizer_compiled_shader_struct_struct_definition)
@@ -727,7 +739,6 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 		std::string high_level_structure_name = format_structure_symbol(*struct_definition);
 
 		stream << "\t\t" << "const blofeld::s_tag_struct_definition& " << high_level_structure_name << "::tag_struct_definition = " << struct_definition->symbol->symbol_name << ";" << std::endl;
-		stream << "\t\t" << "unsigned long const " << high_level_structure_name << "::high_level_type_size = sizeof(" << high_level_structure_name << ");" << std::endl;
 		stream << "\t\t" << "unsigned long const " << high_level_structure_name << "::low_level_type_size = " << low_level_type_size << "u;" << std::endl;
 		/*stream << "\t\t" << "const blofeld::s_tag_field* const " << high_level_structure_name << "::blofeld_field_list[" << blofeld_field_list_count << "] = " << std::endl;
 		stream << "\t\t" << "{" << std::endl;
@@ -802,13 +813,9 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 		stream << "\t\t}" << std::endl;
 		stream << std::endl;
 
-		stream << "\t\t" << "void " << high_level_structure_name << "::copy_from_memory(const void* data)" << std::endl;
+		stream << "\t\t" << "unsigned long long " << high_level_structure_name << "::get_type_guid() const" << std::endl;
 		stream << "\t\t{" << std::endl;
-		stream << "\t\t}" << std::endl;
-		stream << std::endl;
-
-		stream << "\t\t" << "void " << high_level_structure_name << "::copy_to_memory(void* data) const" << std::endl;
-		stream << "\t\t{" << std::endl;
+		stream << "\t\t\treturn type_guid;" << std::endl;
 		stream << "\t\t}" << std::endl;
 		stream << std::endl;
 	}

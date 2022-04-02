@@ -3,31 +3,6 @@
 #pragma warning( push )
 #pragma warning( disable : 4595 )
 
-struct s_tracked_memory_stats
-{
-	const char* name;
-	s_tracked_memory_stats* parent;
-	volatile long long allocated_memory;
-	volatile long long tracked_allocated_memory;
-	volatile long allocation_count;
-};
-
-struct s_tracked_memory_entry
-{
-	s_tracked_memory_entry* next;
-	s_tracked_memory_entry* previous;
-	void* tracked_memory;
-	void* memory;
-	size_t tracking_memory_size;
-	size_t tracking_memory_aligned_size;
-	size_t allocated_memory_aligned_size;
-	size_t total_memory_aligned_size;
-	void** stack_frames;
-	const char* filepath;
-	long line;
-	unsigned long num_stack_frames;
-};
-
 BCS_DEBUG_API void print_memory_allocations();
 BCS_DEBUG_API void write_memory_allocations();
 

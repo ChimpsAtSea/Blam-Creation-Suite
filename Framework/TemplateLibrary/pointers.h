@@ -1,19 +1,46 @@
 #pragma once
 
-template<typename TCast, typename TSource>
-TCast* next_contiguous_pointer(TSource* source)
-{
-	return reinterpret_cast<TCast*>(source + 1);
-}
+#ifdef __cplusplus
 
-template<typename TCast, typename TSource>
-const TCast* next_contiguous_pointer(const TSource* source)
+#ifndef __INTELLISENSE
+namespace next_contiguous_pointer
 {
-	return reinterpret_cast<const TCast*>(source + 1);
-}
+	template <typename _Ty>
+	struct t_next_contiguous_pointer_remove_const
+	{
+		using type2 = _Ty;
+	};
 
-template<typename TSource>
-TSource* next_contiguous_pointer(TSource* source)
-{
-	return source + 1;
+	template <typename _Ty>
+	struct t_next_contiguous_pointer_remove_const<const _Ty>
+	{
+		using type2 = _Ty;
+	};
+
+	template <typename t_target, typename t_source>
+	struct t_next_contiguous_pointer
+	{
+		using type = t_source;
+	};
+
+	template <typename t_target, typename t_source>
+	struct t_next_contiguous_pointer<t_target, t_source*>
+	{
+		using type = t_next_contiguous_pointer_remove_const<t_target>::type2*;
+	};
+
+	template <typename t_target, typename t_source>
+	struct t_next_contiguous_pointer<t_target, const t_source*>
+	{
+		using type = t_next_contiguous_pointer_remove_const<t_target>::type2 const*;
+	};
 }
+#endif
+
+#define next_contiguous_pointer(t_type, source) reinterpret_cast<next_contiguous_pointer::t_next_contiguous_pointer<t_type, decltype(source)>::type>(source + 1)
+
+#else
+
+#define next_contigious_pointer(t_type, source) (t_type*)(source + 1)
+
+#endif

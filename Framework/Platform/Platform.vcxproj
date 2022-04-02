@@ -210,7 +210,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>tbb.lib;Version.lib;Shlwapi.lib;DbgHelp.Lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tbb.lib;Version.lib;Shlwapi.lib;DbgHelp.Lib;mimalloc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
@@ -237,7 +237,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>tbb.lib;Version.lib;Shlwapi.lib;DbgHelp.Lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tbb.lib;Version.lib;Shlwapi.lib;DbgHelp.Lib;mimalloc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>

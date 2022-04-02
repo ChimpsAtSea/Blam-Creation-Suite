@@ -20,6 +20,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
+      <SupportJustMyCode>false</SupportJustMyCode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/Zm500 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>

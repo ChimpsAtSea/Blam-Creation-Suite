@@ -10,8 +10,8 @@ public:
 	virtual void set_status_bar_status(e_status_interface_priority priority, float time, const char* status, ...) override;
 
 protected:
-	c_fixed_string_128 status;
-	c_fixed_string_128 status_ui_copy;
+	char status[128];
+	char status_ui_copy[128];
 	double end_time;
 	unsigned long priority;
 };

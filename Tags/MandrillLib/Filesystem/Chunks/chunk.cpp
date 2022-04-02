@@ -1,10 +1,18 @@
 #include "mandrilllib-private-pch.h"
 
+template<> void byteswap_inplace(s_chunk_header& value)
+{
+	byteswap_inplace(value.signature);
+	byteswap_inplace(value.metadata);
+	byteswap_inplace(value.chunk_size);
+}
+
 c_chunk* const c_chunk::children_list_empty[1] = { nullptr };
 
 c_chunk::c_chunk(tag signature, c_chunk* parent) :
 	parent(parent),
-	children(nullptr),
+	children(const_cast<c_chunk**>(children_list_empty)),
+	num_children(0),
 	chunk_data(nullptr),
 	chunk_size(0),
 	metadata(),
@@ -25,9 +33,9 @@ c_chunk::~c_chunk()
 		tracked_free(chunk_data);
 	}
 
-	if (children)
+	if (num_children > 0)
 	{
-		for (c_chunk** current_chunk = children; *current_chunk; current_chunk++)
+		for (c_chunk* const* current_chunk = children; *current_chunk; current_chunk++)
 		{
 			delete* current_chunk;
 		}
@@ -40,7 +48,7 @@ BCS_RESULT c_chunk::add_child(c_chunk& chunk)
 	ASSERT(chunk.parent == nullptr || chunk.parent == this);
 	chunk.parent = this;
 
-	unsigned long old_child_count = get_num_children_unsafe();
+	unsigned long old_child_count = num_children;
 	unsigned long new_child_count = old_child_count + 1;
 
 	c_chunk** new_children = trivial_malloc(c_chunk*, new_child_count + 1);
@@ -53,16 +61,16 @@ BCS_RESULT c_chunk::add_child(c_chunk& chunk)
 
 	trivial_free(children);
 	children = new_children;
+	num_children = new_child_count;
 
 	return BCS_S_OK;
 }
 
 BCS_RESULT c_chunk::remove_child(c_chunk& chunk)
 {
-	unsigned long old_child_count = get_num_children_unsafe();
-	if (old_child_count >= 0)
+	if (num_children >= 0)
 	{
-		unsigned long new_child_count = old_child_count;
+		unsigned long new_child_count = num_children;
 		{
 			for (c_chunk** current_chunk = children; *current_chunk; current_chunk++)
 			{
@@ -75,12 +83,12 @@ BCS_RESULT c_chunk::remove_child(c_chunk& chunk)
 			}
 		}
 
-		if (new_child_count < old_child_count)
+		if (new_child_count < num_children)
 		{
 			c_chunk** new_children = trivial_malloc(c_chunk*, new_child_count + 1);
 			{
 				unsigned long destination_index = 0;
-				for (unsigned long child_index = 0; child_index < old_child_count; child_index++)
+				for (unsigned long child_index = 0; child_index < num_children; child_index++)
 				{
 					c_chunk* current_chunk = children[child_index];
 					if (current_chunk != &chunk)
@@ -94,6 +102,7 @@ BCS_RESULT c_chunk::remove_child(c_chunk& chunk)
 
 			trivial_free(children);
 			children = new_children;
+			num_children = num_children;
 
 			return BCS_S_OK;
 		}
@@ -102,34 +111,30 @@ BCS_RESULT c_chunk::remove_child(c_chunk& chunk)
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_chunk::get_children(c_chunk* const*& out_children, unsigned long& num_children)
+BCS_RESULT c_chunk::get_children(c_chunk* const*& out_children, unsigned long& out_num_children)
 {
 	if (children != nullptr)
 	{
 		out_children = children;
-		num_children = get_num_children_unsafe();
+		out_num_children = num_children;
 	}
 	else
 	{
 		out_children = children_list_empty;
-		num_children = 0;
+		out_num_children = 0;
 	}
 	return BCS_S_OK;
 }
 
 c_chunk* const* c_chunk::get_children_unsafe() const
 {
-	return children != nullptr ? children : children_list_empty;
+	return children;
 }
 
 c_chunk* c_chunk::get_child_unsafe(unsigned long index) const
 {
-	DEBUG_ONLY(unsigned long num_children = get_num_children_unsafe());
-	DEBUG_ASSERT(index < num_children);
-
-	c_chunk* child = get_children_unsafe()[index];
-
-	return child;
+	ASSERT(index < num_children);
+	return children[index];
 }
 
 c_chunk* c_chunk::get_child_by_signature_unsafe(tag signature, t_chunk_child_iterator* _iterator) const
@@ -162,16 +167,6 @@ c_chunk* c_chunk::get_child_by_signature_recursive_unsafe(tag signature, t_chunk
 		}
 	}
 	return nullptr;
-}
-
-unsigned long c_chunk::get_num_children_unsafe() const
-{
-	unsigned long num_children = 0;
-	for (c_chunk** children_iter = children; children_iter && *children_iter; children_iter++)
-	{
-		num_children++;
-	}
-	return num_children;
 }
 
 const char* c_chunk::get_chunk_data_start() const
@@ -253,24 +248,17 @@ BCS_RESULT c_chunk::read_chunk(
 
 	BCS_RESULT rs = BCS_S_OK;
 
-	const tag* signature_ptr = static_cast<const tag*>(data);
-	const unsigned long* metadata_ptr = next_contiguous_pointer<unsigned long>(signature_ptr);
-	const unsigned long* chunk_size_ptr = next_contiguous_pointer<unsigned long>(metadata_ptr);
-	const char* chunk_data_ptr = next_contiguous_pointer<char>(chunk_size_ptr);
-
-	is_big_endian = signature == byteswap(*signature_ptr);
-
-	tag read_signature = chunk_byteswap(*signature_ptr);
+	const s_chunk_header* chunk_header_pointer = static_cast<const s_chunk_header*>(data);
+	s_chunk_header chunk_header = *chunk_header_pointer;
+	is_big_endian = signature == byteswap(chunk_header.signature);
+	chunk_byteswap_inplace(chunk_header);
+	tag read_signature = chunk_header.signature;
 	ASSERT(read_signature == signature);
-	//bool test1 = read_signature == signature;
-	//bool test2 = read_signature != signature;
-	//if (test2);
-	//{
-	//	return BCS_E_FAIL;
-	//}
 
-	metadata = chunk_byteswap(*metadata_ptr);
-	chunk_size = chunk_byteswap(*chunk_size_ptr);
+	metadata = chunk_header.metadata;
+	chunk_size = chunk_header.chunk_size;
+
+	const char* chunk_data_ptr = next_contiguous_pointer(char, chunk_header_pointer);
 	chunk_data = chunk_data_ptr;
 
 	is_data_valid = true;
@@ -392,12 +380,9 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 		const void* chunk_data_end = get_chunk_data_end();
 		for (const char* data_position = data_start; data_position < chunk_data_end;)
 		{
-			const unsigned long* signature_pointer = reinterpret_cast<const unsigned long*>(data_position);
-			const unsigned long* metadata_pointer = next_contiguous_pointer(signature_pointer);
-			const unsigned long* chunk_size_pointer = next_contiguous_pointer(metadata_pointer);
-			unsigned long signature = chunk_byteswap(*signature_pointer);
-			unsigned long metadata = chunk_byteswap(*metadata_pointer);
-			unsigned long chunk_size = chunk_byteswap(*chunk_size_pointer) + sizeof(unsigned long[3]);
+			const s_chunk_header* chunk_header_pointer = reinterpret_cast<const s_chunk_header*>(data_position);
+			unsigned long signature = chunk_byteswap(chunk_header_pointer->signature);
+			unsigned long chunk_size = chunk_byteswap(chunk_header_pointer->chunk_size) + sizeof(s_chunk_header);
 
 #define CHUNK_CTOR_EX(_signature, t_structure, ...) \
 		case (_signature): \
@@ -407,7 +392,6 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 			chunk_storage = chunk; \
 			chunk->read_chunk(userdata, data_position, use_read_only, t_structure::k_should_parse_children); \
 			data_position += chunk_size; \
-			ASSERT(data_position == chunk->get_chunk_data_end()); \
 			break; \
 		}
 #define CHUNK_CTOR(t_structure, ...) CHUNK_CTOR_EX(t_structure::k_signature, t_structure, __VA_ARGS__)
@@ -483,6 +467,7 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 		}
 
 		children = chunk_pointers;
+		num_children = chunk_list_length;
 	}
 	catch (BCS_RESULT rs)
 	{

@@ -70,9 +70,9 @@ BCS_RESULT c_partition_chunk::read_chunk(void* userdata, const void* data, bool 
 	}
 
 	const s_partition_header* src_partition_header = reinterpret_cast<const s_partition_header*>(get_chunk_data_start());
-	const s_lruv_persist_header* src_lruv_persist_header = next_contiguous_pointer<s_lruv_persist_header>(src_partition_header);
-	const s_data_array_persist_header* src_data_array_persist_header = next_contiguous_pointer<s_data_array_persist_header>(src_lruv_persist_header);
-	const s_lruv_cache_block* src_lruv_cache_blocks = next_contiguous_pointer<s_lruv_cache_block>(src_data_array_persist_header);
+	const s_lruv_persist_header* src_lruv_persist_header = next_contiguous_pointer(s_lruv_persist_header, src_partition_header);
+	const s_data_array_persist_header* src_data_array_persist_header = next_contiguous_pointer(s_data_array_persist_header, src_lruv_persist_header);
+	const s_lruv_cache_block* src_lruv_cache_blocks = next_contiguous_pointer(s_lruv_cache_block, src_data_array_persist_header);
 
 	partition_header = chunk_byteswap(*src_partition_header);
 	lruv_persist_header = chunk_byteswap(*src_lruv_persist_header);

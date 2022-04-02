@@ -4,6 +4,13 @@ class c_string_data_chunk;
 class c_single_tag_file_reader;
 class c_single_tag_file_reader;
 
+struct s_chunk_header
+{
+	unsigned long signature;
+	unsigned long metadata;
+	unsigned long chunk_size;
+};
+
 class c_chunk
 {
 public:
@@ -20,7 +27,6 @@ public:
 	c_chunk* get_child_unsafe(unsigned long index) const;
 	c_chunk* get_child_by_signature_unsafe(tag signature, t_chunk_child_iterator* iterator = nullptr) const;
 	c_chunk* get_child_by_signature_recursive_unsafe(tag signature, t_chunk_child_iterator* iterator = nullptr) const;
-	unsigned long get_num_children_unsafe() const;
 
 	const char* get_chunk_data_start() const;
 	const char* get_chunk_data_end() const;
@@ -86,6 +92,7 @@ public:
 	unsigned long is_data_allocated : 1;
 	unsigned long is_data_valid : 1;
 	unsigned long depth : 16;
+	unsigned long num_children;
 
 
 	template<typename t_element>
@@ -124,7 +131,6 @@ public:
 	template<typename t_chunk>
 	unsigned long get_num_children_by_type_unsafe() const
 	{
-		unsigned long num_children = get_num_children_unsafe();
 		unsigned long num_typed_children = 0;
 		for (unsigned long child_index = 0; child_index < num_children; child_index++)
 		{

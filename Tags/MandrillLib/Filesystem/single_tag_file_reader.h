@@ -11,17 +11,21 @@ class c_monolithic_partition_view;
 
 struct s_blofeld_field_transpose_entry
 {
-	bool can_transpose;
+	unsigned long long field_size : 20;
+	unsigned long long blofeld_field_index : 20;
+	unsigned long long field_index : 20;
+	unsigned long long can_transpose : 1;
+	unsigned long long has_child_chunk : 1;
 
-	unsigned long dest_blofeld_field_index;
-	const blofeld::s_tag_field* dest_blofeld_field;
+	unsigned long field_metadata;
+	blofeld::e_field field_type;
 
-	unsigned long src_file_field_index;
-	const s_tag_persist_field* src_file_field;
-	const s_tag_persist_field_type* src_file_field_type;
-	const char* src_file_field_name;
-	const char* src_file_field_type_name;
-	blofeld::e_field src_file_blofeld_field_type;
+	const blofeld::s_tag_field* blofeld_tag_field;
+	//const s_tag_persist_field* tag_persist_field;
+	//const s_tag_persist_field_type* tag_persist_field_type;
+
+	//const char* tag_persist_field_name;
+	//const char* tag_persist_field_type_name;
 };
 
 struct s_single_tag_file_reader_structure_entry

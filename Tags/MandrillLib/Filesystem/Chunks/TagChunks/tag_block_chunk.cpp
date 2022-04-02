@@ -57,7 +57,7 @@ BCS_RESULT c_tag_block_chunk::read_chunk(void* userdata, const void* data, bool 
 	struct_size = reader.layout_reader.get_structure_size_by_index(block_entry->structure_entry_index);
 	block_data_size = struct_size * tag_block_chunk_header.count;
 
-	block_structure_data_begin = next_contiguous_pointer<char>(src_tag_block_chunk_header);
+	block_structure_data_begin = next_contiguous_pointer(char, src_tag_block_chunk_header);
 	block_structure_data_position = block_structure_data_begin;
 
 	block_child_chunk_data_start = block_structure_data_begin + block_data_size;
@@ -73,9 +73,7 @@ BCS_RESULT c_tag_block_chunk::read_chunk(void* userdata, const void* data, bool 
 		if (parse_children)
 		{
 			read_child_chunks(userdata, use_read_only, block_child_chunk_data_position);
-
-			unsigned long child_count = get_num_children_unsafe();
-			ASSERT(child_count == tag_block_chunk_header.count);
+			ASSERT(num_children == tag_block_chunk_header.count);
 		}
 	}
 
@@ -107,7 +105,7 @@ const char* c_tag_block_chunk::get_sturcutre_data_by_index(unsigned long index) 
 c_tag_struct_chunk* c_tag_block_chunk::get_sturcutre_chunk_by_index(unsigned long index) const
 {
 	c_tag_struct_chunk* result = nullptr;
-	if (children != nullptr)
+	if (index < num_children)
 	{
 		result = dynamic_cast<c_tag_struct_chunk*>(children[index]);
 	}
@@ -214,8 +212,6 @@ void c_tag_block_chunk::read_structure_data(c_single_tag_file_reader& reader, s_
 		unsigned long field_size = field_type.size;
 		if (field_size == 0 || field_type.has_child_chunk)
 		{
-			ASSERT(!field_type.has_child_chunk || tag_struct_chunk);
-
 			blofeld::e_field blofeld_field_type = reader.layout_reader.get_blofeld_type_by_field_type_index(field_entry.field_type_index);
 
 			switch (blofeld_field_type)
@@ -241,9 +237,9 @@ void c_tag_block_chunk::read_structure_data(c_single_tag_file_reader& reader, s_
 				unsigned long structure_entry_index = field_entry.metadata;
 				s_tag_persist_struct_definition& structure_entry = reader.layout_reader.get_struct_definition_by_index(structure_entry_index);
 				//const char* struct_name = reader.layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
-				unsigned long structure_size = reader.layout_reader.get_structure_size_by_index(field_entry.metadata);
+				unsigned long expected_children = reader.layout_reader.get_structure_expected_children_by_index(structure_entry_index);
+				unsigned long structure_size = reader.layout_reader.get_structure_size_by_index(structure_entry_index);
 				field_size = structure_size;
-				unsigned long expected_children = reader.layout_reader.get_structure_expected_children_by_index(field_entry.metadata);
 
 				ASSERT(tag_struct_chunk != nullptr);
 				c_tag_struct_chunk* next_tag_struct_chunk = nullptr;
@@ -254,7 +250,7 @@ void c_tag_block_chunk::read_structure_data(c_single_tag_file_reader& reader, s_
 					next_tag_struct_chunk = dynamic_cast<c_tag_struct_chunk*>(chunk);
 					ASSERT(next_tag_struct_chunk != nullptr);
 					metadata_child_index++;
-					num_children = next_tag_struct_chunk->get_num_children_unsafe();
+					num_children = next_tag_struct_chunk->num_children;
 					if (num_children < expected_children && num_children == 0)
 					{
 						next_tag_struct_chunk = nullptr; // skip over to the next struct definition

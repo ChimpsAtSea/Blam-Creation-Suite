@@ -323,7 +323,7 @@ BCS_RESULT sound_transcode(
 	decoder_context->sample_fmt = encoder_context->sample_fmt;
 
 	{
-		const void* wave_format_extra_data = next_contiguous_pointer(source_wave_format);
+		const void* wave_format_extra_data = next_contiguous_pointer(void, source_wave_format);
 		void* dst_extra_data_copy = av_malloc(decoder_context->extradata_size);
 		memcpy(dst_extra_data_copy, wave_format_extra_data, decoder_context->extradata_size);
 		decoder_context->extradata = static_cast<unsigned char*>(dst_extra_data_copy);

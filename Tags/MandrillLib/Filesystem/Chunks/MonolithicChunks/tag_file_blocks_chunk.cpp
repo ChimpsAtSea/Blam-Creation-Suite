@@ -51,7 +51,7 @@ BCS_RESULT c_tag_file_blocks_chunk::read_chunk(void* userdata, const void* data,
 	}
 
 	const s_wide_data_array_header* src_wide_data_array_header = reinterpret_cast<const s_wide_data_array_header*>(get_chunk_data_start());
-	const s_data_array_persist_header* src_data_array_persist_header = next_contiguous_pointer<s_data_array_persist_header>(src_wide_data_array_header);
+	const s_data_array_persist_header* src_data_array_persist_header = next_contiguous_pointer(s_data_array_persist_header, src_wide_data_array_header);
 
 	wide_data_array_header = chunk_byteswap(*src_wide_data_array_header);
 	data_array_persist_header = chunk_byteswap(*src_data_array_persist_header);
@@ -60,7 +60,7 @@ BCS_RESULT c_tag_file_blocks_chunk::read_chunk(void* userdata, const void* data,
 	{
 		const s_wide_data_datum* src_current_wide_data_datum;
 		{
-			src_current_wide_data_datum = next_contiguous_pointer<s_wide_data_datum>(src_data_array_persist_header);
+			src_current_wide_data_datum = next_contiguous_pointer(s_wide_data_datum, src_data_array_persist_header);
 
 			wide_data_datums = new() s_wide_data_datum[data_array_persist_header.count];
 
@@ -72,21 +72,21 @@ BCS_RESULT c_tag_file_blocks_chunk::read_chunk(void* userdata, const void* data,
 
 				num_wide_data_cache_blocks += wide_data_datum.data_header.count;
 
-				const s_wide_data_cache_block* src_wide_data_cache_block = next_contiguous_pointer<s_wide_data_cache_block>(src_current_wide_data_datum);
+				const s_wide_data_cache_block* src_wide_data_cache_block = next_contiguous_pointer(s_wide_data_cache_block, src_current_wide_data_datum);
 
 				const unsigned long* src_signature0 = reinterpret_cast<const unsigned long*>(src_wide_data_cache_block + wide_data_datum.data_header.count);
-				const unsigned long* src_signature1 = next_contiguous_pointer(src_signature0);
+				const unsigned long* src_signature1 = next_contiguous_pointer(unsigned long, src_signature0);
 				ASSERT(chunk_byteswap(*src_signature0) == 'd@ft');
 				ASSERT(chunk_byteswap(*src_signature1) == '!@#$');
 
-				src_current_wide_data_datum = next_contiguous_pointer<s_wide_data_datum>(src_signature1);
+				src_current_wide_data_datum = next_contiguous_pointer(s_wide_data_datum, src_signature1);
 
 				
 			}
 		}
 
 		{
-			src_current_wide_data_datum = next_contiguous_pointer<s_wide_data_datum>(src_data_array_persist_header);
+			src_current_wide_data_datum = next_contiguous_pointer(s_wide_data_datum, src_data_array_persist_header);
 
 			wide_data_cache_blocks = new() s_wide_data_cache_block[num_wide_data_cache_blocks];
 			s_wide_data_cache_block* wide_data_cache_blocks_pos = wide_data_cache_blocks;
@@ -97,7 +97,7 @@ BCS_RESULT c_tag_file_blocks_chunk::read_chunk(void* userdata, const void* data,
 				wide_data_datum = *src_current_wide_data_datum;
 				chunk_byteswap_inplace(wide_data_datum);
 
-				const s_wide_data_cache_block* src_wide_data_cache_block = next_contiguous_pointer<s_wide_data_cache_block>(src_current_wide_data_datum);
+				const s_wide_data_cache_block* src_wide_data_cache_block = next_contiguous_pointer(s_wide_data_cache_block, src_current_wide_data_datum);
 				for (unsigned long wide_data_cache_block_index = 0; wide_data_cache_block_index < wide_data_datum.data_header.count; wide_data_cache_block_index++)
 				{
 					s_wide_data_cache_block& wide_data_cache_block = *wide_data_cache_blocks_pos;
@@ -110,22 +110,22 @@ BCS_RESULT c_tag_file_blocks_chunk::read_chunk(void* userdata, const void* data,
 				}
 
 				const unsigned long* src_signature0 = reinterpret_cast<const unsigned long*>(src_wide_data_cache_block + wide_data_datum.data_header.count);
-				const unsigned long* src_signature1 = next_contiguous_pointer(src_signature0);
+				const unsigned long* src_signature1 = next_contiguous_pointer(unsigned long, src_signature0);
 				ASSERT(chunk_byteswap(*src_signature0) == 'd@ft');
 				ASSERT(chunk_byteswap(*src_signature1) == '!@#$');
 
-				src_current_wide_data_datum = next_contiguous_pointer<s_wide_data_datum>(src_signature1);
+				src_current_wide_data_datum = next_contiguous_pointer(s_wide_data_datum, src_signature1);
 
 				
 			}
 		}
 
 		const unsigned long* src_signature0 = reinterpret_cast<const unsigned long*>(src_current_wide_data_datum);
-		const unsigned long* src_signature1 = next_contiguous_pointer(src_signature0);
+		const unsigned long* src_signature1 = next_contiguous_pointer(unsigned long, src_signature0);
 		ASSERT(chunk_byteswap(*src_signature0) == 'd@ft');
 		ASSERT(chunk_byteswap(*src_signature1) == 'load');
 
-		const void* current_read_position = next_contiguous_pointer(src_signature1);
+		const void* current_read_position = next_contiguous_pointer(void, src_signature1);
 		ASSERT(current_read_position == get_chunk_data_end());
 
 		

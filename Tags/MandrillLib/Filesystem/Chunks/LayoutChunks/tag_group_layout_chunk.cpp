@@ -32,11 +32,11 @@ BCS_RESULT c_tag_group_layout_chunk::read_chunk(void* userdata, const void* data
 	{
 	case _tag_persist_layout_version_prechunk:
 	{
-		const s_tag_persist_layout_header_prechunk* src_layout_header_prechunk = next_contiguous_pointer<s_tag_persist_layout_header_prechunk>(src_tag_group_layout_header);
+		const s_tag_persist_layout_header_prechunk* src_layout_header_prechunk = next_contiguous_pointer(s_tag_persist_layout_header_prechunk, src_tag_group_layout_header);
 		layout_header_prechunk_data = chunk_byteswap(*src_layout_header_prechunk);
 		layout_header_prechunk = &layout_header_prechunk_data;
 
-		const char* chunk_children_start = next_contiguous_pointer<char>(src_layout_header_prechunk);
+		const char* chunk_children_start = next_contiguous_pointer(char, src_layout_header_prechunk);
 
 		// #HACK: The same data for this chunk is passed down to the child. This means that the child chunk has the same data
 		// begin and end positions as this current chunk.
@@ -47,11 +47,11 @@ BCS_RESULT c_tag_group_layout_chunk::read_chunk(void* userdata, const void* data
 	break;
 	case _tag_persist_layout_version_preinterop:
 	{
-		const s_tag_persist_layout_header_preinterop* src_layout_header_preinterop = next_contiguous_pointer<s_tag_persist_layout_header_preinterop>(src_tag_group_layout_header);
+		const s_tag_persist_layout_header_preinterop* src_layout_header_preinterop = next_contiguous_pointer(s_tag_persist_layout_header_preinterop, src_tag_group_layout_header);
 		layout_header_preinterop_data = chunk_byteswap(*src_layout_header_preinterop);
 		layout_header_preinterop = &layout_header_preinterop_data;
 
-		const char* chunk_children_start = next_contiguous_pointer<char>(src_layout_header_preinterop);
+		const char* chunk_children_start = next_contiguous_pointer(char, src_layout_header_preinterop);
 		if (parse_children)
 		{
 			read_child_chunks(&tag_group_layout_header, use_read_only, chunk_children_start);
@@ -60,12 +60,12 @@ BCS_RESULT c_tag_group_layout_chunk::read_chunk(void* userdata, const void* data
 	break;
 	case _tag_persist_layout_version_v3:
 	{
-		const s_tag_persist_layout_header_v3* src_layout_header_v3 = next_contiguous_pointer<s_tag_persist_layout_header_v3>(src_tag_group_layout_header);
+		const s_tag_persist_layout_header_v3* src_layout_header_v3 = next_contiguous_pointer(s_tag_persist_layout_header_v3, src_tag_group_layout_header);
 		layout_header_v3_data = chunk_byteswap(*src_layout_header_v3);
 		layout_header_v3 = &layout_header_v3_data;
 
 		layout_header_preinterop = layout_header_v3;
-		const char* chunk_children_start = next_contiguous_pointer<char>(src_layout_header_v3);
+		const char* chunk_children_start = next_contiguous_pointer(char, src_layout_header_v3);
 		if (parse_children)
 		{
 			read_child_chunks(&tag_group_layout_header, use_read_only, chunk_children_start);
