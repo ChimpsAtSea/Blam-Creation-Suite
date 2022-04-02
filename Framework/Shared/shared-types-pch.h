@@ -30,7 +30,7 @@ typedef	uint8_t				undefined8_t;
 typedef	uint16_t			undefined16_t;
 typedef	uint32_t			undefined32_t;
 typedef	uint64_t			undefined64_t;
-#if __cplusplus <= 201703L
+#if 0 /*__cplusplus <= 201703L*/
 typedef char				char8_t;
 #endif
 //typedef wchar_t			char16_t;

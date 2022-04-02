@@ -148,7 +148,7 @@ function(bcs_macro_high_level_project TARGET_NAME PCH_NAME GEN_NAME)
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/generated/${GEN_NAME}_high_level.virtual.cpp
 		PROPERTIES GENERATED ON)
 		
-	target_include_directories(${TARGET_NAME} PRIVATE
+	target_include_directories(${TARGET_NAME} PUBLIC
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}})
 	
 	target_link_libraries(${TARGET_NAME} PRIVATE

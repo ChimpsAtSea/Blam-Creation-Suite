@@ -65,7 +65,7 @@ target_link_libraries(MandrillUI PRIVATE
 	TagDefinitions
 	TagReflection
 	DeviceCommunication
-#	AudioConversion
+	AudioConversion
 	imgui
 	MandrillLib
 	HighLevel_Halo1

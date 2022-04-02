@@ -1,7 +1,7 @@
 function(bcs_macro_low_level_project TARGET_NAME PCH_NAME GEN_NAME)
 	set(PFX_LOWLEVEL_MACRO_${TARGET_NAME} ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/low_level_${GEN_NAME})
 
-	add_library(${TARGET_NAME} ${BCS_LIBRARY_TYPE}
+	add_library(${TARGET_NAME} STATIC
 		${PFX_LOWLEVEL_MACRO_${TARGET_NAME}}/${PCH_NAME}-private-pch.h
 		${PFX_LOWLEVEL_MACRO_${TARGET_NAME}}/${PCH_NAME}-public-pch.h
 		
@@ -22,7 +22,7 @@ function(bcs_macro_low_level_project TARGET_NAME PCH_NAME GEN_NAME)
 		${PFX_LOWLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_ida.h
 		PROPERTIES GENERATED ON)
 		
-	target_include_directories(${TARGET_NAME} PRIVATE
+	target_include_directories(${TARGET_NAME} PUBLIC
 		${PFX_LOWLEVEL_MACRO_${TARGET_NAME}})
 	
 	target_link_libraries(${TARGET_NAME} PRIVATE

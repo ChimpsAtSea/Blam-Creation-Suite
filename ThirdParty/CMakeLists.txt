@@ -1,3 +1,38 @@
+set(VCPKG_TRIPLET "x64-windows-$<$<CONFIG:DEBUG>:debug>$<$<NOT:$<CONFIG:DEBUG>>:release>-bcs" CACHE INTERNAL "")
+set(VCPKG_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg" CACHE INTERNAL "")
+set(VCPKG "${VCPKG_DIR}/vcpkg.exe" CACHE INTERNAL "")
+
+add_custom_command(OUTPUT ${VCPKG}
+    COMMAND cmd /c "${VCPKG_DIR}/bootstrap-vcpkg.bat -disableMetrics")
+
+add_custom_target(VcPkgBootstrap ALL
+    DEPENDS ${VCPKG}
+)
+
+set(VCPKG_TRIPLETS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg-custom-triplets/")
+add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/VcPkg.stamp
+    COMMAND ${VCPKG} install "curl:${VCPKG_TRIPLET}" "rapidjson:${VCPKG_TRIPLET}" "ffmpeg[core,avcodec,swresample]:${VCPKG_TRIPLET}" "mimalloc:${VCPKG_TRIPLET}" "--overlay-triplets=${VCPKG_TRIPLETS_DIR}" --recurse
+    COMMAND ${CMAKE_COMMAND} -E touch "${CMAKE_BINARY_DIR}/VcPkg.stamp")
+
+add_custom_target(VcPkg ALL
+    DEPENDS "${CMAKE_BINARY_DIR}/VcPkg.stamp"
+)
+
+add_dependencies(VcPkg VcPkgBootstrap)
+
+set_target_properties(VcPkg VcPkgBootstrap PROPERTIES
+	FOLDER "ThirdParty")
+
+function(bcs_use_vcpkg_directories TARGET_NAME)
+	target_include_directories(${TARGET_NAME} PUBLIC
+		${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/include)
+	
+	target_link_directories(${TARGET_NAME} PUBLIC
+		${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/lib)
+
+	add_dependencies(${TARGET_NAME} VcPkg)
+endfunction()
+
 set(TBB_BUILD_TBBMALLOC ON)
 set(TBB_BUILD_TBBMALLOC_PROXY OFF)
 set(TBB_BUILD_TESTS OFF)

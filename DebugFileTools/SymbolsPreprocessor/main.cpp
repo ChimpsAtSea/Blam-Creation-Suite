@@ -2,10 +2,6 @@
 #include <SymbolsRuntime\symbolsruntime-public-pch.h>
 #include <SymbolsLib\symbolslib-public-pch.h>
 
-#if _HAS_ITERATOR_DEBUGGING
-#error fuck
-#endif
-
 #define CHECK_ARGUMENT(argument) \
 	if (BCS_FAILED(rs = command_line_has_argument(argument))) \
 	{ \

@@ -70,6 +70,17 @@ function(bcs_link_platform_resources TARGET_NAME)
 		${CMAKE_SOURCE_DIR}/Framework/Platform/!Resources/Resource.rc)
 endfunction()
 
+add_custom_command(TARGET Platform POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different
+	"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc.dll"
+	"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc-redirect.dll"
+	$<TARGET_FILE_DIR:Platform>)
+
+install(FILES
+	"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc.dll"
+	"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc-redirect.dll"
+	DESTINATION bin)
+
 set_source_files_properties(
 	!Resources/HLSL/BoxShaderVS.hlsl
 	PROPERTIES VS_SHADER_TYPE Vertex)
@@ -82,8 +93,10 @@ set_source_files_properties(
 	!Resources/HLSL/BoxShaderVS.hlsl
 	PROPERTIES VS_SHADER_MODEL 5.1)
 
+bcs_use_vcpkg_directories(Platform)
+
 target_link_libraries(Platform PRIVATE
-	tbb_static xxhash Version Shlwapi Dbghelp)
+	tbb_static Version Shlwapi Dbghelp mimalloc)
 
 target_link_libraries(Platform PUBLIC
 	xxhash)

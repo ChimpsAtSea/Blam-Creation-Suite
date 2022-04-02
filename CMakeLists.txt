@@ -44,6 +44,7 @@ function(bcs_set_compile_properties TARGET_NAME)
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/Framework
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/Framework/blamlib
+		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/ContentFramework
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/DebugFileTools
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/Tooling
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/ThirdParty
@@ -52,7 +53,7 @@ function(bcs_set_compile_properties TARGET_NAME)
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/Tags
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/Tags/LowLevel
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/Tags/HighLevel)
-		
+	
 	target_include_directories(${TARGET_NAME} PUBLIC
 		${CMAKE_CURRENT_SOURCE_DIR})
 		
@@ -120,7 +121,7 @@ add_subdirectory(Tags/MandrillUI)
 #add_subdirectory(Tooling/TagDefinitionsValidate)
 #add_subdirectory(Tooling/UpgradeMacaque)
 
-#add_subdirectory(ContentFramework/AudioConversion)
+add_subdirectory(ContentFramework/AudioConversion)
 
 add_subdirectory(Runtime/Mandrill)
 add_subdirectory(Runtime/ImGUIUIPrototype)
