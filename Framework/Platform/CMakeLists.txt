@@ -96,7 +96,6 @@ set_source_files_properties(
 bcs_use_vcpkg_directories(Platform)
 
 target_link_libraries(Platform PRIVATE
-	#tbb_static
 	tbb
 	Version
 	Shlwapi

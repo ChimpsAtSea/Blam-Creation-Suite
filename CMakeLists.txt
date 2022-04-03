@@ -7,18 +7,17 @@ set(CMAKE_POLICY_DEFAULT_CMP0011 NEW)
 project(BlamCreationSuite)
 
 # this has to exist. we cannot swap DLL/LIB linkage based on VS debug/release target
-option(BCS_LIBRARY_TYPE
-	"Linking configuration for certain BCS projects (SHARED, STATIC, or empty to follow BUILD_SHARED_LIBS)"
-	"SHARED")
+set(BCS_LIBRARY_TYPE "SHARED" CACHE STRING
+	"Linking configuration for certain BCS projects (SHARED, STATIC, or empty to follow BUILD_SHARED_LIBS)")
 
 if(BCS_LIBRARY_TYPE)
-    if (BCS_LIBRARY_TYPE STREQUAL "SHARED")
-        set(BCS_BUILD_SHARED_LIBRARIES TRUE)
-    else()
-        set(BCS_BUILD_SHARED_LIBRARIES FALSE)
-    endif()
+	if (BCS_LIBRARY_TYPE STREQUAL "SHARED")
+		set(BCS_BUILD_SHARED_LIBRARIES TRUE)
+	else()
+		set(BCS_BUILD_SHARED_LIBRARIES FALSE)
+	endif()
 else()
-    set(BCS_BUILD_SHARED_LIBRARIES ${BUILD_SHARED_LIBS})
+	set(BCS_BUILD_SHARED_LIBRARIES ${BUILD_SHARED_LIBS})
 endif()
 
 # enable VS project folders
@@ -67,6 +66,9 @@ function(bcs_set_compile_properties TARGET_NAME)
 		
 		target_compile_options(${TARGET_NAME} PRIVATE
 			"/bigobj")
+
+		set_property(TARGET ${TARGET_NAME} PROPERTY
+			MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:DebugDLL>")
 	endif()
 endfunction()
 
