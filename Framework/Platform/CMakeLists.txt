@@ -71,14 +71,12 @@ function(bcs_link_platform_resources TARGET_NAME)
 endfunction()
 
 add_custom_command(TARGET Platform POST_BUILD
-	COMMAND ${CMAKE_COMMAND} -E copy_if_different
-	"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc.dll"
-	"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc-redirect.dll"
-	$<TARGET_FILE_DIR:Platform>)
+	COMMAND
+	"$<$<CONFIG:DEBUG>:${CMAKE_COMMAND} -E copy_if_different ${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc.dll ${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc-redirect.dll $<TARGET_FILE_DIR:Platform>>")
 
 install(FILES
-	"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc.dll"
-	"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc-redirect.dll"
+	"$<$<CONFIG:DEBUG>:${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc.dll>"
+	"$<$<CONFIG:DEBUG>:${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc-redirect.dll>"
 	DESTINATION bin)
 
 set_source_files_properties(
