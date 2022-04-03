@@ -58,17 +58,14 @@ bcs_set_common_properties(MandrillUI)
 
 target_link_libraries(MandrillUI PRIVATE
 	blamlib
-	Platform
-	TemplateLibrary
 	GraphicsLib
-	Shared
-	TagDefinitions
-	TagReflection
 	DeviceCommunication
 	AudioConversion
 	imgui
-	MandrillLib
-	${BCS_GENERATED_TAG_PROJECTS})
+	MandrillLib)
+
+target_link_libraries(MandrillUI PUBLIC
+	Shared)
 
 target_precompile_headers(MandrillUI PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:mandrillui-private-pch.h>")

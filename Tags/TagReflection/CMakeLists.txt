@@ -7,7 +7,7 @@ add_library(TagReflection STATIC
 
 bcs_set_common_properties(TagReflection)
 
-target_link_libraries(TagReflection PRIVATE
+target_link_libraries(TagReflection PUBLIC
 	blamlib Platform TemplateLibrary Shared SymbolsLib TagDefinitions)
 	
 target_precompile_headers(TagReflection PRIVATE

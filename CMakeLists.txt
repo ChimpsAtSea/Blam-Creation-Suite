@@ -1,13 +1,15 @@
 cmake_minimum_required(VERSION 3.22 FATAL_ERROR)
 
+# shut my battered wife CMake up
+set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
+set(CMAKE_POLICY_DEFAULT_CMP0011 NEW)
+
 project(BlamCreationSuite)
 
-# shut my battered wife CMake up
-cmake_policy(SET CMP0077 NEW)
-
 # this has to exist. we cannot swap DLL/LIB linkage based on VS debug/release target
-set(BCS_LIBRARY_TYPE "${BCS_LIBRARY_TYPE}" CACHE STRING
-    "Linking configuration for certain BCS projects (SHARED, STATIC, or empty to follow BUILD_SHARED_LIBS)")
+option(BCS_LIBRARY_TYPE
+	"Linking configuration for certain BCS projects (SHARED, STATIC, or empty to follow BUILD_SHARED_LIBS)"
+	"SHARED")
 
 if(BCS_LIBRARY_TYPE)
     if (BCS_LIBRARY_TYPE STREQUAL "SHARED")
@@ -103,10 +105,6 @@ add_subdirectory(DebugFileTools/SymbolsLib)
 add_subdirectory(DebugFileTools/SymbolsPreprocessor)
 
 add_subdirectory(Tooling/ResourcesPackager)
-#add_subdirectory(Tooling/BindImageValidationTool)
-#add_subdirectory(Tooling/ImageRelocateTool)
-
-#add_subdirectory(CTS/Rhesus)
 
 add_subdirectory(Tags/TagDefinitions)
 add_subdirectory(Tooling/TagFieldTypeLookupTable)
@@ -127,4 +125,4 @@ add_subdirectory(ContentFramework/AudioConversion)
 
 add_subdirectory(Runtime/Mandrill)
 add_subdirectory(Runtime/ImGUIUIPrototype)
-#add_subdirectory(Runtime/Halo3TagFileTest)
+add_subdirectory(Runtime/Halo3TagFileTest)

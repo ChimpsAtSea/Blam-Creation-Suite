@@ -25,7 +25,7 @@ function(bcs_macro_low_level_project TARGET_NAME PCH_NAME GEN_NAME)
 	target_include_directories(${TARGET_NAME} PUBLIC
 		${PFX_LOWLEVEL_MACRO_${TARGET_NAME}})
 	
-	target_link_libraries(${TARGET_NAME} PRIVATE
+	target_link_libraries(${TARGET_NAME} PUBLIC
 		blamlib Platform TemplateLibrary TagDefinitions TagReflection)
 		
 	target_precompile_headers(${TARGET_NAME} PRIVATE

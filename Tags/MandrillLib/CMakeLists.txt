@@ -240,7 +240,7 @@ add_library(MandrillLib ${BCS_LIBRARY_TYPE}
 
 bcs_set_common_properties(MandrillLib)
 
-target_link_libraries(MandrillLib PRIVATE
+target_link_libraries(MandrillLib PUBLIC
 	Shared
 	Platform
 	TemplateLibrary

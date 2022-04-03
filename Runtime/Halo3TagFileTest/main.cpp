@@ -14,8 +14,8 @@ static c_mandrill_user_interface* mandrill_user_interface;
 static float4 graphics_background_color = { 0.16f, 0.10f, 0.16f, 1.0f };
 static float4 window_background_color = { 0.130f, 0.141f, 0.167f, 1.0f };
 
-s_tracked_memory_stats halo3tagfiletest_tracked_memory = { "halo3tagfiletest" };
-s_tracked_memory_stats& _library_tracked_memory = halo3tagfiletest_tracked_memory;
+// s_tracked_memory_stats halo3tagfiletest_tracked_memory = { "halo3tagfiletest" };
+// s_tracked_memory_stats& _library_tracked_memory = halo3tagfiletest_tracked_memory;
 
 #include <HighLevel/high_level_halo3/highlevel-halo3-public-pch.h>
 

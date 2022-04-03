@@ -35,8 +35,7 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/TagCodegen.stamp
 	DEPENDS $<TARGET_FILE:TagCodegen>)
 
 add_custom_target(TagCodegenGenerate ALL
-	DEPENDS ${CMAKE_BINARY_DIR}/TagCodegen.stamp
-)
+	DEPENDS ${CMAKE_BINARY_DIR}/TagCodegen.stamp)
 
 set_target_properties(TagCodegenGenerate PROPERTIES
 	FOLDER "Tags")

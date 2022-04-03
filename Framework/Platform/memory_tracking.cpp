@@ -437,10 +437,21 @@ unsigned long write_stack_trace(PVOID * frames, unsigned long num_frames, char* 
 	}
 }
 
+void write_stack_trace_to_file(FILE* output, s_tracked_memory_entry* tracked_memory_entry)
+{
+#define file_write_line(file, format, ...) fprintf(file, format, __VA_ARGS__); fprintf(file, "\n")
+
+	unsigned long stack_trace_size = write_stack_trace(tracked_memory_entry->stack_frames, tracked_memory_entry->num_stack_frames, nullptr, 0) + 1;
+	char* stack_trace = static_cast<char*>(_alloca(stack_trace_size));
+	unsigned long stack_trace_size1 = write_stack_trace(tracked_memory_entry->stack_frames, tracked_memory_entry->num_stack_frames, stack_trace, stack_trace_size);
+	debug_point;
+
+	file_write_line(output, stack_trace);
+}
+
 void write_memory_allocations()
 {
 	FILE* output = fopen("memory_allocations.txt", "w");
-#define file_write_line(file, format, ...) fprintf(file, format, __VA_ARGS__); fprintf(file, "\n")
 
 	DWORD thread_id = GetCurrentThreadId();
 	while (InterlockedCompareExchange(&tracked_memory_entries_spin_lock, thread_id, 0));
@@ -473,12 +484,7 @@ void write_memory_allocations()
 		fflush(output);
 		if (tracked_memory_entry->num_stack_frames > 0)
 		{
-			unsigned long stack_trace_size = write_stack_trace(tracked_memory_entry->stack_frames, tracked_memory_entry->num_stack_frames, nullptr, 0) + 1;
-			char* stack_trace = static_cast<char*>(_alloca(stack_trace_size));
-			unsigned long stack_trace_size1 = write_stack_trace(tracked_memory_entry->stack_frames, tracked_memory_entry->num_stack_frames, stack_trace, stack_trace_size);
-			debug_point;
-
-			file_write_line(output, stack_trace);
+			write_stack_trace_to_file(output, tracked_memory_entry);
 		}
 		fflush(output);
 	}

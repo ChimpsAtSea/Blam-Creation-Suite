@@ -136,4 +136,4 @@ add_library(blamlib STATIC
 bcs_set_common_properties(blamlib)
 	
 set_target_properties(blamlib PROPERTIES
-	FOLDER "!Framework")
+	FOLDER "!BlamLib")
