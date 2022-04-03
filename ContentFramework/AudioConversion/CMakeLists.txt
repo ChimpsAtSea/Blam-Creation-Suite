@@ -22,7 +22,7 @@ target_link_libraries(AudioConversion PRIVATE
 
 add_custom_command(TARGET AudioConversion POST_BUILD
 	COMMAND
-	"$<$<CONFIG:DEBUG>:${CMAKE_COMMAND} -E copy_if_different> ${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/avcodec-58.dll ${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/avutil-56.dll ${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/swresample-3.dll> $<TARGET_FILE_DIR:AudioConversion>")
+	"$<$<CONFIG:DEBUG>:${CMAKE_COMMAND} -E copy_if_different ${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/avcodec-58.dll ${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/avutil-56.dll ${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/swresample-3.dll $<TARGET_FILE_DIR:AudioConversion>>")
 
 install(FILES
 	"$<$<CONFIG:DEBUG>:${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/avcodec-58.dll>"

@@ -2,7 +2,7 @@
 
 #define IMGUI_DISABLE_INCLUDE_IMCONFIG_H
 
-#ifdef _DEBUG
+#ifdef BCS_USE_SHARED_LIBRARIES
 #ifdef IMGUI_DLL_EXPORT
 #define IMGUI_API __declspec( dllexport )
 #else
