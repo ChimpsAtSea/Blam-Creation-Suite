@@ -1,10 +1,5 @@
 #include "platform-private-pch.h"
 
-#pragma warning( push )
-#pragma warning( disable : 4180 )
-
-#pragma warning( pop )
-
 using namespace tbb;
 
 #define MINIMUM_PARALLEL_THREADS 4
