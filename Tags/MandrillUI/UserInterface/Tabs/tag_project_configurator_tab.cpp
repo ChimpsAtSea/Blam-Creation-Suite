@@ -219,7 +219,7 @@ void c_tag_project_configurator_tab::render_impl()
 	{
 		ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
 	}
-	if (ImGui::Button("Next") DEBUG_ONLY(|| auto_proceed))
+	if (ImGui::Button("Next") || auto_proceed)
 	{
 		switch (step)
 		{
