@@ -2084,11 +2084,10 @@ public:
 		parse_argument(arg14);
 		parse_argument(arg15);
 #undef parse_argument
-
-		//generate_documentation();
 	}
 
-	void generate_documentation();
+	// #TODO: Reimplement
+	//void generate_documentation();
 
 	uint8_t arguments_count;
 	bool is_null;
