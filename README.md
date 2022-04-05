@@ -18,8 +18,8 @@ Blam Creation Suite is made up of a collection of modular C++ frameworks for han
 * Up-to-date Windows 10 installation
 * Visual Studio 2019 16.11 or newer
 * Desktop Development with C++
-* Windows 10 SDK 10.0.19041.0
-* [CMake 3.21.3]([https://cmake.org/download/](https://cmake.org/download/)) or newer is required (`cmake` added to PATH)
+* Windows 10 SDK 10.0.20348.0
+* [CMake 3.22]([https://cmake.org/download/](https://cmake.org/download/)) or newer is required (`cmake` added to PATH)
 
 > **Note**: Build support is not provided by team members in Discord. Our philosophy is that a green AppVeyor means a green build.
 > 

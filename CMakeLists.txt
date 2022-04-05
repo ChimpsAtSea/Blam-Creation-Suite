@@ -4,6 +4,9 @@ cmake_minimum_required(VERSION 3.22 FATAL_ERROR)
 set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 set(CMAKE_POLICY_DEFAULT_CMP0011 NEW)
 
+# DON'T use Test for now, it's completely unconfigured
+set(CMAKE_CONFIGURATION_TYPES Debug Test Release)
+
 project(BlamCreationSuite)
 
 # this has to exist. we cannot swap DLL/LIB linkage based on VS debug/release target

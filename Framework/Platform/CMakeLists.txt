@@ -70,14 +70,19 @@ function(bcs_link_platform_resources TARGET_NAME)
 		${CMAKE_SOURCE_DIR}/Framework/Platform/!Resources/Resource.rc)
 endfunction()
 
-add_custom_command(TARGET Platform POST_BUILD
-	COMMAND
-	"$<$<CONFIG:DEBUG>:${CMAKE_COMMAND} -E copy_if_different ${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc.dll ${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc-redirect.dll $<TARGET_FILE_DIR:Platform>>")
-
-install(FILES
-	"$<$<CONFIG:DEBUG>:${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc.dll>"
-	"$<$<CONFIG:DEBUG>:${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc-redirect.dll>"
-	DESTINATION bin)
+if(BCS_BUILD_SHARED_LIBRARIES)
+	add_custom_command(TARGET Platform POST_BUILD
+		COMMAND
+		"${CMAKE_COMMAND}" -E copy_if_different
+		"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc.dll"
+		"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc-redirect.dll"
+		"$<TARGET_FILE_DIR:Platform>")
+	
+	install(FILES
+		"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc.dll"
+		"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc-redirect.dll"
+		DESTINATION bin)
+endif()
 
 set_source_files_properties(
 	!Resources/HLSL/BoxShaderVS.hlsl

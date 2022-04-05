@@ -151,6 +151,7 @@ void c_haloreach_bitmap_test::draw_ui()
 				//memcpy(texture_data, resource_data, resource_data_size);
 
 				filesystem_write_file_from_memory("bitmap_test.dds", dds_file_buffer, dds_file_buffer_size);
+				ASSERT(BCS_SUCCEEDED(resource->remove_reference()));
 
 				bitmap_struct.processed_pixel_data.insert(bitmap_struct.processed_pixel_data.begin(), texture_data, texture_data + num_dst_pixels);
 				bitmap_struct.xenon_bitmaps_block.clear();
@@ -161,7 +162,6 @@ void c_haloreach_bitmap_test::draw_ui()
 				tracked_free(pixel_block_data);
 				tracked_free(src_untiled_texture_data);
 				tracked_free(dds_file_buffer);
-				ASSERT(BCS_SUCCEEDED(resource->remove_reference()));
 			}
 		}
 	}

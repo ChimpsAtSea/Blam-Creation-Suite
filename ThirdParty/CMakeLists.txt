@@ -1,4 +1,4 @@
-set(VCPKG_TRIPLET "x64-windows-$<$<CONFIG:DEBUG>:debug>$<$<NOT:$<CONFIG:DEBUG>>:release>-bcs" CACHE INTERNAL "")
+set(VCPKG_TRIPLET "x64-windows-$<$<CONFIG:DEBUG>:debug>$<$<NOT:$<CONFIG:DEBUG>>:release>$<$<CONFIG:BCS_BUILD_SHARED_LIBRARIES>:-shared>-bcs" CACHE INTERNAL "")
 set(VCPKG_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg" CACHE INTERNAL "")
 set(VCPKG "${VCPKG_DIR}/vcpkg.exe" CACHE INTERNAL "")
 
@@ -38,12 +38,16 @@ set(TBB_BUILD_TBBMALLOC_PROXY OFF)
 set(TBB_BUILD_TESTS OFF)
 set(TBB_BUILD_SHARED ON)
 set(TBB_BUILD_STATIC OFF)
+set(TBB_CI_BUILD OFF)
+set(TBB_NO_DATE ON)
 add_subdirectory(tbb)
 
 #set_target_properties(tbb_static tbbmalloc_static tbb_def_files PROPERTIES
 set_target_properties(tbb tbbmalloc tbb_def_files PROPERTIES
 	FOLDER "ThirdParty")
 
+set(DXHEADERS_BUILD_TEST OFF)
+set(DXHEADERS_INSTALL OFF)
 add_subdirectory(DirectX-Headers)
 
 set_target_properties(DirectX-Guids PROPERTIES
@@ -57,8 +61,8 @@ set_target_properties(pugixml-shared pugixml-static pugixml PROPERTIES
 	FOLDER "ThirdParty")
 
 add_subdirectory(zlib)
-add_subdirectory(Oozle)
-add_subdirectory(murmur3)
+add_subdirectory(oozle_build)
+add_subdirectory(murmur3_build)
 add_subdirectory(lzxlib)
 add_subdirectory(xxhash)
 add_subdirectory(imgui)

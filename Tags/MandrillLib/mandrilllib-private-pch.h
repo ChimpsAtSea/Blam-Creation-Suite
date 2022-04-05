@@ -17,6 +17,6 @@
 #include <zlib/zlib.h>
 #include <oozle/oozle.h>
 
-#include <murmur3.h>
+#include <murmur3/murmur3.h>
 
 #include <LowLevel\low_level_halo3\lowlevel-halo3-public-pch.h>
