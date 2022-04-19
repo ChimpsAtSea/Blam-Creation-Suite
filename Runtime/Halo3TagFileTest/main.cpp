@@ -17,7 +17,7 @@ static float4 window_background_color = { 0.130f, 0.141f, 0.167f, 1.0f };
 // s_tracked_memory_stats halo3tagfiletest_tracked_memory = { "halo3tagfiletest" };
 // s_tracked_memory_stats& _library_tracked_memory = halo3tagfiletest_tracked_memory;
 
-#include <HighLevel/high_level_halo3/highlevel-halo3-public-pch.h>
+#include <Generated/high_level_halo3/highlevel-halo3-public-pch.h>
 
 static long _depth = -1;
 

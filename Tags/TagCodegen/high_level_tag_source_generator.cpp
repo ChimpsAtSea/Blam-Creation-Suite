@@ -344,7 +344,7 @@ void c_high_level_tag_source_generator::generate_header() const
 	std::string source_code = stream.str();
 	const char* output;
 	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
-	std::string output_filepath = std::string(output) + "HighLevel\\high_level_" + namespace_name + "\\generated\\" + namespace_name + "_high_level.h";
+	std::string output_filepath = std::string(output) + "high_level_" + namespace_name + "\\" + namespace_name + "_high_level.h";
 
 	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));
@@ -660,7 +660,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(unsigned long sourc
 	std::string source_code = stream.str();
 	const char* output;
 	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
-	std::string output_filepath = std::string(output) + "HighLevel\\high_level_" + namespace_name + "\\generated\\" + namespace_name + "_high_level.ctor" + std::to_string(source_index) + ".cpp";
+	std::string output_filepath = std::string(output) + "high_level_" + namespace_name + "\\" + namespace_name + "_high_level.ctor" + std::to_string(source_index) + ".cpp";
 
 	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));
@@ -830,7 +830,7 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 	std::string source_code = stream.str();
 	const char* output;
 	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
-	std::string output_filepath = std::string(output) + "HighLevel\\high_level_" + namespace_name + "\\generated\\" + namespace_name + "_high_level.virtual.cpp";
+	std::string output_filepath = std::string(output) + "high_level_" + namespace_name + "\\" + namespace_name + "_high_level.virtual.cpp";
 
 	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));
@@ -1064,7 +1064,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 	std::string source_code = stream.str();
 	const char* output;
 	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
-	std::string output_filepath = std::string(output) + "HighLevel\\high_level_" + namespace_name + "\\generated\\" + namespace_name + "_high_level.misc.cpp";
+	std::string output_filepath = std::string(output) + "high_level_" + namespace_name + "\\" + namespace_name + "_high_level.misc.cpp";
 
 	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));

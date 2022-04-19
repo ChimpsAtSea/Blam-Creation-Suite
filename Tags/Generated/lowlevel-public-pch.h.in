@@ -1,0 +1,4 @@
+#pragma once
+
+#include "@GEN_NAME@.enum.h"
+#include "@GEN_NAME@.h"

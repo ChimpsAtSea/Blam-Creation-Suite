@@ -1,0 +1,4 @@
+#pragma once
+
+#include <Generated/low_level_@GEN_NAME@/@GEN_NAME@.enum.h>
+#include "@GEN_NAME@_high_level.h"

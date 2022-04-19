@@ -7,7 +7,9 @@ set(CMAKE_POLICY_DEFAULT_CMP0011 NEW)
 # DON'T use Test for now, it's completely unconfigured
 set(CMAKE_CONFIGURATION_TYPES Debug Test Release)
 
-project(BlamCreationSuite)
+project(BlamCreationSuite LANGUAGES C CXX CSharp)
+
+set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/!Install)
 
 # this has to exist. we cannot swap DLL/LIB linkage based on VS debug/release target
 set(BCS_LIBRARY_TYPE "SHARED" CACHE STRING
@@ -59,8 +61,7 @@ function(bcs_set_compile_properties TARGET_NAME)
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/ThirdParty/imgui
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/ThirdParty/IconFontCppHeaders
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/Tags
-		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/Tags/LowLevel
-		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/Tags/HighLevel)
+		${CMAKE_BINARY_DIR}/Tags)
 	
 	target_include_directories(${TARGET_NAME} PUBLIC
 		${CMAKE_CURRENT_SOURCE_DIR})
@@ -117,13 +118,13 @@ add_subdirectory(Tags/TagDefinitions)
 add_subdirectory(Tooling/TagFieldTypeLookupTable)
 add_subdirectory(Tags/TagCodegen)
 add_subdirectory(Tags/TagReflection)
-add_subdirectory(Tags/LowLevel)
-add_subdirectory(Tags/HighLevel)
+add_subdirectory(Tags/Generated)
 add_subdirectory(Tags/TagValidate)
 add_subdirectory(Tags/MandrillLib)
 add_subdirectory(Tags/MandrillUI)
 #add_subdirectory(Tags/BlamboozleLib)
 #add_subdirectory(Tags/Blamboozle)
+add_subdirectory(Tags/ChimpLib)
 
 #add_subdirectory(Tooling/TagDefinitionsValidate)
 #add_subdirectory(Tooling/UpgradeMacaque)
@@ -133,3 +134,4 @@ add_subdirectory(ContentFramework/AudioConversion)
 add_subdirectory(Runtime/Mandrill)
 add_subdirectory(Runtime/ImGUIUIPrototype)
 add_subdirectory(Runtime/Halo3TagFileTest)
+add_subdirectory(Runtime/Chimp)

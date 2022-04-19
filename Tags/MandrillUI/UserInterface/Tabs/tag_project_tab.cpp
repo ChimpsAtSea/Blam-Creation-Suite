@@ -1,6 +1,6 @@
 #include "mandrillui-private-pch.h"
 
-#include <high_level_halo3/highlevel-halo3-public-pch.h>
+#include <Generated/high_level_halo3/highlevel-halo3-public-pch.h>
 #include <AudioConversion\audioconversion-platform-pch.h>
 #include <AudioConversion\audioconversion-public-pch.h>
 

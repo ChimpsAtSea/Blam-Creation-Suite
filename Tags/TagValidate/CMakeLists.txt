@@ -6,9 +6,13 @@ add_library(TagValidate STATIC
 
 bcs_set_common_properties(TagValidate)
 
-# this isn't the actual libs required but i don't care
 target_link_libraries(TagValidate PRIVATE
-	blamlib Platform TemplateLibrary Shared TagDefinitions)
+	blamlib
+	Platform
+	TemplateLibrary
+	Shared
+	TagDefinitions
+	${BCS_GENERATED_TAG_PROJECTS})
 	
 target_precompile_headers(TagValidate PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:tagvalidate-private-pch.h>")

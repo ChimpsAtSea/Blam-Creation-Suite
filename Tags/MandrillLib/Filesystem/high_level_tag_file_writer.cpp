@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-#include <HighLevel\high_level_halo3\highlevel-halo3-public-pch.h>
+#include <Generated/high_level_halo3\highlevel-halo3-public-pch.h>
 #include <TagCodegen\blamlib_string_parser.h>
 #include <TagCodegen\blamlib_string_parser.inl>
 

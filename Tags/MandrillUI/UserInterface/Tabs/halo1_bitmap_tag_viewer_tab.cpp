@@ -1,6 +1,6 @@
 #include "mandrillui-private-pch.h"
 
-#include <high_level_halo1\highlevel-halo1-public-pch.h>
+#include <Generated/high_level_halo1\highlevel-halo1-public-pch.h>
 
 using namespace blofeld;
 using namespace blofeld::halo1;

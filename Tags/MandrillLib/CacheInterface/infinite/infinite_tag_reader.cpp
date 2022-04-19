@@ -398,7 +398,7 @@ BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_cache_file_tag_index(unsig
 	return BCS_E_UNSUPPORTED;
 }
 
-#include <LowLevel/low_level_infinite/lowlevel-infinite-public-pch.h>
+#include <Generated/low_level_infinite/lowlevel-infinite-public-pch.h>
 
 BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_global_tag_id(unsigned long global_tag_id, c_tag_instance*& out_tag_instance)
 {

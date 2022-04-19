@@ -30,7 +30,7 @@ set_target_properties(TagCodegen PROPERTIES
 	FOLDER "Tags")
 
 add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/TagCodegen.stamp
-	COMMAND $<TARGET_FILE:TagCodegen> "-output:${CMAKE_SOURCE_DIR}/Tags/"
+	COMMAND $<TARGET_FILE:TagCodegen> "-output:${CMAKE_BINARY_DIR}/Tags/Generated/"
 	COMMAND ${CMAKE_COMMAND} -E touch "${CMAKE_BINARY_DIR}/TagCodegen.stamp"
 	DEPENDS $<TARGET_FILE:TagCodegen>)
 
