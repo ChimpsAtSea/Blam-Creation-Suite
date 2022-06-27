@@ -20,6 +20,9 @@ add_executable(TagCodegen
 bcs_set_common_properties(TagCodegen)
 bcs_set_post_build_shared_lib_dep_copy(TagCodegen)
 
+target_compile_definitions(TagCodegen PRIVATE
+	k_ctor_source_count=${BCS_NUM_GENERATED_CTORS})
+
 target_link_libraries(TagCodegen PRIVATE
 	blamlib Platform TemplateLibrary TagDefinitions SymbolsLib SymbolsRuntime)
 	

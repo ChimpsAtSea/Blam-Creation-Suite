@@ -12,10 +12,10 @@ project(BlamCreationSuite LANGUAGES C CXX CSharp)
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/!Install)
 
 # this has to exist. we cannot swap DLL/LIB linkage based on VS debug/release target
-set(BCS_LIBRARY_TYPE "SHARED" CACHE STRING
-	"Linking configuration for certain BCS projects (SHARED, STATIC, or empty to follow BUILD_SHARED_LIBS)")
+option(BCS_LIBRARY_TYPE "SHARED")
+set_property(CACHE BCS_LIBRARY_TYPE PROPERTY STRINGS "SHARED" "STATIC")
 
-SET_PROPERTY(CACHE BCS_LIBRARY_TYPE PROPERTY STRINGS "SHARED" "STATIC")
+option(BCS_NUM_GENERATED_CTORS 64)
 
 if(BCS_LIBRARY_TYPE)
 	if (BCS_LIBRARY_TYPE STREQUAL "SHARED")

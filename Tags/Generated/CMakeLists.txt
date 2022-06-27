@@ -63,72 +63,17 @@ function(bcs_high_level_tag_project TARGET_NAME PCH_NAME GEN_NAME)
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${PCH_NAME}-public-pch.h
 		
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.h
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor0.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor1.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor2.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor3.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor4.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor5.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor6.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor7.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor8.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor9.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor10.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor11.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor12.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor13.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor14.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor15.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor16.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor17.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor18.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor19.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor20.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor21.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor22.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor23.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor24.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor25.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor26.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor27.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor28.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor29.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor30.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor31.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor32.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor33.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor34.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor35.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor36.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor37.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor38.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor39.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor40.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor41.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor42.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor43.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor44.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor45.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor46.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor47.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor48.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor49.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor50.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor51.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor52.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor53.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor54.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor55.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor56.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor57.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor58.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor59.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor60.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor61.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor62.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor63.cpp
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.misc.cpp
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.virtual.cpp)
+	
+	math(EXPR COUNT_HIGHLEVEL_MACRO_${TARGET_NAME} "${BCS_NUM_GENERATED_CTORS} - 1")
+	foreach(INDEX RANGE ${COUNT_HIGHLEVEL_MACRO_${TARGET_NAME}})
+		target_sources(HighLevel_${TARGET_NAME} PRIVATE
+			${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor${INDEX}.cpp)
+		set_source_files_properties(
+			${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor${INDEX}.cpp
+			PROPERTIES GENERATED ON)
+	endforeach()
 	
 	bcs_set_compile_properties(HighLevel_${TARGET_NAME})
 	
@@ -140,70 +85,6 @@ function(bcs_high_level_tag_project TARGET_NAME PCH_NAME GEN_NAME)
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${PCH_NAME}-public-pch.h
 		
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.h
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor0.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor1.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor2.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor3.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor4.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor5.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor6.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor7.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor8.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor9.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor10.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor11.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor12.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor13.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor14.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor15.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor16.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor17.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor18.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor19.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor20.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor21.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor22.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor23.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor24.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor25.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor26.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor27.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor28.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor29.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor30.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor31.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor32.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor33.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor34.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor35.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor36.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor37.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor38.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor39.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor40.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor41.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor42.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor43.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor44.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor45.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor46.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor47.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor48.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor49.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor50.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor51.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor52.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor53.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor54.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor55.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor56.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor57.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor58.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor59.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor60.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor61.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor62.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor63.cpp
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.misc.cpp
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.virtual.cpp
 		PROPERTIES GENERATED ON)

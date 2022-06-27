@@ -1,7 +1,9 @@
 #include "tagcodegen-private-pch.h"
 #include <SymbolsLib\symbolslib-public-pch.h>
 
+#ifndef k_ctor_source_count
 static unsigned long k_ctor_source_count = 64;
+#endif
 
 BCS_RESULT create_low_level(s_engine_platform_build engine_platform_build)
 {
