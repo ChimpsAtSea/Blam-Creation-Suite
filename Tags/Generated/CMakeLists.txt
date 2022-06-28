@@ -68,6 +68,7 @@ function(bcs_high_level_tag_project TARGET_NAME PCH_NAME GEN_NAME)
 	
 	math(EXPR COUNT_HIGHLEVEL_MACRO_${TARGET_NAME} "${BCS_NUM_GENERATED_CTORS} - 1")
 	foreach(INDEX RANGE ${COUNT_HIGHLEVEL_MACRO_${TARGET_NAME}})
+		list(APPEND HighLevel_${TARGET_NAME}_SOURCES ${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor${INDEX}.cpp)
 		target_sources(HighLevel_${TARGET_NAME} PRIVATE
 			${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_NAME}_high_level.ctor${INDEX}.cpp)
 		set_source_files_properties(
@@ -77,7 +78,6 @@ function(bcs_high_level_tag_project TARGET_NAME PCH_NAME GEN_NAME)
 	
 	bcs_set_compile_properties(HighLevel_${TARGET_NAME})
 	
-	get_target_property(HighLevel_${TARGET_NAME}_SOURCES HighLevel_${TARGET_NAME} SOURCES)
 	source_group(TREE ${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}} FILES ${HighLevel_${TARGET_NAME}_SOURCES})
 	
 	set_source_files_properties(
