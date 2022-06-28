@@ -101,7 +101,8 @@ void c_graphics_d3d12::init_hardware()
 	HRESULT create_dxgi_factory_result = CreateDXGIFactory1(IID_PPV_ARGS(&dxgi_factory));
 	ASSERT(SUCCEEDED(create_dxgi_factory_result));
 
-	get_hardware_adapter(dxgi_factory, D3D_FEATURE_LEVEL_12_1, &dxgi_adapter, &device);
+	BCS_RESULT get_hardware_adapter_result = get_hardware_adapter(dxgi_factory, D3D_FEATURE_LEVEL_12_1, &dxgi_adapter, &device);
+	ASSERT(BCS_SUCCEEDED(get_hardware_adapter_result));
 	ASSERT(dxgi_adapter != nullptr);
 	ASSERT(device != nullptr);
 }
@@ -396,7 +397,7 @@ void c_graphics_d3d12::transition_resource(
 	command_list->ResourceBarrier(1, &readback_barrier);
 }
 
-void c_graphics_d3d12::get_hardware_adapter(IDXGIFactory4* dxgi_factory, D3D_FEATURE_LEVEL feature_level, IDXGIAdapter1** dxgi_adapter_out, ID3D12Device8** device_out)
+BCS_RESULT c_graphics_d3d12::get_hardware_adapter(IDXGIFactory4* dxgi_factory, D3D_FEATURE_LEVEL feature_level, IDXGIAdapter1** dxgi_adapter_out, ID3D12Device8** device_out)
 {
 	*dxgi_adapter_out = nullptr;
 	*device_out = nullptr;
@@ -431,16 +432,12 @@ void c_graphics_d3d12::get_hardware_adapter(IDXGIFactory4* dxgi_factory, D3D_FEA
 			device->CheckFeatureSupport(D3D12_FEATURE_D3D12_OPTIONS7, &options7, sizeof(options7));
 			device->CheckFeatureSupport(D3D12_FEATURE_D3D12_OPTIONS8, &options8, sizeof(options8));
 
-			bool is_sampler_feedback_supported = options7.SamplerFeedbackTier > D3D12_SAMPLER_FEEDBACK_TIER_NOT_SUPPORTED;
-			ASSERT(is_sampler_feedback_supported);
-
-			bool is_tiled_resources_tier_2_supported = options.TiledResourcesTier >= D3D12_TILED_RESOURCES_TIER_2;
-
-			if (is_tiled_resources_tier_2_supported)
+			bool is_valid_device = true;
+			if (is_valid_device)
 			{
 				*device_out = device;
 				*dxgi_adapter_out = dxgi_adapter;
-				return;
+				return BCS_S_OK;
 			}
 			else
 			{
@@ -452,7 +449,7 @@ void c_graphics_d3d12::get_hardware_adapter(IDXGIFactory4* dxgi_factory, D3D_FEA
 			}
 		}
 	}
-	throw; // failed to find a suitable device
+	return BCS_E_FAIL; // failed to find a suitable device
 }
 
 BCS_RESULT graphics_d3d12_create(bool use_debug_layer, c_graphics_d3d12*& graphics)

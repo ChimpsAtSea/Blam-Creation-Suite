@@ -13,7 +13,7 @@ public:
 	c_graphics_d3d12(bool use_debug_layer);
 	virtual ~c_graphics_d3d12();
 
-	void get_hardware_adapter(
+	BCS_RESULT get_hardware_adapter(
 		IDXGIFactory4* dxgi_factory, 
 		D3D_FEATURE_LEVEL feature_level, 
 		IDXGIAdapter1** dxgi_adapter_out, 
