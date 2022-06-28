@@ -478,7 +478,11 @@ void c_tag_project_configurator_tab::render_tag_project_status()
 {
 	if (c_mandrill_user_interface* mandrill_user_interface = search_parent_tab_type<c_mandrill_user_interface>())
 	{
-		if (runtime_task->is_running())
+		if (runtime_task == nullptr)
+		{
+			ImGui::Text("No Task");
+		}
+		else if (runtime_task->is_running())
 		{
 			ImGui::Text("Running");
 		}
@@ -521,5 +525,6 @@ void c_tag_project_configurator_tab::create_tag_project_tab()
 		tag_project = nullptr; // hand off the memory to the child tab
 		// #TODO: Is it worth implementing a reference counting system?
 		delete runtime_task; // cleaup task
+		runtime_task = nullptr;
 	}
 }

@@ -1143,7 +1143,8 @@ public:
 							c_simple_resource_container* simple_resource_container = new() c_simple_resource_container();
 							resource_storage = simple_resource_container;
 
-							const blofeld::s_tag_struct_definition& pageable_resource_struct_definition = *field->struct_definition;
+							const blofeld::s_tag_resource_definition& pageable_resource_definition = *field->tag_resource_definition;
+							const blofeld::s_tag_struct_definition& pageable_resource_struct_definition = pageable_resource_definition.struct_definition;
 							unsigned long const pageable_resource_struct_size = cache_file_reader.calculate_struct_size(pageable_resource_struct_definition);
 							unsigned long const total_block_struct_storage_size = pageable_resource_struct_size;
 
