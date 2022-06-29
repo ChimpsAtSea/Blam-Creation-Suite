@@ -220,8 +220,7 @@ c_infinite_tag_mesh::c_infinite_tag_mesh(
 					vertex_layout,
 					graphics_geometry);
 
-
-				filesystem_write_file_from_memory("resourcedump.bin", resource_data, resource_data_size);
+				//filesystem_write_file_from_memory("resourcedump.bin", resource_data, resource_data_size);
 				ASSERT(BCS_SUCCEEDED(mesh_resource->remove_reference()));
 			}
 		}
