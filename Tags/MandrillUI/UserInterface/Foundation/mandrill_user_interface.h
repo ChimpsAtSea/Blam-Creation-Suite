@@ -14,6 +14,7 @@ using t_get_tag_section_address_callback = char* (unsigned long address);
 #define MANDRILL_THEME_BG(v) { 0.200f, 0.220f, 0.270f, v }
 #define MANDRILL_THEME_TEXT(v) { 0.930f, 0.965f, 0.945f, v }
 #define MANDRILL_THEME_COMMENT_TEXT(v) { 0.752f, 0.965f, 0.766f, v }
+#define MANDRILL_THEME_ERROR_TEXT(v) { 0.950f, 0.475f, 0.475f, v }
 #define MANDRILL_THEME_INFO_TEXT(v) { 0.796f, 0.808f, 0.965f, v }
 #define MANDRILL_THEME_MENU(v) { 0.377f, 0.377f, 0.377f, v }
 

@@ -219,7 +219,7 @@ void c_high_level_tag_source_generator::generate_header() const
 			stream << "\t\t\t\t" << "virtual const blofeld::s_tag_group& get_blofeld_group_definition() const;" << std::endl;
 		}
 
-		stream << "\t\t\t\t" << "virtual void* get_field_data(const blofeld::s_tag_field& field);" << std::endl;
+		stream << "\t\t\t\t" << "virtual void* get_field_data_unsafe(const blofeld::s_tag_field& field);" << std::endl;
 		stream << "\t\t\t\t" << "virtual bool is_field_active(const blofeld::s_tag_field& field) const;" << std::endl;
 		stream << "\t\t\t\t" << "virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const;" << std::endl;
 		stream << "\t\t\t\t" << "virtual const blofeld::s_tag_field* const* get_blofeld_field_list() const;" << std::endl;
@@ -316,7 +316,12 @@ void c_high_level_tag_source_generator::generate_header() const
 					const char* field_source_type = field_type_to_high_level_source_type(engine_platform_build.platform_type, current_field->field_type);
 					ASSERT(field_source_type != nullptr);
 					std::string struct_field_source_type = format_structure_symbol(current_field->tag_resource_definition->struct_definition);
-					stream << "\t\t\t\t" << "h_resource_container<" << struct_field_source_type << ", " << high_level_structure_name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
+					stream << "\t\t\t\t" << "h_resource_field<" << struct_field_source_type << ", " << high_level_structure_name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
+				}
+				break;
+				case _field_tag_reference:
+				{
+					stream << "\t\t\t\t" << "h_tag_reference_field<" << high_level_structure_name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
 				}
 				break;
 				default:
@@ -388,20 +393,11 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 		{
 			switch (current_field->field_type)
 			{
+			case _field_tag_reference:
 			case _field_array:
+			case _field_block:
 			{
-				const s_tag_group* tag_group = get_tag_struct_tag_group(current_field->array_definition->struct_definition);
-
-				const char* field_source_type = current_field->array_definition->struct_definition.name;
-				if (tag_group)
-				{
-					stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "(this)" << std::endl;
-				}
-				else
-				{
-					stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "(this)" << std::endl;
-				}
-
+				stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "(this)" << std::endl;
 				break;
 			}
 			case _field_struct:
@@ -418,11 +414,6 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 					stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "()" << std::endl;
 				}
 
-				break;
-			}
-			case _field_block:
-			{
-				stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "(this)" << std::endl;
 				break;
 			}
 			default:
@@ -952,7 +943,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 			const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
 
 			std::string high_level_structure_name = format_structure_symbol(*struct_definition);
-			stream << "\t\t" << "void* " << high_level_structure_name << "::get_field_data(const blofeld::s_tag_field& field)" << std::endl;
+			stream << "\t\t" << "void* " << high_level_structure_name << "::get_field_data_unsafe(const blofeld::s_tag_field& field)" << std::endl;
 			stream << "\t\t{" << std::endl;
 			stream << "\t\t\tintptr_t const _index = &field - " << struct_definition->symbol->symbol_name << ".fields;" << std::endl;
 			stream << "\t\t\tDEBUG_ASSERT(_index >= 0);" << std::endl;

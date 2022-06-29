@@ -2,8 +2,36 @@ add_library(TagReflection STATIC
 	tagreflection-private-pch.h
 	tagreflection-public-pch.h
 	
-	high_level_tag.h
-	high_level_tag.cpp)
+	block.cpp
+	block.h
+	data.cpp
+	data.h
+	enumerable.cpp
+	enumerable.h
+	field.cpp
+	field.h
+	group.cpp
+	group.h
+	object.cpp
+	object.h
+	resource.cpp
+	resource.h
+	resource_field.cpp
+	resource_field.h
+	string_id.cpp
+	string_id.h
+	tag.cpp
+	tag.h
+	tag_reference.cpp
+	tag_reference.h
+	type.cpp
+	type.h
+	typed_array.cpp
+	typed_array.h
+	typed_block.cpp
+	typed_block.h
+	watchdog.cpp
+	watchdog.h)
 
 bcs_set_common_properties(TagReflection)
 

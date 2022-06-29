@@ -269,11 +269,17 @@ c_tag_project_tab::c_tag_project_tab(const wchar_t* filepath, c_tag_project& tag
 	sound_export_wav(),
 	sound_export_xma()
 {
-	const char* auto_open_tag;
-	if (BCS_SUCCEEDED(command_line_get_argument("autotag", auto_open_tag)))
+	const char* tag_filepaths[128] = {};
+	unsigned long num_tag_filepaths = _countof(tag_filepaths);
+	if (BCS_SUCCEEDED(command_line_get_arguments("autotag", tag_filepaths, num_tag_filepaths)) && num_tag_filepaths > 0)
 	{
-		open_tag_by_search_name(auto_open_tag);
+		for (unsigned long tag_filepath_index = 0; tag_filepath_index < num_tag_filepaths; tag_filepath_index++)
+		{
+			const char* tag_filepath = tag_filepaths[tag_filepath_index];
+			open_tag_by_search_name(tag_filepath);
+		}
 	}
+
 	if (tag_project.engine_platform_build.engine_type == _engine_type_halo3)
 	{
 		bool export_wav = BCS_SUCCEEDED(command_line_has_argument("autoexportsoundswav"));

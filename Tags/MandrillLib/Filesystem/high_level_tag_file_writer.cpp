@@ -632,7 +632,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_object& object, 
 	{
 		const blofeld::s_tag_field& field = **field_pointer;
 
-		const void* src_field_data = object.get_field_data(field);
+		const void* src_field_data = object.get_field_data_unsafe(field);
 		blofeld::e_field field_type = field.field_type;
 		unsigned long field_size = ULONG_MAX;
 		ASSERT(BCS_SUCCEEDED(blofeld::get_blofeld_tag_file_field_size(field_type, engine_platform_build, field_size)));

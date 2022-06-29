@@ -26,7 +26,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 		blofeld::infinite::h_objectdefinition* object_tag = nullptr;
 		if (blofeld::infinite::h_weapondefinition* weapon_definition = dynamic_cast<decltype(weapon_definition)>(&tag))
 		{
-			h_tag* tag = weapon_definition->item.object.model;
+			h_tag* tag = weapon_definition->item.object.model.get_tag();
 			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 			{
 				object_tag = &weapon_definition->item.object;
@@ -34,7 +34,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 		}
 		if (blofeld::infinite::h_vehicledefinition* vehicle_definition = dynamic_cast<decltype(vehicle_definition)>(&tag))
 		{
-			h_tag* tag = vehicle_definition->unit.object.model;
+			h_tag* tag = vehicle_definition->unit.object.model.get_tag();
 			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 			{
 				object_tag = &vehicle_definition->unit.object;
@@ -42,7 +42,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 		}
 		if (blofeld::infinite::h_bipeddefinition* biped_definition = dynamic_cast<decltype(biped_definition)>(&tag))
 		{
-			h_tag* tag = biped_definition->unit.object.model;
+			h_tag* tag = biped_definition->unit.object.model.get_tag();
 			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 			{
 				object_tag = &biped_definition->unit.object;
@@ -50,7 +50,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 		}
 		if (blofeld::infinite::h_crate_definition* crate_definition = dynamic_cast<decltype(crate_definition)>(&tag))
 		{
-			h_tag* tag = crate_definition->object.model;
+			h_tag* tag = crate_definition->object.model.get_tag();
 			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 			{
 				object_tag = &crate_definition->object;
@@ -58,7 +58,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 		}
 		if (blofeld::infinite::h_creature_definition* creature_definition = dynamic_cast<decltype(creature_definition)>(&tag))
 		{
-			h_tag* tag = creature_definition->object.model;
+			h_tag* tag = creature_definition->object.model.get_tag();
 			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 			{
 				object_tag = &creature_definition->object;
@@ -66,7 +66,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 		}
 		if (blofeld::infinite::h_equipmentdefinition* equipment_definition = dynamic_cast<decltype(equipment_definition)>(&tag))
 		{
-			h_tag* tag = equipment_definition->item.object.model;
+			h_tag* tag = equipment_definition->item.object.model.get_tag();
 			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 			{
 				object_tag = &equipment_definition->item.object;
@@ -820,7 +820,7 @@ void c_high_level_tag_editor_tab::render_enumerable(h_enumerable& enumerable, co
 	ImGui::PopID();
 }
 
-bool c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, const s_tag_field& field)
+bool c_high_level_tag_editor_tab::render_tag_reference(h_tag_reference& tag_reference, const s_tag_field& field)
 {
 	bool result = false;
 
@@ -829,17 +829,19 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, co
 
 	ImGuiStorage* storage = ImGui::GetStateStorage();
 	::tag group_tag = storage->GetInt(tag_group_id, blofeld::INVALID_TAG);
-
 	h_group* group = nullptr;
-	if (tag_reference != nullptr)
+	if (tag_reference.is_unqualified())
 	{
-		group = tag_reference->group;
-		group_tag = group->tag_group.group_tag;
+		group_tag = tag_reference.get_group_tag();
+		if (group_tag != blofeld::INVALID_TAG)
+		{
+			BCS_RESULT get_group_result = tag_project.get_group_by_group_tag(group_tag, group);
+			//ASSERT(BCS_SUCCEEDED(get_group_result));
+		}
 	}
 	else
 	{
-		BCS_RESULT get_group_result = tag_project.get_group_by_group_tag(group_tag, group);
-		ASSERT(group_tag == blofeld::INVALID_TAG || BCS_SUCCEEDED(get_group_result));
+		group = tag_reference.get_group();
 	}
 
 	ImGui::Columns(2, nullptr, false);
@@ -867,21 +869,32 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, co
 		ImGui::SetNextItemWidth(350);
 
 		const char* group_name = "(null)";
+		bool is_unknown_group = false;
 		if (group != nullptr)
 		{
 			group_name = group->tag_group.name;
 		}
+		else if (group_tag != blofeld::INVALID_TAG)
+		{
+			is_unknown_group = true;
+			group_name = "(unknown)";
+
+
+			ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_ERROR_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
+		}
+
 		bool combo_active = ImGui::BeginCombo("##tag_tag_group", group_name);
+
+		if (is_unknown_group)
+		{
+			ImGui::PopStyleColor();
+		}
+
 		if (combo_active)
 		{
 			if (ImGui::Selectable("(null)", group == nullptr))
 			{
-				if (tag_reference != nullptr)
-				{
-					tag_reference = nullptr;
-					result = true;
-				}
-				group = nullptr;
+				tag_reference.clear();
 			}
 
 			h_group* const* groups;
@@ -897,12 +910,8 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, co
 					{
 						if (!is_selected)
 						{
-							if (tag_reference != nullptr)
-							{
-								tag_reference = nullptr; // #TODO: determine inheritance
-								result = true;
-							}
-							group = current_group;
+							tag_reference.clear();
+							tag_reference.set_group(current_group);
 						}
 					}
 				}
@@ -915,13 +924,22 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, co
 	{
 		ImGui::SetNextItemWidth(700);
 
-		const char* tag_instance_name = "";
-		if (tag_reference != nullptr)
+		const char* tag_instance_name = tag_reference.get_tag_path();
+		bool is_unqualified = tag_reference.is_unqualified();
+
+		if (is_unqualified)
 		{
-			tag_instance_name = tag_reference->tag_filepath.c_str();
+			ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_ERROR_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
 		}
 
 		bool combo_active = ImGui::BeginCombo("##tag_path", tag_instance_name);
+
+
+		if (is_unqualified)
+		{
+			ImGui::PopStyleColor();
+		}
+
 		if (*tag_instance_name && ImGui::IsItemHovered())
 		{
 			ImGui::SetTooltip(tag_instance_name);
@@ -942,18 +960,13 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, co
 
 			for (unsigned long tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
 			{
-				h_tag* tag = tag_instances[tag_instance_index];
+				h_tag* current_tag = tag_instances[tag_instance_index];
 
-				bool is_selected = tag_reference == tag;
-				const char* current_name = tag->tag_filepath.c_str();
+				bool is_selected = tag_reference.get_tag() == current_tag;
+				const char* current_name = current_tag->tag_filepath.c_str();
 				if (ImGui::Selectable(current_name, is_selected) && !is_selected)
 				{
-					if (tag_reference != tag)
-					{
-						tag_reference = tag;
-						result = true;
-					}
-					group = tag->group;
+					tag_reference.set_tag(current_tag);
 				}
 			}
 
@@ -962,19 +975,19 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, co
 	}
 	ImGui::SameLine();
 	{
-		bool reference_is_null = tag_reference == nullptr;
-		if (reference_is_null)
+		h_tag* tag = tag_reference.get_tag();
+		if (tag == nullptr)
 		{
 			ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
 		}
 
 		if (ImGui::Button("Open"))
 		{
-			if (!reference_is_null)
+			if (tag != nullptr)
 			{
 				if (c_tag_project_tab* tag_project_tab = search_parent_tab_type<c_tag_project_tab>())
 				{
-					tag_project_tab->open_tag_interface_tab(*tag_reference);
+					tag_project_tab->open_tag_interface_tab(*tag);
 				}
 			}
 		}
@@ -992,19 +1005,14 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, co
 		ImGui::SameLine();
 		if (ImGui::Button("Clear"))
 		{
-			if (tag_reference != nullptr)
-			{
-				tag_reference = nullptr;
-				result = true;
-			}
-			group = nullptr;
+			tag_reference.clear();
 		}
 		else if (ImGui::IsItemHovered())
 		{
 			ImGui::SetTooltip("Nulls this tag reference");
 		}
 
-		if (reference_is_null)
+		if (tag == nullptr)
 		{
 			ImGui::PopItemFlag();
 		}
@@ -1373,7 +1381,7 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& o
 	{
 		const s_tag_field& field = **field_pointer;
 
-		void* field_data = object.get_field_data(field);
+		void* field_data = object.get_field_data_unsafe(field);
 
 		ImGui::PushID(field_index);
 
@@ -1434,8 +1442,9 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& o
 		case _field_tag_reference:
 		case _field_embedded_tag:
 		{
-			h_tag*& tag_reference = *static_cast<h_tag**>(field_data);
-			data_modified = render_tag_reference(tag_reference, field);
+			h_tag_reference* tag_reference = object.get_field_data<h_tag_reference>(field);
+			ASSERT(tag_reference != nullptr);
+			data_modified = render_tag_reference(*tag_reference, field);
 			break;
 		}
 		case _field_data:

@@ -12,4 +12,5 @@ class c_status_interface
 public:
 	virtual const char* get_status_bar_text() = 0;
 	virtual void set_status_bar_status(e_status_interface_priority priority, float time, const char* status, ...) = 0;
+	virtual void wait_status_bar_idle() = 0;
 };

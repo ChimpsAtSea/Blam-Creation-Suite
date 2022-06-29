@@ -4,7 +4,7 @@
 
 
 c_monolithic_tag_project::c_monolithic_tag_project(
-	const wchar_t* directory, 
+	const wchar_t* directory,
 	s_engine_platform_build engine_platform_build,
 	c_status_interface* status_interface) :
 	c_tag_project(engine_platform_build, status_interface),
@@ -28,7 +28,7 @@ c_monolithic_tag_project::c_monolithic_tag_project(
 	{
 		h_group* group = new() h_group(engine_platform_build, **tag_group_iter);
 		groups.push_back(group);
-		
+
 	}
 
 	wcscpy_s(root_directory, directory);
@@ -58,6 +58,8 @@ c_monolithic_tag_project::c_monolithic_tag_project(
 	BCS_FAIL_THROW(init_monolithic_cache_file_views_result);
 	BCS_RESULT read_tags_result = read_tags();
 	BCS_FAIL_THROW(read_tags_result);
+	BCS_RESULT resolve_unqualified_tags_result = resolve_unqualified_tags();
+	BCS_FAIL_THROW(resolve_unqualified_tags_result);
 
 	delete root_chunk;
 	tracked_free(tag_file_data);
@@ -65,7 +67,122 @@ c_monolithic_tag_project::c_monolithic_tag_project(
 	stopwatch.stop();
 	float tag_parse_time = stopwatch.get_miliseconds();
 
-	
+
+}
+
+BCS_RESULT c_monolithic_tag_project::resolve_unqualified_tags()
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	unsigned long num_tags = static_cast<unsigned long>(tags.size());
+
+	if (status_interface)
+	{
+		status_interface->set_status_bar_status(_status_interface_priority_low, INFINITY, "Resolving unqualified tag references (%lu/%lu)", 0lu, num_tags);
+	}
+
+	parallel_invoke(0ul, num_tags, resolve_unqualified_tag_references, this);
+
+	if (status_interface)
+	{
+		status_interface->wait_status_bar_idle();
+		status_interface->set_status_bar_status(_status_interface_priority_medium, 5.0f, "Resolving unqualified tag references finished");
+	}
+
+	return rs;
+}
+
+void c_monolithic_tag_project::resolve_unqualified_tag_references(void* _userdata, unsigned long tag_index)
+{
+	c_monolithic_tag_project* _this = static_cast<c_monolithic_tag_project*>(_userdata);
+
+	h_tag* tag = _this->tags[tag_index];
+	_this->resolve_unqualified_tag_references(*tag);
+
+	if (_this->status_interface)
+	{
+		unsigned long num_tags = static_cast<unsigned long>(_this->tags.size());
+		_this->status_interface->set_status_bar_status(_status_interface_priority_low, INFINITY, "Resolving unqualified tag references (%lu/%lu)", tag_index, num_tags);
+	}
+}
+
+BCS_RESULT c_monolithic_tag_project::resolve_unqualified_tag_references(h_object& object)
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	const blofeld::s_tag_field* const* field_list = object.get_blofeld_field_list();
+	while (const blofeld::s_tag_field* field = *field_list++)
+	{
+		switch (field->field_type)
+		{
+		case blofeld::_field_struct:
+		{
+			h_object* struct_object = object.get_field_data<h_object>(*field);
+			ASSERT(struct_object != nullptr);
+
+			if (BCS_FAILED(rs = resolve_unqualified_tag_references(*struct_object)))
+			{
+				return rs;
+			}
+		}
+		break;
+		case blofeld::_field_array:
+		case blofeld::_field_block:
+		{
+			h_enumerable* enumerable = object.get_field_data<h_enumerable>(*field);
+			ASSERT(enumerable != nullptr);
+
+			unsigned long enumerable_count = enumerable->size();
+			for (unsigned long enumerable_index = 0; enumerable_index < enumerable_count; enumerable_index++)
+			{
+				h_object& enumerable_object = enumerable->get(enumerable_index);
+				if (BCS_FAILED(rs = resolve_unqualified_tag_references(enumerable_object)))
+				{
+					return rs;
+				}
+			}
+
+			debug_point;
+		}
+		break;
+		case blofeld::_field_tag_reference:
+		{
+			h_tag_reference* tag_reference = object.get_field_data<h_tag_reference>(*field);
+			ASSERT(tag_reference != nullptr);
+
+			if (tag_reference->is_unqualified())
+			{
+				const char* target_tag_filepath = tag_reference->get_tag_path();
+				if (strcmp("objects\\vehicles\\human\\warthog\\warthog.model", target_tag_filepath) == 0)
+				{
+					debug_point;
+				}
+				tag group_tag = tag_reference->get_group_tag();
+				if (group_tag != blofeld::INVALID_TAG)
+				{
+					h_group* group;
+					if (BCS_SUCCEEDED(get_group_by_group_tag(group_tag, group)))
+					{
+						for (h_tag* current_tag : group->tags)
+						{
+							if (strcmp(current_tag->tag_filepath, target_tag_filepath) == 0)
+							{
+								tag_reference->set_group(group);
+								tag_reference->set_tag(current_tag);
+								goto next;
+							}
+						}
+					}
+				}
+				debug_point;
+			}
+		}
+		break;
+		}
+	next:;
+	}
+
+	return rs;
 }
 
 void c_monolithic_tag_project::destroy_tags(h_tag* const* tags, size_t index)
@@ -160,7 +277,7 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_cache_file_views()
 	}
 
 	num_cache_partitions = cache_partition_list_chunk->num_children;
-	cache_partition_views = new() c_monolithic_partition_view*[num_cache_partitions];
+	cache_partition_views = new() c_monolithic_partition_view * [num_cache_partitions];
 	for (unsigned long cache_partition_index = 0; cache_partition_index < num_cache_partitions; cache_partition_index++)
 	{
 		c_partition_chunk* partition_chunk = cache_partition_list_chunk->get_child_unsafe<c_partition_chunk>(cache_partition_index);
@@ -176,7 +293,7 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_cache_file_views()
 
 	if (status_interface)
 	{
-		status_interface->set_status_bar_status(_status_interface_priority_low, 5.0f, "Finished monolithic loading cache blobs");
+		status_interface->set_status_bar_status(_status_interface_priority_medium, 5.0f, "Finished monolithic loading cache blobs");
 	}
 
 	return rs;
@@ -368,7 +485,7 @@ BCS_RESULT c_monolithic_tag_project::read_tag(unsigned long index, h_tag*& out_h
 		//BENCHMARK_START(parse_high_level_object);
 
 		reader->parse_high_level_object(high_level_tag);
-		
+
 
 		delete reader;
 		delete layout_reader;
@@ -406,7 +523,7 @@ BCS_RESULT c_monolithic_tag_project::read_tag(unsigned long index, h_tag*& out_h
 
 		return BCS_S_OK;
 	}
-	
+
 
 	return BCS_S_CONTINUE;
 }
@@ -458,7 +575,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 	else
 	{
 		parallel_invoke(
-			0, 
+			0,
 			compressed_entry_count,
 			reinterpret_cast<t_parallel_invoke_long_func>(read_tags_callback),
 			callback_data_array);
@@ -471,13 +588,13 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 		{
 			rs = callback_data.result;
 		}
-		else if(callback_data.result == BCS_S_OK)
+		else if (callback_data.result == BCS_S_OK)
 		{
 			ASSERT(callback_data.high_level_tag != nullptr);
 			ASSERT(callback_data.high_level_tag_group != nullptr);
 
 			// #TODO: can this be done inside and made thread safe? is that worth it?
-			callback_data.high_level_tag_group->associate_tag_instance(*callback_data.high_level_tag); 
+			callback_data.high_level_tag_group->associate_tag_instance(*callback_data.high_level_tag);
 			tags.push_back(callback_data.high_level_tag);
 		}
 	}
@@ -489,7 +606,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 		status_interface->set_status_bar_status(_status_interface_priority_low, 5.0f, "Finished creating project %S %0.2fms", root_directory, stopwatch.get_miliseconds());
 	}
 
-	
+
 
 	return rs;
 }

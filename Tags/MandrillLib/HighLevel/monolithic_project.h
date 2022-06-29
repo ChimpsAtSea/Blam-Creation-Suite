@@ -34,6 +34,9 @@ public:
 
 	BCS_RESULT parse_tag_blob(const void* tag_file_data, unsigned long long tag_file_data_size);
 	BCS_RESULT read_tags();
+	BCS_RESULT resolve_unqualified_tags();
+	static void resolve_unqualified_tag_references(void* _userdata, unsigned long tag_partition_index);
+	BCS_RESULT resolve_unqualified_tag_references(h_object& object);
 
 protected:
 	BCS_RESULT init_monolithic_tag_file_views_result;

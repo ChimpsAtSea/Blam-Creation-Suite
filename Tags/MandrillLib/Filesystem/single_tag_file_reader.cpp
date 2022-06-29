@@ -33,7 +33,7 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	metadata_entry.entry_type = _tag_file_reader_metadata_entry_type_block;
 	metadata_entry.id = tag_group_block_index;
 
-	
+
 
 	binary_data_chunk.read_child_chunks(this, true);
 	//binary_data_chunk.parse_children(this);
@@ -78,7 +78,7 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	unsigned long tag_file_structure_count = layout_reader.structure_definitions_chunk->entry_count;
 	ASSERT(blofeld_structure_count >= tag_file_structure_count);
 
-	
+
 
 	for (unsigned long structure_entry_index = 0; structure_entry_index < layout_reader.tag_group_layout_chunk->get_struct_definition_count(); structure_entry_index++)
 	{
@@ -111,7 +111,7 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 		{
 			memset(&reader_structure_entry, 0, sizeof(reader_structure_entry));
 		}
-		
+
 	}
 
 	for (unsigned long structure_entry_index = 0; structure_entry_index < layout_reader.tag_group_layout_chunk->get_struct_definition_count(); structure_entry_index++)
@@ -292,7 +292,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 			if (transpose.can_transpose)
 			{
 				const blofeld::s_tag_field& blofeld_field = *transpose.blofeld_tag_field;
-				high_level_field_data = high_level_object.get_field_data(blofeld_field);
+				high_level_field_data = high_level_object.get_field_data_unsafe(blofeld_field);
 			}
 
 			switch (transpose.field_type)
@@ -315,7 +315,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 						BCS_RESULT rs = read_tag_block_structure_to_high_level_object(*field_tag_block_chunk, block_index, high_level_object);
 						ASSERT(BCS_SUCCEEDED(rs));
 
-						
+
 					}
 				}
 			}
@@ -333,7 +333,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 					if (num_children < expected_children && num_children == 0)
 					{
 						field_tag_struct_chunk = nullptr; // skip over to the next struct definition
-						
+
 					}
 				} while (field_tag_struct_chunk == nullptr && structure_chunk->get_child_unsafe(structure_chunk_child_index));
 				ASSERT(field_tag_struct_chunk != nullptr);
@@ -349,7 +349,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 					field_size = structure_size;
 
 					read_tag_struct_to_high_level_object_ref(struct_storage, transpose.field_metadata, field_struct_entry, structure_data_position, field_tag_struct_chunk);
-					
+
 				}
 			}
 			break;
@@ -361,8 +361,35 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 
 				if (transpose.can_transpose)
 				{
-					h_tag*& tag_ref_storage = *reinterpret_cast<decltype(&tag_ref_storage)>(high_level_field_data);
-					
+					const blofeld::s_tag_field& blofeld_field = *transpose.blofeld_tag_field;
+					h_tag_reference* tag_reference_storage = high_level_object.get_field_data<h_tag_reference>(blofeld_field);
+					ASSERT(tag_reference_storage != nullptr);
+
+					field_tag_reference_chunk->group_tag;
+					field_tag_reference_chunk->tag_filepath_without_extension;
+
+					if (field_tag_reference_chunk->group_tag == blofeld::INVALID_TAG)
+					{
+						tag_reference_storage->clear();
+					}
+					else
+					{
+						const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build.engine_type, field_tag_reference_chunk->group_tag);
+						if (tag_group != nullptr)
+						{
+							c_fixed_string_512 tag_filepath;
+							tag_filepath.format("%s.%s", field_tag_reference_chunk->tag_filepath_without_extension, tag_group->name);
+							tag_reference_storage->set_unqualified_path(
+								field_tag_reference_chunk->group_tag,
+								tag_filepath);
+						}
+						else
+						{
+							tag_reference_storage->set_unqualified_path(
+								field_tag_reference_chunk->group_tag,
+								field_tag_reference_chunk->tag_filepath_without_extension);
+						}
+					}
 				}
 			}
 			break;
@@ -420,7 +447,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 						data_chunk->get_data(data, data_size);
 
 						tag_resource_storage = nullptr;
-						
+
 					}
 					else if (resource_xsynced_chunk != nullptr)
 					{
@@ -461,7 +488,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 		else if (transpose.can_transpose)
 		{
 			const blofeld::s_tag_field& blofeld_field = *transpose.blofeld_tag_field;
-			void* high_level_field_data = high_level_object.get_field_data(blofeld_field);
+			void* high_level_field_data = high_level_object.get_field_data_unsafe(blofeld_field);
 
 			switch (blofeld_field.field_type)
 			{
@@ -537,7 +564,7 @@ BCS_RESULT c_single_tag_file_reader::parse_high_level_object(h_tag*& out_high_le
 	h_tag* high_level_tag = dynamic_cast<h_tag*>(high_level_object);
 	ASSERT(high_level_tag != nullptr);
 
-	
+
 
 	out_high_level_tag = high_level_tag;
 	return BCS_S_OK;

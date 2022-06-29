@@ -33,9 +33,9 @@ const char* c_imgui_status_interface::get_status_bar_text()
 	return status_ui_copy;
 }
 
-void c_imgui_status_interface::set_status_bar_status(e_status_interface_priority priority, float time, const char* _status, ...)
+void c_imgui_status_interface::set_status_bar_status(e_status_interface_priority target_priority, float time, const char* _status, ...)
 {
-	if (priority <= priority)
+	if (target_priority <= priority)
 	{
 		if (status_bar_state == 0 && InterlockedCompareExchange(&status_bar_state, 1, 0) == 0)
 		{
@@ -44,8 +44,14 @@ void c_imgui_status_interface::set_status_bar_status(e_status_interface_priority
 			vsnprintf(status, _countof(status), _status, list);
 			va_end(list);
 			end_time = ImGui::GetTime() + time;
-			priority = priority;
+			priority = target_priority;
 			InterlockedExchange(&status_bar_state, 2);
 		}
 	}
 }
+
+void c_imgui_status_interface::wait_status_bar_idle()
+{
+	while (status_bar_state != 0);
+}
+

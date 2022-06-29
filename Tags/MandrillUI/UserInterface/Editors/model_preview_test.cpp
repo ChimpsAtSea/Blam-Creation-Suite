@@ -24,7 +24,7 @@ c_model_preview_test::c_model_preview_test(
 	blofeld::infinite::h_objectdefinition* object_tag) :
 	model_tag(model_tag),
 	object_tag(object_tag),
-	render_model(dynamic_cast<decltype(render_model)>(model_tag.render_model)),
+	render_model(dynamic_cast<decltype(render_model)>(model_tag.render_model.get_tag())),
 	parent_render_context(parent_render_context),
 	imgui_viewport_render_context(nullptr),
 	viewport(),

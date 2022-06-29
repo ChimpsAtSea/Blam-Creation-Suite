@@ -1,3 +1,17 @@
 #pragma once
 
-#include "high_level_tag.h"
+#include "watchdog.h"
+#include "type.h"
+#include "object.h"
+#include "tag.h"
+#include "group.h"
+#include "tag_reference.h"
+#include "string_id.h"
+#include "resource.h"
+#include "enumerable.h"
+#include "block.h"
+#include "typed_block.h"
+#include "typed_array.h"
+#include "data.h"
+#include "field.h"
+#include "resource_field.h"

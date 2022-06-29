@@ -377,7 +377,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 		//const char* field_type_str = field_to_string(field->field_type);
 		//console_write_line("%X> %s::'%s' [%s]", static_cast<int>(diff), struct_definition.struct_name, field->name, field_type_str);
 
-		void* high_level_field_data = high_level.get_field_data(*field);
+		void* high_level_field_data = high_level.get_field_data_unsafe(*field);
 
 		unsigned long field_size = get_blofeld_field_size(*field, engine_platform_build);
 
@@ -862,7 +862,7 @@ public:
 			//const char* field_type_str = field_to_string(field->field_type);
 			//console_write_line("%X> %s::'%s' [%s]", static_cast<int>(diff), struct_definition.struct_name, field->name, field_type_str);
 
-			void* high_level_field_data = high_level.get_field_data(*field);
+			void* high_level_field_data = high_level.get_field_data_unsafe(*field);
 
 			unsigned long field_size = cache_file_reader.get_field_size(*field);
 
@@ -1101,32 +1101,31 @@ public:
 					//ASSERT(ucs_tag_reference_field.group_tag != 0xBCBCBCBC);
 					//ASSERT(ucs_tag_reference_field.local_handle == 0xBCBCBCBC);
 
-					h_tag*& tag_ref_storage = *reinterpret_cast<decltype(&tag_ref_storage)>(high_level_field_data);
+					//h_tag*& tag_ref_storage = *reinterpret_cast<decltype(&tag_ref_storage)>(high_level_field_data);
+					h_tag_reference* tag_reference_storage = high_level.get_field_data<h_tag_reference>(*field);
+					ASSERT(tag_reference_storage != nullptr);
 
-					h_tag* tag_reference_high_level_tag = nullptr;
-					if (ucs_tag_reference_field.group_tag != blofeld::INVALID_TAG)
+					if (ucs_tag_reference_field.group_tag == blofeld::INVALID_TAG)
+					{
+						tag_reference_storage->clear();
+					}
+					else
 					{
 						c_tag_instance* tag_instance = nullptr;
 						if (BCS_FAILED(rs = cache_cluster.get_tag_instance_by_global_tag_id_and_group_tag(ucs_tag_reference_field.global_id, ucs_tag_reference_field.group_tag, tag_instance)))
 						{
-							if (root_high_level.tag_filepath == "objects\\characters\\marine\\attachments\\helmet_goggles\\helmet_goggles.model")
-							{
-								
-							}
+							tag_reference_storage->set_unqualified_path(ucs_tag_reference_field.group_tag, root_high_level.tag_filepath);
 						}
 						else
 						{
+							h_tag* tag_reference_high_level_tag = nullptr;
 							if (BCS_FAILED(rs = high_level_cache_cluster_transplant.get_global_tag_by_low_level_tag_instance(*tag_instance, tag_reference_high_level_tag)))
 							{
 								return rs;
 							}
-							
+							tag_reference_storage->set_tag(tag_reference_high_level_tag);
 						}
 					}
-
-					tag_ref_storage = tag_reference_high_level_tag;
-
-					
 				}
 				break;
 				case _field_pageable:
