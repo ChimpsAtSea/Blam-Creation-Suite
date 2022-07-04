@@ -1,5 +1,7 @@
 #include "symbolsruntime-private-pch.h"
 
+#define get_rva_plus_base(data, index) data[index].rva_plus_base
+
 c_runtime_symbols::c_runtime_symbols(
 	HMODULE module_handle, 
 	void* symbol_file_data, 
@@ -126,35 +128,19 @@ s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_relative_virtual_a
 		return nullptr;
 	}
 
-	// unsigned long long base_virtual_adress = symbol_file_header->preferred_load_address;
-	// unsigned long long relative_virtual_address_plus_base = base_virtual_adress + relative_virtual_address;
+	unsigned long long base_virtual_adress = symbol_file_header->preferred_load_address;
+	unsigned long long relative_virtual_address_plus_base = base_virtual_adress + relative_virtual_address;
 
 	s_symbol_file_public* public_symbols = symbol_file_header->public_symbols;
 
-	s_symbol_file_public* binary_search_result = nullptr;
-	unsigned long search_index = 0;
-	unsigned long search_end = symbol_file_header->public_symbols_count - 1;
-	while (search_index <= search_end)
-	{
-		unsigned long search_middle = (search_index + search_end) / 2;
-
-		unsigned long long middle_rva_plus_base = public_symbols[search_middle].rva_plus_base;
-		if (middle_rva_plus_base == relative_virtual_address)
-		{
-			binary_search_result = public_symbols + search_middle;
-			break;
-		}
-		else if (middle_rva_plus_base < relative_virtual_address)
-		{
-			search_index = search_middle + 1;
-		}
-		else //if (middle_rva_plus_base > relative_virtual_address)
-		{
-			search_end = search_middle - 1;
-		}
-	}
-
-	return binary_search_result;
+	s_symbol_file_public* public_symbol_search_result = nullptr;
+	_binary_search(
+		symbol_file_header->public_symbols,
+		symbol_file_header->public_symbols_count,
+		get_rva_plus_base,
+		relative_virtual_address_plus_base,
+		public_symbol_search_result);
+	return public_symbol_search_result;
 }
 
 s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_base_virtual_address(unsigned long long relative_virtual_address)

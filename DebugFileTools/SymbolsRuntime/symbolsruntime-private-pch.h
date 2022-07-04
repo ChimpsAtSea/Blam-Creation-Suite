@@ -7,6 +7,7 @@
 #include <unordered_map>
 
 #include <Platform\platform-public-pch.h>
+#include <TemplateLibrary\templatelibrary-public-pch.h>
 
 #include <Platform\platform-exports-pch.h>
 #include "symbolsruntime-public-pch.h"

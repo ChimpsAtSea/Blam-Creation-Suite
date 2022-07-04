@@ -1,4 +1,22 @@
 
+#ifdef __INTELLISENSE__
+using t_create_high_level_tag_ctor = h_tag * (h_group& group, const char* tag_filepath);
+struct s_tag_ctor_pair
+{
+	blofeld::s_tag_group* tag_group;
+	t_create_high_level_tag_ctor* ctor;
+};
+static s_tag_ctor_pair tag_ctors[1];
+
+using t_create_high_level_object_ctor = h_object * ();
+struct s_object_ctor_pair
+{
+	blofeld::s_tag_struct_definition* tag_struct_definition;
+	t_create_high_level_object_ctor* ctor;
+};
+static s_object_ctor_pair object_ctors[1];
+#endif
+
 #ifdef HIGH_LEVEL_NO_TAG_CONSTRUCTORS
 
 h_tag* create_high_level_tag(h_group& group, const char* tag_filepath)
@@ -8,38 +26,30 @@ h_tag* create_high_level_tag(h_group& group, const char* tag_filepath)
 
 #else
 
+
 static h_tag* create_high_level_tag_binary_search(h_group& group, const char* tag_filepath)
 {
-	t_create_high_level_tag_ctor* binary_search_result = nullptr;
-	unsigned long search_index = 0;
-	unsigned long search_end = _countof(tag_ctors) - 1;
-	while (search_index <= search_end)
-	{
-		unsigned long search_middle = (search_index + search_end) / 2;
+#define get_tag_ctor_tag_group(tag_ctors, index) tag_ctors[search_middle].tag_group
 
-		const blofeld::s_tag_group* middle_tag_group = tag_ctors[search_middle].tag_group;
-		if (middle_tag_group == &group.tag_group)
-		{
-			binary_search_result = tag_ctors[search_middle].ctor;
-			break;
-		}
-		else if (middle_tag_group < &group.tag_group)
-		{
-			search_index = search_middle + 1;
-		}
-		else //if (middle_tag_struct_definition > &tag_struct_definition)
-		{
-			search_end = search_middle - 1;
-		}
-	}
+	const blofeld::s_tag_group* tag_group = &group.tag_group;
 
-	if (binary_search_result != nullptr)
+	s_tag_ctor_pair* tag_ctor_search_result = nullptr;
+	_binary_search(
+		tag_ctors,
+		_countof(tag_ctors),
+		get_tag_ctor_tag_group,
+		tag_group,
+		tag_ctor_search_result);
+
+	if (tag_ctor_search_result != nullptr)
 	{
-		h_tag* tag = binary_search_result(group, tag_filepath);
+		h_tag* tag = tag_ctor_search_result->ctor(group, tag_filepath);
 		return tag;
 	}
 
 	return nullptr;
+
+#undef get_tag_ctor_tag_group
 }
 
 static h_tag* create_high_level_tag_firstrun(h_group& group, const char* tag_filepath);
@@ -100,36 +110,25 @@ h_object* create_high_level_object(const blofeld::s_tag_struct_definition& tag_s
 
 static h_object* create_high_level_object_binary_search(const blofeld::s_tag_struct_definition& tag_struct_definition)
 {
-	t_create_high_level_object_ctor* binary_search_result = nullptr;
-	unsigned long search_index = 0;
-	unsigned long search_end = _countof(object_ctors) - 1;
-	while (search_index <= search_end)
-	{
-		unsigned long search_middle = (search_index + search_end) / 2;
+#define get_object_ctor_tag_struct_definition(object_ctors, index) object_ctors[search_middle].tag_struct_definition
 
-		blofeld::s_tag_struct_definition* middle_tag_struct_definition = object_ctors[search_middle].tag_struct_definition;
-		if (middle_tag_struct_definition == &tag_struct_definition)
-		{
-			binary_search_result = object_ctors[search_middle].ctor;
-			break;
-		}
-		else if (middle_tag_struct_definition < &tag_struct_definition)
-		{
-			search_index = search_middle + 1;
-		}
-		else //if (middle_tag_struct_definition > &tag_struct_definition)
-		{
-			search_end = search_middle - 1;
-		}
-	}
+	s_object_ctor_pair* object_ctor_search_result = nullptr;
+	_binary_search(
+		object_ctors,
+		_countof(object_ctors),
+		get_object_ctor_tag_struct_definition,
+		&tag_struct_definition,
+		object_ctor_search_result);
 
-	if (binary_search_result != nullptr)
+	if (object_ctor_search_result != nullptr)
 	{
-		h_object* object = binary_search_result();
+		h_object* object = object_ctor_search_result->ctor();
 		return object;
 	}
 
 	return nullptr;
+
+#undef get_object_ctor_tag_struct_definition
 }
 
 static h_object* create_high_level_object_firstrun(const blofeld::s_tag_struct_definition& tag_struct_definition);

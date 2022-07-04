@@ -96,7 +96,7 @@ BCS_RESULT c_monolithic_tag_project::resolve_unqualified_tags()
 	if (status_interface)
 	{
 		status_interface->wait_status_bar_idle();
-		status_interface->set_status_bar_status(_status_interface_priority_high, 15.0f, "Resolving unqualified tag references finished %0.2fms", stopwatch.get_miliseconds());
+		status_interface->set_status_bar_status(_status_interface_priority_low, INFINITY, "Resolving unqualified tag references finished %0.2fms", stopwatch.get_miliseconds());
 	}
 
 	return rs;
@@ -621,8 +621,6 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 	{
 		status_interface->set_status_bar_status(_status_interface_priority_low, 5.0f, "Finished creating project %S %0.2fms", root_directory, stopwatch.get_miliseconds());
 	}
-
-
 
 	return rs;
 }

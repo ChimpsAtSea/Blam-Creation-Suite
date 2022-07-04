@@ -2,6 +2,7 @@ add_library(TemplateLibrary ${BCS_LIBRARY_TYPE}
 	atomic_lock.h
 	auto_delete.h
 	benchmark.h
+	binary_search.h
 	bitfield_allocator.h
 	byteswap.h
 	compile_time_accumulator.h
