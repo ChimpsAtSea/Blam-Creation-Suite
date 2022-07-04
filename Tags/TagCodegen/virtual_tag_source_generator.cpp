@@ -146,7 +146,7 @@ void c_virtual_tag_source_generator::generate_header() const
 	std::string source_code = stream.str();
 	const char* output;
 	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
-	std::string output_filepath = std::string(output) + "Virtual/virtual_" + namespace_name + "/" + namespace_name + "_virtual.h";
+	std::string output_filepath = std::string(output) + "Virtual/virtual_" + namespace_name + "\\" + namespace_name + "_virtual.h";
 
 	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));
@@ -274,7 +274,7 @@ void c_virtual_tag_source_generator::generate_source() const
 	std::string source_code = stream.str();
 	const char* output;
 	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
-	std::string output_filepath = std::string(output) + "Virtual/virtual_" + namespace_name + "/" + namespace_name + "_virtual.cpp";
+	std::string output_filepath = std::string(output) + "Virtual/virtual_" + namespace_name + "\\" + namespace_name + "_virtual.cpp";
 
 	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));

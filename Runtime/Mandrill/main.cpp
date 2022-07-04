@@ -56,6 +56,10 @@ int WINAPI wWinMain(
 	BCS_RESULT symbol_manager_cleanup_result = symbol_manager_cleanup();
 	BCS_FAIL_RETURN(symbol_manager_cleanup_result);
 
+	if (BCS_SUCCEEDED(command_line_has_argument("writememoryallocations")) || c_mandrill_user_interface::get_write_memory_allocations_at_exit_setting())
+	{
+		write_memory_allocations();
+	}
 	if (console_is_verbose())
 	{
 		print_memory_allocations();

@@ -7,8 +7,7 @@ c_runtime_symbols::c_runtime_symbols(
 	module_handle(module_handle),
 	symbol_file_header(static_cast<s_symbol_file_header*>(symbol_file_data)),
 	symbol_file_buffer(symbol_file_data),
-	symbol_file_buffer_size(symbol_file_data_size),
-	public_symbol_lookup_by_rva_plus_base()
+	symbol_file_buffer_size(symbol_file_data_size)
 {
 	init();
 }
@@ -62,14 +61,42 @@ void c_runtime_symbols::init()
 #endif
 	}
 
-	s_symbol_file_public* public_symbols = symbol_file_header->public_symbols;
-	public_symbol_lookup_by_rva_plus_base.reserve(symbol_file_header->public_symbols_count * 2);
+	BCS_RESULT validate_public_symbols_result = validate_public_symbols();
+	ASSERT(BCS_SUCCEEDED(validate_public_symbols_result));
+	BCS_RESULT validate_static_symbols_result = validate_static_symbols();
+	ASSERT(BCS_SUCCEEDED(validate_static_symbols_result));
+}
+
+BCS_RESULT c_runtime_symbols::validate_public_symbols()
+{
+	unsigned long long last = 0;
 	for (unsigned long public_symbol_index = 0; public_symbol_index < symbol_file_header->public_symbols_count; public_symbol_index++)
 	{
-		s_symbol_file_public& public_symbol = public_symbols[public_symbol_index];
+		s_symbol_file_public& public_symbol = symbol_file_header->public_symbols[public_symbol_index];
 
-		public_symbol_lookup_by_rva_plus_base[public_symbol.rva_plus_base] = &public_symbol;
+		if (last > public_symbol.rva_plus_base)
+		{
+			return BCS_E_FAIL;
+		}
+		last = public_symbol.rva_plus_base;
 	}
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_runtime_symbols::validate_static_symbols()
+{
+	unsigned long long last = 0;
+	for (unsigned long static_symbol_index = 0; static_symbol_index < symbol_file_header->static_symbols_count; static_symbol_index++)
+	{
+		s_symbol_file_static& static_symbol = symbol_file_header->static_symbols[static_symbol_index];
+
+		if (last > static_symbol.rva_plus_base)
+		{
+			return BCS_E_FAIL;
+		}
+		last = static_symbol.rva_plus_base;
+	}
+	return BCS_S_OK;
 }
 
 s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_name(const char* symbol_name)
@@ -99,28 +126,35 @@ s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_relative_virtual_a
 		return nullptr;
 	}
 
-	unsigned long long base_virtual_adress = symbol_file_header->preferred_load_address;
-	unsigned long long relative_virtual_address_plus_base = base_virtual_adress + relative_virtual_address;
+	// unsigned long long base_virtual_adress = symbol_file_header->preferred_load_address;
+	// unsigned long long relative_virtual_address_plus_base = base_virtual_adress + relative_virtual_address;
 
 	s_symbol_file_public* public_symbols = symbol_file_header->public_symbols;
 
-	/*for (unsigned long public_symbol_index = 0; public_symbol_index < symbol_file_header->public_symbols_count; public_symbol_index++)
+	s_symbol_file_public* binary_search_result = nullptr;
+	unsigned long search_index = 0;
+	unsigned long search_end = symbol_file_header->public_symbols_count - 1;
+	while (search_index <= search_end)
 	{
-		s_symbol_file_public& public_symbol = public_symbols[public_symbol_index];
+		unsigned long search_middle = (search_index + search_end) / 2;
 
-		if (public_symbol.rva_plus_base == relative_virtual_address_plus_base)
+		unsigned long long middle_rva_plus_base = public_symbols[search_middle].rva_plus_base;
+		if (middle_rva_plus_base == relative_virtual_address)
 		{
-			return &public_symbol;
+			binary_search_result = public_symbols + search_middle;
+			break;
 		}
-	}*/
-
-	t_public_symbol_lookup_by_rva_plus_base::const_iterator search = public_symbol_lookup_by_rva_plus_base.find(relative_virtual_address_plus_base);
-	if (search != public_symbol_lookup_by_rva_plus_base.end())
-	{
-		return search->second;
+		else if (middle_rva_plus_base < relative_virtual_address)
+		{
+			search_index = search_middle + 1;
+		}
+		else //if (middle_rva_plus_base > relative_virtual_address)
+		{
+			search_end = search_middle - 1;
+		}
 	}
 
-	return nullptr;
+	return binary_search_result;
 }
 
 s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_base_virtual_address(unsigned long long relative_virtual_address)

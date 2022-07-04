@@ -10,4 +10,4 @@ protected:
 	T pointer;
 };
 
-#define AUTO_DELETE(pointer) c_auto_delete __auto_delete_##__LINE__(shader_binary_data)
+#define AUTO_DELETE(pointer) c_auto_delete __auto_delete_##__LINE__(pointer)

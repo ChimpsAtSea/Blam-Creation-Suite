@@ -431,10 +431,6 @@ BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_global_tag_id_and_group_ta
 			// this is better than nothing
 			if (&tag_instance->tag_group == tag_group) 
 			{
-				if (strcmp(tag_instance->instance_name, "objects\\characters\\marine\\attachments\\helmet_goggles\\helmet_goggles.render_model") == 0)
-				{
-					
-				}
 				long _global_tag_id;
 				if (BCS_FAILED(rs = tag_instance->get_global_tag_id(_global_tag_id)))
 				{

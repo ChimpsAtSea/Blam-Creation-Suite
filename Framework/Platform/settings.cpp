@@ -3,7 +3,7 @@
 static constexpr char k_settings_path[MAX_PATH] = ".\\Settings.ini";
 static constexpr wchar_t k_settings_path_wide[MAX_PATH] = L".\\Settings.ini";
 
-bool settings_read_boolean(e_settings_section section, const char* name, bool defaultValue /*= false*/)
+bool settings_read_bool(e_settings_section section, const char* name, bool defaultValue /*= false*/)
 {
 	const char* section_name = settings_get_section_name_string(section);
 	return !!GetPrivateProfileIntA(section_name, name, defaultValue, k_settings_path);
@@ -63,7 +63,7 @@ unsigned long settings_read_wstring(e_settings_section section, const char* name
 	return 0;
 }
 
-bool settings_write_boolean(e_settings_section section, const char* name, bool value)
+bool settings_write_bool(e_settings_section section, const char* name, bool value)
 {
 	const char* section_name = settings_get_section_name_string(section);
 	return WritePrivateProfileStringA(section_name, name, value ? "1" : "0", k_settings_path);

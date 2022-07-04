@@ -38,7 +38,6 @@ template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<long>(LPVOID lpTh
 		parallel_invoke_func(userdata, index);
 	}
 #undef _paralle_invole_get_index
-	console_write_line("Thread finished");
 	return 0;
 }
 
@@ -58,7 +57,6 @@ template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<long long>(LPVOID
 		parallel_invoke_func(userdata, index);
 	}
 #undef _paralle_invole_get_index
-	console_write_line("Thread finished");
 	return 0;
 }
 
@@ -78,7 +76,6 @@ template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<unsigned long>(LP
 		parallel_invoke_func(userdata, index);
 	}
 #undef _paralle_invole_get_index
-	console_write_line("Thread finished");
 	return 0;
 }
 
@@ -98,7 +95,6 @@ template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<unsigned long lon
 		parallel_invoke_func(userdata, index);
 	}
 #undef _paralle_invole_get_index
-	console_write_line("Thread finished");
 	return 0;
 }
 

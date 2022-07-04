@@ -3,10 +3,23 @@
 t_get_tag_game_memory_callback* c_mandrill_user_interface::s_get_tag_game_memory = nullptr;
 t_get_tag_section_address_callback* c_mandrill_user_interface::s_get_tag_section_address = nullptr;
 
-bool c_mandrill_user_interface::use_developer_features = settings_read_boolean(_settings_section_mandrill, k_use_developer_features, false);
-bool c_mandrill_user_interface::show_explorer_bar = settings_read_boolean(_settings_section_mandrill, k_show_explorer_bar, true);
-float c_mandrill_user_interface::explorer_bar_width = settings_read_float(_settings_section_mandrill, k_explorer_bar_width, 500.0f);
-bool c_mandrill_user_interface::show_console_bar = settings_read_boolean(_settings_section_mandrill, k_show_console_bar, false);
+
+#define mandrill_user_interface_setting(type, name, _default) \
+type c_mandrill_user_interface::name = settings_read_##type(_settings_section_mandrill, c_mandrill_user_interface::k_##name, _default); \
+type c_mandrill_user_interface::get_##name##_setting() { return name; } \
+void c_mandrill_user_interface::set_##name##_setting(type _##name) \
+{ \
+	c_mandrill_user_interface::name = _##name; \
+	settings_write_##type(_settings_section_mandrill, c_mandrill_user_interface::k_##name, c_mandrill_user_interface::name); \
+};
+
+mandrill_user_interface_setting(bool, use_developer_features, false);
+mandrill_user_interface_setting(bool, show_explorer_bar, true);
+mandrill_user_interface_setting(float, explorer_bar_width, 500.0f);
+mandrill_user_interface_setting(bool, show_console_bar, false);
+mandrill_user_interface_setting(bool, write_memory_allocations_at_exit, false);
+
+#undef mandrill_user_interface_setting
 
 c_mandrill_user_interface::c_mandrill_user_interface(c_render_context& imgui_viewport_render_context, bool is_game_mode, const wchar_t* startup_file) :
 	c_mandrill_tab("Mandrill", "", nullptr),
@@ -267,8 +280,8 @@ void c_mandrill_user_interface::save_current_session()
 			unsigned long cache_file_tab_index = 0;
 
 			unsigned long tag_project_tab_child_count = tag_project_tab->get_child_count();
-			c_mandrill_tab*const* tag_project_tab_children = tag_project_tab->get_children();
-			for(unsigned long tab_index =0;tab_index < tag_project_tab_child_count; tab_index++)
+			c_mandrill_tab* const* tag_project_tab_children = tag_project_tab->get_children();
+			for (unsigned long tab_index = 0; tab_index < tag_project_tab_child_count; tab_index++)
 			{
 				c_mandrill_tab* tab = tag_project_tab_children[tab_index];
 				if (c_high_level_tag_tab* high_level_tag_tab = dynamic_cast<c_high_level_tag_tab*>(tab))
@@ -357,7 +370,7 @@ void c_mandrill_user_interface::render_impl()
 		ImGui::SetNextWindowPos(main_window_position, ImGuiCond_Always);
 		main_window_size =
 		{
-			imgui_viewport_render_context.get_width_float() - margin * 2.0f, 
+			imgui_viewport_render_context.get_width_float() - margin * 2.0f,
 			imgui_viewport_render_context.get_height_float() - margin * 2.0f - status_bar_height - console_bar_height
 		};
 		ImGui::SetNextWindowSize(main_window_size, ImGuiCond_Always);
@@ -422,7 +435,7 @@ void c_mandrill_user_interface::render_impl()
 
 				ImGui::PopStyleColor();
 			}
-			else if(user_type == 0)
+			else if (user_type == 0)
 			{
 				ImVec4& color = username_colors[0];
 				ImGui::PushStyleColor(ImGuiCol_Text, color);
@@ -461,7 +474,7 @@ void c_mandrill_user_interface::render_impl()
 		}
 		if (!show_console_bar)
 		{
-			settings_write_boolean(_settings_section_mandrill, k_show_console_bar, show_console_bar);
+			settings_write_bool(_settings_section_mandrill, k_show_console_bar, show_console_bar);
 		}
 		ImGui::End();
 	}
@@ -520,18 +533,32 @@ bool c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 			{
 				if (ImGui::MenuItem(show_explorer_bar ? "Hide Explorer Bar" : "Show Explorer Bar"))
 				{
-					show_explorer_bar = !show_explorer_bar;
-					settings_write_boolean(_settings_section_mandrill, k_show_explorer_bar, show_explorer_bar);
+					set_show_explorer_bar_setting(!show_explorer_bar);
 				}
 
 				ImGui::Separator();
 
 				if (ImGui::MenuItem(use_developer_features ? "Disable Developer Features" : "Enable Developer Features"))
 				{
-					use_developer_features = !use_developer_features;
-					settings_write_boolean(_settings_section_mandrill, k_use_developer_features, use_developer_features);
+					set_use_developer_features_setting(!use_developer_features);
 				}
 
+				ImGui::EndMenu();
+			}
+			if (c_mandrill_user_interface::use_developer_features && ImGui::BeginMenu("Developer"))
+			{
+				if (ImGui::MenuItem("Dump Memory Allocations"))
+				{
+					write_memory_allocations();
+				}
+				if (ImGui::Checkbox("Dump Memory Allocations At Exit", &write_memory_allocations_at_exit))
+				{
+					set_write_memory_allocations_at_exit_setting(write_memory_allocations_at_exit);
+				}
+				if (ImGui::MenuItem("Memory Collect"))
+				{
+					memory_collect();
+				}
 				ImGui::EndMenu();
 			}
 			for (c_mandrill_tab* tab : children)
@@ -593,7 +620,7 @@ bool c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 				if (ImGui::MenuItem(ICON_FA_TERMINAL))
 				{
 					show_console_bar = !show_console_bar;
-					settings_write_boolean(_settings_section_mandrill, k_show_console_bar, show_console_bar);
+					settings_write_bool(_settings_section_mandrill, k_show_console_bar, show_console_bar);
 				}
 				ImVec2 terminal_end_pos = ImGui::GetCursorPos();
 

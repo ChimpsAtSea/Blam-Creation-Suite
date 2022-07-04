@@ -434,7 +434,7 @@ void c_low_level_tag_source_generator::generate_header() const
 	std::string source_code = stream.str();
 	const char* output;
 	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
-	std::string output_filepath = std::string(output) + "low_level_" + namespace_name + "/" + namespace_name + ".h";
+	std::string output_filepath = std::string(output) + "low_level_" + namespace_name + "\\" + namespace_name + ".h";
 
 	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));
@@ -687,7 +687,7 @@ void c_low_level_tag_source_generator::generate_ida_header() const
 	std::string source_code = stream.str();
 	const char* output;
 	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
-	std::string output_filepath = std::string(output) + "low_level_" + namespace_name + "/" + namespace_name + "_ida.h";
+	std::string output_filepath = std::string(output) + "low_level_" + namespace_name + "\\" + namespace_name + "_ida.h";
 
 	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));
@@ -779,7 +779,7 @@ void c_low_level_tag_source_generator::generate_source() const
 
 	std::string source_code = stream.str();	const char* output;
 	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
-	std::string output_filepath = std::string(output) + "low_level_" + namespace_name + "/" + namespace_name + ".cpp";
+	std::string output_filepath = std::string(output) + "low_level_" + namespace_name + "\\" + namespace_name + ".cpp";
 
 	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));
@@ -840,7 +840,7 @@ void c_low_level_tag_source_generator::generate_enum_header() const
 
 	std::string source_code = stream.str();	const char* output;
 	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
-	std::string output_filepath = std::string(output) + "low_level_" + namespace_name + "/" + namespace_name + ".enum.h";
+	std::string output_filepath = std::string(output) + "low_level_" + namespace_name + "\\" + namespace_name + ".enum.h";
 
 	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));

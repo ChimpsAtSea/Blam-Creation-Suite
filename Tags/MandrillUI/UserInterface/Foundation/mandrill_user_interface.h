@@ -57,18 +57,25 @@ public:
 	static void set_get_tag_section_address_callback(t_get_tag_section_address_callback* get_tag_section_address);
 	static void set_get_tag_game_memory_callback(t_get_tag_game_memory_callback* get_tag_game_memory);
 
-	static constexpr const char* k_use_developer_features = "use_developer_features";
-	static constexpr const char* k_show_explorer_bar = "show_explorer_bar";
-	static constexpr const char* k_show_console_bar = "show_console_bar";
-	static constexpr const char* k_explorer_bar_width = "explorer_bar_width";
 	static constexpr const char* k_previous_open_filepath_setting = "previous_open_filepath";
 	static constexpr const char* k_previous_open_maps_setting = "open_maps";
 	static constexpr const char* k_previous_open_projects_setting = "open_projects";
-	
-	static bool use_developer_features;
-	static bool show_explorer_bar;
-	static float explorer_bar_width;
-	static bool show_console_bar;
+
+#define mandrill_user_interface_setting(type, name) \
+	protected: \
+	static constexpr const char* k_##name = #name; \
+	static type name; \
+	public: \
+	BCS_DEBUG_API static type get_##name##_setting(); \
+	BCS_DEBUG_API static void set_##name##_setting(type name);
+
+	mandrill_user_interface_setting(bool, use_developer_features);
+	mandrill_user_interface_setting(bool, show_explorer_bar);
+	mandrill_user_interface_setting(float, explorer_bar_width);
+	mandrill_user_interface_setting(bool, show_console_bar);
+	mandrill_user_interface_setting(bool, write_memory_allocations_at_exit);
+
+#undef mandrill_user_interface_setting
 
 protected:
 	void mandrill_theme_push();

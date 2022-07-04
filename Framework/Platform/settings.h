@@ -11,13 +11,13 @@ enum e_settings_section
 	_settings_section_mandrill
 };
 
-BCS_DEBUG_API bool settings_read_boolean(e_settings_section section, const char* name, bool defaultValue = false);
+BCS_DEBUG_API bool settings_read_bool(e_settings_section section, const char* name, bool defaultValue = false);
 BCS_DEBUG_API int settings_read_integer(e_settings_section section, const char* name, int defaultValue = 0);
 BCS_DEBUG_API float settings_read_float(e_settings_section section, const char* name, float defaultValue = 0.0);
 BCS_DEBUG_API unsigned long settings_read_string(e_settings_section section, const char* name, char* buffer, unsigned long buffer_size, const char* default_value = nullptr);
 BCS_DEBUG_API unsigned long settings_read_wstring(e_settings_section section, const char* name, wchar_t* buffer, unsigned long buffer_size, const wchar_t* default_value = nullptr);
 
-BCS_DEBUG_API bool settings_write_boolean(e_settings_section section, const char* name, bool value);
+BCS_DEBUG_API bool settings_write_bool(e_settings_section section, const char* name, bool value);
 BCS_DEBUG_API bool settings_write_integer(e_settings_section section, const char* name, int value);
 BCS_DEBUG_API bool settings_write_float(e_settings_section section, const char* name, float value);
 BCS_DEBUG_API bool settings_write_string(e_settings_section section, const char* name, const char* value);

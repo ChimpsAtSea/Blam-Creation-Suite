@@ -40,7 +40,6 @@ c_monolithic_tag_project::c_monolithic_tag_project(
 	c_stopwatch stopwatch;
 	stopwatch.start();
 
-
 	void* tag_file_data;
 	unsigned long long tag_file_data_size;
 	BCS_RESULT rs = BCS_S_OK;
@@ -64,15 +63,23 @@ c_monolithic_tag_project::c_monolithic_tag_project(
 	delete root_chunk;
 	tracked_free(tag_file_data);
 
+	memory_collect();
+
 	stopwatch.stop();
 	float tag_parse_time = stopwatch.get_miliseconds();
-
-
+	if (status_interface)
+	{
+		status_interface->wait_status_bar_idle();
+		status_interface->set_status_bar_status(_status_interface_priority_medium, 5.0f, "Finished creating project %S %0.2fms", root_directory, stopwatch.get_miliseconds());
+	}
 }
 
 BCS_RESULT c_monolithic_tag_project::resolve_unqualified_tags()
 {
 	BCS_RESULT rs = BCS_S_OK;
+
+	c_stopwatch stopwatch;
+	stopwatch.start();
 
 	unsigned long num_tags = static_cast<unsigned long>(tags.size());
 
@@ -83,10 +90,13 @@ BCS_RESULT c_monolithic_tag_project::resolve_unqualified_tags()
 
 	parallel_invoke(0ul, num_tags, resolve_unqualified_tag_references, this);
 
+	stopwatch.stop();
+	float resolve_unqualified_tags_time = stopwatch.get_miliseconds();
+
 	if (status_interface)
 	{
 		status_interface->wait_status_bar_idle();
-		status_interface->set_status_bar_status(_status_interface_priority_medium, 5.0f, "Resolving unqualified tag references finished");
+		status_interface->set_status_bar_status(_status_interface_priority_high, 15.0f, "Resolving unqualified tag references finished %0.2fms", stopwatch.get_miliseconds());
 	}
 
 	return rs;
@@ -153,10 +163,6 @@ BCS_RESULT c_monolithic_tag_project::resolve_unqualified_tag_references(h_object
 			if (tag_reference->is_unqualified())
 			{
 				const char* target_tag_filepath = tag_reference->get_tag_path();
-				if (strcmp("objects\\vehicles\\human\\warthog\\warthog.model", target_tag_filepath) == 0)
-				{
-					debug_point;
-				}
 				tag group_tag = tag_reference->get_group_tag();
 				if (group_tag != blofeld::INVALID_TAG)
 				{
@@ -202,6 +208,8 @@ c_monolithic_tag_project::~c_monolithic_tag_project()
 	{
 		delete group;
 	}
+
+	memory_collect();
 }
 
 struct s_init_monolithic_tag_file_views_userdata
@@ -556,7 +564,15 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 	stopwatch.start();
 
 	unsigned long compressed_entry_count = tag_file_index_chunk->tag_file_index_header.compressed_entry_count;
-	//compressed_entry_count = 1000;
+	const char* max_tag_index_string;
+	if (BCS_SUCCEEDED(command_line_get_argument("maxtagindex", max_tag_index_string)))
+	{
+		unsigned long max_tag_index = strtoul(max_tag_index_string, nullptr, 10);
+		if (max_tag_index > 0)
+		{
+			compressed_entry_count = __min(max_tag_index, compressed_entry_count);
+		}
+	}
 	u_read_tags_callback_data* callback_data_array = new() u_read_tags_callback_data[compressed_entry_count];
 	for (unsigned long callback_data_index = 0; callback_data_index < compressed_entry_count; callback_data_index++)
 	{

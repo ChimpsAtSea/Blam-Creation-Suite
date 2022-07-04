@@ -1333,32 +1333,6 @@ public:
 		cache_file_reader(cache_file_reader),
 		root_struct_size(cache_file_reader.calculate_struct_size(struct_definition))
 	{
-		/*
-		long root_tag_block_entry_index = ucs_reader.get_root_tag_block_entry_index();
-		ASSERT(root_tag_block_entry_index >= 0);
-		tag_group_tag_block_entry = &ucs_reader.tag_block_instances[root_tag_block_entry_index];
-		ASSERT(tag_group_tag_block_entry != nullptr);
-		ASSERT(tag_group_tag_block_entry->nugget_index >= 0);
-
-		const s_infinite_ucs_nugget& nugget = ucs_reader.nuggets[tag_group_tag_block_entry->nugget_index];
-
-		const char* root_tag_data = static_cast<const char*>(ucs_reader.tag_data);
-		const char* tag_block_data = root_tag_data + nugget.offset;
-
-		if (root_high_level.tag_filepath == "objects\\characters\\marine\\attachments\\helmet_goggles\\helmet_goggles.render_model")
-		{
-			
-		}
-
-		transplant_module_file_data(
-			root_high_level,
-			root_tag_block_entry_index,
-			tag_block_data,
-			tag_group_tag_block_entry->nugget_index,
-			tag_block_data,
-			root_struct_definition);
-		*/
-
 		ASSERT(ucs_reader.root_nugget->size >= root_struct_size);
 		transplant_module_file_data(
 			root_high_level,

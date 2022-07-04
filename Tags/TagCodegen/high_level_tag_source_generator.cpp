@@ -145,8 +145,8 @@ void c_high_level_tag_source_generator::generate_header() const
 	stream << "\tnamespace " << namespace_name << std::endl;
 	stream << "\t{" << std::endl << std::endl;
 
-	stream << "\t\tBCS_DEBUG_API h_tag* create_high_level_tag(h_group& group, const char* tag_filepath);" << std::endl << std::endl;
-	stream << "\t\tBCS_DEBUG_API h_object* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition);" << std::endl << std::endl;
+	stream << "\t\tBCS_DEBUG_API extern h_tag* create_high_level_tag(h_group& group, const char* tag_filepath);" << std::endl << std::endl;
+	stream << "\t\tBCS_DEBUG_API extern h_object* create_high_level_object(const blofeld::s_tag_struct_definition& tag_struct_definition);" << std::endl << std::endl;
 
 	std::unordered_map<std::string, int> field_name_unique_counter;
 	union
@@ -851,85 +851,95 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 	stream << "\tnamespace " << namespace_name << std::endl;
 	stream << "\t{" << std::endl << std::endl;
 
+	std::vector<const s_tag_struct_definition*>& sorted_tag_struct_definitions = c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type];
+	bool contains_tag_constructor = false;
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
 		const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
-		if (tag_group == nullptr) continue;
-
-		std::string high_level_structure_name = format_structure_symbol(*struct_definition);
-		stream << "\t\t" << "static h_tag* " << high_level_structure_name << "_tag_group_ctor(h_group& group, const char* tag_filepath) { return new() " << high_level_structure_name << "(group, tag_filepath); }" << std::endl;
+		if (tag_group != nullptr)
+		{
+			contains_tag_constructor = true;
+			break;
+		}
 	}
 
-	stream << "\t\t" << "using t_create_high_level_tag_group_ctor = h_tag * (h_group& group, const char* tag_filepath);" << std::endl;
-	stream << "\t\t" << "static std::unordered_map<const blofeld::s_tag_group*, t_create_high_level_tag_group_ctor*> tag_group_ctors = " << std::endl;
-	stream << "\t\t" << "{" << std::endl;
-	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
+	if (!contains_tag_constructor)
 	{
-		const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
-		if (tag_group == nullptr) continue;
-
-		std::string high_level_structure_name = format_structure_symbol(*struct_definition);
-		stream << "\t\t\t" << "{ &" << tag_group->symbol->symbol_name << ", " << high_level_structure_name << "_tag_group_ctor }," << std::endl;
+		stream << "#define HIGH_LEVEL_NO_TAG_CONSTRUCTORS" << std::endl;
 	}
-	stream << "\t\t" << "};" << std::endl;
-
-	stream << "\t\t" << "h_tag* create_high_level_tag(h_group& group, const char* tag_filepath)" << std::endl;
-	stream << "\t\t" << "{" << std::endl;
-	/*for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
+	else
 	{
-		const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
-		if (tag_group == nullptr) continue;
+		for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
+		{
+			const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
+			if (tag_group == nullptr) continue;
 
-		stream << "\t\t\t" << "if (&group.tag_group == &" << tag_group->symbol->symbol_name << ")";
-		stream << " " << "return new() " << high_level_structure_name << "(group, tag_filepath);" << std::endl;
+			std::string high_level_structure_name = format_structure_symbol(*struct_definition);
+			stream << "\t\t" << "static h_tag* " << high_level_structure_name << "_tag_group_ctor(h_group& group, const char* tag_filepath) { return new() " << high_level_structure_name << "(group, tag_filepath); }" << std::endl;
+		}
+		stream << std::endl;
+
+		stream << "\t\t" << "using t_create_high_level_tag_ctor = h_tag * (h_group& group, const char* tag_filepath);" << std::endl;
+		stream << "\t\t" << "struct s_tag_ctor_pair" << std::endl;
+		stream << "\t\t" << "{" << std::endl;
+		stream << "\t\t" << "\tblofeld::s_tag_group* tag_group;" << std::endl;
+		stream << "\t\t" << "\tt_create_high_level_tag_ctor* ctor;" << std::endl;
+		stream << "\t\t" << "};" << std::endl;
+		stream << std::endl;
+
+		stream << "\t\t" << "static s_tag_ctor_pair tag_ctors[] = " << std::endl;
+		stream << "\t\t" << "{" << std::endl;
+		for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
+		{
+			const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
+			if (tag_group == nullptr) continue;
+
+			std::string high_level_structure_name = format_structure_symbol(*struct_definition);
+			stream << "\t\t\t" << "{ &" << tag_group->symbol->symbol_name << ", " << high_level_structure_name << "_tag_group_ctor }," << std::endl;
+		}
+		stream << "\t\t" << "};" << std::endl;
+		stream << std::endl;
 	}
-	stream << std::endl;
-	stream << "\t\t\t" << "return nullptr;" << std::endl;*/
-	stream << "\t\t\t" << "t_create_high_level_tag_group_ctor* create_high_level_tag_group_ctor = tag_group_ctors[&group.tag_group];" << std::endl;
-	stream << "\t\t\t" << "ASSERT(create_high_level_tag_group_ctor);" << std::endl;
-	stream << "\t\t\t" << "return create_high_level_tag_group_ctor(group, tag_filepath);" << std::endl;
-	stream << "\t\t" << "}" << std::endl;
-	stream << std::endl;
-
-
-
-
-
-
-
-	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
+	if (sorted_tag_struct_definitions.empty())
 	{
-		std::string high_level_structure_name = format_structure_symbol(*struct_definition);
-		stream << "\t\t" << "static h_object* " << high_level_structure_name << "_object_ctor() { return new() " << high_level_structure_name << "(); }" << std::endl;
+		stream << "#define HIGH_LEVEL_NO_OBJECT_CONSTRUCTORS" << std::endl;
 	}
-
-	stream << "\t\t" << "using t_create_high_level_object_ctor = h_object * ();" << std::endl;
-	stream << "\t\t" << "static std::unordered_map<const blofeld::s_tag_struct_definition*, t_create_high_level_object_ctor*> object_ctors = " << std::endl;
-	stream << "\t\t" << "{" << std::endl;
-	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
+	else
 	{
-		std::string high_level_structure_name = format_structure_symbol(*struct_definition);
-		stream << "\t\t\t" << "{ &" << struct_definition->symbol->symbol_name << ", " << high_level_structure_name << "_object_ctor }," << std::endl;
+		for (const s_tag_struct_definition* struct_definition : sorted_tag_struct_definitions)
+		{
+			std::string high_level_structure_name = format_structure_symbol(*struct_definition);
+			stream << "\t\t" << "static h_object* " << high_level_structure_name << "_object_ctor() { return new() " << high_level_structure_name << "(); }" << std::endl;
+		}
+		stream << std::endl;
+
+		stream << "\t\t" << "using t_create_high_level_object_ctor = h_object * ();" << std::endl;
+		stream << "\t\t" << "struct s_object_ctor_pair" << std::endl;
+		stream << "\t\t" << "{" << std::endl;
+		stream << "\t\t" << "\tblofeld::s_tag_struct_definition* tag_struct_definition;" << std::endl;
+		stream << "\t\t" << "\tt_create_high_level_object_ctor* ctor;" << std::endl;
+		stream << "\t\t" << "};" << std::endl;
+		stream << std::endl;
+
+		stream << "\t\t" << "static s_object_ctor_pair object_ctors[] = " << std::endl;
+		stream << "\t\t" << "{" << std::endl;
+		for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
+		{
+			std::string high_level_structure_name = format_structure_symbol(*struct_definition);
+			stream << "\t\t\t" << "{ &" << struct_definition->symbol->symbol_name << ", " << high_level_structure_name << "_object_ctor }," << std::endl;
+		}
+		stream << "\t\t" << "};" << std::endl;
+		stream << std::endl;
 	}
-	stream << "\t\t" << "};" << std::endl;
-
-
-
-	stream << "\t\t" << "h_object* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition)" << std::endl;
-	stream << "\t\t" << "{" << std::endl;
-	/*for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
+	stream << "#include <TagCodegen/high_level_object_constructor.inl>" << std::endl;
+	if (sorted_tag_struct_definitions.empty())
 	{
-		const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
-
-		stream << "\t\t\t" << "if (&struct_definition == &" << struct_definition->symbol->symbol_name << ")";
-		stream << " " << "return new() " << high_level_structure_name << "();" << std::endl;
+		stream << "#undef HIGH_LEVEL_NO_OBJECT_CONSTRUCTORS" << std::endl;
 	}
-	stream << std::endl;
-	stream << "\t\t\t" << "return nullptr;" << std::endl;*/
-	stream << "\t\t\t" << "t_create_high_level_object_ctor* create_high_level_object_ctor = object_ctors[&struct_definition];" << std::endl;
-	stream << "\t\t\t" << "ASSERT(create_high_level_object_ctor);" << std::endl;
-	stream << "\t\t\t" << "return create_high_level_object_ctor();" << std::endl;
-	stream << "\t\t" << "}" << std::endl;
+	if (!contains_tag_constructor)
+	{
+		stream << "#undef HIGH_LEVEL_NO_TAG_CONSTRUCTORS" << std::endl;
+	}
 	stream << std::endl;
 
 	stream << std::endl;

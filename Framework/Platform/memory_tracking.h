@@ -11,6 +11,7 @@ BCS_DEBUG_API extern void  _tracked_aligned_free(void* allocated_memory);
 BCS_DEBUG_API extern void* _tracked_malloc(size_t size, const char* filepath = __builtin_FILE(), long line = __builtin_LINE());
 BCS_DEBUG_API extern void  _tracked_free(const void* allocated_memory);
 BCS_DEBUG_API extern void  _untracked_free(const void* allocated_memory);
+BCS_DEBUG_API extern void  memory_collect();
 
 #ifdef __INTELLISENSE__
 

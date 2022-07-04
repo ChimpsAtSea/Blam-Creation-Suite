@@ -1,7 +1,9 @@
 add_executable(TagCodegen
 	blamlib_string_parser.cpp
+	blamlib_string_parser.inl
 	custom_codegen.cpp
 	filesystem_helper.cpp
+	high_level_object_constructor.inl
 	high_level_tag_source_generator.cpp
 	main.cpp
 	low_level_tag_source_generator.cpp

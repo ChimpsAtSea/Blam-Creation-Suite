@@ -310,7 +310,7 @@ void print_memory_allocations()
 	{
 		if (tracked_memory_entry->filepath)
 		{
-			console_write_line("%s(%i): warning MLEAK: memory leak detected", tracked_memory_entry->filepath, tracked_memory_entry->line);
+			console_write_line("%s(%i): warning MLEAK: memory leak detected 0x%p", tracked_memory_entry->filepath, tracked_memory_entry->line, tracked_memory_entry->memory);
 
 			debug_point;
 			if (++output_count > 10)
@@ -378,7 +378,7 @@ unsigned long write_stack_trace(PVOID * frames, unsigned long num_frames, char* 
 
 			if (buffer)
 			{
-				buffer_position += snprintf(buffer_position, buffer_end - buffer_position, "%s!%s()", module_filename, symbol->Name);
+				buffer_position += snprintf(buffer_position, buffer_end - buffer_position, "\t%s!%s()", module_filename, symbol->Name);
 				if (symbol_line_from_address_result)
 				{
 					buffer_position += snprintf(buffer_position, buffer_end - buffer_position, " Line %i", line.LineNumber);
@@ -390,7 +390,7 @@ unsigned long write_stack_trace(PVOID * frames, unsigned long num_frames, char* 
 			}
 			else
 			{
-				buffer_length_used += snprintf(nullptr, 0, "%s!%s()", module_filename, symbol->Name);
+				buffer_length_used += snprintf(nullptr, 0, "\t%s!%s()", module_filename, symbol->Name);
 				if (symbol_line_from_address_result)
 				{
 					buffer_length_used += snprintf(nullptr, 0, " Line %i", line.LineNumber);
@@ -405,7 +405,7 @@ unsigned long write_stack_trace(PVOID * frames, unsigned long num_frames, char* 
 		{
 			if (buffer)
 			{
-				buffer_position += snprintf(buffer_position, buffer_end - buffer_position, "%s!%p()", module_filename, frame);
+				buffer_position += snprintf(buffer_position, buffer_end - buffer_position, "\t%s!%p()", module_filename, frame);
 				if (frame_index != (num_frames - 1))
 				{
 					buffer_position += snprintf(buffer_position, buffer_end - buffer_position, "\n");
@@ -413,7 +413,7 @@ unsigned long write_stack_trace(PVOID * frames, unsigned long num_frames, char* 
 			}
 			else
 			{
-				buffer_length_used += snprintf(nullptr, 0, "%s!%p()", module_filename, frame);
+				buffer_length_used += snprintf(nullptr, 0, "\t%s!%p()", module_filename, frame);
 				if (frame_index != (num_frames - 1))
 				{
 					buffer_length_used += snprintf(nullptr, 0, "\n");
@@ -477,9 +477,13 @@ void write_memory_allocations()
 	{
 		if (tracked_memory_entry->filepath)
 		{
-			file_write_line(output, "%s(%i): warning MLEAK: memory leak detected", tracked_memory_entry->filepath, tracked_memory_entry->line);
+			file_write_line(output, "%s(%i): warning MLEAK: memory leak detected 0x%p", tracked_memory_entry->filepath, tracked_memory_entry->line, tracked_memory_entry->memory);
 
 			debug_point;
+		}
+		else
+		{
+			file_write_line(output, "(unknown): warning MLEAK: memory leak detected");
 		}
 		fflush(output);
 		if (tracked_memory_entry->num_stack_frames > 0)
@@ -505,4 +509,9 @@ void write_memory_allocations()
 	fclose(output);
 
 #undef file_write_line
+}
+
+void memory_collect()
+{
+	mi_collect(true);
 }

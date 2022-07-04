@@ -515,6 +515,10 @@ void t_symbol_file_parser::create_symbols_blob()
 
 	header.public_symbols_offset = symbols_blob.size();
 	header.public_symbols_count = static_cast<unsigned long>(temp_header.public_symbols.size());
+	std::sort(
+		temp_header.public_symbols.begin(), 
+		temp_header.public_symbols.end(), 
+		[](s_symbol_file_public_temp& a, s_symbol_file_public_temp& b) { return a.rva_plus_base <= b.rva_plus_base; });
 	for (s_symbol_file_public_temp& temp_public_symbol : temp_header.public_symbols)
 	{
 		s_symbol_file_public& public_symbol = enqueue_header(s_symbol_file_public);
@@ -533,6 +537,10 @@ void t_symbol_file_parser::create_symbols_blob()
 
 	header.static_symbols_offset = symbols_blob.size();
 	header.static_symbols_count = static_cast<unsigned long>(temp_header.static_symbols.size());
+	std::sort(
+		temp_header.static_symbols.begin(),
+		temp_header.static_symbols.end(),
+		[](s_symbol_file_static_temp& a, s_symbol_file_static_temp& b) { return a.rva_plus_base <= b.rva_plus_base; });
 	for (s_symbol_file_static_temp& temp_static_symbol : temp_header.static_symbols)
 	{
 		s_symbol_file_static& static_symbol = enqueue_header(s_symbol_file_static);

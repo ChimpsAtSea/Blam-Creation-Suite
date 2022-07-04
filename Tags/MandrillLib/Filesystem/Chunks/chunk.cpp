@@ -457,16 +457,23 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 		}
 
 		unsigned long chunk_list_length = chunk_list.size;
-		c_chunk** chunk_pointers = trivial_malloc(c_chunk*, chunk_list_length + 1);
-		chunk_pointers[chunk_list_length] = 0;
-
-		for (unsigned long chunk_index = 0; chunk_index < chunk_list_length; chunk_index++)
+		if (chunk_list_length > 0)
 		{
-			c_chunk* chunk = chunk_list[chunk_index];
-			chunk_pointers[chunk_index] = chunk;
-		}
+			c_chunk** chunk_pointers = trivial_malloc(c_chunk*, chunk_list_length + 1);
+			chunk_pointers[chunk_list_length] = 0;
 
-		children = chunk_pointers;
+			for (unsigned long chunk_index = 0; chunk_index < chunk_list_length; chunk_index++)
+			{
+				c_chunk* chunk = chunk_list[chunk_index];
+				chunk_pointers[chunk_index] = chunk;
+			}
+
+			children = chunk_pointers;
+		}
+		else
+		{
+			children = const_cast<c_chunk**>(children_list_empty);
+		}
 		num_children = chunk_list_length;
 	}
 	catch (BCS_RESULT rs)

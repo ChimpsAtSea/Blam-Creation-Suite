@@ -514,10 +514,10 @@ void c_tag_project_tab::render_explorer_bar()
 
 void c_tag_project_tab::render_impl()
 {
-	if (c_mandrill_user_interface::show_explorer_bar)
+	if (c_mandrill_user_interface::get_show_explorer_bar_setting())
 	{
 		ImGui::Columns(2, "##navigation");
-		ImGui::SetColumnOffset(1, c_mandrill_user_interface::explorer_bar_width);
+		ImGui::SetColumnOffset(1, c_mandrill_user_interface::get_explorer_bar_width_setting());
 		ImGui::Separator();
 		{
 			ImGui::BeginGroup();
@@ -535,12 +535,12 @@ void c_tag_project_tab::render_impl()
 		}
 		if (ImGui::IsMouseDragging(ImGuiMouseButton_Left))
 		{
-			c_mandrill_user_interface::explorer_bar_width = ImGui::GetItemRectSize().x + 16.0f;
-			settings_write_float(_settings_section_mandrill, c_mandrill_user_interface::k_explorer_bar_width, c_mandrill_user_interface::explorer_bar_width);
+			c_mandrill_user_interface::set_explorer_bar_width_setting(ImGui::GetItemRectSize().x + 16.0f);
+			
 		}
-		if (c_mandrill_user_interface::explorer_bar_width < 200.0f)
+		if (c_mandrill_user_interface::get_explorer_bar_width_setting() < 200.0f)
 		{
-			c_mandrill_user_interface::explorer_bar_width = 200.0f + 16.0f;
+			c_mandrill_user_interface::set_explorer_bar_width_setting(200.0f + 16.0f);
 		}
 		ImGui::NextColumn();
 	}

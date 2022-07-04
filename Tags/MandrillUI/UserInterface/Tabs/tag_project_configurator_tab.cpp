@@ -33,6 +33,11 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 	{
 		is_monolithic_tag_file_directory = true;
 		debug_point;
+
+		s_cache_file_list_entry entry = {};
+		entry.filepath = tag_cache_directory;
+		entry.selected = true;
+		entries.push_back(entry);
 	}
 	else if (BCS_SUCCEEDED(filesystem_directory_exists(tags_directory)) && BCS_SUCCEEDED(filesystem_filepath_exists(guerilla_directory)))
 	{
