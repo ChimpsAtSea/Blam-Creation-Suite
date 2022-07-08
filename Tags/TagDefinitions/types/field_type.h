@@ -27,7 +27,7 @@ namespace blofeld
 		_field_angle,
 		_field_tag,
 		_field_char_enum,
-		_field_enum,
+		_field_short_enum,
 		_field_long_enum,
 		_field_long_flags,
 		_field_word_flags,
@@ -51,10 +51,10 @@ namespace blofeld
 		_field_real_argb_color,
 		_field_real_hsv_color,
 		_field_real_ahsv_color,
-		_field_short_bounds,
+		_field_short_integer_bounds,
 		_field_angle_bounds,
 		_field_real_bounds,
-		_field_real_fraction_bounds,
+		_field_fraction_bounds,
 		_field_tag_reference,
 		_field_block,
 		_field_long_block_flags,
@@ -76,7 +76,7 @@ namespace blofeld
 		_field_custom,
 		_field_struct,
 		_field_array,
-		_field_pageable,
+		_field_pageable_resource,
 		_field_api_interop,
 		_field_terminator,
 		_field_byte_integer,
@@ -100,7 +100,8 @@ namespace blofeld
 	BCS_DEBUG_API unsigned long get_blofeld_field_size(e_platform_type platform_type, e_field field);
 	BCS_DEBUG_API unsigned long get_blofeld_field_size(const s_tag_field& field, s_engine_platform_build engine_platform_build);
 	BCS_DEBUG_API BCS_RESULT get_blofeld_tag_file_field_size(e_field field, s_engine_platform_build engine_platform_build, unsigned long& field_size);
-	BCS_DEBUG_API BCS_RESULT field_to_tag_field_type(e_field field, const char*& tag_field_type);
+	BCS_DEBUG_API BCS_RESULT field_to_tagfile_field_type(e_field field, const char*& tag_field_type);
+	BCS_DEBUG_API BCS_RESULT field_to_string(e_field field, const char*& field_string);
 	BCS_DEBUG_API BCS_RESULT tag_field_type_to_field(const char* tag_field_type, e_field& field);
 	BCS_DEBUG_API BCS_RESULT byteswap_field_data_inplace(e_field field, void* data, s_engine_platform_build engine_platform_build);
 }

@@ -282,14 +282,14 @@ void c_high_level_tag_file_writer::enqueue_field(const blofeld::s_tag_field& fie
 	case blofeld::_field_struct:
 		tag_persist_field.metadata = enqueue_struct_definition(*field.struct_definition);
 		break;
-	case blofeld::_field_pageable:
+	case blofeld::_field_pageable_resource:
 		tag_persist_field.metadata = enqueue_resource_definition(*field.tag_resource_definition);
 		break;
 	case blofeld::_field_api_interop:
 		tag_persist_field.metadata = enqueue_interop_definition(*field.tag_interop_definition);
 		break;
 	case blofeld::_field_char_enum:
-	case blofeld::_field_enum:
+	case blofeld::_field_short_enum:
 	case blofeld::_field_long_enum:
 	case blofeld::_field_byte_flags:
 	case blofeld::_field_word_flags:
@@ -305,7 +305,7 @@ void c_high_level_tag_file_writer::enqueue_field(const blofeld::s_tag_field& fie
 unsigned long c_high_level_tag_file_writer::enqueue_field_type(blofeld::e_field field_type)
 {
 	const char* tag_field_type;
-	ASSERT(BCS_SUCCEEDED(blofeld::field_to_tag_field_type(field_type, tag_field_type)));
+	ASSERT(BCS_SUCCEEDED(blofeld::field_to_tagfile_field_type(field_type, tag_field_type)));
 
 	{
 		unsigned long tag_persist_field_type_count = field_types_chunk->entry_count;
@@ -333,7 +333,7 @@ unsigned long c_high_level_tag_file_writer::enqueue_field_type(blofeld::e_field 
 	case blofeld::_field_struct:
 	case blofeld::_field_block:
 	case blofeld::_field_data:
-	case blofeld::_field_pageable:
+	case blofeld::_field_pageable_resource:
 	case blofeld::_field_api_interop:
 	case blofeld::_field_tag_reference:
 	case blofeld::_field_string_id:
@@ -710,7 +710,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_object& object, 
 			memset(dst_field_data, 0, field_size);
 		}
 		break;
-		case blofeld::_field_pageable:
+		case blofeld::_field_pageable_resource:
 		{
 			const h_resource* const& resource = *static_cast<const h_resource* const*>(src_field_data);
 

@@ -237,7 +237,7 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 				transpose_entry.blofeld_tag_field = blofeld_field;
 
 				const char* blofeld_field_type_name;
-				ASSERT(BCS_SUCCEEDED(blofeld::field_to_tag_field_type(blofeld_field->field_type, blofeld_field_type_name)));
+				ASSERT(BCS_SUCCEEDED(blofeld::field_to_tagfile_field_type(blofeld_field->field_type, blofeld_field_type_name)));
 				console_write_line_verbose("\tSuccessfully matched t[%s] b[%s] f[%s]", blofeld_field_type_name, blofeld_field->name, file_field_name);
 			}
 		}
@@ -424,7 +424,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 				}
 			}
 			break;
-			case blofeld::_field_pageable:
+			case blofeld::_field_pageable_resource:
 			{
 				c_chunk* field_chunk = structure_chunk->get_child_unsafe(structure_chunk_child_index++);
 				c_tag_resource_exploded_chunk* resource_exploded_chunk = dynamic_cast<c_tag_resource_exploded_chunk*>(field_chunk);

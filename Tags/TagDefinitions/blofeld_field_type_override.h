@@ -73,7 +73,7 @@ inline blofeld::s_tag_field _make_field_custom()
 #define _legacy_field_angle blofeld::_field_angle, __FILE__, __LINE__
 #define _legacy_field_tag blofeld::_field_tag, __FILE__, __LINE__
 #define _legacy_field_char_enum blofeld::_field_char_enum, __FILE__, __LINE__
-#define _legacy_field_enum blofeld::_field_enum, __FILE__, __LINE__
+#define _legacy_field_short_enum blofeld::_field_short_enum, __FILE__, __LINE__
 #define _legacy_field_long_enum blofeld::_field_long_enum, __FILE__, __LINE__
 #define _legacy_field_long_flags blofeld::_field_long_flags, __FILE__, __LINE__
 #define _legacy_field_word_flags blofeld::_field_word_flags, __FILE__, __LINE__
@@ -97,10 +97,10 @@ inline blofeld::s_tag_field _make_field_custom()
 #define _legacy_field_real_argb_color blofeld::_field_real_argb_color, __FILE__, __LINE__
 #define _legacy_field_real_hsv_color blofeld::_field_real_hsv_color, __FILE__, __LINE__
 #define _legacy_field_real_ahsv_color blofeld::_field_real_ahsv_color, __FILE__, __LINE__
-#define _legacy_field_short_bounds blofeld::_field_short_bounds, __FILE__, __LINE__
+#define _legacy_field_short_integer_bounds blofeld::_field_short_integer_bounds, __FILE__, __LINE__
 #define _legacy_field_angle_bounds blofeld::_field_angle_bounds, __FILE__, __LINE__
 #define _legacy_field_real_bounds blofeld::_field_real_bounds, __FILE__, __LINE__
-#define _legacy_field_real_fraction_bounds blofeld::_field_real_fraction_bounds, __FILE__, __LINE__
+#define _legacy_field_fraction_bounds blofeld::_field_fraction_bounds, __FILE__, __LINE__
 #define _legacy_field_tag_reference blofeld::_field_tag_reference, __FILE__, __LINE__
 #define _legacy_field_block blofeld::_field_block, __FILE__, __LINE__
 #define _legacy_field_long_block_flags blofeld::_field_long_block_flags, __FILE__, __LINE__
@@ -122,7 +122,7 @@ inline blofeld::s_tag_field _make_field_custom()
 #define _legacy_field_custom blofeld::_field_custom, __FILE__, __LINE__
 #define _legacy_field_struct blofeld::_field_struct, __FILE__, __LINE__
 #define _legacy_field_array blofeld::_field_array, __FILE__, __LINE__
-#define _legacy_field_pageable blofeld::_field_pageable, __FILE__, __LINE__
+#define _legacy_field_pageable_resource blofeld::_field_pageable_resource, __FILE__, __LINE__
 #define _legacy_field_api_interop blofeld::_field_api_interop, __FILE__, __LINE__
 #define _legacy_field_terminator blofeld::_field_terminator, __FILE__, __LINE__
 #define _legacy_field_byte_integer blofeld::_field_byte_integer, __FILE__, __LINE__
@@ -153,7 +153,7 @@ inline blofeld::s_tag_field _make_field_custom()
 #define _field_angle blofeld::_field_angle, __FILE__, __LINE__
 #define _field_tag blofeld::_field_tag, __FILE__, __LINE__
 #define _field_char_enum blofeld::_field_char_enum, __FILE__, __LINE__
-#define _field_enum blofeld::_field_enum, __FILE__, __LINE__
+#define _field_short_enum blofeld::_field_short_enum, __FILE__, __LINE__
 #define _field_long_enum blofeld::_field_long_enum, __FILE__, __LINE__
 #define _field_long_flags blofeld::_field_long_flags, __FILE__, __LINE__
 #define _field_word_flags blofeld::_field_word_flags, __FILE__, __LINE__
@@ -177,10 +177,10 @@ inline blofeld::s_tag_field _make_field_custom()
 #define _field_real_argb_color blofeld::_field_real_argb_color, __FILE__, __LINE__
 #define _field_real_hsv_color blofeld::_field_real_hsv_color, __FILE__, __LINE__
 #define _field_real_ahsv_color blofeld::_field_real_ahsv_color, __FILE__, __LINE__
-#define _field_short_bounds blofeld::_field_short_bounds, __FILE__, __LINE__
+#define _field_short_integer_bounds blofeld::_field_short_integer_bounds, __FILE__, __LINE__
 #define _field_angle_bounds blofeld::_field_angle_bounds, __FILE__, __LINE__
 #define _field_real_bounds blofeld::_field_real_bounds, __FILE__, __LINE__
-#define _field_real_fraction_bounds blofeld::_field_real_fraction_bounds, __FILE__, __LINE__
+#define _field_fraction_bounds blofeld::_field_fraction_bounds, __FILE__, __LINE__
 #define _field_tag_reference blofeld::_field_tag_reference, __FILE__, __LINE__
 #define _field_block blofeld::_field_block, __FILE__, __LINE__
 #define _field_long_block_flags blofeld::_field_long_block_flags, __FILE__, __LINE__
@@ -202,7 +202,7 @@ inline blofeld::s_tag_field _make_field_custom()
 #define _field_custom blofeld::_field_custom, __FILE__, __LINE__
 #define _field_struct blofeld::_field_struct, __FILE__, __LINE__
 #define _field_array blofeld::_field_array, __FILE__, __LINE__
-#define _field_pageable blofeld::_field_pageable, __FILE__, __LINE__
+#define _field_pageable_resource blofeld::_field_pageable_resource, __FILE__, __LINE__
 #define _field_api_interop blofeld::_field_api_interop, __FILE__, __LINE__
 #define _field_terminator blofeld::_field_terminator, __FILE__, __LINE__
 #define _field_byte_integer blofeld::_field_byte_integer, __FILE__, __LINE__

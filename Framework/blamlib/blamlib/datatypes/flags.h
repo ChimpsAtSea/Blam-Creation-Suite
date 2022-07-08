@@ -30,7 +30,7 @@ public:
 	bool is_clear() const
 	{
 		t_storage mask = make_mask_with_all_valid_bits_on_size_type();
-		return (m_stored & mask)  == 0;
+		return (m_stored & mask) == 0;
 	}
 
 	c_flags_no_init operator~() const

@@ -142,8 +142,8 @@ bool definition_migration_compare_struct(
 			{
 				const char* old_field_type_name;
 				const char* new_field_type_name;
-				ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(old_field.field_type, old_field_type_name)));
-				ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(new_field.field_type, new_field_type_name)));
+				ASSERT(BCS_SUCCEEDED(field_to_tagfile_field_type(old_field.field_type, old_field_type_name)));
+				ASSERT(BCS_SUCCEEDED(field_to_tagfile_field_type(new_field.field_type, new_field_type_name)));
 
 				DEFINITION_ERROR_OLD(
 					_definition_error_code_field_type_mismatch,
@@ -237,7 +237,7 @@ bool definition_migration_compare_struct(
 					DEFINITION_ERROR_NEW(_definition_error_code_padding_mismatch, new_field.filename, new_field.line, "%i -> %i", old_field.padding, new_field.padding);
 				}
 				break;
-			case _field_pageable:
+			case _field_pageable_resource:
 				if (old_field.tag_resource_definition)
 				{
 					if ((old_field.tag_resource_definition == nullptr) != (new_field.tag_resource_definition == nullptr))
@@ -289,7 +289,7 @@ bool definition_migration_compare_struct(
 					engine_platform_build);
 				break;
 			case _field_char_enum:
-			case _field_enum:
+			case _field_short_enum:
 			case _field_long_enum:
 			case _field_long_flags:
 			case _field_word_flags:

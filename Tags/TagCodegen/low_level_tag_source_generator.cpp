@@ -39,7 +39,7 @@ const char* c_low_level_tag_source_generator::field_type_to_low_level_source_typ
 	case _field_angle:								return "angle";
 	case _field_tag:								return "tag";
 	case _field_char_enum:							return "char";
-	case _field_enum:								return "short";
+	case _field_short_enum:								return "short";
 	case _field_long_enum:							return "long";
 	case _field_long_flags:							return "long";
 	case _field_word_flags:							return "word";
@@ -63,10 +63,10 @@ const char* c_low_level_tag_source_generator::field_type_to_low_level_source_typ
 	case _field_real_argb_color:					return "argb_color";
 	case _field_real_hsv_color:						return "real_hsv_color";
 	case _field_real_ahsv_color:					return "real_ahsv_color";
-	case _field_short_bounds:						return "short_bounds";
+	case _field_short_integer_bounds:						return "short_bounds";
 	case _field_angle_bounds:						return "angle_bounds";
 	case _field_real_bounds:						return "real_bounds";
-	case _field_real_fraction_bounds:				return "real_bounds";
+	case _field_fraction_bounds:				return "real_bounds";
 	case _field_tag_reference:						return "s_tag_reference";
 	case _field_block:								return "s_tag_block";
 	case _field_long_block_flags:					return "long";
@@ -88,7 +88,7 @@ const char* c_low_level_tag_source_generator::field_type_to_low_level_source_typ
 	case _field_custom:								return nullptr;	// empty
 	case _field_struct:								return nullptr;	// dynamic
 	case _field_array:								return nullptr;	// dynamic
-	case _field_pageable:							return "s_tag_resource";
+	case _field_pageable_resource:							return "s_tag_resource";
 	case _field_api_interop:						return "s_tag_interop";
 	case _field_terminator:							return nullptr;	// empty
 	case _field_byte_integer:						return "byte";
@@ -167,7 +167,7 @@ void c_low_level_tag_source_generator::generate_header() const
 				&field_name_unique_counter);
 
 			const char* field_type_string;
-			ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(current_field->field_type, field_type_string)));
+			ASSERT(BCS_SUCCEEDED(field_to_tagfile_field_type(current_field->field_type, field_type_string)));
 
 			if (!custom_structure_codegen(_custom_structure_codegen_low_level_header, stream, "\t\t\t", &field_formatter, *struct_definition, *current_field, namespace_name))
 			{
@@ -335,7 +335,7 @@ void c_low_level_tag_source_generator::generate_header() const
 					stream << "\t\t\tc_enum<e_" << string_list.name << ", char> " << field_formatter.code_name.data << ";";
 					break;
 				}
-				case _field_enum:
+				case _field_short_enum:
 				{
 					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
 					stream << "\t\t\tc_enum<e_" << string_list.name << ", short> " << field_formatter.code_name.data << ";";
@@ -488,7 +488,7 @@ void c_low_level_tag_source_generator::generate_ida_header() const
 				&field_name_unique_counter);
 
 			const char* field_type_string;
-			ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(current_field->field_type, field_type_string)));
+			ASSERT(BCS_SUCCEEDED(field_to_tagfile_field_type(current_field->field_type, field_type_string)));
 
 			if (!custom_structure_codegen(_custom_structure_codegen_low_level_header, stream, "\t\t\t", &field_formatter, *struct_definition, *current_field, namespace_name))
 			{
@@ -592,7 +592,7 @@ void c_low_level_tag_source_generator::generate_ida_header() const
 					stream << "\tchar " << field_formatter.code_name.data << "; // e_" << string_list.name;
 					break;
 				}
-				case _field_enum:
+				case _field_short_enum:
 				{
 					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
 					stream << "\tshort " << field_formatter.code_name.data << "; // e_" << string_list.name;
@@ -743,7 +743,7 @@ void c_low_level_tag_source_generator::generate_source() const
 				&field_name_unique_counter);
 
 			const char* field_type_string;
-			ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(current_field->field_type, field_type_string)));
+			ASSERT(BCS_SUCCEEDED(field_to_tagfile_field_type(current_field->field_type, field_type_string)));
 
 			if (!custom_structure_codegen(_custom_structure_codegen_low_level_byteswap, stream, "\t", &field_formatter, *struct_definition, *current_field, namespace_name))
 			{

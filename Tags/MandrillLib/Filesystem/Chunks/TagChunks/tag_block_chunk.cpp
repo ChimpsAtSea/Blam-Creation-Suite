@@ -172,7 +172,7 @@ void c_tag_block_chunk::read_structure_metadata(
 				read_structure_metadata(reader, structure_entry, metadata_stack);
 			}
 			break;
-			case blofeld::_field_pageable:
+			case blofeld::_field_pageable_resource:
 			{
 				unsigned long resource_entry_index = field_entry.metadata;
 				s_tag_persist_resource_definition& resource_entry = reader.layout_reader.get_resource_definition_by_index(resource_entry_index);
@@ -302,7 +302,7 @@ void c_tag_block_chunk::read_structure_data(c_single_tag_file_reader& reader, s_
 				
 			}
 			break;
-			case blofeld::_field_pageable:
+			case blofeld::_field_pageable_resource:
 			{
 				ASSERT(tag_struct_chunk != nullptr);
 				c_chunk* resource_chunk = tag_struct_chunk->get_child_unsafe(metadata_child_index++);

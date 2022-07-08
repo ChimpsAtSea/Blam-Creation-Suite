@@ -345,7 +345,7 @@ unsigned long c_infinite_module_file_reader::get_field_size(blofeld::e_field fie
 		return sizeof(s_infinite_ucs_data_reference_field);
 	case _field_tag_reference:
 		return sizeof(s_infinite_ucs_tag_reference_field);
-	case _field_pageable:
+	case _field_pageable_resource:
 		return sizeof(s_infinite_ucs_pageable_resource_field);
 	}
 

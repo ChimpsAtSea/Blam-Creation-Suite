@@ -288,7 +288,7 @@
 //	case blofeld::_field_byte_block_flags:
 //	case blofeld::_field_byte_integer: components = 1; data_type = ImGuiDataType_U8; return true;
 //
-//	case blofeld::_field_enum:
+//	case blofeld::_field_short_enum:
 //	case blofeld::_field_short_block_index:
 //	case blofeld::_field_custom_short_block_index:
 //	case blofeld::_field_short_integer: components = 1; data_type = ImGuiDataType_S16; return true;
@@ -318,7 +318,7 @@
 //
 //	case blofeld::_field_half: components = 1; data_type = ImGuiDataType_Float; return true;
 //
-//	case blofeld::_field_short_bounds:
+//	case blofeld::_field_short_integer_bounds:
 //	case blofeld::_field_point_2d: components = 2; data_type = ImGuiDataType_S16; return true;
 //
 //	case blofeld::_field_rectangle_2d: components = 4; data_type = ImGuiDataType_S16; return true;
@@ -327,7 +327,7 @@
 //	case blofeld::_field_real_euler_angles_2d:
 //	case blofeld::_field_angle_bounds:
 //	case blofeld::_field_real_bounds:
-//	case blofeld::_field_real_fraction_bounds:
+//	case blofeld::_field_fraction_bounds:
 //	case blofeld::_field_real_point_2d: components = 2; data_type = ImGuiDataType_Float; return true;
 //
 //	case blofeld::_field_real_point_3d:
@@ -1313,7 +1313,7 @@
 //	case blofeld::_field_char_enum:
 //		value = *reinterpret_cast<uint8_t*>(data);
 //		break;
-//	case blofeld::_field_enum:
+//	case blofeld::_field_short_enum:
 //		value = *reinterpret_cast<uint16_t*>(data);
 //		break;
 //	case blofeld::_field_long_enum:
@@ -1398,7 +1398,7 @@
 //		case blofeld::_field_char_enum:
 //			*reinterpret_cast<uint8_t*>(data) = static_cast<uint8_t>(value);
 //			break;
-//		case blofeld::_field_enum:
+//		case blofeld::_field_short_enum:
 //			*reinterpret_cast<uint16_t*>(data) = static_cast<uint16_t>(value);
 //			break;
 //		case blofeld::_field_long_enum:
@@ -1496,7 +1496,7 @@
 //		switch (current_field->field_type)
 //		{
 //		case blofeld::_field_char_enum:
-//		case blofeld::_field_enum:
+//		case blofeld::_field_short_enum:
 //		case blofeld::_field_long_enum:
 //			render_enum_definition(current_data_position, *current_field);
 //			break;
@@ -1544,9 +1544,9 @@
 //		case blofeld::_field_real_argb_color:
 //		case blofeld::_field_real_hsv_color:
 //		case blofeld::_field_real_ahsv_color:
-//		case blofeld::_field_short_bounds:
+//		case blofeld::_field_short_integer_bounds:
 //		case blofeld::_field_real_bounds:
-//		case blofeld::_field_real_fraction_bounds:
+//		case blofeld::_field_fraction_bounds:
 //
 //		case blofeld::_field_byte_block_flags:
 //		case blofeld::_field_word_block_flags:
@@ -1748,7 +1748,7 @@
 //			}
 //			break;
 //		}
-//		case blofeld::_field_pageable:
+//		case blofeld::_field_pageable_resource:
 //		{
 //			ImGui::Text("0x%X 0x%X %s %s", bytes_traversed, field_size, field_typename, current_field->name ? current_field->name : "");
 //			break;

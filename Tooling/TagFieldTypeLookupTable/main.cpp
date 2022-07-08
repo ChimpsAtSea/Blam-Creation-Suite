@@ -102,7 +102,7 @@ int main()
 
 	for (unsigned long field_index = 0; field_index < blofeld::k_number_of_blofeld_field_types; field_index++)
 	{
-		if (BCS_FAILED(rs = blofeld::field_to_tag_field_type(static_cast<blofeld::e_field>(field_index), tag_field_type_strings[field_index])))
+		if (BCS_FAILED(rs = blofeld::field_to_tagfile_field_type(static_cast<blofeld::e_field>(field_index), tag_field_type_strings[field_index])))
 		{
 			return rs;
 		}

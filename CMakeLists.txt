@@ -126,6 +126,7 @@ add_subdirectory(Tags/MandrillLib)
 add_subdirectory(Tags/MandrillUI)
 #add_subdirectory(Tags/BlamboozleLib)
 #add_subdirectory(Tags/Blamboozle)
+add_subdirectory(Tags/Blamtoozle)
 add_subdirectory(Tags/ChimpLib)
 
 #add_subdirectory(Tooling/TagDefinitionsValidate)

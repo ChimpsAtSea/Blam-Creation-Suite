@@ -23,7 +23,7 @@ namespace blofeld
 			}
 
 			const char* field_string;
-			ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(current_field->field_type, field_string)));
+			ASSERT(BCS_SUCCEEDED(field_to_tagfile_field_type(current_field->field_type, field_string)));
 			const char* nice_field_string = field_string + 1;
 
 			if (recursive)
@@ -49,7 +49,7 @@ namespace blofeld
 					}
 					break;
 				}
-				case _field_pageable:
+				case _field_pageable_resource:
 				{
 					next_struct_definition = current_field->struct_definition;
 					break;
@@ -132,7 +132,7 @@ namespace blofeld
 			}
 
 			const char* field_string;
-			ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(current_field->field_type, field_string)));
+			ASSERT(BCS_SUCCEEDED(field_to_tagfile_field_type(current_field->field_type, field_string)));
 
 			if (block_failed_validation)
 			{
@@ -140,7 +140,7 @@ namespace blofeld
 				switch (current_field->field_type)
 				{
 				case _field_char_enum:
-				case _field_enum:
+				case _field_short_enum:
 				case _field_long_enum:
 				case _field_long_flags:
 				case _field_word_flags:
@@ -213,7 +213,7 @@ namespace blofeld
 						continue;
 					}
 					break;
-				case _field_pageable:
+				case _field_pageable_resource:
 					if (current_field->struct_definition == nullptr)
 					{
 						if (!disable_platform_independent_warnings && !HAS_WARNING(current_field, _validation_warning_no_pageable_specified))

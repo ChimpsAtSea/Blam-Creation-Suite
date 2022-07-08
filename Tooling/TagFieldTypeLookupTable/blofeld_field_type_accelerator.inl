@@ -15,7 +15,7 @@ c_blofeld_field_type_accelerator::c_blofeld_field_type_accelerator() :
     {
         blofeld::e_field field_type = static_cast<blofeld::e_field>(field_index);
         const char* tag_field_type;
-        if (BCS_FAILED(rs = blofeld::field_to_tag_field_type(field_type, tag_field_type)))
+        if (BCS_FAILED(rs = blofeld::field_to_tagfile_field_type(field_type, tag_field_type)))
         {
             BCS_FAIL_THROW(rs);
         }

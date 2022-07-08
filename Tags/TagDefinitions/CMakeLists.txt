@@ -59,7 +59,10 @@ add_library(TagDefinitions ${BCS_LIBRARY_TYPE}
 	types/tag_group.h
 	types/tag_interop_definition.h
 	types/tag_reference_definition.h
+	types/tag_reference_flags.h
 	types/tag_struct_definition.h
+	types/field_set.h
+	types/memory_attributes.h
 	definition_migration.h
 	types/tag_versioning.h
 	blamlib_byteswap.inl

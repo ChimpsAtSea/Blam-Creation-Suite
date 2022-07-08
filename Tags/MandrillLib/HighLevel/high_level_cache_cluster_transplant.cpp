@@ -412,10 +412,10 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 			case _field_real_argb_color:				basic_memory_read(::argb_color);
 			case _field_real_hsv_color:					basic_memory_read(::real_hsv_color);
 			case _field_real_ahsv_color:				basic_memory_read(::real_ahsv_color);
-			case _field_short_bounds:					basic_memory_read(::short_bounds);
+			case _field_short_integer_bounds:					basic_memory_read(::short_bounds);
 			case _field_angle_bounds:					basic_memory_read(::angle_bounds);
 			case _field_real_bounds:					basic_memory_read(::real_bounds);
-			case _field_real_fraction_bounds:			basic_memory_read(::real_fraction_bounds);
+			case _field_fraction_bounds:			basic_memory_read(::real_fraction_bounds);
 			case _field_long_block_flags:				basic_memory_read(long);
 			case _field_word_block_flags:				basic_memory_read(word);
 			case _field_byte_block_flags:				basic_memory_read(byte);
@@ -470,7 +470,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 				memcpy(high_level_field_data, &data, sizeof(data));
 			}
 			break;
-			case _field_enum:
+			case _field_short_enum:
 			{
 				short value = *reinterpret_cast<const short*>(current_data_position);
 				byteswap_helper_func(value);
@@ -671,7 +671,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 				//}
 			}
 			break;
-			case _field_pageable:
+			case _field_pageable_resource:
 			{
 				s_tag_resource tag_resource = *reinterpret_cast<const s_tag_resource*>(current_data_position);
 				byteswap_helper_func(tag_resource);
@@ -897,10 +897,10 @@ public:
 				case _field_real_argb_color:				basic_memory_read(::argb_color);
 				case _field_real_hsv_color:					basic_memory_read(::real_hsv_color);
 				case _field_real_ahsv_color:				basic_memory_read(::real_ahsv_color);
-				case _field_short_bounds:					basic_memory_read(::short_bounds);
+				case _field_short_integer_bounds:					basic_memory_read(::short_bounds);
 				case _field_angle_bounds:					basic_memory_read(::angle_bounds);
 				case _field_real_bounds:					basic_memory_read(::real_bounds);
-				case _field_real_fraction_bounds:			basic_memory_read(::real_fraction_bounds);
+				case _field_fraction_bounds:			basic_memory_read(::real_fraction_bounds);
 				case _field_long_block_flags:				basic_memory_read(long);
 				case _field_word_block_flags:				basic_memory_read(word);
 				case _field_byte_block_flags:				basic_memory_read(byte);
@@ -921,7 +921,7 @@ public:
 					memcpy(high_level_field_data, &data, sizeof(data));
 				}
 				break;
-				case _field_enum:
+				case _field_short_enum:
 				{
 					short value = *reinterpret_cast<const short*>(current_data_position);
 					byteswap_helper_func(value);
@@ -1128,7 +1128,7 @@ public:
 					}
 				}
 				break;
-				case _field_pageable:
+				case _field_pageable_resource:
 				{
 					s_infinite_ucs_pageable_resource_field ucs_pageable_resource_field = *reinterpret_cast<const s_infinite_ucs_pageable_resource_field*>(current_data_position);
 

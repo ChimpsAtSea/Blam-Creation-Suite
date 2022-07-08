@@ -65,7 +65,7 @@ static void iterate_structure_fields_impl(
 		}
 
 		const char* field_string;
-		ASSERT(BCS_SUCCEEDED(field_to_tag_field_type(current_field->field_type, field_string)));
+		ASSERT(BCS_SUCCEEDED(field_to_tagfile_field_type(current_field->field_type, field_string)));
 		const char* nice_field_string = field_string + 1;
 
 		const s_tag_struct_definition* next_struct_definition = nullptr;
@@ -89,7 +89,7 @@ static void iterate_structure_fields_impl(
 			}
 			break;
 		}
-		case _field_pageable:
+		case _field_pageable_resource:
 		{
 			ASSERT(current_field->tag_resource_definition);
 			next_struct_definition = &current_field->tag_resource_definition->struct_definition;

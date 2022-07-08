@@ -19976,7 +19976,7 @@ namespace infinite_f2 {
 		{ _field_real, "decay time ping" },
 		{ _field_real, "search pattern radius" },
 		{ _field_short_integer, "search pattern shell count" },
-		{ _field_short_bounds, "search pattern cells per shell range" },
+		{ _field_short_integer_bounds, "search pattern cells per shell range" },
 		FIELD_PAD("generated_pad10c4", 2),
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Playfighting Modifiers"),
@@ -20236,11 +20236,11 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BEHAVIORNODESETTINGS_ID)
 	{
-		{ _field_enum, "Behavior", &blofeld::infinite_f2::behaviorindex },
+		{ _field_short_enum, "Behavior", &blofeld::infinite_f2::behaviorindex },
 		{ _field_word_flags, "Override", &blofeld::infinite_f2::behaviornodeoverrideflags },
-		{ _field_enum, "Type", &blofeld::infinite_f2::behaviorchecktype },
-		{ _field_enum, "Timer", &blofeld::infinite_f2::behaviortimer },
-		{ _field_enum, "Stimulus", &blofeld::infinite_f2::e_stimulus },
+		{ _field_short_enum, "Type", &blofeld::infinite_f2::behaviorchecktype },
+		{ _field_short_enum, "Timer", &blofeld::infinite_f2::behaviortimer },
+		{ _field_short_enum, "Stimulus", &blofeld::infinite_f2::e_stimulus },
 		FIELD_PAD("generated_pad52cf", 2),
 		{ _field_real, "Seconds" },
 		FIELD_GROUP_BEGIN("Static Args"),
@@ -20978,7 +20978,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BOTTARGETPRIORITYINPUTDEFINITION_ID)
 	{
-		{ _field_enum, "Input", &blofeld::infinite_f2::i343botsbottargetpriorityinput },
+		{ _field_short_enum, "Input", &blofeld::infinite_f2::i343botsbottargetpriorityinput },
 		FIELD_PAD("generated_pad9bc9", 2),
 		{ _field_real, "Weight" },
 		{ _field_terminator }
@@ -21002,7 +21002,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BOTAMBITIONPRIORITYINPUTDEFINITION_ID)
 	{
-		{ _field_enum, "Input", &blofeld::infinite_f2::i343botsbotambitionpriorityinput },
+		{ _field_short_enum, "Input", &blofeld::infinite_f2::i343botsbotambitionpriorityinput },
 		FIELD_PAD("generated_padd51d", 2),
 		{ _field_real, "Weight" },
 		{ _field_terminator }
@@ -21118,7 +21118,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BOTDIFFICULTYLEVELTUNINGDEFINITION_ID)
 	{
-		{ _field_enum, "Difficulty Level", &blofeld::infinite_f2::i343botsbotdifficultylevel },
+		{ _field_short_enum, "Difficulty Level", &blofeld::infinite_f2::i343botsbotdifficultylevel },
 		FIELD_PAD("generated_pad637c", 2),
 		{ _field_long_flags, "Difficulty Specific Flags", &blofeld::infinite_f2::botdifficultyflags },
 		{ _field_struct, "Hysteresis", &blofeld::infinite_f2::bothysteresistuningdefinition },
@@ -21384,7 +21384,7 @@ namespace infinite_f2 {
 		{ _field_long_flags, "grenades flags", &blofeld::infinite_f2::charactergrenadesflags },
 		{ _field_char_enum, "grenade type", &blofeld::infinite_f2::unitgrenadetype },
 		FIELD_PAD("generated_padcce0", 1),
-		{ _field_enum, "trajectory type", &blofeld::infinite_f2::grenadetrajectorytypes },
+		{ _field_short_enum, "trajectory type", &blofeld::infinite_f2::grenadetrajectorytypes },
 		{ _field_short_integer, "minimum enemy count" },
 		FIELD_PAD("generated_pade6c1", 2),
 		{ _field_real, "enemy radius" },
@@ -21411,7 +21411,7 @@ namespace infinite_f2 {
 		{ _field_real_fraction, "grenade uncover chance" },
 		{ _field_real_fraction, "anti-vehicle grenade chance" },
 		FIELD_EXPLANATION("Grenade drop when killed", nullptr),
-		{ _field_short_bounds, "grenade count" },
+		{ _field_short_integer_bounds, "grenade count" },
 		{ _field_real, "dont drop grenades chance" },
 		{ _field_terminator }
 	};
@@ -21467,7 +21467,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		C_CHARACTER_DEVELOPMENT_STATUS_PROPERTIES_INTERNAL_ID)
 	{
-		{ _field_enum, "Stage", &blofeld::infinite_f2::characterdevelopmentstage },
+		{ _field_short_enum, "Stage", &blofeld::infinite_f2::characterdevelopmentstage },
 		FIELD_PAD("padding1", 2),
 		{ _field_terminator }
 	};
@@ -21491,7 +21491,7 @@ namespace infinite_f2 {
 		C_CHARACTER_GENERAL_PROPERTIES_INTERNAL_ID)
 	{
 		{ _field_long_flags, "general flags", &blofeld::infinite_f2::charactergeneralflags },
-		{ _field_enum, "type", &blofeld::infinite_f2::actortype },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::actortype },
 		{ _field_short_integer, "rank" },
 		{ _field_tag_reference, "prototype script", &blofeld::infinite_f2::lua_reference$2_tagref },
 		{ _field_real, "max leader dist" },
@@ -21500,7 +21500,7 @@ namespace infinite_f2 {
 		{ _field_real, "scariness" },
 		{ _field_char_enum, "default grenade type", &blofeld::infinite_f2::unitgrenadetype },
 		FIELD_PAD("generated_pad6d7e", 1),
-		{ _field_enum, "behavior tree root", &blofeld::infinite_f2::behaviortreeroots },
+		{ _field_short_enum, "behavior tree root", &blofeld::infinite_f2::behaviortreeroots },
 		{ _field_tag_reference, "Data Behavior Tree", &blofeld::infinite_f2::behaviortree_reference$2_tagref },
 		{ _field_block, "disallowed weapons from trading", &blofeld::infinite_f2::s_disallowed_weapons_from_trading_block },
 		{ _field_tag_reference, "Initial Primary Weapon ", &blofeld::infinite_f2::weapon_reference$9_tagref },
@@ -21615,7 +21615,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		C_CHARACTER_PROTO_SPAWN_PROPERTIES_INTERNAL_ID)
 	{
-		{ _field_enum, "Proto Spawn Type ", &blofeld::infinite_f2::protospawntype },
+		{ _field_short_enum, "Proto Spawn Type ", &blofeld::infinite_f2::protospawntype },
 		{ _field_terminator }
 	};
 
@@ -21658,7 +21658,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_AI_CHARACTER_EMOTION_SITUATIONAL_DANGER_PROPERTIES_ID)
 	{
-		{ _field_enum, "highest prop class", &blofeld::infinite_f2::propclassification },
+		{ _field_short_enum, "highest prop class", &blofeld::infinite_f2::propclassification },
 		FIELD_PAD("generated_pad78a8", 2),
 		{ _field_real, "situational danger" },
 		{ _field_terminator }
@@ -21843,7 +21843,7 @@ namespace infinite_f2 {
 		C_CHARACTER_PERCEPTION_PROPERTIES_INTERNAL_ID,
 		1)
 	{
-		{ _field_enum, "perception_mode", &blofeld::infinite_f2::c_perception_mode },
+		{ _field_short_enum, "perception_mode", &blofeld::infinite_f2::c_perception_mode },
 		{ _field_word_flags, "flags", &blofeld::infinite_f2::characterperceptionflags },
 		{ _field_real, "maximum vision distance" },
 		{ _field_real, "reliable vision distance" },
@@ -22041,7 +22041,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_CHARACTER_MOVEMENT_THROTTLE_PER_COMBAT_STATUS_SETTINGS_ID)
 	{
-		{ _field_enum, "combat status", &blofeld::infinite_f2::actorcombatstatus },
+		{ _field_short_enum, "combat status", &blofeld::infinite_f2::actorcombatstatus },
 		FIELD_PAD("generated_padd966", 2),
 		{ _field_block, "throttle settings", &blofeld::infinite_f2::s_character_movement_throttle_control_settings_block },
 		{ _field_terminator }
@@ -22099,12 +22099,12 @@ namespace infinite_f2 {
 		{ _field_real, "Friendly Player Outer Radius" },
 		{ _field_real, "Friendly Player Inner Radius" },
 		FIELD_EXPLANATION("Danger Zone Avoidance", nullptr),
-		{ _field_enum, "obstacle leap min size", &blofeld::infinite_f2::objectaisize },
-		{ _field_enum, "obstacle leap max size", &blofeld::infinite_f2::objectaisize },
-		{ _field_enum, "obstacle ignore size", &blofeld::infinite_f2::objectaisize },
-		{ _field_enum, "obstacle smashable size", &blofeld::infinite_f2::objectaisize },
+		{ _field_short_enum, "obstacle leap min size", &blofeld::infinite_f2::objectaisize },
+		{ _field_short_enum, "obstacle leap max size", &blofeld::infinite_f2::objectaisize },
+		{ _field_short_enum, "obstacle ignore size", &blofeld::infinite_f2::objectaisize },
+		{ _field_short_enum, "obstacle smashable size", &blofeld::infinite_f2::objectaisize },
 		FIELD_EXPLANATION("clearance cache", nullptr),
-		{ _field_enum, "clearance cache bucket size", &blofeld::infinite_f2::clearancecachebucketsize },
+		{ _field_short_enum, "clearance cache bucket size", &blofeld::infinite_f2::clearancecachebucketsize },
 		FIELD_PAD("generated_pad024b", 2),
 		{ _field_real, "max jump height" },
 		{ _field_real, "max jump distance" },
@@ -22324,7 +22324,7 @@ namespace infinite_f2 {
 		{ _field_real, "Brace For Vehicle Impact Time" },
 		{ _field_real, "Brace For Vehicle Impact Prediction Time" },
 		{ _field_real, "Brace For Vehicle Impact Velocity Threshold" },
-		{ _field_enum, "jump height", &blofeld::infinite_f2::characterjumpheight },
+		{ _field_short_enum, "jump height", &blofeld::infinite_f2::characterjumpheight },
 		FIELD_PAD("generated_pad113f", 2),
 		{ _field_terminator }
 	};
@@ -22478,7 +22478,7 @@ namespace infinite_f2 {
 		{ _field_real, "Crouch max path distance" },
 		{ _field_real, "Stand danger threshold" },
 		{ _field_real, "Fight danger move threshold" },
-		{ _field_short_bounds, "Fight danger move threshold cooldown" },
+		{ _field_short_integer_bounds, "Fight danger move threshold cooldown" },
 		{ _field_tag_reference, "override grenade projectile", &blofeld::infinite_f2::projectile_reference_tagref },
 		{ _field_real_bounds, "default combat range" },
 		{ _field_real_bounds, "default firing range" },
@@ -22750,7 +22750,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VEHICLEFLYINGAGGRESSIVEENGAGEPROPERTIES_ID)
 	{
-		{ _field_short_bounds, "aggressive loops" },
+		{ _field_short_integer_bounds, "aggressive loops" },
 		{ _field_terminator }
 	};
 
@@ -23206,7 +23206,7 @@ namespace infinite_f2 {
 		{ _field_long_flags, "Flags", &blofeld::infinite_f2::c_character_berserk_properties_internalberserkflags },
 		{ _field_tag_reference, "Berserk Weapon", &blofeld::infinite_f2::weapon_reference$12_tagref },
 		{ _field_real, "Timeout" },
-		{ _field_real_fraction_bounds, "Shield down chance" },
+		{ _field_fraction_bounds, "Shield down chance" },
 		{ _field_real_bounds, "Shield down range" },
 		{ _field_real, "Friendly killed distance" },
 		{ _field_real_fraction, "Peer killed chance" },
@@ -23602,10 +23602,10 @@ namespace infinite_f2 {
 	{
 		FIELD_EXPLANATION("Precision", nullptr),
 		FIELD_GROUP_BEGIN("Target Position"),
-		{ _field_real_fraction_bounds, "Tracking" },
+		{ _field_fraction_bounds, "Tracking" },
 		{ _field_real_bounds, "Matching Fraction" },
 		{ _field_real_bounds, "Matching Spring Force" },
-		{ _field_real_fraction_bounds, "Leading" },
+		{ _field_fraction_bounds, "Leading" },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Aiming Error"),
 		{ _field_real_bounds, "Error Distance" },
@@ -23634,7 +23634,7 @@ namespace infinite_f2 {
 		{ _field_real_bounds, "Separation Max" },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Burst Noise"),
-		{ _field_real_fraction_bounds, "Amount" },
+		{ _field_fraction_bounds, "Amount" },
 		{ _field_real_bounds, "Min Period" },
 		{ _field_real_bounds, "Max Period" },
 		FIELD_GROUP_END(),
@@ -23661,8 +23661,8 @@ namespace infinite_f2 {
 		{ _field_string_id, "style name" },
 		{ _field_real, "precision" },
 		{ _field_real, "hostility" },
-		{ _field_real_fraction_bounds, "Precision Range" },
-		{ _field_real_fraction_bounds, "Hostility Range" },
+		{ _field_fraction_bounds, "Precision Range" },
+		{ _field_fraction_bounds, "Hostility Range" },
 		{ _field_terminator }
 	};
 
@@ -23918,7 +23918,7 @@ namespace infinite_f2 {
 		{ _field_tag_reference, "weapon", &blofeld::infinite_f2::weapon_reference$13_tagref },
 		FIELD_EXPLANATION("Weapon drop when killed", nullptr),
 		{ _field_real_bounds, "drop weapon loaded" },
-		{ _field_short_bounds, "drop weapon ammo" },
+		{ _field_short_integer_bounds, "drop weapon ammo" },
 		{ _field_tag_reference, "weapon melee damage", &blofeld::infinite_f2::damage_effect_reference$13_tagref },
 		FIELD_EXPLANATION("Accuracy", nullptr),
 		{ _field_real_bounds, "normal accuracy bounds" },
@@ -24039,7 +24039,7 @@ namespace infinite_f2 {
 		{ _field_block, "Vehicle Flying Aggressive Engage Properties", &blofeld::infinite_f2::vehicleflyingaggressiveengageproperties_block },
 		{ _field_block, "Vehicle Flying Defensive Engage Properties", &blofeld::infinite_f2::vehicleflyingdefensiveengageproperties_block },
 		{ _field_block, "Vehicle Flying Fallback Properties", &blofeld::infinite_f2::vehicleflyingfallbackproperties_block },
-		{ _field_enum, "obstacle ignore size", &blofeld::infinite_f2::objectaisize },
+		{ _field_short_enum, "obstacle ignore size", &blofeld::infinite_f2::objectaisize },
 		FIELD_PAD("generated_pad354a", 2),
 		{ _field_terminator }
 	};
@@ -24429,7 +24429,7 @@ namespace infinite_f2 {
 		CHARACTEREQUIPMENTUSECONDITIONS_ID)
 	{
 		FIELD_EXPLANATION("Use Conditions", nullptr),
-		{ _field_enum, "use when", &blofeld::infinite_f2::equipmentusewhen },
+		{ _field_short_enum, "use when", &blofeld::infinite_f2::equipmentusewhen },
 		FIELD_PAD("generated_padd2ce", 2),
 		{ _field_real, "health/shield use threshold" },
 		{ _field_terminator }
@@ -24464,7 +24464,7 @@ namespace infinite_f2 {
 	{
 		FIELD_EXPLANATION("Equipment Use", nullptr),
 		{ _field_block, "Use Conditions", &blofeld::infinite_f2::characterequipmentuseconditions_block },
-		{ _field_enum, "use how", &blofeld::infinite_f2::equipmentusehow },
+		{ _field_short_enum, "use how", &blofeld::infinite_f2::equipmentusehow },
 		FIELD_PAD("generated_padd6c8", 2),
 		FIELD_EXPLANATION("Skip Fraction", nullptr),
 		{ _field_real, "easy/normal" },
@@ -24676,8 +24676,8 @@ namespace infinite_f2 {
 	{
 		FIELD_EXPLANATION("Scripted Thresholds", nullptr),
 		{ _field_long_flags, "Flags", &blofeld::infinite_f2::thresholdscriptthresholdscriptflags },
-		{ _field_enum, "Tracked Attribute", &blofeld::infinite_f2::thresholdscriptattributetype },
-		{ _field_enum, "Trigger When", &blofeld::infinite_f2::thresholdscriptcomparisontype },
+		{ _field_short_enum, "Tracked Attribute", &blofeld::infinite_f2::thresholdscriptattributetype },
+		{ _field_short_enum, "Trigger When", &blofeld::infinite_f2::thresholdscriptcomparisontype },
 		{ _field_real, "Threshold Value" },
 		{ _field_real, "Recheck Buffer" },
 		{ _field_real, "Recheck Cooldown" },
@@ -25417,7 +25417,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343AIAIMARKUPFILTER_ID)
 	{
-		{ _field_enum, "Actor Type", &blofeld::infinite_f2::actortype },
+		{ _field_short_enum, "Actor Type", &blofeld::infinite_f2::actortype },
 		{ _field_terminator }
 	};
 
@@ -25757,7 +25757,7 @@ namespace infinite_f2 {
 		{ _field_real, "Max Attract Radius" },
 		{ _field_real, "Cooldown" },
 		{ _field_short_integer, "Max Characters" },
-		{ _field_enum, "Patrol Mode", &blofeld::infinite_f2::patrolmode },
+		{ _field_short_enum, "Patrol Mode", &blofeld::infinite_f2::patrolmode },
 		{ _field_custom_short_block_index, "Patrol Point Set" },
 		FIELD_PAD("generated_paddaca", 2),
 		{ _field_real, "Lookout Wait Time" },
@@ -25831,9 +25831,9 @@ namespace infinite_f2 {
 		PATHINGCOSTMODIFIERFILTER_ID,
 		2)
 	{
-		{ _field_enum, "Navigation Type", &blofeld::infinite_f2::navigationtype },
-		{ _field_enum, "Character Filter Type", &blofeld::infinite_f2::characterfiltertype },
-		{ _field_enum, "AI Size", &blofeld::infinite_f2::objectaisize },
+		{ _field_short_enum, "Navigation Type", &blofeld::infinite_f2::navigationtype },
+		{ _field_short_enum, "Character Filter Type", &blofeld::infinite_f2::characterfiltertype },
+		{ _field_short_enum, "AI Size", &blofeld::infinite_f2::objectaisize },
 		{ _field_terminator }
 	};
 
@@ -25978,7 +25978,7 @@ namespace infinite_f2 {
 		{ _field_long_integer, "Max Bodies" },
 		{ _field_char_enum, "Combat Filter Compare Condition", &blofeld::infinite_f2::i343aiboolcomparison },
 		FIELD_PAD("generated_pad7f6b", 1),
-		{ _field_enum, "Combat Status", &blofeld::infinite_f2::actorcombatstatus },
+		{ _field_short_enum, "Combat Status", &blofeld::infinite_f2::actorcombatstatus },
 		{ _field_string_id, "Keyword" },
 		{ _field_long_integer, "Min Living Count" },
 		{ _field_word_flags, "Vehicle Compare Condition", &blofeld::infinite_f2::i343aivehicletypefilterflags },
@@ -26100,7 +26100,7 @@ namespace infinite_f2 {
 		{ _field_long_integer, "Max Bodies" },
 		{ _field_char_enum, "Combat Filter Compare Condition", &blofeld::infinite_f2::i343aiboolcomparison },
 		FIELD_PAD("generated_pad7f6b", 1),
-		{ _field_enum, "Combat Status", &blofeld::infinite_f2::actorcombatstatus },
+		{ _field_short_enum, "Combat Status", &blofeld::infinite_f2::actorcombatstatus },
 		{ _field_string_id, "Keyword" },
 		{ _field_long_integer, "Min Living Count" },
 		{ _field_word_flags, "Vehicle Compare Condition", &blofeld::infinite_f2::i343aivehicletypefilterflags },
@@ -26829,7 +26829,7 @@ namespace infinite_f2 {
 		NAVMESHDATA_ID,
 		2)
 	{
-		{ _field_pageable, "resource data", &blofeld::infinite_f2::navmeshresource_resource_definition },
+		{ _field_pageable_resource, "resource data", &blofeld::infinite_f2::navmeshresource_resource_definition },
 		{ _field_short_integer, "major version" },
 		{ _field_short_integer, "minor version" },
 		{ _field_long_integer, "structure checksum" },
@@ -26846,7 +26846,7 @@ namespace infinite_f2 {
 		MOBILENAVMESHDATA_ID,
 		2)
 	{
-		{ _field_pageable, "resource data", &blofeld::infinite_f2::navmeshresource_resource_definition },
+		{ _field_pageable_resource, "resource data", &blofeld::infinite_f2::navmeshresource_resource_definition },
 		{ _field_short_integer, "major version" },
 		{ _field_short_integer, "minor version" },
 		{ _field_struct, "object id", &blofeld::infinite_f2::c_object_identifier },
@@ -26885,7 +26885,7 @@ namespace infinite_f2 {
 		NAVVOLUMEBUCKET_ID,
 		3)
 	{
-		{ _field_pageable, "resource data", &blofeld::infinite_f2::navvolumeresource_resource_definition },
+		{ _field_pageable_resource, "resource data", &blofeld::infinite_f2::navvolumeresource_resource_definition },
 		{ _field_char_integer, "bucketID" },
 		FIELD_PAD("generated_padfba7", 3),
 		{ _field_terminator }
@@ -26969,7 +26969,7 @@ namespace infinite_f2 {
 		{ _field_block, "pointsObjectIds", &blofeld::infinite_f2::s_cookie_cutterobjectidentifier_block },
 		{ _field_real, "z height" },
 		{ _field_real, "z sink" },
-		{ _field_enum, "type", &blofeld::infinite_f2::cookiecuttertype },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::cookiecuttertype },
 		{ _field_short_integer, "pad" },
 		{ _field_block, "EditorMetadata", &blofeld::infinite_f2::editormetadata_block },
 		{ _field_char_integer, "invalid" },
@@ -27048,7 +27048,7 @@ namespace infinite_f2 {
 		USER_HINT_JUMP_ID,
 		10)
 	{
-		{ _field_enum, "link type", &blofeld::infinite_f2::pathfindinghinttype },
+		{ _field_short_enum, "link type", &blofeld::infinite_f2::pathfindinghinttype },
 		{ _field_short_block_index, "Squad group filter", &blofeld::infinite_f2::squad_group_definition_block },
 		{ _field_long_integer, "hint data 0" },
 		{ _field_short_integer, "hint data 1" },
@@ -27056,7 +27056,7 @@ namespace infinite_f2 {
 		{ _field_byte_integer, "pad1" },
 		{ _field_string_id, "name" },
 		{ _field_word_flags, "Flags", &blofeld::infinite_f2::userhintgeometryflags },
-		{ _field_enum, "force jump height", &blofeld::infinite_f2::characterjumpheight },
+		{ _field_short_enum, "force jump height", &blofeld::infinite_f2::characterjumpheight },
 		{ _field_word_flags, "control flags", &blofeld::infinite_f2::userhintjumptypeflags },
 		FIELD_PAD("generated_pad04d0", 2),
 		{ _field_struct, "geometry", &blofeld::infinite_f2::user_hint_parallelogram },
@@ -27163,7 +27163,7 @@ namespace infinite_f2 {
 		{ _field_short_integer, "vocalization index" },
 		{ _field_char_enum, "response type", &blofeld::infinite_f2::responsetype },
 		FIELD_PAD("generated_padcb8f", 1),
-		{ _field_enum, "dialogue event", &blofeld::infinite_f2::c_dialogue_event_enum },
+		{ _field_short_enum, "dialogue event", &blofeld::infinite_f2::c_dialogue_event_enum },
 		{ _field_char_enum, "response behavior", &blofeld::infinite_f2::responsebehavior },
 		FIELD_PAD("generated_pad7eda", 1),
 		{ _field_long_integer, "vocalization index offset from owner" },
@@ -27528,15 +27528,15 @@ namespace infinite_f2 {
 	{
 		{ _field_string_id, "vocalization" },
 		{ _field_short_integer, "offset from parent" },
-		{ _field_enum, "priority", &blofeld::infinite_f2::dialoguepriority },
+		{ _field_short_enum, "priority", &blofeld::infinite_f2::dialoguepriority },
 		{ _field_byte_flags, "flags", &blofeld::infinite_f2::vocalizationflags },
 		FIELD_PAD("generated_padbcab", 1),
-		{ _field_enum, "2D Speaker Voice", &blofeld::infinite_f2::i343dialoguespeakervoice2d },
+		{ _field_short_enum, "2D Speaker Voice", &blofeld::infinite_f2::i343dialoguespeakervoice2d },
 		{ _field_char_enum, "glance behavior", &blofeld::infinite_f2::glancetype },
 		{ _field_char_enum, "glance recipient behavior", &blofeld::infinite_f2::glancetype },
 		{ _field_char_enum, "perception type", &blofeld::infinite_f2::perceptiontype },
 		FIELD_PAD("generated_pad6ff6", 1),
-		{ _field_enum, "max combat status", &blofeld::infinite_f2::actorcombatstatus },
+		{ _field_short_enum, "max combat status", &blofeld::infinite_f2::actorcombatstatus },
 		{ _field_char_enum, "animation impulse", &blofeld::infinite_f2::dialogueanimation },
 		FIELD_PAD("generated_pad2341", 1),
 		{ _field_short_integer, "proxy dialogue index" },
@@ -27550,8 +27550,8 @@ namespace infinite_f2 {
 		{ _field_real, "weight" },
 		{ _field_real, "speaker freeze time" },
 		{ _field_real, "listener freeze time" },
-		{ _field_enum, "speaker emotion", &blofeld::infinite_f2::e_facial_animation_emotions },
-		{ _field_enum, "listener emotion", &blofeld::infinite_f2::e_facial_animation_emotions },
+		{ _field_short_enum, "speaker emotion", &blofeld::infinite_f2::e_facial_animation_emotions },
+		{ _field_short_enum, "listener emotion", &blofeld::infinite_f2::e_facial_animation_emotions },
 		{ _field_real, "player speaker skip fraction" },
 		{ _field_real, "player skip fraction" },
 		{ _field_real, "flood skip fraction" },
@@ -27679,7 +27679,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VOCALIZATIONPATTERN_ID)
 	{
-		{ _field_enum, "dialogue type", &blofeld::infinite_f2::c_dialogue_event_enum },
+		{ _field_short_enum, "dialogue type", &blofeld::infinite_f2::c_dialogue_event_enum },
 		{ _field_short_integer, "vocalization index" },
 		{ _field_string_id, "vocalization name", _field_id_sted },
 		{ _field_char_enum, "audience type", &blofeld::infinite_f2::audiencetype },
@@ -27688,7 +27688,7 @@ namespace infinite_f2 {
 		{ _field_char_enum, "hostility", &blofeld::infinite_f2::hostilitytype },
 		{ _field_long_flags, "flags", &blofeld::infinite_f2::patternflags },
 		FIELD_EXPLANATION("Subject", nullptr),
-		{ _field_enum, "subject actor type", &blofeld::infinite_f2::actortype },
+		{ _field_short_enum, "subject actor type", &blofeld::infinite_f2::actortype },
 		{ _field_char_enum, "subject type", &blofeld::infinite_f2::dialogueobjecttype },
 		FIELD_PAD("generated_padb5a9", 1),
 		{ _field_string_id, "subject ai type name" },
@@ -27700,7 +27700,7 @@ namespace infinite_f2 {
 		{ _field_short_integer, "subject min team count" },
 		{ _field_short_integer, "subject max team count" },
 		FIELD_EXPLANATION("Cause", nullptr),
-		{ _field_enum, "cause actor type", &blofeld::infinite_f2::actortype },
+		{ _field_short_enum, "cause actor type", &blofeld::infinite_f2::actortype },
 		{ _field_char_enum, "cause type", &blofeld::infinite_f2::dialogueobjecttype },
 		FIELD_PAD("generated_pad9bc8", 3),
 		{ _field_string_id, "cause ai type name" },
@@ -27731,7 +27731,7 @@ namespace infinite_f2 {
 		{ _field_char_enum, "subject/cause max distance", &blofeld::infinite_f2::distancetype },
 		{ _field_char_enum, "spatial relation", &blofeld::infinite_f2::spatialrelation },
 		FIELD_PAD("generated_padcf8a", 1),
-		{ _field_enum, "damage category", &blofeld::infinite_f2::damagecategories },
+		{ _field_short_enum, "damage category", &blofeld::infinite_f2::damagecategories },
 		FIELD_PAD("generated_pad82d5", 2),
 		FIELD_GROUP_BEGIN("damage type"),
 		FIELD_EXPLANATION("Explanation", nullptr),
@@ -28128,7 +28128,7 @@ namespace infinite_f2 {
 		I343AISQUADCONSTRUCTIONPASSENGERCELLENTRY_ID)
 	{
 		{ _field_struct, "ActorCellEntryTag", &blofeld::infinite_f2::i343aisquadconstructionactorcellentry },
-		{ _field_enum, "Seat Preference", &blofeld::infinite_f2::aiseatpreference },
+		{ _field_short_enum, "Seat Preference", &blofeld::infinite_f2::aiseatpreference },
 		FIELD_PAD("generated_pade676", 6),
 		{ _field_terminator }
 	};
@@ -28420,7 +28420,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_AREA_REFERENCE_ID)
 	{
-		{ _field_enum, "area type", &blofeld::infinite_f2::c_zone_set_type },
+		{ _field_short_enum, "area type", &blofeld::infinite_f2::c_zone_set_type },
 		{ _field_byte_flags, "flags", &blofeld::infinite_f2::c_zone_set_flags },
 		FIELD_PAD("generated_pad1249", 1),
 		{ _field_short_block_index, "zone", &blofeld::infinite_f2::zone_definition_block },
@@ -28460,8 +28460,8 @@ namespace infinite_f2 {
 		{ _field_word_flags, "flags", &blofeld::infinite_f2::c_task_flags },
 		{ _field_word_flags, "inhibit groups", &blofeld::infinite_f2::c_behavior_inhibit_flags },
 		{ _field_word_flags, "inhibit on difficulty", &blofeld::infinite_f2::gamedifficultyflags },
-		{ _field_enum, "movement", &blofeld::infinite_f2::c_task_movement },
-		{ _field_enum, "follow", &blofeld::infinite_f2::c_task_follow },
+		{ _field_short_enum, "movement", &blofeld::infinite_f2::c_task_movement },
+		{ _field_short_enum, "follow", &blofeld::infinite_f2::c_task_follow },
 		{ _field_short_block_index, "follow squad", &blofeld::infinite_f2::s_squad_definition_block },
 		{ _field_real, "follow radius" },
 		{ _field_word_flags, "follow players", &blofeld::infinite_f2::c_task_follow_players },
@@ -28473,7 +28473,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "Command Script" },
 		{ _field_string_id, "Exhaustion Script" },
 		{ _field_short_block_index, "Squad group filter", &blofeld::infinite_f2::squad_group_definition_block },
-		{ _field_enum, "dialogue type", &blofeld::infinite_f2::taskorderdialogue },
+		{ _field_short_enum, "dialogue type", &blofeld::infinite_f2::taskorderdialogue },
 		{ _field_word_flags, "runtime flags", &blofeld::infinite_f2::task_runtime_flags, _field_id_zero_data },
 		{ _field_short_integer, "Kungfu count" },
 		FIELD_EXPLANATION("UI-Controlled", nullptr),
@@ -28486,10 +28486,10 @@ namespace infinite_f2 {
 		{ _field_dword_integer, "script crc" },
 		{ _field_short_integer, "lifetime count" },
 		{ _field_word_flags, "filter flags", &blofeld::infinite_f2::c_filter_flags },
-		{ _field_enum, "filter", &blofeld::infinite_f2::c_objective_filter },
-		{ _field_short_bounds, "capacity" },
+		{ _field_short_enum, "filter", &blofeld::infinite_f2::c_objective_filter },
+		{ _field_short_integer_bounds, "capacity" },
 		{ _field_short_integer, "max body count" },
-		{ _field_enum, "attitude", &blofeld::infinite_f2::c_task_attitude },
+		{ _field_short_enum, "attitude", &blofeld::infinite_f2::c_task_attitude },
 		FIELD_PAD("generated_padfd5e", 2),
 		{ _field_real, "min strength" },
 		{ _field_block, "direction", &blofeld::infinite_f2::s_task_direction_block },
@@ -28762,7 +28762,7 @@ namespace infinite_f2 {
 		{ _field_tag_reference, "equipment", &blofeld::infinite_f2::equipment_reference$10_tagref },
 		{ _field_tag_reference, "vehicle", &blofeld::infinite_f2::vehicle_reference_tagref },
 		{ _field_tag_reference, "vehicle configuration", &blofeld::infinite_f2::vehicleconfiguration_reference_tagref },
-		{ _field_enum, "seat type", &blofeld::infinite_f2::aiseatpreference },
+		{ _field_short_enum, "seat type", &blofeld::infinite_f2::aiseatpreference },
 		{ _field_char_enum, "grenade type", &blofeld::infinite_f2::unitgrenadetype },
 		FIELD_PAD("generated_pad08bc", 1),
 		{ _field_short_integer, "swarm count" },
@@ -28771,7 +28771,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "vehicle variant name" },
 		{ _field_string_id, "voice designator" },
 		{ _field_real, "initial movement distance" },
-		{ _field_enum, "initial movement mode", &blofeld::infinite_f2::estartingmovementtype },
+		{ _field_short_enum, "initial movement mode", &blofeld::infinite_f2::estartingmovementtype },
 		{ _field_short_block_index, "emitter vehicle", &blofeld::infinite_f2::s_scenario_vehicle_block },
 		{ _field_short_block_index, "giant body", &blofeld::infinite_f2::s_scenario_giant_block },
 		{ _field_short_block_index, "biped body", &blofeld::infinite_f2::s_scenario_biped_block },
@@ -28779,7 +28779,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "activity name", _field_id_sted },
 		{ _field_string_id, "movement set" },
 		{ _field_custom_short_block_index, "point set" },
-		{ _field_enum, "patrol mode", &blofeld::infinite_f2::patrolmode },
+		{ _field_short_enum, "patrol mode", &blofeld::infinite_f2::patrolmode },
 		{ _field_block, "points", &blofeld::infinite_f2::s_patrol_point_block },
 		{ _field_short_block_index, "vehicle body", &blofeld::infinite_f2::s_scenario_vehicle_block },
 		FIELD_PAD("generated_pada226", 2),
@@ -28838,13 +28838,13 @@ namespace infinite_f2 {
 		{ _field_real, "roll" },
 		{ _field_string_id, "formation", _field_id_sted },
 		{ _field_real, "initial movement distance" },
-		{ _field_enum, "initial movement mode", &blofeld::infinite_f2::estartingmovementtype },
+		{ _field_short_enum, "initial movement mode", &blofeld::infinite_f2::estartingmovementtype },
 		FIELD_PAD("generated_padee0b", 2),
 		{ _field_string_id, "placement script" },
 		{ _field_string_id, "activity name", _field_id_sted },
 		{ _field_string_id, "movement set" },
 		{ _field_custom_short_block_index, "point set" },
-		{ _field_enum, "patrol mode", &blofeld::infinite_f2::patrolmode },
+		{ _field_short_enum, "patrol mode", &blofeld::infinite_f2::patrolmode },
 		{ _field_block, "points", &blofeld::infinite_f2::s_patrol_point_block },
 		{ _field_byte_flags, "flags", &blofeld::infinite_f2::c_spawn_formation_flags },
 		FIELD_PAD("generated_pada156", 3),
@@ -28978,7 +28978,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "name" },
 		{ _field_struct, "place on", &blofeld::infinite_f2::s_ai_spawn_conditions },
 		{ _field_short_integer, "normal diff count" },
-		{ _field_enum, "major upgrade", &blofeld::infinite_f2::squadmajorupgradetype },
+		{ _field_short_enum, "major upgrade", &blofeld::infinite_f2::squadmajorupgradetype },
 		{ _field_block, "character", &blofeld::infinite_f2::aicharacterchoice_block },
 		{ _field_block, "primary weapon", &blofeld::infinite_f2::aiweaponchoice_block },
 		{ _field_block, "secondary weapon", &blofeld::infinite_f2::aiweaponchoice_block },
@@ -28991,7 +28991,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "activity name", _field_id_sted },
 		{ _field_string_id, "movement set" },
 		{ _field_custom_short_block_index, "point set" },
-		{ _field_enum, "patrol mode", &blofeld::infinite_f2::patrolmode },
+		{ _field_short_enum, "patrol mode", &blofeld::infinite_f2::patrolmode },
 		{ _field_block, "points", &blofeld::infinite_f2::s_patrol_point_block },
 		{ _field_terminator }
 	};
@@ -29033,7 +29033,7 @@ namespace infinite_f2 {
 	{
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::infinite_f2::c_squad_flags },
-		{ _field_enum, "team", &blofeld::infinite_f2::e_campaign_team, _field_id_usqd_unknown_squad },
+		{ _field_short_enum, "team", &blofeld::infinite_f2::e_campaign_team, _field_id_usqd_unknown_squad },
 		{ _field_short_block_index, "parent", &blofeld::infinite_f2::squad_group_definition_block, _field_id_squad_template },
 		{ _field_struct, "bsp flags", &blofeld::infinite_f2::compressedbspreferenceflags },
 		{ _field_short_block_index, "initial zone", &blofeld::infinite_f2::zone_definition_block },
@@ -29127,7 +29127,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "name" },
 		{ _field_struct, "place on", &blofeld::infinite_f2::s_ai_spawn_conditions },
 		{ _field_short_integer, "normal diff count" },
-		{ _field_enum, "major upgrade", &blofeld::infinite_f2::squadmajorupgradetype },
+		{ _field_short_enum, "major upgrade", &blofeld::infinite_f2::squadmajorupgradetype },
 		FIELD_EXPLANATION("Character Build", nullptr),
 		{ _field_block, "character type", &blofeld::infinite_f2::aicharacterchoiceweakref_block, _field_id_grid },
 		{ _field_block, "initial weapon", &blofeld::infinite_f2::aiweaponchoiceweakref_block, _field_id_grid },
@@ -29206,7 +29206,7 @@ namespace infinite_f2 {
 		{ _field_struct, "AnyTag", &blofeld::infinite_f2::anytag_struct_definition },
 		{ _field_string, "name" },
 		FIELD_EXPLANATION("Combat status decay options", nullptr),
-		{ _field_enum, "Combat status decay options", &blofeld::infinite_f2::stylecombatstatusdecay },
+		{ _field_short_enum, "Combat status decay options", &blofeld::infinite_f2::stylecombatstatusdecay },
 		FIELD_PAD("generated_padeb23", 2),
 		FIELD_EXPLANATION("Style Behavior Control", nullptr),
 		{ _field_long_flags, "Style control", &blofeld::infinite_f2::stylecontrolflags },
@@ -29694,7 +29694,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343AITOKENSYSTEMTHREATTOKENCHARACTERLIMIT_ID)
 	{
-		{ _field_enum, "Character Type", &blofeld::infinite_f2::actortype },
+		{ _field_short_enum, "Character Type", &blofeld::infinite_f2::actortype },
 		{ _field_short_integer, "Max character instances" },
 		{ _field_terminator }
 	};
@@ -29942,7 +29942,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_FRAME_EVENT_ID)
 	{
-		{ _field_enum, "type", &blofeld::infinite_f2::animationframeeventtype },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::animationframeeventtype },
 		{ _field_short_integer, "frame" },
 		{ _field_terminator }
 	};
@@ -30404,7 +30404,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "animation name" },
 		{ _field_short_integer, "frame" },
 		{ _field_short_integer, "frame offset" },
-		{ _field_enum, "type", &blofeld::infinite_f2::animationframeeventtype },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::animationframeeventtype },
 		FIELD_PAD("generated_pade518", 2),
 		{ _field_long_integer, "unique ID" },
 		{ _field_terminator }
@@ -30845,7 +30845,7 @@ namespace infinite_f2 {
 		S_ANIMATION_IK_CHAIN_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "type", &blofeld::infinite_f2::c_animation_ik_chain_type },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::c_animation_ik_chain_type },
 		{ _field_short_block_index, "start node", &blofeld::infinite_f2::s_animation_graph_node_block },
 		{ _field_short_block_index, "effector node", &blofeld::infinite_f2::s_animation_graph_node_block },
 		{ _field_short_block_index, "parent junction", &blofeld::infinite_f2::animationikjunction_block },
@@ -31223,10 +31223,10 @@ namespace infinite_f2 {
 		{ _field_string_id, "label" },
 		{ _field_block, "animations", &blofeld::infinite_f2::s_ranged_animation_entry_block },
 		{ _field_block, "triangulation data", &blofeld::infinite_f2::s_triangulation_tag_struct_block },
-		{ _field_enum, "horizontal source", &blofeld::infinite_f2::c_animation_ranged_action_variable_source },
-		{ _field_enum, "vertical source", &blofeld::infinite_f2::c_animation_ranged_action_variable_source },
-		{ _field_enum, "start key", &blofeld::infinite_f2::animationframeeventtype },
-		{ _field_enum, "end key", &blofeld::infinite_f2::animationframeeventtype },
+		{ _field_short_enum, "horizontal source", &blofeld::infinite_f2::c_animation_ranged_action_variable_source },
+		{ _field_short_enum, "vertical source", &blofeld::infinite_f2::c_animation_ranged_action_variable_source },
+		{ _field_short_enum, "start key", &blofeld::infinite_f2::animationframeeventtype },
+		{ _field_short_enum, "end key", &blofeld::infinite_f2::animationframeeventtype },
 		{ _field_terminator }
 	};
 
@@ -31256,14 +31256,14 @@ namespace infinite_f2 {
 		{ _field_long_flags, "flags", &blofeld::infinite_f2::c_animation_blend_screen_flags },
 		{ _field_real, "weight" },
 		{ _field_real_fraction, "interpolation rate" },
-		{ _field_enum, "yaw source", &blofeld::infinite_f2::c_animation_blend_screen_variable_source },
-		{ _field_enum, "pitch source", &blofeld::infinite_f2::c_animation_blend_screen_variable_source },
+		{ _field_short_enum, "yaw source", &blofeld::infinite_f2::c_animation_blend_screen_variable_source },
+		{ _field_short_enum, "pitch source", &blofeld::infinite_f2::c_animation_blend_screen_variable_source },
 		FIELD_CUSTOM("value", _field_id_unknown_function),
 		{ _field_string_id, "yaw source object function" },
 		FIELD_CUSTOM("value", _field_id_unknown_function),
 		{ _field_string_id, "pitch source object function" },
-		{ _field_enum, "weight source", &blofeld::infinite_f2::c_animation_blend_screen_weight_source },
-		{ _field_enum, "secondary weight source", &blofeld::infinite_f2::c_animation_blend_screen_weight_source },
+		{ _field_short_enum, "weight source", &blofeld::infinite_f2::c_animation_blend_screen_weight_source },
+		{ _field_short_enum, "secondary weight source", &blofeld::infinite_f2::c_animation_blend_screen_weight_source },
 		FIELD_CUSTOM("value", _field_id_unknown_function),
 		{ _field_string_id, "weight source object function" },
 		FIELD_CUSTOM("value", _field_id_unknown_function),
@@ -31592,7 +31592,7 @@ namespace infinite_f2 {
 	{
 		{ _field_string_id, "label" },
 		{ _field_struct, "animation", &blofeld::infinite_f2::c_animation_id },
-		{ _field_enum, "function controls", &blofeld::infinite_f2::c_function_overlay_animation_mode },
+		{ _field_short_enum, "function controls", &blofeld::infinite_f2::c_function_overlay_animation_mode },
 		FIELD_PAD("generated_padb2fd", 2),
 		{ _field_string_id, "function" },
 		{ _field_terminator }
@@ -31661,7 +31661,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_ANIMATION_NODE_USAGE_ENTRY_ID)
 	{
-		{ _field_enum, "usage", &blofeld::infinite_f2::c_animation_node_usage },
+		{ _field_short_enum, "usage", &blofeld::infinite_f2::c_animation_node_usage },
 		{ _field_short_block_index, "node to use", &blofeld::infinite_f2::s_animation_graph_node_block },
 		{ _field_terminator }
 	};
@@ -31881,7 +31881,7 @@ namespace infinite_f2 {
 		C_MODEL_ANIMATION_TAG_REFRENCE_COUNTED_RESOURCE_ID)
 	{
 		{ _field_long_integer, "reference_count" },
-		{ _field_pageable, "tag_resource", &blofeld::infinite_f2::c_model_animation_tag_animation_group_resource_resource_definition },
+		{ _field_pageable_resource, "tag_resource", &blofeld::infinite_f2::c_model_animation_tag_animation_group_resource_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -32088,7 +32088,7 @@ namespace infinite_f2 {
 		{ _field_word_flags, "graph flags", &blofeld::infinite_f2::animationgraphmiscflagstype },
 		{ _field_word_flags, "private flags", &blofeld::infinite_f2::animationgraphprivateflagstype },
 		FIELD_EXPLANATION("Compression", nullptr),
-		{ _field_enum, "force compression setting", &blofeld::infinite_f2::c_animation_compression_force_setting },
+		{ _field_short_enum, "force compression setting", &blofeld::infinite_f2::c_animation_compression_force_setting },
 		{ _field_short_integer, "animation codec pack" },
 		FIELD_GROUP_END(),
 		{ _field_terminator }
@@ -32346,11 +32346,11 @@ namespace infinite_f2 {
 	{
 		FIELD_EXPLANATION("REFERENCE IK CHAIN INFO", nullptr),
 		{ _field_string_id, "chain name" },
-		{ _field_enum, "chain type", &blofeld::infinite_f2::c_animation_ik_chain_type },
+		{ _field_short_enum, "chain type", &blofeld::infinite_f2::c_animation_ik_chain_type },
 		{ _field_short_block_index, "chain start node", &blofeld::infinite_f2::s_animation_graph_node_block },
 		{ _field_short_block_index, "chain effector node", &blofeld::infinite_f2::s_animation_graph_node_block },
 		FIELD_EXPLANATION("IMPORTED IK CHAIN INFO", nullptr),
-		{ _field_enum, "chain usage", &blofeld::infinite_f2::c_animation_ik_chain_event_usage },
+		{ _field_short_enum, "chain usage", &blofeld::infinite_f2::c_animation_ik_chain_event_usage },
 		{ _field_string_id, "proxy marker" },
 		{ _field_long_integer, "proxy id" },
 		{ _field_char_enum, "event type", &blofeld::infinite_f2::c_animation_ik_chain_event_type },
@@ -32838,7 +32838,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SYNCKEY_ID)
 	{
-		{ _field_enum, "key", &blofeld::infinite_f2::animationframeeventtype },
+		{ _field_short_enum, "key", &blofeld::infinite_f2::animationframeeventtype },
 		{ _field_terminator }
 	};
 
@@ -33428,7 +33428,7 @@ namespace infinite_f2 {
 		{ _field_long_integer, "PCA Shape Offset" },
 		{ _field_long_integer, "PCA coefficient Count" },
 		FIELD_EXPLANATION("Resource Data", nullptr),
-		{ _field_pageable, "CoefficientResource", &blofeld::infinite_f2::pcaimportedframedata_resource_definition },
+		{ _field_pageable_resource, "CoefficientResource", &blofeld::infinite_f2::pcaimportedframedata_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -33481,7 +33481,7 @@ namespace infinite_f2 {
 		{ _field_block, "frame data", &blofeld::infinite_f2::pcaimportedframedataelement_block },
 		{ _field_block, "mesh data", &blofeld::infinite_f2::pcaimportedmeshdata_block },
 		FIELD_EXPLANATION("Resource Data", nullptr),
-		{ _field_pageable, "api resource", &blofeld::infinite_f2::s_render_geometry_api_resource_resource_definition },
+		{ _field_pageable_resource, "api resource", &blofeld::infinite_f2::s_render_geometry_api_resource_resource_definition },
 		FIELD_PAD("generated_pad7a1a", 4),
 		{ _field_terminator }
 	};
@@ -36464,7 +36464,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INPUTDEVICEBINDING_ID)
 	{
-		{ _field_enum, "device", &blofeld::infinite_f2::inputdeviceelement },
+		{ _field_short_enum, "device", &blofeld::infinite_f2::inputdeviceelement },
 		{ _field_char_block_index, "output" },
 		FIELD_PAD("generated_padc197", 1),
 		{ _field_terminator }
@@ -36787,7 +36787,7 @@ namespace infinite_f2 {
 		INPUTDEVICEBINDINGENTRY_ID,
 		1)
 	{
-		{ _field_enum, "device", &blofeld::infinite_f2::inputdeviceelement },
+		{ _field_short_enum, "device", &blofeld::infinite_f2::inputdeviceelement },
 		FIELD_PAD("generated_padf483", 2),
 		{ _field_string_id, "axis" },
 		{ _field_byte_flags, "flags", &blofeld::infinite_f2::inputdevicebindingentryflags },
@@ -37680,7 +37680,7 @@ namespace infinite_f2 {
 		1)
 	{
 		{ _field_long_enum, "language", &blofeld::infinite_f2::e_language },
-		{ _field_pageable, "string list resource", &blofeld::infinite_f2::unicodestringlistresource_resource_definition },
+		{ _field_pageable_resource, "string list resource", &blofeld::infinite_f2::unicodestringlistresource_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -37769,7 +37769,7 @@ namespace infinite_f2 {
 		{ _field_short_block_index, "Icon", &blofeld::infinite_f2::i343valorrewardsiconbitmap_block },
 		{ _field_short_block_index, "Background", &blofeld::infinite_f2::i343valorrewardsbackgroundbitmap_block },
 		{ _field_long_integer, "Sprite Index" },
-		{ _field_enum, "Damage Type", &blofeld::infinite_f2::i343valorrewardsdamagetype },
+		{ _field_short_enum, "Damage Type", &blofeld::infinite_f2::i343valorrewardsdamagetype },
 		FIELD_PAD("generated_pad0c76", 2),
 		{ _field_tag_reference, "Vehicle Sprite", &blofeld::infinite_f2::bitmap_reference$82_tagref },
 		{ _field_tag_reference, "Weapon Sprite", &blofeld::infinite_f2::bitmap_reference$83_tagref },
@@ -37884,7 +37884,7 @@ namespace infinite_f2 {
 		{ _field_real_vector_3d, "VolumeMax" },
 		{ _field_block, "Child static geo", &blofeld::infinite_f2::hlodobject_block },
 		{ _field_block, "Child HLOD Volumes", &blofeld::infinite_f2::hlodobject_block },
-		{ _field_enum, "Maximum LOD", &blofeld::infinite_f2::etargetlod },
+		{ _field_short_enum, "Maximum LOD", &blofeld::infinite_f2::etargetlod },
 		FIELD_PAD("generated_pad77b4", 2),
 		{ _field_block, "BSPs", &blofeld::infinite_f2::hlodbsp_block },
 		{ _field_block, "BSPs involved by all children", &blofeld::infinite_f2::hlodbsp_block },
@@ -37892,7 +37892,7 @@ namespace infinite_f2 {
 		{ _field_tag_reference, "HlodSettings", &blofeld::infinite_f2::hlodsettings_reference_tagref },
 		{ _field_tag_reference, "Asset", &blofeld::infinite_f2::asset_reference$8_tagref },
 		{ _field_string_id, "Asset Category" },
-		{ _field_enum, "Use Visibility", &blofeld::infinite_f2::hlodvisibilityenum },
+		{ _field_short_enum, "Use Visibility", &blofeld::infinite_f2::hlodvisibilityenum },
 		FIELD_PAD("generated_pad9195", 2),
 		{ _field_struct, "Visibility Camera Sphere Settings", &blofeld::infinite_f2::hlodsimplygoncustomspherecamerapath },
 		FIELD_PAD("generated_padde4a", 4),
@@ -37947,14 +37947,14 @@ namespace infinite_f2 {
 		{ _field_block, "EditorMetadata", &blofeld::infinite_f2::editormetadata_block },
 		{ _field_struct, "Volume", &blofeld::infinite_f2::genericvolume },
 		{ _field_real, "SwitchDistance" },
-		{ _field_enum, "Maximum LOD", &blofeld::infinite_f2::etargetlod },
+		{ _field_short_enum, "Maximum LOD", &blofeld::infinite_f2::etargetlod },
 		FIELD_PAD("generated_pad98b9", 2),
 		{ _field_string_id, "Asset Category", _field_id_sted },
 		{ _field_struct, "Hlod Settings", &blofeld::infinite_f2::namedhlodsettings },
 		{ _field_byte_flags, "Flags", &blofeld::infinite_f2::hlodvolumeflags },
 		FIELD_PAD("generated_pad7ed8", 1),
 		FIELD_GROUP_BEGIN("Visibility Settings"),
-		{ _field_enum, "Use Visibility", &blofeld::infinite_f2::hlodvisibilityenum },
+		{ _field_short_enum, "Use Visibility", &blofeld::infinite_f2::hlodvisibilityenum },
 		{ _field_struct, "Visibility Camera Sphere Settings", &blofeld::infinite_f2::hlodsimplygoncustomspherecamerapath },
 		FIELD_GROUP_END(),
 		{ _field_char_enum, "Volume Inclusion Policy", &blofeld::infinite_f2::hlodvolumepolicy },
@@ -38049,7 +38049,7 @@ namespace infinite_f2 {
 	{
 		{ _field_struct, "Hlod Settings", &blofeld::infinite_f2::namedhlodsettings },
 		{ _field_real, "Switch Distance" },
-		{ _field_enum, "Maximum LOD", &blofeld::infinite_f2::etargetlod },
+		{ _field_short_enum, "Maximum LOD", &blofeld::infinite_f2::etargetlod },
 		FIELD_PAD("generated_padd86d", 2),
 		{ _field_terminator }
 	};
@@ -38141,7 +38141,7 @@ namespace infinite_f2 {
 		1)
 	{
 		{ _field_struct, "AnyTag", &blofeld::infinite_f2::anytag_struct_definition },
-		{ _field_enum, "HlodGenerationPass", &blofeld::infinite_f2::ehlodgenerationpassstagecomplex },
+		{ _field_short_enum, "HlodGenerationPass", &blofeld::infinite_f2::ehlodgenerationpassstagecomplex },
 		FIELD_PAD("generated_pad529c", 2),
 		{ _field_long_integer, "BakingTextureResolution" },
 		{ _field_real, "Baking texture screen space multiplier" },
@@ -38257,7 +38257,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HLODVISIBILITYSETTINGS_ID)
 	{
-		{ _field_enum, "ComputeVisibilityMode", &blofeld::infinite_f2::hlodsimplygoncomputevisibilitymode },
+		{ _field_short_enum, "ComputeVisibilityMode", &blofeld::infinite_f2::hlodsimplygoncomputevisibilitymode },
 		FIELD_PAD("generated_pad69b8", 2),
 		{ _field_real, "FillNonVisibleAreaThreshold" },
 		{ _field_real, "VisibilityWeightsPower" },
@@ -38295,12 +38295,12 @@ namespace infinite_f2 {
 		{ _field_real, "ParameterizerLargeChartsImportance" },
 		{ _field_dword_integer, "GutterSpace" },
 		{ _field_dword_integer, "TexCoordLevel" },
-		{ _field_enum, "TexCoordGeneratorType", &blofeld::infinite_f2::ehlodsimplygontexcoordgeneratortype },
+		{ _field_short_enum, "TexCoordGeneratorType", &blofeld::infinite_f2::ehlodsimplygontexcoordgeneratortype },
 		FIELD_PAD("generated_pad85f3", 2),
 		{ _field_dword_integer, "MultisamplingLevel" },
 		{ _field_long_integer, "TextureSize" },
-		{ _field_enum, "ChartAggregationMode", &blofeld::infinite_f2::ehlodsimplygonchartaggregatormode },
-		{ _field_enum, "ChartAggregatorOriginalChartProportionsChannel", &blofeld::infinite_f2::ehlodchartaggregatororiginalchartproportionschannel },
+		{ _field_short_enum, "ChartAggregationMode", &blofeld::infinite_f2::ehlodsimplygonchartaggregatormode },
+		{ _field_short_enum, "ChartAggregatorOriginalChartProportionsChannel", &blofeld::infinite_f2::ehlodchartaggregatororiginalchartproportionschannel },
 		{ _field_terminator }
 	};
 
@@ -38344,7 +38344,7 @@ namespace infinite_f2 {
 		{ _field_long_flags, "NormalStates", &blofeld::infinite_f2::hlodsimplygonnormalstates },
 		{ _field_struct, "MappingImageSettings", &blofeld::infinite_f2::hlodsimplygonmappingimagesettings },
 		{ _field_long_flags, "MappingImageStates", &blofeld::infinite_f2::hlodsimplygonmappingimagestates },
-		{ _field_enum, "DeviationMode", &blofeld::infinite_f2::ehlodsimplygonreductiondeviationtype },
+		{ _field_short_enum, "DeviationMode", &blofeld::infinite_f2::ehlodsimplygonreductiondeviationtype },
 		FIELD_PAD("generated_pad4c1d", 2),
 		{ _field_real, "MaxDeviation" },
 		{ _field_long_integer, "ReductionOnScreenSize" },
@@ -38470,7 +38470,7 @@ namespace infinite_f2 {
 	{
 		{ _field_byte_flags, "States", &blofeld::infinite_f2::hlodsimplygonglobalstates },
 		FIELD_PAD("generated_pad2b9f", 1),
-		{ _field_enum, "ValidateProcessingDebugLevel", &blofeld::infinite_f2::validateprocessingdebuglevel },
+		{ _field_short_enum, "ValidateProcessingDebugLevel", &blofeld::infinite_f2::validateprocessingdebuglevel },
 		{ _field_terminator }
 	};
 
@@ -39274,7 +39274,7 @@ namespace infinite_f2 {
 		FIELD_EXPLANATION("FLYING CAMERA", nullptr),
 		{ _field_real, "maximum boost speed" },
 		{ _field_real, "time to maximum_boost" },
-		{ _field_enum, "boost function", &blofeld::infinite_f2::transitionfunction },
+		{ _field_short_enum, "boost function", &blofeld::infinite_f2::transitionfunction },
 		FIELD_PAD("generated_pad632c", 2),
 		{ _field_real, "zoomed field of view" },
 		{ _field_real, "zoomed look speed" },
@@ -39282,7 +39282,7 @@ namespace infinite_f2 {
 		{ _field_real, "flying cam movement delay" },
 		{ _field_real, "zoom transition time" },
 		{ _field_real, "vertical movement time to max speed" },
-		{ _field_enum, "vertical movement function", &blofeld::infinite_f2::transitionfunction },
+		{ _field_short_enum, "vertical movement function", &blofeld::infinite_f2::transitionfunction },
 		FIELD_PAD("generated_pad7d0d", 2),
 		FIELD_EXPLANATION("ORBITING CAMERA", nullptr),
 		{ _field_real, "minimum distance" },
@@ -40516,7 +40516,7 @@ namespace infinite_f2 {
 		COMPOSERPATHPOINT_ID,
 		1)
 	{
-		{ _field_enum, "Type", &blofeld::infinite_f2::composerpathpointtypeenum },
+		{ _field_short_enum, "Type", &blofeld::infinite_f2::composerpathpointtypeenum },
 		{ _field_byte_flags, "Flags", &blofeld::infinite_f2::composerpathpointflags },
 		FIELD_PAD("generated_pad5f87", 1),
 		{ _field_struct, "Subject", &blofeld::infinite_f2::composersubject },
@@ -42717,7 +42717,7 @@ namespace infinite_f2 {
 		{ _field_angle, "random rotation" },
 		{ _field_real, "wobble function period" },
 		{ _field_real_fraction, "wobble weight" },
-		{ _field_enum, "wobble function", &blofeld::infinite_f2::periodicfunction },
+		{ _field_short_enum, "wobble function", &blofeld::infinite_f2::periodicfunction },
 		FIELD_EXPLANATION("animated camera shake", nullptr),
 		{ _field_char_enum, "animated shake playback", &blofeld::infinite_f2::c_animated_camera_shake_playback_type },
 		{ _field_char_enum, "animated shake weight", &blofeld::infinite_f2::c_animated_camera_shake_weight_type },
@@ -43079,7 +43079,7 @@ namespace infinite_f2 {
 		{ _field_real, "material shader fade time" },
 		{ _field_real_point_2d, "decal scale override" },
 		FIELD_EXPLANATION("Decal bucket sharing", nullptr),
-		{ _field_short_bounds, "random sprite index bounds" },
+		{ _field_short_integer_bounds, "random sprite index bounds" },
 		{ _field_block, "decals", &blofeld::infinite_f2::c_decal_definition_block },
 		{ _field_real, "runtime max radius" },
 		FIELD_PAD("generated_pad2745", 4),
@@ -43156,7 +43156,7 @@ namespace infinite_f2 {
 		EFFECT_PART_DEFINITION_ID,
 		1)
 	{
-		{ _field_enum, "violence mode", &blofeld::infinite_f2::effectdisposition },
+		{ _field_short_enum, "violence mode", &blofeld::infinite_f2::effectdisposition },
 		{ _field_short_block_index, "location", &blofeld::infinite_f2::effect_location_definition_block },
 		{ _field_short_block_index, "secondary location (beams)", &blofeld::infinite_f2::effect_location_definition_block },
 		{ _field_word_flags, "flags", &blofeld::infinite_f2::effect_part_definitioneffectpartflags },
@@ -43317,7 +43317,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_ACCELERATION_DEFINITION_ID)
 	{
-		{ _field_enum, "violence mode", &blofeld::infinite_f2::effectdisposition },
+		{ _field_short_enum, "violence mode", &blofeld::infinite_f2::effectdisposition },
 		{ _field_short_block_index, "location", &blofeld::infinite_f2::effect_location_definition_block },
 		{ _field_real, "acceleration" },
 		{ _field_real, "inner cone angle" },
@@ -44198,7 +44198,7 @@ namespace infinite_f2 {
 		{ _field_real_point_3d, "axis scale" },
 		{ _field_real_vector_3d, "particle emission direction" },
 		{ _field_struct, "emission radius", &blofeld::infinite_f2::particlepropertyscalar },
-		{ _field_enum, "particle billboard style", &blofeld::infinite_f2::c_particle_emitter_definitionc_particle_emitter_billboard_type },
+		{ _field_short_enum, "particle billboard style", &blofeld::infinite_f2::c_particle_emitter_definitionc_particle_emitter_billboard_type },
 		FIELD_PAD("generated_pad4219", 2),
 		{ _field_real, "curvature" },
 		{ _field_real, "angle fade range" },
@@ -44547,7 +44547,7 @@ namespace infinite_f2 {
 	{
 		{ _field_struct, "AnyTag", &blofeld::infinite_f2::anytag_struct_definition },
 		{ _field_long_flags, "appearance flags", &blofeld::infinite_f2::c_particle_definitionparticleappearanceflags },
-		{ _field_enum, "particle billboard style", &blofeld::infinite_f2::c_particle_emitter_definitionc_particle_emitter_billboard_type },
+		{ _field_short_enum, "particle billboard style", &blofeld::infinite_f2::c_particle_emitter_definitionc_particle_emitter_billboard_type },
 		{ _field_short_integer, "pad" },
 		{ _field_real_point_2d, "center offset" },
 		FIELD_CUSTOM("material", _field_id_shader_template),
@@ -44749,7 +44749,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		C_PARTICLE_CONTROLLER_ID)
 	{
-		{ _field_enum, "type", &blofeld::infinite_f2::c_particle_movement_definitioncontrollertype },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::c_particle_movement_definitioncontrollertype },
 		{ _field_byte_flags, "flags", &blofeld::infinite_f2::c_particle_controllerflags },
 		FIELD_PAD("generated_padc087", 1),
 		{ _field_block, "parameters", &blofeld::infinite_f2::c_particle_controller_parameter_block },
@@ -44793,7 +44793,7 @@ namespace infinite_f2 {
 		{ _field_long_block_index, "location", &blofeld::infinite_f2::effect_location_definition_block },
 		{ _field_char_enum, "coordinate system", &blofeld::infinite_f2::particlecoordinatesystem },
 		{ _field_char_enum, "Accessibility Type", &blofeld::infinite_f2::partaccessibilitytype },
-		{ _field_enum, "disposition", &blofeld::infinite_f2::effectdisposition },
+		{ _field_short_enum, "disposition", &blofeld::infinite_f2::effectdisposition },
 		{ _field_char_enum, "camera mode", &blofeld::infinite_f2::effectcameramode },
 		FIELD_PAD("generated_pad75fa", 3),
 		{ _field_long_flags, "flags", &blofeld::infinite_f2::particlesystemflagsdefinition },
@@ -45018,8 +45018,8 @@ namespace infinite_f2 {
 		S_SIMULATED_INPUT_STICK_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &blofeld::infinite_f2::s_simulated_input_stick_definitionstickflags },
-		{ _field_enum, "response type", &blofeld::infinite_f2::e_simulated_input_direction },
-		{ _field_enum, "mapping type", &blofeld::infinite_f2::e_simulated_input_mapping_type },
+		{ _field_short_enum, "response type", &blofeld::infinite_f2::e_simulated_input_direction },
+		{ _field_short_enum, "mapping type", &blofeld::infinite_f2::e_simulated_input_mapping_type },
 		{ _field_real_bounds, "angle" },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
 		{ _field_struct, "Mapping", &blofeld::infinite_f2::functiondefinition },
@@ -45919,7 +45919,7 @@ namespace infinite_f2 {
 		{ _field_block, "hstructs", &blofeld::infinite_f2::hstructblock_block },
 		{ _field_block, "Postprocess Error Messages", &blofeld::infinite_f2::hssourceruntimeerrormessage_block },
 		{ _field_struct, "m_byteCode", &blofeld::infinite_f2::hsbytecode },
-		{ _field_pageable, "m_debugResource", &blofeld::infinite_f2::hsdebugresource_resource_definition },
+		{ _field_pageable_resource, "m_debugResource", &blofeld::infinite_f2::hsdebugresource_resource_definition },
 		FIELD_PAD("generated_pad2f27", 4),
 		{ _field_terminator }
 	};
@@ -46000,8 +46000,8 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHROMAEVENTANIMATION_ID)
 	{
-		{ _field_enum, "event", &blofeld::infinite_f2::i343chromasupporteventtype },
-		{ _field_enum, "layering", &blofeld::infinite_f2::i343chromasupportlayering },
+		{ _field_short_enum, "event", &blofeld::infinite_f2::i343chromasupporteventtype },
+		{ _field_short_enum, "layering", &blofeld::infinite_f2::i343chromasupportlayering },
 		{ _field_short_integer, "priority" },
 		FIELD_PAD("generated_padd53a", 2),
 		FIELD_GROUP_BEGIN("files"),
@@ -46318,13 +46318,13 @@ namespace infinite_f2 {
 		{ _field_long_flags, "Flags", &blofeld::infinite_f2::cubemapflagsclass },
 		{ _field_struct, "Dumpling", &blofeld::infinite_f2::s_scenario_dumpling },
 		{ _field_tag_reference, "Cubemap Bitmap", &blofeld::infinite_f2::bitmap_reference$9_tagref },
-		{ _field_enum, "Enable Parallax Correction", &blofeld::infinite_f2::cubemapboolean },
+		{ _field_short_enum, "Enable Parallax Correction", &blofeld::infinite_f2::cubemapboolean },
 		{ _field_short_integer, "Cubemap Volume Priority" },
 		{ _field_real_point_3d, "Cubemap Origin" },
 		{ _field_real_vector_3d, "Depth Positive" },
 		{ _field_real_vector_3d, "Depth Negative" },
-		{ _field_enum, "Active Volume", &blofeld::infinite_f2::cubemapboolean },
-		{ _field_enum, "Maximum cubemap size", &blofeld::infinite_f2::cubemapsizeclassification },
+		{ _field_short_enum, "Active Volume", &blofeld::infinite_f2::cubemapboolean },
+		{ _field_short_enum, "Maximum cubemap size", &blofeld::infinite_f2::cubemapsizeclassification },
 		{ _field_real_point_3d, "Intensity" },
 		{ _field_real, "Self-illum Scale Down" },
 		{ _field_block, "EditorMetadata", &blofeld::infinite_f2::editormetadata_block },
@@ -46338,7 +46338,7 @@ namespace infinite_f2 {
 		{ _field_tag_reference, "Cubemap Depth Bitmap", &blofeld::infinite_f2::bitmap_reference$10_tagref },
 		{ _field_real, "Depth Blend Range" },
 		{ _field_real, "Intensity Scale" },
-		{ _field_enum, "Tintable", &blofeld::infinite_f2::cubemapboolean },
+		{ _field_short_enum, "Tintable", &blofeld::infinite_f2::cubemapboolean },
 		FIELD_PAD("generated_pad93d5", 2),
 		{ _field_terminator }
 	};
@@ -46396,10 +46396,10 @@ namespace infinite_f2 {
 		FIELD_GROUP_END(),
 		{ _field_real, "Volume Priority" },
 		{ _field_real, "Lightmap Priority" },
-		{ _field_enum, "Exclude Shadow Geometry", &blofeld::infinite_f2::lightmapexclusionboolean },
-		{ _field_enum, "Exclude Per Pixel Lighting", &blofeld::infinite_f2::lightmapexclusionboolean },
-		{ _field_enum, "Exclude Analytic Sun Contribution", &blofeld::infinite_f2::lightmapexclusionboolean },
-		{ _field_enum, "Exclude Analytic Light Contribution", &blofeld::infinite_f2::lightmapexclusionboolean },
+		{ _field_short_enum, "Exclude Shadow Geometry", &blofeld::infinite_f2::lightmapexclusionboolean },
+		{ _field_short_enum, "Exclude Per Pixel Lighting", &blofeld::infinite_f2::lightmapexclusionboolean },
+		{ _field_short_enum, "Exclude Analytic Sun Contribution", &blofeld::infinite_f2::lightmapexclusionboolean },
+		{ _field_short_enum, "Exclude Analytic Light Contribution", &blofeld::infinite_f2::lightmapexclusionboolean },
 		{ _field_block, "EditorMetadata", &blofeld::infinite_f2::editormetadata_block },
 		{ _field_tag_reference, "owner bsp", &blofeld::infinite_f2::scenario_structure_bsp_reference$3_tagref },
 		{ _field_string_id, "owner variant", _field_id_sted },
@@ -46522,7 +46522,7 @@ namespace infinite_f2 {
 		1)
 	{
 		{ _field_short_integer, "Base Value" },
-		{ _field_short_bounds, "Value Bounds" },
+		{ _field_short_integer_bounds, "Value Bounds" },
 		{ _field_terminator }
 	};
 
@@ -46825,7 +46825,7 @@ namespace infinite_f2 {
 		S_REGION_TRANSITION_ID)
 	{
 		{ _field_string_id, "region" },
-		{ _field_enum, "new state", &blofeld::infinite_f2::modelstates },
+		{ _field_short_enum, "new state", &blofeld::infinite_f2::modelstates },
 		{ _field_short_integer, "runtime region index" },
 		{ _field_terminator }
 	};
@@ -47104,10 +47104,10 @@ namespace infinite_f2 {
 		FIELD_GROUP_BEGIN("Volume settings"),
 		{ _field_struct, "Volume", &blofeld::infinite_f2::genericvolume },
 		FIELD_GROUP_END(),
-		{ _field_enum, "Use vertical beam count override", &blofeld::infinite_f2::scenariobakedpvsvolumeboolean },
-		{ _field_enum, "Use beam height overrides", &blofeld::infinite_f2::scenariobakedpvsvolumeboolean },
-		{ _field_enum, "Pin the beams to the top of the volume", &blofeld::infinite_f2::scenariobakedpvsvolumeboolean },
-		{ _field_enum, "Add beams even if there is no collision", &blofeld::infinite_f2::scenariobakedpvsvolumeboolean },
+		{ _field_short_enum, "Use vertical beam count override", &blofeld::infinite_f2::scenariobakedpvsvolumeboolean },
+		{ _field_short_enum, "Use beam height overrides", &blofeld::infinite_f2::scenariobakedpvsvolumeboolean },
+		{ _field_short_enum, "Pin the beams to the top of the volume", &blofeld::infinite_f2::scenariobakedpvsvolumeboolean },
+		{ _field_short_enum, "Add beams even if there is no collision", &blofeld::infinite_f2::scenariobakedpvsvolumeboolean },
 		{ _field_long_integer, "Vertical beam count override" },
 		{ _field_real, "Beam 1 height override" },
 		{ _field_real, "Beam 2 height override" },
@@ -47221,7 +47221,7 @@ namespace infinite_f2 {
 		{ _field_struct, "AnyTag", &blofeld::infinite_f2::anytag_struct_definition },
 		{ _field_block, "BSP index map", &blofeld::infinite_f2::i343scenariozonesetbakedpvssubregionlongparam_block },
 		{ _field_block, "Per BSP data", &blofeld::infinite_f2::i343scenariozonesetbakedpvsperbspdata_block },
-		{ _field_pageable, "resource data", &blofeld::infinite_f2::i343scenariozonesetbakedpvsresource_resource_definition },
+		{ _field_pageable_resource, "resource data", &blofeld::infinite_f2::i343scenariozonesetbakedpvsresource_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -47487,8 +47487,8 @@ namespace infinite_f2 {
 	{
 		{ _field_long_flags, "Global flags", &blofeld::infinite_f2::c_lightmap_global_flags },
 		{ _field_long_enum, "Mode", &blofeld::infinite_f2::lightmapmode },
-		{ _field_enum, "Lightmap quality", &blofeld::infinite_f2::lightmapquality },
-		{ _field_enum, "Indirect quality", &blofeld::infinite_f2::lightmapindirectquality },
+		{ _field_short_enum, "Lightmap quality", &blofeld::infinite_f2::lightmapquality },
+		{ _field_short_enum, "Indirect quality", &blofeld::infinite_f2::lightmapindirectquality },
 		{ _field_terminator }
 	};
 
@@ -48583,7 +48583,7 @@ namespace infinite_f2 {
 		{ _field_word_flags, "flags", &blofeld::infinite_f2::scenariosoftceilingflags },
 		{ _field_word_flags, "runtime flags", &blofeld::infinite_f2::scenariosoftceilingruntimeflags },
 		{ _field_string_id, "name" },
-		{ _field_enum, "type", &blofeld::infinite_f2::e_soft_ceiling_type },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::e_soft_ceiling_type },
 		FIELD_PAD("generated_paddf27", 2),
 		{ _field_terminator }
 	};
@@ -48916,7 +48916,7 @@ namespace infinite_f2 {
 		{ _field_long_string, "Info" },
 		{ _field_data, "AdditionalInfo" },
 		{ _field_string, "OptionalAnnotationID" },
-		{ _field_enum, "FilterGroup", &blofeld::infinite_f2::editorannotationfiltergroups },
+		{ _field_short_enum, "FilterGroup", &blofeld::infinite_f2::editorannotationfiltergroups },
 		FIELD_PAD("generated_padc55c", 2),
 		{ _field_block, "EditorMetadata", &blofeld::infinite_f2::editormetadata_block },
 		{ _field_terminator }
@@ -48953,7 +48953,7 @@ namespace infinite_f2 {
 		1)
 	{
 		{ _field_word_flags, "flags", &blofeld::infinite_f2::scenariocutscenecamerapointflags },
-		{ _field_enum, "type", &blofeld::infinite_f2::scenariocameratype },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::scenariocameratype },
 		{ _field_string, "name" },
 		FIELD_CUSTOM("value", _field_id_camera_matrix_editor),
 		{ _field_real_point_3d, "position" },
@@ -48993,11 +48993,11 @@ namespace infinite_f2 {
 		{ _field_long_integer, "guid" },
 		{ _field_string_id, "objective title" },
 		{ _field_string_id, "objective description" },
-		{ _field_real_fraction_bounds, "text bounds X" },
-		{ _field_real_fraction_bounds, "text bounds Y" },
-		{ _field_enum, "justification", &blofeld::infinite_f2::fontlisttextjustification },
-		{ _field_enum, "vertical justification", &blofeld::infinite_f2::textverticaljustification },
-		{ _field_enum, "font", &blofeld::infinite_f2::fontlistfontid },
+		{ _field_fraction_bounds, "text bounds X" },
+		{ _field_fraction_bounds, "text bounds Y" },
+		{ _field_short_enum, "justification", &blofeld::infinite_f2::fontlisttextjustification },
+		{ _field_short_enum, "vertical justification", &blofeld::infinite_f2::textverticaljustification },
+		{ _field_short_enum, "font", &blofeld::infinite_f2::fontlistfontid },
 		FIELD_PAD("generated_pad7734", 2),
 		{ _field_rgb_color, "text color" },
 		{ _field_rgb_color, "shadow color" },
@@ -49080,7 +49080,7 @@ namespace infinite_f2 {
 		{ _field_tag_reference, "bsp", &blofeld::infinite_f2::scenario_structure_bsp_reference$18_tagref },
 		{ _field_long_integer, "bsp checksum" },
 		{ _field_block, "cluster centroids", &blofeld::infinite_f2::scenarioclusterpointsblock_block },
-		{ _field_pageable, "Legacy Bsp KD Tree", &blofeld::infinite_f2::legacybspkdtree_resource_definition },
+		{ _field_pageable_resource, "Legacy Bsp KD Tree", &blofeld::infinite_f2::legacybspkdtree_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -49458,8 +49458,8 @@ namespace infinite_f2 {
 	{
 		{ _field_struct, "LevelObjects", &blofeld::infinite_f2::levelobjects },
 		{ _field_block, "child scenarios", &blofeld::infinite_f2::scenario_layer_reference_block },
-		{ _field_enum, "type", &blofeld::infinite_f2::e_scenario_type },
-		{ _field_enum, "mission", &blofeld::infinite_f2::i343collectiblemission },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::e_scenario_type },
+		{ _field_short_enum, "mission", &blofeld::infinite_f2::i343collectiblemission },
 		{ _field_long_flags, "flags", &blofeld::infinite_f2::scenarioflags },
 		{ _field_long_flags, "runtime trigger volume flags", &blofeld::infinite_f2::scenarioruntimetriggervolumeflags },
 		{ _field_long_integer, "campaign id" },
@@ -49869,7 +49869,7 @@ namespace infinite_f2 {
 		{ _field_short_integer, "runtime node index" },
 		FIELD_PAD("generated_padb464", 2),
 		{ _field_string_id, "node name" },
-		{ _field_enum, "type", &blofeld::infinite_f2::e_trigger_volume_type },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::e_trigger_volume_type },
 		{ _field_char_enum, "behavior", &blofeld::infinite_f2::etriggervolumebehavior },
 		{ _field_byte_flags, "flags", &blofeld::infinite_f2::triggervolumeflags },
 		{ _field_string_id, "zone set name" },
@@ -50149,7 +50149,7 @@ namespace infinite_f2 {
 		C_STRUCTURE_BSP_RESOURCE_INTERFACE_ID)
 	{
 		{ _field_block, "raw_resources", &blofeld::infinite_f2::structurebsprawresources_block },
-		{ _field_pageable, "tag_resources", &blofeld::infinite_f2::structurebsptagresources_resource_definition },
+		{ _field_pageable_resource, "tag_resources", &blofeld::infinite_f2::structurebsptagresources_resource_definition },
 		{ _field_long_integer, "use resource items" },
 		{ _field_terminator }
 	};
@@ -50764,7 +50764,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_STRUCTURE_DEBUG_INFO_RENDER_LINE_ID)
 	{
-		{ _field_enum, "type", &blofeld::infinite_f2::debuginforenderlinetype },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::debuginforenderlinetype },
 		{ _field_short_integer, "code" },
 		{ _field_short_integer, "pad thai" },
 		FIELD_PAD("generated_pada37a", 2),
@@ -51062,7 +51062,7 @@ namespace infinite_f2 {
 		S_STRUCTURE_SOFT_CEILING_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "type", &blofeld::infinite_f2::e_soft_ceiling_type },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::e_soft_ceiling_type },
 		FIELD_PAD("generated_paddd86", 2),
 		{ _field_block, "soft ceiling triangles", &blofeld::infinite_f2::s_structure_soft_ceiling_triangle_block },
 		{ _field_terminator }
@@ -51477,7 +51477,7 @@ namespace infinite_f2 {
 		{ _field_tag, "tag" },
 		{ _field_char_enum, "char enum", &blofeld::infinite_f2::c_char_enum },
 		FIELD_PAD("generated_padda10", 1),
-		{ _field_enum, "short enum", &blofeld::infinite_f2::c_short_enum },
+		{ _field_short_enum, "short enum", &blofeld::infinite_f2::c_short_enum },
 		{ _field_long_enum, "long enum", &blofeld::infinite_f2::c_long_enum },
 		{ _field_byte_flags, "byte flags", &blofeld::infinite_f2::c_byte_flags },
 		FIELD_PAD("generated_pad8d5b", 1),
@@ -51502,10 +51502,10 @@ namespace infinite_f2 {
 		{ _field_real_argb_color, "real argb color" },
 		{ _field_real_hsv_color, "real hsv color" },
 		{ _field_real_ahsv_color, "real ahsv color" },
-		{ _field_short_bounds, "short bounds" },
+		{ _field_short_integer_bounds, "short bounds" },
 		{ _field_angle_bounds, "angle bounds" },
 		{ _field_real_bounds, "real bounds" },
-		{ _field_real_fraction_bounds, "fraction bounds" },
+		{ _field_fraction_bounds, "fraction bounds" },
 		{ _field_tag_reference, "tag reference", &blofeld::infinite_f2::test_tag_reference_tagref },
 		{ _field_block, "basic block", &blofeld::infinite_f2::basicblockuseonce_block },
 		{ _field_byte_block_flags, "byte block flags" },
@@ -51524,7 +51524,7 @@ namespace infinite_f2 {
 		FIELD_EXPLANATION("explanation", nullptr),
 		{ _field_struct, "basic struct", &blofeld::infinite_f2::s_basic_struct },
 		{ _field_array, "basic array", &blofeld::infinite_f2::basic_array },
-		{ _field_pageable, "basic resource", &blofeld::infinite_f2::s_basic_resource_resource_definition },
+		{ _field_pageable_resource, "basic resource", &blofeld::infinite_f2::s_basic_resource_resource_definition },
 		{ _field_block, "block with struct", &blofeld::infinite_f2::s_block_with_struct_block },
 		{ _field_block, "complex block", &blofeld::infinite_f2::s_complex_block_block },
 		{ _field_struct, "complex struct", &blofeld::infinite_f2::s_complex_struct },
@@ -52369,7 +52369,7 @@ namespace infinite_f2 {
 		{ _field_word_flags, "Flags", &blofeld::infinite_f2::i343aidecoratorflags },
 		{ _field_char_enum, "Comparison", &blofeld::infinite_f2::i343aiboolcomparison },
 		FIELD_PAD("generated_pad4a13", 1),
-		{ _field_enum, "Combat Status", &blofeld::infinite_f2::actorcombatstatus },
+		{ _field_short_enum, "Combat Status", &blofeld::infinite_f2::actorcombatstatus },
 		{ _field_terminator }
 	};
 
@@ -55306,7 +55306,7 @@ namespace infinite_f2 {
 	{
 		{ _field_long_flags, "Flags", &blofeld::infinite_f2::i343contenttagsdamagetransferflags },
 		{ _field_real, "Transfer amount" },
-		{ _field_enum, "Transfer function", &blofeld::infinite_f2::i343contenttagsdamagetransferfunction },
+		{ _field_short_enum, "Transfer function", &blofeld::infinite_f2::i343contenttagsdamagetransferfunction },
 		{ _field_short_block_index, "Damage section", &blofeld::infinite_f2::i343contenttagsdamagesection_block },
 		{ _field_string_id, "Seat label" },
 		{ _field_terminator }
@@ -55382,14 +55382,14 @@ namespace infinite_f2 {
 		{ _field_block, "Region transitions", &blofeld::infinite_f2::i343contenttagsregiontransition_block },
 		{ _field_block, "Response damage transfers", &blofeld::infinite_f2::i343contenttagsdamagetransfer_block },
 		FIELD_GROUP_BEGIN("Custom response"),
-		{ _field_enum, "Custom response behavior", &blofeld::infinite_f2::i343contenttagsdamageresponsecustomresponsebehaviortype },
+		{ _field_short_enum, "Custom response behavior", &blofeld::infinite_f2::i343contenttagsdamageresponsecustomresponsebehaviortype },
 		FIELD_PAD("generated_paddbdf", 2),
 		{ _field_string_id, "Custom response label" },
 		{ _field_real, "Response delay" },
 		{ _field_tag_reference, "Delay effect", &blofeld::infinite_f2::effect_reference$49_tagref },
 		FIELD_GROUP_END(),
 		{ _field_string_id, "Constraint or group name", _field_id_sted },
-		{ _field_enum, "Constraint damage type", &blofeld::infinite_f2::i343contenttagsdamageresponseconstraintdamagetype },
+		{ _field_short_enum, "Constraint damage type", &blofeld::infinite_f2::i343contenttagsdamageresponseconstraintdamagetype },
 		FIELD_PAD("generated_pad8f2a", 2),
 		{ _field_long_enum, "AI dialog event", &blofeld::infinite_f2::i343contenttagsdamageresponseaidialogueeventtype },
 		{ _field_block, "Ejection seats", &blofeld::infinite_f2::i343contenttagsejectionseat_block },
@@ -56457,12 +56457,12 @@ namespace infinite_f2 {
 		{ _field_long_flags, "Flags", &blofeld::infinite_f2::c_animation_blend_screen_flags },
 		{ _field_real, "Weight" },
 		{ _field_real, "Interpolation rate" },
-		{ _field_enum, "Yaw source", &blofeld::infinite_f2::c_animation_blend_screen_variable_source },
-		{ _field_enum, "Pitch source", &blofeld::infinite_f2::c_animation_blend_screen_variable_source },
+		{ _field_short_enum, "Yaw source", &blofeld::infinite_f2::c_animation_blend_screen_variable_source },
+		{ _field_short_enum, "Pitch source", &blofeld::infinite_f2::c_animation_blend_screen_variable_source },
 		{ _field_string_id, "Yaw source function", _field_id_sted },
 		{ _field_string_id, "Pitch source function", _field_id_sted },
-		{ _field_enum, "Weight source", &blofeld::infinite_f2::c_animation_blend_screen_weight_source },
-		{ _field_enum, "Secondary weight source", &blofeld::infinite_f2::c_animation_blend_screen_weight_source },
+		{ _field_short_enum, "Weight source", &blofeld::infinite_f2::c_animation_blend_screen_weight_source },
+		{ _field_short_enum, "Secondary weight source", &blofeld::infinite_f2::c_animation_blend_screen_weight_source },
 		{ _field_string_id, "Weight source object function", _field_id_sted },
 		{ _field_string_id, "Secondary weight object function", _field_id_sted },
 		{ _field_short_block_index, "Weight function", &blofeld::infinite_f2::legacyanimsetfunction_block },
@@ -56504,7 +56504,7 @@ namespace infinite_f2 {
 	{
 		{ _field_string_id, "Label" },
 		{ _field_string_id, "Animation", _field_id_sted },
-		{ _field_enum, "Function controls", &blofeld::infinite_f2::c_function_overlay_animation_mode },
+		{ _field_short_enum, "Function controls", &blofeld::infinite_f2::c_function_overlay_animation_mode },
 		FIELD_PAD("generated_pade41c", 2),
 		{ _field_string_id, "Function", _field_id_sted },
 		{ _field_terminator }
@@ -56699,7 +56699,7 @@ namespace infinite_f2 {
 		SYNCACTION_ID)
 	{
 		{ _field_string_id, "Name" },
-		{ _field_enum, "Sync Action Type", &blofeld::infinite_f2::animationsyncactionstyletype },
+		{ _field_short_enum, "Sync Action Type", &blofeld::infinite_f2::animationsyncactionstyletype },
 		FIELD_PAD("generated_pad9781", 2),
 		{ _field_block, "Same Type Participants", &blofeld::infinite_f2::syncactionsametypeparticipant_block },
 		{ _field_block, "Other Participant", &blofeld::infinite_f2::syncactionotherparticipant_block },
@@ -57037,11 +57037,11 @@ namespace infinite_f2 {
 	{
 		{ _field_struct, "AnyTag", &blofeld::infinite_f2::anytag_struct_definition },
 		{ _field_real, "Camera distance" },
-		{ _field_enum, "Number of camera points", &blofeld::infinite_f2::eimpostorcamerapointscount },
+		{ _field_short_enum, "Number of camera points", &blofeld::infinite_f2::eimpostorcamerapointscount },
 		{ _field_word_flags, "Texture channels rendered", &blofeld::infinite_f2::impostortexturechannels },
-		{ _field_enum, "Grid shape", &blofeld::infinite_f2::eimpostorgridshape },
-		{ _field_enum, "Texture size", &blofeld::infinite_f2::eimpostortexturesize },
-		{ _field_enum, "Maximum LOD index", &blofeld::infinite_f2::elodflags },
+		{ _field_short_enum, "Grid shape", &blofeld::infinite_f2::eimpostorgridshape },
+		{ _field_short_enum, "Texture size", &blofeld::infinite_f2::eimpostortexturesize },
+		{ _field_short_enum, "Maximum LOD index", &blofeld::infinite_f2::elodflags },
 		FIELD_PAD("generated_padac96", 2),
 		{ _field_terminator }
 	};
@@ -58829,7 +58829,7 @@ namespace infinite_f2 {
 		SKELETONIKCHAIN_ID)
 	{
 		{ _field_string_id, "Name" },
-		{ _field_enum, "Type", &blofeld::infinite_f2::c_animation_ik_chain_type },
+		{ _field_short_enum, "Type", &blofeld::infinite_f2::c_animation_ik_chain_type },
 		FIELD_PAD("generated_pad7620", 2),
 		{ _field_string_id, "Start joint", _field_id_sted },
 		{ _field_string_id, "Effector joint", _field_id_sted },
@@ -59059,7 +59059,7 @@ namespace infinite_f2 {
 		JOINTUSAGE_ID)
 	{
 		{ _field_string_id, "Joint name", _field_id_sted },
-		{ _field_enum, "Joint usage type", &blofeld::infinite_f2::c_animation_node_usage },
+		{ _field_short_enum, "Joint usage type", &blofeld::infinite_f2::c_animation_node_usage },
 		FIELD_PAD("generated_pade9c7", 2),
 		{ _field_terminator }
 	};
@@ -60753,22 +60753,22 @@ namespace infinite_f2 {
 		{ _field_real, "duration max" },
 		{ _field_real, "duration min" },
 		{ _field_real, "rise period ratio" },
-		{ _field_enum, "rise function", &blofeld::infinite_f2::transitionfunction },
-		{ _field_enum, "descend function", &blofeld::infinite_f2::transitionfunction },
+		{ _field_short_enum, "rise function", &blofeld::infinite_f2::transitionfunction },
+		{ _field_short_enum, "descend function", &blofeld::infinite_f2::transitionfunction },
 		FIELD_EXPLANATION("PENDULUM SETTINGS", nullptr),
 		{ _field_real, "phase revolution speed" },
 		{ _field_real, "phase repeat along radius" },
 		FIELD_EXPLANATION("SHAPE TRANSITION", nullptr),
 		{ _field_real, "pattern start idx" },
 		{ _field_real, "pattern end idx" },
-		{ _field_enum, "pattern transition", &blofeld::infinite_f2::transitionfunction },
+		{ _field_short_enum, "pattern transition", &blofeld::infinite_f2::transitionfunction },
 		FIELD_PAD("generated_pad8f3f", 2),
 		FIELD_EXPLANATION("FOAM", nullptr),
 		{ _field_real, "foam out radius" },
 		{ _field_real, "foam fade distance" },
 		{ _field_real, "foam duration" },
-		{ _field_enum, "foam rise function", &blofeld::infinite_f2::transitionfunction },
-		{ _field_enum, "foam fade function", &blofeld::infinite_f2::transitionfunction },
+		{ _field_short_enum, "foam rise function", &blofeld::infinite_f2::transitionfunction },
+		{ _field_short_enum, "foam fade function", &blofeld::infinite_f2::transitionfunction },
 		{ _field_terminator }
 	};
 
@@ -61942,7 +61942,7 @@ namespace infinite_f2 {
 		I343EQUIPMENTUPGRADEPATH_ID)
 	{
 		{ _field_string_id, "Path name" },
-		{ _field_enum, "Path Upgrade Type", &blofeld::infinite_f2::i343equipmentupgradeequipmentupgradetype },
+		{ _field_short_enum, "Path Upgrade Type", &blofeld::infinite_f2::i343equipmentupgradeequipmentupgradetype },
 		FIELD_PAD("generated_pad72a0", 2),
 		{ _field_string_id, "Path description" },
 		{ _field_string_id, "Persistence key levels" },
@@ -62135,7 +62135,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343OBJECTSPOWERSOURCESTATECONFIGURATION_ID)
 	{
-		{ _field_enum, "region state", &blofeld::infinite_f2::modelstates },
+		{ _field_short_enum, "region state", &blofeld::infinite_f2::modelstates },
 		{ _field_short_block_index, "configuration", &blofeld::infinite_f2::i343objectspowersourceconfiguration_block },
 		{ _field_terminator }
 	};
@@ -62208,7 +62208,7 @@ namespace infinite_f2 {
 		S_SCENARIO_SCENERY_DATUM_ID)
 	{
 		FIELD_CUSTOM("value", _field_id_pathfinding),
-		{ _field_enum, "Pathfinding policy", &blofeld::infinite_f2::objectpathfindingpolicy },
+		{ _field_short_enum, "Pathfinding policy", &blofeld::infinite_f2::objectpathfindingpolicy },
 		{ _field_short_integer, "havok mopp index" },
 		{ _field_short_block_index, "ai spawning squad", &blofeld::infinite_f2::s_squad_definition_block },
 		{ _field_terminator }
@@ -62529,19 +62529,19 @@ namespace infinite_f2 {
 		I343PROJECTILESDEPRECATEDPROJECTILEMATERIALRESPONSEDEFINITIONV0_ID)
 	{
 		FIELD_EXPLANATION("default result", nullptr),
-		{ _field_enum, "default response", &blofeld::infinite_f2::i343projectilesmaterialresponse },
+		{ _field_short_enum, "default response", &blofeld::infinite_f2::i343projectilesmaterialresponse },
 		FIELD_PAD("generated_pad1fd0", 2),
 		{ _field_string_id, "material name", _field_id_sted },
 		{ _field_short_integer, "runtime material index" },
 		FIELD_EXPLANATION("potential result", nullptr),
-		{ _field_enum, "potential response", &blofeld::infinite_f2::i343projectilesmaterialresponse },
+		{ _field_short_enum, "potential response", &blofeld::infinite_f2::i343projectilesmaterialresponse },
 		{ _field_word_flags, "response flags", &blofeld::infinite_f2::i343projectilespossibleresponseflags },
 		FIELD_PAD("generated_pad39b1", 2),
 		{ _field_real_fraction, "chance fraction" },
 		{ _field_angle_bounds, "between" },
 		{ _field_real_bounds, "and" },
 		FIELD_EXPLANATION("misc", nullptr),
-		{ _field_enum, "scale effects by", &blofeld::infinite_f2::i343projectilesmaterialresponsescalemode },
+		{ _field_short_enum, "scale effects by", &blofeld::infinite_f2::i343projectilesmaterialresponsescalemode },
 		FIELD_PAD("generated_pad8666", 2),
 		{ _field_angle, "angular noise" },
 		{ _field_real, "velocity noise" },
@@ -62609,9 +62609,9 @@ namespace infinite_f2 {
 		{ _field_angle_bounds, "between" },
 		{ _field_real_bounds, "and" },
 		FIELD_EXPLANATION("response", nullptr),
-		{ _field_enum, "response", &blofeld::infinite_f2::i343projectilesmaterialresponse },
+		{ _field_short_enum, "response", &blofeld::infinite_f2::i343projectilesmaterialresponse },
 		FIELD_EXPLANATION("misc", nullptr),
-		{ _field_enum, "scale effects by", &blofeld::infinite_f2::i343projectilesmaterialresponsescalemode },
+		{ _field_short_enum, "scale effects by", &blofeld::infinite_f2::i343projectilesmaterialresponsescalemode },
 		{ _field_angle, "angular noise" },
 		{ _field_real, "velocity noise" },
 		FIELD_EXPLANATION("overpenetration", nullptr),
@@ -62724,8 +62724,8 @@ namespace infinite_f2 {
 		{ _field_short_integer, "count" },
 		{ _field_char_enum, "network prediction", &blofeld::infinite_f2::i343projectilessubmunitionprediction },
 		{ _field_char_enum, "placement", &blofeld::infinite_f2::i343projectilesesubmunitionplacement },
-		{ _field_enum, "orientation", &blofeld::infinite_f2::i343projectilesesubmunitionorientation },
-		{ _field_enum, "trigger", &blofeld::infinite_f2::i343projectilesesubmunitiontrigger },
+		{ _field_short_enum, "orientation", &blofeld::infinite_f2::i343projectilesesubmunitionorientation },
+		{ _field_short_enum, "trigger", &blofeld::infinite_f2::i343projectilesesubmunitiontrigger },
 		{ _field_word_flags, "flags", &blofeld::infinite_f2::i343projectilessubmunitionflags },
 		{ _field_char_enum, "crit mode", &blofeld::infinite_f2::i343projectilessubmunitioncritmode },
 		{ _field_byte_integer, "max recursion depth" },
@@ -63020,7 +63020,7 @@ namespace infinite_f2 {
 		{ _field_short_integer, "rounds loaded maximum" },
 		{ _field_short_integer, "rounds inventory maximum" },
 		{ _field_short_integer, "rounds reloaded" },
-		{ _field_enum, "ammo refill type", &blofeld::infinite_f2::i343munitionseammorefilltype },
+		{ _field_short_enum, "ammo refill type", &blofeld::infinite_f2::i343munitionseammorefilltype },
 		{ _field_terminator }
 	};
 
@@ -63455,7 +63455,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "optional barrel marker name" },
 		{ _field_struct, "noise", &blofeld::infinite_f2::i343weaponbarrelnoisedefinition },
 		FIELD_EXPLANATION("prediction properties", nullptr),
-		{ _field_enum, "prediction type", &blofeld::infinite_f2::i343weaponbarrelpredictiontype },
+		{ _field_short_enum, "prediction type", &blofeld::infinite_f2::i343weaponbarrelpredictiontype },
 		FIELD_PAD("generated_pad276b", 2),
 		{ _field_real, "event_synchronized_projectiles_per_second" },
 		{ _field_real, "maximum_barrel_error_for_event_synchronization" },
@@ -63582,7 +63582,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343WEAPONBARRELDISTRUBUTIONDEFINITION_ID)
 	{
-		{ _field_enum, "distribution function", &blofeld::infinite_f2::i343weaponbarreldistributionfunction },
+		{ _field_short_enum, "distribution function", &blofeld::infinite_f2::i343weaponbarreldistributionfunction },
 		{ _field_short_integer, "projectiles per shot" },
 		{ _field_block, "direction offset", &blofeld::infinite_f2::i343weaponprojectiledistributioncustomangleoffset_block },
 		{ _field_block, "position offsets", &blofeld::infinite_f2::i343weaponprojectiledistributioncustomvector_block },
@@ -63794,7 +63794,7 @@ namespace infinite_f2 {
 		{ _field_real, "barrel spin scale" },
 		{ _field_struct, "barrel spin scalars", &blofeld::infinite_f2::i343weaponbarrelspinningdefinition },
 		{ _field_real_fraction, "blurred rate of fire" },
-		{ _field_short_bounds, "shots per fire" },
+		{ _field_short_integer_bounds, "shots per fire" },
 		{ _field_real, "fire recovery time" },
 		{ _field_real_fraction, "soft recovery fraction" },
 		{ _field_real, "melee  fire recovery time" },
@@ -63886,8 +63886,8 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343WEAPONBARRELNOISEDEFINITION_ID)
 	{
-		{ _field_enum, "ai noise", &blofeld::infinite_f2::i343aisoundvolume },
-		{ _field_enum, "motion tracker noise", &blofeld::infinite_f2::i343weaponmotiontrackernoiselevel },
+		{ _field_short_enum, "ai noise", &blofeld::infinite_f2::i343aisoundvolume },
+		{ _field_short_enum, "motion tracker noise", &blofeld::infinite_f2::i343weaponmotiontrackernoiselevel },
 		{ _field_terminator }
 	};
 
@@ -63993,7 +63993,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343WEAPONFIRESOUNDDEFINITION_ID)
 	{
-		{ _field_enum, "Firing Type", &blofeld::infinite_f2::i343weaponsoundfiringtype },
+		{ _field_short_enum, "Firing Type", &blofeld::infinite_f2::i343weaponsoundfiringtype },
 		{ _field_short_block_index, "Barrel Attachment Index", &blofeld::infinite_f2::i343weaponbarreldefinition_block },
 		{ _field_real, "Fire start delay" },
 		{ _field_block, "Weapon Fire Sound Variations", &blofeld::infinite_f2::i343weaponfiresoundvariationdefinition_block },
@@ -64179,7 +64179,7 @@ namespace infinite_f2 {
 		{ _field_real, "weapon blur focus distance" },
 		{ _field_real, "weapon blur half width" },
 		FIELD_EXPLANATION("vignette", nullptr),
-		{ _field_real_fraction_bounds, "vignette radius bounds" },
+		{ _field_fraction_bounds, "vignette radius bounds" },
 		{ _field_real_fraction, "vignette intensity" },
 		{ _field_terminator }
 	};
@@ -64208,7 +64208,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343WEAPONFIRSTPERSONWEAPONOFFSETCONTROL_ID)
 	{
-		{ _field_enum, "First Person Weapon Group", &blofeld::infinite_f2::i343weaponfirstpersonweapongroup },
+		{ _field_short_enum, "First Person Weapon Group", &blofeld::infinite_f2::i343weaponfirstpersonweapongroup },
 		FIELD_PAD("generated_padfc06", 2),
 		{ _field_string_id, "Weapon Group Header String" },
 		{ _field_real_bounds, "Depth Offset Bounds" },
@@ -64336,7 +64336,7 @@ namespace infinite_f2 {
 		{ _field_short_integer, "rounds total maximum" },
 		{ _field_short_integer, "rounds loaded maximum" },
 		{ _field_short_integer, "runtime rounds inventory maximum" },
-		{ _field_enum, "ammo refill type", &blofeld::infinite_f2::i343munitionseammorefilltype },
+		{ _field_short_enum, "ammo refill type", &blofeld::infinite_f2::i343munitionseammorefilltype },
 		{ _field_real, "reload dialogue time" },
 		{ _field_short_integer, "rounds reloaded" },
 		FIELD_PAD("generated_padccf5", 2),
@@ -64923,8 +64923,8 @@ namespace infinite_f2 {
 		FIELD_EXPLANATION("AUTOFIRE", nullptr),
 		{ _field_real, "autofire time" },
 		{ _field_real, "autofire throw" },
-		{ _field_enum, "secondary action", &blofeld::infinite_f2::i343weapontriggerautofireaction },
-		{ _field_enum, "primary action", &blofeld::infinite_f2::i343weapontriggerautofireaction },
+		{ _field_short_enum, "secondary action", &blofeld::infinite_f2::i343weapontriggerautofireaction },
+		{ _field_short_enum, "primary action", &blofeld::infinite_f2::i343weapontriggerautofireaction },
 		{ _field_terminator }
 	};
 
@@ -64946,11 +64946,11 @@ namespace infinite_f2 {
 		I343WEAPONTRIGGERDEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &blofeld::infinite_f2::i343weaponc_weapon_trigger_definition_flags },
-		{ _field_enum, "input", &blofeld::infinite_f2::i343weapontriggerinput },
-		{ _field_enum, "behavior", &blofeld::infinite_f2::i343weapontriggerbehavior },
+		{ _field_short_enum, "input", &blofeld::infinite_f2::i343weapontriggerinput },
+		{ _field_short_enum, "behavior", &blofeld::infinite_f2::i343weapontriggerbehavior },
 		{ _field_short_block_index, "primary barrel", &blofeld::infinite_f2::i343weaponbarreldefinition_block },
 		{ _field_short_block_index, "secondary barrel", &blofeld::infinite_f2::i343weaponbarreldefinition_block },
-		{ _field_enum, "prediction", &blofeld::infinite_f2::i343weapontriggerpredictiontype },
+		{ _field_short_enum, "prediction", &blofeld::infinite_f2::i343weapontriggerpredictiontype },
 		FIELD_EXPLANATION("ALT-FIRE", nullptr),
 		{ _field_char_enum, "alt fire behavior", &blofeld::infinite_f2::i343weapontriggeraltfirebehavior },
 		FIELD_PAD("generated_pad88ae", 1),
@@ -65541,9 +65541,9 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_INSTANTANEOUS_DAMAGE_RESPONSE_ID)
 	{
-		{ _field_enum, "response type", &blofeld::infinite_f2::damageresponsetype },
+		{ _field_short_enum, "response type", &blofeld::infinite_f2::damageresponsetype },
 		FIELD_EXPLANATION("Constraint damage type", nullptr),
-		{ _field_enum, "constraint damage type", &blofeld::infinite_f2::damageresponseconstraintdamagetype },
+		{ _field_short_enum, "constraint damage type", &blofeld::infinite_f2::damageresponseconstraintdamagetype },
 		FIELD_EXPLANATION("Constraint destruction", nullptr),
 		{ _field_string_id, "constraint/group name" },
 		FIELD_EXPLANATION("Damage response flags", nullptr),
@@ -65556,12 +65556,12 @@ namespace infinite_f2 {
 		{ _field_tag_reference, "transition effect (specific)", &blofeld::infinite_f2::effect_reference$111_tagref },
 		{ _field_struct, "damage effect", &blofeld::infinite_f2::instantaneousresponsedamageeffect },
 		{ _field_string_id, "region" },
-		{ _field_enum, "new state", &blofeld::infinite_f2::modelstates },
+		{ _field_short_enum, "new state", &blofeld::infinite_f2::modelstates },
 		{ _field_short_integer, "runtime region index" },
 		{ _field_string_id, "region (secondary)" },
-		{ _field_enum, "new state (secondary)", &blofeld::infinite_f2::modelstates },
+		{ _field_short_enum, "new state (secondary)", &blofeld::infinite_f2::modelstates },
 		{ _field_short_integer, "runtime region index (secondary)" },
-		{ _field_enum, "custom response behavior", &blofeld::infinite_f2::damageresponsecustomresponsebehavior },
+		{ _field_short_enum, "custom response behavior", &blofeld::infinite_f2::damageresponsecustomresponsebehavior },
 		FIELD_PAD("generated_pad870e", 2),
 		{ _field_string_id, "custom response label" },
 		{ _field_string_id, "effect marker name" },
@@ -65729,7 +65729,7 @@ namespace infinite_f2 {
 		FIELD_GROUP_END(),
 		{ _field_block, "region_transitions", &blofeld::infinite_f2::s_region_transition_block },
 		{ _field_block, "response damage transfers", &blofeld::infinite_f2::s_damage_transfer_block },
-		{ _field_enum, "custom response behavior", &blofeld::infinite_f2::damageresponsecustomresponsebehavior },
+		{ _field_short_enum, "custom response behavior", &blofeld::infinite_f2::damageresponsecustomresponsebehavior },
 		FIELD_PAD("generated_padec95", 2),
 		{ _field_string_id, "custom response label" },
 		{ _field_real, "response delay" },
@@ -65740,7 +65740,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "destroyed child object marker name" },
 		{ _field_real_fraction, "total damage threshold" },
 		{ _field_string_id, "constraint or group name" },
-		{ _field_enum, "constraint damage type", &blofeld::infinite_f2::damageresponseconstraintdamagetype },
+		{ _field_short_enum, "constraint damage type", &blofeld::infinite_f2::damageresponseconstraintdamagetype },
 		FIELD_PAD("generated_padd2b4", 2),
 		{ _field_long_enum, "ai dialog event", &blofeld::infinite_f2::edamageresponseaidialogeeventtype },
 		{ _field_terminator }
@@ -66018,10 +66018,10 @@ namespace infinite_f2 {
 	{
 		{ _field_long_flags, "flags", &blofeld::infinite_f2::damagetransferflags },
 		{ _field_real, "transfer amount" },
-		{ _field_enum, "transfer function", &blofeld::infinite_f2::damagetransferfunction },
+		{ _field_short_enum, "transfer function", &blofeld::infinite_f2::damagetransferfunction },
 		FIELD_PAD("generated_pad53f9", 2),
 		{ _field_real, "Ai Stun Transfer Amount" },
-		{ _field_enum, "Ai Stun Transfer Function", &blofeld::infinite_f2::damagetransferfunction },
+		{ _field_short_enum, "Ai Stun Transfer Function", &blofeld::infinite_f2::damagetransferfunction },
 		{ _field_short_block_index, "damage section", &blofeld::infinite_f2::s_new_model_damage_section_block },
 		{ _field_string_id, "seat label" },
 		{ _field_terminator }
@@ -66325,7 +66325,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_SCENARIO_CRATE_DATUM_ID)
 	{
-		{ _field_enum, "Pathfinding policy", &blofeld::infinite_f2::objectpathfindingpolicy },
+		{ _field_short_enum, "Pathfinding policy", &blofeld::infinite_f2::objectpathfindingpolicy },
 		{ _field_terminator }
 	};
 
@@ -66469,8 +66469,8 @@ namespace infinite_f2 {
 		FIELD_EXPLANATION("damage", nullptr),
 		FIELD_EXPLANATION("Damage Type", nullptr),
 		{ _field_struct, "damageType", &blofeld::infinite_f2::i343damagedamagetypedefinition },
-		{ _field_enum, "side effect", &blofeld::infinite_f2::damagesideeffects },
-		{ _field_enum, "category", &blofeld::infinite_f2::damagecategories },
+		{ _field_short_enum, "side effect", &blofeld::infinite_f2::damagesideeffects },
+		{ _field_short_enum, "category", &blofeld::infinite_f2::damagecategories },
 		{ _field_long_enum, "death vocalization", &blofeld::infinite_f2::damagedeathvocalizations },
 		{ _field_long_flags, "flags", &blofeld::infinite_f2::damagedefinitionflags },
 		{ _field_long_flags, "secondary flags", &blofeld::infinite_f2::damagedefinitionsecondaryflags },
@@ -66486,7 +66486,7 @@ namespace infinite_f2 {
 		{ _field_angle, "dmg inner cone angle" },
 		{ _field_struct, "blah", &blofeld::infinite_f2::damageouterconeangle },
 		{ _field_real, "active camouflage damage" },
-		{ _field_real_fraction_bounds, "active camouflage damage range" },
+		{ _field_fraction_bounds, "active camouflage damage range" },
 		{ _field_real_fraction, "movement stun" },
 		{ _field_real_fraction, "maximum movement stun" },
 		{ _field_real_fraction, "turn stun" },
@@ -66515,7 +66515,7 @@ namespace infinite_f2 {
 		{ _field_block, "custom response labels", &blofeld::infinite_f2::customdamageresponselabelparam_block },
 		{ _field_real, "AI stun radius" },
 		{ _field_real_bounds, "AI stun bounds" },
-		{ _field_enum, "aiNoiseVolume", &blofeld::infinite_f2::i343aisoundvolume },
+		{ _field_short_enum, "aiNoiseVolume", &blofeld::infinite_f2::i343aisoundvolume },
 		FIELD_PAD("generated_pad97e3", 2),
 		{ _field_real, "shake radius" },
 		{ _field_real, "EMP radius" },
@@ -66680,7 +66680,7 @@ namespace infinite_f2 {
 	{
 		{ _field_real, "indicator duration" },
 		{ _field_real, "flash duration " },
-		{ _field_enum, "fade function", &blofeld::infinite_f2::reversetransitionfunction },
+		{ _field_short_enum, "fade function", &blofeld::infinite_f2::reversetransitionfunction },
 		FIELD_PAD("generated_pad5fa7", 2),
 		{ _field_real, "center size" },
 		{ _field_real, "offscreen size" },
@@ -66805,7 +66805,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_DAMAGE_RESPONSE_CLASS_DEFINITION_ID)
 	{
-		{ _field_enum, "type", &blofeld::infinite_f2::damageresponseclasstype },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::damageresponseclasstype },
 		{ _field_word_flags, "flags", &blofeld::infinite_f2::damageresponseclassflags },
 		FIELD_EXPLANATION("directional flash", nullptr),
 		{ _field_struct, "directional flash", &blofeld::infinite_f2::s_damage_response_directional_flash_definition },
@@ -67729,8 +67729,8 @@ namespace infinite_f2 {
 		{ _field_long_flags, "ai flags", &blofeld::infinite_f2::objectaipropertiesflags },
 		{ _field_string_id, "ai type name" },
 		{ _field_string_id, "interaction name" },
-		{ _field_enum, "ai size", &blofeld::infinite_f2::objectaisize },
-		{ _field_enum, "leap jump speed", &blofeld::infinite_f2::characterjumpheight },
+		{ _field_short_enum, "ai size", &blofeld::infinite_f2::objectaisize },
+		{ _field_short_enum, "leap jump speed", &blofeld::infinite_f2::characterjumpheight },
 		{ _field_real, "unattached damage modifier" },
 		{ _field_byte_flags, "Bot markup flags", &blofeld::infinite_f2::botobjectmarkupflags },
 		FIELD_PAD("generated_pad9518", 3),
@@ -67809,7 +67809,7 @@ namespace infinite_f2 {
 		{ _field_real, "Planted Threshold" },
 		{ _field_real, "Lifted Threshold" },
 		{ _field_real, "Lifted Minimum Time" },
-		{ _field_enum, "Event", &blofeld::infinite_f2::animationframeeventtype },
+		{ _field_short_enum, "Event", &blofeld::infinite_f2::animationframeeventtype },
 		FIELD_PAD("generated_paddc16", 2),
 		{ _field_terminator }
 	};
@@ -68695,7 +68695,7 @@ namespace infinite_f2 {
 	{
 		{ _field_struct, "object", &blofeld::infinite_f2::objectdefinition },
 		FIELD_EXPLANATION("Pathfinding", nullptr),
-		{ _field_enum, "pathfinding policy", &blofeld::infinite_f2::objectpathfindingpolicy },
+		{ _field_short_enum, "pathfinding policy", &blofeld::infinite_f2::objectpathfindingpolicy },
 		{ _field_word_flags, "flags", &blofeld::infinite_f2::sceneryflags },
 		FIELD_PAD("generated_padf66f", 4),
 		{ _field_terminator }
@@ -69375,7 +69375,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CLOTH_PROPERTIES_ID)
 	{
-		{ _field_enum, "Integration type", &blofeld::infinite_f2::clothintegrationtype },
+		{ _field_short_enum, "Integration type", &blofeld::infinite_f2::clothintegrationtype },
 		{ _field_short_integer, "Number iterations" },
 		{ _field_real, "weight" },
 		{ _field_real, "drag" },
@@ -69496,7 +69496,7 @@ namespace infinite_f2 {
 		{ _field_real, "tumble scale" },
 		{ _field_real, "rotation scale" },
 		{ _field_real, "starting velocity" },
-		{ _field_real_fraction_bounds, "air friction XY and Z" },
+		{ _field_fraction_bounds, "air friction XY and Z" },
 		{ _field_terminator }
 	};
 
@@ -70861,7 +70861,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_SCENARIO_GIANT_DATUM_ID)
 	{
-		{ _field_enum, "Pathfinding policy", &blofeld::infinite_f2::objectpathfindingpolicy },
+		{ _field_short_enum, "Pathfinding policy", &blofeld::infinite_f2::objectpathfindingpolicy },
 		{ _field_terminator }
 	};
 
@@ -71506,7 +71506,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "pound fall exit animation" },
 		{ _field_string_id, "pound hit animation" },
 		{ _field_string_id, "pound hit exit animation" },
-		{ _field_enum, "pound hit AI sound level", &blofeld::infinite_f2::i343aisoundvolume },
+		{ _field_short_enum, "pound hit AI sound level", &blofeld::infinite_f2::i343aisoundvolume },
 		FIELD_PAD("generated_padba74", 2),
 		FIELD_EXPLANATION("Aim Assist", nullptr),
 		{ _field_angle, "auto aim angle" },
@@ -71688,7 +71688,7 @@ namespace infinite_f2 {
 		{ _field_real, "auto aim falloff range" },
 		{ _field_real, "auto aim near falloff range" },
 		FIELD_EXPLANATION("AI Response", nullptr),
-		{ _field_enum, "bash AI sound level", &blofeld::infinite_f2::i343aisoundvolume },
+		{ _field_short_enum, "bash AI sound level", &blofeld::infinite_f2::i343aisoundvolume },
 		FIELD_PAD("generated_padf9a1", 2),
 		{ _field_terminator }
 	};
@@ -72590,7 +72590,7 @@ namespace infinite_f2 {
 		FIELD_EXPLANATION("seat acceleration spring", nullptr),
 		{ _field_tag_reference, "seat acceleration", &blofeld::infinite_f2::spring_acceleration_reference$2_tagref },
 		{ _field_real, "AI scariness" },
-		{ _field_enum, "ai seat type", &blofeld::infinite_f2::aiseattype },
+		{ _field_short_enum, "ai seat type", &blofeld::infinite_f2::aiseattype },
 		{ _field_short_block_index, "boarding seat", &blofeld::infinite_f2::unit_seat_block },
 		{ _field_block, "additional boarding seats", &blofeld::infinite_f2::s_boarding_seat_block },
 		FIELD_GROUP_BEGIN("seat switching"),
@@ -73080,8 +73080,8 @@ namespace infinite_f2 {
 		FIELD_GROUP_BEGIN("$$$ UNIT $$$"),
 		{ _field_long_flags, "unit flags", &blofeld::infinite_f2::c_unit_definition_flags_schema_part1, _field_id_dumb },
 		{ _field_long_flags, "flags2", &blofeld::infinite_f2::c_unit_definition_flags_schema_part2, _field_id_dumb },
-		{ _field_enum, "default team", &blofeld::infinite_f2::e_campaign_team },
-		{ _field_enum, "constant sound volume", &blofeld::infinite_f2::i343aisoundvolume },
+		{ _field_short_enum, "default team", &blofeld::infinite_f2::e_campaign_team },
+		{ _field_short_enum, "constant sound volume", &blofeld::infinite_f2::i343aisoundvolume },
 		{ _field_tag_reference, "hologram unit reference", &blofeld::infinite_f2::unit_reference_tagref },
 		{ _field_block, "campaign metagame bucket", &blofeld::infinite_f2::s_campaign_metagame_bucket_block },
 		{ _field_block, "screen effects", &blofeld::infinite_f2::s_unit_screen_effect_definition_block },
@@ -73139,9 +73139,9 @@ namespace infinite_f2 {
 		{ _field_tag_reference, "native melee override", &blofeld::infinite_f2::weapon_reference$3_tagref },
 		{ _field_struct, "your momma", &blofeld::infinite_f2::unitboardingmeleedefinition },
 		FIELD_GROUP_END(),
-		{ _field_enum, "motion sensor blip style enemy", &blofeld::infinite_f2::interfacemotiontrackerstyleenum },
-		{ _field_enum, "motion sensor blip style friendly", &blofeld::infinite_f2::interfacemotiontrackerstyleenum },
-		{ _field_enum, "item owner size", &blofeld::infinite_f2::itemownersize },
+		{ _field_short_enum, "motion sensor blip style enemy", &blofeld::infinite_f2::interfacemotiontrackerstyleenum },
+		{ _field_short_enum, "motion sensor blip style friendly", &blofeld::infinite_f2::interfacemotiontrackerstyleenum },
+		{ _field_short_enum, "item owner size", &blofeld::infinite_f2::itemownersize },
 		FIELD_PAD("generated_pad9055", 2),
 		{ _field_real, "motion tracker range modifier" },
 		{ _field_string_id, "equipment variant name" },
@@ -73172,7 +73172,7 @@ namespace infinite_f2 {
 		{ _field_block, "seats", &blofeld::infinite_f2::unit_seat_block },
 		{ _field_real, "maximum seat switch linear velocity" },
 		{ _field_angle, "maximum seat switch angular velocity" },
-		{ _field_enum, "empty mount behavior", &blofeld::infinite_f2::empymountbehavior },
+		{ _field_short_enum, "empty mount behavior", &blofeld::infinite_f2::empymountbehavior },
 		FIELD_PAD("generated_pad7674", 2),
 		FIELD_GROUP_BEGIN("open/close"),
 		{ _field_real, "opening time" },
@@ -74039,7 +74039,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_SCENARIO_VEHICLE_DATUM_ID)
 	{
-		{ _field_enum, "Pathfinding policy", &blofeld::infinite_f2::objectpathfindingpolicy },
+		{ _field_short_enum, "Pathfinding policy", &blofeld::infinite_f2::objectpathfindingpolicy },
 		FIELD_PAD("generated_pad3f53", 2),
 		{ _field_tag_reference, "configuration", &blofeld::infinite_f2::vehicleconfiguration_reference$2_tagref },
 		{ _field_terminator }
@@ -75010,8 +75010,8 @@ namespace infinite_f2 {
 		{ _field_short_integer, "objects spawned per activation" },
 		{ _field_byte_integer, "max simultaneous" },
 		FIELD_PAD("generated_padbdd2", 1),
-		{ _field_enum, "spawned objects behaviour", &blofeld::infinite_f2::i343equipmentspawnedobjectsbehaviour },
-		{ _field_enum, "type", &blofeld::infinite_f2::i343equipmentspawnobjectsspawntype },
+		{ _field_short_enum, "spawned objects behaviour", &blofeld::infinite_f2::i343equipmentspawnedobjectsbehaviour },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::i343equipmentspawnobjectsspawntype },
 		{ _field_struct, "control state support", &blofeld::infinite_f2::i343equipmentbasiccontrolstate },
 		FIELD_PAD("generated_pad0a87", 2),
 		{ _field_long_flags, "spawn flags", &blofeld::infinite_f2::i343equipmentspawningflags },
@@ -76104,8 +76104,8 @@ namespace infinite_f2 {
 		{ _field_tag_reference, "parent", &blofeld::infinite_f2::projectile_reference$5_tagref, _field_id_parent },
 		{ _field_long_flags, "flags", &blofeld::infinite_f2::c_projectile_definition_flags },
 		{ _field_long_flags, "secondary flags", &blofeld::infinite_f2::c_secondary_projectile_definition_flags },
-		{ _field_enum, "detonation timer starts", &blofeld::infinite_f2::detonationtimermodes },
-		{ _field_enum, "impact noise", &blofeld::infinite_f2::i343aisoundvolume },
+		{ _field_short_enum, "detonation timer starts", &blofeld::infinite_f2::detonationtimermodes },
+		{ _field_short_enum, "impact noise", &blofeld::infinite_f2::i343aisoundvolume },
 		{ _field_real, "detonation biped proximity" },
 		{ _field_real, "air burst proximity" },
 		{ _field_real, "max lifetime to detonate" },
@@ -76127,7 +76127,7 @@ namespace infinite_f2 {
 		{ _field_char_enum, "sequenced detonation direction", &blofeld::infinite_f2::i343projectilessequencedetonationdirection },
 		FIELD_PAD("generated_pad56f8", 3),
 		{ _field_real, "time between sequenced detonations" },
-		{ _field_enum, "detonation noise", &blofeld::infinite_f2::i343aisoundvolume },
+		{ _field_short_enum, "detonation noise", &blofeld::infinite_f2::i343aisoundvolume },
 		{ _field_short_integer, "super combine contribution" },
 		{ _field_short_integer, "super det. projectile count" },
 		FIELD_PAD("generated_pad70d9", 2),
@@ -76522,7 +76522,7 @@ namespace infinite_f2 {
 		{ _field_real_bounds, "ballistic arcing firing bounds" },
 		{ _field_real_bounds, "ballistic arcing fraction bounds" },
 		FIELD_EXPLANATION("movement", nullptr),
-		{ _field_enum, "movement penalized", &blofeld::infinite_f2::i343weaponmovementpenaltymode },
+		{ _field_short_enum, "movement penalized", &blofeld::infinite_f2::i343weaponmovementpenaltymode },
 		FIELD_PAD("generated_padac7a", 2),
 		{ _field_real_fraction, "forward movement penalty" },
 		{ _field_real_fraction, "sideways movement penalty" },
@@ -76549,7 +76549,7 @@ namespace infinite_f2 {
 		{ _field_real, "age rate of fire penalty" },
 		{ _field_real_fraction, "age misfire start" },
 		{ _field_real_fraction, "age misfire chance" },
-		{ _field_enum, "age-based ammo refill type", &blofeld::infinite_f2::i343munitionseammorefilltype },
+		{ _field_short_enum, "age-based ammo refill type", &blofeld::infinite_f2::i343munitionseammorefilltype },
 		FIELD_PAD("generated_padf92f", 2),
 		{ _field_real, "active camo ding" },
 		{ _field_real_fraction, "AI Active Camo Scaling" },
@@ -76560,11 +76560,11 @@ namespace infinite_f2 {
 		{ _field_block, "weapon class override", &blofeld::infinite_f2::weaponclassoverride_block },
 		{ _field_string_id, "weapon name" },
 		FIELD_EXPLANATION("first person weapon group", nullptr),
-		{ _field_enum, "first person weapon group", &blofeld::infinite_f2::i343weaponfirstpersonweapongroup },
+		{ _field_short_enum, "first person weapon group", &blofeld::infinite_f2::i343weaponfirstpersonweapongroup },
 		FIELD_PAD("generated_pad45e4", 2),
 		{ _field_block, "first person weapon offset restricted bounds", &blofeld::infinite_f2::i343weaponweaponoffsetrestrictedbounds_block },
 		FIELD_EXPLANATION("more miscellaneous", nullptr),
-		{ _field_enum, "weapon type", &blofeld::infinite_f2::weapontype },
+		{ _field_short_enum, "weapon type", &blofeld::infinite_f2::weapontype },
 		{ _field_short_integer, "low ammo threshold" },
 		{ _field_struct, "player interface", &blofeld::infinite_f2::weapon_interface_definition_new },
 		{ _field_block, "magazines", &blofeld::infinite_f2::weapon_magazine_definition_block },
@@ -76914,7 +76914,7 @@ namespace infinite_f2 {
 	{
 		{ _field_short_integer, "rounds left" },
 		{ _field_short_integer, "rounds loaded" },
-		{ _field_enum, "Does accelerate (moves due to explosions).", &blofeld::infinite_f2::weaponaccelerateoverride },
+		{ _field_short_enum, "Does accelerate (moves due to explosions).", &blofeld::infinite_f2::weaponaccelerateoverride },
 		FIELD_PAD("generated_pad5bcf", 2),
 		{ _field_tag_reference, "configuration", &blofeld::infinite_f2::weapon_configuration_reference$3_tagref },
 		{ _field_terminator }
@@ -77047,13 +77047,13 @@ namespace infinite_f2 {
 	{
 		{ _field_struct, "device", &blofeld::infinite_f2::device_definition },
 		FIELD_EXPLANATION("$$$ MACHINE $$$", nullptr),
-		{ _field_enum, "type", &blofeld::infinite_f2::machinetype },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::machinetype },
 		{ _field_word_flags, "flags", &blofeld::infinite_f2::i343machinedefinitionflags },
 		{ _field_real, "door open time" },
-		{ _field_real_fraction_bounds, "door occlusion bounds" },
-		{ _field_enum, "collision response", &blofeld::infinite_f2::machinecollisionresponses },
+		{ _field_fraction_bounds, "door occlusion bounds" },
+		{ _field_short_enum, "collision response", &blofeld::infinite_f2::machinecollisionresponses },
 		{ _field_short_integer, "elevator node" },
-		{ _field_enum, "pathfinding policy", &blofeld::infinite_f2::objectpathfindingpolicy },
+		{ _field_short_enum, "pathfinding policy", &blofeld::infinite_f2::objectpathfindingpolicy },
 		FIELD_PAD("generated_pad4262", 2),
 		{ _field_string_id, "shield name" },
 		{ _field_string_id, "shield function", _field_id_sted },
@@ -77145,8 +77145,8 @@ namespace infinite_f2 {
 	{
 		{ _field_struct, "device", &blofeld::infinite_f2::device_definition },
 		FIELD_GROUP_BEGIN("$$$ CONTROL $$$"),
-		{ _field_enum, "type", &blofeld::infinite_f2::controltypes },
-		{ _field_enum, "triggers when", &blofeld::infinite_f2::controltriggers },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::controltypes },
+		{ _field_short_enum, "triggers when", &blofeld::infinite_f2::controltriggers },
 		{ _field_real, "call value" },
 		{ _field_string_id, "action string" },
 		{ _field_string_id, "secondary action string" },
@@ -77160,7 +77160,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "interaction screen" },
 		{ _field_tag_reference, "hold start", &blofeld::infinite_f2::_reference$27_tagref },
 		{ _field_tag_reference, "action denied sound", &blofeld::infinite_f2::sound_reference$24_tagref },
-		{ _field_enum, "MP team use restriction", &blofeld::infinite_f2::devicecontrolteamrestriction },
+		{ _field_short_enum, "MP team use restriction", &blofeld::infinite_f2::devicecontrolteamrestriction },
 		FIELD_PAD("generated_pad88c2", 2),
 		{ _field_tag_reference, "on", &blofeld::infinite_f2::_reference$28_tagref },
 		{ _field_tag_reference, "off", &blofeld::infinite_f2::_reference$29_tagref },
@@ -77340,7 +77340,7 @@ namespace infinite_f2 {
 		S_SCENARIO_MACHINE_DATUM_ID)
 	{
 		{ _field_long_flags, "flags", &blofeld::infinite_f2::devicemachineflags },
-		{ _field_enum, "pathfinding policy", &blofeld::infinite_f2::objectpathfindingpolicy },
+		{ _field_short_enum, "pathfinding policy", &blofeld::infinite_f2::objectpathfindingpolicy },
 		FIELD_PAD("generated_padce30", 2),
 		{ _field_terminator }
 	};
@@ -77430,7 +77430,7 @@ namespace infinite_f2 {
 		{ _field_long_flags, "flags", &blofeld::infinite_f2::scenariocontrolflags },
 		{ _field_short_integer, "DON'T TOUCH THIS", _field_id_unknown_ugh },
 		{ _field_short_integer, "health station charges" },
-		{ _field_enum, "allowed players", &blofeld::infinite_f2::scenariocontrolcharactertypes },
+		{ _field_short_enum, "allowed players", &blofeld::infinite_f2::scenariocontrolcharactertypes },
 		FIELD_PAD("generated_padace0", 2),
 		{ _field_terminator }
 	};
@@ -77563,7 +77563,7 @@ namespace infinite_f2 {
 		{ _field_struct, "object", &blofeld::infinite_f2::objectdefinition },
 		FIELD_GROUP_BEGIN("$$$ CREATURE $$$"),
 		{ _field_long_flags, "flags", &blofeld::infinite_f2::c_creature_definition_flags },
-		{ _field_enum, "default team", &blofeld::infinite_f2::e_campaign_team },
+		{ _field_short_enum, "default team", &blofeld::infinite_f2::e_campaign_team },
 		FIELD_PAD("generated_pad86f7", 2),
 		{ _field_angle, "turning velocity maximum (ground creatures only)" },
 		{ _field_angle, "turning acceleration maximum (ground creatures only)" },
@@ -78310,8 +78310,8 @@ namespace infinite_f2 {
 		1)
 	{
 		{ _field_struct, "AnyTag", &blofeld::infinite_f2::anytag_struct_definition },
-		{ _field_real_fraction_bounds, "subtitle rect width" },
-		{ _field_real_fraction_bounds, "subtitle rect height" },
+		{ _field_fraction_bounds, "subtitle rect width" },
+		{ _field_fraction_bounds, "subtitle rect height" },
 		{ _field_real_rgb_color, "default subtitle color" },
 		{ _field_real_rgb_color, "default subtitle shadow color" },
 		{ _field_real_argb_color, "default subtitle background color" },
@@ -80364,7 +80364,7 @@ namespace infinite_f2 {
 		INTERFACECUSTOMIZATIONLANDINGSCENECOMPOSITIONDATA_ID)
 	{
 		{ _field_string_id, "Composer Scene Name" },
-		{ _field_enum, "Core Type", &blofeld::infinite_f2::interfacecustomizationcoretype },
+		{ _field_short_enum, "Core Type", &blofeld::infinite_f2::interfacecustomizationcoretype },
 		FIELD_PAD("generated_pad18b7", 2),
 		{ _field_terminator }
 	};
@@ -80417,7 +80417,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INTERFACECUSTOMIZATIONCORETYPEITEM_ID)
 	{
-		{ _field_enum, "Core Type", &blofeld::infinite_f2::interfacecustomizationcoretype },
+		{ _field_short_enum, "Core Type", &blofeld::infinite_f2::interfacecustomizationcoretype },
 		{ _field_terminator }
 	};
 
@@ -80505,7 +80505,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INTERFACECUSTOMIZATIONUICAMERAPOSITIONOFFSET_ID)
 	{
-		{ _field_enum, "Camera Position Type", &blofeld::infinite_f2::interfacecustomizationiteminspectionposition },
+		{ _field_short_enum, "Camera Position Type", &blofeld::infinite_f2::interfacecustomizationiteminspectionposition },
 		FIELD_PAD("generated_pad010d", 2),
 		{ _field_real_vector_3d, "Camera Position" },
 		{ _field_string_id, "Composer Scene Name" },
@@ -80529,11 +80529,11 @@ namespace infinite_f2 {
 		INTERFACECUSTOMIZATIONUIPLATFORMANIMATIONSETTINGS_ID)
 	{
 		{ _field_string_id, "Platfrom Name" },
-		{ _field_enum, "Platform type", &blofeld::infinite_f2::interfacecustomizationplatforms },
+		{ _field_short_enum, "Platform type", &blofeld::infinite_f2::interfacecustomizationplatforms },
 		FIELD_PAD("generated_padd394", 2),
 		{ _field_real, "Vertical Animation Offset" },
 		{ _field_real, "Transition Time" },
-		{ _field_enum, "Animation Easing", &blofeld::infinite_f2::interfacecustomizationanimationeasing },
+		{ _field_short_enum, "Animation Easing", &blofeld::infinite_f2::interfacecustomizationanimationeasing },
 		FIELD_PAD("generated_paded75", 2),
 		{ _field_real_euler_angles_3d, "Platform selection orientation offset" },
 		{ _field_real_euler_angles_3d, "Default Orientation" },
@@ -80610,8 +80610,8 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INTERFACECUSTOMIZATIONUICAMERASETTINGS_ID)
 	{
-		{ _field_enum, "Core Focus Mode", &blofeld::infinite_f2::interfacecustomizationcorefocusmode },
-		{ _field_enum, "Animation Easing", &blofeld::infinite_f2::interfacecustomizationanimationeasing },
+		{ _field_short_enum, "Core Focus Mode", &blofeld::infinite_f2::interfacecustomizationcorefocusmode },
+		{ _field_short_enum, "Animation Easing", &blofeld::infinite_f2::interfacecustomizationanimationeasing },
 		{ _field_block, "Camera Positions", &blofeld::infinite_f2::interfacecustomizationuicamerapositionoffset_block },
 		{ _field_real, "Camera FOV" },
 		{ _field_real, "Camera Transition" },
@@ -80718,8 +80718,8 @@ namespace infinite_f2 {
 		INTERFACECUSTOMIZATIONUILIGHTPRESET_ID)
 	{
 		{ _field_string_id, "Preset Name" },
-		{ _field_enum, "Core Type", &blofeld::infinite_f2::interfacecustomizationcoretype },
-		{ _field_enum, "Item Type", &blofeld::infinite_f2::interfacecustomizationsocketitemtype },
+		{ _field_short_enum, "Core Type", &blofeld::infinite_f2::interfacecustomizationcoretype },
+		{ _field_short_enum, "Item Type", &blofeld::infinite_f2::interfacecustomizationsocketitemtype },
 		{ _field_real, "Dimmer transition time" },
 		{ _field_block, "Lights", &blofeld::infinite_f2::interfacecustomizationuiscenelightsource_block },
 		{ _field_block, "Cubemap Volume", &blofeld::infinite_f2::interfacecustomizationuicubemapvolume_block },
@@ -80791,7 +80791,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INTERFACECUSTOMIZATIONUILIGHTSCENEPRESET_ID)
 	{
-		{ _field_enum, "Scene type", &blofeld::infinite_f2::interfacecustomizationspartancustomizationscenetypes },
+		{ _field_short_enum, "Scene type", &blofeld::infinite_f2::interfacecustomizationspartancustomizationscenetypes },
 		FIELD_PAD("generated_padf35d", 2),
 		{ _field_block, "Light Presets Settings", &blofeld::infinite_f2::interfacecustomizationuilightpreset_block },
 		{ _field_terminator }
@@ -80836,7 +80836,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INTERFACECUSTOMIZATIONUICAMERAPRESETSETTINGS_ID)
 	{
-		{ _field_enum, "Core Focus Mode", &blofeld::infinite_f2::interfacecustomizationcorefocusmode },
+		{ _field_short_enum, "Core Focus Mode", &blofeld::infinite_f2::interfacecustomizationcorefocusmode },
 		FIELD_PAD("generated_padbfbb", 2),
 		{ _field_real, "Camera Offset" },
 		{ _field_real_vector_3d, "Camera Position Offset" },
@@ -80868,8 +80868,8 @@ namespace infinite_f2 {
 		INTERFACECUSTOMIZATIONUICAMERAPRESET_ID)
 	{
 		{ _field_string_id, "Preset Name" },
-		{ _field_enum, "Core Type", &blofeld::infinite_f2::interfacecustomizationcoretype },
-		{ _field_enum, "Item Type", &blofeld::infinite_f2::interfacecustomizationsocketitemtype },
+		{ _field_short_enum, "Core Type", &blofeld::infinite_f2::interfacecustomizationcoretype },
+		{ _field_short_enum, "Item Type", &blofeld::infinite_f2::interfacecustomizationsocketitemtype },
 		{ _field_block, "Camera Settings", &blofeld::infinite_f2::interfacecustomizationuicamerapresetsettings_block },
 		{ _field_terminator }
 	};
@@ -80883,7 +80883,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INTERFACECUSTOMIZATIONUICAMERASCENEPRESET_ID)
 	{
-		{ _field_enum, "Scene type", &blofeld::infinite_f2::interfacecustomizationspartancustomizationscenetypes },
+		{ _field_short_enum, "Scene type", &blofeld::infinite_f2::interfacecustomizationspartancustomizationscenetypes },
 		FIELD_PAD("generated_pad0124", 2),
 		{ _field_block, "Camera Presets Settings", &blofeld::infinite_f2::interfacecustomizationuicamerapreset_block },
 		{ _field_terminator }
@@ -80917,8 +80917,8 @@ namespace infinite_f2 {
 		{ _field_string_id, "Display Name" },
 		{ _field_tag_reference, "Sound", &blofeld::infinite_f2::sound_reference$123_tagref },
 		{ _field_real, "Transition sound time" },
-		{ _field_enum, "Platform type", &blofeld::infinite_f2::interfacecustomizationplatforms },
-		{ _field_enum, "Platform direction", &blofeld::infinite_f2::interfacecustomizationplatformdirection },
+		{ _field_short_enum, "Platform type", &blofeld::infinite_f2::interfacecustomizationplatforms },
+		{ _field_short_enum, "Platform direction", &blofeld::infinite_f2::interfacecustomizationplatformdirection },
 		{ _field_terminator }
 	};
 
@@ -81003,12 +81003,12 @@ namespace infinite_f2 {
 		{ _field_string_id, "UI Display String" },
 		{ _field_string_id, "UI Description String" },
 		{ _field_long_integer, "CMS Customization Item Type" },
-		{ _field_enum, "CMS Customization Core Type", &blofeld::infinite_f2::interfacecustomizationcoretype },
+		{ _field_short_enum, "CMS Customization Core Type", &blofeld::infinite_f2::interfacecustomizationcoretype },
 		FIELD_PAD("generated_pade424", 2),
 		{ _field_string_id, "Region Name" },
 		{ _field_string_id, "Marker Name" },
 		{ _field_real, "Marker Offset" },
-		{ _field_enum, "Animation Easing", &blofeld::infinite_f2::interfacecustomizationanimationeasing },
+		{ _field_short_enum, "Animation Easing", &blofeld::infinite_f2::interfacecustomizationanimationeasing },
 		FIELD_PAD("generated_padfe05", 2),
 		{ _field_block, "Camera Positions", &blofeld::infinite_f2::interfacecustomizationuicamerapositionoffset_block },
 		{ _field_real, "Camera FOV" },
@@ -81037,7 +81037,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "Marker Name" },
 		{ _field_real, "Marker Offset" },
 		{ _field_real, "Camera Offset" },
-		{ _field_enum, "Animation Easing", &blofeld::infinite_f2::interfacecustomizationanimationeasing },
+		{ _field_short_enum, "Animation Easing", &blofeld::infinite_f2::interfacecustomizationanimationeasing },
 		FIELD_PAD("generated_pad2a44", 2),
 		{ _field_block, "Camera Positions", &blofeld::infinite_f2::interfacecustomizationuicamerapositionoffset_block },
 		{ _field_real, "Camera FOV" },
@@ -83321,8 +83321,8 @@ namespace infinite_f2 {
 		{ _field_tag_reference, "Attachment Model", &blofeld::infinite_f2::anytag_reference$13_tagref },
 		{ _field_string_id, "Variant" },
 		{ _field_block, "Markers", &blofeld::infinite_f2::i343objectcustomizationmarkers_block },
-		{ _field_enum, "CMS Customization Item Type", &blofeld::infinite_f2::i343objectcustomizationcmsattachmentitemtype },
-		{ _field_enum, "Attachment Location", &blofeld::infinite_f2::i343objectcustomizationcmsattachmentlocationflag },
+		{ _field_short_enum, "CMS Customization Item Type", &blofeld::infinite_f2::i343objectcustomizationcmsattachmentitemtype },
+		{ _field_short_enum, "Attachment Location", &blofeld::infinite_f2::i343objectcustomizationcmsattachmentlocationflag },
 		{ _field_terminator }
 	};
 
@@ -85262,7 +85262,7 @@ namespace infinite_f2 {
 		{ _field_struct, "tint color of the numeric display", &blofeld::infinite_f2::interfacefasthudfasthudcoloractualdata },
 		{ _field_real_argb_color, "tint color old " },
 		{ _field_real_point_2d, "alignment point on screen" },
-		{ _field_enum, "numeric display alignment based on alignment point given", &blofeld::infinite_f2::interfacefasthudnumericdisplaytextalignment },
+		{ _field_short_enum, "numeric display alignment based on alignment point given", &blofeld::infinite_f2::interfacefasthudnumericdisplaytextalignment },
 		{ _field_byte_flags, "flags", &blofeld::infinite_f2::interfacefasthudnumericdisplayflags },
 		FIELD_PAD("generated_padc1d6", 1),
 		{ _field_terminator }
@@ -86071,7 +86071,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343INGAMEMAPSLODCOLLISIONRESOLUTION_ID)
 	{
-		{ _field_enum, "resolutionMode", &blofeld::infinite_f2::i343ingamemapslodcollisionresolutionmode },
+		{ _field_short_enum, "resolutionMode", &blofeld::infinite_f2::i343ingamemapslodcollisionresolutionmode },
 		FIELD_PAD("generated_pad21e2", 2),
 		{ _field_real, "collisionNormalizedScreenDistance" },
 		{ _field_terminator }
@@ -86093,7 +86093,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343INGAMEMAPSLODSETTINGS_ID)
 	{
-		{ _field_enum, "lodMode", &blofeld::infinite_f2::i343ingamemapslodmode },
+		{ _field_short_enum, "lodMode", &blofeld::infinite_f2::i343ingamemapslodmode },
 		FIELD_PAD("generated_pad4e7d", 2),
 		{ _field_struct, "lodCollisionResolution", &blofeld::infinite_f2::i343ingamemapslodcollisionresolution },
 		{ _field_real, "spotlightRadiusScale" },
@@ -86117,7 +86117,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343INGAMEMAPSMARKERSETTINGS_ID)
 	{
-		{ _field_enum, "markerType", &blofeld::infinite_f2::i343ingamemapscampaignmapmarkertype },
+		{ _field_short_enum, "markerType", &blofeld::infinite_f2::i343ingamemapscampaignmapmarkertype },
 		FIELD_PAD("generated_pad8446", 2),
 		{ _field_tag_reference, "model", &blofeld::infinite_f2::crate_reference$12_tagref },
 		{ _field_tag_reference, "bitmap", &blofeld::infinite_f2::bitmap_reference$51_tagref },
@@ -86191,7 +86191,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "name" },
 		{ _field_char_enum, "type", &blofeld::infinite_f2::i343collectiblescollectibletype },
 		FIELD_PAD("generated_padf32a", 1),
-		{ _field_enum, "missionType", &blofeld::infinite_f2::i343ingamemapscampaignmapmissiontype },
+		{ _field_short_enum, "missionType", &blofeld::infinite_f2::i343ingamemapscampaignmapmissiontype },
 		{ _field_long_integer, "spriteIndex" },
 		{ _field_terminator }
 	};
@@ -86245,8 +86245,8 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343INGAMEMAPSMARKERCOLOR_ID)
 	{
-		{ _field_enum, "markerType", &blofeld::infinite_f2::i343ingamemapscampaignmapmarkertype },
-		{ _field_enum, "missionType", &blofeld::infinite_f2::i343ingamemapscampaignmapmissiontype },
+		{ _field_short_enum, "markerType", &blofeld::infinite_f2::i343ingamemapscampaignmapmarkertype },
+		{ _field_short_enum, "missionType", &blofeld::infinite_f2::i343ingamemapscampaignmapmissiontype },
 		{ _field_real_rgb_color, "color" },
 		{ _field_terminator }
 	};
@@ -86260,7 +86260,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343INGAMEMAPSMARKERVISIBILITYSETTINGS_ID)
 	{
-		{ _field_enum, "missionType", &blofeld::infinite_f2::i343ingamemapscampaignmapmissiontype },
+		{ _field_short_enum, "missionType", &blofeld::infinite_f2::i343ingamemapscampaignmapmissiontype },
 		FIELD_PAD("generated_pad5f56", 2),
 		{ _field_real, "MinimumZoom" },
 		{ _field_real, "MaximumZoom" },
@@ -86473,17 +86473,17 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INGAMEMAPANIMATIONSETTINGS_ID)
 	{
-		{ _field_enum, "verticalTranslationMode", &blofeld::infinite_f2::ingamemapanimationmode },
+		{ _field_short_enum, "verticalTranslationMode", &blofeld::infinite_f2::ingamemapanimationmode },
 		FIELD_PAD("generated_pad6126", 2),
 		{ _field_real, "verticalTranslationDuration" },
 		{ _field_real, "verticalTranslationCooldownDuration" },
 		{ _field_struct, "verticalTranslationFunction", &blofeld::infinite_f2::ingamemapfunction },
-		{ _field_enum, "zRotationMode", &blofeld::infinite_f2::ingamemapanimationmode },
+		{ _field_short_enum, "zRotationMode", &blofeld::infinite_f2::ingamemapanimationmode },
 		FIELD_PAD("generated_padaddb", 2),
 		{ _field_real, "zRotationDuration" },
 		{ _field_real, "zRotationCooldownDuration" },
 		{ _field_struct, "zRotationFunction", &blofeld::infinite_f2::ingamemapfunction },
-		{ _field_enum, "scaleMode", &blofeld::infinite_f2::ingamemapanimationmode },
+		{ _field_short_enum, "scaleMode", &blofeld::infinite_f2::ingamemapanimationmode },
 		FIELD_PAD("generated_padfa90", 2),
 		{ _field_real, "scaleDuration" },
 		{ _field_real, "scaleCooldownDuration" },
@@ -86664,7 +86664,7 @@ namespace infinite_f2 {
 		{ _field_real, "Min Z for fade-out" },
 		{ _field_real, "Max Z for fade-out" },
 		{ _field_real, "Line frequency" },
-		{ _field_enum, "Explicit shader for explicit lighting pass", &blofeld::infinite_f2::ingamemapexplicitshader },
+		{ _field_short_enum, "Explicit shader for explicit lighting pass", &blofeld::infinite_f2::ingamemapexplicitshader },
 		FIELD_PAD("generated_pad7316", 2),
 		{ _field_real_vector_2d, "Red offset in pixels" },
 		{ _field_real_vector_2d, "Blue offset in pixels" },
@@ -87103,15 +87103,15 @@ namespace infinite_f2 {
 		{ _field_string_id, "Color", _field_id_sted },
 		{ _field_real, "Alpha" },
 		{ _field_string_id, "Tint Color", _field_id_sted },
-		{ _field_enum, "Tint Blend Mode", &blofeld::infinite_f2::interfacenavpointnavpointtintblendmode },
+		{ _field_short_enum, "Tint Blend Mode", &blofeld::infinite_f2::interfacenavpointnavpointtintblendmode },
 		FIELD_PAD("generated_pad4916", 2),
 		{ _field_real, "Tint Blend Interpolation" },
 		{ _field_string_id, "Show event name" },
 		{ _field_string_id, "Hide event name" },
 		{ _field_real, "Width Scale" },
 		{ _field_real, "Height Scale" },
-		{ _field_enum, "Justification", &blofeld::infinite_f2::interfacenavpointhorizontalalignment },
-		{ _field_enum, "Alignment", &blofeld::infinite_f2::interfacenavpointverticalalignment },
+		{ _field_short_enum, "Justification", &blofeld::infinite_f2::interfacenavpointhorizontalalignment },
+		{ _field_short_enum, "Alignment", &blofeld::infinite_f2::interfacenavpointverticalalignment },
 		{ _field_string_id, "Typeface", _field_id_sted },
 		{ _field_long_integer, "Type Size" },
 		{ _field_string_id, "Text Source" },
@@ -87181,15 +87181,15 @@ namespace infinite_f2 {
 		{ _field_string_id, "Color", _field_id_sted },
 		{ _field_real, "Alpha" },
 		{ _field_string_id, "Tint Color", _field_id_sted },
-		{ _field_enum, "Tint Blend Mode", &blofeld::infinite_f2::interfacenavpointnavpointtintblendmode },
+		{ _field_short_enum, "Tint Blend Mode", &blofeld::infinite_f2::interfacenavpointnavpointtintblendmode },
 		FIELD_PAD("generated_pad4916", 2),
 		{ _field_real, "Tint Blend Interpolation" },
 		{ _field_string_id, "Show event name" },
 		{ _field_string_id, "Hide event name" },
 		{ _field_real, "Width Scale" },
 		{ _field_real, "Height Scale" },
-		{ _field_enum, "Justification", &blofeld::infinite_f2::interfacenavpointhorizontalalignment },
-		{ _field_enum, "Alignment", &blofeld::infinite_f2::interfacenavpointverticalalignment },
+		{ _field_short_enum, "Justification", &blofeld::infinite_f2::interfacenavpointhorizontalalignment },
+		{ _field_short_enum, "Alignment", &blofeld::infinite_f2::interfacenavpointverticalalignment },
 		{ _field_string_id, "Typeface", _field_id_sted },
 		{ _field_long_integer, "Type Size" },
 		{ _field_string_id, "Text Source" },
@@ -87227,7 +87227,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "Color", _field_id_sted },
 		{ _field_real, "Alpha" },
 		{ _field_string_id, "Tint Color", _field_id_sted },
-		{ _field_enum, "Tint Blend Mode", &blofeld::infinite_f2::interfacenavpointnavpointtintblendmode },
+		{ _field_short_enum, "Tint Blend Mode", &blofeld::infinite_f2::interfacenavpointnavpointtintblendmode },
 		FIELD_PAD("generated_pad4916", 2),
 		{ _field_real, "Tint Blend Interpolation" },
 		{ _field_string_id, "Show event name" },
@@ -87259,7 +87259,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "Color", _field_id_sted },
 		{ _field_real, "Alpha" },
 		{ _field_string_id, "Tint Color", _field_id_sted },
-		{ _field_enum, "Tint Blend Mode", &blofeld::infinite_f2::interfacenavpointnavpointtintblendmode },
+		{ _field_short_enum, "Tint Blend Mode", &blofeld::infinite_f2::interfacenavpointnavpointtintblendmode },
 		FIELD_PAD("generated_pad4916", 2),
 		{ _field_real, "Tint Blend Interpolation" },
 		{ _field_string_id, "Show event name" },
@@ -87291,7 +87291,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "Color", _field_id_sted },
 		{ _field_real, "Alpha" },
 		{ _field_string_id, "Tint Color", _field_id_sted },
-		{ _field_enum, "Tint Blend Mode", &blofeld::infinite_f2::interfacenavpointnavpointtintblendmode },
+		{ _field_short_enum, "Tint Blend Mode", &blofeld::infinite_f2::interfacenavpointnavpointtintblendmode },
 		FIELD_PAD("generated_pad4916", 2),
 		{ _field_real, "Tint Blend Interpolation" },
 		{ _field_string_id, "Show event name" },
@@ -87319,12 +87319,12 @@ namespace infinite_f2 {
 		{ _field_real, "Alpha" },
 		{ _field_real, "Anchor Offset X" },
 		{ _field_real, "Anchor Offset Y" },
-		{ _field_enum, "Anchor Justification", &blofeld::infinite_f2::interfacenavpointhorizontalalignment },
-		{ _field_enum, "Anchor Alignment", &blofeld::infinite_f2::interfacenavpointverticalalignment },
+		{ _field_short_enum, "Anchor Justification", &blofeld::infinite_f2::interfacenavpointhorizontalalignment },
+		{ _field_short_enum, "Anchor Alignment", &blofeld::infinite_f2::interfacenavpointverticalalignment },
 		{ _field_string_id, "Anchor Element Name" },
 		{ _field_long_enum, "Element Layout", &blofeld::infinite_f2::interfacenavpointgrouplayout },
-		{ _field_enum, "Element Justification", &blofeld::infinite_f2::interfacenavpointhorizontalalignment },
-		{ _field_enum, "Element Alignment", &blofeld::infinite_f2::interfacenavpointverticalalignment },
+		{ _field_short_enum, "Element Justification", &blofeld::infinite_f2::interfacenavpointhorizontalalignment },
+		{ _field_short_enum, "Element Alignment", &blofeld::infinite_f2::interfacenavpointverticalalignment },
 		{ _field_real, "Element Horizontal Spacing" },
 		{ _field_real, "Element Vertical Spacing" },
 		{ _field_byte_flags, "Use Horizontal Flip Zone", &blofeld::infinite_f2::usehorizontalflipzoneflag },
@@ -88338,7 +88338,7 @@ namespace infinite_f2 {
 		{ _field_long_enum, "render mode", &blofeld::infinite_f2::efontrendermode },
 		FIELD_EXPLANATION("Vector Font Antialiasing Tweakables", nullptr),
 		{ _field_array, "anti alias data", &blofeld::infinite_f2::anti_alias_data },
-		{ _field_pageable, "font file resource", &blofeld::infinite_f2::wpffontfiledata_resource_definition },
+		{ _field_pageable_resource, "font file resource", &blofeld::infinite_f2::wpffontfiledata_resource_definition },
 		FIELD_PAD("generated_padbe8d", 4),
 		{ _field_terminator }
 	};
@@ -88509,50 +88509,50 @@ namespace infinite_f2 {
 	{
 		{ _field_struct, "AnyTag", &blofeld::infinite_f2::anytag_struct_definition },
 		FIELD_EXPLANATION("Start/Back", nullptr),
-		{ _field_enum, "jump", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "switch weapon", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "switch ability 0", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "switch ability 1", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "switch ability 2", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "switch ability 3", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "switch grenade", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "switch grenade prev", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "equipment grenade next", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "equipment grenade prev", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "contextual action", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "melee attack", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "equipment", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "throw grenade", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "primary fire", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "secondary fire", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "crouch", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "zoom-zoom scope", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "mobility", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "suit", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "toggle quick drop hud", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "request quick drop 1", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "request quick drop 2", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "request quick drop 3", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "vehicle ability primary", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "vehicle ability secondary", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "vehicle ability tertiary", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "secondary contextual action", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "player callout", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "jump", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "switch weapon", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "switch ability 0", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "switch ability 1", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "switch ability 2", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "switch ability 3", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "switch grenade", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "switch grenade prev", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "equipment grenade next", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "equipment grenade prev", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "contextual action", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "melee attack", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "equipment", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "throw grenade", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "primary fire", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "secondary fire", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "crouch", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "zoom-zoom scope", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "mobility", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "suit", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "toggle quick drop hud", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "request quick drop 1", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "request quick drop 2", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "request quick drop 3", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "vehicle ability primary", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "vehicle ability secondary", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "vehicle ability tertiary", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "secondary contextual action", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "player callout", &blofeld::infinite_f2::e_gamepad_button },
 		FIELD_SKIP("start", 2),
 		FIELD_SKIP("back", 2),
-		{ _field_enum, "accept", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "cancel", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "machinima lower weapon", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "machinima camera enable", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "machinima camera control", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "machinima camera debug", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "lift editor", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "drop editor", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "cinematic skip", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "loadout menu", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "sprint", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "skip killcam", &blofeld::infinite_f2::e_gamepad_button },
-		{ _field_enum, "change zoom level", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "accept", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "cancel", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "machinima lower weapon", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "machinima camera enable", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "machinima camera control", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "machinima camera debug", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "lift editor", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "drop editor", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "cinematic skip", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "loadout menu", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "sprint", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "skip killcam", &blofeld::infinite_f2::e_gamepad_button },
+		{ _field_short_enum, "change zoom level", &blofeld::infinite_f2::e_gamepad_button },
 		FIELD_EXPLANATION("Button Labels", nullptr),
 		{ _field_string_id, "Button Preset Display Name" },
 		{ _field_string_id, "Button Preset Help Text" },
@@ -88780,7 +88780,7 @@ namespace infinite_f2 {
 		S_CUI_PROPERTY_BINDING_DEFINITION_ID)
 	{
 		{ _field_word_flags, "flags", &blofeld::infinite_f2::c_cui_property_binding_definition_flags },
-		{ _field_enum, "conversion function", &blofeld::infinite_f2::e_cui_binding_conversion_function },
+		{ _field_short_enum, "conversion function", &blofeld::infinite_f2::e_cui_binding_conversion_function },
 		{ _field_string_id, "source component typename" },
 		{ _field_qword_integer, "source component id" },
 		{ _field_string_id, "source component name" },
@@ -88878,7 +88878,7 @@ namespace infinite_f2 {
 		S_CUI_ANIMATION_COMPONENT_PROPERTY_REAL_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "composition", &blofeld::infinite_f2::e_cui_animation_property_composition_type },
+		{ _field_short_enum, "composition", &blofeld::infinite_f2::e_cui_animation_property_composition_type },
 		{ _field_char_enum, "ending type", &blofeld::infinite_f2::cuianimationendingtype },
 		FIELD_PAD("generated_pad83f4", 1),
 		{ _field_long_integer, "iteration count" },
@@ -88912,7 +88912,7 @@ namespace infinite_f2 {
 		S_CUI_ANIMATION_COMPONENT_PROPERTY_ARGB_COLOR_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "composition", &blofeld::infinite_f2::e_cui_animation_property_composition_type },
+		{ _field_short_enum, "composition", &blofeld::infinite_f2::e_cui_animation_property_composition_type },
 		{ _field_char_enum, "ending type", &blofeld::infinite_f2::cuianimationendingtype },
 		FIELD_PAD("generated_pad83f4", 1),
 		{ _field_long_integer, "iteration count" },
@@ -88931,7 +88931,7 @@ namespace infinite_f2 {
 		CUIANIMATIONCOMPONENTPROPERTYSTRINGIDDEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "composition", &blofeld::infinite_f2::e_cui_animation_property_composition_type },
+		{ _field_short_enum, "composition", &blofeld::infinite_f2::e_cui_animation_property_composition_type },
 		{ _field_char_enum, "ending type", &blofeld::infinite_f2::cuianimationendingtype },
 		FIELD_PAD("generated_pad83f4", 1),
 		{ _field_long_integer, "iteration count" },
@@ -89007,7 +89007,7 @@ namespace infinite_f2 {
 		S_CUI_STATIC_DATA_COLUMN_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "type", &blofeld::infinite_f2::e_cui_property_type },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::e_cui_property_type },
 		FIELD_PAD("generated_pad3684", 2),
 		{ _field_terminator }
 	};
@@ -90103,8 +90103,8 @@ namespace infinite_f2 {
 		{ _field_string_id, "third_item" },
 		{ _field_string_id, "fourth_item" },
 		{ _field_string_id, "button key" },
-		{ _field_enum, "default item", &blofeld::infinite_f2::e_gui_dialog_choice },
-		{ _field_enum, "b button action", &blofeld::infinite_f2::e_gui_dialog_b_button_action },
+		{ _field_short_enum, "default item", &blofeld::infinite_f2::e_gui_dialog_choice },
+		{ _field_short_enum, "b button action", &blofeld::infinite_f2::e_gui_dialog_b_button_action },
 		{ _field_terminator }
 	};
 
@@ -90671,7 +90671,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNBINDABLEINPUTDEVICEELEMENTSLIST_ID)
 	{
-		{ _field_enum, "unbindable input", &blofeld::infinite_f2::inputdeviceelement },
+		{ _field_short_enum, "unbindable input", &blofeld::infinite_f2::inputdeviceelement },
 		{ _field_terminator }
 	};
 
@@ -91193,7 +91193,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343PHYSICSMODELMOTORREFERENCE_ID)
 	{
-		{ _field_enum, "motor type", &blofeld::infinite_f2::i343physicsmodelephysicsmodelmotortype },
+		{ _field_short_enum, "motor type", &blofeld::infinite_f2::i343physicsmodelephysicsmodelmotortype },
 		{ _field_custom_short_block_index, "index" },
 		{ _field_terminator }
 	};
@@ -91416,7 +91416,7 @@ namespace infinite_f2 {
 		I343PHYSICSMODELNODECONSTRAINTEDGECONSTRAINT_ID,
 		1)
 	{
-		{ _field_enum, "type", &blofeld::infinite_f2::i343physicsmodelephysicsmodelconstrainttype },
+		{ _field_short_enum, "type", &blofeld::infinite_f2::i343physicsmodelephysicsmodelconstrainttype },
 		{ _field_custom_short_block_index, "index" },
 		{ _field_long_flags, "flags", &blofeld::infinite_f2::i343physicsmodelphysicsmodelrigidbodyconstraintedgeconstraintflag },
 		{ _field_real, "friction" },
@@ -91474,7 +91474,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343PHYSICSMODELPOWEREDCHAINCONSTRAINT_ID)
 	{
-		{ _field_enum, "constraint type", &blofeld::infinite_f2::i343physicsmodelephysicsmodelconstrainttype },
+		{ _field_short_enum, "constraint type", &blofeld::infinite_f2::i343physicsmodelephysicsmodelconstrainttype },
 		{ _field_custom_short_block_index, "constraint index" },
 		{ _field_struct, "motor x", &blofeld::infinite_f2::i343physicsmodelmotorreference },
 		{ _field_struct, "motor y", &blofeld::infinite_f2::i343physicsmodelmotorreference },
@@ -92281,7 +92281,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343PHYSICSTERRAINCOLLISIONGEORESOURCE_ID)
 	{
-		{ _field_pageable, "TerrainCollisionGeoData resource", &blofeld::infinite_f2::i343physicsterraincollisiongeodata_resource_definition },
+		{ _field_pageable_resource, "TerrainCollisionGeoData resource", &blofeld::infinite_f2::i343physicsterraincollisiongeodata_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -93025,7 +93025,7 @@ namespace infinite_f2 {
 		{ _field_block, "cookie cutters", &blofeld::infinite_f2::collision_model_region_block },
 		{ _field_block, "pathfinding spheres", &blofeld::infinite_f2::collision_model_pathfinding_sphere_block },
 		{ _field_block, "nodes", &blofeld::infinite_f2::collision_model_node_block },
-		{ _field_pageable, "regions resource", &blofeld::infinite_f2::collisionmodelresource_resource_definition },
+		{ _field_pageable_resource, "regions resource", &blofeld::infinite_f2::collisionmodelresource_resource_definition },
 		{ _field_array, "flags for nodes driving collision geo", &blofeld::infinite_f2::flags_for_nodes_driving_collision_geo },
 		{ _field_terminator }
 	};
@@ -93280,7 +93280,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343VEHICLESANTIGRAVITYPOINTSTATECONFIGURATION_ID)
 	{
-		{ _field_enum, "region state", &blofeld::infinite_f2::modelstates },
+		{ _field_short_enum, "region state", &blofeld::infinite_f2::modelstates },
 		{ _field_short_block_index, "configuration", &blofeld::infinite_f2::i343vehiclesantigravitypointconfiguration_block },
 		{ _field_terminator }
 	};
@@ -93363,7 +93363,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343VEHICLESFRICTIONPOINTSTATECONFIGURATION_ID)
 	{
-		{ _field_enum, "region state", &blofeld::infinite_f2::modelstates },
+		{ _field_short_enum, "region state", &blofeld::infinite_f2::modelstates },
 		{ _field_short_block_index, "configuration", &blofeld::infinite_f2::i343vehiclesfrictionpointconfiguration_block },
 		{ _field_terminator }
 	};
@@ -93978,7 +93978,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUNDBANKRESOURCEBLOCKDEFINITION_ID)
 	{
-		{ _field_pageable, "Sound bank resource", &blofeld::infinite_f2::soundbankdataresource_resource_definition },
+		{ _field_pageable_resource, "Sound bank resource", &blofeld::infinite_f2::soundbankdataresource_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -93995,7 +93995,7 @@ namespace infinite_f2 {
 		{ _field_struct, "AnyTag", &blofeld::infinite_f2::anytag_struct_definition },
 		{ _field_long_flags, "flags", &blofeld::infinite_f2::soundbanktagflag },
 		{ _field_block, "Sound bank list", &blofeld::infinite_f2::soundbankblockdefinition_block },
-		{ _field_pageable, "Sound bank sfx resource", &blofeld::infinite_f2::soundbankdataresource_resource_definition },
+		{ _field_pageable_resource, "Sound bank sfx resource", &blofeld::infinite_f2::soundbankdataresource_resource_definition },
 		{ _field_block, "Sound bank loc resources", &blofeld::infinite_f2::soundbankresourceblockdefinition_block },
 		{ _field_long_integer, "Bank priority" },
 		{ _field_long_integer, "Bank unique ID" },
@@ -94963,8 +94963,8 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_FACIAL_ANIMATION_LANGUAGE_ID)
 	{
-		{ _field_pageable, "facial animation resource", &blofeld::infinite_f2::s_facial_animation_resource_definition },
-		{ _field_pageable, "model animation resource", &blofeld::infinite_f2::s_model_animations_resource_definition },
+		{ _field_pageable_resource, "facial animation resource", &blofeld::infinite_f2::s_facial_animation_resource_definition },
+		{ _field_pageable_resource, "model animation resource", &blofeld::infinite_f2::s_model_animations_resource_definition },
 		{ _field_long_enum, "language", &blofeld::infinite_f2::e_language },
 		{ _field_terminator }
 	};
@@ -95124,7 +95124,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "Title" },
 		{ _field_string_id, "Description" },
 		{ _field_long_string, "Property Name Literal" },
-		{ _field_enum, "Value Type", &blofeld::infinite_f2::forgeengineforgeobjectscriptpropertyvaluetype },
+		{ _field_short_enum, "Value Type", &blofeld::infinite_f2::forgeengineforgeobjectscriptpropertyvaluetype },
 		FIELD_PAD("generated_pad36ce", 2),
 		{ _field_real, "Float Min" },
 		{ _field_real, "Float Max" },
@@ -96001,10 +96001,10 @@ namespace infinite_f2 {
 		{ _field_word_flags, "Property Flags", &blofeld::infinite_f2::forgeengineforgeobjectdatapropertyflags },
 		FIELD_PAD("generated_padffaf", 2),
 		{ _field_real_vector_3d, "Starting yaw/pitch/roll" },
-		{ _field_enum, "Default Physics Mode", &blofeld::infinite_f2::forgeenginedefaultphysicsmode },
-		{ _field_enum, "Collision Mode", &blofeld::infinite_f2::forgeenginecollisionmode },
+		{ _field_short_enum, "Default Physics Mode", &blofeld::infinite_f2::forgeenginedefaultphysicsmode },
+		{ _field_short_enum, "Collision Mode", &blofeld::infinite_f2::forgeenginecollisionmode },
 		FIELD_GROUP_BEGIN("Scale Limits"),
-		{ _field_enum, "Scale Limit Type", &blofeld::infinite_f2::forgeenginescalelimittype },
+		{ _field_short_enum, "Scale Limit Type", &blofeld::infinite_f2::forgeenginescalelimittype },
 		FIELD_PAD("generated_padb2fa", 2),
 		{ _field_real_vector_3d, "Starting Scale" },
 		{ _field_real_vector_3d, "Minimum Scale" },
@@ -96781,7 +96781,7 @@ namespace infinite_f2 {
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		{ _field_enum, "Output Modifier", &blofeld::infinite_f2::s_editing_functionlensflareoutputmod, _field_id_function_output_modifier },
+		{ _field_short_enum, "Output Modifier", &blofeld::infinite_f2::s_editing_functionlensflareoutputmod, _field_id_function_output_modifier },
 		FIELD_PAD("generated_padcaf7", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Lens flare color editor", _field_id_function_editor),
@@ -96845,7 +96845,7 @@ namespace infinite_f2 {
 		FIELD_EXPLANATION("OCCLUSION", nullptr),
 		{ _field_long_integer, "occlusion reflection index" },
 		{ _field_real, "occlusion offset distance" },
-		{ _field_enum, "occlusion offset direction", &blofeld::infinite_f2::lensflareocclusionoffset },
+		{ _field_short_enum, "occlusion offset direction", &blofeld::infinite_f2::lensflareocclusionoffset },
 		FIELD_PAD("generated_pad1f11", 2),
 		{ _field_real, "occlusion inner radius scale" },
 		{ _field_real, "occlusion min pixels" },
@@ -96857,11 +96857,11 @@ namespace infinite_f2 {
 		{ _field_tag_reference, "bitmap", &blofeld::infinite_f2::bitmap_reference$48_tagref },
 		{ _field_word_flags, "flags", &blofeld::infinite_f2::lensflareflags },
 		{ _field_short_integer, "runtime flags" },
-		{ _field_enum, "rotation function", &blofeld::infinite_f2::lensflarerotationfunction },
+		{ _field_short_enum, "rotation function", &blofeld::infinite_f2::lensflarerotationfunction },
 		FIELD_PAD("generated_pad0530", 2),
 		{ _field_angle, "rotation function scale" },
 		FIELD_EXPLANATION("EFFECT PARAMETERS", nullptr),
-		{ _field_enum, "falloff function", &blofeld::infinite_f2::reversetransitionfunction },
+		{ _field_short_enum, "falloff function", &blofeld::infinite_f2::reversetransitionfunction },
 		FIELD_PAD("generated_padb87b", 2),
 		{ _field_block, "reflections", &blofeld::infinite_f2::lensflarereflection_block },
 		FIELD_EXPLANATION("ANIMATION", nullptr),
@@ -97106,7 +97106,7 @@ namespace infinite_f2 {
 		{ _field_byte_integer, "Version" },
 		{ _field_byte_integer, "Authored FPS" },
 		{ _field_word_integer, "Resource frame count" },
-		{ _field_pageable, "Perframe rigid body resources", &blofeld::infinite_f2::animatedmeshrigidbodyresouce_resource_definition },
+		{ _field_pageable_resource, "Perframe rigid body resources", &blofeld::infinite_f2::animatedmeshrigidbodyresouce_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -97585,7 +97585,7 @@ namespace infinite_f2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDERGEOMETRYMESHPACKAGERESOURCEGROUP_ID)
 	{
-		{ _field_pageable, "mesh resource", &blofeld::infinite_f2::s_render_geometry_api_resource_resource_definition },
+		{ _field_pageable_resource, "mesh resource", &blofeld::infinite_f2::s_render_geometry_api_resource_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -97599,7 +97599,7 @@ namespace infinite_f2 {
 		RENDERGEOMETRYMESHPACKAGE_ID)
 	{
 		{ _field_word_integer, "flags" },
-		{ _field_enum, "mesh resource packing policy", &blofeld::infinite_f2::rendergeometrymeshpackagepolicy },
+		{ _field_short_enum, "mesh resource packing policy", &blofeld::infinite_f2::rendergeometrymeshpackagepolicy },
 		{ _field_word_integer, "total index buffer count" },
 		{ _field_word_integer, "total vertex buffer count" },
 		{ _field_block, "mesh resource groups", &blofeld::infinite_f2::rendergeometrymeshpackageresourcegroup_block },
@@ -98013,7 +98013,7 @@ namespace infinite_f2 {
 		{ _field_block, "runtime lights", &blofeld::infinite_f2::structurelightdefinition_block },
 		{ _field_short_integer, "floating sun index" },
 		FIELD_PAD("generated_pad9145", 2),
-		{ _field_pageable, "Baked DWS Irradiance Data", &blofeld::infinite_f2::bakeddwsirradianceresource_resource_definition },
+		{ _field_pageable_resource, "Baked DWS Irradiance Data", &blofeld::infinite_f2::bakeddwsirradianceresource_resource_definition },
 		FIELD_PAD("generated_pad7764", 4),
 		{ _field_terminator }
 	};
@@ -98032,7 +98032,7 @@ namespace infinite_f2 {
 		FIELD_EXPLANATION("Gobo Parameters", nullptr),
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		{ _field_enum, "Output Modifier", &blofeld::infinite_f2::lightoutputmodifier, _field_id_function_output_modifier },
+		{ _field_short_enum, "Output Modifier", &blofeld::infinite_f2::lightoutputmodifier, _field_id_function_output_modifier },
 		FIELD_PAD("generated_pad6da9", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
@@ -98137,7 +98137,7 @@ namespace infinite_f2 {
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		{ _field_enum, "Output Modifier", &blofeld::infinite_f2::lightoutputmodifier, _field_id_function_output_modifier },
+		{ _field_short_enum, "Output Modifier", &blofeld::infinite_f2::lightoutputmodifier, _field_id_function_output_modifier },
 		FIELD_PAD("generated_padc7e0", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
@@ -98156,7 +98156,7 @@ namespace infinite_f2 {
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		{ _field_enum, "Output Modifier", &blofeld::infinite_f2::lightoutputmodifier, _field_id_function_output_modifier },
+		{ _field_short_enum, "Output Modifier", &blofeld::infinite_f2::lightoutputmodifier, _field_id_function_output_modifier },
 		FIELD_PAD("generated_pad8f6d", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
@@ -99161,7 +99161,7 @@ namespace infinite_f2 {
 		{ _field_char_enum, "curve mode", &blofeld::infinite_f2::bitmapgroupcurveoverride },
 		{ _field_char_integer, "max mipmap level" },
 		{ _field_short_integer, "max resolution" },
-		{ _field_enum, "force bitmap format", &blofeld::infinite_f2::bitmapusagebitmapforcedformat },
+		{ _field_short_enum, "force bitmap format", &blofeld::infinite_f2::bitmapusagebitmapforcedformat },
 		FIELD_CUSTOM("reset usage override", _field_id_edit),
 		{ _field_char_enum, "sdf generation", &blofeld::infinite_f2::bitmapgroupsigneddistancefieldmethod },
 		{ _field_char_integer, "target platform" },
@@ -99411,7 +99411,7 @@ namespace infinite_f2 {
 		{ _field_word_integer, "depth" },
 		{ _field_char_enum, "type", &blofeld::infinite_f2::bitmaptype },
 		FIELD_PAD("generated_paddca3", 1),
-		{ _field_enum, "format", &blofeld::infinite_f2::bitmapformat },
+		{ _field_short_enum, "format", &blofeld::infinite_f2::bitmapformat },
 		{ _field_word_flags, "flags", &blofeld::infinite_f2::bitmapflags },
 		{ _field_char_integer, "mipmap count" },
 		{ _field_char_enum, "curve", &blofeld::infinite_f2::bitmapcurve },
@@ -99419,7 +99419,7 @@ namespace infinite_f2 {
 		{ _field_real, "streaming scale" },
 		{ _field_short_integer, "sourceWidth" },
 		{ _field_short_integer, "sourceHeight" },
-		{ _field_pageable, "bitmap resource handle", &blofeld::infinite_f2::bitmapdataresource_resource_definition },
+		{ _field_pageable_resource, "bitmap resource handle", &blofeld::infinite_f2::bitmapdataresource_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -99542,7 +99542,7 @@ namespace infinite_f2 {
 		{ _field_char_enum, "swizzle green", &blofeld::infinite_f2::floatmapswizzle },
 		{ _field_char_enum, "swizzle blue", &blofeld::infinite_f2::floatmapswizzle },
 		{ _field_char_enum, "swizzle alpha", &blofeld::infinite_f2::floatmapswizzle },
-		{ _field_enum, "bitmap format", &blofeld::infinite_f2::bitmapusagebitmapforcedformat },
+		{ _field_short_enum, "bitmap format", &blofeld::infinite_f2::bitmapusagebitmapforcedformat },
 		{ _field_char_enum, "source color space", &blofeld::infinite_f2::bitmapcolorspace },
 		{ _field_char_enum, "target color space", &blofeld::infinite_f2::bitmapcolorspace },
 		{ _field_terminator }
@@ -101849,7 +101849,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "permutation name" },
 		{ _field_char_integer, "runtime permutation index" },
 		{ _field_byte_flags, "property flags", &blofeld::infinite_f2::modelstatepropertyflags },
-		{ _field_enum, "state", &blofeld::infinite_f2::modelstates },
+		{ _field_short_enum, "state", &blofeld::infinite_f2::modelstates },
 		{ _field_real_fraction, "initial probability" },
 		{ _field_terminator }
 	};
@@ -101904,7 +101904,7 @@ namespace infinite_f2 {
 		{ _field_byte_integer, "runtime flags" },
 		{ _field_short_block_index, "parent variant", &blofeld::infinite_f2::s_model_variant_block },
 		{ _field_block, "permutations", &blofeld::infinite_f2::s_model_variant_permutation_block },
-		{ _field_enum, "sort order", &blofeld::infinite_f2::modelregionsorting },
+		{ _field_short_enum, "sort order", &blofeld::infinite_f2::modelregionsorting },
 		FIELD_PAD("generated_pade9d0", 2),
 		{ _field_terminator }
 	};
@@ -101992,7 +101992,7 @@ namespace infinite_f2 {
 		{ _field_string_id, "name" },
 		{ _field_string_id, "style" },
 		{ _field_long_flags, "model variant flags", &blofeld::infinite_f2::modelvariantflags },
-		{ _field_enum, "Damage Effect Sounds - Enable Model Hit Override", &blofeld::infinite_f2::modelvariantenablehitdamageeffectsoundsoverride },
+		{ _field_short_enum, "Damage Effect Sounds - Enable Model Hit Override", &blofeld::infinite_f2::modelvariantenablehitdamageeffectsoundsoverride },
 		{ _field_array, "runtime variant region indices", &blofeld::infinite_f2::runtime_variant_region_indices },
 		FIELD_PAD("generated_pad364f", 2),
 		{ _field_block, "regions", &blofeld::infinite_f2::s_model_variant_region_block },

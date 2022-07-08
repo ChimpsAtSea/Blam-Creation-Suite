@@ -9865,8 +9865,8 @@ namespace halo3 {
 		{ _field_struct, "object", &blofeld::halo3::object_struct_definition },
 		FIELD_EXPLANATION("$$$ CREATURE $$$", nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo3::creature_definition_flags },
-		{ _field_enum, "default team", &blofeld::halo3::unit_default_teams$2 },
-		{ _field_enum, "motion sensor blip size", &blofeld::halo3::global_chud_blip_type_definition },
+		{ _field_short_enum, "default team", &blofeld::halo3::unit_default_teams$2 },
+		{ _field_short_enum, "motion sensor blip size", &blofeld::halo3::global_chud_blip_type_definition },
 		{ _field_angle, "turning velocity maximum", nullptr, "degrees per second" },
 		{ _field_angle, "turning acceleration maximum", nullptr, "degrees per second squared" },
 		{ _field_real_fraction, "casual turning modifier", nullptr, nullptr, "[0,1]" },
@@ -9935,8 +9935,8 @@ namespace halo3 {
 	{
 		{ _field_struct, "device", &blofeld::halo3::device_struct_definition },
 		FIELD_EXPLANATION("$$$ CONTROL $$$", nullptr),
-		{ _field_enum, "type", &blofeld::halo3::control_types },
-		{ _field_enum, "triggers when", &blofeld::halo3::control_triggers },
+		{ _field_short_enum, "type", &blofeld::halo3::control_types },
+		{ _field_short_enum, "triggers when", &blofeld::halo3::control_triggers },
 		{ _field_real, "call value", nullptr, nullptr, "[0,1]" },
 		{ _field_string_id, "action string" },
 		{ _field_useless_pad, "value" },
@@ -10182,15 +10182,15 @@ namespace halo3 {
 	{
 		{ _field_struct, "device", &blofeld::halo3::device_struct_definition },
 		FIELD_EXPLANATION("$$$ MACHINE $$$", nullptr),
-		{ _field_enum, "type", &blofeld::halo3::machine_types },
+		{ _field_short_enum, "type", &blofeld::halo3::machine_types },
 		{ _field_word_flags, "flags", &blofeld::halo3::machine_flags },
 		{ _field_real, "door open time", nullptr, "seconds" },
-		{ _field_real_fraction_bounds, "door occlusion bounds", "maps position [0,1] to occlusion" },
+		{ _field_fraction_bounds, "door occlusion bounds", "maps position [0,1] to occlusion" },
 		{ _field_useless_pad, "value" },
-		{ _field_enum, "collision response", &blofeld::halo3::machine_collision_responses },
+		{ _field_short_enum, "collision response", &blofeld::halo3::machine_collision_responses },
 		{ _field_short_integer, "elevator node" },
 		{ _field_useless_pad, "value" },
-		{ _field_enum, "pathfinding policy", &blofeld::halo3::machine_pathfinding_policy_enum },
+		{ _field_short_enum, "pathfinding policy", &blofeld::halo3::machine_pathfinding_policy_enum },
 		FIELD_PAD("R", 2),
 		{ _field_terminator }
 	};
@@ -10243,8 +10243,8 @@ namespace halo3 {
 		{ _field_struct, "object", &blofeld::halo3::object_struct_definition },
 		FIELD_EXPLANATION("$$$ PROJECTILE $$$", nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo3::projectile_flags },
-		{ _field_enum, "detonation timer starts", &blofeld::halo3::projectile_detonation_timer_modes },
-		{ _field_enum, "impact noise", &blofeld::halo3::ai_sound_volume_enum },
+		{ _field_short_enum, "detonation timer starts", &blofeld::halo3::projectile_detonation_timer_modes },
+		{ _field_short_enum, "impact noise", &blofeld::halo3::ai_sound_volume_enum },
 		{ _field_useless_pad, "value" },
 		{ _field_real, "collision radius", nullptr, "world units" },
 		FIELD_EXPLANATION("detonation", nullptr),
@@ -10254,7 +10254,7 @@ namespace halo3 {
 		{ _field_real, "minimum velocity", "detonates when slowed below this velocity", "world units per second" },
 		{ _field_real, "maximum range", "detonates after travelling this distance", "world units" },
 		{ _field_real, "bounce maximum range", "detonates after travelling this distance, but is reset after a bounce.  Combines with maximum range", "world units" },
-		{ _field_enum, "detonation noise", &blofeld::halo3::ai_sound_volume_enum },
+		{ _field_short_enum, "detonation noise", &blofeld::halo3::ai_sound_volume_enum },
 		{ _field_short_integer, "super det. projectile count" },
 		{ _field_real, "super det. time" },
 		{ _field_tag_reference, "detonation started", &blofeld::halo3::effect_group_reference_tagref },
@@ -10573,10 +10573,10 @@ namespace halo3 {
 	{
 		{ _field_struct, "object", &blofeld::halo3::object_struct_definition },
 		FIELD_EXPLANATION("Pathfinding", "Indicate whether, by default, we should create pathfinding data for this type of scenery"),
-		{ _field_enum, "pathfinding policy", &blofeld::halo3::pathfinding_policy_enum$2 },
+		{ _field_short_enum, "pathfinding policy", &blofeld::halo3::pathfinding_policy_enum$2 },
 		{ _field_word_flags, "flags", &blofeld::halo3::scenery_flags },
 		FIELD_EXPLANATION("Lightmapping", "Indicate whether, by default, how we should lightmap this type of scenery"),
-		{ _field_enum, "lightmapping policy", &blofeld::halo3::lightmapping_policy_enum },
+		{ _field_short_enum, "lightmapping policy", &blofeld::halo3::lightmapping_policy_enum },
 		FIELD_PAD("WGW", 2),
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
@@ -10618,8 +10618,8 @@ namespace halo3 {
 		{ _field_struct, "object", &blofeld::halo3::object_struct_definition },
 		FIELD_EXPLANATION("$$$ UNIT $$$", nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo3::unit_flags },
-		{ _field_enum, "default team", &blofeld::halo3::unit_default_teams },
-		{ _field_enum, "constant sound volume", &blofeld::halo3::ai_sound_volume_enum },
+		{ _field_short_enum, "default team", &blofeld::halo3::unit_default_teams },
+		{ _field_short_enum, "constant sound volume", &blofeld::halo3::ai_sound_volume_enum },
 		{ _field_block, "campaign metagame bucket", &blofeld::halo3::campaign_metagame_bucket_block_block },
 		{ _field_tag_reference, "integrated light toggle", &blofeld::halo3::effect_group_reference_tagref },
 		{ _field_angle, "camera field of view", nullptr, "degrees" },
@@ -10638,7 +10638,7 @@ namespace halo3 {
 		{ _field_real, "feign death chance", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "feign repeat chance", nullptr, nullptr, "[0,1]" },
 		{ _field_tag_reference, "spawned turret character", "automatically created character when this unit is driven", &blofeld::halo3::character_group_reference$2_tagref },
-		{ _field_short_bounds, "spawned actor count", "number of actors which we spawn" },
+		{ _field_short_integer_bounds, "spawned actor count", "number of actors which we spawn" },
 		{ _field_real, "spawned velocity", "velocity at which we throw spawned actors" },
 		{ _field_angle, "aiming velocity maximum", nullptr, "degrees per second" },
 		{ _field_angle, "aiming acceleration maximum", nullptr, "degrees per second squared" },
@@ -10650,13 +10650,13 @@ namespace halo3 {
 		{ _field_struct, "more damn nodes", &blofeld::halo3::unit_additional_node_names_struct },
 		{ _field_tag_reference, "melee damage", &blofeld::halo3::damage_effect_group_reference_tagref },
 		{ _field_struct, "your momma", &blofeld::halo3::unit_boarding_melee_struct },
-		{ _field_enum, "motion sensor blip size", &blofeld::halo3::global_chud_blip_type_definition },
-		{ _field_enum, "item owner size", &blofeld::halo3::unit_item_owner_size_enum },
+		{ _field_short_enum, "motion sensor blip size", &blofeld::halo3::global_chud_blip_type_definition },
+		{ _field_short_enum, "item owner size", &blofeld::halo3::unit_item_owner_size_enum },
 		{ _field_block, "postures", &blofeld::halo3::unit_postures_block_block },
 		{ _field_block, "NEW HUD INTERFACES", &blofeld::halo3::unit_hud_reference_block_block },
 		{ _field_block, "dialogue variants", &blofeld::halo3::dialogue_variant_block_block },
 		{ _field_real, "grenade velocity", nullptr, "world units per second" },
-		{ _field_enum, "grenade type", &blofeld::halo3::global_grenade_type_enum },
+		{ _field_short_enum, "grenade type", &blofeld::halo3::global_grenade_type_enum },
 		{ _field_short_integer, "grenade count" },
 		{ _field_block, "powered seats", &blofeld::halo3::powered_seat_block_block },
 		{ _field_block, "weapons", &blofeld::halo3::unit_weapon_block_block },
@@ -10968,7 +10968,7 @@ namespace halo3 {
 		{ _field_long_flags, "flags", &blofeld::halo3::weapon_definition_flags },
 		{ _field_long_flags, "secondary flags", &blofeld::halo3::weapon_definition_secondary_flags },
 		{ _field_old_string_id, "unused label" },
-		{ _field_enum, "secondary trigger mode", &blofeld::halo3::secondary_trigger_modes },
+		{ _field_short_enum, "secondary trigger mode", &blofeld::halo3::secondary_trigger_modes },
 		{ _field_short_integer, "maximum alternate shots loaded", "if the second trigger loads alternate ammunition, this is the maximum number of shots that can be loaded at a time" },
 		{ _field_real, "turn on time", "how long after being readied it takes this weapon to switch its 'turned_on' attachment to 1.0" },
 		FIELD_EXPLANATION("old obsolete export to functions", nullptr),
@@ -11001,7 +11001,7 @@ namespace halo3 {
 		FIELD_EXPLANATION("weapon aim assist", nullptr),
 		{ _field_struct, "weapon aim assist", &blofeld::halo3::aim_assist_struct },
 		FIELD_EXPLANATION("movement", nullptr),
-		{ _field_enum, "movement penalized", &blofeld::halo3::movement_penalty_modes },
+		{ _field_short_enum, "movement penalized", &blofeld::halo3::movement_penalty_modes },
 		FIELD_PAD("GTIXVRPA", 2),
 		{ _field_real_fraction, "forward movement penalty", "percent slowdown to forward movement for units carrying this weapon" },
 		{ _field_real_fraction, "sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon" },
@@ -11026,9 +11026,9 @@ namespace halo3 {
 		FIELD_EXPLANATION("weapon labels", nullptr),
 		{ _field_string_id, "weapon class" },
 		{ _field_string_id, "weapon name" },
-		{ _field_enum, "multiplayer weapon type", &blofeld::halo3::multiplayer_weapon_types },
+		{ _field_short_enum, "multiplayer weapon type", &blofeld::halo3::multiplayer_weapon_types },
 		FIELD_EXPLANATION("more miscellaneous", nullptr),
-		{ _field_enum, "weapon type", &blofeld::halo3::weapon_types },
+		{ _field_short_enum, "weapon type", &blofeld::halo3::weapon_types },
 		{ _field_struct, "tracking", &blofeld::halo3::weapon_tracking_struct },
 		{ _field_struct, "player interface", &blofeld::halo3::weapon_interface_struct },
 		{ _field_block, "predicted resources", &blofeld::halo3::g_null_block_block },
@@ -11230,9 +11230,9 @@ namespace halo3 {
 	{
 		{ _field_string_id, "name" },
 		{ _field_rectangle_2d, "text bounds (on screen)" },
-		{ _field_enum, "justification", &blofeld::halo3::text_justification_enum_definition },
-		{ _field_enum, "vertical justification", &blofeld::halo3::text_vertical_justification_enum_definition },
-		{ _field_enum, "font", &blofeld::halo3::font_id_enum_definition },
+		{ _field_short_enum, "justification", &blofeld::halo3::text_justification_enum_definition },
+		{ _field_short_enum, "vertical justification", &blofeld::halo3::text_vertical_justification_enum_definition },
+		{ _field_short_enum, "font", &blofeld::halo3::font_id_enum_definition },
 		FIELD_PAD("padding", 2),
 		{ _field_rgb_color, "text color" },
 		{ _field_rgb_color, "shadow color" },
@@ -11705,7 +11705,7 @@ namespace halo3 {
 		FIELD_CUSTOM("loop now", _field_id_loop_cinematic_scene),
 		{ _field_string_id, "name" },
 		{ _field_string, "anchor" },
-		{ _field_enum, "reset object lighting", &blofeld::halo3::scene_reset_object_lighting_enum },
+		{ _field_short_enum, "reset object lighting", &blofeld::halo3::scene_reset_object_lighting_enum },
 		FIELD_PAD("pad", 2),
 		FIELD_EXPLANATION("Header", nullptr),
 		{ _field_struct, "header", &blofeld::halo3::cinematic_custom_script_block },
@@ -11785,7 +11785,7 @@ namespace halo3 {
 		{ _field_struct, "cinematic playback", &blofeld::halo3::cinematic_playback_data_block },
 		{ _field_struct, "scenario and zone set", &blofeld::halo3::scenario_and_zone_set_struct },
 		{ _field_string_id, "name" },
-		{ _field_enum, "channel type", &blofeld::halo3::cinematic_channel_type_enum },
+		{ _field_short_enum, "channel type", &blofeld::halo3::cinematic_channel_type_enum },
 		FIELD_PAD("PADDING", 2),
 		{ _field_long_flags, "flags", &blofeld::halo3::cinematic_flags },
 		{ _field_real, "easing in time", "seconds" },
@@ -12065,7 +12065,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_RESOURCE_LANGUAGE_BLOCK_STRUCT_ID)
 	{
-		{ _field_pageable, "language resource", &blofeld::halo3::sound_resource_definition },
+		{ _field_pageable_resource, "language resource", &blofeld::halo3::sound_resource_definition },
 		{ _field_char_enum, "language", &blofeld::halo3::sound_language_enum_definition },
 		FIELD_PAD("asdf", 3),
 		{ _field_terminator }
@@ -12210,7 +12210,7 @@ namespace halo3 {
 		{ _field_data, "lipsync data", &blofeld::halo3::sound_lipsync_data },
 		{ _field_block, "markers", &blofeld::halo3::sound_permutation_marker_block_block },
 		{ _field_block, "xma2 seek table", &blofeld::halo3::sound_xma2_seek_table_block_block },
-		{ _field_enum, "compression", &blofeld::halo3::sound_compression_enum },
+		{ _field_short_enum, "compression", &blofeld::halo3::sound_compression_enum },
 		{ _field_char_enum, "language", &blofeld::halo3::sound_language_enum_definition },
 		FIELD_PAD("ZHDGBHWS", 1),
 		{ _field_long_integer, "block alignment" },
@@ -12327,9 +12327,9 @@ namespace halo3 {
 		FIELD_EXPLANATION("pitch control", "these settings control what pitches this set of samples represents. if there is only one pitch range, all three values are ignored."),
 		{ _field_short_integer, "natural pitch", "the apparent pitch when these samples are played at their recorded pitch.", "cents" },
 		FIELD_PAD("KCTSDWPP", 2),
-		{ _field_short_bounds, "bend bounds", "the range of pitches that will be represented using this sample.", "cents" },
-		{ _field_short_bounds, "full volume bounds", "the range of pitches that map to full gain.", "cents" },
-		{ _field_short_bounds, "playback bend bounds", "the actual pitch will be clamped to this", "cents", _field_id_function_unknown },
+		{ _field_short_integer_bounds, "bend bounds", "the range of pitches that will be represented using this sample.", "cents" },
+		{ _field_short_integer_bounds, "full volume bounds", "the range of pitches that map to full gain.", "cents" },
+		{ _field_short_integer_bounds, "playback bend bounds", "the actual pitch will be clamped to this", "cents", _field_id_function_unknown },
 		FIELD_PAD("YAMTVB", 4),
 		{ _field_char_integer, "runtime usable permutation count" },
 		{ _field_byte_flags, "xsync flags", &blofeld::halo3::sound_pitch_range_internal_xsync_flags },
@@ -12422,7 +12422,7 @@ namespace halo3 {
 		{ _field_block, "platform parameters", &blofeld::halo3::sound_platform_sound_playback_block_block },
 		{ _field_block, "extra info", &blofeld::halo3::sound_extra_info_block_block },
 		{ _field_block, "language info", &blofeld::halo3::sound_language_info_block_block },
-		{ _field_pageable, "sound data resource", &blofeld::halo3::sound_resource_definition },
+		{ _field_pageable_resource, "sound data resource", &blofeld::halo3::sound_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -12566,7 +12566,7 @@ namespace halo3 {
 		FIELD_CUSTOM("Update gain bounds", _field_id_edit),
 		{ _field_real, "gain base", "sound's random gain will start here", "dB", _field_id_decibels },
 		{ _field_real, "gain variance", "sound's gain will be randomly modulated within this range", "dB", _field_id_decibels },
-		{ _field_short_bounds, "random pitch bounds", "the sound's pitch will be modulated randomly within this range.", "cents" },
+		{ _field_short_integer_bounds, "random pitch bounds", "the sound's pitch will be modulated randomly within this range.", "cents" },
 		FIELD_EXPLANATION("directional sounds", "these settings allow sounds to be directional, fading as they turn away from the listener"),
 		{ _field_angle, "inner cone angle", "within the cone defined by this angle and the sound's direction, the sound plays with a gain of 1.0.", "degrees" },
 		{ _field_angle, "outer cone angle", "outside the cone defined by this angle and the sound's direction, the sound plays with a gain of OUTER CONE GAIN. (0 means the sound does not attenuate with direction.)", "degrees" },
@@ -12600,8 +12600,8 @@ namespace halo3 {
 	{
 		FIELD_EXPLANATION("scale modifiers", "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the values specified above. (0 values are ignored.)"),
 		{ _field_real_bounds, "gain modifier", nullptr, "dB", _field_id_decibels },
-		{ _field_short_bounds, "pitch modifier", nullptr, "cents" },
-		{ _field_real_fraction_bounds, "skip fraction modifier" },
+		{ _field_short_integer_bounds, "pitch modifier", nullptr, "cents" },
+		{ _field_fraction_bounds, "skip fraction modifier" },
 		{ _field_terminator }
 	};
 
@@ -12747,7 +12747,7 @@ namespace halo3 {
 		{ _field_tag_reference, "alt loop", &blofeld::halo3::sound_group_reference_tagref },
 		{ _field_tag_reference, "alt out", &blofeld::halo3::sound_group_reference_tagref },
 		{ _field_useless_pad, "value" },
-		{ _field_enum, "output effect", &blofeld::halo3::sound_effects_enum },
+		{ _field_short_enum, "output effect", &blofeld::halo3::sound_effects_enum },
 		FIELD_PAD("AXWV", 2),
 		{ _field_tag_reference, "alt trans in", &blofeld::halo3::sound_group_reference_tagref },
 		{ _field_tag_reference, "alt trans out", &blofeld::halo3::sound_group_reference_tagref },
@@ -12790,7 +12790,7 @@ namespace halo3 {
 		{ _field_real, "unused0" },
 		{ _field_real_bounds, "runtime distance bounds" },
 		{ _field_tag_reference, "unused1", &blofeld::halo3::_reference$2_tagref },
-		{ _field_enum, "runtime sound class", &blofeld::halo3::sound_class_enum },
+		{ _field_short_enum, "runtime sound class", &blofeld::halo3::sound_class_enum },
 		FIELD_PAD("asdf", 2),
 		{ _field_block, "tracks", "tracks play in parallel and loop continuously for the duration of the looping sound.", &blofeld::halo3::looping_sound_track_block_block },
 		{ _field_block, "detail sounds", "detail sounds play at random throughout the duration of the looping sound.", &blofeld::halo3::looping_sound_detail_block_block },
@@ -12836,7 +12836,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_TEXTURE_INTEROP_BLOCK_STRUCT_ID)
 	{
-		{ _field_pageable, "texture resource", &blofeld::halo3::bitmap_texture_interop_resource },
+		{ _field_pageable_resource, "texture resource", &blofeld::halo3::bitmap_texture_interop_resource },
 		{ _field_terminator }
 	};
 
@@ -12864,7 +12864,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_TEXTURE_INTERLEAVED_INTEROP_BLOCK_STRUCT_ID)
 	{
-		{ _field_pageable, "interleaved texture resource", &blofeld::halo3::bitmap_texture_interleaved_interop_resource },
+		{ _field_pageable_resource, "interleaved texture resource", &blofeld::halo3::bitmap_texture_interleaved_interop_resource },
 		{ _field_terminator }
 	};
 
@@ -12887,7 +12887,7 @@ namespace halo3 {
 		{ _field_real_fraction, "fade factor", "used by detail maps and illum maps.  0 means fade by last mipmap, 1 means fade by first mipmap", nullptr, "[0,1]" },
 		{ _field_char_enum, "curve mode", "automatic chooses FAST if your bitmap is bright, and PRETTY if your bitmap has dark bits", &blofeld::halo3::bitmap_curve_override_enum },
 		{ _field_char_integer, "max mipmap level", "0 = use default defined by usage" },
-		{ _field_enum, "force bitmap format", "overrides the format defined by usage", &blofeld::halo3::bitmap_usage_format_def },
+		{ _field_short_enum, "force bitmap format", "overrides the format defined by usage", &blofeld::halo3::bitmap_usage_format_def },
 		{ _field_block, "usage override", &blofeld::halo3::bitmap_usage_block_block },
 		{ _field_block, "manual_sequences", &blofeld::halo3::bitmap_group_sequence_block_def_block },
 		FIELD_EXPLANATION("IMPORT DATA", "\n\n\n\n\n\n\n\n\n\n\n\n\n***************************************************************************************************************************\n\nEverything below this line is bitmap data.  It is updated when you reimport the bitmap.\n\nAny changes you make below will be lost in the next reimport, and may even cause \'bad things\' to happen.\n\n***************************************************************************************************************************\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"),
@@ -13542,7 +13542,7 @@ namespace halo3 {
 		FIELD_EXPLANATION("FLYING CAMERA", nullptr),
 		{ _field_real, "maximum boost speed", "the scaling factor for the left stick when the left trigger is fully depressed" },
 		{ _field_real, "time to maximum_boost", "seconds. while pegging boost, time to reach maximum speed" },
-		{ _field_enum, "boost function", &blofeld::halo3::global_transition_functions_enum },
+		{ _field_short_enum, "boost function", &blofeld::halo3::global_transition_functions_enum },
 		FIELD_PAD("hoist", 2),
 		{ _field_real, "zoomed field of view", "field of view when zoomed", "degrees" },
 		{ _field_real, "zoomed look speed", "scaling factor for look speed when zoomed" },
@@ -13550,7 +13550,7 @@ namespace halo3 {
 		{ _field_real, "flying cam movement delay", "how quickly the camera responds to the user's input", "seconds" },
 		{ _field_real, "zoom transition time", "how long it takes to zoom in or out", "seconds" },
 		{ _field_real, "vertical movement time to max speed" },
-		{ _field_enum, "vertical movement function", &blofeld::halo3::global_transition_functions_enum },
+		{ _field_short_enum, "vertical movement function", &blofeld::halo3::global_transition_functions_enum },
 		FIELD_PAD("moist", 2),
 		FIELD_EXPLANATION("ORBITING CAMERA", nullptr),
 		{ _field_real, "minimum distance", nullptr, "wu" },
@@ -13970,7 +13970,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_OBJECT_DATA_BLOCK_ID)
 	{
-		{ _field_enum, "type", &blofeld::halo3::bounding_sphere_enum_definition },
+		{ _field_short_enum, "type", &blofeld::halo3::bounding_sphere_enum_definition },
 		FIELD_PAD("SCWMWGUR", 2),
 		{ _field_real_point_3d, "offset" },
 		{ _field_real, "radius" },
@@ -14173,7 +14173,7 @@ namespace halo3 {
 		{ _field_char_integer, "runtime flags" },
 		{ _field_short_block_index, "parent variant", &blofeld::halo3::model_variant_block_block },
 		{ _field_block, "permutations", &blofeld::halo3::model_variant_permutation_block_block },
-		{ _field_enum, "sort order", "negative values mean closer to the camera", &blofeld::halo3::region_sort_enum },
+		{ _field_short_enum, "sort order", "negative values mean closer to the camera", &blofeld::halo3::region_sort_enum },
 		FIELD_PAD("JO", 2),
 		{ _field_terminator }
 	};
@@ -14249,7 +14249,7 @@ namespace halo3 {
 		{ _field_string_id, "permutation name" },
 		{ _field_char_integer, "runtime permutation index" },
 		{ _field_byte_flags, "property flags", &blofeld::halo3::model_state_property_flags_definition },
-		{ _field_enum, "state", &blofeld::halo3::model_state_enum_definition },
+		{ _field_short_enum, "state", &blofeld::halo3::model_state_enum_definition },
 		{ _field_tag_reference, "looping effect", "played while the model is in this state", &blofeld::halo3::effect_group_reference$2_tagref },
 		{ _field_string_id, "looping effect marker name" },
 		{ _field_real_fraction, "initial probability" },
@@ -15305,7 +15305,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HAVOK_SHAPE_REFERENCE_STRUCT_ID)
 	{
-		{ _field_enum, "shape type", &blofeld::halo3::shape_enum },
+		{ _field_short_enum, "shape type", &blofeld::halo3::shape_enum },
 		{ _field_custom_short_block_index, "shape", &blofeld::halo3::shape_search },
 		FIELD_PAD("pad64_00", 4),
 		{ _field_terminator }
@@ -15382,7 +15382,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_MOTOR_REFERENCE_STRUCT_ID)
 	{
-		{ _field_enum, "motor type", &blofeld::halo3::physics_model_motor_types_enum },
+		{ _field_short_enum, "motor type", &blofeld::halo3::physics_model_motor_types_enum },
 		{ _field_custom_short_block_index, "index", &blofeld::halo3::custom_physics_model_motor_reference_block_index_definition },
 		{ _field_terminator }
 	};
@@ -15438,7 +15438,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_CONSTRAINT_EDGE_CONSTRAINT_BLOCK_ID)
 	{
-		{ _field_enum, "type", &blofeld::halo3::rigid_constraint_types_enum },
+		{ _field_short_enum, "type", &blofeld::halo3::rigid_constraint_types_enum },
 		{ _field_custom_short_block_index, "index", &blofeld::halo3::custom_constraint_reference_block_index_definition },
 		{ _field_long_flags, "flags", &blofeld::halo3::rigid_body_constraint_edge_constraint_flags_definition },
 		{ _field_real, "friction", "0 is the default (takes what it was set in max) anything else overrides that value" },
@@ -15491,7 +15491,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_POWERED_CHAIN_CONSTRAINTS_BLOCK_ID)
 	{
-		{ _field_enum, "constraint type", &blofeld::halo3::rigid_constraint_types_enum },
+		{ _field_short_enum, "constraint type", &blofeld::halo3::rigid_constraint_types_enum },
 		{ _field_custom_short_block_index, "constraint index", &blofeld::halo3::custom_powered_chain_constraint_reference_block_index_definition },
 		{ _field_struct, "motor x", &blofeld::halo3::physics_model_motor_reference_struct },
 		{ _field_struct, "motor y", &blofeld::halo3::physics_model_motor_reference_struct },
@@ -15811,9 +15811,9 @@ namespace halo3 {
 		{ _field_real_point_3d, "bouding sphere offset" },
 		{ _field_real, "bounding sphere radius" },
 		{ _field_word_flags, "flags", &blofeld::halo3::rigid_body_flags },
-		{ _field_enum, "motion type", &blofeld::halo3::rigid_body_motion_enum },
+		{ _field_short_enum, "motion type", &blofeld::halo3::rigid_body_motion_enum },
 		{ _field_short_block_index, "no phantom power alt", &blofeld::halo3::rigid_bodies_block_block },
-		{ _field_enum, "size", &blofeld::halo3::rigid_body_size_enum },
+		{ _field_short_enum, "size", &blofeld::halo3::rigid_body_size_enum },
 		{ _field_real, "inertia tensor scale", "0.0 defaults to 1.0" },
 		{ _field_real, "linear damping", "this goes from 0-10 (10 is really, really high)" },
 		{ _field_real, "angular damping", "this goes from 0-10 (10 is really, really high)" },
@@ -16783,8 +16783,8 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_ACCELERATIONS_BLOCK_ID)
 	{
-		{ _field_enum, "create in", &blofeld::halo3::effect_environments },
-		{ _field_enum, "violence mode", &blofeld::halo3::effect_dispositions },
+		{ _field_short_enum, "create in", &blofeld::halo3::effect_environments },
+		{ _field_short_enum, "violence mode", &blofeld::halo3::effect_dispositions },
 		{ _field_short_block_index, "location", &blofeld::halo3::effect_locations_block_block },
 		FIELD_PAD("THY", 2),
 		{ _field_real, "acceleration" },
@@ -16820,8 +16820,8 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_PART_BLOCK_ID)
 	{
-		{ _field_enum, "create in", &blofeld::halo3::effect_environments },
-		{ _field_enum, "violence mode", &blofeld::halo3::effect_dispositions },
+		{ _field_short_enum, "create in", &blofeld::halo3::effect_environments },
+		{ _field_short_enum, "violence mode", &blofeld::halo3::effect_dispositions },
 		{ _field_short_block_index, "location", &blofeld::halo3::effect_locations_block_block },
 		{ _field_short_block_index, "secondary location (beams)", &blofeld::halo3::effect_locations_block_block },
 		{ _field_word_flags, "flags", &blofeld::halo3::effect_part_flags },
@@ -17207,7 +17207,7 @@ namespace halo3 {
 		{ _field_block, "attachments", &blofeld::halo3::attachment_block_block },
 		FIELD_EXPLANATION("PARTICLE APPEARANCE", nullptr),
 		{ _field_long_flags, "appearance flags", &blofeld::halo3::particle_appearance_flags },
-		{ _field_enum, "particle billboard style", &blofeld::halo3::particle_billboard_type_enum },
+		{ _field_short_enum, "particle billboard style", &blofeld::halo3::particle_billboard_type_enum },
 		{ _field_short_integer, "first sequence index" },
 		{ _field_short_integer, "sequence count" },
 		FIELD_PAD("NQCLLBQ", 2),
@@ -17348,7 +17348,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_CONTROLLER_ID)
 	{
-		{ _field_enum, "type", &blofeld::halo3::particle_movement_type },
+		{ _field_short_enum, "type", &blofeld::halo3::particle_movement_type },
 		FIELD_PAD("KNTXOMS", 2),
 		{ _field_block, "parameters", &blofeld::halo3::particle_controller_parameters_block },
 		{ _field_long_integer, "runtime m_constant_parameters" },
@@ -18031,7 +18031,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_DEBUG_INFO_RENDER_LINE_BLOCK_ID)
 	{
-		{ _field_enum, "type", &blofeld::halo3::structure_bsp_debug_info_render_line_type_enum },
+		{ _field_short_enum, "type", &blofeld::halo3::structure_bsp_debug_info_render_line_type_enum },
 		{ _field_short_integer, "code" },
 		{ _field_short_integer, "pad thai" },
 		FIELD_PAD("BNQS", 2),
@@ -18217,8 +18217,8 @@ namespace halo3 {
 		STRUCTURE_BSP_RESOURCE_INTERFACE_ID)
 	{
 		{ _field_block, "raw_resources", &blofeld::halo3::structure_bsp_raw_resources_block },
-		{ _field_pageable, "tag_resources", &blofeld::halo3::structure_bsp_tag_resources },
-		{ _field_pageable, "cache_file_resources", &blofeld::halo3::structure_bsp_cache_file_tag_resources },
+		{ _field_pageable_resource, "tag_resources", &blofeld::halo3::structure_bsp_tag_resources },
+		{ _field_pageable_resource, "cache_file_resources", &blofeld::halo3::structure_bsp_cache_file_tag_resources },
 		{ _field_long_integer, "use resource items" },
 		{ _field_terminator }
 	};
@@ -18384,9 +18384,9 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_LIGHTING_GENERIC_LIGHT_DEFINITION_BLOCK_ID)
 	{
-		{ _field_enum, "type", &blofeld::halo3::structure_lighting_generic_light_type_enum },
+		{ _field_short_enum, "type", &blofeld::halo3::structure_lighting_generic_light_type_enum },
 		{ _field_word_flags, "flags", &blofeld::halo3::structure_lighting_generic_light_flags },
-		{ _field_enum, "shape", &blofeld::halo3::structure_lighting_generic_light_shape_enum },
+		{ _field_short_enum, "shape", &blofeld::halo3::structure_lighting_generic_light_shape_enum },
 		FIELD_PAD("QU", 2),
 		{ _field_real_rgb_color, "color" },
 		{ _field_real, "intensity" },
@@ -19263,19 +19263,19 @@ namespace halo3 {
 		{ _field_string, "name" },
 		{ _field_real, "period", "this is the period for the above function (lower values make the function oscillate quickly, higher values make it oscillate slowly)", "seconds" },
 		{ _field_short_block_index, "scale period by", "multiply this function by the above period", &blofeld::halo3::scenario_function_block_block },
-		{ _field_enum, "function", &blofeld::halo3::global_periodic_functions_enum },
+		{ _field_short_enum, "function", &blofeld::halo3::global_periodic_functions_enum },
 		{ _field_short_block_index, "scale function by", "multiply this function by the result of the above function", &blofeld::halo3::scenario_function_block_block },
-		{ _field_enum, "wobble function", "the curve used for the wobble", &blofeld::halo3::global_periodic_functions_enum },
+		{ _field_short_enum, "wobble function", "the curve used for the wobble", &blofeld::halo3::global_periodic_functions_enum },
 		{ _field_real, "wobble period", "the length of time it takes for the magnitude of this function to complete a wobble", "seconds" },
 		{ _field_real, "wobble magnitude", "the amount of random wobble in the magnitude", "percent" },
 		{ _field_real_fraction, "square wave threshold", "if non-zero, all values above the square wave threshold are snapped to 1.0, and all values below it are snapped to 0.0 to create a square wave." },
 		{ _field_short_integer, "step count", "the number of discrete values to snap to (e.g., a step count of 5 would snap the function to 0.00,0.25,0.50,0.75 or 1.00)" },
-		{ _field_enum, "map to", &blofeld::halo3::global_transition_functions_enum },
+		{ _field_short_enum, "map to", &blofeld::halo3::global_transition_functions_enum },
 		{ _field_short_integer, "sawtooth count", "the number of times this function should repeat (e.g., a sawtooth count of 5 would give the function a value of 1.0 at each of 0.25,0.50,0.75 as well as at 1.0" },
 		FIELD_PAD("WBP", 2),
 		{ _field_short_block_index, "scale result by", "multiply this function (from a weapon, vehicle, etc.) final result of all of the above math", &blofeld::halo3::scenario_function_block_block },
-		{ _field_enum, "bounds mode", "controls how the bounds, below, are used", &blofeld::halo3::function_bounds_mode_enum },
-		{ _field_real_fraction_bounds, "bounds" },
+		{ _field_short_enum, "bounds mode", "controls how the bounds, below, are used", &blofeld::halo3::function_bounds_mode_enum },
+		{ _field_fraction_bounds, "bounds" },
 		{ _field_real, "runtime inverse bounds range" },
 		FIELD_PAD("OFLIM", 2),
 		{ _field_short_block_index, "turn off with", "if the specified function is off, so is this function", &blofeld::halo3::scenario_function_block_block },
@@ -19350,7 +19350,7 @@ namespace halo3 {
 		{ _field_word_flags, "flags", &blofeld::halo3::scenario_soft_ceiling_flags_definition },
 		{ _field_word_flags, "runtime flags", &blofeld::halo3::scenario_soft_ceiling_flags_definition },
 		{ _field_string_id, "name" },
-		{ _field_enum, "type", &blofeld::halo3::soft_ceiling_type_enum },
+		{ _field_short_enum, "type", &blofeld::halo3::soft_ceiling_type_enum },
 		FIELD_PAD("my name is", 2),
 		{ _field_terminator }
 	};
@@ -19416,7 +19416,7 @@ namespace halo3 {
 		{ _field_angle, "facing", nullptr, "degrees" },
 		{ _field_angle, "pitch", nullptr, "degrees" },
 		{ _field_short_integer, "bsp index" },
-		{ _field_enum, "campaign player type", &blofeld::halo3::global_player_character_enum },
+		{ _field_short_enum, "campaign player type", &blofeld::halo3::global_player_character_enum },
 		{ _field_terminator }
 	};
 
@@ -19602,7 +19602,7 @@ namespace halo3 {
 		SCENARIO_CUTSCENE_CAMERA_POINT_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo3::scenario_cutscene_camera_flags },
-		{ _field_enum, "type", &blofeld::halo3::scenario_cutscene_camera_types },
+		{ _field_short_enum, "type", &blofeld::halo3::scenario_cutscene_camera_types },
 		{ _field_string, "name" },
 		FIELD_CUSTOM("value", _field_id_camera_matrix_editor),
 		FIELD_PAD("pad", 4),
@@ -19895,7 +19895,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DYNAMIC_SPAWN_ZONE_OVERLOAD_BLOCK_ID)
 	{
-		{ _field_enum, "overload type", &blofeld::halo3::dynamic_spawn_zone_enum },
+		{ _field_short_enum, "overload type", &blofeld::halo3::dynamic_spawn_zone_enum },
 		FIELD_PAD("UCPCWNJA", 2),
 		{ _field_real, "inner radius" },
 		{ _field_real, "outer radius" },
@@ -20390,7 +20390,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_STRUCT_DEFINITION_ID)
 	{
-		{ _field_enum, "type", &blofeld::halo3::scenario_type_enum },
+		{ _field_short_enum, "type", &blofeld::halo3::scenario_type_enum },
 		{ _field_word_flags, "flags", &blofeld::halo3::scenario_flags },
 		{ _field_long_integer, "campaign id" },
 		{ _field_long_integer, "map id" },
@@ -20985,7 +20985,7 @@ namespace halo3 {
 		{ _field_real, "axis offset", "percent offset in screen space along corona axis - 0.0 is on the corona, 1.0 is primary side edge of the screen, -1.0 is opposite side", "percent" },
 		{ _field_real_bounds, "offset bounds", "the axis offset times corona offset is clamped between these values" },
 		{ _field_real_bounds, "radius", "interpolated by external input", "world units", FIELD_FLAG_UNKNOWN0 },
-		{ _field_real_fraction_bounds, "brightness", "interpolated by external input", nullptr, "[0,1]", FIELD_FLAG_UNKNOWN0 },
+		{ _field_fraction_bounds, "brightness", "interpolated by external input", nullptr, "[0,1]", FIELD_FLAG_UNKNOWN0 },
 		{ _field_struct, "radius curve", "interpolated by external input", &blofeld::halo3::scalar_function_named_struct },
 		{ _field_struct, "scale curve X", "interpolated by external input", &blofeld::halo3::scalar_function_named_struct },
 		{ _field_struct, "scale curve Y", "interpolated by external input", &blofeld::halo3::scalar_function_named_struct },
@@ -21041,7 +21041,7 @@ namespace halo3 {
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		{ _field_enum, "Output Modifier", &blofeld::halo3::output_mod_enum$4, _field_id_function_output_modifier },
+		{ _field_short_enum, "Output Modifier", &blofeld::halo3::output_mod_enum$4, _field_id_function_output_modifier },
 		FIELD_PAD("BVCG1", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Lens flare color editor", _field_id_function_editor),
@@ -21087,8 +21087,8 @@ namespace halo3 {
 		FIELD_EXPLANATION("OCCLUSION", "Occlusion factor affects overall lens flare brightness and can also affect scale. Occlusion never affects rotation."),
 		{ _field_long_integer, "occlusion reflection index", "occlusion information will be generated against the size of this reflection" },
 		{ _field_real, "occlusion offset distance", "distance along offset direction used to test occlusion", "world units" },
-		{ _field_enum, "occlusion offset direction", &blofeld::halo3::lens_flare_occlusion_offset_enum_definition },
-		{ _field_enum, "occlusion inner radius scale", &blofeld::halo3::lens_flare_occlusion_inner_radius_scale_enum_definition },
+		{ _field_short_enum, "occlusion offset direction", &blofeld::halo3::lens_flare_occlusion_offset_enum_definition },
+		{ _field_short_enum, "occlusion inner radius scale", &blofeld::halo3::lens_flare_occlusion_inner_radius_scale_enum_definition },
 		{ _field_real, "near fade begin distance", "distance where the lens flare starts to fade in", "world units" },
 		{ _field_real, "near fade end distance", "distance where the lens flare is fully faded in", "world units" },
 		{ _field_real, "near fade distance", "distance at which the lens flare brightness is maximum", "world units" },
@@ -21096,11 +21096,11 @@ namespace halo3 {
 		{ _field_tag_reference, "bitmap", &blofeld::halo3::bitmap_group_reference$2_tagref },
 		{ _field_word_flags, "flags", &blofeld::halo3::lens_flare_flags_definition },
 		{ _field_short_integer, "runtime flags" },
-		{ _field_enum, "rotation function", &blofeld::halo3::lens_flare_corona_rotation_function_enum_definition },
+		{ _field_short_enum, "rotation function", &blofeld::halo3::lens_flare_corona_rotation_function_enum_definition },
 		FIELD_PAD("WWZC", 2),
 		{ _field_angle, "rotation function scale", nullptr, "degrees" },
 		FIELD_EXPLANATION("EFFECT PARAMETERS", "Only affects lens flares created by effects."),
-		{ _field_enum, "falloff function", &blofeld::halo3::global_reverse_transition_functions_enum },
+		{ _field_short_enum, "falloff function", &blofeld::halo3::global_reverse_transition_functions_enum },
 		FIELD_PAD("COYUTLR", 2),
 		{ _field_block, "reflections", &blofeld::halo3::lens_flare_reflection_block_block },
 		FIELD_EXPLANATION("ANIMATION", nullptr),
@@ -21190,7 +21190,7 @@ namespace halo3 {
 	{
 		{ _field_real_rgb_color, "color" },
 		FIELD_PAD("DWFCZWRP", 12),
-		{ _field_real_fraction_bounds, "density", nullptr, nullptr, "[0,1]" },
+		{ _field_fraction_bounds, "density", nullptr, nullptr, "[0,1]" },
 		{ _field_real_bounds, "distance", nullptr, "world units" },
 		{ _field_useless_pad, "value" },
 		{ _field_real_fraction, "min depth fraction", "in range (0,max_depth) world units, where patchy fog starts fading in", nullptr, "[0,1]" },
@@ -21451,7 +21451,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DETAIL_OBJECT_COLLECTION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_enum, "collection type", &blofeld::halo3::detail_object_collection_type_enum_definition },
+		{ _field_short_enum, "collection type", &blofeld::halo3::detail_object_collection_type_enum_definition },
 		FIELD_PAD("YN", 2),
 		{ _field_real, "global z offset", nullptr, "applied to all detail objects of in this collection so they don't float above the ground" },
 		FIELD_PAD("EBGQ", 44),
@@ -22234,7 +22234,7 @@ namespace halo3 {
 		{ _field_word_flags, "internal flags", &blofeld::halo3::sound_class_internal_flags_definition },
 		{ _field_word_flags, "flags", &blofeld::halo3::sound_class_external_flags_definition },
 		{ _field_short_integer, "priority", "higher means more important" },
-		{ _field_enum, "cache miss mode", &blofeld::halo3::sound_class_cache_miss_mode_definition },
+		{ _field_short_enum, "cache miss mode", &blofeld::halo3::sound_class_cache_miss_mode_definition },
 		FIELD_EXPLANATION("AIR PROPAGATION", nullptr),
 		{ _field_real, "air reverb gain", "how much reverb applies to this sound class", "dB", MAKE_ALT_NAMES("reverb gain"), _field_id_decibels },
 		{ _field_real, "air direct path gain", "how much goes to direct path (dry)", "dB", _field_id_decibels },
@@ -22776,7 +22776,7 @@ namespace halo3 {
 	{
 		{ _field_word_flags, "flags", &blofeld::halo3::game_engine_status_flags_definition },
 		FIELD_PAD("FAW", 2),
-		{ _field_enum, "state", &blofeld::halo3::game_engine_status_enum_definition },
+		{ _field_short_enum, "state", &blofeld::halo3::game_engine_status_enum_definition },
 		FIELD_PAD("BNYFIDDGX", 2),
 		{ _field_string_id, "ffa message" },
 		{ _field_string_id, "team message" },
@@ -23023,7 +23023,7 @@ namespace halo3 {
 		{ _field_char_enum, "infinite ammo", &blofeld::halo3::player_trait_infinite_ammo_setting },
 		{ _field_string_id, "initial primary weapon" },
 		{ _field_string_id, "initial secondary weapon" },
-		{ _field_enum, "initial grenade count", &blofeld::halo3::player_trait_grenade_count_setting },
+		{ _field_short_enum, "initial grenade count", &blofeld::halo3::player_trait_grenade_count_setting },
 		FIELD_PAD("blah", 2),
 		{ _field_terminator }
 	};
@@ -23395,7 +23395,7 @@ namespace halo3 {
 		{ _field_block, "respawn options", &blofeld::halo3::game_engine_respawn_options_block_block },
 		{ _field_block, "social options", &blofeld::halo3::game_engine_social_options_block_block },
 		{ _field_block, "map override options", &blofeld::halo3::game_engine_map_override_options_block_block },
-		{ _field_enum, "team scoring", &blofeld::halo3::slayer_team_scoring_settings },
+		{ _field_short_enum, "team scoring", &blofeld::halo3::slayer_team_scoring_settings },
 		{ _field_short_integer, "score to win" },
 		{ _field_char_integer, "kill points" },
 		{ _field_char_integer, "assist points" },
@@ -23440,7 +23440,7 @@ namespace halo3 {
 		{ _field_block, "social options", &blofeld::halo3::game_engine_social_options_block_block },
 		{ _field_block, "map override options", &blofeld::halo3::game_engine_map_override_options_block_block },
 		{ _field_long_flags, "flags", &blofeld::halo3::oddball_variant_flags },
-		{ _field_enum, "team scoring", &blofeld::halo3::oddball_variant_team_scoring_settings },
+		{ _field_short_enum, "team scoring", &blofeld::halo3::oddball_variant_team_scoring_settings },
 		{ _field_short_integer, "score to win" },
 		{ _field_char_integer, "carrying points", "points per second when carrying the ball" },
 		{ _field_char_integer, "kill points" },
@@ -23486,11 +23486,11 @@ namespace halo3 {
 		{ _field_block, "social options", &blofeld::halo3::game_engine_social_options_block_block },
 		{ _field_block, "map override options", &blofeld::halo3::game_engine_map_override_options_block_block },
 		{ _field_long_flags, "flags", &blofeld::halo3::ctf_variant_flags },
-		{ _field_enum, "home flag waypoint", &blofeld::halo3::ctf_variant_home_flag_waypoint_settings },
-		{ _field_enum, "game type", &blofeld::halo3::ctf_variant_game_type_settings },
-		{ _field_enum, "capture respawn", &blofeld::halo3::ctf_variant_respawn_settings },
-		{ _field_enum, "touch return time", &blofeld::halo3::ctf_variant_touch_return_settings },
-		{ _field_enum, "sudden death time", &blofeld::halo3::ctf_variant_sudden_death_time },
+		{ _field_short_enum, "home flag waypoint", &blofeld::halo3::ctf_variant_home_flag_waypoint_settings },
+		{ _field_short_enum, "game type", &blofeld::halo3::ctf_variant_game_type_settings },
+		{ _field_short_enum, "capture respawn", &blofeld::halo3::ctf_variant_respawn_settings },
+		{ _field_short_enum, "touch return time", &blofeld::halo3::ctf_variant_touch_return_settings },
+		{ _field_short_enum, "sudden death time", &blofeld::halo3::ctf_variant_sudden_death_time },
 		{ _field_short_integer, "score to win" },
 		{ _field_short_integer, "flag reset time", nullptr, "seconds" },
 		FIELD_PAD("pad", 2),
@@ -23573,10 +23573,10 @@ namespace halo3 {
 		{ _field_block, "social options", &blofeld::halo3::game_engine_social_options_block_block },
 		{ _field_block, "map override options", &blofeld::halo3::game_engine_map_override_options_block_block },
 		{ _field_long_flags, "flags", &blofeld::halo3::assault_variant_flags },
-		{ _field_enum, "respawn type", &blofeld::halo3::assault_variant_respawn_settings },
-		{ _field_enum, "game type", &blofeld::halo3::assault_variant_game_type_settings },
-		{ _field_enum, "enemy bomb waypoint", &blofeld::halo3::assault_variant_enemy_bomb_waypoint_settings },
-		{ _field_enum, "sudden death time", &blofeld::halo3::assault_variant_sudden_death_time },
+		{ _field_short_enum, "respawn type", &blofeld::halo3::assault_variant_respawn_settings },
+		{ _field_short_enum, "game type", &blofeld::halo3::assault_variant_game_type_settings },
+		{ _field_short_enum, "enemy bomb waypoint", &blofeld::halo3::assault_variant_enemy_bomb_waypoint_settings },
+		{ _field_short_enum, "sudden death time", &blofeld::halo3::assault_variant_sudden_death_time },
 		{ _field_short_integer, "score to win" },
 		{ _field_short_integer, "bomb reset time", nullptr, "seconds" },
 		{ _field_short_integer, "bomb arming time", nullptr, "seconds" },
@@ -23649,9 +23649,9 @@ namespace halo3 {
 		{ _field_block, "social options", &blofeld::halo3::game_engine_social_options_block_block },
 		{ _field_block, "map override options", &blofeld::halo3::game_engine_map_override_options_block_block },
 		{ _field_long_flags, "flags", &blofeld::halo3::infection_variant_flags },
-		{ _field_enum, "safe haven settings", &blofeld::halo3::infection_safe_havens_settings },
-		{ _field_enum, "next zombie settings", &blofeld::halo3::infection_next_zombie_settings },
-		{ _field_enum, "initial zombie count", &blofeld::halo3::infection_initial_zombie_count_settings },
+		{ _field_short_enum, "safe haven settings", &blofeld::halo3::infection_safe_havens_settings },
+		{ _field_short_enum, "next zombie settings", &blofeld::halo3::infection_next_zombie_settings },
+		{ _field_short_enum, "initial zombie count", &blofeld::halo3::infection_initial_zombie_count_settings },
 		{ _field_short_integer, "safe haven movement time", "0 is no movement" },
 		{ _field_char_integer, "zombie kill points" },
 		{ _field_char_integer, "infection points" },
@@ -23730,9 +23730,9 @@ namespace halo3 {
 		{ _field_block, "map override options", &blofeld::halo3::game_engine_map_override_options_block_block },
 		{ _field_long_flags, "flags", &blofeld::halo3::king_variant_flags },
 		{ _field_short_integer, "score to win" },
-		{ _field_enum, "team scoring", &blofeld::halo3::king_team_scoring_settings },
-		{ _field_enum, "moving hill", &blofeld::halo3::king_moving_hill_settings },
-		{ _field_enum, "moving hill order", &blofeld::halo3::king_moving_hill_order_settings },
+		{ _field_short_enum, "team scoring", &blofeld::halo3::king_team_scoring_settings },
+		{ _field_short_enum, "moving hill", &blofeld::halo3::king_moving_hill_settings },
+		{ _field_short_enum, "moving hill order", &blofeld::halo3::king_moving_hill_order_settings },
 		{ _field_char_integer, "inside hill points" },
 		{ _field_char_integer, "outside hill points" },
 		{ _field_char_integer, "uncontested hill bonus points" },
@@ -23794,9 +23794,9 @@ namespace halo3 {
 		{ _field_block, "social options", &blofeld::halo3::game_engine_social_options_block_block },
 		{ _field_block, "map override options", &blofeld::halo3::game_engine_map_override_options_block_block },
 		{ _field_long_flags, "flags", &blofeld::halo3::territories_flags },
-		{ _field_enum, "respawn on capture", &blofeld::halo3::territories_respawn_on_capture_settings },
-		{ _field_enum, "capture time", &blofeld::halo3::territories_capture_time_settings },
-		{ _field_enum, "sudden death time", &blofeld::halo3::territories_sudden_death_settings },
+		{ _field_short_enum, "respawn on capture", &blofeld::halo3::territories_respawn_on_capture_settings },
+		{ _field_short_enum, "capture time", &blofeld::halo3::territories_capture_time_settings },
+		{ _field_short_enum, "sudden death time", &blofeld::halo3::territories_sudden_death_settings },
 		FIELD_PAD("pad", 2),
 		{ _field_string_id, "defender traits" },
 		{ _field_string_id, "attacker traits" },
@@ -23862,10 +23862,10 @@ namespace halo3 {
 		{ _field_block, "social options", &blofeld::halo3::game_engine_social_options_block_block },
 		{ _field_block, "map override options", &blofeld::halo3::game_engine_map_override_options_block_block },
 		{ _field_long_flags, "flags", &blofeld::halo3::juggernaut_flags },
-		{ _field_enum, "initial juggernaut", &blofeld::halo3::juggernaut_initial_juggernaut_settings },
-		{ _field_enum, "next juggernaut", &blofeld::halo3::juggernaut_next_juggernaut_settings },
-		{ _field_enum, "zone movement", &blofeld::halo3::juggernaut_zone_movement_settings },
-		{ _field_enum, "zone order", &blofeld::halo3::juggernaut_zone_order_settings },
+		{ _field_short_enum, "initial juggernaut", &blofeld::halo3::juggernaut_initial_juggernaut_settings },
+		{ _field_short_enum, "next juggernaut", &blofeld::halo3::juggernaut_next_juggernaut_settings },
+		{ _field_short_enum, "zone movement", &blofeld::halo3::juggernaut_zone_movement_settings },
+		{ _field_short_enum, "zone order", &blofeld::halo3::juggernaut_zone_order_settings },
 		{ _field_short_integer, "score to win round" },
 		{ _field_char_integer, "kill points" },
 		{ _field_char_integer, "juggeraut kill points" },
@@ -23945,9 +23945,9 @@ namespace halo3 {
 		{ _field_block, "map override options", &blofeld::halo3::game_engine_map_override_options_block_block },
 		{ _field_long_flags, "flags", &blofeld::halo3::vip_flags },
 		{ _field_short_integer, "score to win round" },
-		{ _field_enum, "vip selection", &blofeld::halo3::vip_selection_settings },
-		{ _field_enum, "zone_movement", &blofeld::halo3::vip_zone_movement_settings },
-		{ _field_enum, "zone_order", &blofeld::halo3::vip_zone_order_settings },
+		{ _field_short_enum, "vip selection", &blofeld::halo3::vip_selection_settings },
+		{ _field_short_enum, "zone_movement", &blofeld::halo3::vip_zone_movement_settings },
+		{ _field_short_enum, "zone_order", &blofeld::halo3::vip_zone_order_settings },
 		{ _field_char_integer, "kill points" },
 		{ _field_char_integer, "takedown points" },
 		{ _field_char_integer, "kill as vip points" },
@@ -24021,8 +24021,8 @@ namespace halo3 {
 		{ _field_block, "social options", &blofeld::halo3::game_engine_social_options_block_block },
 		{ _field_block, "map override options", &blofeld::halo3::game_engine_map_override_options_block_block },
 		{ _field_long_flags, "flags", &blofeld::halo3::sandbox_flags },
-		{ _field_enum, "edit mode", &blofeld::halo3::sandbox_editing_mode },
-		{ _field_enum, "respawn time", &blofeld::halo3::sandbox_respawn_time },
+		{ _field_short_enum, "edit mode", &blofeld::halo3::sandbox_editing_mode },
+		{ _field_short_enum, "respawn time", &blofeld::halo3::sandbox_respawn_time },
 		{ _field_string_id, "all players traits" },
 		{ _field_terminator }
 	};
@@ -24170,7 +24170,7 @@ namespace halo3 {
 		SOUND_EFFECT_TEMPLATE_PARAMETER_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "type", &blofeld::halo3::sound_effect_template_type_enum_definition },
+		{ _field_short_enum, "type", &blofeld::halo3::sound_effect_template_type_enum_definition },
 		{ _field_word_flags, "flags", &blofeld::halo3::sound_effect_template_parameter_flags_definition },
 		{ _field_long_integer, "hardware offset" },
 		{ _field_long_integer, "default enum integer value" },
@@ -24561,7 +24561,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_FRAME_EVENT_STRUCT_ID)
 	{
-		{ _field_enum, "type", &blofeld::halo3::frame_event_type_new },
+		{ _field_short_enum, "type", &blofeld::halo3::frame_event_type_new },
 		{ _field_short_integer, "frame" },
 		{ _field_terminator }
 	};
@@ -24610,7 +24610,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_DIALOGUE_EVENT_BLOCK_ID)
 	{
-		{ _field_enum, "dialogue event", &blofeld::halo3::animation_dialogue_event_enum },
+		{ _field_short_enum, "dialogue event", &blofeld::halo3::animation_dialogue_event_enum },
 		{ _field_short_integer, "frame" },
 		{ _field_terminator }
 	};
@@ -24721,7 +24721,7 @@ namespace halo3 {
 		{ _field_real_bounds, "foot ik range" },
 		{ _field_string_id, "ankle marker name" },
 		{ _field_real_bounds, "ankle ik range" },
-		{ _field_enum, "default state", &blofeld::halo3::foot_tracking_default_values },
+		{ _field_short_enum, "default state", &blofeld::halo3::foot_tracking_default_values },
 		FIELD_PAD("f00t1", 2),
 		{ _field_terminator }
 	};
@@ -24778,7 +24778,7 @@ namespace halo3 {
 		FOOT_TRACKING_DEFAULTS_ID)
 	{
 		{ _field_short_block_index, "foot", &blofeld::halo3::foot_tracking_member_block_block },
-		{ _field_enum, "default state", &blofeld::halo3::foot_tracking_default_values },
+		{ _field_short_enum, "default state", &blofeld::halo3::foot_tracking_default_values },
 		{ _field_terminator }
 	};
 
@@ -25142,7 +25142,7 @@ namespace halo3 {
 		{ _field_string_id, "label" },
 		{ _field_struct, "animation", &blofeld::halo3::animation_index_struct },
 		FIELD_PAD("VQWLKE", 2),
-		{ _field_enum, "function controls", &blofeld::halo3::object_animation_mode },
+		{ _field_short_enum, "function controls", &blofeld::halo3::object_animation_mode },
 		{ _field_string_id, "function" },
 		FIELD_PAD("OHIOJE", 4),
 		{ _field_terminator }
@@ -25361,7 +25361,7 @@ namespace halo3 {
 		MODEL_ANIMATION_TAG_RESOURCE_GROUP_ID)
 	{
 		{ _field_long_integer, "reference_count" },
-		{ _field_pageable, "tag_resource", &blofeld::halo3::model_animation_tag_resource },
+		{ _field_pageable_resource, "tag_resource", &blofeld::halo3::model_animation_tag_resource },
 		{ _field_terminator }
 	};
 
@@ -25511,9 +25511,9 @@ namespace halo3 {
 		SOUND_GESTALT_PITCH_RANGE_PARAMETERS_BLOCK_ID)
 	{
 		{ _field_short_integer, "natural pitch", nullptr, "cents" },
-		{ _field_short_bounds, "bend bounds", "the range of pitches that will be represented using this sample.", "cents" },
-		{ _field_short_bounds, "max gain pitch bounds", nullptr, "cents" },
-		{ _field_short_bounds, "playback pitch bounds", nullptr, "cents" },
+		{ _field_short_integer_bounds, "bend bounds", "the range of pitches that will be represented using this sample.", "cents" },
+		{ _field_short_integer_bounds, "max gain pitch bounds", nullptr, "cents" },
+		{ _field_short_integer_bounds, "playback pitch bounds", nullptr, "cents" },
 		{ _field_terminator }
 	};
 
@@ -25724,7 +25724,7 @@ namespace halo3 {
 		{ _field_char_integer, "custom playback index" },
 		{ _field_short_integer, "extra info index" },
 		{ _field_long_integer, "maximum play time", nullptr, "ms" },
-		{ _field_pageable, "sound data resource", &blofeld::halo3::sound_resource_definition },
+		{ _field_pageable_resource, "sound data resource", &blofeld::halo3::sound_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -26497,7 +26497,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_GESTALT_BLOCK_STRUCT_ID)
 	{
-		{ _field_enum, "scenario type", &blofeld::halo3::scenario_type_enum },
+		{ _field_short_enum, "scenario type", &blofeld::halo3::scenario_type_enum },
 		{ _field_word_flags, "scenario flags", &blofeld::halo3::scenario_flags },
 		{ _field_block, "resource type identifiers", &blofeld::halo3::cache_file_resource_type_identifier_block_block, _field_id_wide },
 		{ _field_block, "interop type identifiers", &blofeld::halo3::cache_file_interop_type_identifier_block_block, _field_id_wide },
@@ -26607,7 +26607,7 @@ namespace halo3 {
 		{ _field_long_integer, "original file size" },
 		{ _field_long_integer, "original memory size" },
 		{ _field_long_integer, "alignment bits" },
-		{ _field_enum, "original shared file", &blofeld::halo3::shared_file_type_enum },
+		{ _field_short_enum, "original shared file", &blofeld::halo3::shared_file_type_enum },
 		{ _field_short_block_index, "new location", &blofeld::halo3::shared_cache_file_new_location_block_block },
 		{ _field_long_integer, "new location offset" },
 		{ _field_terminator }
@@ -26758,7 +26758,7 @@ namespace halo3 {
 		BINK_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "frame count" },
-		{ _field_pageable, "bink resource", &blofeld::halo3::bink_resource },
+		{ _field_pageable_resource, "bink resource", &blofeld::halo3::bink_resource },
 		{ _field_terminator }
 	};
 
@@ -26887,7 +26887,7 @@ namespace halo3 {
 		{ _field_char_enum, "packer", &blofeld::halo3::bitmap_usage_packer_def },
 		{ _field_char_enum, "type", &blofeld::halo3::bitmap_types },
 		{ _field_short_integer, "mipmap limit" },
-		{ _field_enum, "downsample filter", &blofeld::halo3::bitmap_usage_downsample_filter_def },
+		{ _field_short_enum, "downsample filter", &blofeld::halo3::bitmap_usage_downsample_filter_def },
 		{ _field_word_flags, "downsample flags", &blofeld::halo3::bitmap_usage_downsample_flags_def },
 		{ _field_real_rgb_color, "sprite background color" },
 		{ _field_char_enum, "swizzle red", &blofeld::halo3::bitmap_usage_swizzle_def },
@@ -27093,8 +27093,8 @@ namespace halo3 {
 		{ _field_short_integer, "height", "DO NOT CHANGE", "pixels" },
 		{ _field_char_integer, "depth", "DO NOT CHANGE", "pixels" },
 		{ _field_byte_flags, "more flags", &blofeld::halo3::bitmap_more_flags_definition },
-		{ _field_enum, "type", "DO NOT CHANGE", &blofeld::halo3::bitmap_types },
-		{ _field_enum, "format", "DO NOT CHANGE", &blofeld::halo3::bitmap_formats },
+		{ _field_short_enum, "type", "DO NOT CHANGE", &blofeld::halo3::bitmap_types },
+		{ _field_short_enum, "format", "DO NOT CHANGE", &blofeld::halo3::bitmap_formats },
 		{ _field_word_flags, "flags", &blofeld::halo3::bitmap_flags },
 		{ _field_point_2d, "registration point", "the 'center' of the bitmap - i.e. for particles" },
 		{ _field_char_integer, "mipmap count", "DO NOT CHANGE (not counting the highest resolution)" },
@@ -27492,10 +27492,10 @@ namespace halo3 {
 		FIELD_PAD("CXAEIHGADNF", 3),
 		{ _field_tag_reference, "particle", &blofeld::halo3::particle_group_reference_tagref },
 		{ _field_long_block_index, "location", &blofeld::halo3::effect_locations_block_block },
-		{ _field_enum, "coordinate system", &blofeld::halo3::coordinate_system_enum },
-		{ _field_enum, "environment", &blofeld::halo3::effect_environments },
-		{ _field_enum, "disposition", &blofeld::halo3::effect_dispositions },
-		{ _field_enum, "camera mode", &blofeld::halo3::effect_camera_modes },
+		{ _field_short_enum, "coordinate system", &blofeld::halo3::coordinate_system_enum },
+		{ _field_short_enum, "environment", &blofeld::halo3::effect_environments },
+		{ _field_short_enum, "disposition", &blofeld::halo3::effect_dispositions },
+		{ _field_short_enum, "camera mode", &blofeld::halo3::effect_camera_modes },
 		{ _field_short_integer, "sort bias", "use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
 		{ _field_word_flags, "flags", &blofeld::halo3::particle_system_flags },
 		FIELD_CUSTOM("Estimate overdraw threshold", _field_id_particle_estimate_overdraw_unknown),
@@ -28056,7 +28056,7 @@ namespace halo3 {
 		{ _field_real, "fraction of total mass", "(0.0-1.0) fraction of total vehicle mass" },
 		{ _field_real, "radius" },
 		{ _field_real, "damaged radius", "radius when the tire is blown off." },
-		{ _field_enum, "friction type", &blofeld::halo3::friction_point_definition_friction_types },
+		{ _field_short_enum, "friction type", &blofeld::halo3::friction_point_definition_friction_types },
 		FIELD_PAD("BTUPMKNC", 2),
 		{ _field_real, "moving friction velocity diff" },
 		{ _field_real, "e-brake moving friction" },
@@ -28066,7 +28066,7 @@ namespace halo3 {
 		{ _field_string_id, "collision global material name", _field_id_sted },
 		{ _field_short_integer, "runtime global material index" },
 		FIELD_EXPLANATION("friction point destruction data", nullptr),
-		{ _field_enum, "model state destroyed", "only need point can destroy flag set", &blofeld::halo3::model_state_enum_definition },
+		{ _field_short_enum, "model state destroyed", "only need point can destroy flag set", &blofeld::halo3::model_state_enum_definition },
 		{ _field_string_id, "region name", "only need point can destroy flag set" },
 		{ _field_long_integer, "runtime region index" },
 		{ _field_terminator }
@@ -28218,9 +28218,9 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INSTANTANEOUS_DAMAGE_REPSONSE_BLOCK_ID)
 	{
-		{ _field_enum, "response type", &blofeld::halo3::damage_response_type_enum_definition },
+		{ _field_short_enum, "response type", &blofeld::halo3::damage_response_type_enum_definition },
 		FIELD_EXPLANATION("Constraint damage type", "* if you specify a constraint group name (see lower section of this block)\n  you can specify a constraint damage\n* loosening a constraint takes it out of the rigid state - activates it\n* destroying a constraint sets the attached body free"),
-		{ _field_enum, "constraint damage type", &blofeld::halo3::damage_response_constraint_damage_type_enum_definition },
+		{ _field_short_enum, "constraint damage type", &blofeld::halo3::damage_response_constraint_damage_type_enum_definition },
 		FIELD_EXPLANATION("Constraint destruction", "- a response can destroy a single constraint by naming it explicitly.\n- alternatively it can randomly destroy a single constraint from a specified group if the \"destroy one group constraint\" flag is set\n- also it can destroy all constraints in a specified group if the \"destroy all group constraints\" flag is set\n"),
 		{ _field_string_id, "constraint/group name" },
 		FIELD_EXPLANATION("Damage response flags", "* kills object: when the response fires the object dies regardless of its current health\n* inhibits <x>: from halo 1 - disallows basic behaviors for a unit\n* forces drop weapon: from halo 1 - makes the unit drop its current weapon\n* kills weapon <x> trigger: destroys the <x> trigger on the unit\'s current weapon\n* destroys object: when the response fires the object is destroyed"),
@@ -28230,13 +28230,13 @@ namespace halo3 {
 		{ _field_tag_reference, "transition effect (specific)", &blofeld::halo3::effect_group_reference_tagref },
 		{ _field_struct, "damage effect", &blofeld::halo3::instantaneous_response_damage_effect_struct },
 		{ _field_string_id, "region" },
-		{ _field_enum, "new state", &blofeld::halo3::model_state_enum_definition },
+		{ _field_short_enum, "new state", &blofeld::halo3::model_state_enum_definition },
 		{ _field_short_integer, "runtime region index" },
 		{ _field_string_id, "region (secondary)" },
-		{ _field_enum, "new state (secondary)", &blofeld::halo3::model_state_enum_definition },
+		{ _field_short_enum, "new state (secondary)", &blofeld::halo3::model_state_enum_definition },
 		{ _field_short_integer, "runtime region index (secondary)" },
 		{ _field_short_block_index, "destroy instance group", "all possible instances from this group will be destroyed", &blofeld::halo3::global_model_instance_group_block_block },
-		{ _field_enum, "custom response behavior", &blofeld::halo3::damage_response_custom_response_behavior_enum_definition },
+		{ _field_short_enum, "custom response behavior", &blofeld::halo3::damage_response_custom_response_behavior_enum_definition },
 		{ _field_string_id, "custom response label" },
 		{ _field_string_id, "effect marker name" },
 		{ _field_struct, "damage effect marker", &blofeld::halo3::instantaneous_response_damage_effect_marker_struct },
@@ -29099,7 +29099,7 @@ namespace halo3 {
 		{ _field_block, "per mesh subpart visibility", &blofeld::halo3::per_mesh_subpart_visibility_block_block },
 		{ _field_block, "per_mesh_prt_data", &blofeld::halo3::per_mesh_prt_data_block_block },
 		{ _field_block, "per_instance_lightmap_texcoords", &blofeld::halo3::per_instance_lightmap_texcoords_block_block },
-		{ _field_pageable, "api resource", &blofeld::halo3::render_geometry_api_resource_definition },
+		{ _field_pageable_resource, "api resource", &blofeld::halo3::render_geometry_api_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -29182,8 +29182,8 @@ namespace halo3 {
 		{ _field_real, "world bounding sphere radius" },
 		{ _field_long_integer, "checksum" },
 		{ _field_string_id, "name" },
-		{ _field_enum, "pathfinding policy", &blofeld::halo3::instanced_geometry_pathfinding_policy_enum },
-		{ _field_enum, "lightmapping policy", &blofeld::halo3::instanced_geometry_lightmapping_policy_enum },
+		{ _field_short_enum, "pathfinding policy", &blofeld::halo3::instanced_geometry_pathfinding_policy_enum },
+		{ _field_short_enum, "lightmapping policy", &blofeld::halo3::instanced_geometry_lightmapping_policy_enum },
 		{ _field_real, "lightmap resolution scale" },
 		{ _field_block, "bsp_physics", &blofeld::halo3::collision_bsp_physics_block_block },
 		{ _field_short_integer, "fade pixels start" },
@@ -29234,7 +29234,7 @@ namespace halo3 {
 		GLOBAL_ERROR_REPORT_CATEGORIES_BLOCK_ID)
 	{
 		{ _field_long_string, "name" },
-		{ _field_enum, "report type", &blofeld::halo3::error_report_types },
+		{ _field_short_enum, "report type", &blofeld::halo3::error_report_types },
 		{ _field_word_flags, "flags", &blofeld::halo3::error_report_flags },
 		{ _field_short_integer, "runtime generation flags" },
 		FIELD_PAD("WVTP", 2),
@@ -29513,7 +29513,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_GEOMETRY_MATERIAL_PROPERTY_BLOCK_ID)
 	{
-		{ _field_enum, "type", &blofeld::halo3::geometry_material_property_type },
+		{ _field_short_enum, "type", &blofeld::halo3::geometry_material_property_type },
 		{ _field_short_integer, "int-value" },
 		{ _field_long_integer, "long-value" },
 		{ _field_real, "real-value" },
@@ -29933,7 +29933,7 @@ namespace halo3 {
 		STRUCTURE_SOFT_CEILING_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "type", &blofeld::halo3::soft_ceiling_type_enum },
+		{ _field_short_enum, "type", &blofeld::halo3::soft_ceiling_type_enum },
 		FIELD_PAD("fresh", 2),
 		{ _field_block, "soft ceiling triangles", &blofeld::halo3::structure_soft_ceiling_triangle_block_block },
 		{ _field_terminator }
@@ -30234,7 +30234,7 @@ namespace halo3 {
 		SCENARIO_CUBEMAP_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "cubemap position" },
-		{ _field_enum, "cubemap resolution", &blofeld::halo3::cubemap_resolution_enum },
+		{ _field_short_enum, "cubemap resolution", &blofeld::halo3::cubemap_resolution_enum },
 		FIELD_PAD("NQ", 2),
 		{ _field_terminator }
 	};
@@ -30491,7 +30491,7 @@ namespace halo3 {
 		FIELD_EXPLANATION("Multiplayer Data", "object data for multiplayer game use"),
 		{ _field_long_enum, "game engine symmetric placement", &blofeld::halo3::game_engine_symmetry_placement_flags },
 		{ _field_word_flags, "game engine flags", &blofeld::halo3::global_game_engine_type_flags },
-		{ _field_enum, "owner team", &blofeld::halo3::global_multiplayer_team_designator_enum_definition },
+		{ _field_short_enum, "owner team", &blofeld::halo3::global_multiplayer_team_designator_enum_definition },
 		{ _field_char_integer, "spawn order", nullptr, "-1 for random" },
 		{ _field_char_integer, "quota minimum" },
 		{ _field_char_integer, "quota maximum", nullptr, "<=0 for unlimited" },
@@ -30632,8 +30632,8 @@ namespace halo3 {
 		SCENARIO_SCENERY_DATUM_STRUCT_V4_ID)
 	{
 		FIELD_CUSTOM("value", _field_id_pathfinding),
-		{ _field_enum, "Pathfinding policy", &blofeld::halo3::pathfinding_policy_enum },
-		{ _field_enum, "Lightmapping policy", &blofeld::halo3::scenery_lightmap_policy_enum },
+		{ _field_short_enum, "Pathfinding policy", &blofeld::halo3::pathfinding_policy_enum },
+		{ _field_short_enum, "Lightmapping policy", &blofeld::halo3::scenery_lightmap_policy_enum },
 		{ _field_block, "pathfinding references", &blofeld::halo3::pathfinding_object_index_list_block_block },
 		{ _field_short_integer, "havok mopp index" },
 		{ _field_short_block_index, "ai spawning squad", &blofeld::halo3::squads_block_block },
@@ -30685,7 +30685,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CRATE_DATUM_STRUCT_ID)
 	{
-		{ _field_enum, "Pathfinding policy", &blofeld::halo3::pathfinding_policy_enum },
+		{ _field_short_enum, "Pathfinding policy", &blofeld::halo3::pathfinding_policy_enum },
 		FIELD_PAD("post-path-policy", 2),
 		{ _field_block, "pathfinding references", &blofeld::halo3::pathfinding_object_index_list_block_block },
 		{ _field_terminator }
@@ -30877,7 +30877,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_GIANT_DATUM_STRUCT_ID)
 	{
-		{ _field_enum, "Pathfinding policy", &blofeld::halo3::pathfinding_policy_enum },
+		{ _field_short_enum, "Pathfinding policy", &blofeld::halo3::pathfinding_policy_enum },
 		FIELD_PAD("post-pathfinding", 2),
 		{ _field_block, "pathfinding references", &blofeld::halo3::pathfinding_object_index_list_block_block },
 		{ _field_terminator }
@@ -31134,7 +31134,7 @@ namespace halo3 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo3::scenario_machine_flags },
 		{ _field_block, "pathfinding references", &blofeld::halo3::pathfinding_object_index_list_block_block },
-		{ _field_enum, "pathfinding policy", &blofeld::halo3::scenario_machine_pathfinding_policy_enum },
+		{ _field_short_enum, "pathfinding policy", &blofeld::halo3::scenario_machine_pathfinding_policy_enum },
 		FIELD_PAD("post-pathfinding-policy", 2),
 		{ _field_terminator }
 	};
@@ -31351,9 +31351,9 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHT_STRUCT_ID)
 	{
-		{ _field_enum, "type", &blofeld::halo3::light_type_enum_definition },
+		{ _field_short_enum, "type", &blofeld::halo3::light_type_enum_definition },
 		{ _field_word_flags, "flags", &blofeld::halo3::scenario_light_flags_definition },
-		{ _field_enum, "lightmap type", &blofeld::halo3::scenario_light_lightmap_type_enum_definition },
+		{ _field_short_enum, "lightmap type", &blofeld::halo3::scenario_light_lightmap_type_enum_definition },
 		{ _field_word_flags, "lightmap flags", &blofeld::halo3::scenario_light_lightmap_flags_definition },
 		{ _field_real, "lightmap half life" },
 		{ _field_real, "lightmap light scale" },
@@ -32523,7 +32523,7 @@ namespace halo3 {
 		HS_SCRIPT_PARAMETERS_BLOCK_ID)
 	{
 		{ _field_string, "name" },
-		{ _field_enum, "return type", &blofeld::halo3::hs_types_enum },
+		{ _field_short_enum, "return type", &blofeld::halo3::hs_types_enum },
 		FIELD_PAD("JBG", 2),
 		{ _field_terminator }
 	};
@@ -32627,8 +32627,8 @@ namespace halo3 {
 		HS_SCRIPTS_BLOCK_ID)
 	{
 		{ _field_string, "name" },
-		{ _field_enum, "script type", &blofeld::halo3::hs_script_types_enum },
-		{ _field_enum, "return type", &blofeld::halo3::hs_types_enum },
+		{ _field_short_enum, "script type", &blofeld::halo3::hs_script_types_enum },
+		{ _field_short_enum, "return type", &blofeld::halo3::hs_types_enum },
 		{ _field_long_integer, "root expression index" },
 		{ _field_useless_pad, "value" },
 		{ _field_block, "parameters", &blofeld::halo3::hs_script_parameters_block_block },
@@ -32657,7 +32657,7 @@ namespace halo3 {
 		HS_GLOBALS_BLOCK_ID)
 	{
 		{ _field_string, "name" },
-		{ _field_enum, "type", &blofeld::halo3::hs_types_enum },
+		{ _field_short_enum, "type", &blofeld::halo3::hs_types_enum },
 		FIELD_PAD("EB", 2),
 		{ _field_useless_pad, "value" },
 		{ _field_long_integer, "initialization expression index" },
@@ -32985,17 +32985,17 @@ namespace halo3 {
 	{
 		{ _field_word_flags, "flags", &blofeld::halo3::game_engine_event_flags_definition },
 		{ _field_short_integer, "runtime event type" },
-		{ _field_enum, "event", &blofeld::halo3::game_engine_general_event_enum_definition },
-		{ _field_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
+		{ _field_short_enum, "event", &blofeld::halo3::game_engine_general_event_enum_definition },
+		{ _field_short_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
 		{ _field_short_integer, "display priority" },
 		{ _field_short_integer, "sub priority" },
-		{ _field_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
+		{ _field_short_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
 		FIELD_PAD("FCKD", 2),
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
-		{ _field_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
+		{ _field_short_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
 		FIELD_PAD("CRAP", 2),
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
@@ -33131,17 +33131,17 @@ namespace halo3 {
 	{
 		{ _field_word_flags, "flags", &blofeld::halo3::game_engine_event_flags_definition },
 		{ _field_short_integer, "runtime event type" },
-		{ _field_enum, "event", &blofeld::halo3::game_engine_flavor_event_enum_definition },
-		{ _field_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
+		{ _field_short_enum, "event", &blofeld::halo3::game_engine_flavor_event_enum_definition },
+		{ _field_short_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
 		{ _field_short_integer, "display priority" },
 		{ _field_short_integer, "sub priority" },
-		{ _field_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
+		{ _field_short_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
 		FIELD_PAD("FCKD", 2),
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
-		{ _field_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
+		{ _field_short_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
 		FIELD_PAD("CRAP", 2),
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
@@ -33232,17 +33232,17 @@ namespace halo3 {
 	{
 		{ _field_word_flags, "flags", &blofeld::halo3::game_engine_event_flags_definition },
 		{ _field_short_integer, "runtime event type" },
-		{ _field_enum, "event", &blofeld::halo3::game_engine_slayer_event_enum_definition },
-		{ _field_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
+		{ _field_short_enum, "event", &blofeld::halo3::game_engine_slayer_event_enum_definition },
+		{ _field_short_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
 		{ _field_short_integer, "display priority" },
 		{ _field_short_integer, "sub priority" },
-		{ _field_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
+		{ _field_short_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
 		FIELD_PAD("FCKD", 2),
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
-		{ _field_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
+		{ _field_short_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
 		FIELD_PAD("CRAP", 2),
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
@@ -33277,17 +33277,17 @@ namespace halo3 {
 	{
 		{ _field_word_flags, "flags", &blofeld::halo3::game_engine_event_flags_definition },
 		{ _field_short_integer, "runtime event type" },
-		{ _field_enum, "event", &blofeld::halo3::game_engine_ctf_event_enum_definition },
-		{ _field_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
+		{ _field_short_enum, "event", &blofeld::halo3::game_engine_ctf_event_enum_definition },
+		{ _field_short_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
 		{ _field_short_integer, "display priority" },
 		{ _field_short_integer, "sub priority" },
-		{ _field_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
+		{ _field_short_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
 		FIELD_PAD("FCKD", 2),
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
-		{ _field_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
+		{ _field_short_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
 		FIELD_PAD("CRAP", 2),
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
@@ -33334,17 +33334,17 @@ namespace halo3 {
 	{
 		{ _field_word_flags, "flags", &blofeld::halo3::game_engine_event_flags_definition },
 		{ _field_short_integer, "runtime event type" },
-		{ _field_enum, "event", &blofeld::halo3::game_engine_assault_event_enum_definition },
-		{ _field_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
+		{ _field_short_enum, "event", &blofeld::halo3::game_engine_assault_event_enum_definition },
+		{ _field_short_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
 		{ _field_short_integer, "display priority" },
 		{ _field_short_integer, "sub priority" },
-		{ _field_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
+		{ _field_short_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
 		FIELD_PAD("FCKD", 2),
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
-		{ _field_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
+		{ _field_short_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
 		FIELD_PAD("CRAP", 2),
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
@@ -33394,17 +33394,17 @@ namespace halo3 {
 	{
 		{ _field_word_flags, "flags", &blofeld::halo3::game_engine_event_flags_definition },
 		{ _field_short_integer, "runtime event type" },
-		{ _field_enum, "event", &blofeld::halo3::game_engine_oddball_event_enum_definition },
-		{ _field_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
+		{ _field_short_enum, "event", &blofeld::halo3::game_engine_oddball_event_enum_definition },
+		{ _field_short_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
 		{ _field_short_integer, "display priority" },
 		{ _field_short_integer, "sub priority" },
-		{ _field_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
+		{ _field_short_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
 		FIELD_PAD("FCKD", 2),
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
-		{ _field_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
+		{ _field_short_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
 		FIELD_PAD("CRAP", 2),
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
@@ -33445,17 +33445,17 @@ namespace halo3 {
 	{
 		{ _field_word_flags, "flags", &blofeld::halo3::game_engine_event_flags_definition },
 		{ _field_short_integer, "runtime event type" },
-		{ _field_enum, "event", &blofeld::halo3::game_engine_king_event_enum_definition },
-		{ _field_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
+		{ _field_short_enum, "event", &blofeld::halo3::game_engine_king_event_enum_definition },
+		{ _field_short_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
 		{ _field_short_integer, "display priority" },
 		{ _field_short_integer, "sub priority" },
-		{ _field_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
+		{ _field_short_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
 		FIELD_PAD("FCKD", 2),
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
-		{ _field_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
+		{ _field_short_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
 		FIELD_PAD("CRAP", 2),
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
@@ -33494,17 +33494,17 @@ namespace halo3 {
 	{
 		{ _field_word_flags, "flags", &blofeld::halo3::game_engine_event_flags_definition },
 		{ _field_short_integer, "runtime event type" },
-		{ _field_enum, "event", &blofeld::halo3::game_engine_juggernaut_event_enum_definition },
-		{ _field_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
+		{ _field_short_enum, "event", &blofeld::halo3::game_engine_juggernaut_event_enum_definition },
+		{ _field_short_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
 		{ _field_short_integer, "display priority" },
 		{ _field_short_integer, "sub priority" },
-		{ _field_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
+		{ _field_short_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
 		FIELD_PAD("FCKD", 2),
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
-		{ _field_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
+		{ _field_short_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
 		FIELD_PAD("CRAP", 2),
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
@@ -33540,17 +33540,17 @@ namespace halo3 {
 	{
 		{ _field_word_flags, "flags", &blofeld::halo3::game_engine_event_flags_definition },
 		{ _field_short_integer, "runtime event type" },
-		{ _field_enum, "event", &blofeld::halo3::game_engine_territories_event_enum_definition },
-		{ _field_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
+		{ _field_short_enum, "event", &blofeld::halo3::game_engine_territories_event_enum_definition },
+		{ _field_short_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
 		{ _field_short_integer, "display priority" },
 		{ _field_short_integer, "sub priority" },
-		{ _field_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
+		{ _field_short_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
 		FIELD_PAD("FCKD", 2),
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
-		{ _field_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
+		{ _field_short_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
 		FIELD_PAD("CRAP", 2),
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
@@ -33587,17 +33587,17 @@ namespace halo3 {
 	{
 		{ _field_word_flags, "flags", &blofeld::halo3::game_engine_event_flags_definition },
 		{ _field_short_integer, "runtime event type" },
-		{ _field_enum, "event", &blofeld::halo3::game_engine_infection_event_enum_definition },
-		{ _field_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
+		{ _field_short_enum, "event", &blofeld::halo3::game_engine_infection_event_enum_definition },
+		{ _field_short_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
 		{ _field_short_integer, "display priority" },
 		{ _field_short_integer, "sub priority" },
-		{ _field_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
+		{ _field_short_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
 		FIELD_PAD("FCKD", 2),
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
-		{ _field_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
+		{ _field_short_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
 		FIELD_PAD("CRAP", 2),
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
@@ -33634,17 +33634,17 @@ namespace halo3 {
 	{
 		{ _field_word_flags, "flags", &blofeld::halo3::game_engine_event_flags_definition },
 		{ _field_short_integer, "runtime event type" },
-		{ _field_enum, "event", &blofeld::halo3::game_engine_vip_event_enum_definition },
-		{ _field_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
+		{ _field_short_enum, "event", &blofeld::halo3::game_engine_vip_event_enum_definition },
+		{ _field_short_enum, "audience", &blofeld::halo3::game_engine_event_audience_enum_definition },
 		{ _field_short_integer, "display priority" },
 		{ _field_short_integer, "sub priority" },
-		{ _field_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
+		{ _field_short_enum, "display context", &blofeld::halo3::game_engine_event_response_context_enum_definition },
 		FIELD_PAD("FCKD", 2),
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
-		{ _field_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
-		{ _field_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
+		{ _field_short_enum, "required field", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "excluded audience", &blofeld::halo3::game_engine_event_input_enum_definition },
+		{ _field_short_enum, "splitscreen suppression", &blofeld::halo3::game_engine_event_splitscreen_suppression_enum_definition },
 		FIELD_PAD("CRAP", 2),
 		{ _field_string_id, "primary string" },
 		{ _field_long_integer, "primary string duration", nullptr, "seconds" },
@@ -33718,21 +33718,21 @@ namespace halo3 {
 		{ _field_real, "duration max" },
 		{ _field_real, "duration min" },
 		{ _field_real, "rise period ratio" },
-		{ _field_enum, "rise function", &blofeld::halo3::transition_function_enum },
-		{ _field_enum, "descend function", &blofeld::halo3::transition_function_enum },
+		{ _field_short_enum, "rise function", &blofeld::halo3::transition_function_enum },
+		{ _field_short_enum, "descend function", &blofeld::halo3::transition_function_enum },
 		FIELD_EXPLANATION("PENDULUM SETTINGS", "Only valid in case of the predulum flag has been checked."),
 		{ _field_real, "phase revolution speed" },
 		{ _field_real, "phase repeat along radius" },
 		FIELD_EXPLANATION("SHAPE TRANSITION", "interpolate between shapes in ripple pattern array"),
 		{ _field_real, "pattern start idx" },
 		{ _field_real, "pattern end idx" },
-		{ _field_enum, "pattern transition", &blofeld::halo3::transition_function_enum },
+		{ _field_short_enum, "pattern transition", &blofeld::halo3::transition_function_enum },
 		FIELD_PAD("SexyPadding1", 2),
 		FIELD_EXPLANATION("FOAM", "quick flashed foam"),
 		{ _field_real, "foam out radius" },
 		{ _field_real, "foam fade distance" },
 		{ _field_real, "foam duration" },
-		{ _field_enum, "foam fade function", &blofeld::halo3::transition_function_enum },
+		{ _field_short_enum, "foam fade function", &blofeld::halo3::transition_function_enum },
 		FIELD_PAD("SexyPadding2", 2),
 		{ _field_terminator }
 	};
@@ -34409,7 +34409,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEX_TYPES_BLOCK_ID)
 	{
-		{ _field_enum, "vertex type", &blofeld::halo3::vertex_types_names_enum },
+		{ _field_short_enum, "vertex type", &blofeld::halo3::vertex_types_names_enum },
 		FIELD_PAD("blahasdf", 2),
 		{ _field_block, "dependencies (entry point/category)", &blofeld::halo3::entry_point_dependencies_block_block },
 		{ _field_terminator }
@@ -34473,9 +34473,9 @@ namespace halo3 {
 		{ _field_real, "default real value" },
 		{ _field_long_integer, "default int/bool value" },
 		{ _field_short_integer, "flags" },
-		{ _field_enum, "default filter mode", &blofeld::halo3::render_method_bitmap_filter_mode_enum },
-		{ _field_enum, "default comparison function", &blofeld::halo3::render_method_bitmap_comparison_function_enum },
-		{ _field_enum, "default address mode", &blofeld::halo3::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "default filter mode", &blofeld::halo3::render_method_bitmap_filter_mode_enum },
+		{ _field_short_enum, "default comparison function", &blofeld::halo3::render_method_bitmap_comparison_function_enum },
+		{ _field_short_enum, "default address mode", &blofeld::halo3::render_method_bitmap_address_mode_enum },
 		{ _field_short_integer, "anisotropy amount" },
 		FIELD_PAD("padding", 2),
 		{ _field_argb_color, "default color" },
@@ -34874,7 +34874,7 @@ namespace halo3 {
 		{ _field_long_integer, "flags" },
 		{ _field_long_integer, "im_so_fired_pad" },
 		{ _field_array, "runtime queryable properties table", &blofeld::halo3::runtime_queryable_properties },
-		{ _field_pageable, "constant buffer resource", &blofeld::halo3::constant_buffer_resource_definition },
+		{ _field_pageable_resource, "constant buffer resource", &blofeld::halo3::constant_buffer_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -35034,8 +35034,8 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		REPLACE_PARAMS_ID)
 	{
-		{ _field_enum, "type", &blofeld::halo3::e_param_type_enum },
-		{ _field_enum, "entry_point", &blofeld::halo3::entry_point_skins_enum },
+		{ _field_short_enum, "type", &blofeld::halo3::e_param_type_enum },
+		{ _field_short_enum, "entry_point", &blofeld::halo3::entry_point_skins_enum },
 		{ _field_block, "value", &blofeld::halo3::real_vector4d_skins_block },
 		{ _field_terminator }
 	};
@@ -35983,13 +35983,13 @@ namespace halo3 {
 		{ _field_char_integer, "primary>0 and secondary>0", nullptr, "implementation index" },
 		FIELD_PAD("OXW", 64),
 		FIELD_EXPLANATION("TEXCOORD GENERATION", "* DEFAULT: Use for mask bitmaps that are mirrored and offset through the texcoords supplied to the screen effect (e.g. through the weapon HUD interface). The shader system must handle scaling.\n\n* VIEWPORT NORMALIZED: Use when copying from texaccum or some other buffer or when applying a texture that is not an interface mask (e.g. another kind of mask, a noise map, etc. which is not mirrored or offset through the weapon HUD interface). Texture coordinates will range from [0,1][0,1] within the viewport, and the shader system must handle scaling if the bitmap is a linear target or an interface bitmap.\n\n* VIEWPORT RELATIVE: Should not be used! This mode was necessary before we had he ability for the shader system to scale by texture resolution. Texture coordinates will range from [0,viewport_size_x][0,viewport_size_y] within the viewport.\n\n* FRAMEBUFFER RELATIVE: Use when copying from the framebuffer. Texture coordinates will range from [viewport_bounds.x0,viewport_bounds.x1][viewport_bounds.y0,viewport_bounds.y1] within the viewport. Let the shader system assume normalized [0,1] coordinate range.\n\n* ZERO: Use when doing dependent-z reads. Texture coordinates will be zero before applying offset (in advanced control block). Offset should be {1/(z_max-z_min), 0, -z_min/(z_max-z_min), 0} where z_min and z_max are in world units, and the \"xy scaled by z_far\" flag should be checked."),
-		{ _field_enum, "stage 0 mode", &blofeld::halo3::rasterizer_screen_effect_texcoord_mode_enum_definition },
-		{ _field_enum, "stage 1 mode", &blofeld::halo3::rasterizer_screen_effect_texcoord_mode_enum_definition },
-		{ _field_enum, "stage 2 mode", &blofeld::halo3::rasterizer_screen_effect_texcoord_mode_enum_definition },
-		{ _field_enum, "stage 3 mode", &blofeld::halo3::rasterizer_screen_effect_texcoord_mode_enum_definition },
+		{ _field_short_enum, "stage 0 mode", &blofeld::halo3::rasterizer_screen_effect_texcoord_mode_enum_definition },
+		{ _field_short_enum, "stage 1 mode", &blofeld::halo3::rasterizer_screen_effect_texcoord_mode_enum_definition },
+		{ _field_short_enum, "stage 2 mode", &blofeld::halo3::rasterizer_screen_effect_texcoord_mode_enum_definition },
+		{ _field_short_enum, "stage 3 mode", &blofeld::halo3::rasterizer_screen_effect_texcoord_mode_enum_definition },
 		{ _field_block, "advanced control", &blofeld::halo3::rasterizer_screen_effect_texcoord_generation_advanced_control_block_block },
 		FIELD_EXPLANATION("TARGET", nullptr),
-		{ _field_enum, "target", &blofeld::halo3::rasterizer_screen_effect_target_enum_definition },
+		{ _field_short_enum, "target", &blofeld::halo3::rasterizer_screen_effect_target_enum_definition },
 		FIELD_PAD("YQGBK", 2),
 		FIELD_PAD("I", 64),
 		{ _field_block, "convolution", &blofeld::halo3::rasterizer_screen_effect_convolution_block_block },
@@ -36345,8 +36345,8 @@ namespace halo3 {
 		{ _field_short_integer, "source sequence index" },
 		FIELD_PAD("KBT", 16),
 		FIELD_PAD("ON", 4),
-		{ _field_enum, "interpolate colors...", &blofeld::halo3::color_interpolation_modes_enum },
-		{ _field_enum, "anchor colors...", &blofeld::halo3::color_anchors_enum },
+		{ _field_short_enum, "interpolate colors...", &blofeld::halo3::color_interpolation_modes_enum },
+		{ _field_short_enum, "anchor colors...", &blofeld::halo3::color_anchors_enum },
 		FIELD_PAD("WMTT", 8),
 		{ _field_real_argb_color, "empty color" },
 		{ _field_real_argb_color, "full color" },
@@ -36664,7 +36664,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHUD_WIDGET_PLACEMENT_DATA_BLOCK_ID)
 	{
-		{ _field_enum, "anchor type", &blofeld::halo3::chud_anchor_type_enum },
+		{ _field_short_enum, "anchor type", &blofeld::halo3::chud_anchor_type_enum },
 		{ _field_word_flags, "anchor flags", &blofeld::halo3::chud_widget_placement_flags },
 		{ _field_real_point_2d, "widget origin" },
 		{ _field_real_point_2d, "origin offset" },
@@ -36732,11 +36732,11 @@ namespace halo3 {
 		CHUD_WIDGET_RENDER_DATA_BLOCK_ID)
 	{
 		FIELD_EXPLANATION("Render Data", "Shader type selects type of chud shader to render with\nExternal Inputs are how widgets get game values.\nCustom values are a palette of values to optionally supply as outputs\nOutput values are what actually pipes into the shader.  you can output\nexternal or custom values\n"),
-		{ _field_enum, "shader type", &blofeld::halo3::chud_shader_type_enum },
+		{ _field_short_enum, "shader type", &blofeld::halo3::chud_shader_type_enum },
 		FIELD_PAD("XJZPOOP", 2),
 		FIELD_EXPLANATION("External Inputs", nullptr),
-		{ _field_enum, "external input A", &blofeld::halo3::chud_render_external_input_enum },
-		{ _field_enum, "external input B", &blofeld::halo3::chud_render_external_input_enum },
+		{ _field_short_enum, "external input A", &blofeld::halo3::chud_render_external_input_enum },
+		{ _field_short_enum, "external input B", &blofeld::halo3::chud_render_external_input_enum },
 		FIELD_EXPLANATION("Custom Colors", nullptr),
 		{ _field_argb_color, "custom color A" },
 		{ _field_argb_color, "custom color B" },
@@ -36748,19 +36748,19 @@ namespace halo3 {
 		{ _field_real, "custom scalar C" },
 		{ _field_real, "custom scalar D" },
 		FIELD_EXPLANATION("Color Outputs", nullptr),
-		{ _field_enum, "color output A", &blofeld::halo3::chud_render_color_output_enum },
-		{ _field_enum, "color output B", &blofeld::halo3::chud_render_color_output_enum },
-		{ _field_enum, "color output C", &blofeld::halo3::chud_render_color_output_enum },
-		{ _field_enum, "color output D", &blofeld::halo3::chud_render_color_output_enum },
-		{ _field_enum, "color output E", &blofeld::halo3::chud_render_color_output_enum },
-		{ _field_enum, "color output F", &blofeld::halo3::chud_render_color_output_enum },
+		{ _field_short_enum, "color output A", &blofeld::halo3::chud_render_color_output_enum },
+		{ _field_short_enum, "color output B", &blofeld::halo3::chud_render_color_output_enum },
+		{ _field_short_enum, "color output C", &blofeld::halo3::chud_render_color_output_enum },
+		{ _field_short_enum, "color output D", &blofeld::halo3::chud_render_color_output_enum },
+		{ _field_short_enum, "color output E", &blofeld::halo3::chud_render_color_output_enum },
+		{ _field_short_enum, "color output F", &blofeld::halo3::chud_render_color_output_enum },
 		FIELD_EXPLANATION("Scalar Outputs", nullptr),
-		{ _field_enum, "scalar output A", &blofeld::halo3::chud_render_scalar_output_enum },
-		{ _field_enum, "scalar output B", &blofeld::halo3::chud_render_scalar_output_enum },
-		{ _field_enum, "scalar output C", &blofeld::halo3::chud_render_scalar_output_enum },
-		{ _field_enum, "scalar output D", &blofeld::halo3::chud_render_scalar_output_enum },
-		{ _field_enum, "scalar output E", &blofeld::halo3::chud_render_scalar_output_enum },
-		{ _field_enum, "scalar output F", &blofeld::halo3::chud_render_scalar_output_enum },
+		{ _field_short_enum, "scalar output A", &blofeld::halo3::chud_render_scalar_output_enum },
+		{ _field_short_enum, "scalar output B", &blofeld::halo3::chud_render_scalar_output_enum },
+		{ _field_short_enum, "scalar output C", &blofeld::halo3::chud_render_scalar_output_enum },
+		{ _field_short_enum, "scalar output D", &blofeld::halo3::chud_render_scalar_output_enum },
+		{ _field_short_enum, "scalar output E", &blofeld::halo3::chud_render_scalar_output_enum },
+		{ _field_short_enum, "scalar output F", &blofeld::halo3::chud_render_scalar_output_enum },
 		{ _field_terminator }
 	};
 
@@ -36925,7 +36925,7 @@ namespace halo3 {
 		CHUD_WIDGET_ANIMATION_BLOCK_STRUCT_ID)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo3::chud_widget_animation_flags },
-		{ _field_enum, "input type", &blofeld::halo3::chud_widget_animation_input_type_enum },
+		{ _field_short_enum, "input type", &blofeld::halo3::chud_widget_animation_input_type_enum },
 		{ _field_tag_reference, "animation", &blofeld::halo3::chud_animation_definition_group_reference_tagref },
 		{ _field_terminator }
 	};
@@ -36982,7 +36982,7 @@ namespace halo3 {
 		CHUD_WIDGET_BASE_STRUCT_ID)
 	{
 		{ _field_string_id, "artist name" },
-		{ _field_enum, "scripting class", &blofeld::halo3::chud_scripting_class_enum },
+		{ _field_short_enum, "scripting class", &blofeld::halo3::chud_scripting_class_enum },
 		{ _field_byte_flags, "base flags", &blofeld::halo3::chud_widget_base_flags },
 		{ _field_char_enum, "sort layer", &blofeld::halo3::chud_widget_base_layer_enum },
 		{ _field_block, "state data", &blofeld::halo3::chud_widget_state_data_block_block },
@@ -37239,7 +37239,7 @@ namespace halo3 {
 		CHUD_KEYFRAME_COLOR_BLOCK_ID)
 	{
 		{ _field_struct, "base", &blofeld::halo3::chud_keyframe_base_struct },
-		{ _field_enum, "color source", &blofeld::halo3::chud_keyframe_color_source_enum },
+		{ _field_short_enum, "color source", &blofeld::halo3::chud_keyframe_color_source_enum },
 		FIELD_PAD("XYJAZZQJ", 2),
 		{ _field_terminator }
 	};
@@ -38045,7 +38045,7 @@ namespace halo3 {
 		WIDGET_SCALE_ANIMATION_KEYFRAME_BLOCK_ID)
 	{
 		{ _field_long_integer, "time offset", nullptr, "milliseconds" },
-		{ _field_enum, "special local origin", nullptr, "if used, overrides field below", &blofeld::halo3::widget_positioning },
+		{ _field_short_enum, "special local origin", nullptr, "if used, overrides field below", &blofeld::halo3::widget_positioning },
 		FIELD_PAD("rotation-pad0", 2),
 		{ _field_real_point_2d, "local origin" },
 		{ _field_real_vector_2d, "scale factor" },
@@ -38163,7 +38163,7 @@ namespace halo3 {
 		WIDGET_FONT_ANIMATION_KEYFRAME_BLOCK_ID)
 	{
 		{ _field_long_integer, "time offset", nullptr, "milliseconds" },
-		{ _field_enum, "font", &blofeld::halo3::interface_fonts },
+		{ _field_short_enum, "font", &blofeld::halo3::interface_fonts },
 		FIELD_PAD("pad", 2),
 		{ _field_block, "custom transition fxn", &blofeld::halo3::keyframe_transition_function_block_block },
 		{ _field_terminator }
@@ -38311,7 +38311,7 @@ namespace halo3 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo3::text_widget_definition_flags },
 		{ _field_string_id, "name", nullptr, "identification only" },
-		{ _field_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
+		{ _field_short_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
 		{ _field_short_integer, "render depth bias" },
 		{ _field_rectangle_2d, "bounds 720p" },
 		{ _field_rectangle_2d, "bounds 480i" },
@@ -38319,7 +38319,7 @@ namespace halo3 {
 		{ _field_string_id, "value override list" },
 		{ _field_string_id, "value identifier", nullptr, "for setting string" },
 		{ _field_string_id, "text color preset" },
-		{ _field_enum, "custom font", &blofeld::halo3::interface_fonts },
+		{ _field_short_enum, "custom font", &blofeld::halo3::interface_fonts },
 		FIELD_PAD("text widget definition pad", 2),
 		{ _field_terminator }
 	};
@@ -38364,7 +38364,7 @@ namespace halo3 {
 		{ _field_tag_reference, "template reference", &blofeld::halo3::gui_text_widget_definition_group_reference_tagref },
 		{ _field_long_flags, "flags", &blofeld::halo3::text_widget_definition_flags },
 		{ _field_string_id, "name", nullptr, "identification only" },
-		{ _field_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
+		{ _field_short_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
 		{ _field_short_integer, "render depth bias" },
 		{ _field_rectangle_2d, "bounds 720p" },
 		{ _field_rectangle_2d, "bounds 480i" },
@@ -38372,7 +38372,7 @@ namespace halo3 {
 		{ _field_string_id, "value override list" },
 		{ _field_string_id, "value identifier", nullptr, "for setting string" },
 		{ _field_string_id, "text color preset" },
-		{ _field_enum, "custom font", &blofeld::halo3::interface_fonts },
+		{ _field_short_enum, "custom font", &blofeld::halo3::interface_fonts },
 		FIELD_PAD("text widget definition pad", 2),
 		{ _field_terminator }
 	};
@@ -38391,14 +38391,14 @@ namespace halo3 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo3::bitmap_widget_definition_flags },
 		{ _field_string_id, "name", nullptr, "identification only" },
-		{ _field_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
+		{ _field_short_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
 		{ _field_short_integer, "render depth bias" },
 		{ _field_rectangle_2d, "bounds 720p" },
 		{ _field_rectangle_2d, "bounds 480i" },
 		{ _field_tag_reference, "animation collection", &blofeld::halo3::gui_widget_animation_collection_definition_group_reference_tagref },
 		{ _field_tag_reference, "bitmap tag", &blofeld::halo3::bitmap_group_reference$2_tagref },
 		{ _field_tag_reference, "custom pixel shader", &blofeld::halo3::pixel_shader_group_reference_tagref },
-		{ _field_enum, "bitmap blend method", &blofeld::halo3::render_blend_mode },
+		{ _field_short_enum, "bitmap blend method", &blofeld::halo3::render_blend_mode },
 		{ _field_short_integer, "initial sprite sequence" },
 		{ _field_short_integer, "initial_sprite frame" },
 		FIELD_PAD("bitmap widget definition alignment pad", 2),
@@ -38455,14 +38455,14 @@ namespace halo3 {
 		{ _field_tag_reference, "template reference", &blofeld::halo3::gui_bitmap_widget_definition_group_reference_tagref },
 		{ _field_long_flags, "flags", &blofeld::halo3::bitmap_widget_definition_flags },
 		{ _field_string_id, "name", nullptr, "identification only" },
-		{ _field_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
+		{ _field_short_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
 		{ _field_short_integer, "render depth bias" },
 		{ _field_rectangle_2d, "bounds 720p" },
 		{ _field_rectangle_2d, "bounds 480i" },
 		{ _field_tag_reference, "animation collection", &blofeld::halo3::gui_widget_animation_collection_definition_group_reference_tagref },
 		{ _field_tag_reference, "bitmap tag", &blofeld::halo3::bitmap_group_reference$2_tagref },
 		{ _field_tag_reference, "custom pixel shader", &blofeld::halo3::pixel_shader_group_reference_tagref },
-		{ _field_enum, "bitmap blend method", &blofeld::halo3::render_blend_mode },
+		{ _field_short_enum, "bitmap blend method", &blofeld::halo3::render_blend_mode },
 		{ _field_short_integer, "initial sprite sequence" },
 		{ _field_short_integer, "initial_sprite frame" },
 		FIELD_PAD("bitmap widget definition alignment pad", 2),
@@ -38513,7 +38513,7 @@ namespace halo3 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo3::model_widget_definition_flags },
 		{ _field_string_id, "name", nullptr, "identification only" },
-		{ _field_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
+		{ _field_short_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
 		{ _field_short_integer, "render depth bias" },
 		{ _field_rectangle_2d, "bounds 720p" },
 		{ _field_rectangle_2d, "bounds 480i" },
@@ -38544,7 +38544,7 @@ namespace halo3 {
 		{ _field_tag_reference, "template reference", &blofeld::halo3::gui_model_widget_definition_group_reference_tagref },
 		{ _field_long_flags, "flags", &blofeld::halo3::model_widget_definition_flags },
 		{ _field_string_id, "name", nullptr, "identification only" },
-		{ _field_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
+		{ _field_short_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
 		{ _field_short_integer, "render depth bias" },
 		{ _field_rectangle_2d, "bounds 720p" },
 		{ _field_rectangle_2d, "bounds 480i" },
@@ -38589,7 +38589,7 @@ namespace halo3 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo3::list_item_widget_flags },
 		{ _field_string_id, "name", nullptr, "identification only" },
-		{ _field_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
+		{ _field_short_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
 		{ _field_short_integer, "render depth bias" },
 		{ _field_rectangle_2d, "bounds 720p" },
 		{ _field_rectangle_2d, "bounds 480i" },
@@ -38618,7 +38618,7 @@ namespace halo3 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo3::list_widget_definition_flags },
 		{ _field_string_id, "name", nullptr, "identification only" },
-		{ _field_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
+		{ _field_short_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
 		{ _field_short_integer, "render depth bias" },
 		{ _field_rectangle_2d, "bounds 720p" },
 		{ _field_rectangle_2d, "bounds 480i" },
@@ -38660,7 +38660,7 @@ namespace halo3 {
 		{ _field_tag_reference, "template reference", &blofeld::halo3::gui_list_widget_definition_group_reference_tagref },
 		{ _field_long_flags, "flags", &blofeld::halo3::list_widget_definition_flags },
 		{ _field_string_id, "name", nullptr, "identification only" },
-		{ _field_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
+		{ _field_short_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
 		{ _field_short_integer, "render depth bias" },
 		{ _field_rectangle_2d, "bounds 720p" },
 		{ _field_rectangle_2d, "bounds 480i" },
@@ -38688,7 +38688,7 @@ namespace halo3 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo3::group_widget_definition_flags },
 		{ _field_string_id, "name", nullptr, "identification only" },
-		{ _field_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
+		{ _field_short_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
 		{ _field_short_integer, "render depth bias" },
 		{ _field_rectangle_2d, "bounds 720p" },
 		{ _field_rectangle_2d, "bounds 480i" },
@@ -38722,7 +38722,7 @@ namespace halo3 {
 		{ _field_tag_reference, "template reference", &blofeld::halo3::gui_group_widget_definition_group_reference_tagref },
 		{ _field_long_flags, "flags", &blofeld::halo3::group_widget_definition_flags },
 		{ _field_string_id, "name", nullptr, "identification only" },
-		{ _field_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
+		{ _field_short_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
 		{ _field_short_integer, "render depth bias" },
 		{ _field_rectangle_2d, "bounds 720p" },
 		{ _field_rectangle_2d, "bounds 480i" },
@@ -38748,7 +38748,7 @@ namespace halo3 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo3::button_key_flags },
 		{ _field_string_id, "name", nullptr, "identification only" },
-		{ _field_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
+		{ _field_short_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
 		{ _field_short_integer, "render depth bias" },
 		{ _field_rectangle_2d, "bounds 720p" },
 		{ _field_rectangle_2d, "bounds 480i" },
@@ -38874,7 +38874,7 @@ namespace halo3 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo3::screen_widget_definition_flags },
 		{ _field_string_id, "name", nullptr, "identification only" },
-		{ _field_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
+		{ _field_short_enum, "scaled positioning", &blofeld::halo3::widget_positioning },
 		{ _field_short_integer, "render depth bias" },
 		{ _field_rectangle_2d, "bounds 720p" },
 		{ _field_rectangle_2d, "bounds 480i" },
@@ -39038,8 +39038,8 @@ namespace halo3 {
 		{ _field_string_id, "third_item" },
 		{ _field_string_id, "fourth_item" },
 		{ _field_string_id, "button key" },
-		{ _field_enum, "default item", &blofeld::halo3::gui_dialog_choice_enum },
-		{ _field_enum, "b button action", &blofeld::halo3::gui_dialog_b_button_action_enum },
+		{ _field_short_enum, "default item", &blofeld::halo3::gui_dialog_choice_enum },
+		{ _field_short_enum, "b button action", &blofeld::halo3::gui_dialog_b_button_action_enum },
 		{ _field_terminator }
 	};
 
@@ -39315,7 +39315,7 @@ namespace halo3 {
 		WIDGET_ROTATION_ANIMATION_KEYFRAME_BLOCK_ID)
 	{
 		{ _field_long_integer, "time offset", nullptr, "milliseconds" },
-		{ _field_enum, "special local origin", &blofeld::halo3::widget_positioning },
+		{ _field_short_enum, "special local origin", &blofeld::halo3::widget_positioning },
 		FIELD_PAD("rotation-pad0", 2),
 		{ _field_real_point_2d, "local origin" },
 		{ _field_real, "angle", nullptr, "degrees" },
@@ -40565,7 +40565,7 @@ namespace halo3 {
 		{ _field_real, "turnover time", "how much time it takes to evict a rider from a flipped vehicle", "seconds" },
 		{ _field_struct, "acceleration", &blofeld::halo3::unit_seat_acceleration_struct },
 		{ _field_real, "AI scariness" },
-		{ _field_enum, "ai seat type", &blofeld::halo3::global_ai_seat_type_enum },
+		{ _field_short_enum, "ai seat type", &blofeld::halo3::global_ai_seat_type_enum },
 		{ _field_short_block_index, "boarding seat", &blofeld::halo3::unit_seat_block_block },
 		{ _field_real_fraction, "listener interpolation factor", "how far to interpolate listener position from camera to occupant's head" },
 		FIELD_EXPLANATION("speed dependant turn rates", "when the unit velocity is 0, the yaw/pitch rates are the left values\nat [max speed reference], the yaw/pitch rates are the right values.\nthe max speed reference is what the code uses to generate a clamped speed from 0..1\nthe exponent controls how midrange speeds are interpreted."),
@@ -41289,7 +41289,7 @@ namespace halo3 {
 		{ _field_tag_reference, "type", &blofeld::halo3::light_group_effect_group_sound_looping_group_lens_flare_group_reference_tagref },
 		{ _field_old_string_id, "marker" },
 		{ _field_useless_pad, "value" },
-		{ _field_enum, "change color", &blofeld::halo3::global_object_change_color_enum },
+		{ _field_short_enum, "change color", &blofeld::halo3::global_object_change_color_enum },
 		FIELD_PAD("DPKP", 2),
 		{ _field_string_id, "primary scale", _field_id_sted },
 		{ _field_string_id, "secondary scale", _field_id_sted },
@@ -41534,8 +41534,8 @@ namespace halo3 {
 		{ _field_long_flags, "ai flags", &blofeld::halo3::ai_properties_flags },
 		{ _field_string_id, "ai type name", "used for combat dialogue, etc." },
 		FIELD_PAD("FZKXHW", 4),
-		{ _field_enum, "ai size", &blofeld::halo3::ai_size_enum },
-		{ _field_enum, "leap jump speed", &blofeld::halo3::global_ai_jump_height_enum },
+		{ _field_short_enum, "ai size", &blofeld::halo3::ai_size_enum },
+		{ _field_short_enum, "leap jump speed", &blofeld::halo3::global_ai_jump_height_enum },
 		{ _field_terminator }
 	};
 
@@ -41611,7 +41611,7 @@ namespace halo3 {
 		{ _field_real, "bounding radius", nullptr, "world units" },
 		{ _field_real_point_3d, "bounding offset" },
 		{ _field_real, "acceleration scale", "marine 1.0, grunt 1.4, elite 0.9, hunter 0.5, etc.", nullptr, "[0,+inf]" },
-		{ _field_enum, "lightmap shadow mode", &blofeld::halo3::lightmap_shadow_mode_enum },
+		{ _field_short_enum, "lightmap shadow mode", &blofeld::halo3::lightmap_shadow_mode_enum },
 		{ _field_char_enum, "sweetener size", &blofeld::halo3::sweetener_size_enum },
 		{ _field_char_enum, "water density", &blofeld::halo3::water_density_type_enum },
 		{ _field_long_integer, "runtime flags" },
@@ -41781,7 +41781,7 @@ namespace halo3 {
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return from its final rounds per second to its initial", "seconds" },
 		{ _field_real_fraction, "barrel spin scale", "scale the barrel spin speed by this amount" },
 		{ _field_real_fraction, "blurred rate of fire", "a percentage between 0 and 1 which controls how soon in its firing animation the weapon blurs" },
-		{ _field_short_bounds, "shots per fire", "allows designer caps to the shots you can fire from one firing action" },
+		{ _field_short_integer_bounds, "shots per fire", "allows designer caps to the shots you can fire from one firing action" },
 		{ _field_real, "fire recovery time", "how long after a set of shots it takes before the barrel can fire again", "seconds" },
 		{ _field_real_fraction, "soft recovery fraction", "how much of the recovery allows shots to be queued" },
 		{ _field_terminator }
@@ -41839,8 +41839,8 @@ namespace halo3 {
 		FIELD_EXPLANATION("AUTOFIRE", nullptr),
 		{ _field_real, "autofire time" },
 		{ _field_real, "autofire throw" },
-		{ _field_enum, "secondary action", &blofeld::halo3::weapon_trigger_autofire_actions },
-		{ _field_enum, "primary action", &blofeld::halo3::weapon_trigger_autofire_actions },
+		{ _field_short_enum, "secondary action", &blofeld::halo3::weapon_trigger_autofire_actions },
+		{ _field_short_enum, "primary action", &blofeld::halo3::weapon_trigger_autofire_actions },
 		{ _field_terminator }
 	};
 
@@ -41866,7 +41866,7 @@ namespace halo3 {
 		FIELD_EXPLANATION("CHARGING", nullptr),
 		{ _field_real, "charging time", "the amount of time it takes for this trigger to become fully charged", "seconds" },
 		{ _field_real, "charged time", "the amount of time this trigger can be charged before becoming overcharged", "seconds" },
-		{ _field_enum, "overcharged action", &blofeld::halo3::weapon_trigger_overcharged_actions },
+		{ _field_short_enum, "overcharged action", &blofeld::halo3::weapon_trigger_overcharged_actions },
 		{ _field_short_integer, "cancelled trigger throw", "96 was the constant in code for the pp" },
 		{ _field_real, "charged illumination", "the amount of illumination given off when the weapon is fully charged", nullptr, "[0,1]" },
 		{ _field_real, "spew time", "length of time the weapon will spew (fire continuously) while discharging", "seconds" },
@@ -41898,11 +41898,11 @@ namespace halo3 {
 		WEAPON_TRIGGERS_ID)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo3::weapon_trigger_definition_flags },
-		{ _field_enum, "input", &blofeld::halo3::weapon_trigger_inputs },
-		{ _field_enum, "behavior", &blofeld::halo3::weapon_trigger_behaviors },
+		{ _field_short_enum, "input", &blofeld::halo3::weapon_trigger_inputs },
+		{ _field_short_enum, "behavior", &blofeld::halo3::weapon_trigger_behaviors },
 		{ _field_short_block_index, "primary barrel", &blofeld::halo3::weapon_barrels_block },
 		{ _field_short_block_index, "secondary barrel", &blofeld::halo3::weapon_barrels_block },
-		{ _field_enum, "prediction", &blofeld::halo3::trigger_prediction_type_enum },
+		{ _field_short_enum, "prediction", &blofeld::halo3::trigger_prediction_type_enum },
 		FIELD_PAD("GNFR", 2),
 		{ _field_useless_pad, "value" },
 		{ _field_struct, "autofire", &blofeld::halo3::weapon_trigger_autofire_struct },
@@ -42137,14 +42137,14 @@ namespace halo3 {
 		{ _field_short_integer, "rounds between tracers", "the number of non-tracer rounds fired between tracers" },
 		{ _field_string_id, "optional barrel marker name" },
 		FIELD_EXPLANATION("prediction properties", "what the behavior of this barrel is in a predicted network game"),
-		{ _field_enum, "prediction type", &blofeld::halo3::barrel_prediction_type_enum },
-		{ _field_enum, "firing noise", "how loud this weapon appears to the AI", &blofeld::halo3::ai_sound_volume_enum },
+		{ _field_short_enum, "prediction type", &blofeld::halo3::barrel_prediction_type_enum },
+		{ _field_short_enum, "firing noise", "how loud this weapon appears to the AI", &blofeld::halo3::ai_sound_volume_enum },
 		FIELD_EXPLANATION("error", "full error look pitch rate controlls how fast you can turn \nwith full error, yaw is implied from pitch. 0==130.\nfor reference, profile sensitivities are set to:\n1: 40\n3: 60\n9: 130\n"),
 		{ _field_struct, "firing error", &blofeld::halo3::weapon_barrel_firing_error_struct },
 		FIELD_EXPLANATION("dual weapon error", nullptr),
 		{ _field_struct, "dual weapon error", &blofeld::halo3::weapon_barrel_dual_weapon_error_struct },
 		FIELD_EXPLANATION("projectile", nullptr),
-		{ _field_enum, "distribution function", &blofeld::halo3::weapon_barrel_distribution_functions },
+		{ _field_short_enum, "distribution function", &blofeld::halo3::weapon_barrel_distribution_functions },
 		{ _field_short_integer, "projectiles per shot" },
 		{ _field_real, "distribution angle", nullptr, "degrees" },
 		{ _field_angle, "minimum error", nullptr, "degrees" },
@@ -42168,7 +42168,7 @@ namespace halo3 {
 		{ _field_angle_bounds, "angle change per shot", "angle change per shot of the weapon during firing" },
 		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final angle change per shot", "seconds" },
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial angle change per shot", "seconds" },
-		{ _field_enum, "angle change function", "function used to scale between initial and final angle change per shot", &blofeld::halo3::global_transition_functions_enum },
+		{ _field_short_enum, "angle change function", "function used to scale between initial and final angle change per shot", &blofeld::halo3::global_transition_functions_enum },
 		FIELD_PAD("DTOL", 2),
 		{ _field_real, "runtime angle change acceleration rate" },
 		{ _field_real, "runtime angle change deceleration rate" },
@@ -42259,7 +42259,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_TRACKING_STRUCT_ID)
 	{
-		{ _field_enum, "tracking type", &blofeld::halo3::weapon_tracking_types },
+		{ _field_short_enum, "tracking type", &blofeld::halo3::weapon_tracking_types },
 		FIELD_PAD("F", 2),
 		{ _field_terminator }
 	};
@@ -42284,7 +42284,7 @@ namespace halo3 {
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		{ _field_enum, "Output Modifier", &blofeld::halo3::output_mod_enum$5, _field_id_function_output_modifier },
+		{ _field_short_enum, "Output Modifier", &blofeld::halo3::output_mod_enum$5, _field_id_function_output_modifier },
 		FIELD_PAD("BVCG", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
@@ -42312,7 +42312,7 @@ namespace halo3 {
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		{ _field_enum, "Output Modifier", &blofeld::halo3::output_mod_enum$5, _field_id_function_output_modifier },
+		{ _field_short_enum, "Output Modifier", &blofeld::halo3::output_mod_enum$5, _field_id_function_output_modifier },
 		FIELD_PAD("BVCG", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
@@ -42332,7 +42332,7 @@ namespace halo3 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo3::light_definition_flags },
 		FIELD_EXPLANATION("SHAPE", "shape of the light"),
-		{ _field_enum, "type", &blofeld::halo3::light_type_enum_definition },
+		{ _field_short_enum, "type", &blofeld::halo3::light_type_enum_definition },
 		FIELD_PAD("BUCU", 2),
 		{ _field_real, "maximum distance", "maximum distance the light reaches (the light can become very dark well before this distance if you set your distance diffusion low)", "world units" },
 		{ _field_real, "frustum near width", "width of the frustum at the near plane", "world units" },
@@ -42511,7 +42511,7 @@ namespace halo3 {
 		{ _field_real, "spawn z offset", "z-offset of effect spawn" },
 		{ _field_real, "spawn area radius", "need a sphere of radius r's free space in order to spawn, otherwise we pick a new spawn location" },
 		{ _field_real, "spawn velocity", "WU/sec" },
-		{ _field_enum, "type", &blofeld::halo3::equipment_spawner_spawn_type },
+		{ _field_short_enum, "type", &blofeld::halo3::equipment_spawner_spawn_type },
 		FIELD_PAD("LSJ", 2),
 		{ _field_terminator }
 	};
@@ -42697,7 +42697,7 @@ namespace halo3 {
 		{ _field_real, "tumble scale" },
 		{ _field_real, "rotation scale" },
 		{ _field_real, "starting velocity" },
-		{ _field_real_fraction_bounds, "air friction XY and Z" },
+		{ _field_fraction_bounds, "air friction XY and Z" },
 		{ _field_terminator }
 	};
 
@@ -42765,7 +42765,7 @@ namespace halo3 {
 		{ _field_long_integer, "virus gene mutations 1 in", nullptr, "times" },
 		FIELD_PAD("AM", 32),
 		FIELD_EXPLANATION("cell infection", nullptr),
-		{ _field_short_bounds, "infected cell lifespan", "the lifespan of a cell once infected", "updates" },
+		{ _field_short_integer_bounds, "infected cell lifespan", "the lifespan of a cell once infected", "updates" },
 		{ _field_short_integer, "minimum infection age", "no cell can be infected before it has been alive this number of updates", "updates" },
 		FIELD_PAD("GCKNPCPT", 2),
 		{ _field_real_fraction, "cell infection chance", nullptr, nullptr, "[0,1]" },
@@ -42961,20 +42961,20 @@ namespace halo3 {
 	{
 		{ _field_word_flags, "flags", &blofeld::halo3::projectile_material_response_flags },
 		FIELD_EXPLANATION("default result", "(if the potential result, below, fails to happen)"),
-		{ _field_enum, "default response", &blofeld::halo3::material_response },
+		{ _field_short_enum, "default response", &blofeld::halo3::material_response },
 		{ _field_string_id, "material name", _field_id_sted },
 		{ _field_short_integer, "runtime material index" },
 		FIELD_PAD("JJHT", 2),
 		{ _field_useless_pad, "value" },
 		FIELD_EXPLANATION("potential result", nullptr),
-		{ _field_enum, "potential response", &blofeld::halo3::material_response },
+		{ _field_short_enum, "potential response", &blofeld::halo3::material_response },
 		{ _field_word_flags, "response flags", &blofeld::halo3::material_possible_response_flags },
 		{ _field_real_fraction, "chance fraction", nullptr, nullptr, "[0,1]" },
 		{ _field_angle_bounds, "between", nullptr, "degrees" },
 		{ _field_real_bounds, "and", nullptr, "world units per second" },
 		{ _field_useless_pad, "value" },
 		FIELD_EXPLANATION("misc", nullptr),
-		{ _field_enum, "scale effects by", &blofeld::halo3::effect_scale_enum },
+		{ _field_short_enum, "scale effects by", &blofeld::halo3::effect_scale_enum },
 		FIELD_PAD("BDFI", 2),
 		{ _field_angle, "angular noise", "the angle of incidence is randomly perturbed by at most this amount to simulate irregularity.", "degrees" },
 		{ _field_real, "velocity noise", "the velocity is randomly perturbed by at most this amount to simulate irregularity.", "world units per second" },
@@ -43180,11 +43180,11 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCREEN_FLASH_DEFINITION_STRUCT_ID)
 	{
-		{ _field_enum, "type", &blofeld::halo3::screen_flash_types },
-		{ _field_enum, "priority", &blofeld::halo3::screen_flash_priorities },
+		{ _field_short_enum, "type", &blofeld::halo3::screen_flash_types },
+		{ _field_short_enum, "priority", &blofeld::halo3::screen_flash_priorities },
 		{ _field_useless_pad, "value" },
 		{ _field_real, "duration", nullptr, "seconds" },
-		{ _field_enum, "fade function", &blofeld::halo3::global_reverse_transition_functions_enum },
+		{ _field_short_enum, "fade function", &blofeld::halo3::global_reverse_transition_functions_enum },
 		FIELD_PAD("G", 2),
 		{ _field_useless_pad, "value" },
 		{ _field_real_fraction, "maximum intensity", nullptr, nullptr, "[0,1]" },
@@ -43258,7 +43258,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_EFFECT_PLAYER_RESPONSE_BLOCK_ID)
 	{
-		{ _field_enum, "response type", &blofeld::halo3::damage_effect_player_response_types },
+		{ _field_short_enum, "response type", &blofeld::halo3::damage_effect_player_response_types },
 		FIELD_PAD("RF", 2),
 		FIELD_EXPLANATION("screen flash", "There are seven screen flash types:\n\nNONE: DST\'= DST\nLIGHTEN: DST\'= DST(1 - A) + C\nDARKEN: DST\'= DST(1 - A) - C\nMAX: DST\'= MAX[DST(1 - C), (C - A)(1-DST)]\nMIN: DST\'= MIN[DST(1 - C), (C + A)(1-DST)]\nTINT: DST\'= DST(1 - C) + (A*PIN[2C - 1, 0, 1] + A)(1-DST)\nINVERT: DST\'= DST(1 - C) + A)\n\nIn the above equations C and A represent the color and alpha of the screen flash, DST represents the color in the framebuffer before the screen flash is applied, and DST\' represents the color after the screen flash is applied."),
 		{ _field_struct, "screen flash", &blofeld::halo3::screen_flash_definition_struct },
@@ -43306,8 +43306,8 @@ namespace halo3 {
 		{ _field_real_fraction, "cutoff scale", nullptr, nullptr, "[0,1]" },
 		{ _field_long_flags, "effect flags", &blofeld::halo3::damage_effect_flags },
 		FIELD_EXPLANATION("damage", nullptr),
-		{ _field_enum, "side effect", &blofeld::halo3::damage_side_effects },
-		{ _field_enum, "category", &blofeld::halo3::damage_categories },
+		{ _field_short_enum, "side effect", &blofeld::halo3::damage_side_effects },
+		{ _field_short_enum, "category", &blofeld::halo3::damage_categories },
 		{ _field_long_flags, "flags", &blofeld::halo3::damage_flags },
 		{ _field_real, "AOE core radius", "if this is area of effect damage", "world units" },
 		{ _field_real, "damage lower bound" },
@@ -43339,7 +43339,7 @@ namespace halo3 {
 		{ _field_tag_reference, "damage response", &blofeld::halo3::damage_response_definition_group_reference_tagref },
 		FIELD_EXPLANATION("temporary camera impulse", nullptr),
 		{ _field_real, "impulse duration", nullptr, "seconds" },
-		{ _field_enum, "fade function", &blofeld::halo3::global_reverse_transition_functions_enum },
+		{ _field_short_enum, "fade function", &blofeld::halo3::global_reverse_transition_functions_enum },
 		FIELD_PAD("QMSLQGOYN", 2),
 		{ _field_angle, "rotation", nullptr, "degrees" },
 		{ _field_real, "pushback", nullptr, "world units" },
@@ -43348,12 +43348,12 @@ namespace halo3 {
 		{ _field_useless_pad, "value" },
 		FIELD_EXPLANATION("camera shaking", "The wobble function and weight affects how the camera shake oscilates over time.\nIf the weight is one, then the wobble function completely scales the translational\nand rotational magnitudes.  The less the weight, the less the effect wobble has.\nIf the wobble weight is 0 then wobble is completely ignored."),
 		{ _field_real, "shake duration", "the effect will last for this duration.", "seconds" },
-		{ _field_enum, "falloff function", "a function to envelope the effect's magnitude over time", &blofeld::halo3::global_reverse_transition_functions_enum },
+		{ _field_short_enum, "falloff function", "a function to envelope the effect's magnitude over time", &blofeld::halo3::global_reverse_transition_functions_enum },
 		FIELD_PAD("DYOOQZFW", 2),
 		{ _field_real, "random translation", "random translation in all directions", "world units" },
 		{ _field_angle, "random rotation", "random rotation in all directions", "degrees" },
 		{ _field_useless_pad, "value" },
-		{ _field_enum, "wobble function", "a function to perturb the effect's behavior over time", &blofeld::halo3::global_periodic_functions_enum },
+		{ _field_short_enum, "wobble function", "a function to perturb the effect's behavior over time", &blofeld::halo3::global_periodic_functions_enum },
 		FIELD_PAD("FXGSKJ", 2),
 		{ _field_real, "wobble function period", nullptr, "seconds" },
 		{ _field_real_fraction, "wobble weight", "a value of 0.0 signifies that the wobble function has no effect; a value of 1.0 signifies that the effect will not be felt when the wobble function's value is zero." },
@@ -43447,10 +43447,10 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_RESPONSE_SCREEN_FLASH_STRUCT_ID)
 	{
-		{ _field_enum, "type", &blofeld::halo3::screen_flash_type_enum },
-		{ _field_enum, "priority", &blofeld::halo3::screen_flash_priority_enum },
+		{ _field_short_enum, "type", &blofeld::halo3::screen_flash_type_enum },
+		{ _field_short_enum, "priority", &blofeld::halo3::screen_flash_priority_enum },
 		{ _field_real, "duration" },
-		{ _field_enum, "fade function", &blofeld::halo3::global_reverse_transition_functions_enum },
+		{ _field_short_enum, "fade function", &blofeld::halo3::global_reverse_transition_functions_enum },
 		FIELD_PAD("ZFARTPOO", 2),
 		{ _field_real, "max intensity" },
 		{ _field_real_argb_color, "flash color" },
@@ -43488,8 +43488,8 @@ namespace halo3 {
 		DAMAGE_RESPONSE_MOTION_BLUR_STRUCT_ID)
 	{
 		{ _field_real, "duration" },
-		{ _field_enum, "priority", &blofeld::halo3::screen_flash_priority_enum },
-		{ _field_enum, "fade function", &blofeld::halo3::global_reverse_transition_functions_enum },
+		{ _field_short_enum, "priority", &blofeld::halo3::screen_flash_priority_enum },
+		{ _field_short_enum, "fade function", &blofeld::halo3::global_reverse_transition_functions_enum },
 		{ _field_real, "motion blur effect scale" },
 		{ _field_real, "motion blur cap scale" },
 		{ _field_real, "motion blur center falloff scale" },
@@ -43507,7 +43507,7 @@ namespace halo3 {
 		DAMAGE_RESPONSE_DIRECTIONAL_FLASH_STRUCT_ID)
 	{
 		{ _field_real, "duration" },
-		{ _field_enum, "fade function", &blofeld::halo3::global_reverse_transition_functions_enum },
+		{ _field_short_enum, "fade function", &blofeld::halo3::global_reverse_transition_functions_enum },
 		FIELD_PAD("ZASSFACE", 2),
 		{ _field_real, "size" },
 		{ _field_real, "inner scale" },
@@ -43560,7 +43560,7 @@ namespace halo3 {
 		DAMAGE_RESPONSE_CAMERA_IMPULSE_STRUCT_ID)
 	{
 		{ _field_real, "duration", nullptr, "seconds" },
-		{ _field_enum, "fade function", &blofeld::halo3::global_reverse_transition_functions_enum },
+		{ _field_short_enum, "fade function", &blofeld::halo3::global_reverse_transition_functions_enum },
 		FIELD_PAD("INF", 2),
 		{ _field_angle, "rotation", nullptr, "degrees" },
 		{ _field_real, "pushback", nullptr, "world units" },
@@ -43579,11 +43579,11 @@ namespace halo3 {
 		DAMAGE_RESPONSE_CAMERA_SHAKE_STRUCT_ID)
 	{
 		{ _field_real, "shake duration", "the effect will last for this duration.", "seconds" },
-		{ _field_enum, "falloff function", "a function to envelope the effect's magnitude over time", &blofeld::halo3::global_reverse_transition_functions_enum },
+		{ _field_short_enum, "falloff function", "a function to envelope the effect's magnitude over time", &blofeld::halo3::global_reverse_transition_functions_enum },
 		FIELD_PAD("DYOOQZFW", 2),
 		{ _field_real, "random translation", "random translation in all directions", "world units" },
 		{ _field_angle, "random rotation", "random rotation in all directions", "degrees" },
-		{ _field_enum, "wobble function", "a function to perturb the effect's behavior over time", &blofeld::halo3::global_periodic_functions_enum },
+		{ _field_short_enum, "wobble function", "a function to perturb the effect's behavior over time", &blofeld::halo3::global_periodic_functions_enum },
 		FIELD_PAD("FXGSKJ", 2),
 		{ _field_real, "wobble function period", nullptr, "seconds" },
 		{ _field_real_fraction, "wobble weight", "a value of 0.0 signifies that the wobble function has no effect; a value of 1.0 signifies that the effect will not be felt when the wobble function's value is zero." },
@@ -43600,7 +43600,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_RESPONSE_CLASS_BLOCK_ID)
 	{
-		{ _field_enum, "type", &blofeld::halo3::damage_response_class_type_enum },
+		{ _field_short_enum, "type", &blofeld::halo3::damage_response_class_type_enum },
 		{ _field_word_flags, "flags", &blofeld::halo3::damage_response_class_flags },
 		FIELD_EXPLANATION("screen flash", nullptr),
 		{ _field_struct, "screen flash", &blofeld::halo3::damage_response_screen_flash_struct },
@@ -43705,7 +43705,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CLOTH_PROPERTIES_ID)
 	{
-		{ _field_enum, "Integration type", &blofeld::halo3::cloth_integration_enum },
+		{ _field_short_enum, "Integration type", &blofeld::halo3::cloth_integration_enum },
 		{ _field_short_integer, "Number iterations", "[1-8] sug 1" },
 		{ _field_real, "weight", "[-10.0 - 10.0] sug 1.0" },
 		{ _field_real, "drag", "[0.0 - 0.5] sug 0.07" },
@@ -44046,8 +44046,8 @@ namespace halo3 {
 		{ _field_short_block_index, "initial secondary weapon", &blofeld::halo3::scenario_weapon_palette_block_block },
 		FIELD_PAD("IMDYHEQW", 2),
 		{ _field_short_block_index, "vehicle type", &blofeld::halo3::scenario_vehicle_palette_block_block },
-		{ _field_enum, "seat type", &blofeld::halo3::ai_placement_seat_preference_enum },
-		{ _field_enum, "grenade type", &blofeld::halo3::global_ai_grenade_type_enum },
+		{ _field_short_enum, "seat type", &blofeld::halo3::ai_placement_seat_preference_enum },
+		{ _field_short_enum, "grenade type", &blofeld::halo3::global_ai_grenade_type_enum },
 		{ _field_short_integer, "swarm count", "number of cretures in swarm if a swarm is spawned at this location" },
 		{ _field_string_id, "actor variant name" },
 		{ _field_string_id, "vehicle variant name" },
@@ -44055,15 +44055,15 @@ namespace halo3 {
 		{ _field_short_block_index, "emitter vehicle", &blofeld::halo3::scenario_vehicle_block_block },
 		{ _field_short_block_index, "giant body", &blofeld::halo3::scenario_giant_block_block },
 		{ _field_short_block_index, "biped body", &blofeld::halo3::scenario_biped_block_block },
-		{ _field_enum, "initial movement mode", &blofeld::halo3::actor_movement_modes },
+		{ _field_short_enum, "initial movement mode", &blofeld::halo3::actor_movement_modes },
 		{ _field_string, "Placement script", _field_id_halo_script_block },
 		{ _field_short_integer, "placement script index" },
 		{ _field_short_block_index, "initial equipment", &blofeld::halo3::scenario_equipment_palette_block_block },
 		{ _field_string_id, "activity name", _field_id_sted },
-		{ _field_enum, "activity", &blofeld::halo3::g_activity_enum },
+		{ _field_short_enum, "activity", &blofeld::halo3::g_activity_enum },
 		{ _field_short_integer, "activity variant" },
 		{ _field_custom_short_block_index, "point set", &blofeld::halo3::custom_point_set_block_index_definition },
-		{ _field_enum, "patrol mode", &blofeld::halo3::patrol_mode_enum },
+		{ _field_short_enum, "patrol mode", &blofeld::halo3::patrol_mode_enum },
 		{ _field_block, "points", &blofeld::halo3::patrol_point_block_block },
 		{ _field_terminator }
 	};
@@ -44180,12 +44180,12 @@ namespace halo3 {
 		{ _field_word_flags, "place on", &blofeld::halo3::difficulty_placement_flags },
 		FIELD_PAD("post-difficulty-pad", 2),
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
-		{ _field_enum, "major upgrade", &blofeld::halo3::major_upgrade_enum },
+		{ _field_short_enum, "major upgrade", &blofeld::halo3::major_upgrade_enum },
 		FIELD_EXPLANATION("Actor defaults", "The following default values are used for spawned actors"),
 		{ _field_short_block_index, "character type", &blofeld::halo3::character_palette_block_block },
 		{ _field_short_block_index, "initial weapon", &blofeld::halo3::scenario_weapon_palette_block_block },
 		{ _field_short_block_index, "initial secondary weapon", &blofeld::halo3::scenario_weapon_palette_block_block },
-		{ _field_enum, "grenade type", &blofeld::halo3::global_ai_grenade_type_enum },
+		{ _field_short_enum, "grenade type", &blofeld::halo3::global_ai_grenade_type_enum },
 		{ _field_short_block_index, "initial equipment", &blofeld::halo3::scenario_equipment_palette_block_block },
 		{ _field_short_block_index, "vehicle type", &blofeld::halo3::scenario_vehicle_palette_block_block },
 		{ _field_string_id, "vehicle variant" },
@@ -44193,9 +44193,9 @@ namespace halo3 {
 		{ _field_short_integer, "placement script index" },
 		FIELD_PAD("plsc", 2),
 		{ _field_string_id, "activity name", _field_id_sted },
-		{ _field_enum, "activity", &blofeld::halo3::g_activity_enum },
+		{ _field_short_enum, "activity", &blofeld::halo3::g_activity_enum },
 		{ _field_custom_short_block_index, "point set", &blofeld::halo3::custom_point_set_block_index_definition },
-		{ _field_enum, "patrol mode", &blofeld::halo3::patrol_mode_enum },
+		{ _field_short_enum, "patrol mode", &blofeld::halo3::patrol_mode_enum },
 		FIELD_PAD("post-patrol-mode", 2),
 		{ _field_block, "points", &blofeld::halo3::patrol_point_block_block },
 		{ _field_block, "starting locations", &blofeld::halo3::actor_starting_locations_block_block },
@@ -44227,7 +44227,7 @@ namespace halo3 {
 		{ _field_real, "delay", "how long the AI should pause at this point", "seconds" },
 		{ _field_real, "angle", "the angle-from-forward that the AI can pick at this point", "degrees" },
 		{ _field_string_id, "activity name", _field_id_sted },
-		{ _field_enum, "activity", &blofeld::halo3::g_activity_enum },
+		{ _field_short_enum, "activity", &blofeld::halo3::g_activity_enum },
 		{ _field_short_integer, "activity variant" },
 		{ _field_string, "command script", _field_id_halo_script_block },
 		{ _field_short_integer, "command script index" },
@@ -44254,7 +44254,7 @@ namespace halo3 {
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo3::squad_flags },
-		{ _field_enum, "team", &blofeld::halo3::ai_team_enum },
+		{ _field_short_enum, "team", &blofeld::halo3::ai_team_enum },
 		{ _field_short_block_index, "parent", &blofeld::halo3::squad_groups_block_block, _field_id_squad_template },
 		{ _field_short_block_index, "initial zone", &blofeld::halo3::zone_block_block },
 		FIELD_PAD("ex-initial-orders", 2),
@@ -44344,9 +44344,9 @@ namespace halo3 {
 	{
 		{ _field_string, "name" },
 		FIELD_EXPLANATION("Combat status decay options", "Controls how combat status is allowed to be automatically reduced in the absence of combat stimuli. \'Latch at X\' means that once the level of x is attained (and/or surpassed) the combat status never falls below it. Not applicable when style is applied to a character tag."),
-		{ _field_enum, "Combat status decay options", &blofeld::halo3::combat_status_enum$2 },
+		{ _field_short_enum, "Combat status decay options", &blofeld::halo3::combat_status_enum$2 },
 		FIELD_EXPLANATION("Atittude", "Indicates general stance for style. This tells us which of the property blocks in the character definition to reference (e.g. timid defense properties). Not applicable when style is applied to a character tag."),
-		{ _field_enum, "Attitude", &blofeld::halo3::style_attitude_enum },
+		{ _field_short_enum, "Attitude", &blofeld::halo3::style_attitude_enum },
 		FIELD_EXPLANATION("Style Behavior Control", "Check the appropriate box to turn on/off the given behavior"),
 		{ _field_long_flags, "Style control", &blofeld::halo3::style_control_flags },
 		{ _field_long_flags, "Behaviors1", &blofeld::halo3::behavior_set1, _field_id_dumb },
@@ -44712,7 +44712,7 @@ namespace halo3 {
 		{ _field_real, "source scale to 0 radius", "Distance from a source at which the creature scales to full size", "wus" },
 		{ _field_real, "sink scale to 0 radius", "Distance from a sink at which the creature begins to scale to zero", "wus" },
 		{ _field_short_block_index, "boid creature", &blofeld::halo3::scenario_creature_palette_block_block },
-		{ _field_short_bounds, "boid count" },
+		{ _field_short_integer_bounds, "boid count" },
 		{ _field_short_block_index, "enemy flock", &blofeld::halo3::flock_instance_block_block },
 		{ _field_terminator }
 	};
@@ -44826,14 +44826,14 @@ namespace halo3 {
 		CHARACTER_GENERAL_BLOCK_ID)
 	{
 		{ _field_long_flags, "general flags", &blofeld::halo3::general_flags },
-		{ _field_enum, "type", &blofeld::halo3::actor_type_enum },
+		{ _field_short_enum, "type", &blofeld::halo3::actor_type_enum },
 		{ _field_short_integer, "rank", "the rank of this character, helps us work out who in a squad should be a leader (0 is lowly, 32767 is highest)" },
-		{ _field_enum, "follower positioning", "where should my followers try and position themselves when I am their leader?", &blofeld::halo3::combat_positioning_enum },
+		{ _field_short_enum, "follower positioning", "where should my followers try and position themselves when I am their leader?", &blofeld::halo3::combat_positioning_enum },
 		FIELD_PAD("post-combat-position-padding", 2),
 		{ _field_real, "max leader dist", "don't let my combat range get outside this distance from my leader when in combat (if 0 then defaults to 4wu)" },
 		{ _field_real, "absolute max leader dist", "never select firing positions outside this range from the leader (if 0 then defaults to 8wu)" },
 		{ _field_real, "scariness", "the inherent scariness of the character" },
-		{ _field_enum, "default grenade type", &blofeld::halo3::global_ai_grenade_type_enum },
+		{ _field_short_enum, "default grenade type", &blofeld::halo3::global_ai_grenade_type_enum },
 		FIELD_PAD("post-grenade-padding", 2),
 		{ _field_terminator }
 	};
@@ -45049,12 +45049,12 @@ namespace halo3 {
 		{ _field_useless_pad, "value" },
 		{ _field_real, "dive grenade chance" },
 		{ _field_useless_pad, "value" },
-		{ _field_enum, "obstacle leap min size", &blofeld::halo3::obstacle_ignore_enum },
-		{ _field_enum, "obstacle leap max size", &blofeld::halo3::obstacle_ignore_enum },
-		{ _field_enum, "obstacle ignore size", &blofeld::halo3::obstacle_ignore_enum },
-		{ _field_enum, "obstacle smashable size", &blofeld::halo3::obstacle_ignore_enum },
+		{ _field_short_enum, "obstacle leap min size", &blofeld::halo3::obstacle_ignore_enum },
+		{ _field_short_enum, "obstacle leap max size", &blofeld::halo3::obstacle_ignore_enum },
+		{ _field_short_enum, "obstacle ignore size", &blofeld::halo3::obstacle_ignore_enum },
+		{ _field_short_enum, "obstacle smashable size", &blofeld::halo3::obstacle_ignore_enum },
 		FIELD_PAD("RQEMJY", 2),
-		{ _field_enum, "jump height", &blofeld::halo3::global_ai_jump_height_enum },
+		{ _field_short_enum, "jump height", &blofeld::halo3::global_ai_jump_height_enum },
 		{ _field_long_flags, "movement hints", &blofeld::halo3::movement_hint_enum },
 		{ _field_real, "throttle scale" },
 		{ _field_real, "throttle dampening", "0 = slow change in throttle, 1 = fast change in throttle", nullptr, "[0,1]" },
@@ -45485,8 +45485,8 @@ namespace halo3 {
 		{ _field_real_vector_3d, "custom crouch gun offset", "custom crouching gun offset for overriding the default in the base actor" },
 		{ _field_useless_pad, "value" },
 		FIELD_EXPLANATION("special-case firing properties", nullptr),
-		{ _field_enum, "special-fire mode", "the type of special weapon fire that we can use", &blofeld::halo3::actor_special_fire_mode_enum },
-		{ _field_enum, "special-fire situation", "when we will decide to use our special weapon fire mode", &blofeld::halo3::actor_special_fire_situation_enum },
+		{ _field_short_enum, "special-fire mode", "the type of special weapon fire that we can use", &blofeld::halo3::actor_special_fire_mode_enum },
+		{ _field_short_enum, "special-fire situation", "when we will decide to use our special weapon fire mode", &blofeld::halo3::actor_special_fire_situation_enum },
 		{ _field_real, "special-fire chance", "how likely we are to use our special weapon fire mode", nullptr, "[0,1]" },
 		{ _field_real, "special-fire delay", "how long we must wait between uses of our special weapon fire mode", "seconds" },
 		{ _field_real, "special damage modifier", "damage modifier for special weapon fire (applied in addition to the normal damage modifier. zero = no change)", nullptr, "[0,1]" },
@@ -45494,7 +45494,7 @@ namespace halo3 {
 		{ _field_useless_pad, "value" },
 		FIELD_EXPLANATION("Weapon drop when killed", nullptr),
 		{ _field_real_bounds, "drop weapon loaded", "amount of ammo loaded into the weapon that we drop (in fractions of a clip, e.g. 0.3 to 0.5)" },
-		{ _field_short_bounds, "drop weapon ammo", "total number of rounds in the weapon that we drop (ignored for energy weapons)" },
+		{ _field_short_integer_bounds, "drop weapon ammo", "total number of rounds in the weapon that we drop (ignored for energy weapons)" },
 		{ _field_useless_pad, "value" },
 		FIELD_EXPLANATION("Accuracy", "Parameters control how accuracy changes over the duration of a series of bursts\nAccuracy is an analog value between 0 and 1. At zero, the parameters of the first\nfiring-pattern block is used. At 1, the parameters in the second block is used. In\nbetween, all the values are linearly interpolated"),
 		{ _field_real_bounds, "normal accuracy bounds", "Indicates starting and ending accuracies at normal difficulty" },
@@ -45570,8 +45570,8 @@ namespace halo3 {
 		CHARACTER_GRENADES_BLOCK_ID)
 	{
 		{ _field_long_flags, "grenades flags", &blofeld::halo3::generic_flags },
-		{ _field_enum, "grenade type", "type of grenades that we throw", FIELD_FLAG_INDEX, &blofeld::halo3::global_grenade_type_enum },
-		{ _field_enum, "trajectory type", "how we throw our grenades", &blofeld::halo3::actor_grenade_trajectory_enum },
+		{ _field_short_enum, "grenade type", "type of grenades that we throw", FIELD_FLAG_INDEX, &blofeld::halo3::global_grenade_type_enum },
+		{ _field_short_enum, "trajectory type", "how we throw our grenades", &blofeld::halo3::actor_grenade_trajectory_enum },
 		FIELD_PAD("YZNPI", 2),
 		{ _field_short_integer, "minimum enemy count", "how many enemies must be within the radius of the grenade before we will consider throwing there" },
 		{ _field_real, "enemy radius", "we consider enemies within this radius when determining where to throw", "world units" },
@@ -45587,7 +45587,7 @@ namespace halo3 {
 		{ _field_real_fraction, "anti-vehicle grenade chance", "how likely we are to throw a grenade against a vehicle", nullptr, "[0,1]" },
 		{ _field_useless_pad, "value" },
 		FIELD_EXPLANATION("Grenade drop when killed", nullptr),
-		{ _field_short_bounds, "grenade count", "number of grenades that we start with" },
+		{ _field_short_integer_bounds, "grenade count", "number of grenades that we start with" },
 		{ _field_real, "dont drop grenades chance", "how likely we are not to drop any grenades when we die, even if we still have some", nullptr, "[0,1]" },
 		{ _field_terminator }
 	};
@@ -45669,7 +45669,7 @@ namespace halo3 {
 		{ _field_real, "turtling min time", "If the vehicle turtling behavior is enabled, turtling occurs for at least the given time", "seconds" },
 		{ _field_real, "turtling timeout", "The turtled state times out after the given number of seconds", "seconds" },
 		{ _field_useless_pad, "value" },
-		{ _field_enum, "obstacle ignore size", &blofeld::halo3::obstacle_ignore_enum },
+		{ _field_short_enum, "obstacle ignore size", &blofeld::halo3::obstacle_ignore_enum },
 		FIELD_PAD("I", 2),
 		{ _field_short_integer, "max vehicle charge", "max number of this type of vehicle in a task who can vehicle charge at once" },
 		{ _field_short_integer, "min vehicle charge", "min number of this type of vehicle in a task who can vehicle charge at once (soft limit, just a desired number)" },
@@ -45862,8 +45862,8 @@ namespace halo3 {
 		CHARACTER_EQUIPMENT_USAGE_BLOCK_ID)
 	{
 		FIELD_EXPLANATION("Equipment Use", "How should I use this equipment?"),
-		{ _field_enum, "use when", "When should we use this equipment?", &blofeld::halo3::character_equipment_usage_when_enum },
-		{ _field_enum, "use how", "How should we use this equipment?", &blofeld::halo3::character_equipment_usage_how_enum },
+		{ _field_short_enum, "use when", "When should we use this equipment?", &blofeld::halo3::character_equipment_usage_when_enum },
+		{ _field_short_enum, "use how", "How should we use this equipment?", &blofeld::halo3::character_equipment_usage_how_enum },
 		FIELD_EXPLANATION("Skip Fraction", "Given that we have decided to use this equipment, should we do so? (0= always use it, 1= never use it). Heroic skip fraction is the average of normal and legendary chances."),
 		{ _field_real, "easy/normal", nullptr, "0-1" },
 		{ _field_real, "legendary", nullptr, "0-1" },
@@ -46022,7 +46022,7 @@ namespace halo3 {
 		{ _field_string_id, "vocalization name", _field_id_sted },
 		{ _field_word_flags, "flags", &blofeld::halo3::response_flags },
 		{ _field_short_integer, "vocalization index" },
-		{ _field_enum, "response type", &blofeld::halo3::response_type_enum },
+		{ _field_short_enum, "response type", &blofeld::halo3::response_type_enum },
 		{ _field_short_integer, "dialogue index (import)" },
 		{ _field_terminator }
 	};
@@ -46058,13 +46058,13 @@ namespace halo3 {
 	{
 		{ _field_string_id, "vocalization" },
 		{ _field_short_block_index, "parent index", &blofeld::halo3::vocalization_definitions_block_block },
-		{ _field_enum, "priority", &blofeld::halo3::priority_enum },
+		{ _field_short_enum, "priority", &blofeld::halo3::priority_enum },
 		{ _field_long_flags, "flags", &blofeld::halo3::vocalization_flags_definition },
-		{ _field_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo3::glance_type_enum },
-		{ _field_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo3::glance_type_enum },
-		{ _field_enum, "perception type", &blofeld::halo3::perception_type_enum },
-		{ _field_enum, "max combat status", &blofeld::halo3::combat_status_enum },
-		{ _field_enum, "animation impulse", &blofeld::halo3::dialogue_animation_enum },
+		{ _field_short_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo3::glance_type_enum },
+		{ _field_short_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo3::glance_type_enum },
+		{ _field_short_enum, "perception type", &blofeld::halo3::perception_type_enum },
+		{ _field_short_enum, "max combat status", &blofeld::halo3::combat_status_enum },
+		{ _field_short_enum, "animation impulse", &blofeld::halo3::dialogue_animation_enum },
 		{ _field_short_integer, "proxy dialogue index" },
 		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
 		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
@@ -46075,8 +46075,8 @@ namespace halo3 {
 		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
 		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
 		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
-		{ _field_enum, "speaker emotion", &blofeld::halo3::dialogue_emotion_enum },
-		{ _field_enum, "listener emotion", &blofeld::halo3::dialogue_emotion_enum },
+		{ _field_short_enum, "speaker emotion", &blofeld::halo3::dialogue_emotion_enum },
+		{ _field_short_enum, "listener emotion", &blofeld::halo3::dialogue_emotion_enum },
 		{ _field_real, "player skip fraction" },
 		{ _field_real, "flood skip fraction" },
 		{ _field_real, "skip fraction" },
@@ -46190,32 +46190,32 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VOCALIZATION_PATTERNS_BLOCK_ID)
 	{
-		{ _field_enum, "dialogue type", &blofeld::halo3::dialogue_names_enum },
+		{ _field_short_enum, "dialogue type", &blofeld::halo3::dialogue_names_enum },
 		{ _field_short_integer, "vocalization index" },
 		{ _field_string_id, "vocalization name", _field_id_sted },
-		{ _field_enum, "speaker type", &blofeld::halo3::speaker_type_enum },
-		{ _field_enum, "listener/target", "who/what am I speaking to/of?", &blofeld::halo3::speaker_type_enum },
-		{ _field_enum, "hostility", "The relationship between the subject and the cause", &blofeld::halo3::hostility_enum },
+		{ _field_short_enum, "speaker type", &blofeld::halo3::speaker_type_enum },
+		{ _field_short_enum, "listener/target", "who/what am I speaking to/of?", &blofeld::halo3::speaker_type_enum },
+		{ _field_short_enum, "hostility", "The relationship between the subject and the cause", &blofeld::halo3::hostility_enum },
 		{ _field_word_flags, "flags", &blofeld::halo3::pattern_flags },
 		FIELD_EXPLANATION("Cause", nullptr),
-		{ _field_enum, "cause actor type", &blofeld::halo3::actor_type_names_enum },
-		{ _field_enum, "cause type", &blofeld::halo3::dialogue_object_types_enum },
+		{ _field_short_enum, "cause actor type", &blofeld::halo3::actor_type_names_enum },
+		{ _field_short_enum, "cause type", &blofeld::halo3::dialogue_object_types_enum },
 		{ _field_string_id, "cause ai type name" },
 		FIELD_EXPLANATION("Speaker", nullptr),
-		{ _field_enum, "speaker object type", &blofeld::halo3::dialogue_object_types_enum },
+		{ _field_short_enum, "speaker object type", &blofeld::halo3::dialogue_object_types_enum },
 		FIELD_PAD("post-object-type", 2),
-		{ _field_enum, "speaker behavior", &blofeld::halo3::speaker_behavior_enum },
-		{ _field_enum, "danger level", "Speaker must have danger level of at least this much", &blofeld::halo3::danger_enum },
-		{ _field_enum, "attitude", &blofeld::halo3::style_attitude_enum },
+		{ _field_short_enum, "speaker behavior", &blofeld::halo3::speaker_behavior_enum },
+		{ _field_short_enum, "danger level", "Speaker must have danger level of at least this much", &blofeld::halo3::danger_enum },
+		{ _field_short_enum, "attitude", &blofeld::halo3::style_attitude_enum },
 		{ _field_char_enum, "speaker/subject position", &blofeld::halo3::spatial_relation_enum },
 		{ _field_char_enum, "speaker/cause position", &blofeld::halo3::spatial_relation_enum },
 		{ _field_long_flags, "Conditions", &blofeld::halo3::dialogue_condition_flags },
 		FIELD_EXPLANATION("Matching", nullptr),
-		{ _field_enum, "spatial relation", "with respect to the subject, the cause is ...", &blofeld::halo3::spatial_relation_enum },
-		{ _field_enum, "damage type", &blofeld::halo3::damage_enum },
+		{ _field_short_enum, "spatial relation", "with respect to the subject, the cause is ...", &blofeld::halo3::spatial_relation_enum },
+		{ _field_short_enum, "damage type", &blofeld::halo3::damage_enum },
 		FIELD_EXPLANATION("Subject", nullptr),
-		{ _field_enum, "subject actor type", &blofeld::halo3::actor_type_names_enum },
-		{ _field_enum, "subject type", &blofeld::halo3::dialogue_object_types_enum },
+		{ _field_short_enum, "subject actor type", &blofeld::halo3::actor_type_names_enum },
+		{ _field_short_enum, "subject type", &blofeld::halo3::dialogue_object_types_enum },
 		{ _field_string_id, "subject ai type name" },
 		{ _field_terminator }
 	};
@@ -46657,7 +46657,7 @@ namespace halo3 {
 		AI_SCENE_ROLE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "group", &blofeld::halo3::role_group_enum },
+		{ _field_short_enum, "group", &blofeld::halo3::role_group_enum },
 		FIELD_PAD("XZUW", 2),
 		{ _field_useless_pad, "value" },
 		{ _field_block, "role variants", &blofeld::halo3::ai_scene_role_variants_block_block },
@@ -46682,7 +46682,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_SCENE_TRIGGER_BLOCK_ID)
 	{
-		{ _field_enum, "combination rule", &blofeld::halo3::combination_rules_enum },
+		{ _field_short_enum, "combination rule", &blofeld::halo3::combination_rules_enum },
 		FIELD_PAD("NJBJMKU", 2),
 		{ _field_block, "triggers", &blofeld::halo3::trigger_references_block },
 		{ _field_terminator }
@@ -46748,7 +46748,7 @@ namespace halo3 {
 	{
 		{ _field_string, "script name" },
 		{ _field_long_string, "script source", _field_id_unknown_maeo },
-		{ _field_enum, "compile state", &blofeld::halo3::fragment_state_enum },
+		{ _field_short_enum, "compile state", &blofeld::halo3::fragment_state_enum },
 		FIELD_PAD("xcvh", 2),
 		{ _field_terminator }
 	};
@@ -46793,8 +46793,8 @@ namespace halo3 {
 		{ _field_word_flags, "flags", &blofeld::halo3::task_flags_definition },
 		{ _field_word_flags, "inhibit groups", &blofeld::halo3::inhibit_behavior_flags },
 		{ _field_word_flags, "inhibit on difficulty", &blofeld::halo3::inhibit_difficulty_flags },
-		{ _field_enum, "movement", &blofeld::halo3::task_movement_enum },
-		{ _field_enum, "follow", &blofeld::halo3::task_follow_enum },
+		{ _field_short_enum, "movement", &blofeld::halo3::task_movement_enum },
+		{ _field_short_enum, "follow", &blofeld::halo3::task_follow_enum },
 		{ _field_short_block_index, "follow squad", &blofeld::halo3::squads_block_block },
 		{ _field_real, "follow radius" },
 		{ _field_string, "Entry Script", _field_id_halo_script_block },
@@ -46804,7 +46804,7 @@ namespace halo3 {
 		{ _field_short_integer, "Command script index" },
 		{ _field_short_integer, "Exhaustion script index" },
 		{ _field_short_block_index, "Squad group filter", &blofeld::halo3::squad_groups_block_block },
-		{ _field_enum, "dialogue type", "when someone enters this task for the first time, they play this type of dialogue", &blofeld::halo3::task_dialogue_enum },
+		{ _field_short_enum, "dialogue type", "when someone enters this task for the first time, they play this type of dialogue", &blofeld::halo3::task_dialogue_enum },
 		FIELD_PAD("post-dialogue-pad", 2),
 		{ _field_block, "Pureform distribution", &blofeld::halo3::pureform_distribution_block_block },
 		FIELD_EXPLANATION("UI-Controlled", "You don\'t need to modify these here. They are managed by the objectives ui"),
@@ -46817,10 +46817,10 @@ namespace halo3 {
 		{ _field_short_block_index, "script index ", &blofeld::halo3::hs_scripts_block_block },
 		{ _field_short_integer, "lifetime count", "task will never want to suck in more then n guys over lifetime (soft ceiling only applied when limit exceeded" },
 		{ _field_word_flags, "filter flags", &blofeld::halo3::filter_flags },
-		{ _field_enum, "filter", &blofeld::halo3::filter_enum },
-		{ _field_short_bounds, "capacity" },
+		{ _field_short_enum, "filter", &blofeld::halo3::filter_enum },
+		{ _field_short_integer_bounds, "capacity" },
 		{ _field_short_integer, "max body count", "task becomes inactive after the given number of casualties" },
-		{ _field_enum, "style", &blofeld::halo3::global_style_enum },
+		{ _field_short_enum, "style", &blofeld::halo3::global_style_enum },
 		{ _field_real, "min strength", "task becomes inactive after the strength of the participants falls below the given level", nullptr, "[0,1]" },
 		{ _field_block, "areas", &blofeld::halo3::zone_set_block_block },
 		{ _field_block, "direction", &blofeld::halo3::task_direction_block_block },
@@ -47381,7 +47381,7 @@ namespace halo3 {
 	{
 		{ _field_word_flags, "Flags", &blofeld::halo3::user_hint_geometry_flags },
 		{ _field_short_block_index, "geometry index", &blofeld::halo3::user_hint_parallelogram_block_block },
-		{ _field_enum, "force jump height", &blofeld::halo3::global_ai_jump_height_enum },
+		{ _field_short_enum, "force jump height", &blofeld::halo3::global_ai_jump_height_enum },
 		{ _field_word_flags, "control flags", &blofeld::halo3::jump_flags },
 		{ _field_terminator }
 	};
@@ -47407,7 +47407,7 @@ namespace halo3 {
 	{
 		{ _field_word_flags, "Flags", &blofeld::halo3::user_hint_geometry_flags },
 		{ _field_short_block_index, "geometry index", &blofeld::halo3::user_hint_line_segment_block_block },
-		{ _field_enum, "force hoist height", &blofeld::halo3::forced_hoist_height_enum },
+		{ _field_short_enum, "force hoist height", &blofeld::halo3::forced_hoist_height_enum },
 		FIELD_PAD("post-forced-hoist-height", 2),
 		{ _field_terminator }
 	};
@@ -47431,7 +47431,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_WELL_POINT_BLOCK_ID)
 	{
-		{ _field_enum, "type", &blofeld::halo3::user_hint_well_point_type_enum },
+		{ _field_short_enum, "type", &blofeld::halo3::user_hint_well_point_type_enum },
 		FIELD_PAD("CNXLP", 2),
 		{ _field_real_point_3d, "point" },
 		{ _field_short_block_index, "reference frame", &blofeld::halo3::ai_reference_frame_block_block },
@@ -47618,7 +47618,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PATHFINDING_HINTS_BLOCK_ID)
 	{
-		{ _field_enum, "hint type", &blofeld::halo3::hint_type_enum },
+		{ _field_short_enum, "hint type", &blofeld::halo3::hint_type_enum },
 		{ _field_short_integer, "Next hint index" },
 		{ _field_long_integer, "hint data 0" },
 		{ _field_long_integer, "hint data 1" },
@@ -47658,7 +47658,7 @@ namespace halo3 {
 		{ _field_short_block_index, "Style", &blofeld::halo3::style_palette_block_block },
 		FIELD_PAD("YATIWNRNR", 2),
 		{ _field_long_flags, "flags", &blofeld::halo3::order_flags },
-		{ _field_enum, "Force combat status", &blofeld::halo3::force_combat_status_enum },
+		{ _field_short_enum, "Force combat status", &blofeld::halo3::force_combat_status_enum },
 		FIELD_PAD("PWY", 2),
 		{ _field_string, "Entry Script", _field_id_halo_script_block },
 		{ _field_short_integer, "Script index" },
@@ -47707,7 +47707,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ORDER_COMPLETION_CONDITION_ID)
 	{
-		{ _field_enum, "rule type", &blofeld::halo3::condition_type_enum },
+		{ _field_short_enum, "rule type", &blofeld::halo3::condition_type_enum },
 		{ _field_short_block_index, "squad", &blofeld::halo3::squads_block_block },
 		{ _field_short_block_index, "squad group", &blofeld::halo3::squad_groups_block_block },
 		{ _field_short_integer, "a" },
@@ -47768,7 +47768,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ZONE_SET_BLOCK_ID)
 	{
-		{ _field_enum, "area type", &blofeld::halo3::zone_set_type_enum },
+		{ _field_short_enum, "area type", &blofeld::halo3::zone_set_type_enum },
 		{ _field_word_flags, "flags", &blofeld::halo3::zone_set_flags },
 		{ _field_word_flags, "character flags", &blofeld::halo3::order_area_reference_character_flags },
 		{ _field_short_block_index, "zone", &blofeld::halo3::zone_block_block },
@@ -47808,7 +47808,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SECONDARY_ZONE_SET_BLOCK_ID)
 	{
-		{ _field_enum, "area type", &blofeld::halo3::zone_set_type_enum },
+		{ _field_short_enum, "area type", &blofeld::halo3::zone_set_type_enum },
 		{ _field_word_flags, "flags", &blofeld::halo3::zone_set_flags },
 		{ _field_word_flags, "character flags", &blofeld::halo3::order_area_reference_character_flags },
 		{ _field_short_block_index, "zone", &blofeld::halo3::zone_block_block },
@@ -47829,7 +47829,7 @@ namespace halo3 {
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_string, "name" },
 		{ _field_long_flags, "trigger flags", &blofeld::halo3::trigger_flags },
-		{ _field_enum, "combination rule", &blofeld::halo3::combination_rules_enum },
+		{ _field_short_enum, "combination rule", &blofeld::halo3::combination_rules_enum },
 		FIELD_PAD("XXCMMRUP", 2),
 		{ _field_useless_pad, "value" },
 		{ _field_block, "conditions", &blofeld::halo3::order_completion_condition_block },
@@ -47892,9 +47892,9 @@ namespace halo3 {
 		ORDER_ENDING_BLOCK_ID)
 	{
 		{ _field_short_block_index, "next order", &blofeld::halo3::orders_block_block },
-		{ _field_enum, "combination rule", &blofeld::halo3::combination_rules_enum },
+		{ _field_short_enum, "combination rule", &blofeld::halo3::combination_rules_enum },
 		{ _field_real, "delay time" },
-		{ _field_enum, "dialogue type", "when this ending is triggered, launch a dialogue event of the given type", &blofeld::halo3::order_ending_dialogue_enum },
+		{ _field_short_enum, "dialogue type", "when this ending is triggered, launch a dialogue event of the given type", &blofeld::halo3::order_ending_dialogue_enum },
 		FIELD_PAD("YVKPCQIYY", 2),
 		{ _field_useless_pad, "value" },
 		{ _field_block, "triggers", &blofeld::halo3::trigger_references_block },
@@ -47929,8 +47929,8 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SECONDARY_SET_TRIGGER_BLOCK_ID)
 	{
-		{ _field_enum, "combination rule", &blofeld::halo3::combination_rules_enum },
-		{ _field_enum, "dialogue type", "when this ending is triggered, launch a dialogue event of the given type", &blofeld::halo3::order_ending_dialogue_enum },
+		{ _field_short_enum, "combination rule", &blofeld::halo3::combination_rules_enum },
+		{ _field_short_enum, "dialogue type", "when this ending is triggered, launch a dialogue event of the given type", &blofeld::halo3::order_ending_dialogue_enum },
 		{ _field_block, "triggers", &blofeld::halo3::trigger_references_block },
 		{ _field_terminator }
 	};

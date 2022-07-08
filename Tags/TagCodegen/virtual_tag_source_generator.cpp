@@ -113,7 +113,7 @@ void c_virtual_tag_source_generator::generate_header() const
 				stream << "\t\t\t" << "c_enum<blofeld::" << namespace_name << "::e_" << string_list.name << ", char> " << field_formatter.code_name.data << ";";
 				break;
 			}
-			case _field_enum:
+			case _field_short_enum:
 			{
 				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
 				stream << "\t\t\t" << "c_enum<blofeld::" << namespace_name << "::e_" << string_list.name << ", short> " << field_formatter.code_name.data << ";";

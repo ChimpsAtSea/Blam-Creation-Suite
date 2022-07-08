@@ -303,7 +303,7 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 			ImGui::SetNextItemWidth(350.0f);
 			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_U8, data);
 		}
-		else if constexpr (field_type == _field_enum || field_type == _field_short_block_index || field_type == _field_custom_short_block_index || field_type == _field_short_integer)
+		else if constexpr (field_type == _field_short_enum || field_type == _field_short_block_index || field_type == _field_custom_short_block_index || field_type == _field_short_integer)
 		{
 			ImGui::SetNextItemWidth(350.0f);
 			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_S16, data);
@@ -346,7 +346,7 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 			ImGui::SetNextItemWidth(350.0f);
 			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_Float, data);
 		}
-		else if constexpr (field_type == _field_short_bounds || field_type == _field_point_2d)
+		else if constexpr (field_type == _field_short_integer_bounds || field_type == _field_point_2d)
 		{
 			ImGui::SetNextItemWidth(400.0f);
 			result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_S16, data, 2);
@@ -356,7 +356,7 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 			ImGui::SetNextItemWidth(800.0f);
 			result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_S16, data, 4);
 		}
-		else if constexpr (field_type == _field_real_vector_2d || field_type == _field_real_bounds || field_type == _field_real_fraction_bounds || field_type == _field_real_point_2d)
+		else if constexpr (field_type == _field_real_vector_2d || field_type == _field_real_bounds || field_type == _field_fraction_bounds || field_type == _field_real_point_2d)
 		{
 			ImGui::SetNextItemWidth(400.0f);
 			result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, data, 2);
@@ -1202,7 +1202,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 	case _field_char_enum:
 		value = *reinterpret_cast<char*>(data);
 		break;
-	case _field_enum:
+	case _field_short_enum:
 		value = *reinterpret_cast<short*>(data);
 		break;
 	case _field_long_enum:
@@ -1259,7 +1259,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 					case blofeld::_field_char_enum:
 						*reinterpret_cast<char*>(data) = static_cast<char>(value);
 						break;
-					case blofeld::_field_enum:
+					case blofeld::_field_short_enum:
 						*reinterpret_cast<short*>(data) = static_cast<short>(value);
 						break;
 					case blofeld::_field_long_enum:
@@ -1410,10 +1410,10 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& o
 		case _field_real_argb_color:				data_modified = render_primitive<_field_real_argb_color>(field_data, field); break;
 		case _field_real_hsv_color:					data_modified = render_primitive<_field_real_hsv_color>(field_data, field); break;
 		case _field_real_ahsv_color:				data_modified = render_primitive<_field_real_ahsv_color>(field_data, field); break;
-		case _field_short_bounds:					data_modified = render_primitive<_field_short_bounds>(field_data, field); break;
+		case _field_short_integer_bounds:					data_modified = render_primitive<_field_short_integer_bounds>(field_data, field); break;
 		case _field_point_2d:						data_modified = render_primitive<_field_point_2d>(field_data, field); break;
 		case _field_real_bounds:					data_modified = render_primitive<_field_real_bounds>(field_data, field); break;
-		case _field_real_fraction_bounds:			data_modified = render_primitive<_field_real_fraction_bounds>(field_data, field); break;
+		case _field_fraction_bounds:			data_modified = render_primitive<_field_fraction_bounds>(field_data, field); break;
 		case _field_byte_block_flags:				data_modified = render_primitive<_field_byte_block_flags>(field_data, field); break;
 		case _field_word_block_flags:				data_modified = render_primitive<_field_word_block_flags>(field_data, field); break;
 		case _field_long_block_flags:				data_modified = render_primitive<_field_long_block_flags>(field_data, field); break;
@@ -1437,7 +1437,7 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& o
 		case _field_word_flags:						data_modified = render_flags_definition(field_data, field); break;
 		case _field_long_flags:						data_modified = render_flags_definition(field_data, field); break;
 		case _field_char_enum:						data_modified = render_enum_definition(field_data, field); break;
-		case _field_enum:							data_modified = render_enum_definition(field_data, field); break;
+		case _field_short_enum:							data_modified = render_enum_definition(field_data, field); break;
 		case _field_long_enum:						data_modified = render_enum_definition(field_data, field); break;
 		case _field_tag_reference:
 		case _field_embedded_tag:
@@ -1522,7 +1522,7 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& o
 		case _field_non_cache_runtime_value:
 		case _field_custom:
 			break;
-		case _field_pageable:
+		case _field_pageable_resource:
 		{
 			h_resource*& resource = *static_cast<h_resource**>(field_data);
 
@@ -1572,7 +1572,7 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& o
 		break;
 		default:
 			const char* field_type_name = "Unknown Field Type";
-			field_to_tag_field_type(field.field_type, field_type_name);
+			field_to_tagfile_field_type(field.field_type, field_type_name);
 			ImGui::Text("Unknown type '%s' for field '%s'", field_type_name, field.name);
 			break;
 		}

@@ -130,7 +130,7 @@
 //}
 //
 //template<typename t_raw_value>
-//void c_blofeld_tag_debugger_tab::render_field_enum_type(int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result)
+//void c_blofeld_tag_debugger_tab::render_field_short_enum_type(int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result)
 //{
 //	if (field.string_list_definition == nullptr)
 //	{
@@ -271,17 +271,17 @@
 //void c_blofeld_tag_debugger_tab::render_field_char_enum(render_field_callback_args)
 //{
 //	if (&tag_interface != &this->tag_interface) return;
-//	render_field_enum_type<byte>(result->level, data, field, result);
+//	render_field_short_enum_type<byte>(result->level, data, field, result);
 //}
-//void c_blofeld_tag_debugger_tab::render_field_enum(render_field_callback_args)
+//void c_blofeld_tag_debugger_tab::render_field_short_enum(render_field_callback_args)
 //{
 //	if (&tag_interface != &this->tag_interface) return;
-//	render_field_enum_type<word>(result->level, data, field, result);
+//	render_field_short_enum_type<word>(result->level, data, field, result);
 //}
 //void c_blofeld_tag_debugger_tab::render_field_long_enum(render_field_callback_args)
 //{
 //	if (&tag_interface != &this->tag_interface) return;
-//	render_field_enum_type<unsigned long>(result->level, data, field, result);
+//	render_field_short_enum_type<unsigned long>(result->level, data, field, result);
 //}
 //void c_blofeld_tag_debugger_tab::render_field_long_flags(render_field_callback_args)
 //{
@@ -432,7 +432,7 @@
 //	ImGui::ColorEdit4("", color, ImGuiColorEditFlags_Float | ImGuiColorEditFlags_InputHSV);
 //	render_field_name_and_information(field, result);
 //}
-//void c_blofeld_tag_debugger_tab::render_field_short_bounds(render_field_callback_args)
+//void c_blofeld_tag_debugger_tab::render_field_short_integer_bounds(render_field_callback_args)
 //{
 //	if (&tag_interface != &this->tag_interface) return;
 //	render_field_scalar_type(ImGuiDataType_S16, 2, result->level, data, field, result);
@@ -447,7 +447,7 @@
 //	if (&tag_interface != &this->tag_interface) return;
 //	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
 //}
-//void c_blofeld_tag_debugger_tab::render_field_real_fraction_bounds(render_field_callback_args)
+//void c_blofeld_tag_debugger_tab::render_field_fraction_bounds(render_field_callback_args)
 //{
 //	if (&tag_interface != &this->tag_interface) return;
 //	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
@@ -623,7 +623,7 @@
 //	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
 //	render_field_name_and_information(field, result);
 //}
-//void c_blofeld_tag_debugger_tab::render_field_pageable(render_field_callback_args)
+//void c_blofeld_tag_debugger_tab::render_field_pageable_resource(render_field_callback_args)
 //{
 //	if (&tag_interface != &this->tag_interface) return;
 //	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
@@ -743,7 +743,7 @@
 //	register_validation_callback(blofeld::_field_angle, render_field_angle);
 //	register_validation_callback(blofeld::_field_tag, render_field_tag);
 //	register_validation_callback(blofeld::_field_char_enum, render_field_char_enum);
-//	register_validation_callback(blofeld::_field_enum, render_field_enum);
+//	register_validation_callback(blofeld::_field_short_enum, render_field_short_enum);
 //	register_validation_callback(blofeld::_field_long_enum, render_field_long_enum);
 //	register_validation_callback(blofeld::_field_long_flags, render_field_long_flags);
 //	register_validation_callback(blofeld::_field_word_flags, render_field_word_flags);
@@ -767,10 +767,10 @@
 //	register_validation_callback(blofeld::_field_real_argb_color, render_field_real_argb_color);
 //	register_validation_callback(blofeld::_field_real_hsv_color, render_field_real_hsv_color);
 //	register_validation_callback(blofeld::_field_real_ahsv_color, render_field_real_ahsv_color);
-//	register_validation_callback(blofeld::_field_short_bounds, render_field_short_bounds);
+//	register_validation_callback(blofeld::_field_short_integer_bounds, render_field_short_integer_bounds);
 //	register_validation_callback(blofeld::_field_angle_bounds, render_field_angle_bounds);
 //	register_validation_callback(blofeld::_field_real_bounds, render_field_real_bounds);
-//	register_validation_callback(blofeld::_field_real_fraction_bounds, render_field_real_fraction_bounds);
+//	register_validation_callback(blofeld::_field_fraction_bounds, render_field_fraction_bounds);
 //	register_validation_callback(blofeld::_field_tag_reference, render_field_tag_reference);
 //	register_validation_callback(blofeld::_field_block, render_field_block);
 //	register_validation_callback(blofeld::_field_long_block_flags, render_field_long_block_flags);
@@ -792,7 +792,7 @@
 //	register_validation_callback(blofeld::_field_custom, render_field_custom);
 //	register_validation_callback(blofeld::_field_struct, render_field_struct);
 //	register_validation_callback(blofeld::_field_array, render_field_array);
-//	register_validation_callback(blofeld::_field_pageable, render_field_pageable);
+//	register_validation_callback(blofeld::_field_pageable_resource, render_field_pageable_resource);
 //	register_validation_callback(blofeld::_field_api_interop, render_field_api_interop);
 //	register_validation_callback(blofeld::_field_terminator, render_field_terminator);
 //	register_validation_callback(blofeld::_field_byte_integer, render_field_byte_integer);

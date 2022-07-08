@@ -52,7 +52,7 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_angle:								return "angle";
 	case _field_tag:								return "tag";
 	case _field_char_enum:							return "char";
-	case _field_enum:								return "short";
+	case _field_short_enum:								return "short";
 	case _field_long_enum:							return "long";
 	case _field_long_flags:							return "long";
 	case _field_word_flags:							return "word";
@@ -76,10 +76,10 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_real_argb_color:					return "argb_color";
 	case _field_real_hsv_color:						return "real_hsv_color";
 	case _field_real_ahsv_color:					return "real_ahsv_color";
-	case _field_short_bounds:						return "short_bounds";
+	case _field_short_integer_bounds:						return "short_bounds";
 	case _field_angle_bounds:						return "angle_bounds";
 	case _field_real_bounds:						return "real_bounds";
-	case _field_real_fraction_bounds:				return "real_bounds";
+	case _field_fraction_bounds:				return "real_bounds";
 	case _field_tag_reference:						return "h_tag*";
 	case _field_block:								return "h_block";
 	case _field_long_block_flags:					return "long";
@@ -101,7 +101,7 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_custom:								return nullptr;	// empty
 	case _field_struct:								return nullptr;	// dynamic
 	case _field_array:								return nullptr;	// dynamic
-	case _field_pageable:							return "h_resource*";
+	case _field_pageable_resource:							return "h_resource*";
 	case _field_api_interop:						return "h_interop*";
 	case _field_terminator:							return nullptr;	// empty
 	case _field_byte_integer:						return "byte";
@@ -304,14 +304,14 @@ void c_high_level_tag_source_generator::generate_header() const
 				}
 				break;
 				case _field_char_enum:
-				case _field_enum:
+				case _field_short_enum:
 				case _field_long_enum:
 				{
 					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
 					stream << "\t\t\t\t" << "h_field<e_" << string_list.name << ", " << high_level_structure_name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
 				}
 				break;
-				case _field_pageable:
+				case _field_pageable_resource:
 				{
 					const char* field_source_type = field_type_to_high_level_source_type(engine_platform_build.platform_type, current_field->field_type);
 					ASSERT(field_source_type != nullptr);
@@ -619,7 +619,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(unsigned long sourc
 							break;
 						}
 						case _field_char_enum:
-						case _field_enum:
+						case _field_short_enum:
 						case _field_long_enum:
 						{
 							const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;

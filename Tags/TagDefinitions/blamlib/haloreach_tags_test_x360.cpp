@@ -13152,8 +13152,8 @@ namespace haloreach {
 		{ _field_struct, "object", &blofeld::haloreach::object_struct_definition },
 		FIELD_GROUP_BEGIN("$$$ CREATURE $$$"),
 		{ _field_long_flags, "flags", &blofeld::haloreach::creature_definition_flags },
-		{ _field_enum, "default team", &blofeld::haloreach::unit_default_teams },
-		{ _field_enum, "motion sensor blip size", &blofeld::haloreach::global_chud_blip_type_definition },
+		{ _field_short_enum, "default team", &blofeld::haloreach::unit_default_teams },
+		{ _field_short_enum, "motion sensor blip size", &blofeld::haloreach::global_chud_blip_type_definition },
 		{ _field_angle, "turning velocity maximum", nullptr, "degrees per second" },
 		{ _field_angle, "turning acceleration maximum", nullptr, "degrees per second squared" },
 		{ _field_real_fraction, "casual turning modifier", nullptr, nullptr, "[0,1]" },
@@ -13235,8 +13235,8 @@ namespace haloreach {
 	{
 		{ _field_struct, "device", &blofeld::haloreach::device_struct_definition },
 		FIELD_GROUP_BEGIN("$$$ CONTROL $$$"),
-		{ _field_enum, "type", &blofeld::haloreach::control_types },
-		{ _field_enum, "triggers when", &blofeld::haloreach::control_triggers },
+		{ _field_short_enum, "type", &blofeld::haloreach::control_types },
+		{ _field_short_enum, "triggers when", &blofeld::haloreach::control_triggers },
 		{ _field_real, "call value", nullptr, nullptr, "[0,1]" },
 		{ _field_string_id, "action string" },
 		{ _field_useless_pad, "value" },
@@ -13646,15 +13646,15 @@ namespace haloreach {
 	{
 		{ _field_struct, "device", &blofeld::haloreach::device_struct_definition },
 		FIELD_EXPLANATION("$$$ MACHINE $$$", nullptr),
-		{ _field_enum, "type", &blofeld::haloreach::machine_types },
+		{ _field_short_enum, "type", &blofeld::haloreach::machine_types },
 		{ _field_word_flags, "flags", &blofeld::haloreach::machine_flags },
 		{ _field_real, "door open time", nullptr, "seconds" },
-		{ _field_real_fraction_bounds, "door occlusion bounds", "maps position [0,1] to occlusion" },
+		{ _field_fraction_bounds, "door occlusion bounds", "maps position [0,1] to occlusion" },
 		{ _field_useless_pad, "value" },
-		{ _field_enum, "collision response", &blofeld::haloreach::machine_collision_responses },
+		{ _field_short_enum, "collision response", &blofeld::haloreach::machine_collision_responses },
 		{ _field_short_integer, "elevator node" },
 		{ _field_useless_pad, "value" },
-		{ _field_enum, "pathfinding policy", &blofeld::haloreach::machine_pathfinding_policy_enum },
+		{ _field_short_enum, "pathfinding policy", &blofeld::haloreach::machine_pathfinding_policy_enum },
 		FIELD_PAD("R", 2),
 		{ _field_string_id, "shield name", "shield (or any damage section) to control" },
 		{ _field_string_id, "shield function", "shield is on when this function is greater then 0.5f, off otherwise." },
@@ -13709,8 +13709,8 @@ namespace haloreach {
 		{ _field_struct, "object", &blofeld::haloreach::object_struct_definition },
 		FIELD_GROUP_BEGIN("$$$ PROJECTILE $$$"),
 		{ _field_long_flags, "flags", &blofeld::haloreach::projectile_flags },
-		{ _field_enum, "detonation timer starts", &blofeld::haloreach::projectile_detonation_timer_modes },
-		{ _field_enum, "impact noise", &blofeld::haloreach::ai_sound_volume_enum },
+		{ _field_short_enum, "detonation timer starts", &blofeld::haloreach::projectile_detonation_timer_modes },
+		{ _field_short_enum, "impact noise", &blofeld::haloreach::ai_sound_volume_enum },
 		{ _field_useless_pad, "value" },
 		{ _field_real, "collision radius", nullptr, "world units" },
 		FIELD_EXPLANATION("detonation", nullptr),
@@ -13725,7 +13725,7 @@ namespace haloreach {
 		{ _field_real, "bounce maximum range", "detonates after travelling this distance, but is reset after a bounce.  Combines with maximum range", "world units" },
 		{ _field_real, "max latch time to detonate", "projectile will detonate regardless of weapon latching after this time in flight", "seconds" },
 		{ _field_real, "max latch time to arm", "projectile will arm itself regardless of detonation mode if latched for this amount of time.", "seconds" },
-		{ _field_enum, "detonation noise", &blofeld::haloreach::ai_sound_volume_enum },
+		{ _field_short_enum, "detonation noise", &blofeld::haloreach::ai_sound_volume_enum },
 		{ _field_short_integer, "super det. projectile count" },
 		{ _field_real, "super det. time" },
 		{ _field_tag_reference, "detonation started", &blofeld::haloreach::effect_group_reference_tagref },
@@ -14214,10 +14214,10 @@ namespace haloreach {
 	{
 		{ _field_struct, "object", &blofeld::haloreach::object_struct_definition },
 		FIELD_EXPLANATION("Pathfinding", "Indicate whether, by default, we should create pathfinding data for this type of scenery"),
-		{ _field_enum, "pathfinding policy", &blofeld::haloreach::pathfinding_policy_enum$2 },
+		{ _field_short_enum, "pathfinding policy", &blofeld::haloreach::pathfinding_policy_enum$2 },
 		{ _field_word_flags, "flags", &blofeld::haloreach::scenery_flags },
 		FIELD_EXPLANATION("Lightmapping", "Indicate whether, by default, how we should lightmap this type of scenery"),
-		{ _field_enum, "lightmapping policy", &blofeld::haloreach::lightmapping_policy_enum },
+		{ _field_short_enum, "lightmapping policy", &blofeld::haloreach::lightmapping_policy_enum },
 		FIELD_PAD("WGW", 2),
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
@@ -14305,8 +14305,8 @@ namespace haloreach {
 		{ _field_struct, "object", &blofeld::haloreach::object_struct_definition },
 		FIELD_GROUP_BEGIN("$$$ UNIT $$$"),
 		{ _field_long_flags, "flags", &blofeld::haloreach::unit_flags },
-		{ _field_enum, "default team", &blofeld::haloreach::unit_default_teams$2 },
-		{ _field_enum, "constant sound volume", &blofeld::haloreach::ai_sound_volume_enum },
+		{ _field_short_enum, "default team", &blofeld::haloreach::unit_default_teams$2 },
+		{ _field_short_enum, "constant sound volume", &blofeld::haloreach::ai_sound_volume_enum },
 		{ _field_tag_reference, "hologram unit reference", &blofeld::haloreach::_reference$4_tagref },
 		{ _field_block, "campaign metagame bucket", &blofeld::haloreach::campaign_metagame_bucket_block_block },
 		{ _field_block, "screen effects", &blofeld::haloreach::unit_screen_effect_block_block },
@@ -14352,7 +14352,7 @@ namespace haloreach {
 		{ _field_real, "feign death chance", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "feign repeat chance", nullptr, nullptr, "[0,1]" },
 		{ _field_tag_reference, "spawned turret character", "automatically created character when this unit is driven", &blofeld::haloreach::character_group_reference$2_tagref },
-		{ _field_short_bounds, "spawned actor count", "number of actors which we spawn" },
+		{ _field_short_integer_bounds, "spawned actor count", "number of actors which we spawn" },
 		{ _field_real, "spawned velocity", "velocity at which we throw spawned actors" },
 		FIELD_GROUP_BEGIN("aiming/looking"),
 		{ _field_string_id, "target aiming pivot marker name", "set this to have your weapon barrel point at its calcualed target instead of matching the aiming of the unit controlling it.  This marker should be along the barrel at point that doesn't move when the barrel pitches up and down." },
@@ -14366,14 +14366,14 @@ namespace haloreach {
 		{ _field_string_id, "right_hand_node", "where the primary weapon is attached" },
 		{ _field_string_id, "left_hand_node", "where the seconday weapon is attached (for dual-pistol modes)" },
 		{ _field_struct, "more damn nodes", &blofeld::haloreach::unit_additional_node_names_struct },
-		{ _field_enum, "melee damage class", &blofeld::haloreach::global_melee_class_enum_definition },
+		{ _field_short_enum, "melee damage class", &blofeld::haloreach::global_melee_class_enum_definition },
 		FIELD_PAD("PAD", 2),
 		FIELD_GROUP_BEGIN("melee damage"),
 		{ _field_tag_reference, "melee damage", &blofeld::haloreach::damage_effect_group_reference_tagref },
 		{ _field_struct, "your momma", &blofeld::haloreach::unit_boarding_melee_struct },
 		FIELD_GROUP_END(),
-		{ _field_enum, "motion sensor blip size", &blofeld::haloreach::global_chud_blip_type_definition },
-		{ _field_enum, "item owner size", &blofeld::haloreach::unit_item_owner_size_enum },
+		{ _field_short_enum, "motion sensor blip size", &blofeld::haloreach::global_chud_blip_type_definition },
+		{ _field_short_enum, "item owner size", &blofeld::haloreach::unit_item_owner_size_enum },
 		{ _field_string_id, "equipment variant name" },
 		{ _field_string_id, "grounded equipment variant name" },
 		{ _field_block, "postures", &blofeld::haloreach::unit_postures_block_block },
@@ -14383,7 +14383,7 @@ namespace haloreach {
 		{ _field_real, "grenade angle max elevation", nullptr, "degrees" },
 		{ _field_real, "grenade angle min elevation", nullptr, "degrees" },
 		{ _field_real, "grenade velocity", nullptr, "world units per second" },
-		{ _field_enum, "grenade type", &blofeld::haloreach::global_grenade_type_enum },
+		{ _field_short_enum, "grenade type", &blofeld::haloreach::global_grenade_type_enum },
 		{ _field_short_integer, "grenade count" },
 		{ _field_block, "powered seats", &blofeld::haloreach::powered_seat_block_block },
 		{ _field_block, "weapons", &blofeld::haloreach::unit_weapon_block_block },
@@ -14585,7 +14585,7 @@ namespace haloreach {
 		{ _field_long_flags, "flags", &blofeld::haloreach::weapon_definition_flags },
 		{ _field_long_flags, "secondary flags", &blofeld::haloreach::weapon_definition_secondary_flags },
 		{ _field_old_string_id, "unused label" },
-		{ _field_enum, "secondary trigger mode", &blofeld::haloreach::secondary_trigger_modes },
+		{ _field_short_enum, "secondary trigger mode", &blofeld::haloreach::secondary_trigger_modes },
 		{ _field_short_integer, "maximum alternate shots loaded", "if the second trigger loads alternate ammunition, this is the maximum number of shots that can be loaded at a time" },
 		{ _field_real, "turn on time", "how long after being readied it takes this weapon to switch its 'turned_on' attachment to 1.0" },
 		FIELD_EXPLANATION("old obsolete export to functions", nullptr),
@@ -14624,7 +14624,7 @@ namespace haloreach {
 		{ _field_real_bounds, "ballistic arcing firing bounds", "At the min range (or closer), the minimum ballistic arcing is used, at the max (or farther away), the maximum arcing is used", "world units" },
 		{ _field_real_bounds, "ballistic arcing fraction bounds", "Controls speed and degree of arc. 0 = low, fast, 1 = high, slow", nullptr, "[0-1]" },
 		FIELD_EXPLANATION("movement", nullptr),
-		{ _field_enum, "movement penalized", &blofeld::haloreach::movement_penalty_modes },
+		{ _field_short_enum, "movement penalized", &blofeld::haloreach::movement_penalty_modes },
 		FIELD_PAD("GTIXVRPA", 2),
 		{ _field_real_fraction, "forward movement penalty", "percent slowdown to forward movement for units carrying this weapon" },
 		{ _field_real_fraction, "sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon" },
@@ -14649,7 +14649,7 @@ namespace haloreach {
 		{ _field_string_id, "weapon class" },
 		{ _field_string_id, "weapon name" },
 		FIELD_EXPLANATION("more miscellaneous", nullptr),
-		{ _field_enum, "weapon type", &blofeld::haloreach::weapon_types },
+		{ _field_short_enum, "weapon type", &blofeld::haloreach::weapon_types },
 		FIELD_PAD("MWTP", 2),
 		{ _field_struct, "player interface", &blofeld::haloreach::weapon_interface_struct },
 		{ _field_block, "predicted resources", &blofeld::haloreach::g_null_block_block },
@@ -15827,7 +15827,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEX_TYPES_BLOCK_ID)
 	{
-		{ _field_enum, "vertex type", &blofeld::haloreach::vertex_types_names_enum },
+		{ _field_short_enum, "vertex type", &blofeld::haloreach::vertex_types_names_enum },
 		FIELD_PAD("blahasdf", 2),
 		{ _field_terminator }
 	};
@@ -15920,14 +15920,14 @@ namespace haloreach {
 		{ _field_real, "default real value" },
 		{ _field_long_integer, "default int/bool value" },
 		{ _field_short_integer, "flags" },
-		{ _field_enum, "default filter mode", &blofeld::haloreach::render_method_bitmap_filter_mode_enum },
-		{ _field_enum, "default address mode", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "default filter mode", &blofeld::haloreach::render_method_bitmap_filter_mode_enum },
+		{ _field_short_enum, "default address mode", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
 		{ _field_short_integer, "anisotropy amount" },
 		{ _field_argb_color, "default color" },
 		{ _field_real, "default bitmap scale" },
 		{ _field_long_flags, "usage flags", &blofeld::haloreach::ui_and_usage_flags },
-		{ _field_enum, "force function type", &blofeld::haloreach::function_type_enum_definition },
-		{ _field_enum, "force function color count", &blofeld::haloreach::color_graph_type_enum_definition },
+		{ _field_short_enum, "force function type", &blofeld::haloreach::function_type_enum_definition },
+		{ _field_short_enum, "force function color count", &blofeld::haloreach::color_graph_type_enum_definition },
 		{ _field_real, "suggested real min" },
 		{ _field_real, "suggested real max" },
 		{ _field_long_integer, "ticks from min to max" },
@@ -17085,7 +17085,7 @@ namespace haloreach {
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		{ _field_enum, "Output Modifier", &blofeld::haloreach::output_mod_enum$4, _field_id_function_output_modifier },
+		{ _field_short_enum, "Output Modifier", &blofeld::haloreach::output_mod_enum$4, _field_id_function_output_modifier },
 		FIELD_PAD("BVCG", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("value", _field_id_null),
@@ -17113,7 +17113,7 @@ namespace haloreach {
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		{ _field_enum, "Output Modifier", &blofeld::haloreach::output_mod_enum$4, _field_id_function_output_modifier },
+		{ _field_short_enum, "Output Modifier", &blofeld::haloreach::output_mod_enum$4, _field_id_function_output_modifier },
 		FIELD_PAD("BVCG", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("value", _field_id_null),
@@ -17136,7 +17136,7 @@ namespace haloreach {
 		{ _field_char_integer, "version" },
 		{ _field_word_flags, "flags", &blofeld::haloreach::light_definition_flags },
 		FIELD_EXPLANATION("SHAPE", "shape of the light"),
-		{ _field_enum, "type", &blofeld::haloreach::light_type_enum_definition },
+		{ _field_short_enum, "type", &blofeld::haloreach::light_type_enum_definition },
 		FIELD_PAD("BUCU", 2),
 		{ _field_real, "attenuation end distance", "maximum distance the light reaches (the light can become very dark well before this distance if you set your distance diffusion low)", "world units", MAKE_ALT_NAMES("maximum distance") },
 		{ _field_real, "attenuation start distance", "linear attenuation start", "world units" },
@@ -17150,7 +17150,7 @@ namespace haloreach {
 		{ _field_real, "near fading distance", nullptr, "world units" },
 		FIELD_EXPLANATION("SHADOW", "shadow cutoff and quality settings"),
 		{ _field_real, "shadow cutoff distance" },
-		{ _field_enum, "shadow quality", &blofeld::haloreach::light_shadow_quality_enumeration },
+		{ _field_short_enum, "shadow quality", &blofeld::haloreach::light_shadow_quality_enumeration },
 		FIELD_PAD("ADEF", 2),
 		FIELD_EXPLANATION("COLOR", "color and intensity of the light"),
 		{ _field_struct, "color", &blofeld::haloreach::light_color_function_struct },
@@ -17285,7 +17285,7 @@ namespace haloreach {
 		{ _field_real, "spawn z offset", "z-offset of effect spawn" },
 		{ _field_real, "spawn area radius", "need a sphere of radius r's free space in order to spawn, otherwise we pick a new spawn location" },
 		{ _field_real, "spawn velocity", "WU/sec" },
-		{ _field_enum, "type", &blofeld::haloreach::equipment_spawner_spawn_type },
+		{ _field_short_enum, "type", &blofeld::haloreach::equipment_spawner_spawn_type },
 		FIELD_PAD("LSJ", 2),
 		{ _field_terminator }
 	};
@@ -17910,21 +17910,21 @@ namespace haloreach {
 		OLD_PROJECTILE_MATERIAL_RESPONSE_BLOCK_ID)
 	{
 		FIELD_EXPLANATION("default result", "(if the potential result, below, fails to happen)"),
-		{ _field_enum, "default response", &blofeld::haloreach::material_response },
+		{ _field_short_enum, "default response", &blofeld::haloreach::material_response },
 		FIELD_PAD("KJSH", 2),
 		{ _field_string_id, "material name" },
 		{ _field_short_integer, "runtime material index" },
 		FIELD_PAD("JJHT", 2),
 		{ _field_useless_pad, "value" },
 		FIELD_EXPLANATION("potential result", nullptr),
-		{ _field_enum, "potential response", &blofeld::haloreach::material_response },
+		{ _field_short_enum, "potential response", &blofeld::haloreach::material_response },
 		{ _field_word_flags, "response flags", &blofeld::haloreach::material_possible_response_flags },
 		{ _field_real_fraction, "chance fraction", nullptr, nullptr, "[0,1]" },
 		{ _field_angle_bounds, "between", nullptr, "degrees" },
 		{ _field_real_bounds, "and", nullptr, "world units per second" },
 		{ _field_useless_pad, "value" },
 		FIELD_EXPLANATION("misc", nullptr),
-		{ _field_enum, "scale effects by", &blofeld::haloreach::effect_scale_enum },
+		{ _field_short_enum, "scale effects by", &blofeld::haloreach::effect_scale_enum },
 		FIELD_PAD("BDFI", 2),
 		{ _field_angle, "angular noise", "the angle of incidence is randomly perturbed by at most this amount to simulate irregularity.", "degrees" },
 		{ _field_real, "velocity noise", "the velocity is randomly perturbed by at most this amount to simulate irregularity.", "world units per second" },
@@ -17992,9 +17992,9 @@ namespace haloreach {
 		{ _field_angle_bounds, "between", nullptr, "degrees" },
 		{ _field_real_bounds, "and", nullptr, "world units per second" },
 		FIELD_EXPLANATION("response", nullptr),
-		{ _field_enum, "response", &blofeld::haloreach::material_response },
+		{ _field_short_enum, "response", &blofeld::haloreach::material_response },
 		FIELD_EXPLANATION("misc", nullptr),
-		{ _field_enum, "scale effects by", &blofeld::haloreach::effect_scale_enum },
+		{ _field_short_enum, "scale effects by", &blofeld::haloreach::effect_scale_enum },
 		{ _field_angle, "angular noise", "the angle of incidence is randomly perturbed by at most this amount to simulate irregularity.", "degrees" },
 		{ _field_real, "velocity noise", "the velocity is randomly perturbed by at most this amount to simulate irregularity.", "world units per second" },
 		FIELD_EXPLANATION("overpenetration", nullptr),
@@ -18099,7 +18099,7 @@ namespace haloreach {
 		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return from its final rounds per second to its initial", "seconds" },
 		{ _field_real, "barrel spin scale", "scale the barrel spin speed by this amount" },
 		{ _field_real_fraction, "blurred rate of fire", "a percentage between 0 and 1 which controls how soon in its firing animation the weapon blurs" },
-		{ _field_short_bounds, "shots per fire", "allows designer caps to the shots you can fire from one firing action" },
+		{ _field_short_integer_bounds, "shots per fire", "allows designer caps to the shots you can fire from one firing action" },
 		{ _field_real, "fire recovery time", "how long after a set of shots it takes before the barrel can fire again", "seconds" },
 		{ _field_real_fraction, "soft recovery fraction", "how much of the recovery allows shots to be queued" },
 		{ _field_real, "melee  fire recovery time", "how long after a set of shots it takes before the weapon can melee", "seconds" },
@@ -18195,8 +18195,8 @@ namespace haloreach {
 		FIELD_EXPLANATION("AUTOFIRE", nullptr),
 		{ _field_real, "autofire time" },
 		{ _field_real, "autofire throw" },
-		{ _field_enum, "secondary action", &blofeld::haloreach::weapon_trigger_autofire_actions },
-		{ _field_enum, "primary action", &blofeld::haloreach::weapon_trigger_autofire_actions },
+		{ _field_short_enum, "secondary action", &blofeld::haloreach::weapon_trigger_autofire_actions },
+		{ _field_short_enum, "primary action", &blofeld::haloreach::weapon_trigger_autofire_actions },
 		{ _field_terminator }
 	};
 
@@ -18274,11 +18274,11 @@ namespace haloreach {
 		WEAPON_TRIGGERS_ID)
 	{
 		{ _field_long_flags, "flags", &blofeld::haloreach::weapon_trigger_definition_flags },
-		{ _field_enum, "input", &blofeld::haloreach::weapon_trigger_inputs },
-		{ _field_enum, "behavior", &blofeld::haloreach::weapon_trigger_behaviors },
+		{ _field_short_enum, "input", &blofeld::haloreach::weapon_trigger_inputs },
+		{ _field_short_enum, "behavior", &blofeld::haloreach::weapon_trigger_behaviors },
 		{ _field_short_block_index, "primary barrel", &blofeld::haloreach::weapon_barrels_block },
 		{ _field_short_block_index, "secondary barrel", &blofeld::haloreach::weapon_barrels_block },
-		{ _field_enum, "prediction", &blofeld::haloreach::trigger_prediction_type_enum },
+		{ _field_short_enum, "prediction", &blofeld::haloreach::trigger_prediction_type_enum },
 		FIELD_PAD("GNFR", 2),
 		{ _field_useless_pad, "value" },
 		{ _field_struct, "autofire", &blofeld::haloreach::weapon_trigger_autofire_struct },
@@ -18570,15 +18570,15 @@ namespace haloreach {
 		{ _field_short_integer, "rounds between tracers", "the number of non-tracer rounds fired between tracers" },
 		FIELD_CUSTOM("value", _field_id_marker),
 		{ _field_string_id, "optional barrel marker name" },
-		{ _field_enum, "firing noise", "how loud this weapon appears to the AI", &blofeld::haloreach::ai_sound_volume_enum },
+		{ _field_short_enum, "firing noise", "how loud this weapon appears to the AI", &blofeld::haloreach::ai_sound_volume_enum },
 		FIELD_EXPLANATION("prediction properties", "what the behavior of this barrel is in a predicted network game"),
-		{ _field_enum, "prediction type", &blofeld::haloreach::barrel_prediction_type_enum },
+		{ _field_short_enum, "prediction type", &blofeld::haloreach::barrel_prediction_type_enum },
 		{ _field_real, "event_synchronized_projectiles_per_second", "Valid only for barrels set to prediction type \"continuous\". Controls how many projectiles per second can be individually synchronized (use debug_projectiles to diagnose)." },
 		{ _field_real, "maximum_barrel_error_for_event_synchronization", "Valid only for barrels set to prediction type \"continuous\". If the barrel's current error level is over this value (zero to one scale), we will not consider synchronizing projectiles with individual events (use debug_projectiles to diagnose)." },
 		FIELD_EXPLANATION("firing error", "full error look pitch rate controlls how fast you can turn \nwith full error, yaw is implied from pitch. 0==130.\nfor reference, profile sensitivities are set to:\n1: 40\n3: 60\n9: 130\n"),
 		{ _field_struct, "firing error", &blofeld::haloreach::weapon_barrel_firing_error_struct },
 		FIELD_EXPLANATION("projectile", nullptr),
-		{ _field_enum, "distribution function", &blofeld::haloreach::weapon_barrel_distribution_functions },
+		{ _field_short_enum, "distribution function", &blofeld::haloreach::weapon_barrel_distribution_functions },
 		{ _field_short_integer, "projectiles per shot" },
 		{ _field_real, "distribution angle", nullptr, "degrees" },
 		{ _field_angle, "minimum error", nullptr, "degrees" },
@@ -18952,7 +18952,7 @@ namespace haloreach {
 		FIELD_EXPLANATION("seat acceleration spring", nullptr),
 		{ _field_tag_reference, "seat acceleration", &blofeld::haloreach::spring_acceleration_group_reference_tagref },
 		{ _field_real, "AI scariness" },
-		{ _field_enum, "ai seat type", &blofeld::haloreach::global_ai_seat_type_enum },
+		{ _field_short_enum, "ai seat type", &blofeld::haloreach::global_ai_seat_type_enum },
 		{ _field_short_block_index, "boarding seat", &blofeld::haloreach::unit_seat_block_block },
 		{ _field_block, "additional boarding seats", "additional seats to eject", &blofeld::haloreach::boarding_seat_block_block },
 		{ _field_real_fraction, "listener interpolation factor", "how far to interpolate listener position from camera to occupant's head" },
@@ -19101,7 +19101,7 @@ namespace haloreach {
 		DAMAGE_RESPONSE_DIRECTIONAL_FLASH_STRUCT_ID)
 	{
 		{ _field_real, "duration" },
-		{ _field_enum, "fade function", &blofeld::haloreach::global_reverse_transition_functions_enum },
+		{ _field_short_enum, "fade function", &blofeld::haloreach::global_reverse_transition_functions_enum },
 		FIELD_PAD("ZASSFACE", 2),
 		{ _field_real, "center size" },
 		{ _field_real, "offscreen size", MAKE_ALT_NAMES("size") },
@@ -19232,7 +19232,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_RESPONSE_CLASS_BLOCK_ID)
 	{
-		{ _field_enum, "type", &blofeld::haloreach::damage_response_class_type_enum },
+		{ _field_short_enum, "type", &blofeld::haloreach::damage_response_class_type_enum },
 		{ _field_word_flags, "flags", &blofeld::haloreach::damage_response_class_flags },
 		FIELD_EXPLANATION("directional flash", nullptr),
 		{ _field_struct, "directional flash", &blofeld::haloreach::damage_response_directional_flash_struct },
@@ -19353,8 +19353,8 @@ namespace haloreach {
 		{ _field_real_fraction, "cutoff scale", nullptr, nullptr, "[0,1]" },
 		{ _field_long_flags, "effect flags", &blofeld::haloreach::damage_effect_flags },
 		FIELD_EXPLANATION("damage", nullptr),
-		{ _field_enum, "side effect", &blofeld::haloreach::damage_side_effects },
-		{ _field_enum, "category", &blofeld::haloreach::damage_categories },
+		{ _field_short_enum, "side effect", &blofeld::haloreach::damage_side_effects },
+		{ _field_short_enum, "category", &blofeld::haloreach::damage_categories },
 		{ _field_long_enum, "death vocalization", &blofeld::haloreach::damage_death_vocalizations },
 		{ _field_long_flags, "flags", &blofeld::haloreach::damage_flags },
 		{ _field_real, "AOE core radius", "if this is area of effect damage", "world units" },
@@ -19616,7 +19616,7 @@ namespace haloreach {
 		{ _field_real, "tumble scale" },
 		{ _field_real, "rotation scale" },
 		{ _field_real, "starting velocity" },
-		{ _field_real_fraction_bounds, "air friction XY and Z" },
+		{ _field_fraction_bounds, "air friction XY and Z" },
 		{ _field_terminator }
 	};
 
@@ -19666,7 +19666,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CLOTH_PROPERTIES_ID)
 	{
-		{ _field_enum, "Integration type", &blofeld::haloreach::cloth_integration_enum },
+		{ _field_short_enum, "Integration type", &blofeld::haloreach::cloth_integration_enum },
 		{ _field_short_integer, "Number iterations", "[1-8] sug 1" },
 		{ _field_real, "weight", "[-10.0 - 10.0] sug 1.0" },
 		{ _field_real, "drag", "[0.0 - 0.5] sug 0.07" },
@@ -19809,8 +19809,8 @@ namespace haloreach {
 	{
 		FIELD_GROUP_BEGIN("CREATURE"),
 		{ _field_long_flags, "flags", &blofeld::haloreach::creature_definition_flags },
-		{ _field_enum, "default team", &blofeld::haloreach::unit_default_teams },
-		{ _field_enum, "motion sensor blip size", &blofeld::haloreach::global_chud_blip_type_definition },
+		{ _field_short_enum, "default team", &blofeld::haloreach::unit_default_teams },
+		{ _field_short_enum, "motion sensor blip size", &blofeld::haloreach::global_chud_blip_type_definition },
 		{ _field_angle, "turning velocity maximum", nullptr, "degrees per second" },
 		{ _field_angle, "turning acceleration maximum", nullptr, "degrees per second squared" },
 		{ _field_real_fraction, "casual turning modifier", nullptr, nullptr, "[0,1]" },
@@ -21115,8 +21115,8 @@ namespace haloreach {
 		{ _field_long_flags, "ai flags", &blofeld::haloreach::ai_properties_flags },
 		{ _field_string_id, "ai type name", "used for combat dialogue, etc." },
 		{ _field_string_id, "interaction name", "if you checked the consider for interaction flag, type what interaction the AI should do with this object (NYI - you can use any)" },
-		{ _field_enum, "ai size", &blofeld::haloreach::ai_size_enum },
-		{ _field_enum, "leap jump speed", &blofeld::haloreach::global_ai_jump_height_enum },
+		{ _field_short_enum, "ai size", &blofeld::haloreach::ai_size_enum },
+		{ _field_short_enum, "leap jump speed", &blofeld::haloreach::global_ai_jump_height_enum },
 		{ _field_terminator }
 	};
 
@@ -21216,7 +21216,7 @@ namespace haloreach {
 		{ _field_real, "horizontal acceleration scale", nullptr, nullptr, "[0,+inf]", MAKE_ALT_NAMES("acceleration scale") },
 		{ _field_real, "vertical acceleration scale" },
 		{ _field_real, "angular acceleration scale" },
-		{ _field_enum, "lightmap shadow mode", &blofeld::haloreach::lightmap_shadow_mode_enum },
+		{ _field_short_enum, "lightmap shadow mode", &blofeld::haloreach::lightmap_shadow_mode_enum },
 		{ _field_char_enum, "sweetener size", &blofeld::haloreach::sweetener_size_enum },
 		{ _field_char_enum, "water density", &blofeld::haloreach::water_density_type_enum },
 		{ _field_long_integer, "runtime flags" },
@@ -21580,9 +21580,9 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_LIGHTING_GENERIC_LIGHT_DEFINITION_BLOCK$2_ID)
 	{
-		{ _field_enum, "type", &blofeld::haloreach::structure_lighting_generic_light_type_enum },
+		{ _field_short_enum, "type", &blofeld::haloreach::structure_lighting_generic_light_type_enum },
 		{ _field_word_flags, "flags", &blofeld::haloreach::structure_lighting_generic_light_flags },
-		{ _field_enum, "shape", &blofeld::haloreach::structure_lighting_generic_light_shape_enum },
+		{ _field_short_enum, "shape", &blofeld::haloreach::structure_lighting_generic_light_shape_enum },
 		FIELD_PAD("QU", 2),
 		{ _field_real_rgb_color, "color" },
 		{ _field_real, "intensity" },
@@ -21641,7 +21641,7 @@ namespace haloreach {
 		{ _field_real_point_3d, "origin" },
 		{ _field_real_vector_3d, "forward" },
 		{ _field_real_vector_3d, "up" },
-		{ _field_enum, "bungie light type", &blofeld::haloreach::structure_lighting_bungie_light_type_enum },
+		{ _field_short_enum, "bungie light type", &blofeld::haloreach::structure_lighting_bungie_light_type_enum },
 		{ _field_word_flags, "screen space specular", &blofeld::haloreach::light_instance_flags },
 		{ _field_real, "bounce light control" },
 		{ _field_real, "light volume distance" },
@@ -22191,7 +22191,7 @@ namespace haloreach {
 		{ _field_block, "attachments", &blofeld::haloreach::attachment_block_block },
 		FIELD_EXPLANATION("PARTICLE APPEARANCE", nullptr),
 		{ _field_long_flags, "appearance flags", &blofeld::haloreach::particle_appearance_flags },
-		{ _field_enum, "particle billboard style", &blofeld::haloreach::particle_billboard_type_enum },
+		{ _field_short_enum, "particle billboard style", &blofeld::haloreach::particle_billboard_type_enum },
 		{ _field_short_integer, "first sequence index" },
 		{ _field_short_integer, "sequence count" },
 		{ _field_char_integer, "version" },
@@ -22303,7 +22303,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_CONTROLLER_ID)
 	{
-		{ _field_enum, "type", &blofeld::haloreach::particle_movement_type },
+		{ _field_short_enum, "type", &blofeld::haloreach::particle_movement_type },
 		{ _field_byte_flags, "flags", &blofeld::haloreach::particle_controller_flags },
 		FIELD_PAD("KNTXOMS", 1),
 		{ _field_block, "parameters", &blofeld::haloreach::particle_controller_parameters_block },
@@ -22612,10 +22612,10 @@ namespace haloreach {
 		FIELD_PAD("CXAEIHGADNF", 3),
 		{ _field_tag_reference, "particle", &blofeld::haloreach::particle_group_reference_tagref },
 		{ _field_long_block_index, "location", &blofeld::haloreach::effect_locations_block_block },
-		{ _field_enum, "coordinate system", &blofeld::haloreach::coordinate_system_enum },
-		{ _field_enum, "environment", &blofeld::haloreach::effect_environments },
-		{ _field_enum, "disposition", &blofeld::haloreach::effect_dispositions },
-		{ _field_enum, "camera mode", &blofeld::haloreach::effect_camera_modes },
+		{ _field_short_enum, "coordinate system", &blofeld::haloreach::coordinate_system_enum },
+		{ _field_short_enum, "environment", &blofeld::haloreach::effect_environments },
+		{ _field_short_enum, "disposition", &blofeld::haloreach::effect_dispositions },
+		{ _field_short_enum, "camera mode", &blofeld::haloreach::effect_camera_modes },
 		{ _field_short_integer, "sort bias", "use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
 		FIELD_PAD("pad0", 2),
 		{ _field_long_flags, "flags", &blofeld::haloreach::particle_system_flags },
@@ -22796,7 +22796,7 @@ namespace haloreach {
 		{ _field_char_enum, "specialized render", &blofeld::haloreach::specialized_render_definition },
 		{ _field_word_flags, "part flags", &blofeld::haloreach::part_flags },
 		{ _field_short_integer, "budget vertex count" },
-		{ _field_enum, "tessellation", &blofeld::haloreach::tessellation_mode_definition },
+		{ _field_short_enum, "tessellation", &blofeld::haloreach::tessellation_mode_definition },
 		{ _field_terminator }
 	};
 
@@ -23456,7 +23456,7 @@ namespace haloreach {
 		{ _field_block, "per_instance_lightmap_texcoords", &blofeld::haloreach::per_instance_lightmap_texcoords_block_block },
 		{ _field_block, "per_instance_lightmap_texcoords_vertex_buffer", &blofeld::haloreach::per_instance_lightmap_texcoords_vertex_buffer_block_block },
 		{ _field_block, "water bounding box block", &blofeld::haloreach::water_bounding_box_block_block },
-		{ _field_pageable, "api resource", &blofeld::haloreach::render_geometry_api_resource_definition },
+		{ _field_pageable_resource, "api resource", &blofeld::haloreach::render_geometry_api_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -24665,19 +24665,19 @@ namespace haloreach {
 		{ _field_string, "name" },
 		{ _field_real, "period", "this is the period for the above function (lower values make the function oscillate quickly, higher values make it oscillate slowly)", "seconds" },
 		{ _field_short_block_index, "scale period by", "multiply this function by the above period", &blofeld::haloreach::scenario_function_block_block },
-		{ _field_enum, "function", &blofeld::haloreach::global_periodic_functions_enum },
+		{ _field_short_enum, "function", &blofeld::haloreach::global_periodic_functions_enum },
 		{ _field_short_block_index, "scale function by", "multiply this function by the result of the above function", &blofeld::haloreach::scenario_function_block_block },
-		{ _field_enum, "wobble function", "the curve used for the wobble", &blofeld::haloreach::global_periodic_functions_enum },
+		{ _field_short_enum, "wobble function", "the curve used for the wobble", &blofeld::haloreach::global_periodic_functions_enum },
 		{ _field_real, "wobble period", "the length of time it takes for the magnitude of this function to complete a wobble", "seconds" },
 		{ _field_real, "wobble magnitude", "the amount of random wobble in the magnitude", "percent" },
 		{ _field_real_fraction, "square wave threshold", "if non-zero, all values above the square wave threshold are snapped to 1.0, and all values below it are snapped to 0.0 to create a square wave." },
 		{ _field_short_integer, "step count", "the number of discrete values to snap to (e.g., a step count of 5 would snap the function to 0.00,0.25,0.50,0.75 or 1.00)" },
-		{ _field_enum, "map to", &blofeld::haloreach::global_transition_functions_enum },
+		{ _field_short_enum, "map to", &blofeld::haloreach::global_transition_functions_enum },
 		{ _field_short_integer, "sawtooth count", "the number of times this function should repeat (e.g., a sawtooth count of 5 would give the function a value of 1.0 at each of 0.25,0.50,0.75 as well as at 1.0" },
 		FIELD_PAD("WBP", 2),
 		{ _field_short_block_index, "scale result by", "multiply this function (from a weapon, vehicle, etc.) final result of all of the above math", &blofeld::haloreach::scenario_function_block_block },
-		{ _field_enum, "bounds mode", "controls how the bounds, below, are used", &blofeld::haloreach::function_bounds_mode_enum },
-		{ _field_real_fraction_bounds, "bounds" },
+		{ _field_short_enum, "bounds mode", "controls how the bounds, below, are used", &blofeld::haloreach::function_bounds_mode_enum },
+		{ _field_fraction_bounds, "bounds" },
 		{ _field_real, "runtime inverse bounds range" },
 		FIELD_PAD("OFLIM", 2),
 		{ _field_short_block_index, "turn off with", "if the specified function is off, so is this function", &blofeld::haloreach::scenario_function_block_block },
@@ -24765,7 +24765,7 @@ namespace haloreach {
 		{ _field_word_flags, "flags", &blofeld::haloreach::scenario_soft_ceiling_flags_definition },
 		{ _field_word_flags, "runtime flags", &blofeld::haloreach::scenario_soft_ceiling_flags_definition },
 		{ _field_string_id, "name" },
-		{ _field_enum, "type", &blofeld::haloreach::soft_ceiling_type_enum },
+		{ _field_short_enum, "type", &blofeld::haloreach::soft_ceiling_type_enum },
 		FIELD_PAD("my name is", 2),
 		{ _field_terminator }
 	};
@@ -25503,8 +25503,8 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PERFORMANCE_LINE_SCRIPT_FRAGMENT_BLOCK_ID)
 	{
-		{ _field_enum, "fragment placement", &blofeld::haloreach::scenario_performance_fragment_placement_definition },
-		{ _field_enum, "fragment type", &blofeld::haloreach::scenario_performance_fragment_type_definition },
+		{ _field_short_enum, "fragment placement", &blofeld::haloreach::scenario_performance_fragment_placement_definition },
+		{ _field_short_enum, "fragment type", &blofeld::haloreach::scenario_performance_fragment_type_definition },
 		{ _field_long_string, "fragment", "maximum 256 characters, type just branch condition (with brackets) in case of branches" },
 		{ _field_long_string, "branch target", "the script to branch to (with any arguments to it). Used only if type is branch" },
 		{ _field_terminator }
@@ -25832,7 +25832,7 @@ namespace haloreach {
 		SCENARIO_CUTSCENE_CAMERA_POINT_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &blofeld::haloreach::scenario_cutscene_camera_flags },
-		{ _field_enum, "type", &blofeld::haloreach::scenario_cutscene_camera_types },
+		{ _field_short_enum, "type", &blofeld::haloreach::scenario_cutscene_camera_types },
 		{ _field_string, "name" },
 		FIELD_CUSTOM("value", _field_id_camera_matrix_editor),
 		FIELD_PAD("pad", 4),
@@ -26215,7 +26215,7 @@ namespace haloreach {
 		SCENARIO_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("link to scenario lightmap", _field_id_unknown_compile),
-		{ _field_enum, "type", &blofeld::haloreach::scenario_type_enum },
+		{ _field_short_enum, "type", &blofeld::haloreach::scenario_type_enum },
 		{ _field_word_flags, "flags", &blofeld::haloreach::scenario_flags },
 		{ _field_long_flags, "runtime trigger volume flags", &blofeld::haloreach::scenario_runtime_trigger_volume_flags },
 		{ _field_long_integer, "campaign id" },
@@ -26472,7 +26472,7 @@ namespace haloreach {
 		{ _field_short_block_index, "object name", &blofeld::haloreach::scenario_object_names_block_block },
 		{ _field_short_integer, "runtime node index" },
 		{ _field_string_id, "node name" },
-		{ _field_enum, "type", &blofeld::haloreach::trigger_volume_type_enum },
+		{ _field_short_enum, "type", &blofeld::haloreach::trigger_volume_type_enum },
 		FIELD_PAD("padding", 2),
 		{ _field_real_vector_3d, "forward" },
 		{ _field_real_vector_3d, "up" },
@@ -27204,7 +27204,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_DEBUG_INFO_RENDER_LINE_BLOCK_ID)
 	{
-		{ _field_enum, "type", &blofeld::haloreach::structure_bsp_debug_info_render_line_type_enum },
+		{ _field_short_enum, "type", &blofeld::haloreach::structure_bsp_debug_info_render_line_type_enum },
 		{ _field_short_integer, "code" },
 		{ _field_short_integer, "pad thai" },
 		FIELD_PAD("BNQS", 2),
@@ -27489,8 +27489,8 @@ namespace haloreach {
 		STRUCTURE_BSP_RESOURCE_INTERFACE_ID)
 	{
 		{ _field_block, "raw_resources", &blofeld::haloreach::structure_bsp_raw_resources_block },
-		{ _field_pageable, "tag_resources", &blofeld::haloreach::structure_bsp_tag_resources },
-		{ _field_pageable, "cache_file_resources", &blofeld::haloreach::structure_bsp_cache_file_tag_resources },
+		{ _field_pageable_resource, "tag_resources", &blofeld::haloreach::structure_bsp_tag_resources },
+		{ _field_pageable_resource, "cache_file_resources", &blofeld::haloreach::structure_bsp_cache_file_tag_resources },
 		{ _field_long_integer, "use resource items" },
 		{ _field_terminator }
 	};
@@ -28280,7 +28280,7 @@ namespace haloreach {
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_string_id, "name" },
 		{ _field_real_point_3d, "cubemap position" },
-		{ _field_enum, "cubemap resolution", &blofeld::haloreach::cubemap_resolution_enum },
+		{ _field_short_enum, "cubemap resolution", &blofeld::haloreach::cubemap_resolution_enum },
 		FIELD_EXPLANATION("bsps it could belong to", "empty masks mean automatic selection."),
 		{ _field_word_block_flags, "manual bsp flags", &blofeld::haloreach::scenario_structure_bsp_reference_block_block, _field_id_manual_bsp_flags },
 		{ _field_block, "reference points", &blofeld::haloreach::cubemap_reference_points_block_block },
@@ -28350,8 +28350,8 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_ACCELERATIONS_BLOCK_ID)
 	{
-		{ _field_enum, "create in", &blofeld::haloreach::effect_environments },
-		{ _field_enum, "violence mode", &blofeld::haloreach::effect_dispositions },
+		{ _field_short_enum, "create in", &blofeld::haloreach::effect_environments },
+		{ _field_short_enum, "violence mode", &blofeld::haloreach::effect_dispositions },
 		{ _field_short_block_index, "location", &blofeld::haloreach::effect_locations_block_block },
 		FIELD_PAD("THY", 2),
 		{ _field_real, "acceleration" },
@@ -28370,8 +28370,8 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_PART_BLOCK_ID)
 	{
-		{ _field_enum, "create in", &blofeld::haloreach::effect_environments },
-		{ _field_enum, "violence mode", &blofeld::haloreach::effect_dispositions },
+		{ _field_short_enum, "create in", &blofeld::haloreach::effect_environments },
+		{ _field_short_enum, "violence mode", &blofeld::haloreach::effect_dispositions },
 		{ _field_short_block_index, "location", &blofeld::haloreach::effect_locations_block_block },
 		{ _field_short_block_index, "secondary location (beams)", &blofeld::haloreach::effect_locations_block_block },
 		{ _field_word_flags, "flags", &blofeld::haloreach::effect_part_flags },
@@ -29295,7 +29295,7 @@ namespace haloreach {
 	{
 		{ _field_word_flags, "flags", &blofeld::haloreach::game_engine_status_flags_definition },
 		FIELD_PAD("FAW", 2),
-		{ _field_enum, "state", &blofeld::haloreach::game_engine_status_enum_definition },
+		{ _field_short_enum, "state", &blofeld::haloreach::game_engine_status_enum_definition },
 		FIELD_PAD("BNYFIDDGX", 2),
 		{ _field_string_id, "ffa message" },
 		{ _field_string_id, "team message" },
@@ -29586,7 +29586,7 @@ namespace haloreach {
 		{ _field_real, "rotation offset", nullptr, "degrees" },
 		{ _field_real, "axis offset", "percent offset in screen space along corona axis - 0.0 is on the corona, 1.0 is primary side edge of the screen, -1.0 is opposite side", "percent" },
 		{ _field_real_bounds, "radius", "interpolated by external input", "world units", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_real_fraction_bounds, "brightness", "interpolated by external input", nullptr, "[0,1]", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_fraction_bounds, "brightness", "interpolated by external input", nullptr, "[0,1]", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_struct, "radius curve", "interpolated by external input", &blofeld::haloreach::scalar_function_named_struct },
 		{ _field_struct, "brightness curve", "interpolated by external input", &blofeld::haloreach::scalar_function_named_struct },
 		FIELD_EXPLANATION("TINT COLOR", "Tinting and modulating are not the same; \'tinting\' a reflection will color the darker regions but leave the highlights, while \'modulating\' will color everything uniformly. The modulation factor controls how much the reflection is modulated as opposed to tinted (0 is tinted, 1 is modulated). The tint power affects the curve of how much of the color range to tint."),
@@ -29633,7 +29633,7 @@ namespace haloreach {
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		{ _field_enum, "Output Modifier", &blofeld::haloreach::output_mod_enum$5, _field_id_function_output_modifier },
+		{ _field_short_enum, "Output Modifier", &blofeld::haloreach::output_mod_enum$5, _field_id_function_output_modifier },
 		FIELD_PAD("BVCG1", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("value", _field_id_null),
@@ -29678,7 +29678,7 @@ namespace haloreach {
 		{ _field_angle, "cutoff angle", nullptr, "degrees" },
 		FIELD_EXPLANATION("OCCLUSION", "Occlusion factor affects overall lens flare brightness and can also affect scale. Occlusion never affects rotation."),
 		{ _field_real, "occlusion offset distance", "distance along offset direction used to test occlusion", "world units" },
-		{ _field_enum, "occlusion offset direction", &blofeld::haloreach::lens_flare_occlusion_offset_enum_definition },
+		{ _field_short_enum, "occlusion offset direction", &blofeld::haloreach::lens_flare_occlusion_offset_enum_definition },
 		FIELD_PAD("PANTS", 2),
 		{ _field_real, "occlusion inner radius scale", "percent of the corona to occlude against (ie 0.25, 0.125, etc)" },
 		{ _field_real, "near fade begin distance", "distance where the lens flare starts to fade in", "world units" },
@@ -29688,11 +29688,11 @@ namespace haloreach {
 		{ _field_tag_reference, "bitmap", &blofeld::haloreach::bitmap_group_reference$2_tagref },
 		{ _field_word_flags, "flags", &blofeld::haloreach::lens_flare_flags_definition },
 		{ _field_short_integer, "runtime flags" },
-		{ _field_enum, "rotation function", &blofeld::haloreach::lens_flare_corona_rotation_function_enum_definition },
+		{ _field_short_enum, "rotation function", &blofeld::haloreach::lens_flare_corona_rotation_function_enum_definition },
 		FIELD_PAD("WWZC", 2),
 		{ _field_angle, "rotation function scale", nullptr, "degrees" },
 		FIELD_EXPLANATION("EFFECT PARAMETERS", "Only affects lens flares created by effects."),
-		{ _field_enum, "falloff function", &blofeld::haloreach::global_reverse_transition_functions_enum },
+		{ _field_short_enum, "falloff function", &blofeld::haloreach::global_reverse_transition_functions_enum },
 		FIELD_PAD("COYUTLR", 2),
 		{ _field_block, "reflections", &blofeld::haloreach::lens_flare_reflection_block_block },
 		FIELD_EXPLANATION("ANIMATION", nullptr),
@@ -29785,7 +29785,7 @@ namespace haloreach {
 		{ _field_string_id, "permutation name" },
 		{ _field_char_integer, "runtime permutation index" },
 		{ _field_byte_flags, "property flags", &blofeld::haloreach::model_state_property_flags_definition },
-		{ _field_enum, "state", &blofeld::haloreach::model_state_enum_definition },
+		{ _field_short_enum, "state", &blofeld::haloreach::model_state_enum_definition },
 		{ _field_real_fraction, "initial probability" },
 		{ _field_terminator }
 	};
@@ -29865,7 +29865,7 @@ namespace haloreach {
 		{ _field_char_integer, "runtime flags" },
 		{ _field_short_block_index, "parent variant", &blofeld::haloreach::model_variant_block_block },
 		{ _field_block, "permutations", &blofeld::haloreach::model_variant_permutation_block_block },
-		{ _field_enum, "sort order", "negative values mean closer to the camera", &blofeld::haloreach::region_sort_enum },
+		{ _field_short_enum, "sort order", "negative values mean closer to the camera", &blofeld::haloreach::region_sort_enum },
 		FIELD_PAD("JO", 2),
 		{ _field_terminator }
 	};
@@ -30246,8 +30246,8 @@ namespace haloreach {
 		{ _field_real, "animation lod distance", nullptr, "world units" },
 		{ _field_real, "shadow fade distance", "NOTE this is only a maximum distance, shadows may fade closer when you exceed the shadow budget, you should balance the total shadows in a scene", "world units" },
 		{ _field_real, "imposter render distance", nullptr, "world units" },
-		{ _field_enum, "imposter quality", &blofeld::haloreach::imposter_quality_definition },
-		{ _field_enum, "imposter policy", &blofeld::haloreach::imposter_policy_definition },
+		{ _field_short_enum, "imposter quality", &blofeld::haloreach::imposter_quality_definition },
+		{ _field_short_enum, "imposter policy", &blofeld::haloreach::imposter_policy_definition },
 		{ _field_real, "imposter brightness adjustment" },
 		{ _field_real, "instance disappear distance", nullptr, "world units" },
 		{ _field_real, "midrange detail disappear distance", "distance at which the midrange detail disappears", "world units" },
@@ -31525,7 +31525,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FACIAL_ANIMATION_LANGUAGE_BLOCK_STRUCT_ID)
 	{
-		{ _field_pageable, "facial animation resource", &blofeld::haloreach::facial_animation_resource_definition },
+		{ _field_pageable_resource, "facial animation resource", &blofeld::haloreach::facial_animation_resource_definition },
 		{ _field_long_enum, "language", &blofeld::haloreach::sound_language_enum_definition },
 		{ _field_terminator }
 	};
@@ -31562,7 +31562,7 @@ namespace haloreach {
 		{ _field_block, "markers", &blofeld::haloreach::sound_permutation_marker_block_block },
 		{ _field_block, "layer markers", &blofeld::haloreach::sound_permutation_marker_block_block },
 		{ _field_block, "xma2 seek table", &blofeld::haloreach::sound_xma2_seek_table_block_block },
-		{ _field_enum, "compression", &blofeld::haloreach::sound_compression_enum },
+		{ _field_short_enum, "compression", &blofeld::haloreach::sound_compression_enum },
 		{ _field_char_enum, "language", &blofeld::haloreach::sound_language_enum_definition },
 		FIELD_PAD("ZHDGBHWS", 1),
 		{ _field_long_integer, "sample count" },
@@ -31653,7 +31653,7 @@ namespace haloreach {
 		{ _field_real, "gain", "additional attenuation when played", "dB", _field_id_decibels },
 		{ _field_custom_short_block_index, "raw info" },
 		{ _field_short_block_index, "play fraction type", &blofeld::haloreach::g_null_block_block },
-		{ _field_short_bounds, "mission range", "first and last mission ids this permutation can play in (zero values are ignored)" },
+		{ _field_short_integer_bounds, "mission range", "first and last mission ids this permutation can play in (zero values are ignored)" },
 		{ _field_word_flags, "permutation flags", &blofeld::haloreach::sound_permutation_external_flags },
 		{ _field_word_flags, "flags", &blofeld::haloreach::sound_permutation_flags },
 		{ _field_block, "languages", &blofeld::haloreach::sound_permutation_languages_block_block },
@@ -31682,9 +31682,9 @@ namespace haloreach {
 		FIELD_EXPLANATION("pitch control", "these settings control what pitches this set of samples represents. if there is only one pitch range, all three values are ignored."),
 		{ _field_short_integer, "natural pitch", "the apparent pitch when these samples are played at their recorded pitch.", "cents" },
 		FIELD_PAD("KCTSDWPP", 2),
-		{ _field_short_bounds, "bend bounds", "the range of pitches that will be represented using this sample.", "cents" },
-		{ _field_short_bounds, "full volume bounds", "the range of pitches that map to full gain.", "cents" },
-		{ _field_short_bounds, "playback bend bounds", "the actual pitch will be clamped to this", "cents", _field_id_function_unknown },
+		{ _field_short_integer_bounds, "bend bounds", "the range of pitches that will be represented using this sample.", "cents" },
+		{ _field_short_integer_bounds, "full volume bounds", "the range of pitches that map to full gain.", "cents" },
+		{ _field_short_integer_bounds, "playback bend bounds", "the actual pitch will be clamped to this", "cents", _field_id_function_unknown },
 		{ _field_struct, "distance parameters", &blofeld::haloreach::sound_distance_parameters_struct },
 		FIELD_PAD("YAMTVB", 4),
 		{ _field_char_integer, "runtime usable permutation count" },
@@ -31720,7 +31720,7 @@ namespace haloreach {
 		FIELD_CUSTOM("value", _field_id_default),
 		{ _field_real, "gain base", "sound's random gain will start here", "dB", _field_id_decibels },
 		{ _field_real, "gain variance", "sound's gain will be randomly modulated within this range", "dB", _field_id_decibels },
-		{ _field_short_bounds, "random pitch bounds", "the sound's pitch will be modulated randomly within this range.", "cents" },
+		{ _field_short_integer_bounds, "random pitch bounds", "the sound's pitch will be modulated randomly within this range.", "cents" },
 		FIELD_EXPLANATION("directional sounds", "these settings allow sounds to be directional, fading as they turn away from the listener"),
 		{ _field_angle, "inner cone angle", "within the cone defined by this angle and the sound's direction, the sound plays with a gain of 1.0.", "degrees" },
 		{ _field_angle, "outer cone angle", "outside the cone defined by this angle and the sound's direction, the sound plays with a gain of OUTER CONE GAIN. (0 means the sound does not attenuate with direction.)", "degrees" },
@@ -31754,8 +31754,8 @@ namespace haloreach {
 	{
 		FIELD_EXPLANATION("scale modifiers", "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the values specified above. (0 values are ignored.)"),
 		{ _field_real_bounds, "gain modifier", nullptr, "dB", _field_id_decibels },
-		{ _field_short_bounds, "pitch modifier", nullptr, "cents" },
-		{ _field_real_fraction_bounds, "skip fraction modifier" },
+		{ _field_short_integer_bounds, "pitch modifier", nullptr, "cents" },
+		{ _field_fraction_bounds, "skip fraction modifier" },
 		{ _field_terminator }
 	};
 
@@ -31835,7 +31835,7 @@ namespace haloreach {
 		FIELD_PAD("runtime pad", 4),
 		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::haloreach::sound_pitch_range_block_block },
 		{ _field_block, "platform parameters", &blofeld::haloreach::sound_platform_sound_playback_block_block },
-		{ _field_pageable, "sound data resource", &blofeld::haloreach::sound_resource_definition },
+		{ _field_pageable_resource, "sound data resource", &blofeld::haloreach::sound_resource_definition },
 		{ _field_block, "extra info", &blofeld::haloreach::sound_extra_info_block_block },
 		{ _field_block, "language info", &blofeld::haloreach::sound_language_info_block_block },
 		{ _field_terminator }
@@ -31990,7 +31990,7 @@ namespace haloreach {
 	{
 		{ _field_string_id, "name" },
 		{ _field_word_flags, "flags", &blofeld::haloreach::looping_sound_track_flags },
-		{ _field_enum, "output effect", &blofeld::haloreach::sound_effects_enum },
+		{ _field_short_enum, "output effect", &blofeld::haloreach::sound_effects_enum },
 		{ _field_real, "gain", nullptr, "dB", _field_id_decibels },
 		{ _field_tag_reference, "in", &blofeld::haloreach::sound_group_reference_tagref },
 		{ _field_tag_reference, "loop", &blofeld::haloreach::sound_group_reference_tagref },
@@ -32008,7 +32008,7 @@ namespace haloreach {
 		{ _field_real, "alt fade out duration", nullptr, "seconds" },
 		{ _field_long_enum, "alt fade out mode", &blofeld::haloreach::looping_sound_fade_modes },
 		FIELD_EXPLANATION("Layer Settings", nullptr),
-		{ _field_enum, "layer", &blofeld::haloreach::looping_sound_layers },
+		{ _field_short_enum, "layer", &blofeld::haloreach::looping_sound_layers },
 		{ _field_word_flags, "layer flags", &blofeld::haloreach::looping_sound_track_layer_flags },
 		{ _field_real, "layer fade in duration", nullptr, "seconds" },
 		{ _field_long_enum, "layer fade in mode", &blofeld::haloreach::looping_sound_fade_modes },
@@ -32077,7 +32077,7 @@ namespace haloreach {
 		{ _field_real_bounds, "marty's music time", nullptr, "seconds" },
 		{ _field_real_bounds, "runtime distance bounds" },
 		{ _field_real, "maximum flyby range distance" },
-		{ _field_enum, "runtime sound class", &blofeld::haloreach::sound_class_enum },
+		{ _field_short_enum, "runtime sound class", &blofeld::haloreach::sound_class_enum },
 		FIELD_PAD("asdf", 2),
 		{ _field_string_id, "master marker track", "This track's markers, flags, gain and fade settings are copied to the other tracks. Its gain and fadeout settings are also copied to the details. If you want to change the master track use the sound-looping tool command" },
 		{ _field_block, "tracks", "tracks play in parallel and loop continuously for the duration of the looping sound.", &blofeld::haloreach::looping_sound_track_block_block },
@@ -32953,8 +32953,8 @@ namespace haloreach {
 		SCENARIO_SCENERY_DATUM_STRUCT_V4_ID)
 	{
 		FIELD_CUSTOM("value", _field_id_pathfinding),
-		{ _field_enum, "Pathfinding policy", &blofeld::haloreach::pathfinding_policy_enum },
-		{ _field_enum, "Lightmapping policy", &blofeld::haloreach::scenery_lightmap_policy_enum },
+		{ _field_short_enum, "Pathfinding policy", &blofeld::haloreach::pathfinding_policy_enum },
+		{ _field_short_enum, "Lightmapping policy", &blofeld::haloreach::scenery_lightmap_policy_enum },
 		{ _field_block, "pathfinding references", &blofeld::haloreach::pathfinding_object_index_list_block_block },
 		{ _field_short_integer, "havok mopp index" },
 		{ _field_short_block_index, "ai spawning squad", &blofeld::haloreach::squads_block_block },
@@ -33005,7 +33005,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CRATE_DATUM_STRUCT_ID)
 	{
-		{ _field_enum, "Pathfinding policy", &blofeld::haloreach::pathfinding_policy_enum },
+		{ _field_short_enum, "Pathfinding policy", &blofeld::haloreach::pathfinding_policy_enum },
 		FIELD_PAD("post-path-policy", 2),
 		{ _field_block, "pathfinding references", &blofeld::haloreach::pathfinding_object_index_list_block_block },
 		{ _field_terminator }
@@ -33193,7 +33193,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_GIANT_DATUM_STRUCT_ID)
 	{
-		{ _field_enum, "Pathfinding policy", &blofeld::haloreach::pathfinding_policy_enum },
+		{ _field_short_enum, "Pathfinding policy", &blofeld::haloreach::pathfinding_policy_enum },
 		FIELD_PAD("post-pathfinding", 2),
 		{ _field_block, "pathfinding references", &blofeld::haloreach::pathfinding_object_index_list_block_block },
 		{ _field_terminator }
@@ -33355,7 +33355,7 @@ namespace haloreach {
 	{
 		{ _field_long_flags, "flags", &blofeld::haloreach::scenario_machine_flags },
 		{ _field_block, "pathfinding references", &blofeld::haloreach::pathfinding_object_index_list_block_block },
-		{ _field_enum, "pathfinding policy", &blofeld::haloreach::scenario_machine_pathfinding_policy_enum },
+		{ _field_short_enum, "pathfinding policy", &blofeld::haloreach::scenario_machine_pathfinding_policy_enum },
 		FIELD_PAD("post-pathfinding-policy", 2),
 		{ _field_terminator }
 	};
@@ -33463,7 +33463,7 @@ namespace haloreach {
 		{ _field_long_flags, "flags", &blofeld::haloreach::scenario_control_flags },
 		{ _field_short_integer, "DON'T TOUCH THIS", _field_id_unknown_ugh },
 		{ _field_short_integer, "health station charges", "if this control is a health station, this sets the number of charges it contains.\nUse 0 for infinite" },
-		{ _field_enum, "allowed players", &blofeld::haloreach::scenario_control_character_types },
+		{ _field_short_enum, "allowed players", &blofeld::haloreach::scenario_control_character_types },
 		FIELD_PAD("SCSP1", 2),
 		{ _field_terminator }
 	};
@@ -33579,9 +33579,9 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHT_STRUCT_ID)
 	{
-		{ _field_enum, "type", &blofeld::haloreach::light_type_enum_definition },
+		{ _field_short_enum, "type", &blofeld::haloreach::light_type_enum_definition },
 		{ _field_word_flags, "flags", &blofeld::haloreach::scenario_light_flags_definition },
-		{ _field_enum, "lightmap type", &blofeld::haloreach::scenario_light_lightmap_type_enum_definition },
+		{ _field_short_enum, "lightmap type", &blofeld::haloreach::scenario_light_lightmap_type_enum_definition },
 		{ _field_word_flags, "lightmap flags", &blofeld::haloreach::scenario_light_lightmap_flags_definition },
 		{ _field_real, "lightmap half life" },
 		{ _field_real, "lightmap light scale" },
@@ -33921,9 +33921,9 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INSTANTANEOUS_DAMAGE_REPSONSE_BLOCK_ID)
 	{
-		{ _field_enum, "response type", &blofeld::haloreach::damage_response_type_enum_definition },
+		{ _field_short_enum, "response type", &blofeld::haloreach::damage_response_type_enum_definition },
 		FIELD_EXPLANATION("Constraint damage type", "* if you specify a constraint group name (see lower section of this block)\n  you can specify a constraint damage\n* loosening a constraint takes it out of the rigid state - activates it\n* destroying a constraint sets the attached body free"),
-		{ _field_enum, "constraint damage type", &blofeld::haloreach::damage_response_constraint_damage_type_enum_definition },
+		{ _field_short_enum, "constraint damage type", &blofeld::haloreach::damage_response_constraint_damage_type_enum_definition },
 		FIELD_EXPLANATION("Constraint destruction", "- a response can destroy a single constraint by naming it explicitly.\n- alternatively it can randomly destroy a single constraint from a specified group if the \"destroy one group constraint\" flag is set\n- also it can destroy all constraints in a specified group if the \"destroy all group constraints\" flag is set\n"),
 		{ _field_string_id, "constraint/group name" },
 		FIELD_EXPLANATION("Damage response flags", "* kills object: when the response fires the object dies regardless of its current health\n* inhibits <x>: from halo 1 - disallows basic behaviors for a unit\n* forces drop weapon: from halo 1 - makes the unit drop its current weapon\n* kills weapon <x> trigger: destroys the <x> trigger on the unit\'s current weapon\n* destroys object: when the response fires the object is destroyed"),
@@ -33935,13 +33935,13 @@ namespace haloreach {
 		{ _field_tag_reference, "transition effect (specific)", &blofeld::haloreach::effect_group_reference_tagref },
 		{ _field_struct, "damage effect", &blofeld::haloreach::instantaneous_response_damage_effect_struct },
 		{ _field_string_id, "region" },
-		{ _field_enum, "new state", &blofeld::haloreach::model_state_enum_definition },
+		{ _field_short_enum, "new state", &blofeld::haloreach::model_state_enum_definition },
 		{ _field_short_integer, "runtime region index" },
 		{ _field_string_id, "region (secondary)" },
-		{ _field_enum, "new state (secondary)", &blofeld::haloreach::model_state_enum_definition },
+		{ _field_short_enum, "new state (secondary)", &blofeld::haloreach::model_state_enum_definition },
 		{ _field_short_integer, "runtime region index (secondary)" },
 		{ _field_short_block_index, "destroy instance group", "all possible instances from this group will be destroyed", &blofeld::haloreach::global_model_instance_group_block_block },
-		{ _field_enum, "custom response behavior", &blofeld::haloreach::damage_response_custom_response_behavior_enum_definition },
+		{ _field_short_enum, "custom response behavior", &blofeld::haloreach::damage_response_custom_response_behavior_enum_definition },
 		{ _field_string_id, "custom response label" },
 		{ _field_string_id, "effect marker name" },
 		{ _field_struct, "damage effect marker", &blofeld::haloreach::instantaneous_response_damage_effect_marker_struct },
@@ -34231,7 +34231,7 @@ namespace haloreach {
 		DAMAGE_RESPONSE_REGION_TRANSITION_BLOCK_ID)
 	{
 		{ _field_string_id, "region" },
-		{ _field_enum, "new state", &blofeld::haloreach::model_state_enum_definition },
+		{ _field_short_enum, "new state", &blofeld::haloreach::model_state_enum_definition },
 		{ _field_short_integer, "runtime region index" },
 		{ _field_terminator }
 	};
@@ -34248,7 +34248,7 @@ namespace haloreach {
 	{
 		{ _field_long_flags, "flags", &blofeld::haloreach::damage_transfer_flags_definition },
 		{ _field_real, "transfer amount" },
-		{ _field_enum, "transfer function", &blofeld::haloreach::damage_transfer_function_enum_definition },
+		{ _field_short_enum, "transfer function", &blofeld::haloreach::damage_transfer_function_enum_definition },
 		{ _field_short_block_index, "damage section", &blofeld::haloreach::new_global_damage_section_block_block },
 		{ _field_string_id, "seat label" },
 		{ _field_terminator }
@@ -34311,7 +34311,7 @@ namespace haloreach {
 		{ _field_block, "region_transitions", &blofeld::haloreach::damage_response_region_transition_block_block },
 		{ _field_block, "response damage transfers", &blofeld::haloreach::damage_transfer_block_block },
 		{ _field_short_block_index, "destroy instance group", "all possible instances from this group will be destroyed", &blofeld::haloreach::global_model_instance_group_block_block },
-		{ _field_enum, "custom response behavior", &blofeld::haloreach::damage_response_custom_response_behavior_enum_definition },
+		{ _field_short_enum, "custom response behavior", &blofeld::haloreach::damage_response_custom_response_behavior_enum_definition },
 		{ _field_string_id, "custom response label" },
 		{ _field_real, "response delay", "time to wait until firing the response. This delay is pre-empted if another timed response for the same section fires.", "seconds" },
 		{ _field_tag_reference, "delay effect", "plays while the timer is counting down", &blofeld::haloreach::effect_group_reference_tagref },
@@ -34321,7 +34321,7 @@ namespace haloreach {
 		{ _field_string_id, "destroyed child object marker name", "when this response fires, any children objects created at the supplied marker name will be destroyed" },
 		{ _field_real_fraction, "total damage threshold", "scale on total damage section vitality" },
 		{ _field_string_id, "constraint/group name", "can specify a randomly-selected single constraint or the entire group of named constraints" },
-		{ _field_enum, "constraint damage type", &blofeld::haloreach::damage_response_constraint_damage_type_enum_definition },
+		{ _field_short_enum, "constraint damage type", &blofeld::haloreach::damage_response_constraint_damage_type_enum_definition },
 		FIELD_PAD("IDRBCDT", 2),
 		{ _field_terminator }
 	};
@@ -34634,7 +34634,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HAVOK_SHAPE_REFERENCE_STRUCT_ID)
 	{
-		{ _field_enum, "shape type", &blofeld::haloreach::shape_enum },
+		{ _field_short_enum, "shape type", &blofeld::haloreach::shape_enum },
 		{ _field_custom_short_block_index, "shape" },
 		{ _field_terminator }
 	};
@@ -34830,7 +34830,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_MOTOR_REFERENCE_STRUCT_ID)
 	{
-		{ _field_enum, "motor type", &blofeld::haloreach::physics_model_motor_types_enum },
+		{ _field_short_enum, "motor type", &blofeld::haloreach::physics_model_motor_types_enum },
 		{ _field_custom_short_block_index, "index" },
 		{ _field_terminator }
 	};
@@ -34886,7 +34886,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_CONSTRAINT_EDGE_CONSTRAINT_BLOCK_ID)
 	{
-		{ _field_enum, "type", &blofeld::haloreach::rigid_constraint_types_enum },
+		{ _field_short_enum, "type", &blofeld::haloreach::rigid_constraint_types_enum },
 		{ _field_custom_short_block_index, "index" },
 		{ _field_long_flags, "flags", &blofeld::haloreach::rigid_body_constraint_edge_constraint_flags_definition },
 		{ _field_real, "friction", "0 is the default (takes what it was set in max) anything else overrides that value" },
@@ -34964,7 +34964,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_POWERED_CHAIN_CONSTRAINTS_BLOCK_ID)
 	{
-		{ _field_enum, "constraint type", &blofeld::haloreach::rigid_constraint_types_enum },
+		{ _field_short_enum, "constraint type", &blofeld::haloreach::rigid_constraint_types_enum },
 		{ _field_custom_short_block_index, "constraint index" },
 		{ _field_struct, "motor x", &blofeld::haloreach::physics_model_motor_reference_struct },
 		{ _field_struct, "motor y", &blofeld::haloreach::physics_model_motor_reference_struct },
@@ -35554,7 +35554,7 @@ namespace haloreach {
 		{ _field_char_enum, "motion type", &blofeld::haloreach::rigid_body_motion_enum },
 		FIELD_EXPLANATION("collision group override", "this value overrides the default group.  It also overrides values specified in the materials block of this tag."),
 		{ _field_char_enum, "proxy collision group", &blofeld::haloreach::physics_material_proxy_collision_groups },
-		{ _field_enum, "size", &blofeld::haloreach::rigid_body_size_enum },
+		{ _field_short_enum, "size", &blofeld::haloreach::rigid_body_size_enum },
 		FIELD_EXPLANATION("inertia tensor scales", "if you want to set he scale uniforml just set \"inertia tensor scale\".  If you want to set the values seperately per axis you can set \"inertia tensor scale x\\y\\z\""),
 		{ _field_real, "inertia tensor scale", "0.0 defaults to 1.0" },
 		{ _field_real, "inertia tensor scale x", "0.0 defaults to 1.0" },
@@ -35890,7 +35890,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_FRAME_EVENT_BLOCK_STRUCT_ID)
 	{
-		{ _field_enum, "type", &blofeld::haloreach::frame_event_type_new },
+		{ _field_short_enum, "type", &blofeld::haloreach::frame_event_type_new },
 		{ _field_short_integer, "frame" },
 		{ _field_terminator }
 	};
@@ -35950,7 +35950,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_DIALOGUE_EVENT_BLOCK_ID)
 	{
-		{ _field_enum, "dialogue event", &blofeld::haloreach::animation_dialogue_event_enum },
+		{ _field_short_enum, "dialogue event", &blofeld::haloreach::animation_dialogue_event_enum },
 		{ _field_short_integer, "frame" },
 		{ _field_terminator }
 	};
@@ -36080,7 +36080,7 @@ namespace haloreach {
 		FIELD_CUSTOM("value", _field_id_marker),
 		{ _field_string_id, "ankle marker name" },
 		{ _field_real_bounds, "ankle ik range" },
-		{ _field_enum, "default state", &blofeld::haloreach::foot_tracking_default_values },
+		{ _field_short_enum, "default state", &blofeld::haloreach::foot_tracking_default_values },
 		FIELD_PAD("f00t1", 2),
 		{ _field_terminator }
 	};
@@ -36137,7 +36137,7 @@ namespace haloreach {
 		FOOT_TRACKING_DEFAULTS_ID)
 	{
 		{ _field_short_block_index, "foot", &blofeld::haloreach::foot_tracking_member_block_block },
-		{ _field_enum, "default state", &blofeld::haloreach::foot_tracking_default_values },
+		{ _field_short_enum, "default state", &blofeld::haloreach::foot_tracking_default_values },
 		{ _field_terminator }
 	};
 
@@ -36183,11 +36183,11 @@ namespace haloreach {
 	{
 		FIELD_EXPLANATION("REFERENCE IK CHAIN INFO", nullptr),
 		{ _field_string_id, "chain name" },
-		{ _field_enum, "chain type", &blofeld::haloreach::animation_ik_chain_type_enumeration },
+		{ _field_short_enum, "chain type", &blofeld::haloreach::animation_ik_chain_type_enumeration },
 		{ _field_short_block_index, "chain start node", &blofeld::haloreach::animation_graph_node_block_block },
 		{ _field_short_block_index, "chain effector node", &blofeld::haloreach::animation_graph_node_block_block },
 		FIELD_EXPLANATION("IMPORTED IK CHAIN INFO", nullptr),
-		{ _field_enum, "chain usage", &blofeld::haloreach::animation_ik_chain_event_usage },
+		{ _field_short_enum, "chain usage", &blofeld::haloreach::animation_ik_chain_event_usage },
 		{ _field_string_id, "proxy marker" },
 		{ _field_long_integer, "proxy id" },
 		{ _field_char_enum, "event type", &blofeld::haloreach::animation_ik_chain_event_type },
@@ -36520,7 +36520,7 @@ namespace haloreach {
 		{ _field_string_id, "animation name" },
 		{ _field_short_integer, "frame" },
 		{ _field_short_integer, "frame offset" },
-		{ _field_enum, "type", &blofeld::haloreach::frame_event_type_new },
+		{ _field_short_enum, "type", &blofeld::haloreach::frame_event_type_new },
 		FIELD_PAD("pad", 2),
 		{ _field_long_integer, "unique ID", "(Do not change this)" },
 		{ _field_terminator }
@@ -36577,7 +36577,7 @@ namespace haloreach {
 		ANIMATION_DIALOGUE_EVENT_BLOCK_EXTENDED_ID)
 	{
 		{ _field_short_block_index, "frame event", &blofeld::haloreach::import_frame_event_block_block },
-		{ _field_enum, "dialogue event", &blofeld::haloreach::animation_dialogue_event_enum },
+		{ _field_short_enum, "dialogue event", &blofeld::haloreach::animation_dialogue_event_enum },
 		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it's absolute." },
 		FIELD_PAD("pad", 2),
 		{ _field_terminator }
@@ -36648,9 +36648,9 @@ namespace haloreach {
 		{ _field_real, "weight" },
 		{ _field_real_fraction, "interpolation rate", "A value of zero or one means no interpolation.", nullptr, "[0,1]" },
 		FIELD_PAD("nabsbfp0", 2),
-		{ _field_enum, "yaw source", &blofeld::haloreach::blend_screen_variable_sources },
-		{ _field_enum, "pitch source", &blofeld::haloreach::blend_screen_variable_sources },
-		{ _field_enum, "weight source", &blofeld::haloreach::blend_screen_weight_sources },
+		{ _field_short_enum, "yaw source", &blofeld::haloreach::blend_screen_variable_sources },
+		{ _field_short_enum, "pitch source", &blofeld::haloreach::blend_screen_variable_sources },
+		{ _field_short_enum, "weight source", &blofeld::haloreach::blend_screen_weight_sources },
 		FIELD_CUSTOM("value", _field_id_unknown_function),
 		{ _field_string_id, "yaw source object function" },
 		FIELD_CUSTOM("value", _field_id_unknown_function),
@@ -36841,7 +36841,7 @@ namespace haloreach {
 		{ _field_string_id, "slow gait name" },
 		{ _field_string_id, "intermediate gait name", "animation name used for the speed variations" },
 		{ _field_string_id, "fast gait name" },
-		{ _field_enum, "move state", &blofeld::haloreach::animation_gait_directions },
+		{ _field_short_enum, "move state", &blofeld::haloreach::animation_gait_directions },
 		FIELD_PAD("pad", 2),
 		{ _field_terminator }
 	};
@@ -37286,10 +37286,10 @@ namespace haloreach {
 		{ _field_string_id, "label" },
 		{ _field_block, "animations", &blofeld::haloreach::ranged_animation_entry_block_block },
 		{ _field_block, "triangulation data", &blofeld::haloreach::triangulation_entry_block_block },
-		{ _field_enum, "horizontal source", &blofeld::haloreach::ranged_action_variable_sources },
-		{ _field_enum, "vertical source", &blofeld::haloreach::ranged_action_variable_sources },
-		{ _field_enum, "start key", &blofeld::haloreach::frame_event_type_new },
-		{ _field_enum, "end key", &blofeld::haloreach::frame_event_type_new },
+		{ _field_short_enum, "horizontal source", &blofeld::haloreach::ranged_action_variable_sources },
+		{ _field_short_enum, "vertical source", &blofeld::haloreach::ranged_action_variable_sources },
+		{ _field_short_enum, "start key", &blofeld::haloreach::frame_event_type_new },
+		{ _field_short_enum, "end key", &blofeld::haloreach::frame_event_type_new },
 		{ _field_terminator }
 	};
 
@@ -37364,7 +37364,7 @@ namespace haloreach {
 		{ _field_string_id, "label" },
 		{ _field_struct, "animation", &blofeld::haloreach::animation_index_struct },
 		FIELD_PAD("VQWLKE", 2),
-		{ _field_enum, "function controls", &blofeld::haloreach::function_overlay_animation_mode },
+		{ _field_short_enum, "function controls", &blofeld::haloreach::function_overlay_animation_mode },
 		{ _field_string_id, "function" },
 		FIELD_PAD("OHIOJE", 4),
 		{ _field_terminator }
@@ -37387,7 +37387,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_USAGE_BLOCK_ID)
 	{
-		{ _field_enum, "usage", &blofeld::haloreach::animation_usage_enumeration },
+		{ _field_short_enum, "usage", &blofeld::haloreach::animation_usage_enumeration },
 		{ _field_short_block_index, "node to use", &blofeld::haloreach::animation_graph_node_block_block },
 		{ _field_terminator }
 	};
@@ -37467,7 +37467,7 @@ namespace haloreach {
 		ANIMATION_IK_CHAIN_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "type", &blofeld::haloreach::animation_ik_chain_type_enumeration },
+		{ _field_short_enum, "type", &blofeld::haloreach::animation_ik_chain_type_enumeration },
 		FIELD_PAD("aikcbp", 2),
 		{ _field_short_block_index, "start node", MAKE_ALT_NAMES("grandparent node"), &blofeld::haloreach::animation_graph_node_block_block },
 		{ _field_short_block_index, "effector node", &blofeld::haloreach::animation_graph_node_block_block },
@@ -37491,7 +37491,7 @@ namespace haloreach {
 		{ _field_byte_flags, "inheritance flags", &blofeld::haloreach::public_animation_graph_flags },
 		{ _field_byte_flags, "private flags", &blofeld::haloreach::private_animation_graph_flags },
 		{ _field_short_integer, "animation codec pack" },
-		{ _field_enum, "force compression setting", &blofeld::haloreach::compression_force_settings },
+		{ _field_short_enum, "force compression setting", &blofeld::haloreach::compression_force_settings },
 		FIELD_PAD("adsfe", 2),
 		{ _field_block, "node usage", &blofeld::haloreach::animation_usage_block_block },
 		{ _field_block, "node masks", &blofeld::haloreach::animation_node_mask_block_block },
@@ -37709,7 +37709,7 @@ namespace haloreach {
 		MODEL_ANIMATION_TAG_RESOURCE_GROUP_ID)
 	{
 		{ _field_long_integer, "reference_count" },
-		{ _field_pageable, "tag_resource", &blofeld::haloreach::model_animation_tag_resource },
+		{ _field_pageable_resource, "tag_resource", &blofeld::haloreach::model_animation_tag_resource },
 		{ _field_terminator }
 	};
 
@@ -38306,8 +38306,8 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SIMULATED_INPUT_STICK_STRUCT_ID)
 	{
-		{ _field_enum, "response type", &blofeld::haloreach::direction_type_enum_definition },
-		{ _field_enum, "mapping type", &blofeld::haloreach::mapping_type_enum_definition },
+		{ _field_short_enum, "response type", &blofeld::haloreach::direction_type_enum_definition },
+		{ _field_short_enum, "mapping type", &blofeld::haloreach::mapping_type_enum_definition },
 		{ _field_real_bounds, "angle" },
 		FIELD_CUSTOM("value", _field_id_null),
 		{ _field_struct, "Mapping", &blofeld::haloreach::mapping_function },
@@ -38401,7 +38401,7 @@ namespace haloreach {
 		{ _field_angle, "random rotation", "random rotation in all directions", "degrees" },
 		{ _field_real, "wobble function period", nullptr, "seconds" },
 		{ _field_real_fraction, "wobble weight", "a value of 0.0 signifies that the wobble function has no effect; a value of 1.0 the wobble function completely scales the translational\n and rotational magnitudes.  The less the weight, the less the effect wobble has." },
-		{ _field_enum, "wobble function", "a function to perturb the effect's behavior over time", &blofeld::haloreach::global_periodic_functions_enum },
+		{ _field_short_enum, "wobble function", "a function to perturb the effect's behavior over time", &blofeld::haloreach::global_periodic_functions_enum },
 		FIELD_EXPLANATION("animated camera shake", nullptr),
 		{ _field_char_enum, "animated shake playback", &blofeld::haloreach::animated_camera_shake_playback_type_enum },
 		{ _field_char_enum, "animated shake weight", &blofeld::haloreach::animated_camera_shake_weight_type_enum },
@@ -38769,7 +38769,7 @@ namespace haloreach {
 		{ _field_string_id, "collision global material name" },
 		{ _field_short_integer, "runtime global material index" },
 		FIELD_EXPLANATION("friction point destruction data", nullptr),
-		{ _field_enum, "model state destroyed", "only need point can destroy flag set", &blofeld::haloreach::model_state_enum_definition },
+		{ _field_short_enum, "model state destroyed", "only need point can destroy flag set", &blofeld::haloreach::model_state_enum_definition },
 		{ _field_string_id, "region name", "only need point can destroy flag set" },
 		{ _field_long_integer, "runtime region index" },
 		{ _field_terminator }
@@ -38808,8 +38808,8 @@ namespace haloreach {
 		{ _field_real, "anti_gravity_bank_lift", "lift per WU." },
 		{ _field_real, "steering_bank_reaction_scale", "how quickly we bank when we steer " },
 		{ _field_real, "gravity scale", "value of 0 defaults to 1.  .5 is half gravity" },
-		{ _field_enum, "maximum update period ticks", "ticks. 0 is default of 2", &blofeld::haloreach::physics_update_period_enum },
-		{ _field_enum, "maximum remote update period ticks", "ticks. when controlled by an ai or remote player. 0 defaults to 4", &blofeld::haloreach::physics_update_period_enum },
+		{ _field_short_enum, "maximum update period ticks", "ticks. 0 is default of 2", &blofeld::haloreach::physics_update_period_enum },
+		{ _field_short_enum, "maximum remote update period ticks", "ticks. when controlled by an ai or remote player. 0 defaults to 4", &blofeld::haloreach::physics_update_period_enum },
 		{ _field_long_integer, "iteration count", "0 defaults to 1.  Number of iterations per frame of physics" },
 		{ _field_long_integer, "suspension count" },
 		{ _field_block, "anti gravity points", &blofeld::haloreach::anti_gravity_point_definition_block_block },
@@ -41291,8 +41291,8 @@ namespace haloreach {
 		{ _field_block, "team options", &blofeld::haloreach::game_engine_team_options_block_block },
 		{ _field_block, "loadout options", &blofeld::haloreach::game_engine_loadout_options_block_block },
 		{ _field_long_flags, "flags", &blofeld::haloreach::sandbox_flags },
-		{ _field_enum, "edit mode", &blofeld::haloreach::sandbox_editing_mode },
-		{ _field_enum, "respawn time", &blofeld::haloreach::sandbox_respawn_time },
+		{ _field_short_enum, "edit mode", &blofeld::haloreach::sandbox_editing_mode },
+		{ _field_short_enum, "respawn time", &blofeld::haloreach::sandbox_respawn_time },
 		{ _field_string_id, "all players traits" },
 		{ _field_terminator }
 	};
@@ -42065,7 +42065,7 @@ namespace haloreach {
 		BINK_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "frame count" },
-		{ _field_pageable, "bink resource", &blofeld::haloreach::bink_resource },
+		{ _field_pageable_resource, "bink resource", &blofeld::haloreach::bink_resource },
 		{ _field_terminator }
 	};
 
@@ -42080,11 +42080,11 @@ namespace haloreach {
 		SCENARIO_CUTSCENE_TITLE_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_real_fraction_bounds, "text bounds X" },
-		{ _field_real_fraction_bounds, "text bounds Y" },
-		{ _field_enum, "justification", &blofeld::haloreach::text_justification_enum_definition },
-		{ _field_enum, "vertical justification", &blofeld::haloreach::text_vertical_justification_enum_definition },
-		{ _field_enum, "font", &blofeld::haloreach::global_font_id_enum_definition },
+		{ _field_fraction_bounds, "text bounds X" },
+		{ _field_fraction_bounds, "text bounds Y" },
+		{ _field_short_enum, "justification", &blofeld::haloreach::text_justification_enum_definition },
+		{ _field_short_enum, "vertical justification", &blofeld::haloreach::text_vertical_justification_enum_definition },
+		{ _field_short_enum, "font", &blofeld::haloreach::global_font_id_enum_definition },
 		FIELD_PAD("padding", 2),
 		{ _field_rgb_color, "text color" },
 		{ _field_rgb_color, "shadow color" },
@@ -42685,7 +42685,7 @@ namespace haloreach {
 		FIELD_CUSTOM("loop now", _field_id_loop_cinematic_scene),
 		{ _field_string_id, "name" },
 		{ _field_string_id, "anchor" },
-		{ _field_enum, "reset object lighting", &blofeld::haloreach::scene_reset_object_lighting_enum },
+		{ _field_short_enum, "reset object lighting", &blofeld::haloreach::scene_reset_object_lighting_enum },
 		FIELD_PAD("pad", 2),
 		FIELD_EXPLANATION("Header", nullptr),
 		{ _field_struct, "header", &blofeld::haloreach::cinematic_custom_script_block },
@@ -42923,7 +42923,7 @@ namespace haloreach {
 		{ _field_struct, "cinematic playback", &blofeld::haloreach::cinematic_playback_data_block },
 		{ _field_struct, "scenario and zone set", &blofeld::haloreach::scenario_and_zone_set_struct },
 		{ _field_string_id, "name" },
-		{ _field_enum, "channel type", &blofeld::haloreach::cinematic_channel_type_enum },
+		{ _field_short_enum, "channel type", &blofeld::haloreach::cinematic_channel_type_enum },
 		FIELD_PAD("PADDING", 2),
 		{ _field_long_flags, "flags", &blofeld::haloreach::cinematic_flags },
 		{ _field_real, "easing in time", "seconds" },
@@ -43001,8 +43001,8 @@ namespace haloreach {
 		{ _field_tag_reference, "cinematic anchor reference", &blofeld::haloreach::scenery_group_reference$3_tagref },
 		{ _field_real, "cinematic film aperture" },
 		{ _field_real, "cinematic skip ui up time" },
-		{ _field_real_fraction_bounds, "subtitle rect width", "percentage towards the center - 0=default, 0.5=center of the screen" },
-		{ _field_real_fraction_bounds, "subtitle rect height", "0=default, 0.5=center of the screen" },
+		{ _field_fraction_bounds, "subtitle rect width", "percentage towards the center - 0=default, 0.5=center of the screen" },
+		{ _field_fraction_bounds, "subtitle rect height", "0=default, 0.5=center of the screen" },
 		{ _field_real_rgb_color, "default subtitle color" },
 		{ _field_real_rgb_color, "default subtitle shadow color" },
 		{ _field_block, "cinematic characters", &blofeld::haloreach::cinematic_characters_block_block },
@@ -43771,7 +43771,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_GESTALT_BLOCK_STRUCT_ID)
 	{
-		{ _field_enum, "scenario type", &blofeld::haloreach::scenario_type_enum },
+		{ _field_short_enum, "scenario type", &blofeld::haloreach::scenario_type_enum },
 		{ _field_word_flags, "scenario flags", &blofeld::haloreach::scenario_flags },
 		{ _field_block, "resource type identifiers", &blofeld::haloreach::cache_file_resource_type_identifier_block_block, _field_id_wide },
 		{ _field_block, "interop type identifiers", &blofeld::haloreach::cache_file_interop_type_identifier_block_block, _field_id_wide },
@@ -43910,9 +43910,9 @@ namespace haloreach {
 	{
 		{ _field_short_integer, "natural pitch", nullptr, "cents" },
 		{ _field_short_integer, "PAD" },
-		{ _field_short_bounds, "bend bounds", "the range of pitches that will be represented using this sample.", "cents" },
-		{ _field_short_bounds, "max gain pitch bounds", nullptr, "cents" },
-		{ _field_short_bounds, "playback pitch bounds", nullptr, "cents" },
+		{ _field_short_integer_bounds, "bend bounds", "the range of pitches that will be represented using this sample.", "cents" },
+		{ _field_short_integer_bounds, "max gain pitch bounds", nullptr, "cents" },
+		{ _field_short_integer_bounds, "playback pitch bounds", nullptr, "cents" },
 		{ _field_terminator }
 	};
 
@@ -44058,7 +44058,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_FACIAL_ANIMATION_BLOCK_ID)
 	{
-		{ _field_pageable, "facial animation resource", &blofeld::haloreach::facial_animation_resource_definition },
+		{ _field_pageable_resource, "facial animation resource", &blofeld::haloreach::facial_animation_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -44133,7 +44133,7 @@ namespace haloreach {
 		{ _field_short_integer, "extra info index" },
 		FIELD_PAD("pad", 2),
 		{ _field_long_integer, "maximum play time", nullptr, "ms" },
-		{ _field_pageable, "sound data resource", &blofeld::haloreach::sound_resource_definition },
+		{ _field_pageable_resource, "sound data resource", &blofeld::haloreach::sound_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -44244,7 +44244,7 @@ namespace haloreach {
 		SOUND_EFFECT_TEMPLATE_PARAMETER_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "type", &blofeld::haloreach::sound_effect_template_type_enum_definition },
+		{ _field_short_enum, "type", &blofeld::haloreach::sound_effect_template_type_enum_definition },
 		{ _field_word_flags, "flags", &blofeld::haloreach::sound_effect_template_parameter_flags_definition },
 		{ _field_long_integer, "hardware offset" },
 		{ _field_long_integer, "default enum integer value" },
@@ -44704,7 +44704,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DETAIL_OBJECT_COLLECTION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_enum, "collection type", &blofeld::haloreach::detail_object_collection_type_enum_definition },
+		{ _field_short_enum, "collection type", &blofeld::haloreach::detail_object_collection_type_enum_definition },
 		FIELD_PAD("YN", 2),
 		{ _field_real, "global z offset", nullptr, "applied to all detail objects of in this collection so they don't float above the ground" },
 		FIELD_PAD("EBGQ", 44),
@@ -46168,7 +46168,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_TEXTURE_INTEROP_BLOCK_STRUCT_ID)
 	{
-		{ _field_pageable, "texture resource", &blofeld::haloreach::bitmap_texture_interop_resource },
+		{ _field_pageable_resource, "texture resource", &blofeld::haloreach::bitmap_texture_interop_resource },
 		{ _field_terminator }
 	};
 
@@ -46196,7 +46196,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_TEXTURE_INTERLEAVED_INTEROP_BLOCK_STRUCT_ID)
 	{
-		{ _field_pageable, "interleaved texture resource", &blofeld::haloreach::bitmap_texture_interleaved_interop_resource },
+		{ _field_pageable_resource, "interleaved texture resource", &blofeld::haloreach::bitmap_texture_interleaved_interop_resource },
 		{ _field_terminator }
 	};
 
@@ -46223,7 +46223,7 @@ namespace haloreach {
 		{ _field_char_integer, "max mipmap level", "0 = use default defined by usage" },
 		{ _field_short_integer, "max resolution", "0 = do not downsample source image" },
 		FIELD_PAD("post-max-resolution", 2),
-		{ _field_enum, "force bitmap format", "overrides the format defined by usage", &blofeld::haloreach::bitmap_usage_format_def },
+		{ _field_short_enum, "force bitmap format", "overrides the format defined by usage", &blofeld::haloreach::bitmap_usage_format_def },
 		{ _field_real, "tight bounds threshold", "This is the level cutoff for tight bounds.  0.0 is monochrome black, 1.0 is monochrome white", nullptr, "[0.0 - 1.0]" },
 		{ _field_block, "usage override", &blofeld::haloreach::bitmap_usage_block_block },
 		{ _field_block, "manual_sequences", &blofeld::haloreach::bitmap_group_sequence_block_def_block },
@@ -46734,7 +46734,7 @@ namespace haloreach {
 		{ _field_char_enum, "type", &blofeld::haloreach::bitmap_types },
 		{ _field_char_integer, "mipmap limit" },
 		{ _field_char_enum, "smallest mip", &blofeld::haloreach::bitmap_smallest_mip_def },
-		{ _field_enum, "downsample filter", &blofeld::haloreach::bitmap_usage_downsample_filter_def },
+		{ _field_short_enum, "downsample filter", &blofeld::haloreach::bitmap_usage_downsample_filter_def },
 		{ _field_word_flags, "downsample flags", &blofeld::haloreach::bitmap_usage_downsample_flags_def },
 		{ _field_real_rgb_color, "sprite background color" },
 		{ _field_char_enum, "swizzle red", &blofeld::haloreach::bitmap_usage_swizzle_def },
@@ -47043,7 +47043,7 @@ namespace haloreach {
 		FIELD_EXPLANATION("FLYING CAMERA", nullptr),
 		{ _field_real, "maximum boost speed", "the scaling factor for the left stick when the left trigger is fully depressed" },
 		{ _field_real, "time to maximum_boost", "seconds. while pegging boost, time to reach maximum speed" },
-		{ _field_enum, "boost function", &blofeld::haloreach::global_transition_functions_enum },
+		{ _field_short_enum, "boost function", &blofeld::haloreach::global_transition_functions_enum },
 		FIELD_PAD("hoist", 2),
 		{ _field_real, "zoomed field of view", "field of view when zoomed", "degrees" },
 		{ _field_real, "zoomed look speed", "scaling factor for look speed when zoomed" },
@@ -47051,7 +47051,7 @@ namespace haloreach {
 		{ _field_real, "flying cam movement delay", "how quickly the camera responds to the user's input", "seconds" },
 		{ _field_real, "zoom transition time", "how long it takes to zoom in or out", "seconds" },
 		{ _field_real, "vertical movement time to max speed" },
-		{ _field_enum, "vertical movement function", &blofeld::haloreach::global_transition_functions_enum },
+		{ _field_short_enum, "vertical movement function", &blofeld::haloreach::global_transition_functions_enum },
 		FIELD_PAD("moist", 2),
 		{ _field_real, "survival switch time", "how long it takes in survival mode before switching to flying camera", "seconds" },
 		FIELD_EXPLANATION("ORBITING CAMERA", nullptr),
@@ -47376,7 +47376,7 @@ namespace haloreach {
 		GLOBAL_ERROR_REPORT_CATEGORIES_BLOCK_ID)
 	{
 		{ _field_long_string, "name" },
-		{ _field_enum, "report type", &blofeld::haloreach::error_report_types },
+		{ _field_short_enum, "report type", &blofeld::haloreach::error_report_types },
 		{ _field_word_flags, "flags", &blofeld::haloreach::error_report_flags },
 		{ _field_short_integer, "runtime generation flags" },
 		FIELD_PAD("WVTP", 2),
@@ -47901,7 +47901,7 @@ namespace haloreach {
 		STRUCTURE_SOFT_CEILING_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "type", &blofeld::haloreach::soft_ceiling_type_enum },
+		{ _field_short_enum, "type", &blofeld::haloreach::soft_ceiling_type_enum },
 		FIELD_PAD("fresh", 2),
 		{ _field_block, "soft ceiling triangles", &blofeld::haloreach::structure_soft_ceiling_triangle_block_block },
 		{ _field_terminator }
@@ -48298,7 +48298,7 @@ namespace haloreach {
 		HS_SCRIPT_PARAMETERS_BLOCK_ID)
 	{
 		{ _field_string, "name" },
-		{ _field_enum, "return type", &blofeld::haloreach::hs_types_enum },
+		{ _field_short_enum, "return type", &blofeld::haloreach::hs_types_enum },
 		FIELD_PAD("JBG", 2),
 		{ _field_terminator }
 	};
@@ -48408,8 +48408,8 @@ namespace haloreach {
 		HS_SCRIPTS_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "script type", &blofeld::haloreach::hs_script_types_enum },
-		{ _field_enum, "return type", &blofeld::haloreach::hs_types_enum },
+		{ _field_short_enum, "script type", &blofeld::haloreach::hs_script_types_enum },
+		{ _field_short_enum, "return type", &blofeld::haloreach::hs_types_enum },
 		{ _field_long_integer, "root expression index" },
 		{ _field_useless_pad, "value" },
 		{ _field_block, "parameters", &blofeld::haloreach::hs_script_parameters_block_block },
@@ -48438,7 +48438,7 @@ namespace haloreach {
 		HS_GLOBALS_BLOCK_ID)
 	{
 		{ _field_string, "name" },
-		{ _field_enum, "type", &blofeld::haloreach::hs_types_enum },
+		{ _field_short_enum, "type", &blofeld::haloreach::hs_types_enum },
 		FIELD_PAD("EB", 2),
 		{ _field_useless_pad, "value" },
 		{ _field_long_integer, "initialization expression index" },
@@ -49984,7 +49984,7 @@ namespace haloreach {
 		{ _field_byte_flags, "more flags", &blofeld::haloreach::bitmap_more_flags_definition },
 		{ _field_char_enum, "type", "DO NOT CHANGE", &blofeld::haloreach::bitmap_types },
 		{ _field_char_integer, "four times log2 size", "DO NOT CHANGE" },
-		{ _field_enum, "format", "DO NOT CHANGE", &blofeld::haloreach::bitmap_formats },
+		{ _field_short_enum, "format", "DO NOT CHANGE", &blofeld::haloreach::bitmap_formats },
 		{ _field_byte_flags, "flags", &blofeld::haloreach::bitmap_flags },
 		{ _field_char_integer, "exponent bias" },
 		{ _field_point_2d, "registration point", "the 'center' of the bitmap - i.e. for particles" },
@@ -50208,8 +50208,8 @@ namespace haloreach {
 	{
 		{ _field_word_flags, "difficulty flags", &blofeld::haloreach::global_campaign_difficulty_enum },
 		FIELD_PAD("post-difficulty-flags-padding", 2),
-		{ _field_short_bounds, "round range", "the rounds for which we will consider this" },
-		{ _field_short_bounds, "set range", "the sets for which we will consider this" },
+		{ _field_short_integer_bounds, "round range", "the rounds for which we will consider this" },
+		{ _field_short_integer_bounds, "set range", "the sets for which we will consider this" },
 		{ _field_terminator }
 	};
 
@@ -50321,16 +50321,16 @@ namespace haloreach {
 		CHARACTER_GENERAL_BLOCK_ID)
 	{
 		{ _field_long_flags, "general flags", &blofeld::haloreach::general_flags },
-		{ _field_enum, "type", &blofeld::haloreach::actor_type_enum },
+		{ _field_short_enum, "type", &blofeld::haloreach::actor_type_enum },
 		{ _field_short_integer, "rank", "the rank of this character, helps us work out who in a squad should be a leader (0 is lowly, 32767 is highest)" },
-		{ _field_enum, "follower positioning", "where should my followers try and position themselves when I am their leader?", &blofeld::haloreach::combat_positioning_enum },
+		{ _field_short_enum, "follower positioning", "where should my followers try and position themselves when I am their leader?", &blofeld::haloreach::combat_positioning_enum },
 		FIELD_PAD("post-combat-position-padding", 2),
 		{ _field_real, "max leader dist", "don't let my combat range get outside this distance from my leader when in combat (if 0 then defaults to 4wu)" },
 		{ _field_real, "absolute max leader dist", "never select firing positions outside this range from the leader (if 0 then defaults to 8wu)" },
 		{ _field_real, "max player dialogue dist", "never play dialogue if all players are outside of this range (if 0 then defaults to 20wu)" },
 		{ _field_real, "scariness", "the inherent scariness of the character" },
-		{ _field_enum, "default grenade type", &blofeld::haloreach::global_ai_grenade_type_enum },
-		{ _field_enum, "behavior tree root", &blofeld::haloreach::behavior_tree_root_enum },
+		{ _field_short_enum, "default grenade type", &blofeld::haloreach::global_ai_grenade_type_enum },
+		{ _field_short_enum, "behavior tree root", &blofeld::haloreach::behavior_tree_root_enum },
 		{ _field_block, "disallowed weapons from trading", &blofeld::haloreach::disallowed_weapons_for_trading_block_block },
 		{ _field_terminator }
 	};
@@ -50427,7 +50427,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_EMOTIONS_SITUATIONAL_DANGER_BLOCK_ID)
 	{
-		{ _field_enum, "highest prop class", "The prop class that this block is describing", &blofeld::haloreach::prop_class_enum },
+		{ _field_short_enum, "highest prop class", "The prop class that this block is describing", &blofeld::haloreach::prop_class_enum },
 		FIELD_PAD("obligatory pad", 2),
 		{ _field_real, "situational danger", "What should be the situational danger level for the prop class selected above" },
 		{ _field_terminator }
@@ -50566,7 +50566,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_PERCEPTION_BLOCK_STRUCT_ID)
 	{
-		{ _field_enum, "perception_mode", &blofeld::haloreach::actor_perception_mode_definition },
+		{ _field_short_enum, "perception_mode", &blofeld::haloreach::actor_perception_mode_definition },
 		{ _field_word_flags, "flags", &blofeld::haloreach::perception_flags },
 		{ _field_real, "maximum vision distance", "maximum range of sight", "world units" },
 		{ _field_real, "reliable vision distance", "reliable range of sight", "world units" },
@@ -50701,7 +50701,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MOVEMENT_THROTTLE_CONTROL_BLOCK_ID)
 	{
-		{ _field_enum, "combat status", "When combat status is bigger or equal to this combat status, use the throttle settings below.", &blofeld::haloreach::combat_status_enum_definition },
+		{ _field_short_enum, "combat status", "When combat status is bigger or equal to this combat status, use the throttle settings below.", &blofeld::haloreach::combat_status_enum_definition },
 		{ _field_word_flags, "flags", &blofeld::haloreach::movement_throttle_control_flags },
 		{ _field_block, "throttle settings", &blofeld::haloreach::movement_throttle_block_block },
 		{ _field_terminator }
@@ -50749,12 +50749,12 @@ namespace haloreach {
 		{ _field_real, "armor lock cooldown", "We won't go into armor lock again for this many seconds (default 0 seconds)" },
 		{ _field_real, "dive grenade chance" },
 		{ _field_real, "brace grenade chance" },
-		{ _field_enum, "obstacle leap min size", &blofeld::haloreach::obstacle_ignore_enum },
-		{ _field_enum, "obstacle leap max size", &blofeld::haloreach::obstacle_ignore_enum },
-		{ _field_enum, "obstacle ignore size", &blofeld::haloreach::obstacle_ignore_enum },
-		{ _field_enum, "obstacle smashable size", &blofeld::haloreach::obstacle_ignore_enum },
+		{ _field_short_enum, "obstacle leap min size", &blofeld::haloreach::obstacle_ignore_enum },
+		{ _field_short_enum, "obstacle leap max size", &blofeld::haloreach::obstacle_ignore_enum },
+		{ _field_short_enum, "obstacle ignore size", &blofeld::haloreach::obstacle_ignore_enum },
+		{ _field_short_enum, "obstacle smashable size", &blofeld::haloreach::obstacle_ignore_enum },
 		FIELD_PAD("RQEMJY", 2),
-		{ _field_enum, "jump height", &blofeld::haloreach::global_ai_jump_height_enum },
+		{ _field_short_enum, "jump height", &blofeld::haloreach::global_ai_jump_height_enum },
 		{ _field_real, "maximum leap height", ".How high can a crate be for this unit to leap it.", "wus" },
 		{ _field_real, "leap proximity fraction", "How close to the obstacle should the actor be before leaping 1- too close, 0- as soon as he becomes aware of it", nullptr, "[0-1]" },
 		{ _field_real, "avoidance volume turn penalty distance", "The maximum distance penalty applied to an avoidance volume search path if we're facing away from the path. 1000 wu good for space, 5 wu good for ground.", "wus" },
@@ -51077,7 +51077,7 @@ namespace haloreach {
 		{ _field_real, "Crouch danger threshold", "When danger rises above the threshold, the actor crouches" },
 		{ _field_real, "Stand danger threshold", "When danger drops below this threshold, the actor can stand again." },
 		{ _field_real, "Fight danger move threshold", "When danger goes above given level, this actor switches firing positions" },
-		{ _field_short_bounds, "Fight danger move threshold cooldown", "Wait at least this many ticks before relocating due to danger", "ticks" },
+		{ _field_short_integer_bounds, "Fight danger move threshold cooldown", "Wait at least this many ticks before relocating due to danger", "ticks" },
 		{ _field_real, "fight flank chance", "Chance of flanking when fighting someone who isn't paying attention to me", nullptr, "[0-1]" },
 		{ _field_tag_reference, "override grenade projectile", "when I throw a grenade, forget what type I officially have: throw this type of projectile instead", &blofeld::haloreach::projectile_group_reference_tagref },
 		{ _field_real, "minimum throw distance", "Targets closer than this distance will not be attacked with a throw" },
@@ -51387,15 +51387,15 @@ namespace haloreach {
 		{ _field_real_vector_3d, "custom stand gun offset", "custom standing gun offset for overriding the default in the base actor" },
 		{ _field_real_vector_3d, "custom crouch gun offset", "custom crouching gun offset for overriding the default in the base actor" },
 		FIELD_EXPLANATION("special-case firing properties", nullptr),
-		{ _field_enum, "special-fire mode", "the type of special weapon fire that we can use", &blofeld::haloreach::actor_special_fire_mode_enum },
-		{ _field_enum, "special-fire situation", "when we will decide to use our special weapon fire mode", &blofeld::haloreach::actor_special_fire_situation_enum },
+		{ _field_short_enum, "special-fire mode", "the type of special weapon fire that we can use", &blofeld::haloreach::actor_special_fire_mode_enum },
+		{ _field_short_enum, "special-fire situation", "when we will decide to use our special weapon fire mode", &blofeld::haloreach::actor_special_fire_situation_enum },
 		{ _field_real, "special-fire chance", "how likely we are to use our special weapon fire mode", nullptr, "[0,1]" },
 		{ _field_real, "special-fire delay", "how long we must wait between uses of our special weapon fire mode", "seconds" },
 		{ _field_real, "special damage modifier", "damage modifier for special weapon fire (applied in addition to the normal damage modifier. zero = no change)", nullptr, "[0,1]" },
 		{ _field_angle, "special projectile error", "projectile error angle for special weapon fire (applied in addition to the normal error)", "degrees" },
 		FIELD_EXPLANATION("Weapon drop when killed", nullptr),
 		{ _field_real_bounds, "drop weapon loaded", "amount of ammo loaded into the weapon that we drop (in fractions of a clip, e.g. 0.3 to 0.5)" },
-		{ _field_short_bounds, "drop weapon ammo", "total number of rounds in the weapon that we drop (ignored for energy weapons)" },
+		{ _field_short_integer_bounds, "drop weapon ammo", "total number of rounds in the weapon that we drop (ignored for energy weapons)" },
 		FIELD_EXPLANATION("Accuracy", "Parameters control how accuracy changes over the duration of a series of bursts\nAccuracy is an analog value between 0 and 1. At zero, the parameters of the first\nfiring-pattern block is used. At 1, the parameters in the second block is used. In\nbetween, all the values are linearly interpolated"),
 		{ _field_real_bounds, "normal accuracy bounds", "Indicates starting and ending accuracies at normal difficulty" },
 		{ _field_real, "normal accuracy time", "The amount of time it takes the accuracy to go from starting to ending" },
@@ -51490,8 +51490,8 @@ namespace haloreach {
 		CHARACTER_GRENADES_BLOCK_ID)
 	{
 		{ _field_long_flags, "grenades flags", &blofeld::haloreach::grenades_flags },
-		{ _field_enum, "grenade type", "type of grenades that we throw", FIELD_FLAG_INDEX, &blofeld::haloreach::global_grenade_type_enum },
-		{ _field_enum, "trajectory type", "how we throw our grenades", &blofeld::haloreach::actor_grenade_trajectory_enum },
+		{ _field_short_enum, "grenade type", "type of grenades that we throw", FIELD_FLAG_INDEX, &blofeld::haloreach::global_grenade_type_enum },
+		{ _field_short_enum, "trajectory type", "how we throw our grenades", &blofeld::haloreach::actor_grenade_trajectory_enum },
 		FIELD_PAD("YZNPI", 2),
 		{ _field_short_integer, "minimum enemy count", "how many enemies must be within the radius of the grenade before we will consider throwing there" },
 		{ _field_real, "enemy radius", "we consider enemies within this radius when determining where to throw", "world units" },
@@ -51504,7 +51504,7 @@ namespace haloreach {
 		{ _field_real_fraction, "grenade uncover chance", "how likely we are to throw a grenade to flush out a target in one second", nullptr, "[0,1]" },
 		{ _field_real_fraction, "anti-vehicle grenade chance", "how likely we are to throw a grenade against a vehicle", nullptr, "[0,1]" },
 		FIELD_EXPLANATION("Grenade drop when killed", nullptr),
-		{ _field_short_bounds, "grenade count", "number of grenades that we start with" },
+		{ _field_short_integer_bounds, "grenade count", "number of grenades that we start with" },
 		{ _field_real, "dont drop grenades chance", "how likely we are not to drop any grenades when we die, even if we still have some", nullptr, "[0,1]" },
 		{ _field_terminator }
 	};
@@ -51610,7 +51610,7 @@ namespace haloreach {
 		{ _field_real, "turtling recent damage threshold", "If vehicle turtling behavior is enabled, turtling is initiated if 'recent damage' surpasses the given threshold", "%" },
 		{ _field_real, "turtling min time", "If the vehicle turtling behavior is enabled, turtling occurs for at least the given time", "seconds" },
 		{ _field_real, "turtling timeout", "The turtled state times out after the given number of seconds", "seconds" },
-		{ _field_enum, "obstacle ignore size", &blofeld::haloreach::obstacle_ignore_enum },
+		{ _field_short_enum, "obstacle ignore size", &blofeld::haloreach::obstacle_ignore_enum },
 		FIELD_PAD("I", 2),
 		{ _field_short_integer, "max vehicle charge", "max number of this type of vehicle in a task who can vehicle charge at once" },
 		{ _field_short_integer, "min vehicle charge", "min number of this type of vehicle in a task who can vehicle charge at once (soft limit, just a desired number)" },
@@ -51997,8 +51997,8 @@ namespace haloreach {
 		CHARACTER_EQUIPMENT_USAGE_BLOCK_ID)
 	{
 		FIELD_EXPLANATION("Equipment Use", "How should I use this equipment?"),
-		{ _field_enum, "use when", "When should we use this equipment?", &blofeld::haloreach::character_equipment_usage_when_enum },
-		{ _field_enum, "use how", "How should we use this equipment?", &blofeld::haloreach::character_equipment_usage_how_enum },
+		{ _field_short_enum, "use when", "When should we use this equipment?", &blofeld::haloreach::character_equipment_usage_when_enum },
+		{ _field_short_enum, "use how", "How should we use this equipment?", &blofeld::haloreach::character_equipment_usage_how_enum },
 		FIELD_EXPLANATION("Skip Fraction", "Given that we have decided to use this equipment, should we do so? (0= always use it, 1= never use it). Heroic skip fraction is the average of normal and legendary chances."),
 		{ _field_real, "easy/normal", nullptr, "0-1" },
 		{ _field_real, "legendary", nullptr, "0-1" },
@@ -52503,7 +52503,7 @@ namespace haloreach {
 		{ _field_real, "decay time ping" },
 		{ _field_real, "search pattern radius" },
 		{ _field_short_integer, "search pattern shell count" },
-		{ _field_short_bounds, "search pattern cells per shell range" },
+		{ _field_short_integer_bounds, "search pattern cells per shell range" },
 		FIELD_PAD("MOOOOOOO", 2),
 		FIELD_GROUP_END(),
 		{ _field_terminator }
@@ -52648,7 +52648,7 @@ namespace haloreach {
 	{
 		{ _field_word_flags, "Flags", &blofeld::haloreach::user_hint_geometry_flags },
 		{ _field_short_block_index, "geometry index", &blofeld::haloreach::user_hint_parallelogram_block_block },
-		{ _field_enum, "force jump height", &blofeld::haloreach::global_ai_jump_height_enum },
+		{ _field_short_enum, "force jump height", &blofeld::haloreach::global_ai_jump_height_enum },
 		{ _field_word_flags, "control flags", &blofeld::haloreach::jump_flags },
 		{ _field_terminator }
 	};
@@ -52675,7 +52675,7 @@ namespace haloreach {
 	{
 		{ _field_word_flags, "Flags", &blofeld::haloreach::user_hint_geometry_flags },
 		{ _field_short_block_index, "geometry index", &blofeld::haloreach::user_hint_line_segment_block_block },
-		{ _field_enum, "force hoist height", &blofeld::haloreach::forced_hoist_height_enum },
+		{ _field_short_enum, "force hoist height", &blofeld::haloreach::forced_hoist_height_enum },
 		FIELD_PAD("post-forced-hoist-height", 2),
 		{ _field_terminator }
 	};
@@ -52699,7 +52699,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_WELL_POINT_BLOCK_ID)
 	{
-		{ _field_enum, "type", &blofeld::haloreach::user_hint_well_point_type_enum },
+		{ _field_short_enum, "type", &blofeld::haloreach::user_hint_well_point_type_enum },
 		FIELD_PAD("CNXLP", 2),
 		{ _field_real_point_3d, "point" },
 		{ _field_short_block_index, "reference frame", &blofeld::haloreach::ai_reference_frame_block_block },
@@ -52994,7 +52994,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PATHFINDING_HINTS_BLOCK_ID)
 	{
-		{ _field_enum, "hint type", &blofeld::haloreach::hint_type_enum },
+		{ _field_short_enum, "hint type", &blofeld::haloreach::hint_type_enum },
 		{ _field_short_integer, "Next hint index" },
 		{ _field_long_integer, "hint data 0" },
 		{ _field_long_integer, "hint data 1" },
@@ -53142,7 +53142,7 @@ namespace haloreach {
 		{ _field_real, "delay", "how long the AI should pause at this point", "seconds" },
 		{ _field_real, "angle", "the angle-from-forward that the AI can pick at this point", "degrees" },
 		{ _field_string_id, "activity name" },
-		{ _field_enum, "activity", &blofeld::haloreach::g_activity_enum },
+		{ _field_short_enum, "activity", &blofeld::haloreach::g_activity_enum },
 		{ _field_short_integer, "activity variant" },
 		{ _field_string_id, "command script", _field_id_halo_script_block },
 		{ _field_short_integer, "command script index" },
@@ -53217,15 +53217,15 @@ namespace haloreach {
 		{ _field_short_block_index, "initial secondary weapon", &blofeld::haloreach::scenario_weapon_palette_block_block },
 		{ _field_short_block_index, "initial equipment", &blofeld::haloreach::scenario_equipment_palette_block_block },
 		{ _field_short_block_index, "vehicle type", &blofeld::haloreach::scenario_vehicle_palette_block_block },
-		{ _field_enum, "seat type", &blofeld::haloreach::ai_placement_seat_preference_enum },
-		{ _field_enum, "grenade type", &blofeld::haloreach::global_ai_grenade_type_enum },
+		{ _field_short_enum, "seat type", &blofeld::haloreach::ai_placement_seat_preference_enum },
+		{ _field_short_enum, "grenade type", &blofeld::haloreach::global_ai_grenade_type_enum },
 		{ _field_short_integer, "swarm count", "number of cretures in swarm if a swarm is spawned at this location" },
 		FIELD_PAD("post-swarm-count-pad", 2),
 		{ _field_string_id, "actor variant name" },
 		{ _field_string_id, "vehicle variant name" },
 		{ _field_string_id, "voice designator" },
 		{ _field_real, "initial movement distance", "before doing anything else, the actor will travel the given distance in its forward direction" },
-		{ _field_enum, "initial movement mode", &blofeld::haloreach::actor_movement_modes },
+		{ _field_short_enum, "initial movement mode", &blofeld::haloreach::actor_movement_modes },
 		{ _field_short_block_index, "emitter vehicle", &blofeld::haloreach::scenario_vehicle_block_block },
 		{ _field_short_block_index, "giant body", &blofeld::haloreach::scenario_giant_block_block },
 		{ _field_short_block_index, "biped body", &blofeld::haloreach::scenario_biped_block_block },
@@ -53235,7 +53235,7 @@ namespace haloreach {
 		{ _field_string_id, "activity name" },
 		{ _field_string_id, "movement set" },
 		{ _field_custom_short_block_index, "point set" },
-		{ _field_enum, "patrol mode", &blofeld::haloreach::patrol_mode_enum },
+		{ _field_short_enum, "patrol mode", &blofeld::haloreach::patrol_mode_enum },
 		{ _field_block, "points", &blofeld::haloreach::patrol_point_block_block },
 		{ _field_terminator }
 	};
@@ -53299,13 +53299,13 @@ namespace haloreach {
 		{ _field_real, "roll" },
 		{ _field_string_id, "formation" },
 		{ _field_real, "initial movement distance", "before doing anything else, the actor will travel the given distance in its forward direction" },
-		{ _field_enum, "initial movement mode", &blofeld::haloreach::actor_movement_modes },
+		{ _field_short_enum, "initial movement mode", &blofeld::haloreach::actor_movement_modes },
 		{ _field_short_integer, "placement script index" },
 		{ _field_string_id, "placement script", MAKE_ALT_NAMES("Placement script"), _field_id_halo_script_block },
 		{ _field_string_id, "activity name" },
 		{ _field_string_id, "movement set" },
 		{ _field_custom_short_block_index, "point set" },
-		{ _field_enum, "patrol mode", &blofeld::haloreach::patrol_mode_enum },
+		{ _field_short_enum, "patrol mode", &blofeld::haloreach::patrol_mode_enum },
 		{ _field_block, "points", &blofeld::haloreach::patrol_point_block_block },
 		{ _field_terminator }
 	};
@@ -53375,12 +53375,12 @@ namespace haloreach {
 		{ _field_string_id, "name" },
 		{ _field_struct, "place on", &blofeld::haloreach::ai_spawn_conditions_struct },
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
-		{ _field_enum, "major upgrade", &blofeld::haloreach::major_upgrade_enum },
+		{ _field_short_enum, "major upgrade", &blofeld::haloreach::major_upgrade_enum },
 		{ _field_block, "character type", &blofeld::haloreach::character_palette_choice_block_block },
 		{ _field_block, "initial weapon", &blofeld::haloreach::weapon_palette_choice_block_block },
 		{ _field_block, "initial secondary weapon", &blofeld::haloreach::weapon_palette_choice_block_block },
 		{ _field_block, "initial equipment", &blofeld::haloreach::equipment_palette_choice_block_block },
-		{ _field_enum, "grenade type", &blofeld::haloreach::global_ai_grenade_type_enum },
+		{ _field_short_enum, "grenade type", &blofeld::haloreach::global_ai_grenade_type_enum },
 		{ _field_short_block_index, "vehicle type", &blofeld::haloreach::scenario_vehicle_palette_block_block },
 		{ _field_string_id, "vehicle variant" },
 		{ _field_string_id, "Placement script", _field_id_halo_script_block },
@@ -53389,7 +53389,7 @@ namespace haloreach {
 		{ _field_string_id, "activity name" },
 		{ _field_string_id, "movement set" },
 		{ _field_custom_short_block_index, "point set" },
-		{ _field_enum, "patrol mode", &blofeld::haloreach::patrol_mode_enum },
+		{ _field_short_enum, "patrol mode", &blofeld::haloreach::patrol_mode_enum },
 		{ _field_block, "points", &blofeld::haloreach::patrol_point_block_block },
 		{ _field_terminator }
 	};
@@ -53449,7 +53449,7 @@ namespace haloreach {
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::haloreach::squad_flags },
-		{ _field_enum, "team", &blofeld::haloreach::ai_team_enum },
+		{ _field_short_enum, "team", &blofeld::haloreach::ai_team_enum },
 		{ _field_short_block_index, "parent", &blofeld::haloreach::squad_groups_block_block, _field_id_squad_template },
 		{ _field_short_block_index, "initial zone", &blofeld::haloreach::zone_block_block },
 		{ _field_short_block_index, "initial objective", &blofeld::haloreach::objectives_block_block },
@@ -53563,13 +53563,13 @@ namespace haloreach {
 		{ _field_string_id, "name" },
 		{ _field_struct, "place on", &blofeld::haloreach::ai_spawn_conditions_struct },
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
-		{ _field_enum, "major upgrade", &blofeld::haloreach::major_upgrade_enum },
+		{ _field_short_enum, "major upgrade", &blofeld::haloreach::major_upgrade_enum },
 		FIELD_EXPLANATION("Character Build", "Specify the distribution of characters and weapons in the following blocks"),
 		{ _field_block, "character type", &blofeld::haloreach::character_ref_choice_block_block, _field_id_grid },
 		{ _field_block, "initial weapon", &blofeld::haloreach::weapon_ref_choice_block_block, _field_id_grid },
 		{ _field_block, "initial secondary weapon", &blofeld::haloreach::weapon_ref_choice_block_block, _field_id_grid },
 		{ _field_block, "initial equipment", &blofeld::haloreach::equipment_ref_choice_block_block, _field_id_grid },
-		{ _field_enum, "grenade type", &blofeld::haloreach::global_ai_grenade_type_enum },
+		{ _field_short_enum, "grenade type", &blofeld::haloreach::global_ai_grenade_type_enum },
 		FIELD_PAD("post-grenade", 2),
 		{ _field_tag_reference, "vehicle type", &blofeld::haloreach::vehicle_group_reference$4_tagref },
 		{ _field_string_id, "vehicle variant" },
@@ -53752,7 +53752,7 @@ namespace haloreach {
 		{ _field_real, "flock destroy duration", "The number of seconds it takes to kill all units in the flock if it gets destroyed", "sec" },
 		{ _field_short_block_index, "boid creature", &blofeld::haloreach::scenario_creature_palette_block_block },
 		{ _field_short_block_index, "big battle creature", &blofeld::haloreach::big_battle_creature_palette_block_block },
-		{ _field_short_bounds, "boid count" },
+		{ _field_short_integer_bounds, "boid count" },
 		{ _field_short_block_index, "enemy flock", &blofeld::haloreach::flock_instance_block_block },
 		FIELD_PAD("post-enemy-flock", 2),
 		{ _field_real, "enemy flock max target distance" },
@@ -53884,7 +53884,7 @@ namespace haloreach {
 		AI_SCENE_ROLE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "group", &blofeld::haloreach::role_group_enum },
+		{ _field_short_enum, "group", &blofeld::haloreach::role_group_enum },
 		FIELD_PAD("XZUW", 2),
 		{ _field_useless_pad, "value" },
 		{ _field_block, "role variants", &blofeld::haloreach::ai_scene_role_variants_block_block },
@@ -53909,7 +53909,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_SCENE_TRIGGER_BLOCK_ID)
 	{
-		{ _field_enum, "combination rule", &blofeld::haloreach::combination_rules_enum },
+		{ _field_short_enum, "combination rule", &blofeld::haloreach::combination_rules_enum },
 		FIELD_PAD("NJBJMKU", 2),
 		{ _field_block, "triggers", &blofeld::haloreach::trigger_references_block },
 		{ _field_terminator }
@@ -53976,7 +53976,7 @@ namespace haloreach {
 		{ _field_string_id, "vocalization name" },
 		{ _field_word_flags, "flags", &blofeld::haloreach::response_flags },
 		{ _field_short_integer, "vocalization index" },
-		{ _field_enum, "response type", &blofeld::haloreach::response_type_enum },
+		{ _field_short_enum, "response type", &blofeld::haloreach::response_type_enum },
 		{ _field_short_integer, "dialogue index (import)" },
 		{ _field_terminator }
 	};
@@ -54012,13 +54012,13 @@ namespace haloreach {
 	{
 		{ _field_string_id, "vocalization" },
 		{ _field_short_block_index, "parent index", &blofeld::haloreach::vocalization_definitions_block_block },
-		{ _field_enum, "priority", &blofeld::haloreach::priority_enum },
+		{ _field_short_enum, "priority", &blofeld::haloreach::priority_enum },
 		{ _field_long_flags, "flags", &blofeld::haloreach::vocalization_flags_definition },
-		{ _field_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::haloreach::glance_type_enum },
-		{ _field_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::haloreach::glance_type_enum },
-		{ _field_enum, "perception type", &blofeld::haloreach::perception_type_enum },
-		{ _field_enum, "max combat status", &blofeld::haloreach::combat_status_enum },
-		{ _field_enum, "animation impulse", &blofeld::haloreach::dialogue_animation_enum },
+		{ _field_short_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::haloreach::glance_type_enum },
+		{ _field_short_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::haloreach::glance_type_enum },
+		{ _field_short_enum, "perception type", &blofeld::haloreach::perception_type_enum },
+		{ _field_short_enum, "max combat status", &blofeld::haloreach::combat_status_enum },
+		{ _field_short_enum, "animation impulse", &blofeld::haloreach::dialogue_animation_enum },
 		{ _field_short_integer, "proxy dialogue index" },
 		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
 		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
@@ -54029,8 +54029,8 @@ namespace haloreach {
 		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
 		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
 		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
-		{ _field_enum, "speaker emotion", &blofeld::haloreach::dialogue_emotion_enum },
-		{ _field_enum, "listener emotion", &blofeld::haloreach::dialogue_emotion_enum },
+		{ _field_short_enum, "speaker emotion", &blofeld::haloreach::dialogue_emotion_enum },
+		{ _field_short_enum, "listener emotion", &blofeld::haloreach::dialogue_emotion_enum },
 		{ _field_real, "player speaker skip fraction" },
 		{ _field_real, "player skip fraction" },
 		{ _field_real, "flood skip fraction" },
@@ -54149,32 +54149,32 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VOCALIZATION_PATTERNS_BLOCK_ID)
 	{
-		{ _field_enum, "dialogue type", &blofeld::haloreach::dialogue_names_enum },
+		{ _field_short_enum, "dialogue type", &blofeld::haloreach::dialogue_names_enum },
 		{ _field_short_integer, "vocalization index" },
 		{ _field_string_id, "vocalization name" },
-		{ _field_enum, "speaker type", &blofeld::haloreach::speaker_type_enum },
-		{ _field_enum, "listener/target", "who/what am I speaking to/of?", &blofeld::haloreach::speaker_type_enum },
-		{ _field_enum, "hostility", "The relationship between the subject and the cause", &blofeld::haloreach::hostility_enum },
+		{ _field_short_enum, "speaker type", &blofeld::haloreach::speaker_type_enum },
+		{ _field_short_enum, "listener/target", "who/what am I speaking to/of?", &blofeld::haloreach::speaker_type_enum },
+		{ _field_short_enum, "hostility", "The relationship between the subject and the cause", &blofeld::haloreach::hostility_enum },
 		{ _field_word_flags, "flags", &blofeld::haloreach::pattern_flags },
 		FIELD_EXPLANATION("Cause", nullptr),
-		{ _field_enum, "cause actor type", &blofeld::haloreach::actor_type_enum },
-		{ _field_enum, "cause type", &blofeld::haloreach::dialogue_object_types_enum },
+		{ _field_short_enum, "cause actor type", &blofeld::haloreach::actor_type_enum },
+		{ _field_short_enum, "cause type", &blofeld::haloreach::dialogue_object_types_enum },
 		{ _field_string_id, "cause ai type name" },
 		{ _field_string_id, "cause equipment type name" },
 		FIELD_EXPLANATION("Speaker", nullptr),
-		{ _field_enum, "speaker object type", &blofeld::haloreach::dialogue_object_types_enum },
-		{ _field_enum, "speaker behavior", &blofeld::haloreach::speaker_behavior_enum },
-		{ _field_enum, "danger level", "Speaker must have danger level of at least this much", &blofeld::haloreach::danger_enum },
+		{ _field_short_enum, "speaker object type", &blofeld::haloreach::dialogue_object_types_enum },
+		{ _field_short_enum, "speaker behavior", &blofeld::haloreach::speaker_behavior_enum },
+		{ _field_short_enum, "danger level", "Speaker must have danger level of at least this much", &blofeld::haloreach::danger_enum },
 		{ _field_char_enum, "speaker/subject position", &blofeld::haloreach::spatial_relation_enum },
 		{ _field_char_enum, "speaker/cause position", &blofeld::haloreach::spatial_relation_enum },
 		{ _field_long_flags, "Conditions", &blofeld::haloreach::dialogue_condition_flags },
 		FIELD_EXPLANATION("Matching", nullptr),
-		{ _field_enum, "spatial relation", "with respect to the subject, the cause is ...", &blofeld::haloreach::spatial_relation_enum },
-		{ _field_enum, "damage type", &blofeld::haloreach::damage_enum },
-		{ _field_enum, "game type", &blofeld::haloreach::game_type_enum },
+		{ _field_short_enum, "spatial relation", "with respect to the subject, the cause is ...", &blofeld::haloreach::spatial_relation_enum },
+		{ _field_short_enum, "damage type", &blofeld::haloreach::damage_enum },
+		{ _field_short_enum, "game type", &blofeld::haloreach::game_type_enum },
 		FIELD_EXPLANATION("Subject", nullptr),
-		{ _field_enum, "subject actor type", &blofeld::haloreach::actor_type_enum },
-		{ _field_enum, "subject type", &blofeld::haloreach::dialogue_object_types_enum },
+		{ _field_short_enum, "subject actor type", &blofeld::haloreach::actor_type_enum },
+		{ _field_short_enum, "subject type", &blofeld::haloreach::dialogue_object_types_enum },
 		FIELD_PAD("post-subject-type-pad", 2),
 		{ _field_string_id, "subject ai type name" },
 		{ _field_terminator }
@@ -54640,7 +54640,7 @@ namespace haloreach {
 	{
 		{ _field_string, "name" },
 		FIELD_EXPLANATION("Combat status decay options", "Controls how combat status is allowed to be automatically reduced in the absence of combat stimuli. \'Latch at X\' means that once the level of x is attained (and/or surpassed) the combat status never falls below it. Not applicable when style is applied to a character tag."),
-		{ _field_enum, "Combat status decay options", &blofeld::haloreach::combat_status_enum$2 },
+		{ _field_short_enum, "Combat status decay options", &blofeld::haloreach::combat_status_enum$2 },
 		FIELD_PAD("hghq", 2),
 		FIELD_EXPLANATION("Style Behavior Control", "Check the appropriate box to turn on/off the given behavior"),
 		{ _field_long_flags, "Style control", &blofeld::haloreach::style_control_flags },
@@ -54916,7 +54916,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ORDER_COMPLETION_CONDITION_ID)
 	{
-		{ _field_enum, "rule type", &blofeld::haloreach::condition_type_enum },
+		{ _field_short_enum, "rule type", &blofeld::haloreach::condition_type_enum },
 		{ _field_short_block_index, "squad", &blofeld::haloreach::squads_block_block },
 		{ _field_short_block_index, "squad group", &blofeld::haloreach::squad_groups_block_block },
 		{ _field_short_integer, "a" },
@@ -54980,7 +54980,7 @@ namespace haloreach {
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_string, "name" },
 		{ _field_long_flags, "trigger flags", &blofeld::haloreach::trigger_flags },
-		{ _field_enum, "combination rule", &blofeld::haloreach::combination_rules_enum },
+		{ _field_short_enum, "combination rule", &blofeld::haloreach::combination_rules_enum },
 		FIELD_PAD("XXCMMRUP", 2),
 		{ _field_useless_pad, "value" },
 		{ _field_block, "conditions", &blofeld::haloreach::order_completion_condition_block },
@@ -55025,8 +55025,8 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SECONDARY_SET_TRIGGER_BLOCK_ID)
 	{
-		{ _field_enum, "combination rule", &blofeld::haloreach::combination_rules_enum },
-		{ _field_enum, "dialogue type", "when this ending is triggered, launch a dialogue event of the given type", &blofeld::haloreach::order_ending_dialogue_enum },
+		{ _field_short_enum, "combination rule", &blofeld::haloreach::combination_rules_enum },
+		{ _field_short_enum, "dialogue type", "when this ending is triggered, launch a dialogue event of the given type", &blofeld::haloreach::order_ending_dialogue_enum },
 		{ _field_block, "triggers", &blofeld::haloreach::trigger_references_block },
 		{ _field_terminator }
 	};
@@ -55067,7 +55067,7 @@ namespace haloreach {
 		{ _field_short_block_index, "Style", &blofeld::haloreach::style_palette_block_block },
 		FIELD_PAD("YATIWNRNR", 2),
 		{ _field_long_flags, "flags", &blofeld::haloreach::order_flags },
-		{ _field_enum, "Force combat status", &blofeld::haloreach::force_combat_status_enum },
+		{ _field_short_enum, "Force combat status", &blofeld::haloreach::force_combat_status_enum },
 		FIELD_PAD("PWY", 2),
 		{ _field_string, "Entry Script", _field_id_halo_script_block },
 		{ _field_short_integer, "Script index" },
@@ -55116,9 +55116,9 @@ namespace haloreach {
 		ORDER_ENDING_BLOCK_ID)
 	{
 		{ _field_short_block_index, "next order", &blofeld::haloreach::orders_block_block },
-		{ _field_enum, "combination rule", &blofeld::haloreach::combination_rules_enum },
+		{ _field_short_enum, "combination rule", &blofeld::haloreach::combination_rules_enum },
 		{ _field_real, "delay time" },
-		{ _field_enum, "dialogue type", "when this ending is triggered, launch a dialogue event of the given type", &blofeld::haloreach::order_ending_dialogue_enum },
+		{ _field_short_enum, "dialogue type", "when this ending is triggered, launch a dialogue event of the given type", &blofeld::haloreach::order_ending_dialogue_enum },
 		FIELD_PAD("YVKPCQIYY", 2),
 		{ _field_useless_pad, "value" },
 		{ _field_block, "triggers", &blofeld::haloreach::trigger_references_block },
@@ -55560,7 +55560,7 @@ namespace haloreach {
 		{ _field_short_integer, "sector index" },
 		{ _field_real_euler_angles_2d, "normal" },
 		{ _field_angle, "facing" },
-		{ _field_enum, "preference", &blofeld::haloreach::combat_cue_preference_enum },
+		{ _field_short_enum, "preference", &blofeld::haloreach::combat_cue_preference_enum },
 		FIELD_PAD("post-preference", 2),
 		{ _field_terminator }
 	};
@@ -56012,7 +56012,7 @@ namespace haloreach {
 		{ _field_block, "flight_hints", &blofeld::haloreach::flight_reference_block_block },
 		{ _field_block, "points", &blofeld::haloreach::area_sector_point_block_block },
 		FIELD_EXPLANATION("Generation Properties", nullptr),
-		{ _field_enum, "preset", &blofeld::haloreach::generate_preset_enum, _field_id_ugpc },
+		{ _field_short_enum, "preset", &blofeld::haloreach::generate_preset_enum, _field_id_ugpc },
 		FIELD_PAD("PAD1", 2),
 		{ _field_long_flags, "flags", &blofeld::haloreach::generate_flags },
 		{ _field_real, "extrusion" },
@@ -56106,7 +56106,7 @@ namespace haloreach {
 	{
 		{ _field_string_id, "script name" },
 		{ _field_long_string, "script source", _field_id_unknown_maeo },
-		{ _field_enum, "compile state", &blofeld::haloreach::fragment_state_enum },
+		{ _field_short_enum, "compile state", &blofeld::haloreach::fragment_state_enum },
 		FIELD_PAD("xcvh", 2),
 		{ _field_terminator }
 	};
@@ -56159,7 +56159,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ZONE_SET_BLOCK_STRUCT_ID)
 	{
-		{ _field_enum, "area type", &blofeld::haloreach::zone_set_type_enum },
+		{ _field_short_enum, "area type", &blofeld::haloreach::zone_set_type_enum },
 		{ _field_byte_flags, "flags", &blofeld::haloreach::zone_set_flags },
 		FIELD_PAD("no-character-flags-padding", 1),
 		{ _field_short_block_index, "zone", &blofeld::haloreach::zone_block_block },
@@ -56200,8 +56200,8 @@ namespace haloreach {
 		{ _field_word_flags, "flags", &blofeld::haloreach::task_flags_definition },
 		{ _field_word_flags, "inhibit groups", &blofeld::haloreach::inhibit_behavior_flags },
 		{ _field_word_flags, "inhibit on difficulty", &blofeld::haloreach::global_campaign_difficulty_enum },
-		{ _field_enum, "movement", &blofeld::haloreach::task_movement_enum },
-		{ _field_enum, "follow", &blofeld::haloreach::task_follow_enum },
+		{ _field_short_enum, "movement", &blofeld::haloreach::task_movement_enum },
+		{ _field_short_enum, "follow", &blofeld::haloreach::task_follow_enum },
 		{ _field_short_block_index, "follow squad", &blofeld::haloreach::squads_block_block },
 		{ _field_real, "follow radius" },
 		{ _field_real, "follow Z clamp", "Don't follow at areas outside of this vertical margin", "wus" },
@@ -56217,7 +56217,7 @@ namespace haloreach {
 		{ _field_short_integer, "Command script index" },
 		{ _field_short_integer, "Exhaustion script index" },
 		{ _field_short_block_index, "Squad group filter", &blofeld::haloreach::squad_groups_block_block },
-		{ _field_enum, "dialogue type", "when someone enters this task for the first time, they play this type of dialogue", &blofeld::haloreach::task_dialogue_enum },
+		{ _field_short_enum, "dialogue type", "when someone enters this task for the first time, they play this type of dialogue", &blofeld::haloreach::task_dialogue_enum },
 		{ _field_word_flags, "runtime flags", &blofeld::haloreach::task_runtime_flags },
 		{ _field_short_integer, "Kungfu count", "The number of guys under this task that should be allowed to fight the player at a time" },
 		FIELD_PAD("post-kungfu-count", 2),
@@ -56231,10 +56231,10 @@ namespace haloreach {
 		{ _field_short_block_index, "script index ", &blofeld::haloreach::hs_scripts_block_block },
 		{ _field_short_integer, "lifetime count", "task will never want to suck in more then n guys over lifetime (soft ceiling only applied when limit exceeded" },
 		{ _field_word_flags, "filter flags", &blofeld::haloreach::filter_flags },
-		{ _field_enum, "filter", &blofeld::haloreach::filter_enum },
-		{ _field_short_bounds, "capacity" },
+		{ _field_short_enum, "filter", &blofeld::haloreach::filter_enum },
+		{ _field_short_integer_bounds, "capacity" },
 		{ _field_short_integer, "max body count", "task becomes inactive after the given number of casualties" },
-		{ _field_enum, "attitude", &blofeld::haloreach::task_attitude_enum },
+		{ _field_short_enum, "attitude", &blofeld::haloreach::task_attitude_enum },
 		{ _field_real, "min strength", "task becomes inactive after the strength of the participants falls below the given level", nullptr, "[0,1]" },
 		{ _field_block, "areas", &blofeld::haloreach::zone_set_block_block },
 		{ _field_block, "direction", &blofeld::haloreach::task_direction_block_v2_block },
@@ -56513,8 +56513,8 @@ namespace haloreach {
 	{
 		{ _field_string_id, "name" },
 		{ _field_short_block_index, "bitmap", &blofeld::haloreach::emblem_bitmap_list_block },
-		{ _field_enum, "address mode x", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
-		{ _field_enum, "address mode y", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "address mode x", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "address mode y", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
 		FIELD_PAD("FGKKGKHL", 2),
 		{ _field_struct, "transform", &blofeld::haloreach::emblem_transform },
 		{ _field_terminator }
@@ -56599,11 +56599,11 @@ namespace haloreach {
 		EMBLEM_RUNTIME_BACK_LIST_ID)
 	{
 		{ _field_short_integer, "bitmap0_index" },
-		{ _field_enum, "bitmap0_address_x", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
-		{ _field_enum, "bitmap0_address_y", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "bitmap0_address_x", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "bitmap0_address_y", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
 		{ _field_short_integer, "bitmap1_index" },
-		{ _field_enum, "bitmap1_address_x", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
-		{ _field_enum, "bitmap1_address_y", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "bitmap1_address_x", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "bitmap1_address_y", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
 		{ _field_real_quaternion, "bitmap_transform0" },
 		{ _field_real_quaternion, "bitmap_transform1" },
 		{ _field_real_quaternion, "bitmap_transform2" },
@@ -56624,11 +56624,11 @@ namespace haloreach {
 		EMBLEM_RUNTIME_FRONT_LIST_ID)
 	{
 		{ _field_short_integer, "bitmap0_index" },
-		{ _field_enum, "bitmap0_address_x", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
-		{ _field_enum, "bitmap0_address_y", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "bitmap0_address_x", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "bitmap0_address_y", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
 		{ _field_short_integer, "bitmap1_index" },
-		{ _field_enum, "bitmap1_address_x", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
-		{ _field_enum, "bitmap1_address_y", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "bitmap1_address_x", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "bitmap1_address_y", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
 		{ _field_real_quaternion, "bitmap_transform0" },
 		{ _field_real_quaternion, "bitmap_transform1" },
 		{ _field_real_quaternion, "bitmap_transform2" },
@@ -56636,11 +56636,11 @@ namespace haloreach {
 		{ _field_real_quaternion, "bitmap_params0" },
 		{ _field_real_quaternion, "bitmap_params1" },
 		{ _field_short_integer, "bitmap2_index" },
-		{ _field_enum, "bitmap2_address_x", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
-		{ _field_enum, "bitmap2_address_y", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "bitmap2_address_x", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "bitmap2_address_y", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
 		{ _field_short_integer, "bitmap3_index" },
-		{ _field_enum, "bitmap3_address_x", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
-		{ _field_enum, "bitmap3_address_y", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "bitmap3_address_x", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
+		{ _field_short_enum, "bitmap3_address_y", &blofeld::haloreach::render_method_bitmap_address_mode_enum },
 		{ _field_real_quaternion, "bitmap_transform4" },
 		{ _field_real_quaternion, "bitmap_transform5" },
 		{ _field_real_quaternion, "bitmap_transform6" },
@@ -57302,7 +57302,7 @@ namespace haloreach {
 	{
 		{ _field_byte_flags, "flags", &blofeld::haloreach::chud_datasource_flags },
 		FIELD_PAD("SVHELRNN", 3),
-		{ _field_enum, "type", &blofeld::haloreach::chud_datasource_type_enum },
+		{ _field_short_enum, "type", &blofeld::haloreach::chud_datasource_type_enum },
 		{ _field_short_integer, "render maximum" },
 		{ _field_block, "resolutions", &blofeld::haloreach::chud_datasource_resolution_block_block },
 		{ _field_block, "positions", "As offsets from the previous one", &blofeld::haloreach::chud_datasource_position_block_block },
@@ -57401,21 +57401,21 @@ namespace haloreach {
 		{ _field_real, "custom scalar C" },
 		{ _field_real, "custom scalar D" },
 		FIELD_EXPLANATION("Color Outputs", nullptr),
-		{ _field_enum, "color output A", &blofeld::haloreach::chud_render_color_output_enum },
-		{ _field_enum, "color output B", &blofeld::haloreach::chud_render_color_output_enum },
-		{ _field_enum, "color output C", &blofeld::haloreach::chud_render_color_output_enum },
-		{ _field_enum, "color output D", &blofeld::haloreach::chud_render_color_output_enum },
-		{ _field_enum, "color output E", &blofeld::haloreach::chud_render_color_output_enum },
-		{ _field_enum, "color output F", &blofeld::haloreach::chud_render_color_output_enum },
+		{ _field_short_enum, "color output A", &blofeld::haloreach::chud_render_color_output_enum },
+		{ _field_short_enum, "color output B", &blofeld::haloreach::chud_render_color_output_enum },
+		{ _field_short_enum, "color output C", &blofeld::haloreach::chud_render_color_output_enum },
+		{ _field_short_enum, "color output D", &blofeld::haloreach::chud_render_color_output_enum },
+		{ _field_short_enum, "color output E", &blofeld::haloreach::chud_render_color_output_enum },
+		{ _field_short_enum, "color output F", &blofeld::haloreach::chud_render_color_output_enum },
 		FIELD_EXPLANATION("Scalar Outputs", nullptr),
-		{ _field_enum, "scalar output A", &blofeld::haloreach::chud_render_scalar_output_enum },
-		{ _field_enum, "scalar output B", &blofeld::haloreach::chud_render_scalar_output_enum },
-		{ _field_enum, "scalar output C", &blofeld::haloreach::chud_render_scalar_output_enum },
-		{ _field_enum, "scalar output D", &blofeld::haloreach::chud_render_scalar_output_enum },
-		{ _field_enum, "scalar output E", &blofeld::haloreach::chud_render_scalar_output_enum },
-		{ _field_enum, "scalar output F", &blofeld::haloreach::chud_render_scalar_output_enum },
+		{ _field_short_enum, "scalar output A", &blofeld::haloreach::chud_render_scalar_output_enum },
+		{ _field_short_enum, "scalar output B", &blofeld::haloreach::chud_render_scalar_output_enum },
+		{ _field_short_enum, "scalar output C", &blofeld::haloreach::chud_render_scalar_output_enum },
+		{ _field_short_enum, "scalar output D", &blofeld::haloreach::chud_render_scalar_output_enum },
+		{ _field_short_enum, "scalar output E", &blofeld::haloreach::chud_render_scalar_output_enum },
+		{ _field_short_enum, "scalar output F", &blofeld::haloreach::chud_render_scalar_output_enum },
 		{ _field_rectangle_2d, "scissor rect" },
-		{ _field_enum, "alpha blend mode", &blofeld::haloreach::render_blend_mode },
+		{ _field_short_enum, "alpha blend mode", &blofeld::haloreach::render_blend_mode },
 		FIELD_PAD("VMOWELA", 2),
 		{ _field_terminator }
 	};
@@ -57673,8 +57673,8 @@ namespace haloreach {
 		{ _field_char_integer, "postprocessed intermediate list index" },
 		{ _field_byte_flags, "base flags", &blofeld::haloreach::chud_widget_base_flags },
 		{ _field_char_integer, "sort layer", MAKE_ALT_NAMES("new sort layer") },
-		{ _field_enum, "external input A", &blofeld::haloreach::chud_render_external_input_enum },
-		{ _field_enum, "external input B", &blofeld::haloreach::chud_render_external_input_enum },
+		{ _field_short_enum, "external input A", &blofeld::haloreach::chud_render_external_input_enum },
+		{ _field_short_enum, "external input B", &blofeld::haloreach::chud_render_external_input_enum },
 		{ _field_struct, "state data", &blofeld::haloreach::chud_widget_state_data_struct },
 		{ _field_struct, "placement data", &blofeld::haloreach::chud_widget_placement_data_struct },
 		{ _field_struct, "animation data", &blofeld::haloreach::chud_widget_animation_data_struct },
@@ -57923,7 +57923,7 @@ namespace haloreach {
 	{
 		{ _field_struct, "base", &blofeld::haloreach::chud_widget_base_struct },
 		{ _field_word_flags, "flags", &blofeld::haloreach::chud_widget_text_flags },
-		{ _field_enum, "font type", &blofeld::haloreach::global_font_id_enum_definition },
+		{ _field_short_enum, "font type", &blofeld::haloreach::global_font_id_enum_definition },
 		{ _field_string_id, "input string" },
 		{ _field_terminator }
 	};
@@ -58034,8 +58034,8 @@ namespace haloreach {
 		{ _field_real, "flashing animation state duration" },
 		{ _field_real, "readying animation state duration" },
 		{ _field_real, "unreadying animation state duration" },
-		{ _field_enum, "external input A", &blofeld::haloreach::chud_render_external_input_enum },
-		{ _field_enum, "external input B", &blofeld::haloreach::chud_render_external_input_enum },
+		{ _field_short_enum, "external input A", &blofeld::haloreach::chud_render_external_input_enum },
+		{ _field_short_enum, "external input B", &blofeld::haloreach::chud_render_external_input_enum },
 		{ _field_long_integer, "state cache invert flags" },
 		{ _field_char_integer, "flashing state cache start index" },
 		{ _field_char_integer, "hidden state cache start index" },
@@ -59224,7 +59224,7 @@ namespace haloreach {
 		PROPERTY_BINDING_ID)
 	{
 		{ _field_word_flags, "flags", &blofeld::haloreach::property_binding_flags },
-		{ _field_enum, "conversion function", &blofeld::haloreach::binding_conversion_function_enum_definition },
+		{ _field_short_enum, "conversion function", &blofeld::haloreach::binding_conversion_function_enum_definition },
 		{ _field_string_id, "source component name" },
 		{ _field_string_id, "source property name" },
 		{ _field_string_id, "target component name" },
@@ -59333,7 +59333,7 @@ namespace haloreach {
 		ANIMATION_COMPONENT_REAL_PROPERTY_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "composition", &blofeld::haloreach::animation_property_composition_type },
+		{ _field_short_enum, "composition", &blofeld::haloreach::animation_property_composition_type },
 		{ _field_byte_flags, "flags", &blofeld::haloreach::animation_property_flags },
 		FIELD_PAD("pad0", 1),
 		{ _field_long_integer, "total milliseconds" },
@@ -59366,7 +59366,7 @@ namespace haloreach {
 		ANIMATION_COMPONENT_ARGB_COLOR_PROPERTY_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "composition", &blofeld::haloreach::animation_property_composition_type },
+		{ _field_short_enum, "composition", &blofeld::haloreach::animation_property_composition_type },
 		{ _field_byte_flags, "flags", &blofeld::haloreach::animation_property_flags },
 		FIELD_PAD("pad0", 1),
 		{ _field_long_integer, "total milliseconds" },
@@ -59417,7 +59417,7 @@ namespace haloreach {
 		STATIC_DATA_COLUMN_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_enum, "type", &blofeld::haloreach::property_type },
+		{ _field_short_enum, "type", &blofeld::haloreach::property_type },
 		FIELD_PAD("pad0", 2),
 		{ _field_terminator }
 	};
@@ -59857,8 +59857,8 @@ namespace haloreach {
 		{ _field_string_id, "third_item" },
 		{ _field_string_id, "fourth_item" },
 		{ _field_string_id, "button key" },
-		{ _field_enum, "default item", &blofeld::haloreach::gui_dialog_choice_enum },
-		{ _field_enum, "b button action", &blofeld::haloreach::gui_dialog_b_button_action_enum },
+		{ _field_short_enum, "default item", &blofeld::haloreach::gui_dialog_choice_enum },
+		{ _field_short_enum, "b button action", &blofeld::haloreach::gui_dialog_b_button_action_enum },
 		{ _field_terminator }
 	};
 
@@ -62170,8 +62170,8 @@ namespace haloreach {
 		{ _field_short_integer, "source sequence index" },
 		FIELD_PAD("KBT", 16),
 		FIELD_PAD("ON", 4),
-		{ _field_enum, "interpolate colors...", &blofeld::haloreach::color_interpolation_modes_enum },
-		{ _field_enum, "anchor colors...", &blofeld::haloreach::color_anchors_enum },
+		{ _field_short_enum, "interpolate colors...", &blofeld::haloreach::color_interpolation_modes_enum },
+		{ _field_short_enum, "anchor colors...", &blofeld::haloreach::color_anchors_enum },
 		FIELD_PAD("WMTT", 8),
 		{ _field_real_argb_color, "empty color" },
 		{ _field_real_argb_color, "full color" },
@@ -62517,21 +62517,21 @@ namespace haloreach {
 		{ _field_real, "duration max" },
 		{ _field_real, "duration min" },
 		{ _field_real, "rise period ratio" },
-		{ _field_enum, "rise function", &blofeld::haloreach::transition_function_enum },
-		{ _field_enum, "descend function", &blofeld::haloreach::transition_function_enum },
+		{ _field_short_enum, "rise function", &blofeld::haloreach::transition_function_enum },
+		{ _field_short_enum, "descend function", &blofeld::haloreach::transition_function_enum },
 		FIELD_EXPLANATION("PENDULUM SETTINGS", "Only valid in case of the predulum flag has been checked."),
 		{ _field_real, "phase revolution speed" },
 		{ _field_real, "phase repeat along radius" },
 		FIELD_EXPLANATION("SHAPE TRANSITION", "interpolate between shapes in ripple pattern array"),
 		{ _field_real, "pattern start idx" },
 		{ _field_real, "pattern end idx" },
-		{ _field_enum, "pattern transition", &blofeld::haloreach::transition_function_enum },
+		{ _field_short_enum, "pattern transition", &blofeld::haloreach::transition_function_enum },
 		FIELD_PAD("SexyPadding1", 2),
 		FIELD_EXPLANATION("FOAM", "quick flashed foam"),
 		{ _field_real, "foam out radius" },
 		{ _field_real, "foam fade distance" },
 		{ _field_real, "foam duration" },
-		{ _field_enum, "foam fade function", &blofeld::haloreach::transition_function_enum },
+		{ _field_short_enum, "foam fade function", &blofeld::haloreach::transition_function_enum },
 		FIELD_PAD("SexyPadding2", 2),
 		{ _field_terminator }
 	};
@@ -62996,7 +62996,7 @@ namespace haloreach {
 		{ _field_long_integer, "virus gene mutations 1 in", nullptr, "times" },
 		FIELD_PAD("AM", 32),
 		FIELD_EXPLANATION("cell infection", nullptr),
-		{ _field_short_bounds, "infected cell lifespan", "the lifespan of a cell once infected", "updates" },
+		{ _field_short_integer_bounds, "infected cell lifespan", "the lifespan of a cell once infected", "updates" },
 		{ _field_short_integer, "minimum infection age", "no cell can be infected before it has been alive this number of updates", "updates" },
 		FIELD_PAD("GCKNPCPT", 2),
 		{ _field_real_fraction, "cell infection chance", nullptr, nullptr, "[0,1]" },

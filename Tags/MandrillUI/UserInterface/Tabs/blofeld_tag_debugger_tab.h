@@ -58,7 +58,7 @@
 //	void render_field_angle(render_field_callback_args);
 //	void render_field_tag(render_field_callback_args);
 //	void render_field_char_enum(render_field_callback_args);
-//	void render_field_enum(render_field_callback_args);
+//	void render_field_short_enum(render_field_callback_args);
 //	void render_field_long_enum(render_field_callback_args);
 //	void render_field_long_flags(render_field_callback_args);
 //	void render_field_word_flags(render_field_callback_args);
@@ -82,10 +82,10 @@
 //	void render_field_real_argb_color(render_field_callback_args);
 //	void render_field_real_hsv_color(render_field_callback_args);
 //	void render_field_real_ahsv_color(render_field_callback_args);
-//	void render_field_short_bounds(render_field_callback_args);
+//	void render_field_short_integer_bounds(render_field_callback_args);
 //	void render_field_angle_bounds(render_field_callback_args);
 //	void render_field_real_bounds(render_field_callback_args);
-//	void render_field_real_fraction_bounds(render_field_callback_args);
+//	void render_field_fraction_bounds(render_field_callback_args);
 //	void render_field_tag_reference(render_field_callback_args);
 //	void render_field_block(render_field_callback_args);
 //	void render_field_long_block_flags(render_field_callback_args);
@@ -107,7 +107,7 @@
 //	void render_FIELD_CUSTOM_EX(render_field_callback_args);
 //	void render_field_struct(render_field_callback_args);
 //	void render_field_array(render_field_callback_args);
-//	void render_field_pageable(render_field_callback_args);
+//	void render_field_pageable_resource(render_field_callback_args);
 //	void render_field_api_interop(render_field_callback_args);
 //	void render_field_terminator(render_field_callback_args);
 //	void render_field_byte_integer(render_field_callback_args);
@@ -122,5 +122,5 @@
 //	void render_field_name_and_information(const blofeld::s_tag_field& field, s_field_validation_result* result);
 //	void render_field_scalar_type(ImGuiDataType data_type, unsigned long count, int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result, bool use_hex = false, const char* format = nullptr);
 //private:
-//	template<typename t_raw_value> void render_field_enum_type(int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result);
+//	template<typename t_raw_value> void render_field_short_enum_type(int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result);
 //};

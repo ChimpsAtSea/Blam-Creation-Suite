@@ -64,7 +64,7 @@ void c_structure_relationship_node::populate()
 
 			break;
 		}
-		case _field_pageable:
+		case _field_pageable_resource:
 		{
 			if (current_field->tag_resource_definition) // some of these are not finished
 			{
@@ -141,7 +141,7 @@ void c_structure_relationship_node::create_sorted_tag_enum_definitions(s_engine_
 			case _field_word_flags:
 			case _field_byte_flags:
 			case _field_char_enum:
-			case _field_enum:
+			case _field_short_enum:
 			case _field_long_enum:
 			{
 				DEBUG_ASSERT(current_field->string_list_definition != nullptr);
