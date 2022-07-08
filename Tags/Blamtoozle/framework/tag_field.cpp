@@ -23,3 +23,15 @@ c_blamtoozle_tag_field_combined_fixup::c_blamtoozle_tag_field_combined_fixup(
 {
 
 }
+
+c_blamtoozle_tag_field_combined_fixup::~c_blamtoozle_tag_field_combined_fixup()
+{
+}
+
+c_blamtoozle_tag_field_dummy_space::c_blamtoozle_tag_field_dummy_space()
+{
+}
+
+c_blamtoozle_tag_field_dummy_space::~c_blamtoozle_tag_field_dummy_space()
+{
+}

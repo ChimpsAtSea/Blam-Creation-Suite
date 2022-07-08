@@ -59,20 +59,24 @@ public:
 	}
 
 	template<typename t_definition_manager_type, typename t_definition_type>
-	t_definition_type& eval_definition(ptr32 definition_address, std::map<ptr32, t_definition_type*>& tag_type_definitions)
+	t_definition_type& eval_definition(
+		ptr32 definition_address, 
+		std::vector<t_definition_type*>& tag_type_definitions, 
+		std::map<ptr32, t_definition_type*>& tag_type_definitions_lookup)
 	{
 		ASSERT(definition_address != 0);
 
-		auto tag_type_definition_iterator = tag_type_definitions.find(definition_address);
+		auto tag_type_definition_iterator = tag_type_definitions_lookup.find(definition_address);
 
-		if (tag_type_definition_iterator != tag_type_definitions.end())
+		if (tag_type_definition_iterator != tag_type_definitions_lookup.end())
 		{
 			return *tag_type_definition_iterator->second;
 		}
 
 		t_definition_type* tag_type_definition = reinterpret_cast<t_definition_type*>(tracked_malloc(sizeof(t_definition_type)));
 
-		tag_type_definitions[definition_address] = tag_type_definition;
+		tag_type_definitions_lookup[definition_address] = tag_type_definition;
+		tag_type_definitions.push_back(tag_type_definition);
 
 		tag_type_definition = new(tag_type_definition) t_definition_type(*static_cast<t_definition_manager_type*>(this), definition_address);
 
@@ -81,15 +85,27 @@ public:
 
 	bool is_big_endian;
 	std::unordered_map<std::string, unsigned long> code_symbol_counts;
-	std::map<ptr32, c_blamtoozle_tag_group_definition*> tag_group_definitions;
-	std::map<ptr32, c_blamtoozle_tag_struct_definition*> tag_struct_definitions;
-	std::map<ptr32, c_blamtoozle_tag_block_definition*> tag_block_definitions;
-	std::map<ptr32, c_blamtoozle_tag_reference_definition*> tag_reference_definitions;
-	std::map<ptr32, c_blamtoozle_tag_array_definition*> tag_array_definitions;
-	std::map<ptr32, c_blamtoozle_string_list_definition*> string_list_definitions;
-	std::map<ptr32, c_blamtoozle_tag_resource_definition*> tag_resource_definitions;
-	std::map<ptr32, c_blamtoozle_tag_data_definition*> tag_data_definitions;
-	std::map<ptr32, c_blamtoozle_tag_api_interop_definition*> tag_api_interop_definitions;
-	std::map<ptr32, c_blamtoozle_tag_block_index_custom_search_definition*> block_index_custom_search_definitions;
+
+	std::vector<c_blamtoozle_tag_group_definition*> tag_group_definitions;
+	std::vector<c_blamtoozle_tag_struct_definition*> tag_struct_definitions;
+	std::vector<c_blamtoozle_tag_block_definition*> tag_block_definitions;
+	std::vector<c_blamtoozle_tag_reference_definition*> tag_reference_definitions;
+	std::vector<c_blamtoozle_tag_array_definition*> tag_array_definitions;
+	std::vector<c_blamtoozle_string_list_definition*> string_list_definitions;
+	std::vector<c_blamtoozle_tag_resource_definition*> tag_resource_definitions;
+	std::vector<c_blamtoozle_tag_data_definition*> tag_data_definitions;
+	std::vector<c_blamtoozle_tag_api_interop_definition*> tag_api_interop_definitions;
+	std::vector<c_blamtoozle_tag_block_index_custom_search_definition*> block_index_custom_search_definitions;
+
+	std::map<ptr32, c_blamtoozle_tag_group_definition*> tag_group_definitions_lookup;
+	std::map<ptr32, c_blamtoozle_tag_struct_definition*> tag_struct_definitions_lookup;
+	std::map<ptr32, c_blamtoozle_tag_block_definition*> tag_block_definitions_lookup;
+	std::map<ptr32, c_blamtoozle_tag_reference_definition*> tag_reference_definitions_lookup;
+	std::map<ptr32, c_blamtoozle_tag_array_definition*> tag_array_definitions_lookup;
+	std::map<ptr32, c_blamtoozle_string_list_definition*> string_list_definitions_lookup;
+	std::map<ptr32, c_blamtoozle_tag_resource_definition*> tag_resource_definitions_lookup;
+	std::map<ptr32, c_blamtoozle_tag_data_definition*> tag_data_definitions_lookup;
+	std::map<ptr32, c_blamtoozle_tag_api_interop_definition*> tag_api_interop_definitions_lookup;
+	std::map<ptr32, c_blamtoozle_tag_block_index_custom_search_definition*> block_index_custom_search_definitions_lookup;
 	
 };

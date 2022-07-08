@@ -87,7 +87,8 @@ c_reach_x360_tag_struct_definition::c_reach_x360_tag_struct_definition(c_reach_x
 	structure_size_string(tag_definition_manager.va_to_pointer(struct_definition.type.structure_size_string_address)),
 	code_symbol_name(name),
 	code_type_name(),
-	traversed_tag_group_definition(*c_reach_x360_tag_group_definition::current_group_traverse_hack)
+	traversed_tag_group_definition(*c_reach_x360_tag_group_definition::current_group_traverse_hack),
+	conflict_handled(false)
 {
 	tag_definition_manager.format_code_symbol_name_uid(code_symbol_name);
 
@@ -245,144 +246,66 @@ c_flags<blofeld::e_tag_field_set_bit> c_reach_x360_tag_struct_definition::get_fi
 
 	return result;
 }
-//
-//void c_reach_x360_tag_struct_definition::handle_conflict(const char* data, const s_reach_x360_tag_struct_definition& conflicting_tag_struct_definition)
-//{
-//	clear_fields(); // clear fields, they will be rebuild
-//
-//	// push the current definition header onto the back of the queue
-//	struct_definitions.insert(struct_definitions.end(), { conflicting_tag_struct_definition, c_reach_x360_tag_group_definition::current_group_traverse_hack });
-//
-//	// make sure that we can compare with the original otherwise all hope is lost
-//	// and poor squaresome might have to rewrite the tag system again
-//	ASSERT(struct_definitions.front().first.runtime.original_fields == conflicting_tag_struct_definition.runtime.original_fields);
-//	ASSERT(struct_definitions.front().second != c_reach_x360_tag_group_definition::current_group_traverse_hack);
-//
-//	// insert the original fields
-//	{
-//		ptr32 fields_address = conflicting_tag_struct_definition.runtime.original_fields;
-//		const s_reach_x360_tag_field* const field_definitions = (const s_reach_x360_tag_field*)reach_x360_pa_to_pointer(data, fields_address);
-//		const s_reach_x360_tag_field* field_definition = field_definitions;
-//		ASSERT(field_definition);
-//		do
-//		{
-//			c_reach_x360_tag_field* field_wrapper = new() c_reach_x360_tag_field(data, *field_definition);
-//			fields.push_back(field_wrapper);
-//		} while ((field_definition++)->field_type != _reach_x360_field_type_terminator);
-//	}
-//	unsigned long num_original_fields = static_cast<unsigned long>(fields.size());
-//
-//
-//
-//	// insert bespoke field fixups
-//	for (auto& kv : struct_definitions)
-//	{
-//		const s_reach_x360_tag_struct_definition& definition_header = kv.first;
-//		c_reach_x360_tag_group_definition& tag_group_definition = *kv.second;
-//
-//		unsigned long num_combined_fields = definition_header.runtime.num_combined_fields;
-//		unsigned long num_insert_fields = num_combined_fields - num_original_fields;
-//
-//		ptr32 fields_address = definition_header.runtime.combined_fields;
-//		const s_reach_x360_tag_field* const field_definitions = (const s_reach_x360_tag_field*)reach_x360_pa_to_pointer(data, fields_address);
-//
-//		const s_reach_x360_tag_field* field_definition = field_definitions;
-//		ASSERT(field_definition);
-//
-//		t_fields temp_fields;
-//
-//		if (num_insert_fields > 0)
-//		{
-//			e_reach_x360_tag_field_combined_fixup_type fixup_type = _reach_x360_tag_field_combined_fixup_type_equal;
-//			{
-//				// #TODO: Is there a better way to automatically detect this?
-//				static const char* fixups[] =
-//				{
-//					"shader_contrail",
-//					"shader_particle"
-//					"shader_beam",
-//					"shader_decal",
-//					"shader_light_volume",
-//				};
-//				for (const char* fixup : fixups)
-//				{
-//					c_reach_x360_tag_field* field_wrapper = new() c_reach_x360_tag_field(data, *field_definition);
-//					if (strcmp(tag_group_definition.name, fixup) == 0)
-//					{
-//						fixup_type = _reach_x360_tag_field_combined_fixup_type_not_equal;
-//						break;
-//					}
-//				}
-//			}
-//
-//			c_reach_x360_tag_field_combined_fixup* versioning_field_wrapper = new() c_reach_x360_tag_field_combined_fixup(tag_group_definition, num_insert_fields, fixup_type);
-//			temp_fields.push_back(versioning_field_wrapper);
-//
-//			// #TODO: This might be way more complicated than assuming that these fields are always at the front
-//			// but this fixup codepath is only required for a handful of tags
-//			for (unsigned long combined_field_index = 0; combined_field_index < num_insert_fields; combined_field_index++, field_definition++)
-//			{
-//				c_reach_x360_tag_field* field_wrapper = new() c_reach_x360_tag_field(data, *field_definition);
-//				temp_fields.push_back(field_wrapper);
-//			}
-//
-//			c_reach_x360_tag_field_dummy_space* dummy_space_wrapper = new() c_reach_x360_tag_field_dummy_space();
-//			temp_fields.push_back(dummy_space_wrapper);
-//
-//			fields.insert(fields.begin(), temp_fields.begin(), temp_fields.end());
-//
-//		}
-//
-//		debug_point;
-//	}
-//
-//
-//
-//	ASSERT(fields.size() > 0);
-//	c_reach_x360_tag_field* last_field = dynamic_cast<c_reach_x360_tag_field*>(fields.back());
-//	ASSERT(last_field != nullptr);
-//	ASSERT(last_field->field_type == _reach_x360_field_type_terminator);
-//
-//	debug_point;
-//}
-//
-//c_reach_x360_tag_struct_definition* c_reach_x360_tag_struct_definition::reach_x360_get_tag_struct_definition(const char* data, ptr32 virtual_address)
-//{
-//	const s_reach_x360_tag_struct_definition* src_tag_struct_definition = reinterpret_cast<const s_reach_x360_tag_struct_definition*>(reach_x360_pa_to_pointer(data, virtual_address));
-//	s_reach_x360_tag_struct_definition tag_struct_definition = byteswap(*src_tag_struct_definition);
-//
-//	c_reach_x360_tag_struct_definition* conflicting_tag_struct_definition = reach_x360_find_tag_struct_definition_by_persistent_id(tag_struct_definition.type.persistent_identifier);
-//	c_reach_x360_tag_struct_definition* existing_tag_struct_definition = nullptr;
-//
-//	std::map<ptr32, c_reach_x360_tag_struct_definition*>::iterator tag_block_definition_iterator = tag_struct_definitions.find(virtual_address);
-//	if (tag_block_definition_iterator != tag_struct_definitions.end())
-//	{
-//		existing_tag_struct_definition = tag_block_definition_iterator->second;
-//	}
-//
-//	if (existing_tag_struct_definition == nullptr && conflicting_tag_struct_definition != nullptr) // struct already exists, found a conflict
-//	{
-//		console_write_line("Attempting to resolve duplicate structure conflict for '%s'", conflicting_tag_struct_definition->display_name.c_str());
-//
-//		conflicting_tag_struct_definition->handle_conflict(data, tag_struct_definition);
-//
-//		existing_tag_struct_definition = conflicting_tag_struct_definition;
-//		tag_struct_definitions[virtual_address] = conflicting_tag_struct_definition;
-//
-//		return existing_tag_struct_definition;
-//	}
-//	else if (existing_tag_struct_definition != nullptr)
-//	{
-//		return existing_tag_struct_definition;
-//	}
-//	else
-//	{
-//		c_reach_x360_tag_struct_definition* tag_block_definition = reinterpret_cast<c_reach_x360_tag_struct_definition*>(new char[sizeof(c_reach_x360_tag_struct_definition)]);
-//
-//		tag_struct_definitions[virtual_address] = tag_block_definition;
-//
-//		tag_block_definition = new(tag_block_definition) c_reach_x360_tag_struct_definition(data, tag_struct_definition);
-//
-//		return tag_block_definition;
-//	}
-//}
+
+void c_reach_x360_tag_struct_definition::handle_conflict(const c_blamtoozle_tag_struct_definition& _conflicting_tag_struct_definition)
+{
+	const c_reach_x360_tag_struct_definition& conflicting_tag_struct_definition = static_cast<const c_reach_x360_tag_struct_definition&>(_conflicting_tag_struct_definition);
+	ASSERT(conflict_handled == false);
+	conflict_handled = true;
+
+	clear_fields(); // clear fields, they will be rebuild
+
+	// push the current definition header onto the back of the queue
+	//struct_definitions.insert(struct_definitions.end(), { conflicting_tag_struct_definition, c_reach_x360_tag_group_definition::current_group_traverse_hack });
+
+	// make sure that we can compare with the original otherwise all hope is lost
+	// and poor squaresome might have to rewrite the tag system again
+	ASSERT(struct_definition.runtime.original_fields == conflicting_tag_struct_definition.struct_definition.runtime.original_fields);
+	ASSERT(&traversed_tag_group_definition != &conflicting_tag_struct_definition.traversed_tag_group_definition);
+
+
+	// insert the original fields from the conflicting definition
+
+	t_fields original_fields;
+	{
+		ptr32 fields_address = struct_definition.type.fields_address;
+		c_reach_x360_tag_field* tag_field = nullptr;
+		do
+		{
+			tag_field = new() c_reach_x360_tag_field(tag_definition_manager, fields_address);
+			if (tag_field->get_field_type() == blofeld::_field_terminator) break; // #NOTE: Exclude this terminator as there will be another
+			original_fields.push_back(tag_field);
+			fields_address += sizeof(s_reach_x360_tag_field);
+		} while (tag_field->get_field_type() != blofeld::_field_terminator);
+	}
+
+	t_fields conflicting_fields;
+	{
+		ptr32 fields_address = conflicting_tag_struct_definition.struct_definition.type.fields_address;
+		c_reach_x360_tag_field* tag_field = nullptr;
+		do
+		{
+			tag_field = new() c_reach_x360_tag_field(tag_definition_manager, fields_address);
+			//if (tag_field->get_field_type() == blofeld::_field_terminator) break;
+			conflicting_fields.push_back(tag_field);
+			fields_address += sizeof(s_reach_x360_tag_field);
+		} while (tag_field->get_field_type() != blofeld::_field_terminator);
+	}
+
+	unsigned long num_original_fields = static_cast<unsigned long>(original_fields.size());
+	fields.push_back(new() c_blamtoozle_tag_field_combined_fixup(traversed_tag_group_definition, num_original_fields, _blamtoozle_tag_field_combined_fixup_type_not_equal));
+	fields.insert(fields.end(), original_fields.begin(), original_fields.end());
+
+	fields.push_back(new() c_blamtoozle_tag_field_dummy_space());
+
+	unsigned long num_conflicting_fields = static_cast<unsigned long>(conflicting_fields.size());
+	fields.push_back(new() c_blamtoozle_tag_field_combined_fixup(conflicting_tag_struct_definition.traversed_tag_group_definition, num_conflicting_fields, _blamtoozle_tag_field_combined_fixup_type_equal));
+	fields.insert(fields.end(), conflicting_fields.begin(), conflicting_fields.end());
+
+	ASSERT(fields.size() > 0);
+	c_reach_x360_tag_field* last_field = dynamic_cast<c_reach_x360_tag_field*>(fields.back());
+	ASSERT(last_field != nullptr);
+	ASSERT(last_field->field_type == blofeld::_field_terminator);
+
+	debug_point;
+}

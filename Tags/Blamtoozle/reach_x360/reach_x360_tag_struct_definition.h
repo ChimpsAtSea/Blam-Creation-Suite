@@ -166,6 +166,7 @@ public:
 	virtual long get_line_number() override;
 	virtual blofeld::s_tag_persistent_identifier& get_persistent_identifier() override;
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() override;
+	virtual void handle_conflict(const c_blamtoozle_tag_struct_definition& conflicting_tag_struct_definition) override;
 
 protected:
 	ptr32 definition_address;
@@ -177,6 +178,7 @@ protected:
 	std::string code_symbol_name;
 	std::string code_type_name;
 	c_reach_x360_tag_group_definition& traversed_tag_group_definition;
+	bool conflict_handled;
 
-	void handle_conflict(const char* guerilla_data, const s_reach_x360_tag_struct_definition& definition_header);
+	
 };

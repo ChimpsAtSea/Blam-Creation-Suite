@@ -13,15 +13,33 @@ c_blamtoozle_tag_definition_manager::c_blamtoozle_tag_definition_manager() :
 	tag_resource_definitions(),
 	tag_data_definitions(),
 	tag_api_interop_definitions(),
-	block_index_custom_search_definitions()
+	block_index_custom_search_definitions(),
+	tag_group_definitions_lookup(),
+	tag_struct_definitions_lookup(),
+	tag_block_definitions_lookup(),
+	tag_reference_definitions_lookup(),
+	tag_array_definitions_lookup(),
+	string_list_definitions_lookup(),
+	tag_resource_definitions_lookup(),
+	tag_data_definitions_lookup(),
+	tag_api_interop_definitions_lookup(),
+	block_index_custom_search_definitions_lookup()
 {
 
 }
 
 c_blamtoozle_tag_definition_manager::~c_blamtoozle_tag_definition_manager()
 {
-	for (auto& kv : tag_group_definitions) delete kv.second;
-	for (auto& kv : tag_struct_definitions) delete kv.second;
+	for (auto& definition : tag_group_definitions					) delete definition;
+	for (auto& definition : tag_struct_definitions					) delete definition;
+	for (auto& definition : tag_block_definitions					) delete definition;
+	for (auto& definition : tag_reference_definitions				) delete definition;
+	for (auto& definition : tag_array_definitions					) delete definition;
+	for (auto& definition : string_list_definitions					) delete definition;
+	for (auto& definition : tag_resource_definitions				) delete definition;
+	for (auto& definition : tag_data_definitions					) delete definition;
+	for (auto& definition : tag_api_interop_definitions				) delete definition;
+	for (auto& definition : block_index_custom_search_definitions	) delete definition;
 }
 
 
@@ -79,9 +97,8 @@ c_blamtoozle_tag_group_definition* c_blamtoozle_tag_definition_manager::get_tag_
 {
 	if (group_tag == 0xFFFFFFFFu) return nullptr;
 
-	for (auto& keyval : tag_group_definitions)
+	for (c_blamtoozle_tag_group_definition* tag_group_definition : tag_group_definitions)
 	{
-		c_blamtoozle_tag_group_definition* tag_group_definition = keyval.second;
 		if (tag_group_definition->get_group_tag() == group_tag)
 		{
 			return tag_group_definition;
@@ -93,9 +110,8 @@ c_blamtoozle_tag_group_definition* c_blamtoozle_tag_definition_manager::get_tag_
 c_blamtoozle_tag_struct_definition* c_blamtoozle_tag_definition_manager::get_tag_struct_definition_by_persistent_id(blofeld::s_tag_persistent_identifier persistent_identifier)
 {
 
-	for (auto& keyval : tag_struct_definitions)
+	for (c_blamtoozle_tag_struct_definition* tag_struct_definition : tag_struct_definitions)
 	{
-		c_blamtoozle_tag_struct_definition* tag_struct_definition = keyval.second;
 		if (tag_struct_definition->get_persistent_identifier() == persistent_identifier)
 		{
 			return tag_struct_definition;

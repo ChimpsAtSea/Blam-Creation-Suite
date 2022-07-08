@@ -16,21 +16,23 @@ c_reach_x360_tag_definition_manager::c_reach_x360_tag_definition_manager(const w
 	tag_resource_definitions(coerce_underlying_map(tag_resource_definitions)),
 	tag_data_definitions(coerce_underlying_map(tag_data_definitions)),
 	tag_api_interop_definitions(coerce_underlying_map(tag_api_interop_definitions)),
-	block_index_custom_search_definitions(coerce_underlying_map(block_index_custom_search_definitions))
+	block_index_custom_search_definitions(coerce_underlying_map(block_index_custom_search_definitions)),
+	tag_group_definitions_lookup(coerce_underlying_map(tag_group_definitions_lookup)),
+	tag_struct_definitions_lookup(coerce_underlying_map(tag_struct_definitions_lookup)),
+	tag_block_definitions_lookup(coerce_underlying_map(tag_block_definitions_lookup)),
+	tag_reference_definitions_lookup(coerce_underlying_map(tag_reference_definitions_lookup)),
+	tag_array_definitions_lookup(coerce_underlying_map(tag_array_definitions_lookup)),
+	string_list_definitions_lookup(coerce_underlying_map(string_list_definitions_lookup)),
+	tag_resource_definitions_lookup(coerce_underlying_map(tag_resource_definitions_lookup)),
+	tag_data_definitions_lookup(coerce_underlying_map(tag_data_definitions_lookup)),
+	tag_api_interop_definitions_lookup(coerce_underlying_map(tag_api_interop_definitions_lookup)),
+	block_index_custom_search_definitions_lookup(coerce_underlying_map(block_index_custom_search_definitions_lookup))
 {
 	set_is_big_endian(true);
 }
 
 c_reach_x360_tag_definition_manager::~c_reach_x360_tag_definition_manager()
 {
-	for (auto& kv : tag_block_definitions) delete kv.second;
-	for (auto& kv : tag_reference_definitions) delete kv.second;
-	for (auto& kv : tag_array_definitions) delete kv.second;
-	for (auto& kv : string_list_definitions) delete kv.second;
-	for (auto& kv : tag_resource_definitions) delete kv.second;
-	for (auto& kv : tag_data_definitions) delete kv.second;
-	for (auto& kv : tag_api_interop_definitions) delete kv.second;
-
 }
 
 void c_reach_x360_tag_definition_manager::traverse()
@@ -49,10 +51,9 @@ void c_reach_x360_tag_definition_manager::traverse()
 		debug_point;
 	}
 
-	for (auto& keyval : tag_group_definitions)
+	for (c_reach_x360_tag_group_definition* tag_group_definition : tag_group_definitions)
 	{
-		c_reach_x360_tag_group_definition& tag_group_definition = *keyval.second;
-		tag_group_definition.traverse();
+		tag_group_definition->traverse();
 	}
 
 	debug_point;
@@ -60,50 +61,82 @@ void c_reach_x360_tag_definition_manager::traverse()
 
 c_reach_x360_tag_group_definition& c_reach_x360_tag_definition_manager::eval_group(ptr32 definition_address)
 {
-	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, tag_group_definitions);
+	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, tag_group_definitions, tag_group_definitions_lookup);
 }
 
 c_reach_x360_tag_block_definition& c_reach_x360_tag_definition_manager::eval_block(ptr32 definition_address)
 {
-	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, tag_block_definitions);
+	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, tag_block_definitions, tag_block_definitions_lookup);
 }
 
 c_reach_x360_tag_reference_definition& c_reach_x360_tag_definition_manager::eval_tag_reference(ptr32 definition_address)
 {
-	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, tag_reference_definitions);
+	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, tag_reference_definitions, tag_reference_definitions_lookup);
 }
 
 c_reach_x360_tag_struct_definition& c_reach_x360_tag_definition_manager::eval_struct(ptr32 definition_address)
 {
-	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, tag_struct_definitions);
+	ASSERT(definition_address != 0);
+
+	auto tag_type_definition_iterator = tag_struct_definitions_lookup.find(definition_address);
+
+	if (tag_type_definition_iterator != tag_struct_definitions_lookup.end())
+	{
+		return *tag_type_definition_iterator->second;
+	}
+
+	s_reach_x360_tag_struct_definition struct_definition = read_structure<s_reach_x360_tag_struct_definition>(definition_address);
+	c_reach_x360_tag_struct_definition* existing_definition = dynamic_cast<c_reach_x360_tag_struct_definition*>(get_tag_struct_definition_by_persistent_id(struct_definition.type.persistent_identifier));
+
+	c_reach_x360_tag_struct_definition* new_tag_type_definition = reinterpret_cast<c_reach_x360_tag_struct_definition*>(tracked_malloc(sizeof(c_reach_x360_tag_struct_definition)));
+	if (existing_definition == nullptr)
+	{
+		tag_struct_definitions_lookup[definition_address] = new_tag_type_definition;
+		tag_struct_definitions.push_back(new_tag_type_definition);
+	}
+	else
+	{
+		tag_struct_definitions_lookup[definition_address] = existing_definition; // make sure that anything referencing the new structure points to the existing
+	}
+	
+	new_tag_type_definition = new(new_tag_type_definition) c_reach_x360_tag_struct_definition(*this, definition_address);
+
+	if (existing_definition != nullptr)
+	{
+		existing_definition->handle_conflict(*new_tag_type_definition);
+		delete new_tag_type_definition; // no longer needed
+		new_tag_type_definition = existing_definition;
+	}
+
+	return *new_tag_type_definition;
 }
 
 c_reach_x360_tag_array_definition& c_reach_x360_tag_definition_manager::eval_array(ptr32 definition_address)
 {
-	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, tag_array_definitions);
+	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, tag_array_definitions, tag_array_definitions_lookup);
 }
 
 c_reach_x360_string_list_definition& c_reach_x360_tag_definition_manager::eval_string_list(ptr32 definition_address)
 {
-	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, string_list_definitions);
+	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, string_list_definitions, string_list_definitions_lookup);
 }
 
 c_reach_x360_tag_resource_definition& c_reach_x360_tag_definition_manager::eval_pageable_resource(ptr32 definition_address)
 {
-	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, tag_resource_definitions);
+	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, tag_resource_definitions, tag_resource_definitions_lookup);
 }
 
 c_reach_x360_tag_data_definition& c_reach_x360_tag_definition_manager::eval_data(ptr32 definition_address)
 {
-	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, tag_data_definitions);
+	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, tag_data_definitions, tag_data_definitions_lookup);
 }
 
 c_reach_x360_tag_api_interop_definition& c_reach_x360_tag_definition_manager::eval_api_interop(ptr32 definition_address)
 {
-	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, tag_api_interop_definitions);
+	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, tag_api_interop_definitions, tag_api_interop_definitions_lookup);
 }
 
 c_reach_x360_tag_block_index_custom_search_definition& c_reach_x360_tag_definition_manager::eval_block_index_custom_search(ptr32 definition_address)
 {
-	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, block_index_custom_search_definitions);
+	return eval_definition<c_reach_x360_tag_definition_manager>(definition_address, block_index_custom_search_definitions, block_index_custom_search_definitions_lookup);
 }

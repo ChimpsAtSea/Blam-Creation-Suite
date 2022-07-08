@@ -264,130 +264,136 @@ void c_blamtoozle_source_generator::export_single_header(const wchar_t* file_pat
 
 void c_blamtoozle_source_generator::write_tag_types_header(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields)
 {
-	for (auto& tag_field : fields)
+	for (auto& _field : fields)
 	{
-		switch (tag_field->get_field_type())
+		if (c_blamtoozle_tag_field* tag_field = dynamic_cast<c_blamtoozle_tag_field*>(_field))
 		{
-		case blofeld::_field_char_enum:
-		case blofeld::_field_short_enum:
-		case blofeld::_field_long_enum:
-		case blofeld::_field_long_flags:
-		case blofeld::_field_word_flags:
-		case blofeld::_field_byte_flags:
-		{
-			c_blamtoozle_string_list_definition* string_list_definition = tag_field->get_string_list_definition();
-			ASSERT(string_list_definition != nullptr);
-
-			if (!is_string_list_exported(*string_list_definition))
+			switch (tag_field->get_field_type())
 			{
-				stream << "\t" << "extern s_string_list_definition " << string_list_definition->get_code_symbol_name() << ";";
-				stream << std::endl;
-			}
-		}
-		break;
-		case blofeld::_field_tag_reference:
-		{
-			c_blamtoozle_tag_reference_definition* tag_reference_definition = tag_field->get_tag_reference_definition();
-			ASSERT(tag_reference_definition != nullptr);
-
-			if (!is_tag_reference_exported(*tag_reference_definition))
+			case blofeld::_field_char_enum:
+			case blofeld::_field_short_enum:
+			case blofeld::_field_long_enum:
+			case blofeld::_field_long_flags:
+			case blofeld::_field_word_flags:
+			case blofeld::_field_byte_flags:
 			{
-				stream << "\textern s_tag_reference_definition " << tag_reference_definition->get_code_symbol_name() << ";";
-				stream << std::endl;
+				c_blamtoozle_string_list_definition* string_list_definition = tag_field->get_string_list_definition();
+				ASSERT(string_list_definition != nullptr);
+
+				if (!is_string_list_exported(*string_list_definition))
+				{
+					stream << "\t" << "extern s_string_list_definition " << string_list_definition->get_code_symbol_name() << ";";
+					stream << std::endl;
+				}
 			}
-		}
-		break;
+			break;
+			case blofeld::_field_tag_reference:
+			{
+				c_blamtoozle_tag_reference_definition* tag_reference_definition = tag_field->get_tag_reference_definition();
+				ASSERT(tag_reference_definition != nullptr);
+
+				if (!is_tag_reference_exported(*tag_reference_definition))
+				{
+					stream << "\textern s_tag_reference_definition " << tag_reference_definition->get_code_symbol_name() << ";";
+					stream << std::endl;
+				}
+			}
+			break;
+			}
 		}
 	}
 }
 
 void c_blamtoozle_source_generator::write_tag_types_source(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields)
 {
-	for (auto& tag_field : fields)
+	for (auto& _field : fields)
 	{
-		switch (tag_field->get_field_type())
+		if (c_blamtoozle_tag_field* tag_field = dynamic_cast<c_blamtoozle_tag_field*>(_field))
 		{
-		case blofeld::_field_char_enum:
-		case blofeld::_field_short_enum:
-		case blofeld::_field_long_enum:
-		case blofeld::_field_long_flags:
-		case blofeld::_field_word_flags:
-		case blofeld::_field_byte_flags:
-		{
-			c_blamtoozle_string_list_definition* string_list_definition = tag_field->get_string_list_definition();
-			ASSERT(string_list_definition != nullptr);
-
-			if (!is_string_list_exported(*string_list_definition))
+			switch (tag_field->get_field_type())
 			{
-				if (string_list_definition->options.size() > 0)
-				{
-					stream << "\tSTRINGS(" << string_list_definition->get_code_symbol_name() << ")" << std::endl;
-					stream << "\t{" << std::endl;
-					for (unsigned long i = 0; i < string_list_definition->options.size(); i++)
-					{
-						const char* option = string_list_definition->options[i];
-						std::string escaped_option = escape_string(option);
-						if (escaped_option.empty()) escaped_option = "unused";
-						if (i != string_list_definition->options.size() - 1)
-						{
-							stream << "\t\t\"" << escaped_option << "\"," << std::endl;
-						}
-						else
-						{
-							stream << "\t\t\"" << escaped_option << "\"" << std::endl;
-						}
-					}
-					stream << "\t};" << std::endl;
-
-					stream << "\tSTRING_LIST(" << string_list_definition->get_code_symbol_name() << ", " << string_list_definition->get_code_symbol_name() << "_strings, _countof(" << string_list_definition->get_code_symbol_name() << "_strings));" << std::endl;
-				}
-				else
-				{
-					stream << "\tSTRING_LIST(" << string_list_definition->get_code_symbol_name() << ", empty_string_list, 0);" << std::endl;
-				}
-
-				stream << std::endl;
-			}
-		}
-		break;
-		case blofeld::_field_tag_reference:
-		{
-			c_blamtoozle_tag_reference_definition* tag_reference_definition = tag_field->get_tag_reference_definition();
-			if (!is_tag_reference_exported(*tag_reference_definition))
+			case blofeld::_field_char_enum:
+			case blofeld::_field_short_enum:
+			case blofeld::_field_long_enum:
+			case blofeld::_field_long_flags:
+			case blofeld::_field_word_flags:
+			case blofeld::_field_byte_flags:
 			{
-				if (tag_reference_definition->group_tags.size() > 1)
+				c_blamtoozle_string_list_definition* string_list_definition = tag_field->get_string_list_definition();
+				ASSERT(string_list_definition != nullptr);
+
+				if (!is_string_list_exported(*string_list_definition))
 				{
-					stream << "\tTAG_REFERENCE_GROUP(" << tag_reference_definition->get_code_symbol_name();
-					write_tag_reference_flags(stream, *tag_reference_definition);
-					stream << ")" << std::endl;
-					stream << "\t{" << std::endl;
-					bool first = true;
-					for (c_blamtoozle_tag_group_definition* group_definition : tag_reference_definition->tag_group_definitions)
+					if (string_list_definition->options.size() > 0)
 					{
-						stream << "\t\t" << group_definition->get_group_tag_macro_name() << "," << std::endl;
-						first = false;
+						stream << "\tSTRINGS(" << string_list_definition->get_code_symbol_name() << ")" << std::endl;
+						stream << "\t{" << std::endl;
+						for (unsigned long i = 0; i < string_list_definition->options.size(); i++)
+						{
+							const char* option = string_list_definition->options[i];
+							std::string escaped_option = escape_string(option);
+							if (escaped_option.empty()) escaped_option = "unused";
+							if (i != string_list_definition->options.size() - 1)
+							{
+								stream << "\t\t\"" << escaped_option << "\"," << std::endl;
+							}
+							else
+							{
+								stream << "\t\t\"" << escaped_option << "\"" << std::endl;
+							}
+						}
+						stream << "\t};" << std::endl;
+
+						stream << "\tSTRING_LIST(" << string_list_definition->get_code_symbol_name() << ", " << string_list_definition->get_code_symbol_name() << "_strings, _countof(" << string_list_definition->get_code_symbol_name() << "_strings));" << std::endl;
 					}
-					stream << "\t\tINVALID_TAG" << std::endl;
+					else
+					{
+						stream << "\tSTRING_LIST(" << string_list_definition->get_code_symbol_name() << ", empty_string_list, 0);" << std::endl;
+					}
 
-					stream << "\t};" << std::endl;
+					stream << std::endl;
 				}
-				else if (tag_reference_definition->group_tags.size() == 1)
-				{
-					stream << "\tTAG_REFERENCE(" << tag_reference_definition->get_code_symbol_name() << ", " << tag_reference_definition->tag_group_definitions[0]->get_group_tag_macro_name();
-					write_tag_reference_flags(stream, *tag_reference_definition);
-					stream << ");" << std::endl;
-				}
-				else
-				{
-					stream << "\tTAG_REFERENCE(" << tag_reference_definition->get_code_symbol_name() << ", INVALID_TAG";
-					write_tag_reference_flags(stream, *tag_reference_definition);
-					stream << ");" << std::endl;
-				}
-
-				stream << std::endl;
 			}
-		}
-		break;
+			break;
+			case blofeld::_field_tag_reference:
+			{
+				c_blamtoozle_tag_reference_definition* tag_reference_definition = tag_field->get_tag_reference_definition();
+				if (!is_tag_reference_exported(*tag_reference_definition))
+				{
+					if (tag_reference_definition->group_tags.size() > 1)
+					{
+						stream << "\tTAG_REFERENCE_GROUP(" << tag_reference_definition->get_code_symbol_name();
+						write_tag_reference_flags(stream, *tag_reference_definition);
+						stream << ")" << std::endl;
+						stream << "\t{" << std::endl;
+						bool first = true;
+						for (c_blamtoozle_tag_group_definition* group_definition : tag_reference_definition->tag_group_definitions)
+						{
+							stream << "\t\t" << group_definition->get_group_tag_macro_name() << "," << std::endl;
+							first = false;
+						}
+						stream << "\t\tINVALID_TAG" << std::endl;
+
+						stream << "\t};" << std::endl;
+					}
+					else if (tag_reference_definition->group_tags.size() == 1)
+					{
+						stream << "\tTAG_REFERENCE(" << tag_reference_definition->get_code_symbol_name() << ", " << tag_reference_definition->tag_group_definitions[0]->get_group_tag_macro_name();
+						write_tag_reference_flags(stream, *tag_reference_definition);
+						stream << ");" << std::endl;
+					}
+					else
+					{
+						stream << "\tTAG_REFERENCE(" << tag_reference_definition->get_code_symbol_name() << ", INVALID_TAG";
+						write_tag_reference_flags(stream, *tag_reference_definition);
+						stream << ");" << std::endl;
+					}
+
+					stream << std::endl;
+				}
+			}
+			break;
+			}
 		}
 	}
 }
@@ -743,136 +749,181 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 	const char* _namespace = "halo3";
 	command_line_get_argument("blamboozle-halo3-namespace", _namespace);
 
-	for (auto& tag_field : fields)
+	for (auto& _field : fields)
 	{
-		blofeld::e_field field_type = tag_field->get_field_type();
-		const char* field_generic_type_name;
-		BCS_RESULT rs = blofeld::field_to_string(field_type, field_generic_type_name);
-		ASSERT(BCS_SUCCEEDED(rs));
-
-		c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(tag_field->get_name());
-
-		c_fixed_string_4096 pretty_name;
-		c_fixed_string_4096 description;
-		c_fixed_string_4096 units;
-		c_fixed_string_4096 limits;
-		c_fixed_string_4096 limits_legacy;
-		c_fixed_string_4096 old_name;
-
-		if (tag_field->get_name())
+		if (c_blamtoozle_tag_field_combined_fixup* combined_fixup_field = dynamic_cast<c_blamtoozle_tag_field_combined_fixup*>(_field))
 		{
-			escape_string(string_parser.pretty_name, pretty_name, true, true);
-			escape_string(string_parser.description, description, true, true);
-			escape_string(string_parser.units, units, true, true);
-			escape_string(string_parser.limits, limits, true, true);
-			escape_string(string_parser.limits_legacy, limits_legacy, true, true);
-			escape_string(string_parser.old_name, old_name, true, true);
-		}
-		if (pretty_name.empty())
-		{
-			pretty_name = "value";
-		}
-
-		bool write_limits = !limits.empty();
-		bool write_units = write_limits || !units.empty();
-		bool write_description = write_units || !description.empty();
-		bool write_old_name = !old_name.empty();
-		bool write_flags =
-			string_parser.flag_unknown0 ||
-			string_parser.flag_read_only ||
-			string_parser.flag_index ||
-			string_parser.flag_unknown3 ||
-			string_parser.flag_pointer;
-		bool write_pointer = false; // todo
-		bool write_tag = tag_field->get_field_id() != 0;
-
-		const char* field_id_string = blofeld::field_id_to_string(tag_field->get_field_id());
-
-		switch (field_type)
-		{
-		case blofeld::_field_custom:
-		{
-			ASSERT(!write_flags);
-
-			if (tag_field->get_field_id() == blofeld::_field_id_field_group_begin)
+			switch (combined_fixup_field->fixup_type)
 			{
-				ASSERT(!pretty_name.empty());
-				ASSERT(description.empty());
-				stream << "\t\tFIELD_GROUP_BEGIN(";
-				if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
-				stream << ")," << std::endl;
+			case _blamtoozle_tag_field_combined_fixup_type_equal:
+				stream << "\t\t{ _version_mode_tag_group_equal, &blofeld::" << _namespace << "::" << combined_fixup_field->group_definition.get_code_symbol_name() << ", " << combined_fixup_field->count << " }," << std::endl;
+				break;
+			case _blamtoozle_tag_field_combined_fixup_type_not_equal:
+				stream << "\t\t{ _version_mode_tag_group_not_equal, &blofeld::" << _namespace << "::" << combined_fixup_field->group_definition.get_code_symbol_name() << ", " << combined_fixup_field->count << " }," << std::endl;
+				break;
 			}
-			else if (tag_field->get_field_id() == blofeld::_field_id_field_group_end)
-			{
-				//ASSERT(pretty_name == "value" || pretty_name.empty());
-				ASSERT(description.empty());
 
-				if (pretty_name.empty() || strcmp(pretty_name, "value") == 0) // #TODO: improve this with function
+			debug_point;
+		}
+		else if (c_blamtoozle_tag_field_dummy_space* dummy_space_field = dynamic_cast<c_blamtoozle_tag_field_dummy_space*>(_field))
+		{
+			stream << std::endl;
+
+			debug_point;
+		}
+		else if (c_blamtoozle_tag_field* tag_field = dynamic_cast<c_blamtoozle_tag_field*>(_field))
+		{
+			blofeld::e_field field_type = tag_field->get_field_type();
+			const char* field_generic_type_name;
+			BCS_RESULT rs = blofeld::field_to_string(field_type, field_generic_type_name);
+			ASSERT(BCS_SUCCEEDED(rs));
+
+			c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(tag_field->get_name());
+
+			c_fixed_string_4096 pretty_name;
+			c_fixed_string_4096 description;
+			c_fixed_string_4096 units;
+			c_fixed_string_4096 limits;
+			c_fixed_string_4096 limits_legacy;
+			c_fixed_string_4096 old_name;
+
+			if (tag_field->get_name())
+			{
+				escape_string(string_parser.pretty_name, pretty_name, true, true);
+				escape_string(string_parser.description, description, true, true);
+				escape_string(string_parser.units, units, true, true);
+				escape_string(string_parser.limits, limits, true, true);
+				escape_string(string_parser.limits_legacy, limits_legacy, true, true);
+				escape_string(string_parser.old_name, old_name, true, true);
+			}
+			if (pretty_name.empty())
+			{
+				pretty_name = "value";
+			}
+
+			bool write_limits = !limits.empty();
+			bool write_units = write_limits || !units.empty();
+			bool write_description = write_units || !description.empty();
+			bool write_old_name = !old_name.empty();
+			bool write_flags =
+				string_parser.flag_unknown0 ||
+				string_parser.flag_read_only ||
+				string_parser.flag_index ||
+				string_parser.flag_unknown3 ||
+				string_parser.flag_pointer;
+			bool write_pointer = false; // todo
+			bool write_tag = tag_field->get_field_id() != 0;
+
+			const char* field_id_string = blofeld::field_id_to_string(tag_field->get_field_id());
+
+			switch (field_type)
+			{
+			case blofeld::_field_custom:
+			{
+				ASSERT(!write_flags);
+
+				if (tag_field->get_field_id() == blofeld::_field_id_field_group_begin)
 				{
-					stream << "\t\tFIELD_GROUP_END()," << std::endl;
+					ASSERT(!pretty_name.empty());
+					ASSERT(description.empty());
+					stream << "\t\tFIELD_GROUP_BEGIN(";
+					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					stream << ")," << std::endl;
+				}
+				else if (tag_field->get_field_id() == blofeld::_field_id_field_group_end)
+				{
+					//ASSERT(pretty_name == "value" || pretty_name.empty());
+					ASSERT(description.empty());
+
+					if (pretty_name.empty() || strcmp(pretty_name, "value") == 0) // #TODO: improve this with function
+					{
+						stream << "\t\tFIELD_GROUP_END()," << std::endl;
+					}
+					else
+					{
+						stream << "\t\tFIELD_GROUP_END2(";
+						stream << "\"" << pretty_name.c_str() << "\"";
+						stream << ")," << std::endl;
+					}
+
+					//stream << "\t\tFIELD_GROUP_END(";
+					//if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					//stream << ")," << std::endl;
+				}
+				else if (tag_field->get_field_id() == blofeld::_field_id_hide_begin)
+				{
+					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
+					ASSERT(description.empty());
+					stream << "\t\tFIELD_HIDE_BEGIN(";
+					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					stream << ")," << std::endl;
+				}
+				else if (tag_field->get_field_id() == blofeld::_field_id_hide_end)
+				{
+					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
+					ASSERT(description.empty());
+					stream << "\t\tFIELD_HIDE_END(";
+					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					stream << ")," << std::endl;
+				}
+				else if (tag_field->get_field_id() == blofeld::_field_id_ifp_begin)
+				{
+					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
+					ASSERT(description.empty());
+					stream << "\t\tFIELD_IFP_BEGIN(";
+					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					stream << ")," << std::endl;
+				}
+				else if (tag_field->get_field_id() == blofeld::_field_id_ifp_end)
+				{
+					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
+					ASSERT(description.empty());
+					stream << "\t\tFIELD_IFP_END(";
+					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					stream << ")," << std::endl;
+				}
+				else if (tag_field->get_field_id() == blofeld::_field_id_dont_checksum_begin)
+				{
+					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
+					ASSERT(description.empty());
+					stream << "\t\tFIELD_DONT_CHECKSUM_BEGIN(";
+					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					stream << ")," << std::endl;
+				}
+				else if (tag_field->get_field_id() == blofeld::_field_id_dont_checksum_end)
+				{
+					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
+					ASSERT(description.empty());
+					stream << "\t\tFIELD_DONT_CHECKSUM_END(";
+					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					stream << ")," << std::endl;
 				}
 				else
 				{
-					stream << "\t\tFIELD_GROUP_END2(";
-					stream << "\"" << pretty_name.c_str() << "\"";
+					stream << "\t\tFIELD_CUSTOM(";
+					if (!pretty_name.empty())
+					{
+						if (!pretty_name.empty()) stream << "\"" << pretty_name.c_str() << "\"";
+					}
+					if (!description.empty())
+					{
+						if (!description.empty()) stream << ", \"" << description.c_str() << "\"";
+					}
+					stream << ", " << (field_id_string ? field_id_string : "_field_id_default");
+					if (write_flags)
+					{
+						stream << ", "; write_tag_field_flags(stream, string_parser);
+					}
 					stream << ")," << std::endl;
 				}
+				break;
+			}
+			case blofeld::_field_pad:
+			{
+				ASSERT(!write_limits);
+				ASSERT(!write_units);
 
-				//stream << "\t\tFIELD_GROUP_END(";
-				//if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
-				//stream << ")," << std::endl;
-			}
-			else if (tag_field->get_field_id() == blofeld::_field_id_hide_begin)
-			{
-				ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
-				ASSERT(description.empty());
-				stream << "\t\tFIELD_HIDE_BEGIN(";
-				if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
-				stream << ")," << std::endl;
-			}
-			else if (tag_field->get_field_id() == blofeld::_field_id_hide_end)
-			{
-				ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
-				ASSERT(description.empty());
-				stream << "\t\tFIELD_HIDE_END(";
-				if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
-				stream << ")," << std::endl;
-			}
-			else if (tag_field->get_field_id() == blofeld::_field_id_ifp_begin)
-			{
-				ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
-				ASSERT(description.empty());
-				stream << "\t\tFIELD_IFP_BEGIN(";
-				if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
-				stream << ")," << std::endl;
-			}
-			else if (tag_field->get_field_id() == blofeld::_field_id_ifp_end)
-			{
-				ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
-				ASSERT(description.empty());
-				stream << "\t\tFIELD_IFP_END(";
-				if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
-				stream << ")," << std::endl;
-			}
-			else if (tag_field->get_field_id() == blofeld::_field_id_dont_checksum_begin)
-			{
-				ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
-				ASSERT(description.empty());
-				stream << "\t\tFIELD_DONT_CHECKSUM_BEGIN(";
-				if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
-				stream << ")," << std::endl;
-			}
-			else if (tag_field->get_field_id() == blofeld::_field_id_dont_checksum_end)
-			{
-				ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
-				ASSERT(description.empty());
-				stream << "\t\tFIELD_DONT_CHECKSUM_END(";
-				if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
-				stream << ")," << std::endl;
-			}
-			else
-			{
-				stream << "\t\tFIELD_CUSTOM(";
+				stream << "\t\tFIELD_PAD(";
 				if (!pretty_name.empty())
 				{
 					if (!pretty_name.empty()) stream << "\"" << pretty_name.c_str() << "\"";
@@ -881,7 +932,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				{
 					if (!description.empty()) stream << ", \"" << description.c_str() << "\"";
 				}
-				stream << ", " << (field_id_string ? field_id_string : "_field_id_default");
+				stream << ", " << tag_field->get_padding();
 				if (write_flags)
 				{
 					stream << ", "; write_tag_field_flags(stream, string_parser);
@@ -889,502 +940,480 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				stream << ")," << std::endl;
 			}
 			break;
-		}
-		case blofeld::_field_pad:
-		{
-			ASSERT(!write_limits);
-			ASSERT(!write_units);
+			case blofeld::_field_skip:
+			{
+				ASSERT(!write_limits);
+				ASSERT(!write_units);
+				ASSERT(!write_flags);
 
-			stream << "\t\tFIELD_PAD(";
-			if (!pretty_name.empty())
-			{
-				if (!pretty_name.empty()) stream << "\"" << pretty_name.c_str() << "\"";
+				stream << "\t\tFIELD_SKIP(";
+				if (!pretty_name.empty())
+				{
+					if (!pretty_name.empty()) stream << "\"" << pretty_name.c_str() << "\"";
+				}
+				if (!description.empty())
+				{
+					if (!description.empty()) stream << ", \"" << description.c_str() << "\"";
+				}
+				stream << ", " << tag_field->get_skip_length();
+				if (write_flags)
+				{
+					stream << ", "; write_tag_field_flags(stream, string_parser);
+				}
+				stream << ")," << std::endl;
 			}
-			if (!description.empty())
-			{
-				if (!description.empty()) stream << ", \"" << description.c_str() << "\"";
-			}
-			stream << ", " << tag_field->get_padding();
-			if (write_flags)
-			{
-				stream << ", "; write_tag_field_flags(stream, string_parser);
-			}
-			stream << ")," << std::endl;
-		}
-		break;
-		case blofeld::_field_skip:
-		{
-			ASSERT(!write_limits);
-			ASSERT(!write_units);
-			ASSERT(!write_flags);
-
-			stream << "\t\tFIELD_SKIP(";
-			if (!pretty_name.empty())
-			{
-				if (!pretty_name.empty()) stream << "\"" << pretty_name.c_str() << "\"";
-			}
-			if (!description.empty())
-			{
-				if (!description.empty()) stream << ", \"" << description.c_str() << "\"";
-			}
-			stream << ", " << tag_field->get_skip_length();
-			if (write_flags)
-			{
-				stream << ", "; write_tag_field_flags(stream, string_parser);
-			}
-			stream << ")," << std::endl;
-		}
-		break;
-		case blofeld::_field_explanation:
-		{
-
-			stream << "\t\tFIELD_EXPLANATION(";
-			if (!pretty_name.empty())
-			{
-				if (!pretty_name.empty()) stream << "\"" << pretty_name.c_str() << "\"";
-			}
-			if (!description.empty())
-			{
-				if (!description.empty()) stream << ", \"" << description.c_str() << "\"";
-			}
-			if (tag_field->get_explanation() != nullptr && *tag_field->get_explanation())
-			{
-				std::string explanation = escape_string(tag_field->get_explanation());
-				stream << ", \"" << explanation << "\"";
-			}
-			else stream << ", nullptr";
-			if (write_flags)
-			{
-				stream << ", "; write_tag_field_flags(stream, string_parser);
-			}
-			stream << ")," << std::endl;
-		}
-		break;
-		case blofeld::_field_array:
-		{
-			stream << "\t\t{ ";
-			stream << field_generic_type_name << ", ";
-			stream << "\"" << pretty_name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				stream << ", ";
-				write_tag_field_flags(stream, string_parser);
-			}
-			c_blamtoozle_tag_array_definition* array_definition = tag_field->get_array_definition();
-			ASSERT(array_definition != nullptr);
-			stream << ", &blofeld::" << _namespace << "::" << array_definition->get_code_symbol_name();
-			if (write_tag)
-			{
-				stream << ", " << field_id_string;
-			}
-
-			stream << " }," << std::endl;
-		}
-		break;
-		case blofeld::_field_short_block_index:
-		case blofeld::_field_long_block_index:
-		case blofeld::_field_block:
-		{
-			stream << "\t\t{ ";
-			stream << field_generic_type_name << ", ";
-			stream << "\"" << pretty_name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				stream << ", ";
-				write_tag_field_flags(stream, string_parser);
-			}
-			ASSERT(tag_field->get_block_definition());
-			if (tag_field->get_block_definition())
-			{
-				stream << ", &blofeld::" << _namespace << "::" << tag_field->get_block_definition()->get_code_symbol_name();
-			}
-			if (write_tag)
-			{
-				stream << ", " << field_id_string;
-			}
-
-			stream << " }," << std::endl;
-		}
-		break;
-		case blofeld::_field_struct:
-		{
-			stream << "\t\t{ ";
-			stream << field_generic_type_name << ", ";
-			stream << "\"" << pretty_name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				stream << ", ";
-				write_tag_field_flags(stream, string_parser);
-			}
-			ASSERT(tag_field->get_struct_definition());
-			if (tag_field->get_struct_definition())
-			{
-				stream << ", &blofeld::" << _namespace << "::" << tag_field->get_struct_definition()->get_code_symbol_name();
-			}
-			if (write_tag)
-			{
-				stream << ", " << field_id_string;
-			}
-
-			stream << " }," << std::endl;
-		}
-		break;
-		case blofeld::_field_api_interop:
-		{
-			stream << "\t\t{ ";
-			stream << field_generic_type_name << ", ";
-			stream << "\"" << pretty_name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				stream << ", ";
-				write_tag_field_flags(stream, string_parser);
-			}
-			ASSERT(tag_field->get_api_interop_definition());
-			if (tag_field->get_api_interop_definition())
-			{
-				stream << ", &blofeld::" << _namespace << "::" << tag_field->get_api_interop_definition()->get_code_symbol_name();
-			}
-			if (write_tag)
-			{
-				stream << ", " << field_id_string;
-			}
-
-			stream << " }," << std::endl;
-		}
-		break;
-		case blofeld::_field_data:
-		{
-			stream << "\t\t{ ";
-			stream << field_generic_type_name << ", ";
-			stream << "\"" << pretty_name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				stream << ", ";
-				write_tag_field_flags(stream, string_parser);
-			}
-			ASSERT(tag_field->get_data_definition());
-			if (tag_field->get_data_definition())
-			{
-				stream << ", &blofeld::" << _namespace << "::" << tag_field->get_data_definition()->get_code_symbol_name();
-			}
-			if (write_tag)
-			{
-				stream << ", " << field_id_string;
-			}
-
-			stream << " }," << std::endl;
-		}
-		break;
-		case blofeld::_field_custom_char_block_index:
-		case blofeld::_field_custom_short_block_index:
-		case blofeld::_field_custom_long_block_index:
-		{
-			stream << "\t\t{ ";
-			stream << field_generic_type_name << ", ";
-			stream << "\"" << pretty_name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				stream << ", ";
-				write_tag_field_flags(stream, string_parser);
-			}
-			ASSERT(tag_field->get_block_index_custom_search_definition());
-			if (tag_field->get_block_index_custom_search_definition())
-			{
-				stream << ", &blofeld::" << _namespace << "::" << tag_field->get_block_index_custom_search_definition()->get_code_symbol_name();
-			}
-			if (write_tag)
-			{
-				stream << ", " << field_id_string;
-			}
-
-			stream << " }," << std::endl;
-		}
-		break;
-		case blofeld::_field_pageable_resource:
-		{
-			stream << "\t\t{ ";
-			stream << field_generic_type_name << ", ";
-			stream << "\"" << pretty_name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				stream << ", ";
-				write_tag_field_flags(stream, string_parser);
-			}
-			ASSERT(tag_field->get_tag_resource_definition());
-			if (tag_field->get_tag_resource_definition())
-			{
-				stream << ", &blofeld::" << _namespace << "::" << tag_field->get_tag_resource_definition()->get_code_symbol_name();
-			}
-			if (write_tag)
-			{
-				stream << ", " << field_id_string;
-			}
-
-			stream << " }," << std::endl;
-		}
-		break;
-		case blofeld::_field_tag_reference:
-		{
-			stream << "\t\t{ ";
-			stream << field_generic_type_name << ", ";
-			stream << "\"" << pretty_name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				stream << ", ";
-				write_tag_field_flags(stream, string_parser);
-			}
-			ASSERT(tag_field->get_tag_reference_definition());
-			if (tag_field->get_tag_reference_definition())
-			{
-				stream << ", &blofeld::" << _namespace << "::" << tag_field->get_tag_reference_definition()->get_code_symbol_name();
-			}
-			if (write_tag)
-			{
-				stream << ", " << field_id_string;
-			}
-
-			stream << " }," << std::endl;
-		}
-		break;
-		case blofeld::_field_terminator:
-		{
-			stream << "\t\t{ _field_terminator }" << std::endl;
-		}
-		break;
-		case blofeld::_field_char_enum:
-		case blofeld::_field_short_enum:
-		case blofeld::_field_long_enum:
-		case blofeld::_field_long_flags:
-		case blofeld::_field_word_flags:
-		case blofeld::_field_byte_flags:
-			stream << "\t\t{ ";
-			stream << field_generic_type_name << ", ";
-			stream << "\"" << pretty_name.c_str() << "\"";
-			if (write_description)
-			{
-				if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_units)
-			{
-				if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_limits)
-			{
-				if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-				else stream << ", " << "nullptr";
-			}
-			if (write_old_name)
-			{
-				stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
-			}
-			if (write_flags)
-			{
-				stream << ", ";
-				write_tag_field_flags(stream, string_parser);
-			}
-			ASSERT(tag_field->get_string_list_definition());
-			if (tag_field->get_string_list_definition())
-			{
-				stream << ", &blofeld::" << _namespace << "::" << tag_field->get_string_list_definition()->get_code_symbol_name();
-			}
-			if (write_tag)
-			{
-				stream << ", " << field_id_string;
-			}
-
-			stream << " }," << std::endl;
 			break;
-		default:
-		{
-			stream << "\t\t{ ";
-			stream << field_generic_type_name << ", ";
-			stream << "\"" << pretty_name.c_str() << "\"";
-			if (write_description)
+			case blofeld::_field_explanation:
 			{
-				if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-				else stream << ", " << "nullptr";
+
+				stream << "\t\tFIELD_EXPLANATION(";
+				if (!pretty_name.empty())
+				{
+					if (!pretty_name.empty()) stream << "\"" << pretty_name.c_str() << "\"";
+				}
+				if (!description.empty())
+				{
+					if (!description.empty()) stream << ", \"" << description.c_str() << "\"";
+				}
+				if (tag_field->get_explanation() != nullptr && *tag_field->get_explanation())
+				{
+					std::string explanation = escape_string(tag_field->get_explanation());
+					stream << ", \"" << explanation << "\"";
+				}
+				else stream << ", nullptr";
+				if (write_flags)
+				{
+					stream << ", "; write_tag_field_flags(stream, string_parser);
+				}
+				stream << ")," << std::endl;
 			}
-			if (write_units)
+			break;
+			case blofeld::_field_array:
 			{
-				if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-				else stream << ", " << "nullptr";
+				stream << "\t\t{ ";
+				stream << field_generic_type_name << ", ";
+				stream << "\"" << pretty_name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					stream << ", ";
+					write_tag_field_flags(stream, string_parser);
+				}
+				c_blamtoozle_tag_array_definition* array_definition = tag_field->get_array_definition();
+				ASSERT(array_definition != nullptr);
+				stream << ", &blofeld::" << _namespace << "::" << array_definition->get_code_symbol_name();
+				if (write_tag)
+				{
+					stream << ", " << field_id_string;
+				}
+
+				stream << " }," << std::endl;
 			}
-			if (write_limits)
+			break;
+			case blofeld::_field_short_block_index:
+			case blofeld::_field_long_block_index:
+			case blofeld::_field_block:
 			{
-				if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-				else stream << ", " << "nullptr";
+				stream << "\t\t{ ";
+				stream << field_generic_type_name << ", ";
+				stream << "\"" << pretty_name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					stream << ", ";
+					write_tag_field_flags(stream, string_parser);
+				}
+				ASSERT(tag_field->get_block_definition());
+				if (tag_field->get_block_definition())
+				{
+					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_block_definition()->get_code_symbol_name();
+				}
+				if (write_tag)
+				{
+					stream << ", " << field_id_string;
+				}
+
+				stream << " }," << std::endl;
 			}
-			if (write_old_name)
+			break;
+			case blofeld::_field_struct:
 			{
-				stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+				stream << "\t\t{ ";
+				stream << field_generic_type_name << ", ";
+				stream << "\"" << pretty_name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					stream << ", ";
+					write_tag_field_flags(stream, string_parser);
+				}
+				ASSERT(tag_field->get_struct_definition());
+				if (tag_field->get_struct_definition())
+				{
+					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_struct_definition()->get_code_symbol_name();
+				}
+				if (write_tag)
+				{
+					stream << ", " << field_id_string;
+				}
+
+				stream << " }," << std::endl;
 			}
-			if (write_flags)
+			break;
+			case blofeld::_field_api_interop:
 			{
-				stream << ", ";
-				write_tag_field_flags(stream, string_parser);
+				stream << "\t\t{ ";
+				stream << field_generic_type_name << ", ";
+				stream << "\"" << pretty_name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					stream << ", ";
+					write_tag_field_flags(stream, string_parser);
+				}
+				ASSERT(tag_field->get_api_interop_definition());
+				if (tag_field->get_api_interop_definition())
+				{
+					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_api_interop_definition()->get_code_symbol_name();
+				}
+				if (write_tag)
+				{
+					stream << ", " << field_id_string;
+				}
+
+				stream << " }," << std::endl;
 			}
-			if (write_pointer) stream << ", " << "nullptr";
-			if (write_tag)
+			break;
+			case blofeld::_field_data:
 			{
-				stream << ", " << field_id_string;
+				stream << "\t\t{ ";
+				stream << field_generic_type_name << ", ";
+				stream << "\"" << pretty_name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					stream << ", ";
+					write_tag_field_flags(stream, string_parser);
+				}
+				ASSERT(tag_field->get_data_definition());
+				if (tag_field->get_data_definition())
+				{
+					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_data_definition()->get_code_symbol_name();
+				}
+				if (write_tag)
+				{
+					stream << ", " << field_id_string;
+				}
+
+				stream << " }," << std::endl;
 			}
-			stream << " }," << std::endl;
-		}
-		break;
+			break;
+			case blofeld::_field_custom_char_block_index:
+			case blofeld::_field_custom_short_block_index:
+			case blofeld::_field_custom_long_block_index:
+			{
+				stream << "\t\t{ ";
+				stream << field_generic_type_name << ", ";
+				stream << "\"" << pretty_name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					stream << ", ";
+					write_tag_field_flags(stream, string_parser);
+				}
+				ASSERT(tag_field->get_block_index_custom_search_definition());
+				if (tag_field->get_block_index_custom_search_definition())
+				{
+					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_block_index_custom_search_definition()->get_code_symbol_name();
+				}
+				if (write_tag)
+				{
+					stream << ", " << field_id_string;
+				}
+
+				stream << " }," << std::endl;
+			}
+			break;
+			case blofeld::_field_pageable_resource:
+			{
+				stream << "\t\t{ ";
+				stream << field_generic_type_name << ", ";
+				stream << "\"" << pretty_name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					stream << ", ";
+					write_tag_field_flags(stream, string_parser);
+				}
+				ASSERT(tag_field->get_tag_resource_definition());
+				if (tag_field->get_tag_resource_definition())
+				{
+					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_tag_resource_definition()->get_code_symbol_name();
+				}
+				if (write_tag)
+				{
+					stream << ", " << field_id_string;
+				}
+
+				stream << " }," << std::endl;
+			}
+			break;
+			case blofeld::_field_tag_reference:
+			{
+				stream << "\t\t{ ";
+				stream << field_generic_type_name << ", ";
+				stream << "\"" << pretty_name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					stream << ", ";
+					write_tag_field_flags(stream, string_parser);
+				}
+				ASSERT(tag_field->get_tag_reference_definition());
+				if (tag_field->get_tag_reference_definition())
+				{
+					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_tag_reference_definition()->get_code_symbol_name();
+				}
+				if (write_tag)
+				{
+					stream << ", " << field_id_string;
+				}
+
+				stream << " }," << std::endl;
+			}
+			break;
+			case blofeld::_field_terminator:
+			{
+				stream << "\t\t{ _field_terminator }" << std::endl;
+			}
+			break;
+			case blofeld::_field_char_enum:
+			case blofeld::_field_short_enum:
+			case blofeld::_field_long_enum:
+			case blofeld::_field_long_flags:
+			case blofeld::_field_word_flags:
+			case blofeld::_field_byte_flags:
+				stream << "\t\t{ ";
+				stream << field_generic_type_name << ", ";
+				stream << "\"" << pretty_name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					stream << ", ";
+					write_tag_field_flags(stream, string_parser);
+				}
+				ASSERT(tag_field->get_string_list_definition());
+				if (tag_field->get_string_list_definition())
+				{
+					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_string_list_definition()->get_code_symbol_name();
+				}
+				if (write_tag)
+				{
+					stream << ", " << field_id_string;
+				}
+
+				stream << " }," << std::endl;
+				break;
+			default:
+			{
+				stream << "\t\t{ ";
+				stream << field_generic_type_name << ", ";
+				stream << "\"" << pretty_name.c_str() << "\"";
+				if (write_description)
+				{
+					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_units)
+				{
+					if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_limits)
+				{
+					if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
+					else stream << ", " << "nullptr";
+				}
+				if (write_old_name)
+				{
+					stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+				}
+				if (write_flags)
+				{
+					stream << ", ";
+					write_tag_field_flags(stream, string_parser);
+				}
+				if (write_pointer) stream << ", " << "nullptr";
+				if (write_tag)
+				{
+					stream << ", " << field_id_string;
+				}
+				stream << " }," << std::endl;
+			}
+			break;
+			}
 		}
 	}
 }
@@ -1427,7 +1456,7 @@ void c_blamtoozle_source_generator::write_tag_field_flags(std::stringstream& str
 
 void c_blamtoozle_source_generator::coerce_definitions()
 {
-#define coerce_definition(input, output, helpers) for (auto& kp : input) { output.emplace_back(kp.second); helpers.emplace_back(kp.second); }
+#define coerce_definition(input, output, helpers) for (auto& definition : input) { output.emplace_back(definition); helpers.emplace_back(definition); }
 	coerce_definition(tag_definition_manager.tag_group_definitions, group_definitions, group_definitions_helpers);
 	coerce_definition(tag_definition_manager.tag_struct_definitions, struct_definitions, struct_definitions_helpers);
 	coerce_definition(tag_definition_manager.tag_block_definitions, block_definitions, block_definitions_helpers);

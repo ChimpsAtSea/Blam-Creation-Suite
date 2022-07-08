@@ -58,4 +58,13 @@ public:
 		c_blamtoozle_tag_group_definition& group_definition,
 		unsigned long count,
 		e_blamtoozle_tag_field_combined_fixup_type fixup_type);
+	virtual ~c_blamtoozle_tag_field_combined_fixup();
+};
+
+class c_blamtoozle_tag_field_dummy_space :
+	public t_blamtoozle_tag_field
+{
+public:
+	c_blamtoozle_tag_field_dummy_space();
+	virtual ~c_blamtoozle_tag_field_dummy_space();
 };
