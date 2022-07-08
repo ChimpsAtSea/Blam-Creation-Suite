@@ -780,7 +780,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 
 			c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(tag_field->get_name());
 
-			c_fixed_string_4096 pretty_name;
+			c_fixed_string_4096 display_name;
 			c_fixed_string_4096 description;
 			c_fixed_string_4096 units;
 			c_fixed_string_4096 limits;
@@ -789,16 +789,16 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 
 			if (tag_field->get_name())
 			{
-				escape_string(string_parser.pretty_name, pretty_name, true, true);
+				escape_string(string_parser.pretty_name, display_name, true, true);
 				escape_string(string_parser.description, description, true, true);
 				escape_string(string_parser.units, units, true, true);
 				escape_string(string_parser.limits, limits, true, true);
 				escape_string(string_parser.limits_legacy, limits_legacy, true, true);
 				escape_string(string_parser.old_name, old_name, true, true);
 			}
-			if (pretty_name.empty())
+			if (display_name.empty())
 			{
-				pretty_name = "value";
+				display_name = "value";
 			}
 
 			bool write_limits = !limits.empty();
@@ -824,86 +824,86 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 
 				if (tag_field->get_field_id() == blofeld::_field_id_field_group_begin)
 				{
-					ASSERT(!pretty_name.empty());
+					ASSERT(!display_name.empty());
 					ASSERT(description.empty());
 					stream << "\t\tFIELD_GROUP_BEGIN(";
-					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					if (!display_name.empty() && strcmp(display_name, "value") != 0) stream << "\"" << display_name.c_str() << "\"";
 					stream << ")," << std::endl;
 				}
 				else if (tag_field->get_field_id() == blofeld::_field_id_field_group_end)
 				{
-					//ASSERT(pretty_name == "value" || pretty_name.empty());
+					//ASSERT(display_name == "value" || display_name.empty());
 					ASSERT(description.empty());
 
-					if (pretty_name.empty() || strcmp(pretty_name, "value") == 0) // #TODO: improve this with function
+					if (display_name.empty() || strcmp(display_name, "value") == 0) // #TODO: improve this with function
 					{
 						stream << "\t\tFIELD_GROUP_END()," << std::endl;
 					}
 					else
 					{
 						stream << "\t\tFIELD_GROUP_END2(";
-						stream << "\"" << pretty_name.c_str() << "\"";
+						stream << "\"" << display_name.c_str() << "\"";
 						stream << ")," << std::endl;
 					}
 
 					//stream << "\t\tFIELD_GROUP_END(";
-					//if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					//if (!display_name.empty() && strcmp(display_name, "value") != 0) stream << "\"" << display_name.c_str() << "\"";
 					//stream << ")," << std::endl;
 				}
 				else if (tag_field->get_field_id() == blofeld::_field_id_hide_begin)
 				{
-					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
+					ASSERT(display_name.empty() || strcmp(display_name, "value") == 0);
 					ASSERT(description.empty());
 					stream << "\t\tFIELD_HIDE_BEGIN(";
-					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					if (!display_name.empty() && strcmp(display_name, "value") != 0) stream << "\"" << display_name.c_str() << "\"";
 					stream << ")," << std::endl;
 				}
 				else if (tag_field->get_field_id() == blofeld::_field_id_hide_end)
 				{
-					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
+					ASSERT(display_name.empty() || strcmp(display_name, "value") == 0);
 					ASSERT(description.empty());
 					stream << "\t\tFIELD_HIDE_END(";
-					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					if (!display_name.empty() && strcmp(display_name, "value") != 0) stream << "\"" << display_name.c_str() << "\"";
 					stream << ")," << std::endl;
 				}
 				else if (tag_field->get_field_id() == blofeld::_field_id_ifp_begin)
 				{
-					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
+					ASSERT(display_name.empty() || strcmp(display_name, "value") == 0);
 					ASSERT(description.empty());
 					stream << "\t\tFIELD_IFP_BEGIN(";
-					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					if (!display_name.empty() && strcmp(display_name, "value") != 0) stream << "\"" << display_name.c_str() << "\"";
 					stream << ")," << std::endl;
 				}
 				else if (tag_field->get_field_id() == blofeld::_field_id_ifp_end)
 				{
-					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
+					ASSERT(display_name.empty() || strcmp(display_name, "value") == 0);
 					ASSERT(description.empty());
 					stream << "\t\tFIELD_IFP_END(";
-					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					if (!display_name.empty() && strcmp(display_name, "value") != 0) stream << "\"" << display_name.c_str() << "\"";
 					stream << ")," << std::endl;
 				}
 				else if (tag_field->get_field_id() == blofeld::_field_id_dont_checksum_begin)
 				{
-					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
+					ASSERT(display_name.empty() || strcmp(display_name, "value") == 0);
 					ASSERT(description.empty());
 					stream << "\t\tFIELD_DONT_CHECKSUM_BEGIN(";
-					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					if (!display_name.empty() && strcmp(display_name, "value") != 0) stream << "\"" << display_name.c_str() << "\"";
 					stream << ")," << std::endl;
 				}
 				else if (tag_field->get_field_id() == blofeld::_field_id_dont_checksum_end)
 				{
-					ASSERT(pretty_name.empty() || strcmp(pretty_name, "value") == 0);
+					ASSERT(display_name.empty() || strcmp(display_name, "value") == 0);
 					ASSERT(description.empty());
 					stream << "\t\tFIELD_DONT_CHECKSUM_END(";
-					if (!pretty_name.empty() && strcmp(pretty_name, "value") != 0) stream << "\"" << pretty_name.c_str() << "\"";
+					if (!display_name.empty() && strcmp(display_name, "value") != 0) stream << "\"" << display_name.c_str() << "\"";
 					stream << ")," << std::endl;
 				}
 				else
 				{
 					stream << "\t\tFIELD_CUSTOM(";
-					if (!pretty_name.empty())
+					if (!display_name.empty())
 					{
-						if (!pretty_name.empty()) stream << "\"" << pretty_name.c_str() << "\"";
+						if (!display_name.empty()) stream << "\"" << display_name.c_str() << "\"";
 					}
 					if (!description.empty())
 					{
@@ -924,9 +924,9 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				ASSERT(!write_units);
 
 				stream << "\t\tFIELD_PAD(";
-				if (!pretty_name.empty())
+				if (!display_name.empty())
 				{
-					if (!pretty_name.empty()) stream << "\"" << pretty_name.c_str() << "\"";
+					if (!display_name.empty()) stream << "\"" << display_name.c_str() << "\"";
 				}
 				if (!description.empty())
 				{
@@ -947,9 +947,9 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				ASSERT(!write_flags);
 
 				stream << "\t\tFIELD_SKIP(";
-				if (!pretty_name.empty())
+				if (!display_name.empty())
 				{
-					if (!pretty_name.empty()) stream << "\"" << pretty_name.c_str() << "\"";
+					if (!display_name.empty()) stream << "\"" << display_name.c_str() << "\"";
 				}
 				if (!description.empty())
 				{
@@ -967,9 +967,9 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			{
 
 				stream << "\t\tFIELD_EXPLANATION(";
-				if (!pretty_name.empty())
+				if (!display_name.empty())
 				{
-					if (!pretty_name.empty()) stream << "\"" << pretty_name.c_str() << "\"";
+					if (!display_name.empty()) stream << "\"" << display_name.c_str() << "\"";
 				}
 				if (!description.empty())
 				{
@@ -992,7 +992,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			{
 				stream << "\t\t{ ";
 				stream << field_generic_type_name << ", ";
-				stream << "\"" << pretty_name.c_str() << "\"";
+				stream << "\"" << display_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
@@ -1034,7 +1034,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			{
 				stream << "\t\t{ ";
 				stream << field_generic_type_name << ", ";
-				stream << "\"" << pretty_name.c_str() << "\"";
+				stream << "\"" << display_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
@@ -1076,7 +1076,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			{
 				stream << "\t\t{ ";
 				stream << field_generic_type_name << ", ";
-				stream << "\"" << pretty_name.c_str() << "\"";
+				stream << "\"" << display_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
@@ -1118,7 +1118,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			{
 				stream << "\t\t{ ";
 				stream << field_generic_type_name << ", ";
-				stream << "\"" << pretty_name.c_str() << "\"";
+				stream << "\"" << display_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
@@ -1160,7 +1160,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			{
 				stream << "\t\t{ ";
 				stream << field_generic_type_name << ", ";
-				stream << "\"" << pretty_name.c_str() << "\"";
+				stream << "\"" << display_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
@@ -1204,7 +1204,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			{
 				stream << "\t\t{ ";
 				stream << field_generic_type_name << ", ";
-				stream << "\"" << pretty_name.c_str() << "\"";
+				stream << "\"" << display_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
@@ -1246,7 +1246,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			{
 				stream << "\t\t{ ";
 				stream << field_generic_type_name << ", ";
-				stream << "\"" << pretty_name.c_str() << "\"";
+				stream << "\"" << display_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
@@ -1288,7 +1288,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			{
 				stream << "\t\t{ ";
 				stream << field_generic_type_name << ", ";
-				stream << "\"" << pretty_name.c_str() << "\"";
+				stream << "\"" << display_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
@@ -1339,7 +1339,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			case blofeld::_field_byte_flags:
 				stream << "\t\t{ ";
 				stream << field_generic_type_name << ", ";
-				stream << "\"" << pretty_name.c_str() << "\"";
+				stream << "\"" << display_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
@@ -1380,7 +1380,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			{
 				stream << "\t\t{ ";
 				stream << field_generic_type_name << ", ";
-				stream << "\"" << pretty_name.c_str() << "\"";
+				stream << "\"" << display_name.c_str() << "\"";
 				if (write_description)
 				{
 					if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";

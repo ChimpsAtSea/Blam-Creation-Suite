@@ -4,23 +4,23 @@ class c_reach_x360_tag_struct_definition;
 class c_reach_x360_tag_group_definition;
 class c_reach_x360_tag_array_definition;
 
-enum e_reach_tag_memory_allocation_type
+enum e_reach_x360_tag_memory_allocation_type
 {
-	_reach_tag_memory_default,
-	_reach_tag_memory_node,
-	k_num_reach_tag_memory_type
+	_reach_x360_tag_memory_default,
+	_reach_x360_tag_memory_node,
+	k_num_reach_x360_tag_memory_type
 };
 
-enum e_reach_tag_memory_usage_bit
+enum e_reach_x360_tag_memory_usage_bit
 {
-	_reach_tag_memory_physical_bit,
-	_reach_tag_memory_unknown1_bit,
-	_reach_tag_memory_unknown2_bit,
-	_reach_tag_memory_writeable_bit,
-	_reach_tag_memory_combined_bit,
-	_reach_tag_memory_streaming_bit,
-	_reach_tag_memory_non_aliased_bit,
-	k_num_reach_tag_memory_usage_bits
+	_reach_x360_tag_memory_physical_bit,
+	_reach_x360_tag_memory_unknown1_bit,
+	_reach_x360_tag_memory_unknown2_bit,
+	_reach_x360_tag_memory_writeable_bit,
+	_reach_x360_tag_memory_combined_bit,
+	_reach_x360_tag_memory_streaming_bit,
+	_reach_x360_tag_memory_non_aliased_bit,
+	k_num_reach_x360_tag_memory_usage_bits
 };
 
 //unsigned long __fastcall s_tag_struct_definition::is_built_from_disk(s_tag_struct_definition* this)
@@ -28,38 +28,38 @@ enum e_reach_tag_memory_usage_bit
 //	return (this->runtime_flags >> 6) & 1;
 //}
 
-enum e_reach_tag_field_set_bit : unsigned long
+enum e_reach_x360_tag_field_set_bit : unsigned long
 {
-	_reach_tag_field_set_unknown0,
-	_reach_tag_field_set_unknown1,
-	_reach_tag_field_set_has_inlined_children_with_placement_new_bit, // confirmed
-	_reach_tag_field_set_unknown3,
-	_reach_tag_field_set_unknown4,
-	_reach_tag_field_set_unknown5,
-	_reach_tag_field_set_is_temporary_bit, // confirmed
-	_reach_tag_field_set_unknown7,
-	_reach_tag_field_set_unknown8,
-	_reach_tag_field_set_delete_recursively_bit, // confirmed
-	_reach_tag_field_set_postprocess_recursively_bit, // confirmed
-	_reach_tag_field_set_is_memcpyable_bit, // confirmed
-	_reach_tag_field_set_unknown12,
-	_reach_tag_field_set_has_resources,
-	_reach_tag_field_set_unknown14,
-	_reach_tag_field_set_unknown15,
-	_reach_tag_field_set_has_level_specific_fields_bit, // confirmed
-	_reach_tag_field_set_can_memset_to_initialize_bit, // confirmed
-	_reach_tag_field_set_unknown18,
-	_reach_tag_field_set_unknown19,
-	k_num_reach_runtime_flags
+	_reach_x360_tag_field_set_unknown0,
+	_reach_x360_tag_field_set_unknown1,
+	_reach_x360_tag_field_set_has_inlined_children_with_placement_new_bit, // confirmed
+	_reach_x360_tag_field_set_unknown3,
+	_reach_x360_tag_field_set_unknown4,
+	_reach_x360_tag_field_set_unknown5,
+	_reach_x360_tag_field_set_is_temporary_bit, // confirmed
+	_reach_x360_tag_field_set_unknown7,
+	_reach_x360_tag_field_set_unknown8,
+	_reach_x360_tag_field_set_delete_recursively_bit, // confirmed
+	_reach_x360_tag_field_set_postprocess_recursively_bit, // confirmed
+	_reach_x360_tag_field_set_is_memcpyable_bit, // confirmed
+	_reach_x360_tag_field_set_unknown12,
+	_reach_x360_tag_field_set_has_resources,
+	_reach_x360_tag_field_set_unknown14,
+	_reach_x360_tag_field_set_unknown15,
+	_reach_x360_tag_field_set_has_level_specific_fields_bit, // confirmed
+	_reach_x360_tag_field_set_can_memset_to_initialize_bit, // confirmed
+	_reach_x360_tag_field_set_unknown18,
+	_reach_x360_tag_field_set_unknown19,
+	k_num_reach_x360_runtime_flags
 };
 
-struct s_reach_tag_memory_attributes
+struct s_reach_x360_tag_memory_attributes
 {
-	c_enum<e_reach_tag_memory_allocation_type, unsigned long, _reach_tag_memory_default, k_num_reach_tag_memory_type> memory_type;
-	c_flags<e_reach_tag_memory_usage_bit, unsigned long, k_num_reach_tag_memory_usage_bits> usage_flags;
+	c_enum<e_reach_x360_tag_memory_allocation_type, unsigned long, _reach_x360_tag_memory_default, k_num_reach_x360_tag_memory_type> memory_type;
+	c_flags<e_reach_x360_tag_memory_usage_bit, unsigned long, k_num_reach_x360_tag_memory_usage_bits> usage_flags;
 };
-constexpr size_t k_reach_tag_memory_attributes_size = sizeof(s_reach_tag_memory_attributes);
-static_assert(k_reach_tag_memory_attributes_size == 0x8);
+constexpr size_t k_reach_x360_tag_memory_attributes_size = sizeof(s_reach_x360_tag_memory_attributes);
+static_assert(k_reach_x360_tag_memory_attributes_size == 0x8);
 
 struct s_reach_x360_byte_swap_definition
 {
@@ -79,7 +79,7 @@ struct s_reach_x360_tag_struct_runtime
 	ptr32 original_fields;																									//104				68
 	s_reach_x360_byte_swap_definition byte_swap_definition;																	//108				6C
 	unsigned long structure_size;																							//136				88
-	c_flags<e_reach_tag_field_set_bit, long, k_num_reach_runtime_flags> flags;												//140				8C
+	c_flags<e_reach_x360_tag_field_set_bit, long, k_num_reach_x360_runtime_flags> flags;												//140				8C
 	ptr32 combined_fields;																									//144				90
 	unsigned long cache_file_struct_size;																					//148				94
 	unsigned long unknown98;																								//152				98
@@ -133,7 +133,7 @@ struct s_reach_x360_tag_struct_definition
 	unsigned long unknown54;																								//84				54
 	unsigned long exploded_struct_size;																						//88				58
 	unsigned long unknown5C;																								//92				5C
-	s_reach_tag_memory_attributes memory_attributes;																		//96				60
+	s_reach_x360_tag_memory_attributes memory_attributes;																		//96				60
 	s_reach_x360_tag_struct_runtime runtime;																				//104				68
 	unsigned long unknownBC;																								//104				BC
 };

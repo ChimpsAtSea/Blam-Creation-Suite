@@ -3,6 +3,7 @@
 #include "pointer.h"
 #include "tag_definition_reader.h"
 #include "tag_definition_manager.h"
+#include "minidump_tag_definition_reader.h"
 #include "field_type.h"
 #include "tag_string_list_definition.h"
 #include "tag_data_definition.h"

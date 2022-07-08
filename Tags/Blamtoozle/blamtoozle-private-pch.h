@@ -17,6 +17,7 @@
 
 #include "framework/framework.h"
 #include "reach_x360/haloreach_x360.h"
+#include "halo3_tools_pc64/halo3_tools_pc64.h"
 
 #include "source_generator/file_stream.h"
 #include "source_generator/source_generator.h"

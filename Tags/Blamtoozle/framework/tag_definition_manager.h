@@ -60,9 +60,9 @@ public:
 
 	template<typename t_definition_manager_type, typename t_definition_type>
 	t_definition_type& eval_definition(
-		ptr32 definition_address, 
+		ptr64 definition_address, 
 		std::vector<t_definition_type*>& tag_type_definitions, 
-		std::map<ptr32, t_definition_type*>& tag_type_definitions_lookup)
+		std::map<ptr64, t_definition_type*>& tag_type_definitions_lookup)
 	{
 		ASSERT(definition_address != 0);
 
@@ -97,15 +97,15 @@ public:
 	std::vector<c_blamtoozle_tag_api_interop_definition*> tag_api_interop_definitions;
 	std::vector<c_blamtoozle_tag_block_index_custom_search_definition*> block_index_custom_search_definitions;
 
-	std::map<ptr32, c_blamtoozle_tag_group_definition*> tag_group_definitions_lookup;
-	std::map<ptr32, c_blamtoozle_tag_struct_definition*> tag_struct_definitions_lookup;
-	std::map<ptr32, c_blamtoozle_tag_block_definition*> tag_block_definitions_lookup;
-	std::map<ptr32, c_blamtoozle_tag_reference_definition*> tag_reference_definitions_lookup;
-	std::map<ptr32, c_blamtoozle_tag_array_definition*> tag_array_definitions_lookup;
-	std::map<ptr32, c_blamtoozle_string_list_definition*> string_list_definitions_lookup;
-	std::map<ptr32, c_blamtoozle_tag_resource_definition*> tag_resource_definitions_lookup;
-	std::map<ptr32, c_blamtoozle_tag_data_definition*> tag_data_definitions_lookup;
-	std::map<ptr32, c_blamtoozle_tag_api_interop_definition*> tag_api_interop_definitions_lookup;
-	std::map<ptr32, c_blamtoozle_tag_block_index_custom_search_definition*> block_index_custom_search_definitions_lookup;
+	std::map<ptr64, c_blamtoozle_tag_group_definition*> tag_group_definitions_lookup;
+	std::map<ptr64, c_blamtoozle_tag_struct_definition*> tag_struct_definitions_lookup;
+	std::map<ptr64, c_blamtoozle_tag_block_definition*> tag_block_definitions_lookup;
+	std::map<ptr64, c_blamtoozle_tag_reference_definition*> tag_reference_definitions_lookup;
+	std::map<ptr64, c_blamtoozle_tag_array_definition*> tag_array_definitions_lookup;
+	std::map<ptr64, c_blamtoozle_string_list_definition*> string_list_definitions_lookup;
+	std::map<ptr64, c_blamtoozle_tag_resource_definition*> tag_resource_definitions_lookup;
+	std::map<ptr64, c_blamtoozle_tag_data_definition*> tag_data_definitions_lookup;
+	std::map<ptr64, c_blamtoozle_tag_api_interop_definition*> tag_api_interop_definitions_lookup;
+	std::map<ptr64, c_blamtoozle_tag_block_index_custom_search_definition*> block_index_custom_search_definitions_lookup;
 	
 };

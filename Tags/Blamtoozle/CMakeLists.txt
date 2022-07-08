@@ -5,6 +5,8 @@ add_executable(Blamtoozle
 	framework/field_type.h
 	framework/framework.cpp
 	framework/framework.h
+	framework/minidump_tag_definition_reader.cpp
+	framework/minidump_tag_definition_reader.h
 	framework/pointer.cpp
 	framework/pointer.h
 	framework/tag_api_interop_definition.cpp
@@ -43,8 +45,6 @@ add_executable(Blamtoozle
 	reach_x360/haloreach_x360.h
 	reach_x360/reach_x360_definition_manager.cpp
 	reach_x360/reach_x360_definition_manager.h
-	reach_x360/reach_x360_definition_reader.cpp
-	reach_x360/reach_x360_definition_reader.h
 	reach_x360/reach_x360_field_type.cpp
 	reach_x360/reach_x360_field_type.h
 	reach_x360/reach_x360_tag_api_interop_definition.cpp
@@ -69,6 +69,37 @@ add_executable(Blamtoozle
 	reach_x360/reach_x360_tag_string_list_definition.h
 	reach_x360/reach_x360_tag_struct_definition.cpp
 	reach_x360/reach_x360_tag_struct_definition.h
+	
+	halo3_tools_pc64/halo3_tools_pc64_tag_reference_definition.cpp
+	halo3_tools_pc64/halo3_tools_pc64_tag_reference_definition.h
+	halo3_tools_pc64/halo3_tools_pc64_tag_resource_definition.cpp
+	halo3_tools_pc64/halo3_tools_pc64_tag_resource_definition.h
+	halo3_tools_pc64/halo3_tools_pc64_tag_string_list_definition.cpp
+	halo3_tools_pc64/halo3_tools_pc64_tag_string_list_definition.h
+	halo3_tools_pc64/halo3_tools_pc64_tag_struct_definition.cpp
+	halo3_tools_pc64/halo3_tools_pc64_tag_struct_definition.h
+	halo3_tools_pc64/halo3_tools_pc64.cpp
+	halo3_tools_pc64/halo3_tools_pc64.h
+	halo3_tools_pc64/halo3_tools_pc64_definition_manager.cpp
+	halo3_tools_pc64/halo3_tools_pc64_definition_manager.h
+	halo3_tools_pc64/halo3_tools_pc64_field_type.cpp
+	halo3_tools_pc64/halo3_tools_pc64_field_type.h
+	halo3_tools_pc64/halo3_tools_pc64_tag_api_interop_definition.cpp
+	halo3_tools_pc64/halo3_tools_pc64_tag_api_interop_definition.h
+	halo3_tools_pc64/halo3_tools_pc64_tag_array_definition.cpp
+	halo3_tools_pc64/halo3_tools_pc64_tag_array_definition.h
+	halo3_tools_pc64/halo3_tools_pc64_tag_block_definition.cpp
+	halo3_tools_pc64/halo3_tools_pc64_tag_block_definition.h
+	halo3_tools_pc64/halo3_tools_pc64_tag_block_index_custom_search_definition.cpp
+	halo3_tools_pc64/halo3_tools_pc64_tag_block_index_custom_search_definition.h
+	halo3_tools_pc64/halo3_tools_pc64_tag_data_definition.cpp
+	halo3_tools_pc64/halo3_tools_pc64_tag_data_definition.h
+	halo3_tools_pc64/halo3_tools_pc64_tag_explanation_definition.cpp
+	halo3_tools_pc64/halo3_tools_pc64_tag_explanation_definition.h
+	halo3_tools_pc64/halo3_tools_pc64_tag_field.cpp
+	halo3_tools_pc64/halo3_tools_pc64_tag_field.h
+	halo3_tools_pc64/halo3_tools_pc64_tag_group_definition.cpp
+	halo3_tools_pc64/halo3_tools_pc64_tag_group_definition.h
 	
 	blamtoozle-private-pch.h
 	blamtoozle-public-pch.h)

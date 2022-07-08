@@ -2,7 +2,7 @@
 
 #define tag_definition_manager static_cast<c_reach_x360_tag_definition_manager&>(tag_definition_manager)
 
-template<> void byteswap_inplace(s_reach_tag_memory_attributes& value)
+template<> void byteswap_inplace(s_reach_x360_tag_memory_attributes& value)
 {
 	byteswap_inplace(value.memory_type);
 	byteswap_inplace(value.usage_flags);
@@ -163,83 +163,83 @@ c_flags<blofeld::e_tag_field_set_bit> c_reach_x360_tag_struct_definition::get_fi
 {
 	c_flags<blofeld::e_tag_field_set_bit> result;
 
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_unknown0))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_unknown0))
 	{
 		result.set(blofeld::_tag_field_set_unknown0_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_unknown1))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_unknown1))
 	{
 		result.set(blofeld::_tag_field_set_unknown1_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_has_inlined_children_with_placement_new_bit))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_has_inlined_children_with_placement_new_bit))
 	{
 		result.set(blofeld::_tag_field_set_has_inlined_children_with_placement_new_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_unknown3))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_unknown3))
 	{
 		result.set(blofeld::_tag_field_set_unknown3_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_unknown4))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_unknown4))
 	{
 		result.set(blofeld::_tag_field_set_unknown4_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_unknown5))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_unknown5))
 	{
 		result.set(blofeld::_tag_field_set_unknown5_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_is_temporary_bit))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_is_temporary_bit))
 	{
 		result.set(blofeld::_tag_field_set_is_temporary_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_unknown7))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_unknown7))
 	{
 		result.set(blofeld::_tag_field_set_unknown7_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_unknown8))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_unknown8))
 	{
 		result.set(blofeld::_tag_field_set_unknown8_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_delete_recursively_bit))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_delete_recursively_bit))
 	{
 		result.set(blofeld::_tag_field_set_delete_recursively_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_postprocess_recursively_bit))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_postprocess_recursively_bit))
 	{
 		result.set(blofeld::_tag_field_set_postprocess_recursively_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_is_memcpyable_bit))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_is_memcpyable_bit))
 	{
 		result.set(blofeld::_tag_field_set_is_memcpyable_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_unknown12))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_unknown12))
 	{
 		result.set(blofeld::_tag_field_set_unknown12_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_has_resources))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_has_resources))
 	{
 		result.set(blofeld::_tag_field_set_has_resources_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_unknown14))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_unknown14))
 	{
 		result.set(blofeld::_tag_field_set_unknown14_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_unknown15))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_unknown15))
 	{
 		result.set(blofeld::_tag_field_set_unknown15_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_has_level_specific_fields_bit))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_has_level_specific_fields_bit))
 	{
 		result.set(blofeld::_tag_field_set_has_level_specific_fields_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_can_memset_to_initialize_bit))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_can_memset_to_initialize_bit))
 	{
 		result.set(blofeld::_tag_field_set_can_memset_to_initialize_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_unknown18))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_unknown18))
 	{
 		result.set(blofeld::_tag_field_set_unknown18_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_reach_tag_field_set_unknown19))
+	if (struct_definition.runtime.flags.test(_reach_x360_tag_field_set_unknown19))
 	{
 		result.set(blofeld::_tag_field_set_unknown19_bit, true);
 	}

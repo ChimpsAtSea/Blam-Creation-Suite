@@ -2,6 +2,7 @@
 
 typedef struct _MINIDUMP_HEADER MINIDUMP_HEADER;
 typedef struct _MINIDUMP_DIRECTORY MINIDUMP_DIRECTORY;
+typedef struct _MINIDUMP_MEMORY_LIST MINIDUMP_MEMORY_LIST;
 typedef struct _MINIDUMP_MEMORY64_LIST MINIDUMP_MEMORY64_LIST;
 
 class c_blamtoozle_minidump_tag_definition_reader :
@@ -23,6 +24,8 @@ public:
 	unsigned long long minidump_data_size;
 
 	const MINIDUMP_DIRECTORY* minidump_directories;
+	const MINIDUMP_DIRECTORY* minidump_memory_list_directory;
+	const MINIDUMP_MEMORY_LIST* minidump_memory_list;
 	const MINIDUMP_DIRECTORY* minidump_memory64_list_directory;
 	const MINIDUMP_MEMORY64_LIST* minidump_memory64_list;
 

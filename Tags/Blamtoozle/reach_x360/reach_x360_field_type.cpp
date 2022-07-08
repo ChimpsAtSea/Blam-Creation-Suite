@@ -67,5 +67,5 @@ blofeld::e_field reach_x360_field_type_to_generic_field_type(e_reach_x360_field_
 	case _reach_x360_field_type_api_interop:												return blofeld::_field_api_interop;
 	case _reach_x360_field_type_terminator:													return blofeld::_field_terminator;
 	}
-	FATAL_ERROR("oh shit");
+	FATAL_ERROR("unreachable");
 }
