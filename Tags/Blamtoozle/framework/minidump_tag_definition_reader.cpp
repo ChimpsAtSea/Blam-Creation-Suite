@@ -82,7 +82,7 @@ const char* c_blamtoozle_minidump_tag_definition_reader::va_to_pointer(ptr64 add
 			RVA minidump_memory_rva = minidump_memory.Memory.Rva;
 
 			//console_write_line("0x%llx [0x%llx:0x%llx]", minidump_memory.StartOfMemoryRange, minidump_memory_rva, minidump_memory.DataSize);
-			debug_point;
+			
 
 			ULONG64 start_of_memory_range = minidump_memory.StartOfMemoryRange;
 			ULONG64 end_of_memory_range = start_of_memory_range + minidump_memory.Memory.DataSize;
@@ -114,7 +114,7 @@ const char* c_blamtoozle_minidump_tag_definition_reader::va_to_pointer(ptr64 add
 			const MINIDUMP_MEMORY_DESCRIPTOR64& minidump_memory64 = minidump_memory64_list->MemoryRanges[minidump_memory64_index];
 
 			//console_write_line("0x%llx [0x%llx:0x%llx]", minidump_memory64.StartOfMemoryRange, minidump_memory64_rva, minidump_memory64.DataSize);
-			debug_point;
+			
 
 			ULONG64 start_of_memory_range = minidump_memory64.StartOfMemoryRange;
 			ULONG64 end_of_memory_range = start_of_memory_range + minidump_memory64.DataSize;

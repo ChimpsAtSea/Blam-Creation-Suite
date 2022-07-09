@@ -293,7 +293,7 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 	}
 	ImGui::NextColumn();
 	{
-		if constexpr (field_type == _field_char_integer || field_type == _field_custom_char_block_index || field_type == _field_char_block_index || field_type == _field_char_enum)
+		if constexpr (field_type == _field_char_integer || field_type == _field_char_block_index_custom_search || field_type == _field_char_block_index || field_type == _field_char_enum)
 		{
 			ImGui::SetNextItemWidth(350.0f);
 			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_S8, data);
@@ -303,7 +303,7 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 			ImGui::SetNextItemWidth(350.0f);
 			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_U8, data);
 		}
-		else if constexpr (field_type == _field_short_enum || field_type == _field_short_block_index || field_type == _field_custom_short_block_index || field_type == _field_short_integer)
+		else if constexpr (field_type == _field_short_enum || field_type == _field_short_block_index || field_type == _field_short_block_index_custom_search || field_type == _field_short_integer)
 		{
 			ImGui::SetNextItemWidth(350.0f);
 			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_S16, data);
@@ -320,7 +320,7 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 			field_type == _field_argb_color ||
 			field_type == _field_long_block_flags ||
 			field_type == _field_long_block_index ||
-			field_type == _field_custom_long_block_index ||
+			field_type == _field_long_block_index_custom_search ||
 			field_type == _field_long_integer)
 		{
 			ImGui::SetNextItemWidth(350.0f);
@@ -356,7 +356,7 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 			ImGui::SetNextItemWidth(800.0f);
 			result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_S16, data, 4);
 		}
-		else if constexpr (field_type == _field_real_vector_2d || field_type == _field_real_bounds || field_type == _field_fraction_bounds || field_type == _field_real_point_2d)
+		else if constexpr (field_type == _field_real_vector_2d || field_type == _field_real_bounds || field_type == _field_real_fraction_bounds || field_type == _field_real_point_2d)
 		{
 			ImGui::SetNextItemWidth(400.0f);
 			result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, data, 2);
@@ -1413,16 +1413,16 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& o
 		case _field_short_integer_bounds:					data_modified = render_primitive<_field_short_integer_bounds>(field_data, field); break;
 		case _field_point_2d:						data_modified = render_primitive<_field_point_2d>(field_data, field); break;
 		case _field_real_bounds:					data_modified = render_primitive<_field_real_bounds>(field_data, field); break;
-		case _field_fraction_bounds:			data_modified = render_primitive<_field_fraction_bounds>(field_data, field); break;
+		case _field_real_fraction_bounds:			data_modified = render_primitive<_field_real_fraction_bounds>(field_data, field); break;
 		case _field_byte_block_flags:				data_modified = render_primitive<_field_byte_block_flags>(field_data, field); break;
 		case _field_word_block_flags:				data_modified = render_primitive<_field_word_block_flags>(field_data, field); break;
 		case _field_long_block_flags:				data_modified = render_primitive<_field_long_block_flags>(field_data, field); break;
 		case _field_char_block_index:				data_modified = render_primitive<_field_char_block_index>(field_data, field); break;
 		case _field_short_block_index:				data_modified = render_primitive<_field_short_block_index>(field_data, field); break;
 		case _field_long_block_index:				data_modified = render_primitive<_field_long_block_index>(field_data, field); break;
-		case _field_custom_char_block_index:		data_modified = render_primitive<_field_custom_char_block_index>(field_data, field); break;
-		case _field_custom_short_block_index:		data_modified = render_primitive<_field_custom_short_block_index>(field_data, field); break;
-		case _field_custom_long_block_index:		data_modified = render_primitive<_field_custom_long_block_index>(field_data, field); break;
+		case _field_char_block_index_custom_search:		data_modified = render_primitive<_field_char_block_index_custom_search>(field_data, field); break;
+		case _field_short_block_index_custom_search:		data_modified = render_primitive<_field_short_block_index_custom_search>(field_data, field); break;
+		case _field_long_block_index_custom_search:		data_modified = render_primitive<_field_long_block_index_custom_search>(field_data, field); break;
 		case _field_pointer:						data_modified = render_primitive<_field_pointer>(field_data, field); break;
 		case _field_angle:							data_modified = render_primitive<_field_angle>(field_data, field); break;
 		case _field_real_euler_angles_2d:			data_modified = render_primitive<_field_real_euler_angles_2d>(field_data, field); break;

@@ -262,9 +262,9 @@ void c_high_level_tag_file_writer::enqueue_field(const blofeld::s_tag_field& fie
 
 	switch (field_type)
 	{
-	case blofeld::_field_custom_char_block_index:
-	case blofeld::_field_custom_short_block_index:
-	case blofeld::_field_custom_long_block_index:
+	case blofeld::_field_char_block_index_custom_search:
+	case blofeld::_field_short_block_index_custom_search:
+	case blofeld::_field_long_block_index_custom_search:
 		tag_persist_field.metadata = enqueue_block_index_custom_search_definition(*field.block_index_custom_search_definition);
 		break;
 	case blofeld::_field_char_block_index:

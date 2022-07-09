@@ -2,7 +2,7 @@
 
 struct s_halo3_tools_pc64_tag_field
 {
-	c_enum<e_halo3_tools_pc64_field_type, unsigned long> field_type;
+	c_enum<e_halo3_tools_pc64_field, unsigned long> field_type;
 	ptr64 name_address;
 	ptr64 definition_address;
 	c_enum<blofeld::e_field_id, unsigned long> field_id;

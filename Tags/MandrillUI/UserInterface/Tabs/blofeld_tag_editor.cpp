@@ -281,7 +281,7 @@
 //	{
 //	case blofeld::_field_char_enum:
 //	case blofeld::_field_char_block_index:
-//	case blofeld::_field_custom_char_block_index:
+//	case blofeld::_field_char_block_index_custom_search:
 //	case blofeld::_field_char_integer: components = 1; data_type = ImGuiDataType_S8; return true;
 //
 //	case blofeld::_field_byte_flags:
@@ -290,7 +290,7 @@
 //
 //	case blofeld::_field_short_enum:
 //	case blofeld::_field_short_block_index:
-//	case blofeld::_field_custom_short_block_index:
+//	case blofeld::_field_short_block_index_custom_search:
 //	case blofeld::_field_short_integer: components = 1; data_type = ImGuiDataType_S16; return true;
 //
 //	case blofeld::_field_word_flags:
@@ -303,7 +303,7 @@
 //	case blofeld::_field_argb_color:
 //	case blofeld::_field_long_block_flags:
 //	case blofeld::_field_long_block_index:
-//	case blofeld::_field_custom_long_block_index:
+//	case blofeld::_field_long_block_index_custom_search:
 //	case blofeld::_field_long_integer: components = 1; data_type = ImGuiDataType_S32; return true;
 //
 //	case blofeld::_field_dword_integer: components = 1; data_type = ImGuiDataType_U32; return true;
@@ -327,7 +327,7 @@
 //	case blofeld::_field_real_euler_angles_2d:
 //	case blofeld::_field_angle_bounds:
 //	case blofeld::_field_real_bounds:
-//	case blofeld::_field_fraction_bounds:
+//	case blofeld::_field_real_fraction_bounds:
 //	case blofeld::_field_real_point_2d: components = 2; data_type = ImGuiDataType_Float; return true;
 //
 //	case blofeld::_field_real_point_3d:
@@ -1546,7 +1546,7 @@
 //		case blofeld::_field_real_ahsv_color:
 //		case blofeld::_field_short_integer_bounds:
 //		case blofeld::_field_real_bounds:
-//		case blofeld::_field_fraction_bounds:
+//		case blofeld::_field_real_fraction_bounds:
 //
 //		case blofeld::_field_byte_block_flags:
 //		case blofeld::_field_word_block_flags:
@@ -1554,9 +1554,9 @@
 //		case blofeld::_field_char_block_index:
 //		case blofeld::_field_short_block_index:
 //		case blofeld::_field_long_block_index:
-//		case blofeld::_field_custom_char_block_index:
-//		case blofeld::_field_custom_short_block_index:
-//		case blofeld::_field_custom_long_block_index:
+//		case blofeld::_field_char_block_index_custom_search:
+//		case blofeld::_field_short_block_index_custom_search:
+//		case blofeld::_field_long_block_index_custom_search:
 //		{
 //			render_primitive(current_data_position, *current_field);
 //			break;

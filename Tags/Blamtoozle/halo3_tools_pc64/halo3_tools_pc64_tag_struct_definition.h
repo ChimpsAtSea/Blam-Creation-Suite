@@ -91,8 +91,8 @@ struct s_halo3_tools_pc64_tag_struct_runtime
 	unsigned long num_combined_fields; // unsure where this is
 	unsigned long unknown1;
 	unsigned long unique_index;
-	c_big_flags_typed<long, k_num_halo3_tools_pc64_field_types> inlined_field_types;
-	c_big_flags_typed<long, k_num_halo3_tools_pc64_field_types> unknown_field_types;
+	c_big_flags_typed<long, k_num_halo3_tools_pc64_fields> inlined_field_types;
+	c_big_flags_typed<long, k_num_halo3_tools_pc64_fields> unknown_field_types;
 	unsigned long padding;
 	ptr64 descendent_definition;
 };
@@ -123,7 +123,7 @@ struct s_halo3_tools_pc64_tag_struct_type
 {
 	ptr64 display_name_address;
 	ptr64 name_address;
-	ptr64 filepath_address;
+	ptr64 file_path_address;
 	long line_number;
 	long padding;
 	blofeld::s_tag_persistent_identifier persistent_identifier;
@@ -168,12 +168,14 @@ public:
 	virtual const char* get_display_name() override;
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;
-	virtual const char* get_code_type_name() override;
+	virtual const char* get_structure_type_name() override;
 	virtual unsigned long get_structure_size() override;
 	virtual const char* get_structure_size_string() override;
 	virtual unsigned long get_alignment_bits() override;
 	virtual blofeld::s_tag_persistent_identifier& get_persistent_identifier() override;
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() override;
+	virtual const char* get_file_path() override;
+	virtual long get_line_number() override;
 	virtual void handle_conflict(const c_blamtoozle_tag_struct_definition& conflicting_tag_struct_definition) override;
 
 protected:
@@ -181,6 +183,7 @@ protected:
 	s_halo3_tools_pc64_tag_struct_definition struct_definition;
 	const char* display_name;
 	const char* name;
+	const char* file_path;
 	const char* structure_size_string;
 	std::string code_symbol_name;
 	std::string code_type_name;

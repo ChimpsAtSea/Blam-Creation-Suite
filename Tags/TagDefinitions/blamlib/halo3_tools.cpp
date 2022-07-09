@@ -10185,7 +10185,7 @@ namespace halo3 {
 		{ _field_short_enum, "type", &blofeld::halo3::machine_types },
 		{ _field_word_flags, "flags", &blofeld::halo3::machine_flags },
 		{ _field_real, "door open time", nullptr, "seconds" },
-		{ _field_fraction_bounds, "door occlusion bounds", "maps position [0,1] to occlusion" },
+		{ _field_real_fraction_bounds, "door occlusion bounds", "maps position [0,1] to occlusion" },
 		{ _field_useless_pad, "value" },
 		{ _field_short_enum, "collision response", &blofeld::halo3::machine_collision_responses },
 		{ _field_short_integer, "elevator node" },
@@ -12601,7 +12601,7 @@ namespace halo3 {
 		FIELD_EXPLANATION("scale modifiers", "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the values specified above. (0 values are ignored.)"),
 		{ _field_real_bounds, "gain modifier", nullptr, "dB", _field_id_decibels },
 		{ _field_short_integer_bounds, "pitch modifier", nullptr, "cents" },
-		{ _field_fraction_bounds, "skip fraction modifier" },
+		{ _field_real_fraction_bounds, "skip fraction modifier" },
 		{ _field_terminator }
 	};
 
@@ -12676,7 +12676,7 @@ namespace halo3 {
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this permutation that are ignored (a different permutation is selected.)" },
 		FIELD_CUSTOM("Update gain", _field_id_edit),
 		{ _field_real, "gain", "additional attenuation when played", "dB", _field_id_decibels },
-		{ _field_custom_short_block_index, "raw info", &blofeld::halo3::permutation_info_search_definition },
+		{ _field_short_block_index_custom_search, "raw info", &blofeld::halo3::permutation_info_search_definition },
 		{ _field_short_integer, "language neutral milliseconds" },
 		{ _field_word_flags, "permutation flags", &blofeld::halo3::sound_permutation_external_flags },
 		{ _field_word_flags, "flags", &blofeld::halo3::sound_permutation_flags },
@@ -14308,7 +14308,7 @@ namespace halo3 {
 	{
 		{ _field_string_id, "material name" },
 		FIELD_PAD("unused flags", 2),
-		{ _field_custom_short_block_index, "damage section", &blofeld::halo3::damage_section_search_definition },
+		{ _field_short_block_index_custom_search, "damage section", &blofeld::halo3::damage_section_search_definition },
 		{ _field_short_integer, "runtime collision material index" },
 		{ _field_short_integer, "runtime damager material index" },
 		{ _field_string_id, "global material name", _field_id_sted },
@@ -14358,7 +14358,7 @@ namespace halo3 {
 		{ _field_string_id, "marker name", "multiple markers become multiple spheres of the same radius" },
 		{ _field_real, "size", "sphere radius" },
 		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker's x axis" },
-		{ _field_custom_short_block_index, "damage section", "the target is associated with this damage section", &blofeld::halo3::damage_section_search_definition },
+		{ _field_short_block_index_custom_search, "damage section", "the target is associated with this damage section", &blofeld::halo3::damage_section_search_definition },
 		{ _field_short_block_index, "variant", "the target will only appear with this variant", &blofeld::halo3::model_variant_block_block },
 		{ _field_real_fraction, "targeting relevance", "higher relevances turn into stronger magnetisms" },
 		{ _field_real, "aoe exclusion radius", "ignored if zero" },
@@ -15306,7 +15306,7 @@ namespace halo3 {
 		HAVOK_SHAPE_REFERENCE_STRUCT_ID)
 	{
 		{ _field_short_enum, "shape type", &blofeld::halo3::shape_enum },
-		{ _field_custom_short_block_index, "shape", &blofeld::halo3::shape_search },
+		{ _field_short_block_index_custom_search, "shape", &blofeld::halo3::shape_search },
 		FIELD_PAD("pad64_00", 4),
 		{ _field_terminator }
 	};
@@ -15383,7 +15383,7 @@ namespace halo3 {
 		PHYSICS_MODEL_MOTOR_REFERENCE_STRUCT_ID)
 	{
 		{ _field_short_enum, "motor type", &blofeld::halo3::physics_model_motor_types_enum },
-		{ _field_custom_short_block_index, "index", &blofeld::halo3::custom_physics_model_motor_reference_block_index_definition },
+		{ _field_short_block_index_custom_search, "index", &blofeld::halo3::custom_physics_model_motor_reference_block_index_definition },
 		{ _field_terminator }
 	};
 
@@ -15439,7 +15439,7 @@ namespace halo3 {
 		PHYSICS_MODEL_CONSTRAINT_EDGE_CONSTRAINT_BLOCK_ID)
 	{
 		{ _field_short_enum, "type", &blofeld::halo3::rigid_constraint_types_enum },
-		{ _field_custom_short_block_index, "index", &blofeld::halo3::custom_constraint_reference_block_index_definition },
+		{ _field_short_block_index_custom_search, "index", &blofeld::halo3::custom_constraint_reference_block_index_definition },
 		{ _field_long_flags, "flags", &blofeld::halo3::rigid_body_constraint_edge_constraint_flags_definition },
 		{ _field_real, "friction", "0 is the default (takes what it was set in max) anything else overrides that value" },
 		{ _field_block, "ragdoll motors", &blofeld::halo3::physics_model_ragdoll_motors_block_block },
@@ -15492,7 +15492,7 @@ namespace halo3 {
 		PHYSICS_MODEL_POWERED_CHAIN_CONSTRAINTS_BLOCK_ID)
 	{
 		{ _field_short_enum, "constraint type", &blofeld::halo3::rigid_constraint_types_enum },
-		{ _field_custom_short_block_index, "constraint index", &blofeld::halo3::custom_powered_chain_constraint_reference_block_index_definition },
+		{ _field_short_block_index_custom_search, "constraint index", &blofeld::halo3::custom_powered_chain_constraint_reference_block_index_definition },
 		{ _field_struct, "motor x", &blofeld::halo3::physics_model_motor_reference_struct },
 		{ _field_struct, "motor y", &blofeld::halo3::physics_model_motor_reference_struct },
 		{ _field_struct, "motor z", &blofeld::halo3::physics_model_motor_reference_struct },
@@ -15806,7 +15806,7 @@ namespace halo3 {
 	{
 		{ _field_short_block_index, "node", &blofeld::halo3::nodes_block_block },
 		{ _field_short_block_index, "region", &blofeld::halo3::regions_block_block },
-		{ _field_custom_short_block_index, "permutattion", &blofeld::halo3::permutation_search },
+		{ _field_short_block_index_custom_search, "permutattion", &blofeld::halo3::permutation_search },
 		FIELD_PAD("EFPQQO", 2),
 		{ _field_real_point_3d, "bouding sphere offset" },
 		{ _field_real, "bounding sphere radius" },
@@ -19275,7 +19275,7 @@ namespace halo3 {
 		FIELD_PAD("WBP", 2),
 		{ _field_short_block_index, "scale result by", "multiply this function (from a weapon, vehicle, etc.) final result of all of the above math", &blofeld::halo3::scenario_function_block_block },
 		{ _field_short_enum, "bounds mode", "controls how the bounds, below, are used", &blofeld::halo3::function_bounds_mode_enum },
-		{ _field_fraction_bounds, "bounds" },
+		{ _field_real_fraction_bounds, "bounds" },
 		{ _field_real, "runtime inverse bounds range" },
 		FIELD_PAD("OFLIM", 2),
 		{ _field_short_block_index, "turn off with", "if the specified function is off, so is this function", &blofeld::halo3::scenario_function_block_block },
@@ -19332,8 +19332,8 @@ namespace halo3 {
 		SCENARIO_OBJECT_NAMES_BLOCK_ID)
 	{
 		{ _field_string, "name" },
-		{ _field_custom_short_block_index, "object_type", &blofeld::halo3::_void },
-		{ _field_custom_short_block_index, "scenario_datum_index", &blofeld::halo3::scenario_object_name_search },
+		{ _field_short_block_index_custom_search, "object_type", &blofeld::halo3::_void },
+		{ _field_short_block_index_custom_search, "scenario_datum_index", &blofeld::halo3::scenario_object_name_search },
 		{ _field_terminator }
 	};
 
@@ -20985,7 +20985,7 @@ namespace halo3 {
 		{ _field_real, "axis offset", "percent offset in screen space along corona axis - 0.0 is on the corona, 1.0 is primary side edge of the screen, -1.0 is opposite side", "percent" },
 		{ _field_real_bounds, "offset bounds", "the axis offset times corona offset is clamped between these values" },
 		{ _field_real_bounds, "radius", "interpolated by external input", "world units", FIELD_FLAG_UNKNOWN0 },
-		{ _field_fraction_bounds, "brightness", "interpolated by external input", nullptr, "[0,1]", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_fraction_bounds, "brightness", "interpolated by external input", nullptr, "[0,1]", FIELD_FLAG_UNKNOWN0 },
 		{ _field_struct, "radius curve", "interpolated by external input", &blofeld::halo3::scalar_function_named_struct },
 		{ _field_struct, "scale curve X", "interpolated by external input", &blofeld::halo3::scalar_function_named_struct },
 		{ _field_struct, "scale curve Y", "interpolated by external input", &blofeld::halo3::scalar_function_named_struct },
@@ -21190,7 +21190,7 @@ namespace halo3 {
 	{
 		{ _field_real_rgb_color, "color" },
 		FIELD_PAD("DWFCZWRP", 12),
-		{ _field_fraction_bounds, "density", nullptr, nullptr, "[0,1]" },
+		{ _field_real_fraction_bounds, "density", nullptr, nullptr, "[0,1]" },
 		{ _field_real_bounds, "distance", nullptr, "world units" },
 		{ _field_useless_pad, "value" },
 		{ _field_real_fraction, "min depth fraction", "in range (0,max_depth) world units, where patchy fog starts fading in", nullptr, "[0,1]" },
@@ -28408,7 +28408,7 @@ namespace halo3 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo3::model_damage_info_flags_definition },
 		{ _field_string_id, "global indirect material name", "absorbes AOE or child damage" },
-		{ _field_custom_short_block_index, "indirect damage section", "absorbes AOE or child damage", &blofeld::halo3::damage_section_search_definition },
+		{ _field_short_block_index_custom_search, "indirect damage section", "absorbes AOE or child damage", &blofeld::halo3::damage_section_search_definition },
 		FIELD_PAD("XN", 2),
 		FIELD_PAD("LPVYKO", 4),
 		{ _field_char_enum, "collision damage reporting type", &blofeld::halo3::global_damage_reporting_enum_definition },
@@ -42697,7 +42697,7 @@ namespace halo3 {
 		{ _field_real, "tumble scale" },
 		{ _field_real, "rotation scale" },
 		{ _field_real, "starting velocity" },
-		{ _field_fraction_bounds, "air friction XY and Z" },
+		{ _field_real_fraction_bounds, "air friction XY and Z" },
 		{ _field_terminator }
 	};
 
@@ -44062,7 +44062,7 @@ namespace halo3 {
 		{ _field_string_id, "activity name", _field_id_sted },
 		{ _field_short_enum, "activity", &blofeld::halo3::g_activity_enum },
 		{ _field_short_integer, "activity variant" },
-		{ _field_custom_short_block_index, "point set", &blofeld::halo3::custom_point_set_block_index_definition },
+		{ _field_short_block_index_custom_search, "point set", &blofeld::halo3::custom_point_set_block_index_definition },
 		{ _field_short_enum, "patrol mode", &blofeld::halo3::patrol_mode_enum },
 		{ _field_block, "points", &blofeld::halo3::patrol_point_block_block },
 		{ _field_terminator }
@@ -44194,7 +44194,7 @@ namespace halo3 {
 		FIELD_PAD("plsc", 2),
 		{ _field_string_id, "activity name", _field_id_sted },
 		{ _field_short_enum, "activity", &blofeld::halo3::g_activity_enum },
-		{ _field_custom_short_block_index, "point set", &blofeld::halo3::custom_point_set_block_index_definition },
+		{ _field_short_block_index_custom_search, "point set", &blofeld::halo3::custom_point_set_block_index_definition },
 		{ _field_short_enum, "patrol mode", &blofeld::halo3::patrol_mode_enum },
 		FIELD_PAD("post-patrol-mode", 2),
 		{ _field_block, "points", &blofeld::halo3::patrol_point_block_block },
@@ -44222,7 +44222,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PATROL_POINT_BLOCK_ID)
 	{
-		{ _field_custom_short_block_index, "point", &blofeld::halo3::custom_patrol_point_block_index_definition },
+		{ _field_short_block_index_custom_search, "point", &blofeld::halo3::custom_patrol_point_block_index_definition },
 		{ _field_word_flags, "flags", &blofeld::halo3::patrol_point_flags },
 		{ _field_real, "delay", "how long the AI should pause at this point", "seconds" },
 		{ _field_real, "angle", "the angle-from-forward that the AI can pick at this point", "degrees" },
@@ -44259,7 +44259,7 @@ namespace halo3 {
 		{ _field_short_block_index, "initial zone", &blofeld::halo3::zone_block_block },
 		FIELD_PAD("ex-initial-orders", 2),
 		{ _field_short_block_index, "initial objective", &blofeld::halo3::objectives_block_block },
-		{ _field_custom_short_block_index, "initial task", &blofeld::halo3::custom_task_block_index_definition },
+		{ _field_short_block_index_custom_search, "initial task", &blofeld::halo3::custom_task_block_index_definition },
 		{ _field_block, "fire-teams", &blofeld::halo3::fire_team_block_block },
 		{ _field_short_block_index, "editor folder", &blofeld::halo3::g_scenario_editor_folder_block_block, _field_id_hide },
 		FIELD_PAD("pad", 2),
@@ -47228,7 +47228,7 @@ namespace halo3 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PF_JUMP_SEAM_BLOCK_ID)
 	{
-		{ _field_custom_short_block_index, "user jump index", &blofeld::halo3::custom_jump_seam_block_index_definition },
+		{ _field_short_block_index_custom_search, "user jump index", &blofeld::halo3::custom_jump_seam_block_index_definition },
 		FIELD_PAD("post user jump", 2),
 		{ _field_real, "rail length" },
 		{ _field_block, "jump hints", &blofeld::halo3::pf_jump_index_block_block },
@@ -47772,7 +47772,7 @@ namespace halo3 {
 		{ _field_word_flags, "flags", &blofeld::halo3::zone_set_flags },
 		{ _field_word_flags, "character flags", &blofeld::halo3::order_area_reference_character_flags },
 		{ _field_short_block_index, "zone", &blofeld::halo3::zone_block_block },
-		{ _field_custom_short_block_index, "area", &blofeld::halo3::custom_area_block_index_definition },
+		{ _field_short_block_index_custom_search, "area", &blofeld::halo3::custom_area_block_index_definition },
 		{ _field_terminator }
 	};
 
@@ -47812,7 +47812,7 @@ namespace halo3 {
 		{ _field_word_flags, "flags", &blofeld::halo3::zone_set_flags },
 		{ _field_word_flags, "character flags", &blofeld::halo3::order_area_reference_character_flags },
 		{ _field_short_block_index, "zone", &blofeld::halo3::zone_block_block },
-		{ _field_custom_short_block_index, "area", &blofeld::halo3::custom_area_block_index_definition },
+		{ _field_short_block_index_custom_search, "area", &blofeld::halo3::custom_area_block_index_definition },
 		{ _field_terminator }
 	};
 

@@ -71,9 +71,9 @@ c_reach_x360_tag_field::c_reach_x360_tag_field(c_reach_x360_tag_definition_manag
 	case blofeld::_field_pageable_resource:
 		tag_resource_definition = &tag_definition_manager.eval_pageable_resource(field_definition.definition_address);
 		break;
-	case blofeld::_field_custom_char_block_index:
-	case blofeld::_field_custom_short_block_index:
-	case blofeld::_field_custom_long_block_index:
+	case blofeld::_field_char_block_index_custom_search:
+	case blofeld::_field_short_block_index_custom_search:
+	case blofeld::_field_long_block_index_custom_search:
 		block_index_custom_search_definition = &tag_definition_manager.eval_block_index_custom_search(field_definition.definition_address);
 		break;
 	case blofeld::_field_custom:

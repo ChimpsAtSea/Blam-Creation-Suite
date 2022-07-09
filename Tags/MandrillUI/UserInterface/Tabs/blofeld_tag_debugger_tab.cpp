@@ -447,7 +447,7 @@
 //	if (&tag_interface != &this->tag_interface) return;
 //	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
 //}
-//void c_blofeld_tag_debugger_tab::render_field_fraction_bounds(render_field_callback_args)
+//void c_blofeld_tag_debugger_tab::render_field_real_fraction_bounds(render_field_callback_args)
 //{
 //	if (&tag_interface != &this->tag_interface) return;
 //	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
@@ -518,7 +518,7 @@
 //	if (&tag_interface != &this->tag_interface) return;
 //	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field, result);
 //}
-//void c_blofeld_tag_debugger_tab::render_field_custom_char_block_index(render_field_callback_args)
+//void c_blofeld_tag_debugger_tab::render_field_char_block_index_custom_search(render_field_callback_args)
 //{
 //	if (&tag_interface != &this->tag_interface) return;
 //	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field, result);
@@ -528,7 +528,7 @@
 //	if (&tag_interface != &this->tag_interface) return;
 //	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field, result);
 //}
-//void c_blofeld_tag_debugger_tab::render_field_custom_short_block_index(render_field_callback_args)
+//void c_blofeld_tag_debugger_tab::render_field_short_block_index_custom_search(render_field_callback_args)
 //{
 //	if (&tag_interface != &this->tag_interface) return;
 //	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field, result);
@@ -538,7 +538,7 @@
 //	if (&tag_interface != &this->tag_interface) return;
 //	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field, result);
 //}
-//void c_blofeld_tag_debugger_tab::render_field_custom_long_block_index(render_field_callback_args)
+//void c_blofeld_tag_debugger_tab::render_field_long_block_index_custom_search(render_field_callback_args)
 //{
 //	if (&tag_interface != &this->tag_interface) return;
 //	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field, result);
@@ -770,18 +770,18 @@
 //	register_validation_callback(blofeld::_field_short_integer_bounds, render_field_short_integer_bounds);
 //	register_validation_callback(blofeld::_field_angle_bounds, render_field_angle_bounds);
 //	register_validation_callback(blofeld::_field_real_bounds, render_field_real_bounds);
-//	register_validation_callback(blofeld::_field_fraction_bounds, render_field_fraction_bounds);
+//	register_validation_callback(blofeld::_field_real_fraction_bounds, render_field_real_fraction_bounds);
 //	register_validation_callback(blofeld::_field_tag_reference, render_field_tag_reference);
 //	register_validation_callback(blofeld::_field_block, render_field_block);
 //	register_validation_callback(blofeld::_field_long_block_flags, render_field_long_block_flags);
 //	register_validation_callback(blofeld::_field_word_block_flags, render_field_word_block_flags);
 //	register_validation_callback(blofeld::_field_byte_block_flags, render_field_byte_block_flags);
 //	register_validation_callback(blofeld::_field_char_block_index, render_field_char_block_index);
-//	register_validation_callback(blofeld::_field_custom_char_block_index, render_field_custom_char_block_index);
+//	register_validation_callback(blofeld::_field_char_block_index_custom_search, render_field_char_block_index_custom_search);
 //	register_validation_callback(blofeld::_field_short_block_index, render_field_short_block_index);
-//	register_validation_callback(blofeld::_field_custom_short_block_index, render_field_custom_short_block_index);
+//	register_validation_callback(blofeld::_field_short_block_index_custom_search, render_field_short_block_index_custom_search);
 //	register_validation_callback(blofeld::_field_long_block_index, render_field_long_block_index);
-//	register_validation_callback(blofeld::_field_custom_long_block_index, render_field_custom_long_block_index);
+//	register_validation_callback(blofeld::_field_long_block_index_custom_search, render_field_long_block_index_custom_search);
 //	register_validation_callback(blofeld::_field_data, render_field_data);
 //	register_validation_callback(blofeld::_field_vertex_buffer, render_field_vertex_buffer);
 //	register_validation_callback(blofeld::_field_pad, render_field_pad);

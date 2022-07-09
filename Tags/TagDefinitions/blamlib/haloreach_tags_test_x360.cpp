@@ -13649,7 +13649,7 @@ namespace haloreach {
 		{ _field_short_enum, "type", &blofeld::haloreach::machine_types },
 		{ _field_word_flags, "flags", &blofeld::haloreach::machine_flags },
 		{ _field_real, "door open time", nullptr, "seconds" },
-		{ _field_fraction_bounds, "door occlusion bounds", "maps position [0,1] to occlusion" },
+		{ _field_real_fraction_bounds, "door occlusion bounds", "maps position [0,1] to occlusion" },
 		{ _field_useless_pad, "value" },
 		{ _field_short_enum, "collision response", &blofeld::haloreach::machine_collision_responses },
 		{ _field_short_integer, "elevator node" },
@@ -19616,7 +19616,7 @@ namespace haloreach {
 		{ _field_real, "tumble scale" },
 		{ _field_real, "rotation scale" },
 		{ _field_real, "starting velocity" },
-		{ _field_fraction_bounds, "air friction XY and Z" },
+		{ _field_real_fraction_bounds, "air friction XY and Z" },
 		{ _field_terminator }
 	};
 
@@ -24677,7 +24677,7 @@ namespace haloreach {
 		FIELD_PAD("WBP", 2),
 		{ _field_short_block_index, "scale result by", "multiply this function (from a weapon, vehicle, etc.) final result of all of the above math", &blofeld::haloreach::scenario_function_block_block },
 		{ _field_short_enum, "bounds mode", "controls how the bounds, below, are used", &blofeld::haloreach::function_bounds_mode_enum },
-		{ _field_fraction_bounds, "bounds" },
+		{ _field_real_fraction_bounds, "bounds" },
 		{ _field_real, "runtime inverse bounds range" },
 		FIELD_PAD("OFLIM", 2),
 		{ _field_short_block_index, "turn off with", "if the specified function is off, so is this function", &blofeld::haloreach::scenario_function_block_block },
@@ -24747,8 +24747,8 @@ namespace haloreach {
 		SCENARIO_OBJECT_NAMES_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_custom_short_block_index, "object_type" },
-		{ _field_custom_short_block_index, "scenario_datum_index" },
+		{ _field_short_block_index_custom_search, "object_type" },
+		{ _field_short_block_index_custom_search, "scenario_datum_index" },
 		{ _field_terminator }
 	};
 
@@ -25355,7 +25355,7 @@ namespace haloreach {
 		{ _field_short_block_index, "Actor type", &blofeld::haloreach::character_palette_block_block },
 		{ _field_short_block_index, "Weapon type", &blofeld::haloreach::scenario_weapon_palette_block_block },
 		{ _field_short_block_index, "Vehicle type", &blofeld::haloreach::scenario_vehicle_palette_block_block },
-		{ _field_custom_short_block_index, "debug spawn point" },
+		{ _field_short_block_index_custom_search, "debug spawn point" },
 		{ _field_string_id, "Vehicle seat label" },
 		{ _field_terminator }
 	};
@@ -25405,7 +25405,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PERFORMANCE_LINE_SYNC_ACTION_ACTOR_BLOCK_ID)
 	{
-		{ _field_custom_short_block_index, "Actor type" },
+		{ _field_short_block_index_custom_search, "Actor type" },
 		FIELD_PAD("pad", 2),
 		{ _field_terminator }
 	};
@@ -25422,7 +25422,7 @@ namespace haloreach {
 	{
 		{ _field_string_id, "sync action name" },
 		{ _field_real, "probability" },
-		{ _field_custom_short_block_index, "attach to point" },
+		{ _field_short_block_index_custom_search, "attach to point" },
 		{ _field_word_flags, "flags", &blofeld::haloreach::scenario_performance_line_sync_action_flag_type_definition },
 		{ _field_block, "Actors", &blofeld::haloreach::scenario_performance_line_sync_action_actor_block_block },
 		{ _field_terminator }
@@ -25487,7 +25487,7 @@ namespace haloreach {
 		SCENARIO_PERFORMANCE_LINE_SOUND_BLOCK_STRUCT_ID)
 	{
 		{ _field_tag_reference, "sound effect", &blofeld::haloreach::_reference_tagref },
-		{ _field_custom_short_block_index, "attach to point" },
+		{ _field_short_block_index_custom_search, "attach to point" },
 		FIELD_PAD("pad", 2),
 		{ _field_string_id, "attach to object named" },
 		{ _field_terminator }
@@ -25536,8 +25536,8 @@ namespace haloreach {
 		SCENARIO_PERFORMANCE_LINE_POINT_INTERACTION_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_flags, "interaction type", &blofeld::haloreach::scenario_performance_line_point_interaction_type_definition },
-		{ _field_custom_short_block_index, "point" },
-		{ _field_custom_short_block_index, "actor" },
+		{ _field_short_block_index_custom_search, "point" },
+		{ _field_short_block_index_custom_search, "actor" },
 		{ _field_string_id, "object name" },
 		{ _field_string_id, "throttle style" },
 		{ _field_terminator }
@@ -25568,7 +25568,7 @@ namespace haloreach {
 		SCENARIO_PERFORMANCE_LINE_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_custom_short_block_index, "Actor" },
+		{ _field_short_block_index_custom_search, "Actor" },
 		{ _field_word_flags, "flags", &blofeld::haloreach::scenario_performance_line_flags },
 		{ _field_short_integer, "sleep minimum", nullptr, "ticks" },
 		{ _field_short_integer, "sleep maximum", nullptr, "ticks" },
@@ -25610,7 +25610,7 @@ namespace haloreach {
 		SCENARIO_PERFORMANCE_TASK_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "objective", &blofeld::haloreach::objectives_block_block },
-		{ _field_custom_short_block_index, "task" },
+		{ _field_short_block_index_custom_search, "task" },
 		{ _field_terminator }
 	};
 
@@ -25629,7 +25629,7 @@ namespace haloreach {
 		{ _field_string_id, "global name", "The name of a script global that will be declared for this performance." },
 		{ _field_word_flags, "flags", &blofeld::haloreach::performance_flags },
 		{ _field_short_block_index, "editor folder", &blofeld::haloreach::g_scenario_editor_folder_block_block, _field_id_hide },
-		{ _field_custom_short_block_index, "Point set" },
+		{ _field_short_block_index_custom_search, "Point set" },
 		FIELD_PAD("padding", 2),
 		{ _field_block, "Actors", &blofeld::haloreach::scenario_performance_actor_block_block },
 		{ _field_block, "Lines", &blofeld::haloreach::scenario_performance_line_block_block },
@@ -25688,7 +25688,7 @@ namespace haloreach {
 		{ _field_string_id, "Vehicle seat label" },
 		{ _field_tag_reference, "Weapon type", &blofeld::haloreach::weapon_group_reference$7_tagref },
 		FIELD_PAD("pad0", 2),
-		{ _field_custom_short_block_index, "Spawn Point" },
+		{ _field_short_block_index_custom_search, "Spawn Point" },
 		{ _field_terminator }
 	};
 
@@ -29586,7 +29586,7 @@ namespace haloreach {
 		{ _field_real, "rotation offset", nullptr, "degrees" },
 		{ _field_real, "axis offset", "percent offset in screen space along corona axis - 0.0 is on the corona, 1.0 is primary side edge of the screen, -1.0 is opposite side", "percent" },
 		{ _field_real_bounds, "radius", "interpolated by external input", "world units", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_fraction_bounds, "brightness", "interpolated by external input", nullptr, "[0,1]", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real_fraction_bounds, "brightness", "interpolated by external input", nullptr, "[0,1]", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_struct, "radius curve", "interpolated by external input", &blofeld::haloreach::scalar_function_named_struct },
 		{ _field_struct, "brightness curve", "interpolated by external input", &blofeld::haloreach::scalar_function_named_struct },
 		FIELD_EXPLANATION("TINT COLOR", "Tinting and modulating are not the same; \'tinting\' a reflection will color the darker regions but leave the highlights, while \'modulating\' will color everything uniformly. The modulation factor controls how much the reflection is modulated as opposed to tinted (0 is tinted, 1 is modulated). The tint power affects the curve of how much of the color range to tint."),
@@ -29985,7 +29985,7 @@ namespace haloreach {
 	{
 		{ _field_string_id, "material name" },
 		FIELD_PAD("unused flags", 2),
-		{ _field_custom_short_block_index, "damage section" },
+		{ _field_short_block_index_custom_search, "damage section" },
 		{ _field_short_integer, "runtime collision material index" },
 		{ _field_short_integer, "runtime damager material index" },
 		{ _field_string_id, "global material name" },
@@ -30056,7 +30056,7 @@ namespace haloreach {
 		{ _field_string_id, "marker name", "multiple markers become multiple spheres of the same radius" },
 		{ _field_real, "size", "sphere radius" },
 		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker's x axis" },
-		{ _field_custom_short_block_index, "damage section", "the target is associated with this damage section" },
+		{ _field_short_block_index_custom_search, "damage section", "the target is associated with this damage section" },
 		{ _field_short_block_index, "variant", "the target will only appear with this variant", &blofeld::haloreach::model_variant_block_block },
 		{ _field_real_fraction, "targeting relevance", "higher relevances turn into stronger magnetisms" },
 		{ _field_real, "aoe exclusion radius", "ignored if zero" },
@@ -30761,8 +30761,8 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_WEAPON_REMAP_TABLE_ENTRY_BLOCK_ID)
 	{
-		{ _field_custom_long_block_index, "from object" },
-		{ _field_custom_long_block_index, "to object" },
+		{ _field_long_block_index_custom_search, "from object" },
+		{ _field_long_block_index_custom_search, "to object" },
 		{ _field_terminator }
 	};
 
@@ -30776,8 +30776,8 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_VEHICLE_REMAP_TABLE_ENTRY_BLOCK_ID)
 	{
-		{ _field_custom_long_block_index, "from object" },
-		{ _field_custom_long_block_index, "to object" },
+		{ _field_long_block_index_custom_search, "from object" },
+		{ _field_long_block_index_custom_search, "to object" },
 		{ _field_terminator }
 	};
 
@@ -31651,7 +31651,7 @@ namespace haloreach {
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this permutation that are ignored (a different permutation is selected.)" },
 		FIELD_CUSTOM("value", _field_id_default),
 		{ _field_real, "gain", "additional attenuation when played", "dB", _field_id_decibels },
-		{ _field_custom_short_block_index, "raw info" },
+		{ _field_short_block_index_custom_search, "raw info" },
 		{ _field_short_block_index, "play fraction type", &blofeld::haloreach::g_null_block_block },
 		{ _field_short_integer_bounds, "mission range", "first and last mission ids this permutation can play in (zero values are ignored)" },
 		{ _field_word_flags, "permutation flags", &blofeld::haloreach::sound_permutation_external_flags },
@@ -31755,7 +31755,7 @@ namespace haloreach {
 		FIELD_EXPLANATION("scale modifiers", "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the values specified above. (0 values are ignored.)"),
 		{ _field_real_bounds, "gain modifier", nullptr, "dB", _field_id_decibels },
 		{ _field_short_integer_bounds, "pitch modifier", nullptr, "cents" },
-		{ _field_fraction_bounds, "skip fraction modifier" },
+		{ _field_real_fraction_bounds, "skip fraction modifier" },
 		{ _field_terminator }
 	};
 
@@ -34481,7 +34481,7 @@ namespace haloreach {
 	{
 		{ _field_long_flags, "flags", &blofeld::haloreach::model_damage_info_flags_definition },
 		{ _field_string_id, "global indirect material name", "absorbes AOE or child damage" },
-		{ _field_custom_short_block_index, "indirect damage section", "absorbes AOE or child damage" },
+		{ _field_short_block_index_custom_search, "indirect damage section", "absorbes AOE or child damage" },
 		FIELD_PAD("XN", 2),
 		FIELD_PAD("LPVYKO", 4),
 		{ _field_char_enum, "collision damage reporting type", &blofeld::haloreach::global_damage_reporting_enum_definition },
@@ -34635,7 +34635,7 @@ namespace haloreach {
 		HAVOK_SHAPE_REFERENCE_STRUCT_ID)
 	{
 		{ _field_short_enum, "shape type", &blofeld::haloreach::shape_enum },
-		{ _field_custom_short_block_index, "shape" },
+		{ _field_short_block_index_custom_search, "shape" },
 		{ _field_terminator }
 	};
 
@@ -34831,7 +34831,7 @@ namespace haloreach {
 		PHYSICS_MODEL_MOTOR_REFERENCE_STRUCT_ID)
 	{
 		{ _field_short_enum, "motor type", &blofeld::haloreach::physics_model_motor_types_enum },
-		{ _field_custom_short_block_index, "index" },
+		{ _field_short_block_index_custom_search, "index" },
 		{ _field_terminator }
 	};
 
@@ -34887,7 +34887,7 @@ namespace haloreach {
 		PHYSICS_MODEL_CONSTRAINT_EDGE_CONSTRAINT_BLOCK_ID)
 	{
 		{ _field_short_enum, "type", &blofeld::haloreach::rigid_constraint_types_enum },
-		{ _field_custom_short_block_index, "index" },
+		{ _field_short_block_index_custom_search, "index" },
 		{ _field_long_flags, "flags", &blofeld::haloreach::rigid_body_constraint_edge_constraint_flags_definition },
 		{ _field_real, "friction", "0 is the default (takes what it was set in max) anything else overrides that value" },
 		{ _field_block, "ragdoll motors", &blofeld::haloreach::physics_model_ragdoll_motors_block_block },
@@ -34965,7 +34965,7 @@ namespace haloreach {
 		PHYSICS_MODEL_POWERED_CHAIN_CONSTRAINTS_BLOCK_ID)
 	{
 		{ _field_short_enum, "constraint type", &blofeld::haloreach::rigid_constraint_types_enum },
-		{ _field_custom_short_block_index, "constraint index" },
+		{ _field_short_block_index_custom_search, "constraint index" },
 		{ _field_struct, "motor x", &blofeld::haloreach::physics_model_motor_reference_struct },
 		{ _field_struct, "motor y", &blofeld::haloreach::physics_model_motor_reference_struct },
 		{ _field_struct, "motor z", &blofeld::haloreach::physics_model_motor_reference_struct },
@@ -35545,7 +35545,7 @@ namespace haloreach {
 	{
 		{ _field_short_block_index, "node", &blofeld::haloreach::nodes_block_block },
 		{ _field_short_block_index, "region", &blofeld::haloreach::regions_block_block },
-		{ _field_custom_short_block_index, "permutattion" },
+		{ _field_short_block_index_custom_search, "permutattion" },
 		FIELD_PAD("pad", 2),
 		{ _field_real_point_3d, "bouding sphere offset" },
 		{ _field_real, "bounding sphere radius" },
@@ -42080,8 +42080,8 @@ namespace haloreach {
 		SCENARIO_CUTSCENE_TITLE_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_fraction_bounds, "text bounds X" },
-		{ _field_fraction_bounds, "text bounds Y" },
+		{ _field_real_fraction_bounds, "text bounds X" },
+		{ _field_real_fraction_bounds, "text bounds Y" },
 		{ _field_short_enum, "justification", &blofeld::haloreach::text_justification_enum_definition },
 		{ _field_short_enum, "vertical justification", &blofeld::haloreach::text_vertical_justification_enum_definition },
 		{ _field_short_enum, "font", &blofeld::haloreach::global_font_id_enum_definition },
@@ -43001,8 +43001,8 @@ namespace haloreach {
 		{ _field_tag_reference, "cinematic anchor reference", &blofeld::haloreach::scenery_group_reference$3_tagref },
 		{ _field_real, "cinematic film aperture" },
 		{ _field_real, "cinematic skip ui up time" },
-		{ _field_fraction_bounds, "subtitle rect width", "percentage towards the center - 0=default, 0.5=center of the screen" },
-		{ _field_fraction_bounds, "subtitle rect height", "0=default, 0.5=center of the screen" },
+		{ _field_real_fraction_bounds, "subtitle rect width", "percentage towards the center - 0=default, 0.5=center of the screen" },
+		{ _field_real_fraction_bounds, "subtitle rect height", "0=default, 0.5=center of the screen" },
 		{ _field_real_rgb_color, "default subtitle color" },
 		{ _field_real_rgb_color, "default subtitle shadow color" },
 		{ _field_block, "cinematic characters", &blofeld::haloreach::cinematic_characters_block_block },
@@ -53137,7 +53137,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PATROL_POINT_BLOCK_ID)
 	{
-		{ _field_custom_short_block_index, "point" },
+		{ _field_short_block_index_custom_search, "point" },
 		{ _field_word_flags, "flags", &blofeld::haloreach::patrol_point_flags },
 		{ _field_real, "delay", "how long the AI should pause at this point", "seconds" },
 		{ _field_real, "angle", "the angle-from-forward that the AI can pick at this point", "degrees" },
@@ -53204,7 +53204,7 @@ namespace haloreach {
 	{
 		{ _field_struct, "place on", &blofeld::haloreach::ai_spawn_conditions_struct },
 		{ _field_string_id, "name" },
-		{ _field_custom_short_block_index, "cell" },
+		{ _field_short_block_index_custom_search, "cell" },
 		FIELD_PAD("post-cell-index-pad", 2),
 		{ _field_real_point_3d, "position" },
 		{ _field_short_block_index, "reference frame", &blofeld::haloreach::ai_reference_frame_block_block },
@@ -53234,7 +53234,7 @@ namespace haloreach {
 		FIELD_PAD("post-placement-script-pad", 2),
 		{ _field_string_id, "activity name" },
 		{ _field_string_id, "movement set" },
-		{ _field_custom_short_block_index, "point set" },
+		{ _field_short_block_index_custom_search, "point set" },
 		{ _field_short_enum, "patrol mode", &blofeld::haloreach::patrol_mode_enum },
 		{ _field_block, "points", &blofeld::haloreach::patrol_point_block_block },
 		{ _field_terminator }
@@ -53304,7 +53304,7 @@ namespace haloreach {
 		{ _field_string_id, "placement script", MAKE_ALT_NAMES("Placement script"), _field_id_halo_script_block },
 		{ _field_string_id, "activity name" },
 		{ _field_string_id, "movement set" },
-		{ _field_custom_short_block_index, "point set" },
+		{ _field_short_block_index_custom_search, "point set" },
 		{ _field_short_enum, "patrol mode", &blofeld::haloreach::patrol_mode_enum },
 		{ _field_block, "points", &blofeld::haloreach::patrol_point_block_block },
 		{ _field_terminator }
@@ -53388,7 +53388,7 @@ namespace haloreach {
 		FIELD_PAD("plsc", 2),
 		{ _field_string_id, "activity name" },
 		{ _field_string_id, "movement set" },
-		{ _field_custom_short_block_index, "point set" },
+		{ _field_short_block_index_custom_search, "point set" },
 		{ _field_short_enum, "patrol mode", &blofeld::haloreach::patrol_mode_enum },
 		{ _field_block, "points", &blofeld::haloreach::patrol_point_block_block },
 		{ _field_terminator }
@@ -53453,7 +53453,7 @@ namespace haloreach {
 		{ _field_short_block_index, "parent", &blofeld::haloreach::squad_groups_block_block, _field_id_squad_template },
 		{ _field_short_block_index, "initial zone", &blofeld::haloreach::zone_block_block },
 		{ _field_short_block_index, "initial objective", &blofeld::haloreach::objectives_block_block },
-		{ _field_custom_short_block_index, "initial task" },
+		{ _field_short_block_index_custom_search, "initial task" },
 		{ _field_short_block_index, "editor folder", &blofeld::haloreach::g_scenario_editor_folder_block_block, _field_id_hide },
 		{ _field_block, "spawn formations", &blofeld::haloreach::spawn_formation_block_block },
 		{ _field_block, "spawn points", &blofeld::haloreach::spawn_points_block_block },
@@ -55434,7 +55434,7 @@ namespace haloreach {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PF_JUMP_SEAM_BLOCK_ID)
 	{
-		{ _field_custom_short_block_index, "user jump index" },
+		{ _field_short_block_index_custom_search, "user jump index" },
 		FIELD_PAD("post user jump", 2),
 		{ _field_real, "rail length" },
 		{ _field_block, "jump hints", &blofeld::haloreach::pf_jump_index_block_block },
@@ -55626,7 +55626,7 @@ namespace haloreach {
 		TASK_DISTRIBUTION_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "objective", &blofeld::haloreach::objectives_block_block },
-		{ _field_custom_short_block_index, "task" },
+		{ _field_short_block_index_custom_search, "task" },
 		{ _field_terminator }
 	};
 
@@ -56163,7 +56163,7 @@ namespace haloreach {
 		{ _field_byte_flags, "flags", &blofeld::haloreach::zone_set_flags },
 		FIELD_PAD("no-character-flags-padding", 1),
 		{ _field_short_block_index, "zone", &blofeld::haloreach::zone_block_block },
-		{ _field_custom_short_block_index, "area" },
+		{ _field_short_block_index_custom_search, "area" },
 		{ _field_angle, "yaw" },
 		{ _field_long_integer, "connection flags 0" },
 		{ _field_long_integer, "connection flags 1" },

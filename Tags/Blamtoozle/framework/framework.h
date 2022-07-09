@@ -17,3 +17,7 @@
 #include "tag_struct_definition.h"
 #include "tag_resource_definition.h"
 #include "tag_block_index_custom_search_definition.h"
+
+extern void nuke_trailing_extension(char* string, const char* extension);
+extern void replace_trailing_extension(char* string, const char* extension, const char* replacement);
+extern void cleanup_code_symbol_name(char* buffer);

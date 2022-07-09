@@ -563,7 +563,7 @@ void c_blamtoozle_source_generator::export_single_source(const wchar_t* file_pat
 			stream << "\t\t" << struct_definition->get_code_symbol_name() << "," << std::endl;
 			stream << "\t\t" << "\"" << struct_definition->get_display_name() << "\"," << std::endl;
 			stream << "\t\t" << "\"" << struct_definition->get_name() << "\"," << std::endl;
-			stream << "\t\t" << "\"s_" << struct_definition->get_code_symbol_name() << "\"," << std::endl;
+			stream << "\t\t" << "\"" << struct_definition->get_structure_type_name() << "\"," << std::endl;
 
 			c_flags<blofeld::e_tag_field_set_bit> default_flags;
 			default_flags.set(blofeld::_tag_field_set_unknown0_bit, true);
@@ -582,12 +582,12 @@ void c_blamtoozle_source_generator::export_single_source(const wchar_t* file_pat
 			{
 				stream << "\t\t";
 				bool is_first = true;
-				for (__underlying_type(blofeld::e_tag_field_set_bit) _h3_tag_field_set = 0; _h3_tag_field_set < blofeld::k_num_runtime_flags; _h3_tag_field_set++)
+				for (__underlying_type(blofeld::e_tag_field_set_bit) _tag_field_set = 0; _tag_field_set < blofeld::k_num_runtime_flags; _tag_field_set++)
 				{
-					blofeld::e_tag_field_set_bit halo3_tag_field_set = static_cast<blofeld::e_tag_field_set_bit>(_h3_tag_field_set);
-					if (flags.test(halo3_tag_field_set))
+					blofeld::e_tag_field_set_bit tag_field_set = static_cast<blofeld::e_tag_field_set_bit>(_tag_field_set);
+					if (flags.test(tag_field_set))
 					{
-						const char* macro = tag_field_set_bit_to_field_set_bit_macro(halo3_tag_field_set);
+						const char* macro = tag_field_set_bit_to_field_set_bit_macro(tag_field_set);
 
 						if (!is_first)
 						{
@@ -746,9 +746,6 @@ const char* c_blamtoozle_source_generator::tag_field_set_bit_to_field_set_bit_ma
 
 void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields)
 {
-	const char* _namespace = "halo3";
-	command_line_get_argument("blamboozle-halo3-namespace", _namespace);
-
 	for (auto& _field : fields)
 	{
 		if (c_blamtoozle_tag_field_combined_fixup* combined_fixup_field = dynamic_cast<c_blamtoozle_tag_field_combined_fixup*>(_field))
@@ -756,20 +753,20 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			switch (combined_fixup_field->fixup_type)
 			{
 			case _blamtoozle_tag_field_combined_fixup_type_equal:
-				stream << "\t\t{ _version_mode_tag_group_equal, &blofeld::" << _namespace << "::" << combined_fixup_field->group_definition.get_code_symbol_name() << ", " << combined_fixup_field->count << " }," << std::endl;
+				stream << "\t\t{ _version_mode_tag_group_equal, &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << combined_fixup_field->group_definition.get_code_symbol_name() << ", " << combined_fixup_field->count << " }," << std::endl;
 				break;
 			case _blamtoozle_tag_field_combined_fixup_type_not_equal:
-				stream << "\t\t{ _version_mode_tag_group_not_equal, &blofeld::" << _namespace << "::" << combined_fixup_field->group_definition.get_code_symbol_name() << ", " << combined_fixup_field->count << " }," << std::endl;
+				stream << "\t\t{ _version_mode_tag_group_not_equal, &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << combined_fixup_field->group_definition.get_code_symbol_name() << ", " << combined_fixup_field->count << " }," << std::endl;
 				break;
 			}
 
-			debug_point;
+			
 		}
 		else if (c_blamtoozle_tag_field_dummy_space* dummy_space_field = dynamic_cast<c_blamtoozle_tag_field_dummy_space*>(_field))
 		{
 			stream << std::endl;
 
-			debug_point;
+			
 		}
 		else if (c_blamtoozle_tag_field* tag_field = dynamic_cast<c_blamtoozle_tag_field*>(_field))
 		{
@@ -1019,7 +1016,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				}
 				c_blamtoozle_tag_array_definition* array_definition = tag_field->get_array_definition();
 				ASSERT(array_definition != nullptr);
-				stream << ", &blofeld::" << _namespace << "::" << array_definition->get_code_symbol_name();
+				stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << array_definition->get_code_symbol_name();
 				if (write_tag)
 				{
 					stream << ", " << field_id_string;
@@ -1028,8 +1025,12 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				stream << " }," << std::endl;
 			}
 			break;
+			case blofeld::_field_char_block_index:
 			case blofeld::_field_short_block_index:
 			case blofeld::_field_long_block_index:
+			case blofeld::_field_byte_block_flags:
+			case blofeld::_field_word_block_flags:
+			case blofeld::_field_long_block_flags:
 			case blofeld::_field_block:
 			{
 				stream << "\t\t{ ";
@@ -1059,10 +1060,10 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << ", ";
 					write_tag_field_flags(stream, string_parser);
 				}
-				ASSERT(tag_field->get_block_definition());
+				//ASSERT(tag_field->get_block_definition());
 				if (tag_field->get_block_definition())
 				{
-					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_block_definition()->get_code_symbol_name();
+					stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << tag_field->get_block_definition()->get_code_symbol_name();
 				}
 				if (write_tag)
 				{
@@ -1104,7 +1105,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				ASSERT(tag_field->get_struct_definition());
 				if (tag_field->get_struct_definition())
 				{
-					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_struct_definition()->get_code_symbol_name();
+					stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << tag_field->get_struct_definition()->get_code_symbol_name();
 				}
 				if (write_tag)
 				{
@@ -1146,7 +1147,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				ASSERT(tag_field->get_api_interop_definition());
 				if (tag_field->get_api_interop_definition())
 				{
-					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_api_interop_definition()->get_code_symbol_name();
+					stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << tag_field->get_api_interop_definition()->get_code_symbol_name();
 				}
 				if (write_tag)
 				{
@@ -1185,10 +1186,10 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << ", ";
 					write_tag_field_flags(stream, string_parser);
 				}
-				ASSERT(tag_field->get_data_definition());
+				//ASSERT(tag_field->get_data_definition());
 				if (tag_field->get_data_definition())
 				{
-					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_data_definition()->get_code_symbol_name();
+					stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << tag_field->get_data_definition()->get_code_symbol_name();
 				}
 				if (write_tag)
 				{
@@ -1198,9 +1199,9 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				stream << " }," << std::endl;
 			}
 			break;
-			case blofeld::_field_custom_char_block_index:
-			case blofeld::_field_custom_short_block_index:
-			case blofeld::_field_custom_long_block_index:
+			case blofeld::_field_char_block_index_custom_search:
+			case blofeld::_field_short_block_index_custom_search:
+			case blofeld::_field_long_block_index_custom_search:
 			{
 				stream << "\t\t{ ";
 				stream << field_generic_type_name << ", ";
@@ -1229,10 +1230,10 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << ", ";
 					write_tag_field_flags(stream, string_parser);
 				}
-				ASSERT(tag_field->get_block_index_custom_search_definition());
+				//ASSERT(tag_field->get_block_index_custom_search_definition());
 				if (tag_field->get_block_index_custom_search_definition())
 				{
-					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_block_index_custom_search_definition()->get_code_symbol_name();
+					stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << tag_field->get_block_index_custom_search_definition()->get_code_symbol_name();
 				}
 				if (write_tag)
 				{
@@ -1274,7 +1275,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				ASSERT(tag_field->get_tag_resource_definition());
 				if (tag_field->get_tag_resource_definition())
 				{
-					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_tag_resource_definition()->get_code_symbol_name();
+					stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << tag_field->get_tag_resource_definition()->get_code_symbol_name();
 				}
 				if (write_tag)
 				{
@@ -1316,7 +1317,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				ASSERT(tag_field->get_tag_reference_definition());
 				if (tag_field->get_tag_reference_definition())
 				{
-					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_tag_reference_definition()->get_code_symbol_name();
+					stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << tag_field->get_tag_reference_definition()->get_code_symbol_name();
 				}
 				if (write_tag)
 				{
@@ -1367,7 +1368,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				ASSERT(tag_field->get_string_list_definition());
 				if (tag_field->get_string_list_definition())
 				{
-					stream << ", &blofeld::" << _namespace << "::" << tag_field->get_string_list_definition()->get_code_symbol_name();
+					stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << tag_field->get_string_list_definition()->get_code_symbol_name();
 				}
 				if (write_tag)
 				{

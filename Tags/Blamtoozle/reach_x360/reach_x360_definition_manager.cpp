@@ -35,11 +35,8 @@ c_reach_x360_tag_definition_manager::~c_reach_x360_tag_definition_manager()
 {
 }
 
-void c_reach_x360_tag_definition_manager::traverse()
+void c_reach_x360_tag_definition_manager::traverse(ptr32 group_table_address, unsigned long num_tag_layouts)
 {
-	ptr32 group_table_address = 0x83FA8F40;
-	unsigned long num_tag_layouts = 237;
-
 	const ptr32* groups = va_to_pointer2<ptr32>(group_table_address);
 	for (unsigned long tag_group_index = 0; tag_group_index < num_tag_layouts; tag_group_index++)
 	{
@@ -48,7 +45,7 @@ void c_reach_x360_tag_definition_manager::traverse()
 
 		c_reach_x360_tag_group_definition& group_definition = eval_group(group_pointer);
 
-		debug_point;
+		
 	}
 
 	for (c_reach_x360_tag_group_definition* tag_group_definition : tag_group_definitions)
@@ -56,7 +53,7 @@ void c_reach_x360_tag_definition_manager::traverse()
 		tag_group_definition->traverse();
 	}
 
-	debug_point;
+	
 }
 
 c_reach_x360_tag_group_definition& c_reach_x360_tag_definition_manager::eval_group(ptr32 definition_address)

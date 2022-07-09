@@ -48,7 +48,7 @@ void c_blamtoozle_tag_definition_manager::set_is_big_endian(bool _is_big_endian)
 	is_big_endian = _is_big_endian;
 }
 
-void c_blamtoozle_tag_definition_manager::format_code_symbol_name(std::string code_symbol_name)
+void c_blamtoozle_tag_definition_manager::format_code_symbol_name(std::string& code_symbol_name)
 {
 	// #TODO: This is messy af
 
@@ -79,7 +79,7 @@ void c_blamtoozle_tag_definition_manager::format_code_symbol_name(std::string co
 	code_symbol_name = str;
 }
 
-void c_blamtoozle_tag_definition_manager::format_code_symbol_name_uid(std::string code_symbol_name)
+void c_blamtoozle_tag_definition_manager::format_code_symbol_name_uid(std::string& code_symbol_name)
 {
 	format_code_symbol_name(code_symbol_name);
 

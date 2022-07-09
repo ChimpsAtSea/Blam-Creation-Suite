@@ -57,7 +57,7 @@ protected:
 
 	void write_tag_types_header(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields);
 	void write_tag_types_source(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields);
-	static void write_fields(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields);
+	void write_fields(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields);
 	static void write_tag_field_flags(std::stringstream& stream, c_blamlib_string_parser_v2& string_parser);
 	static const char* tag_field_set_bit_to_field_set_bit_macro(blofeld::e_tag_field_set_bit flags);
 	static void write_tag_reference_flags(std::stringstream& stream, c_blamtoozle_tag_reference_definition& tag_reference_definition);

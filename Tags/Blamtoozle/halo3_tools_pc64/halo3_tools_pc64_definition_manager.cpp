@@ -35,11 +35,8 @@ c_halo3_tools_pc64_tag_definition_manager::~c_halo3_tools_pc64_tag_definition_ma
 {
 }
 
-void c_halo3_tools_pc64_tag_definition_manager::traverse()
+void c_halo3_tools_pc64_tag_definition_manager::traverse(ptr64 group_table_address, unsigned long num_tag_layouts)
 {
-	ptr64 group_table_address = 0x0000000140EC2C90;
-	unsigned long num_tag_layouts = 182;
-
 	const ptr64* groups = va_to_pointer2<ptr64>(group_table_address);
 	for (unsigned long tag_group_index = 0; tag_group_index < num_tag_layouts; tag_group_index++)
 	{
@@ -48,7 +45,7 @@ void c_halo3_tools_pc64_tag_definition_manager::traverse()
 
 		c_halo3_tools_pc64_tag_group_definition& group_definition = eval_group(group_pointer);
 
-		debug_point;
+		
 	}
 
 	for (c_halo3_tools_pc64_tag_group_definition* tag_group_definition : tag_group_definitions)
@@ -56,7 +53,7 @@ void c_halo3_tools_pc64_tag_definition_manager::traverse()
 		tag_group_definition->traverse();
 	}
 
-	debug_point;
+	
 }
 
 c_halo3_tools_pc64_tag_group_definition& c_halo3_tools_pc64_tag_definition_manager::eval_group(ptr64 definition_address)

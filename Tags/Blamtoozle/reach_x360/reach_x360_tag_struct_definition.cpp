@@ -92,6 +92,9 @@ c_reach_x360_tag_struct_definition::c_reach_x360_tag_struct_definition(c_reach_x
 {
 	tag_definition_manager.format_code_symbol_name_uid(code_symbol_name);
 
+	code_type_name = "s_";
+	code_type_name += code_symbol_name;
+
 	bool is_runtime_flags_valid = struct_definition.runtime.flags.valid();
 	ASSERT(is_runtime_flags_valid);
 
@@ -125,7 +128,7 @@ const char* c_reach_x360_tag_struct_definition::get_code_symbol_name()
 	return code_symbol_name.c_str();
 }
 
-const char* c_reach_x360_tag_struct_definition::get_code_type_name()
+const char* c_reach_x360_tag_struct_definition::get_structure_type_name()
 {
 	return code_type_name.c_str();
 }
@@ -159,6 +162,7 @@ blofeld::s_tag_persistent_identifier& c_reach_x360_tag_struct_definition::get_pe
 {
 	return struct_definition.type.persistent_identifier;
 }
+
 c_flags<blofeld::e_tag_field_set_bit> c_reach_x360_tag_struct_definition::get_field_set_bits()
 {
 	c_flags<blofeld::e_tag_field_set_bit> result;
@@ -307,5 +311,5 @@ void c_reach_x360_tag_struct_definition::handle_conflict(const c_blamtoozle_tag_
 	ASSERT(last_field != nullptr);
 	ASSERT(last_field->field_type == blofeld::_field_terminator);
 
-	debug_point;
+	
 }

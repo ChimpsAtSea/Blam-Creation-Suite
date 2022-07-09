@@ -30,7 +30,7 @@ public:
 	friend c_halo3_tools_pc64_tag_api_interop_definition;
 	friend c_halo3_tools_pc64_tag_field;
 
-	void traverse();
+	void traverse(ptr64 group_table_address, unsigned long num_tag_layouts);
 
 	c_halo3_tools_pc64_tag_group_definition& eval_group(ptr64 definition_address);
 protected:

@@ -86,8 +86,8 @@ struct s_reach_x360_tag_struct_runtime
 	unsigned long num_combined_fields;																						//156				9C
 	ptr32 unknownA0;																										//160				A0
 	unsigned long unique_index;																								//164				A4
-	c_big_flags_typed<long, k_num_reach_x360_field_types> inlined_field_types;												//168				A8
-	c_big_flags_typed<long, k_num_reach_x360_field_types> unknown_field_types;												//176				B0
+	c_big_flags_typed<long, k_num_reach_x360_fields> inlined_field_types;												//168				A8
+	c_big_flags_typed<long, k_num_reach_x360_fields> unknown_field_types;												//176				B0
 	ptr32 descendent_definition;																							//184				B8
 };
 constexpr size_t k_reach_x360_tag_struct_runtime_size = sizeof(s_reach_x360_tag_struct_runtime);
@@ -158,7 +158,7 @@ public:
 	virtual const char* get_display_name() override;
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;
-	virtual const char* get_code_type_name() override;
+	virtual const char* get_structure_type_name() override;
 	virtual unsigned long get_structure_size() override;
 	virtual const char* get_structure_size_string() override;
 	virtual unsigned long get_alignment_bits() override;

@@ -6649,7 +6649,7 @@ namespace halo2 {
 		{ _field_short_enum, "type", &blofeld::halo2::unnamed_enum$284 },
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$285 },
 		{ _field_real, "door open time", nullptr, "seconds" },
-		{ _field_fraction_bounds, "door occlusion bounds", "maps position [0,1] to occlusion" },
+		{ _field_real_fraction_bounds, "door occlusion bounds", "maps position [0,1] to occlusion" },
 		{ _field_useless_pad, "value" },
 		{ _field_short_enum, "collision response", &blofeld::halo2::unnamed_enum$286 },
 		{ _field_short_integer, "elevator node" },
@@ -7268,7 +7268,7 @@ namespace halo2 {
 		{ _field_custom, "Update gain" },
 		{ _field_real, "gain", "additional attenuation when played", "dB" },
 		{ _field_long_integer, "value" },
-		{ _field_custom_short_block_index, "value" },
+		{ _field_short_block_index_custom_search, "value" },
 		{ _field_short_integer, "value" },
 		{ _field_block, "value", &blofeld::halo2::sound_permutation_chunk_block },
 		{ _field_terminator }
@@ -7350,7 +7350,7 @@ namespace halo2 {
 		FIELD_EXPLANATION_EX("scale modifiers", nullptr, FIELD_FLAG_NONE, "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the values specified above. (0 values are ignored.)"),
 		{ _field_real_bounds, "gain modifier", nullptr, "dB" },
 		{ _field_short_integer_bounds, "pitch modifier", nullptr, "cents" },
-		{ _field_fraction_bounds, "skip fraction modifier" },
+		{ _field_real_fraction_bounds, "skip fraction modifier" },
 		{ _field_terminator }
 	};
 
@@ -7510,7 +7510,7 @@ namespace halo2 {
 		{ _field_short_integer, "Sawtooth Count", "Number of times this function should repeat (e.g., sawtooth count of 5 gives function value of 1.0 at each of 0.25, 0.50, and 0.75, as well as at 1.0)." },
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_enum, "Bounds Mode", "Controls how bounds, below, are used.", &blofeld::halo2::unnamed_enum$394 },
-		{ _field_fraction_bounds, "Bounds" },
+		{ _field_real_fraction_bounds, "Bounds" },
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 16),
@@ -7559,7 +7559,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_string, "Name" },
-		{ _field_custom_short_block_index, "value" },
+		{ _field_short_block_index_custom_search, "value" },
 		{ _field_terminator }
 	};
 
@@ -7846,7 +7846,7 @@ namespace halo2 {
 		FIELD_EXPLANATION_EX("PATCHY FOG", nullptr, FIELD_FLAG_NONE, nullptr),
 		{ _field_real_rgb_color, "Patchy Color" },
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
-		{ _field_fraction_bounds, "Patchy Density", nullptr, nullptr, "[0,1]" },
+		{ _field_real_fraction_bounds, "Patchy Density", nullptr, nullptr, "[0,1]" },
 		{ _field_real_bounds, "Patchy Distance", nullptr, "World Units" },
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_tag_reference, "Patchy Fog", &blofeld::halo2::patchy_fog_reference },
@@ -10391,7 +10391,7 @@ namespace halo2 {
 	{
 		{ _field_word_flags, "Pathfinding Flags", &blofeld::halo2::unnamed_enum$16 },
 		{ _field_short_integer, "Pathfinding Object Index" },
-		{ _field_custom_long_block_index, "Runtime Scenery Object" },
+		{ _field_long_block_index_custom_search, "Runtime Scenery Object" },
 		{ _field_short_enum, "Pathfinding Policy", &blofeld::halo2::unnamed_enum$13 },
 		{ _field_short_enum, "Lightmapping Policy", &blofeld::halo2::unnamed_enum$17 },
 		{ _field_terminator }
@@ -16343,7 +16343,7 @@ namespace halo2 {
 	{
 		{ _field_real_rgb_color, "color" },
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
-		{ _field_fraction_bounds, "density", nullptr, nullptr, "[0,1]" },
+		{ _field_real_fraction_bounds, "density", nullptr, nullptr, "[0,1]" },
 		{ _field_real_bounds, "distance", nullptr, "world units" },
 		{ _field_useless_pad, "value" },
 		{ _field_real_fraction, "min depth fraction", "in range (0,max_depth) world units, where patchy fog starts fading in", nullptr, "[0,1]" },
@@ -16398,7 +16398,7 @@ namespace halo2 {
 	{
 		{ _field_real_rgb_color, "Color" },
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 12),
-		{ _field_fraction_bounds, "Density", nullptr, nullptr, "[0,1]" },
+		{ _field_real_fraction_bounds, "Density", nullptr, nullptr, "[0,1]" },
 		{ _field_real_bounds, "Distance", nullptr, "world units" },
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_tag_reference, "Patchy Fog", &blofeld::halo2::patchy_fog_reference$3 },
@@ -18086,7 +18086,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_enum, "type", &blofeld::halo2::unnamed_enum$341 },
-		{ _field_custom_short_block_index, "index" },
+		{ _field_short_block_index_custom_search, "index" },
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$342 },
 		{ _field_real, "friction", "0 is the default (takes what it was set in max) anything else overrides that value" },
 		{ _field_terminator }
@@ -18158,7 +18158,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		{ _field_custom_short_block_index, "permutattion" },
+		{ _field_short_block_index_custom_search, "permutattion" },
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "bouding sphere offset" },
 		{ _field_real, "bounding sphere radius" },
@@ -18170,7 +18170,7 @@ namespace halo2 {
 		{ _field_real, "angular damping", "this goes from 0-10 (10 is really, really high)" },
 		{ _field_real_vector_3d, "center off mass offset" },
 		{ _field_short_enum, "shape type", &blofeld::halo2::unnamed_enum$345 },
-		{ _field_custom_short_block_index, "shape" },
+		{ _field_short_block_index_custom_search, "shape" },
 		{ _field_real, "mass", nullptr, "kg", FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "center of mass" },
 		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
@@ -18696,7 +18696,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_enum, "shape type", &blofeld::halo2::unnamed_enum$345 },
-		{ _field_custom_short_block_index, "shape" },
+		{ _field_short_block_index_custom_search, "shape" },
 		{ _field_long_integer, "collision filter" },
 		{ _field_terminator }
 	};
@@ -19657,7 +19657,7 @@ namespace halo2 {
 	{
 		{ _field_string_id, "material name" },
 		{ _field_short_enum, "material type", &blofeld::halo2::unnamed_enum$211 },
-		{ _field_custom_short_block_index, "damage section" },
+		{ _field_short_block_index_custom_search, "damage section" },
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "global material name" },
@@ -19767,7 +19767,7 @@ namespace halo2 {
 		{ _field_string_id, "marker name", "multiple markers become multiple spheres of the same radius" },
 		{ _field_real, "size", "sphere radius" },
 		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker's x axis" },
-		{ _field_custom_short_block_index, "damage section", "the target is associated with this damage section" },
+		{ _field_short_block_index_custom_search, "damage section", "the target is associated with this damage section" },
 		{ _field_real_fraction, "targeting relevance", "higher relevances turn into stronger magnetisms" },
 		{ _field_struct, "lock-on data", &blofeld::halo2::model_target_lock_on_data_struct_block_struct_definition },
 		{ _field_terminator }
@@ -20460,7 +20460,7 @@ namespace halo2 {
 		FIELD_EXPLANATION_EX("scale modifiers", nullptr, FIELD_FLAG_NONE, "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the values specified above. (0 values are ignored.)"),
 		{ _field_real_bounds, "gain modifier", nullptr, "dB" },
 		{ _field_real_bounds, "pitch modifier", nullptr, "cents" },
-		{ _field_fraction_bounds, "skip fraction modifier" },
+		{ _field_real_fraction_bounds, "skip fraction modifier" },
 		{ _field_terminator }
 	};
 
@@ -22235,7 +22235,7 @@ namespace halo2 {
 	{
 		{ _field_long_flags, "flags", &blofeld::halo2::unnamed_enum$212 },
 		{ _field_string_id, "global indirect material name", "absorbes AOE or child damage" },
-		{ _field_custom_short_block_index, "indirect damage section", "absorbes AOE or child damage" },
+		{ _field_short_block_index_custom_search, "indirect damage section", "absorbes AOE or child damage" },
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_char_enum, "collision damage reporting type", &blofeld::halo2::unnamed_enum$213 },
@@ -30125,7 +30125,7 @@ namespace halo2 {
 		{ _field_useless_pad, "value" },
 		{ _field_real_bounds, "radius", "interpolated by external input", "world units" },
 		{ _field_useless_pad, "value" },
-		{ _field_fraction_bounds, "brightness", "interpolated by external input", nullptr, "[0,1]" },
+		{ _field_real_fraction_bounds, "brightness", "interpolated by external input", nullptr, "[0,1]" },
 		{ _field_useless_pad, "value" },
 		FIELD_EXPLANATION_EX("TINT COLOR", nullptr, FIELD_FLAG_NONE, "Tinting and modulating are not the same; \'tinting\' a reflection will color the darker regions but leave the highlights, while \'modulating\' will color everything uniformly. The modulation factor controls how much the reflection is modulated as opposed to tinted (0 is tinted, 1 is modulated)."),
 		{ _field_real_fraction, "modulation factor", nullptr, nullptr, "[0,1]" },
@@ -31060,7 +31060,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_enum, "shape type", &blofeld::halo2::unnamed_enum$345 },
-		{ _field_custom_short_block_index, "shape" },
+		{ _field_short_block_index_custom_search, "shape" },
 		{ _field_long_integer, "collision filter" },
 		{ _field_terminator }
 	};
@@ -31118,7 +31118,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_short_enum, "shape type", &blofeld::halo2::unnamed_enum$512 },
-		{ _field_custom_short_block_index, "shape" },
+		{ _field_short_block_index_custom_search, "shape" },
 		{ _field_long_integer, "collision filter" },
 		{ _field_terminator }
 	};
@@ -32847,7 +32847,7 @@ namespace halo2 {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_UNKNOWN)
 	{
-		{ _field_custom_short_block_index, "permutation" },
+		{ _field_short_block_index_custom_search, "permutation" },
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_word_flags, "flags", &blofeld::halo2::unnamed_enum$343 },
 		{ _field_short_enum, "motion type", &blofeld::halo2::unnamed_enum$344 },
@@ -32855,7 +32855,7 @@ namespace halo2 {
 		{ _field_real, "linear damping", "this goes from 0-10 (10 is really, really high)" },
 		{ _field_real, "angular damping", "this goes from 0-10 (10 is really, really high)" },
 		{ _field_short_enum, "shape type", &blofeld::halo2::unnamed_enum$345 },
-		{ _field_custom_short_block_index, "shape" },
+		{ _field_short_block_index_custom_search, "shape" },
 		{ _field_real, "mass", nullptr, "kg", FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "center of mass" },
 		FIELD_SKIP_EX("value", nullptr, FIELD_FLAG_NONE, 4),
@@ -33350,7 +33350,7 @@ namespace halo2 {
 		PERSISTENT_ID_UNKNOWN)
 	{
 		{ _field_long_integer, "flags" },
-		{ _field_custom_short_block_index, "area" },
+		{ _field_short_block_index_custom_search, "area" },
 		{ _field_terminator }
 	};
 
@@ -33365,7 +33365,7 @@ namespace halo2 {
 	{
 		{ _field_short_enum, "area type", &blofeld::halo2::unnamed_enum$84 },
 		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 2),
-		{ _field_custom_short_block_index, "area" },
+		{ _field_short_block_index_custom_search, "area" },
 		{ _field_terminator }
 	};
 

@@ -30,7 +30,7 @@ public:
 	friend c_reach_x360_tag_api_interop_definition;
 	friend c_reach_x360_tag_field;
 
-	void traverse();
+	void traverse(ptr32 group_table_address, unsigned long num_tag_layouts);
 
 	c_reach_x360_tag_group_definition& eval_group(ptr32 definition_address);
 protected:

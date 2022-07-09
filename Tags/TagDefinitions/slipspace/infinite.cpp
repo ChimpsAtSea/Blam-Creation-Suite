@@ -23385,7 +23385,7 @@ namespace infinite {
 		{ _field_long_flags, "Flags", &blofeld::infinite::c_character_berserk_properties_internalberserkflags },
 		{ _field_tag_reference, "Berserk Weapon", &blofeld::infinite::weapon_reference$12_tagref },
 		{ _field_real, "Timeout" },
-		{ _field_fraction_bounds, "Shield down chance" },
+		{ _field_real_fraction_bounds, "Shield down chance" },
 		{ _field_real_bounds, "Shield down range" },
 		{ _field_real, "Friendly killed distance" },
 		{ _field_real_fraction, "Peer killed chance" },
@@ -23788,10 +23788,10 @@ namespace infinite {
 	{
 		FIELD_EXPLANATION("Precision", nullptr),
 		FIELD_GROUP_BEGIN("Target Position"),
-		{ _field_fraction_bounds, "Tracking" },
+		{ _field_real_fraction_bounds, "Tracking" },
 		{ _field_real_bounds, "Matching Fraction" },
 		{ _field_real_bounds, "Matching Spring Force" },
-		{ _field_fraction_bounds, "Leading" },
+		{ _field_real_fraction_bounds, "Leading" },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Aiming Error"),
 		{ _field_real_bounds, "Error Distance" },
@@ -23820,7 +23820,7 @@ namespace infinite {
 		{ _field_real_bounds, "Separation Max" },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Burst Noise"),
-		{ _field_fraction_bounds, "Amount" },
+		{ _field_real_fraction_bounds, "Amount" },
 		{ _field_real_bounds, "Min Period" },
 		{ _field_real_bounds, "Max Period" },
 		FIELD_GROUP_END(),
@@ -23847,8 +23847,8 @@ namespace infinite {
 		{ _field_string_id, "style name" },
 		{ _field_real, "precision" },
 		{ _field_real, "hostility" },
-		{ _field_fraction_bounds, "Precision Range" },
-		{ _field_fraction_bounds, "Hostility Range" },
+		{ _field_real_fraction_bounds, "Precision Range" },
+		{ _field_real_fraction_bounds, "Hostility Range" },
 		{ _field_terminator }
 	};
 
@@ -25978,7 +25978,7 @@ namespace infinite {
 		{ _field_real, "Cooldown" },
 		{ _field_short_integer, "Max Characters" },
 		{ _field_short_enum, "Patrol Mode", &blofeld::infinite::patrolmode },
-		{ _field_custom_short_block_index, "Patrol Point Set" },
+		{ _field_short_block_index_custom_search, "Patrol Point Set" },
 		FIELD_PAD("generated_paddaca", 2),
 		{ _field_real, "Lookout Wait Time" },
 		{ _field_block, "Neighbors", &blofeld::infinite::i343aibotexploreneighbor_block },
@@ -26918,7 +26918,7 @@ namespace infinite {
 		OPPORTUNITYTASKLINK_ID)
 	{
 		{ _field_short_block_index, "Objective", &blofeld::infinite::s_objective_block },
-		{ _field_custom_short_block_index, "Task" },
+		{ _field_short_block_index_custom_search, "Task" },
 		{ _field_terminator }
 	};
 
@@ -28651,7 +28651,7 @@ namespace infinite {
 		{ _field_byte_flags, "flags", &blofeld::infinite::c_zone_set_flags },
 		FIELD_PAD("generated_pad1249", 1),
 		{ _field_short_block_index, "zone", &blofeld::infinite::zone_definition_block },
-		{ _field_custom_short_block_index, "area" },
+		{ _field_short_block_index_custom_search, "area" },
 		{ _field_angle, "yaw" },
 		{ _field_long_integer, "connection flags 0" },
 		{ _field_long_integer, "connection flags 1" },
@@ -28948,7 +28948,7 @@ namespace infinite {
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_PATROL_POINT_ID)
 	{
-		{ _field_custom_short_block_index, "point" },
+		{ _field_short_block_index_custom_search, "point" },
 		{ _field_word_flags, "flags", &blofeld::infinite::c_patrol_point_flags },
 		{ _field_real, "delay" },
 		{ _field_real, "angle" },
@@ -28974,7 +28974,7 @@ namespace infinite {
 	{
 		{ _field_struct, "place on", &blofeld::infinite::s_ai_spawn_conditions },
 		{ _field_string_id, "name" },
-		{ _field_custom_short_block_index, "cell" },
+		{ _field_short_block_index_custom_search, "cell" },
 		FIELD_PAD("generated_pad6f52", 2),
 		{ _field_real_point_3d, "position", _field_id_ai_point },
 		{ _field_long_integer, "_navMeshUIDOffaceref" },
@@ -29005,7 +29005,7 @@ namespace infinite {
 		{ _field_string_id, "placement script" },
 		{ _field_string_id, "activity name", _field_id_sted },
 		{ _field_string_id, "movement set" },
-		{ _field_custom_short_block_index, "point set" },
+		{ _field_short_block_index_custom_search, "point set" },
 		{ _field_short_enum, "patrol mode", &blofeld::infinite::patrolmode },
 		{ _field_block, "points", &blofeld::infinite::s_patrol_point_block },
 		{ _field_short_block_index, "vehicle body", &blofeld::infinite::s_scenario_vehicle_block },
@@ -29070,7 +29070,7 @@ namespace infinite {
 		{ _field_string_id, "placement script" },
 		{ _field_string_id, "activity name", _field_id_sted },
 		{ _field_string_id, "movement set" },
-		{ _field_custom_short_block_index, "point set" },
+		{ _field_short_block_index_custom_search, "point set" },
 		{ _field_short_enum, "patrol mode", &blofeld::infinite::patrolmode },
 		{ _field_block, "points", &blofeld::infinite::s_patrol_point_block },
 		{ _field_byte_flags, "flags", &blofeld::infinite::c_spawn_formation_flags },
@@ -29217,7 +29217,7 @@ namespace infinite {
 		{ _field_string_id, "Placement script" },
 		{ _field_string_id, "activity name", _field_id_sted },
 		{ _field_string_id, "movement set" },
-		{ _field_custom_short_block_index, "point set" },
+		{ _field_short_block_index_custom_search, "point set" },
 		{ _field_short_enum, "patrol mode", &blofeld::infinite::patrolmode },
 		{ _field_block, "points", &blofeld::infinite::s_patrol_point_block },
 		{ _field_terminator }
@@ -29265,7 +29265,7 @@ namespace infinite {
 		{ _field_struct, "bsp flags", &blofeld::infinite::compressedbspreferenceflags },
 		{ _field_short_block_index, "initial zone", &blofeld::infinite::zone_definition_block },
 		{ _field_short_block_index, "initial objective", &blofeld::infinite::s_objective_block, _field_id_usqd_unknown_squad },
-		{ _field_custom_short_block_index, "initial task", _field_id_usqd_unknown_squad },
+		{ _field_short_block_index_custom_search, "initial task", _field_id_usqd_unknown_squad },
 		FIELD_PAD("generated_pad8aa2", 2),
 		{ _field_long_block_index, "editor folder", &blofeld::infinite::s_scenario_editor_folder_block, _field_id_hide },
 		{ _field_block, "spawn formations", &blofeld::infinite::s_spawn_formation_definition_block },
@@ -32331,7 +32331,7 @@ namespace infinite {
 		C_ANIMATION_ID_ID)
 	{
 		{ _field_short_block_index, "parent graph", &blofeld::infinite::animationgraphparentdata_block },
-		{ _field_custom_short_block_index, "animation" },
+		{ _field_short_block_index_custom_search, "animation" },
 		{ _field_terminator }
 	};
 
@@ -43341,8 +43341,8 @@ namespace infinite {
 		EFFECT_SOUND_EVENT_LOD_DEFINITION_ID)
 	{
 		{ _field_short_block_index, "lod name", &blofeld::infinite::effectloddefinition_block },
-		{ _field_custom_short_block_index, "location" },
-		{ _field_custom_short_block_index, "event" },
+		{ _field_short_block_index_custom_search, "location" },
+		{ _field_short_block_index_custom_search, "event" },
 		{ _field_terminator }
 	};
 
@@ -46883,7 +46883,7 @@ namespace infinite {
 	{
 		{ _field_long_flags, "flags", &blofeld::infinite::c_damage_info_flags },
 		{ _field_string_id, "global indirect material name" },
-		{ _field_custom_short_block_index, "indirect damage section" },
+		{ _field_short_block_index_custom_search, "indirect damage section" },
 		FIELD_PAD("generated_pad0d7e", 2),
 		FIELD_EXPLANATION("body", nullptr),
 		{ _field_struct, "body", &blofeld::infinite::damagebodyparameters },
@@ -49119,8 +49119,8 @@ namespace infinite {
 		{ _field_long_integer, "guid" },
 		{ _field_string_id, "objective title" },
 		{ _field_string_id, "objective description" },
-		{ _field_fraction_bounds, "text bounds X" },
-		{ _field_fraction_bounds, "text bounds Y" },
+		{ _field_real_fraction_bounds, "text bounds X" },
+		{ _field_real_fraction_bounds, "text bounds Y" },
 		{ _field_short_enum, "justification", &blofeld::infinite::fontlisttextjustification },
 		{ _field_short_enum, "vertical justification", &blofeld::infinite::textverticaljustification },
 		{ _field_short_enum, "font", &blofeld::infinite::fontlistfontid },
@@ -51659,7 +51659,7 @@ namespace infinite {
 		{ _field_short_integer_bounds, "short bounds" },
 		{ _field_angle_bounds, "angle bounds" },
 		{ _field_real_bounds, "real bounds" },
-		{ _field_fraction_bounds, "fraction bounds" },
+		{ _field_real_fraction_bounds, "fraction bounds" },
 		{ _field_tag_reference, "tag reference", &blofeld::infinite::test_tag_reference_tagref },
 		{ _field_block, "basic block", &blofeld::infinite::basicblockuseonce_block },
 		{ _field_byte_block_flags, "byte block flags" },
@@ -51670,10 +51670,10 @@ namespace infinite {
 		FIELD_PAD("generated_padf3f1", 1),
 		{ _field_short_block_index, "short block index", &blofeld::infinite::basicblockuseonce_block },
 		{ _field_long_block_index, "long block index", &blofeld::infinite::basicblockuseonce_block },
-		{ _field_custom_char_block_index, "char block index custom" },
+		{ _field_char_block_index_custom_search, "char block index custom" },
 		FIELD_PAD("generated_pad4194", 1),
-		{ _field_custom_short_block_index, "short block index custom" },
-		{ _field_custom_long_block_index, "long block index custom" },
+		{ _field_short_block_index_custom_search, "short block index custom" },
+		{ _field_long_block_index_custom_search, "long block index custom" },
 		{ _field_data, "data" },
 		FIELD_EXPLANATION("explanation", nullptr),
 		{ _field_struct, "basic struct", &blofeld::infinite::s_basic_struct },
@@ -64425,7 +64425,7 @@ namespace infinite {
 		{ _field_real, "weapon blur focus distance" },
 		{ _field_real, "weapon blur half width" },
 		FIELD_EXPLANATION("vignette", nullptr),
-		{ _field_fraction_bounds, "vignette radius bounds" },
+		{ _field_real_fraction_bounds, "vignette radius bounds" },
 		{ _field_real_fraction, "vignette intensity" },
 		{ _field_terminator }
 	};
@@ -66735,7 +66735,7 @@ namespace infinite {
 		{ _field_angle, "dmg inner cone angle" },
 		{ _field_struct, "blah", &blofeld::infinite::damageouterconeangle },
 		{ _field_real, "active camouflage damage" },
-		{ _field_fraction_bounds, "active camouflage damage range" },
+		{ _field_real_fraction_bounds, "active camouflage damage range" },
 		{ _field_real_fraction, "movement stun" },
 		{ _field_real_fraction, "maximum movement stun" },
 		{ _field_real_fraction, "turn stun" },
@@ -69790,7 +69790,7 @@ namespace infinite {
 		{ _field_real, "tumble scale" },
 		{ _field_real, "rotation scale" },
 		{ _field_real, "starting velocity" },
-		{ _field_fraction_bounds, "air friction XY and Z" },
+		{ _field_real_fraction_bounds, "air friction XY and Z" },
 		{ _field_terminator }
 	};
 
@@ -77436,7 +77436,7 @@ namespace infinite {
 		{ _field_short_enum, "type", &blofeld::infinite::machinetype },
 		{ _field_word_flags, "flags", &blofeld::infinite::i343machinedefinitionflags },
 		{ _field_real, "door open time" },
-		{ _field_fraction_bounds, "door occlusion bounds" },
+		{ _field_real_fraction_bounds, "door occlusion bounds" },
 		{ _field_short_enum, "collision response", &blofeld::infinite::machinecollisionresponses },
 		{ _field_short_integer, "elevator node" },
 		{ _field_short_enum, "pathfinding policy", &blofeld::infinite::objectpathfindingpolicy },
@@ -78701,8 +78701,8 @@ namespace infinite {
 		1)
 	{
 		{ _field_struct, "AnyTag", &blofeld::infinite::anytag_struct_definition },
-		{ _field_fraction_bounds, "subtitle rect width" },
-		{ _field_fraction_bounds, "subtitle rect height" },
+		{ _field_real_fraction_bounds, "subtitle rect width" },
+		{ _field_real_fraction_bounds, "subtitle rect height" },
 		{ _field_real_rgb_color, "default subtitle color" },
 		{ _field_real_rgb_color, "default subtitle shadow color" },
 		{ _field_real_argb_color, "default subtitle background color" },
@@ -91943,7 +91943,7 @@ namespace infinite {
 		I343PHYSICSMODELMOTORREFERENCE_ID)
 	{
 		{ _field_short_enum, "motor type", &blofeld::infinite::i343physicsmodelephysicsmodelmotortype },
-		{ _field_custom_short_block_index, "index" },
+		{ _field_short_block_index_custom_search, "index" },
 		{ _field_terminator }
 	};
 
@@ -92166,7 +92166,7 @@ namespace infinite {
 		1)
 	{
 		{ _field_short_enum, "type", &blofeld::infinite::i343physicsmodelephysicsmodelconstrainttype },
-		{ _field_custom_short_block_index, "index" },
+		{ _field_short_block_index_custom_search, "index" },
 		{ _field_long_flags, "flags", &blofeld::infinite::i343physicsmodelphysicsmodelrigidbodyconstraintedgeconstraintflag },
 		{ _field_real, "friction" },
 		{ _field_block, "ragdoll motors", &blofeld::infinite::i343physicsmodelragdollmotors_block },
@@ -92224,7 +92224,7 @@ namespace infinite {
 		I343PHYSICSMODELPOWEREDCHAINCONSTRAINT_ID)
 	{
 		{ _field_short_enum, "constraint type", &blofeld::infinite::i343physicsmodelephysicsmodelconstrainttype },
-		{ _field_custom_short_block_index, "constraint index" },
+		{ _field_short_block_index_custom_search, "constraint index" },
 		{ _field_struct, "motor x", &blofeld::infinite::i343physicsmodelmotorreference },
 		{ _field_struct, "motor y", &blofeld::infinite::i343physicsmodelmotorreference },
 		{ _field_struct, "motor z", &blofeld::infinite::i343physicsmodelmotorreference },
@@ -92636,7 +92636,7 @@ namespace infinite {
 	{
 		{ _field_long_block_index, "node", &blofeld::infinite::i343physicsmodelnode_block },
 		{ _field_long_block_index, "region", &blofeld::infinite::i343physicsmodelregion_block },
-		{ _field_custom_long_block_index, "permutation" },
+		{ _field_long_block_index_custom_search, "permutation" },
 		{ _field_real_point_3d, "bouding sphere offset" },
 		{ _field_real, "bounding sphere radius" },
 		{ _field_byte_flags, "flags", &blofeld::infinite::i343physicsmodelrigidbodyflags },
@@ -92740,7 +92740,7 @@ namespace infinite {
 		I343PHYSICSMODELSHAPEREFERENCE_ID)
 	{
 		{ _field_long_enum, "shape type", &blofeld::infinite::i343physicsmodelephysicsshapetype },
-		{ _field_custom_long_block_index, "shape" },
+		{ _field_long_block_index_custom_search, "shape" },
 		{ _field_terminator }
 	};
 

@@ -79,18 +79,18 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_short_integer_bounds:						return "short_bounds";
 	case _field_angle_bounds:						return "angle_bounds";
 	case _field_real_bounds:						return "real_bounds";
-	case _field_fraction_bounds:				return "real_bounds";
+	case _field_real_fraction_bounds:				return "real_bounds";
 	case _field_tag_reference:						return "h_tag*";
 	case _field_block:								return "h_block";
 	case _field_long_block_flags:					return "long";
 	case _field_word_block_flags:					return "word";
 	case _field_byte_block_flags:					return "byte";
 	case _field_char_block_index:					return "char";
-	case _field_custom_char_block_index:			return "char";
+	case _field_char_block_index_custom_search:			return "char";
 	case _field_short_block_index:					return "short";
-	case _field_custom_short_block_index:			return "short";
+	case _field_short_block_index_custom_search:			return "short";
 	case _field_long_block_index:					return "long";
-	case _field_custom_long_block_index:			return "long";
+	case _field_long_block_index_custom_search:			return "long";
 	case _field_data:								return "h_data";
 	case _field_vertex_buffer:						return "s_tag_d3d_vertex_buffer";
 	case _field_pad:								return nullptr;	// dynamic

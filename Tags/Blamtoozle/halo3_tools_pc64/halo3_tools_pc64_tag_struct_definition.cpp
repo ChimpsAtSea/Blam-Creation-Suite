@@ -64,7 +64,7 @@ template<> void byteswap_inplace(s_halo3_tools_pc64_tag_struct_type& value)
 {
 	byteswap_inplace(value.display_name_address);
 	byteswap_inplace(value.name_address);
-	byteswap_inplace(value.filepath_address);
+	byteswap_inplace(value.file_path_address);
 	byteswap_inplace(value.line_number);
 	byteswap_inplace(value.padding);
 	byteswap_inplace(value.persistent_identifier);
@@ -93,6 +93,7 @@ c_halo3_tools_pc64_tag_struct_definition::c_halo3_tools_pc64_tag_struct_definiti
 	struct_definition(tag_definition_manager.read_structure<s_halo3_tools_pc64_tag_struct_definition>(_definition_address)),
 	display_name(tag_definition_manager.va_to_pointer(struct_definition.type.display_name_address)),
 	name(tag_definition_manager.va_to_pointer(struct_definition.type.name_address)),
+	file_path(tag_definition_manager.va_to_pointer(struct_definition.type.file_path_address)),
 	structure_size_string(tag_definition_manager.va_to_pointer(struct_definition.type.structure_size_string_address)),
 	code_symbol_name(name),
 	code_type_name(),
@@ -100,6 +101,9 @@ c_halo3_tools_pc64_tag_struct_definition::c_halo3_tools_pc64_tag_struct_definiti
 	conflict_handled(false)
 {
 	tag_definition_manager.format_code_symbol_name_uid(code_symbol_name);
+
+	code_type_name = "s_";
+	code_type_name += code_symbol_name;
 
 	bool is_runtime_flags_valid = struct_definition.runtime.flags.valid();
 	ASSERT(is_runtime_flags_valid);
@@ -134,7 +138,7 @@ const char* c_halo3_tools_pc64_tag_struct_definition::get_code_symbol_name()
 	return code_symbol_name.c_str();
 }
 
-const char* c_halo3_tools_pc64_tag_struct_definition::get_code_type_name()
+const char* c_halo3_tools_pc64_tag_struct_definition::get_structure_type_name()
 {
 	return code_type_name.c_str();
 }
@@ -158,6 +162,7 @@ blofeld::s_tag_persistent_identifier& c_halo3_tools_pc64_tag_struct_definition::
 {
 	return struct_definition.type.persistent_identifier;
 }
+
 c_flags<blofeld::e_tag_field_set_bit> c_halo3_tools_pc64_tag_struct_definition::get_field_set_bits()
 {
 	c_flags<blofeld::e_tag_field_set_bit> result;
@@ -246,6 +251,16 @@ c_flags<blofeld::e_tag_field_set_bit> c_halo3_tools_pc64_tag_struct_definition::
 	return result;
 }
 
+const char* c_halo3_tools_pc64_tag_struct_definition::get_file_path()
+{
+	return file_path;
+}
+
+long c_halo3_tools_pc64_tag_struct_definition::get_line_number()
+{
+	return struct_definition.type.line_number;
+}
+
 void c_halo3_tools_pc64_tag_struct_definition::handle_conflict(const c_blamtoozle_tag_struct_definition& _conflicting_tag_struct_definition)
 {
 	const c_halo3_tools_pc64_tag_struct_definition& conflicting_tag_struct_definition = static_cast<const c_halo3_tools_pc64_tag_struct_definition&>(_conflicting_tag_struct_definition);
@@ -306,5 +321,5 @@ void c_halo3_tools_pc64_tag_struct_definition::handle_conflict(const c_blamtoozl
 	ASSERT(last_field != nullptr);
 	ASSERT(last_field->field_type == blofeld::_field_terminator);
 
-	debug_point;
+	
 }

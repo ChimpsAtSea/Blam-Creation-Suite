@@ -101,6 +101,66 @@ add_executable(Blamtoozle
 	halo3_tools_pc64/halo3_tools_pc64_tag_group_definition.cpp
 	halo3_tools_pc64/halo3_tools_pc64_tag_group_definition.h
 	
+	halo4_x360/halo4_x360_definition_manager.h
+	halo4_x360/halo4_x360_field_type.cpp
+	halo4_x360/halo4_x360_field_type.h
+	halo4_x360/halo4_x360_tag_api_interop_definition.cpp
+	halo4_x360/halo4_x360_tag_api_interop_definition.h
+	halo4_x360/halo4_x360_tag_array_definition.cpp
+	halo4_x360/halo4_x360_tag_array_definition.h
+	halo4_x360/halo4_x360_tag_block_definition.cpp
+	halo4_x360/halo4_x360_tag_block_definition.h
+	halo4_x360/halo4_x360_tag_block_index_custom_search_definition.cpp
+	halo4_x360/halo4_x360_tag_block_index_custom_search_definition.h
+	halo4_x360/halo4_x360_tag_data_definition.cpp
+	halo4_x360/halo4_x360_tag_data_definition.h
+	halo4_x360/halo4_x360_tag_explanation_definition.cpp
+	halo4_x360/halo4_x360_tag_explanation_definition.h
+	halo4_x360/halo4_x360_tag_field.cpp
+	halo4_x360/halo4_x360_tag_field.h
+	halo4_x360/halo4_x360_tag_group_definition.cpp
+	halo4_x360/halo4_x360_tag_group_definition.h
+	halo4_x360/halo4_x360_tag_reference_definition.cpp
+	halo4_x360/halo4_x360_tag_reference_definition.h
+	halo4_x360/halo4_x360_tag_resource_definition.cpp
+	halo4_x360/halo4_x360_tag_resource_definition.h
+	halo4_x360/halo4_x360_tag_string_list_definition.cpp
+	halo4_x360/halo4_x360_tag_string_list_definition.h
+	halo4_x360/halo4_x360_tag_struct_definition.cpp
+	halo4_x360/halo4_x360_tag_struct_definition.h
+	halo4_x360/halo4_x360.cpp
+	halo4_x360/halo4_x360.h
+	halo4_x360/halo4_x360_definition_manager.cpp
+	
+	halo2_tools_pc32/halo2_tools_pc32_definition_manager.h
+	halo2_tools_pc32/halo2_tools_pc32_field_type.cpp
+	halo2_tools_pc32/halo2_tools_pc32_field_type.h
+	halo2_tools_pc32/halo2_tools_pc32_tag_array_definition.cpp
+	halo2_tools_pc32/halo2_tools_pc32_tag_array_definition.h
+	halo2_tools_pc32/halo2_tools_pc32_tag_array_struct_definition.cpp
+	halo2_tools_pc32/halo2_tools_pc32_tag_array_struct_definition.h
+	halo2_tools_pc32/halo2_tools_pc32_tag_block_definition.cpp
+	halo2_tools_pc32/halo2_tools_pc32_tag_block_definition.h
+	halo2_tools_pc32/halo2_tools_pc32_tag_block_index_custom_search_definition.cpp
+	halo2_tools_pc32/halo2_tools_pc32_tag_block_index_custom_search_definition.h
+	halo2_tools_pc32/halo2_tools_pc32_tag_data_definition.cpp
+	halo2_tools_pc32/halo2_tools_pc32_tag_data_definition.h
+	halo2_tools_pc32/halo2_tools_pc32_tag_explanation_definition.cpp
+	halo2_tools_pc32/halo2_tools_pc32_tag_explanation_definition.h
+	halo2_tools_pc32/halo2_tools_pc32_tag_field.cpp
+	halo2_tools_pc32/halo2_tools_pc32_tag_field.h
+	halo2_tools_pc32/halo2_tools_pc32_tag_group_definition.cpp
+	halo2_tools_pc32/halo2_tools_pc32_tag_group_definition.h
+	halo2_tools_pc32/halo2_tools_pc32_tag_reference_definition.cpp
+	halo2_tools_pc32/halo2_tools_pc32_tag_reference_definition.h
+	halo2_tools_pc32/halo2_tools_pc32_tag_string_list_definition.cpp
+	halo2_tools_pc32/halo2_tools_pc32_tag_string_list_definition.h
+	halo2_tools_pc32/halo2_tools_pc32_tag_struct_definition.cpp
+	halo2_tools_pc32/halo2_tools_pc32_tag_struct_definition.h
+	halo2_tools_pc32/halo2_tools_pc32.cpp
+	halo2_tools_pc32/halo2_tools_pc32.h
+	halo2_tools_pc32/halo2_tools_pc32_definition_manager.cpp
+	
 	blamtoozle-private-pch.h
 	blamtoozle-public-pch.h)
 

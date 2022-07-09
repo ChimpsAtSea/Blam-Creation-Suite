@@ -21,8 +21,8 @@ public:
 	virtual ~c_blamtoozle_tag_definition_manager();
 
 	virtual void set_is_big_endian(bool is_big_endian);
-	virtual void format_code_symbol_name(std::string code_symbol_name);
-	virtual void format_code_symbol_name_uid(std::string code_symbol_name);
+	virtual void format_code_symbol_name(std::string& code_symbol_name);
+	virtual void format_code_symbol_name_uid(std::string& code_symbol_name);
 	virtual c_blamtoozle_tag_group_definition* get_tag_group_definition_by_group_tag(tag group_tag);
 	virtual c_blamtoozle_tag_struct_definition* get_tag_struct_definition_by_persistent_id(blofeld::s_tag_persistent_identifier persistent_identifier);
 
@@ -58,11 +58,11 @@ public:
 		return value;
 	}
 
-	template<typename t_definition_manager_type, typename t_definition_type>
+	template<typename t_definition_manager_type, typename t_storage_definition_type, typename t_definition_type = t_storage_definition_type>
 	t_definition_type& eval_definition(
 		ptr64 definition_address, 
-		std::vector<t_definition_type*>& tag_type_definitions, 
-		std::map<ptr64, t_definition_type*>& tag_type_definitions_lookup)
+		std::vector<t_storage_definition_type*>& tag_type_definitions,
+		std::map<ptr64, t_storage_definition_type*>& tag_type_definitions_lookup)
 	{
 		ASSERT(definition_address != 0);
 
@@ -70,7 +70,9 @@ public:
 
 		if (tag_type_definition_iterator != tag_type_definitions_lookup.end())
 		{
-			return *tag_type_definition_iterator->second;
+			t_definition_type* existing_definition = dynamic_cast<t_definition_type*>(tag_type_definition_iterator->second);
+			ASSERT(existing_definition != nullptr);
+			return *existing_definition;
 		}
 
 		t_definition_type* tag_type_definition = reinterpret_cast<t_definition_type*>(tracked_malloc(sizeof(t_definition_type)));
