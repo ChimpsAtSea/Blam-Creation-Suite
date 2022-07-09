@@ -21,6 +21,7 @@ public:
 	virtual ~c_blamtoozle_tag_definition_manager();
 
 	virtual void set_is_big_endian(bool is_big_endian);
+	virtual void format_structure_type_name(std::string& code_symbol_name);
 	virtual void format_code_symbol_name(std::string& code_symbol_name);
 	virtual void format_code_symbol_name_uid(std::string& code_symbol_name);
 	virtual c_blamtoozle_tag_group_definition* get_tag_group_definition_by_group_tag(tag group_tag);

@@ -6,7 +6,7 @@
 
 c_haloreach_bitmap_test::c_haloreach_bitmap_test(
 	c_render_context& parent_render_context,
-	blofeld::haloreach::h_bitmap_block_struct& bitmap_struct) :
+	blofeld::haloreach::xbox360::h_bitmap_block_struct& bitmap_struct) :
 	parent_render_context(parent_render_context),
 	bitmap_struct(bitmap_struct)
 {

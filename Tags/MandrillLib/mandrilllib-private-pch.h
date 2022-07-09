@@ -19,4 +19,6 @@
 
 #include <murmur3/murmur3.h>
 
-#include <Generated/low_level_halo3/lowlevel-halo3-public-pch.h>
+#include <Generated/low_level_halo3_pc64/lowlevel-halo3-pc64-public-pch.h>
+#include <Generated/high_level_halo3_pc64/highlevel-halo3-pc64-public-pch.h>
+

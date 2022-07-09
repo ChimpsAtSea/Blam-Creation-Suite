@@ -1,7 +1,7 @@
 #include "tagreflection-private-pch.h"
 
 h_tag::h_tag(h_group* group, const char* tag_filepath) :
-	h_object(nullptr),
+	h_prototype(nullptr),
 	tag_filepath(),
 	tag_filename(),
 	group(group)
@@ -16,7 +16,7 @@ h_tag::h_tag(h_group* group, const char* tag_filepath) :
 }
 
 h_tag::h_tag(h_type* parent) :
-	h_object(parent),
+	h_prototype(parent),
 	tag_filepath(),
 	tag_filename(),
 	group(nullptr)

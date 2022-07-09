@@ -33,7 +33,7 @@ void c_tag_struct_definition_view::populate_tag_struct_definitions()
 	}
 	else
 	{
-		for (const s_tag_group** tag_group_iter = blofeld::tag_groups[engine_platform_build.engine_type]; *tag_group_iter; tag_group_iter++)
+		for (const s_tag_group** tag_group_iter = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build); *tag_group_iter; tag_group_iter++)
 		{
 			const s_tag_group& tag_group = **tag_group_iter;
 

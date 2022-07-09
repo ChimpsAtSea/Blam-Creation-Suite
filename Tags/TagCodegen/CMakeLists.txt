@@ -1,23 +1,23 @@
 add_executable(TagCodegen
 	blamlib_string_parser.cpp
+	blamlib_string_parser.h
 	blamlib_string_parser.inl
 	custom_codegen.cpp
+	custom_codegen.h
 	filesystem_helper.cpp
+	filesystem_helper.h
 	high_level_object_constructor.inl
 	high_level_tag_source_generator.cpp
-	main.cpp
-	low_level_tag_source_generator.cpp
-	structure_relationship_node.cpp
-	virtual_tag_source_generator.cpp
-	blamlib_string_parser.h
-	custom_codegen.h
-	filesystem_helper.h
 	high_level_tag_source_generator.h
+	low_level_tag_source_generator.cpp
 	low_level_tag_source_generator.h
+	main.cpp
+	source_generator_base.cpp
+	source_generator_base.h
+	structure_relationship_node.cpp
 	structure_relationship_node.h
 	tagcodegen-private-pch.h
-	tagcodegen-public-pch.h
-	virtual_tag_source_generator.h)
+	tagcodegen-public-pch.h)
 
 bcs_set_common_properties(TagCodegen)
 bcs_set_post_build_shared_lib_dep_copy(TagCodegen)

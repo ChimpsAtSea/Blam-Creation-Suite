@@ -58,7 +58,7 @@ namespace blofeld
 			{ { _engine_type_not_set }, 1 },
 			{ { _engine_type_haloreach }, 2 },
 			{ { _engine_type_halo4 }, 2 },
-			{ { _engine_type_gen3_xbox360 }, 2 }
+			{ { _engine_type_halo4 }, 2 }
 		}
 	};
 
@@ -69,7 +69,7 @@ namespace blofeld
 			{ { _engine_type_not_set }, 2 },
 			{ { _engine_type_halo3 }, 8 },
 			{ { _engine_type_halo4 }, 8 },
-			{ { _engine_type_gen3_xbox360 }, 8 }
+			{ { _engine_type_halo4 }, 8 }
 		}
 	};
 
@@ -123,7 +123,7 @@ namespace blofeld
 		{
 			{ { _engine_type_not_set }, 16 },
 			{ { _engine_type_halo4 }, 32 },
-			{ { _engine_type_gen3_xbox360 }, 32 }
+			{ { _engine_type_halo4 }, 32 }
 		}
 	};
 
@@ -546,7 +546,7 @@ namespace blofeld
 			{ { _engine_type_not_set }, 32 },
 			{ { _engine_type_haloreach }, 32 }, // #NOTE: Deduced as the block flags in cache_file_zone_set_zone_usage_block for reach is only 32bits
 			{ { _engine_type_halo4 }, 64 },
-			{ { _engine_type_gen3_xbox360 }, 64 },
+			{ { _engine_type_halo4 }, 64 },
 		}
 	};
 	c_constant e_scriptableLightRigMax = { "e_scriptableLightRigMax", 128 };
@@ -568,7 +568,7 @@ namespace blofeld
 			{ { _engine_type_not_set }, 12 },
 			{ { _engine_type_haloreach }, 12 },
 			{ { _engine_type_halo4 }, 17 },
-			{ { _engine_type_gen3_xbox360 }, 17 },
+			{ { _engine_type_halo4 }, 17 },
 		}
 	};
 	c_constant k_maximum_cells_per_squad = { "k_maximum_cells_per_squad", 10 };
@@ -613,7 +613,7 @@ namespace blofeld
 			{ { _engine_type_not_set }, 2 },
 			{ { _engine_type_haloreach }, 2 },
 			{ { _engine_type_halo4 }, 3 },
-			{ { _engine_type_gen3_xbox360 }, 3 },
+			{ { _engine_type_halo4 }, 3 },
 		}
 	};
 
@@ -689,7 +689,7 @@ namespace blofeld
 			{ { _engine_type_not_set }, 2 },
 			{ { _engine_type_haloreach }, 2 },
 			{ { _engine_type_halo4 }, 8 },
-			{ { _engine_type_gen3_xbox360 }, 8 },
+			{ { _engine_type_halo4 }, 8 },
 		}
 	};
 	

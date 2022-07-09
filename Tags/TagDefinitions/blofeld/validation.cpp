@@ -335,7 +335,7 @@ namespace blofeld
 	//		const char* const block_name = struct_definition.name;
 	//		unsigned long const expected_size = struct_validation_data.size;
 
-	//		e_engine_type engine_type = _engine_type_gen3_xbox360;
+	//		e_engine_type engine_type = _engine_type_halo4;
 	//		e_platform_type platform_type = _platform_type_xbox_360;
 	//		unsigned long computed_size = calculate_struct_size({ engine_type, platform_type, _build_not_set }, struct_definition, &block_failed_validation, platform_type == _platform_type_not_set, warnings_tracking);
 

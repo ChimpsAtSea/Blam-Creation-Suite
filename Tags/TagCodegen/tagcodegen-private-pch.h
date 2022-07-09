@@ -18,8 +18,8 @@
 #include "custom_codegen.h"
 #include "tagcodegen-public-pch.h"
 
+#include "source_generator_base.h"
 #include "low_level_tag_source_generator.h"
-#include "virtual_tag_source_generator.h"
 #include "high_level_tag_source_generator.h"
 #include "structure_relationship_node.h"
 #include "filesystem_helper.h"

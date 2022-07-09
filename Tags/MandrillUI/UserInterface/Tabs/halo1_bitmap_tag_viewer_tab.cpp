@@ -1,11 +1,11 @@
 #include "mandrillui-private-pch.h"
 
-#include <Generated/high_level_halo1\highlevel-halo1-public-pch.h>
+#include <Generated/high_level_halo1_pc64/highlevel-halo1-pc64-public-pch.h>
 
 using namespace blofeld;
-using namespace blofeld::halo1;
+using namespace blofeld::halo1::pc64;
 
-c_halo1_bitmap_tag_viewer_tab::c_halo1_bitmap_tag_viewer_tab(c_tag_project& tag_project, h_bitmap_struct_definition& halo1_bitmap_tag, c_mandrill_tab& parent) :
+c_halo1_bitmap_tag_viewer_tab::c_halo1_bitmap_tag_viewer_tab(c_tag_project& tag_project, h_bitmap& halo1_bitmap_tag, c_mandrill_tab& parent) :
 	c_mandrill_tab("Bitmap View", "Bitmap View", &parent, false),
 	tag_project(tag_project),
 	halo1_bitmap_tag(halo1_bitmap_tag)
@@ -23,7 +23,7 @@ c_tag_project& c_halo1_bitmap_tag_viewer_tab::get_tag_project() const
 	return tag_project;
 }
 
-h_bitmap_struct_definition& c_halo1_bitmap_tag_viewer_tab::get_tag() const
+h_bitmap& c_halo1_bitmap_tag_viewer_tab::get_tag() const
 {
 	return halo1_bitmap_tag;
 }
@@ -48,7 +48,7 @@ void c_halo1_bitmap_tag_viewer_tab::render_game_layer_impl()
 
 }
 
-void c_halo1_bitmap_tag_viewer_tab::render_bitmap(long index, h_bitmap_data_block_struct_definition& bitmap_data)
+void c_halo1_bitmap_tag_viewer_tab::render_bitmap(long index, h_bitmap_data& bitmap_data)
 {
 	ImGui::Text("%i w:%i h:%i d:%i", index, (int)bitmap_data.width, (int)bitmap_data.height, (int)bitmap_data.depth);
 }
@@ -99,8 +99,8 @@ void c_halo1_bitmap_tag_viewer_tab::render_bitmap_enumerable(h_enumerable& enume
 			ImGui::SameLine();
 			ImGui::BeginGroup();
 
-			h_object& object = enumerable.get(index);
-			h_bitmap_data_block_struct_definition* bitmap_data = dynamic_cast<h_bitmap_data_block_struct_definition*>(&object);
+			h_prototype& object = enumerable.get(index);
+			h_bitmap_data* bitmap_data = dynamic_cast<h_bitmap_data*>(&object);
 			ASSERT(bitmap_data != nullptr);
 			render_bitmap(index, *bitmap_data);
 
@@ -280,7 +280,7 @@ void c_halo1_bitmap_tag_viewer_tab::render_bitmap_enumerable(h_enumerable& enume
 			ImGui::SameLine();
 			if (ImGui::Button("Duplicate"))
 			{
-				h_object& object = block->get(index);
+				h_prototype& object = block->get(index);
 				block->emplace_back(object);
 				index = enumerable.size() - 1;
 			}

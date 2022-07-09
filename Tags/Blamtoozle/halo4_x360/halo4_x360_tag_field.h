@@ -48,7 +48,6 @@ public:
 	s_halo4_x360_tag_field field_definition;
 	blofeld::e_field field_type;
 	const char* name;
-	const void* definition;
 
 	c_halo4_x360_tag_block_definition* block_definition;
 	c_halo4_x360_tag_reference_definition* tag_reference_definition;

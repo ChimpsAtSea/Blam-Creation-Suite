@@ -70,6 +70,8 @@ c_halo4_x360_tag_reference_definition& c_halo4_x360_tag_definition_manager::eval
 
 c_halo4_x360_tag_struct_definition& c_halo4_x360_tag_definition_manager::eval_struct(ptr32 definition_address)
 {
+	return eval_definition<c_halo4_x360_tag_definition_manager>(definition_address, tag_struct_definitions, tag_struct_definitions_lookup);
+
 	ASSERT(definition_address != 0);
 
 	auto tag_type_definition_iterator = tag_struct_definitions_lookup.find(definition_address);

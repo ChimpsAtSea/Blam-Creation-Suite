@@ -7,7 +7,7 @@ class c_tag_instance;
 class c_infinite_ucs_reader;
 
 class h_tag;
-class h_object;
+class h_prototype;
 class h_group;
 
 struct s_tag_transplant_instance
@@ -23,7 +23,7 @@ public:
 	BCS_DEBUG_API ~c_high_level_cache_cluster_transplant();
 
 	BCS_RESULT transplant_cache_file_data(
-		h_object& high_level, 
+		h_prototype& high_level, 
 		const char* low_level_data, 
 		c_cache_file_reader& cache_file_reader, 
 		const blofeld::s_tag_struct_definition& struct_definition,

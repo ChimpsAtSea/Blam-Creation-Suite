@@ -1,4 +1,4 @@
 #pragma once
 
-#include "@GEN_NAME@.enum.h"
-#include "@GEN_NAME@.h"
+#include "@GEN_ENGINE@_@GEN_PLATFORM@_enum.h"
+#include "@GEN_ENGINE@_@GEN_PLATFORM@.h"

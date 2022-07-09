@@ -334,10 +334,10 @@ void c_tag_project_configurator_tab::render_cache_file_selection()
 		}
 		{
 			const char* engine_pretty_string = "Unknown Engine";
-			get_engine_type_pretty_string(entry.engine_platform_build.engine_type, &engine_pretty_string);
+			get_engine_type_pretty_string(entry.engine_platform_build.engine_type, engine_pretty_string);
 
 			const char* platform_pretty_string = "Unknown Platform";
-			get_platform_type_pretty_string(entry.engine_platform_build.platform_type, &platform_pretty_string);
+			get_platform_type_pretty_string(entry.engine_platform_build.platform_type, platform_pretty_string);
 
 			ImGui::Text("%s | %s", engine_pretty_string, platform_pretty_string);
 			ImGui::NextColumn();

@@ -81,7 +81,7 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 
 		s_tag_persist_aggregate_prechunk& tag_group_aggregate = get_aggregate_by_index(0);
 
-		const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(_engine_type_halo3, header.group_tag);
+		const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag({ _engine_type_halo3 }, header.group_tag);
 		//ASSERT(tag_group_aggregate.persistent_identifier == tag_group->block_definition.struct_definition.persistent_identifier);
 		if (tag_group_aggregate.persistent_identifier == tag_group->block_definition.struct_definition.persistent_identifier)
 		{

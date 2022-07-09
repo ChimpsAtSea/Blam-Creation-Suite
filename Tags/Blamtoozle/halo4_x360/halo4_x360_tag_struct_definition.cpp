@@ -42,11 +42,11 @@ template<> void byteswap_inplace(s_halo4_x360_tag_struct_legacy& value)
 {
 	byteswap_inplace(value.legacy_struct_tag);
 	byteswap_inplace(value.unknown34);
-	byteswap_inplace(value.unknown37);
+	byteswap_inplace(value.upgrade_function);
 	byteswap_inplace(value.legacy_version);
-	byteswap_inplace(value.unknown40);
-	byteswap_inplace(value.unknown44);
-	byteswap_inplace(value.legacy_struct);
+	byteswap_inplace(value.unknown_struct);
+	byteswap_inplace(value.legacy_version_count);
+	byteswap_inplace(value.previous_version_struct);
 	byteswap_inplace(value.is_legacy_field_set);
 	byteswap_inplace(value.padding4D);
 	byteswap_inplace(value.padding4E);
@@ -91,12 +91,16 @@ c_halo4_x360_tag_struct_definition::c_halo4_x360_tag_struct_definition(c_halo4_x
 	code_symbol_name(name),
 	code_type_name(),
 	traversed_tag_group_definition(*c_halo4_x360_tag_group_definition::current_group_traverse_hack),
-	conflict_handled(false)
+	conflict_handled(false),
+	unknown_struct_definition(),
+	previous_version_struct_definition(),
+	next_version_struct_definition()
 {
 	tag_definition_manager.format_code_symbol_name_uid(code_symbol_name);
 
 	code_type_name = "s_";
 	code_type_name += code_symbol_name;
+	tag_definition_manager.format_structure_type_name(code_type_name);
 
 	bool is_runtime_flags_valid = struct_definition.runtime.flags.valid();
 	ASSERT(is_runtime_flags_valid);
@@ -109,11 +113,51 @@ c_halo4_x360_tag_struct_definition::c_halo4_x360_tag_struct_definition(c_halo4_x
 		fields.push_back(tag_field);
 		fields_address += sizeof(s_halo4_x360_tag_field);
 	} while (tag_field->get_field_type() != blofeld::_field_terminator);
+
+	if (struct_definition.type.legacy.previous_version_struct)
+	{
+		previous_version_struct_definition = &tag_definition_manager.eval_struct(struct_definition.type.legacy.previous_version_struct);
+		previous_version_struct_definition->next_version_struct_definition = this;
+	}
 }
 
 c_halo4_x360_tag_struct_definition::~c_halo4_x360_tag_struct_definition()
 {
 
+}
+
+bool c_halo4_x360_tag_struct_definition::is_legacy_struct()
+{
+	return previous_version_struct_definition != nullptr || next_version_struct_definition != nullptr;
+}
+
+bool c_halo4_x360_tag_struct_definition::is_latest_structure_version()
+{
+	return next_version_struct_definition == nullptr;
+}
+
+c_blamtoozle_tag_struct_definition* c_halo4_x360_tag_struct_definition::get_previous_struct_definition()
+{
+	return previous_version_struct_definition;
+}
+
+c_blamtoozle_tag_struct_definition* c_halo4_x360_tag_struct_definition::get_next_struct_definition()
+{
+	return next_version_struct_definition;
+}
+
+c_blamtoozle_tag_struct_definition& c_halo4_x360_tag_struct_definition::get_latest_struct_definition()
+{
+	if (next_version_struct_definition)
+	{
+		return next_version_struct_definition->get_latest_struct_definition();
+	}
+	return *this;
+}
+
+unsigned long c_halo4_x360_tag_struct_definition::get_structure_version()
+{
+	return struct_definition.type.legacy.legacy_version;
 }
 
 const char* c_halo4_x360_tag_struct_definition::get_display_name()
@@ -180,9 +224,9 @@ c_flags<blofeld::e_tag_field_set_bit> c_halo4_x360_tag_struct_definition::get_fi
 	{
 		result.set(blofeld::_tag_field_set_unknown4_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_halo4_x360_tag_field_set_unknown5))
+	if (struct_definition.runtime.flags.test(_halo4_x360_tag_field_set_has_aggregate_types))
 	{
-		result.set(blofeld::_tag_field_set_unknown5_bit, true);
+		result.set(blofeld::_tag_field_set_has_aggregate_types_bit, true);
 	}
 	if (struct_definition.runtime.flags.test(_halo4_x360_tag_field_set_is_temporary_bit))
 	{
@@ -236,9 +280,9 @@ c_flags<blofeld::e_tag_field_set_bit> c_halo4_x360_tag_struct_definition::get_fi
 	{
 		result.set(blofeld::_tag_field_set_unknown18_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_halo4_x360_tag_field_set_unknown19))
+	if (struct_definition.runtime.flags.test(_halo4_x360_tag_field_set_exist_in_cache_build))
 	{
-		result.set(blofeld::_tag_field_set_unknown19_bit, true);
+		result.set(blofeld::_tag_field_set_exist_in_cache_build_bit, true);
 	}
 
 	return result;
@@ -246,6 +290,7 @@ c_flags<blofeld::e_tag_field_set_bit> c_halo4_x360_tag_struct_definition::get_fi
 
 void c_halo4_x360_tag_struct_definition::handle_conflict(const c_blamtoozle_tag_struct_definition& _conflicting_tag_struct_definition)
 {
+	return;
 	const c_halo4_x360_tag_struct_definition& conflicting_tag_struct_definition = static_cast<const c_halo4_x360_tag_struct_definition&>(_conflicting_tag_struct_definition);
 	ASSERT(conflict_handled == false);
 	conflict_handled = true;

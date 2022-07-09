@@ -17,5 +17,5 @@ bool custom_structure_codegen(
 	const c_blamlib_string_parser_v2* field_formatter,
 	const blofeld::s_tag_struct_definition& struct_definition, 
 	const blofeld::s_tag_field& field,
-	const char* namespace_name);
+	const char* root_namespace);
 

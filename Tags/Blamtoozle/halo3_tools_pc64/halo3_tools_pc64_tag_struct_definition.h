@@ -35,7 +35,7 @@ enum e_halo3_tools_pc64_tag_field_set_bit : unsigned long
 	_halo3_tools_pc64_tag_field_set_has_inlined_children_with_placement_new_bit, // confirmed
 	_halo3_tools_pc64_tag_field_set_unknown3,
 	_halo3_tools_pc64_tag_field_set_unknown4,
-	_halo3_tools_pc64_tag_field_set_unknown5,
+	_halo3_tools_pc64_tag_field_set_has_aggregate_types,
 	_halo3_tools_pc64_tag_field_set_is_temporary_bit, // confirmed
 	_halo3_tools_pc64_tag_field_set_unknown7,
 	_halo3_tools_pc64_tag_field_set_unknown8,
@@ -49,7 +49,7 @@ enum e_halo3_tools_pc64_tag_field_set_bit : unsigned long
 	_halo3_tools_pc64_tag_field_set_has_level_specific_fields_bit, // confirmed
 	_halo3_tools_pc64_tag_field_set_can_memset_to_initialize_bit, // confirmed
 	_halo3_tools_pc64_tag_field_set_unknown18,
-	_halo3_tools_pc64_tag_field_set_unknown19,
+	_halo3_tools_pc64_tag_field_set_exist_in_cache_build,
 	k_num_halo3_tools_pc64_runtime_flags
 };
 

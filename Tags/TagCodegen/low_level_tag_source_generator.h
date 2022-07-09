@@ -1,18 +1,22 @@
 #pragma once
 
-class c_low_level_tag_source_generator
+class c_low_level_tag_source_generator :
+	public c_source_generator_base
 {
 public:
-	s_engine_platform_build engine_platform_build;
-	mutable bool has_error;
-
 	c_low_level_tag_source_generator(s_engine_platform_build engine_platform_build);
-	void generate_header() const;
-	void generate_ida_header() const;
-	void generate_source() const;
-	void generate_enum_header() const;
+	virtual ~c_low_level_tag_source_generator();
 
-	std::string format_structure_symbol(const blofeld::s_tag_struct_definition& struct_definition) const;
+	void generate_header();
+	void generate_ida_header();
+	void generate_source();
+	void generate_enum_header();
+
+	std::string output_directory;
+	std::string output_header_file_path;
+	std::string output_ida_header_file_path;
+	std::string output_enum_header_file_path;
+	std::string output_source_file_path;
 
 	static const char* field_type_to_low_level_source_type(e_platform_type platform_type, blofeld::e_field field_type);
 };

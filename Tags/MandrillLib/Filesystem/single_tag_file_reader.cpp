@@ -38,7 +38,7 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	binary_data_chunk.read_child_chunks(this, true);
 	//binary_data_chunk.parse_children(this);
 
-	blofeld_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build.engine_type, header.group_tag);
+	blofeld_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, header.group_tag);
 	ASSERT(blofeld_tag_group != nullptr);
 	blofeld_tag_block_definition = &blofeld_tag_group->block_definition;
 	blofeld_tag_group_struct_definition = &blofeld_tag_block_definition->struct_definition;
@@ -97,7 +97,7 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 		}
 		else if (structure_entry_index == 0 && layout_reader.tag_layout_prechunk_chunk != nullptr)
 		{
-			const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(_engine_type_halo3, header.group_tag);
+			const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag({ _engine_type_halo3 }, header.group_tag);
 			struct_definition = &tag_group->block_definition.struct_definition;
 		}
 
@@ -167,6 +167,12 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 			const blofeld::s_tag_field* blofeld_field = nullptr;
 			if (reader_structure_entry.tag_struct_definition)
 			{
+				static unsigned long index = 0;
+				index++;
+				if (index == 279556)
+				{
+					debug_point;
+				}
 				for (unsigned long blofeld_field_index = next_blofeld_field_index; ; blofeld_field_index++)
 				{
 					const blofeld::s_tag_field& candidate_blofeld_field = reader_structure_entry.tag_struct_definition->fields[blofeld_field_index];
@@ -269,7 +275,7 @@ const blofeld::s_tag_struct_definition& c_single_tag_file_reader::get_tag_struct
 }
 
 BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
-	h_object& high_level_object,
+	h_prototype& high_level_object,
 	unsigned long structure_entry_index,
 	s_tag_persist_struct_definition& structure_entry,
 	const char* const structure_data_begin,
@@ -311,7 +317,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 					block_storage.reserve(block_count);
 					for (unsigned long block_index = 0; block_index < block_count; block_index++)
 					{
-						h_object& high_level_object = block_storage.emplace_back();
+						h_prototype& high_level_object = block_storage.emplace_back();
 						BCS_RESULT rs = read_tag_block_structure_to_high_level_object(*field_tag_block_chunk, block_index, high_level_object);
 						ASSERT(BCS_SUCCEEDED(rs));
 
@@ -341,7 +347,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 
 				if (transpose.can_transpose)
 				{
-					h_object& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
+					h_prototype& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
 
 					s_tag_persist_struct_definition& field_struct_entry = layout_reader.get_struct_definition_by_index(transpose.field_metadata);
 
@@ -374,7 +380,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 					}
 					else
 					{
-						const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build.engine_type, field_tag_reference_chunk->group_tag);
+						const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, field_tag_reference_chunk->group_tag);
 						if (tag_group != nullptr)
 						{
 							c_fixed_string_512 tag_filepath;
@@ -528,7 +534,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 BCS_RESULT c_single_tag_file_reader::read_tag_block_structure_to_high_level_object(
 	c_tag_block_chunk& tag_block_chunk,
 	unsigned long tag_block_index,
-	h_object& high_level_object)
+	h_prototype& high_level_object)
 {
 	ASSERT(tag_block_index < tag_block_chunk.tag_block_chunk_header.count);
 
@@ -556,7 +562,7 @@ BCS_RESULT c_single_tag_file_reader::parse_high_level_object(h_tag*& out_high_le
 	tag_group_block_chunk->log();
 
 	const blofeld::s_tag_struct_definition& blofeld_struct_definition = get_tag_struct_definition_by_index(tag_group_block_chunk->structure_index);
-	h_object* high_level_object = h_object::create_high_level_object(blofeld_struct_definition, engine_platform_build);
+	h_prototype* high_level_object = h_prototype::create_high_level_object(blofeld_struct_definition, engine_platform_build);
 	ASSERT(high_level_object != nullptr);
 
 	read_tag_block_structure_to_high_level_object(*tag_group_block_chunk, 0, *high_level_object);

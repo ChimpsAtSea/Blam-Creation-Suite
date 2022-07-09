@@ -1,5 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
+using namespace blofeld::halo1::pc64;
+
 c_halo1_tag_reader::c_halo1_tag_reader(c_halo1_cache_cluster& cache_cluster, c_halo1_cache_file_reader& cache_reader) :
 	cache_cluster(cache_cluster),
 	cache_reader(cache_reader),
@@ -71,7 +73,7 @@ BCS_RESULT c_halo1_tag_reader::read_tag_instances()
 		halo1::s_cache_file_tag_instance& tag_instance = tag_instance_info.instance = tag_instances_read_pointer[tag_index];
 
 		tag group_tag = tag_instance.group_tags[0];
-		const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(cache_reader.engine_platform_build.engine_type, group_tag);
+		const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(cache_reader.engine_platform_build, group_tag);
 		ASSERT(tag_group != nullptr);
 		tag_instance_info.blofeld_tag_group = tag_group;
 		tag_instance_info.tag_group = nullptr; // deferred : init_tag_groups
@@ -84,7 +86,7 @@ BCS_RESULT c_halo1_tag_reader::read_tag_instances()
 		}
 
 		const void* instance_data;
-		if (!tag_instance.in_data_file || tag_instance.group_tags[0] == blofeld::halo1::SOUND_TAG)
+		if (!tag_instance.in_data_file || tag_instance.group_tags[0] == SOUND_TAG)
 		{
 			if (BCS_FAILED(rs = page_offset_to_pointer(tag_instance_info.instance.address, instance_data)))
 			{
@@ -96,15 +98,15 @@ BCS_RESULT c_halo1_tag_reader::read_tag_instances()
 			const char* relative_cache_file_path = nullptr;
 			switch (tag_instance.group_tags[0])
 			{
-			case blofeld::halo1::BITMAP_TAG:
+			case BITMAP_TAG:
 				relative_cache_file_path = "maps\\bitmaps.map";
 				break;
-			case blofeld::halo1::SOUND_TAG:
+			case SOUND_TAG:
 				relative_cache_file_path = "maps\\sounds.map";
 				break;
-			case blofeld::halo1::FONT_TAG:
-			case blofeld::halo1::HUD_MESSAGE_TEXT_TAG:
-			case blofeld::halo1::UNICODE_STRING_LIST_TAG:
+			case FONT_TAG:
+			case HUD_MESSAGE_TEXT_TAG:
+			case UNICODE_STRING_LIST_TAG:
 				relative_cache_file_path = "maps\\loc.map";
 				break;
 			default:

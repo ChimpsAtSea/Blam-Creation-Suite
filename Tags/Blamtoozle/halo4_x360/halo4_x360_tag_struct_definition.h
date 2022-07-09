@@ -35,7 +35,7 @@ enum e_halo4_x360_tag_field_set_bit : unsigned long
 	_halo4_x360_tag_field_set_has_inlined_children_with_placement_new_bit, // confirmed
 	_halo4_x360_tag_field_set_unknown3,
 	_halo4_x360_tag_field_set_unknown4,
-	_halo4_x360_tag_field_set_unknown5,
+	_halo4_x360_tag_field_set_has_aggregate_types,
 	_halo4_x360_tag_field_set_is_temporary_bit, // confirmed
 	_halo4_x360_tag_field_set_unknown7,
 	_halo4_x360_tag_field_set_unknown8,
@@ -49,7 +49,7 @@ enum e_halo4_x360_tag_field_set_bit : unsigned long
 	_halo4_x360_tag_field_set_has_level_specific_fields_bit, // confirmed
 	_halo4_x360_tag_field_set_can_memset_to_initialize_bit, // confirmed
 	_halo4_x360_tag_field_set_unknown18,
-	_halo4_x360_tag_field_set_unknown19,
+	_halo4_x360_tag_field_set_exist_in_cache_build,
 	k_num_halo4_x360_runtime_flags
 };
 
@@ -100,17 +100,17 @@ static_assert(k_halo4_x360_tag_struct_runtime_size == 0x78);
 
 struct s_halo4_x360_tag_struct_legacy
 {
-	unsigned long legacy_struct_tag;
-	unsigned long unknown34;
-	unsigned long unknown37;
-	unsigned long legacy_version;
-	ptr32 unknown40; // s_tag_struct_definition																				
-	unsigned long unknown44;
-	ptr32 legacy_struct;
-	bool is_legacy_field_set;
-	bool padding4D;
-	bool padding4E;
-	bool padding4F;
+	unsigned long legacy_struct_tag;																						//48				30
+	unsigned long unknown34;																								//52				34
+	ptr32 upgrade_function;																									//56				38
+	unsigned long legacy_version;																							//60				3C
+	ptr32 unknown_struct; // s_tag_struct_definition																		//64				40
+	unsigned long legacy_version_count;																						//68				44
+	ptr32 previous_version_struct;																							//72				48
+	bool is_legacy_field_set;																								//76				4C
+	bool padding4D;																											//77				4D
+	bool padding4E;																											//78				4E
+	bool padding4F;																											//79				4F
 };
 constexpr size_t k_halo4_x360_tag_struct_legacy_size = sizeof(s_halo4_x360_tag_struct_legacy);
 static_assert(k_halo4_x360_tag_struct_legacy_size == 0x20);
@@ -196,6 +196,13 @@ public:
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() override;
 	virtual void handle_conflict(const c_blamtoozle_tag_struct_definition& conflicting_tag_struct_definition) override;
 
+	virtual bool is_legacy_struct() override;
+	virtual bool is_latest_structure_version() override;
+	virtual unsigned long get_structure_version() override;
+	virtual c_blamtoozle_tag_struct_definition* get_previous_struct_definition() override;
+	virtual c_blamtoozle_tag_struct_definition* get_next_struct_definition() override;
+	virtual c_blamtoozle_tag_struct_definition& get_latest_struct_definition() override;
+
 protected:
 	ptr32 definition_address;
 	s_halo4_x360_tag_struct_definition struct_definition;
@@ -207,6 +214,10 @@ protected:
 	std::string code_type_name;
 	c_halo4_x360_tag_group_definition& traversed_tag_group_definition;
 	bool conflict_handled;
+
+	c_halo4_x360_tag_struct_definition* unknown_struct_definition;
+	c_halo4_x360_tag_struct_definition* previous_version_struct_definition;
+	c_halo4_x360_tag_struct_definition* next_version_struct_definition;
 
 
 };

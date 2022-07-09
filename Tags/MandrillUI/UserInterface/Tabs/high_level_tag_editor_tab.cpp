@@ -22,65 +22,65 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 {
 	if (c_mandrill_user_interface* mandrill_user_interface = search_parent_tab_type<c_mandrill_user_interface>())
 	{
-		blofeld::infinite::h_s_model_definition* model_tag = dynamic_cast<decltype(model_tag)>(&tag);
-		blofeld::infinite::h_objectdefinition* object_tag = nullptr;
-		if (blofeld::infinite::h_weapondefinition* weapon_definition = dynamic_cast<decltype(weapon_definition)>(&tag))
-		{
-			h_tag* tag = weapon_definition->item.object.model.get_tag();
-			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
-			{
-				object_tag = &weapon_definition->item.object;
-			}
-		}
-		if (blofeld::infinite::h_vehicledefinition* vehicle_definition = dynamic_cast<decltype(vehicle_definition)>(&tag))
-		{
-			h_tag* tag = vehicle_definition->unit.object.model.get_tag();
-			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
-			{
-				object_tag = &vehicle_definition->unit.object;
-			}
-		}
-		if (blofeld::infinite::h_bipeddefinition* biped_definition = dynamic_cast<decltype(biped_definition)>(&tag))
-		{
-			h_tag* tag = biped_definition->unit.object.model.get_tag();
-			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
-			{
-				object_tag = &biped_definition->unit.object;
-			}
-		}
-		if (blofeld::infinite::h_crate_definition* crate_definition = dynamic_cast<decltype(crate_definition)>(&tag))
-		{
-			h_tag* tag = crate_definition->object.model.get_tag();
-			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
-			{
-				object_tag = &crate_definition->object;
-			}
-		}
-		if (blofeld::infinite::h_creature_definition* creature_definition = dynamic_cast<decltype(creature_definition)>(&tag))
-		{
-			h_tag* tag = creature_definition->object.model.get_tag();
-			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
-			{
-				object_tag = &creature_definition->object;
-			}
-		}
-		if (blofeld::infinite::h_equipmentdefinition* equipment_definition = dynamic_cast<decltype(equipment_definition)>(&tag))
-		{
-			h_tag* tag = equipment_definition->item.object.model.get_tag();
-			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
-			{
-				object_tag = &equipment_definition->item.object;
-			}
-		}
-		if (blofeld::haloreach::h_bitmap_block_struct* bitmap_definition = dynamic_cast<decltype(bitmap_definition)>(&tag))
-		{
-			haloreach_bitmap_test = new() c_haloreach_bitmap_test(mandrill_user_interface->imgui_viewport_render_context, *bitmap_definition);
-		}
+		//blofeld::infinite::h_s_model_definition* model_tag = dynamic_cast<decltype(model_tag)>(&tag);
+		//blofeld::infinite::h_objectdefinition* object_tag = nullptr;
+		//if (blofeld::infinite::h_weapondefinition* weapon_definition = dynamic_cast<decltype(weapon_definition)>(&tag))
+		//{
+		//	h_tag* tag = weapon_definition->item.object.model.get_tag();
+		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
+		//	{
+		//		object_tag = &weapon_definition->item.object;
+		//	}
+		//}
+		//if (blofeld::infinite::h_vehicledefinition* vehicle_definition = dynamic_cast<decltype(vehicle_definition)>(&tag))
+		//{
+		//	h_tag* tag = vehicle_definition->unit.object.model.get_tag();
+		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
+		//	{
+		//		object_tag = &vehicle_definition->unit.object;
+		//	}
+		//}
+		//if (blofeld::infinite::h_bipeddefinition* biped_definition = dynamic_cast<decltype(biped_definition)>(&tag))
+		//{
+		//	h_tag* tag = biped_definition->unit.object.model.get_tag();
+		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
+		//	{
+		//		object_tag = &biped_definition->unit.object;
+		//	}
+		//}
+		//if (blofeld::infinite::h_crate_definition* crate_definition = dynamic_cast<decltype(crate_definition)>(&tag))
+		//{
+		//	h_tag* tag = crate_definition->object.model.get_tag();
+		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
+		//	{
+		//		object_tag = &crate_definition->object;
+		//	}
+		//}
+		//if (blofeld::infinite::h_creature_definition* creature_definition = dynamic_cast<decltype(creature_definition)>(&tag))
+		//{
+		//	h_tag* tag = creature_definition->object.model.get_tag();
+		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
+		//	{
+		//		object_tag = &creature_definition->object;
+		//	}
+		//}
+		//if (blofeld::infinite::h_equipmentdefinition* equipment_definition = dynamic_cast<decltype(equipment_definition)>(&tag))
+		//{
+		//	h_tag* tag = equipment_definition->item.object.model.get_tag();
+		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
+		//	{
+		//		object_tag = &equipment_definition->item.object;
+		//	}
+		//}
+		//if (blofeld::haloreach::h_bitmap_block_struct* bitmap_definition = dynamic_cast<decltype(bitmap_definition)>(&tag))
+		//{
+		//	haloreach_bitmap_test = new() c_haloreach_bitmap_test(mandrill_user_interface->imgui_viewport_render_context, *bitmap_definition);
+		//}
 
-		if (model_tag)
-		{
-			model_preview_test = new() c_model_preview_test(mandrill_user_interface->imgui_viewport_render_context, *model_tag, object_tag);
-		}
+		//if (model_tag)
+		//{
+		//	model_preview_test = new() c_model_preview_test(mandrill_user_interface->imgui_viewport_render_context, *model_tag, object_tag);
+		//}
 	}
 }
 
@@ -495,7 +495,7 @@ void c_high_level_tag_editor_tab::render_enumerable(h_enumerable& enumerable, co
 
 			ImGui::PushID(index);
 
-			h_object& object = enumerable.get(index);
+			h_prototype& object = enumerable.get(index);
 			render_object(0, object);
 
 			ImGui::PopID();
@@ -676,7 +676,7 @@ void c_high_level_tag_editor_tab::render_enumerable(h_enumerable& enumerable, co
 			ImGui::SameLine();
 			if (ImGui::Button("Duplicate"))
 			{
-				h_object& object = block->get(index);
+				h_prototype& object = block->get(index);
 				block->emplace_back(object);
 				index = enumerable.size() - 1;
 			}
@@ -1359,7 +1359,7 @@ bool c_high_level_tag_editor_tab::render_tag(::tag& value, const blofeld::s_tag_
 	return result;
 }
 
-void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& object)
+void c_high_level_tag_editor_tab::render_object(unsigned long level, h_prototype& object)
 {
 	ImGui::PushID(&object);
 
@@ -1462,7 +1462,7 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& o
 		}
 		case _field_struct:
 		{
-			h_object& struct_object = *static_cast<h_object*>(field_data);
+			h_prototype& struct_object = *static_cast<h_prototype*>(field_data);
 			render_object(level + 1, struct_object);
 			break;
 		}
@@ -1593,10 +1593,10 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& o
 void c_high_level_tag_editor_tab::render_tag_group()
 {
 	ImGui::Dummy({ 0.0f, 10.0f });
-	if (model_preview_test)
+	/*if (model_preview_test)
 	{
 		model_preview_test->draw_ui();
-	}
+	}*/
 	if (haloreach_bitmap_test)
 	{
 		haloreach_bitmap_test->draw_ui();

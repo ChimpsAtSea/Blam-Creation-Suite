@@ -9,6 +9,166 @@ using namespace xxhash::literals;
 #define MAKE_TOOL_VERSION(a, b, c, d, file_description, product_name) (MAKE_FILE_VERSION(a, b, c, d) ^ (file_description##product_name##_xxh64))
 #define HASH_VERSION(a) (a)
 
+enum e_engine_type_string_type
+{
+	_engine_type_string_type_default,
+	_engine_type_string_type_pretty,
+	_engine_type_string_type_folder,
+	_engine_type_string_type_source,
+	k_num__engine_type_string_types
+};
+
+template<typename t_enum>
+struct s_string_lookup
+{
+	t_enum _enum;
+	const char* type_string;
+	const char* _namespace;
+	const char* pretty_name;
+};
+
+template <typename t_enum, std::size_t num_lookup_elements>
+constexpr bool is_string_lookup_valid(s_string_lookup<t_enum> const(&lookup)[num_lookup_elements])
+{
+	for (size_t index = 0; index < num_lookup_elements; index++)
+	{
+		if (lookup[index]._enum != index) return false;
+	}
+	return true;
+}
+
+static constexpr s_string_lookup<e_engine_type> engine_string_lookup[] =
+{
+#define engine_type_type_string_pair(engine_type, _namespace, pretty_name) { engine_type, #engine_type, _namespace, pretty_name }
+	engine_type_type_string_pair(_engine_type_not_set, "notset", "Not Set"),
+	engine_type_type_string_pair(_engine_type_mcc, "mcc", "Master Chief Collection"),
+	engine_type_type_string_pair(_engine_type_halo1, "halo1", "Halo 1"),
+	engine_type_type_string_pair(_engine_type_stubbs, "stubbs", "Stubbs the Zombie"),
+	engine_type_type_string_pair(_engine_type_halo2, "halo2", "Halo 2"),
+	engine_type_type_string_pair(_engine_type_halo3, "halo3", "Halo 3"),
+	engine_type_type_string_pair(_engine_type_halo3odst, "halo3odst", "Halo 3: ODST"),
+	engine_type_type_string_pair(_engine_type_eldorado, "eldorado", "Eldorado"),
+	engine_type_type_string_pair(_engine_type_haloreach, "haloreach", "Halo Reach"),
+	engine_type_type_string_pair(_engine_type_halo4, "halo4", "Halo 4"),
+	engine_type_type_string_pair(_engine_type_groundhog, "groundhog", "Groundhog"),
+	engine_type_type_string_pair(_engine_type_halo5, "halo5", "Halo 5 Forge"),
+	engine_type_type_string_pair(_engine_type_infinite, "infinite", "Halo Infinite"),
+#undef engine_type_type_string_pair
+};
+static_assert(_countof(engine_string_lookup) == k_number_of_engine_types);
+static_assert(is_string_lookup_valid(engine_string_lookup));
+
+BCS_RESULT get_engine_type_string(e_engine_type engine_type, const char*& engine_type_string)
+{
+	BCS_VALIDATE_ARGUMENT(engine_type < k_number_of_engine_types);
+
+	engine_type_string = engine_string_lookup[engine_type].type_string;
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT get_engine_type_namespace(e_engine_type engine_type, const char*& namespace_name)
+{
+	BCS_VALIDATE_ARGUMENT(engine_type < k_number_of_engine_types);
+
+	namespace_name = engine_string_lookup[engine_type]._namespace;
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT get_engine_type_pretty_string(e_engine_type engine_type, const char*& pretty_name)
+{
+	BCS_VALIDATE_ARGUMENT(engine_type < k_number_of_engine_types);
+
+	pretty_name = engine_string_lookup[engine_type].pretty_name;
+
+	return BCS_S_OK;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+static constexpr s_string_lookup<e_platform_type> platform_string_lookup[] =
+{
+#define platform_type_string_pair(platform_type, _namespace, pretty_name) { platform_type, #platform_type, _namespace, pretty_name }
+		platform_type_string_pair(_platform_type_not_set, "notset", "Not Set"),
+		platform_type_string_pair(_platform_type_xbox, "xbox", "Xbox"),
+		platform_type_string_pair(_platform_type_xbox_360, "xbox360", "Xbox 360"),
+		platform_type_string_pair(_platform_type_xbox_one, "xboxone", "Xbox One"),
+		platform_type_string_pair(_platform_type_pc_32bit, "pc32", "PC (32bit)"),
+		platform_type_string_pair(_platform_type_pc_64bit, "pc64", "PC"),
+#undef platform_type_string_pair
+};
+static_assert(_countof(platform_string_lookup) == k_number_of_platform_types);
+static_assert(is_string_lookup_valid(platform_string_lookup));
+
+BCS_RESULT get_platform_type_string(e_platform_type platform_type, const char*& platform_type_string)
+{
+	BCS_VALIDATE_ARGUMENT(platform_type < k_number_of_platform_types);
+
+	platform_type_string = platform_string_lookup[platform_type].type_string;
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT get_platform_type_namespace(e_platform_type platform_type, const char*& namespace_name)
+{
+	BCS_VALIDATE_ARGUMENT(platform_type < k_number_of_platform_types);
+
+	namespace_name = platform_string_lookup[platform_type]._namespace;
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT get_platform_type_pretty_string(e_platform_type platform_type, const char*& pretty_name)
+{
+	BCS_VALIDATE_ARGUMENT(platform_type < k_number_of_platform_types);
+
+	pretty_name = platform_string_lookup[platform_type].pretty_name;
+
+	return BCS_S_OK;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 struct s_build_and_id
 {
 	e_build build;
@@ -116,55 +276,6 @@ MAKE_OPERATOR(<= );
 MAKE_OPERATOR(>= );
 #undef MAKE_OPERATOR
 
-enum e_engine_type_string_type
-{
-	_engine_type_string_type_default,
-	_engine_type_string_type_pretty,
-	_engine_type_string_type_folder,
-	_engine_type_string_type_source,
-	k_num__engine_type_string_types
-};
-
-static BCS_RESULT get_engine_type_string_impl(e_engine_type engine_type, e_engine_type_string_type engine_type_string_type, const char** result)
-{
-	BCS_VALIDATE_ARGUMENT(result);
-
-#define engine_type_type_string_pair(engine_type, pretty_name, folder_name, source_name)	\
-	case engine_type:																		\
-	{																						\
-		const char* const strings[4] =														\
-		{																					\
-			(#engine_type),																	\
-			(pretty_name),																	\
-			(folder_name),																	\
-			(source_name)																	\
-		};																					\
-		*result = strings[engine_type_string_type];											\
-		return BCS_S_OK;																	\
-	}
-
-	switch (engine_type)
-	{
-		engine_type_type_string_pair(_engine_type_not_set, "Not Set", nullptr, nullptr);
-		engine_type_type_string_pair(_engine_type_mcc, "Master Chief Collection", "mcc", "mcc");
-		engine_type_type_string_pair(_engine_type_halo1, "Halo 1", "halo1", "halo1");
-		engine_type_type_string_pair(_engine_type_stubbs, "Stubbs the Zombie", "stubbs", "stubbs");
-		engine_type_type_string_pair(_engine_type_halo2, "Halo 2", "halo2", "halo2");
-		engine_type_type_string_pair(_engine_type_halo3, "Halo 3", "halo3", "halo3");
-		engine_type_type_string_pair(_engine_type_halo3odst, "Halo 3: ODST", "halo3odst", "halo3odst");
-		engine_type_type_string_pair(_engine_type_eldorado, "Eldorado", "eldorado", "eldorado");
-		engine_type_type_string_pair(_engine_type_haloreach, "Halo Reach", "haloreach", "haloreach");
-		engine_type_type_string_pair(_engine_type_halo4, "Halo 4", "halo4", "halo4");
-		engine_type_type_string_pair(_engine_type_gen3_xbox360, "Xbox 360 Gen3", "xbox360_gen3", "xbox360gen3");
-		engine_type_type_string_pair(_engine_type_groundhog, "Groundhog", "groundhog", "groundhog");
-		engine_type_type_string_pair(_engine_type_halo5, "Halo 5 Forge", "halo5", "halo5");
-		engine_type_type_string_pair(_engine_type_infinite, "Halo Infinite", "infinite", "infinite");
-	}
-#undef platform_type_string_pair
-
-	return BCS_E_NOT_IMPLEMENTED;
-}
-
 BCS_DEBUG_API bool get_platform_is_big_endian(s_engine_platform_build engine_platform_build)
 {
 	return get_platform_is_big_endian(engine_platform_build.platform_type);
@@ -179,56 +290,6 @@ BCS_DEBUG_API bool get_platform_is_big_endian(e_platform_type platform_type)
 	default:
 		return false;
 	}
-}
-
-BCS_RESULT get_engine_type_pretty_string(e_engine_type engine_type, const char** result)
-{
-	return get_engine_type_string_impl(engine_type, _engine_type_string_type_pretty, result);
-}
-
-BCS_RESULT get_engine_type_folder_string(e_engine_type engine_type, const char** result)
-{
-	return get_engine_type_string_impl(engine_type, _engine_type_string_type_folder, result);
-}
-
-BCS_RESULT get_engine_type_source_string(e_engine_type engine_type, const char** result)
-{
-	return get_engine_type_string_impl(engine_type, _engine_type_string_type_source, result);
-}
-
-BCS_RESULT get_engine_type_string(e_engine_type engine_type, const char** result)
-{
-	return get_engine_type_string_impl(engine_type, _engine_type_string_type_default, result);
-}
-
-static BCS_RESULT get_platform_string_impl(e_platform_type platform_type, bool pretty_name, const char** result)
-{
-	BCS_VALIDATE_ARGUMENT(IS_VALID_BOOLEAN(pretty_name));
-	BCS_VALIDATE_ARGUMENT(result);
-
-#define platform_type_string_pair(platform_type, pretty_name) case platform_type: *result = (!pretty_name ? (#platform_type) : (pretty_name)); return BCS_S_OK;
-	switch (platform_type)
-	{
-		platform_type_string_pair(_platform_type_not_set, "Not Set");
-		platform_type_string_pair(_platform_type_xbox, "Xbox");
-		platform_type_string_pair(_platform_type_xbox_360, "Xbox 360");
-		platform_type_string_pair(_platform_type_xbox_one, "Xbox One");
-		platform_type_string_pair(_platform_type_pc_64bit, "PC");
-		platform_type_string_pair(_platform_type_pc_32bit, "PC (32bit)");
-	}
-#undef platform_type_string_pair
-
-	return BCS_E_NOT_IMPLEMENTED;
-}
-
-BCS_RESULT get_platform_type_pretty_string(e_platform_type platform_type, const char** result)
-{
-	return get_platform_string_impl(platform_type, true, result);
-}
-
-BCS_RESULT get_platform_type_string(e_platform_type platform_type, const char** result)
-{
-	return get_platform_string_impl(platform_type, false, result);
 }
 
 BCS_RESULT get_platform_pointer_size(e_platform_type platform_type, unsigned long* pointer_size)

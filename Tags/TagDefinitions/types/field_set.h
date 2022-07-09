@@ -10,7 +10,7 @@ namespace blofeld
 		_tag_field_set_has_inlined_children_with_placement_new_bit, // confirmed
 		_tag_field_set_unknown3_bit,
 		_tag_field_set_unknown4_bit,
-		_tag_field_set_unknown5_bit,
+		_tag_field_set_has_aggregate_types_bit,
 		_tag_field_set_is_temporary_bit, // confirmed
 		_tag_field_set_unknown7_bit,
 		_tag_field_set_unknown8_bit,
@@ -24,7 +24,7 @@ namespace blofeld
 		_tag_field_set_has_level_specific_fields_bit, // confirmed
 		_tag_field_set_can_memset_to_initialize_bit, // confirmed
 		_tag_field_set_unknown18_bit,
-		_tag_field_set_unknown19_bit,
+		_tag_field_set_exist_in_cache_build_bit,
 		k_num_runtime_flags
 	};
 	
@@ -34,7 +34,7 @@ namespace blofeld
 #define SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW c_flags<e_tag_field_set_bit>(_tag_field_set_has_inlined_children_with_placement_new_bit)
 #define SET_UNKNOWN3 c_flags<e_tag_field_set_bit>(_tag_field_set_unknown3_bit)
 #define SET_UNKNOWN4 c_flags<e_tag_field_set_bit>(_tag_field_set_unknown4_bit)
-#define SET_UNKNOWN5 c_flags<e_tag_field_set_bit>(_tag_field_set_unknown5_bit)
+#define SET_UNKNOWN5 c_flags<e_tag_field_set_bit>(_tag_field_set_has_aggregate_types_bit)
 #define SET_IS_TEMPORARY c_flags<e_tag_field_set_bit>(_tag_field_set_is_temporary_bit) 
 #define SET_UNKNOWN7 c_flags<e_tag_field_set_bit>(_tag_field_set_unknown7_bit)
 #define SET_UNKNOWN8 c_flags<e_tag_field_set_bit>(_tag_field_set_unknown8_bit)
@@ -48,6 +48,6 @@ namespace blofeld
 #define SET_HAS_LEVEL_SPECIFIC_FIELDS c_flags<e_tag_field_set_bit>(_tag_field_set_has_level_specific_fields_bit)
 #define SET_CAN_MEMSET_TO_INITIALIZE c_flags<e_tag_field_set_bit>(_tag_field_set_can_memset_to_initialize_bit)
 #define SET_UNKNOWN18 c_flags<e_tag_field_set_bit>(_tag_field_set_unknown18_bit)
-#define SET_UNKNOWN19 c_flags<e_tag_field_set_bit>(_tag_field_set_unknown19_bit)
+#define SET_UNKNOWN19 c_flags<e_tag_field_set_bit>(_tag_field_set_exist_in_cache_build_bit)
 
 }

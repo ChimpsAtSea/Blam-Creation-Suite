@@ -24,7 +24,7 @@ c_monolithic_tag_project::c_monolithic_tag_project(
 	cache_heap_list_chunk(),
 	cache_partition_list_chunk()
 {
-	for (const blofeld::s_tag_group** tag_group_iter = blofeld::tag_groups[engine_platform_build.engine_type]; *tag_group_iter; tag_group_iter++)
+	for (const blofeld::s_tag_group** tag_group_iter = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build); *tag_group_iter; tag_group_iter++)
 	{
 		h_group* group = new() h_group(engine_platform_build, **tag_group_iter);
 		groups.push_back(group);
@@ -116,7 +116,7 @@ void c_monolithic_tag_project::resolve_unqualified_tag_references(void* _userdat
 	}
 }
 
-BCS_RESULT c_monolithic_tag_project::resolve_unqualified_tag_references(h_object& object)
+BCS_RESULT c_monolithic_tag_project::resolve_unqualified_tag_references(h_prototype& object)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -127,7 +127,7 @@ BCS_RESULT c_monolithic_tag_project::resolve_unqualified_tag_references(h_object
 		{
 		case blofeld::_field_struct:
 		{
-			h_object* struct_object = object.get_field_data<h_object>(*field);
+			h_prototype* struct_object = object.get_field_data<h_prototype>(*field);
 			ASSERT(struct_object != nullptr);
 
 			if (BCS_FAILED(rs = resolve_unqualified_tag_references(*struct_object)))
@@ -145,7 +145,7 @@ BCS_RESULT c_monolithic_tag_project::resolve_unqualified_tag_references(h_object
 			unsigned long enumerable_count = enumerable->size();
 			for (unsigned long enumerable_index = 0; enumerable_index < enumerable_count; enumerable_index++)
 			{
-				h_object& enumerable_object = enumerable->get(enumerable_index);
+				h_prototype& enumerable_object = enumerable->get(enumerable_index);
 				if (BCS_FAILED(rs = resolve_unqualified_tag_references(enumerable_object)))
 				{
 					return rs;

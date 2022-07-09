@@ -124,7 +124,7 @@ c_blamtoozle_source_generator::~c_blamtoozle_source_generator()
 	untracked_free(platform_namespace);
 }
 
-void c_blamtoozle_source_generator::export_single_header(const wchar_t* file_path)
+void c_blamtoozle_source_generator::export_single_tag_definitions_header(const wchar_t* file_path)
 {
 	clear_is_exported();
 	c_blamtoozle_file_stream file_stream(*this, file_path);
@@ -448,7 +448,7 @@ void c_blamtoozle_source_generator::write_tag_reference_flags(std::stringstream&
 	}
 }
 
-void c_blamtoozle_source_generator::export_single_source(const wchar_t* file_path)
+void c_blamtoozle_source_generator::export_single_tag_definitions_source(const wchar_t* file_path)
 {
 	clear_is_exported();
 
@@ -456,7 +456,8 @@ void c_blamtoozle_source_generator::export_single_source(const wchar_t* file_pat
 
 #define stream file_stream.stream
 
-	stream << "#pragma once" << std::endl;
+	stream << "#include <tagdefinitions-private-pch.h>" << std::endl;
+	stream << "#include <blofeld_field_type_override.h>" << std::endl;
 	stream << std::endl;
 	stream << "namespace blofeld" << std::endl;
 	stream << "{" << std::endl;
@@ -568,11 +569,15 @@ void c_blamtoozle_source_generator::export_single_source(const wchar_t* file_pat
 			c_flags<blofeld::e_tag_field_set_bit> default_flags;
 			default_flags.set(blofeld::_tag_field_set_unknown0_bit, true);
 			default_flags.set(blofeld::_tag_field_set_unknown1_bit, true);
-			default_flags.set(blofeld::_tag_field_set_unknown5_bit, true);
+			default_flags.set(blofeld::_tag_field_set_has_aggregate_types_bit, true);
 			default_flags.set(blofeld::_tag_field_set_delete_recursively_bit, true);
 			default_flags.set(blofeld::_tag_field_set_postprocess_recursively_bit, true);
 
 			c_flags<blofeld::e_tag_field_set_bit> flags = struct_definition->get_field_set_bits();
+			if (flags.is_clear())
+			{
+				flags = default_flags;
+			}
 
 			if (flags == default_flags)
 			{
@@ -716,6 +721,105 @@ void c_blamtoozle_source_generator::export_single_source(const wchar_t* file_pat
 	file_stream.write();
 }
 
+void c_blamtoozle_source_generator::export_tag_groups_header(const wchar_t* file_path)
+{
+	clear_is_exported();
+
+	c_blamtoozle_file_stream file_stream(*this, file_path);
+
+#define stream file_stream.stream
+
+	stream << "#pragma once" << std::endl;
+	stream << std::endl;
+	stream << "namespace blofeld" << std::endl;
+	stream << "{" << std::endl;
+	if (engine_namespace)
+	{
+		stream << "\t" << "namespace " << engine_namespace << std::endl;
+		stream << "\t" << "{" << std::endl;
+	}
+	if (platform_namespace)
+	{
+		stream << "\t\t" << "namespace " << platform_namespace << std::endl;
+		stream << "\t\t" << "{" << std::endl;
+	}
+	stream << std::endl;
+
+	stream << "\t\t\t" << "BCS_DEBUG_API extern const s_tag_group* tag_groups[];" << std::endl;
+
+	stream << std::endl;
+	if (platform_namespace)
+	{
+		stream << "\t\t" << "} // namespace " << platform_namespace << std::endl;
+		stream << std::endl;
+	}
+	if (engine_namespace)
+	{
+		stream << "\t" << "} // namespace " << engine_namespace << std::endl;
+		stream << std::endl;
+	}
+	stream << "} // namespace blofeld" << std::endl;
+	stream << std::endl;
+
+#undef stream
+
+	file_stream.write();
+}
+
+void c_blamtoozle_source_generator::export_tag_groups_source(const wchar_t* file_path)
+{
+	clear_is_exported();
+
+	c_blamtoozle_file_stream file_stream(*this, file_path);
+
+#define stream file_stream.stream
+
+	stream << "#pragma once" << std::endl;
+	stream << std::endl;
+	stream << "namespace blofeld" << std::endl;
+	stream << "{" << std::endl;
+	if (engine_namespace)
+	{
+		stream << "\t" << "namespace " << engine_namespace << std::endl;
+		stream << "\t" << "{" << std::endl;
+	}
+	if (platform_namespace)
+	{
+		stream << "\t\t" << "namespace " << platform_namespace << std::endl;
+		stream << "\t\t" << "{" << std::endl;
+	}
+	stream << std::endl;
+
+	stream << "\t\t\t" << "const s_tag_group* tag_groups[] =" << std::endl;
+	stream << "\t\t\t" << "{" << std::endl;
+	for (auto& group_definition : group_definitions)
+	{
+		if (!is_group_exported(*group_definition))
+		{
+			stream << "\t\t\t\t" << "&" << group_definition->get_code_symbol_name() << "," << std::endl;
+		}
+	}
+	stream << "\t\t\t" << "};" << std::endl;
+
+	stream << std::endl;
+	if (platform_namespace)
+	{
+		stream << "\t\t" << "} // namespace " << platform_namespace << std::endl;
+		stream << std::endl;
+	}
+	if (engine_namespace)
+	{
+		stream << "\t" << "} // namespace " << engine_namespace << std::endl;
+		stream << std::endl;
+	}
+	stream << "} // namespace blofeld" << std::endl;
+	stream << std::endl;
+
+#undef stream
+
+	file_stream.write();
+}
+
 const char* c_blamtoozle_source_generator::tag_field_set_bit_to_field_set_bit_macro(blofeld::e_tag_field_set_bit flag)
 {
 	switch (flag)
@@ -725,7 +829,7 @@ const char* c_blamtoozle_source_generator::tag_field_set_bit_to_field_set_bit_ma
 	case blofeld::_tag_field_set_has_inlined_children_with_placement_new_bit:		return "SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW";
 	case blofeld::_tag_field_set_unknown3_bit:										return "SET_UNKNOWN3";
 	case blofeld::_tag_field_set_unknown4_bit:										return "SET_UNKNOWN4";
-	case blofeld::_tag_field_set_unknown5_bit:										return "SET_UNKNOWN5";
+	case blofeld::_tag_field_set_has_aggregate_types_bit:										return "SET_UNKNOWN5";
 	case blofeld::_tag_field_set_is_temporary_bit:									return "SET_IS_TEMPORARY";
 	case blofeld::_tag_field_set_unknown7_bit:										return "SET_UNKNOWN7";
 	case blofeld::_tag_field_set_unknown8_bit:										return "SET_UNKNOWN8";
@@ -739,7 +843,7 @@ const char* c_blamtoozle_source_generator::tag_field_set_bit_to_field_set_bit_ma
 	case blofeld::_tag_field_set_has_level_specific_fields_bit:						return "SET_HAS_LEVEL_SPECIFIC_FIELDS";
 	case blofeld::_tag_field_set_can_memset_to_initialize_bit:						return "SET_CAN_MEMSET_TO_INITIALIZE";
 	case blofeld::_tag_field_set_unknown18_bit:										return "SET_UNKNOWN18";
-	case blofeld::_tag_field_set_unknown19_bit:										return "SET_UNKNOWN19";
+	case blofeld::_tag_field_set_exist_in_cache_build_bit:										return "SET_UNKNOWN19";
 	}
 	throw;
 }
@@ -760,13 +864,13 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				break;
 			}
 
-			
+
 		}
 		else if (c_blamtoozle_tag_field_dummy_space* dummy_space_field = dynamic_cast<c_blamtoozle_tag_field_dummy_space*>(_field))
 		{
 			stream << std::endl;
 
-			
+
 		}
 		else if (c_blamtoozle_tag_field* tag_field = dynamic_cast<c_blamtoozle_tag_field*>(_field))
 		{
@@ -902,10 +1006,10 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					{
 						if (!display_name.empty()) stream << "\"" << display_name.c_str() << "\"";
 					}
-					if (!description.empty())
+					/*if (!description.empty())
 					{
 						if (!description.empty()) stream << ", \"" << description.c_str() << "\"";
-					}
+					*/
 					stream << ", " << (field_id_string ? field_id_string : "_field_id_default");
 					if (write_flags)
 					{
@@ -972,7 +1076,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				{
 					if (!description.empty()) stream << ", \"" << description.c_str() << "\"";
 				}
-				if (tag_field->get_explanation() != nullptr && *tag_field->get_explanation())
+				else if (tag_field->get_explanation() != nullptr && *tag_field->get_explanation())
 				{
 					std::string explanation = escape_string(tag_field->get_explanation());
 					stream << ", \"" << explanation << "\"";
@@ -1498,7 +1602,7 @@ void c_blamtoozle_source_generator::clear_is_exported()
 			return is_exported; \
 		} \
 	} \
-	return false; \
+	FATAL_ERROR("couldn't find definition"); \
 }
 
 bool c_blamtoozle_source_generator::is_group_exported(c_blamtoozle_tag_group_definition& definition)											is_exported_helper(group_definitions_helpers);

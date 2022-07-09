@@ -35,7 +35,7 @@ enum e_reach_x360_tag_field_set_bit : unsigned long
 	_reach_x360_tag_field_set_has_inlined_children_with_placement_new_bit, // confirmed
 	_reach_x360_tag_field_set_unknown3,
 	_reach_x360_tag_field_set_unknown4,
-	_reach_x360_tag_field_set_unknown5,
+	_reach_x360_tag_field_set_has_aggregate_types,
 	_reach_x360_tag_field_set_is_temporary_bit, // confirmed
 	_reach_x360_tag_field_set_unknown7,
 	_reach_x360_tag_field_set_unknown8,
@@ -44,12 +44,12 @@ enum e_reach_x360_tag_field_set_bit : unsigned long
 	_reach_x360_tag_field_set_is_memcpyable_bit, // confirmed
 	_reach_x360_tag_field_set_unknown12,
 	_reach_x360_tag_field_set_has_resources,
-	_reach_x360_tag_field_set_unknown14,
-	_reach_x360_tag_field_set_unknown15,
+	_reach_x360_tag_field_set_unknown14, // search for string "fixup: this tag has to resync resources due to resource '%s' versioning"
+	_reach_x360_tag_field_set_unknown15, // see "tag_interops cannot have fields that require locators (block references)"
 	_reach_x360_tag_field_set_has_level_specific_fields_bit, // confirmed
 	_reach_x360_tag_field_set_can_memset_to_initialize_bit, // confirmed
 	_reach_x360_tag_field_set_unknown18,
-	_reach_x360_tag_field_set_unknown19,
+	_reach_x360_tag_field_set_exist_in_cache_build, // see s_tag_block_definition::does_not_exist_in_cache_build
 	k_num_reach_x360_runtime_flags
 };
 
@@ -97,11 +97,11 @@ struct s_reach_x360_tag_struct_legacy
 {
 	unsigned long legacy_struct_tag;																						//48				30
 	unsigned long unknown34;																								//52				34
-	unsigned long unknown37;																								//56				38
+	ptr32 upgrade_function;																									//56				38
 	unsigned long legacy_version;																							//60				3C
-	ptr32 unknown40; // s_tag_struct_definition																				//64				40
-	unsigned long unknown44;																								//68				44
-	ptr32 legacy_struct;																									//72				48
+	ptr32 unknown_struct; // s_tag_struct_definition																		//64				40
+	unsigned long legacy_version_count;																						//68				44
+	ptr32 current_struct;																									//72				48
 	bool is_legacy_field_set;																								//76				4C
 	bool padding4D;																											//77				4D
 	bool padding4E;																											//78				4E
@@ -178,5 +178,7 @@ protected:
 	c_reach_x360_tag_group_definition& traversed_tag_group_definition;
 	bool conflict_handled;
 
-	
+	c_reach_x360_tag_struct_definition* unknown_struct_definition;
+	c_reach_x360_tag_struct_definition* previous_version_struct_definition;
+
 };

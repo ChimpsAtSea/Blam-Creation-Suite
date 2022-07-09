@@ -345,7 +345,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 }
 
 BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
-	h_object& high_level,
+	h_prototype& high_level,
 	const char* const low_level_data,
 	c_cache_file_reader& cache_file_reader,
 	const blofeld::s_tag_struct_definition& struct_definition,
@@ -564,7 +564,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 							const char* current_block_data_position = block_data;
 							for (unsigned long block_index = 0; block_index < tag_block.count; block_index++)
 							{
-								h_object& type = block_storage.emplace_back();
+								h_prototype& type = block_storage.emplace_back();
 								transplant_cache_file_data(type, current_block_data_position, cache_file_reader, block_struct_definition);
 
 								current_block_data_position += block_struct_size;
@@ -578,7 +578,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 						//	{
 						//		const void* current_block_data = block_data + block_struct_size * index;
 
-						//		h_object& type = block_storage.get(index);
+						//		h_prototype& type = block_storage.get(index);
 						//		transplant_cache_file_data(type, block_data, block_struct_definition);
 						//	};
 						//	tbb::parallel_for(0u, static_cast<unsigned long>(tag_block.count), transplant_high_level_block);
@@ -604,7 +604,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 			break;
 			case _field_struct:
 			{
-				h_object& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
+				h_prototype& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
 				transplant_cache_file_data(struct_storage, current_data_position, cache_file_reader, *field->struct_definition);
 			}
 			break;
@@ -616,7 +616,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 				unsigned long const array_elements_count = field->array_definition->count(engine_platform_build);
 				for (unsigned long array_index = 0; array_index < array_elements_count; array_index++)
 				{
-					h_object& array_element_storage = array_storage[array_index];
+					h_prototype& array_element_storage = array_storage[array_index];
 
 					transplant_cache_file_data(array_element_storage, raw_array_data_position, cache_file_reader, field->array_definition->struct_definition, &raw_array_data_position);
 				}
@@ -830,7 +830,7 @@ public:
 	unsigned long root_struct_size;
 
 	BCS_RESULT transplant_module_file_data(
-		h_object& high_level,
+		h_prototype& high_level,
 		long tag_block_index,
 		const char* const tag_block_data,
 		long nugget_index,
@@ -959,7 +959,7 @@ public:
 				break;
 				case _field_struct:
 				{
-					h_object& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
+					h_prototype& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
 					transplant_module_file_data(struct_storage, tag_block_index, tag_block_data, nugget_index, current_data_position, *field->struct_definition);
 				}
 				break;
@@ -973,7 +973,7 @@ public:
 					unsigned long const array_elements_count = field->array_definition->count(engine_platform_build);
 					for (unsigned long array_index = 0; array_index < array_elements_count; array_index++)
 					{
-						h_object& array_element_storage = array_storage[array_index];
+						h_prototype& array_element_storage = array_storage[array_index];
 
 						transplant_module_file_data(array_element_storage, tag_block_index, tag_block_data, nugget_index, raw_array_data_position, field->array_definition->struct_definition);
 
@@ -1034,7 +1034,7 @@ public:
 							const char* block_data_position = block_data;
 							for (long block_index = 0; block_index < ucs_block_field.count; (block_index++, block_data_position += block_struct_size))
 							{
-								h_object& type = block_storage.emplace_back();
+								h_prototype& type = block_storage.emplace_back();
 
 								transplant_module_file_data(
 									type,
@@ -1249,7 +1249,7 @@ public:
 									const char* const root_tag_data = static_cast<const char*>(ucs_reader.tag_data);
 									const char* const pageable_resource_data = root_tag_data + nugget.offset;
 
-									h_object* pageable_resource_object = h_object::create_high_level_object(pageable_resource_struct_definition, engine_platform_build);
+									h_prototype* pageable_resource_object = h_prototype::create_high_level_object(pageable_resource_struct_definition, engine_platform_build);
 									ASSERT(pageable_resource_object != nullptr);
 
 									resource_storage->object = pageable_resource_object;

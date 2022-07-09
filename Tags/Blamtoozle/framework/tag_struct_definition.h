@@ -21,6 +21,13 @@ public:
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() = 0;
 	virtual void handle_conflict(const c_blamtoozle_tag_struct_definition& conflicting_tag_struct_definition);
 
+	virtual bool is_legacy_struct();
+	virtual bool is_latest_structure_version();
+	virtual unsigned long get_structure_version();
+	virtual c_blamtoozle_tag_struct_definition* get_previous_struct_definition();
+	virtual c_blamtoozle_tag_struct_definition* get_next_struct_definition();
+	virtual c_blamtoozle_tag_struct_definition& get_latest_struct_definition();
+
 	using t_fields = std::vector<t_blamtoozle_tag_field*>;
 	t_fields fields;
 

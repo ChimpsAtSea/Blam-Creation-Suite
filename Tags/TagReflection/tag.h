@@ -6,7 +6,7 @@ class h_group;
 #define high_level_tag_dtor(...)
 
 class h_tag :
-	public h_object
+	public h_prototype
 {
 protected:
 	h_tag(h_group* group, const char* tag_filepath);

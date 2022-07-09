@@ -24,6 +24,8 @@ enum BCS_RESULT
 	BCS_S_CONTINUE = 3,
 };
 
+BCS_DEBUG_API const char* bcs_result_get_string(BCS_RESULT result);
+
 //#define BCS_VALIDATE_ARGUMENT_THROW(expression) \
 //	if(!(expression)) \
 //	{ \
@@ -69,5 +71,13 @@ enum BCS_RESULT
 	BCS_RESULT COMBINE(__bcs_result_, __LINE__) = (expression); \
 	if (BCS_FAILED(COMBINE(__bcs_result_, __LINE__))) \
 	{ \
+		throw COMBINE(__bcs_result_, __LINE__); \
+	}
+
+#define BCS_FAIL_THROW_DBG(expression) \
+	BCS_RESULT COMBINE(__bcs_result_, __LINE__) = (expression); \
+	if (BCS_FAILED(COMBINE(__bcs_result_, __LINE__))) \
+	{ \
+		debug_break; \
 		throw COMBINE(__bcs_result_, __LINE__); \
 	}

@@ -48,7 +48,6 @@ public:
 	s_halo3_tools_pc64_tag_field field_definition;
 	blofeld::e_field field_type;
 	const char* name;
-	const void* definition;
 
 	c_halo3_tools_pc64_tag_block_definition* block_definition;
 	c_halo3_tools_pc64_tag_reference_definition* tag_reference_definition;

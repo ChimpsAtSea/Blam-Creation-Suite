@@ -16,7 +16,7 @@ public:
 	BCS_DEBUG_API virtual unsigned long size() const final;
 	BCS_DEBUG_API virtual unsigned long data_size() const final;
 	BCS_DEBUG_API virtual h_custom_type& emplace_back() final;
-	BCS_DEBUG_API virtual h_custom_type& emplace_back(const h_object& value) final;
+	BCS_DEBUG_API virtual h_custom_type& emplace_back(const h_prototype& value) final;
 	BCS_DEBUG_API virtual void reserve(unsigned long count) final;
 	BCS_DEBUG_API virtual void resize(unsigned long count) final;
 	BCS_DEBUG_API virtual void insert_hole(unsigned long index, unsigned long count) final;
@@ -97,7 +97,7 @@ h_custom_type& h_typed_block<h_custom_type>::emplace_back()																					
 
 #define _h_typed_block_emplace_back_alt_impl(h_custom_type)																								\
 template<>																																				\
-h_custom_type& h_typed_block<h_custom_type>::emplace_back(const h_object& value)																		\
+h_custom_type& h_typed_block<h_custom_type>::emplace_back(const h_prototype& value)																		\
 {																																						\
 	const h_custom_type* typed_value = dynamic_cast<const h_custom_type*>(&value);																		\
 	DEBUG_ASSERT(typed_value != nullptr);																												\

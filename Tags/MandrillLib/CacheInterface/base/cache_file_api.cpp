@@ -162,7 +162,7 @@ BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filepath, s_
 
 		// #TODO determine the engine platform
 
-		engine_platform_build->engine_type = _engine_type_gen3_xbox360;
+		engine_platform_build->engine_type = _engine_type_halo4;
 		engine_platform_build->platform_type = _platform_type_xbox_360;
 		engine_platform_build->build = _build_not_set;
 
@@ -216,8 +216,7 @@ BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_bui
 		}
 		break;
 		// #TODO: generate xbox360 version of halo 4 high/virtual/low
-		// then replace _engine_type_gen3_xbox360 with _engine_type_gen3_halo4
-		/*case _engine_type_gen3_xbox360:
+		/*case _engine_type_halo4:
 			if (engine_platform_build.platform_type == _platform_type_xbox_360)
 			{
 				*cache_file = new() c_halo4_cache_file_reader(filepath, engine_platform_build);

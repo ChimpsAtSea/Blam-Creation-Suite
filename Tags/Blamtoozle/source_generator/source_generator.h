@@ -16,7 +16,7 @@ class c_blamtoozle_definition_generator_helper
 {
 public:
 	c_blamtoozle_definition_generator_helper(t_definition_type* _definition) :
-		definition(definition),
+		definition(_definition),
 		is_exported(false)
 	{
 
@@ -49,8 +49,10 @@ public:
 
 	c_blamtoozle_tag_definition_manager& tag_definition_manager;
 
-	void export_single_header(const wchar_t* file_path);
-	void export_single_source(const wchar_t* file_path);
+	void export_single_tag_definitions_header(const wchar_t* file_path);
+	void export_single_tag_definitions_source(const wchar_t* file_path);
+	void export_tag_groups_header(const wchar_t* file_path);
+	void export_tag_groups_source(const wchar_t* file_path);
 protected:
 	void coerce_definitions();
 	void clear_is_exported();

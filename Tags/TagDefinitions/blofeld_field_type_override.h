@@ -28,16 +28,11 @@
 
 // #TODO
 #define FIELD_FLAG_NONE 0ul
-#define FIELD_FLAG_UNKNOWN0 0ul
-#define FIELD_FLAG_READ_ONLY 0ul
-#define FIELD_FLAG_INDEX 0ul
-#define FIELD_FLAG_UNKNOWN3 0ul
-#define FIELD_FLAG_POINTER 0ul
-
-inline blofeld::s_tag_field _make_field_custom()
-{
-
-}
+#define FIELD_FLAG_UNKNOWN0 1ul
+#define FIELD_FLAG_READ_ONLY 2ul
+#define FIELD_FLAG_INDEX 4ul
+#define FIELD_FLAG_UNKNOWN3 8ul
+#define FIELD_FLAG_POINTER 16ul
 
 #define FIELD_CUSTOM(name, type) __FIELD_MACRO_HELPER2(_field_custom, name, nullptr, FIELD_FLAG_NONE, nullptr, type)
 #define FIELD_PAD(name, size) __FIELD_MACRO_HELPER(_field_pad, name, nullptr, FIELD_FLAG_NONE, reinterpret_cast<void*>(static_cast<intptr_t>(size)))

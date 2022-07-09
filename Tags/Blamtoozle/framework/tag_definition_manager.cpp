@@ -48,6 +48,12 @@ void c_blamtoozle_tag_definition_manager::set_is_big_endian(bool _is_big_endian)
 	is_big_endian = _is_big_endian;
 }
 
+void c_blamtoozle_tag_definition_manager::format_structure_type_name(std::string& structure_type_name)
+{
+	if (structure_type_name == "s_tag_reference") structure_type_name = "s_tag_references";
+	if (structure_type_name == "s_string_id") structure_type_name = "s_string_ids";
+}
+
 void c_blamtoozle_tag_definition_manager::format_code_symbol_name(std::string& code_symbol_name)
 {
 	// #TODO: This is messy af
@@ -77,13 +83,19 @@ void c_blamtoozle_tag_definition_manager::format_code_symbol_name(std::string& c
 	str.remove(';');
 	str.remove('\"');
 	code_symbol_name = str;
+
+#define banned_keyword(keyword) if (code_symbol_name == keyword) code_symbol_name = "_" keyword 
+
+	banned_keyword("void");
+
+#undef banned_keyword
 }
 
 void c_blamtoozle_tag_definition_manager::format_code_symbol_name_uid(std::string& code_symbol_name)
 {
 	format_code_symbol_name(code_symbol_name);
 
-	unsigned long existing_count = code_symbol_counts[code_symbol_name]++;
+	unsigned long existing_count = ++code_symbol_counts[code_symbol_name];
 	if (existing_count > 1)
 	{
 		code_symbol_name += "$";

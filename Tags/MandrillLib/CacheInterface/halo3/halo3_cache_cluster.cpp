@@ -156,7 +156,7 @@ BCS_RESULT c_halo3_cache_cluster::get_localization_reader(c_halo3_cache_file_rea
 
 BCS_RESULT c_halo3_cache_cluster::get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const
 {
-	tag_groups = blofeld::tag_groups[engine_platform_build.engine_type];
+	tag_groups = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build);
 
 	return BCS_S_OK;
 }

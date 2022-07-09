@@ -1,0 +1,101 @@
+#pragma once
+
+namespace blofeld
+{
+	namespace halo1
+	{
+		namespace pc64
+		{
+
+			const s_tag_group* tag_groups[] =
+			{
+				&ui_widget_definition_group,
+				&ui_widget_collection_group,
+				&actor_group,
+				&actor_variant_group,
+				&antenna_group,
+				&model_animations_group,
+				&biped_group,
+				&bitmap_group,
+				&continuous_damage_effect_group,
+				&model_collision_geometry_group,
+				&color_table_group,
+				&contrail_group,
+				&device_control_group,
+				&decal_group,
+				&input_device_defaults_group,
+				&device_group,
+				&detail_object_collection_group,
+				&effect_group,
+				&lightning_group,
+				&equipment_group,
+				&flag_group,
+				&fog_group,
+				&font_group,
+				&material_effects_group,
+				&garbage_group,
+				&glow_group,
+				&grenade_hud_interface_group,
+				&hud_message_text_group,
+				&hud_number_group,
+				&hud_globals_group,
+				&item_group,
+				&item_collection_group,
+				&damage_effect_group,
+				&lens_flare_group,
+				&device_light_fixture_group,
+				&light_group,
+				&sound_looping_group,
+				&device_machine_group,
+				&globals_group,
+				&meter_group,
+				&light_volume_group,
+				&gbxmodel_group,
+				&model_group,
+				&multiplayer_scenario_description_group,
+				&preferences_network_game_group,
+				&object_group,
+				&particle_group,
+				&particle_system_group,
+				&physics_group,
+				&placeholder_group,
+				&point_physics_group,
+				&projectile_group,
+				&weather_particle_system_group,
+				&scenario_structure_bsp_group,
+				&scenery_group,
+				&shader_transparent_chicago_extended_group,
+				&shader_transparent_chicago_group,
+				&scenario_group,
+				&shader_environment_group,
+				&shader_transparent_glass_group,
+				&shader_group,
+				&sky_group,
+				&shader_transparent_meter_group,
+				&sound_group,
+				&sound_environment_group,
+				&shader_model_group,
+				&shader_transparent_generic_group,
+				&shader_transparent_plasma_group,
+				&sound_scenery_group,
+				&string_list_group,
+				&shader_transparent_water_group,
+				&tag_collection_group,
+				&camera_track_group,
+				&dialogue_group,
+				&unit_hud_interface_group,
+				&unit_group,
+				&unicode_string_list_group,
+				&virtual_keyboard_group,
+				&vehicle_group,
+				&weapon_group,
+				&wind_group,
+				&weapon_hud_interface_group,
+			};
+
+		} // namespace pc64
+
+	} // namespace halo1
+
+} // namespace blofeld
+

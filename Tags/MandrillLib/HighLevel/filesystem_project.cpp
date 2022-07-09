@@ -8,7 +8,7 @@ c_filesystem_tag_project::c_filesystem_tag_project(
 	groups(),
 	tags()
 {
-	for (const blofeld::s_tag_group** tag_group_iter = blofeld::tag_groups[engine_platform_build.engine_type]; *tag_group_iter; tag_group_iter++)
+	for (const blofeld::s_tag_group** tag_group_iter = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build); *tag_group_iter; tag_group_iter++)
 	{
 		h_group* group = new() h_group(engine_platform_build, **tag_group_iter);
 		groups.push_back(group);

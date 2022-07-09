@@ -1,7 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
 using namespace blofeld;
-using namespace blofeld::halo3;
+using namespace blofeld::halo3::pc64;
 
 c_halo3_tag_reader::c_halo3_tag_reader(c_halo3_cache_cluster& cache_cluster, c_halo3_cache_file_reader& cache_reader) :
 	cache_cluster(cache_cluster),
@@ -200,12 +200,12 @@ BCS_RESULT c_halo3_tag_reader::read_tag_groups()
 		cache_reader.byteswap_inplace(tag_group);
 
 		tag group_tag = tag_group_info.group.group_tags[0];
-		if (group_tag == blofeld::halo3::CACHE_FILE_SOUND_TAG)
+		if (group_tag == CACHE_FILE_SOUND_TAG)
 		{
 			
 		}
 
-		const blofeld::s_tag_group* blofeld_tag_group = blofeld::get_tag_group_by_group_tag(cache_reader.engine_platform_build.engine_type, group_tag);
+		const blofeld::s_tag_group* blofeld_tag_group = blofeld::get_tag_group_by_group_tag(cache_reader.engine_platform_build, group_tag);
 		ASSERT(blofeld_tag_group != nullptr);
 		tag_group_info.blofeld_tag_group = blofeld_tag_group;
 		tag_group_info.tag_group = nullptr; // deferred : init_tag_groups
@@ -264,9 +264,9 @@ BCS_RESULT c_halo3_tag_reader::read_tag_instances()
 		{
 			tag_instance_info.group_info = &tag_group_infos[tag_instance.group_index];
 
-			if (tag_instance_info.group_info->group.group_tags[0] == blofeld::halo3::SOUND_TAG)
+			if (tag_instance_info.group_info->group.group_tags[0] == SOUND_TAG)
 			{
-				ASSERT(BCS_SUCCEEDED(rs = get_tag_group_info_by_group_tag(blofeld::halo3::CACHE_FILE_SOUND_TAG, tag_instance_info.group_info)));
+				ASSERT(BCS_SUCCEEDED(rs = get_tag_group_info_by_group_tag(CACHE_FILE_SOUND_TAG, tag_instance_info.group_info)));
 				
 			}
 
@@ -451,9 +451,9 @@ BCS_RESULT c_halo3_tag_reader::init_tag_instances()
 		{
 			if (
 				cache_cluster.engine_platform_build.platform_type != _platform_type_xbox_360 ||
-				tag_instance_info.group_info->group.group_tags[0] == blofeld::halo3::SOUND_TAG ||
-				tag_instance_info.group_info->group.group_tags[0] == blofeld::halo3::CACHE_FILE_SOUND_TAG ||
-				tag_instance_info.group_info->group.group_tags[0] == blofeld::halo3::SOUND_CACHE_FILE_GESTALT_TAG) // #TODO: only sound tags for now from 360, tag definitions need fixing
+				tag_instance_info.group_info->group.group_tags[0] == SOUND_TAG ||
+				tag_instance_info.group_info->group.group_tags[0] == CACHE_FILE_SOUND_TAG ||
+				tag_instance_info.group_info->group.group_tags[0] == SOUND_CACHE_FILE_GESTALT_TAG) // #TODO: only sound tags for now from 360, tag definitions need fixing
 			{
 				ASSERT(tag_instance_info.group_info != nullptr);
 				ASSERT(tag_instance_info.group_info->tag_group != nullptr);
@@ -1151,7 +1151,7 @@ BCS_RESULT c_halo3_tag_reader::init_resources()
 
 		unsigned long tag_index = DATUM_INDEX_TO_ABSOLUTE_INDEX(resource.owner_tag.datum_index);
 
-		if (tag_index < UINT16_MAX && resource.owner_tag.group_tag == blofeld::halo3::SOUND_TAG)
+		if (tag_index < UINT16_MAX && resource.owner_tag.group_tag == SOUND_TAG)
 		{
 			c_halo3_tag_instance* tag_instance;
 			if (BCS_FAILED(rs = get_tag_instance_info_by_tag_index(tag_index, tag_instance)))

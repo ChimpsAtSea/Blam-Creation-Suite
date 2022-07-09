@@ -44,4 +44,26 @@ namespace blofeld
 		tag group_tag,
 		unsigned long& skip_count);
 
+	BCS_DEBUG_API BCS_RESULT calculate_versioned_tag_field_count(
+		const s_tag_field* tag_fields,
+		s_engine_platform_build engine_platform_build,
+		tag group_tag,
+		unsigned long& field_count);
+
+	BCS_DEBUG_API BCS_RESULT calculate_tag_field_count(
+		const s_tag_field* tag_fields,
+		unsigned long& field_count);
+
+#define tag_field_iterator_versioning(_tag_field_iterator, _engine_platform_build, _group_tag) \
+	*_tag_field_iterator; \
+	{ \
+		unsigned long field_skip_count; \
+		if (execute_tag_field_versioning(*_tag_field_iterator, _engine_platform_build, _group_tag, field_skip_count)) \
+		{ \
+			_tag_field_iterator += field_skip_count; \
+			continue; \
+		} \
+	}
+
+
 }

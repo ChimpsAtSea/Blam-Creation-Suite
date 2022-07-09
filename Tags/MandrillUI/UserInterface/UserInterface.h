@@ -17,7 +17,7 @@
 #include "Tabs\tag_project_configurator_tab.h"
 #include "Tabs\halo1_bitmap_tag_viewer_tab.h"
 
-#include "Editors\model_preview_test.h"
-#include "Editors\infinite_tag_model.h"
-#include "Editors\infinite_tag_mesh.h"
+//#include "Editors\model_preview_test.h"
+//#include "Editors\infinite_tag_model.h"
+//#include "Editors\infinite_tag_mesh.h"
 #include "Editors\haloreach_bitmap_test.h"

@@ -39,7 +39,7 @@ protected:
 	h_tag& tag;
 	ImVec2 viewport_size;
 
-	void render_object(unsigned long level, h_object& object);
+	void render_object(unsigned long level, h_prototype& object);
 	bool render_flags_definition(void* field_data, const blofeld::s_tag_field& field);
 	bool render_enum_definition(void* data, const blofeld::s_tag_field& field);
 	void render_tag_group();

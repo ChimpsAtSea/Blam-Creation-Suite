@@ -113,6 +113,99 @@ BCS_RESULT command_line_get_argument(const char* argument, const char*& value)
 	return BCS_E_NOT_FOUND;
 }
 
+BCS_DEBUG_API BCS_RESULT command_line_get_argument_long(const char* argument, long& value)
+{
+	BCS_RESULT rs = BCS_S_OK;
+	const char* string_value;
+	if (BCS_FAILED(rs = command_line_get_argument(argument, string_value)))
+	{
+		return rs;
+	}
+
+	size_t string_length = strlen(string_value) + 1;
+
+	if (string_length >= 2 && strnicmp("0x", string_value, 2) == 0)
+	{
+		value = strtol(string_value + 2, nullptr, 16);
+	}
+	else
+	{
+		value = strtol(string_value + 2, nullptr, 10);
+	}
+
+	return rs;
+}
+
+BCS_DEBUG_API BCS_RESULT command_line_get_argument_longlong(const char* argument, long long& value)
+{
+	BCS_RESULT rs = BCS_S_OK;
+	const char* string_value;
+	if (BCS_FAILED(rs = command_line_get_argument(argument, string_value)))
+	{
+		return rs;
+	}
+
+	size_t string_length = strlen(string_value) + 1;
+
+	if (string_length >= 2 && strnicmp("0x", string_value, 2) == 0)
+	{
+		value = strtoll(string_value + 2, nullptr, 16);
+	}
+	else
+	{
+		value = strtoll(string_value + 2, nullptr, 10);
+	}
+
+	return rs;
+}
+
+BCS_DEBUG_API BCS_RESULT command_line_get_argument_ulong(const char* argument, unsigned long& value)
+{
+	BCS_RESULT rs = BCS_S_OK;
+	const char* string_value;
+	if (BCS_FAILED(rs = command_line_get_argument(argument, string_value)))
+	{
+		return rs;
+	}
+
+	size_t string_length = strlen(string_value) + 1;
+
+	if (string_length >= 2 && strnicmp("0x", string_value, 2) == 0)
+	{
+		value = strtoul(string_value + 2, nullptr, 16);
+	}
+	else
+	{
+		value = strtoul(string_value, nullptr, 10);
+	}
+
+	return rs;
+}
+
+BCS_DEBUG_API BCS_RESULT command_line_get_argument_ulonglong(const char* argument, unsigned long long& value)
+{
+	BCS_RESULT rs = BCS_S_OK;
+	const char* string_value;
+	if (BCS_FAILED(rs = command_line_get_argument(argument, string_value)))
+	{
+		return rs;
+	}
+
+	size_t string_length = strlen(string_value) + 1;
+
+	if (string_length >= 2 && strnicmp("0x", string_value, 2) == 0)
+	{
+		value = strtoull(string_value + 2, nullptr, 16);
+	}
+	else
+	{
+		value = strtoull(string_value + 2, nullptr, 10);
+	}
+
+	return rs;
+}
+
+
 BCS_RESULT command_line_get_argument_count(const char* argument, unsigned long& argument_count)
 {
 	BCS_VALIDATE_ARGUMENT(argument);

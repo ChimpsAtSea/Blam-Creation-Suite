@@ -6,8 +6,8 @@ class h_block :
 public:
 	h_block(h_type* parent = nullptr);
 
-	virtual h_object& emplace_back() = 0;
-	virtual h_object& emplace_back(const h_object& value) = 0;
+	virtual h_prototype& emplace_back() = 0;
+	virtual h_prototype& emplace_back(const h_prototype& value) = 0;
 	virtual void reserve(unsigned long count) = 0;
 	virtual void resize(unsigned long count) = 0;
 	virtual void insert_hole(unsigned long index, unsigned long count) = 0;

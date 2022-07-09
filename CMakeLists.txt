@@ -67,7 +67,8 @@ function(bcs_set_compile_properties TARGET_NAME)
 		${CMAKE_CURRENT_SOURCE_DIR})
 		
 	if (MSVC)
-		add_definitions(/MP)
+		add_definitions("/MP")
+		add_definitions("/wd4273")
   
 		target_link_options(${TARGET_NAME} PRIVATE
 			"/MAP:$<TARGET_FILE_DIR:${TARGET_NAME}>/$<TARGET_FILE_BASE_NAME:${TARGET_NAME}>.map")

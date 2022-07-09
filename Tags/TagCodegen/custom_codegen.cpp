@@ -7,7 +7,7 @@ bool custom_structure_codegen(
 	const c_blamlib_string_parser_v2* field_formatter,
 	const blofeld::s_tag_struct_definition& struct_definition,
 	const blofeld::s_tag_field& field,
-	const char* namespace_name)
+	const char* root_namespace)
 {
 	if (field.name == nullptr)
 	{
@@ -26,7 +26,7 @@ bool custom_structure_codegen(
 	CODEGEN_HELPER(_custom_structure_codegen_high_level_header, field_name, { s << tabs << "h_field<" << #type << ", h_" << struct_definition.name << ", " << field_index << "> " #variable_name ";" << std::endl; }) \
 	CODEGEN_HELPER(_custom_structure_codegen_high_level_get_field_data_func, field_name, { s << tabs << "case " << field_index << ": return &" #variable_name ";" << std::endl; }) \
 	CODEGEN_HELPER(_custom_structure_codegen_high_level_ctor, field_name, { s << tabs << ", " #variable_name "()" << std::endl; }) \
-	CODEGEN_HELPER(_custom_structure_codegen_high_level_field_impl, field_name, { s << tabs << "h_field_func_impl(" #type ", blofeld::" << namespace_name << "::h_" << struct_definition.name << ", " << field_index << ", " #variable_name ");" << std::endl; })
+	CODEGEN_HELPER(_custom_structure_codegen_high_level_field_impl, field_name, { s << tabs << "h_field_func_impl(" #type ", " << root_namespace << "::h_" << struct_definition.name << ", " << field_index << ", " #variable_name ");" << std::endl; })
 
 	//CODEGEN_HELPER_STRUCT(blofeld::cache_file_resource_fixup_location_block_struct_definition)
 	//{

@@ -21,17 +21,19 @@ public:
 
 #define h_field_func_impl(field_type, parent_type, _field_index, _field_name)										\
 template<>																											\
-h_field<field_type, parent_type, _field_index>::h_field() : value() {}												\
-																													\
+h_field<field_type, parent_type, _field_index>::h_field() : value() {}												
+
+#define h_field_func_impl2(field_type, parent_type, _field_index, _field_name)										\
 bool h_field<field_type, parent_type, _field_index>::operator==(field_type const& new_value) const					\
 {																													\
 	bool is_same = &this->value == &new_value || memcmp(&value, &new_value, sizeof(value)) == 0;					\
 	return is_same;																									\
-}																													\
-																													\
+}																													
+
+#define h_field_func_impl3(field_type, parent_type, _field_index, _field_name)										\
 field_type& h_field<field_type, parent_type, _field_index>::operator=(field_type const& new_value)					\
 {																													\
-	unsigned long _field_offset = offsetof(parent_type, _field_name);													\
+	unsigned long _field_offset = offsetof(parent_type, _field_name);												\
 	h_type* _type = reinterpret_cast<h_type*>(reinterpret_cast<uintptr_t>(this) - _field_offset);					\
 																													\
 	if constexpr (/*std::is_pointer<field_type>::value ||*/ std::is_arithmetic<field_type>::value)					\

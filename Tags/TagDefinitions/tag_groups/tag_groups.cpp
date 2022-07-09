@@ -1,46 +1,76 @@
 #include <tagdefinitions-private-pch.h>
 
-#include "tag_groups.halo1.inl"
-#include "tag_groups.stubbs.inl"
-#include "tag_groups.halo2.inl"
-#include "tag_groups.halo3.inl"
-#include "tag_groups.halo3odst.inl"
-//#include "tag_groups.eldorado.inl"
-#include "tag_groups.haloreach.inl"
-//#include "tag_groups.halo4.inl"
-//#include "tag_groups.gen3_xbox360.inl"
-//#include "tag_groups.groundhog.inl"
 #include <slipspace/tag_groups.infinite.inl>
 
 namespace blofeld
 {
-	const s_tag_group* tag_groups_not_set[] = { nullptr };
-	const s_tag_group* tag_groups_mcc[] = { nullptr };
-	const s_tag_group* tag_groups_halo5[] = { nullptr };
+	const s_tag_group* tag_groups_empty[] = { nullptr };
 
-	const s_tag_group* tag_groups_eldorado[] = { nullptr };
-	const s_tag_group* tag_groups_gen3_xbox360[] = { nullptr };
-	const s_tag_group* tag_groups_halo4[] = { nullptr };
-	const s_tag_group* tag_groups_groundhog[] = { nullptr };
-
-	const s_tag_group** tag_groups[k_number_of_engine_types] =
+	BCS_DEBUG_API const s_tag_group** get_tag_groups_by_engine_platform_build(s_engine_platform_build engine_platform_build)
 	{
-		tag_groups_not_set, // _engine_type_not_set
-		tag_groups_mcc, // _engine_type_mcc
-		tag_groups_halo1, // _engine_type_halo1
-		tag_groups_stubbs, // _engine_type_stubbs
-		tag_groups_halo2, // _engine_type_halo2
-		tag_groups_halo3, // _engine_type_halo3
-		tag_groups_halo3odst, // _engine_type_halo3odst
-		tag_groups_eldorado, // _engine_type_eldorado
-		tag_groups_haloreach, // _engine_type_haloreach
-		tag_groups_halo4, // _engine_type_halo4
-		tag_groups_gen3_xbox360, // _engine_type_gen3_xbox360
-		tag_groups_groundhog, // _engine_type_groundhog
-		tag_groups_halo5, // _engine_type_halo5
-		tag_groups_infinite, // _engine_type_infinite
-	};
-	static_assert(k_number_of_engine_types == 14); // update this if changed
+		switch (engine_platform_build.engine_type)
+		{
+		case _engine_type_halo1:
+		{
+			return blofeld::halo1::pc64::tag_groups;
+		}
+		break;
+		case _engine_type_halo2:
+		{
+			return blofeld::halo2::pc64::tag_groups;
+		}
+		break;
+		case _engine_type_halo3:
+		{
+			return blofeld::halo3::pc64::tag_groups;
+		}
+		break;
+		case _engine_type_halo3odst:
+		{
+			return blofeld::halo3odst::pc64::tag_groups;
+		}
+		break;
+		case _engine_type_haloreach:
+		{
+			return blofeld::haloreach::xbox360::tag_groups;
+		}
+		break;
+		case _engine_type_halo4:
+		{
+			return blofeld::halo4::xbox360::tag_groups;
+		}
+		break;
+		case _engine_type_infinite:
+		{
+			// #TODO: specific engine versions?
+			return tag_groups_infinite; 
+		}
+		break;
+		case _engine_type_not_set:
+		case _engine_type_mcc:
+		case _engine_type_stubbs:
+		case _engine_type_eldorado:
+		case _engine_type_groundhog:
+		case _engine_type_halo5:
+			break;
+		}
+
+		return tag_groups_empty;
+	}
+
+	BCS_DEBUG_API const s_tag_group* get_tag_group_by_group_tag(s_engine_platform_build engine_platform_build, tag group_tag)
+	{
+		for (const s_tag_group** tag_group_iter = get_tag_groups_by_engine_platform_build(engine_platform_build); *tag_group_iter; tag_group_iter++)
+		{
+			const s_tag_group& tag_group = **tag_group_iter;
+
+			if (tag_group.group_tag == group_tag)
+			{
+				return &tag_group;
+			}
+		}
+		return nullptr;
+	}
 
 } // namespace blofeld
 

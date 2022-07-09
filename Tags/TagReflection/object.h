@@ -4,19 +4,19 @@ class h_tag_reference;
 class h_block;
 class h_enumerable;
 
-class h_object :
+class h_prototype :
 	public h_type
 {
 public:
-	h_object(h_type* parent = nullptr);
-	virtual ~h_object();
+	h_prototype(h_type* parent = nullptr);
+	virtual ~h_prototype();
 
-	static h_object* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition, s_engine_platform_build engine_platform_build);
+	static h_prototype* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition, s_engine_platform_build engine_platform_build);
 
 	virtual void* get_field_data_unsafe(const blofeld::s_tag_field& field) = 0;
 	inline const void* get_field_data_unsafe(const blofeld::s_tag_field& field) const
 	{
-		return const_cast<h_object*>(this)->get_field_data_unsafe(field);
+		return const_cast<h_prototype*>(this)->get_field_data_unsafe(field);
 	}
 	virtual bool is_field_active(const blofeld::s_tag_field& field) const = 0;
 	virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const = 0;
@@ -41,7 +41,7 @@ public:
 		get_field_data_valid_type(blofeld::_field_block, h_block);
 		get_field_data_valid_type(blofeld::_field_block, h_enumerable);
 		get_field_data_valid_type(blofeld::_field_array, h_enumerable);
-		get_field_data_valid_type(blofeld::_field_struct, h_object);
+		get_field_data_valid_type(blofeld::_field_struct, h_prototype);
 		
 
 #undef get_field_data_valid_type
@@ -60,5 +60,5 @@ public:
 
 
 	//protected:
-	//	h_object(h_object const&) = default;
+	//	h_prototype(h_prototype const&) = default;
 };

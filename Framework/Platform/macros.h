@@ -60,6 +60,8 @@ if (COMBINE(__runonceflag_, __LINE__) == false) \
 #define RAD2DEG 57.2957795131f
 #define ALIGN(n, b) ( (b)==0 ? (n) : ( ((n)+(b)-1) - (((n)-1)%(b)) ) )
 
+#define ROUND_UP_VALUE(value, alignment) ((((value) + (alignment) - 1) / (alignment)) * (alignment))
+
 #define __clamp(value, min_value, max_value) (value > (max_value) ? (max_value) : (((value) < (min_value) ? (min_value) : (value))))
 #ifndef _countof
 #define _countof(arr) (sizeof(arr) / sizeof(arr[0]))

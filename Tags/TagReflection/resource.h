@@ -7,7 +7,7 @@ public:
 	h_resource(h_type* parent = nullptr);
 	virtual ~h_resource();
 
-	h_object* object;
+	h_prototype* object;
 
 	virtual BCS_RESULT add_reference(const void*& buffer, unsigned long& buffer_size) = 0;
 	virtual BCS_RESULT remove_reference() = 0;

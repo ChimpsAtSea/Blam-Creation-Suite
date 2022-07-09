@@ -2,26 +2,41 @@
 
 using namespace blofeld;
 
-c_low_level_tag_source_generator::c_low_level_tag_source_generator(s_engine_platform_build engine_platform_build) :
-	engine_platform_build(engine_platform_build),
-	has_error(false)
+c_low_level_tag_source_generator::c_low_level_tag_source_generator(s_engine_platform_build _engine_platform_build) :
+	c_source_generator_base(_engine_platform_build),
+	output_directory(),
+	output_header_file_path(),
+	output_ida_header_file_path(),
+	output_enum_header_file_path(),
+	output_source_file_path()
 {
+	const char* _output_directory;
+	BCS_RESULT get_output_argument_result = command_line_get_argument("output", _output_directory); // #TODO: rename to 'output-directory'
+	BCS_FAIL_THROW_DBG(get_output_argument_result);
 
+	std::stringstream output_directory_stream;
+	output_directory_stream << _output_directory << "low_level_" << get_engine_namespace(false) << "_" + get_platform_namespace(false);
+	output_directory = output_directory_stream.str();
+
+	std::stringstream output_header_file_path_stream;
+	output_header_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + ".h";
+	output_header_file_path = output_header_file_path_stream.str();
+
+	std::stringstream output_ida_header_file_path_stream;
+	output_ida_header_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + "_ida.h";
+	output_ida_header_file_path = output_ida_header_file_path_stream.str();
+
+	std::stringstream output_enum_header_file_path_stream;
+	output_enum_header_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + "_enum.h";
+	output_enum_header_file_path = output_enum_header_file_path_stream.str();
+
+	std::stringstream output_source_file_path_stream;
+	output_source_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + ".cpp";
+	output_source_file_path = output_source_file_path_stream.str();
 }
 
-std::string c_low_level_tag_source_generator::format_structure_symbol(const blofeld::s_tag_struct_definition& struct_definition) const
+c_low_level_tag_source_generator::~c_low_level_tag_source_generator()
 {
-	std::string result = "s_";
-	// #TODO: reexport other definitions
-	if (engine_platform_build.engine_type == _engine_type_halo3 || engine_platform_build.engine_type == _engine_type_haloreach)
-	{
-		result += struct_definition.struct_name + 2;
-	}
-	else
-	{
-		result += struct_definition.name;
-	}
-	return result;
 }
 
 const char* c_low_level_tag_source_generator::field_type_to_low_level_source_type(e_platform_type platform_type, e_field field_type)
@@ -115,44 +130,30 @@ const char* c_low_level_tag_source_generator::field_type_to_low_level_source_typ
 	}
 }
 
-void c_low_level_tag_source_generator::generate_header() const
+void c_low_level_tag_source_generator::generate_header()
 {
+	std::string namespace_without_semicolons = get_namespace(false);
+
 	std::stringstream stream;
 
-	const char* namespace_name;
-	BCS_RESULT engine_type_to_folder_name_result = get_engine_type_folder_string(engine_platform_build.engine_type, &namespace_name);
-	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result));
-
 	stream << "#pragma once" << std::endl;
-	stream << std::endl;
-	stream << std::endl;
+	stream << indent << std::endl;
 
-	stream << "namespace blofeld" << std::endl;
-	stream << "{" << std::endl;
-	stream << "\tnamespace " << namespace_name << std::endl;
-	stream << "\t{" << std::endl;
-	stream << "#pragma pack(push, 1)" << std::endl << std::endl;
+	begin_namespace_tree(stream, _namespace_tree_write_namespace | _namespace_tree_write_pragma_pack);
 
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
-		std::string low_level_structure_name = format_structure_symbol(*struct_definition);
-
-		stream << "\t\tstruct " << low_level_structure_name << std::endl;
-		stream << "\t\t{" << std::endl;
-
+		stream << indent << "struct " << struct_definition->struct_name << std::endl;
+		stream << indent << "{" << std::endl;
+		increment_indent();
 		std::unordered_map<std::string, int> field_name_unique_counter;
 
-		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
+		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
-			unsigned long field_skip_count;
-			if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
-			{
-				current_field += field_skip_count;
-				continue;
-			}
+			const s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG);
 
 			std::unordered_map<std::string, int>* field_name_unique_counter_ptr = nullptr;
-			switch (current_field->field_type)
+			switch (tag_field.field_type)
 			{
 			case _field_custom:
 				break;
@@ -162,109 +163,107 @@ void c_low_level_tag_source_generator::generate_header() const
 			}
 
 			c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
-				current_field->name,
-				current_field->field_type == blofeld::_field_block,
+				tag_field.name,
+				tag_field.field_type == blofeld::_field_block,
 				&field_name_unique_counter);
 
 			const char* field_type_string;
-			ASSERT(BCS_SUCCEEDED(field_to_tagfile_field_type(current_field->field_type, field_type_string)));
+			ASSERT(BCS_SUCCEEDED(field_to_tagfile_field_type(tag_field.field_type, field_type_string)));
 
-			if (!custom_structure_codegen(_custom_structure_codegen_low_level_header, stream, "\t\t\t", &field_formatter, *struct_definition, *current_field, namespace_name))
+			if (!custom_structure_codegen(_custom_structure_codegen_low_level_header, stream, indent.c_str(), &field_formatter, *struct_definition, tag_field, namespace_without_semicolons.c_str()))
 			{
-				switch (current_field->field_type)
+				switch (tag_field.field_type)
 				{
 				case _field_pad:
-					stream << "\t\t\tchar " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // padding" << std::endl;
+					stream << indent << "char " << field_formatter.code_name.c_str() << "[" << tag_field.padding << "]; // padding" << std::endl;
 					break;
 				case _field_skip:
-					stream << "\t\t\tchar " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // skip" << std::endl;
+					stream << indent << "char " << field_formatter.code_name.c_str() << "[" << tag_field.padding << "]; // skip" << std::endl;
 					break;
 				case _field_useless_pad:
-					stream << "\t\t\t// char " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // useless padding" << std::endl;
+					stream << indent << "// char " << field_formatter.code_name.c_str() << "[" << tag_field.padding << "]; // useless padding" << std::endl;
 					break;
 				case _field_non_cache_runtime_value:
-					stream << "\t\t\t// " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // non cache runtime value" << std::endl;
+					stream << indent << "// " << field_formatter.code_name.c_str() << "[" << tag_field.padding << "]; // non cache runtime value" << std::endl;
 					break;
 				case _field_custom:
-					stream << "\t\t\t// " << field_type_string;
+					stream << indent << "// " << field_type_string;
 					if (!field_formatter.code_name.empty())
 					{
 						stream << " " << field_formatter.code_name.c_str();
 					}
-					stream << std::endl;
+					stream << indent << std::endl;
 					break;
 				case _field_terminator:
-					stream << "\t\t\t// " << field_type_string << std::endl;
+					stream << indent << "// " << field_type_string << std::endl;
 					break;
 				case _field_explanation:
 				{
-					if (current_field->name)
+					if (tag_field.name)
 					{
-						if (current_field->explanation && *current_field->explanation)
+						if (tag_field.explanation && *tag_field.explanation)
 						{
-							stream << std::endl << "\t\t\t/* " << current_field->name << std::endl;
-							stream << "\t\t\t ";
-							const char* current_pos = current_field->explanation;
+							stream << indent << std::endl;
+							stream << indent << "/* " << tag_field.name << std::endl;
+							stream << indent << " ";
+							const char* current_pos = tag_field.explanation;
 							while (*current_pos)
 							{
 								switch (*current_pos)
 								{
 								case '\n':
 									stream << *current_pos;
-									stream << "\t\t\t ";
+									stream << indent << " ";
 									break;
 								default:
 									stream << *current_pos;
 								}
 								current_pos++;
 							}
-							stream << std::endl;
-							stream << "\t\t\t*/" << std::endl << std::endl;
+							stream << indent << std::endl;
+							stream << indent << "*/" << std::endl << std::endl;
 						}
 						else
 						{
-							stream << std::endl << "\t\t\t/* " << current_field->name << " */" << std::endl << std::endl;
+							stream << indent << std::endl;
+							stream << indent << "/* " << tag_field.name << " */" << std::endl << std::endl;
 						}
 					}
 					break;
 				}
 				case _field_array:
 				{
-
-					std::string field_source_type = format_structure_symbol(current_field->array_definition->struct_definition);
-					unsigned long count = current_field->array_definition->count(engine_platform_build);
+					unsigned long count = tag_field.array_definition->count(engine_platform_build);
 					if (count == 0)
 					{
 						debug_point;
 					}
-					stream << "\t\t\t" << field_source_type << " " << field_formatter.code_name.c_str() << "[" << count << "];";
+					stream << indent << "" << tag_field.array_definition->struct_definition.struct_name << " " << field_formatter.code_name.c_str() << "[" << count << "];";
 					break;
 				}
 				case _field_struct:
 				{
-					unsigned long field_struct_size = calculate_struct_size(engine_platform_build, *current_field->struct_definition);
-					std::string field_source_type = format_structure_symbol(*current_field->struct_definition);
+					unsigned long field_struct_size = calculate_struct_size(engine_platform_build, *tag_field.struct_definition);
 					if (field_struct_size > 0)
 					{
-						stream << "\t\t\t" << field_source_type << " " << field_formatter.code_name.c_str() << ";";
+						stream << indent << "" << tag_field.struct_definition->struct_name << " " << field_formatter.code_name.c_str() << ";";
 					}
 					else
 					{
-						stream << "\t\t\t// " << field_source_type << " " << field_formatter.code_name.c_str() << "; // empty struct";
+						stream << indent << "// " << tag_field.struct_definition->struct_name << " " << field_formatter.code_name.c_str() << "; // empty struct";
 					}
 					break;
 				}
 				case _field_block:
 				{
-					std::string field_source_type = format_structure_symbol(current_field->block_definition->struct_definition);
-					stream << "\t\t\tc_typed_tag_block<" << field_source_type << "> " << field_formatter.code_name.c_str() << ";";
+					stream << indent << "c_typed_tag_block<" << tag_field.block_definition->struct_definition.struct_name << "> " << field_formatter.code_name.c_str() << ";";
 					break;
 				}
 				case _field_tag_reference:
 				{
-					//if (current_field->tag_reference_definition == nullptr)
+					//if (tag_field.tag_reference_definition == nullptr)
 					//{
-					//	console_write_line("%s(%i): error TSG0001: _field_tag_reference is null", current_field->filename, current_field->line);
+					//	console_write_line("%s(%i): error TSG0001: _field_tag_reference is null", tag_field.filename, tag_field.line);
 					//	has_error = true;
 					//}
 					//else
@@ -272,18 +271,18 @@ void c_low_level_tag_source_generator::generate_header() const
 						bool handled = false;
 
 						std::vector<unsigned long> group_tags;
-						if (current_field->tag_reference_definition)
+						if (tag_field.tag_reference_definition)
 						{
-							long group_tag = current_field->tag_reference_definition->group_tag;
-							unsigned long group_tag_count = current_field->tag_reference_definition->group_tag;
+							long group_tag = tag_field.tag_reference_definition->group_tag;
+							unsigned long group_tag_count = tag_field.tag_reference_definition->group_tag;
 
-							if (current_field->tag_reference_definition->group_tag != INVALID_TAG)
+							if (tag_field.tag_reference_definition->group_tag != INVALID_TAG)
 							{
-								group_tags.emplace_back(current_field->tag_reference_definition->group_tag);
+								group_tags.emplace_back(tag_field.tag_reference_definition->group_tag);
 							}
-							else if (current_field->tag_reference_definition->group_tags)
+							else if (tag_field.tag_reference_definition->group_tags)
 							{
-								for (const unsigned long* current_group_tag = current_field->tag_reference_definition->group_tags; *current_group_tag != INVALID_TAG; current_group_tag++)
+								for (const unsigned long* current_group_tag = tag_field.tag_reference_definition->group_tags; *current_group_tag != INVALID_TAG; current_group_tag++)
 								{
 									group_tags.push_back(*current_group_tag);
 								}
@@ -292,16 +291,16 @@ void c_low_level_tag_source_generator::generate_header() const
 
 						if (group_tags.empty())
 						{
-							stream << "\t\t\ts_tag_reference " << field_formatter.code_name.c_str() << ";";
+							stream << indent << "s_tag_reference " << field_formatter.code_name.c_str() << ";";
 						}
 						else
 						{
 
-							stream << "\t\t\tc_typed_tag_reference<";
+							stream << indent << "c_typed_tag_reference<";
 
 							for (size_t group_tag_index = 0; group_tag_index < group_tags.size(); group_tag_index++)
 							{
-								const s_tag_group* tag_group = get_tag_group_by_group_tag(engine_platform_build.engine_type, group_tags[group_tag_index]);
+								const s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, group_tags[group_tag_index]);
 								if (tag_group == nullptr)
 								{
 									debug_point;
@@ -318,10 +317,7 @@ void c_low_level_tag_source_generator::generate_header() const
 
 								//stream << tag_group_name.data;
 
-
-								stream << "blofeld::" << namespace_name << "::" << std::endl;
-
-								stream << tag_group->group_tag_code_string;
+								stream << get_namespace(true) << tag_group->group_tag_code_string;
 							}
 							stream << "> " << field_formatter.code_name.c_str() << ";";
 						}
@@ -331,52 +327,52 @@ void c_low_level_tag_source_generator::generate_header() const
 				}
 				case _field_char_enum:
 				{
-					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-					stream << "\t\t\tc_enum<e_" << string_list.name << ", char> " << field_formatter.code_name.data << ";";
+					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
+					stream << indent << "c_enum<e_" << string_list.name << ", char> " << field_formatter.code_name.data << ";";
 					break;
 				}
 				case _field_short_enum:
 				{
-					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-					stream << "\t\t\tc_enum<e_" << string_list.name << ", short> " << field_formatter.code_name.data << ";";
+					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
+					stream << indent << "c_enum<e_" << string_list.name << ", short> " << field_formatter.code_name.data << ";";
 					break;
 				}
 				case _field_long_enum:
 				{
-					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-					stream << "\t\t\tc_enum<e_" << string_list.name << ", long> " << field_formatter.code_name.data << ";";
+					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
+					stream << indent << "c_enum<e_" << string_list.name << ", long> " << field_formatter.code_name.data << ";";
 					break;
 				}
 				case _field_byte_flags:
 				{
-					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-					stream << "\t\t\tc_flags<e_" << string_list.name << ", char, k_" << string_list.name << "_count> " << field_formatter.code_name.data << ";";
+					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
+					stream << indent << "c_flags<e_" << string_list.name << ", char, k_" << string_list.name << "_count> " << field_formatter.code_name.data << ";";
 					break;
 				}
 				case _field_word_flags:
 				{
-					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-					stream << "\t\t\tc_flags<e_" << string_list.name << ", short, k_" << string_list.name << "_count> " << field_formatter.code_name.data << ";";
+					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
+					stream << indent << "c_flags<e_" << string_list.name << ", short, k_" << string_list.name << "_count> " << field_formatter.code_name.data << ";";
 					break;
 				}
 				case _field_long_flags:
 				{
 
-					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-					stream << "\t\t\tc_flags<e_" << string_list.name << ", long, k_" << string_list.name << "_count> " << field_formatter.code_name.data << ";";
+					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
+					stream << indent << "c_flags<e_" << string_list.name << ", long, k_" << string_list.name << "_count> " << field_formatter.code_name.data << ";";
 
 					break;
 				}
 				default:
 				{
-					std::string field_source_type = field_type_to_low_level_source_type(engine_platform_build.platform_type, current_field->field_type);
+					std::string field_source_type = field_type_to_low_level_source_type(engine_platform_build.platform_type, tag_field.field_type);
 					ASSERT(!field_formatter.code_name.empty());
-					stream << "\t\t\t" << field_source_type << " " << field_formatter.code_name.data << ";";
+					stream << indent << "" << field_source_type << " " << field_formatter.code_name.data << ";";
 				}
 				}
 
 				constexpr bool k_write_field_types = false;
-				switch (current_field->field_type)
+				switch (tag_field.field_type)
 				{
 				case _field_pad:
 				case _field_skip:
@@ -405,235 +401,185 @@ void c_low_level_tag_source_generator::generate_header() const
 							current_pos++;
 						}
 					}
-					stream << std::endl;
+					stream << indent << std::endl;
 				}
 
 			}
 		}
 
-		stream << "\t\t};" << std::endl;
+		decrement_indent();
+		stream << indent << "};" << std::endl;
 
 		unsigned long struct_size = calculate_struct_size(engine_platform_build, *struct_definition);
+		stream << indent << "static_assert(sizeof(" << struct_definition->struct_name << ") == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct " << struct_definition->struct_name << " is invalid size\");" << std::endl;
 
-		// stream << "\t\tstatic constexpr size_t " << tag_struct_definition->name << "_size = sizeof(s_" << tag_struct_definition->name << ");" << std::endl;
-		// stream << "\t\tstatic_assert(" << tag_struct_definition->name << "_size == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct s_" << tag_struct_definition->name << " is invalid size\");" << std::endl;
-
-		stream << "\t\tstatic_assert(sizeof(" << low_level_structure_name << ") == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct " << low_level_structure_name << " is invalid size\");" << std::endl;
-
-		stream << std::endl;
-
-
+		stream << indent << std::endl;
 	}
 
-	stream << "#pragma pack(pop)" << std::endl;
-	stream << std::endl << "\t} // end namespace " << namespace_name << std::endl;
-	stream << std::endl << "} // end namespace blofeld" << std::endl;
+	end_namespace_tree(stream, _namespace_tree_write_namespace | _namespace_tree_write_pragma_pack);
 
-
-
+	ASSERT(indent.empty());
 	std::string source_code = stream.str();
-	const char* output;
-	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
-	std::string output_filepath = std::string(output) + "low_level_" + namespace_name + "\\" + namespace_name + ".h";
-
-	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
+	BCS_RESULT rs = write_output_with_logging(output_header_file_path.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));
 }
 
-void c_low_level_tag_source_generator::generate_ida_header() const
+void c_low_level_tag_source_generator::generate_ida_header()
 {
+	std::string namespace_without_semicolons = get_namespace(false);
+
 	std::stringstream stream;
 
-	const char* namespace_name;
-	BCS_RESULT engine_type_to_folder_name_result = get_engine_type_folder_string(engine_platform_build.engine_type, &namespace_name);
-	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result));
-
 	stream << "#pragma once" << std::endl;
-	stream << std::endl;
-	stream << std::endl;
-
-	stream << "#pragma pack(push, 1)" << std::endl << std::endl;
+	stream << indent << std::endl;
+	stream << "#pragma pack(push, 1)" << std::endl;
+	stream << indent << std::endl;
 
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
-		std::string low_level_structure_name = format_structure_symbol(*struct_definition);
-
-		stream << "struct " << low_level_structure_name << std::endl;
-		stream << "{" << std::endl;
+		stream << indent << "struct " << struct_definition->struct_name << std::endl;
+		stream << indent << "{" << std::endl;
 
 		std::unordered_map<std::string, int> field_name_unique_counter;
 
-		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
+		increment_indent();
+		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
-			unsigned long field_skip_count;
-			if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
-			{
-				current_field += field_skip_count;
-				continue;
-			}
-
-			std::unordered_map<std::string, int>* field_name_unique_counter_ptr = nullptr;
-			switch (current_field->field_type)
-			{
-			case _field_custom:
-				break;
-			default:
-				field_name_unique_counter_ptr = &field_name_unique_counter;
-				break;
-			}
+			const s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG);
 
 			c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
-				current_field->name,
-				current_field->field_type == blofeld::_field_block,
+				tag_field.name,
+				tag_field.field_type == blofeld::_field_block,
 				&field_name_unique_counter);
 
 			const char* field_type_string;
-			ASSERT(BCS_SUCCEEDED(field_to_tagfile_field_type(current_field->field_type, field_type_string)));
+			ASSERT(BCS_SUCCEEDED(field_to_tagfile_field_type(tag_field.field_type, field_type_string)));
 
-			if (!custom_structure_codegen(_custom_structure_codegen_low_level_header, stream, "\t\t\t", &field_formatter, *struct_definition, *current_field, namespace_name))
+			if (!custom_structure_codegen(_custom_structure_codegen_low_level_header, stream, indent.c_str(), &field_formatter, *struct_definition, tag_field, namespace_without_semicolons.c_str()))
 			{
-				switch (current_field->field_type)
+				switch (tag_field.field_type)
 				{
 				case _field_pad:
-					stream << "\tchar " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // padding" << std::endl;
+					stream << indent << "char " << field_formatter.code_name.c_str() << "[" << tag_field.padding << "]; // padding" << std::endl;
 					break;
 				case _field_skip:
-					stream << "\tchar " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // skip" << std::endl;
+					stream << indent << "char " << field_formatter.code_name.c_str() << "[" << tag_field.padding << "]; // skip" << std::endl;
 					break;
 				case _field_useless_pad:
-					stream << "\t// char " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // useless padding" << std::endl;
+					stream << indent << "// char " << field_formatter.code_name.c_str() << "[" << tag_field.padding << "]; // useless padding" << std::endl;
 					break;
 				case _field_non_cache_runtime_value:
-					stream << "\t// " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // non cache runtime value" << std::endl;
+					stream << indent << "// " << field_formatter.code_name.c_str() << "[" << tag_field.padding << "]; // non cache runtime value" << std::endl;
 					break;
 				case _field_custom:
-					stream << "\t// " << field_type_string;
+					stream << indent << "// " << field_type_string;
 					if (!field_formatter.code_name.empty())
 					{
 						stream << " " << field_formatter.code_name.c_str();
 					}
-					stream << std::endl;
+					stream << indent << std::endl;
 					break;
 				case _field_terminator:
-					stream << "\t// " << field_type_string << std::endl;
+					stream << indent << "// " << field_type_string << std::endl;
 					break;
 				case _field_explanation:
 				{
-					if (current_field->name)
+					if (tag_field.name)
 					{
-						if (current_field->explanation && *current_field->explanation)
+						if (tag_field.explanation && *tag_field.explanation)
 						{
-							stream << std::endl << "\t\t\t/* " << current_field->name << std::endl;
-							stream << "\t ";
-							const char* current_pos = current_field->explanation;
-							while (*current_pos)
-							{
-								switch (*current_pos)
-								{
-								case '\n':
-									stream << *current_pos;
-									stream << "\t ";
-									break;
-								default:
-									stream << *current_pos;
-								}
-								current_pos++;
-							}
-							stream << std::endl;
-							stream << "\t*/" << std::endl << std::endl;
+							stream << indent << std::endl;
+							write_field_description_comment(stream, tag_field);
 						}
 						else
 						{
-							stream << std::endl << "\t\t\t/* " << current_field->name << " */" << std::endl << std::endl;
+							stream << indent << std::endl;
+							stream << indent << "/* " << tag_field.name << " */" << std::endl << std::endl;
 						}
 					}
 					break;
 				}
 				case _field_array:
 				{
-
-					std::string field_source_type = format_structure_symbol(current_field->array_definition->struct_definition);
-					unsigned long count = current_field->array_definition->count(engine_platform_build);
+					unsigned long count = tag_field.array_definition->count(engine_platform_build);
 					if (count == 0)
 					{
 						debug_point;
 					}
-					stream << "\t" << field_source_type << " " << field_formatter.code_name.c_str() << "[" << count << "];";
+					stream << indent << "" << tag_field.array_definition->struct_definition.struct_name << " " << field_formatter.code_name.c_str() << "[" << count << "];";
 					break;
 				}
 				case _field_struct:
 				{
-					unsigned long field_struct_size = calculate_struct_size(engine_platform_build, *current_field->struct_definition);
-					std::string field_source_type = format_structure_symbol(*current_field->struct_definition);
+					unsigned long field_struct_size = calculate_struct_size(engine_platform_build, *tag_field.struct_definition);
 					if (field_struct_size > 0)
 					{
-						stream << "\t" << field_source_type << " " << field_formatter.code_name.c_str() << ";";
+						stream << indent << "" << tag_field.struct_definition->struct_name << " " << field_formatter.code_name.c_str() << ";";
 					}
 					else
 					{
-						stream << "\t// " << field_source_type << " " << field_formatter.code_name.c_str() << "; // empty struct";
+						stream << indent << "// " << tag_field.struct_definition->struct_name << " " << field_formatter.code_name.c_str() << "; // empty struct";
 					}
 					break;
 				}
 				case _field_block:
 				{
-					std::string field_source_type = format_structure_symbol(current_field->block_definition->struct_definition);
-					stream << "\ts_tag_block " << field_formatter.code_name.c_str() << "; // " << field_source_type;
+					stream << indent << "s_tag_block " << field_formatter.code_name.c_str() << "; // " << tag_field.block_definition->struct_definition.struct_name;
 					break;
 				}
 				case _field_tag_reference:
 				{
-					stream << "\ts_tag_reference " << field_formatter.code_name.c_str() << ";";
+					stream << indent << "s_tag_reference " << field_formatter.code_name.c_str() << ";";
 					break;
 				}
 				case _field_char_enum:
 				{
-					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-					stream << "\tchar " << field_formatter.code_name.data << "; // e_" << string_list.name;
+					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
+					stream << indent << "char " << field_formatter.code_name.data << "; // e_" << string_list.name;
 					break;
 				}
 				case _field_short_enum:
 				{
-					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-					stream << "\tshort " << field_formatter.code_name.data << "; // e_" << string_list.name;
+					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
+					stream << indent << "short " << field_formatter.code_name.data << "; // e_" << string_list.name;
 					break;
 				}
 				case _field_long_enum:
 				{
-					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-					stream << "\tlong " << field_formatter.code_name.data << "; // e_" << string_list.name;
+					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
+					stream << indent << "long " << field_formatter.code_name.data << "; // e_" << string_list.name;
 					break;
 				}
 				case _field_byte_flags:
 				{
-					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-					stream << "\tunsigned char " << field_formatter.code_name.data << "; // " << string_list.name;
+					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
+					stream << indent << "unsigned char " << field_formatter.code_name.data << "; // " << string_list.name;
 					break;
 				}
 				case _field_word_flags:
 				{
-					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-					stream << "\tunsigned short " << field_formatter.code_name.data << "; // " << string_list.name;
+					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
+					stream << indent << "unsigned short " << field_formatter.code_name.data << "; // " << string_list.name;
 					break;
 				}
 				case _field_long_flags:
 				{
 
-					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-					stream << "\tlong " << field_formatter.code_name.data << "; // " << string_list.name;
+					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
+					stream << indent << "long " << field_formatter.code_name.data << "; // " << string_list.name;
 
 					break;
 				}
 				default:
 				{
-					std::string field_source_type = field_type_to_low_level_source_type(engine_platform_build.platform_type, current_field->field_type);
+					std::string field_source_type = field_type_to_low_level_source_type(engine_platform_build.platform_type, tag_field.field_type);
 					ASSERT(!field_formatter.code_name.empty());
-					stream << "\t" << field_source_type << " " << field_formatter.code_name.data << ";";
+					stream << indent << "" << field_source_type << " " << field_formatter.code_name.data << ";";
 				}
 				}
 
 				constexpr bool k_write_field_types = false;
-				switch (current_field->field_type)
+				switch (tag_field.field_type)
 				{
 				case _field_pad:
 				case _field_skip:
@@ -662,92 +608,59 @@ void c_low_level_tag_source_generator::generate_ida_header() const
 							current_pos++;
 						}
 					}
-					stream << std::endl;
+					stream << indent << std::endl;
 				}
 
 			}
 		}
+		decrement_indent();
 
-		stream << "};" << std::endl;
-
-		//unsigned long struct_size = calculate_struct_size(engine_platform_build, *struct_definition);
-
-		// stream << "static constexpr size_t " << tag_struct_definition->name << "_size = sizeof(s_" << tag_struct_definition->name << ");" << std::endl;
-		// stream << "static_assert(" << tag_struct_definition->name << "_size == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct s_" << tag_struct_definition->name << " is invalid size\");" << std::endl;
-
-		//stream << "static_assert(sizeof(" << low_level_structure_name << ") == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct " << low_level_structure_name << " is invalid size\");" << std::endl;
-
-		stream << std::endl;
-
-
+		stream << indent << "};" << std::endl;
+		stream << indent << std::endl;
 	}
 
-	stream << "#pragma pack(pop)" << std::endl;
+	stream << indent << "#pragma pack(pop)" << std::endl;
+	stream << indent << std::endl;
 
+	ASSERT(indent.empty());
 	std::string source_code = stream.str();
-	const char* output;
-	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
-	std::string output_filepath = std::string(output) + "low_level_" + namespace_name + "\\" + namespace_name + "_ida.h";
-
-	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
+	BCS_RESULT rs = write_output_with_logging(output_ida_header_file_path.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));
 }
 
-void c_low_level_tag_source_generator::generate_source() const
+void c_low_level_tag_source_generator::generate_source()
 {
+	std::string namespace_without_semicolons = get_namespace(false);
+
 	std::stringstream stream;
 
-	const char* namespace_name;
-	BCS_RESULT engine_type_to_folder_name_result = get_engine_type_folder_string(engine_platform_build.engine_type, &namespace_name);
-	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result));
-
-	const char* source_namespace_name;
-	BCS_RESULT engine_type_to_folder_name_result2 = get_engine_type_source_string(engine_platform_build.engine_type, &source_namespace_name);
-	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result2));
-
-	stream << "#include <lowlevel-" << source_namespace_name << "-private-pch.h>" << std::endl << std::endl;
-	stream << std::endl;
-	stream << std::endl;
+	stream << "#include <lowlevel-" << get_engine_namespace(false) << "-" << get_platform_namespace(false) << "-private-pch.h>" << std::endl << std::endl;
+	stream << indent << std::endl;
 
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
-		std::string low_level_structure_name = format_structure_symbol(*struct_definition);
+		stream << indent << "template<> void byteswap_inplace<" << get_namespace(true) << struct_definition->struct_name << ">(" << get_namespace(true) << struct_definition->struct_name << "& value)" << std::endl;
+		stream << indent << "{" << std::endl;
 
-		stream << "template<> void byteswap_inplace<blofeld::" << namespace_name << "::" << low_level_structure_name << ">(blofeld::" << namespace_name << "::" << low_level_structure_name << "& value)" << std::endl;
-		stream << "{" << std::endl;
+		increment_indent();
 
 		std::unordered_map<std::string, int> field_name_unique_counter;
-
-		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
+		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
-			unsigned long field_skip_count;
-			if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
-			{
-				current_field += field_skip_count;
-				continue;
-			}
-
-			std::unordered_map<std::string, int>* field_name_unique_counter_ptr = nullptr;
-			switch (current_field->field_type)
-			{
-			case _field_custom:
-				break;
-			default:
-				field_name_unique_counter_ptr = &field_name_unique_counter;
-				break;
-			}
+			const s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG);
+			unsigned long field_index = tag_field_iterator - struct_definition->fields;
 
 			c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
-				current_field->name,
-				current_field->field_type == blofeld::_field_block,
+				tag_field.name,
+				tag_field.field_type == blofeld::_field_block,
 				&field_name_unique_counter);
 
 			const char* field_type_string;
-			ASSERT(BCS_SUCCEEDED(field_to_tagfile_field_type(current_field->field_type, field_type_string)));
+			ASSERT(BCS_SUCCEEDED(field_to_tagfile_field_type(tag_field.field_type, field_type_string)));
 
-			if (!custom_structure_codegen(_custom_structure_codegen_low_level_byteswap, stream, "\t", &field_formatter, *struct_definition, *current_field, namespace_name))
+			if (!custom_structure_codegen(_custom_structure_codegen_low_level_byteswap, stream, "\t", &field_formatter, *struct_definition, tag_field, namespace_without_semicolons.c_str()))
 			{
-				switch (current_field->field_type)
+				switch (tag_field.field_type)
 				{
 				case _field_pad:
 				case _field_skip:
@@ -759,49 +672,39 @@ void c_low_level_tag_source_generator::generate_source() const
 					break;
 				case _field_struct:
 				{
-					unsigned long field_struct_size = calculate_struct_size(engine_platform_build, *current_field->struct_definition);
+					unsigned long field_struct_size = calculate_struct_size(engine_platform_build, *tag_field.struct_definition);
 					if (field_struct_size == 0)
 					{
-						stream << "\t// byteswap_inplace(value." << field_formatter.code_name.c_str() << "); // empty struct" << std::endl;
+						stream << indent << "// byteswap_inplace(value." << field_formatter.code_name.c_str() << "); // empty struct" << std::endl;
 						break;
 					}
 				}
 				default:
-					stream << "\tbyteswap_inplace(value." << field_formatter.code_name.c_str() << ");" << std::endl;
+					stream << indent << "byteswap_inplace(value." << field_formatter.code_name.c_str() << ");" << std::endl;
 				}
 			}
 		}
+		decrement_indent();
 
-		stream << "}" << std::endl;
-
-		stream << std::endl;
+		stream << indent << "}" << std::endl;
+		stream << indent << std::endl;
 	}
 
-	std::string source_code = stream.str();	const char* output;
-	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
-	std::string output_filepath = std::string(output) + "low_level_" + namespace_name + "\\" + namespace_name + ".cpp";
-
-	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
+	ASSERT(indent.empty());
+	std::string source_code = stream.str();
+	BCS_RESULT rs = write_output_with_logging(output_source_file_path.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));
 }
 
-void c_low_level_tag_source_generator::generate_enum_header() const
+void c_low_level_tag_source_generator::generate_enum_header()
 {
 	std::stringstream stream;
 
-	const char* namespace_name;
-	BCS_RESULT engine_type_to_folder_name_result = get_engine_type_folder_string(engine_platform_build.engine_type, &namespace_name);
-	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result));
-
 	stream << "#pragma once" << std::endl;
-	stream << std::endl;
-	stream << std::endl;
+	stream << indent << std::endl;
+	stream << indent << std::endl;
 
-	stream << "namespace blofeld" << std::endl;
-	stream << "{" << std::endl;
-	stream << "\tnamespace " << namespace_name << std::endl;
-	stream << "\t{" << std::endl;
-	stream << "#pragma pack(push, 1)" << std::endl << std::endl;
+	begin_namespace_tree(stream, _namespace_tree_write_namespace | _namespace_tree_write_pragma_pack);
 
 	std::unordered_map<std::string, int> string_list_value_unique_counter;
 	for (const s_string_list_definition* string_list_definition : c_structure_relationship_node::sorted_string_list_definitions[engine_platform_build.engine_type])
@@ -810,38 +713,36 @@ void c_low_level_tag_source_generator::generate_enum_header() const
 
 		unsigned long count = string_list_definition->get_count(engine_platform_build);
 
-		stream << "\t\tenum e_" << string_list_definition->name << " : long" << std::endl;
-		stream << "\t\t{" << std::endl;
+		stream << indent << "enum e_" << string_list_definition->name << " : long" << std::endl;
+		stream << indent << "{" << std::endl;
 
+		increment_indent();
 		for (unsigned long string_index = 0; string_index < count; string_index++)
 		{
 			const char* string = string_list_definition->get_string(engine_platform_build, string_index);
 			c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(string, false, &string_list_value_unique_counter);
 
-			stream << "\t\t\t/* " << string_parser.pretty_name.c_str() << " */" << std::endl;
+			stream << indent << "/* " << string_parser.pretty_name.c_str() << " */" << std::endl;
 
-			stream << "\t\t\t_" << string_list_definition->name << "_" << string_parser.code_name.c_str() << ",";
+			stream << indent << "_" << string_list_definition->name << "_" << string_parser.code_name.c_str() << ",";
 			if (!string_parser.description.empty())
 			{
 				stream << " /* " << string_parser.description.c_str() << " */" << std::endl;
 			}
-			stream << std::endl;
+			stream << indent << std::endl;
 		}
-		stream << "\t\t\tk_" << string_list_definition->name << "_count" << std::endl;;
+		stream << indent << "k_" << string_list_definition->name << "_count" << std::endl;;
+		decrement_indent();
 
-		stream << "\t\t};" << std::endl;
-		stream << std::endl;
+		stream << indent << "};" << std::endl;
+		stream << indent << std::endl;
 
 	}
 
-	stream << "#pragma pack(pop)" << std::endl;
-	stream << std::endl << "\t} // end namespace " << namespace_name << std::endl;
-	stream << std::endl << "} // end namespace blofeld" << std::endl;
+	end_namespace_tree(stream, _namespace_tree_write_namespace | _namespace_tree_write_pragma_pack);
 
-	std::string source_code = stream.str();	const char* output;
-	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
-	std::string output_filepath = std::string(output) + "low_level_" + namespace_name + "\\" + namespace_name + ".enum.h";
-
-	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
+	ASSERT(indent.empty());
+	std::string source_code = stream.str();
+	BCS_RESULT rs = write_output_with_logging(output_enum_header_file_path.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));
 }

@@ -1,6 +1,5 @@
 #include "mandrilllib-private-pch.h"
 
-#include <Generated/high_level_halo3\highlevel-halo3-public-pch.h>
 #include <TagCodegen\blamlib_string_parser.h>
 #include <TagCodegen\blamlib_string_parser.inl>
 
@@ -607,7 +606,7 @@ void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_t
 	for (unsigned long block_index = 0; block_index < block_count; block_index++, structure_data += structure_size)
 	{
 		DEBUG_ONLY(memset(structure_data, static_cast<char>(block_index + 0xDD), structure_size));
-		const h_object& object = block[block_index];
+		const h_prototype& object = block[block_index];
 
 		c_tag_struct_chunk* tag_struct_chunk = nullptr;
 		if (!tag_block_chunk_header.is_simple_data_type)
@@ -624,7 +623,7 @@ void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_t
 	tag_block_chunk.append_data(block_data, block_data_size);
 }
 
-void c_high_level_tag_file_writer::serialize_tag_struct(const h_object& object, char* const structure_data, c_tag_struct_chunk* tag_struct_chunk)
+void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& object, char* const structure_data, c_tag_struct_chunk* tag_struct_chunk)
 {
 	char* dst_field_data = structure_data;
 	unsigned long field_index = 0;
@@ -641,7 +640,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_object& object, 
 		{
 		case blofeld::_field_struct:
 		{
-			const h_object& object = *static_cast<const h_object*>(src_field_data);
+			const h_prototype& object = *static_cast<const h_prototype*>(src_field_data);
 
 			const blofeld::s_tag_struct_definition& struct_definition = *field.struct_definition;
 			field_size = calculate_structure_size(struct_definition);
@@ -768,8 +767,8 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 		c_tag_resource_data_chunk* tag_resource_data_chunk = new() c_tag_resource_data_chunk(*tag_resource_exploded_chunk);
 		c_tag_struct_chunk* tag_struct_chunk = new() c_tag_struct_chunk(*tag_resource_exploded_chunk);
 
-		h_object* object = h_object::create_high_level_object(tag_resource_definition.struct_definition, engine_platform_build);
-		if (blofeld::halo3::h_sound_resource_definition_struct* sound_resource_definition_struct = dynamic_cast<decltype(sound_resource_definition_struct)>(object))
+		h_prototype* object = h_prototype::create_high_level_object(tag_resource_definition.struct_definition, engine_platform_build);
+		if (blofeld::halo3::pc64::h_sound_resource_definition_struct* sound_resource_definition_struct = dynamic_cast<decltype(sound_resource_definition_struct)>(object))
 		{
 			sound_resource_definition_struct->sample_data.insert(
 				sound_resource_definition_struct->sample_data.begin(), 
@@ -810,7 +809,7 @@ void c_high_level_tag_file_writer::serialize_string_id(const h_string_id& string
 	
 }
 
-unsigned long c_high_level_tag_file_writer::calculate_structure_size(const h_object& object)
+unsigned long c_high_level_tag_file_writer::calculate_structure_size(const h_prototype& object)
 {
 	unsigned long structure_size = 0;
 	for (const blofeld::s_tag_field* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++)

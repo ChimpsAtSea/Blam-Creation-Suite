@@ -14,7 +14,6 @@ enum e_engine_type : unsigned char
 	_engine_type_eldorado,
 	_engine_type_haloreach,
 	_engine_type_halo4,
-	_engine_type_gen3_xbox360,
 	_engine_type_groundhog,
 	_engine_type_halo5,
 	_engine_type_infinite,
@@ -168,15 +167,17 @@ public:
 	}
 };
 
+BCS_DEBUG_API extern BCS_RESULT get_engine_type_pretty_string(e_engine_type engine_type, const char*& result);
+BCS_DEBUG_API extern BCS_RESULT get_engine_type_namespace(e_engine_type engine_type, const char*& result);
+BCS_DEBUG_API extern BCS_RESULT get_engine_type_string(e_engine_type engine_type, const char*& result);
+
 BCS_DEBUG_API extern bool get_platform_is_big_endian(s_engine_platform_build engine_platform_build);
 BCS_DEBUG_API extern bool get_platform_is_big_endian(e_platform_type platform_type);
 
-BCS_DEBUG_API extern BCS_RESULT get_engine_type_pretty_string(e_engine_type engine_type, const char** result);
-BCS_DEBUG_API extern BCS_RESULT get_engine_type_folder_string(e_engine_type engine_type, const char** result);
-BCS_DEBUG_API extern BCS_RESULT get_engine_type_source_string(e_engine_type engine_type, const char** result);
-BCS_DEBUG_API extern BCS_RESULT get_engine_type_string(e_engine_type engine_type, const char** result);
-BCS_DEBUG_API extern BCS_RESULT get_platform_type_pretty_string(e_platform_type platform_type, const char** result);
-BCS_DEBUG_API extern BCS_RESULT get_platform_type_string(e_platform_type platform_type, const char** result);
+BCS_DEBUG_API extern BCS_RESULT get_platform_type_pretty_string(e_platform_type platform_type, const char*& result);
+BCS_DEBUG_API extern BCS_RESULT get_platform_type_namespace(e_platform_type platform_type, const char*& result);
+BCS_DEBUG_API extern BCS_RESULT get_platform_type_string(e_platform_type platform_type, const char*& result);
+
 BCS_DEBUG_API extern BCS_RESULT get_platform_pointer_size(e_platform_type platform_type, unsigned long* pointer_size);
 BCS_DEBUG_API extern BCS_RESULT get_build_pretty_string(e_build build, const char** result);
 BCS_DEBUG_API extern BCS_RESULT get_build_string(e_build build, const char** result);

@@ -104,6 +104,7 @@ c_halo3_tools_pc64_tag_struct_definition::c_halo3_tools_pc64_tag_struct_definiti
 
 	code_type_name = "s_";
 	code_type_name += code_symbol_name;
+	tag_definition_manager.format_structure_type_name(code_type_name);
 
 	bool is_runtime_flags_valid = struct_definition.runtime.flags.valid();
 	ASSERT(is_runtime_flags_valid);
@@ -177,9 +178,9 @@ c_flags<blofeld::e_tag_field_set_bit> c_halo3_tools_pc64_tag_struct_definition::
 	{
 		result.set(blofeld::_tag_field_set_unknown4_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_halo3_tools_pc64_tag_field_set_unknown5))
+	if (struct_definition.runtime.flags.test(_halo3_tools_pc64_tag_field_set_has_aggregate_types))
 	{
-		result.set(blofeld::_tag_field_set_unknown5_bit, true);
+		result.set(blofeld::_tag_field_set_has_aggregate_types_bit, true);
 	}
 	if (struct_definition.runtime.flags.test(_halo3_tools_pc64_tag_field_set_is_temporary_bit))
 	{
@@ -233,9 +234,9 @@ c_flags<blofeld::e_tag_field_set_bit> c_halo3_tools_pc64_tag_struct_definition::
 	{
 		result.set(blofeld::_tag_field_set_unknown18_bit, true);
 	}
-	if (struct_definition.runtime.flags.test(_halo3_tools_pc64_tag_field_set_unknown19))
+	if (struct_definition.runtime.flags.test(_halo3_tools_pc64_tag_field_set_exist_in_cache_build))
 	{
-		result.set(blofeld::_tag_field_set_unknown19_bit, true);
+		result.set(blofeld::_tag_field_set_exist_in_cache_build_bit, true);
 	}
 
 	return result;

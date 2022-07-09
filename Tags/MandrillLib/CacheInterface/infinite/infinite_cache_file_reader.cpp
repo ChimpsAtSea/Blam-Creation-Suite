@@ -183,10 +183,7 @@ BCS_RESULT c_infinite_module_file_reader::get_buffer(e_cache_file_buffer_index b
 			const infinite::s_module_block_entry* block_entries = reinterpret_cast<const infinite::s_module_block_entry*>(resource_entries + module_file_header->num_resources);
 			const char* module_file_data_section = reinterpret_cast<const char*>(block_entries + module_file_header->num_file_blocks);
 
-			// #TODO: give this a home?
-#define ROUND_UP_VALUE(value, alignment) ((((value) + (alignment) - 1) / (alignment)) * (alignment))
 			module_file_data_section = reinterpret_cast<const char*>(ROUND_UP_VALUE(reinterpret_cast<intptr_t>(module_file_data_section), 0x1000));
-#undef ROUND_UP_VALUE
 
 			buffer_info.begin = module_file_data_section;
 			// #NOTE: module_file_header->total_data_size is only populated when there is an extra module file (hd1)
@@ -269,7 +266,7 @@ BCS_RESULT c_infinite_module_file_reader::page_offset_to_virtual_address(unsigne
 
 BCS_RESULT c_infinite_module_file_reader::get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const
 {
-	tag_groups = blofeld::tag_groups[engine_platform_build.engine_type];
+	tag_groups = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build);
 
 	return BCS_S_OK;
 }

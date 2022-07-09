@@ -77,6 +77,10 @@ s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* n
 	s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, old_names, flags, pointer, _field_id_default) {};
 
 // type, name, description, units, old-names-array, pointer
+s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, unsigned long flags, const __tag_field_pointer_type__* pointer) :
+	s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, flags, pointer, _field_id_default) {};
+
+// type, name, description, units, FLAGS, pointer
 s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char** old_names, const __tag_field_pointer_type__* pointer) :
 	s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, old_names, 0, pointer, _field_id_default) {};
 

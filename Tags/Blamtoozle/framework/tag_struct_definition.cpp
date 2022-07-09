@@ -34,3 +34,33 @@ long c_blamtoozle_tag_struct_definition::get_line_number()
 void c_blamtoozle_tag_struct_definition::handle_conflict(const c_blamtoozle_tag_struct_definition& conflicting_tag_struct_definition)
 {
 }
+
+bool c_blamtoozle_tag_struct_definition::is_legacy_struct()
+{
+	return false;
+}
+
+bool c_blamtoozle_tag_struct_definition::is_latest_structure_version()
+{
+	return true;
+}
+
+c_blamtoozle_tag_struct_definition* c_blamtoozle_tag_struct_definition::get_previous_struct_definition()
+{
+	return nullptr;
+}
+
+c_blamtoozle_tag_struct_definition* c_blamtoozle_tag_struct_definition::get_next_struct_definition()
+{
+	return nullptr;
+}
+
+c_blamtoozle_tag_struct_definition& c_blamtoozle_tag_struct_definition::get_latest_struct_definition()
+{
+	return *this;
+}
+
+unsigned long c_blamtoozle_tag_struct_definition::get_structure_version()
+{
+	return 0;
+}

@@ -51,7 +51,7 @@ c_tag_file_high_level_transplant::~c_tag_file_high_level_transplant()
 
 h_tag* c_tag_file_high_level_transplant::parse_tag()
 {
-	const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build.engine_type, header_data->group_tag);
+	const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, header_data->group_tag);
 	h_group* high_level_group = new() h_group(engine_platform_build, *tag_group);
 
 	h_tag* high_level_tag;

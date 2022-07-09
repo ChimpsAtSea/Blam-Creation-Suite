@@ -1,6 +1,5 @@
 #include "mandrillui-private-pch.h"
 
-#include <Generated/high_level_halo3/highlevel-halo3-public-pch.h>
 #include <AudioConversion\audioconversion-platform-pch.h>
 #include <AudioConversion\audioconversion-public-pch.h>
 
@@ -10,14 +9,14 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 	unsigned long tag_instance_count;
 	tag_project.get_tag_instances(tag_instances, tag_instance_count);
 
-	blofeld::halo3::h_sound_cache_file_gestalt_struct_definition* sound_cache_file_gestalt = nullptr;
+	blofeld::halo3::pc64::h_sound_cache_file_gestalt_struct_definition* sound_cache_file_gestalt = nullptr;
 	for (unsigned long tag_instance_index = 0; tag_instance_index < tag_instance_count; tag_instance_index++)
 	{
 		h_tag& tag = *tag_instances[tag_instance_index];
 
-		if (tag.group->tag_group.group_tag == blofeld::halo3::SOUND_CACHE_FILE_GESTALT_TAG)
+		if (tag.group->tag_group.group_tag == blofeld::halo3::pc64::SOUND_CACHE_FILE_GESTALT_TAG)
 		{
-			sound_cache_file_gestalt = dynamic_cast<blofeld::halo3::h_sound_cache_file_gestalt_struct_definition*>(&tag);
+			sound_cache_file_gestalt = dynamic_cast<blofeld::halo3::pc64::h_sound_cache_file_gestalt_struct_definition*>(&tag);
 			break;
 		}
 	}
@@ -28,9 +27,9 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 		h_tag& tag = *tag_instances[tag_instance_index];
 
 
-		if (tag.group->tag_group.group_tag == blofeld::halo3::CACHE_FILE_SOUND_TAG)
+		if (tag.group->tag_group.group_tag == blofeld::halo3::pc64::CACHE_FILE_SOUND_TAG)
 		{
-			blofeld::halo3::h_cache_file_sound_struct_definition* cache_file_sound = dynamic_cast<blofeld::halo3::h_cache_file_sound_struct_definition*>(&tag);
+			blofeld::halo3::pc64::h_cache_file_sound_struct_definition* cache_file_sound = dynamic_cast<blofeld::halo3::pc64::h_cache_file_sound_struct_definition*>(&tag);
 			ASSERT(cache_file_sound != nullptr);
 
 			h_resource* resource = cache_file_sound->sound_data_resource.value;
@@ -41,15 +40,15 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 				unsigned long resource_buffer_size;
 				if (BCS_SUCCEEDED(resource->add_reference(resource_buffer, resource_buffer_size)))
 				{
-					using namespace blofeld::halo3;
+					using namespace blofeld::halo3::pc64;
 
-					h_sound_gestalt_codec_block& codec = sound_cache_file_gestalt->codecs_block[cache_file_sound->codec_index];
+					blofeld::halo3::pc64::h_sound_gestalt_codec_block& codec = sound_cache_file_gestalt->codecs_block[cache_file_sound->codec_index];
 					
 					unsigned long const pitch_range_start_index = cache_file_sound->first_pitch_range_index.value;
 					unsigned long const pitch_range_end_index = pitch_range_start_index + cache_file_sound->pitch_range_count.value;
 					for (unsigned long pitch_range_index = pitch_range_start_index; pitch_range_index < pitch_range_end_index; pitch_range_index++)
 					{
-						h_sound_gestalt_pitch_ranges_block& pitch_range = sound_cache_file_gestalt->pitch_ranges_block[pitch_range_index];
+						blofeld::halo3::pc64::h_sound_gestalt_pitch_ranges_block& pitch_range = sound_cache_file_gestalt->pitch_ranges_block[pitch_range_index];
 
 						h_string_id pitch_range_name = sound_cache_file_gestalt->import_names_block[pitch_range.name.value].import_name.value;
 						unsigned long encoded_first_permutation_and_counts = pitch_range.encoded_first_permutation_and_counts.value;
@@ -63,7 +62,7 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 						unsigned long const permutation_end_index = permutation_start_index + total_permutation_count;
 						for (unsigned long permutation_index = permutation_start_index; permutation_index < permutation_end_index; permutation_index++)
 						{
-							h_sound_gestalt_permutations_block& permutation = sound_cache_file_gestalt->permutations_block[permutation_index];
+							blofeld::halo3::pc64::h_sound_gestalt_permutations_block& permutation = sound_cache_file_gestalt->permutations_block[permutation_index];
 							h_string_id permutation_name = sound_cache_file_gestalt->import_names_block[permutation.name].import_name.value;
 
 							debug_point;
@@ -78,7 +77,7 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 								unsigned long const chunk_end_index = chunk_start_index + chunk_count;
 								for (unsigned long chunk_index = chunk_start_index; chunk_index < chunk_end_index; chunk_index++)
 								{
-									h_sound_permutation_chunk_block& chunk = sound_cache_file_gestalt->chunks_block[chunk_index];
+									blofeld::halo3::pc64::h_sound_permutation_chunk_block& chunk = sound_cache_file_gestalt->chunks_block[chunk_index];
 
 									c_long_designator<6, 0> size_and_flags;
 									size_and_flags.set_raw_designator(chunk.encoded_size_and_flags.value);

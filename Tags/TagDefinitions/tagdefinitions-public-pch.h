@@ -34,16 +34,33 @@
 #include "slipspace/infinite_flight2.h"
 #include "slipspace/infinite_release.h"
 #include "slipspace/infinite.h"
-#include "blamlib/haloreach_tags_test_x360.h"
-#include "blamlib/halo3_tools.h"
-#include "blamlib/halo2_tools.h"
-#include "blamlib/halo1_tools.h"
+
+//#include "blamlib/haloreach_tags_test_x360.h"
+//#include "blamlib/halo3_tools.h"
+//#include "blamlib/halo2_tools.h"
+//#include "blamlib/halo1_tools.h"
+
+#include "blamlib/halo1-tools-pc64.h"
+#include "blamlib/halo2-tools-pc64.h"
+#include "blamlib/halo3odst-tools-pc64.h"
+#include "blamlib/halo3-tools-pc64.h"
+#include "blamlib/halo4-tagtest-xbox360.h"
+#include "blamlib/haloreach-tagtest-xbox360.h"
+
 #undef s_tag_block_definition
 #undef s_tag_struct_definition
 #undef s_tag_data_definition
 #undef s_tag_group
 #endif
 #include "tag_groups/tag_groups.h"
+
+#include "tag_groups/halo1-tools-pc64-groups.h"
+#include "tag_groups/halo2-tools-pc64-groups.h"
+#include "tag_groups/halo3odst-tools-pc64-groups.h"
+#include "tag_groups/halo3-tools-pc64-groups.h"
+#include "tag_groups/halo4-tagtest-xbox360-groups.h"
+#include "tag_groups/haloreach-tagtest-xbox360-groups.h"
+
 #include "blofeld/validation.h"
 
 #include "blamlib_byteswap.h"

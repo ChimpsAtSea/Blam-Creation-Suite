@@ -97,10 +97,10 @@ public:
 	BCS_RESULT read_tag_block_structure_to_high_level_object(
 		c_tag_block_chunk& tag_group_block,
 		unsigned long tag_block_index,
-		h_object& high_level_object);
+		h_prototype& high_level_object);
 
 	BCS_RESULT read_tag_struct_to_high_level_object_ref(
-		h_object& high_level_object,
+		h_prototype& high_level_object,
 		unsigned long structure_entry_index,
 		s_tag_persist_struct_definition& structure_entry,
 		const char* const structure_data_begin,
