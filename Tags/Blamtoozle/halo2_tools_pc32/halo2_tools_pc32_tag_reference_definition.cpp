@@ -50,7 +50,6 @@ c_halo2_tools_pc32_tag_reference_definition::c_halo2_tools_pc32_tag_reference_de
 	name += "_reference";
 
 	code_symbol_name = name;
-	code_symbol_name += "_tagref"; // #TODO: global name conflicts, need to fix!!!
 
 	tag_definition_manager.format_code_symbol_name(name);
 	tag_definition_manager.format_code_symbol_name_uid(code_symbol_name);

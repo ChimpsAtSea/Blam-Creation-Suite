@@ -14,8 +14,6 @@ public:
 	virtual const char* get_name() = 0;
 	virtual const char* get_code_symbol_name() = 0;
 	virtual const char* get_structure_type_name() = 0;
-	virtual unsigned long get_structure_size() = 0;
-	virtual const char* get_structure_size_string() = 0;
 	virtual unsigned long get_alignment_bits() = 0;
 	virtual const char* get_file_path();
 	virtual long get_line_number();

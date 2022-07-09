@@ -15,7 +15,7 @@ struct s_halo2_tools_pc32_tag_block_definition
 	ptr32 structure_definition_address;
 };
 constexpr size_t k_halo2_tools_pc32_tag_block_definition_size = sizeof(s_halo2_tools_pc32_tag_block_definition);
-//static_assert(k_halo2_tools_pc32_tag_block_definition_size == 40);
+static_assert(k_halo2_tools_pc32_tag_block_definition_size == 32);
 
 class c_halo2_tools_pc32_tag_block_definition :
 	public c_blamtoozle_tag_block_definition

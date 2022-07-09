@@ -133,16 +133,6 @@ const char* c_reach_x360_tag_struct_definition::get_structure_type_name()
 	return code_type_name.c_str();
 }
 
-unsigned long c_reach_x360_tag_struct_definition::get_structure_size()
-{
-	return struct_definition.type.structure_size;
-}
-
-const char* c_reach_x360_tag_struct_definition::get_structure_size_string()
-{
-	return structure_size_string;
-}
-
 unsigned long c_reach_x360_tag_struct_definition::get_alignment_bits()
 {
 	return struct_definition.type.alignment_bits;

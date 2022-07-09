@@ -123,16 +123,6 @@ const char* c_halo2_tools_pc32_tag_struct_definition::get_structure_type_name()
 	return code_type_name.c_str();
 }
 
-unsigned long c_halo2_tools_pc32_tag_struct_definition::get_structure_size()
-{
-	return struct_definition.type.structure_size;
-}
-
-const char* c_halo2_tools_pc32_tag_struct_definition::get_structure_size_string()
-{
-	return structure_size_string;
-}
-
 unsigned long c_halo2_tools_pc32_tag_struct_definition::get_alignment_bits()
 {
 	return struct_definition.type.alignment_bits;
@@ -226,7 +216,7 @@ void c_halo2_tools_pc32_tag_struct_definition::generate_structure_names()
 	{
 		const char* source_string = code_symbol_name.c_str();
 		size_t buffer_size = 0;
-		buffer_size += strlen(source_string) + 1; // maximum string length of sizeof_string
+		buffer_size += strlen(source_string) + 1; // maximum string length of source_string
 		buffer_size += strlen("s_");
 		char* buffer = new(alloca(buffer_size)) char[buffer_size] {};
 		strcpy(buffer, source_string);

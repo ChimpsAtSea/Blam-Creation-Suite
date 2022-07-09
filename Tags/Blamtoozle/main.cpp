@@ -21,6 +21,24 @@ int main()
 		return rs;
 	}
 
+	const wchar_t* halo1guerilla32minidump;
+	if (BCS_SUCCEEDED(rs = command_line_get_argument(L"halo1guerilla32minidump", halo1guerilla32minidump)))
+	{
+
+		ptr32 halo1_guerilla_pc32_group_table_address = 0x006A4350;
+		unsigned long halo1_guerilla_pc32_num_tag_layouts = 82;
+
+		c_halo1_tools_pc32_tag_definition_manager halo1_tools_pc32_manager(halo1guerilla32minidump);
+		halo1_tools_pc32_manager.traverse(halo1_guerilla_pc32_group_table_address, halo1_guerilla_pc32_num_tag_layouts);
+
+		c_blamtoozle_source_generator source_generator(halo1_tools_pc32_manager, "halo1", "pc32");
+
+		source_generator.export_single_header(output_h);
+		source_generator.export_single_source(output_cpp);
+
+		debug_point;
+	}
+
 	const wchar_t* halo2guerilla32minidump;
 	if (BCS_SUCCEEDED(rs = command_line_get_argument(L"halo2guerilla32minidump", halo2guerilla32minidump)))
 	{

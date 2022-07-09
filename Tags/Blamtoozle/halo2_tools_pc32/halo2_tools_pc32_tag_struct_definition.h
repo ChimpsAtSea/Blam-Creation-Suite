@@ -8,22 +8,22 @@ enum e_halo2_tools_pc32_tag_field_set_bit : unsigned long
 {
 	_halo2_tools_pc32_tag_field_set_unknown0,
 	_halo2_tools_pc32_tag_field_set_unknown1,
-	_halo2_tools_pc32_tag_field_set_has_inlined_children_with_placement_new_bit, // confirmed
+	_halo2_tools_pc32_tag_field_set_has_inlined_children_with_placement_new_bit,
 	_halo2_tools_pc32_tag_field_set_unknown3,
 	_halo2_tools_pc32_tag_field_set_unknown4,
 	_halo2_tools_pc32_tag_field_set_unknown5,
-	_halo2_tools_pc32_tag_field_set_is_temporary_bit, // confirmed
+	_halo2_tools_pc32_tag_field_set_is_temporary_bit,
 	_halo2_tools_pc32_tag_field_set_unknown7,
 	_halo2_tools_pc32_tag_field_set_unknown8,
-	_halo2_tools_pc32_tag_field_set_delete_recursively_bit, // confirmed
-	_halo2_tools_pc32_tag_field_set_postprocess_recursively_bit, // confirmed
-	_halo2_tools_pc32_tag_field_set_is_memcpyable_bit, // confirmed
+	_halo2_tools_pc32_tag_field_set_delete_recursively_bit,
+	_halo2_tools_pc32_tag_field_set_postprocess_recursively_bit,
+	_halo2_tools_pc32_tag_field_set_is_memcpyable_bit,
 	_halo2_tools_pc32_tag_field_set_unknown12,
 	_halo2_tools_pc32_tag_field_set_has_resources,
 	_halo2_tools_pc32_tag_field_set_unknown14,
 	_halo2_tools_pc32_tag_field_set_unknown15,
-	_halo2_tools_pc32_tag_field_set_has_level_specific_fields_bit, // confirmed
-	_halo2_tools_pc32_tag_field_set_can_memset_to_initialize_bit, // confirmed
+	_halo2_tools_pc32_tag_field_set_has_level_specific_fields_bit,
+	_halo2_tools_pc32_tag_field_set_can_memset_to_initialize_bit,
 	_halo2_tools_pc32_tag_field_set_unknown18,
 	_halo2_tools_pc32_tag_field_set_unknown19,
 	k_num_halo2_tools_pc32_runtime_flags
@@ -108,8 +108,6 @@ public:
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;
 	virtual const char* get_structure_type_name() override;
-	virtual unsigned long get_structure_size() override;
-	virtual const char* get_structure_size_string() override;
 	virtual unsigned long get_alignment_bits() override;
 	virtual blofeld::s_tag_persistent_identifier& get_persistent_identifier() override;
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() override;

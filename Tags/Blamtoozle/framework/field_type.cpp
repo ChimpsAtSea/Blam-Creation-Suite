@@ -69,7 +69,6 @@ const char* blamtoozle_field_type_to_string(blofeld::e_field field_type)
 		case _field_api_interop:											return "api interop"					;
 		case _field_terminator:												return "terminator X"					;
 	}
-	debug_break; // shouldn't hit this
 	return nullptr;
 }
 
@@ -140,6 +139,5 @@ const char* blamtoozle_field_type_to_generic_field_type(blofeld::e_field field_t
 	case _field_api_interop:												return "_field_api_interop";
 	case _field_terminator:													return "_field_terminator";
 	}
-	debug_break; // shouldn't hit this
 	return nullptr;
 }

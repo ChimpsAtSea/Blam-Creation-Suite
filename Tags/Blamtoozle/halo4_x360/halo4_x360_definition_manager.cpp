@@ -2,9 +2,6 @@
 
 #define coerce_underlying_map(map_name) reinterpret_cast<decltype(map_name)&>(c_blamtoozle_tag_definition_manager::map_name)
 
-//#define tag_group_definitions 
-//#define tag_struct_definitions reinterpret_cast<std::map<ptr64, c_halo4_x360_tag_struct_definition*>&>(tag_struct_definitions)
-
 c_halo4_x360_tag_definition_manager::c_halo4_x360_tag_definition_manager(const wchar_t* minidump_file_path) :
 	c_blamtoozle_minidump_tag_definition_reader(minidump_file_path),
 	tag_group_definitions(coerce_underlying_map(tag_group_definitions)),

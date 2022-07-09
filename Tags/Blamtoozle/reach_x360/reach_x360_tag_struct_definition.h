@@ -159,8 +159,6 @@ public:
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;
 	virtual const char* get_structure_type_name() override;
-	virtual unsigned long get_structure_size() override;
-	virtual const char* get_structure_size_string() override;
 	virtual unsigned long get_alignment_bits() override;
 	virtual const char* get_file_path() override;
 	virtual long get_line_number() override;
