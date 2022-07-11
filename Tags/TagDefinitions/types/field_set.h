@@ -48,6 +48,6 @@ namespace blofeld
 #define SET_HAS_LEVEL_SPECIFIC_FIELDS c_flags<e_tag_field_set_bit>(_tag_field_set_has_level_specific_fields_bit)
 #define SET_CAN_MEMSET_TO_INITIALIZE c_flags<e_tag_field_set_bit>(_tag_field_set_can_memset_to_initialize_bit)
 #define SET_UNKNOWN18 c_flags<e_tag_field_set_bit>(_tag_field_set_unknown18_bit)
-#define SET_UNKNOWN19 c_flags<e_tag_field_set_bit>(_tag_field_set_exist_in_cache_build_bit)
+#define SET_EXIST_IN_CACHE_BUILD c_flags<e_tag_field_set_bit>(_tag_field_set_exist_in_cache_build_bit)
 
 }

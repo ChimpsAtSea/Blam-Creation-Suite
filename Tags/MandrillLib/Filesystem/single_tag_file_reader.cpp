@@ -167,12 +167,6 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 			const blofeld::s_tag_field* blofeld_field = nullptr;
 			if (reader_structure_entry.tag_struct_definition)
 			{
-				static unsigned long index = 0;
-				index++;
-				if (index == 279556)
-				{
-					debug_point;
-				}
 				for (unsigned long blofeld_field_index = next_blofeld_field_index; ; blofeld_field_index++)
 				{
 					const blofeld::s_tag_field& candidate_blofeld_field = reader_structure_entry.tag_struct_definition->fields[blofeld_field_index];
@@ -183,7 +177,7 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 					}
 
 					unsigned long field_skip_count;
-					if (blofeld::execute_tag_field_versioning(candidate_blofeld_field, engine_platform_build, blofeld_tag_group->group_tag, field_skip_count))
+					if (blofeld::execute_tag_field_versioning(candidate_blofeld_field, engine_platform_build, blofeld_tag_group->group_tag, tag_field_version_max, field_skip_count))
 					{
 						blofeld_field_index += field_skip_count;
 						continue;

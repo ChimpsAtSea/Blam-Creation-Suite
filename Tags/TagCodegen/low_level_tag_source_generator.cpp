@@ -150,7 +150,7 @@ void c_low_level_tag_source_generator::generate_header()
 
 		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
-			const s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG);
+			const s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 
 			std::unordered_map<std::string, int>* field_name_unique_counter_ptr = nullptr;
 			switch (tag_field.field_type)
@@ -317,7 +317,7 @@ void c_low_level_tag_source_generator::generate_header()
 
 								//stream << tag_group_name.data;
 
-								stream << get_namespace(true) << tag_group->group_tag_code_string;
+								stream << get_namespace(true) << tag_group->group_tag_macro_symbol;
 							}
 							stream << "> " << field_formatter.code_name.c_str() << ";";
 						}
@@ -445,7 +445,7 @@ void c_low_level_tag_source_generator::generate_ida_header()
 		increment_indent();
 		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
-			const s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG);
+			const s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 
 			c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
 				tag_field.name,
@@ -647,7 +647,7 @@ void c_low_level_tag_source_generator::generate_source()
 		std::unordered_map<std::string, int> field_name_unique_counter;
 		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
-			const s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG);
+			const s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 			unsigned long field_index = tag_field_iterator - struct_definition->fields;
 
 			c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(

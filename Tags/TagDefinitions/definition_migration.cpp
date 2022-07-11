@@ -123,13 +123,13 @@ bool definition_migration_compare_struct(
 		for(;; old_field_iter++, new_field_iter++)
 		{
 			unsigned long old_field_skip_count;
-			while (execute_tag_field_versioning(*old_field_iter, engine_platform_build, blofeld::ANY_TAG, old_field_skip_count))
+			while (execute_tag_field_versioning(*old_field_iter, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, old_field_skip_count))
 			{
 				old_field_iter += old_field_skip_count;
 				old_field_iter++; // skip the version field
 			}
 			unsigned long new_field_skip_count;
-			while (execute_tag_field_versioning(*new_field_iter, engine_platform_build, blofeld::ANY_TAG, new_field_skip_count))
+			while (execute_tag_field_versioning(*new_field_iter, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, new_field_skip_count))
 			{
 				new_field_iter += new_field_skip_count;
 				new_field_iter++; // skip the version field

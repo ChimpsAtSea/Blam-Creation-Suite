@@ -70,39 +70,7 @@ c_halo3_tools_pc64_tag_reference_definition& c_halo3_tools_pc64_tag_definition_m
 
 c_halo3_tools_pc64_tag_struct_definition& c_halo3_tools_pc64_tag_definition_manager::eval_struct(ptr64 definition_address)
 {
-	ASSERT(definition_address != 0);
-
-	auto tag_type_definition_iterator = tag_struct_definitions_lookup.find(definition_address);
-
-	if (tag_type_definition_iterator != tag_struct_definitions_lookup.end())
-	{
-		return *tag_type_definition_iterator->second;
-	}
-
-	s_halo3_tools_pc64_tag_struct_definition struct_definition = read_structure<s_halo3_tools_pc64_tag_struct_definition>(definition_address);
-	c_halo3_tools_pc64_tag_struct_definition* existing_definition = dynamic_cast<c_halo3_tools_pc64_tag_struct_definition*>(get_tag_struct_definition_by_persistent_id(struct_definition.type.persistent_identifier));
-
-	c_halo3_tools_pc64_tag_struct_definition* new_tag_type_definition = reinterpret_cast<c_halo3_tools_pc64_tag_struct_definition*>(tracked_malloc(sizeof(c_halo3_tools_pc64_tag_struct_definition)));
-	if (existing_definition == nullptr)
-	{
-		tag_struct_definitions_lookup[definition_address] = new_tag_type_definition;
-		tag_struct_definitions.push_back(new_tag_type_definition);
-	}
-	else
-	{
-		tag_struct_definitions_lookup[definition_address] = existing_definition; // make sure that anything referencing the new structure points to the existing
-	}
-	
-	new_tag_type_definition = new(new_tag_type_definition) c_halo3_tools_pc64_tag_struct_definition(*this, definition_address);
-
-	if (existing_definition != nullptr)
-	{
-		existing_definition->handle_conflict(*new_tag_type_definition);
-		delete new_tag_type_definition; // no longer needed
-		new_tag_type_definition = existing_definition;
-	}
-
-	return *new_tag_type_definition;
+	return eval_definition<c_halo3_tools_pc64_tag_definition_manager>(definition_address, tag_struct_definitions, tag_struct_definitions_lookup);
 }
 
 c_halo3_tools_pc64_tag_array_definition& c_halo3_tools_pc64_tag_definition_manager::eval_array(ptr64 definition_address)

@@ -1086,12 +1086,6 @@ namespace pc64
 	extern s_string_list_definition unnamed_enum$33;
 	extern s_string_list_definition unnamed_enum$34;
 
-	extern s_tag_struct_definition array;
-
-	extern s_tag_struct_definition array$2;
-
-	extern s_tag_struct_definition array$3;
-
 	extern s_tag_struct_definition biped_block_struct_definition;
 	extern s_string_list_definition unnamed_enum$35;
 	extern s_tag_reference_definition gbxmodel_group_reference;
@@ -1510,8 +1504,6 @@ namespace pc64
 
 	extern s_tag_struct_definition model_triangle_block_struct_definition;
 
-	extern s_tag_struct_definition array$4;
-
 	extern s_tag_struct_definition model_shader_reference_block_struct_definition;
 
 	extern s_tag_struct_definition model_block_struct_definition;
@@ -1601,14 +1593,10 @@ namespace pc64
 
 	extern s_tag_struct_definition structure_bsp_surface_block_struct_definition;
 
-	extern s_tag_struct_definition array$5;
-
 	extern s_tag_struct_definition structure_bsp_lightmap_block_struct_definition;
 
 	extern s_tag_struct_definition structure_bsp_material_block_struct_definition;
 	extern s_string_list_definition unnamed_enum$180;
-
-	extern s_tag_struct_definition array$6;
 
 	extern s_tag_struct_definition structure_bsp_lens_flare_block_struct_definition;
 	extern s_tag_reference_definition lens_flare_group_reference$2;
@@ -1760,6 +1748,20 @@ namespace pc64
 	extern s_tag_struct_definition scenario_weapon_palette_block_struct_definition;
 	extern s_tag_reference_definition weapon_group_reference$3;
 
+	extern s_tag_struct_definition array;
+
+	extern s_tag_struct_definition array$2;
+
+	extern s_tag_struct_definition array$3;
+
+	extern s_tag_struct_definition array$4;
+
+	extern s_tag_struct_definition array$5;
+
+	extern s_tag_struct_definition array$6;
+
+	extern s_tag_struct_definition array$7;
+
 	extern s_tag_struct_definition device_group_block_struct_definition;
 	extern s_string_list_definition unnamed_enum$200;
 
@@ -1793,8 +1795,6 @@ namespace pc64
 	extern s_string_list_definition unnamed_enum$204;
 
 	extern s_tag_struct_definition scenario_trigger_volume_block_struct_definition;
-
-	extern s_tag_struct_definition array$7;
 
 	extern s_tag_struct_definition recorded_animation_block_struct_definition;
 

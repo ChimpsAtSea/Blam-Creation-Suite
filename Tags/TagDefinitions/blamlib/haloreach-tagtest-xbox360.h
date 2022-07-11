@@ -726,6 +726,10 @@ namespace xbox360
 
 	extern s_tag_block_definition render_method_animated_parameter_block_block;
 
+	extern s_tag_block_definition byte_block_block;
+
+	extern s_tag_block_definition real_block_block;
+
 	extern s_tag_block_definition render_method_postprocess_block_block;
 
 	extern s_tag_block_definition render_method_postprocess_texture_block_block;
@@ -1271,6 +1275,8 @@ namespace xbox360
 	extern s_tag_block_definition biped_movement_gate_block_block;
 
 	extern s_tag_block_definition contact_point_block_block;
+
+	extern s_tag_block_definition contact_point_block_v1_block;
 
 	extern s_tag_block_definition bitmap_block_group_block;
 
@@ -2660,6 +2666,10 @@ namespace xbox360
 
 	extern s_tag_block_definition prismatic_constraints_block_block;
 
+	extern s_tag_block_definition havok2_polyhedra_block_block;
+
+	extern s_tag_block_definition havok2_lists_block_block;
+
 	extern s_tag_block_definition pixel_shader_block_group_block;
 
 	extern s_tag_block_definition pixel_entry_point_block_block;
@@ -3570,6 +3580,8 @@ namespace xbox360
 
 	extern s_tag_block_definition friction_point_definition_block_block;
 
+	extern s_tag_block_definition gear_block_v1_block;
+
 	extern s_tag_block_definition vision_mode_block_group_block;
 
 	extern s_tag_block_definition variant_globals_block_group_block;
@@ -3816,6 +3828,8 @@ namespace xbox360
 
 	extern s_tag_array_definition error_report_quad_point_array$2;
 
+	extern s_tag_array_definition scenario_trigger_volume_parameter_storage_array$2;
+
 	extern s_tag_array_definition gpu_property_sub_array$2;
 
 	extern s_tag_array_definition gpu_function_sub_array$2;
@@ -3846,6 +3860,10 @@ namespace xbox360
 
 	extern s_tag_array_definition multi_sphere_vector_storage$2;
 
+	extern s_tag_array_definition havok2_rotated_vertices_storage$2;
+
+	extern s_tag_array_definition havok2_list_child_shape_storage$2;
+
 	extern s_tag_array_definition resource_hash_definition$2;
 
 	extern s_tag_array_definition gpu_single_constant_register_array$2;
@@ -3863,808 +3881,6 @@ namespace xbox360
 	extern s_tag_array_definition multilingual_unicode_string_list_language_pack_offsets$2;
 
 	extern s_tag_array_definition game_engine_team_options_team_block$2;
-
-	extern s_tag_struct_definition shader_contrail_struct_definition;
-	extern s_tag_reference_definition render_method_definition_group_reference;
-	extern s_tag_reference_definition render_method_group_reference;
-	extern s_string_list_definition global_render_method_lock_option_flags_defintion;
-	extern s_string_list_definition global_render_method_flags_defintion;
-	extern s_string_list_definition global_sort_layer_enum_defintion;
-
-	extern s_tag_struct_definition render_method_struct_definition;
-
-	extern s_tag_struct_definition short_block;
-
-	extern s_tag_struct_definition render_method_parameter_block;
-	extern s_string_list_definition render_method_parameter_type_enum;
-	extern s_tag_reference_definition bitmap_group_reference;
-
-	extern s_tag_struct_definition render_method_animated_parameter_block;
-	extern s_string_list_definition render_method_animated_parameter_type_enum;
-
-	extern s_tag_struct_definition mapping_function;
-
-	extern s_tag_struct_definition render_method_postprocess_block;
-	extern s_tag_reference_definition render_method_template_group_reference;
-
-	extern s_tag_struct_definition render_method_postprocess_texture_block;
-	extern s_tag_reference_definition bitmap_group_reference$2;
-
-	extern s_tag_struct_definition g_null_block;
-
-	extern s_tag_struct_definition tag_block_index_struct;
-
-	extern s_tag_struct_definition real_vector4d_block;
-
-	extern s_tag_struct_definition int_block;
-
-	extern s_tag_struct_definition tag_block_index_block;
-
-	extern s_tag_struct_definition render_method_postprocess_pass_block;
-
-	extern s_tag_struct_definition render_method_routing_info_block;
-
-	extern s_tag_struct_definition runtime_queryable_properties_struct_definition;
-
-	extern s_tag_struct_definition render_method_locked_parameter_block;
-
-	extern s_tag_struct_definition shader_particle_struct_definition;
-
-	extern s_tag_struct_definition cache_file_sound_struct_definition;
-	extern s_string_list_definition sound_definition_flags;
-	extern s_string_list_definition sound_class_enum;
-
-	extern s_tag_struct_definition sound_resource_definition_struct;
-
-	extern s_tag_struct_definition scenario_scenery_resource_struct_definition;
-
-	extern s_tag_struct_definition scenario_object_names_block;
-
-	extern s_tag_struct_definition dont_use_me_scenario_environment_object_block;
-
-	extern s_tag_struct_definition scenario_structure_bsp_reference_block;
-	extern s_tag_reference_definition scenario_structure_bsp_group_reference;
-	extern s_tag_reference_definition scenario_structure_lighting_info_group_reference;
-	extern s_string_list_definition scenario_structure_size_enum;
-	extern s_string_list_definition scenario_structure_bsp_reference_flags_definition;
-	extern s_tag_reference_definition bitmap_group_reference$3;
-	extern s_tag_reference_definition wind_group_reference;
-
-	extern s_tag_struct_definition scenario_sky_reference_block;
-	extern s_tag_reference_definition scenery_group_reference;
-
-	extern s_tag_struct_definition scenario_lightmap_setting_struct;
-	extern s_string_list_definition scenario_lightmap_per_bsp_flags;
-
-	extern s_tag_struct_definition scenario_scenery_palette_block;
-	extern s_tag_reference_definition scenery_group_reference$2;
-
-	extern s_tag_struct_definition scenario_scenery_block;
-
-	extern s_tag_struct_definition scenario_object_datum_struct;
-	extern s_string_list_definition object_location_placement_flags;
-	extern s_string_list_definition scenario_object_bsp_placement_policy_definition;
-	extern s_string_list_definition object_transform_flags;
-
-	extern s_tag_struct_definition scenario_object_node_orientations_block;
-
-	extern s_tag_struct_definition scenario_object_node_orientations_bit_vector_block;
-
-	extern s_tag_struct_definition scenario_object_node_orientations_orientations_block;
-
-	extern s_tag_struct_definition scenario_object_id_struct;
-	extern s_string_list_definition object_type_enum_definition;
-	extern s_string_list_definition object_source_enum_definition;
-
-	extern s_tag_struct_definition g_scenario_editor_folder_block;
-
-	extern s_tag_struct_definition scenario_object_parent_struct;
-
-	extern s_tag_struct_definition scenario_object_permutation_struct;
-	extern s_string_list_definition scenario_object_active_change_color_flags;
-
-	extern s_tag_struct_definition scenario_scenery_datum_struct_v4;
-	extern s_string_list_definition pathfinding_policy_enum;
-	extern s_string_list_definition scenery_lightmap_policy_enum;
-
-	extern s_tag_struct_definition pathfinding_object_index_list_block;
-
-	extern s_tag_struct_definition squads_block_struct;
-	extern s_string_list_definition squad_flags;
-	extern s_string_list_definition ai_team_enum;
-	extern s_string_list_definition wave_placement_filter_enum;
-
-	extern s_tag_struct_definition squad_groups_block;
-
-	extern s_tag_struct_definition objectives_block;
-	extern s_string_list_definition objective_flags;
-
-	extern s_tag_struct_definition opposing_objective_block;
-
-	extern s_tag_struct_definition zone_block;
-	extern s_string_list_definition zone_flags;
-
-	extern s_tag_struct_definition firing_positions_block;
-	extern s_string_list_definition g_firing_position_flags;
-	extern s_string_list_definition g_firing_position_posture_flags;
-
-	extern s_tag_struct_definition ai_reference_frame_block;
-	extern s_string_list_definition ai_reference_frame_flags;
-
-	extern s_tag_struct_definition areas_block_struct;
-	extern s_string_list_definition area_flags;
-	extern s_string_list_definition generate_preset_enum;
-	extern s_string_list_definition generate_flags;
-
-	extern s_tag_struct_definition area_cluster_occupancy_bitvector_array_struct_definition;
-
-	extern s_tag_struct_definition flight_reference_block;
-
-	extern s_tag_struct_definition area_sector_point_block;
-
-	extern s_tag_struct_definition tasks_block_struct;
-	extern s_string_list_definition task_flags_definition;
-	extern s_string_list_definition inhibit_behavior_flags;
-	extern s_string_list_definition global_campaign_difficulty_enum;
-	extern s_string_list_definition task_movement_enum;
-	extern s_string_list_definition task_follow_enum;
-	extern s_string_list_definition task_follow_player_flags;
-	extern s_string_list_definition task_dialogue_enum;
-	extern s_string_list_definition task_runtime_flags;
-	extern s_string_list_definition filter_flags;
-	extern s_string_list_definition filter_enum;
-	extern s_string_list_definition task_attitude_enum;
-
-	extern s_tag_struct_definition script_fragment_block;
-	extern s_string_list_definition fragment_state_enum;
-
-	extern s_tag_struct_definition hs_scripts_block;
-	extern s_string_list_definition hs_script_types_enum;
-	extern s_string_list_definition hs_types_enum;
-
-	extern s_tag_struct_definition hs_script_parameters_block;
-
-	extern s_tag_struct_definition zone_set_block_struct;
-	extern s_string_list_definition zone_set_type_enum;
-	extern s_string_list_definition zone_set_flags;
-
-	extern s_tag_struct_definition task_direction_block_v2_struct;
-
-	extern s_tag_struct_definition task_direction_point_block;
-
-	extern s_tag_struct_definition spawn_formation_block_struct;
-	extern s_string_list_definition actor_movement_modes;
-	extern s_string_list_definition patrol_mode_enum;
-
-	extern s_tag_struct_definition ai_spawn_conditions_struct;
-
-	extern s_tag_struct_definition patrol_point_block;
-	extern s_string_list_definition patrol_point_flags;
-	extern s_string_list_definition g_activity_enum;
-
-	extern s_tag_struct_definition spawn_points_block_struct;
-	extern s_string_list_definition starting_location_flags;
-	extern s_string_list_definition ai_placement_seat_preference_enum;
-	extern s_string_list_definition global_ai_grenade_type_enum;
-
-	extern s_tag_struct_definition character_palette_block;
-	extern s_tag_reference_definition character_group_reference;
-
-	extern s_tag_struct_definition scenario_weapon_palette_block;
-	extern s_tag_reference_definition weapon_group_reference;
-
-	extern s_tag_struct_definition scenario_equipment_palette_block;
-	extern s_tag_reference_definition equipment_group_reference;
-
-	extern s_tag_struct_definition scenario_vehicle_palette_block;
-	extern s_tag_reference_definition vehicle_group_reference;
-
-	extern s_tag_struct_definition scenario_vehicle_block;
-
-	extern s_tag_struct_definition scenario_unit_struct;
-	extern s_string_list_definition scenario_unit_datum_flags;
-
-	extern s_tag_struct_definition scenario_multiplayer_object_struct;
-	extern s_string_list_definition game_engine_symmetry_placement_flags;
-	extern s_string_list_definition global_game_engine_type_flags;
-	extern s_string_list_definition global_multiplayer_team_designator_enum_definition;
-	extern s_string_list_definition multiplayer_object_placement_spawn_flags;
-	extern s_string_list_definition multiplayer_goal_area_boundary_shape_enum;
-	extern s_string_list_definition multiplayer_object_remapping_policy;
-	extern s_string_list_definition multiplayer_teleporter_channel;
-	extern s_string_list_definition teleporter_passability_flags;
-
-	extern s_tag_struct_definition scenario_giant_block;
-
-	extern s_tag_struct_definition scenario_giant_palette_block;
-	extern s_tag_reference_definition giant_group_reference;
-
-	extern s_tag_struct_definition scenario_giant_datum_struct;
-
-	extern s_tag_struct_definition scenario_biped_block;
-
-	extern s_tag_struct_definition scenario_biped_palette_block;
-	extern s_tag_reference_definition biped_group_reference;
-
-	extern s_tag_struct_definition squad_definition_internal_struct;
-
-	extern s_tag_struct_definition cell_block_struct;
-	extern s_string_list_definition major_upgrade_enum;
-
-	extern s_tag_struct_definition character_palette_choice_block_struct;
-
-	extern s_tag_struct_definition weapon_palette_choice_block_struct;
-
-	extern s_tag_struct_definition equipment_palette_choice_block_struct;
-
-	extern s_tag_struct_definition scenario_crate_palette_block;
-	extern s_tag_reference_definition crate_group_reference;
-
-	extern s_tag_struct_definition scenario_crate_block;
-
-	extern s_tag_struct_definition scenario_crate_datum_struct;
-
-	extern s_tag_struct_definition scenario_weapons_resource_struct_definition;
-
-	extern s_tag_struct_definition scenario_weapon_block;
-
-	extern s_tag_struct_definition scenario_weapon_datum_struct;
-	extern s_string_list_definition scenario_weapon_datum_flags;
-
-	extern s_tag_struct_definition scenario_vehicles_resource_struct_definition;
-
-	extern s_tag_struct_definition scenario_effect_scenery_resource_struct_definition;
-
-	extern s_tag_struct_definition scenario_effect_scenery_palette_block;
-	extern s_tag_reference_definition effect_scenery_group_reference;
-
-	extern s_tag_struct_definition scenario_effect_scenery_block;
-
-	extern s_tag_struct_definition scenario_effect_scenery_datum_struct;
-
-	extern s_tag_struct_definition scenario_cheap_particle_system_palette_block;
-	extern s_tag_reference_definition cheap_particle_emitter_group_reference;
-
-	extern s_tag_struct_definition scenario_cheap_particle_systems_block;
-
-	extern s_tag_struct_definition scenario_lights_resource_struct_definition;
-
-	extern s_tag_struct_definition scenario_light_palette_block;
-	extern s_tag_reference_definition light_group_reference;
-
-	extern s_tag_struct_definition scenario_light_block;
-
-	extern s_tag_struct_definition scenario_device_struct;
-	extern s_string_list_definition scenario_device_flags;
-
-	extern s_tag_struct_definition device_group_block;
-	extern s_string_list_definition device_group_flags;
-
-	extern s_tag_struct_definition scenario_light_struct;
-	extern s_string_list_definition light_type_enum_definition;
-	extern s_string_list_definition scenario_light_flags_definition;
-	extern s_string_list_definition scenario_light_lightmap_type_enum_definition;
-	extern s_string_list_definition scenario_light_lightmap_flags_definition;
-
-	extern s_tag_struct_definition scenario_bipeds_resource_struct_definition;
-
-	extern s_tag_struct_definition scenario_equipment_resource_struct_definition;
-
-	extern s_tag_struct_definition scenario_equipment_block;
-
-	extern s_tag_struct_definition scenario_equipment_datum_struct;
-	extern s_string_list_definition scenario_equipment_flags_definition;
-
-	extern s_tag_struct_definition scenario_creature_resource_struct_definition;
-
-	extern s_tag_struct_definition scenario_creature_palette_block;
-	extern s_tag_reference_definition creature_group_reference;
-
-	extern s_tag_struct_definition scenario_creature_block;
-
-	extern s_tag_struct_definition scenario_sound_scenery_resource_struct_definition;
-
-	extern s_tag_struct_definition scenario_sound_scenery_palette_block;
-	extern s_tag_reference_definition sound_scenery_group_reference;
-
-	extern s_tag_struct_definition scenario_sound_scenery_block;
-
-	extern s_tag_struct_definition sound_scenery_datum_struct;
-	extern s_string_list_definition sound_volume_type_enumeration;
-
-	extern s_tag_struct_definition sound_distance_parameters_struct;
-
-	extern s_tag_struct_definition scenario_cluster_data_block;
-
-	extern s_tag_struct_definition scenario_cluster_points_block;
-
-	extern s_tag_struct_definition scenario_acoustics_palette_block_definition_struct;
-
-	extern s_tag_struct_definition scenario_acoustics_environment_definition;
-	extern s_tag_reference_definition sound_environment_group_reference;
-	extern s_string_list_definition sound_class_acoustics_string_definition;
-
-	extern s_tag_struct_definition scenario_acoustics_ambience_definition;
-	extern s_tag_reference_definition sound_looping_group_reference;
-	extern s_tag_reference_definition sound_combiner_group_sound_group_reference;
-	extern s_string_list_definition background_sound_scale_flags_definition;
-
-	extern s_tag_struct_definition scenario_cluster_acoustics_block_struct;
-
-	extern s_tag_struct_definition scenario_cluster_atmosphere_properties_block;
-
-	extern s_tag_struct_definition scenario_atmosphere_palette_block;
-	extern s_tag_reference_definition atmosphere_fog_group_reference;
-
-	extern s_tag_struct_definition scenario_cluster_camera_fx_properties_block;
-
-	extern s_tag_struct_definition scenario_camera_fx_palette_block;
-	extern s_tag_reference_definition camera_fx_settings_group_reference;
-	extern s_string_list_definition camera_fx_palette_flags;
-
-	extern s_tag_struct_definition scenario_cluster_weather_properties_block;
-
-	extern s_tag_struct_definition scenario_weather_palette_block;
-	extern s_tag_reference_definition rain_definition_group_reference;
-
-	extern s_tag_struct_definition scenario_acoustic_sector_block_struct;
-
-	extern s_tag_struct_definition acoustic_sector_point_block;
-
-	extern s_tag_struct_definition scenario_acoustic_transition_block_struct;
-
-	extern s_tag_struct_definition scenario_acoustic_location_definition;
-
-	extern s_tag_struct_definition scenario_acoustic_cluster_reference_definition;
-
-	extern s_tag_struct_definition scenario_comments_resource_struct_definition;
-
-	extern s_tag_struct_definition editor_comment_block;
-	extern s_string_list_definition editor_comment_type_enum_definition;
-
-	extern s_tag_struct_definition sound_effect_template_struct_definition;
-
-	extern s_tag_struct_definition sound_effect_templates_block;
-	extern s_string_list_definition sound_effect_template_flags_definition;
-
-	extern s_tag_struct_definition sound_effect_template_parameter_block;
-	extern s_string_list_definition sound_effect_template_type_enum_definition;
-	extern s_string_list_definition sound_effect_template_parameter_flags_definition;
-
-	extern s_tag_struct_definition sound_effect_template_additional_sound_input_block;
-
-	extern s_tag_struct_definition stereo_system_struct_definition;
-
-	extern s_tag_struct_definition lightmapper_globals_struct_definition;
-
-	extern s_tag_struct_definition structure_lighting_generic_light_definition_block;
-	extern s_string_list_definition lightmap_quality_flags;
-
-	extern s_tag_struct_definition scenario_lightmap_bsp_data_block_struct;
-	extern s_string_list_definition scenario_lightmap_bsp_flags;
-	extern s_tag_reference_definition bitmap_group_reference$4;
-
-	extern s_tag_struct_definition scenario_lightmap_pervertex_data;
-
-	extern s_tag_struct_definition full_lightprobe;
-
-	extern s_tag_struct_definition lightprobe_terms_struct_definition;
-
-	extern s_tag_struct_definition converted_lightprobe;
-
-	extern s_tag_struct_definition single_vmf_terms_struct_definition;
-
-	extern s_tag_struct_definition scenario_lightmap_pervertex_data_run_time;
-
-	extern s_tag_struct_definition scenario_lightmap_cluster_data;
-
-	extern s_tag_struct_definition scenario_lightmap_instance_data;
-
-	extern s_tag_struct_definition scenario_lightmap_lightprobe_value;
-
-	extern s_tag_struct_definition dual_vmf_terms_struct_definition;
-
-	extern s_tag_struct_definition global_render_geometry_struct;
-	extern s_string_list_definition render_geometry_flags;
-
-	extern s_tag_struct_definition global_mesh_block;
-	extern s_string_list_definition mesh_flags;
-	extern s_string_list_definition mesh_vertex_type_definition;
-	extern s_string_list_definition mesh_transfer_vertex_type_definition;
-	extern s_string_list_definition mesh_lighting_policy_type_definition;
-	extern s_string_list_definition mesh_index_buffer_type_definition;
-
-	extern s_tag_struct_definition part_block;
-	extern s_string_list_definition specialized_render_definition;
-	extern s_string_list_definition part_flags;
-	extern s_string_list_definition tessellation_mode_definition;
-
-	extern s_tag_struct_definition global_geometry_material_block;
-	extern s_tag_reference_definition render_method_group_reference$2;
-	extern s_string_list_definition global_geometry_material_lightmap_flags;
-
-	extern s_tag_struct_definition sorting_position_block;
-
-	extern s_tag_struct_definition node_indices_array_struct_definition;
-
-	extern s_tag_struct_definition node_weights_implicit_array_struct_definition;
-
-	extern s_tag_struct_definition subpart_block;
-
-	extern s_tag_struct_definition vertex_buffer_indices_word_array_struct_definition;
-
-	extern s_tag_struct_definition global_instance_bucket_block;
-
-	extern s_tag_struct_definition instance_index_word_block;
-
-	extern s_tag_struct_definition indices_word_block;
-
-	extern s_tag_struct_definition compression_info_block;
-	extern s_string_list_definition compression_flags;
-
-	extern s_tag_struct_definition user_data_block;
-
-	extern s_tag_struct_definition global_render_geometry_user_data_header_struct;
-	extern s_string_list_definition render_geometry_user_data_type_definition;
-
-	extern s_tag_struct_definition per_mesh_raw_data_block;
-	extern s_string_list_definition per_mesh_raw_data_flags;
-
-	extern s_tag_struct_definition raw_vertex_block;
-
-	extern s_tag_struct_definition node_weights_complete_array_struct_definition;
-
-	extern s_tag_struct_definition indices_dword_block;
-
-	extern s_tag_struct_definition raw_water_block;
-
-	extern s_tag_struct_definition raw_water_append_block;
-
-	extern s_tag_struct_definition raw_imposter_brdf_block;
-
-	extern s_tag_struct_definition raw_instance_imposter_block;
-
-	extern s_tag_struct_definition per_mesh_node_map_block;
-
-	extern s_tag_struct_definition node_map_byte_block;
-
-	extern s_tag_struct_definition per_mesh_subpart_visibility_block;
-
-	extern s_tag_struct_definition per_mesh_prt_data_block;
-
-	extern s_tag_struct_definition per_instance_prt_data_block;
-
-	extern s_tag_struct_definition per_instance_lightmap_texcoords_block;
-
-	extern s_tag_struct_definition per_instance_lightmap_texcoords_vertex_buffer_block;
-
-	extern s_tag_struct_definition water_bounding_box_block;
-
-	extern s_tag_struct_definition render_geometry_api_resource_definition_struct;
-
-	extern s_tag_struct_definition vertex_buffers_block;
-
-	extern s_tag_struct_definition index_buffers_block;
-
-	extern s_tag_struct_definition render_vertex_buffer_block;
-
-	extern s_tag_struct_definition render_vertex_buffer_descriptor_struct;
-
-	extern s_tag_struct_definition render_index_buffer_block;
-
-	extern s_tag_struct_definition render_index_buffer_descriptor_struct;
-
-	extern s_tag_struct_definition triangle_mapping_per_mesh_block;
-
-	extern s_tag_struct_definition triangle_mapping_block;
-
-	extern s_tag_struct_definition scenario_lightmap_airprobe_value;
-
-	extern s_tag_struct_definition scenario_lightmap_scenery_probe_value;
-
-	extern s_tag_struct_definition scenario_lightmap_device_machine_probe_data_value;
-
-	extern s_tag_struct_definition scenario_lightmap_device_machine_probe_value;
-
-	extern s_tag_struct_definition global_error_report_categories_block;
-	extern s_string_list_definition error_report_types;
-	extern s_string_list_definition error_report_flags;
-
-	extern s_tag_struct_definition error_reports_block;
-	extern s_string_list_definition error_report_source;
-
-	extern s_tag_struct_definition error_report_vertices_block;
-
-	extern s_tag_struct_definition error_report_point_definition;
-
-	extern s_tag_struct_definition error_point_node_index_array_struct_definition;
-
-	extern s_tag_struct_definition error_point_node_weight_array_struct_definition;
-
-	extern s_tag_struct_definition error_report_vectors_block;
-
-	extern s_tag_struct_definition error_report_lines_block;
-
-	extern s_tag_struct_definition error_report_line_point_array_struct_definition;
-
-	extern s_tag_struct_definition error_report_triangles_block;
-
-	extern s_tag_struct_definition error_report_triangle_point_array_struct_definition;
-
-	extern s_tag_struct_definition error_report_quads_block;
-
-	extern s_tag_struct_definition error_report_quad_point_array_struct_definition;
-
-	extern s_tag_struct_definition error_report_comments_block;
-
-	extern s_tag_struct_definition global_self_track_block;
-
-	extern s_tag_struct_definition lightning_system_struct_definition;
-
-	extern s_tag_struct_definition bolt_definition_block;
-	extern s_string_list_definition bolt_flags;
-
-	extern s_tag_struct_definition achievements_struct_definition;
-
-	extern s_tag_struct_definition single_achievement_definition_block;
-	extern s_string_list_definition global_achievement_enum;
-	extern s_string_list_definition global_campaign_difficulty_flags;
-
-	extern s_tag_struct_definition single_achievement_restricted_level_block;
-
-	extern s_tag_struct_definition ai_dialogue_globals_struct_definition;
-
-	extern s_tag_struct_definition default_stimulus_suppressor_block_struct;
-
-	extern s_tag_struct_definition vocalization_definitions_block;
-	extern s_string_list_definition priority_enum;
-	extern s_string_list_definition vocalization_flags_definition;
-	extern s_string_list_definition glance_type_enum;
-	extern s_string_list_definition perception_type_enum;
-	extern s_string_list_definition combat_status_enum;
-	extern s_string_list_definition dialogue_animation_enum;
-	extern s_string_list_definition dialogue_emotion_enum;
-
-	extern s_tag_struct_definition response_block;
-	extern s_string_list_definition response_flags;
-	extern s_string_list_definition response_type_enum;
-
-	extern s_tag_struct_definition vocalization_patterns_block;
-	extern s_string_list_definition dialogue_names_enum;
-	extern s_string_list_definition speaker_type_enum;
-	extern s_string_list_definition hostility_enum;
-	extern s_string_list_definition pattern_flags;
-	extern s_string_list_definition actor_type_enum;
-	extern s_string_list_definition dialogue_object_types_enum;
-	extern s_string_list_definition speaker_behavior_enum;
-	extern s_string_list_definition danger_enum;
-	extern s_string_list_definition spatial_relation_enum;
-	extern s_string_list_definition dialogue_condition_flags;
-	extern s_string_list_definition damage_enum;
-	extern s_string_list_definition game_type_enum;
-
-	extern s_tag_struct_definition dialogue_data_block;
-
-	extern s_tag_struct_definition involuntary_data_block;
-
-	extern s_tag_struct_definition predicted_data_block;
-
-	extern s_tag_struct_definition scenario_ai_resource_struct_definition;
-
-	extern s_tag_struct_definition style_palette_block;
-	extern s_tag_reference_definition style_group_reference;
-
-	extern s_tag_struct_definition ai_recording_reference_block;
-
-	extern s_tag_struct_definition cs_script_data_block;
-
-	extern s_tag_struct_definition cs_point_set_block;
-	extern s_string_list_definition point_set_flags;
-
-	extern s_tag_struct_definition cs_point_block_struct;
-
-	extern s_tag_struct_definition orders_block;
-	extern s_string_list_definition order_flags;
-	extern s_string_list_definition force_combat_status_enum;
-
-	extern s_tag_struct_definition secondary_set_trigger_block;
-	extern s_string_list_definition combination_rules_enum;
-	extern s_string_list_definition order_ending_dialogue_enum;
-
-	extern s_tag_struct_definition trigger_references;
-	extern s_string_list_definition trigger_ref_flags;
-
-	extern s_tag_struct_definition triggers_block;
-	extern s_string_list_definition trigger_flags;
-
-	extern s_tag_struct_definition order_completion_condition;
-	extern s_string_list_definition condition_type_enum;
-	extern s_string_list_definition completion_condition_flags;
-
-	extern s_tag_struct_definition scenario_trigger_volume_struct;
-	extern s_string_list_definition trigger_volume_type_enum;
-
-	extern s_tag_struct_definition trigger_volume_point_block;
-
-	extern s_tag_struct_definition trigger_volume_runtime_triangles_block;
-
-	extern s_tag_struct_definition scenario_kill_trigger_volumes_block;
-	extern s_string_list_definition kill_volume_flags;
-
-	extern s_tag_struct_definition special_movement_block;
-	extern s_string_list_definition special_movement_flags;
-
-	extern s_tag_struct_definition order_ending_block;
-
-	extern s_tag_struct_definition ai_scene_block;
-	extern s_string_list_definition scene_flags;
-
-	extern s_tag_struct_definition ai_scene_trigger_block;
-
-	extern s_tag_struct_definition ai_scene_role_block;
-	extern s_string_list_definition role_group_enum;
-
-	extern s_tag_struct_definition ai_scene_role_variants_block;
-
-	extern s_tag_struct_definition flock_palette_block;
-	extern s_tag_reference_definition flock_group_reference;
-
-	extern s_tag_struct_definition flock_instance_block;
-	extern s_string_list_definition flock_flags;
-
-	extern s_tag_struct_definition flock_source_block;
-	extern s_string_list_definition flock_source_flags;
-
-	extern s_tag_struct_definition flock_destination_block;
-	extern s_string_list_definition destination_type_enum;
-
-	extern s_tag_struct_definition big_battle_creature_palette_block;
-	extern s_tag_reference_definition big_battle_creature_group_reference;
-
-	extern s_tag_struct_definition ai_globals_struct_definition;
-
-	extern s_tag_struct_definition ai_globals_data_block_struct;
-	extern s_tag_reference_definition ai_dialogue_globals_group_reference;
-
-	extern s_tag_struct_definition ai_globals_gravemind_block;
-
-	extern s_tag_struct_definition ai_globals_formation_block;
-	extern s_tag_reference_definition formation_group_reference;
-
-	extern s_tag_struct_definition ai_globals_squad_template_folder_block_struct;
-
-	extern s_tag_struct_definition ai_globals_squad_template_sub_folder_block_struct;
-
-	extern s_tag_struct_definition ai_globals_squad_template_block;
-	extern s_tag_reference_definition squad_template_group_reference;
-
-	extern s_tag_struct_definition ai_globals_performance_template_folder_block_struct;
-
-	extern s_tag_struct_definition ai_globals_performance_template_sub_folder_block_struct;
-
-	extern s_tag_struct_definition ai_globals_performance_template_block;
-	extern s_tag_reference_definition performance_template_group_reference;
-
-	extern s_tag_struct_definition ai_globals_custom_stimuli_block;
-
-	extern s_tag_struct_definition ai_cue_template_block_struct;
-
-	extern s_tag_struct_definition firing_point_payload_block_struct;
-
-	extern s_tag_struct_definition stimulus_payload_block_struct;
-
-	extern s_tag_struct_definition combat_cue_payload_block_struct;
-	extern s_string_list_definition combat_cue_preference_enum;
-
-	extern s_tag_struct_definition ai_trait_vision_block_struct;
-
-	extern s_tag_struct_definition ai_trait_sound_block_struct;
-
-	extern s_tag_struct_definition ai_trait_luck_block_struct;
-
-	extern s_tag_struct_definition ai_trait_grenade_block_struct;
-
-	extern s_tag_struct_definition airstrike_struct_definition;
-
-	extern s_tag_struct_definition airstrike_battery_block;
-	extern s_tag_reference_definition effect_group_reference;
-	extern s_tag_reference_definition weapon_group_reference$2;
-
-	extern s_tag_struct_definition airstrike_fire_location_block;
-
-	extern s_tag_struct_definition antenna_struct_definition;
-	extern s_tag_reference_definition bitmap_group_reference$5;
-	extern s_tag_reference_definition point_physics_group_reference;
-
-	extern s_tag_struct_definition antenna_vertex_block;
-
-	extern s_tag_struct_definition atmosphere_globals_struct_definition;
-
-	extern s_tag_struct_definition underwater_setting_block;
-
-	extern s_tag_struct_definition avatar_awards_struct_definition;
-
-	extern s_tag_struct_definition single_avatar_award_definition_block;
-	extern s_string_list_definition global_avatar_award_enum;
-
-	extern s_tag_struct_definition big_battle_creature_block_struct;
-	extern s_string_list_definition creature_definition_flags;
-	extern s_string_list_definition unit_default_teams;
-	extern s_string_list_definition global_chud_blip_type_definition;
-	extern s_tag_reference_definition damage_effect_group_reference;
-	extern s_string_list_definition creature_big_battle_definition_flags;
-	extern s_tag_reference_definition cheap_particle_emitter_group_reference$2;
-	extern s_tag_reference_definition imposter_model_group_reference;
-
-	extern s_tag_struct_definition character_physics_struct;
-	extern s_string_list_definition character_physics_flags;
-
-	extern s_tag_struct_definition spheres_block_struct;
-
-	extern s_tag_struct_definition havok_primitive_struct;
-	extern s_string_list_definition physics_material_flags;
-
-	extern s_tag_struct_definition materials_block;
-	extern s_string_list_definition physics_material_proxy_collision_groups;
-
-	extern s_tag_struct_definition phantom_types_block;
-	extern s_string_list_definition phantom_flags;
-	extern s_string_list_definition rigid_body_size_enum;
-
-	extern s_tag_struct_definition phantoms_block;
-
-	extern s_tag_struct_definition havok_shape_struct;
-
-	extern s_tag_struct_definition havok_shape_reference_struct;
-	extern s_string_list_definition shape_enum;
-
-	extern s_tag_struct_definition havok_convex_shape_struct;
-
-	extern s_tag_struct_definition havok_convex_translate_shape_struct;
-
-	extern s_tag_struct_definition pills_block;
-
-	extern s_tag_struct_definition character_physics_ground_struct;
-
-	extern s_tag_struct_definition character_physics_flying_struct;
-	extern s_string_list_definition flying_physics_flags;
-
-	extern s_tag_struct_definition campaign_metagame_bucket_block;
-	extern s_string_list_definition campaign_metagame_bucket_flags;
-	extern s_string_list_definition campaign_metagame_bucket_type_enum;
-	extern s_string_list_definition campaign_metagame_bucket_class_enum;
-
-	extern s_tag_struct_definition creature_scalar_timing_block;
-
-	extern s_tag_struct_definition scalar_function_named_struct;
-
-	extern s_tag_struct_definition death_program_selector_struct_definition;
-	extern s_tag_reference_definition death_program_selector_group_reference;
-
-	extern s_tag_struct_definition death_program_special_block;
-	extern s_string_list_definition object_damage_aftermath_special_damage_type_enum;
-
-	extern s_tag_struct_definition death_program_damage_reporting_block;
-	extern s_string_list_definition global_damage_reporting_enum_definition;
-
-	extern s_tag_struct_definition death_program_velocity_gate_block;
-	extern s_string_list_definition death_program_result_enum;
-
-	extern s_tag_struct_definition beam_system_struct_definition;
-
-	extern s_tag_struct_definition beam_definition_block;
-	extern s_string_list_definition beam_appearance_flags;
-	extern s_string_list_definition beam_profile_shape_enum;
-
-	extern s_tag_struct_definition shader_beam_struct_definition;
-
-	extern s_tag_struct_definition beam_property_real;
-	extern s_string_list_definition beam_state_input_enum;
-	extern s_string_list_definition output_mod_enum;
-
-	extern s_tag_struct_definition beam_property_real_point2d;
-
-	extern s_tag_struct_definition beam_property_real_rgb_color;
 
 	extern s_tag_struct_definition gpu_property_function_color_struct;
 
@@ -4686,6 +3902,8 @@ namespace xbox360
 
 	extern s_tag_struct_definition biped_group$2;
 	extern s_string_list_definition biped_definition_flags;
+	extern s_tag_reference_definition death_program_selector_group_reference;
+	extern s_tag_reference_definition effect_group_reference;
 	extern s_tag_reference_definition character_group_reference$3;
 	extern s_tag_reference_definition muffin_group_reference;
 
@@ -4699,8 +3917,11 @@ namespace xbox360
 	extern s_tag_reference_definition spring_acceleration_group_reference;
 	extern s_tag_reference_definition character_group_reference$2;
 	extern s_string_list_definition global_melee_class_enum_definition;
+	extern s_tag_reference_definition damage_effect_group_reference;
+	extern s_string_list_definition global_chud_blip_type_definition;
 	extern s_string_list_definition unit_item_owner_size_enum;
 	extern s_string_list_definition global_grenade_type_enum;
+	extern s_tag_reference_definition weapon_group_reference$2;
 
 	extern s_tag_struct_definition object_struct_definition;
 	extern s_string_list_definition object_definition_flags;
@@ -4712,6 +3933,7 @@ namespace xbox360
 	extern s_tag_reference_definition crate_group_reference$2;
 	extern s_tag_reference_definition collision_damage_group_reference;
 	extern s_tag_reference_definition material_effects_group_reference;
+	extern s_tag_reference_definition sound_combiner_group_sound_group_reference;
 	extern s_string_list_definition object_definition_secondary_flags;
 	extern s_tag_reference_definition simulation_interpolation_group_reference;
 
@@ -4721,6 +3943,8 @@ namespace xbox360
 	extern s_string_list_definition ai_properties_flags;
 	extern s_string_list_definition ai_size_enum;
 	extern s_string_list_definition global_ai_jump_height_enum;
+
+	extern s_tag_struct_definition unit_additional_node_names_struct;
 
 	extern s_tag_struct_definition object_function_block;
 	extern s_string_list_definition object_function_flags;
@@ -4757,7 +3981,9 @@ namespace xbox360
 	extern s_string_list_definition global_rgb_interpolation_flags;
 
 	extern s_tag_struct_definition multiplayer_object_block;
+	extern s_string_list_definition global_game_engine_type_flags;
 	extern s_string_list_definition multiplayer_object_type;
+	extern s_string_list_definition teleporter_passability_flags;
 	extern s_string_list_definition multiplayer_object_boundary_shape;
 	extern s_string_list_definition multiplayer_object_spawn_timer_types;
 	extern s_string_list_definition multiplayer_object_flags;
@@ -4787,9 +4013,13 @@ namespace xbox360
 
 	extern s_tag_struct_definition input_mapping_function_block;
 
-	extern s_tag_struct_definition unit_additional_node_names_struct;
+	extern s_tag_struct_definition unit_additional_node_names_v1;
 
 	extern s_tag_struct_definition unit_boarding_melee_struct;
+
+	extern s_tag_struct_definition unit_boarding_melee_fields_v2;
+
+	extern s_tag_struct_definition unit_boarding_melee_fields_v1;
 
 	extern s_tag_struct_definition unit_postures_block;
 
@@ -4815,16 +4045,29 @@ namespace xbox360
 
 	extern s_tag_struct_definition boarding_seat_block;
 
+	extern s_tag_struct_definition unit_lipsync_scales_struct;
+
+	extern s_tag_struct_definition unit_seat_fields_v3;
+
+	extern s_tag_struct_definition unit_seat_fields_v2;
+
+	extern s_tag_struct_definition unit_seat_fields_v1;
+
 	extern s_tag_struct_definition unit_boost_struct;
 	extern s_tag_reference_definition collision_damage_group_reference$2;
 	extern s_string_list_definition boost_flags;
 
-	extern s_tag_struct_definition unit_lipsync_scales_struct;
+	extern s_tag_struct_definition unit_lipsync_scales_v1;
+
+	extern s_tag_struct_definition unit_struct_definition$2;
 
 	extern s_tag_struct_definition unit_trick_definition_block;
 	extern s_string_list_definition unit_trick_activation_type_enum;
 	extern s_string_list_definition unit_trick_velocity_preservation_mode_enum;
 	extern s_string_list_definition unit_trick_flags;
+
+	extern s_tag_struct_definition biped_ground_fitting_data_struct;
+	extern s_string_list_definition biped_ground_fitting_flags_definition;
 
 	extern s_tag_struct_definition biped_camera_height_block;
 
@@ -4838,14 +4081,26 @@ namespace xbox360
 	extern s_tag_struct_definition biped_leaping_data_struct;
 	extern s_string_list_definition biped_leap_flags_definition;
 
-	extern s_tag_struct_definition biped_ground_fitting_data_struct;
-	extern s_string_list_definition biped_ground_fitting_flags_definition;
+	extern s_tag_struct_definition biped_ground_fitting_data_fields_v1;
+
+	extern s_tag_struct_definition biped_group$3;
+
+	extern s_tag_struct_definition bitmap_tight_bounds_block_def;
+
+	extern s_tag_struct_definition biped_definition_tags_v1;
+	extern s_string_list_definition biped_function_modes_v1;
+
+	extern s_tag_struct_definition bitmap_group_sprite_block_def;
+
+	extern s_tag_struct_definition contact_point_block_v1;
 
 	extern s_tag_struct_definition bitmap_block_struct;
 	extern s_string_list_definition bitmap_usage_global_enum;
 	extern s_string_list_definition bitmap_group_flags_def;
 	extern s_string_list_definition bitmap_curve_override_enum;
 	extern s_string_list_definition bitmap_usage_format_def;
+
+	extern s_tag_struct_definition bitmap_group_sequence_block_def;
 
 	extern s_tag_struct_definition bitmap_usage_block;
 	extern s_string_list_definition bitmap_curve_enum;
@@ -4860,16 +4115,13 @@ namespace xbox360
 	extern s_string_list_definition bitmap_usage_downsample_flags_def;
 	extern s_string_list_definition bitmap_usage_swizzle_def;
 
-	extern s_tag_struct_definition bitmap_group_sequence_block_def;
-
-	extern s_tag_struct_definition bitmap_group_sprite_block_def;
-
-	extern s_tag_struct_definition bitmap_tight_bounds_block_def;
-
 	extern s_tag_struct_definition bitmap_data_block_def;
 	extern s_string_list_definition bitmap_more_flags_definition;
 	extern s_string_list_definition bitmap_formats;
 	extern s_string_list_definition bitmap_flags;
+
+	extern s_tag_struct_definition crate_struct_definition;
+	extern s_string_list_definition crate_flags;
 
 	extern s_tag_struct_definition bitmap_texture_interleaved_interop_block_struct;
 
@@ -4880,16 +4132,21 @@ namespace xbox360
 	extern s_tag_struct_definition render_texture_format_definition;
 	extern s_string_list_definition boolean_enum_definition;
 
+	extern s_tag_struct_definition bitmap_tags_v1;
+
 	extern s_tag_struct_definition bitmap_texture_interop_block_struct;
 
 	extern s_tag_struct_definition bitmap_texture_interop_resource_struct;
 
 	extern s_tag_struct_definition render_texture_interop_definition_struct;
 
-	extern s_tag_struct_definition crate_struct_definition;
-	extern s_string_list_definition crate_flags;
+	extern s_tag_struct_definition crate_struct_definition$2;
+
+	extern s_tag_struct_definition camera_fx_bloom_highlight_struct;
+	extern s_string_list_definition camera_fx_parameter_flags_no_auto_adjust;
 
 	extern s_tag_struct_definition breakable_surface_struct_definition;
+	extern s_tag_reference_definition bitmap_group_reference$2;
 
 	extern s_tag_struct_definition particle_system_definition_block_new;
 	extern s_string_list_definition global_effect_priority_enum;
@@ -4947,9 +4204,6 @@ namespace xbox360
 	extern s_string_list_definition camera_fx_parameter_flags_auto_adjust;
 
 	extern s_tag_struct_definition camera_fx_exposure_sensitivity_struct;
-	extern s_string_list_definition camera_fx_parameter_flags_no_auto_adjust;
-
-	extern s_tag_struct_definition camera_fx_bloom_highlight_struct;
 
 	extern s_tag_struct_definition camera_fx_bloom_inherent_struct;
 
@@ -5029,7 +4283,9 @@ namespace xbox360
 
 	extern s_tag_struct_definition character_general_block;
 	extern s_string_list_definition general_flags;
+	extern s_string_list_definition actor_type_enum;
 	extern s_string_list_definition combat_positioning_enum;
+	extern s_string_list_definition global_ai_grenade_type_enum;
 	extern s_string_list_definition behavior_tree_root_enum;
 
 	extern s_tag_struct_definition disallowed_weapons_for_trading_block;
@@ -5087,11 +4343,447 @@ namespace xbox360
 	extern s_tag_struct_definition evaluator_definition_block_struct;
 	extern s_string_list_definition evaluator_enum;
 
-	extern s_tag_struct_definition character_ready_block;
-
 	extern s_tag_struct_definition character_engage_block;
 	extern s_string_list_definition engage_flags;
 	extern s_tag_reference_definition projectile_group_reference;
+
+	extern s_tag_struct_definition character_ready_block;
+
+	extern s_tag_struct_definition scenario_object_node_orientations_block;
+
+	extern s_tag_struct_definition real_block;
+
+	extern s_tag_struct_definition tag_block_index_struct;
+
+	extern s_tag_struct_definition render_method_animated_parameter_block;
+	extern s_string_list_definition render_method_animated_parameter_type_enum;
+
+	extern s_tag_struct_definition cache_file_sound_struct_definition;
+	extern s_string_list_definition sound_definition_flags;
+	extern s_string_list_definition sound_class_enum;
+
+	extern s_tag_struct_definition render_method_routing_info_block;
+
+	extern s_tag_struct_definition scenario_scenery_resource_struct_definition;
+
+	extern s_tag_struct_definition objectives_block;
+	extern s_string_list_definition objective_flags;
+
+	extern s_tag_struct_definition area_sector_point_block;
+
+	extern s_tag_struct_definition scenario_object_node_orientations_orientations_block;
+
+	extern s_tag_struct_definition zone_block;
+	extern s_string_list_definition zone_flags;
+
+	extern s_tag_struct_definition scenario_scenery_block;
+
+	extern s_tag_struct_definition flight_reference_block;
+
+	extern s_tag_struct_definition squad_groups_block;
+
+	extern s_tag_struct_definition scenario_object_node_orientations_bit_vector_block;
+
+	extern s_tag_struct_definition render_method_postprocess_block;
+	extern s_tag_reference_definition render_method_template_group_reference;
+
+	extern s_tag_struct_definition render_method_parameter_block;
+	extern s_string_list_definition render_method_parameter_type_enum;
+	extern s_tag_reference_definition bitmap_group_reference;
+
+	extern s_tag_struct_definition ai_reference_frame_block;
+	extern s_string_list_definition ai_reference_frame_flags;
+
+	extern s_tag_struct_definition runtime_queryable_properties_struct_definition;
+
+	extern s_tag_struct_definition scenario_scenery_datum_struct_v4;
+	extern s_string_list_definition pathfinding_policy_enum;
+	extern s_string_list_definition scenery_lightmap_policy_enum;
+
+	extern s_tag_struct_definition firing_positions_block;
+	extern s_string_list_definition g_firing_position_flags;
+	extern s_string_list_definition g_firing_position_posture_flags;
+
+	extern s_tag_struct_definition short_block;
+
+	extern s_tag_struct_definition ai_spawn_conditions_struct;
+	extern s_string_list_definition global_campaign_difficulty_enum;
+
+	extern s_tag_struct_definition shader_particle_struct_definition;
+
+	extern s_tag_struct_definition opposing_objective_block;
+
+	extern s_tag_struct_definition areas_block_struct;
+	extern s_string_list_definition area_flags;
+	extern s_string_list_definition generate_preset_enum;
+	extern s_string_list_definition generate_flags;
+
+	extern s_tag_struct_definition area_cluster_occupancy_bitvector_array_struct_definition;
+
+	extern s_tag_struct_definition task_direction_point_block;
+
+	extern s_tag_struct_definition scenario_object_id_struct;
+	extern s_string_list_definition object_type_enum_definition;
+	extern s_string_list_definition object_source_enum_definition;
+
+	extern s_tag_struct_definition squads_block_struct;
+	extern s_string_list_definition squad_flags;
+	extern s_string_list_definition ai_team_enum;
+	extern s_string_list_definition wave_placement_filter_enum;
+
+	extern s_tag_struct_definition byte_block;
+
+	extern s_tag_struct_definition render_method_postprocess_pass_block;
+
+	extern s_tag_struct_definition render_method_postprocess_texture_block;
+
+	extern s_tag_struct_definition task_direction_block_v2_struct;
+
+	extern s_tag_struct_definition int_block;
+
+	extern s_tag_struct_definition sound_resource_definition_struct;
+
+	extern s_tag_struct_definition scenario_structure_bsp_reference_block;
+	extern s_tag_reference_definition scenario_structure_bsp_group_reference;
+	extern s_tag_reference_definition scenario_structure_lighting_info_group_reference;
+	extern s_string_list_definition scenario_structure_size_enum;
+	extern s_string_list_definition scenario_structure_bsp_reference_flags_definition;
+	extern s_tag_reference_definition bitmap_group_reference$3;
+	extern s_tag_reference_definition wind_group_reference;
+
+	extern s_tag_struct_definition shader_particle_struct_definition$2;
+	extern s_tag_reference_definition render_method_definition_group_reference;
+	extern s_tag_reference_definition render_method_group_reference;
+	extern s_string_list_definition global_render_method_lock_option_flags_defintion;
+	extern s_string_list_definition global_render_method_flags_defintion;
+	extern s_string_list_definition global_sort_layer_enum_defintion;
+
+	extern s_tag_struct_definition pathfinding_object_index_list_block;
+
+	extern s_tag_struct_definition shader_contrail_struct_definition;
+
+	extern s_tag_struct_definition scenario_sky_reference_block;
+	extern s_tag_reference_definition scenery_group_reference;
+
+	extern s_tag_struct_definition spawn_formation_block_struct;
+	extern s_string_list_definition actor_movement_modes;
+	extern s_string_list_definition patrol_mode_enum;
+
+	extern s_tag_struct_definition render_method_struct_definition;
+
+	extern s_tag_struct_definition scenario_object_datum_struct;
+	extern s_string_list_definition object_location_placement_flags;
+	extern s_string_list_definition scenario_object_bsp_placement_policy_definition;
+	extern s_string_list_definition object_transform_flags;
+
+	extern s_tag_struct_definition tasks_block_struct;
+	extern s_string_list_definition task_flags_definition;
+	extern s_string_list_definition inhibit_behavior_flags;
+	extern s_string_list_definition task_movement_enum;
+	extern s_string_list_definition task_follow_enum;
+	extern s_string_list_definition task_follow_player_flags;
+	extern s_string_list_definition task_dialogue_enum;
+	extern s_string_list_definition task_runtime_flags;
+	extern s_string_list_definition filter_flags;
+	extern s_string_list_definition filter_enum;
+	extern s_string_list_definition task_attitude_enum;
+
+	extern s_tag_struct_definition scenario_lightmap_setting_struct;
+	extern s_string_list_definition scenario_lightmap_per_bsp_flags;
+
+	extern s_tag_struct_definition script_fragment_block;
+	extern s_string_list_definition fragment_state_enum;
+
+	extern s_tag_struct_definition shader_contrail_struct_definition$2;
+
+	extern s_tag_struct_definition hs_script_parameters_block;
+	extern s_string_list_definition hs_types_enum;
+
+	extern s_tag_struct_definition dont_use_me_scenario_environment_object_block;
+
+	extern s_tag_struct_definition scenario_object_parent_struct;
+
+	extern s_tag_struct_definition scenario_object_names_block;
+
+	extern s_tag_struct_definition mapping_function;
+
+	extern s_tag_struct_definition render_method_locked_parameter_block;
+
+	extern s_tag_struct_definition function_definition_fields_v2;
+
+	extern s_tag_struct_definition hs_scripts_block;
+	extern s_string_list_definition hs_script_types_enum;
+
+	extern s_tag_struct_definition tag_block_index_block;
+
+	extern s_tag_struct_definition function_definition_fields_v1;
+	extern s_string_list_definition function_flags;
+
+	extern s_tag_struct_definition zone_set_block_struct;
+	extern s_string_list_definition zone_set_type_enum;
+	extern s_string_list_definition zone_set_flags;
+
+	extern s_tag_struct_definition g_scenario_editor_folder_block;
+
+	extern s_tag_struct_definition scenario_object_permutation_struct;
+	extern s_string_list_definition scenario_object_active_change_color_flags;
+
+	extern s_tag_struct_definition real_vector4d_block;
+
+	extern s_tag_struct_definition g_null_block;
+
+	extern s_tag_struct_definition scenario_scenery_palette_block;
+	extern s_tag_reference_definition scenery_group_reference$2;
+
+	extern s_tag_struct_definition g_new_scenario_object_datum_fields;
+
+	extern s_tag_struct_definition patrol_point_block;
+	extern s_string_list_definition patrol_point_flags;
+	extern s_string_list_definition g_activity_enum;
+
+	extern s_tag_struct_definition spawn_points_block_struct;
+	extern s_string_list_definition starting_location_flags;
+	extern s_string_list_definition ai_placement_seat_preference_enum;
+
+	extern s_tag_struct_definition character_palette_block;
+	extern s_tag_reference_definition character_group_reference;
+
+	extern s_tag_struct_definition scenario_weapon_palette_block;
+	extern s_tag_reference_definition weapon_group_reference;
+
+	extern s_tag_struct_definition scenario_equipment_palette_block;
+	extern s_tag_reference_definition equipment_group_reference;
+
+	extern s_tag_struct_definition scenario_vehicle_palette_block;
+	extern s_tag_reference_definition vehicle_group_reference;
+
+	extern s_tag_struct_definition scenario_vehicle_block;
+
+	extern s_tag_struct_definition scenario_unit_struct;
+	extern s_string_list_definition scenario_unit_datum_flags;
+
+	extern s_tag_struct_definition scenario_multiplayer_object_struct;
+	extern s_string_list_definition game_engine_symmetry_placement_flags;
+	extern s_string_list_definition global_multiplayer_team_designator_enum_definition;
+	extern s_string_list_definition multiplayer_object_placement_spawn_flags;
+	extern s_string_list_definition multiplayer_goal_area_boundary_shape_enum;
+	extern s_string_list_definition multiplayer_object_remapping_policy;
+	extern s_string_list_definition multiplayer_teleporter_channel;
+
+	extern s_tag_struct_definition scenario_vehicle_fields_v2;
+
+	extern s_tag_struct_definition scenario_vehicle_fields_v1;
+
+	extern s_tag_struct_definition old_scenario_unit_struct;
+
+	extern s_tag_struct_definition scenario_giant_block;
+
+	extern s_tag_struct_definition scenario_giant_palette_block;
+	extern s_tag_reference_definition giant_group_reference;
+
+	extern s_tag_struct_definition scenario_giant_datum_struct;
+
+	extern s_tag_struct_definition scenario_biped_block;
+
+	extern s_tag_struct_definition scenario_biped_palette_block;
+	extern s_tag_reference_definition biped_group_reference;
+
+	extern s_tag_struct_definition scenario_biped_fields_v2;
+
+	extern s_tag_struct_definition scenario_biped_fields_v1;
+
+	extern s_tag_struct_definition squad_definition_internal_struct;
+
+	extern s_tag_struct_definition cell_block_struct;
+	extern s_string_list_definition major_upgrade_enum;
+
+	extern s_tag_struct_definition character_palette_choice_block_struct;
+
+	extern s_tag_struct_definition weapon_palette_choice_block_struct;
+
+	extern s_tag_struct_definition equipment_palette_choice_block_struct;
+
+	extern s_tag_struct_definition scenario_scenery_fields_v3;
+
+	extern s_tag_struct_definition scenario_scenery_datum_struct_v3;
+	extern s_string_list_definition scenery_pathfinding_flags_definition;
+
+	extern s_tag_struct_definition scenario_scenery_fields_v3$2;
+
+	extern s_tag_struct_definition scenario_scenery_fields_v2;
+
+	extern s_tag_struct_definition scenario_scenery_datum_struct_v2;
+	extern s_string_list_definition old_scenery_lightmap_policy_enum;
+
+	extern s_tag_struct_definition scenario_scenery_fields_v1;
+
+	extern s_tag_struct_definition scenario_crate_palette_block;
+	extern s_tag_reference_definition crate_group_reference;
+
+	extern s_tag_struct_definition scenario_crate_block;
+
+	extern s_tag_struct_definition scenario_crate_datum_struct;
+
+	extern s_tag_struct_definition scenario_weapons_resource_struct_definition;
+
+	extern s_tag_struct_definition scenario_weapon_block;
+
+	extern s_tag_struct_definition scenario_weapon_datum_struct;
+	extern s_string_list_definition scenario_weapon_datum_flags;
+
+	extern s_tag_struct_definition scenario_weapon_fields_v2;
+
+	extern s_tag_struct_definition scenario_weapon_fields_v1;
+
+	extern s_tag_struct_definition scenario_vehicles_resource_struct_definition;
+
+	extern s_tag_struct_definition scenario_effect_scenery_resource_struct_definition;
+
+	extern s_tag_struct_definition scenario_effect_scenery_palette_block;
+	extern s_tag_reference_definition effect_scenery_group_reference;
+
+	extern s_tag_struct_definition scenario_effect_scenery_block;
+
+	extern s_tag_struct_definition scenario_effect_scenery_datum_struct;
+
+	extern s_tag_struct_definition scenario_cheap_particle_system_palette_block;
+	extern s_tag_reference_definition cheap_particle_emitter_group_reference;
+
+	extern s_tag_struct_definition scenario_cheap_particle_systems_block;
+
+	extern s_tag_struct_definition scenario_lights_resource_struct_definition;
+
+	extern s_tag_struct_definition scenario_light_palette_block;
+	extern s_tag_reference_definition light_group_reference;
+
+	extern s_tag_struct_definition scenario_light_block;
+
+	extern s_tag_struct_definition scenario_device_struct;
+	extern s_string_list_definition scenario_device_flags;
+
+	extern s_tag_struct_definition device_group_block;
+	extern s_string_list_definition device_group_flags;
+
+	extern s_tag_struct_definition scenario_light_struct;
+	extern s_string_list_definition light_type_enum_definition;
+	extern s_string_list_definition scenario_light_flags_definition;
+	extern s_string_list_definition scenario_light_lightmap_type_enum_definition;
+	extern s_string_list_definition scenario_light_lightmap_flags_definition;
+
+	extern s_tag_struct_definition scenario_light_fields_v2;
+
+	extern s_tag_struct_definition scenario_light_fields_v1;
+
+	extern s_tag_struct_definition scenario_bipeds_resource_struct_definition;
+
+	extern s_tag_struct_definition scenario_equipment_resource_struct_definition;
+
+	extern s_tag_struct_definition scenario_equipment_block;
+
+	extern s_tag_struct_definition scenario_equipment_datum_struct;
+	extern s_string_list_definition scenario_equipment_flags_definition;
+
+	extern s_tag_struct_definition scenario_equipment_fields_v2;
+
+	extern s_tag_struct_definition scenario_equipment_fields_v1;
+
+	extern s_tag_struct_definition scenario_creature_resource_struct_definition;
+
+	extern s_tag_struct_definition scenario_creature_palette_block;
+	extern s_tag_reference_definition creature_group_reference;
+
+	extern s_tag_struct_definition scenario_creature_block;
+
+	extern s_tag_struct_definition scenario_sound_scenery_resource_struct_definition;
+
+	extern s_tag_struct_definition scenario_sound_scenery_palette_block;
+	extern s_tag_reference_definition sound_scenery_group_reference;
+
+	extern s_tag_struct_definition scenario_sound_scenery_block;
+
+	extern s_tag_struct_definition sound_scenery_datum_struct;
+	extern s_string_list_definition sound_volume_type_enumeration;
+
+	extern s_tag_struct_definition sound_distance_parameters_struct;
+
+	extern s_tag_struct_definition scenario_sound_scenery_fields_v2;
+
+	extern s_tag_struct_definition scenario_sound_scenery_fields_v1;
+
+	extern s_tag_struct_definition scenario_cluster_data_block;
+
+	extern s_tag_struct_definition scenario_cluster_points_block;
+
+	extern s_tag_struct_definition scenario_acoustics_palette_block_definition_struct;
+
+	extern s_tag_struct_definition scenario_acoustics_environment_definition;
+	extern s_tag_reference_definition sound_environment_group_reference;
+	extern s_string_list_definition sound_class_acoustics_string_definition;
+
+	extern s_tag_struct_definition scenario_acoustics_ambience_definition;
+	extern s_tag_reference_definition sound_looping_group_reference;
+	extern s_string_list_definition background_sound_scale_flags_definition;
+
+	extern s_tag_struct_definition scenario_cluster_acoustics_block_struct;
+
+	extern s_tag_struct_definition scenario_cluster_atmosphere_properties_block;
+
+	extern s_tag_struct_definition scenario_atmosphere_palette_block;
+	extern s_tag_reference_definition atmosphere_fog_group_reference;
+
+	extern s_tag_struct_definition scenario_cluster_camera_fx_properties_block;
+
+	extern s_tag_struct_definition scenario_camera_fx_palette_block;
+	extern s_tag_reference_definition camera_fx_settings_group_reference;
+	extern s_string_list_definition camera_fx_palette_flags;
+
+	extern s_tag_struct_definition scenario_cluster_weather_properties_block;
+
+	extern s_tag_struct_definition scenario_weather_palette_block;
+	extern s_tag_reference_definition rain_definition_group_reference;
+
+	extern s_tag_struct_definition scenario_acoustic_sector_block_struct;
+
+	extern s_tag_struct_definition acoustic_sector_point_block;
+
+	extern s_tag_struct_definition scenario_acoustic_transition_block_struct;
+
+	extern s_tag_struct_definition scenario_acoustic_location_definition;
+
+	extern s_tag_struct_definition scenario_acoustic_cluster_reference_definition;
+
+	extern s_tag_struct_definition scenario_comments_resource_struct_definition;
+
+	extern s_tag_struct_definition editor_comment_block;
+	extern s_string_list_definition editor_comment_type_enum_definition;
+
+	extern s_tag_struct_definition sound_effect_template_struct_definition;
+
+	extern s_tag_struct_definition sound_effect_templates_block;
+	extern s_string_list_definition sound_effect_template_flags_definition;
+
+	extern s_tag_struct_definition sound_effect_template_parameter_block;
+	extern s_string_list_definition sound_effect_template_type_enum_definition;
+	extern s_string_list_definition sound_effect_template_parameter_flags_definition;
+
+	extern s_tag_struct_definition sound_effect_template_additional_sound_input_block;
+
+	extern s_tag_struct_definition stereo_system_struct_definition;
+
+	extern s_tag_struct_definition lightmapper_globals_struct_definition;
+
+	extern s_tag_struct_definition structure_lighting_generic_light_definition_block;
+	extern s_string_list_definition lightmap_quality_flags;
+
+	extern s_tag_struct_definition scenario_lightmap_bsp_data_block_struct;
+	extern s_string_list_definition scenario_lightmap_bsp_flags;
+	extern s_tag_reference_definition bitmap_group_reference$4;
+
+	extern s_tag_struct_definition scenario_lightmap_pervertex_data;
+
+	extern s_tag_struct_definition full_lightprobe;
+
+	extern s_tag_struct_definition lightprobe_terms_struct_definition;
 
 	extern s_tag_struct_definition character_charge_block;
 	extern s_string_list_definition charge_flags;
@@ -5105,6 +4797,10 @@ namespace xbox360
 
 	extern s_tag_struct_definition character_retreat_block;
 	extern s_string_list_definition character_retreat_flags;
+
+	extern s_tag_struct_definition character_equipment_block;
+	extern s_tag_reference_definition equipment_group_reference$2;
+	extern s_string_list_definition character_equipment_flags;
 
 	extern s_tag_struct_definition character_search_block;
 	extern s_string_list_definition character_search_flags;
@@ -5134,7 +4830,6 @@ namespace xbox360
 	extern s_tag_struct_definition character_combatform_block;
 
 	extern s_tag_struct_definition character_engineer_block;
-	extern s_tag_reference_definition equipment_group_reference$2;
 
 	extern s_tag_struct_definition character_inspect_block;
 
@@ -5162,9 +4857,6 @@ namespace xbox360
 	extern s_tag_struct_definition character_morph_block;
 	extern s_tag_reference_definition muffin_group_reference$2;
 
-	extern s_tag_struct_definition character_equipment_block;
-	extern s_string_list_definition character_equipment_flags;
-
 	extern s_tag_struct_definition character_equipment_usage_block;
 	extern s_string_list_definition character_equipment_usage_when_enum;
 	extern s_string_list_definition character_equipment_usage_how_enum;
@@ -5189,6 +4881,7 @@ namespace xbox360
 	extern s_tag_struct_definition game_mode_flags_struct;
 	extern s_string_list_definition game_type_enum_definition;
 	extern s_string_list_definition game_matchmaking_flags_definition;
+	extern s_string_list_definition global_campaign_difficulty_flags;
 	extern s_string_list_definition game_player_count_flags_definition;
 
 	extern s_tag_struct_definition chud_definition_block_struct;
@@ -5199,6 +4892,9 @@ namespace xbox360
 	extern s_string_list_definition chud_scripting_class_enum;
 	extern s_string_list_definition chud_widget_base_flags;
 	extern s_string_list_definition chud_render_external_input_enum;
+
+	extern s_tag_struct_definition chud_widget_animation_data_struct;
+	extern s_tag_reference_definition chud_widget_animation_data_template_group_reference;
 
 	extern s_tag_struct_definition chud_widget_state_data_struct;
 	extern s_tag_reference_definition chud_widget_state_data_template_group_reference;
@@ -5211,6 +4907,8 @@ namespace xbox360
 	extern s_string_list_definition chud_widget_state_flags;
 	extern s_string_list_definition chud_state_enum;
 
+	extern s_tag_struct_definition chud_widget_animation_data_base_block;
+
 	extern s_tag_struct_definition chud_widget_state_editor_block;
 	extern s_string_list_definition chud_widget_state_editor_data_type_enum;
 
@@ -5221,11 +4919,6 @@ namespace xbox360
 	extern s_string_list_definition chud_curvature_res_flags;
 	extern s_string_list_definition chud_anchor_type_enum;
 	extern s_string_list_definition chud_widget_placement_flags;
-
-	extern s_tag_struct_definition chud_widget_animation_data_struct;
-	extern s_tag_reference_definition chud_widget_animation_data_template_group_reference;
-
-	extern s_tag_struct_definition chud_widget_animation_data_base_block;
 
 	extern s_tag_struct_definition chud_widget_animation_block_struct;
 	extern s_string_list_definition chud_widget_animation_flags;
@@ -5241,6 +4934,10 @@ namespace xbox360
 	extern s_string_list_definition chud_render_scalar_output_enum;
 	extern s_string_list_definition render_blend_mode;
 
+	extern s_tag_struct_definition chud_widget_text_block_struct;
+	extern s_string_list_definition chud_widget_text_flags;
+	extern s_string_list_definition global_font_id_enum_definition;
+
 	extern s_tag_struct_definition chud_widget_datasource_struct;
 	extern s_tag_reference_definition chud_widget_datasource_template_group_reference;
 
@@ -5255,15 +4952,14 @@ namespace xbox360
 	extern s_tag_struct_definition chud_widget_bitmap_block;
 	extern s_string_list_definition chud_widget_bitmap_flags;
 
-	extern s_tag_struct_definition chud_widget_text_block_struct;
-	extern s_string_list_definition chud_widget_text_flags;
-	extern s_string_list_definition global_font_id_enum_definition;
-
 	extern s_tag_struct_definition chud_widget_object_highlight_block;
 
 	extern s_tag_struct_definition chud_definition_info_struct;
 
 	extern s_tag_struct_definition chud_widget_update_cache_block;
+
+	extern s_tag_struct_definition chud_sound_block;
+	extern s_string_list_definition chud_sound_cue_flags;
 
 	extern s_tag_struct_definition chud_globals_definition_struct_definition;
 	extern s_string_list_definition motion_sensor_flags;
@@ -5280,9 +4976,6 @@ namespace xbox360
 
 	extern s_tag_struct_definition screen_transform_basis_array_definition_struct_definition;
 
-	extern s_tag_struct_definition chud_sound_block;
-	extern s_string_list_definition chud_sound_cue_flags;
-
 	extern s_tag_struct_definition chud_config_info_block_struct;
 
 	extern s_tag_struct_definition chud_damage_tracker_struct;
@@ -5298,13 +4991,13 @@ namespace xbox360
 	extern s_tag_struct_definition player_training_entry_data_block;
 	extern s_string_list_definition player_training_flags;
 
+	extern s_tag_struct_definition scenario_cinematics_resource_struct_definition;
+
 	extern s_tag_struct_definition chud_state_category_block;
 
 	extern s_tag_struct_definition chocolate_mountain_new_struct_definition;
 
 	extern s_tag_struct_definition per_object_type_relative_min_luminance_block;
-
-	extern s_tag_struct_definition scenario_cinematics_resource_struct_definition;
 
 	extern s_tag_struct_definition scenario_cinematics_block;
 	extern s_string_list_definition scenario_cinematics_flags;
@@ -5499,10 +5192,18 @@ namespace xbox360
 
 	extern s_tag_struct_definition mopp_code_data_definition_block;
 
+	extern s_tag_struct_definition collision_model_permutation_fields_v0;
+
 	extern s_tag_struct_definition collision_model_pathfinding_sphere_block;
 	extern s_string_list_definition pathfinding_sphere_flags;
 
 	extern s_tag_struct_definition collision_model_node_block;
+
+	extern s_tag_struct_definition collision_model_node_fields_v0;
+
+	extern s_tag_struct_definition collision_model_fields_v0;
+
+	extern s_tag_struct_definition old_global_damage_resistance_struct;
 
 	extern s_tag_struct_definition color_table_struct_definition;
 
@@ -5515,6 +5216,8 @@ namespace xbox360
 	extern s_string_list_definition commendation_progression_level_with_none_enum;
 
 	extern s_tag_struct_definition communication_sounds_struct_definition;
+
+	extern s_tag_struct_definition purchase_definition_reference_struct;
 
 	extern s_tag_struct_definition cookie_globals_definition_struct_definition;
 
@@ -5532,13 +5235,11 @@ namespace xbox360
 
 	extern s_tag_struct_definition cheap_particle_scalar_object_function_struct;
 
+	extern s_tag_struct_definition cookie_purchase_definition_reference_block;
+
 	extern s_tag_struct_definition cookie_purchase_globals_struct_definition;
 
 	extern s_tag_struct_definition cookie_purchase_family_definition_block;
-
-	extern s_tag_struct_definition cookie_purchase_definition_reference_block;
-
-	extern s_tag_struct_definition purchase_definition_reference_struct;
 
 	extern s_tag_struct_definition cookie_purchase_definition_block;
 	extern s_string_list_definition cookie_purchase_flags;
@@ -5577,15 +5278,21 @@ namespace xbox360
 	extern s_tag_struct_definition cheap_particle_bitmap_reference_block;
 
 	extern s_tag_struct_definition creature_struct_definition;
+	extern s_string_list_definition creature_definition_flags;
+	extern s_string_list_definition unit_default_teams;
+	extern s_string_list_definition creature_big_battle_definition_flags;
+	extern s_tag_reference_definition cheap_particle_emitter_group_reference$2;
 
-	extern s_tag_struct_definition camera_shake_struct_definition;
-
-	extern s_tag_struct_definition camera_impulse_struct;
+	extern s_tag_struct_definition creature_struct_definition$2;
 
 	extern s_tag_struct_definition camera_shake_struct;
 	extern s_string_list_definition global_periodic_functions_enum;
 	extern s_string_list_definition animated_camera_shake_playback_type_enum;
 	extern s_string_list_definition animated_camera_shake_weight_type_enum;
+
+	extern s_tag_struct_definition camera_shake_struct_definition;
+
+	extern s_tag_struct_definition camera_impulse_struct;
 
 	extern s_tag_struct_definition device_control_struct_definition;
 	extern s_string_list_definition control_types;
@@ -5595,6 +5302,13 @@ namespace xbox360
 	extern s_tag_struct_definition device_struct_definition;
 	extern s_string_list_definition device_definition_flags;
 	extern s_string_list_definition device_lightmap_flags;
+
+	extern s_tag_struct_definition device_struct_definition$2;
+
+	extern s_tag_struct_definition device_control_struct_definition$2;
+
+	extern s_tag_struct_definition component_definition;
+	extern s_string_list_definition component_definition_flags;
 
 	extern s_tag_struct_definition scenario_cubemap_resource_struct_definition;
 
@@ -5607,9 +5321,6 @@ namespace xbox360
 
 	extern s_tag_struct_definition template_instantiation_block_definition;
 	extern s_tag_reference_definition cui_screen_group_reference;
-
-	extern s_tag_struct_definition component_definition;
-	extern s_string_list_definition component_definition_flags;
 
 	extern s_tag_struct_definition component_index_block_definition;
 
@@ -5710,13 +5421,13 @@ namespace xbox360
 
 	extern s_tag_struct_definition decorator_set_instance_name_block;
 
+	extern s_tag_struct_definition scenario_decal_palette_block;
+	extern s_tag_reference_definition decal_system_group_reference;
+
 	extern s_tag_struct_definition global_decorator_type_struct;
 	extern s_string_list_definition decorator_type_flags_definition;
 
 	extern s_tag_struct_definition scenario_decals_resource_struct_definition;
-
-	extern s_tag_struct_definition scenario_decal_palette_block;
-	extern s_tag_reference_definition decal_system_group_reference;
 
 	extern s_tag_struct_definition scenario_decals_block;
 
@@ -5743,6 +5454,16 @@ namespace xbox360
 	extern s_string_list_definition scenario_machine_flags;
 	extern s_string_list_definition scenario_machine_pathfinding_policy_enum;
 
+	extern s_tag_struct_definition scenario_machine_fields_v2;
+
+	extern s_tag_struct_definition scenario_machine_struct_v2;
+
+	extern s_tag_struct_definition scenario_machine_fields_v2$2;
+
+	extern s_tag_struct_definition scenario_machine_fields_v1;
+
+	extern s_tag_struct_definition old_scenario_device_struct;
+
 	extern s_tag_struct_definition scenario_terminal_block;
 
 	extern s_tag_struct_definition scenario_terminal_palette_block;
@@ -5758,6 +5479,10 @@ namespace xbox360
 	extern s_tag_struct_definition scenario_control_struct;
 	extern s_string_list_definition scenario_control_flags;
 	extern s_string_list_definition scenario_control_character_types;
+
+	extern s_tag_struct_definition scenario_control_fields_v2;
+
+	extern s_tag_struct_definition scenario_control_fields_v1;
 
 	extern s_tag_struct_definition scenario_dumplings_resource_struct_definition;
 
@@ -5813,6 +5538,7 @@ namespace xbox360
 
 	extern s_tag_struct_definition effect_part_block;
 	extern s_string_list_definition effect_part_flags;
+	extern s_string_list_definition global_damage_reporting_enum_definition;
 	extern s_tag_reference_definition beam_system_group_render_water_ripple_group_damage_effect_group_damage_response_definition_group_sound_group_decal_system_group_contrail_system_group_lens_flare_group_light_group_cheap_light_group_light_volume_system_group_area_screen_effect_group_character_group_cheap_particle_emitter_group_object_group_shield_impact_group_camo_group_reference;
 	extern s_string_list_definition effect_part_scaleable_values;
 
@@ -5833,6 +5559,8 @@ namespace xbox360
 
 	extern s_tag_struct_definition effect_scenery_struct_definition;
 
+	extern s_tag_struct_definition effect_scenery_struct_definition$2;
+
 	extern s_tag_struct_definition equipment_group$2;
 	extern s_string_list_definition equipment_flags;
 	extern s_string_list_definition equipment_activation_mode;
@@ -5842,6 +5570,10 @@ namespace xbox360
 	extern s_tag_reference_definition grounded_friction_group_reference;
 
 	extern s_tag_struct_definition predicted_bitmaps_block;
+
+	extern s_tag_struct_definition item_struct_definition$2;
+
+	extern s_tag_struct_definition equipment_type_ai_trait_field_block;
 
 	extern s_tag_struct_definition optional_unit_camera_block;
 
@@ -5902,8 +5634,6 @@ namespace xbox360
 	extern s_string_list_definition player_trait_sensors_motion_tracker_settings;
 	extern s_string_list_definition player_trait_sensors_motion_tracker_range;
 
-	extern s_tag_struct_definition equipment_type_ai_trait_field_block;
-
 	extern s_tag_struct_definition ai_equipment_traits_block;
 
 	extern s_tag_struct_definition ai_equipment_trait_appearance_block;
@@ -5928,426 +5658,838 @@ namespace xbox360
 
 	extern s_tag_struct_definition equipment_type_jet_pack_block;
 
-	extern s_tag_struct_definition equipment_type_hologram_block;
-	extern s_string_list_definition collision_filter_enum;
+	extern s_tag_struct_definition converted_lightprobe;
 
-	extern s_tag_struct_definition equipment_type_special_weapon_block;
+	extern s_tag_struct_definition single_vmf_terms_struct_definition;
 
-	extern s_tag_struct_definition equipment_type_special_move_block;
+	extern s_tag_struct_definition scenario_lightmap_pervertex_data_run_time;
 
-	extern s_tag_struct_definition equipment_type_engineer_shields_block;
-	extern s_string_list_definition equipment_engineer_shields_flags;
+	extern s_tag_struct_definition scenario_lightmap_cluster_data;
 
-	extern s_tag_struct_definition equipment_type_sprint_block;
+	extern s_tag_struct_definition scenario_lightmap_instance_data;
 
-	extern s_tag_struct_definition flock_struct_definition;
+	extern s_tag_struct_definition scenario_lightmap_lightprobe_value;
 
-	extern s_tag_struct_definition fluid_dynamics_struct_definition;
-	extern s_string_list_definition fluid_dynamics_flags;
+	extern s_tag_struct_definition dual_vmf_terms_struct_definition;
 
-	extern s_tag_struct_definition fluid_dynamics_squirter_block;
+	extern s_tag_struct_definition global_render_geometry_struct;
+	extern s_string_list_definition render_geometry_flags;
 
-	extern s_tag_struct_definition fluid_dynamics_inflow_block;
+	extern s_tag_struct_definition global_mesh_block;
+	extern s_string_list_definition mesh_flags;
+	extern s_string_list_definition mesh_vertex_type_definition;
+	extern s_string_list_definition mesh_transfer_vertex_type_definition;
+	extern s_string_list_definition mesh_lighting_policy_type_definition;
+	extern s_string_list_definition mesh_index_buffer_type_definition;
 
-	extern s_tag_struct_definition fluid_dynamics_outflow_block;
+	extern s_tag_struct_definition part_block;
+	extern s_string_list_definition specialized_render_definition;
+	extern s_string_list_definition part_flags;
+	extern s_string_list_definition tessellation_mode_definition;
 
-	extern s_tag_struct_definition fluid_dynamics_obstacle_block;
+	extern s_tag_struct_definition global_geometry_material_block;
+	extern s_tag_reference_definition render_method_group_reference$2;
+	extern s_string_list_definition global_geometry_material_lightmap_flags;
 
-	extern s_tag_struct_definition g_single_scalar_function_evaluation_struct;
+	extern s_tag_struct_definition sorting_position_block;
 
-	extern s_tag_struct_definition atmosphere_definition_block;
-	extern s_string_list_definition atmosphere_flags;
+	extern s_tag_struct_definition node_indices_array_struct_definition;
 
-	extern s_tag_struct_definition solo_fog_parameters_struct_definition;
+	extern s_tag_struct_definition node_weights_implicit_array_struct_definition;
 
-	extern s_tag_struct_definition fog_light_struct_definition;
+	extern s_tag_struct_definition subpart_block;
 
-	extern s_tag_struct_definition material_effects_block_struct;
+	extern s_tag_struct_definition vertex_buffer_indices_word_array_struct_definition;
 
-	extern s_tag_struct_definition material_effect_block_v2;
+	extern s_tag_struct_definition global_instance_bucket_block;
 
-	extern s_tag_struct_definition old_material_effect_material_block;
-	extern s_string_list_definition sweeneter_mode_enum;
+	extern s_tag_struct_definition instance_index_word_block;
 
-	extern s_tag_struct_definition material_effect_material_block;
-	extern s_tag_reference_definition sound_group_sound_looping_group_effect_group_reference;
+	extern s_tag_struct_definition indices_word_block;
 
-	extern s_tag_struct_definition formation_block_struct;
+	extern s_tag_struct_definition compression_info_block;
+	extern s_string_list_definition compression_flags;
 
-	extern s_tag_struct_definition formation_primitive_definition;
-	extern s_string_list_definition formation_primitive_flags;
+	extern s_tag_struct_definition user_data_block;
 
-	extern s_tag_struct_definition formation_point_definition;
+	extern s_tag_struct_definition global_render_geometry_user_data_header_struct;
+	extern s_string_list_definition render_geometry_user_data_type_definition;
 
-	extern s_tag_struct_definition frame_event_list_struct_definition;
+	extern s_tag_struct_definition per_mesh_raw_data_block;
+	extern s_string_list_definition per_mesh_raw_data_flags;
 
-	extern s_tag_struct_definition animation_graph_sound_reference_block;
-	extern s_string_list_definition key_event_flags_enum;
+	extern s_tag_struct_definition raw_vertex_block;
 
-	extern s_tag_struct_definition animation_graph_effect_reference_block;
+	extern s_tag_struct_definition node_weights_complete_array_struct_definition;
 
-	extern s_tag_struct_definition import_animation_event_block;
+	extern s_tag_struct_definition indices_dword_block;
 
-	extern s_tag_struct_definition import_frame_event_block;
-	extern s_string_list_definition frame_event_type_new;
+	extern s_tag_struct_definition raw_water_block;
 
-	extern s_tag_struct_definition animation_sound_event_block_extended;
+	extern s_tag_struct_definition raw_water_append_block;
 
-	extern s_tag_struct_definition animation_effects_event_block_extended;
+	extern s_tag_struct_definition raw_imposter_brdf_block;
 
-	extern s_tag_struct_definition animation_dialogue_event_block_extended;
-	extern s_string_list_definition animation_dialogue_event_enum;
+	extern s_tag_struct_definition raw_instance_imposter_block;
 
-	extern s_tag_struct_definition fx_test_struct_definition;
+	extern s_tag_struct_definition per_mesh_node_map_block;
 
-	extern s_tag_struct_definition fx_property_block;
-	extern s_string_list_definition fx_property_flags;
-	extern s_string_list_definition fx_property_value_type_enum;
-	extern s_string_list_definition fx_property_bitmap_filter_enum;
-	extern s_string_list_definition fx_property_bitmap_address_enum;
-	extern s_string_list_definition fx_property_bitmap_bias_enum;
+	extern s_tag_struct_definition node_map_byte_block;
 
-	extern s_tag_struct_definition fx_property_default_block;
+	extern s_tag_struct_definition per_mesh_subpart_visibility_block;
 
-	extern s_tag_struct_definition fx_test_scalar_function_struct;
+	extern s_tag_struct_definition per_mesh_prt_data_block;
 
-	extern s_tag_struct_definition game_completion_rewards_globals_struct_definition;
+	extern s_tag_struct_definition per_instance_prt_data_block;
 
-	extern s_tag_struct_definition game_completion_rewards_difficulty_block;
+	extern s_tag_struct_definition per_instance_lightmap_texcoords_block;
 
-	extern s_tag_struct_definition game_completion_rewards_definition_block;
+	extern s_tag_struct_definition per_instance_lightmap_texcoords_vertex_buffer_block;
 
-	extern s_tag_struct_definition game_completion_rewards_falloff_point_block;
+	extern s_tag_struct_definition water_bounding_box_block;
 
-	extern s_tag_struct_definition game_completion_rewards_multiplayer_block;
+	extern s_tag_struct_definition render_geometry_api_resource_definition_struct;
 
-	extern s_tag_struct_definition game_completion_rewards_never_online_block;
+	extern s_tag_struct_definition vertex_buffers_block;
 
-	extern s_tag_struct_definition game_engine_globals_struct_definition;
-	extern s_tag_reference_definition game_engine_settings_definition_group_reference;
+	extern s_tag_struct_definition index_buffers_block;
 
-	extern s_tag_struct_definition game_engine_event_block_struct;
-	extern s_string_list_definition game_engine_event_audience_enum_definition;
-	extern s_string_list_definition game_engine_event_response_context_enum_definition;
-	extern s_string_list_definition game_engine_event_input_enum_definition;
-	extern s_string_list_definition game_engine_event_splitscreen_suppression_enum_definition;
-	extern s_string_list_definition game_engine_event_flags_definition;
+	extern s_tag_struct_definition render_vertex_buffer_block;
 
-	extern s_tag_struct_definition sound_response_definition_struct;
-	extern s_string_list_definition game_engine_sound_response_flags_definition;
+	extern s_tag_struct_definition render_vertex_buffer_descriptor_struct;
 
-	extern s_tag_struct_definition sound_response_definition_block;
+	extern s_tag_struct_definition render_index_buffer_block;
 
-	extern s_tag_struct_definition giant_struct_definition;
-	extern s_string_list_definition giant_definition_flags;
+	extern s_tag_struct_definition render_index_buffer_descriptor_struct;
 
-	extern s_tag_struct_definition giant_buckle_parameters_block;
-	extern s_string_list_definition slider_movement_patterns;
+	extern s_tag_struct_definition triangle_mapping_per_mesh_block;
 
-	extern s_tag_struct_definition cheap_light_struct_definition;
+	extern s_tag_struct_definition triangle_mapping_block;
 
-	extern s_tag_struct_definition light_color_function_struct;
-	extern s_string_list_definition output_mod_enum$4;
+	extern s_tag_struct_definition scenario_lightmap_airprobe_value;
 
-	extern s_tag_struct_definition light_scalar_function_struct;
+	extern s_tag_struct_definition scenario_lightmap_scenery_probe_value;
 
-	extern s_tag_struct_definition global_pixel_shader_block_struct;
+	extern s_tag_struct_definition scenario_lightmap_device_machine_probe_data_value;
 
-	extern s_tag_struct_definition global_shader_entry_point_block;
+	extern s_tag_struct_definition scenario_lightmap_device_machine_probe_value;
 
-	extern s_tag_struct_definition global_shader_category_dependency;
+	extern s_tag_struct_definition global_error_report_categories_block;
+	extern s_string_list_definition error_report_types;
+	extern s_string_list_definition error_report_flags;
 
-	extern s_tag_struct_definition global_shader_option_dependency;
+	extern s_tag_struct_definition error_reports_block;
+	extern s_string_list_definition error_report_source;
 
-	extern s_tag_struct_definition compiled_pixel_shader_block;
+	extern s_tag_struct_definition error_report_vertices_block;
 
-	extern s_tag_struct_definition rasterizer_compiled_shader_struct;
-	extern s_string_list_definition shader_flags;
+	extern s_tag_struct_definition error_report_point_definition;
 
-	extern s_tag_struct_definition global_rasterizer_constant_table_struct;
-	extern s_string_list_definition rasterizer_constant_table_type_enum;
+	extern s_tag_struct_definition error_point_node_index_array_struct_definition;
 
-	extern s_tag_struct_definition rasterizer_constant_block;
-	extern s_string_list_definition register_set_enum;
+	extern s_tag_struct_definition error_point_node_weight_array_struct_definition;
 
-	extern s_tag_struct_definition global_vertex_shader_block_struct;
+	extern s_tag_struct_definition error_report_vectors_block;
 
-	extern s_tag_struct_definition global_vertex_shader_vertex_types_block;
+	extern s_tag_struct_definition error_report_lines_block;
 
-	extern s_tag_struct_definition compiled_vertex_shader_block;
+	extern s_tag_struct_definition error_report_line_point_array_struct_definition;
 
-	extern s_tag_struct_definition game_medal_globals_struct_definition;
+	extern s_tag_struct_definition error_report_triangles_block;
 
-	extern s_tag_struct_definition game_medal_block_struct;
-	extern s_string_list_definition medal_class_enum;
+	extern s_tag_struct_definition error_report_triangle_point_array_struct_definition;
 
-	extern s_tag_struct_definition multiplayer_variant_settings_interface_definition_struct_definition;
+	extern s_tag_struct_definition error_report_quads_block;
 
-	extern s_tag_struct_definition variant_setting_edit_reference_block;
-	extern s_string_list_definition game_engine_settings;
+	extern s_tag_struct_definition error_report_quad_point_array_struct_definition;
 
-	extern s_tag_struct_definition variant_option_block;
-	extern s_tag_reference_definition multiplayer_variant_settings_interface_definition_group_reference;
-	extern s_tag_reference_definition text_value_pair_definition_group_reference;
+	extern s_tag_struct_definition error_report_comments_block;
 
-	extern s_tag_struct_definition global_cache_file_pixel_shaders_struct_definition;
+	extern s_tag_struct_definition global_self_track_block;
 
-	extern s_tag_struct_definition game_performance_throttle_struct_definition;
+	extern s_tag_struct_definition lightning_system_struct_definition;
 
-	extern s_tag_struct_definition game_performance_throttle_entries_block;
+	extern s_tag_struct_definition bolt_definition_block;
+	extern s_string_list_definition bolt_flags;
 
-	extern s_tag_struct_definition game_performance_throttle_filter_struct;
+	extern s_tag_struct_definition achievements_struct_definition;
 
-	extern s_tag_struct_definition game_performance_throttle_profile_struct;
+	extern s_tag_struct_definition single_achievement_definition_block;
+	extern s_string_list_definition global_achievement_enum;
 
-	extern s_tag_struct_definition grounded_friction_struct_definition;
+	extern s_tag_struct_definition single_achievement_restricted_level_block;
 
-	extern s_tag_struct_definition havok_collision_filter_struct_definition;
+	extern s_tag_struct_definition ai_dialogue_globals_struct_definition;
 
-	extern s_tag_struct_definition havok_collision_filter_group_block;
+	extern s_tag_struct_definition default_stimulus_suppressor_block_struct;
 
-	extern s_tag_struct_definition havok_group_filter_filter_struct;
+	extern s_tag_struct_definition vocalization_definitions_block;
+	extern s_string_list_definition priority_enum;
+	extern s_string_list_definition vocalization_flags_definition;
+	extern s_string_list_definition glance_type_enum;
+	extern s_string_list_definition perception_type_enum;
+	extern s_string_list_definition combat_status_enum;
+	extern s_string_list_definition dialogue_animation_enum;
+	extern s_string_list_definition dialogue_emotion_enum;
 
-	extern s_tag_struct_definition model_block_struct;
-	extern s_tag_reference_definition render_model_group_reference$2;
-	extern s_tag_reference_definition collision_model_group_reference;
-	extern s_tag_reference_definition physics_model_group_reference;
-	extern s_tag_reference_definition imposter_model_group_reference$2;
-	extern s_string_list_definition imposter_quality_definition;
-	extern s_string_list_definition imposter_policy_definition;
-	extern s_tag_reference_definition dialogue_group_reference$3;
-	extern s_string_list_definition model_flags_definition;
-	extern s_string_list_definition model_private_flags_definition;
-	extern s_string_list_definition model_self_shadow_detail_definition;
-	extern s_string_list_definition model_self_shadow_bounces_definition;
-	extern s_tag_reference_definition shield_impact_group_reference;
+	extern s_tag_struct_definition response_block;
+	extern s_string_list_definition response_flags;
+	extern s_string_list_definition response_type_enum;
 
-	extern s_tag_struct_definition model_variant_block;
+	extern s_tag_struct_definition vocalization_patterns_block;
+	extern s_string_list_definition dialogue_names_enum;
+	extern s_string_list_definition speaker_type_enum;
+	extern s_string_list_definition hostility_enum;
+	extern s_string_list_definition pattern_flags;
+	extern s_string_list_definition dialogue_object_types_enum;
+	extern s_string_list_definition speaker_behavior_enum;
+	extern s_string_list_definition danger_enum;
+	extern s_string_list_definition spatial_relation_enum;
+	extern s_string_list_definition dialogue_condition_flags;
+	extern s_string_list_definition damage_enum;
+	extern s_string_list_definition game_type_enum;
 
-	extern s_tag_struct_definition runtime_region_index_array_struct_definition;
+	extern s_tag_struct_definition dialogue_data_block;
 
-	extern s_tag_struct_definition model_variant_region_block;
-	extern s_string_list_definition region_sort_enum;
+	extern s_tag_struct_definition involuntary_data_block;
 
-	extern s_tag_struct_definition model_variant_permutation_block;
-	extern s_string_list_definition model_variant_permutation_flags_definition;
+	extern s_tag_struct_definition predicted_data_block;
 
-	extern s_tag_struct_definition model_variant_state_block;
-	extern s_string_list_definition model_state_property_flags_definition;
-	extern s_string_list_definition model_state_enum_definition;
+	extern s_tag_struct_definition scenario_ai_resource_struct_definition;
 
-	extern s_tag_struct_definition model_state_permutation_index_array_struct_definition;
+	extern s_tag_struct_definition style_palette_block;
+	extern s_tag_reference_definition style_group_reference;
 
-	extern s_tag_struct_definition model_variant_object_block;
-	extern s_tag_reference_definition object_group_reference$3;
+	extern s_tag_struct_definition ai_recording_reference_block;
 
-	extern s_tag_struct_definition new_global_damage_section_block;
-	extern s_string_list_definition new_damage_section_flags_definition;
+	extern s_tag_struct_definition cs_script_data_block;
 
-	extern s_tag_struct_definition damage_section_recharge_speed_curve_block;
+	extern s_tag_struct_definition cs_point_set_block;
+	extern s_string_list_definition point_set_flags;
 
-	extern s_tag_struct_definition damage_section_segmented_recharge_fraction;
+	extern s_tag_struct_definition cs_point_block_struct;
 
-	extern s_tag_struct_definition new_instantaneous_damage_response_block;
-	extern s_string_list_definition new_damage_response_flags_definition;
-	extern s_string_list_definition damage_response_custom_response_behavior_enum_definition;
-	extern s_string_list_definition damage_response_constraint_damage_type_enum_definition;
+	extern s_tag_struct_definition orders_block;
+	extern s_string_list_definition order_flags;
+	extern s_string_list_definition force_combat_status_enum;
 
-	extern s_tag_struct_definition instantaneous_response_damage_effect_struct;
+	extern s_tag_struct_definition secondary_set_trigger_block;
+	extern s_string_list_definition combination_rules_enum;
+	extern s_string_list_definition order_ending_dialogue_enum;
 
-	extern s_tag_struct_definition instantaneous_response_damage_effect_marker_struct;
+	extern s_tag_struct_definition trigger_references;
+	extern s_string_list_definition trigger_ref_flags;
 
-	extern s_tag_struct_definition damage_response_region_transition_block;
+	extern s_tag_struct_definition triggers_block;
+	extern s_string_list_definition trigger_flags;
 
-	extern s_tag_struct_definition damage_transfer_block;
-	extern s_string_list_definition damage_transfer_flags_definition;
-	extern s_string_list_definition damage_transfer_function_enum_definition;
+	extern s_tag_struct_definition order_completion_condition;
+	extern s_string_list_definition condition_type_enum;
+	extern s_string_list_definition completion_condition_flags;
 
-	extern s_tag_struct_definition global_model_instance_group_block;
-	extern s_string_list_definition model_instance_group_choice_enum;
+	extern s_tag_struct_definition scenario_trigger_volume_struct;
+	extern s_string_list_definition trigger_volume_type_enum;
 
-	extern s_tag_struct_definition model_instance_group_member_block;
+	extern s_tag_struct_definition trigger_volume_point_block;
 
-	extern s_tag_struct_definition seat_ejection_block;
+	extern s_tag_struct_definition trigger_volume_runtime_triangles_block;
 
-	extern s_tag_struct_definition damage_section_rendering_paramters;
+	extern s_tag_struct_definition scenario_kill_trigger_volumes_block;
+	extern s_string_list_definition kill_volume_flags;
 
-	extern s_tag_struct_definition region_name_block;
+	extern s_tag_struct_definition scenario_trigger_volume_fields_v1;
 
-	extern s_tag_struct_definition model_material_block_old;
+	extern s_tag_struct_definition scenario_trigger_volume_fields_v0;
 
-	extern s_tag_struct_definition model_material_block_new;
+	extern s_tag_struct_definition scenario_trigger_volume_parameter_storage_array_struct_definition;
 
-	extern s_tag_struct_definition global_damage_info_block;
-	extern s_string_list_definition model_damage_info_flags_definition;
+	extern s_tag_struct_definition special_movement_block;
+	extern s_string_list_definition special_movement_flags;
 
-	extern s_tag_struct_definition damage_body_parameters_struct;
+	extern s_tag_struct_definition order_ending_block;
 
-	extern s_tag_struct_definition damage_shield_parameters_struct;
+	extern s_tag_struct_definition ai_scene_block;
+	extern s_string_list_definition scene_flags;
 
-	extern s_tag_struct_definition global_damage_section_block;
-	extern s_string_list_definition damage_section_flags_definition;
+	extern s_tag_struct_definition ai_scene_trigger_block;
 
-	extern s_tag_struct_definition instantaneous_damage_repsonse_block;
-	extern s_string_list_definition damage_response_type_enum_definition;
-	extern s_string_list_definition damage_response_flags_definition;
-	extern s_string_list_definition damage_response_body_threshold_flags_definition;
+	extern s_tag_struct_definition ai_scene_role_block;
+	extern s_string_list_definition role_group_enum;
 
-	extern s_tag_struct_definition global_damage_nodes_block;
+	extern s_tag_struct_definition ai_scene_role_variants_block;
 
-	extern s_tag_struct_definition damage_seat_info_block;
+	extern s_tag_struct_definition flock_palette_block;
+	extern s_tag_reference_definition flock_group_reference;
 
-	extern s_tag_struct_definition damage_seat_region_setting_block;
+	extern s_tag_struct_definition flock_instance_block;
+	extern s_string_list_definition flock_flags;
 
-	extern s_tag_struct_definition damage_constraint_info_block;
+	extern s_tag_struct_definition flock_source_block;
+	extern s_string_list_definition flock_source_flags;
 
-	extern s_tag_struct_definition model_damage_info_struct;
-	extern s_string_list_definition new_model_damage_info_flags_definition;
+	extern s_tag_struct_definition flock_destination_block;
+	extern s_string_list_definition destination_type_enum;
 
-	extern s_tag_struct_definition model_target_block_old;
+	extern s_tag_struct_definition big_battle_creature_palette_block;
+	extern s_tag_reference_definition big_battle_creature_group_reference;
 
-	extern s_tag_struct_definition model_target_lock_on_data_struct;
-	extern s_string_list_definition model_target_lock_on_flags_definition;
+	extern s_tag_struct_definition ai_globals_struct_definition;
 
-	extern s_tag_struct_definition model_target_block_new;
-	extern s_string_list_definition model_target_flags_definition;
+	extern s_tag_struct_definition ai_globals_data_block_struct;
+	extern s_tag_reference_definition ai_dialogue_globals_group_reference;
 
-	extern s_tag_struct_definition model_region_block;
+	extern s_tag_struct_definition ai_globals_performance_template_folder_block_struct;
 
-	extern s_tag_struct_definition model_permutation_block;
-	extern s_string_list_definition model_permutation_flags_definition;
+	extern s_tag_struct_definition ai_globals_gravemind_block;
 
-	extern s_tag_struct_definition model_node_block;
+	extern s_tag_struct_definition ai_globals_formation_block;
+	extern s_tag_reference_definition formation_group_reference;
 
-	extern s_tag_struct_definition g_node_flag_storage_array_struct_definition;
+	extern s_tag_struct_definition ai_globals_squad_template_folder_block_struct;
 
-	extern s_tag_struct_definition global_scenario_load_parameters_block;
-	extern s_tag_reference_definition scenario_group_reference$2;
+	extern s_tag_struct_definition ai_globals_squad_template_sub_folder_block_struct;
 
-	extern s_tag_struct_definition model_self_shadow_region_cast_override_block;
+	extern s_tag_struct_definition ai_globals_squad_template_block;
+	extern s_tag_reference_definition squad_template_group_reference;
 
-	extern s_tag_struct_definition model_self_shadow_region_receive_override_block;
-	extern s_string_list_definition model_prt_shadow_receive_mode_definition;
+	extern s_tag_struct_definition ai_globals_performance_template_sub_folder_block_struct;
 
-	extern s_tag_struct_definition model_occlusion_sphere_block;
+	extern s_tag_struct_definition ai_globals_performance_template_block;
+	extern s_tag_reference_definition performance_template_group_reference;
 
-	extern s_tag_struct_definition hlsl_include_struct_definition;
+	extern s_tag_struct_definition ai_globals_custom_stimuli_block;
 
-	extern s_tag_struct_definition hs_source_files_block;
-	extern s_string_list_definition hs_source_file_flags;
+	extern s_tag_struct_definition ai_cue_template_block_struct;
 
-	extern s_tag_struct_definition hs_references_block;
-	extern s_tag_reference_definition _reference$2;
+	extern s_tag_struct_definition firing_point_payload_block_struct;
 
-	extern s_tag_struct_definition incident_global_properties_definition_struct_definition;
-	extern s_tag_reference_definition cookie_globals_definition_group_reference;
-	extern s_tag_reference_definition commendation_globals_definition_group_reference;
+	extern s_tag_struct_definition stimulus_payload_block_struct;
 
-	extern s_tag_struct_definition incident_globals_block;
-	extern s_tag_reference_definition incident_globals_definition_group_reference;
+	extern s_tag_struct_definition combat_cue_payload_block_struct;
+	extern s_string_list_definition combat_cue_preference_enum;
 
-	extern s_tag_struct_definition incident_definition_block_struct;
-	extern s_string_list_definition incident_definition_flags;
+	extern s_tag_struct_definition ai_trait_vision_block_struct;
 
-	extern s_tag_struct_definition suppressed_incident_block;
-	extern s_string_list_definition suppressed_incident_flags;
+	extern s_tag_struct_definition ai_trait_sound_block_struct;
 
-	extern s_tag_struct_definition specialized_incident_block;
+	extern s_tag_struct_definition ai_trait_luck_block_struct;
 
-	extern s_tag_struct_definition specialized_incident_kill_implement_block;
+	extern s_tag_struct_definition ai_trait_grenade_block_struct;
 
-	extern s_tag_struct_definition specialized_incident_object_properties_block;
-	extern s_string_list_definition specialized_incident_kill_bucket_flags;
-	extern s_string_list_definition campaign_metagame_bucket_type_with_none_enum;
-	extern s_string_list_definition campaign_metagame_bucket_class_with_none_enum;
+	extern s_tag_struct_definition airstrike_struct_definition;
 
-	extern s_tag_struct_definition specialized_incident_special_kill_type_block;
-	extern s_string_list_definition specialized_incident_special_kill_type_enum;
+	extern s_tag_struct_definition airstrike_battery_block;
 
-	extern s_tag_struct_definition incident_accumulator_block;
-	extern s_string_list_definition incident_accumulator_aggregation_method_enum;
-	extern s_string_list_definition incident_accumulator_reset_enum;
+	extern s_tag_struct_definition airstrike_fire_location_block;
 
-	extern s_tag_struct_definition incident_accumulator_child_incident_block;
-	extern s_string_list_definition incident_accumulator_flags;
+	extern s_tag_struct_definition antenna_struct_definition;
+	extern s_tag_reference_definition bitmap_group_reference$5;
+	extern s_tag_reference_definition point_physics_group_reference;
 
-	extern s_tag_struct_definition game_incident_response_block_struct;
+	extern s_tag_struct_definition antenna_vertex_block;
 
-	extern s_tag_struct_definition game_incident_daily_challenge_to_increment_block;
+	extern s_tag_struct_definition atmosphere_globals_struct_definition;
 
-	extern s_tag_struct_definition instance_imposter_definition_struct_definition;
-	extern s_string_list_definition instance_imposter_flags_definition;
+	extern s_tag_struct_definition underwater_setting_block;
 
-	extern s_tag_struct_definition instance_imposter_block;
-	extern s_string_list_definition instance_imposter_element_flags_definition;
+	extern s_tag_struct_definition avatar_awards_struct_definition;
 
-	extern s_tag_struct_definition instance_imposter_checksum_block;
+	extern s_tag_struct_definition single_avatar_award_definition_block;
+	extern s_string_list_definition global_avatar_award_enum;
 
-	extern s_tag_struct_definition imposter_model_struct_definition;
+	extern s_tag_struct_definition big_battle_creature_block_struct;
+	extern s_tag_reference_definition imposter_model_group_reference;
 
-	extern s_tag_struct_definition imposter_mode_node_block;
+	extern s_tag_struct_definition character_physics_struct;
+	extern s_string_list_definition character_physics_flags;
 
-	extern s_tag_struct_definition render_model_region_block;
+	extern s_tag_struct_definition spheres_block_struct;
 
-	extern s_tag_struct_definition render_model_permutation_block;
-	extern s_string_list_definition render_model_instance_bitfield_flags_definition;
+	extern s_tag_struct_definition havok_primitive_struct;
+	extern s_string_list_definition physics_material_flags;
 
-	extern s_tag_struct_definition incident_globals_definition_block_struct;
+	extern s_tag_struct_definition materials_block;
+	extern s_string_list_definition physics_material_proxy_collision_groups;
 
-	extern s_tag_struct_definition model_animation_graph_block_struct;
+	extern s_tag_struct_definition phantom_types_block;
+	extern s_string_list_definition phantom_flags;
+	extern s_string_list_definition rigid_body_size_enum;
 
-	extern s_tag_struct_definition animation_graph_definitions_struct;
-	extern s_tag_reference_definition model_animation_graph_group_reference$2;
-	extern s_string_list_definition public_animation_graph_flags;
-	extern s_string_list_definition private_animation_graph_flags;
-	extern s_string_list_definition compression_force_settings;
-	extern s_tag_reference_definition frame_event_list_group_reference;
+	extern s_tag_struct_definition phantom_type_fields_v0;
+	extern s_string_list_definition phantom_flags_v0;
 
-	extern s_tag_struct_definition animation_usage_block;
-	extern s_string_list_definition animation_usage_enumeration;
+	extern s_tag_struct_definition phantoms_block;
 
-	extern s_tag_struct_definition animation_graph_node_block;
-	extern s_string_list_definition animation_node_model_flags;
-	extern s_string_list_definition node_joint_flags;
-	extern s_string_list_definition node_info_flags;
+	extern s_tag_struct_definition havok_shape_struct;
 
-	extern s_tag_struct_definition animation_node_mask_block;
+	extern s_tag_struct_definition havok_shape_reference_struct;
+	extern s_string_list_definition shape_enum;
 
-	extern s_tag_struct_definition animation_node_mask_entry_block;
+	extern s_tag_struct_definition havok_convex_shape_struct;
 
-	extern s_tag_struct_definition animation_function_block;
+	extern s_tag_struct_definition havok_convex_translate_shape_struct;
 
-	extern s_tag_struct_definition model_animation_variant_block;
-	extern s_string_list_definition model_animation_variant_flags;
+	extern s_tag_struct_definition pills_block;
 
-	extern s_tag_struct_definition mode_or_stance_alias_block_struct;
+	extern s_tag_struct_definition character_physics_ground_struct;
 
-	extern s_tag_struct_definition animation_blend_screen_block;
+	extern s_tag_struct_definition character_physics_flying_struct;
+	extern s_string_list_definition flying_physics_flags;
 
-	extern s_tag_struct_definition animation_aiming_screen_struct;
+	extern s_tag_struct_definition campaign_metagame_bucket_block;
+	extern s_string_list_definition campaign_metagame_bucket_flags;
+	extern s_string_list_definition campaign_metagame_bucket_type_enum;
+	extern s_string_list_definition campaign_metagame_bucket_class_enum;
 
-	extern s_tag_struct_definition foot_tracking_member_block;
-	extern s_string_list_definition foot_tracking_default_values;
+	extern s_tag_struct_definition creature_scalar_timing_block;
 
-	extern s_tag_struct_definition animation_pool_block_struct;
-	extern s_string_list_definition animation_index_flags;
-	extern s_string_list_definition production_status_flags;
+	extern s_tag_struct_definition scalar_function_named_struct;
 
-	extern s_tag_struct_definition shared_animation_reference_block;
+	extern s_tag_struct_definition death_program_selector_struct_definition;
 
-	extern s_tag_struct_definition shared_model_animation_block;
-	extern s_string_list_definition animation_type_enum;
-	extern s_string_list_definition frame_info_type_enum;
-	extern s_string_list_definition compression_settings;
-	extern s_string_list_definition internal_animation_flags;
+	extern s_tag_struct_definition death_program_special_block;
+	extern s_string_list_definition object_damage_aftermath_special_damage_type_enum;
+
+	extern s_tag_struct_definition death_program_damage_reporting_block;
+
+	extern s_tag_struct_definition beam_property_real_rgb_color;
+	extern s_string_list_definition beam_state_input_enum;
+	extern s_string_list_definition output_mod_enum;
+
+	extern s_tag_struct_definition death_program_velocity_gate_block;
+	extern s_string_list_definition death_program_result_enum;
+
+	extern s_tag_struct_definition beam_system_struct_definition;
+
+	extern s_tag_struct_definition beam_definition_block;
+	extern s_string_list_definition beam_appearance_flags;
+	extern s_string_list_definition beam_profile_shape_enum;
+
+	extern s_tag_struct_definition shader_beam_struct_definition;
+
+	extern s_tag_struct_definition beam_property_real;
+
+	extern s_tag_struct_definition beam_property_real_point2d;
+
+	extern s_tag_struct_definition structure_design_block_struct;
+
+	extern s_tag_struct_definition global_structure_physics_design_struct;
+
+	extern s_tag_struct_definition structure_soft_ceiling_block;
+	extern s_string_list_definition soft_ceiling_type_enum;
+
+	extern s_tag_struct_definition structure_soft_ceiling_triangle_block;
+
+	extern s_tag_struct_definition structure_water_groups_block;
+
+	extern s_tag_struct_definition structure_water_instances_block;
+
+	extern s_tag_struct_definition structure_water_instance_planes_block;
+
+	extern s_tag_struct_definition structure_water_instance_debug_triangles_block;
+
+	extern s_tag_struct_definition planar_fog_set_definition_struct;
+
+	extern s_tag_struct_definition planar_fog_definition_block;
+	extern s_tag_reference_definition planar_fog_parameters_group_reference;
+
+	extern s_tag_struct_definition planar_fog_vertex_block;
+
+	extern s_tag_struct_definition planar_fog_triangle_block;
+
+	extern s_tag_struct_definition planar_fog_triangle_planes_block;
+
+	extern s_tag_struct_definition scenario_required_resource_struct_definition;
+
+	extern s_tag_struct_definition area_screen_effect_struct_definition;
+	extern s_string_list_definition area_screen_effect_global_flags_definition;
+	extern s_string_list_definition area_screen_effect_global_hidden_flags_definition;
+
+	extern s_tag_struct_definition single_screen_effect;
+	extern s_string_list_definition area_screen_effect_flags_definition;
+	extern s_string_list_definition area_screen_effect_hidden_flags_definition;
+	extern s_tag_reference_definition shader_screen_group_reference;
+
+	extern s_tag_struct_definition screen_effect_scalar_function_struct;
+
+	extern s_tag_struct_definition screen_effect_scalar_object_function_struct;
+
+	extern s_tag_struct_definition sound_effect_collection_block_struct;
+
+	extern s_tag_struct_definition platform_sound_playback_block_struct;
+
+	extern s_tag_struct_definition platform_sound_playback_struct;
+	extern s_string_list_definition platform_sound_effect_flags_definition;
+	extern s_tag_reference_definition sound_radio_settings_group_reference;
+
+	extern s_tag_struct_definition platform_sound_playback_lowpass_block_struct;
+
+	extern s_tag_struct_definition global_sound_lowpass_block;
+
+	extern s_tag_struct_definition platform_sound_playback_component_block_struct;
+	extern s_string_list_definition platform_sound_playback_component_flags;
+
+	extern s_tag_struct_definition sound_global_propagation_block_struct;
+
+	extern s_tag_struct_definition sound_propagation_definition_struct;
+
+	extern s_tag_struct_definition shield_impact_struct_definition;
+	extern s_string_list_definition shield_flags;
+
+	extern s_tag_struct_definition shield_color_function_struct;
+
+	extern s_tag_struct_definition shield_scalar_function_struct;
+
+	extern s_tag_struct_definition scenario_sky_references_resource_struct_definition;
+
+	extern s_tag_struct_definition simulated_input_struct_definition;
+
+	extern s_tag_struct_definition simulated_input_stick_struct;
+	extern s_string_list_definition direction_type_enum_definition;
+	extern s_string_list_definition mapping_type_enum_definition;
+
+	extern s_tag_struct_definition simulation_interpolation_struct_definition;
+
+	extern s_tag_struct_definition single_domain_configuration_struct;
+
+	extern s_tag_struct_definition single_domain_velocity_bumps_configuration_struct;
+
+	extern s_tag_struct_definition single_domain_blending_configuration_struct;
+
+	extern s_tag_struct_definition text_value_pair_definition_struct_definition;
+	extern s_string_list_definition game_variant_parameters;
+
+	extern s_tag_struct_definition scenario_interpolator_data_block;
+	extern s_string_list_definition scenario_interpolator_flags;
+	extern s_string_list_definition scenario_interpolator_reset_value_enum;
+	extern s_string_list_definition scenario_interpolator_start_value_enum;
+	extern s_string_list_definition scenario_interpolator_stop_value_enum;
+
+	extern s_tag_struct_definition scenario_interpolator_struct_definition;
+
+	extern s_tag_struct_definition sky_atm_parameters_struct_definition;
+
+	extern s_tag_struct_definition atmosphere_setting_block;
+	extern s_string_list_definition atmosphere_flags$2;
+
+	extern s_tag_struct_definition solo_fog_parameters_struct_definition$2;
+
+	extern s_tag_struct_definition fog_light_struct_definition$2;
+
+	extern s_tag_struct_definition underwater_setting_block$2;
+
+	extern s_tag_struct_definition survival_mode_globals_struct_definition;
+	extern s_tag_reference_definition coop_spawning_globals_definition_group_reference;
+
+	extern s_tag_struct_definition survival_mode_wave_templates_struct;
+	extern s_tag_reference_definition wave_template_group_reference;
+
+	extern s_tag_struct_definition survival_spartan_voice;
+	extern s_tag_reference_definition dialogue_group_reference$4;
+
+	extern s_tag_struct_definition sound_classes_block_struct;
+
+	extern s_tag_struct_definition sound_class_block_struct;
+	extern s_string_list_definition sound_class_internal_flags_definition;
+	extern s_string_list_definition sound_class_external_flags_definition;
+	extern s_string_list_definition sound_class_cache_miss_mode_definition;
+	extern s_string_list_definition sound_class_suppress_spatialization_string_defintion;
+	extern s_string_list_definition sound_class_stereo_playback_definition;
+
+	extern s_tag_struct_definition g_sound_permutation_chunk_fields_v1;
+
+	extern s_tag_struct_definition sound_block_struct;
+	extern s_string_list_definition sound_import_flags;
+	extern s_string_list_definition sound_xsync_flags;
+	extern s_string_list_definition sound_sample_rate_enum;
+	extern s_string_list_definition sound_import_type_enum;
+	extern s_string_list_definition sound_encoding_enum;
+	extern s_string_list_definition sound_compression_enum;
+
+	extern s_tag_struct_definition sound_playback_parameters_struct;
+	extern s_string_list_definition sound_override_location_flags_definition;
+
+	extern s_tag_struct_definition sound_scale_modifiers_struct;
+
+	extern s_tag_struct_definition sound_promotion_parameters_struct;
+
+	extern s_tag_struct_definition sound_promotion_rule_block;
+
+	extern s_tag_struct_definition sound_pitch_range_block;
+	extern s_string_list_definition sound_pitch_range_internal_xsync_flags;
+
+	extern s_tag_struct_definition sound_permutations_block;
+	extern s_string_list_definition sound_permutation_external_flags;
+	extern s_string_list_definition sound_permutation_flags;
+
+	extern s_tag_struct_definition sound_permutation_languages_block_struct;
+
+	extern s_tag_struct_definition sound_permutation_chunk_block;
+
+	extern s_tag_struct_definition sound_promotion_runtime_timer_block;
+
+	extern s_tag_struct_definition sound_promotion_parameter_fields_v1;
+
+	extern s_tag_struct_definition sound_platform_sound_playback_block;
+
+	extern s_tag_struct_definition sound_extra_info_block_struct;
+
+	extern s_tag_struct_definition sound_definition_language_permutation_info_block;
+
+	extern s_tag_struct_definition sound_permutation_raw_info_block;
+	extern s_string_list_definition sound_language_enum_definition;
+
+	extern s_tag_struct_definition sound_permutation_marker_block;
+
+	extern s_tag_struct_definition sound_xma2_seek_table_block;
+
+	extern s_tag_struct_definition facial_animation_language_block_struct;
+
+	extern s_tag_struct_definition facial_animation_resource_definition_struct;
+
+	extern s_tag_struct_definition facial_animation_permutation_block_struct;
+
+	extern s_tag_struct_definition facial_animation_curve_block_struct;
+	extern s_string_list_definition facial_animation_track_enum_definition;
+
+	extern s_tag_struct_definition sound_language_info_block;
+
+	extern s_tag_struct_definition sound_permutation_language_info;
+
+	extern s_tag_struct_definition sound_pitch_range_language_info;
+
+	extern s_tag_struct_definition sound_environment_block_struct;
+
+	extern s_tag_struct_definition global_sound_reverb_block;
+
+	extern s_tag_struct_definition sound_mix_block_struct;
+
+	extern s_tag_struct_definition sound_transmission_definition_struct;
+
+	extern s_tag_struct_definition sound_stereo_mix_struct;
+
+	extern s_tag_struct_definition sound_surround_mix_struct;
+
+	extern s_tag_struct_definition sound_global_mix_struct;
+	extern s_tag_reference_definition sound_group_reference;
+
+	extern s_tag_struct_definition sound_center_mix_struct;
+
+	extern s_tag_struct_definition sound_dialogue_constants_struct_definition;
+
+	extern s_tag_struct_definition squad_template_block_struct;
+
+	extern s_tag_struct_definition cell_template_block_struct;
+	extern s_tag_reference_definition vehicle_group_reference$4;
+
+	extern s_tag_struct_definition character_ref_choice_block_struct;
+	extern s_tag_reference_definition character_group_reference$6;
+
+	extern s_tag_struct_definition weapon_ref_choice_block_struct;
+	extern s_tag_reference_definition weapon_group_reference$9;
+
+	extern s_tag_struct_definition equipment_ref_choice_block_struct;
+	extern s_tag_reference_definition equipment_group_reference$6;
+
+	extern s_tag_struct_definition sound_radio_settings_block_struct;
+	extern s_string_list_definition radio_mix_setting_definition;
+
+	extern s_tag_struct_definition global_sound_look_up_table_distortion_block;
+	extern s_string_list_definition look_up_table_flags_definition;
+
+	extern s_tag_struct_definition global_sound_equalizer_block;
+
+	extern s_tag_struct_definition sound_equalizer_band_settings_block_struct;
+	extern s_string_list_definition equalizer_band_type_definition;
+
+	extern s_tag_struct_definition ssao_definition_struct_definition;
+	extern s_string_list_definition ssao_downsample_enum_definition;
+	extern s_string_list_definition ssao_type_enum_definition;
+
+	extern s_tag_struct_definition sound_scenery_struct_definition;
+
+	extern s_tag_struct_definition sound_scenery_struct_definition$2;
+
+	extern s_tag_struct_definition structure_lighting_generic_light_definition_block$2;
+	extern s_string_list_definition structure_lighting_generic_light_type_enum;
+	extern s_string_list_definition structure_lighting_generic_light_flags;
+	extern s_string_list_definition structure_lighting_generic_light_shape_enum;
+
+	extern s_tag_struct_definition scenario_structure_lighting_resource_struct_definition;
+
+	extern s_tag_struct_definition scenario_structure_lighting_info_struct_definition;
+
+	extern s_tag_struct_definition structure_lighting_generic_light_instance_block;
+	extern s_string_list_definition structure_lighting_bungie_light_type_enum;
+	extern s_string_list_definition light_instance_flags;
+	extern s_tag_reference_definition light_group_reference$4;
+	extern s_tag_reference_definition render_method_definition_group_reference$2;
+	extern s_tag_reference_definition bitmap_group_reference$12;
+	extern s_tag_reference_definition lens_flare_group_reference$2;
+
+	extern s_tag_struct_definition screen_space_light_shader_override_block;
+
+	extern s_tag_struct_definition structure_lighting_region_block;
+
+	extern s_tag_struct_definition structure_lighting_region_triangle_block;
+
+	extern s_tag_struct_definition structure_material_lighting_info_block;
+	extern s_string_list_definition structure_material_lighting_info_flags;
+
+	extern s_tag_struct_definition structure_instance_imposter_info_block;
+
+	extern s_tag_struct_definition structure_seams_struct_definition;
+
+	extern s_tag_struct_definition structure_manifest_struct;
+
+	extern s_tag_struct_definition structure_manifest_bsp_block;
+
+	extern s_tag_struct_definition structure_seam_block;
+
+	extern s_tag_struct_definition structure_seam_original_geometry_struct;
+
+	extern s_tag_struct_definition structure_seam_original_vertex_block;
+
+	extern s_tag_struct_definition structure_seam_original_vertex_plane_normals_block;
+
+	extern s_tag_struct_definition structure_seam_final_geometry_struct;
+
+	extern s_tag_struct_definition structure_seam_final_planes_block;
+
+	extern s_tag_struct_definition structure_seam_final_points_block;
+
+	extern s_tag_struct_definition structure_seam_final_triangles_block;
+
+	extern s_tag_struct_definition structure_seam_final_edges_block;
+
+	extern s_tag_struct_definition style_struct_definition;
+	extern s_string_list_definition combat_status_enum$2;
+	extern s_string_list_definition style_control_flags;
+	extern s_string_list_definition behavior_set1;
+	extern s_string_list_definition behavior_set2;
+	extern s_string_list_definition behavior_set3;
+	extern s_string_list_definition behavior_set4;
+	extern s_string_list_definition behavior_set5;
+	extern s_string_list_definition behavior_set6;
+	extern s_string_list_definition behavior_set7;
+	extern s_string_list_definition behavior_set8;
+
+	extern s_tag_struct_definition behavior_names_block;
+
+	extern s_tag_struct_definition device_terminal_struct_definition;
+	extern s_tag_reference_definition sound_group_reference$3;
+
+	extern s_tag_struct_definition terminal_page_block_definition;
+
+	extern s_tag_struct_definition device_terminal_struct_definition$2;
+
+	extern s_tag_struct_definition camera_track_control_point_block;
+
+	extern s_tag_struct_definition camera_track_struct_definition;
+	extern s_string_list_definition camera_track_flags;
+
+	extern s_tag_struct_definition scenario_trigger_volumes_resource_struct_definition;
+
+	extern s_tag_struct_definition dialogue_block_struct;
+	extern s_tag_reference_definition ai_dialogue_globals_group_reference$2;
+	extern s_string_list_definition dialogue_flags;
+
+	extern s_tag_struct_definition sound_references_block;
+
+	extern s_tag_struct_definition vocalization_stimuli_block_definition;
+	extern s_string_list_definition vocalization_stimulus_flags;
+	extern s_tag_reference_definition sound_group_reference$4;
+
+	extern s_tag_struct_definition g_vocalization_sound_references_fields_v1;
+	extern s_string_list_definition sound_reference_flags_v1;
+
+	extern s_tag_struct_definition sound_cache_file_gestalt_struct_definition;
+
+	extern s_tag_struct_definition sound_gestalt_codec_block;
+
+	extern s_tag_struct_definition sound_gestalt_playback_block;
+
+	extern s_tag_struct_definition sound_gestalt_scale_block;
+
+	extern s_tag_struct_definition sound_gestalt_import_names_block;
+
+	extern s_tag_struct_definition sound_gestalt_pitch_range_parameters_block;
+
+	extern s_tag_struct_definition sound_gestalt_pitch_ranges_block;
+
+	extern s_tag_struct_definition sound_gestalt_permutations_block;
+
+	extern s_tag_struct_definition sound_gestalt_permutation_languages_block_struct;
+
+	extern s_tag_struct_definition sound_gestalt_custom_playback_block;
+
+	extern s_tag_struct_definition sound_gestalt_runtime_permutation_bit_vector_block;
+
+	extern s_tag_struct_definition sound_gestalt_promotions_block;
+
+	extern s_tag_struct_definition sound_gestalt_facial_animation_block;
+
+	extern s_tag_struct_definition sound_gestalt_layer_markers_block;
+
+	extern s_tag_struct_definition user_interface_sounds_definition_struct_definition;
+
+	extern s_tag_struct_definition gear_block;
+
+	extern s_tag_struct_definition multilingual_unicode_string_list_struct_definition;
+
+	extern s_tag_struct_definition multilingual_unicode_string_reference_block;
+
+	extern s_tag_struct_definition string_substitution_pair_block;
+
+	extern s_tag_struct_definition multilingual_unicode_string_list_language_pack_offsets_struct_definition;
+
+	extern s_tag_struct_definition vehicle_group$2;
+	extern s_string_list_definition vehicle_flags$2;
+	extern s_string_list_definition player_training_vehicle_type_enum;
+	extern s_string_list_definition vehicle_size_enum;
+
+	extern s_tag_struct_definition vehicle_physics_types_struct;
+
+	extern s_tag_struct_definition human_tank_struct;
+
+	extern s_tag_struct_definition global_vehicle_engine_struct;
+
+	extern s_tag_struct_definition torque_curve_struct;
+
+	extern s_tag_struct_definition load_and_cruise_block;
+
+	extern s_tag_struct_definition human_jeep_block;
+
+	extern s_tag_struct_definition vehicle_steering_control_struct;
+
+	extern s_tag_struct_definition vehicle_turning_control_struct;
+
+	extern s_tag_struct_definition boat_engine_definition_block;
+	extern s_string_list_definition boat_flags;
+
+	extern s_tag_struct_definition human_plane_block;
+
+	extern s_tag_struct_definition steering_animation_struct;
+
+	extern s_tag_struct_definition wolverine_block;
+
+	extern s_tag_struct_definition alien_scout_block;
+	extern s_string_list_definition alien_scout_specific_type_enum;
+	extern s_string_list_definition alien_scout_flags;
 
 	extern s_tag_struct_definition animation_frame_event_block_struct;
+	extern s_string_list_definition frame_event_type_new;
 
 	extern s_tag_struct_definition animation_sound_event_block;
 
 	extern s_tag_struct_definition animation_effect_event_block;
 
+	extern s_tag_struct_definition s_effect_event_v1_fields;
+
+	extern s_tag_struct_definition s_effect_event_v0_fields;
+
 	extern s_tag_struct_definition animation_dialogue_event_block;
+	extern s_string_list_definition animation_dialogue_event_enum;
 
 	extern s_tag_struct_definition object_space_node_data_block;
 	extern s_string_list_definition object_space_node_flags;
@@ -6463,6 +6605,7 @@ namespace xbox360
 	extern s_tag_reference_definition unit_group_scenery_group_reference;
 
 	extern s_tag_struct_definition foot_tracking_defaults;
+	extern s_string_list_definition foot_tracking_default_values;
 
 	extern s_tag_struct_definition vehicle_suspension_block;
 
@@ -6472,6 +6615,7 @@ namespace xbox360
 	extern s_tag_struct_definition model_animation_runtime_data_struct;
 
 	extern s_tag_struct_definition inherited_animation_block;
+	extern s_tag_reference_definition model_animation_graph_group_reference$2;
 
 	extern s_tag_struct_definition inherited_animation_node_map_block;
 
@@ -6486,6 +6630,7 @@ namespace xbox360
 	extern s_tag_struct_definition model_animation_tag_resource_struct;
 
 	extern s_tag_struct_definition model_animation_tag_resource_member;
+	extern s_string_list_definition frame_info_type_enum;
 
 	extern s_tag_struct_definition packed_data_sizes_struct;
 
@@ -6506,14 +6651,19 @@ namespace xbox360
 
 	extern s_tag_struct_definition damage_outer_cone_angle_struct;
 
+	extern s_tag_struct_definition damage_outer_cone_angle_fields_v1;
+
+	extern s_tag_struct_definition lens_flare_reflection_block;
+	extern s_string_list_definition lens_flare_reflection_flags_definition;
+
 	extern s_tag_struct_definition custom_damage_response_label_block;
 
 	extern s_tag_struct_definition damage_effect_sound_block_struct;
 	extern s_string_list_definition damage_effect_sound_type_flags;
 
-	extern s_tag_struct_definition load_screen_globals_struct_definition;
-
-	extern s_tag_struct_definition load_screen_data_block;
+	extern s_tag_struct_definition damage_effect_fields_v1;
+	extern s_string_list_definition screen_flash_types;
+	extern s_string_list_definition screen_flash_priorities;
 
 	extern s_tag_struct_definition lens_flare_struct_definition;
 	extern s_string_list_definition lens_flare_occlusion_offset_enum_definition;
@@ -6521,8 +6671,9 @@ namespace xbox360
 	extern s_string_list_definition lens_flare_corona_rotation_function_enum_definition;
 	extern s_string_list_definition lens_flare_animation_flags_definition;
 
-	extern s_tag_struct_definition lens_flare_reflection_block;
-	extern s_string_list_definition lens_flare_reflection_flags_definition;
+	extern s_tag_struct_definition load_screen_globals_struct_definition;
+
+	extern s_tag_struct_definition load_screen_data_block;
 
 	extern s_tag_struct_definition lens_flare_scalar_animation_block;
 
@@ -6550,6 +6701,10 @@ namespace xbox360
 	extern s_tag_reference_definition lens_flare_group_reference;
 	extern s_string_list_definition light_clip_flags_definition;
 
+	extern s_tag_struct_definition light_volume_definition_block;
+	extern s_string_list_definition light_volume_appearance_flags;
+	extern s_string_list_definition light_volume_flags;
+
 	extern s_tag_struct_definition location_name_globals_definition_struct_definition;
 
 	extern s_tag_struct_definition location_name_block;
@@ -6560,7 +6715,6 @@ namespace xbox360
 	extern s_tag_struct_definition looping_sound_track_block;
 	extern s_string_list_definition looping_sound_track_flags;
 	extern s_string_list_definition sound_effects_enum;
-	extern s_tag_reference_definition sound_group_reference;
 	extern s_string_list_definition looping_sound_fade_modes;
 	extern s_string_list_definition looping_sound_layers;
 	extern s_string_list_definition looping_sound_track_layer_flags;
@@ -6569,16 +6723,14 @@ namespace xbox360
 	extern s_string_list_definition looping_sound_detail_period_type_enum;
 	extern s_string_list_definition looping_sound_detail_flags;
 
+	extern s_tag_struct_definition looping_sound_detail_fields_v1;
+
 	extern s_tag_struct_definition leaf_system_struct_definition;
 	extern s_string_list_definition leaf_flags$2;
 
 	extern s_tag_struct_definition leaf_type_block;
 
 	extern s_tag_struct_definition light_volume_system_struct_definition;
-
-	extern s_tag_struct_definition light_volume_definition_block;
-	extern s_string_list_definition light_volume_appearance_flags;
-	extern s_string_list_definition light_volume_flags;
 
 	extern s_tag_struct_definition shader_light_volume_struct_definition;
 
@@ -6595,6 +6747,15 @@ namespace xbox360
 	extern s_string_list_definition machine_flags;
 	extern s_string_list_definition machine_collision_responses;
 	extern s_string_list_definition machine_pathfinding_policy_enum;
+
+	extern s_tag_struct_definition device_machine_struct_definition$2;
+
+	extern s_tag_struct_definition sound_globals_block;
+	extern s_tag_reference_definition sound_classes_group_reference;
+	extern s_tag_reference_definition sound_effect_collection_group_reference;
+	extern s_tag_reference_definition sound_mix_group_reference;
+	extern s_tag_reference_definition sound_dialogue_constants_group_reference;
+	extern s_tag_reference_definition sound_global_propagation_group_reference;
 
 	extern s_tag_struct_definition globals_struct_definition;
 	extern s_string_list_definition language_enum;
@@ -6622,13 +6783,6 @@ namespace xbox360
 
 	extern s_tag_struct_definition havok_cleanup_resources_block;
 
-	extern s_tag_struct_definition sound_globals_block;
-	extern s_tag_reference_definition sound_classes_group_reference;
-	extern s_tag_reference_definition sound_effect_collection_group_reference;
-	extern s_tag_reference_definition sound_mix_group_reference;
-	extern s_tag_reference_definition sound_dialogue_constants_group_reference;
-	extern s_tag_reference_definition sound_global_propagation_group_reference;
-
 	extern s_tag_struct_definition campaign_unspatialized_sounds_block;
 
 	extern s_tag_struct_definition game_globals_damage_block;
@@ -6643,11 +6797,16 @@ namespace xbox360
 	extern s_tag_struct_definition camera_block;
 	extern s_string_list_definition global_transition_functions_enum;
 
+	extern s_tag_struct_definition difficulty_block;
+
 	extern s_tag_struct_definition controller_input_block;
 
 	extern s_tag_struct_definition player_control_block;
 
-	extern s_tag_struct_definition difficulty_block;
+	extern s_tag_struct_definition player_representation_block;
+	extern s_string_list_definition player_representation_flags;
+	extern s_tag_reference_definition render_model_group_reference$3;
+	extern s_tag_reference_definition unit_group_reference$3;
 
 	extern s_tag_struct_definition coop_difficulty_block_struct;
 
@@ -6670,11 +6829,6 @@ namespace xbox360
 
 	extern s_tag_struct_definition player_information_block;
 
-	extern s_tag_struct_definition player_representation_block;
-	extern s_string_list_definition player_representation_flags;
-	extern s_tag_reference_definition render_model_group_reference$3;
-	extern s_tag_reference_definition unit_group_reference$3;
-
 	extern s_tag_struct_definition damage_globals_block;
 
 	extern s_tag_struct_definition damage_decay_struct;
@@ -6692,6 +6846,8 @@ namespace xbox360
 
 	extern s_tag_struct_definition object_type_drag_properties_block;
 
+	extern s_tag_struct_definition material_physics_properties_fields_v1;
+
 	extern s_tag_struct_definition materials_sweeteners_struct;
 	extern s_tag_reference_definition render_water_ripple_group_reference;
 	extern s_string_list_definition materials_sweeteners_inheritance_flags;
@@ -6699,6 +6855,9 @@ namespace xbox360
 	extern s_tag_struct_definition underwater_proxies_block;
 
 	extern s_tag_struct_definition multiplayer_color_block;
+
+	extern s_tag_struct_definition mission_dialogue_variants_block;
+	extern s_tag_reference_definition sound_group_reference$2;
 
 	extern s_tag_struct_definition visor_color_block;
 
@@ -6737,9 +6896,6 @@ namespace xbox360
 
 	extern s_tag_struct_definition mission_dialogue_lines_block;
 
-	extern s_tag_struct_definition mission_dialogue_variants_block;
-	extern s_tag_reference_definition sound_group_reference$2;
-
 	extern s_tag_struct_definition meter_struct_definition;
 	extern s_string_list_definition meter_flags;
 	extern s_tag_reference_definition bitmap_group_reference$9;
@@ -6760,12 +6916,12 @@ namespace xbox360
 
 	extern s_tag_struct_definition megalogamengine_sounds_struct_definition;
 
+	extern s_tag_struct_definition emblem_shape_list;
+	extern s_string_list_definition render_method_bitmap_address_mode_enum;
+
 	extern s_tag_struct_definition emblem_library_struct_definition;
 
 	extern s_tag_struct_definition emblem_bitmap_list;
-
-	extern s_tag_struct_definition emblem_shape_list;
-	extern s_string_list_definition render_method_bitmap_address_mode_enum;
 
 	extern s_tag_struct_definition emblem_transform;
 
@@ -6844,7 +7000,6 @@ namespace xbox360
 	extern s_tag_reference_definition megalogamengine_sounds_group_reference;
 	extern s_tag_reference_definition communication_sounds_group_reference;
 	extern s_tag_reference_definition render_method_group_reference$4;
-	extern s_tag_reference_definition coop_spawning_globals_definition_group_reference;
 	extern s_tag_reference_definition megalo_string_id_table_group_reference;
 
 	extern s_tag_struct_definition sounds_block;
@@ -6856,6 +7011,10 @@ namespace xbox360
 	extern s_tag_struct_definition multiplayer_constants_block;
 
 	extern s_tag_struct_definition spawn_influence_weight_falloff_function_block;
+
+	extern s_tag_struct_definition mux_generator_struct_definition;
+	extern s_tag_reference_definition bitmap_group_reference$10;
+	extern s_tag_reference_definition shader_mux_group_reference;
 
 	extern s_tag_struct_definition weapon_spawn_influence_block;
 	extern s_tag_reference_definition weapon_group_reference$6;
@@ -6872,10 +7031,6 @@ namespace xbox360
 	extern s_tag_struct_definition game_engine_status_response_block;
 	extern s_string_list_definition game_engine_status_flags_definition;
 	extern s_string_list_definition game_engine_status_enum_definition;
-
-	extern s_tag_struct_definition mux_generator_struct_definition;
-	extern s_tag_reference_definition bitmap_group_reference$10;
-	extern s_tag_reference_definition shader_mux_group_reference;
 
 	extern s_tag_struct_definition mux_generator_material_block;
 	extern s_tag_reference_definition shader_mux_material_group_reference;
@@ -6901,6 +7056,8 @@ namespace xbox360
 	extern s_string_list_definition pgcr_player_type_enum;
 
 	extern s_tag_struct_definition pgcr_enemy_to_category_entry_block;
+	extern s_string_list_definition campaign_metagame_bucket_type_with_none_enum;
+	extern s_string_list_definition campaign_metagame_bucket_class_with_none_enum;
 
 	extern s_tag_struct_definition particle_emitter_custom_points_struct_definition;
 	extern s_tag_reference_definition particle_model_group_reference;
@@ -6996,11 +7153,13 @@ namespace xbox360
 
 	extern s_tag_struct_definition rigid_body_indices_block;
 
+	extern s_tag_struct_definition boxes_block_struct;
+
+	extern s_tag_struct_definition rigid_bodies_block_fields_v1;
+
 	extern s_tag_struct_definition multi_spheres_block;
 
 	extern s_tag_struct_definition multi_sphere_vector_storage_struct_definition;
-
-	extern s_tag_struct_definition boxes_block_struct;
 
 	extern s_tag_struct_definition havok_convex_transform_shape_struct;
 
@@ -7037,6 +7196,24 @@ namespace xbox360
 	extern s_tag_struct_definition stiff_spring_constraints_block;
 
 	extern s_tag_struct_definition prismatic_constraints_block;
+
+	extern s_tag_struct_definition physics_model_tags_v2;
+
+	extern s_tag_struct_definition havok2_polyhedra_block;
+
+	extern s_tag_struct_definition havok2_convex_shape_struct;
+
+	extern s_tag_struct_definition havok2_shape_struct;
+
+	extern s_tag_struct_definition havok2_rotated_vertices_storage_struct_definition;
+
+	extern s_tag_struct_definition havok2_lists_block;
+
+	extern s_tag_struct_definition havok2_list_child_shape_storage_struct_definition;
+
+	extern s_tag_struct_definition physics_model_tags_v2$2;
+
+	extern s_tag_struct_definition physics_model_tags_v1;
 
 	extern s_tag_struct_definition pixel_shader_block_struct;
 	extern s_string_list_definition entry_points_flags;
@@ -7099,12 +7276,16 @@ namespace xbox360
 
 	extern s_tag_struct_definition super_detonation_damage_struct;
 
-	extern s_tag_struct_definition angular_velocity_lower_bound_struct;
+	extern s_tag_struct_definition super_detonation_damage_fields_v1;
 
 	extern s_tag_struct_definition old_projectile_material_response_block;
 	extern s_string_list_definition material_response;
 	extern s_string_list_definition material_possible_response_flags;
 	extern s_string_list_definition effect_scale_enum;
+
+	extern s_tag_struct_definition angular_velocity_lower_bound_struct;
+
+	extern s_tag_struct_definition angular_velocity_lower_bound_fields_v1;
 
 	extern s_tag_struct_definition projectile_material_response_block;
 
@@ -7113,6 +7294,13 @@ namespace xbox360
 	extern s_tag_struct_definition fire_bomb_grenade_block;
 
 	extern s_tag_struct_definition conical_projection_block;
+
+	extern s_tag_struct_definition projectile_group$3;
+
+	extern s_tag_struct_definition gpu_data_struct$2;
+
+	extern s_tag_struct_definition projectile_fields_v1;
+	extern s_string_list_definition projectile_function_enum;
 
 	extern s_tag_struct_definition particle_struct_definition;
 	extern s_string_list_definition particle_main_flags;
@@ -7125,12 +7313,434 @@ namespace xbox360
 	extern s_tag_reference_definition effect_group_sound_group_material_effects_group_reference;
 	extern s_string_list_definition attachment_type_enum;
 
-	extern s_tag_struct_definition gpu_data_struct$2;
+	extern s_tag_struct_definition equipment_type_hologram_block;
+	extern s_string_list_definition collision_filter_enum;
+
+	extern s_tag_struct_definition equipment_type_special_weapon_block;
+
+	extern s_tag_struct_definition equipment_type_special_move_block;
+
+	extern s_tag_struct_definition equipment_type_engineer_shields_block;
+	extern s_string_list_definition equipment_engineer_shields_flags;
+
+	extern s_tag_struct_definition equipment_type_sprint_block;
+
+	extern s_tag_struct_definition equipment_group$3;
+
+	extern s_tag_struct_definition fluid_dynamics_squirter_block;
+
+	extern s_tag_struct_definition equipment_definition_fields_v1;
+
+	extern s_tag_struct_definition fluid_dynamics_struct_definition;
+	extern s_string_list_definition fluid_dynamics_flags;
+
+	extern s_tag_struct_definition flock_struct_definition;
+
+	extern s_tag_struct_definition fluid_dynamics_inflow_block;
+
+	extern s_tag_struct_definition fluid_dynamics_outflow_block;
+
+	extern s_tag_struct_definition fluid_dynamics_obstacle_block;
+
+	extern s_tag_struct_definition g_single_scalar_function_evaluation_struct;
+
+	extern s_tag_struct_definition atmosphere_definition_block;
+	extern s_string_list_definition atmosphere_flags;
+
+	extern s_tag_struct_definition solo_fog_parameters_struct_definition;
+
+	extern s_tag_struct_definition fog_light_struct_definition;
+
+	extern s_tag_struct_definition material_effects_block_struct;
+
+	extern s_tag_struct_definition material_effect_block_v2;
+
+	extern s_tag_struct_definition old_material_effect_material_block;
+	extern s_string_list_definition sweeneter_mode_enum;
+
+	extern s_tag_struct_definition material_effect_material_block;
+	extern s_tag_reference_definition sound_group_sound_looping_group_effect_group_reference;
+
+	extern s_tag_struct_definition material_effect_material_fields_v1;
+
+	extern s_tag_struct_definition formation_block_struct;
+
+	extern s_tag_struct_definition formation_primitive_definition;
+	extern s_string_list_definition formation_primitive_flags;
+
+	extern s_tag_struct_definition formation_point_definition;
+
+	extern s_tag_struct_definition frame_event_list_struct_definition;
+
+	extern s_tag_struct_definition animation_graph_sound_reference_block;
+	extern s_string_list_definition key_event_flags_enum;
+
+	extern s_tag_struct_definition animation_graph_effect_reference_block;
+
+	extern s_tag_struct_definition import_animation_event_block;
+
+	extern s_tag_struct_definition import_frame_event_block;
+
+	extern s_tag_struct_definition animation_sound_event_block_extended;
+
+	extern s_tag_struct_definition animation_effects_event_block_extended;
+
+	extern s_tag_struct_definition animation_dialogue_event_block_extended;
+
+	extern s_tag_struct_definition fx_test_struct_definition;
+
+	extern s_tag_struct_definition fx_property_block;
+	extern s_string_list_definition fx_property_flags;
+	extern s_string_list_definition fx_property_value_type_enum;
+	extern s_string_list_definition fx_property_bitmap_filter_enum;
+	extern s_string_list_definition fx_property_bitmap_address_enum;
+	extern s_string_list_definition fx_property_bitmap_bias_enum;
+
+	extern s_tag_struct_definition fx_property_default_block;
+
+	extern s_tag_struct_definition fx_test_scalar_function_struct;
+
+	extern s_tag_struct_definition game_completion_rewards_globals_struct_definition;
+
+	extern s_tag_struct_definition game_completion_rewards_difficulty_block;
+
+	extern s_tag_struct_definition game_completion_rewards_definition_block;
+
+	extern s_tag_struct_definition game_completion_rewards_falloff_point_block;
+
+	extern s_tag_struct_definition game_completion_rewards_multiplayer_block;
+
+	extern s_tag_struct_definition game_completion_rewards_never_online_block;
+
+	extern s_tag_struct_definition game_engine_globals_struct_definition;
+	extern s_tag_reference_definition game_engine_settings_definition_group_reference;
+
+	extern s_tag_struct_definition game_engine_event_block_struct;
+	extern s_string_list_definition game_engine_event_audience_enum_definition;
+	extern s_string_list_definition game_engine_event_response_context_enum_definition;
+	extern s_string_list_definition game_engine_event_input_enum_definition;
+	extern s_string_list_definition game_engine_event_splitscreen_suppression_enum_definition;
+	extern s_string_list_definition game_engine_event_flags_definition;
+
+	extern s_tag_struct_definition sound_response_definition_struct;
+	extern s_string_list_definition game_engine_sound_response_flags_definition;
+
+	extern s_tag_struct_definition sound_response_definition_block;
+
+	extern s_tag_struct_definition giant_struct_definition;
+	extern s_string_list_definition giant_definition_flags;
+
+	extern s_tag_struct_definition giant_buckle_parameters_block;
+	extern s_string_list_definition slider_movement_patterns;
+
+	extern s_tag_struct_definition giant_struct_definition$2;
+
+	extern s_tag_struct_definition rasterizer_compiled_shader_struct;
+	extern s_string_list_definition shader_flags;
+
+	extern s_tag_struct_definition cheap_light_struct_definition;
+
+	extern s_tag_struct_definition light_color_function_struct;
+	extern s_string_list_definition output_mod_enum$4;
+
+	extern s_tag_struct_definition light_scalar_function_struct;
+
+	extern s_tag_struct_definition global_pixel_shader_block_struct;
+
+	extern s_tag_struct_definition global_shader_entry_point_block;
+
+	extern s_tag_struct_definition global_shader_category_dependency;
+
+	extern s_tag_struct_definition global_shader_option_dependency;
+
+	extern s_tag_struct_definition compiled_pixel_shader_block;
+
+	extern s_tag_struct_definition global_rasterizer_constant_table_struct;
+	extern s_string_list_definition rasterizer_constant_table_type_enum;
+
+	extern s_tag_struct_definition rasterizer_constant_block;
+	extern s_string_list_definition register_set_enum;
+
+	extern s_tag_struct_definition global_vertex_shader_block_struct;
+
+	extern s_tag_struct_definition global_vertex_shader_vertex_types_block;
+
+	extern s_tag_struct_definition compiled_vertex_shader_block;
+
+	extern s_tag_struct_definition game_medal_globals_struct_definition;
+
+	extern s_tag_struct_definition game_medal_block_struct;
+	extern s_string_list_definition medal_class_enum;
+
+	extern s_tag_struct_definition multiplayer_variant_settings_interface_definition_struct_definition;
+
+	extern s_tag_struct_definition variant_setting_edit_reference_block;
+	extern s_string_list_definition game_engine_settings;
+
+	extern s_tag_struct_definition variant_option_block;
+	extern s_tag_reference_definition multiplayer_variant_settings_interface_definition_group_reference;
+	extern s_tag_reference_definition text_value_pair_definition_group_reference;
+
+	extern s_tag_struct_definition global_cache_file_pixel_shaders_struct_definition;
+
+	extern s_tag_struct_definition game_performance_throttle_struct_definition;
+
+	extern s_tag_struct_definition game_performance_throttle_entries_block;
+
+	extern s_tag_struct_definition game_performance_throttle_filter_struct;
+
+	extern s_tag_struct_definition game_performance_throttle_profile_struct;
+
+	extern s_tag_struct_definition grounded_friction_struct_definition;
+
+	extern s_tag_struct_definition havok_collision_filter_struct_definition;
+
+	extern s_tag_struct_definition havok_collision_filter_group_block;
+
+	extern s_tag_struct_definition havok_group_filter_filter_struct;
+
+	extern s_tag_struct_definition model_block_struct;
+	extern s_tag_reference_definition render_model_group_reference$2;
+	extern s_tag_reference_definition collision_model_group_reference;
+	extern s_tag_reference_definition physics_model_group_reference;
+	extern s_tag_reference_definition imposter_model_group_reference$2;
+	extern s_string_list_definition imposter_quality_definition;
+	extern s_string_list_definition imposter_policy_definition;
+	extern s_tag_reference_definition dialogue_group_reference$3;
+	extern s_string_list_definition model_flags_definition;
+	extern s_string_list_definition model_private_flags_definition;
+	extern s_string_list_definition model_self_shadow_detail_definition;
+	extern s_string_list_definition model_self_shadow_bounces_definition;
+	extern s_tag_reference_definition shield_impact_group_reference;
+
+	extern s_tag_struct_definition model_variant_block;
+
+	extern s_tag_struct_definition runtime_region_index_array_struct_definition;
+
+	extern s_tag_struct_definition model_variant_region_block;
+	extern s_string_list_definition region_sort_enum;
+
+	extern s_tag_struct_definition model_variant_permutation_block;
+	extern s_string_list_definition model_variant_permutation_flags_definition;
+
+	extern s_tag_struct_definition model_variant_state_block;
+	extern s_string_list_definition model_state_property_flags_definition;
+	extern s_string_list_definition model_state_enum_definition;
+
+	extern s_tag_struct_definition model_state_permutation_index_array_struct_definition;
+
+	extern s_tag_struct_definition model_variant_object_block;
+	extern s_tag_reference_definition object_group_reference$3;
+
+	extern s_tag_struct_definition new_global_damage_section_block;
+	extern s_string_list_definition new_damage_section_flags_definition;
+
+	extern s_tag_struct_definition damage_section_recharge_speed_curve_block;
+
+	extern s_tag_struct_definition damage_section_segmented_recharge_fraction;
+
+	extern s_tag_struct_definition new_instantaneous_damage_response_block;
+	extern s_string_list_definition new_damage_response_flags_definition;
+	extern s_string_list_definition damage_response_custom_response_behavior_enum_definition;
+	extern s_string_list_definition damage_response_constraint_damage_type_enum_definition;
+
+	extern s_tag_struct_definition instantaneous_response_damage_effect_struct;
+
+	extern s_tag_struct_definition instantaneous_response_damage_effect_fields_v1;
+
+	extern s_tag_struct_definition instantaneous_response_damage_effect_marker_struct;
+
+	extern s_tag_struct_definition instantaneous_response_damage_effect_marker_fields_v1;
+
+	extern s_tag_struct_definition damage_response_region_transition_block;
+
+	extern s_tag_struct_definition damage_transfer_block;
+	extern s_string_list_definition damage_transfer_flags_definition;
+	extern s_string_list_definition damage_transfer_function_enum_definition;
+
+	extern s_tag_struct_definition global_model_instance_group_block;
+	extern s_string_list_definition model_instance_group_choice_enum;
+
+	extern s_tag_struct_definition model_instance_group_member_block;
+
+	extern s_tag_struct_definition seat_ejection_block;
+
+	extern s_tag_struct_definition damage_section_rendering_paramters;
+
+	extern s_tag_struct_definition region_name_block;
+
+	extern s_tag_struct_definition model_material_block_old;
+
+	extern s_tag_struct_definition model_material_block_new;
+
+	extern s_tag_struct_definition global_damage_info_block;
+	extern s_string_list_definition model_damage_info_flags_definition;
+
+	extern s_tag_struct_definition damage_body_parameters_struct;
+
+	extern s_tag_struct_definition damage_shield_parameters_struct;
+
+	extern s_tag_struct_definition global_damage_section_block;
+	extern s_string_list_definition damage_section_flags_definition;
+
+	extern s_tag_struct_definition instantaneous_damage_repsonse_block;
+	extern s_string_list_definition damage_response_type_enum_definition;
+	extern s_string_list_definition damage_response_flags_definition;
+	extern s_string_list_definition damage_response_body_threshold_flags_definition;
+
+	extern s_tag_struct_definition global_damage_nodes_block;
+
+	extern s_tag_struct_definition damage_seat_info_block;
+
+	extern s_tag_struct_definition damage_seat_region_setting_block;
+
+	extern s_tag_struct_definition damage_constraint_info_block;
+
+	extern s_tag_struct_definition global_damage_info_block_fields_v1;
+
+	extern s_tag_struct_definition model_damage_info_struct;
+	extern s_string_list_definition new_model_damage_info_flags_definition;
+
+	extern s_tag_struct_definition hlsl_include_struct_definition;
+
+	extern s_tag_struct_definition model_target_block_old;
+
+	extern s_tag_struct_definition model_target_lock_on_data_struct;
+	extern s_string_list_definition model_target_lock_on_flags_definition;
+
+	extern s_tag_struct_definition model_target_block_new;
+	extern s_string_list_definition model_target_flags_definition;
+
+	extern s_tag_struct_definition model_region_block;
+
+	extern s_tag_struct_definition model_permutation_block;
+	extern s_string_list_definition model_permutation_flags_definition;
+
+	extern s_tag_struct_definition model_node_block;
+
+	extern s_tag_struct_definition g_node_flag_storage_array_struct_definition;
+
+	extern s_tag_struct_definition global_scenario_load_parameters_block;
+	extern s_tag_reference_definition scenario_group_reference$2;
+
+	extern s_tag_struct_definition model_self_shadow_region_cast_override_block;
+
+	extern s_tag_struct_definition model_self_shadow_region_receive_override_block;
+	extern s_string_list_definition model_prt_shadow_receive_mode_definition;
+
+	extern s_tag_struct_definition model_occlusion_sphere_block;
+
+	extern s_tag_struct_definition hs_source_files_block;
+	extern s_string_list_definition hs_source_file_flags;
+
+	extern s_tag_struct_definition hs_references_block;
+	extern s_tag_reference_definition _reference$2;
+
+	extern s_tag_struct_definition incident_global_properties_definition_struct_definition;
+	extern s_tag_reference_definition cookie_globals_definition_group_reference;
+	extern s_tag_reference_definition commendation_globals_definition_group_reference;
+
+	extern s_tag_struct_definition incident_globals_block;
+	extern s_tag_reference_definition incident_globals_definition_group_reference;
+
+	extern s_tag_struct_definition incident_definition_block_struct;
+	extern s_string_list_definition incident_definition_flags;
+
+	extern s_tag_struct_definition suppressed_incident_block;
+	extern s_string_list_definition suppressed_incident_flags;
+
+	extern s_tag_struct_definition specialized_incident_block;
+
+	extern s_tag_struct_definition specialized_incident_kill_implement_block;
+
+	extern s_tag_struct_definition specialized_incident_object_properties_block;
+	extern s_string_list_definition specialized_incident_kill_bucket_flags;
+
+	extern s_tag_struct_definition specialized_incident_special_kill_type_block;
+	extern s_string_list_definition specialized_incident_special_kill_type_enum;
+
+	extern s_tag_struct_definition incident_accumulator_block;
+	extern s_string_list_definition incident_accumulator_aggregation_method_enum;
+	extern s_string_list_definition incident_accumulator_reset_enum;
+
+	extern s_tag_struct_definition incident_accumulator_child_incident_block;
+	extern s_string_list_definition incident_accumulator_flags;
+
+	extern s_tag_struct_definition game_incident_response_block_struct;
+
+	extern s_tag_struct_definition game_incident_daily_challenge_to_increment_block;
+
+	extern s_tag_struct_definition instance_imposter_definition_struct_definition;
+	extern s_string_list_definition instance_imposter_flags_definition;
+
+	extern s_tag_struct_definition instance_imposter_block;
+	extern s_string_list_definition instance_imposter_element_flags_definition;
+
+	extern s_tag_struct_definition instance_imposter_checksum_block;
+
+	extern s_tag_struct_definition imposter_model_struct_definition;
+
+	extern s_tag_struct_definition imposter_mode_node_block;
+
+	extern s_tag_struct_definition render_model_region_block;
+
+	extern s_tag_struct_definition render_model_permutation_block;
+	extern s_string_list_definition render_model_instance_bitfield_flags_definition;
+
+	extern s_tag_struct_definition incident_globals_definition_block_struct;
+
+	extern s_tag_struct_definition model_animation_graph_block_struct;
+
+	extern s_tag_struct_definition animation_graph_definitions_struct;
+	extern s_string_list_definition public_animation_graph_flags;
+	extern s_string_list_definition private_animation_graph_flags;
+	extern s_string_list_definition compression_force_settings;
+	extern s_tag_reference_definition frame_event_list_group_reference;
+
+	extern s_tag_struct_definition animation_usage_block;
+	extern s_string_list_definition animation_usage_enumeration;
+
+	extern s_tag_struct_definition animation_graph_node_block;
+	extern s_string_list_definition animation_node_model_flags;
+	extern s_string_list_definition node_joint_flags;
+	extern s_string_list_definition node_info_flags;
+
+	extern s_tag_struct_definition animation_graph_node_v0_fields;
+
+	extern s_tag_struct_definition animation_node_mask_block;
+
+	extern s_tag_struct_definition animation_node_mask_entry_block;
+
+	extern s_tag_struct_definition animation_function_block;
+
+	extern s_tag_struct_definition model_animation_variant_block;
+	extern s_string_list_definition model_animation_variant_flags;
+
+	extern s_tag_struct_definition mode_or_stance_alias_block_struct;
+
+	extern s_tag_struct_definition animation_blend_screen_block;
+
+	extern s_tag_struct_definition animation_aiming_screen_struct;
+
+	extern s_tag_struct_definition foot_tracking_member_block;
+
+	extern s_tag_struct_definition animation_pool_block_struct;
+	extern s_string_list_definition animation_index_flags;
+	extern s_string_list_definition production_status_flags;
+
+	extern s_tag_struct_definition shared_animation_reference_block;
+
+	extern s_tag_struct_definition shared_model_animation_block;
+	extern s_string_list_definition animation_type_enum;
+	extern s_string_list_definition compression_settings;
+	extern s_string_list_definition internal_animation_flags;
 
 	extern s_tag_struct_definition gpu_sprite_block;
 
 	extern s_tag_struct_definition rain_definition_struct_definition;
 	extern s_string_list_definition rain_particle_flags;
+
+	extern s_tag_struct_definition rumble_definition_struct;
 
 	extern s_tag_struct_definition rasterizer_globals_struct_definition;
 	extern s_tag_reference_definition vertex_shader_group_reference$2;
@@ -7150,15 +7760,21 @@ namespace xbox360
 
 	extern s_tag_struct_definition atmosphere_textures_refs_block;
 
-	extern s_tag_struct_definition rumble_struct_definition;
+	extern s_tag_struct_definition shader_beam_struct_definition$2;
 
-	extern s_tag_struct_definition rumble_definition_struct;
+	extern s_tag_struct_definition rumble_struct_definition;
 
 	extern s_tag_struct_definition rumble_frequency_definition_struct;
 
 	extern s_tag_struct_definition shader_custom_struct_definition;
 
+	extern s_tag_struct_definition shader_custom_struct_definition$2;
+
 	extern s_tag_struct_definition shader_cortana_struct_definition;
+
+	extern s_tag_struct_definition shader_cortana_struct_definition$2;
+
+	extern s_tag_struct_definition shader_decal_struct_definition$2;
 
 	extern s_tag_struct_definition render_method_definition_struct_definition;
 	extern s_tag_reference_definition render_method_option_group_reference;
@@ -7183,19 +7799,35 @@ namespace xbox360
 
 	extern s_tag_struct_definition shader_foliage_struct_definition;
 
+	extern s_tag_struct_definition shader_foliage_struct_definition$2;
+
 	extern s_tag_struct_definition shader_fur_stencil_struct_definition;
+
+	extern s_tag_struct_definition shader_fur_stencil_struct_definition$2;
 
 	extern s_tag_struct_definition shader_fur_struct_definition;
 
+	extern s_tag_struct_definition shader_fur_struct_definition$2;
+
 	extern s_tag_struct_definition shader_glass_struct_definition;
+
+	extern s_tag_struct_definition shader_glass_struct_definition$2;
 
 	extern s_tag_struct_definition shader_halogram_struct_definition;
 
+	extern s_tag_struct_definition shader_halogram_struct_definition$2;
+
+	extern s_tag_struct_definition shader_light_volume_struct_definition$2;
+
 	extern s_tag_struct_definition shader_mux_material_struct_definition;
+
+	extern s_tag_struct_definition shader_mux_material_struct_definition$2;
 
 	extern s_tag_struct_definition shader_mux_struct_definition;
 
 	extern s_tag_struct_definition material_type_struct;
+
+	extern s_tag_struct_definition shader_mux_struct_definition$2;
 
 	extern s_tag_struct_definition render_method_option_struct_definition;
 
@@ -7208,11 +7840,17 @@ namespace xbox360
 
 	extern s_tag_struct_definition shader_struct_definition;
 
+	extern s_tag_struct_definition shader_struct_definition$2;
+
 	extern s_tag_struct_definition shader_skin_struct_definition;
+
+	extern s_tag_struct_definition shader_skin_struct_definition$2;
 
 	extern s_tag_struct_definition shader_screen_struct_definition;
 	extern s_string_list_definition global_screen_shader_render_layer_enum;
 	extern s_string_list_definition global_screen_shader_flags_definition;
+
+	extern s_tag_struct_definition shader_screen_struct_definition$2;
 
 	extern s_tag_struct_definition render_method_template_struct_definition;
 	extern s_tag_reference_definition vertex_shader_group_reference$3;
@@ -7226,7 +7864,11 @@ namespace xbox360
 
 	extern s_tag_struct_definition shader_terrain_struct_definition;
 
+	extern s_tag_struct_definition shader_terrain_struct_definition$2;
+
 	extern s_tag_struct_definition shader_water_struct_definition;
+
+	extern s_tag_struct_definition shader_water_struct_definition$2;
 
 	extern s_tag_struct_definition render_water_ripple_struct_definition;
 	extern s_string_list_definition ripple_behavior_flags;
@@ -7393,6 +8035,8 @@ namespace xbox360
 
 	extern s_tag_struct_definition supported_bitfield_struct_definition;
 
+	extern s_tag_struct_definition global_collision_bsp_block;
+
 	extern s_tag_struct_definition pathfinding_data_block;
 
 	extern s_tag_struct_definition sector_block;
@@ -7478,8 +8122,6 @@ namespace xbox360
 	extern s_tag_struct_definition structure_bsp_instanced_geometry_definition_block;
 	extern s_string_list_definition instanced_geometry_definition_flags;
 
-	extern s_tag_struct_definition global_collision_bsp_block;
-
 	extern s_tag_struct_definition polyhedron_with_material_block;
 
 	extern s_tag_struct_definition polyhedron_shape_struct;
@@ -7489,6 +8131,10 @@ namespace xbox360
 	extern s_tag_struct_definition decomposed_poop_physics_block;
 
 	extern s_tag_struct_definition cubemap_sample_struct;
+
+	extern s_tag_struct_definition instanced_geometry_instance_fields_v2;
+
+	extern s_tag_struct_definition instanced_geometry_instance_fields_v2$2;
 
 	extern s_tag_struct_definition structure_bsp_instanced_geometry_instances_names_block;
 
@@ -7524,6 +8170,8 @@ namespace xbox360
 	extern s_tag_struct_definition global_structure_physics_struct;
 
 	extern s_tag_struct_definition breakable_surface_key_table_block;
+
+	extern s_tag_struct_definition structure_physics_struct_fields_v1;
 
 	extern s_tag_struct_definition structure_bsp_fake_lightprobes_block;
 
@@ -7563,9 +8211,13 @@ namespace xbox360
 	extern s_string_list_definition scenery_flags;
 	extern s_string_list_definition lightmapping_policy_enum;
 
-	extern s_tag_struct_definition sound_combiner_block_struct;
+	extern s_tag_struct_definition scenery_group$3;
 
-	extern s_tag_struct_definition sound_combiner_definition_entry_block;
+	extern s_tag_struct_definition scenario_design_reference_block;
+	extern s_tag_reference_definition structure_design_group_reference;
+
+	extern s_tag_struct_definition scenery_fields_v2;
+	extern s_string_list_definition old_pathfinding_policy_enum;
 
 	extern s_tag_struct_definition scenario_struct_definition;
 	extern s_string_list_definition scenario_type_enum;
@@ -7584,8 +8236,12 @@ namespace xbox360
 	extern s_tag_reference_definition scenario_required_resource_group_reference;
 	extern s_tag_reference_definition variant_globals_group_reference;
 
-	extern s_tag_struct_definition scenario_design_reference_block;
-	extern s_tag_reference_definition structure_design_group_reference;
+	extern s_tag_struct_definition scenery_fields_v1;
+	extern s_string_list_definition lightmapping_policy_enum_old;
+
+	extern s_tag_struct_definition sound_combiner_block_struct;
+
+	extern s_tag_struct_definition sound_combiner_definition_entry_block;
 
 	extern s_tag_struct_definition scenario_zone_set_pvs_block;
 	extern s_string_list_definition scenario_zone_set_pvs_flags;
@@ -7685,13 +8341,13 @@ namespace xbox360
 	extern s_string_list_definition scenario_function_flags;
 	extern s_string_list_definition function_bounds_mode_enum;
 
+	extern s_tag_struct_definition map_variant_object_variant_block;
+	extern s_tag_reference_definition object_group_reference$7;
+
 	extern s_tag_struct_definition map_variant_palette_block;
 	extern s_string_list_definition map_variant_palette_flags;
 
 	extern s_tag_struct_definition map_variant_palette_entry_block;
-
-	extern s_tag_struct_definition map_variant_object_variant_block;
-	extern s_tag_reference_definition object_group_reference$7;
 
 	extern s_tag_struct_definition scenario_requisition_palette_block;
 	extern s_tag_reference_definition object_group_vehicle_group_scenery_group_device_machine_group_reference;
@@ -7700,7 +8356,6 @@ namespace xbox360
 
 	extern s_tag_struct_definition scenario_soft_ceilings_block;
 	extern s_string_list_definition scenario_soft_ceiling_flags_definition;
-	extern s_string_list_definition soft_ceiling_type_enum;
 
 	extern s_tag_struct_definition scenario_profiles_block;
 	extern s_tag_reference_definition weapon_group_reference$8;
@@ -7881,398 +8536,6 @@ namespace xbox360
 	extern s_tag_struct_definition model_references_block;
 	extern s_tag_reference_definition model_group_reference$2;
 
-	extern s_tag_struct_definition structure_design_block_struct;
-
-	extern s_tag_struct_definition global_structure_physics_design_struct;
-
-	extern s_tag_struct_definition structure_soft_ceiling_block;
-
-	extern s_tag_struct_definition structure_soft_ceiling_triangle_block;
-
-	extern s_tag_struct_definition structure_water_groups_block;
-
-	extern s_tag_struct_definition structure_water_instances_block;
-
-	extern s_tag_struct_definition structure_water_instance_planes_block;
-
-	extern s_tag_struct_definition structure_water_instance_debug_triangles_block;
-
-	extern s_tag_struct_definition planar_fog_set_definition_struct;
-
-	extern s_tag_struct_definition planar_fog_definition_block;
-	extern s_tag_reference_definition planar_fog_parameters_group_reference;
-
-	extern s_tag_struct_definition planar_fog_vertex_block;
-
-	extern s_tag_struct_definition planar_fog_triangle_block;
-
-	extern s_tag_struct_definition planar_fog_triangle_planes_block;
-
-	extern s_tag_struct_definition scenario_required_resource_struct_definition;
-
-	extern s_tag_struct_definition area_screen_effect_struct_definition;
-	extern s_string_list_definition area_screen_effect_global_flags_definition;
-	extern s_string_list_definition area_screen_effect_global_hidden_flags_definition;
-
-	extern s_tag_struct_definition single_screen_effect;
-	extern s_string_list_definition area_screen_effect_flags_definition;
-	extern s_string_list_definition area_screen_effect_hidden_flags_definition;
-	extern s_tag_reference_definition shader_screen_group_reference;
-
-	extern s_tag_struct_definition screen_effect_scalar_function_struct;
-
-	extern s_tag_struct_definition screen_effect_scalar_object_function_struct;
-
-	extern s_tag_struct_definition sound_effect_collection_block_struct;
-
-	extern s_tag_struct_definition platform_sound_playback_block_struct;
-
-	extern s_tag_struct_definition platform_sound_playback_struct;
-	extern s_string_list_definition platform_sound_effect_flags_definition;
-	extern s_tag_reference_definition sound_radio_settings_group_reference;
-
-	extern s_tag_struct_definition platform_sound_playback_lowpass_block_struct;
-
-	extern s_tag_struct_definition global_sound_lowpass_block;
-
-	extern s_tag_struct_definition platform_sound_playback_component_block_struct;
-	extern s_string_list_definition platform_sound_playback_component_flags;
-
-	extern s_tag_struct_definition sound_global_propagation_block_struct;
-
-	extern s_tag_struct_definition sound_propagation_definition_struct;
-
-	extern s_tag_struct_definition shield_impact_struct_definition;
-	extern s_string_list_definition shield_flags;
-
-	extern s_tag_struct_definition shield_color_function_struct;
-
-	extern s_tag_struct_definition shield_scalar_function_struct;
-
-	extern s_tag_struct_definition simulated_input_struct_definition;
-
-	extern s_tag_struct_definition simulated_input_stick_struct;
-	extern s_string_list_definition direction_type_enum_definition;
-	extern s_string_list_definition mapping_type_enum_definition;
-
-	extern s_tag_struct_definition simulation_interpolation_struct_definition;
-
-	extern s_tag_struct_definition single_domain_configuration_struct;
-
-	extern s_tag_struct_definition single_domain_velocity_bumps_configuration_struct;
-
-	extern s_tag_struct_definition single_domain_blending_configuration_struct;
-
-	extern s_tag_struct_definition text_value_pair_definition_struct_definition;
-	extern s_string_list_definition game_variant_parameters;
-
-	extern s_tag_struct_definition scenario_interpolator_struct_definition;
-
-	extern s_tag_struct_definition scenario_interpolator_data_block;
-	extern s_string_list_definition scenario_interpolator_flags;
-	extern s_string_list_definition scenario_interpolator_reset_value_enum;
-	extern s_string_list_definition scenario_interpolator_start_value_enum;
-	extern s_string_list_definition scenario_interpolator_stop_value_enum;
-
-	extern s_tag_struct_definition scenario_sky_references_resource_struct_definition;
-
-	extern s_tag_struct_definition sky_atm_parameters_struct_definition;
-
-	extern s_tag_struct_definition atmosphere_setting_block;
-	extern s_string_list_definition atmosphere_flags$2;
-
-	extern s_tag_struct_definition solo_fog_parameters_struct_definition$2;
-
-	extern s_tag_struct_definition fog_light_struct_definition$2;
-
-	extern s_tag_struct_definition underwater_setting_block$2;
-
-	extern s_tag_struct_definition survival_mode_globals_struct_definition;
-
-	extern s_tag_struct_definition survival_mode_wave_templates_struct;
-	extern s_tag_reference_definition wave_template_group_reference;
-
-	extern s_tag_struct_definition survival_spartan_voice;
-	extern s_tag_reference_definition dialogue_group_reference$4;
-
-	extern s_tag_struct_definition sound_classes_block_struct;
-
-	extern s_tag_struct_definition sound_class_block_struct;
-	extern s_string_list_definition sound_class_internal_flags_definition;
-	extern s_string_list_definition sound_class_external_flags_definition;
-	extern s_string_list_definition sound_class_cache_miss_mode_definition;
-	extern s_string_list_definition sound_class_suppress_spatialization_string_defintion;
-	extern s_string_list_definition sound_class_stereo_playback_definition;
-
-	extern s_tag_struct_definition sound_block_struct;
-	extern s_string_list_definition sound_import_flags;
-	extern s_string_list_definition sound_xsync_flags;
-	extern s_string_list_definition sound_sample_rate_enum;
-	extern s_string_list_definition sound_import_type_enum;
-	extern s_string_list_definition sound_encoding_enum;
-	extern s_string_list_definition sound_compression_enum;
-
-	extern s_tag_struct_definition sound_playback_parameters_struct;
-	extern s_string_list_definition sound_override_location_flags_definition;
-
-	extern s_tag_struct_definition sound_scale_modifiers_struct;
-
-	extern s_tag_struct_definition sound_promotion_parameters_struct;
-
-	extern s_tag_struct_definition sound_promotion_rule_block;
-
-	extern s_tag_struct_definition sound_pitch_range_block;
-	extern s_string_list_definition sound_pitch_range_internal_xsync_flags;
-
-	extern s_tag_struct_definition sound_permutations_block;
-	extern s_string_list_definition sound_permutation_external_flags;
-	extern s_string_list_definition sound_permutation_flags;
-
-	extern s_tag_struct_definition sound_permutation_languages_block_struct;
-
-	extern s_tag_struct_definition sound_permutation_chunk_block;
-
-	extern s_tag_struct_definition sound_promotion_runtime_timer_block;
-
-	extern s_tag_struct_definition sound_platform_sound_playback_block;
-
-	extern s_tag_struct_definition sound_extra_info_block_struct;
-
-	extern s_tag_struct_definition sound_definition_language_permutation_info_block;
-
-	extern s_tag_struct_definition sound_permutation_raw_info_block;
-	extern s_string_list_definition sound_language_enum_definition;
-
-	extern s_tag_struct_definition sound_permutation_marker_block;
-
-	extern s_tag_struct_definition sound_xma2_seek_table_block;
-
-	extern s_tag_struct_definition facial_animation_language_block_struct;
-
-	extern s_tag_struct_definition facial_animation_resource_definition_struct;
-
-	extern s_tag_struct_definition facial_animation_permutation_block_struct;
-
-	extern s_tag_struct_definition facial_animation_curve_block_struct;
-	extern s_string_list_definition facial_animation_track_enum_definition;
-
-	extern s_tag_struct_definition sound_language_info_block;
-
-	extern s_tag_struct_definition sound_permutation_language_info;
-
-	extern s_tag_struct_definition sound_pitch_range_language_info;
-
-	extern s_tag_struct_definition sound_environment_block_struct;
-
-	extern s_tag_struct_definition global_sound_reverb_block;
-
-	extern s_tag_struct_definition sound_mix_block_struct;
-
-	extern s_tag_struct_definition sound_transmission_definition_struct;
-
-	extern s_tag_struct_definition sound_stereo_mix_struct;
-
-	extern s_tag_struct_definition sound_surround_mix_struct;
-
-	extern s_tag_struct_definition sound_global_mix_struct;
-
-	extern s_tag_struct_definition sound_center_mix_struct;
-
-	extern s_tag_struct_definition sound_dialogue_constants_struct_definition;
-
-	extern s_tag_struct_definition squad_template_block_struct;
-
-	extern s_tag_struct_definition cell_template_block_struct;
-	extern s_tag_reference_definition vehicle_group_reference$4;
-
-	extern s_tag_struct_definition character_ref_choice_block_struct;
-	extern s_tag_reference_definition character_group_reference$6;
-
-	extern s_tag_struct_definition weapon_ref_choice_block_struct;
-	extern s_tag_reference_definition weapon_group_reference$9;
-
-	extern s_tag_struct_definition equipment_ref_choice_block_struct;
-	extern s_tag_reference_definition equipment_group_reference$6;
-
-	extern s_tag_struct_definition sound_radio_settings_block_struct;
-	extern s_string_list_definition radio_mix_setting_definition;
-
-	extern s_tag_struct_definition global_sound_look_up_table_distortion_block;
-	extern s_string_list_definition look_up_table_flags_definition;
-
-	extern s_tag_struct_definition global_sound_equalizer_block;
-
-	extern s_tag_struct_definition sound_equalizer_band_settings_block_struct;
-	extern s_string_list_definition equalizer_band_type_definition;
-
-	extern s_tag_struct_definition ssao_definition_struct_definition;
-	extern s_string_list_definition ssao_downsample_enum_definition;
-	extern s_string_list_definition ssao_type_enum_definition;
-
-	extern s_tag_struct_definition sound_scenery_struct_definition;
-
-	extern s_tag_struct_definition scenario_structure_lighting_resource_struct_definition;
-
-	extern s_tag_struct_definition scenario_structure_lighting_info_struct_definition;
-
-	extern s_tag_struct_definition structure_lighting_generic_light_definition_block$2;
-	extern s_string_list_definition structure_lighting_generic_light_type_enum;
-	extern s_string_list_definition structure_lighting_generic_light_flags;
-	extern s_string_list_definition structure_lighting_generic_light_shape_enum;
-
-	extern s_tag_struct_definition structure_lighting_generic_light_instance_block;
-	extern s_string_list_definition structure_lighting_bungie_light_type_enum;
-	extern s_string_list_definition light_instance_flags;
-	extern s_tag_reference_definition light_group_reference$4;
-	extern s_tag_reference_definition render_method_definition_group_reference$2;
-	extern s_tag_reference_definition bitmap_group_reference$12;
-	extern s_tag_reference_definition lens_flare_group_reference$2;
-
-	extern s_tag_struct_definition screen_space_light_shader_override_block;
-
-	extern s_tag_struct_definition structure_lighting_region_block;
-
-	extern s_tag_struct_definition structure_lighting_region_triangle_block;
-
-	extern s_tag_struct_definition structure_material_lighting_info_block;
-	extern s_string_list_definition structure_material_lighting_info_flags;
-
-	extern s_tag_struct_definition structure_instance_imposter_info_block;
-
-	extern s_tag_struct_definition structure_seams_struct_definition;
-
-	extern s_tag_struct_definition structure_manifest_struct;
-
-	extern s_tag_struct_definition structure_manifest_bsp_block;
-
-	extern s_tag_struct_definition structure_seam_block;
-
-	extern s_tag_struct_definition structure_seam_original_geometry_struct;
-
-	extern s_tag_struct_definition structure_seam_original_vertex_block;
-
-	extern s_tag_struct_definition structure_seam_original_vertex_plane_normals_block;
-
-	extern s_tag_struct_definition structure_seam_final_geometry_struct;
-
-	extern s_tag_struct_definition structure_seam_final_planes_block;
-
-	extern s_tag_struct_definition structure_seam_final_points_block;
-
-	extern s_tag_struct_definition structure_seam_final_triangles_block;
-
-	extern s_tag_struct_definition structure_seam_final_edges_block;
-
-	extern s_tag_struct_definition style_struct_definition;
-	extern s_string_list_definition combat_status_enum$2;
-	extern s_string_list_definition style_control_flags;
-	extern s_string_list_definition behavior_set1;
-	extern s_string_list_definition behavior_set2;
-	extern s_string_list_definition behavior_set3;
-	extern s_string_list_definition behavior_set4;
-	extern s_string_list_definition behavior_set5;
-	extern s_string_list_definition behavior_set6;
-	extern s_string_list_definition behavior_set7;
-	extern s_string_list_definition behavior_set8;
-
-	extern s_tag_struct_definition behavior_names_block;
-
-	extern s_tag_struct_definition device_terminal_struct_definition;
-	extern s_tag_reference_definition sound_group_reference$3;
-
-	extern s_tag_struct_definition terminal_page_block_definition;
-
-	extern s_tag_struct_definition camera_track_struct_definition;
-	extern s_string_list_definition camera_track_flags;
-
-	extern s_tag_struct_definition camera_track_control_point_block;
-
-	extern s_tag_struct_definition scenario_trigger_volumes_resource_struct_definition;
-
-	extern s_tag_struct_definition dialogue_block_struct;
-	extern s_tag_reference_definition ai_dialogue_globals_group_reference$2;
-	extern s_string_list_definition dialogue_flags;
-
-	extern s_tag_struct_definition sound_references_block;
-
-	extern s_tag_struct_definition vocalization_stimuli_block_definition;
-	extern s_string_list_definition vocalization_stimulus_flags;
-	extern s_tag_reference_definition sound_group_reference$4;
-
-	extern s_tag_struct_definition sound_cache_file_gestalt_struct_definition;
-
-	extern s_tag_struct_definition sound_gestalt_codec_block;
-
-	extern s_tag_struct_definition sound_gestalt_playback_block;
-
-	extern s_tag_struct_definition sound_gestalt_scale_block;
-
-	extern s_tag_struct_definition sound_gestalt_import_names_block;
-
-	extern s_tag_struct_definition sound_gestalt_pitch_range_parameters_block;
-
-	extern s_tag_struct_definition sound_gestalt_pitch_ranges_block;
-
-	extern s_tag_struct_definition sound_gestalt_permutations_block;
-
-	extern s_tag_struct_definition sound_gestalt_permutation_languages_block_struct;
-
-	extern s_tag_struct_definition sound_gestalt_custom_playback_block;
-
-	extern s_tag_struct_definition sound_gestalt_runtime_permutation_bit_vector_block;
-
-	extern s_tag_struct_definition sound_gestalt_promotions_block;
-
-	extern s_tag_struct_definition sound_gestalt_facial_animation_block;
-
-	extern s_tag_struct_definition sound_gestalt_layer_markers_block;
-
-	extern s_tag_struct_definition user_interface_sounds_definition_struct_definition;
-
-	extern s_tag_struct_definition multilingual_unicode_string_list_struct_definition;
-
-	extern s_tag_struct_definition multilingual_unicode_string_reference_block;
-
-	extern s_tag_struct_definition string_substitution_pair_block;
-
-	extern s_tag_struct_definition multilingual_unicode_string_list_language_pack_offsets_struct_definition;
-
-	extern s_tag_struct_definition vehicle_group$2;
-	extern s_string_list_definition vehicle_flags$2;
-	extern s_string_list_definition player_training_vehicle_type_enum;
-	extern s_string_list_definition vehicle_size_enum;
-
-	extern s_tag_struct_definition vehicle_physics_types_struct;
-
-	extern s_tag_struct_definition human_tank_struct;
-
-	extern s_tag_struct_definition global_vehicle_engine_struct;
-
-	extern s_tag_struct_definition gear_block;
-
-	extern s_tag_struct_definition torque_curve_struct;
-
-	extern s_tag_struct_definition load_and_cruise_block;
-
-	extern s_tag_struct_definition human_jeep_block;
-
-	extern s_tag_struct_definition vehicle_steering_control_struct;
-
-	extern s_tag_struct_definition vehicle_turning_control_struct;
-
-	extern s_tag_struct_definition boat_engine_definition_block;
-	extern s_string_list_definition boat_flags;
-
-	extern s_tag_struct_definition human_plane_block;
-
-	extern s_tag_struct_definition steering_animation_struct;
-
-	extern s_tag_struct_definition wolverine_block;
-
-	extern s_tag_struct_definition alien_scout_block;
-	extern s_string_list_definition alien_scout_specific_type_enum;
-	extern s_string_list_definition alien_scout_flags;
-
 	extern s_tag_struct_definition engine_function_struct;
 
 	extern s_tag_struct_definition alien_fighter_block;
@@ -8301,6 +8564,10 @@ namespace xbox360
 
 	extern s_tag_struct_definition jackal_glider_block;
 
+	extern s_tag_struct_definition havok_vehicle_physics_struct;
+	extern s_string_list_definition havok_vehicle_physics_definition_flags;
+	extern s_string_list_definition physics_update_period_enum;
+
 	extern s_tag_struct_definition flight_surface_struct;
 	extern s_string_list_definition dimensions_enum;
 
@@ -8314,10 +8581,6 @@ namespace xbox360
 
 	extern s_tag_struct_definition revenant_block;
 
-	extern s_tag_struct_definition havok_vehicle_physics_struct;
-	extern s_string_list_definition havok_vehicle_physics_definition_flags;
-	extern s_string_list_definition physics_update_period_enum;
-
 	extern s_tag_struct_definition anti_gravity_point_definition_block;
 	extern s_string_list_definition anti_gravity_point_definition_flags;
 	extern s_string_list_definition anti_gravity_point_definition_damping;
@@ -8327,12 +8590,25 @@ namespace xbox360
 
 	extern s_tag_struct_definition boat_physics_definition_struct;
 
-	extern s_tag_struct_definition vision_mode_struct_definition;
-	extern s_string_list_definition vision_mode_global_flags_definition;
+	extern s_tag_struct_definition vehicle_group$3;
+
+	extern s_tag_struct_definition variant_globals_struct_definition;
+
+	extern s_tag_struct_definition vehicle_definition_fields_v1;
+	extern s_string_list_definition vehicle_flags$3;
+	extern s_string_list_definition vehicle_types;
+	extern s_string_list_definition vehicle_control_types;
+	extern s_string_list_definition vehicle_specific_types;
+	extern s_string_list_definition vehicle_size_enum$2;
 
 	extern s_tag_struct_definition vision_mode_color_function_struct;
 
-	extern s_tag_struct_definition variant_globals_struct_definition;
+	extern s_tag_struct_definition gear_block_v1;
+
+	extern s_tag_struct_definition torque_curve_struct$2;
+
+	extern s_tag_struct_definition vision_mode_struct_definition;
+	extern s_string_list_definition vision_mode_global_flags_definition;
 
 	extern s_tag_struct_definition single_variant_block;
 
@@ -8360,6 +8636,12 @@ namespace xbox360
 	extern s_string_list_definition weapon_types;
 	extern s_tag_reference_definition vehicle_group_reference$5;
 
+	extern s_tag_struct_definition weapon_triggers;
+	extern s_string_list_definition weapon_trigger_definition_flags;
+	extern s_string_list_definition weapon_trigger_inputs;
+	extern s_string_list_definition weapon_trigger_behaviors;
+	extern s_string_list_definition trigger_prediction_type_enum;
+
 	extern s_tag_struct_definition melee_damage_parameters_block;
 
 	extern s_tag_struct_definition aim_assist_struct;
@@ -8377,11 +8659,9 @@ namespace xbox360
 
 	extern s_tag_struct_definition magazine_objects;
 
-	extern s_tag_struct_definition weapon_triggers;
-	extern s_string_list_definition weapon_trigger_definition_flags;
-	extern s_string_list_definition weapon_trigger_inputs;
-	extern s_string_list_definition weapon_trigger_behaviors;
-	extern s_string_list_definition trigger_prediction_type_enum;
+	extern s_tag_struct_definition weapon_ammunition_object_fields_v1;
+
+	extern s_tag_struct_definition weapon_magazine_fields_v1;
 
 	extern s_tag_struct_definition weapon_barrels;
 	extern s_string_list_definition weapon_barrel_flags;
@@ -8403,7 +8683,19 @@ namespace xbox360
 
 	extern s_tag_struct_definition weapon_barrel_damage_effect_struct;
 
+	extern s_tag_struct_definition weapon_barrel_damage_effect_fields_v1;
+
 	extern s_tag_struct_definition barrel_firing_effect_block;
+
+	extern s_tag_struct_definition barrel_firing_effect_fields_v1;
+
+	extern s_tag_struct_definition weapon_barrel_definition_fields_v2;
+
+	extern s_tag_struct_definition scenario_wetness_bsp_data_struct_definition;
+
+	extern s_tag_struct_definition weapon_barrel_definition_fields_v1;
+
+	extern s_tag_struct_definition wentness_bit_vector;
 
 	extern s_tag_struct_definition weapon_trigger_autofire_struct;
 	extern s_string_list_definition weapon_trigger_autofire_actions;
@@ -8417,9 +8709,7 @@ namespace xbox360
 	extern s_tag_struct_definition weapon_screen_effect_block;
 	extern s_string_list_definition weapon_screen_effect_flags;
 
-	extern s_tag_struct_definition scenario_wetness_bsp_data_struct_definition;
-
-	extern s_tag_struct_definition wentness_bit_vector;
+	extern s_tag_struct_definition weapon_struct_definition$2;
 
 	extern s_tag_struct_definition wentness_byte_vector;
 
@@ -8532,6 +8822,8 @@ namespace xbox360
 	extern s_string_list_definition gui_error_category_enum;
 	extern s_string_list_definition gui_error_icon_enum;
 
+	extern s_tag_struct_definition chud_widget_state_data_template_struct_definition;
+
 	extern s_tag_struct_definition gui_dialog_description_block;
 	extern s_string_list_definition gui_dialog_flags;
 	extern s_string_list_definition gui_dialog_choice_enum;
@@ -8548,8 +8840,6 @@ namespace xbox360
 	extern s_tag_struct_definition chud_widget_placement_data_template_struct_definition;
 
 	extern s_tag_struct_definition chud_widget_render_data_template_struct_definition;
-
-	extern s_tag_struct_definition chud_widget_state_data_template_struct_definition;
 
 	extern s_tag_struct_definition weather_globals_struct_definition;
 

@@ -22,6 +22,16 @@ const wchar_t* filesystem_extract_filepath_extension(const wchar_t* filepath)
 	return PathFindExtensionW(filepath);
 }
 
+void filesystem_remove_filepath_extension(char* filepath)
+{
+	PathRemoveExtensionA(filepath);
+}
+
+void filesystem_remove_filepath_extension(wchar_t* filepath)
+{
+	PathRemoveExtensionW(filepath);
+}
+
 BCS_RESULT filesystem_filepath_exists(const char* filepath)
 {
 	BCS_VALIDATE_ARGUMENT(filepath);

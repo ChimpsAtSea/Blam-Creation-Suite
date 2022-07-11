@@ -226,7 +226,7 @@ BCS_RESULT c_infinite_tag_reader::init_tag_groups()
 			c_infinite_tag_group* parent_tag_group = nullptr;
 			if (blofeld_tag_group.parent_tag_group)
 			{
-				if (BCS_FAILED(get_tag_group_by_group_tag(blofeld_tag_group.parent_group_tag, parent_tag_group)))
+				if (BCS_FAILED(get_tag_group_by_group_tag(blofeld_tag_group.parent_tag_group->group_tag, parent_tag_group)))
 				{
 					continue;
 				}

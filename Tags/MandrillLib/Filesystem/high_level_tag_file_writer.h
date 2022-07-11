@@ -85,6 +85,7 @@ public:
 	void serialize_tag_data(const h_data& data, c_tag_struct_chunk& parent_chunk);
 	void serialize_tag_resource(const h_resource* data, const blofeld::s_tag_resource_definition& tag_resource_definition, c_tag_struct_chunk& parent_chunk);
 	void serialize_string_id(const h_string_id& string_id, c_tag_struct_chunk& parent_chunk);
+	void serialize_tag_reference(const h_tag_reference& reference, const blofeld::s_tag_reference_definition& tag_reference_definition, c_tag_struct_chunk& parent_chunk);
 
 	unsigned long calculate_structure_size(const h_prototype& object);
 	unsigned long calculate_structure_size(const blofeld::s_tag_struct_definition& tag_struct_definition);

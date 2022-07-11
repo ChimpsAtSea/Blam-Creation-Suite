@@ -48,9 +48,7 @@ c_high_level_tag_file_writer::c_high_level_tag_file_writer(s_engine_platform_bui
 	tag_file_header.unknown28 = 1;
 	tag_file_header.unknown2C = ULONG_MAX;
 	tag_file_header.group_tag = tag.group->tag_group.group_tag;
-	//tag_file_header.group_version = tag.group->tag_group.version;
-	tag_file_header.group_version = 7; // #TODO: How to handle this? This has been written specifically for the Bitmap group
-	tag_file_header.group_version = 4; // #TODO: How to handle this? This has been written specifically for the Bitmap group
+	tag_file_header.group_version = tag.group->tag_group.version;
 	tag_file_header.crc32 = 0; // #TODO: Calculate this just before writing the data
 	tag_file_header.blam = 'BLAM';
 
@@ -200,6 +198,7 @@ unsigned long c_high_level_tag_file_writer::enqueue_struct_definition(const blof
 
 	// reserve this structure index
 	s_tag_persist_struct_definition tag_persist_struct_definition_temp = {};
+	tag_persist_struct_definition_temp.persistent_identifier = tag_struct_definition.persistent_identifier;
 	unsigned long tag_persist_struct_index = structure_definitions_chunk->entry_count;
 	structure_definitions_chunk->append_data(&tag_persist_struct_definition_temp, sizeof(tag_persist_struct_definition_temp));
 
@@ -208,7 +207,7 @@ unsigned long c_high_level_tag_file_writer::enqueue_struct_definition(const blof
 	for (const blofeld::s_tag_field* current_field = tag_struct_definition.fields; /*current_field->field_type != blofeld::_field_terminator*/; current_field++)
 	{
 		unsigned long field_skip_count;
-		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
+		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, field_skip_count))
 		{
 			current_field += field_skip_count;
 			continue;
@@ -729,8 +728,24 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 			}
 		}
 		break;
-		case blofeld::_field_api_interop:
 		case blofeld::_field_tag_reference:
+		{
+			const h_tag_reference const& reference = *static_cast<const h_tag_reference const*>(src_field_data);
+
+			ASSERT(tag_struct_chunk != nullptr);
+
+			serialize_tag_reference(reference, *field.tag_reference_definition, *tag_struct_chunk);
+
+			s_tag_reference* tag_reference = reinterpret_cast<s_tag_reference*>(dst_field_data);
+			DEBUG_ONLY(memset(tag_reference, 0xBB, sizeof(*tag_reference)));
+
+			tag_reference->group_tag = 0;
+			tag_reference->name = 0;
+			tag_reference->name_length = 0;
+			tag_reference->datum_index = 0;
+		}
+		break;
+		case blofeld::_field_api_interop:
 			throw; // not implemented
 			break;
 		default:
@@ -809,6 +824,25 @@ void c_high_level_tag_file_writer::serialize_string_id(const h_string_id& string
 	
 }
 
+void c_high_level_tag_file_writer::serialize_tag_reference(const h_tag_reference& reference, const blofeld::s_tag_reference_definition& tag_reference_definition, c_tag_struct_chunk& parent_chunk)
+{
+	c_tag_reference_chunk& tag_reference_chunk = *new() c_tag_reference_chunk(parent_chunk);
+	parent_chunk.add_child(tag_reference_chunk);
+
+	if (!reference.is_null())
+	{
+		char* tag_path = strdup(reference.get_tag_path());
+		filesystem_remove_filepath_extension(tag_path);
+		tag_reference_chunk.set_reference(reference.get_group_tag(), tag_path);
+		untracked_free(tag_path);
+	}
+	else
+	{
+		tag_reference_chunk.set_reference(blofeld::INVALID_TAG, "");
+	}
+
+}
+
 unsigned long c_high_level_tag_file_writer::calculate_structure_size(const h_prototype& object)
 {
 	unsigned long structure_size = 0;
@@ -861,7 +895,7 @@ unsigned long c_high_level_tag_file_writer::calculate_structure_size(const blofe
 	for (const blofeld::s_tag_field* current_field = tag_struct_definition.fields; current_field->field_type != blofeld::_field_terminator; current_field++)
 	{
 		unsigned long field_skip_count;
-		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, field_skip_count))
+		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, field_skip_count))
 		{
 			current_field += field_skip_count;
 			continue;

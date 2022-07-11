@@ -102,19 +102,13 @@ static_assert(k_halo3_tools_pc64_tag_struct_runtime_size == 0x78);
 struct s_halo3_tools_pc64_tag_struct_legacy
 {
 	unsigned long legacy_struct_tag;
-	unsigned long legacy_struct_tag2;
-	ptr64 unknown8;
+	unsigned long unknown34;
+	ptr64 upgrade_function;
 	unsigned long legacy_version;
-	unsigned long padding0;
-	ptr64 unknown40; // s_tag_struct_definition		
-	unsigned long unknown1; // #NOTE: could also be a pointer, the alignment was correct
-	unsigned long unknown2;
-	ptr64 legacy_struct;
+	ptr64 unknown_struct; // s_tag_struct_definition																		
+	unsigned long legacy_version_count;
+	ptr64 previous_version_struct;
 	bool is_legacy_field_set;
-	bool padding4D;
-	bool padding4E;
-	bool padding4F;
-	unsigned long padding3;
 };
 constexpr size_t k_halo3_tools_pc64_tag_struct_legacy_size = sizeof(s_halo3_tools_pc64_tag_struct_legacy);
 static_assert(k_halo3_tools_pc64_tag_struct_legacy_size == 0x38);
@@ -174,7 +168,13 @@ public:
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() override;
 	virtual const char* get_file_path() override;
 	virtual long get_line_number() override;
-	virtual void handle_conflict(const c_blamtoozle_tag_struct_definition& conflicting_tag_struct_definition) override;
+
+	virtual bool is_legacy_struct() override;
+	virtual bool is_latest_structure_version() override;
+	virtual unsigned long get_structure_version() override;
+	virtual c_blamtoozle_tag_struct_definition* get_previous_struct_definition() override;
+	virtual c_blamtoozle_tag_struct_definition* get_next_struct_definition() override;
+	virtual c_blamtoozle_tag_struct_definition& get_latest_struct_definition() override;
 
 protected:
 	ptr64 definition_address;
@@ -187,6 +187,7 @@ protected:
 	std::string code_type_name;
 	c_halo3_tools_pc64_tag_group_definition& traversed_tag_group_definition;
 	bool conflict_handled;
+	c_halo3_tools_pc64_tag_struct_definition* previous_version_struct_definition;
+	c_halo3_tools_pc64_tag_struct_definition* next_version_struct_definition;
 
-	
 };

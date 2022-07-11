@@ -52,7 +52,7 @@ namespace blofeld
 		{
 			s_string_entry& string_entry = string_entries[entry_index];
 			unsigned long skip_count;
-			if (string_entry.is_versioning_entry && blofeld::execute_tag_field_versioning(string_entry.versioning, engine_platform_build, blofeld::ANY_TAG, skip_count))
+			if (string_entry.is_versioning_entry && blofeld::execute_tag_field_versioning(string_entry.versioning, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, skip_count))
 			{
 				entry_index += skip_count;
 				continue;
@@ -74,7 +74,7 @@ namespace blofeld
 		{
 			s_string_entry& string_entry = string_entries[entry_index];
 			unsigned long skip_count;
-			if (string_entry.is_versioning_entry && blofeld::execute_tag_field_versioning(string_entry.versioning, engine_platform_build, blofeld::ANY_TAG, skip_count))
+			if (string_entry.is_versioning_entry && blofeld::execute_tag_field_versioning(string_entry.versioning, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, skip_count))
 			{
 				entry_index += skip_count;
 				continue;

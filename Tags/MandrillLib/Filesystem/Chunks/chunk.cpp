@@ -59,7 +59,10 @@ BCS_RESULT c_chunk::add_child(c_chunk& chunk)
 
 	// #TODO: is it okay to allow duplicate entries of the same pointer?
 
-	trivial_free(children);
+	if (num_children > 0)
+	{
+		trivial_free(children);
+	}
 	children = new_children;
 	num_children = new_child_count;
 

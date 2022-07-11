@@ -142,6 +142,34 @@ namespace blofeld
 		}
 
 		s_tag_field(
+			e_struct_version_mode mode,
+#ifndef __INTELLISENSE__
+			const char* filename,
+			long line,
+#endif
+			unsigned long struct_version,
+			unsigned long version_field_skip_count = 1) :
+			field_type(_field_version),
+			name(nullptr),
+			description(),
+			units(),
+			limits(),
+			old_names(),
+			flags(),
+			filename(filename),
+			line(line),
+			pointer(nullptr),
+			extra_value(nullptr)
+		{
+			versioning.group = nullptr;
+			versioning.custom_version_callback = nullptr;
+			versioning.version_field_skip_count = version_field_skip_count;
+			versioning.engine_platform_build = {};
+			versioning.struct_version = struct_version;
+			versioning.mode = mode;
+		}
+
+		s_tag_field(
 			e_version_mode mode,
 #ifndef __INTELLISENSE__
 			const char* filename,
@@ -165,6 +193,7 @@ namespace blofeld
 			versioning.custom_version_callback = nullptr;
 			versioning.version_field_skip_count = version_field_skip_count;
 			versioning.engine_platform_build = engine_type_and_build;
+			versioning.struct_version = {};
 			versioning.mode = mode;
 		}
 
@@ -192,6 +221,7 @@ namespace blofeld
 			versioning.custom_version_callback = nullptr;
 			versioning.version_field_skip_count = version_field_skip_count;
 			versioning.engine_platform_build = {};
+			versioning.struct_version = {};
 			versioning.mode = mode;
 			DEBUG_ASSERT(
 				mode == _version_mode_tag_group_equal ||
@@ -222,6 +252,7 @@ namespace blofeld
 			versioning.custom_version_callback = custom_version_callback;
 			versioning.version_field_skip_count = 0;
 			versioning.engine_platform_build = {};
+			versioning.struct_version = {};
 			versioning.mode = mode;
 			ASSERT(mode == _version_mode_custom);
 		}
@@ -406,19 +437,6 @@ namespace blofeld
 		{
 		}
 	};
-
-	BCS_DEBUG_API bool execute_tag_field_versioning(
-		s_tag_field const& tag_field,
-		s_engine_platform_build engine_platform_build,
-		tag group_tag,
-		unsigned long& skip_count);
-
-	BCS_DEBUG_API bool execute_tag_field_versioning(
-		s_tag_field_versioning const& versioning,
-		s_engine_platform_build engine_platform_build,
-		tag group_tag,
-		unsigned long& skip_count);
-
 }
 
 #pragma warning( pop )

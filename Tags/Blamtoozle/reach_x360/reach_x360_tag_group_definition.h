@@ -36,6 +36,7 @@ public:
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;
 	virtual const char* get_group_tag_macro_name() override;
+	virtual unsigned long get_version() override;
 	virtual tag get_group_tag() override;
 	virtual tag get_parent_group_tag() override;
 	virtual c_blamtoozle_tag_block_definition& get_block_definition() override;

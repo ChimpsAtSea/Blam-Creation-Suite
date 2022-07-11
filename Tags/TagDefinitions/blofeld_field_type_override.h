@@ -224,6 +224,9 @@
 #define _version_mode_tag_group_equal blofeld::_version_mode_tag_group_equal, __FILE__, __LINE__
 #define _version_mode_tag_group_not_equal blofeld::_version_mode_tag_group_not_equal, __FILE__, __LINE__
 
+#define  _struct_version_mode_equal blofeld::_struct_version_mode_equal, __FILE__, __LINE__
+#define  _struct_version_mode_greater_or_equal blofeld::_struct_version_mode_greater_or_equal, __FILE__, __LINE__
+
 #define int32 int
 #define uint32 unsigned int
 

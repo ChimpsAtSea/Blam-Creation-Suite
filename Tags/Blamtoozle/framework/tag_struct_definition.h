@@ -19,7 +19,6 @@ public:
 	virtual long get_line_number();
 	virtual blofeld::s_tag_persistent_identifier& get_persistent_identifier() = 0;
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() = 0;
-	virtual void handle_conflict(const c_blamtoozle_tag_struct_definition& conflicting_tag_struct_definition);
 
 	virtual bool is_legacy_struct();
 	virtual bool is_latest_structure_version();

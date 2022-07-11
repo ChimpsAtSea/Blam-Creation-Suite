@@ -59,7 +59,18 @@ protected:
 
 	void write_tag_types_header(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields);
 	void write_tag_types_source(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields);
-	void write_fields(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields);
+	void write_string_list_header(std::stringstream& stream, c_blamtoozle_string_list_definition& string_list_definition);
+	void write_string_list_source(std::stringstream& stream, c_blamtoozle_string_list_definition& string_list_definition);
+	void write_tag_reference_header(std::stringstream& stream, c_blamtoozle_tag_reference_definition& tag_reference_definition);
+	void write_tag_reference_source(std::stringstream& stream, c_blamtoozle_tag_reference_definition& tag_reference_definition);
+	void write_tag_struct_header(std::stringstream& stream, c_blamtoozle_tag_struct_definition& tag_struct_definition);
+	void write_tag_struct_source(std::stringstream& stream, c_blamtoozle_tag_struct_definition& tag_struct_definition);
+	void write_fields(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields, bool write_terminator);
+	void write_persistent_identifier_macro(
+		std::stringstream& stream,
+		const blofeld::s_tag_persistent_identifier& persistent_identifier,
+		const char* code_symbol_name,
+		std::string& persistent_identifier_macro_name);
 	static void write_tag_field_flags(std::stringstream& stream, c_blamlib_string_parser_v2& string_parser);
 	static const char* tag_field_set_bit_to_field_set_bit_macro(blofeld::e_tag_field_set_bit flags);
 	static void write_tag_reference_flags(std::stringstream& stream, c_blamtoozle_tag_reference_definition& tag_reference_definition);

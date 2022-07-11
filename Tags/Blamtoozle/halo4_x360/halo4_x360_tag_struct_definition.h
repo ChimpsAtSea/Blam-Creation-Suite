@@ -108,9 +108,6 @@ struct s_halo4_x360_tag_struct_legacy
 	unsigned long legacy_version_count;																						//68				44
 	ptr32 previous_version_struct;																							//72				48
 	bool is_legacy_field_set;																								//76				4C
-	bool padding4D;																											//77				4D
-	bool padding4E;																											//78				4E
-	bool padding4F;																											//79				4F
 };
 constexpr size_t k_halo4_x360_tag_struct_legacy_size = sizeof(s_halo4_x360_tag_struct_legacy);
 static_assert(k_halo4_x360_tag_struct_legacy_size == 0x20);
@@ -194,7 +191,6 @@ public:
 	virtual long get_line_number() override;
 	virtual blofeld::s_tag_persistent_identifier& get_persistent_identifier() override;
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() override;
-	virtual void handle_conflict(const c_blamtoozle_tag_struct_definition& conflicting_tag_struct_definition) override;
 
 	virtual bool is_legacy_struct() override;
 	virtual bool is_latest_structure_version() override;
@@ -214,10 +210,6 @@ protected:
 	std::string code_type_name;
 	c_halo4_x360_tag_group_definition& traversed_tag_group_definition;
 	bool conflict_handled;
-
-	c_halo4_x360_tag_struct_definition* unknown_struct_definition;
 	c_halo4_x360_tag_struct_definition* previous_version_struct_definition;
 	c_halo4_x360_tag_struct_definition* next_version_struct_definition;
-
-
 };

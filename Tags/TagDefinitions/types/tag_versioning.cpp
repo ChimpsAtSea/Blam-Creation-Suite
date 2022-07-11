@@ -6,6 +6,7 @@ bool blofeld::execute_tag_field_versioning(
 	s_tag_field const& tag_field,
 	s_engine_platform_build engine_platform_build,
 	tag group_tag,
+	unsigned long struct_version,
 	unsigned long& skip_count)
 {
 	if (tag_field.field_type != _field_version)
@@ -14,13 +15,14 @@ bool blofeld::execute_tag_field_versioning(
 		return false;
 	}
 
-	return execute_tag_field_versioning(tag_field.versioning, engine_platform_build, group_tag, skip_count);
+	return execute_tag_field_versioning(tag_field.versioning, engine_platform_build, group_tag, struct_version, skip_count);
 }
 
 bool blofeld::execute_tag_field_versioning(
 	s_tag_field_versioning const& versioning,
 	s_engine_platform_build engine_platform_build,
 	tag group_tag,
+	unsigned long struct_version,
 	unsigned long& skip_count)
 {
 	bool skip_versioning_field = false;
@@ -72,6 +74,12 @@ bool blofeld::execute_tag_field_versioning(
 	case _version_mode_tag_group_not_equal:
 		skip_versioning_field = group_tag == blofeld::ANY_TAG || versioning.group->group_tag != group_tag;
 		break;
+	case _struct_version_mode_equal:
+		skip_versioning_field = struct_version == versioning.struct_version;
+		break;
+	case _struct_version_mode_greater_or_equal:
+		skip_versioning_field = struct_version >= versioning.struct_version;
+		break;
 	}
 
 	if (skip_versioning_field)
@@ -86,12 +94,13 @@ BCS_RESULT blofeld::calculate_versioned_tag_field_count(
 	const s_tag_field* tag_fields,
 	s_engine_platform_build engine_platform_build,
 	tag group_tag,
+	unsigned long struct_version,
 	unsigned long& field_count)
 {
 	field_count = 0;
 	for (const s_tag_field* tag_field_iterator = tag_fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 	{
-		const s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG);
+		const s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, struct_version);
 
 		field_count++;
 	}

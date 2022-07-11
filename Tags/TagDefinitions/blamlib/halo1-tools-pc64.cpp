@@ -9,3030 +9,3112 @@ namespace pc64
 {
 
 	TAG_GROUP(
+		"ui_widget_definition",
 		ui_widget_definition_group,
 		UI_WIDGET_DEFINITION_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		ui_widget_definition_group_block);
 
 	TAG_GROUP(
+		"ui_widget_collection",
 		ui_widget_collection_group,
 		UI_WIDGET_COLLECTION_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		ui_widget_collection_group_block);
 
 	TAG_GROUP(
+		"actor",
 		actor_group,
 		ACTOR_TAG,
+		2,
 		nullptr,
-		INVALID_TAG,
 		actor_group_block);
 
 	TAG_GROUP(
+		"actor_variant",
 		actor_variant_group,
 		ACTOR_VARIANT_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		actor_variant_group_block);
 
 	TAG_GROUP(
+		"antenna",
 		antenna_group,
 		ANTENNA_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		antenna_group_block);
 
 	TAG_GROUP(
+		"model_animations",
 		model_animations_group,
 		MODEL_ANIMATIONS_TAG,
+		4,
 		nullptr,
-		INVALID_TAG,
 		model_animations_group_block);
 
 	TAG_GROUP(
+		"biped",
 		biped_group,
 		BIPED_TAG,
+		3,
 		&unit_group,
-		UNIT_TAG,
 		biped_group_block);
 
 	TAG_GROUP(
+		"bitmap",
 		bitmap_group,
 		BITMAP_TAG,
+		7,
 		nullptr,
-		INVALID_TAG,
 		bitmap_group_block);
 
 	TAG_GROUP(
+		"continuous_damage_effect",
 		continuous_damage_effect_group,
 		CONTINUOUS_DAMAGE_EFFECT_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		continuous_damage_effect_group_block);
 
 	TAG_GROUP(
+		"model_collision_geometry",
 		model_collision_geometry_group,
 		MODEL_COLLISION_GEOMETRY_TAG,
+		10,
 		nullptr,
-		INVALID_TAG,
 		model_collision_geometry_group_block);
 
 	TAG_GROUP(
+		"color_table",
 		color_table_group,
 		COLOR_TABLE_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		color_table_group_block);
 
 	TAG_GROUP(
+		"contrail",
 		contrail_group,
 		CONTRAIL_TAG,
+		3,
 		nullptr,
-		INVALID_TAG,
 		contrail_group_block);
 
 	TAG_GROUP(
+		"device_control",
 		device_control_group,
 		DEVICE_CONTROL_TAG,
+		1,
 		&device_group,
-		DEVICE_TAG,
 		device_control_group_block);
 
 	TAG_GROUP(
+		"decal",
 		decal_group,
 		DECAL_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		decal_group_block);
 
 	TAG_GROUP(
+		"input_device_defaults",
 		input_device_defaults_group,
 		INPUT_DEVICE_DEFAULTS_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		input_device_defaults_group_block);
 
 	TAG_GROUP(
+		"device",
 		device_group,
 		DEVICE_TAG,
+		1,
 		&object_group,
-		OBJECT_TAG,
 		device_group_block);
 
 	TAG_GROUP(
+		"detail_object_collection",
 		detail_object_collection_group,
 		DETAIL_OBJECT_COLLECTION_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		detail_object_collection_group_block);
 
 	TAG_GROUP(
+		"effect",
 		effect_group,
 		EFFECT_TAG,
+		4,
 		nullptr,
-		INVALID_TAG,
 		effect_group_block);
 
 	TAG_GROUP(
+		"lightning",
 		lightning_group,
 		LIGHTNING_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		lightning_group_block);
 
 	TAG_GROUP(
+		"equipment",
 		equipment_group,
 		EQUIPMENT_TAG,
+		2,
 		&item_group,
-		ITEM_TAG,
 		equipment_group_block);
 
 	TAG_GROUP(
+		"flag",
 		flag_group,
 		FLAG_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		flag_group_block);
 
 	TAG_GROUP(
+		"fog",
 		fog_group,
 		FOG_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		fog_group_block);
 
 	TAG_GROUP(
+		"font",
 		font_group,
 		FONT_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		font_group_block);
 
 	TAG_GROUP(
+		"material_effects",
 		material_effects_group,
 		MATERIAL_EFFECTS_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		material_effects_group_block);
 
 	TAG_GROUP(
+		"garbage",
 		garbage_group,
 		GARBAGE_TAG,
+		1,
 		&item_group,
-		ITEM_TAG,
 		garbage_group_block);
 
 	TAG_GROUP(
+		"glow",
 		glow_group,
 		GLOW_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		glow_group_block);
 
 	TAG_GROUP(
+		"grenade_hud_interface",
 		grenade_hud_interface_group,
 		GRENADE_HUD_INTERFACE_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		grenade_hud_interface_group_block);
 
 	TAG_GROUP(
+		"hud_message_text",
 		hud_message_text_group,
 		HUD_MESSAGE_TEXT_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		hud_message_text_group_block);
 
 	TAG_GROUP(
+		"hud_number",
 		hud_number_group,
 		HUD_NUMBER_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		hud_number_group_block);
 
 	TAG_GROUP(
+		"hud_globals",
 		hud_globals_group,
 		HUD_GLOBALS_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		hud_globals_group_block);
 
 	TAG_GROUP(
+		"item",
 		item_group,
 		ITEM_TAG,
+		2,
 		&object_group,
-		OBJECT_TAG,
 		item_group_block);
 
 	TAG_GROUP(
+		"item_collection",
 		item_collection_group,
 		ITEM_COLLECTION_TAG,
+		0,
 		nullptr,
-		INVALID_TAG,
 		item_collection_group_block);
 
 	TAG_GROUP(
+		"damage_effect",
 		damage_effect_group,
 		DAMAGE_EFFECT_TAG,
+		6,
 		nullptr,
-		INVALID_TAG,
 		damage_effect_group_block);
 
 	TAG_GROUP(
+		"lens_flare",
 		lens_flare_group,
 		LENS_FLARE_TAG,
+		2,
 		nullptr,
-		INVALID_TAG,
 		lens_flare_group_block);
 
 	TAG_GROUP(
+		"device_light_fixture",
 		device_light_fixture_group,
 		DEVICE_LIGHT_FIXTURE_TAG,
+		1,
 		&device_group,
-		DEVICE_TAG,
 		device_light_fixture_group_block);
 
 	TAG_GROUP(
+		"light",
 		light_group,
 		LIGHT_TAG,
+		3,
 		nullptr,
-		INVALID_TAG,
 		light_group_block);
 
 	TAG_GROUP(
+		"sound_looping",
 		sound_looping_group,
 		SOUND_LOOPING_TAG,
+		3,
 		nullptr,
-		INVALID_TAG,
 		sound_looping_group_block);
 
 	TAG_GROUP(
+		"device_machine",
 		device_machine_group,
 		DEVICE_MACHINE_TAG,
+		1,
 		&device_group,
-		DEVICE_TAG,
 		device_machine_group_block);
 
 	TAG_GROUP(
+		"globals",
 		globals_group,
 		GLOBALS_TAG,
+		3,
 		nullptr,
-		INVALID_TAG,
 		globals_group_block);
 
 	TAG_GROUP(
+		"meter",
 		meter_group,
 		METER_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		meter_group_block);
 
 	TAG_GROUP(
+		"light_volume",
 		light_volume_group,
 		LIGHT_VOLUME_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		light_volume_group_block);
 
 	TAG_GROUP(
+		"gbxmodel",
 		gbxmodel_group,
 		GBXMODEL_TAG,
+		5,
 		nullptr,
-		INVALID_TAG,
 		gbxmodel_group_block);
 
 	TAG_GROUP(
+		"model",
 		model_group,
 		MODEL_TAG,
+		4,
 		nullptr,
-		INVALID_TAG,
 		model_group_block);
 
 	TAG_GROUP(
+		"multiplayer_scenario_description",
 		multiplayer_scenario_description_group,
 		MULTIPLAYER_SCENARIO_DESCRIPTION_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		multiplayer_scenario_description_group_block);
 
 	TAG_GROUP(
+		"preferences_network_game",
 		preferences_network_game_group,
 		PREFERENCES_NETWORK_GAME_TAG,
+		2,
 		nullptr,
-		INVALID_TAG,
 		preferences_network_game_group_block);
 
 	TAG_GROUP(
+		"object",
 		object_group,
 		OBJECT_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		object_group_block);
 
 	TAG_GROUP(
+		"particle",
 		particle_group,
 		PARTICLE_TAG,
+		2,
 		nullptr,
-		INVALID_TAG,
 		particle_group_block);
 
 	TAG_GROUP(
+		"particle_system",
 		particle_system_group,
 		PARTICLE_SYSTEM_TAG,
+		4,
 		nullptr,
-		INVALID_TAG,
 		particle_system_group_block);
 
 	TAG_GROUP(
+		"physics",
 		physics_group,
 		PHYSICS_TAG,
+		4,
 		nullptr,
-		INVALID_TAG,
 		physics_group_block);
 
 	TAG_GROUP(
+		"placeholder",
 		placeholder_group,
 		PLACEHOLDER_TAG,
+		2,
 		&object_group,
-		OBJECT_TAG,
 		placeholder_group_block);
 
 	TAG_GROUP(
+		"point_physics",
 		point_physics_group,
 		POINT_PHYSICS_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		point_physics_group_block);
 
 	TAG_GROUP(
+		"projectile",
 		projectile_group,
 		PROJECTILE_TAG,
+		5,
 		&object_group,
-		OBJECT_TAG,
 		projectile_group_block);
 
 	TAG_GROUP(
+		"weather_particle_system",
 		weather_particle_system_group,
 		WEATHER_PARTICLE_SYSTEM_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		weather_particle_system_group_block);
 
 	TAG_GROUP(
+		"scenario_structure_bsp",
 		scenario_structure_bsp_group,
 		SCENARIO_STRUCTURE_BSP_TAG,
+		5,
 		nullptr,
-		INVALID_TAG,
 		scenario_structure_bsp_group_block);
 
 	TAG_GROUP(
+		"scenery",
 		scenery_group,
 		SCENERY_TAG,
+		1,
 		&object_group,
-		OBJECT_TAG,
 		scenery_group_block);
 
 	TAG_GROUP(
+		"shader_transparent_chicago_extended",
 		shader_transparent_chicago_extended_group,
 		SHADER_TRANSPARENT_CHICAGO_EXTENDED_TAG,
+		1,
 		&shader_group,
-		SHADER_TAG,
 		shader_transparent_chicago_extended_group_block);
 
 	TAG_GROUP(
+		"shader_transparent_chicago",
 		shader_transparent_chicago_group,
 		SHADER_TRANSPARENT_CHICAGO_TAG,
+		1,
 		&shader_group,
-		SHADER_TAG,
 		shader_transparent_chicago_group_block);
 
 	TAG_GROUP(
+		"scenario",
 		scenario_group,
 		SCENARIO_TAG,
+		2,
 		nullptr,
-		INVALID_TAG,
 		scenario_group_block);
 
 	TAG_GROUP(
+		"shader_environment",
 		shader_environment_group,
 		SHADER_ENVIRONMENT_TAG,
+		2,
 		&shader_group,
-		SHADER_TAG,
 		shader_environment_group_block);
 
 	TAG_GROUP(
+		"shader_transparent_glass",
 		shader_transparent_glass_group,
 		SHADER_TRANSPARENT_GLASS_TAG,
+		1,
 		&shader_group,
-		SHADER_TAG,
 		shader_transparent_glass_group_block);
 
 	TAG_GROUP(
+		"shader",
 		shader_group,
 		SHADER_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		shader_group_block);
 
 	TAG_GROUP(
+		"sky",
 		sky_group,
 		SKY_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		sky_group_block);
 
 	TAG_GROUP(
+		"shader_transparent_meter",
 		shader_transparent_meter_group,
 		SHADER_TRANSPARENT_METER_TAG,
+		1,
 		&shader_group,
-		SHADER_TAG,
 		shader_transparent_meter_group_block);
 
 	TAG_GROUP(
+		"sound",
 		sound_group,
 		SOUND_TAG,
+		4,
 		nullptr,
-		INVALID_TAG,
 		sound_group_block);
 
 	TAG_GROUP(
+		"sound_environment",
 		sound_environment_group,
 		SOUND_ENVIRONMENT_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		sound_environment_group_block);
 
 	TAG_GROUP(
+		"shader_model",
 		shader_model_group,
 		SHADER_MODEL_TAG,
+		2,
 		&shader_group,
-		SHADER_TAG,
 		shader_model_group_block);
 
 	TAG_GROUP(
+		"shader_transparent_generic",
 		shader_transparent_generic_group,
 		SHADER_TRANSPARENT_GENERIC_TAG,
+		1,
 		&shader_group,
-		SHADER_TAG,
 		shader_transparent_generic_group_block);
 
 	TAG_GROUP(
+		"shader_transparent_plasma",
 		shader_transparent_plasma_group,
 		SHADER_TRANSPARENT_PLASMA_TAG,
+		1,
 		&shader_group,
-		SHADER_TAG,
 		shader_transparent_plasma_group_block);
 
 	TAG_GROUP(
+		"sound_scenery",
 		sound_scenery_group,
 		SOUND_SCENERY_TAG,
+		1,
 		&object_group,
-		OBJECT_TAG,
 		sound_scenery_group_block);
 
 	TAG_GROUP(
+		"string_list",
 		string_list_group,
 		STRING_LIST_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		string_list_group_block);
 
 	TAG_GROUP(
+		"shader_transparent_water",
 		shader_transparent_water_group,
 		SHADER_TRANSPARENT_WATER_TAG,
+		2,
 		&shader_group,
-		SHADER_TAG,
 		shader_transparent_water_group_block);
 
 	TAG_GROUP(
+		"tag_collection",
 		tag_collection_group,
 		TAG_COLLECTION_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		tag_collection_group_block);
 
 	TAG_GROUP(
+		"camera_track",
 		camera_track_group,
 		CAMERA_TRACK_TAG,
+		2,
 		nullptr,
-		INVALID_TAG,
 		camera_track_group_block);
 
 	TAG_GROUP(
+		"dialogue",
 		dialogue_group,
 		DIALOGUE_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		dialogue_group_block);
 
 	TAG_GROUP(
+		"unit_hud_interface",
 		unit_hud_interface_group,
 		UNIT_HUD_INTERFACE_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		unit_hud_interface_group_block);
 
 	TAG_GROUP(
+		"unit",
 		unit_group,
 		UNIT_TAG,
+		2,
 		&object_group,
-		OBJECT_TAG,
 		unit_group_block);
 
 	TAG_GROUP(
+		"unicode_string_list",
 		unicode_string_list_group,
 		UNICODE_STRING_LIST_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		unicode_string_list_group_block);
 
 	TAG_GROUP(
+		"virtual_keyboard",
 		virtual_keyboard_group,
 		VIRTUAL_KEYBOARD_TAG,
+		2,
 		nullptr,
-		INVALID_TAG,
 		virtual_keyboard_group_block);
 
 	TAG_GROUP(
+		"vehicle",
 		vehicle_group,
 		VEHICLE_TAG,
+		1,
 		&unit_group,
-		UNIT_TAG,
 		vehicle_group_block);
 
 	TAG_GROUP(
+		"weapon",
 		weapon_group,
 		WEAPON_TAG,
+		2,
 		&item_group,
-		ITEM_TAG,
 		weapon_group_block);
 
 	TAG_GROUP(
+		"wind",
 		wind_group,
 		WIND_TAG,
+		1,
 		nullptr,
-		INVALID_TAG,
 		wind_group_block);
 
 	TAG_GROUP(
+		"weapon_hud_interface",
 		weapon_hud_interface_group,
 		WEAPON_HUD_INTERFACE_TAG,
+		2,
 		nullptr,
-		INVALID_TAG,
 		weapon_hud_interface_group_block);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		ui_widget_definition_group_block,
 		"ui_widget_definition",
 		"ui_widget_definition_block",
 		1,
 		ui_widget_definition_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		game_data_input_references_block,
 		"game_data_input_references_block",
 		"game_data_input_references_block",
 		64,
 		game_data_input_references_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		event_handler_references_block,
 		"event_handler_references_block",
 		"event_handler_references_block",
 		32,
 		event_handler_references_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		search_and_replace_reference_block,
 		"search_and_replace_reference_block",
 		"search_and_replace_reference_block",
 		32,
 		search_and_replace_reference_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		conditional_widget_reference_block,
 		"conditional_widget_reference_block",
 		"conditional_widget_reference_block",
 		32,
 		conditional_widget_reference_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		child_widget_reference_block,
 		"child_widget_reference_block",
 		"child_widget_reference_block",
 		32,
 		child_widget_reference_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		ui_widget_collection_group_block,
 		"ui_widget_collection",
 		"ui_widget_collection_block",
 		1,
 		ui_widget_collection_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		ui_widget_references_block,
 		"ui_widget_references_block",
 		"ui_widget_references_block",
 		32,
 		ui_widget_references_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		actor_group_block,
 		"actor",
 		"actor_block",
 		1,
 		actor_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		actor_variant_group_block,
 		"actor_variant",
 		"actor_variant_block",
 		1,
 		actor_variant_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		actor_variant_change_colors_block,
 		"actor_variant_change_colors_block",
 		"actor_variant_change_colors_block",
 		4,
 		actor_variant_change_colors_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		antenna_group_block,
 		"antenna",
 		"antenna_block",
 		1,
 		antenna_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		antenna_vertex_block,
 		"antenna_vertex_block",
 		"antenna_vertex_block",
 		20,
 		antenna_vertex_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		model_animations_group_block,
 		"model_animations",
 		"model_animations_block",
 		1,
 		model_animations_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		animation_graph_object_overlay_block,
 		"animation_graph_object_overlay",
 		"animation_graph_object_overlay",
 		4,
 		animation_graph_object_overlay_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		animation_graph_unit_seat_block,
 		"animation_graph_unit_seat_block",
 		"animation_graph_unit_seat_block",
 		32,
 		animation_graph_unit_seat_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		unit_seat_animation_block,
 		"unit_seat_animation_block",
 		"unit_seat_animation_block",
 		30,
 		unit_seat_animation_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		animation_graph_unit_seat_ik_point_block,
 		"animation_graph_unit_seat_ik_point",
 		"animation_graph_unit_seat_ik_point",
 		4,
 		animation_graph_unit_seat_ik_point_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		animation_graph_weapon_block,
 		"animation_graph_weapon_block",
 		"animation_graph_weapon_block",
 		16,
 		animation_graph_weapon_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		weapon_class_animation_block,
 		"weapon_class_animation_block",
 		"weapon_class_animation_block",
 		55,
 		weapon_class_animation_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		animation_graph_weapon_type_block,
 		"animation_graph_weapon_type_block",
 		"animation_graph_weapon_type_block",
 		16,
 		animation_graph_weapon_type_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		weapon_type_animation_block,
 		"weapon_type_animation_block",
 		"weapon_type_animation_block",
 		10,
 		weapon_type_animation_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		animation_graph_weapon_animations_block,
 		"animation_graph_weapon_animations_block",
 		"animation_graph_weapon_animations_block",
 		1,
 		animation_graph_weapon_animations_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		weapon_animation_block,
 		"weapon_animation_block",
 		"weapon_animation_block",
 		11,
 		weapon_animation_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		animation_graph_vehicle_animations_block,
 		"animation_graph_vehicle_animations_block",
 		"animation_graph_vehicle_animations_block",
 		1,
 		animation_graph_vehicle_animations_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		vehicle_animation_block,
 		"vehicle_animation_block",
 		"vehicle_animation_block",
 		8,
 		vehicle_animation_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		suspension_animation_block,
 		"suspension_animation_block",
 		"suspension_animation_block",
 		8,
 		suspension_animation_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		device_animations_block,
 		"device_animations",
 		"device_animations",
 		1,
 		device_animations_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		device_animation_block,
 		"device_animation_block",
 		"device_animation_block",
 		2,
 		device_animation_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		unit_damage_animations_block,
 		"unit_damage_animations",
 		"unit_damage_animations",
 		176,
 		unit_damage_animations_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		animation_graph_first_person_weapon_animations_block,
 		"animation_graph_first_person_weapon_animations_block",
 		"animation_graph_first_person_weapon_animations_block",
 		1,
 		animation_graph_first_person_weapon_animations_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		first_person_weapon_block,
 		"first_person_weapon_block",
 		"first_person_weapon_block",
 		28,
 		first_person_weapon_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		animation_graph_sound_reference_block,
 		"animation_graph_sound_reference_block",
 		"animation_graph_sound_reference_block",
 		513,
 		animation_graph_sound_reference_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		animation_graph_node_block,
 		"animation_graph_node_block",
 		"animation_graph_node_block",
 		64,
 		animation_graph_node_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		animation_block,
 		"animation_block",
 		"animation_block",
 		512,
 		animation_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		biped_group_block,
 		"biped",
 		"biped_block",
 		1,
 		biped_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		object_attachment_block,
 		"object_attachment_block",
 		"object_attachment_block",
 		8,
 		object_attachment_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		object_widget_block,
 		"object_widget_block",
 		"object_widget_block",
 		4,
 		object_widget_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		object_function_block,
 		"object_function_block",
 		"object_function_block",
 		4,
 		object_function_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		object_change_colors_block,
 		"object_change_colors",
 		"object_change_colors",
 		4,
 		object_change_colors_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		object_change_color_permutations_block,
 		"object_change_color_permutations",
 		"object_change_color_permutations",
 		8,
 		object_change_color_permutations_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		predicted_resource_block,
 		"predicted_resource_block",
 		"predicted_resource_block",
 		1024,
 		predicted_resource_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		unit_camera_track_block,
 		"unit_camera_track_block",
 		"unit_camera_track_block",
 		2,
 		unit_camera_track_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		unit_hud_reference_block,
 		"unit_hud_reference_block",
 		"unit_hud_reference_block",
 		2,
 		unit_hud_reference_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		dialogue_variant_block,
 		"dialogue_variant_block",
 		"dialogue_variant_block",
 		16,
 		dialogue_variant_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		powered_seat_block,
 		"powered_seat_block",
 		"powered_seat_block",
 		2,
 		powered_seat_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		unit_weapon_block,
 		"unit_weapon_block",
 		"unit_weapon_block",
 		4,
 		unit_weapon_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		unit_seat_block,
 		"unit_seat_block",
 		"unit_seat_block",
 		16,
 		unit_seat_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		contact_point_block,
 		"contact_point_block",
 		"contact_point_block",
 		2,
 		contact_point_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		bitmap_group_block,
 		"bitmap",
 		"bitmap_block",
 		1,
 		bitmap_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		bitmap_group_sequence_block,
 		"bitmap_group_sequence_block",
 		"bitmap_group_sequence_block",
 		256,
 		bitmap_group_sequence_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		bitmap_group_sprite_block,
 		"bitmap_group_sprite_block",
 		"bitmap_group_sprite_block",
 		64,
 		bitmap_group_sprite_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		bitmap_data_block,
 		"bitmap_data_block",
 		"bitmap_data_block",
 		65536,
 		bitmap_data_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		continuous_damage_effect_group_block,
 		"continuous_damage_effect",
 		"continuous_damage_effect_block",
 		1,
 		continuous_damage_effect_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		model_collision_geometry_group_block,
 		"model_collision_geometry",
 		"model_collision_geometry_block",
 		1,
 		model_collision_geometry_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		damage_materials_block,
 		"damage_materials_block",
 		"damage_materials_block",
 		32,
 		damage_materials_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		damage_regions_block,
 		"damage_regions_block",
 		"damage_regions_block",
 		8,
 		damage_regions_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		damage_permutations_block,
 		"damage_permutations_block",
 		"damage_permutations_block",
 		32,
 		damage_permutations_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		damage_modifiers_block,
 		"damage_modifiers_block",
 		"damage_modifiers_block",
 		0,
 		damage_modifiers_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		pathfinding_spheres_block,
 		"sphere",
 		"pathfinding_spheres_block",
 		256,
 		pathfinding_spheres_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		collision_nodes_block,
 		"node",
 		"collision_nodes_block",
 		64,
 		collision_nodes_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		collision_bsps_block,
 		"bsp",
 		"collision_bsps_block",
 		32,
 		collision_bsps_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		bsp3d_nodes_block,
 		"bsp3d node",
 		"bsp3d_nodes_block",
 		131072,
 		bsp3d_nodes_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		planes_block,
 		"plane",
 		"planes_block",
 		65536,
 		planes_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		leaves_block,
 		"leaf",
 		"leaves_block",
 		65536,
 		leaves_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		bsp2d_references_block,
 		"bsp2d reference",
 		"bsp2d_references_block",
 		131072,
 		bsp2d_references_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		bsp2d_nodes_block,
 		"bsp2d node",
 		"bsp2d_nodes_block",
 		65535,
 		bsp2d_nodes_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		surfaces_block,
 		"surface",
 		"surfaces_block",
 		131072,
 		surfaces_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		edges_block,
 		"edge",
 		"edges_block",
 		262144,
 		edges_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		vertices_block,
 		"vertex",
 		"vertices_block",
 		131072,
 		vertices_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		color_table_group_block,
 		"color_table",
 		"color_table_block",
 		1,
 		color_table_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		color_block,
 		"color_block",
 		"color_block",
 		512,
 		color_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		contrail_group_block,
 		"contrail",
 		"contrail_block",
 		1,
 		contrail_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		contrail_point_states_block,
 		"contrail_point_states_block",
 		"contrail_point_states_block",
 		16,
 		contrail_point_states_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		device_control_group_block,
 		"device_control",
 		"device_control_block",
 		1,
 		device_control_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		decal_group_block,
 		"decal",
 		"decal_block",
 		1,
 		decal_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		input_device_defaults_group_block,
 		"input_device_defaults",
 		"input_device_defaults_block",
 		1,
 		input_device_defaults_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		device_group_block,
 		"device",
 		"device_block",
 		1,
 		device_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		detail_object_collection_group_block,
 		"detail_object_collection",
 		"detail_object_collection_block",
 		1,
 		detail_object_collection_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		detail_object_type_block,
 		"detail_object_type_block",
 		"detail_object_type_block",
 		16,
 		detail_object_type_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		effect_group_block,
 		"effect",
 		"effect_block",
 		1,
 		effect_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		effect_locations_block,
 		"effect_locations_block",
 		"effect_locations_block",
 		32,
 		effect_locations_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		effect_event_block,
 		"effect_event_block",
 		"effect_event_block",
 		32,
 		effect_event_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		effect_part_block,
 		"effect_part_block",
 		"effect_part_block",
 		32,
 		effect_part_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		effect_particles_block,
 		"effect_particles_block",
 		"effect_particles_block",
 		32,
 		effect_particles_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		lightning_group_block,
 		"lightning",
 		"lightning_block",
 		1,
 		lightning_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		lightning_marker_block,
 		"lightning_marker_block",
 		"lightning_marker_block",
 		16,
 		lightning_marker_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		lightning_shader_block,
 		"lightning_shader_block",
 		"lightning_shader_block",
 		1,
 		lightning_shader_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		equipment_group_block,
 		"equipment",
 		"equipment_block",
 		1,
 		equipment_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		flag_group_block,
 		"flag",
 		"flag_block",
 		1,
 		flag_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		flag_attachment_point_block,
 		"flag_attachment_point_block",
 		"flag_attachment_point_block",
 		5,
 		flag_attachment_point_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		fog_group_block,
 		"fog",
 		"fog_block",
 		1,
 		fog_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		font_group_block,
 		"font",
 		"font_block",
 		1,
 		font_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		font_character_tables_block,
 		"font_character_tables",
 		"font_character_tables",
 		256,
 		font_character_tables_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		font_character_table_block,
 		"font_character_table",
 		"font_character_table",
 		256,
 		font_character_table_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		font_character_block,
 		"character",
 		"font_character_block",
 		32000,
 		font_character_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		material_effects_group_block,
 		"material_effects",
 		"material_effects_block",
 		1,
 		material_effects_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		material_effect_block,
 		"material_effect_block",
 		"material_effect_block",
 		13,
 		material_effect_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		material_effect_material_block,
 		"material_effect_material_block",
 		"material_effect_material_block",
 		33,
 		material_effect_material_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		garbage_group_block,
 		"garbage",
 		"garbage_block",
 		1,
 		garbage_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		glow_group_block,
 		"glow",
 		"glow_block",
 		1,
 		glow_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		grenade_hud_interface_group_block,
 		"grenade_hud_interface",
 		"grenade_hud_interface_block",
 		1,
 		grenade_hud_interface_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		global_hud_multitexture_overlay_definition_block,
 		"global_hud_multitexture_overlay_definition",
 		"global_hud_multitexture_overlay_definition",
 		30,
 		global_hud_multitexture_overlay_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		global_hud_multitexture_overlay_effector_definition_block,
 		"global_hud_multitexture_overlay_effector_definition",
 		"global_hud_multitexture_overlay_effector_definition",
 		30,
 		global_hud_multitexture_overlay_effector_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		grenade_hud_overlay_block,
 		"grenade_hud_overlay_block",
 		"grenade_hud_overlay_block",
 		16,
 		grenade_hud_overlay_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		grenade_hud_sound_block,
 		"grenade_hud_sound_block",
 		"grenade_hud_sound_block",
 		12,
 		grenade_hud_sound_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		hud_message_text_group_block,
 		"hud_message_text",
 		"hud_message_text_block",
 		1,
 		hud_message_text_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		hud_message_elements_block,
 		"hud_message_elements_block",
 		"hud_message_elements_block",
 		8192,
 		hud_message_elements_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		hud_messages_block,
 		"hud_messages_block",
 		"hud_messages_block",
 		1024,
 		hud_messages_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		hud_number_group_block,
 		"hud_number",
 		"hud_number_block",
 		1,
 		hud_number_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		hud_globals_group_block,
 		"hud_globals",
 		"hud_globals_block",
 		1,
 		hud_globals_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		hud_button_icon_block,
 		"hud_button_icon_block",
 		"hud_button_icon_block",
 		18,
 		hud_button_icon_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		hud_waypoint_arrow_block,
 		"hud_waypoint_arrow_block",
 		"hud_waypoint_arrow_block",
 		16,
 		hud_waypoint_arrow_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		hud_bitmap_remaps_block_definition_block,
 		"hud_bitmap_remaps_block_definition",
 		"hud_bitmap_remaps_block_definition",
 		32,
 		hud_bitmap_remaps_block_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		hud_bitmap_remap_element_block_definition_block,
 		"hud_bitmap_remap_element_block_definition",
 		"hud_bitmap_remap_element_block_definition",
 		26,
 		hud_bitmap_remap_element_block_definition_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		item_group_block,
 		"item",
 		"item_block",
 		1,
 		item_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		item_collection_group_block,
 		"item_collection",
 		"item_collection_block",
 		1,
 		item_collection_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		item_permutation_block,
 		"item_permutation",
 		"item_permutation",
 		32,
 		item_permutation_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		damage_effect_group_block,
 		"damage_effect",
 		"damage_effect_block",
 		1,
 		damage_effect_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		lens_flare_group_block,
 		"lens_flare",
 		"lens_flare_block",
 		1,
 		lens_flare_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		lens_flare_reflection_block,
 		"lens_flare_reflection_block",
 		"lens_flare_reflection_block",
 		32,
 		lens_flare_reflection_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		device_light_fixture_group_block,
 		"device_light_fixture",
 		"device_light_fixture_block",
 		1,
 		device_light_fixture_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		light_group_block,
 		"light",
 		"light_block",
 		1,
 		light_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		sound_looping_group_block,
 		"sound_looping",
 		"sound_looping_block",
 		1,
 		sound_looping_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		looping_sound_track_block,
 		"looping_sound_track_block",
 		"looping_sound_track_block",
 		4,
 		looping_sound_track_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		looping_sound_detail_block,
 		"looping_sound_detail_block",
 		"looping_sound_detail_block",
 		32,
 		looping_sound_detail_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		device_machine_group_block,
 		"device_machine",
 		"device_machine_block",
 		1,
 		device_machine_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		globals_group_block,
 		"globals",
 		"globals_block",
 		1,
 		globals_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		gg_sound_block,
 		"gg_sound_block",
 		"gg_sound_block",
 		2,
 		gg_sound_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		camera_block,
 		"camera_block",
 		"camera_block",
 		1,
 		camera_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		player_control_block,
 		"player_control_block",
 		"player_control_block",
 		1,
 		player_control_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		look_function_block,
 		"look_function_block",
 		"look_function_block",
 		16,
 		look_function_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		difficulty_block,
 		"difficulty_block",
 		"difficulty_block",
 		1,
 		difficulty_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		grenades_block,
 		"grenades_block",
 		"grenades_block",
 		2,
 		grenades_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		rasterizer_data_block,
 		"rasterizer_data_block",
 		"rasterizer_data_block",
 		1,
 		rasterizer_data_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		interface_tag_references_block,
 		"interface_tag_references",
 		"interface_tag_references",
 		1,
 		interface_tag_references_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		cheat_weapons_block,
 		"cheat_weapons_block",
 		"cheat_weapons_block",
 		20,
 		cheat_weapons_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		cheat_powerups_block,
 		"cheat_powerups_block",
 		"cheat_powerups_block",
 		20,
 		cheat_powerups_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		multiplayer_information_block,
 		"multiplayer_information_block",
 		"multiplayer_information_block",
 		1,
 		multiplayer_information_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		vehicles_block,
 		"vehicles_block",
 		"vehicles_block",
 		20,
 		vehicles_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		sounds_block,
 		"sounds_block",
 		"sounds_block",
 		60,
 		sounds_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		player_information_block,
 		"player_information_block",
 		"player_information_block",
 		1,
 		player_information_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		first_person_interface_block,
 		"first_person_interface_block",
 		"first_person_interface_block",
 		1,
 		first_person_interface_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		falling_damage_block,
 		"falling_damage_block",
 		"falling_damage_block",
 		1,
 		falling_damage_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		materials_block,
 		"materials_block",
 		"materials_block",
 		33,
 		materials_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		breakable_surface_particle_effect_block,
 		"breakable_surface_particle_effect_block",
 		"breakable_surface_particle_effect_block",
 		8,
 		breakable_surface_particle_effect_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		playlist_autogenerate_choice_block,
 		"playlist_autogenerate_choice_block",
 		"playlist_autogenerate_choice_block",
 		20,
 		playlist_autogenerate_choice_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		meter_group_block,
 		"meter",
 		"meter_block",
 		1,
 		meter_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		light_volume_group_block,
 		"light_volume",
 		"light_volume_block",
 		1,
 		light_volume_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		light_volume_frame_block,
 		"light_volume_frame_block",
 		"light_volume_frame_block",
 		2,
 		light_volume_frame_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		gbxmodel_group_block,
 		"gbxmodel",
 		"gbxmodel_block",
 		1,
 		gbxmodel_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		model_markers_block,
 		"model_markers_block",
 		"model_markers_block",
 		256,
 		model_markers_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		model_marker_instance_block,
 		"model_marker_instance_block",
 		"model_marker_instance_block",
 		32,
 		model_marker_instance_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		model_node_block,
 		"model_node_block",
 		"model_node_block",
 		64,
 		model_node_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		gbxmodel_region_block,
 		"gbxmodel_region_block",
 		"gbxmodel_region_block",
 		32,
 		gbxmodel_region_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		gbxmodel_region_permutation_block,
 		"gbxmodel_region_permutation_block",
 		"gbxmodel_region_permutation_block",
 		32,
 		gbxmodel_region_permutation_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		model_region_permutation_marker_block,
 		"model_region_permutation_marker_block",
 		"model_region_permutation_marker_block",
 		64,
 		model_region_permutation_marker_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		gbxmodel_geometry_block,
 		"gbxmodel_geometry_block",
 		"gbxmodel_geometry_block",
 		256,
 		gbxmodel_geometry_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		gbxmodel_geometry_part_block,
 		"gbxmodel_geometry_part_block",
 		"gbxmodel_geometry_part_block",
 		32,
 		gbxmodel_geometry_part_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		model_vertex_uncompressed_block,
 		"model_vertex_uncompressed_block",
 		"model_vertex_uncompressed_block",
 		65535,
 		model_vertex_uncompressed_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		model_vertex_compressed_block,
 		"model_vertex_compressed_block",
 		"model_vertex_compressed_block",
 		65535,
 		model_vertex_compressed_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		model_triangle_block,
 		"model_triangle_block",
 		"model_triangle_block",
 		65535,
 		model_triangle_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		model_shader_reference_block,
 		"model_shader_reference_block",
 		"model_shader_reference_block",
 		32,
 		model_shader_reference_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		model_group_block,
 		"model",
 		"model_block",
 		1,
 		model_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		model_region_block,
 		"model_region_block",
 		"model_region_block",
 		32,
 		model_region_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		model_region_permutation_block,
 		"model_region_permutation_block",
 		"model_region_permutation_block",
 		32,
 		model_region_permutation_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		model_geometry_block,
 		"model_geometry_block",
 		"model_geometry_block",
 		256,
 		model_geometry_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		model_geometry_part_block,
 		"model_geometry_part_block",
 		"model_geometry_part_block",
 		32,
 		model_geometry_part_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		multiplayer_scenario_description_group_block,
 		"multiplayer_scenario_description",
 		"multiplayer_scenario_description_block",
 		1,
 		multiplayer_scenario_description_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_description_block,
 		"scenario_description_block",
 		"scenario_description_block",
 		32,
 		scenario_description_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		preferences_network_game_group_block,
 		"preferences_network_game",
 		"preferences_network_game_block",
 		1,
 		preferences_network_game_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		object_group_block,
 		"object",
 		"object_block",
 		1,
 		object_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		particle_group_block,
 		"particle",
 		"particle_block",
 		1,
 		particle_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		particle_system_group_block,
 		"particle_system",
 		"particle_system_block",
 		1,
 		particle_system_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		particle_system_physics_constants_block,
 		"particle_system_physics_constants_block",
 		"particle_system_physics_constants_block",
 		16,
 		particle_system_physics_constants_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		particle_system_types_block,
 		"particle_system_types_block",
 		"particle_system_types_block",
 		4,
 		particle_system_types_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		particle_system_type_states_block,
 		"particle_system_type_states_block",
 		"particle_system_type_states_block",
 		8,
 		particle_system_type_states_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		particle_system_type_particle_states_block,
 		"particle_system_type_particle_states_block",
 		"particle_system_type_particle_states_block",
 		8,
 		particle_system_type_particle_states_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		physics_group_block,
 		"physics",
 		"physics_block",
 		1,
 		physics_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		inertial_matrix_block,
 		"inertial_matrix_block",
 		"inertial_matrix_block",
 		2,
 		inertial_matrix_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		powered_mass_point_block,
 		"powered_mass_point_block",
 		"powered_mass_point_block",
 		32,
 		powered_mass_point_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		mass_point_block,
 		"mass_point_block",
 		"mass_point_block",
 		32,
 		mass_point_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		placeholder_group_block,
 		"placeholder",
 		"placeholder_block",
 		1,
 		placeholder_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		point_physics_group_block,
 		"point_physics",
 		"point_physics_block",
 		1,
 		point_physics_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		projectile_group_block,
 		"projectile",
 		"projectile_block",
 		1,
 		projectile_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		projectile_material_response_block,
 		"projectile_material_response_block",
 		"projectile_material_response_block",
 		33,
 		projectile_material_response_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		weather_particle_system_group_block,
 		"weather_particle_system",
 		"weather_particle_system_block",
 		1,
 		weather_particle_system_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		weather_particle_type_block,
 		"weather_particle_type_block",
 		"weather_particle_type_block",
 		8,
 		weather_particle_type_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_structure_bsp_group_block,
 		"scenario_structure_bsp",
 		"scenario_structure_bsp_block",
 		1,
 		scenario_structure_bsp_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_collision_materials_block,
 		"structure_collision_materials_block",
 		"structure_collision_materials_block",
 		512,
 		structure_collision_materials_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		collision_bsp_block,
 		"bsp",
 		"collision_bsp_block",
 		1,
 		collision_bsp_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_node_block,
 		"structure_bsp_node_block",
 		"structure_bsp_node_block",
 		131072,
 		structure_bsp_node_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_leaf_block,
 		"structure_bsp_leaf_block",
 		"structure_bsp_leaf_block",
 		65536,
 		structure_bsp_leaf_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_surface_reference_block,
 		"structure_bsp_surface_reference_block",
 		"structure_bsp_surface_reference_block",
 		262144,
 		structure_bsp_surface_reference_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_surface_block,
 		"structure_bsp_surface_block",
 		"structure_bsp_surface_block",
 		131072,
 		structure_bsp_surface_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_lightmap_block,
 		"structure_bsp_lightmap_block",
 		"structure_bsp_lightmap_block",
 		128,
 		structure_bsp_lightmap_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_material_block,
 		"structure_bsp_material_block",
 		"structure_bsp_material_block",
 		2048,
 		structure_bsp_material_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_lens_flare_block,
 		"structure_bsp_lens_flare_block",
 		"structure_bsp_lens_flare_block",
 		256,
 		structure_bsp_lens_flare_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_lens_flare_marker_block,
 		"structure_bsp_lens_flare_marker_block",
 		"structure_bsp_lens_flare_marker_block",
 		65536,
 		structure_bsp_lens_flare_marker_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_cluster_block,
 		"structure_bsp_cluster_block",
 		"structure_bsp_cluster_block",
 		8192,
 		structure_bsp_cluster_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_subcluster_block,
 		"structure_bsp_subcluster_block",
 		"structure_bsp_subcluster_block",
 		4096,
 		structure_bsp_subcluster_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_subcluster_surface_index_block,
 		"structure_bsp_subcluster_surface_index_block",
 		"structure_bsp_subcluster_surface_index_block",
 		128,
 		structure_bsp_subcluster_surface_index_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_cluster_surface_index_block,
 		"structure_bsp_cluster_surface_index_block",
 		"structure_bsp_cluster_surface_index_block",
 		32768,
 		structure_bsp_cluster_surface_index_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_mirror_block,
 		"structure_bsp_mirror_block",
 		"structure_bsp_mirror_block",
 		16,
 		structure_bsp_mirror_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_mirror_vertex_block,
 		"structure_bsp_mirror_vertex_block",
 		"structure_bsp_mirror_vertex_block",
 		512,
 		structure_bsp_mirror_vertex_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_cluster_portal_index_block,
 		"structure_bsp_cluster_portal_index_block",
 		"structure_bsp_cluster_portal_index_block",
 		128,
 		structure_bsp_cluster_portal_index_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_cluster_portal_block,
 		"structure_bsp_cluster_portal_block",
 		"structure_bsp_cluster_portal_block",
 		512,
 		structure_bsp_cluster_portal_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_cluster_portal_vertex_block,
 		"structure_bsp_cluster_portal_vertex_block",
 		"structure_bsp_cluster_portal_vertex_block",
 		128,
 		structure_bsp_cluster_portal_vertex_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_breakable_surface_block,
 		"structure_bsp_breakable_surface_block",
 		"structure_bsp_breakable_surface_block",
 		256,
 		structure_bsp_breakable_surface_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_fog_plane_block,
 		"structure_bsp_fog_plane_block",
 		"structure_bsp_fog_plane_block",
 		32,
 		structure_bsp_fog_plane_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_fog_plane_vertex_block,
 		"structure_bsp_fog_plane_vertex_block",
 		"structure_bsp_fog_plane_vertex_block",
 		4096,
 		structure_bsp_fog_plane_vertex_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_fog_region_block,
 		"structure_bsp_fog_region_block",
 		"structure_bsp_fog_region_block",
 		32,
 		structure_bsp_fog_region_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_fog_palette_block,
 		"structure_bsp_fog_palette_block",
 		"structure_bsp_fog_palette_block",
 		32,
 		structure_bsp_fog_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_weather_palette_block,
 		"structure_bsp_weather_palette_block",
 		"structure_bsp_weather_palette_block",
 		32,
 		structure_bsp_weather_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_weather_polyhedron_block,
 		"structure_bsp_weather_polyhedron_block",
 		"structure_bsp_weather_polyhedron_block",
 		32,
 		structure_bsp_weather_polyhedron_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_weather_polyhedron_plane_block,
 		"structure_bsp_weather_polyhedron_plane_block",
 		"structure_bsp_weather_polyhedron_plane_block",
 		16,
 		structure_bsp_weather_polyhedron_plane_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_pathfinding_surfaces_block,
 		"structure_bsp_pathfinding_surfaces_block",
 		"structure_bsp_pathfinding_surfaces_block",
 		131072,
 		structure_bsp_pathfinding_surfaces_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_pathfinding_edges_block,
 		"structure_bsp_pathfinding_edges_block",
 		"structure_bsp_pathfinding_edges_block",
 		262144,
 		structure_bsp_pathfinding_edges_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_background_sound_palette_block,
 		"structure_bsp_background_sound_palette_block",
 		"structure_bsp_background_sound_palette_block",
 		64,
 		structure_bsp_background_sound_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_sound_environment_palette_block,
 		"structure_bsp_sound_environment_palette_block",
 		"structure_bsp_sound_environment_palette_block",
 		64,
 		structure_bsp_sound_environment_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_marker_block,
 		"structure_bsp_marker_block",
 		"structure_bsp_marker_block",
 		1024,
 		structure_bsp_marker_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_detail_object_data_block,
 		"structure_bsp_detail_object_data_block",
 		"structure_bsp_detail_object_data_block",
 		1,
 		structure_bsp_detail_object_data_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		global_detail_object_cells_block,
 		"global_detail_object_cells_block",
 		"global_detail_object_cells_block",
 		262144,
 		global_detail_object_cells_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		global_detail_object_block,
 		"global_detail_object_block",
 		"global_detail_object_block",
 		2097152,
 		global_detail_object_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		global_detail_object_counts_block,
 		"global_detail_object_counts_block",
 		"global_detail_object_counts_block",
 		8388608,
 		global_detail_object_counts_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		global_z_reference_vector_block,
 		"global_z_reference_vector_block",
 		"global_z_reference_vector_block",
 		262144,
 		global_z_reference_vector_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_runtime_decal_block,
 		"structure_bsp_runtime_decal_block",
 		"structure_bsp_runtime_decal_block",
 		6144,
 		structure_bsp_runtime_decal_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		global_map_leaf_block,
 		"global_map_leaf_block",
 		"global_map_leaf_block",
 		65536,
 		global_map_leaf_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		map_leaf_face_block,
 		"map_leaf_face_block",
 		"map_leaf_face_block",
 		256,
 		map_leaf_face_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		map_leaf_face_vertex_block,
 		"map_leaf_face_vertex_block",
 		"map_leaf_face_vertex_block",
 		64,
 		map_leaf_face_vertex_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		map_leaf_portal_index_block,
 		"map_leaf_portal_index_block",
 		"map_leaf_portal_index_block",
 		256,
 		map_leaf_portal_index_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		global_leaf_portal_block,
 		"global_leaf_portal_block",
 		"global_leaf_portal_block",
 		524288,
 		global_leaf_portal_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		leaf_portal_vertex_block,
 		"leaf_portal_vertex_block",
 		"leaf_portal_vertex_block",
 		64,
 		leaf_portal_vertex_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenery_group_block,
 		"scenery",
 		"scenery_block",
 		1,
 		scenery_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		shader_transparent_chicago_extended_group_block,
 		"shader_transparent_chicago_extended",
 		"shader_transparent_chicago_extended_block",
 		1,
 		shader_transparent_chicago_extended_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		shader_transparent_layer_block,
 		"shader_transparent_layer_block",
 		"shader_transparent_layer_block",
 		4,
 		shader_transparent_layer_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		shader_transparent_chicago_map_block,
 		"shader_transparent_chicago_map_block",
 		"shader_transparent_chicago_map_block",
 		4,
 		shader_transparent_chicago_map_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		shader_transparent_chicago_group_block,
 		"shader_transparent_chicago",
 		"shader_transparent_chicago_block",
 		1,
 		shader_transparent_chicago_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_group_block,
 		"scenario",
 		"scenario_block",
 		1,
 		scenario_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_sky_reference_block,
 		"scenario_sky_reference_block",
 		"scenario_sky_reference_block",
 		8,
 		scenario_sky_reference_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_child_scenario_block,
 		"scenario_child_scenario_block",
 		"scenario_child_scenario_block",
 		16,
 		scenario_child_scenario_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_function_block,
 		"scenario_function_block",
 		"scenario_function_block",
 		32,
 		scenario_function_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		editor_comment_block,
 		"editor_comment_block",
 		"editor_comment_block",
 		1024,
 		editor_comment_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_scavenger_hunt_object_block,
 		"scavenger hunt object",
 		"scenario_scavenger_hunt_object_block",
 		16,
 		scenario_scavenger_hunt_object_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_object_names_block,
 		"scenario_object_names_block",
 		"scenario_object_names_block",
 		640,
 		scenario_object_names_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_scenery_block,
 		"scenario_scenery_block",
 		"scenario_scenery_block",
 		2000,
 		scenario_scenery_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_scenery_palette_block,
 		"scenario_scenery_palette_block",
 		"scenario_scenery_palette_block",
 		256,
 		scenario_scenery_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_biped_block,
 		"scenario_biped_block",
 		"scenario_biped_block",
 		128,
 		scenario_biped_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_biped_palette_block,
 		"scenario_biped_palette_block",
 		"scenario_biped_palette_block",
 		256,
 		scenario_biped_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_vehicle_block,
 		"scenario_vehicle_block",
 		"scenario_vehicle_block",
 		256,
 		scenario_vehicle_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_vehicle_palette_block,
 		"scenario_vehicle_palette_block",
 		"scenario_vehicle_palette_block",
 		256,
 		scenario_vehicle_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_equipment_block,
 		"scenario_equipment_block",
 		"scenario_equipment_block",
 		256,
 		scenario_equipment_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_equipment_palette_block,
 		"scenario_equipment_palette_block",
 		"scenario_equipment_palette_block",
 		256,
 		scenario_equipment_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_weapon_block,
 		"scenario_weapon_block",
 		"scenario_weapon_block",
 		128,
 		scenario_weapon_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_weapon_palette_block,
 		"scenario_weapon_palette_block",
 		"scenario_weapon_palette_block",
 		256,
 		scenario_weapon_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		device_group_block$2,
 		"device_group_block",
 		"device_group_block",
 		128,
 		device_group_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_machine_block,
 		"scenario_machine_block",
 		"scenario_machine_block",
 		400,
 		scenario_machine_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_machine_palette_block,
 		"scenario_machine_palette_block",
 		"scenario_machine_palette_block",
 		256,
 		scenario_machine_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_control_block,
 		"scenario_control_block",
 		"scenario_control_block",
 		100,
 		scenario_control_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_control_palette_block,
 		"scenario_control_palette_block",
 		"scenario_control_palette_block",
 		256,
 		scenario_control_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_light_fixture_block,
 		"scenario_light_fixture_block",
 		"scenario_light_fixture_block",
 		500,
 		scenario_light_fixture_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_light_fixture_palette_block,
 		"scenario_light_fixture_palette_block",
 		"scenario_light_fixture_palette_block",
 		256,
 		scenario_light_fixture_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_sound_scenery_block,
 		"scenario_sound_scenery_block",
 		"scenario_sound_scenery_block",
 		256,
 		scenario_sound_scenery_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_sound_scenery_palette_block,
 		"scenario_sound_scenery_palette_block",
 		"scenario_sound_scenery_palette_block",
 		256,
 		scenario_sound_scenery_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_profiles_block,
 		"scenario_profiles_block",
 		"scenario_profiles_block",
 		256,
 		scenario_profiles_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_players_block,
 		"scenario_players_block",
 		"scenario_players_block",
 		256,
 		scenario_players_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_trigger_volume_block,
 		"scenario_trigger_volume_block",
 		"scenario_trigger_volume_block",
 		256,
 		scenario_trigger_volume_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		recorded_animation_block,
 		"recorded_animation_block",
 		"recorded_animation_block",
 		1024,
 		recorded_animation_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_netgame_flags_block,
 		"scenario_netgame_flags_block",
 		"scenario_netgame_flags_block",
 		200,
 		scenario_netgame_flags_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_netgame_equipment_block,
 		"scenario_netgame_equipment_block",
 		"scenario_netgame_equipment_block",
 		200,
 		scenario_netgame_equipment_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_starting_equipment_block,
 		"scenario_starting_equipment_block",
 		"scenario_starting_equipment_block",
 		200,
 		scenario_starting_equipment_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_bsp_switch_trigger_volume_block,
 		"scenario_bsp_switch_trigger_volume_block",
 		"scenario_bsp_switch_trigger_volume_block",
 		256,
 		scenario_bsp_switch_trigger_volume_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_decals_block,
 		"scenario_decals_block",
 		"scenario_decals_block",
 		65536,
 		scenario_decals_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_decal_palette_block,
 		"scenario_decal_palette_block",
 		"scenario_decal_palette_block",
 		128,
 		scenario_decal_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_detail_object_collection_palette_block,
 		"scenario_detail_object_collection_palette_block",
 		"scenario_detail_object_collection_palette_block",
 		32,
 		scenario_detail_object_collection_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		actor_palette_block,
 		"actor_palette_block",
 		"actor_palette_block",
 		64,
 		actor_palette_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		encounter_block,
 		"encounter_block",
 		"encounter_block",
 		128,
 		encounter_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		squads_block,
 		"squads_block",
 		"squads_block",
 		64,
 		squads_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		move_positions_block,
 		"move_positions_block",
 		"move_positions_block",
 		32,
 		move_positions_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		actor_starting_locations_block,
 		"actor_starting_locations_block",
 		"actor_starting_locations_block",
 		32,
 		actor_starting_locations_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		platoons_block,
 		"platoons_block",
 		"platoons_block",
 		32,
 		platoons_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		firing_positions_block,
 		"firing_positions_block",
 		"firing_positions_block",
 		512,
 		firing_positions_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		ai_command_list_block,
 		"ai_command_list_block",
 		"ai_command_list_block",
 		256,
 		ai_command_list_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		ai_command_block,
 		"ai_command_block",
 		"ai_command_block",
 		64,
 		ai_command_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		ai_command_point_block,
 		"ai_command_point_block",
 		"ai_command_point_block",
 		64,
 		ai_command_point_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		ai_animation_reference_block,
 		"ai_animation_reference_block",
 		"ai_animation_reference_block",
 		128,
 		ai_animation_reference_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		ai_script_reference_block,
 		"ai_script_reference_block",
 		"ai_script_reference_block",
 		128,
 		ai_script_reference_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		ai_recording_reference_block,
 		"ai_recording_reference_block",
 		"ai_recording_reference_block",
 		128,
 		ai_recording_reference_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		ai_conversation_block,
 		"ai_conversation_block",
 		"ai_conversation_block",
 		128,
 		ai_conversation_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		ai_conversation_participant_block,
 		"ai_conversation_participant_block",
 		"ai_conversation_participant_block",
 		8,
 		ai_conversation_participant_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		ai_conversation_line_block,
 		"ai_conversation_line_block",
 		"ai_conversation_line_block",
 		32,
 		ai_conversation_line_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		hs_scripts_block,
 		"hs_scripts_block",
 		"hs_scripts_block",
 		1024,
 		hs_scripts_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		hs_globals_block,
 		"hs_globals_block",
 		"hs_globals_block",
 		512,
 		hs_globals_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		hs_references_block,
 		"hs_references_block",
 		"hs_references_block",
 		512,
 		hs_references_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		hs_source_files_block,
 		"hs_source_files_block",
 		"hs_source_files_block",
 		16,
 		hs_source_files_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_cutscene_flag_block,
 		"scenario_cutscene_flag_block",
 		"scenario_cutscene_flag_block",
 		512,
 		scenario_cutscene_flag_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_cutscene_camera_point_block,
 		"scenario_cutscene_camera_point_block",
 		"scenario_cutscene_camera_point_block",
 		512,
 		scenario_cutscene_camera_point_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_cutscene_title_block,
 		"scenario_cutscene_title_block",
 		"scenario_cutscene_title_block",
 		64,
 		scenario_cutscene_title_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		scenario_structure_bsps_block,
 		"scenario_structure_bsps_block",
 		"scenario_structure_bsps_block",
 		16,
 		scenario_structure_bsps_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		shader_environment_group_block,
 		"shader_environment",
 		"shader_environment_block",
 		1,
 		shader_environment_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		shader_transparent_glass_group_block,
 		"shader_transparent_glass",
 		"shader_transparent_glass_block",
 		1,
 		shader_transparent_glass_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		shader_group_block,
 		"shader",
 		"shader_block",
 		1,
 		shader_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		sky_group_block,
 		"sky",
 		"sky_block",
 		1,
 		sky_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		sky_shader_function_block,
 		"sky_shader_function_block",
 		"sky_shader_function_block",
 		8,
 		sky_shader_function_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		sky_animation_block,
 		"sky_animation_block",
 		"sky_animation_block",
 		8,
 		sky_animation_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		sky_light_block,
 		"sky_light_block",
 		"sky_light_block",
 		8,
 		sky_light_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		shader_transparent_meter_group_block,
 		"shader_transparent_meter",
 		"shader_transparent_meter_block",
 		1,
 		shader_transparent_meter_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		sound_group_block,
 		"sound",
 		"sound_block",
 		1,
 		sound_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		sound_pitch_range_block,
 		"sound_pitch_range_block",
 		"sound_pitch_range_block",
 		8,
 		sound_pitch_range_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		sound_permutations_block,
 		"sound_permutations_block",
 		"sound_permutations_block",
 		256,
 		sound_permutations_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		sound_environment_group_block,
 		"sound_environment",
 		"sound_environment_block",
 		1,
 		sound_environment_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		shader_model_group_block,
 		"shader_model",
 		"shader_model_block",
 		1,
 		shader_model_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		shader_transparent_generic_group_block,
 		"shader_transparent_generic",
 		"shader_transparent_generic_block",
 		1,
 		shader_transparent_generic_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		shader_transparent_generic_map_block,
 		"shader_transparent_generic_map_block",
 		"shader_transparent_generic_map_block",
 		4,
 		shader_transparent_generic_map_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		shader_transparent_generic_stage_block,
 		"shader_transparent_generic_stage_block",
 		"shader_transparent_generic_stage_block",
 		7,
 		shader_transparent_generic_stage_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		shader_transparent_plasma_group_block,
 		"shader_transparent_plasma",
 		"shader_transparent_plasma_block",
 		1,
 		shader_transparent_plasma_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		sound_scenery_group_block,
 		"sound_scenery",
 		"sound_scenery_block",
 		1,
 		sound_scenery_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		string_list_group_block,
 		"string_list",
 		"string_list_block",
 		1,
 		string_list_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		string_list_string_reference_block,
 		"string reference",
 		"string_list_string_reference_block",
 		800,
 		string_list_string_reference_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		shader_transparent_water_group_block,
 		"shader_transparent_water",
 		"shader_transparent_water_block",
 		1,
 		shader_transparent_water_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		shader_transparent_water_ripple_block,
 		"shader_transparent_water_ripple_block",
 		"shader_transparent_water_ripple_block",
 		4,
 		shader_transparent_water_ripple_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		tag_collection_group_block,
 		"tag_collection",
 		"tag_collection_block",
 		1,
 		tag_collection_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		tag_collection_tag_reference_block,
 		"tag reference",
 		"tag_collection_tag_reference_block",
 		200,
 		tag_collection_tag_reference_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		camera_track_group_block,
 		"camera_track",
 		"camera_track_block",
 		1,
 		camera_track_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		camera_track_control_point_block,
 		"camera_track_control_point_block",
 		"camera_track_control_point_block",
 		16,
 		camera_track_control_point_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		dialogue_group_block,
 		"dialogue",
 		"dialogue_block",
 		1,
 		dialogue_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		unit_hud_interface_group_block,
 		"unit_hud_interface",
 		"unit_hud_interface_block",
 		1,
 		unit_hud_interface_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		unit_hud_auxilary_overlay_block,
 		"unit_hud_auxilary_overlay_block",
 		"unit_hud_auxilary_overlay_block",
 		16,
 		unit_hud_auxilary_overlay_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		unit_hud_sound_block,
 		"unit_hud_sound_block",
 		"unit_hud_sound_block",
 		12,
 		unit_hud_sound_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		unit_hud_auxilary_panel_block,
 		"unit_hud_auxilary_panel_block",
 		"unit_hud_auxilary_panel_block",
 		16,
 		unit_hud_auxilary_panel_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		unit_group_block,
 		"unit",
 		"unit_block",
 		1,
 		unit_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		unicode_string_list_group_block,
 		"unicode_string_list",
 		"unicode_string_list_block",
 		1,
 		unicode_string_list_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		unicode_string_list_string_reference_block,
 		"string reference",
 		"unicode_string_list_string_reference_block",
 		800,
 		unicode_string_list_string_reference_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		virtual_keyboard_group_block,
 		"virtual_keyboard",
 		"virtual_keyboard_block",
 		1,
 		virtual_keyboard_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		virtual_key_block,
 		"virtual_key_block",
 		"virtual_key_block",
 		44,
 		virtual_key_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		vehicle_group_block,
 		"vehicle",
 		"vehicle_block",
 		1,
 		vehicle_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		weapon_group_block,
 		"weapon",
 		"weapon_block",
 		1,
 		weapon_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		magazines_block,
 		"magazines",
 		"magazines",
 		2,
 		magazines_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		magazine_objects_block,
 		"magazine_objects",
 		"magazine_objects",
 		8,
 		magazine_objects_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		triggers_block,
 		"triggers",
 		"triggers",
 		2,
 		triggers_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		trigger_firing_effect_block,
 		"trigger_firing_effect_block",
 		"trigger_firing_effect_block",
 		8,
 		trigger_firing_effect_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		wind_group_block,
 		"wind",
 		"wind_block",
 		1,
 		wind_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		weapon_hud_interface_group_block,
 		"weapon_hud_interface",
 		"weapon_hud_interface_block",
 		1,
 		weapon_hud_interface_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		weapon_hud_static_block,
 		"weapon_hud_static_block",
 		"weapon_hud_static_block",
 		16,
 		weapon_hud_static_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		weapon_hud_meter_block,
 		"weapon_hud_meter_block",
 		"weapon_hud_meter_block",
 		16,
 		weapon_hud_meter_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		weapon_hud_number_block,
 		"weapon_hud_number_block",
 		"weapon_hud_number_block",
 		16,
 		weapon_hud_number_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		weapon_hud_crosshair_block,
 		"weapon_hud_crosshair_block",
 		"weapon_hud_crosshair_block",
 		19,
 		weapon_hud_crosshair_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		weapon_hud_crosshair_item_block,
 		"weapon_hud_crosshair_item_block",
 		"weapon_hud_crosshair_item_block",
 		16,
 		weapon_hud_crosshair_item_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		weapon_hud_overlays_block,
 		"weapon_hud_overlays_block",
 		"weapon_hud_overlays_block",
 		16,
 		weapon_hud_overlays_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		weapon_hud_overlay_block,
 		"weapon_hud_overlay_block",
 		"weapon_hud_overlay_block",
 		16,
 		weapon_hud_overlay_block_struct_definition);
 
-	TAG_BLOCK_FROM_STRUCT_V2(
+	TAG_BLOCK_FROM_STRUCT(
 		global_hud_screen_effect_definition_block,
 		"global_hud_screen_effect_definition",
 		"global_hud_screen_effect_definition",
@@ -3081,7 +3163,6 @@ namespace pc64
 		15,
 		array$7);
 
-	#define UI_WIDGET_DEFINITION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		ui_widget_definition_block_struct_definition,
 		"ui_widget_definition",
@@ -3089,7 +3170,7 @@ namespace pc64
 		"s_ui_widget_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UI_WIDGET_DEFINITION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_enum, "widget type", &blofeld::halo1::pc64::unnamed_enum },
 		{ _field_short_enum, "controller index", &blofeld::halo1::pc64::unnamed_enum$2 },
@@ -3217,7 +3298,6 @@ namespace pc64
 
 	TAG_REFERENCE(ui_widget_definition_group_reference, UI_WIDGET_DEFINITION_TAG);
 
-	#define GAME_DATA_INPUT_REFERENCES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		game_data_input_references_block_struct_definition,
 		"game_data_input_references_block",
@@ -3225,7 +3305,7 @@ namespace pc64
 		"s_game_data_input_references",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GAME_DATA_INPUT_REFERENCES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_enum, "function", &blofeld::halo1::pc64::unnamed_enum$4 },
 		FIELD_PAD("value", 2),
@@ -3297,7 +3377,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$4, unnamed_enum$4_strings, _countof(unnamed_enum$4_strings));
 
-	#define EVENT_HANDLER_REFERENCES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		event_handler_references_block_struct_definition,
 		"event_handler_references_block",
@@ -3305,7 +3384,7 @@ namespace pc64
 		"s_event_handler_references",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		EVENT_HANDLER_REFERENCES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$5 },
 		{ _field_short_enum, "event type", &blofeld::halo1::pc64::unnamed_enum$6 },
@@ -3569,7 +3648,6 @@ namespace pc64
 
 	TAG_REFERENCE(sound_group_reference, SOUND_TAG);
 
-	#define SEARCH_AND_REPLACE_REFERENCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		search_and_replace_reference_block_struct_definition,
 		"search_and_replace_reference_block",
@@ -3577,7 +3655,7 @@ namespace pc64
 		"s_search_and_replace_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SEARCH_AND_REPLACE_REFERENCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "search string" },
 		{ _field_short_enum, "replace function", &blofeld::halo1::pc64::unnamed_enum$8 },
@@ -3593,7 +3671,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$8, unnamed_enum$8_strings, _countof(unnamed_enum$8_strings));
 
-	#define CONDITIONAL_WIDGET_REFERENCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		conditional_widget_reference_block_struct_definition,
 		"conditional_widget_reference_block",
@@ -3601,7 +3678,7 @@ namespace pc64
 		"s_conditional_widget_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CONDITIONAL_WIDGET_REFERENCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "widget tag", &blofeld::halo1::pc64::ui_widget_definition_group_reference },
 		{ _field_string, "name (unused)" },
@@ -3617,7 +3694,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$12, unnamed_enum$12_strings, _countof(unnamed_enum$12_strings));
 
-	#define CHILD_WIDGET_REFERENCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		child_widget_reference_block_struct_definition,
 		"child_widget_reference_block",
@@ -3625,7 +3701,7 @@ namespace pc64
 		"s_child_widget_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CHILD_WIDGET_REFERENCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "widget tag", &blofeld::halo1::pc64::ui_widget_definition_group_reference },
 		{ _field_string, "name (unused)" },
@@ -3643,7 +3719,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$13, unnamed_enum$13_strings, _countof(unnamed_enum$13_strings));
 
-	#define UI_WIDGET_COLLECTION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		ui_widget_collection_block_struct_definition,
 		"ui_widget_collection",
@@ -3651,13 +3726,12 @@ namespace pc64
 		"s_ui_widget_collection",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UI_WIDGET_COLLECTION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_block, "ui widget definitions", &blofeld::halo1::pc64::ui_widget_references_block },
 		{ _field_terminator }
 	};
 
-	#define UI_WIDGET_REFERENCES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		ui_widget_references_block_struct_definition,
 		"ui_widget_references_block",
@@ -3665,13 +3739,12 @@ namespace pc64
 		"s_ui_widget_references",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UI_WIDGET_REFERENCES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "ui_widget_definition", &blofeld::halo1::pc64::ui_widget_definition_group_reference },
 		{ _field_terminator }
 	};
 
-	#define ACTOR_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		actor_block_struct_definition,
 		"actor",
@@ -3679,7 +3752,7 @@ namespace pc64
 		"s_actor",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ACTOR_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$14 },
 		{ _field_long_flags, "more flags", &blofeld::halo1::pc64::unnamed_enum$15 },
@@ -3923,7 +3996,6 @@ namespace pc64
 
 	TAG_REFERENCE(actor_group_reference, ACTOR_TAG);
 
-	#define ACTOR_VARIANT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		actor_variant_block_struct_definition,
 		"actor_variant",
@@ -3931,7 +4003,7 @@ namespace pc64
 		"s_actor_variant",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ACTOR_VARIANT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$19 },
 		{ _field_tag_reference, "actor definition", &blofeld::halo1::pc64::actor_group_reference },
@@ -4170,7 +4242,6 @@ namespace pc64
 
 	TAG_REFERENCE(equipment_group_reference, EQUIPMENT_TAG);
 
-	#define ACTOR_VARIANT_CHANGE_COLORS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		actor_variant_change_colors_block_struct_definition,
 		"actor_variant_change_colors_block",
@@ -4178,7 +4249,7 @@ namespace pc64
 		"s_actor_variant_change_colors",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ACTOR_VARIANT_CHANGE_COLORS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_rgb_color, "color lower bound" },
 		{ _field_real_rgb_color, "color upper bound" },
@@ -4186,7 +4257,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define ANTENNA_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		antenna_block_struct_definition,
 		"antenna",
@@ -4194,7 +4264,7 @@ namespace pc64
 		"s_antenna",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ANTENNA_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "attachment marker name", "the marker name where the antenna should be attached" },
 		{ _field_tag_reference, "bitmaps", &blofeld::halo1::pc64::bitmap_group_reference$2 },
@@ -4212,7 +4282,6 @@ namespace pc64
 
 	TAG_REFERENCE(point_physics_group_reference, POINT_PHYSICS_TAG);
 
-	#define ANTENNA_VERTEX_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		antenna_vertex_block_struct_definition,
 		"antenna_vertex_block",
@@ -4220,7 +4289,7 @@ namespace pc64
 		"s_antenna_vertex",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ANTENNA_VERTEX_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_fraction, "spring strength coefficient", "strength of the spring (larger values make the spring stronger)" },
 		FIELD_PAD("value", 24),
@@ -4235,7 +4304,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define MODEL_ANIMATIONS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		model_animations_block_struct_definition,
 		"model_animations",
@@ -4243,7 +4311,7 @@ namespace pc64
 		"s_model_animations",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_ANIMATIONS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_block, "OBJECTS", &blofeld::halo1::pc64::animation_graph_object_overlay_block },
 		{ _field_block, "UNITS", &blofeld::halo1::pc64::animation_graph_unit_seat_block },
@@ -4268,7 +4336,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$30, unnamed_enum$30_strings, _countof(unnamed_enum$30_strings));
 
-	#define ANIMATION_GRAPH_OBJECT_OVERLAY_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		animation_graph_object_overlay_struct_definition,
 		"animation_graph_object_overlay",
@@ -4276,7 +4343,7 @@ namespace pc64
 		"s_animation_graph_object_overlay",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ANIMATION_GRAPH_OBJECT_OVERLAY_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "animation" },
 		{ _field_short_enum, "function", &blofeld::halo1::pc64::unnamed_enum$28 },
@@ -4302,7 +4369,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$29, unnamed_enum$29_strings, _countof(unnamed_enum$29_strings));
 
-	#define ANIMATION_GRAPH_UNIT_SEAT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		animation_graph_unit_seat_block_struct_definition,
 		"animation_graph_unit_seat_block",
@@ -4310,7 +4376,7 @@ namespace pc64
 		"s_animation_graph_unit_seat",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ANIMATION_GRAPH_UNIT_SEAT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "label" },
 		FIELD_EXPLANATION("looking screen bounds", nullptr),
@@ -4329,7 +4395,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define UNIT_SEAT_ANIMATION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		unit_seat_animation_block_struct_definition,
 		"unit_seat_animation_block",
@@ -4337,13 +4402,12 @@ namespace pc64
 		"s_unit_seat_animation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UNIT_SEAT_ANIMATION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "animation" },
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_GRAPH_UNIT_SEAT_IK_POINT_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		animation_graph_unit_seat_ik_point_struct_definition,
 		"animation_graph_unit_seat_ik_point",
@@ -4351,14 +4415,13 @@ namespace pc64
 		"s_animation_graph_unit_seat_ik_point",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ANIMATION_GRAPH_UNIT_SEAT_IK_POINT_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "marker", "the marker name on the object being attached" },
 		{ _field_string, "attach to marker", "the marker name object (weapon, vehicle, etc.) the above marker is being attached to" },
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_GRAPH_WEAPON_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		animation_graph_weapon_block_struct_definition,
 		"animation_graph_weapon_block",
@@ -4366,7 +4429,7 @@ namespace pc64
 		"s_animation_graph_weapon",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ANIMATION_GRAPH_WEAPON_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_string, "grip marker", "the marker name on the weapon to which the hand is attached (leave blank to use origin)" },
@@ -4387,7 +4450,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define WEAPON_CLASS_ANIMATION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		weapon_class_animation_block_struct_definition,
 		"weapon_class_animation_block",
@@ -4395,13 +4457,12 @@ namespace pc64
 		"s_weapon_class_animation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WEAPON_CLASS_ANIMATION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "animation" },
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_GRAPH_WEAPON_TYPE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		animation_graph_weapon_type_block_struct_definition,
 		"animation_graph_weapon_type_block",
@@ -4409,7 +4470,7 @@ namespace pc64
 		"s_animation_graph_weapon_type",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ANIMATION_GRAPH_WEAPON_TYPE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "label" },
 		FIELD_PAD("value", 16),
@@ -4417,7 +4478,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define WEAPON_TYPE_ANIMATION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		weapon_type_animation_block_struct_definition,
 		"weapon_type_animation_block",
@@ -4425,13 +4485,12 @@ namespace pc64
 		"s_weapon_type_animation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WEAPON_TYPE_ANIMATION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "animation" },
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_GRAPH_WEAPON_ANIMATIONS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		animation_graph_weapon_animations_block_struct_definition,
 		"animation_graph_weapon_animations_block",
@@ -4439,14 +4498,13 @@ namespace pc64
 		"s_animation_graph_weapon_animations",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ANIMATION_GRAPH_WEAPON_ANIMATIONS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 16),
 		{ _field_block, "animations", &blofeld::halo1::pc64::weapon_animation_block },
 		{ _field_terminator }
 	};
 
-	#define WEAPON_ANIMATION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		weapon_animation_block_struct_definition,
 		"weapon_animation_block",
@@ -4454,13 +4512,12 @@ namespace pc64
 		"s_weapon_animation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WEAPON_ANIMATION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "animation" },
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_GRAPH_VEHICLE_ANIMATIONS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		animation_graph_vehicle_animations_block_struct_definition,
 		"animation_graph_vehicle_animations_block",
@@ -4468,7 +4525,7 @@ namespace pc64
 		"s_animation_graph_vehicle_animations",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ANIMATION_GRAPH_VEHICLE_ANIMATIONS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("steering screen", nullptr),
 		{ _field_angle, "right yaw per frame" },
@@ -4485,7 +4542,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define VEHICLE_ANIMATION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		vehicle_animation_block_struct_definition,
 		"vehicle_animation_block",
@@ -4493,13 +4549,12 @@ namespace pc64
 		"s_vehicle_animation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		VEHICLE_ANIMATION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "animation" },
 		{ _field_terminator }
 	};
 
-	#define SUSPENSION_ANIMATION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		suspension_animation_block_struct_definition,
 		"suspension_animation_block",
@@ -4507,7 +4562,7 @@ namespace pc64
 		"s_suspension_animation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SUSPENSION_ANIMATION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "mass point index" },
 		{ _field_short_block_index, "animation" },
@@ -4517,7 +4572,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define DEVICE_ANIMATIONS_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		device_animations_struct_definition,
 		"device_animations",
@@ -4525,14 +4579,13 @@ namespace pc64
 		"s_device_animations",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DEVICE_ANIMATIONS_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 84),
 		{ _field_block, "animations", &blofeld::halo1::pc64::device_animation_block },
 		{ _field_terminator }
 	};
 
-	#define DEVICE_ANIMATION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		device_animation_block_struct_definition,
 		"device_animation_block",
@@ -4540,13 +4593,12 @@ namespace pc64
 		"s_device_animation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DEVICE_ANIMATION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "animation" },
 		{ _field_terminator }
 	};
 
-	#define UNIT_DAMAGE_ANIMATIONS_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		unit_damage_animations_struct_definition,
 		"unit_damage_animations",
@@ -4554,13 +4606,12 @@ namespace pc64
 		"s_unit_damage_animations",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UNIT_DAMAGE_ANIMATIONS_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "animation" },
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_GRAPH_FIRST_PERSON_WEAPON_ANIMATIONS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		animation_graph_first_person_weapon_animations_block_struct_definition,
 		"animation_graph_first_person_weapon_animations_block",
@@ -4568,14 +4619,13 @@ namespace pc64
 		"s_animation_graph_first_person_weapon_animations",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ANIMATION_GRAPH_FIRST_PERSON_WEAPON_ANIMATIONS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 16),
 		{ _field_block, "animations", &blofeld::halo1::pc64::first_person_weapon_block },
 		{ _field_terminator }
 	};
 
-	#define FIRST_PERSON_WEAPON_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		first_person_weapon_block_struct_definition,
 		"first_person_weapon_block",
@@ -4583,13 +4633,12 @@ namespace pc64
 		"s_first_person_weapon",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		FIRST_PERSON_WEAPON_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "animation" },
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_GRAPH_SOUND_REFERENCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		animation_graph_sound_reference_block_struct_definition,
 		"animation_graph_sound_reference_block",
@@ -4597,14 +4646,13 @@ namespace pc64
 		"s_animation_graph_sound_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ANIMATION_GRAPH_SOUND_REFERENCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "sound", &blofeld::halo1::pc64::sound_group_reference },
 		FIELD_PAD("value", 4),
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_GRAPH_NODE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		animation_graph_node_block_struct_definition,
 		"animation_graph_node_block",
@@ -4612,7 +4660,7 @@ namespace pc64
 		"s_animation_graph_node",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ANIMATION_GRAPH_NODE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_short_block_index, "next sibling node index" },
@@ -4634,7 +4682,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$31, unnamed_enum$31_strings, _countof(unnamed_enum$31_strings));
 
-	#define ANIMATION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		animation_block_struct_definition,
 		"animation_block",
@@ -4642,7 +4689,7 @@ namespace pc64
 		"s_animation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ANIMATION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_short_enum, "type", &blofeld::halo1::pc64::unnamed_enum$32 },
@@ -4701,49 +4748,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$34, unnamed_enum$34_strings, _countof(unnamed_enum$34_strings));
 
-	#define ARRAY_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
-	TAG_STRUCT(
-		array,
-		"array",
-		"array",
-		"s_array",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ARRAY_ID)
-	{
-		{ _field_long_integer, "value" },
-		{ _field_terminator }
-	};
-
-	#define ARRAY$2_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
-	TAG_STRUCT(
-		array$2,
-		"array",
-		"array",
-		"s_array$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ARRAY$2_ID)
-	{
-		{ _field_long_integer, "value" },
-		{ _field_terminator }
-	};
-
-	#define ARRAY$3_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
-	TAG_STRUCT(
-		array$3,
-		"array",
-		"array",
-		"s_array$3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ARRAY$3_ID)
-	{
-		{ _field_long_integer, "value" },
-		{ _field_terminator }
-	};
-
-	#define BIPED_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		biped_block_struct_definition,
 		"biped",
@@ -4751,7 +4755,7 @@ namespace pc64
 		"s_biped",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		BIPED_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$35 },
@@ -5053,7 +5057,6 @@ namespace pc64
 
 	TAG_REFERENCE(material_effects_group_reference, MATERIAL_EFFECTS_TAG);
 
-	#define OBJECT_ATTACHMENT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		object_attachment_block_struct_definition,
 		"object_attachment_block",
@@ -5061,7 +5064,7 @@ namespace pc64
 		"s_object_attachment",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		OBJECT_ATTACHMENT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "type", &blofeld::halo1::pc64::light_group_light_volume_group_contrail_group_particle_system_group_effect_group_sound_looping_group_reference },
 		{ _field_string, "marker" },
@@ -5104,7 +5107,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$38, unnamed_enum$38_strings, _countof(unnamed_enum$38_strings));
 
-	#define OBJECT_WIDGET_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		object_widget_block_struct_definition,
 		"object_widget_block",
@@ -5112,7 +5114,7 @@ namespace pc64
 		"s_object_widget",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		OBJECT_WIDGET_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "reference", &blofeld::halo1::pc64::flag_group_antenna_group_glow_group_light_volume_group_lightning_group_reference },
 		FIELD_PAD("value", 16),
@@ -5129,7 +5131,6 @@ namespace pc64
 		INVALID_TAG
 	};
 
-	#define OBJECT_FUNCTION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		object_function_block_struct_definition,
 		"object_function_block",
@@ -5137,7 +5138,7 @@ namespace pc64
 		"s_object_function",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		OBJECT_FUNCTION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$39 },
 		{ _field_real, "period", "this is the period for the above function (lower values make the function oscillate quickly, higher values make it oscillate slowly)", "seconds" },
@@ -5223,7 +5224,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$43, unnamed_enum$43_strings, _countof(unnamed_enum$43_strings));
 
-	#define OBJECT_CHANGE_COLORS_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		object_change_colors_struct_definition,
 		"object_change_colors",
@@ -5231,7 +5231,7 @@ namespace pc64
 		"s_object_change_colors",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		OBJECT_CHANGE_COLORS_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_enum, "darken by", &blofeld::halo1::pc64::unnamed_enum$40 },
 		{ _field_short_enum, "scale by", &blofeld::halo1::pc64::unnamed_enum$40 },
@@ -5249,7 +5249,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$44, unnamed_enum$44_strings, _countof(unnamed_enum$44_strings));
 
-	#define OBJECT_CHANGE_COLOR_PERMUTATIONS_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		object_change_color_permutations_struct_definition,
 		"object_change_color_permutations",
@@ -5257,7 +5256,7 @@ namespace pc64
 		"s_object_change_color_permutations",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		OBJECT_CHANGE_COLOR_PERMUTATIONS_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real, "weight" },
 		{ _field_real_rgb_color, "color lower bound" },
@@ -5265,7 +5264,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define PREDICTED_RESOURCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		predicted_resource_block_struct_definition,
 		"predicted_resource_block",
@@ -5273,7 +5271,7 @@ namespace pc64
 		"s_predicted_resource",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PREDICTED_RESOURCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_enum, "type", &blofeld::halo1::pc64::unnamed_enum$45 },
 		{ _field_short_integer, "resource index" },
@@ -5288,7 +5286,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$45, unnamed_enum$45_strings, _countof(unnamed_enum$45_strings));
 
-	#define UNIT_CAMERA_TRACK_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		unit_camera_track_block_struct_definition,
 		"unit_camera_track_block",
@@ -5296,7 +5293,7 @@ namespace pc64
 		"s_unit_camera_track",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UNIT_CAMERA_TRACK_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "track", &blofeld::halo1::pc64::camera_track_group_reference },
 		FIELD_PAD("value", 12),
@@ -5305,7 +5302,6 @@ namespace pc64
 
 	TAG_REFERENCE(camera_track_group_reference, CAMERA_TRACK_TAG);
 
-	#define UNIT_HUD_REFERENCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		unit_hud_reference_block_struct_definition,
 		"unit_hud_reference_block",
@@ -5313,7 +5309,7 @@ namespace pc64
 		"s_unit_hud_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UNIT_HUD_REFERENCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "unit hud interface", &blofeld::halo1::pc64::unit_hud_interface_group_reference },
 		FIELD_PAD("value", 32),
@@ -5322,7 +5318,6 @@ namespace pc64
 
 	TAG_REFERENCE(unit_hud_interface_group_reference, UNIT_HUD_INTERFACE_TAG);
 
-	#define DIALOGUE_VARIANT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		dialogue_variant_block_struct_definition,
 		"dialogue_variant_block",
@@ -5330,7 +5325,7 @@ namespace pc64
 		"s_dialogue_variant",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DIALOGUE_VARIANT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "variant number", "variant number to use this dialogue with (must match the suffix in the permutations on the unit's model)" },
 		FIELD_PAD("value", 2),
@@ -5341,7 +5336,6 @@ namespace pc64
 
 	TAG_REFERENCE(dialogue_group_reference, DIALOGUE_TAG);
 
-	#define POWERED_SEAT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		powered_seat_block_struct_definition,
 		"powered_seat_block",
@@ -5349,7 +5343,7 @@ namespace pc64
 		"s_powered_seat",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		POWERED_SEAT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 4),
 		{ _field_real, "driver powerup time", nullptr, "seconds" },
@@ -5358,7 +5352,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define UNIT_WEAPON_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		unit_weapon_block_struct_definition,
 		"unit_weapon_block",
@@ -5366,7 +5359,7 @@ namespace pc64
 		"s_unit_weapon",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UNIT_WEAPON_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "weapon", &blofeld::halo1::pc64::weapon_group_reference$2 },
 		FIELD_PAD("value", 20),
@@ -5375,7 +5368,6 @@ namespace pc64
 
 	TAG_REFERENCE(weapon_group_reference$2, WEAPON_TAG);
 
-	#define UNIT_SEAT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		unit_seat_block_struct_definition,
 		"unit_seat_block",
@@ -5383,7 +5375,7 @@ namespace pc64
 		"s_unit_seat",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UNIT_SEAT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$51 },
 		{ _field_string, "label" },
@@ -5427,7 +5419,6 @@ namespace pc64
 
 	TAG_REFERENCE(actor_variant_group_reference$3, ACTOR_VARIANT_TAG);
 
-	#define CONTACT_POINT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		contact_point_block_struct_definition,
 		"contact_point_block",
@@ -5435,14 +5426,13 @@ namespace pc64
 		"s_contact_point",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CONTACT_POINT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 32),
 		{ _field_string, "marker name" },
 		{ _field_terminator }
 	};
 
-	#define BITMAP_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		bitmap_block_struct_definition,
 		"bitmap",
@@ -5450,7 +5440,7 @@ namespace pc64
 		"s_bitmap",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		BITMAP_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_CUSTOM("value", _field_id_bitmap_show),
 		FIELD_EXPLANATION("type", "Type controls bitmap \'geometry\'. All dimensions must be a power of two except for SPRITES and INTERFACE BITMAPS:\n\n* 2D TEXTURES: Ordinary, 2D textures will be generated.\n* 3D TEXTURES: Volume textures will be generated from each sequence of 2D texture \'slices\'.\n* CUBE MAPS: Cube maps will be generated from each consecutive set of six 2D textures in each sequence, all faces of a cube map must be square and the same size.\n* SPRITES: Sprite texture pages will be generated.\n* INTERFACE BITMAPS: Similar to 2D TEXTURES, but without mipmaps and without the power of two restriction."),
@@ -5547,7 +5537,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$59, unnamed_enum$59_strings, _countof(unnamed_enum$59_strings));
 
-	#define BITMAP_GROUP_SEQUENCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		bitmap_group_sequence_block_struct_definition,
 		"bitmap_group_sequence_block",
@@ -5555,7 +5544,7 @@ namespace pc64
 		"s_bitmap_group_sequence",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		BITMAP_GROUP_SEQUENCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_short_integer, "first bitmap index" },
@@ -5565,7 +5554,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define BITMAP_GROUP_SPRITE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		bitmap_group_sprite_block_struct_definition,
 		"bitmap_group_sprite_block",
@@ -5573,7 +5561,7 @@ namespace pc64
 		"s_bitmap_group_sprite",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		BITMAP_GROUP_SPRITE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "bitmap index" },
 		FIELD_PAD("value", 2),
@@ -5586,7 +5574,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define BITMAP_DATA_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		bitmap_data_block_struct_definition,
 		"bitmap_data_block",
@@ -5594,7 +5581,7 @@ namespace pc64
 		"s_bitmap_data",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		BITMAP_DATA_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag, "signature" },
 		{ _field_short_integer, "width", nullptr, "pixels" },
@@ -5657,7 +5644,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$62, unnamed_enum$62_strings, _countof(unnamed_enum$62_strings));
 
-	#define CONTINUOUS_DAMAGE_EFFECT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		continuous_damage_effect_block_struct_definition,
 		"continuous_damage_effect",
@@ -5665,7 +5651,7 @@ namespace pc64
 		"s_continuous_damage_effect",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CONTINUOUS_DAMAGE_EFFECT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_bounds, "radius", nullptr, "world units" },
 		{ _field_real_fraction, "cutoff scale", nullptr, nullptr, "[0,1]" },
@@ -5785,7 +5771,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$65, unnamed_enum$65_strings, _countof(unnamed_enum$65_strings));
 
-	#define MODEL_COLLISION_GEOMETRY_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		model_collision_geometry_block_struct_definition,
 		"model_collision_geometry",
@@ -5793,7 +5778,7 @@ namespace pc64
 		"s_model_collision_geometry",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_COLLISION_GEOMETRY_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$66 },
 		{ _field_short_block_index, "indirect damage material", "the material we use when shielding child objects or getting hit by area of effect damage" },
@@ -5898,7 +5883,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$67, unnamed_enum$67_strings, _countof(unnamed_enum$67_strings));
 
-	#define DAMAGE_MATERIALS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		damage_materials_block_struct_definition,
 		"damage_materials_block",
@@ -5906,7 +5890,7 @@ namespace pc64
 		"s_damage_materials",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DAMAGE_MATERIALS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$68 },
@@ -5926,7 +5910,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$68, unnamed_enum$68_strings, _countof(unnamed_enum$68_strings));
 
-	#define DAMAGE_REGIONS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		damage_regions_block_struct_definition,
 		"damage_regions_block",
@@ -5934,7 +5917,7 @@ namespace pc64
 		"s_damage_regions",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DAMAGE_REGIONS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$69 },
@@ -5961,7 +5944,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$69, unnamed_enum$69_strings, _countof(unnamed_enum$69_strings));
 
-	#define DAMAGE_PERMUTATIONS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		damage_permutations_block_struct_definition,
 		"damage_permutations_block",
@@ -5969,13 +5951,12 @@ namespace pc64
 		"s_damage_permutations",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DAMAGE_PERMUTATIONS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_terminator }
 	};
 
-	#define DAMAGE_MODIFIERS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		damage_modifiers_block_struct_definition,
 		"damage_modifiers_block",
@@ -5983,13 +5964,12 @@ namespace pc64
 		"s_damage_modifiers",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DAMAGE_MODIFIERS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 52),
 		{ _field_terminator }
 	};
 
-	#define PATHFINDING_SPHERES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		pathfinding_spheres_block_struct_definition,
 		"sphere",
@@ -5997,7 +5977,7 @@ namespace pc64
 		"s_pathfinding_spheres",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PATHFINDING_SPHERES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "node" },
 		FIELD_PAD("value", 2),
@@ -6007,7 +5987,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define COLLISION_NODES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		collision_nodes_block_struct_definition,
 		"node",
@@ -6015,7 +5994,7 @@ namespace pc64
 		"s_collision_nodes",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		COLLISION_NODES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_short_block_index, "region" },
@@ -6027,7 +6006,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define COLLISION_BSPS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		collision_bsps_block_struct_definition,
 		"bsp",
@@ -6035,7 +6013,7 @@ namespace pc64
 		"s_collision_bsps",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		COLLISION_BSPS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_block, "bsp3d nodes", &blofeld::halo1::pc64::bsp3d_nodes_block },
 		{ _field_block, "planes", &blofeld::halo1::pc64::planes_block },
@@ -6048,7 +6026,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define BSP3D_NODES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		bsp3d_nodes_block_struct_definition,
 		"bsp3d node",
@@ -6056,7 +6033,7 @@ namespace pc64
 		"s_bsp3d_nodes",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		BSP3D_NODES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_integer, "plane" },
 		{ _field_long_integer, "back child" },
@@ -6064,7 +6041,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define PLANES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		planes_block_struct_definition,
 		"plane",
@@ -6072,13 +6048,12 @@ namespace pc64
 		"s_planes",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PLANES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_plane_3d, "plane" },
 		{ _field_terminator }
 	};
 
-	#define LEAVES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		leaves_block_struct_definition,
 		"leaf",
@@ -6086,7 +6061,7 @@ namespace pc64
 		"s_leaves",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		LEAVES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$70 },
 		{ _field_short_integer, "bsp2d reference count" },
@@ -6100,7 +6075,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$70, unnamed_enum$70_strings, _countof(unnamed_enum$70_strings));
 
-	#define BSP2D_REFERENCES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		bsp2d_references_block_struct_definition,
 		"bsp2d reference",
@@ -6108,14 +6082,13 @@ namespace pc64
 		"s_bsp2d_references",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		BSP2D_REFERENCES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_integer, "plane" },
 		{ _field_long_integer, "bsp2d node" },
 		{ _field_terminator }
 	};
 
-	#define BSP2D_NODES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		bsp2d_nodes_block_struct_definition,
 		"bsp2d node",
@@ -6123,7 +6096,7 @@ namespace pc64
 		"s_bsp2d_nodes",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		BSP2D_NODES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_plane_2d, "plane" },
 		{ _field_long_integer, "left child" },
@@ -6131,7 +6104,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SURFACES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		surfaces_block_struct_definition,
 		"surface",
@@ -6139,7 +6111,7 @@ namespace pc64
 		"s_surfaces",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SURFACES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_integer, "plane" },
 		{ _field_long_integer, "first edge" },
@@ -6158,7 +6130,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$71, unnamed_enum$71_strings, _countof(unnamed_enum$71_strings));
 
-	#define EDGES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		edges_block_struct_definition,
 		"edge",
@@ -6166,7 +6137,7 @@ namespace pc64
 		"s_edges",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		EDGES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_integer, "start vertex" },
 		{ _field_long_integer, "end vertex" },
@@ -6177,7 +6148,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define VERTICES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		vertices_block_struct_definition,
 		"vertex",
@@ -6185,14 +6155,13 @@ namespace pc64
 		"s_vertices",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		VERTICES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "point" },
 		{ _field_long_integer, "first edge" },
 		{ _field_terminator }
 	};
 
-	#define COLOR_TABLE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		color_table_block_struct_definition,
 		"color_table",
@@ -6200,13 +6169,12 @@ namespace pc64
 		"s_color_table",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		COLOR_TABLE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_block, "colors", &blofeld::halo1::pc64::color_block },
 		{ _field_terminator }
 	};
 
-	#define COLOR_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		color_block_struct_definition,
 		"color_block",
@@ -6214,14 +6182,13 @@ namespace pc64
 		"s_color",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		COLOR_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_real_argb_color, "color" },
 		{ _field_terminator }
 	};
 
-	#define CONTRAIL_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		contrail_block_struct_definition,
 		"contrail",
@@ -6229,7 +6196,7 @@ namespace pc64
 		"s_contrail",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CONTRAIL_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$72 },
 		{ _field_word_flags, "scale flags", "these flags determine which fields are scaled by the contrail density", &blofeld::halo1::pc64::unnamed_enum$73 },
@@ -6364,7 +6331,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$79, unnamed_enum$79_strings, _countof(unnamed_enum$79_strings));
 
-	#define CONTRAIL_POINT_STATES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		contrail_point_states_block_struct_definition,
 		"contrail_point_states_block",
@@ -6372,7 +6338,7 @@ namespace pc64
 		"s_contrail_point_states",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CONTRAIL_POINT_STATES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("state timing", nullptr),
 		{ _field_real_bounds, "duration", "the time a point spends in this state", "seconds:seconds" },
@@ -6398,7 +6364,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$80, unnamed_enum$80_strings, _countof(unnamed_enum$80_strings));
 
-	#define DEVICE_CONTROL_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		device_control_block_struct_definition,
 		"device_control",
@@ -6406,7 +6371,7 @@ namespace pc64
 		"s_device_control",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DEVICE_CONTROL_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$35 },
@@ -6514,7 +6479,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$84, unnamed_enum$84_strings, _countof(unnamed_enum$84_strings));
 
-	#define DECAL_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		decal_block_struct_definition,
 		"decal",
@@ -6522,7 +6486,7 @@ namespace pc64
 		"s_decal",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DECAL_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("decal", "A \'compound decal\' is a chain of decals which are instantiated simultaneously. Compound decals are created by choosing a <next_decal_in_chain> below. NOTE: Do not attempt to create a circularly linked decal chain, i.e. A->B->C->A! Also, do not reference a decal from an effect if it is not the \'head\' of the chain; for example an effect should not instantiate decal B if the chain was A->B->C. Compound decals can have seperate bitmaps, seperate framebuffer blend functions, and can be drawn in seperate layers. In addition, each decal in the chain can either inherit its parent\'s <radius>, rotation, <color>, <fade>, and <sequence> - or it can randomly choose its own. This behavior is controlled by the \'geometry_inherited_by_next_decal_in_chain\' flag, below. \n\nThe decal <type> (or layer) determines the drawing order of the decal with respect to the rest of the environment. Decals in the primary layer are drawn after the environment diffuse texture, hence they affect the already-lit texture of the surface. Decals in the secondary layer are drawn immediately after decals in the primary layer, so they \'cover up\' the primary decals. Decals in the \'light\' layer are drawn before the environment diffuse texture, hence they affect the accumulated diffuse light and only indirectly affect the lit texture."),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$85 },
@@ -6596,7 +6560,6 @@ namespace pc64
 
 	TAG_REFERENCE(decal_group_reference, DECAL_TAG);
 
-	#define INPUT_DEVICE_DEFAULTS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		input_device_defaults_block_struct_definition,
 		"input_device_defaults",
@@ -6604,7 +6567,7 @@ namespace pc64
 		"s_input_device_defaults",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		INPUT_DEVICE_DEFAULTS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_enum, "device type", &blofeld::halo1::pc64::unnamed_enum$88 },
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$89 },
@@ -6628,7 +6591,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$89, unnamed_enum$89_strings, _countof(unnamed_enum$89_strings));
 
-	#define DEVICE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		device_block_struct_definition,
 		"device",
@@ -6636,7 +6598,7 @@ namespace pc64
 		"s_device",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DEVICE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("$$$ DEVICE $$$", nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$81 },
@@ -6665,7 +6627,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define DETAIL_OBJECT_COLLECTION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		detail_object_collection_block_struct_definition,
 		"detail_object_collection",
@@ -6673,7 +6634,7 @@ namespace pc64
 		"s_detail_object_collection",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DETAIL_OBJECT_COLLECTION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_enum, "collection type", &blofeld::halo1::pc64::unnamed_enum$90 },
 		FIELD_PAD("value", 2),
@@ -6692,7 +6653,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$90, unnamed_enum$90_strings, _countof(unnamed_enum$90_strings));
 
-	#define DETAIL_OBJECT_TYPE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		detail_object_type_block_struct_definition,
 		"detail_object_type_block",
@@ -6700,7 +6660,7 @@ namespace pc64
 		"s_detail_object_type",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DETAIL_OBJECT_TYPE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_char_integer, "sequence index", nullptr, nullptr, "[0,15]" },
@@ -6728,7 +6688,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$91, unnamed_enum$91_strings, _countof(unnamed_enum$91_strings));
 
-	#define EFFECT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		effect_block_struct_definition,
 		"effect",
@@ -6736,7 +6695,7 @@ namespace pc64
 		"s_effect",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		EFFECT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$92 },
 		{ _field_short_block_index, "loop start event" },
@@ -6756,7 +6715,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$92, unnamed_enum$92_strings, _countof(unnamed_enum$92_strings));
 
-	#define EFFECT_LOCATIONS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		effect_locations_block_struct_definition,
 		"effect_locations_block",
@@ -6764,13 +6722,12 @@ namespace pc64
 		"s_effect_locations",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		EFFECT_LOCATIONS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "marker name" },
 		{ _field_terminator }
 	};
 
-	#define EFFECT_EVENT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		effect_event_block_struct_definition,
 		"effect_event_block",
@@ -6778,7 +6735,7 @@ namespace pc64
 		"s_effect_event",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		EFFECT_EVENT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 4),
 		{ _field_real_fraction, "skip fraction", "chance that this event will be skipped entirely" },
@@ -6790,7 +6747,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define EFFECT_PART_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		effect_part_block_struct_definition,
 		"effect_part_block",
@@ -6798,7 +6754,7 @@ namespace pc64
 		"s_effect_part",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		EFFECT_PART_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_enum, "create in", &blofeld::halo1::pc64::unnamed_enum$93 },
 		{ _field_short_enum, "violence mode", &blofeld::halo1::pc64::unnamed_enum$94 },
@@ -6863,7 +6819,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$96, unnamed_enum$96_strings, _countof(unnamed_enum$96_strings));
 
-	#define EFFECT_PARTICLES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		effect_particles_block_struct_definition,
 		"effect_particles_block",
@@ -6871,7 +6826,7 @@ namespace pc64
 		"s_effect_particles",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		EFFECT_PARTICLES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_enum, "create in", &blofeld::halo1::pc64::unnamed_enum$93 },
 		{ _field_short_enum, "violence mode", &blofeld::halo1::pc64::unnamed_enum$94 },
@@ -6954,7 +6909,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$100, unnamed_enum$100_strings, _countof(unnamed_enum$100_strings));
 
-	#define LIGHTNING_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		lightning_block_struct_definition,
 		"lightning",
@@ -6962,7 +6916,7 @@ namespace pc64
 		"s_lightning",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		LIGHTNING_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("lightning", nullptr),
 		FIELD_PAD("value", 2),
@@ -6983,7 +6937,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define LIGHTNING_MARKER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		lightning_marker_block_struct_definition,
 		"lightning_marker_block",
@@ -6991,7 +6944,7 @@ namespace pc64
 		"s_lightning_marker",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		LIGHTNING_MARKER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "attachment marker" },
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$101 },
@@ -7013,7 +6966,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$101, unnamed_enum$101_strings, _countof(unnamed_enum$101_strings));
 
-	#define LIGHTNING_SHADER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		lightning_shader_block_struct_definition,
 		"lightning_shader_block",
@@ -7021,7 +6973,7 @@ namespace pc64
 		"s_lightning_shader",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		LIGHTNING_SHADER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 40),
 		{ _field_word_flags, "shader flags", &blofeld::halo1::pc64::unnamed_enum$75 },
@@ -7037,7 +6989,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define EQUIPMENT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		equipment_block_struct_definition,
 		"equipment",
@@ -7045,7 +6996,7 @@ namespace pc64
 		"s_equipment",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		EQUIPMENT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$35 },
@@ -7131,7 +7082,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$104, unnamed_enum$104_strings, _countof(unnamed_enum$104_strings));
 
-	#define FLAG_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		flag_block_struct_definition,
 		"flag",
@@ -7139,7 +7089,7 @@ namespace pc64
 		"s_flag",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		FLAG_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$105 },
 		{ _field_short_enum, "trailing edge shape", &blofeld::halo1::pc64::unnamed_enum$106 },
@@ -7178,7 +7128,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$107, unnamed_enum$107_strings, _countof(unnamed_enum$107_strings));
 
-	#define FLAG_ATTACHMENT_POINT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		flag_attachment_point_block_struct_definition,
 		"flag_attachment_point_block",
@@ -7186,7 +7135,7 @@ namespace pc64
 		"s_flag_attachment_point",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		FLAG_ATTACHMENT_POINT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "height_to_next_attachment", "flag vertices between this attachment point and the next", "vertices" },
 		FIELD_PAD("value", 2),
@@ -7195,7 +7144,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define FOG_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		fog_block_struct_definition,
 		"fog",
@@ -7203,7 +7151,7 @@ namespace pc64
 		"s_fog",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		FOG_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("FLAGS", "Setting <atmosphere dominant> prevents polygon popping when the atmospheric fog maximum density (in the sky tag) is 1 and the atmospheric fog opaque distance is less than the diameter of the map. However, this flag will cause artifacts when the camera goes below the fog plane - so it should only be used when the fog plane is close to the ground."),
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$108 },
@@ -7269,7 +7217,6 @@ namespace pc64
 
 	TAG_REFERENCE(sound_environment_group_reference, SOUND_ENVIRONMENT_TAG);
 
-	#define FONT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		font_block_struct_definition,
 		"font",
@@ -7277,7 +7224,7 @@ namespace pc64
 		"s_font",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		FONT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_integer, "flags" },
 		{ _field_short_integer, "ascending height" },
@@ -7295,7 +7242,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define FONT_CHARACTER_TABLES_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		font_character_tables_struct_definition,
 		"font_character_tables",
@@ -7303,13 +7249,12 @@ namespace pc64
 		"s_font_character_tables",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		FONT_CHARACTER_TABLES_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_block, "character table", &blofeld::halo1::pc64::font_character_table_block },
 		{ _field_terminator }
 	};
 
-	#define FONT_CHARACTER_TABLE_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		font_character_table_struct_definition,
 		"font_character_table",
@@ -7317,13 +7262,12 @@ namespace pc64
 		"s_font_character_table",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		FONT_CHARACTER_TABLE_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "character index" },
 		{ _field_terminator }
 	};
 
-	#define FONT_CHARACTER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		font_character_block_struct_definition,
 		"character",
@@ -7331,7 +7275,7 @@ namespace pc64
 		"s_font_character",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		FONT_CHARACTER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "character" },
 		{ _field_short_integer, "character width" },
@@ -7345,7 +7289,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define MATERIAL_EFFECTS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		material_effects_block_struct_definition,
 		"material_effects",
@@ -7353,14 +7296,13 @@ namespace pc64
 		"s_material_effects",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MATERIAL_EFFECTS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_block, "effects", &blofeld::halo1::pc64::material_effect_block },
 		FIELD_PAD("value", 128),
 		{ _field_terminator }
 	};
 
-	#define MATERIAL_EFFECT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		material_effect_block_struct_definition,
 		"material_effect_block",
@@ -7368,14 +7310,13 @@ namespace pc64
 		"s_material_effect",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MATERIAL_EFFECT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_block, "materials", &blofeld::halo1::pc64::material_effect_material_block },
 		FIELD_PAD("value", 16),
 		{ _field_terminator }
 	};
 
-	#define MATERIAL_EFFECT_MATERIAL_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		material_effect_material_block_struct_definition,
 		"material_effect_material_block",
@@ -7383,7 +7324,7 @@ namespace pc64
 		"s_material_effect_material",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MATERIAL_EFFECT_MATERIAL_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "effect", &blofeld::halo1::pc64::effect_group_reference },
 		{ _field_tag_reference, "sound", &blofeld::halo1::pc64::sound_group_reference },
@@ -7391,7 +7332,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define GARBAGE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		garbage_block_struct_definition,
 		"garbage",
@@ -7399,7 +7339,7 @@ namespace pc64
 		"s_garbage",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GARBAGE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$35 },
@@ -7454,7 +7394,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define GLOW_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		glow_block_struct_definition,
 		"glow",
@@ -7462,7 +7401,7 @@ namespace pc64
 		"s_glow",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GLOW_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "attachment marker", "the marker name that the glow should be attached to" },
 		{ _field_short_integer, "number of particles", "the number of particles that comprise the glow system" },
@@ -7561,7 +7500,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$114, unnamed_enum$114_strings, _countof(unnamed_enum$114_strings));
 
-	#define GRENADE_HUD_INTERFACE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		grenade_hud_interface_block_struct_definition,
 		"grenade_hud_interface",
@@ -7569,7 +7507,7 @@ namespace pc64
 		"s_grenade_hud_interface",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GRENADE_HUD_INTERFACE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_CUSTOM("value", _field_id_default),
 		FIELD_EXPLANATION("Grenade hud screen alignment", nullptr),
@@ -7698,7 +7636,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$128, unnamed_enum$128_strings, _countof(unnamed_enum$128_strings));
 
-	#define GLOBAL_HUD_MULTITEXTURE_OVERLAY_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		global_hud_multitexture_overlay_definition_struct_definition,
 		"global_hud_multitexture_overlay_definition",
@@ -7706,7 +7643,7 @@ namespace pc64
 		"s_global_hud_multitexture_overlay_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GLOBAL_HUD_MULTITEXTURE_OVERLAY_DEFINITION_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		{ _field_short_integer, "type" },
@@ -7767,7 +7704,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$120, unnamed_enum$120_strings, _countof(unnamed_enum$120_strings));
 
-	#define GLOBAL_HUD_MULTITEXTURE_OVERLAY_EFFECTOR_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		global_hud_multitexture_overlay_effector_definition_struct_definition,
 		"global_hud_multitexture_overlay_effector_definition",
@@ -7775,7 +7711,7 @@ namespace pc64
 		"s_global_hud_multitexture_overlay_effector_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GLOBAL_HUD_MULTITEXTURE_OVERLAY_EFFECTOR_DEFINITION_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 64),
 		FIELD_EXPLANATION("source/destination", "These describe the relationship that causes the effect.\n* destination type is the type of variable you want to be effected\n* destination tells which texture map (or geometry offset) to apply it to\n* source says which value to look at when computing the effect"),
@@ -7830,7 +7766,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$123, unnamed_enum$123_strings, _countof(unnamed_enum$123_strings));
 
-	#define GRENADE_HUD_OVERLAY_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		grenade_hud_overlay_block_struct_definition,
 		"grenade_hud_overlay_block",
@@ -7838,7 +7773,7 @@ namespace pc64
 		"s_grenade_hud_overlay",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GRENADE_HUD_OVERLAY_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
@@ -7879,7 +7814,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$126, unnamed_enum$126_strings, _countof(unnamed_enum$126_strings));
 
-	#define GRENADE_HUD_SOUND_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		grenade_hud_sound_block_struct_definition,
 		"grenade_hud_sound_block",
@@ -7887,7 +7821,7 @@ namespace pc64
 		"s_grenade_hud_sound",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GRENADE_HUD_SOUND_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "sound", &blofeld::halo1::pc64::sound_group_sound_looping_group_reference },
 		{ _field_long_flags, "latched to", &blofeld::halo1::pc64::unnamed_enum$127 },
@@ -7911,7 +7845,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$127, unnamed_enum$127_strings, _countof(unnamed_enum$127_strings));
 
-	#define HUD_MESSAGE_TEXT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		hud_message_text_block_struct_definition,
 		"hud_message_text",
@@ -7919,7 +7852,7 @@ namespace pc64
 		"s_hud_message_text",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		HUD_MESSAGE_TEXT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_data, "text data", &blofeld::halo1::pc64::string_data },
 		{ _field_block, "message elements", &blofeld::halo1::pc64::hud_message_elements_block },
@@ -7928,7 +7861,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define HUD_MESSAGE_ELEMENTS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		hud_message_elements_block_struct_definition,
 		"hud_message_elements_block",
@@ -7936,14 +7868,13 @@ namespace pc64
 		"s_hud_message_elements",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		HUD_MESSAGE_ELEMENTS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_char_integer, "type" },
 		{ _field_char_integer, "data" },
 		{ _field_terminator }
 	};
 
-	#define HUD_MESSAGES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		hud_messages_block_struct_definition,
 		"hud_messages_block",
@@ -7951,7 +7882,7 @@ namespace pc64
 		"s_hud_messages",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		HUD_MESSAGES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_short_integer, "start index into text blob" },
@@ -7962,7 +7893,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define HUD_NUMBER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		hud_number_block_struct_definition,
 		"hud_number",
@@ -7970,7 +7900,7 @@ namespace pc64
 		"s_hud_number",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		HUD_NUMBER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "digits bitmap", &blofeld::halo1::pc64::bitmap_group_reference },
 		{ _field_char_integer, "bitmap digit width" },
@@ -7984,7 +7914,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define HUD_GLOBALS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		hud_globals_block_struct_definition,
 		"hud_globals",
@@ -7992,7 +7921,7 @@ namespace pc64
 		"s_hud_globals",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		HUD_GLOBALS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("Messaging parameters", nullptr),
 		{ _field_short_enum, "anchor", &blofeld::halo1::pc64::unnamed_enum$115 },
@@ -8107,7 +8036,6 @@ namespace pc64
 
 	TAG_REFERENCE(weapon_hud_interface_group_reference, WEAPON_HUD_INTERFACE_TAG);
 
-	#define HUD_BUTTON_ICON_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		hud_button_icon_block_struct_definition,
 		"hud_button_icon_block",
@@ -8115,7 +8043,7 @@ namespace pc64
 		"s_hud_button_icon",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		HUD_BUTTON_ICON_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "sequence index", "sequence index into the global hud icon bitmap" },
 		{ _field_short_integer, "width offset", "extra spacing beyond bitmap width for text alignment" },
@@ -8127,7 +8055,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define HUD_WAYPOINT_ARROW_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		hud_waypoint_arrow_block_struct_definition,
 		"hud_waypoint_arrow_block",
@@ -8135,7 +8062,7 @@ namespace pc64
 		"s_hud_waypoint_arrow",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		HUD_WAYPOINT_ARROW_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		FIELD_PAD("value", 8),
@@ -8158,7 +8085,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$129, unnamed_enum$129_strings, _countof(unnamed_enum$129_strings));
 
-	#define HUD_BITMAP_REMAPS_BLOCK_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		hud_bitmap_remaps_block_definition_struct_definition,
 		"hud_bitmap_remaps_block_definition",
@@ -8166,14 +8092,13 @@ namespace pc64
 		"s_hud_bitmap_remaps_block_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		HUD_BITMAP_REMAPS_BLOCK_DEFINITION_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "original bitmap", &blofeld::halo1::pc64::bitmap_group_reference },
 		{ _field_block, "targets", &blofeld::halo1::pc64::hud_bitmap_remap_element_block_definition_block },
 		{ _field_terminator }
 	};
 
-	#define HUD_BITMAP_REMAP_ELEMENT_BLOCK_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		hud_bitmap_remap_element_block_definition_struct_definition,
 		"hud_bitmap_remap_element_block_definition",
@@ -8181,7 +8106,7 @@ namespace pc64
 		"s_hud_bitmap_remap_element_block_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		HUD_BITMAP_REMAP_ELEMENT_BLOCK_DEFINITION_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "target bitmap", &blofeld::halo1::pc64::bitmap_group_reference },
 		{ _field_short_enum, "language", &blofeld::halo1::pc64::unnamed_enum$130 },
@@ -8213,7 +8138,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$131, unnamed_enum$131_strings, _countof(unnamed_enum$131_strings));
 
-	#define ITEM_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		item_block_struct_definition,
 		"item",
@@ -8221,7 +8145,7 @@ namespace pc64
 		"s_item",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ITEM_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("$$$ ITEM $$$", nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$102 },
@@ -8246,7 +8170,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define ITEM_COLLECTION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		item_collection_block_struct_definition,
 		"item_collection",
@@ -8254,7 +8177,7 @@ namespace pc64
 		"s_item_collection",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ITEM_COLLECTION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_block, "item permutations", &blofeld::halo1::pc64::item_permutation_block },
 		{ _field_short_integer, "spawn time (in seconds, 0 = default)" },
@@ -8263,7 +8186,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define ITEM_PERMUTATION_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		item_permutation_struct_definition,
 		"item_permutation",
@@ -8271,7 +8193,7 @@ namespace pc64
 		"s_item_permutation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ITEM_PERMUTATION_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 32),
 		{ _field_real, "weight", "relatively how likely this item will be chosen" },
@@ -8282,7 +8204,6 @@ namespace pc64
 
 	TAG_REFERENCE(item_group_reference, ITEM_TAG);
 
-	#define DAMAGE_EFFECT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		damage_effect_block_struct_definition,
 		"damage_effect",
@@ -8290,7 +8211,7 @@ namespace pc64
 		"s_damage_effect",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DAMAGE_EFFECT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_bounds, "radius", nullptr, "world units" },
 		{ _field_real_fraction, "cutoff scale", nullptr, nullptr, "[0,1]" },
@@ -8440,7 +8361,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$134, unnamed_enum$134_strings, _countof(unnamed_enum$134_strings));
 
-	#define LENS_FLARE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		lens_flare_block_struct_definition,
 		"lens_flare",
@@ -8448,7 +8368,7 @@ namespace pc64
 		"s_lens_flare",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		LENS_FLARE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("lens flare", nullptr),
 		{ _field_angle, "falloff angle", nullptr, "degrees" },
@@ -8509,7 +8429,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$137, unnamed_enum$137_strings, _countof(unnamed_enum$137_strings));
 
-	#define LENS_FLARE_REFLECTION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		lens_flare_reflection_block_struct_definition,
 		"lens_flare_reflection_block",
@@ -8517,7 +8436,7 @@ namespace pc64
 		"s_lens_flare_reflection",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		LENS_FLARE_REFLECTION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$138 },
 		FIELD_PAD("value", 2),
@@ -8571,7 +8490,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$140, unnamed_enum$140_strings, _countof(unnamed_enum$140_strings));
 
-	#define DEVICE_LIGHT_FIXTURE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		device_light_fixture_block_struct_definition,
 		"device_light_fixture",
@@ -8579,7 +8497,7 @@ namespace pc64
 		"s_device_light_fixture",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DEVICE_LIGHT_FIXTURE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$35 },
@@ -8639,7 +8557,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define LIGHT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		light_block_struct_definition,
 		"light",
@@ -8647,7 +8564,7 @@ namespace pc64
 		"s_light",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		LIGHT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$141 },
 		FIELD_EXPLANATION("SHAPE", "the size and shape of the light"),
@@ -8707,7 +8624,6 @@ namespace pc64
 
 	TAG_REFERENCE(lens_flare_group_reference, LENS_FLARE_TAG);
 
-	#define SOUND_LOOPING_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		sound_looping_block_struct_definition,
 		"sound_looping",
@@ -8715,7 +8631,7 @@ namespace pc64
 		"s_sound_looping",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SOUND_LOOPING_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$142 },
 		FIELD_EXPLANATION("when scale is ZERO", "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the value specified below. (0 values are ignored.)"),
@@ -8742,7 +8658,6 @@ namespace pc64
 
 	TAG_REFERENCE(continuous_damage_effect_group_reference, CONTINUOUS_DAMAGE_EFFECT_TAG);
 
-	#define LOOPING_SOUND_TRACK_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		looping_sound_track_block_struct_definition,
 		"looping_sound_track_block",
@@ -8750,7 +8665,7 @@ namespace pc64
 		"s_looping_sound_track",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		LOOPING_SOUND_TRACK_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$143 },
 		{ _field_real_fraction, "gain" },
@@ -8775,7 +8690,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$143, unnamed_enum$143_strings, _countof(unnamed_enum$143_strings));
 
-	#define LOOPING_SOUND_DETAIL_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		looping_sound_detail_block_struct_definition,
 		"looping_sound_detail_block",
@@ -8783,7 +8697,7 @@ namespace pc64
 		"s_looping_sound_detail",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		LOOPING_SOUND_DETAIL_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "sound", &blofeld::halo1::pc64::sound_group_reference },
 		FIELD_EXPLANATION("frequency of play", nullptr),
@@ -8805,7 +8719,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$144, unnamed_enum$144_strings, _countof(unnamed_enum$144_strings));
 
-	#define DEVICE_MACHINE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		device_machine_block_struct_definition,
 		"device_machine",
@@ -8813,7 +8726,7 @@ namespace pc64
 		"s_device_machine",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DEVICE_MACHINE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$35 },
@@ -8903,7 +8816,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$147, unnamed_enum$147_strings, _countof(unnamed_enum$147_strings));
 
-	#define GLOBALS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		globals_block_struct_definition,
 		"globals",
@@ -8911,7 +8823,7 @@ namespace pc64
 		"s_globals",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GLOBALS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 248),
 		{ _field_block, "sounds", &blofeld::halo1::pc64::gg_sound_block },
@@ -8932,7 +8844,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define GG_SOUND_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		gg_sound_block_struct_definition,
 		"gg_sound_block",
@@ -8940,13 +8851,12 @@ namespace pc64
 		"s_gg_sound",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GG_SOUND_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "sound", &blofeld::halo1::pc64::sound_group_reference },
 		{ _field_terminator }
 	};
 
-	#define CAMERA_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		camera_block_struct_definition,
 		"camera_block",
@@ -8954,13 +8864,12 @@ namespace pc64
 		"s_camera",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CAMERA_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "default unit camera track", &blofeld::halo1::pc64::camera_track_group_reference },
 		{ _field_terminator }
 	};
 
-	#define PLAYER_CONTROL_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		player_control_block_struct_definition,
 		"player_control_block",
@@ -8968,7 +8877,7 @@ namespace pc64
 		"s_player_control",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PLAYER_CONTROL_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("Player aim magnetism", "Relates to the \'magnetism\' effect of the player\'s crosshair over targets when looking around. NOT to be confused with auto-aim, which adjusts fired projectiles"),
 		{ _field_real_fraction, "magnetism friction", "how much the crosshair slows over enemies" },
@@ -8989,7 +8898,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define LOOK_FUNCTION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		look_function_block_struct_definition,
 		"look_function_block",
@@ -8997,13 +8905,12 @@ namespace pc64
 		"s_look_function",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		LOOK_FUNCTION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real, "scale" },
 		{ _field_terminator }
 	};
 
-	#define DIFFICULTY_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		difficulty_block_struct_definition,
 		"difficulty_block",
@@ -9011,7 +8918,7 @@ namespace pc64
 		"s_difficulty",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DIFFICULTY_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("health", "scale values for enemy health and damage settings"),
 		{ _field_real, "easy enemy damage", "enemy damage multiplier on easy difficulty" },
@@ -9134,7 +9041,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define GRENADES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		grenades_block_struct_definition,
 		"grenades_block",
@@ -9142,7 +9048,7 @@ namespace pc64
 		"s_grenades",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GRENADES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "maximum count" },
 		{ _field_short_integer, "mp spawn default" },
@@ -9155,7 +9061,6 @@ namespace pc64
 
 	TAG_REFERENCE(grenade_hud_interface_group_reference, GRENADE_HUD_INTERFACE_TAG);
 
-	#define RASTERIZER_DATA_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		rasterizer_data_block_struct_definition,
 		"rasterizer_data_block",
@@ -9163,7 +9068,7 @@ namespace pc64
 		"s_rasterizer_data",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		RASTERIZER_DATA_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("function textures", "Used internally by the rasterizer. (Do not change unless you know what you\'re doing!)"),
 		{ _field_tag_reference, "distance attenuation", &blofeld::halo1::pc64::bitmap_group_reference },
@@ -9210,7 +9115,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$148, unnamed_enum$148_strings, _countof(unnamed_enum$148_strings));
 
-	#define INTERFACE_TAG_REFERENCES_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		interface_tag_references_struct_definition,
 		"interface_tag_references",
@@ -9218,7 +9122,7 @@ namespace pc64
 		"s_interface_tag_references",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		INTERFACE_TAG_REFERENCES_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "font system", &blofeld::halo1::pc64::font_group_reference },
 		{ _field_tag_reference, "font terminal", &blofeld::halo1::pc64::font_group_reference },
@@ -9248,7 +9152,6 @@ namespace pc64
 
 	TAG_REFERENCE(hud_number_group_reference, HUD_NUMBER_TAG);
 
-	#define CHEAT_WEAPONS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		cheat_weapons_block_struct_definition,
 		"cheat_weapons_block",
@@ -9256,13 +9159,12 @@ namespace pc64
 		"s_cheat_weapons",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CHEAT_WEAPONS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "weapon", &blofeld::halo1::pc64::item_group_reference },
 		{ _field_terminator }
 	};
 
-	#define CHEAT_POWERUPS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		cheat_powerups_block_struct_definition,
 		"cheat_powerups_block",
@@ -9270,13 +9172,12 @@ namespace pc64
 		"s_cheat_powerups",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CHEAT_POWERUPS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "powerup", &blofeld::halo1::pc64::equipment_group_reference },
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_INFORMATION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		multiplayer_information_block_struct_definition,
 		"multiplayer_information_block",
@@ -9284,7 +9185,7 @@ namespace pc64
 		"s_multiplayer_information",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MULTIPLAYER_INFORMATION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "flag", &blofeld::halo1::pc64::item_group_reference },
 		{ _field_tag_reference, "unit", &blofeld::halo1::pc64::unit_group_reference$2 },
@@ -9299,7 +9200,6 @@ namespace pc64
 
 	TAG_REFERENCE(unit_group_reference$2, UNIT_TAG);
 
-	#define VEHICLES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		vehicles_block_struct_definition,
 		"vehicles_block",
@@ -9307,7 +9207,7 @@ namespace pc64
 		"s_vehicles",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		VEHICLES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "vehicle", &blofeld::halo1::pc64::vehicle_group_reference },
 		{ _field_terminator }
@@ -9315,7 +9215,6 @@ namespace pc64
 
 	TAG_REFERENCE(vehicle_group_reference, VEHICLE_TAG);
 
-	#define SOUNDS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		sounds_block_struct_definition,
 		"sounds_block",
@@ -9323,7 +9222,7 @@ namespace pc64
 		"s_sounds",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SOUNDS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "sound", &blofeld::halo1::pc64::sound_group_reference$2 },
 		{ _field_terminator }
@@ -9331,7 +9230,6 @@ namespace pc64
 
 	TAG_REFERENCE(sound_group_reference$2, SOUND_TAG);
 
-	#define PLAYER_INFORMATION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		player_information_block_struct_definition,
 		"player_information_block",
@@ -9339,7 +9237,7 @@ namespace pc64
 		"s_player_information",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PLAYER_INFORMATION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "unit", &blofeld::halo1::pc64::unit_group_reference$2 },
 		FIELD_PAD("value", 28),
@@ -9372,7 +9270,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define FIRST_PERSON_INTERFACE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		first_person_interface_block_struct_definition,
 		"first_person_interface_block",
@@ -9380,7 +9277,7 @@ namespace pc64
 		"s_first_person_interface",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		FIRST_PERSON_INTERFACE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "first person hands", &blofeld::halo1::pc64::gbxmodel_group_reference$2 },
 		{ _field_tag_reference, "base bitmap", &blofeld::halo1::pc64::bitmap_group_reference },
@@ -9398,7 +9295,6 @@ namespace pc64
 
 	TAG_REFERENCE(meter_group_reference, METER_TAG);
 
-	#define FALLING_DAMAGE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		falling_damage_block_struct_definition,
 		"falling_damage_block",
@@ -9406,7 +9302,7 @@ namespace pc64
 		"s_falling_damage",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		FALLING_DAMAGE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 8),
 		{ _field_real_bounds, "harmful falling distance", nullptr, "world units" },
@@ -9422,7 +9318,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define MATERIALS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		materials_block_struct_definition,
 		"materials_block",
@@ -9430,7 +9325,7 @@ namespace pc64
 		"s_materials",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MATERIALS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 100),
 		FIELD_PAD("value", 48),
@@ -9455,7 +9350,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define BREAKABLE_SURFACE_PARTICLE_EFFECT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		breakable_surface_particle_effect_block_struct_definition,
 		"breakable_surface_particle_effect_block",
@@ -9463,7 +9357,7 @@ namespace pc64
 		"s_breakable_surface_particle_effect",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		BREAKABLE_SURFACE_PARTICLE_EFFECT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "particle type", &blofeld::halo1::pc64::particle_group_reference$2 },
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$149 },
@@ -9489,7 +9383,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$149, unnamed_enum$149_strings, _countof(unnamed_enum$149_strings));
 
-	#define PLAYLIST_AUTOGENERATE_CHOICE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		playlist_autogenerate_choice_block_struct_definition,
 		"playlist_autogenerate_choice_block",
@@ -9497,7 +9390,7 @@ namespace pc64
 		"s_playlist_autogenerate_choice",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PLAYLIST_AUTOGENERATE_CHOICE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "map name" },
 		{ _field_string, "game variant" },
@@ -9510,7 +9403,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define METER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		meter_block_struct_definition,
 		"meter",
@@ -9518,7 +9410,7 @@ namespace pc64
 		"s_meter",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		METER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$150 },
 		{ _field_tag_reference, "stencil bitmaps", "two bitmaps specifying the mask and the meter levels", &blofeld::halo1::pc64::bitmap_group_reference$4 },
@@ -9561,7 +9453,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$152, unnamed_enum$152_strings, _countof(unnamed_enum$152_strings));
 
-	#define LIGHT_VOLUME_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		light_volume_block_struct_definition,
 		"light_volume",
@@ -9569,7 +9460,7 @@ namespace pc64
 		"s_light_volume",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		LIGHT_VOLUME_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("light volume", "Draws a sequence of glow bitmaps along a line. Can be used for contrail-type effects as well as volumetric lights."),
 		{ _field_string, "attachment marker", "the marker name that the light volume should be attached to" },
@@ -9606,7 +9497,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$153, unnamed_enum$153_strings, _countof(unnamed_enum$153_strings));
 
-	#define LIGHT_VOLUME_FRAME_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		light_volume_frame_block_struct_definition,
 		"light_volume_frame_block",
@@ -9614,7 +9504,7 @@ namespace pc64
 		"s_light_volume_frame",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		LIGHT_VOLUME_FRAME_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 16),
 		{ _field_real, "offset from marker", nullptr, "world units" },
@@ -9633,7 +9523,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define GBXMODEL_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		gbxmodel_block_struct_definition,
 		"gbxmodel",
@@ -9641,7 +9530,7 @@ namespace pc64
 		"s_gbxmodel",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GBXMODEL_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$154 },
 		{ _field_long_integer, "node list checksum" },
@@ -9676,7 +9565,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$154, unnamed_enum$154_strings, _countof(unnamed_enum$154_strings));
 
-	#define MODEL_MARKERS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		model_markers_block_struct_definition,
 		"model_markers_block",
@@ -9684,7 +9572,7 @@ namespace pc64
 		"s_model_markers",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_MARKERS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_short_integer, "magic identifier", "lies, this is unused padding" },
@@ -9694,7 +9582,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define MODEL_MARKER_INSTANCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		model_marker_instance_block_struct_definition,
 		"model_marker_instance_block",
@@ -9702,7 +9589,7 @@ namespace pc64
 		"s_model_marker_instance",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_MARKER_INSTANCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_char_integer, "region index" },
 		{ _field_char_integer, "permutation index" },
@@ -9713,7 +9600,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define MODEL_NODE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		model_node_block_struct_definition,
 		"model_node_block",
@@ -9721,7 +9607,7 @@ namespace pc64
 		"s_model_node",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_NODE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_short_block_index, "next sibling node index" },
@@ -9736,7 +9622,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define GBXMODEL_REGION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		gbxmodel_region_block_struct_definition,
 		"gbxmodel_region_block",
@@ -9744,7 +9629,7 @@ namespace pc64
 		"s_gbxmodel_region",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GBXMODEL_REGION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		FIELD_PAD("value", 32),
@@ -9752,7 +9637,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define GBXMODEL_REGION_PERMUTATION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		gbxmodel_region_permutation_block_struct_definition,
 		"gbxmodel_region_permutation_block",
@@ -9760,7 +9644,7 @@ namespace pc64
 		"s_gbxmodel_region_permutation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GBXMODEL_REGION_PERMUTATION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$155 },
@@ -9781,7 +9665,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$155, unnamed_enum$155_strings, _countof(unnamed_enum$155_strings));
 
-	#define MODEL_REGION_PERMUTATION_MARKER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		model_region_permutation_marker_block_struct_definition,
 		"model_region_permutation_marker_block",
@@ -9789,7 +9672,7 @@ namespace pc64
 		"s_model_region_permutation_marker",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_REGION_PERMUTATION_MARKER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_short_block_index, "node index" },
@@ -9800,7 +9683,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define GBXMODEL_GEOMETRY_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		gbxmodel_geometry_block_struct_definition,
 		"gbxmodel_geometry_block",
@@ -9808,7 +9690,7 @@ namespace pc64
 		"s_gbxmodel_geometry",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GBXMODEL_GEOMETRY_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$156 },
 		FIELD_PAD("value", 32),
@@ -9818,7 +9700,6 @@ namespace pc64
 
 	STRING_LIST(unnamed_enum$156, empty_string_list, 0);
 
-	#define GBXMODEL_GEOMETRY_PART_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		gbxmodel_geometry_part_block_struct_definition,
 		"gbxmodel_geometry_part_block",
@@ -9826,7 +9707,7 @@ namespace pc64
 		"s_gbxmodel_geometry_part",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GBXMODEL_GEOMETRY_PART_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$157 },
 		{ _field_short_block_index, "shader index" },
@@ -9857,7 +9738,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$157, unnamed_enum$157_strings, _countof(unnamed_enum$157_strings));
 
-	#define MODEL_VERTEX_UNCOMPRESSED_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		model_vertex_uncompressed_block_struct_definition,
 		"model_vertex_uncompressed_block",
@@ -9865,7 +9745,7 @@ namespace pc64
 		"s_model_vertex_uncompressed",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_VERTEX_UNCOMPRESSED_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_real_vector_3d, "normal" },
@@ -9879,7 +9759,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define MODEL_VERTEX_COMPRESSED_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		model_vertex_compressed_block_struct_definition,
 		"model_vertex_compressed_block",
@@ -9887,7 +9766,7 @@ namespace pc64
 		"s_model_vertex_compressed",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_VERTEX_COMPRESSED_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_long_integer, "normal[11.11.10-bit]" },
@@ -9901,7 +9780,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define MODEL_TRIANGLE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		model_triangle_block_struct_definition,
 		"model_triangle_block",
@@ -9909,7 +9787,7 @@ namespace pc64
 		"s_model_triangle",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_TRIANGLE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "vertex0 index" },
 		{ _field_short_integer, "vertex1 index" },
@@ -9917,21 +9795,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define ARRAY$4_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
-	TAG_STRUCT(
-		array$4,
-		"array",
-		"array",
-		"s_array$4",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ARRAY$4_ID)
-	{
-		{ _field_char_integer, "node index" },
-		{ _field_terminator }
-	};
-
-	#define MODEL_SHADER_REFERENCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		model_shader_reference_block_struct_definition,
 		"model_shader_reference_block",
@@ -9939,7 +9802,7 @@ namespace pc64
 		"s_model_shader_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_SHADER_REFERENCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "shader", &blofeld::halo1::pc64::shader_group_reference },
 		{ _field_short_integer, "permutation" },
@@ -9948,7 +9811,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define MODEL_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		model_block_struct_definition,
 		"model",
@@ -9956,7 +9818,7 @@ namespace pc64
 		"s_model",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$154 },
 		{ _field_long_integer, "node list checksum" },
@@ -9983,7 +9845,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define MODEL_REGION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		model_region_block_struct_definition,
 		"model_region_block",
@@ -9991,7 +9852,7 @@ namespace pc64
 		"s_model_region",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_REGION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		FIELD_PAD("value", 32),
@@ -9999,7 +9860,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define MODEL_REGION_PERMUTATION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		model_region_permutation_block_struct_definition,
 		"model_region_permutation_block",
@@ -10007,7 +9867,7 @@ namespace pc64
 		"s_model_region_permutation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_REGION_PERMUTATION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$155 },
@@ -10022,7 +9882,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define MODEL_GEOMETRY_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		model_geometry_block_struct_definition,
 		"model_geometry_block",
@@ -10030,7 +9889,7 @@ namespace pc64
 		"s_model_geometry",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_GEOMETRY_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$156 },
 		FIELD_PAD("value", 32),
@@ -10038,7 +9897,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define MODEL_GEOMETRY_PART_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		model_geometry_part_block_struct_definition,
 		"model_geometry_part_block",
@@ -10046,7 +9904,7 @@ namespace pc64
 		"s_model_geometry_part",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_GEOMETRY_PART_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$157 },
 		{ _field_short_block_index, "shader index" },
@@ -10065,7 +9923,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_SCENARIO_DESCRIPTION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		multiplayer_scenario_description_block_struct_definition,
 		"multiplayer_scenario_description",
@@ -10073,13 +9930,12 @@ namespace pc64
 		"s_multiplayer_scenario_description",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MULTIPLAYER_SCENARIO_DESCRIPTION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_block, "multiplayer scenarios", &blofeld::halo1::pc64::scenario_description_block },
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_DESCRIPTION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_description_block_struct_definition,
 		"scenario_description_block",
@@ -10087,7 +9943,7 @@ namespace pc64
 		"s_scenario_description",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_DESCRIPTION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("net map info", "these provide the info required by the UI to load a net map"),
 		{ _field_tag_reference, "descriptive bitmap", &blofeld::halo1::pc64::bitmap_group_reference },
@@ -10097,7 +9953,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define PREFERENCES_NETWORK_GAME_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		preferences_network_game_block_struct_definition,
 		"preferences_network_game",
@@ -10105,7 +9960,7 @@ namespace pc64
 		"s_preferences_network_game",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PREFERENCES_NETWORK_GAME_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_real_rgb_color, "primary color" },
@@ -10120,7 +9975,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define OBJECT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		object_block_struct_definition,
 		"object",
@@ -10128,7 +9982,7 @@ namespace pc64
 		"s_object",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		OBJECT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$35 },
@@ -10162,7 +10016,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define PARTICLE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		particle_block_struct_definition,
 		"particle",
@@ -10170,7 +10023,7 @@ namespace pc64
 		"s_particle",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PARTICLE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$158 },
 		{ _field_tag_reference, "bitmap", &blofeld::halo1::pc64::bitmap_group_reference },
@@ -10262,7 +10115,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$159, unnamed_enum$159_strings, _countof(unnamed_enum$159_strings));
 
-	#define PARTICLE_SYSTEM_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		particle_system_block_struct_definition,
 		"particle_system",
@@ -10270,7 +10122,7 @@ namespace pc64
 		"s_particle_system",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PARTICLE_SYSTEM_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 4),
 		FIELD_PAD("value", 52),
@@ -10293,7 +10145,6 @@ namespace pc64
 
 	STRING_LIST(unnamed_enum$161, empty_string_list, 0);
 
-	#define PARTICLE_SYSTEM_PHYSICS_CONSTANTS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		particle_system_physics_constants_block_struct_definition,
 		"particle_system_physics_constants_block",
@@ -10301,13 +10152,12 @@ namespace pc64
 		"s_particle_system_physics_constants",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PARTICLE_SYSTEM_PHYSICS_CONSTANTS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real, "k", "The meaning of this constant depends on the selected physics creation/update function." },
 		{ _field_terminator }
 	};
 
-	#define PARTICLE_SYSTEM_TYPES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		particle_system_types_block_struct_definition,
 		"particle_system_types_block",
@@ -10315,7 +10165,7 @@ namespace pc64
 		"s_particle_system_types",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PARTICLE_SYSTEM_TYPES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$162 },
@@ -10372,7 +10222,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$164, unnamed_enum$164_strings, _countof(unnamed_enum$164_strings));
 
-	#define PARTICLE_SYSTEM_TYPE_STATES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		particle_system_type_states_block_struct_definition,
 		"particle_system_type_states_block",
@@ -10380,7 +10229,7 @@ namespace pc64
 		"s_particle_system_type_states",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PARTICLE_SYSTEM_TYPE_STATES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_real_bounds, "duration bounds", "Time in this state.", "seconds" },
@@ -10406,7 +10255,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$165, unnamed_enum$165_strings, _countof(unnamed_enum$165_strings));
 
-	#define PARTICLE_SYSTEM_TYPE_PARTICLE_STATES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		particle_system_type_particle_states_block_struct_definition,
 		"particle_system_type_particle_states_block",
@@ -10414,7 +10262,7 @@ namespace pc64
 		"s_particle_system_type_particle_states",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PARTICLE_SYSTEM_TYPE_PARTICLE_STATES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_real_bounds, "duration bounds", "Time in this state.", "seconds" },
@@ -10464,7 +10312,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define PHYSICS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		physics_block_struct_definition,
 		"physics",
@@ -10472,7 +10319,7 @@ namespace pc64
 		"s_physics",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PHYSICS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real, "radius", "positive uses old inferior physics, negative uses new improved physics" },
 		{ _field_real_fraction, "moment scale" },
@@ -10501,7 +10348,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define INERTIAL_MATRIX_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		inertial_matrix_block_struct_definition,
 		"inertial_matrix_block",
@@ -10509,7 +10355,7 @@ namespace pc64
 		"s_inertial_matrix",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		INERTIAL_MATRIX_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_vector_3d, "yy+zz    -xy     -zx" },
 		{ _field_real_vector_3d, "-xy    zz+xx    -yz" },
@@ -10517,7 +10363,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define POWERED_MASS_POINT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		powered_mass_point_block_struct_definition,
 		"powered_mass_point_block",
@@ -10525,7 +10370,7 @@ namespace pc64
 		"s_powered_mass_point",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		POWERED_MASS_POINT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$166 },
@@ -10551,7 +10396,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$166, unnamed_enum$166_strings, _countof(unnamed_enum$166_strings));
 
-	#define MASS_POINT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		mass_point_block_struct_definition,
 		"mass_point_block",
@@ -10559,7 +10403,7 @@ namespace pc64
 		"s_mass_point",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MASS_POINT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_short_block_index, "powered mass point" },
@@ -10596,7 +10440,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$168, unnamed_enum$168_strings, _countof(unnamed_enum$168_strings));
 
-	#define PLACEHOLDER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		placeholder_block_struct_definition,
 		"placeholder",
@@ -10604,7 +10447,7 @@ namespace pc64
 		"s_placeholder",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PLACEHOLDER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$35 },
@@ -10639,7 +10482,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define POINT_PHYSICS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		point_physics_block_struct_definition,
 		"point_physics",
@@ -10647,7 +10489,7 @@ namespace pc64
 		"s_point_physics",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		POINT_PHYSICS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$169 },
 		FIELD_PAD("value", 28),
@@ -10672,7 +10514,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$169, unnamed_enum$169_strings, _countof(unnamed_enum$169_strings));
 
-	#define PROJECTILE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		projectile_block_struct_definition,
 		"projectile",
@@ -10680,7 +10521,7 @@ namespace pc64
 		"s_projectile",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PROJECTILE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$35 },
@@ -10777,7 +10618,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$172, unnamed_enum$172_strings, _countof(unnamed_enum$172_strings));
 
-	#define PROJECTILE_MATERIAL_RESPONSE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		projectile_material_response_block_struct_definition,
 		"projectile_material_response_block",
@@ -10785,7 +10625,7 @@ namespace pc64
 		"s_projectile_material_response",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PROJECTILE_MATERIAL_RESPONSE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$173 },
 		FIELD_EXPLANATION("default result", "(if the potential result, below, fails to happen)"),
@@ -10846,7 +10686,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$176, unnamed_enum$176_strings, _countof(unnamed_enum$176_strings));
 
-	#define WEATHER_PARTICLE_SYSTEM_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		weather_particle_system_block_struct_definition,
 		"weather_particle_system",
@@ -10854,7 +10693,7 @@ namespace pc64
 		"s_weather_particle_system",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WEATHER_PARTICLE_SYSTEM_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$177 },
 		FIELD_PAD("value", 32),
@@ -10864,7 +10703,6 @@ namespace pc64
 
 	STRING_LIST(unnamed_enum$177, empty_string_list, 0);
 
-	#define WEATHER_PARTICLE_TYPE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		weather_particle_type_block_struct_definition,
 		"weather_particle_type_block",
@@ -10872,7 +10710,7 @@ namespace pc64
 		"s_weather_particle_type",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WEATHER_PARTICLE_TYPE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$178 },
@@ -10950,7 +10788,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$179, unnamed_enum$179_strings, _countof(unnamed_enum$179_strings));
 
-	#define SCENARIO_STRUCTURE_BSP_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_structure_bsp_block_struct_definition,
 		"scenario_structure_bsp",
@@ -10958,7 +10795,7 @@ namespace pc64
 		"s_scenario_structure_bsp",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_STRUCTURE_BSP_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "lightmap bitmaps", &blofeld::halo1::pc64::bitmap_group_reference },
 		{ _field_real, "vehicle floor", "height below which vehicles get pushed up by an unstoppable force", "world units" },
@@ -11016,7 +10853,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_COLLISION_MATERIALS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_collision_materials_block_struct_definition,
 		"structure_collision_materials_block",
@@ -11024,14 +10860,13 @@ namespace pc64
 		"s_structure_collision_materials",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_COLLISION_MATERIALS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "shader", &blofeld::halo1::pc64::shader_group_reference },
 		FIELD_PAD("value", 4),
 		{ _field_terminator }
 	};
 
-	#define COLLISION_BSP_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		collision_bsp_block_struct_definition,
 		"bsp",
@@ -11039,7 +10874,7 @@ namespace pc64
 		"s_collision_bsp",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		COLLISION_BSP_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_block, "bsp3d nodes", &blofeld::halo1::pc64::bsp3d_nodes_block },
 		{ _field_block, "planes", &blofeld::halo1::pc64::planes_block },
@@ -11052,7 +10887,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_NODE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_node_block_struct_definition,
 		"structure_bsp_node_block",
@@ -11060,13 +10894,12 @@ namespace pc64
 		"s_structure_bsp_node",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_NODE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_SKIP("value", 6),
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_LEAF_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_leaf_block_struct_definition,
 		"structure_bsp_leaf_block",
@@ -11074,7 +10907,7 @@ namespace pc64
 		"s_structure_bsp_leaf",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_LEAF_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_SKIP("value", 6),
 		FIELD_PAD("value", 2),
@@ -11084,7 +10917,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_SURFACE_REFERENCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_surface_reference_block_struct_definition,
 		"structure_bsp_surface_reference_block",
@@ -11092,14 +10924,13 @@ namespace pc64
 		"s_structure_bsp_surface_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_SURFACE_REFERENCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_block_index, "surface" },
 		{ _field_long_block_index, "node" },
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_SURFACE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_surface_block_struct_definition,
 		"structure_bsp_surface_block",
@@ -11107,27 +10938,12 @@ namespace pc64
 		"s_structure_bsp_surface",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_SURFACE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_array, "vertices", &blofeld::halo1::pc64::unnamed_array$5 },
 		{ _field_terminator }
 	};
 
-	#define ARRAY$5_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
-	TAG_STRUCT(
-		array$5,
-		"array",
-		"array",
-		"s_array$5",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ARRAY$5_ID)
-	{
-		{ _field_short_integer, "a" },
-		{ _field_terminator }
-	};
-
-	#define STRUCTURE_BSP_LIGHTMAP_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_lightmap_block_struct_definition,
 		"structure_bsp_lightmap_block",
@@ -11135,7 +10951,7 @@ namespace pc64
 		"s_structure_bsp_lightmap",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_LIGHTMAP_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "bitmap" },
 		FIELD_PAD("value", 2),
@@ -11144,7 +10960,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_MATERIAL_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_material_block_struct_definition,
 		"structure_bsp_material_block",
@@ -11152,7 +10967,7 @@ namespace pc64
 		"s_structure_bsp_material",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_MATERIAL_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "shader", &blofeld::halo1::pc64::shader_group_reference },
 		{ _field_short_integer, "shader permutation" },
@@ -11187,24 +11002,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$180, unnamed_enum$180_strings, _countof(unnamed_enum$180_strings));
 
-	#define ARRAY$6_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
-	TAG_STRUCT(
-		array$6,
-		"array",
-		"array",
-		"s_array$6",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ARRAY$6_ID)
-	{
-		FIELD_PAD("value", 4),
-		{ _field_long_integer, "count" },
-		{ _field_long_integer, "offset" },
-		FIELD_PAD("value", 8),
-		{ _field_terminator }
-	};
-
-	#define STRUCTURE_BSP_LENS_FLARE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_lens_flare_block_struct_definition,
 		"structure_bsp_lens_flare_block",
@@ -11212,7 +11009,7 @@ namespace pc64
 		"s_structure_bsp_lens_flare",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_LENS_FLARE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "lens flare", &blofeld::halo1::pc64::lens_flare_group_reference$2 },
 		{ _field_terminator }
@@ -11220,7 +11017,6 @@ namespace pc64
 
 	TAG_REFERENCE(lens_flare_group_reference$2, LENS_FLARE_TAG);
 
-	#define STRUCTURE_BSP_LENS_FLARE_MARKER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_lens_flare_marker_block_struct_definition,
 		"structure_bsp_lens_flare_marker_block",
@@ -11228,7 +11024,7 @@ namespace pc64
 		"s_structure_bsp_lens_flare_marker",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_LENS_FLARE_MARKER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_char_integer, "direction i-component" },
@@ -11238,7 +11034,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_CLUSTER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_cluster_block_struct_definition,
 		"structure_bsp_cluster_block",
@@ -11246,7 +11041,7 @@ namespace pc64
 		"s_structure_bsp_cluster",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_CLUSTER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "sky" },
 		{ _field_short_integer, "fog" },
@@ -11266,7 +11061,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_SUBCLUSTER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_subcluster_block_struct_definition,
 		"structure_bsp_subcluster_block",
@@ -11274,7 +11068,7 @@ namespace pc64
 		"s_structure_bsp_subcluster",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_SUBCLUSTER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_bounds, "world bounds x" },
 		{ _field_real_bounds, "world bounds y" },
@@ -11283,7 +11077,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_SUBCLUSTER_SURFACE_INDEX_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_subcluster_surface_index_block_struct_definition,
 		"structure_bsp_subcluster_surface_index_block",
@@ -11291,13 +11084,12 @@ namespace pc64
 		"s_structure_bsp_subcluster_surface_index",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_SUBCLUSTER_SURFACE_INDEX_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_integer, "index" },
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_CLUSTER_SURFACE_INDEX_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_cluster_surface_index_block_struct_definition,
 		"structure_bsp_cluster_surface_index_block",
@@ -11305,13 +11097,12 @@ namespace pc64
 		"s_structure_bsp_cluster_surface_index",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_CLUSTER_SURFACE_INDEX_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_integer, "index" },
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_MIRROR_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_mirror_block_struct_definition,
 		"structure_bsp_mirror_block",
@@ -11319,7 +11110,7 @@ namespace pc64
 		"s_structure_bsp_mirror",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_MIRROR_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_plane_3d, "plane" },
 		FIELD_PAD("value", 20),
@@ -11328,7 +11119,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_MIRROR_VERTEX_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_mirror_vertex_block_struct_definition,
 		"structure_bsp_mirror_vertex_block",
@@ -11336,13 +11126,12 @@ namespace pc64
 		"s_structure_bsp_mirror_vertex",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_MIRROR_VERTEX_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "point" },
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_CLUSTER_PORTAL_INDEX_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_cluster_portal_index_block_struct_definition,
 		"structure_bsp_cluster_portal_index_block",
@@ -11350,13 +11139,12 @@ namespace pc64
 		"s_structure_bsp_cluster_portal_index",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_CLUSTER_PORTAL_INDEX_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "portal" },
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_CLUSTER_PORTAL_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_cluster_portal_block_struct_definition,
 		"structure_bsp_cluster_portal_block",
@@ -11364,7 +11152,7 @@ namespace pc64
 		"s_structure_bsp_cluster_portal",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_CLUSTER_PORTAL_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "front cluster" },
 		{ _field_short_integer, "back cluster" },
@@ -11383,7 +11171,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$181, unnamed_enum$181_strings, _countof(unnamed_enum$181_strings));
 
-	#define STRUCTURE_BSP_CLUSTER_PORTAL_VERTEX_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_cluster_portal_vertex_block_struct_definition,
 		"structure_bsp_cluster_portal_vertex_block",
@@ -11391,13 +11178,12 @@ namespace pc64
 		"s_structure_bsp_cluster_portal_vertex",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_CLUSTER_PORTAL_VERTEX_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "point" },
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_BREAKABLE_SURFACE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_breakable_surface_block_struct_definition,
 		"structure_bsp_breakable_surface_block",
@@ -11405,7 +11191,7 @@ namespace pc64
 		"s_structure_bsp_breakable_surface",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_BREAKABLE_SURFACE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "centroid" },
 		{ _field_real, "radius" },
@@ -11414,7 +11200,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_FOG_PLANE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_fog_plane_block_struct_definition,
 		"structure_bsp_fog_plane_block",
@@ -11422,7 +11207,7 @@ namespace pc64
 		"s_structure_bsp_fog_plane",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_FOG_PLANE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "front region" },
 		FIELD_PAD("value", 2),
@@ -11431,7 +11216,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_FOG_PLANE_VERTEX_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_fog_plane_vertex_block_struct_definition,
 		"structure_bsp_fog_plane_vertex_block",
@@ -11439,13 +11223,12 @@ namespace pc64
 		"s_structure_bsp_fog_plane_vertex",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_FOG_PLANE_VERTEX_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "point" },
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_FOG_REGION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_fog_region_block_struct_definition,
 		"structure_bsp_fog_region_block",
@@ -11453,7 +11236,7 @@ namespace pc64
 		"s_structure_bsp_fog_region",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_FOG_REGION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 36),
 		{ _field_short_block_index, "fog palette" },
@@ -11461,7 +11244,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_FOG_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_fog_palette_block_struct_definition,
 		"structure_bsp_fog_palette_block",
@@ -11469,7 +11251,7 @@ namespace pc64
 		"s_structure_bsp_fog_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_FOG_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_tag_reference, "fog", &blofeld::halo1::pc64::fog_group_reference },
@@ -11481,7 +11263,6 @@ namespace pc64
 
 	TAG_REFERENCE(fog_group_reference, FOG_TAG);
 
-	#define STRUCTURE_BSP_WEATHER_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_weather_palette_block_struct_definition,
 		"structure_bsp_weather_palette_block",
@@ -11489,7 +11270,7 @@ namespace pc64
 		"s_structure_bsp_weather_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_WEATHER_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_tag_reference, "particle system", &blofeld::halo1::pc64::weather_particle_system_group_reference },
@@ -11509,7 +11290,6 @@ namespace pc64
 
 	TAG_REFERENCE(wind_group_reference, WIND_TAG);
 
-	#define STRUCTURE_BSP_WEATHER_POLYHEDRON_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_weather_polyhedron_block_struct_definition,
 		"structure_bsp_weather_polyhedron_block",
@@ -11517,7 +11297,7 @@ namespace pc64
 		"s_structure_bsp_weather_polyhedron",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_WEATHER_POLYHEDRON_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "bounding sphere center" },
 		{ _field_real, "bounding sphere radius" },
@@ -11526,7 +11306,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_WEATHER_POLYHEDRON_PLANE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_weather_polyhedron_plane_block_struct_definition,
 		"structure_bsp_weather_polyhedron_plane_block",
@@ -11534,13 +11313,12 @@ namespace pc64
 		"s_structure_bsp_weather_polyhedron_plane",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_WEATHER_POLYHEDRON_PLANE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_plane_3d, "plane" },
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_PATHFINDING_SURFACES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_pathfinding_surfaces_block_struct_definition,
 		"structure_bsp_pathfinding_surfaces_block",
@@ -11548,13 +11326,12 @@ namespace pc64
 		"s_structure_bsp_pathfinding_surfaces",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_PATHFINDING_SURFACES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_char_integer, "data" },
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_PATHFINDING_EDGES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_pathfinding_edges_block_struct_definition,
 		"structure_bsp_pathfinding_edges_block",
@@ -11562,13 +11339,12 @@ namespace pc64
 		"s_structure_bsp_pathfinding_edges",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_PATHFINDING_EDGES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_char_integer, "midpoint" },
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_BACKGROUND_SOUND_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_background_sound_palette_block_struct_definition,
 		"structure_bsp_background_sound_palette_block",
@@ -11576,7 +11352,7 @@ namespace pc64
 		"s_structure_bsp_background_sound_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_BACKGROUND_SOUND_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_tag_reference, "background sound", &blofeld::halo1::pc64::sound_looping_group_reference },
@@ -11586,7 +11362,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_SOUND_ENVIRONMENT_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_sound_environment_palette_block_struct_definition,
 		"structure_bsp_sound_environment_palette_block",
@@ -11594,7 +11369,7 @@ namespace pc64
 		"s_structure_bsp_sound_environment_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_SOUND_ENVIRONMENT_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_tag_reference, "sound environment", &blofeld::halo1::pc64::sound_environment_group_reference$2 },
@@ -11604,7 +11379,6 @@ namespace pc64
 
 	TAG_REFERENCE(sound_environment_group_reference$2, SOUND_ENVIRONMENT_TAG);
 
-	#define STRUCTURE_BSP_MARKER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_marker_block_struct_definition,
 		"structure_bsp_marker_block",
@@ -11612,7 +11386,7 @@ namespace pc64
 		"s_structure_bsp_marker",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_MARKER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_real_quaternion, "rotation" },
@@ -11620,7 +11394,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_DETAIL_OBJECT_DATA_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_detail_object_data_block_struct_definition,
 		"structure_bsp_detail_object_data_block",
@@ -11628,7 +11401,7 @@ namespace pc64
 		"s_structure_bsp_detail_object_data",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_DETAIL_OBJECT_DATA_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_block, "cells", &blofeld::halo1::pc64::global_detail_object_cells_block },
 		{ _field_block, "instances", &blofeld::halo1::pc64::global_detail_object_block },
@@ -11638,7 +11411,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_DETAIL_OBJECT_CELLS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		global_detail_object_cells_block_struct_definition,
 		"global_detail_object_cells_block",
@@ -11646,7 +11418,7 @@ namespace pc64
 		"s_global_detail_object_cells",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GLOBAL_DETAIL_OBJECT_CELLS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "cell x" },
 		{ _field_short_integer, "cell y" },
@@ -11659,7 +11431,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_DETAIL_OBJECT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		global_detail_object_block_struct_definition,
 		"global_detail_object_block",
@@ -11667,7 +11438,7 @@ namespace pc64
 		"s_global_detail_object",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GLOBAL_DETAIL_OBJECT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_char_integer, "position x" },
 		{ _field_char_integer, "position y" },
@@ -11677,7 +11448,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_DETAIL_OBJECT_COUNTS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		global_detail_object_counts_block_struct_definition,
 		"global_detail_object_counts_block",
@@ -11685,13 +11455,12 @@ namespace pc64
 		"s_global_detail_object_counts",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GLOBAL_DETAIL_OBJECT_COUNTS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "count" },
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_Z_REFERENCE_VECTOR_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		global_z_reference_vector_block_struct_definition,
 		"global_z_reference_vector_block",
@@ -11699,7 +11468,7 @@ namespace pc64
 		"s_global_z_reference_vector",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GLOBAL_Z_REFERENCE_VECTOR_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real, "z reference i" },
 		{ _field_real, "z reference j" },
@@ -11708,7 +11477,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRUCTURE_BSP_RUNTIME_DECAL_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		structure_bsp_runtime_decal_block_struct_definition,
 		"structure_bsp_runtime_decal_block",
@@ -11716,13 +11484,12 @@ namespace pc64
 		"s_structure_bsp_runtime_decal",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_BSP_RUNTIME_DECAL_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_SKIP("value", 16),
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_MAP_LEAF_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		global_map_leaf_block_struct_definition,
 		"global_map_leaf_block",
@@ -11730,14 +11497,13 @@ namespace pc64
 		"s_global_map_leaf",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GLOBAL_MAP_LEAF_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_block, "faces", &blofeld::halo1::pc64::map_leaf_face_block },
 		{ _field_block, "portal indices", &blofeld::halo1::pc64::map_leaf_portal_index_block },
 		{ _field_terminator }
 	};
 
-	#define MAP_LEAF_FACE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		map_leaf_face_block_struct_definition,
 		"map_leaf_face_block",
@@ -11745,14 +11511,13 @@ namespace pc64
 		"s_map_leaf_face",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MAP_LEAF_FACE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_integer, "node index" },
 		{ _field_block, "vertices", &blofeld::halo1::pc64::map_leaf_face_vertex_block },
 		{ _field_terminator }
 	};
 
-	#define MAP_LEAF_FACE_VERTEX_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		map_leaf_face_vertex_block_struct_definition,
 		"map_leaf_face_vertex_block",
@@ -11760,13 +11525,12 @@ namespace pc64
 		"s_map_leaf_face_vertex",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MAP_LEAF_FACE_VERTEX_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_2d, "vertex" },
 		{ _field_terminator }
 	};
 
-	#define MAP_LEAF_PORTAL_INDEX_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		map_leaf_portal_index_block_struct_definition,
 		"map_leaf_portal_index_block",
@@ -11774,13 +11538,12 @@ namespace pc64
 		"s_map_leaf_portal_index",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MAP_LEAF_PORTAL_INDEX_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_integer, "portal index" },
 		{ _field_terminator }
 	};
 
-	#define GLOBAL_LEAF_PORTAL_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		global_leaf_portal_block_struct_definition,
 		"global_leaf_portal_block",
@@ -11788,7 +11551,7 @@ namespace pc64
 		"s_global_leaf_portal",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GLOBAL_LEAF_PORTAL_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_integer, "plane index" },
 		{ _field_long_integer, "back leaf index" },
@@ -11797,7 +11560,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define LEAF_PORTAL_VERTEX_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		leaf_portal_vertex_block_struct_definition,
 		"leaf_portal_vertex_block",
@@ -11805,13 +11567,12 @@ namespace pc64
 		"s_leaf_portal_vertex",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		LEAF_PORTAL_VERTEX_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "point" },
 		{ _field_terminator }
 	};
 
-	#define SCENERY_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenery_block_struct_definition,
 		"scenery",
@@ -11819,7 +11580,7 @@ namespace pc64
 		"s_scenery",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENERY_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$35 },
@@ -11861,7 +11622,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$182, unnamed_enum$182_strings, _countof(unnamed_enum$182_strings));
 
-	#define SHADER_TRANSPARENT_CHICAGO_EXTENDED_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		shader_transparent_chicago_extended_block_struct_definition,
 		"shader_transparent_chicago_extended",
@@ -11869,7 +11629,7 @@ namespace pc64
 		"s_shader_transparent_chicago_extended",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_TRANSPARENT_CHICAGO_EXTENDED_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("radiosity properties", nullptr),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$183 },
@@ -11950,7 +11710,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$190, unnamed_enum$190_strings, _countof(unnamed_enum$190_strings));
 
-	#define SHADER_TRANSPARENT_LAYER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		shader_transparent_layer_block_struct_definition,
 		"shader_transparent_layer_block",
@@ -11958,13 +11717,12 @@ namespace pc64
 		"s_shader_transparent_layer",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_TRANSPARENT_LAYER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "shader", &blofeld::halo1::pc64::shader_group_reference },
 		{ _field_terminator }
 	};
 
-	#define SHADER_TRANSPARENT_CHICAGO_MAP_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		shader_transparent_chicago_map_block_struct_definition,
 		"shader_transparent_chicago_map_block",
@@ -11972,7 +11730,7 @@ namespace pc64
 		"s_shader_transparent_chicago_map",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_TRANSPARENT_CHICAGO_MAP_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$188 },
 		FIELD_PAD("value", 2),
@@ -12035,7 +11793,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$189, unnamed_enum$189_strings, _countof(unnamed_enum$189_strings));
 
-	#define SHADER_TRANSPARENT_CHICAGO_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		shader_transparent_chicago_block_struct_definition,
 		"shader_transparent_chicago",
@@ -12043,7 +11800,7 @@ namespace pc64
 		"s_shader_transparent_chicago",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_TRANSPARENT_CHICAGO_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("radiosity properties", nullptr),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$183 },
@@ -12074,7 +11831,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_block_struct_definition,
 		"scenario",
@@ -12082,7 +11838,7 @@ namespace pc64
 		"s_scenario",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "DON'T USE", &blofeld::halo1::pc64::scenario_structure_bsp_group_reference },
 		{ _field_tag_reference, "WON'T USE", &blofeld::halo1::pc64::scenario_structure_bsp_group_reference },
@@ -12182,7 +11938,6 @@ namespace pc64
 
 	TAG_REFERENCE(hud_message_text_group_reference$2, HUD_MESSAGE_TEXT_TAG);
 
-	#define SCENARIO_SKY_REFERENCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_sky_reference_block_struct_definition,
 		"scenario_sky_reference_block",
@@ -12190,13 +11945,12 @@ namespace pc64
 		"s_scenario_sky_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_SKY_REFERENCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "sky", &blofeld::halo1::pc64::sky_group_reference },
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CHILD_SCENARIO_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_child_scenario_block_struct_definition,
 		"scenario_child_scenario_block",
@@ -12204,7 +11958,7 @@ namespace pc64
 		"s_scenario_child_scenario",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_CHILD_SCENARIO_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "child scenario", &blofeld::halo1::pc64::scenario_group_reference },
 		FIELD_PAD("value", 16),
@@ -12213,7 +11967,6 @@ namespace pc64
 
 	TAG_REFERENCE(scenario_group_reference, SCENARIO_TAG);
 
-	#define SCENARIO_FUNCTION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_function_block_struct_definition,
 		"scenario_function_block",
@@ -12221,7 +11974,7 @@ namespace pc64
 		"s_scenario_function",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_FUNCTION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$193 },
 		{ _field_string, "name" },
@@ -12265,7 +12018,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$194, unnamed_enum$194_strings, _countof(unnamed_enum$194_strings));
 
-	#define EDITOR_COMMENT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		editor_comment_block_struct_definition,
 		"editor_comment_block",
@@ -12273,7 +12025,7 @@ namespace pc64
 		"s_editor_comment",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		EDITOR_COMMENT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "position" },
 		FIELD_PAD("value", 16),
@@ -12281,7 +12033,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_SCAVENGER_HUNT_OBJECT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_scavenger_hunt_object_block_struct_definition,
 		"scavenger hunt object",
@@ -12289,7 +12040,7 @@ namespace pc64
 		"s_scenario_scavenger_hunt_object",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_SCAVENGER_HUNT_OBJECT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "exported name" },
 		{ _field_short_block_index, "scenario object name index" },
@@ -12297,7 +12048,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_OBJECT_NAMES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_object_names_block_struct_definition,
 		"scenario_object_names_block",
@@ -12305,14 +12055,13 @@ namespace pc64
 		"s_scenario_object_names",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_OBJECT_NAMES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		FIELD_PAD("value", 4),
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_SCENERY_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_scenery_block_struct_definition,
 		"scenario_scenery_block",
@@ -12320,7 +12069,7 @@ namespace pc64
 		"s_scenario_scenery",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_SCENERY_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "type" },
 		{ _field_short_block_index, "name" },
@@ -12347,7 +12096,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$195, unnamed_enum$195_strings, _countof(unnamed_enum$195_strings));
 
-	#define SCENARIO_SCENERY_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_scenery_palette_block_struct_definition,
 		"scenario_scenery_palette_block",
@@ -12355,7 +12103,7 @@ namespace pc64
 		"s_scenario_scenery_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_SCENERY_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "name", &blofeld::halo1::pc64::scenery_group_reference },
 		FIELD_PAD("value", 32),
@@ -12364,7 +12112,6 @@ namespace pc64
 
 	TAG_REFERENCE(scenery_group_reference, SCENERY_TAG);
 
-	#define SCENARIO_BIPED_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_biped_block_struct_definition,
 		"scenario_biped_block",
@@ -12372,7 +12119,7 @@ namespace pc64
 		"s_scenario_biped",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_BIPED_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "type" },
 		{ _field_short_block_index, "name" },
@@ -12399,7 +12146,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$196, unnamed_enum$196_strings, _countof(unnamed_enum$196_strings));
 
-	#define SCENARIO_BIPED_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_biped_palette_block_struct_definition,
 		"scenario_biped_palette_block",
@@ -12407,7 +12153,7 @@ namespace pc64
 		"s_scenario_biped_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_BIPED_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "name", &blofeld::halo1::pc64::biped_group_reference },
 		FIELD_PAD("value", 32),
@@ -12416,7 +12162,6 @@ namespace pc64
 
 	TAG_REFERENCE(biped_group_reference, BIPED_TAG);
 
-	#define SCENARIO_VEHICLE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_vehicle_block_struct_definition,
 		"scenario_vehicle_block",
@@ -12424,7 +12169,7 @@ namespace pc64
 		"s_scenario_vehicle",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_VEHICLE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "type" },
 		{ _field_short_block_index, "name" },
@@ -12469,7 +12214,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$197, unnamed_enum$197_strings, _countof(unnamed_enum$197_strings));
 
-	#define SCENARIO_VEHICLE_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_vehicle_palette_block_struct_definition,
 		"scenario_vehicle_palette_block",
@@ -12477,7 +12221,7 @@ namespace pc64
 		"s_scenario_vehicle_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_VEHICLE_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "name", &blofeld::halo1::pc64::vehicle_group_reference$2 },
 		FIELD_PAD("value", 32),
@@ -12486,7 +12230,6 @@ namespace pc64
 
 	TAG_REFERENCE(vehicle_group_reference$2, VEHICLE_TAG);
 
-	#define SCENARIO_EQUIPMENT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_equipment_block_struct_definition,
 		"scenario_equipment_block",
@@ -12494,7 +12237,7 @@ namespace pc64
 		"s_scenario_equipment",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_EQUIPMENT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "type" },
 		{ _field_short_block_index, "name" },
@@ -12517,7 +12260,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$198, unnamed_enum$198_strings, _countof(unnamed_enum$198_strings));
 
-	#define SCENARIO_EQUIPMENT_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_equipment_palette_block_struct_definition,
 		"scenario_equipment_palette_block",
@@ -12525,7 +12267,7 @@ namespace pc64
 		"s_scenario_equipment_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_EQUIPMENT_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "name", &blofeld::halo1::pc64::equipment_group_reference$2 },
 		FIELD_PAD("value", 32),
@@ -12534,7 +12276,6 @@ namespace pc64
 
 	TAG_REFERENCE(equipment_group_reference$2, EQUIPMENT_TAG);
 
-	#define SCENARIO_WEAPON_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_weapon_block_struct_definition,
 		"scenario_weapon_block",
@@ -12542,7 +12283,7 @@ namespace pc64
 		"s_scenario_weapon",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_WEAPON_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "type" },
 		{ _field_short_block_index, "name" },
@@ -12572,7 +12313,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$199, unnamed_enum$199_strings, _countof(unnamed_enum$199_strings));
 
-	#define SCENARIO_WEAPON_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_weapon_palette_block_struct_definition,
 		"scenario_weapon_palette_block",
@@ -12580,7 +12320,7 @@ namespace pc64
 		"s_scenario_weapon_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_WEAPON_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "name", &blofeld::halo1::pc64::weapon_group_reference$3 },
 		FIELD_PAD("value", 32),
@@ -12589,7 +12329,100 @@ namespace pc64
 
 	TAG_REFERENCE(weapon_group_reference$3, WEAPON_TAG);
 
-	#define DEVICE_GROUP_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
+	TAG_STRUCT(
+		array,
+		"array",
+		"array",
+		"s_array",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_long_integer, "value" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$2,
+		"array",
+		"array",
+		"s_array$2",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_long_integer, "value" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$3,
+		"array",
+		"array",
+		"s_array$3",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_long_integer, "value" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$4,
+		"array",
+		"array",
+		"s_array$4",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_char_integer, "node index" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$5,
+		"array",
+		"array",
+		"s_array$5",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_short_integer, "a" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$6,
+		"array",
+		"array",
+		"s_array$6",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		FIELD_PAD("value", 4),
+		{ _field_long_integer, "count" },
+		{ _field_long_integer, "offset" },
+		FIELD_PAD("value", 8),
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$7,
+		"array",
+		"array",
+		"s_array$7",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_real, "parameters" },
+		{ _field_terminator }
+	};
+
 	TAG_STRUCT(
 		device_group_block_struct_definition,
 		"device_group_block",
@@ -12597,7 +12430,7 @@ namespace pc64
 		"s_device_group",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DEVICE_GROUP_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_real, "initial value", nullptr, nullptr, "[0,1]" },
@@ -12612,7 +12445,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$200, unnamed_enum$200_strings, _countof(unnamed_enum$200_strings));
 
-	#define SCENARIO_MACHINE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_machine_block_struct_definition,
 		"scenario_machine_block",
@@ -12620,7 +12452,7 @@ namespace pc64
 		"s_scenario_machine",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_MACHINE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "type" },
 		{ _field_short_block_index, "name" },
@@ -12658,7 +12490,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$202, unnamed_enum$202_strings, _countof(unnamed_enum$202_strings));
 
-	#define SCENARIO_MACHINE_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_machine_palette_block_struct_definition,
 		"scenario_machine_palette_block",
@@ -12666,7 +12497,7 @@ namespace pc64
 		"s_scenario_machine_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_MACHINE_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "name", &blofeld::halo1::pc64::device_machine_group_reference },
 		FIELD_PAD("value", 32),
@@ -12675,7 +12506,6 @@ namespace pc64
 
 	TAG_REFERENCE(device_machine_group_reference, DEVICE_MACHINE_TAG);
 
-	#define SCENARIO_CONTROL_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_control_block_struct_definition,
 		"scenario_control_block",
@@ -12683,7 +12513,7 @@ namespace pc64
 		"s_scenario_control",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_CONTROL_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "type" },
 		{ _field_short_block_index, "name" },
@@ -12711,7 +12541,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$203, unnamed_enum$203_strings, _countof(unnamed_enum$203_strings));
 
-	#define SCENARIO_CONTROL_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_control_palette_block_struct_definition,
 		"scenario_control_palette_block",
@@ -12719,7 +12548,7 @@ namespace pc64
 		"s_scenario_control_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_CONTROL_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "name", &blofeld::halo1::pc64::device_control_group_reference },
 		FIELD_PAD("value", 32),
@@ -12728,7 +12557,6 @@ namespace pc64
 
 	TAG_REFERENCE(device_control_group_reference, DEVICE_CONTROL_TAG);
 
-	#define SCENARIO_LIGHT_FIXTURE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_light_fixture_block_struct_definition,
 		"scenario_light_fixture_block",
@@ -12736,7 +12564,7 @@ namespace pc64
 		"s_scenario_light_fixture",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_LIGHT_FIXTURE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "type" },
 		{ _field_short_block_index, "name" },
@@ -12758,7 +12586,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_LIGHT_FIXTURE_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_light_fixture_palette_block_struct_definition,
 		"scenario_light_fixture_palette_block",
@@ -12766,7 +12593,7 @@ namespace pc64
 		"s_scenario_light_fixture_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_LIGHT_FIXTURE_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "name", &blofeld::halo1::pc64::device_light_fixture_group_reference },
 		FIELD_PAD("value", 32),
@@ -12775,7 +12602,6 @@ namespace pc64
 
 	TAG_REFERENCE(device_light_fixture_group_reference, DEVICE_LIGHT_FIXTURE_TAG);
 
-	#define SCENARIO_SOUND_SCENERY_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_sound_scenery_block_struct_definition,
 		"scenario_sound_scenery_block",
@@ -12783,7 +12609,7 @@ namespace pc64
 		"s_scenario_sound_scenery",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_SOUND_SCENERY_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "type" },
 		{ _field_short_block_index, "name" },
@@ -12797,7 +12623,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_SOUND_SCENERY_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_sound_scenery_palette_block_struct_definition,
 		"scenario_sound_scenery_palette_block",
@@ -12805,7 +12630,7 @@ namespace pc64
 		"s_scenario_sound_scenery_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_SOUND_SCENERY_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "name", &blofeld::halo1::pc64::sound_scenery_group_reference },
 		FIELD_PAD("value", 32),
@@ -12814,7 +12639,6 @@ namespace pc64
 
 	TAG_REFERENCE(sound_scenery_group_reference, SOUND_SCENERY_TAG);
 
-	#define SCENARIO_PROFILES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_profiles_block_struct_definition,
 		"scenario_profiles_block",
@@ -12822,7 +12646,7 @@ namespace pc64
 		"s_scenario_profiles",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_PROFILES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_real_fraction, "starting health modifier", nullptr, nullptr, "[0,1]" },
@@ -12843,7 +12667,6 @@ namespace pc64
 
 	TAG_REFERENCE(weapon_group_reference$4, WEAPON_TAG);
 
-	#define SCENARIO_PLAYERS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_players_block_struct_definition,
 		"scenario_players_block",
@@ -12851,7 +12674,7 @@ namespace pc64
 		"s_scenario_players",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_PLAYERS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_angle, "facing", nullptr, "degrees" },
@@ -12885,7 +12708,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$204, unnamed_enum$204_strings, _countof(unnamed_enum$204_strings));
 
-	#define SCENARIO_TRIGGER_VOLUME_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_trigger_volume_block_struct_definition,
 		"scenario_trigger_volume_block",
@@ -12893,7 +12715,7 @@ namespace pc64
 		"s_scenario_trigger_volume",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_TRIGGER_VOLUME_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_SKIP("value", 4),
 		{ _field_string, "name" },
@@ -12901,21 +12723,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define ARRAY$7_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
-	TAG_STRUCT(
-		array$7,
-		"array",
-		"array",
-		"s_array$7",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ARRAY$7_ID)
-	{
-		{ _field_real, "parameters" },
-		{ _field_terminator }
-	};
-
-	#define RECORDED_ANIMATION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		recorded_animation_block_struct_definition,
 		"recorded_animation_block",
@@ -12923,7 +12730,7 @@ namespace pc64
 		"s_recorded_animation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		RECORDED_ANIMATION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_char_integer, "version" },
@@ -12937,7 +12744,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_NETGAME_FLAGS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_netgame_flags_block_struct_definition,
 		"scenario_netgame_flags_block",
@@ -12945,7 +12751,7 @@ namespace pc64
 		"s_scenario_netgame_flags",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_NETGAME_FLAGS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_angle, "facing", nullptr, "degrees" },
@@ -12980,7 +12786,6 @@ namespace pc64
 
 	TAG_REFERENCE(item_collection_group_reference, ITEM_COLLECTION_TAG);
 
-	#define SCENARIO_NETGAME_EQUIPMENT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_netgame_equipment_block_struct_definition,
 		"scenario_netgame_equipment_block",
@@ -12988,7 +12793,7 @@ namespace pc64
 		"s_scenario_netgame_equipment",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_NETGAME_EQUIPMENT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$206 },
 		{ _field_short_enum, "type 0", &blofeld::halo1::pc64::unnamed_enum$204 },
@@ -13011,7 +12816,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$206, unnamed_enum$206_strings, _countof(unnamed_enum$206_strings));
 
-	#define SCENARIO_STARTING_EQUIPMENT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_starting_equipment_block_struct_definition,
 		"scenario_starting_equipment_block",
@@ -13019,7 +12823,7 @@ namespace pc64
 		"s_scenario_starting_equipment",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_STARTING_EQUIPMENT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$207 },
 		{ _field_short_enum, "type 0", &blofeld::halo1::pc64::unnamed_enum$204 },
@@ -13044,7 +12848,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$207, unnamed_enum$207_strings, _countof(unnamed_enum$207_strings));
 
-	#define SCENARIO_BSP_SWITCH_TRIGGER_VOLUME_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_bsp_switch_trigger_volume_block_struct_definition,
 		"scenario_bsp_switch_trigger_volume_block",
@@ -13052,7 +12855,7 @@ namespace pc64
 		"s_scenario_bsp_switch_trigger_volume",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_BSP_SWITCH_TRIGGER_VOLUME_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "trigger volume" },
 		{ _field_short_block_index, "source" },
@@ -13061,7 +12864,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_DECALS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_decals_block_struct_definition,
 		"scenario_decals_block",
@@ -13069,7 +12871,7 @@ namespace pc64
 		"s_scenario_decals",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_DECALS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_block_index, "decal type" },
 		{ _field_char_integer, "yaw" },
@@ -13078,7 +12880,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_DECAL_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_decal_palette_block_struct_definition,
 		"scenario_decal_palette_block",
@@ -13086,7 +12887,7 @@ namespace pc64
 		"s_scenario_decal_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_DECAL_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "reference", &blofeld::halo1::pc64::decal_group_reference$2 },
 		{ _field_terminator }
@@ -13094,7 +12895,6 @@ namespace pc64
 
 	TAG_REFERENCE(decal_group_reference$2, DECAL_TAG);
 
-	#define SCENARIO_DETAIL_OBJECT_COLLECTION_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_detail_object_collection_palette_block_struct_definition,
 		"scenario_detail_object_collection_palette_block",
@@ -13102,7 +12902,7 @@ namespace pc64
 		"s_scenario_detail_object_collection_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_DETAIL_OBJECT_COLLECTION_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "name", &blofeld::halo1::pc64::detail_object_collection_group_reference },
 		FIELD_PAD("value", 32),
@@ -13111,7 +12911,6 @@ namespace pc64
 
 	TAG_REFERENCE(detail_object_collection_group_reference, DETAIL_OBJECT_COLLECTION_TAG);
 
-	#define ACTOR_PALETTE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		actor_palette_block_struct_definition,
 		"actor_palette_block",
@@ -13119,7 +12918,7 @@ namespace pc64
 		"s_actor_palette",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ACTOR_PALETTE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "reference", &blofeld::halo1::pc64::actor_variant_group_reference$4 },
 		{ _field_terminator }
@@ -13127,7 +12926,6 @@ namespace pc64
 
 	TAG_REFERENCE(actor_variant_group_reference$4, ACTOR_VARIANT_TAG);
 
-	#define ENCOUNTER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		encounter_block_struct_definition,
 		"encounter_block",
@@ -13135,7 +12933,7 @@ namespace pc64
 		"s_encounter",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ENCOUNTER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$208 },
@@ -13187,7 +12985,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$210, unnamed_enum$210_strings, _countof(unnamed_enum$210_strings));
 
-	#define SQUADS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		squads_block_struct_definition,
 		"squads_block",
@@ -13195,7 +12992,7 @@ namespace pc64
 		"s_squads",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SQUADS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_short_block_index, "actor type" },
@@ -13313,7 +13110,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$215, unnamed_enum$215_strings, _countof(unnamed_enum$215_strings));
 
-	#define MOVE_POSITIONS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		move_positions_block_struct_definition,
 		"move_positions_block",
@@ -13321,7 +13117,7 @@ namespace pc64
 		"s_move_positions",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MOVE_POSITIONS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_angle, "facing", nullptr, "degrees" },
@@ -13335,7 +13131,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define ACTOR_STARTING_LOCATIONS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		actor_starting_locations_block_struct_definition,
 		"actor_starting_locations_block",
@@ -13343,7 +13138,7 @@ namespace pc64
 		"s_actor_starting_locations",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		ACTOR_STARTING_LOCATIONS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_angle, "facing", nullptr, "degrees" },
@@ -13363,7 +13158,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$216, unnamed_enum$216_strings, _countof(unnamed_enum$216_strings));
 
-	#define PLATOONS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		platoons_block_struct_definition,
 		"platoons_block",
@@ -13371,7 +13165,7 @@ namespace pc64
 		"s_platoons",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PLATOONS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$217 },
@@ -13412,7 +13206,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$218, unnamed_enum$218_strings, _countof(unnamed_enum$218_strings));
 
-	#define FIRING_POSITIONS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		firing_positions_block_struct_definition,
 		"firing_positions_block",
@@ -13420,7 +13213,7 @@ namespace pc64
 		"s_firing_positions",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		FIRING_POSITIONS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_short_enum, "group index", &blofeld::halo1::pc64::unnamed_enum$219 },
@@ -13460,7 +13253,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$219, unnamed_enum$219_strings, _countof(unnamed_enum$219_strings));
 
-	#define AI_COMMAND_LIST_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		ai_command_list_block_struct_definition,
 		"ai_command_list_block",
@@ -13468,7 +13260,7 @@ namespace pc64
 		"s_ai_command_list",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		AI_COMMAND_LIST_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$220 },
@@ -13492,7 +13284,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$220, unnamed_enum$220_strings, _countof(unnamed_enum$220_strings));
 
-	#define AI_COMMAND_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		ai_command_block_struct_definition,
 		"ai_command_block",
@@ -13500,7 +13291,7 @@ namespace pc64
 		"s_ai_command",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		AI_COMMAND_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("WARNING", "These fields are only meant to be changed from within Sapien!\nSome atom types do not use some fields and may actually show garbage data (or BAD INDEX) here"),
 		{ _field_short_enum, "atom type", &blofeld::halo1::pc64::unnamed_enum$221 },
@@ -13551,7 +13342,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$221, unnamed_enum$221_strings, _countof(unnamed_enum$221_strings));
 
-	#define AI_COMMAND_POINT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		ai_command_point_block_struct_definition,
 		"ai_command_point_block",
@@ -13559,14 +13349,13 @@ namespace pc64
 		"s_ai_command_point",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		AI_COMMAND_POINT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_point_3d, "position" },
 		FIELD_PAD("value", 8),
 		{ _field_terminator }
 	};
 
-	#define AI_ANIMATION_REFERENCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		ai_animation_reference_block_struct_definition,
 		"ai_animation_reference_block",
@@ -13574,7 +13363,7 @@ namespace pc64
 		"s_ai_animation_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		AI_ANIMATION_REFERENCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "animation name" },
 		{ _field_tag_reference, "animation graph", "leave this blank to use the unit's normal animation graph", &blofeld::halo1::pc64::model_animations_group_reference$2 },
@@ -13584,7 +13373,6 @@ namespace pc64
 
 	TAG_REFERENCE(model_animations_group_reference$2, MODEL_ANIMATIONS_TAG);
 
-	#define AI_SCRIPT_REFERENCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		ai_script_reference_block_struct_definition,
 		"ai_script_reference_block",
@@ -13592,14 +13380,13 @@ namespace pc64
 		"s_ai_script_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		AI_SCRIPT_REFERENCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "script name" },
 		FIELD_PAD("value", 8),
 		{ _field_terminator }
 	};
 
-	#define AI_RECORDING_REFERENCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		ai_recording_reference_block_struct_definition,
 		"ai_recording_reference_block",
@@ -13607,14 +13394,13 @@ namespace pc64
 		"s_ai_recording_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		AI_RECORDING_REFERENCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "recording name" },
 		FIELD_PAD("value", 8),
 		{ _field_terminator }
 	};
 
-	#define AI_CONVERSATION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		ai_conversation_block_struct_definition,
 		"ai_conversation_block",
@@ -13622,7 +13408,7 @@ namespace pc64
 		"s_ai_conversation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		AI_CONVERSATION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$222 },
@@ -13649,7 +13435,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$222, unnamed_enum$222_strings, _countof(unnamed_enum$222_strings));
 
-	#define AI_CONVERSATION_PARTICIPANT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		ai_conversation_participant_block_struct_definition,
 		"ai_conversation_participant_block",
@@ -13657,7 +13442,7 @@ namespace pc64
 		"s_ai_conversation_participant",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		AI_CONVERSATION_PARTICIPANT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$223 },
@@ -13694,7 +13479,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$224, unnamed_enum$224_strings, _countof(unnamed_enum$224_strings));
 
-	#define AI_CONVERSATION_LINE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		ai_conversation_line_block_struct_definition,
 		"ai_conversation_line_block",
@@ -13702,7 +13486,7 @@ namespace pc64
 		"s_ai_conversation_line",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		AI_CONVERSATION_LINE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$225 },
 		{ _field_short_block_index, "participant" },
@@ -13739,7 +13523,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$226, unnamed_enum$226_strings, _countof(unnamed_enum$226_strings));
 
-	#define HS_SCRIPTS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		hs_scripts_block_struct_definition,
 		"hs_scripts_block",
@@ -13747,7 +13530,7 @@ namespace pc64
 		"s_hs_scripts",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		HS_SCRIPTS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_short_enum, "script type", &blofeld::halo1::pc64::unnamed_enum$227 },
@@ -13821,7 +13604,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$228, unnamed_enum$228_strings, _countof(unnamed_enum$228_strings));
 
-	#define HS_GLOBALS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		hs_globals_block_struct_definition,
 		"hs_globals_block",
@@ -13829,7 +13611,7 @@ namespace pc64
 		"s_hs_globals",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		HS_GLOBALS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_short_enum, "type", &blofeld::halo1::pc64::unnamed_enum$228 },
@@ -13840,7 +13622,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define HS_REFERENCES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		hs_references_block_struct_definition,
 		"hs_references_block",
@@ -13848,7 +13629,7 @@ namespace pc64
 		"s_hs_references",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		HS_REFERENCES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 24),
 		{ _field_tag_reference, "reference", &blofeld::halo1::pc64::_reference },
@@ -13857,7 +13638,6 @@ namespace pc64
 
 	TAG_REFERENCE(_reference, INVALID_TAG);
 
-	#define HS_SOURCE_FILES_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		hs_source_files_block_struct_definition,
 		"hs_source_files_block",
@@ -13865,14 +13645,13 @@ namespace pc64
 		"s_hs_source_files",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		HS_SOURCE_FILES_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name" },
 		{ _field_data, "source", &blofeld::halo1::pc64::hs_source_data_definition },
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CUTSCENE_FLAG_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_cutscene_flag_block_struct_definition,
 		"scenario_cutscene_flag_block",
@@ -13880,7 +13659,7 @@ namespace pc64
 		"s_scenario_cutscene_flag",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_CUTSCENE_FLAG_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 4),
 		{ _field_string, "name" },
@@ -13890,7 +13669,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CUTSCENE_CAMERA_POINT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_cutscene_camera_point_block_struct_definition,
 		"scenario_cutscene_camera_point_block",
@@ -13898,7 +13676,7 @@ namespace pc64
 		"s_scenario_cutscene_camera_point",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_CUTSCENE_CAMERA_POINT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 4),
 		{ _field_string, "name" },
@@ -13910,7 +13688,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SCENARIO_CUTSCENE_TITLE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_cutscene_title_block_struct_definition,
 		"scenario_cutscene_title_block",
@@ -13918,7 +13695,7 @@ namespace pc64
 		"s_scenario_cutscene_title",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_CUTSCENE_TITLE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 4),
 		{ _field_string, "name" },
@@ -13965,7 +13742,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$231, unnamed_enum$231_strings, _countof(unnamed_enum$231_strings));
 
-	#define SCENARIO_STRUCTURE_BSPS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		scenario_structure_bsps_block_struct_definition,
 		"scenario_structure_bsps_block",
@@ -13973,14 +13749,13 @@ namespace pc64
 		"s_scenario_structure_bsps",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_STRUCTURE_BSPS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 16),
 		{ _field_tag_reference, "structure bsp", &blofeld::halo1::pc64::scenario_structure_bsp_group_reference },
 		{ _field_terminator }
 	};
 
-	#define SHADER_ENVIRONMENT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		shader_environment_block_struct_definition,
 		"shader_environment",
@@ -13988,7 +13763,7 @@ namespace pc64
 		"s_shader_environment",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_ENVIRONMENT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("radiosity properties", nullptr),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$183 },
@@ -14154,7 +13929,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$239, unnamed_enum$239_strings, _countof(unnamed_enum$239_strings));
 
-	#define SHADER_TRANSPARENT_GLASS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		shader_transparent_glass_block_struct_definition,
 		"shader_transparent_glass",
@@ -14162,7 +13936,7 @@ namespace pc64
 		"s_shader_transparent_glass",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_TRANSPARENT_GLASS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("radiosity properties", nullptr),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$183 },
@@ -14229,7 +14003,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$241, unnamed_enum$241_strings, _countof(unnamed_enum$241_strings));
 
-	#define SHADER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		shader_block_struct_definition,
 		"shader",
@@ -14237,7 +14010,7 @@ namespace pc64
 		"s_shader",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("radiosity properties", nullptr),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$183 },
@@ -14253,7 +14026,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SKY_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		sky_block_struct_definition,
 		"sky",
@@ -14261,7 +14033,7 @@ namespace pc64
 		"s_sky",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SKY_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "model", &blofeld::halo1::pc64::gbxmodel_group_reference$3 },
 		{ _field_tag_reference, "animation_graph", &blofeld::halo1::pc64::model_animations_group_reference$3 },
@@ -14294,7 +14066,6 @@ namespace pc64
 
 	TAG_REFERENCE(fog_group_reference$2, FOG_TAG);
 
-	#define SKY_SHADER_FUNCTION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		sky_shader_function_block_struct_definition,
 		"sky_shader_function_block",
@@ -14302,14 +14073,13 @@ namespace pc64
 		"s_sky_shader_function",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SKY_SHADER_FUNCTION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 4),
 		{ _field_string, "global function name", "the global function that controls this shader value" },
 		{ _field_terminator }
 	};
 
-	#define SKY_ANIMATION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		sky_animation_block_struct_definition,
 		"sky_animation_block",
@@ -14317,7 +14087,7 @@ namespace pc64
 		"s_sky_animation",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SKY_ANIMATION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "animation index", "the index of the animation in the animation graph" },
 		FIELD_PAD("value", 2),
@@ -14326,7 +14096,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SKY_LIGHT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		sky_light_block_struct_definition,
 		"sky_light_block",
@@ -14334,7 +14103,7 @@ namespace pc64
 		"s_sky_light",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SKY_LIGHT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("LENS FLARE", nullptr),
 		{ _field_tag_reference, "lens flare", &blofeld::halo1::pc64::lens_flare_group_reference$3 },
@@ -14360,7 +14129,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$242, unnamed_enum$242_strings, _countof(unnamed_enum$242_strings));
 
-	#define SHADER_TRANSPARENT_METER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		shader_transparent_meter_block_struct_definition,
 		"shader_transparent_meter",
@@ -14368,7 +14136,7 @@ namespace pc64
 		"s_shader_transparent_meter",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_TRANSPARENT_METER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("radiosity properties", nullptr),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$183 },
@@ -14417,7 +14185,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$243, unnamed_enum$243_strings, _countof(unnamed_enum$243_strings));
 
-	#define SOUND_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		sound_block_struct_definition,
 		"sound",
@@ -14425,7 +14192,7 @@ namespace pc64
 		"s_sound",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SOUND_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$244 },
 		{ _field_short_enum, "class", &blofeld::halo1::pc64::unnamed_enum$245 },
@@ -14549,7 +14316,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$248, unnamed_enum$248_strings, _countof(unnamed_enum$248_strings));
 
-	#define SOUND_PITCH_RANGE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		sound_pitch_range_block_struct_definition,
 		"sound_pitch_range_block",
@@ -14557,7 +14323,7 @@ namespace pc64
 		"s_sound_pitch_range",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SOUND_PITCH_RANGE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name", "the name of the imported pitch range directory" },
 		FIELD_EXPLANATION("pitch control", "these settings control what pitches this set of samples represents. if there is only one pitch range, all three values are ignored."),
@@ -14570,7 +14336,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SOUND_PERMUTATIONS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		sound_permutations_block_struct_definition,
 		"sound_permutations_block",
@@ -14578,7 +14343,7 @@ namespace pc64
 		"s_sound_permutations",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SOUND_PERMUTATIONS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string, "name", "name of the file from which this sample was imported" },
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this permutation that are ignored (a different permutation is selected.)" },
@@ -14592,7 +14357,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SOUND_ENVIRONMENT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		sound_environment_block_struct_definition,
 		"sound_environment",
@@ -14600,7 +14364,7 @@ namespace pc64
 		"s_sound_environment",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SOUND_ENVIRONMENT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 4),
 		{ _field_short_integer, "priority", "when multiple listeners are in different sound environments in split screen, the combined environment will be the one with the highest priority." },
@@ -14621,7 +14385,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SHADER_MODEL_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		shader_model_block_struct_definition,
 		"shader_model",
@@ -14629,7 +14392,7 @@ namespace pc64
 		"s_shader_model",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_MODEL_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("radiosity properties", nullptr),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$183 },
@@ -14747,7 +14510,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$252, unnamed_enum$252_strings, _countof(unnamed_enum$252_strings));
 
-	#define SHADER_TRANSPARENT_GENERIC_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		shader_transparent_generic_block_struct_definition,
 		"shader_transparent_generic",
@@ -14755,7 +14517,7 @@ namespace pc64
 		"s_shader_transparent_generic",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_TRANSPARENT_GENERIC_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("radiosity properties", nullptr),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$183 },
@@ -14794,7 +14556,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$253, unnamed_enum$253_strings, _countof(unnamed_enum$253_strings));
 
-	#define SHADER_TRANSPARENT_GENERIC_MAP_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		shader_transparent_generic_map_block_struct_definition,
 		"shader_transparent_generic_map_block",
@@ -14802,7 +14563,7 @@ namespace pc64
 		"s_shader_transparent_generic_map",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_TRANSPARENT_GENERIC_MAP_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$254 },
 		FIELD_PAD("value", 2),
@@ -14841,7 +14602,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$254, unnamed_enum$254_strings, _countof(unnamed_enum$254_strings));
 
-	#define SHADER_TRANSPARENT_GENERIC_STAGE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		shader_transparent_generic_stage_block_struct_definition,
 		"shader_transparent_generic_stage_block",
@@ -14849,7 +14609,7 @@ namespace pc64
 		"s_shader_transparent_generic_stage",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_TRANSPARENT_GENERIC_STAGE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$255 },
 		FIELD_PAD("value", 2),
@@ -15020,7 +14780,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$262, unnamed_enum$262_strings, _countof(unnamed_enum$262_strings));
 
-	#define SHADER_TRANSPARENT_PLASMA_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		shader_transparent_plasma_block_struct_definition,
 		"shader_transparent_plasma",
@@ -15028,7 +14787,7 @@ namespace pc64
 		"s_shader_transparent_plasma",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_TRANSPARENT_PLASMA_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("radiosity properties", nullptr),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$183 },
@@ -15083,7 +14842,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define SOUND_SCENERY_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		sound_scenery_block_struct_definition,
 		"sound_scenery",
@@ -15091,7 +14849,7 @@ namespace pc64
 		"s_sound_scenery",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SOUND_SCENERY_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$35 },
@@ -15126,7 +14884,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define STRING_LIST_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		string_list_block_struct_definition,
 		"string_list",
@@ -15134,13 +14891,12 @@ namespace pc64
 		"s_string_list",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRING_LIST_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_block, "string references", &blofeld::halo1::pc64::string_list_string_reference_block },
 		{ _field_terminator }
 	};
 
-	#define STRING_LIST_STRING_REFERENCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		string_list_string_reference_block_struct_definition,
 		"string reference",
@@ -15148,13 +14904,12 @@ namespace pc64
 		"s_string_list_string_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRING_LIST_STRING_REFERENCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_data, "string", &blofeld::halo1::pc64::string_data$2 },
 		{ _field_terminator }
 	};
 
-	#define SHADER_TRANSPARENT_WATER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		shader_transparent_water_block_struct_definition,
 		"shader_transparent_water",
@@ -15162,7 +14917,7 @@ namespace pc64
 		"s_shader_transparent_water",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_TRANSPARENT_WATER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("radiosity properties", nullptr),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$183 },
@@ -15211,7 +14966,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$263, unnamed_enum$263_strings, _countof(unnamed_enum$263_strings));
 
-	#define SHADER_TRANSPARENT_WATER_RIPPLE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		shader_transparent_water_ripple_block_struct_definition,
 		"shader_transparent_water_ripple_block",
@@ -15219,7 +14973,7 @@ namespace pc64
 		"s_shader_transparent_water_ripple",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SHADER_TRANSPARENT_WATER_RIPPLE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		FIELD_PAD("value", 2),
@@ -15234,7 +14988,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define TAG_COLLECTION_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		tag_collection_block_struct_definition,
 		"tag_collection",
@@ -15242,13 +14995,12 @@ namespace pc64
 		"s_tag_collection",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		TAG_COLLECTION_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_block, "tag references", &blofeld::halo1::pc64::tag_collection_tag_reference_block },
 		{ _field_terminator }
 	};
 
-	#define TAG_COLLECTION_TAG_REFERENCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		tag_collection_tag_reference_block_struct_definition,
 		"tag reference",
@@ -15256,7 +15008,7 @@ namespace pc64
 		"s_tag_collection_tag_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		TAG_COLLECTION_TAG_REFERENCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "tag", &blofeld::halo1::pc64::_reference$2 },
 		{ _field_terminator }
@@ -15264,7 +15016,6 @@ namespace pc64
 
 	TAG_REFERENCE(_reference$2, INVALID_TAG);
 
-	#define CAMERA_TRACK_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		camera_track_block_struct_definition,
 		"camera_track",
@@ -15272,7 +15023,7 @@ namespace pc64
 		"s_camera_track",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CAMERA_TRACK_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$264 },
 		{ _field_block, "control points", &blofeld::halo1::pc64::camera_track_control_point_block },
@@ -15282,7 +15033,6 @@ namespace pc64
 
 	STRING_LIST(unnamed_enum$264, empty_string_list, 0);
 
-	#define CAMERA_TRACK_CONTROL_POINT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		camera_track_control_point_block_struct_definition,
 		"camera_track_control_point_block",
@@ -15290,7 +15040,7 @@ namespace pc64
 		"s_camera_track_control_point",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CAMERA_TRACK_CONTROL_POINT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_vector_3d, "position" },
 		{ _field_real_quaternion, "orientation" },
@@ -15298,7 +15048,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define DIALOGUE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		dialogue_block_struct_definition,
 		"dialogue",
@@ -15306,7 +15055,7 @@ namespace pc64
 		"s_dialogue",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DIALOGUE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_SKIP("value", 2),
 		FIELD_PAD("value", 2),
@@ -15539,7 +15288,6 @@ namespace pc64
 
 	TAG_REFERENCE(sound_group_reference$3, SOUND_TAG);
 
-	#define UNIT_HUD_INTERFACE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		unit_hud_interface_block_struct_definition,
 		"unit_hud_interface",
@@ -15547,7 +15295,7 @@ namespace pc64
 		"s_unit_hud_interface",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UNIT_HUD_INTERFACE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_CUSTOM("value", _field_id_default),
 		FIELD_EXPLANATION("Weapon hud screen alignment", nullptr),
@@ -15749,7 +15497,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$265, unnamed_enum$265_strings, _countof(unnamed_enum$265_strings));
 
-	#define UNIT_HUD_AUXILARY_OVERLAY_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		unit_hud_auxilary_overlay_block_struct_definition,
 		"unit_hud_auxilary_overlay_block",
@@ -15757,7 +15504,7 @@ namespace pc64
 		"s_unit_hud_auxilary_overlay",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UNIT_HUD_AUXILARY_OVERLAY_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
@@ -15797,7 +15544,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$267, unnamed_enum$267_strings, _countof(unnamed_enum$267_strings));
 
-	#define UNIT_HUD_SOUND_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		unit_hud_sound_block_struct_definition,
 		"unit_hud_sound_block",
@@ -15805,7 +15551,7 @@ namespace pc64
 		"s_unit_hud_sound",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UNIT_HUD_SOUND_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "sound", &blofeld::halo1::pc64::sound_group_sound_looping_group_reference },
 		{ _field_long_flags, "latched to", &blofeld::halo1::pc64::unnamed_enum$268 },
@@ -15827,7 +15573,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$268, unnamed_enum$268_strings, _countof(unnamed_enum$268_strings));
 
-	#define UNIT_HUD_AUXILARY_PANEL_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		unit_hud_auxilary_panel_block_struct_definition,
 		"unit_hud_auxilary_panel_block",
@@ -15835,7 +15580,7 @@ namespace pc64
 		"s_unit_hud_auxilary_panel",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UNIT_HUD_AUXILARY_PANEL_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_enum, "type", &blofeld::halo1::pc64::unnamed_enum$269 },
 		FIELD_PAD("value", 2),
@@ -15904,7 +15649,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$270, unnamed_enum$270_strings, _countof(unnamed_enum$270_strings));
 
-	#define UNIT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		unit_block_struct_definition,
 		"unit",
@@ -15912,7 +15656,7 @@ namespace pc64
 		"s_unit",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UNIT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_EXPLANATION("$$$ UNIT $$$", nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$46 },
@@ -15976,7 +15720,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define UNICODE_STRING_LIST_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		unicode_string_list_block_struct_definition,
 		"unicode_string_list",
@@ -15984,13 +15727,12 @@ namespace pc64
 		"s_unicode_string_list",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UNICODE_STRING_LIST_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_block, "string references", &blofeld::halo1::pc64::unicode_string_list_string_reference_block },
 		{ _field_terminator }
 	};
 
-	#define UNICODE_STRING_LIST_STRING_REFERENCE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		unicode_string_list_string_reference_block_struct_definition,
 		"string reference",
@@ -15998,13 +15740,12 @@ namespace pc64
 		"s_unicode_string_list_string_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UNICODE_STRING_LIST_STRING_REFERENCE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_data, "string", &blofeld::halo1::pc64::string_data$3 },
 		{ _field_terminator }
 	};
 
-	#define VIRTUAL_KEYBOARD_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		virtual_keyboard_block_struct_definition,
 		"virtual_keyboard",
@@ -16012,7 +15753,7 @@ namespace pc64
 		"s_virtual_keyboard",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		VIRTUAL_KEYBOARD_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "display font", &blofeld::halo1::pc64::font_group_reference },
 		{ _field_tag_reference, "background bitmap", &blofeld::halo1::pc64::bitmap_group_reference },
@@ -16021,7 +15762,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define VIRTUAL_KEY_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		virtual_key_block_struct_definition,
 		"virtual_key_block",
@@ -16029,7 +15769,7 @@ namespace pc64
 		"s_virtual_key",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		VIRTUAL_KEY_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_enum, "keyboard key", &blofeld::halo1::pc64::unnamed_enum$271 },
 		FIELD_EXPLANATION("key codes", "enter unicode character values as integer numbers"),
@@ -16096,7 +15836,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$271, unnamed_enum$271_strings, _countof(unnamed_enum$271_strings));
 
-	#define VEHICLE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		vehicle_block_struct_definition,
 		"vehicle",
@@ -16104,7 +15843,7 @@ namespace pc64
 		"s_vehicle",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		VEHICLE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$35 },
@@ -16321,7 +16060,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$274, unnamed_enum$274_strings, _countof(unnamed_enum$274_strings));
 
-	#define WEAPON_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		weapon_block_struct_definition,
 		"weapon",
@@ -16329,7 +16067,7 @@ namespace pc64
 		"s_weapon",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WEAPON_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$35 },
@@ -16548,7 +16286,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$279, unnamed_enum$279_strings, _countof(unnamed_enum$279_strings));
 
-	#define MAGAZINES_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		magazines_struct_definition,
 		"magazines",
@@ -16556,7 +16293,7 @@ namespace pc64
 		"s_magazines",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MAGAZINES_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$280 },
 		{ _field_short_integer, "rounds recharged", nullptr, "per second" },
@@ -16584,7 +16321,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$280, unnamed_enum$280_strings, _countof(unnamed_enum$280_strings));
 
-	#define MAGAZINE_OBJECTS_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		magazine_objects_struct_definition,
 		"magazine_objects",
@@ -16592,7 +16328,7 @@ namespace pc64
 		"s_magazine_objects",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MAGAZINE_OBJECTS_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "rounds" },
 		FIELD_PAD("value", 10),
@@ -16600,7 +16336,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define TRIGGERS_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		triggers_struct_definition,
 		"triggers",
@@ -16608,7 +16343,7 @@ namespace pc64
 		"s_triggers",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		TRIGGERS_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_flags, "flags", &blofeld::halo1::pc64::unnamed_enum$281 },
 		FIELD_EXPLANATION("firing", nullptr),
@@ -16706,7 +16441,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$284, unnamed_enum$284_strings, _countof(unnamed_enum$284_strings));
 
-	#define TRIGGER_FIRING_EFFECT_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		trigger_firing_effect_block_struct_definition,
 		"trigger_firing_effect_block",
@@ -16714,7 +16448,7 @@ namespace pc64
 		"s_trigger_firing_effect",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		TRIGGER_FIRING_EFFECT_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "shot count lower bound", "the minimum number of times this firing effect will be used, once it has been chosen" },
 		{ _field_short_integer, "shot count upper bound", "the maximum number of times this firing effect will be used, once it has been chosen" },
@@ -16728,7 +16462,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define WIND_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		wind_block_struct_definition,
 		"wind",
@@ -16736,7 +16469,7 @@ namespace pc64
 		"s_wind",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WIND_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real_bounds, "velocity", "the wind magnitude in the weather region scales the wind between these bounds", "world units" },
 		{ _field_real_euler_angles_2d, "variation area", "the wind direction varies inside a box defined by these angles on either side of the direction from the weather region." },
@@ -16747,7 +16480,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define WEAPON_HUD_INTERFACE_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		weapon_hud_interface_block_struct_definition,
 		"weapon_hud_interface",
@@ -16755,7 +16487,7 @@ namespace pc64
 		"s_weapon_hud_interface",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WEAPON_HUD_INTERFACE_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "child hud", &blofeld::halo1::pc64::weapon_hud_interface_group_reference },
 		FIELD_EXPLANATION("Flash cutoffs", nullptr),
@@ -16798,7 +16530,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$285, unnamed_enum$285_strings, _countof(unnamed_enum$285_strings));
 
-	#define WEAPON_HUD_STATIC_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		weapon_hud_static_block_struct_definition,
 		"weapon_hud_static_block",
@@ -16806,7 +16537,7 @@ namespace pc64
 		"s_weapon_hud_static",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WEAPON_HUD_STATIC_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_enum, "state attached to", &blofeld::halo1::pc64::unnamed_enum$286 },
 		FIELD_PAD("value", 2),
@@ -16869,7 +16600,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$288, unnamed_enum$288_strings, _countof(unnamed_enum$288_strings));
 
-	#define WEAPON_HUD_METER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		weapon_hud_meter_block_struct_definition,
 		"weapon_hud_meter_block",
@@ -16877,7 +16607,7 @@ namespace pc64
 		"s_weapon_hud_meter",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WEAPON_HUD_METER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_enum, "state attached to", &blofeld::halo1::pc64::unnamed_enum$286 },
 		FIELD_PAD("value", 2),
@@ -16910,7 +16640,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define WEAPON_HUD_NUMBER_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		weapon_hud_number_block_struct_definition,
 		"weapon_hud_number_block",
@@ -16918,7 +16647,7 @@ namespace pc64
 		"s_weapon_hud_number",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WEAPON_HUD_NUMBER_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_enum, "state attached to", &blofeld::halo1::pc64::unnamed_enum$286 },
 		FIELD_PAD("value", 2),
@@ -16957,7 +16686,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$289, unnamed_enum$289_strings, _countof(unnamed_enum$289_strings));
 
-	#define WEAPON_HUD_CROSSHAIR_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		weapon_hud_crosshair_block_struct_definition,
 		"weapon_hud_crosshair_block",
@@ -16965,7 +16693,7 @@ namespace pc64
 		"s_weapon_hud_crosshair",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WEAPON_HUD_CROSSHAIR_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_enum, "crosshair type", &blofeld::halo1::pc64::unnamed_enum$290 },
 		FIELD_PAD("value", 2),
@@ -17002,7 +16730,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$290, unnamed_enum$290_strings, _countof(unnamed_enum$290_strings));
 
-	#define WEAPON_HUD_CROSSHAIR_ITEM_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		weapon_hud_crosshair_item_block_struct_definition,
 		"weapon_hud_crosshair_item_block",
@@ -17010,7 +16737,7 @@ namespace pc64
 		"s_weapon_hud_crosshair_item",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WEAPON_HUD_CROSSHAIR_ITEM_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
@@ -17046,7 +16773,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$291, unnamed_enum$291_strings, _countof(unnamed_enum$291_strings));
 
-	#define WEAPON_HUD_OVERLAYS_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		weapon_hud_overlays_block_struct_definition,
 		"weapon_hud_overlays_block",
@@ -17054,7 +16780,7 @@ namespace pc64
 		"s_weapon_hud_overlays",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WEAPON_HUD_OVERLAYS_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_enum, "state attached to", &blofeld::halo1::pc64::unnamed_enum$286 },
 		FIELD_PAD("value", 2),
@@ -17067,7 +16793,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define WEAPON_HUD_OVERLAY_BLOCK_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		weapon_hud_overlay_block_struct_definition,
 		"weapon_hud_overlay_block",
@@ -17075,7 +16800,7 @@ namespace pc64
 		"s_weapon_hud_overlay",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WEAPON_HUD_OVERLAY_BLOCK_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_point_2d, "anchor offset" },
 		{ _field_real, "width scale" },
@@ -17112,7 +16837,6 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$292, unnamed_enum$292_strings, _countof(unnamed_enum$292_strings));
 
-	#define GLOBAL_HUD_SCREEN_EFFECT_DEFINITION_STRUCT_DEFINITION_ID { 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 	TAG_STRUCT(
 		global_hud_screen_effect_definition_struct_definition,
 		"global_hud_screen_effect_definition",
@@ -17120,7 +16844,7 @@ namespace pc64
 		"s_global_hud_screen_effect_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GLOBAL_HUD_SCREEN_EFFECT_DEFINITION_STRUCT_DEFINITION_ID)
+		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 4),
 		FIELD_EXPLANATION("mask", "Mask bitmap overlay. Use either a 2D bitmap or an interface bitmap."),

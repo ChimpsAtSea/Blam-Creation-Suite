@@ -193,14 +193,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 
 	for (auto& struct_definition : struct_definitions)
 	{
-		if (!is_struct_exported(*struct_definition))
-		{
-			stream << "\t" << "extern s_tag_struct_definition " << struct_definition->get_code_symbol_name() << ";" << std::endl;
-
-			write_tag_types_header(stream, struct_definition->fields);
-
-			stream << std::endl;
-		}
+		write_tag_struct_header(stream, *struct_definition);
 	}
 
 	for (auto& data_definition : data_definitions)
@@ -304,6 +297,239 @@ void c_blamtoozle_source_generator::write_tag_types_header(std::stringstream& st
 	}
 }
 
+void c_blamtoozle_source_generator::write_string_list_header(std::stringstream& stream, c_blamtoozle_string_list_definition& string_list_definition)
+{
+	throw;
+}
+
+void c_blamtoozle_source_generator::write_string_list_source(std::stringstream& stream, c_blamtoozle_string_list_definition& string_list_definition)
+{
+	if (!is_string_list_exported(string_list_definition))
+	{
+		if (string_list_definition.options.size() > 0)
+		{
+			stream << "\tSTRINGS(" << string_list_definition.get_code_symbol_name() << ")" << std::endl;
+			stream << "\t{" << std::endl;
+			for (unsigned long i = 0; i < string_list_definition.options.size(); i++)
+			{
+				const char* option = string_list_definition.options[i];
+				std::string escaped_option = escape_string(option);
+				if (escaped_option.empty()) escaped_option = "unused";
+				if (i != string_list_definition.options.size() - 1)
+				{
+					stream << "\t\t\"" << escaped_option << "\"," << std::endl;
+				}
+				else
+				{
+					stream << "\t\t\"" << escaped_option << "\"" << std::endl;
+				}
+			}
+			stream << "\t};" << std::endl;
+
+			stream << "\tSTRING_LIST(" << string_list_definition.get_code_symbol_name() << ", " << string_list_definition.get_code_symbol_name() << "_strings, _countof(" << string_list_definition.get_code_symbol_name() << "_strings));" << std::endl;
+		}
+		else
+		{
+			stream << "\tSTRING_LIST(" << string_list_definition.get_code_symbol_name() << ", empty_string_list, 0);" << std::endl;
+		}
+
+		stream << std::endl;
+	}
+}
+
+void c_blamtoozle_source_generator::write_tag_reference_header(std::stringstream& stream, c_blamtoozle_tag_reference_definition& tag_reference_definition)
+{
+	throw;
+}
+
+void c_blamtoozle_source_generator::write_tag_reference_source(std::stringstream& stream, c_blamtoozle_tag_reference_definition& tag_reference_definition)
+{
+	if (!is_tag_reference_exported(tag_reference_definition))
+	{
+		if (tag_reference_definition.group_tags.size() > 1)
+		{
+			stream << "\tTAG_REFERENCE_GROUP(" << tag_reference_definition.get_code_symbol_name();
+			write_tag_reference_flags(stream, tag_reference_definition);
+			stream << ")" << std::endl;
+			stream << "\t{" << std::endl;
+			bool first = true;
+			for (c_blamtoozle_tag_group_definition* group_definition : tag_reference_definition.tag_group_definitions)
+			{
+				stream << "\t\t" << group_definition->get_group_tag_macro_name() << "," << std::endl;
+				first = false;
+			}
+			stream << "\t\tINVALID_TAG" << std::endl;
+
+			stream << "\t};" << std::endl;
+		}
+		else if (tag_reference_definition.group_tags.size() == 1)
+		{
+			stream << "\tTAG_REFERENCE(" << tag_reference_definition.get_code_symbol_name() << ", " << tag_reference_definition.tag_group_definitions[0]->get_group_tag_macro_name();
+			write_tag_reference_flags(stream, tag_reference_definition);
+			stream << ");" << std::endl;
+		}
+		else
+		{
+			stream << "\tTAG_REFERENCE(" << tag_reference_definition.get_code_symbol_name() << ", INVALID_TAG";
+			write_tag_reference_flags(stream, tag_reference_definition);
+			stream << ");" << std::endl;
+		}
+
+		stream << std::endl;
+	}
+}
+
+void c_blamtoozle_source_generator::write_tag_struct_header(std::stringstream& stream, c_blamtoozle_tag_struct_definition& tag_struct_definition)
+{
+	if (!is_struct_exported(tag_struct_definition))
+	{
+		stream << "\t" << "extern s_tag_struct_definition " << tag_struct_definition.get_code_symbol_name() << ";" << std::endl;
+
+		for (c_blamtoozle_tag_struct_definition* version_definition = &tag_struct_definition.get_latest_struct_definition(); version_definition != nullptr; version_definition = version_definition->get_previous_struct_definition())
+		{
+			write_tag_types_header(stream, version_definition->fields);
+		}
+
+		stream << std::endl;
+	}
+}
+
+void c_blamtoozle_source_generator::write_persistent_identifier_macro(
+	std::stringstream& stream, 
+	const blofeld::s_tag_persistent_identifier& persistent_identifier, 
+	const char* code_symbol_name,
+	std::string& persistent_identifier_macro_name)
+{
+	persistent_identifier_macro_name = "PERSISTENT_ID_EMPTY";
+	if (persistent_identifier.identifier_part_0 != 0 ||
+		persistent_identifier.identifier_part_1 != 0 ||
+		persistent_identifier.identifier_part_2 != 0 ||
+		persistent_identifier.identifier_part_3 != 0)
+	{
+		persistent_identifier_macro_name = code_symbol_name;
+		persistent_identifier_macro_name += "_id";
+		std::transform(
+			persistent_identifier_macro_name.begin(),
+			persistent_identifier_macro_name.end(),
+			persistent_identifier_macro_name.begin(),
+			::toupper);
+
+		stream << "\t#define " << persistent_identifier_macro_name << " { ";
+		stream << std::hex << std::uppercase;
+		stream << "0x" << persistent_identifier.identifier_part_0 << ", ";
+		stream << "0x" << persistent_identifier.identifier_part_1 << ", ";
+		stream << "0x" << persistent_identifier.identifier_part_2 << ", ";
+		stream << "0x" << persistent_identifier.identifier_part_3;
+		stream << std::dec << std::nouppercase;
+		stream << " }" << std::endl;
+	}
+}
+
+void c_blamtoozle_source_generator::write_tag_struct_source(std::stringstream& stream, c_blamtoozle_tag_struct_definition& tag_struct_definition)
+{
+	if (!is_struct_exported(tag_struct_definition))
+	{
+		std::string persistent_identifier_macro_name;
+		write_persistent_identifier_macro(
+			stream, 
+			tag_struct_definition.get_persistent_identifier(), 
+			tag_struct_definition.get_code_symbol_name(), 
+			persistent_identifier_macro_name);
+
+		stream << "\tTAG_STRUCT(" << std::endl;
+		stream << "\t\t" << tag_struct_definition.get_code_symbol_name() << "," << std::endl;
+		stream << "\t\t" << "\"" << tag_struct_definition.get_display_name() << "\"," << std::endl;
+		stream << "\t\t" << "\"" << tag_struct_definition.get_name() << "\"," << std::endl;
+		stream << "\t\t" << "\"" << tag_struct_definition.get_structure_type_name() << "\"," << std::endl;
+
+		c_flags<blofeld::e_tag_field_set_bit> default_flags;
+		default_flags.set(blofeld::_tag_field_set_unknown0_bit, true);
+		default_flags.set(blofeld::_tag_field_set_unknown1_bit, true);
+		default_flags.set(blofeld::_tag_field_set_has_aggregate_types_bit, true);
+		default_flags.set(blofeld::_tag_field_set_delete_recursively_bit, true);
+		default_flags.set(blofeld::_tag_field_set_postprocess_recursively_bit, true);
+
+		c_flags<blofeld::e_tag_field_set_bit> flags = tag_struct_definition.get_field_set_bits();
+		if (flags.is_clear())
+		{
+			flags = default_flags;
+		}
+
+		if (flags == default_flags)
+		{
+			stream << "\t\t" << "SET_DEFAULT," << std::endl;
+		}
+		else
+		{
+			stream << "\t\t";
+			bool is_first = true;
+			for (__underlying_type(blofeld::e_tag_field_set_bit) _tag_field_set = 0; _tag_field_set < blofeld::k_num_runtime_flags; _tag_field_set++)
+			{
+				blofeld::e_tag_field_set_bit tag_field_set = static_cast<blofeld::e_tag_field_set_bit>(_tag_field_set);
+				if (flags.test(tag_field_set))
+				{
+					const char* macro = tag_field_set_bit_to_field_set_bit_macro(tag_field_set);
+
+					if (!is_first)
+					{
+						stream << " | ";
+					}
+
+					stream << macro;
+
+					is_first = false;
+				}
+			}
+			stream << "," << std::endl;
+		}
+		stream << "\t\t" << "TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY)," << std::endl;
+		stream << "\t\t" << persistent_identifier_macro_name;
+		if (tag_struct_definition.get_alignment_bits())
+		{
+			stream << "," << std::endl;
+			stream << "\t\t" << tag_struct_definition.get_alignment_bits();
+		}
+		stream << ")" << std::endl;
+		stream << "\t" << "{" << std::endl;
+
+		for (
+			c_blamtoozle_tag_struct_definition* version_definition = &tag_struct_definition.get_latest_struct_definition();
+			version_definition != nullptr;
+			version_definition = version_definition->get_previous_struct_definition())
+		{
+			if (version_definition->is_legacy_struct())
+			{
+				size_t num_fields = version_definition->fields.size() - 1; // exclude terminator
+				if (version_definition->is_latest_structure_version())
+				{
+					stream << "\t\t{ _struct_version_mode_greater_or_equal, " << version_definition->get_structure_version() << ", " << num_fields << " }," << std::endl;
+				}
+				else
+				{
+					stream << "\t\t{ _struct_version_mode_equal, " << version_definition->get_structure_version() << ", " << num_fields << " }," << std::endl;
+				}
+			}
+
+			bool is_last = version_definition->get_previous_struct_definition() == nullptr;
+
+			write_fields(stream, version_definition->fields, is_last);
+
+			if (!is_last)
+			{
+				stream << "\t\t" << std::endl;
+			}
+		}
+
+		stream << "\t" << "};" << std::endl;
+		stream << std::endl;
+
+		for (c_blamtoozle_tag_struct_definition* version_definition = &tag_struct_definition.get_latest_struct_definition(); version_definition != nullptr; version_definition = version_definition->get_previous_struct_definition())
+		{
+			write_tag_types_source(stream, version_definition->fields);
+		}
+	}
+}
+
 void c_blamtoozle_source_generator::write_tag_types_source(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields)
 {
 	for (auto& _field : fields)
@@ -321,76 +547,14 @@ void c_blamtoozle_source_generator::write_tag_types_source(std::stringstream& st
 			{
 				c_blamtoozle_string_list_definition* string_list_definition = tag_field->get_string_list_definition();
 				ASSERT(string_list_definition != nullptr);
-
-				if (!is_string_list_exported(*string_list_definition))
-				{
-					if (string_list_definition->options.size() > 0)
-					{
-						stream << "\tSTRINGS(" << string_list_definition->get_code_symbol_name() << ")" << std::endl;
-						stream << "\t{" << std::endl;
-						for (unsigned long i = 0; i < string_list_definition->options.size(); i++)
-						{
-							const char* option = string_list_definition->options[i];
-							std::string escaped_option = escape_string(option);
-							if (escaped_option.empty()) escaped_option = "unused";
-							if (i != string_list_definition->options.size() - 1)
-							{
-								stream << "\t\t\"" << escaped_option << "\"," << std::endl;
-							}
-							else
-							{
-								stream << "\t\t\"" << escaped_option << "\"" << std::endl;
-							}
-						}
-						stream << "\t};" << std::endl;
-
-						stream << "\tSTRING_LIST(" << string_list_definition->get_code_symbol_name() << ", " << string_list_definition->get_code_symbol_name() << "_strings, _countof(" << string_list_definition->get_code_symbol_name() << "_strings));" << std::endl;
-					}
-					else
-					{
-						stream << "\tSTRING_LIST(" << string_list_definition->get_code_symbol_name() << ", empty_string_list, 0);" << std::endl;
-					}
-
-					stream << std::endl;
-				}
+				write_string_list_source(stream, *string_list_definition);
 			}
 			break;
 			case blofeld::_field_tag_reference:
 			{
 				c_blamtoozle_tag_reference_definition* tag_reference_definition = tag_field->get_tag_reference_definition();
-				if (!is_tag_reference_exported(*tag_reference_definition))
-				{
-					if (tag_reference_definition->group_tags.size() > 1)
-					{
-						stream << "\tTAG_REFERENCE_GROUP(" << tag_reference_definition->get_code_symbol_name();
-						write_tag_reference_flags(stream, *tag_reference_definition);
-						stream << ")" << std::endl;
-						stream << "\t{" << std::endl;
-						bool first = true;
-						for (c_blamtoozle_tag_group_definition* group_definition : tag_reference_definition->tag_group_definitions)
-						{
-							stream << "\t\t" << group_definition->get_group_tag_macro_name() << "," << std::endl;
-							first = false;
-						}
-						stream << "\t\tINVALID_TAG" << std::endl;
-
-						stream << "\t};" << std::endl;
-					}
-					else if (tag_reference_definition->group_tags.size() == 1)
-					{
-						stream << "\tTAG_REFERENCE(" << tag_reference_definition->get_code_symbol_name() << ", " << tag_reference_definition->tag_group_definitions[0]->get_group_tag_macro_name();
-						write_tag_reference_flags(stream, *tag_reference_definition);
-						stream << ");" << std::endl;
-					}
-					else
-					{
-						stream << "\tTAG_REFERENCE(" << tag_reference_definition->get_code_symbol_name() << ", INVALID_TAG";
-						write_tag_reference_flags(stream, *tag_reference_definition);
-						stream << ");" << std::endl;
-					}
-
-					stream << std::endl;
-				}
+				ASSERT(tag_reference_definition != nullptr);
+				write_tag_reference_source(stream, *tag_reference_definition);
 			}
 			break;
 			}
@@ -481,19 +645,17 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_source(const w
 			c_blamtoozle_tag_struct_definition& struct_definition = block_definition.get_struct_definition();
 
 			stream << "\tTAG_GROUP(" << std::endl;
+			stream << "\t\t" << "\"" << group_definition->get_name() << "\"," << std::endl;
 			stream << "\t\t" << group_definition->get_code_symbol_name() << "," << std::endl;
-			//stream << "\t\t" << group_definition->get_display_name() << "_group," << std::endl;
 			stream << "\t\t" << group_definition->get_group_tag_macro_name() << "," << std::endl;
+			stream << "\t\t" << group_definition->get_version() << "," << std::endl;
 			if (c_blamtoozle_tag_group_definition* parent_group_definition = tag_definition_manager.get_tag_group_definition_by_group_tag(group_definition->get_parent_group_tag()))
 			{
 				stream << "\t\t&" << parent_group_definition->get_code_symbol_name() << "," << std::endl;
-				//stream << "\t\t&" << parent_group_definition->get_display_name() << "_group," << std::endl;
-				stream << "\t\t" << parent_group_definition->get_group_tag_macro_name() << "," << std::endl;
 			}
 			else
 			{
 				stream << "\t\t" << "nullptr," << std::endl;
-				stream << "\t\t" << "INVALID_TAG," << std::endl;
 			}
 			stream << "\t\t" << block_definition.get_code_symbol_name() << ");" << std::endl;
 			stream << std::endl;
@@ -505,7 +667,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_source(const w
 		{
 			c_blamtoozle_tag_struct_definition& struct_definition = block_definition->get_struct_definition();
 
-			stream << "\tTAG_BLOCK_FROM_STRUCT_V2(" << std::endl;
+			stream << "\tTAG_BLOCK_FROM_STRUCT(" << std::endl;
 			stream << "\t\t" << block_definition->get_code_symbol_name() << "," << std::endl;
 			stream << "\t\t" << "\"" << block_definition->get_display_name() << "\"," << std::endl;
 			stream << "\t\t" << "\"" << block_definition->get_name() << "\"," << std::endl;
@@ -531,96 +693,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_source(const w
 	}
 	for (auto& struct_definition : struct_definitions)
 	{
-		if (!is_struct_exported(*struct_definition))
-		{
-			const blofeld::s_tag_persistent_identifier& persistent_identifier = struct_definition->get_persistent_identifier();
-			char persistent_identifier_buffer[256];
-			snprintf(
-				persistent_identifier_buffer,
-				256,
-				"0x%08X, 0x%08X, 0x%08X, 0x%08X",
-				persistent_identifier.identifier_part_0,
-				persistent_identifier.identifier_part_1,
-				persistent_identifier.identifier_part_2,
-				persistent_identifier.identifier_part_3);
-
-			char persistent_identifier_name_buffer[256];
-			snprintf(
-				persistent_identifier_name_buffer,
-				256,
-				"%s_id",
-				struct_definition->get_code_symbol_name());
-			for (char* persistent_identifier_name_pos = persistent_identifier_name_buffer; *persistent_identifier_name_pos; persistent_identifier_name_pos++)
-			{
-				*persistent_identifier_name_pos = toupper(*persistent_identifier_name_pos);
-			}
-
-			//std::string runtime_flags = create_struct_definition_runtime_flags(tag_struct.runtime_flags, "\n\t\t");
-			//std::string memory_attributes = create_struct_definition_memory_attributes(tag_struct.memory_attributes.memory_type, tag_struct.memory_attributes.usage_flags, "\n\t\t");
-
-			stream << "\t#define " << persistent_identifier_name_buffer << " { " << persistent_identifier_buffer << " }" << std::nouppercase << std::endl;
-
-			stream << "\tTAG_STRUCT(" << std::endl;
-			stream << "\t\t" << struct_definition->get_code_symbol_name() << "," << std::endl;
-			stream << "\t\t" << "\"" << struct_definition->get_display_name() << "\"," << std::endl;
-			stream << "\t\t" << "\"" << struct_definition->get_name() << "\"," << std::endl;
-			stream << "\t\t" << "\"" << struct_definition->get_structure_type_name() << "\"," << std::endl;
-
-			c_flags<blofeld::e_tag_field_set_bit> default_flags;
-			default_flags.set(blofeld::_tag_field_set_unknown0_bit, true);
-			default_flags.set(blofeld::_tag_field_set_unknown1_bit, true);
-			default_flags.set(blofeld::_tag_field_set_has_aggregate_types_bit, true);
-			default_flags.set(blofeld::_tag_field_set_delete_recursively_bit, true);
-			default_flags.set(blofeld::_tag_field_set_postprocess_recursively_bit, true);
-
-			c_flags<blofeld::e_tag_field_set_bit> flags = struct_definition->get_field_set_bits();
-			if (flags.is_clear())
-			{
-				flags = default_flags;
-			}
-
-			if (flags == default_flags)
-			{
-				stream << "\t\t" << "SET_DEFAULT," << std::endl;
-			}
-			else
-			{
-				stream << "\t\t";
-				bool is_first = true;
-				for (__underlying_type(blofeld::e_tag_field_set_bit) _tag_field_set = 0; _tag_field_set < blofeld::k_num_runtime_flags; _tag_field_set++)
-				{
-					blofeld::e_tag_field_set_bit tag_field_set = static_cast<blofeld::e_tag_field_set_bit>(_tag_field_set);
-					if (flags.test(tag_field_set))
-					{
-						const char* macro = tag_field_set_bit_to_field_set_bit_macro(tag_field_set);
-
-						if (!is_first)
-						{
-							stream << " | ";
-						}
-
-						stream << macro;
-
-						is_first = false;
-					}
-				}
-				stream << "," << std::endl;
-			}
-			stream << "\t\t" << "TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY)," << std::endl;
-			stream << "\t\t" << persistent_identifier_name_buffer;
-			if (struct_definition->get_alignment_bits())
-			{
-				stream << "," << std::endl;
-				stream << "\t\t" << struct_definition->get_alignment_bits();
-			}
-			stream << ")" << std::endl;
-			stream << "\t" << "{" << std::endl;
-			write_fields(stream, struct_definition->fields);
-			stream << "\t" << "};" << std::endl;
-			stream << std::endl;
-
-			write_tag_types_source(stream, struct_definition->fields);
-		}
+		write_tag_struct_source(stream, *struct_definition);
 	}
 	for (auto& data_definition : data_definitions)
 	{
@@ -657,35 +730,18 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_source(const w
 		{
 			c_blamtoozle_tag_struct_definition& struct_definition = api_interop_definition->get_struct_definition();
 
-			const blofeld::s_tag_persistent_identifier& persistent_identifier = api_interop_definition->get_persistent_identifier();
-			char persistent_identifier_buffer[256];
-			snprintf(
-				persistent_identifier_buffer,
-				256,
-				"0x%08X, 0x%08X, 0x%08X, 0x%08X",
-				persistent_identifier.identifier_part_0,
-				persistent_identifier.identifier_part_1,
-				persistent_identifier.identifier_part_2,
-				persistent_identifier.identifier_part_3);
-
-			char persistent_identifier_name_buffer[256];
-			snprintf(
-				persistent_identifier_name_buffer,
-				256,
-				"%s_id",
-				api_interop_definition->get_code_symbol_name());
-			for (char* persistent_identifier_name_pos = persistent_identifier_name_buffer; *persistent_identifier_name_pos; persistent_identifier_name_pos++)
-			{
-				*persistent_identifier_name_pos = toupper(*persistent_identifier_name_pos);
-			}
-
-			stream << "\t#define " << persistent_identifier_name_buffer << " { " << persistent_identifier_buffer << " }" << std::nouppercase << std::endl;
+			std::string persistent_identifier_macro_name;
+			write_persistent_identifier_macro(
+				stream,
+				api_interop_definition->get_persistent_identifier(),
+				api_interop_definition->get_code_symbol_name(),
+				persistent_identifier_macro_name);
 
 			stream << "\tTAG_INTEROP(" << std::endl;
 			stream << "\t\t" << api_interop_definition->get_code_symbol_name() << "," << std::endl;
 			stream << "\t\t" << "\"" << api_interop_definition->get_code_symbol_name() << "\"," << std::endl;
 			stream << "\t\t" << struct_definition.get_code_symbol_name() << "," << std::endl;
-			stream << "\t\t" << persistent_identifier_name_buffer << ");" << std::endl;
+			stream << "\t\t" << persistent_identifier_macro_name << ");" << std::endl;
 			stream << std::endl;
 		}
 	}
@@ -700,7 +756,6 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_source(const w
 			stream << std::endl;
 		}
 	}
-
 
 	stream << std::endl;
 	if (platform_namespace)
@@ -829,7 +884,7 @@ const char* c_blamtoozle_source_generator::tag_field_set_bit_to_field_set_bit_ma
 	case blofeld::_tag_field_set_has_inlined_children_with_placement_new_bit:		return "SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW";
 	case blofeld::_tag_field_set_unknown3_bit:										return "SET_UNKNOWN3";
 	case blofeld::_tag_field_set_unknown4_bit:										return "SET_UNKNOWN4";
-	case blofeld::_tag_field_set_has_aggregate_types_bit:										return "SET_UNKNOWN5";
+	case blofeld::_tag_field_set_has_aggregate_types_bit:							return "SET_UNKNOWN5";
 	case blofeld::_tag_field_set_is_temporary_bit:									return "SET_IS_TEMPORARY";
 	case blofeld::_tag_field_set_unknown7_bit:										return "SET_UNKNOWN7";
 	case blofeld::_tag_field_set_unknown8_bit:										return "SET_UNKNOWN8";
@@ -843,12 +898,12 @@ const char* c_blamtoozle_source_generator::tag_field_set_bit_to_field_set_bit_ma
 	case blofeld::_tag_field_set_has_level_specific_fields_bit:						return "SET_HAS_LEVEL_SPECIFIC_FIELDS";
 	case blofeld::_tag_field_set_can_memset_to_initialize_bit:						return "SET_CAN_MEMSET_TO_INITIALIZE";
 	case blofeld::_tag_field_set_unknown18_bit:										return "SET_UNKNOWN18";
-	case blofeld::_tag_field_set_exist_in_cache_build_bit:										return "SET_UNKNOWN19";
+	case blofeld::_tag_field_set_exist_in_cache_build_bit:							return "SET_EXIST_IN_CACHE_BUILD";
 	}
 	throw;
 }
 
-void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields)
+void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields, bool write_terminator)
 {
 	for (auto& _field : fields)
 	{
@@ -1206,17 +1261,24 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << ", ";
 					write_tag_field_flags(stream, string_parser);
 				}
+
+				c_blamtoozle_tag_struct_definition* field_struct_definition = tag_field->get_struct_definition();
 				ASSERT(tag_field->get_struct_definition());
-				if (tag_field->get_struct_definition())
-				{
-					stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << tag_field->get_struct_definition()->get_code_symbol_name();
-				}
+				c_blamtoozle_tag_struct_definition& latest_struct_definition = field_struct_definition->get_latest_struct_definition();
+
+
+				stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << latest_struct_definition.get_code_symbol_name();
 				if (write_tag)
 				{
 					stream << ", " << field_id_string;
 				}
 
-				stream << " }," << std::endl;
+				stream << " },";
+				if (&latest_struct_definition != field_struct_definition)
+				{
+					stream << " // structure_version:" << field_struct_definition->get_structure_version();
+				}
+				stream << std::endl;
 			}
 			break;
 			case blofeld::_field_api_interop:
@@ -1433,7 +1495,10 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			break;
 			case blofeld::_field_terminator:
 			{
-				stream << "\t\t{ _field_terminator }" << std::endl;
+				if (write_terminator)
+				{
+					stream << "\t\t{ _field_terminator }" << std::endl;
+				}
 			}
 			break;
 			case blofeld::_field_char_enum:
@@ -1442,6 +1507,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			case blofeld::_field_long_flags:
 			case blofeld::_field_word_flags:
 			case blofeld::_field_byte_flags:
+			{
 				stream << "\t\t{ ";
 				stream << field_generic_type_name << ", ";
 				stream << "\"" << display_name.c_str() << "\"";
@@ -1469,10 +1535,11 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << ", ";
 					write_tag_field_flags(stream, string_parser);
 				}
-				ASSERT(tag_field->get_string_list_definition());
-				if (tag_field->get_string_list_definition())
+				c_blamtoozle_string_list_definition* string_list_definition = tag_field->get_string_list_definition();
+				ASSERT(string_list_definition);
+				if (string_list_definition)
 				{
-					stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << tag_field->get_string_list_definition()->get_code_symbol_name();
+					stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << string_list_definition->get_code_symbol_name();
 				}
 				if (write_tag)
 				{
@@ -1480,7 +1547,8 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				}
 
 				stream << " }," << std::endl;
-				break;
+			}
+			break;
 			default:
 			{
 				stream << "\t\t{ ";
@@ -1559,11 +1627,13 @@ void c_blamtoozle_source_generator::write_tag_field_flags(std::stringstream& str
 	}
 }
 
+#include <set>
+
 void c_blamtoozle_source_generator::coerce_definitions()
 {
 #define coerce_definition(input, output, helpers) for (auto& definition : input) { output.emplace_back(definition); helpers.emplace_back(definition); }
 	coerce_definition(tag_definition_manager.tag_group_definitions, group_definitions, group_definitions_helpers);
-	coerce_definition(tag_definition_manager.tag_struct_definitions, struct_definitions, struct_definitions_helpers);
+	//coerce_definition(tag_definition_manager.tag_struct_definitions, struct_definitions, struct_definitions_helpers);
 	coerce_definition(tag_definition_manager.tag_block_definitions, block_definitions, block_definitions_helpers);
 	coerce_definition(tag_definition_manager.tag_reference_definitions, tag_reference_definitions, tag_reference_definitions_helpers);
 	coerce_definition(tag_definition_manager.tag_array_definitions, array_definitions, array_definitions_helpers);
@@ -1573,6 +1643,29 @@ void c_blamtoozle_source_generator::coerce_definitions()
 	coerce_definition(tag_definition_manager.tag_api_interop_definitions, api_interop_definitions, api_interop_definitions_helpers);
 	coerce_definition(tag_definition_manager.block_index_custom_search_definitions, block_index_custom_search_definitions, block_index_custom_search_definitions_helpers);
 #undef coerce_definition
+
+	std::set<c_blamtoozle_tag_struct_definition*> unique;
+
+	for (c_blamtoozle_tag_struct_definition*& definition : tag_definition_manager.tag_struct_definitions)
+	{
+		c_blamtoozle_tag_struct_definition& latest = definition->get_latest_struct_definition();
+		ASSERT(latest.is_latest_structure_version());
+		unique.insert(&latest);
+
+		//output.emplace_back(definition); 
+		//helpers.emplace_back(definition); 
+	}
+	for (c_blamtoozle_tag_struct_definition* definition : unique)
+	{
+		ASSERT(definition->is_latest_structure_version());
+	}
+	for (c_blamtoozle_tag_struct_definition* definition : unique)
+	{
+		struct_definitions.emplace_back(definition);
+		struct_definitions_helpers.emplace_back(definition);
+	}
+
+	debug_point;
 }
 
 void c_blamtoozle_source_generator::clear_is_exported()

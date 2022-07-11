@@ -44,11 +44,8 @@ template<> void byteswap_inplace(s_reach_x360_tag_struct_legacy& value)
 	byteswap_inplace(value.legacy_version);
 	byteswap_inplace(value.unknown_struct);
 	byteswap_inplace(value.legacy_version_count);
-	byteswap_inplace(value.current_struct);
+	byteswap_inplace(value.previous_version_struct);
 	byteswap_inplace(value.is_legacy_field_set);
-	byteswap_inplace(value.padding4D);
-	byteswap_inplace(value.padding4E);
-	byteswap_inplace(value.padding4F);
 }
 
 template<> void byteswap_inplace(s_reach_x360_tag_struct_type& value)
@@ -89,8 +86,8 @@ c_reach_x360_tag_struct_definition::c_reach_x360_tag_struct_definition(c_reach_x
 	code_type_name(),
 	traversed_tag_group_definition(*c_reach_x360_tag_group_definition::current_group_traverse_hack),
 	conflict_handled(false),
-	unknown_struct_definition(),
-	previous_version_struct_definition()
+	previous_version_struct_definition(),
+	next_version_struct_definition()
 {
 
 
@@ -112,38 +109,12 @@ c_reach_x360_tag_struct_definition::c_reach_x360_tag_struct_definition(c_reach_x
 		fields_address += sizeof(s_reach_x360_tag_field);
 	} while (tag_field->get_field_type() != blofeld::_field_terminator);
 
-
-
-
-
-	if (struct_definition.type.legacy.unknown_struct)
+	if (struct_definition.type.legacy.previous_version_struct)
 	{
-		unknown_struct_definition = &tag_definition_manager.eval_struct(struct_definition.type.legacy.unknown_struct);
-	}
-	if (struct_definition.type.legacy.current_struct)
-	{
-		previous_version_struct_definition = &tag_definition_manager.eval_struct(struct_definition.type.legacy.current_struct);
-	}
-
-	if (struct_definition.type.legacy.legacy_version >= 3)
-	{
+		previous_version_struct_definition = &tag_definition_manager.eval_struct(struct_definition.type.legacy.previous_version_struct);
+		previous_version_struct_definition->next_version_struct_definition = this;
 		debug_point;
 	}
-
-
-
-
-	if (struct_definition.type.legacy.unknown_struct)
-	{
-		debug_point;
-	}
-
-
-
-
-
-
-
 }
 
 c_reach_x360_tag_struct_definition::~c_reach_x360_tag_struct_definition()
@@ -188,6 +159,9 @@ long c_reach_x360_tag_struct_definition::get_line_number()
 
 blofeld::s_tag_persistent_identifier& c_reach_x360_tag_struct_definition::get_persistent_identifier()
 {
+	c_reach_x360_tag_struct_definition& latest_struct_definition = static_cast<c_reach_x360_tag_struct_definition&>(get_latest_struct_definition());
+	blofeld::s_tag_persistent_identifier& latest_persistent_identifier = latest_struct_definition.struct_definition.type.persistent_identifier;
+	ASSERT(latest_persistent_identifier == struct_definition.type.persistent_identifier); // sanity check
 	return struct_definition.type.persistent_identifier;
 }
 
@@ -277,116 +251,4 @@ c_flags<blofeld::e_tag_field_set_bit> c_reach_x360_tag_struct_definition::get_fi
 	}
 
 	return result;
-}
-
-void c_reach_x360_tag_struct_definition::handle_conflict(const c_blamtoozle_tag_struct_definition& _conflicting_tag_struct_definition)
-{
-	return;
-	const c_reach_x360_tag_struct_definition& conflicting_tag_struct_definition = static_cast<const c_reach_x360_tag_struct_definition&>(_conflicting_tag_struct_definition);
-	ASSERT(conflict_handled == false);
-	conflict_handled = true;
-
-	clear_fields(); // clear fields, they will be rebuild
-
-	// push the current definition header onto the back of the queue
-	//struct_definitions.insert(struct_definitions.end(), { conflicting_tag_struct_definition, c_reach_x360_tag_group_definition::current_group_traverse_hack });
-
-	// make sure that we can compare with the original otherwise all hope is lost
-	// and poor squaresome might have to rewrite the tag system again
-	ASSERT(struct_definition.runtime.original_fields == conflicting_tag_struct_definition.struct_definition.runtime.original_fields);
-	ASSERT(&traversed_tag_group_definition != &conflicting_tag_struct_definition.traversed_tag_group_definition);
-
-
-	// insert the original fields from the conflicting definition
-
-
-	t_fields conflicting_original_fields;
-	{
-		ptr32 fields_address = conflicting_tag_struct_definition.struct_definition.runtime.original_fields;
-		c_reach_x360_tag_field* tag_field = nullptr;
-		do
-		{
-			tag_field = new() c_reach_x360_tag_field(tag_definition_manager, fields_address);
-			conflicting_original_fields.push_back(tag_field);
-			fields_address += sizeof(s_reach_x360_tag_field);
-		} while (tag_field->get_field_type() != blofeld::_field_terminator);
-	}
-	t_fields conflicting_combined_fields;
-	{
-		ptr32 fields_address = conflicting_tag_struct_definition.struct_definition.runtime.combined_fields;
-		c_reach_x360_tag_field* tag_field = nullptr;
-		do
-		{
-			tag_field = new() c_reach_x360_tag_field(tag_definition_manager, fields_address);
-			conflicting_combined_fields.push_back(tag_field);
-			fields_address += sizeof(s_reach_x360_tag_field);
-		} while (tag_field->get_field_type() != blofeld::_field_terminator);
-	}
-
-	t_fields conflicting_fields;
-	{
-		ptr32 fields_address = conflicting_tag_struct_definition.struct_definition.type.fields_address;
-		c_reach_x360_tag_field* tag_field = nullptr;
-		do
-		{
-			tag_field = new() c_reach_x360_tag_field(tag_definition_manager, fields_address);
-			conflicting_fields.push_back(tag_field);
-			fields_address += sizeof(s_reach_x360_tag_field);
-		} while (tag_field->get_field_type() != blofeld::_field_terminator);
-	}
-
-
-
-
-	t_fields original_fields;
-	{
-		ptr32 fields_address = struct_definition.runtime.original_fields;
-		c_reach_x360_tag_field* tag_field = nullptr;
-		do
-		{
-			tag_field = new() c_reach_x360_tag_field(tag_definition_manager, fields_address);
-			original_fields.push_back(tag_field);
-			fields_address += sizeof(s_reach_x360_tag_field);
-		} while (tag_field->get_field_type() != blofeld::_field_terminator);
-	}
-	t_fields combined_fields;
-	{
-		ptr32 fields_address = struct_definition.runtime.combined_fields;
-		c_reach_x360_tag_field* tag_field = nullptr;
-		do
-		{
-			tag_field = new() c_reach_x360_tag_field(tag_definition_manager, fields_address);
-			combined_fields.push_back(tag_field);
-			fields_address += sizeof(s_reach_x360_tag_field);
-		} while (tag_field->get_field_type() != blofeld::_field_terminator);
-	}
-
-	t_fields fields;
-	{
-		ptr32 fields_address = struct_definition.type.fields_address;
-		c_reach_x360_tag_field* tag_field = nullptr;
-		do
-		{
-			tag_field = new() c_reach_x360_tag_field(tag_definition_manager, fields_address);
-			fields.push_back(tag_field);
-			fields_address += sizeof(s_reach_x360_tag_field);
-		} while (tag_field->get_field_type() != blofeld::_field_terminator);
-	}
-
-	unsigned long num_original_fields = static_cast<unsigned long>(fields.size());
-	fields.push_back(new() c_blamtoozle_tag_field_combined_fixup(traversed_tag_group_definition, num_original_fields, _blamtoozle_tag_field_combined_fixup_type_not_equal));
-	fields.insert(fields.end(), fields.begin(), fields.end() - 1);
-
-	fields.push_back(new() c_blamtoozle_tag_field_dummy_space());
-
-	unsigned long num_conflicting_fields = static_cast<unsigned long>(conflicting_fields.size());
-	fields.push_back(new() c_blamtoozle_tag_field_combined_fixup(conflicting_tag_struct_definition.traversed_tag_group_definition, num_conflicting_fields, _blamtoozle_tag_field_combined_fixup_type_equal));
-	fields.insert(fields.end(), conflicting_fields.begin(), conflicting_fields.end());
-
-	ASSERT(fields.size() > 0);
-	c_reach_x360_tag_field* last_field = dynamic_cast<c_reach_x360_tag_field*>(fields.back());
-	ASSERT(last_field != nullptr);
-	ASSERT(last_field->field_type == blofeld::_field_terminator);
-
-	
 }

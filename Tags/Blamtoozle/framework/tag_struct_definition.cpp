@@ -31,10 +31,6 @@ long c_blamtoozle_tag_struct_definition::get_line_number()
 	return -1;
 }
 
-void c_blamtoozle_tag_struct_definition::handle_conflict(const c_blamtoozle_tag_struct_definition& conflicting_tag_struct_definition)
-{
-}
-
 bool c_blamtoozle_tag_struct_definition::is_legacy_struct()
 {
 	return false;

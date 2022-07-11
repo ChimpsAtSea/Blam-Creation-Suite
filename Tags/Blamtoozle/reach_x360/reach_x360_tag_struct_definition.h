@@ -95,17 +95,14 @@ static_assert(k_reach_x360_tag_struct_runtime_size == 0x54);
 
 struct s_reach_x360_tag_struct_legacy
 {
-	unsigned long legacy_struct_tag;																						//48				30
-	unsigned long unknown34;																								//52				34
-	ptr32 upgrade_function;																									//56				38
-	unsigned long legacy_version;																							//60				3C
-	ptr32 unknown_struct; // s_tag_struct_definition																		//64				40
-	unsigned long legacy_version_count;																						//68				44
-	ptr32 current_struct;																									//72				48
-	bool is_legacy_field_set;																								//76				4C
-	bool padding4D;																											//77				4D
-	bool padding4E;																											//78				4E
-	bool padding4F;																											//79				4F
+	unsigned long legacy_struct_tag;
+	unsigned long unknown34;
+	ptr32 upgrade_function;
+	unsigned long legacy_version;
+	ptr32 unknown_struct; // s_tag_struct_definition																		
+	unsigned long legacy_version_count;
+	ptr32 previous_version_struct;
+	bool is_legacy_field_set;
 };
 constexpr size_t k_reach_x360_tag_struct_legacy_size = sizeof(s_reach_x360_tag_struct_legacy);
 static_assert(k_reach_x360_tag_struct_legacy_size == 0x20);
@@ -164,7 +161,6 @@ public:
 	virtual long get_line_number() override;
 	virtual blofeld::s_tag_persistent_identifier& get_persistent_identifier() override;
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() override;
-	virtual void handle_conflict(const c_blamtoozle_tag_struct_definition& conflicting_tag_struct_definition) override;
 
 protected:
 	ptr32 definition_address;
@@ -177,8 +173,6 @@ protected:
 	std::string code_type_name;
 	c_reach_x360_tag_group_definition& traversed_tag_group_definition;
 	bool conflict_handled;
-
-	c_reach_x360_tag_struct_definition* unknown_struct_definition;
 	c_reach_x360_tag_struct_definition* previous_version_struct_definition;
-
+	c_reach_x360_tag_struct_definition* next_version_struct_definition;
 };

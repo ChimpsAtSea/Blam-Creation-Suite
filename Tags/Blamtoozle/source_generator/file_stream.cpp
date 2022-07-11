@@ -16,6 +16,10 @@ void c_blamtoozle_file_stream::write()
 {
 	std::string stream_string = stream.str();
 
-	BCS_RESULT write_file_result = filesystem_write_file_from_memory(file_path, stream_string.c_str(), stream_string.size());
-	ASSERT(BCS_SUCCEEDED(write_file_result));
+	BCS_RESULT rs = filesystem_write_file_from_memory(file_path, stream_string.c_str(), stream_string.size(), _filesystem_write_mode_check_for_changes);
+	ASSERT(BCS_SUCCEEDED(rs));
+	if (rs != BCS_S_NO_CHANGES_MADE)
+	{
+		console_write_line("Updated %s", file_path);
+	}
 }

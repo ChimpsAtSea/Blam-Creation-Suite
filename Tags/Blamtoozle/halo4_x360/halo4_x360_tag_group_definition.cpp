@@ -68,6 +68,11 @@ const char* c_halo4_x360_tag_group_definition::get_group_tag_macro_name()
 	return group_tag_macro_name.c_str();
 }
 
+unsigned long c_halo4_x360_tag_group_definition::get_version()
+{
+	return group_definition.version;
+}
+
 tag c_halo4_x360_tag_group_definition::get_group_tag()
 {
 	return group_definition.group_tag;

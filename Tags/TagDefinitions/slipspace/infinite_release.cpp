@@ -5,18817 +5,18817 @@ namespace blofeld
 {
 namespace infinite_release {
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AnyTag_group,
 		ANYTAG_TAG,
 		nullptr,
 		INVALID_TAG,
 		anytag_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AmbientActionPointDefinitionTag_group,
 		AMBIENTACTIONPOINTDEFINITIONTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		ambientactionpointdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		abc_group,
 		ABC_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		abcsourcefiletag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AssetCollection_group,
 		ASSETCOLLECTION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		assetcollectiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ActorCellEntryTag_group,
 		ACTORCELLENTRYTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343aisquadconstructionactorcellentry_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		asset_dialogue_group,
 		ASSET_DIALOGUE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		assetdialoguetag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ai_dialogue_globals_group,
 		AI_DIALOGUE_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		ai_dialogue_definitions_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AirDropSystemGlobalsDefinition_group,
 		AIRDROPSYSTEMGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343aiairdropairdropsystemglobalsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AutoHlodSettings_group,
 		AUTOHLODSETTINGS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		autohlodsettings_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ai_globals_group,
 		AI_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_ai_globals_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		attached_light_cone_group,
 		ATTACHED_LIGHT_CONE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		attachedlightcone_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AnimatedMesh_group,
 		ANIMATEDMESH_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		animatedmesh_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		animglobals_group,
 		ANIMGLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		animglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		XAnimNodeGraph_group,
 		XANIMNODEGRAPH_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		exportedanimnodegraph_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AnimSet_group,
 		ANIMSET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		animsettag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		XAnimStateGraph_group,
 		XANIMSTATEGRAPH_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		animstategraph_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		antenna_group,
 		ANTENNA_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		antenna_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ActionPriorityDataDefinitionTag_group,
 		ACTIONPRIORITYDATADEFINITIONTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343actionsystemactionprioritydatadefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		asset_group,
 		ASSET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		assettag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		animation_skeleton_group,
 		ANIMATION_SKELETON_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		animation_skeleton_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		asset_sound_group,
 		ASSET_SOUND_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		assetsoundtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		asset_category_globals_group,
 		ASSET_CATEGORY_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		assetcategoryglobalstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		atmosphere_globals_group,
 		ATMOSPHERE_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_atmosphere_globals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AnimTokenGlobals_group,
 		ANIMTOKENGLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		animtokenglobalstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AudioThreatGlobals_group,
 		AUDIOTHREATGLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		audiogameaudiothreatglobalsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		death_program_selector_group,
 		DEATH_PROGRAM_SELECTOR_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_death_program_selector_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		BehaviorTree_group,
 		BEHAVIORTREE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		behaviortreedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		bink_group,
 		BINK_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_bink_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		bitmap_dictionary_group,
 		BITMAP_DICTIONARY_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		bitmapdictionarydefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		bitmap_group,
 		BITMAP_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		bitmapgroup_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		bitmap_usage_table_group,
 		BITMAP_USAGE_TABLE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		bitmapusagetable_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		bsp_lighting_volumes_group,
 		BSP_LIGHTING_VOLUMES_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		bsplightingvolumes_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		BenchmarkDefinition_group,
 		BENCHMARKDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343benchmarkbenchmarkdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		UnitBoostDefinition_group,
 		UNITBOOSTDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343unitsboostdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		BotGlobalsTag_group,
 		BOTGLOBALSTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		botglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		bitmap_package_settings_group,
 		BITMAP_PACKAGE_SETTINGS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		bitmappackagesettingstable_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		bsp_volumes_group,
 		BSP_VOLUMES_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		bspvolumes_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		CageDefinition_group,
 		CAGEDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343cagesystemcagedefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		CageGlobalsDefinition_group,
 		CAGEGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343cagesystemcageglobalsdefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		camera_animation_graph_group,
 		CAMERA_ANIMATION_GRAPH_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		cameraanimationgraph_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		UICameraPresets_group,
 		UICAMERAPRESETS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacecustomizationuicamerapresetstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		collision_damage_group,
 		COLLISION_DAMAGE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		collisiondamagedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		CollisionFilterDefinition_group,
 		COLLISIONFILTERDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343physicscollisionfilterdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		camera_fx_settings_group,
 		CAMERA_FX_SETTINGS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		c_camera_fx_settings_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		character_group,
 		CHARACTER_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		character_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		chroma_definition_group,
 		CHROMA_DEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		chromaanimationsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		chroma_group,
 		CHROMA_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		chromafiletag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		collisionLayerAuditConfigurationTag_group,
 		COLLISIONLAYERAUDITCONFIGURATIONTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343physicscollisionlayerauditconfigurationtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		animclip_group,
 		ANIMCLIP_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		animcliptag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		cloth_group,
 		CLOTH_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		cloth_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		camo_group,
 		CAMO_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_camo_effect_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		CampaignGlobalsDefinition_group,
 		CAMPAIGNGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343campaignglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		composition_scene_group,
 		COMPOSITION_SCENE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		compositionscene_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		composer_transition_group,
 		COMPOSER_TRANSITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		composertransition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		CampaignUpgrades_group,
 		CAMPAIGNUPGRADES_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343equipmentupgradecampaignupgrades_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		controller_mapping_group,
 		CONTROLLER_MAPPING_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_controller_mapping_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		Conversation_group,
 		CONVERSATION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343narrativeconversationtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ConversationTypes_group,
 		CONVERSATIONTYPES_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343narrativeconversationtypestag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		CollectiblesDefinition_group,
 		COLLECTIBLESDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343collectiblescollectiblesdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		collision_model_group,
 		COLLISION_MODEL_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		collision_model_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		color_table_group,
 		COLOR_TABLE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		color_table_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		custom_object_lighting_group,
 		CUSTOM_OBJECT_LIGHTING_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		customobjectlightingtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		composition_group,
 		COMPOSITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		compositiondefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		cheap_particle_emitter_group,
 		CHEAP_PARTICLE_EMITTER_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		cheapparticleemitter_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		cheap_particle_type_library_group,
 		CHEAP_PARTICLE_TYPE_LIBRARY_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		cheapparticletypelibrary_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		camera_shake_group,
 		CAMERA_SHAKE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_camera_shake_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		cui_resources_group,
 		CUI_RESOURCES_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		cuiresourcesdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		CurveDefinition_group,
 		CURVEDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343curvecurvedefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		cui_screen_group,
 		CUI_SCREEN_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		cuiscreendefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		cui_static_data_group,
 		CUI_STATIC_DATA_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_cui_static_data_group_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		CoatingMaterialSet_group,
 		COATINGMATERIALSET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		coatingmaterialsettag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		damage_group,
 		DAMAGE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		damagetag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		decorator_asset_group,
 		DECORATOR_ASSET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		decoratorassettag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		dispositionColors_group,
 		DISPOSITIONCOLORS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		dispositioncolorgroupdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		decorator_palette_group,
 		DECORATOR_PALETTE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343decoratorsdecoratorpalettetag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		runtime_dec_group,
 		RUNTIME_DEC_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343decoratorsdecoratorruntimetag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		decorator_settings_group,
 		DECORATOR_SETTINGS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		decoratorsettingstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		decal_system_group,
 		DECAL_SYSTEM_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		c_decal_system_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		damage_effect_sounds_group,
 		DAMAGE_EFFECT_SOUNDS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343damagedamageeffectsoundsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		DarkRoomAssembly_group,
 		DARKROOMASSEMBLY_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343darkroomdarkroomassemblydefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		DarkRoomAssetSpec_group,
 		DARKROOMASSETSPEC_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343darkroomassetspecdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		DarkRoomCameraSpec_group,
 		DARKROOMCAMERASPEC_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343darkroomcameraspecdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		DarkRoomLightingSpec_group,
 		DARKROOMLIGHTINGSPEC_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343darkroomlightingspecdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		DarkRoomAnimationSpec_group,
 		DARKROOMANIMATIONSPEC_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343darkroomanimationspecdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		DarkRoomRenderSettingsSpec_group,
 		DARKROOMRENDERSETTINGSSPEC_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343darkroomrendersettingsspecdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		DarkRoomShotList_group,
 		DARKROOMSHOTLIST_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343darkroomshotlistdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		DarkRoomScreenshotSettingsSpec_group,
 		DARKROOMSCREENSHOTSETTINGSSPEC_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343darkroomscreenshotsettingsspecdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		damage_response_definition_group,
 		DAMAGE_RESPONSE_DEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_damage_response_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		DamageReportingDisplayGlobals_group,
 		DAMAGEREPORTINGDISPLAYGLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacedamagereportingdisplayglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		dialogue_system_data_group,
 		DIALOGUE_SYSTEM_DATA_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		dialoguesystemdatatag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		DynamicWorldStateGlobals_group,
 		DYNAMICWORLDSTATEGLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		dynamicworldstateglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ExportedEncounterBehaviorTreeDefinition_group,
 		EXPORTEDENCOUNTERBEHAVIORTREEDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		exportedebtdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		effect_exposure_group,
 		EFFECT_EXPOSURE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		effectexposuredefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		effect_group,
 		EFFECT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		effect_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		effect_globals_group,
 		EFFECT_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		effectglobalsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		generator_system_group,
 		GENERATOR_SYSTEM_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343effectsgeneratorsystemdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		effect_wind_group,
 		EFFECT_WIND_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343effectseffectwindmotor_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		effect_global_force_group,
 		EFFECT_GLOBAL_FORCE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		effectglobalforcedefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		emblem_globals_group,
 		EMBLEM_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343emblemglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		emblem_group,
 		EMBLEM_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343emblemdefinitionsemblem_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		emblem_theme_globals_group,
 		EMBLEM_THEME_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfaceemblemthemeglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		emitter_group,
 		EMITTER_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		emittertag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		explicitshaders_group,
 		EXPLICITSHADERS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		explicitshaders_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ExplicitShaderTable_group,
 		EXPLICITSHADERTABLE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		explicitshadertable_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ForwardFastLighting_group,
 		FORWARDFASTLIGHTING_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343graphicsforwardfastlightingtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		FanfareDefinition_group,
 		FANFAREDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		enginefanfarefanfaredefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		FixedDepthQuadTree_group,
 		FIXEDDEPTHQUADTREE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		fixeddepthquadtree_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AnimFrameEvents_group,
 		ANIMFRAMEEVENTS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		animationframeeventlist_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AnimFrameEventsAudio_group,
 		ANIMFRAMEEVENTSAUDIO_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		animationframeeventlistaudio_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AnimFrameEventsFx_group,
 		ANIMFRAMEEVENTSFX_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		animationframeeventlisteffects_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AnimFrameEventsAudio_v0_group,
 		ANIMFRAMEEVENTSAUDIO_V0_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		animationframeeventlistaudio_v0_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AnimFrameEventsFx_v0_group,
 		ANIMFRAMEEVENTSFX_V0_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		animationframeeventlisteffects_v0_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		frame_event_list_audio_group,
 		FRAME_EVENT_LIST_AUDIO_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		c_animation_frame_event_list_audio_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		frame_event_list_anim_group,
 		FRAME_EVENT_LIST_ANIM_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		c_animation_frame_event_list_anim_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		frame_event_list_effect_group,
 		FRAME_EVENT_LIST_EFFECT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		c_animation_frame_event_list_effect_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		flock_group,
 		FLOCK_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		aiflocktag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		flinch_impulse_group,
 		FLINCH_IMPULSE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343flinchflinchimpulsedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		flinch_system_group,
 		FLINCH_SYSTEM_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343flinchflinchsystemdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		forge_looping_sound_categories_group,
 		FORGE_LOOPING_SOUND_CATEGORIES_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		forgeloopingsoundcategories_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		typeface_group,
 		TYPEFACE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		typefacedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ForgeNamedTagLists_group,
 		FORGENAMEDTAGLISTS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		forgenamedtaglists_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		wpf_font_set_group,
 		WPF_FONT_SET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		wpffontsetdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		foliage_asset_group,
 		FOLIAGE_ASSET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		foliageassettag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		atmosphere_fog_group,
 		ATMOSPHERE_FOG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_atmosphere_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		forgekit_group,
 		FORGEKIT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		forgeengineforgekitdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		wpf_font_group,
 		WPF_FONT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		wpffontdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ForgeObjectData_group,
 		FORGEOBJECTDATA_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		forgeengineforgeobjectdata_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ForgeObjectManifest_group,
 		FORGEOBJECTMANIFEST_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		forgeengineforgeobjectmanifest_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		material_effects_group,
 		MATERIAL_EFFECTS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_material_effects_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		forge_sounds_group,
 		FORGE_SOUNDS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		forgeactionsoundsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		forge_globals_group,
 		FORGE_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		forgeglobalsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		formation_group,
 		FORMATION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_formation_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ForgeObjectScriptPropertyMenuItemDefinitions_group,
 		FORGEOBJECTSCRIPTPROPERTYMENUITEMDEFINITIONS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		forgeengineforgeobjectscriptpropertymenuitemdefinitioncollection_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ForgePaletteDefinition_group,
 		FORGEPALETTEDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343objectsforgepalettedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		frame_event_list_group,
 		FRAME_EVENT_LIST_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		c_animation_frame_event_list_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ForgeSoundListDefinition_group,
 		FORGESOUNDLISTDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		engineforgesoundlistdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		forge_sound_response_sounds_group,
 		FORGE_SOUND_RESPONSE_SOUNDS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		forgesoundresponsesounds_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ForgeTelescopingAsset_group,
 		FORGETELESCOPINGASSET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		forgeenginetelescopingassettag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ComponentDefinition_group,
 		COMPONENTDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacefasthudcomponentdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ScreenDefinition_group,
 		SCREENDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacefasthudscreendefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		effectKit_group,
 		EFFECTKIT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		effectkittag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		game_engine_globals_group,
 		GAME_ENGINE_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_game_engine_globals_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		GraphicsPresetDefinitions_group,
 		GRAPHICSPRESETDEFINITIONS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		presetdefinitionstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		game_globals_grenade_list_group,
 		GAME_GLOBALS_GRENADE_LIST_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		gameglobalsgrenadelist_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		HighlightEventsGlobals_group,
 		HIGHLIGHTEVENTSGLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		highlighteventsglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		CameraGlobalsDefinition_group,
 		CAMERAGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343cameraglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		CheatGlobalsDefinition_group,
 		CHEATGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343cheatglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ComposerGlobalsDefinition_group,
 		COMPOSERGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343composerglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ControlGlobalsDefinition_group,
 		CONTROLGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343controlglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ColorGlobalsDefinition_group,
 		COLORGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343colorglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		DamageGlobalsDefinition_group,
 		DAMAGEGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343damageglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		cheap_light_group,
 		CHEAP_LIGHT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_cheap_light_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		DifficultyGlobalsDefinition_group,
 		DIFFICULTYGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343difficultyglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		GarbageCollectionGlobalsDefinition_group,
 		GARBAGECOLLECTIONGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343garbagecollectionglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		GameplayObjectGlobalsDefinition_group,
 		GAMEPLAYOBJECTGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343gameplayobjectglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		InterfaceGlobalsDefinition_group,
 		INTERFACEGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343interfaceglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		LOCGlobalsDefinition_group,
 		LOCGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343locglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		MaterialGlobalsDefinition_group,
 		MATERIALGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343materialglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		PlayerGlobalsDefinition_group,
 		PLAYERGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343playerglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SkillRankingGlobalsDefinition_group,
 		SKILLRANKINGGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343skillrankingglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SkullGlobalsDefinition_group,
 		SKULLGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343skullglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SoftCeilingGlobalsDefinition_group,
 		SOFTCEILINGGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343softceilingglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SubtitleGlobalsDefinition_group,
 		SUBTITLEGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343subtitleglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		game_medal_globals_group,
 		GAME_MEDAL_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_game_medal_globals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		GenericModifierDefinitionTag_group,
 		GENERICMODIFIERDEFINITIONTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343malleablepropertygenericmodifierdefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		game_performance_throttle_group,
 		GAME_PERFORMANCE_THROTTLE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_game_performance_throttle_definitions_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		grounded_friction_group,
 		GROUNDED_FRICTION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_grounded_friction_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		geometry_group,
 		GEOMETRY_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		geometrytag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		hair_group,
 		HAIR_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343graphicshairprofiletag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		HlodSystem_group,
 		HLODSYSTEM_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		hlodsystem_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		hlod_metadata_group,
 		HLOD_METADATA_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		hlodmetadata_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		hlodcutoffmateriallist_group,
 		HLODCUTOFFMATERIALLIST_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		hlodmaterialcutofflist_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		model_group,
 		MODEL_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_model_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		hlodpresets_group,
 		HLODPRESETS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		hlodsettingspresetlist_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		hlodsettings_group,
 		HLODSETTINGS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		hlodsettings_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		hologram_lighting_group,
 		HOLOGRAM_LIGHTING_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		hologramlightingtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		lua_group,
 		LUA_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		hssourcefiletag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		script_container_group,
 		SCRIPT_CONTAINER_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		hsscriptcontainer_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		HighlightServiceGlobalsDefinition_group,
 		HIGHLIGHTSERVICEGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343highlightservicehighlightserviceglobalsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		InGameMapMaterialVariations_group,
 		INGAMEMAPMATERIALVARIATIONS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		ingamemapmaterialvariationstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		impostor_group,
 		IMPOSTOR_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		impostortag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		InputBundleSet_group,
 		INPUTBUNDLESET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		inputbundleset_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		InputBundle_group,
 		INPUTBUNDLE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		inputbundle_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		InputDeviceBindings_group,
 		INPUTDEVICEBINDINGS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		inputdevicebindings_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		InputMode_group,
 		INPUTMODE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		inputmode_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		InputScope_group,
 		INPUTSCOPE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		inputscopetag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		interaction_group,
 		INTERACTION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interactiondefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		model_animation_graph_group,
 		MODEL_ANIMATION_GRAPH_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		c_model_animation_graph_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		damage_effect_group,
 		DAMAGE_EFFECT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_damage_effect_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		KitCollection_group,
 		KITCOLLECTION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		kitcollectiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		knockbackresponseoverrideset_group,
 		KNOCKBACKRESPONSEOVERRIDESET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343equipmentknockbackresponseoverrideset_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		LegacyAnimSet_group,
 		LEGACYANIMSET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		legacyanimsettag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		lens_flare_group,
 		LENS_FLARE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_lens_flare_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		loadout_globals_definition_group,
 		LOADOUT_GLOBALS_DEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_loadout_globals_tag_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AnimationLibraryAudio_group,
 		ANIMATIONLIBRARYAUDIO_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		animationlibraryaudio_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AnimationLibraryFx_group,
 		ANIMATIONLIBRARYFX_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		animationlibraryeffects_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		light_cone_group,
 		LIGHT_CONE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		lightconedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		light_group,
 		LIGHT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		dynamiclight_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		LightGroup_group,
 		LIGHTGROUP_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		lightgrouptag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		LevelObjects_group,
 		LEVELOBJECTS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		levelobjects_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		location_name_globals_definition_group,
 		LOCATION_NAME_GLOBALS_DEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_location_name_globals_tag_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		lodsettings_group,
 		LODSETTINGS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		lodsettingstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		LevelStaticGeo_group,
 		LEVELSTATICGEO_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343levelstaticgeotag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		sound_looping_group,
 		SOUND_LOOPING_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		loopingsoundtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		leaf_system_group,
 		LEAF_SYSTEM_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_leaf_system_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		UILightPresets_group,
 		UILIGHTPRESETS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacecustomizationuilightpresetstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		light_volume_system_group,
 		LIGHT_VOLUME_SYSTEM_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		c_light_volume_system_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		lua_script_group,
 		LUA_SCRIPT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		luascripttagdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		InGameMapAssets_group,
 		INGAMEMAPASSETS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		ingamemapasyncloadedassets_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		InGameMapSettings_group,
 		INGAMEMAPSETTINGS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		ingamemapsettingstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		material_group,
 		MATERIAL_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		materialtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		globals_group,
 		GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_game_globals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		MaterialPreset_group,
 		MATERIALPRESET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		materialpreset_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		model_dissolve_definition_group,
 		MODEL_DISSOLVE_DEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		modeldissolvedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		MeleeAdditionalDamage_group,
 		MELEEADDITIONALDAMAGE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343meleemeleeadditionaldamagetag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		MeleeFrameAttachment_group,
 		MELEEFRAMEATTACHMENT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343meleemeleeframeattachmenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		materialeffectsglobals_group,
 		MATERIALEFFECTSGLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343materialeffectsglobalsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		MeleeGlobals_group,
 		MELEEGLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343meleemeleeglobalsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		render_model_group,
 		RENDER_MODEL_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		render_model_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		multiplayer_object_type_list_group,
 		MULTIPLAYER_OBJECT_TYPE_LIST_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_multiplayer_object_type_list_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		marker_group,
 		MARKER_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		markertag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		MotionTrackerAttachment_group,
 		MOTIONTRACKERATTACHMENT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343unitsmotiontrackerattachmentdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		musketeer_toe_definition_tag_group,
 		MUSKETEER_TOE_DEFINITION_TAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		musketeertoedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		multiplayer_globals_group,
 		MULTIPLAYER_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_multiplayer_globals_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		music_control_group,
 		MUSIC_CONTROL_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		musiccontroldefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		MaterialPalette_group,
 		MATERIALPALETTE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		materialpalettetag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		MaterialSwatch_group,
 		MATERIALSWATCH_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		materialswatchtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		MaterialStyles_group,
 		MATERIALSTYLES_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		materialstylestag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		MaterialVisorSwatch_group,
 		MATERIALVISORSWATCH_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		materialvisorswatchtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		NavigationGlobals_group,
 		NAVIGATIONGLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		navigationglobalsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		NarrativeGlobals_group,
 		NARRATIVEGLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343narrativenarrativeglobalstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		NavPointAnimationDefinition_group,
 		NAVPOINTANIMATIONDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacenavpointnavpointanimationdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		NavPointLayoutDefinition_group,
 		NAVPOINTLAYOUTDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacenavpointnavpointlayoutdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		NavPointParametersTag_group,
 		NAVPOINTPARAMETERSTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacenavpointnavpointparameterstagdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		NodeGraph_group,
 		NODEGRAPH_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		nodegraphcontentnodegraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		node_graph_stack_group,
 		NODE_GRAPH_STACK_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacenodegraphnodegraphstackdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		CurvedMalleablePropertyTag_group,
 		CURVEDMALLEABLEPROPERTYTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343narrativemalleablepropertydefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		NarrativeNodeGraph_group,
 		NARRATIVENODEGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentnarrativenodegraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		NarrationPhonemes_group,
 		NARRATIONPHONEMES_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacenarrationnarrationphonemesgroup_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		NavPointAnimationGroup_group,
 		NAVPOINTANIMATIONGROUP_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacenavpointnavpointanimationgrouptag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		NavPointPresentation_group,
 		NAVPOINTPRESENTATION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacenavpointnavpointpresentationtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		objectattachmentsdefinition_group,
 		OBJECTATTACHMENTSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343objectsobjectattachments_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ObjectiveNodeGraph_group,
 		OBJECTIVENODEGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentobjectivebehaviorcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		UIObjectCustomization_group,
 		UIOBJECTCUSTOMIZATION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacecustomizationuiobjectcustomizationdatatag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		object_group,
 		OBJECT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		objectdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		customizationattachmentconfiguration_group,
 		CUSTOMIZATIONATTACHMENTCONFIGURATION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343objectcustomizationattachmentconfiguration_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		EffectOverride_group,
 		EFFECTOVERRIDE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343objectcustomizationeffectoverride_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		object_configuration_group,
 		OBJECT_CONFIGURATION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343objectsobjectconfigurationdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		customizationglobalsdefinition_group,
 		CUSTOMIZATIONGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343objectcustomizationglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		customizationthemeconfiguration_group,
 		CUSTOMIZATIONTHEMECONFIGURATION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343objectcustomizationthemeconfiguration_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		customizationvehiclethemeconfiguration_group,
 		CUSTOMIZATIONVEHICLETHEMECONFIGURATION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343objectcustomizationvehiclethemeconfiguration_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		customizationweaponthemeconfiguration_group,
 		CUSTOMIZATIONWEAPONTHEMECONFIGURATION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343objectcustomizationweaponthemeconfiguration_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		object_dispenser_component_group,
 		OBJECT_DISPENSER_COMPONENT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343objectdispenserdispensercomponentdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		DockingSiteDefinition_group,
 		DOCKINGSITEDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343objectsdockingsitedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ObjectNodeGraph_group,
 		OBJECTNODEGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentobjectnodegraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		objectnodegraph_globals_group,
 		OBJECTNODEGRAPH_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343objectsobjectnodegraphglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ObjBhvTreeNG_group,
 		OBJBHVTREENG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		objectivebehaviortreenodegraph_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		OutlineServiceGlobalsDefinition_group,
 		OUTLINESERVICEGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343outlineserviceoutlineserviceglobalsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		OutlineTypeDefinition_group,
 		OUTLINETYPEDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343outlineservicetypedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		PainterBrush_group,
 		PAINTERBRUSH_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343graphicspainterbrushdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		UIPersonalAiSounds_group,
 		UIPERSONALAISOUNDS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacecustomizationuipersonalaisoundstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ParticleAsset_group,
 		PARTICLEASSET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		particleassettag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		PropertyBasedEffectsTag_group,
 		PROPERTYBASEDEFFECTSTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343propertybasedeffectstagdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		pca_animation_group,
 		PCA_ANIMATION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		pcaanimationtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		particle_emitter_custom_points_group,
 		PARTICLE_EMITTER_CUSTOM_POINTS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_particle_emitter_custom_points_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		performance_throttles_group,
 		PERFORMANCE_THROTTLES_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		c_performance_throttles_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		pathfinding_group,
 		PATHFINDING_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		ai_pathfinding_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ClamberingDefinition_group,
 		CLAMBERINGDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343physicscharacterclamberingdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		physics_model_group,
 		PHYSICS_MODEL_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343physicsmodelphysicsmodeldefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		PhysicsGlobalsDefinition_group,
 		PHYSICSGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343physicsphysicsglobalsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		asset_physics_group,
 		ASSET_PHYSICS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		assetphysicstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		UIPlatformAnimations_group,
 		UIPLATFORMANIMATIONS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacecustomizationuiplatformanimationstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		LowCeilingControlTag_group,
 		LOWCEILINGCONTROLTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343physicslowceilingcontroltag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		player_model_customization_globals_group,
 		PLAYER_MODEL_CUSTOMIZATION_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_player_model_customization_globals_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		particle_model_group,
 		PARTICLE_MODEL_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		c_particle_model_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		particle_physics_group,
 		PARTICLE_PHYSICS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		particlemovementdefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		PersonalAIGlobalsDefinition_group,
 		PERSONALAIGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343personalaipersonalaiglobalsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		physics_phantom_sounds_group,
 		PHYSICS_PHANTOM_SOUNDS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		physicsphantomssounddefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		point_physics_group,
 		POINT_PHYSICS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		point_physics_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		prefab_group,
 		PREFAB_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		structure_prefab_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ProjectileFlyby_group,
 		PROJECTILEFLYBY_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		projectileflybytag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ProjectileMaterialResponse_group,
 		PROJECTILEMATERIALRESPONSE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343projectilesprojectilematerialresponsedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		projectile_group,
 		PROJECTILE_TAG,
 		&object_group,
 		OBJECT_TAG,
 		projectile_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		PropSpawnTemplateTag_group,
 		PROPSPAWNTEMPLATETAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		propspawntemplate_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		particle_group,
 		PARTICLE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		c_particle_definition_tag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ParticleShaderGraph_group,
 		PARTICLESHADERGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentparticleshadergraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		PassengerCellEntryTag_group,
 		PASSENGERCELLENTRYTAG_TAG,
 		&ActorCellEntryTag_group,
 		ACTORCELLENTRYTAG_TAG,
 		i343aisquadconstructionpassengercellentry_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		psoDictionary_group,
 		PSODICTIONARY_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343graphicspipelinestatedictionary_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		PowerupDefinition_group,
 		POWERUPDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343poweruppowerupdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		zoneset_baked_pvs_group,
 		ZONESET_BAKED_PVS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343scenariozonesetbakedpvsbakedpvstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		rasterizer_globals_group,
 		RASTERIZER_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		rasterizerglobalstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		RenderGraph_group,
 		RENDERGRAPH_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343graphicsrendergraphgraphdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		rumble_group,
 		RUMBLE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_rumble_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		RenderNodeGraph_group,
 		RENDERNODEGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentrendergraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		runtime_surfacing_group,
 		RUNTIME_SURFACING_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343surfacingruntimetag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		runtime_geo_group,
 		RUNTIME_GEO_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		runtimegeotag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		RuntimeLayer_group,
 		RUNTIMELAYER_TAG,
 		&LevelObjects_group,
 		LEVELOBJECTS_TAG,
 		runtimelayertag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		rtmp_group,
 		RTMP_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		runtimematerialpalettetag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		runtime_terrain_group,
 		RUNTIME_TERRAIN_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343terrainruntimetag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		render_water_ripple_group,
 		RENDER_WATER_RIPPLE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_render_water_ripple_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		BoostJumpDefinitionTag_group,
 		BOOSTJUMPDEFINITIONTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343spartanabilitiesboostjumpdefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		spring_acceleration_group,
 		SPRING_ACCELERATION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_spring_acceleration_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		EvadeDefinitionTag_group,
 		EVADEDEFINITIONTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343spartanabilitiesevadedefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		GrappleHookDefinitionTag_group,
 		GRAPPLEHOOKDEFINITIONTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343spartanabilitiesgrapplehookdefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		GroundPoundDefinitionTag_group,
 		GROUNDPOUNDDEFINITIONTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343spartanabilitiesgroundpounddefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ui_sample_data_group,
 		UI_SAMPLE_DATA_TAG,
 		&lua_script_group,
 		LUA_SCRIPT_TAG,
 		sampledataluascripttagdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ShoulderBashDefinitionTag_group,
 		SHOULDERBASHDEFINITIONTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343spartanabilitiesshoulderbashdefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SprintDefinitionTag_group,
 		SPRINTDEFINITIONTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343spartanabilitiessprintdefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		StabilizerDefinitionTag_group,
 		STABILIZERDEFINITIONTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343spartanabilitiesstabilizerdefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		TeleportDefinitionTag_group,
 		TELEPORTDEFINITIONTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343spartanabilitiesteleportdefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		WallClingDefinitionTag_group,
 		WALLCLINGDEFINITIONTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343spartanabilitieswallclingdefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		WallJumpDefinitionTag_group,
 		WALLJUMPDEFINITIONTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343spartanabilitieswalljumpdefinitiontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		bnk_group,
 		BNK_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		soundbankdatafiletag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		soundbank_group,
 		SOUNDBANK_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		soundbanktag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		scenario_structure_bsp_group,
 		SCENARIO_STRUCTURE_BSP_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		structure_bsp_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		supercombine_group,
 		SUPERCOMBINE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343projectilessupercombinedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		scenery_group,
 		SCENERY_TAG,
 		&object_group,
 		OBJECT_TAG,
 		scenery_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		static_collision_group,
 		STATIC_COLLISION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		staticcollisiongeotag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		structure_design_group,
 		STRUCTURE_DESIGN_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_structure_design_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		scenario_required_resource_group,
 		SCENARIO_REQUIRED_RESOURCE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_scenario_required_resources_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		area_screen_effect_group,
 		AREA_SCREEN_EFFECT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_area_screen_effect_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SurfacingGraph_group,
 		SURFACINGGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentsurfacinggraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SpeechGrammarGroup_group,
 		SPEECHGRAMMARGROUP_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		speechgrammargroup_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SpeechGrammarGlobals_group,
 		SPEECHGRAMMARGLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		speechgrammarglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		sound_response_group,
 		SOUND_RESPONSE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		soundresponsegroupdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		shader_bytecode_group,
 		SHADER_BYTECODE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		shaderbytecode_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		shaderversion_group,
 		SHADERVERSION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		shaderversion_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		baseshader_group,
 		BASESHADER_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		baseshader_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		shaderoptions_group,
 		SHADEROPTIONS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		shaderoptions_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		shader_group,
 		SHADER_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		shadertag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		shadervariant_group,
 		SHADERVARIANT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		shadervariant_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		shader_root_signature_group,
 		SHADER_ROOT_SIGNATURE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		shaderrootsignature_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ShaderSubGraph_group,
 		SHADERSUBGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentshadersubgraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		self_illumination_group,
 		SELF_ILLUMINATION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		selfilluminationdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		simulated_input_group,
 		SIMULATED_INPUT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_simulated_input_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SuppressedIncident_group,
 		SUPPRESSEDINCIDENT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		suppressedincidentgroupdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		simulation_interpolation_group,
 		SIMULATION_INTERPOLATION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_simulation_interpolation_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		simplygonsettings_group,
 		SIMPLYGONSETTINGS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		simplygonsettingstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		sound_incident_response_group,
 		SOUND_INCIDENT_RESPONSE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		soundincidentresponsegroupdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		scenario_interpolator_group,
 		SCENARIO_INTERPOLATOR_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_scenario_interpolator_tag_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		skeleton_group,
 		SKELETON_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		skeletontag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		sky_lighting_group,
 		SKY_LIGHTING_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		skylighting_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SupplyLinesMarineSquad_group,
 		SUPPLYLINESMARINESQUAD_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343supplylinesmarinesquaddefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		scenario_lighting_volumes_group,
 		SCENARIO_LIGHTING_VOLUMES_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		scenariolightingvolumes_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SoundMaterialEffectsDefinition_group,
 		SOUNDMATERIALEFFECTSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343effectssoundmaterialeffectsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		structure_meta_group,
 		STRUCTURE_META_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		structuremetadata_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AcousticsData_group,
 		ACOUSTICSDATA_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		acousticstagdata_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		sound_group,
 		SOUND_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		oneshotsoundtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		sound_category_group,
 		SOUND_CATEGORY_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		soundcategorytag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		sound_environment_group,
 		SOUND_ENVIRONMENT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		sound_environment_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		sound_globals_group,
 		SOUND_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		audiogameglobalsettingstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		FrameAttachmentDefinition_group,
 		FRAMEATTACHMENTDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343objectsframeattachmentdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		FrameDefinition_group,
 		FRAMEDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343objectsframedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SpartanAbilityComponentDefinition_group,
 		SPARTANABILITYCOMPONENTDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343spartanabilitiesspartanabilitycomponentdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SupplyLinesSystemGlobalsDefinition_group,
 		SUPPLYLINESSYSTEMGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343supplylinessupplylinessystemglobalsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SpartanTrackingGlobalsDefinition_group,
 		SPARTANTRACKINGGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343spartantrackingglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SpartanTrackingPingDefinition_group,
 		SPARTANTRACKINGPINGDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343spartantrackingpingdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SquadSpecificationTag_group,
 		SQUADSPECIFICATIONTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343aisquadconstructionsquadspecification_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		squad_template_group,
 		SQUAD_TEMPLATE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_squad_template_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		scenario_render_data_group,
 		SCENARIO_RENDER_DATA_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		scenariorenderdata_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SpawnSettings_group,
 		SPAWNSETTINGS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		spawningspawnsettingstaggroup_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SpottingServiceGlobals_group,
 		SPOTTINGSERVICEGLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343spottingglobalsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		sssProfile_group,
 		SSSPROFILE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343graphicssssprofileglobals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		scenario_sound_constants_group,
 		SCENARIO_SOUND_CONSTANTS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		soundscenarioconstantstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SquadSpecificationTree_group,
 		SQUADSPECIFICATIONTREE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343aisquadconstructionsquadspecificationtree_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		sound_tail_group,
 		SOUND_TAIL_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		soundtailtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		structure_lightmap_group,
 		STRUCTURE_LIGHTMAP_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		structurelightmap_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		structure_lights_group,
 		STRUCTURE_LIGHTS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		structurelights_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		structure_seams_group,
 		STRUCTURE_SEAMS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_structure_seams_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		style_group,
 		STYLE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		style_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		composer_subtracks_group,
 		COMPOSER_SUBTRACKS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		subtracksdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ShieldUpgradeMetadata_group,
 		SHIELDUPGRADEMETADATA_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343objectsshieldupgrademetadata_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		uri_lookup_table_group,
 		URI_LOOKUP_TABLE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfaceslamsurilookuptabledefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		svg_group,
 		SVG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		svgsourcefiletag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		SwitchableAssetSet_group,
 		SWITCHABLEASSETSET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		switchableassetset_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		TagGraph_group,
 		TAGGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		taggraphtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		terrain_cell_geo_group,
 		TERRAIN_CELL_GEO_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343physicsterraincollisioncellgeotag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		terrain_collision_cgo_params_group,
 		TERRAIN_COLLISION_CGO_PARAMS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343physicsterraincollisiongeoparams_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		terrain_geo_inputs_group,
 		TERRAIN_GEO_INPUTS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343physicsterraincollisiongeocellinputstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		terrain_geo_inputs_set_group,
 		TERRAIN_GEO_INPUTS_SET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343physicsterraincollisiongeoinputssettag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		texturegroup_group,
 		TEXTUREGROUP_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343graphicstexturegrouptable_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		StateRulesNodeGraph_group,
 		STATERULESNODEGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentstaterulesgraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		tif_group,
 		TIF_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		tifsourcefiletag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		TransitionLogicGraph_group,
 		TRANSITIONLOGICGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontenttransitionlogicgraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		XTransitionLogicGraph_group,
 		XTRANSITIONLOGICGRAPH_TAG,
 		&XAnimNodeGraph_group,
 		XANIMNODEGRAPH_TAG,
 		transitionlogicgraphtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		TokenSystemGlobalsDefinition_group,
 		TOKENSYSTEMGLOBALSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343aitokensystemtokensystemglobalsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		tracer_system_group,
 		TRACER_SYSTEM_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		tracersystemdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		camera_track_group,
 		CAMERA_TRACK_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		cameratrackdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		terrain_collision_geo_group,
 		TERRAIN_COLLISION_GEO_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343physicsterraincollisiongeotag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		TrackDecalSystem_group,
 		TRACKDECALSYSTEM_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343effectstrackdecalsystemdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		terrain_inputs_group,
 		TERRAIN_INPUTS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343terraininputstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		terrain_system_group,
 		TERRAIN_SYSTEM_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343terrainsystemtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		UITransitionSounds_group,
 		UITRANSITIONSOUNDS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacecustomizationuitransitionsoundstag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		terrain_tile_group,
 		TERRAIN_TILE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343terraintiletag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		terrain_seed_for_module_group,
 		TERRAIN_SEED_FOR_MODULE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343terrainseedformoduletag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		test_tag_group,
 		TEST_TAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		test_tag_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		trigger_volume_component_group,
 		TRIGGER_VOLUME_COMPONENT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		triggervolumecomponentdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ucn_authority_trust_settings_group,
 		UCN_AUTHORITY_TRUST_SETTINGS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343simulationucnauthoritytrustsettings_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		dialogue_group,
 		DIALOGUE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_dialogue_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		UnitTestNodeGraph_group,
 		UNITTESTNODEGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentunittestgraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		GameplayMenuUIInfo_group,
 		GAMEPLAYMENUUIINFO_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343gameplaymenugameplaymenuuiinfo_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		user_interface_hud_globals_definition_group,
 		USER_INTERFACE_HUD_GLOBALS_DEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		userinterfacehudglobalsdefinitions_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		UIItemInspect_group,
 		UIITEMINSPECT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacecustomizationuiiteminspecttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		user_interface_sounds_definition_group,
 		USER_INTERFACE_SOUNDS_DEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_user_interface_sounds_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		UIVehicleDisplayInfoDefinition_group,
 		UIVEHICLEDISPLAYINFODEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfaceuivehicledisplayinfo_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ui_vehicle_node_definition_group,
 		UI_VEHICLE_NODE_DEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacenodegraphuivehiclenodedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		UIWeaponDisplayInfoDefinition_group,
 		UIWEAPONDISPLAYINFODEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfaceuiweapondisplayinfo_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ui_ads_weapon_node_definition_group,
 		UI_ADS_WEAPON_NODE_DEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		interfacenodegraphuiadsweaponnodedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		multilingual_unicode_string_list_group,
 		MULTILINGUAL_UNICODE_STRING_LIST_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_multilingual_unicode_string_list_group_header_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		unit_group,
 		UNIT_TAG,
 		&object_group,
 		OBJECT_TAG,
 		unitdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		UnitRecordingDefinition_group,
 		UNITRECORDINGDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343unitrecorderunitrecordingdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		stringList_group,
 		STRINGLIST_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		unicodestringlistgroup_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		WeaponFrameAttachment_group,
 		WEAPONFRAMEATTACHMENT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343unitsweaponframeattachmentdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ValorUnlocks_group,
 		VALORUNLOCKS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343valorrewardsvalorunlocks_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		VectorArt_group,
 		VECTORART_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343graphicsvectorarttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		VehicleAttachment_group,
 		VEHICLEATTACHMENT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343vehiclevehicleattachment_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		VehicleConfiguration_group,
 		VEHICLECONFIGURATION_TAG,
 		&object_configuration_group,
 		OBJECT_CONFIGURATION_TAG,
 		i343vehiclevehicleconfigurationdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		vehicle_group,
 		VEHICLE_TAG,
 		&unit_group,
 		UNIT_TAG,
 		vehicledefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		VisualMaterialEffectsDefinition_group,
 		VISUALMATERIALEFFECTSDEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343effectsvisualmaterialeffectsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		WeaponComponentAltFire_group,
 		WEAPONCOMPONENTALTFIRE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343weaponaltfirecomponentdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		weapon_configuration_group,
 		WEAPON_CONFIGURATION_TAG,
 		&object_configuration_group,
 		OBJECT_CONFIGURATION_TAG,
 		i343weaponweaponconfigurationdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		weapon_depth_of_field_group,
 		WEAPON_DEPTH_OF_FIELD_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343weapondepthoffielddefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		weapon_aim_assist_modifiers_group,
 		WEAPON_AIM_ASSIST_MODIFIERS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343weaponaimassistmodifierdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		weapon_attachment_barrel_group,
 		WEAPON_ATTACHMENT_BARREL_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343weaponattachmentbarreldefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		weapon_attachment_heat_group,
 		WEAPON_ATTACHMENT_HEAT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343weaponattachmentheatdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		weapon_attachment_magazine_group,
 		WEAPON_ATTACHMENT_MAGAZINE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343weaponattachmentmagazinedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		weapon_attachment_group,
 		WEAPON_ATTACHMENT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343weaponattachmentdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		weapon_attachment_melee_group,
 		WEAPON_ATTACHMENT_MELEE_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343weaponattachmentmeleedefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		weapon_attachment_sight_group,
 		WEAPON_ATTACHMENT_SIGHT_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343weaponattachmentsightdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		weapon_attachment_trigger_group,
 		WEAPON_ATTACHMENT_TRIGGER_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343weaponattachmenttriggerdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		weapon_attachment_target_tracking_group,
 		WEAPON_ATTACHMENT_TARGET_TRACKING_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343weaponattachmenttargettrackingdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		weapon_globals_group,
 		WEAPON_GLOBALS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		i343weaponweaponglobalsdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		user_interface_globals_definition_group,
 		USER_INTERFACE_GLOBALS_DEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_user_interface_tag_globals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		user_interface_shared_globals_definition_group,
 		USER_INTERFACE_SHARED_GLOBALS_DEFINITION_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_user_interface_shared_globals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		wind_group,
 		WIND_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		s_wind_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		water_physics_drag_properties_group,
 		WATER_PHYSICS_DRAG_PROPERTIES_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		waterphysicsdragpropertiestag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		XAnimBlendGraphNG_group,
 		XANIMBLENDGRAPHNG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		exportedblendgraphtag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		xmltag_group,
 		XMLTAG_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		xmlfiletag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		XObjectNodeGraph_group,
 		XOBJECTNODEGRAPH_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		exportedobjectnodegraph_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		gobo_setting_group,
 		GOBO_SETTING_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		gobosetting_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		lighting_settings_group,
 		LIGHTING_SETTINGS_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		lightingsettings_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		RuntimeAnimSet_group,
 		RUNTIMEANIMSET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		runtimeanimsettag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		streamingzoneset_group,
 		STREAMINGZONESET_TAG,
 		&AnyTag_group,
 		ANYTAG_TAG,
 		streamingzonesetoboslete_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AnimNodeGraph_group,
 		ANIMNODEGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentanimgraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		AnimStateNodeGraph_group,
 		ANIMSTATENODEGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentanimstatecontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		BlackboardNodeGraph_group,
 		BLACKBOARDNODEGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentblackboardcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		biped_group,
 		BIPED_TAG,
 		&unit_group,
 		UNIT_TAG,
 		bipeddefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		crate_group,
 		CRATE_TAG,
 		&object_group,
 		OBJECT_TAG,
 		crate_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		Blend1DNodeGraph_group,
 		BLEND1DNODEGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentblendspace1dcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		BlendRadialNodeGraph_group,
 		BLENDRADIALNODEGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentblendspaceradialcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		Blend2DNodeGraph_group,
 		BLEND2DNODEGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentblendspace2dcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		composite_group,
 		COMPOSITE_TAG,
 		&xmltag_group,
 		XMLTAG_TAG,
 		compositexmltag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		creature_group,
 		CREATURE_TAG,
 		&object_group,
 		OBJECT_TAG,
 		creature_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		device_group,
 		DEVICE_TAG,
 		&object_group,
 		OBJECT_TAG,
 		device_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		DecoratorShaderGraph_group,
 		DECORATORSHADERGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentdecoratorshadergraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		device_dispenser_group,
 		DEVICE_DISPENSER_TAG,
 		&device_group,
 		DEVICE_TAG,
 		dispenserdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		EncounterBehaviorTreeDefinition_group,
 		ENCOUNTERBEHAVIORTREEDEFINITION_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentebtcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		effect_scenery_group,
 		EFFECT_SCENERY_TAG,
 		&object_group,
 		OBJECT_TAG,
 		s_effect_scenery_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ForgeMenuGraph_group,
 		FORGEMENUGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentforgemenugraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ForgeNodeGraph_group,
 		FORGENODEGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentforgenodegraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		giant_group,
 		GIANT_TAG,
 		&unit_group,
 		UNIT_TAG,
 		giant_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		item_group,
 		ITEM_TAG,
 		&object_group,
 		OBJECT_TAG,
 		itemdefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		kit_group,
 		KIT_TAG,
 		&LevelObjects_group,
 		LEVELOBJECTS_TAG,
 		kit_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		layer_group,
 		LAYER_TAG,
 		&LevelObjects_group,
 		LEVELOBJECTS_TAG,
 		layer_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		level_group,
 		LEVEL_TAG,
 		&LevelObjects_group,
 		LEVELOBJECTS_TAG,
 		level_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		LuaNodeGraph_group,
 		LUANODEGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentluagraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		device_machine_group,
 		DEVICE_MACHINE_TAG,
 		&device_group,
 		DEVICE_TAG,
 		machine_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		MaterialShaderGraph_group,
 		MATERIALSHADERGRAPH_TAG,
 		&NodeGraph_group,
 		NODEGRAPH_TAG,
 		nodegraphcontentmaterialshadergraphcontenttag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		raw_geo_group,
 		RAW_GEO_TAG,
 		&runtime_geo_group,
 		RUNTIME_GEO_TAG,
 		rawgeotag_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		device_terminal_group,
 		DEVICE_TERMINAL_TAG,
 		&device_group,
 		DEVICE_TAG,
 		terminal_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		ulevel_group,
 		ULEVEL_TAG,
 		&level_group,
 		LEVEL_TAG,
 		unprocessedlevel_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		weapon_group,
 		WEAPON_TAG,
 		&item_group,
 		ITEM_TAG,
 		weapondefinition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		device_control_group,
 		DEVICE_CONTROL_TAG,
 		&device_group,
 		DEVICE_TAG,
 		control_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V7(
 		equipment_group,
 		EQUIPMENT_TAG,
 		&item_group,
 		ITEM_TAG,
 		equipmentdefinition_group_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		actorcellentryblock_block,
 		"ActorCellEntryBlock_block",
 		10,
 		i343aisquadconstructionactorcellentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		passengercellentryblock_block,
 		"PassengerCellEntryBlock_block",
 		6,
 		i343aisquadconstructionpassengercellentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composeranimationeventdatablock_block,
 		"ComposerAnimationEventDataBlock_block",
 		512,
 		composeranimationeventdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composeroverlaychanneldatablock_block,
 		"ComposerOverlayChannelDataBlock_block",
 		16,
 		composeroverlaychanneldata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composersceneblock_block,
 		"ComposerSceneBlock_block",
 		1,
 		composerscene);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composerscriptblock_block,
 		"ComposerScriptBlock_block",
 		10000,
 		composerscript);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composertextdatablock_block,
 		"ComposerTextDataBlock_block",
 		10000,
 		composertextdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composersubjectblock_block,
 		"ComposerSubjectBlock_block",
 		16,
 		composersubject);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composerpathpointblock_block,
 		"ComposerPathPointBlock_block",
 		10000,
 		composerpathpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lightingvariantblock_block,
 		"LightingVariantBlock_block",
 		1024,
 		lightingvariant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenariocutscenetitleblock_block,
 		"ScenarioCutsceneTitleBlock_block",
 		128,
 		s_scenario_cutscene_title);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenariotriggervolumeblock_block,
 		"ScenarioTriggerVolumeBlock_block",
 		8192,
 		scenario_trigger_volume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343decoratorsdecoratorruntimetaglodparametersblock_block,
 		"i343::Decorators::DecoratorRuntimeTag::LODParametersBlock_block",
 		4,
 		i343decoratorsdecoratorruntimetaglodparameters);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343decoratorsdecoratorruntimetagvariantsettingsblock_block,
 		"i343::Decorators::DecoratorRuntimeTag::VariantSettingsBlock_block",
 		64,
 		i343decoratorsdecoratorruntimetagvariantsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsrendergraphuipropertydefinitionblock_block,
 		"i343::Graphics::RenderGraph::UIPropertyDefinitionBlock_block",
 		1,
 		i343graphicsrendergraphuipropertydefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terrainruntimetagsharednodemateriallayerblock_block,
 		"i343::TerrainRuntimeTag::SharedNodeMaterialLayerBlock_block",
 		89478144,
 		i343surfacingmateriallayer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terrainruntimetagsharednodeplacementlayerblock_block,
 		"i343::TerrainRuntimeTag::SharedNodePlacementLayerBlock_block",
 		89478144,
 		i343surfacingplacementlayer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		propertybasedeffectstagblock_block,
 		"PropertyBasedEffectsTagBlock_block",
 		16,
 		i343propertybasedeffectskeyedeffectdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		customloadoutdefaultsblock_block,
 		"CustomLoadoutDefaultsBlock_block",
 		5,
 		s_static_loadout_tag_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		runtimeglobalmaterialdefinitionblock_block,
 		"RuntimeGlobalMaterialDefinitionBlock_block",
 		512,
 		s_global_material_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		multiplayer_weapon_collection_block,
 		"multiplayer_weapon_collection_block",
 		64,
 		s_multiplayer_object_collection_entry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		multiplayer_vehicle_collection_block,
 		"multiplayer_vehicle_collection_block",
 		64,
 		s_multiplayer_object_collection_entry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		multiplayer_grenade_collection_block,
 		"multiplayer_grenade_collection_block",
 		8,
 		s_multiplayer_object_collection_entry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		multiplayer_equipment_collection_block,
 		"multiplayer_equipment_collection_block",
 		32,
 		s_multiplayer_object_collection_entry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cuipropertiesdefintionblock_block,
 		"CuiPropertiesDefintionBlock_block",
 		256,
 		s_cui_properties_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		leavesblock_block,
 		"LeavesBlock_block",
 		8388608,
 		collision_leaf);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collisionmodelbspblock_block,
 		"CollisionModelBSPBlock_block",
 		128,
 		collision_model_bsp);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collisionmodelresourcebspblock_block,
 		"CollisionModelResourceBspBlock_block",
 		4190208,
 		collision_model_bsp);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		aihintsectorpoint_block,
 		"AIHintSectorPoint_block",
 		128,
 		aihintsectorpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_ai_sector_point_block,
 		"s_ai_sector_point_block",
 		128,
 		s_ai_sector_point);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_flock_source_block,
 		"s_flock_source_block",
 		30,
 		s_flock_source);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_flock_instance_block,
 		"s_flock_instance_block",
 		262144,
 		s_flock_instance);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_ai_globals_gravemind_definition_block,
 		"s_ai_globals_gravemind_definition_block",
 		1,
 		s_ai_globals_gravemind_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_ai_globals_formation_definition_block,
 		"s_ai_globals_formation_definition_block",
 		128,
 		s_ai_globals_formation_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_ai_globals_squad_template_definition_block,
 		"s_ai_globals_squad_template_definition_block",
 		128,
 		s_ai_globals_squad_template_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_ai_globals_squad_template_sub_folder_definition_block,
 		"s_ai_globals_squad_template_sub_folder_definition_block",
 		32,
 		s_ai_globals_squad_template_sub_folder_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_ai_globals_squad_template_folder_definition_block,
 		"s_ai_globals_squad_template_folder_definition_block",
 		32,
 		s_ai_globals_squad_template_folder_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_ai_globals_custom_stimulus_definition_block,
 		"s_ai_globals_custom_stimulus_definition_block",
 		128,
 		s_ai_globals_custom_stimulus_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		pathingcostmodifiers_block,
 		"PathingCostModifiers_block",
 		1,
 		pathingcostmodifiers);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		friendlysquadproperties_block,
 		"FriendlySquadProperties_block",
 		1,
 		friendlysquadproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_ai_globals_data_block,
 		"s_ai_globals_data_block",
 		1,
 		s_ai_globals_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ai_recording_reference_definition_block,
 		"ai_recording_reference_definition_block",
 		1048576,
 		ai_recording_reference_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ambientactioninfo_block,
 		"AmbientActionInfo_block",
 		512,
 		ambientactioninfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ambientactionpointinstance_block,
 		"AmbientActionPointInstance_block",
 		1048576,
 		ambientactionpointinstance);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		behaviornodechildindex_block,
 		"BehaviorNodeChildIndex_block",
 		256,
 		behaviornodechildindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		behaviornodedefinition_block,
 		"BehaviorNodeDefinition_block",
 		256,
 		behaviornodedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		botweapondeftagblock_block,
 		"BotWeaponDefTagBlock_block",
 		64,
 		botweapondeftagblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bottargetpriorityinputdefinition_block,
 		"BotTargetPriorityInputDefinition_block",
 		4,
 		bottargetpriorityinputdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		botambitionpriorityinputdefinition_block,
 		"BotAmbitionPriorityInputDefinition_block",
 		3,
 		botambitionpriorityinputdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		botdifficultyleveltuningdefinition_block,
 		"BotDifficultyLevelTuningDefinition_block",
 		10,
 		botdifficultyleveltuningdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		botadaptivetuningdefinition_block,
 		"BotAdaptiveTuningDefinition_block",
 		1,
 		botadaptivetuningdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		botequipmentdeftagblock_block,
 		"BotEquipmentDefTagBlock_block",
 		64,
 		botequipmentdeftagblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterwarpdefinitionset_block,
 		"CharacterWarpDefinitionSet_block",
 		1,
 		characterwarpdefinitionset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_warp_properties_internal_block,
 		"c_character_warp_properties_internal_block",
 		1,
 		c_character_warp_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_character_voice_region_permutation_filter_block,
 		"s_character_voice_region_permutation_filter_block",
 		1023,
 		s_character_voice_region_permutation_filter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_character_voice_region_filter_block,
 		"s_character_voice_region_filter_block",
 		32,
 		s_character_voice_region_filter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_character_voice_block,
 		"s_character_voice_block",
 		64,
 		s_character_voice);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_voice_properties_internal_block,
 		"c_character_voice_properties_internal_block",
 		1,
 		c_character_voice_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		character_variant_block,
 		"character_variant_block",
 		64,
 		character_variant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_grenade_properties_internal_block,
 		"c_character_grenade_properties_internal_block",
 		10,
 		c_character_grenade_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_disallowed_weapons_from_trading_block,
 		"s_disallowed_weapons_from_trading_block",
 		32,
 		s_disallowed_weapons_from_trading);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_development_status_properties_internal_block,
 		"c_character_development_status_properties_internal_block",
 		1,
 		c_character_development_status_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_general_properties_internal_block,
 		"c_character_general_properties_internal_block",
 		1,
 		c_character_general_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_proto_spawn_properties_internal_block,
 		"c_character_proto_spawn_properties_internal_block",
 		1,
 		c_character_proto_spawn_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_interact_properties_internal_block,
 		"c_character_interact_properties_internal_block",
 		1,
 		c_character_interact_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_ai_character_emotion_situational_danger_properties_block,
 		"s_ai_character_emotion_situational_danger_properties_block",
 		14,
 		s_ai_character_emotion_situational_danger_properties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_emotions_properties_internal_block,
 		"c_character_emotions_properties_internal_block",
 		1,
 		c_character_emotions_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_placement_properties_internal_block,
 		"c_character_placement_properties_internal_block",
 		1,
 		c_character_placement_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_vitality_properties_internal_block,
 		"c_character_vitality_properties_internal_block",
 		1,
 		c_character_vitality_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_base_perception_properties_internal_block,
 		"c_character_base_perception_properties_internal_block",
 		1,
 		c_character_base_perception_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_perception_properties_internal_block,
 		"c_character_perception_properties_internal_block",
 		6,
 		c_character_perception_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_target_properties_internal_block,
 		"c_character_target_properties_internal_block",
 		1,
 		c_character_target_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_look_properties_internal_block,
 		"c_character_look_properties_internal_block",
 		1,
 		c_character_look_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterhopdefinitionset_block,
 		"CharacterHopDefinitionSet_block",
 		1,
 		characterhopdefinitionset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_hopping_properties_internal_block,
 		"c_character_hopping_properties_internal_block",
 		1,
 		c_character_hopping_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_character_movement_stationary_pause_settings_block,
 		"s_character_movement_stationary_pause_settings_block",
 		8,
 		s_character_movement_stationary_pause_settings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_character_movement_throttle_control_settings_block,
 		"s_character_movement_throttle_control_settings_block",
 		16,
 		s_character_movement_throttle_control_settings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_character_movement_throttle_per_combat_status_settings_block,
 		"s_character_movement_throttle_per_combat_status_settings_block",
 		10,
 		s_character_movement_throttle_per_combat_status_settings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_movement_properties_internal_block,
 		"c_character_movement_properties_internal_block",
 		1,
 		c_character_movement_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_aimingfacing_properties_internal_block,
 		"c_character_AimingFacing_properties_internal_block",
 		1,
 		c_character_aimingfacing_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_deceleratedturns_properties_internal_block,
 		"c_character_DeceleratedTurns_properties_internal_block",
 		1,
 		c_character_deceleratedturns_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_locomotionoverrides_properties_internal_block,
 		"c_character_LocomotionOverrides_properties_internal_block",
 		1,
 		c_character_locomotionoverrides_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationexception_block,
 		"AnimationException_block",
 		5,
 		animationexception);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_movementtweak_properties_internal_block,
 		"c_character_MovementTweak_properties_internal_block",
 		1,
 		c_character_movementtweak_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_throttle_style_properties_internal_block,
 		"c_character_throttle_style_properties_internal_block",
 		256,
 		c_character_throttle_style_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		character_movement_mapping_block,
 		"character_movement_mapping_block",
 		9,
 		character_movement_mapping);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		character_movement_set_block,
 		"character_movement_set_block",
 		9,
 		character_movement_set);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_flocking_properties_internal_block,
 		"c_character_flocking_properties_internal_block",
 		1,
 		c_character_flocking_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_swarm_properties_internal_block,
 		"c_character_swarm_properties_internal_block",
 		1,
 		c_character_swarm_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_engage_properties_internal_block,
 		"c_character_engage_properties_internal_block",
 		1,
 		c_character_engage_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_longrangeattack_properties_internal_block,
 		"c_character_LongRangeAttack_properties_internal_block",
 		1,
 		c_character_longrangeattack_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_evasivefight_properties_internal_block,
 		"c_character_EvasiveFight_properties_internal_block",
 		1,
 		c_character_evasivefight_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_aggressivefight_properties_internal_block,
 		"c_character_AggressiveFight_properties_internal_block",
 		1,
 		c_character_aggressivefight_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_linearadvancefight_properties_internal_block,
 		"c_character_LinearAdvanceFight_properties_internal_block",
 		1,
 		c_character_linearadvancefight_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterstaticfightpropertiesinternal_block,
 		"CharacterStaticFightPropertiesInternal_block",
 		1,
 		characterstaticfightpropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterstandgroundpropertiesinternal_block,
 		"CharacterStandGroundPropertiesInternal_block",
 		1,
 		characterstandgroundpropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		charactergrenadefightpropertiesinternal_block,
 		"CharacterGrenadeFightPropertiesInternal_block",
 		1,
 		charactergrenadefightpropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_vehicleaggressivefight_properties_internal_block,
 		"c_character_VehicleAggressiveFight_properties_internal_block",
 		1,
 		c_character_vehicleaggressivefight_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		vehiclestrafingproperties_block,
 		"VehicleStrafingProperties_block",
 		1,
 		vehiclestrafingproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		vehicleflyingholdingpatternproperties_block,
 		"VehicleFlyingHoldingPatternProperties_block",
 		1,
 		vehicleflyingholdingpatternproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		vehicleflyingpreengageproperties_block,
 		"VehicleFlyingPreengageProperties_block",
 		1,
 		vehicleflyingpreengageproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		vehicleflyingsuppressedproperties_block,
 		"VehicleFlyingSuppressedProperties_block",
 		1,
 		vehicleflyingsuppressedproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		vehicleflyingaggressiveengageproperties_block,
 		"VehicleFlyingAggressiveEngageProperties_block",
 		1,
 		vehicleflyingaggressiveengageproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		vehicleflyingdefensiveengageproperties_block,
 		"VehicleFlyingDefensiveEngageProperties_block",
 		1,
 		vehicleflyingdefensiveengageproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		vehicleflyingfallbackproperties_block,
 		"VehicleFlyingFallbackProperties_block",
 		1,
 		vehicleflyingfallbackproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_vehicledefensivefight_properties_internal_block,
 		"c_character_VehicleDefensiveFight_properties_internal_block",
 		1,
 		c_character_vehicledefensivefight_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_coversequence_properties_internal_block,
 		"c_character_CoverSequence_properties_internal_block",
 		1,
 		c_character_coversequence_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_covermove_properties_internal_block,
 		"c_character_CoverMove_properties_internal_block",
 		1,
 		c_character_covermove_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_coverhide_properties_internal_block,
 		"c_character_CoverHide_properties_internal_block",
 		1,
 		c_character_coverhide_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_hoistattack_properties_internal_block,
 		"c_character_HoistAttack_properties_internal_block",
 		1,
 		c_character_hoistattack_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_hunkerdown_properties_internal_block,
 		"c_character_HunkerDown_properties_internal_block",
 		1,
 		c_character_hunkerdown_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_shieldraise_properties_internal_block,
 		"c_character_ShieldRaise_properties_internal_block",
 		1,
 		c_character_shieldraise_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_evasion_properties_internal_block,
 		"c_character_evasion_properties_internal_block",
 		1,
 		c_character_evasion_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_dodge_properties_internal_block,
 		"c_character_dodge_properties_internal_block",
 		1,
 		c_character_dodge_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterrunawayfromvehiclepropertiesinternal_block,
 		"CharacterRunAwayFromVehiclePropertiesInternal_block",
 		1,
 		characterrunawayfromvehiclepropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_cover_properties_internal_block,
 		"c_character_cover_properties_internal_block",
 		1,
 		c_character_cover_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_search_properties_internal_block,
 		"c_character_search_properties_internal_block",
 		1,
 		c_character_search_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_vehicleentranceexit_properties_internal_block,
 		"c_character_VehicleEntranceExit_properties_internal_block",
 		1,
 		c_character_vehicleentranceexit_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_presearch_properties_internal_block,
 		"c_character_presearch_properties_internal_block",
 		1,
 		c_character_presearch_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterrecognizingpropertiesinternal_block,
 		"CharacterRecognizingPropertiesInternal_block",
 		1,
 		characterrecognizingpropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_retreat_properties_internal_block,
 		"c_character_retreat_properties_internal_block",
 		1,
 		c_character_retreat_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		meleeattackdefinition_block,
 		"MeleeAttackDefinition_block",
 		8,
 		meleeattackdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		meleecombodefinition_block,
 		"MeleeComboDefinition_block",
 		16,
 		meleecombodefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		character_charge_difficulty_limits_block,
 		"character_charge_difficulty_limits_block",
 		4,
 		character_charge_difficulty_limits);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		kamikazeattachmentmarkers_block,
 		"KamikazeAttachmentMarkers_block",
 		8,
 		kamikazeattachmentmarkers);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_berserk_properties_internal_block,
 		"c_character_Berserk_properties_internal_block",
 		1,
 		c_character_berserk_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_rushattack_properties_internal_block,
 		"c_character_RushAttack_properties_internal_block",
 		1,
 		c_character_rushattack_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_leapattack_properties_internal_block,
 		"c_character_LeapAttack_properties_internal_block",
 		1,
 		c_character_leapattack_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_teleportattack_properties_internal_block,
 		"c_character_TeleportAttack_properties_internal_block",
 		1,
 		c_character_teleportattack_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterjinkandshootpropertiesinternal_block,
 		"CharacterJinkAndShootPropertiesInternal_block",
 		1,
 		characterjinkandshootpropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterteleportandtacklepropertiesinternal_block,
 		"CharacterTeleportAndTacklePropertiesInternal_block",
 		1,
 		characterteleportandtacklepropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterteleportandtauntpropertiesinternal_block,
 		"CharacterTeleportAndTauntPropertiesInternal_block",
 		1,
 		characterteleportandtauntpropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_desperationrush_properties_internal_block,
 		"c_character_DesperationRush_properties_internal_block",
 		1,
 		c_character_desperationrush_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterproximitymeleepropertiesinternal_block,
 		"CharacterProximityMeleePropertiesInternal_block",
 		1,
 		characterproximitymeleepropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterdivebombkamikazepropertiesinternal_block,
 		"CharacterDiveBombKamikazePropertiesInternal_block",
 		1,
 		characterdivebombkamikazepropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterpostcombatpropertiesinternal_block,
 		"CharacterPostCombatPropertiesInternal_block",
 		1,
 		characterpostcombatpropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_ready_properties_internal_block,
 		"c_character_ready_properties_internal_block",
 		1,
 		c_character_ready_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterfiringprogram_block,
 		"CharacterFiringProgram_block",
 		1,
 		characterfiringprogram);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		prototypecharacterstyle_block,
 		"PrototypeCharacterStyle_block",
 		256,
 		prototypecharacterstyle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		vehiclevelocitytargeting_block,
 		"VehicleVelocityTargeting_block",
 		1,
 		vehiclevelocitytargeting);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterweaponunittargeting_block,
 		"CharacterWeaponUnitTargeting_block",
 		6,
 		characterweaponunittargeting);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterweaponmodeselector_block,
 		"CharacterWeaponModeSelector_block",
 		1,
 		characterweaponmodeselector);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterweaponmodeprefirebeam_block,
 		"CharacterWeaponModePrefireBeam_block",
 		1,
 		characterweaponmodeprefirebeam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterweaponmode_block,
 		"CharacterWeaponMode_block",
 		8,
 		characterweaponmode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterweaponpreferences_block,
 		"CharacterWeaponPreferences_block",
 		1,
 		characterweaponpreferences);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterprototypeweaponpropertiesinternal_block,
 		"CharacterPrototypeWeaponPropertiesInternal_block",
 		256,
 		characterprototypeweaponpropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_vehicle_properties_internal_block,
 		"c_character_vehicle_properties_internal_block",
 		100,
 		c_character_vehicle_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_flying_movement_properties_internal_block,
 		"c_character_flying_movement_properties_internal_block",
 		32,
 		c_character_flying_movement_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_idle_properties_internal_block,
 		"c_character_idle_properties_internal_block",
 		1,
 		c_character_idle_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		systematicrecreationsettings_block,
 		"SystematicRecreationSettings_block",
 		16,
 		systematicrecreationsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_precombat_properties_internal_block,
 		"c_character_precombat_properties_internal_block",
 		1,
 		c_character_precombat_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_vocalization_properties_internal_block,
 		"c_character_vocalization_properties_internal_block",
 		1,
 		c_character_vocalization_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_character_vehicle_boarding_properties_block,
 		"s_character_vehicle_boarding_properties_block",
 		32,
 		s_character_vehicle_boarding_properties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		charactervehicleboardingpullproperties_block,
 		"CharacterVehicleBoardingPullProperties_block",
 		32,
 		charactervehicleboardingpullproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_boarding_properties_internal_block,
 		"c_character_boarding_properties_internal_block",
 		8,
 		c_character_boarding_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_kungfu_properties_internal_block,
 		"c_character_kungfu_properties_internal_block",
 		1,
 		c_character_kungfu_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_bunker_properties_internal_block,
 		"c_character_bunker_properties_internal_block",
 		1,
 		c_character_bunker_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_bot_properties_internal_block,
 		"c_character_bot_properties_internal_block",
 		1,
 		c_character_bot_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_engineer_properties_internal_block,
 		"c_character_engineer_properties_internal_block",
 		1,
 		c_character_engineer_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_inspect_properties_internal_block,
 		"c_character_inspect_properties_internal_block",
 		1,
 		c_character_inspect_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterequipmentuseconditions_block,
 		"CharacterEquipmentUseConditions_block",
 		13,
 		characterequipmentuseconditions);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterequipmentusage_block,
 		"CharacterEquipmentUsage_block",
 		8,
 		characterequipmentusage);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		character_equipment_definition_block,
 		"character_equipment_definition_block",
 		8,
 		character_equipment_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_character_stimuli_response_definition_block,
 		"s_character_stimuli_response_definition_block",
 		16,
 		s_character_stimuli_response_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		character_activity_objects_block,
 		"character_activity_objects_block",
 		32,
 		character_activity_objects);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_bishop_properties_internal_block,
 		"c_character_bishop_properties_internal_block",
 		1,
 		c_character_bishop_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterhealingpropertiesinternal_block,
 		"CharacterHealingPropertiesInternal_block",
 		1,
 		characterhealingpropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_closequartersdefenseblast_properties_internal_block,
 		"c_character_closeQuartersDefenseBlast_properties_internal_block",
 		1,
 		c_character_closequartersdefenseblast_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		charactermultitargettrackedattackpropertiesinternal_block,
 		"CharacterMultiTargetTrackedAttackPropertiesInternal_block",
 		1,
 		charactermultitargettrackedattackpropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		thresholdscript_block,
 		"ThresholdScript_block",
 		16,
 		thresholdscript);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_customscript_properties_internal_block,
 		"c_character_CustomScript_properties_internal_block",
 		1,
 		c_character_customscript_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_packmaster_properties_internal_block,
 		"c_character_packmaster_properties_internal_block",
 		1,
 		c_character_packmaster_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_dynamic_task_properties_internal_block,
 		"c_character_dynamic_task_properties_internal_block",
 		1,
 		c_character_dynamic_task_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_pack_stalk_properties_internal_block,
 		"c_character_pack_stalk_properties_internal_block",
 		1,
 		c_character_pack_stalk_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_fight_circle_properties_internal_block,
 		"c_character_fight_circle_properties_internal_block",
 		1,
 		c_character_fight_circle_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_hamstring_charge_properties_internal_block,
 		"c_character_hamstring_charge_properties_internal_block",
 		1,
 		c_character_hamstring_charge_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_forerunner_properties_internal_block,
 		"c_character_forerunner_properties_internal_block",
 		1,
 		c_character_forerunner_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_gravity_jump_properties_internal_block,
 		"c_character_gravity_jump_properties_internal_block",
 		1,
 		c_character_gravity_jump_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_coop_modifier_properties_internal_block,
 		"c_character_coop_modifier_properties_internal_block",
 		1,
 		c_character_coop_modifier_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		charactermeleeanimationscalingpropertiesinternal_block,
 		"CharacterMeleeAnimationScalingPropertiesInternal_block",
 		1,
 		charactermeleeanimationscalingpropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_pain_screen_properties_internal_block,
 		"c_character_pain_screen_properties_internal_block",
 		1,
 		c_character_pain_screen_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_shield_wall_properties_internal_block,
 		"c_character_shield_wall_properties_internal_block",
 		1,
 		c_character_shield_wall_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_firing_wall_properties_internal_block,
 		"c_character_firing_wall_properties_internal_block",
 		1,
 		c_character_firing_wall_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		projectiledeflectionzone_block,
 		"ProjectileDeflectionZone_block",
 		10,
 		projectiledeflectionzone);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_deflection_properties_internal_block,
 		"c_character_deflection_properties_internal_block",
 		1,
 		c_character_deflection_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterinterposerequestpropertiesinternal_block,
 		"CharacterInterposeRequestPropertiesInternal_block",
 		1,
 		characterinterposerequestpropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		characterinterposepropertiesinternal_block,
 		"CharacterInterposePropertiesInternal_block",
 		1,
 		characterinterposepropertiesinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_bounding_properties_internal_block,
 		"c_character_bounding_properties_internal_block",
 		1,
 		c_character_bounding_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_weaponpickup_properties_internal_block,
 		"c_character_WeaponPickup_properties_internal_block",
 		1,
 		c_character_weaponpickup_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dropobject_block,
 		"DropObject_block",
 		16,
 		dropobject);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_character_drop_objects_properties_internal_block,
 		"c_character_drop_objects_properties_internal_block",
 		1,
 		c_character_drop_objects_properties_internal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		propspawnentry_block,
 		"PropSpawnEntry_block",
 		128,
 		propspawnentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_flock_destination_block,
 		"s_flock_destination_block",
 		10,
 		s_flock_destination);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aiaimarkupfilter_block,
 		"i343::AI::AIMarkupFilter_block",
 		16,
 		i343aiaimarkupfilter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343botsexploreneighbor_block,
 		"i343::Bots::ExploreNeighbor_block",
 		5,
 		i343botsexploreneighbor);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343botsbotmarkuppoint_block,
 		"i343::Bots::BotMarkupPoint_block",
 		1048576,
 		i343botsbotmarkuppoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aiairdropflightpathspline_block,
 		"i343::AI::AirDrop::FlightPathSpline_block",
 		8,
 		i343aiairdropflightpathspline);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		navigationglobalsdata_block,
 		"NavigationGlobalsData_block",
 		1,
 		navigationglobalsdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cs_point_block,
 		"cs_point_block",
 		32,
 		cs_point);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cs_point_set_block,
 		"cs_point_set_block",
 		1048576,
 		cs_point_set);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aibotexploreneighbor_block,
 		"i343::AI::BotExploreNeighbor_block",
 		5,
 		i343aibotexploreneighbor);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aiobjectivetarget_block,
 		"i343::AI::ObjectiveTarget_block",
 		32,
 		i343aiobjectivetarget);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aiaimarkuppoint_block,
 		"i343::AI::AIMarkupPoint_block",
 		1048576,
 		i343aiaimarkuppoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		pathingcostmodifierfilter_block,
 		"PathingCostModifierFilter_block",
 		16,
 		pathingcostmodifierfilter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aiaimarkupvolume_block,
 		"i343::AI::AIMarkupVolume_block",
 		1048576,
 		i343aiaimarkupvolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aichildguid_block,
 		"i343::AI::ChildGUID_block",
 		8192,
 		i343aichildguid);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aicompositechild_block,
 		"i343::AI::CompositeChild_block",
 		8192,
 		i343aicompositechild);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aiencountertreenode_block,
 		"i343::AI::EncounterTreeNode_block",
 		1048576,
 		i343aiencountertreenode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aichildencounterelement_block,
 		"i343::AI::ChildEncounterElement_block",
 		8192,
 		i343aichildencounterelement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aiencounterzonecondition_block,
 		"i343::AI::EncounterZoneCondition_block",
 		8192,
 		i343aiencounterzonecondition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aiencounterzone_block,
 		"i343::AI::EncounterZone_block",
 		1048576,
 		i343aiencounterzone);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aiencounterbehaviortreeinputreference_block,
 		"i343::AI::EncounterBehaviorTreeInputReference_block",
 		8192,
 		i343aiencounterbehaviortreeinputreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aiencounterbehaviortree_block,
 		"i343::AI::EncounterBehaviorTree_block",
 		1048576,
 		i343aiencounterbehaviortree);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aiplacedorder_block,
 		"i343::AI::PlacedOrder_block",
 		1048576,
 		i343aiplacedorder);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aispawnpoint_block,
 		"i343::AI::SpawnPoint_block",
 		32,
 		i343aispawnpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aireinforcementsquad_block,
 		"i343::AI::ReinforcementSquad_block",
 		8,
 		i343aireinforcementsquad);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aireinforcementpoint_block,
 		"i343::AI::ReinforcementPoint_block",
 		1048576,
 		i343aireinforcementpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aisquadkeyword_block,
 		"i343::AI::SquadKeyword_block",
 		4,
 		i343aisquadkeyword);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aisquadfallbackcombattetherpoint_block,
 		"i343::AI::SquadFallbackCombatTetherPoint_block",
 		8,
 		i343aisquadfallbackcombattetherpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aiprecombatlink_block,
 		"i343::AI::PrecombatLink_block",
 		8192,
 		i343aiprecombatlink);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aisquadspawner_block,
 		"i343::AI::SquadSpawner_block",
 		1048576,
 		i343aisquadspawner);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		musketeerdefinition_block,
 		"MusketeerDefinition_block",
 		32,
 		musketeerdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		musketeerteamdefinition_block,
 		"MusketeerTeamDefinition_block",
 		32,
 		musketeerteamdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343musketeerdifficultytuningset_block,
 		"i343::Musketeer::Difficulty::TuningSet_block",
 		10,
 		i343musketeerdifficultytuningset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343musketeerdifficultytunings_block,
 		"i343::Musketeer::Difficulty::Tunings_block",
 		1,
 		i343musketeerdifficultytunings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343ainavseedpoint_block,
 		"i343::AI::NavSeedPoint_block",
 		1048576,
 		i343ainavseedpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interactionopportunitydefinition_block,
 		"InteractionOpportunityDefinition_block",
 		8,
 		interactionopportunitydefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		opportunitytasklink_block,
 		"OpportunityTaskLink_block",
 		16,
 		opportunitytasklink);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		opportunityareadata_block,
 		"OpportunityAreaData_block",
 		1048576,
 		opportunityareadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		firingpointaabb_block,
 		"FiringPointAABB_block",
 		2147483647,
 		firingpointaabb);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		navmeshdata_block,
 		"NavMeshData_block",
 		1024,
 		navmeshdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		mobilenavmeshdata_block,
 		"MobileNavMeshData_block",
 		500000,
 		mobilenavmeshdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		navvolumebucket_block,
 		"NavVolumeBucket_block",
 		3,
 		navvolumebucket);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		navvolumedata_block,
 		"NavVolumeData_block",
 		256,
 		navvolumedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cookie_cutter_block,
 		"s_cookie_cutter_block",
 		1048576,
 		s_cookie_cutter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cookie_cutterobjectidentifier_block,
 		"s_cookie_cutter::ObjectIdentifier_block",
 		128,
 		s_cookie_cutterobjectidentifier);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		navmesharea_block,
 		"NavMeshArea_block",
 		1048576,
 		navmesharea);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		user_hint_jump_block,
 		"user_hint_jump_block",
 		1048576,
 		user_hint_jump);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		user_hint_data_block,
 		"user_hint_data_block",
 		1,
 		user_hint_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_firing_position_definition_block,
 		"s_firing_position_definition_block",
 		32767,
 		s_firing_position_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		response_block,
 		"Response_block",
 		20,
 		response);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		vocalization_block,
 		"Vocalization_block",
 		4096,
 		vocalization);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dialoguestatetableexpressiontoken_block,
 		"DialogueStateTableExpressionToken_block",
 		16,
 		dialoguestatetableexpressiontoken);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		vocalizationpattern_block,
 		"VocalizationPattern_block",
 		4096,
 		vocalizationpattern);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		patterntypelookupdata_block,
 		"PatternTypeLookUpData_block",
 		523,
 		patterntypelookupdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		involuntarydata_block,
 		"InvoluntaryData_block",
 		100,
 		involuntarydata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		customeventdefinition_block,
 		"CustomEventDefinition_block",
 		200,
 		customeventdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dialoguesystemdatatagreference_block,
 		"DialogueSystemDataTagReference_block",
 		16,
 		dialoguesystemdatatagreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		defaultstimulussuppressorparam_block,
 		"DefaultStimulusSuppressorParam_block",
 		4,
 		defaultstimulussuppressorparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aisquadconstructionvehiclecellentry_block,
 		"i343::AI::SquadConstruction::VehicleCellEntry_block",
 		6,
 		i343aisquadconstructionvehiclecellentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aisquadconstructionsquadintensityentry_block,
 		"i343::AI::SquadConstruction::SquadIntensityEntry_block",
 		16,
 		i343aisquadconstructionsquadintensityentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aisquadconstructionsquadspecificationreference_block,
 		"i343::AI::SquadConstruction::SquadSpecificationReference_block",
 		32,
 		i343aisquadconstructionsquadspecificationreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_ai_globals_trait_vision_definition_block,
 		"s_ai_globals_trait_vision_definition_block",
 		3,
 		s_ai_globals_trait_vision_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_ai_globals_trait_sound_definition_block,
 		"s_ai_globals_trait_sound_definition_block",
 		2,
 		s_ai_globals_trait_sound_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_ai_globals_trait_luck_definition_block,
 		"s_ai_globals_trait_luck_definition_block",
 		3,
 		s_ai_globals_trait_luck_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_ai_globals_trait_grenade_definition_block,
 		"s_ai_globals_trait_grenade_definition_block",
 		2,
 		s_ai_globals_trait_grenade_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_formation_point_block,
 		"s_formation_point_block",
 		8,
 		s_formation_point);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_formation_primitive_block,
 		"s_formation_primitive_block",
 		4,
 		s_formation_primitive);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_script_fragment_block,
 		"s_script_fragment_block",
 		1,
 		s_script_fragment);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_task_direction_point_block,
 		"s_task_direction_point_block",
 		8,
 		s_task_direction_point);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_task_direction_block,
 		"s_task_direction_block",
 		1,
 		s_task_direction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_area_reference_block,
 		"s_area_reference_block",
 		64,
 		s_area_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_task_definition_block,
 		"s_task_definition_block",
 		100,
 		s_task_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_opposing_objective_block,
 		"s_opposing_objective_block",
 		4,
 		s_opposing_objective);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_objective_block,
 		"s_objective_block",
 		256,
 		s_objective);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_patrol_point_block,
 		"s_patrol_point_block",
 		32,
 		s_patrol_point);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_spawn_point_definition_block,
 		"s_spawn_point_definition_block",
 		128,
 		s_spawn_point_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_spawn_formation_definition_block,
 		"s_spawn_formation_definition_block",
 		8,
 		s_spawn_formation_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		aicharacterchoice_block,
 		"AICharacterChoice_block",
 		8,
 		aicharacterchoice);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		aicharacterchoiceweakref_block,
 		"AICharacterChoiceWeakRef_block",
 		8,
 		aicharacterchoiceweakref);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		aiweaponchoice_block,
 		"AIWeaponChoice_block",
 		8,
 		aiweaponchoice);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		aiweaponchoiceweakref_block,
 		"AIWeaponChoiceWeakRef_block",
 		8,
 		aiweaponchoiceweakref);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		aiequipmentchoice_block,
 		"AIEquipmentChoice_block",
 		8,
 		aiequipmentchoice);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		aiequipmentchoiceweakref_block,
 		"AIEquipmentChoiceWeakRef_block",
 		8,
 		aiequipmentchoiceweakref);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cell_definition_block,
 		"s_cell_definition_block",
 		10,
 		s_cell_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_squad_definition_block,
 		"s_squad_definition_block",
 		1048576,
 		s_squad_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		squad_group_definition_block,
 		"squad_group_definition_block",
 		1048576,
 		squad_group_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cell_template_definition_block,
 		"s_cell_template_definition_block",
 		10,
 		s_cell_template_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		special_movement_definition_block,
 		"special_movement_definition_block",
 		1,
 		special_movement_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		style_behavior_name_block,
 		"style_behavior_name_block",
 		512,
 		style_behavior_name);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aitokensystemthreattokencharacterlimit_block,
 		"i343::AI::TokenSystem::ThreatTokenCharacterLimit_block",
 		32,
 		i343aitokensystemthreattokencharacterlimit);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aitokensystemthreattokendefinition_block,
 		"i343::AI::TokenSystem::ThreatTokenDefinition_block",
 		1,
 		i343aitokensystemthreattokendefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aitokensystemgrenadetokendefinition_block,
 		"i343::AI::TokenSystem::GrenadeTokenDefinition_block",
 		1,
 		i343aitokensystemgrenadetokendefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		navmeshattachmentnavmeshattachmentid_block,
 		"NavMeshAttachment::NavMeshAttachmentId_block",
 		501024,
 		navmeshattachmentnavmeshattachmentid);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		areageneratordefinition_block,
 		"AreaGeneratorDefinition_block",
 		1048576,
 		areageneratordefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		area_definition_block,
 		"area_definition_block",
 		128,
 		area_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		zone_definition_block,
 		"zone_definition_block",
 		1048576,
 		zone_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_frame_event_block,
 		"s_frame_event_block",
 		512,
 		s_frame_event);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_sound_event_block,
 		"s_sound_event_block",
 		512,
 		s_sound_event);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_effect_event_block,
 		"s_effect_event_block",
 		512,
 		s_effect_event);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_dialogue_event_block,
 		"s_dialogue_event_block",
 		512,
 		s_dialogue_event);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_model_animation_block,
 		"c_model_animation_block",
 		4096,
 		c_model_animation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_blend_screen_delaunay_triangle_block,
 		"s_blend_screen_delaunay_triangle_block",
 		255,
 		s_blend_screen_delaunay_triangle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundeventreference_block,
 		"SoundEventReference_block",
 		256,
 		soundeventreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundeventreferenceset_block,
 		"SoundEventReferenceSet_block",
 		4096,
 		soundeventreferenceset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationgraphdialoguereference_block,
 		"AnimationGraphDialogueReference_block",
 		4096,
 		animationgraphdialoguereference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effecteventreference_block,
 		"EffectEventReference_block",
 		256,
 		effecteventreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effecteventreferenceset_block,
 		"EffectEventReferenceSet_block",
 		4096,
 		effecteventreferenceset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_graph_node_block,
 		"s_animation_graph_node_block",
 		1024,
 		s_animation_graph_node);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_import_frame_event_block,
 		"s_import_frame_event_block",
 		512,
 		s_import_frame_event);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_sound_event_extended_deprecated_block,
 		"s_sound_event_extended_deprecated_block",
 		512,
 		s_sound_event_extended_deprecated);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_effect_event_extended_deprecated_block,
 		"s_effect_event_extended_deprecated_block",
 		512,
 		s_effect_event_extended_deprecated);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_dialogue_event_extended_deprecated_block,
 		"s_dialogue_event_extended_deprecated_block",
 		512,
 		s_dialogue_event_extended_deprecated);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animframeeventdescriptor_block,
 		"AnimFrameEventDescriptor_block",
 		512,
 		animframeeventdescriptor);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundframeeventdescriptor_block,
 		"SoundFrameEventDescriptor_block",
 		512,
 		soundframeeventdescriptor);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effectframeeventdescriptor_block,
 		"EffectFrameEventDescriptor_block",
 		512,
 		effectframeeventdescriptor);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dialogueframeeventdescriptor_block,
 		"DialogueFrameEventDescriptor_block",
 		512,
 		dialogueframeeventdescriptor);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_import_animation_event_block,
 		"s_import_animation_event_block",
 		8192,
 		s_import_animation_event);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animframeeventcontainer_block,
 		"AnimFrameEventContainer_block",
 		8192,
 		animframeeventcontainer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		audioframeeventcontainer_block,
 		"AudioFrameEventContainer_block",
 		8192,
 		audioframeeventcontainer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effectframeeventcontainer_block,
 		"EffectFrameEventContainer_block",
 		8192,
 		effectframeeventcontainer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_node_mask_entry_block,
 		"s_animation_node_mask_entry_block",
 		1024,
 		s_animation_node_mask_entry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_node_mask_block,
 		"s_animation_node_mask_block",
 		32,
 		s_animation_node_mask);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_function_block,
 		"s_animation_function_block",
 		64,
 		s_animation_function);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		referencedata_block,
 		"ReferenceData_block",
 		1024,
 		referencedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_object_space_node_data_block,
 		"s_object_space_node_data_block",
 		1024,
 		s_object_space_node_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_object_space_offset_node_reference_block,
 		"s_object_space_offset_node_reference_block",
 		16,
 		s_object_space_offset_node_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_fik_anchor_node_reference_block,
 		"s_fik_anchor_node_reference_block",
 		5,
 		s_fik_anchor_node_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationinterpolator_block,
 		"AnimationInterpolator_block",
 		256,
 		animationinterpolator);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationinterpolationentry_block,
 		"AnimationInterpolationEntry_block",
 		32,
 		animationinterpolationentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationinterpolationset_block,
 		"AnimationInterpolationSet_block",
 		256,
 		animationinterpolationset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_transition_destination_block,
 		"s_animation_transition_destination_block",
 		32,
 		s_animation_transition_destination);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_transition_source_block,
 		"s_animation_transition_source_block",
 		256,
 		s_animation_transition_source);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationikjoint_block,
 		"AnimationIKJoint_block",
 		32,
 		animationikjoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationikjunction_block,
 		"AnimationIKJunction_block",
 		4,
 		animationikjunction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_ik_chain_block,
 		"s_animation_ik_chain_block",
 		8,
 		s_animation_ik_chain);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_ik_leg_definition_block,
 		"s_animation_ik_leg_definition_block",
 		2,
 		s_animation_ik_leg_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_ik_arm_definition_block,
 		"s_animation_ik_arm_definition_block",
 		2,
 		s_animation_ik_arm_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_ik_set_item_block,
 		"s_animation_ik_set_item_block",
 		8,
 		s_animation_ik_set_item);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_ik_set_block,
 		"s_animation_ik_set_block",
 		32,
 		s_animation_ik_set);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_ik_point_v1_block,
 		"s_animation_ik_point_v1_block",
 		64,
 		s_animation_ik_point_v1);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_ik_point_block,
 		"s_animation_ik_point_block",
 		64,
 		s_animation_ik_point);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343animationikgroundfittingchain_block,
 		"i343::Animation::IKGroundFittingChain_block",
 		8,
 		i343animationikgroundfittingchain);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_sync_action_same_type_participant_block,
 		"s_animation_sync_action_same_type_participant_block",
 		6,
 		s_animation_sync_action_same_type_participant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_sync_action_other_type_participant_block,
 		"s_animation_sync_action_other_type_participant_block",
 		6,
 		s_animation_sync_action_other_type_participant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_sync_action_block,
 		"s_animation_sync_action_block",
 		32,
 		s_animation_sync_action);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_sync_action_group_block,
 		"s_animation_sync_action_group_block",
 		128,
 		s_animation_sync_action_group);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		damageregionparam_block,
 		"DamageRegionParam_block",
 		11,
 		damageregionparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_damage_direction_block,
 		"s_animation_damage_direction_block",
 		4,
 		s_animation_damage_direction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_damage_actions_block,
 		"s_animation_damage_actions_block",
 		8,
 		s_animation_damage_actions);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_entry_block,
 		"s_animation_entry_block",
 		256,
 		s_animation_entry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_ranged_animation_entry_block,
 		"s_ranged_animation_entry_block",
 		256,
 		s_ranged_animation_entry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		triangulationpoint_block,
 		"TriangulationPoint_block",
 		255,
 		triangulationpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_triangulation_tag_struct_block,
 		"s_triangulation_tag_struct_block",
 		1,
 		s_triangulation_tag_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_ranged_action_block,
 		"s_animation_ranged_action_block",
 		16,
 		s_animation_ranged_action);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationblendscreendefinition_block,
 		"AnimationBlendScreenDefinition_block",
 		1024,
 		animationblendscreendefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_new_animation_function_overlay_block,
 		"s_new_animation_function_overlay_block",
 		32,
 		s_new_animation_function_overlay);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_blend_screen_item_block,
 		"s_blend_screen_item_block",
 		32,
 		s_blend_screen_item);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_function_overlay_item_block,
 		"s_function_overlay_item_block",
 		32,
 		s_function_overlay_item);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_overlay_group_block,
 		"s_overlay_group_block",
 		1056,
 		s_overlay_group);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_velocity_boundaries_block,
 		"s_animation_velocity_boundaries_block",
 		1,
 		s_animation_velocity_boundaries);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_animation_set_block,
 		"c_animation_set_block",
 		64,
 		c_animation_set);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_weapon_type_block,
 		"c_weapon_type_block",
 		64,
 		c_weapon_type);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_weapon_class_block,
 		"c_weapon_class_block",
 		64,
 		c_weapon_class);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_animation_mode_block,
 		"c_animation_mode_block",
 		512,
 		c_animation_mode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_vehicle_suspension_block,
 		"c_vehicle_suspension_block",
 		32,
 		c_vehicle_suspension);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_function_overlay_block,
 		"s_function_overlay_block",
 		32,
 		s_function_overlay);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_weapon_class_listing_block,
 		"s_weapon_class_listing_block",
 		64,
 		s_weapon_class_listing);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_additional_node_data_block,
 		"s_additional_node_data_block",
 		1024,
 		s_additional_node_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_node_usage_entry_block,
 		"s_animation_node_usage_entry_block",
 		35,
 		s_animation_node_usage_entry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_mode_or_stance_alias_block,
 		"s_mode_or_stance_alias_block",
 		64,
 		s_mode_or_stance_alias);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_model_animation_variant_block,
 		"s_model_animation_variant_block",
 		64,
 		s_model_animation_variant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_function_driven_variant_block,
 		"s_function_driven_variant_block",
 		64,
 		s_function_driven_variant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationkeyjointorientations_block,
 		"AnimationKeyJointOrientations_block",
 		1,
 		animationkeyjointorientations);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_model_animation_tag_resource_member_block,
 		"c_model_animation_tag_resource_member_block",
 		4096,
 		c_model_animation_tag_resource_member);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationtokenentry_block,
 		"AnimationTokenEntry_block",
 		4096,
 		animationtokenentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		overlaytokenentry_block,
 		"OverlayTokenEntry_block",
 		4096,
 		overlaytokenentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		poseblendtokenentry_block,
 		"PoseBlendTokenEntry_block",
 		4096,
 		poseblendtokenentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_model_animation_tag_refrence_counted_resource_block,
 		"c_model_animation_tag_refrence_counted_resource_block",
 		12288,
 		c_model_animation_tag_refrence_counted_resource);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343animationfirstpersonoverlaychannelsliderweightfunctionmap_block,
 		"i343::Animation::FirstPersonOverlayChannelSliderWeightFunctionMap_block",
 		7,
 		i343animationfirstpersonoverlaychannelsliderweightfunctionmap);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		pcagroupsettings_block,
 		"PCAGroupSettings_block",
 		4096,
 		pcagroupsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inheritedanimationdata_block,
 		"InheritedAnimationData_block",
 		4096,
 		inheritedanimationdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inheritedanimationnodemap_block,
 		"InheritedAnimationNodeMap_block",
 		1024,
 		inheritedanimationnodemap);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inheritedanimationnodemapflag_block,
 		"InheritedAnimationNodeMapFlag_block",
 		1024,
 		inheritedanimationnodemapflag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationgraphparentdata_block,
 		"AnimationGraphParentData_block",
 		256,
 		animationgraphparentdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationgraphuserparameter_block,
 		"AnimationGraphUserParameter_block",
 		1024,
 		animationgraphuserparameter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_wrinkle_event_block,
 		"s_animation_wrinkle_event_block",
 		32,
 		s_animation_wrinkle_event);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_extended_event_block,
 		"s_animation_extended_event_block",
 		32,
 		s_animation_extended_event);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_object_function_block,
 		"s_animation_object_function_block",
 		4,
 		s_animation_object_function);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_ik_chain_event_block,
 		"s_animation_ik_chain_event_block",
 		32,
 		s_animation_ik_chain_event);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_animation_ik_chain_proxy_block,
 		"s_animation_ik_chain_proxy_block",
 		16,
 		s_animation_ik_chain_proxy);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animsettableentryvariantid_block,
 		"AnimSetTableEntryVariantID_block",
 		256,
 		animsettableentryvariantid);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animsettableentry_block,
 		"AnimSetTableEntry_block",
 		256,
 		animsettableentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		runtimeanimentry_block,
 		"RuntimeAnimEntry_block",
 		4096,
 		runtimeanimentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		runtimeanimentrylist_block,
 		"RuntimeAnimEntryList_block",
 		4096,
 		runtimeanimentrylist);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_quantized_quaternion_8byte_revised_block,
 		"c_quantized_quaternion_8byte_revised_block",
 		4194304,
 		c_quantized_quaternion_8byte_revised);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		sharedstaticdatacodectranslation_block,
 		"SharedStaticDataCodecTranslation_block",
 		4194304,
 		sharedstaticdatacodectranslation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		sharedstaticdatacodecscale_block,
 		"SharedStaticDataCodecScale_block",
 		4194304,
 		sharedstaticdatacodecscale);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationordefaultstringidblocktype_block,
 		"AnimationOrDefaultStringIDBlockType_block",
 		1024,
 		animationordefaultstringidblocktype);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		compositedeadzone_block,
 		"CompositeDeadZone_block",
 		16,
 		compositedeadzone);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		compositeaxis_block,
 		"CompositeAxis_block",
 		16,
 		compositeaxis);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		compositeentryvalue_block,
 		"CompositeEntryValue_block",
 		16,
 		compositeentryvalue);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		compositeentry_block,
 		"CompositeEntry_block",
 		256,
 		compositeentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		synckey_block,
 		"SyncKey_block",
 		8,
 		synckey);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		compositephaseset_block,
 		"CompositePhaseSet_block",
 		16,
 		compositephaseset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		compositetag_block,
 		"CompositeTag_block",
 		256,
 		compositetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343animationcontrolparameter_block,
 		"i343::Animation::ControlParameter_block",
 		128,
 		i343animationcontrolparameter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animfunction_block,
 		"AnimFunction_block",
 		255,
 		animfunction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animframeevent_block,
 		"AnimFrameEvent_block",
 		512,
 		animframeevent);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animframeevents_block,
 		"AnimFrameEvents_block",
 		8192,
 		animframeevents);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundevententry_block,
 		"SoundEventEntry_block",
 		10000000,
 		soundevententry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationsounds_block,
 		"AnimationSounds_block",
 		10000000,
 		animationsounds);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationdialogues_block,
 		"AnimationDialogues_block",
 		10000000,
 		animationdialogues);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundevent_block,
 		"SoundEvent_block",
 		10000000,
 		soundevent);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dialogevent_block,
 		"DialogEvent_block",
 		512,
 		dialogevent);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		audioframeevents_block,
 		"AudioFrameEvents_block",
 		8192,
 		audioframeevents);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effectdefinition_block,
 		"EffectDefinition_block",
 		10000000,
 		effectdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationeffects_block,
 		"AnimationEffects_block",
 		10000000,
 		animationeffects);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effectframeevent_block,
 		"EffectFrameEvent_block",
 		10000000,
 		effectframeevent);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effectframeevents_block,
 		"EffectFrameEvents_block",
 		8192,
 		effectframeevents);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_facial_animation_curve_block,
 		"s_facial_animation_curve_block",
 		34,
 		s_facial_animation_curve);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subgraphreferenceexportedanimnodegraph_block,
 		"SubgraphReferenceExportedAnimNodeGraph_block",
 		2048,
 		subgraphreferenceexportedanimnodegraph);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subgraphreferenceanimstategraph_block,
 		"SubgraphReferenceAnimStateGraph_block",
 		2048,
 		subgraphreferenceanimstategraph);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subgraphreferencetransitionlogicgraph_block,
 		"SubgraphReferenceTransitionLogicGraph_block",
 		2048,
 		subgraphreferencetransitionlogicgraph);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		pcaimportedframedataelement_block,
 		"PCAImportedFrameDataElement_block",
 		67108864,
 		pcaimportedframedataelement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		pcaimportedanimationdata_block,
 		"PCAImportedAnimationData_block",
 		4096,
 		pcaimportedanimationdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		pcaimportedmeshdata_block,
 		"PCAImportedMeshData_block",
 		8191,
 		pcaimportedmeshdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		assetcategorysetting_block,
 		"AssetCategorySetting_block",
 		256,
 		assetcategorysetting);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343cagesystemcagepointdefault_block,
 		"i343::CageSystem::CagePointDefault_block",
 		64,
 		i343cagesystemcagepointdefault);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343cagesystemcagepoint_block,
 		"i343::CageSystem::CagePoint_block",
 		128,
 		i343cagesystemcagepoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativeconversationtypeitem_block,
 		"i343::Narrative::ConversationTypeItem_block",
 		12,
 		i343narrativeconversationtypeitem);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curvecurvecontrolpointmetadata_block,
 		"i343::Curve::CurveControlPointMetadata_block",
 		1,
 		i343curvecurvecontrolpointmetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curvecurvedefinitiontagmetadata_block,
 		"i343::Curve::CurveDefinitionTagMetadata_block",
 		128,
 		i343curvecurvedefinitiontagmetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curvenamed1dcurve_block,
 		"i343::Curve::Named1dCurve_block",
 		128,
 		i343curvenamed1dcurve);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curvenamed2dcurve_block,
 		"i343::Curve::Named2dCurve_block",
 		128,
 		i343curvenamed2dcurve);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curvenamed3dcurve_block,
 		"i343::Curve::Named3dCurve_block",
 		128,
 		i343curvenamed3dcurve);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curvenamedtransformcurve_block,
 		"i343::Curve::NamedTransformCurve_block",
 		128,
 		i343curvenamedtransformcurve);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curveanimatedsplinecontrolpointmetadata_block,
 		"i343::Curve::AnimatedSplineControlPointMetadata_block",
 		1,
 		i343curveanimatedsplinecontrolpointmetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curveroadcurvecontrolpointmetadata_block,
 		"i343::Curve::RoadCurveControlPointMetadata_block",
 		1,
 		i343curveroadcurvecontrolpointmetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curvesplineflightpathmetadata_block,
 		"i343::Curve::SplineFlightPathMetadata_block",
 		1,
 		i343curvesplineflightpathmetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curvesplineroadmetadata_block,
 		"i343::Curve::SplineRoadMetadata_block",
 		1,
 		i343curvesplineroadmetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curveroaddecalmetadata_block,
 		"i343::Curve::RoadDecalMetadata_block",
 		1,
 		i343curveroaddecalmetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curveroaddecalbitmapreference_block,
 		"i343::Curve::RoadDecalBitmapReference_block",
 		32,
 		i343curveroaddecalbitmapreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curveroaddecalcontrolpointmetadata_block,
 		"i343::Curve::RoadDecalControlPointMetadata_block",
 		1,
 		i343curveroaddecalcontrolpointmetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curvesplineplacementmetadata_block,
 		"i343::Curve::SplinePlacementMetadata_block",
 		1,
 		i343curvesplineplacementmetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		secondarysunresourcedefinition_block,
 		"SecondarySunResourceDefinition_block",
 		256,
 		secondarysunresourcedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dynamicsundefinition_block,
 		"DynamicSunDefinition_block",
 		2,
 		dynamicsundefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		localstatedefinition_block,
 		"LocalStateDefinition_block",
 		1048576,
 		localstatedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		eventlistdefinition_block,
 		"EventListDefinition_block",
 		256,
 		eventlistdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		eventlistmapping_block,
 		"EventListMapping_block",
 		32,
 		eventlistmapping);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		layermetadata_block,
 		"LayerMetadata_block",
 		1,
 		layermetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsdecalsdecaltriangle_block,
 		"i343::Graphics::Decals::DecalTriangle_block",
 		32767,
 		i343graphicsdecalsdecaltriangle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343firstpersonweaponglobals_block,
 		"i343::FirstPersonWeapon::Globals_block",
 		1,
 		i343firstpersonweaponglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modulecomponentlookupentry_block,
 		"ModuleComponentLookupEntry_block",
 		262144,
 		modulecomponentlookupentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputaxisendpointsource_block,
 		"InputAxisEndpointSource_block",
 		256,
 		inputaxisendpointsource);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputbundleendpointsource_block,
 		"InputBundleEndpointSource_block",
 		64,
 		inputbundleendpointsource);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputmodeendpointsource_block,
 		"InputModeEndpointSource_block",
 		64,
 		inputmodeendpointsource);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputscopetagref_block,
 		"InputScopeTagRef_block",
 		32,
 		inputscopetagref);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputaxis_block,
 		"InputAxis_block",
 		127,
 		inputaxis);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputaxisindex_block,
 		"InputAxisIndex_block",
 		127,
 		inputaxisindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputaxisconnection_block,
 		"InputAxisConnection_block",
 		127,
 		inputaxisconnection);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputdevicebinding_block,
 		"InputDeviceBinding_block",
 		255,
 		inputdevicebinding);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputbundleref_block,
 		"InputBundleRef_block",
 		255,
 		inputbundleref);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputbundlesetref_block,
 		"InputBundleSetRef_block",
 		255,
 		inputbundlesetref);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputdevicebindingentry_block,
 		"InputDeviceBindingEntry_block",
 		255,
 		inputdevicebindingentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputaxismap_block,
 		"InputAxisMap_block",
 		255,
 		inputaxismap);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343activatableregionactivatableregion_block,
 		"i343::ActivatableRegion::ActivatableRegion_block",
 		1048576,
 		i343activatableregionactivatableregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundplacementmapentry_block,
 		"SoundPlacementMapEntry_block",
 		1048576,
 		soundplacementmapentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphplacementmapentry_block,
 		"NodeGraphPlacementMapEntry_block",
 		1048576,
 		nodegraphplacementmapentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effectplacementmapentry_block,
 		"EffectPlacementMapEntry_block",
 		1048576,
 		effectplacementmapentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		acousticzoneplacementmapentry_block,
 		"AcousticZonePlacementMapEntry_block",
 		1048576,
 		acousticzoneplacementmapentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		acousticportalplacementmapentry_block,
 		"AcousticPortalPlacementMapEntry_block",
 		1048576,
 		acousticportalplacementmapentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bspmapentry_block,
 		"BspMapEntry_block",
 		1024,
 		bspmapentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenario_cutscene_flag_block,
 		"scenario_cutscene_flag_block",
 		65536,
 		scenario_cutscene_flag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		levelobjectreferenceelement_block,
 		"LevelObjectReferenceElement_block",
 		256,
 		levelobjectreferenceelement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343levelstaticgeoplacement_block,
 		"i343::LevelStaticGeoPlacement_block",
 		1048576,
 		i343levelstaticgeoplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343levelstaticgeobsp_block,
 		"i343::LevelStaticGeoBsp_block",
 		1024,
 		i343levelstaticgeobsp);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		kitplacementlabel_block,
 		"KitPlacementLabel_block",
 		16,
 		kitplacementlabel);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		kitplacement_block,
 		"KitPlacement_block",
 		2048,
 		kitplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		kitcollectionplacement_block,
 		"KitCollectionPlacement_block",
 		1024,
 		kitcollectionplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_bool_property_block,
 		"s_bool_property_block",
 		32,
 		s_bool_property);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_numeric_property_block,
 		"s_numeric_property_block",
 		32,
 		s_numeric_property);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_string_property_block,
 		"s_string_property_block",
 		32,
 		s_string_property);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_tag_property_block,
 		"s_tag_property_block",
 		32,
 		s_tag_property);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_color_property_block,
 		"s_color_property_block",
 		32,
 		s_color_property);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vector_property_block,
 		"s_vector_property_block",
 		32,
 		s_vector_property);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		globalforceplacement_block,
 		"GlobalForcePlacement_block",
 		1048576,
 		globalforceplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structure_external_instanced_geometry_reference_block,
 		"structure_external_instanced_geometry_reference_block",
 		262144,
 		structure_external_instanced_geometry_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		unicodestringlookupinfo_block,
 		"UnicodeStringLookupInfo_block",
 		2048,
 		unicodestringlookupinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		languagereference_block,
 		"LanguageReference_block",
 		18,
 		languagereference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343valorrewardsiconbitmap_block,
 		"i343::ValorRewards::IconBitmap_block",
 		8,
 		i343valorrewardsiconbitmap);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343valorrewardsbackgroundbitmap_block,
 		"i343::ValorRewards::BackgroundBitmap_block",
 		8,
 		i343valorrewardsbackgroundbitmap);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343valorrewardsreward_block,
 		"i343::ValorRewards::Reward_block",
 		512,
 		i343valorrewardsreward);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343valorrewardspoints_block,
 		"i343::ValorRewards::Points_block",
 		512,
 		i343valorrewardspoints);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodobject_block,
 		"HlodObject_block",
 		1024000,
 		hlodobject);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodbsp_block,
 		"HlodBsp_block",
 		1024000,
 		hlodbsp);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodvolume_block,
 		"HlodVolume_block",
 		10240,
 		hlodvolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		pruningvolume_block,
 		"PruningVolume_block",
 		1048576,
 		pruningvolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343exampleentity_block,
 		"i343::Example::Entity_block",
 		1048576,
 		i343exampleentity);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodmaterialcutoffmeshparts_block,
 		"HlodMaterialCutOffMeshParts_block",
 		1024000,
 		hlodmaterialcutoffmeshparts);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodindex_block,
 		"HlodIndex_block",
 		2048000,
 		hlodindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodvisibilitygroup_block,
 		"HlodVisibilityGroup_block",
 		1024,
 		hlodvisibilitygroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodnode_block,
 		"HlodNode_block",
 		10240,
 		hlodnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodplacement_block,
 		"HlodPlacement_block",
 		1048576,
 		hlodplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodbspdata_block,
 		"HlodBspData_block",
 		10240,
 		hlodbspdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodsettingspreset_block,
 		"HlodSettingsPreset_block",
 		100,
 		hlodsettingspreset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343windwindinfluencervolume_block,
 		"i343::Wind::WindInfluencerVolume_block",
 		1048576,
 		i343windwindinfluencervolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialoverrideentry_block,
 		"MaterialOverrideEntry_block",
 		64,
 		materialoverrideentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		additionalcontentpath_block,
 		"AdditionalContentPath_block",
 		24,
 		additionalcontentpath);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		relativesourcepath_block,
 		"RelativeSourcePath_block",
 		24,
 		relativesourcepath);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		damagestateblock_block,
 		"DamageStateBlock_block",
 		4,
 		damagestateblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		contenttagblock_block,
 		"ContentTagBlock_block",
 		1024,
 		contenttagblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		skeletonblock_block,
 		"SkeletonBlock_block",
 		1,
 		skeletonblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		propertyregion_block,
 		"PropertyRegion_block",
 		32,
 		propertyregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		markerblock_block,
 		"MarkerBlock_block",
 		64,
 		markerblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		visualregionoverrideentry_block,
 		"VisualRegionOverrideEntry_block",
 		32,
 		visualregionoverrideentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		mutedjointentry_block,
 		"MutedJointEntry_block",
 		31,
 		mutedjointentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		assetchildobject_block,
 		"AssetChildObject_block",
 		31,
 		assetchildobject);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		assetvariant_block,
 		"AssetVariant_block",
 		2048,
 		assetvariant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		visualregionnameblock_block,
 		"VisualRegionNameBlock_block",
 		32,
 		visualregionnameblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		uniqueassetgeometryvariant_block,
 		"UniqueAssetGeometryVariant_block",
 		2048,
 		uniqueassetgeometryvariant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_globals_camera_block,
 		"s_game_globals_camera_block",
 		1,
 		s_game_globals_camera);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cameratracklens_block,
 		"CameraTrackLens_block",
 		4096,
 		cameratracklens);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cameratrackcontrolpoint_block,
 		"CameraTrackControlPoint_block",
 		4096,
 		cameratrackcontrolpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composeraction_block,
 		"ComposerAction_block",
 		256,
 		composeraction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composereditoraction_block,
 		"ComposerEditorAction_block",
 		256,
 		composereditoraction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composeralembicanimation_block,
 		"ComposerAlembicAnimation_block",
 		8,
 		composeralembicanimation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composeranimation_block,
 		"ComposerAnimation_block",
 		8,
 		composeranimation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composerpuppetgraph_block,
 		"ComposerPuppetGraph_block",
 		8,
 		composerpuppetgraph);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composeractionanimation_block,
 		"ComposerActionAnimation_block",
 		256,
 		composeractionanimation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composeractionalembicanimation_block,
 		"ComposerActionAlembicAnimation_block",
 		256,
 		composeractionalembicanimation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composeranimatedmesh_block,
 		"ComposerAnimatedMesh_block",
 		8,
 		composeranimatedmesh);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composeractionanimatedmesh_block,
 		"ComposerActionAnimatedMesh_block",
 		256,
 		composeractionanimatedmesh);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composeractionpath_block,
 		"ComposerActionPath_block",
 		256,
 		composeractionpath);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composeractionunitrecording_block,
 		"ComposerActionUnitRecording_block",
 		256,
 		composeractionunitrecording);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composeractioncamera_block,
 		"ComposerActionCamera_block",
 		256,
 		composeractioncamera);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composercagepoint_block,
 		"ComposerCagePoint_block",
 		256,
 		composercagepoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composeractioncameracage_block,
 		"ComposerActionCameraCage_block",
 		256,
 		composeractioncameracage);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composeractioncommandscript_block,
 		"ComposerActionCommandScript_block",
 		256,
 		composeractioncommandscript);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundeventdefinitionreference_block,
 		"SoundEventDefinitionReference_block",
 		8,
 		soundeventdefinitionreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composerscenereference_block,
 		"ComposerSceneReference_block",
 		32,
 		composerscenereference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundbankdefinitionreference_block,
 		"SoundBankDefinitionReference_block",
 		16,
 		soundbankdefinitionreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composerstagecleanupreference_block,
 		"ComposerStageCleanupReference_block",
 		8,
 		composerstagecleanupreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composerglobalsdefinition_block,
 		"ComposerGlobalsDefinition_block",
 		1,
 		composerglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		stringidtoshortnamemappingid_block,
 		"StringIdToShortNameMappingId_block",
 		32767,
 		stringidtoshortnamemappingid);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		stringidtoshortnamemappingindex_block,
 		"StringIdToShortNameMappingIndex_block",
 		32767,
 		stringidtoshortnamemappingindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composerplayerdata_block,
 		"ComposerPlayerData_block",
 		1,
 		composerplayerdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composerpuppetoverride_block,
 		"ComposerPuppetOverride_block",
 		10000,
 		composerpuppetoverride);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composershowstage_block,
 		"ComposerShowStage_block",
 		1048576,
 		composershowstage);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composereditorsubaction_block,
 		"ComposerEditorSubAction_block",
 		512,
 		composereditorsubaction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composersubaction_block,
 		"ComposerSubAction_block",
 		512,
 		composersubaction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactiongeneric_block,
 		"SubActionGeneric_block",
 		512,
 		subactiongeneric);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionobject_block,
 		"SubActionObject_block",
 		512,
 		subactionobject);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionpoint_block,
 		"SubActionPoint_block",
 		512,
 		subactionpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionvalue_block,
 		"SubActionValue_block",
 		512,
 		subactionvalue);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactioncamerafadescreen_block,
 		"SubActionCameraFadeScreen_block",
 		512,
 		subactioncamerafadescreen);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactioncameratrigger_block,
 		"SubActionCameraTrigger_block",
 		512,
 		subactioncameratrigger);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composerbranchelement_block,
 		"ComposerBranchElement_block",
 		8,
 		composerbranchelement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionbranch_block,
 		"SubActionBranch_block",
 		512,
 		subactionbranch);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactiontransform_block,
 		"SubActionTransform_block",
 		512,
 		subactiontransform);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactiontransformcurve_block,
 		"SubActionTransformCurve_block",
 		512,
 		subactiontransformcurve);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionclipplane_block,
 		"SubActionClipPlane_block",
 		512,
 		subactionclipplane);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composerdialog_block,
 		"ComposerDialog_block",
 		8,
 		composerdialog);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactiondialog_block,
 		"SubActionDialog_block",
 		512,
 		subactiondialog);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionsubtitle_block,
 		"SubActionSubtitle_block",
 		512,
 		subactionsubtitle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactioneffect_block,
 		"SubActionEffect_block",
 		512,
 		subactioneffect);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionlensflare_block,
 		"SubActionLensFlare_block",
 		512,
 		subactionlensflare);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionuiscene_block,
 		"SubActionUIScene_block",
 		512,
 		subactionuiscene);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionnodegraphevent_block,
 		"SubActionNodeGraphEvent_block",
 		512,
 		subactionnodegraphevent);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactiongameenginevignetteevent_block,
 		"SubActionGameEngineVignetteEvent_block",
 		512,
 		subactiongameenginevignetteevent);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionlight_block,
 		"SubActionLight_block",
 		512,
 		subactionlight);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactioncameralensdirt_block,
 		"SubActionCameraLensDirt_block",
 		512,
 		subactioncameralensdirt);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionfunction_block,
 		"SubActionFunction_block",
 		512,
 		subactionfunction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionfunctioncurve_block,
 		"SubActionFunctionCurve_block",
 		512,
 		subactionfunctioncurve);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionuserinputconstraints_block,
 		"SubActionUserInputConstraints_block",
 		512,
 		subactionuserinputconstraints);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactiongenericai_block,
 		"SubActionGenericAI_block",
 		512,
 		subactiongenericai);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionikinfluencer_block,
 		"SubActionIKInfluencer_block",
 		512,
 		subactionikinfluencer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactioncameradofcurve_block,
 		"SubActionCameraDOFCurve_block",
 		512,
 		subactioncameradofcurve);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionscriptcurves_block,
 		"SubActionScriptCurves_block",
 		512,
 		subactionscriptcurves);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionpuppetvariant_block,
 		"SubActionPuppetVariant_block",
 		512,
 		subactionpuppetvariant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactioncolorrgba_block,
 		"SubActionColorRgba_block",
 		512,
 		subactioncolorrgba);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactiondwscolorgrading_block,
 		"SubActionDwsColorGrading_block",
 		512,
 		subactiondwscolorgrading);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactiondwschromaticaberration_block,
 		"SubActionDwsChromaticAberration_block",
 		512,
 		subactiondwschromaticaberration);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactionrumble_block,
 		"SubActionRumble_block",
 		512,
 		subactionrumble);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subactioncamerashake_block,
 		"SubActionCameraShake_block",
 		512,
 		subactioncamerashake);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composersubtrack_block,
 		"ComposerSubTrack_block",
 		1000,
 		composersubtrack);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subtracksreference_block,
 		"SubTracksReference_block",
 		1000,
 		subtracksreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composertrackpuppet_block,
 		"ComposerTrackPuppet_block",
 		10000,
 		composertrackpuppet);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composertrackcamera_block,
 		"ComposerTrackCamera_block",
 		9,
 		composertrackcamera);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composertrack_block,
 		"ComposerTrack_block",
 		10000,
 		composertrack);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composereditortrack_block,
 		"ComposerEditorTrack_block",
 		10000,
 		composereditortrack);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composerfirsttofirsttransition_block,
 		"ComposerFirstToFirstTransition_block",
 		1,
 		composerfirsttofirsttransition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composerfirsttothirdtransition_block,
 		"ComposerFirstToThirdTransition_block",
 		1,
 		composerfirsttothirdtransition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curveanimatedcurvekeyframe_block,
 		"i343::Curve::AnimatedCurve::KeyFrame_block",
 		1024,
 		i343curveanimatedcurvekeyframe);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curveanimatedcurvemetadata_block,
 		"i343::Curve::AnimatedCurveMetadata_block",
 		1024,
 		i343curveanimatedcurvemetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curvepropertycurve_block,
 		"i343::Curve::PropertyCurve_block",
 		255,
 		i343curvepropertycurve);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curvecurve1dcontrolpoint_block,
 		"i343::Curve::Curve1dControlPoint_block",
 		1024,
 		i343curvecurve1dcontrolpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curvecurve2dcontrolpoint_block,
 		"i343::Curve::Curve2dControlPoint_block",
 		1024,
 		i343curvecurve2dcontrolpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curvecurve3dcontrolpoint_block,
 		"i343::Curve::Curve3dControlPoint_block",
 		1024,
 		i343curvecurve3dcontrolpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curvesplineplacement_block,
 		"i343::Curve::SplinePlacement_block",
 		1048576,
 		i343curvesplineplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomdarkroomassetspecreferencedefinition_block,
 		"i343::DarkRoom::DarkRoomAssetSpecReferenceDefinition_block",
 		4096,
 		i343darkroomdarkroomassetspecreferencedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomdarkroomcameraspecreferencedefinition_block,
 		"i343::DarkRoom::DarkRoomCameraSpecReferenceDefinition_block",
 		128,
 		i343darkroomdarkroomcameraspecreferencedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomrendersettingspassspecdefinition_block,
 		"i343::DarkRoom::RenderSettingsPassSpecDefinition_block",
 		16,
 		i343darkroomrendersettingspassspecdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomdarkroomrenderspecreferencedefinition_block,
 		"i343::DarkRoom::DarkRoomRenderSpecReferenceDefinition_block",
 		128,
 		i343darkroomdarkroomrenderspecreferencedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomdarkroomscreenshotspecreferencedefinition_block,
 		"i343::DarkRoom::DarkRoomScreenshotSpecReferenceDefinition_block",
 		128,
 		i343darkroomdarkroomscreenshotspecreferencedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomdarkroomlightingspecreferencedefinition_block,
 		"i343::DarkRoom::DarkRoomLightingSpecReferenceDefinition_block",
 		32,
 		i343darkroomdarkroomlightingspecreferencedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomdarkroomanimationspecreferencedefinition_block,
 		"i343::DarkRoom::DarkRoomAnimationSpecReferenceDefinition_block",
 		32,
 		i343darkroomdarkroomanimationspecreferencedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomassemblyreferencedefinition_block,
 		"i343::DarkRoom::AssemblyReferenceDefinition_block",
 		32,
 		i343darkroomassemblyreferencedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		recorded_animation_definition_block,
 		"recorded_animation_definition_block",
 		1048576,
 		recorded_animation_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		editormetadata_block,
 		"EditorMetadata_block",
 		1,
 		editormetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_editor_folder_block,
 		"s_scenario_editor_folder_block",
 		1048576,
 		s_scenario_editor_folder);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_camera_impulse_globals_block,
 		"s_camera_impulse_globals_block",
 		1,
 		s_camera_impulse_globals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cheapparticleturbulencetype_block,
 		"CheapParticleTurbulenceType_block",
 		8,
 		cheapparticleturbulencetype);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cheapparticletexture_block,
 		"CheapParticleTexture_block",
 		63,
 		cheapparticletexture);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cheapparticletype_block,
 		"CheapParticleType_block",
 		255,
 		cheapparticletype);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_decal_definition_block,
 		"c_decal_definition_block",
 		16,
 		c_decal_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effect_part_definition_block,
 		"effect_part_definition_block",
 		32,
 		effect_part_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effect_sound_event_lod_definition_block,
 		"effect_sound_event_lod_definition_block",
 		32,
 		effect_sound_event_lod_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effect_sound_definition_block,
 		"effect_sound_definition_block",
 		8,
 		effect_sound_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effect_acceleration_definition_block,
 		"effect_acceleration_definition_block",
 		32,
 		effect_acceleration_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effect_event_definition_block,
 		"effect_event_definition_block",
 		32,
 		effect_event_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_effect_conical_distribution_definition_block,
 		"s_effect_conical_distribution_definition_block",
 		1,
 		s_effect_conical_distribution_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effect_location_definition_block,
 		"effect_location_definition_block",
 		8,
 		effect_location_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effectloddefinition_block,
 		"EffectLodDefinition_block",
 		8,
 		effectloddefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effect_definitionannotation_block,
 		"effect_definition::Annotation_block",
 		8,
 		effect_definitionannotation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		globalspawneffects_block,
 		"GlobalSpawnEffects_block",
 		1,
 		globalspawneffects);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_effect_scenery_block,
 		"s_scenario_effect_scenery_block",
 		262144,
 		s_scenario_effect_scenery);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343effectsgeneratordefinition_block,
 		"i343::Effects::GeneratorDefinition_block",
 		8,
 		i343effectsgeneratordefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_jetwash_definition_block,
 		"s_jetwash_definition_block",
 		4,
 		s_jetwash_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lightvolumedefinition_block,
 		"LightVolumeDefinition_block",
 		16,
 		lightvolumedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343effectsmarkeroverrideblock_block,
 		"i343::Effects::MarkerOverrideBlock_block",
 		8,
 		i343effectsmarkeroverrideblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_material_effect_material_block,
 		"s_material_effect_material_block",
 		500,
 		s_material_effect_material);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_material_effect_block,
 		"s_material_effect_block",
 		34,
 		s_material_effect);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343effectsvisualmaterialeffectsblock_block,
 		"i343::Effects::VisualMaterialEffectsBlock_block",
 		34,
 		i343effectsvisualmaterialeffectsblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343effectssoundmaterialeffectsblock_block,
 		"i343::Effects::SoundMaterialEffectsBlock_block",
 		34,
 		i343effectssoundmaterialeffectsblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modeldissolveregiontimeoffset_block,
 		"ModelDissolveRegionTimeOffset_block",
 		32,
 		modeldissolveregiontimeoffset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modeldissolvedatablock_block,
 		"ModelDissolveDataBlock_block",
 		12,
 		modeldissolvedatablock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_particle_emitter_definitionparticleemitterglobalforce_block,
 		"c_particle_emitter_definition::ParticleEmitterGlobalForce_block",
 		4,
 		c_particle_emitter_definitionparticleemitterglobalforce);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_particle_emitter_definitionparticleemitterclipsphere_block,
 		"c_particle_emitter_definition::ParticleEmitterClipSphere_block",
 		1,
 		c_particle_emitter_definitionparticleemitterclipsphere);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		emittertagreference_block,
 		"EmitterTagReference_block",
 		8,
 		emittertagreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		emitterinternal_block,
 		"EmitterInternal_block",
 		8,
 		emitterinternal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_particle_attachment_block,
 		"s_particle_attachment_block",
 		4,
 		s_particle_attachment);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		particledefinitiongpudatas_sprite_block,
 		"ParticleDefinitionGpuData::s_sprite_block",
 		1,
 		particledefinitiongpudatas_sprite);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_particle_emitter_custom_pointss_point_block,
 		"s_particle_emitter_custom_points::s_point_block",
 		32768,
 		s_particle_emitter_custom_pointss_point);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_particle_model_definitions_gpu_datas_variant_block,
 		"c_particle_model_definition::s_gpu_data::s_variant_block",
 		16,
 		c_particle_model_definitions_gpu_datas_variant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_particle_controller_parameter_block,
 		"c_particle_controller_parameter_block",
 		9,
 		c_particle_controller_parameter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_particle_controller_block,
 		"c_particle_controller_block",
 		8,
 		c_particle_controller);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_particle_system_definition_block,
 		"c_particle_system_definition_block",
 		32,
 		c_particle_system_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_single_screen_effect_definition_block,
 		"s_single_screen_effect_definition_block",
 		8,
 		s_single_screen_effect_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cacheddecalsystem_block,
 		"CachedDecalSystem_block",
 		32767,
 		cacheddecalsystem);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		staticdecalcache_block,
 		"StaticDecalCache_block",
 		1048576,
 		staticdecalcache);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		tracerdefinition_block,
 		"TracerDefinition_block",
 		16,
 		tracerdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		fixeddepthquadtreetri_block,
 		"FixedDepthQuadTreeTri_block",
 		4096,
 		fixeddepthquadtreetri);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		fixeddepthquadtreegeo_block,
 		"FixedDepthQuadTreeGeo_block",
 		512,
 		fixeddepthquadtreegeo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		fixeddepthquadtreenode_block,
 		"FixedDepthQuadTreeNode_block",
 		512,
 		fixeddepthquadtreenode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343flinchflinchrecoilblock_block,
 		"i343::Flinch::FlinchRecoilBlock_block",
 		2,
 		i343flinchflinchrecoilblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343flinchflinchspringdamperblock_block,
 		"i343::Flinch::FlinchSpringDamperBlock_block",
 		2,
 		i343flinchflinchspringdamperblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hstructfieldstringblock_block,
 		"HStructFieldStringBlock_block",
 		32,
 		hstructfieldstringblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hstructfieldallowedextensionblock_block,
 		"HStructFieldAllowedExtensionBlock_block",
 		8,
 		hstructfieldallowedextensionblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hstructfieldblock_block,
 		"HStructFieldBlock_block",
 		64,
 		hstructfieldblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hstructblock_block,
 		"HStructBlock_block",
 		8,
 		hstructblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hsreferencesblock_block,
 		"HsReferencesBlock_block",
 		1024,
 		hsreferencesblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hsreferencesblockwithvariant_block,
 		"HsReferencesBlockWithVariant_block",
 		1024,
 		hsreferencesblockwithvariant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hsweakreferencesblockwithvariant_block,
 		"HsWeakReferencesBlockWithVariant_block",
 		1024,
 		hsweakreferencesblockwithvariant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hsremotefunctionblock_block,
 		"HSRemoteFunctionBlock_block",
 		256,
 		hsremotefunctionblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hsglobalvariable_block,
 		"HSGlobalVariable_block",
 		256,
 		hsglobalvariable);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hsglobalfunctionargument_block,
 		"HSGlobalFunctionArgument_block",
 		32,
 		hsglobalfunctionargument);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hsglobalfunction_block,
 		"HSGlobalFunction_block",
 		256,
 		hsglobalfunction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hssourceruntimeerrormessage_block,
 		"HsSourceRuntimeErrorMessage_block",
 		1024,
 		hssourceruntimeerrormessage);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_hs_source_reference_block,
 		"s_hs_source_reference_block",
 		128,
 		s_hs_source_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		speechgrammarphraseblock_block,
 		"SpeechGrammarPhraseBlock_block",
 		256,
 		speechgrammarphraseblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		speechgrammarnodeblock_block,
 		"SpeechGrammarNodeBlock_block",
 		256,
 		speechgrammarnodeblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		speechgrammarblock_block,
 		"SpeechGrammarBlock_block",
 		256,
 		speechgrammarblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spottedobjectblock_block,
 		"SpottedObjectBlock_block",
 		8,
 		spottedobjectblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		airproberegionvolume_block,
 		"AirProbeRegionVolume_block",
 		1048576,
 		airproberegionvolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bsplightingvolumesreference_block,
 		"BspLightingVolumesReference_block",
 		16,
 		bsplightingvolumesreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cubemapvolume_block,
 		"CubemapVolume_block",
 		1048576,
 		cubemapvolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lightmappriorityvolume_block,
 		"LightmapPriorityVolume_block",
 		1048576,
 		lightmappriorityvolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		airprobedensityvolume_block,
 		"AirProbeDensityVolume_block",
 		1048576,
 		airprobedensityvolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		visualenvvolume_block,
 		"VisualEnvVolume_block",
 		1048576,
 		visualenvvolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343malleablepropertygenericmodifierdefinitionfloatparam_block,
 		"i343::MalleableProperty::GenericModifierDefinitionFloatParam_block",
 		32,
 		i343malleablepropertygenericmodifierdefinitionfloatparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343malleablepropertygenericmodifierdefinitionintparam_block,
 		"i343::MalleableProperty::GenericModifierDefinitionIntParam_block",
 		32,
 		i343malleablepropertygenericmodifierdefinitionintparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343malleablepropertygenericmodifierdefinitionboolparam_block,
 		"i343::MalleableProperty::GenericModifierDefinitionBoolParam_block",
 		32,
 		i343malleablepropertygenericmodifierdefinitionboolparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		splinenode_block,
 		"SplineNode_block",
 		200,
 		splinenode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_model_damage_info_block,
 		"s_model_damage_info_block",
 		1,
 		s_model_damage_info);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_region_transition_block,
 		"s_region_transition_block",
 		16,
 		s_region_transition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_damage_seat_region_setting_block,
 		"s_damage_seat_region_setting_block",
 		1,
 		s_damage_seat_region_setting);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_damage_seat_info_block,
 		"s_damage_seat_info_block",
 		16,
 		s_damage_seat_info);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_damage_constraint_info_block,
 		"s_damage_constraint_info_block",
 		16,
 		s_damage_constraint_info);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_damage_node_block,
 		"s_damage_node_block",
 		1024,
 		s_damage_node);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343modelmodeltarget_block,
 		"i343::Model::ModelTarget_block",
 		32,
 		i343modelmodeltarget);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		teammatechatterdialogueblockdefinition_block,
 		"TeammateChatterDialogueBlockDefinition_block",
 		16,
 		teammatechatterdialogueblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		specialdialogueblockdefinition_block,
 		"SpecialDialogueBlockDefinition_block",
 		16,
 		specialdialogueblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modelvariantoverridedef_block,
 		"ModelVariantOverrideDef_block",
 		64,
 		modelvariantoverridedef);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenariobakedpvsvolume_block,
 		"ScenarioBakedPVSVolume_block",
 		1048576,
 		scenariobakedpvsvolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343scenariozonesetbakedpvssubregiondwordparam_block,
 		"i343::ScenarioZoneSetBakedPVS::SubregionDwordParam_block",
 		65535,
 		i343scenariozonesetbakedpvssubregiondwordparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343scenariozonesetbakedpvssubregionlongparam_block,
 		"i343::ScenarioZoneSetBakedPVS::SubregionLongParam_block",
 		65535,
 		i343scenariozonesetbakedpvssubregionlongparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343scenariozonesetbakedpvssubregion_block,
 		"i343::ScenarioZoneSetBakedPVS::Subregion_block",
 		65535,
 		i343scenariozonesetbakedpvssubregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343scenariozonesetbakedpvsperbspdata_block,
 		"i343::ScenarioZoneSetBakedPVS::PerBSPData_block",
 		32,
 		i343scenariozonesetbakedpvsperbspdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effectplacement_block,
 		"EffectPlacement_block",
 		1048576,
 		effectplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		panningcloudsettings_block,
 		"PanningCloudSettings_block",
 		4,
 		panningcloudsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		adjacentbsplighting_block,
 		"AdjacentBSPLighting_block",
 		1024,
 		adjacentbsplighting);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		indirectirradiancetodsettings_block,
 		"IndirectIrradianceTODSettings_block",
 		8,
 		indirectirradiancetodsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lightingsettingsadditionalbsp_block,
 		"LightingSettingsAdditionalBSP_block",
 		8,
 		lightingsettingsadditionalbsp);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialbitmapoverrideentry_block,
 		"MaterialBitmapOverrideEntry_block",
 		64,
 		materialbitmapoverrideentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialbitmapoverrides_block,
 		"MaterialBitmapOverrides_block",
 		64,
 		materialbitmapoverrides);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenariostaticassetplacement_block,
 		"ScenarioStaticAssetPlacement_block",
 		262144,
 		scenariostaticassetplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenarioassetcollectionplacement_block,
 		"ScenarioAssetCollectionPlacement_block",
 		262144,
 		scenarioassetcollectionplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		foliageassetplacement_block,
 		"FoliageAssetPlacement_block",
 		262144,
 		foliageassetplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		serializedhavokgeometry_block,
 		"SerializedHavokGeometry_block",
 		4,
 		serializedhavokgeometry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structurefxplacementmarker_block,
 		"StructureFxPlacementMarker_block",
 		1024,
 		structurefxplacementmarker);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structuremetadatalightconemarker_block,
 		"StructureMetadataLightConeMarker_block",
 		1024,
 		structuremetadatalightconemarker);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terrainplacement_block,
 		"i343::TerrainPlacement_block",
 		1048576,
 		i343terrainplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terrainvolume_block,
 		"i343::TerrainVolume_block",
 		1048576,
 		i343terrainvolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terrainseedruntime_block,
 		"i343::TerrainSeedRuntime_block",
 		1048576,
 		i343terrainseedruntime);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		contentvalidationgroup_block,
 		"ContentValidationGroup_block",
 		2048,
 		contentvalidationgroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		validationcomment_block,
 		"ValidationComment_block",
 		50000,
 		validationcomment);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		validation_block,
 		"Validation_block",
 		1024,
 		validation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenario_layer_reference_block,
 		"scenario_layer_reference_block",
 		1024,
 		scenario_layer_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		runtimelayerreference_block,
 		"RuntimeLayerReference_block",
 		1024,
 		runtimelayerreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		blockrange_block,
 		"BlockRange_block",
 		128,
 		blockrange);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		runtimelayerdata_block,
 		"RuntimeLayerData_block",
 		8192,
 		runtimelayerdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		placementindexdata_block,
 		"PlacementIndexData_block",
 		4194304,
 		placementindexdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		levelobjectsblockoffset_block,
 		"LevelObjectsBlockOffset_block",
 		256,
 		levelobjectsblockoffset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		levelregiondata_block,
 		"LevelRegionData_block",
 		1056,
 		levelregiondata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lightingobjectsindex_block,
 		"LightingObjectsIndex_block",
 		4096,
 		lightingobjectsindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenario_structure_bsp_reference_block,
 		"scenario_structure_bsp_reference_block",
 		1024,
 		scenario_structure_bsp_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_structure_design_reference_block,
 		"s_scenario_structure_design_reference_block",
 		8,
 		s_scenario_structure_design_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		defaultplayerstartindex_block,
 		"DefaultPlayerStartIndex_block",
 		4,
 		defaultplayerstartindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		editor_comment_definition_block,
 		"editor_comment_definition_block",
 		1048576,
 		editor_comment_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_soft_ceiling_block,
 		"s_scenario_soft_ceiling_block",
 		128,
 		s_scenario_soft_ceiling);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenario_starting_profile_block,
 		"scenario_starting_profile_block",
 		1048576,
 		scenario_starting_profile);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenario_player_starting_location_block,
 		"scenario_player_starting_location_block",
 		1048576,
 		scenario_player_starting_location);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_zone_set_switch_trigger_volume_block,
 		"s_scenario_zone_set_switch_trigger_volume_block",
 		8192,
 		s_scenario_zone_set_switch_trigger_volume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_kill_trigger_volume_block,
 		"s_scenario_kill_trigger_volume_block",
 		8192,
 		s_scenario_kill_trigger_volume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_safe_zone_trigger_volume_block,
 		"s_scenario_safe_zone_trigger_volume_block",
 		8192,
 		s_scenario_safe_zone_trigger_volume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_location_name_trigger_volume_block,
 		"s_scenario_location_name_trigger_volume_block",
 		8192,
 		s_scenario_location_name_trigger_volume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenariounsafespawnvolume_block,
 		"ScenarioUnsafeSpawnVolume_block",
 		8192,
 		scenariounsafespawnvolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenario_decal_block,
 		"scenario_decal_block",
 		1048576,
 		scenario_decal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_cheap_particle_emitter_palette_entry_block,
 		"s_scenario_cheap_particle_emitter_palette_entry_block",
 		20,
 		s_scenario_cheap_particle_emitter_palette_entry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_cheap_particle_system_block,
 		"s_scenario_cheap_particle_system_block",
 		1048576,
 		s_scenario_cheap_particle_system);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenarioeditorannotation_block,
 		"ScenarioEditorAnnotation_block",
 		1048576,
 		scenarioeditorannotation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenario_cutscene_camera_point_block,
 		"scenario_cutscene_camera_point_block",
 		1048576,
 		scenario_cutscene_camera_point);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenarioclusterpointsblock_block,
 		"ScenarioClusterPointsBlock_block",
 		256,
 		scenarioclusterpointsblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_cluster_data_block,
 		"s_scenario_cluster_data_block",
 		1024,
 		s_scenario_cluster_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bspclusterreference_block,
 		"BspClusterReference_block",
 		262144,
 		bspclusterreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_zone_set_cluster_seam_cluster_mappings_block,
 		"s_scenario_zone_set_cluster_seam_cluster_mappings_block",
 		256,
 		s_scenario_zone_set_cluster_seam_cluster_mappings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_zone_set_structure_bsp_pvs_block,
 		"s_scenario_zone_set_structure_bsp_pvs_block",
 		1024,
 		s_scenario_zone_set_structure_bsp_pvs);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_zone_set_pvs_block,
 		"s_scenario_zone_set_pvs_block",
 		1057,
 		s_scenario_zone_set_pvs);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenariozonesetbudgetoverride_block,
 		"ScenarioZoneSetBudgetOverride_block",
 		1,
 		scenariozonesetbudgetoverride);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenariozonesetlipsyncblock_block,
 		"ScenarioZoneSetLipsyncBlock_block",
 		32767,
 		scenariozonesetlipsyncblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_zone_set_block,
 		"s_scenario_zone_set_block",
 		1056,
 		s_scenario_zone_set);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_sky_reference_block,
 		"s_scenario_sky_reference_block",
 		32,
 		s_scenario_sky_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenarioeffectplacement_block,
 		"ScenarioEffectPlacement_block",
 		1048576,
 		scenarioeffectplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenarioattachedlightcone_block,
 		"ScenarioAttachedLightCone_block",
 		1048576,
 		scenarioattachedlightcone);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_budget_reference_block,
 		"s_scenario_budget_reference_block",
 		4096,
 		s_scenario_budget_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenariosubtitleref_block,
 		"ScenarioSubtitleRef_block",
 		32,
 		scenariosubtitleref);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scriptstring_block,
 		"ScriptString_block",
 		5000,
 		scriptstring);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		compositiondefinitionreference_block,
 		"CompositionDefinitionReference_block",
 		16,
 		compositiondefinitionreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		multiplayerscenariointrodefinition_block,
 		"MultiplayerScenarioIntroDefinition_block",
 		32,
 		multiplayerscenariointrodefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bsplightingorderelement_block,
 		"BspLightingOrderElement_block",
 		1024,
 		bsplightingorderelement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		preimportedanimnodegraphreference_block,
 		"PreimportedAnimNodeGraphReference_block",
 		256,
 		preimportedanimnodegraphreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modulelookupkey_block,
 		"ModuleLookupKey_block",
 		1048576,
 		modulelookupkey);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_dumpling_sector_point_block,
 		"s_dumpling_sector_point_block",
 		128,
 		s_dumpling_sector_point);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_interpolator_entry_definition_block,
 		"s_scenario_interpolator_entry_definition_block",
 		32,
 		s_scenario_interpolator_entry_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_trigger_volume_triangle_block,
 		"s_trigger_volume_triangle_block",
 		126,
 		s_trigger_volume_triangle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		warzoneobjectivedefinitiontriggervolume_block,
 		"WarzoneObjectiveDefinitionTriggerVolume_block",
 		16,
 		warzoneobjectivedefinitiontriggervolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		warzoneobjectivedefinition_block,
 		"WarzoneObjectiveDefinition_block",
 		320,
 		warzoneobjectivedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		mapleaffacevertex_block,
 		"MapLeafFaceVertex_block",
 		512,
 		mapleaffacevertex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		mapleafconnectionindex_block,
 		"MapLeafConnectionIndex_block",
 		1048576,
 		mapleafconnectionindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		map_leaf_face_block,
 		"map_leaf_face_block",
 		1048576,
 		map_leaf_face);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		map_leaf_block,
 		"map_leaf_block",
 		134217728,
 		map_leaf);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		leafconnectionvertex_block,
 		"LeafConnectionVertex_block",
 		512,
 		leafconnectionvertex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		leaf_connection_block,
 		"leaf_connection_block",
 		1073741824,
 		leaf_connection);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structurebsprawresources_block,
 		"StructureBspRawResources_block",
 		1,
 		structurebsprawresources);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		prefabmaterialoverridevariant_block,
 		"PrefabMaterialOverrideVariant_block",
 		10240,
 		prefabmaterialoverridevariant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_bsp_obb_volume_block,
 		"s_structure_bsp_obb_volume_block",
 		4096,
 		s_structure_bsp_obb_volume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_widget_marker_reference_block,
 		"s_widget_marker_reference_block",
 		1024,
 		s_widget_marker_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structure_marker_block,
 		"structure_marker_block",
 		1024,
 		structure_marker);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		seamindicesblockdefinition_block,
 		"SeamIndicesBlockDefinition_block",
 		3072,
 		seamindicesblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structurebspclusterportalindex_block,
 		"StructureBSPClusterPortalIndex_block",
 		512,
 		structurebspclusterportalindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structure_cluster_block,
 		"structure_cluster_block",
 		256,
 		structure_cluster);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cluster_portal_block,
 		"cluster_portal_block",
 		1000,
 		cluster_portal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cluster_portalstructurebspclusterportalvertexblock_block,
 		"cluster_portal::StructureBSPClusterPortalVertexBlock_block",
 		128,
 		cluster_portalstructurebspclusterportalvertexblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structuresupernodetraversalgeometryindices_block,
 		"StructureSuperNodeTraversalGeometryIndices_block",
 		3072,
 		structuresupernodetraversalgeometryindices);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_super_node_traversal_geometry_block,
 		"s_structure_super_node_traversal_geometry_block",
 		32767,
 		s_structure_super_node_traversal_geometry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		supernoderecursablemasks_block,
 		"SuperNodeRecursableMasks_block",
 		2048,
 		supernoderecursablemasks);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structuresupernodeaabbs_block,
 		"StructureSuperNodeAabbs_block",
 		32768,
 		structuresupernodeaabbs);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_super_node_mapping_block,
 		"s_structure_super_node_mapping_block",
 		2048,
 		s_structure_super_node_mapping);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bspbitmapreference_block,
 		"BspBitmapReference_block",
 		1048576,
 		bspbitmapreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		streamingbitmapscale_block,
 		"StreamingBitmapScale_block",
 		1048576,
 		streamingbitmapscale);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		perlodbitmaps_block,
 		"PerLodBitmaps_block",
 		16,
 		perlodbitmaps);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bspuniquestreamingio_block,
 		"BspUniqueStreamingIO_block",
 		32768,
 		bspuniquestreamingio);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structure_collision_material_block,
 		"structure_collision_material_block",
 		4096,
 		structure_collision_material);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structure_leaf_block,
 		"structure_leaf_block",
 		134217728,
 		structure_leaf);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structure_conveyor_surface_block,
 		"structure_conveyor_surface_block",
 		4096,
 		structure_conveyor_surface);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structure_environment_object_palette_entry_block,
 		"structure_environment_object_palette_entry_block",
 		1024,
 		structure_environment_object_palette_entry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structure_environment_object_block,
 		"structure_environment_object_block",
 		16384,
 		structure_environment_object);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_debug_info_render_line_block,
 		"s_structure_debug_info_render_line_block",
 		32767,
 		s_structure_debug_info_render_line);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structurebspdebuginfoindicesblock_block,
 		"StructureBspDebugInfoIndicesBlock_block",
 		32767,
 		structurebspdebuginfoindicesblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_cluster_debug_info_block,
 		"s_structure_cluster_debug_info_block",
 		256,
 		s_structure_cluster_debug_info);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_fog_plane_debug_info_block,
 		"s_structure_fog_plane_debug_info_block",
 		127,
 		s_structure_fog_plane_debug_info);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_fog_zone_debug_info_block,
 		"s_structure_fog_zone_debug_info_block",
 		127,
 		s_structure_fog_zone_debug_info);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_debug_info_block,
 		"s_structure_debug_info_block",
 		1,
 		s_structure_debug_info);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_cookie_cutter_block,
 		"s_structure_cookie_cutter_block",
 		1024,
 		s_structure_cookie_cutter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_manifest_bsp_definition_block,
 		"s_structure_manifest_bsp_definition_block",
 		1024,
 		s_structure_manifest_bsp_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_physics_water_group_block,
 		"s_structure_physics_water_group_block",
 		2048,
 		s_structure_physics_water_group);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_physics_water_instance_plane_block,
 		"s_structure_physics_water_instance_plane_block",
 		2048,
 		s_structure_physics_water_instance_plane);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_physics_water_instance_debug_triangle_block,
 		"s_structure_physics_water_instance_debug_triangle_block",
 		8192,
 		s_structure_physics_water_instance_debug_triangle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_physics_water_instance_block,
 		"s_structure_physics_water_instance_block",
 		2048,
 		s_structure_physics_water_instance);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_soft_ceiling_triangle_block,
 		"s_structure_soft_ceiling_triangle_block",
 		32767,
 		s_structure_soft_ceiling_triangle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_soft_ceiling_block,
 		"s_structure_soft_ceiling_block",
 		128,
 		s_structure_soft_ceiling);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structureseamoriginalvertexplanenormals_block,
 		"StructureSeamOriginalVertexPlaneNormals_block",
 		1024,
 		structureseamoriginalvertexplanenormals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_seam_original_vertex_block,
 		"s_structure_seam_original_vertex_block",
 		32767,
 		s_structure_seam_original_vertex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structureseamfinalplanesparam_block,
 		"StructureSeamFinalPlanesParam_block",
 		32767,
 		structureseamfinalplanesparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structureseamfinalpointsparam_block,
 		"StructureSeamFinalPointsParam_block",
 		32767,
 		structureseamfinalpointsparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_seam_final_triangle_block,
 		"s_structure_seam_final_triangle_block",
 		32767,
 		s_structure_seam_final_triangle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_seam_final_edge_block,
 		"s_structure_seam_final_edge_block",
 		32767,
 		s_structure_seam_final_edge);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_seam_block,
 		"s_structure_seam_block",
 		3072,
 		s_structure_seam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structureseamedgemapping_block,
 		"StructureSeamEdgeMapping_block",
 		32767,
 		structureseamedgemapping);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_seam_cluster_mapping_block,
 		"s_structure_seam_cluster_mapping_block",
 		256,
 		s_structure_seam_cluster_mapping);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_seam_mapping_block,
 		"s_structure_seam_mapping_block",
 		3072,
 		s_structure_seam_mapping);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		basicblockuseonce_block,
 		"BasicBlockUseOnce_block",
 		8,
 		basicblockuseonce);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_basic_block_block,
 		"s_basic_block_block",
 		8,
 		s_basic_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_block_with_struct_block,
 		"s_block_with_struct_block",
 		8,
 		s_block_with_struct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_complex_sub_block_block,
 		"s_complex_sub_block_block",
 		8,
 		s_complex_sub_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_complex_block_block,
 		"s_complex_block_block",
 		1024,
 		s_complex_block);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_multilingual_unicode_string_reference_block,
 		"s_multilingual_unicode_string_reference_block",
 		36864,
 		s_multilingual_unicode_string_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_string_substitution_pair_block,
 		"s_string_substitution_pair_block",
 		2048,
 		s_string_substitution_pair);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cameratrackanimation_block,
 		"CameraTrackAnimation_block",
 		1024,
 		cameratrackanimation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		abcstat_block,
 		"AbcStat_block",
 		64,
 		abcstat);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontenttagreferenceingraph_block,
 		"NodeGraph::Content::TagReferenceInGraph_block",
 		1024,
 		nodegraphcontenttagreferenceingraph);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentgraphreference_block,
 		"NodeGraph::Content::GraphReference_block",
 		1024,
 		nodegraphcontentgraphreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtrootnode_block,
 		"EBTRootNode_block",
 		1,
 		ebtrootnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtinputnode_block,
 		"EBTInputNode_block",
 		32,
 		ebtinputnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtfollowplayerordernode_block,
 		"EBTFollowPlayerOrderNode_block",
 		16,
 		ebtfollowplayerordernode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtselectornode_block,
 		"EBTSelectorNode_block",
 		16,
 		ebtselectornode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtsequencenode_block,
 		"EBTSequenceNode_block",
 		16,
 		ebtsequencenode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtboolconditionnode_block,
 		"EBTBoolConditionNode_block",
 		16,
 		ebtboolconditionnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtprioritysorternode_block,
 		"EBTPrioritySorterNode_block",
 		16,
 		ebtprioritysorternode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtassignmentlimitnode_block,
 		"EBTAssignmentLimitNode_block",
 		16,
 		ebtassignmentlimitnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtbodycountnode_block,
 		"EBTBodyCountNode_block",
 		16,
 		ebtbodycountnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtcombatstatusfilternode_block,
 		"EBTCombatStatusFilterNode_block",
 		16,
 		ebtcombatstatusfilternode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtkeywordfilternode_block,
 		"EBTKeywordFilterNode_block",
 		16,
 		ebtkeywordfilternode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtlivingcountnode_block,
 		"EBTLivingCountNode_block",
 		16,
 		ebtlivingcountnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtvehiclefilternode_block,
 		"EBTVehicleFilterNode_block",
 		16,
 		ebtvehiclefilternode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtscripttriggernode_block,
 		"EBTScriptTriggerNode_block",
 		16,
 		ebtscripttriggernode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtplayertriggervolumenode_block,
 		"EBTPlayerTriggerVolumeNode_block",
 		16,
 		ebtplayertriggervolumenode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtminrelevancenode_block,
 		"EBTMinRelevanceNode_block",
 		16,
 		ebtminrelevancenode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ebtnodelink_block,
 		"EBTNodeLink_block",
 		128,
 		ebtnodelink);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		behaviortreenodeparameterbool_block,
 		"BehaviorTreeNodeParameterBool_block",
 		128,
 		behaviortreenodeparameterbool);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		behaviortreenodeparameterfloat_block,
 		"BehaviorTreeNodeParameterFloat_block",
 		128,
 		behaviortreenodeparameterfloat);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		behaviortreenodeparameterint_block,
 		"BehaviorTreeNodeParameterInt_block",
 		128,
 		behaviortreenodeparameterint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		behaviortreenodeparameterstringid_block,
 		"BehaviorTreeNodeParameterStringId_block",
 		128,
 		behaviortreenodeparameterstringid);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		behaviortreenodeparameterruntimeref_block,
 		"BehaviorTreeNodeParameterRuntimeRef_block",
 		128,
 		behaviortreenodeparameterruntimeref);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		behaviortreenodeparameterconnection_block,
 		"BehaviorTreeNodeParameterConnection_block",
 		512,
 		behaviortreenodeparameterconnection);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		behaviortreenodeconnection_block,
 		"BehaviorTreeNodeConnection_block",
 		2048,
 		behaviortreenodeconnection);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		behaviortreenode_block,
 		"BehaviorTreeNode_block",
 		2048,
 		behaviortreenode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animtranslation_block,
 		"AnimTranslation_block",
 		4096,
 		animtranslation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animrotation_block,
 		"AnimRotation_block",
 		4096,
 		animrotation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animfloat_block,
 		"AnimFloat_block",
 		4096,
 		animfloat);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animjoint_block,
 		"AnimJoint_block",
 		1024,
 		animjoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animuserparameter_block,
 		"AnimUserParameter_block",
 		1024,
 		animuserparameter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animikevent_block,
 		"AnimIKEvent_block",
 		1024,
 		animikevent);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animjointreference_block,
 		"AnimJointReference_block",
 		1,
 		animjointreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animcamera_block,
 		"AnimCamera_block",
 		1024,
 		animcamera);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		physicsunsafeobjectfunctionentry_block,
 		"PhysicsUnsafeObjectFunctionEntry_block",
 		2048,
 		physicsunsafeobjectfunctionentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationfkjointnames_block,
 		"AnimationFKJointNames_block",
 		32,
 		animationfkjointnames);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animgraphconnection_block,
 		"AnimGraphConnection_block",
 		2048,
 		animgraphconnection);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		blackboardentrydescriptor_block,
 		"BlackboardEntryDescriptor_block",
 		2048,
 		blackboardentrydescriptor);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		posenode_block,
 		"PoseNode_block",
 		2048,
 		posenode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationtokennode_block,
 		"AnimationTokenNode_block",
 		2048,
 		animationtokennode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationextractnode_block,
 		"AnimationExtractNode_block",
 		2048,
 		animationextractnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationgetlocaloffsetnode_block,
 		"AnimationGetLocalOffsetNode_block",
 		2048,
 		animationgetlocaloffsetnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationgetvaluesnode_block,
 		"AnimationGetValuesNode_block",
 		2048,
 		animationgetvaluesnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationfknode_block,
 		"AnimationFKNode_block",
 		2048,
 		animationfknode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationconstraintnode_block,
 		"AnimationConstraintNode_block",
 		2048,
 		animationconstraintnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		selectionnodepose_block,
 		"SelectionNodePose_block",
 		128,
 		selectionnodepose);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		selectionnode_block,
 		"SelectionNode_block",
 		2048,
 		selectionnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		layernodelayer_block,
 		"LayerNodeLayer_block",
 		128,
 		layernodelayer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		layernode_block,
 		"LayerNode_block",
 		2048,
 		layernode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		statemachinenode_block,
 		"StateMachineNode_block",
 		2048,
 		statemachinenode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subanimgraphnode_block,
 		"SubAnimGraphNode_block",
 		2048,
 		subanimgraphnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		autospeedtoken_block,
 		"AutoSpeedToken_block",
 		2048,
 		autospeedtoken);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		blendspacenode_block,
 		"BlendSpaceNode_block",
 		2048,
 		blendspacenode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		controlparameternode_block,
 		"ControlParameterNode_block",
 		2048,
 		controlparameternode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		transitiondatanode_block,
 		"TransitionDataNode_block",
 		2048,
 		transitiondatanode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		objectfunctionnode_block,
 		"ObjectFunctionNode_block",
 		2048,
 		objectfunctionnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		editablenumbernode_block,
 		"EditableNumberNode_block",
 		2048,
 		editablenumbernode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		booleanlogicnode_block,
 		"BooleanLogicNode_block",
 		2048,
 		booleanlogicnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		floatlogicnode_block,
 		"FloatLogicNode_block",
 		2048,
 		floatlogicnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		floatoperatornode_block,
 		"FloatOperatorNode_block",
 		2048,
 		floatoperatornode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		intlogicnode_block,
 		"IntLogicNode_block",
 		2048,
 		intlogicnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		intoperatornode_block,
 		"IntOperatorNode_block",
 		2048,
 		intoperatornode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		trignode_block,
 		"TrigNode_block",
 		2048,
 		trignode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		blackboardnode_block,
 		"BlackboardNode_block",
 		2048,
 		blackboardnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		valueconversionnode_block,
 		"ValueConversionNode_block",
 		2048,
 		valueconversionnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interpolationnode_block,
 		"InterpolationNode_block",
 		2048,
 		interpolationnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		constantfloatnode_block,
 		"ConstantFloatNode_block",
 		2048,
 		constantfloatnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		constantintnode_block,
 		"ConstantIntNode_block",
 		2048,
 		constantintnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		constantint64node_block,
 		"ConstantInt64Node_block",
 		2048,
 		constantint64node);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		constantuint64node_block,
 		"ConstantUInt64Node_block",
 		2048,
 		constantuint64node);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		constantstringnode_block,
 		"ConstantStringNode_block",
 		2048,
 		constantstringnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		constantboolnode_block,
 		"ConstantBoolNode_block",
 		2048,
 		constantboolnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		constantvector3node_block,
 		"ConstantVector3Node_block",
 		2048,
 		constantvector3node);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		unitparameternode_block,
 		"UnitParameterNode_block",
 		2048,
 		unitparameternode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		endofanimationnode_block,
 		"EndOfAnimationNode_block",
 		2048,
 		endofanimationnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bonemasknode_block,
 		"BoneMaskNode_block",
 		2048,
 		bonemasknode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		iknodetag_block,
 		"IKNodeTag_block",
 		2048,
 		iknodetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		groundiknodetag_block,
 		"GroundIKNodeTag_block",
 		2048,
 		groundiknodetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lookiknodetag_block,
 		"LookIKNodeTag_block",
 		2048,
 		lookiknodetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		concatenatestring_block,
 		"ConcatenateString_block",
 		16,
 		concatenatestring);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		concatenatenode_block,
 		"ConcatenateNode_block",
 		2048,
 		concatenatenode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animsetpushnode_block,
 		"AnimSetPushNode_block",
 		2048,
 		animsetpushnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		switchintinputvalue_block,
 		"SwitchIntInputValue_block",
 		12,
 		switchintinputvalue);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		switchstringinputvalue_block,
 		"SwitchStringInputValue_block",
 		12,
 		switchstringinputvalue);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		switchnode_block,
 		"SwitchNode_block",
 		2048,
 		switchnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		switchableasset_block,
 		"SwitchableAsset_block",
 		64,
 		switchableasset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		switchonassetinputvalue_block,
 		"SwitchOnAssetInputValue_block",
 		12,
 		switchonassetinputvalue);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		switchonassetnode_block,
 		"SwitchOnAssetNode_block",
 		2048,
 		switchonassetnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		aimscreennode_block,
 		"AimScreenNode_block",
 		2048,
 		aimscreennode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		accspacenode_block,
 		"AccSpaceNode_block",
 		2048,
 		accspacenode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationexistsnode_block,
 		"AnimationExistsNode_block",
 		2048,
 		animationexistsnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animsetexistsnode_block,
 		"AnimSetExistsNode_block",
 		2048,
 		animsetexistsnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		voiceoveranimationnode_block,
 		"VoiceoverAnimationNode_block",
 		2048,
 		voiceoveranimationnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nativeexpressionnode_block,
 		"NativeExpressionNode_block",
 		2048,
 		nativeexpressionnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animentry_block,
 		"AnimEntry_block",
 		4096,
 		animentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animchannelentry_block,
 		"AnimChannelEntry_block",
 		8,
 		animchannelentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animstatenode_block,
 		"AnimStateNode_block",
 		512,
 		animstatenode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animstateconnection_block,
 		"AnimStateConnection_block",
 		2048,
 		animstateconnection);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animdefaultstateconnection_block,
 		"AnimDefaultStateConnection_block",
 		2048,
 		animdefaultstateconnection);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		blendanimationtokennode_block,
 		"BlendAnimationTokenNode_block",
 		2048,
 		blendanimationtokennode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		blendsubgraphnode_block,
 		"BlendSubgraphNode_block",
 		2048,
 		blendsubgraphnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		assetentry_block,
 		"AssetEntry_block",
 		4096,
 		assetentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		keywordqueryentry_block,
 		"KeywordQueryEntry_block",
 		4096,
 		keywordqueryentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343contenttagsteammatechatter_block,
 		"i343::ContentTags::TeammateChatter_block",
 		16,
 		i343contenttagsteammatechatter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343assetphysicsphantomtype_block,
 		"i343::AssetPhysics::PhantomType_block",
 		12,
 		i343assetphysicsphantomtype);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343assetphysicsselfcollisionpair_block,
 		"i343::AssetPhysics::SelfCollisionPair_block",
 		512,
 		i343assetphysicsselfcollisionpair);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343assetphysicsragdollmotors_block,
 		"i343::AssetPhysics::RagdollMotors_block",
 		1,
 		i343assetphysicsragdollmotors);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343assetphysicslimitedhingemotor_block,
 		"i343::AssetPhysics::LimitedHingeMotor_block",
 		1,
 		i343assetphysicslimitedhingemotor);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343assetphysicsphysicsmaterial_block,
 		"i343::AssetPhysics::PhysicsMaterial_block",
 		12,
 		i343assetphysicsphysicsmaterial);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343assetphysicshavokdata_block,
 		"i343::AssetPhysics::HavokData_block",
 		1,
 		i343assetphysicshavokdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343assetphysicsphysicsshape_block,
 		"i343::AssetPhysics::PhysicsShape_block",
 		16384,
 		i343assetphysicsphysicsshape);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343assetphysicsragdollconstraintsettings_block,
 		"i343::AssetPhysics::RagdollConstraintSettings_block",
 		1,
 		i343assetphysicsragdollconstraintsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343assetphysicslimitedhingeconstraintsettings_block,
 		"i343::AssetPhysics::LimitedHingeConstraintSettings_block",
 		1,
 		i343assetphysicslimitedhingeconstraintsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343assetphysicsstiffspringconstraintsettings_block,
 		"i343::AssetPhysics::StiffSpringConstraintSettings_block",
 		1,
 		i343assetphysicsstiffspringconstraintsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343assetphysicsprismaticconstraintsettings_block,
 		"i343::AssetPhysics::PrismaticConstraintSettings_block",
 		1,
 		i343assetphysicsprismaticconstraintsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343assetphysicsconstraintsettings_block,
 		"i343::AssetPhysics::ConstraintSettings_block",
 		128,
 		i343assetphysicsconstraintsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343assetphysicsdampedspringmotor_block,
 		"i343::AssetPhysics::DampedSpringMotor_block",
 		128,
 		i343assetphysicsdampedspringmotor);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343assetphysicspositionmotor_block,
 		"i343::AssetPhysics::PositionMotor_block",
 		128,
 		i343assetphysicspositionmotor);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343contenttagsvariantmodelhittype_block,
 		"i343::ContentTags::VariantModelHitType_block",
 		2048,
 		i343contenttagsvariantmodelhittype);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		kitcollectionentry_block,
 		"KitCollectionEntry_block",
 		4096,
 		kitcollectionentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343contenttagsregiontransition_block,
 		"i343::ContentTags::RegionTransition_block",
 		16,
 		i343contenttagsregiontransition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343contenttagsrechargespeedmultipliercurve_block,
 		"i343::ContentTags::RechargeSpeedMultiplierCurve_block",
 		1,
 		i343contenttagsrechargespeedmultipliercurve);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343contenttagssegmentedrechargefraction_block,
 		"i343::ContentTags::SegmentedRechargeFraction_block",
 		16,
 		i343contenttagssegmentedrechargefraction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343contenttagsvariantspecification_block,
 		"i343::ContentTags::VariantSpecification_block",
 		16,
 		i343contenttagsvariantspecification);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343contenttagsdamagetransfer_block,
 		"i343::ContentTags::DamageTransfer_block",
 		32,
 		i343contenttagsdamagetransfer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343contenttagsejectionseat_block,
 		"i343::ContentTags::EjectionSeat_block",
 		8,
 		i343contenttagsejectionseat);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343contenttagsinstantresponse_block,
 		"i343::ContentTags::InstantResponse_block",
 		16,
 		i343contenttagsinstantresponse);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343contenttagsdamagesection_block,
 		"i343::ContentTags::DamageSection_block",
 		32,
 		i343contenttagsdamagesection);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343contenttagsdamageconstraintinfo_block,
 		"i343::ContentTags::DamageConstraintInfo_block",
 		16,
 		i343contenttagsdamageconstraintinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343contenttagsmodeltarget_block,
 		"i343::ContentTags::ModelTarget_block",
 		32,
 		i343contenttagsmodeltarget);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		contenteffectplacement_block,
 		"ContentEffectPlacement_block",
 		1024,
 		contenteffectplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		jointweight_block,
 		"JointWeight_block",
 		8,
 		jointweight);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		geometryvertexblendshapetarget_block,
 		"GeometryVertexBlendshapeTarget_block",
 		256,
 		geometryvertexblendshapetarget);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		geometryvertex_block,
 		"GeometryVertex_block",
 		2097152,
 		geometryvertex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		geometryindex_block,
 		"GeometryIndex_block",
 		2097152,
 		geometryindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		geometrymeshpart_block,
 		"GeometryMeshPart_block",
 		131072,
 		geometrymeshpart);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		geometrymesh_block,
 		"GeometryMesh_block",
 		4096,
 		geometrymesh);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		physicsconstraint_block,
 		"PhysicsConstraint_block",
 		128,
 		physicsconstraint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		physicsprimitive_block,
 		"PhysicsPrimitive_block",
 		1024,
 		physicsprimitive);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		physicsmesh_block,
 		"PhysicsMesh_block",
 		1024,
 		physicsmesh);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		physicsblock_block,
 		"PhysicsBlock_block",
 		1,
 		physicsblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		geometrymaterial_block,
 		"GeometryMaterial_block",
 		4096,
 		geometrymaterial);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		geometrytransitions_block,
 		"GeometryTransitions_block",
 		256,
 		geometrytransitions);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lodtransition_block,
 		"LODTransition_block",
 		16,
 		lodtransition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		decoratorpreset_block,
 		"DecoratorPreset_block",
 		4096,
 		decoratorpreset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		parameteroverride_block,
 		"ParameterOverride_block",
 		4096,
 		parameteroverride);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		decoratorvariant_block,
 		"DecoratorVariant_block",
 		64,
 		decoratorvariant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		proceduraldeformationparameter_block,
 		"ProceduralDeformationParameter_block",
 		32,
 		proceduraldeformationparameter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		proceduraldeformationblock_block,
 		"ProceduralDeformationBlock_block",
 		1024,
 		proceduraldeformationblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsetinterpolator_block,
 		"LegacyAnimSetInterpolator_block",
 		256,
 		legacyanimsetinterpolator);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interpolatorlistentry_block,
 		"InterpolatorListEntry_block",
 		256,
 		interpolatorlistentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsetinterpolationset_block,
 		"LegacyAnimSetInterpolationSet_block",
 		256,
 		legacyanimsetinterpolationset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsetcompositeentry_block,
 		"LegacyAnimSetCompositeEntry_block",
 		256,
 		legacyanimsetcompositeentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animsetref_block,
 		"AnimSetRef_block",
 		4096,
 		animsetref);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsetanimationentry_block,
 		"LegacyAnimSetAnimationEntry_block",
 		4096,
 		legacyanimsetanimationentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsetfunction_block,
 		"LegacyAnimSetFunction_block",
 		64,
 		legacyanimsetfunction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsetblendscreen_block,
 		"LegacyAnimSetBlendScreen_block",
 		1024,
 		legacyanimsetblendscreen);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsetfunctionoverlay_block,
 		"LegacyAnimSetFunctionOverlay_block",
 		32,
 		legacyanimsetfunctionoverlay);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsetconstantoverlay_block,
 		"LegacyAnimSetConstantOverlay_block",
 		32,
 		legacyanimsetconstantoverlay);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		jointnameblock_block,
 		"JointNameBlock_block",
 		2048,
 		jointnameblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationjointflags_block,
 		"AnimationJointFlags_block",
 		262144,
 		animationjointflags);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		functionoverlayreference_block,
 		"FunctionOverlayReference_block",
 		32,
 		functionoverlayreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		blendscreenreference_block,
 		"BlendScreenReference_block",
 		32,
 		blendscreenreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsetoverlaygroup_block,
 		"LegacyAnimSetOverlayGroup_block",
 		1056,
 		legacyanimsetoverlaygroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		syncactionsametypeparticipant_block,
 		"SyncActionSameTypeParticipant_block",
 		6,
 		syncactionsametypeparticipant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		syncactionotherparticipant_block,
 		"SyncActionOtherParticipant_block",
 		6,
 		syncactionotherparticipant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		syncaction_block,
 		"SyncAction_block",
 		32,
 		syncaction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		syncactionsgroup_block,
 		"SyncActionsGroup_block",
 		128,
 		syncactionsgroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsetmodeorstancealias_block,
 		"LegacyAnimSetModeOrStanceAlias_block",
 		10000000,
 		legacyanimsetmodeorstancealias);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsetmodelanimationvariant_block,
 		"LegacyAnimSetModelAnimationVariant_block",
 		64,
 		legacyanimsetmodelanimationvariant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsetobjectfunctionvariant_block,
 		"LegacyAnimSetObjectFunctionVariant_block",
 		64,
 		legacyanimsetobjectfunctionvariant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modetreeanimentry_block,
 		"ModeTreeAnimEntry_block",
 		256,
 		modetreeanimentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		damageregion_block,
 		"DamageRegion_block",
 		11,
 		damageregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		damagedirection_block,
 		"DamageDirection_block",
 		4,
 		damagedirection);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modetreedeathanddamage_block,
 		"ModeTreeDeathAndDamage_block",
 		256,
 		modetreedeathanddamage);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		transitiondestination_block,
 		"TransitionDestination_block",
 		32,
 		transitiondestination);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modetreetransition_block,
 		"ModeTreeTransition_block",
 		64,
 		modetreetransition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modetreeset_block,
 		"ModeTreeSet_block",
 		64,
 		modetreeset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modetreeweapontype_block,
 		"ModeTreeWeaponType_block",
 		64,
 		modetreeweapontype);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modetreeik_block,
 		"ModeTreeIK_block",
 		64,
 		modetreeik);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modetreeweaponclass_block,
 		"ModeTreeWeaponClass_block",
 		64,
 		modetreeweaponclass);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modetreemode_block,
 		"ModeTreeMode_block",
 		512,
 		modetreemode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsetrenameentry_block,
 		"LegacyAnimSetRenameEntry_block",
 		4096,
 		legacyanimsetrenameentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsetcopyentry_block,
 		"LegacyAnimSetCopyEntry_block",
 		4096,
 		legacyanimsetcopyentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsetvehiclesuspension_block,
 		"LegacyAnimSetVehicleSuspension_block",
 		32,
 		legacyanimsetvehiclesuspension);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lodsettingstransitiondistanceparam_block,
 		"LODSettingsTransitionDistanceParam_block",
 		256,
 		lodsettingstransitiondistanceparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lodsettings_block,
 		"LODSettings_block",
 		4096,
 		lodsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lodtransitions_block,
 		"LODTransitions_block",
 		4096,
 		lodtransitions);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lodlevelsettings_block,
 		"LODLevelSettings_block",
 		16,
 		lodlevelsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modelmarkerblock_block,
 		"ModelMarkerBlock_block",
 		2048,
 		modelmarkerblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modelmarkerblockwithhiddenvisualregion_block,
 		"ModelMarkerBlockWithHiddenVisualRegion_block",
 		2048,
 		modelmarkerblockwithhiddenvisualregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		markergroupblock_block,
 		"MarkerGroupBlock_block",
 		1024,
 		markergroupblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		markergroupblockwithhiddenvisualregion_block,
 		"MarkerGroupBlockWithHiddenVisualRegion_block",
 		1024,
 		markergroupblockwithhiddenvisualregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hintmarkerblock_block,
 		"HintMarkerBlock_block",
 		2048,
 		hintmarkerblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hintmarkerblockwithhiddenvisualregion_block,
 		"HintMarkerBlockWithHiddenVisualRegion_block",
 		2048,
 		hintmarkerblockwithhiddenvisualregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hintmarkergroupblock_block,
 		"HintMarkerGroupBlock_block",
 		1024,
 		hintmarkergroupblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hintmarkergroupblockwithhiddenvisualregion_block,
 		"HintMarkerGroupBlockWithHiddenVisualRegion_block",
 		1024,
 		hintmarkergroupblockwithhiddenvisualregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		pathfindingmarkerblock_block,
 		"PathfindingMarkerBlock_block",
 		2048,
 		pathfindingmarkerblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		targetmarkerblock_block,
 		"TargetMarkerBlock_block",
 		2,
 		targetmarkerblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		targetmarkerblockwithhiddenvisualregion_block,
 		"TargetMarkerBlockWithHiddenVisualRegion_block",
 		2,
 		targetmarkerblockwithhiddenvisualregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		targetmarkergroupblock_block,
 		"TargetMarkerGroupBlock_block",
 		1024,
 		targetmarkergroupblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		targetmarkergroupblockwithhiddenvisualregion_block,
 		"TargetMarkerGroupBlockWithHiddenVisualRegion_block",
 		1024,
 		targetmarkergroupblockwithhiddenvisualregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialcolorvariants_block,
 		"MaterialColorVariants_block",
 		2048,
 		materialcolorvariants);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialregion_block,
 		"MaterialRegion_block",
 		2048,
 		materialregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materiallayer_block,
 		"MaterialLayer_block",
 		7,
 		materiallayer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialstyleregion_block,
 		"MaterialStyleRegion_block",
 		2048,
 		materialstyleregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialstyle_block,
 		"MaterialStyle_block",
 		2048,
 		materialstyle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		coatingmaterialsetreference_block,
 		"CoatingMaterialSetReference_block",
 		64,
 		coatingmaterialsetreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialswatchentry_block,
 		"MaterialSwatchEntry_block",
 		2048,
 		materialswatchentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		coatingparameterregisterinfo_block,
 		"CoatingParameterRegisterInfo_block",
 		255,
 		coatingparameterregisterinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		coatingmaterialtemplatereference_block,
 		"CoatingMaterialTemplateReference_block",
 		1,
 		coatingmaterialtemplatereference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialvisorpatternreference_block,
 		"MaterialVisorPatternReference_block",
 		2048,
 		materialvisorpatternreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		preloadswatchentry_block,
 		"PreloadSwatchEntry_block",
 		512,
 		preloadswatchentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		randomplacementcollectionpositionnodedata_block,
 		"RandomPlacementCollectionPositionNodeData_block",
 		2048,
 		randomplacementcollectionpositionnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		randomnode_block,
 		"RandomNode_block",
 		2048,
 		randomnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		booltogglenodedata_block,
 		"BoolToggleNodeData_block",
 		2048,
 		booltogglenodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		booltoeventnodedata_block,
 		"BoolToEventNodeData_block",
 		2048,
 		booltoeventnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		brancheventnodedata_block,
 		"BranchEventNodeData_block",
 		2048,
 		brancheventnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		checklightingvariantnodedata_block,
 		"CheckLightingVariantNodeData_block",
 		2048,
 		checklightingvariantnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		clampnodedata_block,
 		"ClampNodeData_block",
 		2048,
 		clampnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		comparefloatnodedata_block,
 		"CompareFloatNodeData_block",
 		2048,
 		comparefloatnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		debugprintnodedata_block,
 		"DebugPrintNodeData_block",
 		2048,
 		debugprintnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		envelopenodedata_block,
 		"EnvelopeNodeData_block",
 		2048,
 		envelopenodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		eventrouternodedata_block,
 		"EventRouterNodeData_block",
 		2048,
 		eventrouternodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		floatswitchnodedata_block,
 		"FloatSwitchNodeData_block",
 		2048,
 		floatswitchnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		floatsnapshotnodedata_block,
 		"FloatSnapshotNodeData_block",
 		2048,
 		floatsnapshotnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dwspopstatenodedata_block,
 		"DWSPopStateNodeData_block",
 		2048,
 		dwspopstatenodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dwspushstatenodedata_block,
 		"DWSPushStateNodeData_block",
 		2048,
 		dwspushstatenodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dwsenabletoverridenodedata_block,
 		"DWSEnableTOverrideNodeData_block",
 		2048,
 		dwsenabletoverridenodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dwssettoverridenodedata_block,
 		"DWSSetTOverrideNodeData_block",
 		2048,
 		dwssettoverridenodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		setlightsourceenergynodedata_block,
 		"SetLightSourceEnergyNodeData_block",
 		2048,
 		setlightsourceenergynodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		setlightdimmernodedata_block,
 		"SetLightDimmerNodeData_block",
 		2048,
 		setlightdimmernodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		getgamefloatvaluenodedata_block,
 		"GetGameFloatValueNodeData_block",
 		2048,
 		getgamefloatvaluenodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		getgameeventnodedata_block,
 		"GetGameEventNodeData_block",
 		2048,
 		getgameeventnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		loopingsoundnodedata_block,
 		"LoopingSoundNodeData_block",
 		2048,
 		loopingsoundnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		objectfunctionnodedata_block,
 		"ObjectFunctionNodeData_block",
 		2048,
 		objectfunctionnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		oneshotsoundnodedata_block,
 		"OneShotSoundNodeData_block",
 		2048,
 		oneshotsoundnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		oneshotsoundreferencenodedata_block,
 		"OneShotSoundReferenceNodeData_block",
 		2048,
 		oneshotsoundreferencenodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		persistentrandomfloatnodedata_block,
 		"PersistentRandomFloatNodeData_block",
 		2048,
 		persistentrandomfloatnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		probabilityeventnodedata_block,
 		"ProbabilityEventNodeData_block",
 		2048,
 		probabilityeventnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		piecewisefunctionnodedata_block,
 		"PiecewiseFunctionNodeData_block",
 		2048,
 		piecewisefunctionnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rateofchangenodedata_block,
 		"RateOfChangeNodeData_block",
 		2048,
 		rateofchangenodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		registereventnodedata_block,
 		"RegisterEventNodeData_block",
 		2048,
 		registereventnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		setrtpcnodedata_block,
 		"SetRtpcNodeData_block",
 		2048,
 		setrtpcnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		smoothingnodedata_block,
 		"SmoothingNodeData_block",
 		2048,
 		smoothingnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		statebrokerboolnodedata_block,
 		"StateBrokerBoolNodeData_block",
 		2048,
 		statebrokerboolnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		statebrokerintnodedata_block,
 		"StateBrokerIntNodeData_block",
 		2048,
 		statebrokerintnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		springnodedata_block,
 		"SpringNodeData_block",
 		2048,
 		springnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		thresholdgatenodedata_block,
 		"ThresholdGateNodeData_block",
 		2048,
 		thresholdgatenodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		timernodedata_block,
 		"TimerNodeData_block",
 		2048,
 		timernodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		createeffectnodedata_block,
 		"CreateEffectNodeData_block",
 		2048,
 		createeffectnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		createbeameffectnodedata_block,
 		"CreateBeamEffectNodeData_block",
 		2048,
 		createbeameffectnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		stopeffectnodedata_block,
 		"StopEffectNodeData_block",
 		2048,
 		stopeffectnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		setobjectfunctionnodedata_block,
 		"SetObjectFunctionNodeData_block",
 		2048,
 		setobjectfunctionnodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		setgraphupdatemodedata_block,
 		"SetGraphUpdateModeData_block",
 		2048,
 		setgraphupdatemodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		windspeednodedata_block,
 		"WindSpeedNodeData_block",
 		2048,
 		windspeednodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		objectgraphconnectionendpoint_block,
 		"ObjectGraphConnectionEndpoint_block",
 		1,
 		objectgraphconnectionendpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		objectgraphconnection_block,
 		"ObjectGraphConnection_block",
 		2048,
 		objectgraphconnection);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		objectgraphoutput_block,
 		"ObjectGraphOutput_block",
 		50,
 		objectgraphoutput);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		skeletonikjunction_block,
 		"SkeletonIKJunction_block",
 		4,
 		skeletonikjunction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		skeletonikjoint_block,
 		"SkeletonIKJoint_block",
 		32,
 		skeletonikjoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		skeletonikchain_block,
 		"SkeletonIKChain_block",
 		8,
 		skeletonikchain);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		skeletoniklegdefinition_block,
 		"SkeletonIKLegDefinition_block",
 		2,
 		skeletoniklegdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		skeletonikarmdefinition_block,
 		"SkeletonIKArmDefinition_block",
 		2,
 		skeletonikarmdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		skeletonikpoint_block,
 		"SkeletonIKPoint_block",
 		64,
 		skeletonikpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		skeletoniksetitem_block,
 		"SkeletonIKSetItem_block",
 		8,
 		skeletoniksetitem);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		skeletonikset_block,
 		"SkeletonIKSet_block",
 		32,
 		skeletonikset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		detailjoint_block,
 		"DetailJoint_block",
 		1024,
 		detailjoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		proceduraljoint_block,
 		"ProceduralJoint_block",
 		1024,
 		proceduraljoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		skeletonjoint_block,
 		"SkeletonJoint_block",
 		1024,
 		skeletonjoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		skeletonuserparameter_block,
 		"SkeletonUserParameter_block",
 		1024,
 		skeletonuserparameter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		skeletontagimporteddata_block,
 		"SkeletonTagImportedData_block",
 		1,
 		skeletontagimporteddata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		jointusage_block,
 		"JointUsage_block",
 		1024,
 		jointusage);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		filteredjoint_block,
 		"FilteredJoint_block",
 		1024,
 		filteredjoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		jointnavmark_block,
 		"JointNavMark_block",
 		1024,
 		jointnavmark);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		jointmaskname_block,
 		"JointMaskName_block",
 		1024,
 		jointmaskname);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		jointmask_block,
 		"JointMask_block",
 		32,
 		jointmask);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		aclshellradiusoverridejoint_block,
 		"ACLShellRadiusOverrideJoint_block",
 		32,
 		aclshellradiusoverridejoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terraintilereference_block,
 		"i343::TerrainTileReference_block",
 		1024,
 		i343terraintilereference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terraintexturesettings_block,
 		"i343::TerrainTextureSettings_block",
 		256,
 		i343terraintexturesettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		taggraphtaggraphfloatparam_block,
 		"TagGraph::TagGraphFloatParam_block",
 		10,
 		taggraphtaggraphfloatparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343decoratorsdecoratorpaletteentry_block,
 		"i343::Decorators::DecoratorPaletteEntry_block",
 		256,
 		i343decoratorsdecoratorpaletteentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343decoratorsdecoratorpalette_block,
 		"i343::Decorators::DecoratorPalette_block",
 		256,
 		i343decoratorsdecoratorpalette);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343decoratorsdecoratorpalettetagreference_block,
 		"i343::Decorators::DecoratorPaletteTagReference_block",
 		10,
 		i343decoratorsdecoratorpalettetagreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_decorator_placement_block,
 		"s_decorator_placement_block",
 		2147483647,
 		s_decorator_placement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_decorator_scenario_set_placements_block,
 		"s_decorator_scenario_set_placements_block",
 		65536,
 		s_decorator_scenario_set_placements);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343decoratorsdecoratorsetplacementrange_block,
 		"i343::Decorators::DecoratorSetPlacementRange_block",
 		1024,
 		i343decoratorsdecoratorsetplacementrange);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343decoratorsdecoratorcluster_block,
 		"i343::Decorators::DecoratorCluster_block",
 		256,
 		i343decoratorsdecoratorcluster);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343decoratorsdecoratorruntime_block,
 		"i343::Decorators::DecoratorRuntime_block",
 		1024,
 		i343decoratorsdecoratorruntime);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		authoredlightprobelights_block,
 		"AuthoredLightProbeLights_block",
 		1,
 		authoredlightprobelights);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		authoredlightprobe_block,
 		"AuthoredLightProbe_block",
 		4,
 		authoredlightprobe);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343foliagefoliagetype_block,
 		"i343::Foliage::FoliageType_block",
 		1024,
 		i343foliagefoliagetype);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343foliagefoliageruntime_block,
 		"i343::Foliage::FoliageRuntime_block",
 		1024,
 		i343foliagefoliageruntime);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343hexgridplacement_block,
 		"i343::HexGrid::Placement_block",
 		10485760,
 		i343hexgridplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343hexgridruntimeplacement_block,
 		"i343::HexGrid::RuntimePlacement_block",
 		10485760,
 		i343hexgridruntimeplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343hexgridquadtreenode_block,
 		"i343::HexGrid::QuadTreeNode_block",
 		65536,
 		i343hexgridquadtreenode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343hexgridhexplacements_block,
 		"i343::HexGrid::HexPlacements_block",
 		1048576,
 		i343hexgridhexplacements);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343hexgridhexruntime_block,
 		"i343::HexGrid::HexRuntime_block",
 		1048576,
 		i343hexgridhexruntime);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsrendergraphparameterdefinitionb_block,
 		"i343::Graphics::RenderGraph::ParameterDefinitionB_block",
 		64,
 		i343graphicsrendergraphparameterdefinitionb);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsrendergrapheditormetadatadefinition_block,
 		"i343::Graphics::RenderGraph::EditorMetadataDefinition_block",
 		1,
 		i343graphicsrendergrapheditormetadatadefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsrendergraphnodedefinition_block,
 		"i343::Graphics::RenderGraph::NodeDefinition_block",
 		128,
 		i343graphicsrendergraphnodedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsrendergraphconstantdefinition_block,
 		"i343::Graphics::RenderGraph::ConstantDefinition_block",
 		64,
 		i343graphicsrendergraphconstantdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsrendergraphinputdefinition_block,
 		"i343::Graphics::RenderGraph::InputDefinition_block",
 		32,
 		i343graphicsrendergraphinputdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsrendergraphoutputdefinition_block,
 		"i343::Graphics::RenderGraph::OutputDefinition_block",
 		16,
 		i343graphicsrendergraphoutputdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsrendergraphuienumvaluedefinition_block,
 		"i343::Graphics::RenderGraph::UIEnumValueDefinition_block",
 		32,
 		i343graphicsrendergraphuienumvaluedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsrendergraphconnectiondefinition_block,
 		"i343::Graphics::RenderGraph::ConnectionDefinition_block",
 		1024,
 		i343graphicsrendergraphconnectiondefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343surfacingplacementdescription_block,
 		"i343::SurfacingPlacementDescription_block",
 		32,
 		i343surfacingplacementdescription);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343surfacingplacementlayer_block,
 		"i343::SurfacingPlacementLayer_block",
 		1024,
 		i343surfacingplacementlayer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343surfacingmateriallayer_block,
 		"i343::SurfacingMaterialLayer_block",
 		1024,
 		i343surfacingmateriallayer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343surfacinginput_block,
 		"i343::SurfacingInput_block",
 		1024,
 		i343surfacinginput);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343layergpuinterpreterbytecode_block,
 		"i343::LayerGpuInterpreterBytecode_block",
 		2097152,
 		i343layergpuinterpreterbytecode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343surfacingtexturedata_block,
 		"i343::SurfacingTextureData_block",
 		87381,
 		i343surfacingtexturedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terraingeneratedoutputreference_block,
 		"i343::TerrainGeneratedOutputReference_block",
 		256,
 		i343terraingeneratedoutputreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terrainquadtreenodebitmapremapinfo_block,
 		"i343::TerrainQuadTreeNodeBitmapRemapInfo_block",
 		256,
 		i343terrainquadtreenodebitmapremapinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terrainnodelayerindex_block,
 		"i343::TerrainNodeLayerIndex_block",
 		256,
 		i343terrainnodelayerindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terrainnodebitmapindex_block,
 		"i343::TerrainNodeBitmapIndex_block",
 		256,
 		i343terrainnodebitmapindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terrainquadtreenodedata_block,
 		"i343::TerrainQuadTreeNodeData_block",
 		87381,
 		i343terrainquadtreenodedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343gpumateriallayerbitmapreference_block,
 		"i343::GpuMaterialLayerBitmapReference_block",
 		4096,
 		i343gpumateriallayerbitmapreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343sharedgpuinterpreterbitmapreference_block,
 		"i343::SharedGpuInterpreterBitmapReference_block",
 		32,
 		i343sharedgpuinterpreterbitmapreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_solofogfunction_block,
 		"s_soloFogFunction_block",
 		1,
 		s_solofogfunction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_planar_fog_vertex_block,
 		"s_planar_fog_vertex_block",
 		1536,
 		s_planar_fog_vertex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_planar_fog_triangle_plane_block,
 		"s_planar_fog_triangle_plane_block",
 		512,
 		s_planar_fog_triangle_plane);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_planar_fog_triangle_block,
 		"s_planar_fog_triangle_block",
 		32767,
 		s_planar_fog_triangle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_planar_fog_definition_block,
 		"s_planar_fog_definition_block",
 		128,
 		s_planar_fog_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scriptedsequencecomponentaction_block,
 		"ScriptedSequenceComponentAction_block",
 		8,
 		scriptedsequencecomponentaction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scriptedsequenceactiondefinition_block,
 		"ScriptedSequenceActionDefinition_block",
 		32,
 		scriptedsequenceactiondefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343itemsvarianthudmessages_block,
 		"i343::Items::VariantHUDMessages_block",
 		64,
 		i343itemsvarianthudmessages);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343itemslocationsensordefinition_block,
 		"i343::Items::LocationSensorDefinition_block",
 		1,
 		i343itemslocationsensordefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343itemsshroudgeneratordefinition_block,
 		"i343::Items::ShroudGeneratorDefinition_block",
 		1,
 		i343itemsshroudgeneratordefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponbarrelsweetheatparam_block,
 		"i343::Weapon::BarrelSweetHeatParam_block",
 		1,
 		i343weaponbarrelsweetheatparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsindirectlightingcomponentdefinition_block,
 		"i343::Objects::IndirectLightingComponentDefinition_block",
 		1,
 		i343objectsindirectlightingcomponentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsdockingconnectionpoints_block,
 		"i343::Objects::DockingConnectionPoints_block",
 		8,
 		i343objectsdockingconnectionpoints);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343equipmentupgradenode_block,
 		"i343::EquipmentUpgrade::Node_block",
 		100,
 		i343equipmentupgradenode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343equipmentupgradepath_block,
 		"i343::EquipmentUpgrade::Path_block",
 		100,
 		i343equipmentupgradepath);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343equipmentupgradepoints_block,
 		"i343::EquipmentUpgrade::Points_block",
 		100,
 		i343equipmentupgradepoints);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343equipmentupgradeshieldupgrade_block,
 		"i343::EquipmentUpgrade::ShieldUpgrade_block",
 		100,
 		i343equipmentupgradeshieldupgrade);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsobjectnodegraphdefinition_block,
 		"i343::Objects::ObjectNodeGraphDefinition_block",
 		32,
 		i343objectsobjectnodegraphdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsnodegraphplacement_block,
 		"i343::Objects::NodeGraphPlacement_block",
 		1048576,
 		i343objectsnodegraphplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectspowersourceconfiguration_block,
 		"i343::Objects::PowerSourceConfiguration_block",
 		40,
 		i343objectspowersourceconfiguration);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectspowersourcestateconfiguration_block,
 		"i343::Objects::PowerSourceStateConfiguration_block",
 		5,
 		i343objectspowersourcestateconfiguration);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectspowersourcedefinition_block,
 		"i343::Objects::PowerSourceDefinition_block",
 		8,
 		i343objectspowersourcedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectspowersourcedefinitionreference_block,
 		"i343::Objects::PowerSourceDefinitionReference_block",
 		8,
 		i343objectspowersourcedefinitionreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectspowercomponentdefinition_block,
 		"i343::Objects::PowerComponentDefinition_block",
 		1,
 		i343objectspowercomponentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_scenery_block,
 		"s_scenario_scenery_block",
 		262144,
 		s_scenario_scenery);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsselfdestructsoundblock_block,
 		"i343::Objects::SelfDestructSoundBlock_block",
 		4,
 		i343objectsselfdestructsoundblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsselfdestructhandlerdefinition_block,
 		"i343::Objects::SelfDestructHandlerDefinition_block",
 		1,
 		i343objectsselfdestructhandlerdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343highlightservicehighlightserviceglobalsdefinition_type_block,
 		"i343::HighlightService::HighlightServiceGlobalsDefinition_Type_block",
 		15,
 		i343highlightservicehighlightserviceglobalsdefinition_type);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343actionsystemactionprioritydatadefinitionexistingentry_block,
 		"i343::ActionSystem::ActionPriorityDataDefinitionExistingEntry_block",
 		128,
 		i343actionsystemactionprioritydatadefinitionexistingentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343actionsystemactionprioritydatadefinitionincomingentry_block,
 		"i343::ActionSystem::ActionPriorityDataDefinitionIncomingEntry_block",
 		128,
 		i343actionsystemactionprioritydatadefinitionincomingentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		selfilluminationstate_block,
 		"SelfIlluminationState_block",
 		16,
 		selfilluminationstate);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmancannonballisticarcdata_block,
 		"i343::Physics::ManCannonBallisticArcData_block",
 		2,
 		i343physicsmancannonballisticarcdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		gameglobalsgrenade_block,
 		"GameGlobalsGrenade_block",
 		6,
 		gameglobalsgrenade);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343projectilesdeprecatedprojectilematerialresponsedefinitionv0_block,
 		"i343::Projectiles::DeprecatedProjectileMaterialResponseDefinitionV0_block",
 		200,
 		i343projectilesdeprecatedprojectilematerialresponsedefinitionv0);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343projectilesmaterialresponsedefinition_block,
 		"i343::Projectiles::MaterialResponseDefinition_block",
 		200,
 		i343projectilesmaterialresponsedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343projectilessubmunitioneventdefinition_block,
 		"i343::Projectiles::SubmunitionEventDefinition_block",
 		24,
 		i343projectilessubmunitioneventdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponweapontriggerchargingoverride_block,
 		"i343::Weapon::WeaponTriggerChargingOverride_block",
 		1,
 		i343weaponweapontriggerchargingoverride);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weapontriggeroverridedefinition_block,
 		"i343::Weapon::TriggerOverrideDefinition_block",
 		1,
 		i343weapontriggeroverridedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponweaponattachmentheatgeneratedperroundparam_block,
 		"i343::Weapon::WeaponAttachmentHeatGeneratedPerRoundParam_block",
 		1,
 		i343weaponweaponattachmentheatgeneratedperroundparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponbarreloverridedefinition_block,
 		"i343::Weapon::BarrelOverrideDefinition_block",
 		1,
 		i343weaponbarreloverridedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponmagazineoverridedefinition_block,
 		"i343::Weapon::MagazineOverrideDefinition_block",
 		1,
 		i343weaponmagazineoverridedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponanimationpropertymodifiersdefinition_block,
 		"i343::Weapon::AnimationPropertyModifiersDefinition_block",
 		1,
 		i343weaponanimationpropertymodifiersdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponheatpropertymodifiersdefinition_block,
 		"i343::Weapon::HeatPropertyModifiersDefinition_block",
 		1,
 		i343weaponheatpropertymodifiersdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponrecoilgunkickpropertymodifiersdefinition_block,
 		"i343::Weapon::RecoilGunkickPropertyModifiersDefinition_block",
 		1,
 		i343weaponrecoilgunkickpropertymodifiersdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponrecoilviewkickpropertymodifiersdefinition_block,
 		"i343::Weapon::RecoilViewKickPropertyModifiersDefinition_block",
 		1,
 		i343weaponrecoilviewkickpropertymodifiersdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponattachmentobjectcomponentdefinition_block,
 		"i343::Weapon::AttachmentObjectComponentDefinition_block",
 		8,
 		i343weaponattachmentobjectcomponentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponattachmentregionpermutationdefinition_block,
 		"i343::Weapon::AttachmentRegionPermutationDefinition_block",
 		32,
 		i343weaponattachmentregionpermutationdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weapongenericattachmentdefinition_block,
 		"i343::Weapon::GenericAttachmentDefinition_block",
 		2,
 		i343weapongenericattachmentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponbarrelagegeneratedparam_block,
 		"i343::Weapon::BarrelAgeGeneratedParam_block",
 		1,
 		i343weaponbarrelagegeneratedparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponbarrelfirstpersonoffsetblock_block,
 		"i343::Weapon::BarrelFirstPersonOffsetBlock_block",
 		3,
 		i343weaponbarrelfirstpersonoffsetblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponbarreldefinition_block,
 		"i343::Weapon::BarrelDefinition_block",
 		2,
 		i343weaponbarreldefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponprojectiledistributioncustomangleoffset_block,
 		"i343::Weapon::ProjectileDistributionCustomAngleOffset_block",
 		16,
 		i343weaponprojectiledistributioncustomangleoffset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponprojectiledistributioncustomvector_block,
 		"i343::Weapon::ProjectileDistributionCustomVector_block",
 		16,
 		i343weaponprojectiledistributioncustomvector);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponbarreldistrubutionparam_block,
 		"i343::Weapon::BarrelDistrubutionParam_block",
 		1,
 		i343weaponbarreldistrubutionparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponbarrelerrorparam_block,
 		"i343::Weapon::BarrelErrorParam_block",
 		1,
 		i343weaponbarrelerrorparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponeffectreferenceblockdefinition_block,
 		"i343::Weapon::EffectReferenceBlockDefinition_block",
 		4,
 		i343weaponeffectreferenceblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponbarrelfiringeffectdefinition_block,
 		"i343::Weapon::BarrelFiringEffectDefinition_block",
 		5,
 		i343weaponbarrelfiringeffectdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponbarrelfiringparam_block,
 		"i343::Weapon::BarrelFiringParam_block",
 		1,
 		i343weaponbarrelfiringparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponbarrelfunctionblock_block,
 		"i343::Weapon::BarrelFunctionBlock_block",
 		1,
 		i343weaponbarrelfunctionblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponbarrelnoiseparam_block,
 		"i343::Weapon::BarrelNoiseParam_block",
 		1,
 		i343weaponbarrelnoiseparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponlaserguidancedefinition_block,
 		"i343::Weapon::LaserGuidanceDefinition_block",
 		1,
 		i343weaponlaserguidancedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponfiresoundtailsparam_block,
 		"i343::Weapon::FireSoundTailsParam_block",
 		1,
 		i343weaponfiresoundtailsparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponfiresoundvariationdefinition_block,
 		"i343::Weapon::FireSoundVariationDefinition_block",
 		8,
 		i343weaponfiresoundvariationdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponfiresoundparam_block,
 		"i343::Weapon::FireSoundParam_block",
 		1,
 		i343weaponfiresoundparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponfiresoundsdefinition_block,
 		"i343::Weapon::FireSoundsDefinition_block",
 		2,
 		i343weaponfiresoundsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weapontiggerchargingfirefractions_block,
 		"i343::Weapon::TiggerChargingFireFractions_block",
 		16,
 		i343weapontiggerchargingfirefractions);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponfirstpersonweaponoffsetcontrol_block,
 		"i343::Weapon::FirstPersonWeaponOffsetControl_block",
 		5,
 		i343weaponfirstpersonweaponoffsetcontrol);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weapondebugadsreticlemovmementthreshold_block,
 		"i343::Weapon::DebugAdsReticleMovmementThreshold_block",
 		8,
 		i343weapondebugadsreticlemovmementthreshold);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		weapon_ammunition_object_block,
 		"weapon_ammunition_object_block",
 		8,
 		weapon_ammunition_object);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		weapon_magazine_definition_block,
 		"weapon_magazine_definition_block",
 		2,
 		weapon_magazine_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponproceduralanimationfirstpersonfireimpulseblock_block,
 		"i343::Weapon::ProceduralAnimationFirstPersonFireImpulseBlock_block",
 		1,
 		i343weaponproceduralanimationfirstpersonfireimpulseblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponproceduralanimationfirstpersonfirespringdamperblock_block,
 		"i343::Weapon::ProceduralAnimationFirstPersonFireSpringDamperBlock_block",
 		1,
 		i343weaponproceduralanimationfirstpersonfirespringdamperblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponaccuracypropertymodifiersdefinition_block,
 		"i343::Weapon::AccuracyPropertyModifiersDefinition_block",
 		1,
 		i343weaponaccuracypropertymodifiersdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponprecisionaimpropertymodifiersdefinition_block,
 		"i343::Weapon::PrecisionAimPropertyModifiersDefinition_block",
 		1,
 		i343weaponprecisionaimpropertymodifiersdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponunitpropertymodifiersdefinition_block,
 		"i343::Weapon::UnitPropertyModifiersDefinition_block",
 		1,
 		i343weaponunitpropertymodifiersdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponrecoilviewkickaccelerationstanceblock_block,
 		"i343::Weapon::RecoilViewKickAccelerationStanceBlock_block",
 		1,
 		i343weaponrecoilviewkickaccelerationstanceblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponrecoilviewkicksettingsstanceblock_block,
 		"i343::Weapon::RecoilViewKickSettingsStanceBlock_block",
 		1,
 		i343weaponrecoilviewkicksettingsstanceblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponrecoilgunkickaccelerationstancedefinitionblock_block,
 		"i343::Weapon::RecoilGunkickAccelerationStanceDefinitionBlock_block",
 		1,
 		i343weaponrecoilgunkickaccelerationstancedefinitionblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponrecoilgunkickstanceblock_block,
 		"i343::Weapon::RecoilGunkickStanceBlock_block",
 		1,
 		i343weaponrecoilgunkickstanceblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weapontriggerdefinition_block,
 		"i343::Weapon::TriggerDefinition_block",
 		2,
 		i343weapontriggerdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponzoomleveldefinition_block,
 		"i343::Weapon::ZoomLevelDefinition_block",
 		3,
 		i343weaponzoomleveldefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectscomputefunctionsmoothingblockdefinition_block,
 		"i343::Objects::ComputeFunctionSmoothingBlockDefinition_block",
 		64,
 		i343objectscomputefunctionsmoothingblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343damageattachmentnamereferenceparam_block,
 		"i343::Damage::AttachmentNameReferenceParam_block",
 		9,
 		i343damageattachmentnamereferenceparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_instantaneous_damage_response_block,
 		"s_instantaneous_damage_response_block",
 		16,
 		s_instantaneous_damage_response);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		seatejectionblock_block,
 		"SeatEjectionBlock_block",
 		8,
 		seatejectionblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		variantspecificationblock_block,
 		"VariantSpecificationBlock_block",
 		16,
 		variantspecificationblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_new_instantaneous_damage_response_block,
 		"s_new_instantaneous_damage_response_block",
 		16,
 		s_new_instantaneous_damage_response);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_model_damage_section_block,
 		"s_model_damage_section_block",
 		32,
 		s_model_damage_section);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_damage_section_recharge_speed_multiplier_curve_block,
 		"s_damage_section_recharge_speed_multiplier_curve_block",
 		1,
 		s_damage_section_recharge_speed_multiplier_curve);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		damagesectionsegmentedrechargefractionblock_block,
 		"DamageSectionSegmentedRechargeFractionBlock_block",
 		16,
 		damagesectionsegmentedrechargefractionblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_damage_section_rendering_parameters_block,
 		"s_damage_section_rendering_parameters_block",
 		1,
 		s_damage_section_rendering_parameters);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_new_model_damage_section_block,
 		"s_new_model_damage_section_block",
 		32,
 		s_new_model_damage_section);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_damage_transfer_block,
 		"s_damage_transfer_block",
 		32,
 		s_damage_transfer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_melee_damage_parameters_block,
 		"s_melee_damage_parameters_block",
 		2,
 		s_melee_damage_parameters);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsforgeobjectentrydefinition_block,
 		"i343::Objects::ForgeObjectEntryDefinition_block",
 		36,
 		i343objectsforgeobjectentrydefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hologramlightingglobals_block,
 		"HologramLightingGlobals_block",
 		1,
 		hologramlightingglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_crate_block,
 		"s_scenario_crate_block",
 		262144,
 		s_scenario_crate);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		customdamageresponselabelparam_block,
 		"CustomDamageResponseLabelParam_block",
 		8,
 		customdamageresponselabelparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_damage_effect_sound_block,
 		"s_damage_effect_sound_block",
 		4,
 		s_damage_effect_sound);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_area_control_definition_block,
 		"s_area_control_definition_block",
 		1,
 		s_area_control_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_damage_response_global_sound_effect_definition_block,
 		"s_damage_response_global_sound_effect_definition_block",
 		1,
 		s_damage_response_global_sound_effect_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_damage_response_class_definition_block,
 		"s_damage_response_class_definition_block",
 		2,
 		s_damage_response_class_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawninfluenceweightfallofffunctionblock_block,
 		"SpawnInfluenceWeightFalloffFunctionBlock_block",
 		1,
 		spawninfluenceweightfallofffunctionblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_multiplayer_object_properties_definition_block,
 		"s_multiplayer_object_properties_definition_block",
 		1,
 		s_multiplayer_object_properties_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawnpointmultiplayerproperties_block,
 		"SpawnPointMultiplayerProperties_block",
 		1,
 		spawnpointmultiplayerproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		terminalredeemableobjectdefinition_block,
 		"TerminalRedeemableObjectDefinition_block",
 		3,
 		terminalredeemableobjectdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_multiplayer_object_properties_block,
 		"s_scenario_multiplayer_object_properties_block",
 		1,
 		s_scenario_multiplayer_object_properties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsassociation_block,
 		"i343::Objects::Association_block",
 		20,
 		i343objectsassociation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectdispenserdispenseslotdefinition_block,
 		"i343::ObjectDispenser::DispenseSlotDefinition_block",
 		2,
 		i343objectdispenserdispenseslotdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		sidecarpathdefinition_block,
 		"SidecarPathDefinition_block",
 		1,
 		sidecarpathdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_object_early_mover_obb_definition_block,
 		"s_object_early_mover_obb_definition_block",
 		1,
 		s_object_early_mover_obb_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		object_indirect_lighting_settings_definition_block,
 		"object_indirect_lighting_settings_definition_block",
 		64,
 		object_indirect_lighting_settings_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		object_attachment_definition_block,
 		"object_attachment_definition_block",
 		48,
 		object_attachment_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsattachmentvariantname_block,
 		"i343::Objects::AttachmentVariantName_block",
 		64,
 		i343objectsattachmentvariantname);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		object_change_color_initial_permutation_block,
 		"object_change_color_initial_permutation_block",
 		32,
 		object_change_color_initial_permutation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		object_change_color_function_block,
 		"object_change_color_function_block",
 		4,
 		object_change_color_function);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		object_change_color_definition_block,
 		"object_change_color_definition_block",
 		4,
 		object_change_color_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		object_definition_widget_block,
 		"object_definition_widget_block",
 		4,
 		object_definition_widget);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponaiheatgeneratedperroundoverrideparam_block,
 		"i343::Weapon::AIHeatGeneratedPerRoundOverrideParam_block",
 		2,
 		i343weaponaiheatgeneratedperroundoverrideparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		object_ai_properties_block,
 		"object_ai_properties_block",
 		1,
 		object_ai_properties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_object_spawn_effects_block,
 		"s_object_spawn_effects_block",
 		1,
 		s_object_spawn_effects);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_object_meta_label_block,
 		"s_object_meta_label_block",
 		32,
 		s_object_meta_label);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		leggroundingsettings_block,
 		"LegGroundingSettings_block",
 		2,
 		leggroundingsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsanimationmatchingtableentry_block,
 		"i343::Objects::AnimationMatchingTableEntry_block",
 		8,
 		i343objectsanimationmatchingtableentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsammorefillvariant_block,
 		"i343::Objects::AmmoRefillVariant_block",
 		64,
 		i343objectsammorefillvariant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsmodelvariantswappingtableentry_block,
 		"i343::Objects::ModelVariantSwappingTableEntry_block",
 		8,
 		i343objectsmodelvariantswappingtableentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_object_function_interpolation_definition_block,
 		"s_object_function_interpolation_definition_block",
 		2,
 		s_object_function_interpolation_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		objectruntimeinterpolatorfunctionsblock_block,
 		"ObjectRuntimeInterpolatorFunctionsBlock_block",
 		256,
 		objectruntimeinterpolatorfunctionsblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_object_function_definition_block,
 		"s_object_function_definition_block",
 		256,
 		s_object_function_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		objectfunctionswitchdefinition_block,
 		"ObjectFunctionSwitchDefinition_block",
 		32,
 		objectfunctionswitchdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		objectfunctionswitchdefinitionfunction_block,
 		"ObjectFunctionSwitchDefinition::Function_block",
 		8,
 		objectfunctionswitchdefinitionfunction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsobjectfunctionforwarding_block,
 		"i343::Objects::ObjectFunctionForwarding_block",
 		8,
 		i343objectsobjectfunctionforwarding);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		garbagecollectionglobalvariables_block,
 		"GarbageCollectionGlobalVariables_block",
 		1,
 		garbagecollectionglobalvariables);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenariobspreference_block,
 		"ScenarioBspReference_block",
 		1024,
 		scenariobspreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structuredesignreference_block,
 		"StructureDesignReference_block",
 		1024,
 		structuredesignreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenario_object_name_block,
 		"scenario_object_name_block",
 		1048576,
 		scenario_object_name);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsframeattachmententry_block,
 		"i343::Objects::FrameAttachmentEntry_block",
 		64,
 		i343objectsframeattachmententry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsframelimitentry_block,
 		"i343::Objects::FrameLimitEntry_block",
 		8,
 		i343objectsframelimitentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsattachedobjectdefinition_block,
 		"i343::Objects::AttachedObjectDefinition_block",
 		8,
 		i343objectsattachedobjectdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsregionpermutationdefinition_block,
 		"i343::Objects::RegionPermutationDefinition_block",
 		32,
 		i343objectsregionpermutationdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartantrackingobjectdefinition_block,
 		"i343::SpartanTracking::ObjectDefinition_block",
 		8,
 		i343spartantrackingobjectdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		trackingtypeblock_block,
 		"TrackingTypeBlock_block",
 		16,
 		trackingtypeblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_target_tracking_parameters_block,
 		"s_target_tracking_parameters_block",
 		1,
 		s_target_tracking_parameters);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		antenna_vertex_block,
 		"antenna_vertex_block",
 		20,
 		antenna_vertex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cloth_collision_sphere_block,
 		"s_cloth_collision_sphere_block",
 		8,
 		s_cloth_collision_sphere);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cloth_vertex_definition_block,
 		"cloth_vertex_definition_block",
 		121,
 		cloth_vertex_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cloth_index_definition_block,
 		"cloth_index_definition_block",
 		1210,
 		cloth_index_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cloth_link_definition_block,
 		"cloth_link_definition_block",
 		1210,
 		cloth_link_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_leaf_type_block,
 		"s_leaf_type_block",
 		16,
 		s_leaf_type);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343unitsmotiontrackerattachmentvisibilityoverrides_block,
 		"i343::Units::MotionTrackerAttachmentVisibilityOverrides_block",
 		1,
 		i343unitsmotiontrackerattachmentvisibilityoverrides);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343bipedmodespecificlocomotionscaledefinition_block,
 		"i343::Biped::ModeSpecificLocomotionScaleDefinition_block",
 		64,
 		i343bipedmodespecificlocomotionscaledefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343bipedlocomotionpropertiesdefinition_block,
 		"i343::Biped::LocomotionPropertiesDefinition_block",
 		1,
 		i343bipedlocomotionpropertiesdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343bipedpredictablecollisionglobals_block,
 		"i343::Biped::PredictableCollisionGlobals_block",
 		1,
 		i343bipedpredictablecollisionglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		biped_contact_point_block,
 		"biped_contact_point_block",
 		5,
 		biped_contact_point);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_biped_movement_gate_block,
 		"s_biped_movement_gate_block",
 		16,
 		s_biped_movement_gate);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_biped_camera_height_block,
 		"s_biped_camera_height_block",
 		16,
 		s_biped_camera_height);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bipedaimingjointfixup_block,
 		"BipedAimingJointFixup_block",
 		2,
 		bipedaimingjointfixup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bipedhoverproperties_block,
 		"BipedHoverProperties_block",
 		1,
 		bipedhoverproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_biped_block,
 		"s_scenario_biped_block",
 		262144,
 		s_scenario_biped);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ragdolldeathblendfunction_block,
 		"RagdollDeathBlendFunction_block",
 		127,
 		ragdolldeathblendfunction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_death_program_selector_velocity_gate_block,
 		"s_death_program_selector_velocity_gate_block",
 		2,
 		s_death_program_selector_velocity_gate);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		deathdamageregion_block,
 		"DeathDamageRegion_block",
 		11,
 		deathdamageregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_death_program_selector_damage_type_block,
 		"s_death_program_selector_damage_type_block",
 		64,
 		s_death_program_selector_damage_type);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_death_program_selector_special_block,
 		"s_death_program_selector_special_block",
 		5,
 		s_death_program_selector_special);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vocalization_stimulus_block,
 		"s_vocalization_stimulus_block",
 		6,
 		s_vocalization_stimulus);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vocalization_sound_block,
 		"s_vocalization_sound_block",
 		4096,
 		s_vocalization_sound);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		giant_buckle_parameters_block,
 		"giant_buckle_parameters_block",
 		3,
 		giant_buckle_parameters);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_giant_block,
 		"s_scenario_giant_block",
 		262144,
 		s_scenario_giant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartanabilitiesmaterialnamestringidblock_block,
 		"i343::SpartanAbilities::MaterialNameStringIdBlock_block",
 		64,
 		i343spartanabilitiesmaterialnamestringidblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartanabilitiesstabilizerdefinition_block,
 		"i343::SpartanAbilities::StabilizerDefinition_block",
 		1,
 		i343spartanabilitiesstabilizerdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartantrackingdefaultrangeparam_block,
 		"i343::SpartanTracking::DefaultRangeParam_block",
 		4,
 		i343spartantrackingdefaultrangeparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartantrackingdisplaymaximumsparam_block,
 		"i343::SpartanTracking::DisplayMaximumsParam_block",
 		4,
 		i343spartantrackingdisplaymaximumsparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343unitsunititemtossglobals_block,
 		"i343::Units::UnitItemTossGlobals_block",
 		1,
 		i343unitsunititemtossglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343unitrecorderunitrecordingreferences_block,
 		"i343::UnitRecorder::UnitRecordingReferences_block",
 		32,
 		i343unitrecorderunitrecordingreferences);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_unit_camera_track_block,
 		"s_unit_camera_track_block",
 		5,
 		s_unit_camera_track);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_unit_camera_acceleration_block,
 		"s_unit_camera_acceleration_block",
 		1,
 		s_unit_camera_acceleration);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		seatmodeltarget_block,
 		"SeatModelTarget_block",
 		8,
 		seatmodeltarget);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_boarding_seat_block,
 		"s_boarding_seat_block",
 		64,
 		s_boarding_seat);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		seatbuttoncallout_block,
 		"SeatButtonCallout_block",
 		8,
 		seatbuttoncallout);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		unit_seat_block,
 		"unit_seat_block",
 		64,
 		unit_seat);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		sentryturretstatetransitionevent_block,
 		"SentryTurretStateTransitionEvent_block",
 		8,
 		sentryturretstatetransitionevent);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		sentryproperties_block,
 		"SentryProperties_block",
 		1,
 		sentryproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		unit_initial_weapon_block,
 		"unit_initial_weapon_block",
 		4,
 		unit_initial_weapon);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		powered_seat_definition_block,
 		"powered_seat_definition_block",
 		2,
 		powered_seat_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dialogue_variant_definition_block,
 		"dialogue_variant_definition_block",
 		16,
 		dialogue_variant_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		weaponspecificmarkers_block,
 		"WeaponSpecificMarkers_block",
 		64,
 		weaponspecificmarkers);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_unit_screen_effect_definition_block,
 		"s_unit_screen_effect_definition_block",
 		4,
 		s_unit_screen_effect_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		exitanddetachvariant_block,
 		"ExitAndDetachVariant_block",
 		5,
 		exitanddetachvariant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_unit_trick_definition_block,
 		"s_unit_trick_definition_block",
 		8,
 		s_unit_trick_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicle_alien_scout_definition_block,
 		"s_vehicle_alien_scout_definition_block",
 		1,
 		s_vehicle_alien_scout_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343vehiclevehicleattachmentreference_block,
 		"i343::Vehicle::VehicleAttachmentReference_block",
 		2,
 		i343vehiclevehicleattachmentreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343vehicleweaponconfigurationgroup_block,
 		"i343::Vehicle::WeaponConfigurationGroup_block",
 		4,
 		i343vehicleweaponconfigurationgroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343vehiclevehiclevitalitypropertymodifiersdefinition_block,
 		"i343::Vehicle::VehicleVitalityPropertyModifiersDefinition_block",
 		1,
 		i343vehiclevehiclevitalitypropertymodifiersdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicle_vtol_definition_block,
 		"s_vehicle_vtol_definition_block",
 		1,
 		s_vehicle_vtol_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicle_vtol_interpolated_parameters_block,
 		"s_vehicle_vtol_interpolated_parameters_block",
 		3,
 		s_vehicle_vtol_interpolated_parameters);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicle_gear_definition_block,
 		"s_vehicle_gear_definition_block",
 		16,
 		s_vehicle_gear_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicle_load_and_cruise_definition_block,
 		"s_vehicle_load_and_cruise_definition_block",
 		2,
 		s_vehicle_load_and_cruise_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_vehicle_block,
 		"s_scenario_vehicle_block",
 		262144,
 		s_scenario_vehicle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicle_human_tank_definition_block,
 		"s_vehicle_human_tank_definition_block",
 		1,
 		s_vehicle_human_tank_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicle_human_jeep_definition_block,
 		"s_vehicle_human_jeep_definition_block",
 		1,
 		s_vehicle_human_jeep_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicle_human_plane_definition_block,
 		"s_vehicle_human_plane_definition_block",
 		1,
 		s_vehicle_human_plane_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicle_jackal_glider_definition_block,
 		"s_vehicle_jackal_glider_definition_block",
 		1,
 		s_vehicle_jackal_glider_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicle_alien_fighter_definition_block,
 		"s_vehicle_alien_fighter_definition_block",
 		1,
 		s_vehicle_alien_fighter_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicle_turret_definition_block,
 		"s_vehicle_turret_definition_block",
 		1,
 		s_vehicle_turret_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicle_guardian_definition_block,
 		"s_vehicle_guardian_definition_block",
 		1,
 		s_vehicle_guardian_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicle_chopper_definition_block,
 		"s_vehicle_chopper_definition_block",
 		1,
 		s_vehicle_chopper_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicle_space_fighter_definition_block,
 		"s_vehicle_space_fighter_definition_block",
 		1,
 		s_vehicle_space_fighter_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicle_revenant_definition_block,
 		"s_vehicle_revenant_definition_block",
 		1,
 		s_vehicle_revenant_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_vehicleaicruisecontrol_block,
 		"s_vehicleAiCruiseControl_block",
 		1,
 		s_vehicleaicruisecontrol);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		optionalunitcamerablock_block,
 		"OptionalUnitCameraBlock_block",
 		1,
 		optionalunitcamerablock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		controlstateuiinfo_block,
 		"ControlStateUIInfo_block",
 		17,
 		controlstateuiinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343equipmentobjectfunctionremapping_block,
 		"i343::Equipment::ObjectFunctionRemapping_block",
 		8,
 		i343equipmentobjectfunctionremapping);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitydeactivationoverridesettings_block,
 		"EquipmentAbilityDeactivationOverrideSettings_block",
 		5,
 		equipmentabilitydeactivationoverridesettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentability_block,
 		"EquipmentAbility_block",
 		9,
 		equipmentability);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_equipment_block,
 		"s_scenario_equipment_block",
 		262144,
 		s_scenario_equipment);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypespawner_block,
 		"EquipmentAbilityTypeSpawner_block",
 		1,
 		equipmentabilitytypespawner);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypeproximitymine_block,
 		"EquipmentAbilityTypeProximityMine_block",
 		1,
 		equipmentabilitytypeproximitymine);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypemotiontrackernoise_block,
 		"EquipmentAbilityTypeMotionTrackerNoise_block",
 		1,
 		equipmentabilitytypemotiontrackernoise);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypetreeoflife_block,
 		"EquipmentAbilityTypeTreeOfLife_block",
 		1,
 		equipmentabilitytypetreeoflife);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytyperepulsorfield_block,
 		"EquipmentAbilityTypeRepulsorField_block",
 		1,
 		equipmentabilitytyperepulsorfield);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypeautoturret_block,
 		"EquipmentAbilityTypeAutoTurret_block",
 		1,
 		equipmentabilitytypeautoturret);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypedaddy_block,
 		"EquipmentAbilityTypeDaddy_block",
 		1,
 		equipmentabilitytypedaddy);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypefortificationshield_block,
 		"EquipmentAbilityTypeFortificationShield_block",
 		1,
 		equipmentabilitytypefortificationshield);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypeammopack_block,
 		"EquipmentAbilityTypeAmmoPack_block",
 		1,
 		equipmentabilitytypeammopack);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypehealthpack_block,
 		"EquipmentAbilityTypeHealthPack_block",
 		1,
 		equipmentabilitytypehealthpack);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypejetpack_block,
 		"EquipmentAbilityTypeJetPack_block",
 		1,
 		equipmentabilitytypejetpack);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypehologram_block,
 		"EquipmentAbilityTypeHologram_block",
 		1,
 		equipmentabilitytypehologram);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypespecialweapon_block,
 		"EquipmentAbilityTypeSpecialWeapon_block",
 		1,
 		equipmentabilitytypespecialweapon);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypespecialmove_block,
 		"EquipmentAbilityTypeSpecialMove_block",
 		1,
 		equipmentabilitytypespecialmove);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypeengineershields_block,
 		"EquipmentAbilityTypeEngineerShields_block",
 		1,
 		equipmentabilitytypeengineershields);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypeactiveshield_block,
 		"EquipmentAbilityTypeActiveShield_block",
 		1,
 		equipmentabilitytypeactiveshield);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypeshieldprojector_block,
 		"EquipmentAbilityTypeShieldProjector_block",
 		1,
 		equipmentabilitytypeshieldprojector);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypeprojectilecollector_block,
 		"EquipmentAbilityTypeProjectileCollector_block",
 		1,
 		equipmentabilitytypeprojectilecollector);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypegenericpowerup_block,
 		"EquipmentAbilityTypeGenericPowerup_block",
 		1,
 		equipmentabilitytypegenericpowerup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypeactivecamo_block,
 		"EquipmentAbilityTypeActiveCamo_block",
 		1,
 		equipmentabilitytypeactivecamo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypemalleableproperties_block,
 		"EquipmentAbilityTypeMalleableProperties_block",
 		1,
 		equipmentabilitytypemalleableproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypespartancustomtracking_block,
 		"EquipmentAbilityTypeSpartanCustomTracking_block",
 		2,
 		equipmentabilitytypespartancustomtracking);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypeteleporter_block,
 		"EquipmentAbilityTypeTeleporter_block",
 		1,
 		equipmentabilitytypeteleporter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypeframeabilityitem_block,
 		"EquipmentAbilityTypeFrameAbilityItem_block",
 		1,
 		equipmentabilitytypeframeabilityitem);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypeequipmentrecharger_block,
 		"EquipmentAbilityTypeEquipmentRecharger_block",
 		1,
 		equipmentabilitytypeequipmentrecharger);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343equipmentknockbackresponseoverride_block,
 		"i343::Equipment::KnockbackResponseOverride_block",
 		8,
 		i343equipmentknockbackresponseoverride);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343equipmentknockbackunittargetmarker_block,
 		"i343::Equipment::KnockbackUnitTargetMarker_block",
 		16,
 		i343equipmentknockbackunittargetmarker);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentabilitytypeknockback_block,
 		"EquipmentAbilityTypeKnockback_block",
 		1,
 		equipmentabilitytypeknockback);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		predictedbitmapsblock_block,
 		"PredictedBitmapsBlock_block",
 		8,
 		predictedbitmapsblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		projectileangularrotationdefinition_block,
 		"ProjectileAngularRotationDefinition_block",
 		1,
 		projectileangularrotationdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_projectile_fire_bomb_grenade_definition_block,
 		"s_projectile_fire_bomb_grenade_definition_block",
 		1,
 		s_projectile_fire_bomb_grenade_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_projectile_conical_projection_defintion_block,
 		"s_projectile_conical_projection_defintion_block",
 		1,
 		s_projectile_conical_projection_defintion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		projectilesoundrtpcblockdefinition_block,
 		"ProjectileSoundRTPCBlockDefinition_block",
 		16,
 		projectilesoundrtpcblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponweaponoffsetrestrictedbounds_block,
 		"i343::Weapon::WeaponOffsetRestrictedBounds_block",
 		1,
 		i343weaponweaponoffsetrestrictedbounds);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_weapon_screen_effect_definition_block,
 		"s_weapon_screen_effect_definition_block",
 		4,
 		s_weapon_screen_effect_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		weaponclassoverride_block,
 		"WeaponClassOverride_block",
 		64,
 		weaponclassoverride);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		weapon_first_person_interface_definition_block,
 		"weapon_first_person_interface_definition_block",
 		64,
 		weapon_first_person_interface_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_weapon_block,
 		"s_scenario_weapon_block",
 		262144,
 		s_scenario_weapon);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_terminal_page_definition_block,
 		"s_terminal_page_definition_block",
 		32,
 		s_terminal_page_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenario_device_group_block,
 		"scenario_device_group_block",
 		128,
 		scenario_device_group);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_machine_block,
 		"s_scenario_machine_block",
 		262144,
 		s_scenario_machine);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_terminal_block,
 		"s_scenario_terminal_block",
 		262144,
 		s_scenario_terminal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_control_block,
 		"s_scenario_control_block",
 		262144,
 		s_scenario_control);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenariodispenser_block,
 		"ScenarioDispenser_block",
 		262144,
 		scenariodispenser);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_creature_block,
 		"s_scenario_creature_block",
 		262144,
 		s_scenario_creature);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343collectiblesgameskullunlock_block,
 		"i343::Collectibles::GameSkullUnlock_block",
 		1,
 		i343collectiblesgameskullunlock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343collectiblesunlockedequipment_block,
 		"i343::Collectibles::UnlockedEquipment_block",
 		1,
 		i343collectiblesunlockedequipment);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343collectiblesunlockedpoi_block,
 		"i343::Collectibles::UnlockedPOI_block",
 		1,
 		i343collectiblesunlockedpoi);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343collectiblesgameplayunlocks_block,
 		"i343::Collectibles::GameplayUnlocks_block",
 		1,
 		i343collectiblesgameplayunlocks);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343collectiblesquicktipdata_block,
 		"i343::Collectibles::QuickTipData_block",
 		1,
 		i343collectiblesquicktipdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343collectiblesbackmenuscreentabindex_block,
 		"i343::Collectibles::BackMenuScreenTabIndex_block",
 		4,
 		i343collectiblesbackmenuscreentabindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343collectiblespercollectipletypedata_block,
 		"i343::Collectibles::PerCollectipleTypeData_block",
 		10,
 		i343collectiblespercollectipletypedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343collectiblescodexentrydesctext_block,
 		"i343::Collectibles::CodexEntryDescText_block",
 		4,
 		i343collectiblescodexentrydesctext);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343collectiblescodexentry_block,
 		"i343::Collectibles::CodexEntry_block",
 		127,
 		i343collectiblescodexentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343collectiblescollectibleentryblockindex_block,
 		"i343::Collectibles::CollectibleEntryBlockIndex_block",
 		127,
 		i343collectiblescollectibleentryblockindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343collectiblescodexentrylist_block,
 		"i343::Collectibles::CodexEntryList_block",
 		31,
 		i343collectiblescodexentrylist);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343collectiblescodexpercategoryinfo_block,
 		"i343::Collectibles::CodexPerCategoryInfo_block",
 		5,
 		i343collectiblescodexpercategoryinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343collectiblescollectibleentry_block,
 		"i343::Collectibles::CollectibleEntry_block",
 		512,
 		i343collectiblescollectibleentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343benchmarkbenchmarkcompositioninfo_block,
 		"i343::Benchmark::BenchmarkCompositionInfo_block",
 		32,
 		i343benchmarkbenchmarkcompositioninfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343benchmarkbenchmarkmap_block,
 		"i343::Benchmark::BenchmarkMap_block",
 		32,
 		i343benchmarkbenchmarkmap);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343benchmarkbenchmarkdefinitionblock_block,
 		"i343::Benchmark::BenchmarkDefinitionBlock_block",
 		32,
 		i343benchmarkbenchmarkdefinitionblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343emblemdefinitionsemblemsvg_block,
 		"i343::EmblemDefinitions::EmblemSVG_block",
 		1024,
 		i343emblemdefinitionsemblemsvg);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343emblemdefinitionsemblemcoatingswatch_block,
 		"i343::EmblemDefinitions::EmblemCoatingSwatch_block",
 		256,
 		i343emblemdefinitionsemblemcoatingswatch);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343emblemdefinitionsemblemcoating_block,
 		"i343::EmblemDefinitions::EmblemCoating_block",
 		256,
 		i343emblemdefinitionsemblemcoating);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343emblemdefinitionsemblemshader_block,
 		"i343::EmblemDefinitions::EmblemShader_block",
 		256,
 		i343emblemdefinitionsemblemshader);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343emblemlayer_block,
 		"i343::EmblemLayer_block",
 		256,
 		i343emblemlayer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		personalscorehighlighteventdefinition_block,
 		"PersonalScoreHighlightEventDefinition_block",
 		512,
 		personalscorehighlighteventdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		personalscorehighlighteventtierdefinition_block,
 		"PersonalScoreHighlightEventTierDefinition_block",
 		5,
 		personalscorehighlighteventtierdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343materialeffectsdefaultdistances_block,
 		"i343::MaterialEffects::DefaultDistances_block",
 		34,
 		i343materialeffectsdefaultdistances);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343subtitlespeakercolors_block,
 		"i343::SubtitleSpeakerColors_block",
 		128,
 		i343subtitlespeakercolors);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		aimassistdefinitiondeprecated_block,
 		"AimAssistDefinitionDeprecated_block",
 		3,
 		aimassistdefinitiondeprecated);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponaimassistpropertymodifiersdefinition_block,
 		"i343::Weapon::AimAssistPropertyModifiersDefinition_block",
 		1,
 		i343weaponaimassistpropertymodifiersdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_campaign_metagame_bucket_block,
 		"s_campaign_metagame_bucket_block",
 		1,
 		s_campaign_metagame_bucket);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_campaign_metagame_style_definition_block,
 		"s_campaign_metagame_style_definition_block",
 		100,
 		s_campaign_metagame_style_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_campaign_metagame_difficulty_block,
 		"s_campaign_metagame_difficulty_block",
 		4,
 		s_campaign_metagame_difficulty);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_campaign_metagame_skull_data_block,
 		"s_campaign_metagame_skull_data_block",
 		20,
 		s_campaign_metagame_skull_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		mythicskullbonus_block,
 		"MythicSkullBonus_block",
 		49,
 		mythicskullbonus);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_campaign_metagame_globals_block,
 		"s_campaign_metagame_globals_block",
 		1,
 		s_campaign_metagame_globals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeenginemonitormovespeed_block,
 		"ForgeEngine::MonitorMoveSpeed_block",
 		8,
 		forgeenginemonitormovespeed);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_active_camo_level_definition_block,
 		"s_active_camo_level_definition_block",
 		5,
 		s_active_camo_level_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_active_camo_globals_block,
 		"s_active_camo_globals_block",
 		1,
 		s_active_camo_globals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputmappingfunctionblock_block,
 		"InputMappingFunctionBlock_block",
 		1,
 		inputmappingfunctionblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_gamepad_stick_settings_block,
 		"s_gamepad_stick_settings_block",
 		1,
 		s_gamepad_stick_settings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_globals_input_abstraction_block,
 		"s_game_globals_input_abstraction_block",
 		1,
 		s_game_globals_input_abstraction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_globals_player_control_block,
 		"s_game_globals_player_control_block",
 		1,
 		s_game_globals_player_control);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_globals_damage_block,
 		"s_game_globals_damage_block",
 		1,
 		s_game_globals_damage);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_globals_shield_boost_block,
 		"s_game_globals_shield_boost_block",
 		1,
 		s_game_globals_shield_boost);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_damage_globals_definition_block,
 		"s_damage_globals_definition_block",
 		1,
 		s_damage_globals_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_damage_group_definition_block,
 		"s_damage_group_definition_block",
 		512,
 		s_damage_group_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_armor_modifier_definition_block,
 		"s_armor_modifier_definition_block",
 		512,
 		s_armor_modifier_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_globals_difficulty_information_block,
 		"s_game_globals_difficulty_information_block",
 		1,
 		s_game_globals_difficulty_information);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_globals_coop_difficulty_information_block,
 		"s_game_globals_coop_difficulty_information_block",
 		1,
 		s_game_globals_coop_difficulty_information);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundresponsepermutationdefinition_block,
 		"SoundResponsePermutationDefinition_block",
 		10,
 		soundresponsepermutationdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundcombineresponsedefinition_block,
 		"SoundCombineResponseDefinition_block",
 		10,
 		soundcombineresponsedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundresponsedefinition_block,
 		"SoundResponseDefinition_block",
 		10,
 		soundresponsedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundincidentresponsedefinition_block,
 		"SoundIncidentResponseDefinition_block",
 		10,
 		soundincidentresponsedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawningweightfunctionparam_block,
 		"Spawning::WeightFunctionParam_block",
 		1,
 		spawningweightfunctionparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawningsphereinfluencerregion_block,
 		"Spawning::SphereInfluencerRegion_block",
 		256,
 		spawningsphereinfluencerregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawningboxinfluencerregion_block,
 		"Spawning::BoxInfluencerRegion_block",
 		256,
 		spawningboxinfluencerregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawningcylinderinfluencerregion_block,
 		"Spawning::CylinderInfluencerRegion_block",
 		256,
 		spawningcylinderinfluencerregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawningconeinfluencerregion_block,
 		"Spawning::ConeInfluencerRegion_block",
 		256,
 		spawningconeinfluencerregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawningpillinfluencerregion_block,
 		"Spawning::PillInfluencerRegion_block",
 		256,
 		spawningpillinfluencerregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawninginfluencerregion_block,
 		"Spawning::InfluencerRegion_block",
 		256,
 		spawninginfluencerregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawningmovinginfluencerregion_block,
 		"Spawning::MovingInfluencerRegion_block",
 		256,
 		spawningmovinginfluencerregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawningunitonlyinfluencerdefinition_block,
 		"Spawning::UnitOnlyInfluencerDefinition_block",
 		1024,
 		spawningunitonlyinfluencerdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawningunitinfluencerparam_block,
 		"Spawning::UnitInfluencerParam_block",
 		1024,
 		spawningunitinfluencerparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawningweaponinfluencerdefinition_block,
 		"Spawning::WeaponInfluencerDefinition_block",
 		1024,
 		spawningweaponinfluencerdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawningvehicleinfluencerdefinition_block,
 		"Spawning::VehicleInfluencerDefinition_block",
 		1024,
 		spawningvehicleinfluencerdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawningprojectileinfluencerdefinition_block,
 		"Spawning::ProjectileInfluencerDefinition_block",
 		1024,
 		spawningprojectileinfluencerdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawningequipmentinfluencerdefinition_block,
 		"Spawning::EquipmentInfluencerDefinition_block",
 		1024,
 		spawningequipmentinfluencerdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawningobjectdispenserinfluencerdefinition_block,
 		"Spawning::ObjectDispenserInfluencerDefinition_block",
 		1024,
 		spawningobjectdispenserinfluencerdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_globals_soft_ceiling_block,
 		"s_game_globals_soft_ceiling_block",
 		1,
 		s_game_globals_soft_ceiling);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_controller_mapping_reference_block,
 		"s_controller_mapping_reference_block",
 		16,
 		s_controller_mapping_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_named_rgb_color_block,
 		"s_named_rgb_color_block",
 		128,
 		s_named_rgb_color);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_performance_throttle_entry_block,
 		"s_game_performance_throttle_entry_block",
 		32,
 		s_game_performance_throttle_entry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_globals_player_information_block,
 		"s_game_globals_player_information_block",
 		256,
 		s_game_globals_player_information);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343playerfirstpersonhiddenbodyregion_block,
 		"i343::Player::FirstPersonHiddenBodyRegion_block",
 		32,
 		i343playerfirstpersonhiddenbodyregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343playerrepresentation_block,
 		"i343::Player::Representation_block",
 		256,
 		i343playerrepresentation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationlandingscenecompositiondata_block,
 		"Interface::Customization::LandingSceneCompositionData_block",
 		18,
 		interfacecustomizationlandingscenecompositiondata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationlandingscenedata_block,
 		"Interface::Customization::LandingSceneData_block",
 		1,
 		interfacecustomizationlandingscenedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationcoretypeitem_block,
 		"Interface::Customization::CoreTypeItem_block",
 		18,
 		interfacecustomizationcoretypeitem);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationcamerapointname_block,
 		"Interface::Customization::CameraPointName_block",
 		16,
 		interfacecustomizationcamerapointname);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationcamerapointlayoutblock_block,
 		"Interface::Customization::CameraPointLayoutBlock_block",
 		1,
 		interfacecustomizationcamerapointlayoutblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuicomposercustomizationdata_block,
 		"Interface::Customization::UIComposerCustomizationData_block",
 		32,
 		interfacecustomizationuicomposercustomizationdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationcomposerscenenames_block,
 		"Interface::Customization::ComposerSceneNames_block",
 		32,
 		interfacecustomizationcomposerscenenames);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuicamerapositionoffset_block,
 		"Interface::Customization::UICameraPositionOffset_block",
 		2,
 		interfacecustomizationuicamerapositionoffset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuiplatformanimationsettings_block,
 		"Interface::Customization::UIPlatformAnimationSettings_block",
 		20,
 		interfacecustomizationuiplatformanimationsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuicamerasettings_block,
 		"Interface::Customization::UICameraSettings_block",
 		2,
 		interfacecustomizationuicamerasettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuiscenelightsource_block,
 		"Interface::Customization::UISceneLightSource_block",
 		128,
 		interfacecustomizationuiscenelightsource);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuiiteminspectsettings_block,
 		"Interface::Customization::UIItemInspectSettings_block",
 		1,
 		interfacecustomizationuiiteminspectsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuicubemapvolume_block,
 		"Interface::Customization::UICubemapVolume_block",
 		30,
 		interfacecustomizationuicubemapvolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuilightpreset_block,
 		"Interface::Customization::UILightPreset_block",
 		512,
 		interfacecustomizationuilightpreset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuilightscenepreset_block,
 		"Interface::Customization::UILightScenePreset_block",
 		9,
 		interfacecustomizationuilightscenepreset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuicamerapresetsettings_block,
 		"Interface::Customization::UICameraPresetSettings_block",
 		100,
 		interfacecustomizationuicamerapresetsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuicamerapreset_block,
 		"Interface::Customization::UICameraPreset_block",
 		200,
 		interfacecustomizationuicamerapreset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuicamerascenepreset_block,
 		"Interface::Customization::UICameraScenePreset_block",
 		9,
 		interfacecustomizationuicamerascenepreset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuitransitionsound_block,
 		"Interface::Customization::UITransitionSound_block",
 		16,
 		interfacecustomizationuitransitionsound);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuipersonalaisound_block,
 		"Interface::Customization::UIPersonalAiSound_block",
 		16,
 		interfacecustomizationuipersonalaisound);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuiregiondata_block,
 		"Interface::Customization::UIRegionData_block",
 		256,
 		interfacecustomizationuiregiondata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuirttregiondata_block,
 		"Interface::Customization::UIRTTRegionData_block",
 		256,
 		interfacecustomizationuirttregiondata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuicustomizationorientationlimits_block,
 		"Interface::Customization::UICustomizationOrientationLimits_block",
 		16,
 		interfacecustomizationuicustomizationorientationlimits);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuicustomizationspeedparameters_block,
 		"Interface::Customization::UICustomizationSpeedParameters_block",
 		1,
 		interfacecustomizationuicustomizationspeedparameters);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuiobjectcustomizationdata_block,
 		"Interface::Customization::UIObjectCustomizationData_block",
 		1,
 		interfacecustomizationuiobjectcustomizationdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_globals_interface_tag_references_block,
 		"s_game_globals_interface_tag_references_block",
 		1,
 		s_game_globals_interface_tag_references);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343s_campaign_mission_map_definition_block,
 		"i343::s_campaign_mission_map_definition_block",
 		3,
 		i343s_campaign_mission_map_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343s_game_globals_campaign_block,
 		"i343::s_game_globals_campaign_block",
 		15,
 		i343s_game_globals_campaign);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343cheatpowerups_block,
 		"i343::CheatPowerups_block",
 		20,
 		i343cheatpowerups);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343emblemharmony_block,
 		"i343::EmblemHarmony_block",
 		7,
 		i343emblemharmony);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343emblemharmonygroup_block,
 		"i343::EmblemHarmonyGroup_block",
 		33,
 		i343emblemharmonygroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343skillrankingtierdefinition_block,
 		"i343::SkillRankingTierDefinition_block",
 		10,
 		i343skillrankingtierdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343skillrankingdefinition_block,
 		"i343::SkillRankingDefinition_block",
 		10,
 		i343skillrankingdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeataicontrolproperties_block,
 		"i343::Narrative::BeatAiControlProperties_block",
 		1,
 		i343narrativebeataicontrolproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeatcontrolparameterproperties_block,
 		"i343::Narrative::BeatControlParameterProperties_block",
 		1,
 		i343narrativebeatcontrolparameterproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativecagelighttransformproperties_block,
 		"i343::Narrative::CageLightTransformProperties_block",
 		1,
 		i343narrativecagelighttransformproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeatlightproperties_block,
 		"i343::Narrative::BeatLightProperties_block",
 		8,
 		i343narrativebeatlightproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeatpersistencechange_block,
 		"i343::Narrative::BeatPersistenceChange_block",
 		5,
 		i343narrativebeatpersistencechange);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeatpersistencechanges_block,
 		"i343::Narrative::BeatPersistenceChanges_block",
 		1,
 		i343narrativebeatpersistencechanges);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativepersistencecheckdef_block,
 		"i343::Narrative::PersistenceCheckDef_block",
 		32,
 		i343narrativepersistencecheckdef);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativeactivationcurvedefandnamesdef_block,
 		"i343::Narrative::ActivationCurveDefAndNamesDef_block",
 		1,
 		i343narrativeactivationcurvedefandnamesdef);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativeplayercontrolmovetocomponent_block,
 		"i343::Narrative::PlayerControlMoveToComponent_block",
 		1,
 		i343narrativeplayercontrolmovetocomponent);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativenewplayercontrolmovetocomponent_block,
 		"i343::Narrative::NewPlayerControlMoveToComponent_block",
 		1,
 		i343narrativenewplayercontrolmovetocomponent);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeatplayercontrolproperties_block,
 		"i343::Narrative::BeatPlayerControlProperties_block",
 		1,
 		i343narrativebeatplayercontrolproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativemalleablepropertydef_block,
 		"i343::Narrative::MalleablePropertyDef_block",
 		32,
 		i343narrativemalleablepropertydef);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativemalleablepropertydatablockdef_block,
 		"i343::Narrative::MalleablePropertyDataBlockDef_block",
 		8,
 		i343narrativemalleablepropertydatablockdef);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeatnewplayercontrolproperties_block,
 		"i343::Narrative::BeatNewPlayerControlProperties_block",
 		1,
 		i343narrativebeatnewplayercontrolproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeatplayerhudproperties_block,
 		"i343::Narrative::BeatPlayerHUDProperties_block",
 		1,
 		i343narrativebeatplayerhudproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativenarrativesequenceassociatedobject_block,
 		"i343::Narrative::NarrativeSequenceAssociatedObject_block",
 		8,
 		i343narrativenarrativesequenceassociatedobject);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeatnarrativesequence_block,
 		"i343::Narrative::BeatNarrativeSequence_block",
 		1,
 		i343narrativebeatnarrativesequence);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeattransitionproperties_block,
 		"i343::Narrative::BeatTransitionProperties_block",
 		1,
 		i343narrativebeattransitionproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativecagecamerazoomsettings_block,
 		"i343::Narrative::CageCameraZoomSettings_block",
 		1,
 		i343narrativecagecamerazoomsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativecageattachment_block,
 		"i343::Narrative::CageAttachment_block",
 		64,
 		i343narrativecageattachment);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativecagepointpropertieswithweight_block,
 		"i343::Narrative::CagePointPropertiesWithWeight_block",
 		5,
 		i343narrativecagepointpropertieswithweight);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativecagecameratransformproperties_block,
 		"i343::Narrative::CageCameraTransformProperties_block",
 		1,
 		i343narrativecagecameratransformproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativecageblendproximity_block,
 		"i343::Narrative::CageBlendProximity_block",
 		1,
 		i343narrativecageblendproximity);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeatnewcameraproperties_block,
 		"i343::Narrative::BeatNewCameraProperties_block",
 		1,
 		i343narrativebeatnewcameraproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeatcameraproperties_block,
 		"i343::Narrative::BeatCameraProperties_block",
 		1,
 		i343narrativebeatcameraproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeatcompositionproperties_block,
 		"i343::Narrative::BeatCompositionProperties_block",
 		4,
 		i343narrativebeatcompositionproperties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativenarrativefirsttofirsttransitionpreset_block,
 		"i343::Narrative::NarrativeFirstToFirstTransitionPreset_block",
 		16,
 		i343narrativenarrativefirsttofirsttransitionpreset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativecontrolparameter_block,
 		"i343::Narrative::ControlParameter_block",
 		64,
 		i343narrativecontrolparameter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeatactivation_block,
 		"i343::Narrative::BeatActivation_block",
 		4,
 		i343narrativebeatactivation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeatdeactivation_block,
 		"i343::Narrative::BeatDeactivation_block",
 		4,
 		i343narrativebeatdeactivation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativebeat_block,
 		"i343::Narrative::Beat_block",
 		32,
 		i343narrativebeat);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativemoment_block,
 		"i343::Narrative::Moment_block",
 		128,
 		i343narrativemoment);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343personalaifacialanimationframeeventdata_block,
 		"i343::PersonalAI::FacialAnimationFrameEventData_block",
 		64,
 		i343personalaifacialanimationframeeventdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343personalaianimationdata_block,
 		"i343::PersonalAI::AnimationData_block",
 		32,
 		i343personalaianimationdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343personalaiavatarconfigurationdata_block,
 		"i343::PersonalAI::AvatarConfigurationData_block",
 		32,
 		i343personalaiavatarconfigurationdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343personalaicolorpresetdata_block,
 		"i343::PersonalAI::ColorPresetData_block",
 		64,
 		i343personalaicolorpresetdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343playercameraglobals_block,
 		"i343::Player::CameraGlobals_block",
 		1,
 		i343playercameraglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_location_name_tag_definition_block,
 		"s_location_name_tag_definition_block",
 		1024,
 		s_location_name_tag_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_medal_definition_block,
 		"s_game_medal_definition_block",
 		512,
 		s_game_medal_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		gamemedaltypedefinition_block,
 		"GameMedalTypeDefinition_block",
 		10,
 		gamemedaltypedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		gamemedaldifficultydefinition_block,
 		"GameMedalDifficultyDefinition_block",
 		10,
 		gamemedaldifficultydefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		personalscoreeventdefinition_block,
 		"PersonalScoreEventDefinition_block",
 		512,
 		personalscoreeventdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationstanceandposeanimations_block,
 		"i343::ObjectCustomization::StanceAndPoseAnimations_block",
 		256,
 		i343objectcustomizationstanceandposeanimations);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationmarkers_block,
 		"i343::ObjectCustomization::Markers_block",
 		16,
 		i343objectcustomizationmarkers);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationmodelattachment_block,
 		"i343::ObjectCustomization::ModelAttachment_block",
 		16,
 		i343objectcustomizationmodelattachment);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationattachment_block,
 		"i343::ObjectCustomization::Attachment_block",
 		128,
 		i343objectcustomizationattachment);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationcharm_block,
 		"i343::ObjectCustomization::Charm_block",
 		128,
 		i343objectcustomizationcharm);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationconsumableobjects_block,
 		"i343::ObjectCustomization::ConsumableObjects_block",
 		16,
 		i343objectcustomizationconsumableobjects);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationpermutationregions_block,
 		"i343::ObjectCustomization::PermutationRegions_block",
 		16,
 		i343objectcustomizationpermutationregions);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationdefaultpermutationregions_block,
 		"i343::ObjectCustomization::DefaultPermutationRegions_block",
 		256,
 		i343objectcustomizationdefaultpermutationregions);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationpermutationsettings_block,
 		"i343::ObjectCustomization::PermutationSettings_block",
 		256,
 		i343objectcustomizationpermutationsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationregion_block,
 		"i343::ObjectCustomization::Region_block",
 		256,
 		i343objectcustomizationregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationmeshes_block,
 		"i343::ObjectCustomization::Meshes_block",
 		256,
 		i343objectcustomizationmeshes);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationdefaultregiondata_block,
 		"i343::ObjectCustomization::DefaultRegionData_block",
 		256,
 		i343objectcustomizationdefaultregiondata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationdefaultcoredata_block,
 		"i343::ObjectCustomization::DefaultCoreData_block",
 		1,
 		i343objectcustomizationdefaultcoredata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationemblemmarker_block,
 		"i343::ObjectCustomization::EmblemMarker_block",
 		256,
 		i343objectcustomizationemblemmarker);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationplayerkilleffect_block,
 		"i343::ObjectCustomization::PlayerKillEffect_block",
 		64,
 		i343objectcustomizationplayerkilleffect);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationeffectoverridedefinition_block,
 		"i343::ObjectCustomization::EffectOverrideDefinition_block",
 		16,
 		i343objectcustomizationeffectoverridedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationconfigurationthemeeffectoverride_block,
 		"i343::ObjectCustomization::ConfigurationThemeEffectOverride_block",
 		64,
 		i343objectcustomizationconfigurationthemeeffectoverride);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationobjectattachmentcustomization_block,
 		"i343::ObjectCustomization::ObjectAttachmentCustomization_block",
 		16,
 		i343objectcustomizationobjectattachmentcustomization);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationbigemblemconfiguration_block,
 		"i343::ObjectCustomization::BigEmblemConfiguration_block",
 		100,
 		i343objectcustomizationbigemblemconfiguration);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationemblemconfiguration_block,
 		"i343::ObjectCustomization::EmblemConfiguration_block",
 		1,
 		i343objectcustomizationemblemconfiguration);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationthemeconfigs_block,
 		"i343::ObjectCustomization::ThemeConfigs_block",
 		256,
 		i343objectcustomizationthemeconfigs);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationweaponthemeconfigs_block,
 		"i343::ObjectCustomization::WeaponThemeConfigs_block",
 		256,
 		i343objectcustomizationweaponthemeconfigs);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationvehiclethemeconfigs_block,
 		"i343::ObjectCustomization::VehicleThemeConfigs_block",
 		256,
 		i343objectcustomizationvehiclethemeconfigs);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationtheme_block,
 		"i343::ObjectCustomization::Theme_block",
 		100,
 		i343objectcustomizationtheme);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationweapontheme_block,
 		"i343::ObjectCustomization::WeaponTheme_block",
 		100,
 		i343objectcustomizationweapontheme);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationvehicletheme_block,
 		"i343::ObjectCustomization::VehicleTheme_block",
 		100,
 		i343objectcustomizationvehicletheme);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_global_material_underwater_proxy_block,
 		"s_global_material_underwater_proxy_block",
 		512,
 		s_global_material_underwater_proxy);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_global_material_object_drag_properties_block,
 		"s_global_material_object_drag_properties_block",
 		16,
 		s_global_material_object_drag_properties);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_global_material_definition_block,
 		"s_global_material_definition_block",
 		256,
 		s_global_material_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		teamdefinition_block,
 		"TeamDefinition_block",
 		32,
 		teamdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_multiplayer_universal_globals_definition_block,
 		"s_multiplayer_universal_globals_definition_block",
 		1,
 		s_multiplayer_universal_globals_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_multiplayer_constants_block,
 		"s_multiplayer_constants_block",
 		1,
 		s_multiplayer_constants);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundblock_block,
 		"SoundBlock_block",
 		60,
 		soundblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		loopingsoundblock_block,
 		"LoopingSoundBlock_block",
 		60,
 		loopingsoundblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_multiplayer_runtime_globals_definition_block,
 		"s_multiplayer_runtime_globals_definition_block",
 		1,
 		s_multiplayer_runtime_globals_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_multiplayer_object_type_block,
 		"s_multiplayer_object_type_block",
 		2048,
 		s_multiplayer_object_type);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		multiplayer_color_block,
 		"multiplayer_color_block",
 		63,
 		multiplayer_color);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_multiplayer_visor_color_block,
 		"s_multiplayer_visor_color_block",
 		63,
 		s_multiplayer_visor_color);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_model_customization_player_region_permutation_block,
 		"s_model_customization_player_region_permutation_block",
 		32,
 		s_model_customization_player_region_permutation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_model_customization_selection_block,
 		"s_model_customization_selection_block",
 		96,
 		s_model_customization_selection);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_player_training_entry_data_block,
 		"s_player_training_entry_data_block",
 		32,
 		s_player_training_entry_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		gameenginetextdefinition_block,
 		"GameEngineTextDefinition_block",
 		16,
 		gameenginetextdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_suppressed_incident_definition_block,
 		"s_suppressed_incident_definition_block",
 		1000,
 		s_suppressed_incident_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacedamagedisplaybydamagetype_block,
 		"Interface::DamageDisplayByDamageType_block",
 		10,
 		interfacedamagedisplaybydamagetype);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacedamagedisplaybyattachmentlist_block,
 		"Interface::DamageDisplayByAttachmentList_block",
 		50,
 		interfacedamagedisplaybyattachmentlist);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacedamagedisplaybydamagesource_block,
 		"Interface::DamageDisplayByDamageSource_block",
 		1024,
 		interfacedamagedisplaybydamagesource);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dispositioncolorentry_block,
 		"DispositionColorEntry_block",
 		16,
 		dispositioncolorentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudstringiddefinition_block,
 		"Interface::FastHud::StringIdDefinition_block",
 		1024,
 		interfacefasthudstringiddefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudpoint2fdefinition_block,
 		"Interface::FastHud::Point2FDefinition_block",
 		1024,
 		interfacefasthudpoint2fdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudfloatdefinition_block,
 		"Interface::FastHud::FloatDefinition_block",
 		1024,
 		interfacefasthudfloatdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudintegerdefinition_block,
 		"Interface::FastHud::IntegerDefinition_block",
 		1024,
 		interfacefasthudintegerdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudbooleandefinition_block,
 		"Interface::FastHud::BooleanDefinition_block",
 		1024,
 		interfacefasthudbooleandefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudfasthudcolor_block,
 		"Interface::FastHud::FastHudColor_block",
 		1024,
 		interfacefasthudfasthudcolor);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudbitmapgroupreferencedefinition_block,
 		"Interface::FastHud::BitmapGroupReferenceDefinition_block",
 		1024,
 		interfacefasthudbitmapgroupreferencedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudnumericdisplaydefinition_block,
 		"Interface::FastHud::NumericDisplayDefinition_block",
 		1024,
 		interfacefasthudnumericdisplaydefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudsubcomponentdefinition_block,
 		"Interface::FastHud::SubComponentDefinition_block",
 		1024,
 		interfacefasthudsubcomponentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudresourcehandle_block,
 		"Interface::FastHud::ResourceHandle_block",
 		1024,
 		interfacefasthudresourcehandle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudresourceentrydefinition_block,
 		"Interface::FastHud::ResourceEntryDefinition_block",
 		1024,
 		interfacefasthudresourceentrydefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudfloatanimationdefinition_block,
 		"Interface::FastHud::FloatAnimationDefinition_block",
 		1024,
 		interfacefasthudfloatanimationdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudcoloranimationdefinition_block,
 		"Interface::FastHud::ColorAnimationDefinition_block",
 		1024,
 		interfacefasthudcoloranimationdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudpoint2fanimationdefinition_block,
 		"Interface::FastHud::Point2FAnimationDefinition_block",
 		1024,
 		interfacefasthudpoint2fanimationdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudintegeranimationdefinition_block,
 		"Interface::FastHud::IntegerAnimationDefinition_block",
 		1024,
 		interfacefasthudintegeranimationdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudstoryboarddefinition_block,
 		"Interface::FastHud::StoryboardDefinition_block",
 		1024,
 		interfacefasthudstoryboarddefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudvisualstatedefinition_block,
 		"Interface::FastHud::VisualStateDefinition_block",
 		1024,
 		interfacefasthudvisualstatedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudvisualstategroupdefinition_block,
 		"Interface::FastHud::VisualStateGroupDefinition_block",
 		1024,
 		interfacefasthudvisualstategroupdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudlinearcolorkeyframedefinition_block,
 		"Interface::FastHud::LinearColorKeyFrameDefinition_block",
 		1024,
 		interfacefasthudlinearcolorkeyframedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudlinearpoint2fkeyframedefinition_block,
 		"Interface::FastHud::LinearPoint2FKeyFrameDefinition_block",
 		1024,
 		interfacefasthudlinearpoint2fkeyframedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudlinearfloatkeyframedefinition_block,
 		"Interface::FastHud::LinearFloatKeyFrameDefinition_block",
 		1024,
 		interfacefasthudlinearfloatkeyframedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthuddiscretepoint2fkeyframedefinition_block,
 		"Interface::FastHud::DiscretePoint2FKeyFrameDefinition_block",
 		1024,
 		interfacefasthuddiscretepoint2fkeyframedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthuddiscretecolorkeyframedefinition_block,
 		"Interface::FastHud::DiscreteColorKeyFrameDefinition_block",
 		1024,
 		interfacefasthuddiscretecolorkeyframedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthuddiscretebooleankeyframedefinition_block,
 		"Interface::FastHud::DiscreteBooleanKeyFrameDefinition_block",
 		1024,
 		interfacefasthuddiscretebooleankeyframedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthuddiscreteintegerkeyframedefinition_block,
 		"Interface::FastHud::DiscreteIntegerKeyFrameDefinition_block",
 		1024,
 		interfacefasthuddiscreteintegerkeyframedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthuddiscretefloatkeyframedefinition_block,
 		"Interface::FastHud::DiscreteFloatKeyFrameDefinition_block",
 		1024,
 		interfacefasthuddiscretefloatkeyframedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudlinearintegerkeyframedefinition_block,
 		"Interface::FastHud::LinearIntegerKeyFrameDefinition_block",
 		1024,
 		interfacefasthudlinearintegerkeyframedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudpoint2fanimationusingkeyframesdefinition_block,
 		"Interface::FastHud::Point2FAnimationUsingKeyFramesDefinition_block",
 		1024,
 		interfacefasthudpoint2fanimationusingkeyframesdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudintegeranimationusingkeyframesdefinition_block,
 		"Interface::FastHud::IntegerAnimationUsingKeyFramesDefinition_block",
 		1024,
 		interfacefasthudintegeranimationusingkeyframesdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudfloatanimationusingkeyframesdefinition_block,
 		"Interface::FastHud::FloatAnimationUsingKeyFramesDefinition_block",
 		1024,
 		interfacefasthudfloatanimationusingkeyframesdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudbooleananimationusingkeyframesdefinition_block,
 		"Interface::FastHud::BooleanAnimationUsingKeyFramesDefinition_block",
 		1024,
 		interfacefasthudbooleananimationusingkeyframesdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudcoloranimationusingkeyframesdefinition_block,
 		"Interface::FastHud::ColorAnimationUsingKeyFramesDefinition_block",
 		1024,
 		interfacefasthudcoloranimationusingkeyframesdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudrepeatbehaviordefinition_block,
 		"Interface::FastHud::RepeatBehaviorDefinition_block",
 		1024,
 		interfacefasthudrepeatbehaviordefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudsounddefinition_block,
 		"Interface::FastHud::SoundDefinition_block",
 		1024,
 		interfacefasthudsounddefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudsoundloopdefinition_block,
 		"Interface::FastHud::SoundLoopDefinition_block",
 		1024,
 		interfacefasthudsoundloopdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudnavpointlayoutreferencedefinition_block,
 		"Interface::FastHud::NavPointLayoutReferenceDefinition_block",
 		1024,
 		interfacefasthudnavpointlayoutreferencedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudnavpointanimationreferencedefinition_block,
 		"Interface::FastHud::NavPointAnimationReferenceDefinition_block",
 		1024,
 		interfacefasthudnavpointanimationreferencedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudstringtableentrydefinition_block,
 		"Interface::FastHud::StringTableEntryDefinition_block",
 		1024,
 		interfacefasthudstringtableentrydefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudstringtabledefinition_block,
 		"Interface::FastHud::StringTableDefinition_block",
 		1024,
 		interfacefasthudstringtabledefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudhudtwotonegradientdefinition_block,
 		"Interface::FastHud::HudTwoToneGradientDefinition_block",
 		1024,
 		interfacefasthudhudtwotonegradientdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudhighcontrastadditivedefinition_block,
 		"Interface::FastHud::HighContrastAdditiveDefinition_block",
 		1024,
 		interfacefasthudhighcontrastadditivedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudvertexwarpdefinition_block,
 		"Interface::FastHud::VertexWarpDefinition_block",
 		1024,
 		interfacefasthudvertexwarpdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudfontdefinition_block,
 		"Interface::FastHud::FontDefinition_block",
 		1024,
 		interfacefasthudfontdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343gameplaymenuhighvaluetargetuiinfo_block,
 		"i343::GameplayMenu::HighValueTargetUIInfo_block",
 		30,
 		i343gameplaymenuhighvaluetargetuiinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343ingamemapslodtier_block,
 		"i343::InGameMaps::LODTier_block",
 		32,
 		i343ingamemapslodtier);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343ingamemapsmarkersettings_block,
 		"i343::InGameMaps::MarkerSettings_block",
 		5,
 		i343ingamemapsmarkersettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343ingamemapsregionpoint_block,
 		"i343::InGameMaps::RegionPoint_block",
 		128,
 		i343ingamemapsregionpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343ingamemapsregionpolygon_block,
 		"i343::InGameMaps::RegionPolygon_block",
 		10,
 		i343ingamemapsregionpolygon);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343ingamemapsregionsettings_block,
 		"i343::InGameMaps::RegionSettings_block",
 		20,
 		i343ingamemapsregionsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343ingamemapscollectiblesettings_block,
 		"i343::InGameMaps::CollectibleSettings_block",
 		10,
 		i343ingamemapscollectiblesettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343ingamemapsmarkercolor_block,
 		"i343::InGameMaps::MarkerColor_block",
 		48,
 		i343ingamemapsmarkercolor);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343ingamemapsmarkervisibilitysettings_block,
 		"i343::InGameMaps::MarkerVisibilitySettings_block",
 		35,
 		i343ingamemapsmarkervisibilitysettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343ingamemapszonesetsettings_block,
 		"i343::InGameMaps::ZoneSetSettings_block",
 		32,
 		i343ingamemapszonesetsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ingamemaplightplacement_block,
 		"InGameMapLightPlacement_block",
 		256,
 		ingamemaplightplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ingamemaplightreference_block,
 		"InGameMapLightReference_block",
 		256,
 		ingamemaplightreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ingamemapdisplayassetdefinition_block,
 		"InGameMapDisplayAssetDefinition_block",
 		256,
 		ingamemapdisplayassetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ingamemapasyncloadedasset_block,
 		"InGameMapAsyncLoadedAsset_block",
 		256,
 		ingamemapasyncloadedasset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ingamemapmodellookup_block,
 		"InGameMapModelLookup_block",
 		256,
 		ingamemapmodellookup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		gaktileindex_block,
 		"GakTileIndex_block",
 		64,
 		gaktileindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ingamemapmaterialvariation_block,
 		"InGameMapMaterialVariation_block",
 		128,
 		ingamemapmaterialvariation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		luareferencedtagcontainer_block,
 		"LuaReferencedTagContainer_block",
 		8192,
 		luareferencedtagcontainer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_luauserlibrary_block,
 		"s_luaUserLibrary_block",
 		32,
 		s_luauserlibrary);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenarrationnarrationphonemedefinition_block,
 		"Interface::Narration::NarrationPhonemeDefinition_block",
 		512,
 		interfacenarrationnarrationphonemedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointcolortracktag_block,
 		"Interface::NavPoint::ColorTrackTag_block",
 		4,
 		interfacenavpointcolortracktag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointfloattracktag_block,
 		"Interface::NavPoint::FloatTrackTag_block",
 		4,
 		interfacenavpointfloattracktag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointimagetracktag_block,
 		"Interface::NavPoint::ImageTrackTag_block",
 		4,
 		interfacenavpointimagetracktag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointflipbooktracktag_block,
 		"Interface::NavPoint::FlipbookTrackTag_block",
 		4,
 		interfacenavpointflipbooktracktag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointstringidtracktag_block,
 		"Interface::NavPoint::StringIdTrackTag_block",
 		4,
 		interfacenavpointstringidtracktag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointanimationtag_block,
 		"Interface::NavPoint::AnimationTag_block",
 		64,
 		interfacenavpointanimationtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointlabelelementtag_block,
 		"Interface::NavPoint::LabelElementTag_block",
 		4,
 		interfacenavpointlabelelementtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointnumberelementtag_block,
 		"Interface::NavPoint::NumberElementTag_block",
 		4,
 		interfacenavpointnumberelementtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointimageelementtag_block,
 		"Interface::NavPoint::ImageElementTag_block",
 		4,
 		interfacenavpointimageelementtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointrotatedimageelementtag_block,
 		"Interface::NavPoint::RotatedImageElementTag_block",
 		4,
 		interfacenavpointrotatedimageelementtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointmeterelementtag_block,
 		"Interface::NavPoint::MeterElementTag_block",
 		4,
 		interfacenavpointmeterelementtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointelementgrouptag_block,
 		"Interface::NavPoint::ElementGroupTag_block",
 		6,
 		interfacenavpointelementgrouptag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointtargetpropertytag_block,
 		"Interface::NavPoint::TargetPropertyTag_block",
 		4,
 		interfacenavpointtargetpropertytag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointtimelinetag_block,
 		"Interface::NavPoint::TimelineTag_block",
 		4,
 		interfacenavpointtimelinetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointvisualstatetag_block,
 		"Interface::NavPoint::VisualStateTag_block",
 		12,
 		interfacenavpointvisualstatetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointvisualstategrouptag_block,
 		"Interface::NavPoint::VisualStateGroupTag_block",
 		12,
 		interfacenavpointvisualstategrouptag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointsampledatafloat_block,
 		"Interface::NavPoint::SampleDataFloat_block",
 		4,
 		interfacenavpointsampledatafloat);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointsampledatastringid_block,
 		"Interface::NavPoint::SampleDataStringId_block",
 		4,
 		interfacenavpointsampledatastringid);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointsampledatatext_block,
 		"Interface::NavPoint::SampleDataText_block",
 		4,
 		interfacenavpointsampledatatext);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenodegraphtransitiondefinition_block,
 		"Interface::NodeGraph::TransitionDefinition_block",
 		64,
 		interfacenodegraphtransitiondefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenodegraphnodegraphstackreferencedefinition_block,
 		"Interface::NodeGraph::NodeGraphStackReferenceDefinition_block",
 		64,
 		interfacenodegraphnodegraphstackreferencedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenodegraphnodedefinition_block,
 		"Interface::NodeGraph::NodeDefinition_block",
 		128,
 		interfacenodegraphnodedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenodegraphnodegraphdefinition_block,
 		"Interface::NodeGraph::NodeGraphDefinition_block",
 		128,
 		interfacenodegraphnodegraphdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudscreencomponentreference_block,
 		"Interface::FastHud::ScreenComponentReference_block",
 		32,
 		interfacefasthudscreencomponentreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfaceslamsurientrydefinition_block,
 		"Interface::SLAMS::UriEntryDefinition_block",
 		500,
 		interfaceslamsurientrydefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfaceuivehicleseattagblock_block,
 		"Interface::UIVehicleSeatTagBlock_block",
 		8,
 		interfaceuivehicleseattagblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfaceuiiteminfo_block,
 		"Interface::UIItemInfo_block",
 		1,
 		interfaceuiiteminfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		wpffontsetreferencesdefinition_block,
 		"WPFFontSetReferencesDefinition_block",
 		512,
 		wpffontsetreferencesdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		languagetypeface_block,
 		"LanguageTypeface_block",
 		32,
 		languagetypeface);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		loctypeface_block,
 		"LocTypeface_block",
 		512,
 		loctypeface);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_property_value_long_definition_block,
 		"s_cui_property_value_long_definition_block",
 		4096,
 		s_cui_property_value_long_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_property_value_real_definition_block,
 		"s_cui_property_value_real_definition_block",
 		4096,
 		s_cui_property_value_real_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_property_value_string_id_definition_block,
 		"s_cui_property_value_string_id_definition_block",
 		4096,
 		s_cui_property_value_string_id_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cuipropertyvaluecomponentptrdefinition_block,
 		"CuiPropertyValueComponentPtrDefinition_block",
 		4096,
 		cuipropertyvaluecomponentptrdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_property_value_tag_reference_definition_block,
 		"s_cui_property_value_tag_reference_definition_block",
 		4096,
 		s_cui_property_value_tag_reference_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_property_value_text_definition_block,
 		"s_cui_property_value_text_definition_block",
 		4096,
 		s_cui_property_value_text_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_property_value_argb_color_definition_block,
 		"s_cui_property_value_argb_color_definition_block",
 		4096,
 		s_cui_property_value_argb_color_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cuieventhandlerdefinition_block,
 		"CuiEventHandlerDefinition_block",
 		4096,
 		cuieventhandlerdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_binding_conversion_long_comparison_definition_block,
 		"s_cui_binding_conversion_long_comparison_definition_block",
 		1,
 		s_cui_binding_conversion_long_comparison_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_property_binding_definition_block,
 		"s_cui_property_binding_definition_block",
 		1024,
 		s_cui_property_binding_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_animation_property_keyframe_value_real_definition_block,
 		"s_cui_animation_property_keyframe_value_real_definition_block",
 		4096,
 		s_cui_animation_property_keyframe_value_real_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_animation_property_keyframe_value_argb_color_definition_block,
 		"s_cui_animation_property_keyframe_value_argb_color_definition_block",
 		4096,
 		s_cui_animation_property_keyframe_value_argb_color_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cuianimationpropertykeyframevaluestringiddefinition_block,
 		"CuiAnimationPropertyKeyframeValueStringIdDefinition_block",
 		4096,
 		cuianimationpropertykeyframevaluestringiddefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_animation_component_property_real_definition_block,
 		"s_cui_animation_component_property_real_definition_block",
 		4096,
 		s_cui_animation_component_property_real_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_animation_component_property_argb_color_definition_block,
 		"s_cui_animation_component_property_argb_color_definition_block",
 		4096,
 		s_cui_animation_component_property_argb_color_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cuianimationcomponentpropertystringiddefinition_block,
 		"CuiAnimationComponentPropertyStringIdDefinition_block",
 		4096,
 		cuianimationcomponentpropertystringiddefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_animation_component_definition_block,
 		"s_cui_animation_component_definition_block",
 		4096,
 		s_cui_animation_component_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_animation_definition_block,
 		"s_cui_animation_definition_block",
 		4096,
 		s_cui_animation_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cuianimatedcomponentlookup_block,
 		"CuiAnimatedComponentLookup_block",
 		4096,
 		cuianimatedcomponentlookup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_static_data_column_definition_block,
 		"s_cui_static_data_column_definition_block",
 		128,
 		s_cui_static_data_column_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_static_data_definition_block,
 		"s_cui_static_data_definition_block",
 		128,
 		s_cui_static_data_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_expression_step_definition_block,
 		"s_cui_expression_step_definition_block",
 		32,
 		s_cui_expression_step_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_expression_definition_block,
 		"s_cui_expression_definition_block",
 		128,
 		s_cui_expression_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cuivisualstatedefinition_block,
 		"s_cuiVisualStateDefinition_block",
 		128,
 		s_cuivisualstatedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cuivisualstategroupdefinition_block,
 		"s_cuiVisualStateGroupDefinition_block",
 		128,
 		s_cuivisualstategroupdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cuitemplatecomponentdefinition_block,
 		"CuiTemplateComponentDefinition_block",
 		4096,
 		cuitemplatecomponentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cuitemplateinstantiationdefinition_block,
 		"CuiTemplateInstantiationDefinition_block",
 		4096,
 		cuitemplateinstantiationdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_component_definition_block,
 		"s_cui_component_definition_block",
 		4096,
 		s_cui_component_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_component_index_definition_block,
 		"s_cui_component_index_definition_block",
 		4096,
 		s_cui_component_index_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cuidonotcreatecomponentdefinition_block,
 		"CuiDoNotCreateComponentDefinition_block",
 		4096,
 		cuidonotcreatecomponentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_component_properties_definition_block,
 		"s_cui_component_properties_definition_block",
 		4096,
 		s_cui_component_properties_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_overlay_definition_block,
 		"s_cui_overlay_definition_block",
 		24,
 		s_cui_overlay_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_property_editor_only_definition_block,
 		"s_cui_property_editor_only_definition_block",
 		4096,
 		s_cui_property_editor_only_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_component_editor_only_definition_block,
 		"s_cui_component_editor_only_definition_block",
 		4096,
 		s_cui_component_editor_only_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_animation_editor_only_definition_block,
 		"s_cui_animation_editor_only_definition_block",
 		4096,
 		s_cui_animation_editor_only_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_overlay_editor_only_definition_block,
 		"s_cui_overlay_editor_only_definition_block",
 		24,
 		s_cui_overlay_editor_only_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		stringfilereferences_block,
 		"StringFileReferences_block",
 		64,
 		stringfilereferences);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		resourcefilereferences_block,
 		"ResourceFileReferences_block",
 		64,
 		resourcefilereferences);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_component_screen_reference_block,
 		"s_cui_component_screen_reference_block",
 		256,
 		s_cui_component_screen_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_overlay_camera_definition_block,
 		"s_cui_overlay_camera_definition_block",
 		24,
 		s_cui_overlay_camera_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hudunitsoundcuedefinition_block,
 		"HudUnitSoundCueDefinition_block",
 		16,
 		hudunitsoundcuedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hudunitsounddefinitions_block,
 		"HudUnitSoundDefinitions_block",
 		1,
 		hudunitsounddefinitions);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfaceemblemelementname_block,
 		"Interface::EmblemElementName_block",
 		1024,
 		interfaceemblemelementname);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfaceemblemelementgroup_block,
 		"Interface::EmblemElementGroup_block",
 		1024,
 		interfaceemblemelementgroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfaceemblemthemedefinition_block,
 		"Interface::EmblemThemeDefinition_block",
 		1024,
 		interfaceemblemthemedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacestringidoverride_block,
 		"Interface::StringIdOverride_block",
 		14,
 		interfacestringidoverride);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		navpointpresentationtagblock_block,
 		"NavPointPresentationTagBlock_block",
 		256,
 		navpointpresentationtagblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hudparallaxparamsblock_block,
 		"HUDParallaxParamsBlock_block",
 		32,
 		hudparallaxparamsblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hudwarpparamsblock_block,
 		"HUDWarpParamsBlock_block",
 		32,
 		hudwarpparamsblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hudchromaticaberrationparamsblock_block,
 		"HUDChromaticAberrationParamsBlock_block",
 		32,
 		hudchromaticaberrationparamsblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hudhighcontrastparamsblock_block,
 		"HUDHighContrastParamsBlock_block",
 		32,
 		hudhighcontrastparamsblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_color_preset_block,
 		"s_color_preset_block",
 		1024,
 		s_color_preset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		realargbcolorblock_block,
 		"RealARGBColorBlock_block",
 		63,
 		realargbcolorblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_tint_colors_block,
 		"s_tint_colors_block",
 		1,
 		s_tint_colors);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_gui_alert_description_block,
 		"s_gui_alert_description_block",
 		512,
 		s_gui_alert_description);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_gui_dialog_description_block,
 		"s_gui_dialog_description_block",
 		256,
 		s_gui_dialog_description);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		userinterfacegamescreensequencestep_block,
 		"UserInterfaceGameScreenSequenceStep_block",
 		8,
 		userinterfacegamescreensequencestep);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphreferenceblockdefinition_block,
 		"NodeGraphReferenceBlockDefinition_block",
 		256,
 		nodegraphreferenceblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		fontsetreferenceblockdefinition_block,
 		"FontSetReferenceBlockDefinition_block",
 		256,
 		fontsetreferenceblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmapdictionaryreferenceblockdefinition_block,
 		"BitmapDictionaryReferenceBlockDefinition_block",
 		256,
 		bitmapdictionaryreferenceblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		fontmappingdefinition_block,
 		"FontMappingDefinition_block",
 		32,
 		fontmappingdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		localizedfontmappingsetdefinition_block,
 		"LocalizedFontMappingSetDefinition_block",
 		32,
 		localizedfontmappingsetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rebindingslidersettings_block,
 		"RebindingSliderSettings_block",
 		1,
 		rebindingslidersettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rebindingdropdownlist_block,
 		"RebindingDropdownList_block",
 		32,
 		rebindingdropdownlist);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rebindingaxiscategorysettings_block,
 		"RebindingAxisCategorySettings_block",
 		256,
 		rebindingaxiscategorysettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		unbindableinputdeviceelementslist_block,
 		"UnbindableInputDeviceElementsList_block",
 		64,
 		unbindableinputdeviceelementslist);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		unbindableaxistoinputdeviceelementslist_block,
 		"UnbindableAxisToInputDeviceElementsList_block",
 		64,
 		unbindableaxistoinputdeviceelementslist);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		axisaltnamepair_block,
 		"AxisAltNamePair_block",
 		256,
 		axisaltnamepair);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		swapperinput_block,
 		"SwapperInput_block",
 		16,
 		swapperinput);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		copybindingpair_block,
 		"CopyBindingPair_block",
 		16,
 		copybindingpair);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dropshadowparameters_block,
 		"DropShadowParameters_block",
 		16,
 		dropshadowparameters);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		fontsizescalevalues_block,
 		"FontSizeScaleValues_block",
 		15,
 		fontsizescalevalues);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		settingsmenuslidersettings_block,
 		"SettingsMenuSliderSettings_block",
 		4,
 		settingsmenuslidersettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		loadingscreencategorytooltipstrings_block,
 		"LoadingScreenCategoryTooltipStrings_block",
 		100,
 		loadingscreencategorytooltipstrings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		loadingscreensettings_block,
 		"LoadingScreenSettings_block",
 		6,
 		loadingscreensettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicscollisiontypename_block,
 		"i343::Physics::CollisionTypeName_block",
 		255,
 		i343physicscollisiontypename);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicscollisionlayerdata_block,
 		"i343::Physics::CollisionLayerData_block",
 		520200,
 		i343physicscollisionlayerdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicscollisionlayerauditconfigstring_block,
 		"i343::Physics::CollisionLayerAuditConfigString_block",
 		256,
 		i343physicscollisionlayerauditconfigstring);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelragdollmotors_block,
 		"i343::PhysicsModel::RagdollMotors_block",
 		1,
 		i343physicsmodelragdollmotors);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodellimitedhingemotors_block,
 		"i343::PhysicsModel::LimitedHingeMotors_block",
 		1,
 		i343physicsmodellimitedhingemotors);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelpositionmotor_block,
 		"i343::PhysicsModel::PositionMotor_block",
 		128,
 		i343physicsmodelpositionmotor);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodeldampedspringmotor_block,
 		"i343::PhysicsModel::DampedSpringMotor_block",
 		128,
 		i343physicsmodeldampedspringmotor);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelhingeconstraint_block,
 		"i343::PhysicsModel::HingeConstraint_block",
 		128,
 		i343physicsmodelhingeconstraint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodellimitedhingeconstraint_block,
 		"i343::PhysicsModel::LimitedHingeConstraint_block",
 		128,
 		i343physicsmodellimitedhingeconstraint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelballandsocketconstraint_block,
 		"i343::PhysicsModel::BallAndSocketConstraint_block",
 		128,
 		i343physicsmodelballandsocketconstraint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelstiffspringconstraint_block,
 		"i343::PhysicsModel::StiffSpringConstraint_block",
 		128,
 		i343physicsmodelstiffspringconstraint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelprismaticconstraint_block,
 		"i343::PhysicsModel::PrismaticConstraint_block",
 		128,
 		i343physicsmodelprismaticconstraint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelragdollconstraint_block,
 		"i343::PhysicsModel::RagdollConstraint_block",
 		128,
 		i343physicsmodelragdollconstraint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelphysicsmodelnodehandle_block,
 		"i343::PhysicsModel::PhysicsModelNodeHandle_block",
 		1024,
 		i343physicsmodelphysicsmodelnodehandle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelnodeconstraintedgeconstraint_block,
 		"i343::PhysicsModel::NodeConstraintEdgeConstraint_block",
 		128,
 		i343physicsmodelnodeconstraintedgeconstraint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelnodeconstraintedge_block,
 		"i343::PhysicsModel::NodeConstraintEdge_block",
 		262144,
 		i343physicsmodelnodeconstraintedge);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelpoweredchainconstraint_block,
 		"i343::PhysicsModel::PoweredChainConstraint_block",
 		128,
 		i343physicsmodelpoweredchainconstraint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelpoweredchain_block,
 		"i343::PhysicsModel::PoweredChain_block",
 		128,
 		i343physicsmodelpoweredchain);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelpointtopathcurvepoint_block,
 		"i343::PhysicsModel::PointToPathCurvePoint_block",
 		1024,
 		i343physicsmodelpointtopathcurvepoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelpointtopathcurve_block,
 		"i343::PhysicsModel::PointToPathCurve_block",
 		512,
 		i343physicsmodelpointtopathcurve);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelhavokserializedmass_block,
 		"i343::PhysicsModel::HavokSerializedMass_block",
 		1024,
 		i343physicsmodelhavokserializedmass);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelragdollsubgroupindex_block,
 		"i343::PhysicsModel::RagdollSubgroupIndex_block",
 		512,
 		i343physicsmodelragdollsubgroupindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelragdollsubgroup_block,
 		"i343::PhysicsModel::RagdollSubgroup_block",
 		512,
 		i343physicsmodelragdollsubgroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelselfcollisionpair_block,
 		"i343::PhysicsModel::SelfCollisionPair_block",
 		512,
 		i343physicsmodelselfcollisionpair);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelmaterial_block,
 		"i343::PhysicsModel::Material_block",
 		128,
 		i343physicsmodelmaterial);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelrigidbodyblockhandle_block,
 		"i343::PhysicsModel::RigidBodyBlockHandle_block",
 		512,
 		i343physicsmodelrigidbodyblockhandle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelpermutation_block,
 		"i343::PhysicsModel::Permutation_block",
 		1023,
 		i343physicsmodelpermutation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelregion_block,
 		"i343::PhysicsModel::Region_block",
 		32,
 		i343physicsmodelregion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelnode_block,
 		"i343::PhysicsModel::Node_block",
 		1024,
 		i343physicsmodelnode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelphantomtype_block,
 		"i343::PhysicsModel::PhantomType_block",
 		12,
 		i343physicsmodelphantomtype);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelprimitive_block,
 		"i343::PhysicsModel::Primitive_block",
 		16384,
 		i343physicsmodelprimitive);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelphysicsmodelrigidbody_block,
 		"i343::PhysicsModel::PhysicsModelRigidBody_block",
 		512,
 		i343physicsmodelphysicsmodelrigidbody);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelhavokserializedshape_block,
 		"i343::PhysicsModel::HavokSerializedShape_block",
 		16384,
 		i343physicsmodelhavokserializedshape);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsinstancedphysicsmaterial_block,
 		"i343::Physics::InstancedPhysicsMaterial_block",
 		262144,
 		i343physicsinstancedphysicsmaterial);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsinstancedphysicsinstance_block,
 		"i343::Physics::InstancedPhysicsInstance_block",
 		262144,
 		i343physicsinstancedphysicsinstance);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicscollisionmaterialoverride_block,
 		"i343::Physics::CollisionMaterialOverride_block",
 		4096,
 		i343physicscollisionmaterialoverride);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsterraincollisiongeocellinputs_block,
 		"i343::Physics::TerrainCollisionGeoCellInputs_block",
 		4096,
 		i343physicsterraincollisiongeocellinputs);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsterraincollisiongeoinputsentry_block,
 		"i343::Physics::TerrainCollisionGeoInputsEntry_block",
 		4096,
 		i343physicsterraincollisiongeoinputsentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsterraincollisiongeoentry_block,
 		"i343::Physics::TerrainCollisionGeoEntry_block",
 		4096,
 		i343physicsterraincollisiongeoentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsterraincollisiongeoresource_block,
 		"i343::Physics::TerrainCollisionGeoResource_block",
 		4096,
 		i343physicsterraincollisiongeoresource);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsphysicsvolume_block,
 		"i343::Physics::PhysicsVolume_block",
 		1048576,
 		i343physicsphysicsvolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bsp2d_node_block,
 		"bsp2d_node_block",
 		32767,
 		bsp2d_node);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		large_bsp2d_node_block,
 		"large_bsp2d_node_block",
 		536870911,
 		large_bsp2d_node);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		planesparams_block,
 		"PlanesParams_block",
 		536870911,
 		planesparams);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bsp3d_node_block,
 		"bsp3d_node_block",
 		8388608,
 		bsp3d_node);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		large_bsp3d_node_block,
 		"large_bsp3d_node_block",
 		536870911,
 		large_bsp3d_node);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_bsp3d_kd_super_node_block,
 		"s_bsp3d_kd_super_node_block",
 		2048,
 		s_bsp3d_kd_super_node);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bsp2d_reference_block,
 		"bsp2d_reference_block",
 		196608,
 		bsp2d_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collision_surface_block,
 		"collision_surface_block",
 		32767,
 		collision_surface);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collision_edge_block,
 		"collision_edge_block",
 		65535,
 		collision_edge);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collision_vertex_block,
 		"collision_vertex_block",
 		131072,
 		collision_vertex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collisionbspblock_block,
 		"CollisionBspBlock_block",
 		1,
 		collisionbspblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		large_collision_leaf_block,
 		"large_collision_leaf_block",
 		134217728,
 		large_collision_leaf);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		large_collision_vertex_block,
 		"large_collision_vertex_block",
 		1310720,
 		large_collision_vertex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		large_bsp2d_reference_block,
 		"large_bsp2d_reference_block",
 		536870911,
 		large_bsp2d_reference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		large_collision_surface_block,
 		"large_collision_surface_block",
 		262136,
 		large_collision_surface);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		large_collision_edge_block,
 		"large_collision_edge_block",
 		2621440,
 		large_collision_edge);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		large_collision_bsp_block,
 		"large_collision_bsp_block",
 		1,
 		large_collision_bsp);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_collision_kd_hierarchy_static_node_block,
 		"s_collision_kd_hierarchy_static_node_block",
 		32767,
 		s_collision_kd_hierarchy_static_node);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_collision_kd_hierarchy_static_header_block,
 		"s_collision_kd_hierarchy_static_header_block",
 		32767,
 		s_collision_kd_hierarchy_static_header);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_super_node_mapping_block,
 		"s_super_node_mapping_block",
 		32767,
 		s_super_node_mapping);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cluster_table_block,
 		"s_cluster_table_block",
 		32767,
 		s_cluster_table);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collisionkdhierarchystatichashtabledata_block,
 		"CollisionKdHierarchyStaticHashTableData_block",
 		32767,
 		collisionkdhierarchystatichashtabledata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collisionkdhierarchystatichashtableshort_block,
 		"CollisionKdHierarchyStaticHashTableShort_block",
 		32767,
 		collisionkdhierarchystatichashtableshort);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collisionkdhierarchystaticinusemasks_block,
 		"CollisionKdHierarchyStaticInUseMasks_block",
 		2048,
 		collisionkdhierarchystaticinusemasks);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collision_model_material_block,
 		"collision_model_material_block",
 		32,
 		collision_model_material);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collision_model_region_block,
 		"collision_model_region_block",
 		32,
 		collision_model_region);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collision_model_permutation_block,
 		"collision_model_permutation_block",
 		1023,
 		collision_model_permutation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collision_model_node_block,
 		"collision_model_node_block",
 		1024,
 		collision_model_node);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collision_model_pathfinding_sphere_block,
 		"collision_model_pathfinding_sphere_block",
 		256,
 		collision_model_pathfinding_sphere);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		moppcodedatadefinitionparams_block,
 		"MoppCodeDataDefinitionParams_block",
 		16777216,
 		moppcodedatadefinitionparams);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_havok_mopp_code_definition_block,
 		"s_havok_mopp_code_definition_block",
 		32767,
 		s_havok_mopp_code_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343vehiclesantigravitypointconfiguration_block,
 		"i343::Vehicles::AntiGravityPointConfiguration_block",
 		80,
 		i343vehiclesantigravitypointconfiguration);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343vehiclesantigravitypointstateconfiguration_block,
 		"i343::Vehicles::AntiGravityPointStateConfiguration_block",
 		5,
 		i343vehiclesantigravitypointstateconfiguration);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343vehiclesantigravitypointdefinition_block,
 		"i343::Vehicles::AntiGravityPointDefinition_block",
 		16,
 		i343vehiclesantigravitypointdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343vehiclesfrictionpointconfiguration_block,
 		"i343::Vehicles::FrictionPointConfiguration_block",
 		80,
 		i343vehiclesfrictionpointconfiguration);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343vehiclesfrictionpointstateconfiguration_block,
 		"i343::Vehicles::FrictionPointStateConfiguration_block",
 		5,
 		i343vehiclesfrictionpointstateconfiguration);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343vehiclesfrictionpointdefinition_block,
 		"i343::Vehicles::FrictionPointDefinition_block",
 		16,
 		i343vehiclesfrictionpointdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_spring_acceleration_linear_definition_block,
 		"s_spring_acceleration_linear_definition_block",
 		3,
 		s_spring_acceleration_linear_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_water_physics_drag_override_block,
 		"s_water_physics_drag_override_block",
 		512,
 		s_water_physics_drag_override);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_water_physics_hull_surface_definition_block,
 		"s_water_physics_hull_surface_definition_block",
 		64,
 		s_water_physics_hull_surface_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		acousticstagportal_block,
 		"AcousticsTagPortal_block",
 		1048576,
 		acousticstagportal);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		acousticstagportaldata_block,
 		"AcousticsTagPortalData_block",
 		1048576,
 		acousticstagportaldata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		acousticstagzonevoxeldatalod_block,
 		"AcousticsTagZoneVoxelDataLod_block",
 		3,
 		acousticstagzonevoxeldatalod);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		acousticstagzonedata_block,
 		"AcousticsTagZoneData_block",
 		1048576,
 		acousticstagzonedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		acousticstagzonelod_block,
 		"AcousticsTagZoneLod_block",
 		3,
 		acousticstagzonelod);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		acousticstagzone_block,
 		"AcousticsTagZone_block",
 		1048576,
 		acousticstagzone);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundbankresourceblockdefinition_block,
 		"SoundBankResourceBlockDefinition_block",
 		48,
 		soundbankresourceblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundbankblockdefinition_block,
 		"SoundBankBlockDefinition_block",
 		1,
 		soundbankblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundbankrefblockdefinition_block,
 		"SoundBankRefBlockDefinition_block",
 		12,
 		soundbankrefblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		streampackblockdefinition_block,
 		"StreamPackBlockDefinition_block",
 		20,
 		streampackblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundrtpcblockdefinition_block,
 		"SoundRTPCBlockDefinition_block",
 		32,
 		soundrtpcblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundsweetenerblockdefinition_block,
 		"SoundSweetenerBlockDefinition_block",
 		16,
 		soundsweetenerblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		musicactionblockdefinition_block,
 		"MusicActionBlockDefinition_block",
 		16,
 		musicactionblockdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		physicsphantomindices_block,
 		"PhysicsPhantomIndices_block",
 		127,
 		physicsphantomindices);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		physicsphantomsoundtagpair_block,
 		"PhysicsPhantomSoundTagPair_block",
 		6,
 		physicsphantomsoundtagpair);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		physicsphantomsoundeventpair_block,
 		"PhysicsPhantomSoundEventPair_block",
 		6,
 		physicsphantomsoundeventpair);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundplacementsplinecontrolpoint_block,
 		"SoundPlacementSplineControlPoint_block",
 		128,
 		soundplacementsplinecontrolpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		placementshapeoverride_block,
 		"PlacementShapeOverride_block",
 		1,
 		placementshapeoverride);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundplacement_block,
 		"SoundPlacement_block",
 		1048576,
 		soundplacement);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundscenarioconstantstagsoundbankloadinfoblock_block,
 		"SoundScenarioConstantsTagSoundBankLoadInfoBlock_block",
 		52,
 		soundscenarioconstantstagsoundbankloadinfoblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		audiogamecontextualthreatsetup_block,
 		"Audio::Game::ContextualThreatSetup_block",
 		2,
 		audiogamecontextualthreatsetup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		audiogamebucketthreatsetup_block,
 		"Audio::Game::BucketThreatSetup_block",
 		5,
 		audiogamebucketthreatsetup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		audiogamethreatlogicinstance_block,
 		"Audio::Game::ThreatLogicInstance_block",
 		8,
 		audiogamethreatlogicinstance);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343soundvehiclesurfacesounddata_block,
 		"i343::Sound::VehicleSurfaceSoundData_block",
 		2,
 		i343soundvehiclesurfacesounddata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_audibility_bsp_mapping_block,
 		"s_game_audibility_bsp_mapping_block",
 		1024,
 		s_game_audibility_bsp_mapping);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		doorencodedpasblock_block,
 		"DoorEncodedPasBlock_block",
 		8192,
 		doorencodedpasblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		roomdoorportalencodedpasblock_block,
 		"RoomDoorPortalEncodedPasBlock_block",
 		4096,
 		roomdoorportalencodedpasblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		aideafeningencodedpasblock_block,
 		"AiDeafeningEncodedPasBlock_block",
 		16368,
 		aideafeningencodedpasblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		encodedroomdistancesblock_block,
 		"EncodedRoomDistancesBlock_block",
 		523776,
 		encodedroomdistancesblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_audibility_bsp_game_portal_mapping_block,
 		"s_game_audibility_bsp_game_portal_mapping_block",
 		1024,
 		s_game_audibility_bsp_game_portal_mapping);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bspclustertoroomindices_block,
 		"BspClusterToRoomIndices_block",
 		1024,
 		bspclustertoroomindices);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_audibility_block,
 		"s_game_audibility_block",
 		1056,
 		s_game_audibility);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_facial_animation_permutation_block,
 		"s_facial_animation_permutation_block",
 		576,
 		s_facial_animation_permutation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_model_animation_permutation_block,
 		"s_model_animation_permutation_block",
 		576,
 		s_model_animation_permutation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_facial_animation_language_block,
 		"s_facial_animation_language_block",
 		18,
 		s_facial_animation_language);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		narrativereferenceinfo_block,
 		"narrativeReferenceInfo_block",
 		1,
 		narrativereferenceinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		aidialogueeventinfo_block,
 		"aiDialogueEventInfo_block",
 		1,
 		aidialogueeventinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundvoeventinfo_block,
 		"soundVOEventInfo_block",
 		32,
 		soundvoeventinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeengineforgekitobjectscenariodata_block,
 		"ForgeEngine::ForgeKitObjectScenarioData_block",
 		1,
 		forgeengineforgekitobjectscenariodata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeengineforgekitobject_block,
 		"ForgeEngine::ForgeKitObject_block",
 		64,
 		forgeengineforgekitobject);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeengineforgekitgroup_block,
 		"ForgeEngine::ForgeKitGroup_block",
 		32,
 		forgeengineforgekitgroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeengineforgeobjectscriptpropertymenuitemstring_block,
 		"ForgeEngine::ForgeObjectScriptPropertyMenuItemString_block",
 		32,
 		forgeengineforgeobjectscriptpropertymenuitemstring);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeengineforgeobjectscriptpropertymenuitemdefinition_block,
 		"ForgeEngine::ForgeObjectScriptPropertyMenuItemDefinition_block",
 		128,
 		forgeengineforgeobjectscriptpropertymenuitemdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		jumbotrondefinition_block,
 		"JumbotronDefinition_block",
 		4,
 		jumbotrondefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgegobodefinition_block,
 		"ForgeGoboDefinition_block",
 		32,
 		forgegobodefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgelightintensityfunctiondefinition_block,
 		"ForgeLightIntensityFunctionDefinition_block",
 		32,
 		forgelightintensityfunctiondefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeareascreeneffectdefinition_block,
 		"ForgeAreaScreenEffectDefinition_block",
 		32,
 		forgeareascreeneffectdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgebitmapdefinition_block,
 		"ForgeBitmapDefinition_block",
 		32,
 		forgebitmapdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgelensflaredefinition_block,
 		"ForgeLensFlareDefinition_block",
 		32,
 		forgelensflaredefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgelightconedefinition_block,
 		"ForgeLightConeDefinition_block",
 		32,
 		forgelightconedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeweathereffectdefinition_block,
 		"ForgeWeatherEffectDefinition_block",
 		32,
 		forgeweathereffectdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scalesnapdefinition_block,
 		"ScaleSnapDefinition_block",
 		16,
 		scalesnapdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rotationsnapdefinition_block,
 		"RotationSnapDefinition_block",
 		16,
 		rotationsnapdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		translationsnapdefinition_block,
 		"TranslationSnapDefinition_block",
 		16,
 		translationsnapdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgelabeldefinition_block,
 		"ForgeLabelDefinition_block",
 		128,
 		forgelabeldefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeoutlinedefinition_block,
 		"ForgeOutlineDefinition_block",
 		32,
 		forgeoutlinedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgecolorreference_block,
 		"ForgeColorReference_block",
 		32,
 		forgecolorreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		teaminfotocinematicanimation_block,
 		"TeamInfoToCinematicAnimation_block",
 		64,
 		teaminfotocinematicanimation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		gametypecinematicname_block,
 		"GameTypeCinematicName_block",
 		32,
 		gametypecinematicname);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgenodegraphschemadefinition_block,
 		"ForgeNodeGraphSchemaDefinition_block",
 		32,
 		forgenodegraphschemadefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgenamedtagref_block,
 		"ForgeNamedTagRef_block",
 		32,
 		forgenamedtagref);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgenamedtaglist_block,
 		"ForgeNamedTagList_block",
 		64,
 		forgenamedtaglist);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		loopingsounddefinition_blocksize32_block,
 		"LoopingSoundDefinition_BlockSize32_block",
 		32,
 		loopingsounddefinition_blocksize32);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		loopingsounddefinition_blocksize64_block,
 		"LoopingSoundDefinition_BlockSize64_block",
 		64,
 		loopingsounddefinition_blocksize64);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		reverbdefinition_block,
 		"ReverbDefinition_block",
 		16,
 		reverbdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		mixstatedefinition_block,
 		"MixStateDefinition_block",
 		16,
 		mixstatedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		loopingsoundcategory_block,
 		"LoopingSoundCategory_block",
 		32,
 		loopingsoundcategory);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgesoundresponsedefinition_block,
 		"ForgeSoundResponseDefinition_block",
 		32,
 		forgesoundresponsedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeengineswatchgroupname_block,
 		"ForgeEngine::SwatchGroupName_block",
 		16,
 		forgeengineswatchgroupname);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeengineforgeassetvariant_block,
 		"ForgeEngine::ForgeAssetVariant_block",
 		128,
 		forgeengineforgeassetvariant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeengineforgeobjectdefinitionvariant_block,
 		"ForgeEngine::ForgeObjectDefinitionVariant_block",
 		128,
 		forgeengineforgeobjectdefinitionvariant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeengineforgeobjectmetadata_block,
 		"ForgeEngine::ForgeObjectMetadata_block",
 		32,
 		forgeengineforgeobjectmetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeengineforgeobjectmanifestentry_block,
 		"ForgeEngine::ForgeObjectManifestEntry_block",
 		4096,
 		forgeengineforgeobjectmanifestentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeengineforgeobjectcategoryentry_block,
 		"ForgeEngine::ForgeObjectCategoryEntry_block",
 		4096,
 		forgeengineforgeobjectcategoryentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeenginematerialstyleshader_block,
 		"ForgeEngine::MaterialStyleShader_block",
 		256,
 		forgeenginematerialstyleshader);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeenginetelescopingpoint_block,
 		"ForgeEngine::TelescopingPoint_block",
 		12,
 		forgeenginetelescopingpoint);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeenginetelescopingcorner_block,
 		"ForgeEngine::TelescopingCorner_block",
 		8,
 		forgeenginetelescopingcorner);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeenginetelescopingedge_block,
 		"ForgeEngine::TelescopingEdge_block",
 		32,
 		forgeenginetelescopingedge);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeenginetelescopingface_block,
 		"ForgeEngine::TelescopingFace_block",
 		16,
 		forgeenginetelescopingface);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343activationvolume_block,
 		"i343::ActivationVolume_block",
 		1048576,
 		i343activationvolume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343simulationucnauthoritytrustinterpolatedsettingsoverride_block,
 		"i343::Simulation::UCNAuthorityTrustInterpolatedSettingsOverride_block",
 		1,
 		i343simulationucnauthoritytrustinterpolatedsettingsoverride);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		engineforgesoundeventdefinition_block,
 		"Engine::ForgeSoundEventDefinition_block",
 		256,
 		engineforgesoundeventdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_performance_throttles_block,
 		"s_performance_throttles_block",
 		7,
 		s_performance_throttles);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lensflarereflection_block,
 		"LensFlareReflection_block",
 		32,
 		lensflarereflection);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lensflarescalaranimation_block,
 		"LensFlareScalarAnimation_block",
 		1,
 		lensflarescalaranimation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lensflarecoloranimation_block,
 		"LensFlareColorAnimation_block",
 		1,
 		lensflarecoloranimation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animatedmeshquantizedrigidtransform_block,
 		"AnimatedMeshQuantizedRigidTransform_block",
 		87040,
 		animatedmeshquantizedrigidtransform);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animatedmeshrigidbodycsvertex_block,
 		"AnimatedMeshRigidBodyCSVertex_block",
 		1048560,
 		animatedmeshrigidbodycsvertex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animatedmeshrigidbodyframebounds_block,
 		"AnimatedMeshRigidBodyFrameBounds_block",
 		3000,
 		animatedmeshrigidbodyframebounds);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animatedmeshrigidbodyframetransforms_block,
 		"AnimatedMeshRigidBodyFrameTransforms_block",
 		3000,
 		animatedmeshrigidbodyframetransforms);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animatedmeshrigidbodyrenderstats_block,
 		"AnimatedMeshRigidBodyRenderStats_block",
 		32,
 		animatedmeshrigidbodyrenderstats);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animatedmeshrigidbodyframestats_block,
 		"AnimatedMeshRigidBodyFrameStats_block",
 		3000,
 		animatedmeshrigidbodyframestats);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		referencedpartpermaterial_block,
 		"ReferencedPartPerMaterial_block",
 		21760,
 		referencedpartpermaterial);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animatedmeshrigidbodymaterialstats_block,
 		"AnimatedMeshRigidBodyMaterialStats_block",
 		32,
 		animatedmeshrigidbodymaterialstats);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dwordindexbuffer_block,
 		"DwordIndexBuffer_block",
 		2621400,
 		dwordindexbuffer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		streaminggeometrychunk_block,
 		"StreamingGeometryChunk_block",
 		8192,
 		streaminggeometrychunk);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		streaminggeometrybuffer_block,
 		"StreamingGeometryBuffer_block",
 		1048576,
 		streaminggeometrybuffer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		instanceindex_block,
 		"InstanceIndex_block",
 		65535,
 		instanceindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_part_block,
 		"s_part_block",
 		255,
 		s_part);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_subpart_block,
 		"s_subpart_block",
 		65535,
 		s_subpart);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		meshvertexkey_block,
 		"MeshVertexKey_block",
 		16777216,
 		meshvertexkey);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_mesh_block,
 		"s_mesh_block",
 		8191,
 		s_mesh);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_per_mesh_node_map_block,
 		"s_per_mesh_node_map_block",
 		8191,
 		s_per_mesh_node_map);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_compression_info_block,
 		"s_compression_info_block",
 		65536,
 		s_compression_info);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_blendshape_compression_info_block,
 		"s_blendshape_compression_info_block",
 		65535,
 		s_blendshape_compression_info);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_positioning_block,
 		"s_positioning_block",
 		65535,
 		s_positioning);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialstreamingscale_block,
 		"MaterialStreamingScale_block",
 		10240,
 		materialstreamingscale);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		streamingchunklist_block,
 		"StreamingChunkList_block",
 		16,
 		streamingchunklist);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		streaminggeometrymesh_block,
 		"StreamingGeometryMesh_block",
 		8191,
 		streaminggeometrymesh);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		wordindex_block,
 		"WordIndex_block",
 		2621400,
 		wordindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dwordindex_block,
 		"DwordIndex_block",
 		67108864,
 		dwordindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_render_geometry_lod_volume_block,
 		"s_render_geometry_lod_volume_block",
 		4096,
 		s_render_geometry_lod_volume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		meshimportinfo_block,
 		"MeshImportInfo_block",
 		8191,
 		meshimportinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lodtransitiondistancesblock_block,
 		"LODTransitionDistancesBlock_block",
 		16,
 		lodtransitiondistancesblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lodtransitiondistanceblock_block,
 		"LODTransitionDistanceBlock_block",
 		16,
 		lodtransitiondistanceblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rendergeometrymeshpackageresourcegroup_block,
 		"RenderGeometryMeshPackageResourceGroup_block",
 		16384,
 		rendergeometrymeshpackageresourcegroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rendergeometrymeshpackageresourcelookup_block,
 		"RenderGeometryMeshPackage::ResourceLookup_block",
 		16384,
 		rendergeometrymeshpackageresourcelookup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rendergeometryanimatedmeshref_block,
 		"RenderGeometryAnimatedMeshRef_block",
 		64,
 		rendergeometryanimatedmeshref);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		pcameshindex_block,
 		"PCAMeshIndex_block",
 		8191,
 		pcameshindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rendergeometrydeformationparameter_block,
 		"RenderGeometryDeformationParameter_block",
 		65535,
 		rendergeometrydeformationparameter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rendergeometryproceduraldeformation_block,
 		"RenderGeometryProceduralDeformation_block",
 		65535,
 		rendergeometryproceduraldeformation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rendergeometryproceduralremaptable_block,
 		"RenderGeometryProceduralRemapTable_block",
 		65535,
 		rendergeometryproceduralremaptable);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		deformationparameterdefaultvalue_block,
 		"DeformationParameterDefaultValue_block",
 		65535,
 		deformationparameterdefaultvalue);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		runtimegeopermeshdata_block,
 		"RuntimeGeoPerMeshData_block",
 		4096,
 		runtimegeopermeshdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		staticgeomarker_block,
 		"StaticGeoMarker_block",
 		4096,
 		staticgeomarker);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		staticgeomarkergroup_block,
 		"StaticGeoMarkerGroup_block",
 		4096,
 		staticgeomarkergroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodeindexstruct_block,
 		"NodeIndexStruct_block",
 		255,
 		nodeindexstruct);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		indirectlightproberegion_block,
 		"IndirectLightProbeRegion_block",
 		16,
 		indirectlightproberegion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dwsairprobesampleirradiance_block,
 		"DWSAirprobeSampleIrradiance_block",
 		512,
 		dwsairprobesampleirradiance);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dwsairprobesampledepth_block,
 		"DWSAirprobeSampleDepth_block",
 		256,
 		dwsairprobesampledepth);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dwsairprobesampleskyvisibility_block,
 		"DWSAirprobeSampleSkyVisibility_block",
 		64,
 		dwsairprobesampleskyvisibility);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dwsairprobesample_block,
 		"DWSAirprobeSample_block",
 		16777215,
 		dwsairprobesample);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dwsairproberegion_block,
 		"DWSAirprobeRegion_block",
 		16777215,
 		dwsairproberegion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bakedtodstate_block,
 		"BakedTODState_block",
 		8,
 		bakedtodstate);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		goboanimationparameter_block,
 		"GoboAnimationParameter_block",
 		32767,
 		goboanimationparameter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		gobodefinition_block,
 		"GoboDefinition_block",
 		4,
 		gobodefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343modelbonephysicsdefinition_block,
 		"i343::Model::BonePhysicsDefinition_block",
 		20,
 		i343modelbonephysicsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rendermodelnodeindex_block,
 		"RenderModelNodeIndex_block",
 		1024,
 		rendermodelnodeindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rendermodelbonegroup_block,
 		"RenderModelBoneGroup_block",
 		64,
 		rendermodelbonegroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		clothmeshindex_block,
 		"ClothMeshIndex_block",
 		64,
 		clothmeshindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rendermodelclothmesh_block,
 		"RenderModelClothMesh_block",
 		256,
 		rendermodelclothmesh);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rendermodelclothdata_block,
 		"RenderModelClothData_block",
 		256,
 		rendermodelclothdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		instancenodemapping_block,
 		"InstanceNodeMapping_block",
 		1024,
 		instancenodemapping);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		defaultnodeorientations_block,
 		"DefaultNodeOrientations_block",
 		1024,
 		defaultnodeorientations);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		render_model_permutation_block,
 		"render_model_permutation_block",
 		1023,
 		render_model_permutation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		render_model_region_block,
 		"render_model_region_block",
 		32,
 		render_model_region);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		render_model_marker_block,
 		"render_model_marker_block",
 		4096,
 		render_model_marker);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		render_model_marker_group_block,
 		"render_model_marker_group_block",
 		4096,
 		render_model_marker_group);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		render_model_node_block,
 		"render_model_node_block",
 		1024,
 		render_model_node);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structure_instanced_geometry_instance_block,
 		"structure_instanced_geometry_instance_block",
 		32768,
 		structure_instanced_geometry_instance);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structurelightdefinition_block,
 		"StructureLightDefinition_block",
 		1048576,
 		structurelightdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_real_sector_point_block,
 		"s_real_sector_point_block",
 		128,
 		s_real_sector_point);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_real_sector_point_generic_volume_block,
 		"s_real_sector_point_generic_volume_block",
 		128,
 		s_real_sector_point_generic_volume);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		genericvolumenativepoint2d_block,
 		"GenericVolumeNativePoint2D_block",
 		128,
 		genericvolumenativepoint2d);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmapdictionarymultiactionsetdefinition_block,
 		"BitmapDictionaryMultiActionSetDefinition_block",
 		512,
 		bitmapdictionarymultiactionsetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmapdictionarycombinedbitmapdefiniton_block,
 		"BitmapDictionaryCombinedBitmapDefiniton_block",
 		512,
 		bitmapdictionarycombinedbitmapdefiniton);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmapdictionaryentrydefinition_block,
 		"BitmapDictionaryEntryDefinition_block",
 		512,
 		bitmapdictionaryentrydefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmapgroupsprite_block,
 		"BitmapGroupSprite_block",
 		512,
 		bitmapgroupsprite);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmapgroupsequence_block,
 		"BitmapGroupSequence_block",
 		256,
 		bitmapgroupsequence);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmapsourcefile_block,
 		"BitmapSourceFile_block",
 		4096,
 		bitmapsourcefile);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		sourcepaths_block,
 		"SourcePaths_block",
 		1,
 		sourcepaths);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmappackagesettings_block,
 		"BitmapPackageSettings_block",
 		1024,
 		bitmappackagesettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmappackagetexturegroup_block,
 		"BitmapPackageTextureGroup_block",
 		1024,
 		bitmappackagetexturegroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		streamingbitmapdata_block,
 		"StreamingBitmapData_block",
 		512,
 		streamingbitmapdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmapdata_block,
 		"BitmapData_block",
 		1048576,
 		bitmapdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmapusage_block,
 		"BitmapUsage_block",
 		1024,
 		bitmapusage);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		color_table_color_block,
 		"color_table_color_block",
 		512,
 		color_table_color);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicstexturegroupsettings_block,
 		"i343::Graphics::TextureGroupSettings_block",
 		64,
 		i343graphicstexturegroupsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rasterizervertexbuffer_block,
 		"RasterizerVertexBuffer_block",
 		65535,
 		rasterizervertexbuffer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rasterizerindexbuffer_block,
 		"RasterizerIndexBuffer_block",
 		8191,
 		rasterizerindexbuffer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		globalbitmaps_block,
 		"GlobalBitmaps_block",
 		32,
 		globalbitmaps);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmapusagetablebitmapsuffixes_block,
 		"BitmapUsageTable::BitmapSuffixes_block",
 		256,
 		bitmapusagetablebitmapsuffixes);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmapusagetablebackcompatusage_block,
 		"BitmapUsageTable::BackcompatUsage_block",
 		256,
 		bitmapusagetablebackcompatusage);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsglobalmaterial_block,
 		"i343::Graphics::GlobalMaterial_block",
 		32,
 		i343graphicsglobalmaterial);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsdisplayoutputtransform_block,
 		"i343::Graphics::DisplayOutputTransform_block",
 		256,
 		i343graphicsdisplayoutputtransform);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rasterizervertexworld_block,
 		"RasterizerVertexWorld_block",
 		1048560,
 		rasterizervertexworld);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rawvertex_block,
 		"RawVertex_block",
 		16777214,
 		rawvertex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rawblendshapevertex_block,
 		"RawBlendshapeVertex_block",
 		16777216,
 		rawblendshapevertex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rawtensionedge_block,
 		"RawTensionEdge_block",
 		262144,
 		rawtensionedge);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rawtriangleedgeindexinfo_block,
 		"RawTriangleEdgeIndexInfo_block",
 		262144,
 		rawtriangleedgeindexinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		error_report_category_block,
 		"error_report_category_block",
 		512,
 		error_report_category);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		error_report_block,
 		"error_report_block",
 		1048576,
 		error_report);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		error_report_vertex_block,
 		"error_report_vertex_block",
 		1048576,
 		error_report_vertex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		error_report_vector_block,
 		"error_report_vector_block",
 		1048576,
 		error_report_vector);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		error_report_line_block,
 		"error_report_line_block",
 		1048576,
 		error_report_line);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		error_report_triangle_block,
 		"error_report_triangle_block",
 		1048576,
 		error_report_triangle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		error_report_quad_block,
 		"error_report_quad_block",
 		1048576,
 		error_report_quad);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		error_report_comment_block,
 		"error_report_comment_block",
 		1048576,
 		error_report_comment);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_instance_bucket_block,
 		"s_instance_bucket_block",
 		32768,
 		s_instance_bucket);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lodrenderdata_block,
 		"LODRenderData_block",
 		16,
 		lodrenderdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		geometry_material_block,
 		"geometry_material_block",
 		10240,
 		geometry_material);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_raw_water_append_block,
 		"s_raw_water_append_block",
 		65535,
 		s_raw_water_append);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_raw_water_data_block,
 		"s_raw_water_data_block",
 		32,
 		s_raw_water_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343levelbreakdownassetvariantlevelbreakdowndata_block,
 		"i343::LevelBreakdown::AssetVariantLevelBreakdownData_block",
 		2048,
 		i343levelbreakdownassetvariantlevelbreakdowndata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343levelbreakdownruntimegeolevelbreakdowndata_block,
 		"i343::LevelBreakdown::RuntimeGeoLevelBreakdownData_block",
 		1,
 		i343levelbreakdownruntimegeolevelbreakdowndata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_per_mesh_raw_data_block,
 		"s_per_mesh_raw_data_block",
 		8191,
 		s_per_mesh_raw_data);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsclustermaskblock_block,
 		"i343::Graphics::ClusterMaskBlock_block",
 		8,
 		i343graphicsclustermaskblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsclusternodecount_block,
 		"i343::Graphics::ClusterNodeCount_block",
 		256,
 		i343graphicsclusternodecount);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsforwardfastlight_block,
 		"i343::Graphics::ForwardFastLight_block",
 		3,
 		i343graphicsforwardfastlight);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicshairprofile_block,
 		"i343::Graphics::HairProfile_block",
 		32,
 		i343graphicshairprofile);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		gpupropertyparam_block,
 		"GPUPropertyParam_block",
 		20,
 		gpupropertyparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		gpufunctionparam_block,
 		"GPUFunctionParam_block",
 		28,
 		gpufunctionparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		gpucolorparam_block,
 		"GPUColorParam_block",
 		8,
 		gpucolorparam);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialpostprocesstexture_block,
 		"MaterialPostprocessTexture_block",
 		32,
 		materialpostprocesstexture);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialfunctionparameter_block,
 		"MaterialFunctionParameter_block",
 		255,
 		materialfunctionparameter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialexternparameter_block,
 		"MaterialExternParameter_block",
 		255,
 		materialexternparameter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialconstant_block,
 		"MaterialConstant_block",
 		255,
 		materialconstant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialpostprocessdefinition_block,
 		"MaterialPostprocessDefinition_block",
 		1,
 		materialpostprocessdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialstyleinfo_block,
 		"MaterialStyleInfo_block",
 		1,
 		materialstyleinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialpipelinestateinfo_block,
 		"MaterialPipelineStateInfo_block",
 		10240,
 		materialpipelinestateinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		decoratorplacementdata_block,
 		"DecoratorPlacementData_block",
 		10,
 		decoratorplacementdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		shaderinputassemblyparameter_block,
 		"ShaderInputAssemblyParameter_block",
 		32,
 		shaderinputassemblyparameter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		shaderreference_block,
 		"ShaderReference_block",
 		255,
 		shaderreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		shadergroup_block,
 		"ShaderGroup_block",
 		4096,
 		shadergroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		shadergpupropertyname_block,
 		"ShaderGPUPropertyName_block",
 		32,
 		shadergpupropertyname);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialshaderfunctionparameter_block,
 		"MaterialShaderFunctionParameter_block",
 		267,
 		materialshaderfunctionparameter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		shaderparameter_block,
 		"ShaderParameter_block",
 		1335,
 		shaderparameter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicssssprofile_block,
 		"i343::Graphics::SssProfile_block",
 		64,
 		i343graphicssssprofile);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_model_node_block,
 		"s_model_node_block",
 		1024,
 		s_model_node);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_model_permutation_block,
 		"s_model_permutation_block",
 		1023,
 		s_model_permutation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_model_region_block,
 		"s_model_region_block",
 		32,
 		s_model_region);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_model_variant_state_block,
 		"s_model_variant_state_block",
 		10,
 		s_model_variant_state);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_model_variant_permutation_block,
 		"s_model_variant_permutation_block",
 		1023,
 		s_model_variant_permutation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_model_variant_region_block,
 		"s_model_variant_region_block",
 		32,
 		s_model_variant_region);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modelvariantmutednodeblock_block,
 		"ModelVariantMutedNodeBlock_block",
 		31,
 		modelvariantmutednodeblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343modelmodelvariantobject_block,
 		"i343::Model::ModelVariantObject_block",
 		31,
 		i343modelmodelvariantobject);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_model_variant_block,
 		"s_model_variant_block",
 		64,
 		s_model_variant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		regionnameblock_block,
 		"RegionNameBlock_block",
 		1024,
 		regionnameblock);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_model_material_block,
 		"s_model_material_block",
 		32,
 		s_model_material);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		reflectionpresetdefinition_block,
 		"ReflectionPresetDefinition_block",
 		32,
 		reflectionpresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		volumetricfogpresetdefinition_block,
 		"VolumetricFogPresetDefinition_block",
 		32,
 		volumetricfogpresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		shadowpresetdefinition_block,
 		"ShadowPresetDefinition_block",
 		32,
 		shadowpresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		skyqualitypresetdefinition_block,
 		"SkyQualityPresetDefinition_block",
 		32,
 		skyqualitypresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		temporalaapresetdefinition_block,
 		"TemporalAAPresetDefinition_block",
 		32,
 		temporalaapresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		aopresetdefinition_block,
 		"AoPresetDefinition_block",
 		32,
 		aopresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		depthoffieldpresetdefinition_block,
 		"DepthOfFieldPresetDefinition_block",
 		32,
 		depthoffieldpresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		anisotropicfilteringpresetdefinition_block,
 		"AnisotropicFilteringPresetDefinition_block",
 		32,
 		anisotropicfilteringpresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		terrainpresetdefinition_block,
 		"TerrainPresetDefinition_block",
 		32,
 		terrainpresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lightingpresetdefinition_block,
 		"LightingPresetDefinition_block",
 		32,
 		lightingpresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		assetcategorypresetdefinition_block,
 		"AssetCategoryPresetDefinition_block",
 		32,
 		assetcategorypresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dynamicwindpresetdefinition_block,
 		"DynamicWindPresetDefinition_block",
 		32,
 		dynamicwindpresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interactionpresetdefinition_block,
 		"InteractionPresetDefinition_block",
 		32,
 		interactionpresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		decoratorspresetdefinition_block,
 		"DecoratorsPresetDefinition_block",
 		32,
 		decoratorspresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodpresetdefinition_block,
 		"HlodPresetDefinition_block",
 		32,
 		hlodpresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationqualitypresetdefinition_block,
 		"AnimationQualityPresetDefinition_block",
 		32,
 		animationqualitypresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		visualdamagepresetdefinition_block,
 		"VisualDamagePresetDefinition_block",
 		32,
 		visualdamagepresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		virtualtexturingpresetdefinition_block,
 		"VirtualTexturingPresetDefinition_block",
 		32,
 		virtualtexturingpresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		flocksqualitypresetdefinition_block,
 		"FlocksQualityPresetDefinition_block",
 		32,
 		flocksqualitypresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		simulationqualitypresetdefinition_block,
 		"SimulationQualityPresetDefinition_block",
 		32,
 		simulationqualitypresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		chromaticaberrationpresetdefinition_block,
 		"ChromaticAberrationPresetDefinition_block",
 		32,
 		chromaticaberrationpresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		uipresetdefinition_block,
 		"UIPresetDefinition_block",
 		32,
 		uipresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		shaderqualitypresetdefinition_block,
 		"ShaderQualityPresetDefinition_block",
 		32,
 		shaderqualitypresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effectspresetdefinition_block,
 		"EffectsPresetDefinition_block",
 		32,
 		effectspresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		emblemqualitypresetdefinition_block,
 		"EmblemQualityPresetDefinition_block",
 		32,
 		emblemqualitypresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		texturequalitypresetdefinition_block,
 		"TextureQualityPresetDefinition_block",
 		32,
 		texturequalitypresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		decalspresetdefinition_block,
 		"DecalsPresetDefinition_block",
 		32,
 		decalspresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		basicpresetdefinition_block,
 		"BasicPresetDefinition_block",
 		32,
 		basicpresetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		explicitshader_block,
 		"ExplicitShader_block",
 		1024,
 		explicitshader);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicspipelinestateprecachedata_block,
 		"i343::Graphics::PipelineStatePrecacheData_block",
 		512000,
 		i343graphicspipelinestateprecachedata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicspipelinestatedictionaryreference_block,
 		"i343::Graphics::PipelineStateDictionaryReference_block",
 		6,
 		i343graphicspipelinestatedictionaryreference);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343gpuinterpreterinstruction_block,
 		"i343::GpuInterpreterInstruction_block",
 		1024,
 		i343gpuinterpreterinstruction);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsvectorvertex_block,
 		"i343::Graphics::VectorVertex_block",
 		20000,
 		i343graphicsvectorvertex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsvectorindex_block,
 		"i343::Graphics::VectorIndex_block",
 		60000,
 		i343graphicsvectorindex);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsvectordrawinformation_block,
 		"i343::Graphics::VectorDrawInformation_block",
 		20,
 		i343graphicsvectordrawinformation);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aiairdropairdropsystemglobalsdefinition_group_block,
 		"i343::AI::AirDrop::AirDropSystemGlobalsDefinition_group_block",
 		1,
 		i343aiairdropairdropsystemglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		aiflocktag_group_block,
 		"AiFlockTag_group_block",
 		1,
 		aiflocktag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_ai_globals_definition_group_block,
 		"s_ai_globals_definition_group_block",
 		1,
 		s_ai_globals_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ambientactionpointdefinition_group_block,
 		"AmbientActionPointDefinition_group_block",
 		1,
 		ambientactionpointdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		behaviortreedefinition_group_block,
 		"BehaviorTreeDefinition_group_block",
 		1,
 		behaviortreedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		botglobals_group_block,
 		"BotGlobals_group_block",
 		1,
 		botglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		character_definition_group_block,
 		"character_definition_group_block",
 		1,
 		character_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		propspawntemplate_group_block,
 		"PropSpawnTemplate_group_block",
 		1,
 		propspawntemplate);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		navigationglobalsdefinition_group_block,
 		"NavigationGlobalsDefinition_group_block",
 		1,
 		navigationglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		musketeertoedefinition_group_block,
 		"MusketeerTOEDefinition_group_block",
 		1,
 		musketeertoedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ai_pathfinding_group_block,
 		"ai_pathfinding_group_block",
 		1,
 		ai_pathfinding);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dialoguesystemdatatag_group_block,
 		"DialogueSystemDataTag_group_block",
 		1,
 		dialoguesystemdatatag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ai_dialogue_definitions_group_block,
 		"ai_dialogue_definitions_group_block",
 		1,
 		ai_dialogue_definitions);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aisquadconstructionactorcellentry_group_block,
 		"i343::AI::SquadConstruction::ActorCellEntry_group_block",
 		1,
 		i343aisquadconstructionactorcellentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aisquadconstructionpassengercellentry_group_block,
 		"i343::AI::SquadConstruction::PassengerCellEntry_group_block",
 		1,
 		i343aisquadconstructionpassengercellentry);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aisquadconstructionsquadspecification_group_block,
 		"i343::AI::SquadConstruction::SquadSpecification_group_block",
 		1,
 		i343aisquadconstructionsquadspecification);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aisquadconstructionsquadspecificationtree_group_block,
 		"i343::AI::SquadConstruction::SquadSpecificationTree_group_block",
 		1,
 		i343aisquadconstructionsquadspecificationtree);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_formation_definition_group_block,
 		"s_formation_definition_group_block",
 		1,
 		s_formation_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_squad_template_definition_group_block,
 		"s_squad_template_definition_group_block",
 		1,
 		s_squad_template_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		style_definition_group_block,
 		"style_definition_group_block",
 		1,
 		style_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343aitokensystemtokensystemglobalsdefinition_group_block,
 		"i343::AI::TokenSystem::TokenSystemGlobalsDefinition_group_block",
 		1,
 		i343aitokensystemtokensystemglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_animation_frame_event_list_anim_group_block,
 		"c_animation_frame_event_list_anim_group_block",
 		1,
 		c_animation_frame_event_list_anim);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_animation_frame_event_list_audio_group_block,
 		"c_animation_frame_event_list_audio_group_block",
 		1,
 		c_animation_frame_event_list_audio);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_animation_frame_event_list_effect_group_block,
 		"c_animation_frame_event_list_effect_group_block",
 		1,
 		c_animation_frame_event_list_effect);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_animation_frame_event_list_group_block,
 		"c_animation_frame_event_list_group_block",
 		1,
 		c_animation_frame_event_list);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_model_animation_graph_group_block,
 		"c_model_animation_graph_group_block",
 		1,
 		c_model_animation_graph);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animation_skeleton_group_block,
 		"animation_skeleton_group_block",
 		1,
 		animation_skeleton);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		runtimeanimsettag_group_block,
 		"RuntimeAnimSetTag_group_block",
 		1,
 		runtimeanimsettag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationframeeventlist_group_block,
 		"AnimationFrameEventList_group_block",
 		1,
 		animationframeeventlist);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationlibraryaudio_group_block,
 		"AnimationLibraryAudio_group_block",
 		1,
 		animationlibraryaudio);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationframeeventlistaudio_group_block,
 		"AnimationFrameEventListAudio_group_block",
 		1,
 		animationframeeventlistaudio);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationframeeventlistaudio_v0_group_block,
 		"AnimationFrameEventListAudio_v0_group_block",
 		1,
 		animationframeeventlistaudio_v0);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationlibraryeffects_group_block,
 		"AnimationLibraryEffects_group_block",
 		1,
 		animationlibraryeffects);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationframeeventlisteffects_group_block,
 		"AnimationFrameEventListEffects_group_block",
 		1,
 		animationframeeventlisteffects);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animationframeeventlisteffects_v0_group_block,
 		"AnimationFrameEventListEffects_v0_group_block",
 		1,
 		animationframeeventlisteffects_v0);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		pcaanimationtag_group_block,
 		"PcaAnimationTag_group_block",
 		1,
 		pcaanimationtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		assetcategoryglobalstag_group_block,
 		"AssetCategoryGlobalsTag_group_block",
 		1,
 		assetcategoryglobalstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343cagesystemcageglobalsdefinitiontag_group_block,
 		"i343::CageSystem::CageGlobalsDefinitionTag_group_block",
 		1,
 		i343cagesystemcageglobalsdefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343cagesystemcagedefinitiontag_group_block,
 		"i343::CageSystem::CageDefinitionTag_group_block",
 		1,
 		i343cagesystemcagedefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativeconversationtag_group_block,
 		"i343::Narrative::ConversationTag_group_block",
 		1,
 		i343narrativeconversationtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativeconversationtypestag_group_block,
 		"i343::Narrative::ConversationTypesTag_group_block",
 		1,
 		i343narrativeconversationtypestag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343curvecurvedefinitiontag_group_block,
 		"i343::Curve::CurveDefinitionTag_group_block",
 		1,
 		i343curvecurvedefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dynamicworldstateglobals_group_block,
 		"DynamicWorldStateGlobals_group_block",
 		1,
 		dynamicworldstateglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343effectseffectwindmotor_group_block,
 		"i343::Effects::EffectWindMotor_group_block",
 		1,
 		i343effectseffectwindmotor);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputscopetag_group_block,
 		"InputScopeTag_group_block",
 		1,
 		inputscopetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interactiondefinition_group_block,
 		"InteractionDefinition_group_block",
 		1,
 		interactiondefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputbundle_group_block,
 		"InputBundle_group_block",
 		1,
 		inputbundle);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputbundleset_group_block,
 		"InputBundleSet_group_block",
 		1,
 		inputbundleset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputmode_group_block,
 		"InputMode_group_block",
 		1,
 		inputmode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		inputdevicebindings_group_block,
 		"InputDeviceBindings_group_block",
 		1,
 		inputdevicebindings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		runtimematerialpalettetag_group_block,
 		"RuntimeMaterialPaletteTag_group_block",
 		1,
 		runtimematerialpalettetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		layer_group_block,
 		"Layer_group_block",
 		1,
 		layer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		levelobjects_group_block,
 		"LevelObjects_group_block",
 		1,
 		levelobjects);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343levelstaticgeotag_group_block,
 		"i343::LevelStaticGeoTag_group_block",
 		1,
 		i343levelstaticgeotag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		unicodestringlistgroup_group_block,
 		"UnicodeStringListGroup_group_block",
 		1,
 		unicodestringlistgroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343valorrewardsvalorunlocks_group_block,
 		"i343::ValorRewards::ValorUnlocks_group_block",
 		1,
 		i343valorrewardsvalorunlocks);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodmetadata_group_block,
 		"HlodMetadata_group_block",
 		1,
 		hlodmetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		autohlodsettings_group_block,
 		"AutoHlodSettings_group_block",
 		1,
 		autohlodsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodmaterialcutofflist_group_block,
 		"HlodMaterialCutOffList_group_block",
 		1,
 		hlodmaterialcutofflist);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodsettings_group_block,
 		"HlodSettings_group_block",
 		1,
 		hlodsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodsystem_group_block,
 		"HlodSystem_group_block",
 		1,
 		hlodsystem);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hlodsettingspresetlist_group_block,
 		"HlodSettingsPresetList_group_block",
 		1,
 		hlodsettingspresetlist);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		assettag_group_block,
 		"AssetTag_group_block",
 		1,
 		assettag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cameratrackdefinition_group_block,
 		"CameraTrackDefinition_group_block",
 		1,
 		cameratrackdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		compositionscene_group_block,
 		"CompositionScene_group_block",
 		1,
 		compositionscene);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		compositiondefinition_group_block,
 		"CompositionDefinition_group_block",
 		1,
 		compositiondefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		subtracksdefinition_group_block,
 		"SubTracksDefinition_group_block",
 		1,
 		subtracksdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		composertransition_group_block,
 		"ComposerTransition_group_block",
 		1,
 		composertransition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomassetspecdefinition_group_block,
 		"i343::DarkRoom::AssetSpecDefinition_group_block",
 		1,
 		i343darkroomassetspecdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomcameraspecdefinition_group_block,
 		"i343::DarkRoom::CameraSpecDefinition_group_block",
 		1,
 		i343darkroomcameraspecdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomrendersettingsspecdefinition_group_block,
 		"i343::DarkRoom::RenderSettingsSpecDefinition_group_block",
 		1,
 		i343darkroomrendersettingsspecdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomscreenshotsettingsspecdefinition_group_block,
 		"i343::DarkRoom::ScreenshotSettingsSpecDefinition_group_block",
 		1,
 		i343darkroomscreenshotsettingsspecdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomlightingspecdefinition_group_block,
 		"i343::DarkRoom::LightingSpecDefinition_group_block",
 		1,
 		i343darkroomlightingspecdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomanimationspecdefinition_group_block,
 		"i343::DarkRoom::AnimationSpecDefinition_group_block",
 		1,
 		i343darkroomanimationspecdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomdarkroomassemblydefinition_group_block,
 		"i343::DarkRoom::DarkRoomAssemblyDefinition_group_block",
 		1,
 		i343darkroomdarkroomassemblydefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343darkroomshotlistdefinition_group_block,
 		"i343::DarkRoom::ShotListDefinition_group_block",
 		1,
 		i343darkroomshotlistdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_camera_shake_definition_group_block,
 		"s_camera_shake_definition_group_block",
 		1,
 		s_camera_shake_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_camo_effect_definition_group_block,
 		"s_camo_effect_definition_group_block",
 		1,
 		s_camo_effect_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cheapparticletypelibrary_group_block,
 		"CheapParticleTypeLibrary_group_block",
 		1,
 		cheapparticletypelibrary);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cheapparticleemitter_group_block,
 		"CheapParticleEmitter_group_block",
 		1,
 		cheapparticleemitter);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_decal_system_definition_group_block,
 		"c_decal_system_definition_group_block",
 		1,
 		c_decal_system_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effectexposuredefinition_group_block,
 		"EffectExposureDefinition_group_block",
 		1,
 		effectexposuredefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effect_definition_group_block,
 		"effect_definition_group_block",
 		1,
 		effect_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effectglobalsdefinition_group_block,
 		"EffectGlobalsDefinition_group_block",
 		1,
 		effectglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_effect_scenery_definition_group_block,
 		"s_effect_scenery_definition_group_block",
 		1,
 		s_effect_scenery_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343effectsgeneratorsystemdefinition_group_block,
 		"i343::Effects::GeneratorSystemDefinition_group_block",
 		1,
 		i343effectsgeneratorsystemdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lightconedefinition_group_block,
 		"LightConeDefinition_group_block",
 		1,
 		lightconedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		attachedlightcone_group_block,
 		"AttachedLightCone_group_block",
 		1,
 		attachedlightcone);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_light_volume_system_definition_group_block,
 		"c_light_volume_system_definition_group_block",
 		1,
 		c_light_volume_system_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_material_effects_definition_group_block,
 		"s_material_effects_definition_group_block",
 		1,
 		s_material_effects_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343effectsvisualmaterialeffectsdefinition_group_block,
 		"i343::Effects::VisualMaterialEffectsDefinition_group_block",
 		1,
 		i343effectsvisualmaterialeffectsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343effectssoundmaterialeffectsdefinition_group_block,
 		"i343::Effects::SoundMaterialEffectsDefinition_group_block",
 		1,
 		i343effectssoundmaterialeffectsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		modeldissolvedefinition_group_block,
 		"ModelDissolveDefinition_group_block",
 		1,
 		modeldissolvedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		emittertag_group_block,
 		"EmitterTag_group_block",
 		1,
 		emittertag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_particle_definition_tag_group_block,
 		"c_particle_definition_tag_group_block",
 		1,
 		c_particle_definition_tag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_particle_emitter_custom_points_group_block,
 		"s_particle_emitter_custom_points_group_block",
 		1,
 		s_particle_emitter_custom_points);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_particle_model_definition_group_block,
 		"c_particle_model_definition_group_block",
 		1,
 		c_particle_model_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		particlemovementdefinitiontag_group_block,
 		"ParticleMovementDefinitionTag_group_block",
 		1,
 		particlemovementdefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_area_screen_effect_definition_group_block,
 		"s_area_screen_effect_definition_group_block",
 		1,
 		s_area_screen_effect_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_simulated_input_definition_group_block,
 		"s_simulated_input_definition_group_block",
 		1,
 		s_simulated_input_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		tracersystemdefinition_group_block,
 		"TracerSystemDefinition_group_block",
 		1,
 		tracersystemdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343effectstrackdecalsystemdefinition_group_block,
 		"i343::Effects::TrackDecalSystemDefinition_group_block",
 		1,
 		i343effectstrackdecalsystemdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		fixeddepthquadtree_group_block,
 		"FixedDepthQuadTree_group_block",
 		1,
 		fixeddepthquadtree);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343flinchflinchimpulsedefinition_group_block,
 		"i343::Flinch::FlinchImpulseDefinition_group_block",
 		1,
 		i343flinchflinchimpulsedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343flinchflinchsystemdefinition_group_block,
 		"i343::Flinch::FlinchSystemDefinition_group_block",
 		1,
 		i343flinchflinchsystemdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hsscriptcontainer_group_block,
 		"HSScriptContainer_group_block",
 		1,
 		hsscriptcontainer);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hssourcefiletag_group_block,
 		"HsSourceFileTag_group_block",
 		1,
 		hssourcefiletag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		chromafiletag_group_block,
 		"ChromaFileTag_group_block",
 		1,
 		chromafiletag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		chromaanimationsdefinition_group_block,
 		"ChromaAnimationsDefinition_group_block",
 		1,
 		chromaanimationsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		speechgrammargroup_group_block,
 		"SpeechGrammarGroup_group_block",
 		1,
 		speechgrammargroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		speechgrammarglobals_group_block,
 		"SpeechGrammarGlobals_group_block",
 		1,
 		speechgrammarglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bsplightingvolumes_group_block,
 		"BspLightingVolumes_group_block",
 		1,
 		bsplightingvolumes);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenariolightingvolumes_group_block,
 		"ScenarioLightingVolumes_group_block",
 		1,
 		scenariolightingvolumes);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343malleablepropertygenericmodifierdefinitiontag_group_block,
 		"i343::MalleableProperty::GenericModifierDefinitionTag_group_block",
 		1,
 		i343malleablepropertygenericmodifierdefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bspvolumes_group_block,
 		"BspVolumes_group_block",
 		1,
 		bspvolumes);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343scenariozonesetbakedpvsbakedpvstag_group_block,
 		"i343::ScenarioZoneSetBakedPVS::BakedPVSTag_group_block",
 		1,
 		i343scenariozonesetbakedpvsbakedpvstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		skylighting_group_block,
 		"SkyLighting_group_block",
 		1,
 		skylighting);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lightingsettings_group_block,
 		"LightingSettings_group_block",
 		1,
 		lightingsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structuremetadata_group_block,
 		"StructureMetadata_group_block",
 		1,
 		structuremetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		streamingzonesetoboslete_group_block,
 		"StreamingZoneSetOBOSLETE_group_block",
 		1,
 		streamingzonesetoboslete);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terrainseedformoduletag_group_block,
 		"i343::TerrainSeedForModuleTag_group_block",
 		1,
 		i343terrainseedformoduletag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenariorenderdata_group_block,
 		"ScenarioRenderData_group_block",
 		1,
 		scenariorenderdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_required_resources_group_block,
 		"s_scenario_required_resources_group_block",
 		1,
 		s_scenario_required_resources);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		level_group_block,
 		"Level_group_block",
 		1,
 		level);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		unprocessedlevel_group_block,
 		"UnprocessedLevel_group_block",
 		1,
 		unprocessedlevel);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		kit_group_block,
 		"Kit_group_block",
 		1,
 		kit);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		runtimelayertag_group_block,
 		"RuntimeLayerTag_group_block",
 		1,
 		runtimelayertag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_scenario_interpolator_tag_definition_group_block,
 		"s_scenario_interpolator_tag_definition_group_block",
 		1,
 		s_scenario_interpolator_tag_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_wind_definition_group_block,
 		"s_wind_definition_group_block",
 		1,
 		s_wind_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structure_prefab_group_block,
 		"structure_prefab_group_block",
 		1,
 		structure_prefab);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structure_bsp_group_block,
 		"structure_bsp_group_block",
 		1,
 		structure_bsp);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_design_group_block,
 		"s_structure_design_group_block",
 		1,
 		s_structure_design);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_structure_seams_group_block,
 		"s_structure_seams_group_block",
 		1,
 		s_structure_seams);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		test_tag_definition_group_block,
 		"test_tag_definition_group_block",
 		1,
 		test_tag_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_multilingual_unicode_string_list_group_header_group_block,
 		"s_multilingual_unicode_string_list_group_header_group_block",
 		1,
 		s_multilingual_unicode_string_list_group_header);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_bink_definition_group_block,
 		"s_bink_definition_group_block",
 		1,
 		s_bink_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cameraanimationgraph_group_block,
 		"CameraAnimationGraph_group_block",
 		1,
 		cameraanimationgraph);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		abcsourcefiletag_group_block,
 		"AbcSourceFileTag_group_block",
 		1,
 		abcsourcefiletag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentanimgraphcontenttag_group_block,
 		"NodeGraph::Content::AnimGraphContentTag_group_block",
 		1,
 		nodegraphcontentanimgraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentanimstatecontenttag_group_block,
 		"NodeGraph::Content::AnimStateContentTag_group_block",
 		1,
 		nodegraphcontentanimstatecontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentblackboardcontenttag_group_block,
 		"NodeGraph::Content::BlackboardContentTag_group_block",
 		1,
 		nodegraphcontentblackboardcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentblendspace1dcontenttag_group_block,
 		"NodeGraph::Content::BlendSpace1DContentTag_group_block",
 		1,
 		nodegraphcontentblendspace1dcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentblendspace2dcontenttag_group_block,
 		"NodeGraph::Content::BlendSpace2DContentTag_group_block",
 		1,
 		nodegraphcontentblendspace2dcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentblendspaceradialcontenttag_group_block,
 		"NodeGraph::Content::BlendSpaceRadialContentTag_group_block",
 		1,
 		nodegraphcontentblendspaceradialcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentdecoratorshadergraphcontenttag_group_block,
 		"NodeGraph::Content::DecoratorShaderGraphContentTag_group_block",
 		1,
 		nodegraphcontentdecoratorshadergraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentebtcontenttag_group_block,
 		"NodeGraph::Content::EBTContentTag_group_block",
 		1,
 		nodegraphcontentebtcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentforgemenugraphcontenttag_group_block,
 		"NodeGraph::Content::ForgeMenuGraphContentTag_group_block",
 		1,
 		nodegraphcontentforgemenugraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentforgenodegraphcontenttag_group_block,
 		"NodeGraph::Content::ForgeNodeGraphContentTag_group_block",
 		1,
 		nodegraphcontentforgenodegraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentluagraphcontenttag_group_block,
 		"NodeGraph::Content::LuaGraphContentTag_group_block",
 		1,
 		nodegraphcontentluagraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentmaterialshadergraphcontenttag_group_block,
 		"NodeGraph::Content::MaterialShaderGraphContentTag_group_block",
 		1,
 		nodegraphcontentmaterialshadergraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentshadersubgraphcontenttag_group_block,
 		"NodeGraph::Content::ShaderSubGraphContentTag_group_block",
 		1,
 		nodegraphcontentshadersubgraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentnarrativenodegraphcontenttag_group_block,
 		"NodeGraph::Content::NarrativeNodeGraphContentTag_group_block",
 		1,
 		nodegraphcontentnarrativenodegraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentnodegraphcontenttag_group_block,
 		"NodeGraph::Content::NodeGraphContentTag_group_block",
 		1,
 		nodegraphcontentnodegraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentobjectivebehaviorcontenttag_group_block,
 		"NodeGraph::Content::ObjectiveBehaviorContentTag_group_block",
 		1,
 		nodegraphcontentobjectivebehaviorcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentobjectnodegraphcontenttag_group_block,
 		"NodeGraph::Content::ObjectNodeGraphContentTag_group_block",
 		1,
 		nodegraphcontentobjectnodegraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentparticleshadergraphcontenttag_group_block,
 		"NodeGraph::Content::ParticleShaderGraphContentTag_group_block",
 		1,
 		nodegraphcontentparticleshadergraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentrendergraphcontenttag_group_block,
 		"NodeGraph::Content::RenderGraphContentTag_group_block",
 		1,
 		nodegraphcontentrendergraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentstaterulesgraphcontenttag_group_block,
 		"NodeGraph::Content::StateRulesGraphContentTag_group_block",
 		1,
 		nodegraphcontentstaterulesgraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentsurfacinggraphcontenttag_group_block,
 		"NodeGraph::Content::SurfacingGraphContentTag_group_block",
 		1,
 		nodegraphcontentsurfacinggraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontenttransitionlogicgraphcontenttag_group_block,
 		"NodeGraph::Content::TransitionLogicGraphContentTag_group_block",
 		1,
 		nodegraphcontenttransitionlogicgraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		nodegraphcontentunittestgraphcontenttag_group_block,
 		"NodeGraph::Content::UnitTestGraphContentTag_group_block",
 		1,
 		nodegraphcontentunittestgraphcontenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		svgsourcefiletag_group_block,
 		"SVGSourceFileTag_group_block",
 		1,
 		svgsourcefiletag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		tifsourcefiletag_group_block,
 		"TifSourceFileTag_group_block",
 		1,
 		tifsourcefiletag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		compositexmltag_group_block,
 		"CompositeXmlTag_group_block",
 		1,
 		compositexmltag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		xmlfiletag_group_block,
 		"XmlFileTag_group_block",
 		1,
 		xmlfiletag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		exportedebtdefinition_group_block,
 		"ExportedEBTDefinition_group_block",
 		1,
 		exportedebtdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		objectivebehaviortreenodegraph_group_block,
 		"ObjectiveBehaviorTreeNodeGraph_group_block",
 		1,
 		objectivebehaviortreenodegraph);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animcliptag_group_block,
 		"AnimClipTag_group_block",
 		1,
 		animcliptag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animglobals_group_block,
 		"AnimGlobals_group_block",
 		1,
 		animglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		switchableassetset_group_block,
 		"SwitchableAssetSet_group_block",
 		1,
 		switchableassetset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		exportedanimnodegraph_group_block,
 		"ExportedAnimNodeGraph_group_block",
 		1,
 		exportedanimnodegraph);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animsettag_group_block,
 		"AnimSetTag_group_block",
 		1,
 		animsettag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animtokenglobalstag_group_block,
 		"AnimTokenGlobalsTag_group_block",
 		1,
 		animtokenglobalstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animstategraph_group_block,
 		"AnimStateGraph_group_block",
 		1,
 		animstategraph);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		exportedblendgraphtag_group_block,
 		"ExportedBlendGraphTag_group_block",
 		1,
 		exportedblendgraphtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		transitionlogicgraphtag_group_block,
 		"TransitionLogicGraphTag_group_block",
 		1,
 		transitionlogicgraphtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		assetcollectiontag_group_block,
 		"AssetCollectionTag_group_block",
 		1,
 		assetcollectiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		assetdialoguetag_group_block,
 		"AssetDialogueTag_group_block",
 		1,
 		assetdialoguetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		assetphysicstag_group_block,
 		"AssetPhysicsTag_group_block",
 		1,
 		assetphysicstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		assetsoundtag_group_block,
 		"AssetSoundTag_group_block",
 		1,
 		assetsoundtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		kitcollectiontag_group_block,
 		"KitCollectionTag_group_block",
 		1,
 		kitcollectiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		damagetag_group_block,
 		"DamageTag_group_block",
 		1,
 		damagetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		foliageassettag_group_block,
 		"FoliageAssetTag_group_block",
 		1,
 		foliageassettag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effectkittag_group_block,
 		"EffectKitTag_group_block",
 		1,
 		effectkittag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		geometrytag_group_block,
 		"GeometryTag_group_block",
 		1,
 		geometrytag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		decoratorsettingstag_group_block,
 		"DecoratorSettingsTag_group_block",
 		1,
 		decoratorsettingstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		decoratorassettag_group_block,
 		"DecoratorAssetTag_group_block",
 		1,
 		decoratorassettag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		legacyanimsettag_group_block,
 		"LegacyAnimSetTag_group_block",
 		1,
 		legacyanimsettag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		impostortag_group_block,
 		"ImpostorTag_group_block",
 		1,
 		impostortag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lodsettingstag_group_block,
 		"LODSettingsTag_group_block",
 		1,
 		lodsettingstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		simplygonsettingstag_group_block,
 		"SimplygonSettingsTag_group_block",
 		1,
 		simplygonsettingstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		markertag_group_block,
 		"MarkerTag_group_block",
 		1,
 		markertag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialstylestag_group_block,
 		"MaterialStylesTag_group_block",
 		1,
 		materialstylestag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialpalettetag_group_block,
 		"MaterialPaletteTag_group_block",
 		1,
 		materialpalettetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialswatchtag_group_block,
 		"MaterialSwatchTag_group_block",
 		1,
 		materialswatchtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		coatingmaterialsettag_group_block,
 		"CoatingMaterialSetTag_group_block",
 		1,
 		coatingmaterialsettag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialvisorswatchtag_group_block,
 		"MaterialVisorSwatchTag_group_block",
 		1,
 		materialvisorswatchtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		exportedobjectnodegraph_group_block,
 		"ExportedObjectNodeGraph_group_block",
 		1,
 		exportedobjectnodegraph);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		particleassettag_group_block,
 		"ParticleAssetTag_group_block",
 		1,
 		particleassettag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		skeletontag_group_block,
 		"SkeletonTag_group_block",
 		1,
 		skeletontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		taggraphtag_group_block,
 		"TagGraphTag_group_block",
 		1,
 		taggraphtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terraininputstag_group_block,
 		"i343::TerrainInputsTag_group_block",
 		1,
 		i343terraininputstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terraintiletag_group_block,
 		"i343::TerrainTileTag_group_block",
 		1,
 		i343terraintiletag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terrainsystemtag_group_block,
 		"i343::TerrainSystemTag_group_block",
 		1,
 		i343terrainsystemtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343decoratorsdecoratorpalettetag_group_block,
 		"i343::Decorators::DecoratorPaletteTag_group_block",
 		1,
 		i343decoratorsdecoratorpalettetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343decoratorsdecoratorruntimetag_group_block,
 		"i343::Decorators::DecoratorRuntimeTag_group_block",
 		1,
 		i343decoratorsdecoratorruntimetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicspainterbrushdefinition_group_block,
 		"i343::Graphics::Painter::BrushDefinition_group_block",
 		1,
 		i343graphicspainterbrushdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		customobjectlightingtag_group_block,
 		"CustomObjectLightingTag_group_block",
 		1,
 		customobjectlightingtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_camera_fx_settings_group_block,
 		"c_camera_fx_settings_group_block",
 		1,
 		c_camera_fx_settings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsrendergraphgraphdefinition_group_block,
 		"i343::Graphics::RenderGraph::GraphDefinition_group_block",
 		1,
 		i343graphicsrendergraphgraphdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_render_water_ripple_definition_group_block,
 		"s_render_water_ripple_definition_group_block",
 		1,
 		s_render_water_ripple_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343surfacingruntimetag_group_block,
 		"i343::SurfacingRuntimeTag_group_block",
 		1,
 		i343surfacingruntimetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343terrainruntimetag_group_block,
 		"i343::TerrainRuntimeTag_group_block",
 		1,
 		i343terrainruntimetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_atmosphere_definition_group_block,
 		"s_atmosphere_definition_group_block",
 		1,
 		s_atmosphere_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_atmosphere_globals_group_block,
 		"s_atmosphere_globals_group_block",
 		1,
 		s_atmosphere_globals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		projectileflybytag_group_block,
 		"ProjectileFlybyTag_group_block",
 		1,
 		projectileflybytag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343projectilessupercombinedefinition_group_block,
 		"i343::Projectiles::SuperCombineDefinition_group_block",
 		1,
 		i343projectilessupercombinedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponaltfirecomponentdefinition_group_block,
 		"i343::Weapon::AltFireComponentDefinition_group_block",
 		1,
 		i343weaponaltfirecomponentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsdockingsitedefinition_group_block,
 		"i343::Objects::DockingSiteDefinition_group_block",
 		1,
 		i343objectsdockingsitedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343equipmentupgradecampaignupgrades_group_block,
 		"i343::EquipmentUpgrade::CampaignUpgrades_group_block",
 		1,
 		i343equipmentupgradecampaignupgrades);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsshieldupgrademetadata_group_block,
 		"i343::Objects::ShieldUpgradeMetadata_group_block",
 		1,
 		i343objectsshieldupgrademetadata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsobjectnodegraphglobals_group_block,
 		"i343::Objects::ObjectNodeGraphGlobals_group_block",
 		1,
 		i343objectsobjectnodegraphglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343highlightservicehighlightserviceglobalsdefinition_group_block,
 		"i343::HighlightService::HighlightServiceGlobalsDefinition_group_block",
 		1,
 		i343highlightservicehighlightserviceglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343actionsystemactionprioritydatadefinition_group_block,
 		"i343::ActionSystem::ActionPriorityDataDefinition_group_block",
 		1,
 		i343actionsystemactionprioritydatadefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		selfilluminationdefinition_group_block,
 		"SelfIlluminationDefinition_group_block",
 		1,
 		selfilluminationdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		triggervolumecomponentdefinition_group_block,
 		"TriggerVolumeComponentDefinition_group_block",
 		1,
 		triggervolumecomponentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		gameglobalsgrenadelist_group_block,
 		"GameGlobalsGrenadeList_group_block",
 		1,
 		gameglobalsgrenadelist);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343projectilesprojectilematerialresponsedefinition_group_block,
 		"i343::Projectiles::ProjectileMaterialResponseDefinition_group_block",
 		1,
 		i343projectilesprojectilematerialresponsedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponattachmenttargettrackingdefinition_group_block,
 		"i343::Weapon::AttachmentTargetTrackingDefinition_group_block",
 		1,
 		i343weaponattachmenttargettrackingdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponattachmenttriggerdefinition_group_block,
 		"i343::Weapon::AttachmentTriggerDefinition_group_block",
 		1,
 		i343weaponattachmenttriggerdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponattachmentbarreldefinition_group_block,
 		"i343::Weapon::AttachmentBarrelDefinition_group_block",
 		1,
 		i343weaponattachmentbarreldefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponattachmentmagazinedefinition_group_block,
 		"i343::Weapon::AttachmentMagazineDefinition_group_block",
 		1,
 		i343weaponattachmentmagazinedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponattachmentmeleedefinition_group_block,
 		"i343::Weapon::AttachmentMeleeDefinition_group_block",
 		1,
 		i343weaponattachmentmeleedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponaimassistmodifierdefinition_group_block,
 		"i343::Weapon::AimAssistModifierDefinition_group_block",
 		1,
 		i343weaponaimassistmodifierdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponattachmentdefinition_group_block,
 		"i343::Weapon::AttachmentDefinition_group_block",
 		1,
 		i343weaponattachmentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weapondepthoffielddefinition_group_block,
 		"i343::Weapon::DepthOfFieldDefinition_group_block",
 		1,
 		i343weapondepthoffielddefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponweaponglobalsdefinition_group_block,
 		"i343::Weapon::WeaponGlobalsDefinition_group_block",
 		1,
 		i343weaponweaponglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponattachmentsightdefinition_group_block,
 		"i343::Weapon::AttachmentSightDefinition_group_block",
 		1,
 		i343weaponattachmentsightdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponweaponconfigurationdefinition_group_block,
 		"i343::Weapon::WeaponConfigurationDefinition_group_block",
 		1,
 		i343weaponweaponconfigurationdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collisiondamagedefinition_group_block,
 		"CollisionDamageDefinition_group_block",
 		1,
 		collisiondamagedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343damagedamageeffectsoundsdefinition_group_block,
 		"i343::Damage::DamageEffectSoundsDefinition_group_block",
 		1,
 		i343damagedamageeffectsoundsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsforgepalettedefinition_group_block,
 		"i343::Objects::ForgePaletteDefinition_group_block",
 		1,
 		i343objectsforgepalettedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		hologramlightingtag_group_block,
 		"HologramLightingTag_group_block",
 		1,
 		hologramlightingtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		crate_definition_group_block,
 		"crate_definition_group_block",
 		1,
 		crate_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_damage_effect_definition_group_block,
 		"s_damage_effect_definition_group_block",
 		1,
 		s_damage_effect_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_damage_response_definition_group_block,
 		"s_damage_response_definition_group_block",
 		1,
 		s_damage_response_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsobjectconfigurationdefinition_group_block,
 		"i343::Objects::ObjectConfigurationDefinition_group_block",
 		1,
 		i343objectsobjectconfigurationdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectdispenserdispensercomponentdefinition_group_block,
 		"i343::ObjectDispenser::DispenserComponentDefinition_group_block",
 		1,
 		i343objectdispenserdispensercomponentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsobjectattachments_group_block,
 		"i343::Objects::ObjectAttachments_group_block",
 		1,
 		i343objectsobjectattachments);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		objectdefinition_group_block,
 		"ObjectDefinition_group_block",
 		1,
 		objectdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343poweruppowerupdefinition_group_block,
 		"i343::PowerUp::PowerupDefinition_group_block",
 		1,
 		i343poweruppowerupdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343propertybasedeffectstagdefinition_group_block,
 		"i343::PropertyBasedEffects::TagDefinition_group_block",
 		1,
 		i343propertybasedeffectstagdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		scenery_definition_group_block,
 		"scenery_definition_group_block",
 		1,
 		scenery_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343outlineservicetypedefinition_group_block,
 		"i343::OutlineService::TypeDefinition_group_block",
 		1,
 		i343outlineservicetypedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343outlineserviceoutlineserviceglobalsdefinition_group_block,
 		"i343::OutlineService::OutlineServiceGlobalsDefinition_group_block",
 		1,
 		i343outlineserviceoutlineserviceglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsframedefinition_group_block,
 		"i343::Objects::FrameDefinition_group_block",
 		1,
 		i343objectsframedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectsframeattachmentdefinition_group_block,
 		"i343::Objects::FrameAttachmentDefinition_group_block",
 		1,
 		i343objectsframeattachmentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		antenna_definition_group_block,
 		"antenna_definition_group_block",
 		1,
 		antenna_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cloth_definition_group_block,
 		"cloth_definition_group_block",
 		1,
 		cloth_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_leaf_system_definition_group_block,
 		"s_leaf_system_definition_group_block",
 		1,
 		s_leaf_system_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cheap_light_definition_group_block,
 		"s_cheap_light_definition_group_block",
 		1,
 		s_cheap_light_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343unitsmotiontrackerattachmentdefinition_group_block,
 		"i343::Units::MotionTrackerAttachmentDefinition_group_block",
 		1,
 		i343unitsmotiontrackerattachmentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343unitsweaponframeattachmentdefinition_group_block,
 		"i343::Units::WeaponFrameAttachmentDefinition_group_block",
 		1,
 		i343unitsweaponframeattachmentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bipeddefinition_group_block,
 		"BipedDefinition_group_block",
 		1,
 		bipeddefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343unitsboostdefinition_group_block,
 		"i343::Units::BoostDefinition_group_block",
 		1,
 		i343unitsboostdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_death_program_selector_group_block,
 		"s_death_program_selector_group_block",
 		1,
 		s_death_program_selector);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_dialogue_definition_group_block,
 		"s_dialogue_definition_group_block",
 		1,
 		s_dialogue_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		giant_definition_group_block,
 		"giant_definition_group_block",
 		1,
 		giant_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343meleemeleeadditionaldamagetag_group_block,
 		"i343::Melee::MeleeAdditionalDamageTag_group_block",
 		1,
 		i343meleemeleeadditionaldamagetag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343meleemeleeframeattachmenttag_group_block,
 		"i343::Melee::MeleeFrameAttachmentTag_group_block",
 		1,
 		i343meleemeleeframeattachmenttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343meleemeleeglobalsdefinition_group_block,
 		"i343::Melee::MeleeGlobalsDefinition_group_block",
 		1,
 		i343meleemeleeglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartanabilitiesboostjumpdefinitiontag_group_block,
 		"i343::SpartanAbilities::BoostJumpDefinitionTag_group_block",
 		1,
 		i343spartanabilitiesboostjumpdefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartanabilitiesevadedefinitiontag_group_block,
 		"i343::SpartanAbilities::EvadeDefinitionTag_group_block",
 		1,
 		i343spartanabilitiesevadedefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartanabilitiesgrapplehookdefinitiontag_group_block,
 		"i343::SpartanAbilities::GrappleHookDefinitionTag_group_block",
 		1,
 		i343spartanabilitiesgrapplehookdefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartanabilitiesgroundpounddefinitiontag_group_block,
 		"i343::SpartanAbilities::GroundPoundDefinitionTag_group_block",
 		1,
 		i343spartanabilitiesgroundpounddefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartanabilitiesshoulderbashdefinitiontag_group_block,
 		"i343::SpartanAbilities::ShoulderBashDefinitionTag_group_block",
 		1,
 		i343spartanabilitiesshoulderbashdefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartanabilitiesspartanabilitycomponentdefinition_group_block,
 		"i343::SpartanAbilities::SpartanAbilityComponentDefinition_group_block",
 		1,
 		i343spartanabilitiesspartanabilitycomponentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartanabilitiessprintdefinitiontag_group_block,
 		"i343::SpartanAbilities::SprintDefinitionTag_group_block",
 		1,
 		i343spartanabilitiessprintdefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartanabilitiesstabilizerdefinitiontag_group_block,
 		"i343::SpartanAbilities::StabilizerDefinitionTag_group_block",
 		1,
 		i343spartanabilitiesstabilizerdefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartanabilitiesteleportdefinitiontag_group_block,
 		"i343::SpartanAbilities::TeleportDefinitionTag_group_block",
 		1,
 		i343spartanabilitiesteleportdefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartanabilitieswallclingdefinitiontag_group_block,
 		"i343::SpartanAbilities::WallClingDefinitionTag_group_block",
 		1,
 		i343spartanabilitieswallclingdefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartanabilitieswalljumpdefinitiontag_group_block,
 		"i343::SpartanAbilities::WallJumpDefinitionTag_group_block",
 		1,
 		i343spartanabilitieswalljumpdefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartantrackingpingdefinition_group_block,
 		"i343::SpartanTracking::PingDefinition_group_block",
 		1,
 		i343spartantrackingpingdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343unitrecorderunitrecordingdefinition_group_block,
 		"i343::UnitRecorder::UnitRecordingDefinition_group_block",
 		1,
 		i343unitrecorderunitrecordingdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		unitdefinition_group_block,
 		"UnitDefinition_group_block",
 		1,
 		unitdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343vehiclevehicleattachment_group_block,
 		"i343::Vehicle::VehicleAttachment_group_block",
 		1,
 		i343vehiclevehicleattachment);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343vehiclevehicleconfigurationdefinition_group_block,
 		"i343::Vehicle::VehicleConfigurationDefinition_group_block",
 		1,
 		i343vehiclevehicleconfigurationdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		vehicledefinition_group_block,
 		"VehicleDefinition_group_block",
 		1,
 		vehicledefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		equipmentdefinition_group_block,
 		"EquipmentDefinition_group_block",
 		1,
 		equipmentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343equipmentknockbackresponseoverrideset_group_block,
 		"i343::Equipment::KnockbackResponseOverrideSet_group_block",
 		1,
 		i343equipmentknockbackresponseoverrideset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		itemdefinition_group_block,
 		"ItemDefinition_group_block",
 		1,
 		itemdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		projectile_definition_group_block,
 		"projectile_definition_group_block",
 		1,
 		projectile_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		weapondefinition_group_block,
 		"WeaponDefinition_group_block",
 		1,
 		weapondefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		device_definition_group_block,
 		"device_definition_group_block",
 		1,
 		device_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		machine_definition_group_block,
 		"machine_definition_group_block",
 		1,
 		machine_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		terminal_definition_group_block,
 		"terminal_definition_group_block",
 		1,
 		terminal_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		control_definition_group_block,
 		"control_definition_group_block",
 		1,
 		control_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dispenserdefinition_group_block,
 		"DispenserDefinition_group_block",
 		1,
 		dispenserdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343weaponattachmentheatdefinition_group_block,
 		"i343::Weapon::AttachmentHeatDefinition_group_block",
 		1,
 		i343weaponattachmentheatdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		creature_definition_group_block,
 		"creature_definition_group_block",
 		1,
 		creature_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343collectiblescollectiblesdefinition_group_block,
 		"i343::Collectibles::CollectiblesDefinition_group_block",
 		1,
 		i343collectiblescollectiblesdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343benchmarkbenchmarkdefinition_group_block,
 		"i343::Benchmark::BenchmarkDefinition_group_block",
 		1,
 		i343benchmarkbenchmarkdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343emblemdefinitionsemblem_group_block,
 		"i343::EmblemDefinitions::Emblem_group_block",
 		1,
 		i343emblemdefinitionsemblem);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343emblemglobals_group_block,
 		"i343::EmblemGlobals_group_block",
 		1,
 		i343emblemglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		highlighteventsglobals_group_block,
 		"HighlightEventsGlobals_group_block",
 		1,
 		highlighteventsglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343materialeffectsglobalsdefinition_group_block,
 		"i343::MaterialEffects::GlobalsDefinition_group_block",
 		1,
 		i343materialeffectsglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343subtitleglobals_group_block,
 		"i343::SubtitleGlobals_group_block",
 		1,
 		i343subtitleglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		enginefanfarefanfaredefinition_group_block,
 		"Engine::Fanfare::FanfareDefinition_group_block",
 		1,
 		enginefanfarefanfaredefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundresponsegroupdefinition_group_block,
 		"SoundResponseGroupDefinition_group_block",
 		1,
 		soundresponsegroupdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundincidentresponsegroupdefinition_group_block,
 		"SoundIncidentResponseGroupDefinition_group_block",
 		1,
 		soundincidentresponsegroupdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		spawningspawnsettingstaggroup_group_block,
 		"Spawning::SpawnSettingsTagGroup_group_block",
 		1,
 		spawningspawnsettingstaggroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_globals_group_block,
 		"s_game_globals_group_block",
 		1,
 		s_game_globals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_performance_throttle_definitions_group_block,
 		"s_game_performance_throttle_definitions_group_block",
 		1,
 		s_game_performance_throttle_definitions);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuiplatformanimationstag_group_block,
 		"Interface::Customization::UIPlatformAnimationsTag_group_block",
 		1,
 		interfacecustomizationuiplatformanimationstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuiiteminspecttag_group_block,
 		"Interface::Customization::UIItemInspectTag_group_block",
 		1,
 		interfacecustomizationuiiteminspecttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuilightpresetstag_group_block,
 		"Interface::Customization::UILightPresetsTag_group_block",
 		1,
 		interfacecustomizationuilightpresetstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuicamerapresetstag_group_block,
 		"Interface::Customization::UICameraPresetsTag_group_block",
 		1,
 		interfacecustomizationuicamerapresetstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuitransitionsoundstag_group_block,
 		"Interface::Customization::UITransitionSoundsTag_group_block",
 		1,
 		interfacecustomizationuitransitionsoundstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuipersonalaisoundstag_group_block,
 		"Interface::Customization::UIPersonalAiSoundsTag_group_block",
 		1,
 		interfacecustomizationuipersonalaisoundstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacecustomizationuiobjectcustomizationdatatag_group_block,
 		"Interface::Customization::UIObjectCustomizationDataTag_group_block",
 		1,
 		interfacecustomizationuiobjectcustomizationdatatag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343cameraglobals_group_block,
 		"i343::CameraGlobals_group_block",
 		1,
 		i343cameraglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343campaignglobals_group_block,
 		"i343::CampaignGlobals_group_block",
 		1,
 		i343campaignglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343cheatglobals_group_block,
 		"i343::CheatGlobals_group_block",
 		1,
 		i343cheatglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343colorglobals_group_block,
 		"i343::ColorGlobals_group_block",
 		1,
 		i343colorglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343composerglobals_group_block,
 		"i343::ComposerGlobals_group_block",
 		1,
 		i343composerglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343controlglobals_group_block,
 		"i343::ControlGlobals_group_block",
 		1,
 		i343controlglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343damageglobals_group_block,
 		"i343::DamageGlobals_group_block",
 		1,
 		i343damageglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343difficultyglobals_group_block,
 		"i343::DifficultyGlobals_group_block",
 		1,
 		i343difficultyglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343gameplayobjectglobals_group_block,
 		"i343::GameplayObjectGlobals_group_block",
 		1,
 		i343gameplayobjectglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343garbagecollectionglobals_group_block,
 		"i343::GarbageCollectionGlobals_group_block",
 		1,
 		i343garbagecollectionglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343interfaceglobals_group_block,
 		"i343::InterfaceGlobals_group_block",
 		1,
 		i343interfaceglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343locglobals_group_block,
 		"i343::LOCGlobals_group_block",
 		1,
 		i343locglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343materialglobals_group_block,
 		"i343::MaterialGlobals_group_block",
 		1,
 		i343materialglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343playerglobals_group_block,
 		"i343::PlayerGlobals_group_block",
 		1,
 		i343playerglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343skillrankingglobals_group_block,
 		"i343::SkillRankingGlobals_group_block",
 		1,
 		i343skillrankingglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343skullglobals_group_block,
 		"i343::SkullGlobals_group_block",
 		1,
 		i343skullglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343softceilingglobals_group_block,
 		"i343::SoftCeilingGlobals_group_block",
 		1,
 		i343softceilingglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spartantrackingglobals_group_block,
 		"i343::SpartanTracking::Globals_group_block",
 		1,
 		i343spartantrackingglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativemalleablepropertydefinitiontag_group_block,
 		"i343::Narrative::MalleablePropertyDefinitionTag_group_block",
 		1,
 		i343narrativemalleablepropertydefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343narrativenarrativeglobalstag_group_block,
 		"i343::Narrative::NarrativeGlobalsTag_group_block",
 		1,
 		i343narrativenarrativeglobalstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343personalaipersonalaiglobalsdefinition_group_block,
 		"i343::PersonalAI::PersonalAIGlobalsDefinition_group_block",
 		1,
 		i343personalaipersonalaiglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_loadout_globals_tag_definition_group_block,
 		"s_loadout_globals_tag_definition_group_block",
 		1,
 		s_loadout_globals_tag_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_location_name_globals_tag_definition_group_block,
 		"s_location_name_globals_tag_definition_group_block",
 		1,
 		s_location_name_globals_tag_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_medal_globals_group_block,
 		"s_game_medal_globals_group_block",
 		1,
 		s_game_medal_globals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationattachmentconfiguration_group_block,
 		"i343::ObjectCustomization::AttachmentConfiguration_group_block",
 		1,
 		i343objectcustomizationattachmentconfiguration);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationeffectoverride_group_block,
 		"i343::ObjectCustomization::EffectOverride_group_block",
 		1,
 		i343objectcustomizationeffectoverride);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationthemeconfiguration_group_block,
 		"i343::ObjectCustomization::ThemeConfiguration_group_block",
 		1,
 		i343objectcustomizationthemeconfiguration);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationweaponthemeconfiguration_group_block,
 		"i343::ObjectCustomization::WeaponThemeConfiguration_group_block",
 		1,
 		i343objectcustomizationweaponthemeconfiguration);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationvehiclethemeconfiguration_group_block,
 		"i343::ObjectCustomization::VehicleThemeConfiguration_group_block",
 		1,
 		i343objectcustomizationvehiclethemeconfiguration);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343objectcustomizationglobals_group_block,
 		"i343::ObjectCustomization::Globals_group_block",
 		1,
 		i343objectcustomizationglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343spottingglobalsdefinition_group_block,
 		"i343::Spotting::GlobalsDefinition_group_block",
 		1,
 		i343spottingglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_multiplayer_globals_definition_group_block,
 		"s_multiplayer_globals_definition_group_block",
 		1,
 		s_multiplayer_globals_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_multiplayer_object_type_list_group_block,
 		"s_multiplayer_object_type_list_group_block",
 		1,
 		s_multiplayer_object_type_list);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_player_model_customization_globals_definition_group_block,
 		"s_player_model_customization_globals_definition_group_block",
 		1,
 		s_player_model_customization_globals_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_rumble_definition_group_block,
 		"s_rumble_definition_group_block",
 		1,
 		s_rumble_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_game_engine_globals_definition_group_block,
 		"s_game_engine_globals_definition_group_block",
 		1,
 		s_game_engine_globals_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		suppressedincidentgroupdefinition_group_block,
 		"SuppressedIncidentGroupDefinition_group_block",
 		1,
 		suppressedincidentgroupdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343supplylinesmarinesquaddefinition_group_block,
 		"i343::SupplyLines::MarineSquadDefinition_group_block",
 		1,
 		i343supplylinesmarinesquaddefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343supplylinessupplylinessystemglobalsdefinition_group_block,
 		"i343::SupplyLines::SupplyLinesSystemGlobalsDefinition_group_block",
 		1,
 		i343supplylinessupplylinessystemglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacedamagereportingdisplayglobals_group_block,
 		"Interface::DamageReportingDisplayGlobals_group_block",
 		1,
 		interfacedamagereportingdisplayglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dispositioncolorgroupdefinition_group_block,
 		"DispositionColorGroupDefinition_group_block",
 		1,
 		dispositioncolorgroupdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343gameplaymenugameplaymenuuiinfo_group_block,
 		"i343::GameplayMenu::GameplayMenuUIInfo_group_block",
 		1,
 		i343gameplaymenugameplaymenuuiinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ingamemapasyncloadedassets_group_block,
 		"InGameMapAsyncLoadedAssets_group_block",
 		1,
 		ingamemapasyncloadedassets);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ingamemapsettingstag_group_block,
 		"InGameMapSettingsTag_group_block",
 		1,
 		ingamemapsettingstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		ingamemapmaterialvariationstag_group_block,
 		"InGameMapMaterialVariationsTag_group_block",
 		1,
 		ingamemapmaterialvariationstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		luascripttagdefinition_group_block,
 		"LuaScriptTagDefinition_group_block",
 		1,
 		luascripttagdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		sampledataluascripttagdefinition_group_block,
 		"SampleDataLuaScriptTagDefinition_group_block",
 		1,
 		sampledataluascripttagdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenarrationnarrationphonemesgroup_group_block,
 		"Interface::Narration::NarrationPhonemesGroup_group_block",
 		1,
 		interfacenarrationnarrationphonemesgroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointnavpointanimationgrouptag_group_block,
 		"Interface::NavPoint::NavPointAnimationGroupTag_group_block",
 		1,
 		interfacenavpointnavpointanimationgrouptag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointnavpointlayoutdefinition_group_block,
 		"Interface::NavPoint::NavPointLayoutDefinition_group_block",
 		1,
 		interfacenavpointnavpointlayoutdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointnavpointpresentationtag_group_block,
 		"Interface::NavPoint::NavPointPresentationTag_group_block",
 		1,
 		interfacenavpointnavpointpresentationtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointnavpointanimationdefinition_group_block,
 		"Interface::NavPoint::NavPointAnimationDefinition_group_block",
 		1,
 		interfacenavpointnavpointanimationdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenavpointnavpointparameterstagdefinition_group_block,
 		"Interface::NavPoint::NavPointParametersTagDefinition_group_block",
 		1,
 		interfacenavpointnavpointparameterstagdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenodegraphnodegraphstackdefinition_group_block,
 		"Interface::NodeGraph::NodeGraphStackDefinition_group_block",
 		1,
 		interfacenodegraphnodegraphstackdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenodegraphuiadsweaponnodedefinition_group_block,
 		"Interface::NodeGraph::UIADSWeaponNodeDefinition_group_block",
 		1,
 		interfacenodegraphuiadsweaponnodedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacenodegraphuivehiclenodedefinition_group_block,
 		"Interface::NodeGraph::UIVehicleNodeDefinition_group_block",
 		1,
 		interfacenodegraphuivehiclenodedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudcomponentdefinition_group_block,
 		"Interface::FastHud::ComponentDefinition_group_block",
 		1,
 		interfacefasthudcomponentdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfacefasthudscreendefinition_group_block,
 		"Interface::FastHud::ScreenDefinition_group_block",
 		1,
 		interfacefasthudscreendefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfaceslamsurilookuptabledefinition_group_block,
 		"Interface::SLAMS::UriLookupTableDefinition_group_block",
 		1,
 		interfaceslamsurilookuptabledefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfaceuivehicledisplayinfo_group_block,
 		"Interface::UIVehicleDisplayInfo_group_block",
 		1,
 		interfaceuivehicledisplayinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfaceuiweapondisplayinfo_group_block,
 		"Interface::UIWeaponDisplayInfo_group_block",
 		1,
 		interfaceuiweapondisplayinfo);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		wpffontdefinition_group_block,
 		"WPFFontDefinition_group_block",
 		1,
 		wpffontdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		wpffontsetdefinition_group_block,
 		"WPFFontSetDefinition_group_block",
 		1,
 		wpffontsetdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		typefacedefinition_group_block,
 		"TypefaceDefinition_group_block",
 		1,
 		typefacedefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_controller_mapping_definition_group_block,
 		"s_controller_mapping_definition_group_block",
 		1,
 		s_controller_mapping_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_cui_static_data_group_definition_group_block,
 		"s_cui_static_data_group_definition_group_block",
 		1,
 		s_cui_static_data_group_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cuiscreendefinition_group_block,
 		"CuiScreenDefinition_group_block",
 		1,
 		cuiscreendefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		cuiresourcesdefinition_group_block,
 		"CuiResourcesDefinition_group_block",
 		1,
 		cuiresourcesdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		interfaceemblemthemeglobals_group_block,
 		"Interface::EmblemThemeGlobals_group_block",
 		1,
 		interfaceemblemthemeglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		userinterfacehudglobalsdefinitions_group_block,
 		"UserInterfaceHUDGlobalsDefinitions_group_block",
 		1,
 		userinterfacehudglobalsdefinitions);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_user_interface_sounds_group_block,
 		"s_user_interface_sounds_group_block",
 		1,
 		s_user_interface_sounds);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_user_interface_shared_globals_group_block,
 		"s_user_interface_shared_globals_group_block",
 		1,
 		s_user_interface_shared_globals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_user_interface_tag_globals_group_block,
 		"s_user_interface_tag_globals_group_block",
 		1,
 		s_user_interface_tag_globals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicscharacterclamberingdefinition_group_block,
 		"i343::Physics::Character::ClamberingDefinition_group_block",
 		1,
 		i343physicscharacterclamberingdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicscollisionfilterdefinition_group_block,
 		"i343::Physics::CollisionFilterDefinition_group_block",
 		1,
 		i343physicscollisionfilterdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicscollisionlayerauditconfigurationtag_group_block,
 		"i343::Physics::CollisionLayerAuditConfigurationTag_group_block",
 		1,
 		i343physicscollisionlayerauditconfigurationtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsmodelphysicsmodeldefinition_group_block,
 		"i343::PhysicsModel::PhysicsModelDefinition_group_block",
 		1,
 		i343physicsmodelphysicsmodeldefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsphysicsglobalsdefinition_group_block,
 		"i343::Physics::PhysicsGlobalsDefinition_group_block",
 		1,
 		i343physicsphysicsglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		staticcollisiongeotag_group_block,
 		"StaticCollisionGeoTag_group_block",
 		1,
 		staticcollisiongeotag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsterraincollisiongeoparams_group_block,
 		"i343::Physics::TerrainCollisionGeoParams_group_block",
 		1,
 		i343physicsterraincollisiongeoparams);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsterraincollisiongeocellinputstag_group_block,
 		"i343::Physics::TerrainCollisionGeoCellInputsTag_group_block",
 		1,
 		i343physicsterraincollisiongeocellinputstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsterraincollisiongeoinputssettag_group_block,
 		"i343::Physics::TerrainCollisionGeoInputsSetTag_group_block",
 		1,
 		i343physicsterraincollisiongeoinputssettag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsterraincollisioncellgeotag_group_block,
 		"i343::Physics::TerrainCollisionCellGeoTag_group_block",
 		1,
 		i343physicsterraincollisioncellgeotag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicsterraincollisiongeotag_group_block,
 		"i343::Physics::TerrainCollisionGeoTag_group_block",
 		1,
 		i343physicsterraincollisiongeotag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343physicslowceilingcontroltag_group_block,
 		"i343::Physics::LowCeilingControlTag_group_block",
 		1,
 		i343physicslowceilingcontroltag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		collision_model_definition_group_block,
 		"collision_model_definition_group_block",
 		1,
 		collision_model_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_grounded_friction_definition_group_block,
 		"s_grounded_friction_definition_group_block",
 		1,
 		s_grounded_friction_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		point_physics_definition_group_block,
 		"point_physics_definition_group_block",
 		1,
 		point_physics_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_spring_acceleration_definition_group_block,
 		"s_spring_acceleration_definition_group_block",
 		1,
 		s_spring_acceleration_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		waterphysicsdragpropertiestag_group_block,
 		"WaterPhysicsDragPropertiesTag_group_block",
 		1,
 		waterphysicsdragpropertiestag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		sound_environment_group_block,
 		"sound_environment_group_block",
 		1,
 		sound_environment);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundtailtag_group_block,
 		"SoundTailTag_group_block",
 		1,
 		soundtailtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		acousticstagdata_group_block,
 		"AcousticsTagData_group_block",
 		1,
 		acousticstagdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundbankdatafiletag_group_block,
 		"SoundBankDataFileTag_group_block",
 		1,
 		soundbankdatafiletag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundbanktag_group_block,
 		"SoundBankTag_group_block",
 		1,
 		soundbanktag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		audiogameglobalsettingstag_group_block,
 		"AudioGameGlobalSettingsTag_group_block",
 		1,
 		audiogameglobalsettingstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		musiccontroldefinition_group_block,
 		"MusicControlDefinition_group_block",
 		1,
 		musiccontroldefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		physicsphantomssounddefinition_group_block,
 		"PhysicsPhantomsSoundDefinition_group_block",
 		1,
 		physicsphantomssounddefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundscenarioconstantstag_group_block,
 		"SoundScenarioConstantsTag_group_block",
 		1,
 		soundscenarioconstantstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		loopingsoundtag_group_block,
 		"LoopingSoundTag_group_block",
 		1,
 		loopingsoundtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		oneshotsoundtag_group_block,
 		"OneShotSoundTag_group_block",
 		1,
 		oneshotsoundtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		soundcategorytag_group_block,
 		"SoundCategoryTag_group_block",
 		1,
 		soundcategorytag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		audiogameaudiothreatglobalsdefinition_group_block,
 		"Audio::Game::AudioThreatGlobalsDefinition_group_block",
 		1,
 		audiogameaudiothreatglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeengineforgeobjectscriptpropertymenuitemdefinitioncollection_group_block,
 		"ForgeEngine::ForgeObjectScriptPropertyMenuItemDefinitionCollection_group_block",
 		1,
 		forgeengineforgeobjectscriptpropertymenuitemdefinitioncollection);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeengineforgekitdefinition_group_block,
 		"ForgeEngine::ForgeKitDefinition_group_block",
 		1,
 		forgeengineforgekitdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeactionsoundsdefinition_group_block,
 		"ForgeActionSoundsDefinition_group_block",
 		1,
 		forgeactionsoundsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgenamedtaglists_group_block,
 		"ForgeNamedTagLists_group_block",
 		1,
 		forgenamedtaglists);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeloopingsoundcategories_group_block,
 		"ForgeLoopingSoundCategories_group_block",
 		1,
 		forgeloopingsoundcategories);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgesoundresponsesounds_group_block,
 		"ForgeSoundResponseSounds_group_block",
 		1,
 		forgesoundresponsesounds);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeglobalsdefinition_group_block,
 		"ForgeGlobalsDefinition_group_block",
 		1,
 		forgeglobalsdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeengineforgeobjectdata_group_block,
 		"ForgeEngine::ForgeObjectData_group_block",
 		1,
 		forgeengineforgeobjectdata);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeengineforgeobjectmanifest_group_block,
 		"ForgeEngine::ForgeObjectManifest_group_block",
 		1,
 		forgeengineforgeobjectmanifest);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		forgeenginetelescopingassettag_group_block,
 		"ForgeEngine::TelescopingAssetTag_group_block",
 		1,
 		forgeenginetelescopingassettag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343simulationucnauthoritytrustsettings_group_block,
 		"i343::Simulation::UCNAuthorityTrustSettings_group_block",
 		1,
 		i343simulationucnauthoritytrustsettings);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_simulation_interpolation_definition_group_block,
 		"s_simulation_interpolation_definition_group_block",
 		1,
 		s_simulation_interpolation_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		engineforgesoundlistdefinition_group_block,
 		"Engine::ForgeSoundListDefinition_group_block",
 		1,
 		engineforgesoundlistdefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		c_performance_throttles_group_block,
 		"c_performance_throttles_group_block",
 		1,
 		c_performance_throttles);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_lens_flare_definition_group_block,
 		"s_lens_flare_definition_group_block",
 		1,
 		s_lens_flare_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		animatedmesh_group_block,
 		"AnimatedMesh_group_block",
 		1,
 		animatedmesh);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		runtimegeotag_group_block,
 		"RuntimeGeoTag_group_block",
 		1,
 		runtimegeotag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rawgeotag_group_block,
 		"RawGeoTag_group_block",
 		1,
 		rawgeotag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structurelightmap_group_block,
 		"StructureLightmap_group_block",
 		1,
 		structurelightmap);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		gobosetting_group_block,
 		"GoboSetting_group_block",
 		1,
 		gobosetting);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		dynamiclight_group_block,
 		"DynamicLight_group_block",
 		1,
 		dynamiclight);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		render_model_definition_group_block,
 		"render_model_definition_group_block",
 		1,
 		render_model_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		structurelights_group_block,
 		"StructureLights_group_block",
 		1,
 		structurelights);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		baseshader_group_block,
 		"BaseShader_group_block",
 		1,
 		baseshader);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		explicitshadertable_group_block,
 		"ExplicitShaderTable_group_block",
 		1,
 		explicitshadertable);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		shaderoptions_group_block,
 		"ShaderOptions_group_block",
 		1,
 		shaderoptions);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		shaderversion_group_block,
 		"ShaderVersion_group_block",
 		1,
 		shaderversion);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmapdictionarydefinition_group_block,
 		"BitmapDictionaryDefinition_group_block",
 		1,
 		bitmapdictionarydefinition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmapgroup_group_block,
 		"BitmapGroup_group_block",
 		1,
 		bitmapgroup);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmappackagesettingstable_group_block,
 		"BitmapPackageSettingsTable_group_block",
 		1,
 		bitmappackagesettingstable);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		color_table_group_block,
 		"color_table_group_block",
 		1,
 		color_table);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicstexturegrouptable_group_block,
 		"i343::Graphics::TextureGroupTable_group_block",
 		1,
 		i343graphicstexturegrouptable);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		bitmapusagetable_group_block,
 		"BitmapUsageTable_group_block",
 		1,
 		bitmapusagetable);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		rasterizerglobalstag_group_block,
 		"RasterizerGlobalsTag_group_block",
 		1,
 		rasterizerglobalstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		effectglobalforcedefinitiontag_group_block,
 		"EffectGlobalForceDefinitionTag_group_block",
 		1,
 		effectglobalforcedefinitiontag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsforwardfastlightingtag_group_block,
 		"i343::Graphics::ForwardFastLightingTag_group_block",
 		1,
 		i343graphicsforwardfastlightingtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		lightgrouptag_group_block,
 		"LightGroupTag_group_block",
 		1,
 		lightgrouptag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicshairprofiletag_group_block,
 		"i343::Graphics::HairProfileTag_group_block",
 		1,
 		i343graphicshairprofiletag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialtag_group_block,
 		"MaterialTag_group_block",
 		1,
 		materialtag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		materialpreset_group_block,
 		"MaterialPreset_group_block",
 		1,
 		materialpreset);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		shaderbytecode_group_block,
 		"ShaderBytecode_group_block",
 		1,
 		shaderbytecode);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		shaderrootsignature_group_block,
 		"ShaderRootSignature_group_block",
 		1,
 		shaderrootsignature);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		shadertag_group_block,
 		"ShaderTag_group_block",
 		1,
 		shadertag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		shadervariant_group_block,
 		"ShaderVariant_group_block",
 		1,
 		shadervariant);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicssssprofileglobals_group_block,
 		"i343::Graphics::SssProfileGlobals_group_block",
 		1,
 		i343graphicssssprofileglobals);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		s_model_definition_group_block,
 		"s_model_definition_group_block",
 		1,
 		s_model_definition);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		presetdefinitionstag_group_block,
 		"PresetDefinitionsTag_group_block",
 		1,
 		presetdefinitionstag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		explicitshaders_group_block,
 		"ExplicitShaders_group_block",
 		1,
 		explicitshaders);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicspipelinestatedictionary_group_block,
 		"i343::Graphics::PipelineStateDictionary_group_block",
 		1,
 		i343graphicspipelinestatedictionary);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		i343graphicsvectorarttag_group_block,
 		"i343::Graphics::VectorArtTag_group_block",
 		1,
 		i343graphicsvectorarttag);
 
-	TAG_BLOCK_FROM_STRUCT(
+	TAG_BLOCK_FROM_STRUCT_V7(
 		anytag_block_group_block,
 		"AnyTag_block_group_block",
 		1,
