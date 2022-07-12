@@ -7,6 +7,7 @@ c_high_level_tag_source_generator::c_high_level_tag_source_generator(s_engine_pl
 	output_directory(),
 	output_header_file_path(),
 	output_source_file_path(),
+	output_forward_declare_file_path(),
 	output_virtual_file_path(),
 	output_misc_file_path()
 {
@@ -33,6 +34,10 @@ c_high_level_tag_source_generator::c_high_level_tag_source_generator(s_engine_pl
 	std::stringstream output_source_file_path_stream;
 	output_source_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + ".cpp";
 	output_source_file_path = output_source_file_path_stream.str();
+
+	std::stringstream output_forward_declare_file_path_stream;
+	output_forward_declare_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + "_forward_declare.h";
+	output_forward_declare_file_path = output_forward_declare_file_path_stream.str();
 }
 
 c_high_level_tag_source_generator::~c_high_level_tag_source_generator()
@@ -253,13 +258,10 @@ void c_high_level_tag_source_generator::generate_header()
 		stream << indent << "\t\t" << "virtual bool is_field_active(const blofeld::s_tag_field& field) const override;" << std::endl;
 		stream << indent << "\t\t" << "virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const override;" << std::endl;
 		stream << indent << "\t\t" << "virtual const blofeld::s_tag_field* const* get_blofeld_field_list() const override;" << std::endl;
-		stream << indent << "\t\t" << "virtual unsigned long long get_type_guid() const override;" << std::endl;
 
 		stream << std::endl;
 
 		stream << indent << "\t\t" << "static const blofeld::s_tag_struct_definition& tag_struct_definition;" << std::endl;
-		stream << indent << "\t\t" << "static unsigned long const low_level_type_size;" << std::endl;
-		stream << indent << "\t\t" << "static constexpr unsigned long long type_guid = 0x" << std::hex << structure_guid << std::dec << ";" << std::endl;
 
 		stream << std::endl;
 
@@ -374,6 +376,77 @@ void c_high_level_tag_source_generator::generate_header()
 	ASSERT(indent.empty());
 	std::string source_code = stream.str();
 	BCS_RESULT rs = write_output_with_logging(output_header_file_path.c_str(), source_code.data(), source_code.size());
+	ASSERT(BCS_SUCCEEDED(rs));
+}
+
+void c_high_level_tag_source_generator::generate_forward_declare()
+{
+	std::string namespace_without_semicolons = get_namespace(false);
+
+	std::stringstream stream;
+
+	stream << "#pragma once" << std::endl;
+	stream << std::endl;
+
+	std::stringstream header_define_stream;
+	header_define_stream << "high_level_" << get_engine_namespace(false) << "_" << get_platform_namespace(false);
+	std::string header_define = header_define_stream.str();
+	std::transform(header_define.begin(), header_define.end(), header_define.begin(), ::toupper);
+	stream << "#define " << header_define << std::endl;
+	stream << indent << std::endl;
+
+	begin_namespace_tree(stream, _namespace_tree_write_namespace);
+
+	stream << indent << "BCS_DEBUG_API extern h_tag* create_high_level_tag(h_group& group, const char* tag_filepath);" << std::endl;
+	stream << indent << "BCS_DEBUG_API extern h_prototype* create_high_level_object(const blofeld::s_tag_struct_definition& tag_struct_definition);" << std::endl;
+	stream << indent << std::endl;
+
+	std::unordered_map<std::string, int> field_name_unique_counter;
+	union
+	{
+		struct
+		{
+			unsigned long engine_platform_build_hash;
+			long structure_index;
+		};
+		unsigned long long structure_guid;
+	};
+	engine_platform_build_hash = XXH32(&engine_platform_build, sizeof(engine_platform_build), 0);
+	structure_index = -1;
+	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
+	{
+		structure_index++;
+		const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
+
+		//if (struct_definition == &blofeld::rasterizer_compiled_shader_struct_struct_definition)
+		//{
+		//	debug_point;
+		//}
+
+		unsigned long blofeld_field_list_size = 1;
+		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+		{
+			const s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+
+			if (tag_field.field_type >= k_number_of_blofeld_field_types)
+			{
+				continue;
+			}
+
+			blofeld_field_list_size++;
+		}
+
+		std::string high_level_structure_name = format_structure_symbol(*struct_definition);
+
+		stream << indent << "class " << high_level_structure_name << ";" << std::endl;
+	}
+	stream << std::endl;
+
+	end_namespace_tree(stream, _namespace_tree_write_namespace);
+
+	ASSERT(indent.empty());
+	std::string source_code = stream.str();
+	BCS_RESULT rs = write_output_with_logging(output_forward_declare_file_path.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));
 }
 
@@ -741,12 +814,9 @@ void c_high_level_tag_source_generator::generate_source_virtual()
 			blofeld_field_list_count++;
 		}
 
-		unsigned long low_level_type_size = calculate_struct_size(engine_platform_build, *struct_definition);
-
 		std::string high_level_structure_name = format_structure_symbol(*struct_definition);
 
 		stream << indent << "const blofeld::s_tag_struct_definition& " << high_level_structure_name << "::tag_struct_definition = " << struct_definition->symbol->symbol_name << ";" << std::endl;
-		stream << indent << "unsigned long const " << high_level_structure_name << "::low_level_type_size = " << low_level_type_size << "u;" << std::endl;
 		stream << std::endl;
 
 		if (tag_group != nullptr)
@@ -787,12 +857,6 @@ void c_high_level_tag_source_generator::generate_source_virtual()
 			stream << indent << "\t" << "};" << std::endl;
 		}
 		stream << indent << "\treturn blofeld_field_list;" << std::endl;
-		stream << indent << "}" << std::endl;
-		stream << std::endl;
-
-		stream << indent << "unsigned long long " << high_level_structure_name << "::get_type_guid() const" << std::endl;
-		stream << indent << "{" << std::endl;
-		stream << indent << "\treturn type_guid;" << std::endl;
 		stream << indent << "}" << std::endl;
 		stream << std::endl;
 	}

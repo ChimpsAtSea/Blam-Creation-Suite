@@ -11,9 +11,16 @@
 #include <TagValidate\tagvalidate-public-pch.h>
 #include <MandrillLib\mandrilllib-public-pch.h>
 
+#include <Generated/high_level_halo1_pc64/halo1_pc64_forward_declare.h>
+#include <Generated/high_level_halo3_pc64/halo3_pc64_forward_declare.h>
+#include <Generated/high_level_haloreach_xbox360/haloreach_xbox360_forward_declare.h>
+#include <Generated/high_level_infinite_pc64/infinite_pc64_forward_declare.h>
+
 #include "mandrillui-public-pch.h"
 
+#ifndef __INTELLISENSE__
 #include <Generated/high_level_halo1_pc64/highlevel-halo1-pc64-public-pch.h>
 #include <Generated/high_level_halo3_pc64/highlevel-halo3-pc64-public-pch.h>
 #include <Generated/high_level_haloreach_xbox360/highlevel-haloreach-xbox360-public-pch.h>
 #include <Generated/high_level_infinite_pc64/highlevel-infinite-pc64-public-pch.h>
+#endif

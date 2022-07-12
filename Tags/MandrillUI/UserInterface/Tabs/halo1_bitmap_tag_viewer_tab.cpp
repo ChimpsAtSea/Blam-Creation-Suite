@@ -1,11 +1,10 @@
 #include "mandrillui-private-pch.h"
-
 #include <Generated/high_level_halo1_pc64/highlevel-halo1-pc64-public-pch.h>
 
 using namespace blofeld;
 using namespace blofeld::halo1::pc64;
 
-c_halo1_bitmap_tag_viewer_tab::c_halo1_bitmap_tag_viewer_tab(c_tag_project& tag_project, h_bitmap& halo1_bitmap_tag, c_mandrill_tab& parent) :
+c_halo1_bitmap_tag_viewer_tab::c_halo1_bitmap_tag_viewer_tab(c_tag_project& tag_project, h_bitmap_definition& halo1_bitmap_tag, c_mandrill_tab& parent) :
 	c_mandrill_tab("Bitmap View", "Bitmap View", &parent, false),
 	tag_project(tag_project),
 	halo1_bitmap_tag(halo1_bitmap_tag)
@@ -23,7 +22,7 @@ c_tag_project& c_halo1_bitmap_tag_viewer_tab::get_tag_project() const
 	return tag_project;
 }
 
-h_bitmap& c_halo1_bitmap_tag_viewer_tab::get_tag() const
+h_bitmap_definition& c_halo1_bitmap_tag_viewer_tab::get_tag() const
 {
 	return halo1_bitmap_tag;
 }

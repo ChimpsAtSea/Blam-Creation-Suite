@@ -1,18 +1,8 @@
 #pragma once
 
-class c_haloreach_cache_file;
+class c_halo1_bitmap_tag_viewer_tab;
 
-namespace blofeld
-{
-	namespace halo1
-	{
-		namespace pc64
-		{
-			class h_bitmap;
-			class h_bitmap_data;
-		}
-	}
-}
+#ifdef HIGH_LEVEL_HALO1_PC64
 
 class c_halo1_bitmap_tag_viewer_tab :
 	public c_mandrill_tab
@@ -22,11 +12,11 @@ public:
 	c_halo1_bitmap_tag_viewer_tab(c_halo1_bitmap_tag_viewer_tab const&) = delete;
 	c_halo1_bitmap_tag_viewer_tab& operator=(c_halo1_bitmap_tag_viewer_tab const&) = delete;
 
-	c_halo1_bitmap_tag_viewer_tab(c_tag_project& tag_project, blofeld::halo1::pc64::h_bitmap& halo1_bitmap_tag, c_mandrill_tab& parent);
+	c_halo1_bitmap_tag_viewer_tab(c_tag_project& tag_project, blofeld::halo1::pc64::h_bitmap_definition& halo1_bitmap_tag, c_mandrill_tab& parent);
 	virtual ~c_halo1_bitmap_tag_viewer_tab();
 
 	c_tag_project& get_tag_project() const;
-	blofeld::halo1::pc64::h_bitmap& get_tag() const;
+	blofeld::halo1::pc64::h_bitmap_definition& get_tag() const;
 
 protected:
 	virtual void render_impl() override final;
@@ -38,5 +28,7 @@ protected:
 	void render_bitmap(long index, blofeld::halo1::pc64::h_bitmap_data& bitmap_data);
 
 	c_tag_project& tag_project;
-	blofeld::halo1::pc64::h_bitmap& halo1_bitmap_tag;
+	blofeld::halo1::pc64::h_bitmap_definition& halo1_bitmap_tag;
 };
+
+#endif

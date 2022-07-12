@@ -8,6 +8,7 @@ public:
 	virtual ~c_high_level_tag_source_generator();
 
 	void generate_header();
+	void generate_forward_declare();
 	void generate_tag_constructor_params(std::stringstream& stream, const blofeld::s_tag_struct_definition& tag_struct_definition);
 	void generate_ctor_source(unsigned long source_index, unsigned long source_count);
 	void generate_source_virtual();
@@ -16,6 +17,7 @@ public:
 	std::string output_directory;
 	std::string output_header_file_path;
 	std::string output_source_file_path;
+	std::string output_forward_declare_file_path;
 	std::string output_virtual_file_path;
 	std::string output_misc_file_path;
 

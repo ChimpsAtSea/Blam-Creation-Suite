@@ -56,18 +56,29 @@ BCS_RESULT create_high_level(s_engine_platform_build engine_platform_build)
 		ASSERT(BCS_SUCCEEDED(get_engine_type_pretty_string(engine_platform_build.engine_type, engine_name)));
 
 		c_stopwatch stopwatch;
-		stopwatch.start();
-		c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
-		if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
 		{
-			console_write_line("Finished generating high level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
+			stopwatch.start();
+			c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
+			console_write_line("Generating high level header (%s)", engine_name);
+			high_level_tag_source_generator.generate_header();
+			stopwatch.stop();
+			if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+			{
+				console_write_line("Finished generating high level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
+			}
+			stopwatch.stop();
 		}
-		console_write_line("Generating high level header (%s)", engine_name);
-		high_level_tag_source_generator.generate_header();
-		stopwatch.stop();
-		if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
 		{
-			console_write_line("Finished generating high level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
+			stopwatch.start();
+			c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
+			console_write_line("Generating high level forward declare header (%s)", engine_name);
+			high_level_tag_source_generator.generate_forward_declare();
+			stopwatch.stop();
+			if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+			{
+				console_write_line("Finished generating high level forward declare header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
+			}
+			stopwatch.stop();
 		}
 
 		return BCS_S_OK;
