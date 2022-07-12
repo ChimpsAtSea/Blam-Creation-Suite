@@ -20,13 +20,22 @@ public:
 	virtual bool is_unqualified() const;
 	virtual void clear();
 
+	virtual void _set_unqualified_userdata(tag group_tag, void* userdata); // tag parsing only!
+	virtual void* _get_userdata() const; // tag parsing only!
+
+
 private:
 	bool tag_qualified : 1;
+	bool tag_userdata : 1;
 	union
 	{
 		struct
 		{
-			const char* unqualified_path;
+			union
+			{
+				const char* unqualified_path;
+				void* userdata;
+			};
 			tag group_tag;
 		};
 		struct

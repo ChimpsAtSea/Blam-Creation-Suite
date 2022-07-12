@@ -135,5 +135,7 @@ add_subdirectory(ContentFramework/AudioConversion)
 
 add_subdirectory(Runtime/Mandrill)
 add_subdirectory(Runtime/ImGUIUIPrototype)
+add_subdirectory(Runtime/GraphicsTest)
+add_subdirectory(Runtime/Halo1TagFileTest)
 add_subdirectory(Runtime/Halo3TagFileTest)
 add_subdirectory(Runtime/Chimp)

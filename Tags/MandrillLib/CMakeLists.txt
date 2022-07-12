@@ -188,6 +188,8 @@ add_library(MandrillLib ${BCS_LIBRARY_TYPE}
 	Filesystem/Chunks/tag_header_chunk.h
 	Filesystem/Chunks/typed_chunk.h
 	Filesystem/Filesystem.h
+	Filesystem/gen1_tag_file_parser.cpp
+	Filesystem/gen1_tag_file_parser.h
 	Filesystem/high_level_tag_file_writer.cpp
 	Filesystem/high_level_tag_file_writer.h
 	Filesystem/single_tag_file_header.cpp

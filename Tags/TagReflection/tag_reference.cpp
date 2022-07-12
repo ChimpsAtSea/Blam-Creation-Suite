@@ -12,6 +12,7 @@ h_tag_reference::h_tag_reference(h_type* parent) :
 h_tag_reference::h_tag_reference(const h_tag_reference& source) :
 	h_type(parent),
 	tag_qualified(false),
+	tag_userdata(false),
 	tag(nullptr),
 	group(nullptr)
 {
@@ -46,12 +47,14 @@ void h_tag_reference::set_tag(h_tag* target_tag)
 		tag = target_tag;
 		group = target_tag->group;
 		tag_qualified = true;
+		tag_userdata = false;
 	}
 	else
 	{
 		tag = nullptr;
 		//group = nullptr; // #NOTE: don't null the group to keep the tag reference data intact
 		tag_qualified = false;
+		tag_userdata = false;
 	}
 }
 
@@ -67,8 +70,30 @@ void h_tag_reference::set_unqualified_path(::tag target_group_tag, const char* t
 	tag = nullptr;
 	group = nullptr;
 	tag_qualified = false;
+	tag_userdata = false;
 
-	unqualified_path = strdup(target_unqualified_path);
+	if (target_unqualified_path != nullptr)
+	{
+		unqualified_path = strdup(target_unqualified_path);
+	}
+	group_tag = target_group_tag;
+}
+
+void h_tag_reference::_set_unqualified_userdata(::tag target_group_tag, void* _userdata)
+{
+	if (is_unqualified())
+	{
+		untracked_free(unqualified_path);
+		unqualified_path = nullptr;
+		group_tag = blofeld::INVALID_TAG;
+	}
+
+	tag = nullptr;
+	group = nullptr;
+	tag_qualified = false;
+	tag_userdata = true;
+
+	userdata = _userdata;
 	group_tag = target_group_tag;
 }
 
@@ -81,6 +106,11 @@ void h_tag_reference::set_group(h_group* target_group)
 
 	tag = nullptr;
 	group = target_group;
+}
+
+void* h_tag_reference::_get_userdata() const
+{
+	return tag_userdata ? userdata : nullptr;
 }
 
 h_tag* h_tag_reference::get_tag() const
@@ -131,7 +161,7 @@ bool h_tag_reference::is_null() const
 
 bool h_tag_reference::is_unqualified() const
 {
-	return !tag_qualified && unqualified_path != nullptr;
+	return !tag_qualified && !tag_userdata && unqualified_path != nullptr;
 }
 
 void h_tag_reference::clear()
@@ -140,10 +170,12 @@ void h_tag_reference::clear()
 	{
 		untracked_free(unqualified_path);
 		unqualified_path = nullptr;
+		userdata = nullptr;
 		group_tag = blofeld::INVALID_TAG;
 	}
 
 	tag = nullptr;
 	group = nullptr;
 	tag_qualified = false;
+	tag_userdata = false;
 }

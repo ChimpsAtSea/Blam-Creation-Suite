@@ -3,6 +3,7 @@
 class h_tag_reference;
 class h_block;
 class h_enumerable;
+class h_data;
 
 class h_prototype :
 	public h_type
@@ -11,7 +12,7 @@ public:
 	h_prototype(h_type* parent = nullptr);
 	virtual ~h_prototype();
 
-	static h_prototype* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition, s_engine_platform_build engine_platform_build);
+	BCS_DEBUG_API static h_prototype* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition, s_engine_platform_build engine_platform_build);
 
 	virtual void* get_field_data_unsafe(const blofeld::s_tag_field& field) = 0;
 	inline const void* get_field_data_unsafe(const blofeld::s_tag_field& field) const
@@ -41,6 +42,7 @@ public:
 		get_field_data_valid_type(blofeld::_field_block, h_enumerable);
 		get_field_data_valid_type(blofeld::_field_array, h_enumerable);
 		get_field_data_valid_type(blofeld::_field_struct, h_prototype);
+		get_field_data_valid_type(blofeld::_field_data, h_data);
 		
 
 #undef get_field_data_valid_type
