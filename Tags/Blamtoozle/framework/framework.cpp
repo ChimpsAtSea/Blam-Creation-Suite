@@ -55,3 +55,9 @@ void cleanup_code_symbol_name(char* buffer)
 
 	}
 }
+
+bool has_trailing_extension(char* string, const char* extension)
+{
+	char* search = __max(string, string + (strlen(string) + 1) - (strlen(extension) + 1));
+	return strcmp(search, extension) == 0;
+}

@@ -2,6 +2,7 @@
 
 class c_halo2_tools_pc64_tag_struct_definition;
 class c_halo2_tools_pc64_tag_group_definition;
+class c_halo2_tools_pc64_tag_block_definition;
 class c_halo2_tools_pc64_tag_array_definition;
 
 enum e_halo2_tools_pc64_tag_field_set_bit : unsigned long
@@ -102,6 +103,7 @@ public:
 	friend c_blamtoozle_tag_definition_manager;
 	friend c_halo2_tools_pc64_tag_definition_manager;
 	friend c_halo2_tools_pc64_tag_group_definition;
+	friend c_halo2_tools_pc64_tag_block_definition;
 	friend c_halo2_tools_pc64_tag_array_definition;
 
 	virtual const char* get_display_name() override;
@@ -112,6 +114,13 @@ public:
 	virtual blofeld::s_tag_persistent_identifier& get_persistent_identifier() override;
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() override;
 
+	virtual bool is_legacy_struct() override;
+	virtual bool is_latest_structure_version() override;
+	virtual unsigned long get_structure_version() override;
+	virtual c_blamtoozle_tag_struct_definition* get_previous_struct_definition() override;
+	virtual c_blamtoozle_tag_struct_definition* get_next_struct_definition() override;
+	virtual c_blamtoozle_tag_struct_definition& get_latest_struct_definition() override;
+
 protected:
 	ptr32 definition_address;
 	s_halo2_tools_pc64_tag_struct_definition struct_definition;
@@ -121,6 +130,9 @@ protected:
 	std::string code_symbol_name;
 	std::string code_type_name;
 	bool conflict_handled;
+	c_halo2_tools_pc64_tag_struct_definition* previous_version_struct_definition;
+	c_halo2_tools_pc64_tag_struct_definition* next_version_struct_definition;
+	unsigned long structure_version;
 
 	void generate_structure_names();
 };

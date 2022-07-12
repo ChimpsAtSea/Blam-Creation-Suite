@@ -65,7 +65,7 @@ protected:
 	void write_tag_reference_source(std::stringstream& stream, c_blamtoozle_tag_reference_definition& tag_reference_definition);
 	void write_tag_struct_header(std::stringstream& stream, c_blamtoozle_tag_struct_definition& tag_struct_definition);
 	void write_tag_struct_source(std::stringstream& stream, c_blamtoozle_tag_struct_definition& tag_struct_definition);
-	void write_fields(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields, bool write_terminator);
+	void write_fields(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields, bool write_terminator, bool terminator_extra_new_line);
 	void write_persistent_identifier_macro(
 		std::stringstream& stream,
 		const blofeld::s_tag_persistent_identifier& persistent_identifier,

@@ -3723,7 +3723,7 @@ namespace pc64
 		ui_widget_collection_block_struct_definition,
 		"ui_widget_collection",
 		"ui_widget_collection_block_struct_definition",
-		"s_ui_widget_collection",
+		"s_ui_widget_collection_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -3749,7 +3749,7 @@ namespace pc64
 		actor_block_struct_definition,
 		"actor",
 		"actor_block_struct_definition",
-		"s_actor",
+		"s_actor_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -4000,7 +4000,7 @@ namespace pc64
 		actor_variant_block_struct_definition,
 		"actor_variant",
 		"actor_variant_block_struct_definition",
-		"s_actor_variant",
+		"s_actor_variant_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -4261,7 +4261,7 @@ namespace pc64
 		antenna_block_struct_definition,
 		"antenna",
 		"antenna_block_struct_definition",
-		"s_antenna",
+		"s_antenna_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -4308,7 +4308,7 @@ namespace pc64
 		model_animations_block_struct_definition,
 		"model_animations",
 		"model_animations_block_struct_definition",
-		"s_model_animations",
+		"s_model_animations_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -4752,7 +4752,7 @@ namespace pc64
 		biped_block_struct_definition,
 		"biped",
 		"biped_block_struct_definition",
-		"s_biped",
+		"s_biped_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -5437,7 +5437,7 @@ namespace pc64
 		bitmap_block_struct_definition,
 		"bitmap",
 		"bitmap_block_struct_definition",
-		"s_bitmap",
+		"s_bitmap_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -5648,7 +5648,7 @@ namespace pc64
 		continuous_damage_effect_block_struct_definition,
 		"continuous_damage_effect",
 		"continuous_damage_effect_block_struct_definition",
-		"s_continuous_damage_effect",
+		"s_continuous_damage_effect_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -5775,7 +5775,7 @@ namespace pc64
 		model_collision_geometry_block_struct_definition,
 		"model_collision_geometry",
 		"model_collision_geometry_block_struct_definition",
-		"s_model_collision_geometry",
+		"s_model_collision_geometry_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -6166,7 +6166,7 @@ namespace pc64
 		color_table_block_struct_definition,
 		"color_table",
 		"color_table_block_struct_definition",
-		"s_color_table",
+		"s_color_table_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -6193,7 +6193,7 @@ namespace pc64
 		contrail_block_struct_definition,
 		"contrail",
 		"contrail_block_struct_definition",
-		"s_contrail",
+		"s_contrail_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -6368,7 +6368,7 @@ namespace pc64
 		device_control_block_struct_definition,
 		"device_control",
 		"device_control_block_struct_definition",
-		"s_device_control",
+		"s_device_control_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -6483,7 +6483,7 @@ namespace pc64
 		decal_block_struct_definition,
 		"decal",
 		"decal_block_struct_definition",
-		"s_decal",
+		"s_decal_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -6564,7 +6564,7 @@ namespace pc64
 		input_device_defaults_block_struct_definition,
 		"input_device_defaults",
 		"input_device_defaults_block_struct_definition",
-		"s_input_device_defaults",
+		"s_input_device_defaults_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -6595,7 +6595,7 @@ namespace pc64
 		device_block_struct_definition,
 		"device",
 		"device_block_struct_definition",
-		"s_device",
+		"s_device_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -6631,7 +6631,7 @@ namespace pc64
 		detail_object_collection_block_struct_definition,
 		"detail_object_collection",
 		"detail_object_collection_block_struct_definition",
-		"s_detail_object_collection",
+		"s_detail_object_collection_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -6692,7 +6692,7 @@ namespace pc64
 		effect_block_struct_definition,
 		"effect",
 		"effect_block_struct_definition",
-		"s_effect",
+		"s_effect_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -6913,7 +6913,7 @@ namespace pc64
 		lightning_block_struct_definition,
 		"lightning",
 		"lightning_block_struct_definition",
-		"s_lightning",
+		"s_lightning_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -6993,7 +6993,7 @@ namespace pc64
 		equipment_block_struct_definition,
 		"equipment",
 		"equipment_block_struct_definition",
-		"s_equipment",
+		"s_equipment_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -7086,7 +7086,7 @@ namespace pc64
 		flag_block_struct_definition,
 		"flag",
 		"flag_block_struct_definition",
-		"s_flag",
+		"s_flag_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -7148,7 +7148,7 @@ namespace pc64
 		fog_block_struct_definition,
 		"fog",
 		"fog_block_struct_definition",
-		"s_fog",
+		"s_fog_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -7221,7 +7221,7 @@ namespace pc64
 		font_block_struct_definition,
 		"font",
 		"font_block_struct_definition",
-		"s_font",
+		"s_font_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -7293,7 +7293,7 @@ namespace pc64
 		material_effects_block_struct_definition,
 		"material_effects",
 		"material_effects_block_struct_definition",
-		"s_material_effects",
+		"s_material_effects_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -7336,7 +7336,7 @@ namespace pc64
 		garbage_block_struct_definition,
 		"garbage",
 		"garbage_block_struct_definition",
-		"s_garbage",
+		"s_garbage_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -7398,7 +7398,7 @@ namespace pc64
 		glow_block_struct_definition,
 		"glow",
 		"glow_block_struct_definition",
-		"s_glow",
+		"s_glow_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -7504,7 +7504,7 @@ namespace pc64
 		grenade_hud_interface_block_struct_definition,
 		"grenade_hud_interface",
 		"grenade_hud_interface_block_struct_definition",
-		"s_grenade_hud_interface",
+		"s_grenade_hud_interface_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -7849,7 +7849,7 @@ namespace pc64
 		hud_message_text_block_struct_definition,
 		"hud_message_text",
 		"hud_message_text_block_struct_definition",
-		"s_hud_message_text",
+		"s_hud_message_text_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -7897,7 +7897,7 @@ namespace pc64
 		hud_number_block_struct_definition,
 		"hud_number",
 		"hud_number_block_struct_definition",
-		"s_hud_number",
+		"s_hud_number_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -7918,7 +7918,7 @@ namespace pc64
 		hud_globals_block_struct_definition,
 		"hud_globals",
 		"hud_globals_block_struct_definition",
-		"s_hud_globals",
+		"s_hud_globals_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -8142,7 +8142,7 @@ namespace pc64
 		item_block_struct_definition,
 		"item",
 		"item_block_struct_definition",
-		"s_item",
+		"s_item_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -8174,7 +8174,7 @@ namespace pc64
 		item_collection_block_struct_definition,
 		"item_collection",
 		"item_collection_block_struct_definition",
-		"s_item_collection",
+		"s_item_collection_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -8208,7 +8208,7 @@ namespace pc64
 		damage_effect_block_struct_definition,
 		"damage_effect",
 		"damage_effect_block_struct_definition",
-		"s_damage_effect",
+		"s_damage_effect_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -8365,7 +8365,7 @@ namespace pc64
 		lens_flare_block_struct_definition,
 		"lens_flare",
 		"lens_flare_block_struct_definition",
-		"s_lens_flare",
+		"s_lens_flare_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -8494,7 +8494,7 @@ namespace pc64
 		device_light_fixture_block_struct_definition,
 		"device_light_fixture",
 		"device_light_fixture_block_struct_definition",
-		"s_device_light_fixture",
+		"s_device_light_fixture_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -8561,7 +8561,7 @@ namespace pc64
 		light_block_struct_definition,
 		"light",
 		"light_block_struct_definition",
-		"s_light",
+		"s_light_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -8628,7 +8628,7 @@ namespace pc64
 		sound_looping_block_struct_definition,
 		"sound_looping",
 		"sound_looping_block_struct_definition",
-		"s_sound_looping",
+		"s_sound_looping_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -8723,7 +8723,7 @@ namespace pc64
 		device_machine_block_struct_definition,
 		"device_machine",
 		"device_machine_block_struct_definition",
-		"s_device_machine",
+		"s_device_machine_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -8820,7 +8820,7 @@ namespace pc64
 		globals_block_struct_definition,
 		"globals",
 		"globals_block_struct_definition",
-		"s_globals",
+		"s_globals_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -9407,7 +9407,7 @@ namespace pc64
 		meter_block_struct_definition,
 		"meter",
 		"meter_block_struct_definition",
-		"s_meter",
+		"s_meter_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -9457,7 +9457,7 @@ namespace pc64
 		light_volume_block_struct_definition,
 		"light_volume",
 		"light_volume_block_struct_definition",
-		"s_light_volume",
+		"s_light_volume_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -9527,7 +9527,7 @@ namespace pc64
 		gbxmodel_block_struct_definition,
 		"gbxmodel",
 		"gbxmodel_block_struct_definition",
-		"s_gbxmodel",
+		"s_gbxmodel_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -9815,7 +9815,7 @@ namespace pc64
 		model_block_struct_definition,
 		"model",
 		"model_block_struct_definition",
-		"s_model",
+		"s_model_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -9927,7 +9927,7 @@ namespace pc64
 		multiplayer_scenario_description_block_struct_definition,
 		"multiplayer_scenario_description",
 		"multiplayer_scenario_description_block_struct_definition",
-		"s_multiplayer_scenario_description",
+		"s_multiplayer_scenario_description_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -9957,7 +9957,7 @@ namespace pc64
 		preferences_network_game_block_struct_definition,
 		"preferences_network_game",
 		"preferences_network_game_block_struct_definition",
-		"s_preferences_network_game",
+		"s_preferences_network_game_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -9979,7 +9979,7 @@ namespace pc64
 		object_block_struct_definition,
 		"object",
 		"object_block_struct_definition",
-		"s_object",
+		"s_object_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -10020,7 +10020,7 @@ namespace pc64
 		particle_block_struct_definition,
 		"particle",
 		"particle_block_struct_definition",
-		"s_particle",
+		"s_particle_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -10119,7 +10119,7 @@ namespace pc64
 		particle_system_block_struct_definition,
 		"particle_system",
 		"particle_system_block_struct_definition",
-		"s_particle_system",
+		"s_particle_system_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -10316,7 +10316,7 @@ namespace pc64
 		physics_block_struct_definition,
 		"physics",
 		"physics_block_struct_definition",
-		"s_physics",
+		"s_physics_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -10444,7 +10444,7 @@ namespace pc64
 		placeholder_block_struct_definition,
 		"placeholder",
 		"placeholder_block_struct_definition",
-		"s_placeholder",
+		"s_placeholder_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -10486,7 +10486,7 @@ namespace pc64
 		point_physics_block_struct_definition,
 		"point_physics",
 		"point_physics_block_struct_definition",
-		"s_point_physics",
+		"s_point_physics_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -10518,7 +10518,7 @@ namespace pc64
 		projectile_block_struct_definition,
 		"projectile",
 		"projectile_block_struct_definition",
-		"s_projectile",
+		"s_projectile_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -10690,7 +10690,7 @@ namespace pc64
 		weather_particle_system_block_struct_definition,
 		"weather_particle_system",
 		"weather_particle_system_block_struct_definition",
-		"s_weather_particle_system",
+		"s_weather_particle_system_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -10792,7 +10792,7 @@ namespace pc64
 		scenario_structure_bsp_block_struct_definition,
 		"scenario_structure_bsp",
 		"scenario_structure_bsp_block_struct_definition",
-		"s_scenario_structure_bsp",
+		"s_scenario_structure_bsp_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -11577,7 +11577,7 @@ namespace pc64
 		scenery_block_struct_definition,
 		"scenery",
 		"scenery_block_struct_definition",
-		"s_scenery",
+		"s_scenery_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -11626,7 +11626,7 @@ namespace pc64
 		shader_transparent_chicago_extended_block_struct_definition,
 		"shader_transparent_chicago_extended",
 		"shader_transparent_chicago_extended_block_struct_definition",
-		"s_shader_transparent_chicago_extended",
+		"s_shader_transparent_chicago_extended_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -11797,7 +11797,7 @@ namespace pc64
 		shader_transparent_chicago_block_struct_definition,
 		"shader_transparent_chicago",
 		"shader_transparent_chicago_block_struct_definition",
-		"s_shader_transparent_chicago",
+		"s_shader_transparent_chicago_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -11835,7 +11835,7 @@ namespace pc64
 		scenario_block_struct_definition,
 		"scenario",
 		"scenario_block_struct_definition",
-		"s_scenario",
+		"s_scenario_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -13760,7 +13760,7 @@ namespace pc64
 		shader_environment_block_struct_definition,
 		"shader_environment",
 		"shader_environment_block_struct_definition",
-		"s_shader_environment",
+		"s_shader_environment_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -13933,7 +13933,7 @@ namespace pc64
 		shader_transparent_glass_block_struct_definition,
 		"shader_transparent_glass",
 		"shader_transparent_glass_block_struct_definition",
-		"s_shader_transparent_glass",
+		"s_shader_transparent_glass_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -14007,7 +14007,7 @@ namespace pc64
 		shader_block_struct_definition,
 		"shader",
 		"shader_block_struct_definition",
-		"s_shader",
+		"s_shader_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -14030,7 +14030,7 @@ namespace pc64
 		sky_block_struct_definition,
 		"sky",
 		"sky_block_struct_definition",
-		"s_sky",
+		"s_sky_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -14133,7 +14133,7 @@ namespace pc64
 		shader_transparent_meter_block_struct_definition,
 		"shader_transparent_meter",
 		"shader_transparent_meter_block_struct_definition",
-		"s_shader_transparent_meter",
+		"s_shader_transparent_meter_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -14189,7 +14189,7 @@ namespace pc64
 		sound_block_struct_definition,
 		"sound",
 		"sound_block_struct_definition",
-		"s_sound",
+		"s_sound_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -14361,7 +14361,7 @@ namespace pc64
 		sound_environment_block_struct_definition,
 		"sound_environment",
 		"sound_environment_block_struct_definition",
-		"s_sound_environment",
+		"s_sound_environment_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -14389,7 +14389,7 @@ namespace pc64
 		shader_model_block_struct_definition,
 		"shader_model",
 		"shader_model_block_struct_definition",
-		"s_shader_model",
+		"s_shader_model_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -14514,7 +14514,7 @@ namespace pc64
 		shader_transparent_generic_block_struct_definition,
 		"shader_transparent_generic",
 		"shader_transparent_generic_block_struct_definition",
-		"s_shader_transparent_generic",
+		"s_shader_transparent_generic_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -14784,7 +14784,7 @@ namespace pc64
 		shader_transparent_plasma_block_struct_definition,
 		"shader_transparent_plasma",
 		"shader_transparent_plasma_block_struct_definition",
-		"s_shader_transparent_plasma",
+		"s_shader_transparent_plasma_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -14846,7 +14846,7 @@ namespace pc64
 		sound_scenery_block_struct_definition,
 		"sound_scenery",
 		"sound_scenery_block_struct_definition",
-		"s_sound_scenery",
+		"s_sound_scenery_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -14888,7 +14888,7 @@ namespace pc64
 		string_list_block_struct_definition,
 		"string_list",
 		"string_list_block_struct_definition",
-		"s_string_list",
+		"s_string_list_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -14914,7 +14914,7 @@ namespace pc64
 		shader_transparent_water_block_struct_definition,
 		"shader_transparent_water",
 		"shader_transparent_water_block_struct_definition",
-		"s_shader_transparent_water",
+		"s_shader_transparent_water_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -14992,7 +14992,7 @@ namespace pc64
 		tag_collection_block_struct_definition,
 		"tag_collection",
 		"tag_collection_block_struct_definition",
-		"s_tag_collection",
+		"s_tag_collection_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -15020,7 +15020,7 @@ namespace pc64
 		camera_track_block_struct_definition,
 		"camera_track",
 		"camera_track_block_struct_definition",
-		"s_camera_track",
+		"s_camera_track_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -15052,7 +15052,7 @@ namespace pc64
 		dialogue_block_struct_definition,
 		"dialogue",
 		"dialogue_block_struct_definition",
-		"s_dialogue",
+		"s_dialogue_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -15292,7 +15292,7 @@ namespace pc64
 		unit_hud_interface_block_struct_definition,
 		"unit_hud_interface",
 		"unit_hud_interface_block_struct_definition",
-		"s_unit_hud_interface",
+		"s_unit_hud_interface_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -15653,7 +15653,7 @@ namespace pc64
 		unit_block_struct_definition,
 		"unit",
 		"unit_block_struct_definition",
-		"s_unit",
+		"s_unit_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -15724,7 +15724,7 @@ namespace pc64
 		unicode_string_list_block_struct_definition,
 		"unicode_string_list",
 		"unicode_string_list_block_struct_definition",
-		"s_unicode_string_list",
+		"s_unicode_string_list_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -15750,7 +15750,7 @@ namespace pc64
 		virtual_keyboard_block_struct_definition,
 		"virtual_keyboard",
 		"virtual_keyboard_block_struct_definition",
-		"s_virtual_keyboard",
+		"s_virtual_keyboard_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -15840,7 +15840,7 @@ namespace pc64
 		vehicle_block_struct_definition,
 		"vehicle",
 		"vehicle_block_struct_definition",
-		"s_vehicle",
+		"s_vehicle_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -16064,7 +16064,7 @@ namespace pc64
 		weapon_block_struct_definition,
 		"weapon",
 		"weapon_block_struct_definition",
-		"s_weapon",
+		"s_weapon_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -16466,7 +16466,7 @@ namespace pc64
 		wind_block_struct_definition,
 		"wind",
 		"wind_block_struct_definition",
-		"s_wind",
+		"s_wind_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -16484,7 +16484,7 @@ namespace pc64
 		weapon_hud_interface_block_struct_definition,
 		"weapon_hud_interface",
 		"weapon_hud_interface_block_struct_definition",
-		"s_weapon_hud_interface",
+		"s_weapon_hud_interface_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)

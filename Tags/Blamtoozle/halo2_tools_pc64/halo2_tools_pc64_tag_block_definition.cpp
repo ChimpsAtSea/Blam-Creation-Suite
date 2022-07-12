@@ -30,11 +30,22 @@ c_halo2_tools_pc64_tag_block_definition::c_halo2_tools_pc64_tag_block_definition
 	struct_definition = &tag_definition_manager.eval_struct(block_definition.structure_definition_address);
 
 	ptr32 versioning_structure_definition_address = block_definition.versioning_structure_definitions_address;
-	for (unsigned long version_index = 0; version_index < block_definition.versioning_structure_definitions_count; version_index++)
+
+
+	c_halo2_tools_pc64_tag_struct_definition* previous_version_struct_definition = nullptr;
+	for (unsigned long version_structure_index = 0; version_structure_index < block_definition.versioning_structure_definitions_count; version_structure_index++)
 	{
 		c_halo2_tools_pc64_tag_struct_definition& versioning_struct_definition = tag_definition_manager.eval_struct(versioning_structure_definition_address);
+		versioning_struct_definition.structure_version = version_structure_index;
+		versioning_struct_definition.previous_version_struct_definition = previous_version_struct_definition;
 		versioning_struct_definitions.push_back(&versioning_struct_definition);
 		versioning_structure_definition_address += sizeof(s_halo2_tools_pc64_tag_struct_definition);
+
+		if (previous_version_struct_definition != nullptr)
+		{
+			previous_version_struct_definition->next_version_struct_definition = &versioning_struct_definition;
+		}
+		previous_version_struct_definition = &versioning_struct_definition;
 	}
 
 	make_code_symbol_name();

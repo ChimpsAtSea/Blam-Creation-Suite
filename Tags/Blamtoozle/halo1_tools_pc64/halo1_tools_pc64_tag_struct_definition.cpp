@@ -97,6 +97,17 @@ c_flags<blofeld::e_tag_field_set_bit> c_halo1_tools_pc64_tag_struct_definition::
 
 void c_halo1_tools_pc64_tag_struct_definition::generate_structure_names()
 {
+	bool is_group_struct = false;
+	for (c_halo1_tools_pc64_tag_group_definition* group : tag_definition_manager.tag_group_definitions)
+	{
+		// #TODO: Hacky
+		if (group->group_definition.block_definition_address == this->definition_address)
+		{
+			is_group_struct = true;
+			break;
+		}
+	}
+
 	{
 		c_halo1_tools_pc64_tag_block_definition* tag_block_definition = tag_definition_manager.current_block_traverse_hack;
 		ASSERT(tag_block_definition != nullptr);
@@ -120,5 +131,11 @@ void c_halo1_tools_pc64_tag_struct_definition::generate_structure_names()
 		nuke_trailing_extension(buffer, "_block");
 
 		code_type_name = buffer;
+		if (is_group_struct && !has_trailing_extension(buffer, "_definition"))
+		{
+			code_type_name += "_definition";
+		}
 	}
+
+
 }

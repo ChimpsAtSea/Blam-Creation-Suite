@@ -419,7 +419,7 @@ BCS_RESULT filesystem_write_file_from_memory(const wchar_t* filepath, const void
 
 			bool is_same =
 				file_info.file_size == buffer_size &&
-				memcmp(file_info.file_view_begin, buffer, __min(buffer_size, buffer_size));
+				memcmp(file_info.file_view_begin, buffer, __min(buffer_size, buffer_size)) == 0;
 
 			BCS_FAIL_RETURN(destroy_memory_mapped_file(memory_mapped_file));
 

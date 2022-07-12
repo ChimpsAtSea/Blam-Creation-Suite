@@ -9,16 +9,17 @@ float constexpr pi = 3.14159265359f;
 float constexpr degrees_to_radians = pi / 180.0f;
 float constexpr radians_to_degrees = 180.0f / pi;
 
-c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_project, h_tag& tag, c_mandrill_tab& parent) :
-	c_mandrill_tab("Tag Editor", "Blofeld Tag Definition Debug", &parent, false),
-	tag_project(tag_project),
-	tag(tag),
+c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_project, h_tag& _tag, c_mandrill_tab& _parent) :
+	c_mandrill_tab("Tag Editor", "Blofeld Tag Definition Debug", &_parent, false),
+	tag_project(_tag_project),
+	tag(_tag),
 	viewport_size(),
 	custom_tool(nullptr),
 	model_preview_test(nullptr),
 	haloreach_bitmap_test(nullptr),
 	show_bitmap_export_file_dialog(),
-	file_browser()
+	file_browser(),
+	fields_instances()
 {
 	if (c_mandrill_user_interface* mandrill_user_interface = search_parent_tab_type<c_mandrill_user_interface>())
 	{
@@ -82,6 +83,10 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 		//	model_preview_test = new() c_model_preview_test(mandrill_user_interface->imgui_viewport_render_context, *model_tag, object_tag);
 		//}
 	}
+
+	const blofeld::s_tag_struct_definition& tag_struct_definition = tag.get_blofeld_struct_definition();
+	build_tag_struct_fields_instances(tag_struct_definition, fields_instances);
+
 }
 
 c_high_level_tag_editor_tab::~c_high_level_tag_editor_tab()
@@ -94,6 +99,65 @@ c_high_level_tag_editor_tab::~c_high_level_tag_editor_tab()
 	{
 		delete model_preview_test;
 	}
+	for (s_tag_struct_fields_instance* tag_struct_fields_instance : fields_instances)
+	{
+		trivial_free(tag_struct_fields_instance);
+	}
+}
+
+void c_high_level_tag_editor_tab::build_tag_struct_fields_instances(
+	const blofeld::s_tag_struct_definition& tag_struct_definition,
+	std::vector<s_tag_struct_fields_instance*>& fields_instances)
+{
+#define process_next_struct_definition(_tag_struct_definition_pointer) \
+	do { \
+		const blofeld::s_tag_struct_definition* _expected_instance = _tag_struct_definition_pointer; \
+		for (s_tag_struct_fields_instance* fields_instance : fields_instances) \
+			if (fields_instance->tag_struct_definition == _expected_instance) \
+				continue; \
+				build_tag_struct_fields_instances(*_expected_instance, fields_instances); \
+	} while(false)
+
+	unsigned long field_count;
+	BCS_RESULT rs = calculate_versioned_tag_field_count(
+		tag_struct_definition.fields,
+		tag_project.engine_platform_build,
+		blofeld::ANY_TAG, 
+		tag_field_version_max,
+		field_count);
+	ASSERT(BCS_SUCCEEDED(rs));
+
+	s_tag_struct_fields_instance* tag_struct_fields_instance = zero_length_array_malloc(s_tag_struct_fields_instance, s_tag_field_instance, field_count);
+	tag_struct_fields_instance->num_tag_field_instance = field_count;
+
+	unsigned long field_instance_index = 0;
+	for (const s_tag_field* tag_field_iterator = tag_struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++, field_instance_index++)
+	{
+		const s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, tag_project.engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+		s_tag_field_instance& tag_field_instance = tag_struct_fields_instance->tag_field_instances[field_instance_index];
+		tag_field_instance = { &tag_field };
+
+		switch(tag_field.field_type)
+		{
+			case blofeld::_field_struct:
+			process_next_struct_definition(tag_field.struct_definition);
+			break;
+			case blofeld::_field_array:
+			process_next_struct_definition(&tag_field.array_definition->struct_definition);
+			break;
+			case blofeld::_field_block:
+			process_next_struct_definition(&tag_field.block_definition->struct_definition);
+			break;
+			case blofeld::_field_pageable_resource:
+			process_next_struct_definition(&tag_field.tag_resource_definition->struct_definition);
+			break;
+			case blofeld::_field_api_interop:
+			process_next_struct_definition(&tag_field.tag_interop_definition->struct_definition);
+			break;
+		}
+	}
+
+#undef process_next_struct_definition
 }
 
 void c_high_level_tag_editor_tab::render_impl()
@@ -106,7 +170,7 @@ void c_high_level_tag_editor_tab::render_impl()
 
 		ImVec2 start_pos = ImGui::GetCursorScreenPos();
 		ImVec2 finish_pos = start_pos;
-		finish_pos.x += ImGui::GetContentRegionAvailWidth();
+		finish_pos.x += ImGui::GetContentRegionAvail().x;
 		finish_pos.y += header_height;
 		draw_list->AddRectFilled(start_pos, finish_pos, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_MENU(1.0f)));
 
@@ -125,7 +189,7 @@ void c_high_level_tag_editor_tab::render_impl()
 
 		ImVec2 start_pos = ImGui::GetCursorScreenPos();
 		ImVec2 finish_pos = start_pos;
-		finish_pos.x += ImGui::GetContentRegionAvailWidth();
+		finish_pos.x += ImGui::GetContentRegionAvail().x;
 		finish_pos.y += header_height;
 		draw_list->AddRectFilled(start_pos, finish_pos, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_MENU(0.5f)));
 
@@ -181,7 +245,7 @@ void c_high_level_tag_editor_tab::render_impl()
 
 		ImVec2 start_pos = ImGui::GetCursorScreenPos();
 		ImVec2 finish_pos = start_pos;
-		finish_pos.x += ImGui::GetContentRegionAvailWidth();
+		finish_pos.x += ImGui::GetContentRegionAvail().x;
 		finish_pos.y += header_height;
 		draw_list->AddRectFilled(start_pos, finish_pos, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_MENU(0.5f)));
 

@@ -35,6 +35,7 @@ public:
 	friend c_blamtoozle_tag_definition_manager;
 	friend c_halo1_tools_pc64_tag_definition_manager;
 	friend c_halo1_tools_pc64_tag_group_definition;
+	friend c_halo1_tools_pc64_tag_struct_definition;
 
 	virtual const char* get_display_name() override;
 	virtual const char* get_name() override;

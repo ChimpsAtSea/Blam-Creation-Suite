@@ -49,4 +49,20 @@ protected:
 	c_haloreach_bitmap_test* haloreach_bitmap_test;
 	bool show_bitmap_export_file_dialog;
 	t_imgui_async_file_dialog_handle file_browser;
+
+	struct s_tag_field_instance
+	{
+		const blofeld::s_tag_field* tag_field;
+		bool is_hidden : 1;
+	};
+	struct s_tag_struct_fields_instance
+	{
+		blofeld::s_tag_struct_definition* tag_struct_definition;
+		unsigned long num_tag_field_instance;
+		s_tag_field_instance tag_field_instances[];
+	};
+	std::vector<s_tag_struct_fields_instance*> fields_instances;
+	void build_tag_struct_fields_instances(
+		const blofeld::s_tag_struct_definition& tag_struct_definition, 
+		std::vector<s_tag_struct_fields_instance*>& fields_instances);
 };

@@ -62,8 +62,8 @@ c_high_level_tag_file_writer::c_high_level_tag_file_writer(s_engine_platform_bui
 		s_tag_persist_layout_header_v3 tag_persist_layout_header = {};
 	} tag_group_layout_chunk_data;
 
-	tag_group_layout_chunk_data.tag_group_layout_header.unknown;
-	tag_group_layout_chunk_data.tag_group_layout_header.guid;
+	tag_group_layout_chunk_data.tag_group_layout_header.unknown = -1;
+	memset(&tag_group_layout_chunk_data.tag_group_layout_header.guid, 0x34, sizeof(tag_group_layout_chunk_data.tag_group_layout_header.guid));
 	tag_group_layout_chunk_data.tag_group_layout_header.layout_version = _tag_persist_layout_version_v3;
 
 	tag_group_layout_chunk_data.tag_persist_layout_header.tag_group_block_index = tag_group_block_index;

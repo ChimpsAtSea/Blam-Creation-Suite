@@ -1001,7 +1001,7 @@ namespace pc64
 		"scenario_structure_bsp_reference_block",
 		"scenario_structure_bsp_reference_block",
 		16,
-		scenario_structure_bsp_reference_tags_v2_struct_definition);
+		scenario_structure_bsp_reference_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_scenery_palette_block,
@@ -1015,7 +1015,7 @@ namespace pc64
 		"scenario_scenery_block",
 		"scenario_scenery_block",
 		2000,
-		scenario_scenery_v4_struct_definition);
+		scenario_scenery_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_object_datum_struct_block,
@@ -1106,7 +1106,7 @@ namespace pc64
 		"scenario_weapon_block",
 		"scenario_weapon_block",
 		128,
-		scenario_weapon_v2_struct_definition);
+		scenario_weapon_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_weapon_datum_struct_block,
@@ -1134,7 +1134,7 @@ namespace pc64
 		"scenario_vehicle_block",
 		"scenario_vehicle_block",
 		256,
-		scenario_vehicle_v2_struct_definition);
+		scenario_vehicle_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_unit_struct_block,
@@ -1169,7 +1169,7 @@ namespace pc64
 		"scenario_light_block",
 		"scenario_light_block",
 		500,
-		scenario_light_v2_struct_definition);
+		scenario_light_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_device_struct_block,
@@ -1204,7 +1204,7 @@ namespace pc64
 		"scenario_biped_block",
 		"scenario_biped_block",
 		128,
-		scenario_biped_v2_struct_definition);
+		scenario_biped_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_equipment_resource_group_block,
@@ -1225,7 +1225,7 @@ namespace pc64
 		"scenario_equipment_block",
 		"scenario_equipment_block",
 		256,
-		scenario_equipment_v2_struct_definition);
+		scenario_equipment_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_equipment_datum_struct_block,
@@ -1274,7 +1274,7 @@ namespace pc64
 		"scenario_sound_scenery_block",
 		"scenario_sound_scenery_block",
 		256,
-		scenario_sound_scenery_v2_struct_definition);
+		scenario_sound_scenery_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		sound_scenery_datum_struct_block,
@@ -1323,7 +1323,7 @@ namespace pc64
 		"mapping_function",
 		"mapping_function_block",
 		1,
-		function_definition_v2_struct_definition);
+		function_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		byte_block,
@@ -1463,7 +1463,7 @@ namespace pc64
 		"decorator_set",
 		"decorator_set_block",
 		1,
-		decorator_set_v2_struct_definition);
+		decorator_set_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		decorator_shader_reference_block,
@@ -1582,7 +1582,7 @@ namespace pc64
 		"particle_system_definition_block_new",
 		"particle_system_definition_block_new",
 		32,
-		particle_system_definition_block_v2_struct_definition);
+		particle_system_definition_block_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		particle_system_emitter_definition_block,
@@ -1743,7 +1743,7 @@ namespace pc64
 		"actor_starting_locations_block",
 		"actor_starting_locations_block",
 		32,
-		actor_starting_location_v6_struct_definition);
+		actor_starting_location_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		move_positions_block,
@@ -1764,14 +1764,14 @@ namespace pc64
 		"firing_positions_block",
 		"firing_positions_block",
 		512,
-		firing_position_v4_struct_definition);
+		firing_position_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		areas_block,
 		"areas_block",
 		"areas_block",
 		64,
-		area_v2_struct_definition);
+		area_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		flight_reference_block,
@@ -1799,14 +1799,14 @@ namespace pc64
 		"zone_set_block",
 		"zone_set_block",
 		32,
-		zone_set_v2_struct_definition);
+		zone_set_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		secondary_zone_set_block,
 		"secondary_zone_set_block",
 		"secondary_zone_set_block",
 		32,
-		zone_set_v2_struct_definition);
+		zone_set_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		secondary_set_trigger_block,
@@ -1918,14 +1918,14 @@ namespace pc64
 		"cs_point_set_block",
 		"cs_point_set_block",
 		200,
-		cs_point_set_v2_struct_definition);
+		cs_point_set_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		cs_point_block,
 		"cs_point_block",
 		"cs_point_block",
 		20,
-		cs_point_v2_struct_definition);
+		cs_point_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		triggers_block,
@@ -2009,7 +2009,7 @@ namespace pc64
 		"biped",
 		"biped_block",
 		1,
-		biped_definition_tags_v2_struct_definition);
+		biped_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		object_ai_properties_block,
@@ -2107,7 +2107,7 @@ namespace pc64
 		"unit_boarding_melee_struct",
 		"unit_boarding_melee_struct_block",
 		1,
-		unit_boarding_melee_v2_struct_definition);
+		unit_boarding_melee_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		campaign_metagame_bucket_struct_block,
@@ -2156,7 +2156,7 @@ namespace pc64
 		"unit_seat_block",
 		"unit_seat_block",
 		32,
-		unit_seat_v4_struct_definition);
+		unit_seat_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		unit_boost_struct_block,
@@ -2177,7 +2177,7 @@ namespace pc64
 		"biped_lock_on_data_struct",
 		"biped_lock_on_data_struct_block",
 		1,
-		biped_lock_on_data_v2_struct_definition);
+		biped_lock_on_data_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		character_physics_struct_block,
@@ -2380,7 +2380,7 @@ namespace pc64
 		"character_charge_block",
 		"character_charge_block",
 		3,
-		charge_v4_struct_definition);
+		charge_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		character_evasion_block,
@@ -2415,7 +2415,7 @@ namespace pc64
 		"character_presearch_block",
 		"character_presearch_block",
 		3,
-		presearch_v2_struct_definition);
+		presearch_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		character_idle_block,
@@ -2450,7 +2450,7 @@ namespace pc64
 		"character_weapons_block",
 		"character_weapons_block",
 		100,
-		weapon_v2_struct_definition);
+		weapon_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		character_firing_pattern_block,
@@ -2478,7 +2478,7 @@ namespace pc64
 		"character_vehicle_block",
 		"character_vehicle_block",
 		100,
-		vehicle_v2_struct_definition);
+		vehicle_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		campaign_metagame_bucket_block,
@@ -3017,7 +3017,7 @@ namespace pc64
 		"scenario_machine_block",
 		"scenario_machine_block",
 		400,
-		scenario_machine_v3_struct_definition);
+		scenario_machine_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_machine_struct_v3_block,
@@ -3052,7 +3052,7 @@ namespace pc64
 		"scenario_control_block",
 		"scenario_control_block",
 		100,
-		scenario_control_v2_struct_definition);
+		scenario_control_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_control_struct_block,
@@ -3073,7 +3073,7 @@ namespace pc64
 		"scenario_light_fixture_block",
 		"scenario_light_fixture_block",
 		500,
-		scenario_light_fixture_v2_struct_definition);
+		scenario_light_fixture_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_light_fixture_struct_block,
@@ -3199,7 +3199,7 @@ namespace pc64
 		"material_effects",
 		"material_effects_block",
 		1,
-		material_effects_tags_v2_struct_definition);
+		material_effects_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		material_effect_block_v2_block,
@@ -3220,7 +3220,7 @@ namespace pc64
 		"material_effect_material_block",
 		"material_effect_material_block",
 		500,
-		material_effect_material_v2_struct_definition);
+		material_effect_material_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		material_effect_block_v1_block,
@@ -3381,7 +3381,7 @@ namespace pc64
 		"model",
 		"model_block",
 		1,
-		model_group_tags_v2_struct_definition);
+		model_group_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		model_variant_block,
@@ -3409,7 +3409,7 @@ namespace pc64
 		"model_variant_state_block",
 		"model_variant_state_block",
 		10,
-		model_variant_state_v2_struct_definition);
+		model_variant_state_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		model_variant_object_block,
@@ -3430,7 +3430,7 @@ namespace pc64
 		"global_damage_info_block",
 		"global_damage_info_block",
 		1,
-		global_damage_info_block_v2_struct_definition);
+		global_damage_info_block_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		global_damage_section_block,
@@ -3451,14 +3451,14 @@ namespace pc64
 		"instantaneous_response_damage_effect_struct",
 		"instantaneous_response_damage_effect_struct_block",
 		1,
-		instantaneous_response_damage_effect_v2_struct_definition);
+		instantaneous_response_damage_effect_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		instantaneous_response_damage_effect_marker_struct_block,
 		"instantaneous_response_damage_effect_marker_struct",
 		"instantaneous_response_damage_effect_marker_struct_block",
 		1,
-		instantaneous_response_damage_effect_marker_v2_struct_definition);
+		instantaneous_response_damage_effect_marker_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		global_damage_nodes_block,
@@ -3927,14 +3927,14 @@ namespace pc64
 		"damage_effect",
 		"damage_effect_block",
 		1,
-		damage_effect_v2_struct_definition);
+		damage_effect_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		damage_outer_cone_angle_struct_block,
 		"damage_outer_cone_angle_struct",
 		"damage_outer_cone_angle_struct_block",
 		1,
-		damage_outer_cone_angle_v2_struct_definition);
+		damage_outer_cone_angle_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		damage_effect_player_response_block,
@@ -4039,21 +4039,21 @@ namespace pc64
 		"sound_looping",
 		"sound_looping_block",
 		1,
-		looping_sound_v4_struct_definition);
+		looping_sound_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		looping_sound_track_block,
 		"looping_sound_track_block",
 		"looping_sound_track_block",
 		3,
-		looping_sound_track_v2_struct_definition);
+		looping_sound_track_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		looping_sound_detail_block,
 		"looping_sound_detail_block",
 		"looping_sound_detail_block",
 		12,
-		looping_sound_detail_v2_struct_definition);
+		looping_sound_detail_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_structure_lightmap_group_block,
@@ -4249,7 +4249,7 @@ namespace pc64
 		"sound_globals_block",
 		"sound_globals_block",
 		1,
-		sound_globals_v3_struct_definition);
+		sound_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		ai_globals_block,
@@ -4403,7 +4403,7 @@ namespace pc64
 		"sound_response_extra_sounds_struct",
 		"sound_response_extra_sounds_struct_block",
 		1,
-		sound_response_extra_sounds_v2_struct_definition);
+		sound_response_extra_sounds_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		sound_response_definition_block,
@@ -4907,7 +4907,7 @@ namespace pc64
 		"multiplayer_runtime_block",
 		"multiplayer_runtime_block",
 		1,
-		multiplayer_runtime_global_v2_struct_definition);
+		multiplayer_runtime_global_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		weapons_block,
@@ -4928,7 +4928,7 @@ namespace pc64
 		"grenade_and_powerup_struct",
 		"grenade_and_powerup_struct_block",
 		1,
-		grenade_and_powerup_v2_struct_definition);
+		grenade_and_powerup_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		grenade_block,
@@ -5012,7 +5012,7 @@ namespace pc64
 		"hud_widget_inputs_struct",
 		"hud_widget_inputs_struct_block",
 		1,
-		hud_widget_inputs_v2_struct_definition);
+		hud_widget_inputs_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		hud_widget_state_definition_struct_block,
@@ -5061,7 +5061,7 @@ namespace pc64
 		"screen_effect_bonus_struct",
 		"screen_effect_bonus_struct_block",
 		1,
-		screen_effect_bonus_v2_struct_definition);
+		screen_effect_bonus_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		object_group_block,
@@ -5075,7 +5075,7 @@ namespace pc64
 		"physics_model",
 		"physics_model_block",
 		1,
-		physics_model_tags_v2_struct_definition);
+		physics_model_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		phantom_types_block,
@@ -5103,7 +5103,7 @@ namespace pc64
 		"rigid_bodies_block",
 		"rigid_bodies_block",
 		64,
-		rigid_bodies_block_v2_struct_definition);
+		rigid_bodies_block_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		materials_block$2,
@@ -5348,7 +5348,7 @@ namespace pc64
 		"projectile",
 		"projectile_block",
 		1,
-		projectile_v2_struct_definition);
+		projectile_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		super_detonation_damage_struct_block,
@@ -5670,14 +5670,14 @@ namespace pc64
 		"structure_bsp_leaf_block",
 		"structure_bsp_leaf_block",
 		65536,
-		structure_bsp_leaf_tags_v2_struct_definition);
+		structure_bsp_leaf_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_surface_reference_block,
 		"structure_bsp_surface_reference_block",
 		"structure_bsp_surface_reference_block",
 		262144,
-		structure_bsp_surface_reference_tags_v2_struct_definition);
+		structure_bsp_surface_reference_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_cluster_portal_block,
@@ -5754,7 +5754,7 @@ namespace pc64
 		"structure_bsp_cluster_block",
 		"structure_bsp_cluster_block",
 		512,
-		structure_bsp_cluster_tags_v3_struct_definition);
+		structure_bsp_cluster_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_cluster_data_block_new_block,
@@ -5985,21 +5985,21 @@ namespace pc64
 		"environment_object_refs",
 		"environment_object_refs",
 		2000,
-		environment_object_ref_v2_struct_definition);
+		environment_object_ref_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		environment_object_bsp_refs_block,
 		"environment_object_bsp_refs",
 		"environment_object_bsp_refs",
 		1024,
-		environment_object_bsp_ref_v2_struct_definition);
+		environment_object_bsp_ref_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		environment_object_nodes_block,
 		"environment_object_nodes",
 		"environment_object_nodes",
 		255,
-		environment_object_node_ref_v2_struct_definition);
+		environment_object_node_ref_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		pathfinding_hints_block,
@@ -6027,28 +6027,28 @@ namespace pc64
 		"user_hint_point_block",
 		"user_hint_point_block",
 		200,
-		user_hint_point_v2_struct_definition);
+		user_hint_point_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		user_hint_ray_block,
 		"user_hint_ray_block",
 		"user_hint_ray_block",
 		200,
-		user_hint_ray_v2_struct_definition);
+		user_hint_ray_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		user_hint_line_segment_block,
 		"user_hint_line_segment_block",
 		"user_hint_line_segment_block",
 		200,
-		user_hint_line_segment_v2_struct_definition);
+		user_hint_line_segment_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		user_hint_parallelogram_block,
 		"user_hint_parallelogram_block",
 		"user_hint_parallelogram_block",
 		200,
-		user_hint_parallelogram_v2_struct_definition);
+		user_hint_parallelogram_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		user_hint_polygon_block,
@@ -6209,14 +6209,14 @@ namespace pc64
 		"structure_instanced_geometry_render_info_struct",
 		"structure_instanced_geometry_render_info_struct_block",
 		1,
-		structure_instanced_geometry_render_info_v2_struct_definition);
+		structure_instanced_geometry_render_info_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_instanced_geometry_instances_block,
 		"structure_bsp_instanced_geometry_instances_block",
 		"structure_bsp_instanced_geometry_instances_block",
 		1024,
-		instanced_geometry_instance_v3_struct_definition);
+		instanced_geometry_instance_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		structure_bsp_sound_cluster_block,
@@ -6398,14 +6398,14 @@ namespace pc64
 		"scenery",
 		"scenery_block",
 		1,
-		scenery_v3_struct_definition);
+		scenery_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_group_block,
 		"scenario",
 		"scenario_block",
 		1,
-		scenario_tags_v2_struct_definition);
+		scenario_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_sky_reference_block,
@@ -6440,7 +6440,7 @@ namespace pc64
 		"scenario_netpoints_block",
 		"scenario_netpoints_block",
 		200,
-		scenario_netpoint_v2_struct_definition);
+		scenario_netpoint_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_netgame_equipment_block,
@@ -6755,7 +6755,7 @@ namespace pc64
 		"sound_effect_override_parameters_block",
 		"sound_effect_override_parameters_block",
 		128,
-		g_sound_effect_override_parameters_v2_struct_definition);
+		g_sound_effect_override_parameters_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		platform_sound_effect_collection_block,
@@ -7014,7 +7014,7 @@ namespace pc64
 		"sound",
 		"sound_block",
 		1,
-		sound_definition_v4_struct_definition);
+		sound_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		sound_playback_parameters_struct_block,
@@ -7035,7 +7035,7 @@ namespace pc64
 		"sound_promotion_parameters_struct",
 		"sound_promotion_parameters_struct_block",
 		1,
-		sound_promotion_parameter_v2_struct_definition);
+		sound_promotion_parameter_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		sound_promotion_rule_block,
@@ -7070,7 +7070,7 @@ namespace pc64
 		"sound_permutation_chunk_block",
 		"sound_permutation_chunk_block",
 		32767,
-		g_sound_permutation_chunk_v3_struct_definition);
+		g_sound_permutation_chunk_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		sound_platform_sound_playback_block,
@@ -7098,7 +7098,7 @@ namespace pc64
 		"sound_definition_language_permutation_info_block",
 		"sound_definition_language_permutation_info_block",
 		576,
-		sound_permutation_language_info_v3_struct_definition);
+		sound_permutation_language_info_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		sound_permutation_raw_info_block,
@@ -7609,14 +7609,14 @@ namespace pc64
 		"dialogue",
 		"dialogue_block",
 		1,
-		g_dialogue_definition_v2_struct_definition);
+		g_dialogue_definition_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		sound_references_block,
 		"sound_references_block",
 		"sound_references_block",
 		500,
-		g_vocalization_sound_references_v2_struct_definition);
+		g_vocalization_sound_references_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		sound_cache_file_gestalt_group_block,
@@ -7868,21 +7868,21 @@ namespace pc64
 		"weapon",
 		"weapon_block",
 		1,
-		weapon_v4_struct_definition);
+		weapon_struct_definition$3);
 
 	TAG_BLOCK_FROM_STRUCT(
 		melee_aim_assist_struct_block,
 		"melee_aim_assist_struct",
 		"melee_aim_assist_struct_block",
 		1,
-		melee_aim_assist_v2_struct_definition);
+		melee_aim_assist_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		melee_damage_parameters_struct_block,
 		"melee_damage_parameters_struct",
 		"melee_damage_parameters_struct_block",
 		1,
-		melee_damage_parameters_v2_struct_definition);
+		melee_damage_parameters_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		aim_assist_struct_block,
@@ -7896,7 +7896,7 @@ namespace pc64
 		"weapon_tracking_struct",
 		"weapon_tracking_struct_block",
 		1,
-		weapon_tracking_v2_struct_definition);
+		weapon_tracking_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		weapon_interface_struct_block,
@@ -7924,14 +7924,14 @@ namespace pc64
 		"magazines",
 		"magazines",
 		2,
-		weapon_magazine_v2_struct_definition);
+		weapon_magazine_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		magazine_objects_block,
 		"magazine_objects",
 		"magazine_objects",
 		8,
-		weapon_ammunition_object_v2_struct_definition);
+		weapon_ammunition_object_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		weapon_triggers_block,
@@ -7966,14 +7966,14 @@ namespace pc64
 		"weapon_barrel_damage_effect_struct",
 		"weapon_barrel_damage_effect_struct_block",
 		1,
-		weapon_barrel_damage_effect_v2_struct_definition);
+		weapon_barrel_damage_effect_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		barrel_firing_effect_block,
 		"barrel_firing_effect_block",
 		"barrel_firing_effect_block",
 		3,
-		barrel_firing_effect_v2_struct_definition);
+		barrel_firing_effect_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		weather_system_group_block,
@@ -9138,52 +9138,36 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 1 },
 		{ _field_string_id, "preferred_gun_node", "if found, use this gun marker" },
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(
-		unit_additional_node_names_v1_struct_definition,
-		"unit_additional_node_names_v1",
-		"unit_additional_node_names_v1_struct_definition",
-		"s_unit_additional_node_names_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		unit_boarding_melee_v2_struct_definition,
-		"unit_boarding_melee_v2",
-		"unit_boarding_melee_v2_struct_definition",
+		unit_boarding_melee_struct_definition,
+		"unit_boarding_melee",
+		"unit_boarding_melee_struct_definition",
 		"s_tag_references",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 5 },
 		{ _field_tag_reference, "boarding melee damage", &blofeld::halo2::pc64::damage_effect_group_reference },
 		{ _field_tag_reference, "boarding melee response", &blofeld::halo2::pc64::damage_effect_group_reference },
 		{ _field_tag_reference, "landing melee damage", &blofeld::halo2::pc64::damage_effect_group_reference },
 		{ _field_tag_reference, "flurry melee damage", &blofeld::halo2::pc64::damage_effect_group_reference },
 		{ _field_tag_reference, "obstacle smash damage", &blofeld::halo2::pc64::damage_effect_group_reference },
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
 	TAG_REFERENCE(damage_effect_group_reference, DAMAGE_EFFECT_TAG);
-
-	TAG_STRUCT(
-		unit_boarding_melee_v1_struct_definition,
-		"unit_boarding_melee_v1",
-		"unit_boarding_melee_v1_struct_definition",
-		"s_unit_boarding_melee_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		campaign_metagame_bucket_block_struct_definition,
@@ -9345,14 +9329,15 @@ namespace pc64
 	TAG_REFERENCE(weapon_group_reference$3, WEAPON_TAG);
 
 	TAG_STRUCT(
-		unit_seat_v4_struct_definition,
-		"unit_seat_v4",
-		"unit_seat_v4_struct_definition",
+		unit_seat_struct_definition,
+		"unit_seat",
+		"unit_seat_struct_definition",
 		"s_unit_seat",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 3, 39 },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$113 },
 		{ _field_old_string_id, "label" },
 		{ _field_old_string_id, "marker name" },
@@ -9392,6 +9377,90 @@ namespace pc64
 		{ _field_useless_pad, "value" },
 		{ _field_string_id, "invisible seat region" },
 		{ _field_long_integer, "runtime invisible seat region index" },
+		
+		{ _struct_version_mode_equal, 2, 35 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$113 },
+		{ _field_old_string_id, "label" },
+		{ _field_old_string_id, "marker name" },
+		{ _field_string_id, "entry marker(s) name" },
+		{ _field_string_id, "boarding grenade marker" },
+		FIELD_PAD("value", 20),
+		{ _field_real, "turnover time", "how much time it takes to evict a rider from a flipped vehicle", "seconds" },
+		{ _field_real_vector_3d, "acceleration scale" },
+		{ _field_real, "AI scariness" },
+		{ _field_short_enum, "ai seat type", &blofeld::halo2::pc64::unnamed_enum$114 },
+		{ _field_short_block_index, "boarding seat" },
+		{ _field_real_fraction, "listener interpolation factor", "how far to interpolate listener position from camera to occupant's head" },
+		FIELD_EXPLANATION("speed dependant turn rates", "when the unit velocity is 0, the yaw/pitch rates are the left values\nat [max speed reference], the yaw/pitch rates are the right values.\nthe max speed reference is what the code uses to generate a clamped speed from 0..1\nthe exponent controls how midrange speeds are interpreted."),
+		{ _field_real_bounds, "yaw rate bounds", nullptr, "degrees per second" },
+		{ _field_real_bounds, "pitch rate bounds", nullptr, "degrees per second" },
+		{ _field_real, "min speed reference" },
+		{ _field_real, "max speed reference" },
+		{ _field_real, "speed exponent" },
+		FIELD_PAD("value", 12),
+		FIELD_EXPLANATION("camera fields", nullptr),
+		{ _field_struct, "unit camera", &blofeld::halo2::pc64::unit_camera_struct_struct_definition },
+		{ _field_block, "unit hud interface", &blofeld::halo2::pc64::unit_hud_reference_block },
+		FIELD_PAD("value", 4),
+		{ _field_short_integer, "hud text message index" },
+		FIELD_PAD("value", 2),
+		{ _field_angle, "yaw minimum" },
+		{ _field_angle, "yaw maximum" },
+		{ _field_tag_reference, "built-in gunner", &blofeld::halo2::pc64::character_group_reference$2 },
+		FIELD_PAD("value", 20),
+		FIELD_EXPLANATION("entry fields", "note: the entry radius shouldn\'t exceed 3 world units, \nas that is as far as the player will search for a vehicle\nto enter."),
+		{ _field_real, "entry radius", "how close to the entry marker a unit must be" },
+		{ _field_angle, "entry marker cone angle", "angle from marker forward the unit must be" },
+		{ _field_angle, "entry marker facing angle", "angle from unit facing the marker must be" },
+		{ _field_real, "maximum relative velocity" },
+		FIELD_PAD("value", 20),
+		
+		{ _struct_version_mode_equal, 1, 22 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$113 },
+		{ _field_old_string_id, "label" },
+		{ _field_old_string_id, "marker name" },
+		FIELD_PAD("value", 32),
+		{ _field_real_vector_3d, "acceleration scale" },
+		{ _field_real, "AI scariness" },
+		{ _field_short_enum, "ai seat type", &blofeld::halo2::pc64::unnamed_enum$114 },
+		{ _field_short_block_index, "boarding seat" },
+		{ _field_real_fraction, "listener interpolation factor", "how far to interpolate listener position from camera to occupant's head" },
+		{ _field_real_bounds, "yaw rate bounds", nullptr, "degrees per second" },
+		{ _field_real_bounds, "pitch rate bounds", nullptr, "degrees per second" },
+		{ _field_real, "max speed reference" },
+		{ _field_real, "speed exponent" },
+		{ _field_struct, "unit camera", &blofeld::halo2::pc64::unit_camera_struct_struct_definition },
+		{ _field_block, "unit hud interface", &blofeld::halo2::pc64::unit_hud_reference_block },
+		FIELD_PAD("value", 4),
+		{ _field_short_integer, "hud text message index" },
+		FIELD_PAD("value", 2),
+		{ _field_angle, "yaw minimum" },
+		{ _field_angle, "yaw maximum" },
+		{ _field_tag_reference, "built-in gunner", &blofeld::halo2::pc64::character_group_reference$2 },
+		FIELD_PAD("value", 20),
+		
+		{ _struct_version_mode_equal, 0, 20 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$113 },
+		{ _field_old_string_id, "label" },
+		{ _field_old_string_id, "marker name" },
+		FIELD_PAD("value", 32),
+		{ _field_real_vector_3d, "acceleration scale" },
+		{ _field_real, "AI scariness" },
+		{ _field_short_enum, "ai seat type", &blofeld::halo2::pc64::unnamed_enum$114 },
+		{ _field_short_block_index, "boarding seat" },
+		{ _field_real_fraction, "listener interpolation factor", "how far to interpolate listener position from camera to occupant's head" },
+		{ _field_real, "yaw rate", nullptr, "degrees per second" },
+		{ _field_real, "pitch rate", nullptr, "degrees per second" },
+		{ _field_struct, "unit camera", &blofeld::halo2::pc64::unit_camera_struct_struct_definition },
+		{ _field_block, "unit hud interface", &blofeld::halo2::pc64::unit_hud_reference_block },
+		FIELD_PAD("value", 4),
+		{ _field_short_integer, "hud text message index" },
+		FIELD_PAD("value", 2),
+		{ _field_angle, "yaw minimum" },
+		{ _field_angle, "yaw maximum" },
+		{ _field_tag_reference, "built-in gunner", &blofeld::halo2::pc64::character_group_reference$2 },
+		FIELD_PAD("value", 20),
+		
 		{ _field_terminator }
 	};
 
@@ -9434,119 +9503,6 @@ namespace pc64
 	TAG_REFERENCE(character_group_reference$2, CHARACTER_TAG);
 
 	TAG_STRUCT(
-		unit_seat_v1_struct_definition,
-		"unit_seat_v1",
-		"unit_seat_v1_struct_definition",
-		"s_unit_seat_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$113 },
-		{ _field_old_string_id, "label" },
-		{ _field_old_string_id, "marker name" },
-		FIELD_PAD("value", 32),
-		{ _field_real_vector_3d, "acceleration scale" },
-		{ _field_real, "AI scariness" },
-		{ _field_short_enum, "ai seat type", &blofeld::halo2::pc64::unnamed_enum$114 },
-		{ _field_short_block_index, "boarding seat" },
-		{ _field_real_fraction, "listener interpolation factor", "how far to interpolate listener position from camera to occupant's head" },
-		{ _field_real, "yaw rate", nullptr, "degrees per second" },
-		{ _field_real, "pitch rate", nullptr, "degrees per second" },
-		{ _field_struct, "unit camera", &blofeld::halo2::pc64::unit_camera_struct_struct_definition },
-		{ _field_block, "unit hud interface", &blofeld::halo2::pc64::unit_hud_reference_block },
-		FIELD_PAD("value", 4),
-		{ _field_short_integer, "hud text message index" },
-		FIELD_PAD("value", 2),
-		{ _field_angle, "yaw minimum" },
-		{ _field_angle, "yaw maximum" },
-		{ _field_tag_reference, "built-in gunner", &blofeld::halo2::pc64::character_group_reference$2 },
-		FIELD_PAD("value", 20),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		unit_seat_v2_struct_definition,
-		"unit_seat_v2",
-		"unit_seat_v2_struct_definition",
-		"s_unit_seat_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$113 },
-		{ _field_old_string_id, "label" },
-		{ _field_old_string_id, "marker name" },
-		FIELD_PAD("value", 32),
-		{ _field_real_vector_3d, "acceleration scale" },
-		{ _field_real, "AI scariness" },
-		{ _field_short_enum, "ai seat type", &blofeld::halo2::pc64::unnamed_enum$114 },
-		{ _field_short_block_index, "boarding seat" },
-		{ _field_real_fraction, "listener interpolation factor", "how far to interpolate listener position from camera to occupant's head" },
-		{ _field_real_bounds, "yaw rate bounds", nullptr, "degrees per second" },
-		{ _field_real_bounds, "pitch rate bounds", nullptr, "degrees per second" },
-		{ _field_real, "max speed reference" },
-		{ _field_real, "speed exponent" },
-		{ _field_struct, "unit camera", &blofeld::halo2::pc64::unit_camera_struct_struct_definition },
-		{ _field_block, "unit hud interface", &blofeld::halo2::pc64::unit_hud_reference_block },
-		FIELD_PAD("value", 4),
-		{ _field_short_integer, "hud text message index" },
-		FIELD_PAD("value", 2),
-		{ _field_angle, "yaw minimum" },
-		{ _field_angle, "yaw maximum" },
-		{ _field_tag_reference, "built-in gunner", &blofeld::halo2::pc64::character_group_reference$2 },
-		FIELD_PAD("value", 20),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		unit_seat_v3_struct_definition,
-		"unit_seat_v3",
-		"unit_seat_v3_struct_definition",
-		"s_unit_seat_v3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$113 },
-		{ _field_old_string_id, "label" },
-		{ _field_old_string_id, "marker name" },
-		{ _field_string_id, "entry marker(s) name" },
-		{ _field_string_id, "boarding grenade marker" },
-		FIELD_PAD("value", 20),
-		{ _field_real, "turnover time", "how much time it takes to evict a rider from a flipped vehicle", "seconds" },
-		{ _field_real_vector_3d, "acceleration scale" },
-		{ _field_real, "AI scariness" },
-		{ _field_short_enum, "ai seat type", &blofeld::halo2::pc64::unnamed_enum$114 },
-		{ _field_short_block_index, "boarding seat" },
-		{ _field_real_fraction, "listener interpolation factor", "how far to interpolate listener position from camera to occupant's head" },
-		FIELD_EXPLANATION("speed dependant turn rates", "when the unit velocity is 0, the yaw/pitch rates are the left values\nat [max speed reference], the yaw/pitch rates are the right values.\nthe max speed reference is what the code uses to generate a clamped speed from 0..1\nthe exponent controls how midrange speeds are interpreted."),
-		{ _field_real_bounds, "yaw rate bounds", nullptr, "degrees per second" },
-		{ _field_real_bounds, "pitch rate bounds", nullptr, "degrees per second" },
-		{ _field_real, "min speed reference" },
-		{ _field_real, "max speed reference" },
-		{ _field_real, "speed exponent" },
-		FIELD_PAD("value", 12),
-		FIELD_EXPLANATION("camera fields", nullptr),
-		{ _field_struct, "unit camera", &blofeld::halo2::pc64::unit_camera_struct_struct_definition },
-		{ _field_block, "unit hud interface", &blofeld::halo2::pc64::unit_hud_reference_block },
-		FIELD_PAD("value", 4),
-		{ _field_short_integer, "hud text message index" },
-		FIELD_PAD("value", 2),
-		{ _field_angle, "yaw minimum" },
-		{ _field_angle, "yaw maximum" },
-		{ _field_tag_reference, "built-in gunner", &blofeld::halo2::pc64::character_group_reference$2 },
-		FIELD_PAD("value", 20),
-		FIELD_EXPLANATION("entry fields", "note: the entry radius shouldn\'t exceed 3 world units, \nas that is as far as the player will search for a vehicle\nto enter."),
-		{ _field_real, "entry radius", "how close to the entry marker a unit must be" },
-		{ _field_angle, "entry marker cone angle", "angle from marker forward the unit must be" },
-		{ _field_angle, "entry marker facing angle", "angle from unit facing the marker must be" },
-		{ _field_real, "maximum relative velocity" },
-		FIELD_PAD("value", 20),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		unit_boost_struct_struct_definition,
 		"unit_boost_struct",
 		"unit_boost_struct_struct_definition",
@@ -9572,35 +9528,31 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_real_fraction, "attack weight" },
 		{ _field_real_fraction, "decay weight" },
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(
-		unit_lipsync_scales_v1_struct_definition,
-		"unit_lipsync_scales_v1",
-		"unit_lipsync_scales_v1_struct_definition",
-		"s_unit_lipsync_scales_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		biped_lock_on_data_v2_struct_definition,
-		"biped_lock_on_data_v2",
-		"biped_lock_on_data_v2_struct_definition",
+		biped_lock_on_data_struct_definition,
+		"biped_lock_on_data",
+		"biped_lock_on_data_struct_definition",
 		"s_biped_lock_on_data",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 3 },
 		FIELD_EXPLANATION("lock-on fields", nullptr),
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$116 },
 		{ _field_real, "lock on distance" },
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
@@ -9611,18 +9563,6 @@ namespace pc64
 		"always locked by plasma targeting"
 	};
 	STRING_LIST(unnamed_enum$116, unnamed_enum$116_strings, _countof(unnamed_enum$116_strings));
-
-	TAG_STRUCT(
-		biped_lock_on_data_v1_struct_definition,
-		"biped_lock_on_data_v1",
-		"biped_lock_on_data_v1_struct_definition",
-		"s_biped_lock_on_data_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		character_physics_struct_struct_definition,
@@ -9844,317 +9784,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		biped_definition_tags_v1_struct_definition,
-		"biped_definition_tags_v1",
-		"biped_definition_tags_v1_struct_definition",
-		"s_biped_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_PAD("value", 2),
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
-		{ _field_real, "bounding radius", nullptr, "world units" },
-		{ _field_real_point_3d, "bounding offset" },
-		{ _field_useless_pad, "value" },
-		{ _field_real, "acceleration scale", "marine 1.0, grunt 1.4, elite 0.9, hunter 0.5, etc.", nullptr, "[0,+inf]" },
-		{ _field_short_enum, "lightmap shadow mode", &blofeld::halo2::pc64::unnamed_enum$97 },
-		{ _field_char_enum, "sweetener size", &blofeld::halo2::pc64::unnamed_enum$98 },
-		FIELD_PAD("value", 1),
-		FIELD_PAD("value", 4),
-		{ _field_useless_pad, "value" },
-		{ _field_real, "dynamic light sphere radius", "sphere to use for dynamic lights and shadows. only used if not 0" },
-		{ _field_real_point_3d, "dynamic light sphere offset", "only used if radius not 0" },
-		{ _field_string_id, "default model variant" },
-		{ _field_tag_reference, "model", &blofeld::halo2::pc64::model_group_reference },
-		{ _field_tag_reference, "crate object", &blofeld::halo2::pc64::crate_group_reference$2 },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "modifier shader", &blofeld::halo2::pc64::shader_group_reference },
-		{ _field_tag_reference, "creation effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_tag_reference, "material effects", &blofeld::halo2::pc64::material_effects_group_reference },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "ai properties", &blofeld::halo2::pc64::object_ai_properties_block },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "functions", &blofeld::halo2::pc64::object_function_block },
-		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Applying collision damage", "for things that want to cause more or less collision damage"),
-		{ _field_real, "Apply collision damage scale", "0 means 1.  1 is standard scale.  Some things may want to apply more damage" },
-		FIELD_EXPLANATION("Game collision damage parameters", "0 - means take default value from globals.globals"),
-		{ _field_real, "min game acc (default)", "0-oo" },
-		{ _field_real, "max game acc (default)", "0-oo" },
-		{ _field_real, "min game scale (default)", "0-1" },
-		{ _field_real, "max game scale (default)", "0-1" },
-		FIELD_EXPLANATION("Absolute collision damage parameters", "0 - means take default value from globals.globals"),
-		{ _field_real, "min abs acc (default)", "0-oo" },
-		{ _field_real, "max abs acc (default)", "0-oo" },
-		{ _field_real, "min abs scale (default)", "0-1" },
-		{ _field_real, "max abs scale (default)", "0-1" },
-		{ _field_short_integer, "hud text message index" },
-		FIELD_PAD("value", 2),
-		{ _field_block, "attachments", &blofeld::halo2::pc64::object_attachment_block },
-		{ _field_block, "widgets", &blofeld::halo2::pc64::object_widget_block },
-		{ _field_block, "old functions", &blofeld::halo2::pc64::old_object_function_block },
-		{ _field_block, "change colors", &blofeld::halo2::pc64::object_change_colors_block },
-		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
-		FIELD_EXPLANATION("$$$ UNIT $$$", nullptr),
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$106 },
-		{ _field_short_enum, "default team", &blofeld::halo2::pc64::unnamed_enum$107 },
-		{ _field_short_enum, "constant sound volume", &blofeld::halo2::pc64::unnamed_enum$108 },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "integrated light toggle", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_useless_pad, "value" },
-		{ _field_angle, "camera field of view", nullptr, "degrees" },
-		{ _field_real, "camera stiffness" },
-		{ _field_struct, "unit camera", &blofeld::halo2::pc64::unit_camera_struct_struct_definition },
-		{ _field_struct, "acceleration", &blofeld::halo2::pc64::unit_seat_acceleration_struct_struct_definition },
-		{ _field_useless_pad, "value" },
-		{ _field_real, "soft ping threshold", nullptr, nullptr, "[0,1]" },
-		{ _field_real, "soft ping interrupt time", nullptr, "seconds" },
-		{ _field_real, "hard ping threshold", nullptr, nullptr, "[0,1]" },
-		{ _field_real, "hard ping interrupt time", nullptr, "seconds" },
-		{ _field_real, "hard death threshold", nullptr, nullptr, "[0,1]" },
-		{ _field_real, "feign death threshold", nullptr, nullptr, "[0,1]" },
-		{ _field_real, "feign death time", nullptr, "seconds" },
-		{ _field_real, "distance of evade anim", "this must be set to tell the AI how far it should expect our evade animation to move us", "world units" },
-		{ _field_real, "distance of dive anim", "this must be set to tell the AI how far it should expect our dive animation to move us", "world units" },
-		{ _field_useless_pad, "value" },
-		{ _field_real, "stunned movement threshold", "if we take this much damage in a short space of time we will play our 'stunned movement' animations", nullptr, "[0,1]" },
-		{ _field_real, "feign death chance", nullptr, nullptr, "[0,1]" },
-		{ _field_real, "feign repeat chance", nullptr, nullptr, "[0,1]" },
-		{ _field_tag_reference, "spawned turret character", "automatically created character when this unit is driven", &blofeld::halo2::pc64::character_group_reference$2 },
-		{ _field_short_integer_bounds, "spawned actor count", "number of actors which we spawn" },
-		{ _field_real, "spawned velocity", "velocity at which we throw spawned actors" },
-		{ _field_angle, "aiming velocity maximum", nullptr, "degrees per second" },
-		{ _field_angle, "aiming acceleration maximum", nullptr, "degrees per second squared" },
-		{ _field_real_fraction, "casual aiming modifier", nullptr, nullptr, "[0,1]" },
-		{ _field_angle, "looking velocity maximum", nullptr, "degrees per second" },
-		{ _field_angle, "looking acceleration maximum", nullptr, "degrees per second squared" },
-		{ _field_string_id, "right_hand_node", "where the primary weapon is attached" },
-		{ _field_string_id, "left_hand_node", "where the seconday weapon is attached (for dual-pistol modes)" },
-		{ _field_struct, "more damn nodes", &blofeld::halo2::pc64::unit_additional_node_names_struct_definition },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "melee damage", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_struct, "your momma", &blofeld::halo2::pc64::unit_boarding_melee_v2_struct_definition },
-		{ _field_short_enum, "motion sensor blip size", &blofeld::halo2::pc64::unnamed_enum$109 },
-		{ _field_struct, "campaign metagame bucket", &blofeld::halo2::pc64::campaign_metagame_bucket_block_struct_definition },
-		{ _field_block, "postures", &blofeld::halo2::pc64::unit_postures_block },
-		{ _field_block, "NEW HUD INTERFACES", &blofeld::halo2::pc64::unit_hud_reference_block },
-		{ _field_block, "dialogue variants", &blofeld::halo2::pc64::dialogue_variant_block },
-		{ _field_real, "grenade velocity", nullptr, "world units per second" },
-		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$112 },
-		{ _field_short_integer, "grenade count" },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "powered seats", &blofeld::halo2::pc64::powered_seat_block },
-		{ _field_block, "weapons", &blofeld::halo2::pc64::unit_weapon_block },
-		{ _field_block, "seats", &blofeld::halo2::pc64::unit_seat_block },
-		FIELD_EXPLANATION("Boost", nullptr),
-		{ _field_struct, "boost", &blofeld::halo2::pc64::unit_boost_struct_struct_definition },
-		FIELD_EXPLANATION("Lipsync", nullptr),
-		{ _field_struct, "lipsync", &blofeld::halo2::pc64::unit_lipsync_scales_struct_definition },
-		FIELD_EXPLANATION("$$$ BIPED $$$", nullptr),
-		{ _field_angle, "moving turning speed", nullptr, "degrees per second" },
-		FIELD_SKIP("value", 4),
-		{ _field_angle, "stationary turning threshold" },
-		FIELD_PAD("value", 16),
-		{ _field_short_enum, "old obsolete A in", &blofeld::halo2::pc64::unnamed_enum$119 },
-		{ _field_short_enum, "old obsolete B in", &blofeld::halo2::pc64::unnamed_enum$119 },
-		{ _field_short_enum, "old obsolete C in", &blofeld::halo2::pc64::unnamed_enum$119 },
-		{ _field_short_enum, "old obsolete D in", &blofeld::halo2::pc64::unnamed_enum$119 },
-		{ _field_tag_reference, "DON'T USE", &blofeld::halo2::pc64::damage_effect_group_reference },
-		FIELD_EXPLANATION("flying", nullptr),
-		{ _field_angle, "bank angle", "angle at which we bank left/right when sidestepping or turning while moving forwards", "degrees" },
-		{ _field_real, "bank apply time", "time it takes us to apply a bank", "seconds" },
-		{ _field_real, "bank decay time", "time it takes us to recover from a bank", "seconds" },
-		{ _field_real, "pitch ratio", "amount that we pitch up/down when moving up or down" },
-		{ _field_real, "max velocity", "max velocity when not crouching", "world units per second" },
-		{ _field_real, "max sidestep velocity", "max sideways or up/down velocity when not crouching", "world units per second" },
-		{ _field_real, "acceleration", nullptr, "world units per second squared" },
-		{ _field_real, "deceleration", nullptr, "world units per second squared" },
-		{ _field_angle, "angular velocity maximum", "turn rate", "degrees per second" },
-		{ _field_angle, "angular acceleration maximum", "turn acceleration rate", "degrees per second squared" },
-		{ _field_real, "crouch velocity modifier", "how much slower we fly if crouching (zero = same speed)", nullptr, "[0,1]" },
-		FIELD_PAD("value", 8),
-		FIELD_EXPLANATION("movement", nullptr),
-		{ _field_angle, "maximum slope angle", nullptr, "degrees" },
-		{ _field_angle, "downhill falloff angle", nullptr, "degrees" },
-		{ _field_angle, "downhill cutoff angle", nullptr, "degrees" },
-		{ _field_real, "downhill velocity scale" },
-		{ _field_angle, "uphill falloff angle", nullptr, "degrees" },
-		{ _field_angle, "uphill cutoff angle", nullptr, "degrees" },
-		{ _field_real, "uphill velocity scale" },
-		FIELD_PAD("value", 24),
-		{ _field_tag_reference, "UNUSED", &blofeld::halo2::pc64::material_effects_group_reference },
-		FIELD_PAD("value", 24),
-		FIELD_EXPLANATION("jumping and landing", nullptr),
-		{ _field_real, "jump velocity", nullptr, "world units per second" },
-		FIELD_PAD("value", 28),
-		{ _field_real, "maximum soft landing time", "the longest amount of time the biped can take to recover from a soft landing", "seconds" },
-		{ _field_real, "maximum hard landing time", "the longest amount of time the biped can take to recover from a hard landing", "seconds" },
-		{ _field_real, "minimum soft landing velocity", "below this velocity the biped does not react when landing", "world units per second" },
-		{ _field_real, "minimum hard landing velocity", "below this velocity the biped will not do a soft landing when returning to the ground", "world units per second" },
-		{ _field_real, "maximum hard landing velocity", "the velocity corresponding to the maximum landing time", "world units per second" },
-		{ _field_real, "death hard landing velocity", "the maximum velocity with which a character can strike the ground and live", "world units per second" },
-		FIELD_PAD("value", 20),
-		FIELD_EXPLANATION("camera, collision, and autoaim", nullptr),
-		{ _field_real, "standing camera height", nullptr, "world units" },
-		{ _field_real, "crouching camera height", nullptr, "world units" },
-		{ _field_real, "crouch transition time", nullptr, "seconds" },
-		{ _field_angle, "camera interpolation start", "looking-downward angle that starts camera interpolation to fp position", "degrees" },
-		{ _field_angle, "camera interpolation end", "looking-downward angle at which camera interpolation to fp position is complete", "degrees" },
-		{ _field_real, "camera forward movement scale", "amount of fp camera movement forward and back (1.0 is full)" },
-		{ _field_real, "camera side movement scale", "amount of fp camera movement side-to-side (1.0 is full)" },
-		{ _field_real, "camera vertical movement scale", "amount of fp camera movement vertically (1.0 is full)" },
-		{ _field_real, "camera exclusion distance", "fp camera must always be at least this far out from root node", "world units" },
-		{ _field_real, "standing collision height", nullptr, "world units" },
-		{ _field_real, "crouching collision height", nullptr, "world units" },
-		{ _field_real, "collision radius", nullptr, "world units" },
-		{ _field_real, "collision mass", nullptr, "world mass units" },
-		{ _field_string_id, "collision global material name", "collision material used when biped is alive" },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 2),
-		{ _field_string_id, "dead collision global material name", "collision material used when biped is dead" },
-		FIELD_PAD("value", 24),
-		{ _field_real, "autoaim width", nullptr, "world units" },
-		FIELD_PAD("value", 140),
-		{ _field_block, "contact points", "these are the points where the biped touches the ground", &blofeld::halo2::pc64::contact_point_block_v1_block },
-		{ _field_block, "pill shapes", "No point editing these.  They get filled out at map load.", &blofeld::halo2::pc64::pills_block },
-		{ _field_terminator }
-	};
-
-	STRINGS(unnamed_enum$96)
-	{
-		"does not cast shadow",
-		"search cardinal direction lightmaps on failure",
-		"unused!",
-		"not a pathfinding obstacle",
-		"extension of parent#object passes all function values to parent and uses parent\'s markers",
-		"does not cause collision damage",
-		"early mover",
-		"early mover localized physics",
-		"use static massive lightmap sample#cast A LOT of rays once and store the results for lighting",
-		"object scales attachments",
-		"inherits player\'s appearance",
-		"dead bipeds can\'t localize",
-		"attach to clusters by dynamic sphere#use this for the mac gun on spacestation",
-		"effects created by this object do not spawn objects in multiplayer",
-		"prophet is not displayed in pegasus builds!"
-	};
-	STRING_LIST(unnamed_enum$96, unnamed_enum$96_strings, _countof(unnamed_enum$96_strings));
-
-	STRINGS(unnamed_enum$97)
-	{
-		"default",
-		"never",
-		"always"
-	};
-	STRING_LIST(unnamed_enum$97, unnamed_enum$97_strings, _countof(unnamed_enum$97_strings));
-
-	STRINGS(unnamed_enum$98)
-	{
-		"small",
-		"medium",
-		"large"
-	};
-	STRING_LIST(unnamed_enum$98, unnamed_enum$98_strings, _countof(unnamed_enum$98_strings));
-
-	TAG_REFERENCE(model_group_reference, MODEL_TAG);
-
-	TAG_REFERENCE(crate_group_reference$2, CRATE_TAG);
-
-	TAG_REFERENCE(shader_group_reference, SHADER_TAG);
-
-	TAG_REFERENCE(effect_group_reference, EFFECT_TAG);
-
-	TAG_REFERENCE(material_effects_group_reference, MATERIAL_EFFECTS_TAG);
-
-	STRINGS(unnamed_enum$106)
-	{
-		"circular aiming",
-		"destroyed after dying",
-		"half-speed interpolation",
-		"fires from camera",
-		"entrance inside bounding sphere",
-		"doesn\'t show readied weapon",
-		"causes passenger dialogue",
-		"resists pings",
-		"melee attack is fatal",
-		"don\'t reface during pings",
-		"has no aiming",
-		"simple creature",
-		"impact melee attaches to unit",
-		"impact melee dies on shields",
-		"cannot open doors automatically",
-		"melee attackers cannot attach",
-		"not instantly killed by melee",
-		"shield sapping",
-		"runs around flaming",
-		"inconsequential",
-		"special cinematic unit",
-		"ignored by autoaiming",
-		"shields fry infection forms",
-		"unused",
-		"unused",
-		"acts as gunner for parent",
-		"controlled by parent gunner",
-		"parent\'s primary weapon",
-		"unit has boost"
-	};
-	STRING_LIST(unnamed_enum$106, unnamed_enum$106_strings, _countof(unnamed_enum$106_strings));
-
-	STRINGS(unnamed_enum$107)
-	{
-		"default",
-		"player",
-		"human",
-		"covenant",
-		"flood",
-		"sentinel",
-		"heretic",
-		"prophet",
-		"unused8",
-		"unused9",
-		"unused10",
-		"unused11",
-		"unused12",
-		"unused13",
-		"unused14",
-		"unused15"
-	};
-	STRING_LIST(unnamed_enum$107, unnamed_enum$107_strings, _countof(unnamed_enum$107_strings));
-
-	STRINGS(unnamed_enum$108)
-	{
-		"silent",
-		"medium",
-		"loud",
-		"shout",
-		"quiet"
-	};
-	STRING_LIST(unnamed_enum$108, unnamed_enum$108_strings, _countof(unnamed_enum$108_strings));
-
-	STRINGS(unnamed_enum$109)
-	{
-		"medium",
-		"small",
-		"large"
-	};
-	STRING_LIST(unnamed_enum$109, unnamed_enum$109_strings, _countof(unnamed_enum$109_strings));
-
-	STRINGS(unnamed_enum$112)
-	{
-		"human fragmentation",
-		"covenant plasma"
-	};
-	STRING_LIST(unnamed_enum$112, unnamed_enum$112_strings, _countof(unnamed_enum$112_strings));
-
-	STRINGS(unnamed_enum$119)
-	{
-		"none",
-		"flying velocity"
-	};
-	STRING_LIST(unnamed_enum$119, unnamed_enum$119_strings, _countof(unnamed_enum$119_strings));
-
-	TAG_STRUCT(
 		contact_point_block_v1_struct_definition,
 		"contact_point_block_v1",
 		"contact_point_block_v1_struct_definition",
@@ -10357,6 +9986,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 27 },
 		{ _field_tag, "signature" },
 		{ _field_short_integer, "width", nullptr, "pixels" },
 		{ _field_short_integer, "height", nullptr, "pixels" },
@@ -10384,6 +10014,52 @@ namespace pc64
 		FIELD_SKIP("value", 4),
 		FIELD_SKIP("value", 20),
 		{ _field_pointer, "value" },
+		
+		{ _struct_version_mode_equal, 1, 26 },
+		{ _field_tag, "signature" },
+		{ _field_short_integer, "width", nullptr, "pixels" },
+		{ _field_short_integer, "height", nullptr, "pixels" },
+		{ _field_char_integer, "depth", "depth is 1 for 2D textures and cube maps", "pixels" },
+		{ _field_byte_flags, "more flags", &blofeld::halo2::pc64::unnamed_enum$127 },
+		{ _field_short_enum, "type", "determines bitmap 'geometry'", &blofeld::halo2::pc64::unnamed_enum$128 },
+		{ _field_short_enum, "format", "determines how pixels are represented internally", &blofeld::halo2::pc64::unnamed_enum$129 },
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$130 },
+		{ _field_point_2d, "registration point" },
+		{ _field_short_integer, "mipmap count" },
+		{ _field_char_integer, "lod adjust", nullptr, "postprocessed", FIELD_FLAG_UNKNOWN0 },
+		{ _field_char_enum, "cache usage", nullptr, "postprocessed", FIELD_FLAG_UNKNOWN0, &blofeld::halo2::pc64::unnamed_enum$131 },
+		{ _field_long_integer, "pixels offset" },
+		FIELD_SKIP("value", 12),
+		FIELD_SKIP("value", 12),
+		FIELD_SKIP("value", 12),
+		{ _field_pointer, "value" },
+		{ _field_pointer, "value" },
+		{ _field_pointer, "value" },
+		FIELD_SKIP("value", 4),
+		FIELD_PAD("value", 4),
+		{ _field_pointer, "value" },
+		{ _field_pointer, "value" },
+		FIELD_SKIP("value", 4),
+		FIELD_SKIP("value", 20),
+		{ _field_pointer, "value" },
+		
+		{ _struct_version_mode_equal, 0, 15 },
+		{ _field_tag, "signature" },
+		{ _field_short_integer, "width", nullptr, "pixels" },
+		{ _field_short_integer, "height", nullptr, "pixels" },
+		{ _field_short_integer, "depth", "depth is 1 for 2D textures and cube maps", "pixels" },
+		{ _field_short_enum, "type", "determines bitmap 'geometry'", &blofeld::halo2::pc64::unnamed_enum$128 },
+		{ _field_short_enum, "format", "determines how pixels are represented internally", &blofeld::halo2::pc64::unnamed_enum$129 },
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$130 },
+		{ _field_point_2d, "registration point" },
+		{ _field_short_integer, "mipmap count" },
+		FIELD_PAD("value", 2),
+		{ _field_long_integer, "pixels offset" },
+		FIELD_PAD("value", 4),
+		FIELD_PAD("value", 4),
+		FIELD_PAD("value", 4),
+		FIELD_PAD("value", 8),
+		
 		{ _field_terminator }
 	};
 
@@ -10503,71 +10179,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		bitmap_tags_v1_struct_definition,
-		"bitmap_tags_v1",
-		"bitmap_tags_v1_struct_definition",
-		"s_bitmap_data_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_tag, "signature" },
-		{ _field_short_integer, "width", nullptr, "pixels" },
-		{ _field_short_integer, "height", nullptr, "pixels" },
-		{ _field_short_integer, "depth", "depth is 1 for 2D textures and cube maps", "pixels" },
-		{ _field_short_enum, "type", "determines bitmap 'geometry'", &blofeld::halo2::pc64::unnamed_enum$128 },
-		{ _field_short_enum, "format", "determines how pixels are represented internally", &blofeld::halo2::pc64::unnamed_enum$129 },
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$130 },
-		{ _field_point_2d, "registration point" },
-		{ _field_short_integer, "mipmap count" },
-		FIELD_PAD("value", 2),
-		{ _field_long_integer, "pixels offset" },
-		FIELD_PAD("value", 4),
-		FIELD_PAD("value", 4),
-		FIELD_PAD("value", 4),
-		FIELD_PAD("value", 8),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		bitmap_tags_v2_struct_definition,
-		"bitmap_tags_v2",
-		"bitmap_tags_v2_struct_definition",
-		"s_bitmap_data_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_tag, "signature" },
-		{ _field_short_integer, "width", nullptr, "pixels" },
-		{ _field_short_integer, "height", nullptr, "pixels" },
-		{ _field_char_integer, "depth", "depth is 1 for 2D textures and cube maps", "pixels" },
-		{ _field_byte_flags, "more flags", &blofeld::halo2::pc64::unnamed_enum$127 },
-		{ _field_short_enum, "type", "determines bitmap 'geometry'", &blofeld::halo2::pc64::unnamed_enum$128 },
-		{ _field_short_enum, "format", "determines how pixels are represented internally", &blofeld::halo2::pc64::unnamed_enum$129 },
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$130 },
-		{ _field_point_2d, "registration point" },
-		{ _field_short_integer, "mipmap count" },
-		{ _field_char_integer, "lod adjust", nullptr, "postprocessed", FIELD_FLAG_UNKNOWN0 },
-		{ _field_char_enum, "cache usage", nullptr, "postprocessed", FIELD_FLAG_UNKNOWN0, &blofeld::halo2::pc64::unnamed_enum$131 },
-		{ _field_long_integer, "pixels offset" },
-		FIELD_SKIP("value", 12),
-		FIELD_SKIP("value", 12),
-		FIELD_SKIP("value", 12),
-		{ _field_pointer, "value" },
-		{ _field_pointer, "value" },
-		{ _field_pointer, "value" },
-		FIELD_SKIP("value", 4),
-		FIELD_PAD("value", 4),
-		{ _field_pointer, "value" },
-		{ _field_pointer, "value" },
-		FIELD_SKIP("value", 4),
-		FIELD_SKIP("value", 20),
-		{ _field_pointer, "value" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		crate_block_struct_definition,
 		"crate_block",
 		"crate_block_struct_definition",
@@ -10626,6 +10237,52 @@ namespace pc64
 		{ _field_terminator }
 	};
 
+	STRINGS(unnamed_enum$96)
+	{
+		"does not cast shadow",
+		"search cardinal direction lightmaps on failure",
+		"unused!",
+		"not a pathfinding obstacle",
+		"extension of parent#object passes all function values to parent and uses parent\'s markers",
+		"does not cause collision damage",
+		"early mover",
+		"early mover localized physics",
+		"use static massive lightmap sample#cast A LOT of rays once and store the results for lighting",
+		"object scales attachments",
+		"inherits player\'s appearance",
+		"dead bipeds can\'t localize",
+		"attach to clusters by dynamic sphere#use this for the mac gun on spacestation",
+		"effects created by this object do not spawn objects in multiplayer",
+		"prophet is not displayed in pegasus builds!"
+	};
+	STRING_LIST(unnamed_enum$96, unnamed_enum$96_strings, _countof(unnamed_enum$96_strings));
+
+	STRINGS(unnamed_enum$97)
+	{
+		"default",
+		"never",
+		"always"
+	};
+	STRING_LIST(unnamed_enum$97, unnamed_enum$97_strings, _countof(unnamed_enum$97_strings));
+
+	STRINGS(unnamed_enum$98)
+	{
+		"small",
+		"medium",
+		"large"
+	};
+	STRING_LIST(unnamed_enum$98, unnamed_enum$98_strings, _countof(unnamed_enum$98_strings));
+
+	TAG_REFERENCE(model_group_reference, MODEL_TAG);
+
+	TAG_REFERENCE(crate_group_reference$2, CRATE_TAG);
+
+	TAG_REFERENCE(shader_group_reference, SHADER_TAG);
+
+	TAG_REFERENCE(effect_group_reference, EFFECT_TAG);
+
+	TAG_REFERENCE(material_effects_group_reference, MATERIAL_EFFECTS_TAG);
+
 	STRINGS(unnamed_enum$133)
 	{
 		"does not block AOE"
@@ -10660,6 +10317,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 42 },
 		{ _field_long_flags, "Character flags", &blofeld::halo2::pc64::unnamed_enum$134 },
 		{ _field_useless_pad, "value" },
 		{ _field_tag_reference, "parent character", &blofeld::halo2::pc64::character_group_reference$4 },
@@ -10702,6 +10360,76 @@ namespace pc64
 		{ _field_block, "morph properties", &blofeld::halo2::pc64::g_null_block },
 		{ _field_block, "equipment definitions", &blofeld::halo2::pc64::g_null_block },
 		{ _field_block, "campaign metagame bucket", &blofeld::halo2::pc64::campaign_metagame_bucket_block },
+		
+		{ _struct_version_mode_equal, 1, 36 },
+		{ _field_long_flags, "Character flags", &blofeld::halo2::pc64::unnamed_enum$134 },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "parent character", &blofeld::halo2::pc64::character_group_reference$4 },
+		{ _field_tag_reference, "unit", &blofeld::halo2::pc64::unit_group_reference },
+		{ _field_tag_reference, "style", &blofeld::halo2::pc64::style_group_reference$2 },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "major character", &blofeld::halo2::pc64::character_group_reference$5 },
+		{ _field_string_id, "model variant" },
+		{ _field_tag_reference, "creature", "Creature reference for swarm characters ONLY", &blofeld::halo2::pc64::creature_group_reference$3 },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "general properties", &blofeld::halo2::pc64::character_general_block },
+		{ _field_block, "vitality properties", &blofeld::halo2::pc64::character_vitality_block },
+		{ _field_block, "placement properties", &blofeld::halo2::pc64::character_placement_block },
+		{ _field_block, "perception properties", &blofeld::halo2::pc64::character_perception_block },
+		{ _field_block, "look properties", &blofeld::halo2::pc64::character_look_block },
+		{ _field_block, "movement properties", &blofeld::halo2::pc64::character_movement_block },
+		{ _field_block, "swarm properties", &blofeld::halo2::pc64::character_swarm_block },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "ready properties", &blofeld::halo2::pc64::character_ready_block },
+		{ _field_block, "engage properties", &blofeld::halo2::pc64::character_engage_block },
+		{ _field_block, "charge properties", &blofeld::halo2::pc64::character_charge_block },
+		FIELD_EXPLANATION("Danger Values", "Danger values can be found in the ai-globals section of the globals tag."),
+		{ _field_block, "evasion properties", &blofeld::halo2::pc64::character_evasion_block },
+		{ _field_block, "cover properties", &blofeld::halo2::pc64::character_cover_block },
+		{ _field_block, "retreat properties", &blofeld::halo2::pc64::character_retreat_block },
+		{ _field_block, "search properties", &blofeld::halo2::pc64::character_search_block },
+		{ _field_block, "pre-search properties", &blofeld::halo2::pc64::character_presearch_block },
+		{ _field_block, "idle properties", &blofeld::halo2::pc64::character_idle_block },
+		{ _field_block, "vocalization properties", &blofeld::halo2::pc64::character_vocalization_block },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "weapons properties", &blofeld::halo2::pc64::character_weapons_block, _field_id_sort },
+		{ _field_block, "firing pattern properties", &blofeld::halo2::pc64::character_firing_pattern_properties_block, _field_id_sort },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "grenades properties", &blofeld::halo2::pc64::character_grenades_block, _field_id_sort },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "vehicle properties", &blofeld::halo2::pc64::character_vehicle_block, _field_id_sort },
+		
+		{ _struct_version_mode_equal, 0, 29 },
+		{ _field_long_flags, "Character flags", &blofeld::halo2::pc64::unnamed_enum$134 },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "parent character", &blofeld::halo2::pc64::character_group_reference$4 },
+		{ _field_tag_reference, "unit", &blofeld::halo2::pc64::unit_group_reference },
+		{ _field_tag_reference, "style", &blofeld::halo2::pc64::style_group_reference$2 },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "major character", &blofeld::halo2::pc64::character_group_reference$5 },
+		{ _field_string_id, "model variant" },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "general properties", &blofeld::halo2::pc64::character_general_block },
+		{ _field_block, "placement properties", &blofeld::halo2::pc64::character_placement_block },
+		{ _field_block, "vitality properties", &blofeld::halo2::pc64::character_vitality_block },
+		{ _field_block, "perception properties", &blofeld::halo2::pc64::character_perception_block },
+		{ _field_block, "retreat properties", &blofeld::halo2::pc64::character_retreat_block },
+		{ _field_block, "Look properties", &blofeld::halo2::pc64::character_look_block },
+		{ _field_block, "Movement properties", &blofeld::halo2::pc64::character_movement_block },
+		{ _field_block, "Engage properties", &blofeld::halo2::pc64::character_engage_block },
+		FIELD_EXPLANATION("Danger Values", "Danger values can be found in the ai-globals section of the globals tag."),
+		{ _field_block, "Evasion properties", &blofeld::halo2::pc64::character_evasion_block },
+		{ _field_block, "Cover properties", &blofeld::halo2::pc64::character_cover_block },
+		{ _field_block, "search properties", &blofeld::halo2::pc64::character_search_block },
+		{ _field_block, "pre-search properties", &blofeld::halo2::pc64::character_presearch_block },
+		{ _field_block, "weapons properties", &blofeld::halo2::pc64::character_weapons_block },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "grenades properties", &blofeld::halo2::pc64::character_grenades_block },
+		{ _field_block, "charge properties", &blofeld::halo2::pc64::character_charge_block },
+		{ _field_block, "ready properties", &blofeld::halo2::pc64::character_ready_block },
+		{ _field_block, "vehicle properties", &blofeld::halo2::pc64::character_vehicle_block },
+		{ _field_block, "idle properties", &blofeld::halo2::pc64::character_idle_block },
+		
 		{ _field_terminator }
 	};
 
@@ -11071,14 +10799,15 @@ namespace pc64
 	STRING_LIST(unnamed_enum$142, unnamed_enum$142_strings, _countof(unnamed_enum$142_strings));
 
 	TAG_STRUCT(
-		charge_v4_struct_definition,
-		"charge_v4",
-		"charge_v4_struct_definition",
+		charge_struct_definition,
+		"charge",
+		"charge_struct_definition",
 		"s_character_charge_properties",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 3, 15 },
 		{ _field_long_flags, "Charge flags", &blofeld::halo2::pc64::unnamed_enum$143 },
 		{ _field_real, "melee consider range" },
 		{ _field_real, "melee chance", "chance of initiating a melee within a 1 second period" },
@@ -11094,70 +10823,8 @@ namespace pc64
 		{ _field_real, "melee delay timer", "time between melee leaps", "seconds" },
 		{ _field_useless_pad, "value" },
 		{ _field_tag_reference, "berserk weapon", "when I berserk, I pull out a ...", &blofeld::halo2::pc64::weapon_group_reference$4 },
-		{ _field_terminator }
-	};
-
-	STRINGS(unnamed_enum$143)
-	{
-		"offhand melee allowed",
-		"berserk whenever charge"
-	};
-	STRING_LIST(unnamed_enum$143, unnamed_enum$143_strings, _countof(unnamed_enum$143_strings));
-
-	TAG_REFERENCE(weapon_group_reference$4, WEAPON_TAG);
-
-	TAG_STRUCT(
-		charge_v1_struct_definition,
-		"charge_v1",
-		"charge_v1_struct_definition",
-		"s_character_charge_properties_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "Charge flags", &blofeld::halo2::pc64::unnamed_enum$138 },
-		{ _field_real, "melee attack range" },
-		{ _field_real, "melee abort range" },
-		{ _field_real, "melee attack timeout", "Give up after given amount of time spent charging", "seconds" },
-		{ _field_real, "melee attack delay timer" },
-		{ _field_real_bounds, "melee leap range" },
-		{ _field_real, "melee leap velocity" },
-		{ _field_real, "melee leap chance" },
-		{ _field_real, "melee leap ballistic" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		charge_v2_struct_definition,
-		"charge_v2",
-		"charge_v2_struct_definition",
-		"s_character_charge_properties_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "Charge flags", &blofeld::halo2::pc64::unnamed_enum$138 },
-		{ _field_real, "melee consider range" },
-		{ _field_real, "melee attack range" },
-		{ _field_real, "melee abort range" },
-		{ _field_real, "melee attack timeout", "Give up after given amount of time spent charging", "seconds" },
-		{ _field_real, "melee attack delay timer" },
-		{ _field_real_bounds, "melee leap range" },
-		{ _field_real, "melee leap velocity" },
-		{ _field_real, "melee leap chance" },
-		{ _field_real, "melee leap ballistic" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		charge_v3_struct_definition,
-		"charge_v3",
-		"charge_v3_struct_definition",
-		"s_character_charge_properties_v3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 2, 11 },
 		{ _field_long_flags, "Charge flags", &blofeld::halo2::pc64::unnamed_enum$138 },
 		{ _field_real, "melee consider range" },
 		{ _field_real, "melee attack range" },
@@ -11169,8 +10836,41 @@ namespace pc64
 		{ _field_real, "max leap velocity" },
 		{ _field_real, "melee leap chance" },
 		{ _field_real, "melee leap ballistic" },
+		
+		{ _struct_version_mode_equal, 1, 10 },
+		{ _field_long_flags, "Charge flags", &blofeld::halo2::pc64::unnamed_enum$138 },
+		{ _field_real, "melee consider range" },
+		{ _field_real, "melee attack range" },
+		{ _field_real, "melee abort range" },
+		{ _field_real, "melee attack timeout", "Give up after given amount of time spent charging", "seconds" },
+		{ _field_real, "melee attack delay timer" },
+		{ _field_real_bounds, "melee leap range" },
+		{ _field_real, "melee leap velocity" },
+		{ _field_real, "melee leap chance" },
+		{ _field_real, "melee leap ballistic" },
+		
+		{ _struct_version_mode_equal, 0, 9 },
+		{ _field_long_flags, "Charge flags", &blofeld::halo2::pc64::unnamed_enum$138 },
+		{ _field_real, "melee attack range" },
+		{ _field_real, "melee abort range" },
+		{ _field_real, "melee attack timeout", "Give up after given amount of time spent charging", "seconds" },
+		{ _field_real, "melee attack delay timer" },
+		{ _field_real_bounds, "melee leap range" },
+		{ _field_real, "melee leap velocity" },
+		{ _field_real, "melee leap chance" },
+		{ _field_real, "melee leap ballistic" },
+		
 		{ _field_terminator }
 	};
+
+	STRINGS(unnamed_enum$143)
+	{
+		"offhand melee allowed",
+		"berserk whenever charge"
+	};
+	STRING_LIST(unnamed_enum$143, unnamed_enum$143_strings, _countof(unnamed_enum$143_strings));
+
+	TAG_REFERENCE(weapon_group_reference$4, WEAPON_TAG);
 
 	TAG_STRUCT(
 		character_evasion_block_struct_definition,
@@ -11287,37 +10987,29 @@ namespace pc64
 	STRING_LIST(unnamed_enum$145, unnamed_enum$145_strings, _countof(unnamed_enum$145_strings));
 
 	TAG_STRUCT(
-		presearch_v2_struct_definition,
-		"presearch_v2",
-		"presearch_v2_struct_definition",
+		presearch_struct_definition,
+		"presearch",
+		"presearch_struct_definition",
 		"s_character_presearch_properties",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 6 },
 		{ _field_long_flags, "Pre-search flags", &blofeld::halo2::pc64::unnamed_enum$138 },
 		{ _field_real_bounds, "min presearch time", "If the min presearch time expires and the target is (actually) outside the min-certainty radius, presearch turns off", "seconds" },
 		{ _field_real_bounds, "max presearch time", "Presearch turns off after the given time", "seconds" },
 		{ _field_real, "Min certainty radius" },
 		{ _field_real, "Max uncover distance", nullptr, "DEPRECATED", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real_bounds, "min suppressing time", "if the min suppressing time expires and the target is outside the min-certainty radius, suppressing fire turns off" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		presearch_v1_struct_definition,
-		"presearch_v1",
-		"presearch_v1_struct_definition",
-		"s_character_presearch_properties_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 5 },
 		{ _field_long_flags, "Pre-search flags", &blofeld::halo2::pc64::unnamed_enum$138 },
 		{ _field_useless_pad, "value" },
 		{ _field_real_bounds, "Min/Max pre-search bounds", "If the min presearch time expires and the target is (actually) outside the min-certainty radius, presearch turns off" },
 		{ _field_real, "Min certainty radius" },
 		{ _field_real, "Max uncover distance" },
+		
 		{ _field_terminator }
 	};
 
@@ -11390,14 +11082,15 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		weapon_v2_struct_definition,
-		"weapon_v2",
-		"weapon_v2_struct_definition",
+		weapon_struct_definition,
+		"weapon",
+		"weapon_struct_definition",
 		"s_character_weapon_properties",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 51 },
 		{ _field_long_flags, "weapons flags", &blofeld::halo2::pc64::unnamed_enum$147 },
 		{ _field_tag_reference, "weapon", &blofeld::halo2::pc64::weapon_group_reference$5 },
 		{ _field_useless_pad, "value" },
@@ -11449,6 +11142,54 @@ namespace pc64
 		{ _field_useless_pad, "value" },
 		{ _field_block, "firing patterns", &blofeld::halo2::pc64::character_firing_pattern_block },
 		{ _field_tag_reference, "weapon melee damage", &blofeld::halo2::pc64::damage_effect_group_reference$2 },
+		
+		{ _struct_version_mode_equal, 0, 45 },
+		{ _field_long_flags, "weapons flags", &blofeld::halo2::pc64::unnamed_enum$147 },
+		{ _field_tag_reference, "weapon", &blofeld::halo2::pc64::weapon_group_reference$5 },
+		{ _field_real, "maximum firing distance", "we can only fire our weapon at targets within this distance", "world units" },
+		{ _field_real, "rate of fire", "how many times per second we pull the trigger (zero = continuously held down)" },
+		{ _field_angle, "projectile error", "error added to every projectile we fire", "degrees" },
+		{ _field_real_bounds, "first burst delay time", nullptr, "seconds" },
+		{ _field_real, "surprise delay time", nullptr, "seconds" },
+		{ _field_real, "surprise fire-wildly time", nullptr, "seconds" },
+		{ _field_real, "death fire-wildly chance", nullptr, nullptr, "[0,1]" },
+		{ _field_real, "death fire-wildly time", nullptr, "seconds" },
+		{ _field_real_bounds, "desired combat range", nullptr, "world units" },
+		{ _field_real_vector_3d, "custom stand gun offset", "custom standing gun offset for overriding the default in the base actor" },
+		{ _field_real_vector_3d, "custom crouch gun offset", "custom crouching gun offset for overriding the default in the base actor" },
+		{ _field_real, "target tracking", "how well our bursts track moving targets. 0.0= fire at the position they were standing when we started the burst. 1.0= fire at current position", nullptr, "[0,1]" },
+		{ _field_real, "target leading", "how much we lead moving targets. 0.0= no prediction. 1.0= predict completely.", nullptr, "[0,1]" },
+		{ _field_real, "weapon damage modifier", "what fraction of its normal damage our weapon inflicts (zero = no modifier)" },
+		{ _field_real, "minimum firing range", "weapon will not be fired at target closer than given distance" },
+		FIELD_EXPLANATION("burst geometry", "at the start of every burst we pick a random point near the target to fire at, on either the left or the right side.\nthe burst origin angle controls whether this error is exactly horizontal or might have some vertical component.\n\nover the course of the burst we move our projectiles back in the opposite direction towards the target. this return motion is also controlled by an angle that specifies how close to the horizontal it is.\n\nfor example if the burst origin angle and the burst return angle were both zero, and the return length was the same as the burst length, every burst would start the same amount away from the target (on either the left or right) and move back to exactly over the target at the end of the burst."),
+		{ _field_real, "burst origin radius", "how far away from the target the starting point is", "world units" },
+		{ _field_angle, "burst origin angle", "the range from the horizontal that our starting error can be", "degrees" },
+		{ _field_real_bounds, "burst return length", "how far the burst point moves back towards the target (could be negative)", "world units" },
+		{ _field_angle, "burst return angle", "the range from the horizontal that the return direction can be", "degrees" },
+		{ _field_real_bounds, "burst duration", "how long each burst we fire is", "seconds" },
+		{ _field_real_bounds, "burst separation", "how long we wait between bursts", "seconds" },
+		{ _field_angle, "burst angular velocity", "the maximum rate at which we can sweep our fire (zero = unlimited)", "degrees per second" },
+		{ _field_useless_pad, "value" },
+		{ _field_real, "special damage modifier", "damage modifier for special weapon fire (applied in addition to the normal damage modifier. zero = no change)", nullptr, "[0,1]" },
+		{ _field_angle, "special projectile error", "projectile error angle for special weapon fire (applied in addition to the normal error)", "degrees" },
+		FIELD_EXPLANATION("special-case firing properties", nullptr),
+		{ _field_real, "super-ballistic range", "we try to aim our shots super-ballistically if target is outside this range (zero = never)" },
+		{ _field_real, "bombardment range", "we offset our burst targets randomly by this range when firing at non-visible enemies (zero = never)" },
+		{ _field_short_enum, "special-fire mode", "the type of special weapon fire that we can use", &blofeld::halo2::pc64::unnamed_enum$148 },
+		{ _field_short_enum, "special-fire situation", "when we will decide to use our special weapon fire mode", &blofeld::halo2::pc64::unnamed_enum$149 },
+		{ _field_real, "special-fire chance", "how likely we are to use our special weapon fire mode", nullptr, "[0,1]" },
+		{ _field_real, "special-fire delay", "how long we must wait between uses of our special weapon fire mode", "seconds" },
+		{ _field_useless_pad, "value" },
+		FIELD_EXPLANATION("Weapon drop when killed", nullptr),
+		{ _field_real_bounds, "drop weapon loaded", "amount of ammo loaded into the weapon that we drop (in fractions of a clip, e.g. 0.3 to 0.5)" },
+		{ _field_short_integer_bounds, "drop weapon ammo", "total number of rounds in the weapon that we drop (ignored for energy weapons)" },
+		{ _field_useless_pad, "value" },
+		FIELD_EXPLANATION("Special Targeting", nullptr),
+		{ _field_real, "Max special target distance", "Specific target regions on a vehicle or unit will be fired upon only under the given distance", "world units" },
+		FIELD_EXPLANATION("Ballistic firing", nullptr),
+		{ _field_real_bounds, "Ballistic firing bounds", "At the min range, the min ballistic fraction is used, at the max, the max ballistic fraction is used", "world units" },
+		{ _field_real_bounds, "Ballistic fraction bounds", "Controls speed and degree of arc. 0 = high, slow, 1 = low, fast", nullptr, "[0-1]" },
+		
 		{ _field_terminator }
 	};
 
@@ -11509,63 +11250,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		weapon_v1_struct_definition,
-		"weapon_v1",
-		"weapon_v1_struct_definition",
-		"s_character_weapon_properties_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "weapons flags", &blofeld::halo2::pc64::unnamed_enum$147 },
-		{ _field_tag_reference, "weapon", &blofeld::halo2::pc64::weapon_group_reference$5 },
-		{ _field_real, "maximum firing distance", "we can only fire our weapon at targets within this distance", "world units" },
-		{ _field_real, "rate of fire", "how many times per second we pull the trigger (zero = continuously held down)" },
-		{ _field_angle, "projectile error", "error added to every projectile we fire", "degrees" },
-		{ _field_real_bounds, "first burst delay time", nullptr, "seconds" },
-		{ _field_real, "surprise delay time", nullptr, "seconds" },
-		{ _field_real, "surprise fire-wildly time", nullptr, "seconds" },
-		{ _field_real, "death fire-wildly chance", nullptr, nullptr, "[0,1]" },
-		{ _field_real, "death fire-wildly time", nullptr, "seconds" },
-		{ _field_real_bounds, "desired combat range", nullptr, "world units" },
-		{ _field_real_vector_3d, "custom stand gun offset", "custom standing gun offset for overriding the default in the base actor" },
-		{ _field_real_vector_3d, "custom crouch gun offset", "custom crouching gun offset for overriding the default in the base actor" },
-		{ _field_real, "target tracking", "how well our bursts track moving targets. 0.0= fire at the position they were standing when we started the burst. 1.0= fire at current position", nullptr, "[0,1]" },
-		{ _field_real, "target leading", "how much we lead moving targets. 0.0= no prediction. 1.0= predict completely.", nullptr, "[0,1]" },
-		{ _field_real, "weapon damage modifier", "what fraction of its normal damage our weapon inflicts (zero = no modifier)" },
-		{ _field_real, "minimum firing range", "weapon will not be fired at target closer than given distance" },
-		FIELD_EXPLANATION("burst geometry", "at the start of every burst we pick a random point near the target to fire at, on either the left or the right side.\nthe burst origin angle controls whether this error is exactly horizontal or might have some vertical component.\n\nover the course of the burst we move our projectiles back in the opposite direction towards the target. this return motion is also controlled by an angle that specifies how close to the horizontal it is.\n\nfor example if the burst origin angle and the burst return angle were both zero, and the return length was the same as the burst length, every burst would start the same amount away from the target (on either the left or right) and move back to exactly over the target at the end of the burst."),
-		{ _field_real, "burst origin radius", "how far away from the target the starting point is", "world units" },
-		{ _field_angle, "burst origin angle", "the range from the horizontal that our starting error can be", "degrees" },
-		{ _field_real_bounds, "burst return length", "how far the burst point moves back towards the target (could be negative)", "world units" },
-		{ _field_angle, "burst return angle", "the range from the horizontal that the return direction can be", "degrees" },
-		{ _field_real_bounds, "burst duration", "how long each burst we fire is", "seconds" },
-		{ _field_real_bounds, "burst separation", "how long we wait between bursts", "seconds" },
-		{ _field_angle, "burst angular velocity", "the maximum rate at which we can sweep our fire (zero = unlimited)", "degrees per second" },
-		{ _field_useless_pad, "value" },
-		{ _field_real, "special damage modifier", "damage modifier for special weapon fire (applied in addition to the normal damage modifier. zero = no change)", nullptr, "[0,1]" },
-		{ _field_angle, "special projectile error", "projectile error angle for special weapon fire (applied in addition to the normal error)", "degrees" },
-		FIELD_EXPLANATION("special-case firing properties", nullptr),
-		{ _field_real, "super-ballistic range", "we try to aim our shots super-ballistically if target is outside this range (zero = never)" },
-		{ _field_real, "bombardment range", "we offset our burst targets randomly by this range when firing at non-visible enemies (zero = never)" },
-		{ _field_short_enum, "special-fire mode", "the type of special weapon fire that we can use", &blofeld::halo2::pc64::unnamed_enum$148 },
-		{ _field_short_enum, "special-fire situation", "when we will decide to use our special weapon fire mode", &blofeld::halo2::pc64::unnamed_enum$149 },
-		{ _field_real, "special-fire chance", "how likely we are to use our special weapon fire mode", nullptr, "[0,1]" },
-		{ _field_real, "special-fire delay", "how long we must wait between uses of our special weapon fire mode", "seconds" },
-		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Weapon drop when killed", nullptr),
-		{ _field_real_bounds, "drop weapon loaded", "amount of ammo loaded into the weapon that we drop (in fractions of a clip, e.g. 0.3 to 0.5)" },
-		{ _field_short_integer_bounds, "drop weapon ammo", "total number of rounds in the weapon that we drop (ignored for energy weapons)" },
-		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Special Targeting", nullptr),
-		{ _field_real, "Max special target distance", "Specific target regions on a vehicle or unit will be fired upon only under the given distance", "world units" },
-		FIELD_EXPLANATION("Ballistic firing", nullptr),
-		{ _field_real_bounds, "Ballistic firing bounds", "At the min range, the min ballistic fraction is used, at the max, the max ballistic fraction is used", "world units" },
-		{ _field_real_bounds, "Ballistic fraction bounds", "Controls speed and degree of arc. 0 = high, slow, 1 = low, fast", nullptr, "[0-1]" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		character_firing_pattern_properties_block_struct_definition,
 		"character_firing_pattern_properties_block",
 		"character_firing_pattern_properties_block_struct_definition",
@@ -11612,6 +11296,13 @@ namespace pc64
 		{ _field_terminator }
 	};
 
+	STRINGS(unnamed_enum$112)
+	{
+		"human fragmentation",
+		"covenant plasma"
+	};
+	STRING_LIST(unnamed_enum$112, unnamed_enum$112_strings, _countof(unnamed_enum$112_strings));
+
 	STRINGS(unnamed_enum$150)
 	{
 		"toss",
@@ -11621,14 +11312,15 @@ namespace pc64
 	STRING_LIST(unnamed_enum$150, unnamed_enum$150_strings, _countof(unnamed_enum$150_strings));
 
 	TAG_STRUCT(
-		vehicle_v2_struct_definition,
-		"vehicle_v2",
-		"vehicle_v2_struct_definition",
+		vehicle_struct_definition,
+		"vehicle",
+		"vehicle_struct_definition",
 		"s_character_vehicle_properties",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 59 },
 		{ _field_tag_reference, "unit", &blofeld::halo2::pc64::unit_group_reference$2 },
 		{ _field_tag_reference, "style", &blofeld::halo2::pc64::style_group_reference$2 },
 		{ _field_useless_pad, "value" },
@@ -11688,26 +11380,8 @@ namespace pc64
 		{ _field_useless_pad, "value" },
 		{ _field_short_enum, "obstacle ignore size", &blofeld::halo2::pc64::unnamed_enum$140 },
 		FIELD_PAD("I", 2),
-		{ _field_terminator }
-	};
-
-	TAG_REFERENCE(unit_group_reference$2, UNIT_TAG, _tag_reference_flag_dont_resolve_in_editor);
-
-	STRINGS(unnamed_enum$151)
-	{
-		"passengers adopt original squad"
-	};
-	STRING_LIST(unnamed_enum$151, unnamed_enum$151_strings, _countof(unnamed_enum$151_strings));
-
-	TAG_STRUCT(
-		vehicle_v1_struct_definition,
-		"vehicle_v1",
-		"vehicle_v1_struct_definition",
-		"s_character_vehicle_properties_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 41 },
 		{ _field_tag_reference, "unit", &blofeld::halo2::pc64::unit_group_reference$2 },
 		{ _field_long_flags, "vehicle flags", &blofeld::halo2::pc64::unnamed_enum$138 },
 		{ _field_useless_pad, "value" },
@@ -11749,97 +11423,17 @@ namespace pc64
 		{ _field_useless_pad, "value" },
 		{ _field_real, "ai charge consider distance", "Consider charging the target when it is within this range (0 = infinite distance)" },
 		{ _field_real, "ai charge abort distance", "Abort the charge when the target get more than this far away (0 = never abort)" },
+		
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(
-		character_tag_v1_struct_definition,
-		"character_tag_v1",
-		"character_tag_v1_struct_definition",
-		"s_character_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "Character flags", &blofeld::halo2::pc64::unnamed_enum$134 },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "parent character", &blofeld::halo2::pc64::character_group_reference$4 },
-		{ _field_tag_reference, "unit", &blofeld::halo2::pc64::unit_group_reference },
-		{ _field_tag_reference, "style", &blofeld::halo2::pc64::style_group_reference$2 },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "major character", &blofeld::halo2::pc64::character_group_reference$5 },
-		{ _field_string_id, "model variant" },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "general properties", &blofeld::halo2::pc64::character_general_block },
-		{ _field_block, "placement properties", &blofeld::halo2::pc64::character_placement_block },
-		{ _field_block, "vitality properties", &blofeld::halo2::pc64::character_vitality_block },
-		{ _field_block, "perception properties", &blofeld::halo2::pc64::character_perception_block },
-		{ _field_block, "retreat properties", &blofeld::halo2::pc64::character_retreat_block },
-		{ _field_block, "Look properties", &blofeld::halo2::pc64::character_look_block },
-		{ _field_block, "Movement properties", &blofeld::halo2::pc64::character_movement_block },
-		{ _field_block, "Engage properties", &blofeld::halo2::pc64::character_engage_block },
-		FIELD_EXPLANATION("Danger Values", "Danger values can be found in the ai-globals section of the globals tag."),
-		{ _field_block, "Evasion properties", &blofeld::halo2::pc64::character_evasion_block },
-		{ _field_block, "Cover properties", &blofeld::halo2::pc64::character_cover_block },
-		{ _field_block, "search properties", &blofeld::halo2::pc64::character_search_block },
-		{ _field_block, "pre-search properties", &blofeld::halo2::pc64::character_presearch_block },
-		{ _field_block, "weapons properties", &blofeld::halo2::pc64::character_weapons_block },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "grenades properties", &blofeld::halo2::pc64::character_grenades_block },
-		{ _field_block, "charge properties", &blofeld::halo2::pc64::character_charge_block },
-		{ _field_block, "ready properties", &blofeld::halo2::pc64::character_ready_block },
-		{ _field_block, "vehicle properties", &blofeld::halo2::pc64::character_vehicle_block },
-		{ _field_block, "idle properties", &blofeld::halo2::pc64::character_idle_block },
-		{ _field_terminator }
-	};
+	TAG_REFERENCE(unit_group_reference$2, UNIT_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
-	TAG_STRUCT(
-		character_tag_v2_struct_definition,
-		"character_tag_v2",
-		"character_tag_v2_struct_definition",
-		"s_character_definition_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
+	STRINGS(unnamed_enum$151)
 	{
-		{ _field_long_flags, "Character flags", &blofeld::halo2::pc64::unnamed_enum$134 },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "parent character", &blofeld::halo2::pc64::character_group_reference$4 },
-		{ _field_tag_reference, "unit", &blofeld::halo2::pc64::unit_group_reference },
-		{ _field_tag_reference, "style", &blofeld::halo2::pc64::style_group_reference$2 },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "major character", &blofeld::halo2::pc64::character_group_reference$5 },
-		{ _field_string_id, "model variant" },
-		{ _field_tag_reference, "creature", "Creature reference for swarm characters ONLY", &blofeld::halo2::pc64::creature_group_reference$3 },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "general properties", &blofeld::halo2::pc64::character_general_block },
-		{ _field_block, "vitality properties", &blofeld::halo2::pc64::character_vitality_block },
-		{ _field_block, "placement properties", &blofeld::halo2::pc64::character_placement_block },
-		{ _field_block, "perception properties", &blofeld::halo2::pc64::character_perception_block },
-		{ _field_block, "look properties", &blofeld::halo2::pc64::character_look_block },
-		{ _field_block, "movement properties", &blofeld::halo2::pc64::character_movement_block },
-		{ _field_block, "swarm properties", &blofeld::halo2::pc64::character_swarm_block },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "ready properties", &blofeld::halo2::pc64::character_ready_block },
-		{ _field_block, "engage properties", &blofeld::halo2::pc64::character_engage_block },
-		{ _field_block, "charge properties", &blofeld::halo2::pc64::character_charge_block },
-		FIELD_EXPLANATION("Danger Values", "Danger values can be found in the ai-globals section of the globals tag."),
-		{ _field_block, "evasion properties", &blofeld::halo2::pc64::character_evasion_block },
-		{ _field_block, "cover properties", &blofeld::halo2::pc64::character_cover_block },
-		{ _field_block, "retreat properties", &blofeld::halo2::pc64::character_retreat_block },
-		{ _field_block, "search properties", &blofeld::halo2::pc64::character_search_block },
-		{ _field_block, "pre-search properties", &blofeld::halo2::pc64::character_presearch_block },
-		{ _field_block, "idle properties", &blofeld::halo2::pc64::character_idle_block },
-		{ _field_block, "vocalization properties", &blofeld::halo2::pc64::character_vocalization_block },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "weapons properties", &blofeld::halo2::pc64::character_weapons_block, _field_id_sort },
-		{ _field_block, "firing pattern properties", &blofeld::halo2::pc64::character_firing_pattern_properties_block, _field_id_sort },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "grenades properties", &blofeld::halo2::pc64::character_grenades_block, _field_id_sort },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "vehicle properties", &blofeld::halo2::pc64::character_vehicle_block, _field_id_sort },
-		{ _field_terminator }
+		"passengers adopt original squad"
 	};
+	STRING_LIST(unnamed_enum$151, unnamed_enum$151_strings, _countof(unnamed_enum$151_strings));
 
 	TAG_STRUCT(
 		scenario_cinematics_resource_block_struct_definition,
@@ -12307,6 +11901,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 8 },
 		{ _field_block, "import info", &blofeld::halo2::pc64::global_tag_import_info_block },
 		{ _field_block, "errors", &blofeld::halo2::pc64::global_error_report_categories_block },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$160 },
@@ -12315,6 +11910,16 @@ namespace pc64
 		{ _field_block, "regions", &blofeld::halo2::pc64::collision_model_region_block },
 		{ _field_block, "pathfinding spheres", &blofeld::halo2::pc64::collision_model_pathfinding_sphere_block },
 		{ _field_block, "nodes", &blofeld::halo2::pc64::collision_model_node_block },
+		
+		{ _struct_version_mode_equal, 0, 7 },
+		{ _field_struct, "OLD damage resistance", &blofeld::halo2::pc64::old_global_damage_resistance_struct_struct_definition },
+		FIELD_PAD("value", 4),
+		{ _field_block, "errors", &blofeld::halo2::pc64::global_error_report_categories_block },
+		{ _field_block, "materials", &blofeld::halo2::pc64::collision_model_material_block },
+		{ _field_block, "regions", &blofeld::halo2::pc64::collision_model_region_block },
+		{ _field_block, "pathfinding spheres", &blofeld::halo2::pc64::collision_model_pathfinding_sphere_block },
+		{ _field_block, "nodes", &blofeld::halo2::pc64::collision_model_node_block },
+		
 		{ _field_terminator }
 	};
 
@@ -12564,9 +12169,18 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 3 },
 		{ _field_string_id, "name" },
 		{ _field_block, "bsps", &blofeld::halo2::pc64::collision_model_bsp_block },
 		{ _field_block, "bsp_physics", &blofeld::halo2::pc64::collision_bsp_physics_block },
+		
+		{ _struct_version_mode_equal, 0, 5 },
+		{ _field_string_id, "name" },
+		FIELD_PAD("value", 24),
+		{ _field_block, "bsps", &blofeld::halo2::pc64::collision_model_bsp_block },
+		{ _field_block, "bsp_physics", &blofeld::halo2::pc64::collision_bsp_physics_block },
+		FIELD_PAD("value", 44),
+		
 		{ _field_terminator }
 	};
 
@@ -12595,6 +12209,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 8 },
 		{ _field_block, "bsp3d nodes", &blofeld::halo2::pc64::bsp3d_nodes_block },
 		{ _field_block, "planes", &blofeld::halo2::pc64::planes_block },
 		{ _field_block, "leaves", &blofeld::halo2::pc64::leaves_block },
@@ -12603,6 +12218,27 @@ namespace pc64
 		{ _field_block, "surfaces", &blofeld::halo2::pc64::surfaces_block },
 		{ _field_block, "edges", &blofeld::halo2::pc64::edges_block },
 		{ _field_block, "vertices", &blofeld::halo2::pc64::vertices_block },
+		
+		{ _struct_version_mode_equal, 1, 8 },
+		{ _field_block, "bsp3d nodes", &blofeld::halo2::pc64::small_bsp3d_nodes_block },
+		{ _field_block, "planes", &blofeld::halo2::pc64::planes_block },
+		{ _field_block, "leaves", &blofeld::halo2::pc64::leaves_block },
+		{ _field_block, "bsp2d references", &blofeld::halo2::pc64::bsp2d_references_block },
+		{ _field_block, "bsp2d nodes", &blofeld::halo2::pc64::bsp2d_nodes_block },
+		{ _field_block, "surfaces", &blofeld::halo2::pc64::surfaces_block },
+		{ _field_block, "edges", &blofeld::halo2::pc64::edges_block },
+		{ _field_block, "vertices", &blofeld::halo2::pc64::vertices_block },
+		
+		{ _struct_version_mode_equal, 0, 8 },
+		{ _field_block, "bsp3d nodes", &blofeld::halo2::pc64::large_bsp3d_nodes_block },
+		{ _field_block, "planes", &blofeld::halo2::pc64::planes_block },
+		{ _field_block, "leaves", &blofeld::halo2::pc64::large_leaves_block },
+		{ _field_block, "bsp2d references", &blofeld::halo2::pc64::large_bsp2d_references_block },
+		{ _field_block, "bsp2d nodes", &blofeld::halo2::pc64::large_bsp2d_nodes_block },
+		{ _field_block, "surfaces", &blofeld::halo2::pc64::large_surfaces_block },
+		{ _field_block, "edges", &blofeld::halo2::pc64::large_edges_block },
+		{ _field_block, "vertices", &blofeld::halo2::pc64::large_vertices_block },
+		
 		{ _field_terminator }
 	};
 
@@ -12725,25 +12361,15 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 6 },
 		{ _field_short_integer, "start vertex" },
 		{ _field_short_integer, "end vertex" },
 		{ _field_short_integer, "forward edge" },
 		{ _field_short_integer, "reverse edge" },
 		{ _field_short_integer, "left surface" },
 		{ _field_short_integer, "right surface" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		stupid_edge_struct_definition,
-		"stupid_edge",
-		"stupid_edge_struct_definition",
-		"s_stupid_edge",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY,
-		4)
-	{
+		
+		{ _struct_version_mode_equal, 0, 7 },
 		{ _field_short_integer, "start vertex" },
 		{ _field_short_integer, "end vertex" },
 		{ _field_short_integer, "forward edge" },
@@ -12751,6 +12377,7 @@ namespace pc64
 		{ _field_short_integer, "left surface" },
 		{ _field_short_integer, "right surface" },
 		FIELD_PAD("value", 4),
+		
 		{ _field_terminator }
 	};
 
@@ -12767,26 +12394,6 @@ namespace pc64
 		{ _field_real_point_3d, "point" },
 		{ _field_short_integer, "first edge" },
 		FIELD_PAD("value", 2),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		large_collision_bsp_struct_definition,
-		"large_collision_bsp",
-		"large_collision_bsp_struct_definition",
-		"s_collision_bsp$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_block, "bsp3d nodes", &blofeld::halo2::pc64::large_bsp3d_nodes_block },
-		{ _field_block, "planes", &blofeld::halo2::pc64::planes_block },
-		{ _field_block, "leaves", &blofeld::halo2::pc64::large_leaves_block },
-		{ _field_block, "bsp2d references", &blofeld::halo2::pc64::large_bsp2d_references_block },
-		{ _field_block, "bsp2d nodes", &blofeld::halo2::pc64::large_bsp2d_nodes_block },
-		{ _field_block, "surfaces", &blofeld::halo2::pc64::large_surfaces_block },
-		{ _field_block, "edges", &blofeld::halo2::pc64::large_edges_block },
-		{ _field_block, "vertices", &blofeld::halo2::pc64::large_vertices_block },
 		{ _field_terminator }
 	};
 
@@ -12899,26 +12506,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		small_collision_bsp_struct_definition,
-		"small_collision_bsp",
-		"small_collision_bsp_struct_definition",
-		"s_collision_bsp$3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_block, "bsp3d nodes", &blofeld::halo2::pc64::small_bsp3d_nodes_block },
-		{ _field_block, "planes", &blofeld::halo2::pc64::planes_block },
-		{ _field_block, "leaves", &blofeld::halo2::pc64::leaves_block },
-		{ _field_block, "bsp2d references", &blofeld::halo2::pc64::bsp2d_references_block },
-		{ _field_block, "bsp2d nodes", &blofeld::halo2::pc64::bsp2d_nodes_block },
-		{ _field_block, "surfaces", &blofeld::halo2::pc64::surfaces_block },
-		{ _field_block, "edges", &blofeld::halo2::pc64::edges_block },
-		{ _field_block, "vertices", &blofeld::halo2::pc64::vertices_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		small_bsp3d_nodes_block_struct_definition,
 		"small_bsp3d_nodes_block",
 		"small_bsp3d_nodes_block_struct_definition",
@@ -12975,23 +12562,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		collision_model_permutation_v0_struct_definition,
-		"collision_model_permutation_v0",
-		"collision_model_permutation_v0_struct_definition",
-		"s_collision_model_permutation_v0",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string_id, "name" },
-		FIELD_PAD("value", 24),
-		{ _field_block, "bsps", &blofeld::halo2::pc64::collision_model_bsp_block },
-		{ _field_block, "bsp_physics", &blofeld::halo2::pc64::collision_bsp_physics_block },
-		FIELD_PAD("value", 44),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		collision_model_pathfinding_sphere_block_struct_definition,
 		"collision_model_pathfinding_sphere_block",
 		"collision_model_pathfinding_sphere_block_struct_definition",
@@ -13025,48 +12595,21 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 5 },
 		{ _field_string_id, "name" },
 		FIELD_PAD("value", 2),
 		{ _field_short_block_index, "parent node" },
 		{ _field_short_block_index, "next sibling node" },
 		{ _field_short_block_index, "first child node" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		collision_model_node_v0_struct_definition,
-		"collision_model_node_v0",
-		"collision_model_node_v0_struct_definition",
-		"s_collision_model_node_v0",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 6 },
 		{ _field_old_string_id, "name" },
 		FIELD_PAD("value", 2),
 		{ _field_short_block_index, "parent node" },
 		{ _field_short_block_index, "next sibling node" },
 		{ _field_short_block_index, "first child node" },
 		FIELD_PAD("value", 24),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		collision_model_v0_struct_definition,
-		"collision_model_v0",
-		"collision_model_v0_struct_definition",
-		"s_collision_model_definition_v0",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_struct, "OLD damage resistance", &blofeld::halo2::pc64::old_global_damage_resistance_struct_struct_definition },
-		FIELD_PAD("value", 4),
-		{ _field_block, "errors", &blofeld::halo2::pc64::global_error_report_categories_block },
-		{ _field_block, "materials", &blofeld::halo2::pc64::collision_model_material_block },
-		{ _field_block, "regions", &blofeld::halo2::pc64::collision_model_region_block },
-		{ _field_block, "pathfinding spheres", &blofeld::halo2::pc64::collision_model_pathfinding_sphere_block },
-		{ _field_block, "nodes", &blofeld::halo2::pc64::collision_model_node_block },
+		
 		{ _field_terminator }
 	};
 
@@ -13441,6 +12984,14 @@ namespace pc64
 		"unused15"
 	};
 	STRING_LIST(unnamed_enum$176, unnamed_enum$176_strings, _countof(unnamed_enum$176_strings));
+
+	STRINGS(unnamed_enum$109)
+	{
+		"medium",
+		"small",
+		"large"
+	};
+	STRING_LIST(unnamed_enum$109, unnamed_enum$109_strings, _countof(unnamed_enum$109_strings));
 
 	TAG_STRUCT(
 		device_control_block_struct_definition,
@@ -13852,14 +13403,15 @@ namespace pc64
 	STRING_LIST(unnamed_enum$184, unnamed_enum$184_strings, _countof(unnamed_enum$184_strings));
 
 	TAG_STRUCT(
-		scenario_machine_v3_struct_definition,
-		"scenario_machine_v3",
-		"scenario_machine_v3_struct_definition",
+		scenario_machine_struct_definition,
+		"scenario_machine",
+		"scenario_machine_struct_definition",
 		"s_scenario_machine",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 3, 7 },
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_short_block_index, "type", _field_id_type },
 		FIELD_CUSTOM("value", _field_id_filter),
@@ -13867,43 +13419,26 @@ namespace pc64
 		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
 		{ _field_struct, "device data", &blofeld::halo2::pc64::scenario_device_struct_struct_definition },
 		{ _field_struct, "machine data", &blofeld::halo2::pc64::scenario_machine_struct_v3_struct_definition },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_machine_struct_v3_struct_definition,
-		"scenario_machine_struct_v3",
-		"scenario_machine_struct_v3_struct_definition",
-		"s_scenario_machine_datum",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$185 },
-		{ _field_block, "pathfinding references", &blofeld::halo2::pc64::pathfinding_object_index_list_block },
-		{ _field_terminator }
-	};
-
-	STRINGS(unnamed_enum$185)
-	{
-		"does not operate automatically",
-		"one-sided",
-		"never appears locked",
-		"opened by melee attack",
-		"one-sided for player",
-		"does not close automatically"
-	};
-	STRING_LIST(unnamed_enum$185, unnamed_enum$185_strings, _countof(unnamed_enum$185_strings));
-
-	TAG_STRUCT(
-		scenario_machine_v1_struct_definition,
-		"scenario_machine_v1",
-		"scenario_machine_v1_struct_definition",
-		"s_old_scenario_machine_datum",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 2, 7 },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "type", _field_id_type },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
+		{ _field_struct, "device data", &blofeld::halo2::pc64::scenario_device_struct_struct_definition },
+		{ _field_struct, "machine data", &blofeld::halo2::pc64::scenario_machine_struct_v2_struct_definition },
+		
+		{ _struct_version_mode_equal, 1, 7 },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "type", _field_id_type },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
+		{ _field_struct, "device data", &blofeld::halo2::pc64::scenario_device_struct_struct_definition },
+		{ _field_struct, "machine data", &blofeld::halo2::pc64::scenario_machine_struct_v2_struct_definition },
+		
+		{ _struct_version_mode_equal, 0, 11 },
 		{ _field_short_block_index, "type", _field_id_type },
 		{ _field_short_block_index, "name", _field_id_name },
 		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
@@ -13915,6 +13450,7 @@ namespace pc64
 		{ _field_struct, "device data", &blofeld::halo2::pc64::old_scenario_device_struct_struct_definition },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$185 },
 		FIELD_PAD("value", 12),
+		
 		{ _field_terminator }
 	};
 
@@ -13931,6 +13467,31 @@ namespace pc64
 		"create at rest"
 	};
 	STRING_LIST(unnamed_enum$4, unnamed_enum$4_strings, _countof(unnamed_enum$4_strings));
+
+	STRINGS(unnamed_enum$185)
+	{
+		"does not operate automatically",
+		"one-sided",
+		"never appears locked",
+		"opened by melee attack",
+		"one-sided for player",
+		"does not close automatically"
+	};
+	STRING_LIST(unnamed_enum$185, unnamed_enum$185_strings, _countof(unnamed_enum$185_strings));
+
+	TAG_STRUCT(
+		scenario_machine_struct_v3_struct_definition,
+		"scenario_machine_struct_v3",
+		"scenario_machine_struct_v3_struct_definition",
+		"s_scenario_machine_datum",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$185 },
+		{ _field_block, "pathfinding references", &blofeld::halo2::pc64::pathfinding_object_index_list_block },
+		{ _field_terminator }
+	};
 
 	TAG_STRUCT(
 		old_scenario_device_struct_struct_definition,
@@ -13958,25 +13519,6 @@ namespace pc64
 	STRING_LIST(unnamed_enum$17, unnamed_enum$17_strings, _countof(unnamed_enum$17_strings));
 
 	TAG_STRUCT(
-		scenario_machine_v2_struct_definition,
-		"scenario_machine_v2",
-		"scenario_machine_v2_struct_definition",
-		"s_scenario_machine_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "type", _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
-		{ _field_struct, "device data", &blofeld::halo2::pc64::scenario_device_struct_struct_definition },
-		{ _field_struct, "machine data", &blofeld::halo2::pc64::scenario_machine_struct_v2_struct_definition },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		scenario_machine_struct_v2_struct_definition,
 		"scenario_machine_struct_v2",
 		"scenario_machine_struct_v2_struct_definition",
@@ -13989,25 +13531,6 @@ namespace pc64
 		FIELD_PAD("value", 12),
 		{ _field_short_integer, "pathfinding object reference" },
 		FIELD_PAD("value", 2),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_machine_v2_struct_definition$2,
-		"scenario_machine_v2",
-		"scenario_machine_v2_struct_definition",
-		"s_scenario_machine_v2$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "type", _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
-		{ _field_struct, "device data", &blofeld::halo2::pc64::scenario_device_struct_struct_definition },
-		{ _field_struct, "machine data", &blofeld::halo2::pc64::scenario_machine_struct_v2_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -14028,14 +13551,15 @@ namespace pc64
 	TAG_REFERENCE(device_machine_group_reference, DEVICE_MACHINE_TAG);
 
 	TAG_STRUCT(
-		scenario_control_v2_struct_definition,
-		"scenario_control_v2",
-		"scenario_control_v2_struct_definition",
+		scenario_control_struct_definition,
+		"scenario_control",
+		"scenario_control_struct_definition",
 		"s_scenario_control",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 7 },
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_short_block_index, "type", _field_id_type },
 		FIELD_CUSTOM("value", _field_id_filter),
@@ -14043,39 +13567,17 @@ namespace pc64
 		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
 		{ _field_struct, "device data", &blofeld::halo2::pc64::scenario_device_struct_struct_definition },
 		{ _field_struct, "control data", &blofeld::halo2::pc64::scenario_control_struct_struct_definition },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_control_struct_struct_definition,
-		"scenario_control_struct",
-		"scenario_control_struct_struct_definition",
-		"s_scenario_control_datum",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$186 },
-		{ _field_short_integer, "*DON'T TOUCH THIS", _field_id_unknown_ugh },
-		FIELD_PAD("value", 2),
-		{ _field_terminator }
-	};
-
-	STRINGS(unnamed_enum$186)
-	{
-		"usable from both sides"
-	};
-	STRING_LIST(unnamed_enum$186, unnamed_enum$186_strings, _countof(unnamed_enum$186_strings));
-
-	TAG_STRUCT(
-		scenario_control_v1_struct_definition,
-		"scenario_control_v1",
-		"scenario_control_v1_struct_definition",
-		"s_old_scenario_control_datum",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 1, 7 },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "type", _field_id_type },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
+		{ _field_struct, "device data", &blofeld::halo2::pc64::scenario_device_struct_struct_definition },
+		{ _field_struct, "control data", &blofeld::halo2::pc64::scenario_control_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 0, 14 },
 		{ _field_short_block_index, "type", _field_id_type },
 		{ _field_short_block_index, "name", _field_id_name },
 		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
@@ -14090,25 +13592,28 @@ namespace pc64
 		FIELD_CUSTOM("value", _field_id_unknown_ugh),
 		FIELD_PAD("value", 2),
 		FIELD_PAD("value", 8),
+		
 		{ _field_terminator }
 	};
 
+	STRINGS(unnamed_enum$186)
+	{
+		"usable from both sides"
+	};
+	STRING_LIST(unnamed_enum$186, unnamed_enum$186_strings, _countof(unnamed_enum$186_strings));
+
 	TAG_STRUCT(
-		scenario_control_v2_struct_definition$2,
-		"scenario_control_v2",
-		"scenario_control_v2_struct_definition",
-		"s_scenario_control$2",
+		scenario_control_struct_struct_definition,
+		"scenario_control_struct",
+		"scenario_control_struct_struct_definition",
+		"s_scenario_control_datum",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "type", _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
-		{ _field_struct, "device data", &blofeld::halo2::pc64::scenario_device_struct_struct_definition },
-		{ _field_struct, "control data", &blofeld::halo2::pc64::scenario_control_struct_struct_definition },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$186 },
+		{ _field_short_integer, "*DON'T TOUCH THIS", _field_id_unknown_ugh },
+		FIELD_PAD("value", 2),
 		{ _field_terminator }
 	};
 
@@ -14129,14 +13634,15 @@ namespace pc64
 	TAG_REFERENCE(device_control_group_reference, DEVICE_CONTROL_TAG);
 
 	TAG_STRUCT(
-		scenario_light_fixture_v2_struct_definition,
-		"scenario_light_fixture_v2",
-		"scenario_light_fixture_v2_struct_definition",
+		scenario_light_fixture_struct_definition,
+		"scenario_light_fixture",
+		"scenario_light_fixture_struct_definition",
 		"s_scenario_light_fixture",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 7 },
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_short_block_index, "type", _field_id_type },
 		FIELD_CUSTOM("value", _field_id_filter),
@@ -14144,6 +13650,32 @@ namespace pc64
 		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
 		{ _field_struct, "device data", &blofeld::halo2::pc64::scenario_device_struct_struct_definition },
 		{ _field_struct, "light_fixture data", &blofeld::halo2::pc64::scenario_light_fixture_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 1, 7 },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "type", _field_id_type },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
+		{ _field_struct, "device data", &blofeld::halo2::pc64::scenario_device_struct_struct_definition },
+		{ _field_struct, "light_fixture data", &blofeld::halo2::pc64::scenario_light_fixture_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 0, 14 },
+		{ _field_short_block_index, "type", _field_id_type },
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
+		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
+		{ _field_real_point_3d, "position", _field_id_point },
+		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		FIELD_PAD("value", 4),
+		{ _field_long_block_index, "environment object reference" },
+		{ _field_struct, "device data", &blofeld::halo2::pc64::old_scenario_device_struct_struct_definition },
+		{ _field_real_rgb_color, "color" },
+		{ _field_real, "intensity" },
+		{ _field_angle, "falloff angle", nullptr, "degrees" },
+		{ _field_angle, "cutoff angle", nullptr, "degrees" },
+		FIELD_PAD("value", 16),
+		
 		{ _field_terminator }
 	};
 
@@ -14160,51 +13692,6 @@ namespace pc64
 		{ _field_real, "intensity" },
 		{ _field_angle, "falloff angle", nullptr, "degrees" },
 		{ _field_angle, "cutoff angle", nullptr, "degrees" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_light_fixture_v1_struct_definition,
-		"scenario_light_fixture_v1",
-		"scenario_light_fixture_v1_struct_definition",
-		"s_old_scenario_light_fixture_datum",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_block_index, "type", _field_id_type },
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
-		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
-		FIELD_PAD("value", 4),
-		{ _field_long_block_index, "environment object reference" },
-		{ _field_struct, "device data", &blofeld::halo2::pc64::old_scenario_device_struct_struct_definition },
-		{ _field_real_rgb_color, "color" },
-		{ _field_real, "intensity" },
-		{ _field_angle, "falloff angle", nullptr, "degrees" },
-		{ _field_angle, "cutoff angle", nullptr, "degrees" },
-		FIELD_PAD("value", 16),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_light_fixture_v2_struct_definition$2,
-		"scenario_light_fixture_v2",
-		"scenario_light_fixture_v2_struct_definition",
-		"s_scenario_light_fixture$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "type", _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
-		{ _field_struct, "device data", &blofeld::halo2::pc64::scenario_device_struct_struct_definition },
-		{ _field_struct, "light_fixture data", &blofeld::halo2::pc64::scenario_light_fixture_struct_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -14790,16 +14277,22 @@ namespace pc64
 	TAG_REFERENCE(patchy_fog_group_reference$2, PATCHY_FOG_TAG);
 
 	TAG_STRUCT(
-		material_effects_tags_v2_struct_definition,
-		"material_effects_tags_v2",
-		"material_effects_tags_v2_struct_definition",
+		material_effects_struct_definition,
+		"material_effects",
+		"material_effects_struct_definition",
 		"s_material_effects_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_block, "effects", &blofeld::halo2::pc64::material_effect_block_v2_block },
 		{ _field_useless_pad, "value" },
+		
+		{ _struct_version_mode_equal, 0, 2 },
+		{ _field_block, "effects", &blofeld::halo2::pc64::material_effect_block_v1_block },
+		FIELD_PAD("value", 128),
+		
 		{ _field_terminator }
 	};
 
@@ -14853,20 +14346,29 @@ namespace pc64
 	STRING_LIST(unnamed_enum$200, unnamed_enum$200_strings, _countof(unnamed_enum$200_strings));
 
 	TAG_STRUCT(
-		material_effect_material_v2_struct_definition,
-		"material_effect_material_v2",
-		"material_effect_material_v2_struct_definition",
+		material_effect_material_struct_definition,
+		"material_effect_material",
+		"material_effect_material_struct_definition",
 		"s_material_effect_material",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 6 },
 		{ _field_tag_reference, "tag (effect or sound)", &blofeld::halo2::pc64::sound_group_sound_looping_group_effect_group_reference },
 		{ _field_tag_reference, "secondary tag (effect or sound)", &blofeld::halo2::pc64::sound_group_sound_looping_group_effect_group_reference },
 		{ _field_string_id, "material name", _field_id_sted },
 		FIELD_SKIP("value", 2),
 		{ _field_char_enum, "sweetener mode", &blofeld::halo2::pc64::unnamed_enum$200 },
 		FIELD_PAD("value", 1),
+		
+		{ _struct_version_mode_equal, 0, 5 },
+		{ _field_tag_reference, "tag (effect or sound)", &blofeld::halo2::pc64::sound_group_sound_looping_group_effect_group_reference },
+		{ _field_string_id, "material name", _field_id_sted },
+		FIELD_SKIP("value", 2),
+		{ _field_char_enum, "sweetener mode", &blofeld::halo2::pc64::unnamed_enum$200 },
+		FIELD_PAD("value", 1),
+		
 		{ _field_terminator }
 	};
 
@@ -14876,37 +14378,6 @@ namespace pc64
 		SOUND_LOOPING_TAG,
 		EFFECT_TAG,
 		INVALID_TAG
-	};
-
-	TAG_STRUCT(
-		material_effect_material_v1_struct_definition,
-		"material_effect_material_v1",
-		"material_effect_material_v1_struct_definition",
-		"s_material_effect_material_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_tag_reference, "tag (effect or sound)", &blofeld::halo2::pc64::sound_group_sound_looping_group_effect_group_reference },
-		{ _field_string_id, "material name", _field_id_sted },
-		FIELD_SKIP("value", 2),
-		{ _field_char_enum, "sweetener mode", &blofeld::halo2::pc64::unnamed_enum$200 },
-		FIELD_PAD("value", 1),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		material_effects_tags_v1_struct_definition,
-		"material_effects_tags_v1",
-		"material_effects_tags_v1_struct_definition",
-		"s_material_effects_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_block, "effects", &blofeld::halo2::pc64::material_effect_block_v1_block },
-		FIELD_PAD("value", 128),
-		{ _field_terminator }
 	};
 
 	TAG_STRUCT(
@@ -15137,7 +14608,7 @@ namespace pc64
 		{ _field_real, "exclusion angle from up", "degrees from up the direct light cannot be" },
 		FIELD_EXPLANATION("Primary light function", "input: accuracy, output: primary light scale"),
 		FIELD_CUSTOM("function", _field_id_function_editor),
-		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -15158,7 +14629,7 @@ namespace pc64
 		{ _field_real, "z axis rotation", "degrees" },
 		FIELD_EXPLANATION("Secondary light function", "input: accuracy, output: secondary light scale"),
 		FIELD_CUSTOM("function", _field_id_function_editor),
-		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -15217,43 +14688,6 @@ namespace pc64
 	STRING_LIST(unnamed_enum$9, unnamed_enum$9_strings, _countof(unnamed_enum$9_strings));
 
 	TAG_STRUCT(
-		g_new_scenario_object_datum_struct_definition$2,
-		"g_new_scenario_object_datum",
-		"g_new_scenario_object_datum_struct_definition",
-		"s_scenario_object_datum$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_object_editor),
-		{ _field_long_flags, "placement flags", &blofeld::halo2::pc64::unnamed_enum$4 },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
-		{ _field_real, "scale", _field_id_scale },
-		{ _field_word_flags, "value", &blofeld::halo2::pc64::unnamed_enum$5 },
-		{ _field_word_block_flags, "manual bsp flags", &blofeld::halo2::pc64::scenario_structure_bsp_reference_block, _field_id_manual_bsp_flags },
-		{ _field_struct, "object id", &blofeld::halo2::pc64::scenario_object_id_struct_struct_definition },
-		{ _field_char_enum, "bsp policy", &blofeld::halo2::pc64::unnamed_enum$8, _field_id_enum },
-		FIELD_PAD("value", 1),
-		{ _field_short_block_index, "value", _field_id_hide },
-		{ _field_terminator }
-	};
-
-	STRINGS(unnamed_enum$5)
-	{
-		"mirrored"
-	};
-	STRING_LIST(unnamed_enum$5, unnamed_enum$5_strings, _countof(unnamed_enum$5_strings));
-
-	STRINGS(unnamed_enum$8)
-	{
-		"default",
-		"always placed",
-		"manual bsp placement"
-	};
-	STRING_LIST(unnamed_enum$8, unnamed_enum$8_strings, _countof(unnamed_enum$8_strings));
-
-	TAG_STRUCT(
 		scenario_object_id_struct_struct_definition,
 		"scenario_object_id_struct",
 		"scenario_object_id_struct_struct_definition",
@@ -15305,6 +14739,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 11 },
 		FIELD_CUSTOM("value", _field_id_object_editor),
 		{ _field_long_flags, "placement flags", &blofeld::halo2::pc64::unnamed_enum$4 },
 		{ _field_real_point_3d, "position", _field_id_point },
@@ -15316,18 +14751,47 @@ namespace pc64
 		{ _field_char_enum, "bsp policy", &blofeld::halo2::pc64::unnamed_enum$8, _field_id_enum },
 		FIELD_PAD("value", 1),
 		{ _field_short_block_index, "value", _field_id_hide },
+		
+		{ _struct_version_mode_equal, 0, 11 },
+		FIELD_CUSTOM("value", _field_id_object_editor),
+		{ _field_long_flags, "placement flags", &blofeld::halo2::pc64::unnamed_enum$4 },
+		{ _field_real_point_3d, "position", _field_id_point },
+		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real, "scale", _field_id_scale },
+		{ _field_word_flags, "value", &blofeld::halo2::pc64::unnamed_enum$5 },
+		{ _field_word_block_flags, "manual bsp flags", &blofeld::halo2::pc64::scenario_structure_bsp_reference_block, _field_id_manual_bsp_flags },
+		{ _field_struct, "object id", &blofeld::halo2::pc64::scenario_object_id_struct_struct_definition },
+		{ _field_char_enum, "bsp policy", &blofeld::halo2::pc64::unnamed_enum$8, _field_id_enum },
+		FIELD_PAD("value", 1),
+		{ _field_short_block_index, "value", _field_id_hide },
+		
 		{ _field_terminator }
 	};
 
+	STRINGS(unnamed_enum$5)
+	{
+		"mirrored"
+	};
+	STRING_LIST(unnamed_enum$5, unnamed_enum$5_strings, _countof(unnamed_enum$5_strings));
+
+	STRINGS(unnamed_enum$8)
+	{
+		"default",
+		"always placed",
+		"manual bsp placement"
+	};
+	STRING_LIST(unnamed_enum$8, unnamed_enum$8_strings, _countof(unnamed_enum$8_strings));
+
 	TAG_STRUCT(
-		scenario_scenery_v4_struct_definition,
-		"scenario_scenery_v4",
-		"scenario_scenery_v4_struct_definition",
+		scenario_scenery_struct_definition,
+		"scenario_scenery",
+		"scenario_scenery_struct_definition",
 		"s_scenario_scenery",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 4, 7 },
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_short_block_index, "type", _field_id_type },
 		FIELD_CUSTOM("value", _field_id_filter),
@@ -15335,8 +14799,79 @@ namespace pc64
 		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
 		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
 		{ _field_struct, "scenery data", &blofeld::halo2::pc64::scenario_scenery_datum_struct_v4_struct_definition },
+		
+		{ _struct_version_mode_equal, 3, 7 },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "type", _field_id_type },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
+		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "scenery data", &blofeld::halo2::pc64::scenario_scenery_datum_struct_v3_struct_definition },
+		
+		{ _struct_version_mode_equal, 2, 7 },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "type", _field_id_type },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
+		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "scenery data", &blofeld::halo2::pc64::scenario_scenery_datum_struct_v3_struct_definition },
+		
+		{ _struct_version_mode_equal, 1, 7 },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "type", _field_id_type },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
+		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "scenery data", &blofeld::halo2::pc64::scenario_scenery_datum_struct_v2_struct_definition },
+		
+		{ _struct_version_mode_equal, 0, 15 },
+		{ _field_short_block_index, "type", _field_id_type },
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
+		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
+		{ _field_real_point_3d, "position", _field_id_point },
+		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		FIELD_PAD("value", 4),
+		{ _field_long_block_index, "environment object reference" },
+		FIELD_PAD("value", 16),
+		FIELD_PAD("value", 16),
+		{ _field_word_flags, "Pathfinding flags", &blofeld::halo2::pc64::unnamed_enum$13 },
+		{ _field_short_integer, "Pathfinding object index" },
+		{ _field_long_integer, "Runtime scenery object" },
+		{ _field_short_enum, "Pathfinding policy", &blofeld::halo2::pc64::unnamed_enum$10 },
+		{ _field_short_enum, "Lightmapping policy", &blofeld::halo2::pc64::unnamed_enum$14 },
+		
 		{ _field_terminator }
 	};
+
+	STRINGS(unnamed_enum$13)
+	{
+		"DEPRECATED",
+		"DEPRECATED"
+	};
+	STRING_LIST(unnamed_enum$13, unnamed_enum$13_strings, _countof(unnamed_enum$13_strings));
+
+	STRINGS(unnamed_enum$10)
+	{
+		"Tag Default",
+		"Pathfinding DYNAMIC",
+		"Pathfinding CUT-OUT",
+		"Pathfinding STATIC",
+		"Pathfinding NONE"
+	};
+	STRING_LIST(unnamed_enum$10, unnamed_enum$10_strings, _countof(unnamed_enum$10_strings));
+
+	STRINGS(unnamed_enum$14)
+	{
+		"dynamic",
+		"per-object (not implemented)",
+		"per-vertex",
+		"per-pixel"
+	};
+	STRING_LIST(unnamed_enum$14, unnamed_enum$14_strings, _countof(unnamed_enum$14_strings));
 
 	TAG_STRUCT(
 		scenario_scenery_palette_block_struct_definition,
@@ -15355,28 +14890,15 @@ namespace pc64
 	TAG_REFERENCE(scenery_group_reference, SCENERY_TAG);
 
 	TAG_STRUCT(
-		scenario_structure_bsp_reference_tags_v1_struct_definition,
-		"scenario_structure_bsp_reference_tags_v1",
-		"scenario_structure_bsp_reference_tags_v1_struct_definition",
-		"s_scenario_structure_bsp_reference_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_PAD("value", 16),
-		{ _field_tag_reference, "structure bsp", &blofeld::halo2::pc64::scenario_structure_bsp_group_reference },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_structure_bsp_reference_tags_v2_struct_definition,
-		"scenario_structure_bsp_reference_tags_v2",
-		"scenario_structure_bsp_reference_tags_v2_struct_definition",
+		scenario_structure_bsp_reference_struct_definition,
+		"scenario_structure_bsp_reference",
+		"scenario_structure_bsp_reference_struct_definition",
 		"s_scenario_structure_bsp_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 13 },
 		FIELD_PAD("value", 16),
 		{ _field_tag_reference, "structure bsp", &blofeld::halo2::pc64::scenario_structure_bsp_group_reference },
 		{ _field_tag_reference, "structure lightmap", &blofeld::halo2::pc64::scenario_structure_lightmap_group_reference },
@@ -15390,6 +14912,11 @@ namespace pc64
 		FIELD_PAD("value", 2),
 		{ _field_short_block_index, "default sky" },
 		FIELD_PAD("value", 2),
+		
+		{ _struct_version_mode_equal, 0, 2 },
+		FIELD_PAD("value", 16),
+		{ _field_tag_reference, "structure bsp", &blofeld::halo2::pc64::scenario_structure_bsp_group_reference },
+		
 		{ _field_terminator }
 	};
 
@@ -15580,16 +15107,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	STRINGS(unnamed_enum$10)
-	{
-		"Tag Default",
-		"Pathfinding DYNAMIC",
-		"Pathfinding CUT-OUT",
-		"Pathfinding STATIC",
-		"Pathfinding NONE"
-	};
-	STRING_LIST(unnamed_enum$10, unnamed_enum$10_strings, _countof(unnamed_enum$10_strings));
-
 	STRINGS(unnamed_enum$11)
 	{
 		"Tag Default",
@@ -15625,68 +15142,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		scenario_scenery_v1_struct_definition,
-		"scenario_scenery_v1",
-		"scenario_scenery_v1_struct_definition",
-		"s_old_scenario_scenery_datum",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_block_index, "type", _field_id_type },
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
-		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
-		FIELD_PAD("value", 4),
-		{ _field_long_block_index, "environment object reference" },
-		FIELD_PAD("value", 16),
-		FIELD_PAD("value", 16),
-		{ _field_word_flags, "Pathfinding flags", &blofeld::halo2::pc64::unnamed_enum$13 },
-		{ _field_short_integer, "Pathfinding object index" },
-		{ _field_long_integer, "Runtime scenery object" },
-		{ _field_short_enum, "Pathfinding policy", &blofeld::halo2::pc64::unnamed_enum$10 },
-		{ _field_short_enum, "Lightmapping policy", &blofeld::halo2::pc64::unnamed_enum$14 },
-		{ _field_terminator }
-	};
-
-	STRINGS(unnamed_enum$13)
-	{
-		"DEPRECATED",
-		"DEPRECATED"
-	};
-	STRING_LIST(unnamed_enum$13, unnamed_enum$13_strings, _countof(unnamed_enum$13_strings));
-
-	STRINGS(unnamed_enum$14)
-	{
-		"dynamic",
-		"per-object (not implemented)",
-		"per-vertex",
-		"per-pixel"
-	};
-	STRING_LIST(unnamed_enum$14, unnamed_enum$14_strings, _countof(unnamed_enum$14_strings));
-
-	TAG_STRUCT(
-		scenario_scenery_v2_struct_definition,
-		"scenario_scenery_v2",
-		"scenario_scenery_v2_struct_definition",
-		"s_scenario_scenery_v3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "type", _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
-		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
-		{ _field_struct, "scenery data", &blofeld::halo2::pc64::scenario_scenery_datum_struct_v2_struct_definition },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		scenario_scenery_datum_struct_v2_struct_definition,
 		"scenario_scenery_datum_struct_v2",
 		"scenario_scenery_datum_struct_v2_struct_definition",
@@ -15700,25 +15155,6 @@ namespace pc64
 		{ _field_long_block_index_custom_search, "Runtime scenery object" },
 		{ _field_short_enum, "Pathfinding policy", &blofeld::halo2::pc64::unnamed_enum$10 },
 		{ _field_short_enum, "Lightmapping policy", &blofeld::halo2::pc64::unnamed_enum$14 },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_scenery_v3_struct_definition,
-		"scenario_scenery_v3",
-		"scenario_scenery_v3_struct_definition",
-		"s_scenario_scenery_v3$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "type", _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
-		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
-		{ _field_struct, "scenery data", &blofeld::halo2::pc64::scenario_scenery_datum_struct_v3_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -15737,25 +15173,6 @@ namespace pc64
 		FIELD_CUSTOM("value", _field_id_pathfinding),
 		{ _field_short_enum, "Pathfinding policy", &blofeld::halo2::pc64::unnamed_enum$10 },
 		{ _field_short_enum, "Lightmapping policy", &blofeld::halo2::pc64::unnamed_enum$11 },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_scenery_v3_struct_definition$2,
-		"scenario_scenery_v3",
-		"scenario_scenery_v3_struct_definition",
-		"s_scenario_scenery_v3$3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "type", _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
-		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
-		{ _field_struct, "scenery data", &blofeld::halo2::pc64::scenario_scenery_datum_struct_v3_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -15843,14 +15260,15 @@ namespace pc64
 	TAG_REFERENCE(weapon_group_reference, WEAPON_TAG);
 
 	TAG_STRUCT(
-		scenario_weapon_v2_struct_definition,
-		"scenario_weapon_v2",
-		"scenario_weapon_v2_struct_definition",
+		scenario_weapon_struct_definition,
+		"scenario_weapon",
+		"scenario_weapon_struct_definition",
 		"s_scenario_weapon",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 7 },
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_short_block_index, "type", _field_id_type },
 		FIELD_CUSTOM("value", _field_id_filter),
@@ -15858,41 +15276,17 @@ namespace pc64
 		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
 		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
 		{ _field_struct, "weapon data", &blofeld::halo2::pc64::scenario_weapon_datum_struct_struct_definition },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_weapon_datum_struct_struct_definition,
-		"scenario_weapon_datum_struct",
-		"scenario_weapon_datum_struct_struct_definition",
-		"s_scenario_weapon_datum",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_integer, "rounds left" },
-		{ _field_short_integer, "rounds loaded" },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$15 },
-		{ _field_terminator }
-	};
-
-	STRINGS(unnamed_enum$15)
-	{
-		"initially at rest (doesn\'t fall)",
-		"obsolete",
-		"does accelerate (moves due to explosions)"
-	};
-	STRING_LIST(unnamed_enum$15, unnamed_enum$15_strings, _countof(unnamed_enum$15_strings));
-
-	TAG_STRUCT(
-		scenario_weapon_v1_struct_definition,
-		"scenario_weapon_v1",
-		"scenario_weapon_v1_struct_definition",
-		"s_old_scenario_weapon_datum",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 1, 7 },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "type", _field_id_type },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
+		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "weapon data", &blofeld::halo2::pc64::scenario_weapon_datum_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 0, 15 },
 		{ _field_short_block_index, "type", _field_id_type },
 		{ _field_short_block_index, "name", _field_id_name },
 		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
@@ -15908,25 +15302,30 @@ namespace pc64
 		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$15 },
 		FIELD_PAD("value", 2),
 		FIELD_PAD("value", 12),
+		
 		{ _field_terminator }
 	};
 
+	STRINGS(unnamed_enum$15)
+	{
+		"initially at rest (doesn\'t fall)",
+		"obsolete",
+		"does accelerate (moves due to explosions)"
+	};
+	STRING_LIST(unnamed_enum$15, unnamed_enum$15_strings, _countof(unnamed_enum$15_strings));
+
 	TAG_STRUCT(
-		scenario_weapon_v2_struct_definition$2,
-		"scenario_weapon_v2",
-		"scenario_weapon_v2_struct_definition",
-		"s_scenario_weapon$2",
+		scenario_weapon_datum_struct_struct_definition,
+		"scenario_weapon_datum_struct",
+		"scenario_weapon_datum_struct_struct_definition",
+		"s_scenario_weapon_datum",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "type", _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
-		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
-		{ _field_struct, "weapon data", &blofeld::halo2::pc64::scenario_weapon_datum_struct_struct_definition },
+		{ _field_short_integer, "rounds left" },
+		{ _field_short_integer, "rounds loaded" },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$15 },
 		{ _field_terminator }
 	};
 
@@ -15966,14 +15365,15 @@ namespace pc64
 	TAG_REFERENCE(vehicle_group_reference, VEHICLE_TAG);
 
 	TAG_STRUCT(
-		scenario_vehicle_v2_struct_definition,
-		"scenario_vehicle_v2",
-		"scenario_vehicle_v2_struct_definition",
+		scenario_vehicle_struct_definition,
+		"scenario_vehicle",
+		"scenario_vehicle_struct_definition",
 		"s_scenario_vehicle",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 7 },
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_short_block_index, "type", _field_id_type },
 		FIELD_CUSTOM("value", _field_id_filter),
@@ -15981,6 +15381,30 @@ namespace pc64
 		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
 		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
 		{ _field_struct, "unit data", &blofeld::halo2::pc64::scenario_unit_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 1, 7 },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "type", _field_id_type },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
+		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "unit data", &blofeld::halo2::pc64::scenario_unit_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 0, 12 },
+		{ _field_short_block_index, "type", _field_id_type },
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
+		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
+		{ _field_real_point_3d, "position", _field_id_point },
+		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		FIELD_PAD("value", 4),
+		{ _field_long_block_index, "environment object reference" },
+		FIELD_PAD("value", 16),
+		FIELD_PAD("value", 16),
+		{ _field_struct, "unit data", &blofeld::halo2::pc64::old_scenario_unit_struct_struct_definition },
+		FIELD_PAD("value", 32),
+		
 		{ _field_terminator }
 	};
 
@@ -16007,30 +15431,6 @@ namespace pc64
 	STRING_LIST(unnamed_enum$16, unnamed_enum$16_strings, _countof(unnamed_enum$16_strings));
 
 	TAG_STRUCT(
-		scenario_vehicle_v1_struct_definition,
-		"scenario_vehicle_v1",
-		"scenario_vehicle_v1_struct_definition",
-		"s_old_scenario_vehicle_datum",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_block_index, "type", _field_id_type },
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
-		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
-		FIELD_PAD("value", 4),
-		{ _field_long_block_index, "environment object reference" },
-		FIELD_PAD("value", 16),
-		FIELD_PAD("value", 16),
-		{ _field_struct, "unit data", &blofeld::halo2::pc64::old_scenario_unit_struct_struct_definition },
-		FIELD_PAD("value", 32),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		old_scenario_unit_struct_struct_definition,
 		"old_scenario_unit_struct",
 		"old_scenario_unit_struct_struct_definition",
@@ -16042,25 +15442,6 @@ namespace pc64
 		{ _field_real, "body vitality", nullptr, nullptr, "[0,1]" },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$16 },
 		FIELD_PAD("value", 8),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_vehicle_v2_struct_definition$2,
-		"scenario_vehicle_v2",
-		"scenario_vehicle_v2_struct_definition",
-		"s_scenario_vehicle$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "type", _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
-		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
-		{ _field_struct, "unit data", &blofeld::halo2::pc64::scenario_unit_struct_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -16100,14 +15481,15 @@ namespace pc64
 	TAG_REFERENCE(light_group_reference, LIGHT_TAG);
 
 	TAG_STRUCT(
-		scenario_light_v2_struct_definition,
-		"scenario_light_v2",
-		"scenario_light_v2_struct_definition",
+		scenario_light_struct_definition,
+		"scenario_light",
+		"scenario_light_struct_definition",
 		"s_scenario_light",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 10 },
 		FIELD_EXPLANATION("controls", "some descriptive text will go here... eventually. Narrator: except, that was a lie"),
 		FIELD_CUSTOM("value", _field_id_lflg),
 		FIELD_CUSTOM("value", _field_id_allg),
@@ -16118,8 +15500,77 @@ namespace pc64
 		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
 		{ _field_struct, "device data", &blofeld::halo2::pc64::scenario_device_struct_struct_definition },
 		{ _field_struct, "light data", &blofeld::halo2::pc64::scenario_light_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 1, 10 },
+		FIELD_EXPLANATION("controls", "some descriptive text will go here... eventually. Narrator: except, that was a lie"),
+		FIELD_CUSTOM("value", _field_id_lflg),
+		FIELD_CUSTOM("value", _field_id_allg),
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "type", _field_id_type },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
+		{ _field_struct, "device data", &blofeld::halo2::pc64::scenario_device_struct_struct_definition },
+		{ _field_struct, "light data", &blofeld::halo2::pc64::scenario_light_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 0, 22 },
+		{ _field_short_block_index, "type", _field_id_type },
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
+		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
+		{ _field_real_point_3d, "position", _field_id_point },
+		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		FIELD_PAD("value", 4),
+		{ _field_long_block_index, "environment object reference" },
+		{ _field_short_enum, "type", &blofeld::halo2::pc64::unnamed_enum$18 },
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$19 },
+		{ _field_short_enum, "lightmap type", &blofeld::halo2::pc64::unnamed_enum$20 },
+		{ _field_word_flags, "lightmap flags", &blofeld::halo2::pc64::unnamed_enum$21 },
+		{ _field_real, "lightmap half life" },
+		FIELD_PAD("value", 120),
+		{ _field_real_point_3d, "target point" },
+		{ _field_real, "width", nullptr, "world units", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "height scale", nullptr, "world units", FIELD_FLAG_READ_ONLY },
+		{ _field_angle, "field of view", nullptr, "degrees", FIELD_FLAG_READ_ONLY },
+		FIELD_PAD("value", 4),
+		{ _field_real, "falloff distance", nullptr, "world units", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "cutoff distance", nullptr, "world units (from far plane)", FIELD_FLAG_READ_ONLY },
+		FIELD_PAD("value", 128),
+		
 		{ _field_terminator }
 	};
+
+	STRINGS(unnamed_enum$18)
+	{
+		"sphere",
+		"orthogonal",
+		"projective",
+		"pyramid"
+	};
+	STRING_LIST(unnamed_enum$18, unnamed_enum$18_strings, _countof(unnamed_enum$18_strings));
+
+	STRINGS(unnamed_enum$19)
+	{
+		"custom geometry",
+		"unused",
+		"cinematic_only"
+	};
+	STRING_LIST(unnamed_enum$19, unnamed_enum$19_strings, _countof(unnamed_enum$19_strings));
+
+	STRINGS(unnamed_enum$20)
+	{
+		"use light tag setting",
+		"dynamic only",
+		"dynamic with lightmaps",
+		"lightmaps only"
+	};
+	STRING_LIST(unnamed_enum$20, unnamed_enum$20_strings, _countof(unnamed_enum$20_strings));
+
+	STRINGS(unnamed_enum$21)
+	{
+		"unused"
+	};
+	STRING_LIST(unnamed_enum$21, unnamed_enum$21_strings, _countof(unnamed_enum$21_strings));
 
 	TAG_STRUCT(
 		scenario_device_struct_struct_definition,
@@ -16163,94 +15614,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	STRINGS(unnamed_enum$18)
-	{
-		"sphere",
-		"orthogonal",
-		"projective",
-		"pyramid"
-	};
-	STRING_LIST(unnamed_enum$18, unnamed_enum$18_strings, _countof(unnamed_enum$18_strings));
-
-	STRINGS(unnamed_enum$19)
-	{
-		"custom geometry",
-		"unused",
-		"cinematic_only"
-	};
-	STRING_LIST(unnamed_enum$19, unnamed_enum$19_strings, _countof(unnamed_enum$19_strings));
-
-	STRINGS(unnamed_enum$20)
-	{
-		"use light tag setting",
-		"dynamic only",
-		"dynamic with lightmaps",
-		"lightmaps only"
-	};
-	STRING_LIST(unnamed_enum$20, unnamed_enum$20_strings, _countof(unnamed_enum$20_strings));
-
-	STRINGS(unnamed_enum$21)
-	{
-		"unused"
-	};
-	STRING_LIST(unnamed_enum$21, unnamed_enum$21_strings, _countof(unnamed_enum$21_strings));
-
-	TAG_STRUCT(
-		scenario_light_v1_struct_definition,
-		"scenario_light_v1",
-		"scenario_light_v1_struct_definition",
-		"s_old_scenario_light",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_block_index, "type", _field_id_type },
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
-		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
-		FIELD_PAD("value", 4),
-		{ _field_long_block_index, "environment object reference" },
-		{ _field_short_enum, "type", &blofeld::halo2::pc64::unnamed_enum$18 },
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$19 },
-		{ _field_short_enum, "lightmap type", &blofeld::halo2::pc64::unnamed_enum$20 },
-		{ _field_word_flags, "lightmap flags", &blofeld::halo2::pc64::unnamed_enum$21 },
-		{ _field_real, "lightmap half life" },
-		FIELD_PAD("value", 120),
-		{ _field_real_point_3d, "target point" },
-		{ _field_real, "width", nullptr, "world units", FIELD_FLAG_READ_ONLY },
-		{ _field_real, "height scale", nullptr, "world units", FIELD_FLAG_READ_ONLY },
-		{ _field_angle, "field of view", nullptr, "degrees", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("value", 4),
-		{ _field_real, "falloff distance", nullptr, "world units", FIELD_FLAG_READ_ONLY },
-		{ _field_real, "cutoff distance", nullptr, "world units (from far plane)", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("value", 128),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_light_v2_struct_definition$2,
-		"scenario_light_v2",
-		"scenario_light_v2_struct_definition",
-		"s_scenario_light$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_EXPLANATION("controls", "some descriptive text will go here... eventually. Narrator: except, that was a lie"),
-		FIELD_CUSTOM("value", _field_id_lflg),
-		FIELD_CUSTOM("value", _field_id_allg),
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "type", _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
-		{ _field_struct, "device data", &blofeld::halo2::pc64::scenario_device_struct_struct_definition },
-		{ _field_struct, "light data", &blofeld::halo2::pc64::scenario_light_struct_struct_definition },
-		{ _field_terminator }
-	};
-
 	TAG_STRUCT(
 		scenario_bipeds_resource_block_struct_definition,
 		"scenario_bipeds_resource_block",
@@ -16287,14 +15650,15 @@ namespace pc64
 	TAG_REFERENCE(biped_group_reference, BIPED_TAG);
 
 	TAG_STRUCT(
-		scenario_biped_v2_struct_definition,
-		"scenario_biped_v2",
-		"scenario_biped_v2_struct_definition",
+		scenario_biped_struct_definition,
+		"scenario_biped",
+		"scenario_biped_struct_definition",
 		"s_scenario_biped",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 7 },
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_short_block_index, "type", _field_id_type },
 		FIELD_CUSTOM("value", _field_id_filter),
@@ -16302,18 +15666,17 @@ namespace pc64
 		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
 		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
 		{ _field_struct, "unit data", &blofeld::halo2::pc64::scenario_unit_struct_struct_definition },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_biped_v1_struct_definition,
-		"scenario_biped_v1",
-		"scenario_biped_v1_struct_definition",
-		"s_old_scenario_biped_datum",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 1, 7 },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "type", _field_id_type },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
+		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "unit data", &blofeld::halo2::pc64::scenario_unit_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 0, 12 },
 		{ _field_short_block_index, "type", _field_id_type },
 		{ _field_short_block_index, "name", _field_id_name },
 		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
@@ -16326,25 +15689,7 @@ namespace pc64
 		FIELD_PAD("value", 16),
 		{ _field_struct, "unit data", &blofeld::halo2::pc64::old_scenario_unit_struct_struct_definition },
 		FIELD_PAD("value", 32),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_biped_v2_struct_definition$2,
-		"scenario_biped_v2",
-		"scenario_biped_v2_struct_definition",
-		"s_scenario_biped$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "type", _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
-		{ _field_struct, "permutation data", &blofeld::halo2::pc64::scenario_object_permutation_struct_struct_definition },
-		{ _field_struct, "unit data", &blofeld::halo2::pc64::scenario_unit_struct_struct_definition },
+		
 		{ _field_terminator }
 	};
 
@@ -16384,20 +15729,40 @@ namespace pc64
 	TAG_REFERENCE(equipment_group_reference, EQUIPMENT_TAG);
 
 	TAG_STRUCT(
-		scenario_equipment_v2_struct_definition,
-		"scenario_equipment_v2",
-		"scenario_equipment_v2_struct_definition",
+		scenario_equipment_struct_definition,
+		"scenario_equipment",
+		"scenario_equipment_struct_definition",
 		"s_scenario_equipment",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 6 },
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_short_block_index, "type", _field_id_type },
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_short_block_index, "name", _field_id_name },
 		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
 		{ _field_struct, "equipment data", &blofeld::halo2::pc64::scenario_equipment_datum_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 1, 6 },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "type", _field_id_type },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
+		{ _field_struct, "equipment data", &blofeld::halo2::pc64::scenario_equipment_datum_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 0, 8 },
+		{ _field_short_block_index, "type", _field_id_type },
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
+		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
+		{ _field_real_point_3d, "position", _field_id_point },
+		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		FIELD_PAD("value", 4),
+		{ _field_long_block_index, "environment object reference" },
+		
 		{ _field_terminator }
 	};
 
@@ -16421,44 +15786,6 @@ namespace pc64
 		"does accelerate (moves due to explosions)"
 	};
 	STRING_LIST(unnamed_enum$22, unnamed_enum$22_strings, _countof(unnamed_enum$22_strings));
-
-	TAG_STRUCT(
-		scenario_equipment_v1_struct_definition,
-		"scenario_equipment_v1",
-		"scenario_equipment_v1_struct_definition",
-		"s_old_scenario_equipment_datum",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_block_index, "type", _field_id_type },
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
-		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
-		FIELD_PAD("value", 4),
-		{ _field_long_block_index, "environment object reference" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_equipment_v2_struct_definition$2,
-		"scenario_equipment_v2",
-		"scenario_equipment_v2_struct_definition",
-		"s_scenario_equipment$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "type", _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
-		{ _field_struct, "equipment data", &blofeld::halo2::pc64::scenario_equipment_datum_struct_struct_definition },
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		scenario_creature_resource_block_struct_definition,
@@ -16548,20 +15875,40 @@ namespace pc64
 	TAG_REFERENCE(sound_scenery_group_reference, SOUND_SCENERY_TAG);
 
 	TAG_STRUCT(
-		scenario_sound_scenery_v2_struct_definition,
-		"scenario_sound_scenery_v2",
-		"scenario_sound_scenery_v2_struct_definition",
+		scenario_sound_scenery_struct_definition,
+		"scenario_sound_scenery",
+		"scenario_sound_scenery_struct_definition",
 		"s_scenario_sound_scenery",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 6 },
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_short_block_index, "type", _field_id_type },
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_short_block_index, "name", _field_id_name },
 		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
 		{ _field_struct, "sound_scenery", &blofeld::halo2::pc64::sound_scenery_datum_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 1, 6 },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "type", _field_id_type },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
+		{ _field_struct, "sound_scenery", &blofeld::halo2::pc64::sound_scenery_datum_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 0, 8 },
+		{ _field_short_block_index, "type", _field_id_type },
+		{ _field_short_block_index, "name", _field_id_name },
+		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
+		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
+		{ _field_real_point_3d, "position", _field_id_point },
+		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		FIELD_PAD("value", 4),
+		{ _field_long_block_index, "environment object reference" },
+		
 		{ _field_terminator }
 	};
 
@@ -16588,44 +15935,6 @@ namespace pc64
 		"vertical cylinder"
 	};
 	STRING_LIST(unnamed_enum$23, unnamed_enum$23_strings, _countof(unnamed_enum$23_strings));
-
-	TAG_STRUCT(
-		scenario_sound_scenery_v1_struct_definition,
-		"scenario_sound_scenery_v1",
-		"scenario_sound_scenery_v1_struct_definition",
-		"s_old_scenario_sound_scenery_datum",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_block_index, "type", _field_id_type },
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_word_flags, "not placed", &blofeld::halo2::pc64::unnamed_enum$4 },
-		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
-		FIELD_PAD("value", 4),
-		{ _field_long_block_index, "environment object reference" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_sound_scenery_v2_struct_definition$2,
-		"scenario_sound_scenery_v2",
-		"scenario_sound_scenery_v2_struct_definition",
-		"s_scenario_sound_scenery$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "type", _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_short_block_index, "name", _field_id_name },
-		{ _field_struct, "object data", &blofeld::halo2::pc64::g_new_scenario_object_datum_struct_definition },
-		{ _field_struct, "sound_scenery", &blofeld::halo2::pc64::sound_scenery_datum_struct_struct_definition },
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		scenario_comments_resource_block_struct_definition,
@@ -16671,12 +15980,30 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 4 },
 		{ _field_block, "template collection", &blofeld::halo2::pc64::sound_effect_templates_block },
 		{ _field_string_id, "input effect name" },
 		{ _field_block, "additional sound inputs", &blofeld::halo2::pc64::sound_effect_template_additional_sound_input_block },
 		{ _field_block, "value", &blofeld::halo2::pc64::platform_sound_effect_template_collection_block },
+		
+		{ _struct_version_mode_equal, 0, 7 },
+		{ _field_string_id, "dsp effect" },
+		FIELD_EXPLANATION("WARNING", "DON\'T MODIFY THIS TAG UNLESS YOU KNOW WHAT YOU ARE DOING"),
+		{ _field_data, "explanation", &blofeld::halo2::pc64::sound_effect_template_explanation },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$25 },
+		{ _field_short_integer, "value" },
+		{ _field_short_integer, "value" },
+		{ _field_block, "parameters", &blofeld::halo2::pc64::sound_effect_template_parameter_block },
+		
 		{ _field_terminator }
 	};
+
+	STRINGS(unnamed_enum$25)
+	{
+		"use high level parameters",
+		"custom parameters"
+	};
+	STRING_LIST(unnamed_enum$25, unnamed_enum$25_strings, _countof(unnamed_enum$25_strings));
 
 	TAG_STRUCT(
 		g_sound_effect_template_struct_definition,
@@ -16697,13 +16024,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	STRINGS(unnamed_enum$25)
-	{
-		"use high level parameters",
-		"custom parameters"
-	};
-	STRING_LIST(unnamed_enum$25, unnamed_enum$25_strings, _countof(unnamed_enum$25_strings));
-
 	TAG_STRUCT(
 		sound_effect_template_parameter_block_struct_definition,
 		"sound_effect_template_parameter_block",
@@ -16720,7 +16040,7 @@ namespace pc64
 		{ _field_long_integer, "default enum integer value" },
 		{ _field_real, "default scalar value" },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "default function", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_real, "minimum scalar value" },
 		{ _field_real, "maximum scalar value" },
 		{ _field_terminator }
@@ -16741,42 +16061,20 @@ namespace pc64
 	STRING_LIST(unnamed_enum$27, unnamed_enum$27_strings, _countof(unnamed_enum$27_strings));
 
 	TAG_STRUCT(
-		function_definition_v2_struct_definition,
-		"function_definition_v2",
-		"function_definition_v2_struct_definition",
+		function_definition_struct_definition,
+		"function_definition",
+		"function_definition_struct_definition",
 		"s_c_function_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 3 },
 		FIELD_HIDE_BEGIN(),
 		{ _field_block, "data", &blofeld::halo2::pc64::byte_block },
 		FIELD_HIDE_END(),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		byte_block_struct_definition,
-		"byte_block",
-		"byte_block_struct_definition",
-		"s_byte",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_char_integer, "Value" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		function_definition_v1_struct_definition,
-		"function_definition_v1",
-		"function_definition_v1_struct_definition",
-		"s_function_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 11 },
 		FIELD_HIDE_BEGIN(),
 		{ _field_char_integer, "Function Type" },
 		{ _field_byte_flags, "Flags", &blofeld::halo2::pc64::unnamed_enum$28 },
@@ -16788,6 +16086,7 @@ namespace pc64
 		{ _field_rgb_color, "Color 3" },
 		{ _field_block, "Values", &blofeld::halo2::pc64::real_block },
 		FIELD_HIDE_END(),
+		
 		{ _field_terminator }
 	};
 
@@ -16803,6 +16102,19 @@ namespace pc64
 		"Color Bit 3"
 	};
 	STRING_LIST(unnamed_enum$28, unnamed_enum$28_strings, _countof(unnamed_enum$28_strings));
+
+	TAG_STRUCT(
+		byte_block_struct_definition,
+		"byte_block",
+		"byte_block_struct_definition",
+		"s_byte",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_char_integer, "Value" },
+		{ _field_terminator }
+	};
 
 	TAG_STRUCT(
 		real_block_struct_definition,
@@ -16828,7 +16140,7 @@ namespace pc64
 	{
 		{ _field_string_id, "dsp effect" },
 		FIELD_CUSTOM("low frequency sound", _field_id_function_editor),
-		{ _field_struct, "low frequency sound", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "low frequency sound", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },
 		{ _field_terminator }
 	};
@@ -16886,25 +16198,6 @@ namespace pc64
 		"rolloff"
 	};
 	STRING_LIST(unnamed_enum$29, unnamed_enum$29_strings, _countof(unnamed_enum$29_strings));
-
-	TAG_STRUCT(
-		g_sound_effect_template_struct_definition$2,
-		"g_sound_effect_template",
-		"g_sound_effect_template_struct_definition",
-		"s_sound_effect_template_definition$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string_id, "dsp effect" },
-		FIELD_EXPLANATION("WARNING", "DON\'T MODIFY THIS TAG UNLESS YOU KNOW WHAT YOU ARE DOING"),
-		{ _field_data, "explanation", &blofeld::halo2::pc64::sound_effect_template_explanation },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$25 },
-		{ _field_short_integer, "value" },
-		{ _field_short_integer, "value" },
-		{ _field_block, "parameters", &blofeld::halo2::pc64::sound_effect_template_parameter_block },
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		stereo_system_block_struct_definition,
@@ -17010,6 +16303,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 9 },
 		{ _field_block, "placements", &blofeld::halo2::pc64::decorator_placement_block },
 		{ _field_block, "decal vertices", &blofeld::halo2::pc64::decal_vertices_block },
 		{ _field_block, "decal indices", &blofeld::halo2::pc64::indices_block },
@@ -17019,6 +16313,12 @@ namespace pc64
 		{ _field_block, "sprite indices", &blofeld::halo2::pc64::indices_block },
 		{ _field_vertex_buffer, "sprite vertex buffer" },
 		FIELD_PAD("value", 16),
+		
+		{ _struct_version_mode_equal, 0, 3 },
+		{ _field_block, "placements", &blofeld::halo2::pc64::decorator_placement_block },
+		{ _field_vertex_buffer, "decal vertex buffer" },
+		{ _field_vertex_buffer, "sprite vertex buffer" },
+		
 		{ _field_terminator }
 	};
 
@@ -17083,21 +16383,6 @@ namespace pc64
 		{ _field_real_vector_3d, "axis" },
 		{ _field_real_point_2d, "texcoord" },
 		{ _field_rgb_color, "color" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		decorator_cache_block_data_v1_struct_definition,
-		"decorator_cache_block_data_v1",
-		"decorator_cache_block_data_v1_struct_definition",
-		"s_decorator_cache_block_data_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_block, "placements", &blofeld::halo2::pc64::decorator_placement_block },
-		{ _field_vertex_buffer, "decal vertex buffer" },
-		{ _field_vertex_buffer, "sprite vertex buffer" },
 		{ _field_terminator }
 	};
 
@@ -17175,14 +16460,15 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		decorator_set_v2_struct_definition,
-		"decorator_set_v2",
-		"decorator_set_v2_struct_definition",
+		decorator_set_struct_definition,
+		"decorator_set",
+		"decorator_set_struct_definition",
 		"s_c_decorator_set_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 11 },
 		{ _field_block, "shaders", &blofeld::halo2::pc64::decorator_shader_reference_block },
 		{ _field_real, "lighting min scale", "0.0 defaults to 0.4" },
 		{ _field_real, "lighting max scale", "0.0 defaults to 2.0" },
@@ -17194,6 +16480,17 @@ namespace pc64
 		{ _field_struct, "geometry section info", &blofeld::halo2::pc64::global_geometry_block_info_struct_struct_definition },
 		FIELD_PAD("value", 16),
 		FIELD_PAD("value", 4),
+		
+		{ _struct_version_mode_equal, 0, 8 },
+		{ _field_block, "shaders", &blofeld::halo2::pc64::decorator_shader_reference_block },
+		{ _field_block, "classes", &blofeld::halo2::pc64::decorator_classes_block },
+		{ _field_block, "models", &blofeld::halo2::pc64::decorator_models_block },
+		{ _field_block, "raw vertices", &blofeld::halo2::pc64::decorator_model_vertices_block },
+		{ _field_block, "indices", &blofeld::halo2::pc64::decorator_model_indices_block },
+		{ _field_block, "cached data", &blofeld::halo2::pc64::cached_data_block },
+		{ _field_struct, "geometry section info", &blofeld::halo2::pc64::global_geometry_block_info_struct_struct_definition },
+		FIELD_PAD("value", 16),
+		
 		{ _field_terminator }
 	};
 
@@ -17327,26 +16624,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		decorator_set_v1_struct_definition,
-		"decorator_set_v1",
-		"decorator_set_v1_struct_definition",
-		"s_c_decorator_set_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_block, "shaders", &blofeld::halo2::pc64::decorator_shader_reference_block },
-		{ _field_block, "classes", &blofeld::halo2::pc64::decorator_classes_block },
-		{ _field_block, "models", &blofeld::halo2::pc64::decorator_models_block },
-		{ _field_block, "raw vertices", &blofeld::halo2::pc64::decorator_model_vertices_block },
-		{ _field_block, "indices", &blofeld::halo2::pc64::decorator_model_indices_block },
-		{ _field_block, "cached data", &blofeld::halo2::pc64::cached_data_block },
-		{ _field_struct, "geometry section info", &blofeld::halo2::pc64::global_geometry_block_info_struct_struct_definition },
-		FIELD_PAD("value", 16),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		light_volume_block_struct_definition,
 		"light_volume_block",
 		"light_volume_block_struct_definition",
@@ -17429,7 +16706,7 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_CUSTOM("function", _field_id_function_editor),
-		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -17443,7 +16720,7 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_CUSTOM("function", _field_id_function_editor),
-		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -17571,7 +16848,7 @@ namespace pc64
 		{ _field_short_enum, "Output Modifier", &blofeld::halo2::pc64::unnamed_enum$38, _field_id_function_output_modifier },
 		{ _field_short_enum, "Output Modifier Input", &blofeld::halo2::pc64::unnamed_enum$37, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "Mapping", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -17620,14 +16897,15 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		particle_system_definition_block_v2_struct_definition,
-		"particle_system_definition_block_v2",
-		"particle_system_definition_block_v2_struct_definition",
+		particle_system_definition_block_struct_definition,
+		"particle_system_definition_block",
+		"particle_system_definition_block_struct_definition",
 		"s_c_particle_system_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 15 },
 		{ _field_tag_reference, "particle", &blofeld::halo2::pc64::particle_group_particle_model_group_reference },
 		{ _field_long_block_index, "location" },
 		{ _field_short_enum, "coordinate system", &blofeld::halo2::pc64::unnamed_enum$39 },
@@ -17643,6 +16921,18 @@ namespace pc64
 		{ _field_real, "LOD feather out delta", "defaults to 10.0" },
 		FIELD_SKIP("value", 4),
 		{ _field_block, "emitters", &blofeld::halo2::pc64::particle_system_emitter_definition_block },
+		
+		{ _struct_version_mode_equal, 0, 9 },
+		{ _field_tag_reference, "particle", &blofeld::halo2::pc64::particle_group_particle_model_group_reference },
+		{ _field_long_block_index, "location" },
+		{ _field_short_enum, "coordinate system", &blofeld::halo2::pc64::unnamed_enum$39 },
+		{ _field_short_enum, "environment", &blofeld::halo2::pc64::unnamed_enum$40 },
+		{ _field_short_enum, "disposition", &blofeld::halo2::pc64::unnamed_enum$41 },
+		{ _field_short_enum, "camera mode", &blofeld::halo2::pc64::unnamed_enum$42 },
+		{ _field_short_integer, "sort bias", "use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$43 },
+		{ _field_block, "emitters", &blofeld::halo2::pc64::particle_system_emitter_definition_block },
+		
 		{ _field_terminator }
 	};
 
@@ -17752,28 +17042,7 @@ namespace pc64
 		{ _field_short_enum, "Output Modifier", &blofeld::halo2::pc64::unnamed_enum$38, _field_id_function_output_modifier },
 		{ _field_short_enum, "Output Modifier Input", &blofeld::halo2::pc64::unnamed_enum$37, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		particle_system_definition_block_v1_struct_definition,
-		"particle_system_definition_block_v1",
-		"particle_system_definition_block_v1_struct_definition",
-		"s_c_particle_system_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_tag_reference, "particle", &blofeld::halo2::pc64::particle_group_particle_model_group_reference },
-		{ _field_long_block_index, "location" },
-		{ _field_short_enum, "coordinate system", &blofeld::halo2::pc64::unnamed_enum$39 },
-		{ _field_short_enum, "environment", &blofeld::halo2::pc64::unnamed_enum$40 },
-		{ _field_short_enum, "disposition", &blofeld::halo2::pc64::unnamed_enum$41 },
-		{ _field_short_enum, "camera mode", &blofeld::halo2::pc64::unnamed_enum$42 },
-		{ _field_short_integer, "sort bias", "use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$43 },
-		{ _field_block, "emitters", &blofeld::halo2::pc64::particle_system_emitter_definition_block },
+		{ _field_struct, "Mapping", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -17861,6 +17130,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 27 },
 		{ _field_string_id, "vocalization" },
 		{ _field_string_id, "parent vocalization", _field_id_sted },
 		{ _field_short_integer, "parent index" },
@@ -17888,6 +17158,42 @@ namespace pc64
 		{ _field_string_id, "Sample line" },
 		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
 		{ _field_block, "children", &blofeld::halo2::pc64::vocalization_definitions_block_1_block },
+		
+		{ _struct_version_mode_equal, 0, 33 },
+		{ _field_string_id, "vocalization" },
+		{ _field_string_id, "parent vocalization", _field_id_sted },
+		{ _field_short_integer, "parent index" },
+		{ _field_short_enum, "priority", &blofeld::halo2::pc64::unnamed_enum$45 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$46 },
+		FIELD_PAD("value", 8),
+		{ _field_short_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::pc64::unnamed_enum$47 },
+		{ _field_short_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::pc64::unnamed_enum$47 },
+		{ _field_short_enum, "perception type", &blofeld::halo2::pc64::unnamed_enum$48 },
+		FIELD_PAD("value", 2),
+		{ _field_short_enum, "animation impulse", &blofeld::halo2::pc64::unnamed_enum$50 },
+		{ _field_short_enum, "overlap priority", &blofeld::halo2::pc64::unnamed_enum$45 },
+		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
+		FIELD_PAD("value", 12),
+		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
+		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
+		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
+		{ _field_real, "post voc. delay", "How long speech is suppressed in the speaking unit after vocalizing", "seconds" },
+		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
+		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
+		{ _field_short_enum, "max combat status", &blofeld::halo2::pc64::unnamed_enum$49 },
+		FIELD_PAD("value", 2),
+		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
+		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
+		{ _field_short_enum, "speaker emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
+		{ _field_short_enum, "listener emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
+		{ _field_real, "player skip fraction" },
+		{ _field_real, "skip fraction" },
+		{ _field_long_string, "Sample line" },
+		FIELD_PAD("value", 12),
+		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
+		FIELD_PAD("value", 12),
+		{ _field_block, "children", &blofeld::halo2::pc64::vocalization_definitions_block_1_block },
+		
 		{ _field_terminator }
 	};
 
@@ -18034,6 +17340,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 27 },
 		{ _field_string_id, "vocalization" },
 		{ _field_string_id, "parent vocalization", _field_id_sted },
 		{ _field_short_integer, "parent index" },
@@ -18061,6 +17368,42 @@ namespace pc64
 		{ _field_string_id, "Sample line" },
 		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
 		{ _field_block, "children", &blofeld::halo2::pc64::vocalization_definitions_block_2_block },
+		
+		{ _struct_version_mode_equal, 0, 33 },
+		{ _field_string_id, "vocalization" },
+		{ _field_string_id, "parent vocalization", _field_id_sted },
+		{ _field_short_integer, "parent index" },
+		{ _field_short_enum, "priority", &blofeld::halo2::pc64::unnamed_enum$45 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$46 },
+		FIELD_PAD("value", 8),
+		{ _field_short_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::pc64::unnamed_enum$47 },
+		{ _field_short_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::pc64::unnamed_enum$47 },
+		{ _field_short_enum, "perception type", &blofeld::halo2::pc64::unnamed_enum$48 },
+		FIELD_PAD("value", 2),
+		{ _field_short_enum, "animation impulse", &blofeld::halo2::pc64::unnamed_enum$50 },
+		{ _field_short_enum, "overlap priority", &blofeld::halo2::pc64::unnamed_enum$45 },
+		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
+		FIELD_PAD("value", 12),
+		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
+		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
+		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
+		{ _field_real, "post voc. delay", "How long speech is suppressed in the speaking unit after vocalizing", "seconds" },
+		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
+		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
+		{ _field_short_enum, "max combat status", &blofeld::halo2::pc64::unnamed_enum$49 },
+		FIELD_PAD("value", 2),
+		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
+		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
+		{ _field_short_enum, "speaker emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
+		{ _field_short_enum, "listener emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
+		{ _field_real, "player skip fraction" },
+		{ _field_real, "skip fraction" },
+		{ _field_long_string, "Sample line" },
+		FIELD_PAD("value", 12),
+		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
+		FIELD_PAD("value", 12),
+		{ _field_block, "children", &blofeld::halo2::pc64::vocalization_definitions_block_2_block },
+		
 		{ _field_terminator }
 	};
 
@@ -18073,6 +17416,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 27 },
 		{ _field_string_id, "vocalization" },
 		{ _field_string_id, "parent vocalization", _field_id_sted },
 		{ _field_short_integer, "parent index" },
@@ -18100,6 +17444,42 @@ namespace pc64
 		{ _field_string_id, "Sample line" },
 		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
 		{ _field_block, "children", &blofeld::halo2::pc64::vocalization_definitions_block_3_block },
+		
+		{ _struct_version_mode_equal, 0, 33 },
+		{ _field_string_id, "vocalization" },
+		{ _field_string_id, "parent vocalization", _field_id_sted },
+		{ _field_short_integer, "parent index" },
+		{ _field_short_enum, "priority", &blofeld::halo2::pc64::unnamed_enum$45 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$46 },
+		FIELD_PAD("value", 8),
+		{ _field_short_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::pc64::unnamed_enum$47 },
+		{ _field_short_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::pc64::unnamed_enum$47 },
+		{ _field_short_enum, "perception type", &blofeld::halo2::pc64::unnamed_enum$48 },
+		FIELD_PAD("value", 2),
+		{ _field_short_enum, "animation impulse", &blofeld::halo2::pc64::unnamed_enum$50 },
+		{ _field_short_enum, "overlap priority", &blofeld::halo2::pc64::unnamed_enum$45 },
+		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
+		FIELD_PAD("value", 12),
+		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
+		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
+		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
+		{ _field_real, "post voc. delay", "How long speech is suppressed in the speaking unit after vocalizing", "seconds" },
+		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
+		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
+		{ _field_short_enum, "max combat status", &blofeld::halo2::pc64::unnamed_enum$49 },
+		FIELD_PAD("value", 2),
+		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
+		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
+		{ _field_short_enum, "speaker emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
+		{ _field_short_enum, "listener emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
+		{ _field_real, "player skip fraction" },
+		{ _field_real, "skip fraction" },
+		{ _field_long_string, "Sample line" },
+		FIELD_PAD("value", 12),
+		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
+		FIELD_PAD("value", 12),
+		{ _field_block, "children", &blofeld::halo2::pc64::vocalization_definitions_block_3_block },
+		
 		{ _field_terminator }
 	};
 
@@ -18112,6 +17492,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 27 },
 		{ _field_string_id, "vocalization" },
 		{ _field_string_id, "parent vocalization", _field_id_sted },
 		{ _field_short_integer, "parent index" },
@@ -18139,6 +17520,42 @@ namespace pc64
 		{ _field_string_id, "Sample line" },
 		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
 		{ _field_block, "children", &blofeld::halo2::pc64::vocalization_definitions_block_4_block },
+		
+		{ _struct_version_mode_equal, 0, 33 },
+		{ _field_string_id, "vocalization" },
+		{ _field_string_id, "parent vocalization", _field_id_sted },
+		{ _field_short_integer, "parent index" },
+		{ _field_short_enum, "priority", &blofeld::halo2::pc64::unnamed_enum$45 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$46 },
+		FIELD_PAD("value", 8),
+		{ _field_short_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::pc64::unnamed_enum$47 },
+		{ _field_short_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::pc64::unnamed_enum$47 },
+		{ _field_short_enum, "perception type", &blofeld::halo2::pc64::unnamed_enum$48 },
+		FIELD_PAD("value", 2),
+		{ _field_short_enum, "animation impulse", &blofeld::halo2::pc64::unnamed_enum$50 },
+		{ _field_short_enum, "overlap priority", &blofeld::halo2::pc64::unnamed_enum$45 },
+		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
+		FIELD_PAD("value", 12),
+		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
+		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
+		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
+		{ _field_real, "post voc. delay", "How long speech is suppressed in the speaking unit after vocalizing", "seconds" },
+		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
+		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
+		{ _field_short_enum, "max combat status", &blofeld::halo2::pc64::unnamed_enum$49 },
+		FIELD_PAD("value", 2),
+		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
+		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
+		{ _field_short_enum, "speaker emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
+		{ _field_short_enum, "listener emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
+		{ _field_real, "player skip fraction" },
+		{ _field_real, "skip fraction" },
+		{ _field_long_string, "Sample line" },
+		FIELD_PAD("value", 12),
+		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
+		FIELD_PAD("value", 12),
+		{ _field_block, "children", &blofeld::halo2::pc64::vocalization_definitions_block_4_block },
+		
 		{ _field_terminator }
 	};
 
@@ -18151,6 +17568,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 27 },
 		{ _field_string_id, "vocalization" },
 		{ _field_string_id, "parent vocalization", _field_id_sted },
 		{ _field_short_integer, "parent index" },
@@ -18178,6 +17596,42 @@ namespace pc64
 		{ _field_string_id, "Sample line" },
 		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
 		{ _field_block, "children", &blofeld::halo2::pc64::vocalization_definitions_block_5_block },
+		
+		{ _struct_version_mode_equal, 0, 33 },
+		{ _field_string_id, "vocalization" },
+		{ _field_string_id, "parent vocalization", _field_id_sted },
+		{ _field_short_integer, "parent index" },
+		{ _field_short_enum, "priority", &blofeld::halo2::pc64::unnamed_enum$45 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$46 },
+		FIELD_PAD("value", 8),
+		{ _field_short_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::pc64::unnamed_enum$47 },
+		{ _field_short_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::pc64::unnamed_enum$47 },
+		{ _field_short_enum, "perception type", &blofeld::halo2::pc64::unnamed_enum$48 },
+		FIELD_PAD("value", 2),
+		{ _field_short_enum, "animation impulse", &blofeld::halo2::pc64::unnamed_enum$50 },
+		{ _field_short_enum, "overlap priority", &blofeld::halo2::pc64::unnamed_enum$45 },
+		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
+		FIELD_PAD("value", 12),
+		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
+		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
+		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
+		{ _field_real, "post voc. delay", "How long speech is suppressed in the speaking unit after vocalizing", "seconds" },
+		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
+		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
+		{ _field_short_enum, "max combat status", &blofeld::halo2::pc64::unnamed_enum$49 },
+		FIELD_PAD("value", 2),
+		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
+		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
+		{ _field_short_enum, "speaker emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
+		{ _field_short_enum, "listener emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
+		{ _field_real, "player skip fraction" },
+		{ _field_real, "skip fraction" },
+		{ _field_long_string, "Sample line" },
+		FIELD_PAD("value", 12),
+		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
+		FIELD_PAD("value", 12),
+		{ _field_block, "children", &blofeld::halo2::pc64::vocalization_definitions_block_5_block },
+		
 		{ _field_terminator }
 	};
 
@@ -18190,6 +17644,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 27 },
 		{ _field_string_id, "vocalization" },
 		{ _field_string_id, "parent vocalization", _field_id_sted },
 		{ _field_short_integer, "parent index" },
@@ -18217,6 +17672,42 @@ namespace pc64
 		{ _field_string_id, "Sample line" },
 		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
 		{ _field_block, "value", &blofeld::halo2::pc64::g_null_block },
+		
+		{ _struct_version_mode_equal, 0, 33 },
+		{ _field_string_id, "vocalization" },
+		{ _field_string_id, "parent vocalization", _field_id_sted },
+		{ _field_short_integer, "parent index" },
+		{ _field_short_enum, "priority", &blofeld::halo2::pc64::unnamed_enum$45 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$46 },
+		FIELD_PAD("value", 8),
+		{ _field_short_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::pc64::unnamed_enum$47 },
+		{ _field_short_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::pc64::unnamed_enum$47 },
+		{ _field_short_enum, "perception type", &blofeld::halo2::pc64::unnamed_enum$48 },
+		FIELD_PAD("value", 2),
+		{ _field_short_enum, "animation impulse", &blofeld::halo2::pc64::unnamed_enum$50 },
+		{ _field_short_enum, "overlap priority", &blofeld::halo2::pc64::unnamed_enum$45 },
+		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
+		FIELD_PAD("value", 12),
+		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
+		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
+		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
+		{ _field_real, "post voc. delay", "How long speech is suppressed in the speaking unit after vocalizing", "seconds" },
+		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
+		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
+		{ _field_short_enum, "max combat status", &blofeld::halo2::pc64::unnamed_enum$49 },
+		FIELD_PAD("value", 2),
+		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
+		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
+		{ _field_short_enum, "speaker emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
+		{ _field_short_enum, "listener emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
+		{ _field_real, "player skip fraction" },
+		{ _field_real, "skip fraction" },
+		{ _field_long_string, "Sample line" },
+		FIELD_PAD("value", 12),
+		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
+		FIELD_PAD("value", 12),
+		FIELD_PAD("value", 12),
+		
 		{ _field_terminator }
 	};
 
@@ -18230,276 +17721,6 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_CUSTOM("value", _field_id_null),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		g_vocalization_fields_v1_5_struct_definition,
-		"g_vocalization_fields_v1_5",
-		"g_vocalization_fields_v1_5_struct_definition",
-		"s_vocalization_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string_id, "vocalization" },
-		{ _field_string_id, "parent vocalization", _field_id_sted },
-		{ _field_short_integer, "parent index" },
-		{ _field_short_enum, "priority", &blofeld::halo2::pc64::unnamed_enum$45 },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$46 },
-		FIELD_PAD("value", 8),
-		{ _field_short_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::pc64::unnamed_enum$47 },
-		{ _field_short_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::pc64::unnamed_enum$47 },
-		{ _field_short_enum, "perception type", &blofeld::halo2::pc64::unnamed_enum$48 },
-		FIELD_PAD("value", 2),
-		{ _field_short_enum, "animation impulse", &blofeld::halo2::pc64::unnamed_enum$50 },
-		{ _field_short_enum, "overlap priority", &blofeld::halo2::pc64::unnamed_enum$45 },
-		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
-		FIELD_PAD("value", 12),
-		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
-		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
-		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
-		{ _field_real, "post voc. delay", "How long speech is suppressed in the speaking unit after vocalizing", "seconds" },
-		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
-		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
-		{ _field_short_enum, "max combat status", &blofeld::halo2::pc64::unnamed_enum$49 },
-		FIELD_PAD("value", 2),
-		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
-		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
-		{ _field_short_enum, "speaker emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
-		{ _field_short_enum, "listener emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
-		{ _field_real, "player skip fraction" },
-		{ _field_real, "skip fraction" },
-		{ _field_long_string, "Sample line" },
-		FIELD_PAD("value", 12),
-		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
-		FIELD_PAD("value", 12),
-		FIELD_PAD("value", 12),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		g_vocalization_fields_v1_4_struct_definition,
-		"g_vocalization_fields_v1_4",
-		"g_vocalization_fields_v1_4_struct_definition",
-		"s_vocalization_v1$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string_id, "vocalization" },
-		{ _field_string_id, "parent vocalization", _field_id_sted },
-		{ _field_short_integer, "parent index" },
-		{ _field_short_enum, "priority", &blofeld::halo2::pc64::unnamed_enum$45 },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$46 },
-		FIELD_PAD("value", 8),
-		{ _field_short_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::pc64::unnamed_enum$47 },
-		{ _field_short_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::pc64::unnamed_enum$47 },
-		{ _field_short_enum, "perception type", &blofeld::halo2::pc64::unnamed_enum$48 },
-		FIELD_PAD("value", 2),
-		{ _field_short_enum, "animation impulse", &blofeld::halo2::pc64::unnamed_enum$50 },
-		{ _field_short_enum, "overlap priority", &blofeld::halo2::pc64::unnamed_enum$45 },
-		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
-		FIELD_PAD("value", 12),
-		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
-		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
-		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
-		{ _field_real, "post voc. delay", "How long speech is suppressed in the speaking unit after vocalizing", "seconds" },
-		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
-		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
-		{ _field_short_enum, "max combat status", &blofeld::halo2::pc64::unnamed_enum$49 },
-		FIELD_PAD("value", 2),
-		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
-		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
-		{ _field_short_enum, "speaker emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
-		{ _field_short_enum, "listener emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
-		{ _field_real, "player skip fraction" },
-		{ _field_real, "skip fraction" },
-		{ _field_long_string, "Sample line" },
-		FIELD_PAD("value", 12),
-		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
-		FIELD_PAD("value", 12),
-		{ _field_block, "children", &blofeld::halo2::pc64::vocalization_definitions_block_5_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		g_vocalization_fields_v1_3_struct_definition,
-		"g_vocalization_fields_v1_3",
-		"g_vocalization_fields_v1_3_struct_definition",
-		"s_vocalization_v1$3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string_id, "vocalization" },
-		{ _field_string_id, "parent vocalization", _field_id_sted },
-		{ _field_short_integer, "parent index" },
-		{ _field_short_enum, "priority", &blofeld::halo2::pc64::unnamed_enum$45 },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$46 },
-		FIELD_PAD("value", 8),
-		{ _field_short_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::pc64::unnamed_enum$47 },
-		{ _field_short_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::pc64::unnamed_enum$47 },
-		{ _field_short_enum, "perception type", &blofeld::halo2::pc64::unnamed_enum$48 },
-		FIELD_PAD("value", 2),
-		{ _field_short_enum, "animation impulse", &blofeld::halo2::pc64::unnamed_enum$50 },
-		{ _field_short_enum, "overlap priority", &blofeld::halo2::pc64::unnamed_enum$45 },
-		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
-		FIELD_PAD("value", 12),
-		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
-		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
-		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
-		{ _field_real, "post voc. delay", "How long speech is suppressed in the speaking unit after vocalizing", "seconds" },
-		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
-		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
-		{ _field_short_enum, "max combat status", &blofeld::halo2::pc64::unnamed_enum$49 },
-		FIELD_PAD("value", 2),
-		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
-		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
-		{ _field_short_enum, "speaker emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
-		{ _field_short_enum, "listener emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
-		{ _field_real, "player skip fraction" },
-		{ _field_real, "skip fraction" },
-		{ _field_long_string, "Sample line" },
-		FIELD_PAD("value", 12),
-		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
-		FIELD_PAD("value", 12),
-		{ _field_block, "children", &blofeld::halo2::pc64::vocalization_definitions_block_4_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		g_vocalization_fields_v1_2_struct_definition,
-		"g_vocalization_fields_v1_2",
-		"g_vocalization_fields_v1_2_struct_definition",
-		"s_vocalization_v1$4",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string_id, "vocalization" },
-		{ _field_string_id, "parent vocalization", _field_id_sted },
-		{ _field_short_integer, "parent index" },
-		{ _field_short_enum, "priority", &blofeld::halo2::pc64::unnamed_enum$45 },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$46 },
-		FIELD_PAD("value", 8),
-		{ _field_short_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::pc64::unnamed_enum$47 },
-		{ _field_short_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::pc64::unnamed_enum$47 },
-		{ _field_short_enum, "perception type", &blofeld::halo2::pc64::unnamed_enum$48 },
-		FIELD_PAD("value", 2),
-		{ _field_short_enum, "animation impulse", &blofeld::halo2::pc64::unnamed_enum$50 },
-		{ _field_short_enum, "overlap priority", &blofeld::halo2::pc64::unnamed_enum$45 },
-		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
-		FIELD_PAD("value", 12),
-		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
-		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
-		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
-		{ _field_real, "post voc. delay", "How long speech is suppressed in the speaking unit after vocalizing", "seconds" },
-		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
-		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
-		{ _field_short_enum, "max combat status", &blofeld::halo2::pc64::unnamed_enum$49 },
-		FIELD_PAD("value", 2),
-		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
-		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
-		{ _field_short_enum, "speaker emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
-		{ _field_short_enum, "listener emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
-		{ _field_real, "player skip fraction" },
-		{ _field_real, "skip fraction" },
-		{ _field_long_string, "Sample line" },
-		FIELD_PAD("value", 12),
-		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
-		FIELD_PAD("value", 12),
-		{ _field_block, "children", &blofeld::halo2::pc64::vocalization_definitions_block_3_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		g_vocalization_fields_v1_1_struct_definition,
-		"g_vocalization_fields_v1_1",
-		"g_vocalization_fields_v1_1_struct_definition",
-		"s_vocalization_v1$5",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string_id, "vocalization" },
-		{ _field_string_id, "parent vocalization", _field_id_sted },
-		{ _field_short_integer, "parent index" },
-		{ _field_short_enum, "priority", &blofeld::halo2::pc64::unnamed_enum$45 },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$46 },
-		FIELD_PAD("value", 8),
-		{ _field_short_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::pc64::unnamed_enum$47 },
-		{ _field_short_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::pc64::unnamed_enum$47 },
-		{ _field_short_enum, "perception type", &blofeld::halo2::pc64::unnamed_enum$48 },
-		FIELD_PAD("value", 2),
-		{ _field_short_enum, "animation impulse", &blofeld::halo2::pc64::unnamed_enum$50 },
-		{ _field_short_enum, "overlap priority", &blofeld::halo2::pc64::unnamed_enum$45 },
-		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
-		FIELD_PAD("value", 12),
-		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
-		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
-		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
-		{ _field_real, "post voc. delay", "How long speech is suppressed in the speaking unit after vocalizing", "seconds" },
-		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
-		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
-		{ _field_short_enum, "max combat status", &blofeld::halo2::pc64::unnamed_enum$49 },
-		FIELD_PAD("value", 2),
-		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
-		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
-		{ _field_short_enum, "speaker emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
-		{ _field_short_enum, "listener emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
-		{ _field_real, "player skip fraction" },
-		{ _field_real, "skip fraction" },
-		{ _field_long_string, "Sample line" },
-		FIELD_PAD("value", 12),
-		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
-		FIELD_PAD("value", 12),
-		{ _field_block, "children", &blofeld::halo2::pc64::vocalization_definitions_block_2_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		g_vocalization_fields_v1_0_struct_definition,
-		"g_vocalization_fields_v1_0",
-		"g_vocalization_fields_v1_0_struct_definition",
-		"s_vocalization_v1$6",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string_id, "vocalization" },
-		{ _field_string_id, "parent vocalization", _field_id_sted },
-		{ _field_short_integer, "parent index" },
-		{ _field_short_enum, "priority", &blofeld::halo2::pc64::unnamed_enum$45 },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$46 },
-		FIELD_PAD("value", 8),
-		{ _field_short_enum, "glance behavior", "how does the speaker of this vocalization direct his gaze?", &blofeld::halo2::pc64::unnamed_enum$47 },
-		{ _field_short_enum, "glance recipient behavior", "how does someone who hears me behave?", &blofeld::halo2::pc64::unnamed_enum$47 },
-		{ _field_short_enum, "perception type", &blofeld::halo2::pc64::unnamed_enum$48 },
-		FIELD_PAD("value", 2),
-		{ _field_short_enum, "animation impulse", &blofeld::halo2::pc64::unnamed_enum$50 },
-		{ _field_short_enum, "overlap priority", &blofeld::halo2::pc64::unnamed_enum$45 },
-		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
-		FIELD_PAD("value", 12),
-		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
-		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
-		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
-		{ _field_real, "post voc. delay", "How long speech is suppressed in the speaking unit after vocalizing", "seconds" },
-		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
-		{ _field_real, "weight", "Inherent weight of this vocalization", nullptr, "[0-1]" },
-		{ _field_short_enum, "max combat status", &blofeld::halo2::pc64::unnamed_enum$49 },
-		FIELD_PAD("value", 2),
-		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
-		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
-		{ _field_short_enum, "speaker emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
-		{ _field_short_enum, "listener emotion", &blofeld::halo2::pc64::unnamed_enum$51 },
-		{ _field_real, "player skip fraction" },
-		{ _field_real, "skip fraction" },
-		{ _field_long_string, "Sample line" },
-		FIELD_PAD("value", 12),
-		{ _field_block, "reponses", &blofeld::halo2::pc64::response_block },
-		FIELD_PAD("value", 12),
-		{ _field_block, "children", &blofeld::halo2::pc64::vocalization_definitions_block_1_block },
 		{ _field_terminator }
 	};
 
@@ -19014,6 +18235,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 26 },
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$65 },
@@ -19040,6 +18262,63 @@ namespace pc64
 		{ _field_string, "Placement script", _field_id_halo_script_block },
 		FIELD_SKIP("value", 2),
 		FIELD_PAD("value", 2),
+		
+		{ _struct_version_mode_equal, 1, 24 },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_string, "name" },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$65 },
+		{ _field_short_enum, "team", &blofeld::halo2::pc64::unnamed_enum$66 },
+		{ _field_short_block_index, "parent", _field_id_squad_template },
+		FIELD_PAD("value", 12),
+		{ _field_real, "squad delay time", nullptr, "seconds" },
+		FIELD_PAD("value", 12),
+		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
+		{ _field_short_integer, "insane diff count", "initial number of actors on insane difficulty (hard difficulty is midway between normal and insane)" },
+		{ _field_short_enum, "major upgrade", &blofeld::halo2::pc64::unnamed_enum$67 },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 12),
+		FIELD_EXPLANATION("Actor defaults", "The following default values are used for spawned actors"),
+		{ _field_short_block_index, "vehicle type" },
+		{ _field_short_block_index, "character type" },
+		{ _field_short_block_index, "initial zone" },
+		{ _field_short_block_index, "initial weapon" },
+		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
+		{ _field_short_block_index, "initial order" },
+		{ _field_string_id, "vehicle variant" },
+		FIELD_PAD("value", 8),
+		{ _field_block, "starting locations", &blofeld::halo2::pc64::actor_starting_locations_block },
+		FIELD_PAD("value", 12),
+		
+		{ _struct_version_mode_equal, 0, 28 },
+		{ _field_string, "name" },
+		FIELD_PAD("value", 8),
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$65 },
+		FIELD_PAD("value", 2),
+		{ _field_short_enum, "team", &blofeld::halo2::pc64::unnamed_enum$66 },
+		FIELD_PAD("value", 4),
+		FIELD_PAD("value", 4),
+		FIELD_PAD("value", 20),
+		{ _field_short_block_index, "parent" },
+		{ _field_short_block_index, "maneuver to squad" },
+		{ _field_real, "squad delay time", nullptr, "seconds" },
+		FIELD_PAD("value", 40),
+		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
+		{ _field_short_integer, "insane diff count", "initial number of actors on insane difficulty (hard difficulty is midway between normal and insane)" },
+		{ _field_short_enum, "major upgrade", &blofeld::halo2::pc64::unnamed_enum$67 },
+		FIELD_PAD("value", 6),
+		{ _field_short_block_index, "character type" },
+		{ _field_short_block_index, "initial zone" },
+		{ _field_short_block_index, "initial weapon" },
+		FIELD_PAD("value", 2),
+		{ _field_tag_reference, "initial weapon (DO NOT USE)", &blofeld::halo2::pc64::weapon_group_reference$2 },
+		FIELD_PAD("value", 8),
+		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
+		{ _field_short_block_index, "initial order" },
+		FIELD_PAD("value", 24),
+		{ _field_block, "move positions", &blofeld::halo2::pc64::move_positions_block },
+		{ _field_block, "starting locations", &blofeld::halo2::pc64::actor_starting_locations_block },
+		{ _field_block, "value", &blofeld::halo2::pc64::g_null_block },
+		
 		{ _field_terminator }
 	};
 
@@ -19101,15 +18380,18 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$68, unnamed_enum$68_strings, _countof(unnamed_enum$68_strings));
 
+	TAG_REFERENCE(weapon_group_reference$2, WEAPON_TAG);
+
 	TAG_STRUCT(
-		actor_starting_location_v6_struct_definition,
-		"actor_starting_location_v6",
-		"actor_starting_location_v6_struct_definition",
+		actor_starting_location_struct_definition,
+		"actor_starting_location",
+		"actor_starting_location_struct_definition",
 		"s_actor_starting_location_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 6, 22 },
 		{ _field_old_string_id, "name" },
 		{ _field_real_point_3d, "position" },
 		{ _field_short_integer, "reference frame" },
@@ -19132,6 +18414,108 @@ namespace pc64
 		{ _field_string, "Placement script", _field_id_halo_script_block },
 		FIELD_SKIP("value", 2),
 		FIELD_PAD("value", 2),
+		
+		{ _struct_version_mode_equal, 5, 18 },
+		{ _field_old_string_id, "name" },
+		{ _field_real_point_3d, "position" },
+		{ _field_short_integer, "reference frame" },
+		FIELD_PAD("value", 2),
+		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", nullptr, "degrees" },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$69 },
+		{ _field_short_block_index, "character type" },
+		{ _field_short_block_index, "initial weapon" },
+		{ _field_short_block_index, "vehicle type" },
+		{ _field_short_enum, "seat type", &blofeld::halo2::pc64::unnamed_enum$70 },
+		FIELD_PAD("value", 8),
+		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
+		{ _field_short_integer, "swarm count", "number of cretures in swarm if a swarm is spawned at this location" },
+		{ _field_string_id, "actor variant name" },
+		{ _field_string_id, "vehicle variant name" },
+		{ _field_real, "initial movement distance", "before doing anything else, the actor will travel the given distance in its forward direction" },
+		{ _field_short_block_index, "emitter vehicle" },
+		FIELD_PAD("value", 2),
+		
+		{ _struct_version_mode_equal, 4, 18 },
+		{ _field_old_string_id, "name" },
+		{ _field_real_point_3d, "position" },
+		{ _field_short_integer, "reference frame" },
+		FIELD_PAD("value", 2),
+		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", nullptr, "degrees" },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$69 },
+		{ _field_short_block_index, "character type" },
+		{ _field_short_block_index, "initial weapon" },
+		{ _field_short_block_index, "vehicle type" },
+		{ _field_short_enum, "seat type", &blofeld::halo2::pc64::unnamed_enum$70 },
+		FIELD_PAD("value", 8),
+		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
+		{ _field_short_integer, "swarm count", "number of cretures in swarm if a swarm is spawned at this location" },
+		{ _field_string_id, "actor variant name" },
+		{ _field_string_id, "vehicle variant name" },
+		{ _field_real, "initial movement distance", "before doing anything else, the actor will travel the given distance in its forward direction" },
+		{ _field_short_block_index, "emitter vehicle" },
+		FIELD_PAD("value", 2),
+		
+		{ _struct_version_mode_equal, 3, 15 },
+		{ _field_old_string_id, "name" },
+		{ _field_real_point_3d, "position" },
+		{ _field_short_integer, "reference frame" },
+		FIELD_PAD("value", 2),
+		{ _field_angle, "facing", nullptr, "degrees" },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$69 },
+		{ _field_short_block_index, "character type" },
+		{ _field_short_block_index, "initial weapon" },
+		{ _field_short_block_index, "vehicle type" },
+		{ _field_short_enum, "seat type", &blofeld::halo2::pc64::unnamed_enum$70 },
+		FIELD_PAD("value", 8),
+		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
+		{ _field_short_integer, "swarm count", "number of cretures in swarm if a swarm is spawned at this location" },
+		{ _field_string_id, "actor variant name" },
+		{ _field_string_id, "vehicle variant name" },
+		
+		{ _struct_version_mode_equal, 2, 13 },
+		{ _field_old_string_id, "name" },
+		{ _field_real_point_3d, "position" },
+		{ _field_angle, "facing", nullptr, "degrees" },
+		FIELD_SKIP("value", 2),
+		FIELD_PAD("value", 2),
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$69 },
+		{ _field_short_block_index, "character type" },
+		{ _field_short_block_index, "initial weapon" },
+		{ _field_short_block_index, "vehicle type" },
+		{ _field_short_enum, "seat type", &blofeld::halo2::pc64::unnamed_enum$70 },
+		FIELD_PAD("value", 8),
+		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
+		FIELD_PAD("value", 2),
+		
+		{ _struct_version_mode_equal, 1, 14 },
+		{ _field_old_string_id, "name" },
+		{ _field_real_point_3d, "position" },
+		{ _field_angle, "facing", nullptr, "degrees" },
+		FIELD_SKIP("value", 2),
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 4),
+		{ _field_short_block_index, "character type" },
+		{ _field_short_block_index, "initial weapon" },
+		{ _field_short_block_index, "vehicle type" },
+		{ _field_short_enum, "seat type", &blofeld::halo2::pc64::unnamed_enum$70 },
+		FIELD_PAD("value", 8),
+		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 4),
+		
+		{ _struct_version_mode_equal, 0, 11 },
+		{ _field_real_point_3d, "position" },
+		{ _field_angle, "facing", nullptr, "degrees" },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 6),
+		{ _field_short_block_index, "character type" },
+		{ _field_short_block_index, "initial weapon" },
+		FIELD_PAD("value", 12),
+		{ _field_tag_reference, "weapon reference (DO NOT USE)", &blofeld::halo2::pc64::weapon_group_reference$2 },
+		FIELD_PAD("value", 12),
+		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
+		FIELD_PAD("value", 2),
+		
 		{ _field_terminator }
 	};
 
@@ -19167,209 +18551,6 @@ namespace pc64
 	STRING_LIST(unnamed_enum$71, unnamed_enum$71_strings, _countof(unnamed_enum$71_strings));
 
 	TAG_STRUCT(
-		actor_starting_location_v1_struct_definition,
-		"actor_starting_location_v1",
-		"actor_starting_location_v1_struct_definition",
-		"s_actor_starting_location_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real_point_3d, "position" },
-		{ _field_angle, "facing", nullptr, "degrees" },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 6),
-		{ _field_short_block_index, "character type" },
-		{ _field_short_block_index, "initial weapon" },
-		FIELD_PAD("value", 12),
-		{ _field_tag_reference, "weapon reference (DO NOT USE)", &blofeld::halo2::pc64::weapon_group_reference$2 },
-		FIELD_PAD("value", 12),
-		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
-		FIELD_PAD("value", 2),
-		{ _field_terminator }
-	};
-
-	TAG_REFERENCE(weapon_group_reference$2, WEAPON_TAG);
-
-	TAG_STRUCT(
-		actor_starting_location_v2_struct_definition,
-		"actor_starting_location_v2",
-		"actor_starting_location_v2_struct_definition",
-		"s_actor_starting_location_definition_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_old_string_id, "name" },
-		{ _field_real_point_3d, "position" },
-		{ _field_angle, "facing", nullptr, "degrees" },
-		FIELD_SKIP("value", 2),
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 4),
-		{ _field_short_block_index, "character type" },
-		{ _field_short_block_index, "initial weapon" },
-		{ _field_short_block_index, "vehicle type" },
-		{ _field_short_enum, "seat type", &blofeld::halo2::pc64::unnamed_enum$70 },
-		FIELD_PAD("value", 8),
-		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 4),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		actor_starting_location_v3_struct_definition,
-		"actor_starting_location_v3",
-		"actor_starting_location_v3_struct_definition",
-		"s_actor_starting_location_definition_v3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_old_string_id, "name" },
-		{ _field_real_point_3d, "position" },
-		{ _field_angle, "facing", nullptr, "degrees" },
-		FIELD_SKIP("value", 2),
-		FIELD_PAD("value", 2),
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$69 },
-		{ _field_short_block_index, "character type" },
-		{ _field_short_block_index, "initial weapon" },
-		{ _field_short_block_index, "vehicle type" },
-		{ _field_short_enum, "seat type", &blofeld::halo2::pc64::unnamed_enum$70 },
-		FIELD_PAD("value", 8),
-		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
-		FIELD_PAD("value", 2),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		actor_starting_location_v4_struct_definition,
-		"actor_starting_location_v4",
-		"actor_starting_location_v4_struct_definition",
-		"s_actor_starting_location_definition_v4",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_old_string_id, "name" },
-		{ _field_real_point_3d, "position" },
-		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", 2),
-		{ _field_angle, "facing", nullptr, "degrees" },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$69 },
-		{ _field_short_block_index, "character type" },
-		{ _field_short_block_index, "initial weapon" },
-		{ _field_short_block_index, "vehicle type" },
-		{ _field_short_enum, "seat type", &blofeld::halo2::pc64::unnamed_enum$70 },
-		FIELD_PAD("value", 8),
-		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
-		{ _field_short_integer, "swarm count", "number of cretures in swarm if a swarm is spawned at this location" },
-		{ _field_string_id, "actor variant name" },
-		{ _field_string_id, "vehicle variant name" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		actor_starting_location_v5_struct_definition,
-		"actor_starting_location_v5",
-		"actor_starting_location_v5_struct_definition",
-		"s_actor_starting_location_definition_v5",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_old_string_id, "name" },
-		{ _field_real_point_3d, "position" },
-		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", 2),
-		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", nullptr, "degrees" },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$69 },
-		{ _field_short_block_index, "character type" },
-		{ _field_short_block_index, "initial weapon" },
-		{ _field_short_block_index, "vehicle type" },
-		{ _field_short_enum, "seat type", &blofeld::halo2::pc64::unnamed_enum$70 },
-		FIELD_PAD("value", 8),
-		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
-		{ _field_short_integer, "swarm count", "number of cretures in swarm if a swarm is spawned at this location" },
-		{ _field_string_id, "actor variant name" },
-		{ _field_string_id, "vehicle variant name" },
-		{ _field_real, "initial movement distance", "before doing anything else, the actor will travel the given distance in its forward direction" },
-		{ _field_short_block_index, "emitter vehicle" },
-		FIELD_PAD("value", 2),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		actor_starting_location_v5_struct_definition$2,
-		"actor_starting_location_v5",
-		"actor_starting_location_v5_struct_definition",
-		"s_actor_starting_location_definition_v5$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_old_string_id, "name" },
-		{ _field_real_point_3d, "position" },
-		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", 2),
-		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", nullptr, "degrees" },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$69 },
-		{ _field_short_block_index, "character type" },
-		{ _field_short_block_index, "initial weapon" },
-		{ _field_short_block_index, "vehicle type" },
-		{ _field_short_enum, "seat type", &blofeld::halo2::pc64::unnamed_enum$70 },
-		FIELD_PAD("value", 8),
-		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
-		{ _field_short_integer, "swarm count", "number of cretures in swarm if a swarm is spawned at this location" },
-		{ _field_string_id, "actor variant name" },
-		{ _field_string_id, "vehicle variant name" },
-		{ _field_real, "initial movement distance", "before doing anything else, the actor will travel the given distance in its forward direction" },
-		{ _field_short_block_index, "emitter vehicle" },
-		FIELD_PAD("value", 2),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		squads_v1_struct_definition,
-		"squads_v1",
-		"squads_v1_struct_definition",
-		"s_squad_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string, "name" },
-		FIELD_PAD("value", 8),
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$65 },
-		FIELD_PAD("value", 2),
-		{ _field_short_enum, "team", &blofeld::halo2::pc64::unnamed_enum$66 },
-		FIELD_PAD("value", 4),
-		FIELD_PAD("value", 4),
-		FIELD_PAD("value", 20),
-		{ _field_short_block_index, "parent" },
-		{ _field_short_block_index, "maneuver to squad" },
-		{ _field_real, "squad delay time", nullptr, "seconds" },
-		FIELD_PAD("value", 40),
-		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
-		{ _field_short_integer, "insane diff count", "initial number of actors on insane difficulty (hard difficulty is midway between normal and insane)" },
-		{ _field_short_enum, "major upgrade", &blofeld::halo2::pc64::unnamed_enum$67 },
-		FIELD_PAD("value", 6),
-		{ _field_short_block_index, "character type" },
-		{ _field_short_block_index, "initial zone" },
-		{ _field_short_block_index, "initial weapon" },
-		FIELD_PAD("value", 2),
-		{ _field_tag_reference, "initial weapon (DO NOT USE)", &blofeld::halo2::pc64::weapon_group_reference$2 },
-		FIELD_PAD("value", 8),
-		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
-		{ _field_short_block_index, "initial order" },
-		FIELD_PAD("value", 24),
-		{ _field_block, "move positions", &blofeld::halo2::pc64::move_positions_block },
-		{ _field_block, "starting locations", &blofeld::halo2::pc64::actor_starting_locations_block },
-		{ _field_block, "value", &blofeld::halo2::pc64::g_null_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		move_positions_block_struct_definition,
 		"move_positions_block",
 		"move_positions_block_struct_definition",
@@ -19391,42 +18572,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		squads_v2_struct_definition,
-		"squads_v2",
-		"squads_v2_struct_definition",
-		"s_squad_definition_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_string, "name" },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$65 },
-		{ _field_short_enum, "team", &blofeld::halo2::pc64::unnamed_enum$66 },
-		{ _field_short_block_index, "parent", _field_id_squad_template },
-		FIELD_PAD("value", 12),
-		{ _field_real, "squad delay time", nullptr, "seconds" },
-		FIELD_PAD("value", 12),
-		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
-		{ _field_short_integer, "insane diff count", "initial number of actors on insane difficulty (hard difficulty is midway between normal and insane)" },
-		{ _field_short_enum, "major upgrade", &blofeld::halo2::pc64::unnamed_enum$67 },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 12),
-		FIELD_EXPLANATION("Actor defaults", "The following default values are used for spawned actors"),
-		{ _field_short_block_index, "vehicle type" },
-		{ _field_short_block_index, "character type" },
-		{ _field_short_block_index, "initial zone" },
-		{ _field_short_block_index, "initial weapon" },
-		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$68 },
-		{ _field_short_block_index, "initial order" },
-		{ _field_string_id, "vehicle variant" },
-		FIELD_PAD("value", 8),
-		{ _field_block, "starting locations", &blofeld::halo2::pc64::actor_starting_locations_block },
-		FIELD_PAD("value", 12),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		zone_v2_struct_definition,
 		"zone_v2",
 		"zone_v2_struct_definition",
@@ -19435,6 +18580,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 7 },
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$72 },
 		{ _field_short_block_index, "manual bsp" },
@@ -19442,6 +18588,20 @@ namespace pc64
 		{ _field_useless_pad, "value" },
 		{ _field_block, "firing positions", &blofeld::halo2::pc64::firing_positions_block },
 		{ _field_block, "areas", &blofeld::halo2::pc64::areas_block },
+		
+		{ _struct_version_mode_equal, 0, 11 },
+		{ _field_string, "name" },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$72 },
+		{ _field_short_integer, "manual bsp index" },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 40),
+		{ _field_block, "firing positions", &blofeld::halo2::pc64::firing_positions_block },
+		{ _field_block, "player starting locations", &blofeld::halo2::pc64::scenario_players_block },
+		{ _field_block, "areas", &blofeld::halo2::pc64::areas_block },
+		{ _field_block, "orders", &blofeld::halo2::pc64::orders_block },
+		{ _field_block, "starting locations", &blofeld::halo2::pc64::actor_starting_locations_block },
+		FIELD_PAD("value", 88),
+		
 		{ _field_terminator }
 	};
 
@@ -19452,14 +18612,15 @@ namespace pc64
 	STRING_LIST(unnamed_enum$72, unnamed_enum$72_strings, _countof(unnamed_enum$72_strings));
 
 	TAG_STRUCT(
-		firing_position_v4_struct_definition,
-		"firing_position_v4",
-		"firing_position_v4_struct_definition",
+		firing_position_struct_definition,
+		"firing_position",
+		"firing_position_struct_definition",
 		"s_firing_position_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 3, 9 },
 		FIELD_EXPLANATION("CONTROLS", "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
 		{ _field_real_point_3d, "position (local)" },
 		{ _field_short_integer, "reference frame" },
@@ -19469,6 +18630,44 @@ namespace pc64
 		FIELD_SKIP("value", 4),
 		{ _field_real_euler_angles_2d, "normal" },
 		FIELD_CUSTOM("value", _field_id_unknown_facing),
+		
+		{ _struct_version_mode_equal, 2, 10 },
+		FIELD_EXPLANATION("CONTROLS", "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$73 },
+		FIELD_PAD("value", 2),
+		{ _field_real_point_3d, "position (local)" },
+		{ _field_short_integer, "reference frame" },
+		FIELD_PAD("value", 2),
+		{ _field_short_block_index, "area" },
+		{ _field_short_integer, "cluster index" },
+		FIELD_SKIP("value", 8),
+		FIELD_CUSTOM("value", _field_id_unknown_facing),
+		
+		{ _struct_version_mode_equal, 1, 10 },
+		FIELD_EXPLANATION("CONTROLS", "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$73 },
+		FIELD_PAD("value", 2),
+		{ _field_real_point_3d, "position (local)" },
+		{ _field_short_integer, "reference frame" },
+		FIELD_PAD("value", 2),
+		{ _field_short_block_index, "area" },
+		{ _field_short_integer, "cluster index" },
+		FIELD_SKIP("value", 8),
+		FIELD_CUSTOM("value", _field_id_unknown_facing),
+		
+		{ _struct_version_mode_equal, 0, 11 },
+		FIELD_EXPLANATION("CONTROLS", "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
+		{ _field_real_point_3d, "placement position" },
+		{ _field_short_block_index, "area" },
+		FIELD_PAD("value", 2),
+		FIELD_SKIP("value", 8),
+		FIELD_CUSTOM("value", _field_id_unknown_facing),
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$73 },
+		FIELD_PAD("value", 2),
+		{ _field_real_point_3d, "local position" },
+		{ _field_short_integer, "reference frame" },
+		FIELD_PAD("value", 2),
+		
 		{ _field_terminator }
 	};
 
@@ -19486,81 +18685,15 @@ namespace pc64
 	STRING_LIST(unnamed_enum$73, unnamed_enum$73_strings, _countof(unnamed_enum$73_strings));
 
 	TAG_STRUCT(
-		firing_position_v1_struct_definition,
-		"firing_position_v1",
-		"firing_position_v1_struct_definition",
-		"s_firing_position_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_EXPLANATION("CONTROLS", "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
-		{ _field_real_point_3d, "placement position" },
-		{ _field_short_block_index, "area" },
-		FIELD_PAD("value", 2),
-		FIELD_SKIP("value", 8),
-		FIELD_CUSTOM("value", _field_id_unknown_facing),
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$73 },
-		FIELD_PAD("value", 2),
-		{ _field_real_point_3d, "local position" },
-		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", 2),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		firing_position_v2_struct_definition,
-		"firing_position_v2",
-		"firing_position_v2_struct_definition",
-		"s_firing_position_definition_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_EXPLANATION("CONTROLS", "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$73 },
-		FIELD_PAD("value", 2),
-		{ _field_real_point_3d, "position (local)" },
-		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", 2),
-		{ _field_short_block_index, "area" },
-		{ _field_short_integer, "cluster index" },
-		FIELD_SKIP("value", 8),
-		FIELD_CUSTOM("value", _field_id_unknown_facing),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		firing_position_v3_struct_definition,
-		"firing_position_v3",
-		"firing_position_v3_struct_definition",
-		"s_firing_position_definition_v3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_EXPLANATION("CONTROLS", "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$73 },
-		FIELD_PAD("value", 2),
-		{ _field_real_point_3d, "position (local)" },
-		{ _field_short_integer, "reference frame" },
-		FIELD_PAD("value", 2),
-		{ _field_short_block_index, "area" },
-		{ _field_short_integer, "cluster index" },
-		FIELD_SKIP("value", 8),
-		FIELD_CUSTOM("value", _field_id_unknown_facing),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		area_v2_struct_definition,
-		"area_v2",
-		"area_v2_struct_definition",
+		area_struct_definition,
+		"area",
+		"area_struct_definition",
 		"s_area_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 9 },
 		{ _field_string, "name" },
 		{ _field_long_flags, "area flags", &blofeld::halo2::pc64::unnamed_enum$74 },
 		FIELD_SKIP("value", 20),
@@ -19570,6 +18703,16 @@ namespace pc64
 		{ _field_short_integer, "manual reference frame" },
 		FIELD_PAD("WP", 2),
 		{ _field_block, "flight_hints", &blofeld::halo2::pc64::flight_reference_block },
+		
+		{ _struct_version_mode_equal, 0, 7 },
+		{ _field_string, "name" },
+		{ _field_long_flags, "area flags", &blofeld::halo2::pc64::unnamed_enum$74 },
+		FIELD_PAD("value", 28),
+		FIELD_SKIP("value", 16),
+		FIELD_SKIP("value", 4),
+		FIELD_PAD("value", 64),
+		FIELD_PAD("value", 48),
+		
 		{ _field_terminator }
 	};
 
@@ -19592,48 +18735,6 @@ namespace pc64
 	{
 		{ _field_short_integer, "flight hint index" },
 		{ _field_short_integer, "poit index" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		area_v1_struct_definition,
-		"area_v1",
-		"area_v1_struct_definition",
-		"s_area_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string, "name" },
-		{ _field_long_flags, "area flags", &blofeld::halo2::pc64::unnamed_enum$74 },
-		FIELD_PAD("value", 28),
-		FIELD_SKIP("value", 16),
-		FIELD_SKIP("value", 4),
-		FIELD_PAD("value", 64),
-		FIELD_PAD("value", 48),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		zone_v1_struct_definition,
-		"zone_v1",
-		"zone_v1_struct_definition",
-		"s_zone_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string, "name" },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$72 },
-		{ _field_short_integer, "manual bsp index" },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 40),
-		{ _field_block, "firing positions", &blofeld::halo2::pc64::firing_positions_block },
-		{ _field_block, "player starting locations", &blofeld::halo2::pc64::scenario_players_block },
-		{ _field_block, "areas", &blofeld::halo2::pc64::areas_block },
-		{ _field_block, "orders", &blofeld::halo2::pc64::orders_block },
-		{ _field_block, "starting locations", &blofeld::halo2::pc64::actor_starting_locations_block },
-		FIELD_PAD("value", 88),
 		{ _field_terminator }
 	};
 
@@ -19726,6 +18827,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 17 },
 		FIELD_CUSTOM("value", _field_id_filter),
 		{ _field_string, "name" },
 		{ _field_short_block_index, "Style" },
@@ -19743,6 +18845,44 @@ namespace pc64
 		{ _field_block, "Special movement", &blofeld::halo2::pc64::special_movement_block },
 		{ _field_useless_pad, "value" },
 		{ _field_block, "Order endings", &blofeld::halo2::pc64::order_ending_block },
+		
+		{ _struct_version_mode_equal, 1, 16 },
+		FIELD_CUSTOM("value", _field_id_filter),
+		{ _field_string, "name" },
+		{ _field_short_block_index, "Style" },
+		FIELD_PAD("value", 2),
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$79 },
+		{ _field_short_enum, "Force combat status", &blofeld::halo2::pc64::unnamed_enum$80 },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 8),
+		{ _field_string, "Entry Script", _field_id_halo_script_block },
+		FIELD_SKIP("value", 2),
+		{ _field_short_block_index, "Follow squad" },
+		{ _field_real, "follow radius" },
+		{ _field_block, "Area references", &blofeld::halo2::pc64::zone_set_block },
+		{ _field_block, "Special movement", &blofeld::halo2::pc64::special_movement_block },
+		FIELD_PAD("value", 12),
+		{ _field_block, "Order endings", &blofeld::halo2::pc64::order_ending_block },
+		
+		{ _struct_version_mode_equal, 0, 17 },
+		{ _field_string, "name" },
+		{ _field_short_block_index, "Style" },
+		FIELD_PAD("value", 2),
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$79 },
+		{ _field_short_enum, "Force combat status", &blofeld::halo2::pc64::unnamed_enum$80 },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 8),
+		{ _field_string, "Entry Script", _field_id_halo_script_block },
+		FIELD_SKIP("value", 2),
+		{ _field_short_block_index, "Follow squad" },
+		{ _field_real, "follow radius" },
+		{ _field_block, "DEPRECATED", &blofeld::halo2::pc64::area_set_block },
+		{ _field_block, "Area references", &blofeld::halo2::pc64::zone_set_block },
+		FIELD_PAD("value", 36),
+		{ _field_block, "DEPRECATED", &blofeld::halo2::pc64::order_completion_block },
+		FIELD_PAD("value", 48),
+		{ _field_block, "Order endings", &blofeld::halo2::pc64::order_ending_block },
+		
 		{ _field_terminator }
 	};
 
@@ -19771,18 +18911,25 @@ namespace pc64
 	STRING_LIST(unnamed_enum$80, unnamed_enum$80_strings, _countof(unnamed_enum$80_strings));
 
 	TAG_STRUCT(
-		zone_set_v2_struct_definition,
-		"zone_set_v2",
-		"zone_set_v2_struct_definition",
+		zone_set_struct_definition,
+		"zone_set",
+		"zone_set_struct_definition",
 		"s_orders_area_reference_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 4 },
 		{ _field_short_enum, "area type", &blofeld::halo2::pc64::unnamed_enum$81 },
 		FIELD_PAD("value", 2),
 		{ _field_short_block_index, "zone" },
 		{ _field_short_block_index_custom_search, "area" },
+		
+		{ _struct_version_mode_equal, 0, 3 },
+		{ _field_long_integer, "flags" },
+		{ _field_short_block_index, "zone" },
+		{ _field_short_block_index_custom_search, "area" },
+		
 		{ _field_terminator }
 	};
 
@@ -19793,21 +18940,6 @@ namespace pc64
 		"goal"
 	};
 	STRING_LIST(unnamed_enum$81, unnamed_enum$81_strings, _countof(unnamed_enum$81_strings));
-
-	TAG_STRUCT(
-		zone_set_v1_struct_definition,
-		"zone_set_v1",
-		"zone_set_v1_struct_definition",
-		"s_orders_area_reference_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_integer, "flags" },
-		{ _field_short_block_index, "zone" },
-		{ _field_short_block_index_custom_search, "area" },
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		secondary_set_trigger_block_struct_definition,
@@ -19914,35 +19046,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		orders_v1_struct_definition,
-		"orders_v1",
-		"orders_v1_struct_definition",
-		"s_orders_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string, "name" },
-		{ _field_short_block_index, "Style" },
-		FIELD_PAD("value", 2),
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$79 },
-		{ _field_short_enum, "Force combat status", &blofeld::halo2::pc64::unnamed_enum$80 },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 8),
-		{ _field_string, "Entry Script", _field_id_halo_script_block },
-		FIELD_SKIP("value", 2),
-		{ _field_short_block_index, "Follow squad" },
-		{ _field_real, "follow radius" },
-		{ _field_block, "DEPRECATED", &blofeld::halo2::pc64::area_set_block },
-		{ _field_block, "Area references", &blofeld::halo2::pc64::zone_set_block },
-		FIELD_PAD("value", 36),
-		{ _field_block, "DEPRECATED", &blofeld::halo2::pc64::order_completion_block },
-		FIELD_PAD("value", 48),
-		{ _field_block, "Order endings", &blofeld::halo2::pc64::order_ending_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		area_set_block_struct_definition,
 		"area_set_block",
 		"area_set_block_struct_definition",
@@ -20033,34 +19136,6 @@ namespace pc64
 		"NOT!"
 	};
 	STRING_LIST(unnamed_enum$87, unnamed_enum$87_strings, _countof(unnamed_enum$87_strings));
-
-	TAG_STRUCT(
-		orders_v2_struct_definition,
-		"orders_v2",
-		"orders_v2_struct_definition",
-		"s_orders_definition_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_filter),
-		{ _field_string, "name" },
-		{ _field_short_block_index, "Style" },
-		FIELD_PAD("value", 2),
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$79 },
-		{ _field_short_enum, "Force combat status", &blofeld::halo2::pc64::unnamed_enum$80 },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 8),
-		{ _field_string, "Entry Script", _field_id_halo_script_block },
-		FIELD_SKIP("value", 2),
-		{ _field_short_block_index, "Follow squad" },
-		{ _field_real, "follow radius" },
-		{ _field_block, "Area references", &blofeld::halo2::pc64::zone_set_block },
-		{ _field_block, "Special movement", &blofeld::halo2::pc64::special_movement_block },
-		FIELD_PAD("value", 12),
-		{ _field_block, "Order endings", &blofeld::halo2::pc64::order_ending_block },
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		character_palette_block_struct_definition,
@@ -20235,19 +19310,28 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		cs_point_set_v2_struct_definition,
-		"cs_point_set_v2",
-		"cs_point_set_v2_struct_definition",
+		cs_point_set_struct_definition,
+		"cs_point_set",
+		"cs_point_set_struct_definition",
 		"s_cs_point_set",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 5 },
 		{ _field_string, "name" },
 		{ _field_block, "points", &blofeld::halo2::pc64::cs_point_block },
 		{ _field_short_block_index, "bsp index" },
 		{ _field_short_integer, "manual reference frame" },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$91 },
+		
+		{ _struct_version_mode_equal, 0, 5 },
+		{ _field_string, "name" },
+		FIELD_PAD("value", 4),
+		FIELD_PAD("value", 44),
+		{ _field_block, "points", &blofeld::halo2::pc64::cs_point_block },
+		FIELD_PAD("value", 48),
+		
 		{ _field_terminator }
 	};
 
@@ -20259,53 +19343,28 @@ namespace pc64
 	STRING_LIST(unnamed_enum$91, unnamed_enum$91_strings, _countof(unnamed_enum$91_strings));
 
 	TAG_STRUCT(
-		cs_point_v2_struct_definition,
-		"cs_point_v2",
-		"cs_point_v2_struct_definition",
+		cs_point_struct_definition,
+		"cs_point",
+		"cs_point_struct_definition",
 		"s_cs_point",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 6 },
 		{ _field_string, "name" },
 		{ _field_real_point_3d, "position" },
 		{ _field_short_integer, "reference frame" },
 		FIELD_PAD("value", 2),
 		{ _field_long_integer, "surface index" },
 		{ _field_real_euler_angles_2d, "facing direction" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		cs_point_v1_struct_definition,
-		"cs_point_v1",
-		"cs_point_v1_struct_definition",
-		"s_cs_point_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 4 },
 		{ _field_string, "name" },
 		{ _field_real_point_3d, "position" },
 		{ _field_long_integer, "surface index" },
 		{ _field_real_euler_angles_2d, "facing direction" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		cs_point_set_v1_struct_definition,
-		"cs_point_set_v1",
-		"cs_point_set_v1_struct_definition",
-		"s_cs_point_set_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string, "name" },
-		FIELD_PAD("value", 4),
-		FIELD_PAD("value", 44),
-		{ _field_block, "points", &blofeld::halo2::pc64::cs_point_block },
-		FIELD_PAD("value", 48),
+		
 		{ _field_terminator }
 	};
 
@@ -20510,6 +19569,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 11 },
 		{ _field_string_id, "name" },
 		{ _field_short_block_index, "object name" },
 		FIELD_SKIP("value", 2),
@@ -20521,23 +19581,14 @@ namespace pc64
 		FIELD_PAD("value", 4),
 		{ _field_short_block_index, "kill trigger volume" },
 		FIELD_PAD("value", 2),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_trigger_volume_v0_struct_definition,
-		"scenario_trigger_volume_v0",
-		"scenario_trigger_volume_v0_struct_definition",
-		"s_scenario_trigger_volume_v0",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 5 },
 		{ _field_short_integer, "value" },
 		FIELD_PAD("value", 2),
 		{ _field_string, "name" },
 		{ _field_array, "value", &blofeld::halo2::pc64::unnamed_array$2 },
 		FIELD_PAD("value", 4),
+		
 		{ _field_terminator }
 	};
 
@@ -20587,14 +19638,15 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		biped_definition_tags_v2_struct_definition,
-		"biped_definition_tags_v2",
-		"biped_definition_tags_v2_struct_definition",
+		biped_definition_struct_definition,
+		"biped_definition",
+		"biped_definition_struct_definition",
 		"s_biped_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 138 },
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
 		{ _field_real, "bounding radius", nullptr, "world units" },
@@ -20677,7 +19729,7 @@ namespace pc64
 		{ _field_struct, "more damn nodes", &blofeld::halo2::pc64::unit_additional_node_names_struct_definition },
 		{ _field_useless_pad, "value" },
 		{ _field_tag_reference, "melee damage", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_struct, "your momma", &blofeld::halo2::pc64::unit_boarding_melee_v2_struct_definition },
+		{ _field_struct, "your momma", &blofeld::halo2::pc64::unit_boarding_melee_struct_definition },
 		{ _field_short_enum, "motion sensor blip size", &blofeld::halo2::pc64::unnamed_enum$109 },
 		{ _field_struct, "campaign metagame bucket", &blofeld::halo2::pc64::campaign_metagame_bucket_block_struct_definition },
 		{ _field_block, "postures", &blofeld::halo2::pc64::unit_postures_block },
@@ -20722,7 +19774,7 @@ namespace pc64
 		{ _field_real, "camera vertical movement scale", "amount of fp camera movement vertically (1.0 is full)" },
 		{ _field_real, "camera exclusion distance", "fp camera must always be at least this far out from root node", "world units" },
 		{ _field_real, "autoaim width", nullptr, "world units" },
-		{ _field_struct, "lock-on data", &blofeld::halo2::pc64::biped_lock_on_data_v2_struct_definition },
+		{ _field_struct, "lock-on data", &blofeld::halo2::pc64::biped_lock_on_data_struct_definition },
 		FIELD_PAD("value", 16),
 		{ _field_useless_pad, "value" },
 		{ _field_real, "head shot acc scale", "when the biped ragdolls from a head shot it acceleartes based on this value.  0 defaults to the standard acceleration scale" },
@@ -20733,8 +19785,242 @@ namespace pc64
 		{ _field_tag_reference, "death spawn character", "when I die, out of the ashes of my death crawls a ...", &blofeld::halo2::pc64::character_group_reference$3 },
 		{ _field_short_integer, "death spawn count" },
 		FIELD_PAD("value", 2),
+		
+		{ _struct_version_mode_equal, 0, 166 },
+		FIELD_PAD("value", 2),
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
+		{ _field_real, "bounding radius", nullptr, "world units" },
+		{ _field_real_point_3d, "bounding offset" },
+		{ _field_useless_pad, "value" },
+		{ _field_real, "acceleration scale", "marine 1.0, grunt 1.4, elite 0.9, hunter 0.5, etc.", nullptr, "[0,+inf]" },
+		{ _field_short_enum, "lightmap shadow mode", &blofeld::halo2::pc64::unnamed_enum$97 },
+		{ _field_char_enum, "sweetener size", &blofeld::halo2::pc64::unnamed_enum$98 },
+		FIELD_PAD("value", 1),
+		FIELD_PAD("value", 4),
+		{ _field_useless_pad, "value" },
+		{ _field_real, "dynamic light sphere radius", "sphere to use for dynamic lights and shadows. only used if not 0" },
+		{ _field_real_point_3d, "dynamic light sphere offset", "only used if radius not 0" },
+		{ _field_string_id, "default model variant" },
+		{ _field_tag_reference, "model", &blofeld::halo2::pc64::model_group_reference },
+		{ _field_tag_reference, "crate object", &blofeld::halo2::pc64::crate_group_reference$2 },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "modifier shader", &blofeld::halo2::pc64::shader_group_reference },
+		{ _field_tag_reference, "creation effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_tag_reference, "material effects", &blofeld::halo2::pc64::material_effects_group_reference },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "ai properties", &blofeld::halo2::pc64::object_ai_properties_block },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "functions", &blofeld::halo2::pc64::object_function_block },
+		{ _field_useless_pad, "value" },
+		FIELD_EXPLANATION("Applying collision damage", "for things that want to cause more or less collision damage"),
+		{ _field_real, "Apply collision damage scale", "0 means 1.  1 is standard scale.  Some things may want to apply more damage" },
+		FIELD_EXPLANATION("Game collision damage parameters", "0 - means take default value from globals.globals"),
+		{ _field_real, "min game acc (default)", "0-oo" },
+		{ _field_real, "max game acc (default)", "0-oo" },
+		{ _field_real, "min game scale (default)", "0-1" },
+		{ _field_real, "max game scale (default)", "0-1" },
+		FIELD_EXPLANATION("Absolute collision damage parameters", "0 - means take default value from globals.globals"),
+		{ _field_real, "min abs acc (default)", "0-oo" },
+		{ _field_real, "max abs acc (default)", "0-oo" },
+		{ _field_real, "min abs scale (default)", "0-1" },
+		{ _field_real, "max abs scale (default)", "0-1" },
+		{ _field_short_integer, "hud text message index" },
+		FIELD_PAD("value", 2),
+		{ _field_block, "attachments", &blofeld::halo2::pc64::object_attachment_block },
+		{ _field_block, "widgets", &blofeld::halo2::pc64::object_widget_block },
+		{ _field_block, "old functions", &blofeld::halo2::pc64::old_object_function_block },
+		{ _field_block, "change colors", &blofeld::halo2::pc64::object_change_colors_block },
+		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
+		FIELD_EXPLANATION("$$$ UNIT $$$", nullptr),
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$106 },
+		{ _field_short_enum, "default team", &blofeld::halo2::pc64::unnamed_enum$107 },
+		{ _field_short_enum, "constant sound volume", &blofeld::halo2::pc64::unnamed_enum$108 },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "integrated light toggle", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_useless_pad, "value" },
+		{ _field_angle, "camera field of view", nullptr, "degrees" },
+		{ _field_real, "camera stiffness" },
+		{ _field_struct, "unit camera", &blofeld::halo2::pc64::unit_camera_struct_struct_definition },
+		{ _field_struct, "acceleration", &blofeld::halo2::pc64::unit_seat_acceleration_struct_struct_definition },
+		{ _field_useless_pad, "value" },
+		{ _field_real, "soft ping threshold", nullptr, nullptr, "[0,1]" },
+		{ _field_real, "soft ping interrupt time", nullptr, "seconds" },
+		{ _field_real, "hard ping threshold", nullptr, nullptr, "[0,1]" },
+		{ _field_real, "hard ping interrupt time", nullptr, "seconds" },
+		{ _field_real, "hard death threshold", nullptr, nullptr, "[0,1]" },
+		{ _field_real, "feign death threshold", nullptr, nullptr, "[0,1]" },
+		{ _field_real, "feign death time", nullptr, "seconds" },
+		{ _field_real, "distance of evade anim", "this must be set to tell the AI how far it should expect our evade animation to move us", "world units" },
+		{ _field_real, "distance of dive anim", "this must be set to tell the AI how far it should expect our dive animation to move us", "world units" },
+		{ _field_useless_pad, "value" },
+		{ _field_real, "stunned movement threshold", "if we take this much damage in a short space of time we will play our 'stunned movement' animations", nullptr, "[0,1]" },
+		{ _field_real, "feign death chance", nullptr, nullptr, "[0,1]" },
+		{ _field_real, "feign repeat chance", nullptr, nullptr, "[0,1]" },
+		{ _field_tag_reference, "spawned turret character", "automatically created character when this unit is driven", &blofeld::halo2::pc64::character_group_reference$2 },
+		{ _field_short_integer_bounds, "spawned actor count", "number of actors which we spawn" },
+		{ _field_real, "spawned velocity", "velocity at which we throw spawned actors" },
+		{ _field_angle, "aiming velocity maximum", nullptr, "degrees per second" },
+		{ _field_angle, "aiming acceleration maximum", nullptr, "degrees per second squared" },
+		{ _field_real_fraction, "casual aiming modifier", nullptr, nullptr, "[0,1]" },
+		{ _field_angle, "looking velocity maximum", nullptr, "degrees per second" },
+		{ _field_angle, "looking acceleration maximum", nullptr, "degrees per second squared" },
+		{ _field_string_id, "right_hand_node", "where the primary weapon is attached" },
+		{ _field_string_id, "left_hand_node", "where the seconday weapon is attached (for dual-pistol modes)" },
+		{ _field_struct, "more damn nodes", &blofeld::halo2::pc64::unit_additional_node_names_struct_definition },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "melee damage", &blofeld::halo2::pc64::damage_effect_group_reference },
+		{ _field_struct, "your momma", &blofeld::halo2::pc64::unit_boarding_melee_struct_definition },
+		{ _field_short_enum, "motion sensor blip size", &blofeld::halo2::pc64::unnamed_enum$109 },
+		{ _field_struct, "campaign metagame bucket", &blofeld::halo2::pc64::campaign_metagame_bucket_block_struct_definition },
+		{ _field_block, "postures", &blofeld::halo2::pc64::unit_postures_block },
+		{ _field_block, "NEW HUD INTERFACES", &blofeld::halo2::pc64::unit_hud_reference_block },
+		{ _field_block, "dialogue variants", &blofeld::halo2::pc64::dialogue_variant_block },
+		{ _field_real, "grenade velocity", nullptr, "world units per second" },
+		{ _field_short_enum, "grenade type", &blofeld::halo2::pc64::unnamed_enum$112 },
+		{ _field_short_integer, "grenade count" },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "powered seats", &blofeld::halo2::pc64::powered_seat_block },
+		{ _field_block, "weapons", &blofeld::halo2::pc64::unit_weapon_block },
+		{ _field_block, "seats", &blofeld::halo2::pc64::unit_seat_block },
+		FIELD_EXPLANATION("Boost", nullptr),
+		{ _field_struct, "boost", &blofeld::halo2::pc64::unit_boost_struct_struct_definition },
+		FIELD_EXPLANATION("Lipsync", nullptr),
+		{ _field_struct, "lipsync", &blofeld::halo2::pc64::unit_lipsync_scales_struct_definition },
+		FIELD_EXPLANATION("$$$ BIPED $$$", nullptr),
+		{ _field_angle, "moving turning speed", nullptr, "degrees per second" },
+		FIELD_SKIP("value", 4),
+		{ _field_angle, "stationary turning threshold" },
+		FIELD_PAD("value", 16),
+		{ _field_short_enum, "old obsolete A in", &blofeld::halo2::pc64::unnamed_enum$119 },
+		{ _field_short_enum, "old obsolete B in", &blofeld::halo2::pc64::unnamed_enum$119 },
+		{ _field_short_enum, "old obsolete C in", &blofeld::halo2::pc64::unnamed_enum$119 },
+		{ _field_short_enum, "old obsolete D in", &blofeld::halo2::pc64::unnamed_enum$119 },
+		{ _field_tag_reference, "DON'T USE", &blofeld::halo2::pc64::damage_effect_group_reference },
+		FIELD_EXPLANATION("flying", nullptr),
+		{ _field_angle, "bank angle", "angle at which we bank left/right when sidestepping or turning while moving forwards", "degrees" },
+		{ _field_real, "bank apply time", "time it takes us to apply a bank", "seconds" },
+		{ _field_real, "bank decay time", "time it takes us to recover from a bank", "seconds" },
+		{ _field_real, "pitch ratio", "amount that we pitch up/down when moving up or down" },
+		{ _field_real, "max velocity", "max velocity when not crouching", "world units per second" },
+		{ _field_real, "max sidestep velocity", "max sideways or up/down velocity when not crouching", "world units per second" },
+		{ _field_real, "acceleration", nullptr, "world units per second squared" },
+		{ _field_real, "deceleration", nullptr, "world units per second squared" },
+		{ _field_angle, "angular velocity maximum", "turn rate", "degrees per second" },
+		{ _field_angle, "angular acceleration maximum", "turn acceleration rate", "degrees per second squared" },
+		{ _field_real, "crouch velocity modifier", "how much slower we fly if crouching (zero = same speed)", nullptr, "[0,1]" },
+		FIELD_PAD("value", 8),
+		FIELD_EXPLANATION("movement", nullptr),
+		{ _field_angle, "maximum slope angle", nullptr, "degrees" },
+		{ _field_angle, "downhill falloff angle", nullptr, "degrees" },
+		{ _field_angle, "downhill cutoff angle", nullptr, "degrees" },
+		{ _field_real, "downhill velocity scale" },
+		{ _field_angle, "uphill falloff angle", nullptr, "degrees" },
+		{ _field_angle, "uphill cutoff angle", nullptr, "degrees" },
+		{ _field_real, "uphill velocity scale" },
+		FIELD_PAD("value", 24),
+		{ _field_tag_reference, "UNUSED", &blofeld::halo2::pc64::material_effects_group_reference },
+		FIELD_PAD("value", 24),
+		FIELD_EXPLANATION("jumping and landing", nullptr),
+		{ _field_real, "jump velocity", nullptr, "world units per second" },
+		FIELD_PAD("value", 28),
+		{ _field_real, "maximum soft landing time", "the longest amount of time the biped can take to recover from a soft landing", "seconds" },
+		{ _field_real, "maximum hard landing time", "the longest amount of time the biped can take to recover from a hard landing", "seconds" },
+		{ _field_real, "minimum soft landing velocity", "below this velocity the biped does not react when landing", "world units per second" },
+		{ _field_real, "minimum hard landing velocity", "below this velocity the biped will not do a soft landing when returning to the ground", "world units per second" },
+		{ _field_real, "maximum hard landing velocity", "the velocity corresponding to the maximum landing time", "world units per second" },
+		{ _field_real, "death hard landing velocity", "the maximum velocity with which a character can strike the ground and live", "world units per second" },
+		FIELD_PAD("value", 20),
+		FIELD_EXPLANATION("camera, collision, and autoaim", nullptr),
+		{ _field_real, "standing camera height", nullptr, "world units" },
+		{ _field_real, "crouching camera height", nullptr, "world units" },
+		{ _field_real, "crouch transition time", nullptr, "seconds" },
+		{ _field_angle, "camera interpolation start", "looking-downward angle that starts camera interpolation to fp position", "degrees" },
+		{ _field_angle, "camera interpolation end", "looking-downward angle at which camera interpolation to fp position is complete", "degrees" },
+		{ _field_real, "camera forward movement scale", "amount of fp camera movement forward and back (1.0 is full)" },
+		{ _field_real, "camera side movement scale", "amount of fp camera movement side-to-side (1.0 is full)" },
+		{ _field_real, "camera vertical movement scale", "amount of fp camera movement vertically (1.0 is full)" },
+		{ _field_real, "camera exclusion distance", "fp camera must always be at least this far out from root node", "world units" },
+		{ _field_real, "standing collision height", nullptr, "world units" },
+		{ _field_real, "crouching collision height", nullptr, "world units" },
+		{ _field_real, "collision radius", nullptr, "world units" },
+		{ _field_real, "collision mass", nullptr, "world mass units" },
+		{ _field_string_id, "collision global material name", "collision material used when biped is alive" },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 2),
+		{ _field_string_id, "dead collision global material name", "collision material used when biped is dead" },
+		FIELD_PAD("value", 24),
+		{ _field_real, "autoaim width", nullptr, "world units" },
+		FIELD_PAD("value", 140),
+		{ _field_block, "contact points", "these are the points where the biped touches the ground", &blofeld::halo2::pc64::contact_point_block_v1_block },
+		{ _field_block, "pill shapes", "No point editing these.  They get filled out at map load.", &blofeld::halo2::pc64::pills_block },
+		
 		{ _field_terminator }
 	};
+
+	STRINGS(unnamed_enum$106)
+	{
+		"circular aiming",
+		"destroyed after dying",
+		"half-speed interpolation",
+		"fires from camera",
+		"entrance inside bounding sphere",
+		"doesn\'t show readied weapon",
+		"causes passenger dialogue",
+		"resists pings",
+		"melee attack is fatal",
+		"don\'t reface during pings",
+		"has no aiming",
+		"simple creature",
+		"impact melee attaches to unit",
+		"impact melee dies on shields",
+		"cannot open doors automatically",
+		"melee attackers cannot attach",
+		"not instantly killed by melee",
+		"shield sapping",
+		"runs around flaming",
+		"inconsequential",
+		"special cinematic unit",
+		"ignored by autoaiming",
+		"shields fry infection forms",
+		"unused",
+		"unused",
+		"acts as gunner for parent",
+		"controlled by parent gunner",
+		"parent\'s primary weapon",
+		"unit has boost"
+	};
+	STRING_LIST(unnamed_enum$106, unnamed_enum$106_strings, _countof(unnamed_enum$106_strings));
+
+	STRINGS(unnamed_enum$107)
+	{
+		"default",
+		"player",
+		"human",
+		"covenant",
+		"flood",
+		"sentinel",
+		"heretic",
+		"prophet",
+		"unused8",
+		"unused9",
+		"unused10",
+		"unused11",
+		"unused12",
+		"unused13",
+		"unused14",
+		"unused15"
+	};
+	STRING_LIST(unnamed_enum$107, unnamed_enum$107_strings, _countof(unnamed_enum$107_strings));
+
+	STRINGS(unnamed_enum$108)
+	{
+		"silent",
+		"medium",
+		"loud",
+		"shout",
+		"quiet"
+	};
+	STRING_LIST(unnamed_enum$108, unnamed_enum$108_strings, _countof(unnamed_enum$108_strings));
 
 	STRINGS(unnamed_enum$115)
 	{
@@ -20754,6 +20040,13 @@ namespace pc64
 	STRING_LIST(unnamed_enum$115, unnamed_enum$115_strings, _countof(unnamed_enum$115_strings));
 
 	TAG_REFERENCE(character_group_reference$3, CHARACTER_TAG);
+
+	STRINGS(unnamed_enum$119)
+	{
+		"none",
+		"flying velocity"
+	};
+	STRING_LIST(unnamed_enum$119, unnamed_enum$119_strings, _countof(unnamed_enum$119_strings));
 
 	TAG_STRUCT(
 		object_ai_properties_block_struct_definition,
@@ -20807,7 +20100,7 @@ namespace pc64
 		{ _field_string_id, "turn off with", "if the specified function is off, so is this function", _field_id_sted },
 		{ _field_real, "min value", "function must exceed this value (after mapping) to be active 0. means do nothing" },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "default function", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_string_id, "scale by" },
 		{ _field_terminator }
 	};
@@ -20972,7 +20265,7 @@ namespace pc64
 		{ _field_real_rgb_color, "Max lightmap sample" },
 		FIELD_EXPLANATION("Ambient light function", "Ambient light scale. (left side min brightness, right side max brightness). Before this scale it determines a global ambient scale, which added to either light will total ~1.0 scale. Then this scale modifies that."),
 		FIELD_CUSTOM("function", _field_id_function_editor),
-		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -20987,7 +20280,7 @@ namespace pc64
 	{
 		FIELD_EXPLANATION("Lightmap shadows", "Shadows generated by the lightmaps get direction from lightmap primary incoming light direction and darken based on how accurate that light is fed into the function below"),
 		FIELD_CUSTOM("accuracy function", _field_id_function_editor),
-		{ _field_struct, "function 1", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "function 1", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -21670,14 +20963,15 @@ namespace pc64
 	STRING_LIST(unnamed_enum$218, unnamed_enum$218_strings, _countof(unnamed_enum$218_strings));
 
 	TAG_STRUCT(
-		model_group_tags_v2_struct_definition,
-		"model_group_tags_v2",
-		"model_group_tags_v2_struct_definition",
+		model_group_struct_definition,
+		"model_group",
+		"model_group_struct_definition",
 		"s_model_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 39 },
 		FIELD_EXPLANATION("MODEL", nullptr),
 		FIELD_CUSTOM("value", _field_id_high_level_model_tag),
 		{ _field_tag_reference, "render model", &blofeld::halo2::pc64::render_model_group_reference },
@@ -21717,6 +21011,33 @@ namespace pc64
 		FIELD_EXPLANATION("HOLOGRAM", "hologram shader is applied whenever the control function from it\'s object is non-zero"),
 		{ _field_tag_reference, "hologram shader", &blofeld::halo2::pc64::shader_group_reference },
 		{ _field_string_id, "hologram control function" },
+		
+		{ _struct_version_mode_equal, 0, 24 },
+		FIELD_EXPLANATION("MODEL", nullptr),
+		{ _field_tag_reference, "render model", &blofeld::halo2::pc64::render_model_group_reference },
+		{ _field_tag_reference, "collision model", &blofeld::halo2::pc64::collision_model_group_reference },
+		{ _field_tag_reference, "animation", &blofeld::halo2::pc64::model_animation_graph_group_reference },
+		{ _field_tag_reference, "physics", &blofeld::halo2::pc64::physics_group_reference },
+		{ _field_tag_reference, "physics model", &blofeld::halo2::pc64::physics_model_group_reference },
+		FIELD_EXPLANATION("level of detail", "If a model is further away than the LOD reduction distance, it will be reduced to that LOD.\nSo the L1 reduction distance should be really long and the L5 reduction distance should be really short.\nThis means distances should be in descending order, e.g. 5 4 3 2 1.\n\nNote that if we run out of memory or too many models are on screen at once, the engine may reduce\nmodels to a lower LOD BEFORE they reach the reduction distance for that LOD.\n\nIf a model has a max draw distance, it will disappear when it reaches that distance. The max draw distance\nshould be greater than all of the LOD reduction distances.\n"),
+		{ _field_real, "max draw distance", nullptr, "world units" },
+		{ _field_real, "reduce to L1", nullptr, "world units (super low)" },
+		{ _field_real, "reduce to L2", nullptr, "world units (low)" },
+		{ _field_real, "reduce to L3", nullptr, "world units (medium)" },
+		{ _field_real, "reduce to L4", nullptr, "world units (high)" },
+		{ _field_real, "reduce to L5", nullptr, "world units (super high)" },
+		FIELD_SKIP("value", 4),
+		{ _field_short_enum, "shadow fade distance", &blofeld::halo2::pc64::unnamed_enum$220 },
+		FIELD_PAD("value", 2),
+		{ _field_block, "variants", &blofeld::halo2::pc64::model_variant_block },
+		{ _field_block, "materials", &blofeld::halo2::pc64::model_material_block },
+		{ _field_block, "new damage info", &blofeld::halo2::pc64::global_damage_info_block },
+		FIELD_PAD("value", 12),
+		{ _field_block, "runtime regions", &blofeld::halo2::pc64::model_region_block },
+		{ _field_block, "runtime nodes", &blofeld::halo2::pc64::model_node_block },
+		FIELD_PAD("value", 4),
+		{ _field_block, "model object data", &blofeld::halo2::pc64::model_object_data_block },
+		
 		{ _field_terminator }
 	};
 
@@ -21837,14 +21158,15 @@ namespace pc64
 	STRING_LIST(unnamed_enum$221, unnamed_enum$221_strings, _countof(unnamed_enum$221_strings));
 
 	TAG_STRUCT(
-		model_variant_state_v2_struct_definition,
-		"model_variant_state_v2",
-		"model_variant_state_v2_struct_definition",
+		model_variant_state_struct_definition,
+		"model_variant_state",
+		"model_variant_state_struct_definition",
 		"s_model_variant_state",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 7 },
 		{ _field_string_id, "permutation name" },
 		FIELD_PAD("value", 1),
 		{ _field_byte_flags, "property flags", &blofeld::halo2::pc64::unnamed_enum$222 },
@@ -21852,6 +21174,12 @@ namespace pc64
 		{ _field_tag_reference, "looping effect", "played while the model is in this state", &blofeld::halo2::pc64::effect_group_reference$2 },
 		{ _field_string_id, "looping effect marker name" },
 		{ _field_real_fraction, "initial probability" },
+		
+		{ _struct_version_mode_equal, 0, 3 },
+		{ _field_string_id, "permutation name" },
+		FIELD_PAD("value", 2),
+		{ _field_short_enum, "state", &blofeld::halo2::pc64::unnamed_enum$224 },
+		
 		{ _field_terminator }
 	};
 
@@ -21874,21 +21202,6 @@ namespace pc64
 	STRING_LIST(unnamed_enum$223, unnamed_enum$223_strings, _countof(unnamed_enum$223_strings));
 
 	TAG_REFERENCE(effect_group_reference$2, EFFECT_TAG);
-
-	TAG_STRUCT(
-		model_variant_state_v1_struct_definition,
-		"model_variant_state_v1",
-		"model_variant_state_v1_struct_definition",
-		"s_model_variant_state_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string_id, "permutation name" },
-		FIELD_PAD("value", 2),
-		{ _field_short_enum, "state", &blofeld::halo2::pc64::unnamed_enum$224 },
-		{ _field_terminator }
-	};
 
 	STRINGS(unnamed_enum$224)
 	{
@@ -21979,14 +21292,15 @@ namespace pc64
 	STRING_LIST(unnamed_enum$226, unnamed_enum$226_strings, _countof(unnamed_enum$226_strings));
 
 	TAG_STRUCT(
-		global_damage_info_block_v2_struct_definition,
-		"global_damage_info_block_v2",
-		"global_damage_info_block_v2_struct_definition",
+		global_damage_info_block_struct_definition,
+		"global_damage_info_block",
+		"global_damage_info_block_struct_definition",
 		"s_model_damage_info",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 39 },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$227 },
 		{ _field_string_id, "global indirect material name", "absorbes AOE or child damage" },
 		{ _field_short_block_index_custom_search, "indirect damage section", "absorbes AOE or child damage" },
@@ -22026,6 +21340,36 @@ namespace pc64
 		FIELD_EXPLANATION("overshield", nullptr),
 		{ _field_tag_reference, "overshield first person shader", &blofeld::halo2::pc64::shader_group_reference },
 		{ _field_tag_reference, "overshield shader", &blofeld::halo2::pc64::shader_group_reference },
+		
+		{ _struct_version_mode_equal, 0, 27 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$227 },
+		{ _field_string_id, "global indirect material name", "absorbes AOE or child damage" },
+		{ _field_real, "maximum vitality" },
+		{ _field_real, "body system shock", "anything that kills us (body depleted) doing more than this amount of damage also destroys us" },
+		{ _field_real_fraction, "friendly damage resistance", "the fraction of damage caused by friendly units ignored by this object (zero means full damage)", nullptr, "[0,1]" },
+		{ _field_tag_reference, "localized damage effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_real, "area damage effect threshold", nullptr, nullptr, "[0,1]" },
+		{ _field_tag_reference, "area damage effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_real, "body damaged threshold", "when passing this vitality the 'body damaged' effect, below, is created" },
+		{ _field_tag_reference, "body damaged effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_tag_reference, "body depleted effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_real, "body destroyed threshold", "when passing this vitality (usually negative) the object is deleted" },
+		{ _field_tag_reference, "body destroyed effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_real, "maximum shield vitality", "the default initial and maximum shield vitality of this object" },
+		{ _field_string_id, "global shield material name", _field_id_sted },
+		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object's shields" },
+		{ _field_real, "stun time", "the length of time the shields stay stunned (do not recharge) after taking damage", "seconds" },
+		{ _field_real, "recharge time", "the length of time it would take for the shields to fully recharge after being completely depleted", "seconds" },
+		{ _field_real, "shield damaged threshold" },
+		{ _field_tag_reference, "shield damaged effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_tag_reference, "shield depleted effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_tag_reference, "shield recharging effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_block, "damage sections", &blofeld::halo2::pc64::global_damage_section_block },
+		{ _field_block, "nodes", &blofeld::halo2::pc64::global_damage_nodes_block },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 4),
+		
 		{ _field_terminator }
 	};
 
@@ -22146,12 +21490,12 @@ namespace pc64
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$232 },
 		{ _field_real, "damage threshold", "repsonse fires after crossing this threshold.  1=full health" },
 		{ _field_tag_reference, "transition effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_struct, "damage effect", &blofeld::halo2::pc64::instantaneous_response_damage_effect_v2_struct_definition },
+		{ _field_struct, "damage effect", &blofeld::halo2::pc64::instantaneous_response_damage_effect_struct_definition },
 		{ _field_string_id, "region" },
 		{ _field_short_enum, "new state", &blofeld::halo2::pc64::unnamed_enum$223 },
 		{ _field_short_integer, "runtime region index" },
 		{ _field_string_id, "effect marker name" },
-		{ _field_struct, "damage effect marker", &blofeld::halo2::pc64::instantaneous_response_damage_effect_marker_v2_struct_definition },
+		{ _field_struct, "damage effect marker", &blofeld::halo2::pc64::instantaneous_response_damage_effect_marker_struct_definition },
 		FIELD_EXPLANATION("Response delay", "If desired, you can specify a delay until the response fires.This delay is pre-empted if another timed response for the same section fires.The delay effect plays while the timer is counting down"),
 		{ _field_real, "response delay", "in seconds" },
 		{ _field_tag_reference, "delay effect", &blofeld::halo2::pc64::effect_group_reference },
@@ -22218,52 +21562,36 @@ namespace pc64
 	STRING_LIST(unnamed_enum$232, unnamed_enum$232_strings, _countof(unnamed_enum$232_strings));
 
 	TAG_STRUCT(
-		instantaneous_response_damage_effect_v2_struct_definition,
-		"instantaneous_response_damage_effect_v2",
-		"instantaneous_response_damage_effect_v2_struct_definition",
+		instantaneous_response_damage_effect_struct_definition,
+		"instantaneous_response_damage_effect",
+		"instantaneous_response_damage_effect_struct_definition",
 		"s_tag_reference$3",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 1 },
 		{ _field_tag_reference, "transition damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(
-		instantaneous_response_damage_effect_v1_struct_definition,
-		"instantaneous_response_damage_effect_v1",
-		"instantaneous_response_damage_effect_v1_struct_definition",
-		"s_instantaneous_response_damage_effect_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		instantaneous_response_damage_effect_marker_v2_struct_definition,
-		"instantaneous_response_damage_effect_marker_v2",
-		"instantaneous_response_damage_effect_marker_v2_struct_definition",
+		instantaneous_response_damage_effect_marker_struct_definition,
+		"instantaneous_response_damage_effect_marker",
+		"instantaneous_response_damage_effect_marker_struct_definition",
 		"s_string_ids",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 1 },
 		{ _field_string_id, "damage effect marker name" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		instantaneous_response_damage_effect_marker_v1_struct_definition,
-		"instantaneous_response_damage_effect_marker_v1",
-		"instantaneous_response_damage_effect_marker_v1_struct_definition",
-		"s_instantaneous_response_damage_effect_marker_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
@@ -22312,45 +21640,6 @@ namespace pc64
 		{ _field_string_id, "damage constraint name" },
 		{ _field_string_id, "damage constraint group name" },
 		{ _field_real, "group probability scale" },
-		FIELD_PAD("value", 4),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		global_damage_info_block_v1_struct_definition,
-		"global_damage_info_block_v1",
-		"global_damage_info_block_v1_struct_definition",
-		"s_model_damage_info_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$227 },
-		{ _field_string_id, "global indirect material name", "absorbes AOE or child damage" },
-		{ _field_real, "maximum vitality" },
-		{ _field_real, "body system shock", "anything that kills us (body depleted) doing more than this amount of damage also destroys us" },
-		{ _field_real_fraction, "friendly damage resistance", "the fraction of damage caused by friendly units ignored by this object (zero means full damage)", nullptr, "[0,1]" },
-		{ _field_tag_reference, "localized damage effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_real, "area damage effect threshold", nullptr, nullptr, "[0,1]" },
-		{ _field_tag_reference, "area damage effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_real, "body damaged threshold", "when passing this vitality the 'body damaged' effect, below, is created" },
-		{ _field_tag_reference, "body damaged effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_tag_reference, "body depleted effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_real, "body destroyed threshold", "when passing this vitality (usually negative) the object is deleted" },
-		{ _field_tag_reference, "body destroyed effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_real, "maximum shield vitality", "the default initial and maximum shield vitality of this object" },
-		{ _field_string_id, "global shield material name", _field_id_sted },
-		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object's shields" },
-		{ _field_real, "stun time", "the length of time the shields stay stunned (do not recharge) after taking damage", "seconds" },
-		{ _field_real, "recharge time", "the length of time it would take for the shields to fully recharge after being completely depleted", "seconds" },
-		{ _field_real, "shield damaged threshold" },
-		{ _field_tag_reference, "shield damaged effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_tag_reference, "shield depleted effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_tag_reference, "shield recharging effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_block, "damage sections", &blofeld::halo2::pc64::global_damage_section_block },
-		{ _field_block, "nodes", &blofeld::halo2::pc64::global_damage_nodes_block },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 2),
 		FIELD_PAD("value", 4),
 		{ _field_terminator }
 	};
@@ -22503,42 +21792,6 @@ namespace pc64
 	};
 
 	TAG_REFERENCE(scenario_group_reference, SCENARIO_TAG, _tag_reference_flag_dont_resolve_in_editor);
-
-	TAG_STRUCT(
-		model_group_tags_v1_struct_definition,
-		"model_group_tags_v1",
-		"model_group_tags_v1_struct_definition",
-		"s_model_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_EXPLANATION("MODEL", nullptr),
-		{ _field_tag_reference, "render model", &blofeld::halo2::pc64::render_model_group_reference },
-		{ _field_tag_reference, "collision model", &blofeld::halo2::pc64::collision_model_group_reference },
-		{ _field_tag_reference, "animation", &blofeld::halo2::pc64::model_animation_graph_group_reference },
-		{ _field_tag_reference, "physics", &blofeld::halo2::pc64::physics_group_reference },
-		{ _field_tag_reference, "physics model", &blofeld::halo2::pc64::physics_model_group_reference },
-		FIELD_EXPLANATION("level of detail", "If a model is further away than the LOD reduction distance, it will be reduced to that LOD.\nSo the L1 reduction distance should be really long and the L5 reduction distance should be really short.\nThis means distances should be in descending order, e.g. 5 4 3 2 1.\n\nNote that if we run out of memory or too many models are on screen at once, the engine may reduce\nmodels to a lower LOD BEFORE they reach the reduction distance for that LOD.\n\nIf a model has a max draw distance, it will disappear when it reaches that distance. The max draw distance\nshould be greater than all of the LOD reduction distances.\n"),
-		{ _field_real, "max draw distance", nullptr, "world units" },
-		{ _field_real, "reduce to L1", nullptr, "world units (super low)" },
-		{ _field_real, "reduce to L2", nullptr, "world units (low)" },
-		{ _field_real, "reduce to L3", nullptr, "world units (medium)" },
-		{ _field_real, "reduce to L4", nullptr, "world units (high)" },
-		{ _field_real, "reduce to L5", nullptr, "world units (super high)" },
-		FIELD_SKIP("value", 4),
-		{ _field_short_enum, "shadow fade distance", &blofeld::halo2::pc64::unnamed_enum$220 },
-		FIELD_PAD("value", 2),
-		{ _field_block, "variants", &blofeld::halo2::pc64::model_variant_block },
-		{ _field_block, "materials", &blofeld::halo2::pc64::model_material_block },
-		{ _field_block, "new damage info", &blofeld::halo2::pc64::global_damage_info_block },
-		FIELD_PAD("value", 12),
-		{ _field_block, "runtime regions", &blofeld::halo2::pc64::model_region_block },
-		{ _field_block, "runtime nodes", &blofeld::halo2::pc64::model_node_block },
-		FIELD_PAD("value", 4),
-		{ _field_block, "model object data", &blofeld::halo2::pc64::model_object_data_block },
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		hud_message_text_block_struct_definition,
@@ -23054,6 +22307,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 10 },
 		FIELD_EXPLANATION("GRAPH DATA", nullptr),
 		{ _field_tag_reference, "parent animation graph", &blofeld::halo2::pc64::model_animation_graph_group_reference$2 },
 		{ _field_byte_flags, "inheritance flags", &blofeld::halo2::pc64::unnamed_enum$242 },
@@ -23064,6 +22318,30 @@ namespace pc64
 		{ _field_block, "effect references", &blofeld::halo2::pc64::animation_graph_effect_reference_block },
 		{ _field_block, "blend screens", &blofeld::halo2::pc64::animation_blend_screen_block },
 		{ _field_block, "animations", &blofeld::halo2::pc64::animation_pool_block, _field_id_wide },
+		
+		{ _struct_version_mode_equal, 1, 9 },
+		FIELD_EXPLANATION("GRAPH DATA", nullptr),
+		{ _field_tag_reference, "parent animation graph", &blofeld::halo2::pc64::model_animation_graph_group_reference$2 },
+		{ _field_byte_flags, "inheritance flags", &blofeld::halo2::pc64::unnamed_enum$242 },
+		{ _field_byte_flags, "private flags", &blofeld::halo2::pc64::unnamed_enum$243 },
+		{ _field_short_integer, "animation codec pack" },
+		{ _field_block, "skeleton nodes", &blofeld::halo2::pc64::animation_graph_node_block },
+		{ _field_block, "sound references", &blofeld::halo2::pc64::animation_graph_sound_reference_block },
+		{ _field_block, "blend screens", &blofeld::halo2::pc64::animation_blend_screen_block },
+		{ _field_block, "animations", &blofeld::halo2::pc64::animation_pool_block, _field_id_wide },
+		
+		{ _struct_version_mode_equal, 0, 10 },
+		FIELD_EXPLANATION("GRAPH DATA", nullptr),
+		{ _field_tag_reference, "parent animation graph", &blofeld::halo2::pc64::model_animation_graph_group_reference$2 },
+		{ _field_block, "skeleton nodes", &blofeld::halo2::pc64::animation_graph_node_block },
+		FIELD_PAD("value", 4),
+		{ _field_block, "sound references", &blofeld::halo2::pc64::animation_graph_sound_reference_block },
+		{ _field_block, "blend screens", &blofeld::halo2::pc64::animation_blend_screen_block },
+		{ _field_block, "animations", &blofeld::halo2::pc64::animation_pool_block, _field_id_wide },
+		{ _field_word_flags, "animation graph flags", &blofeld::halo2::pc64::unnamed_enum$243 },
+		{ _field_short_integer, "animation codec pack" },
+		FIELD_PAD("value", 32),
+		
 		{ _field_terminator }
 	};
 
@@ -23096,6 +22374,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 9 },
 		{ _field_string_id, "name" },
 		{ _field_short_block_index, "next sibling node index" },
 		{ _field_short_block_index, "first child node index" },
@@ -23105,6 +22384,18 @@ namespace pc64
 		{ _field_real_vector_3d, "base vector" },
 		{ _field_real, "vector range" },
 		{ _field_real, "z_pos" },
+		
+		{ _struct_version_mode_equal, 0, 9 },
+		{ _field_old_string_id, "name" },
+		{ _field_short_block_index, "next sibling node index" },
+		{ _field_short_block_index, "first child node index" },
+		{ _field_short_block_index, "parent node index" },
+		FIELD_PAD("value", 2),
+		{ _field_long_flags, "Node joint flags", &blofeld::halo2::pc64::unnamed_enum$245 },
+		{ _field_real_vector_3d, "base vector" },
+		{ _field_real, "vector range" },
+		{ _field_real, "z_pos" },
+		
 		{ _field_terminator }
 	};
 
@@ -23126,27 +22417,6 @@ namespace pc64
 		"no movement"
 	};
 	STRING_LIST(unnamed_enum$245, unnamed_enum$245_strings, _countof(unnamed_enum$245_strings));
-
-	TAG_STRUCT(
-		animation_graph_node_v0_struct_definition,
-		"animation_graph_node_v0",
-		"animation_graph_node_v0_struct_definition",
-		"s_animation_graph_node_v0",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_old_string_id, "name" },
-		{ _field_short_block_index, "next sibling node index" },
-		{ _field_short_block_index, "first child node index" },
-		{ _field_short_block_index, "parent node index" },
-		FIELD_PAD("value", 2),
-		{ _field_long_flags, "Node joint flags", &blofeld::halo2::pc64::unnamed_enum$245 },
-		{ _field_real_vector_3d, "base vector" },
-		{ _field_real, "vector range" },
-		{ _field_real, "z_pos" },
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		animation_graph_sound_reference_block_struct_definition,
@@ -23232,6 +22502,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 5, 26 },
 		{ _field_string_id, "name" },
 		FIELD_CUSTOM("Play on player", _field_id_edit),
 		{ _field_long_integer, "node list checksum" },
@@ -23258,6 +22529,152 @@ namespace pc64
 		{ _field_block, "sound events", &blofeld::halo2::pc64::animation_sound_event_block },
 		{ _field_block, "effect events", &blofeld::halo2::pc64::animation_effect_event_block },
 		{ _field_block, "object-space parent nodes", &blofeld::halo2::pc64::object_space_node_data_block },
+		
+		{ _struct_version_mode_equal, 4, 28 },
+		{ _field_string_id, "name" },
+		{ _field_long_integer, "node list checksum" },
+		{ _field_long_integer, "production checksum" },
+		{ _field_long_integer, "import_checksum" },
+		{ _field_char_enum, "type", &blofeld::halo2::pc64::unnamed_enum$247 },
+		{ _field_char_enum, "frame info type", &blofeld::halo2::pc64::unnamed_enum$248 },
+		{ _field_char_block_index, "blend screen" },
+		{ _field_char_integer, "node count" },
+		{ _field_short_integer, "frame count" },
+		{ _field_byte_flags, "internal flags", &blofeld::halo2::pc64::unnamed_enum$249 },
+		{ _field_byte_flags, "production flags", &blofeld::halo2::pc64::unnamed_enum$250 },
+		{ _field_word_flags, "playback flags", &blofeld::halo2::pc64::unnamed_enum$251 },
+		{ _field_char_enum, "desired compression", &blofeld::halo2::pc64::unnamed_enum$252 },
+		{ _field_char_enum, "current compression", &blofeld::halo2::pc64::unnamed_enum$252 },
+		{ _field_real, "weight" },
+		{ _field_long_integer, "parent graph index" },
+		{ _field_long_integer, "parent graph block index" },
+		{ _field_long_integer, "parent graph block offset" },
+		{ _field_short_integer, "parent graph starting point index" },
+		{ _field_short_integer, "loop frame index" },
+		{ _field_short_block_index, "parent animation" },
+		{ _field_short_block_index, "next animation" },
+		{ _field_data, "animation data", &blofeld::halo2::pc64::aligned_animation_data_definition },
+		{ _field_struct, "data sizes", &blofeld::halo2::pc64::packed_data_sizes_struct_struct_definition },
+		{ _field_block, "frame events", &blofeld::halo2::pc64::animation_frame_event_block },
+		{ _field_block, "sound events", &blofeld::halo2::pc64::animation_sound_event_block },
+		{ _field_block, "effect events", &blofeld::halo2::pc64::animation_effect_event_block },
+		{ _field_block, "object-space parent nodes", &blofeld::halo2::pc64::object_space_node_data_block },
+		
+		{ _struct_version_mode_equal, 3, 28 },
+		{ _field_string_id, "name" },
+		{ _field_long_integer, "node list checksum" },
+		{ _field_long_integer, "production checksum" },
+		{ _field_long_integer, "import_checksum" },
+		{ _field_char_enum, "type", &blofeld::halo2::pc64::unnamed_enum$247 },
+		{ _field_char_enum, "frame info type", &blofeld::halo2::pc64::unnamed_enum$248 },
+		{ _field_char_block_index, "blend screen" },
+		{ _field_char_integer, "node count" },
+		{ _field_short_integer, "frame count" },
+		{ _field_byte_flags, "internal flags", &blofeld::halo2::pc64::unnamed_enum$249 },
+		{ _field_byte_flags, "production flags", &blofeld::halo2::pc64::unnamed_enum$250 },
+		{ _field_word_flags, "playback flags", &blofeld::halo2::pc64::unnamed_enum$251 },
+		{ _field_char_enum, "desired compression", &blofeld::halo2::pc64::unnamed_enum$252 },
+		{ _field_char_enum, "current compression", &blofeld::halo2::pc64::unnamed_enum$252 },
+		{ _field_real, "weight" },
+		{ _field_long_integer, "value" },
+		{ _field_short_integer, "value" },
+		{ _field_short_integer, "value" },
+		{ _field_short_integer, "value" },
+		{ _field_short_integer, "loop frame index" },
+		{ _field_short_block_index, "parent animation" },
+		{ _field_short_block_index, "next animation" },
+		{ _field_data, "animation data", &blofeld::halo2::pc64::animation_data_definition },
+		{ _field_struct, "data sizes", &blofeld::halo2::pc64::packed_data_sizes_struct_struct_definition },
+		{ _field_block, "frame events", &blofeld::halo2::pc64::animation_frame_event_block },
+		{ _field_block, "sound events", &blofeld::halo2::pc64::animation_sound_event_block },
+		{ _field_block, "effect events", &blofeld::halo2::pc64::animation_effect_event_block },
+		{ _field_block, "object-space parent nodes", &blofeld::halo2::pc64::object_space_node_data_block },
+		
+		{ _struct_version_mode_equal, 2, 25 },
+		{ _field_string_id, "name" },
+		{ _field_long_integer, "node list checksum" },
+		{ _field_long_integer, "production checksum" },
+		{ _field_long_integer, "import_checksum" },
+		{ _field_char_enum, "type", &blofeld::halo2::pc64::unnamed_enum$247 },
+		{ _field_char_enum, "frame info type", &blofeld::halo2::pc64::unnamed_enum$248 },
+		{ _field_char_block_index, "blend screen" },
+		{ _field_char_integer, "node count" },
+		{ _field_short_integer, "frame count" },
+		{ _field_byte_flags, "internal flags", &blofeld::halo2::pc64::unnamed_enum$249 },
+		{ _field_byte_flags, "production flags", &blofeld::halo2::pc64::unnamed_enum$250 },
+		{ _field_word_flags, "playback flags", &blofeld::halo2::pc64::unnamed_enum$251 },
+		{ _field_char_enum, "desired compression", &blofeld::halo2::pc64::unnamed_enum$252 },
+		{ _field_char_enum, "current compression", &blofeld::halo2::pc64::unnamed_enum$252 },
+		{ _field_real, "weight" },
+		{ _field_short_integer, "loop frame index" },
+		{ _field_short_integer, "max random start frame index" },
+		{ _field_short_block_index, "parent animation" },
+		{ _field_short_block_index, "next animation" },
+		{ _field_data, "animation data", &blofeld::halo2::pc64::animation_data_definition },
+		{ _field_struct, "data sizes", &blofeld::halo2::pc64::packed_data_sizes_struct_struct_definition },
+		{ _field_block, "frame events", &blofeld::halo2::pc64::animation_frame_event_block },
+		{ _field_block, "sound events", &blofeld::halo2::pc64::animation_sound_event_block },
+		{ _field_block, "effect events", &blofeld::halo2::pc64::animation_effect_event_block },
+		{ _field_block, "object-space parent nodes", &blofeld::halo2::pc64::object_space_node_data_block_v0_block },
+		
+		{ _struct_version_mode_equal, 1, 23 },
+		{ _field_string_id, "name" },
+		{ _field_long_integer, "node list checksum" },
+		{ _field_long_integer, "production checksum" },
+		{ _field_char_enum, "type", &blofeld::halo2::pc64::unnamed_enum$247 },
+		{ _field_char_enum, "frame info type", &blofeld::halo2::pc64::unnamed_enum$248 },
+		{ _field_char_block_index, "blend screen" },
+		{ _field_char_integer, "node count" },
+		{ _field_short_integer, "frame count" },
+		{ _field_byte_flags, "internal flags", &blofeld::halo2::pc64::unnamed_enum$249 },
+		{ _field_byte_flags, "production flags", &blofeld::halo2::pc64::unnamed_enum$250 },
+		{ _field_word_flags, "playback flags", &blofeld::halo2::pc64::unnamed_enum$251 },
+		{ _field_char_enum, "desired compression", &blofeld::halo2::pc64::unnamed_enum$252 },
+		{ _field_char_enum, "current compression", &blofeld::halo2::pc64::unnamed_enum$252 },
+		{ _field_real, "weight" },
+		{ _field_short_integer, "loop frame index" },
+		{ _field_short_integer, "max random start frame index" },
+		{ _field_short_block_index, "parent animation" },
+		{ _field_short_block_index, "next animation" },
+		{ _field_data, "animation data", &blofeld::halo2::pc64::animation_data_definition },
+		{ _field_block, "frame events", &blofeld::halo2::pc64::animation_frame_event_block },
+		{ _field_block, "sound events", &blofeld::halo2::pc64::animation_sound_event_block },
+		{ _field_struct, "data sizes", &blofeld::halo2::pc64::packed_data_sizes_struct_struct_definition },
+		{ _field_long_integer, "import_checksum" },
+		
+		{ _struct_version_mode_equal, 0, 31 },
+		{ _field_string_id, "name" },
+		{ _field_char_enum, "type", &blofeld::halo2::pc64::unnamed_enum$247 },
+		{ _field_char_enum, "frame info type", &blofeld::halo2::pc64::unnamed_enum$248 },
+		{ _field_char_integer, "blend screen" },
+		{ _field_char_integer, "node count" },
+		{ _field_short_integer, "frame count" },
+		{ _field_short_integer, "frame size" },
+		{ _field_long_integer, "node list checksum" },
+		FIELD_PAD("value", 2),
+		{ _field_word_flags, "playback flags", &blofeld::halo2::pc64::unnamed_enum$251 },
+		{ _field_byte_flags, "internal flags", &blofeld::halo2::pc64::unnamed_enum$249 },
+		{ _field_byte_flags, "production flags", &blofeld::halo2::pc64::unnamed_enum$250 },
+		{ _field_char_integer, "static node flag data size" },
+		{ _field_char_integer, "animated node flag data size" },
+		{ _field_real, "weight" },
+		{ _field_short_integer, "loop frame index" },
+		{ _field_short_integer, "max random start frame index" },
+		{ _field_short_integer, "next animation" },
+		{ _field_char_enum, "desired compression", &blofeld::halo2::pc64::unnamed_enum$252 },
+		{ _field_char_enum, "current compression", &blofeld::halo2::pc64::unnamed_enum$252 },
+		{ _field_array, "node trans. flag data", &blofeld::halo2::pc64::unnamed_array$21 },
+		{ _field_array, "node rotation flag data", &blofeld::halo2::pc64::unnamed_array$22 },
+		{ _field_array, "node scale flag data", &blofeld::halo2::pc64::unnamed_array$23 },
+		{ _field_short_integer, "movement_data size" },
+		{ _field_short_integer, "default_data size" },
+		{ _field_long_integer, "uncompressed_data size" },
+		{ _field_long_integer, "compressed_data size" },
+		{ _field_data, "animation data", &blofeld::halo2::pc64::animation_data_definition },
+		{ _field_block, "frame events", &blofeld::halo2::pc64::animation_frame_event_block },
+		{ _field_block, "sound events", &blofeld::halo2::pc64::animation_sound_event_block },
+		{ _field_long_integer, "production checksum" },
+		
 		{ _field_terminator }
 	};
 
@@ -23395,23 +22812,15 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_short_block_index, "effect" },
 		{ _field_short_integer, "frame" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		s_effect_event_v0_struct_definition,
-		"s_effect_event_v0",
-		"s_effect_event_v0_struct_definition",
-		"s_effect_event_v0",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 3 },
 		{ _field_short_block_index, "effect" },
 		{ _field_short_integer, "frame" },
 		{ _field_string_id, "marker name" },
+		
 		{ _field_terminator }
 	};
 
@@ -23457,121 +22866,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		animation_pool_v0_struct_definition,
-		"animation_pool_v0",
-		"animation_pool_v0_struct_definition",
-		"s_model_animation_v0",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string_id, "name" },
-		{ _field_char_enum, "type", &blofeld::halo2::pc64::unnamed_enum$247 },
-		{ _field_char_enum, "frame info type", &blofeld::halo2::pc64::unnamed_enum$248 },
-		{ _field_char_integer, "blend screen" },
-		{ _field_char_integer, "node count" },
-		{ _field_short_integer, "frame count" },
-		{ _field_short_integer, "frame size" },
-		{ _field_long_integer, "node list checksum" },
-		FIELD_PAD("value", 2),
-		{ _field_word_flags, "playback flags", &blofeld::halo2::pc64::unnamed_enum$251 },
-		{ _field_byte_flags, "internal flags", &blofeld::halo2::pc64::unnamed_enum$249 },
-		{ _field_byte_flags, "production flags", &blofeld::halo2::pc64::unnamed_enum$250 },
-		{ _field_char_integer, "static node flag data size" },
-		{ _field_char_integer, "animated node flag data size" },
-		{ _field_real, "weight" },
-		{ _field_short_integer, "loop frame index" },
-		{ _field_short_integer, "max random start frame index" },
-		{ _field_short_integer, "next animation" },
-		{ _field_char_enum, "desired compression", &blofeld::halo2::pc64::unnamed_enum$252 },
-		{ _field_char_enum, "current compression", &blofeld::halo2::pc64::unnamed_enum$252 },
-		{ _field_array, "node trans. flag data", &blofeld::halo2::pc64::unnamed_array$21 },
-		{ _field_array, "node rotation flag data", &blofeld::halo2::pc64::unnamed_array$22 },
-		{ _field_array, "node scale flag data", &blofeld::halo2::pc64::unnamed_array$23 },
-		{ _field_short_integer, "movement_data size" },
-		{ _field_short_integer, "default_data size" },
-		{ _field_long_integer, "uncompressed_data size" },
-		{ _field_long_integer, "compressed_data size" },
-		{ _field_data, "animation data", &blofeld::halo2::pc64::animation_data_definition },
-		{ _field_block, "frame events", &blofeld::halo2::pc64::animation_frame_event_block },
-		{ _field_block, "sound events", &blofeld::halo2::pc64::animation_sound_event_block },
-		{ _field_long_integer, "production checksum" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		animation_pool_v1_struct_definition,
-		"animation_pool_v1",
-		"animation_pool_v1_struct_definition",
-		"s_model_animation_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string_id, "name" },
-		{ _field_long_integer, "node list checksum" },
-		{ _field_long_integer, "production checksum" },
-		{ _field_char_enum, "type", &blofeld::halo2::pc64::unnamed_enum$247 },
-		{ _field_char_enum, "frame info type", &blofeld::halo2::pc64::unnamed_enum$248 },
-		{ _field_char_block_index, "blend screen" },
-		{ _field_char_integer, "node count" },
-		{ _field_short_integer, "frame count" },
-		{ _field_byte_flags, "internal flags", &blofeld::halo2::pc64::unnamed_enum$249 },
-		{ _field_byte_flags, "production flags", &blofeld::halo2::pc64::unnamed_enum$250 },
-		{ _field_word_flags, "playback flags", &blofeld::halo2::pc64::unnamed_enum$251 },
-		{ _field_char_enum, "desired compression", &blofeld::halo2::pc64::unnamed_enum$252 },
-		{ _field_char_enum, "current compression", &blofeld::halo2::pc64::unnamed_enum$252 },
-		{ _field_real, "weight" },
-		{ _field_short_integer, "loop frame index" },
-		{ _field_short_integer, "max random start frame index" },
-		{ _field_short_block_index, "parent animation" },
-		{ _field_short_block_index, "next animation" },
-		{ _field_data, "animation data", &blofeld::halo2::pc64::animation_data_definition },
-		{ _field_block, "frame events", &blofeld::halo2::pc64::animation_frame_event_block },
-		{ _field_block, "sound events", &blofeld::halo2::pc64::animation_sound_event_block },
-		{ _field_struct, "data sizes", &blofeld::halo2::pc64::packed_data_sizes_struct_struct_definition },
-		{ _field_long_integer, "import_checksum" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		animation_pool_v2_struct_definition,
-		"animation_pool_v2",
-		"animation_pool_v2_struct_definition",
-		"s_model_animation_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string_id, "name" },
-		{ _field_long_integer, "node list checksum" },
-		{ _field_long_integer, "production checksum" },
-		{ _field_long_integer, "import_checksum" },
-		{ _field_char_enum, "type", &blofeld::halo2::pc64::unnamed_enum$247 },
-		{ _field_char_enum, "frame info type", &blofeld::halo2::pc64::unnamed_enum$248 },
-		{ _field_char_block_index, "blend screen" },
-		{ _field_char_integer, "node count" },
-		{ _field_short_integer, "frame count" },
-		{ _field_byte_flags, "internal flags", &blofeld::halo2::pc64::unnamed_enum$249 },
-		{ _field_byte_flags, "production flags", &blofeld::halo2::pc64::unnamed_enum$250 },
-		{ _field_word_flags, "playback flags", &blofeld::halo2::pc64::unnamed_enum$251 },
-		{ _field_char_enum, "desired compression", &blofeld::halo2::pc64::unnamed_enum$252 },
-		{ _field_char_enum, "current compression", &blofeld::halo2::pc64::unnamed_enum$252 },
-		{ _field_real, "weight" },
-		{ _field_short_integer, "loop frame index" },
-		{ _field_short_integer, "max random start frame index" },
-		{ _field_short_block_index, "parent animation" },
-		{ _field_short_block_index, "next animation" },
-		{ _field_data, "animation data", &blofeld::halo2::pc64::animation_data_definition },
-		{ _field_struct, "data sizes", &blofeld::halo2::pc64::packed_data_sizes_struct_struct_definition },
-		{ _field_block, "frame events", &blofeld::halo2::pc64::animation_frame_event_block },
-		{ _field_block, "sound events", &blofeld::halo2::pc64::animation_sound_event_block },
-		{ _field_block, "effect events", &blofeld::halo2::pc64::animation_effect_event_block },
-		{ _field_block, "object-space parent nodes", &blofeld::halo2::pc64::object_space_node_data_block_v0_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		object_space_node_data_block_v0_struct_definition,
 		"object_space_node_data_block_v0",
 		"object_space_node_data_block_v0_struct_definition",
@@ -23585,129 +22879,6 @@ namespace pc64
 		{ _field_real_quaternion, "default rotation" },
 		{ _field_real_point_3d, "default translation" },
 		{ _field_real, "default scale" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		animation_pool_v3_struct_definition,
-		"animation_pool_v3",
-		"animation_pool_v3_struct_definition",
-		"s_model_animation_v3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string_id, "name" },
-		{ _field_long_integer, "node list checksum" },
-		{ _field_long_integer, "production checksum" },
-		{ _field_long_integer, "import_checksum" },
-		{ _field_char_enum, "type", &blofeld::halo2::pc64::unnamed_enum$247 },
-		{ _field_char_enum, "frame info type", &blofeld::halo2::pc64::unnamed_enum$248 },
-		{ _field_char_block_index, "blend screen" },
-		{ _field_char_integer, "node count" },
-		{ _field_short_integer, "frame count" },
-		{ _field_byte_flags, "internal flags", &blofeld::halo2::pc64::unnamed_enum$249 },
-		{ _field_byte_flags, "production flags", &blofeld::halo2::pc64::unnamed_enum$250 },
-		{ _field_word_flags, "playback flags", &blofeld::halo2::pc64::unnamed_enum$251 },
-		{ _field_char_enum, "desired compression", &blofeld::halo2::pc64::unnamed_enum$252 },
-		{ _field_char_enum, "current compression", &blofeld::halo2::pc64::unnamed_enum$252 },
-		{ _field_real, "weight" },
-		{ _field_long_integer, "value" },
-		{ _field_short_integer, "value" },
-		{ _field_short_integer, "value" },
-		{ _field_short_integer, "value" },
-		{ _field_short_integer, "loop frame index" },
-		{ _field_short_block_index, "parent animation" },
-		{ _field_short_block_index, "next animation" },
-		{ _field_data, "animation data", &blofeld::halo2::pc64::animation_data_definition },
-		{ _field_struct, "data sizes", &blofeld::halo2::pc64::packed_data_sizes_struct_struct_definition },
-		{ _field_block, "frame events", &blofeld::halo2::pc64::animation_frame_event_block },
-		{ _field_block, "sound events", &blofeld::halo2::pc64::animation_sound_event_block },
-		{ _field_block, "effect events", &blofeld::halo2::pc64::animation_effect_event_block },
-		{ _field_block, "object-space parent nodes", &blofeld::halo2::pc64::object_space_node_data_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		animation_pool_v4_struct_definition,
-		"animation_pool_v4",
-		"animation_pool_v4_struct_definition",
-		"s_model_animation_v4",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_string_id, "name" },
-		{ _field_long_integer, "node list checksum" },
-		{ _field_long_integer, "production checksum" },
-		{ _field_long_integer, "import_checksum" },
-		{ _field_char_enum, "type", &blofeld::halo2::pc64::unnamed_enum$247 },
-		{ _field_char_enum, "frame info type", &blofeld::halo2::pc64::unnamed_enum$248 },
-		{ _field_char_block_index, "blend screen" },
-		{ _field_char_integer, "node count" },
-		{ _field_short_integer, "frame count" },
-		{ _field_byte_flags, "internal flags", &blofeld::halo2::pc64::unnamed_enum$249 },
-		{ _field_byte_flags, "production flags", &blofeld::halo2::pc64::unnamed_enum$250 },
-		{ _field_word_flags, "playback flags", &blofeld::halo2::pc64::unnamed_enum$251 },
-		{ _field_char_enum, "desired compression", &blofeld::halo2::pc64::unnamed_enum$252 },
-		{ _field_char_enum, "current compression", &blofeld::halo2::pc64::unnamed_enum$252 },
-		{ _field_real, "weight" },
-		{ _field_long_integer, "parent graph index" },
-		{ _field_long_integer, "parent graph block index" },
-		{ _field_long_integer, "parent graph block offset" },
-		{ _field_short_integer, "parent graph starting point index" },
-		{ _field_short_integer, "loop frame index" },
-		{ _field_short_block_index, "parent animation" },
-		{ _field_short_block_index, "next animation" },
-		{ _field_data, "animation data", &blofeld::halo2::pc64::aligned_animation_data_definition },
-		{ _field_struct, "data sizes", &blofeld::halo2::pc64::packed_data_sizes_struct_struct_definition },
-		{ _field_block, "frame events", &blofeld::halo2::pc64::animation_frame_event_block },
-		{ _field_block, "sound events", &blofeld::halo2::pc64::animation_sound_event_block },
-		{ _field_block, "effect events", &blofeld::halo2::pc64::animation_effect_event_block },
-		{ _field_block, "object-space parent nodes", &blofeld::halo2::pc64::object_space_node_data_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		animation_resources_v0_struct_definition,
-		"animation_resources_v0",
-		"animation_resources_v0_struct_definition",
-		"s_c_animation_graph_resources_v0",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_EXPLANATION("GRAPH DATA", nullptr),
-		{ _field_tag_reference, "parent animation graph", &blofeld::halo2::pc64::model_animation_graph_group_reference$2 },
-		{ _field_block, "skeleton nodes", &blofeld::halo2::pc64::animation_graph_node_block },
-		FIELD_PAD("value", 4),
-		{ _field_block, "sound references", &blofeld::halo2::pc64::animation_graph_sound_reference_block },
-		{ _field_block, "blend screens", &blofeld::halo2::pc64::animation_blend_screen_block },
-		{ _field_block, "animations", &blofeld::halo2::pc64::animation_pool_block, _field_id_wide },
-		{ _field_word_flags, "animation graph flags", &blofeld::halo2::pc64::unnamed_enum$243 },
-		{ _field_short_integer, "animation codec pack" },
-		FIELD_PAD("value", 32),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		animation_resources_v1_struct_definition,
-		"animation_resources_v1",
-		"animation_resources_v1_struct_definition",
-		"s_c_animation_graph_resources_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_EXPLANATION("GRAPH DATA", nullptr),
-		{ _field_tag_reference, "parent animation graph", &blofeld::halo2::pc64::model_animation_graph_group_reference$2 },
-		{ _field_byte_flags, "inheritance flags", &blofeld::halo2::pc64::unnamed_enum$242 },
-		{ _field_byte_flags, "private flags", &blofeld::halo2::pc64::unnamed_enum$243 },
-		{ _field_short_integer, "animation codec pack" },
-		{ _field_block, "skeleton nodes", &blofeld::halo2::pc64::animation_graph_node_block },
-		{ _field_block, "sound references", &blofeld::halo2::pc64::animation_graph_sound_reference_block },
-		{ _field_block, "blend screens", &blofeld::halo2::pc64::animation_blend_screen_block },
-		{ _field_block, "animations", &blofeld::halo2::pc64::animation_pool_block, _field_id_wide },
 		{ _field_terminator }
 	};
 
@@ -24087,14 +23258,15 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		damage_effect_v2_struct_definition,
-		"damage_effect_v2",
-		"damage_effect_v2_struct_definition",
+		damage_effect_struct_definition,
+		"damage_effect",
+		"damage_effect_struct_definition",
 		"s_damage_effect_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 66 },
 		{ _field_real_bounds, "radius", nullptr, "world units" },
 		{ _field_real_fraction, "cutoff scale", nullptr, nullptr, "[0,1]" },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$257 },
@@ -24106,7 +23278,7 @@ namespace pc64
 		{ _field_real, "damage lower bound" },
 		{ _field_real_bounds, "damage upper bound" },
 		{ _field_angle, "dmg inner cone angle" },
-		{ _field_struct, "blah", &blofeld::halo2::pc64::damage_outer_cone_angle_v2_struct_definition },
+		{ _field_struct, "blah", &blofeld::halo2::pc64::damage_outer_cone_angle_struct_definition },
 		{ _field_real, "active camouflage damage", "how much more visible this damage makes a player who is active camouflaged", nullptr, "[0,1]" },
 		{ _field_real, "stun", "amount of stun added to damaged unit", nullptr, "[0,1]" },
 		{ _field_real, "maximum stun", "damaged unit's stun will never exceed this amount", nullptr, "[0,1]" },
@@ -24161,6 +23333,90 @@ namespace pc64
 		{ _field_real, "outward radius", nullptr, "world units" },
 		{ _field_real, "outward exponent" },
 		{ _field_useless_pad, "value" },
+		
+		{ _struct_version_mode_equal, 0, 81 },
+		{ _field_real_bounds, "radius", nullptr, "world units" },
+		{ _field_real_fraction, "cutoff scale", nullptr, nullptr, "[0,1]" },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$257 },
+		{ _field_real, "AI stun radius", nullptr, "world units" },
+		{ _field_real_bounds, "AI stun bounds", nullptr, "(0-1)" },
+		{ _field_useless_pad, "value" },
+		{ _field_short_enum, "type", &blofeld::halo2::pc64::unnamed_enum$262 },
+		{ _field_short_enum, "priority", &blofeld::halo2::pc64::unnamed_enum$263 },
+		{ _field_useless_pad, "value" },
+		{ _field_real, "duration", nullptr, "seconds" },
+		{ _field_short_enum, "fade function", &blofeld::halo2::pc64::unnamed_enum$264 },
+		FIELD_PAD("value", 2),
+		{ _field_useless_pad, "value" },
+		{ _field_real_fraction, "maximum intensity", nullptr, nullptr, "[0,1]" },
+		{ _field_useless_pad, "value" },
+		{ _field_real_argb_color, "color" },
+		{ _field_real_fraction, "frequency", nullptr, nullptr, "[0,1]" },
+		{ _field_real, "duration", nullptr, "seconds" },
+		{ _field_short_enum, "fade function", &blofeld::halo2::pc64::unnamed_enum$264 },
+		FIELD_PAD("value", 2),
+		{ _field_useless_pad, "value" },
+		{ _field_real_fraction, "frequency", nullptr, nullptr, "[0,1]" },
+		{ _field_real, "duration", nullptr, "seconds" },
+		{ _field_short_enum, "fade function", &blofeld::halo2::pc64::unnamed_enum$264 },
+		FIELD_PAD("value", 2),
+		{ _field_useless_pad, "value" },
+		{ _field_useless_pad, "value" },
+		{ _field_useless_pad, "value" },
+		{ _field_real, "duration", nullptr, "seconds" },
+		{ _field_short_enum, "fade function", &blofeld::halo2::pc64::unnamed_enum$264 },
+		FIELD_PAD("value", 2),
+		{ _field_angle, "rotation", nullptr, "degrees" },
+		{ _field_real, "pushback", nullptr, "world units" },
+		{ _field_real_bounds, "jitter", nullptr, "world units" },
+		{ _field_useless_pad, "value" },
+		{ _field_useless_pad, "value" },
+		{ _field_real, "duration", "the effect will last for this duration.", "seconds" },
+		{ _field_short_enum, "falloff function", "a function to envelope the effect's magnitude over time", &blofeld::halo2::pc64::unnamed_enum$264 },
+		FIELD_PAD("value", 2),
+		{ _field_real, "random translation", "random translation in all directions", "world units" },
+		{ _field_angle, "random rotation", "random rotation in all directions", "degrees" },
+		{ _field_useless_pad, "value" },
+		{ _field_short_enum, "wobble function", "a function to perturb the effect's behavior over time", &blofeld::halo2::pc64::unnamed_enum$173 },
+		FIELD_PAD("value", 2),
+		{ _field_real, "wobble function period", nullptr, "seconds" },
+		{ _field_real_fraction, "wobble weight", "a value of 0.0 signifies that the wobble function has no effect; a value of 1.0 signifies that the effect will not be felt when the wobble function's value is zero." },
+		{ _field_useless_pad, "value" },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_useless_pad, "value" },
+		{ _field_real, "forward velocity", nullptr, "world units per second" },
+		{ _field_real, "forward radius", nullptr, "world units" },
+		{ _field_real, "forward exponent" },
+		{ _field_useless_pad, "value" },
+		{ _field_real, "outward velocity", nullptr, "world units per second" },
+		{ _field_real, "outward radius", nullptr, "world units" },
+		{ _field_real, "outward exponent" },
+		{ _field_useless_pad, "value" },
+		FIELD_EXPLANATION("damage", nullptr),
+		{ _field_short_enum, "side effect", &blofeld::halo2::pc64::unnamed_enum$258 },
+		{ _field_short_enum, "category", &blofeld::halo2::pc64::unnamed_enum$259 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$260 },
+		{ _field_real, "AOE core radius", "if this is area of effect damage", "world units" },
+		{ _field_real, "damage lower bound" },
+		{ _field_real_bounds, "damage upper bound" },
+		{ _field_angle, "dmg inner cone angle" },
+		{ _field_struct, "blah", &blofeld::halo2::pc64::damage_outer_cone_angle_struct_definition },
+		{ _field_real, "active camouflage damage", "how much more visible this damage makes a player who is active camouflaged", nullptr, "[0,1]" },
+		{ _field_real, "stun", "amount of stun added to damaged unit", nullptr, "[0,1]" },
+		{ _field_real, "maximum stun", "damaged unit's stun will never exceed this amount", nullptr, "[0,1]" },
+		{ _field_real, "stun time", "duration of stun due to this damage", "seconds" },
+		{ _field_useless_pad, "value" },
+		{ _field_real, "instantaneous acceleration", nullptr, nullptr, "[0,+inf]" },
+		{ _field_useless_pad, "value" },
+		{ _field_useless_pad, "value" },
+		{ _field_real, "value" },
+		{ _field_real, "value" },
+		{ _field_real, "value" },
+		{ _field_useless_pad, "value" },
+		{ _field_string_id, "general_damage" },
+		{ _field_string_id, "specific_damage" },
+		
 		{ _field_terminator }
 	};
 
@@ -24232,28 +23488,40 @@ namespace pc64
 	};
 	STRING_LIST(unnamed_enum$264, unnamed_enum$264_strings, _countof(unnamed_enum$264_strings));
 
+	STRINGS(unnamed_enum$262)
+	{
+		"none",
+		"lighten",
+		"darken",
+		"max",
+		"min",
+		"invert",
+		"tint"
+	};
+	STRING_LIST(unnamed_enum$262, unnamed_enum$262_strings, _countof(unnamed_enum$262_strings));
+
+	STRINGS(unnamed_enum$263)
+	{
+		"low",
+		"medium",
+		"high"
+	};
+	STRING_LIST(unnamed_enum$263, unnamed_enum$263_strings, _countof(unnamed_enum$263_strings));
+
 	TAG_STRUCT(
-		damage_outer_cone_angle_v2_struct_definition,
-		"damage_outer_cone_angle_v2",
-		"damage_outer_cone_angle_v2_struct_definition",
+		damage_outer_cone_angle_struct_definition,
+		"damage_outer_cone_angle",
+		"damage_outer_cone_angle_struct_definition",
 		"s_real$3",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 1 },
 		{ _field_angle, "dmg outer cone angle" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		damage_outer_cone_angle_v1_struct_definition,
-		"damage_outer_cone_angle_v1",
-		"damage_outer_cone_angle_v1_struct_definition",
-		"s_damage_outer_cone_angle_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
@@ -24308,26 +23576,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	STRINGS(unnamed_enum$262)
-	{
-		"none",
-		"lighten",
-		"darken",
-		"max",
-		"min",
-		"invert",
-		"tint"
-	};
-	STRING_LIST(unnamed_enum$262, unnamed_enum$262_strings, _countof(unnamed_enum$262_strings));
-
-	STRINGS(unnamed_enum$263)
-	{
-		"low",
-		"medium",
-		"high"
-	};
-	STRING_LIST(unnamed_enum$263, unnamed_enum$263_strings, _countof(unnamed_enum$263_strings));
-
 	TAG_STRUCT(
 		vibration_definition_struct_struct_definition,
 		"vibration_definition_struct",
@@ -24356,7 +23604,7 @@ namespace pc64
 	{
 		{ _field_real, "duration", nullptr, "seconds" },
 		FIELD_CUSTOM("whore function", _field_id_function_editor),
-		{ _field_struct, "dirty whore", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "dirty whore", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_useless_pad, "value" },
 		{ _field_terminator }
 	};
@@ -24373,100 +23621,7 @@ namespace pc64
 		{ _field_string_id, "effect name" },
 		{ _field_real, "duration", nullptr, "seconds" },
 		FIELD_CUSTOM("effect scale function", _field_id_function_editor),
-		{ _field_struct, "effect scale function", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		damage_effect_v1_struct_definition,
-		"damage_effect_v1",
-		"damage_effect_v1_struct_definition",
-		"s_damage_effect_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real_bounds, "radius", nullptr, "world units" },
-		{ _field_real_fraction, "cutoff scale", nullptr, nullptr, "[0,1]" },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$257 },
-		{ _field_real, "AI stun radius", nullptr, "world units" },
-		{ _field_real_bounds, "AI stun bounds", nullptr, "(0-1)" },
-		{ _field_useless_pad, "value" },
-		{ _field_short_enum, "type", &blofeld::halo2::pc64::unnamed_enum$262 },
-		{ _field_short_enum, "priority", &blofeld::halo2::pc64::unnamed_enum$263 },
-		{ _field_useless_pad, "value" },
-		{ _field_real, "duration", nullptr, "seconds" },
-		{ _field_short_enum, "fade function", &blofeld::halo2::pc64::unnamed_enum$264 },
-		FIELD_PAD("value", 2),
-		{ _field_useless_pad, "value" },
-		{ _field_real_fraction, "maximum intensity", nullptr, nullptr, "[0,1]" },
-		{ _field_useless_pad, "value" },
-		{ _field_real_argb_color, "color" },
-		{ _field_real_fraction, "frequency", nullptr, nullptr, "[0,1]" },
-		{ _field_real, "duration", nullptr, "seconds" },
-		{ _field_short_enum, "fade function", &blofeld::halo2::pc64::unnamed_enum$264 },
-		FIELD_PAD("value", 2),
-		{ _field_useless_pad, "value" },
-		{ _field_real_fraction, "frequency", nullptr, nullptr, "[0,1]" },
-		{ _field_real, "duration", nullptr, "seconds" },
-		{ _field_short_enum, "fade function", &blofeld::halo2::pc64::unnamed_enum$264 },
-		FIELD_PAD("value", 2),
-		{ _field_useless_pad, "value" },
-		{ _field_useless_pad, "value" },
-		{ _field_useless_pad, "value" },
-		{ _field_real, "duration", nullptr, "seconds" },
-		{ _field_short_enum, "fade function", &blofeld::halo2::pc64::unnamed_enum$264 },
-		FIELD_PAD("value", 2),
-		{ _field_angle, "rotation", nullptr, "degrees" },
-		{ _field_real, "pushback", nullptr, "world units" },
-		{ _field_real_bounds, "jitter", nullptr, "world units" },
-		{ _field_useless_pad, "value" },
-		{ _field_useless_pad, "value" },
-		{ _field_real, "duration", "the effect will last for this duration.", "seconds" },
-		{ _field_short_enum, "falloff function", "a function to envelope the effect's magnitude over time", &blofeld::halo2::pc64::unnamed_enum$264 },
-		FIELD_PAD("value", 2),
-		{ _field_real, "random translation", "random translation in all directions", "world units" },
-		{ _field_angle, "random rotation", "random rotation in all directions", "degrees" },
-		{ _field_useless_pad, "value" },
-		{ _field_short_enum, "wobble function", "a function to perturb the effect's behavior over time", &blofeld::halo2::pc64::unnamed_enum$173 },
-		FIELD_PAD("value", 2),
-		{ _field_real, "wobble function period", nullptr, "seconds" },
-		{ _field_real_fraction, "wobble weight", "a value of 0.0 signifies that the wobble function has no effect; a value of 1.0 signifies that the effect will not be felt when the wobble function's value is zero." },
-		{ _field_useless_pad, "value" },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_useless_pad, "value" },
-		{ _field_real, "forward velocity", nullptr, "world units per second" },
-		{ _field_real, "forward radius", nullptr, "world units" },
-		{ _field_real, "forward exponent" },
-		{ _field_useless_pad, "value" },
-		{ _field_real, "outward velocity", nullptr, "world units per second" },
-		{ _field_real, "outward radius", nullptr, "world units" },
-		{ _field_real, "outward exponent" },
-		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("damage", nullptr),
-		{ _field_short_enum, "side effect", &blofeld::halo2::pc64::unnamed_enum$258 },
-		{ _field_short_enum, "category", &blofeld::halo2::pc64::unnamed_enum$259 },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$260 },
-		{ _field_real, "AOE core radius", "if this is area of effect damage", "world units" },
-		{ _field_real, "damage lower bound" },
-		{ _field_real_bounds, "damage upper bound" },
-		{ _field_angle, "dmg inner cone angle" },
-		{ _field_struct, "blah", &blofeld::halo2::pc64::damage_outer_cone_angle_v2_struct_definition },
-		{ _field_real, "active camouflage damage", "how much more visible this damage makes a player who is active camouflaged", nullptr, "[0,1]" },
-		{ _field_real, "stun", "amount of stun added to damaged unit", nullptr, "[0,1]" },
-		{ _field_real, "maximum stun", "damaged unit's stun will never exceed this amount", nullptr, "[0,1]" },
-		{ _field_real, "stun time", "duration of stun due to this damage", "seconds" },
-		{ _field_useless_pad, "value" },
-		{ _field_real, "instantaneous acceleration", nullptr, nullptr, "[0,+inf]" },
-		{ _field_useless_pad, "value" },
-		{ _field_useless_pad, "value" },
-		{ _field_real, "value" },
-		{ _field_real, "value" },
-		{ _field_real, "value" },
-		{ _field_useless_pad, "value" },
-		{ _field_string_id, "general_damage" },
-		{ _field_string_id, "specific_damage" },
+		{ _field_struct, "effect scale function", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -24915,7 +24070,7 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_CUSTOM("function", _field_id_function_editor),
-		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -24929,7 +24084,7 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_CUSTOM("function", _field_id_function_editor),
-		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -24943,21 +24098,22 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_CUSTOM("dx", _field_id_function_editor),
-		{ _field_struct, "dx", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "dx", &blofeld::halo2::pc64::function_definition_struct_definition },
 		FIELD_CUSTOM("dy", _field_id_function_editor),
-		{ _field_struct, "dy", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "dy", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(
-		looping_sound_v4_struct_definition,
-		"looping_sound_v4",
-		"looping_sound_v4_struct_definition",
+		looping_sound_struct_definition,
+		"looping_sound",
+		"looping_sound_struct_definition",
 		"s_looping_sound_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 3, 8 },
 		{ _field_tag_reference, "remastered looping sound", &blofeld::halo2::pc64::sound_looping_group_reference },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$281 },
 		{ _field_real, "marty's music time", nullptr, "seconds" },
@@ -24966,6 +24122,38 @@ namespace pc64
 		{ _field_tag_reference, "value", &blofeld::halo2::pc64::_reference },
 		{ _field_block, "tracks", "tracks play in parallel and loop continuously for the duration of the looping sound.", &blofeld::halo2::pc64::looping_sound_track_block },
 		{ _field_block, "detail sounds", "detail sounds play at random throughout the duration of the looping sound.", &blofeld::halo2::pc64::looping_sound_detail_block },
+		
+		{ _struct_version_mode_equal, 2, 7 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$281 },
+		{ _field_real, "marty's music time", nullptr, "seconds" },
+		{ _field_real, "value" },
+		FIELD_PAD("value", 8),
+		{ _field_tag_reference, "value", &blofeld::halo2::pc64::_reference },
+		{ _field_block, "tracks", "tracks play in parallel and loop continuously for the duration of the looping sound.", &blofeld::halo2::pc64::looping_sound_track_block },
+		{ _field_block, "detail sounds", "detail sounds play at random throughout the duration of the looping sound.", &blofeld::halo2::pc64::looping_sound_detail_block },
+		
+		{ _struct_version_mode_equal, 1, 7 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$281 },
+		{ _field_real, "marty's music time", nullptr, "seconds" },
+		{ _field_real, "value" },
+		FIELD_PAD("value", 8),
+		{ _field_tag_reference, "value", &blofeld::halo2::pc64::_reference },
+		{ _field_block, "tracks", "tracks play in parallel and loop continuously for the duration of the looping sound.", &blofeld::halo2::pc64::looping_sound_track_block },
+		{ _field_block, "detail sounds", "detail sounds play at random throughout the duration of the looping sound.", &blofeld::halo2::pc64::looping_sound_detail_block },
+		
+		{ _struct_version_mode_equal, 0, 11 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$281 },
+		FIELD_EXPLANATION("when scale is ZERO", "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the value specified below. (0 values are ignored.)"),
+		{ _field_real, "detail sound period" },
+		FIELD_PAD("value", 8),
+		FIELD_EXPLANATION("when scale is ONE", "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the value specified below. (0 values are ignored.)"),
+		{ _field_real, "detail sound period" },
+		FIELD_PAD("value", 8),
+		FIELD_PAD("value", 16),
+		{ _field_tag_reference, "continuous damage effect", &blofeld::halo2::pc64::_reference },
+		{ _field_block, "tracks", "tracks play in parallel and loop continuously for the duration of the looping sound.", &blofeld::halo2::pc64::looping_sound_track_block },
+		{ _field_block, "detail sounds", "detail sounds play at random throughout the duration of the looping sound.", &blofeld::halo2::pc64::looping_sound_detail_block },
+		
 		{ _field_terminator }
 	};
 
@@ -24987,14 +24175,15 @@ namespace pc64
 	TAG_REFERENCE(_reference, INVALID_TAG);
 
 	TAG_STRUCT(
-		looping_sound_track_v2_struct_definition,
-		"looping_sound_track_v2",
-		"looping_sound_track_v2_struct_definition",
+		looping_sound_track_struct_definition,
+		"looping_sound_track",
+		"looping_sound_track_struct_definition",
 		"s_looping_sound_track",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 17 },
 		{ _field_string_id, "name" },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$282 },
 		{ _field_real, "gain", nullptr, "dB", _field_id_decibels },
@@ -25012,6 +24201,20 @@ namespace pc64
 		{ _field_tag_reference, "alt trans out", &blofeld::halo2::pc64::sound_group_reference },
 		{ _field_real, "alt crossfade duration", nullptr, "seconds" },
 		{ _field_real, "alt fade out duration", nullptr, "seconds" },
+		
+		{ _struct_version_mode_equal, 0, 11 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$282 },
+		{ _field_real, "gain", nullptr, "dB" },
+		{ _field_real, "fade in duration", nullptr, "seconds" },
+		{ _field_real, "fade out duration", nullptr, "seconds" },
+		FIELD_PAD("value", 32),
+		{ _field_tag_reference, "start", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_tag_reference, "loop", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_tag_reference, "end", &blofeld::halo2::pc64::sound_group_reference },
+		FIELD_PAD("value", 32),
+		{ _field_tag_reference, "alternate loop", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_tag_reference, "alternate end", &blofeld::halo2::pc64::sound_group_reference },
+		
 		{ _field_terminator }
 	};
 
@@ -25035,37 +24238,15 @@ namespace pc64
 	STRING_LIST(unnamed_enum$283, unnamed_enum$283_strings, _countof(unnamed_enum$283_strings));
 
 	TAG_STRUCT(
-		looping_sound_track_v1_struct_definition,
-		"looping_sound_track_v1",
-		"looping_sound_track_v1_struct_definition",
-		"s_looping_sound_track_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$282 },
-		{ _field_real, "gain", nullptr, "dB" },
-		{ _field_real, "fade in duration", nullptr, "seconds" },
-		{ _field_real, "fade out duration", nullptr, "seconds" },
-		FIELD_PAD("value", 32),
-		{ _field_tag_reference, "start", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_tag_reference, "loop", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_tag_reference, "end", &blofeld::halo2::pc64::sound_group_reference },
-		FIELD_PAD("value", 32),
-		{ _field_tag_reference, "alternate loop", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_tag_reference, "alternate end", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		looping_sound_detail_v2_struct_definition,
-		"looping_sound_detail_v2",
-		"looping_sound_detail_v2_struct_definition",
+		looping_sound_detail_struct_definition,
+		"looping_sound_detail",
+		"looping_sound_detail_struct_definition",
 		"s_looping_sound_detail",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 10 },
 		{ _field_string_id, "name" },
 		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference },
 		FIELD_EXPLANATION("frequency of play", nullptr),
@@ -25076,26 +24257,8 @@ namespace pc64
 		{ _field_angle_bounds, "yaw bounds", "the sound's position along the horizon will be randomly selected from this range.", "degrees" },
 		{ _field_angle_bounds, "pitch bounds", "the sound's position above (positive values) or below (negative values) the horizon will be randomly selected from this range.", "degrees" },
 		{ _field_real_bounds, "distance bounds", "the sound's distance (from its spatialized looping sound or from the listener if the looping sound is stereo) will be randomly selected from this range.", "world units" },
-		{ _field_terminator }
-	};
-
-	STRINGS(unnamed_enum$284)
-	{
-		"don\'t play with alternate",
-		"don\'t play without alternate",
-		"start immediately with loop"
-	};
-	STRING_LIST(unnamed_enum$284, unnamed_enum$284_strings, _countof(unnamed_enum$284_strings));
-
-	TAG_STRUCT(
-		looping_sound_detail_v1_struct_definition,
-		"looping_sound_detail_v1",
-		"looping_sound_detail_v1_struct_definition",
-		"s_looping_sound_detail_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 10 },
 		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference },
 		FIELD_EXPLANATION("frequency of play", nullptr),
 		{ _field_real_bounds, "random period bounds", "the time between successive playings of this sound will be randomly selected from this range.", "seconds" },
@@ -25106,69 +24269,17 @@ namespace pc64
 		{ _field_angle_bounds, "yaw bounds", "the sound's position along the horizon will be randomly selected from this range.", "degrees" },
 		{ _field_angle_bounds, "pitch bounds", "the sound's position above (positive values) or below (negative values) the horizon will be randomly selected from this range.", "degrees" },
 		{ _field_real_bounds, "distance bounds", "the sound's distance (from its spatialized looping sound or from the listener if the looping sound is stereo) will be randomly selected from this range.", "world units" },
+		
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(
-		looping_sound_v1_struct_definition,
-		"looping_sound_v1",
-		"looping_sound_v1_struct_definition",
-		"s_looping_sound_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
+	STRINGS(unnamed_enum$284)
 	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$281 },
-		FIELD_EXPLANATION("when scale is ZERO", "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the value specified below. (0 values are ignored.)"),
-		{ _field_real, "detail sound period" },
-		FIELD_PAD("value", 8),
-		FIELD_EXPLANATION("when scale is ONE", "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the value specified below. (0 values are ignored.)"),
-		{ _field_real, "detail sound period" },
-		FIELD_PAD("value", 8),
-		FIELD_PAD("value", 16),
-		{ _field_tag_reference, "continuous damage effect", &blofeld::halo2::pc64::_reference },
-		{ _field_block, "tracks", "tracks play in parallel and loop continuously for the duration of the looping sound.", &blofeld::halo2::pc64::looping_sound_track_block },
-		{ _field_block, "detail sounds", "detail sounds play at random throughout the duration of the looping sound.", &blofeld::halo2::pc64::looping_sound_detail_block },
-		{ _field_terminator }
+		"don\'t play with alternate",
+		"don\'t play without alternate",
+		"start immediately with loop"
 	};
-
-	TAG_STRUCT(
-		looping_sound_v2_struct_definition,
-		"looping_sound_v2",
-		"looping_sound_v2_struct_definition",
-		"s_looping_sound_definition_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$281 },
-		{ _field_real, "marty's music time", nullptr, "seconds" },
-		{ _field_real, "value" },
-		FIELD_PAD("value", 8),
-		{ _field_tag_reference, "value", &blofeld::halo2::pc64::_reference },
-		{ _field_block, "tracks", "tracks play in parallel and loop continuously for the duration of the looping sound.", &blofeld::halo2::pc64::looping_sound_track_block },
-		{ _field_block, "detail sounds", "detail sounds play at random throughout the duration of the looping sound.", &blofeld::halo2::pc64::looping_sound_detail_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		looping_sound_v2_struct_definition$2,
-		"looping_sound_v2",
-		"looping_sound_v2_struct_definition",
-		"s_looping_sound_definition_v2$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$281 },
-		{ _field_real, "marty's music time", nullptr, "seconds" },
-		{ _field_real, "value" },
-		FIELD_PAD("value", 8),
-		{ _field_tag_reference, "value", &blofeld::halo2::pc64::_reference },
-		{ _field_block, "tracks", "tracks play in parallel and loop continuously for the duration of the looping sound.", &blofeld::halo2::pc64::looping_sound_track_block },
-		{ _field_block, "detail sounds", "detail sounds play at random throughout the duration of the looping sound.", &blofeld::halo2::pc64::looping_sound_detail_block },
-		{ _field_terminator }
-	};
+	STRING_LIST(unnamed_enum$284, unnamed_enum$284_strings, _countof(unnamed_enum$284_strings));
 
 	TAG_STRUCT(
 		scenario_structure_lightmap_block_struct_definition,
@@ -25373,6 +24484,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 9 },
 		{ _field_block, "parts", &blofeld::halo2::pc64::global_geometry_part_block_new_block },
 		{ _field_block, "subparts", &blofeld::halo2::pc64::global_subparts_block },
 		{ _field_block, "visibility bounds", &blofeld::halo2::pc64::global_visibility_bounds_block },
@@ -25382,6 +24494,16 @@ namespace pc64
 		{ _field_block, "mopp reorder table", &blofeld::halo2::pc64::global_geometry_section_strip_index_block },
 		{ _field_block, "vertex buffers", &blofeld::halo2::pc64::global_geometry_section_vertex_buffer_block },
 		{ _field_pointer, "index_buffer", _field_id_zero_data },
+		
+		{ _struct_version_mode_equal, 0, 7 },
+		{ _field_block, "raw vertices", &blofeld::halo2::pc64::global_geometry_section_raw_vertex_block },
+		{ _field_array, "old vertex buffers", &blofeld::halo2::pc64::unnamed_array$29 },
+		{ _field_vertex_buffer, "transparent position" },
+		{ _field_block, "vertex buffers", &blofeld::halo2::pc64::global_geometry_section_vertex_buffer_block },
+		{ _field_block, "strip indices", &blofeld::halo2::pc64::global_geometry_section_strip_index_block },
+		{ _field_block, "parts", &blofeld::halo2::pc64::global_geometry_part_block },
+		FIELD_PAD("value", 96),
+		
 		{ _field_terminator }
 	};
 
@@ -25520,25 +24642,6 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_vertex_buffer, "vertex buffer" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		geometry_section_fieldset_old_struct_definition,
-		"geometry_section_fieldset_old",
-		"geometry_section_fieldset_old_struct_definition",
-		"s_geometry_section_old",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_block, "raw vertices", &blofeld::halo2::pc64::global_geometry_section_raw_vertex_block },
-		{ _field_array, "old vertex buffers", &blofeld::halo2::pc64::unnamed_array$29 },
-		{ _field_vertex_buffer, "transparent position" },
-		{ _field_block, "vertex buffers", &blofeld::halo2::pc64::global_geometry_section_vertex_buffer_block },
-		{ _field_block, "strip indices", &blofeld::halo2::pc64::global_geometry_section_strip_index_block },
-		{ _field_block, "parts", &blofeld::halo2::pc64::global_geometry_part_block },
-		FIELD_PAD("value", 96),
 		{ _field_terminator }
 	};
 
@@ -25975,40 +25078,30 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		sound_globals_v3_struct_definition,
-		"sound_globals_v3",
-		"sound_globals_v3_struct_definition",
+		sound_globals_struct_definition,
+		"sound_globals",
+		"sound_globals_struct_definition",
 		"s_sound_globals_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 6 },
 		{ _field_tag_reference, "remastered sound classes", &blofeld::halo2::pc64::sound_classes_group_reference },
 		{ _field_tag_reference, "legacy sound classes", &blofeld::halo2::pc64::sound_classes_group_reference },
 		{ _field_tag_reference, "sound effects", &blofeld::halo2::pc64::sound_effect_collection_group_reference },
 		{ _field_tag_reference, "sound mix", &blofeld::halo2::pc64::sound_mix_group_reference },
 		{ _field_tag_reference, "sound combat dialogue constants", &blofeld::halo2::pc64::sound_dialogue_constants_group_reference },
 		{ _field_long_integer, "value" },
-		{ _field_terminator }
-	};
-
-	TAG_REFERENCE(sound_classes_group_reference, SOUND_CLASSES_TAG);
-
-	TAG_REFERENCE(sound_effect_collection_group_reference, SOUND_EFFECT_COLLECTION_TAG);
-
-	TAG_REFERENCE(sound_mix_group_reference, SOUND_MIX_TAG);
-
-	TAG_REFERENCE(sound_dialogue_constants_group_reference, SOUND_DIALOGUE_CONSTANTS_TAG);
-
-	TAG_STRUCT(
-		sound_globals_v1_struct_definition,
-		"sound_globals_v1",
-		"sound_globals_v1_struct_definition",
-		"s_sound_globals_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 1, 5 },
+		{ _field_tag_reference, "sound classes", &blofeld::halo2::pc64::sound_classes_group_reference },
+		{ _field_tag_reference, "sound effects", &blofeld::halo2::pc64::sound_effect_collection_group_reference },
+		{ _field_tag_reference, "sound mix", &blofeld::halo2::pc64::sound_mix_group_reference },
+		{ _field_tag_reference, "sound combat dialogue constants", &blofeld::halo2::pc64::sound_dialogue_constants_group_reference },
+		{ _field_long_integer, "value" },
+		
+		{ _struct_version_mode_equal, 0, 17 },
 		{ _field_tag_reference, "sound classes", &blofeld::halo2::pc64::sound_classes_group_reference },
 		{ _field_tag_reference, "sound effects", &blofeld::halo2::pc64::sound_effect_collection_group_reference },
 		FIELD_EXPLANATION("first person left side mix", "for first person sounds to the left of you"),
@@ -26026,25 +25119,17 @@ namespace pc64
 		FIELD_EXPLANATION("ambient stereo mix", nullptr),
 		{ _field_real, "front speaker gain", nullptr, "dB" },
 		{ _field_real, "rear speaker gain", nullptr, "dB" },
+		
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(
-		sound_globals_v2_struct_definition,
-		"sound_globals_v2",
-		"sound_globals_v2_struct_definition",
-		"s_sound_globals_definition_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_tag_reference, "sound classes", &blofeld::halo2::pc64::sound_classes_group_reference },
-		{ _field_tag_reference, "sound effects", &blofeld::halo2::pc64::sound_effect_collection_group_reference },
-		{ _field_tag_reference, "sound mix", &blofeld::halo2::pc64::sound_mix_group_reference },
-		{ _field_tag_reference, "sound combat dialogue constants", &blofeld::halo2::pc64::sound_dialogue_constants_group_reference },
-		{ _field_long_integer, "value" },
-		{ _field_terminator }
-	};
+	TAG_REFERENCE(sound_classes_group_reference, SOUND_CLASSES_TAG);
+
+	TAG_REFERENCE(sound_effect_collection_group_reference, SOUND_EFFECT_COLLECTION_TAG);
+
+	TAG_REFERENCE(sound_mix_group_reference, SOUND_MIX_TAG);
+
+	TAG_REFERENCE(sound_dialogue_constants_group_reference, SOUND_DIALOGUE_CONSTANTS_TAG);
 
 	TAG_STRUCT(
 		ai_globals_block_struct_definition,
@@ -26637,7 +25722,7 @@ namespace pc64
 		{ _field_word_flags, "sound flags", &blofeld::halo2::pc64::unnamed_enum$307 },
 		FIELD_PAD("value", 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_v2_struct_definition },
+		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_struct_definition },
 		FIELD_PAD("value", 4),
 		FIELD_PAD("value", 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::pc64::sound_response_definition_block },
@@ -26731,14 +25816,15 @@ namespace pc64
 	STRING_LIST(unnamed_enum$307, unnamed_enum$307_strings, _countof(unnamed_enum$307_strings));
 
 	TAG_STRUCT(
-		sound_response_extra_sounds_v2_struct_definition,
-		"sound_response_extra_sounds_v2",
-		"sound_response_extra_sounds_v2_struct_definition",
+		sound_response_extra_sounds_struct_definition,
+		"sound_response_extra_sounds",
+		"sound_response_extra_sounds_struct_definition",
 		"s_tag_reference$5",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 8 },
 		{ _field_tag_reference, "japanese sound", &blofeld::halo2::pc64::sound_group_reference },
 		{ _field_tag_reference, "german sound", &blofeld::halo2::pc64::sound_group_reference },
 		{ _field_tag_reference, "french sound", &blofeld::halo2::pc64::sound_group_reference },
@@ -26747,18 +25833,9 @@ namespace pc64
 		{ _field_tag_reference, "korean sound", &blofeld::halo2::pc64::sound_group_reference },
 		{ _field_tag_reference, "chinese sound", &blofeld::halo2::pc64::sound_group_reference },
 		{ _field_tag_reference, "portuguese sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		sound_response_extra_sounds_v1_struct_definition,
-		"sound_response_extra_sounds_v1",
-		"sound_response_extra_sounds_v1_struct_definition",
-		"s_sound_response_extra_sounds_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
@@ -26774,7 +25851,7 @@ namespace pc64
 		{ _field_word_flags, "sound flags", &blofeld::halo2::pc64::unnamed_enum$307 },
 		FIELD_PAD("value", 2),
 		{ _field_tag_reference, "english sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_v2_struct_definition },
+		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_struct_definition },
 		{ _field_real, "probability" },
 		{ _field_terminator }
 	};
@@ -26805,7 +25882,7 @@ namespace pc64
 		{ _field_word_flags, "sound flags", &blofeld::halo2::pc64::unnamed_enum$307 },
 		FIELD_PAD("value", 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_v2_struct_definition },
+		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_struct_definition },
 		FIELD_PAD("value", 4),
 		FIELD_PAD("value", 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::pc64::sound_response_definition_block },
@@ -26845,7 +25922,7 @@ namespace pc64
 		{ _field_word_flags, "sound flags", &blofeld::halo2::pc64::unnamed_enum$307 },
 		FIELD_PAD("value", 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_v2_struct_definition },
+		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_struct_definition },
 		FIELD_PAD("value", 4),
 		FIELD_PAD("value", 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::pc64::sound_response_definition_block },
@@ -26897,7 +25974,7 @@ namespace pc64
 		{ _field_word_flags, "sound flags", &blofeld::halo2::pc64::unnamed_enum$307 },
 		FIELD_PAD("value", 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_v2_struct_definition },
+		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_struct_definition },
 		FIELD_PAD("value", 4),
 		FIELD_PAD("value", 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::pc64::sound_response_definition_block },
@@ -26941,7 +26018,7 @@ namespace pc64
 		{ _field_word_flags, "sound flags", &blofeld::halo2::pc64::unnamed_enum$307 },
 		FIELD_PAD("value", 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_v2_struct_definition },
+		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_struct_definition },
 		FIELD_PAD("value", 4),
 		FIELD_PAD("value", 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::pc64::sound_response_definition_block },
@@ -27126,22 +26203,14 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 4 },
 		FIELD_PAD("value", 4),
 		{ _field_real, "friction" },
 		{ _field_real_fraction, "restitution" },
 		{ _field_real, "density", nullptr, "kg/m^3" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		material_physics_properties_v1_struct_definition,
-		"material_physics_properties_v1",
-		"material_physics_properties_v1_struct_definition",
-		"s_material_physics_properties_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
@@ -27767,11 +26836,32 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 5 },
 		{ _field_struct, "section", &blofeld::halo2::pc64::geometry_section_fieldset_new_struct_definition },
 		{ _field_struct, "point data", &blofeld::halo2::pc64::global_geometry_point_data_struct_struct_definition },
 		{ _field_block, "node map", &blofeld::halo2::pc64::render_model_node_map_block },
 		FIELD_PAD("value", 4),
 		FIELD_PAD("value", 4),
+		
+		{ _struct_version_mode_equal, 0, 17 },
+		{ _field_struct, "section", &blofeld::halo2::pc64::geometry_section_fieldset_new_struct_definition },
+		{ _field_struct, "point data", &blofeld::halo2::pc64::global_geometry_point_data_struct_struct_definition },
+		{ _field_block, "node map", &blofeld::halo2::pc64::render_model_node_map_block },
+		FIELD_EXPLANATION("ISQ INFO", nullptr),
+		{ _field_struct, "isq info", &blofeld::halo2::pc64::global_geometry_isq_info_struct_struct_definition },
+		{ _field_block, "forward shared edges", &blofeld::halo2::pc64::render_model_forward_shared_edge_block },
+		{ _field_block, "forward shared edge groups", &blofeld::halo2::pc64::render_model_shared_edge_group_block },
+		{ _field_block, "backward shared edges", &blofeld::halo2::pc64::render_model_backward_shared_edge_block },
+		{ _field_block, "backward shared edge groups", &blofeld::halo2::pc64::render_model_shared_edge_group_block },
+		FIELD_EXPLANATION("DSQ INFO", nullptr),
+		{ _field_block, "raw vertices", &blofeld::halo2::pc64::render_model_dsq_raw_vertex_block },
+		{ _field_block, "strip indices", &blofeld::halo2::pc64::render_model_dsq_strip_index_block },
+		{ _field_block, "silhouette quads", &blofeld::halo2::pc64::render_model_dsq_silhouette_quad_block },
+		{ _field_short_integer, "Carmack-silhouette quad count" },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 4),
+		FIELD_PAD("value", 4),
+		
 		{ _field_terminator }
 	};
 
@@ -27847,35 +26937,6 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_char_integer, "node index" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		render_model_section_data_tag_field_old_struct_definition,
-		"render_model_section_data_tag_field_old",
-		"render_model_section_data_tag_field_old_struct_definition",
-		"s_render_model_section_data_old",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_struct, "section", &blofeld::halo2::pc64::geometry_section_fieldset_new_struct_definition },
-		{ _field_struct, "point data", &blofeld::halo2::pc64::global_geometry_point_data_struct_struct_definition },
-		{ _field_block, "node map", &blofeld::halo2::pc64::render_model_node_map_block },
-		FIELD_EXPLANATION("ISQ INFO", nullptr),
-		{ _field_struct, "isq info", &blofeld::halo2::pc64::global_geometry_isq_info_struct_struct_definition },
-		{ _field_block, "forward shared edges", &blofeld::halo2::pc64::render_model_forward_shared_edge_block },
-		{ _field_block, "forward shared edge groups", &blofeld::halo2::pc64::render_model_shared_edge_group_block },
-		{ _field_block, "backward shared edges", &blofeld::halo2::pc64::render_model_backward_shared_edge_block },
-		{ _field_block, "backward shared edge groups", &blofeld::halo2::pc64::render_model_shared_edge_group_block },
-		FIELD_EXPLANATION("DSQ INFO", nullptr),
-		{ _field_block, "raw vertices", &blofeld::halo2::pc64::render_model_dsq_raw_vertex_block },
-		{ _field_block, "strip indices", &blofeld::halo2::pc64::render_model_dsq_strip_index_block },
-		{ _field_block, "silhouette quads", &blofeld::halo2::pc64::render_model_dsq_silhouette_quad_block },
-		{ _field_short_integer, "Carmack-silhouette quad count" },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 4),
-		FIELD_PAD("value", 4),
 		{ _field_terminator }
 	};
 
@@ -28442,14 +27503,15 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		multiplayer_runtime_global_v2_struct_definition,
-		"multiplayer_runtime_global_v2",
-		"multiplayer_runtime_global_v2_struct_definition",
+		multiplayer_runtime_global_struct_definition,
+		"multiplayer_runtime_global",
+		"multiplayer_runtime_global_struct_definition",
 		"s_multiplayer_runtime_globals_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 111 },
 		{ _field_tag_reference, "flag", &blofeld::halo2::pc64::item_group_reference },
 		{ _field_tag_reference, "ball", &blofeld::halo2::pc64::item_group_reference },
 		{ _field_tag_reference, "unit", &blofeld::halo2::pc64::unit_group_reference$5 },
@@ -28465,7 +27527,7 @@ namespace pc64
 		{ _field_tag_reference, "value", &blofeld::halo2::pc64::_reference$4 },
 		{ _field_block, "weapons", &blofeld::halo2::pc64::weapons_block },
 		{ _field_block, "vehicles", &blofeld::halo2::pc64::vehicles_block$2 },
-		{ _field_struct, "arr", &blofeld::halo2::pc64::grenade_and_powerup_v2_struct_definition },
+		{ _field_struct, "arr", &blofeld::halo2::pc64::grenade_and_powerup_struct_definition },
 		{ _field_tag_reference, "in game text", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
 		{ _field_block, "sounds", &blofeld::halo2::pc64::sounds_block$2 },
 		{ _field_block, "general events", &blofeld::halo2::pc64::game_engine_general_event_block },
@@ -28561,6 +27623,84 @@ namespace pc64
 		{ _field_tag_reference, "scoreboard emblem bitmap", &blofeld::halo2::pc64::bitmap_group_reference },
 		{ _field_tag_reference, "scoreboard dead emblem shader", &blofeld::halo2::pc64::shader_group_reference },
 		{ _field_tag_reference, "scoreboard dead emblem bitmap", &blofeld::halo2::pc64::bitmap_group_reference },
+		
+		{ _struct_version_mode_equal, 0, 75 },
+		{ _field_tag_reference, "flag", &blofeld::halo2::pc64::item_group_reference },
+		{ _field_tag_reference, "ball", &blofeld::halo2::pc64::item_group_reference },
+		{ _field_tag_reference, "unit", &blofeld::halo2::pc64::unit_group_reference$5 },
+		{ _field_tag_reference, "flag shader", &blofeld::halo2::pc64::shader_group_reference },
+		{ _field_tag_reference, "hill shader", &blofeld::halo2::pc64::shader_group_reference },
+		{ _field_block, "weapons", &blofeld::halo2::pc64::weapons_block },
+		{ _field_block, "vehicles", &blofeld::halo2::pc64::vehicles_block$2 },
+		{ _field_tag_reference, "in game text", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
+		{ _field_block, "sounds", &blofeld::halo2::pc64::sounds_block$2 },
+		{ _field_block, "general events", &blofeld::halo2::pc64::game_engine_general_event_block },
+		{ _field_block, "slayer events", &blofeld::halo2::pc64::game_engine_slayer_event_block },
+		{ _field_block, "ctf events", &blofeld::halo2::pc64::game_engine_ctf_event_block },
+		{ _field_block, "oddball events", &blofeld::halo2::pc64::game_engine_oddball_event_block },
+		FIELD_PAD("value", 12),
+		{ _field_block, "king events", &blofeld::halo2::pc64::game_engine_king_event_block },
+		{ _field_tag_reference, "default item collection 1", &blofeld::halo2::pc64::item_collection_group_reference },
+		{ _field_tag_reference, "default item collection 2", &blofeld::halo2::pc64::item_collection_group_reference },
+		{ _field_long_integer, "default frag grenade count" },
+		{ _field_long_integer, "default plasma grenade count" },
+		FIELD_EXPLANATION("dynamic spawn zones", nullptr),
+		{ _field_real, "dynamic zone upper height" },
+		{ _field_real, "dynamic zone lower height" },
+		FIELD_PAD("value", 40),
+		FIELD_EXPLANATION("enemy", nullptr),
+		{ _field_real, "enemy inner radius" },
+		{ _field_real, "enemy outer radius" },
+		{ _field_real, "enemy weight" },
+		FIELD_PAD("value", 16),
+		FIELD_EXPLANATION("friend", nullptr),
+		{ _field_real, "friend inner radius" },
+		{ _field_real, "friend outer radius" },
+		{ _field_real, "friend weight" },
+		FIELD_PAD("value", 16),
+		FIELD_EXPLANATION("enemy vehicle", nullptr),
+		{ _field_real, "enemy vehicle inner radius" },
+		{ _field_real, "enemy vehicle outer radius" },
+		{ _field_real, "enemy vehicle weight" },
+		FIELD_PAD("value", 16),
+		FIELD_EXPLANATION("friendly vehicle", nullptr),
+		{ _field_real, "friendly vehicle inner radius" },
+		{ _field_real, "friendly vehicle outer radius" },
+		{ _field_real, "friendly vehicle weight" },
+		FIELD_PAD("value", 16),
+		FIELD_EXPLANATION("empty vehicle", nullptr),
+		{ _field_real, "empty vehicle inner radius" },
+		{ _field_real, "empty vehicle outer radius" },
+		{ _field_real, "empty vehicle weight" },
+		FIELD_PAD("value", 16),
+		FIELD_EXPLANATION("oddball inclusion", nullptr),
+		{ _field_real, "oddball inclusion inner radius" },
+		{ _field_real, "oddball inclusion outer radius" },
+		{ _field_real, "oddball inclusion weight" },
+		FIELD_PAD("value", 16),
+		FIELD_EXPLANATION("oddball exclusion", nullptr),
+		{ _field_real, "oddball exclusion inner radius" },
+		{ _field_real, "oddball exclusion outer radius" },
+		{ _field_real, "oddball exclusion weight" },
+		FIELD_PAD("value", 16),
+		FIELD_EXPLANATION("hill inclusion", nullptr),
+		{ _field_real, "hill inclusion inner radius" },
+		{ _field_real, "hill inclusion outer radius" },
+		{ _field_real, "hill inclusion weight" },
+		FIELD_PAD("value", 16),
+		FIELD_EXPLANATION("hill exclusion", nullptr),
+		{ _field_real, "hill exclusion inner radius" },
+		{ _field_real, "hill exclusion outer radius" },
+		{ _field_real, "hill exclusion weight" },
+		FIELD_PAD("value", 16),
+		FIELD_EXPLANATION("last race flag", nullptr),
+		{ _field_real, "last race flag inner radius" },
+		{ _field_real, "last race flag outer radius" },
+		{ _field_real, "last race flag weight" },
+		FIELD_PAD("value", 16),
+		FIELD_PAD("value", 616),
+		FIELD_PAD("value", 48),
+		
 		{ _field_terminator }
 	};
 
@@ -28597,16 +27737,20 @@ namespace pc64
 	TAG_REFERENCE(vehicle_group_reference$3, VEHICLE_TAG);
 
 	TAG_STRUCT(
-		grenade_and_powerup_v2_struct_definition,
-		"grenade_and_powerup_v2",
-		"grenade_and_powerup_v2_struct_definition",
+		grenade_and_powerup_struct_definition,
+		"grenade_and_powerup",
+		"grenade_and_powerup_struct_definition",
 		"s_tag_block",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_block, "grenades", &blofeld::halo2::pc64::grenade_block },
 		{ _field_block, "powerups", &blofeld::halo2::pc64::powerup_block },
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
@@ -28633,18 +27777,6 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_tag_reference, "equipment", &blofeld::halo2::pc64::equipment_group_reference$2 },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		grenade_and_powerup_v1_struct_definition,
-		"grenade_and_powerup_v1",
-		"grenade_and_powerup_v1_struct_definition",
-		"s_grenade_and_powerup_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
 		{ _field_terminator }
 	};
 
@@ -28687,7 +27819,7 @@ namespace pc64
 		{ _field_word_flags, "sound flags", &blofeld::halo2::pc64::unnamed_enum$307 },
 		FIELD_PAD("value", 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_v2_struct_definition },
+		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_struct_definition },
 		FIELD_PAD("value", 4),
 		FIELD_PAD("value", 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::pc64::sound_response_definition_block },
@@ -28738,7 +27870,7 @@ namespace pc64
 		{ _field_word_flags, "sound flags", &blofeld::halo2::pc64::unnamed_enum$307 },
 		FIELD_PAD("value", 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_v2_struct_definition },
+		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_struct_definition },
 		FIELD_PAD("value", 4),
 		FIELD_PAD("value", 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::pc64::sound_response_definition_block },
@@ -28779,7 +27911,7 @@ namespace pc64
 		{ _field_word_flags, "sound flags", &blofeld::halo2::pc64::unnamed_enum$307 },
 		FIELD_PAD("value", 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_v2_struct_definition },
+		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_struct_definition },
 		FIELD_PAD("value", 4),
 		FIELD_PAD("value", 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::pc64::sound_response_definition_block },
@@ -28824,7 +27956,7 @@ namespace pc64
 		{ _field_word_flags, "sound flags", &blofeld::halo2::pc64::unnamed_enum$307 },
 		FIELD_PAD("value", 2),
 		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_v2_struct_definition },
+		{ _field_struct, "extra sounds", &blofeld::halo2::pc64::sound_response_extra_sounds_struct_definition },
 		FIELD_PAD("value", 4),
 		FIELD_PAD("value", 16),
 		{ _field_block, "sound permutations", &blofeld::halo2::pc64::sound_response_definition_block },
@@ -28951,93 +28083,6 @@ namespace pc64
 	STRING_LIST(unnamed_enum$328, unnamed_enum$328_strings, _countof(unnamed_enum$328_strings));
 
 	TAG_STRUCT(
-		multiplayer_runtime_global_v1_struct_definition,
-		"multiplayer_runtime_global_v1",
-		"multiplayer_runtime_global_v1_struct_definition",
-		"s_multiplayer_runtime_globals_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_tag_reference, "flag", &blofeld::halo2::pc64::item_group_reference },
-		{ _field_tag_reference, "ball", &blofeld::halo2::pc64::item_group_reference },
-		{ _field_tag_reference, "unit", &blofeld::halo2::pc64::unit_group_reference$5 },
-		{ _field_tag_reference, "flag shader", &blofeld::halo2::pc64::shader_group_reference },
-		{ _field_tag_reference, "hill shader", &blofeld::halo2::pc64::shader_group_reference },
-		{ _field_block, "weapons", &blofeld::halo2::pc64::weapons_block },
-		{ _field_block, "vehicles", &blofeld::halo2::pc64::vehicles_block$2 },
-		{ _field_tag_reference, "in game text", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
-		{ _field_block, "sounds", &blofeld::halo2::pc64::sounds_block$2 },
-		{ _field_block, "general events", &blofeld::halo2::pc64::game_engine_general_event_block },
-		{ _field_block, "slayer events", &blofeld::halo2::pc64::game_engine_slayer_event_block },
-		{ _field_block, "ctf events", &blofeld::halo2::pc64::game_engine_ctf_event_block },
-		{ _field_block, "oddball events", &blofeld::halo2::pc64::game_engine_oddball_event_block },
-		FIELD_PAD("value", 12),
-		{ _field_block, "king events", &blofeld::halo2::pc64::game_engine_king_event_block },
-		{ _field_tag_reference, "default item collection 1", &blofeld::halo2::pc64::item_collection_group_reference },
-		{ _field_tag_reference, "default item collection 2", &blofeld::halo2::pc64::item_collection_group_reference },
-		{ _field_long_integer, "default frag grenade count" },
-		{ _field_long_integer, "default plasma grenade count" },
-		FIELD_EXPLANATION("dynamic spawn zones", nullptr),
-		{ _field_real, "dynamic zone upper height" },
-		{ _field_real, "dynamic zone lower height" },
-		FIELD_PAD("value", 40),
-		FIELD_EXPLANATION("enemy", nullptr),
-		{ _field_real, "enemy inner radius" },
-		{ _field_real, "enemy outer radius" },
-		{ _field_real, "enemy weight" },
-		FIELD_PAD("value", 16),
-		FIELD_EXPLANATION("friend", nullptr),
-		{ _field_real, "friend inner radius" },
-		{ _field_real, "friend outer radius" },
-		{ _field_real, "friend weight" },
-		FIELD_PAD("value", 16),
-		FIELD_EXPLANATION("enemy vehicle", nullptr),
-		{ _field_real, "enemy vehicle inner radius" },
-		{ _field_real, "enemy vehicle outer radius" },
-		{ _field_real, "enemy vehicle weight" },
-		FIELD_PAD("value", 16),
-		FIELD_EXPLANATION("friendly vehicle", nullptr),
-		{ _field_real, "friendly vehicle inner radius" },
-		{ _field_real, "friendly vehicle outer radius" },
-		{ _field_real, "friendly vehicle weight" },
-		FIELD_PAD("value", 16),
-		FIELD_EXPLANATION("empty vehicle", nullptr),
-		{ _field_real, "empty vehicle inner radius" },
-		{ _field_real, "empty vehicle outer radius" },
-		{ _field_real, "empty vehicle weight" },
-		FIELD_PAD("value", 16),
-		FIELD_EXPLANATION("oddball inclusion", nullptr),
-		{ _field_real, "oddball inclusion inner radius" },
-		{ _field_real, "oddball inclusion outer radius" },
-		{ _field_real, "oddball inclusion weight" },
-		FIELD_PAD("value", 16),
-		FIELD_EXPLANATION("oddball exclusion", nullptr),
-		{ _field_real, "oddball exclusion inner radius" },
-		{ _field_real, "oddball exclusion outer radius" },
-		{ _field_real, "oddball exclusion weight" },
-		FIELD_PAD("value", 16),
-		FIELD_EXPLANATION("hill inclusion", nullptr),
-		{ _field_real, "hill inclusion inner radius" },
-		{ _field_real, "hill inclusion outer radius" },
-		{ _field_real, "hill inclusion weight" },
-		FIELD_PAD("value", 16),
-		FIELD_EXPLANATION("hill exclusion", nullptr),
-		{ _field_real, "hill exclusion inner radius" },
-		{ _field_real, "hill exclusion outer radius" },
-		{ _field_real, "hill exclusion weight" },
-		FIELD_PAD("value", 16),
-		FIELD_EXPLANATION("last race flag", nullptr),
-		{ _field_real, "last race flag inner radius" },
-		{ _field_real, "last race flag outer radius" },
-		{ _field_real, "last race flag weight" },
-		FIELD_PAD("value", 16),
-		FIELD_PAD("value", 616),
-		FIELD_PAD("value", 48),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		new_hud_definition_block_struct_definition,
 		"new_hud_definition_block",
 		"new_hud_definition_block_struct_definition",
@@ -29064,7 +28109,7 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string_id, "name" },
-		{ _field_struct, "value", &blofeld::halo2::pc64::hud_widget_inputs_v2_struct_definition },
+		{ _field_struct, "value", &blofeld::halo2::pc64::hud_widget_inputs_struct_definition },
 		{ _field_struct, "value", &blofeld::halo2::pc64::hud_widget_state_definition_struct_struct_definition },
 		{ _field_short_enum, "anchor", &blofeld::halo2::pc64::unnamed_enum$334 },
 		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$335 },
@@ -29121,19 +28166,23 @@ namespace pc64
 	STRING_LIST(unnamed_enum$337, unnamed_enum$337_strings, _countof(unnamed_enum$337_strings));
 
 	TAG_STRUCT(
-		hud_widget_inputs_v2_struct_definition,
-		"hud_widget_inputs_v2",
-		"hud_widget_inputs_v2_struct_definition",
+		hud_widget_inputs_struct_definition,
+		"hud_widget_inputs",
+		"hud_widget_inputs_struct_definition",
 		"s_hud_widget_inputs_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 5 },
 		FIELD_EXPLANATION("widget inputs", nullptr),
 		{ _field_char_enum, "input 1", &blofeld::halo2::pc64::unnamed_enum$329 },
 		{ _field_char_enum, "input 2", &blofeld::halo2::pc64::unnamed_enum$329 },
 		{ _field_char_enum, "input 3", &blofeld::halo2::pc64::unnamed_enum$329 },
 		{ _field_char_enum, "input 4", &blofeld::halo2::pc64::unnamed_enum$329 },
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
@@ -29222,18 +28271,6 @@ namespace pc64
 		"..."
 	};
 	STRING_LIST(unnamed_enum$329, unnamed_enum$329_strings, _countof(unnamed_enum$329_strings));
-
-	TAG_STRUCT(
-		hud_widget_inputs_v1_struct_definition,
-		"hud_widget_inputs_v1",
-		"hud_widget_inputs_v1_struct_definition",
-		"s_hud_widget_inputs_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		hud_widget_state_definition_struct_struct_definition,
@@ -29381,7 +28418,7 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string_id, "name" },
-		{ _field_struct, "value", &blofeld::halo2::pc64::hud_widget_inputs_v2_struct_definition },
+		{ _field_struct, "value", &blofeld::halo2::pc64::hud_widget_inputs_struct_definition },
 		{ _field_struct, "value", &blofeld::halo2::pc64::hud_widget_state_definition_struct_struct_definition },
 		{ _field_short_enum, "anchor", &blofeld::halo2::pc64::unnamed_enum$334 },
 		FIELD_EXPLANATION("FLAGS", "string is a number: treats the inputted string id as a function name, not a string name\n\nforce 2-digit number: when used in combination with above, forces output to be a 2-digit numberwith leading zeros if necessary\n\nforce 3-digit number: same as above, but with 3 digits instead of 2\n\n"),
@@ -29455,13 +28492,13 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_string_id, "name" },
-		{ _field_struct, "value", &blofeld::halo2::pc64::hud_widget_inputs_v2_struct_definition },
+		{ _field_struct, "value", &blofeld::halo2::pc64::hud_widget_inputs_struct_definition },
 		{ _field_struct, "value", &blofeld::halo2::pc64::hud_widget_state_definition_struct_struct_definition },
 		{ _field_short_enum, "anchor", &blofeld::halo2::pc64::unnamed_enum$334 },
 		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$341 },
 		{ _field_tag_reference, "bitmap", &blofeld::halo2::pc64::bitmap_group_reference },
 		{ _field_tag_reference, "fullscreen screen effect", &blofeld::halo2::pc64::screen_effect_group_reference },
-		{ _field_struct, "waa", &blofeld::halo2::pc64::screen_effect_bonus_v2_struct_definition },
+		{ _field_struct, "waa", &blofeld::halo2::pc64::screen_effect_bonus_struct_definition },
 		{ _field_char_integer, "fullscreen sequence index" },
 		{ _field_char_integer, "halfscreen sequence index" },
 		{ _field_char_integer, "quarterscreen sequence index" },
@@ -29481,28 +28518,20 @@ namespace pc64
 	TAG_REFERENCE(screen_effect_group_reference, SCREEN_EFFECT_TAG);
 
 	TAG_STRUCT(
-		screen_effect_bonus_v2_struct_definition,
-		"screen_effect_bonus_v2",
-		"screen_effect_bonus_v2_struct_definition",
+		screen_effect_bonus_struct_definition,
+		"screen_effect_bonus",
+		"screen_effect_bonus_struct_definition",
 		"s_tag_reference$11",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_tag_reference, "halfscreen screen effect", &blofeld::halo2::pc64::screen_effect_group_reference },
 		{ _field_tag_reference, "quarterscreen screen effect", &blofeld::halo2::pc64::screen_effect_group_reference },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		screen_effect_bonus_v1_struct_definition,
-		"screen_effect_bonus_v1",
-		"screen_effect_bonus_v1_struct_definition",
-		"s_screen_effect_bonus_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
@@ -29563,14 +28592,15 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		physics_model_tags_v2_struct_definition,
-		"physics_model_tags_v2",
-		"physics_model_tags_v2_struct_definition",
+		physics_model_struct_definition,
+		"physics_model",
+		"physics_model_struct_definition",
 		"s_physics_model_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 35 },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$342 },
 		{ _field_real, "mass" },
 		{ _field_real, "low freq. deactivation scale", "0 is default (1). LESS than 1 deactivates less aggressively. GREATER than 1 is more agressive." },
@@ -29606,6 +28636,70 @@ namespace pc64
 		{ _field_block, "stiff spring constraints", &blofeld::halo2::pc64::stiff_spring_constraints_block },
 		{ _field_block, "prismatic constraints", &blofeld::halo2::pc64::prismatic_constraints_block },
 		{ _field_block, "phantoms", &blofeld::halo2::pc64::phantoms_block },
+		
+		{ _struct_version_mode_equal, 1, 35 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$342 },
+		{ _field_real, "mass" },
+		{ _field_real, "low freq. deactivation scale", "0 is default (1). LESS than 1 deactivates less aggressively. GREATER than 1 is more agressive." },
+		{ _field_real, "high freq. deactivation scale", "0 is default (1). LESS than 1 deactivates less aggressively. GREATER than 1 is more agressive." },
+		FIELD_PAD("value", 24),
+		{ _field_block, "phantom types", &blofeld::halo2::pc64::phantom_types_block },
+		{ _field_block, "node edges", &blofeld::halo2::pc64::physics_model_node_constraint_edge_block },
+		{ _field_block, "rigid bodies", &blofeld::halo2::pc64::rigid_bodies_block },
+		{ _field_block, "materials", &blofeld::halo2::pc64::materials_block$2 },
+		{ _field_block, "spheres", &blofeld::halo2::pc64::spheres_block },
+		{ _field_block, "multi spheres", &blofeld::halo2::pc64::multi_spheres_block },
+		{ _field_block, "pills", &blofeld::halo2::pc64::pills_block },
+		{ _field_block, "boxes", &blofeld::halo2::pc64::boxes_block },
+		{ _field_block, "triangles", &blofeld::halo2::pc64::triangles_block },
+		{ _field_block, "polyhedra", &blofeld::halo2::pc64::polyhedra_block },
+		FIELD_EXPLANATION("ALL THESE WORLDS ARE YOURS, EXCEPT EUROPA...", "Attempt no landings there.  And you can\'t edit anything below this point, so why even look at it?"),
+		{ _field_block, "polyhedron four vectors", &blofeld::halo2::pc64::polyhedron_four_vectors_block },
+		{ _field_block, "polyhedron plane equations", &blofeld::halo2::pc64::polyhedron_plane_equations_block },
+		{ _field_block, "mass distributions", &blofeld::halo2::pc64::mass_distributions_block },
+		{ _field_block, "lists", &blofeld::halo2::pc64::lists_block },
+		{ _field_block, "list shapes", &blofeld::halo2::pc64::list_shapes_block },
+		{ _field_block, "mopps", &blofeld::halo2::pc64::mopps_block },
+		{ _field_data, "mopp codes", &blofeld::halo2::pc64::mopp_codes_data$2 },
+		{ _field_block, "hinge constraints", &blofeld::halo2::pc64::hinge_constraints_block },
+		{ _field_block, "ragdoll constraints", &blofeld::halo2::pc64::ragdoll_constraints_block },
+		{ _field_block, "regions", &blofeld::halo2::pc64::regions_block },
+		{ _field_block, "nodes", &blofeld::halo2::pc64::nodes_block },
+		{ _field_block, "import info", &blofeld::halo2::pc64::global_tag_import_info_block },
+		{ _field_block, "errors", &blofeld::halo2::pc64::global_error_report_categories_block },
+		{ _field_block, "point to path curves", &blofeld::halo2::pc64::point_to_path_curve_block },
+		{ _field_block, "limited hinge constraints", &blofeld::halo2::pc64::limited_hinge_constraints_block },
+		{ _field_block, "ball and socket constraints", &blofeld::halo2::pc64::ball_and_socket_constraints_block },
+		{ _field_block, "stiff spring constraints", &blofeld::halo2::pc64::stiff_spring_constraints_block },
+		{ _field_block, "prismatic constraints", &blofeld::halo2::pc64::prismatic_constraints_block },
+		{ _field_block, "phantoms", &blofeld::halo2::pc64::phantoms_block },
+		
+		{ _struct_version_mode_equal, 0, 24 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$342 },
+		{ _field_real, "mass" },
+		FIELD_PAD("value", 56),
+		{ _field_block, "rigid bodies", &blofeld::halo2::pc64::rigid_bodies_block },
+		{ _field_block, "materials", &blofeld::halo2::pc64::materials_block$2 },
+		{ _field_block, "spheres", &blofeld::halo2::pc64::spheres_block },
+		{ _field_block, "pills", &blofeld::halo2::pc64::pills_block },
+		{ _field_block, "boxes", &blofeld::halo2::pc64::boxes_block },
+		{ _field_block, "triangles", &blofeld::halo2::pc64::triangles_block },
+		{ _field_block, "polyhedra", &blofeld::halo2::pc64::polyhedra_block },
+		FIELD_EXPLANATION("ALL THESE WORLDS ARE YOURS, EXCEPT EUROPA...", "Attempt no landings there.  And you can\'t edit anything below this point, so why even look at it?"),
+		{ _field_block, "polyhedron four vectors", &blofeld::halo2::pc64::polyhedron_four_vectors_block },
+		{ _field_block, "polyhedron plane equations", &blofeld::halo2::pc64::polyhedron_plane_equations_block },
+		{ _field_block, "mass distributions", &blofeld::halo2::pc64::mass_distributions_block },
+		{ _field_block, "lists", &blofeld::halo2::pc64::lists_block },
+		{ _field_block, "list shapes", &blofeld::halo2::pc64::list_shapes_block },
+		{ _field_block, "mopps", &blofeld::halo2::pc64::mopps_block },
+		{ _field_data, "mopp codes", &blofeld::halo2::pc64::mopp_codes_data$2 },
+		{ _field_block, "hinge constraints", &blofeld::halo2::pc64::hinge_constraints_block },
+		{ _field_block, "ragdoll constraints", &blofeld::halo2::pc64::ragdoll_constraints_block },
+		{ _field_block, "regions", &blofeld::halo2::pc64::regions_block },
+		{ _field_block, "nodes", &blofeld::halo2::pc64::nodes_block },
+		{ _field_block, "import info", &blofeld::halo2::pc64::global_tag_import_info_block },
+		{ _field_block, "errors", &blofeld::halo2::pc64::global_error_report_categories_block },
+		
 		{ _field_terminator }
 	};
 
@@ -29624,6 +28718,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 22 },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$343 },
 		{ _field_char_enum, "minimum size", &blofeld::halo2::pc64::unnamed_enum$344 },
 		{ _field_char_enum, "maximum size", &blofeld::halo2::pc64::unnamed_enum$344 },
@@ -29646,6 +28741,30 @@ namespace pc64
 		{ _field_real, "alignment acc" },
 		{ _field_real, "alignment max vel" },
 		FIELD_PAD("value", 8),
+		
+		{ _struct_version_mode_equal, 0, 21 },
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$345 },
+		{ _field_char_enum, "minimum size", &blofeld::halo2::pc64::unnamed_enum$344 },
+		{ _field_char_enum, "maximum size", &blofeld::halo2::pc64::unnamed_enum$344 },
+		{ _field_string_id, "marker name", "you don't need this if you're just generating effects.  If empty it defaults to the up of the object" },
+		{ _field_string_id, "alignment marker name", "you don't need this if you're just generating effects.  If empty it defaults to \"marker name\"" },
+		FIELD_PAD("value", 16),
+		{ _field_real, "linear dead radius", "radius from linear motion origin in which acceleration is dead." },
+		FIELD_EXPLANATION("Linear Motion", "0 - means do nothing\nCENTER: motion towards marker position \nAXIS: motion towards marker axis, such that object is on the axis\nDIRECTION: motion along marker direction"),
+		{ _field_real, "center acc" },
+		{ _field_real, "center max vel" },
+		{ _field_real, "axis acc" },
+		{ _field_real, "axis max vel" },
+		{ _field_real, "direction acc" },
+		{ _field_real, "direction max vel" },
+		FIELD_PAD("value", 32),
+		FIELD_EXPLANATION("Angular Motion", "0 - means do nothing\nALIGNMENT: algin objects in the phantom with the marker\nSPIN: spin the object about the marker axis"),
+		FIELD_EXPLANATION("ANGULAR ACC NOT YET IMPLEMENTED", nullptr),
+		{ _field_real, "alignment acc" },
+		{ _field_real, "alignment max vel" },
+		{ _field_real, "spin acc" },
+		{ _field_real, "spin max vel" },
+		
 		{ _field_terminator }
 	};
 
@@ -29693,39 +28812,6 @@ namespace pc64
 		"extra huge"
 	};
 	STRING_LIST(unnamed_enum$344, unnamed_enum$344_strings, _countof(unnamed_enum$344_strings));
-
-	TAG_STRUCT(
-		phantom_type_v0_struct_definition,
-		"phantom_type_v0",
-		"phantom_type_v0_struct_definition",
-		"s_physics_model_phantom_type_v0",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$345 },
-		{ _field_char_enum, "minimum size", &blofeld::halo2::pc64::unnamed_enum$344 },
-		{ _field_char_enum, "maximum size", &blofeld::halo2::pc64::unnamed_enum$344 },
-		{ _field_string_id, "marker name", "you don't need this if you're just generating effects.  If empty it defaults to the up of the object" },
-		{ _field_string_id, "alignment marker name", "you don't need this if you're just generating effects.  If empty it defaults to \"marker name\"" },
-		FIELD_PAD("value", 16),
-		{ _field_real, "linear dead radius", "radius from linear motion origin in which acceleration is dead." },
-		FIELD_EXPLANATION("Linear Motion", "0 - means do nothing\nCENTER: motion towards marker position \nAXIS: motion towards marker axis, such that object is on the axis\nDIRECTION: motion along marker direction"),
-		{ _field_real, "center acc" },
-		{ _field_real, "center max vel" },
-		{ _field_real, "axis acc" },
-		{ _field_real, "axis max vel" },
-		{ _field_real, "direction acc" },
-		{ _field_real, "direction max vel" },
-		FIELD_PAD("value", 32),
-		FIELD_EXPLANATION("Angular Motion", "0 - means do nothing\nALIGNMENT: algin objects in the phantom with the marker\nSPIN: spin the object about the marker axis"),
-		FIELD_EXPLANATION("ANGULAR ACC NOT YET IMPLEMENTED", nullptr),
-		{ _field_real, "alignment acc" },
-		{ _field_real, "alignment max vel" },
-		{ _field_real, "spin acc" },
-		{ _field_real, "spin max vel" },
-		{ _field_terminator }
-	};
 
 	STRINGS(unnamed_enum$345)
 	{
@@ -29790,15 +28876,16 @@ namespace pc64
 	STRING_LIST(unnamed_enum$347, unnamed_enum$347_strings, _countof(unnamed_enum$347_strings));
 
 	TAG_STRUCT(
-		rigid_bodies_block_v2_struct_definition,
-		"rigid_bodies_block_v2",
-		"rigid_bodies_block_v2_struct_definition",
+		rigid_bodies_block_struct_definition,
+		"rigid_bodies_block",
+		"rigid_bodies_block_struct_definition",
 		"s_physics_model_rigid_body",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY,
 		4)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 27 },
 		{ _field_short_block_index, "node" },
 		{ _field_short_block_index, "region" },
 		{ _field_short_block_index_custom_search, "permutattion" },
@@ -29826,6 +28913,30 @@ namespace pc64
 		FIELD_SKIP("value", 4),
 		{ _field_real, "bounding sphere pad", "the bounding sphere for this rigid body will be outset by this much" },
 		FIELD_PAD("value", 12),
+		
+		{ _struct_version_mode_equal, 0, 21 },
+		{ _field_short_block_index, "node" },
+		{ _field_short_block_index, "region" },
+		{ _field_short_block_index_custom_search, "permutation" },
+		FIELD_PAD("value", 2),
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$348 },
+		{ _field_short_enum, "motion type", &blofeld::halo2::pc64::unnamed_enum$349 },
+		FIELD_PAD("value", 4),
+		{ _field_real, "linear damping", "this goes from 0-10 (10 is really, really high)" },
+		{ _field_real, "angular damping", "this goes from 0-10 (10 is really, really high)" },
+		{ _field_pointer, "value" },
+		{ _field_real, "mass", nullptr, "kg", FIELD_FLAG_READ_ONLY },
+		{ _field_real_vector_3d, "center of mass" },
+		FIELD_SKIP("value", 4),
+		{ _field_real_vector_3d, "intertia tensor x" },
+		FIELD_SKIP("value", 4),
+		{ _field_real_vector_3d, "intertia tensor y" },
+		FIELD_SKIP("value", 4),
+		{ _field_real_vector_3d, "intertia tensor z" },
+		FIELD_SKIP("value", 4),
+		{ _field_real_vector_3d, "center off mass offset" },
+		FIELD_PAD("value", 4),
+		
 		{ _field_terminator }
 	};
 
@@ -29850,40 +28961,6 @@ namespace pc64
 		"fixed"
 	};
 	STRING_LIST(unnamed_enum$349, unnamed_enum$349_strings, _countof(unnamed_enum$349_strings));
-
-	TAG_STRUCT(
-		rigid_bodies_block_v1_struct_definition,
-		"rigid_bodies_block_v1",
-		"rigid_bodies_block_v1_struct_definition",
-		"s_physics_model_rigid_body_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY,
-		4)
-	{
-		{ _field_short_block_index, "node" },
-		{ _field_short_block_index, "region" },
-		{ _field_short_block_index_custom_search, "permutation" },
-		FIELD_PAD("value", 2),
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$348 },
-		{ _field_short_enum, "motion type", &blofeld::halo2::pc64::unnamed_enum$349 },
-		FIELD_PAD("value", 4),
-		{ _field_real, "linear damping", "this goes from 0-10 (10 is really, really high)" },
-		{ _field_real, "angular damping", "this goes from 0-10 (10 is really, really high)" },
-		{ _field_pointer, "value" },
-		{ _field_real, "mass", nullptr, "kg", FIELD_FLAG_READ_ONLY },
-		{ _field_real_vector_3d, "center of mass" },
-		FIELD_SKIP("value", 4),
-		{ _field_real_vector_3d, "intertia tensor x" },
-		FIELD_SKIP("value", 4),
-		{ _field_real_vector_3d, "intertia tensor y" },
-		FIELD_SKIP("value", 4),
-		{ _field_real_vector_3d, "intertia tensor z" },
-		FIELD_SKIP("value", 4),
-		{ _field_real_vector_3d, "center off mass offset" },
-		FIELD_PAD("value", 4),
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		materials_block_struct_definition$2,
@@ -30427,89 +29504,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		physics_model_tags_v1_struct_definition,
-		"physics_model_tags_v1",
-		"physics_model_tags_v1_struct_definition",
-		"s_physics_model_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$342 },
-		{ _field_real, "mass" },
-		FIELD_PAD("value", 56),
-		{ _field_block, "rigid bodies", &blofeld::halo2::pc64::rigid_bodies_block },
-		{ _field_block, "materials", &blofeld::halo2::pc64::materials_block$2 },
-		{ _field_block, "spheres", &blofeld::halo2::pc64::spheres_block },
-		{ _field_block, "pills", &blofeld::halo2::pc64::pills_block },
-		{ _field_block, "boxes", &blofeld::halo2::pc64::boxes_block },
-		{ _field_block, "triangles", &blofeld::halo2::pc64::triangles_block },
-		{ _field_block, "polyhedra", &blofeld::halo2::pc64::polyhedra_block },
-		FIELD_EXPLANATION("ALL THESE WORLDS ARE YOURS, EXCEPT EUROPA...", "Attempt no landings there.  And you can\'t edit anything below this point, so why even look at it?"),
-		{ _field_block, "polyhedron four vectors", &blofeld::halo2::pc64::polyhedron_four_vectors_block },
-		{ _field_block, "polyhedron plane equations", &blofeld::halo2::pc64::polyhedron_plane_equations_block },
-		{ _field_block, "mass distributions", &blofeld::halo2::pc64::mass_distributions_block },
-		{ _field_block, "lists", &blofeld::halo2::pc64::lists_block },
-		{ _field_block, "list shapes", &blofeld::halo2::pc64::list_shapes_block },
-		{ _field_block, "mopps", &blofeld::halo2::pc64::mopps_block },
-		{ _field_data, "mopp codes", &blofeld::halo2::pc64::mopp_codes_data$2 },
-		{ _field_block, "hinge constraints", &blofeld::halo2::pc64::hinge_constraints_block },
-		{ _field_block, "ragdoll constraints", &blofeld::halo2::pc64::ragdoll_constraints_block },
-		{ _field_block, "regions", &blofeld::halo2::pc64::regions_block },
-		{ _field_block, "nodes", &blofeld::halo2::pc64::nodes_block },
-		{ _field_block, "import info", &blofeld::halo2::pc64::global_tag_import_info_block },
-		{ _field_block, "errors", &blofeld::halo2::pc64::global_error_report_categories_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		physics_model_tags_v2_struct_definition$2,
-		"physics_model_tags_v2",
-		"physics_model_tags_v2_struct_definition",
-		"s_physics_model_definition$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$342 },
-		{ _field_real, "mass" },
-		{ _field_real, "low freq. deactivation scale", "0 is default (1). LESS than 1 deactivates less aggressively. GREATER than 1 is more agressive." },
-		{ _field_real, "high freq. deactivation scale", "0 is default (1). LESS than 1 deactivates less aggressively. GREATER than 1 is more agressive." },
-		FIELD_PAD("value", 24),
-		{ _field_block, "phantom types", &blofeld::halo2::pc64::phantom_types_block },
-		{ _field_block, "node edges", &blofeld::halo2::pc64::physics_model_node_constraint_edge_block },
-		{ _field_block, "rigid bodies", &blofeld::halo2::pc64::rigid_bodies_block },
-		{ _field_block, "materials", &blofeld::halo2::pc64::materials_block$2 },
-		{ _field_block, "spheres", &blofeld::halo2::pc64::spheres_block },
-		{ _field_block, "multi spheres", &blofeld::halo2::pc64::multi_spheres_block },
-		{ _field_block, "pills", &blofeld::halo2::pc64::pills_block },
-		{ _field_block, "boxes", &blofeld::halo2::pc64::boxes_block },
-		{ _field_block, "triangles", &blofeld::halo2::pc64::triangles_block },
-		{ _field_block, "polyhedra", &blofeld::halo2::pc64::polyhedra_block },
-		FIELD_EXPLANATION("ALL THESE WORLDS ARE YOURS, EXCEPT EUROPA...", "Attempt no landings there.  And you can\'t edit anything below this point, so why even look at it?"),
-		{ _field_block, "polyhedron four vectors", &blofeld::halo2::pc64::polyhedron_four_vectors_block },
-		{ _field_block, "polyhedron plane equations", &blofeld::halo2::pc64::polyhedron_plane_equations_block },
-		{ _field_block, "mass distributions", &blofeld::halo2::pc64::mass_distributions_block },
-		{ _field_block, "lists", &blofeld::halo2::pc64::lists_block },
-		{ _field_block, "list shapes", &blofeld::halo2::pc64::list_shapes_block },
-		{ _field_block, "mopps", &blofeld::halo2::pc64::mopps_block },
-		{ _field_data, "mopp codes", &blofeld::halo2::pc64::mopp_codes_data$2 },
-		{ _field_block, "hinge constraints", &blofeld::halo2::pc64::hinge_constraints_block },
-		{ _field_block, "ragdoll constraints", &blofeld::halo2::pc64::ragdoll_constraints_block },
-		{ _field_block, "regions", &blofeld::halo2::pc64::regions_block },
-		{ _field_block, "nodes", &blofeld::halo2::pc64::nodes_block },
-		{ _field_block, "import info", &blofeld::halo2::pc64::global_tag_import_info_block },
-		{ _field_block, "errors", &blofeld::halo2::pc64::global_error_report_categories_block },
-		{ _field_block, "point to path curves", &blofeld::halo2::pc64::point_to_path_curve_block },
-		{ _field_block, "limited hinge constraints", &blofeld::halo2::pc64::limited_hinge_constraints_block },
-		{ _field_block, "ball and socket constraints", &blofeld::halo2::pc64::ball_and_socket_constraints_block },
-		{ _field_block, "stiff spring constraints", &blofeld::halo2::pc64::stiff_spring_constraints_block },
-		{ _field_block, "prismatic constraints", &blofeld::halo2::pc64::prismatic_constraints_block },
-		{ _field_block, "phantoms", &blofeld::halo2::pc64::phantoms_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		physics_block_struct_definition,
 		"physics_block",
 		"physics_block_struct_definition",
@@ -30757,14 +29751,15 @@ namespace pc64
 	STRING_LIST(unnamed_enum$357, unnamed_enum$357_strings, _countof(unnamed_enum$357_strings));
 
 	TAG_STRUCT(
-		projectile_v2_struct_definition,
-		"projectile_v2",
-		"projectile_v2_struct_definition",
+		projectile_struct_definition,
+		"projectile",
+		"projectile_struct_definition",
 		"s_projectile_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 95 },
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
 		{ _field_real, "bounding radius", nullptr, "world units" },
@@ -30860,165 +29855,8 @@ namespace pc64
 		{ _field_real_fraction, "targeted leading fraction" },
 		{ _field_useless_pad, "value" },
 		{ _field_block, "material responses", &blofeld::halo2::pc64::projectile_material_response_block, _field_id_sort },
-		{ _field_terminator }
-	};
-
-	STRINGS(unnamed_enum$358)
-	{
-		"oriented along velocity",
-		"AI must use ballistic aiming",
-		"detonation max time if attached",
-		"has super combining explosion",
-		"damage scales based on distance",
-		"travels instantaneously",
-		"steering adjusts orientation",
-		"don\'t noise up steering",
-		"can track behind itself",
-		"ROBOTRON STEERING!",
-		"faster when owned by player"
-	};
-	STRING_LIST(unnamed_enum$358, unnamed_enum$358_strings, _countof(unnamed_enum$358_strings));
-
-	STRINGS(unnamed_enum$359)
-	{
-		"immediately",
-		"after first bounce",
-		"when at rest",
-		"after first bounce off any surface"
-	};
-	STRING_LIST(unnamed_enum$359, unnamed_enum$359_strings, _countof(unnamed_enum$359_strings));
-
-	TAG_STRUCT(
-		super_detonation_damage_struct_definition,
-		"super_detonation_damage",
-		"super_detonation_damage_struct_definition",
-		"s_tag_reference$12",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_tag_reference, "super detonation damage", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		super_detonation_damage_v1_struct_definition,
-		"super_detonation_damage_v1",
-		"super_detonation_damage_v1_struct_definition",
-		"s_super_detonation_damage_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		angular_velocity_lower_bound_struct_definition,
-		"angular_velocity_lower_bound",
-		"angular_velocity_lower_bound_struct_definition",
-		"s_real$7",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_angle, "guided angular velocity (lower)", nullptr, "degrees per second" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		angular_velocity_lower_bound_v1_struct_definition,
-		"angular_velocity_lower_bound_v1",
-		"angular_velocity_lower_bound_v1_struct_definition",
-		"s_angular_velocity_lower_bound_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		projectile_material_response_block_struct_definition,
-		"projectile_material_response_block",
-		"projectile_material_response_block_struct_definition",
-		"s_projectile_material_response_definition",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$360 },
-		FIELD_EXPLANATION("default result", "(if the potential result, below, fails to happen)"),
-		{ _field_short_enum, "response", &blofeld::halo2::pc64::unnamed_enum$361 },
-		{ _field_tag_reference, "DO NOT USE (OLD effect)", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_string_id, "material name", _field_id_sted },
-		FIELD_SKIP("value", 4),
-		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("potential result", nullptr),
-		{ _field_short_enum, "response", &blofeld::halo2::pc64::unnamed_enum$361 },
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$362 },
-		{ _field_real_fraction, "chance fraction", nullptr, nullptr, "[0,1]" },
-		{ _field_angle_bounds, "between", nullptr, "degrees" },
-		{ _field_real_bounds, "and", nullptr, "world units per second" },
-		{ _field_tag_reference, "DO NOT USE (OLD effect)", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("misc", nullptr),
-		{ _field_short_enum, "scale effects by", &blofeld::halo2::pc64::unnamed_enum$363 },
-		FIELD_PAD("value", 2),
-		{ _field_angle, "angular noise", "the angle of incidence is randomly perturbed by at most this amount to simulate irregularity.", "degrees" },
-		{ _field_real, "velocity noise", "the velocity is randomly perturbed by at most this amount to simulate irregularity.", "world units per second" },
-		{ _field_tag_reference, "DO NOT USE (OLD detonation effect)", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("penetration", nullptr),
-		{ _field_real, "initial friction", "the fraction of the projectile's velocity lost on penetration" },
-		{ _field_real, "maximum distance", "the maximum distance the projectile can travel through on object of this material" },
-		FIELD_EXPLANATION("reflection", nullptr),
-		{ _field_real, "parallel friction", "the fraction of the projectile's velocity parallel to the surface lost on impact" },
-		{ _field_real, "perpendicular friction", "the fraction of the projectile's velocity perpendicular to the surface lost on impact" },
-		{ _field_terminator }
-	};
-
-	STRINGS(unnamed_enum$360)
-	{
-		"cannot be overpenetrated"
-	};
-	STRING_LIST(unnamed_enum$360, unnamed_enum$360_strings, _countof(unnamed_enum$360_strings));
-
-	STRINGS(unnamed_enum$361)
-	{
-		"impact (detonate)",
-		"fizzle",
-		"overpenetrate",
-		"attach",
-		"bounce",
-		"bounce (dud)",
-		"fizzle (ricochet)"
-	};
-	STRING_LIST(unnamed_enum$361, unnamed_enum$361_strings, _countof(unnamed_enum$361_strings));
-
-	STRINGS(unnamed_enum$362)
-	{
-		"only against units",
-		"never against units"
-	};
-	STRING_LIST(unnamed_enum$362, unnamed_enum$362_strings, _countof(unnamed_enum$362_strings));
-
-	STRINGS(unnamed_enum$363)
-	{
-		"damage",
-		"angle"
-	};
-	STRING_LIST(unnamed_enum$363, unnamed_enum$363_strings, _countof(unnamed_enum$363_strings));
-
-	TAG_STRUCT(
-		projectile_v1_struct_definition,
-		"projectile_v1",
-		"projectile_v1_struct_definition",
-		"s_projectile_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 81 },
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
 		{ _field_real, "bounding radius", nullptr, "world units" },
@@ -31100,8 +29938,34 @@ namespace pc64
 		FIELD_EXPLANATION("New/unsorted fields", nullptr),
 		{ _field_tag_reference, "impact effect", &blofeld::halo2::pc64::effect_group_reference },
 		{ _field_tag_reference, "detonation damage", &blofeld::halo2::pc64::damage_effect_group_reference },
+		
 		{ _field_terminator }
 	};
+
+	STRINGS(unnamed_enum$358)
+	{
+		"oriented along velocity",
+		"AI must use ballistic aiming",
+		"detonation max time if attached",
+		"has super combining explosion",
+		"damage scales based on distance",
+		"travels instantaneously",
+		"steering adjusts orientation",
+		"don\'t noise up steering",
+		"can track behind itself",
+		"ROBOTRON STEERING!",
+		"faster when owned by player"
+	};
+	STRING_LIST(unnamed_enum$358, unnamed_enum$358_strings, _countof(unnamed_enum$358_strings));
+
+	STRINGS(unnamed_enum$359)
+	{
+		"immediately",
+		"after first bounce",
+		"when at rest",
+		"after first bounce off any surface"
+	};
+	STRING_LIST(unnamed_enum$359, unnamed_enum$359_strings, _countof(unnamed_enum$359_strings));
 
 	STRINGS(unnamed_enum$364)
 	{
@@ -31113,6 +29977,112 @@ namespace pc64
 		"projectile_attach"
 	};
 	STRING_LIST(unnamed_enum$364, unnamed_enum$364_strings, _countof(unnamed_enum$364_strings));
+
+	TAG_STRUCT(
+		super_detonation_damage_struct_definition,
+		"super_detonation_damage",
+		"super_detonation_damage_struct_definition",
+		"s_tag_reference$12",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _struct_version_mode_greater_or_equal, 1, 1 },
+		{ _field_tag_reference, "super detonation damage", &blofeld::halo2::pc64::damage_effect_group_reference },
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		angular_velocity_lower_bound_struct_definition,
+		"angular_velocity_lower_bound",
+		"angular_velocity_lower_bound_struct_definition",
+		"s_real$7",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _struct_version_mode_greater_or_equal, 1, 1 },
+		{ _field_angle, "guided angular velocity (lower)", nullptr, "degrees per second" },
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		projectile_material_response_block_struct_definition,
+		"projectile_material_response_block",
+		"projectile_material_response_block_struct_definition",
+		"s_projectile_material_response_definition",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$360 },
+		FIELD_EXPLANATION("default result", "(if the potential result, below, fails to happen)"),
+		{ _field_short_enum, "response", &blofeld::halo2::pc64::unnamed_enum$361 },
+		{ _field_tag_reference, "DO NOT USE (OLD effect)", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_string_id, "material name", _field_id_sted },
+		FIELD_SKIP("value", 4),
+		{ _field_useless_pad, "value" },
+		FIELD_EXPLANATION("potential result", nullptr),
+		{ _field_short_enum, "response", &blofeld::halo2::pc64::unnamed_enum$361 },
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$362 },
+		{ _field_real_fraction, "chance fraction", nullptr, nullptr, "[0,1]" },
+		{ _field_angle_bounds, "between", nullptr, "degrees" },
+		{ _field_real_bounds, "and", nullptr, "world units per second" },
+		{ _field_tag_reference, "DO NOT USE (OLD effect)", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_useless_pad, "value" },
+		FIELD_EXPLANATION("misc", nullptr),
+		{ _field_short_enum, "scale effects by", &blofeld::halo2::pc64::unnamed_enum$363 },
+		FIELD_PAD("value", 2),
+		{ _field_angle, "angular noise", "the angle of incidence is randomly perturbed by at most this amount to simulate irregularity.", "degrees" },
+		{ _field_real, "velocity noise", "the velocity is randomly perturbed by at most this amount to simulate irregularity.", "world units per second" },
+		{ _field_tag_reference, "DO NOT USE (OLD detonation effect)", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_useless_pad, "value" },
+		FIELD_EXPLANATION("penetration", nullptr),
+		{ _field_real, "initial friction", "the fraction of the projectile's velocity lost on penetration" },
+		{ _field_real, "maximum distance", "the maximum distance the projectile can travel through on object of this material" },
+		FIELD_EXPLANATION("reflection", nullptr),
+		{ _field_real, "parallel friction", "the fraction of the projectile's velocity parallel to the surface lost on impact" },
+		{ _field_real, "perpendicular friction", "the fraction of the projectile's velocity perpendicular to the surface lost on impact" },
+		{ _field_terminator }
+	};
+
+	STRINGS(unnamed_enum$360)
+	{
+		"cannot be overpenetrated"
+	};
+	STRING_LIST(unnamed_enum$360, unnamed_enum$360_strings, _countof(unnamed_enum$360_strings));
+
+	STRINGS(unnamed_enum$361)
+	{
+		"impact (detonate)",
+		"fizzle",
+		"overpenetrate",
+		"attach",
+		"bounce",
+		"bounce (dud)",
+		"fizzle (ricochet)"
+	};
+	STRING_LIST(unnamed_enum$361, unnamed_enum$361_strings, _countof(unnamed_enum$361_strings));
+
+	STRINGS(unnamed_enum$362)
+	{
+		"only against units",
+		"never against units"
+	};
+	STRING_LIST(unnamed_enum$362, unnamed_enum$362_strings, _countof(unnamed_enum$362_strings));
+
+	STRINGS(unnamed_enum$363)
+	{
+		"damage",
+		"angle"
+	};
+	STRING_LIST(unnamed_enum$363, unnamed_enum$363_strings, _countof(unnamed_enum$363_strings));
 
 	TAG_STRUCT(
 		particle_block_struct_definition,
@@ -31211,7 +30181,7 @@ namespace pc64
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },
 		FIELD_EXPLANATION("FUNCTION", nullptr),
 		FIELD_CUSTOM("animation function", _field_id_function_editor),
-		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -31894,65 +30864,49 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		structure_bsp_leaf_tags_v2_struct_definition,
-		"structure_bsp_leaf_tags_v2",
-		"structure_bsp_leaf_tags_v2_struct_definition",
+		structure_bsp_leaf_struct_definition,
+		"structure_bsp_leaf",
+		"structure_bsp_leaf_struct_definition",
 		"s_structure_leaf$2",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 3 },
 		{ _field_short_integer, "cluster" },
 		{ _field_short_integer, "surface reference count" },
 		{ _field_long_integer, "first surface reference index" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		structure_bsp_leaf_tags_v1_struct_definition,
-		"structure_bsp_leaf_tags_v1",
-		"structure_bsp_leaf_tags_v1_struct_definition",
-		"s_structure_leaf_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 5 },
 		FIELD_SKIP("value", 6),
 		FIELD_PAD("value", 2),
 		{ _field_short_integer, "cluster" },
 		{ _field_short_integer, "surface reference count" },
 		{ _field_long_integer, "first surface reference index" },
+		
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(
-		structure_bsp_surface_reference_tags_v2_struct_definition,
-		"structure_bsp_surface_reference_tags_v2",
-		"structure_bsp_surface_reference_tags_v2_struct_definition",
+		structure_bsp_surface_reference_struct_definition,
+		"structure_bsp_surface_reference",
+		"structure_bsp_surface_reference_struct_definition",
 		"s_structure_surface_reference$2",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 3 },
 		{ _field_short_integer, "strip index" },
 		{ _field_short_integer, "lightmap triangle index" },
 		{ _field_long_integer, "bsp node index" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		structure_bsp_surface_reference_tags_v1_struct_definition,
-		"structure_bsp_surface_reference_tags_v1",
-		"structure_bsp_surface_reference_tags_v1_struct_definition",
-		"s_structure_surface_reference_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 4 },
 		{ _field_long_integer, "strip index" },
 		{ _field_long_integer, "bsp node index" },
 		{ _field_long_integer, "lightmap triangle index" },
 		FIELD_PAD("value", 12),
+		
 		{ _field_terminator }
 	};
 
@@ -32137,14 +31091,15 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		structure_bsp_cluster_tags_v3_struct_definition,
-		"structure_bsp_cluster_tags_v3",
-		"structure_bsp_cluster_tags_v3_struct_definition",
+		structure_bsp_cluster_struct_definition,
+		"structure_bsp_cluster",
+		"structure_bsp_cluster_struct_definition",
 		"s_structure_cluster",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 27 },
 		{ _field_struct, "section info", &blofeld::halo2::pc64::global_geometry_section_info_struct_struct_definition },
 		{ _field_struct, "geometry block info", &blofeld::halo2::pc64::global_geometry_block_info_struct_struct_definition },
 		{ _field_block, "cluster data", &blofeld::halo2::pc64::structure_bsp_cluster_data_block_new_block },
@@ -32172,6 +31127,76 @@ namespace pc64
 		{ _field_block, "instanced geometry indices", &blofeld::halo2::pc64::structure_bsp_cluster_instanced_geometry_index_block },
 		{ _field_block, "index reorder table", &blofeld::halo2::pc64::global_geometry_section_strip_index_block },
 		{ _field_data, "collision mopp code", &blofeld::halo2::pc64::cluster_mopp_code_data },
+		
+		{ _struct_version_mode_equal, 1, 32 },
+		{ _field_struct, "section info", &blofeld::halo2::pc64::global_geometry_section_info_struct_struct_definition },
+		{ _field_struct, "geometry block info", &blofeld::halo2::pc64::global_geometry_block_info_struct_struct_definition },
+		{ _field_block, "cluster data", &blofeld::halo2::pc64::structure_bsp_cluster_data_block },
+		FIELD_EXPLANATION("CLUSTER INFO", nullptr),
+		{ _field_real_bounds, "bounds x" },
+		{ _field_real_bounds, "bounds y" },
+		{ _field_real_bounds, "bounds z" },
+		{ _field_char_integer, "scenario sky index" },
+		{ _field_char_integer, "media index" },
+		{ _field_char_integer, "scenario visible sky index" },
+		{ _field_char_integer, "scenario atmospheric fog index" },
+		{ _field_char_integer, "planar fog designator" },
+		{ _field_char_integer, "visible fog plane index" },
+		{ _field_short_block_index, "background sound" },
+		{ _field_short_block_index, "sound environment" },
+		{ _field_short_block_index, "weather" },
+		{ _field_short_integer, "transition structure bsp" },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 4),
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$369 },
+		FIELD_PAD("value", 2),
+		{ _field_block, "subclusters", &blofeld::halo2::pc64::structure_subcluster_block },
+		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
+		{ _field_block, "portals", &blofeld::halo2::pc64::structure_bsp_cluster_portal_index_block },
+		{ _field_long_integer, "checksum from structure" },
+		{ _field_data, "visibility mopp code", &blofeld::halo2::pc64::structure_bsp_cluster_visibility_mopp_code_data },
+		{ _field_struct, "mopp shape", &blofeld::halo2::pc64::structure_bsp_cluster_mopp_shape_struct_definition },
+		{ _field_block, "visibility mopp leaves", &blofeld::halo2::pc64::structure_bsp_cluster_visibility_mopp_leaf_block },
+		{ _field_data, "visibility subcluster bitvector", &blofeld::halo2::pc64::structure_bsp_cluster_visibility_subcluster_bitvector },
+		{ _field_struct, "cluster mopp shape", &blofeld::halo2::pc64::structure_bsp_cluster_havok_shape_struct_definition },
+		{ _field_block, "instanced geometry indices", &blofeld::halo2::pc64::structure_bsp_cluster_instanced_geometry_index_block },
+		{ _field_block, "visibility mopp reorder table", &blofeld::halo2::pc64::visibility_mopp_reorder_table_block },
+		
+		{ _struct_version_mode_equal, 0, 33 },
+		{ _field_struct, "section", &blofeld::halo2::pc64::geometry_section_fieldset_new_struct_definition },
+		{ _field_struct, "section info", &blofeld::halo2::pc64::global_geometry_section_info_struct_struct_definition },
+		FIELD_EXPLANATION("CLUSTER INFO", nullptr),
+		{ _field_real_bounds, "bounds x" },
+		{ _field_real_bounds, "bounds y" },
+		{ _field_real_bounds, "bounds z" },
+		{ _field_short_integer, "sky index" },
+		{ _field_short_integer, "visible sky index" },
+		{ _field_short_integer, "planar fog designator" },
+		{ _field_short_block_index, "background sound" },
+		{ _field_short_block_index, "sound environment" },
+		{ _field_short_block_index, "weather" },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 4),
+		FIELD_PAD("value", 4),
+		{ _field_block, "strip segments", &blofeld::halo2::pc64::structure_indices_segment_block },
+		{ _field_block, "strip segment references", &blofeld::halo2::pc64::structure_indices_segment_reference_block },
+		{ _field_block, "subclusters", &blofeld::halo2::pc64::structure_subcluster_block },
+		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
+		{ _field_block, "portals", &blofeld::halo2::pc64::structure_bsp_cluster_portal_index_block },
+		FIELD_EXPLANATION("ISQ INFO", nullptr),
+		{ _field_struct, "isq info", &blofeld::halo2::pc64::global_geometry_isq_info_struct_struct_definition },
+		{ _field_block, "forward edges", &blofeld::halo2::pc64::structure_shared_edge_block },
+		{ _field_block, "forward edge groups", &blofeld::halo2::pc64::structure_shared_edge_group_block },
+		{ _field_block, "backward edges", &blofeld::halo2::pc64::structure_shared_edge_block },
+		{ _field_block, "backward edge groups", &blofeld::halo2::pc64::structure_shared_edge_group_block },
+		{ _field_block, "subcluster boundaries", &blofeld::halo2::pc64::structure_subcluster_boundary_block },
+		{ _field_block, "first triangle indices", &blofeld::halo2::pc64::structure_strip_segment_first_triangle_index_block },
+		{ _field_block, "lightmap fragments", &blofeld::halo2::pc64::structure_bsp_cluster_lightmap_data_block },
+		{ _field_block, "lightmap sampling info", &blofeld::halo2::pc64::structure_lightmap_sampling_info_block },
+		{ _field_long_integer, "checksum from structure" },
+		{ _field_pointer, "runtime_dx9_index_buffer", _field_id_zero_data },
+		
 		{ _field_terminator }
 	};
 
@@ -32220,51 +31245,6 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "instanced geometry index" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		structure_bsp_cluster_tags_v1_struct_definition,
-		"structure_bsp_cluster_tags_v1",
-		"structure_bsp_cluster_tags_v1_struct_definition",
-		"s_structure_cluster_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_struct, "section", &blofeld::halo2::pc64::geometry_section_fieldset_new_struct_definition },
-		{ _field_struct, "section info", &blofeld::halo2::pc64::global_geometry_section_info_struct_struct_definition },
-		FIELD_EXPLANATION("CLUSTER INFO", nullptr),
-		{ _field_real_bounds, "bounds x" },
-		{ _field_real_bounds, "bounds y" },
-		{ _field_real_bounds, "bounds z" },
-		{ _field_short_integer, "sky index" },
-		{ _field_short_integer, "visible sky index" },
-		{ _field_short_integer, "planar fog designator" },
-		{ _field_short_block_index, "background sound" },
-		{ _field_short_block_index, "sound environment" },
-		{ _field_short_block_index, "weather" },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 4),
-		FIELD_PAD("value", 4),
-		{ _field_block, "strip segments", &blofeld::halo2::pc64::structure_indices_segment_block },
-		{ _field_block, "strip segment references", &blofeld::halo2::pc64::structure_indices_segment_reference_block },
-		{ _field_block, "subclusters", &blofeld::halo2::pc64::structure_subcluster_block },
-		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
-		{ _field_block, "portals", &blofeld::halo2::pc64::structure_bsp_cluster_portal_index_block },
-		FIELD_EXPLANATION("ISQ INFO", nullptr),
-		{ _field_struct, "isq info", &blofeld::halo2::pc64::global_geometry_isq_info_struct_struct_definition },
-		{ _field_block, "forward edges", &blofeld::halo2::pc64::structure_shared_edge_block },
-		{ _field_block, "forward edge groups", &blofeld::halo2::pc64::structure_shared_edge_group_block },
-		{ _field_block, "backward edges", &blofeld::halo2::pc64::structure_shared_edge_block },
-		{ _field_block, "backward edge groups", &blofeld::halo2::pc64::structure_shared_edge_group_block },
-		{ _field_block, "subcluster boundaries", &blofeld::halo2::pc64::structure_subcluster_boundary_block },
-		{ _field_block, "first triangle indices", &blofeld::halo2::pc64::structure_strip_segment_first_triangle_index_block },
-		{ _field_block, "lightmap fragments", &blofeld::halo2::pc64::structure_bsp_cluster_lightmap_data_block },
-		{ _field_block, "lightmap sampling info", &blofeld::halo2::pc64::structure_lightmap_sampling_info_block },
-		{ _field_long_integer, "checksum from structure" },
-		{ _field_pointer, "runtime_dx9_index_buffer", _field_id_zero_data },
 		{ _field_terminator }
 	};
 
@@ -32495,50 +31475,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		structure_bsp_cluster_tags_v2_struct_definition,
-		"structure_bsp_cluster_tags_v2",
-		"structure_bsp_cluster_tags_v2_struct_definition",
-		"s_structure_cluster_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_struct, "section info", &blofeld::halo2::pc64::global_geometry_section_info_struct_struct_definition },
-		{ _field_struct, "geometry block info", &blofeld::halo2::pc64::global_geometry_block_info_struct_struct_definition },
-		{ _field_block, "cluster data", &blofeld::halo2::pc64::structure_bsp_cluster_data_block },
-		FIELD_EXPLANATION("CLUSTER INFO", nullptr),
-		{ _field_real_bounds, "bounds x" },
-		{ _field_real_bounds, "bounds y" },
-		{ _field_real_bounds, "bounds z" },
-		{ _field_char_integer, "scenario sky index" },
-		{ _field_char_integer, "media index" },
-		{ _field_char_integer, "scenario visible sky index" },
-		{ _field_char_integer, "scenario atmospheric fog index" },
-		{ _field_char_integer, "planar fog designator" },
-		{ _field_char_integer, "visible fog plane index" },
-		{ _field_short_block_index, "background sound" },
-		{ _field_short_block_index, "sound environment" },
-		{ _field_short_block_index, "weather" },
-		{ _field_short_integer, "transition structure bsp" },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 4),
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$369 },
-		FIELD_PAD("value", 2),
-		{ _field_block, "subclusters", &blofeld::halo2::pc64::structure_subcluster_block },
-		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
-		{ _field_block, "portals", &blofeld::halo2::pc64::structure_bsp_cluster_portal_index_block },
-		{ _field_long_integer, "checksum from structure" },
-		{ _field_data, "visibility mopp code", &blofeld::halo2::pc64::structure_bsp_cluster_visibility_mopp_code_data },
-		{ _field_struct, "mopp shape", &blofeld::halo2::pc64::structure_bsp_cluster_mopp_shape_struct_definition },
-		{ _field_block, "visibility mopp leaves", &blofeld::halo2::pc64::structure_bsp_cluster_visibility_mopp_leaf_block },
-		{ _field_data, "visibility subcluster bitvector", &blofeld::halo2::pc64::structure_bsp_cluster_visibility_subcluster_bitvector },
-		{ _field_struct, "cluster mopp shape", &blofeld::halo2::pc64::structure_bsp_cluster_havok_shape_struct_definition },
-		{ _field_block, "instanced geometry indices", &blofeld::halo2::pc64::structure_bsp_cluster_instanced_geometry_index_block },
-		{ _field_block, "visibility mopp reorder table", &blofeld::halo2::pc64::visibility_mopp_reorder_table_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		structure_bsp_cluster_data_block_struct_definition,
 		"structure_bsp_cluster_data_block",
 		"structure_bsp_cluster_data_block_struct_definition",
@@ -32692,9 +31628,23 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 3 },
 		{ _field_word_flags, "Path-finding sector flags", &blofeld::halo2::pc64::unnamed_enum$372 },
 		{ _field_short_integer, "hint index" },
 		{ _field_long_integer, "first link (do not set manually)" },
+		
+		{ _struct_version_mode_equal, 1, 4 },
+		{ _field_word_flags, "Path-finding sector flags", &blofeld::halo2::pc64::unnamed_enum$372 },
+		{ _field_short_integer, "hint index" },
+		{ _field_short_integer, "first link (do not set manually)" },
+		FIELD_PAD("value", 2),
+		
+		{ _struct_version_mode_equal, 0, 4 },
+		{ _field_word_flags, "Path-finding sector flags", &blofeld::halo2::pc64::unnamed_enum$372 },
+		{ _field_short_integer, "hint index" },
+		{ _field_long_integer, "source object (do not set manually)" },
+		{ _field_long_integer, "first link (do not set manually)" },
+		
 		{ _field_terminator }
 	};
 
@@ -32718,38 +31668,6 @@ namespace pc64
 	STRING_LIST(unnamed_enum$372, unnamed_enum$372_strings, _countof(unnamed_enum$372_strings));
 
 	TAG_STRUCT(
-		sectors_v1_struct_definition,
-		"sectors_v1",
-		"sectors_v1_struct_definition",
-		"s_sector_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_word_flags, "Path-finding sector flags", &blofeld::halo2::pc64::unnamed_enum$372 },
-		{ _field_short_integer, "hint index" },
-		{ _field_long_integer, "source object (do not set manually)" },
-		{ _field_long_integer, "first link (do not set manually)" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		sectors_v2_struct_definition,
-		"sectors_v2",
-		"sectors_v2_struct_definition",
-		"s_sector_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_word_flags, "Path-finding sector flags", &blofeld::halo2::pc64::unnamed_enum$372 },
-		{ _field_short_integer, "hint index" },
-		{ _field_short_integer, "first link (do not set manually)" },
-		FIELD_PAD("value", 2),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		links_v2_struct_definition,
 		"links_v2",
 		"links_v2_struct_definition",
@@ -32758,6 +31676,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 3, 8 },
 		{ _field_short_integer, "vertex 1" },
 		{ _field_short_integer, "vertex 2" },
 		{ _field_word_flags, "link flags", &blofeld::halo2::pc64::unnamed_enum$373 },
@@ -32766,6 +31685,37 @@ namespace pc64
 		{ _field_short_integer, "reverse link" },
 		{ _field_short_integer, "left sector" },
 		{ _field_short_integer, "right sector" },
+		
+		{ _struct_version_mode_equal, 2, 8 },
+		{ _field_short_integer, "vertex 1" },
+		{ _field_short_integer, "vertex 2" },
+		{ _field_word_flags, "link flags", &blofeld::halo2::pc64::unnamed_enum$373 },
+		{ _field_short_integer, "hint index" },
+		{ _field_long_integer, "forward link" },
+		{ _field_long_integer, "reverse link" },
+		{ _field_short_integer, "left sector" },
+		{ _field_short_integer, "right sector" },
+		
+		{ _struct_version_mode_equal, 1, 8 },
+		{ _field_short_integer, "vertex 1" },
+		{ _field_short_integer, "vertex 2" },
+		{ _field_word_flags, "link flags", &blofeld::halo2::pc64::unnamed_enum$373 },
+		{ _field_short_integer, "hint index" },
+		{ _field_short_integer, "forward link" },
+		{ _field_short_integer, "reverse link" },
+		{ _field_short_integer, "left sector" },
+		{ _field_short_integer, "right sector" },
+		
+		{ _struct_version_mode_equal, 0, 8 },
+		{ _field_long_integer, "Index" },
+		{ _field_long_integer, "Index2 (for vertex-indices)" },
+		{ _field_word_flags, "link flags", &blofeld::halo2::pc64::unnamed_enum$373 },
+		{ _field_short_integer, "hint index" },
+		{ _field_long_integer, "forward link" },
+		{ _field_long_integer, "reverse link" },
+		{ _field_long_integer, "left sector" },
+		{ _field_long_integer, "right sector" },
+		
 		{ _field_terminator }
 	};
 
@@ -32787,66 +31737,6 @@ namespace pc64
 		"sector link end corner"
 	};
 	STRING_LIST(unnamed_enum$373, unnamed_enum$373_strings, _countof(unnamed_enum$373_strings));
-
-	TAG_STRUCT(
-		links_v1_struct_definition,
-		"links_v1",
-		"links_v1_struct_definition",
-		"s_sector_link_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_integer, "Index" },
-		{ _field_long_integer, "Index2 (for vertex-indices)" },
-		{ _field_word_flags, "link flags", &blofeld::halo2::pc64::unnamed_enum$373 },
-		{ _field_short_integer, "hint index" },
-		{ _field_long_integer, "forward link" },
-		{ _field_long_integer, "reverse link" },
-		{ _field_long_integer, "left sector" },
-		{ _field_long_integer, "right sector" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		links_v2_struct_definition$2,
-		"links_v2",
-		"links_v2_struct_definition",
-		"s_sector_link_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_integer, "vertex 1" },
-		{ _field_short_integer, "vertex 2" },
-		{ _field_word_flags, "link flags", &blofeld::halo2::pc64::unnamed_enum$373 },
-		{ _field_short_integer, "hint index" },
-		{ _field_short_integer, "forward link" },
-		{ _field_short_integer, "reverse link" },
-		{ _field_short_integer, "left sector" },
-		{ _field_short_integer, "right sector" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		links_v3_struct_definition,
-		"links_v3",
-		"links_v3_struct_definition",
-		"s_sector_link_v3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_integer, "vertex 1" },
-		{ _field_short_integer, "vertex 2" },
-		{ _field_word_flags, "link flags", &blofeld::halo2::pc64::unnamed_enum$373 },
-		{ _field_short_integer, "hint index" },
-		{ _field_long_integer, "forward link" },
-		{ _field_long_integer, "reverse link" },
-		{ _field_short_integer, "left sector" },
-		{ _field_short_integer, "right sector" },
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		ref_block_struct_definition,
@@ -32903,20 +31793,32 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		environment_object_ref_v2_struct_definition,
-		"environment_object_ref_v2",
-		"environment_object_ref_v2_struct_definition",
+		environment_object_ref_struct_definition,
+		"environment_object_ref",
+		"environment_object_ref_struct_definition",
 		"s_environment_object_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 6 },
 		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$374 },
 		FIELD_PAD("value", 2),
 		{ _field_long_integer, "first sector" },
 		{ _field_long_integer, "last sector" },
 		{ _field_block, "bsps", &blofeld::halo2::pc64::environment_object_bsp_refs_block },
 		{ _field_block, "nodes", &blofeld::halo2::pc64::environment_object_nodes_block },
+		
+		{ _struct_version_mode_equal, 0, 8 },
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$374 },
+		FIELD_PAD("value", 2),
+		{ _field_long_integer, "first sector" },
+		{ _field_long_integer, "last sector" },
+		FIELD_PAD("value", 48),
+		{ _field_block, "bsps", &blofeld::halo2::pc64::environment_object_bsp_refs_block },
+		{ _field_block, "nodes", &blofeld::halo2::pc64::environment_object_nodes_block },
+		FIELD_PAD("value", 48),
+		
 		{ _field_terminator }
 	};
 
@@ -32927,31 +31829,22 @@ namespace pc64
 	STRING_LIST(unnamed_enum$374, unnamed_enum$374_strings, _countof(unnamed_enum$374_strings));
 
 	TAG_STRUCT(
-		environment_object_bsp_ref_v2_struct_definition,
-		"environment_object_bsp_ref_v2",
-		"environment_object_bsp_ref_v2_struct_definition",
+		environment_object_bsp_ref_struct_definition,
+		"environment_object_bsp_ref",
+		"environment_object_bsp_ref_struct_definition",
 		"s_environment_object_bsp_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 5 },
 		{ _field_long_integer, "bsp reference" },
 		{ _field_long_integer, "first sector" },
 		{ _field_long_integer, "last sector" },
 		{ _field_short_integer, "node_index" },
 		FIELD_PAD("value", 2),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		environment_object_bsp_ref_v1_struct_definition,
-		"environment_object_bsp_ref_v1",
-		"environment_object_bsp_ref_v1_struct_definition",
-		"s_environment_object_bsp_reference_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 7 },
 		{ _field_long_integer, "bsp reference" },
 		{ _field_long_integer, "first sector" },
 		{ _field_long_integer, "last sector" },
@@ -32959,21 +31852,29 @@ namespace pc64
 		FIELD_PAD("value", 2),
 		FIELD_PAD("value", 44),
 		{ _field_block, "bsp2d refs", &blofeld::halo2::pc64::ref_block },
+		
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(
-		environment_object_node_ref_v2_struct_definition,
-		"environment_object_node_ref_v2",
-		"environment_object_node_ref_v2_struct_definition",
+		environment_object_node_ref_struct_definition,
+		"environment_object_node_ref",
+		"environment_object_node_ref_struct_definition",
 		"s_environment_object_node_reference",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 3 },
 		{ _field_short_integer, "reference frame index" },
 		{ _field_char_integer, "projection axis" },
 		{ _field_byte_flags, "projection sign", &blofeld::halo2::pc64::unnamed_enum$375 },
+		
+		{ _struct_version_mode_equal, 0, 3 },
+		FIELD_PAD("value", 12),
+		{ _field_short_integer, "reference frame index" },
+		FIELD_PAD("value", 2),
+		
 		{ _field_terminator }
 	};
 
@@ -32984,41 +31885,6 @@ namespace pc64
 	STRING_LIST(unnamed_enum$375, unnamed_enum$375_strings, _countof(unnamed_enum$375_strings));
 
 	TAG_STRUCT(
-		environment_object_node_ref_v1_struct_definition,
-		"environment_object_node_ref_v1",
-		"environment_object_node_ref_v1_struct_definition",
-		"s_environment_object_node_reference_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_PAD("value", 12),
-		{ _field_short_integer, "reference frame index" },
-		FIELD_PAD("value", 2),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		environment_object_ref_v1_struct_definition,
-		"environment_object_ref_v1",
-		"environment_object_ref_v1_struct_definition",
-		"s_environment_object_reference_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$374 },
-		FIELD_PAD("value", 2),
-		{ _field_long_integer, "first sector" },
-		{ _field_long_integer, "last sector" },
-		FIELD_PAD("value", 48),
-		{ _field_block, "bsps", &blofeld::halo2::pc64::environment_object_bsp_refs_block },
-		{ _field_block, "nodes", &blofeld::halo2::pc64::environment_object_nodes_block },
-		FIELD_PAD("value", 48),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		hints_v2_struct_definition,
 		"hints_v2",
 		"hints_v2_struct_definition",
@@ -33027,6 +31893,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 3, 10 },
 		{ _field_short_enum, "hint type", &blofeld::halo2::pc64::unnamed_enum$376 },
 		{ _field_short_integer, "Next hint index" },
 		{ _field_short_integer, "hint data 0" },
@@ -33037,6 +31904,38 @@ namespace pc64
 		{ _field_short_integer, "hint data 5" },
 		{ _field_short_integer, "hint data 6" },
 		{ _field_short_integer, "hint data 7" },
+		
+		{ _struct_version_mode_equal, 2, 10 },
+		{ _field_short_enum, "hint type", &blofeld::halo2::pc64::unnamed_enum$376 },
+		{ _field_short_integer, "Next hint index" },
+		{ _field_short_integer, "hint data 0" },
+		{ _field_short_integer, "hint data 1" },
+		{ _field_short_integer, "hint data 2" },
+		{ _field_short_integer, "hint data 3" },
+		{ _field_short_integer, "hint data 4" },
+		{ _field_short_integer, "hint data 5" },
+		{ _field_short_integer, "hint data 6" },
+		{ _field_short_integer, "hint data 7" },
+		
+		{ _struct_version_mode_equal, 1, 10 },
+		{ _field_short_enum, "hint type", &blofeld::halo2::pc64::unnamed_enum$376 },
+		{ _field_short_integer, "Next hint index" },
+		{ _field_short_integer, "hint data 0" },
+		{ _field_short_integer, "hint data 1" },
+		{ _field_short_integer, "hint data 2" },
+		{ _field_short_integer, "hint data 3" },
+		{ _field_short_integer, "hint data 4" },
+		{ _field_short_integer, "hint data 5" },
+		{ _field_short_integer, "hint data 6" },
+		{ _field_short_integer, "hint data 7" },
+		
+		{ _struct_version_mode_equal, 0, 5 },
+		{ _field_short_enum, "hint type", &blofeld::halo2::pc64::unnamed_enum$376 },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 84),
+		{ _field_short_integer, "Next hint index" },
+		FIELD_PAD("value", 2),
+		
 		{ _field_terminator }
 	};
 
@@ -33052,67 +31951,6 @@ namespace pc64
 		"breakable floor"
 	};
 	STRING_LIST(unnamed_enum$376, unnamed_enum$376_strings, _countof(unnamed_enum$376_strings));
-
-	TAG_STRUCT(
-		hints_v1_struct_definition,
-		"hints_v1",
-		"hints_v1_struct_definition",
-		"s_pathfinding_hint_data_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_enum, "hint type", &blofeld::halo2::pc64::unnamed_enum$376 },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 84),
-		{ _field_short_integer, "Next hint index" },
-		FIELD_PAD("value", 2),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		hints_v2_struct_definition$2,
-		"hints_v2",
-		"hints_v2_struct_definition",
-		"s_pathfinding_hint_data$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_enum, "hint type", &blofeld::halo2::pc64::unnamed_enum$376 },
-		{ _field_short_integer, "Next hint index" },
-		{ _field_short_integer, "hint data 0" },
-		{ _field_short_integer, "hint data 1" },
-		{ _field_short_integer, "hint data 2" },
-		{ _field_short_integer, "hint data 3" },
-		{ _field_short_integer, "hint data 4" },
-		{ _field_short_integer, "hint data 5" },
-		{ _field_short_integer, "hint data 6" },
-		{ _field_short_integer, "hint data 7" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		hints_v2_struct_definition$3,
-		"hints_v2",
-		"hints_v2_struct_definition",
-		"s_pathfinding_hint_data$3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_enum, "hint type", &blofeld::halo2::pc64::unnamed_enum$376 },
-		{ _field_short_integer, "Next hint index" },
-		{ _field_short_integer, "hint data 0" },
-		{ _field_short_integer, "hint data 1" },
-		{ _field_short_integer, "hint data 2" },
-		{ _field_short_integer, "hint data 3" },
-		{ _field_short_integer, "hint data 4" },
-		{ _field_short_integer, "hint data 5" },
-		{ _field_short_integer, "hint data 6" },
-		{ _field_short_integer, "hint data 7" },
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		instanced_geometry_reference_block_struct_definition,
@@ -33152,72 +31990,57 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		user_hint_point_v2_struct_definition,
-		"user_hint_point_v2",
-		"user_hint_point_v2_struct_definition",
+		user_hint_point_struct_definition,
+		"user_hint_point",
+		"user_hint_point_struct_definition",
 		"s_user_hint_point",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 3 },
 		{ _field_real_point_3d, "Point" },
 		{ _field_short_integer, "reference frame" },
 		FIELD_PAD("value", 2),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		user_hint_point_v1_struct_definition,
-		"user_hint_point_v1",
-		"user_hint_point_v1_struct_definition",
-		"s_user_hint_point_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 1 },
 		{ _field_real_point_3d, "Point" },
+		
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(
-		user_hint_ray_v2_struct_definition,
-		"user_hint_ray_v2",
-		"user_hint_ray_v2_struct_definition",
+		user_hint_ray_struct_definition,
+		"user_hint_ray",
+		"user_hint_ray_struct_definition",
 		"s_user_hint_ray",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 4 },
 		{ _field_real_point_3d, "Point" },
 		{ _field_short_integer, "reference frame" },
 		FIELD_PAD("value", 2),
 		{ _field_real_vector_3d, "Vector" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		user_hint_ray_v1_struct_definition,
-		"user_hint_ray_v1",
-		"user_hint_ray_v1_struct_definition",
-		"s_user_hint_ray_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 2 },
 		{ _field_real_point_3d, "Point" },
 		{ _field_real_vector_3d, "Vector" },
+		
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(
-		user_hint_line_segment_v2_struct_definition,
-		"user_hint_line_segment_v2",
-		"user_hint_line_segment_v2_struct_definition",
+		user_hint_line_segment_struct_definition,
+		"user_hint_line_segment",
+		"user_hint_line_segment_struct_definition",
 		"s_user_hint_line_segment",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 7 },
 		{ _field_long_flags, "Flags", &blofeld::halo2::pc64::unnamed_enum$377 },
 		{ _field_real_point_3d, "Point 0" },
 		{ _field_short_integer, "reference frame" },
@@ -33225,6 +32048,12 @@ namespace pc64
 		{ _field_real_point_3d, "Point 1" },
 		{ _field_short_integer, "reference frame" },
 		FIELD_PAD("value", 2),
+		
+		{ _struct_version_mode_equal, 0, 3 },
+		{ _field_long_flags, "Flags", &blofeld::halo2::pc64::unnamed_enum$377 },
+		{ _field_real_point_3d, "Point 0" },
+		{ _field_real_point_3d, "Point 1" },
+		
 		{ _field_terminator }
 	};
 
@@ -33236,29 +32065,15 @@ namespace pc64
 	STRING_LIST(unnamed_enum$377, unnamed_enum$377_strings, _countof(unnamed_enum$377_strings));
 
 	TAG_STRUCT(
-		user_hint_line_segment_v1_struct_definition,
-		"user_hint_line_segment_v1",
-		"user_hint_line_segment_v1_struct_definition",
-		"s_user_hint_line_segment_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "Flags", &blofeld::halo2::pc64::unnamed_enum$377 },
-		{ _field_real_point_3d, "Point 0" },
-		{ _field_real_point_3d, "Point 1" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		user_hint_parallelogram_v2_struct_definition,
-		"user_hint_parallelogram_v2",
-		"user_hint_parallelogram_v2_struct_definition",
+		user_hint_parallelogram_struct_definition,
+		"user_hint_parallelogram",
+		"user_hint_parallelogram_struct_definition",
 		"s_user_hint_parallelogram",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 13 },
 		{ _field_long_flags, "Flags", &blofeld::halo2::pc64::unnamed_enum$377 },
 		{ _field_real_point_3d, "Point 0" },
 		{ _field_short_integer, "reference frame" },
@@ -33272,23 +32087,14 @@ namespace pc64
 		{ _field_real_point_3d, "Point 3" },
 		{ _field_short_integer, "reference frame" },
 		FIELD_PAD("value", 2),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		user_hint_parallelogram_v1_struct_definition,
-		"user_hint_parallelogram_v1",
-		"user_hint_parallelogram_v1_struct_definition",
-		"s_user_hint_parallelogram_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 5 },
 		{ _field_long_flags, "Flags", &blofeld::halo2::pc64::unnamed_enum$377 },
 		{ _field_real_point_3d, "Point 0" },
 		{ _field_real_point_3d, "Point 1" },
 		{ _field_real_point_3d, "Point 2" },
 		{ _field_real_point_3d, "Point 3" },
+		
 		{ _field_terminator }
 	};
 
@@ -33649,7 +32455,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
-		{ _field_struct, "render info", &blofeld::halo2::pc64::structure_instanced_geometry_render_info_v2_struct_definition },
+		{ _field_struct, "render info", &blofeld::halo2::pc64::structure_instanced_geometry_render_info_struct_definition },
 		{ _field_long_integer, "checksum" },
 		{ _field_real_point_3d, "bounding sphere center" },
 		{ _field_real, "bounding sphere radius" },
@@ -33661,46 +32467,39 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		structure_instanced_geometry_render_info_v2_struct_definition,
-		"structure_instanced_geometry_render_info_v2",
-		"structure_instanced_geometry_render_info_v2_struct_definition",
+		structure_instanced_geometry_render_info_struct_definition,
+		"structure_instanced_geometry_render_info",
+		"structure_instanced_geometry_render_info_struct_definition",
 		"s_structure_instanced_geometry_render_info",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 4 },
 		{ _field_struct, "section info", &blofeld::halo2::pc64::global_geometry_section_info_struct_struct_definition },
 		{ _field_struct, "geometry block info", &blofeld::halo2::pc64::global_geometry_block_info_struct_struct_definition },
 		{ _field_block, "render data", &blofeld::halo2::pc64::structure_bsp_cluster_data_block_new_block },
 		{ _field_block, "index reorder table", &blofeld::halo2::pc64::global_geometry_section_strip_index_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		structure_instanced_geometry_render_info_v1_struct_definition,
-		"structure_instanced_geometry_render_info_v1",
-		"structure_instanced_geometry_render_info_v1_struct_definition",
-		"s_structure_instanced_geometry_render_info_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 4 },
 		{ _field_struct, "section info", &blofeld::halo2::pc64::global_geometry_section_info_struct_struct_definition },
 		{ _field_struct, "geometry block info", &blofeld::halo2::pc64::global_geometry_block_info_struct_struct_definition },
 		{ _field_block, "render data", &blofeld::halo2::pc64::structure_bsp_cluster_data_block },
 		{ _field_block, "instance definition subclusters", &blofeld::halo2::pc64::structure_subcluster_block },
+		
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(
-		instanced_geometry_instance_v3_struct_definition,
-		"instanced_geometry_instance_v3",
-		"instanced_geometry_instance_v3_struct_definition",
+		instanced_geometry_instance_struct_definition,
+		"instanced_geometry_instance",
+		"instanced_geometry_instance_struct_definition",
 		"s_structure_instanced_geometry_instance",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 14 },
 		{ _field_real, "scale" },
 		{ _field_real_vector_3d, "forward" },
 		{ _field_real_vector_3d, "left" },
@@ -33715,6 +32514,37 @@ namespace pc64
 		{ _field_string_id, "name" },
 		{ _field_short_enum, "pathfinding policy", &blofeld::halo2::pc64::unnamed_enum$383 },
 		{ _field_short_enum, "lightmapping policy", &blofeld::halo2::pc64::unnamed_enum$384 },
+		
+		{ _struct_version_mode_equal, 1, 13 },
+		{ _field_real, "scale" },
+		{ _field_real_vector_3d, "forward" },
+		{ _field_real_vector_3d, "left" },
+		{ _field_real_vector_3d, "up" },
+		{ _field_real_point_3d, "position" },
+		{ _field_short_block_index, "instance definition" },
+		{ _field_short_integer, "render first bitvector index" },
+		FIELD_PAD("value", 4),
+		{ _field_tag_reference, "lightmap bitmap", &blofeld::halo2::pc64::bitmap_group_reference },
+		{ _field_long_integer, "checksum" },
+		{ _field_string_id, "name" },
+		{ _field_short_integer, "pathfinding object index" },
+		FIELD_SKIP("value", 2),
+		
+		{ _struct_version_mode_equal, 0, 13 },
+		{ _field_real, "scale" },
+		{ _field_real_vector_3d, "forward" },
+		{ _field_real_vector_3d, "left" },
+		{ _field_real_vector_3d, "up" },
+		{ _field_real_point_3d, "position" },
+		{ _field_short_block_index, "instance definition" },
+		{ _field_short_integer, "render first bitvector index" },
+		FIELD_PAD("value", 4),
+		{ _field_tag_reference, "lightmap bitmap", &blofeld::halo2::pc64::bitmap_group_reference },
+		{ _field_long_integer, "checksum" },
+		{ _field_string_id, "name" },
+		{ _field_short_integer, "pathfinding object index" },
+		FIELD_SKIP("value", 2),
+		
 		{ _field_terminator }
 	};
 
@@ -33738,56 +32568,6 @@ namespace pc64
 		"per-vertex"
 	};
 	STRING_LIST(unnamed_enum$384, unnamed_enum$384_strings, _countof(unnamed_enum$384_strings));
-
-	TAG_STRUCT(
-		instanced_geometry_instance_v2_struct_definition,
-		"instanced_geometry_instance_v2",
-		"instanced_geometry_instance_v2_struct_definition",
-		"s_structure_instanced_geometry_instance_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real, "scale" },
-		{ _field_real_vector_3d, "forward" },
-		{ _field_real_vector_3d, "left" },
-		{ _field_real_vector_3d, "up" },
-		{ _field_real_point_3d, "position" },
-		{ _field_short_block_index, "instance definition" },
-		{ _field_short_integer, "render first bitvector index" },
-		FIELD_PAD("value", 4),
-		{ _field_tag_reference, "lightmap bitmap", &blofeld::halo2::pc64::bitmap_group_reference },
-		{ _field_long_integer, "checksum" },
-		{ _field_string_id, "name" },
-		{ _field_short_integer, "pathfinding object index" },
-		FIELD_SKIP("value", 2),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		instanced_geometry_instance_v2_struct_definition$2,
-		"instanced_geometry_instance_v2",
-		"instanced_geometry_instance_v2_struct_definition",
-		"s_structure_instanced_geometry_instance_v2$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real, "scale" },
-		{ _field_real_vector_3d, "forward" },
-		{ _field_real_vector_3d, "left" },
-		{ _field_real_vector_3d, "up" },
-		{ _field_real_point_3d, "position" },
-		{ _field_short_block_index, "instance definition" },
-		{ _field_short_integer, "render first bitvector index" },
-		FIELD_PAD("value", 4),
-		{ _field_tag_reference, "lightmap bitmap", &blofeld::halo2::pc64::bitmap_group_reference },
-		{ _field_long_integer, "checksum" },
-		{ _field_string_id, "name" },
-		{ _field_short_integer, "pathfinding object index" },
-		FIELD_SKIP("value", 2),
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		structure_bsp_sound_cluster_block_struct_definition,
@@ -34228,14 +33008,15 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		scenery_v3_struct_definition,
-		"scenery_v3",
-		"scenery_v3_struct_definition",
+		scenery_struct_definition,
+		"scenery",
+		"scenery_struct_definition",
 		"s_scenery_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 51 },
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
 		{ _field_real, "bounding radius", nullptr, "world units" },
@@ -34287,118 +33068,8 @@ namespace pc64
 		{ _field_short_enum, "lightmapping policy", &blofeld::halo2::pc64::unnamed_enum$390 },
 		FIELD_PAD("value", 2),
 		{ _field_useless_pad, "value" },
-		{ _field_terminator }
-	};
-
-	STRINGS(unnamed_enum$388)
-	{
-		"Pathfinding CUT-OUT",
-		"Pathfinding STATIC",
-		"Pathfinding DYNAMIC",
-		"Pathfinding NONE"
-	};
-	STRING_LIST(unnamed_enum$388, unnamed_enum$388_strings, _countof(unnamed_enum$388_strings));
-
-	STRINGS(unnamed_enum$389)
-	{
-		"physically simulates#stimulates?"
-	};
-	STRING_LIST(unnamed_enum$389, unnamed_enum$389_strings, _countof(unnamed_enum$389_strings));
-
-	STRINGS(unnamed_enum$390)
-	{
-		"Per-Vertex",
-		"Per-Pixel (not implemented)",
-		"Dynamic"
-	};
-	STRING_LIST(unnamed_enum$390, unnamed_enum$390_strings, _countof(unnamed_enum$390_strings));
-
-	TAG_STRUCT(
-		scenery_v1_struct_definition,
-		"scenery_v1",
-		"scenery_v1_struct_definition",
-		"s_scenery_definition$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_PAD("value", 2),
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
-		{ _field_real, "bounding radius", nullptr, "world units" },
-		{ _field_real_point_3d, "bounding offset" },
-		{ _field_useless_pad, "value" },
-		{ _field_real, "acceleration scale", "marine 1.0, grunt 1.4, elite 0.9, hunter 0.5, etc.", nullptr, "[0,+inf]" },
-		{ _field_short_enum, "lightmap shadow mode", &blofeld::halo2::pc64::unnamed_enum$97 },
-		{ _field_char_enum, "sweetener size", &blofeld::halo2::pc64::unnamed_enum$98 },
-		FIELD_PAD("value", 1),
-		FIELD_PAD("value", 4),
-		{ _field_useless_pad, "value" },
-		{ _field_real, "dynamic light sphere radius", "sphere to use for dynamic lights and shadows. only used if not 0" },
-		{ _field_real_point_3d, "dynamic light sphere offset", "only used if radius not 0" },
-		{ _field_string_id, "default model variant" },
-		{ _field_tag_reference, "model", &blofeld::halo2::pc64::model_group_reference },
-		{ _field_tag_reference, "crate object", &blofeld::halo2::pc64::crate_group_reference$2 },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "modifier shader", &blofeld::halo2::pc64::shader_group_reference },
-		{ _field_tag_reference, "creation effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_tag_reference, "material effects", &blofeld::halo2::pc64::material_effects_group_reference },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "ai properties", &blofeld::halo2::pc64::object_ai_properties_block },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "functions", &blofeld::halo2::pc64::object_function_block },
-		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Applying collision damage", "for things that want to cause more or less collision damage"),
-		{ _field_real, "Apply collision damage scale", "0 means 1.  1 is standard scale.  Some things may want to apply more damage" },
-		FIELD_EXPLANATION("Game collision damage parameters", "0 - means take default value from globals.globals"),
-		{ _field_real, "min game acc (default)", "0-oo" },
-		{ _field_real, "max game acc (default)", "0-oo" },
-		{ _field_real, "min game scale (default)", "0-1" },
-		{ _field_real, "max game scale (default)", "0-1" },
-		FIELD_EXPLANATION("Absolute collision damage parameters", "0 - means take default value from globals.globals"),
-		{ _field_real, "min abs acc (default)", "0-oo" },
-		{ _field_real, "max abs acc (default)", "0-oo" },
-		{ _field_real, "min abs scale (default)", "0-1" },
-		{ _field_real, "max abs scale (default)", "0-1" },
-		{ _field_short_integer, "hud text message index" },
-		FIELD_PAD("value", 2),
-		{ _field_block, "attachments", &blofeld::halo2::pc64::object_attachment_block },
-		{ _field_block, "widgets", &blofeld::halo2::pc64::object_widget_block },
-		{ _field_block, "old functions", &blofeld::halo2::pc64::old_object_function_block },
-		{ _field_block, "change colors", &blofeld::halo2::pc64::object_change_colors_block },
-		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
-		{ _field_short_enum, "pathfinding policy", &blofeld::halo2::pc64::unnamed_enum$391 },
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$389 },
-		{ _field_short_enum, "lightmapping policy", &blofeld::halo2::pc64::unnamed_enum$392 },
-		FIELD_PAD("value", 2),
-		{ _field_useless_pad, "value" },
-		{ _field_terminator }
-	};
-
-	STRINGS(unnamed_enum$391)
-	{
-		"Pathfinding DYNAMIC",
-		"Pathfinding CUT-OUT",
-		"Pathfinding STATIC",
-		"Pathfinding NONE"
-	};
-	STRING_LIST(unnamed_enum$391, unnamed_enum$391_strings, _countof(unnamed_enum$391_strings));
-
-	STRINGS(unnamed_enum$392)
-	{
-		"Dynamic",
-		"Per-Vertex"
-	};
-	STRING_LIST(unnamed_enum$392, unnamed_enum$392_strings, _countof(unnamed_enum$392_strings));
-
-	TAG_STRUCT(
-		scenery_v2_struct_definition,
-		"scenery_v2",
-		"scenery_v2_struct_definition",
-		"s_scenery_definition$3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 1, 51 },
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
 		{ _field_real, "bounding radius", nullptr, "world units" },
@@ -34450,18 +33121,110 @@ namespace pc64
 		{ _field_short_enum, "lightmapping policy", &blofeld::halo2::pc64::unnamed_enum$390 },
 		FIELD_PAD("value", 2),
 		{ _field_useless_pad, "value" },
+		
+		{ _struct_version_mode_equal, 0, 49 },
+		FIELD_PAD("value", 2),
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
+		{ _field_real, "bounding radius", nullptr, "world units" },
+		{ _field_real_point_3d, "bounding offset" },
+		{ _field_useless_pad, "value" },
+		{ _field_real, "acceleration scale", "marine 1.0, grunt 1.4, elite 0.9, hunter 0.5, etc.", nullptr, "[0,+inf]" },
+		{ _field_short_enum, "lightmap shadow mode", &blofeld::halo2::pc64::unnamed_enum$97 },
+		{ _field_char_enum, "sweetener size", &blofeld::halo2::pc64::unnamed_enum$98 },
+		FIELD_PAD("value", 1),
+		FIELD_PAD("value", 4),
+		{ _field_useless_pad, "value" },
+		{ _field_real, "dynamic light sphere radius", "sphere to use for dynamic lights and shadows. only used if not 0" },
+		{ _field_real_point_3d, "dynamic light sphere offset", "only used if radius not 0" },
+		{ _field_string_id, "default model variant" },
+		{ _field_tag_reference, "model", &blofeld::halo2::pc64::model_group_reference },
+		{ _field_tag_reference, "crate object", &blofeld::halo2::pc64::crate_group_reference$2 },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "modifier shader", &blofeld::halo2::pc64::shader_group_reference },
+		{ _field_tag_reference, "creation effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_tag_reference, "material effects", &blofeld::halo2::pc64::material_effects_group_reference },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "ai properties", &blofeld::halo2::pc64::object_ai_properties_block },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "functions", &blofeld::halo2::pc64::object_function_block },
+		{ _field_useless_pad, "value" },
+		FIELD_EXPLANATION("Applying collision damage", "for things that want to cause more or less collision damage"),
+		{ _field_real, "Apply collision damage scale", "0 means 1.  1 is standard scale.  Some things may want to apply more damage" },
+		FIELD_EXPLANATION("Game collision damage parameters", "0 - means take default value from globals.globals"),
+		{ _field_real, "min game acc (default)", "0-oo" },
+		{ _field_real, "max game acc (default)", "0-oo" },
+		{ _field_real, "min game scale (default)", "0-1" },
+		{ _field_real, "max game scale (default)", "0-1" },
+		FIELD_EXPLANATION("Absolute collision damage parameters", "0 - means take default value from globals.globals"),
+		{ _field_real, "min abs acc (default)", "0-oo" },
+		{ _field_real, "max abs acc (default)", "0-oo" },
+		{ _field_real, "min abs scale (default)", "0-1" },
+		{ _field_real, "max abs scale (default)", "0-1" },
+		{ _field_short_integer, "hud text message index" },
+		FIELD_PAD("value", 2),
+		{ _field_block, "attachments", &blofeld::halo2::pc64::object_attachment_block },
+		{ _field_block, "widgets", &blofeld::halo2::pc64::object_widget_block },
+		{ _field_block, "old functions", &blofeld::halo2::pc64::old_object_function_block },
+		{ _field_block, "change colors", &blofeld::halo2::pc64::object_change_colors_block },
+		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
+		{ _field_short_enum, "pathfinding policy", &blofeld::halo2::pc64::unnamed_enum$391 },
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$389 },
+		{ _field_short_enum, "lightmapping policy", &blofeld::halo2::pc64::unnamed_enum$392 },
+		FIELD_PAD("value", 2),
+		{ _field_useless_pad, "value" },
+		
 		{ _field_terminator }
 	};
 
+	STRINGS(unnamed_enum$388)
+	{
+		"Pathfinding CUT-OUT",
+		"Pathfinding STATIC",
+		"Pathfinding DYNAMIC",
+		"Pathfinding NONE"
+	};
+	STRING_LIST(unnamed_enum$388, unnamed_enum$388_strings, _countof(unnamed_enum$388_strings));
+
+	STRINGS(unnamed_enum$389)
+	{
+		"physically simulates#stimulates?"
+	};
+	STRING_LIST(unnamed_enum$389, unnamed_enum$389_strings, _countof(unnamed_enum$389_strings));
+
+	STRINGS(unnamed_enum$390)
+	{
+		"Per-Vertex",
+		"Per-Pixel (not implemented)",
+		"Dynamic"
+	};
+	STRING_LIST(unnamed_enum$390, unnamed_enum$390_strings, _countof(unnamed_enum$390_strings));
+
+	STRINGS(unnamed_enum$391)
+	{
+		"Pathfinding DYNAMIC",
+		"Pathfinding CUT-OUT",
+		"Pathfinding STATIC",
+		"Pathfinding NONE"
+	};
+	STRING_LIST(unnamed_enum$391, unnamed_enum$391_strings, _countof(unnamed_enum$391_strings));
+
+	STRINGS(unnamed_enum$392)
+	{
+		"Dynamic",
+		"Per-Vertex"
+	};
+	STRING_LIST(unnamed_enum$392, unnamed_enum$392_strings, _countof(unnamed_enum$392_strings));
+
 	TAG_STRUCT(
-		scenario_tags_v2_struct_definition,
-		"scenario_tags_v2",
-		"scenario_tags_v2_struct_definition",
+		scenario_struct_definition,
+		"scenario",
+		"scenario_struct_definition",
 		"s_scenario",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 113 },
 		{ _field_tag_reference, "DON'T USE", &blofeld::halo2::pc64::scenario_structure_bsp_group_reference },
 		{ _field_block, "skies", &blofeld::halo2::pc64::scenario_sky_reference_block },
 		{ _field_short_enum, "type", &blofeld::halo2::pc64::unnamed_enum$393 },
@@ -34575,6 +33338,202 @@ namespace pc64
 		{ _field_block, "shared references", &blofeld::halo2::pc64::hs_references_block },
 		{ _field_block, "screen effect references", &blofeld::halo2::pc64::scenario_screen_effect_reference_block },
 		{ _field_block, "simulation definition table", &blofeld::halo2::pc64::scenario_simulation_definition_table_block },
+		
+		{ _struct_version_mode_equal, 1, 113 },
+		{ _field_tag_reference, "DON'T USE", &blofeld::halo2::pc64::scenario_structure_bsp_group_reference },
+		{ _field_block, "skies", &blofeld::halo2::pc64::scenario_sky_reference_block },
+		{ _field_short_enum, "type", &blofeld::halo2::pc64::unnamed_enum$393 },
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$394 },
+		{ _field_block, "@child scenarios", &blofeld::halo2::pc64::scenario_child_scenario_block },
+		{ _field_angle, "local north" },
+		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
+		{ _field_block, "functions", &blofeld::halo2::pc64::scenario_function_block },
+		{ _field_data, "editor scenario data", &blofeld::halo2::pc64::editor_scenario_data_definition },
+		{ _field_block, "comments", &blofeld::halo2::pc64::editor_comment_block },
+		{ _field_block, "environment objects", &blofeld::halo2::pc64::dont_use_me_scenario_environment_object_block },
+		{ _field_block, "object names", &blofeld::halo2::pc64::scenario_object_names_block, _field_id_sort },
+		{ _field_block, "scenery", &blofeld::halo2::pc64::scenario_scenery_block },
+		{ _field_block, "scenery palette", &blofeld::halo2::pc64::scenario_scenery_palette_block, _field_id_sort },
+		{ _field_block, "bipeds", &blofeld::halo2::pc64::scenario_biped_block },
+		{ _field_block, "biped palette", &blofeld::halo2::pc64::scenario_biped_palette_block, _field_id_sort },
+		{ _field_block, "vehicles", &blofeld::halo2::pc64::scenario_vehicle_block },
+		{ _field_block, "vehicle palette", &blofeld::halo2::pc64::scenario_vehicle_palette_block, _field_id_sort },
+		{ _field_block, "equipment", &blofeld::halo2::pc64::scenario_equipment_block },
+		{ _field_block, "equipment palette", &blofeld::halo2::pc64::scenario_equipment_palette_block, _field_id_sort },
+		{ _field_block, "weapons", &blofeld::halo2::pc64::scenario_weapon_block },
+		{ _field_block, "weapon palette", &blofeld::halo2::pc64::scenario_weapon_palette_block, _field_id_sort },
+		{ _field_block, "device groups", &blofeld::halo2::pc64::device_group_block$2, _field_id_sort },
+		{ _field_block, "machines", &blofeld::halo2::pc64::scenario_machine_block },
+		{ _field_block, "machine palette", &blofeld::halo2::pc64::scenario_machine_palette_block, _field_id_sort },
+		{ _field_block, "controls", &blofeld::halo2::pc64::scenario_control_block },
+		{ _field_block, "control palette", &blofeld::halo2::pc64::scenario_control_palette_block, _field_id_sort },
+		{ _field_block, "light fixtures", &blofeld::halo2::pc64::scenario_light_fixture_block },
+		{ _field_block, "light fixtures palette", &blofeld::halo2::pc64::scenario_light_fixture_palette_block, _field_id_sort },
+		{ _field_block, "sound scenery", &blofeld::halo2::pc64::scenario_sound_scenery_block },
+		{ _field_block, "sound scenery palette", &blofeld::halo2::pc64::scenario_sound_scenery_palette_block, _field_id_sort },
+		{ _field_block, "light volumes", &blofeld::halo2::pc64::scenario_light_block },
+		{ _field_block, "light volumes palette", &blofeld::halo2::pc64::scenario_light_palette_block, _field_id_sort },
+		{ _field_block, "player starting profile", &blofeld::halo2::pc64::scenario_profiles_block },
+		{ _field_block, "player starting locations", &blofeld::halo2::pc64::scenario_players_block },
+		{ _field_block, "trigger volumes", &blofeld::halo2::pc64::scenario_trigger_volume_block },
+		{ _field_block, "recorded animations", &blofeld::halo2::pc64::recorded_animation_block },
+		{ _field_block, "netgame flags", &blofeld::halo2::pc64::scenario_netpoints_block },
+		{ _field_block, "netgame equipment", &blofeld::halo2::pc64::scenario_netgame_equipment_block },
+		{ _field_block, "starting equipment", &blofeld::halo2::pc64::scenario_starting_equipment_block },
+		{ _field_block, "bsp switch trigger volumes", &blofeld::halo2::pc64::scenario_bsp_switch_trigger_volume_block },
+		{ _field_block, "decals", &blofeld::halo2::pc64::scenario_decals_block },
+		{ _field_block, "decal palette", &blofeld::halo2::pc64::scenario_decal_palette_block, _field_id_sort },
+		{ _field_block, "detail object collection palette", &blofeld::halo2::pc64::scenario_detail_object_collection_palette_block },
+		{ _field_block, "style pallette", &blofeld::halo2::pc64::style_palette_block, _field_id_sort },
+		{ _field_block, "squad groups", &blofeld::halo2::pc64::squad_groups_block },
+		{ _field_block, "squads", &blofeld::halo2::pc64::squads_block },
+		{ _field_block, "zones", &blofeld::halo2::pc64::zone_block },
+		{ _field_block, "mission scenes", &blofeld::halo2::pc64::ai_scene_block },
+		{ _field_block, "character palette", &blofeld::halo2::pc64::character_palette_block, _field_id_sort },
+		{ _field_block, "ai pathfinding data", &blofeld::halo2::pc64::pathfinding_data_block },
+		{ _field_block, "ai animation references", &blofeld::halo2::pc64::ai_animation_reference_block },
+		{ _field_block, "ai script references", &blofeld::halo2::pc64::ai_script_reference_block },
+		{ _field_block, "ai recording references", &blofeld::halo2::pc64::ai_recording_reference_block },
+		{ _field_block, "ai conversations", &blofeld::halo2::pc64::ai_conversation_block },
+		{ _field_data, "script syntax data", &blofeld::halo2::pc64::hs_old_syntax_data_definition },
+		{ _field_data, "script string data", &blofeld::halo2::pc64::hs_string_data_definition },
+		{ _field_block, "scripts", &blofeld::halo2::pc64::hs_scripts_block },
+		{ _field_block, "globals", &blofeld::halo2::pc64::hs_globals_block },
+		{ _field_block, "references", &blofeld::halo2::pc64::hs_references_block },
+		{ _field_block, "source files", &blofeld::halo2::pc64::hs_source_files_group_block },
+		{ _field_block, "scripting data", &blofeld::halo2::pc64::cs_script_data_block },
+		{ _field_block, "cutscene flags", &blofeld::halo2::pc64::scenario_cutscene_flag_block },
+		{ _field_block, "cutscene camera points", &blofeld::halo2::pc64::scenario_cutscene_camera_point_block },
+		{ _field_block, "cutscene titles", &blofeld::halo2::pc64::scenario_cutscene_title_block },
+		{ _field_tag_reference, "custom object names", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
+		{ _field_tag_reference, "chapter title text", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
+		{ _field_tag_reference, "hud messages", &blofeld::halo2::pc64::hud_message_text_group_reference$2 },
+		{ _field_block, "structure bsps", &blofeld::halo2::pc64::scenario_structure_bsp_reference_block },
+		{ _field_block, "scenario resources", &blofeld::halo2::pc64::scenario_resources_block },
+		{ _field_block, "OLD structure physics", &blofeld::halo2::pc64::old_unused_strucure_physics_block },
+		{ _field_block, "hs unit seats", &blofeld::halo2::pc64::hs_unit_seat_block },
+		{ _field_block, "scenario kill triggers", &blofeld::halo2::pc64::scenario_kill_trigger_volumes_block },
+		{ _field_block, "hs syntax datums", &blofeld::halo2::pc64::syntax_datum_block },
+		{ _field_block, "Orders", &blofeld::halo2::pc64::orders_block },
+		{ _field_block, "Triggers", &blofeld::halo2::pc64::triggers_block },
+		{ _field_block, "background sound palette", &blofeld::halo2::pc64::structure_bsp_background_sound_palette_block, _field_id_sort },
+		{ _field_block, "sound environment palette", &blofeld::halo2::pc64::structure_bsp_sound_environment_palette_block, _field_id_sort },
+		{ _field_block, "weather palette", &blofeld::halo2::pc64::structure_bsp_weather_palette_block, _field_id_sort },
+		{ _field_block, "value", &blofeld::halo2::pc64::g_null_block },
+		{ _field_block, "value", &blofeld::halo2::pc64::g_null_block },
+		{ _field_block, "value", &blofeld::halo2::pc64::g_null_block },
+		{ _field_block, "value", &blofeld::halo2::pc64::g_null_block },
+		{ _field_block, "value", &blofeld::halo2::pc64::g_null_block },
+		{ _field_block, "scenario cluster data", &blofeld::halo2::pc64::scenario_cluster_data_block },
+		{ _field_array, "object_salts", &blofeld::halo2::pc64::unnamed_array$48 },
+		{ _field_block, "spawn data", &blofeld::halo2::pc64::scenario_spawn_data_block },
+		{ _field_tag_reference, "sound effect collection", &blofeld::halo2::pc64::sound_effect_collection_group_reference },
+		{ _field_block, "crates", &blofeld::halo2::pc64::scenario_crate_block },
+		{ _field_block, "crate palette", &blofeld::halo2::pc64::scenario_crate_palette_block, _field_id_sort },
+		FIELD_EXPLANATION("Global lighting override", nullptr),
+		{ _field_tag_reference, "global lighting", &blofeld::halo2::pc64::chocolate_mountain_group_reference },
+		FIELD_EXPLANATION("WARNING", "Editing fog palette data will not behave as expected with split scenarios"),
+		{ _field_block, "atmospheric fog palette", &blofeld::halo2::pc64::scenario_atmospheric_fog_palette_block, _field_id_sort },
+		{ _field_block, "planar fog palette", &blofeld::halo2::pc64::scenario_planar_fog_palette_block },
+		{ _field_block, "flocks", &blofeld::halo2::pc64::flock_definition_block },
+		{ _field_tag_reference, "subtitles", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
+		{ _field_block, "decorators", &blofeld::halo2::pc64::decorator_placement_definition_block },
+		{ _field_block, "creatures", &blofeld::halo2::pc64::scenario_creature_block },
+		{ _field_block, "creature palette", &blofeld::halo2::pc64::scenario_creature_palette_block, _field_id_sort },
+		{ _field_block, "decorator palette", &blofeld::halo2::pc64::scenario_decorator_set_palette_entry_block },
+		{ _field_block, "bsp transition volumes", &blofeld::halo2::pc64::scenario_bsp_switch_transition_volume_block },
+		{ _field_block, "structure bsp lighting", &blofeld::halo2::pc64::scenario_structure_bsp_spherical_harmonic_lighting_block },
+		{ _field_block, "editor folders", &blofeld::halo2::pc64::g_scenario_editor_folder_block },
+		{ _field_block, "level data", &blofeld::halo2::pc64::scenario_level_data_block },
+		{ _field_tag_reference, "game engine strings", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
+		FIELD_PAD("value", 8),
+		{ _field_block, "mission dialogue", &blofeld::halo2::pc64::ai_scenario_mission_dialogue_block },
+		{ _field_tag_reference, "objectives", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
+		{ _field_block, "interpolators", &blofeld::halo2::pc64::scenario_interpolator_block },
+		{ _field_block, "shared references", &blofeld::halo2::pc64::hs_references_block },
+		{ _field_block, "screen effect references", &blofeld::halo2::pc64::scenario_screen_effect_reference_block },
+		{ _field_block, "simulation definition table", &blofeld::halo2::pc64::scenario_simulation_definition_table_block },
+		
+		{ _struct_version_mode_equal, 0, 78 },
+		{ _field_tag_reference, "DON'T USE", &blofeld::halo2::pc64::scenario_structure_bsp_group_reference },
+		{ _field_tag_reference, "WON'T USE", &blofeld::halo2::pc64::scenario_structure_bsp_group_reference },
+		{ _field_tag_reference, "CAN'T USE", "set me!! me!!!  i do something cool!!!  you'll be happy forever if there this tag reference is filled in!  don't believe the lies!!! LIESSSS!!!!!!!!  YESS, MY PRECIOUSSSSS, LIESSSS...", &blofeld::halo2::pc64::sky_group_reference },
+		{ _field_block, "skies", &blofeld::halo2::pc64::scenario_sky_reference_block },
+		{ _field_short_enum, "type", &blofeld::halo2::pc64::unnamed_enum$393 },
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$394 },
+		{ _field_block, "@child scenarios", &blofeld::halo2::pc64::scenario_child_scenario_block },
+		{ _field_angle, "local north" },
+		FIELD_PAD("value", 20),
+		FIELD_PAD("value", 136),
+		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
+		{ _field_block, "functions", &blofeld::halo2::pc64::scenario_function_block },
+		{ _field_data, "editor scenario data", &blofeld::halo2::pc64::editor_scenario_data_definition },
+		{ _field_block, "comments", &blofeld::halo2::pc64::editor_comment_block },
+		{ _field_block, "value", &blofeld::halo2::pc64::dont_use_me_scenario_environment_object_block },
+		FIELD_PAD("value", 212),
+		{ _field_block, "object names", &blofeld::halo2::pc64::scenario_object_names_block },
+		{ _field_block, "scenery", &blofeld::halo2::pc64::scenario_scenery_block },
+		{ _field_block, "scenery palette", &blofeld::halo2::pc64::scenario_scenery_palette_block },
+		{ _field_block, "bipeds", &blofeld::halo2::pc64::scenario_biped_block },
+		{ _field_block, "biped palette", &blofeld::halo2::pc64::scenario_biped_palette_block },
+		{ _field_block, "vehicles", &blofeld::halo2::pc64::scenario_vehicle_block },
+		{ _field_block, "vehicle palette", &blofeld::halo2::pc64::scenario_vehicle_palette_block },
+		{ _field_block, "equipment", &blofeld::halo2::pc64::scenario_equipment_block },
+		{ _field_block, "equipment palette", &blofeld::halo2::pc64::scenario_equipment_palette_block },
+		{ _field_block, "weapons", &blofeld::halo2::pc64::scenario_weapon_block },
+		{ _field_block, "weapon palette", &blofeld::halo2::pc64::scenario_weapon_palette_block },
+		{ _field_block, "device groups", &blofeld::halo2::pc64::device_group_block$2 },
+		{ _field_block, "machines", &blofeld::halo2::pc64::scenario_machine_block },
+		{ _field_block, "machine palette", &blofeld::halo2::pc64::scenario_machine_palette_block },
+		{ _field_block, "controls", &blofeld::halo2::pc64::scenario_control_block },
+		{ _field_block, "control palette", &blofeld::halo2::pc64::scenario_control_palette_block },
+		{ _field_block, "light fixtures", &blofeld::halo2::pc64::scenario_light_fixture_block },
+		{ _field_block, "light fixtures palette", &blofeld::halo2::pc64::scenario_light_fixture_palette_block },
+		{ _field_block, "sound scenery", &blofeld::halo2::pc64::scenario_sound_scenery_block },
+		{ _field_block, "sound scenery palette", &blofeld::halo2::pc64::scenario_sound_scenery_palette_block },
+		{ _field_block, "light volumes", &blofeld::halo2::pc64::scenario_light_block },
+		{ _field_block, "light volumes palette", &blofeld::halo2::pc64::scenario_light_palette_block },
+		FIELD_PAD("value", 60),
+		{ _field_block, "player starting profile", &blofeld::halo2::pc64::scenario_profiles_block },
+		{ _field_block, "player starting locations", &blofeld::halo2::pc64::scenario_players_block },
+		{ _field_block, "trigger volumes", &blofeld::halo2::pc64::scenario_trigger_volume_block },
+		{ _field_block, "recorded animations", &blofeld::halo2::pc64::recorded_animation_block },
+		{ _field_block, "netgame flags", &blofeld::halo2::pc64::scenario_netpoints_block },
+		{ _field_block, "netgame equipment", &blofeld::halo2::pc64::scenario_netgame_equipment_block },
+		{ _field_block, "starting equipment", &blofeld::halo2::pc64::scenario_starting_equipment_block },
+		{ _field_block, "bsp switch trigger volumes", &blofeld::halo2::pc64::scenario_bsp_switch_trigger_volume_block },
+		{ _field_block, "decals", &blofeld::halo2::pc64::scenario_decals_block },
+		{ _field_block, "decal palette", &blofeld::halo2::pc64::scenario_decal_palette_block },
+		{ _field_block, "detail object collection palette", &blofeld::halo2::pc64::scenario_detail_object_collection_palette_block },
+		FIELD_PAD("value", 36),
+		{ _field_block, "style pallette", &blofeld::halo2::pc64::style_palette_block },
+		{ _field_block, "squad groups", &blofeld::halo2::pc64::squad_groups_block },
+		{ _field_block, "squads", &blofeld::halo2::pc64::squads_block },
+		{ _field_block, "zones", &blofeld::halo2::pc64::zone_block },
+		{ _field_block, "actor palette", &blofeld::halo2::pc64::actor_palette_block },
+		{ _field_block, "character palette", &blofeld::halo2::pc64::character_palette_block },
+		{ _field_block, "ai pathfinding data", &blofeld::halo2::pc64::pathfinding_data_block },
+		{ _field_block, "ai animation references", &blofeld::halo2::pc64::ai_animation_reference_block },
+		{ _field_block, "ai script references", &blofeld::halo2::pc64::ai_script_reference_block },
+		{ _field_block, "ai recording references", &blofeld::halo2::pc64::ai_recording_reference_block },
+		{ _field_block, "ai conversations", &blofeld::halo2::pc64::ai_conversation_block },
+		{ _field_data, "script syntax data", &blofeld::halo2::pc64::hs_old_syntax_data_definition },
+		{ _field_data, "script string data", &blofeld::halo2::pc64::hs_string_data_definition },
+		{ _field_block, "scripts", &blofeld::halo2::pc64::hs_scripts_block },
+		{ _field_block, "globals", &blofeld::halo2::pc64::hs_globals_block },
+		{ _field_block, "references", &blofeld::halo2::pc64::hs_references_block },
+		{ _field_block, "source files", &blofeld::halo2::pc64::hs_source_files_group_block },
+		{ _field_block, "scripting data", &blofeld::halo2::pc64::cs_script_data_block },
+		FIELD_PAD("value", 12),
+		{ _field_block, "cutscene flags", &blofeld::halo2::pc64::scenario_cutscene_flag_block },
+		{ _field_block, "cutscene camera points", &blofeld::halo2::pc64::scenario_cutscene_camera_point_block },
+		{ _field_block, "cutscene titles", &blofeld::halo2::pc64::scenario_cutscene_title_block },
+		FIELD_PAD("value", 108),
+		{ _field_tag_reference, "custom object names", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
+		{ _field_tag_reference, "ingame help text", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
+		{ _field_tag_reference, "hud messages", &blofeld::halo2::pc64::hud_message_text_group_reference$2 },
+		{ _field_block, "structure bsps", &blofeld::halo2::pc64::scenario_structure_bsp_reference_block },
+		
 		{ _field_terminator }
 	};
 
@@ -34603,6 +33562,8 @@ namespace pc64
 
 	TAG_REFERENCE(hud_message_text_group_reference$2, HUD_MESSAGE_TEXT_TAG);
 
+	TAG_REFERENCE(sky_group_reference, SKY_TAG);
+
 	TAG_STRUCT(
 		scenario_sky_reference_block_struct_definition,
 		"scenario_sky_reference_block",
@@ -34615,8 +33576,6 @@ namespace pc64
 		{ _field_tag_reference, "sky", &blofeld::halo2::pc64::sky_group_reference },
 		{ _field_terminator }
 	};
-
-	TAG_REFERENCE(sky_group_reference, SKY_TAG);
 
 	TAG_STRUCT(
 		scenario_child_scenario_block_struct_definition,
@@ -34727,14 +33686,15 @@ namespace pc64
 	TAG_REFERENCE(weapon_group_reference$6, WEAPON_TAG);
 
 	TAG_STRUCT(
-		scenario_netpoint_v2_struct_definition,
-		"scenario_netpoint_v2",
-		"scenario_netpoint_v2_struct_definition",
+		scenario_netpoint_struct_definition,
+		"scenario_netpoint",
+		"scenario_netpoint_struct_definition",
 		"s_scenario_netpoint",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 9 },
 		{ _field_real_point_3d, "position" },
 		{ _field_angle, "facing", nullptr, "degrees" },
 		FIELD_CUSTOM("value", _field_id_filx),
@@ -34744,6 +33704,19 @@ namespace pc64
 		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$399 },
 		{ _field_string_id, "value" },
 		{ _field_string_id, "value" },
+		
+		{ _struct_version_mode_equal, 0, 10 },
+		{ _field_real_point_3d, "position" },
+		{ _field_angle, "facing", nullptr, "degrees" },
+		FIELD_CUSTOM("value", _field_id_filx),
+		{ _field_short_enum, "type", &blofeld::halo2::pc64::unnamed_enum$398 },
+		{ _field_short_enum, "team designator", &blofeld::halo2::pc64::unnamed_enum$75 },
+		{ _field_tag_reference, "weapon group", &blofeld::halo2::pc64::item_collection_group_reference$2 },
+		{ _field_string_id, "spawn object name" },
+		{ _field_string_id, "spawn marker name" },
+		{ _field_string_id, "optional flag name" },
+		FIELD_PAD("value", 100),
+		
 		{ _field_terminator }
 	};
 
@@ -34778,28 +33751,6 @@ namespace pc64
 		"neutral flag/bomb"
 	};
 	STRING_LIST(unnamed_enum$399, unnamed_enum$399_strings, _countof(unnamed_enum$399_strings));
-
-	TAG_STRUCT(
-		scenario_netpoint_v1_struct_definition,
-		"scenario_netpoint_v1",
-		"scenario_netpoint_v1_struct_definition",
-		"s_scenario_netpoint_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real_point_3d, "position" },
-		{ _field_angle, "facing", nullptr, "degrees" },
-		FIELD_CUSTOM("value", _field_id_filx),
-		{ _field_short_enum, "type", &blofeld::halo2::pc64::unnamed_enum$398 },
-		{ _field_short_enum, "team designator", &blofeld::halo2::pc64::unnamed_enum$75 },
-		{ _field_tag_reference, "weapon group", &blofeld::halo2::pc64::item_collection_group_reference$2 },
-		{ _field_string_id, "spawn object name" },
-		{ _field_string_id, "spawn marker name" },
-		{ _field_string_id, "optional flag name" },
-		FIELD_PAD("value", 100),
-		{ _field_terminator }
-	};
 
 	TAG_REFERENCE(item_collection_group_reference$2, ITEM_COLLECTION_TAG);
 
@@ -35527,96 +34478,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		scenario_tags_v1_struct_definition,
-		"scenario_tags_v1",
-		"scenario_tags_v1_struct_definition",
-		"s_scenario_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_tag_reference, "DON'T USE", &blofeld::halo2::pc64::scenario_structure_bsp_group_reference },
-		{ _field_tag_reference, "WON'T USE", &blofeld::halo2::pc64::scenario_structure_bsp_group_reference },
-		{ _field_tag_reference, "CAN'T USE", "set me!! me!!!  i do something cool!!!  you'll be happy forever if there this tag reference is filled in!  don't believe the lies!!! LIESSSS!!!!!!!!  YESS, MY PRECIOUSSSSS, LIESSSS...", &blofeld::halo2::pc64::sky_group_reference },
-		{ _field_block, "skies", &blofeld::halo2::pc64::scenario_sky_reference_block },
-		{ _field_short_enum, "type", &blofeld::halo2::pc64::unnamed_enum$393 },
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$394 },
-		{ _field_block, "@child scenarios", &blofeld::halo2::pc64::scenario_child_scenario_block },
-		{ _field_angle, "local north" },
-		FIELD_PAD("value", 20),
-		FIELD_PAD("value", 136),
-		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
-		{ _field_block, "functions", &blofeld::halo2::pc64::scenario_function_block },
-		{ _field_data, "editor scenario data", &blofeld::halo2::pc64::editor_scenario_data_definition },
-		{ _field_block, "comments", &blofeld::halo2::pc64::editor_comment_block },
-		{ _field_block, "value", &blofeld::halo2::pc64::dont_use_me_scenario_environment_object_block },
-		FIELD_PAD("value", 212),
-		{ _field_block, "object names", &blofeld::halo2::pc64::scenario_object_names_block },
-		{ _field_block, "scenery", &blofeld::halo2::pc64::scenario_scenery_block },
-		{ _field_block, "scenery palette", &blofeld::halo2::pc64::scenario_scenery_palette_block },
-		{ _field_block, "bipeds", &blofeld::halo2::pc64::scenario_biped_block },
-		{ _field_block, "biped palette", &blofeld::halo2::pc64::scenario_biped_palette_block },
-		{ _field_block, "vehicles", &blofeld::halo2::pc64::scenario_vehicle_block },
-		{ _field_block, "vehicle palette", &blofeld::halo2::pc64::scenario_vehicle_palette_block },
-		{ _field_block, "equipment", &blofeld::halo2::pc64::scenario_equipment_block },
-		{ _field_block, "equipment palette", &blofeld::halo2::pc64::scenario_equipment_palette_block },
-		{ _field_block, "weapons", &blofeld::halo2::pc64::scenario_weapon_block },
-		{ _field_block, "weapon palette", &blofeld::halo2::pc64::scenario_weapon_palette_block },
-		{ _field_block, "device groups", &blofeld::halo2::pc64::device_group_block$2 },
-		{ _field_block, "machines", &blofeld::halo2::pc64::scenario_machine_block },
-		{ _field_block, "machine palette", &blofeld::halo2::pc64::scenario_machine_palette_block },
-		{ _field_block, "controls", &blofeld::halo2::pc64::scenario_control_block },
-		{ _field_block, "control palette", &blofeld::halo2::pc64::scenario_control_palette_block },
-		{ _field_block, "light fixtures", &blofeld::halo2::pc64::scenario_light_fixture_block },
-		{ _field_block, "light fixtures palette", &blofeld::halo2::pc64::scenario_light_fixture_palette_block },
-		{ _field_block, "sound scenery", &blofeld::halo2::pc64::scenario_sound_scenery_block },
-		{ _field_block, "sound scenery palette", &blofeld::halo2::pc64::scenario_sound_scenery_palette_block },
-		{ _field_block, "light volumes", &blofeld::halo2::pc64::scenario_light_block },
-		{ _field_block, "light volumes palette", &blofeld::halo2::pc64::scenario_light_palette_block },
-		FIELD_PAD("value", 60),
-		{ _field_block, "player starting profile", &blofeld::halo2::pc64::scenario_profiles_block },
-		{ _field_block, "player starting locations", &blofeld::halo2::pc64::scenario_players_block },
-		{ _field_block, "trigger volumes", &blofeld::halo2::pc64::scenario_trigger_volume_block },
-		{ _field_block, "recorded animations", &blofeld::halo2::pc64::recorded_animation_block },
-		{ _field_block, "netgame flags", &blofeld::halo2::pc64::scenario_netpoints_block },
-		{ _field_block, "netgame equipment", &blofeld::halo2::pc64::scenario_netgame_equipment_block },
-		{ _field_block, "starting equipment", &blofeld::halo2::pc64::scenario_starting_equipment_block },
-		{ _field_block, "bsp switch trigger volumes", &blofeld::halo2::pc64::scenario_bsp_switch_trigger_volume_block },
-		{ _field_block, "decals", &blofeld::halo2::pc64::scenario_decals_block },
-		{ _field_block, "decal palette", &blofeld::halo2::pc64::scenario_decal_palette_block },
-		{ _field_block, "detail object collection palette", &blofeld::halo2::pc64::scenario_detail_object_collection_palette_block },
-		FIELD_PAD("value", 36),
-		{ _field_block, "style pallette", &blofeld::halo2::pc64::style_palette_block },
-		{ _field_block, "squad groups", &blofeld::halo2::pc64::squad_groups_block },
-		{ _field_block, "squads", &blofeld::halo2::pc64::squads_block },
-		{ _field_block, "zones", &blofeld::halo2::pc64::zone_block },
-		{ _field_block, "actor palette", &blofeld::halo2::pc64::actor_palette_block },
-		{ _field_block, "character palette", &blofeld::halo2::pc64::character_palette_block },
-		{ _field_block, "ai pathfinding data", &blofeld::halo2::pc64::pathfinding_data_block },
-		{ _field_block, "ai animation references", &blofeld::halo2::pc64::ai_animation_reference_block },
-		{ _field_block, "ai script references", &blofeld::halo2::pc64::ai_script_reference_block },
-		{ _field_block, "ai recording references", &blofeld::halo2::pc64::ai_recording_reference_block },
-		{ _field_block, "ai conversations", &blofeld::halo2::pc64::ai_conversation_block },
-		{ _field_data, "script syntax data", &blofeld::halo2::pc64::hs_old_syntax_data_definition },
-		{ _field_data, "script string data", &blofeld::halo2::pc64::hs_string_data_definition },
-		{ _field_block, "scripts", &blofeld::halo2::pc64::hs_scripts_block },
-		{ _field_block, "globals", &blofeld::halo2::pc64::hs_globals_block },
-		{ _field_block, "references", &blofeld::halo2::pc64::hs_references_block },
-		{ _field_block, "source files", &blofeld::halo2::pc64::hs_source_files_group_block },
-		{ _field_block, "scripting data", &blofeld::halo2::pc64::cs_script_data_block },
-		FIELD_PAD("value", 12),
-		{ _field_block, "cutscene flags", &blofeld::halo2::pc64::scenario_cutscene_flag_block },
-		{ _field_block, "cutscene camera points", &blofeld::halo2::pc64::scenario_cutscene_camera_point_block },
-		{ _field_block, "cutscene titles", &blofeld::halo2::pc64::scenario_cutscene_title_block },
-		FIELD_PAD("value", 108),
-		{ _field_tag_reference, "custom object names", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
-		{ _field_tag_reference, "ingame help text", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
-		{ _field_tag_reference, "hud messages", &blofeld::halo2::pc64::hud_message_text_group_reference$2 },
-		{ _field_block, "structure bsps", &blofeld::halo2::pc64::scenario_structure_bsp_reference_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		actor_palette_block_struct_definition,
 		"actor_palette_block",
 		"actor_palette_block_struct_definition",
@@ -35626,131 +34487,6 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		FIELD_PAD("value", 16),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		scenario_tags_v2_struct_definition$2,
-		"scenario_tags_v2",
-		"scenario_tags_v2_struct_definition",
-		"s_scenario$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_tag_reference, "DON'T USE", &blofeld::halo2::pc64::scenario_structure_bsp_group_reference },
-		{ _field_block, "skies", &blofeld::halo2::pc64::scenario_sky_reference_block },
-		{ _field_short_enum, "type", &blofeld::halo2::pc64::unnamed_enum$393 },
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$394 },
-		{ _field_block, "@child scenarios", &blofeld::halo2::pc64::scenario_child_scenario_block },
-		{ _field_angle, "local north" },
-		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
-		{ _field_block, "functions", &blofeld::halo2::pc64::scenario_function_block },
-		{ _field_data, "editor scenario data", &blofeld::halo2::pc64::editor_scenario_data_definition },
-		{ _field_block, "comments", &blofeld::halo2::pc64::editor_comment_block },
-		{ _field_block, "environment objects", &blofeld::halo2::pc64::dont_use_me_scenario_environment_object_block },
-		{ _field_block, "object names", &blofeld::halo2::pc64::scenario_object_names_block, _field_id_sort },
-		{ _field_block, "scenery", &blofeld::halo2::pc64::scenario_scenery_block },
-		{ _field_block, "scenery palette", &blofeld::halo2::pc64::scenario_scenery_palette_block, _field_id_sort },
-		{ _field_block, "bipeds", &blofeld::halo2::pc64::scenario_biped_block },
-		{ _field_block, "biped palette", &blofeld::halo2::pc64::scenario_biped_palette_block, _field_id_sort },
-		{ _field_block, "vehicles", &blofeld::halo2::pc64::scenario_vehicle_block },
-		{ _field_block, "vehicle palette", &blofeld::halo2::pc64::scenario_vehicle_palette_block, _field_id_sort },
-		{ _field_block, "equipment", &blofeld::halo2::pc64::scenario_equipment_block },
-		{ _field_block, "equipment palette", &blofeld::halo2::pc64::scenario_equipment_palette_block, _field_id_sort },
-		{ _field_block, "weapons", &blofeld::halo2::pc64::scenario_weapon_block },
-		{ _field_block, "weapon palette", &blofeld::halo2::pc64::scenario_weapon_palette_block, _field_id_sort },
-		{ _field_block, "device groups", &blofeld::halo2::pc64::device_group_block$2, _field_id_sort },
-		{ _field_block, "machines", &blofeld::halo2::pc64::scenario_machine_block },
-		{ _field_block, "machine palette", &blofeld::halo2::pc64::scenario_machine_palette_block, _field_id_sort },
-		{ _field_block, "controls", &blofeld::halo2::pc64::scenario_control_block },
-		{ _field_block, "control palette", &blofeld::halo2::pc64::scenario_control_palette_block, _field_id_sort },
-		{ _field_block, "light fixtures", &blofeld::halo2::pc64::scenario_light_fixture_block },
-		{ _field_block, "light fixtures palette", &blofeld::halo2::pc64::scenario_light_fixture_palette_block, _field_id_sort },
-		{ _field_block, "sound scenery", &blofeld::halo2::pc64::scenario_sound_scenery_block },
-		{ _field_block, "sound scenery palette", &blofeld::halo2::pc64::scenario_sound_scenery_palette_block, _field_id_sort },
-		{ _field_block, "light volumes", &blofeld::halo2::pc64::scenario_light_block },
-		{ _field_block, "light volumes palette", &blofeld::halo2::pc64::scenario_light_palette_block, _field_id_sort },
-		{ _field_block, "player starting profile", &blofeld::halo2::pc64::scenario_profiles_block },
-		{ _field_block, "player starting locations", &blofeld::halo2::pc64::scenario_players_block },
-		{ _field_block, "trigger volumes", &blofeld::halo2::pc64::scenario_trigger_volume_block },
-		{ _field_block, "recorded animations", &blofeld::halo2::pc64::recorded_animation_block },
-		{ _field_block, "netgame flags", &blofeld::halo2::pc64::scenario_netpoints_block },
-		{ _field_block, "netgame equipment", &blofeld::halo2::pc64::scenario_netgame_equipment_block },
-		{ _field_block, "starting equipment", &blofeld::halo2::pc64::scenario_starting_equipment_block },
-		{ _field_block, "bsp switch trigger volumes", &blofeld::halo2::pc64::scenario_bsp_switch_trigger_volume_block },
-		{ _field_block, "decals", &blofeld::halo2::pc64::scenario_decals_block },
-		{ _field_block, "decal palette", &blofeld::halo2::pc64::scenario_decal_palette_block, _field_id_sort },
-		{ _field_block, "detail object collection palette", &blofeld::halo2::pc64::scenario_detail_object_collection_palette_block },
-		{ _field_block, "style pallette", &blofeld::halo2::pc64::style_palette_block, _field_id_sort },
-		{ _field_block, "squad groups", &blofeld::halo2::pc64::squad_groups_block },
-		{ _field_block, "squads", &blofeld::halo2::pc64::squads_block },
-		{ _field_block, "zones", &blofeld::halo2::pc64::zone_block },
-		{ _field_block, "mission scenes", &blofeld::halo2::pc64::ai_scene_block },
-		{ _field_block, "character palette", &blofeld::halo2::pc64::character_palette_block, _field_id_sort },
-		{ _field_block, "ai pathfinding data", &blofeld::halo2::pc64::pathfinding_data_block },
-		{ _field_block, "ai animation references", &blofeld::halo2::pc64::ai_animation_reference_block },
-		{ _field_block, "ai script references", &blofeld::halo2::pc64::ai_script_reference_block },
-		{ _field_block, "ai recording references", &blofeld::halo2::pc64::ai_recording_reference_block },
-		{ _field_block, "ai conversations", &blofeld::halo2::pc64::ai_conversation_block },
-		{ _field_data, "script syntax data", &blofeld::halo2::pc64::hs_old_syntax_data_definition },
-		{ _field_data, "script string data", &blofeld::halo2::pc64::hs_string_data_definition },
-		{ _field_block, "scripts", &blofeld::halo2::pc64::hs_scripts_block },
-		{ _field_block, "globals", &blofeld::halo2::pc64::hs_globals_block },
-		{ _field_block, "references", &blofeld::halo2::pc64::hs_references_block },
-		{ _field_block, "source files", &blofeld::halo2::pc64::hs_source_files_group_block },
-		{ _field_block, "scripting data", &blofeld::halo2::pc64::cs_script_data_block },
-		{ _field_block, "cutscene flags", &blofeld::halo2::pc64::scenario_cutscene_flag_block },
-		{ _field_block, "cutscene camera points", &blofeld::halo2::pc64::scenario_cutscene_camera_point_block },
-		{ _field_block, "cutscene titles", &blofeld::halo2::pc64::scenario_cutscene_title_block },
-		{ _field_tag_reference, "custom object names", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
-		{ _field_tag_reference, "chapter title text", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
-		{ _field_tag_reference, "hud messages", &blofeld::halo2::pc64::hud_message_text_group_reference$2 },
-		{ _field_block, "structure bsps", &blofeld::halo2::pc64::scenario_structure_bsp_reference_block },
-		{ _field_block, "scenario resources", &blofeld::halo2::pc64::scenario_resources_block },
-		{ _field_block, "OLD structure physics", &blofeld::halo2::pc64::old_unused_strucure_physics_block },
-		{ _field_block, "hs unit seats", &blofeld::halo2::pc64::hs_unit_seat_block },
-		{ _field_block, "scenario kill triggers", &blofeld::halo2::pc64::scenario_kill_trigger_volumes_block },
-		{ _field_block, "hs syntax datums", &blofeld::halo2::pc64::syntax_datum_block },
-		{ _field_block, "Orders", &blofeld::halo2::pc64::orders_block },
-		{ _field_block, "Triggers", &blofeld::halo2::pc64::triggers_block },
-		{ _field_block, "background sound palette", &blofeld::halo2::pc64::structure_bsp_background_sound_palette_block, _field_id_sort },
-		{ _field_block, "sound environment palette", &blofeld::halo2::pc64::structure_bsp_sound_environment_palette_block, _field_id_sort },
-		{ _field_block, "weather palette", &blofeld::halo2::pc64::structure_bsp_weather_palette_block, _field_id_sort },
-		{ _field_block, "value", &blofeld::halo2::pc64::g_null_block },
-		{ _field_block, "value", &blofeld::halo2::pc64::g_null_block },
-		{ _field_block, "value", &blofeld::halo2::pc64::g_null_block },
-		{ _field_block, "value", &blofeld::halo2::pc64::g_null_block },
-		{ _field_block, "value", &blofeld::halo2::pc64::g_null_block },
-		{ _field_block, "scenario cluster data", &blofeld::halo2::pc64::scenario_cluster_data_block },
-		{ _field_array, "object_salts", &blofeld::halo2::pc64::unnamed_array$48 },
-		{ _field_block, "spawn data", &blofeld::halo2::pc64::scenario_spawn_data_block },
-		{ _field_tag_reference, "sound effect collection", &blofeld::halo2::pc64::sound_effect_collection_group_reference },
-		{ _field_block, "crates", &blofeld::halo2::pc64::scenario_crate_block },
-		{ _field_block, "crate palette", &blofeld::halo2::pc64::scenario_crate_palette_block, _field_id_sort },
-		FIELD_EXPLANATION("Global lighting override", nullptr),
-		{ _field_tag_reference, "global lighting", &blofeld::halo2::pc64::chocolate_mountain_group_reference },
-		FIELD_EXPLANATION("WARNING", "Editing fog palette data will not behave as expected with split scenarios"),
-		{ _field_block, "atmospheric fog palette", &blofeld::halo2::pc64::scenario_atmospheric_fog_palette_block, _field_id_sort },
-		{ _field_block, "planar fog palette", &blofeld::halo2::pc64::scenario_planar_fog_palette_block },
-		{ _field_block, "flocks", &blofeld::halo2::pc64::flock_definition_block },
-		{ _field_tag_reference, "subtitles", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
-		{ _field_block, "decorators", &blofeld::halo2::pc64::decorator_placement_definition_block },
-		{ _field_block, "creatures", &blofeld::halo2::pc64::scenario_creature_block },
-		{ _field_block, "creature palette", &blofeld::halo2::pc64::scenario_creature_palette_block, _field_id_sort },
-		{ _field_block, "decorator palette", &blofeld::halo2::pc64::scenario_decorator_set_palette_entry_block },
-		{ _field_block, "bsp transition volumes", &blofeld::halo2::pc64::scenario_bsp_switch_transition_volume_block },
-		{ _field_block, "structure bsp lighting", &blofeld::halo2::pc64::scenario_structure_bsp_spherical_harmonic_lighting_block },
-		{ _field_block, "editor folders", &blofeld::halo2::pc64::g_scenario_editor_folder_block },
-		{ _field_block, "level data", &blofeld::halo2::pc64::scenario_level_data_block },
-		{ _field_tag_reference, "game engine strings", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
-		FIELD_PAD("value", 8),
-		{ _field_block, "mission dialogue", &blofeld::halo2::pc64::ai_scenario_mission_dialogue_block },
-		{ _field_tag_reference, "objectives", &blofeld::halo2::pc64::multilingual_unicode_string_list_group_reference },
-		{ _field_block, "interpolators", &blofeld::halo2::pc64::scenario_interpolator_block },
-		{ _field_block, "shared references", &blofeld::halo2::pc64::hs_references_block },
-		{ _field_block, "screen effect references", &blofeld::halo2::pc64::scenario_screen_effect_reference_block },
-		{ _field_block, "simulation definition table", &blofeld::halo2::pc64::scenario_simulation_definition_table_block },
 		{ _field_terminator }
 	};
 
@@ -36002,14 +34738,15 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		g_sound_effect_override_parameters_v2_struct_definition,
-		"g_sound_effect_override_parameters_v2",
-		"g_sound_effect_override_parameters_v2_struct_definition",
+		g_sound_effect_override_parameters_struct_definition,
+		"g_sound_effect_override_parameters",
+		"g_sound_effect_override_parameters_struct_definition",
 		"s_sound_effect_override_parameter",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 8 },
 		{ _field_string_id, "name" },
 		{ _field_string_id, "input", _field_id_function_input_scalar },
 		{ _field_string_id, "range", _field_id_function_input_range },
@@ -36017,22 +34754,13 @@ namespace pc64
 		{ _field_long_integer, "integer value" },
 		{ _field_real, "real value" },
 		FIELD_CUSTOM("sound effect value", _field_id_function_editor),
-		{ _field_struct, "function value", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		g_sound_effect_override_parameters_v1_struct_definition,
-		"g_sound_effect_override_parameters_v1",
-		"g_sound_effect_override_parameters_v1_struct_definition",
-		"s_sound_effect_override_parameter_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		{ _field_struct, "function value", &blofeld::halo2::pc64::function_definition_struct_definition },
+		
+		{ _struct_version_mode_equal, 0, 3 },
 		{ _field_string_id, "name" },
 		{ _field_long_integer, "integer value" },
 		{ _field_real, "real value" },
+		
 		{ _field_terminator }
 	};
 
@@ -36078,7 +34806,7 @@ namespace pc64
 	{
 		{ _field_short_enum, "input", &blofeld::halo2::pc64::unnamed_enum$29, _field_id_function_input_scalar },
 		{ _field_short_enum, "range", &blofeld::halo2::pc64::unnamed_enum$29, _field_id_function_input_range },
-		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "function", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_real, "time period", nullptr, "seconds" },
 		{ _field_terminator }
 	};
@@ -36911,7 +35639,12 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 1 },
 		{ _field_block, "sound classes", &blofeld::halo2::pc64::sound_class_block },
+		
+		{ _struct_version_mode_equal, 0, 1 },
+		{ _field_block, "sound classes", &blofeld::halo2::pc64::sound_class_block },
+		
 		{ _field_terminator }
 	};
 
@@ -36924,6 +35657,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 3, 31 },
 		{ _field_short_integer, "max sounds per tag", "maximum number of sounds playing per individual sound tag" },
 		{ _field_short_integer, "max sounds per object", "maximum number of sounds of this type playing on an object" },
 		{ _field_long_integer, "preemption time", "replaces other instances after this many milliseconds", "ms" },
@@ -36955,6 +35689,72 @@ namespace pc64
 		FIELD_EXPLANATION("low pass filter parameters", nullptr),
 		{ _field_struct, "lowpass cut off parameters", &blofeld::halo2::pc64::sound_lowpass_struct_struct_definition },
 		{ _field_block, "ext ducking", &blofeld::halo2::pc64::sound_class_ducker_block_definition_block },
+		
+		{ _struct_version_mode_equal, 2, 30 },
+		{ _field_short_integer, "max sounds per tag", "maximum number of sounds playing per individual sound tag" },
+		{ _field_short_integer, "max sounds per object", "maximum number of sounds of this type playing on an object" },
+		{ _field_long_integer, "preemption time", "replaces other instances after this many milliseconds", "ms" },
+		{ _field_word_flags, "internal flags", &blofeld::halo2::pc64::unnamed_enum$436 },
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$437 },
+		{ _field_short_integer, "priority" },
+		{ _field_short_enum, "cache miss mode", &blofeld::halo2::pc64::unnamed_enum$438 },
+		{ _field_real, "reverb gain", "how much reverb applies to this sound class", "dB", _field_id_decibels },
+		{ _field_real, "override speaker gain", nullptr, "dB", _field_id_decibels },
+		{ _field_real_bounds, "distance bounds" },
+		FIELD_CUSTOM("Update gain bounds", _field_id_edit),
+		{ _field_real_bounds, "gain bounds", nullptr, "dB", _field_id_decibels },
+		{ _field_real, "cutscene ducking", nullptr, "dB", _field_id_decibels },
+		{ _field_real, "cutscene ducking fade in time", nullptr, "seconds" },
+		{ _field_real, "cutscene ducking sustain time", "how long this lasts after the cutscene ends", "seconds" },
+		{ _field_real, "cutscene ducking fade out time", nullptr, "seconds" },
+		{ _field_real, "scripted dialog ducking", nullptr, "dB", _field_id_decibels },
+		{ _field_real, "scripted dialog ducking fade in time", nullptr, "seconds" },
+		{ _field_real, "scripted dialog ducking sustain time", "how long this lasts after the scripted dialog ends", "seconds" },
+		{ _field_real, "scripted dialog ducking fade out time", nullptr, "seconds" },
+		{ _field_real, "doppler factor" },
+		{ _field_char_enum, "stereo playback type", &blofeld::halo2::pc64::unnamed_enum$439 },
+		FIELD_PAD("value", 1),
+		FIELD_PAD("value", 2),
+		{ _field_real, "transmission multiplier" },
+		{ _field_real, "obstruction max bend" },
+		{ _field_real, "occlusion max bend" },
+		{ _field_real, "inner_silence_distance" },
+		FIELD_EXPLANATION("low pass filter parameters", nullptr),
+		{ _field_struct, "lowpass cut off parameters", &blofeld::halo2::pc64::sound_lowpass_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 1, 28 },
+		{ _field_short_integer, "max sounds per tag", "maximum number of sounds playing per individual sound tag" },
+		{ _field_short_integer, "max sounds per object", "maximum number of sounds of this type playing on an object" },
+		{ _field_long_integer, "preemption time", "replaces other instances after this many milliseconds", "ms" },
+		{ _field_word_flags, "internal flags", &blofeld::halo2::pc64::unnamed_enum$436 },
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$437 },
+		{ _field_short_integer, "priority" },
+		{ _field_short_enum, "cache miss mode", &blofeld::halo2::pc64::unnamed_enum$438 },
+		{ _field_real, "reverb gain", "how much reverb applies to this sound class", "dB", _field_id_decibels },
+		{ _field_real, "override speaker gain", nullptr, "dB", _field_id_decibels },
+		{ _field_real_bounds, "distance bounds" },
+		FIELD_CUSTOM("Update gain bounds", _field_id_edit),
+		{ _field_real_bounds, "gain bounds", nullptr, "dB", _field_id_decibels },
+		{ _field_real, "cutscene ducking", nullptr, "dB", _field_id_decibels },
+		{ _field_real, "cutscene ducking fade in time", nullptr, "seconds" },
+		{ _field_real, "cutscene ducking sustain time", "how long this lasts after the cutscene ends", "seconds" },
+		{ _field_real, "cutscene ducking fade out time", nullptr, "seconds" },
+		{ _field_real, "scripted dialog ducking", nullptr, "dB", _field_id_decibels },
+		{ _field_real, "scripted dialog ducking fade in time", nullptr, "seconds" },
+		{ _field_real, "scripted dialog ducking sustain time", "how long this lasts after the scripted dialog ends", "seconds" },
+		{ _field_real, "scripted dialog ducking fade out time", nullptr, "seconds" },
+		{ _field_real, "doppler factor" },
+		{ _field_char_enum, "stereo playback type", &blofeld::halo2::pc64::unnamed_enum$439 },
+		FIELD_PAD("value", 1),
+		{ _field_short_integer, "lowpass cut off frequency" },
+		{ _field_real, "transmission multiplier" },
+		{ _field_real, "obstruction max bend" },
+		{ _field_real, "occlusion max bend" },
+		{ _field_real, "inner_silence_distance" },
+		
+		{ _struct_version_mode_equal, 0, 1 },
+		FIELD_PAD("value", 92),
+		
 		{ _field_terminator }
 	};
 
@@ -37016,7 +35816,7 @@ namespace pc64
 		{ _field_real, "low pass minimum distance" },
 		{ _field_real, "low pass maximum distance" },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "Mapping", &blofeld::halo2::pc64::function_definition_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -37097,122 +35897,15 @@ namespace pc64
 	STRING_LIST(unnamed_enum$440, unnamed_enum$440_strings, _countof(unnamed_enum$440_strings));
 
 	TAG_STRUCT(
-		sound_class_block_v1_struct_definition,
-		"sound_class_block_v1",
-		"sound_class_block_v1_struct_definition",
-		"s_sound_class_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_PAD("value", 92),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		sound_class_block_v2_struct_definition,
-		"sound_class_block_v2",
-		"sound_class_block_v2_struct_definition",
-		"s_sound_class_definition_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_integer, "max sounds per tag", "maximum number of sounds playing per individual sound tag" },
-		{ _field_short_integer, "max sounds per object", "maximum number of sounds of this type playing on an object" },
-		{ _field_long_integer, "preemption time", "replaces other instances after this many milliseconds", "ms" },
-		{ _field_word_flags, "internal flags", &blofeld::halo2::pc64::unnamed_enum$436 },
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$437 },
-		{ _field_short_integer, "priority" },
-		{ _field_short_enum, "cache miss mode", &blofeld::halo2::pc64::unnamed_enum$438 },
-		{ _field_real, "reverb gain", "how much reverb applies to this sound class", "dB", _field_id_decibels },
-		{ _field_real, "override speaker gain", nullptr, "dB", _field_id_decibels },
-		{ _field_real_bounds, "distance bounds" },
-		FIELD_CUSTOM("Update gain bounds", _field_id_edit),
-		{ _field_real_bounds, "gain bounds", nullptr, "dB", _field_id_decibels },
-		{ _field_real, "cutscene ducking", nullptr, "dB", _field_id_decibels },
-		{ _field_real, "cutscene ducking fade in time", nullptr, "seconds" },
-		{ _field_real, "cutscene ducking sustain time", "how long this lasts after the cutscene ends", "seconds" },
-		{ _field_real, "cutscene ducking fade out time", nullptr, "seconds" },
-		{ _field_real, "scripted dialog ducking", nullptr, "dB", _field_id_decibels },
-		{ _field_real, "scripted dialog ducking fade in time", nullptr, "seconds" },
-		{ _field_real, "scripted dialog ducking sustain time", "how long this lasts after the scripted dialog ends", "seconds" },
-		{ _field_real, "scripted dialog ducking fade out time", nullptr, "seconds" },
-		{ _field_real, "doppler factor" },
-		{ _field_char_enum, "stereo playback type", &blofeld::halo2::pc64::unnamed_enum$439 },
-		FIELD_PAD("value", 1),
-		{ _field_short_integer, "lowpass cut off frequency" },
-		{ _field_real, "transmission multiplier" },
-		{ _field_real, "obstruction max bend" },
-		{ _field_real, "occlusion max bend" },
-		{ _field_real, "inner_silence_distance" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		sound_class_block_v3_struct_definition,
-		"sound_class_block_v3",
-		"sound_class_block_v3_struct_definition",
-		"s_sound_class_definition_v3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_integer, "max sounds per tag", "maximum number of sounds playing per individual sound tag" },
-		{ _field_short_integer, "max sounds per object", "maximum number of sounds of this type playing on an object" },
-		{ _field_long_integer, "preemption time", "replaces other instances after this many milliseconds", "ms" },
-		{ _field_word_flags, "internal flags", &blofeld::halo2::pc64::unnamed_enum$436 },
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$437 },
-		{ _field_short_integer, "priority" },
-		{ _field_short_enum, "cache miss mode", &blofeld::halo2::pc64::unnamed_enum$438 },
-		{ _field_real, "reverb gain", "how much reverb applies to this sound class", "dB", _field_id_decibels },
-		{ _field_real, "override speaker gain", nullptr, "dB", _field_id_decibels },
-		{ _field_real_bounds, "distance bounds" },
-		FIELD_CUSTOM("Update gain bounds", _field_id_edit),
-		{ _field_real_bounds, "gain bounds", nullptr, "dB", _field_id_decibels },
-		{ _field_real, "cutscene ducking", nullptr, "dB", _field_id_decibels },
-		{ _field_real, "cutscene ducking fade in time", nullptr, "seconds" },
-		{ _field_real, "cutscene ducking sustain time", "how long this lasts after the cutscene ends", "seconds" },
-		{ _field_real, "cutscene ducking fade out time", nullptr, "seconds" },
-		{ _field_real, "scripted dialog ducking", nullptr, "dB", _field_id_decibels },
-		{ _field_real, "scripted dialog ducking fade in time", nullptr, "seconds" },
-		{ _field_real, "scripted dialog ducking sustain time", "how long this lasts after the scripted dialog ends", "seconds" },
-		{ _field_real, "scripted dialog ducking fade out time", nullptr, "seconds" },
-		{ _field_real, "doppler factor" },
-		{ _field_char_enum, "stereo playback type", &blofeld::halo2::pc64::unnamed_enum$439 },
-		FIELD_PAD("value", 1),
-		FIELD_PAD("value", 2),
-		{ _field_real, "transmission multiplier" },
-		{ _field_real, "obstruction max bend" },
-		{ _field_real, "occlusion max bend" },
-		{ _field_real, "inner_silence_distance" },
-		FIELD_EXPLANATION("low pass filter parameters", nullptr),
-		{ _field_struct, "lowpass cut off parameters", &blofeld::halo2::pc64::sound_lowpass_struct_struct_definition },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		sound_class_struct_definition$2,
-		"sound_class",
-		"sound_class_struct_definition",
-		"s_sound_classes_definition$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_block, "sound classes", &blofeld::halo2::pc64::sound_class_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		sound_definition_v4_struct_definition,
-		"sound_definition_v4",
-		"sound_definition_v4_struct_definition",
+		sound_definition_struct_definition,
+		"sound_definition",
+		"sound_definition_struct_definition",
 		"s_sound_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 7, 22 },
 		{ _field_tag_reference, "remastered sound", &blofeld::halo2::pc64::sound_group_reference },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum },
 		{ _field_char_enum, "class", &blofeld::halo2::pc64::unnamed_enum$2 },
@@ -37225,7 +35918,7 @@ namespace pc64
 		FIELD_PAD("value", 2),
 		{ _field_char_enum, "encoding", &blofeld::halo2::pc64::unnamed_enum$444 },
 		{ _field_char_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
-		{ _field_struct, "promotion", &blofeld::halo2::pc64::sound_promotion_parameter_v2_struct_definition },
+		{ _field_struct, "promotion", &blofeld::halo2::pc64::sound_promotion_parameter_struct_definition },
 		FIELD_PAD("value", 4),
 		{ _field_real, "inner_silence_distance", "don't play below this distance" },
 		FIELD_PAD("value", 4),
@@ -37235,6 +35928,147 @@ namespace pc64
 		{ _field_struct, "reflections", &blofeld::halo2::pc64::sound_reflection_parameters_struct_struct_definition },
 		FIELD_EXPLANATION("low pass filter parameters", nullptr),
 		{ _field_struct, "lowpass cut off parameters", &blofeld::halo2::pc64::sound_lowpass_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 6, 20 },
+		{ _field_tag_reference, "remastered sound", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum },
+		{ _field_char_enum, "class", &blofeld::halo2::pc64::unnamed_enum$2 },
+		{ _field_char_enum, "sample rate", &blofeld::halo2::pc64::unnamed_enum$441 },
+		{ _field_char_enum, "value", &blofeld::halo2::pc64::unnamed_enum$283 },
+		{ _field_char_enum, "import type", &blofeld::halo2::pc64::unnamed_enum$442 },
+		{ _field_struct, "playback", &blofeld::halo2::pc64::sound_playback_parameters_struct_struct_definition },
+		{ _field_struct, "scale", &blofeld::halo2::pc64::sound_scale_modifiers_struct_struct_definition },
+		FIELD_EXPLANATION("import properties", nullptr),
+		FIELD_PAD("value", 2),
+		{ _field_char_enum, "encoding", &blofeld::halo2::pc64::unnamed_enum$444 },
+		{ _field_char_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
+		{ _field_struct, "promotion", &blofeld::halo2::pc64::sound_promotion_parameter_struct_definition },
+		FIELD_PAD("value", 4),
+		{ _field_real, "inner_silence_distance", "don't play below this distance" },
+		FIELD_PAD("value", 4),
+		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::pc64::sound_pitch_range_block },
+		{ _field_block, "platform parameters", &blofeld::halo2::pc64::sound_platform_sound_playback_block },
+		{ _field_block, "value", &blofeld::halo2::pc64::sound_extra_info_block },
+		{ _field_struct, "reflections", &blofeld::halo2::pc64::sound_reflection_parameters_struct_struct_definition },
+		
+		{ _struct_version_mode_equal, 5, 16 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum },
+		{ _field_char_enum, "class", &blofeld::halo2::pc64::unnamed_enum$2 },
+		{ _field_char_enum, "sample rate", &blofeld::halo2::pc64::unnamed_enum$441 },
+		{ _field_char_enum, "value", &blofeld::halo2::pc64::unnamed_enum$283 },
+		{ _field_char_enum, "import type", &blofeld::halo2::pc64::unnamed_enum$442 },
+		{ _field_struct, "playback", &blofeld::halo2::pc64::sound_playback_parameters_struct_struct_definition },
+		{ _field_struct, "scale", &blofeld::halo2::pc64::sound_scale_modifiers_struct_struct_definition },
+		FIELD_EXPLANATION("import properties", nullptr),
+		FIELD_PAD("value", 2),
+		{ _field_char_enum, "encoding", &blofeld::halo2::pc64::unnamed_enum$444 },
+		{ _field_char_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
+		{ _field_struct, "promotion", &blofeld::halo2::pc64::sound_promotion_parameter_struct_definition },
+		FIELD_PAD("value", 12),
+		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::pc64::sound_pitch_range_block },
+		{ _field_block, "platform parameters", &blofeld::halo2::pc64::sound_platform_sound_playback_block },
+		{ _field_block, "value", &blofeld::halo2::pc64::sound_extra_info_block },
+		
+		{ _struct_version_mode_equal, 4, 15 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum },
+		{ _field_short_enum, "class", &blofeld::halo2::pc64::unnamed_enum$2 },
+		{ _field_short_enum, "sample rate", &blofeld::halo2::pc64::unnamed_enum$441 },
+		{ _field_short_enum, "output effect", &blofeld::halo2::pc64::unnamed_enum$283 },
+		{ _field_short_enum, "import type", &blofeld::halo2::pc64::unnamed_enum$442 },
+		{ _field_struct, "playback", &blofeld::halo2::pc64::sound_playback_parameters_struct_struct_definition },
+		{ _field_struct, "scale", &blofeld::halo2::pc64::sound_scale_modifiers_struct_struct_definition },
+		FIELD_EXPLANATION("import properties", nullptr),
+		{ _field_short_enum, "encoding", &blofeld::halo2::pc64::unnamed_enum$444 },
+		{ _field_short_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
+		{ _field_struct, "promotion", &blofeld::halo2::pc64::sound_promotion_parameter_struct_definition },
+		FIELD_PAD("value", 12),
+		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::pc64::sound_pitch_range_block },
+		{ _field_block, "platform parameters", &blofeld::halo2::pc64::sound_platform_sound_playback_block },
+		{ _field_block, "value", &blofeld::halo2::pc64::sound_extra_info_block },
+		
+		{ _struct_version_mode_equal, 3, 15 },
+		FIELD_CUSTOM("value", _field_id_default),
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum },
+		{ _field_short_enum, "class", &blofeld::halo2::pc64::unnamed_enum$2 },
+		{ _field_short_enum, "sample rate", &blofeld::halo2::pc64::unnamed_enum$441 },
+		{ _field_short_enum, "output effect", &blofeld::halo2::pc64::unnamed_enum$283 },
+		{ _field_short_enum, "import type", &blofeld::halo2::pc64::unnamed_enum$442 },
+		{ _field_struct, "playback", &blofeld::halo2::pc64::large_sound_playback_parameters_struct_definition },
+		{ _field_struct, "scale", &blofeld::halo2::pc64::large_sound_scale_modifiers_struct_struct_definition },
+		FIELD_EXPLANATION("import properties", nullptr),
+		{ _field_short_enum, "encoding", &blofeld::halo2::pc64::unnamed_enum$444 },
+		{ _field_short_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
+		{ _field_struct, "promotion", &blofeld::halo2::pc64::sound_promotion_parameter_struct_definition },
+		FIELD_PAD("value", 12),
+		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::pc64::large_sound_pitch_range_block },
+		{ _field_block, "platform parameters", &blofeld::halo2::pc64::sound_platform_sound_playback_block },
+		
+		{ _struct_version_mode_equal, 2, 15 },
+		FIELD_CUSTOM("value", _field_id_default),
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum },
+		{ _field_short_enum, "class", &blofeld::halo2::pc64::unnamed_enum$2 },
+		{ _field_short_enum, "sample rate", &blofeld::halo2::pc64::unnamed_enum$441 },
+		{ _field_short_enum, "output effect", &blofeld::halo2::pc64::unnamed_enum$283 },
+		{ _field_short_enum, "import type", &blofeld::halo2::pc64::unnamed_enum$442 },
+		{ _field_struct, "playback", &blofeld::halo2::pc64::large_sound_playback_parameters_struct_definition },
+		{ _field_struct, "scale", &blofeld::halo2::pc64::large_sound_scale_modifiers_struct_struct_definition },
+		FIELD_EXPLANATION("import properties", nullptr),
+		{ _field_short_enum, "encoding", &blofeld::halo2::pc64::unnamed_enum$444 },
+		{ _field_short_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
+		{ _field_struct, "promotion", &blofeld::halo2::pc64::sound_promotion_parameter_struct_definition },
+		FIELD_PAD("value", 12),
+		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::pc64::large_sound_pitch_range_block },
+		{ _field_block, "platform parameters", &blofeld::halo2::pc64::sound_platform_sound_playback_block },
+		
+		{ _struct_version_mode_equal, 1, 15 },
+		FIELD_CUSTOM("value", _field_id_default),
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum },
+		{ _field_short_enum, "class", &blofeld::halo2::pc64::unnamed_enum$2 },
+		{ _field_short_enum, "sample rate", &blofeld::halo2::pc64::unnamed_enum$441 },
+		{ _field_short_enum, "output effect", &blofeld::halo2::pc64::unnamed_enum$283 },
+		{ _field_short_enum, "import type", &blofeld::halo2::pc64::unnamed_enum$442 },
+		{ _field_struct, "playback", &blofeld::halo2::pc64::large_sound_playback_parameters_struct_definition },
+		{ _field_struct, "scale", &blofeld::halo2::pc64::large_sound_scale_modifiers_struct_struct_definition },
+		FIELD_EXPLANATION("import properties", nullptr),
+		{ _field_short_enum, "encoding", &blofeld::halo2::pc64::unnamed_enum$444 },
+		{ _field_short_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
+		{ _field_struct, "promotion", &blofeld::halo2::pc64::sound_promotion_parameter_struct_definition },
+		FIELD_PAD("value", 12),
+		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::pc64::large_sound_pitch_range_block },
+		{ _field_block, "platform parameters", &blofeld::halo2::pc64::sound_platform_sound_playback_block },
+		
+		{ _struct_version_mode_equal, 0, 30 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum },
+		{ _field_short_enum, "class", &blofeld::halo2::pc64::unnamed_enum$2 },
+		{ _field_short_enum, "sample rate", &blofeld::halo2::pc64::unnamed_enum$441 },
+		{ _field_real, "minimum distance", "the distance below which this sound no longer gets louder", "world units" },
+		{ _field_real, "maximum distance", "the distance beyond which this sound is no longer audible", "world units" },
+		{ _field_real_fraction, "skip fraction", "fraction of requests to play this sound that will be ignored (0 means always play.)" },
+		{ _field_real_bounds, "random pitch bounds", "the sound's pitch will be modulated randomly within this range.", "cents" },
+		{ _field_angle, "inner cone angle", "within the cone defined by this angle and the sound's direction, the sound plays with a gain of 1.0.", "degrees" },
+		{ _field_angle, "outer cone angle", "outside the cone defined by this angle and the sound's direction, the sound plays with a gain of OUTER CONE GAIN. (0 means the sound does not attenuate with direction.)", "degrees" },
+		{ _field_real, "outer cone gain", "the gain to use when the sound is directed away from the listener", "dB" },
+		{ _field_real, "gain modifier", nullptr, "dB" },
+		{ _field_real, "maximum bend per second", nullptr, "cents" },
+		{ _field_short_enum, "output effect", &blofeld::halo2::pc64::unnamed_enum$283 },
+		{ _field_short_enum, "import type", &blofeld::halo2::pc64::unnamed_enum$442 },
+		FIELD_PAD("value", 8),
+		{ _field_real_fraction, "skip fraction modifier" },
+		{ _field_real, "gain modifier", nullptr, "dB" },
+		{ _field_real, "pitch modifier", nullptr, "cents" },
+		FIELD_PAD("value", 12),
+		{ _field_real_fraction, "skip fraction modifier" },
+		{ _field_real, "gain modifier", nullptr, "dB" },
+		{ _field_real, "pitch modifier", nullptr, "cents" },
+		FIELD_PAD("value", 12),
+		{ _field_short_enum, "encoding", &blofeld::halo2::pc64::unnamed_enum$444 },
+		{ _field_short_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
+		{ _field_tag_reference, "promotion sound", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_short_integer, "promotion count", "when there are this many instances of the sound, promote to the new sound." },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 20),
+		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::pc64::old_sound_pitch_range_block },
+		
 		{ _field_terminator }
 	};
 
@@ -37334,19 +36168,27 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		sound_promotion_parameter_v2_struct_definition,
-		"sound_promotion_parameter_v2",
-		"sound_promotion_parameter_v2_struct_definition",
+		sound_promotion_parameter_struct_definition,
+		"sound_promotion_parameter",
+		"sound_promotion_parameter_struct_definition",
 		"s_sound_promotion_parameters",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 5 },
 		{ _field_block, "promotion rules", &blofeld::halo2::pc64::sound_promotion_rule_block },
 		{ _field_block, "runtime timers", &blofeld::halo2::pc64::sound_promotion_runtime_timer_block },
 		{ _field_long_integer, "runtime active promotion index" },
 		{ _field_long_integer, "runtime last promotion time" },
 		{ _field_long_integer, "runtime suppression timeout" },
+		
+		{ _struct_version_mode_equal, 0, 4 },
+		{ _field_tag_reference, "promotion sound", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_short_integer, "promotion count", "when there are this many instances of the sound, promote to the new sound." },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 8),
+		
 		{ _field_terminator }
 	};
 
@@ -37376,22 +36218,6 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_long_integer, "value" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		sound_promotion_parameter_v1_struct_definition,
-		"sound_promotion_parameter_v1",
-		"sound_promotion_parameter_v1_struct_definition",
-		"s_old_sound_promotion_parameters",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_tag_reference, "promotion sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_short_integer, "promotion count", "when there are this many instances of the sound, promote to the new sound." },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 8),
 		{ _field_terminator }
 	};
 
@@ -37438,18 +36264,32 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		g_sound_permutation_chunk_v3_struct_definition,
-		"g_sound_permutation_chunk_v3",
-		"g_sound_permutation_chunk_v3_struct_definition",
+		g_sound_permutation_chunk_struct_definition,
+		"g_sound_permutation_chunk",
+		"g_sound_permutation_chunk_struct_definition",
 		"s_sound_permutation_chunk",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 4 },
 		{ _field_long_integer, "file offset" },
 		{ _field_long_integer, "value" },
 		{ _field_long_integer, "value" },
 		{ _field_long_integer, "value" },
+		
+		{ _struct_version_mode_equal, 1, 3 },
+		{ _field_long_integer, "file offset" },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
+		
+		{ _struct_version_mode_equal, 0, 5 },
+		{ _field_long_integer, "file offset" },
+		{ _field_short_integer, "value" },
+		{ _field_short_integer, "value" },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
+		
 		{ _field_terminator }
 	};
 
@@ -37519,38 +36359,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		g_sound_permutation_chunk_v1_struct_definition,
-		"g_sound_permutation_chunk_v1",
-		"g_sound_permutation_chunk_v1_struct_definition",
-		"s_sound_permutation_chunk_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_integer, "file offset" },
-		{ _field_short_integer, "value" },
-		{ _field_short_integer, "value" },
-		{ _field_long_integer, "value" },
-		{ _field_long_integer, "value" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		g_sound_permutation_chunk_v2_struct_definition,
-		"g_sound_permutation_chunk_v2",
-		"g_sound_permutation_chunk_v2_struct_definition",
-		"s_sound_permutation_chunk_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_integer, "file offset" },
-		{ _field_long_integer, "value" },
-		{ _field_long_integer, "value" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		sound_platform_sound_playback_block_struct_definition,
 		"sound_platform_sound_playback_block",
 		"sound_platform_sound_playback_block_struct_definition",
@@ -37599,17 +36407,47 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		sound_permutation_language_info_v3_struct_definition,
-		"sound_permutation_language_info_v3",
-		"sound_permutation_language_info_v3_struct_definition",
+		sound_permutation_language_info_struct_definition,
+		"sound_permutation_language_info",
+		"sound_permutation_language_info_struct_definition",
 		"s_sound_definition_language_permutation_info",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 1 },
 		{ _field_block, "raw info block v3", &blofeld::halo2::pc64::sound_permutation_raw_info_block },
+		
+		{ _struct_version_mode_equal, 1, 1 },
+		{ _field_block, "raw info block", &blofeld::halo2::pc64::sound_permutation_raw_info_block_old_block },
+		
+		{ _struct_version_mode_equal, 0, 9 },
+		FIELD_CUSTOM("value", _field_id_sound_player),
+		{ _field_string_id, "skip fraction name" },
+		{ _field_data, "value", &blofeld::halo2::pc64::sound_samples },
+		{ _field_data, "value", &blofeld::halo2::pc64::sound_mouth_data },
+		{ _field_data, "value", &blofeld::halo2::pc64::sound_lipsync_data },
+		{ _field_block, "value", &blofeld::halo2::pc64::sound_permutation_marker_block },
+		{ _field_short_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
+		{ _field_char_enum, "language", &blofeld::halo2::pc64::unnamed_enum$446 },
+		FIELD_PAD("value", 1),
+		
 		{ _field_terminator }
 	};
+
+	STRINGS(unnamed_enum$446)
+	{
+		"english",
+		"japanese",
+		"german",
+		"french",
+		"spanish",
+		"italian",
+		"korean",
+		"chinese",
+		"portuguese"
+	};
+	STRING_LIST(unnamed_enum$446, unnamed_enum$446_strings, _countof(unnamed_enum$446_strings));
 
 	TAG_STRUCT(
 		sound_permutation_raw_info_block_struct_definition,
@@ -37634,20 +36472,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	STRINGS(unnamed_enum$446)
-	{
-		"english",
-		"japanese",
-		"german",
-		"french",
-		"spanish",
-		"italian",
-		"korean",
-		"chinese",
-		"portuguese"
-	};
-	STRING_LIST(unnamed_enum$446, unnamed_enum$446_strings, _countof(unnamed_enum$446_strings));
-
 	TAG_STRUCT(
 		sound_permutation_marker_block_struct_definition,
 		"sound_permutation_marker_block",
@@ -37661,40 +36485,6 @@ namespace pc64
 		{ _field_string_id, "name" },
 		{ _field_long_integer, "sample offset" },
 		FIELD_CUSTOM("value", _field_id_unknown_player),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		sound_permutation_raw_info_block_old_struct_definition,
-		"sound_permutation_raw_info_block_old",
-		"sound_permutation_raw_info_block_old_struct_definition",
-		"s_sound_permutation_raw_info_old",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_sound_player),
-		{ _field_string_id, "skip fraction name" },
-		{ _field_data, "value", &blofeld::halo2::pc64::sound_samples },
-		{ _field_data, "value", &blofeld::halo2::pc64::sound_mouth_data },
-		{ _field_data, "value", &blofeld::halo2::pc64::sound_lipsync_data },
-		{ _field_block, "value", &blofeld::halo2::pc64::sound_permutation_marker_block },
-		{ _field_short_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
-		{ _field_char_enum, "language", &blofeld::halo2::pc64::unnamed_enum$446 },
-		FIELD_PAD("value", 1),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		sound_permutation_language_info_v2_struct_definition,
-		"sound_permutation_language_info_v2",
-		"sound_permutation_language_info_v2_struct_definition",
-		"s_sound_definition_language_permutation_info$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_block, "raw info block", &blofeld::halo2::pc64::sound_permutation_raw_info_block_old_block },
 		{ _field_terminator }
 	};
 
@@ -37778,48 +36568,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		sound_block_struct_definition$2,
-		"sound",
-		"sound_block_struct_definition",
-		"s_sound_block",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum },
-		{ _field_short_enum, "class", &blofeld::halo2::pc64::unnamed_enum$2 },
-		{ _field_short_enum, "sample rate", &blofeld::halo2::pc64::unnamed_enum$441 },
-		{ _field_real, "minimum distance", "the distance below which this sound no longer gets louder", "world units" },
-		{ _field_real, "maximum distance", "the distance beyond which this sound is no longer audible", "world units" },
-		{ _field_real_fraction, "skip fraction", "fraction of requests to play this sound that will be ignored (0 means always play.)" },
-		{ _field_real_bounds, "random pitch bounds", "the sound's pitch will be modulated randomly within this range.", "cents" },
-		{ _field_angle, "inner cone angle", "within the cone defined by this angle and the sound's direction, the sound plays with a gain of 1.0.", "degrees" },
-		{ _field_angle, "outer cone angle", "outside the cone defined by this angle and the sound's direction, the sound plays with a gain of OUTER CONE GAIN. (0 means the sound does not attenuate with direction.)", "degrees" },
-		{ _field_real, "outer cone gain", "the gain to use when the sound is directed away from the listener", "dB" },
-		{ _field_real, "gain modifier", nullptr, "dB" },
-		{ _field_real, "maximum bend per second", nullptr, "cents" },
-		{ _field_short_enum, "output effect", &blofeld::halo2::pc64::unnamed_enum$283 },
-		{ _field_short_enum, "import type", &blofeld::halo2::pc64::unnamed_enum$442 },
-		FIELD_PAD("value", 8),
-		{ _field_real_fraction, "skip fraction modifier" },
-		{ _field_real, "gain modifier", nullptr, "dB" },
-		{ _field_real, "pitch modifier", nullptr, "cents" },
-		FIELD_PAD("value", 12),
-		{ _field_real_fraction, "skip fraction modifier" },
-		{ _field_real, "gain modifier", nullptr, "dB" },
-		{ _field_real, "pitch modifier", nullptr, "cents" },
-		FIELD_PAD("value", 12),
-		{ _field_short_enum, "encoding", &blofeld::halo2::pc64::unnamed_enum$444 },
-		{ _field_short_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
-		{ _field_tag_reference, "promotion sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_short_integer, "promotion count", "when there are this many instances of the sound, promote to the new sound." },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 20),
-		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::pc64::old_sound_pitch_range_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		old_sound_pitch_range_block_struct_definition,
 		"old_sound_pitch_range_block",
 		"old_sound_pitch_range_block_struct_definition",
@@ -37876,33 +36624,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		sound_block_struct_definition$3,
-		"sound",
-		"sound_block_struct_definition",
-		"s_sound_block$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_default),
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum },
-		{ _field_short_enum, "class", &blofeld::halo2::pc64::unnamed_enum$2 },
-		{ _field_short_enum, "sample rate", &blofeld::halo2::pc64::unnamed_enum$441 },
-		{ _field_short_enum, "output effect", &blofeld::halo2::pc64::unnamed_enum$283 },
-		{ _field_short_enum, "import type", &blofeld::halo2::pc64::unnamed_enum$442 },
-		{ _field_struct, "playback", &blofeld::halo2::pc64::large_sound_playback_parameters_struct_definition },
-		{ _field_struct, "scale", &blofeld::halo2::pc64::large_sound_scale_modifiers_struct_struct_definition },
-		FIELD_EXPLANATION("import properties", nullptr),
-		{ _field_short_enum, "encoding", &blofeld::halo2::pc64::unnamed_enum$444 },
-		{ _field_short_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
-		{ _field_struct, "promotion", &blofeld::halo2::pc64::sound_promotion_parameter_v2_struct_definition },
-		FIELD_PAD("value", 12),
-		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::pc64::large_sound_pitch_range_block },
-		{ _field_block, "platform parameters", &blofeld::halo2::pc64::sound_platform_sound_playback_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		large_sound_playback_parameters_struct_definition,
 		"large_sound_playback_parameters",
 		"large_sound_playback_parameters_struct_definition",
@@ -37911,6 +36632,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 17 },
 		{ _field_real, "minimum distance", "the distance below which this sound no longer gets louder", "world units" },
 		{ _field_real, "maximum distance", "the distance beyond which this sound is no longer audible", "world units" },
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this sound that will be ignored (0 means always play.)" },
@@ -37928,18 +36650,8 @@ namespace pc64
 		{ _field_angle, "azimuth" },
 		{ _field_real, "positional gain", nullptr, "dB" },
 		{ _field_real, "first person gain", nullptr, "dB" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		large_sound_playback_parameters_v1_struct_definition,
-		"large_sound_playback_parameters_v1",
-		"large_sound_playback_parameters_v1_struct_definition",
-		"s_large_sound_definition_playback_parameters_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 10 },
 		{ _field_real, "minimum distance", "the distance below which this sound no longer gets louder", "world units" },
 		{ _field_real, "maximum distance", "the distance beyond which this sound is no longer audible", "world units" },
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this sound that will be ignored (0 means always play.)" },
@@ -37950,6 +36662,7 @@ namespace pc64
 		{ _field_angle, "inner cone angle", "within the cone defined by this angle and the sound's direction, the sound plays with a gain of 1.0.", "degrees" },
 		{ _field_angle, "outer cone angle", "outside the cone defined by this angle and the sound's direction, the sound plays with a gain of OUTER CONE GAIN. (0 means the sound does not attenuate with direction.)", "degrees" },
 		{ _field_real, "outer cone gain", "the gain to use when the sound is directed away from the listener", "dB", _field_id_decibels },
+		
 		{ _field_terminator }
 	};
 
@@ -37982,7 +36695,7 @@ namespace pc64
 		{ _field_real, "natural pitch", "the apparent pitch when these samples are played at their recorded pitch.", "cents", _field_id_cents },
 		{ _field_real_bounds, "bend bounds", "the range of pitches that will be represented using this sample.", "cents", _field_id_cents },
 		{ _field_real_bounds, "value" },
-		{ _field_struct, "value", &blofeld::halo2::pc64::function_definition_v2_struct_definition },
+		{ _field_struct, "value", &blofeld::halo2::pc64::function_definition_struct_definition },
 		FIELD_PAD("value", 12),
 		{ _field_block, "permutations", "permutations represent equivalent variations of this sound.", &blofeld::halo2::pc64::large_sound_permutations_block },
 		{ _field_terminator }
@@ -38011,147 +36724,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		sound_block_struct_definition$4,
-		"sound",
-		"sound_block_struct_definition",
-		"s_sound_block$3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_default),
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum },
-		{ _field_short_enum, "class", &blofeld::halo2::pc64::unnamed_enum$2 },
-		{ _field_short_enum, "sample rate", &blofeld::halo2::pc64::unnamed_enum$441 },
-		{ _field_short_enum, "output effect", &blofeld::halo2::pc64::unnamed_enum$283 },
-		{ _field_short_enum, "import type", &blofeld::halo2::pc64::unnamed_enum$442 },
-		{ _field_struct, "playback", &blofeld::halo2::pc64::large_sound_playback_parameters_struct_definition },
-		{ _field_struct, "scale", &blofeld::halo2::pc64::large_sound_scale_modifiers_struct_struct_definition },
-		FIELD_EXPLANATION("import properties", nullptr),
-		{ _field_short_enum, "encoding", &blofeld::halo2::pc64::unnamed_enum$444 },
-		{ _field_short_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
-		{ _field_struct, "promotion", &blofeld::halo2::pc64::sound_promotion_parameter_v2_struct_definition },
-		FIELD_PAD("value", 12),
-		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::pc64::large_sound_pitch_range_block },
-		{ _field_block, "platform parameters", &blofeld::halo2::pc64::sound_platform_sound_playback_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		sound_block_struct_definition$5,
-		"sound",
-		"sound_block_struct_definition",
-		"s_sound_block$4",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_CUSTOM("value", _field_id_default),
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum },
-		{ _field_short_enum, "class", &blofeld::halo2::pc64::unnamed_enum$2 },
-		{ _field_short_enum, "sample rate", &blofeld::halo2::pc64::unnamed_enum$441 },
-		{ _field_short_enum, "output effect", &blofeld::halo2::pc64::unnamed_enum$283 },
-		{ _field_short_enum, "import type", &blofeld::halo2::pc64::unnamed_enum$442 },
-		{ _field_struct, "playback", &blofeld::halo2::pc64::large_sound_playback_parameters_struct_definition },
-		{ _field_struct, "scale", &blofeld::halo2::pc64::large_sound_scale_modifiers_struct_struct_definition },
-		FIELD_EXPLANATION("import properties", nullptr),
-		{ _field_short_enum, "encoding", &blofeld::halo2::pc64::unnamed_enum$444 },
-		{ _field_short_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
-		{ _field_struct, "promotion", &blofeld::halo2::pc64::sound_promotion_parameter_v2_struct_definition },
-		FIELD_PAD("value", 12),
-		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::pc64::large_sound_pitch_range_block },
-		{ _field_block, "platform parameters", &blofeld::halo2::pc64::sound_platform_sound_playback_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		sound_definition_v1_struct_definition,
-		"sound_definition_v1",
-		"sound_definition_v1_struct_definition",
-		"s_sound_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum },
-		{ _field_short_enum, "class", &blofeld::halo2::pc64::unnamed_enum$2 },
-		{ _field_short_enum, "sample rate", &blofeld::halo2::pc64::unnamed_enum$441 },
-		{ _field_short_enum, "output effect", &blofeld::halo2::pc64::unnamed_enum$283 },
-		{ _field_short_enum, "import type", &blofeld::halo2::pc64::unnamed_enum$442 },
-		{ _field_struct, "playback", &blofeld::halo2::pc64::sound_playback_parameters_struct_struct_definition },
-		{ _field_struct, "scale", &blofeld::halo2::pc64::sound_scale_modifiers_struct_struct_definition },
-		FIELD_EXPLANATION("import properties", nullptr),
-		{ _field_short_enum, "encoding", &blofeld::halo2::pc64::unnamed_enum$444 },
-		{ _field_short_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
-		{ _field_struct, "promotion", &blofeld::halo2::pc64::sound_promotion_parameter_v2_struct_definition },
-		FIELD_PAD("value", 12),
-		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::pc64::sound_pitch_range_block },
-		{ _field_block, "platform parameters", &blofeld::halo2::pc64::sound_platform_sound_playback_block },
-		{ _field_block, "value", &blofeld::halo2::pc64::sound_extra_info_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		sound_definition_v2_struct_definition,
-		"sound_definition_v2",
-		"sound_definition_v2_struct_definition",
-		"s_sound_definition_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum },
-		{ _field_char_enum, "class", &blofeld::halo2::pc64::unnamed_enum$2 },
-		{ _field_char_enum, "sample rate", &blofeld::halo2::pc64::unnamed_enum$441 },
-		{ _field_char_enum, "value", &blofeld::halo2::pc64::unnamed_enum$283 },
-		{ _field_char_enum, "import type", &blofeld::halo2::pc64::unnamed_enum$442 },
-		{ _field_struct, "playback", &blofeld::halo2::pc64::sound_playback_parameters_struct_struct_definition },
-		{ _field_struct, "scale", &blofeld::halo2::pc64::sound_scale_modifiers_struct_struct_definition },
-		FIELD_EXPLANATION("import properties", nullptr),
-		FIELD_PAD("value", 2),
-		{ _field_char_enum, "encoding", &blofeld::halo2::pc64::unnamed_enum$444 },
-		{ _field_char_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
-		{ _field_struct, "promotion", &blofeld::halo2::pc64::sound_promotion_parameter_v2_struct_definition },
-		FIELD_PAD("value", 12),
-		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::pc64::sound_pitch_range_block },
-		{ _field_block, "platform parameters", &blofeld::halo2::pc64::sound_platform_sound_playback_block },
-		{ _field_block, "value", &blofeld::halo2::pc64::sound_extra_info_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		sound_definition_v3_struct_definition,
-		"sound_definition_v3",
-		"sound_definition_v3_struct_definition",
-		"s_sound_definition_v3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_tag_reference, "remastered sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum },
-		{ _field_char_enum, "class", &blofeld::halo2::pc64::unnamed_enum$2 },
-		{ _field_char_enum, "sample rate", &blofeld::halo2::pc64::unnamed_enum$441 },
-		{ _field_char_enum, "value", &blofeld::halo2::pc64::unnamed_enum$283 },
-		{ _field_char_enum, "import type", &blofeld::halo2::pc64::unnamed_enum$442 },
-		{ _field_struct, "playback", &blofeld::halo2::pc64::sound_playback_parameters_struct_struct_definition },
-		{ _field_struct, "scale", &blofeld::halo2::pc64::sound_scale_modifiers_struct_struct_definition },
-		FIELD_EXPLANATION("import properties", nullptr),
-		FIELD_PAD("value", 2),
-		{ _field_char_enum, "encoding", &blofeld::halo2::pc64::unnamed_enum$444 },
-		{ _field_char_enum, "compression", &blofeld::halo2::pc64::unnamed_enum$445 },
-		{ _field_struct, "promotion", &blofeld::halo2::pc64::sound_promotion_parameter_v2_struct_definition },
-		FIELD_PAD("value", 4),
-		{ _field_real, "inner_silence_distance", "don't play below this distance" },
-		FIELD_PAD("value", 4),
-		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::halo2::pc64::sound_pitch_range_block },
-		{ _field_block, "platform parameters", &blofeld::halo2::pc64::sound_platform_sound_playback_block },
-		{ _field_block, "value", &blofeld::halo2::pc64::sound_extra_info_block },
-		{ _field_struct, "reflections", &blofeld::halo2::pc64::sound_reflection_parameters_struct_struct_definition },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		sound_environment_definition_struct_definition,
 		"sound_environment_definition",
 		"sound_environment_definition_struct_definition",
@@ -38160,6 +36732,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 17 },
 		FIELD_PAD("value", 4),
 		{ _field_short_integer, "priority", "when multiple listeners are in different sound environments in split screen, the combined environment will be the one with the highest priority." },
 		FIELD_PAD("value", 2),
@@ -38177,18 +36750,8 @@ namespace pc64
 		{ _field_real, "hf reference(20 to 20,000)", "for hf values, what frequency defines hf, from 20 to 20,000", "Hz", _field_id_auds },
 		{ _field_string_id, "reflection type", "for creating reflection sounds" },
 		FIELD_PAD("value", 12),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		sound_environment_definition_struct_definition$2,
-		"sound_environment_definition",
-		"sound_environment_definition_struct_definition",
-		"s_sound_environment$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 17 },
 		FIELD_PAD("value", 4),
 		{ _field_short_integer, "priority", "when multiple listeners are in different sound environments in split screen, the combined environment will be the one with the highest priority." },
 		FIELD_PAD("value", 2),
@@ -38206,6 +36769,7 @@ namespace pc64
 		{ _field_real, "hf reference(20 to 20,000)", "for hf values, what frequency defines hf, from 20 to 20,000", "Hz", _field_id_auds },
 		{ _field_string_id, "reflection type", "for creating reflection sounds" },
 		FIELD_PAD("value", 12),
+		
 		{ _field_terminator }
 	};
 
@@ -40114,18 +38678,27 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		g_dialogue_definition_v2_struct_definition,
-		"g_dialogue_definition_v2",
-		"g_dialogue_definition_v2_struct_definition",
+		g_dialogue_definition_struct_definition,
+		"g_dialogue_definition",
+		"g_dialogue_definition_struct_definition",
 		"s_dialogue_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 4 },
 		{ _field_tag_reference, "global dialogue info", &blofeld::halo2::pc64::ai_dialogue_globals_group_reference$2 },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$497 },
 		{ _field_block, "vocalizations", &blofeld::halo2::pc64::sound_references_block },
 		{ _field_string_id, "mission dialogue designator", "3-letter mission dialogue designator name" },
+		
+		{ _struct_version_mode_equal, 0, 5 },
+		{ _field_tag_reference, "global dialogue info", &blofeld::halo2::pc64::ai_dialogue_globals_group_reference$2 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$497 },
+		FIELD_PAD("value", 20),
+		{ _field_block, "vocalizations", &blofeld::halo2::pc64::sound_references_block },
+		{ _field_string_id, "mission dialogue designator", "3-letter mission dialogue designator name" },
+		
 		{ _field_terminator }
 	};
 
@@ -40138,18 +38711,27 @@ namespace pc64
 	STRING_LIST(unnamed_enum$497, unnamed_enum$497_strings, _countof(unnamed_enum$497_strings));
 
 	TAG_STRUCT(
-		g_vocalization_sound_references_v2_struct_definition,
-		"g_vocalization_sound_references_v2",
-		"g_vocalization_sound_references_v2_struct_definition",
+		g_vocalization_sound_references_struct_definition,
+		"g_vocalization_sound_references",
+		"g_vocalization_sound_references_struct_definition",
 		"s_vocalization_sound",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 4 },
 		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$498 },
 		FIELD_PAD("value", 2),
 		{ _field_string_id, "vocalization" },
 		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference$3 },
+		
+		{ _struct_version_mode_equal, 0, 5 },
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$498 },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 20),
+		{ _field_string_id, "vocalization" },
+		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference$3 },
+		
 		{ _field_terminator }
 	};
 
@@ -40160,40 +38742,6 @@ namespace pc64
 	STRING_LIST(unnamed_enum$498, unnamed_enum$498_strings, _countof(unnamed_enum$498_strings));
 
 	TAG_REFERENCE(sound_group_reference$3, SOUND_TAG, _tag_reference_flag_resolved_manually);
-
-	TAG_STRUCT(
-		g_vocalization_sound_references_v1_struct_definition,
-		"g_vocalization_sound_references_v1",
-		"g_vocalization_sound_references_v1_struct_definition",
-		"s_vocalization_sound_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$498 },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 20),
-		{ _field_string_id, "vocalization" },
-		{ _field_tag_reference, "sound", &blofeld::halo2::pc64::sound_group_reference$3 },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		g_dialogue_definition_v1_struct_definition,
-		"g_dialogue_definition_v1",
-		"g_dialogue_definition_v1_struct_definition",
-		"s_dialogue_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_tag_reference, "global dialogue info", &blofeld::halo2::pc64::ai_dialogue_globals_group_reference$2 },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$497 },
-		FIELD_PAD("value", 20),
-		{ _field_block, "vocalizations", &blofeld::halo2::pc64::sound_references_block },
-		{ _field_string_id, "mission dialogue designator", "3-letter mission dialogue designator name" },
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		sound_cache_file_gestalt_block_struct_definition,
@@ -40431,7 +38979,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
-		{ _field_struct, "runtime promotion storage", &blofeld::halo2::pc64::sound_promotion_parameter_v2_struct_definition },
+		{ _field_struct, "runtime promotion storage", &blofeld::halo2::pc64::sound_promotion_parameter_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -40894,7 +39442,7 @@ namespace pc64
 		{ _field_struct, "more damn nodes", &blofeld::halo2::pc64::unit_additional_node_names_struct_definition },
 		{ _field_useless_pad, "value" },
 		{ _field_tag_reference, "melee damage", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_struct, "your momma", &blofeld::halo2::pc64::unit_boarding_melee_v2_struct_definition },
+		{ _field_struct, "your momma", &blofeld::halo2::pc64::unit_boarding_melee_struct_definition },
 		{ _field_short_enum, "motion sensor blip size", &blofeld::halo2::pc64::unnamed_enum$109 },
 		{ _field_struct, "campaign metagame bucket", &blofeld::halo2::pc64::campaign_metagame_bucket_block_struct_definition },
 		{ _field_block, "postures", &blofeld::halo2::pc64::unit_postures_block },
@@ -41037,7 +39585,7 @@ namespace pc64
 		{ _field_struct, "more damn nodes", &blofeld::halo2::pc64::unit_additional_node_names_struct_definition },
 		{ _field_useless_pad, "value" },
 		{ _field_tag_reference, "melee damage", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_struct, "your momma", &blofeld::halo2::pc64::unit_boarding_melee_v2_struct_definition },
+		{ _field_struct, "your momma", &blofeld::halo2::pc64::unit_boarding_melee_struct_definition },
 		{ _field_short_enum, "motion sensor blip size", &blofeld::halo2::pc64::unnamed_enum$109 },
 		{ _field_struct, "campaign metagame bucket", &blofeld::halo2::pc64::campaign_metagame_bucket_block_struct_definition },
 		{ _field_block, "postures", &blofeld::halo2::pc64::unit_postures_block },
@@ -41419,14 +39967,15 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		weapon_v4_struct_definition,
-		"weapon_v4",
-		"weapon_v4_struct_definition",
+		weapon_struct_definition$3,
+		"weapon",
+		"weapon_struct_definition",
 		"s_weapon_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 3, 152 },
 		FIELD_PAD("value", 2),
 		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
 		{ _field_real, "bounding radius", nullptr, "world units" },
@@ -41522,9 +40071,9 @@ namespace pc64
 		{ _field_tag_reference, "player melee damage", &blofeld::halo2::pc64::damage_effect_group_reference },
 		{ _field_tag_reference, "player melee response", &blofeld::halo2::pc64::damage_effect_group_reference },
 		FIELD_EXPLANATION("melee aim assist", "magnetism angle: the maximum angle that magnetism works at full strength\nmagnetism range: the maximum distance that magnetism works at full strength\nthrottle magnitude: additional throttle to apply towards target when melee-ing w/ magnetism\nthrottle minimum distance: minimum distance to target that throttle magnetism kicks in\nthrottle maximum adjustment angle: maximum angle throttle magnetism will have an effect, relative to the players movement throttle\n"),
-		{ _field_struct, "melee aim assist", &blofeld::halo2::pc64::melee_aim_assist_v2_struct_definition },
+		{ _field_struct, "melee aim assist", &blofeld::halo2::pc64::melee_aim_assist_struct_definition },
 		FIELD_EXPLANATION("melee damage parameters", "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
-		{ _field_struct, "melee damage parameters", &blofeld::halo2::pc64::melee_damage_parameters_v2_struct_definition },
+		{ _field_struct, "melee damage parameters", &blofeld::halo2::pc64::melee_damage_parameters_struct_definition },
 		{ _field_char_enum, "melee damage reporting type", &blofeld::halo2::pc64::unnamed_enum$228 },
 		FIELD_PAD("value", 1),
 		FIELD_EXPLANATION("zoom", nullptr),
@@ -41561,7 +40110,7 @@ namespace pc64
 		{ _field_short_enum, "multiplayer weapon type", &blofeld::halo2::pc64::unnamed_enum$519 },
 		FIELD_EXPLANATION("more miscellaneous", nullptr),
 		{ _field_short_enum, "weapon type", &blofeld::halo2::pc64::unnamed_enum$520 },
-		{ _field_struct, "tracking", &blofeld::halo2::pc64::weapon_tracking_v2_struct_definition },
+		{ _field_struct, "tracking", &blofeld::halo2::pc64::weapon_tracking_struct_definition },
 		{ _field_struct, "player interface", &blofeld::halo2::pc64::weapon_interface_struct_struct_definition },
 		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
 		{ _field_block, "magazines", &blofeld::halo2::pc64::magazines_block },
@@ -41579,6 +40128,462 @@ namespace pc64
 		{ _field_tag_reference, "aged weapon", &blofeld::halo2::pc64::weapon_group_reference$7 },
 		{ _field_real_vector_3d, "first person weapon offset" },
 		{ _field_real_vector_2d, "first person scope size" },
+		
+		{ _struct_version_mode_equal, 2, 158 },
+		FIELD_PAD("value", 2),
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
+		{ _field_real, "bounding radius", nullptr, "world units" },
+		{ _field_real_point_3d, "bounding offset" },
+		{ _field_useless_pad, "value" },
+		{ _field_real, "acceleration scale", "marine 1.0, grunt 1.4, elite 0.9, hunter 0.5, etc.", nullptr, "[0,+inf]" },
+		{ _field_short_enum, "lightmap shadow mode", &blofeld::halo2::pc64::unnamed_enum$97 },
+		{ _field_char_enum, "sweetener size", &blofeld::halo2::pc64::unnamed_enum$98 },
+		FIELD_PAD("value", 1),
+		FIELD_PAD("value", 4),
+		{ _field_useless_pad, "value" },
+		{ _field_real, "dynamic light sphere radius", "sphere to use for dynamic lights and shadows. only used if not 0" },
+		{ _field_real_point_3d, "dynamic light sphere offset", "only used if radius not 0" },
+		{ _field_string_id, "default model variant" },
+		{ _field_tag_reference, "model", &blofeld::halo2::pc64::model_group_reference },
+		{ _field_tag_reference, "crate object", &blofeld::halo2::pc64::crate_group_reference$2 },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "modifier shader", &blofeld::halo2::pc64::shader_group_reference },
+		{ _field_tag_reference, "creation effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_tag_reference, "material effects", &blofeld::halo2::pc64::material_effects_group_reference },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "ai properties", &blofeld::halo2::pc64::object_ai_properties_block },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "functions", &blofeld::halo2::pc64::object_function_block },
+		{ _field_useless_pad, "value" },
+		FIELD_EXPLANATION("Applying collision damage", "for things that want to cause more or less collision damage"),
+		{ _field_real, "Apply collision damage scale", "0 means 1.  1 is standard scale.  Some things may want to apply more damage" },
+		FIELD_EXPLANATION("Game collision damage parameters", "0 - means take default value from globals.globals"),
+		{ _field_real, "min game acc (default)", "0-oo" },
+		{ _field_real, "max game acc (default)", "0-oo" },
+		{ _field_real, "min game scale (default)", "0-1" },
+		{ _field_real, "max game scale (default)", "0-1" },
+		FIELD_EXPLANATION("Absolute collision damage parameters", "0 - means take default value from globals.globals"),
+		{ _field_real, "min abs acc (default)", "0-oo" },
+		{ _field_real, "max abs acc (default)", "0-oo" },
+		{ _field_real, "min abs scale (default)", "0-1" },
+		{ _field_real, "max abs scale (default)", "0-1" },
+		{ _field_short_integer, "hud text message index" },
+		FIELD_PAD("value", 2),
+		{ _field_block, "attachments", &blofeld::halo2::pc64::object_attachment_block },
+		{ _field_block, "widgets", &blofeld::halo2::pc64::object_widget_block },
+		{ _field_block, "old functions", &blofeld::halo2::pc64::old_object_function_block },
+		{ _field_block, "change colors", &blofeld::halo2::pc64::object_change_colors_block },
+		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
+		FIELD_EXPLANATION("$$$ ITEM $$$", nullptr),
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$197 },
+		{ _field_short_integer, "OLD message index" },
+		{ _field_short_integer, "sort order" },
+		{ _field_real, "multiplayer on-ground scale" },
+		{ _field_real, "campaign on-ground scale" },
+		FIELD_EXPLANATION("NEW hud messages", "everything you need to display stuff"),
+		{ _field_string_id, "pickup message" },
+		{ _field_string_id, "swap message" },
+		{ _field_string_id, "pickup or dual msg" },
+		{ _field_string_id, "swap or dual msg" },
+		{ _field_string_id, "dual-only msg" },
+		{ _field_string_id, "picked up msg" },
+		{ _field_string_id, "singluar quantity msg" },
+		{ _field_string_id, "plural quantity msg" },
+		{ _field_string_id, "switch-to msg" },
+		{ _field_string_id, "switch-to from ai msg" },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "UNUSED", &blofeld::halo2::pc64::material_effects_group_reference },
+		{ _field_tag_reference, "collision sound", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_block, "predicted bitmaps", &blofeld::halo2::pc64::predicted_bitmaps_block },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "detonation damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
+		{ _field_real_bounds, "detonation delay", nullptr, "seconds" },
+		{ _field_tag_reference, "detonating effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_tag_reference, "detonation effect", &blofeld::halo2::pc64::effect_group_reference },
+		FIELD_EXPLANATION("$$$ WEAPON $$$", "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'."),
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$516 },
+		{ _field_old_string_id, "value" },
+		{ _field_short_enum, "secondary trigger mode", &blofeld::halo2::pc64::unnamed_enum$517 },
+		{ _field_short_integer, "maximum alternate shots loaded", "if the second trigger loads alternate ammunition, this is the maximum number of shots that can be loaded at a time" },
+		{ _field_real, "turn on time", "how long after being readied it takes this weapon to switch its 'turned_on' attachment to 1.0" },
+		FIELD_EXPLANATION("old obsolete export to functions", nullptr),
+		FIELD_PAD("value", 4),
+		{ _field_real, "ready time", nullptr, "seconds" },
+		{ _field_tag_reference, "ready effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
+		{ _field_tag_reference, "ready damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
+		FIELD_EXPLANATION("heat", nullptr),
+		{ _field_real_fraction, "heat recovery threshold", "the heat value a weapon must return to before leaving the overheated state, once it has become overheated in the first place", nullptr, "[0,1]" },
+		{ _field_real_fraction, "overheated threshold", "the heat value over which a weapon first becomes overheated (should be greater than the heat recovery threshold)", nullptr, "[0,1]" },
+		{ _field_real_fraction, "heat detonation threshold", "the heat value above which the weapon has a chance of exploding each time it is fired", nullptr, "[0,1]" },
+		{ _field_real_fraction, "heat detonation fraction", "the percent chance (between 0.0 and 1.0) the weapon will explode when fired over the heat detonation threshold", nullptr, "[0,1]" },
+		{ _field_real_fraction, "heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
+		{ _field_real_fraction, "heat illumination", "the amount of illumination given off when the weapon is overheated", nullptr, "[0,1]" },
+		{ _field_real_fraction, "overheated heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
+		FIELD_PAD("value", 12),
+		{ _field_tag_reference, "overheated", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
+		{ _field_tag_reference, "overheated damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
+		{ _field_tag_reference, "detonation", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
+		{ _field_tag_reference, "detonation damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
+		{ _field_tag_reference, "player melee damage", &blofeld::halo2::pc64::damage_effect_group_reference },
+		{ _field_tag_reference, "player melee response", &blofeld::halo2::pc64::damage_effect_group_reference },
+		FIELD_EXPLANATION("melee aim assist", "magnetism angle: the maximum angle that magnetism works at full strength\nmagnetism range: the maximum distance that magnetism works at full strength\nthrottle magnitude: additional throttle to apply towards target when melee-ing w/ magnetism\nthrottle minimum distance: minimum distance to target that throttle magnetism kicks in\nthrottle maximum adjustment angle: maximum angle throttle magnetism will have an effect, relative to the players movement throttle\n"),
+		{ _field_struct, "melee aim assist", &blofeld::halo2::pc64::melee_aim_assist_struct_definition },
+		FIELD_EXPLANATION("melee damage parameters", "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
+		{ _field_struct, "melee damage parameters", &blofeld::halo2::pc64::melee_damage_parameters_struct_definition },
+		{ _field_char_enum, "melee damage reporting type", &blofeld::halo2::pc64::unnamed_enum$228 },
+		FIELD_PAD("value", 3),
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 2),
+		FIELD_EXPLANATION("zoom", nullptr),
+		FIELD_PAD("value", 2),
+		{ _field_short_integer, "magnification levels", "the number of magnification levels this weapon allows" },
+		{ _field_real_bounds, "magnification range" },
+		FIELD_EXPLANATION("weapon aim assist", nullptr),
+		{ _field_struct, "weapon aim assist", &blofeld::halo2::pc64::aim_assist_struct_struct_definition },
+		FIELD_EXPLANATION("movement", nullptr),
+		{ _field_short_enum, "movement penalized", &blofeld::halo2::pc64::unnamed_enum$518 },
+		FIELD_PAD("value", 2),
+		{ _field_real_fraction, "forward movement penalty", "percent slowdown to forward movement for units carrying this weapon" },
+		{ _field_real_fraction, "sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon" },
+		FIELD_PAD("value", 4),
+		FIELD_EXPLANATION("AI targeting parameters", nullptr),
+		FIELD_PAD("value", 8),
+		{ _field_real, "AI scariness" },
+		FIELD_EXPLANATION("miscellaneous", nullptr),
+		{ _field_real, "weapon power-on time", nullptr, "seconds" },
+		{ _field_real, "weapon power-off time", nullptr, "seconds" },
+		{ _field_tag_reference, "weapon power-on effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
+		{ _field_tag_reference, "weapon power-off effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
+		FIELD_PAD("value", 32),
+		{ _field_real, "age heat recovery penalty", "how much the weapon's heat recovery is penalized as it ages" },
+		{ _field_real, "age rate of fire penalty", "how much the weapon's rate of fire is penalized as it ages" },
+		{ _field_real_fraction, "age misfire start", "the age threshold when the weapon begins to misfire", nullptr, "[0,1]" },
+		{ _field_real_fraction, "age misfire chance", "at age 1.0, the misfire chance per shot", nullptr, "[0,1]" },
+		FIELD_PAD("value", 12),
+		{ _field_tag_reference, "pickup sound", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_tag_reference, "zoom-in sound", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_tag_reference, "zoom-out sound", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_real, "active camo ding", "how much to decrease active camo when a round is fired" },
+		{ _field_real, "active camo regrowth rate", "how fast to increase active camo (per tick) when a round is fired" },
+		{ _field_string_id, "handle node", "the node that get's attached to the unit's hand" },
+		FIELD_EXPLANATION("weapon labels", nullptr),
+		{ _field_string_id, "weapon class" },
+		{ _field_string_id, "weapon name" },
+		{ _field_short_enum, "multiplayer weapon type", &blofeld::halo2::pc64::unnamed_enum$519 },
+		FIELD_EXPLANATION("more miscellaneous", nullptr),
+		{ _field_short_enum, "weapon type", &blofeld::halo2::pc64::unnamed_enum$520 },
+		{ _field_struct, "tracking", &blofeld::halo2::pc64::weapon_tracking_struct_definition },
+		{ _field_struct, "player interface", &blofeld::halo2::pc64::weapon_interface_struct_struct_definition },
+		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
+		{ _field_block, "magazines", &blofeld::halo2::pc64::magazines_block },
+		FIELD_PAD("value", 12),
+		{ _field_block, "new triggers", &blofeld::halo2::pc64::weapon_triggers_block },
+		{ _field_block, "barrels", &blofeld::halo2::pc64::weapon_barrels_block },
+		FIELD_PAD("value", 8),
+		FIELD_PAD("value", 16),
+		FIELD_EXPLANATION("first-person movement control", nullptr),
+		{ _field_real, "max movement acceleration" },
+		{ _field_real, "max movement velocity" },
+		{ _field_real, "max turning acceleration" },
+		{ _field_real, "max turning velocity" },
+		FIELD_PAD("value", 16),
+		{ _field_tag_reference, "deployed vehicle", &blofeld::halo2::pc64::vehicle_group_reference$5 },
+		
+		{ _struct_version_mode_equal, 1, 153 },
+		FIELD_PAD("value", 2),
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
+		{ _field_real, "bounding radius", nullptr, "world units" },
+		{ _field_real_point_3d, "bounding offset" },
+		{ _field_useless_pad, "value" },
+		{ _field_real, "acceleration scale", "marine 1.0, grunt 1.4, elite 0.9, hunter 0.5, etc.", nullptr, "[0,+inf]" },
+		{ _field_short_enum, "lightmap shadow mode", &blofeld::halo2::pc64::unnamed_enum$97 },
+		{ _field_char_enum, "sweetener size", &blofeld::halo2::pc64::unnamed_enum$98 },
+		FIELD_PAD("value", 1),
+		FIELD_PAD("value", 4),
+		{ _field_useless_pad, "value" },
+		{ _field_real, "dynamic light sphere radius", "sphere to use for dynamic lights and shadows. only used if not 0" },
+		{ _field_real_point_3d, "dynamic light sphere offset", "only used if radius not 0" },
+		{ _field_string_id, "default model variant" },
+		{ _field_tag_reference, "model", &blofeld::halo2::pc64::model_group_reference },
+		{ _field_tag_reference, "crate object", &blofeld::halo2::pc64::crate_group_reference$2 },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "modifier shader", &blofeld::halo2::pc64::shader_group_reference },
+		{ _field_tag_reference, "creation effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_tag_reference, "material effects", &blofeld::halo2::pc64::material_effects_group_reference },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "ai properties", &blofeld::halo2::pc64::object_ai_properties_block },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "functions", &blofeld::halo2::pc64::object_function_block },
+		{ _field_useless_pad, "value" },
+		FIELD_EXPLANATION("Applying collision damage", "for things that want to cause more or less collision damage"),
+		{ _field_real, "Apply collision damage scale", "0 means 1.  1 is standard scale.  Some things may want to apply more damage" },
+		FIELD_EXPLANATION("Game collision damage parameters", "0 - means take default value from globals.globals"),
+		{ _field_real, "min game acc (default)", "0-oo" },
+		{ _field_real, "max game acc (default)", "0-oo" },
+		{ _field_real, "min game scale (default)", "0-1" },
+		{ _field_real, "max game scale (default)", "0-1" },
+		FIELD_EXPLANATION("Absolute collision damage parameters", "0 - means take default value from globals.globals"),
+		{ _field_real, "min abs acc (default)", "0-oo" },
+		{ _field_real, "max abs acc (default)", "0-oo" },
+		{ _field_real, "min abs scale (default)", "0-1" },
+		{ _field_real, "max abs scale (default)", "0-1" },
+		{ _field_short_integer, "hud text message index" },
+		FIELD_PAD("value", 2),
+		{ _field_block, "attachments", &blofeld::halo2::pc64::object_attachment_block },
+		{ _field_block, "widgets", &blofeld::halo2::pc64::object_widget_block },
+		{ _field_block, "old functions", &blofeld::halo2::pc64::old_object_function_block },
+		{ _field_block, "change colors", &blofeld::halo2::pc64::object_change_colors_block },
+		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
+		FIELD_EXPLANATION("$$$ ITEM $$$", nullptr),
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$197 },
+		{ _field_short_integer, "OLD message index" },
+		{ _field_short_integer, "sort order" },
+		{ _field_real, "multiplayer on-ground scale" },
+		{ _field_real, "campaign on-ground scale" },
+		FIELD_EXPLANATION("NEW hud messages", "everything you need to display stuff"),
+		{ _field_string_id, "pickup message" },
+		{ _field_string_id, "swap message" },
+		{ _field_string_id, "pickup or dual msg" },
+		{ _field_string_id, "swap or dual msg" },
+		{ _field_string_id, "dual-only msg" },
+		{ _field_string_id, "picked up msg" },
+		{ _field_string_id, "singluar quantity msg" },
+		{ _field_string_id, "plural quantity msg" },
+		{ _field_string_id, "switch-to msg" },
+		{ _field_string_id, "switch-to from ai msg" },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "UNUSED", &blofeld::halo2::pc64::material_effects_group_reference },
+		{ _field_tag_reference, "collision sound", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_block, "predicted bitmaps", &blofeld::halo2::pc64::predicted_bitmaps_block },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "detonation damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
+		{ _field_real_bounds, "detonation delay", nullptr, "seconds" },
+		{ _field_tag_reference, "detonating effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_tag_reference, "detonation effect", &blofeld::halo2::pc64::effect_group_reference },
+		FIELD_EXPLANATION("$$$ WEAPON $$$", "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'."),
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$516 },
+		{ _field_old_string_id, "value" },
+		{ _field_short_enum, "secondary trigger mode", &blofeld::halo2::pc64::unnamed_enum$517 },
+		{ _field_short_integer, "maximum alternate shots loaded", "if the second trigger loads alternate ammunition, this is the maximum number of shots that can be loaded at a time" },
+		FIELD_EXPLANATION("old obsolete export to functions", nullptr),
+		FIELD_PAD("value", 8),
+		{ _field_real, "ready time", nullptr, "seconds" },
+		{ _field_tag_reference, "ready effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
+		{ _field_tag_reference, "ready damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
+		FIELD_EXPLANATION("heat", nullptr),
+		{ _field_real_fraction, "heat recovery threshold", "the heat value a weapon must return to before leaving the overheated state, once it has become overheated in the first place", nullptr, "[0,1]" },
+		{ _field_real_fraction, "overheated threshold", "the heat value over which a weapon first becomes overheated (should be greater than the heat recovery threshold)", nullptr, "[0,1]" },
+		{ _field_real_fraction, "heat detonation threshold", "the heat value above which the weapon has a chance of exploding each time it is fired", nullptr, "[0,1]" },
+		{ _field_real_fraction, "heat detonation fraction", "the percent chance (between 0.0 and 1.0) the weapon will explode when fired over the heat detonation threshold", nullptr, "[0,1]" },
+		{ _field_real_fraction, "heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
+		{ _field_real_fraction, "heat illumination", "the amount of illumination given off when the weapon is overheated", nullptr, "[0,1]" },
+		{ _field_real_fraction, "overheated heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
+		FIELD_PAD("value", 12),
+		{ _field_tag_reference, "overheated", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
+		{ _field_tag_reference, "overheated damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
+		{ _field_tag_reference, "detonation", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
+		{ _field_tag_reference, "detonation damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
+		{ _field_tag_reference, "player melee damage", &blofeld::halo2::pc64::damage_effect_group_reference },
+		{ _field_tag_reference, "player melee response", &blofeld::halo2::pc64::damage_effect_group_reference },
+		FIELD_EXPLANATION("melee aim assist", "magnetism angle: the maximum angle that magnetism works at full strength\nmagnetism range: the maximum distance that magnetism works at full strength\nthrottle magnitude: additional throttle to apply towards target when melee-ing w/ magnetism\nthrottle minimum distance: minimum distance to target that throttle magnetism kicks in\nthrottle maximum adjustment angle: maximum angle throttle magnetism will have an effect, relative to the players movement throttle\n"),
+		{ _field_struct, "melee aim assist", &blofeld::halo2::pc64::melee_aim_assist_struct_definition },
+		FIELD_EXPLANATION("melee damage parameters", "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
+		{ _field_struct, "melee damage parameters", &blofeld::halo2::pc64::melee_damage_parameters_struct_definition },
+		FIELD_PAD("value", 4),
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 2),
+		FIELD_EXPLANATION("zoom", nullptr),
+		FIELD_PAD("value", 2),
+		{ _field_short_integer, "magnification levels", "the number of magnification levels this weapon allows" },
+		{ _field_real_bounds, "magnification range" },
+		FIELD_EXPLANATION("weapon aim assist", nullptr),
+		{ _field_struct, "weapon aim assist", &blofeld::halo2::pc64::aim_assist_struct_struct_definition },
+		FIELD_EXPLANATION("movement", nullptr),
+		{ _field_short_enum, "movement penalized", &blofeld::halo2::pc64::unnamed_enum$518 },
+		FIELD_PAD("value", 2),
+		{ _field_real_fraction, "forward movement penalty", "percent slowdown to forward movement for units carrying this weapon" },
+		{ _field_real_fraction, "sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon" },
+		FIELD_PAD("value", 4),
+		FIELD_EXPLANATION("AI targeting parameters", nullptr),
+		FIELD_PAD("value", 8),
+		{ _field_real, "AI scariness" },
+		FIELD_EXPLANATION("miscellaneous", nullptr),
+		{ _field_real, "weapon power-on time", nullptr, "seconds" },
+		{ _field_real, "weapon power-off time", nullptr, "seconds" },
+		{ _field_tag_reference, "weapon power-on effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
+		{ _field_tag_reference, "weapon power-off effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
+		FIELD_PAD("value", 32),
+		{ _field_real, "age heat recovery penalty", "how much the weapon's heat recovery is penalized as it ages" },
+		{ _field_real, "age rate of fire penalty", "how much the weapon's rate of fire is penalized as it ages" },
+		{ _field_real_fraction, "age misfire start", "the age threshold when the weapon begins to misfire", nullptr, "[0,1]" },
+		{ _field_real_fraction, "age misfire chance", "at age 1.0, the misfire chance per shot", nullptr, "[0,1]" },
+		FIELD_PAD("value", 12),
+		FIELD_EXPLANATION("interface", nullptr),
+		{ _field_tag_reference, "first person model", &blofeld::halo2::pc64::render_model_group_reference$6 },
+		{ _field_tag_reference, "first person animations", &blofeld::halo2::pc64::model_animation_graph_group_reference },
+		FIELD_PAD("value", 4),
+		FIELD_PAD("value", 16),
+		{ _field_tag_reference, "pickup sound", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_tag_reference, "zoom-in sound", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_tag_reference, "zoom-out sound", &blofeld::halo2::pc64::sound_group_reference },
+		FIELD_PAD("value", 12),
+		{ _field_real, "active camo ding", "how much to decrease active camo when a round is fired" },
+		{ _field_real, "active camo regrowth rate", "how fast to increase active camo (per tick) when a round is fired" },
+		{ _field_string_id, "handle node", "the node that get's attached to the unit's hand" },
+		FIELD_EXPLANATION("weapon labels", nullptr),
+		{ _field_string_id, "weapon class" },
+		{ _field_string_id, "weapon name" },
+		{ _field_short_enum, "multiplayer weapon type", &blofeld::halo2::pc64::unnamed_enum$519 },
+		FIELD_EXPLANATION("more miscellaneous", nullptr),
+		{ _field_short_enum, "weapon type", &blofeld::halo2::pc64::unnamed_enum$520 },
+		{ _field_struct, "tracking", &blofeld::halo2::pc64::weapon_tracking_struct_definition },
+		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
+		{ _field_block, "magazines", &blofeld::halo2::pc64::magazines_block },
+		FIELD_PAD("value", 12),
+		{ _field_block, "new triggers", &blofeld::halo2::pc64::weapon_triggers_block },
+		{ _field_block, "barrels", &blofeld::halo2::pc64::weapon_barrels_block },
+		FIELD_PAD("value", 8),
+		
+		{ _struct_version_mode_equal, 0, 138 },
+		FIELD_PAD("value", 2),
+		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
+		{ _field_real, "bounding radius", nullptr, "world units" },
+		{ _field_real_point_3d, "bounding offset" },
+		{ _field_useless_pad, "value" },
+		{ _field_real, "acceleration scale", "marine 1.0, grunt 1.4, elite 0.9, hunter 0.5, etc.", nullptr, "[0,+inf]" },
+		{ _field_short_enum, "lightmap shadow mode", &blofeld::halo2::pc64::unnamed_enum$97 },
+		{ _field_char_enum, "sweetener size", &blofeld::halo2::pc64::unnamed_enum$98 },
+		FIELD_PAD("value", 1),
+		FIELD_PAD("value", 4),
+		{ _field_useless_pad, "value" },
+		{ _field_real, "dynamic light sphere radius", "sphere to use for dynamic lights and shadows. only used if not 0" },
+		{ _field_real_point_3d, "dynamic light sphere offset", "only used if radius not 0" },
+		{ _field_string_id, "default model variant" },
+		{ _field_tag_reference, "model", &blofeld::halo2::pc64::model_group_reference },
+		{ _field_tag_reference, "crate object", &blofeld::halo2::pc64::crate_group_reference$2 },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "modifier shader", &blofeld::halo2::pc64::shader_group_reference },
+		{ _field_tag_reference, "creation effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_tag_reference, "material effects", &blofeld::halo2::pc64::material_effects_group_reference },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "ai properties", &blofeld::halo2::pc64::object_ai_properties_block },
+		{ _field_useless_pad, "value" },
+		{ _field_block, "functions", &blofeld::halo2::pc64::object_function_block },
+		{ _field_useless_pad, "value" },
+		FIELD_EXPLANATION("Applying collision damage", "for things that want to cause more or less collision damage"),
+		{ _field_real, "Apply collision damage scale", "0 means 1.  1 is standard scale.  Some things may want to apply more damage" },
+		FIELD_EXPLANATION("Game collision damage parameters", "0 - means take default value from globals.globals"),
+		{ _field_real, "min game acc (default)", "0-oo" },
+		{ _field_real, "max game acc (default)", "0-oo" },
+		{ _field_real, "min game scale (default)", "0-1" },
+		{ _field_real, "max game scale (default)", "0-1" },
+		FIELD_EXPLANATION("Absolute collision damage parameters", "0 - means take default value from globals.globals"),
+		{ _field_real, "min abs acc (default)", "0-oo" },
+		{ _field_real, "max abs acc (default)", "0-oo" },
+		{ _field_real, "min abs scale (default)", "0-1" },
+		{ _field_real, "max abs scale (default)", "0-1" },
+		{ _field_short_integer, "hud text message index" },
+		FIELD_PAD("value", 2),
+		{ _field_block, "attachments", &blofeld::halo2::pc64::object_attachment_block },
+		{ _field_block, "widgets", &blofeld::halo2::pc64::object_widget_block },
+		{ _field_block, "old functions", &blofeld::halo2::pc64::old_object_function_block },
+		{ _field_block, "change colors", &blofeld::halo2::pc64::object_change_colors_block },
+		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
+		FIELD_EXPLANATION("$$$ ITEM $$$", nullptr),
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$197 },
+		{ _field_short_integer, "OLD message index" },
+		{ _field_short_integer, "sort order" },
+		{ _field_real, "multiplayer on-ground scale" },
+		{ _field_real, "campaign on-ground scale" },
+		FIELD_EXPLANATION("NEW hud messages", "everything you need to display stuff"),
+		{ _field_string_id, "pickup message" },
+		{ _field_string_id, "swap message" },
+		{ _field_string_id, "pickup or dual msg" },
+		{ _field_string_id, "swap or dual msg" },
+		{ _field_string_id, "dual-only msg" },
+		{ _field_string_id, "picked up msg" },
+		{ _field_string_id, "singluar quantity msg" },
+		{ _field_string_id, "plural quantity msg" },
+		{ _field_string_id, "switch-to msg" },
+		{ _field_string_id, "switch-to from ai msg" },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "UNUSED", &blofeld::halo2::pc64::material_effects_group_reference },
+		{ _field_tag_reference, "collision sound", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_block, "predicted bitmaps", &blofeld::halo2::pc64::predicted_bitmaps_block },
+		{ _field_useless_pad, "value" },
+		{ _field_tag_reference, "detonation damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
+		{ _field_real_bounds, "detonation delay", nullptr, "seconds" },
+		{ _field_tag_reference, "detonating effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_tag_reference, "detonation effect", &blofeld::halo2::pc64::effect_group_reference },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$516 },
+		{ _field_old_string_id, "value" },
+		{ _field_short_enum, "secondary trigger mode", &blofeld::halo2::pc64::unnamed_enum$517 },
+		{ _field_short_integer, "maximum alternate shots loaded", "if the second trigger loads alternate ammunition, this is the maximum number of shots that can be loaded at a time" },
+		FIELD_PAD("value", 8),
+		{ _field_real, "ready time", nullptr, "seconds" },
+		{ _field_tag_reference, "ready effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
+		{ _field_real_fraction, "heat recovery threshold", "the heat value a weapon must return to before leaving the overheated state, once it has become overheated in the first place", nullptr, "[0,1]" },
+		{ _field_real_fraction, "overheated threshold", "the heat value over which a weapon first becomes overheated (should be greater than the heat recovery threshold)", nullptr, "[0,1]" },
+		{ _field_real_fraction, "heat detonation threshold", "the heat value above which the weapon has a chance of exploding each time it is fired", nullptr, "[0,1]" },
+		{ _field_real_fraction, "heat detonation fraction", "the percent chance (between 0.0 and 1.0) the weapon will explode when fired over the heat detonation threshold", nullptr, "[0,1]" },
+		{ _field_real_fraction, "heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
+		{ _field_real_fraction, "heat illumination", "the amount of illumination given off when the weapon is overheated", nullptr, "[0,1]" },
+		{ _field_real_fraction, "overheated heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
+		FIELD_PAD("value", 12),
+		{ _field_tag_reference, "overheated", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
+		{ _field_tag_reference, "detonation", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
+		{ _field_tag_reference, "player melee damage", &blofeld::halo2::pc64::damage_effect_group_reference },
+		{ _field_tag_reference, "player melee response", &blofeld::halo2::pc64::damage_effect_group_reference },
+		{ _field_struct, "melee aim assist", &blofeld::halo2::pc64::melee_aim_assist_struct_definition },
+		{ _field_struct, "melee damage parameters", &blofeld::halo2::pc64::melee_damage_parameters_struct_definition },
+		{ _field_char_enum, "melee damage reporting type", &blofeld::halo2::pc64::unnamed_enum$228 },
+		FIELD_PAD("value", 3),
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 2),
+		{ _field_tag_reference, "actor firing parameters", &blofeld::halo2::pc64::character_group_reference$6 },
+		{ _field_real, "near reticle range", "the range at which the closer of the two static target reticles will be drawn", "world units" },
+		{ _field_real, "far reticle range", "the range at which the farther of the two static target reticles will be drawn", "world units" },
+		{ _field_real, "intersection reticle range", "the maximum range at which the dynamic target reticle will be drawn" },
+		FIELD_PAD("value", 2),
+		{ _field_short_integer, "magnification levels", "the number of magnification levels this weapon allows" },
+		{ _field_real_bounds, "magnification range" },
+		{ _field_struct, "weapon aim assist", &blofeld::halo2::pc64::aim_assist_struct_struct_definition },
+		{ _field_short_enum, "movement penalized", &blofeld::halo2::pc64::unnamed_enum$518 },
+		FIELD_PAD("value", 2),
+		{ _field_real_fraction, "forward movement penalty", "percent slowdown to forward movement for units carrying this weapon" },
+		{ _field_real_fraction, "sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon" },
+		FIELD_PAD("value", 4),
+		FIELD_PAD("value", 8),
+		{ _field_real, "AI scariness" },
+		{ _field_real, "light power-on time", nullptr, "seconds" },
+		{ _field_real, "light power-off time", nullptr, "seconds" },
+		{ _field_tag_reference, "light power-on effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
+		{ _field_tag_reference, "light power-off effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
+		{ _field_real, "age heat recovery penalty", "how much the weapon's heat recovery is penalized as it ages" },
+		{ _field_real, "age rate of fire penalty", "how much the weapon's rate of fire is penalized as it ages" },
+		{ _field_real_fraction, "age misfire start", "the age threshold when the weapon begins to misfire", nullptr, "[0,1]" },
+		{ _field_real_fraction, "age misfire chance", "at age 1.0, the misfire chance per shot", nullptr, "[0,1]" },
+		FIELD_PAD("value", 12),
+		FIELD_EXPLANATION("interface", nullptr),
+		{ _field_tag_reference, "first person model", &blofeld::halo2::pc64::render_model_group_reference$6 },
+		{ _field_tag_reference, "first person animations", &blofeld::halo2::pc64::model_animation_graph_group_reference },
+		FIELD_PAD("value", 4),
+		FIELD_PAD("value", 16),
+		{ _field_tag_reference, "pickup sound", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_tag_reference, "zoom-in sound", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_tag_reference, "zoom-out sound", &blofeld::halo2::pc64::sound_group_reference },
+		{ _field_block, "value", &blofeld::halo2::pc64::g_null_block },
+		{ _field_real, "active camo ding", "how much to decrease active camo when a round is fired" },
+		{ _field_real, "active camo regrowth rate", "how fast to increase active camo (per tick) when a round is fired" },
+		{ _field_string_id, "handle node", "the node that get's attached to the unit's hand" },
+		{ _field_string_id, "weapon class" },
+		{ _field_string_id, "weapon name" },
+		{ _field_short_enum, "multiplayer weapon type", &blofeld::halo2::pc64::unnamed_enum$519 },
+		{ _field_short_enum, "weapon type", &blofeld::halo2::pc64::unnamed_enum$520 },
+		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
+		{ _field_block, "magazines", &blofeld::halo2::pc64::magazines_block },
+		FIELD_PAD("value", 12),
+		
 		{ _field_terminator }
 	};
 
@@ -41667,15 +40672,20 @@ namespace pc64
 
 	TAG_REFERENCE(weapon_group_reference$7, WEAPON_TAG);
 
+	TAG_REFERENCE(render_model_group_reference$6, RENDER_MODEL_TAG);
+
+	TAG_REFERENCE(character_group_reference$6, CHARACTER_TAG, _tag_reference_flag_dont_resolve_in_editor);
+
 	TAG_STRUCT(
-		melee_aim_assist_v2_struct_definition,
-		"melee_aim_assist_v2",
-		"melee_aim_assist_v2_struct_definition",
+		melee_aim_assist_struct_definition,
+		"melee_aim_assist",
+		"melee_aim_assist_struct_definition",
 		"s_melee_aim_assist_parameters",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 7 },
 		{ _field_angle, "magnetism angle", "the maximum angle that magnetism works at full strength", "degrees" },
 		{ _field_real, "magnetism range", "the maximum distance that magnetism works at full strength", "world units" },
 		{ _field_useless_pad, "value" },
@@ -41683,30 +40693,22 @@ namespace pc64
 		{ _field_real, "throttle minimum distance" },
 		{ _field_angle, "throttle maximum adjustment angle", nullptr, "degrees" },
 		{ _field_useless_pad, "value" },
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(
-		melee_aim_assist_v1_struct_definition,
-		"melee_aim_assist_v1",
-		"melee_aim_assist_v1_struct_definition",
-		"s_melee_aim_assist_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		melee_damage_parameters_v2_struct_definition,
-		"melee_damage_parameters_v2",
-		"melee_damage_parameters_v2_struct_definition",
+		melee_damage_parameters_struct_definition,
+		"melee_damage_parameters",
+		"melee_damage_parameters_struct_definition",
 		"s_melee_damage_parameters",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 11 },
 		{ _field_real_euler_angles_2d, "damage pyramid angles" },
 		{ _field_real, "damage pyramid depth" },
 		FIELD_EXPLANATION("melee combo damage", nullptr),
@@ -41718,18 +40720,9 @@ namespace pc64
 		{ _field_tag_reference, "3rd hit melee response", &blofeld::halo2::pc64::damage_effect_group_reference },
 		{ _field_tag_reference, "lunge melee damage", "this is only important for the energy sword", &blofeld::halo2::pc64::damage_effect_group_reference },
 		{ _field_tag_reference, "lunge melee response", "this is only important for the energy sword", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		melee_damage_parameters_v1_struct_definition,
-		"melee_damage_parameters_v1",
-		"melee_damage_parameters_v1_struct_definition",
-		"s_melee_damage_parameters_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
@@ -41753,16 +40746,20 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		weapon_tracking_v2_struct_definition,
-		"weapon_tracking_v2",
-		"weapon_tracking_v2_struct_definition",
+		weapon_tracking_struct_definition,
+		"weapon_tracking",
+		"weapon_tracking_struct_definition",
 		"s_word$12",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_short_enum, "tracking type", &blofeld::halo2::pc64::unnamed_enum$521 },
 		FIELD_PAD("value", 2),
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
@@ -41773,18 +40770,6 @@ namespace pc64
 		"plasma tracking"
 	};
 	STRING_LIST(unnamed_enum$521, unnamed_enum$521_strings, _countof(unnamed_enum$521_strings));
-
-	TAG_STRUCT(
-		weapon_tracking_v1_struct_definition,
-		"weapon_tracking_v1",
-		"weapon_tracking_v1_struct_definition",
-		"s_weapon_tracking_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_terminator }
-	};
 
 	TAG_STRUCT(
 		weapon_interface_struct_struct_definition,
@@ -41834,14 +40819,15 @@ namespace pc64
 	TAG_REFERENCE(model_animation_graph_group_reference$3, MODEL_ANIMATION_GRAPH_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
 	TAG_STRUCT(
-		weapon_magazine_v2_struct_definition,
-		"weapon_magazine_v2",
-		"weapon_magazine_v2_struct_definition",
+		weapon_magazine_struct_definition,
+		"weapon_magazine",
+		"weapon_magazine_struct_definition",
 		"s_weapon_magazine_definition",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 19 },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$522 },
 		{ _field_short_integer, "rounds recharged", nullptr, "per second" },
 		{ _field_short_integer, "rounds total initial" },
@@ -41861,55 +40847,8 @@ namespace pc64
 		{ _field_tag_reference, "chambering damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
 		{ _field_useless_pad, "value" },
 		{ _field_block, "magazines", &blofeld::halo2::pc64::magazine_objects_block },
-		{ _field_terminator }
-	};
-
-	STRINGS(unnamed_enum$522)
-	{
-		"wastes rounds when reloaded",
-		"every round must be chambered"
-	};
-	STRING_LIST(unnamed_enum$522, unnamed_enum$522_strings, _countof(unnamed_enum$522_strings));
-
-	TAG_STRUCT(
-		weapon_ammunition_object_v2_struct_definition,
-		"weapon_ammunition_object_v2",
-		"weapon_ammunition_object_v2_struct_definition",
-		"s_weapon_ammunition_object",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_integer, "rounds" },
-		FIELD_PAD("value", 2),
-		{ _field_tag_reference, "equipment", &blofeld::halo2::pc64::equipment_group_reference$2 },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		weapon_ammunition_object_v1_struct_definition,
-		"weapon_ammunition_object_v1",
-		"weapon_ammunition_object_v1_struct_definition",
-		"s_weapon_ammunition_object_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_integer, "rounds" },
-		FIELD_PAD("value", 10),
-		{ _field_tag_reference, "equipment", &blofeld::halo2::pc64::equipment_group_reference$2 },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		weapon_magazine_v1_struct_definition,
-		"weapon_magazine_v1",
-		"weapon_magazine_v1_struct_definition",
-		"s_weapon_magazine_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 16 },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$522 },
 		{ _field_short_integer, "rounds recharged", nullptr, "per second" },
 		{ _field_short_integer, "rounds total initial" },
@@ -41926,6 +40865,36 @@ namespace pc64
 		{ _field_tag_reference, "chambering effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
 		FIELD_PAD("value", 12),
 		{ _field_block, "magazines", &blofeld::halo2::pc64::magazine_objects_block },
+		
+		{ _field_terminator }
+	};
+
+	STRINGS(unnamed_enum$522)
+	{
+		"wastes rounds when reloaded",
+		"every round must be chambered"
+	};
+	STRING_LIST(unnamed_enum$522, unnamed_enum$522_strings, _countof(unnamed_enum$522_strings));
+
+	TAG_STRUCT(
+		weapon_ammunition_object_struct_definition,
+		"weapon_ammunition_object",
+		"weapon_ammunition_object_struct_definition",
+		"s_weapon_ammunition_object",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _struct_version_mode_greater_or_equal, 1, 3 },
+		{ _field_short_integer, "rounds" },
+		FIELD_PAD("value", 2),
+		{ _field_tag_reference, "equipment", &blofeld::halo2::pc64::equipment_group_reference$2 },
+		
+		{ _struct_version_mode_equal, 0, 3 },
+		{ _field_short_integer, "rounds" },
+		FIELD_PAD("value", 10),
+		{ _field_tag_reference, "equipment", &blofeld::halo2::pc64::equipment_group_reference$2 },
+		
 		{ _field_terminator }
 	};
 
@@ -42048,6 +41017,7 @@ namespace pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 2, 55 },
 		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$529 },
 		FIELD_EXPLANATION("firing", nullptr),
 		{ _field_real_bounds, "rounds per second", "the number of firing effects created per second" },
@@ -42087,7 +41057,7 @@ namespace pc64
 		{ _field_char_enum, "damage effect reporting type", &blofeld::halo2::pc64::unnamed_enum$228 },
 		FIELD_PAD("value", 3),
 		{ _field_tag_reference, "projectile", &blofeld::halo2::pc64::projectile_group_reference },
-		{ _field_struct, "eh", &blofeld::halo2::pc64::weapon_barrel_damage_effect_v2_struct_definition },
+		{ _field_struct, "eh", &blofeld::halo2::pc64::weapon_barrel_damage_effect_struct_definition },
 		FIELD_EXPLANATION("misc", nullptr),
 		{ _field_real, "ejection port recovery time", "the amount of time (in seconds) it takes for the ejection port to transition from 1.0 (open) to 0.0 (closed) after a shot has been fired" },
 		{ _field_real, "illumination recovery time", "the amount of time (in seconds) it takes the illumination function to transition from 1.0 (bright) to 0.0 (dark) after a shot has been fired" },
@@ -42103,6 +41073,120 @@ namespace pc64
 		FIELD_PAD("value", 8),
 		FIELD_PAD("value", 24),
 		{ _field_block, "firing effects", "firing effects determine what happens when this trigger is fired", &blofeld::halo2::pc64::barrel_firing_effect_block },
+		
+		{ _struct_version_mode_equal, 1, 54 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$529 },
+		FIELD_EXPLANATION("firing", nullptr),
+		{ _field_real_bounds, "rounds per second", "the number of firing effects created per second" },
+		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final rounds per second", "seconds" },
+		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return from its final rounds per second to its initial", "seconds" },
+		{ _field_real_fraction, "blurred rate of fire", "a percentage between 0 and 1 which controls how soon in its firing animation the weapon blurs" },
+		{ _field_short_integer_bounds, "shots per fire", "allows designer caps to the shots you can fire from one firing action" },
+		{ _field_real, "fire recovery time", "how long after a set of shots it takes before the barrel can fire again", "seconds" },
+		{ _field_real_fraction, "soft recovery fraction", "how much of the recovery allows shots to be queued" },
+		{ _field_short_block_index, "magazine", "the magazine from which this trigger draws its ammunition" },
+		{ _field_short_integer, "rounds per shot", "the number of rounds expended to create a single firing effect" },
+		{ _field_short_integer, "minimum rounds loaded", "the minimum number of rounds necessary to fire the weapon" },
+		{ _field_short_integer, "rounds between tracers", "the number of non-tracer rounds fired between tracers" },
+		{ _field_string_id, "optional barrel marker name" },
+		FIELD_EXPLANATION("prediction properties", "what the behavior of this barrel is in a predicted network game"),
+		{ _field_short_enum, "prediction type", &blofeld::halo2::pc64::unnamed_enum$530 },
+		{ _field_short_enum, "firing noise", "how loud this weapon appears to the AI", &blofeld::halo2::pc64::unnamed_enum$108 },
+		FIELD_EXPLANATION("error", nullptr),
+		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" },
+		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial error", "seconds" },
+		{ _field_real_bounds, "damage error", "the range of angles (in degrees) that a damaged weapon will skew fire" },
+		FIELD_EXPLANATION("dual weapon error", nullptr),
+		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" },
+		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial error", "seconds" },
+		FIELD_PAD("value", 8),
+		{ _field_angle, "minimum error", nullptr, "degrees" },
+		{ _field_angle_bounds, "error angle", nullptr, "degrees" },
+		{ _field_real_fraction, "dual wield damage scale" },
+		FIELD_EXPLANATION("projectile", nullptr),
+		{ _field_short_enum, "distribution function", &blofeld::halo2::pc64::unnamed_enum$531 },
+		{ _field_short_integer, "projectiles per shot" },
+		{ _field_real, "distribution angle", nullptr, "degrees" },
+		{ _field_angle, "minimum error", nullptr, "degrees" },
+		{ _field_angle_bounds, "error angle", nullptr, "degrees" },
+		{ _field_real_point_3d, "first person offset", "+x is forward, +z is up, +y is left", "world units" },
+		{ _field_char_enum, "damage effect reporting type", &blofeld::halo2::pc64::unnamed_enum$228 },
+		FIELD_PAD("value", 3),
+		{ _field_tag_reference, "projectile", &blofeld::halo2::pc64::projectile_group_reference },
+		{ _field_struct, "eh", &blofeld::halo2::pc64::weapon_barrel_damage_effect_struct_definition },
+		FIELD_EXPLANATION("misc", nullptr),
+		{ _field_real, "ejection port recovery time", "the amount of time (in seconds) it takes for the ejection port to transition from 1.0 (open) to 0.0 (closed) after a shot has been fired" },
+		{ _field_real, "illumination recovery time", "the amount of time (in seconds) it takes the illumination function to transition from 1.0 (bright) to 0.0 (dark) after a shot has been fired" },
+		{ _field_real_fraction, "heat generated per round", "the amount of heat generated each time the trigger is fired", nullptr, "[0,1]" },
+		{ _field_real_fraction, "age generated per round", "the amount the weapon ages each time the trigger is fired", nullptr, "[0,1]" },
+		{ _field_real, "overload time", "the next trigger fires this often while holding down this trigger", "seconds" },
+		FIELD_EXPLANATION("angle change (recoil)", nullptr),
+		{ _field_angle_bounds, "angle change per shot", "angle change per shot of the weapon during firing" },
+		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final angle change per shot", "seconds" },
+		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial angle change per shot", "seconds" },
+		{ _field_short_enum, "angle change function", "function used to scale between initial and final angle change per shot", &blofeld::halo2::pc64::unnamed_enum$396 },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 8),
+		FIELD_PAD("value", 24),
+		{ _field_block, "firing effects", "firing effects determine what happens when this trigger is fired", &blofeld::halo2::pc64::barrel_firing_effect_block },
+		
+		{ _struct_version_mode_equal, 0, 55 },
+		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$529 },
+		{ _field_real_bounds, "rounds per second", "the number of firing effects created per second" },
+		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final rounds per second", "seconds" },
+		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return from its final rounds per second to its initial", "seconds" },
+		{ _field_real_fraction, "blurred rate of fire", "a percentage between 0 and 1 which controls how soon in its firing animation the weapon blurs" },
+		{ _field_short_integer_bounds, "shots per fire", "allows designer caps to the shots you can fire from one firing action" },
+		{ _field_real, "fire recovery time", "how long after a set of shots it takes before the barrel can fire again", "seconds" },
+		{ _field_real_fraction, "soft recovery fraction", "how much of the recovery allows shots to be queued" },
+		{ _field_short_block_index, "magazine", "the magazine from which this trigger draws its ammunition" },
+		{ _field_short_integer, "rounds per shot", "the number of rounds expended to create a single firing effect" },
+		{ _field_short_integer, "minimum rounds loaded", "the minimum number of rounds necessary to fire the weapon" },
+		{ _field_short_integer, "rounds between tracers", "the number of non-tracer rounds fired between tracers" },
+		{ _field_string_id, "optional barrel marker name" },
+		FIELD_PAD("value", 2),
+		{ _field_short_enum, "firing noise", "how loud this weapon appears to the AI", &blofeld::halo2::pc64::unnamed_enum$108 },
+		FIELD_PAD("value", 8),
+		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" },
+		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial error", "seconds" },
+		{ _field_real_bounds, "damage error", "the range of angles (in degrees) that a damaged weapon will skew fire" },
+		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" },
+		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial error", "seconds" },
+		FIELD_PAD("value", 8),
+		{ _field_angle, "minimum error", nullptr, "degrees" },
+		{ _field_angle_bounds, "error angle", nullptr, "degrees" },
+		{ _field_real_fraction, "dual wield damage scale" },
+		FIELD_PAD("value", 20),
+		{ _field_short_enum, "distribution function", &blofeld::halo2::pc64::unnamed_enum$531 },
+		{ _field_short_integer, "projectiles per shot" },
+		{ _field_real, "distribution angle", nullptr, "degrees" },
+		FIELD_PAD("value", 4),
+		{ _field_angle, "minimum error", nullptr, "degrees" },
+		{ _field_angle_bounds, "error angle", nullptr, "degrees" },
+		{ _field_real_point_3d, "first person offset", "+x is forward, +z is up, +y is left", "world units" },
+		{ _field_char_enum, "damage effect reporting type", &blofeld::halo2::pc64::unnamed_enum$228 },
+		FIELD_PAD("value", 3),
+		{ _field_tag_reference, "projectile", &blofeld::halo2::pc64::projectile_group_reference },
+		{ _field_struct, "eh", &blofeld::halo2::pc64::weapon_barrel_damage_effect_struct_definition },
+		{ _field_real, "ejection port recovery time", "the amount of time (in seconds) it takes for the ejection port to transition from 1.0 (open) to 0.0 (closed) after a shot has been fired" },
+		{ _field_real, "illumination recovery time", "the amount of time (in seconds) it takes the illumination function to transition from 1.0 (bright) to 0.0 (dark) after a shot has been fired" },
+		FIELD_PAD("value", 12),
+		{ _field_real_fraction, "heat generated per round", "the amount of heat generated each time the trigger is fired", nullptr, "[0,1]" },
+		{ _field_real_fraction, "age generated per round", "the amount the weapon ages each time the trigger is fired", nullptr, "[0,1]" },
+		FIELD_PAD("value", 4),
+		{ _field_real, "overload time", "the next trigger fires this often while holding down this trigger", "seconds" },
+		FIELD_PAD("value", 8),
+		{ _field_angle_bounds, "angle change per shot", "angle change per shot of the weapon during firing" },
+		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final angle change per shot", "seconds" },
+		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial angle change per shot", "seconds" },
+		{ _field_short_enum, "angle change function", "function used to scale between initial and final angle change per shot", &blofeld::halo2::pc64::unnamed_enum$396 },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 8),
+		{ _field_short_enum, "prediction type", &blofeld::halo2::pc64::unnamed_enum$530 },
+		FIELD_PAD("value", 2),
+		FIELD_PAD("value", 24),
+		{ _field_block, "firing effects", "firing effects determine what happens when this trigger is fired", &blofeld::halo2::pc64::barrel_firing_effect_block },
+		
 		{ _field_terminator }
 	};
 
@@ -42142,39 +41226,32 @@ namespace pc64
 	STRING_LIST(unnamed_enum$531, unnamed_enum$531_strings, _countof(unnamed_enum$531_strings));
 
 	TAG_STRUCT(
-		weapon_barrel_damage_effect_v2_struct_definition,
-		"weapon_barrel_damage_effect_v2",
-		"weapon_barrel_damage_effect_v2_struct_definition",
+		weapon_barrel_damage_effect_struct_definition,
+		"weapon_barrel_damage_effect",
+		"weapon_barrel_damage_effect_struct_definition",
 		"s_tag_reference$16",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 1 },
 		{ _field_tag_reference, "damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
+		
+		{ _struct_version_mode_equal, 0, 0 },
+		
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(
-		weapon_barrel_damage_effect_v1_struct_definition,
-		"weapon_barrel_damage_effect_v1",
-		"weapon_barrel_damage_effect_v1_struct_definition",
-		"s_weapon_barrel_damage_effect_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		barrel_firing_effect_v2_struct_definition,
-		"barrel_firing_effect_v2",
-		"barrel_firing_effect_v2_struct_definition",
+		barrel_firing_effect_struct_definition,
+		"barrel_firing_effect",
+		"barrel_firing_effect_struct_definition",
 		"s_barrel_firing_effect",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
+		{ _struct_version_mode_greater_or_equal, 1, 8 },
 		{ _field_short_integer, "shot count lower bound", "the minimum number of times this firing effect will be used, once it has been chosen" },
 		{ _field_short_integer, "shot count upper bound", "the maximum number of times this firing effect will be used, once it has been chosen" },
 		{ _field_tag_reference, "firing effect", "this effect is used when the weapon is loaded and fired normally", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
@@ -42183,18 +41260,8 @@ namespace pc64
 		{ _field_tag_reference, "firing damage", "this effect is used when the weapon is loaded and fired normally", &blofeld::halo2::pc64::damage_effect_group_reference },
 		{ _field_tag_reference, "misfire damage", "this effect is used when the weapon is loaded but fired while overheated", &blofeld::halo2::pc64::damage_effect_group_reference },
 		{ _field_tag_reference, "empty damage", "this effect is used when the weapon is not loaded", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		barrel_firing_effect_v1_struct_definition,
-		"barrel_firing_effect_v1",
-		"barrel_firing_effect_v1_struct_definition",
-		"s_barrel_firing_effect_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
+		
+		{ _struct_version_mode_equal, 0, 9 },
 		{ _field_short_integer, "shot count lower bound", "the minimum number of times this firing effect will be used, once it has been chosen" },
 		{ _field_short_integer, "shot count upper bound", "the maximum number of times this firing effect will be used, once it has been chosen" },
 		FIELD_PAD("value", 32),
@@ -42204,628 +41271,7 @@ namespace pc64
 		{ _field_tag_reference, "firing damage", "this effect is used when the weapon is loaded and fired normally", &blofeld::halo2::pc64::damage_effect_group_reference },
 		{ _field_tag_reference, "misfire damage", "this effect is used when the weapon is loaded but fired while overheated", &blofeld::halo2::pc64::damage_effect_group_reference },
 		{ _field_tag_reference, "empty damage", "this effect is used when the weapon is not loaded", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		weapon_barrel_definition_v1_struct_definition,
-		"weapon_barrel_definition_v1",
-		"weapon_barrel_definition_v1_struct_definition",
-		"s_weapon_barrel_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$529 },
-		{ _field_real_bounds, "rounds per second", "the number of firing effects created per second" },
-		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final rounds per second", "seconds" },
-		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return from its final rounds per second to its initial", "seconds" },
-		{ _field_real_fraction, "blurred rate of fire", "a percentage between 0 and 1 which controls how soon in its firing animation the weapon blurs" },
-		{ _field_short_integer_bounds, "shots per fire", "allows designer caps to the shots you can fire from one firing action" },
-		{ _field_real, "fire recovery time", "how long after a set of shots it takes before the barrel can fire again", "seconds" },
-		{ _field_real_fraction, "soft recovery fraction", "how much of the recovery allows shots to be queued" },
-		{ _field_short_block_index, "magazine", "the magazine from which this trigger draws its ammunition" },
-		{ _field_short_integer, "rounds per shot", "the number of rounds expended to create a single firing effect" },
-		{ _field_short_integer, "minimum rounds loaded", "the minimum number of rounds necessary to fire the weapon" },
-		{ _field_short_integer, "rounds between tracers", "the number of non-tracer rounds fired between tracers" },
-		{ _field_string_id, "optional barrel marker name" },
-		FIELD_PAD("value", 2),
-		{ _field_short_enum, "firing noise", "how loud this weapon appears to the AI", &blofeld::halo2::pc64::unnamed_enum$108 },
-		FIELD_PAD("value", 8),
-		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" },
-		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial error", "seconds" },
-		{ _field_real_bounds, "damage error", "the range of angles (in degrees) that a damaged weapon will skew fire" },
-		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" },
-		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial error", "seconds" },
-		FIELD_PAD("value", 8),
-		{ _field_angle, "minimum error", nullptr, "degrees" },
-		{ _field_angle_bounds, "error angle", nullptr, "degrees" },
-		{ _field_real_fraction, "dual wield damage scale" },
-		FIELD_PAD("value", 20),
-		{ _field_short_enum, "distribution function", &blofeld::halo2::pc64::unnamed_enum$531 },
-		{ _field_short_integer, "projectiles per shot" },
-		{ _field_real, "distribution angle", nullptr, "degrees" },
-		FIELD_PAD("value", 4),
-		{ _field_angle, "minimum error", nullptr, "degrees" },
-		{ _field_angle_bounds, "error angle", nullptr, "degrees" },
-		{ _field_real_point_3d, "first person offset", "+x is forward, +z is up, +y is left", "world units" },
-		{ _field_char_enum, "damage effect reporting type", &blofeld::halo2::pc64::unnamed_enum$228 },
-		FIELD_PAD("value", 3),
-		{ _field_tag_reference, "projectile", &blofeld::halo2::pc64::projectile_group_reference },
-		{ _field_struct, "eh", &blofeld::halo2::pc64::weapon_barrel_damage_effect_v2_struct_definition },
-		{ _field_real, "ejection port recovery time", "the amount of time (in seconds) it takes for the ejection port to transition from 1.0 (open) to 0.0 (closed) after a shot has been fired" },
-		{ _field_real, "illumination recovery time", "the amount of time (in seconds) it takes the illumination function to transition from 1.0 (bright) to 0.0 (dark) after a shot has been fired" },
-		FIELD_PAD("value", 12),
-		{ _field_real_fraction, "heat generated per round", "the amount of heat generated each time the trigger is fired", nullptr, "[0,1]" },
-		{ _field_real_fraction, "age generated per round", "the amount the weapon ages each time the trigger is fired", nullptr, "[0,1]" },
-		FIELD_PAD("value", 4),
-		{ _field_real, "overload time", "the next trigger fires this often while holding down this trigger", "seconds" },
-		FIELD_PAD("value", 8),
-		{ _field_angle_bounds, "angle change per shot", "angle change per shot of the weapon during firing" },
-		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final angle change per shot", "seconds" },
-		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial angle change per shot", "seconds" },
-		{ _field_short_enum, "angle change function", "function used to scale between initial and final angle change per shot", &blofeld::halo2::pc64::unnamed_enum$396 },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 8),
-		{ _field_short_enum, "prediction type", &blofeld::halo2::pc64::unnamed_enum$530 },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 24),
-		{ _field_block, "firing effects", "firing effects determine what happens when this trigger is fired", &blofeld::halo2::pc64::barrel_firing_effect_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		weapon_barrel_definition_v2_struct_definition,
-		"weapon_barrel_definition_v2",
-		"weapon_barrel_definition_v2_struct_definition",
-		"s_weapon_barrel_definition_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$529 },
-		FIELD_EXPLANATION("firing", nullptr),
-		{ _field_real_bounds, "rounds per second", "the number of firing effects created per second" },
-		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final rounds per second", "seconds" },
-		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return from its final rounds per second to its initial", "seconds" },
-		{ _field_real_fraction, "blurred rate of fire", "a percentage between 0 and 1 which controls how soon in its firing animation the weapon blurs" },
-		{ _field_short_integer_bounds, "shots per fire", "allows designer caps to the shots you can fire from one firing action" },
-		{ _field_real, "fire recovery time", "how long after a set of shots it takes before the barrel can fire again", "seconds" },
-		{ _field_real_fraction, "soft recovery fraction", "how much of the recovery allows shots to be queued" },
-		{ _field_short_block_index, "magazine", "the magazine from which this trigger draws its ammunition" },
-		{ _field_short_integer, "rounds per shot", "the number of rounds expended to create a single firing effect" },
-		{ _field_short_integer, "minimum rounds loaded", "the minimum number of rounds necessary to fire the weapon" },
-		{ _field_short_integer, "rounds between tracers", "the number of non-tracer rounds fired between tracers" },
-		{ _field_string_id, "optional barrel marker name" },
-		FIELD_EXPLANATION("prediction properties", "what the behavior of this barrel is in a predicted network game"),
-		{ _field_short_enum, "prediction type", &blofeld::halo2::pc64::unnamed_enum$530 },
-		{ _field_short_enum, "firing noise", "how loud this weapon appears to the AI", &blofeld::halo2::pc64::unnamed_enum$108 },
-		FIELD_EXPLANATION("error", nullptr),
-		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" },
-		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial error", "seconds" },
-		{ _field_real_bounds, "damage error", "the range of angles (in degrees) that a damaged weapon will skew fire" },
-		FIELD_EXPLANATION("dual weapon error", nullptr),
-		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final error", "seconds" },
-		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial error", "seconds" },
-		FIELD_PAD("value", 8),
-		{ _field_angle, "minimum error", nullptr, "degrees" },
-		{ _field_angle_bounds, "error angle", nullptr, "degrees" },
-		{ _field_real_fraction, "dual wield damage scale" },
-		FIELD_EXPLANATION("projectile", nullptr),
-		{ _field_short_enum, "distribution function", &blofeld::halo2::pc64::unnamed_enum$531 },
-		{ _field_short_integer, "projectiles per shot" },
-		{ _field_real, "distribution angle", nullptr, "degrees" },
-		{ _field_angle, "minimum error", nullptr, "degrees" },
-		{ _field_angle_bounds, "error angle", nullptr, "degrees" },
-		{ _field_real_point_3d, "first person offset", "+x is forward, +z is up, +y is left", "world units" },
-		{ _field_char_enum, "damage effect reporting type", &blofeld::halo2::pc64::unnamed_enum$228 },
-		FIELD_PAD("value", 3),
-		{ _field_tag_reference, "projectile", &blofeld::halo2::pc64::projectile_group_reference },
-		{ _field_struct, "eh", &blofeld::halo2::pc64::weapon_barrel_damage_effect_v2_struct_definition },
-		FIELD_EXPLANATION("misc", nullptr),
-		{ _field_real, "ejection port recovery time", "the amount of time (in seconds) it takes for the ejection port to transition from 1.0 (open) to 0.0 (closed) after a shot has been fired" },
-		{ _field_real, "illumination recovery time", "the amount of time (in seconds) it takes the illumination function to transition from 1.0 (bright) to 0.0 (dark) after a shot has been fired" },
-		{ _field_real_fraction, "heat generated per round", "the amount of heat generated each time the trigger is fired", nullptr, "[0,1]" },
-		{ _field_real_fraction, "age generated per round", "the amount the weapon ages each time the trigger is fired", nullptr, "[0,1]" },
-		{ _field_real, "overload time", "the next trigger fires this often while holding down this trigger", "seconds" },
-		FIELD_EXPLANATION("angle change (recoil)", nullptr),
-		{ _field_angle_bounds, "angle change per shot", "angle change per shot of the weapon during firing" },
-		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final angle change per shot", "seconds" },
-		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return to its initial angle change per shot", "seconds" },
-		{ _field_short_enum, "angle change function", "function used to scale between initial and final angle change per shot", &blofeld::halo2::pc64::unnamed_enum$396 },
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 8),
-		FIELD_PAD("value", 24),
-		{ _field_block, "firing effects", "firing effects determine what happens when this trigger is fired", &blofeld::halo2::pc64::barrel_firing_effect_block },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		weapon_v1_struct_definition$2,
-		"weapon_v1",
-		"weapon_v1_struct_definition",
-		"s_weapon_definition_v1",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_PAD("value", 2),
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
-		{ _field_real, "bounding radius", nullptr, "world units" },
-		{ _field_real_point_3d, "bounding offset" },
-		{ _field_useless_pad, "value" },
-		{ _field_real, "acceleration scale", "marine 1.0, grunt 1.4, elite 0.9, hunter 0.5, etc.", nullptr, "[0,+inf]" },
-		{ _field_short_enum, "lightmap shadow mode", &blofeld::halo2::pc64::unnamed_enum$97 },
-		{ _field_char_enum, "sweetener size", &blofeld::halo2::pc64::unnamed_enum$98 },
-		FIELD_PAD("value", 1),
-		FIELD_PAD("value", 4),
-		{ _field_useless_pad, "value" },
-		{ _field_real, "dynamic light sphere radius", "sphere to use for dynamic lights and shadows. only used if not 0" },
-		{ _field_real_point_3d, "dynamic light sphere offset", "only used if radius not 0" },
-		{ _field_string_id, "default model variant" },
-		{ _field_tag_reference, "model", &blofeld::halo2::pc64::model_group_reference },
-		{ _field_tag_reference, "crate object", &blofeld::halo2::pc64::crate_group_reference$2 },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "modifier shader", &blofeld::halo2::pc64::shader_group_reference },
-		{ _field_tag_reference, "creation effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_tag_reference, "material effects", &blofeld::halo2::pc64::material_effects_group_reference },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "ai properties", &blofeld::halo2::pc64::object_ai_properties_block },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "functions", &blofeld::halo2::pc64::object_function_block },
-		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Applying collision damage", "for things that want to cause more or less collision damage"),
-		{ _field_real, "Apply collision damage scale", "0 means 1.  1 is standard scale.  Some things may want to apply more damage" },
-		FIELD_EXPLANATION("Game collision damage parameters", "0 - means take default value from globals.globals"),
-		{ _field_real, "min game acc (default)", "0-oo" },
-		{ _field_real, "max game acc (default)", "0-oo" },
-		{ _field_real, "min game scale (default)", "0-1" },
-		{ _field_real, "max game scale (default)", "0-1" },
-		FIELD_EXPLANATION("Absolute collision damage parameters", "0 - means take default value from globals.globals"),
-		{ _field_real, "min abs acc (default)", "0-oo" },
-		{ _field_real, "max abs acc (default)", "0-oo" },
-		{ _field_real, "min abs scale (default)", "0-1" },
-		{ _field_real, "max abs scale (default)", "0-1" },
-		{ _field_short_integer, "hud text message index" },
-		FIELD_PAD("value", 2),
-		{ _field_block, "attachments", &blofeld::halo2::pc64::object_attachment_block },
-		{ _field_block, "widgets", &blofeld::halo2::pc64::object_widget_block },
-		{ _field_block, "old functions", &blofeld::halo2::pc64::old_object_function_block },
-		{ _field_block, "change colors", &blofeld::halo2::pc64::object_change_colors_block },
-		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
-		FIELD_EXPLANATION("$$$ ITEM $$$", nullptr),
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$197 },
-		{ _field_short_integer, "OLD message index" },
-		{ _field_short_integer, "sort order" },
-		{ _field_real, "multiplayer on-ground scale" },
-		{ _field_real, "campaign on-ground scale" },
-		FIELD_EXPLANATION("NEW hud messages", "everything you need to display stuff"),
-		{ _field_string_id, "pickup message" },
-		{ _field_string_id, "swap message" },
-		{ _field_string_id, "pickup or dual msg" },
-		{ _field_string_id, "swap or dual msg" },
-		{ _field_string_id, "dual-only msg" },
-		{ _field_string_id, "picked up msg" },
-		{ _field_string_id, "singluar quantity msg" },
-		{ _field_string_id, "plural quantity msg" },
-		{ _field_string_id, "switch-to msg" },
-		{ _field_string_id, "switch-to from ai msg" },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "UNUSED", &blofeld::halo2::pc64::material_effects_group_reference },
-		{ _field_tag_reference, "collision sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_block, "predicted bitmaps", &blofeld::halo2::pc64::predicted_bitmaps_block },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "detonation damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_real_bounds, "detonation delay", nullptr, "seconds" },
-		{ _field_tag_reference, "detonating effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_tag_reference, "detonation effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$516 },
-		{ _field_old_string_id, "value" },
-		{ _field_short_enum, "secondary trigger mode", &blofeld::halo2::pc64::unnamed_enum$517 },
-		{ _field_short_integer, "maximum alternate shots loaded", "if the second trigger loads alternate ammunition, this is the maximum number of shots that can be loaded at a time" },
-		FIELD_PAD("value", 8),
-		{ _field_real, "ready time", nullptr, "seconds" },
-		{ _field_tag_reference, "ready effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
-		{ _field_real_fraction, "heat recovery threshold", "the heat value a weapon must return to before leaving the overheated state, once it has become overheated in the first place", nullptr, "[0,1]" },
-		{ _field_real_fraction, "overheated threshold", "the heat value over which a weapon first becomes overheated (should be greater than the heat recovery threshold)", nullptr, "[0,1]" },
-		{ _field_real_fraction, "heat detonation threshold", "the heat value above which the weapon has a chance of exploding each time it is fired", nullptr, "[0,1]" },
-		{ _field_real_fraction, "heat detonation fraction", "the percent chance (between 0.0 and 1.0) the weapon will explode when fired over the heat detonation threshold", nullptr, "[0,1]" },
-		{ _field_real_fraction, "heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
-		{ _field_real_fraction, "heat illumination", "the amount of illumination given off when the weapon is overheated", nullptr, "[0,1]" },
-		{ _field_real_fraction, "overheated heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
-		FIELD_PAD("value", 12),
-		{ _field_tag_reference, "overheated", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
-		{ _field_tag_reference, "detonation", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
-		{ _field_tag_reference, "player melee damage", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_tag_reference, "player melee response", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_struct, "melee aim assist", &blofeld::halo2::pc64::melee_aim_assist_v2_struct_definition },
-		{ _field_struct, "melee damage parameters", &blofeld::halo2::pc64::melee_damage_parameters_v2_struct_definition },
-		{ _field_char_enum, "melee damage reporting type", &blofeld::halo2::pc64::unnamed_enum$228 },
-		FIELD_PAD("value", 3),
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 2),
-		{ _field_tag_reference, "actor firing parameters", &blofeld::halo2::pc64::character_group_reference$6 },
-		{ _field_real, "near reticle range", "the range at which the closer of the two static target reticles will be drawn", "world units" },
-		{ _field_real, "far reticle range", "the range at which the farther of the two static target reticles will be drawn", "world units" },
-		{ _field_real, "intersection reticle range", "the maximum range at which the dynamic target reticle will be drawn" },
-		FIELD_PAD("value", 2),
-		{ _field_short_integer, "magnification levels", "the number of magnification levels this weapon allows" },
-		{ _field_real_bounds, "magnification range" },
-		{ _field_struct, "weapon aim assist", &blofeld::halo2::pc64::aim_assist_struct_struct_definition },
-		{ _field_short_enum, "movement penalized", &blofeld::halo2::pc64::unnamed_enum$518 },
-		FIELD_PAD("value", 2),
-		{ _field_real_fraction, "forward movement penalty", "percent slowdown to forward movement for units carrying this weapon" },
-		{ _field_real_fraction, "sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon" },
-		FIELD_PAD("value", 4),
-		FIELD_PAD("value", 8),
-		{ _field_real, "AI scariness" },
-		{ _field_real, "light power-on time", nullptr, "seconds" },
-		{ _field_real, "light power-off time", nullptr, "seconds" },
-		{ _field_tag_reference, "light power-on effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
-		{ _field_tag_reference, "light power-off effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
-		{ _field_real, "age heat recovery penalty", "how much the weapon's heat recovery is penalized as it ages" },
-		{ _field_real, "age rate of fire penalty", "how much the weapon's rate of fire is penalized as it ages" },
-		{ _field_real_fraction, "age misfire start", "the age threshold when the weapon begins to misfire", nullptr, "[0,1]" },
-		{ _field_real_fraction, "age misfire chance", "at age 1.0, the misfire chance per shot", nullptr, "[0,1]" },
-		FIELD_PAD("value", 12),
-		FIELD_EXPLANATION("interface", nullptr),
-		{ _field_tag_reference, "first person model", &blofeld::halo2::pc64::render_model_group_reference$6 },
-		{ _field_tag_reference, "first person animations", &blofeld::halo2::pc64::model_animation_graph_group_reference },
-		FIELD_PAD("value", 4),
-		FIELD_PAD("value", 16),
-		{ _field_tag_reference, "pickup sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_tag_reference, "zoom-in sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_tag_reference, "zoom-out sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_block, "value", &blofeld::halo2::pc64::g_null_block },
-		{ _field_real, "active camo ding", "how much to decrease active camo when a round is fired" },
-		{ _field_real, "active camo regrowth rate", "how fast to increase active camo (per tick) when a round is fired" },
-		{ _field_string_id, "handle node", "the node that get's attached to the unit's hand" },
-		{ _field_string_id, "weapon class" },
-		{ _field_string_id, "weapon name" },
-		{ _field_short_enum, "multiplayer weapon type", &blofeld::halo2::pc64::unnamed_enum$519 },
-		{ _field_short_enum, "weapon type", &blofeld::halo2::pc64::unnamed_enum$520 },
-		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
-		{ _field_block, "magazines", &blofeld::halo2::pc64::magazines_block },
-		FIELD_PAD("value", 12),
-		{ _field_terminator }
-	};
-
-	TAG_REFERENCE(character_group_reference$6, CHARACTER_TAG, _tag_reference_flag_dont_resolve_in_editor);
-
-	TAG_REFERENCE(render_model_group_reference$6, RENDER_MODEL_TAG);
-
-	TAG_STRUCT(
-		weapon_v2_struct_definition$2,
-		"weapon_v2",
-		"weapon_v2_struct_definition",
-		"s_weapon_definition_v2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_PAD("value", 2),
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
-		{ _field_real, "bounding radius", nullptr, "world units" },
-		{ _field_real_point_3d, "bounding offset" },
-		{ _field_useless_pad, "value" },
-		{ _field_real, "acceleration scale", "marine 1.0, grunt 1.4, elite 0.9, hunter 0.5, etc.", nullptr, "[0,+inf]" },
-		{ _field_short_enum, "lightmap shadow mode", &blofeld::halo2::pc64::unnamed_enum$97 },
-		{ _field_char_enum, "sweetener size", &blofeld::halo2::pc64::unnamed_enum$98 },
-		FIELD_PAD("value", 1),
-		FIELD_PAD("value", 4),
-		{ _field_useless_pad, "value" },
-		{ _field_real, "dynamic light sphere radius", "sphere to use for dynamic lights and shadows. only used if not 0" },
-		{ _field_real_point_3d, "dynamic light sphere offset", "only used if radius not 0" },
-		{ _field_string_id, "default model variant" },
-		{ _field_tag_reference, "model", &blofeld::halo2::pc64::model_group_reference },
-		{ _field_tag_reference, "crate object", &blofeld::halo2::pc64::crate_group_reference$2 },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "modifier shader", &blofeld::halo2::pc64::shader_group_reference },
-		{ _field_tag_reference, "creation effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_tag_reference, "material effects", &blofeld::halo2::pc64::material_effects_group_reference },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "ai properties", &blofeld::halo2::pc64::object_ai_properties_block },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "functions", &blofeld::halo2::pc64::object_function_block },
-		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Applying collision damage", "for things that want to cause more or less collision damage"),
-		{ _field_real, "Apply collision damage scale", "0 means 1.  1 is standard scale.  Some things may want to apply more damage" },
-		FIELD_EXPLANATION("Game collision damage parameters", "0 - means take default value from globals.globals"),
-		{ _field_real, "min game acc (default)", "0-oo" },
-		{ _field_real, "max game acc (default)", "0-oo" },
-		{ _field_real, "min game scale (default)", "0-1" },
-		{ _field_real, "max game scale (default)", "0-1" },
-		FIELD_EXPLANATION("Absolute collision damage parameters", "0 - means take default value from globals.globals"),
-		{ _field_real, "min abs acc (default)", "0-oo" },
-		{ _field_real, "max abs acc (default)", "0-oo" },
-		{ _field_real, "min abs scale (default)", "0-1" },
-		{ _field_real, "max abs scale (default)", "0-1" },
-		{ _field_short_integer, "hud text message index" },
-		FIELD_PAD("value", 2),
-		{ _field_block, "attachments", &blofeld::halo2::pc64::object_attachment_block },
-		{ _field_block, "widgets", &blofeld::halo2::pc64::object_widget_block },
-		{ _field_block, "old functions", &blofeld::halo2::pc64::old_object_function_block },
-		{ _field_block, "change colors", &blofeld::halo2::pc64::object_change_colors_block },
-		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
-		FIELD_EXPLANATION("$$$ ITEM $$$", nullptr),
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$197 },
-		{ _field_short_integer, "OLD message index" },
-		{ _field_short_integer, "sort order" },
-		{ _field_real, "multiplayer on-ground scale" },
-		{ _field_real, "campaign on-ground scale" },
-		FIELD_EXPLANATION("NEW hud messages", "everything you need to display stuff"),
-		{ _field_string_id, "pickup message" },
-		{ _field_string_id, "swap message" },
-		{ _field_string_id, "pickup or dual msg" },
-		{ _field_string_id, "swap or dual msg" },
-		{ _field_string_id, "dual-only msg" },
-		{ _field_string_id, "picked up msg" },
-		{ _field_string_id, "singluar quantity msg" },
-		{ _field_string_id, "plural quantity msg" },
-		{ _field_string_id, "switch-to msg" },
-		{ _field_string_id, "switch-to from ai msg" },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "UNUSED", &blofeld::halo2::pc64::material_effects_group_reference },
-		{ _field_tag_reference, "collision sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_block, "predicted bitmaps", &blofeld::halo2::pc64::predicted_bitmaps_block },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "detonation damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_real_bounds, "detonation delay", nullptr, "seconds" },
-		{ _field_tag_reference, "detonating effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_tag_reference, "detonation effect", &blofeld::halo2::pc64::effect_group_reference },
-		FIELD_EXPLANATION("$$$ WEAPON $$$", "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'."),
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$516 },
-		{ _field_old_string_id, "value" },
-		{ _field_short_enum, "secondary trigger mode", &blofeld::halo2::pc64::unnamed_enum$517 },
-		{ _field_short_integer, "maximum alternate shots loaded", "if the second trigger loads alternate ammunition, this is the maximum number of shots that can be loaded at a time" },
-		FIELD_EXPLANATION("old obsolete export to functions", nullptr),
-		FIELD_PAD("value", 8),
-		{ _field_real, "ready time", nullptr, "seconds" },
-		{ _field_tag_reference, "ready effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
-		{ _field_tag_reference, "ready damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
-		FIELD_EXPLANATION("heat", nullptr),
-		{ _field_real_fraction, "heat recovery threshold", "the heat value a weapon must return to before leaving the overheated state, once it has become overheated in the first place", nullptr, "[0,1]" },
-		{ _field_real_fraction, "overheated threshold", "the heat value over which a weapon first becomes overheated (should be greater than the heat recovery threshold)", nullptr, "[0,1]" },
-		{ _field_real_fraction, "heat detonation threshold", "the heat value above which the weapon has a chance of exploding each time it is fired", nullptr, "[0,1]" },
-		{ _field_real_fraction, "heat detonation fraction", "the percent chance (between 0.0 and 1.0) the weapon will explode when fired over the heat detonation threshold", nullptr, "[0,1]" },
-		{ _field_real_fraction, "heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
-		{ _field_real_fraction, "heat illumination", "the amount of illumination given off when the weapon is overheated", nullptr, "[0,1]" },
-		{ _field_real_fraction, "overheated heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
-		FIELD_PAD("value", 12),
-		{ _field_tag_reference, "overheated", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
-		{ _field_tag_reference, "overheated damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_tag_reference, "detonation", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
-		{ _field_tag_reference, "detonation damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_tag_reference, "player melee damage", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_tag_reference, "player melee response", &blofeld::halo2::pc64::damage_effect_group_reference },
-		FIELD_EXPLANATION("melee aim assist", "magnetism angle: the maximum angle that magnetism works at full strength\nmagnetism range: the maximum distance that magnetism works at full strength\nthrottle magnitude: additional throttle to apply towards target when melee-ing w/ magnetism\nthrottle minimum distance: minimum distance to target that throttle magnetism kicks in\nthrottle maximum adjustment angle: maximum angle throttle magnetism will have an effect, relative to the players movement throttle\n"),
-		{ _field_struct, "melee aim assist", &blofeld::halo2::pc64::melee_aim_assist_v2_struct_definition },
-		FIELD_EXPLANATION("melee damage parameters", "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
-		{ _field_struct, "melee damage parameters", &blofeld::halo2::pc64::melee_damage_parameters_v2_struct_definition },
-		FIELD_PAD("value", 4),
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 2),
-		FIELD_EXPLANATION("zoom", nullptr),
-		FIELD_PAD("value", 2),
-		{ _field_short_integer, "magnification levels", "the number of magnification levels this weapon allows" },
-		{ _field_real_bounds, "magnification range" },
-		FIELD_EXPLANATION("weapon aim assist", nullptr),
-		{ _field_struct, "weapon aim assist", &blofeld::halo2::pc64::aim_assist_struct_struct_definition },
-		FIELD_EXPLANATION("movement", nullptr),
-		{ _field_short_enum, "movement penalized", &blofeld::halo2::pc64::unnamed_enum$518 },
-		FIELD_PAD("value", 2),
-		{ _field_real_fraction, "forward movement penalty", "percent slowdown to forward movement for units carrying this weapon" },
-		{ _field_real_fraction, "sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon" },
-		FIELD_PAD("value", 4),
-		FIELD_EXPLANATION("AI targeting parameters", nullptr),
-		FIELD_PAD("value", 8),
-		{ _field_real, "AI scariness" },
-		FIELD_EXPLANATION("miscellaneous", nullptr),
-		{ _field_real, "weapon power-on time", nullptr, "seconds" },
-		{ _field_real, "weapon power-off time", nullptr, "seconds" },
-		{ _field_tag_reference, "weapon power-on effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
-		{ _field_tag_reference, "weapon power-off effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
-		FIELD_PAD("value", 32),
-		{ _field_real, "age heat recovery penalty", "how much the weapon's heat recovery is penalized as it ages" },
-		{ _field_real, "age rate of fire penalty", "how much the weapon's rate of fire is penalized as it ages" },
-		{ _field_real_fraction, "age misfire start", "the age threshold when the weapon begins to misfire", nullptr, "[0,1]" },
-		{ _field_real_fraction, "age misfire chance", "at age 1.0, the misfire chance per shot", nullptr, "[0,1]" },
-		FIELD_PAD("value", 12),
-		FIELD_EXPLANATION("interface", nullptr),
-		{ _field_tag_reference, "first person model", &blofeld::halo2::pc64::render_model_group_reference$6 },
-		{ _field_tag_reference, "first person animations", &blofeld::halo2::pc64::model_animation_graph_group_reference },
-		FIELD_PAD("value", 4),
-		FIELD_PAD("value", 16),
-		{ _field_tag_reference, "pickup sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_tag_reference, "zoom-in sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_tag_reference, "zoom-out sound", &blofeld::halo2::pc64::sound_group_reference },
-		FIELD_PAD("value", 12),
-		{ _field_real, "active camo ding", "how much to decrease active camo when a round is fired" },
-		{ _field_real, "active camo regrowth rate", "how fast to increase active camo (per tick) when a round is fired" },
-		{ _field_string_id, "handle node", "the node that get's attached to the unit's hand" },
-		FIELD_EXPLANATION("weapon labels", nullptr),
-		{ _field_string_id, "weapon class" },
-		{ _field_string_id, "weapon name" },
-		{ _field_short_enum, "multiplayer weapon type", &blofeld::halo2::pc64::unnamed_enum$519 },
-		FIELD_EXPLANATION("more miscellaneous", nullptr),
-		{ _field_short_enum, "weapon type", &blofeld::halo2::pc64::unnamed_enum$520 },
-		{ _field_struct, "tracking", &blofeld::halo2::pc64::weapon_tracking_v2_struct_definition },
-		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
-		{ _field_block, "magazines", &blofeld::halo2::pc64::magazines_block },
-		FIELD_PAD("value", 12),
-		{ _field_block, "new triggers", &blofeld::halo2::pc64::weapon_triggers_block },
-		{ _field_block, "barrels", &blofeld::halo2::pc64::weapon_barrels_block },
-		FIELD_PAD("value", 8),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		weapon_v3_struct_definition,
-		"weapon_v3",
-		"weapon_v3_struct_definition",
-		"s_weapon_definition_v3",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		FIELD_PAD("value", 2),
-		{ _field_word_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$96 },
-		{ _field_real, "bounding radius", nullptr, "world units" },
-		{ _field_real_point_3d, "bounding offset" },
-		{ _field_useless_pad, "value" },
-		{ _field_real, "acceleration scale", "marine 1.0, grunt 1.4, elite 0.9, hunter 0.5, etc.", nullptr, "[0,+inf]" },
-		{ _field_short_enum, "lightmap shadow mode", &blofeld::halo2::pc64::unnamed_enum$97 },
-		{ _field_char_enum, "sweetener size", &blofeld::halo2::pc64::unnamed_enum$98 },
-		FIELD_PAD("value", 1),
-		FIELD_PAD("value", 4),
-		{ _field_useless_pad, "value" },
-		{ _field_real, "dynamic light sphere radius", "sphere to use for dynamic lights and shadows. only used if not 0" },
-		{ _field_real_point_3d, "dynamic light sphere offset", "only used if radius not 0" },
-		{ _field_string_id, "default model variant" },
-		{ _field_tag_reference, "model", &blofeld::halo2::pc64::model_group_reference },
-		{ _field_tag_reference, "crate object", &blofeld::halo2::pc64::crate_group_reference$2 },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "modifier shader", &blofeld::halo2::pc64::shader_group_reference },
-		{ _field_tag_reference, "creation effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_tag_reference, "material effects", &blofeld::halo2::pc64::material_effects_group_reference },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "ai properties", &blofeld::halo2::pc64::object_ai_properties_block },
-		{ _field_useless_pad, "value" },
-		{ _field_block, "functions", &blofeld::halo2::pc64::object_function_block },
-		{ _field_useless_pad, "value" },
-		FIELD_EXPLANATION("Applying collision damage", "for things that want to cause more or less collision damage"),
-		{ _field_real, "Apply collision damage scale", "0 means 1.  1 is standard scale.  Some things may want to apply more damage" },
-		FIELD_EXPLANATION("Game collision damage parameters", "0 - means take default value from globals.globals"),
-		{ _field_real, "min game acc (default)", "0-oo" },
-		{ _field_real, "max game acc (default)", "0-oo" },
-		{ _field_real, "min game scale (default)", "0-1" },
-		{ _field_real, "max game scale (default)", "0-1" },
-		FIELD_EXPLANATION("Absolute collision damage parameters", "0 - means take default value from globals.globals"),
-		{ _field_real, "min abs acc (default)", "0-oo" },
-		{ _field_real, "max abs acc (default)", "0-oo" },
-		{ _field_real, "min abs scale (default)", "0-1" },
-		{ _field_real, "max abs scale (default)", "0-1" },
-		{ _field_short_integer, "hud text message index" },
-		FIELD_PAD("value", 2),
-		{ _field_block, "attachments", &blofeld::halo2::pc64::object_attachment_block },
-		{ _field_block, "widgets", &blofeld::halo2::pc64::object_widget_block },
-		{ _field_block, "old functions", &blofeld::halo2::pc64::old_object_function_block },
-		{ _field_block, "change colors", &blofeld::halo2::pc64::object_change_colors_block },
-		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
-		FIELD_EXPLANATION("$$$ ITEM $$$", nullptr),
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$197 },
-		{ _field_short_integer, "OLD message index" },
-		{ _field_short_integer, "sort order" },
-		{ _field_real, "multiplayer on-ground scale" },
-		{ _field_real, "campaign on-ground scale" },
-		FIELD_EXPLANATION("NEW hud messages", "everything you need to display stuff"),
-		{ _field_string_id, "pickup message" },
-		{ _field_string_id, "swap message" },
-		{ _field_string_id, "pickup or dual msg" },
-		{ _field_string_id, "swap or dual msg" },
-		{ _field_string_id, "dual-only msg" },
-		{ _field_string_id, "picked up msg" },
-		{ _field_string_id, "singluar quantity msg" },
-		{ _field_string_id, "plural quantity msg" },
-		{ _field_string_id, "switch-to msg" },
-		{ _field_string_id, "switch-to from ai msg" },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "UNUSED", &blofeld::halo2::pc64::material_effects_group_reference },
-		{ _field_tag_reference, "collision sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_block, "predicted bitmaps", &blofeld::halo2::pc64::predicted_bitmaps_block },
-		{ _field_useless_pad, "value" },
-		{ _field_tag_reference, "detonation damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_real_bounds, "detonation delay", nullptr, "seconds" },
-		{ _field_tag_reference, "detonating effect", &blofeld::halo2::pc64::effect_group_reference },
-		{ _field_tag_reference, "detonation effect", &blofeld::halo2::pc64::effect_group_reference },
-		FIELD_EXPLANATION("$$$ WEAPON $$$", "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'."),
-		{ _field_long_flags, "flags", &blofeld::halo2::pc64::unnamed_enum$516 },
-		{ _field_old_string_id, "value" },
-		{ _field_short_enum, "secondary trigger mode", &blofeld::halo2::pc64::unnamed_enum$517 },
-		{ _field_short_integer, "maximum alternate shots loaded", "if the second trigger loads alternate ammunition, this is the maximum number of shots that can be loaded at a time" },
-		{ _field_real, "turn on time", "how long after being readied it takes this weapon to switch its 'turned_on' attachment to 1.0" },
-		FIELD_EXPLANATION("old obsolete export to functions", nullptr),
-		FIELD_PAD("value", 4),
-		{ _field_real, "ready time", nullptr, "seconds" },
-		{ _field_tag_reference, "ready effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
-		{ _field_tag_reference, "ready damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
-		FIELD_EXPLANATION("heat", nullptr),
-		{ _field_real_fraction, "heat recovery threshold", "the heat value a weapon must return to before leaving the overheated state, once it has become overheated in the first place", nullptr, "[0,1]" },
-		{ _field_real_fraction, "overheated threshold", "the heat value over which a weapon first becomes overheated (should be greater than the heat recovery threshold)", nullptr, "[0,1]" },
-		{ _field_real_fraction, "heat detonation threshold", "the heat value above which the weapon has a chance of exploding each time it is fired", nullptr, "[0,1]" },
-		{ _field_real_fraction, "heat detonation fraction", "the percent chance (between 0.0 and 1.0) the weapon will explode when fired over the heat detonation threshold", nullptr, "[0,1]" },
-		{ _field_real_fraction, "heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
-		{ _field_real_fraction, "heat illumination", "the amount of illumination given off when the weapon is overheated", nullptr, "[0,1]" },
-		{ _field_real_fraction, "overheated heat loss per second", "the amount of heat lost each second when the weapon is not being fired", nullptr, "[0,1]" },
-		FIELD_PAD("value", 12),
-		{ _field_tag_reference, "overheated", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
-		{ _field_tag_reference, "overheated damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_tag_reference, "detonation", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
-		{ _field_tag_reference, "detonation damage effect", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_tag_reference, "player melee damage", &blofeld::halo2::pc64::damage_effect_group_reference },
-		{ _field_tag_reference, "player melee response", &blofeld::halo2::pc64::damage_effect_group_reference },
-		FIELD_EXPLANATION("melee aim assist", "magnetism angle: the maximum angle that magnetism works at full strength\nmagnetism range: the maximum distance that magnetism works at full strength\nthrottle magnitude: additional throttle to apply towards target when melee-ing w/ magnetism\nthrottle minimum distance: minimum distance to target that throttle magnetism kicks in\nthrottle maximum adjustment angle: maximum angle throttle magnetism will have an effect, relative to the players movement throttle\n"),
-		{ _field_struct, "melee aim assist", &blofeld::halo2::pc64::melee_aim_assist_v2_struct_definition },
-		FIELD_EXPLANATION("melee damage parameters", "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
-		{ _field_struct, "melee damage parameters", &blofeld::halo2::pc64::melee_damage_parameters_v2_struct_definition },
-		{ _field_char_enum, "melee damage reporting type", &blofeld::halo2::pc64::unnamed_enum$228 },
-		FIELD_PAD("value", 3),
-		FIELD_PAD("value", 2),
-		FIELD_PAD("value", 2),
-		FIELD_EXPLANATION("zoom", nullptr),
-		FIELD_PAD("value", 2),
-		{ _field_short_integer, "magnification levels", "the number of magnification levels this weapon allows" },
-		{ _field_real_bounds, "magnification range" },
-		FIELD_EXPLANATION("weapon aim assist", nullptr),
-		{ _field_struct, "weapon aim assist", &blofeld::halo2::pc64::aim_assist_struct_struct_definition },
-		FIELD_EXPLANATION("movement", nullptr),
-		{ _field_short_enum, "movement penalized", &blofeld::halo2::pc64::unnamed_enum$518 },
-		FIELD_PAD("value", 2),
-		{ _field_real_fraction, "forward movement penalty", "percent slowdown to forward movement for units carrying this weapon" },
-		{ _field_real_fraction, "sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon" },
-		FIELD_PAD("value", 4),
-		FIELD_EXPLANATION("AI targeting parameters", nullptr),
-		FIELD_PAD("value", 8),
-		{ _field_real, "AI scariness" },
-		FIELD_EXPLANATION("miscellaneous", nullptr),
-		{ _field_real, "weapon power-on time", nullptr, "seconds" },
-		{ _field_real, "weapon power-off time", nullptr, "seconds" },
-		{ _field_tag_reference, "weapon power-on effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
-		{ _field_tag_reference, "weapon power-off effect", &blofeld::halo2::pc64::sound_group_effect_group_reference$2 },
-		FIELD_PAD("value", 32),
-		{ _field_real, "age heat recovery penalty", "how much the weapon's heat recovery is penalized as it ages" },
-		{ _field_real, "age rate of fire penalty", "how much the weapon's rate of fire is penalized as it ages" },
-		{ _field_real_fraction, "age misfire start", "the age threshold when the weapon begins to misfire", nullptr, "[0,1]" },
-		{ _field_real_fraction, "age misfire chance", "at age 1.0, the misfire chance per shot", nullptr, "[0,1]" },
-		FIELD_PAD("value", 12),
-		{ _field_tag_reference, "pickup sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_tag_reference, "zoom-in sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_tag_reference, "zoom-out sound", &blofeld::halo2::pc64::sound_group_reference },
-		{ _field_real, "active camo ding", "how much to decrease active camo when a round is fired" },
-		{ _field_real, "active camo regrowth rate", "how fast to increase active camo (per tick) when a round is fired" },
-		{ _field_string_id, "handle node", "the node that get's attached to the unit's hand" },
-		FIELD_EXPLANATION("weapon labels", nullptr),
-		{ _field_string_id, "weapon class" },
-		{ _field_string_id, "weapon name" },
-		{ _field_short_enum, "multiplayer weapon type", &blofeld::halo2::pc64::unnamed_enum$519 },
-		FIELD_EXPLANATION("more miscellaneous", nullptr),
-		{ _field_short_enum, "weapon type", &blofeld::halo2::pc64::unnamed_enum$520 },
-		{ _field_struct, "tracking", &blofeld::halo2::pc64::weapon_tracking_v2_struct_definition },
-		{ _field_struct, "player interface", &blofeld::halo2::pc64::weapon_interface_struct_struct_definition },
-		{ _field_block, "predicted resources", &blofeld::halo2::pc64::predicted_resource_block },
-		{ _field_block, "magazines", &blofeld::halo2::pc64::magazines_block },
-		FIELD_PAD("value", 12),
-		{ _field_block, "new triggers", &blofeld::halo2::pc64::weapon_triggers_block },
-		{ _field_block, "barrels", &blofeld::halo2::pc64::weapon_barrels_block },
-		FIELD_PAD("value", 8),
-		FIELD_PAD("value", 16),
-		FIELD_EXPLANATION("first-person movement control", nullptr),
-		{ _field_real, "max movement acceleration" },
-		{ _field_real, "max movement velocity" },
-		{ _field_real, "max turning acceleration" },
-		{ _field_real, "max turning velocity" },
-		FIELD_PAD("value", 16),
-		{ _field_tag_reference, "deployed vehicle", &blofeld::halo2::pc64::vehicle_group_reference$5 },
+		
 		{ _field_terminator }
 	};
 

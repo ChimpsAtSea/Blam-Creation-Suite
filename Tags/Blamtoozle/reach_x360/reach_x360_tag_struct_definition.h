@@ -162,6 +162,13 @@ public:
 	virtual blofeld::s_tag_persistent_identifier& get_persistent_identifier() override;
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() override;
 
+	virtual bool is_legacy_struct() override;
+	virtual bool is_latest_structure_version() override;
+	virtual unsigned long get_structure_version() override;
+	virtual c_blamtoozle_tag_struct_definition* get_previous_struct_definition() override;
+	virtual c_blamtoozle_tag_struct_definition* get_next_struct_definition() override;
+	virtual c_blamtoozle_tag_struct_definition& get_latest_struct_definition() override;
+
 protected:
 	ptr32 definition_address;
 	s_reach_x360_tag_struct_definition struct_definition;

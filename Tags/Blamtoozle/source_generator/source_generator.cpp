@@ -497,7 +497,8 @@ void c_blamtoozle_source_generator::write_tag_struct_source(std::stringstream& s
 			version_definition != nullptr;
 			version_definition = version_definition->get_previous_struct_definition())
 		{
-			if (version_definition->is_legacy_struct())
+			bool is_legacy_struct = version_definition->is_legacy_struct();
+			if (is_legacy_struct)
 			{
 				size_t num_fields = version_definition->fields.size() - 1; // exclude terminator
 				if (version_definition->is_latest_structure_version())
@@ -512,7 +513,7 @@ void c_blamtoozle_source_generator::write_tag_struct_source(std::stringstream& s
 
 			bool is_last = version_definition->get_previous_struct_definition() == nullptr;
 
-			write_fields(stream, version_definition->fields, is_last);
+			write_fields(stream, version_definition->fields, is_last, is_legacy_struct);
 
 			if (!is_last)
 			{
@@ -903,7 +904,7 @@ const char* c_blamtoozle_source_generator::tag_field_set_bit_to_field_set_bit_ma
 	throw;
 }
 
-void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields, bool write_terminator)
+void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields, bool write_terminator, bool terminator_extra_new_line)
 {
 	for (auto& _field : fields)
 	{
@@ -1497,6 +1498,10 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			{
 				if (write_terminator)
 				{
+					if (terminator_extra_new_line)
+					{
+						stream << "\t\t" << std::endl;
+					}
 					stream << "\t\t{ _field_terminator }" << std::endl;
 				}
 			}

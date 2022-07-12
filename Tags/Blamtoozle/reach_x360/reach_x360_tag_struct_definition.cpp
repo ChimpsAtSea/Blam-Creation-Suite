@@ -122,6 +122,40 @@ c_reach_x360_tag_struct_definition::~c_reach_x360_tag_struct_definition()
 
 }
 
+bool c_reach_x360_tag_struct_definition::is_legacy_struct()
+{
+	return previous_version_struct_definition != nullptr || next_version_struct_definition != nullptr;
+}
+
+bool c_reach_x360_tag_struct_definition::is_latest_structure_version()
+{
+	return next_version_struct_definition == nullptr;
+}
+
+c_blamtoozle_tag_struct_definition* c_reach_x360_tag_struct_definition::get_previous_struct_definition()
+{
+	return previous_version_struct_definition;
+}
+
+c_blamtoozle_tag_struct_definition* c_reach_x360_tag_struct_definition::get_next_struct_definition()
+{
+	return next_version_struct_definition;
+}
+
+c_blamtoozle_tag_struct_definition& c_reach_x360_tag_struct_definition::get_latest_struct_definition()
+{
+	if (next_version_struct_definition)
+	{
+		return next_version_struct_definition->get_latest_struct_definition();
+	}
+	return *this;
+}
+
+unsigned long c_reach_x360_tag_struct_definition::get_structure_version()
+{
+	return struct_definition.type.legacy.legacy_version;
+}
+
 const char* c_reach_x360_tag_struct_definition::get_display_name()
 {
 	return display_name;

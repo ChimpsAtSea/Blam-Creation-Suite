@@ -20,6 +20,6 @@ void c_blamtoozle_file_stream::write()
 	ASSERT(BCS_SUCCEEDED(rs));
 	if (rs != BCS_S_NO_CHANGES_MADE)
 	{
-		console_write_line("Updated %s", file_path);
+		console_write_line("Updated %S", file_path);
 	}
 }

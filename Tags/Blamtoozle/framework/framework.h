@@ -21,3 +21,4 @@
 extern void nuke_trailing_extension(char* string, const char* extension);
 extern void replace_trailing_extension(char* string, const char* extension, const char* replacement);
 extern void cleanup_code_symbol_name(char* buffer);
+extern bool has_trailing_extension(char* string, const char* extension);

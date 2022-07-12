@@ -61,7 +61,10 @@ c_halo2_tools_pc64_tag_struct_definition::c_halo2_tools_pc64_tag_struct_definiti
 	structure_size_string(tag_definition_manager.va_to_pointer(struct_definition.type.structure_size_string_address)),
 	code_symbol_name(name),
 	code_type_name(),
-	conflict_handled(false)
+	conflict_handled(false),
+	previous_version_struct_definition(),
+	next_version_struct_definition(),
+	structure_version()
 {
 	generate_structure_names();
 
@@ -102,6 +105,40 @@ c_halo2_tools_pc64_tag_struct_definition::c_halo2_tools_pc64_tag_struct_definiti
 c_halo2_tools_pc64_tag_struct_definition::~c_halo2_tools_pc64_tag_struct_definition()
 {
 
+}
+
+bool c_halo2_tools_pc64_tag_struct_definition::is_legacy_struct()
+{
+	return previous_version_struct_definition != nullptr || next_version_struct_definition != nullptr;
+}
+
+bool c_halo2_tools_pc64_tag_struct_definition::is_latest_structure_version()
+{
+	return next_version_struct_definition == nullptr;
+}
+
+c_blamtoozle_tag_struct_definition* c_halo2_tools_pc64_tag_struct_definition::get_previous_struct_definition()
+{
+	return previous_version_struct_definition;
+}
+
+c_blamtoozle_tag_struct_definition* c_halo2_tools_pc64_tag_struct_definition::get_next_struct_definition()
+{
+	return next_version_struct_definition;
+}
+
+c_blamtoozle_tag_struct_definition& c_halo2_tools_pc64_tag_struct_definition::get_latest_struct_definition()
+{
+	if (next_version_struct_definition)
+	{
+		return next_version_struct_definition->get_latest_struct_definition();
+	}
+	return *this;
+}
+
+unsigned long c_halo2_tools_pc64_tag_struct_definition::get_structure_version()
+{
+	return structure_version;
 }
 
 const char* c_halo2_tools_pc64_tag_struct_definition::get_display_name()
@@ -167,7 +204,20 @@ void c_halo2_tools_pc64_tag_struct_definition::generate_structure_names()
 				extension[_countof(extension) - 2] += version_index;
 				char replacement[] = "_v0";
 				replacement[_countof(replacement) - 2] += version_index;
-				replace_trailing_extension(byteswap0, extension, replacement);
+				//replace_trailing_extension(byteswap0, extension, replacement);
+				nuke_trailing_extension(byteswap0, extension);
+			}
+		}
+		if (strstr(byteswap0, "_tags_v"))
+		{
+			for (char version_index = 0; version_index < 10; version_index++)
+			{
+				char extension[] = "_tags_v0";
+				extension[_countof(extension) - 2] += version_index;
+				char replacement[] = "_v0";
+				replacement[_countof(replacement) - 2] += version_index;
+				//replace_trailing_extension(byteswap0, extension, replacement);
+				nuke_trailing_extension(byteswap0, extension);
 			}
 		}
 

@@ -110,7 +110,7 @@
 //
 //		ImVec2 start_pos = ImGui::GetCursorScreenPos();
 //		ImVec2 finish_pos = start_pos;
-//		finish_pos.x += ImGui::GetContentRegionAvailWidth();
+//		finish_pos.x += ImGui::GetContentRegionAvail().x;
 //		finish_pos.y += header_height;
 //		draw_list->AddRectFilled(start_pos, finish_pos, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_MENU(1.0f)));
 //
@@ -129,7 +129,7 @@
 //
 //		ImVec2 start_pos = ImGui::GetCursorScreenPos();
 //		ImVec2 finish_pos = start_pos;
-//		finish_pos.x += ImGui::GetContentRegionAvailWidth();
+//		finish_pos.x += ImGui::GetContentRegionAvail().x;
 //		finish_pos.y += header_height;
 //		draw_list->AddRectFilled(start_pos, finish_pos, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_MENU(0.5f)));
 //
@@ -185,7 +185,7 @@
 //
 //		ImVec2 start_pos = ImGui::GetCursorScreenPos();
 //		ImVec2 finish_pos = start_pos;
-//		finish_pos.x += ImGui::GetContentRegionAvailWidth();
+//		finish_pos.x += ImGui::GetContentRegionAvail().x;
 //		finish_pos.y += header_height;
 //		draw_list->AddRectFilled(start_pos, finish_pos, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_MENU(0.5f)));
 //

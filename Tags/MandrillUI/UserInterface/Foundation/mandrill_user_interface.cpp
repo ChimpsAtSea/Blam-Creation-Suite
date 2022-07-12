@@ -428,7 +428,7 @@ void c_mandrill_user_interface::render_impl()
 				unsigned long discriminator = keys_user_discriminator();
 				snprintf(buffer, sizeof(buffer), "%s#%lu", username, discriminator);
 
-				float content_region_width = ImGui::GetContentRegionAvailWidth();
+				float content_region_width = ImGui::GetContentRegionAvail().x;
 				ImVec2 text_size = ImGui::CalcTextSize(buffer);
 				ImGui::SetCursorPos({ window_start_position.x + (content_region_width - text_size.x), window_start_position.y });
 				ImGui::TextUnformatted(buffer);
@@ -441,7 +441,7 @@ void c_mandrill_user_interface::render_impl()
 				ImGui::PushStyleColor(ImGuiCol_Text, color);
 
 				const char* text = "Limited Access";
-				float content_region_width = ImGui::GetContentRegionAvailWidth();
+				float content_region_width = ImGui::GetContentRegionAvail().x;
 				ImVec2 text_size = ImGui::CalcTextSize(text);
 				ImVec2 item_spacing = ImGui::GetStyle().ItemSpacing;
 				ImGui::SetCursorPos({ window_start_position.x + (content_region_width - (text_size.x + item_spacing.x)), window_start_position.y });
@@ -588,7 +588,7 @@ bool c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 				static ImVec2 terminal_size;
 
 				ImVec2 start_cursor_pos = ImGui::GetCursorPos();
-				float content_region_width = ImGui::GetContentRegionAvailWidth();
+				float content_region_width = ImGui::GetContentRegionAvail().x;
 				start_cursor_pos.x += content_region_width;
 				start_cursor_pos.x -= gamepad_size.x;
 				start_cursor_pos.x -= terminal_size.x;
