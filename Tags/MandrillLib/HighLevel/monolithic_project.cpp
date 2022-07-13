@@ -74,123 +74,6 @@ c_monolithic_tag_project::c_monolithic_tag_project(
 	}
 }
 
-BCS_RESULT c_monolithic_tag_project::resolve_unqualified_tags()
-{
-	BCS_RESULT rs = BCS_S_OK;
-
-	c_stopwatch stopwatch;
-	stopwatch.start();
-
-	unsigned long num_tags = static_cast<unsigned long>(tags.size());
-
-	if (status_interface)
-	{
-		status_interface->set_status_bar_status(_status_interface_priority_low, INFINITY, "Resolving unqualified tag references (%lu/%lu)", 0lu, num_tags);
-	}
-
-	parallel_invoke(0ul, num_tags, resolve_unqualified_tag_references, this);
-
-	stopwatch.stop();
-	float resolve_unqualified_tags_time = stopwatch.get_miliseconds();
-
-	if (status_interface)
-	{
-		status_interface->wait_status_bar_idle();
-		status_interface->set_status_bar_status(_status_interface_priority_low, INFINITY, "Resolving unqualified tag references finished %0.2fms", stopwatch.get_miliseconds());
-	}
-
-	return rs;
-}
-
-void c_monolithic_tag_project::resolve_unqualified_tag_references(void* _userdata, unsigned long tag_index)
-{
-	c_monolithic_tag_project* _this = static_cast<c_monolithic_tag_project*>(_userdata);
-
-	h_tag* tag = _this->tags[tag_index];
-	_this->resolve_unqualified_tag_references(*tag);
-
-	if (_this->status_interface)
-	{
-		unsigned long num_tags = static_cast<unsigned long>(_this->tags.size());
-		_this->status_interface->set_status_bar_status(_status_interface_priority_low, INFINITY, "Resolving unqualified tag references (%lu/%lu)", tag_index, num_tags);
-	}
-}
-
-BCS_RESULT c_monolithic_tag_project::resolve_unqualified_tag_references(h_prototype& object)
-{
-	BCS_RESULT rs = BCS_S_OK;
-
-	const blofeld::s_tag_field* const* field_list = object.get_blofeld_field_list();
-	while (const blofeld::s_tag_field* field = *field_list++)
-	{
-		switch (field->field_type)
-		{
-		case blofeld::_field_struct:
-		{
-			h_prototype* struct_object = object.get_field_data<h_prototype>(*field);
-			ASSERT(struct_object != nullptr);
-
-			if (BCS_FAILED(rs = resolve_unqualified_tag_references(*struct_object)))
-			{
-				return rs;
-			}
-		}
-		break;
-		case blofeld::_field_array:
-		case blofeld::_field_block:
-		{
-			h_enumerable* enumerable = object.get_field_data<h_enumerable>(*field);
-			ASSERT(enumerable != nullptr);
-
-			unsigned long enumerable_count = enumerable->size();
-			for (unsigned long enumerable_index = 0; enumerable_index < enumerable_count; enumerable_index++)
-			{
-				h_prototype& enumerable_object = enumerable->get(enumerable_index);
-				if (BCS_FAILED(rs = resolve_unqualified_tag_references(enumerable_object)))
-				{
-					return rs;
-				}
-			}
-
-			debug_point;
-		}
-		break;
-		case blofeld::_field_tag_reference:
-		{
-			h_tag_reference* tag_reference = object.get_field_data<h_tag_reference>(*field);
-			ASSERT(tag_reference != nullptr);
-
-			if (tag_reference->is_unqualified())
-			{
-				const char* target_tag_filepath = tag_reference->get_tag_path();
-				tag group_tag = tag_reference->get_group_tag();
-				if (group_tag != blofeld::INVALID_TAG)
-				{
-					h_group* group;
-					if (BCS_SUCCEEDED(get_group_by_group_tag(group_tag, group)))
-					{
-						for (h_tag* current_tag : group->tags)
-						{
-							if (strcmp(current_tag->tag_filepath, target_tag_filepath) == 0)
-							{
-								tag_reference->set_group(group);
-								tag_reference->set_tag(current_tag);
-								goto next;
-							}
-						}
-					}
-				}
-				debug_point;
-			}
-		}
-		break;
-		}
-	next:;
-	}
-
-	return rs;
-}
-
 void c_monolithic_tag_project::destroy_tags(h_tag* const* tags, size_t index)
 {
 	h_tag* tag = tags[index];
@@ -412,7 +295,7 @@ BCS_RESULT c_monolithic_tag_project::read_tag(unsigned long index, h_tag*& out_h
 {
 	s_compressed_tag_file_index_entry& tag_file_index_entry = tag_file_index_chunk->compressed_tag_file_index_entries[index];
 
-	const char* tag_name = tag_file_index_chunk->name_buffer + tag_file_index_entry.name_offset;
+	const char* relative_tag_file_path_without_extension = tag_file_index_chunk->name_buffer + tag_file_index_entry.name_offset;
 
 	out_tag_group = nullptr;
 	out_high_level_tag = nullptr;
@@ -510,16 +393,13 @@ BCS_RESULT c_monolithic_tag_project::read_tag(unsigned long index, h_tag*& out_h
 	{
 		h_group* tag_group;
 		ASSERT(BCS_SUCCEEDED(get_group_by_group_tag(tag_file_index_entry.group_tag, tag_group)));
-		char relative_filepath_mb[0x10000];
-		sprintf(relative_filepath_mb, "%s.%s", tag_name, tag_group->tag_group.name);
 
-		high_level_tag->tag_filename = filesystem_extract_filepath_filename(relative_filepath_mb);
-		high_level_tag->tag_filepath = relative_filepath_mb;
+		high_level_tag->generate_filepaths(relative_tag_file_path_without_extension);
 
-		console_write_line_info("Read tag %s (%.2f ms)", relative_filepath_mb, ms);
+		console_write_line_info("Read tag %s (%.2f ms)", high_level_tag->get_file_path(), ms);
 		if (status_interface)
 		{
-			status_interface->set_status_bar_status(_status_interface_priority_low, 15.0f, "Read tag %s (%.2f ms)", relative_filepath_mb, ms);
+			status_interface->set_status_bar_status(_status_interface_priority_low, 15.0f, "Read tag %s (%.2f ms)", high_level_tag->get_file_path(), ms);
 		}
 
 		// #TODO: should this be done here?

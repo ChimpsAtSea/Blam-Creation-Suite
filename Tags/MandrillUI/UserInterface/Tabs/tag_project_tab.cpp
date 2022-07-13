@@ -1,4 +1,5 @@
 #include "mandrillui-private-pch.h"
+#include <Generated/high_level_halo3_pc64/highlevel-halo3-pc64-public-pch.h>
 
 #include <AudioConversion\audioconversion-platform-pch.h>
 #include <AudioConversion\audioconversion-public-pch.h>
@@ -67,7 +68,7 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 
 							debug_point;
 
-							const char* _tag_filepath = tag.tag_filepath.c_str();
+							const char* _tag_filepath = tag.get_file_path();
 							const char* _permutation_name = permutation_name.c_str();
 
 							unsigned long const chunk_count = permutation.chunk_count.value;
@@ -310,10 +311,16 @@ void c_tag_project_tab::open_tag_by_search_name(const char* tag_name)
 		for (unsigned long tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
 		{
 			h_tag* tag = tag_instances[tag_instance_index];
-			bool is_match =
-				_stricmp(tag_name, tag->tag_filepath.c_str()) == 0 ||
-				_stricmp(tag_name, tag->tag_filename.c_str()) == 0;
-			if (is_match)
+			if (_stricmp(tag_name, tag->get_file_path()) == 0)
+			{
+				open_tag_interface_tab(*tag);
+				return;
+			}
+		}
+		for (unsigned long tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
+		{
+			h_tag* tag = tag_instances[tag_instance_index];
+			if (_stricmp(tag_name, tag->get_file_name()) == 0)
 			{
 				open_tag_interface_tab(*tag);
 				return;
@@ -385,19 +392,19 @@ void c_tag_project_tab::render_tags_list_search()
 
 			if (!search_buffer.empty())
 			{
-				if (strstr(tag->tag_filepath.data, search_buffer.c_str()) == nullptr)
+				if (strstr(tag->get_file_path(), search_buffer.c_str()) == nullptr)
 				{
 					continue;
 				}
 			}
 
 			bool is_active = search_selected_tag_interface == tag;
-			bool selectable_activated = ImGui::Selectable(tag->tag_filepath.c_str(), is_active, ImGuiSelectableFlags_AllowDoubleClick);
+			bool selectable_activated = ImGui::Selectable(tag->get_file_path(), is_active, ImGuiSelectableFlags_AllowDoubleClick);
 
 			if (ImGui::IsItemHovered())
 			{
 				ImGui::BeginTooltip();
-				ImGui::Text(tag->tag_filepath.c_str());
+				ImGui::Text(tag->get_file_path());
 				ImGui::EndTooltip();
 			}
 			if (selectable_activated && ImGui::IsMouseDoubleClicked((ImGuiMouseButton_Left)))
@@ -410,7 +417,7 @@ void c_tag_project_tab::render_tags_list_search()
 			{
 				if (ImGui::MenuItem("Copy as path"))
 				{
-					clipboard_set_text(tag->tag_filepath);
+					clipboard_set_text(tag->get_file_path());
 				}
 				ImGui::EndPopup();
 			}
@@ -442,7 +449,7 @@ void c_tag_project_tab::render_tags_list_tree()
 			{
 				for (h_tag* tag : group->tags)
 				{
-					const char* tag_display_with_group_id = tag->tag_filepath.c_str();
+					const char* tag_display_with_group_id = tag->get_file_path();
 
 					static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 					if (ImGui::TreeNodeEx(tag, base_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, "%s", tag_display_with_group_id))
@@ -456,7 +463,7 @@ void c_tag_project_tab::render_tags_list_tree()
 					{
 						if (ImGui::MenuItem("Copy as path"))
 						{
-							clipboard_set_text(tag->tag_filepath);
+							clipboard_set_text(tag->get_file_path());
 						}
 						ImGui::EndPopup();
 					}

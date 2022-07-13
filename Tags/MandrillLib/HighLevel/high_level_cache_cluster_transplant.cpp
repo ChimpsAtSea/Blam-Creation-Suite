@@ -293,7 +293,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 
 				if (!tag_instance_data || BCS_FAILED(rs = transplant_cache_file_data(high_level_tag, static_cast<const char*>(tag_instance_data), *cache_file_reader, high_level_tag.get_blofeld_struct_definition())))
 				{
-					console_write_line("failed to transplant tag '%s.%s'", high_level_tag.tag_filename, high_level_tag.group->tag_group.name);
+					console_write_line("failed to transplant tag '%s.%s'", high_level_tag.get_file_path(), high_level_tag.group->tag_group.name);
 					//return rs; //#TODO: enable this!
 				}
 			}
@@ -320,7 +320,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 						*cache_file_reader,
 						high_level_tag.get_blofeld_struct_definition())))
 					{
-						console_write_line("failed to transplant tag '%s.%s'", high_level_tag.tag_filename, high_level_tag.group->tag_group.name);
+						console_write_line("failed to transplant tag '%s.%s'", high_level_tag.get_file_path(), high_level_tag.group->tag_group.name);
 						return transplant_result;
 					}
 				}
@@ -1114,7 +1114,7 @@ public:
 						c_tag_instance* tag_instance = nullptr;
 						if (BCS_FAILED(rs = cache_cluster.get_tag_instance_by_global_tag_id_and_group_tag(ucs_tag_reference_field.global_id, ucs_tag_reference_field.group_tag, tag_instance)))
 						{
-							tag_reference_storage->set_unqualified_path(ucs_tag_reference_field.group_tag, root_high_level.tag_filepath);
+							tag_reference_storage->set_unqualified_file_path_without_extension(ucs_tag_reference_field.group_tag, root_high_level.get_file_path_without_extension());
 						}
 						else
 						{

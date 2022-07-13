@@ -295,7 +295,7 @@ void c_mandrill_user_interface::save_current_session()
 						open_projects_path += ';';
 					}
 
-					open_projects_path += high_level_tag_tab->get_tag().tag_filepath.c_str();
+					open_projects_path += high_level_tag_tab->get_tag().get_file_path();
 
 					if (high_level_tag_tab->is_selected())
 					{

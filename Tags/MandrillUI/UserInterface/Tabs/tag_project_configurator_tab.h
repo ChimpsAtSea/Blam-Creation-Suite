@@ -55,9 +55,10 @@ protected:
 	e_tag_project_configurator_step step;
 	c_fixed_wide_path directory;
 	bool is_all_selected;
-	bool is_monolithic_tag_file_directory;
-	bool is_single_tag_file_directory;
-	bool is_cache_file_directory;
+	bool is_monolithic_tag_file_directory : 1;
+	bool is_single_tag_file_directory : 1;
+	bool is_haloce_directory : 1;
+	bool is_cache_file_directory : 1;
 	std::vector<s_cache_file_list_entry> entries;
 	std::vector<s_cache_file_list_entry> selected_entries;
 	c_cache_cluster* cache_cluster;

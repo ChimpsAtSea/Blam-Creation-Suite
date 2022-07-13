@@ -270,6 +270,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_struct_data(const char*& 
 			global_data_position += tag_field.length;
 		}
 		break;
+		case blofeld::_field_custom:
 		case blofeld::_field_explanation:
 			break;
 		default: FATAL_ERROR("Unsupported field type");
@@ -344,9 +345,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 				ASSERT(tag_reference_file_path_bytes == (tag_reference.name_length + 1));
 				global_data_position += tag_reference_file_path_bytes;
 			}
-
-			tag_field_tag_reference->set_unqualified_path(tag_reference.group_tag, tag_reference_path);
-
+			tag_field_tag_reference->set_unqualified_file_path_without_extension(tag_reference.group_tag, tag_reference_path);
 		}
 		break;
 		case blofeld::_field_array:
@@ -364,8 +363,6 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 			debug_point;
 		}
 		break;
-		case blofeld::_field_pad:
-			break;
 		case blofeld::_field_string:
 		case blofeld::_field_long_string:
 		case blofeld::_field_string_id:
@@ -414,13 +411,11 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 		case blofeld::_field_short_block_index_custom_search:
 		case blofeld::_field_long_block_index:
 		case blofeld::_field_long_block_index_custom_search:
-			break;
+		case blofeld::_field_custom:
 		case blofeld::_field_explanation:
+		case blofeld::_field_pad:
 		case blofeld::_field_skip:
-		{
-
-		}
-		break;
+			break;
 		default: debug_break; throw;
 		}
 	}

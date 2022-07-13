@@ -9,18 +9,39 @@ class h_tag :
 	public h_prototype
 {
 protected:
-	h_tag(h_group* group, const char* tag_filepath);
+	h_tag(
+		h_group* group,
+		const char* relative_filepath_without_extension,
+		const wchar_t* filesystem_path = nullptr);
 	h_tag(h_type* parent);
 
 public:
 	virtual ~h_tag();
 	virtual const blofeld::s_tag_group& get_blofeld_group_definition() const = 0;
 
-public: // #TODO: protected
-	c_fixed_path tag_filepath;
-	c_fixed_path tag_filename;
-	h_group* group;
+	// subfolder\\example.group
+	virtual const char* get_file_path() const;
+	
+	// example.group
+	virtual const char* get_file_name() const;
+	
+	// .group
+	virtual const char* get_file_extension() const;
 
-	//protected:
-	//	h_tag(h_tag const&) = default;
+	// subfolder\\example
+	virtual const char* get_file_path_without_extension() const;
+	
+	// example
+	virtual const char* get_file_name_without_extension() const;
+
+	// C:\\tags\\subfolder\\example.group
+	virtual const wchar_t* get_filesystem_path() const;
+
+	virtual void generate_filepaths(const char* relative_filepath_without_extension, const wchar_t* filesystem_path = nullptr);
+
+	h_group* group;
+private:
+	const char* relative_file_path;
+	const char* relative_file_path_without_extension;
+	const wchar_t* filesystem_path;
 };

@@ -374,21 +374,9 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 					}
 					else
 					{
-						const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, field_tag_reference_chunk->group_tag);
-						if (tag_group != nullptr)
-						{
-							c_fixed_string_512 tag_filepath;
-							tag_filepath.format("%s.%s", field_tag_reference_chunk->tag_filepath_without_extension, tag_group->name);
-							tag_reference_storage->set_unqualified_path(
-								field_tag_reference_chunk->group_tag,
-								tag_filepath);
-						}
-						else
-						{
-							tag_reference_storage->set_unqualified_path(
-								field_tag_reference_chunk->group_tag,
-								field_tag_reference_chunk->tag_filepath_without_extension);
-						}
+						tag_reference_storage->set_unqualified_file_path_without_extension(
+							field_tag_reference_chunk->group_tag,
+							field_tag_reference_chunk->tag_filepath_without_extension);
 					}
 				}
 			}

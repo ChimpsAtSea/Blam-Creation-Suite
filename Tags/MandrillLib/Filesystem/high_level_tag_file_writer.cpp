@@ -831,16 +831,13 @@ void c_high_level_tag_file_writer::serialize_tag_reference(const h_tag_reference
 
 	if (!reference.is_null())
 	{
-		char* tag_path = strdup(reference.get_tag_path());
-		filesystem_remove_filepath_extension(tag_path);
+		const char* tag_path = reference.get_file_path_without_extension();
 		tag_reference_chunk.set_reference(reference.get_group_tag(), tag_path);
-		untracked_free(tag_path);
 	}
 	else
 	{
 		tag_reference_chunk.set_reference(blofeld::INVALID_TAG, "");
 	}
-
 }
 
 unsigned long c_high_level_tag_file_writer::calculate_structure_size(const h_prototype& object)

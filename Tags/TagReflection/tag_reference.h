@@ -10,10 +10,10 @@ public:
 
 	virtual void set_tag(h_tag* tag);
 	virtual void set_group(h_group* group);
-	virtual void set_unqualified_path(tag group_tag, const char* unqualified_path);
+	virtual void set_unqualified_file_path_without_extension(tag group_tag, const char* unqualified_path);
 	virtual h_tag* get_tag() const;
 	virtual h_group* get_group() const;
-	virtual const char* get_tag_path() const;
+	virtual const char* get_file_path_without_extension() const;
 	virtual tag get_group_tag() const;
 	virtual bool is_tag_qualified() const;
 	virtual bool is_null() const;
@@ -33,7 +33,7 @@ private:
 		{
 			union
 			{
-				const char* unqualified_path;
+				const char* file_path_without_extension;
 				void* userdata;
 			};
 			tag group_tag;

@@ -7,6 +7,7 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 	is_all_selected(true),
 	is_monolithic_tag_file_directory(false),
 	is_single_tag_file_directory(false),
+	is_haloce_directory(false),
 	is_cache_file_directory(false),
 	entries(),
 	selected_entries(),
@@ -23,8 +24,11 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 	c_fixed_wide_path tag_cache_directory = directory;
 	tag_cache_directory += L"tag_cache\\";
 
-	c_fixed_wide_path guerilla_directory = directory;
-	guerilla_directory += L"guerilla.exe";
+	c_fixed_wide_path guerilla_filepath = directory;
+	guerilla_filepath += L"guerilla.exe";
+
+	c_fixed_wide_path haloce_filepath = directory;
+	haloce_filepath += L"halo_tag_test.exe";
 
 	c_fixed_wide_path deploy_directory = directory;
 	deploy_directory += L"deploy\\";
@@ -39,8 +43,12 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 		entry.selected = true;
 		entries.push_back(entry);
 	}
-	else if (BCS_SUCCEEDED(filesystem_directory_exists(tags_directory)) && BCS_SUCCEEDED(filesystem_filepath_exists(guerilla_directory)))
+	else if (BCS_SUCCEEDED(filesystem_directory_exists(tags_directory)) && BCS_SUCCEEDED(filesystem_filepath_exists(guerilla_filepath)))
 	{
+		if (BCS_SUCCEEDED(filesystem_filepath_exists(haloce_filepath)))
+		{
+			is_haloce_directory = true;
+		}
 		is_single_tag_file_directory = true;
 		debug_point;
 	}
@@ -368,7 +376,7 @@ void c_tag_project_configurator_tab::render_display_tags()
 		for (s_tag_transplant_instance& transplant_instance : cache_cluster_transplant->instances)
 		{
 			h_tag* tag = transplant_instance.high_level;
-			ImGui::Text("%s.%s", tag->tag_filepath, tag->group->tag_group.name);
+			ImGui::Text("%s.%s", tag->get_file_path(), tag->group->tag_group.name);
 		}
 }
 
@@ -510,7 +518,14 @@ void c_tag_project_configurator_tab::create_tag_project()
 		}
 		if (is_single_tag_file_directory)
 		{
-			tag_project = new() c_filesystem_tag_project(directory, { _engine_type_halo3 }, mandrill_user_interface);
+			if (is_haloce_directory) // #TODO: hack, fix
+			{
+				tag_project = new() c_filesystem_tag_project(directory, { _engine_type_halo1, _platform_type_pc_64bit }, mandrill_user_interface);
+			}
+			else
+			{
+				tag_project = new() c_filesystem_tag_project(directory, { _engine_type_halo3, _platform_type_pc_64bit }, mandrill_user_interface);
+			}
 		}
 		if (is_monolithic_tag_file_directory)
 		{

@@ -16,9 +16,9 @@ h_tag_reference::h_tag_reference(const h_tag_reference& source) :
 	tag(nullptr),
 	group(nullptr)
 {
-	if (!source.tag_qualified && source.unqualified_path != nullptr)
+	if (!source.tag_qualified && source.file_path_without_extension != nullptr)
 	{
-		unqualified_path = strdup(source.unqualified_path);
+		file_path_without_extension = strdup(source.file_path_without_extension);
 		group_tag = source.group_tag;
 	}
 }
@@ -27,8 +27,8 @@ h_tag_reference::~h_tag_reference()
 {
 	if (is_unqualified())
 	{
-		untracked_free(unqualified_path);
-		unqualified_path = nullptr;
+		untracked_free(file_path_without_extension);
+		file_path_without_extension = nullptr;
 		group_tag = blofeld::INVALID_TAG;
 	}
 }
@@ -37,8 +37,8 @@ void h_tag_reference::set_tag(h_tag* target_tag)
 {
 	if (is_unqualified())
 	{
-		untracked_free(unqualified_path);
-		unqualified_path = nullptr;
+		untracked_free(file_path_without_extension);
+		file_path_without_extension = nullptr;
 		group_tag = blofeld::INVALID_TAG;
 	}
 
@@ -58,12 +58,12 @@ void h_tag_reference::set_tag(h_tag* target_tag)
 	}
 }
 
-void h_tag_reference::set_unqualified_path(::tag target_group_tag, const char* target_unqualified_path)
+void h_tag_reference::set_unqualified_file_path_without_extension(::tag target_group_tag, const char* target_file_path_without_extension)
 {
 	if (is_unqualified())
 	{
-		untracked_free(unqualified_path);
-		unqualified_path = nullptr;
+		untracked_free(file_path_without_extension);
+		file_path_without_extension = nullptr;
 		group_tag = blofeld::INVALID_TAG;
 	}
 
@@ -72,9 +72,9 @@ void h_tag_reference::set_unqualified_path(::tag target_group_tag, const char* t
 	tag_qualified = false;
 	tag_userdata = false;
 
-	if (target_unqualified_path != nullptr)
+	if (target_file_path_without_extension != nullptr)
 	{
-		unqualified_path = strdup(target_unqualified_path);
+		file_path_without_extension = strdup(target_file_path_without_extension);
 	}
 	group_tag = target_group_tag;
 }
@@ -83,8 +83,8 @@ void h_tag_reference::_set_unqualified_userdata(::tag target_group_tag, void* _u
 {
 	if (is_unqualified())
 	{
-		untracked_free(unqualified_path);
-		unqualified_path = nullptr;
+		untracked_free(file_path_without_extension);
+		file_path_without_extension = nullptr;
 		group_tag = blofeld::INVALID_TAG;
 	}
 
@@ -123,16 +123,16 @@ h_group* h_tag_reference::get_group() const
 	return tag_qualified ? group : nullptr;
 }
 
-const char* h_tag_reference::get_tag_path() const
+const char* h_tag_reference::get_file_path_without_extension() const
 {
 	if (tag_qualified)
 	{
 		ASSERT(tag != nullptr);
-		return tag->tag_filepath;
+		return tag->get_file_path_without_extension();
 	}
-	else if (unqualified_path)
+	else if (file_path_without_extension)
 	{
-		return unqualified_path;
+		return file_path_without_extension;
 	}
 	return "";
 }
@@ -156,20 +156,20 @@ bool h_tag_reference::is_tag_qualified() const
 
 bool h_tag_reference::is_null() const
 {
-	return !(tag_qualified || unqualified_path != nullptr);
+	return !(tag_qualified || file_path_without_extension != nullptr);
 }
 
 bool h_tag_reference::is_unqualified() const
 {
-	return !tag_qualified && !tag_userdata && unqualified_path != nullptr;
+	return !tag_qualified && !tag_userdata && file_path_without_extension != nullptr;
 }
 
 void h_tag_reference::clear()
 {
 	if (is_unqualified())
 	{
-		untracked_free(unqualified_path);
-		unqualified_path = nullptr;
+		untracked_free(file_path_without_extension);
+		file_path_without_extension = nullptr;
 		userdata = nullptr;
 		group_tag = blofeld::INVALID_TAG;
 	}

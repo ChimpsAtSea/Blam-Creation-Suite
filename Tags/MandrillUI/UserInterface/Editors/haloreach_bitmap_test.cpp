@@ -1,4 +1,5 @@
 #include "mandrillui-private-pch.h"
+#include <Generated/high_level_haloreach_xbox360/highlevel-haloreach-xbox360-public-pch.h>
 
 #include <dxgiformat.h>
 #include <GraphicsLib/dds.h>
@@ -19,7 +20,7 @@ c_haloreach_bitmap_test::~c_haloreach_bitmap_test()
 
 void c_haloreach_bitmap_test::draw_ui()
 {
-	ImGui::TextUnformatted(bitmap_struct.tag_filename.c_str());
+	ImGui::TextUnformatted(bitmap_struct.get_file_path());
 
 	static bool _auto_run_restore_bitmap_test = BCS_SUCCEEDED(command_line_has_argument("autorunbitmaptest"));
 	bool auto_run_restore_bitmap_test = _auto_run_restore_bitmap_test;

@@ -30,24 +30,56 @@ c_filesystem_tag_project::c_filesystem_tag_project(
 		const wchar_t* filepath = candidate.filepath;
 		const wchar_t* relative_filepath = candidate.relative_filepath;
 
-		if (strcmp(candidate.group->tag_group.name, "vehicle_group") == 0)
-		{
-			if (h_tag* high_level_tag = try_parse_tag_file(filepath))
-			{
-				BCS_WIDECHAR_TO_CHAR_STACK(relative_filepath, relative_filepath_mb);
+		wchar_t* filepath_without_extension = wcsdup(relative_filepath);
+		filesystem_remove_filepath_extension(filepath_without_extension);
 
-				high_level_tag->tag_filename = filesystem_extract_filepath_filename(relative_filepath_mb);
-				high_level_tag->tag_filepath = relative_filepath_mb;
+		BCS_WIDECHAR_TO_CHAR_STACK(filepath_without_extension, filepath_without_extension_mb);
+
+		c_stopwatch stopwatch;
+		stopwatch.start();
+
+		if (engine_platform_build.engine_type == _engine_type_halo1)
+		{
+
+			h_prototype* prototype;
+			if (BCS_SUCCEEDED(c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(prototype, filepath, engine_platform_build)))
+			{
+				h_tag* high_level_tag = dynamic_cast<h_tag*>(prototype);
+				ASSERT(high_level_tag != nullptr);
+
 
 				candidate.group->associate_tag_instance(*high_level_tag);
-				
+				high_level_tag->generate_filepaths(filepath_without_extension_mb);
+				tags.push_back(high_level_tag);
 			}
+		}
+		if (engine_platform_build.engine_type == _engine_type_halo3)
+		{
+			if (strcmp(candidate.group->tag_group.name, "vehicle_group") == 0)
+			{
+				if (h_tag* high_level_tag = try_parse_tag_file(filepath))
+				{
+
+					candidate.group->associate_tag_instance(*high_level_tag);
+					high_level_tag->generate_filepaths(filepath_without_extension_mb);
+					tags.push_back(high_level_tag);
+				}
+			}
+		}
+
+		//tracked_free(filepath_without_extension);
+
+		stopwatch.stop();
+		float ms = stopwatch.get_miliseconds();
+		if (status_interface)
+		{
+			status_interface->set_status_bar_status(_status_interface_priority_low, 15.0f, "Read tag %S (%.2f ms)", relative_filepath, ms);
 		}
 	}
 	stopwatch.stop();
 	float tag_parse_time = stopwatch.get_miliseconds();
 
-	
+	resolve_unqualified_tags();
 }
 
 c_filesystem_tag_project::~c_filesystem_tag_project()
@@ -175,13 +207,9 @@ BCS_RESULT c_filesystem_tag_project::get_group_by_group_tag(tag group_tag, h_gro
 
 BCS_RESULT c_filesystem_tag_project::get_group_by_file_extension(const char* file_extension, h_group*& group) const
 {
-	char file_extension_buffer[256];
-	strcpy(file_extension_buffer, file_extension);
-	strcat(file_extension_buffer, "_group");
-
 	for (h_group* current_group : groups)
 	{
-		if (strcmp(file_extension_buffer, current_group->tag_group.name) == 0)
+		if (strcmp(file_extension, current_group->tag_group.name) == 0)
 		{
 			group = current_group;
 			return BCS_S_OK;

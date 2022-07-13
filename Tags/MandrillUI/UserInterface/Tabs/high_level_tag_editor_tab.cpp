@@ -174,11 +174,10 @@ void c_high_level_tag_editor_tab::render_impl()
 		finish_pos.y += header_height;
 		draw_list->AddRectFilled(start_pos, finish_pos, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_MENU(1.0f)));
 
-
 		ImVec2 text_pos = start_pos;
 		text_pos.x += 10.0f;
 		text_pos.y += (header_height - line_height) / 2.0f;
-		draw_list->AddText(text_pos, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_TEXT(1.0f)), tag.tag_filepath.c_str());
+		draw_list->AddText(text_pos, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_TEXT(1.0f)), tag.get_file_path());
 
 		finish_pos.x = start_pos.x;
 		ImGui::SetCursorScreenPos(finish_pos);
@@ -929,20 +928,24 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag_reference& tag_refe
 
 	}
 	ImGui::NextColumn();
+	const char* group_name = "(null)";
+	bool is_unknown_group = false;
 	{
 		ImGui::SetNextItemWidth(350);
 
-		const char* group_name = "(null)";
-		bool is_unknown_group = false;
 		if (group != nullptr)
 		{
 			group_name = group->tag_group.name;
 		}
-		else if (group_tag != blofeld::INVALID_TAG)
+		else if (group_tag != blofeld::INVALID_TAG && group_tag != blofeld::ANY_TAG)
 		{
 			is_unknown_group = true;
 			group_name = "(unknown)";
 
+			char* group_name_stack_buffer = trivial_alloca(char, 128);
+			unsigned long bs_group_tab = byteswap(tag_reference.get_group_tag());
+			snprintf(group_name_stack_buffer, 128, "(unknown %.4s)", reinterpret_cast<char*>(&bs_group_tab));
+			group_name = group_name_stack_buffer;
 
 			ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_ERROR_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
 		}
@@ -988,18 +991,27 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag_reference& tag_refe
 	{
 		ImGui::SetNextItemWidth(700);
 
-		const char* tag_instance_name = tag_reference.get_tag_path();
+		const char* tag_instance_name = tag_reference.get_file_path_without_extension();
 		bool is_unqualified = tag_reference.is_unqualified();
 
-		if (is_unqualified)
+		if (is_unqualified && *tag_instance_name != 0)
 		{
 			ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_ERROR_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
 		}
 
-		bool combo_active = ImGui::BeginCombo("##tag_path", tag_instance_name);
+		bool combo_active;
+		if (!is_unqualified)
+		{
+			const char* tag_file_path = tag_reference.get_tag()->get_file_path();
+			combo_active = ImGui::BeginCombo("##tag_path", tag_file_path);
 
+		}
+		else
+		{
+			combo_active = ImGui::BeginCombo("##tag_path", tag_instance_name);
+		}
 
-		if (is_unqualified)
+		if (is_unqualified && *tag_instance_name != 0)
 		{
 			ImGui::PopStyleColor();
 		}
@@ -1027,7 +1039,7 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag_reference& tag_refe
 				h_tag* current_tag = tag_instances[tag_instance_index];
 
 				bool is_selected = tag_reference.get_tag() == current_tag;
-				const char* current_name = current_tag->tag_filepath.c_str();
+				const char* current_name = current_tag->get_file_path();
 				if (ImGui::Selectable(current_name, is_selected) && !is_selected)
 				{
 					tag_reference.set_tag(current_tag);

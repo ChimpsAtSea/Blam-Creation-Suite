@@ -1,7 +1,7 @@
 #include "mandrillui-private-pch.h"
 
 c_high_level_tag_tab::c_high_level_tag_tab(c_tag_project& tag_project, h_tag& tag, c_mandrill_tab& parent) :
-	c_mandrill_tab(tag.tag_filename.c_str(), tag.tag_filepath.c_str(), &parent, false),
+	c_mandrill_tab(tag.get_file_name(), tag.get_file_path(), &parent, false),
 	tag_project(tag_project),
 	tag(tag)
 {
