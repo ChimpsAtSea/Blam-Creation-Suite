@@ -140,8 +140,8 @@ void c_imgui_context_d3d12::init_imgui_impl()
 
 void c_imgui_context_d3d12::deinit_imgui_impl()
 {
-	ImGui_ImplWin32_Shutdown();
 	ImGui_ImplDX12_Shutdown();
+	ImGui_ImplWin32_Shutdown();
 }
 
 void __cdecl c_imgui_context_d3d12::on_window_procedure_callback(HWND window_handle, UINT message, WPARAM wparam, LPARAM lparam)

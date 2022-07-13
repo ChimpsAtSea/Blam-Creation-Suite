@@ -6,6 +6,11 @@ h_tag_reference::h_tag_reference(h_type* parent) :
 	tag(nullptr),
 	group(nullptr)
 {
+	file_path_without_extension = {};
+	userdata = {};
+	group_tag = {};
+	tag = {};
+	group = {};
 
 }
 
@@ -16,6 +21,12 @@ h_tag_reference::h_tag_reference(const h_tag_reference& source) :
 	tag(nullptr),
 	group(nullptr)
 {
+	file_path_without_extension = {};
+	userdata = {};
+	group_tag = {};
+	tag = {};
+	group = {};
+
 	if (!source.tag_qualified && source.file_path_without_extension != nullptr)
 	{
 		file_path_without_extension = strdup(source.file_path_without_extension);
@@ -104,8 +115,12 @@ void h_tag_reference::set_group(h_group* target_group)
 		return;
 	}
 
+	userdata = nullptr;
 	tag = nullptr;
 	group = target_group;
+
+	tag_qualified = false;
+	tag_userdata = false;
 }
 
 void* h_tag_reference::_get_userdata() const
@@ -161,7 +176,7 @@ bool h_tag_reference::is_null() const
 
 bool h_tag_reference::is_unqualified() const
 {
-	return !tag_qualified && !tag_userdata && file_path_without_extension != nullptr;
+	return !tag_qualified;
 }
 
 void h_tag_reference::clear()

@@ -31,11 +31,8 @@ private:
 	{
 		struct
 		{
-			union
-			{
-				const char* file_path_without_extension;
-				void* userdata;
-			};
+			const char* file_path_without_extension;
+			void* userdata;
 			tag group_tag;
 		};
 		struct
