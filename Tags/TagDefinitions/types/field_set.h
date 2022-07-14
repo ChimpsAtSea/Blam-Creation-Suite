@@ -25,6 +25,8 @@ namespace blofeld
 		_tag_field_set_can_memset_to_initialize_bit, // confirmed
 		_tag_field_set_unknown18_bit,
 		_tag_field_set_exist_in_cache_build_bit,
+
+		_tag_field_set_mandrill_has_versioning, // custom
 		k_num_runtime_flags
 	};
 	
@@ -49,5 +51,7 @@ namespace blofeld
 #define SET_CAN_MEMSET_TO_INITIALIZE c_flags<e_tag_field_set_bit>(_tag_field_set_can_memset_to_initialize_bit)
 #define SET_UNKNOWN18 c_flags<e_tag_field_set_bit>(_tag_field_set_unknown18_bit)
 #define SET_EXIST_IN_CACHE_BUILD c_flags<e_tag_field_set_bit>(_tag_field_set_exist_in_cache_build_bit)
+
+#define SET_MANDRILL_VERSIONING c_flags<e_tag_field_set_bit>(_tag_field_set_mandrill_has_versioning)
 
 }

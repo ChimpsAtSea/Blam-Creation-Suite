@@ -78,6 +78,11 @@ c_halo1_tools_pc64_tag_field::c_halo1_tools_pc64_tag_field(c_halo1_tools_pc64_ta
 	default:
 		ASSERT(field_definition.definition_address == 0);
 	}
+	if (field_definition.field_id)
+	{
+		const char* field_id_string = blofeld::field_id_to_string(field_definition.field_id);
+		ASSERT(field_id_string != nullptr);
+	}
 }
 
 c_halo1_tools_pc64_tag_field::~c_halo1_tools_pc64_tag_field()

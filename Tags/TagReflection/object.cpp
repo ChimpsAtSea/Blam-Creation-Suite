@@ -10,3 +10,8 @@ h_prototype::~h_prototype()
 {
 
 }
+
+unsigned long h_prototype::get_version() const
+{
+	return 0;
+}

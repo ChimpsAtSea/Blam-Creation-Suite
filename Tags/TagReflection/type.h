@@ -1,6 +1,7 @@
 #pragma once
 
-class h_type
+class h_type :
+	public t_virtual
 {
 public:
 	h_type(h_type* parent = nullptr);

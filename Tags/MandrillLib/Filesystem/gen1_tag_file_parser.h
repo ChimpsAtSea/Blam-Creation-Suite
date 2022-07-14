@@ -17,7 +17,7 @@ struct s_single_tag_file_header_v1
 static constexpr size_t k_single_tag_file_header_h1 = sizeof(s_single_tag_file_header_v1);
 static_assert(k_single_tag_file_header_h1 == 0x40);
 
-struct c_gen1_tag_file_parse_context
+class c_gen1_tag_file_parse_context
 {
 protected:
 	c_gen1_tag_file_parse_context(
@@ -29,12 +29,14 @@ protected:
 	c_gen1_tag_file_parse_context& operator=(c_gen1_tag_file_parse_context const&) = delete;
 
 public:
+	static constexpr tag k_signature = 'blam';
+
 	BCS_DEBUG_API static BCS_RESULT parse_gen1_tag_file_data(
-		h_prototype*& tag_prototype, 
+		h_tag*& tag_prototype,
 		const wchar_t* tag_file_path, 
 		s_engine_platform_build engine_platform_build);
 	BCS_DEBUG_API static BCS_RESULT parse_gen1_tag_file_data(
-		h_prototype*& tag_prototype,
+		h_tag*& tag_prototype,
 		const void* tag_file_data, 
 		unsigned long long tag_file_data_size, 
 		s_engine_platform_build engine_platform_build);

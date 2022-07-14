@@ -8,6 +8,7 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 	is_monolithic_tag_file_directory(false),
 	is_single_tag_file_directory(false),
 	is_haloce_directory(false),
+	is_halo2_directory(false),
 	is_cache_file_directory(false),
 	entries(),
 	selected_entries(),
@@ -30,6 +31,9 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 	c_fixed_wide_path haloce_filepath = directory;
 	haloce_filepath += L"halo_tag_test.exe";
 
+	c_fixed_wide_path halo2_filepath = directory;
+	halo2_filepath += L"halo2_tag_test.exe";
+
 	c_fixed_wide_path deploy_directory = directory;
 	deploy_directory += L"deploy\\";
 
@@ -49,6 +53,11 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 		{
 			is_haloce_directory = true;
 		}
+		else if (BCS_SUCCEEDED(filesystem_filepath_exists(halo2_filepath)))
+		{
+			is_halo2_directory = true;
+		}
+
 		is_single_tag_file_directory = true;
 		debug_point;
 	}
@@ -521,6 +530,10 @@ void c_tag_project_configurator_tab::create_tag_project()
 			if (is_haloce_directory) // #TODO: hack, fix
 			{
 				tag_project = new() c_filesystem_tag_project(directory, { _engine_type_halo1, _platform_type_pc_64bit }, mandrill_user_interface);
+			}
+			else if(is_halo2_directory) // #TODO: hack, fix
+			{
+				tag_project = new() c_filesystem_tag_project(directory, { _engine_type_halo2, _platform_type_pc_64bit }, mandrill_user_interface);
 			}
 			else
 			{

@@ -395,8 +395,8 @@ void c_blamtoozle_source_generator::write_tag_struct_header(std::stringstream& s
 }
 
 void c_blamtoozle_source_generator::write_persistent_identifier_macro(
-	std::stringstream& stream, 
-	const blofeld::s_tag_persistent_identifier& persistent_identifier, 
+	std::stringstream& stream,
+	const blofeld::s_tag_persistent_identifier& persistent_identifier,
 	const char* code_symbol_name,
 	std::string& persistent_identifier_macro_name)
 {
@@ -431,12 +431,21 @@ void c_blamtoozle_source_generator::write_tag_struct_source(std::stringstream& s
 	{
 		std::string persistent_identifier_macro_name;
 		write_persistent_identifier_macro(
-			stream, 
-			tag_struct_definition.get_persistent_identifier(), 
-			tag_struct_definition.get_code_symbol_name(), 
+			stream,
+			tag_struct_definition.get_persistent_identifier(),
+			tag_struct_definition.get_code_symbol_name(),
 			persistent_identifier_macro_name);
 
-		stream << "\tTAG_STRUCT(" << std::endl;
+		bool is_legacy_struct = tag_struct_definition.is_legacy_struct();
+
+		if (is_legacy_struct)
+		{
+			stream << "\tVERSIONED_TAG_STRUCT(" << std::endl;
+		}
+		else
+		{
+			stream << "\tTAG_STRUCT(" << std::endl;
+		}
 		stream << "\t\t" << tag_struct_definition.get_code_symbol_name() << "," << std::endl;
 		stream << "\t\t" << "\"" << tag_struct_definition.get_display_name() << "\"," << std::endl;
 		stream << "\t\t" << "\"" << tag_struct_definition.get_name() << "\"," << std::endl;
@@ -1075,12 +1084,12 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				}
 				break;
 			}
-			case blofeld::_field_pad:
+			case blofeld::_field_useless_pad:
 			{
 				ASSERT(!write_limits);
 				ASSERT(!write_units);
 
-				stream << "\t\tFIELD_PAD(";
+				stream << "\t\tFIELD_USELESS_PAD(";
 				if (!display_name.empty())
 				{
 					if (!display_name.empty()) stream << "\"" << display_name.c_str() << "\"";
@@ -1094,7 +1103,56 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				{
 					stream << ", "; write_tag_field_flags(stream, string_parser);
 				}
-				stream << ")," << std::endl;
+				stream << "),";
+				if (write_tag)
+				{
+					stream << " // " << field_id_string;
+				}
+				stream << std::endl;
+			}
+			break;
+			case blofeld::_field_pad:
+			{
+				ASSERT(!write_limits);
+				ASSERT(!write_units);
+
+				if (!description.empty() || write_flags || write_tag)
+				{
+					stream << "\t\tFIELD_PAD_EX(";
+					if (!display_name.empty())
+					{
+						stream << "\"" << display_name.c_str() << "\"";
+					}
+					else
+					{
+						stream << "nullptr";
+					}
+					if (!description.empty())
+					{
+						stream << ", \"" << description.c_str() << "\"";
+					}
+					else
+					{
+						stream << ", nullptr";
+					}
+					stream << ", "; write_tag_field_flags(stream, string_parser);
+					stream << ", " << tag_field->get_padding();
+					stream << ", " << field_id_string;
+					stream << ")," << std::endl;
+				}
+				else
+				{
+					stream << "\t\tFIELD_PAD(";
+					if (!display_name.empty())
+					{
+						stream << "\"" << display_name.c_str() << "\"";
+					}
+					else
+					{
+						stream << "nullptr";
+					}
+					stream << ", " << tag_field->get_padding() << ")," << std::endl;
+				}
 			}
 			break;
 			case blofeld::_field_skip:
@@ -1117,7 +1175,12 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				{
 					stream << ", "; write_tag_field_flags(stream, string_parser);
 				}
-				stream << ")," << std::endl;
+				stream << "),";
+				if (write_tag)
+				{
+					stream << " // " << field_id_string;
+				}
+				stream << std::endl;
 			}
 			break;
 			case blofeld::_field_explanation:
@@ -1275,7 +1338,11 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				}
 
 				stream << " },";
-				if (&latest_struct_definition != field_struct_definition)
+				if (strcmp(field_struct_definition->get_name(), "particle_property_color_struct_new_struct_definition") == 0)
+				{
+					debug_point;
+				}
+				if (field_struct_definition->is_legacy_struct())
 				{
 					stream << " // structure_version:" << field_struct_definition->get_structure_version();
 				}
@@ -1632,45 +1699,68 @@ void c_blamtoozle_source_generator::write_tag_field_flags(std::stringstream& str
 	}
 }
 
-#include <set>
-
 void c_blamtoozle_source_generator::coerce_definitions()
 {
-#define coerce_definition(input, output, helpers) for (auto& definition : input) { output.emplace_back(definition); helpers.emplace_back(definition); }
-	coerce_definition(tag_definition_manager.tag_group_definitions, group_definitions, group_definitions_helpers);
-	//coerce_definition(tag_definition_manager.tag_struct_definitions, struct_definitions, struct_definitions_helpers);
-	coerce_definition(tag_definition_manager.tag_block_definitions, block_definitions, block_definitions_helpers);
-	coerce_definition(tag_definition_manager.tag_reference_definitions, tag_reference_definitions, tag_reference_definitions_helpers);
-	coerce_definition(tag_definition_manager.tag_array_definitions, array_definitions, array_definitions_helpers);
-	coerce_definition(tag_definition_manager.string_list_definitions, string_list_definitions, string_list_definitions_helpers);
-	coerce_definition(tag_definition_manager.tag_resource_definitions, resource_definitions, resource_definitions_helpers);
-	coerce_definition(tag_definition_manager.tag_data_definitions, data_definitions, data_definitions_helpers);
-	coerce_definition(tag_definition_manager.tag_api_interop_definitions, api_interop_definitions, api_interop_definitions_helpers);
-	coerce_definition(tag_definition_manager.block_index_custom_search_definitions, block_index_custom_search_definitions, block_index_custom_search_definitions_helpers);
-#undef coerce_definition
+	std::set<c_blamtoozle_tag_group_definition*> _group_definitions;
+	std::set<c_blamtoozle_tag_block_definition*> _block_definitions;
+	std::set<c_blamtoozle_tag_reference_definition*> _tag_reference_definitions;
+	std::set<c_blamtoozle_tag_array_definition*> _array_definitions;
+	std::set<c_blamtoozle_tag_struct_definition*> _struct_definitions;
+	std::set<c_blamtoozle_tag_data_definition*> _data_definitions;
+	std::set<c_blamtoozle_string_list_definition*> _string_list_definitions;
+	std::set<c_blamtoozle_tag_resource_definition*> _resource_definitions;
+	std::set<c_blamtoozle_tag_api_interop_definition*> _api_interop_definitions;
+	std::set<c_blamtoozle_tag_block_index_custom_search_definition*> _block_index_custom_search_definitions;
 
-	std::set<c_blamtoozle_tag_struct_definition*> unique;
+	c_blamtoozle_tag_struct_definition* x;
+#define setup_sets(input, set) for (auto& definition : input) { set.insert(definition); }
+#define setup_sets2(input, set) for (auto& definition : input) { set.insert(&definition->get_latest_struct_definition()); }
+	setup_sets(tag_definition_manager.tag_group_definitions, _group_definitions);
+	setup_sets2(tag_definition_manager.tag_struct_definitions, _struct_definitions);
+	setup_sets(tag_definition_manager.tag_block_definitions, _block_definitions);
+	setup_sets(tag_definition_manager.tag_reference_definitions, _tag_reference_definitions);
+	setup_sets(tag_definition_manager.tag_array_definitions, _array_definitions);
+	setup_sets(tag_definition_manager.string_list_definitions, _string_list_definitions);
+	setup_sets(tag_definition_manager.tag_resource_definitions, _resource_definitions);
+	setup_sets(tag_definition_manager.tag_data_definitions, _data_definitions);
+	setup_sets(tag_definition_manager.tag_api_interop_definitions, _api_interop_definitions);
+	setup_sets(tag_definition_manager.block_index_custom_search_definitions, _block_index_custom_search_definitions);
+#undef setup_sets
 
-	for (c_blamtoozle_tag_struct_definition*& definition : tag_definition_manager.tag_struct_definitions)
-	{
-		c_blamtoozle_tag_struct_definition& latest = definition->get_latest_struct_definition();
-		ASSERT(latest.is_latest_structure_version());
-		unique.insert(&latest);
+	group_definitions.insert(group_definitions.begin(), _group_definitions.begin(), _group_definitions.end());
+	block_definitions.insert(block_definitions.begin(), _block_definitions.begin(), _block_definitions.end());
+	tag_reference_definitions.insert(tag_reference_definitions.begin(), _tag_reference_definitions.begin(), _tag_reference_definitions.end());
+	array_definitions.insert(array_definitions.begin(), _array_definitions.begin(), _array_definitions.end());
+	struct_definitions.insert(struct_definitions.begin(), _struct_definitions.begin(), _struct_definitions.end());
+	data_definitions.insert(data_definitions.begin(), _data_definitions.begin(), _data_definitions.end());
+	string_list_definitions.insert(string_list_definitions.begin(), _string_list_definitions.begin(), _string_list_definitions.end());
+	resource_definitions.insert(resource_definitions.begin(), _resource_definitions.begin(), _resource_definitions.end());
+	api_interop_definitions.insert(api_interop_definitions.begin(), _api_interop_definitions.begin(), _api_interop_definitions.end());
+	block_index_custom_search_definitions.insert(block_index_custom_search_definitions.begin(), _block_index_custom_search_definitions.begin(), _block_index_custom_search_definitions.end());
 
-		//output.emplace_back(definition); 
-		//helpers.emplace_back(definition); 
-	}
-	for (c_blamtoozle_tag_struct_definition* definition : unique)
-	{
-		ASSERT(definition->is_latest_structure_version());
-	}
-	for (c_blamtoozle_tag_struct_definition* definition : unique)
-	{
-		struct_definitions.emplace_back(definition);
-		struct_definitions_helpers.emplace_back(definition);
-	}
+	std::sort(group_definitions.begin(), group_definitions.end(), [](c_blamtoozle_tag_group_definition* a, c_blamtoozle_tag_group_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
+	std::sort(block_definitions.begin(), block_definitions.end(), [](c_blamtoozle_tag_block_definition* a, c_blamtoozle_tag_block_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
+	std::sort(tag_reference_definitions.begin(), tag_reference_definitions.end(), [](c_blamtoozle_tag_reference_definition* a, c_blamtoozle_tag_reference_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
+	std::sort(array_definitions.begin(), array_definitions.end(), [](c_blamtoozle_tag_array_definition* a, c_blamtoozle_tag_array_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
+	std::sort(struct_definitions.begin(), struct_definitions.end(), [](c_blamtoozle_tag_struct_definition* a, c_blamtoozle_tag_struct_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
+	std::sort(data_definitions.begin(), data_definitions.end(), [](c_blamtoozle_tag_data_definition* a, c_blamtoozle_tag_data_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
+	std::sort(string_list_definitions.begin(), string_list_definitions.end(), [](c_blamtoozle_string_list_definition* a, c_blamtoozle_string_list_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
+	std::sort(resource_definitions.begin(), resource_definitions.end(), [](c_blamtoozle_tag_resource_definition* a, c_blamtoozle_tag_resource_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
+	std::sort(api_interop_definitions.begin(), api_interop_definitions.end(), [](c_blamtoozle_tag_api_interop_definition* a, c_blamtoozle_tag_api_interop_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
+	std::sort(block_index_custom_search_definitions.begin(), block_index_custom_search_definitions.end(), [](c_blamtoozle_tag_block_index_custom_search_definition* a, c_blamtoozle_tag_block_index_custom_search_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
 
-	debug_point;
+#define setup_helpers(set, helpers) for (auto& definition : set) { helpers.emplace_back(definition); }
+	setup_helpers(_group_definitions, group_definitions_helpers);
+	setup_helpers(_struct_definitions, struct_definitions_helpers);
+	setup_helpers(_block_definitions, block_definitions_helpers);
+	setup_helpers(_tag_reference_definitions, tag_reference_definitions_helpers);
+	setup_helpers(_array_definitions, array_definitions_helpers);
+	setup_helpers(_string_list_definitions, string_list_definitions_helpers);
+	setup_helpers(_resource_definitions, resource_definitions_helpers);
+	setup_helpers(_data_definitions, data_definitions_helpers);
+	setup_helpers(_api_interop_definitions, api_interop_definitions_helpers);
+	setup_helpers(_block_index_custom_search_definitions, block_index_custom_search_definitions_helpers);
+#undef setup_helpers
 }
 
 void c_blamtoozle_source_generator::clear_is_exported()

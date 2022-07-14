@@ -69,7 +69,7 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 							debug_point;
 
 							const char* _tag_filepath = tag.get_file_path();
-							const char* _permutation_name = permutation_name.c_str();
+							const char* _permutation_name = permutation_name.get_string();
 
 							unsigned long const chunk_count = permutation.chunk_count.value;
 							if (chunk_count == 1)

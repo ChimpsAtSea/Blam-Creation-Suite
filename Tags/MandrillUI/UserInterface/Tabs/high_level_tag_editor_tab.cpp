@@ -133,7 +133,7 @@ void c_high_level_tag_editor_tab::build_tag_struct_fields_instances(
 	unsigned long field_instance_index = 0;
 	for (const s_tag_field* tag_field_iterator = tag_struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++, field_instance_index++)
 	{
-		const s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, tag_project.engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+		const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, tag_project.engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 		s_tag_field_instance& tag_field_instance = tag_struct_fields_instance->tag_field_instances[field_instance_index];
 		tag_field_instance = { &tag_field };
 

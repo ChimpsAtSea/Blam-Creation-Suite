@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-template<> void byteswap_inplace(s_chunk_header& value)
+template<> void byteswap_inplace(s_chunk_header_gen3& value)
 {
 	byteswap_inplace(value.signature);
 	byteswap_inplace(value.metadata);
@@ -9,19 +9,19 @@ template<> void byteswap_inplace(s_chunk_header& value)
 
 c_chunk* const c_chunk::children_list_empty[1] = { nullptr };
 
-c_chunk::c_chunk(tag signature, c_chunk* parent) :
-	parent(parent),
+c_chunk::c_chunk(tag _signature, c_chunk* _parent) :
+	parent(_parent),
 	children(const_cast<c_chunk**>(children_list_empty)),
-	num_children(0),
 	chunk_data(nullptr),
 	chunk_size(0),
 	metadata(),
-	signature(signature),
+	signature(_signature),
 	is_read_only(false),
 	is_big_endian(false),
 	is_data_allocated(false),
 	is_data_valid(false),
-	depth(parent ? parent->depth + 1 : 0)
+	depth(parent ? parent->depth + 1 : 0),
+	num_children(0)
 {
 
 }
@@ -241,30 +241,38 @@ BCS_RESULT c_chunk::get_data(const void*& data, unsigned long& data_size)
 	return BCS_S_OK;
 }
 
+BCS_RESULT c_chunk::read_chunk_header(void* userdata, const void* header_data)
+{
+	const s_chunk_header_gen3* chunk_header_pointer = static_cast<const s_chunk_header_gen3*>(header_data);
+
+	is_big_endian = signature == byteswap(chunk_header_pointer->signature);
+
+	s_chunk_header_gen3 chunk_header = *chunk_header_pointer;
+	chunk_byteswap_inplace(chunk_header);
+	ASSERT(chunk_header.signature == signature);
+
+	metadata = chunk_header.metadata;
+	chunk_size = chunk_header.chunk_size;
+	chunk_data = next_contiguous_pointer(char, chunk_header_pointer);
+	is_data_valid = true;
+
+	return BCS_S_OK;
+}
+
 BCS_RESULT c_chunk::read_chunk(
-	void* userdata, 
-	const void* data, 
-	bool use_read_only, 
+	void* userdata,
+	const void* data,
+	bool use_read_only,
 	bool parse_children)
 {
 	BCS_VALIDATE_ARGUMENT(data);
 
 	BCS_RESULT rs = BCS_S_OK;
 
-	const s_chunk_header* chunk_header_pointer = static_cast<const s_chunk_header*>(data);
-	s_chunk_header chunk_header = *chunk_header_pointer;
-	is_big_endian = signature == byteswap(chunk_header.signature);
-	chunk_byteswap_inplace(chunk_header);
-	tag read_signature = chunk_header.signature;
-	ASSERT(read_signature == signature);
-
-	metadata = chunk_header.metadata;
-	chunk_size = chunk_header.chunk_size;
-
-	const char* chunk_data_ptr = next_contiguous_pointer(char, chunk_header_pointer);
-	chunk_data = chunk_data_ptr;
-
-	is_data_valid = true;
+	if (BCS_FAILED(rs = read_chunk_header(userdata, data)))
+	{
+		return rs;
+	}
 
 	if (!use_read_only)
 	{
@@ -290,6 +298,7 @@ struct s_stack_chunk_list_entry
 	//s_stack_chunk_list_entry* previous;
 	c_chunk* chunk;
 };
+using t_stack_chunk_list_entry = c_chunk;
 #pragma pack(push, pop)
 
 constexpr unsigned long _max_size = 0x80000;
@@ -383,9 +392,12 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 		const void* chunk_data_end = get_chunk_data_end();
 		for (const char* data_position = data_start; data_position < chunk_data_end;)
 		{
-			const s_chunk_header* chunk_header_pointer = reinterpret_cast<const s_chunk_header*>(data_position);
-			unsigned long signature = chunk_byteswap(chunk_header_pointer->signature);
-			unsigned long chunk_size = chunk_byteswap(chunk_header_pointer->chunk_size) + sizeof(s_chunk_header);
+			tag next_signature = *reinterpret_cast<const tag*>(data_position);
+			chunk_byteswap_inplace(next_signature);
+
+			//const s_chunk_header_gen3* chunk_header_pointer = reinterpret_cast<const s_chunk_header_gen3*>(data_position);
+			//unsigned long next_signature = chunk_byteswap(chunk_header_pointer->signature);
+			//unsigned long chunk_size = chunk_byteswap(chunk_header_pointer->chunk_size) + sizeof(s_chunk_header_gen3);
 
 #define CHUNK_CTOR_EX(_signature, t_structure, ...) \
 		case (_signature): \
@@ -394,11 +406,13 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 			t_structure* chunk = new() t_structure(__VA_ARGS__); \
 			chunk_storage = chunk; \
 			chunk->read_chunk(userdata, data_position, use_read_only, t_structure::k_should_parse_children); \
-			data_position += chunk_size; \
+			/*data_position += chunk_size;*/ \
+			data_position = chunk->get_chunk_data_end(); \
 			break; \
 		}
+
 #define CHUNK_CTOR(t_structure, ...) CHUNK_CTOR_EX(t_structure::k_signature, t_structure, __VA_ARGS__)
-			if (signature == c_tag_layout_v3_chunk::k_signature)
+			if (next_signature == c_tag_layout_v3_chunk::k_signature)
 			{
 				s_tag_group_layout_header* tag_group_layout_header = static_cast<s_tag_group_layout_header*>(userdata);
 				ASSERT(tag_group_layout_header != nullptr);
@@ -409,7 +423,7 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 					CHUNK_CTOR_EX(_tag_persist_layout_version_v3, c_tag_layout_v3_chunk, *this);
 				}
 			}
-			else switch (signature)
+			else switch (next_signature)
 			{
 				CHUNK_CTOR(c_tag_block_chunk, *this);
 				CHUNK_CTOR(c_tag_struct_chunk, *this);
@@ -510,7 +524,7 @@ void c_chunk::write_chunk(c_high_level_tag_file_writer& tag_file_writer)
 	fseek(tag_file_writer.file_handle, current_pos, SEEK_SET);
 	fflush(tag_file_writer.file_handle);
 
-	
+
 }
 
 void c_chunk::write_chunk_data(c_high_level_tag_file_writer& tag_file_writer)

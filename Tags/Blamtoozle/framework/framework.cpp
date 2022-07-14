@@ -38,6 +38,11 @@ void cleanup_code_symbol_name(char* buffer)
 		memmove(buffer, buffer + 2, strlen(buffer + 2) + 1);
 	}
 
+	if (strstr(buffer, "c_") == buffer)
+	{
+		memmove(buffer, buffer + 2, strlen(buffer + 2) + 1);
+	}
+
 	if (strstr(buffer, "s_") != buffer)
 	{
 

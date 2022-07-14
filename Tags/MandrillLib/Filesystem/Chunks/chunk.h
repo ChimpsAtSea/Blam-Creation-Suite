@@ -4,7 +4,7 @@ class c_string_data_chunk;
 class c_single_tag_file_reader;
 class c_single_tag_file_reader;
 
-struct s_chunk_header
+struct s_chunk_header_gen3
 {
 	unsigned long signature;
 	unsigned long metadata;
@@ -36,6 +36,7 @@ public:
 	virtual BCS_RESULT get_data(const void*& data, unsigned long& data_size);
 
 	virtual BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children);
+	virtual BCS_RESULT read_chunk_header(void* userdata, const void* header_data);
 	virtual BCS_RESULT read_child_chunks(void* userdata, bool use_read_only, const char* data = nullptr);
 	virtual void write_chunk(c_high_level_tag_file_writer& tag_file_writer);
 	virtual void write_chunk_data(c_high_level_tag_file_writer& tag_file_writer);

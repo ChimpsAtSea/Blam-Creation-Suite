@@ -14,7 +14,7 @@ template<> void byteswap_inplace(s_single_tag_file_header_v1& value)
 	byteswap_inplace(value.signature);
 }
 
-BCS_RESULT calculate_tag_struct_definition_size(
+static BCS_RESULT calculate_tag_struct_definition_size(
 	const blofeld::s_tag_struct_definition& struct_definition,
 	s_engine_platform_build engine_platform_build,
 	unsigned long& tag_struct_definition_size)
@@ -25,7 +25,7 @@ BCS_RESULT calculate_tag_struct_definition_size(
 
 	for (const blofeld::s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
 	{
-		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 
 		unsigned long field_size;
 		switch (tag_field.field_type)
@@ -60,7 +60,7 @@ BCS_RESULT calculate_tag_struct_definition_size(
 	return rs;
 }
 
-bool tag_struct_definition_has_external_data(
+static bool tag_struct_definition_has_external_data(
 	const blofeld::s_tag_struct_definition& struct_definition,
 	s_engine_platform_build engine_platform_build)
 {
@@ -68,7 +68,7 @@ bool tag_struct_definition_has_external_data(
 
 	for (const blofeld::s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
 	{
-		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 
 		unsigned long field_size;
 		switch (tag_field.field_type)
@@ -95,8 +95,8 @@ c_gen1_tag_file_parse_context::c_gen1_tag_file_parse_context(
 	tag_file_header()
 {
 	const s_single_tag_file_header_v1 * tag_file_header_v1_pointer = static_cast<const s_single_tag_file_header_v1*>(_tag_file_data);
-	is_big_endian = tag_file_header_v1_pointer->signature != 'blam';
-	is_little_endian = tag_file_header_v1_pointer->signature == 'blam';
+	is_big_endian = tag_file_header_v1_pointer->signature == ::byteswap(k_signature);
+	is_little_endian = tag_file_header_v1_pointer->signature == k_signature;
 	tag_file_header = byteswap(*tag_file_header_v1_pointer);
 
 	tag_file_data_start = static_cast<const char*>(_tag_file_data);
@@ -146,7 +146,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_struct_data(const char*& 
 
 	for (const blofeld::s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
 	{
-		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 
 		switch (tag_field.field_type)
 		{
@@ -194,8 +194,6 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_struct_data(const char*& 
 		break;
 		case blofeld::_field_string:
 		case blofeld::_field_long_string:
-		case blofeld::_field_string_id:
-		case blofeld::_field_old_string_id:
 		case blofeld::_field_char_integer:
 		case blofeld::_field_short_integer:
 		case blofeld::_field_long_integer:
@@ -290,7 +288,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 
 	for (const blofeld::s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
 	{
-		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 
 		switch (tag_field.field_type)
 		{
@@ -424,7 +422,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 	return rs;
 }
 
-BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_prototype*& tag_prototype, const wchar_t* tag_file_path, s_engine_platform_build engine_platform_build)
+BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_tag*& tag_prototype, const wchar_t* tag_file_path, s_engine_platform_build engine_platform_build)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	void* tag_file_data;
@@ -441,7 +439,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_prototype*&
 	return rs;
 }
 
-BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_prototype*& tag_prototype, const void* tag_file_data, unsigned long long tag_file_data_size, s_engine_platform_build engine_platform_build)
+BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_tag*& tag_prototype, const void* tag_file_data, unsigned long long tag_file_data_size, s_engine_platform_build engine_platform_build)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -450,10 +448,17 @@ BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_prototype*&
 		c_gen1_tag_file_parse_context context = c_gen1_tag_file_parse_context(tag_file_data, tag_file_data_size, engine_platform_build);
 
 		const blofeld::s_tag_group* blofeld_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, context.get_group_tag());
-		tag_prototype = h_prototype::create_high_level_object(blofeld_tag_group->block_definition.struct_definition, engine_platform_build);
+		h_prototype* object_prototype = h_prototype::create_high_level_object(blofeld_tag_group->block_definition.struct_definition, engine_platform_build);
 
+		if (object_prototype == nullptr) // #TODO: correctly pipe a resullt from this
+		{
+			return BCS_E_FAIL;
+		}
+
+		tag_prototype = dynamic_cast<h_tag*>(object_prototype);
 		if (tag_prototype == nullptr) // #TODO: correctly pipe a resullt from this
 		{
+			delete object_prototype;
 			return BCS_E_FAIL;
 		}
 

@@ -48,6 +48,9 @@ extern s_tag_field _##symbol##_fields[]; \
 s_tag_struct_definition symbol = s_tag_struct_definition(pretty_name, name, struct_name, __FILE__, __LINE__, runtime_flags, memory_attributes, persistent_identifier, _##symbol##_fields, __VA_ARGS__); \
 s_tag_field _##symbol##_fields[] =
 
+#define VERSIONED_TAG_STRUCT(symbol, pretty_name, name, struct_name, runtime_flags, memory_attributes, persistent_identifier, ...) \
+	TAG_STRUCT(symbol, pretty_name, name, struct_name, SET_MANDRILL_VERSIONING | runtime_flags, memory_attributes, persistent_identifier, __VA_ARGS__)
+
 #define TAG_DATA(symbol, pretty_name, flags, alignment_bits, maximum_size, ...) \
 s_tag_data_definition symbol = s_tag_data_definition(#symbol, pretty_name, flags, maximum_size, "", __FILE__, __LINE__, alignment_bits );
 

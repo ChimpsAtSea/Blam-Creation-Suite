@@ -1,10 +1,10 @@
 #pragma once
 
-
 #include <Platform\platform-public-pch.h>
 #include <TemplateLibrary\templatelibrary-public-pch.h>
 
 #include <sstream>
+#include <set>
 
 #include <blamlib\blamlib.h>
 #include <TagDefinitions/types/field_id.h>

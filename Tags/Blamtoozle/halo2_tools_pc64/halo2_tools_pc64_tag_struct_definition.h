@@ -83,7 +83,7 @@ static_assert(k_halo2_tools_pc64_tag_struct_definition_size == 80);
 struct s_halo2_tools_pc64_tag_field_struct_definition
 {
 	ptr32 name;
-	tag signature;
+	c_enum<blofeld::e_field_id, unsigned long> signature;
 	ptr32 display_name;
 	ptr32 block_definition_address;
 };

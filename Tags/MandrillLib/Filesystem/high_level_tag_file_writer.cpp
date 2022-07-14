@@ -819,7 +819,7 @@ void c_high_level_tag_file_writer::serialize_string_id(const h_string_id& string
 	c_tag_string_id_chunk& tag_string_id_chunk = *new() c_tag_string_id_chunk(parent_chunk);
 	parent_chunk.add_child(tag_string_id_chunk);
 
-	tag_string_id_chunk.set_string(string_id.c_str());
+	tag_string_id_chunk.set_string(string_id.get_string());
 
 	
 }

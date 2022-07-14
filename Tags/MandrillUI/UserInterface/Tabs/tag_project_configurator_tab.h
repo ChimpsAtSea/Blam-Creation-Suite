@@ -58,6 +58,7 @@ protected:
 	bool is_monolithic_tag_file_directory : 1;
 	bool is_single_tag_file_directory : 1;
 	bool is_haloce_directory : 1;
+	bool is_halo2_directory : 1;
 	bool is_cache_file_directory : 1;
 	std::vector<s_cache_file_list_entry> entries;
 	std::vector<s_cache_file_list_entry> selected_entries;

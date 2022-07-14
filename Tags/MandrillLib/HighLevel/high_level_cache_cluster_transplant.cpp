@@ -457,7 +457,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 					c_fixed_string_128 buffer;
 					buffer.format("unknown_string_id:0x%08X", string_id);
 
-					string_id_storage = buffer;
+					string_id_storage.set_string(buffer);
 
 					//return rs;
 				}
@@ -1299,7 +1299,7 @@ public:
 						{
 							c_fixed_string_128 buffer;
 							buffer.format("hashed_string_id:0x%08X", stringid);
-							string_id_storage = buffer;
+							string_id_storage.set_string(buffer);
 						}
 					}
 				}

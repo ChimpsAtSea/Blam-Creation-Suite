@@ -38,19 +38,19 @@ c_filesystem_tag_project::c_filesystem_tag_project(
 		c_stopwatch stopwatch;
 		stopwatch.start();
 
+		h_tag* tag_prototype = nullptr;
 		if (engine_platform_build.engine_type == _engine_type_halo1)
 		{
-
-			h_prototype* prototype;
-			if (BCS_SUCCEEDED(c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(prototype, filepath, engine_platform_build)))
+			if (BCS_FAILED(c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(tag_prototype, filepath, engine_platform_build)))
 			{
-				h_tag* high_level_tag = dynamic_cast<h_tag*>(prototype);
-				ASSERT(high_level_tag != nullptr);
-
-
-				candidate.group->associate_tag_instance(*high_level_tag);
-				high_level_tag->generate_filepaths(filepath_without_extension_mb);
-				tags.push_back(high_level_tag);
+				continue;
+			}
+		}
+		if (engine_platform_build.engine_type == _engine_type_halo2)
+		{
+			if (BCS_FAILED(c_gen2_tag_file_parse_context::parse_gen2_tag_file_data(tag_prototype, filepath, engine_platform_build)))
+			{
+				continue;
 			}
 		}
 		if (engine_platform_build.engine_type == _engine_type_halo3)
@@ -65,6 +65,12 @@ c_filesystem_tag_project::c_filesystem_tag_project(
 					tags.push_back(high_level_tag);
 				}
 			}
+		}
+		if (tag_prototype != nullptr)
+		{
+			candidate.group->associate_tag_instance(*tag_prototype);
+			tag_prototype->generate_filepaths(filepath_without_extension_mb);
+			tags.push_back(tag_prototype);
 		}
 
 		//tracked_free(filepath_without_extension);

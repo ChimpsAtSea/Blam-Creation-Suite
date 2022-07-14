@@ -58,4 +58,6 @@ public:
 	unsigned long long padding;
 	unsigned long long skip_length;
 	const char* explanation;
+
+	blofeld::e_field_id field_id;
 };
