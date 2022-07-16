@@ -3,6 +3,27 @@
 class c_gen2_pseudo_tag_data_chunk;
 class c_gen2_tag_block_field_data_chunk;
 
+enum e_tag_file_version
+{
+	_tag_file_version0,
+	_tag_file_version1,
+	_tag_file_version2,
+	_tag_file_version3,
+	_tag_file_version4,
+};
+
+enum e_tag_file_version_signature
+{
+	_tag_file_version_signature0 = 'blam',
+	_tag_file_version_signature1 = 'ambl',
+	_tag_file_version_signature2 = 'LAMB',
+	_tag_file_version_signature3 = 'MLAB',
+	_tag_file_version_signature4 = 'BLM!',
+};
+
+#define k_tag_block_field_set_definition 'tbfd'
+#define k_tag_struct_field_set_definition 'tsdf'
+
 class c_gen2_tag_file_parse_context
 {
 protected:
@@ -18,11 +39,6 @@ public:
 	friend c_gen2_pseudo_tag_data_chunk;
 	friend c_gen2_tag_block_field_data_chunk;
 
-	static constexpr tag k_signature = 'BLM!';
-	static constexpr tag k_signature2 = 'MLAB';
-	static constexpr tag k_signature3 = 'LAMB';
-	static constexpr tag k_signature4 = 'ambl';
-
 	BCS_DEBUG_API static BCS_RESULT parse_gen2_tag_file_data(
 		h_tag*& tag_prototype,
 		const wchar_t* tag_file_path, 
@@ -34,14 +50,15 @@ public:
 		s_engine_platform_build engine_platform_build);
 
 protected:
-	BCS_RESULT calculate_tag_struct_definition_size(
-		const blofeld::s_tag_struct_definition& struct_definition,
-		s_engine_platform_build engine_platform_build,
-		unsigned long& tag_struct_definition_size,
-		unsigned long tag_struct_version) const;
+	//BCS_RESULT calculate_tag_struct_definition_size(
+	//	const blofeld::s_tag_struct_definition& struct_definition,
+	//	s_engine_platform_build engine_platform_build,
+	//	unsigned long& tag_struct_definition_size,
+	//	unsigned long tag_struct_version) const;
 	BCS_RESULT calculate_tag_struct_definition_size2(
 		const blofeld::s_tag_struct_definition& tag_struct_definition,
 		const char* struct_data_position,
+		const char* struct_data_expected_end,
 		const char* external_data_position,
 		unsigned long& tag_struct_size,
 		unsigned long& tag_struct_external_size,
@@ -49,10 +66,12 @@ protected:
 	BCS_RESULT calculate_tag_struct_definition_size_iterator(
 		const blofeld::s_tag_struct_definition& tag_struct_definition,
 		const char*& struct_data_position,
+		const char* struct_data_expected_end,
 		const char*& external_data_position,
 		unsigned long tag_struct_version) const;
 	BCS_RESULT traverse_tag_struct(
 		const char*& struct_data_position,
+		const char* struct_data_expected_end,
 		const char*& external_data_position,
 		h_prototype& prototype,
 		unsigned long struct_version) const;
@@ -64,6 +83,8 @@ protected:
 
 	bool is_big_endian : 1;
 	bool is_little_endian : 1;
+
+	e_tag_file_version tag_file_version;
 
 	const char* tag_file_data_start;
 	const char* tag_file_structure_data_start;

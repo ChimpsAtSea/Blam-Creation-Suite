@@ -79,9 +79,9 @@ namespace blofeld
 #define tag_field_version_all ULONG_MAX
 #define tag_field_version_max ( ULONG_MAX - 1 )
 
-#define tag_field_iterator_versioning(_tag_struct_ref, _tag_field_iterator, _engine_platform_build, struct_version) \
+#define tag_field_iterator_versioning(_tag_struct_definition_ref, _tag_field_iterator, _engine_platform_build, struct_version) \
 	*_tag_field_iterator; \
-	if (tag_struct_definition.runtime_flags.test(blofeld::_tag_field_set_mandrill_has_versioning)) \
+	if (_tag_struct_definition_ref.runtime_flags.test(blofeld::_tag_field_set_mandrill_has_versioning)) \
 	{ \
 		unsigned long _field_skip_count; \
 		if (execute_tag_field_versioning(*_tag_field_iterator, _engine_platform_build, struct_version, _field_skip_count)) \
