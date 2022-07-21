@@ -31,7 +31,7 @@ union pixel32
 {
 	struct
 	{
-		byte : 8;
+		byte alpha;
 		byte red;
 		byte green;
 		byte blue;

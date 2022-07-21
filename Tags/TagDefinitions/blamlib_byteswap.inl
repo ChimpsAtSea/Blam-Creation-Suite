@@ -199,5 +199,14 @@ template<> BCS_DEBUG_API void byteswap_inplace<c_tag_resource_fixup>(c_tag_resou
 
 template<> BCS_DEBUG_API void byteswap_inplace<s_tag_d3d_vertex_buffer>(s_tag_d3d_vertex_buffer& value)
 {
-	byteswap_inplace(value.data);
+	byteswap_inplace(value.type);
+	byteswap_inplace(value.stride);
+	byteswap_inplace(value.count);
+	byteswap_inplace(value.actual_vertex_offset_bytes);
+	byteswap_inplace(value.default_vertex_offset_bytes);
+	byteswap_inplace(value.unknownC);
+	byteswap_inplace(value.unknown10);
+	byteswap_inplace(value.hardware_format);
+	byteswap_inplace(value.unknown18);
+	byteswap_inplace(value.unknown1C);
 }

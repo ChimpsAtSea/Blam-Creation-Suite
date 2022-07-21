@@ -103,4 +103,5 @@ namespace blofeld
 	BCS_DEBUG_API BCS_RESULT field_to_string(e_field field, const char*& field_string);
 	BCS_DEBUG_API BCS_RESULT tag_field_type_to_field(const char* tag_field_type, e_field& field);
 	BCS_DEBUG_API BCS_RESULT byteswap_field_data_inplace(e_field field, void* data, s_engine_platform_build engine_platform_build);
+
 }

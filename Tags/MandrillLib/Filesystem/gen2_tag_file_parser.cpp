@@ -315,9 +315,9 @@ BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size_i
 		{
 			s_tag_d3d_vertex_buffer d3d_vertex_buffer = advance_read(s_tag_d3d_vertex_buffer);
 
-			uint32_t checksum = 0;
-			for (auto x : d3d_vertex_buffer.data) checksum += (unsigned long)x;
-			ASSERT(checksum == 0); // #TODO: Map this out
+			//uint32_t checksum = 0;
+			//for (auto x : d3d_vertex_buffer.data) checksum += (unsigned long)x;
+			//ASSERT(checksum == 0); // #TODO: Map this out
 
 			debug_point;
 		}
@@ -779,13 +779,17 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_struct(
 		break;
 		case blofeld::_field_vertex_buffer:
 		{
-			//h_block* tag_field_block_data = prototype.get_field_data<h_block>(tag_field);
-			//ASSERT(tag_field_block_data != nullptr);
 			s_tag_d3d_vertex_buffer d3d_vertex_buffer = advance_read(s_tag_d3d_vertex_buffer);
 
-			uint32_t checksum = 0;
-			for (auto x : d3d_vertex_buffer.data) checksum += (unsigned long)x;
-			ASSERT(checksum == 0); // #TODO: Map this out
+			if (d3d_vertex_buffer.type || d3d_vertex_buffer.stride || d3d_vertex_buffer.count)
+			{
+				debug_point;
+			}
+
+			if (d3d_vertex_buffer.count)
+			{
+				debug_point;
+			}
 
 			debug_point;
 		}

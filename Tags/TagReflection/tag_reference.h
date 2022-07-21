@@ -26,6 +26,7 @@ public:
 
 private:
 	bool tag_qualified : 1;
+	bool group_qualified : 1;
 	bool tag_userdata : 1;
 	union
 	{

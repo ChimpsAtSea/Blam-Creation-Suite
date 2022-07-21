@@ -82,10 +82,17 @@ c_filesystem_tag_project::c_filesystem_tag_project(
 			status_interface->set_status_bar_status(_status_interface_priority_low, 15.0f, "Read tag %S (%.2f ms)", relative_filepath, ms);
 		}
 	}
+
+	resolve_unqualified_tags();
+
 	stopwatch.stop();
 	float tag_parse_time = stopwatch.get_miliseconds();
 
-	resolve_unqualified_tags();
+	if (status_interface)
+	{
+		status_interface->wait_status_bar_idle();
+		status_interface->set_status_bar_status(_status_interface_priority_low, 15.0f, "Finished reading tags (%.2f ms)", tag_parse_time);
+	}
 }
 
 c_filesystem_tag_project::~c_filesystem_tag_project()

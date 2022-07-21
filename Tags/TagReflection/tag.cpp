@@ -25,7 +25,7 @@ h_tag::h_tag(h_type* parent) :
 
 h_tag::~h_tag()
 {
-	untracked_free(relative_file_path);
+	trivial_free(relative_file_path);
 	untracked_free(relative_file_path_without_extension);
 	untracked_free(filesystem_path);
 }
@@ -65,7 +65,7 @@ void h_tag::generate_filepaths(const char* _relative_filepath_without_extension,
 {
 	const blofeld::s_tag_group& tag_group = get_blofeld_group_definition();
 
-	untracked_free(relative_file_path);
+	trivial_free(relative_file_path);
 	untracked_free(relative_file_path_without_extension);
 	untracked_free(filesystem_path);
 

@@ -3,6 +3,7 @@
 h_tag_reference::h_tag_reference(h_type* parent) :
 	h_type(parent),
 	tag_qualified(false),
+	group_qualified(false),
 	tag(nullptr),
 	group(nullptr)
 {
@@ -17,6 +18,7 @@ h_tag_reference::h_tag_reference(h_type* parent) :
 h_tag_reference::h_tag_reference(const h_tag_reference& source) :
 	h_type(parent),
 	tag_qualified(false),
+	group_qualified(false),
 	tag_userdata(false),
 	tag(nullptr),
 	group(nullptr)
@@ -58,6 +60,7 @@ void h_tag_reference::set_tag(h_tag* target_tag)
 		tag = target_tag;
 		group = target_tag->group;
 		tag_qualified = true;
+		group_qualified = true;
 		tag_userdata = false;
 	}
 	else
@@ -65,6 +68,7 @@ void h_tag_reference::set_tag(h_tag* target_tag)
 		tag = nullptr;
 		//group = nullptr; // #NOTE: don't null the group to keep the tag reference data intact
 		tag_qualified = false;
+		group_qualified = false;
 		tag_userdata = false;
 	}
 }
@@ -81,6 +85,7 @@ void h_tag_reference::set_unqualified_file_path_without_extension(::tag target_g
 	tag = nullptr;
 	group = nullptr;
 	tag_qualified = false;
+	group_qualified = false;
 	tag_userdata = false;
 
 	if (target_file_path_without_extension != nullptr)
@@ -102,6 +107,7 @@ void h_tag_reference::_set_unqualified_userdata(::tag target_group_tag, void* _u
 	tag = nullptr;
 	group = nullptr;
 	tag_qualified = false;
+	group_qualified = false;
 	tag_userdata = true;
 
 	userdata = _userdata;
@@ -120,6 +126,7 @@ void h_tag_reference::set_group(h_group* target_group)
 	group = target_group;
 
 	tag_qualified = false;
+	group_qualified = true;
 	tag_userdata = false;
 }
 
@@ -135,7 +142,7 @@ h_tag* h_tag_reference::get_tag() const
 
 h_group* h_tag_reference::get_group() const
 {
-	return tag_qualified ? group : nullptr;
+	return group_qualified ? group : nullptr;
 }
 
 const char* h_tag_reference::get_file_path_without_extension() const
@@ -154,7 +161,7 @@ const char* h_tag_reference::get_file_path_without_extension() const
 
 tag h_tag_reference::get_group_tag() const
 {
-	if (tag_qualified)
+	if (group_qualified)
 	{
 		return group->tag_group.group_tag;
 	}
@@ -192,5 +199,6 @@ void h_tag_reference::clear()
 	tag = nullptr;
 	group = nullptr;
 	tag_qualified = false;
+	group_qualified = false;
 	tag_userdata = false;
 }
