@@ -2,7 +2,7 @@
 
 #include <blamlib/cseries/cseries.h>
 
-template <typename t_element, const long k_maximum_count>
+template <typename t_element, const int k_maximum_count>
 class c_static_array final
 {
 	static_assert(k_maximum_count > 0);
@@ -29,7 +29,7 @@ public:
 	{
 	}
 
-	long get_count() const
+	int get_count() const
 	{
 		return k_maximum_count;
 	}
@@ -94,5 +94,5 @@ public:
 	}
 };
 
-template <typename t_element, const long k_maximum_count>
+template <typename t_element, const int k_maximum_count>
 using s_static_array = c_static_array<t_element, k_maximum_count>;

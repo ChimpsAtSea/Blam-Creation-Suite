@@ -10,8 +10,8 @@ namespace halo4
 //		struct s_cache_file_header : ::s_cache_file_header
 //		{
 //			intptr64_t tags_header_address;
-//			long tag_buffer_offset;
-//			long total_tags_size;
+//			int32_t tag_buffer_offset;
+//			int32_t total_tags_size;
 //			c_static_string<256> source_file;
 //			c_static_string<32> build;
 //			c_enum_no_init<gen3::e_scenario_type, short> scenario_type;
@@ -20,49 +20,49 @@ namespace halo4
 //			bool tracked_build;
 //			bool unknown142; // something involved with packages
 //			c_flags_no_init<gen3::e_cache_file_header_bit, unsigned char> header_flags;
-//			long unknown144;
-//			long unknown148;
-//			long unknown14C;
-//			long unknown150;
-//			long unknown154;
-//			long string_id_index_buffer_count;
-//			long string_id_string_storage_size;
-//			long string_id_index_buffer_offset;
-//			long string_id_string_storage_offset;
+//			int32_t unknown144;
+//			int32_t unknown148;
+//			int32_t unknown14C;
+//			int32_t unknown150;
+//			int32_t unknown154;
+//			int32_t string_id_index_buffer_count;
+//			int32_t string_id_string_storage_size;
+//			int32_t string_id_index_buffer_offset;
+//			int32_t string_id_string_storage_offset;
 //			c_flags_no_init<gen3::e_cache_file_shared_file_type, unsigned char> shared_file_type_flags; // see cached_map_file_dependencies_loaded for more information
 //			gen3::s_file_last_modification_date timestamp; // see cached_map_file_dependencies_loaded for more information
 //			gen3::s_file_last_modification_date scenario_type_timestamps[3]; // see cached_map_file_dependencies_loaded for more information
 //			c_static_string<32> name;
-//			long unknown1AC;
+//			int32_t unknown1AC;
 //			c_static_string<256> scenario_path;
-//			long minor_version;
-//			long file_count;
-//			long file_table_offset;
-//			long file_table_length;
-//			long file_table_indices_offset;
+//			int32_t minor_version;
+//			int32_t file_count;
+//			int32_t file_table_offset;
+//			int32_t file_table_length;
+//			int32_t file_table_indices_offset;
 //
-//			unsigned long tag_remap_count;
-//			unsigned long tag_remap_address;
-//			unsigned long dlc_tag_remap_count;
-//			unsigned long dlc_tag_remap_address;
+//			uint32_t tag_remap_count;
+//			uint32_t tag_remap_address;
+//			uint32_t dlc_tag_remap_count;
+//			uint32_t dlc_tag_remap_address;
 //
-//			long unknown2D4;
+//			int32_t unknown2D4;
 //			c_static_string<32> unknown2D8;
 //			intptr64_t expected_base_address;
-//			unsigned long xdk_version;
+//			uint32_t xdk_version;
 //			c_basic_buffer64<void> tag_post_link_buffer;
 //			c_basic_buffer64<void> tag_language_dependent_read_only_buffer;
 //			c_basic_buffer64<void> tag_language_dependent_read_write_buffer;
 //			c_basic_buffer64<void> tag_language_neutral_read_write_buffer;
 //			c_basic_buffer64<void> tag_language_neutral_write_combined_buffer;
 //			c_basic_buffer64<void> tag_language_neutral_read_only_buffer;
-//			long unknown330;
-//			long unknown334;
-//			long unknown478;
-//			long unknown338;
+//			int32_t unknown330;
+//			int32_t unknown334;
+//			int32_t unknown478;
+//			int32_t unknown338;
 //			gen3::s_network_http_request_hash hash;
 //			gen3::s_rsa_signature rsa;
-//			s_static_array<long, gen3::k_num_cache_file_section> offset_masks;
+//			s_static_array<int32_t, gen3::k_num_cache_file_section> offset_masks;
 //			s_static_array<gen3::s_cache_file_section_file_bounds, gen3::k_num_cache_file_section> section_file_bounds;
 //			//unsigned int unknown4AC;
 //
@@ -77,8 +77,8 @@ namespace halo4
 //
 //			//char gap1D728[16];
 //
-//			//unsigned long late_binding_tag_reference_fixup_info_count;
-//			//unsigned long late_binding_tag_reference_fixup_info_address;
+//			//uint32_t late_binding_tag_reference_fixup_info_count;
+//			//uint32_t late_binding_tag_reference_fixup_info_address;
 //
 //			//char gap1D740[2236];
 //			
@@ -90,7 +90,7 @@ namespace halo4
 //
 //
 //		
-//		static constexpr long k_cache_file_header_size = sizeof(s_cache_file_header);
+//		static constexpr int32_t k_cache_file_header_size = sizeof(s_cache_file_header);
 //		static_assert(k_cache_file_header_size == 0x1E000);
 	}
 	
@@ -100,8 +100,8 @@ namespace halo4
 		struct s_cache_file_header : ::s_cache_file_header
 		{
 			uintptr32_t tags_header_address;
-			long tag_buffer_offset;
-			long total_tags_size;
+			int32_t tag_buffer_offset;
+			int32_t total_tags_size;
 			c_static_string<256> source_file;
 			c_static_string<32> build;
 			c_enum_no_init<gen3::e_scenario_type, short> scenario_type;
@@ -110,49 +110,49 @@ namespace halo4
 			bool tracked_build;
 			bool unknown142; // something involved with packages
 			c_flags_no_init<gen3::e_cache_file_header_bit, unsigned char> header_flags;
-			long unknown144;
-			long unknown148;
-			long unknown14C;
-			long unknown150;
-			long unknown154;
-			long string_id_index_buffer_count;
-			long string_id_string_storage_size;
-			long string_id_index_buffer_offset;
-			long string_id_string_storage_offset;
+			int32_t unknown144;
+			int32_t unknown148;
+			int32_t unknown14C;
+			int32_t unknown150;
+			int32_t unknown154;
+			int32_t string_id_index_buffer_count;
+			int32_t string_id_string_storage_size;
+			int32_t string_id_index_buffer_offset;
+			int32_t string_id_string_storage_offset;
 			c_flags_no_init<gen3::e_cache_file_shared_file_type, unsigned char> shared_file_type_flags; // see cached_map_file_dependencies_loaded for more information
 			gen3::s_file_last_modification_date timestamp; // see cached_map_file_dependencies_loaded for more information
 			gen3::s_file_last_modification_date scenario_type_timestamps[3]; // see cached_map_file_dependencies_loaded for more information
 			c_static_string<32> name;
-			long unknown1AC;
+			int32_t unknown1AC;
 			c_static_string<256> relative_path;
-			long minor_version;
-			long file_count;
-			long file_table_offset;
-			long file_table_length;
-			long file_table_indices_offset;
+			int32_t minor_version;
+			int32_t file_count;
+			int32_t file_table_offset;
+			int32_t file_table_length;
+			int32_t file_table_indices_offset;
 
-			unsigned long tag_remap_count;
-			unsigned long tag_remap_address;
-			unsigned long dlc_tag_remap_count;
-			unsigned long dlc_tag_remap_address;
+			uint32_t tag_remap_count;
+			uint32_t tag_remap_address;
+			uint32_t dlc_tag_remap_count;
+			uint32_t dlc_tag_remap_address;
 
-			long unknown2D4;
+			int32_t unknown2D4;
 			c_static_string<32> unknown2D8;
 			uintptr32_t expected_base_address;
-			unsigned long xdk_version;
+			uint32_t xdk_version;
 			c_basic_buffer32<void> tag_post_link_buffer;
 			c_basic_buffer32<void> tag_language_dependent_read_only_buffer;
 			c_basic_buffer32<void> tag_language_dependent_read_write_buffer;
 			c_basic_buffer32<void> tag_language_neutral_read_write_buffer;
 			c_basic_buffer32<void> tag_language_neutral_write_combined_buffer;
 			c_basic_buffer32<void> tag_language_neutral_read_only_buffer;
-			long unknown330;
-			long unknown334;
-			long unknown338;
-			long unknown33C;
+			int32_t unknown330;
+			int32_t unknown334;
+			int32_t unknown338;
+			int32_t unknown33C;
 			gen3::s_network_http_request_hash hash;
 			gen3::s_rsa_signature rsa;
-			s_static_array<long, gen3::k_num_cache_file_section> offset_masks;
+			s_static_array<int32_t, gen3::k_num_cache_file_section> offset_masks;
 			s_static_array<gen3::s_cache_file_section_file_bounds, gen3::k_num_cache_file_section> section_file_bounds;
 			unsigned int unknown4AC;
 			unsigned int unknown4B0;
@@ -170,10 +170,10 @@ namespace halo4
 
 			char gap1D728[16];
 
-			unsigned long late_binding_tag_reference_fixup_info_count;
-			unsigned long late_binding_tag_reference_fixup_info_address;
-			unsigned long cache_file_fixups_count;
-			unsigned long cache_file_fixups_address;
+			uint32_t late_binding_tag_reference_fixup_info_count;
+			uint32_t late_binding_tag_reference_fixup_info_address;
+			uint32_t cache_file_fixups_count;
+			uint32_t cache_file_fixups_address;
 
 			char gap1D748[2228];
 			tag footer_signature;
@@ -255,14 +255,14 @@ namespace halo4
 		static_assert(offsetof(s_cache_file_header, s_cache_file_header::gap1D748                                                 		) == 0x0001D748);
 		static_assert(offsetof(s_cache_file_header, s_cache_file_header::footer_signature                                         		) == 0x0001DFFC);
 		
-		static constexpr long k_cache_file_header_size2 = offsetof(s_cache_file_header, s_cache_file_header::footer_signature) + 4;
-		static constexpr long k_cache_file_header_size = sizeof(s_cache_file_header);
+		static constexpr int32_t k_cache_file_header_size2 = offsetof(s_cache_file_header, s_cache_file_header::footer_signature) + 4;
+		static constexpr int32_t k_cache_file_header_size = sizeof(s_cache_file_header);
 		//static_assert(k_cache_file_header_size == 0x1E000);
 
 		struct s_cache_file_tag_group
 		{
 			tag group_tags[3];
-			unsigned long name;
+			uint32_t name;
 		};
 		static_assert(sizeof(s_cache_file_tag_group) == 0x10);
 
@@ -270,27 +270,27 @@ namespace halo4
 		{
 			unsigned short group_index;
 			unsigned short identifier;
-			unsigned long address;
+			uint32_t address;
 		};
 		static_assert(sizeof(s_cache_file_tag_instance) == 0x8);
 
 		struct s_cache_file_tag_global_instance
 		{
-			unsigned long group_tag;
-			long datum_index;
+			uint32_t group_tag;
+			int32_t datum_index;
 		};
 		static_assert(sizeof(s_cache_file_tag_global_instance) == 0x8);
 
 		struct s_cache_file_tag_interop
 		{
 			dword page_address;
-			long type_index;
+			int32_t type_index;
 		};
 		static_assert(sizeof(s_cache_file_tag_interop) == 0x8);
 
 		struct s_section
 		{
-			unsigned long count = 0;
+			uint32_t count = 0;
 			intptr32_t address = 0;
 		};
 		static_assert(sizeof(s_section) == 0x8);
@@ -301,9 +301,9 @@ namespace halo4
 			s_section tag_instances; // s_cache_file_tag_instance
 			s_section global_tag_instances; // s_cache_file_tag_global_instance
 			s_section tag_interop_table; // s_cache_file_tag_interop
-			long unknown20;
+			int32_t unknown20;
 			dword checksum;
-			unsigned long tags_signature;
+			uint32_t tags_signature;
 		};
 		static constexpr size_t k_cache_file_tags_header = sizeof(s_cache_file_tags_header);
 		static_assert(k_cache_file_tags_header == 0x2C);

@@ -73,9 +73,9 @@ s_tag_array_definition symbol = { #symbol, pretty_name, __FILE__, __LINE__, [](s
 s_tag_reference_definition tag_reference_symbolname = s_tag_reference_definition(__VA_ARGS__)
 
 #define TAG_REFERENCE_GROUP(tag_reference_symbolname, ...) \
-extern unsigned long CONCAT(tag_reference_symbolname, _tag_groups)[]; \
+extern uint32_t CONCAT(tag_reference_symbolname, _tag_groups)[]; \
 s_tag_reference_definition tag_reference_symbolname = s_tag_reference_definition(INVALID_TAG, CONCAT(tag_reference_symbolname, _tag_groups), __VA_ARGS__); \
-unsigned long CONCAT(tag_reference_symbolname, _tag_groups)[] =
+uint32_t CONCAT(tag_reference_symbolname, _tag_groups)[] =
 
 #define STRINGS(name) \
 blofeld::s_string_entry name##_strings[] = 

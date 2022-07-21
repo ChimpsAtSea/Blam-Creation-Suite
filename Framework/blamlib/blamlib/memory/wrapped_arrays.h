@@ -8,7 +8,7 @@ template <typename t_array, typename t_element>
 class c_array_operator_interface
 {
 public:
-	long get_count()
+	int get_count()
 	{
 		return reinterpret_cast<t_array *>(this)->get_count();
 	}
@@ -23,12 +23,12 @@ public:
 		return reinterpret_cast<t_array *>(this)->end();
 	}
 
-	bool valid_index(long index)
+	bool valid_index(int index)
 	{
 		return VALID_INDEX(index, get_count());
 	}
 
-	t_element *get_element(long index)
+	t_element *get_element(int index)
 	{
 		blamlib_assert(valid_index(index));
 		return begin() + index;
@@ -40,7 +40,7 @@ class c_resizeable_array_operator_interface :
 	public c_array_operator_interface<t_array, t_element>
 {
 public:
-	long new_element_index()
+	int new_element_index()
 	{
 		return reinterpret_cast<t_array *>(this)->new_element_index();
 	}
@@ -59,7 +59,7 @@ class c_wrapped_array_no_init
 {
 protected:
 	t_element *m_elements;
-	long m_length;
+	int m_length;
 
 public:
 	// TODO
@@ -71,7 +71,7 @@ class c_wrapped_array :
 	public c_array_operator_interface<c_wrapped_array_no_init<t_element>, t_element>
 {
 public:
-	c_wrapped_array(t_element *elements, long length)
+	c_wrapped_array(t_element *elements, int length)
 	{
 		this->m_elements = elements;
 		this->m_length = length;
@@ -83,12 +83,12 @@ class c_wrapped_flags
 	// TODO
 };
 
-template <typename t_element, const long k_maximum_count>
+template <typename t_element, const int k_maximum_count>
 class c_static_sized_dynamic_array
 {
 protected:
 	c_static_array<t_element, k_maximum_count> m_storage;
-	long m_count;
+	int m_count;
 
 public:
 	c_static_sized_dynamic_array() :
@@ -97,13 +97,13 @@ public:
 	{
 	}
 
-	void resize(long new_size)
+	void resize(int new_size)
 	{
 		blamlib_assert(new_size >= 0 && new_size < m_storage.get_count());
 		m_count = new_size;
 	}
 
-	long new_element_index()
+	int new_element_index()
 	{
 		auto new_index = m_count;
 
@@ -128,7 +128,7 @@ public:
 		m_storage.set_all(element);
 	}
 
-	long get_count() const
+	int get_count() const
 	{
 		return m_count;
 	}
@@ -161,7 +161,7 @@ private:
 	t_element *m_elements;
 	dword m_size;
 #ifdef _WIN64
-	long : 32;
+	int : 32;
 #endif
 
 public:
@@ -200,7 +200,7 @@ public:
 		m_size -= offset;
 	}
 
-	t_element *get_range(long offset, dword size)
+	t_element *get_range(int offset, dword size)
 	{
 		blamlib_assert((offset >= 0) && (offset <= this->size()));
 		blamlib_assert(((offset + size) >= 0) && ((offset + size) <= this->size()));
@@ -210,14 +210,14 @@ public:
 	}
 
 	template <typename t_type>
-	t_type *get_as_type_array(long offset, long count)
+	t_type *get_as_type_array(int offset, int count)
 	{
 		blamlib_assert(size() == sizeof(t_type) * count);
 		return get_range(offset, sizeof(t_type) * count);
 	}
 
 	template <typename t_type>
-	t_type *get_as_type_from_offset(long offset)
+	t_type *get_as_type_from_offset(int offset)
 	{
 		return reinterpret_cast<t_type *>(get_range(offset, sizeof(t_type)));
 	}
@@ -252,13 +252,13 @@ public:
 	virtual void ensure_capacity(dword capacity) {}
 };
 
-template <typename t_data, const long k_size, const long k_count>
+template <typename t_data, const int k_size, const int k_count>
 class c_opaque_data
 {
 	// TODO
 };
 
-template <typename t_data, const long k_size, const long k_count>
+template <typename t_data, const int k_size, const int k_count>
 class c_typed_opaque_data
 {
 	// TODO
@@ -267,7 +267,7 @@ class c_typed_opaque_data
 #define LONG_DESIGNATOR_PRIMARY_INDEX_BITS(secondary_index_bits, has_flag) \
 	((sizeof(long) * k_uint8_bits) - (secondary_index_bits))
 
-template <const long k_secondary_index_bits, bool const k_has_flag>
+template <const int k_secondary_index_bits, bool const k_has_flag>
 class c_long_designator
 {
 	enum
@@ -278,14 +278,14 @@ class c_long_designator
 	};
 
 private:
-	long m_value;
+	int m_value;
 
-	long get_primary_index_internal() const
+	int get_primary_index_internal() const
 	{
 		return m_value & k_maximum_primary_index;
 	}
 
-	long get_secondary_index_internal() const
+	int get_secondary_index_internal() const
 	{
 		return m_value >> k_primary_index_bits;
 	}
@@ -297,8 +297,8 @@ private:
 	}
 
 	void set_designator_internal(
-		long primary_index,
-		long secondary_index,
+		int primary_index,
+		int secondary_index,
 		[[maybe_unused]] bool flag)
 	{
 		m_value = primary_index & k_maximum_primary_index;
@@ -316,28 +316,28 @@ private:
 	}
 
 public:
-	void set_raw_designator(long value)
+	void set_raw_designator(int value)
 	{
 		m_value = value;
 	}
 
-	long get_primary_index() const
+	int get_primary_index() const
 	{
 		return get_primary_index_internal();
 	}
 
-	long get_secondary_index() const
+	int get_secondary_index() const
 	{
 		return get_secondary_index_internal();
 	}
 
-	void set_primary_index(long new_primary_index)
+	void set_primary_index(int new_primary_index)
 	{
 		blamlib_assert(IN_RANGE_INCLUSIVE(new_primary_index, 0, k_maximum_primary_index));
 		set_designator_internal(new_primary_index, get_secondary_index(), get_flag_internal());
 	}
 
-	void set_secondary_index(long new_secondary_index)
+	void set_secondary_index(int new_secondary_index)
 	{
 		blamlib_assert(IN_RANGE_INCLUSIVE(new_secondary_index, 0, k_maximum_secondary_index));
 		set_designator_internal(new_secondary_index, get_primary_index(), get_flag_internal());

@@ -277,11 +277,11 @@ void c_mandrill_user_interface::save_current_session()
 				open_projects_path += "*";
 			}
 
-			unsigned long cache_file_tab_index = 0;
+			uint32_t cache_file_tab_index = 0;
 
-			unsigned long tag_project_tab_child_count = tag_project_tab->get_child_count();
+			uint32_t tag_project_tab_child_count = tag_project_tab->get_child_count();
 			c_mandrill_tab* const* tag_project_tab_children = tag_project_tab->get_children();
-			for (unsigned long tab_index = 0; tab_index < tag_project_tab_child_count; tab_index++)
+			for (uint32_t tab_index = 0; tab_index < tag_project_tab_child_count; tab_index++)
 			{
 				c_mandrill_tab* tab = tag_project_tab_children[tab_index];
 				if (c_high_level_tag_tab* high_level_tag_tab = dynamic_cast<c_high_level_tag_tab*>(tab))
@@ -416,16 +416,16 @@ void c_mandrill_user_interface::render_impl()
 				{ 0.0f, 0.48f, 0.8f, 1.0f },
 				{ 0.18f, 0.8f, 0.39f, 1.0f },
 			};
-			static long user_type = keys_user_type();
+			static int32_t user_type = keys_user_type();
 			if (user_type >= 3)
 			{
-				long user_type_color_index = __min(_countof(username_colors) - 1, user_type);
+				int32_t user_type_color_index = __min(_countof(username_colors) - 1, user_type);
 				ImVec4& color = username_colors[user_type_color_index];
 				ImGui::PushStyleColor(ImGuiCol_Text, color);
 
 				char buffer[256];
 				const char* username = keys_user_name();
-				unsigned long discriminator = keys_user_discriminator();
+				uint32_t discriminator = keys_user_discriminator();
 				snprintf(buffer, sizeof(buffer), "%s#%lu", username, discriminator);
 
 				float content_region_width = ImGui::GetContentRegionAvail().x;
@@ -597,10 +597,10 @@ bool c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 				if (ImGui::BeginMenu(ICON_FA_NETWORK_WIRED))
 				{
 					s_xbox360_device_entry const* devices;
-					unsigned long device_count;
+					uint32_t device_count;
 					if (BCS_SUCCEEDED(xbox360_device_manager_get_devices(devices, device_count)))
 					{
-						for (unsigned long device_index = 0; device_index < device_count; device_index++)
+						for (uint32_t device_index = 0; device_index < device_count; device_index++)
 						{
 							s_xbox360_device_entry const& device = devices[device_index];
 							size_t buffer_length = snprintf(nullptr, 0, ICON_FA_XBOX " %s", device.console_value_name_buffer_mb) + 1;

@@ -1599,18 +1599,18 @@ namespace pc64
 		additional_node_data_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		ai_deafening_encoded_pas_block_block,
-		"ai_deafening_encoded_pas_block",
-		"ai_deafening_encoded_pas_block",
-		1020,
-		ai_deafening_encoded_pas_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		ai_deafening_encoded_pas_block_block$2,
 		"ai_deafening_encoded_pas_block",
 		"ai_deafening_encoded_pas_block",
 		16368,
 		ai_deafening_encoded_pas_block$2);
+
+	TAG_BLOCK_FROM_STRUCT(
+		ai_deafening_encoded_pas_block_block,
+		"ai_deafening_encoded_pas_block",
+		"ai_deafening_encoded_pas_block",
+		1020,
+		ai_deafening_encoded_pas_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		ai_dialogue_globals_block_group_block,
@@ -3986,18 +3986,18 @@ namespace pc64
 		dont_use_me_scenario_environment_object_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		door_encoded_pas_block_block,
-		"door_encoded_pas_block",
-		"door_encoded_pas_block",
-		2048,
-		door_encoded_pas_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		door_encoded_pas_block_block$2,
 		"door_encoded_pas_block",
 		"door_encoded_pas_block",
 		8192,
 		door_encoded_pas_block$2);
+
+	TAG_BLOCK_FROM_STRUCT(
+		door_encoded_pas_block_block,
+		"door_encoded_pas_block",
+		"door_encoded_pas_block",
+		2048,
+		door_encoded_pas_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		dynamic_spawn_zone_overload_block_block,
@@ -5953,18 +5953,18 @@ namespace pc64
 		material_textures_refs_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		materials_block_block,
-		"materials_block",
-		"materials_block",
-		64,
-		materials_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		materials_block_block$2,
 		"materials_block",
 		"materials_block",
 		256,
 		materials_block$2);
+
+	TAG_BLOCK_FROM_STRUCT(
+		materials_block_block,
+		"materials_block",
+		"materials_block",
+		64,
+		materials_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		meter_block_group_block,
@@ -6219,18 +6219,18 @@ namespace pc64
 		multilingual_unicode_string_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		multiplayer_color_block_block,
-		"multiplayer_color_block",
-		"multiplayer_color_block",
-		32,
-		multiplayer_color_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		multiplayer_color_block_block$2,
 		"multiplayer_color_block",
 		"multiplayer_color_block",
 		32,
 		multiplayer_color_block$2);
+
+	TAG_BLOCK_FROM_STRUCT(
+		multiplayer_color_block_block,
+		"multiplayer_color_block",
+		"multiplayer_color_block",
+		32,
+		multiplayer_color_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		multiplayer_constants_block_block,
@@ -10111,18 +10111,18 @@ namespace pc64
 		vertex_shader_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
-		vertex_types_block_block$2,
-		"vertex_types_block",
-		"vertex_types_block",
-		1024,
-		vertex_types_block$2);
-
-	TAG_BLOCK_FROM_STRUCT(
 		vertex_types_block_block,
 		"vertex_types_block",
 		"vertex_types_block",
 		22,
 		vertex_types_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		vertex_types_block_block$2,
+		"vertex_types_block",
+		"vertex_types_block",
+		1024,
+		vertex_types_block$2);
 
 	TAG_BLOCK_FROM_STRUCT(
 		vertices_block_block,
@@ -10648,20 +10648,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define AI_DEAFENING_ENCODED_PAS_BLOCK$2_ID { 0x8229AF1A, 0x7484AF9, 0xB927F592, 0xE928E357 }
-	TAG_STRUCT(
-		ai_deafening_encoded_pas_block$2,
-		"ai_deafening_encoded_pas_block",
-		"ai_deafening_encoded_pas_block",
-		"s_ai_deafening_encoded_pas_block$2",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		AI_DEAFENING_ENCODED_PAS_BLOCK$2_ID)
-	{
-		{ _field_long_integer, "encoded data" },
-		{ _field_terminator }
-	};
-
 	#define AI_DEAFENING_ENCODED_PAS_BLOCK_ID { 0x3C517394, 0xB038480C, 0x85F3F6D1, 0x6E15185D }
 	TAG_STRUCT(
 		ai_deafening_encoded_pas_block,
@@ -10671,6 +10657,20 @@ namespace pc64
 		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_DEAFENING_ENCODED_PAS_BLOCK_ID)
+	{
+		{ _field_long_integer, "encoded data" },
+		{ _field_terminator }
+	};
+
+	#define AI_DEAFENING_ENCODED_PAS_BLOCK$2_ID { 0x8229AF1A, 0x7484AF9, 0xB927F592, 0xE928E357 }
+	TAG_STRUCT(
+		ai_deafening_encoded_pas_block$2,
+		"ai_deafening_encoded_pas_block",
+		"ai_deafening_encoded_pas_block",
+		"s_ai_deafening_encoded_pas_block$2",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		AI_DEAFENING_ENCODED_PAS_BLOCK$2_ID)
 	{
 		{ _field_long_integer, "encoded data" },
 		{ _field_terminator }
@@ -33739,20 +33739,6 @@ namespace pc64
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_COLOR_BLOCK_ID { 0xA6C9756, 0xF0E24866, 0xA708F3E9, 0xC9C41962 }
-	TAG_STRUCT(
-		multiplayer_color_block,
-		"multiplayer_color_block",
-		"multiplayer_color_block",
-		"s_multiplayer_color_block",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MULTIPLAYER_COLOR_BLOCK_ID)
-	{
-		{ _field_real_rgb_color, "color" },
-		{ _field_terminator }
-	};
-
 	#define MULTIPLAYER_COLOR_BLOCK$2_ID { 0x7E9866A8, 0xDE8F426F, 0x9F08988D, 0xFED37A7C }
 	TAG_STRUCT(
 		multiplayer_color_block$2,
@@ -33762,6 +33748,20 @@ namespace pc64
 		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_COLOR_BLOCK$2_ID)
+	{
+		{ _field_real_rgb_color, "color" },
+		{ _field_terminator }
+	};
+
+	#define MULTIPLAYER_COLOR_BLOCK_ID { 0xA6C9756, 0xF0E24866, 0xA708F3E9, 0xC9C41962 }
+	TAG_STRUCT(
+		multiplayer_color_block,
+		"multiplayer_color_block",
+		"multiplayer_color_block",
+		"s_multiplayer_color_block",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		MULTIPLAYER_COLOR_BLOCK_ID)
 	{
 		{ _field_real_rgb_color, "color" },
 		{ _field_terminator }
@@ -52964,6 +52964,21 @@ namespace pc64
 		{ _field_terminator }
 	};
 
+	#define VERTEX_TYPES_BLOCK$2_ID { 0x179BB0D5, 0x3B834BE0, 0x81D71471, 0xB7FD5D61 }
+	TAG_STRUCT(
+		vertex_types_block$2,
+		"vertex_types_block",
+		"vertex_types_block",
+		"s_vertex_types_block$2",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		VERTEX_TYPES_BLOCK$2_ID)
+	{
+		{ _field_char_integer, "start index" },
+		{ _field_char_integer, "count" },
+		{ _field_terminator }
+	};
+
 	#define VERTEX_TYPES_BLOCK_ID { 0x10D75123, 0xB1E940D6, 0x93113433, 0x80D97C43 }
 	TAG_STRUCT(
 		vertex_types_block,
@@ -53006,21 +53021,6 @@ namespace pc64
 		"beam"
 	};
 	STRING_LIST(vertex_types_names_enum, vertex_types_names_enum_strings, _countof(vertex_types_names_enum_strings));
-
-	#define VERTEX_TYPES_BLOCK$2_ID { 0x179BB0D5, 0x3B834BE0, 0x81D71471, 0xB7FD5D61 }
-	TAG_STRUCT(
-		vertex_types_block$2,
-		"vertex_types_block",
-		"vertex_types_block",
-		"s_vertex_types_block$2",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		VERTEX_TYPES_BLOCK$2_ID)
-	{
-		{ _field_char_integer, "start index" },
-		{ _field_char_integer, "count" },
-		{ _field_terminator }
-	};
 
 	#define VERTICES_BLOCK_ID { 0x6C3F6A60, 0x1FCE4C6A, 0x8F89E265, 0xE56D2F60 }
 	TAG_STRUCT(
@@ -55534,20 +55534,20 @@ namespace pc64
 		MAXIMUM_EDITOR_SCENARIO_DATA_SIZE);
 
 	TAG_DATA(
-		error_report_string_data$2,
-		"error_report_string_data",
-		2,
-		0,
-		131072,
-		k_max_error_string_length);
-
-	TAG_DATA(
 		error_report_string_data,
 		"error_report_string_data",
 		2,
 		0,
 		8192,
 		MAXIMUM_ERROR_REPORT_STRING_LENGTH+1);
+
+	TAG_DATA(
+		error_report_string_data$2,
+		"error_report_string_data",
+		2,
+		0,
+		131072,
+		k_max_error_string_length);
 
 	TAG_DATA(
 		faux_data_lightprobe_data,

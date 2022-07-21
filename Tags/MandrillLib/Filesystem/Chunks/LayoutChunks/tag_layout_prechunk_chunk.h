@@ -4,8 +4,8 @@ struct s_tag_persist_aggregate_prechunk
 {
 	blofeld::s_tag_persistent_identifier persistent_identifier;
 	s_tag_persist_string_character_index string_character_index;
-	unsigned long count;
-	unsigned long fields_start_index;
+	uint32_t count;
+	uint32_t fields_start_index;
 };
 
 struct s_tag_persist_aggregate_fixup

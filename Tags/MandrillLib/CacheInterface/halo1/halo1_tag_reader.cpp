@@ -59,7 +59,7 @@ BCS_RESULT c_halo1_tag_reader::read_tag_instances()
 		return BCS_E_FAIL;
 	}
 
-	long tag_instances_relative_offset;
+	int32_t tag_instances_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(tags_header.tag_instances_address, tag_instances_relative_offset)))
 	{
 		return rs;
@@ -67,7 +67,7 @@ BCS_RESULT c_halo1_tag_reader::read_tag_instances()
 
 	tag_instance_infos.resize(tags_header.tag_instance_count);
 	const halo1::s_cache_file_tag_instance* tag_instances_read_pointer = reinterpret_cast<const halo1::s_cache_file_tag_instance*>(tag_section_buffer.begin + tag_instances_relative_offset);
-	for (unsigned long tag_index = 0; tag_index < tags_header.tag_instance_count; tag_index++)
+	for (uint32_t tag_index = 0; tag_index < tags_header.tag_instance_count; tag_index++)
 	{
 		s_halo1_tag_instance_info& tag_instance_info = tag_instance_infos[tag_index];
 		halo1::s_cache_file_tag_instance& tag_instance = tag_instance_info.instance = tag_instances_read_pointer[tag_index];
@@ -152,7 +152,7 @@ BCS_RESULT c_halo1_tag_reader::init_tag_groups()
 		return rs;
 	}
 
-	unsigned long tag_group_count = 0; // #TODO: create a function for this
+	uint32_t tag_group_count = 0; // #TODO: create a function for this
 	for (const blofeld::s_tag_group** tag_group_iterator = blofeld_tag_groups; *tag_group_iterator; tag_group_iterator++)
 	{
 		tag_group_count++;
@@ -257,7 +257,7 @@ BCS_RESULT c_halo1_tag_reader::get_tag_group_by_blofeld_tag_group(const blofeld:
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_halo1_tag_reader::get_instance_info_by_tag_index(unsigned long tag_index, const s_halo1_tag_instance_info*& instance_info)
+BCS_RESULT c_halo1_tag_reader::get_instance_info_by_tag_index(uint32_t tag_index, const s_halo1_tag_instance_info*& instance_info)
 {
 	if (tag_index > tag_instance_infos.size())
 	{
@@ -269,7 +269,7 @@ BCS_RESULT c_halo1_tag_reader::get_instance_info_by_tag_index(unsigned long tag_
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo1_tag_reader::page_offset_to_pointer(long page_offset, const void*& data)
+BCS_RESULT c_halo1_tag_reader::page_offset_to_pointer(int32_t page_offset, const void*& data)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -285,13 +285,13 @@ BCS_RESULT c_halo1_tag_reader::page_offset_to_pointer(long page_offset, const vo
 		return rs;
 	}
 
-	long long virtual_address;
+	int64_t virtual_address;
 	if (BCS_FAILED(rs = cache_reader.page_offset_to_virtual_address(page_offset, virtual_address)))
 	{
 		return rs;
 	}
 
-	long relative_offset;
+	int32_t relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(virtual_address, relative_offset)))
 	{
 		return rs;
@@ -304,46 +304,46 @@ BCS_RESULT c_halo1_tag_reader::page_offset_to_pointer(long page_offset, const vo
 	return rs;
 }
 
-BCS_RESULT c_halo1_tag_reader::get_tag_groups(c_halo1_tag_group**& out_tag_groups, unsigned long& out_tag_group_count)
+BCS_RESULT c_halo1_tag_reader::get_tag_groups(c_halo1_tag_group**& out_tag_groups, uint32_t& out_tag_group_count)
 {
 	out_tag_groups = tag_groups.data();
 	out_tag_group_count = static_cast<unsigned long>(tag_groups.size());
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo1_tag_reader::get_tag_groups(c_tag_group**& out_tag_groups, unsigned long& out_tag_group_count)
+BCS_RESULT c_halo1_tag_reader::get_tag_groups(c_tag_group**& out_tag_groups, uint32_t& out_tag_group_count)
 {
 	out_tag_groups = reinterpret_cast<c_tag_group**>(tag_groups.data());
 	out_tag_group_count = static_cast<unsigned long>(tag_groups.size());
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo1_tag_reader::get_tag_instances(c_halo1_tag_instance**& out_tag_instances, unsigned long& out_tag_instance_count)
+BCS_RESULT c_halo1_tag_reader::get_tag_instances(c_halo1_tag_instance**& out_tag_instances, uint32_t& out_tag_instance_count)
 {
 	out_tag_instances = tag_instances.data();
 	out_tag_instance_count = static_cast<unsigned long>(tag_instances.size());
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo1_tag_reader::get_tag_instances(c_tag_instance**& out_tag_instances, unsigned long& out_tag_instance_count)
+BCS_RESULT c_halo1_tag_reader::get_tag_instances(c_tag_instance**& out_tag_instances, uint32_t& out_tag_instance_count)
 {
 	out_tag_instances = reinterpret_cast<c_tag_instance**>(tag_instances.data());
 	out_tag_instance_count = static_cast<unsigned long>(tag_instances.size());
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo1_tag_reader::get_tag_instance_by_cache_file_tag_index(unsigned long cache_file_tag_index, c_tag_instance*& out_tag_instance)
+BCS_RESULT c_halo1_tag_reader::get_tag_instance_by_cache_file_tag_index(uint32_t cache_file_tag_index, c_tag_instance*& out_tag_instance)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
 	c_halo1_tag_instance** tag_instances;
-	unsigned long tag_instances_count;
+	uint32_t tag_instances_count;
 	if (BCS_FAILED(rs = get_tag_instances(tag_instances, tag_instances_count)))
 	{
 		return rs;
 	}
 
-	for (unsigned long tag_instance_index = 0; tag_instance_index < tag_instances_count; tag_instance_index++)
+	for (uint32_t tag_instance_index = 0; tag_instance_index < tag_instances_count; tag_instance_index++)
 	{
 		c_halo1_tag_instance& tag_instance = *tag_instances[tag_instance_index];
 		if (tag_instance.cache_file_tag_index == cache_file_tag_index)

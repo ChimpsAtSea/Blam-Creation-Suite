@@ -47,7 +47,7 @@ BCS_RESULT c_tag_block_chunk::read_chunk(void* userdata, const void* data, bool 
 	
 
 	t_tag_file_reader_metadata_entry& _metadata_entry = reader.metadata_stack._pop_unsafe();
-	unsigned long current_block_index = _metadata_entry.id;
+	uint32_t current_block_index = _metadata_entry.id;
 	e_tag_file_reader_metadata_entry_type entry_type = _metadata_entry.entry_type;
 	ASSERT(entry_type == _tag_file_reader_metadata_entry_type_block);
 
@@ -81,7 +81,7 @@ BCS_RESULT c_tag_block_chunk::read_chunk(void* userdata, const void* data, bool 
 	ASSERT(stack_start_size == stack_end_size);
 
 	// #TODO: delete this
-	for (unsigned long block_index = 0; block_index < tag_block_chunk_header.count; block_index++)
+	for (uint32_t block_index = 0; block_index < tag_block_chunk_header.count; block_index++)
 	{
 		c_tag_struct_chunk* tag_struct_chunk = nullptr;
 		if (has_children)
@@ -96,13 +96,13 @@ BCS_RESULT c_tag_block_chunk::read_chunk(void* userdata, const void* data, bool 
 	return rs;
 }
 
-const char* c_tag_block_chunk::get_sturcutre_data_by_index(unsigned long index) const
+const char* c_tag_block_chunk::get_sturcutre_data_by_index(uint32_t index) const
 {
 	const char* result = block_structure_data_begin + struct_size * index;
 	return result;
 }
 
-c_tag_struct_chunk* c_tag_block_chunk::get_sturcutre_chunk_by_index(unsigned long index) const
+c_tag_struct_chunk* c_tag_block_chunk::get_sturcutre_chunk_by_index(uint32_t index) const
 {
 	c_tag_struct_chunk* result = nullptr;
 	if (index < num_children)
@@ -137,7 +137,7 @@ void c_tag_block_chunk::log_impl(c_tag_file_string_debugger* string_debugger) co
 void c_tag_block_chunk::read_tag_block_structures(c_single_tag_file_reader& reader) const
 {
 	t_tag_file_reader_metadata_stack metadata_stack;
-	for (unsigned long block_index = 0; block_index < tag_block_chunk_header.count; block_index++)
+	for (uint32_t block_index = 0; block_index < tag_block_chunk_header.count; block_index++)
 	{
 		read_structure_metadata(reader, *structure_entry, metadata_stack);
 		reader.metadata_stack.copy_from(metadata_stack);
@@ -151,11 +151,11 @@ void c_tag_block_chunk::read_structure_metadata(
 {
 	// #NOTE: If this is required, shove the structure_entry_index into the functiona and lookup via that
 	// lookup up via entry/persistent_id is expensive
-	// unsigned long expected_children = reader.layout_reader.get_structure_expected_children_by_entry(structure_entry);
+	// uint32_t expected_children = reader.layout_reader.get_structure_expected_children_by_entry(structure_entry);
 
-	unsigned long metadata_child_index = 0;
+	uint32_t metadata_child_index = 0;
 
-	for (unsigned long field_index = structure_entry.fields_start_index;; field_index++)
+	for (uint32_t field_index = structure_entry.fields_start_index;; field_index++)
 	{
 		s_tag_persist_field& field_entry = reader.layout_reader.get_field_by_index(field_index);
 		s_tag_persist_field_type& field_type = reader.layout_reader.get_field_type_by_index(field_entry.field_type_index);
@@ -167,14 +167,14 @@ void c_tag_block_chunk::read_structure_metadata(
 			{
 			case blofeld::_field_struct:
 			{
-				unsigned long structure_entry_index = field_entry.metadata;
+				uint32_t structure_entry_index = field_entry.metadata;
 				s_tag_persist_struct_definition& structure_entry = reader.layout_reader.get_struct_definition_by_index(structure_entry_index);
 				read_structure_metadata(reader, structure_entry, metadata_stack);
 			}
 			break;
 			case blofeld::_field_pageable_resource:
 			{
-				unsigned long resource_entry_index = field_entry.metadata;
+				uint32_t resource_entry_index = field_entry.metadata;
 				s_tag_persist_resource_definition& resource_entry = reader.layout_reader.get_resource_definition_by_index(resource_entry_index);
 				// const char* resource_name = reader.layout_reader.get_string_by_string_character_index(resource_entry.string_character_index);
 				t_tag_file_reader_metadata_entry& metadata_entry = metadata_stack._push();
@@ -203,13 +203,13 @@ void c_tag_block_chunk::read_structure_metadata(
 #define write_pad()
 void c_tag_block_chunk::read_structure_data(c_single_tag_file_reader& reader, s_tag_persist_struct_definition& structure_entry, const char* structure_data_pos, c_tag_struct_chunk* tag_struct_chunk)
 {
-	unsigned long metadata_child_index = 0;
-	for (unsigned long field_index = structure_entry.fields_start_index;; field_index++)
+	uint32_t metadata_child_index = 0;
+	for (uint32_t field_index = structure_entry.fields_start_index;; field_index++)
 	{
 		s_tag_persist_field& field_entry = reader.layout_reader.get_field_by_index(field_index);
 		s_tag_persist_field_type& field_type = reader.layout_reader.get_field_type_by_index(field_entry.field_type_index);
 
-		unsigned long field_size = field_type.size;
+		uint32_t field_size = field_type.size;
 		if (field_size == 0 || field_type.has_child_chunk)
 		{
 			blofeld::e_field blofeld_field_type = reader.layout_reader.get_blofeld_type_by_field_type_index(field_entry.field_type_index);
@@ -234,16 +234,16 @@ void c_tag_block_chunk::read_structure_data(c_single_tag_file_reader& reader, s_
 			break;
 			case blofeld::_field_struct:
 			{
-				unsigned long structure_entry_index = field_entry.metadata;
+				uint32_t structure_entry_index = field_entry.metadata;
 				s_tag_persist_struct_definition& structure_entry = reader.layout_reader.get_struct_definition_by_index(structure_entry_index);
 				//const char* struct_name = reader.layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
-				unsigned long expected_children = reader.layout_reader.get_structure_expected_children_by_index(structure_entry_index);
-				unsigned long structure_size = reader.layout_reader.get_structure_size_by_index(structure_entry_index);
+				uint32_t expected_children = reader.layout_reader.get_structure_expected_children_by_index(structure_entry_index);
+				uint32_t structure_size = reader.layout_reader.get_structure_size_by_index(structure_entry_index);
 				field_size = structure_size;
 
 				ASSERT(tag_struct_chunk != nullptr);
 				c_tag_struct_chunk* next_tag_struct_chunk = nullptr;
-				unsigned long num_children;
+				uint32_t num_children;
 				do
 				{
 					c_chunk* chunk = tag_struct_chunk->get_child_unsafe(metadata_child_index);
@@ -267,8 +267,8 @@ void c_tag_block_chunk::read_structure_data(c_single_tag_file_reader& reader, s_
 			case blofeld::_field_array:
 			{
 				s_tag_persist_array_definition& array_entry = reader.layout_reader.get_array_definition_by_index(field_entry.metadata);
-				unsigned long array_structure_size = reader.layout_reader.get_structure_size_by_index(array_entry.structure_entry_index);
-				unsigned long array_size = array_structure_size * array_entry.count;
+				uint32_t array_structure_size = reader.layout_reader.get_structure_size_by_index(array_entry.structure_entry_index);
+				uint32_t array_size = array_structure_size * array_entry.count;
 				field_size = array_size;
 				
 			}
@@ -316,7 +316,7 @@ void c_tag_block_chunk::read_structure_data(c_single_tag_file_reader& reader, s_
 			break;
 			case blofeld::_field_pad:
 			{
-				unsigned long pad_size = field_entry.metadata;
+				uint32_t pad_size = field_entry.metadata;
 				field_size = pad_size;
 			}
 			break;

@@ -32,7 +32,7 @@ c_high_level_tag_file_writer::c_high_level_tag_file_writer(s_engine_platform_bui
 	init_chunks();
 
 	const blofeld::s_tag_group& group_definition = tag.get_blofeld_group_definition();
-	unsigned long tag_group_block_index = enqueue_block_definition(group_definition.block_definition);
+	uint32_t tag_group_block_index = enqueue_block_definition(group_definition.block_definition);
 	serialize_tag_group(tag, *binary_data_chunk);
 
 	tag_file_header.unknown0 = 0;
@@ -151,12 +151,12 @@ void c_high_level_tag_file_writer::write_file()
 	header_chunk->write_chunk(*this);
 }
 
-unsigned long c_high_level_tag_file_writer::enqueue_block_definition(const blofeld::s_tag_block_definition& tag_block_definition)
+uint32_t c_high_level_tag_file_writer::enqueue_block_definition(const blofeld::s_tag_block_definition& tag_block_definition)
 {
 	{
-		unsigned long block_definition_count = block_definitions_chunk->entry_count;
+		uint32_t block_definition_count = block_definitions_chunk->entry_count;
 		s_tag_persist_block_definition* block_definitions = block_definitions_chunk->entries;
-		for (unsigned long block_definition_index = 0; block_definition_index < block_definition_count; block_definition_index++)
+		for (uint32_t block_definition_index = 0; block_definition_index < block_definition_count; block_definition_index++)
 		{
 			s_tag_persist_block_definition& existing_block_definition = block_definitions[block_definition_index];
 
@@ -174,18 +174,18 @@ unsigned long c_high_level_tag_file_writer::enqueue_block_definition(const blofe
 	tag_persist_block_definition.string_character_index.offset = enqueue_string(tag_block_definition.name);
 	tag_persist_block_definition.max_count = tag_block_definition.max_count(engine_platform_build);
 
-	unsigned long block_index = block_definitions_chunk->entry_count;
+	uint32_t block_index = block_definitions_chunk->entry_count;
 	block_definitions_chunk->append_data(&tag_persist_block_definition, sizeof(tag_persist_block_definition));
 
 	return block_index;
 }
 
-unsigned long c_high_level_tag_file_writer::enqueue_struct_definition(const blofeld::s_tag_struct_definition& tag_struct_definition)
+uint32_t c_high_level_tag_file_writer::enqueue_struct_definition(const blofeld::s_tag_struct_definition& tag_struct_definition)
 {
 	{
-		unsigned long tag_persist_struct_count = structure_definitions_chunk->entry_count;
+		uint32_t tag_persist_struct_count = structure_definitions_chunk->entry_count;
 		s_tag_persist_struct_definition* tag_persist_struct_definitions = structure_definitions_chunk->entries;
-		for (unsigned long tag_persist_struct_index = 0; tag_persist_struct_index < tag_persist_struct_count; tag_persist_struct_index++)
+		for (uint32_t tag_persist_struct_index = 0; tag_persist_struct_index < tag_persist_struct_count; tag_persist_struct_index++)
 		{
 			s_tag_persist_struct_definition& existing_tag_persist_struct_definition = tag_persist_struct_definitions[tag_persist_struct_index];
 
@@ -199,14 +199,14 @@ unsigned long c_high_level_tag_file_writer::enqueue_struct_definition(const blof
 	// reserve this structure index
 	s_tag_persist_struct_definition tag_persist_struct_definition_temp = {};
 	tag_persist_struct_definition_temp.persistent_identifier = tag_struct_definition.persistent_identifier;
-	unsigned long tag_persist_struct_index = structure_definitions_chunk->entry_count;
+	uint32_t tag_persist_struct_index = structure_definitions_chunk->entry_count;
 	structure_definitions_chunk->append_data(&tag_persist_struct_definition_temp, sizeof(tag_persist_struct_definition_temp));
 
 	std::vector<s_tag_persist_field> tag_persist_fields;
 
 	for (const blofeld::s_tag_field* current_field = tag_struct_definition.fields; /*current_field->field_type != blofeld::_field_terminator*/; current_field++)
 	{
-		unsigned long field_skip_count;
+		uint32_t field_skip_count;
 		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, field_skip_count))
 		{
 			current_field += field_skip_count;
@@ -222,7 +222,7 @@ unsigned long c_high_level_tag_file_writer::enqueue_struct_definition(const blof
 		}
 	}
 
-	unsigned long fields_start_index = fields_chunk->entry_count;
+	uint32_t fields_start_index = fields_chunk->entry_count;
 	fields_chunk->append_data(tag_persist_fields.data(), static_cast<unsigned long>(sizeof(tag_persist_fields[0]) * tag_persist_fields.size()));
 
 
@@ -300,15 +300,15 @@ void c_high_level_tag_file_writer::enqueue_field(const blofeld::s_tag_field& fie
 	}
 }
 
-unsigned long c_high_level_tag_file_writer::enqueue_field_type(blofeld::e_field field_type)
+uint32_t c_high_level_tag_file_writer::enqueue_field_type(blofeld::e_field field_type)
 {
 	const char* tag_field_type;
 	ASSERT(BCS_SUCCEEDED(blofeld::field_to_tagfile_field_type(field_type, tag_field_type)));
 
 	{
-		unsigned long tag_persist_field_type_count = field_types_chunk->entry_count;
+		uint32_t tag_persist_field_type_count = field_types_chunk->entry_count;
 		s_tag_persist_field_type* tag_persist_field_types = field_types_chunk->entries;
-		for (unsigned long tag_persist_field_type_index = 0; tag_persist_field_type_index < tag_persist_field_type_count; tag_persist_field_type_index++)
+		for (uint32_t tag_persist_field_type_index = 0; tag_persist_field_type_index < tag_persist_field_type_count; tag_persist_field_type_index++)
 		{
 			s_tag_persist_field_type& existing_tag_persist_field_type = tag_persist_field_types[tag_persist_field_type_index];
 
@@ -340,18 +340,18 @@ unsigned long c_high_level_tag_file_writer::enqueue_field_type(blofeld::e_field 
 		break;
 	}
 
-	unsigned long field_type_index = field_types_chunk->entry_count;
+	uint32_t field_type_index = field_types_chunk->entry_count;
 	field_types_chunk->append_data(&tag_persist_field_type, sizeof(tag_persist_field_type));
 
 	return field_type_index;
 }
 
-unsigned long c_high_level_tag_file_writer::enqueue_string_list_definition(const blofeld::s_string_list_definition& string_list_definition)
+uint32_t c_high_level_tag_file_writer::enqueue_string_list_definition(const blofeld::s_string_list_definition& string_list_definition)
 {
 	{
-		unsigned long string_list_count = string_lists_chunk->entry_count;
+		uint32_t string_list_count = string_lists_chunk->entry_count;
 		s_tag_persist_string_list* string_lists = string_lists_chunk->entries;
-		for (unsigned long string_list_index = 0; string_list_index < string_list_count; string_list_index++)
+		for (uint32_t string_list_index = 0; string_list_index < string_list_count; string_list_index++)
 		{
 			s_tag_persist_string_list& existing_string_list = string_lists[string_list_index];
 
@@ -364,9 +364,9 @@ unsigned long c_high_level_tag_file_writer::enqueue_string_list_definition(const
 		}
 	}
 
-	unsigned long string_offset_start_index = string_offsets_chunk->entry_count;
-	unsigned long num_strings = string_list_definition.get_count(engine_platform_build);
-	for (unsigned long string_index = 0; string_index < num_strings; string_index++)
+	uint32_t string_offset_start_index = string_offsets_chunk->entry_count;
+	uint32_t num_strings = string_list_definition.get_count(engine_platform_build);
+	for (uint32_t string_index = 0; string_index < num_strings; string_index++)
 	{
 		const char* string = string_list_definition.get_string(engine_platform_build, string_index);
 
@@ -383,18 +383,18 @@ unsigned long c_high_level_tag_file_writer::enqueue_string_list_definition(const
 	string_list_entry.string_offset_count = num_strings;
 	string_list_entry.string_offset_start_index = string_offset_start_index;
 
-	unsigned long string_list_index = string_lists_chunk->entry_count;
+	uint32_t string_list_index = string_lists_chunk->entry_count;
 	string_lists_chunk->append_data(&string_list_entry, sizeof(string_list_entry));
 
 	return string_list_index;
 }
 
-unsigned long c_high_level_tag_file_writer::enqueue_data_definition(const blofeld::s_tag_data_definition& tag_data_definition)
+uint32_t c_high_level_tag_file_writer::enqueue_data_definition(const blofeld::s_tag_data_definition& tag_data_definition)
 {
 	{
-		unsigned long data_definition_count = data_definition_name_chunk->entry_count;
+		uint32_t data_definition_count = data_definition_name_chunk->entry_count;
 		s_tag_persist_string_character_index* data_definitions = data_definition_name_chunk->offsets;
-		for (unsigned long data_definition_index = 0; data_definition_index < data_definition_count; data_definition_index++)
+		for (uint32_t data_definition_index = 0; data_definition_index < data_definition_count; data_definition_index++)
 		{
 			s_tag_persist_string_character_index& existing_data_definition = data_definitions[data_definition_index];
 
@@ -410,18 +410,18 @@ unsigned long c_high_level_tag_file_writer::enqueue_data_definition(const blofel
 	s_tag_persist_string_character_index string_character_index;
 	string_character_index.offset = enqueue_string(tag_data_definition.name);
 
-	unsigned long data_definition_index = data_definition_name_chunk->entry_count;
+	uint32_t data_definition_index = data_definition_name_chunk->entry_count;
 	data_definition_name_chunk->append_data(&string_character_index, sizeof(string_character_index));
 
 	return data_definition_index;
 }
 
-unsigned long c_high_level_tag_file_writer::enqueue_resource_definition(const blofeld::s_tag_resource_definition& tag_resource_definition)
+uint32_t c_high_level_tag_file_writer::enqueue_resource_definition(const blofeld::s_tag_resource_definition& tag_resource_definition)
 {
 	{
-		unsigned long resource_definition_count = resource_definitions_chunk->entry_count;
+		uint32_t resource_definition_count = resource_definitions_chunk->entry_count;
 		s_tag_persist_resource_definition* resource_definitions = resource_definitions_chunk->entries;
-		for (unsigned long resource_definition_index = 0; resource_definition_index < resource_definition_count; resource_definition_index++)
+		for (uint32_t resource_definition_index = 0; resource_definition_index < resource_definition_count; resource_definition_index++)
 		{
 			s_tag_persist_resource_definition& existing_resource_definition = resource_definitions[resource_definition_index];
 
@@ -439,18 +439,18 @@ unsigned long c_high_level_tag_file_writer::enqueue_resource_definition(const bl
 	resource_definition.string_character_index.offset = enqueue_string(tag_resource_definition.name);
 	resource_definition.flags = 0;
 
-	unsigned long resource_definition_index = resource_definitions_chunk->entry_count;
+	uint32_t resource_definition_index = resource_definitions_chunk->entry_count;
 	resource_definitions_chunk->append_data(&resource_definition, sizeof(resource_definition));
 
 	return resource_definition_index;
 }
 
-unsigned long c_high_level_tag_file_writer::enqueue_interop_definition(const blofeld::s_tag_interop_definition& tag_interop_definition)
+uint32_t c_high_level_tag_file_writer::enqueue_interop_definition(const blofeld::s_tag_interop_definition& tag_interop_definition)
 {
 	{
-		unsigned long interop_definition_count = interop_definitions_chunk->entry_count;
+		uint32_t interop_definition_count = interop_definitions_chunk->entry_count;
 		s_tag_persist_interop_definition* interop_definitions = interop_definitions_chunk->entries;
-		for (unsigned long interop_definition_index = 0; interop_definition_index < interop_definition_count; interop_definition_index++)
+		for (uint32_t interop_definition_index = 0; interop_definition_index < interop_definition_count; interop_definition_index++)
 		{
 			s_tag_persist_interop_definition& existing_interop_definition = interop_definitions[interop_definition_index];
 
@@ -467,18 +467,18 @@ unsigned long c_high_level_tag_file_writer::enqueue_interop_definition(const blo
 	interop_definition.string_character_index.offset = enqueue_string("blah"); // oh bungie you silly goose
 	interop_definition.persistent_identifier = tag_interop_definition.persistent_identifier;
 
-	unsigned long interop_definition_index = interop_definitions_chunk->entry_count;
+	uint32_t interop_definition_index = interop_definitions_chunk->entry_count;
 	interop_definitions_chunk->append_data(&interop_definition, sizeof(interop_definition));
 
 	return interop_definition_index;
 }
 
-unsigned long c_high_level_tag_file_writer::enqueue_array_definition(const blofeld::s_tag_array_definition& tag_array_definition)
+uint32_t c_high_level_tag_file_writer::enqueue_array_definition(const blofeld::s_tag_array_definition& tag_array_definition)
 {
 	{
-		unsigned long array_definition_count = array_definitions_chunk->entry_count;
+		uint32_t array_definition_count = array_definitions_chunk->entry_count;
 		s_tag_persist_array_definition* array_definitions = array_definitions_chunk->entries;
-		for (unsigned long array_definition_index = 0; array_definition_index < array_definition_count; array_definition_index++)
+		for (uint32_t array_definition_index = 0; array_definition_index < array_definition_count; array_definition_index++)
 		{
 			s_tag_persist_array_definition& existing_array_definition = array_definitions[array_definition_index];
 
@@ -496,18 +496,18 @@ unsigned long c_high_level_tag_file_writer::enqueue_array_definition(const blofe
 	array_definition.count = tag_array_definition.count(engine_platform_build);
 	array_definition.string_character_index.offset = enqueue_string(tag_array_definition.name);
 
-	unsigned long array_definition_index = array_definitions_chunk->entry_count;
+	uint32_t array_definition_index = array_definitions_chunk->entry_count;
 	array_definitions_chunk->append_data(&array_definition, sizeof(array_definition));
 
 	return array_definition_index;
 }
 
-unsigned long c_high_level_tag_file_writer::enqueue_block_index_custom_search_definition(const blofeld::s_block_index_custom_search_definition& tag_block_index_custom_search_definition)
+uint32_t c_high_level_tag_file_writer::enqueue_block_index_custom_search_definition(const blofeld::s_block_index_custom_search_definition& tag_block_index_custom_search_definition)
 {
 	{
-		unsigned long block_index_custom_search_definition_count = custom_block_index_search_names_chunk->entry_count;
+		uint32_t block_index_custom_search_definition_count = custom_block_index_search_names_chunk->entry_count;
 		s_tag_persist_string_character_index* block_index_custom_search_definitions = custom_block_index_search_names_chunk->offsets;
-		for (unsigned long block_index_custom_search_definition_index = 0; block_index_custom_search_definition_index < block_index_custom_search_definition_count; block_index_custom_search_definition_index++)
+		for (uint32_t block_index_custom_search_definition_index = 0; block_index_custom_search_definition_index < block_index_custom_search_definition_count; block_index_custom_search_definition_index++)
 		{
 			s_tag_persist_string_character_index& existing_block_index_custom_search_definition = block_index_custom_search_definitions[block_index_custom_search_definition_index];
 
@@ -523,13 +523,13 @@ unsigned long c_high_level_tag_file_writer::enqueue_block_index_custom_search_de
 	s_tag_persist_string_character_index block_index_custom_search_definition;
 	block_index_custom_search_definition.offset = enqueue_string(tag_block_index_custom_search_definition.name);
 
-	unsigned long array_definition_index = custom_block_index_search_names_chunk->entry_count;
+	uint32_t array_definition_index = custom_block_index_search_names_chunk->entry_count;
 	custom_block_index_search_names_chunk->append_data(&block_index_custom_search_definition, sizeof(block_index_custom_search_definition));
 
 	return array_definition_index;
 }
 
-unsigned long c_high_level_tag_file_writer::enqueue_string(const char* string)
+uint32_t c_high_level_tag_file_writer::enqueue_string(const char* string)
 {
 	if (string == nullptr)
 	{
@@ -538,15 +538,15 @@ unsigned long c_high_level_tag_file_writer::enqueue_string(const char* string)
 
 	BCS_RESULT rs = BCS_S_OK;
 
-	unsigned long string_data_length = static_cast<unsigned long>(strlen(string) + 1);
+	uint32_t string_data_length = static_cast<unsigned long>(strlen(string) + 1);
 	const void* existing_data = nullptr;
-	unsigned long existing_data_size = 0;
+	uint32_t existing_data_size = 0;
 	if (BCS_SUCCEEDED(rs = string_data_chunk->get_data(existing_data, existing_data_size)))
 	{
 		const char* existing_substring = (const char*)memmem(existing_data, existing_data_size, string, string_data_length);
 		if (existing_substring)
 		{
-			unsigned long offset = static_cast<unsigned long>(existing_substring - static_cast<const char*>(existing_data));
+			uint32_t offset = static_cast<unsigned long>(existing_substring - static_cast<const char*>(existing_data));
 			return offset;
 		}
 	}
@@ -569,7 +569,7 @@ void c_high_level_tag_file_writer::serialize_tag_group(const h_tag& tag, c_binar
 
 	tag_block_chunk.set_data(&tag_block_chunk_header, sizeof(tag_block_chunk_header));
 
-	unsigned long structure_size = calculate_structure_size(tag_struct_definition);
+	uint32_t structure_size = calculate_structure_size(tag_struct_definition);
 	char* const structure_data = static_cast<char*>(tracked_malloc(structure_size));
 	DEBUG_ONLY(memset(structure_data, 0xDD, structure_size));
 
@@ -584,7 +584,7 @@ void c_high_level_tag_file_writer::serialize_tag_group(const h_tag& tag, c_binar
 
 void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_tag_struct_chunk& parent_chunk)
 {
-	unsigned long block_count = block.size();
+	uint32_t block_count = block.size();
 
 	c_tag_block_chunk& tag_block_chunk = *new() c_tag_block_chunk(parent_chunk);
 	parent_chunk.add_child(tag_block_chunk);
@@ -597,12 +597,12 @@ void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_t
 
 	tag_block_chunk.set_data(&tag_block_chunk_header, sizeof(tag_block_chunk_header));
 
-	unsigned long structure_size = calculate_structure_size(tag_struct_definition);
-	unsigned long block_data_size = structure_size * block_count;
+	uint32_t structure_size = calculate_structure_size(tag_struct_definition);
+	uint32_t block_data_size = structure_size * block_count;
 	char* const block_data = static_cast<char*>(tracked_malloc(block_data_size));
 	char* structure_data = block_data;
 
-	for (unsigned long block_index = 0; block_index < block_count; block_index++, structure_data += structure_size)
+	for (uint32_t block_index = 0; block_index < block_count; block_index++, structure_data += structure_size)
 	{
 		DEBUG_ONLY(memset(structure_data, static_cast<char>(block_index + 0xDD), structure_size));
 		const h_prototype& object = block[block_index];
@@ -625,14 +625,14 @@ void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_t
 void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& object, char* const structure_data, c_tag_struct_chunk* tag_struct_chunk)
 {
 	char* dst_field_data = structure_data;
-	unsigned long field_index = 0;
+	uint32_t field_index = 0;
 	for (const blofeld::s_tag_field* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++, field_index++)
 	{
 		const blofeld::s_tag_field& field = **field_pointer;
 
 		const void* src_field_data = object.get_field_data_unsafe(field);
 		blofeld::e_field field_type = field.field_type;
-		unsigned long field_size = ULONG_MAX;
+		uint32_t field_size = ULONG_MAX;
 		ASSERT(BCS_SUCCEEDED(blofeld::get_blofeld_tag_file_field_size(field_type, engine_platform_build, field_size)));
 
 		switch (field.field_type)
@@ -656,13 +656,13 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 		case blofeld::_field_array:
 		{
 			const blofeld::s_tag_array_definition& array_definition = *field.array_definition;
-			unsigned long structure_size = calculate_structure_size(array_definition.struct_definition);
+			uint32_t structure_size = calculate_structure_size(array_definition.struct_definition);
 			field_size = structure_size * array_definition.count(engine_platform_build);
 		}
 		break;
 		case blofeld::_field_pad:
 		{
-			unsigned long pad_size = field.padding;
+			uint32_t pad_size = field.padding;
 			field_size = pad_size;
 			memset(dst_field_data, 0, field_size);
 		}
@@ -795,7 +795,7 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 			throw; // not implemented
 		}
 
-		unsigned long structure_size = calculate_structure_size(tag_resource_definition.struct_definition);
+		uint32_t structure_size = calculate_structure_size(tag_resource_definition.struct_definition);
 		char* const structure_data = static_cast<char*>(tracked_malloc(structure_size));
 		DEBUG_ONLY(memset(structure_data, 0xDD, structure_size));
 
@@ -840,14 +840,14 @@ void c_high_level_tag_file_writer::serialize_tag_reference(const h_tag_reference
 	}
 }
 
-unsigned long c_high_level_tag_file_writer::calculate_structure_size(const h_prototype& object)
+uint32_t c_high_level_tag_file_writer::calculate_structure_size(const h_prototype& object)
 {
-	unsigned long structure_size = 0;
+	uint32_t structure_size = 0;
 	for (const blofeld::s_tag_field* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++)
 	{
 		const blofeld::s_tag_field* current_field = *field_pointer;
 
-		unsigned long field_size = ULONG_MAX;
+		uint32_t field_size = ULONG_MAX;
 		blofeld::e_field field_type = current_field->field_type;
 
 		switch (field_type)
@@ -861,13 +861,13 @@ unsigned long c_high_level_tag_file_writer::calculate_structure_size(const h_pro
 		case blofeld::_field_array:
 		{
 			const blofeld::s_tag_array_definition& array_definition = *current_field->array_definition;
-			unsigned long structure_size = calculate_structure_size(array_definition.struct_definition);
+			uint32_t structure_size = calculate_structure_size(array_definition.struct_definition);
 			field_size = structure_size * array_definition.count(engine_platform_build);
 		}
 		break;
 		case blofeld::_field_pad:
 		{
-			unsigned long pad_size = current_field->padding;
+			uint32_t pad_size = current_field->padding;
 			field_size = pad_size;
 		}
 		break;
@@ -886,19 +886,19 @@ unsigned long c_high_level_tag_file_writer::calculate_structure_size(const h_pro
 	return structure_size;
 }
 
-unsigned long c_high_level_tag_file_writer::calculate_structure_size(const blofeld::s_tag_struct_definition& tag_struct_definition)
+uint32_t c_high_level_tag_file_writer::calculate_structure_size(const blofeld::s_tag_struct_definition& tag_struct_definition)
 {
-	unsigned long structure_size = 0;
+	uint32_t structure_size = 0;
 	for (const blofeld::s_tag_field* current_field = tag_struct_definition.fields; current_field->field_type != blofeld::_field_terminator; current_field++)
 	{
-		unsigned long field_skip_count;
+		uint32_t field_skip_count;
 		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, field_skip_count))
 		{
 			current_field += field_skip_count;
 			continue;
 		}
 
-		unsigned long field_size = ULONG_MAX;
+		uint32_t field_size = ULONG_MAX;
 		blofeld::e_field field_type = current_field->field_type;
 
 		switch (field_type)
@@ -912,13 +912,13 @@ unsigned long c_high_level_tag_file_writer::calculate_structure_size(const blofe
 		case blofeld::_field_array:
 		{
 			const blofeld::s_tag_array_definition& array_definition = *current_field->array_definition;
-			unsigned long structure_size = calculate_structure_size(array_definition.struct_definition);
+			uint32_t structure_size = calculate_structure_size(array_definition.struct_definition);
 			field_size = structure_size * array_definition.count(engine_platform_build);
 		}
 		break;
 		case blofeld::_field_pad:
 		{
-			unsigned long pad_size = current_field->padding;
+			uint32_t pad_size = current_field->padding;
 			field_size = pad_size;
 		}
 		break;

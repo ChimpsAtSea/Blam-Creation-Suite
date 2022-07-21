@@ -14,5 +14,5 @@ protected:
 	char status[128];
 	char status_ui_copy[128];
 	double end_time;
-	unsigned long priority;
+	uint32_t priority;
 };

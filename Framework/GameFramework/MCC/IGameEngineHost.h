@@ -150,17 +150,17 @@ public:
 	{
 		struct GeneralVideoSettingsStructV1 // 0x2C
 		{
-			/* 0x00 */	long DesiredScreenWidth;
-			/* 0x04 */	long DesiredScreenHeight;
+			/* 0x00 */	int32_t DesiredScreenWidth;
+			/* 0x04 */	int32_t DesiredScreenHeight;
 
-			/* 0x08 */	long TextureResolution;
-			/* 0x0C */	long TextureFilteringQuality;
-			/* 0x10 */	long LightingQuality;
-			/* 0x14 */	long EffectsQuality;
-			/* 0x18 */	long ShadowQuality;
-			/* 0x1C */	long DetailsQuality;
-			/* 0x20 */	long PostProcessingQuality;
-			/* 0x24 */	long WindowMode;
+			/* 0x08 */	int32_t TextureResolution;
+			/* 0x0C */	int32_t TextureFilteringQuality;
+			/* 0x10 */	int32_t LightingQuality;
+			/* 0x14 */	int32_t EffectsQuality;
+			/* 0x18 */	int32_t ShadowQuality;
+			/* 0x1C */	int32_t DetailsQuality;
+			/* 0x20 */	int32_t PostProcessingQuality;
+			/* 0x24 */	int32_t WindowMode;
 			/* 0x28 */	bool AntiAliasing;
 			/* 0x29 */	bool VSync;
 			/* 0x2A */	bool FPSLock;
@@ -189,15 +189,15 @@ public:
 			/* 0x78 */	ScaleAndOffsetStruct ShadowGenerateCount;
 			/* 0x80 */	ScaleAndOffsetStruct ShadowQualityLOD;
 
-			/* 0x88 */	long DisableObjectPRT;
-			/* 0x9C */	long DisableFirstPersonShadow;
-			/* 0x90 */	long DisableDynamicLightingShadows;
-			/* 0x94 */	long DisablePatchyFog;
-			/* 0x98 */	long DisableCheapParticles;
-			/* 0xAC */	long DisableSSAO;
-			/* 0xA0 */	long DisableCHUDTurbulence;
-			/* 0xA4 */	long DisableDecoratorTypeInstances;
-			/* 0xA8 */	long DisableRain;
+			/* 0x88 */	int32_t DisableObjectPRT;
+			/* 0x9C */	int32_t DisableFirstPersonShadow;
+			/* 0x90 */	int32_t DisableDynamicLightingShadows;
+			/* 0x94 */	int32_t DisablePatchyFog;
+			/* 0x98 */	int32_t DisableCheapParticles;
+			/* 0xAC */	int32_t DisableSSAO;
+			/* 0xA0 */	int32_t DisableCHUDTurbulence;
+			/* 0xA4 */	int32_t DisableDecoratorTypeInstances;
+			/* 0xA8 */	int32_t DisableRain;
 		};
 		CHECK_STRUCTURE_SIZE(RenderSettingsStructV1, 0xAC);
 
@@ -211,18 +211,18 @@ public:
 	{
 		struct GeneralVideoSettingsStructV2 // 0x34
 		{
-			/* 0x00 */	long DesiredScreenWidth;
-			/* 0x04 */	long DesiredScreenHeight;
+			/* 0x00 */	int32_t DesiredScreenWidth;
+			/* 0x04 */	int32_t DesiredScreenHeight;
 
-			/* 0x08 */	long TextureResolution;
-			/* 0x0C */	long TextureFilteringQuality;
-			/* 0x10 */	long LightingQuality;
-			/* 0x14 */	long EffectsQuality;
-			/* 0x18 */	long ShadowQuality;
-			/* 0x1C */	long DetailsQuality;
-			/* 0x20 */	long PostProcessingQuality;
-			/* 0x24 */	long WaterQuality;;
-			/* 0x28 */	long WindowMode;
+			/* 0x08 */	int32_t TextureResolution;
+			/* 0x0C */	int32_t TextureFilteringQuality;
+			/* 0x10 */	int32_t LightingQuality;
+			/* 0x14 */	int32_t EffectsQuality;
+			/* 0x18 */	int32_t ShadowQuality;
+			/* 0x1C */	int32_t DetailsQuality;
+			/* 0x20 */	int32_t PostProcessingQuality;
+			/* 0x24 */	int32_t WaterQuality;;
+			/* 0x28 */	int32_t WindowMode;
 			/* 0x2C */	bool AntiAliasing;
 			/* 0x2D */	bool MotionBlur;
 			/* 0x2E */	bool Blood;
@@ -254,16 +254,16 @@ public:
 			/* 0x80 */	ScaleAndOffsetStruct ShadowQualityLOD;
 			/* 0x88 */	ScaleAndOffsetStruct FloatingShadowQualityLOD;	// Name not in exe, taken from blofeld definitions
 
-			/* 0x90 */	long DisableObjectPRT;
-			/* 0x94 */	long DisableFirstPersonShadow;
-			/* 0x98 */	long DisableDynamicLightingShadows;
-			/* 0x9C */	long DisablePatchyFog;
-			/* 0xA0 */	long DisableCheapParticles;
-			/* 0xA4 */	long DisableSSAO;
-			/* 0xA8 */	long DisableCHUDTurbulence;
-			/* 0xAC */	long DisableDecoratorTypeInstances;
-			/* 0xB0 */	long DisableRain;
-			/* 0xB4 */	long UnknownFlag;
+			/* 0x90 */	int32_t DisableObjectPRT;
+			/* 0x94 */	int32_t DisableFirstPersonShadow;
+			/* 0x98 */	int32_t DisableDynamicLightingShadows;
+			/* 0x9C */	int32_t DisablePatchyFog;
+			/* 0xA0 */	int32_t DisableCheapParticles;
+			/* 0xA4 */	int32_t DisableSSAO;
+			/* 0xA8 */	int32_t DisableCHUDTurbulence;
+			/* 0xAC */	int32_t DisableDecoratorTypeInstances;
+			/* 0xB0 */	int32_t DisableRain;
+			/* 0xB4 */	int32_t UnknownFlag;
 		};
 		CHECK_STRUCTURE_SIZE(RenderSettingsStructV2, 0xB8);
 

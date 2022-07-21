@@ -21,7 +21,7 @@ template<> BCS_DEBUG_API void byteswap_inplace<unsigned long>(unsigned long& val
 	value = _byteswap_ulong(value);
 }
 
-template<> BCS_DEBUG_API void byteswap_inplace<unsigned long long>(unsigned long long& value)
+template<> BCS_DEBUG_API void byteswap_inplace<uint64_t>(uint64_t& value)
 {
 	value = _byteswap_uint64(value);
 }
@@ -47,9 +47,9 @@ template<> BCS_DEBUG_API void byteswap_inplace<int>(int& value)
 	value = _byteswap_ulong(value);
 }
 
-template<> BCS_DEBUG_API void byteswap_inplace<long long>(long long& value)
+template<> BCS_DEBUG_API void byteswap_inplace<int64_t>(int64_t& value)
 {
-	value = static_cast<long long>(_byteswap_uint64(static_cast<unsigned long long>(value)));
+	value = static_cast<int64_t>(_byteswap_uint64(static_cast<uint64_t>(value)));
 }
 
 template<> BCS_DEBUG_API void byteswap_inplace<bool>(bool& value)

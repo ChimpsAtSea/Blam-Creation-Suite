@@ -40,7 +40,7 @@ void c_resource_definitions_chunk::log_impl(c_tag_file_string_debugger* string_d
 	log_signature();
 	console_write_line_verbose("count:0x%08X", entry_count);
 
-	for (unsigned long index = 0; index < entry_count; index++)
+	for (uint32_t index = 0; index < entry_count; index++)
 	{
 		s_tag_persist_resource_definition entry = entries[index];
 		if (string_debugger)
@@ -55,7 +55,7 @@ void c_resource_definitions_chunk::log_impl(c_tag_file_string_debugger* string_d
 	}
 }
 
-BCS_RESULT c_resource_definitions_chunk::set_data(const void* data, unsigned long data_size)
+BCS_RESULT c_resource_definitions_chunk::set_data(const void* data, uint32_t data_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -82,7 +82,7 @@ void c_resource_definitions_chunk::read_entries()
 	{
 		const s_tag_persist_resource_definition* src_entries = reinterpret_cast<const s_tag_persist_resource_definition*>(get_chunk_data_start());
 		entries = new() s_tag_persist_resource_definition[entry_count];
-		for (unsigned long entry_index = 0; entry_index < entry_count; entry_index++)
+		for (uint32_t entry_index = 0; entry_index < entry_count; entry_index++)
 		{
 			s_tag_persist_resource_definition& entry = entries[entry_index];
 			entry = src_entries[entry_index];

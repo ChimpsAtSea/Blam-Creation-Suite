@@ -25,7 +25,7 @@ struct s_halo4_tag_resource_info
 {
 	const char* name;
 	blofeld::s_tag_struct_definition& definition;
-	long definition_flags;
+	int32_t definition_flags;
 	short page_alignment_bits[3];
 };
 extern const s_halo4_tag_resource_info halo4_tag_resource_infos[k_num_halo4_resource_types];
@@ -34,21 +34,21 @@ struct s_resource_priority_data
 {
 	c_halo4_cache_file_reader* resource_cache_file;
 	const char* page_data_pointer;
-	long page_file_offset;
-	long page_file_size;
-	long page_size;
-	long resource_page_offset;
+	int32_t page_file_offset;
+	int32_t page_file_size;
+	int32_t page_size;
+	int32_t resource_page_offset;
 	short page_index;
 	e_halo4_compression_codec compression_codec;
 };
 
 struct s_resource_priority_datas
 {
-	unsigned long long id;
+	uint64_t id;
 	s_resource_priority_data data[3];
 	const char* naive_resource_control_data;
 	c_halo4_tag_instance* tag_instance;
-	unsigned long resource_index;
+	uint32_t resource_index;
 	//c_flags<blofeld::xbox360_gen3::e_cache_file_resource_data_flags_definition, short, blofeld::xbox360_gen3::k_cache_file_resource_data_flags_definition_count> flags;
 
 	void make_id();
@@ -60,7 +60,7 @@ public:
 	c_halo4_resource_container(e_halo4_resource_type resource_type, c_halo4_tag_instance& tag_instance, s_resource_priority_datas const& resource_priority_datas);
 	virtual ~c_halo4_resource_container();
 
-	virtual void digest_page(c_halo4_cache_file_reader& cache_reader, unsigned long page_index, const char* page_data);
+	virtual void digest_page(c_halo4_cache_file_reader& cache_reader, uint32_t page_index, const char* page_data);
 
 	e_halo4_resource_type resource_type;
 	c_halo4_tag_instance& tag_instance;
@@ -72,9 +72,9 @@ class c_halo4_bitmap_texture_interop_resource :
 {
 public:
 	c_halo4_bitmap_texture_interop_resource(c_halo4_tag_instance& tag_instance, s_resource_priority_datas const& resource_priority_datas);
-	virtual void digest_page(c_halo4_cache_file_reader& cache_reader, unsigned long page_index, const char* page_data);
+	virtual void digest_page(c_halo4_cache_file_reader& cache_reader, uint32_t page_index, const char* page_data);
 
-	BCS_RESULT get_sub_bitmap_index_by_resource_index(c_halo4_cache_file_reader& cache_reader, unsigned long& index) const;
+	BCS_RESULT get_sub_bitmap_index_by_resource_index(c_halo4_cache_file_reader& cache_reader, uint32_t& index) const;
 };
 
 class c_halo4_sound_resource_definition :

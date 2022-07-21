@@ -3,14 +3,14 @@
 c_graphics_vertex_layout_d3d12::c_graphics_vertex_layout_d3d12(
 	c_graphics_d3d12& graphics,
 	s_graphics_vertex_layout_description* descriptions,
-	unsigned long num_descriptions,
+	uint32_t num_descriptions,
 	const wchar_t* name) :
 	graphics(graphics),
 	vertex_layout_descriptions(),
 	num_layout_descriptions(num_descriptions)
 {
 	vertex_layout_descriptions = new() D3D12_INPUT_ELEMENT_DESC[num_layout_descriptions]{};
-	for (unsigned long vertex_layout_index = 0; vertex_layout_index < num_layout_descriptions; vertex_layout_index++)
+	for (uint32_t vertex_layout_index = 0; vertex_layout_index < num_layout_descriptions; vertex_layout_index++)
 	{
 		D3D12_INPUT_ELEMENT_DESC& d3d12_vertex_layout_description = vertex_layout_descriptions[vertex_layout_index];
 		s_graphics_vertex_layout_description vertex_layout_description = descriptions[vertex_layout_index];
@@ -55,7 +55,7 @@ BCS_RESULT graphics_vertex_layout_stepping_to_d3d12_input_classification(e_graph
 BCS_RESULT graphics_d3d12_vertex_layout_create(
 	c_graphics_d3d12* graphics,
 	s_graphics_vertex_layout_description* descriptions,
-	unsigned long num_layout_descriptions,
+	uint32_t num_layout_descriptions,
 	c_graphics_vertex_layout_d3d12*& vertex_layout,
 	const char* debug_name)
 {

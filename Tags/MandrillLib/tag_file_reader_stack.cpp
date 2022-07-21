@@ -56,7 +56,7 @@ t_tag_file_reader_metadata_entry& t_tag_file_reader_metadata_stack::_push()
 		}
 	}
 
-	long entry_index = stack_head->entry_count++;
+	int32_t entry_index = stack_head->entry_count++;
 	//ASSERT(entry_index < _countof(t_entries_array::metadata_entries));
 
 	t_tag_file_reader_metadata_entry& entry = stack_head->metadata_entries[entry_index];
@@ -92,7 +92,7 @@ t_tag_file_reader_metadata_entry& t_tag_file_reader_metadata_stack::_push(t_tag_
 		}
 	}
 
-	long entry_index = stack_head->entry_count++;
+	int32_t entry_index = stack_head->entry_count++;
 	//ASSERT(entry_index < _countof(t_entries_array::metadata_entries));
 
 	t_tag_file_reader_metadata_entry& entry = stack_head->metadata_entries[entry_index];
@@ -105,7 +105,7 @@ void t_tag_file_reader_metadata_stack::_pop(t_tag_file_reader_metadata_entry& va
 {
 	//ASSERT(stack_length > 0);
 	//ASSERT(stack_head->entry_count > 0);
-	long entry_index = --stack_head->entry_count;
+	int32_t entry_index = --stack_head->entry_count;
 	//ASSERT(entry_index >= 0);
 	stack_length--;
 	value = stack_head->metadata_entries[entry_index];
@@ -120,7 +120,7 @@ t_tag_file_reader_metadata_entry& t_tag_file_reader_metadata_stack::_pop_unsafe(
 {
 	//ASSERT(stack_length > 0);
 	//ASSERT(stack_head->entry_count > 0);
-	long entry_index = --stack_head->entry_count;
+	int32_t entry_index = --stack_head->entry_count;
 	//ASSERT(entry_index >= 0);
 	stack_length--;
 	t_tag_file_reader_metadata_entry& result = stack_head->metadata_entries[entry_index];
@@ -134,7 +134,7 @@ t_tag_file_reader_metadata_entry& t_tag_file_reader_metadata_stack::_pop_unsafe(
 
 void t_tag_file_reader_metadata_stack::copy_from(t_tag_file_reader_metadata_stack& stack)
 {
-	unsigned long src_stack_length = stack.stack_length;
+	uint32_t src_stack_length = stack.stack_length;
 	while(src_stack_length--)
 	{
 		t_tag_file_reader_metadata_entry& entry = stack._pop_unsafe();

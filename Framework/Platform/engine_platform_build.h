@@ -1,6 +1,6 @@
 #pragma once
 
-typedef unsigned long long t_build_id;
+typedef uint64_t t_build_id;
 
 enum e_engine_type : unsigned char
 {
@@ -178,7 +178,7 @@ BCS_DEBUG_API extern BCS_RESULT get_platform_type_pretty_string(e_platform_type 
 BCS_DEBUG_API extern BCS_RESULT get_platform_type_namespace(e_platform_type platform_type, const char*& result);
 BCS_DEBUG_API extern BCS_RESULT get_platform_type_string(e_platform_type platform_type, const char*& result);
 
-BCS_DEBUG_API extern BCS_RESULT get_platform_pointer_size(e_platform_type platform_type, unsigned long* pointer_size);
+BCS_DEBUG_API extern BCS_RESULT get_platform_pointer_size(e_platform_type platform_type, uint32_t* pointer_size);
 BCS_DEBUG_API extern BCS_RESULT get_build_pretty_string(e_build build, const char** result);
 BCS_DEBUG_API extern BCS_RESULT get_build_string(e_build build, const char** result);
 
@@ -191,8 +191,8 @@ BCS_DEBUG_API extern BCS_RESULT get_engine_top_address(s_engine_platform_build e
 BCS_DEBUG_API extern BCS_RESULT get_engine_base_address(s_engine_platform_build engine_platform_build, uintptr_t* result);
 BCS_DEBUG_API extern BCS_RESULT get_engine_runtime_base_address(s_engine_platform_build engine_platform_build, void** result);
 
-BCS_DEBUG_API extern BCS_RESULT get_library_file_version(const char* file_path, unsigned long long* file_version);
-BCS_DEBUG_API extern BCS_RESULT get_library_file_version(const wchar_t* file_path, unsigned long long* file_version);
+BCS_DEBUG_API extern BCS_RESULT get_library_file_version(const char* file_path, uint64_t* file_version);
+BCS_DEBUG_API extern BCS_RESULT get_library_file_version(const wchar_t* file_path, uint64_t* file_version);
 BCS_DEBUG_API extern BCS_RESULT get_library_description(const wchar_t* file_path, wchar_t* buffer, size_t buffer_size);
 BCS_DEBUG_API extern BCS_RESULT get_library_product_name(const wchar_t* file_path, wchar_t* buffer, size_t buffer_size);
 

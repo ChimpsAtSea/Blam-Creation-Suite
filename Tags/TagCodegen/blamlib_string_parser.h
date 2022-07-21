@@ -55,7 +55,7 @@ public:
 	bool flag_pointer;
 
 	bool is_block;
-	unsigned long code_index;
+	uint32_t code_index;
 	std::unordered_map<std::string, int>* string_list_value_unique_counter;
 };
 

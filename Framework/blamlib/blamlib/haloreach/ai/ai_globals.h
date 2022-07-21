@@ -88,17 +88,17 @@ static_assert(sizeof(s_ai_globals_unknown11C_unknown10_definition) == 0x4);
 
 struct s_ai_globals_unknown11C_unknown1C_definition
 {
-	long unknown00;
-	long unknown04;
-	long unknown08;
-	long unknown0C;
-	long unknown10;
-	long unknown14;
-	long unknown18;
-	long unknown1C;
-	long unknown20;
-	long unknown24;
-	long unknown28;
+	int unknown00;
+	int unknown04;
+	int unknown08;
+	int unknown0C;
+	int unknown10;
+	int unknown14;
+	int unknown18;
+	int unknown1C;
+	int unknown20;
+	int unknown24;
+	int unknown28;
 };
 static_assert(sizeof(s_ai_globals_unknown11C_unknown1C_definition) == 0x2C);
 
@@ -176,7 +176,7 @@ struct s_ai_globals_data
 	real jump_stand;
 	real jump_storey;
 	real jump_tower;
-	long : 32;
+	int : 32;
 
 	real maximum_jump_down_height_down;
 	real maximum_jump_down_height_step;
@@ -184,7 +184,7 @@ struct s_ai_globals_data
 	real maximum_jump_down_height_stand;
 	real maximum_jump_down_height_storey;
 	real maximum_jump_down_height_tower;
-	long : 32;
+	int : 32;
 
 	real hoist_step_min;
 	real hoist_step_max;
@@ -287,6 +287,6 @@ static_assert(sizeof(s_ai_globals_data) == 0x1B0);
 struct s_ai_globals_definition
 {
 	c_typed_tag_block<s_ai_globals_data> data;
-	long : 32;
+	int : 32;
 };
 static_assert(sizeof(s_ai_globals_definition) == 0x10);

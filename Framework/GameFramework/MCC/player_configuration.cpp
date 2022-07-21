@@ -186,7 +186,7 @@ void save_player_configuration_to_file(c_player_configuration& player_configurat
 	write_control_to_config(SfxVolume);
 	write_control_to_config(Brightness);
 
-	for (long abstract_button_index = 0; abstract_button_index < player_configuration.abstract_button_count; abstract_button_index++)
+	for (int32_t abstract_button_index = 0; abstract_button_index < player_configuration.abstract_button_count; abstract_button_index++)
 	{
 		write_custom_key_mapping_to_config(abstract_button_index, CustomKeyboardMouseMappings);
 	}
@@ -347,7 +347,7 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 
 	s_custom_key_mapping CustomKeyboardMouseMappings[k_number_of_abstract_buttons] = {};
 
-	for (long i = 0; i < k_number_of_abstract_buttons; i++)
+	for (int32_t i = 0; i < k_number_of_abstract_buttons; i++)
 	{
 		CustomKeyboardMouseMappings[i].AbstractButton = i;
 	}
@@ -477,7 +477,7 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 		CustomKeyboardMouseMappings[_abstract_button_activate_waypoint_alt_v9].VirtualKeyCodes[0] = 'P';
 	}
 
-	for (long abstract_button_index = 0; abstract_button_index < player_configuration.abstract_button_count; abstract_button_index++)
+	for (int32_t abstract_button_index = 0; abstract_button_index < player_configuration.abstract_button_count; abstract_button_index++)
 	{
 		read_custom_key_mapping_from_config(abstract_button_index, CustomKeyboardMouseMappings, CustomKeyboardMouseMappings[abstract_button_index]);
 	}

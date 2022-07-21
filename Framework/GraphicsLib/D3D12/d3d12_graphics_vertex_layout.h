@@ -14,13 +14,13 @@ public:
 	explicit c_graphics_vertex_layout_d3d12(
 		c_graphics_d3d12& graphics,
 		s_graphics_vertex_layout_description* descriptions,
-		unsigned long num_descriptions,
+		uint32_t num_descriptions,
 		const wchar_t* name = nullptr);
 	virtual ~c_graphics_vertex_layout_d3d12();
 
 	c_graphics_d3d12& graphics;
 	D3D12_INPUT_ELEMENT_DESC* vertex_layout_descriptions;
-	unsigned long num_layout_descriptions;
+	uint32_t num_layout_descriptions;
 
 
 };
@@ -28,7 +28,7 @@ public:
 BCS_RESULT graphics_d3d12_vertex_layout_create(
 	c_graphics_d3d12* graphics,
 	s_graphics_vertex_layout_description* descriptions,
-	unsigned long num_layout_descriptions,
+	uint32_t num_layout_descriptions,
 	c_graphics_vertex_layout_d3d12*& vertex_layout,
 	const char* debug_name = nullptr);
 BCS_RESULT graphics_d3d12_vertex_layout_destroy(c_graphics_vertex_layout_d3d12* vertex_layout);

@@ -12,8 +12,8 @@ bool blofeld::execute_tag_field_versioning(
 	s_tag_field const& tag_field,
 	s_engine_platform_build engine_platform_build,
 	TAG_VERSIONING_EXTENDED_ONLY(tag group_tag, )
-	unsigned long struct_version,
-	unsigned long& skip_count)
+	uint32_t struct_version,
+	uint32_t& skip_count)
 {
 	if (tag_field.field_type != _field_version)
 	{
@@ -28,8 +28,8 @@ bool blofeld::execute_tag_field_versioning(
 	s_tag_field_versioning const& versioning,
 	s_engine_platform_build engine_platform_build,
 	TAG_VERSIONING_EXTENDED_ONLY(tag group_tag, )
-	unsigned long struct_version,
-	unsigned long& skip_count)
+	uint32_t struct_version,
+	uint32_t& skip_count)
 {
 	bool skip_versioning_field = false;
 	skip_count = versioning.version_field_skip_count;

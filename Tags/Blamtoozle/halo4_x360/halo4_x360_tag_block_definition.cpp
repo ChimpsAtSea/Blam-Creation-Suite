@@ -44,7 +44,7 @@ const char* c_halo4_x360_tag_block_definition::get_code_symbol_name()
 	return code_symbol_name.c_str();
 }
 
-unsigned long c_halo4_x360_tag_block_definition::get_max_count()
+uint32_t c_halo4_x360_tag_block_definition::get_max_count()
 {
 	return block_definition.max_count;
 }

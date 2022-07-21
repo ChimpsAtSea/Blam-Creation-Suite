@@ -33,7 +33,7 @@ c_halo2_tools_pc64_tag_block_definition::c_halo2_tools_pc64_tag_block_definition
 
 
 	c_halo2_tools_pc64_tag_struct_definition* previous_version_struct_definition = nullptr;
-	for (unsigned long version_structure_index = 0; version_structure_index < block_definition.versioning_structure_definitions_count; version_structure_index++)
+	for (uint32_t version_structure_index = 0; version_structure_index < block_definition.versioning_structure_definitions_count; version_structure_index++)
 	{
 		c_halo2_tools_pc64_tag_struct_definition& versioning_struct_definition = tag_definition_manager.eval_struct(versioning_structure_definition_address);
 		versioning_struct_definition.structure_version = version_structure_index;
@@ -73,7 +73,7 @@ const char* c_halo2_tools_pc64_tag_block_definition::get_code_symbol_name()
 	return code_symbol_name.c_str();
 }
 
-unsigned long c_halo2_tools_pc64_tag_block_definition::get_max_count()
+uint32_t c_halo2_tools_pc64_tag_block_definition::get_max_count()
 {
 	return block_definition.max_count;
 }

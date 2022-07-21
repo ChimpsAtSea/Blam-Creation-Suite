@@ -10,9 +10,9 @@ public:
 
 	virtual const char* get_name() = 0;
 	virtual const char* get_code_symbol_name() = 0;
-	virtual unsigned long get_flags() = 0;
-	virtual unsigned long get_alignment_bits() = 0;
-	virtual unsigned long get_maximum_element_count() = 0;
+	virtual uint32_t get_flags() = 0;
+	virtual uint32_t get_alignment_bits() = 0;
+	virtual uint32_t get_maximum_element_count() = 0;
 	virtual const char* get_maximum_element_count_string() = 0;
 
 	c_blamtoozle_tag_definition_manager& tag_definition_manager;

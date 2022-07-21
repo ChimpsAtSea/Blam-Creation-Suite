@@ -10,7 +10,7 @@ public:
 	BCS_DEBUG_API ~c_tag_struct_definition_view();
 
 	BCS_DEBUG_API const blofeld::s_tag_struct_definition** get_tag_struct_definitions();
-	BCS_DEBUG_API unsigned long get_num_tag_struct_definitions();
+	BCS_DEBUG_API uint32_t get_num_tag_struct_definitions();
 
 protected:
 

@@ -4,7 +4,7 @@ using namespace tbb;
 
 #define MINIMUM_PARALLEL_THREADS 4
 
-unsigned long get_processors_thread_count()
+uint32_t get_processors_thread_count()
 {
 	SYSTEM_INFO system_info;
 	GetSystemInfo(&system_info);
@@ -22,9 +22,9 @@ struct s_parallel_invoke_multi_threaded_worker_userdata
 
 template<typename t_index_type> DWORD WINAPI _parallel_invoke_multi_threaded_worker(LPVOID lpThreadParameter);
 
-template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<long>(LPVOID lpThreadParameter)
+template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<int32_t>(LPVOID lpThreadParameter)
 {
-	using t_index_type = long;
+	using t_index_type = int32_t;
 	s_parallel_invoke_multi_threaded_worker_userdata<t_index_type>* _worker_userdata = static_cast<s_parallel_invoke_multi_threaded_worker_userdata<t_index_type>*>(lpThreadParameter);
 
 	t_parallel_invoke_func<t_index_type> const parallel_invoke_func = _worker_userdata->parallel_invoke_func;
@@ -32,7 +32,7 @@ template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<long>(LPVOID lpTh
 	volatile t_index_type* const worker_index = &_worker_userdata->index;
 	t_index_type const end = _worker_userdata->end;
 
-#define _paralle_invole_get_index (_InterlockedIncrement(worker_index) - 1)
+#define _paralle_invole_get_index (atomic_inc32(worker_index) - 1)
 	for (t_index_type index = _paralle_invole_get_index; index < end; index = _paralle_invole_get_index)
 	{
 		parallel_invoke_func(userdata, index);
@@ -41,9 +41,9 @@ template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<long>(LPVOID lpTh
 	return 0;
 }
 
-template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<long long>(LPVOID lpThreadParameter)
+template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<int64_t>(LPVOID lpThreadParameter)
 {
-	using t_index_type = long long;
+	using t_index_type = int64_t;
 	s_parallel_invoke_multi_threaded_worker_userdata<t_index_type>* _worker_userdata = static_cast<s_parallel_invoke_multi_threaded_worker_userdata<t_index_type>*>(lpThreadParameter);
 
 	t_parallel_invoke_func<t_index_type> const parallel_invoke_func = _worker_userdata->parallel_invoke_func;
@@ -60,9 +60,9 @@ template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<long long>(LPVOID
 	return 0;
 }
 
-template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<unsigned long>(LPVOID lpThreadParameter)
+template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<uint32_t>(LPVOID lpThreadParameter)
 {
-	using t_index_type = unsigned long;
+	using t_index_type = uint32_t;
 	s_parallel_invoke_multi_threaded_worker_userdata<t_index_type>* _worker_userdata = static_cast<s_parallel_invoke_multi_threaded_worker_userdata<t_index_type>*>(lpThreadParameter);
 
 	t_parallel_invoke_func<t_index_type> const parallel_invoke_func = _worker_userdata->parallel_invoke_func;
@@ -70,7 +70,7 @@ template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<unsigned long>(LP
 	volatile t_index_type* const worker_index = &_worker_userdata->index;
 	t_index_type const end = _worker_userdata->end;
 
-#define _paralle_invole_get_index (InterlockedIncrement(worker_index) - 1)
+#define _paralle_invole_get_index (atomic_incu32(worker_index) - 1)
 	for (t_index_type index = _paralle_invole_get_index; index < end; index = _paralle_invole_get_index)
 	{
 		parallel_invoke_func(userdata, index);
@@ -79,9 +79,9 @@ template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<unsigned long>(LP
 	return 0;
 }
 
-template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<unsigned long long>(LPVOID lpThreadParameter)
+template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<uint64_t>(LPVOID lpThreadParameter)
 {
-	using t_index_type = unsigned long long;
+	using t_index_type = uint64_t;
 	s_parallel_invoke_multi_threaded_worker_userdata<t_index_type>* _worker_userdata = static_cast<s_parallel_invoke_multi_threaded_worker_userdata<t_index_type>*>(lpThreadParameter);
 
 	t_parallel_invoke_func<t_index_type> const parallel_invoke_func = _worker_userdata->parallel_invoke_func;
@@ -116,8 +116,8 @@ static void _parallel_invoke_multi_threaded(t_index_type start, t_index_type end
 
 	// #TODO: Create a task system for this and queue jobs
 
-	unsigned long processors_thread_count = get_processors_thread_count();
-	unsigned long thread_count = static_cast<unsigned long>(__min(static_cast<unsigned long long>(job_count), __max(processors_thread_count, MINIMUM_PARALLEL_THREADS))) - 1;
+	uint32_t processors_thread_count = get_processors_thread_count();
+	uint32_t thread_count = static_cast<unsigned long>(__min(static_cast<uint64_t>(job_count), __max(processors_thread_count, MINIMUM_PARALLEL_THREADS))) - 1;
 
 	if (job_count <= 1)
 	{
@@ -131,7 +131,7 @@ static void _parallel_invoke_multi_threaded(t_index_type start, t_index_type end
 			threads[thread_index] = CreateThread(NULL, 0, _parallel_invoke_multi_threaded_worker<t_index_type>, &worker_userdata, 0, NULL);
 		}
 		_parallel_invoke_multi_threaded_worker<t_index_type>(&worker_userdata);
-		for (unsigned long wait_index = 0, wait_amount = __min(MAXIMUM_WAIT_OBJECTS, thread_count); wait_index < thread_count; wait_index -= wait_amount)
+		for (uint32_t wait_index = 0, wait_amount = __min(MAXIMUM_WAIT_OBJECTS, thread_count); wait_index < thread_count; wait_index -= wait_amount)
 		{
 			DWORD result = WaitForMultipleObjects(wait_amount, threads + wait_index, TRUE, INFINITE);
 			ASSERT(result == WAIT_OBJECT_0);
@@ -143,22 +143,22 @@ static void _parallel_invoke_multi_threaded(t_index_type start, t_index_type end
 	debug_point;
 }
 
-static void _parallel_invoke_single_threaded(long start, long end, t_parallel_invoke_long_func parallel_invoke_func, void* userdata)
+static void _parallel_invoke_single_threaded(int32_t start, int32_t end, t_parallel_invoke_long_func parallel_invoke_func, void* userdata)
 {
 	for (decltype(start) index = start; index < end; index++) parallel_invoke_func(userdata, index);
 }
 
-static void _parallel_invoke_single_threaded(long long start, long long end, t_parallel_invoke_longlong_func parallel_invoke_func, void* userdata)
+static void _parallel_invoke_single_threaded(int64_t start, int64_t end, t_parallel_invoke_longlong_func parallel_invoke_func, void* userdata)
 {
 	for (decltype(start) index = start; index < end; index++) parallel_invoke_func(userdata, index);
 }
 
-static void _parallel_invoke_single_threaded(unsigned long start, unsigned long end, t_parallel_invoke_ulong_func parallel_invoke_func, void* userdata)
+static void _parallel_invoke_single_threaded(uint32_t start, uint32_t end, t_parallel_invoke_ulong_func parallel_invoke_func, void* userdata)
 {
 	for (decltype(start) index = start; index < end; index++) parallel_invoke_func(userdata, index);
 }
 
-static void _parallel_invoke_single_threaded(unsigned long long start, unsigned long long end, t_parallel_invoke_ulonglong_func parallel_invoke_func, void* userdata)
+static void _parallel_invoke_single_threaded(uint64_t start, uint64_t end, t_parallel_invoke_ulonglong_func parallel_invoke_func, void* userdata)
 {
 	for (decltype(start) index = start; index < end; index++) parallel_invoke_func(userdata, index);
 }
@@ -167,51 +167,51 @@ static void _parallel_invoke_single_threaded(unsigned long long start, unsigned 
 	if (BCS_SUCCEEDED(command_line_has_argument("singlethreaded"))) target_pointer = single_threaded_function; \
 	else target_pointer = multi_threaded_function;
 
-static void _parallel_invoke_first_run(long start, long end, t_parallel_invoke_long_func parallel_invoke_func, void* userdata)
+static void _parallel_invoke_first_run(int32_t start, int32_t end, t_parallel_invoke_long_func parallel_invoke_func, void* userdata)
 {
-	PARALLEL_INVOKE_FIRST_RUN_FIXUP(parallel_invoke_impl0, _parallel_invoke_single_threaded, _parallel_invoke_multi_threaded<long>);
+	PARALLEL_INVOKE_FIRST_RUN_FIXUP(parallel_invoke_impl0, _parallel_invoke_single_threaded, _parallel_invoke_multi_threaded<int32_t>);
 	return parallel_invoke_impl0(start, end, parallel_invoke_func, userdata);
 }
 
-static void _parallel_invoke_first_run(long long start, long long end, t_parallel_invoke_longlong_func parallel_invoke_func, void* userdata)
+static void _parallel_invoke_first_run(int64_t start, int64_t end, t_parallel_invoke_longlong_func parallel_invoke_func, void* userdata)
 {
-	PARALLEL_INVOKE_FIRST_RUN_FIXUP(parallel_invoke_impl1, _parallel_invoke_single_threaded, _parallel_invoke_multi_threaded<long long>);
+	PARALLEL_INVOKE_FIRST_RUN_FIXUP(parallel_invoke_impl1, _parallel_invoke_single_threaded, _parallel_invoke_multi_threaded<int64_t>);
 	return parallel_invoke_impl1(start, end, parallel_invoke_func, userdata);
 }
 
-static void _parallel_invoke_first_run(unsigned long start, unsigned long end, t_parallel_invoke_ulong_func parallel_invoke_func, void* userdata)
+static void _parallel_invoke_first_run(uint32_t start, uint32_t end, t_parallel_invoke_ulong_func parallel_invoke_func, void* userdata)
 {
-	PARALLEL_INVOKE_FIRST_RUN_FIXUP(parallel_invoke_impl2, _parallel_invoke_single_threaded, _parallel_invoke_multi_threaded<unsigned long>);
+	PARALLEL_INVOKE_FIRST_RUN_FIXUP(parallel_invoke_impl2, _parallel_invoke_single_threaded, _parallel_invoke_multi_threaded<uint32_t>);
 	return parallel_invoke_impl2(start, end, parallel_invoke_func, userdata);
 }
 
-static void _parallel_invoke_first_run(unsigned long long start, unsigned long long end, t_parallel_invoke_ulonglong_func parallel_invoke_func, void* userdata)
+static void _parallel_invoke_first_run(uint64_t start, uint64_t end, t_parallel_invoke_ulonglong_func parallel_invoke_func, void* userdata)
 {
-	PARALLEL_INVOKE_FIRST_RUN_FIXUP(parallel_invoke_impl3, _parallel_invoke_single_threaded, _parallel_invoke_multi_threaded<unsigned long long>);
+	PARALLEL_INVOKE_FIRST_RUN_FIXUP(parallel_invoke_impl3, _parallel_invoke_single_threaded, _parallel_invoke_multi_threaded<uint64_t>);
 	return parallel_invoke_impl3(start, end, parallel_invoke_func, userdata);
 }
 
-void (*parallel_invoke_impl0)(long start, long end, t_parallel_invoke_long_func parallel_invoke_func, void* userdata) = _parallel_invoke_first_run;
-void (*parallel_invoke_impl1)(long long start, long long end, t_parallel_invoke_longlong_func parallel_invoke_func, void* userdata) = _parallel_invoke_first_run;
-void (*parallel_invoke_impl2)(unsigned long start, unsigned long end, t_parallel_invoke_ulong_func parallel_invoke_func, void* userdata) = _parallel_invoke_first_run;
-void (*parallel_invoke_impl3)(unsigned long long start, unsigned long long end, t_parallel_invoke_ulonglong_func parallel_invoke_func, void* userdata) = _parallel_invoke_first_run;
+void (*parallel_invoke_impl0)(int32_t start, int32_t end, t_parallel_invoke_long_func parallel_invoke_func, void* userdata) = _parallel_invoke_first_run;
+void (*parallel_invoke_impl1)(int64_t start, int64_t end, t_parallel_invoke_longlong_func parallel_invoke_func, void* userdata) = _parallel_invoke_first_run;
+void (*parallel_invoke_impl2)(uint32_t start, uint32_t end, t_parallel_invoke_ulong_func parallel_invoke_func, void* userdata) = _parallel_invoke_first_run;
+void (*parallel_invoke_impl3)(uint64_t start, uint64_t end, t_parallel_invoke_ulonglong_func parallel_invoke_func, void* userdata) = _parallel_invoke_first_run;
 
-void parallel_invoke(long start, long end, t_parallel_invoke_long_func parallel_invoke_func, void* userdata)
+void parallel_invoke(int32_t start, int32_t end, t_parallel_invoke_long_func parallel_invoke_func, void* userdata)
 {
 	parallel_invoke_impl0(start, end, parallel_invoke_func, userdata);
 }
 
-void parallel_invoke(long long start, long long end, t_parallel_invoke_longlong_func parallel_invoke_func, void* userdata)
+void parallel_invoke(int64_t start, int64_t end, t_parallel_invoke_longlong_func parallel_invoke_func, void* userdata)
 {
 	parallel_invoke_impl1(start, end, parallel_invoke_func, userdata);
 }
 
-void parallel_invoke(unsigned long start, unsigned long end, t_parallel_invoke_ulong_func parallel_invoke_func, void* userdata)
+void parallel_invoke(uint32_t start, uint32_t end, t_parallel_invoke_ulong_func parallel_invoke_func, void* userdata)
 {
 	parallel_invoke_impl2(start, end, parallel_invoke_func, userdata);
 }
 
-void parallel_invoke(unsigned long long start, unsigned long long end, t_parallel_invoke_ulonglong_func parallel_invoke_func, void* userdata)
+void parallel_invoke(uint64_t start, uint64_t end, t_parallel_invoke_ulonglong_func parallel_invoke_func, void* userdata)
 {
 	parallel_invoke_impl3(start, end, parallel_invoke_func, userdata);
 }

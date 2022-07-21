@@ -3,7 +3,7 @@
 c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	c_graphics_d3d12& graphics,
 	c_graphics_swap_chain_d3d12& swap_chain,
-	unsigned long swap_chain_buffer_index,
+	uint32_t swap_chain_buffer_index,
 	float4 clear_color,
 	const char* debug_name) :
 	render_target_type(_graphics_render_target_type_d3d12_swapchain),
@@ -69,8 +69,8 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 
 c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	c_graphics_d3d12& graphics,
-	unsigned long width,
-	unsigned long height,
+	uint32_t width,
+	uint32_t height,
 	e_graphics_data_format format,
 	float4 clear_color,
 	const char* debug_name,
@@ -135,8 +135,8 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 
 c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	c_graphics_d3d12& graphics,
-	unsigned long width,
-	unsigned long height,
+	uint32_t width,
+	uint32_t height,
 	e_graphics_data_format format,
 	float clear_depth,
 	unsigned char stencil_value,
@@ -292,7 +292,7 @@ void c_graphics_render_target_d3d12::deinit_resource()
 	}
 }
 
-BCS_RESULT c_graphics_render_target_d3d12::resize(unsigned long width, unsigned long height)
+BCS_RESULT c_graphics_render_target_d3d12::resize(uint32_t width, uint32_t height)
 {
 	deinit_resource();
 	resource_description.Width = width;
@@ -308,13 +308,13 @@ BCS_RESULT c_graphics_render_target_d3d12::get_ui_image_display_handle(void*& di
 	return BCS_S_OK;
 }
 
-void c_graphics_render_target_d3d12::swap_chain_resize_start(c_graphics_render_target_d3d12& _this, unsigned long width, unsigned long height)
+void c_graphics_render_target_d3d12::swap_chain_resize_start(c_graphics_render_target_d3d12& _this, uint32_t width, uint32_t height)
 {
 	console_write_line(__FUNCTION__);
 	_this.deinit_resource();
 }
 
-void c_graphics_render_target_d3d12::swap_chain_resize_finish(c_graphics_render_target_d3d12& _this, unsigned long width, unsigned long height)
+void c_graphics_render_target_d3d12::swap_chain_resize_finish(c_graphics_render_target_d3d12& _this, uint32_t width, uint32_t height)
 {
 	console_write_line(__FUNCTION__);
 	_this.resource_description.Width = width;
@@ -349,7 +349,7 @@ BCS_RESULT c_graphics_render_target_d3d12::clear_render_target()
 BCS_RESULT graphics_d3d12_swapchain_color_render_target_create(
 	c_graphics_d3d12* graphics,
 	c_graphics_swap_chain_d3d12* swap_chain,
-	unsigned long swap_chain_buffer_index,
+	uint32_t swap_chain_buffer_index,
 	float4 clear_color,
 	c_graphics_render_target_d3d12*& render_target,
 	const char* debug_name)
@@ -375,8 +375,8 @@ BCS_RESULT graphics_d3d12_swapchain_color_render_target_create(
 }
 BCS_RESULT graphics_d3d12_color_render_target_create(
 	c_graphics_d3d12* graphics,
-	unsigned long width,
-	unsigned long height,
+	uint32_t width,
+	uint32_t height,
 	e_graphics_data_format format,
 	float4 clear_color,
 	c_graphics_render_target_d3d12*& render_target,
@@ -407,8 +407,8 @@ BCS_RESULT graphics_d3d12_color_render_target_create(
 
 BCS_RESULT graphics_d3d12_depth_stencil_render_target_create(
 	c_graphics_d3d12* graphics,
-	unsigned long width,
-	unsigned long height,
+	uint32_t width,
+	uint32_t height,
 	e_graphics_data_format format,
 	float clear_depth,
 	unsigned char stencil_value,

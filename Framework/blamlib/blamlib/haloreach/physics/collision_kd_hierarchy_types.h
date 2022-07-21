@@ -16,10 +16,10 @@ enum e_collision_kd_hierarchy_cull_flags
 
 struct s_collision_kd_hierarchy_static_hash_table_data
 {
-	long node_index;
-	long key_a;
-	long key_b;
-	long key_c;
+	int node_index;
+	int key_a;
+	int key_b;
+	int key_c;
 };
 static_assert(sizeof(s_collision_kd_hierarchy_static_hash_table_data) == 0x10);
 
@@ -59,7 +59,7 @@ static_assert(sizeof(s_collision_kd_hierarchy_cluster_mapping) == 0xC);
 
 struct s_collision_kd_hierarchy_static
 {
-	long hash_total_count;
+	int hash_total_count;
 	c_typed_tag_block<s_collision_kd_hierarchy_static_hash_table_data> hash_data;
 	c_typed_tag_block<short> hash_entry_count;
 	c_typed_tag_block<short> original_hash_entry_count;

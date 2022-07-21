@@ -6,9 +6,9 @@ class __declspec(novtable) c_allocation_interface
 {
 public:
 	virtual void *allocate(
-		unsigned long size,
+		unsigned int size,
 		char const *file,
-		long line,
+		int line,
 		char const *variable,
 		char const *type,
 		char const *name) = 0;
@@ -16,7 +16,7 @@ public:
 	virtual void deallocate(
 		void *address,
 		char const *file,
-		long line) = 0;
+		int line) = 0;
 };
 
 class __declspec(novtable) c_aligned_allocator

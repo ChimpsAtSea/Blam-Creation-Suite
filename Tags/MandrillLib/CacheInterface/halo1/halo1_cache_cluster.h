@@ -21,7 +21,7 @@ public:
 	friend c_halo1_tag_group;
 	friend c_halo1_tag_instance;
 
-	c_halo1_cache_cluster(c_halo1_cache_file_reader** cache_readers, unsigned long cache_reader_count, s_engine_platform_build engine_platform_build);
+	c_halo1_cache_cluster(c_halo1_cache_file_reader** cache_readers, uint32_t cache_reader_count, s_engine_platform_build engine_platform_build);
 	virtual ~c_halo1_cache_cluster();
 
 	BCS_RESULT get_debug_reader(c_halo1_cache_file_reader& cache_reader, c_halo1_debug_reader*& debug_reader);
@@ -31,8 +31,8 @@ public:
 
 	virtual BCS_RESULT get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const;
 	virtual BCS_RESULT get_engine_platform_build(s_engine_platform_build& engine_platform_build) const;
-	virtual BCS_RESULT get_cache_readers(c_cache_file_reader* const*& cache_readers, unsigned long& cache_reader_count) const;
-	virtual BCS_RESULT get_cache_readers(c_halo1_cache_file_reader* const*& cache_readers, unsigned long& cache_reader_count) const;
+	virtual BCS_RESULT get_cache_readers(c_cache_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const;
+	virtual BCS_RESULT get_cache_readers(c_halo1_cache_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const;
 
 protected:
 	virtual BCS_RESULT get_debug_reader(c_cache_file_reader& cache_reader, c_debug_reader*& debug_reader);

@@ -2,7 +2,7 @@
 
 class c_viewport;
 
-using t_viewport_on_size_changed_callback = void(void* userdata, c_viewport& viewport, unsigned long width, unsigned long height);
+using t_viewport_on_size_changed_callback = void(void* userdata, c_viewport& viewport, uint32_t width, uint32_t height);
 
 class c_viewport
 {
@@ -13,15 +13,15 @@ public:
 	BCS_DEBUG_API explicit c_viewport();
 	BCS_DEBUG_API ~c_viewport();
 
-	unsigned long width;
-	unsigned long height;
+	uint32_t width;
+	uint32_t height;
 	float width_float;
 	float height_float;
 	float aspect_ratio;
 
-	BCS_DEBUG_API void set_size(unsigned long width, unsigned long height);
-	BCS_DEBUG_API void set_width(unsigned long width);
-	BCS_DEBUG_API void set_height(unsigned long height);
+	BCS_DEBUG_API void set_size(uint32_t width, uint32_t height);
+	BCS_DEBUG_API void set_width(uint32_t width);
+	BCS_DEBUG_API void set_height(uint32_t height);
 
 	c_typed_callback<t_viewport_on_size_changed_callback> on_size_changed;
 };

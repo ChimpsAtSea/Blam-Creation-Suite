@@ -10,7 +10,7 @@ public:
 	void generate_header();
 	void generate_forward_declare();
 	void generate_tag_constructor_params(std::stringstream& stream, const blofeld::s_tag_struct_definition& tag_struct_definition);
-	void generate_ctor_source(unsigned long source_index, unsigned long source_count);
+	void generate_ctor_source(uint32_t source_index, uint32_t source_count);
 	void generate_source_virtual();
 	void generate_source_misc();
 

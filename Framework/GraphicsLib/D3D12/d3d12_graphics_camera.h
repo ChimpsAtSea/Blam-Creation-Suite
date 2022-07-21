@@ -39,7 +39,7 @@ public:
 	virtual void get_graphics_buffer(c_graphics_buffer*& graphics_buffer) override;
 	virtual void handle_input(float x_pixels, float y_pixels, float z_wheel) override;
 
-	static void __cdecl viewport_size_changed(c_graphics_camera_d3d12& _this, unsigned long width, unsigned long height);
+	static void __cdecl viewport_size_changed(c_graphics_camera_d3d12& _this, uint32_t width, uint32_t height);
 
 	c_graphics_d3d12& graphics;
 	c_viewport& viewport;

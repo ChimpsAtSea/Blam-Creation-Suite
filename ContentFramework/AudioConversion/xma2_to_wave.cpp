@@ -1,11 +1,11 @@
 #include "audioconversion-private-pch.h"
 
 BCS_RESULT find_riff_chunk(
-	long search_chunk_type, 
+	int32_t search_chunk_type, 
 	const void* riff_data, 
-	unsigned long long riff_data_size,
+	uint64_t riff_data_size,
 	void*& out_chunk_data, 
-	long& out_chunk_data_size)
+	int32_t& out_chunk_data_size)
 {
 	BCS_RESULT rs = BCS_E_NOT_FOUND;
 
@@ -16,7 +16,7 @@ BCS_RESULT find_riff_chunk(
 	{
 #define remaining_bytes (end_read_position - current_read_position)
 
-		long chunk_type;
+		int32_t chunk_type;
 		if (remaining_bytes < sizeof(chunk_type)) // not enough data to read the chunk id
 		{
 			return BCS_E_FAIL;
@@ -24,7 +24,7 @@ BCS_RESULT find_riff_chunk(
 		chunk_type = byteswap(*reinterpret_cast<decltype(chunk_type)*>(current_read_position));
 		current_read_position += sizeof(chunk_type);
 
-		long chunk_size;
+		int32_t chunk_size;
 		if (remaining_bytes < sizeof(chunk_size)) // not enough data to read the chunk size
 		{
 			return BCS_E_FAIL;
@@ -44,7 +44,7 @@ BCS_RESULT find_riff_chunk(
 		{
 		case 'RIFF':
 		{
-			long format;
+			int32_t format;
 			if (remaining_bytes < sizeof(format)) // not enough data to read the chunk size
 			{
 				return BCS_E_FAIL;
@@ -73,20 +73,20 @@ end:;
 
 BCS_RESULT decode_xma2_to_wav(
 	const void* xma_file_data,
-	unsigned long long xma_file_data_size,
+	uint64_t xma_file_data_size,
 	void*& wav_file_data,
-	unsigned long long& wav_file_data_size)
+	uint64_t& wav_file_data_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
 	void* riff_chunk_data;
-	long riff_chunk_size;
-	long riff_format;
+	int32_t riff_chunk_size;
+	int32_t riff_format;
 	void* format_chunk_data;
-	long format_chunk_size;
+	int32_t format_chunk_size;
 	WAVEFORMATEX* wave_format;
 	void* samples_chunk_data;
-	long samples_chunk_size;
+	int32_t samples_chunk_size;
 
 	if (BCS_FAILED(rs = find_riff_chunk('RIFF', xma_file_data, xma_file_data_size, riff_chunk_data, riff_chunk_size)))
 	{
@@ -149,14 +149,14 @@ cleanup:;
 BCS_RESULT sound_transcode_to_wav(
 	WAVEFORMATEX* source_wave_format,
 	const void* samples_chunk_data,
-	long samples_chunk_size,
+	int32_t samples_chunk_size,
 	void*& out_wav_file_data,
-	unsigned long long& out_wav_file_data_size)
+	uint64_t& out_wav_file_data_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
 	unsigned char* resampled_sample_data[AV_NUM_DATA_POINTERS] = {};
-	long total_resampled_sample_count = 0;
+	int32_t total_resampled_sample_count = 0;
 
 	WAVEFORMATEX target_wave_format = *source_wave_format;
 	target_wave_format.wFormatTag = WAVE_FORMAT_PCM;
@@ -174,17 +174,17 @@ BCS_RESULT sound_transcode_to_wav(
 	}
 
 	{
-		long bytes_per_sample = target_wave_format.wBitsPerSample / 8;
+		int32_t bytes_per_sample = target_wave_format.wBitsPerSample / 8;
 
-		long riff_chunk_id = byteswap('RIFF');
-		long riff_chunk_size = 0;
-		long riff_chunk_data = byteswap('WAVE');
+		int32_t riff_chunk_id = byteswap('RIFF');
+		int32_t riff_chunk_size = 0;
+		int32_t riff_chunk_data = byteswap('WAVE');
 
-		long format_chunk_id = byteswap('fmt ');
-		long format_chunk_size = sizeof(WAVEFORMATEX);
+		int32_t format_chunk_id = byteswap('fmt ');
+		int32_t format_chunk_size = sizeof(WAVEFORMATEX);
 
-		long data_chunk_header = byteswap('data');
-		long data_chunk_size = total_resampled_sample_count * bytes_per_sample * target_wave_format.nChannels;
+		int32_t data_chunk_header = byteswap('data');
+		int32_t data_chunk_size = total_resampled_sample_count * bytes_per_sample * target_wave_format.nChannels;
 
 		riff_chunk_size += sizeof(riff_chunk_data);
 		riff_chunk_size += sizeof(format_chunk_id);
@@ -238,9 +238,9 @@ BCS_RESULT sound_transcode(
 	WAVEFORMATEX* source_wave_format,
 	WAVEFORMATEX* target_wave_format,
 	const void* samples_chunk_data,
-	long samples_chunk_size,
+	int32_t samples_chunk_size,
 	unsigned char** resampled_sample_data,
-	long* total_resampled_sample_count)
+	int32_t* total_resampled_sample_count)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -249,7 +249,7 @@ BCS_RESULT sound_transcode(
 	AVCodecParserContext* parser_context = nullptr;
 	AVCodecContext* decoder_context = nullptr;
 	AVCodecContext* encoder_context = nullptr;
-	long open_result;
+	int32_t open_result;
 
 
 	encoder_codec = avcodec_find_encoder(AV_CODEC_ID_PCM_S16LE);
@@ -363,9 +363,9 @@ BCS_RESULT sound_transcode_packets(
 	AVCodecContext* decoder_context,
 	AVCodecContext* encoder_context,
 	const void* samples_chunk_data,
-	long samples_chunk_size,
+	int32_t samples_chunk_size,
 	unsigned char** resampled_sample_data,
-	long* total_resampled_sample_count)
+	int32_t* total_resampled_sample_count)
 {
 	BCS_VALIDATE_ARGUMENT(parser_context != nullptr);
 	BCS_VALIDATE_ARGUMENT(decoder_context != nullptr);
@@ -381,15 +381,15 @@ BCS_RESULT sound_transcode_packets(
 	AVFrame* decoded_frame;
 
 	unsigned char* decoded_sample_data[AV_NUM_DATA_POINTERS];
-	long total_decoded_sample_count = 0;
+	int32_t total_decoded_sample_count = 0;
 
 	const unsigned char* data_read_position = static_cast<const unsigned char*>(samples_chunk_data);
 
 	AVSampleFormat in_sample_format = decoder_context->sample_fmt;
-	long in_sample_rate = decoder_context->sample_rate;
+	int32_t in_sample_rate = decoder_context->sample_rate;
 
 	AVSampleFormat out_sample_format = encoder_context->sample_fmt;
-	long out_sample_rate = encoder_context->sample_rate;
+	int32_t out_sample_rate = encoder_context->sample_rate;
 
 	encoded_packet = av_packet_alloc();
 	if (encoded_packet == nullptr)
@@ -404,7 +404,7 @@ BCS_RESULT sound_transcode_packets(
 		goto cleanup;
 	}
 
-	for (long bytes_read = 0, bytes_remaining = samples_chunk_size, bytes_consumed; bytes_read < samples_chunk_size; bytes_read += bytes_consumed, bytes_remaining -= bytes_consumed)
+	for (int32_t bytes_read = 0, bytes_remaining = samples_chunk_size, bytes_consumed; bytes_read < samples_chunk_size; bytes_read += bytes_consumed, bytes_remaining -= bytes_consumed)
 	{
 		bytes_consumed = av_parser_parse2(
 			parser_context,
@@ -424,7 +424,7 @@ BCS_RESULT sound_transcode_packets(
 
 		if (encoded_packet->size)
 		{
-			long decode_packet_result = avcodec_send_packet(decoder_context, encoded_packet);
+			int32_t decode_packet_result = avcodec_send_packet(decoder_context, encoded_packet);
 			if (decode_packet_result < 0)
 			{
 				rs = BCS_E_FAIL;
@@ -445,11 +445,11 @@ BCS_RESULT sound_transcode_packets(
 					goto cleanup;
 				}
 
-				long decoded_sample_count = decoded_frame->nb_samples;
+				int32_t decoded_sample_count = decoded_frame->nb_samples;
 				if (decoded_sample_count > 0)
 				{
 					unsigned char* new_decoded_sample_data[AV_NUM_DATA_POINTERS] = {};
-					long decoded_samples_allocate_result = av_samples_alloc(
+					int32_t decoded_samples_allocate_result = av_samples_alloc(
 						new_decoded_sample_data,
 						nullptr,
 						decoded_frame->channels,
@@ -462,8 +462,8 @@ BCS_RESULT sound_transcode_packets(
 						goto cleanup;
 					}
 
-					long decoded_samples_copy_result = 0;
-					long decoded_samples_buffer_offset = 0;
+					int32_t decoded_samples_copy_result = 0;
+					int32_t decoded_samples_buffer_offset = 0;
 					if (total_decoded_sample_count > 0)
 					{
 						decoded_samples_copy_result = av_samples_copy(
@@ -483,7 +483,7 @@ BCS_RESULT sound_transcode_packets(
 						av_freep(&decoded_sample_data[0]);
 					}
 
-					long decoded_samples_copy_result2 = av_samples_copy(
+					int32_t decoded_samples_copy_result2 = av_samples_copy(
 						new_decoded_sample_data,
 						decoded_frame->data,
 						total_decoded_sample_count,
@@ -501,9 +501,9 @@ BCS_RESULT sound_transcode_packets(
 					total_decoded_sample_count += decoded_sample_count;
 				}
 
-				for (long sample_index = 0, num_samples = decoded_frame->nb_samples; sample_index < num_samples; sample_index++)
+				for (int32_t sample_index = 0, num_samples = decoded_frame->nb_samples; sample_index < num_samples; sample_index++)
 				{
-					for (long channel_index = 0, num_channels = decoded_frame->channels; channel_index < num_channels; channel_index++)
+					for (int32_t channel_index = 0, num_channels = decoded_frame->channels; channel_index < num_channels; channel_index++)
 					{
 						unsigned char* channel_data = decoded_frame->data[channel_index];
 
@@ -541,7 +541,7 @@ cleanup:;
 	return rs;
 }
 
-static BCS_RESULT sound_channel_count_to_channel_layout(long channel_count, long long& channel_layout)
+static BCS_RESULT sound_channel_count_to_channel_layout(int32_t channel_count, int64_t& channel_layout)
 {
 	channel_layout = AV_CH_LAYOUT_MONO;
 	switch (channel_count)
@@ -565,12 +565,12 @@ static BCS_RESULT sound_channel_count_to_channel_layout(long channel_count, long
 BCS_RESULT sound_software_resample(
 	const unsigned char** in_sample_data,
 	unsigned char** out_sample_data,
-	long in_sample_count,
-	long* out_sample_count,
-	long in_channel_count,
-	long out_channel_count,
-	long in_sample_rate,
-	long out_sample_rate,
+	int32_t in_sample_count,
+	int32_t* out_sample_count,
+	int32_t in_channel_count,
+	int32_t out_channel_count,
+	int32_t in_sample_rate,
+	int32_t out_sample_rate,
 	AVSampleFormat in_sample_format,
 	AVSampleFormat out_sample_format)
 {
@@ -584,12 +584,12 @@ BCS_RESULT sound_software_resample(
 	BCS_RESULT rs = BCS_S_OK;
 
 	SwrContext* software_resample_context = nullptr;
-	long long in_channel_layout;
-	long long out_channel_layout;
+	int64_t in_channel_layout;
+	int64_t out_channel_layout;
 
-	long software_resample_init_result;
-	long converted_sample_data_allocate_result;
-	long software_resample_convert_result;
+	int32_t software_resample_init_result;
+	int32_t converted_sample_data_allocate_result;
+	int32_t software_resample_convert_result;
 
 	if (BCS_FAILED(rs = sound_channel_count_to_channel_layout(in_channel_count, in_channel_layout)))
 	{

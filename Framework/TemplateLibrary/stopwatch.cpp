@@ -21,7 +21,7 @@ void c_stopwatch::stop()
 
 float c_stopwatch::get_seconds() const
 {
-	long long duration = time_point_stop - time_point_start;
+	int64_t duration = time_point_stop - time_point_start;
 	double nanoseconds = static_cast<double>(duration);
 	double seconds = nanoseconds / static_cast<double>(std::chrono::nanoseconds::period::den);
 	return static_cast<float>(seconds);
@@ -29,7 +29,7 @@ float c_stopwatch::get_seconds() const
 
 float c_stopwatch::get_miliseconds() const
 {
-	long long duration = time_point_stop - time_point_start;
+	int64_t duration = time_point_stop - time_point_start;
 	double nanoseconds = static_cast<double>(duration);
 	double miliseconds = nanoseconds / static_cast<double>(std::chrono::nanoseconds::period::den / std::chrono::milliseconds::period::den);
 	return static_cast<float>(miliseconds);

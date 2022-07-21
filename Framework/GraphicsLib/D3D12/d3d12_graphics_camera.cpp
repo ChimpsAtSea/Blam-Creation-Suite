@@ -195,7 +195,7 @@ void c_graphics_camera_d3d12::handle_input(float x_pixels, float y_pixels, float
 	radius = __max(0.01f, radius);
 }
 
-void __cdecl c_graphics_camera_d3d12::viewport_size_changed(c_graphics_camera_d3d12& _this, unsigned long width, unsigned long height)
+void __cdecl c_graphics_camera_d3d12::viewport_size_changed(c_graphics_camera_d3d12& _this, uint32_t width, uint32_t height)
 {
 	_this.aspect_ratio = _this.viewport.aspect_ratio;
 }

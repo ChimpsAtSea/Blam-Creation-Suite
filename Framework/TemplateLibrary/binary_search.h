@@ -3,11 +3,11 @@
 #define _binary_search(data, count, get_key_function, search_key, result_out) \
 do \
 { \
-	unsigned long search_index = 0; \
-	unsigned long search_end = count - 1; \
+	uint32_t search_index = 0; \
+	uint32_t search_end = count - 1; \
 	while (search_index <= search_end) \
 	{ \
-		unsigned long search_middle = (search_index + search_end) / 2; \
+		uint32_t search_middle = (search_index + search_end) / 2; \
 		auto key = get_key_function(data, search_middle); \
 		if (key < search_key) \
 		{ \

@@ -23,11 +23,11 @@ BCS_RESULT c_tag_resource_xsynced_chunk::read_chunk(void* userdata, const void* 
 	}
 
 	t_tag_file_reader_metadata_entry& _metadata_entry = reader.metadata_stack._pop_unsafe();
-	unsigned long current_block_index = _metadata_entry.id;
+	uint32_t current_block_index = _metadata_entry.id;
 	e_tag_file_reader_metadata_entry_type entry_type = _metadata_entry.entry_type;
 	ASSERT(entry_type == _tag_file_reader_metadata_entry_type_resource);
 
-	unsigned long xsync_version = metadata;
+	uint32_t xsync_version = metadata;
 	switch (xsync_version)
 	{
 	case 0:
@@ -83,10 +83,10 @@ static c_tag_resource_fixup convert_v0_to_v2_fixup(const c_tag_resource_fixup_v0
 {
 	c_tag_resource_fixup v2;
 
-	long v0_primary_index = v0.m_designator.get_primary_index();
+	int32_t v0_primary_index = v0.m_designator.get_primary_index();
 	if (v0_primary_index)
 	{
-		long v0_secondary_index = v0.m_designator.get_secondary_index();
+		int32_t v0_secondary_index = v0.m_designator.get_secondary_index();
 		e_tag_resource_fixup_type fixup_type = v0_secondary_index ? _tag_resource_fixup_type_unknown1 : _tag_resource_fixup_type_unknown2;
 		v2.set_type(fixup_type);
 		v2.set_fixup_value(v0_primary_index - 1);
@@ -135,7 +135,7 @@ void c_tag_resource_xsynced_chunk::convert_paged_v1_to_current_monolithic_xsync_
 template<> void byteswap_inplace<c_tag_resource_fixup_v0>(c_tag_resource_fixup_v0& value)
 {
 	static_assert(sizeof(c_tag_resource_fixup_v0) == sizeof(unsigned long));
-	byteswap_inplace(*reinterpret_cast<unsigned long*>(&value));
+	byteswap_inplace(*reinterpret_cast<uint32_t*>(&value));
 }
 
 template<> void byteswap_inplace(s_monolithic_resource_xsync_state_v0& value)

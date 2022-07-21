@@ -1,6 +1,6 @@
 #pragma once
 
-enum class e_customization_item_v1 : long long
+enum class e_customization_item_v1 : int64_t
 {
 	HR_Helmet_MarkVB_Base,
 	HR_Helmet_MarkVB_UA,
@@ -346,7 +346,7 @@ enum class e_customization_item_v1 : long long
 	k_customization_item_none = -1
 };
 
-enum class e_customization_item_v2 : long long
+enum class e_customization_item_v2 : int64_t
 {
 	HR_Helmet_MarkVB_Base,
 	HR_Helmet_MarkVB_UA,
@@ -981,7 +981,7 @@ enum class e_customization_item_v2 : long long
 	k_customization_item_none = -1
 };
 
-enum class e_customization_item_v3 : long long
+enum class e_customization_item_v3 : int64_t
 {
 	HR_Helmet_MarkVB_Base,
 	HR_Helmet_MarkVB_UA,
@@ -1732,7 +1732,7 @@ enum class e_customization_item_v3 : long long
 	k_customization_item_none = -1
 };
 
-enum class e_customization_item_v4 : long long
+enum class e_customization_item_v4 : int64_t
 {
 	HR_Helmet_MarkVB_Base,
 	HR_Helmet_MarkVB_UA,
@@ -2888,7 +2888,7 @@ enum class e_customization_item_v4 : long long
 	k_customization_item_none = -1
 };
 
-enum class e_customization_item_v5 : long long
+enum class e_customization_item_v5 : int64_t
 {
 	HR_Helmet_MarkVB_Base,
 	HR_Helmet_MarkVB_UA,
@@ -4312,7 +4312,7 @@ enum class e_customization_item_v5 : long long
 	k_customization_item_none = -1
 };
 
-enum class e_customization_item_v6 : long long
+enum class e_customization_item_v6 : int64_t
 {
 	HR_Helmet_MarkVB_Base,
 	HR_Helmet_MarkVB_UA,
@@ -5694,27 +5694,27 @@ enum class e_customization_item_v6 : long long
 
 struct s_user_skin
 {
-	long ObjectID;
-	long SkinID; // e_customization_item_v2
+	int32_t ObjectID;
+	int32_t SkinID; // e_customization_item_v2
 };
 
 struct s_loadout_slot
 {
-	long TacticalPackageIndex;
-	long SupportUpgradeIndex;
-	long PrimaryWeaponIndex;
-	long SecondaryWeaponIndex;
-	long PrimaryWeaponVariantIndex;
-	long SecondaryWeaponVariantIndex;
-	long EquipmentIndex;
-	long GrenadeIndex;
+	int32_t TacticalPackageIndex;
+	int32_t SupportUpgradeIndex;
+	int32_t PrimaryWeaponIndex;
+	int32_t SecondaryWeaponIndex;
+	int32_t PrimaryWeaponVariantIndex;
+	int32_t SecondaryWeaponVariantIndex;
+	int32_t EquipmentIndex;
+	int32_t GrenadeIndex;
 	wchar_t Name[13];
 };
 
 struct s_custom_key_mapping
 {
-	long AbstractButton;
-	long VirtualKeyCodes[5];
+	int32_t AbstractButton;
+	int32_t VirtualKeyCodes[5];
 };
 
 struct s_weapon_display_offset
@@ -5870,9 +5870,9 @@ enum e_abstract_button : long
 template<size_t abstract_button_count>
 struct s_player_configuration_v1
 {
-	long SubtitleSetting;
-	long CrosshairLocation;
-	long FOVSetting;
+	int32_t SubtitleSetting;
+	int32_t CrosshairLocation;
+	int32_t FOVSetting;
 	bool LookControlsInverted;
 	bool VibrationDisabled;
 	bool ImpulseTriggersDisabled;
@@ -5883,33 +5883,33 @@ struct s_player_configuration_v1
 	bool UseFemaleVoice;
 	bool HoldToZoom;
 	char __padding0[3];
-	long PlayerModelPrimaryColorIndex;
-	long PlayerModelSecondaryColorIndex;
-	long PlayerModelTertiaryColorIndex;
+	int32_t PlayerModelPrimaryColorIndex;
+	int32_t PlayerModelSecondaryColorIndex;
+	int32_t PlayerModelTertiaryColorIndex;
 	bool UseEliteModel;
 	bool LockMaxAspectRatio;
 	char __padding1[2];
-	long PlayerModelPermutation;
+	int32_t PlayerModelPermutation;
 	wchar_t ServiceTag[4];
-	long OnlineMedalFlasher;
+	int32_t OnlineMedalFlasher;
 	float VerticalLookSensitivity;
 	float HorizontalLookSensitivity;
-	long LookAcceleration;
+	int32_t LookAcceleration;
 	float LookAxialDeadZone;
 	float LookRadialDeadZone;
 	float ZoomLookSensitivityMultiplier;
 	float VehicleLookSensitivityMultiplier;
-	long ButtonPreset;
-	long StickPreset;
-	long LeftyToggle;
-	long FlyingCameraTurnSensitivity;
-	long FlyingCameraPanning;
-	long FlyingCameraSpeed;
-	long FlyingCameraThrust;
-	long TheaterTurnSensitivity;
-	long TheaterPanning;
-	long TheaterSpeed;
-	long TheaterThrust;
+	int32_t ButtonPreset;
+	int32_t StickPreset;
+	int32_t LeftyToggle;
+	int32_t FlyingCameraTurnSensitivity;
+	int32_t FlyingCameraPanning;
+	int32_t FlyingCameraSpeed;
+	int32_t FlyingCameraThrust;
+	int32_t TheaterTurnSensitivity;
+	int32_t TheaterPanning;
+	int32_t TheaterSpeed;
+	int32_t TheaterThrust;
 	bool SwapTriggersAndBumpers;
 	bool UseModernAimControl;
 	bool UseDoublePressJumpToJetpack;
@@ -5927,23 +5927,23 @@ struct s_player_configuration_v1
 	float MouseAccelerationMaxAccel;
 	float MouseAccelerationScale;
 	float MouseAccelerationExp;
-	long KeyboardMouseButtonPreset;
+	int32_t KeyboardMouseButtonPreset;
 	s_custom_key_mapping CustomKeyboardMouseMappings[abstract_button_count];
 	float MasterVolume;
 	float MusicVolume;
 	float SfxVolume;
 	char __padding4[20];
-	long Brightness;
+	int32_t Brightness;
 };
 
 template<size_t abstract_button_count>
 struct s_player_configuration_v2
 {
-	long SubtitleSetting;
-	long CrosshairLocation;
-	long FOVSetting;
+	int32_t SubtitleSetting;
+	int32_t CrosshairLocation;
+	int32_t FOVSetting;
 
-	/* new in this version */ long VehicleFOVSetting;
+	/* new in this version */ int32_t VehicleFOVSetting;
 
 	bool LookControlsInverted;
 
@@ -5963,51 +5963,51 @@ struct s_player_configuration_v2
 	bool ClenchProtectionEnabled;
 	bool UseFemaleVoice;
 	bool HoldToZoom;
-	long PlayerModelPrimaryColorIndex;
-	long PlayerModelSecondaryColorIndex;
-	long PlayerModelTertiaryColorIndex;
+	int32_t PlayerModelPrimaryColorIndex;
+	int32_t PlayerModelSecondaryColorIndex;
+	int32_t PlayerModelTertiaryColorIndex;
 	bool UseEliteModel;
 	bool LockMaxAspectRatio;
 	char __padding0[2];
-	long PlayerModelPermutation;
+	int32_t PlayerModelPermutation;
 
-	/* new in this version */ long HelmetIndex;
-	/* new in this version */ long LeftShoulderIndex;
-	/* new in this version */ long RightShoulderIndex;
-	/* new in this version */ long ChestIndex;
-	/* new in this version */ long WristIndex;
-	/* new in this version */ long UtilityIndex;
-	/* new in this version */ long PaintSchemeIndex;
-	/* new in this version */ long VisorColorIndex;
-	/* new in this version */ long SpartanArmorEffectIndex;
-	/* new in this version */ long SpartanBodyIndex;
-	/* new in this version */ long EliteArmorIndex;
-	/* new in this version */ long EliteArmorEffectIndex;
-	/* new in this version */ long VoiceIndex;
-	/* new in this version */ long PlayerModelPrimaryColor;
-	/* new in this version */ long PlayerModelSecondaryColor;
-	/* new in this version */ long PlayerModelTertiaryColor;
+	/* new in this version */ int32_t HelmetIndex;
+	/* new in this version */ int32_t LeftShoulderIndex;
+	/* new in this version */ int32_t RightShoulderIndex;
+	/* new in this version */ int32_t ChestIndex;
+	/* new in this version */ int32_t WristIndex;
+	/* new in this version */ int32_t UtilityIndex;
+	/* new in this version */ int32_t PaintSchemeIndex;
+	/* new in this version */ int32_t VisorColorIndex;
+	/* new in this version */ int32_t SpartanArmorEffectIndex;
+	/* new in this version */ int32_t SpartanBodyIndex;
+	/* new in this version */ int32_t EliteArmorIndex;
+	/* new in this version */ int32_t EliteArmorEffectIndex;
+	/* new in this version */ int32_t VoiceIndex;
+	/* new in this version */ int32_t PlayerModelPrimaryColor;
+	/* new in this version */ int32_t PlayerModelSecondaryColor;
+	/* new in this version */ int32_t PlayerModelTertiaryColor;
 
 	wchar_t ServiceTag[4];
-	long OnlineMedalFlasher;
+	int32_t OnlineMedalFlasher;
 	float VerticalLookSensitivity;
 	float HorizontalLookSensitivity;
-	long LookAcceleration;
+	int32_t LookAcceleration;
 	float LookAxialDeadZone;
 	float LookRadialDeadZone;
 	float ZoomLookSensitivityMultiplier;
 	float VehicleLookSensitivityMultiplier;
-	long ButtonPreset;
-	long StickPreset;
-	long LeftyToggle;
-	long FlyingCameraTurnSensitivity;
-	long FlyingCameraPanning;
-	long FlyingCameraSpeed;
-	long FlyingCameraThrust;
-	long TheaterTurnSensitivity;
-	long TheaterPanning;
-	long TheaterSpeed;
-	long TheaterThrust;
+	int32_t ButtonPreset;
+	int32_t StickPreset;
+	int32_t LeftyToggle;
+	int32_t FlyingCameraTurnSensitivity;
+	int32_t FlyingCameraPanning;
+	int32_t FlyingCameraSpeed;
+	int32_t FlyingCameraThrust;
+	int32_t TheaterTurnSensitivity;
+	int32_t TheaterPanning;
+	int32_t TheaterSpeed;
+	int32_t TheaterThrust;
 	bool SwapTriggersAndBumpers;
 	bool UseModernAimControl;
 	bool UseDoublePressJumpToJetpack;
@@ -6025,13 +6025,13 @@ struct s_player_configuration_v2
 	float MouseAccelerationMaxAccel;
 	float MouseAccelerationScale;
 	float MouseAccelerationExp;
-	long KeyboardMouseButtonPreset;
+	int32_t KeyboardMouseButtonPreset;
 	s_custom_key_mapping CustomKeyboardMouseMappings[abstract_button_count];
 	float MasterVolume;
 	float MusicVolume;
 	float SfxVolume;
 	char __padding3[16];
-	long Brightness;
+	int32_t Brightness;
 };
 
 template<size_t abstract_button_count>
@@ -6043,10 +6043,10 @@ struct s_player_configuration_v4 : s_player_configuration_v2<abstract_button_cou
 template<size_t abstract_button_count>
 struct s_player_configuration_v6
 {
-	long SubtitleSetting;
-	long CrosshairLocation;
-	long FOVSetting;
-	long VehicleFOVSetting;
+	int32_t SubtitleSetting;
+	int32_t CrosshairLocation;
+	int32_t FOVSetting;
+	int32_t VehicleFOVSetting;
 	bool LookControlsInverted;
 	bool MouseLookControlsInverted;
 	bool VibrationDisabled;
@@ -6059,51 +6059,51 @@ struct s_player_configuration_v6
 	bool ClenchProtectionEnabled;
 	bool UseFemaleVoice;
 	bool HoldToZoom;
-	long PlayerModelPrimaryColorIndex;
-	long PlayerModelSecondaryColorIndex;
-	long PlayerModelTertiaryColorIndex;
+	int32_t PlayerModelPrimaryColorIndex;
+	int32_t PlayerModelSecondaryColorIndex;
+	int32_t PlayerModelTertiaryColorIndex;
 	bool UseEliteModel;
 	bool LockMaxAspectRatio;
 	char __padding0[2];
-	long PlayerModelPermutation;
+	int32_t PlayerModelPermutation;
 
-	long HelmetIndex;
-	long LeftShoulderIndex;
-	long RightShoulderIndex;
-	long ChestIndex;
-	long WristIndex;
-	long UtilityIndex;
-	long PaintSchemeIndex;
-	long VisorColorIndex;
-	long SpartanArmorEffectIndex;
-	long SpartanBodyIndex;
-	long EliteArmorIndex;
-	long EliteArmorEffectIndex;
-	long VoiceIndex;
-	long PlayerModelPrimaryColor;
-	long PlayerModelSecondaryColor;
-	long PlayerModelTertiaryColor;
+	int32_t HelmetIndex;
+	int32_t LeftShoulderIndex;
+	int32_t RightShoulderIndex;
+	int32_t ChestIndex;
+	int32_t WristIndex;
+	int32_t UtilityIndex;
+	int32_t PaintSchemeIndex;
+	int32_t VisorColorIndex;
+	int32_t SpartanArmorEffectIndex;
+	int32_t SpartanBodyIndex;
+	int32_t EliteArmorIndex;
+	int32_t EliteArmorEffectIndex;
+	int32_t VoiceIndex;
+	int32_t PlayerModelPrimaryColor;
+	int32_t PlayerModelSecondaryColor;
+	int32_t PlayerModelTertiaryColor;
 
 	wchar_t ServiceTag[4];
-	long OnlineMedalFlasher;
+	int32_t OnlineMedalFlasher;
 	float VerticalLookSensitivity;
 	float HorizontalLookSensitivity;
-	long LookAcceleration;
+	int32_t LookAcceleration;
 	float LookAxialDeadZone;
 	float LookRadialDeadZone;
 	float ZoomLookSensitivityMultiplier;
 	float VehicleLookSensitivityMultiplier;
-	long ButtonPreset;
-	long StickPreset;
-	long LeftyToggle;
-	long FlyingCameraTurnSensitivity;
-	long FlyingCameraPanning;
-	long FlyingCameraSpeed;
-	long FlyingCameraThrust;
-	long TheaterTurnSensitivity;
-	long TheaterPanning;
-	long TheaterSpeed;
-	long TheaterThrust;
+	int32_t ButtonPreset;
+	int32_t StickPreset;
+	int32_t LeftyToggle;
+	int32_t FlyingCameraTurnSensitivity;
+	int32_t FlyingCameraPanning;
+	int32_t FlyingCameraSpeed;
+	int32_t FlyingCameraThrust;
+	int32_t TheaterTurnSensitivity;
+	int32_t TheaterPanning;
+	int32_t TheaterSpeed;
+	int32_t TheaterThrust;
 
 	/* new in this version */ char __unknown0[16];
 
@@ -6124,23 +6124,23 @@ struct s_player_configuration_v6
 	float MouseAccelerationMaxAccel;
 	float MouseAccelerationScale;
 	float MouseAccelerationExp;
-	long KeyboardMouseButtonPreset;
+	int32_t KeyboardMouseButtonPreset;
 	s_custom_key_mapping CustomKeyboardMouseMappings[abstract_button_count];
 	float MasterVolume;
 	float MusicVolume;
 	float SfxVolume;
 	char __padding3[16];
-	long Brightness;
+	int32_t Brightness;
 	s_weapon_display_offset WeaponDisplayOffsets[5];
 };
 
 template<size_t abstract_button_count, size_t user_skin_count>
 struct s_player_configuration_v7
 {
-	long SubtitleSetting;
-	long CrosshairLocation;
-	long FOVSetting;
-	long VehicleFOVSetting;
+	int32_t SubtitleSetting;
+	int32_t CrosshairLocation;
+	int32_t FOVSetting;
+	int32_t VehicleFOVSetting;
 	bool LookControlsInverted;
 	bool MouseLookControlsInverted;
 	bool VibrationDisabled;
@@ -6153,70 +6153,70 @@ struct s_player_configuration_v7
 	bool ClenchProtectionEnabled;
 	bool UseFemaleVoice;
 	bool HoldToZoom;
-	long PlayerModelPrimaryColorIndex;
-	long PlayerModelSecondaryColorIndex;
-	long PlayerModelTertiaryColorIndex;
+	int32_t PlayerModelPrimaryColorIndex;
+	int32_t PlayerModelSecondaryColorIndex;
+	int32_t PlayerModelTertiaryColorIndex;
 	bool UseEliteModel;
 	bool LockMaxAspectRatio;
 	char __padding0;
 
 	/* new in this version */ bool UsersSkinsEnabled;
 
-	long PlayerModelPermutation;
+	int32_t PlayerModelPermutation;
 
-	long HelmetIndex;
-	long LeftShoulderIndex;
-	long RightShoulderIndex;
-	long ChestIndex;
-	long WristIndex;
-	long UtilityIndex;
+	int32_t HelmetIndex;
+	int32_t LeftShoulderIndex;
+	int32_t RightShoulderIndex;
+	int32_t ChestIndex;
+	int32_t WristIndex;
+	int32_t UtilityIndex;
 
-	/* new in this version */ long ArmsIndex;
-	/* new in this version */ long LegsIndex;
+	/* new in this version */ int32_t ArmsIndex;
+	/* new in this version */ int32_t LegsIndex;
 
-	long PaintSchemeIndex;
-	long VisorColorIndex;
-	long SpartanArmorEffectIndex;
-	long SpartanBodyIndex;
-	long EliteArmorIndex;
-	long EliteArmorEffectIndex;
+	int32_t PaintSchemeIndex;
+	int32_t VisorColorIndex;
+	int32_t SpartanArmorEffectIndex;
+	int32_t SpartanBodyIndex;
+	int32_t EliteArmorIndex;
+	int32_t EliteArmorEffectIndex;
 
-	/* new in this version */ long EliteHelmetIndex;
-	/* new in this version */ long EliteLeftShoulderIndex;
-	/* new in this version */ long EliteRightShoulderIndex;
-	/* new in this version */ long EliteChestIndex;
-	/* new in this version */ long MaybeEliteWristIndex;
-	/* new in this version */ long MaybeEliteUtilityIndex;
-	/* new in this version */ long EliteArmsIndex;
-	/* new in this version */ long EliteLegsIndex;
+	/* new in this version */ int32_t EliteHelmetIndex;
+	/* new in this version */ int32_t EliteLeftShoulderIndex;
+	/* new in this version */ int32_t EliteRightShoulderIndex;
+	/* new in this version */ int32_t EliteChestIndex;
+	/* new in this version */ int32_t MaybeEliteWristIndex;
+	/* new in this version */ int32_t MaybeEliteUtilityIndex;
+	/* new in this version */ int32_t EliteArmsIndex;
+	/* new in this version */ int32_t EliteLegsIndex;
 
-	long VoiceIndex;
-	long PlayerModelPrimaryColor;
-	long PlayerModelSecondaryColor;
-	long PlayerModelTertiaryColor;
+	int32_t VoiceIndex;
+	int32_t PlayerModelPrimaryColor;
+	int32_t PlayerModelSecondaryColor;
+	int32_t PlayerModelTertiaryColor;
 
 	/* new in this version */ s_user_skin UserSkins[user_skin_count];
 
 	wchar_t ServiceTag[4];
-	long OnlineMedalFlasher;
+	int32_t OnlineMedalFlasher;
 	float VerticalLookSensitivity;
 	float HorizontalLookSensitivity;
-	long LookAcceleration;
+	int32_t LookAcceleration;
 	float LookAxialDeadZone;
 	float LookRadialDeadZone;
 	float ZoomLookSensitivityMultiplier;
 	float VehicleLookSensitivityMultiplier;
-	long ButtonPreset;
-	long StickPreset;
-	long LeftyToggle;
-	long FlyingCameraTurnSensitivity;
-	long FlyingCameraPanning;
-	long FlyingCameraSpeed;
-	long FlyingCameraThrust;
-	long TheaterTurnSensitivity;
-	long TheaterPanning;
-	long TheaterSpeed;
-	long TheaterThrust;
+	int32_t ButtonPreset;
+	int32_t StickPreset;
+	int32_t LeftyToggle;
+	int32_t FlyingCameraTurnSensitivity;
+	int32_t FlyingCameraPanning;
+	int32_t FlyingCameraSpeed;
+	int32_t FlyingCameraThrust;
+	int32_t TheaterTurnSensitivity;
+	int32_t TheaterPanning;
+	int32_t TheaterSpeed;
+	int32_t TheaterThrust;
 	char __unknown0[16];
 	bool SwapTriggersAndBumpers;
 	bool UseModernAimControl;
@@ -6235,13 +6235,13 @@ struct s_player_configuration_v7
 	float MouseAccelerationMaxAccel;
 	float MouseAccelerationScale;
 	float MouseAccelerationExp;
-	long KeyboardMouseButtonPreset;
+	int32_t KeyboardMouseButtonPreset;
 	s_custom_key_mapping CustomKeyboardMouseMappings[abstract_button_count];
 	float MasterVolume;
 	float MusicVolume;
 	float SfxVolume;
 	char __padding3[16];
-	long Brightness;
+	int32_t Brightness;
 	s_weapon_display_offset WeaponDisplayOffsets[5];
 };
 
@@ -6305,10 +6305,10 @@ public:
 	e_abstract_button const abstract_button_count;
 	bool waiting_on_file_save;
 
-	long& SubtitleSetting;
-	long& CrosshairLocation;
-	long& FOVSetting;
-	long& VehicleFOVSetting;
+	int32_t& SubtitleSetting;
+	int32_t& CrosshairLocation;
+	int32_t& FOVSetting;
+	int32_t& VehicleFOVSetting;
 	bool& LookControlsInverted;
 	bool& MouseLookControlsInverted;
 	bool& VibrationDisabled;
@@ -6321,60 +6321,60 @@ public:
 	bool& ClenchProtectionEnabled;
 	bool& UseFemaleVoice;
 	bool& HoldToZoom;
-	long& PlayerModelPrimaryColorIndex;
-	long& PlayerModelSecondaryColorIndex;
-	long& PlayerModelTertiaryColorIndex;
+	int32_t& PlayerModelPrimaryColorIndex;
+	int32_t& PlayerModelSecondaryColorIndex;
+	int32_t& PlayerModelTertiaryColorIndex;
 	bool& UseEliteModel;
 	bool& LockMaxAspectRatio;
 	bool& UsersSkinsEnabled;
-	long& PlayerModelPermutation;
-	long& HelmetIndex;
-	long& LeftShoulderIndex;
-	long& RightShoulderIndex;
-	long& ChestIndex;
-	long& WristIndex;
-	long& UtilityIndex;
-	long& ArmsIndex;
-	long& LegsIndex;
-	long& PaintSchemeIndex;
-	long& VisorColorIndex;
-	long& SpartanArmorEffectIndex;
-	long& SpartanBodyIndex;
-	long& EliteArmorIndex;
-	long& EliteArmorEffectIndex;
-	long& EliteHelmetIndex;
-	long& EliteLeftShoulderIndex;
-	long& EliteRightShoulderIndex;
-	long& EliteChestIndex;
-	long& MaybeEliteWristIndex;
-	long& MaybeEliteUtilityIndex;
-	long& EliteArmsIndex;
-	long& EliteLegsIndex;
-	long& VoiceIndex;
-	long& PlayerModelPrimaryColor;
-	long& PlayerModelSecondaryColor;
-	long& PlayerModelTertiaryColor;
+	int32_t& PlayerModelPermutation;
+	int32_t& HelmetIndex;
+	int32_t& LeftShoulderIndex;
+	int32_t& RightShoulderIndex;
+	int32_t& ChestIndex;
+	int32_t& WristIndex;
+	int32_t& UtilityIndex;
+	int32_t& ArmsIndex;
+	int32_t& LegsIndex;
+	int32_t& PaintSchemeIndex;
+	int32_t& VisorColorIndex;
+	int32_t& SpartanArmorEffectIndex;
+	int32_t& SpartanBodyIndex;
+	int32_t& EliteArmorIndex;
+	int32_t& EliteArmorEffectIndex;
+	int32_t& EliteHelmetIndex;
+	int32_t& EliteLeftShoulderIndex;
+	int32_t& EliteRightShoulderIndex;
+	int32_t& EliteChestIndex;
+	int32_t& MaybeEliteWristIndex;
+	int32_t& MaybeEliteUtilityIndex;
+	int32_t& EliteArmsIndex;
+	int32_t& EliteLegsIndex;
+	int32_t& VoiceIndex;
+	int32_t& PlayerModelPrimaryColor;
+	int32_t& PlayerModelSecondaryColor;
+	int32_t& PlayerModelTertiaryColor;
 	//s_user_skin(&UserSkins)[user_skin_count];
 	wchar_t(&ServiceTag)[4];
-	long& OnlineMedalFlasher;
+	int32_t& OnlineMedalFlasher;
 	float& VerticalLookSensitivity;
 	float& HorizontalLookSensitivity;
-	long& LookAcceleration;
+	int32_t& LookAcceleration;
 	float& LookAxialDeadZone;
 	float& LookRadialDeadZone;
 	float& ZoomLookSensitivityMultiplier;
 	float& VehicleLookSensitivityMultiplier;
-	long& ButtonPreset;
-	long& StickPreset;
-	long& LeftyToggle;
-	long& FlyingCameraTurnSensitivity;
-	long& FlyingCameraPanning;
-	long& FlyingCameraSpeed;
-	long& FlyingCameraThrust;
-	long& TheaterTurnSensitivity;
-	long& TheaterPanning;
-	long& TheaterSpeed;
-	long& TheaterThrust;
+	int32_t& ButtonPreset;
+	int32_t& StickPreset;
+	int32_t& LeftyToggle;
+	int32_t& FlyingCameraTurnSensitivity;
+	int32_t& FlyingCameraPanning;
+	int32_t& FlyingCameraSpeed;
+	int32_t& FlyingCameraThrust;
+	int32_t& TheaterTurnSensitivity;
+	int32_t& TheaterPanning;
+	int32_t& TheaterSpeed;
+	int32_t& TheaterThrust;
 	bool& SwapTriggersAndBumpers;
 	bool& UseModernAimControl;
 	bool& UseDoublePressJumpToJetpack;
@@ -6389,12 +6389,12 @@ public:
 	float& MouseAccelerationMaxAccel;
 	float& MouseAccelerationScale;
 	float& MouseAccelerationExp;
-	long& KeyboardMouseButtonPreset;
+	int32_t& KeyboardMouseButtonPreset;
 	//s_custom_key_mapping(&CustomKeyboardMouseMappings)[abstract_button_count];
 	float& MasterVolume;
 	float& MusicVolume;
 	float& SfxVolume;
-	long& Brightness;
+	int32_t& Brightness;
 	s_weapon_display_offset(&WeaponDisplayOffsets)[5];
 
 private:

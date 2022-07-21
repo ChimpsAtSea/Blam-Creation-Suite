@@ -11,7 +11,7 @@ h_prototype::~h_prototype()
 
 }
 
-unsigned long h_prototype::get_version() const
+uint32_t h_prototype::get_version() const
 {
 	return 0;
 }

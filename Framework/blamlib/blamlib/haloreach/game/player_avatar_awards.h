@@ -13,7 +13,7 @@ constexpr tag k_game_avatar_awards_group_tag = 'avat';
 struct s_single_avatar_award_definition
 {
 	string_id name;
-	long award_index;
+	int award_index;
 };
 static_assert(sizeof(s_single_avatar_award_definition) == 0x8);
 

@@ -16,7 +16,7 @@ public:
 	c_infinite_tag_mesh(
 		c_graphics& graphics,
 		blofeld::infinite::h_render_model_definition& render_model, 
-		unsigned long mesh_index);
+		uint32_t mesh_index);
 	~c_infinite_tag_mesh();
 
 	c_graphics& graphics;

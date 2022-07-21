@@ -12,7 +12,7 @@ constexpr tag k_cache_343i_signature = '343i';
 struct s_cache_file_header
 {
 	tag header_signature; // k_cache_header_signature
-	long file_version;
-	long file_length;
-	long file_compressed_length;
+	int32_t file_version;
+	int32_t file_length;
+	int32_t file_compressed_length;
 };

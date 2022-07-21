@@ -65,8 +65,8 @@ namespace gen3
 
 	struct s_cache_file_section_file_bounds
 	{
-		long offset;
-		long size;
+		int32_t offset;
+		int32_t size;
 	};
 
 	struct s_network_http_request_hash
@@ -82,8 +82,8 @@ namespace gen3
 #pragma pack(push, 4)
 	struct s_file_last_modification_date
 	{
-		long unknown0;
-		long unknown4;
+		int32_t unknown0;
+		int32_t unknown4;
 	};
 #pragma pack(pop)
 

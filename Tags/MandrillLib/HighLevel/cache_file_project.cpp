@@ -34,7 +34,7 @@ BCS_RESULT c_cache_file_tag_project::get_group_by_group_tag(tag group_tag, h_gro
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_cache_file_tag_project::get_tag_instances(h_tag* const*& tag_instances, unsigned long& tag_instance_count) const
+BCS_RESULT c_cache_file_tag_project::get_tag_instances(h_tag* const*& tag_instances, uint32_t& tag_instance_count) const
 {
 	tag_instances = tags.data();
 	tag_instance_count = static_cast<unsigned long>(tags.size());
@@ -42,7 +42,7 @@ BCS_RESULT c_cache_file_tag_project::get_tag_instances(h_tag* const*& tag_instan
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_cache_file_tag_project::get_tag_groups(h_group* const*& out_groups, unsigned long& out_group_count) const
+BCS_RESULT c_cache_file_tag_project::get_tag_groups(h_group* const*& out_groups, uint32_t& out_group_count) const
 {
 	out_groups = groups.data();
 	out_group_count = static_cast<unsigned long>(groups.size());

@@ -5,10 +5,10 @@ typedef struct tagPOINT POINT;
 
 extern void UntileSurface(
 	void* pDestination, 
-	unsigned long RowPitch, 
+	uint32_t RowPitch, 
 	POINT* pPoint, 
 	void* pSource, 
-	unsigned long Width, 
-	unsigned long Height, 
+	uint32_t Width, 
+	uint32_t Height, 
 	RECT* pRect, 
-	unsigned long TexelPitch);
+	uint32_t TexelPitch);

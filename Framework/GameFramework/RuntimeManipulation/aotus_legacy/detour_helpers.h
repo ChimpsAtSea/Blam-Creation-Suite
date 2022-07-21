@@ -3,7 +3,7 @@
 #include <utility>
 #include <detours.h>
 
-extern const char* GetDetourResultStr(LONG detourAttachResult);
+extern const char* GetDetourResultStr(int32_t detourAttachResult);
 extern void init_detours();
 extern void end_detours();
 
@@ -63,7 +63,7 @@ void create_hook(const char pName[], void* pTargetFunction, Ta hook, Tb& rOrigin
 
 	PVOID* ppPointer = reinterpret_cast<void**>(&rOriginal);
 	PVOID pDetour = reinterpret_cast<void*>(hook);
-	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
+	int32_t detourAttachResult = DetourAttach(ppPointer, pDetour);
 
 	if (detourAttachResult)
 	{
@@ -77,7 +77,7 @@ void create_hook(const char pName[], void* pTargetFunction, Ta hook, Tb& rOrigin
 }
 
 template<typename Ta, typename Tb>
-LONG create_hook(e_engine_type engine_type, size_t offset, const char pName[], Ta hook, Tb& rOriginal)
+int32_t create_hook(e_engine_type engine_type, size_t offset, const char pName[], Ta hook, Tb& rOriginal)
 {
 	if (offset == -1)
 	{
@@ -102,7 +102,7 @@ LONG create_hook(e_engine_type engine_type, size_t offset, const char pName[], T
 
 	PVOID* ppPointer = reinterpret_cast<void**>(&rOriginal);
 	PVOID pDetour = reinterpret_cast<void*>(hook);
-	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
+	int32_t detourAttachResult = DetourAttach(ppPointer, pDetour);
 
 	if (detourAttachResult)
 	{
@@ -117,7 +117,7 @@ LONG create_hook(e_engine_type engine_type, size_t offset, const char pName[], T
 }
 
 template<e_build build, size_t offset, typename Ta, typename Tb>
-LONG create_hook(const char pName[], Ta hook, Tb& rOriginal)
+int32_t create_hook(const char pName[], Ta hook, Tb& rOriginal)
 {
 	return create_hook(build, offset, pName, hook, rOriginal);
 }
@@ -142,7 +142,7 @@ void create_dll_hook(const char pModuleName[], const char* pProcedureName, Ta ho
 	{
 		PVOID* ppPointer = reinterpret_cast<void**>(&rOriginal);
 		PVOID pDetour = reinterpret_cast<void*>(hook);
-		LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
+		int32_t detourAttachResult = DetourAttach(ppPointer, pDetour);
 
 		if (detourAttachResult)
 		{

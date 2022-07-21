@@ -6,7 +6,7 @@ ___
 ___
 3. everything_is_in_snake_case_and_verbose
 ```Cpp
-long structure_bsp_index;
+int32_t structure_bsp_index;
 ```
 ___
 4. `typedef` is deprecated, prefer `using` statements with names that have no prefix (try not to use these)
@@ -62,7 +62,7 @@ ___
 class c_datum_handle final
 {
 private:
-    long m_value;
+    int32_t m_value;
 
 public:
     // ...
@@ -82,7 +82,7 @@ ___
 ```Cpp
 bool tag_interop_fixup_manual_for_cache(
     s_tag_interop *interop_object,
-    long cache_file_type_index,
+    int32_t cache_file_type_index,
     c_aligned_allocator *allocator,
     c_cache_file_fixup_verifier *verifier);
 ```

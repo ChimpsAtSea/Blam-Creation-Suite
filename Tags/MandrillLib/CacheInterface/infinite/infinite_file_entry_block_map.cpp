@@ -2,9 +2,9 @@
 
 BCS_RESULT decompress_buffer_oodle(
 	const void* compressed_buffer,
-	unsigned long compressed_buffer_size,
+	uint32_t compressed_buffer_size,
 	void* uncompressed_buffer,
-	unsigned long uncompressed_buffer_size)
+	uint32_t uncompressed_buffer_size)
 {
 	BCS_RESULT result = BCS_E_FAIL;
 	void* hack_tastic_buffer = tracked_malloca(uncompressed_buffer_size + 4096);
@@ -20,7 +20,7 @@ BCS_RESULT decompress_buffer_oodle(
 }
 
 c_infinite_file_entry_block_map::c_infinite_file_entry_block_map(
-	long file_entry_index,
+	int32_t file_entry_index,
 	c_infinite_module_file_reader& cache_reader,
 	const char* string_buffer,
 	const infinite::s_module_block_entry* block_entries,
@@ -97,7 +97,7 @@ BCS_RESULT c_infinite_file_entry_block_map::unpack_blocks(char*& data)
 
 	if (file_entry.group_tag != blofeld::INVALID_TAG)
 	{
-		unsigned long expected_total_data_size = 0;
+		uint32_t expected_total_data_size = 0;
 		expected_total_data_size += file_entry.header_data_size;
 		expected_total_data_size += file_entry.tag_data_size;
 		expected_total_data_size += file_entry.resource_data_size;
@@ -112,13 +112,13 @@ BCS_RESULT c_infinite_file_entry_block_map::unpack_blocks(char*& data)
 	if (file_entry.block_count > 0)
 	{
 
-		unsigned long total_bytes_written = 0;
-		for (long block_index = 0; block_index < file_entry.block_count; block_index++)
+		uint32_t total_bytes_written = 0;
+		for (int32_t block_index = 0; block_index < file_entry.block_count; block_index++)
 		{
 			const infinite::s_module_block_entry& block_entry = block_entries[file_entry.first_block_index + block_index];
 
 			char* write_data_position = write_data_buffer + block_entry.write_offset;
-			unsigned long long data_offset = file_entry.packed_data_offset.data_offset + block_entry.read_offset;
+			uint64_t data_offset = file_entry.packed_data_offset.data_offset + block_entry.read_offset;
 			if (BCS_FAILED(rs = cache_reader.data_offset_fixup(data_offset, file_entry.packed_data_offset.data_file_index, data_offset)))
 			{
 				return rs;
@@ -153,7 +153,7 @@ BCS_RESULT c_infinite_file_entry_block_map::unpack_blocks(char*& data)
 	else
 	{
 		char* write_data_position = write_data_buffer;
-		unsigned long long data_offset = file_entry.packed_data_offset.data_offset;
+		uint64_t data_offset = file_entry.packed_data_offset.data_offset;
 		if (BCS_FAILED(rs = cache_reader.data_offset_fixup(data_offset, file_entry.packed_data_offset.data_file_index, data_offset)))
 		{
 			return rs;

@@ -21,7 +21,7 @@ public:
 	friend c_halo4_tag_group;
 	friend c_halo4_tag_instance;
 
-	c_halo4_cache_cluster(c_halo4_cache_file_reader** cache_readers, unsigned long cache_reader_count, s_engine_platform_build engine_platform_build);
+	c_halo4_cache_cluster(c_halo4_cache_file_reader** cache_readers, uint32_t cache_reader_count, s_engine_platform_build engine_platform_build);
 	virtual ~c_halo4_cache_cluster();
 
 	BCS_RESULT get_debug_reader(c_halo4_cache_file_reader& cache_reader, c_halo4_debug_reader*& debug_reader);
@@ -34,8 +34,8 @@ public:
 
 	virtual BCS_RESULT get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const;
 	virtual BCS_RESULT get_engine_platform_build(s_engine_platform_build& engine_platform_build) const;
-	virtual BCS_RESULT get_cache_readers(c_cache_file_reader* const*& cache_readers, unsigned long& cache_reader_count) const;
-	virtual BCS_RESULT get_cache_readers(c_halo4_cache_file_reader* const*& cache_readers, unsigned long& cache_reader_count) const;
+	virtual BCS_RESULT get_cache_readers(c_cache_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const;
+	virtual BCS_RESULT get_cache_readers(c_halo4_cache_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const;
 
 protected:
 	virtual BCS_RESULT get_debug_reader(c_cache_file_reader& cache_reader, c_debug_reader*& debug_reader);
@@ -59,7 +59,7 @@ protected:
 	s_engine_platform_build engine_platform_build;
 
 
-	using t_resource_container_by_id_map = std::unordered_map<unsigned long long, c_halo4_resource_container*>;
+	using t_resource_container_by_id_map = std::unordered_map<uint64_t, c_halo4_resource_container*>;
 	using t_resource_container_cache_reader_map = std::unordered_map<c_halo4_cache_file_reader*, std::vector<c_halo4_resource_container*>>;
 
 	t_resource_container_by_id_map resource_containers_by_id;

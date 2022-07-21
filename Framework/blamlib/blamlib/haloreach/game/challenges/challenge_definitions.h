@@ -59,14 +59,14 @@ struct s_challenge_definition
 {
 	string_id name;
 	string_id description;
-	long unknown08;
+	int unknown08;
 	string_id secondary_description;
 	string_id complete_message;
-	long number_required;
-	long credits_earned;
-	long progress_amount;
+	int number_required;
+	int credits_earned;
+	int progress_amount;
 	string_id in_progress_name;
-	long unknown24;
+	int unknown24;
 	bool must_be_completed_in_one_match;
 	char unknown29;
 	short unknown2A;
@@ -81,12 +81,12 @@ struct s_challenge_definition
 		c_flags<e_campaign_difficulty_level, byte> secondary_difficulty_levels;
 	};
 	string_id map_name;
-	long map_id;
+	int map_id;
 	c_flags<e_game_skulls, dword> required_skulls;
 	string_id reward_text;
-	long deaths_allowed;
-	long time_limitation;
-	long number_of_firefight_waves;
+	int deaths_allowed;
+	int time_limitation;
+	int number_of_firefight_waves;
 };
 static_assert(sizeof(s_challenge_definition) == 0x50);
 

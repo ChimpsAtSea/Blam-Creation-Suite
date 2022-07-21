@@ -2,7 +2,7 @@
 #include <SymbolsLib\symbolslib-public-pch.h>
 
 #ifndef k_ctor_source_count
-static unsigned long k_ctor_source_count = 64;
+static uint32_t k_ctor_source_count = 64;
 #endif
 
 BCS_RESULT create_low_level(s_engine_platform_build engine_platform_build)
@@ -95,7 +95,7 @@ BCS_RESULT create_high_level(s_engine_platform_build engine_platform_build)
 	}
 }
 
-BCS_RESULT create_high_level_ctor(s_engine_platform_build engine_platform_build, unsigned long source_index)
+BCS_RESULT create_high_level_ctor(s_engine_platform_build engine_platform_build, uint32_t source_index)
 {
 	try
 	{

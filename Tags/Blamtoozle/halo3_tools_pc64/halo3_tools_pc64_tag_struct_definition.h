@@ -23,7 +23,7 @@ enum e_halo3_tools_pc64_tag_memory_usage_bit
 	k_num_halo3_tools_pc64_tag_memory_usage_bits
 };
 
-//unsigned long __fastcall s_tag_struct_definition::is_built_from_disk(s_tag_struct_definition* this)
+//uint32_t __fastcall s_tag_struct_definition::is_built_from_disk(s_tag_struct_definition* this)
 //{
 //	return (this->runtime_flags >> 6) & 1;
 //}
@@ -55,8 +55,8 @@ enum e_halo3_tools_pc64_tag_field_set_bit : unsigned long
 
 struct s_halo3_tools_pc64_tag_memory_attributes
 {
-	c_enum<e_halo3_tools_pc64_tag_memory_allocation_type, unsigned long, _halo3_tools_pc64_tag_memory_default, k_num_halo3_tools_pc64_tag_memory_type> memory_type;
-	c_flags<e_halo3_tools_pc64_tag_memory_usage_bit, unsigned long, k_num_halo3_tools_pc64_tag_memory_usage_bits> usage_flags;
+	c_enum<e_halo3_tools_pc64_tag_memory_allocation_type, uint32_t, _halo3_tools_pc64_tag_memory_default, k_num_halo3_tools_pc64_tag_memory_type> memory_type;
+	c_flags<e_halo3_tools_pc64_tag_memory_usage_bit, uint32_t, k_num_halo3_tools_pc64_tag_memory_usage_bits> usage_flags;
 };
 constexpr size_t k_halo3_tools_pc64_tag_memory_attributes_size = sizeof(s_halo3_tools_pc64_tag_memory_attributes);
 static_assert(k_halo3_tools_pc64_tag_memory_attributes_size == 0x8);
@@ -64,17 +64,17 @@ static_assert(k_halo3_tools_pc64_tag_memory_attributes_size == 0x8);
 struct s_halo3_tools_pc64_byte_swap_definition
 {
 	ptr64 name;
-	unsigned long size;
-	unsigned long padding0;
+	uint32_t size;
+	uint32_t padding0;
 	ptr64 codes;
 	ptr64 filepath;
-	unsigned long line;
-	unsigned long signature;
+	uint32_t line;
+	uint32_t signature;
 	bool should_byteswap;
 	bool padding1;
 	bool padding2;
 	bool padding3;
-	unsigned long padding4;
+	uint32_t padding4;
 };
 constexpr size_t k_halo3_tools_pc64_byte_swap_definition_size = sizeof(s_halo3_tools_pc64_byte_swap_definition);
 static_assert(k_halo3_tools_pc64_byte_swap_definition_size == 0x30);
@@ -83,17 +83,17 @@ struct s_halo3_tools_pc64_tag_struct_runtime
 {
 	ptr64 original_fields;
 	s_halo3_tools_pc64_byte_swap_definition byte_swap_definition;
-	unsigned long structure_size;
-	c_flags<e_halo3_tools_pc64_tag_field_set_bit, long, k_num_halo3_tools_pc64_runtime_flags> flags;
+	uint32_t structure_size;
+	c_flags<e_halo3_tools_pc64_tag_field_set_bit, int32_t, k_num_halo3_tools_pc64_runtime_flags> flags;
 	ptr64 combined_fields;
-	unsigned long cache_file_struct_size;
-	unsigned long unknown0;
-	unsigned long num_combined_fields; // unsure where this is
-	unsigned long unknown1;
-	unsigned long unique_index;
-	c_big_flags_typed<long, k_num_halo3_tools_pc64_fields> inlined_field_types;
-	c_big_flags_typed<long, k_num_halo3_tools_pc64_fields> unknown_field_types;
-	unsigned long padding;
+	uint32_t cache_file_struct_size;
+	uint32_t unknown0;
+	uint32_t num_combined_fields; // unsure where this is
+	uint32_t unknown1;
+	uint32_t unique_index;
+	c_big_flags_typed<int32_t, k_num_halo3_tools_pc64_fields> inlined_field_types;
+	c_big_flags_typed<int32_t, k_num_halo3_tools_pc64_fields> unknown_field_types;
+	uint32_t padding;
 	ptr64 descendent_definition;
 };
 constexpr size_t k_halo3_tools_pc64_tag_struct_runtime_size = sizeof(s_halo3_tools_pc64_tag_struct_runtime);
@@ -101,12 +101,12 @@ static_assert(k_halo3_tools_pc64_tag_struct_runtime_size == 0x78);
 
 struct s_halo3_tools_pc64_tag_struct_legacy
 {
-	unsigned long legacy_struct_tag;
-	unsigned long unknown34;
+	uint32_t legacy_struct_tag;
+	uint32_t unknown34;
 	ptr64 upgrade_function;
-	unsigned long legacy_version;
+	uint32_t legacy_version;
 	ptr64 unknown_struct; // s_tag_struct_definition																		
-	unsigned long legacy_version_count;
+	uint32_t legacy_version_count;
 	ptr64 previous_version_struct;
 	bool is_legacy_field_set;
 };
@@ -118,15 +118,15 @@ struct s_halo3_tools_pc64_tag_struct_type
 	ptr64 display_name_address;
 	ptr64 name_address;
 	ptr64 file_path_address;
-	long line_number;
-	long padding;
+	int32_t line_number;
+	int32_t padding;
 	blofeld::s_tag_persistent_identifier persistent_identifier;
 	ptr64 fields_address;
-	unsigned long structure_size;
-	long padding2;
+	uint32_t structure_size;
+	int32_t padding2;
 	ptr64 structure_size_string_address; // not included in release build															
-	unsigned long alignment_bits;
-	long padding3;
+	uint32_t alignment_bits;
+	int32_t padding3;
 	s_halo3_tools_pc64_tag_struct_legacy legacy;
 };
 constexpr size_t k_halo3_tools_pc64_tag_struct_type_size = sizeof(s_halo3_tools_pc64_tag_struct_type);
@@ -136,8 +136,8 @@ struct s_halo3_tools_pc64_tag_struct_definition
 {
 	s_halo3_tools_pc64_tag_struct_type type;
 	ptr64 struct_vtable;
-	unsigned long exploded_struct_size;
-	unsigned long unknown5C;
+	uint32_t exploded_struct_size;
+	uint32_t unknown5C;
 	s_halo3_tools_pc64_tag_memory_attributes memory_attributes;
 	s_halo3_tools_pc64_tag_struct_runtime runtime;
 };
@@ -163,15 +163,15 @@ public:
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;
 	virtual const char* get_structure_type_name() override;
-	virtual unsigned long get_alignment_bits() override;
+	virtual uint32_t get_alignment_bits() override;
 	virtual blofeld::s_tag_persistent_identifier& get_persistent_identifier() override;
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() override;
 	virtual const char* get_file_path() override;
-	virtual long get_line_number() override;
+	virtual int32_t get_line_number() override;
 
 	virtual bool is_legacy_struct() override;
 	virtual bool is_latest_structure_version() override;
-	virtual unsigned long get_structure_version() override;
+	virtual uint32_t get_structure_version() override;
 	virtual c_blamtoozle_tag_struct_definition* get_previous_struct_definition() override;
 	virtual c_blamtoozle_tag_struct_definition* get_next_struct_definition() override;
 	virtual c_blamtoozle_tag_struct_definition& get_latest_struct_definition() override;

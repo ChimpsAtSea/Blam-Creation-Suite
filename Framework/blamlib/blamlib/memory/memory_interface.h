@@ -30,7 +30,7 @@ inline t_type *offset_pointer(
 
 inline qword align_address(
 	qword address,
-	long alignment_bits)
+	int alignment_bits)
 {
 	qword alignment_mask = (1ULL << (static_cast<qword>(alignment_bits) & static_cast<qword>(k_int8_max))) - 1ULL;
 	return address + alignment_mask & ~alignment_mask;
@@ -38,7 +38,7 @@ inline qword align_address(
 
 inline bool address_is_aligned(
 	qword address,
-	long alignment_bits)
+	int alignment_bits)
 {
 	qword alignment_mask = (1ULL << (static_cast<qword>(alignment_bits) &static_cast<qword>(k_int8_max))) - 1ULL;
 	return address & alignment_mask;
@@ -47,7 +47,7 @@ inline bool address_is_aligned(
 template <typename t_type>
 inline t_type *align_pointer(
 	t_type *pointer,
-	long alignment_bits)
+	int alignment_bits)
 {
 	qword address = address_from_pointer(pointer);
 	address = align_address(address, alignment_bits);
@@ -57,17 +57,17 @@ inline t_type *align_pointer(
 template <typename t_type>
 inline bool pointer_is_aligned(
 	t_type *pointer,
-	long alignment_bits)
+	int alignment_bits)
 {
 	qword address = address_from_pointer(pointer);
 	return address_is_aligned(address, alignment_bits);
 }
 
 template <typename t_lhs_type, typename t_rhs_type>
-inline long long pointer_distance(
+inline intptr_t pointer_distance(
 	t_lhs_type *p1,
 	t_rhs_type *p2)
 
 {
-	return static_cast<long long>(reinterpret_cast<qword>(p2) - reinterpret_cast<qword>(p1));
+	return static_cast<intptr_t>(reinterpret_cast<qword>(p2) - reinterpret_cast<qword>(p1));
 }

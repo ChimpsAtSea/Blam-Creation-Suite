@@ -36,7 +36,7 @@ c_high_level_cache_cluster_transplant::c_high_level_cache_cluster_transplant(c_c
 
 
 	//// #TODO: Fix this. See fixes below.
-	////for (unsigned long group_index = 0; group_index < cache_file.get_tag_group_count(); group_index++)
+	////for (uint32_t group_index = 0; group_index < cache_file.get_tag_group_count(); group_index++)
 	////{
 	////	c_tag_group_interface* tag_group_interface = cache_file.get_tag_group_interface(group_index);
 
@@ -56,7 +56,7 @@ c_high_level_cache_cluster_transplant::c_high_level_cache_cluster_transplant(c_c
 	//	tags_and_interface.emplace_back(tag_pair);
 	//}
 
-	//auto transplant_high_level_tags = [this](unsigned long index)
+	//auto transplant_high_level_tags = [this](uint32_t index)
 	//{
 	//	s_tag_pair& tag_pair = tags_and_interface[index];
 
@@ -72,7 +72,7 @@ c_high_level_cache_cluster_transplant::c_high_level_cache_cluster_transplant(c_c
 	//	transplant_cache_file_data(high_level_tag, raw_tag_data, tag_struct_definition);
 	//};
 	////tbb::parallel_for(0u, static_cast<unsigned long>(tags_and_interface.size()), transplant_high_level_tags);
-	//for (unsigned long i = 0; i < tags_and_interface.size(); i++) transplant_high_level_tags(i);
+	//for (uint32_t i = 0; i < tags_and_interface.size(); i++) transplant_high_level_tags(i);
 }
 
 c_high_level_cache_cluster_transplant::~c_high_level_cache_cluster_transplant()
@@ -85,13 +85,13 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_transplant_entries()
 	BCS_RESULT rs = BCS_S_OK;
 
 	c_cache_file_reader* const* cache_readers;
-	unsigned long cache_reader_count;
+	uint32_t cache_reader_count;
 	if (BCS_FAILED(rs = cache_cluster.get_cache_readers(cache_readers, cache_reader_count)))
 	{
 		return rs;
 	}
 
-	for (unsigned long cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
+	for (uint32_t cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
 	{
 		c_cache_file_reader& cache_file_reader = *cache_readers[cache_reader_index];
 
@@ -110,13 +110,13 @@ BCS_RESULT c_high_level_cache_cluster_transplant::get_global_tag_by_low_level_ta
 	BCS_RESULT rs = BCS_S_OK;
 
 	c_cache_file_reader* const* cache_file_readers;
-	unsigned long cache_file_reader_count;
+	uint32_t cache_file_reader_count;
 	if (BCS_FAILED(rs = cache_cluster.get_cache_readers(cache_file_readers, cache_file_reader_count)))
 	{
 		return rs;
 	}
 
-	for (unsigned long cache_file_reader_index = 0; cache_file_reader_index < cache_file_reader_count; cache_file_reader_index++)
+	for (uint32_t cache_file_reader_index = 0; cache_file_reader_index < cache_file_reader_count; cache_file_reader_index++)
 	{
 		c_cache_file_reader& cache_file_reader = *cache_file_readers[cache_file_reader_index];
 
@@ -177,10 +177,10 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_groups()
 		ASSERT(BCS_SUCCEEDED(cache_cluster.get_tag_reader(*cache_file_reader, tag_reader)));
 
 		c_tag_group** tag_groups = nullptr;
-		unsigned long tag_group_count = 0;
+		uint32_t tag_group_count = 0;
 		ASSERT(BCS_SUCCEEDED(tag_reader->get_tag_groups(tag_groups, tag_group_count)));
 
-		for (unsigned long group_index = 0; group_index < tag_group_count; group_index++)
+		for (uint32_t group_index = 0; group_index < tag_group_count; group_index++)
 		{
 			c_tag_group& tag_group = *tag_groups[group_index];
 
@@ -219,10 +219,10 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_instances()
 		t_transplant_instances& high_level_tag_instances = instance_transplant_entry.second;
 
 		c_tag_instance** tag_instances = nullptr;
-		unsigned long tag_instance_count = 0;
+		uint32_t tag_instance_count = 0;
 		ASSERT(BCS_SUCCEEDED(tag_reader->get_tag_instances(tag_instances, tag_instance_count)));
 
-		for (unsigned long instance_index = 0; instance_index < tag_instance_count; instance_index++)
+		for (uint32_t instance_index = 0; instance_index < tag_instance_count; instance_index++)
 		{
 			c_tag_instance& tag_instance = *tag_instances[instance_index];
 			const char* tag_instance_name = nullptr;
@@ -344,6 +344,85 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 	return rs;
 }
 
+// #TODO: replace this/give home
+static uint32_t calculate_struct_size(s_engine_platform_build engine_platform_build, const blofeld::s_tag_struct_definition& struct_definition)
+{
+	using namespace blofeld;
+
+	uint32_t computed_size = 0;
+
+	for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
+	{
+		uint32_t field_skip_count;
+		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, field_skip_count))
+		{
+			current_field += field_skip_count;
+			continue;
+		}
+
+		uint32_t field_size = 0;
+		switch (current_field->field_type)
+		{
+		case _field_useless_pad:
+			//computed_size += current_field->padding;
+			break;
+		case _field_pad:
+			field_size = current_field->padding;
+			break;
+		case _field_skip:
+			field_size = current_field->length;
+			break;
+		case _field_struct:
+			field_size = calculate_struct_size(engine_platform_build, *current_field->struct_definition);
+			break;
+		case _field_array:
+		{
+			const s_tag_array_definition& array_definition = *current_field->array_definition;
+			REFERENCE_ASSERT(array_definition);
+			const s_tag_struct_definition& struct_definition = array_definition.struct_definition;
+			REFERENCE_ASSERT(struct_definition);
+			uint32_t struct_size = calculate_struct_size(engine_platform_build, struct_definition);
+			uint32_t array_data_size = struct_size * array_definition.count(engine_platform_build);
+			field_size = array_data_size;
+			break;
+		}
+		default:
+			field_size = blofeld::get_blofeld_field_size(engine_platform_build.platform_type, current_field->field_type);
+			break;
+		}
+
+		computed_size += field_size;
+	}
+
+	//ASSERT((computed_size % (1u << struct_definition.alignment_bits)) == 0);
+
+	return computed_size;
+}
+
+// #TODO: give this a home as well
+uint32_t get_blofeld_field_size(const blofeld::s_tag_field& field, s_engine_platform_build engine_platform_build)
+{
+	switch (field.field_type)
+	{
+	case _field_pad:							return field.padding;
+	case _field_useless_pad:					return 0;
+	case _field_skip:							return field.length;
+	case _field_struct:
+	{
+		uint32_t structure_size = calculate_struct_size(engine_platform_build, *field.struct_definition);
+		return structure_size;
+	}
+	case _field_array:
+	{
+		uint32_t structure_size = calculate_struct_size(engine_platform_build, field.array_definition->struct_definition);
+		uint32_t array_element_count = field.array_definition->count(engine_platform_build);
+		uint32_t array_size = structure_size * array_element_count;
+		return array_size;
+	}
+	default: return get_blofeld_field_size(engine_platform_build.platform_type, field.field_type);
+	}
+}
+
 BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 	h_prototype& high_level,
 	const char* const low_level_data,
@@ -366,7 +445,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 	const char* current_data_position = low_level_data;
 	for (const s_tag_field* field = struct_definition.fields; field->field_type != _field_terminator; field++)
 	{
-		unsigned long field_skip_count;
+		uint32_t field_skip_count;
 		if (execute_tag_field_versioning(*field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, field_skip_count))
 		{
 			field += field_skip_count;
@@ -379,7 +458,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 
 		void* high_level_field_data = high_level.get_field_data_unsafe(*field);
 
-		unsigned long field_size = get_blofeld_field_size(*field, engine_platform_build);
+		uint32_t field_size = get_blofeld_field_size(*field, engine_platform_build);
 
 		if (high_level_field_data != nullptr)
 		{
@@ -390,7 +469,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 			case _field_char_integer:					basic_memory_read(char);
 			case _field_short_integer:					basic_memory_read(short);
 			case _field_long_integer:					basic_memory_read(long);
-			case _field_int64_integer:					basic_memory_read(long long);
+			case _field_int64_integer:					basic_memory_read(int64_t);
 			case _field_angle:							basic_memory_read(angle);
 			case _field_tag:							basic_memory_read(tag);
 			case _field_point_2d:						basic_memory_read(::s_point2d);
@@ -474,13 +553,13 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 			{
 				short value = *reinterpret_cast<const short*>(current_data_position);
 				byteswap_helper_func(value);
-				long data = value;
+				int32_t data = value;
 				memcpy(high_level_field_data, &data, sizeof(data));
 			}
 			break;
 			case _field_long_enum:
 			{
-				long data = *reinterpret_cast<const long*>(current_data_position);
+				int32_t data = *reinterpret_cast<const long*>(current_data_position);
 				byteswap_helper_func(data);
 				memcpy(high_level_field_data, &data, sizeof(data));
 			}
@@ -513,7 +592,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 				byteswap_helper_func(tag_block);
 
 				h_block& block_storage = *reinterpret_cast<decltype(&block_storage)>(high_level_field_data);
-				unsigned long const block_struct_size = calculate_struct_size(engine_platform_build, block_struct_definition);
+				uint32_t const block_struct_size = calculate_struct_size(engine_platform_build, block_struct_definition);
 
 				block_storage.clear();
 
@@ -540,13 +619,13 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 								return rs;
 							}
 
-							long long virtual_address;
+							int64_t virtual_address;
 							if (BCS_FAILED(rs = cache_file_reader.page_offset_to_virtual_address(tag_block.address, virtual_address)))
 							{
 								return rs;
 							}
 
-							long relative_offset;
+							int32_t relative_offset;
 							if (BCS_FAILED(rs = cache_file_reader.virtual_address_to_relative_offset(virtual_address, relative_offset)))
 							{
 								return rs;
@@ -562,7 +641,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 							block_storage.reserve(tag_block.count);
 
 							const char* current_block_data_position = block_data;
-							for (unsigned long block_index = 0; block_index < tag_block.count; block_index++)
+							for (uint32_t block_index = 0; block_index < tag_block.count; block_index++)
 							{
 								h_prototype& type = block_storage.emplace_back();
 								transplant_cache_file_data(type, current_block_data_position, cache_file_reader, block_struct_definition);
@@ -574,7 +653,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 						//{
 						//	block_storage.resize(tag_block.count);
 
-						//	auto transplant_high_level_block = [this, &block_storage, block_data, block_struct_size, block_struct_definition](unsigned long index)
+						//	auto transplant_high_level_block = [this, &block_storage, block_data, block_struct_size, block_struct_definition](uint32_t index)
 						//	{
 						//		const void* current_block_data = block_data + block_struct_size * index;
 
@@ -592,7 +671,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 			break;
 			case _field_pointer:
 			{
-				unsigned long pointer_size;
+				uint32_t pointer_size;
 				ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(engine_platform_build.platform_type, &pointer_size)));
 				switch (pointer_size)
 				{
@@ -613,8 +692,8 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 				h_enumerable& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_field_data);
 				const char* raw_array_data_position = current_data_position;
 
-				unsigned long const array_elements_count = field->array_definition->count(engine_platform_build);
-				for (unsigned long array_index = 0; array_index < array_elements_count; array_index++)
+				uint32_t const array_elements_count = field->array_definition->count(engine_platform_build);
+				for (uint32_t array_index = 0; array_index < array_elements_count; array_index++)
 				{
 					h_prototype& array_element_storage = array_storage[array_index];
 
@@ -630,7 +709,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 
 				h_tag*& tag_ref_storage = *reinterpret_cast<decltype(&tag_ref_storage)>(high_level_field_data);
 
-				unsigned long tag_index = DATUM_INDEX_TO_ABSOLUTE_INDEX(tag_reference.datum_index);
+				uint32_t tag_index = DATUM_INDEX_TO_ABSOLUTE_INDEX(tag_reference.datum_index);
 
 				c_tag_reader* tag_reader;
 				if (BCS_FAILED(rs = cache_cluster.get_tag_reader(cache_file_reader, tag_reader)))
@@ -827,13 +906,13 @@ public:
 	c_infinite_module_file_reader& cache_file_reader;
 	c_infinite_string_id_manager infinite_string_id_manager;
 
-	unsigned long root_struct_size;
+	uint32_t root_struct_size;
 
 	BCS_RESULT transplant_module_file_data(
 		h_prototype& high_level,
-		long tag_block_index,
+		int32_t tag_block_index,
 		const char* const tag_block_data,
-		long nugget_index,
+		int32_t nugget_index,
 		const char* current_data_position,
 		const s_tag_struct_definition& struct_definition)
 	{
@@ -851,7 +930,7 @@ public:
 
 		for (const s_tag_field* field = struct_definition.fields; field->field_type != _field_terminator; field++)
 		{
-			unsigned long field_skip_count;
+			uint32_t field_skip_count;
 			if (execute_tag_field_versioning(*field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, field_skip_count))
 			{
 				field += field_skip_count;
@@ -864,7 +943,7 @@ public:
 
 			void* high_level_field_data = high_level.get_field_data_unsafe(*field);
 
-			unsigned long field_size = cache_file_reader.get_field_size(*field);
+			uint32_t field_size = cache_file_reader.get_field_size(*field);
 
 			if (high_level_field_data != nullptr)
 			{
@@ -875,7 +954,7 @@ public:
 				case _field_char_integer:					basic_memory_read(char);
 				case _field_short_integer:					basic_memory_read(short);
 				case _field_long_integer:					basic_memory_read(long);
-				case _field_int64_integer:					basic_memory_read(long long);
+				case _field_int64_integer:					basic_memory_read(int64_t);
 				case _field_angle:							basic_memory_read(angle);
 				case _field_tag:							basic_memory_read(tag);
 				case _field_point_2d:						basic_memory_read(::s_point2d);
@@ -925,13 +1004,13 @@ public:
 				{
 					short value = *reinterpret_cast<const short*>(current_data_position);
 					byteswap_helper_func(value);
-					long data = value;
+					int32_t data = value;
 					memcpy(high_level_field_data, &data, sizeof(data));
 				}
 				break;
 				case _field_long_enum:
 				{
-					long data = *reinterpret_cast<const long*>(current_data_position);
+					int32_t data = *reinterpret_cast<const long*>(current_data_position);
 					byteswap_helper_func(data);
 					memcpy(high_level_field_data, &data, sizeof(data));
 				}
@@ -968,10 +1047,10 @@ public:
 					h_enumerable& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_field_data);
 					const char* raw_array_data_position = current_data_position;
 
-					unsigned long const block_struct_size = cache_file_reader.calculate_struct_size(field->array_definition->struct_definition);
+					uint32_t const block_struct_size = cache_file_reader.calculate_struct_size(field->array_definition->struct_definition);
 
-					unsigned long const array_elements_count = field->array_definition->count(engine_platform_build);
-					for (unsigned long array_index = 0; array_index < array_elements_count; array_index++)
+					uint32_t const array_elements_count = field->array_definition->count(engine_platform_build);
+					for (uint32_t array_index = 0; array_index < array_elements_count; array_index++)
 					{
 						h_prototype& array_element_storage = array_storage[array_index];
 
@@ -993,16 +1072,16 @@ public:
 					if (ucs_block_field.count > 0)
 					{
 						const blofeld::s_tag_struct_definition& block_struct_definition = field->block_definition->struct_definition;
-						unsigned long const block_struct_size = cache_file_reader.calculate_struct_size(block_struct_definition);
-						unsigned long const total_block_struct_storage_size = block_struct_size * ucs_block_field.count;
+						uint32_t const block_struct_size = cache_file_reader.calculate_struct_size(block_struct_definition);
+						uint32_t const total_block_struct_storage_size = block_struct_size * ucs_block_field.count;
 
 						ASSERT(current_data_position != nullptr);
 						ASSERT(tag_block_data != nullptr);
-						long offset = static_cast<long>(current_data_position - tag_block_data);
+						int32_t offset = static_cast<long>(current_data_position - tag_block_data);
 
 						const s_infinite_ucs_tag_block_data* _tag_block_data = nullptr;
-						long _tag_block_index = 01;
-						for (unsigned long block_index = 0; block_index < ucs_reader.ucs_header->tag_block_count; block_index++)
+						int32_t _tag_block_index = 01;
+						for (uint32_t block_index = 0; block_index < ucs_reader.ucs_header->tag_block_count; block_index++)
 						{
 							const s_infinite_ucs_tag_block_data& current_tag_block_data = ucs_reader.tag_block_instances[block_index];
 							const s_infinite_ucs_nugget& current_nugget = ucs_reader.nuggets[current_tag_block_data.nugget_index];
@@ -1032,7 +1111,7 @@ public:
 							block_storage.reserve(ucs_block_field.count);
 
 							const char* block_data_position = block_data;
-							for (long block_index = 0; block_index < ucs_block_field.count; (block_index++, block_data_position += block_struct_size))
+							for (int32_t block_index = 0; block_index < ucs_block_field.count; (block_index++, block_data_position += block_struct_size))
 							{
 								h_prototype& type = block_storage.emplace_back();
 
@@ -1056,10 +1135,10 @@ public:
 					const s_infinite_ucs_data_reference_field& ucs_data_reference_field = *reinterpret_cast<const s_infinite_ucs_data_reference_field*>(current_data_position);
 					if (ucs_data_reference_field.size > 0)
 					{
-						long offset = static_cast<long>(current_data_position - tag_block_data);
+						int32_t offset = static_cast<long>(current_data_position - tag_block_data);
 
 						const s_infinite_ucs_data_reference_list* ucs_data_reference = nullptr;
-						for (unsigned long data_index = 0; data_index < ucs_reader.ucs_header->data_reference_count; data_index++)
+						for (uint32_t data_index = 0; data_index < ucs_reader.ucs_header->data_reference_count; data_index++)
 						{
 							const s_infinite_ucs_data_reference_list& current_ucs_data_reference = ucs_reader.tag_data_instances[data_index];
 							const s_infinite_ucs_nugget& current_nugget = ucs_reader.nuggets[current_ucs_data_reference.nugget_index];
@@ -1144,19 +1223,19 @@ public:
 
 							const blofeld::s_tag_resource_definition& pageable_resource_definition = *field->tag_resource_definition;
 							const blofeld::s_tag_struct_definition& pageable_resource_struct_definition = pageable_resource_definition.struct_definition;
-							unsigned long const pageable_resource_struct_size = cache_file_reader.calculate_struct_size(pageable_resource_struct_definition);
-							unsigned long const total_block_struct_storage_size = pageable_resource_struct_size;
+							uint32_t const pageable_resource_struct_size = cache_file_reader.calculate_struct_size(pageable_resource_struct_definition);
+							uint32_t const total_block_struct_storage_size = pageable_resource_struct_size;
 
 							// read resource data
 							auto& resource_file_entry_block_maps = infinite_tag_instance->file_entry_block_map.resource_file_entry_block_maps;
 							//ASSERT(resource_file_entry_block_maps.size() >= 1);
 
 							const void* tag_resource_data;
-							unsigned long tag_resource_data_size;
+							uint32_t tag_resource_data_size;
 							infinite_tag_instance->get_resource_data(tag_resource_data, tag_resource_data_size);
 
 							const void* tag_header_data;
-							unsigned long tag_header_data_size;
+							uint32_t tag_header_data_size;
 							infinite_tag_instance->get_header_data(tag_header_data, tag_header_data_size);
 
 							unsigned int index = 0;
@@ -1184,14 +1263,14 @@ public:
 							}
 
 							// read tag data
-							long _tag_block_index = -1;
+							int32_t _tag_block_index = -1;
 							const s_infinite_ucs_tag_block_data* _tag_block_data = nullptr;
 							{
 								ASSERT(current_data_position != nullptr);
 								ASSERT(tag_block_data != nullptr);
-								long offset = static_cast<long>(current_data_position - tag_block_data);
+								int32_t offset = static_cast<long>(current_data_position - tag_block_data);
 
-								for (unsigned long block_index = 0; block_index < ucs_reader.ucs_header->tag_block_count; block_index++)
+								for (uint32_t block_index = 0; block_index < ucs_reader.ucs_header->tag_block_count; block_index++)
 								{
 									const s_infinite_ucs_tag_block_data& current_tag_block_data = ucs_reader.tag_block_instances[block_index];
 									const s_infinite_ucs_nugget& current_nugget = ucs_reader.nuggets[current_tag_block_data.nugget_index];

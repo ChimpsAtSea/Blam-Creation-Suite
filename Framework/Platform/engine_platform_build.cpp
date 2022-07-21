@@ -4,8 +4,8 @@
 using namespace xxhash;
 using namespace xxhash::literals;
 
-#define MAKE_FILE_VERSION(a, b, c, d) ((unsigned long long(a) << 48) | (unsigned long long(b) << 32) | (unsigned long long(c) << 16) | (unsigned long long(d) << 0))
-#define MAKE_PRODUCT_VERSION(a, b, c) ((unsigned long long(a) << 48) | (unsigned long long(b) << 32) | (unsigned long long(c) << 0))
+#define MAKE_FILE_VERSION(a, b, c, d) ((uint64_t(a) << 48) | (uint64_t(b) << 32) | (uint64_t(c) << 16) | (uint64_t(d) << 0))
+#define MAKE_PRODUCT_VERSION(a, b, c) ((uint64_t(a) << 48) | (uint64_t(b) << 32) | (uint64_t(c) << 0))
 #define MAKE_TOOL_VERSION(a, b, c, d, file_description, product_name) (MAKE_FILE_VERSION(a, b, c, d) ^ (file_description##product_name##_xxh64))
 #define HASH_VERSION(a) (a)
 
@@ -292,7 +292,7 @@ BCS_DEBUG_API bool get_platform_is_big_endian(e_platform_type platform_type)
 	}
 }
 
-BCS_RESULT get_platform_pointer_size(e_platform_type platform_type, unsigned long* pointer_size)
+BCS_RESULT get_platform_pointer_size(e_platform_type platform_type, uint32_t* pointer_size)
 {
 	BCS_VALIDATE_ARGUMENT(pointer_size);
 
@@ -520,14 +520,14 @@ const char* get_build_configuration_string()
 #endif
 }
 
-BCS_RESULT get_library_file_version(const char* filepath, unsigned long long* file_version)
+BCS_RESULT get_library_file_version(const char* filepath, uint64_t* file_version)
 {
 	BCS_CHAR_TO_WIDECHAR_STACK(filepath, filepath_wc);
 
 	return get_library_file_version(filepath_wc, file_version);
 }
 
-BCS_RESULT get_library_file_version(const wchar_t* file_path, unsigned long long* file_version)
+BCS_RESULT get_library_file_version(const wchar_t* file_path, uint64_t* file_version)
 {
 	DWORD version_handle = 0;
 	if (DWORD version_info_size = GetFileVersionInfoSizeW(file_path, &version_handle))
@@ -539,7 +539,7 @@ BCS_RESULT get_library_file_version(const wchar_t* file_path, unsigned long long
 			VS_FIXEDFILEINFO* file_info = NULL;
 			if (VerQueryValueW(version_data, L"\\", reinterpret_cast<LPVOID*>(&file_info), &size) && size >= sizeof(VS_FIXEDFILEINFO) && file_info->dwSignature == 0xfeef04bd)
 			{
-				*file_version = (unsigned long long(file_info->dwFileVersionMS) << 32) | unsigned long long(file_info->dwFileVersionLS);
+				*file_version = (uint64_t(file_info->dwFileVersionMS) << 32) | uint64_t(file_info->dwFileVersionLS);
 				return BCS_S_OK;
 			}
 		}

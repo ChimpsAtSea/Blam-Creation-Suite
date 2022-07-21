@@ -25,8 +25,8 @@ BCS_DEBUG_API BCS_RESULT window_create(
 	const char* window_title,
 	const char* window_id,
 	e_window_icon window_icon,
-	unsigned long width, 
-	unsigned long height,
+	uint32_t width, 
+	uint32_t height,
 	float4 background_color,
 	c_window*& window,
 	const char* debug_name = nullptr);

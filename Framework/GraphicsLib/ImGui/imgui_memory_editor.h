@@ -26,5 +26,5 @@ struct s_imgui_memory_editor_settings
 BCS_DEBUG_API extern void imgui_memory_editor(
     s_imgui_memory_editor_settings& settings, 
     void* data, 
-    unsigned long long data_size,
+    uint64_t data_size,
     void* userdata = nullptr);

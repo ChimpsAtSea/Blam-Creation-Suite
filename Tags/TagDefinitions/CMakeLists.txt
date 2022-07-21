@@ -19,14 +19,6 @@ add_library(TagDefinitions ${BCS_LIBRARY_TYPE}
 	blamlib_byteswap.inl
 	blofeld.cpp
 	blofeld.h
-	blofeld/constants.cpp
-	blofeld/constants.h
-	blofeld/constants.txt
-	blofeld/manual_tag_references.cpp
-	blofeld/manual_tag_references.h
-	blofeld/tag_groups.h
-	blofeld/validation.cpp
-	blofeld/validation.h
 	blofeld_field_type_override.h
 	definition_migration.cpp
 	definition_migration.h
@@ -98,10 +90,6 @@ add_library(TagDefinitions ${BCS_LIBRARY_TYPE}
 
 bcs_set_common_properties(TagDefinitions)
 bcs_set_post_build_symbol_preprocess(TagDefinitions)
-
-set_source_files_properties(
-	blofeld/constants.cpp
-	PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 
 target_link_libraries(TagDefinitions PRIVATE
 	blamlib Platform TemplateLibrary SymbolsLib)

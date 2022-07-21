@@ -120,7 +120,7 @@ static BCS_RESULT generate_symbol_file_binary()
 	}
 
 	const char* symbol_file_data;
-	unsigned long symbol_file_data_size;
+	uint32_t symbol_file_data_size;
 	BCS_RESULT write_symbol_data_result = BCS_S_OK;
 	if (BCS_SUCCEEDED(write_symbol_data_result = symbol_file_parser_get_symbol_data(symbol_file_parser, symbol_file_data, symbol_file_data_size)))
 	{

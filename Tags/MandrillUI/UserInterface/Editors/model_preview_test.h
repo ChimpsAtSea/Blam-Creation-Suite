@@ -50,12 +50,12 @@ protected:
 	bool show_bounding_radius;
 	bool is_dragging_camera;
 	unsigned char reset_scale_ticks;
-	long camera_drag_start_x;
-	long camera_drag_start_y;
+	int32_t camera_drag_start_x;
+	int32_t camera_drag_start_y;
 	float viewport_width_float;
 	float viewport_height_float;
-	unsigned long viewport_width;
-	unsigned long viewport_height;
-	unsigned long selected_variant_index;
+	uint32_t viewport_width;
+	uint32_t viewport_height;
+	uint32_t selected_variant_index;
 };
 

@@ -7,7 +7,7 @@ c_datum_handle::c_datum_handle() :
 {
 }
 
-c_datum_handle::c_datum_handle(const long value) :
+c_datum_handle::c_datum_handle(const int value) :
 	m_value(value)
 {
 }
@@ -22,7 +22,7 @@ c_datum_handle::c_datum_handle(c_datum_handle const &other) :
 {
 }
 
-long c_datum_handle::get_value() const
+int c_datum_handle::get_value() const
 {
 	return m_value;
 }

@@ -17,13 +17,13 @@ c_descriptor_heap_allocator_d3d12::~c_descriptor_heap_allocator_d3d12()
 
 D3D12_CPU_DESCRIPTOR_HANDLE c_descriptor_heap_allocator_d3d12::allocate_cpu_descriptor_handle()
 {
-	unsigned long index = allocate();
+	uint32_t index = allocate();
 	return get_cpu_descriptor_handle(index);
 }
 
 D3D12_GPU_DESCRIPTOR_HANDLE c_descriptor_heap_allocator_d3d12::allocate_gpu_descriptor_handle()
 {
-	unsigned long index = allocate();
+	uint32_t index = allocate();
 	return get_gpu_descriptor_handle(index);
 }
 

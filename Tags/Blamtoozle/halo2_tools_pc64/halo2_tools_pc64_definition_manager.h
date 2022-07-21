@@ -27,7 +27,7 @@ public:
 	friend c_halo2_tools_pc64_tag_data_definition;
 	friend c_halo2_tools_pc64_tag_field;
 
-	void traverse(ptr32 group_table_address, unsigned long num_tag_layouts);
+	void traverse(ptr32 group_table_address, uint32_t num_tag_layouts);
 
 	c_halo2_tools_pc64_tag_group_definition& eval_group(ptr32 definition_address);
 protected:

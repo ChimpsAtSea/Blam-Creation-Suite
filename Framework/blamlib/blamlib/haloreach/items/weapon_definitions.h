@@ -206,7 +206,7 @@ struct s_weapon_predicted_resources
 {
 	short type; // <--- TODO: enum
 	short resource_index;
-	long definition_index;
+	int definition_index;
 };
 static_assert(sizeof(s_weapon_predicted_resources) == 0x8);
 
@@ -285,7 +285,7 @@ enum e_weapon_trigger_behavior
 	_weapon_trigger_behavior_spew, // fires its primary action barrel whenever the trigger is down
 	_weapon_trigger_behavior_latch, // fires its primary action barrel when the trigger is down and then latches
 	_weapon_trigger_behavior_latch_autofire, // fires its primary action barrel once if pulsed quickly or if not depressed all the way, otherwise does secondary behavior
-	_weapon_trigger_behavior_latch_tether, // tethers projectiles if latched long enough, on release the tethered projectile detonates
+	_weapon_trigger_behavior_latch_tether, // tethers projectiles if latched int enough, on release the tethered projectile detonates
 	_weapon_trigger_behavior_charge, // charges the trigger
 	_weapon_trigger_behavior_latch_zoom, // latched; fires its primary action barrel when unzoomed, secondary when zoomed
 	_weapon_trigger_behavior_spew_charge,
@@ -421,9 +421,9 @@ struct s_weapon_barrel_firing_parameters
 	real barrel_spin_scale; // scale the barrel spin speed by this amount
 	real blurred_rate_of_fire; // a percentage between 0 and 1 which controls how soon in its firing animation the weapon blurs
 	short_bounds shots_per_fire; // allows designer caps to the shots you can fire from one firing action
-	real fire_recovery_time; // how long after a set of shots it takes before the barrel can fire again
+	real fire_recovery_time; // how int after a set of shots it takes before the barrel can fire again
 	real soft_recovery_fraction; // how much of the recovery allows shots to be queued
-	real melee_fire_recovery_time; // how long after a set of shots it takes before the weapon can melee
+	real melee_fire_recovery_time; // how int after a set of shots it takes before the weapon can melee
 	real melee_soft_recovery_fraction; // how much of the melee recovery allows melee to be queued
 };
 static_assert(sizeof(s_weapon_barrel_firing_parameters) == 0x34);
@@ -596,7 +596,7 @@ struct s_weapon_definition : s_item_definition
 	string_id unused_label;
 	c_enum<e_weapon_secondary_trigger_mode, short> secondary_trigger_mode;
 	short maximum_alternate_shots_loaded;
-	real turn_on_time; // how long after being readied it takes this weapon to switch its 'turned_on' attachment to 1.0
+	real turn_on_time; // how int after being readied it takes this weapon to switch its 'turned_on' attachment to 1.0
 	real ready_time;
 	s_tag_reference ready_effect;
 	s_tag_reference ready_damage_effect;

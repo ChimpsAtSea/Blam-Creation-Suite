@@ -2,7 +2,7 @@
 #include <blamlib/cseries/cseries_memory.h>
 #include <cstring>
 
-void *csmemcpy(void *destination, const void *source, unsigned long length)
+void *csmemcpy(void *destination, const void *source, unsigned int length)
 {
 	blamlib_assert(destination && source);
 
@@ -12,7 +12,7 @@ void *csmemcpy(void *destination, const void *source, unsigned long length)
 	return destination;
 }
 
-void *csmemmove(void *destination, const void *source, unsigned long length)
+void *csmemmove(void *destination, const void *source, unsigned int length)
 {
 	blamlib_assert(destination && source);
 
@@ -22,7 +22,7 @@ void *csmemmove(void *destination, const void *source, unsigned long length)
 	return destination;
 }
 
-void *csmemset(void *address, int value, unsigned long length)
+void *csmemset(void *address, int value, unsigned int length)
 {
 	blamlib_assert(address);
 
@@ -32,7 +32,7 @@ void *csmemset(void *address, int value, unsigned long length)
 	return memset_result;
 }
 
-int csmemcmp(const void *p1, const void *p2, unsigned long length)
+int csmemcmp(const void *p1, const void *p2, unsigned int length)
 {
 	blamlib_assert(p1 && p2);
 	return memcmp(p1, p2, length);

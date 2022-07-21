@@ -3,8 +3,8 @@
 c_graphics_buffer_d3d12::c_graphics_buffer_d3d12(
 	c_graphics_d3d12& graphics,
 	e_graphics_buffer_type buffer_type,
-	unsigned long element_size,
-	unsigned long element_count,
+	uint32_t element_size,
+	uint32_t element_count,
 	const wchar_t* name) :
 	graphics(graphics),
 	buffer_type(buffer_type),
@@ -38,12 +38,12 @@ ID3D12Resource* c_graphics_buffer_d3d12::get_resource() const
 	return gpu_resource;
 }
 
-unsigned long c_graphics_buffer_d3d12::get_data_size() const
+uint32_t c_graphics_buffer_d3d12::get_data_size() const
 {
 	return data_size;
 }
 
-BCS_RESULT c_graphics_buffer_d3d12::write_data(const void* buffer, unsigned long buffer_size)
+BCS_RESULT c_graphics_buffer_d3d12::write_data(const void* buffer, uint32_t buffer_size)
 {
 	if (buffer_size > data_size)
 	{
@@ -73,7 +73,7 @@ BCS_RESULT c_graphics_buffer_d3d12::write_data(const void* buffer, unsigned long
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_graphics_buffer_d3d12::read_data(void* buffer, unsigned long buffer_size)
+BCS_RESULT c_graphics_buffer_d3d12::read_data(void* buffer, uint32_t buffer_size)
 {
 	return BCS_E_NOT_IMPLEMENTED;
 	if (buffer_size > data_size)
@@ -95,13 +95,13 @@ BCS_RESULT c_graphics_buffer_d3d12::read_data(void* buffer, unsigned long buffer
 	return BCS_S_OK;
 }
 
-void c_graphics_buffer_d3d12::bind(unsigned long index)
+void c_graphics_buffer_d3d12::bind(uint32_t index)
 {
 	D3D12_GPU_DESCRIPTOR_HANDLE descriptor_handle = get_gpu_descriptor_handle();
 	graphics.command_list->SetGraphicsRootDescriptorTable(index, descriptor_handle);
 }
 
-unsigned long c_graphics_buffer_d3d12::get_gpu_descriptor_heap_index() const
+uint32_t c_graphics_buffer_d3d12::get_gpu_descriptor_heap_index() const
 {
 	return shader_visible_descriptor_heap_index;
 }
@@ -218,8 +218,8 @@ void c_graphics_buffer_d3d12::deinit_descriptor_heap()
 BCS_RESULT graphics_d3d12_buffer_create(
 	c_graphics_d3d12* graphics,
 	e_graphics_buffer_type buffer_type,
-	unsigned long element_size,
-	unsigned long element_count,
+	uint32_t element_size,
+	uint32_t element_count,
 	c_graphics_buffer_d3d12*& buffer,
 	const char* debug_name)
 {
@@ -248,7 +248,7 @@ BCS_RESULT graphics_d3d12_buffer_create(
 BCS_RESULT graphics_d3d12_buffer_create(
 	c_graphics_d3d12* graphics,
 	e_graphics_buffer_type buffer_type,
-	unsigned long buffer_size,
+	uint32_t buffer_size,
 	c_graphics_buffer_d3d12*& buffer,
 	const char* debug_name)
 {

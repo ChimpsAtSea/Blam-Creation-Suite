@@ -4,20 +4,20 @@
 
 #include "surface.h"
 
-static unsigned long Log2TexelPitch(unsigned long a1)
+static uint32_t Log2TexelPitch(uint32_t a1)
 {
 	return (a1 >> 1 >> (a1 >> 2)) + (a1 >> 2);
 }
 
-static unsigned long Log2MicroTileWidth(unsigned long a1)
+static uint32_t Log2MicroTileWidth(uint32_t a1)
 {
 	return 3 - ((a1 >> 2) - (a1 >> 4));
 }
 
-static unsigned char* TiledTexelAddress2D(unsigned char* a1, unsigned long a2, long a3, long a4, unsigned long a5, unsigned long a6, unsigned long a7, unsigned long a8, unsigned long a9)
+static unsigned char* TiledTexelAddress2D(unsigned char* a1, uint32_t a2, int32_t a3, int32_t a4, uint32_t a5, uint32_t a6, uint32_t a7, uint32_t a8, uint32_t a9)
 {
-	long v9; // ecx
-	unsigned long v10; // edx
+	int32_t v9; // ecx
+	uint32_t v10; // edx
 
 	v9 = a3 << a2;
 	v10 = ((8 * ((a4 + (a9 >> 5)) << a2)) >> 2)
@@ -31,44 +31,44 @@ static unsigned char* TiledTexelAddress2D(unsigned char* a1, unsigned long a2, l
 		+ ((8 * (v10 + v9)) & 0xFFFFF000)];
 }
 
-static unsigned char* LinearTexelAddress(unsigned char* a1, long a2, unsigned long a3, unsigned long a4)
+static unsigned char* LinearTexelAddress(unsigned char* a1, int32_t a2, uint32_t a3, uint32_t a4)
 {
 	return &a1[a2 + (a3 << a4)];
 }
 
 // local variable allocation has failed, the output may be wrong!
-static void UntileSurface(unsigned char* pDestination, unsigned long RowPitch, POINT* pPoint, void* pSource, unsigned long Width, unsigned long Height, RECT* pRect, unsigned long TexelPitch)
+static void UntileSurface(unsigned char* pDestination, uint32_t RowPitch, POINT* pPoint, void* pSource, uint32_t Width, uint32_t Height, RECT* pRect, uint32_t TexelPitch)
 {
-	unsigned long v8; // al
-	unsigned long v9; // [rsp+50h] [rbp-B8h]
-	unsigned long v10; // [rsp+54h] [rbp-B4h]
-	unsigned long v11; // [rsp+58h] [rbp-B0h]
-	long v12; // [rsp+5Ch] [rbp-ACh]
-	long v13; // [rsp+60h] [rbp-A8h]
+	uint32_t v8; // al
+	uint32_t v9; // [rsp+50h] [rbp-B8h]
+	uint32_t v10; // [rsp+54h] [rbp-B4h]
+	uint32_t v11; // [rsp+58h] [rbp-B0h]
+	int32_t v12; // [rsp+5Ch] [rbp-ACh]
+	int32_t v13; // [rsp+60h] [rbp-A8h]
 	RECT rect; // [rsp+70h] [rbp-98h] BYREF
-	unsigned long i; // [rsp+80h] [rbp-88h]
-	unsigned long j; // [rsp+84h] [rbp-84h]
+	uint32_t i; // [rsp+80h] [rbp-88h]
+	uint32_t j; // [rsp+84h] [rbp-84h]
 	unsigned char* pTempDestination; // [rsp+88h] [rbp-80h]
-	long v18; // [rsp+90h] [rbp-78h]
-	unsigned long v19; // [rsp+94h] [rbp-74h]
-	unsigned long v20; // [rsp+98h] [rbp-70h]
+	int32_t v18; // [rsp+90h] [rbp-78h]
+	uint32_t v19; // [rsp+94h] [rbp-74h]
+	uint32_t v20; // [rsp+98h] [rbp-70h]
 	void* Src; // [rsp+A0h] [rbp-68h]
-	unsigned long v22; // [rsp+A8h] [rbp-60h]
-	unsigned long v23; // [rsp+ACh] [rbp-5Ch]
-	unsigned long v24; // [rsp+B0h] [rbp-58h]
-	unsigned long v25; // [rsp+B4h] [rbp-54h]
-	unsigned long v26; // [rsp+B8h] [rbp-50h]
+	uint32_t v22; // [rsp+A8h] [rbp-60h]
+	uint32_t v23; // [rsp+ACh] [rbp-5Ch]
+	uint32_t v24; // [rsp+B0h] [rbp-58h]
+	uint32_t v25; // [rsp+B4h] [rbp-54h]
+	uint32_t v26; // [rsp+B8h] [rbp-50h]
 	void* v27; // [rsp+C0h] [rbp-48h]
-	unsigned long v28; // [rsp+C8h] [rbp-40h] OVERLAPPED
-	unsigned long v29; // [rsp+CCh] [rbp-3Ch]
-	unsigned long v30; // [rsp+D0h] [rbp-38h]
-	unsigned long v31; // [rsp+D4h] [rbp-34h]
+	uint32_t v28; // [rsp+C8h] [rbp-40h] OVERLAPPED
+	uint32_t v29; // [rsp+CCh] [rbp-3Ch]
+	uint32_t v30; // [rsp+D0h] [rbp-38h]
+	uint32_t v31; // [rsp+D4h] [rbp-34h]
 	POINT polong; // [rsp+D8h] [rbp-30h] BYREF
-	unsigned long v33; // [rsp+E0h] [rbp-28h]
-	unsigned long v34; // [rsp+E4h] [rbp-24h] OVERLAPPED
-	unsigned long v35; // [rsp+E8h] [rbp-20h]
-	long v36; // [rsp+ECh] [rbp-1Ch]
-	unsigned long v37; // [rsp+F0h] [rbp-18h]
+	uint32_t v33; // [rsp+E0h] [rbp-28h]
+	uint32_t v34; // [rsp+E4h] [rbp-24h] OVERLAPPED
+	uint32_t v35; // [rsp+E8h] [rbp-20h]
+	int32_t v36; // [rsp+ECh] [rbp-1Ch]
+	uint32_t v37; // [rsp+F0h] [rbp-18h]
 
 	if (!pRect)
 	{
@@ -152,13 +152,13 @@ static void UntileSurface(unsigned char* pDestination, unsigned long RowPitch, P
 
 void UntileSurface(
 	void* pDestination,
-	unsigned long RowPitch,
+	uint32_t RowPitch,
 	POINT* pPoint,
 	void* pSource,
-	unsigned long Width,
-	unsigned long Height,
+	uint32_t Width,
+	uint32_t Height,
 	RECT* pRect,
-	unsigned long TexelPitch)
+	uint32_t TexelPitch)
 {
 	ASSERT(
 		!pRect ||

@@ -107,13 +107,13 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 	}
 
 	const wchar_t* modules[128] = {};
-	unsigned long num_modules = _countof(modules);
+	uint32_t num_modules = _countof(modules);
 	if (BCS_SUCCEEDED(command_line_get_arguments(L"autoproject-module", modules, num_modules)) && num_modules > 0)
 	{
 		for (s_cache_file_list_entry& entry : entries)
 		{
 			entry.selected = false;
-			for (unsigned long module_index = 0; module_index < num_modules; module_index++)
+			for (uint32_t module_index = 0; module_index < num_modules; module_index++)
 			{
 				const wchar_t* module_name = modules[module_index];
 
@@ -407,7 +407,7 @@ void c_tag_project_configurator_tab::create_cache_cluster()
 		}
 	}
 
-	unsigned long cache_file_reader_count = static_cast<unsigned long>(selected_entries.size());
+	uint32_t cache_file_reader_count = static_cast<unsigned long>(selected_entries.size());
 	if (cache_file_reader_count > 0)
 	{
 		c_cache_file_reader** cache_file_readers = new(alloca(sizeof(c_cache_file_reader*) * cache_file_reader_count)) c_cache_file_reader * [cache_file_reader_count];

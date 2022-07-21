@@ -1,6 +1,6 @@
 #pragma once
 
-template<typename field_type, typename parent_type, unsigned long _field_index>
+template<typename field_type, typename parent_type, uint32_t _field_index>
 class h_resource_field
 {
 public:

@@ -4,48 +4,48 @@ struct s_wide_data_array_header
 {
 	char name[32];
 
-	unsigned long count;
+	uint32_t count;
 
-	unsigned long __unknown28;
-	unsigned long __unknown2C;
+	uint32_t __unknown28;
+	uint32_t __unknown2C;
 
-	unsigned long signature;
+	uint32_t signature;
 };
 
 struct s_data_array_persist_header
 {
 	char name[32];
 
-	unsigned long size;
-	unsigned long count;
-	unsigned long maximum_count;
+	uint32_t size;
+	uint32_t count;
+	uint32_t maximum_count;
 
 	unsigned short flags;
 	unsigned char __unknown2D;
 	unsigned char alignment_bits;
 
-	unsigned long signature;
+	uint32_t signature;
 };
 
 struct s_wide_data_datum
 {
-	unsigned long datum_index;
+	uint32_t datum_index;
 	s_data_array_persist_header data_header;
 };
 
 struct s_datum_footer
 {
-	unsigned long __unknown0;
-	unsigned long signature;
+	uint32_t __unknown0;
+	uint32_t signature;
 };
 
 struct s_wide_data_cache_block
 {
-	unsigned long current_datum;
-	unsigned long unknown_datum;
+	uint32_t current_datum;
+	uint32_t unknown_datum;
 
-	unsigned long tag_heap_entry_index;
-	unsigned long cache_heap_entry_index;
+	uint32_t tag_heap_entry_index;
+	uint32_t cache_heap_entry_index;
 
 	s_datum_footer footer;
 };
@@ -57,7 +57,7 @@ public:
 	s_data_array_persist_header data_array_persist_header;
 	s_wide_data_datum* wide_data_datums;
 	s_wide_data_cache_block* wide_data_cache_blocks;
-	unsigned long num_wide_data_cache_blocks;
+	uint32_t num_wide_data_cache_blocks;
 
 	c_tag_file_blocks_chunk(c_chunk& parent);
 	~c_tag_file_blocks_chunk();
@@ -65,5 +65,5 @@ public:
 	BCS_RESULT read_chunk(void* userdata, const void* data, bool use_read_only, bool parse_children) override final;
 
 protected:
-	void read_data_array(unsigned long count, s_wide_data_datum* src_wide_data_datums);
+	void read_data_array(uint32_t count, s_wide_data_datum* src_wide_data_datums);
 };

@@ -8,15 +8,15 @@
 
 struct s_bsp3d_node
 {
-	long long node_data_designator;
+	int64_t node_data_designator;
 };
 static_assert(sizeof(s_bsp3d_node) == 0x8);
 
 struct s_bsp3d_kd_supernode
 {
 	real plane[15];
-	long plane_dimensions;
-	long child_indices[16];
+	int plane_dimensions;
+	int child_indices[16];
 };
 static_assert(sizeof(s_bsp3d_kd_supernode) == 0x80);
 

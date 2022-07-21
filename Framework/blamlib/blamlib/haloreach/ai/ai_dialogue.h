@@ -156,11 +156,11 @@ struct s_vocalization_definition
 	c_enum<e_vocalization_animation_impulse, short> animation_impulse;
 	short proxy_dialogue_index;
 	real sound_repetition_delay; // minutes; minimum delay time between playing the same permutation
-	real allowable_queue_delay; // seconds; how long to wait to actually start the vocalization
-	real pre_voc_delay; // seconds; how long to wait to actually start the vocalization
-	real notification_delay; // seconds; how long into the vocalization the AI should be notified
-	real post_voc_delay; // seconds; how long speech is suppressed in the speaking unit after vocalizing
-	real repeat_delay; // seconds; how long before the same vocalization can be repeated
+	real allowable_queue_delay; // seconds; how int to wait to actually start the vocalization
+	real pre_voc_delay; // seconds; how int to wait to actually start the vocalization
+	real notification_delay; // seconds; how int into the vocalization the AI should be notified
+	real post_voc_delay; // seconds; how int speech is suppressed in the speaking unit after vocalizing
+	real repeat_delay; // seconds; how int before the same vocalization can be repeated
 	real weight; // [0-1] inherent weight of this vocalization
 	real speaker_freeze_time; // speaker won't move for the given amount of time
 	real listener_freeze_time; // listener won't move for the given amount of time (from start of vocalization)

@@ -54,8 +54,8 @@ namespace blamlib
 	struct s_vertex_definition
 	{
 		void* elements;
-		long element_count;
-		long : 32;
+		int element_count;
+		int : 32;
 	};
 
 	/* ---------- prototypes/VERTEX_DEFINITIONS.CPP */
@@ -63,6 +63,6 @@ namespace blamlib
 	s_vertex_definition* vertex_definition_get(
 		e_vertex_type type);
 
-	long vertex_element_get_size(
+	int vertex_element_get_size(
 		void* element_address);
 }

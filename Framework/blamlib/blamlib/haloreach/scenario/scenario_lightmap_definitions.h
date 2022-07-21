@@ -49,8 +49,8 @@ namespace blamlib
 
 	struct s_scenario_lightmap_bsp_data_unknown2
 	{
-		long unknown0;
-		long unknown4;
+		int unknown0;
+		int unknown4;
 	};
 	static_assert(sizeof(s_scenario_lightmap_bsp_data_unknown2) == 0x8);
 
@@ -61,7 +61,7 @@ namespace blamlib
 		real red;
 		real blue;
 		real unknown10;
-		long unknown14;
+		int unknown14;
 		real unknown18;
 		real unknown1C;
 		dword unknown20;
@@ -74,13 +74,13 @@ namespace blamlib
 		c_tag_block_index<s_scenario_lightmap_bsp_data_unknown1, short> unknown048_index;
 		c_tag_block_index<s_scenario_lightmap_coloring, short> coloring;
 		short unknown6;
-		long unknown8;
+		int unknown8;
 	};
 	static_assert(sizeof(s_scenario_lightmap_instanced_geometry) == 0xC);
 
 	struct s_scenario_lightmap_bsp_data_unknown4
 	{
-		long unknown0;
+		int unknown0;
 	};
 	static_assert(sizeof(s_scenario_lightmap_bsp_data_unknown4) == 0x4);
 
@@ -94,16 +94,16 @@ namespace blamlib
 	{
 		real_point3d position;
 		string_id name;
-		long unknown10;
-		long unknown14;
-		long unknown18;
-		long unknown1C;
-		long unknown20;
-		long unknown24;
-		long unknown28;
-		long unknown2C;
-		long unknown30;
-		long unknown34;
+		int unknown10;
+		int unknown14;
+		int unknown18;
+		int unknown1C;
+		int unknown20;
+		int unknown24;
+		int unknown28;
+		int unknown2C;
+		int unknown30;
+		int unknown34;
 	};
 	static_assert(sizeof(s_scenario_lightmap_airprobe) == 0x38);
 
@@ -125,31 +125,31 @@ namespace blamlib
 
 	struct s_scenario_lightmap_bsp_data_unknown7
 	{
-		long unknown00;
-		long unknown04;
-		long unknown08;
-		long unknown0C;
-		long unknown10;
-		long unknown14;
-		long unknown18;
-		long unknown1C;
-		long unknown20;
-		long unknown24;
-		long unknown28;
-		long unknown2C;
+		int unknown00;
+		int unknown04;
+		int unknown08;
+		int unknown0C;
+		int unknown10;
+		int unknown14;
+		int unknown18;
+		int unknown1C;
+		int unknown20;
+		int unknown24;
+		int unknown28;
+		int unknown2C;
 	};
 	static_assert(sizeof(s_scenario_lightmap_bsp_data_unknown7) == 0x30);
 
 	struct s_scenario_lightmap_bsp_data_unknown6
 	{
-		long unknown00;
-		long unknown04;
-		long unknown08;
-		long unknown0C;
-		long unknown10;
-		long unknown14;
-		long unknown18;
-		long unknown1C;
+		int unknown00;
+		int unknown04;
+		int unknown08;
+		int unknown0C;
+		int unknown10;
+		int unknown14;
+		int unknown18;
+		int unknown1C;
 		c_typed_tag_block<s_scenario_lightmap_bsp_data_unknown7> unknown20;
 	};
 	static_assert(sizeof(s_scenario_lightmap_bsp_data_unknown6) == 0x2C);
@@ -167,7 +167,7 @@ namespace blamlib
 	{
 		short unknown000;
 		short structure_bsp_index;
-		long structure_checksum;
+		int structure_checksum;
 		s_tag_reference unknown008;
 		real brightness;
 		s_tag_reference primary_map;
@@ -189,7 +189,7 @@ namespace blamlib
 
 	struct s_scenario_wetness_bsp_data_unknown1
 	{
-		long unknown0;
+		int unknown0;
 	};
 	static_assert(sizeof(s_scenario_wetness_bsp_data_unknown1) == 0x4);
 
@@ -201,13 +201,13 @@ namespace blamlib
 
 	struct s_scenario_wetness_bsp_data_unknown3
 	{
-		long unknown0;
+		int unknown0;
 	};
 	static_assert(sizeof(s_scenario_wetness_bsp_data_unknown3) == 0x4);
 
 	struct s_scenario_wetness_bsp_data_unknown4
 	{
-		long unknown0;
+		int unknown0;
 		char unknown4;
 		char unknown5;
 		char unknown6;
@@ -217,13 +217,13 @@ namespace blamlib
 
 	struct s_scenario_wetness_bsp_data
 	{
-		long unknown00;
-		long structure_checksum1;
-		long structure_checksum2;
-		long unknown0C;
-		long unknown10;
-		long unknown14;
-		long unknown18;
+		int unknown00;
+		int structure_checksum1;
+		int structure_checksum2;
+		int unknown0C;
+		int unknown10;
+		int unknown14;
+		int unknown18;
 		s_tag_reference primary_map;
 		c_typed_tag_block<s_scenario_wetness_bsp_data_unknown1> unknown2C;
 		c_typed_tag_block<s_scenario_wetness_bsp_data_unknown2> unknown38;

@@ -193,7 +193,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 			{
 			case blofeld::_field_char_enum:
 			{
-				long enum_max = current_field->string_list_definition ? current_field->string_list_definition->count(engine_type, platform_type) : 0;
+				int32_t enum_max = current_field->string_list_definition ? current_field->string_list_definition->count(engine_type, platform_type) : 0;
 				char enum_value = *reinterpret_cast<char*>(current_data_position);
 				is_struct_valid &= enum_value < enum_max;
 				break;
@@ -209,7 +209,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 					short enum_value = *reinterpret_cast<short*>(current_data_position);
 					if (enum_value != 0xBABA) // hs script invalid value
 					{
-						long enum_max = current_field->string_list_definition ? current_field->string_list_definition->count(engine_type, platform_type) : 0;
+						int32_t enum_max = current_field->string_list_definition ? current_field->string_list_definition->count(engine_type, platform_type) : 0;
 						is_struct_valid &= enum_value < enum_max;
 					}
 				}
@@ -217,8 +217,8 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 			}
 			case blofeld::_field_long_enum:
 			{
-				long enum_max = current_field->string_list_definition ? current_field->string_list_definition->count(engine_type, platform_type) : 0;
-				long enum_value = *reinterpret_cast<long*>(current_data_position);
+				int32_t enum_max = current_field->string_list_definition ? current_field->string_list_definition->count(engine_type, platform_type) : 0;
+				int32_t enum_value = *reinterpret_cast<long*>(current_data_position);
 				is_struct_valid &= enum_value < enum_max;
 				break;
 			}
@@ -250,7 +250,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 			{
 				if (!(current_field->string_list_definition && &current_field->string_list_definition->string_list == &blofeld::empty_string_list))
 				{
-					unsigned long enum_value = *reinterpret_cast<unsigned long*>(current_data_position);
+					uint32_t enum_value = *reinterpret_cast<unsigned long*>(current_data_position);
 					uint32_t enum_count = current_field->string_list_definition ? current_field->string_list_definition->count(engine_type, platform_type) : 0;
 					uint64_t enum_bits = 1ull << enum_count;
 					enum_bits--;

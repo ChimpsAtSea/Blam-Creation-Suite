@@ -43,7 +43,7 @@ private:
 	};
 };
 
-template<typename parent_type, unsigned long _field_index>
+template<typename parent_type, uint32_t _field_index>
 class h_tag_reference_field :
 	public h_tag_reference
 {

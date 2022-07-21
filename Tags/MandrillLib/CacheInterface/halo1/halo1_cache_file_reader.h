@@ -6,20 +6,20 @@ class c_halo1_header_wrapper
 {
 public:
 	tag& header_signature; // k_cache_header_signature
-	long& file_version;
-	long& file_length;
-	long* padding_length; //#TODO: is this not compressed_file_length ?
-	long& tag_data_offset;
-	long& tag_data_size;
-	long* memory_buffer_offset;
-	long* memory_buffer_size;
+	int32_t& file_version;
+	int32_t& file_length;
+	int32_t* padding_length; //#TODO: is this not compressed_file_length ?
+	int32_t& tag_data_offset;
+	int32_t& tag_data_size;
+	int32_t* memory_buffer_offset;
+	int32_t* memory_buffer_size;
 	c_static_string<32>& scenario_name;
 	c_static_string<32>& build_version;
 	short& scenario_type;
-	long& checksum;
+	int32_t& checksum;
 	tag& footer_signature; // k_cache_footer_signature
 
-	unsigned long const _structure_size;
+	uint32_t const _structure_size;
 
 	c_halo1_header_wrapper() = delete;
 	c_halo1_header_wrapper(c_halo1_header_wrapper const&) = delete;
@@ -79,14 +79,14 @@ public:
 	virtual BCS_RESULT associate_cache_cluster(c_cache_cluster& cache_cluster);
 	virtual BCS_RESULT associate_cache_cluster(c_halo1_cache_cluster& cache_cluster);
 
-	virtual BCS_RESULT virtual_address_to_relative_offset(long long virtual_address, long& relative_offset) const;
-	virtual BCS_RESULT page_offset_to_virtual_address(unsigned long page_offset, long long& virtual_address) const;
+	virtual BCS_RESULT virtual_address_to_relative_offset(int64_t virtual_address, int32_t& relative_offset) const;
+	virtual BCS_RESULT page_offset_to_virtual_address(uint32_t page_offset, int64_t& virtual_address) const;
 
 	virtual BCS_RESULT get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const;
 
-	BCS_RESULT get_cache_file_resource_instance(unsigned long index, const halo1::s_cache_file_resource_instance*& cache_file_resource_instance);
-	BCS_RESULT get_cache_file_resource_instance_data(unsigned long index, const void*& tag_instance_data);
-	BCS_RESULT get_cache_file_resource_instance_name(unsigned long index, const char*& tag_instance_name);
+	BCS_RESULT get_cache_file_resource_instance(uint32_t index, const halo1::s_cache_file_resource_instance*& cache_file_resource_instance);
+	BCS_RESULT get_cache_file_resource_instance_data(uint32_t index, const void*& tag_instance_data);
+	BCS_RESULT get_cache_file_resource_instance_name(uint32_t index, const char*& tag_instance_name);
 
 	bool is_resource_file;
 

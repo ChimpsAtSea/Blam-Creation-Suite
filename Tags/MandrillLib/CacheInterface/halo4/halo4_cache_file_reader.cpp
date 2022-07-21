@@ -60,14 +60,14 @@ BCS_RESULT c_halo4_cache_file_reader::get_debug_info(s_cache_file_debug_info& de
 
 BCS_RESULT c_halo4_cache_file_reader::get_section_buffer(gen3::e_cache_file_section section_index, s_cache_file_buffer_info& buffer_info) const
 {
-	long section_size = cache_file_header.section_file_bounds[section_index].size;
+	int32_t section_size = cache_file_header.section_file_bounds[section_index].size;
 	if (section_size == 0)
 	{
 		return BCS_E_UNSUPPORTED;
 	}
 
-	long section_offset_mask = cache_file_header.offset_masks[section_index];
-	long section_offset = cache_file_header.section_file_bounds[section_index].offset;
+	int32_t section_offset_mask = cache_file_header.offset_masks[section_index];
+	int32_t section_offset = cache_file_header.section_file_bounds[section_index].offset;
 
 	const char* section_begin = file_info.file_view_begin + section_offset + section_offset_mask;
 	const char* section_end = section_begin + section_size;
@@ -150,14 +150,14 @@ BCS_RESULT c_halo4_cache_file_reader::associate_cache_cluster(c_halo4_cache_clus
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo4_cache_file_reader::virtual_address_to_relative_offset(int64_t virtual_address, long& relative_offset) const
+BCS_RESULT c_halo4_cache_file_reader::virtual_address_to_relative_offset(int64_t virtual_address, int32_t& relative_offset) const
 {
 	relative_offset = static_cast<long>(virtual_address - cache_file_header.expected_base_address);
 
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo4_cache_file_reader::page_offset_to_virtual_address(unsigned long page_offset, int64_t& virtual_address) const
+BCS_RESULT c_halo4_cache_file_reader::page_offset_to_virtual_address(uint32_t page_offset, int64_t& virtual_address) const
 {
 	virtual_address = page_offset; // -cache_file_header.expected_base_address;
 

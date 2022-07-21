@@ -44,7 +44,7 @@ struct s_tag_resource_fixup_setup {};
 struct s_tag_resource_interop_location
 {
 	dword address;
-	long definition_index;
+	int definition_index;
 };
 static_assert(sizeof(s_tag_resource_interop_location) == 0x8);
 

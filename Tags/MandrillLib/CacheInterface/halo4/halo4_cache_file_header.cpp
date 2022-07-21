@@ -122,7 +122,7 @@ template<> void byteswap_inplace<halo4::xbox360::s_cache_file_tags_header>(halo4
 	byteswap_inplace(tags_header.tags_signature);
 }
 
-unsigned long cache_file_get_absolute_maximum_size()
+uint32_t cache_file_get_absolute_maximum_size()
 {
 	return 0x7FFFFFFF;
 }
@@ -134,8 +134,8 @@ bool shell_build_string_is_compatible(const char* build_string)
 
 bool halo4::xbox360::cache_file_header_verify(halo4::xbox360::s_cache_file_header& header)
 {
-	constexpr unsigned long k_tag_cache_minimum_address = 0xA0000000;
-	constexpr unsigned long k_tag_cache_maximum_address = 0xBFC00000;
+	constexpr uint32_t k_tag_cache_minimum_address = 0xA0000000;
+	constexpr uint32_t k_tag_cache_maximum_address = 0xBFC00000;
 
 	if (header.header_signature != k_cache_header_signature)
 	{

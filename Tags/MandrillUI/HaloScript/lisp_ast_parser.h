@@ -30,8 +30,8 @@ enum e_lisp_node_type
 struct c_lisp_error
 {
 public:
-	unsigned long line_number;
-	unsigned long position;
+	uint32_t line_number;
+	uint32_t position;
 	e_lisp_error_type type;
 	std::string message;
 };
@@ -44,7 +44,7 @@ public:
 private:
 	c_lisp_node(c_lisp_node* parent);
 
-	static unsigned long get_line_count(const char* const root_start_position, const char* const traversal_position);
+	static uint32_t get_line_count(const char* const root_start_position, const char* const traversal_position);
 	static const char* traverse(
 		const char* const root_start_position,
 		const char* const traversal_start_position,
@@ -59,7 +59,7 @@ public:
 	std::string data;
 	std::vector<c_lisp_node*> arguments;
 	c_lisp_node* parent;
-	unsigned long line_number;
-	unsigned long text_position;
-	unsigned long text_length;
+	uint32_t line_number;
+	uint32_t text_position;
+	uint32_t text_length;
 };

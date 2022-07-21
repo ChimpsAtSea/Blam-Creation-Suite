@@ -15,7 +15,7 @@ c_viewport::~c_viewport()
 	
 }
 
-void c_viewport::set_size(unsigned long _width, unsigned long _height)
+void c_viewport::set_size(uint32_t _width, uint32_t _height)
 {
 	_width = __max(1u, _width);
 	_height = __max(1u, _height);
@@ -35,5 +35,5 @@ void c_viewport::set_size(unsigned long _width, unsigned long _height)
 
 	on_size_changed(width, height);
 }
-void c_viewport::set_width(unsigned long width) { set_size(width, height); }
-void c_viewport::set_height(unsigned long height) { set_size(width, height); }
+void c_viewport::set_width(uint32_t width) { set_size(width, height); }
+void c_viewport::set_height(uint32_t height) { set_size(width, height); }

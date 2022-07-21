@@ -15,7 +15,7 @@ BCS_RESULT c_build_identifier_chunk::read_chunk(void* userdata, const void* data
 		return rs;
 	}
 
-	const unsigned long long* id_ptr = reinterpret_cast<const unsigned long long*>(get_chunk_data_start());
+	const uint64_t* id_ptr = reinterpret_cast<const uint64_t*>(get_chunk_data_start());
 
 	id = chunk_byteswap(*id_ptr);
 

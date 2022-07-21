@@ -25,7 +25,7 @@ c_infinite_tag_instance::~c_infinite_tag_instance()
 	ASSERT(ucs_reader == nullptr);
 }
 
-BCS_RESULT c_infinite_tag_instance::get_global_tag_id(long& out_global_tag_id) const
+BCS_RESULT c_infinite_tag_instance::get_global_tag_id(int32_t& out_global_tag_id) const
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -40,8 +40,8 @@ BCS_RESULT c_infinite_tag_instance::get_global_tag_id(long& out_global_tag_id) c
 
 	BCS_RESULT rst2 = ((c_infinite_tag_instance*)this)->unmap_data();
 
-	unsigned long global_id_a = static_cast<unsigned long>(file_entry_block_map.file_entry.global_tag_id);
-	unsigned long global_id_b = static_cast<unsigned long>(file_entry_block_map.file_entry.file_entry_51->global_tag_id);
+	uint32_t global_id_a = static_cast<unsigned long>(file_entry_block_map.file_entry.global_tag_id);
+	uint32_t global_id_b = static_cast<unsigned long>(file_entry_block_map.file_entry.file_entry_51->global_tag_id);
 
 	//ASSERT(global_id_a == out_global_tag_id);
 	ASSERT(global_id_b == out_global_tag_id);
@@ -69,10 +69,10 @@ BCS_RESULT c_infinite_tag_instance::map_data()
 
 	infinite::c_infinite_generic_module_file_entry& file_entry = file_entry_block_map.file_entry;
 
-	unsigned long header_data_offset = 0;
-	unsigned long tag_data_offset = header_data_offset + file_entry.header_data_size;
-	unsigned long resource_data_offset = tag_data_offset + file_entry.tag_data_size;
-	unsigned long unknown_data_offset = resource_data_offset + file_entry.resource_data_size;
+	uint32_t header_data_offset = 0;
+	uint32_t tag_data_offset = header_data_offset + file_entry.header_data_size;
+	uint32_t resource_data_offset = tag_data_offset + file_entry.tag_data_size;
+	uint32_t unknown_data_offset = resource_data_offset + file_entry.resource_data_size;
 
 	header_data = static_cast<char*>(mapped_data) + header_data_offset;
 	tag_data = static_cast<char*>(mapped_data) + tag_data_offset;
@@ -130,7 +130,7 @@ BCS_RESULT c_infinite_tag_instance::get_ucs_reader(c_infinite_ucs_reader*& out_u
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_tag_instance::get_header_data(const void*& out_header_data, unsigned long& header_data_size) const
+BCS_RESULT c_infinite_tag_instance::get_header_data(const void*& out_header_data, uint32_t& header_data_size) const
 {
 	if (mapped_data == nullptr)
 	{
@@ -156,7 +156,7 @@ BCS_RESULT c_infinite_tag_instance::get_tag_data(const void*& out_tag_data) cons
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_tag_instance::get_resource_data(const void*& out_resource_data, unsigned long& resource_data_size) const
+BCS_RESULT c_infinite_tag_instance::get_resource_data(const void*& out_resource_data, uint32_t& resource_data_size) const
 {
 	if (mapped_data == nullptr)
 	{
@@ -169,7 +169,7 @@ BCS_RESULT c_infinite_tag_instance::get_resource_data(const void*& out_resource_
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_tag_instance::get_unknown_data(const void*& out_unknown_data, unsigned long& unknown_data_size) const
+BCS_RESULT c_infinite_tag_instance::get_unknown_data(const void*& out_unknown_data, uint32_t& unknown_data_size) const
 {
 	if (mapped_data == nullptr)
 	{
@@ -200,7 +200,7 @@ BCS_RESULT c_infinite_tag_instance::get_tag_group(c_tag_group*& out_tag_group) c
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_tag_instance::get_cache_file_tag_index(unsigned long& out_cache_file_tag_index) const
+BCS_RESULT c_infinite_tag_instance::get_cache_file_tag_index(uint32_t& out_cache_file_tag_index) const
 {
 	return BCS_E_UNSUPPORTED;
 }

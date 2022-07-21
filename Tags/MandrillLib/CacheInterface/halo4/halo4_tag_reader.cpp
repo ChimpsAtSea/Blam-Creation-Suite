@@ -81,7 +81,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_groups()
 
 	halo4::xbox360::s_cache_file_header& cache_file_header = cache_reader.cache_file_header;
 
-	long tags_header_relative_offset;
+	int32_t tags_header_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(cache_file_header.tags_header_address, tags_header_relative_offset)))
 	{
 		return rs;
@@ -95,7 +95,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_groups()
 		return BCS_E_FAIL;
 	}
 
-	long tag_groups_relative_offset;
+	int32_t tag_groups_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(tags_header.tag_groups.address, tag_groups_relative_offset)))
 	{
 		return rs;
@@ -103,7 +103,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_groups()
 
 	tag_group_infos.resize(tags_header.tag_groups.count);
 	const halo4::xbox360::s_cache_file_tag_group* tag_groups_read_pointer = reinterpret_cast<const halo4::xbox360::s_cache_file_tag_group*>(tag_section_buffer.begin + tag_groups_relative_offset);
-	for (unsigned long group_index = 0; group_index < tags_header.tag_groups.count; group_index++)
+	for (uint32_t group_index = 0; group_index < tags_header.tag_groups.count; group_index++)
 	{
 		s_halo4_tag_group_info& tag_group_info = tag_group_infos[group_index];
 		halo4::xbox360::s_cache_file_tag_group& tag_group = tag_group_info.group = tag_groups_read_pointer[group_index];
@@ -143,7 +143,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_instances()
 
 	halo4::xbox360::s_cache_file_header& cache_file_header = cache_reader.cache_file_header;
 
-	long tags_header_relative_offset;
+	int32_t tags_header_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(cache_file_header.tags_header_address, tags_header_relative_offset)))
 	{
 		return rs;
@@ -157,7 +157,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_instances()
 		return BCS_E_FAIL;
 	}
 
-	long tag_instances_relative_offset;
+	int32_t tag_instances_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(tags_header.tag_instances.address, tag_instances_relative_offset)))
 	{
 		return rs;
@@ -165,7 +165,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_instances()
 
 	tag_instance_infos.resize(tags_header.tag_instances.count);
 	const halo4::xbox360::s_cache_file_tag_instance* tag_instances_read_pointer = reinterpret_cast<const halo4::xbox360::s_cache_file_tag_instance*>(tag_section_buffer.begin + tag_instances_relative_offset);
-	for (unsigned long tag_index = 0; tag_index < tags_header.tag_instances.count; tag_index++)
+	for (uint32_t tag_index = 0; tag_index < tags_header.tag_instances.count; tag_index++)
 	{
 		s_halo4_tag_instance_info& tag_instance_info = tag_instance_infos[tag_index];
 		halo4::xbox360::s_cache_file_tag_instance& tag_instance = tag_instance_info.instance = tag_instances_read_pointer[tag_index];
@@ -212,7 +212,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_global_instances()
 
 	halo4::xbox360::s_cache_file_header& cache_file_header = cache_reader.cache_file_header;
 
-	long tags_header_relative_offset;
+	int32_t tags_header_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(cache_file_header.tags_header_address, tags_header_relative_offset)))
 	{
 		return rs;
@@ -226,7 +226,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_global_instances()
 		return BCS_E_FAIL;
 	}
 
-	long tag_global_instances_relative_offset;
+	int32_t tag_global_instances_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(tags_header.global_tag_instances.address, tag_global_instances_relative_offset)))
 	{
 		return rs;
@@ -234,13 +234,13 @@ BCS_RESULT c_halo4_tag_reader::read_tag_global_instances()
 
 	tag_global_instance_infos.resize(tags_header.global_tag_instances.count);
 	const halo4::xbox360::s_cache_file_tag_global_instance* global_tag_instances_read_pointer = reinterpret_cast<const halo4::xbox360::s_cache_file_tag_global_instance*>(tag_section_buffer.begin + tag_global_instances_relative_offset);
-	for (unsigned long global_tag_index = 0; global_tag_index < tags_header.global_tag_instances.count; global_tag_index++)
+	for (uint32_t global_tag_index = 0; global_tag_index < tags_header.global_tag_instances.count; global_tag_index++)
 	{
 		s_halo4_tag_global_instance_info& global_instance_info = tag_global_instance_infos[global_tag_index];
 		halo4::xbox360::s_cache_file_tag_global_instance& global_tag_instance = global_instance_info.global_instance = global_tag_instances_read_pointer[global_tag_index];
 		byteswap_inplace(global_tag_instance);
 
-		unsigned long tag_index = DATUM_INDEX_TO_ABSOLUTE_INDEX(global_tag_instance.datum_index);
+		uint32_t tag_index = DATUM_INDEX_TO_ABSOLUTE_INDEX(global_tag_instance.datum_index);
 
 		global_instance_info.instance_info = &tag_instance_infos[tag_index];
 
@@ -268,7 +268,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_interops()
 
 	halo4::xbox360::s_cache_file_header& cache_file_header = cache_reader.cache_file_header;
 
-	long tags_header_relative_offset;
+	int32_t tags_header_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(cache_file_header.tags_header_address, tags_header_relative_offset)))
 	{
 		return rs;
@@ -282,7 +282,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_interops()
 		return BCS_E_FAIL;
 	}
 
-	long tag_interops_relative_offset;
+	int32_t tag_interops_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(tags_header.tag_interop_table.address, tag_interops_relative_offset)))
 	{
 		return rs;
@@ -290,7 +290,7 @@ BCS_RESULT c_halo4_tag_reader::read_tag_interops()
 
 	tag_interop_infos.resize(tags_header.tag_interop_table.count);
 	const halo4::xbox360::s_cache_file_tag_interop* tag_interops_read_pointer = reinterpret_cast<const halo4::xbox360::s_cache_file_tag_interop*>(tag_section_buffer.begin + tag_interops_relative_offset);
-	for (unsigned long interop_index = 0; interop_index < tags_header.tag_interop_table.count; interop_index++)
+	for (uint32_t interop_index = 0; interop_index < tags_header.tag_interop_table.count; interop_index++)
 	{
 		halo4::xbox360::s_cache_file_tag_interop& tag_interop = tag_interop_infos[interop_index] = tag_interops_read_pointer[interop_index];
 		byteswap_inplace(tag_interop);
@@ -311,7 +311,7 @@ BCS_RESULT c_halo4_tag_reader::init_tag_groups()
 		return rs;
 	}
 
-	unsigned long tag_group_count = 0; // #TODO: create a function for this
+	uint32_t tag_group_count = 0; // #TODO: create a function for this
 	for (const blofeld::s_tag_group** tag_group_iterator = blofeld_tag_groups; *tag_group_iterator; tag_group_iterator++)
 	{
 		tag_group_count++;
@@ -458,7 +458,7 @@ BCS_RESULT c_halo4_tag_reader::get_global_instance_info(tag group_tag, const s_h
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_halo4_tag_reader::get_instance_info_by_tag_index(unsigned long tag_index, const s_halo4_tag_instance_info*& instance_info)
+BCS_RESULT c_halo4_tag_reader::get_instance_info_by_tag_index(uint32_t tag_index, const s_halo4_tag_instance_info*& instance_info)
 {
 	if (tag_index > tag_instance_infos.size())
 	{
@@ -470,7 +470,7 @@ BCS_RESULT c_halo4_tag_reader::get_instance_info_by_tag_index(unsigned long tag_
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo4_tag_reader::get_tag_instance_info_by_tag_index(unsigned long tag_index, c_halo4_tag_instance*& tag_instance)
+BCS_RESULT c_halo4_tag_reader::get_tag_instance_info_by_tag_index(uint32_t tag_index, c_halo4_tag_instance*& tag_instance)
 {
 	t_tag_instances_by_index::iterator tag_instance_search = tag_instances_by_index.find(tag_index);
 	if (tag_instance_search == tag_instances_by_index.end())
@@ -483,7 +483,7 @@ BCS_RESULT c_halo4_tag_reader::get_tag_instance_info_by_tag_index(unsigned long 
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo4_tag_reader::page_offset_to_pointer(long page_offset, const void*& data)
+BCS_RESULT c_halo4_tag_reader::page_offset_to_pointer(int32_t page_offset, const void*& data)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -505,7 +505,7 @@ BCS_RESULT c_halo4_tag_reader::page_offset_to_pointer(long page_offset, const vo
 		return rs;
 	}
 
-	long relative_offset;
+	int32_t relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(virtual_address, relative_offset)))
 	{
 		return rs;
@@ -518,46 +518,46 @@ BCS_RESULT c_halo4_tag_reader::page_offset_to_pointer(long page_offset, const vo
 	return rs;
 }
 
-BCS_RESULT c_halo4_tag_reader::get_tag_groups(c_halo4_tag_group**& out_tag_groups, unsigned long& out_tag_group_count)
+BCS_RESULT c_halo4_tag_reader::get_tag_groups(c_halo4_tag_group**& out_tag_groups, uint32_t& out_tag_group_count)
 {
 	out_tag_groups = tag_groups.data();
 	out_tag_group_count = static_cast<unsigned long>(tag_groups.size());
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo4_tag_reader::get_tag_groups(c_tag_group**& out_tag_groups, unsigned long& out_tag_group_count)
+BCS_RESULT c_halo4_tag_reader::get_tag_groups(c_tag_group**& out_tag_groups, uint32_t& out_tag_group_count)
 {
 	out_tag_groups = reinterpret_cast<c_tag_group**>(tag_groups.data());
 	out_tag_group_count = static_cast<unsigned long>(tag_groups.size());
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo4_tag_reader::get_tag_instances(c_halo4_tag_instance**& out_tag_instances, unsigned long& out_tag_instance_count)
+BCS_RESULT c_halo4_tag_reader::get_tag_instances(c_halo4_tag_instance**& out_tag_instances, uint32_t& out_tag_instance_count)
 {
 	out_tag_instances = tag_instances.data();
 	out_tag_instance_count = static_cast<unsigned long>(tag_instances.size());
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo4_tag_reader::get_tag_instances(c_tag_instance**& out_tag_instances, unsigned long& out_tag_instance_count)
+BCS_RESULT c_halo4_tag_reader::get_tag_instances(c_tag_instance**& out_tag_instances, uint32_t& out_tag_instance_count)
 {
 	out_tag_instances = reinterpret_cast<c_tag_instance**>(tag_instances.data());
 	out_tag_instance_count = static_cast<unsigned long>(tag_instances.size());
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo4_tag_reader::get_tag_instance_by_cache_file_tag_index(unsigned long cache_file_tag_index, c_tag_instance*& out_tag_instance)
+BCS_RESULT c_halo4_tag_reader::get_tag_instance_by_cache_file_tag_index(uint32_t cache_file_tag_index, c_tag_instance*& out_tag_instance)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
 	c_halo4_tag_instance** tag_instances;
-	unsigned long tag_instances_count;
+	uint32_t tag_instances_count;
 	if (BCS_FAILED(rs = get_tag_instances(tag_instances, tag_instances_count)))
 	{
 		return rs;
 	}
 
-	for (unsigned long tag_instance_index = 0; tag_instance_index < tag_instances_count; tag_instance_index++)
+	for (uint32_t tag_instance_index = 0; tag_instance_index < tag_instances_count; tag_instance_index++)
 	{
 		c_halo4_tag_instance& tag_instance = *tag_instances[tag_instance_index];
 		if (tag_instance.cache_file_tag_index == cache_file_tag_index)
@@ -593,7 +593,7 @@ BCS_RESULT c_halo4_tag_reader::init_interop_table()
 	}
 
 	_resource_type_index_to_halo4_resource_type = new() e_halo4_resource_type[resource_gestalt.resource_type_identifiers_block.count];
-	for (unsigned long index = 0; index < resource_gestalt.resource_type_identifiers_block.count; index++)
+	for (uint32_t index = 0; index < resource_gestalt.resource_type_identifiers_block.count; index++)
 	{
 		s_cache_file_resource_type_identifier_block_struct_definition resource_type_identifier = resource_type_identifiers[index];
 		byteswap_inplace(resource_type_identifier);
@@ -606,7 +606,7 @@ BCS_RESULT c_halo4_tag_reader::init_interop_table()
 		}
 
 		e_halo4_resource_type resource_type = k_num_halo4_resource_types;
-		for (unsigned long resource_type_index = 0; resource_type_index < k_num_halo4_resource_types; resource_type_index++)
+		for (uint32_t resource_type_index = 0; resource_type_index < k_num_halo4_resource_types; resource_type_index++)
 		{
 			const s_halo4_tag_resource_info& resource_info = halo4_tag_resource_infos[resource_type_index];
 
@@ -646,11 +646,11 @@ BCS_RESULT c_halo4_tag_reader::init_interops()
 	s_cache_file_resource_gestalt_block_struct_definition resource_gestalt = *static_cast<const s_cache_file_resource_gestalt_block_struct_definition*>(global_instance_info->instance_info->instance_data);
 	byteswap_inplace(resource_gestalt);
 
-	unsigned long interop_count = static_cast<unsigned long>(tag_interop_infos.size());
+	uint32_t interop_count = static_cast<unsigned long>(tag_interop_infos.size());
 
 	interop_containers = new() c_halo4_interop_container * [interop_count + 1];
 	interop_containers[interop_count] = nullptr;
-	for (unsigned long interop_index = 0; interop_index < interop_count; interop_index++)
+	for (uint32_t interop_index = 0; interop_index < interop_count; interop_index++)
 	{
 		halo4::xbox360::s_cache_file_tag_interop& cache_file_tag_interop_entry = tag_interop_infos[interop_index];
 
@@ -723,7 +723,7 @@ BCS_RESULT c_halo4_tag_reader::init_interops()
 	return rs;
 }
 
-BCS_RESULT c_halo4_tag_reader::interop_type_index_to_halo4_interop_type(long type_index, e_halo4_interop_type& interop_type)
+BCS_RESULT c_halo4_tag_reader::interop_type_index_to_halo4_interop_type(int32_t type_index, e_halo4_interop_type& interop_type)
 {
 	BCS_VALIDATE_ARGUMENT(type_index >= 0);
 
@@ -772,7 +772,7 @@ BCS_RESULT c_halo4_tag_reader::init_resource_table()
 	}
 
 	_interop_type_index_to_halo4_interop_type = new() e_halo4_interop_type[resource_gestalt.interop_type_identifiers_block.count];
-	for (unsigned long index = 0; index < resource_gestalt.interop_type_identifiers_block.count; index++)
+	for (uint32_t index = 0; index < resource_gestalt.interop_type_identifiers_block.count; index++)
 	{
 		s_cache_file_interop_type_identifier_block_struct_definition interop_type_identifier = interop_type_identifiers[index];
 		byteswap_inplace(interop_type_identifier);
@@ -785,7 +785,7 @@ BCS_RESULT c_halo4_tag_reader::init_resource_table()
 		}
 
 		e_halo4_interop_type interop_type = k_num_halo4_interop_types;
-		for (unsigned long interop_type_index = 0; interop_type_index < k_num_halo4_interop_types; interop_type_index++)
+		for (uint32_t interop_type_index = 0; interop_type_index < k_num_halo4_interop_types; interop_type_index++)
 		{
 			const s_halo4_tag_interop_info& interop_info = halo4_tag_interop_infos[interop_type_index];
 
@@ -872,12 +872,12 @@ BCS_RESULT c_halo4_tag_reader::init_resources()
 
 	//const char* current_naive_resource_control_data_position = naive_resource_control_data;
 
-	for (unsigned long resource_index = 0; resource_index < resource_gestalt.resources_block.count; resource_index++)
+	for (uint32_t resource_index = 0; resource_index < resource_gestalt.resources_block.count; resource_index++)
 	{
 		s_cache_file_resource_data_block_struct_definition resource = resources[resource_index];
 		byteswap_inplace(resource);
 
-		unsigned long tag_index = DATUM_INDEX_TO_ABSOLUTE_INDEX(resource.owner_tag.datum_index);
+		uint32_t tag_index = DATUM_INDEX_TO_ABSOLUTE_INDEX(resource.owner_tag.datum_index);
 
 		if (tag_index < UINT16_MAX)
 		{
@@ -913,7 +913,7 @@ BCS_RESULT c_halo4_tag_reader::init_resources()
 			resource_priority_datas.naive_resource_control_data = naive_resource_control_data + priority_level_data.naive_data_offset;
 			resource_priority_datas.tag_instance = tag_instance;
 			resource_priority_datas.flags = resource.flags;
-			for (unsigned long priority_level_index = 0; priority_level_index < 3; priority_level_index++)
+			for (uint32_t priority_level_index = 0; priority_level_index < 3; priority_level_index++)
 			{
 
 				s_resource_priority_data& resource_priority_data = resource_priority_datas.data[priority_level_index];
@@ -921,7 +921,7 @@ BCS_RESULT c_halo4_tag_reader::init_resources()
 				resource_priority_data.page_index = page_index;
 				if (page_index == -1) continue;
 
-				long page_offset = section.page_offsets[priority_level_index].offset;
+				int32_t page_offset = section.page_offsets[priority_level_index].offset;
 				resource_priority_data.resource_page_offset = page_offset;
 
 				s_cache_file_resource_page_struct file_page = file_pages[section.file_page_indexes[priority_level_index].page_index];
@@ -1161,7 +1161,7 @@ BCS_RESULT c_halo4_tag_reader::export_resources()
 		//console_write_line("start");
 		for (c_halo4_resource_container* resource_container : resource_containers)
 		{
-			unsigned long page_index = static_cast<unsigned long>(_current_file_page - file_pages);
+			uint32_t page_index = static_cast<unsigned long>(_current_file_page - file_pages);
 
 			//console_write_line("begin %s", resource_container->tag_instance.instance_name);
 			resource_container->digest_page(cache_reader, page_index, page_data);
@@ -1174,7 +1174,7 @@ BCS_RESULT c_halo4_tag_reader::export_resources()
 	return rs;
 }
 
-BCS_RESULT c_halo4_tag_reader::resource_type_index_to_halo4_resource_type(long type_index, e_halo4_resource_type& resource_type)
+BCS_RESULT c_halo4_tag_reader::resource_type_index_to_halo4_resource_type(int32_t type_index, e_halo4_resource_type& resource_type)
 {
 	BCS_VALIDATE_ARGUMENT(type_index >= 0);
 
@@ -1243,7 +1243,7 @@ BCS_RESULT c_halo4_tag_reader::init_shared_files_table()
 	_shared_file_index_to_cache_file_reader = new() c_halo4_cache_file_reader * [shared_files_block.count];
 	_shared_file_count = shared_files_block.count;
 
-	for (unsigned long shared_file_index = 0; shared_file_index < shared_files_block.count; shared_file_index++)
+	for (uint32_t shared_file_index = 0; shared_file_index < shared_files_block.count; shared_file_index++)
 	{
 		s_cache_file_shared_file_block_struct_definition shared_file = shared_files[shared_file_index];
 		byteswap_inplace(shared_file);
@@ -1265,7 +1265,7 @@ BCS_RESULT c_halo4_tag_reader::init_shared_files_table()
 	return rs;
 }
 
-BCS_RESULT c_halo4_tag_reader::shared_file_index_to_cache_file_reader(long shared_file_index, c_halo4_cache_file_reader*& cache_file_reader)
+BCS_RESULT c_halo4_tag_reader::shared_file_index_to_cache_file_reader(int32_t shared_file_index, c_halo4_cache_file_reader*& cache_file_reader)
 {
 	BCS_VALIDATE_ARGUMENT(shared_file_index >= -1);
 
@@ -1286,7 +1286,7 @@ BCS_RESULT c_halo4_tag_reader::shared_file_index_to_cache_file_reader(long share
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo4_tag_reader::get_interop_container_by_type_and_descriptor(e_halo4_interop_type interop_type, unsigned long descriptor, c_halo4_interop_container*& interop_container)
+BCS_RESULT c_halo4_tag_reader::get_interop_container_by_type_and_descriptor(e_halo4_interop_type interop_type, uint32_t descriptor, c_halo4_interop_container*& interop_container)
 {
 
 	for (c_halo4_interop_container** interop_container_iter = interop_containers; *interop_container_iter; interop_container_iter++)
@@ -1300,7 +1300,7 @@ BCS_RESULT c_halo4_tag_reader::get_interop_container_by_type_and_descriptor(e_ha
 	return BCS_E_FAIL;
 }
 
-BCS_RESULT c_halo4_tag_reader::get_compression_codec_by_index(long codec_index, e_halo4_compression_codec& compression_codec)
+BCS_RESULT c_halo4_tag_reader::get_compression_codec_by_index(int32_t codec_index, e_halo4_compression_codec& compression_codec)
 {
 	BCS_RESULT rs = BCS_S_OK;
 

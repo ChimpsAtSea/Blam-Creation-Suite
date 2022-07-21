@@ -16,16 +16,16 @@ struct wordVector2dNormalized
 
 struct packed_10_10_10_2_signedNormalisedPackedAsUnorm
 {
-	unsigned long i : 10;
-	unsigned long j : 10;
-	unsigned long k : 10;
-	unsigned long l : 2;
+	uint32_t i : 10;
+	uint32_t j : 10;
+	uint32_t k : 10;
+	uint32_t l : 2;
 };
 
 c_infinite_tag_mesh::c_infinite_tag_mesh(
 	c_graphics& graphics,
 	blofeld::infinite::h_render_model_definition& render_model,
-	unsigned long mesh_index) :
+	uint32_t mesh_index) :
 	graphics(graphics),
 	render_model(render_model),
 	vertex_layout(),
@@ -63,7 +63,7 @@ c_infinite_tag_mesh::c_infinite_tag_mesh(
 		if (mesh_resource)
 		{
 			const void* _resource_data;
-			unsigned long resource_data_size;
+			uint32_t resource_data_size;
 			if (BCS_SUCCEEDED(mesh_resource->add_reference(_resource_data, resource_data_size)))
 			{
 				const char* resource_data = static_cast<const char*>(_resource_data);
@@ -81,9 +81,9 @@ c_infinite_tag_mesh::c_infinite_tag_mesh(
 						const wordVector4dNormalized* position_normalized_vectors = reinterpret_cast<const wordVector4dNormalized*>(resource_data + rasterizer_position_buffer.offset.value);
 						const wordVector2dNormalized* uv0_normalized_vectors = reinterpret_cast<const wordVector2dNormalized*>(resource_data + rasterizer_uv0_buffer.offset.value);
 						const packed_10_10_10_2_signedNormalisedPackedAsUnorm* normal_normalized_vectors = reinterpret_cast<const packed_10_10_10_2_signedNormalisedPackedAsUnorm*>(resource_data + rasterizer_normal_buffer.offset.value);
-						//const unsigned long* normal_normalized_vectors = reinterpret_cast<const unsigned long*>(resource_data + rasterizer_normal_buffer.offset.value);
+						//const uint32_t* normal_normalized_vectors = reinterpret_cast<const unsigned long*>(resource_data + rasterizer_normal_buffer.offset.value);
 
-						for (unsigned long vertex_index = 0; vertex_index < rasterizer_position_buffer.count.value; vertex_index++)
+						for (uint32_t vertex_index = 0; vertex_index < rasterizer_position_buffer.count.value; vertex_index++)
 						{
 							{
 								const wordVector4dNormalized& position_normalized_vector = position_normalized_vectors[vertex_index];
@@ -133,7 +133,7 @@ c_infinite_tag_mesh::c_infinite_tag_mesh(
 							}
 							{
 								const packed_10_10_10_2_signedNormalisedPackedAsUnorm& normal_normalized_vector = normal_normalized_vectors[vertex_index];
-								const unsigned long& DHenN3 = *(unsigned long*)(&normal_normalized_vector);
+								const uint32_t& DHenN3 = *(unsigned long*)(&normal_normalized_vector);
 
 								float normal_i = float(normal_normalized_vector.i) / float(1023);
 								float normal_j = float(normal_normalized_vector.j) / float(1023);
@@ -153,17 +153,17 @@ c_infinite_tag_mesh::c_infinite_tag_mesh(
 								normal_j /= length;
 								normal_k /= length;
 
-								//unsigned long mask_x = 0x000003ff;
-								//unsigned long mask_y = 0x000ffc00;
-								//unsigned long mask_z = 0x3ff00000;
-								//unsigned long mask_w = 0xc0000000;
+								//uint32_t mask_x = 0x000003ff;
+								//uint32_t mask_y = 0x000ffc00;
+								//uint32_t mask_z = 0x3ff00000;
+								//uint32_t mask_w = 0xc0000000;
 
-								//const unsigned long& normal_normalized_vector = normal_normalized_vectors[vertex_index];
+								//const uint32_t& normal_normalized_vector = normal_normalized_vectors[vertex_index];
 
-								//unsigned long i = (normal_normalized_vector & mask_x) >> 0;
-								//unsigned long j = (normal_normalized_vector & mask_y) >> 10;
-								//unsigned long k = (normal_normalized_vector & mask_z) >> 20;
-								//unsigned long l = (normal_normalized_vector & mask_w) >> 30;
+								//uint32_t i = (normal_normalized_vector & mask_x) >> 0;
+								//uint32_t j = (normal_normalized_vector & mask_y) >> 10;
+								//uint32_t k = (normal_normalized_vector & mask_z) >> 20;
+								//uint32_t l = (normal_normalized_vector & mask_w) >> 30;
 
 								//float normal_i = float(k) / float(1023);
 								//float normal_j = float(j) / float(1023);
@@ -182,7 +182,7 @@ c_infinite_tag_mesh::c_infinite_tag_mesh(
 					{
 						const unsigned short* source_indices = reinterpret_cast<const unsigned short*>(resource_data + rasterizerindexbuffer.offset.value);
 
-						for (unsigned long index_index = 0; index_index < rasterizerindexbuffer.count.value; index_index++)
+						for (uint32_t index_index = 0; index_index < rasterizerindexbuffer.count.value; index_index++)
 						{
 							const unsigned short& index = source_indices[index_index];
 

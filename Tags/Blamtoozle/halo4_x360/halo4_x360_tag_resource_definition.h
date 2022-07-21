@@ -5,12 +5,12 @@ class c_halo4_x360_tag_struct_definition;
 struct s_halo4_x360_tag_resource_definition
 {
 	ptr32 name_address;
-	unsigned long unknown8;
+	uint32_t unknown8;
 	ptr32 structure_definition_address;
 	ptr32 tag_resource_vtable;
 	ptr32 unknown20;
 	ptr32 file_path;
-	long line_number;
+	int32_t line_number;
 	ptr32 unknown30;
 };
 constexpr size_t k_halo4_x360_tag_resource_definition_size = sizeof(s_halo4_x360_tag_resource_definition);

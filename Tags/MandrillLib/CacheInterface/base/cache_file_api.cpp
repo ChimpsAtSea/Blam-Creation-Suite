@@ -281,7 +281,7 @@ BCS_RESULT get_cache_file_reader_buffers(c_cache_file_reader* cache_reader, s_ca
 	return cache_reader->get_buffers(*buffers_info);
 }
 
-BCS_RESULT create_cache_cluster(c_cache_file_reader** cache_readers, unsigned long cache_reader_count, s_engine_platform_build engine_platform_build, c_cache_cluster** cache_cluster)
+BCS_RESULT create_cache_cluster(c_cache_file_reader** cache_readers, uint32_t cache_reader_count, s_engine_platform_build engine_platform_build, c_cache_cluster** cache_cluster)
 {
 	BCS_VALIDATE_ARGUMENT(cache_readers);
 	BCS_VALIDATE_ARGUMENT(cache_reader_count > 0);

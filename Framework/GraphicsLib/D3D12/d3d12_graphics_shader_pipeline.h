@@ -12,9 +12,9 @@ public:
 	c_graphics_shader_pipeline_d3d12(
 		c_graphics_d3d12& graphics,
 		c_graphics_shader_binary_d3d12** shader_binaries,
-		unsigned long num_shader_binaries,
+		uint32_t num_shader_binaries,
 		e_graphics_data_format* render_target_data_formats,
-		unsigned long num_render_targets,
+		uint32_t num_render_targets,
 		e_graphics_data_format* depth_data_format,
 		c_graphics_vertex_layout_d3d12& vertex_layout,
 		const wchar_t* debug_name);
@@ -30,9 +30,9 @@ public:
 BCS_RESULT graphics_d3d12_shader_pipeline_create(
 	c_graphics_d3d12* graphics,
 	c_graphics_shader_binary_d3d12** shader_binaries,
-	unsigned long num_shader_binaries,
+	uint32_t num_shader_binaries,
 	e_graphics_data_format* render_target_data_formats,
-	unsigned long num_render_targets,
+	uint32_t num_render_targets,
 	e_graphics_data_format* depth_data_format,
 	c_graphics_vertex_layout_d3d12* vertex_layout,
 	c_graphics_shader_pipeline_d3d12*& shader_pipeline,

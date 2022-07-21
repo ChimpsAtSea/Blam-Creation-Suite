@@ -39,13 +39,13 @@ void c_haloreach_bitmap_test::draw_ui()
 			}
 
 			const void* resource_data;
-			unsigned long resource_data_size;
+			uint32_t resource_data_size;
 			if (BCS_SUCCEEDED(resource->add_reference(resource_data, resource_data_size)))
 			{
 				size_t dds_file_buffer_size = sizeof(unsigned long) + sizeof(DirectX::DDS_HEADER) + resource_data_size * 2;
 				char* const dds_file_buffer = static_cast<char*>(tracked_malloc(dds_file_buffer_size));
 
-				unsigned long* magic_ptr = reinterpret_cast<unsigned long*>(dds_file_buffer);
+				uint32_t* magic_ptr = reinterpret_cast<uint32_t*>(dds_file_buffer);
 				DirectX::DDS_HEADER* dds_header_ptr = next_contiguous_pointer(DirectX::DDS_HEADER, magic_ptr);
 				unsigned char* texture_data = next_contiguous_pointer(unsigned char, dds_header_ptr);
 
@@ -63,12 +63,12 @@ void c_haloreach_bitmap_test::draw_ui()
 				dds_header_ptr->caps = DDS_SURFACE_FLAGS_TEXTURE | DDS_SURFACE_FLAGS_MIPMAP;
 
 
-				unsigned long num_src_bytes = resource_data_size;
+				uint32_t num_src_bytes = resource_data_size;
 				unsigned char* const src_untiled_texture_data = static_cast<unsigned char*>(tracked_malloc(num_src_bytes));
 				{
 					const unsigned char* src_texture_data = reinterpret_cast<const unsigned char*>(resource_data);
 
-					unsigned long RowPitch = (dds_header_ptr->width / 4) * 8;
+					uint32_t RowPitch = (dds_header_ptr->width / 4) * 8;
 					UntileSurface(src_untiled_texture_data, RowPitch, 0, (void*)src_texture_data, dds_header_ptr->width / 4, dds_header_ptr->height / 4, 0, 8);
 
 					// endian swap
@@ -81,12 +81,12 @@ void c_haloreach_bitmap_test::draw_ui()
 					debug_point;
 				}
 
-				unsigned long num_dst_pixels = dds_header_ptr->width * dds_header_ptr->height;
+				uint32_t num_dst_pixels = dds_header_ptr->width * dds_header_ptr->height;
 				unsigned char* const pixel_block_data = static_cast<unsigned char*>(tracked_malloc(num_dst_pixels));
 				{
 					unsigned char* dst_texture_data = pixel_block_data;
 					unsigned char* src_untiled_texture_data_pos = src_untiled_texture_data;
-					for (unsigned long pixel_index = 0; pixel_index < num_dst_pixels; pixel_index += 4)
+					for (uint32_t pixel_index = 0; pixel_index < num_dst_pixels; pixel_index += 4)
 					{
 						unsigned char p1 = *src_untiled_texture_data_pos >> 4;
 						unsigned char p0 = *src_untiled_texture_data_pos & 0xF;
@@ -118,28 +118,28 @@ void c_haloreach_bitmap_test::draw_ui()
 				}
 
 				{
-					unsigned long block_pixel_width = 4;
-					unsigned long block_pixel_height = 4;
-					unsigned long block_pixel_size = block_pixel_width * block_pixel_height;
+					uint32_t block_pixel_width = 4;
+					uint32_t block_pixel_height = 4;
+					uint32_t block_pixel_size = block_pixel_width * block_pixel_height;
 
-					unsigned long num_blocks = num_dst_pixels / block_pixel_size;
-					unsigned long width_blocks = num_blocks / (dds_header_ptr->height / block_pixel_height);
+					uint32_t num_blocks = num_dst_pixels / block_pixel_size;
+					uint32_t width_blocks = num_blocks / (dds_header_ptr->height / block_pixel_height);
 
-					for (unsigned long pixel_index = 0; pixel_index < num_dst_pixels; pixel_index++)
+					for (uint32_t pixel_index = 0; pixel_index < num_dst_pixels; pixel_index++)
 					{
-						unsigned long pixel_x = pixel_index % dds_header_ptr->width;
-						unsigned long pixel_y = pixel_index / dds_header_ptr->height;
+						uint32_t pixel_x = pixel_index % dds_header_ptr->width;
+						uint32_t pixel_y = pixel_index / dds_header_ptr->height;
 
-						unsigned long block_width = 4;
-						unsigned long block_height = 4;
-						unsigned long block_size = block_width * block_height;
-						unsigned long block_x = pixel_x / block_width;
-						unsigned long block_y = pixel_y / block_height;
-						unsigned long block_offset_x = pixel_x % 4;
-						unsigned long block_offset_y = pixel_y % 4;
-						unsigned long block_index = block_y * width_blocks + block_x;
+						uint32_t block_width = 4;
+						uint32_t block_height = 4;
+						uint32_t block_size = block_width * block_height;
+						uint32_t block_x = pixel_x / block_width;
+						uint32_t block_y = pixel_y / block_height;
+						uint32_t block_offset_x = pixel_x % 4;
+						uint32_t block_offset_y = pixel_y % 4;
+						uint32_t block_index = block_y * width_blocks + block_x;
 
-						unsigned long src_pixel_index = block_index * block_size + block_offset_y * 4 + block_offset_x;
+						uint32_t src_pixel_index = block_index * block_size + block_offset_y * 4 + block_offset_x;
 
 						texture_data[pixel_index] = pixel_block_data[src_pixel_index];
 

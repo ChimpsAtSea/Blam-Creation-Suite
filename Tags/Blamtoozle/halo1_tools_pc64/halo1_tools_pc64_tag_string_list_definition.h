@@ -2,7 +2,7 @@
 
 struct s_halo1_tools_pc64_string_list_definition
 {
-	unsigned long option_count;
+	uint32_t option_count;
 	ptr32 options_address;	
 };
 constexpr size_t k_halo1_tools_pc64_string_list_definition_size = sizeof(s_halo1_tools_pc64_string_list_definition);

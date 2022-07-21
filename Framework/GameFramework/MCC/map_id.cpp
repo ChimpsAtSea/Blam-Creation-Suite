@@ -475,7 +475,7 @@ e_mcc_game_mode map_id_to_game_mode(e_map_id map_id)
 	return _mcc_game_mode_none;
 }
 
-std::vector<signed int>& map_id_to_available_insertion_points(long map_id, bool is_firefight)
+std::vector<signed int>& map_id_to_available_insertion_points(int32_t map_id, bool is_firefight)
 {
 	static std::vector<signed int> vec;
 	if (!vec.empty()) vec.clear();
@@ -688,7 +688,7 @@ static BCS_RESULT get_map_id_string_impl(e_map_id map_id, bool pretty_name, cons
 		map_id_string_pair(_map_id_haloreach_oni_sword_base, "Oni Sword Base");
 		map_id_string_pair(_map_id_haloreach_nightfall, "Nightfall");
 		map_id_string_pair(_map_id_haloreach_tip_of_the_spear, "Tip of the Spear");
-		map_id_string_pair(_map_id_haloreach_long_night_of_solace, "Long Night of Solace");
+		map_id_string_pair(_map_id_haloreach_long_night_of_solace, "int32_t Night of Solace");
 		map_id_string_pair(_map_id_haloreach_exodus, "Exodus");
 		map_id_string_pair(_map_id_haloreach_new_alexandria, "New Alexandria");
 		map_id_string_pair(_map_id_haloreach_the_package, "The Package");

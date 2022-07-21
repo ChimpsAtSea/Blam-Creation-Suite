@@ -34,7 +34,7 @@ c_halo4_x360_string_list_definition::c_halo4_x360_string_list_definition(c_halo4
 	tag_definition_manager.format_code_symbol_name_uid(code_symbol_name);
 
 	const s_halo4_x360_string_list_entry_definition* option_entries = tag_definition_manager.va_to_pointer2<s_halo4_x360_string_list_entry_definition>(string_list_definition.options_address);
-	for (unsigned long option_index = 0; option_index < string_list_definition.option_count; option_index++)
+	for (uint32_t option_index = 0; option_index < string_list_definition.option_count; option_index++)
 	{
 		s_halo4_x360_string_list_entry_definition option = option_entries[option_index];
 		tag_definition_manager.byteswap_inplace(option);
@@ -63,7 +63,7 @@ const char* c_halo4_x360_string_list_definition::get_file_path()
 	return file_path;
 }
 
-long c_halo4_x360_string_list_definition::get_line_number()
+int32_t c_halo4_x360_string_list_definition::get_line_number()
 {
 	return string_list_definition.line_number;
 }

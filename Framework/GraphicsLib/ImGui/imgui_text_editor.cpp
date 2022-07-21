@@ -2467,7 +2467,7 @@
 //		static const char* const cppKeywords[] = {
 //			"alignas", "alignof", "and", "and_eq", "asm", "atomic_cancel", "atomic_commit", "atomic_noexcept", "auto", "bitand", "bitor", "bool", "break", "case", "catch", "char", "char16_t", "char32_t", "class",
 //			"compl", "concept", "const", "constexpr", "const_cast", "continue", "decltype", "default", "delete", "do", "double", "dynamic_cast", "else", "enum", "explicit", "export", "extern", "false", "float",
-//			"for", "friend", "goto", "if", "import", "inline", "int", "long", "module", "mutable", "namespace", "new", "noexcept", "not", "not_eq", "nullptr", "operator", "or", "or_eq", "private", "protected", "public",
+//			"for", "friend", "goto", "if", "import", "inline", "int", "int32_t", "module", "mutable", "namespace", "new", "noexcept", "not", "not_eq", "nullptr", "operator", "or", "or_eq", "private", "protected", "public",
 //			"register", "reinterpret_cast", "requires", "return", "short", "signed", "sizeof", "static", "static_assert", "static_cast", "struct", "switch", "synchronized", "template", "this", "thread_local",
 //			"throw", "true", "try", "typedef", "typeid", "typename", "union", "unsigned", "using", "virtual", "void", "volatile", "wchar_t", "while", "xor", "xor_eq"
 //		};
@@ -2652,9 +2652,9 @@
 //		"VFACE : float\nFloating-point scalar that indicates a back-facing primitive.\n"
 //		"A negative value faces backwards, while a positive value faces the camera.\n"
 //		"[!Note]\n"
-//		"This semantic is available in Direct3D 9 Shader Model 3.0. For Direct3D 10 and later, use SV_IsFrontFace instead.\n",
+//		"This semantic is available inï¿½Direct3D 9 Shader Model 3.0. For Direct3D 10 and later, useï¿½SV_IsFrontFaceï¿½instead.\n",
 //		"VPOS : float2\nThe pixel location (x,y) in screen space. To convert a Direct3D 9 shader (that uses this semantic) to a Direct3D 10\n"
-//		"and later shader, see Direct3D 9 VPOS and Direct3D 10 SV_Position)\n",
+//		"and later shader, seeï¿½Direct3D 9 VPOS and Direct3D 10 SV_Position)\n",
 //		"DEPTH[n] : float\nOutput depth\n",
 //		"SV_ClipDistance[n] : float\nClip distance data. SV_ClipDistance values are each assumed to be a float32 signed distance to a plane.\n"
 //		"Primitive setup only invokes rasterization on pixels for which the interpolated plane distance(s) are >= 0. Multiple clip planes can be\n"
@@ -2673,9 +2673,9 @@
 //		"For SV_Coverage on a pixel shader, OUTPUT is supported on ps_4_1 or higher.\n"
 //		"For SV_Coverage on a pixel shader, INPUT requires ps_5_0 or higher.\n",
 //		"SV_Depth : float\nDepth buffer data. Can be written by pixel shader.\n",
-//		"SV_DepthGreaterEqual : unknown\nIn a pixel shader, allows outputting depth, as long as it is greater than or equal to the value determined\n"
+//		"SV_DepthGreaterEqual : unknown\nIn a pixel shader, allows outputting depth, as int32_t as it is greater than or equal to the value determined\n"
 //		"by the rasterizer. Enables adjusting depth without disabling early Z.\n",
-//		"SV_DepthLessEqual : unknown\nIn a pixel shader, allows outputting depth, as long as it is less than or equal to the value determined by\n"
+//		"SV_DepthLessEqual : unknown\nIn a pixel shader, allows outputting depth, as int32_t as it is less than or equal to the value determined by\n"
 //		"the rasterizer. Enables adjusting depth without disabling early Z.\n",
 //		"SV_DispatchThreadID : uint3\nDefines the global thread offset within the Dispatch call, per dimension of the group. Available as input to compute shader. (read only)\n",
 //		"SV_DomainLocation : float2|3\nDefines the location on the hull of the current domain point being evaluated. Available as input to the domain shader. (read only)\n",
@@ -2757,7 +2757,7 @@
 //	if (!inited)
 //	{
 //		static const char* const keywords[] = {
-//			"auto", "break", "case", "char", "const", "continue", "default", "do", "double", "else", "enum", "extern", "float", "for", "goto", "if", "inline", "int", "long", "register", "restrict", "return", "short",
+//			"auto", "break", "case", "char", "const", "continue", "default", "do", "double", "else", "enum", "extern", "float", "for", "goto", "if", "inline", "int", "int32_t", "register", "restrict", "return", "short",
 //			"signed", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "void", "volatile", "while", "_Alignas", "_Alignof", "_Atomic", "_Bool", "_Complex", "_Generic", "_Imaginary",
 //			"_Noreturn", "_Static_assert", "_Thread_local"
 //		};
@@ -2806,7 +2806,7 @@
 //	if (!inited)
 //	{
 //		static const char* const keywords[] = {
-//			"auto", "break", "case", "char", "const", "continue", "default", "do", "double", "else", "enum", "extern", "float", "for", "goto", "if", "inline", "int", "long", "register", "restrict", "return", "short",
+//			"auto", "break", "case", "char", "const", "continue", "default", "do", "double", "else", "enum", "extern", "float", "for", "goto", "if", "inline", "int", "int32_t", "register", "restrict", "return", "short",
 //			"signed", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "void", "volatile", "while", "_Alignas", "_Alignof", "_Atomic", "_Bool", "_Complex", "_Generic", "_Imaginary",
 //			"_Noreturn", "_Static_assert", "_Thread_local"
 //		};

@@ -11,13 +11,13 @@ class c_monolithic_partition_view;
 
 struct s_blofeld_field_transpose_entry
 {
-	unsigned long long field_size : 20;
-	unsigned long long blofeld_field_index : 20;
-	unsigned long long field_index : 20;
-	unsigned long long can_transpose : 1;
-	unsigned long long has_child_chunk : 1;
+	uint64_t field_size : 20;
+	uint64_t blofeld_field_index : 20;
+	uint64_t field_index : 20;
+	uint64_t can_transpose : 1;
+	uint64_t has_child_chunk : 1;
 
-	unsigned long field_metadata;
+	uint32_t field_metadata;
 	blofeld::e_field field_type;
 
 	const blofeld::s_tag_field* blofeld_tag_field;
@@ -45,7 +45,7 @@ enum e_tag_file_reader_metadata_entry_type
 struct t_tag_file_reader_metadata_entry
 {
 	e_tag_file_reader_metadata_entry_type entry_type;
-	unsigned long id;
+	uint32_t id;
 };
 
 #include "tag_file_reader_stack.h"
@@ -63,7 +63,7 @@ public:
 
 	const blofeld::s_tag_struct_definition** tag_struct_definitions;
 	s_single_tag_file_reader_structure_entry* struct_entries_data;
-	unsigned long structure_entries_data_count;
+	uint32_t structure_entries_data_count;
 	c_fast_byte_lookup<const blofeld::s_tag_struct_definition*, 4096, 1024> tag_struct_definitions_lookup_table;
 
 	//using t_tag_struct_definition_table = std::unordered_map<XXH64_hash_t, const blofeld::s_tag_struct_definition*>;
@@ -96,12 +96,12 @@ public:
 
 	BCS_RESULT read_tag_block_structure_to_high_level_object(
 		c_tag_block_chunk& tag_group_block,
-		unsigned long tag_block_index,
+		uint32_t tag_block_index,
 		h_prototype& high_level_object);
 
 	BCS_RESULT read_tag_struct_to_high_level_object_ref(
 		h_prototype& high_level_object,
-		unsigned long structure_entry_index,
+		uint32_t structure_entry_index,
 		s_tag_persist_struct_definition& structure_entry,
 		const char* const structure_data_begin,
 		c_tag_struct_chunk* structure_chunk);
@@ -110,6 +110,6 @@ public:
 		const blofeld::s_tag_persistent_identifier& persistent_identifier,
 		const blofeld::s_tag_struct_definition*& tag_struct_definition) const;
 
-	const blofeld::s_tag_struct_definition& get_tag_struct_definition_by_index(unsigned long index) const;
+	const blofeld::s_tag_struct_definition& get_tag_struct_definition_by_index(uint32_t index) const;
 	
 };

@@ -24,19 +24,19 @@ public:
 		c_graphics_d3d12& graphics,
 		ID3D12Resource* resource,
 		DXGI_FORMAT format,
-		unsigned long mip_levels,
-		unsigned long descriptor_heap_index);
+		uint32_t mip_levels,
+		uint32_t descriptor_heap_index);
 	//void init_sampler_feedback_uav(
 	//	c_graphics_d3d12& graphics,
-	//	unsigned long descriptor_heap_index,
+	//	uint32_t descriptor_heap_index,
 	//	ID3D12Resource* texture_resource,
 	//	ID3D12Resource* feedback_resource);
 	//void init_tiled_texture_descriptor_heap(
 	//	c_graphics_d3d12& graphics,
 	//	c_tiled_texture_d3d12* tiled_texture,
-	//	unsigned long texture_descriptor_heap_index,
-	//	unsigned long residency_descriptor_heap_index,
-	//	unsigned long feedback_descriptor_heap_index);
+	//	uint32_t texture_descriptor_heap_index,
+	//	uint32_t residency_descriptor_heap_index,
+	//	uint32_t feedback_descriptor_heap_index);
 
 
 	c_graphics_d3d12& graphics;

@@ -82,9 +82,9 @@ BCS_RESULT c_halo3_cache_file_reader::get_debug_info(s_cache_file_debug_info& de
 
 BCS_RESULT c_halo3_cache_file_reader::get_section_buffer(gen3::e_cache_file_section section_index, s_cache_file_buffer_info& buffer_info) const
 {
-	long section_size = 0;
-	long section_offset_mask = 0;
-	long section_offset = 0;
+	int32_t section_size = 0;
+	int32_t section_offset_mask = 0;
+	int32_t section_offset = 0;
 
 	switch (engine_platform_build.platform_type)
 	{
@@ -184,7 +184,7 @@ BCS_RESULT c_halo3_cache_file_reader::associate_cache_cluster(c_halo3_cache_clus
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo3_cache_file_reader::virtual_address_to_relative_offset(long long virtual_address, long& relative_offset) const
+BCS_RESULT c_halo3_cache_file_reader::virtual_address_to_relative_offset(int64_t virtual_address, int32_t& relative_offset) const
 {
 	switch (engine_platform_build.platform_type)
 	{
@@ -198,7 +198,7 @@ BCS_RESULT c_halo3_cache_file_reader::virtual_address_to_relative_offset(long lo
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT c_halo3_cache_file_reader::page_offset_to_virtual_address(unsigned long page_offset, long long& virtual_address) const
+BCS_RESULT c_halo3_cache_file_reader::page_offset_to_virtual_address(uint32_t page_offset, int64_t& virtual_address) const
 {
 	virtual_address = page_offset; // -cache_file_header.expected_base_address;
 
@@ -213,7 +213,7 @@ BCS_RESULT c_halo3_cache_file_reader::get_blofeld_tag_groups(const blofeld::s_ta
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo3_cache_file_reader::get_tags_header_relative_offset(long& tags_header_relative_offset) const
+BCS_RESULT c_halo3_cache_file_reader::get_tags_header_relative_offset(int32_t& tags_header_relative_offset) const
 {
 	switch (engine_platform_build.platform_type)
 	{
@@ -224,7 +224,7 @@ BCS_RESULT c_halo3_cache_file_reader::get_tags_header_relative_offset(long& tags
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT c_halo3_cache_file_reader::get_file_count(long& file_count) const
+BCS_RESULT c_halo3_cache_file_reader::get_file_count(int32_t& file_count) const
 {
 	switch (engine_platform_build.platform_type)
 	{
@@ -235,7 +235,7 @@ BCS_RESULT c_halo3_cache_file_reader::get_file_count(long& file_count) const
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT c_halo3_cache_file_reader::get_string_id_index_buffer_count(long& string_id_index_buffer_count) const
+BCS_RESULT c_halo3_cache_file_reader::get_string_id_index_buffer_count(int32_t& string_id_index_buffer_count) const
 {
 	switch (engine_platform_build.platform_type)
 	{
@@ -246,7 +246,7 @@ BCS_RESULT c_halo3_cache_file_reader::get_string_id_index_buffer_count(long& str
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT c_halo3_cache_file_reader::get_string_id_index_buffer_offset(long& string_id_index_buffer_offset) const
+BCS_RESULT c_halo3_cache_file_reader::get_string_id_index_buffer_offset(int32_t& string_id_index_buffer_offset) const
 {
 	switch (engine_platform_build.platform_type)
 	{
@@ -257,7 +257,7 @@ BCS_RESULT c_halo3_cache_file_reader::get_string_id_index_buffer_offset(long& st
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT c_halo3_cache_file_reader::get_string_id_string_storage_offset(long& string_id_string_storage_offset) const
+BCS_RESULT c_halo3_cache_file_reader::get_string_id_string_storage_offset(int32_t& string_id_string_storage_offset) const
 {
 	switch (engine_platform_build.platform_type)
 	{
@@ -268,7 +268,7 @@ BCS_RESULT c_halo3_cache_file_reader::get_string_id_string_storage_offset(long& 
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT c_halo3_cache_file_reader::get_string_id_string_storage_size(long& string_id_string_storage_size) const
+BCS_RESULT c_halo3_cache_file_reader::get_string_id_string_storage_size(int32_t& string_id_string_storage_size) const
 {
 	switch (engine_platform_build.platform_type)
 	{
@@ -279,7 +279,7 @@ BCS_RESULT c_halo3_cache_file_reader::get_string_id_string_storage_size(long& st
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT c_halo3_cache_file_reader::get_file_table_indices_offset(long& file_table_indices_offset) const
+BCS_RESULT c_halo3_cache_file_reader::get_file_table_indices_offset(int32_t& file_table_indices_offset) const
 {
 	switch (engine_platform_build.platform_type)
 	{
@@ -290,7 +290,7 @@ BCS_RESULT c_halo3_cache_file_reader::get_file_table_indices_offset(long& file_t
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT c_halo3_cache_file_reader::get_file_table_offset(long& file_table_offset) const
+BCS_RESULT c_halo3_cache_file_reader::get_file_table_offset(int32_t& file_table_offset) const
 {
 	switch (engine_platform_build.platform_type)
 	{
@@ -301,7 +301,7 @@ BCS_RESULT c_halo3_cache_file_reader::get_file_table_offset(long& file_table_off
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT c_halo3_cache_file_reader::get_file_table_length(long& file_table_length) const
+BCS_RESULT c_halo3_cache_file_reader::get_file_table_length(int32_t& file_table_length) const
 {
 	switch (engine_platform_build.platform_type)
 	{

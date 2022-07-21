@@ -136,7 +136,7 @@ c_blamtoozle_tag_struct_definition& c_halo2_tools_pc64_tag_struct_definition::ge
 	return *this;
 }
 
-unsigned long c_halo2_tools_pc64_tag_struct_definition::get_structure_version()
+uint32_t c_halo2_tools_pc64_tag_struct_definition::get_structure_version()
 {
 	return structure_version;
 }
@@ -161,7 +161,7 @@ const char* c_halo2_tools_pc64_tag_struct_definition::get_structure_type_name()
 	return code_type_name.c_str();
 }
 
-unsigned long c_halo2_tools_pc64_tag_struct_definition::get_alignment_bits()
+uint32_t c_halo2_tools_pc64_tag_struct_definition::get_alignment_bits()
 {
 	return struct_definition.type.alignment_bits;
 }

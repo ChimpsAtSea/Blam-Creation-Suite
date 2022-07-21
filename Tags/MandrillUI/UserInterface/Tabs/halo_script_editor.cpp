@@ -27,7 +27,7 @@
 //	{
 //		if (type_definition.flags & _hs_type_flag_enum)
 //		{
-//			for (unsigned long enum_index = 0; enum_index < type_definition.enums_count; enum_index++)
+//			for (uint32_t enum_index = 0; enum_index < type_definition.enums_count; enum_index++)
 //			{
 //				const c_hs_enum_value& hs_enum_value = type_definition.enums[enum_index];
 //				halo_script_language.mEnums.insert(hs_enum_value.name); // #TODO: Add description for the value

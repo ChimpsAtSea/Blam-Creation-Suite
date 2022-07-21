@@ -115,7 +115,7 @@ struct s_equipment_ability_type_motion_tracker_noise
 {
 	real arm_time; // time before it starts making noise
 	real noise_radius; // radius in WU that the noise extends to
-	long noise_count; // number of noise points that are generated
+	int noise_count; // number of noise points that are generated
 	real flash_radius; // radius in WU that the damage flash noise extends to
 };
 static_assert(sizeof(s_equipment_ability_type_motion_tracker_noise) == 0x10);
@@ -319,7 +319,7 @@ struct s_equipment_definition : s_item_definition
 
 	real duration; // use negative numbers for infinite duration
 	real warmup_time; // time before the equipment truly becomes active
-	real cooldown_time; // for equipment that suppresses combat actions, these actions remain suppressed for this long after the equipment deactivates Note that if this equipment also readies weapons when deactivated, the weapon will not be usable until both this timer expires and the ready animation has finished, whichever is longer
+	real cooldown_time; // for equipment that suppresses combat actions, these actions remain suppressed for this int after the equipment deactivates Note that if this equipment also readies weapons when deactivated, the weapon will not be usable until both this timer expires and the ready animation has finished, whichever is longer
 	real phantom_volume_activation_time; // time in seconds for the phantom volumes on this object to start accelerating things in them
 
 	/* ------ energy */
@@ -345,7 +345,7 @@ struct s_equipment_definition : s_item_definition
 
 	real danger_radius; // how large a danger zone we should create around this equipment (0 means no danger zone)
 	real min_deployment_distance; // how far does my target have to be for me to throw this at them
-	real awareness_time; // how long before nearby enemies become aware of the player
+	real awareness_time; // how int before nearby enemies become aware of the player
 	string_id ai_dialogue_equipment_type; // the equipment ability type name used by the ai dialog system used to filter equipment activation dialogue events
 
 	c_typed_tag_block<s_unit_camera> override_camera;

@@ -35,7 +35,7 @@ c_infinite_tag_reader::~c_infinite_tag_reader()
 {
 	
 
-	for (unsigned long file_entry_block_index = 0; file_entry_block_index < num_file_entry_block_maps; file_entry_block_index++)
+	for (uint32_t file_entry_block_index = 0; file_entry_block_index < num_file_entry_block_maps; file_entry_block_index++)
 	{
 		c_infinite_file_entry_block_map* file_entry_block_map = file_entry_block_maps[file_entry_block_index];
 		delete file_entry_block_map;
@@ -46,9 +46,9 @@ c_infinite_tag_reader::~c_infinite_tag_reader()
 
 BCS_RESULT decompress_buffer_zlib(
 	const void* compressed_buffer,
-	unsigned long compressed_buffer_size,
+	uint32_t compressed_buffer_size,
 	void* uncompressed_buffer,
-	unsigned long uncompressed_buffer_size)
+	uint32_t uncompressed_buffer_size)
 {
 	z_stream stream{};
 	stream.avail_out = static_cast<uInt>(uncompressed_buffer_size);
@@ -72,7 +72,7 @@ BCS_RESULT decompress_buffer_zlib(
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_tag_reader::offset_to_data(unsigned long long offset, const char*& data)
+BCS_RESULT c_infinite_tag_reader::offset_to_data(uint64_t offset, const char*& data)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -108,13 +108,13 @@ BCS_RESULT c_infinite_tag_reader::read_tag_instances()
 		return rs;
 	}
 
-	unsigned long file_entry_size;
+	uint32_t file_entry_size;
 	if (BCS_FAILED(rs = this->cache_reader.get_module_file_entry_structure_size(file_entry_size)))
 	{
 		return rs;
 	}
 
-	unsigned long string_buffer_fixup_offset_hack;
+	uint32_t string_buffer_fixup_offset_hack;
 	if (BCS_FAILED(rs = cache_reader.get_string_buffer_fixup_offset_hack(string_buffer_fixup_offset_hack)))
 	{
 		return rs;
@@ -128,7 +128,7 @@ BCS_RESULT c_infinite_tag_reader::read_tag_instances()
 
 
 	file_entry_block_maps = new() c_infinite_file_entry_block_map*[module_file_header->num_files];
-	for (long file_entry_index = 0; file_entry_index < module_file_header->num_files; file_entry_index++)
+	for (int32_t file_entry_index = 0; file_entry_index < module_file_header->num_files; file_entry_index++)
 	{
 		const char* file_entry_pointer = file_entries + file_entry_size * file_entry_index;
 		c_infinite_file_entry_block_map* file_entry_block_map = new() c_infinite_file_entry_block_map(
@@ -149,7 +149,7 @@ BCS_RESULT c_infinite_tag_reader::read_tag_instances()
 	}
 
 	tag_instance_infos = new() s_infinite_tag_instance_info[num_tag_instance_infos]{};
-	for (long file_entry_index = 0, tag_instance_index = 0; file_entry_index < module_file_header->num_files; file_entry_index++)
+	for (int32_t file_entry_index = 0, tag_instance_index = 0; file_entry_index < module_file_header->num_files; file_entry_index++)
 	{
 		c_infinite_file_entry_block_map& file_entry_block_map = *file_entry_block_maps[file_entry_index];
 		infinite::c_infinite_generic_module_file_entry& file_entry = file_entry_block_map.file_entry;
@@ -175,7 +175,7 @@ BCS_RESULT c_infinite_tag_reader::read_tag_instances()
 		}
 	}
 
-	for (long file_entry_index = 0, tag_instance_index = 0; file_entry_index < module_file_header->num_files; file_entry_index++)
+	for (int32_t file_entry_index = 0, tag_instance_index = 0; file_entry_index < module_file_header->num_files; file_entry_index++)
 	{
 		c_infinite_file_entry_block_map& file_entry_block_map = *file_entry_block_maps[file_entry_index];
 		infinite::c_infinite_generic_module_file_entry& file_entry = file_entry_block_map.file_entry;
@@ -203,7 +203,7 @@ BCS_RESULT c_infinite_tag_reader::init_tag_groups()
 		return rs;
 	}
 
-	unsigned long tag_group_count = 0; // #TODO: create a function for this
+	uint32_t tag_group_count = 0; // #TODO: create a function for this
 	for (const blofeld::s_tag_group** tag_group_iterator = blofeld_tag_groups; *tag_group_iterator; tag_group_iterator++)
 	{
 		tag_group_count++;
@@ -246,7 +246,7 @@ BCS_RESULT c_infinite_tag_reader::init_tag_instances()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	for(unsigned long tag_instance_index =0; tag_instance_index < num_tag_instance_infos; tag_instance_index++)
+	for(uint32_t tag_instance_index =0; tag_instance_index < num_tag_instance_infos; tag_instance_index++)
 	{
 		s_infinite_tag_instance_info& tag_instance_info = tag_instance_infos[tag_instance_index];
 #if !INF_DONT_PROCESS_TAG_DATA
@@ -314,7 +314,7 @@ BCS_RESULT c_infinite_tag_reader::get_instance_info_by_tag_filepath(const char* 
 {
 	BCS_VALIDATE_ARGUMENT(filepath != nullptr);
 
-	for (unsigned long tag_instance_index = 0; tag_instance_index < num_tag_instance_infos; tag_instance_index++)
+	for (uint32_t tag_instance_index = 0; tag_instance_index < num_tag_instance_infos; tag_instance_index++)
 	{
 		s_infinite_tag_instance_info& tag_instance_info = tag_instance_infos[tag_instance_index];
 		if (strcmp(tag_instance_info.filepath, filepath) == 0)
@@ -326,7 +326,7 @@ BCS_RESULT c_infinite_tag_reader::get_instance_info_by_tag_filepath(const char* 
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_infinite_tag_reader::page_offset_to_pointer(long page_offset, const void*& data)
+BCS_RESULT c_infinite_tag_reader::page_offset_to_pointer(int32_t page_offset, const void*& data)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -342,13 +342,13 @@ BCS_RESULT c_infinite_tag_reader::page_offset_to_pointer(long page_offset, const
 		return rs;
 	}
 
-	long long virtual_address;
+	int64_t virtual_address;
 	if (BCS_FAILED(rs = cache_reader.page_offset_to_virtual_address(page_offset, virtual_address)))
 	{
 		return rs;
 	}
 
-	long relative_offset;
+	int32_t relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(virtual_address, relative_offset)))
 	{
 		return rs;
@@ -361,35 +361,35 @@ BCS_RESULT c_infinite_tag_reader::page_offset_to_pointer(long page_offset, const
 	return rs;
 }
 
-BCS_RESULT c_infinite_tag_reader::get_tag_groups(c_infinite_tag_group**& out_tag_groups, unsigned long& out_tag_group_count)
+BCS_RESULT c_infinite_tag_reader::get_tag_groups(c_infinite_tag_group**& out_tag_groups, uint32_t& out_tag_group_count)
 {
 	out_tag_groups = tag_groups.data();
 	out_tag_group_count = static_cast<unsigned long>(tag_groups.size());
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_tag_reader::get_tag_groups(c_tag_group**& out_tag_groups, unsigned long& out_tag_group_count)
+BCS_RESULT c_infinite_tag_reader::get_tag_groups(c_tag_group**& out_tag_groups, uint32_t& out_tag_group_count)
 {
 	out_tag_groups = reinterpret_cast<c_tag_group**>(tag_groups.data());
 	out_tag_group_count = static_cast<unsigned long>(tag_groups.size());
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_tag_reader::get_tag_instances(c_infinite_tag_instance**& out_tag_instances, unsigned long& out_tag_instance_count)
+BCS_RESULT c_infinite_tag_reader::get_tag_instances(c_infinite_tag_instance**& out_tag_instances, uint32_t& out_tag_instance_count)
 {
 	out_tag_instances = tag_instances.data();
 	out_tag_instance_count = static_cast<unsigned long>(tag_instances.size());
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_tag_reader::get_tag_instances(c_tag_instance**& out_tag_instances, unsigned long& out_tag_instance_count)
+BCS_RESULT c_infinite_tag_reader::get_tag_instances(c_tag_instance**& out_tag_instances, uint32_t& out_tag_instance_count)
 {
 	out_tag_instances = reinterpret_cast<c_tag_instance**>(tag_instances.data());
 	out_tag_instance_count = static_cast<unsigned long>(tag_instances.size());
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_cache_file_tag_index(unsigned long cache_file_tag_index, c_tag_instance*& out_tag_instance)
+BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_cache_file_tag_index(uint32_t cache_file_tag_index, c_tag_instance*& out_tag_instance)
 {
 	for (c_infinite_tag_instance* tag_instance : tag_instances)
 	{
@@ -398,12 +398,12 @@ BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_cache_file_tag_index(unsig
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_global_tag_id(unsigned long global_tag_id, c_tag_instance*& out_tag_instance)
+BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_global_tag_id(uint32_t global_tag_id, c_tag_instance*& out_tag_instance)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	for (c_infinite_tag_instance* tag_instance : tag_instances)
 	{
-		long _global_tag_id;
+		int32_t _global_tag_id;
 		if (BCS_FAILED(rs = tag_instance->get_global_tag_id(_global_tag_id)))
 		{
 			return rs;
@@ -417,7 +417,7 @@ BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_global_tag_id(unsigned lon
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_global_tag_id_and_group_tag(long global_tag_id, tag group_tag, c_tag_instance*& out_tag_instance)
+BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_global_tag_id_and_group_tag(int32_t global_tag_id, tag group_tag, c_tag_instance*& out_tag_instance)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	c_infinite_tag_group* tag_group;
@@ -429,7 +429,7 @@ BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_global_tag_id_and_group_ta
 			// this is better than nothing
 			if (&tag_instance->tag_group == tag_group) 
 			{
-				long _global_tag_id;
+				int32_t _global_tag_id;
 				if (BCS_FAILED(rs = tag_instance->get_global_tag_id(_global_tag_id)))
 				{
 					return rs;

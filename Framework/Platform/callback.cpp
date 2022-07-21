@@ -1,6 +1,6 @@
 #include "platform-private-pch.h"
 
-unsigned long long c_callback::next_unique_id = 1;
+uint64_t c_callback::next_unique_id = 1;
 
 c_callback::c_callback() :
 	s_callback()

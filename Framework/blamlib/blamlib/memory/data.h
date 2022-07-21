@@ -11,15 +11,15 @@
 class c_datum_handle final
 {
 private:
-	long m_value;
+	int m_value;
 
 public:
 	c_datum_handle();
-	c_datum_handle(const long m_value);
+	c_datum_handle(const int m_value);
 	c_datum_handle(unsigned short const identifer, unsigned short const absolute_index);
 	c_datum_handle(c_datum_handle const &other);
 
-	long get_value() const;
+	int get_value() const;
 	unsigned short get_identifier() const;
 	unsigned short get_absolute_index() const;
 

@@ -18,7 +18,7 @@ namespace blofeld
 		int line,
 #endif
 		c_engine_platform_build engine_platform_build,
-		unsigned long version_field_skip_count) :
+		uint32_t version_field_skip_count) :
 		string(string),
 #ifndef __INTELLISENSE__
 		filename(filename),
@@ -33,7 +33,7 @@ namespace blofeld
 		versioning.mode = version_mode;
 	}
 
-	s_string_list_definition::s_string_list_definition(const char* name, const char* filename, int line, s_string_entry* string_entries, unsigned long num_string_entries, long start_offset, long end_offset) :
+	s_string_list_definition::s_string_list_definition(const char* name, const char* filename, int line, s_string_entry* string_entries, uint32_t num_string_entries, int32_t start_offset, int32_t end_offset) :
 		name(name),
 		filename(filename),
 		line(line),
@@ -45,13 +45,13 @@ namespace blofeld
 
 	}
 
-	unsigned long s_string_list_definition::get_count(s_engine_platform_build engine_platform_build) const
+	uint32_t s_string_list_definition::get_count(s_engine_platform_build engine_platform_build) const
 	{
-		long string_index = 0;
-		for (unsigned long entry_index = 0; entry_index < num_string_entries; entry_index++)
+		int32_t string_index = 0;
+		for (uint32_t entry_index = 0; entry_index < num_string_entries; entry_index++)
 		{
 			s_string_entry& string_entry = string_entries[entry_index];
-			unsigned long skip_count;
+			uint32_t skip_count;
 			if (string_entry.is_versioning_entry && blofeld::execute_tag_field_versioning(string_entry.versioning, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, skip_count))
 			{
 				entry_index += skip_count;
@@ -60,20 +60,20 @@ namespace blofeld
 			string_index++;
 		}
 
-		long string_count_after_offset = __max(start_offset, string_index) - start_offset;
-		long string_count = __min(string_count_after_offset, end_offset - start_offset);
+		int32_t string_count_after_offset = __max(start_offset, string_index) - start_offset;
+		int32_t string_count = __min(string_count_after_offset, end_offset - start_offset);
 
 		return static_cast<unsigned long>(string_count);
 	}
 
-	const char* s_string_list_definition::get_string(const s_engine_platform_build& engine_platform_build, unsigned long index) const
+	const char* s_string_list_definition::get_string(const s_engine_platform_build& engine_platform_build, uint32_t index) const
 	{
-		long requested_index = static_cast<long>(index) + start_offset;
-		long string_index = 0;
-		for (unsigned long entry_index = 0; entry_index < num_string_entries; entry_index++)
+		int32_t requested_index = static_cast<long>(index) + start_offset;
+		int32_t string_index = 0;
+		for (uint32_t entry_index = 0; entry_index < num_string_entries; entry_index++)
 		{
 			s_string_entry& string_entry = string_entries[entry_index];
-			unsigned long skip_count;
+			uint32_t skip_count;
 			if (string_entry.is_versioning_entry && blofeld::execute_tag_field_versioning(string_entry.versioning, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, skip_count))
 			{
 				entry_index += skip_count;

@@ -15,7 +15,7 @@ class c_ptr32_no_init
     using t_this = c_ptr32_no_init<t_type>;
     
 protected:
-    unsigned long m_stored;
+    unsigned int m_stored;
 
 public:
     t_this &store(t_type *address)

@@ -45,7 +45,7 @@ BCS_RESULT c_tag_reference_chunk::set_reference(tag group_tag, const char* tag_f
 	return rs;
 }
 
-BCS_RESULT c_tag_reference_chunk::set_data(const void* data, unsigned long data_size)
+BCS_RESULT c_tag_reference_chunk::set_data(const void* data, uint32_t data_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 

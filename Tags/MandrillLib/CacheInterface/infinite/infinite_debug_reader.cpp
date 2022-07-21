@@ -22,12 +22,12 @@ BCS_RESULT c_infinite_debug_reader::string_id_to_string(string_id stringid, cons
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT c_infinite_debug_reader::string_id_to_string(unsigned long string_id_index, unsigned long string_id_namespace, unsigned long string_id_length, const char*& string)
+BCS_RESULT c_infinite_debug_reader::string_id_to_string(uint32_t string_id_index, uint32_t string_id_namespace, uint32_t string_id_length, const char*& string)
 {
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT c_infinite_debug_reader::get_tag_filepath(unsigned long tag_index, const char*& filepath)
+BCS_RESULT c_infinite_debug_reader::get_tag_filepath(uint32_t tag_index, const char*& filepath)
 {
 	return BCS_E_UNSUPPORTED;
 }
@@ -42,12 +42,12 @@ BCS_RESULT c_infinite_debug_reader::get_group_id(tag group_tag, const char*& gro
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT c_infinite_debug_reader::string_id_to_index(string_id stringid, unsigned long& string_index)
+BCS_RESULT c_infinite_debug_reader::string_id_to_index(string_id stringid, uint32_t& string_index)
 {
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT c_infinite_debug_reader::string_id_to_index(unsigned long string_id_index, unsigned long string_id_namespace, unsigned long string_id_length, unsigned long& string_index)
+BCS_RESULT c_infinite_debug_reader::string_id_to_index(uint32_t string_id_index, uint32_t string_id_namespace, uint32_t string_id_length, uint32_t& string_index)
 {
 	return BCS_E_UNSUPPORTED;
 }

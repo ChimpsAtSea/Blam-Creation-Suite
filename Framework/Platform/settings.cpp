@@ -18,7 +18,7 @@ int settings_read_integer(e_settings_section section, const char* name, int defa
 float settings_read_float(e_settings_section section, const char* name, float defaultValue /*= 0.0*/)
 {
 	char floatBuffer[32] = {};
-	unsigned long length = settings_read_string(section, name, floatBuffer, sizeof(floatBuffer), "");
+	uint32_t length = settings_read_string(section, name, floatBuffer, sizeof(floatBuffer), "");
 
 	if (length)
 	{
@@ -28,7 +28,7 @@ float settings_read_float(e_settings_section section, const char* name, float de
 	return defaultValue;
 }
 
-unsigned long settings_read_string(e_settings_section section, const char* name, char* buffer, unsigned long buffer_size, const char* default_value /*= nullptr*/)
+uint32_t settings_read_string(e_settings_section section, const char* name, char* buffer, uint32_t buffer_size, const char* default_value /*= nullptr*/)
 {
 	if (buffer_size > 0)
 	{
@@ -40,7 +40,7 @@ unsigned long settings_read_string(e_settings_section section, const char* name,
 	return 0;
 }
 
-unsigned long settings_read_wstring(e_settings_section section, const char* name, wchar_t* buffer, unsigned long buffer_size, const wchar_t* default_value /*= nullptr*/)
+uint32_t settings_read_wstring(e_settings_section section, const char* name, wchar_t* buffer, uint32_t buffer_size, const wchar_t* default_value /*= nullptr*/)
 {
 	if (buffer_size > 0)
 	{

@@ -5,42 +5,42 @@ constexpr size_t k_map_variant_buffer_size = 0xE800;
 
 struct s_peer_context
 {
-	long long secure_address;
+	int64_t secure_address;
 };
 
 struct s_player_context_v1
 {
-	long long xbox_user_id;
-	long team;
-	long player_assigned_team;
-	long long secure_address;
+	int64_t xbox_user_id;
+	int32_t team;
+	int32_t player_assigned_team;
+	int64_t secure_address;
 };
 
 struct s_player_context_v2 :
 	public s_player_context_v1
 {
-	long __unknown18;
-	long __unknown1C;
+	int32_t __unknown18;
+	int32_t __unknown1C;
 };
 
 template<typename s_player_context>
 class c_game_options
 {
 public:
-	long game_mode;
+	int32_t game_mode;
 
 	char game_variant_buffer[k_game_variant_buffer_size];
 	char map_variant_buffer[k_map_variant_buffer_size];
 
-	long map_id;
+	int32_t map_id;
 
-	long campaign_difficulty_level;
+	int32_t campaign_difficulty_level;
 	unsigned short campaign_insertion_point;
 	short infinity_mission_id;
 private:
 	char __padding0[8];
 public:
-	unsigned long long launcher_skull_mask;
+	uint64_t launcher_skull_mask;
 private:
 	char __padding1[8];
 public:
@@ -91,16 +91,16 @@ public:
 private:
 	char __padding1[8];
 public:
-	long game_mode;
-	long map_id;
+	int32_t game_mode;
+	int32_t map_id;
 
-	long campaign_difficulty_level;
+	int32_t campaign_difficulty_level;
 private:
 	char __padding2[4];
 public:
 	unsigned short campaign_insertion_point;
 	short infinity_mission_id;
-	unsigned long long launcher_skull_mask;
+	uint64_t launcher_skull_mask;
 
 	s_peer_context party;
 	s_peer_context local;
@@ -141,16 +141,16 @@ public:
 private:
 	__int8 : 8;
 public:
-	long game_mode;
-	long map_id;
+	int32_t game_mode;
+	int32_t map_id;
 
-	long campaign_difficulty_level;
+	int32_t campaign_difficulty_level;
 private:
 	char __padding2[4];
 public:
 	unsigned short campaign_insertion_point;
 	short infinity_mission_id;
-	unsigned long long launcher_skull_mask;
+	uint64_t launcher_skull_mask;
 
 	s_peer_context party;
 	s_peer_context local;
@@ -191,12 +191,12 @@ public:
 	//bool& sfx_remaster;
 	//bool& is_host;
 	unsigned __int8& tick_length;
-	long& game_mode;
-	long& map_id;
-	long& campaign_difficulty_level;
+	int32_t& game_mode;
+	int32_t& map_id;
+	int32_t& campaign_difficulty_level;
 	unsigned short& campaign_insertion_point;
 	short &infinity_mission_id;
-	unsigned long long& launcher_skull_mask;
+	uint64_t& launcher_skull_mask;
 	s_peer_context& party;
 	s_peer_context& local;
 	s_peer_context(&peers)[17];

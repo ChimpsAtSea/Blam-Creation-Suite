@@ -35,7 +35,7 @@ char *csstrstr(char *string, char const *substring);
 char *csstrtok(char *string, char const *delimiter);
 
 char *csnzprintf(char *buffer, unsigned int size, char const *format, ...);
-long cvsnzprintf(char *buffer, unsigned int size, char const *format, void *args);
+int cvsnzprintf(char *buffer, unsigned int size, char const *format, void *args);
 
 /*
 TODO:

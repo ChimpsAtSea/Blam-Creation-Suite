@@ -192,7 +192,7 @@ typedef unsigned int   stbir_uint32;
 #include <stdint.h>
 typedef unsigned char  stbir_uint8;
 typedef uint16_t stbir_uint16;
-typedef unsigned long stbir_uint32;
+typedef uint32_t stbir_uint32;
 #endif
 
 #ifndef STBIRDEF

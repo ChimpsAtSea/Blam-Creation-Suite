@@ -1494,18 +1494,18 @@ namespace pc64
 		cache_file_sound_block_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
-		cached_data_block,
-		"cached_data_block",
-		"cached_data_block",
-		1,
-		cached_data_block_struct_definition);
-
-	TAG_BLOCK_FROM_STRUCT(
 		cached_data_block$2,
 		"cached_data_block",
 		"cached_data_block",
 		1,
 		cached_data_block_struct_definition$2);
+
+	TAG_BLOCK_FROM_STRUCT(
+		cached_data_block,
+		"cached_data_block",
+		"cached_data_block",
+		1,
+		cached_data_block_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		camera_block,
@@ -3153,18 +3153,18 @@ namespace pc64
 		hud_text_widgets_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
-		hud_waypoint_arrow_block$2,
-		"hud_waypoint_arrow_block",
-		"hud_waypoint_arrow_block",
-		4,
-		hud_waypoint_arrow_block_struct_definition$2);
-
-	TAG_BLOCK_FROM_STRUCT(
 		hud_waypoint_arrow_block,
 		"hud_waypoint_arrow_block",
 		"hud_waypoint_arrow_block",
 		16,
 		hud_waypoint_arrow_block_struct_definition);
+
+	TAG_BLOCK_FROM_STRUCT(
+		hud_waypoint_arrow_block$2,
+		"hud_waypoint_arrow_block",
+		"hud_waypoint_arrow_block",
+		4,
+		hud_waypoint_arrow_block_struct_definition$2);
 
 	TAG_BLOCK_FROM_STRUCT(
 		hud_waypoint_block,
@@ -3762,18 +3762,18 @@ namespace pc64
 		material_physics_properties_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
-		materials_block,
-		"materials_block",
-		"materials_block",
-		256,
-		materials_block_struct_definition);
-
-	TAG_BLOCK_FROM_STRUCT(
 		materials_block$2,
 		"materials_block",
 		"materials_block",
 		64,
 		materials_block_struct_definition$2);
+
+	TAG_BLOCK_FROM_STRUCT(
+		materials_block,
+		"materials_block",
+		"materials_block",
+		256,
+		materials_block_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		materials_sweeteners_struct_block,
@@ -6982,18 +6982,18 @@ namespace pc64
 		sound_scenery_datum_struct_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
-		sounds_block$2,
-		"sounds_block",
-		"sounds_block",
-		60,
-		sounds_block_struct_definition$2);
-
-	TAG_BLOCK_FROM_STRUCT(
 		sounds_block,
 		"sounds_block",
 		"sounds_block",
 		60,
 		sounds_block_struct_definition);
+
+	TAG_BLOCK_FROM_STRUCT(
+		sounds_block$2,
+		"sounds_block",
+		"sounds_block",
+		60,
+		sounds_block_struct_definition$2);
 
 	TAG_BLOCK_FROM_STRUCT(
 		special_movement_block,
@@ -10110,10 +10110,10 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		array$14,
+		array$42,
 		"array",
 		"array",
-		"s_array$14",
+		"s_array$42",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -10123,10 +10123,10 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		array$15,
+		array$43,
 		"array",
 		"array",
-		"s_array$15",
+		"s_array$43",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -10136,15 +10136,140 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		array$16,
+		array$26,
 		"array",
 		"array",
-		"s_array$16",
+		"s_array$26",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
-		{ _field_char_integer, "node index" },
+		{ _field_long_integer, "node index (OLD)" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$2,
+		"array",
+		"array",
+		"s_array$2",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_real, "parameters" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$46,
+		"array",
+		"array",
+		"s_array$46",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_pointer, "value" },
+		FIELD_PAD("value", 4),
+		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4, _field_id_pd64),
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$45,
+		"array",
+		"array",
+		"s_array$45",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_real_vector_3d, "four vectors x" },
+		FIELD_SKIP("value", 4),
+		{ _field_real_vector_3d, "four vectors y" },
+		FIELD_SKIP("value", 4),
+		{ _field_real_vector_3d, "four vectors z" },
+		FIELD_SKIP("value", 4),
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$44,
+		"array",
+		"array",
+		"s_array$44",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_real_vector_3d, "sphere" },
+		FIELD_SKIP("value", 4),
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$27,
+		"array",
+		"array",
+		"s_array$27",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_real, "node_weight" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$48,
+		"array",
+		"array",
+		"s_array$48",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_long_integer, "salt" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$47,
+		"array",
+		"array",
+		"s_array$47",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_short_integer, "vertex index" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array,
+		"array",
+		"array",
+		"s_array",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_short_integer, "child index" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$18,
+		"array",
+		"array",
+		"s_array$18",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_struct, "value", &blofeld::halo2::pc64::create_new_variant_struct_struct_definition, _field_id_cnvs },
 		{ _field_terminator }
 	};
 
@@ -10162,75 +10287,23 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		array$19,
+		array$9,
 		"array",
 		"array",
-		"s_array$19",
+		"s_array$9",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
-		{ _field_char_integer, "value" },
+		{ _field_real, "node weight" },
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(
-		array$20,
+		array$8,
 		"array",
 		"array",
-		"s_array$20",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_char_integer, "value" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$21,
-		"array",
-		"array",
-		"s_array$21",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_integer, "value" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$22,
-		"array",
-		"array",
-		"s_array$22",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_integer, "value" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$23,
-		"array",
-		"array",
-		"s_array$23",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_integer, "value" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$3,
-		"array",
-		"array",
-		"s_array$3",
+		"s_array$8",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -10240,10 +10313,134 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		array$4,
+		array$16,
 		"array",
 		"array",
-		"s_array$4",
+		"s_array$16",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_char_integer, "node index" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$52,
+		"array",
+		"array",
+		"s_array$52",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_real_vector_3d, "sphere" },
+		FIELD_SKIP("value", 4),
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$15,
+		"array",
+		"array",
+		"s_array$15",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_real, "node weight" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$14,
+		"array",
+		"array",
+		"s_array$14",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_char_integer, "node index" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$13,
+		"array",
+		"array",
+		"s_array$13",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_real_point_3d, "position" },
+		{ _field_array, "node indices", &blofeld::halo2::pc64::unnamed_array$13 },
+		{ _field_char_integer, "node index" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$12,
+		"array",
+		"array",
+		"s_array$12",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_real, "node weight" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$11,
+		"array",
+		"array",
+		"s_array$11",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_char_integer, "node index" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$10,
+		"array",
+		"array",
+		"s_array$10",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_real_point_3d, "position" },
+		{ _field_array, "node indices", &blofeld::halo2::pc64::unnamed_array$10 },
+		{ _field_char_integer, "node index" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$7,
+		"array",
+		"array",
+		"s_array$7",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_real_point_3d, "position" },
+		{ _field_array, "node indices", &blofeld::halo2::pc64::unnamed_array$7 },
+		{ _field_char_integer, "node index" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$6,
+		"array",
+		"array",
+		"s_array$6",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -10266,51 +10463,10 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		array$6,
+		array$4,
 		"array",
 		"array",
-		"s_array$6",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real, "node weight" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$7,
-		"array",
-		"array",
-		"s_array$7",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real_point_3d, "position" },
-		{ _field_array, "node indices", &blofeld::halo2::pc64::unnamed_array$7 },
-		{ _field_char_integer, "node index" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$8,
-		"array",
-		"array",
-		"s_array$8",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_char_integer, "node index" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$9,
-		"array",
-		"array",
-		"s_array$9",
+		"s_array$4",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
@@ -10346,32 +10502,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		array$26,
-		"array",
-		"array",
-		"s_array$26",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_integer, "node index (OLD)" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$27,
-		"array",
-		"array",
-		"s_array$27",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real, "node_weight" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		array$28,
 		"array",
 		"array",
@@ -10398,6 +10528,32 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
+		array$3,
+		"array",
+		"array",
+		"s_array$3",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_char_integer, "node index" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$23,
+		"array",
+		"array",
+		"s_array$23",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_long_integer, "value" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
 		array$30,
 		"array",
 		"array",
@@ -10407,6 +10563,58 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_char_integer, "node index" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$35,
+		"array",
+		"array",
+		"s_array$35",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_long_integer, "node index (OLD)" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$21,
+		"array",
+		"array",
+		"s_array$21",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_long_integer, "value" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$20,
+		"array",
+		"array",
+		"s_array$20",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_char_integer, "value" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$19,
+		"array",
+		"array",
+		"s_array$19",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_char_integer, "value" },
 		{ _field_terminator }
 	};
 
@@ -10437,16 +10645,15 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		array$52,
+		array$22,
 		"array",
 		"array",
-		"s_array$52",
+		"s_array$22",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
-		{ _field_real_vector_3d, "sphere" },
-		FIELD_SKIP("value", 4),
+		{ _field_long_integer, "value" },
 		{ _field_terminator }
 	};
 
@@ -10470,6 +10677,19 @@ namespace pc64
 		{ _field_array, "four vectors storage", &blofeld::halo2::pc64::unnamed_array$51 },
 		{ _field_real_vector_3d, "sphere" },
 		FIELD_SKIP("value", 4),
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(
+		array$33,
+		"array",
+		"array",
+		"s_array$33",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_real, "green coefficient" },
 		{ _field_terminator }
 	};
 
@@ -10502,19 +10722,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		array$33,
-		"array",
-		"array",
-		"s_array$33",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real, "green coefficient" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		array$34,
 		"array",
 		"array",
@@ -10528,19 +10735,6 @@ namespace pc64
 	};
 
 	TAG_STRUCT(
-		array$35,
-		"array",
-		"array",
-		"s_array$35",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_integer, "node index (OLD)" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		array$36,
 		"array",
 		"array",
@@ -10550,21 +10744,6 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_real, "node_weight" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$46,
-		"array",
-		"array",
-		"s_array$46",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_pointer, "value" },
-		FIELD_PAD("value", 4),
-		FIELD_PAD_EX("value", nullptr, FIELD_FLAG_NONE, 4, _field_id_pd64),
 		{ _field_terminator }
 	};
 
@@ -10630,185 +10809,6 @@ namespace pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		{ _field_short_integer, "vertex index" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$42,
-		"array",
-		"array",
-		"s_array$42",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_char_integer, "node index" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$2,
-		"array",
-		"array",
-		"s_array$2",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real, "parameters" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$43,
-		"array",
-		"array",
-		"s_array$43",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real, "node weight" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$45,
-		"array",
-		"array",
-		"s_array$45",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real_vector_3d, "four vectors x" },
-		FIELD_SKIP("value", 4),
-		{ _field_real_vector_3d, "four vectors y" },
-		FIELD_SKIP("value", 4),
-		{ _field_real_vector_3d, "four vectors z" },
-		FIELD_SKIP("value", 4),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$44,
-		"array",
-		"array",
-		"s_array$44",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real_vector_3d, "sphere" },
-		FIELD_SKIP("value", 4),
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$48,
-		"array",
-		"array",
-		"s_array$48",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_long_integer, "salt" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$47,
-		"array",
-		"array",
-		"s_array$47",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_integer, "vertex index" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array,
-		"array",
-		"array",
-		"s_array",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_short_integer, "child index" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$10,
-		"array",
-		"array",
-		"s_array$10",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real_point_3d, "position" },
-		{ _field_array, "node indices", &blofeld::halo2::pc64::unnamed_array$10 },
-		{ _field_char_integer, "node index" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$11,
-		"array",
-		"array",
-		"s_array$11",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_char_integer, "node index" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$12,
-		"array",
-		"array",
-		"s_array$12",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real, "node weight" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$18,
-		"array",
-		"array",
-		"s_array$18",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_struct, "value", &blofeld::halo2::pc64::create_new_variant_struct_struct_definition, _field_id_cnvs },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
-		array$13,
-		"array",
-		"array",
-		"s_array$13",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_real_point_3d, "position" },
-		{ _field_array, "node indices", &blofeld::halo2::pc64::unnamed_array$13 },
-		{ _field_char_integer, "node index" },
 		{ _field_terminator }
 	};
 
@@ -20969,25 +20969,6 @@ namespace pc64
 	STRING_LIST(unnamed_enum$340, unnamed_enum$340_strings, _countof(unnamed_enum$340_strings));
 
 	TAG_STRUCT(
-		hud_waypoint_arrow_block_struct_definition$2,
-		"hud_waypoint_arrow_block",
-		"hud_waypoint_arrow_block_struct_definition",
-		"s_new_hud_waypoint_arrow_definition",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _field_tag_reference, "bitmap", &blofeld::halo2::pc64::bitmap_group_reference },
-		{ _field_tag_reference, "shader", &blofeld::halo2::pc64::shader_group_reference },
-		{ _field_short_integer, "sequence index" },
-		FIELD_PAD("value", 2),
-		{ _field_real, "smallest size" },
-		{ _field_real, "smallest distance" },
-		{ _field_tag_reference, "border bitmap", &blofeld::halo2::pc64::bitmap_group_reference },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(
 		hud_waypoint_arrow_block_struct_definition,
 		"hud_waypoint_arrow_block",
 		"hud_waypoint_arrow_block_struct_definition",
@@ -21016,6 +20997,25 @@ namespace pc64
 		"don\'t rotate when pointing offscreen"
 	};
 	STRING_LIST(unnamed_enum$238, unnamed_enum$238_strings, _countof(unnamed_enum$238_strings));
+
+	TAG_STRUCT(
+		hud_waypoint_arrow_block_struct_definition$2,
+		"hud_waypoint_arrow_block",
+		"hud_waypoint_arrow_block_struct_definition",
+		"s_new_hud_waypoint_arrow_definition",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _field_tag_reference, "bitmap", &blofeld::halo2::pc64::bitmap_group_reference },
+		{ _field_tag_reference, "shader", &blofeld::halo2::pc64::shader_group_reference },
+		{ _field_short_integer, "sequence index" },
+		FIELD_PAD("value", 2),
+		{ _field_real, "smallest size" },
+		{ _field_real, "smallest distance" },
+		{ _field_tag_reference, "border bitmap", &blofeld::halo2::pc64::bitmap_group_reference },
+		{ _field_terminator }
+	};
 
 	TAG_STRUCT(
 		hud_waypoint_block_struct_definition,
@@ -42275,145 +42275,6 @@ namespace pc64
 	};
 
 	VERSIONED_TAG_STRUCT(
-		weapon_struct_definition,
-		"weapon",
-		"weapon_struct_definition",
-		"s_character_weapon_properties",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		PERSISTENT_ID_EMPTY)
-	{
-		{ _struct_version_mode_greater_or_equal, 1, 51 },
-		{ _field_long_flags, "weapons flags", &blofeld::halo2::pc64::unnamed_enum$147 },
-		{ _field_tag_reference, "weapon", &blofeld::halo2::pc64::weapon_group_reference$5 },
-		FIELD_USELESS_PAD("value", 24),
-		FIELD_EXPLANATION("Combat ranges", nullptr),
-		{ _field_real, "maximum firing range", "we can only fire our weapon at targets within this distance", "world units" },
-		{ _field_real, "minimum firing range", "weapon will not be fired at target closer than given distance" },
-		{ _field_real_bounds, "normal combat range", nullptr, "world units" },
-		{ _field_real, "bombardment range", "we offset our burst targets randomly by this range when firing at non-visible enemies (zero = never)" },
-		{ _field_real, "Max special target distance", "Specific target regions on a vehicle or unit will be fired upon only under the given distance", "world units" },
-		{ _field_real_bounds, "timid combat range", nullptr, "world units" },
-		{ _field_real_bounds, "aggressive combat range", nullptr, "world units" },
-		FIELD_EXPLANATION("Ballistic Firing", nullptr),
-		{ _field_real, "super-ballistic range", "we try to aim our shots super-ballistically if target is outside this range (zero = never)" },
-		{ _field_real_bounds, "Ballistic firing bounds", "At the min range, the min ballistic fraction is used, at the max, the max ballistic fraction is used", "world units" },
-		{ _field_real_bounds, "Ballistic fraction bounds", "Controls speed and degree of arc. 0 = high, slow, 1 = low, fast", nullptr, "[0-1]" },
-		FIELD_USELESS_PAD("value", 24),
-		FIELD_EXPLANATION("Behavior", nullptr),
-		{ _field_real_bounds, "first burst delay time", nullptr, "seconds" },
-		{ _field_real, "surprise delay time", nullptr, "seconds" },
-		{ _field_real, "surprise fire-wildly time", nullptr, "seconds" },
-		{ _field_real, "death fire-wildly chance", nullptr, nullptr, "[0,1]" },
-		{ _field_real, "death fire-wildly time", nullptr, "seconds" },
-		FIELD_USELESS_PAD("value", 12),
-		{ _field_real_vector_3d, "custom stand gun offset", "custom standing gun offset for overriding the default in the base actor" },
-		{ _field_real_vector_3d, "custom crouch gun offset", "custom crouching gun offset for overriding the default in the base actor" },
-		FIELD_USELESS_PAD("value", 12),
-		FIELD_EXPLANATION("special-case firing properties", nullptr),
-		{ _field_short_enum, "special-fire mode", "the type of special weapon fire that we can use", &blofeld::halo2::pc64::unnamed_enum$148 },
-		{ _field_short_enum, "special-fire situation", "when we will decide to use our special weapon fire mode", &blofeld::halo2::pc64::unnamed_enum$149 },
-		{ _field_real, "special-fire chance", "how likely we are to use our special weapon fire mode", nullptr, "[0,1]" },
-		{ _field_real, "special-fire delay", "how long we must wait between uses of our special weapon fire mode", "seconds" },
-		{ _field_real, "special damage modifier", "damage modifier for special weapon fire (applied in addition to the normal damage modifier. zero = no change)", nullptr, "[0,1]" },
-		{ _field_angle, "special projectile error", "projectile error angle for special weapon fire (applied in addition to the normal error)", "degrees" },
-		FIELD_USELESS_PAD("value", 24),
-		FIELD_EXPLANATION("Weapon drop when killed", nullptr),
-		{ _field_real_bounds, "drop weapon loaded", "amount of ammo loaded into the weapon that we drop (in fractions of a clip, e.g. 0.3 to 0.5)" },
-		{ _field_short_integer_bounds, "drop weapon ammo", "total number of rounds in the weapon that we drop (ignored for energy weapons)" },
-		FIELD_USELESS_PAD("value", 24),
-		FIELD_EXPLANATION("Accuracy", "Parameters control how accuracy changes over the duration of a series of bursts\nAccuracy is an analog value between 0 and 1. At zero, the parameters of the first\nfiring-pattern block is used. At 1, the parameters in the second block is used. In\nbetween, all the values are linearly interpolated"),
-		{ _field_real_bounds, "normal accuracy bounds", "Indicates starting and ending accuracies at normal difficulty" },
-		{ _field_real, "normal accuracy time", "The amount of time it takes the accuracy to go from starting to ending" },
-		FIELD_USELESS_PAD("value", 4),
-		{ _field_real_bounds, "heroic accuracy bounds", "Indicates starting and ending accuracies at heroic difficulty" },
-		{ _field_real, "heroic accuracy time", "The amount of time it takes the accuracy to go from starting to ending" },
-		FIELD_USELESS_PAD("value", 4),
-		{ _field_real_bounds, "legendary accuracy bounds", "Indicates starting and ending accuracies at legendary difficulty" },
-		{ _field_real, "legendary accuracy time", "The amount of time it takes the accuracy to go from starting to ending" },
-		FIELD_USELESS_PAD("value", 4),
-		FIELD_USELESS_PAD("value", 48),
-		{ _field_block, "firing patterns", &blofeld::halo2::pc64::character_firing_pattern_block },
-		{ _field_tag_reference, "weapon melee damage", &blofeld::halo2::pc64::damage_effect_group_reference$2 },
-		
-		{ _struct_version_mode_equal, 0, 45 },
-		{ _field_long_flags, "weapons flags", &blofeld::halo2::pc64::unnamed_enum$147 },
-		{ _field_tag_reference, "weapon", &blofeld::halo2::pc64::weapon_group_reference$5 },
-		{ _field_real, "maximum firing distance", "we can only fire our weapon at targets within this distance", "world units" },
-		{ _field_real, "rate of fire", "how many times per second we pull the trigger (zero = continuously held down)" },
-		{ _field_angle, "projectile error", "error added to every projectile we fire", "degrees" },
-		{ _field_real_bounds, "first burst delay time", nullptr, "seconds" },
-		{ _field_real, "surprise delay time", nullptr, "seconds" },
-		{ _field_real, "surprise fire-wildly time", nullptr, "seconds" },
-		{ _field_real, "death fire-wildly chance", nullptr, nullptr, "[0,1]" },
-		{ _field_real, "death fire-wildly time", nullptr, "seconds" },
-		{ _field_real_bounds, "desired combat range", nullptr, "world units" },
-		{ _field_real_vector_3d, "custom stand gun offset", "custom standing gun offset for overriding the default in the base actor" },
-		{ _field_real_vector_3d, "custom crouch gun offset", "custom crouching gun offset for overriding the default in the base actor" },
-		{ _field_real, "target tracking", "how well our bursts track moving targets. 0.0= fire at the position they were standing when we started the burst. 1.0= fire at current position", nullptr, "[0,1]" },
-		{ _field_real, "target leading", "how much we lead moving targets. 0.0= no prediction. 1.0= predict completely.", nullptr, "[0,1]" },
-		{ _field_real, "weapon damage modifier", "what fraction of its normal damage our weapon inflicts (zero = no modifier)" },
-		{ _field_real, "minimum firing range", "weapon will not be fired at target closer than given distance" },
-		FIELD_EXPLANATION("burst geometry", "at the start of every burst we pick a random point near the target to fire at, on either the left or the right side.\nthe burst origin angle controls whether this error is exactly horizontal or might have some vertical component.\n\nover the course of the burst we move our projectiles back in the opposite direction towards the target. this return motion is also controlled by an angle that specifies how close to the horizontal it is.\n\nfor example if the burst origin angle and the burst return angle were both zero, and the return length was the same as the burst length, every burst would start the same amount away from the target (on either the left or right) and move back to exactly over the target at the end of the burst."),
-		{ _field_real, "burst origin radius", "how far away from the target the starting point is", "world units" },
-		{ _field_angle, "burst origin angle", "the range from the horizontal that our starting error can be", "degrees" },
-		{ _field_real_bounds, "burst return length", "how far the burst point moves back towards the target (could be negative)", "world units" },
-		{ _field_angle, "burst return angle", "the range from the horizontal that the return direction can be", "degrees" },
-		{ _field_real_bounds, "burst duration", "how long each burst we fire is", "seconds" },
-		{ _field_real_bounds, "burst separation", "how long we wait between bursts", "seconds" },
-		{ _field_angle, "burst angular velocity", "the maximum rate at which we can sweep our fire (zero = unlimited)", "degrees per second" },
-		FIELD_USELESS_PAD("value", 4),
-		{ _field_real, "special damage modifier", "damage modifier for special weapon fire (applied in addition to the normal damage modifier. zero = no change)", nullptr, "[0,1]" },
-		{ _field_angle, "special projectile error", "projectile error angle for special weapon fire (applied in addition to the normal error)", "degrees" },
-		FIELD_EXPLANATION("special-case firing properties", nullptr),
-		{ _field_real, "super-ballistic range", "we try to aim our shots super-ballistically if target is outside this range (zero = never)" },
-		{ _field_real, "bombardment range", "we offset our burst targets randomly by this range when firing at non-visible enemies (zero = never)" },
-		{ _field_short_enum, "special-fire mode", "the type of special weapon fire that we can use", &blofeld::halo2::pc64::unnamed_enum$148 },
-		{ _field_short_enum, "special-fire situation", "when we will decide to use our special weapon fire mode", &blofeld::halo2::pc64::unnamed_enum$149 },
-		{ _field_real, "special-fire chance", "how likely we are to use our special weapon fire mode", nullptr, "[0,1]" },
-		{ _field_real, "special-fire delay", "how long we must wait between uses of our special weapon fire mode", "seconds" },
-		FIELD_USELESS_PAD("value", 24),
-		FIELD_EXPLANATION("Weapon drop when killed", nullptr),
-		{ _field_real_bounds, "drop weapon loaded", "amount of ammo loaded into the weapon that we drop (in fractions of a clip, e.g. 0.3 to 0.5)" },
-		{ _field_short_integer_bounds, "drop weapon ammo", "total number of rounds in the weapon that we drop (ignored for energy weapons)" },
-		FIELD_USELESS_PAD("value", 12),
-		FIELD_EXPLANATION("Special Targeting", nullptr),
-		{ _field_real, "Max special target distance", "Specific target regions on a vehicle or unit will be fired upon only under the given distance", "world units" },
-		FIELD_EXPLANATION("Ballistic firing", nullptr),
-		{ _field_real_bounds, "Ballistic firing bounds", "At the min range, the min ballistic fraction is used, at the max, the max ballistic fraction is used", "world units" },
-		{ _field_real_bounds, "Ballistic fraction bounds", "Controls speed and degree of arc. 0 = high, slow, 1 = low, fast", nullptr, "[0-1]" },
-		
-		{ _field_terminator }
-	};
-
-	STRINGS(unnamed_enum$147)
-	{
-		"bursting inhibits movement",
-		"must crouch to shoot",
-		"use extended safe-to-save range"
-	};
-	STRING_LIST(unnamed_enum$147, unnamed_enum$147_strings, _countof(unnamed_enum$147_strings));
-
-	STRINGS(unnamed_enum$148)
-	{
-		"none",
-		"overcharge",
-		"secondary trigger"
-	};
-	STRING_LIST(unnamed_enum$148, unnamed_enum$148_strings, _countof(unnamed_enum$148_strings));
-
-	STRINGS(unnamed_enum$149)
-	{
-		"never",
-		"enemy visible",
-		"enemy out of sight",
-		"strafing"
-	};
-	STRING_LIST(unnamed_enum$149, unnamed_enum$149_strings, _countof(unnamed_enum$149_strings));
-
-	TAG_REFERENCE(damage_effect_group_reference$2, DAMAGE_EFFECT_TAG);
-
-	VERSIONED_TAG_STRUCT(
 		weapon_struct_definition$3,
 		"weapon",
 		"weapon_struct_definition",
@@ -43115,6 +42976,145 @@ namespace pc64
 	TAG_REFERENCE(render_model_group_reference$6, RENDER_MODEL_TAG);
 
 	TAG_REFERENCE(character_group_reference$6, CHARACTER_TAG, _tag_reference_flag_dont_resolve_in_editor);
+
+	VERSIONED_TAG_STRUCT(
+		weapon_struct_definition,
+		"weapon",
+		"weapon_struct_definition",
+		"s_character_weapon_properties",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PERSISTENT_ID_EMPTY)
+	{
+		{ _struct_version_mode_greater_or_equal, 1, 51 },
+		{ _field_long_flags, "weapons flags", &blofeld::halo2::pc64::unnamed_enum$147 },
+		{ _field_tag_reference, "weapon", &blofeld::halo2::pc64::weapon_group_reference$5 },
+		FIELD_USELESS_PAD("value", 24),
+		FIELD_EXPLANATION("Combat ranges", nullptr),
+		{ _field_real, "maximum firing range", "we can only fire our weapon at targets within this distance", "world units" },
+		{ _field_real, "minimum firing range", "weapon will not be fired at target closer than given distance" },
+		{ _field_real_bounds, "normal combat range", nullptr, "world units" },
+		{ _field_real, "bombardment range", "we offset our burst targets randomly by this range when firing at non-visible enemies (zero = never)" },
+		{ _field_real, "Max special target distance", "Specific target regions on a vehicle or unit will be fired upon only under the given distance", "world units" },
+		{ _field_real_bounds, "timid combat range", nullptr, "world units" },
+		{ _field_real_bounds, "aggressive combat range", nullptr, "world units" },
+		FIELD_EXPLANATION("Ballistic Firing", nullptr),
+		{ _field_real, "super-ballistic range", "we try to aim our shots super-ballistically if target is outside this range (zero = never)" },
+		{ _field_real_bounds, "Ballistic firing bounds", "At the min range, the min ballistic fraction is used, at the max, the max ballistic fraction is used", "world units" },
+		{ _field_real_bounds, "Ballistic fraction bounds", "Controls speed and degree of arc. 0 = high, slow, 1 = low, fast", nullptr, "[0-1]" },
+		FIELD_USELESS_PAD("value", 24),
+		FIELD_EXPLANATION("Behavior", nullptr),
+		{ _field_real_bounds, "first burst delay time", nullptr, "seconds" },
+		{ _field_real, "surprise delay time", nullptr, "seconds" },
+		{ _field_real, "surprise fire-wildly time", nullptr, "seconds" },
+		{ _field_real, "death fire-wildly chance", nullptr, nullptr, "[0,1]" },
+		{ _field_real, "death fire-wildly time", nullptr, "seconds" },
+		FIELD_USELESS_PAD("value", 12),
+		{ _field_real_vector_3d, "custom stand gun offset", "custom standing gun offset for overriding the default in the base actor" },
+		{ _field_real_vector_3d, "custom crouch gun offset", "custom crouching gun offset for overriding the default in the base actor" },
+		FIELD_USELESS_PAD("value", 12),
+		FIELD_EXPLANATION("special-case firing properties", nullptr),
+		{ _field_short_enum, "special-fire mode", "the type of special weapon fire that we can use", &blofeld::halo2::pc64::unnamed_enum$148 },
+		{ _field_short_enum, "special-fire situation", "when we will decide to use our special weapon fire mode", &blofeld::halo2::pc64::unnamed_enum$149 },
+		{ _field_real, "special-fire chance", "how likely we are to use our special weapon fire mode", nullptr, "[0,1]" },
+		{ _field_real, "special-fire delay", "how long we must wait between uses of our special weapon fire mode", "seconds" },
+		{ _field_real, "special damage modifier", "damage modifier for special weapon fire (applied in addition to the normal damage modifier. zero = no change)", nullptr, "[0,1]" },
+		{ _field_angle, "special projectile error", "projectile error angle for special weapon fire (applied in addition to the normal error)", "degrees" },
+		FIELD_USELESS_PAD("value", 24),
+		FIELD_EXPLANATION("Weapon drop when killed", nullptr),
+		{ _field_real_bounds, "drop weapon loaded", "amount of ammo loaded into the weapon that we drop (in fractions of a clip, e.g. 0.3 to 0.5)" },
+		{ _field_short_integer_bounds, "drop weapon ammo", "total number of rounds in the weapon that we drop (ignored for energy weapons)" },
+		FIELD_USELESS_PAD("value", 24),
+		FIELD_EXPLANATION("Accuracy", "Parameters control how accuracy changes over the duration of a series of bursts\nAccuracy is an analog value between 0 and 1. At zero, the parameters of the first\nfiring-pattern block is used. At 1, the parameters in the second block is used. In\nbetween, all the values are linearly interpolated"),
+		{ _field_real_bounds, "normal accuracy bounds", "Indicates starting and ending accuracies at normal difficulty" },
+		{ _field_real, "normal accuracy time", "The amount of time it takes the accuracy to go from starting to ending" },
+		FIELD_USELESS_PAD("value", 4),
+		{ _field_real_bounds, "heroic accuracy bounds", "Indicates starting and ending accuracies at heroic difficulty" },
+		{ _field_real, "heroic accuracy time", "The amount of time it takes the accuracy to go from starting to ending" },
+		FIELD_USELESS_PAD("value", 4),
+		{ _field_real_bounds, "legendary accuracy bounds", "Indicates starting and ending accuracies at legendary difficulty" },
+		{ _field_real, "legendary accuracy time", "The amount of time it takes the accuracy to go from starting to ending" },
+		FIELD_USELESS_PAD("value", 4),
+		FIELD_USELESS_PAD("value", 48),
+		{ _field_block, "firing patterns", &blofeld::halo2::pc64::character_firing_pattern_block },
+		{ _field_tag_reference, "weapon melee damage", &blofeld::halo2::pc64::damage_effect_group_reference$2 },
+		
+		{ _struct_version_mode_equal, 0, 45 },
+		{ _field_long_flags, "weapons flags", &blofeld::halo2::pc64::unnamed_enum$147 },
+		{ _field_tag_reference, "weapon", &blofeld::halo2::pc64::weapon_group_reference$5 },
+		{ _field_real, "maximum firing distance", "we can only fire our weapon at targets within this distance", "world units" },
+		{ _field_real, "rate of fire", "how many times per second we pull the trigger (zero = continuously held down)" },
+		{ _field_angle, "projectile error", "error added to every projectile we fire", "degrees" },
+		{ _field_real_bounds, "first burst delay time", nullptr, "seconds" },
+		{ _field_real, "surprise delay time", nullptr, "seconds" },
+		{ _field_real, "surprise fire-wildly time", nullptr, "seconds" },
+		{ _field_real, "death fire-wildly chance", nullptr, nullptr, "[0,1]" },
+		{ _field_real, "death fire-wildly time", nullptr, "seconds" },
+		{ _field_real_bounds, "desired combat range", nullptr, "world units" },
+		{ _field_real_vector_3d, "custom stand gun offset", "custom standing gun offset for overriding the default in the base actor" },
+		{ _field_real_vector_3d, "custom crouch gun offset", "custom crouching gun offset for overriding the default in the base actor" },
+		{ _field_real, "target tracking", "how well our bursts track moving targets. 0.0= fire at the position they were standing when we started the burst. 1.0= fire at current position", nullptr, "[0,1]" },
+		{ _field_real, "target leading", "how much we lead moving targets. 0.0= no prediction. 1.0= predict completely.", nullptr, "[0,1]" },
+		{ _field_real, "weapon damage modifier", "what fraction of its normal damage our weapon inflicts (zero = no modifier)" },
+		{ _field_real, "minimum firing range", "weapon will not be fired at target closer than given distance" },
+		FIELD_EXPLANATION("burst geometry", "at the start of every burst we pick a random point near the target to fire at, on either the left or the right side.\nthe burst origin angle controls whether this error is exactly horizontal or might have some vertical component.\n\nover the course of the burst we move our projectiles back in the opposite direction towards the target. this return motion is also controlled by an angle that specifies how close to the horizontal it is.\n\nfor example if the burst origin angle and the burst return angle were both zero, and the return length was the same as the burst length, every burst would start the same amount away from the target (on either the left or right) and move back to exactly over the target at the end of the burst."),
+		{ _field_real, "burst origin radius", "how far away from the target the starting point is", "world units" },
+		{ _field_angle, "burst origin angle", "the range from the horizontal that our starting error can be", "degrees" },
+		{ _field_real_bounds, "burst return length", "how far the burst point moves back towards the target (could be negative)", "world units" },
+		{ _field_angle, "burst return angle", "the range from the horizontal that the return direction can be", "degrees" },
+		{ _field_real_bounds, "burst duration", "how long each burst we fire is", "seconds" },
+		{ _field_real_bounds, "burst separation", "how long we wait between bursts", "seconds" },
+		{ _field_angle, "burst angular velocity", "the maximum rate at which we can sweep our fire (zero = unlimited)", "degrees per second" },
+		FIELD_USELESS_PAD("value", 4),
+		{ _field_real, "special damage modifier", "damage modifier for special weapon fire (applied in addition to the normal damage modifier. zero = no change)", nullptr, "[0,1]" },
+		{ _field_angle, "special projectile error", "projectile error angle for special weapon fire (applied in addition to the normal error)", "degrees" },
+		FIELD_EXPLANATION("special-case firing properties", nullptr),
+		{ _field_real, "super-ballistic range", "we try to aim our shots super-ballistically if target is outside this range (zero = never)" },
+		{ _field_real, "bombardment range", "we offset our burst targets randomly by this range when firing at non-visible enemies (zero = never)" },
+		{ _field_short_enum, "special-fire mode", "the type of special weapon fire that we can use", &blofeld::halo2::pc64::unnamed_enum$148 },
+		{ _field_short_enum, "special-fire situation", "when we will decide to use our special weapon fire mode", &blofeld::halo2::pc64::unnamed_enum$149 },
+		{ _field_real, "special-fire chance", "how likely we are to use our special weapon fire mode", nullptr, "[0,1]" },
+		{ _field_real, "special-fire delay", "how long we must wait between uses of our special weapon fire mode", "seconds" },
+		FIELD_USELESS_PAD("value", 24),
+		FIELD_EXPLANATION("Weapon drop when killed", nullptr),
+		{ _field_real_bounds, "drop weapon loaded", "amount of ammo loaded into the weapon that we drop (in fractions of a clip, e.g. 0.3 to 0.5)" },
+		{ _field_short_integer_bounds, "drop weapon ammo", "total number of rounds in the weapon that we drop (ignored for energy weapons)" },
+		FIELD_USELESS_PAD("value", 12),
+		FIELD_EXPLANATION("Special Targeting", nullptr),
+		{ _field_real, "Max special target distance", "Specific target regions on a vehicle or unit will be fired upon only under the given distance", "world units" },
+		FIELD_EXPLANATION("Ballistic firing", nullptr),
+		{ _field_real_bounds, "Ballistic firing bounds", "At the min range, the min ballistic fraction is used, at the max, the max ballistic fraction is used", "world units" },
+		{ _field_real_bounds, "Ballistic fraction bounds", "Controls speed and degree of arc. 0 = high, slow, 1 = low, fast", nullptr, "[0-1]" },
+		
+		{ _field_terminator }
+	};
+
+	STRINGS(unnamed_enum$147)
+	{
+		"bursting inhibits movement",
+		"must crouch to shoot",
+		"use extended safe-to-save range"
+	};
+	STRING_LIST(unnamed_enum$147, unnamed_enum$147_strings, _countof(unnamed_enum$147_strings));
+
+	STRINGS(unnamed_enum$148)
+	{
+		"none",
+		"overcharge",
+		"secondary trigger"
+	};
+	STRING_LIST(unnamed_enum$148, unnamed_enum$148_strings, _countof(unnamed_enum$148_strings));
+
+	STRINGS(unnamed_enum$149)
+	{
+		"never",
+		"enemy visible",
+		"enemy out of sight",
+		"strafing"
+	};
+	STRING_LIST(unnamed_enum$149, unnamed_enum$149_strings, _countof(unnamed_enum$149_strings));
+
+	TAG_REFERENCE(damage_effect_group_reference$2, DAMAGE_EFFECT_TAG);
 
 	VERSIONED_TAG_STRUCT(
 		weapon_tracking_struct_definition,

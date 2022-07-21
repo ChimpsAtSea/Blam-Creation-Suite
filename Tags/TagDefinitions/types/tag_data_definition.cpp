@@ -5,12 +5,12 @@ using namespace blofeld;
 s_tag_data_definition::s_tag_data_definition(
 	const char* name,
 	const char* pretty_name,
-	unsigned long flags,
-	unsigned long maximum_size,
+	uint32_t flags,
+	uint32_t maximum_size,
 	const char* maximum_size_string,
 	const char* filename,
-	long const line,
-	unsigned long alignment_bits)
+	int32_t const line,
+	uint32_t alignment_bits)
 	: name(name)
 	, pretty_name(pretty_name)
 	, flags(flags)

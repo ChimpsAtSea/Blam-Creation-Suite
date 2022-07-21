@@ -118,7 +118,7 @@ void c_high_level_tag_editor_tab::build_tag_struct_fields_instances(
 				build_tag_struct_fields_instances(*_expected_instance, fields_instances); \
 	} while(false)
 
-	unsigned long field_count;
+	uint32_t field_count;
 	BCS_RESULT rs = calculate_versioned_tag_field_count(
 		tag_struct_definition.fields,
 		tag_project.engine_platform_build,
@@ -130,7 +130,7 @@ void c_high_level_tag_editor_tab::build_tag_struct_fields_instances(
 	s_tag_struct_fields_instance* tag_struct_fields_instance = zero_length_array_malloc(s_tag_struct_fields_instance, s_tag_field_instance, field_count);
 	tag_struct_fields_instance->num_tag_field_instance = field_count;
 
-	unsigned long field_instance_index = 0;
+	uint32_t field_instance_index = 0;
 	for (const s_tag_field* tag_field_iterator = tag_struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++, field_instance_index++)
 	{
 		const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, tag_project.engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
@@ -515,7 +515,7 @@ void c_high_level_tag_editor_tab::render_enumerable(h_enumerable& enumerable, co
 	constexpr float k_min_block_width = 1000.0f;
 	constexpr float k_block_header_height = 80.0f;
 
-	unsigned long const count = enumerable.size();
+	uint32_t const count = enumerable.size();
 
 	ImGui::PushID(&field);
 	ImGuiID const is_open_id = ImGui::GetID("is_open");
@@ -774,7 +774,7 @@ void c_high_level_tag_editor_tab::render_enumerable(h_enumerable& enumerable, co
 	if (block != nullptr && is_inserting)
 	{
 		int32_t insert_offset = static_cast<unsigned long>(storage->GetInt(inserting_offset_id));
-		unsigned long insert_count = static_cast<unsigned long>(storage->GetInt(inserting_count_id));
+		uint32_t insert_count = static_cast<unsigned long>(storage->GetInt(inserting_count_id));
 
 		ImGuiIO& io = ImGui::GetIO();
 		ImGui::SetNextWindowPos({ io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.5f }, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
@@ -943,7 +943,7 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag_reference& tag_refe
 			group_name = "(unknown)";
 
 			char* group_name_stack_buffer = trivial_alloca(char, 128);
-			unsigned long bs_group_tab = byteswap(tag_reference.get_group_tag());
+			uint32_t bs_group_tab = byteswap(tag_reference.get_group_tag());
 			snprintf(group_name_stack_buffer, 128, "(unknown %.4s)", reinterpret_cast<char*>(&bs_group_tab));
 			group_name = group_name_stack_buffer;
 
@@ -965,10 +965,10 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag_reference& tag_refe
 			}
 
 			h_group* const* groups;
-			unsigned long group_count;
+			uint32_t group_count;
 			if (BCS_SUCCEEDED(tag_project.get_tag_groups(groups, group_count)))
 			{
-				for (unsigned long group_index = 0; group_index < group_count; group_index++)
+				for (uint32_t group_index = 0; group_index < group_count; group_index++)
 				{
 					h_group* current_group = groups[group_index];
 
@@ -1023,7 +1023,7 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag_reference& tag_refe
 		if (combo_active)
 		{
 			h_tag* const* tag_instances = nullptr;
-			unsigned long num_tag_instances = 0;
+			uint32_t num_tag_instances = 0;
 			if (group != nullptr)
 			{
 				tag_instances = group->tags.data();
@@ -1034,7 +1034,7 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag_reference& tag_refe
 				tag_project.get_tag_instances(tag_instances, num_tag_instances);
 			}
 
-			for (unsigned long tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
+			for (uint32_t tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
 			{
 				h_tag* current_tag = tag_instances[tag_instance_index];
 
@@ -1170,7 +1170,7 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 	}
 	const s_string_list_definition& string_list_definition = *field.string_list_definition;
 
-	unsigned long value = 0;
+	uint32_t value = 0;
 	switch (field.field_type)
 	{
 	case _field_byte_flags:
@@ -1180,7 +1180,7 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 		value = *reinterpret_cast<unsigned short*>(data);
 		break;
 	case _field_long_flags:
-		value = *reinterpret_cast<unsigned long*>(data);
+		value = *reinterpret_cast<uint32_t*>(data);
 		break;
 	DEBUG_ONLY(default: throw);
 	}
@@ -1195,14 +1195,14 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 	}
 	ImGui::NextColumn();
 	{
-		unsigned long const string_list_count = string_list_definition.get_count(tag_project.engine_platform_build);
+		uint32_t const string_list_count = string_list_definition.get_count(tag_project.engine_platform_build);
 
 		float const element_height = ImGui::GetTextLineHeight() * 1.45f;
 		float const height = __min(element_height * 9.5f, element_height * static_cast<float>(__max(1u, string_list_count)));
 
 		if (ImGui::BeginChild("bitfield", ImVec2(800.0f, height)))
 		{
-			for (unsigned long string_index = 0; string_index < string_list_count; string_index++)
+			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
 			{
 				// #TODO: replace string parser for the bitfield
 				const char* current_string = string_list_definition.get_string(tag_project.engine_platform_build, string_index);
@@ -1212,7 +1212,7 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 				{
 					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
 				}
-				unsigned long mask = 1u << string_index;
+				uint32_t mask = 1u << string_index;
 				bool is_flag_set = (value & mask) != 0;
 				if (ImGui::Checkbox(current_string, &is_flag_set))
 				{
@@ -1231,7 +1231,7 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 						*reinterpret_cast<unsigned short*>(data) = static_cast<unsigned short>(value);
 						break;
 					case blofeld::_field_long_flags:
-						*reinterpret_cast<unsigned long*>(data) = static_cast<unsigned long>(value);
+						*reinterpret_cast<uint32_t*>(data) = static_cast<unsigned long>(value);
 						break;
 					DEBUG_ONLY(default: throw);
 					}
@@ -1272,7 +1272,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 	}
 	const s_string_list_definition& string_list_definition = *field.string_list_definition;
 
-	long value = 0;
+	int32_t value = 0;
 	switch (field.field_type)
 	{
 	case _field_char_enum:
@@ -1297,7 +1297,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 	}
 	ImGui::NextColumn();
 	{
-		long const string_list_count = static_cast<long>(string_list_definition.get_count(tag_project.engine_platform_build));
+		int32_t const string_list_count = static_cast<long>(string_list_definition.get_count(tag_project.engine_platform_build));
 
 		const char* selected_string_value = "<INVALID VALUE>";
 		bool current_string_has_tooltip = false;
@@ -1317,7 +1317,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 
 		if (ImGui::BeginCombo("##enum", selected_string_value))
 		{
-			for (long string_index = 0; string_index < string_list_count; string_index++)
+			for (int32_t string_index = 0; string_index < string_list_count; string_index++)
 			{
 				const char* current_string = string_list_definition.get_string(tag_project.engine_platform_build, static_cast<unsigned long>(string_index));
 
@@ -1402,10 +1402,10 @@ bool c_high_level_tag_editor_tab::render_tag(::tag& value, const blofeld::s_tag_
 		if (ImGui::BeginCombo("##tag", selected_string_value))
 		{
 			h_group* const* groups;
-			unsigned long group_count;
+			uint32_t group_count;
 			if (BCS_SUCCEEDED(tag_project.get_tag_groups(groups, group_count)))
 			{
-				for (unsigned long group_index = 0; group_index < group_count; group_index++)
+				for (uint32_t group_index = 0; group_index < group_count; group_index++)
 				{
 					h_group* group = groups[group_index];
 					if (ImGui::Selectable(group->tag_group.name))
@@ -1435,7 +1435,7 @@ bool c_high_level_tag_editor_tab::render_tag(::tag& value, const blofeld::s_tag_
 	return result;
 }
 
-void c_high_level_tag_editor_tab::render_object(unsigned long level, h_prototype& object)
+void c_high_level_tag_editor_tab::render_object(uint32_t level, h_prototype& object)
 {
 	ImGui::PushID(&object);
 
@@ -1452,7 +1452,7 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_prototype
 	//}
 
 	constexpr float indent = 25.0f;
-	unsigned long field_index = 0;
+	uint32_t field_index = 0;
 	for (const s_tag_field* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++)
 	{
 		const s_tag_field& field = **field_pointer;
@@ -1621,7 +1621,7 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_prototype
 						if (ImGui::Button("Dump (resourcedump.bin)"))
 						{
 							const void* resource_data;
-							unsigned long resource_data_size;
+							uint32_t resource_data_size;
 							if (BCS_SUCCEEDED(resource->add_reference(resource_data, resource_data_size)))
 							{
 								filesystem_write_file_from_memory("resourcedump.bin", resource_data, resource_data_size);

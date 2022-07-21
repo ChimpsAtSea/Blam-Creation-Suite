@@ -18,11 +18,11 @@ c_monolithic_resource_handle::~c_monolithic_resource_handle()
 	untracked_free(partition_filepath);
 }
 
-BCS_RESULT c_monolithic_resource_handle::add_reference(const void*& buffer, unsigned long& buffer_size)
+BCS_RESULT c_monolithic_resource_handle::add_reference(const void*& buffer, uint32_t& buffer_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	long reference_index = reference_count;
+	int32_t reference_index = reference_count;
 	
 	if (reference_index == 0)
 	{
@@ -52,7 +52,7 @@ BCS_RESULT c_monolithic_resource_handle::add_reference(const void*& buffer, unsi
 BCS_RESULT c_monolithic_resource_handle::remove_reference()
 {
 	BCS_RESULT rs = BCS_S_OK;
-	long reference_index = reference_count--;
+	int32_t reference_index = reference_count--;
 	ASSERT(reference_count >= 0);
 
 	if (reference_index == 0)

@@ -3,12 +3,12 @@
 struct s_halo2_tools_pc64_string_list_definition
 {
 	//ptr32 name_address;
-	unsigned long option_count;
+	uint32_t option_count;
 	ptr32 options_address;	
-	//unsigned long unknown0;
-	//unsigned long unknown1;
+	//uint32_t unknown0;
+	//uint32_t unknown1;
 	//ptr32 file_path;
-	//long line_number;
+	//int32_t line_number;
 };
 constexpr size_t k_halo2_tools_pc64_string_list_definition_size = sizeof(s_halo2_tools_pc64_string_list_definition);
 static_assert(k_halo2_tools_pc64_string_list_definition_size == 8);

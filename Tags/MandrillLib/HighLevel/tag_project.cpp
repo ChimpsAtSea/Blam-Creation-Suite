@@ -18,10 +18,10 @@ struct s_resolve_unqualified_tag_references
 {
 	const c_tag_project* tag_project;
 	h_tag* const* tag_instances;
-	unsigned long num_tag_instances;
+	uint32_t num_tag_instances;
 };
 
-static void resolve_unqualified_tag_references(void* _userdata, unsigned long tag_index)
+static void resolve_unqualified_tag_references(void* _userdata, uint32_t tag_index)
 {
 	s_resolve_unqualified_tag_references* userdata = static_cast<s_resolve_unqualified_tag_references*>(_userdata);
 	const c_tag_project* _this = userdata->tag_project;
@@ -112,8 +112,8 @@ BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& object
 			h_enumerable* enumerable = object.get_field_data<h_enumerable>(*field);
 			ASSERT(enumerable != nullptr);
 
-			unsigned long enumerable_count = enumerable->size();
-			for (unsigned long enumerable_index = 0; enumerable_index < enumerable_count; enumerable_index++)
+			uint32_t enumerable_count = enumerable->size();
+			for (uint32_t enumerable_index = 0; enumerable_index < enumerable_count; enumerable_index++)
 			{
 				h_prototype& enumerable_object = enumerable->get(enumerable_index);
 				if (BCS_FAILED(rs = resolve_unqualified_tag_references(enumerable_object)))

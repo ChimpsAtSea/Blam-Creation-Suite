@@ -27,7 +27,7 @@ c_imgui_viewport_render_context::c_imgui_viewport_render_context(
 		depth_render_target));
 	BCS_FAIL_THROW(graphics_swap_chain_create(graphics, this, swap_chain_frames, swap_chain));
 
-	for (unsigned long swap_chain_index = 0; swap_chain_index < swap_chain_frames; swap_chain_index++)
+	for (uint32_t swap_chain_index = 0; swap_chain_index < swap_chain_frames; swap_chain_index++)
 	{
 		BCS_FAIL_THROW(graphics_swapchain_color_render_target_create(
 			graphics,
@@ -95,7 +95,7 @@ void c_imgui_viewport_render_context::render()
 
 void c_imgui_viewport_render_context::present()
 {
-	unsigned long backbuffer_index = swap_chain->get_current_back_buffer_index();
+	uint32_t backbuffer_index = swap_chain->get_current_back_buffer_index();
 	c_graphics_render_target* backbuffer = swap_chain_render_targets[backbuffer_index];
 
 	void* display_handle;
@@ -130,12 +130,12 @@ BCS_RESULT c_imgui_viewport_render_context::get_graphics(c_graphics*& graphics)
 	return parent_render_context.get_graphics(graphics);
 }
 
-unsigned long c_imgui_viewport_render_context::get_width()
+uint32_t c_imgui_viewport_render_context::get_width()
 {
 	return viewport.width;
 }
 
-unsigned long c_imgui_viewport_render_context::get_height()
+uint32_t c_imgui_viewport_render_context::get_height()
 {
 	return viewport.height;
 }
@@ -150,7 +150,7 @@ float c_imgui_viewport_render_context::get_height_float()
 	return viewport.height_float;
 }
 
-void __cdecl c_imgui_viewport_render_context::viewport_size_changed(c_imgui_viewport_render_context& _this, unsigned long width, unsigned long height)
+void __cdecl c_imgui_viewport_render_context::viewport_size_changed(c_imgui_viewport_render_context& _this, uint32_t width, uint32_t height)
 {
 	console_write_line("c_imgui_viewport_render_context> viewport resize event %u %u", width, height);
 
@@ -165,7 +165,7 @@ void __cdecl c_imgui_viewport_render_context::render_pass_render(c_imgui_viewpor
 	_this.on_render_background();
 }
 
-void __cdecl c_imgui_viewport_render_context::swap_chain_resize_finish(c_imgui_viewport_render_context& _this, unsigned long width, unsigned long height)
+void __cdecl c_imgui_viewport_render_context::swap_chain_resize_finish(c_imgui_viewport_render_context& _this, uint32_t width, uint32_t height)
 {
 	_this.render_pass->resize(width, height);
 }

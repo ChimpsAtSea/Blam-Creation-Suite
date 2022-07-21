@@ -16,17 +16,17 @@ public:
 		c_viewport& viewport,
 		c_graphics_render_target_d3d12** color_render_targets,
 		c_graphics_render_target_d3d12** depth_render_targets,
-		unsigned long num_color_render_targets,
-		unsigned long num_depth_render_targets,
-		unsigned long num_render_target_per_frame,
-		unsigned long num_render_target_frames,
+		uint32_t num_color_render_targets,
+		uint32_t num_depth_render_targets,
+		uint32_t num_render_target_per_frame,
+		uint32_t num_render_target_frames,
 		const wchar_t* debug_name);
 	virtual ~c_graphics_render_pass_d3d12();
 
 	void setup_viewport();
 	BCS_RESULT init_descriptor_handles();
 	BCS_RESULT deinit_descriptor_handles();
-	virtual BCS_RESULT resize(unsigned long width, unsigned height) override;
+	virtual BCS_RESULT resize(uint32_t width, unsigned height) override;
 	virtual void bind_render_targets() override;
 	virtual void render(c_graphics_swap_chain* swap_chain = nullptr) override;
 	void transition_color_render_targets(D3D12_RESOURCE_STATES before, D3D12_RESOURCE_STATES after);
@@ -36,14 +36,14 @@ public:
 	c_graphics_render_target_d3d12** depth_render_targets;
 	D3D12_CPU_DESCRIPTOR_HANDLE* color_render_target_cpu_handles;
 	D3D12_CPU_DESCRIPTOR_HANDLE* depth_render_target_cpu_handles;
-	unsigned long num_color_render_targets;
-	unsigned long num_depth_render_targets;
-	unsigned long num_render_target_per_frame;
-	unsigned long num_render_target_frames;
+	uint32_t num_color_render_targets;
+	uint32_t num_depth_render_targets;
+	uint32_t num_render_target_per_frame;
+	uint32_t num_render_target_frames;
 
-	unsigned long current_render_target_swap_index;
-	unsigned long current_render_target_start_index;
-	unsigned long current_depth_stencil_swap_index;
+	uint32_t current_render_target_swap_index;
+	uint32_t current_render_target_start_index;
+	uint32_t current_depth_stencil_swap_index;
 	c_viewport& viewport;
 	D3D12_VIEWPORT d3d12_viewport;
 	D3D12_RECT scissor_rectangle;
@@ -54,10 +54,10 @@ BCS_RESULT graphics_d3d12_render_pass_create(
 	c_viewport* viewport,
 	c_graphics_render_target_d3d12** color_render_targets,
 	c_graphics_render_target_d3d12** depth_render_targets,
-	unsigned long num_color_render_targets,
-	unsigned long num_depth_render_targets,
-	unsigned long num_render_target_per_frame,
-	unsigned long num_render_target_frames,
+	uint32_t num_color_render_targets,
+	uint32_t num_depth_render_targets,
+	uint32_t num_render_target_per_frame,
+	uint32_t num_render_target_frames,
 	c_graphics_render_pass_d3d12*& render_pass,
 	const char* debug_name = nullptr);
 BCS_RESULT graphics_d3d12_render_pass_destroy(c_graphics_render_pass_d3d12* render_pass);

@@ -11,26 +11,26 @@ struct s_tag_reference
 {
 	tag group_tag;
 	c_ptr32<char> name;
-	long name_length;
-	long datum_index;
+	int name_length;
+	int datum_index;
 };
 static_assert(sizeof(s_tag_reference) == 0x10);
 
 struct s_tag_block
 {
-	unsigned long count;
+	unsigned int count;
 	c_ptr32<byte> address;
-	long definition_address;
+	int definition_address;
 };
 static_assert(sizeof(s_tag_block) == 0xC);
 
 struct s_tag_data
 {
-	long size;
-	long stream_flags; // unused
-	long stream_offset; // unused
+	int size;
+	int stream_flags; // unused
+	int stream_offset; // unused
 	c_ptr32<byte> address;
-	long definition; // unused 
+	int definition; // unused 
 };
 static_assert(sizeof(s_tag_data) == 0x14);
 
@@ -44,26 +44,26 @@ static_assert(sizeof(s_tag_function) == 0x14);
 
 void *tag_block_get_element_with_size(
 	s_tag_block *block,
-	long element_index,
-	long element_size);
+	int element_index,
+	int element_size);
 
 void *tag_block_get_range_with_size(
 	s_tag_block *block,
-	long first_element_index,
-	long element_count,
-	long element_size);
+	int first_element_index,
+	int element_count,
+	int element_size);
 
 void *tag_block_get_element_within_range_with_size(
 	s_tag_block *block,
-	long first_element_index,
-	long inner_element_index,
-	long element_count,
-	long element_size);
+	int first_element_index,
+	int inner_element_index,
+	int element_count,
+	int element_size);
 
 void *tag_data_get_pointer(
 	s_tag_data *data,
-	long offset,
-	long size);
+	int offset,
+	int size);
 
 /* ---------- classes */
 
@@ -71,12 +71,12 @@ template <typename t_element>
 class c_typed_tag_block : public s_tag_block
 {
 public:
-	inline bool valid_index(long index) const
+	inline bool valid_index(int index) const
 	{
 		return index >= 0 && index < count;
 	}
 
-	bool try_get_element(long index, t_element **out_element)
+	bool try_get_element(int index, t_element **out_element)
 	{
 		if (!valid_index(index) || !out_element)
 			return false;
@@ -90,7 +90,7 @@ public:
 		return true;
 	}
 
-	t_element *get_element(long index)
+	t_element *get_element(int index)
 	{
 		t_element *result = nullptr;
 
@@ -100,7 +100,7 @@ public:
 		return nullptr;
 	}
 
-	bool try_get_element(long index, t_element **out_element) const
+	bool try_get_element(int index, t_element **out_element) const
 	{
 		if (!valid_index(index) || !out_element)
 			return false;
@@ -114,7 +114,7 @@ public:
 		return true;
 	}
 
-	t_element *get_element(long index) const
+	t_element *get_element(int index) const
 	{
 		t_element *result = nullptr;
 
@@ -126,7 +126,7 @@ public:
 };
 static_assert(sizeof(c_typed_tag_block<long>) == sizeof(s_tag_block));
 
-template<unsigned long ... tag_groups>
+template<unsigned int ... tag_groups>
 class c_typed_tag_reference : public s_tag_reference
 {
 public:

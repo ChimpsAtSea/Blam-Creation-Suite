@@ -63,7 +63,7 @@ const wchar_t* h_tag::get_filesystem_path() const
 
 void h_tag::generate_filepaths(const char* _relative_filepath_without_extension, const wchar_t* _filesystem_path)
 {
-	ASSERT(group != nullptr);
+	const blofeld::s_tag_group& tag_group = get_blofeld_group_definition();
 
 	untracked_free(relative_file_path);
 	untracked_free(relative_file_path_without_extension);
@@ -78,9 +78,9 @@ void h_tag::generate_filepaths(const char* _relative_filepath_without_extension,
 
 	relative_file_path_without_extension = relative_file_path_without_extension_buffer;
 
-	int relative_file_path_characters = snprintf(nullptr, 0, "%s.%s", relative_file_path_without_extension, group->tag_group.name);
+	int relative_file_path_characters = snprintf(nullptr, 0, "%s.%s", relative_file_path_without_extension, tag_group.name);
 	char* relative_file_path_buffer = trivial_malloc(char, relative_file_path_characters + 1);
-	snprintf(relative_file_path_buffer, relative_file_path_characters + 1, "%s.%s", relative_file_path_without_extension, group->tag_group.name);
+	snprintf(relative_file_path_buffer, relative_file_path_characters + 1, "%s.%s", relative_file_path_without_extension, tag_group.name);
 	relative_file_path = relative_file_path_buffer;
 
 	if (filesystem_path)

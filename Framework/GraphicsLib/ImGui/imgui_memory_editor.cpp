@@ -287,16 +287,16 @@ static void DrawPreviewData(s_memory_editor_state& state, s_imgui_memory_editor_
 	{
 		int64_t int64 = 0;
 		EndianessCopy(state, settings, &int64, buf, size);
-		if (data_format == DataFormat_Dec) { snprintf(out_buf, out_buf_size, "%lld", (long long)int64); return; }
-		if (data_format == DataFormat_Hex) { snprintf(out_buf, out_buf_size, "0x%016llx", (long long)int64); return; }
+		if (data_format == DataFormat_Dec) { snprintf(out_buf, out_buf_size, "%lld", (int64_t)int64); return; }
+		if (data_format == DataFormat_Hex) { snprintf(out_buf, out_buf_size, "0x%016llx", (int64_t)int64); return; }
 		break;
 	}
 	case ImGuiDataType_U64:
 	{
 		uint64_t uint64 = 0;
 		EndianessCopy(state, settings, &uint64, buf, size);
-		if (data_format == DataFormat_Dec) { snprintf(out_buf, out_buf_size, "%llu", (long long)uint64); return; }
-		if (data_format == DataFormat_Hex) { snprintf(out_buf, out_buf_size, "0x%016llx", (long long)uint64); return; }
+		if (data_format == DataFormat_Dec) { snprintf(out_buf, out_buf_size, "%llu", (int64_t)uint64); return; }
+		if (data_format == DataFormat_Hex) { snprintf(out_buf, out_buf_size, "0x%016llx", (int64_t)uint64); return; }
 		break;
 	}
 	case ImGuiDataType_Float:
@@ -626,7 +626,7 @@ static void DrawContents(s_memory_editor_state& state, s_imgui_memory_editor_set
 void imgui_memory_editor(
 	s_imgui_memory_editor_settings& settings,
 	void* data,
-	unsigned long long data_size,
+	uint64_t data_size,
 	void* userdata)
 {
 	ImGuiWindow* window = GImGui->CurrentWindow;

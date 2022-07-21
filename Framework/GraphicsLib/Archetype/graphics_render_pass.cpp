@@ -15,10 +15,10 @@ BCS_RESULT graphics_render_pass_create(
 	c_viewport* viewport,
 	c_graphics_render_target** color_render_targets,
 	c_graphics_render_target** depth_render_targets,
-	unsigned long num_color_render_targets,
-	unsigned long num_depth_render_targets,
-	unsigned long num_render_target_per_frame,
-	unsigned long num_render_target_frames,
+	uint32_t num_color_render_targets,
+	uint32_t num_depth_render_targets,
+	uint32_t num_render_target_per_frame,
+	uint32_t num_render_target_frames,
 	c_graphics_render_pass*& render_pass,
 	const char* debug_name)
 {

@@ -11,17 +11,17 @@ namespace halo1
 		struct s_cache_file_header
 		{
 			tag header_signature; // k_cache_header_signature
-			long file_version;
-			long file_length;
-			long padding_length; //#TODO: is this not compressed_file_length ?
-			long tag_data_offset;
-			long tag_data_size;
-			long memory_buffer_offset;
-			long memory_buffer_size;
+			int32_t file_version;
+			int32_t file_length;
+			int32_t padding_length; //#TODO: is this not compressed_file_length ?
+			int32_t tag_data_offset;
+			int32_t tag_data_size;
+			int32_t memory_buffer_offset;
+			int32_t memory_buffer_size;
 			c_static_string<32> scenario_name;
 			c_static_string<32> build_version;
 			short scenario_type;
-			long checksum;
+			int32_t checksum;
 			char _padding68[0x794];
 			tag footer_signature; // k_cache_footer_signature
 		};
@@ -43,22 +43,22 @@ namespace halo1
 			char __data4[700];
 
 			tag header_signature; // k_cache_header_signature_halo1_demo
-			long tag_data_size;
+			int32_t tag_data_size;
 			c_static_string<32> build_version;
 
 			char __data2C8[672];
 
-			long file_version;
+			int32_t file_version;
 			c_static_string<32> scenario_name;
 
 			char __data5AC[4];
 
-			long checksum;
+			int32_t checksum;
 
 			char __data5B4[52];
 
-			long file_length;
-			long tag_data_offset;
+			int32_t file_length;
+			int32_t tag_data_offset;
 			tag footer_signature; // k_cache_footer_signature_halo1_demo
 
 			char __data5F4[524];
@@ -70,21 +70,21 @@ namespace halo1
 
 	struct s_cache_file_tags_header
 	{
-		unsigned long tag_instances_address;
-		unsigned long scenario_datum_index;
+		uint32_t tag_instances_address;
+		uint32_t scenario_datum_index;
 
-		unsigned long checksum;
+		uint32_t checksum;
 
-		unsigned long tag_instance_count;
+		uint32_t tag_instance_count;
 
-		long geometry_vertices_count;
-		unsigned long geometry_vertices_offset;
+		int32_t geometry_vertices_count;
+		uint32_t geometry_vertices_offset;
 
-		long geometry_indices_count;
-		unsigned long geometry_indices_offset;
-		long geometry_data_total_size;
+		int32_t geometry_indices_count;
+		uint32_t geometry_indices_offset;
+		int32_t geometry_data_total_size;
 
-		unsigned long tags_signature;
+		uint32_t tags_signature;
 	};
 	constexpr size_t k_halo1_cache_file_tags_header_size = sizeof(s_cache_file_tags_header);
 	static_assert(k_halo1_cache_file_tags_header_size == 40, "sizeof(s_halo1_cache_file_tags_header) != 0x28");
@@ -93,30 +93,30 @@ namespace halo1
 	{
 		tag group_tags[3];
 
-		unsigned long datum_index;
+		uint32_t datum_index;
 
-		unsigned long name_address;
-		unsigned long address;
+		uint32_t name_address;
+		uint32_t address;
 
 		bool in_data_file;
 		char : 8;
 		char : 8;
 		char : 8;
-		long : 32;
+		int32_t : 32;
 	};
 
 	struct s_cache_file_resource_header
 	{
-		unsigned long type;
-		unsigned long tag_names_offset;
-		unsigned long tag_data_offset;
-		unsigned long tag_instance_count;
+		uint32_t type;
+		uint32_t tag_names_offset;
+		uint32_t tag_data_offset;
+		uint32_t tag_instance_count;
 	};
 
 	struct s_cache_file_resource_instance
 	{
-		unsigned long name_address;
-		unsigned long size;
-		unsigned long address;
+		uint32_t name_address;
+		uint32_t size;
+		uint32_t address;
 	};
 }

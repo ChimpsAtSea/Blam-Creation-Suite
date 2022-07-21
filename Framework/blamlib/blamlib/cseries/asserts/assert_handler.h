@@ -21,7 +21,7 @@ public:
 	virtual void thread_manager_post_assertion(
 		char const *message,
 		char const *file,
-		long line) = 0;
+		int line) = 0;
 
 	virtual void call_fatal_error_callbacks() = 0;
 
@@ -31,12 +31,12 @@ public:
 	virtual void raise_exception_unhandled(
 		char const *message,
 		char const *file,
-		long line) = 0;
+		int line) = 0;
 
 	virtual void raise_exception_handled(
 		char const *message,
 		char const *file,
-		long line) = 0;
+		int line) = 0;
 };
 
 class c_assert_string
@@ -53,19 +53,19 @@ public:
 class __declspec(novtable) c_assert_handler
 {
 public:
-	virtual long register_tracked_assert(
+	virtual int register_tracked_assert(
 		char const *file,
-		long line) = 0;
+		int line) = 0;
 
 	virtual void log_tracked_assert(
-		long handler_index) = 0;
+		int handler_index) = 0;
 
 	virtual bool debugger_present() = 0;
 
 	virtual bool handle_assert(
 		char const *message,
 		char const *file,
-		long line) = 0;
+		int line) = 0;
 
 	virtual void halt_execution() = 0;
 

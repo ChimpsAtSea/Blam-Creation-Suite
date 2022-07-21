@@ -24,15 +24,15 @@ namespace blamlib
 
 	struct s_structure_build_identifier
 	{
-		long manifest_id[4];
-		long build_index;
-		long structure_importer_version;
+		int manifest_id[4];
+		int build_index;
+		int structure_importer_version;
 	};
 	static_assert(sizeof(s_structure_build_identifier) == 0x18);
 
 	struct s_structure_design_physics_definition
 	{
-		long importer_version;
+		int importer_version;
 		s_tag_block soft_ceiling_mopp_code; // TODO
 		s_tag_block soft_ceilings;			// TODO
 		s_tag_block water_mopp_code;		// TODO
@@ -80,13 +80,13 @@ namespace blamlib
 
 	struct s_structure_seam_identifier
 	{
-		long guid[4];
+		int guid[4];
 	};
 	static_assert(sizeof(s_structure_seam_identifier) == 0x10);
 
 	struct s_structure_seam_edge_mapping
 	{
-		long structure_edge_index;
+		int structure_edge_index;
 	};
 	static_assert(sizeof(s_structure_seam_edge_mapping) == 0x4);
 
@@ -182,25 +182,25 @@ namespace blamlib
 	struct s_structure_bsp_surface
 	{
 		c_tag_block_index<s_structure_bsp_plane, long> first_plane;
-		long plane_count;
+		int plane_count;
 	};
 	static_assert(sizeof(s_structure_bsp_surface) == 0x8);
 
 	struct s_structure_bsp_detail_object
 	{
-		long unknown0;
-		long unknown4;
-		long unknown8;
-		long unknownC;
-		long unknown10;
-		long unknown14;
-		long unknown18;
-		long unknown1C;
-		long unknown20;
-		long unknown24;
-		long unknown28;
-		long unknown2C;
-		long unknown30;
+		int unknown0;
+		int unknown4;
+		int unknown8;
+		int unknownC;
+		int unknown10;
+		int unknown14;
+		int unknown18;
+		int unknown1C;
+		int unknown20;
+		int unknown24;
+		int unknown28;
+		int unknown2C;
+		int unknown30;
 	};
 	static_assert(sizeof(s_structure_bsp_detail_object) == 0x34);
 
@@ -273,19 +273,19 @@ namespace blamlib
 		short unknown8;
 		short unknown9;
 		short unknown10;
-		long unknown11;
+		int unknown11;
 		c_typed_tag_block<s_structure_bsp_cluster_portal_index> portals;
 		c_tag_block_index<s_mesh, short> mesh;
 		short instance_imposter_cluster_mopp_index; // TODO: block index
 		c_typed_tag_block<s_structure_bsp_cluster_seam_index> seam_indices;
 		// TODO: finish
 		s_tag_block decorator_grids;
-		long unknown12;
-		long unknown13;
-		long unknown14;
-		long unknown15;
-		long unknown16;
-		long unknown17;
+		int unknown12;
+		int unknown13;
+		int unknown14;
+		int unknown15;
+		int unknown16;
+		int unknown17;
 		s_tag_block unknown18;
 		s_tag_block unknown19;
 	};
@@ -310,7 +310,7 @@ namespace blamlib
 		short breakable_surface_index; // TODO: block index
 		real_point3d centroid;
 		real radius;
-		long collision_surface_index; // TODO: block index
+		int collision_surface_index; // TODO: block index
 	};
 	static_assert(sizeof(s_structure_bsp_breakable_surface) == 0x18);
 
@@ -353,7 +353,7 @@ namespace blamlib
 
 	struct s_structure_instanced_geometry_definition
 	{
-		long checksum;
+		int checksum;
 		real_point3d bounding_sphere_offset;
 		real bounding_sphere_radius;
 		s_collision_bsp collision_bsp;
@@ -406,7 +406,7 @@ namespace blamlib
 		c_flags<e_structure_bsp_instance_geometry_instance_flags, word> flags;
 		c_tag_block_index<s_mesh, short> mesh;
 		c_tag_block_index<s_geometry_compression_info_constant_buffer, short> compression;
-		long seam_bitvector[4];
+		int seam_bitvector[4];
 		real_bounds x_bounds;
 		real_bounds y_bounds;
 		real_bounds z_bounds;
@@ -418,13 +418,13 @@ namespace blamlib
 		char unknown4;
 		char unknown5;
 		char unknown6;
-		long unknown7;
-		long unknown8;
-		long unknown9;
-		long unknown10;
-		long unknown11;
-		long unknown12;
-		long unknown13;
+		int unknown7;
+		int unknown8;
+		int unknown9;
+		int unknown10;
+		int unknown11;
+		int unknown12;
+		int unknown13;
 		string_id name;
 	};
 	static_assert(sizeof(s_structure_bsp_instanced_geometry_instance) == 0xA0);
@@ -443,9 +443,9 @@ namespace blamlib
 		c_typed_tag_block<s_structure_bsp_instanced_geometry_instance> instanced_geometry_instances;
 		c_typed_tag_block<s_geometry_material> materials;
 
-		long unknown1;
-		long unknown2;
-		long unknown3;
+		int unknown1;
+		int unknown2;
+		int unknown3;
 	};
 	static_assert(sizeof(s_structure_design_definition) == 0x160);
 
@@ -474,14 +474,14 @@ namespace blamlib
 		c_flags<e_structure_bsp_instance_geometry_instance_flags, word> flags;
 		c_tag_block_index<s_mesh, short> mesh;
 		c_tag_block_index<s_geometry_compression_info_constant_buffer, short> compression;
-		long seam_bitvector[4];
+		int seam_bitvector[4];
 		real_bounds x_bounds;
 		real_bounds y_bounds;
 		real_bounds z_bounds;
 		real_point3d world_bounding_sphere_center;
 		real world_bounding_sphere_radius;
 		real imposter_transition_complete_distance;
-		long transform_checksum;
+		int transform_checksum;
 		byte pathfinding_policy;
 		byte lightmapping_policy;
 		byte imposter_quality_policy;
@@ -527,7 +527,7 @@ namespace blamlib
 		c_typed_tag_block<s_structure_bsp_cache_file_resources> m_raw_cache_file_resources;
 		c_typed_tag_resource<s_structure_bsp_resources> m_tag_resources;
 		c_typed_tag_resource<s_structure_bsp_cache_file_resources> m_cache_file_resources;
-		long m_use_resource_items;
+		int m_use_resource_items;
 
 	public:
 		s_structure_bsp_resources* get_resources();
@@ -539,8 +539,8 @@ namespace blamlib
 	{
 		s_structure_build_identifier build_identifier;
 		s_structure_build_identifier parent_build_identifier;
-		long import_info_checksum;
-		long import_version;
+		int import_info_checksum;
+		int import_version;
 		c_flags<e_structure_bsp_definition_flags, word> flags;
 		c_flags<e_structure_bsp_content_policy_flags, word> content_policy_flags;
 		c_flags<e_structure_bsp_content_policy_flags, word> failed_content_policy_flags;
@@ -554,7 +554,7 @@ namespace blamlib
 		c_typed_tag_block<s_structure_super_node_recursable_mask> super_node_recursable_masks;
 		c_typed_tag_block<s_structure_super_node_traversal_geometry> super_node_traversal_geometry;
 		s_collision_kd_hierarchy_static instance_kd_hierarchy;
-		long : 32;
+		int : 32;
 		real_bounds world_bounds_x;
 		real_bounds world_bounds_y;
 		real_bounds world_bounds_z;
@@ -578,7 +578,7 @@ namespace blamlib
 		s_tag_block runtime_decals;
 		s_tag_block environment_object_palette;
 		s_tag_block environment_objects;
-		long : 32;
+		int : 32;
 		s_tag_block leaf_map_leaves;
 		s_tag_block leaf_map_connections;
 		s_tag_block errors;
@@ -598,7 +598,7 @@ namespace blamlib
 		s_tag_block transparent_planes;
 		s_tag_block unknown11;
 		s_tag_block collision_mopp_codes;
-		long unknown12;
+		int unknown12;
 		real_bounds collision_bounds_x;
 		real_bounds collision_bounds_y;
 		real_bounds collision_bounds_z;

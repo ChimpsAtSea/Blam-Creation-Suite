@@ -88,7 +88,7 @@ struct s_scenario_structure_bsp_reference
 	s_tag_reference local_structure_bsp;
 	s_tag_reference structure_lighting;
 	s_tag_reference local_structure_lighting;
-	long unknown3;
+	int unknown3;
 	real unknown4;
 	real unknown5;
 	real unknown6;
@@ -108,7 +108,7 @@ struct s_scenario_structure_bsp_reference
 	real unknown17;
 	real unknown18;
 	real unknown19;
-	long unknown20;
+	int unknown20;
 	real custom_gravity_scale;
 };
 static_assert(sizeof(s_scenario_structure_bsp_reference) == 0xAC);
@@ -222,7 +222,7 @@ static_assert(sizeof(s_scenario_zone_set_bsp_seam_cluster_mapping) == 0x24);
 
 struct s_scenario_zone_set_bsp_pvs_unknown
 {
-	long unknown;
+	int unknown;
 };
 static_assert(sizeof(s_scenario_zone_set_bsp_pvs_unknown) == 0x4);
 
@@ -250,7 +250,7 @@ enum e_scenario_object_source
 
 struct s_scenario_object_id
 {
-	long unique_id;
+	int unique_id;
 	c_tag_block_index<s_scenario_structure_bsp_reference, short> origin_bsp;
 	c_enum<e_object_type, char> type;
 	c_enum<e_scenario_object_source, char> source;
@@ -298,39 +298,39 @@ static_assert(sizeof(s_scenario_zone_set_pvs) == 0x2C);
 
 struct s_door_encoded_pas
 {
-	long encoded_data;
+	int encoded_data;
 };
 static_assert(sizeof(s_door_encoded_pas) == 0x4);
 
 struct s_room_door_portal_encoded_pas
 {
-	long encoded_data;
+	int encoded_data;
 };
 static_assert(sizeof(s_room_door_portal_encoded_pas) == 0x4);
 
 struct s_ai_deafening_encoded_pas
 {
-	long encoded_data;
+	int encoded_data;
 };
 static_assert(sizeof(s_ai_deafening_encoded_pas) == 0x4);
 
 struct s_encoded_room_distance
 {
-	long encoded_data;
+	int encoded_data;
 };
 static_assert(sizeof(s_encoded_room_distance) == 0x4);
 
 struct s_game_portal_to_door_occluder
 {
-	long first_door_occluder_index;
-	long door_occluder_count;
+	int first_door_occluder_index;
+	int door_occluder_count;
 };
 static_assert(sizeof(s_game_portal_to_door_occluder) == 0x8);
 
 struct s_bsp_cluster_to_room_bounds
 {
-	long first_room_index;
-	long room_index_count;
+	int first_room_index;
+	int room_index_count;
 };
 static_assert(sizeof(s_bsp_cluster_to_room_bounds) == 0x8);
 
@@ -342,8 +342,8 @@ static_assert(sizeof(s_bsp_cluster_to_room_index) == 0x2);
 
 struct s_scenario_zone_set_audibility
 {
-	long door_portal_count;
-	long room_count;
+	int door_portal_count;
+	int room_count;
 	real_bounds room_distance_bounds;
 	c_typed_tag_block<s_door_encoded_pas> encoded_door_pas;
 	c_typed_tag_block<s_room_door_portal_encoded_pas> room_door_portal_encoded_pas;
@@ -419,13 +419,13 @@ struct s_scenario
 {
 	c_enum<e_scenario_type, short> scenario_type;
 	c_flags<e_scenario_flags, word> flags;
-	long unknown1;
-	long campaign_id;
-	long map_id;
+	int unknown1;
+	int campaign_id;
+	int map_id;
 	string_id scenario_name;
 	short campaign_level_index;
 	short unknown2;
-	long unknown3;
+	int unknown3;
 	real local_north;
 	real unknown4;
 	real unknown5;
@@ -543,7 +543,7 @@ struct s_scenario
 	s_tag_block camera_fx;
 	s_tag_block weather;
 	s_tag_block scenario_cluster_data;
-	long object_identifiers[32];
+	int object_identifiers[32];
 	s_tag_block spawn_data;
 	s_tag_reference sound_effects_collection;
 	s_tag_block crates;
@@ -556,8 +556,8 @@ struct s_scenario
 	s_tag_block big_battle_creatures;
 	c_typed_tag_block<s_scenario_editor_folder> editor_folders;
 	s_tag_reference territory_location_name_strings;
-	long unknown44;
-	long unknown45;
+	int unknown44;
+	int unknown45;
 	s_tag_block mission_dialogue;
 	s_tag_reference objective_strings;
 	s_tag_reference scenario_interpolator;

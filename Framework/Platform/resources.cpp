@@ -133,7 +133,7 @@ BCS_RESULT resources_get_resource_filename(e_bcs_resource_type type, const char*
 	return BCS_S_OK;
 }
 
-BCS_RESULT resources_get_resource_size(e_bcs_resource_type type, unsigned long long& resource_size)
+BCS_RESULT resources_get_resource_size(e_bcs_resource_type type, uint64_t& resource_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	const char* filename;
@@ -154,7 +154,7 @@ BCS_RESULT resources_get_resource_size(e_bcs_resource_type type, unsigned long l
 			}
 			else
 			{
-				unsigned long long local_resource_file_size;
+				uint64_t local_resource_file_size;
 				if (BCS_FAILED(rs = filesystem_get_file_size(resource_local_filepath, local_resource_file_size)))
 				{
 					return rs;
@@ -197,7 +197,7 @@ BCS_RESULT resources_get_resource_size(e_bcs_resource_type type, unsigned long l
 	return rs;
 }
 
-BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buffer, unsigned long long& buffer_size)
+BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buffer, uint64_t& buffer_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	const char* filename;
@@ -218,13 +218,13 @@ BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buf
 			}
 			else
 			{
-				unsigned long long local_resource_size;
+				uint64_t local_resource_size;
 				if (BCS_FAILED(rs = filesystem_get_file_size(resource_local_filepath, local_resource_size)))
 				{
 					return rs;
 				}
 
-				unsigned long long read_data_size = __min(local_resource_size, buffer_size);
+				uint64_t read_data_size = __min(local_resource_size, buffer_size);
 				if (read_data_size >= ULONG_MAX)
 				{
 					return BCS_E_FAIL;
@@ -257,10 +257,10 @@ BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buf
 
 	HGLOBAL resource = LoadResource(static_cast<HMODULE>(process_module), resource_handle);
 
-	unsigned long process_resource_size = SizeofResource(static_cast<HMODULE>(process_module), resource_handle);
+	uint32_t process_resource_size = SizeofResource(static_cast<HMODULE>(process_module), resource_handle);
 	if (LPVOID process_resource_data = LockResource(resource))
 	{
-		unsigned long long read_data_size = __min(process_resource_size, buffer_size);
+		uint64_t read_data_size = __min(process_resource_size, buffer_size);
 
 		memcpy(buffer, process_resource_data, read_data_size);
 		buffer_size = read_data_size;
@@ -278,11 +278,11 @@ BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buf
 	return rs;
 }
 
-BCS_RESULT resources_read_resource_to_memory(e_bcs_resource_type type, void*& out_buffer, unsigned long long& out_buffer_size)
+BCS_RESULT resources_read_resource_to_memory(e_bcs_resource_type type, void*& out_buffer, uint64_t& out_buffer_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	unsigned long long buffer_size;
+	uint64_t buffer_size;
 	if (BCS_FAILED(rs = resources_get_resource_size(type, buffer_size)))
 	{
 		return rs;
@@ -301,13 +301,13 @@ BCS_RESULT resources_read_resource_to_memory(e_bcs_resource_type type, void*& ou
 	return rs;
 }
 
-BCS_RESULT resources_set_resource_data(e_bcs_resource_type type, const void* buffer, unsigned long long buffer_size)
+BCS_RESULT resources_set_resource_data(e_bcs_resource_type type, const void* buffer, uint64_t buffer_size)
 {
 	FATAL_ERROR("NOT IMPLEMENTED");
 	return BCS_E_NOT_IMPLEMENTED;
 }
 
-BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const char* filepath, const void* buffer, unsigned long long buffer_size)
+BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const char* filepath, const void* buffer, uint64_t buffer_size)
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
 	BCS_VALIDATE_ARGUMENT(buffer);
@@ -361,7 +361,7 @@ BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const 
 	BCS_RESULT rs = BCS_S_OK;
 
 	void* buffer_data;
-	unsigned long long buffer_data_size;
+	uint64_t buffer_data_size;
 	if (BCS_FAILED(rs = filesystem_read_file_to_memory(resource_filepath, buffer_data, buffer_data_size)))
 	{
 		return rs;

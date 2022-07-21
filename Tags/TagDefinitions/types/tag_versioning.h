@@ -31,9 +31,9 @@ namespace blofeld
 
 	struct s_tag_field_versioning
 	{
-		unsigned long mode;
-		unsigned long struct_version;
-		unsigned long version_field_skip_count;
+		uint32_t mode;
+		uint32_t struct_version;
+		uint32_t version_field_skip_count;
 		const s_tag_group* group;
 		t_tag_field_custom_version_callback custom_version_callback;
 		s_engine_platform_build engine_platform_build;
@@ -42,39 +42,39 @@ namespace blofeld
 	BCS_DEBUG_API bool execute_tag_field_versioning(
 		s_tag_field const& tag_field,
 		s_engine_platform_build engine_platform_build,
-		unsigned long struct_version,
-		unsigned long& skip_count);
+		uint32_t struct_version,
+		uint32_t& skip_count);
 
 	BCS_DEBUG_API bool execute_tag_field_versioning(
 		s_tag_field_versioning const& versioning,
 		s_engine_platform_build engine_platform_build,
-		unsigned long struct_version,
-		unsigned long& skip_count);
+		uint32_t struct_version,
+		uint32_t& skip_count);
 
 	BCS_DEBUG_API bool execute_tag_field_versioning(
 		s_tag_field const& tag_field,
 		s_engine_platform_build engine_platform_build,
 		tag group_tag,
-		unsigned long struct_version,
-		unsigned long& skip_count);
+		uint32_t struct_version,
+		uint32_t& skip_count);
 
 	BCS_DEBUG_API bool execute_tag_field_versioning(
 		s_tag_field_versioning const& versioning,
 		s_engine_platform_build engine_platform_build,
 		tag group_tag,
-		unsigned long struct_version,
-		unsigned long& skip_count);
+		uint32_t struct_version,
+		uint32_t& skip_count);
 
 	BCS_DEBUG_API BCS_RESULT calculate_versioned_tag_field_count(
 		const s_tag_field* tag_fields,
 		s_engine_platform_build engine_platform_build,
 		tag group_tag,
-		unsigned long struct_version,
-		unsigned long& field_count);
+		uint32_t struct_version,
+		uint32_t& field_count);
 
 	BCS_DEBUG_API BCS_RESULT calculate_tag_field_count(
 		const s_tag_field* tag_fields,
-		unsigned long& field_count);
+		uint32_t& field_count);
 
 #define tag_field_version_all ULONG_MAX
 #define tag_field_version_max ( ULONG_MAX - 1 )
@@ -83,7 +83,7 @@ namespace blofeld
 	*_tag_field_iterator; \
 	if (_tag_struct_definition_ref.runtime_flags.test(blofeld::_tag_field_set_mandrill_has_versioning)) \
 	{ \
-		unsigned long _field_skip_count; \
+		uint32_t _field_skip_count; \
 		if (execute_tag_field_versioning(*_tag_field_iterator, _engine_platform_build, struct_version, _field_skip_count)) \
 		{ \
 			_tag_field_iterator += _field_skip_count; \
@@ -94,7 +94,7 @@ namespace blofeld
 #define tag_field_iterator_versioning_deprecated(_tag_field_iterator, _engine_platform_build, _group_tag, struct_version) \
 	*_tag_field_iterator; \
 	{ \
-		unsigned long _field_skip_count; \
+		uint32_t _field_skip_count; \
 		if (execute_tag_field_versioning(*_tag_field_iterator, _engine_platform_build, _group_tag, struct_version, _field_skip_count)) \
 		{ \
 			_tag_field_iterator += _field_skip_count; \

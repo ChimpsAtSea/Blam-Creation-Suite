@@ -30,10 +30,10 @@ BCS_DEBUG_API BCS_RESULT resources_get_resource_icon_handle(e_bcs_resource_type 
 #endif
 
 BCS_DEBUG_API BCS_RESULT resources_get_resource_filename(e_bcs_resource_type type, const char*& resource_filename);
-BCS_DEBUG_API BCS_RESULT resources_get_resource_size(e_bcs_resource_type type, unsigned long& resource_size);
-BCS_DEBUG_API BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buffer, unsigned long long& buffer_size);
-BCS_DEBUG_API BCS_RESULT resources_read_resource_to_memory(e_bcs_resource_type type, void*& buffer, unsigned long long& buffer_size);
+BCS_DEBUG_API BCS_RESULT resources_get_resource_size(e_bcs_resource_type type, uint32_t& resource_size);
+BCS_DEBUG_API BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buffer, uint64_t& buffer_size);
+BCS_DEBUG_API BCS_RESULT resources_read_resource_to_memory(e_bcs_resource_type type, void*& buffer, uint64_t& buffer_size);
 
-BCS_DEBUG_API BCS_RESULT resources_set_resource_data(e_bcs_resource_type type, const void* buffer, unsigned long long buffer_size);
-BCS_DEBUG_API BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const char* target_filepath, const void* buffer, unsigned long long buffer_size);
+BCS_DEBUG_API BCS_RESULT resources_set_resource_data(e_bcs_resource_type type, const void* buffer, uint64_t buffer_size);
+BCS_DEBUG_API BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const char* target_filepath, const void* buffer, uint64_t buffer_size);
 BCS_DEBUG_API BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const char* target_filepath, const char* resource_filepath);

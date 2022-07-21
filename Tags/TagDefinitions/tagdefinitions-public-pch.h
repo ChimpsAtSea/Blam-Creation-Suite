@@ -1,7 +1,6 @@
 #pragma once
 
 #include "blofeld.h"
-#include "blofeld/constants.h"
 #include "types/tag_versioning.h"
 #include "types/field_type.h"
 #include "types/field_id.h"
@@ -60,8 +59,6 @@
 #include "tag_groups/halo3-tools-pc64-groups.h"
 #include "tag_groups/halo4-tagtest-xbox360-groups.h"
 #include "tag_groups/haloreach-tagtest-xbox360-groups.h"
-
-#include "blofeld/validation.h"
 
 #include "blamlib_byteswap.h"
 #include "definition_migration.h"

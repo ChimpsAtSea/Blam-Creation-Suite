@@ -26,7 +26,7 @@ const char* c_blamtoozle_tag_struct_definition::get_file_path()
 	return nullptr;
 }
 
-long c_blamtoozle_tag_struct_definition::get_line_number()
+int32_t c_blamtoozle_tag_struct_definition::get_line_number()
 {
 	return -1;
 }
@@ -56,7 +56,7 @@ c_blamtoozle_tag_struct_definition& c_blamtoozle_tag_struct_definition::get_late
 	return *this;
 }
 
-unsigned long c_blamtoozle_tag_struct_definition::get_structure_version()
+uint32_t c_blamtoozle_tag_struct_definition::get_structure_version()
 {
 	return 0;
 }

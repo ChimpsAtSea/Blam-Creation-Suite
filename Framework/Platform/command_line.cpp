@@ -6,8 +6,8 @@ struct s_command_line_argument
 	const char* argument_mb;
 	const wchar_t* value_wc;
 	const char* value_mb;
-	unsigned long argument_length_wc;
-	unsigned long argument_length_mb;
+	uint32_t argument_length_wc;
+	uint32_t argument_length_mb;
 };
 
 static s_command_line_argument* command_line_arguments;
@@ -23,13 +23,13 @@ BCS_RESULT init_command_line(const wchar_t* command_line)
 	}
 	command_line_arguments_wc = CommandLineToArgvW(command_line, &command_line_arguments_count);
 
-	unsigned long total_buffer_size = sizeof(LPSTR) * command_line_arguments_count;
-	unsigned long* mb_buffer_lengths = static_cast<unsigned long*>(_alloca(sizeof(unsigned long*) * command_line_arguments_count));
+	uint32_t total_buffer_size = sizeof(LPSTR) * command_line_arguments_count;
+	uint32_t* mb_buffer_lengths = static_cast<uint32_t*>(_alloca(sizeof(uint32_t*) * command_line_arguments_count));
 	for (int argument_index = 0; argument_index < command_line_arguments_count; argument_index++)
 	{
 		LPWSTR argument = command_line_arguments_wc[argument_index];
-		unsigned long mb_buffer_length = static_cast<unsigned long>(wcstombs(nullptr, argument, 0));
-		//unsigned long string_length = static_cast<unsigned long>(wcslen(argument) + 1);
+		uint32_t mb_buffer_length = static_cast<unsigned long>(wcstombs(nullptr, argument, 0));
+		//uint32_t string_length = static_cast<unsigned long>(wcslen(argument) + 1);
 		mb_buffer_lengths[argument_index] = mb_buffer_length;
 		total_buffer_size += mb_buffer_length + 1;
 	}
@@ -43,8 +43,8 @@ BCS_RESULT init_command_line(const wchar_t* command_line)
 		LPWSTR argument_wc = command_line_arguments_wc[argument_index];
 		LPSTR argument_mb = command_line_arguments_string_buffer_pos;
 
-		unsigned long mb_buffer_length = mb_buffer_lengths[argument_index];
-		unsigned long _mb_buffer_length = static_cast<unsigned long>(wcstombs(argument_mb, argument_wc, mb_buffer_length));
+		uint32_t mb_buffer_length = mb_buffer_lengths[argument_index];
+		uint32_t _mb_buffer_length = static_cast<unsigned long>(wcstombs(argument_mb, argument_wc, mb_buffer_length));
 		DEBUG_ASSERT(mb_buffer_length == _mb_buffer_length); // sanity check
 
 		command_line_arguments_mb[argument_index] = command_line_arguments_string_buffer_pos;
@@ -68,8 +68,8 @@ BCS_RESULT init_command_line(const wchar_t* command_line)
 		while (*value_wc && *value_wc != ':') value_wc++;
 		while (*value_mb && *value_mb != ':') value_mb++;
 
-		unsigned long argument_length_wc = static_cast<unsigned long>(value_wc - argument_wc);
-		unsigned long argument_length_mb = static_cast<unsigned long>(value_mb - argument_mb);
+		uint32_t argument_length_wc = static_cast<unsigned long>(value_wc - argument_wc);
+		uint32_t argument_length_mb = static_cast<unsigned long>(value_mb - argument_mb);
 
 		if (*value_wc == ':') value_wc++;
 		if (*value_mb == ':') value_mb++;
@@ -98,7 +98,7 @@ BCS_RESULT command_line_get_argument(const char* argument, const char*& value)
 {
 	BCS_VALIDATE_ARGUMENT(argument);
 
-	unsigned long argument_length = static_cast<unsigned long>(strlen(argument));
+	uint32_t argument_length = static_cast<unsigned long>(strlen(argument));
 
 	for (int argument_index = 0; argument_index < command_line_arguments_count; argument_index++)
 	{
@@ -113,7 +113,7 @@ BCS_RESULT command_line_get_argument(const char* argument, const char*& value)
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_DEBUG_API BCS_RESULT command_line_get_argument_long(const char* argument, long& value)
+BCS_DEBUG_API BCS_RESULT command_line_get_argument_long(const char* argument, int32_t& value)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	const char* string_value;
@@ -136,7 +136,7 @@ BCS_DEBUG_API BCS_RESULT command_line_get_argument_long(const char* argument, lo
 	return rs;
 }
 
-BCS_DEBUG_API BCS_RESULT command_line_get_argument_longlong(const char* argument, long long& value)
+BCS_DEBUG_API BCS_RESULT command_line_get_argument_longlong(const char* argument, int64_t& value)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	const char* string_value;
@@ -159,7 +159,7 @@ BCS_DEBUG_API BCS_RESULT command_line_get_argument_longlong(const char* argument
 	return rs;
 }
 
-BCS_DEBUG_API BCS_RESULT command_line_get_argument_ulong(const char* argument, unsigned long& value)
+BCS_DEBUG_API BCS_RESULT command_line_get_argument_ulong(const char* argument, uint32_t& value)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	const char* string_value;
@@ -182,7 +182,7 @@ BCS_DEBUG_API BCS_RESULT command_line_get_argument_ulong(const char* argument, u
 	return rs;
 }
 
-BCS_DEBUG_API BCS_RESULT command_line_get_argument_ulonglong(const char* argument, unsigned long long& value)
+BCS_DEBUG_API BCS_RESULT command_line_get_argument_ulonglong(const char* argument, uint64_t& value)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	const char* string_value;
@@ -206,11 +206,11 @@ BCS_DEBUG_API BCS_RESULT command_line_get_argument_ulonglong(const char* argumen
 }
 
 
-BCS_RESULT command_line_get_argument_count(const char* argument, unsigned long& argument_count)
+BCS_RESULT command_line_get_argument_count(const char* argument, uint32_t& argument_count)
 {
 	BCS_VALIDATE_ARGUMENT(argument);
 
-	unsigned long argument_length = static_cast<unsigned long>(strlen(argument));
+	uint32_t argument_length = static_cast<unsigned long>(strlen(argument));
 
 	argument_count = 0;
 	for (int argument_index = 0; argument_index < command_line_arguments_count; argument_index++)
@@ -225,7 +225,7 @@ BCS_RESULT command_line_get_argument_count(const char* argument, unsigned long& 
 	return BCS_S_OK;
 }
 
-BCS_RESULT command_line_get_arguments(const char* argument, const char** values_buffer, unsigned long& values_buffer_size)
+BCS_RESULT command_line_get_arguments(const char* argument, const char** values_buffer, uint32_t& values_buffer_size)
 {
 	if (values_buffer == nullptr)
 	{
@@ -235,9 +235,9 @@ BCS_RESULT command_line_get_arguments(const char* argument, const char** values_
 	BCS_VALIDATE_ARGUMENT(argument);
 	BCS_VALIDATE_ARGUMENT(*argument);
 
-	unsigned long argument_length = static_cast<unsigned long>(strlen(argument));
+	uint32_t argument_length = static_cast<unsigned long>(strlen(argument));
 
-	unsigned long argument_buffer_index = 0;
+	uint32_t argument_buffer_index = 0;
 	for (int argument_index = 0; argument_index < command_line_arguments_count && argument_buffer_index < values_buffer_size; argument_index++)
 	{
 		s_command_line_argument& command_line_argument = command_line_arguments[argument_index];
@@ -253,7 +253,7 @@ BCS_RESULT command_line_get_arguments(const char* argument, const char** values_
 
 BCS_RESULT command_line_has_argument(const char* argument)
 {
-	unsigned long argument_length = static_cast<unsigned long>(strlen(argument));
+	uint32_t argument_length = static_cast<unsigned long>(strlen(argument));
 
 	for (int argument_index = 0; argument_index < command_line_arguments_count; argument_index++)
 	{
@@ -271,7 +271,7 @@ BCS_RESULT command_line_get_argument(const wchar_t* argument, const wchar_t*& va
 {
 	BCS_VALIDATE_ARGUMENT(argument);
 
-	unsigned long argument_length = static_cast<unsigned long>(wcslen(argument));
+	uint32_t argument_length = static_cast<unsigned long>(wcslen(argument));
 
 	for (int argument_index = 0; argument_index < command_line_arguments_count; argument_index++)
 	{
@@ -286,11 +286,11 @@ BCS_RESULT command_line_get_argument(const wchar_t* argument, const wchar_t*& va
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT command_line_get_argument_count(const wchar_t* argument, unsigned long& argument_count)
+BCS_RESULT command_line_get_argument_count(const wchar_t* argument, uint32_t& argument_count)
 {
 	BCS_VALIDATE_ARGUMENT(argument);
 
-	unsigned long argument_length = static_cast<unsigned long>(wcslen(argument));
+	uint32_t argument_length = static_cast<unsigned long>(wcslen(argument));
 
 	argument_count = 0;
 	for (int argument_index = 0; argument_index < command_line_arguments_count; argument_index++)
@@ -305,7 +305,7 @@ BCS_RESULT command_line_get_argument_count(const wchar_t* argument, unsigned lon
 	return BCS_S_OK;
 }
 
-BCS_RESULT command_line_get_arguments(const wchar_t* argument, const wchar_t** values_buffer, unsigned long& values_buffer_size)
+BCS_RESULT command_line_get_arguments(const wchar_t* argument, const wchar_t** values_buffer, uint32_t& values_buffer_size)
 {
 	if (values_buffer == nullptr)
 	{
@@ -315,9 +315,9 @@ BCS_RESULT command_line_get_arguments(const wchar_t* argument, const wchar_t** v
 	BCS_VALIDATE_ARGUMENT(argument);
 	BCS_VALIDATE_ARGUMENT(*argument);
 
-	unsigned long argument_length = static_cast<unsigned long>(wcslen(argument));
+	uint32_t argument_length = static_cast<unsigned long>(wcslen(argument));
 
-	unsigned long argument_buffer_index = 0;
+	uint32_t argument_buffer_index = 0;
 	for (int argument_index = 0; argument_index < command_line_arguments_count && argument_buffer_index < values_buffer_size; argument_index++)
 	{
 		s_command_line_argument& command_line_argument = command_line_arguments[argument_index];
@@ -333,7 +333,7 @@ BCS_RESULT command_line_get_arguments(const wchar_t* argument, const wchar_t** v
 
 BCS_RESULT command_line_has_argument(const wchar_t* argument)
 {
-	unsigned long argument_length = static_cast<unsigned long>(wcslen(argument));
+	uint32_t argument_length = static_cast<unsigned long>(wcslen(argument));
 	for (int argument_index = 0; argument_index < command_line_arguments_count; argument_index++)
 	{
 		s_command_line_argument& command_line_argument = command_line_arguments[argument_index];

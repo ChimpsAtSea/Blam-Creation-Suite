@@ -4,7 +4,7 @@
 
 using namespace blofeld::infinite;
 
-template<typename T, typename field_type, typename parent_type, unsigned long _field_index>
+template<typename T, typename field_type, typename parent_type, uint32_t _field_index>
 T _dynamic_cast(h_field<field_type, parent_type, _field_index> const& field)
 {
 	return dynamic_cast<T>(field.value);
@@ -71,8 +71,8 @@ c_model_preview_test::c_model_preview_test(
 
 		debug_point;
 
-		unsigned long mesh_count = render_model->render_geometry.meshes_block.size();
-		for (unsigned long mesh_index = 0; mesh_index < mesh_count; mesh_index++)
+		uint32_t mesh_count = render_model->render_geometry.meshes_block.size();
+		for (uint32_t mesh_index = 0; mesh_index < mesh_count; mesh_index++)
 		{
 			c_infinite_tag_model* infinite_tag_model = new() c_infinite_tag_model(*graphics, *render_model, mesh_index);
 
@@ -158,8 +158,8 @@ void c_model_preview_test::draw_ui()
 
 			if (ImGui::BeginCombo("##variant", selected_variant_name_cstr))
 			{
-				unsigned long variant_count = model_tag.variants_block.size();
-				for (unsigned long variant_index = 0; variant_index < variant_count; variant_index++)
+				uint32_t variant_count = model_tag.variants_block.size();
+				for (uint32_t variant_index = 0; variant_index < variant_count; variant_index++)
 				{
 					auto& variant = model_tag.variants_block[variant_index];
 					h_string_id variant_name = variant.name;

@@ -183,7 +183,7 @@ static_assert(sizeof(s_object_function_interpolation) == 0x18);
 
 struct s_object_runtime_interpolator_function
 {
-	long runtime_interpolator_to_object_function_mapping;
+	int runtime_interpolator_to_object_function_mapping;
 };
 static_assert(sizeof(s_object_runtime_interpolator_function) == 0x4);
 
@@ -284,7 +284,7 @@ struct s_object_predicted_resource
 {
 	short type_index; // TODO: block index
 	short resource_index; // TODO: block index
-	long tag_index;
+	int tag_index;
 };
 static_assert(sizeof(s_object_predicted_resource) == 0x8);
 

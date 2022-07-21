@@ -8,19 +8,19 @@ class h_typed_block :
 public:
 	BCS_DEBUG_API h_typed_block(h_type* parent = nullptr);
 
-	BCS_DEBUG_API virtual h_custom_type& operator[](unsigned long index) final;
-	BCS_DEBUG_API virtual const h_custom_type& operator[](unsigned long index) const final;
-	BCS_DEBUG_API virtual h_custom_type& get(unsigned long index) final;
-	BCS_DEBUG_API virtual const h_custom_type& get(unsigned long index) const final;
+	BCS_DEBUG_API virtual h_custom_type& operator[](uint32_t index) final;
+	BCS_DEBUG_API virtual const h_custom_type& operator[](uint32_t index) const final;
+	BCS_DEBUG_API virtual h_custom_type& get(uint32_t index) final;
+	BCS_DEBUG_API virtual const h_custom_type& get(uint32_t index) const final;
 	BCS_DEBUG_API virtual const h_custom_type* data() final;
-	BCS_DEBUG_API virtual unsigned long size() const final;
-	BCS_DEBUG_API virtual unsigned long data_size() const final;
+	BCS_DEBUG_API virtual uint32_t size() const final;
+	BCS_DEBUG_API virtual uint32_t data_size() const final;
 	BCS_DEBUG_API virtual h_custom_type& emplace_back() final;
 	BCS_DEBUG_API virtual h_custom_type& emplace_back(const h_prototype& value) final;
-	BCS_DEBUG_API virtual void reserve(unsigned long count) final;
-	BCS_DEBUG_API virtual void resize(unsigned long count) final;
-	BCS_DEBUG_API virtual void insert_hole(unsigned long index, unsigned long count) final;
-	BCS_DEBUG_API virtual void remove(unsigned long index) final;
+	BCS_DEBUG_API virtual void reserve(uint32_t count) final;
+	BCS_DEBUG_API virtual void resize(uint32_t count) final;
+	BCS_DEBUG_API virtual void insert_hole(uint32_t index, uint32_t count) final;
+	BCS_DEBUG_API virtual void remove(uint32_t index) final;
 	BCS_DEBUG_API virtual void clear() final;
 	BCS_DEBUG_API virtual const blofeld::s_tag_struct_definition& get_tag_struct_definition() const final;
 
@@ -44,24 +44,24 @@ const blofeld::s_tag_struct_definition& h_typed_block<h_custom_type>::get_tag_st
 
 #define _h_typed_block_array_operator_impl(h_custom_type)																								\
 template<>																																				\
-h_custom_type& h_typed_block<h_custom_type>::operator[](unsigned long index)																			\
+h_custom_type& h_typed_block<h_custom_type>::operator[](uint32_t index)																			\
 {																																						\
 	return std::vector<h_custom_type>::operator [](index);																								\
 }																																						\
 template<>																																				\
-const h_custom_type& h_typed_block<h_custom_type>::operator[](unsigned long index) const																\
+const h_custom_type& h_typed_block<h_custom_type>::operator[](uint32_t index) const																\
 {																																						\
 	return std::vector<h_custom_type>::operator [](index);																								\
 }																																						
 
 #define _h_typed_block_get_impl(h_custom_type)																											\
 template<>																																				\
-h_custom_type& h_typed_block<h_custom_type>::get(unsigned long index)																					\
+h_custom_type& h_typed_block<h_custom_type>::get(uint32_t index)																					\
 {																																						\
 	return std::vector<h_custom_type>::operator [](index);																								\
 }																																						\
 template<>																																				\
-const h_custom_type& h_typed_block<h_custom_type>::get(unsigned long index) const																		\
+const h_custom_type& h_typed_block<h_custom_type>::get(uint32_t index) const																		\
 {																																						\
 	return std::vector<h_custom_type>::operator [](index);																								\
 }
@@ -76,14 +76,14 @@ const h_custom_type* h_typed_block<h_custom_type>::data()																							
 
 #define _h_typed_block_size_impl(h_custom_type)																											\
 template<>																																				\
-unsigned long h_typed_block<h_custom_type>::size()  const																								\
+uint32_t h_typed_block<h_custom_type>::size()  const																								\
 {																																						\
 	return static_cast<unsigned long>(std::vector<h_custom_type>::size());																				\
 }																																						
 
 #define _h_typed_block_data_size_impl(h_custom_type)																									\
 template<>																																				\
-unsigned long h_typed_block<h_custom_type>::data_size() const																							\
+uint32_t h_typed_block<h_custom_type>::data_size() const																							\
 {																																						\
 	return static_cast<unsigned long>(std::vector<h_custom_type>::size() * sizeof(h_custom_type));														\
 }																																						
@@ -108,16 +108,16 @@ h_custom_type& h_typed_block<h_custom_type>::emplace_back(const h_prototype& val
 
 #define _h_typed_block_reserve_impl(h_custom_type)																										\
 template<>																																				\
-void h_typed_block<h_custom_type>::reserve(unsigned long count)																							\
+void h_typed_block<h_custom_type>::reserve(uint32_t count)																							\
 {																																						\
 	std::vector<h_custom_type>::reserve(count);																											\
 }																																						
 
 #define _h_typed_block_resize_impl(h_custom_type)																										\
 template<>																																				\
-void h_typed_block<h_custom_type>::resize(unsigned long count)																							\
+void h_typed_block<h_custom_type>::resize(uint32_t count)																							\
 {																																						\
-	unsigned long old_count = static_cast<unsigned long>(std::vector<h_custom_type>::size());															\
+	uint32_t old_count = static_cast<unsigned long>(std::vector<h_custom_type>::size());															\
 	std::vector<h_custom_type>::resize(count);																											\
 																																						\
 	{																																					\
@@ -125,7 +125,7 @@ void h_typed_block<h_custom_type>::resize(unsigned long count)																		
 		/* #TODO: is there a better way to do this?  */																									\
 																																						\
 		h_custom_type* raw_types = std::vector<h_custom_type>::data();																					\
-		for (unsigned long index = old_count; index < count; index++) 																					\
+		for (uint32_t index = old_count; index < count; index++) 																					\
 		{																																				\
 			raw_types[index]._set_parent(this);																											\
 		}																																				\
@@ -134,14 +134,14 @@ void h_typed_block<h_custom_type>::resize(unsigned long count)																		
 																																						
 #define _h_typed_block_insert_hole_impl(h_custom_type)																									\
 template<>																																				\
-void h_typed_block<h_custom_type>::insert_hole(unsigned long index, unsigned long count)																\
+void h_typed_block<h_custom_type>::insert_hole(uint32_t index, uint32_t count)																\
 {																																						\
 	std::vector<h_custom_type>::insert(std::vector<h_custom_type>::begin() + index, count, h_custom_type(this));										\
 }																																						
 
 #define _h_typed_block_remove_impl(h_custom_type)																										\
 template<>																																				\
-void h_typed_block<h_custom_type>::remove(unsigned long index)																							\
+void h_typed_block<h_custom_type>::remove(uint32_t index)																							\
 {																																						\
 	std::vector<h_custom_type>::erase(std::vector<h_custom_type>::begin() + index);																		\
 }																																						

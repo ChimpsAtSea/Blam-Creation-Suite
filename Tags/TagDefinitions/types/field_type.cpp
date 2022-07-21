@@ -4,7 +4,7 @@
 
 using namespace blofeld;
 
-unsigned long blofeld::get_blofeld_field_size(e_platform_type platform_type, e_field field)
+uint32_t blofeld::get_blofeld_field_size(e_platform_type platform_type, e_field field)
 {
 	switch (field)
 	{
@@ -15,7 +15,7 @@ unsigned long blofeld::get_blofeld_field_size(e_platform_type platform_type, e_f
 	case _field_char_integer:					return sizeof(char);
 	case _field_short_integer:					return sizeof(short);
 	case _field_long_integer:					return sizeof(long);
-	case _field_int64_integer:					return sizeof(long long);
+	case _field_int64_integer:					return sizeof(int64_t);
 	case _field_angle:							return sizeof(angle);
 	case _field_tag:							return sizeof(tag);
 	case _field_char_enum:						return sizeof(char);
@@ -79,7 +79,7 @@ unsigned long blofeld::get_blofeld_field_size(e_platform_type platform_type, e_f
 	case _field_data_path:						return sizeof(::c_static_string<256>);
 	case _field_pointer:
 	{
-		unsigned long pointer_size;
+		uint32_t pointer_size;
 		ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(platform_type, &pointer_size)));
 		return pointer_size;
 	};
@@ -88,31 +88,6 @@ unsigned long blofeld::get_blofeld_field_size(e_platform_type platform_type, e_f
 	}
 	return 0;
 }
-
-unsigned long blofeld::get_blofeld_field_size(const s_tag_field& field, s_engine_platform_build engine_platform_build)
-{
-	switch (field.field_type)
-	{
-	case _field_pad:							return field.padding;
-	case _field_useless_pad:					return 0;
-	case _field_skip:							return field.length;
-	case _field_struct:
-	{
-		unsigned long structure_size = blofeld::calculate_struct_size(engine_platform_build, *field.struct_definition);
-		return structure_size;
-	}
-	case _field_array:
-	{
-		unsigned long structure_size = blofeld::calculate_struct_size(engine_platform_build, field.array_definition->struct_definition);
-		unsigned long array_element_count = field.array_definition->count(engine_platform_build);
-		unsigned long array_size = structure_size * array_element_count;
-		return array_size;
-	}
-	default: return get_blofeld_field_size(engine_platform_build.platform_type, field.field_type);
-	}
-}
-
-
 
 #include <TagFieldTypeLookupTable\blofeld_field_type_accelerator.h>
 #include <TagFieldTypeLookupTable\blofeld_field_type_accelerator.inl>
@@ -136,7 +111,7 @@ BCS_RESULT blofeld::byteswap_field_data_inplace(e_field field, void* data, s_eng
 	FIELD_BYTESWAP(_field_char_integer, char);
 	FIELD_BYTESWAP(_field_short_integer, short);
 	FIELD_BYTESWAP(_field_long_integer, long);
-	FIELD_BYTESWAP(_field_int64_integer, long long);
+	FIELD_BYTESWAP(_field_int64_integer, int64_t);
 	FIELD_BYTESWAP(_field_angle, angle);
 	FIELD_BYTESWAP(_field_tag, tag);
 	FIELD_BYTESWAP(_field_char_enum, char);
@@ -201,15 +176,15 @@ BCS_RESULT blofeld::byteswap_field_data_inplace(e_field field, void* data, s_eng
 
 	if (field == _field_pointer)
 	{
-		unsigned long pointer_size;
+		uint32_t pointer_size;
 		ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(engine_platform_build.platform_type, &pointer_size)));
 		if (pointer_size == 4)
 		{
-			byteswap_inplace(*static_cast<unsigned long*>(data));
+			byteswap_inplace(*static_cast<uint32_t*>(data));
 		}
 		else if (pointer_size == 8)
 		{
-			byteswap_inplace(*static_cast<unsigned long long*>(data));
+			byteswap_inplace(*static_cast<uint64_t*>(data));
 		}
 		else return BCS_S_NO_CHANGES_MADE;
 	};
@@ -220,7 +195,7 @@ BCS_RESULT blofeld::byteswap_field_data_inplace(e_field field, void* data, s_eng
 	return BCS_E_FAIL;
 }
 
-BCS_RESULT blofeld::get_blofeld_tag_file_field_size(e_field field, s_engine_platform_build engine_platform_build, unsigned long& field_size)
+BCS_RESULT blofeld::get_blofeld_tag_file_field_size(e_field field, s_engine_platform_build engine_platform_build, uint32_t& field_size)
 {
 #define FIELD_TO_TAG_FILE_FIELD_SIZE(_field, size) if(_field == field) { field_size = (size); return BCS_S_OK; }
 
@@ -231,7 +206,7 @@ BCS_RESULT blofeld::get_blofeld_tag_file_field_size(e_field field, s_engine_plat
 	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_char_integer, sizeof(char));
 	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_short_integer, sizeof(short));
 	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_long_integer, sizeof(long));
-	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_int64_integer, sizeof(long long));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_int64_integer, sizeof(int64_t));
 	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_angle, sizeof(angle));
 	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_tag, sizeof(tag));
 	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_char_enum, sizeof(char));

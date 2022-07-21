@@ -354,7 +354,7 @@ struct s_bitmap_sequence_sprite
 {
 	short bitmap_index;
 	short : 16;
-	long : 32;
+	int : 32;
 	real left;
 	real right;
 	real top;
@@ -368,10 +368,10 @@ struct s_bitmap_sequence
 	c_static_string<32> name;
 	short first_bitmap_index;
 	short bitmap_count;
-	long : 32;
-	long : 32;
-	long : 32;
-	long : 32;
+	int : 32;
+	int : 32;
+	int : 32;
+	int : 32;
 	c_typed_tag_block<s_bitmap_sequence_sprite> sprites;
 };
 static_assert(sizeof(s_bitmap_sequence) == 0x40);
@@ -399,11 +399,11 @@ struct s_bitmap_image
 	char : 8;
 	char interleaved_texture_index;
 
-	long pixels_offset; // offset into resource pixel_data
-	long pixels_size;
+	int pixels_offset; // offset into resource pixel_data
+	int pixels_size;
 
-	long high_res_pixels_offset; // offset into high_res resource pixel_data
-	long high_res_pixels_size;
+	int high_res_pixels_offset; // offset into high_res resource pixel_data
+	int high_res_pixels_size;
 
 	void *pixels_address;
 	void *high_res_pixels_address;
@@ -455,13 +455,13 @@ struct s_bitmap_texture_resource
 	char mipmap_count;
 	c_enum<e_bitmap_type, char> type;
 	char unknown1;
-	long unknown2;
-	long unknown3;
+	int unknown2;
+	int unknown3;
 	c_enum<e_bitmap_format, char> format;
 	c_enum<e_bitmap_curve, char> curve;
 	c_flags<e_bitmap_image_flags, word> flags;
-	long unknown4;
-	long unknown5;
+	int unknown4;
+	int unknown5;
 };
 static_assert_64(sizeof(s_bitmap_texture_resource) == 0x44);
 

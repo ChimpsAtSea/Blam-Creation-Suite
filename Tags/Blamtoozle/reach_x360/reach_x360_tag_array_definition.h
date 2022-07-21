@@ -6,7 +6,7 @@ class c_reach_x360_tag_group_definition;
 struct s_reach_x360_tag_array_definition
 {
 	ptr32 name_address;
-	unsigned long element_count;
+	uint32_t element_count;
 	ptr32 element_count_string;
 	ptr32 structure_definition_address;
 };
@@ -28,7 +28,7 @@ public:
 
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;
-	virtual unsigned long get_element_count() override;
+	virtual uint32_t get_element_count() override;
 	virtual const char* get_element_count_string() override;
 	virtual c_blamtoozle_tag_struct_definition& get_struct_definition() override;
 

@@ -10,7 +10,7 @@ t_element byteswap(t_element value)
 	return value;
 }
 
-template<typename t_element, const long k_maximum_count>
+template<typename t_element, const int32_t k_maximum_count>
 void byteswap_inplace(t_element(&arr)[k_maximum_count])
 {
 	for (t_element& value : arr)

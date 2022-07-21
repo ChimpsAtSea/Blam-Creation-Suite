@@ -23,7 +23,7 @@ c_window_render_context::c_window_render_context(
 		depth_render_target));
 	BCS_FAIL_THROW(graphics_swap_chain_create(graphics, &window, swap_chain_frames, swap_chain));
 
-	for (unsigned long swap_chain_index = 0; swap_chain_index < swap_chain_frames; swap_chain_index++)
+	for (uint32_t swap_chain_index = 0; swap_chain_index < swap_chain_frames; swap_chain_index++)
 	{
 		BCS_FAIL_THROW(graphics_swapchain_color_render_target_create(
 			graphics,
@@ -69,7 +69,7 @@ c_window_render_context::~c_window_render_context()
 	BCS_FAIL_THROW(swap_chain_on_resize_finish);
 
 	BCS_RESULT render_pass_destroy_result = graphics_render_pass_destroy(render_pass);
-	for (unsigned long swap_chain_index = 0; swap_chain_index < swap_chain_frames; swap_chain_index++)
+	for (uint32_t swap_chain_index = 0; swap_chain_index < swap_chain_frames; swap_chain_index++)
 	{
 		BCS_RESULT swap_chain_render_target_destroy_result = graphics_render_target_destroy(swap_chain_render_targets[swap_chain_index]);
 		ASSERT(BCS_SUCCEEDED(swap_chain_render_target_destroy_result));
@@ -119,12 +119,12 @@ BCS_RESULT c_window_render_context::get_graphics(c_graphics*& out_graphics)
 	return BCS_S_OK;
 }
 
-unsigned long c_window_render_context::get_width()
+uint32_t c_window_render_context::get_width()
 {
 	return window.width;
 }
 
-unsigned long c_window_render_context::get_height()
+uint32_t c_window_render_context::get_height()
 {
 	return window.height;
 }
@@ -139,7 +139,7 @@ float c_window_render_context::get_height_float()
 	return window.height_float;
 }
 
-void c_window_render_context::window_resize(c_window_render_context& _this, unsigned long width, unsigned long height)
+void c_window_render_context::window_resize(c_window_render_context& _this, uint32_t width, uint32_t height)
 {
 	_this.depth_render_target->resize(width, height);
 	console_write_line("window resize event %u %u", width, height);
@@ -167,7 +167,7 @@ void c_window_render_context::graphics_present(c_window_render_context& _this)
 	_this.swap_chain->present();
 }
 
-void c_window_render_context::swap_chain_resize_finish(c_window_render_context& _this, unsigned long width, unsigned height)
+void c_window_render_context::swap_chain_resize_finish(c_window_render_context& _this, uint32_t width, unsigned height)
 {
 	_this.render_pass->resize(width, height);
 }

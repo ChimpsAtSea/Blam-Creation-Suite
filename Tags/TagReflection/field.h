@@ -1,6 +1,6 @@
 #pragma once
 
-template<typename field_type, typename parent_type, unsigned long _field_index>
+template<typename field_type, typename parent_type, uint32_t _field_index>
 class h_field
 {
 public:
@@ -33,7 +33,7 @@ bool h_field<field_type, parent_type, _field_index>::operator==(field_type const
 #define h_field_func_impl3(field_type, parent_type, _field_index, _field_name)										\
 field_type& h_field<field_type, parent_type, _field_index>::operator=(field_type const& new_value)					\
 {																													\
-	unsigned long _field_offset = offsetof(parent_type, _field_name);												\
+	uint32_t _field_offset = offsetof(parent_type, _field_name);												\
 	h_type* _type = reinterpret_cast<h_type*>(reinterpret_cast<uintptr_t>(this) - _field_offset);					\
 																													\
 	if constexpr (/*std::is_pointer<field_type>::value ||*/ std::is_arithmetic<field_type>::value)					\

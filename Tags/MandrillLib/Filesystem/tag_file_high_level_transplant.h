@@ -11,7 +11,7 @@ class c_tag_file_high_level_transplant
 {
 public:
 	void* tag_file_data;
-	unsigned long long tag_file_data_size;
+	uint64_t tag_file_data_size;
 
 	s_single_tag_file_header* header_data;
 	c_single_tag_file_layout_reader* layout_reader;

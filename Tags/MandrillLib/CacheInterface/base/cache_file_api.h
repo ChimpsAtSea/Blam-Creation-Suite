@@ -40,9 +40,9 @@ BCS_DEBUG_API BCS_RESULT close_cache_file_reader(
 
 struct s_cache_file_build_info
 {
-	long file_version;
-	long file_length;
-	long file_compressed_length;
+	int32_t file_version;
+	int32_t file_length;
+	int32_t file_compressed_length;
 	c_static_string<256> source_file;
 	c_static_string<32> build_version;
 	c_enum_no_init<gen3::e_scenario_type, short> scenario_type;
@@ -54,7 +54,7 @@ struct s_cache_file_build_info
 	c_static_string<32> name;
 	c_static_string<256> relative_path;
 	intptr32_t expected_base_address;
-	unsigned long xdk_version;
+	uint32_t xdk_version;
 	gen3::s_network_http_request_hash hash;
 	gen3::s_rsa_signature rsa;
 };
@@ -79,9 +79,9 @@ struct s_cache_file_buffer_info
 {
 	const char* begin;
 	const char* end;
-	unsigned long size;
-	long offset;
-	long offset_mask;
+	uint32_t size;
+	int32_t offset;
+	int32_t offset_mask;
 };
 
 enum e_cache_file_buffer_index
@@ -137,7 +137,7 @@ BCS_DEBUG_API BCS_RESULT get_cache_file_reader_buffers(
 
 BCS_DEBUG_API BCS_RESULT create_cache_cluster(
 	c_cache_file_reader** cache_readers,
-	unsigned long cache_reader_count,
+	uint32_t cache_reader_count,
 	s_engine_platform_build engine_platform_build,
 	c_cache_cluster** cache_cluster
 );

@@ -47,7 +47,7 @@ void c_halo1_bitmap_tag_viewer_tab::render_game_layer_impl()
 
 }
 
-void c_halo1_bitmap_tag_viewer_tab::render_bitmap(long index, h_bitmap_data& bitmap_data)
+void c_halo1_bitmap_tag_viewer_tab::render_bitmap(int32_t index, h_bitmap_data& bitmap_data)
 {
 	ImGui::Text("%i w:%i h:%i d:%i", index, (int)bitmap_data.width, (int)bitmap_data.height, (int)bitmap_data.depth);
 }
@@ -57,7 +57,7 @@ void c_halo1_bitmap_tag_viewer_tab::render_bitmap_enumerable(h_enumerable& enume
 	constexpr float k_min_block_width = 1000.0f;
 	constexpr float k_block_header_height = 80.0f;
 
-	unsigned long const count = enumerable.size();
+	uint32_t const count = enumerable.size();
 
 	ImGui::PushID(this);
 	ImGuiID const is_open_id = ImGui::GetID("is_open");
@@ -314,7 +314,7 @@ void c_halo1_bitmap_tag_viewer_tab::render_bitmap_enumerable(h_enumerable& enume
 	if (block != nullptr && is_inserting)
 	{
 		int32_t insert_offset = static_cast<unsigned long>(storage->GetInt(inserting_offset_id));
-		unsigned long insert_count = static_cast<unsigned long>(storage->GetInt(inserting_count_id));
+		uint32_t insert_count = static_cast<unsigned long>(storage->GetInt(inserting_count_id));
 
 		ImGuiIO& io = ImGui::GetIO();
 		ImGui::SetNextWindowPos({ io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.5f }, ImGuiCond_Always, ImVec2(0.5f, 0.5f));

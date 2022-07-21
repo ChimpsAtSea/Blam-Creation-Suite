@@ -7750,18 +7750,18 @@ namespace xbox360
 		multilingual_unicode_string_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		multiplayer_color_block_block,
-		"multiplayer_color_block",
-		"multiplayer_color_block",
-		32,
-		multiplayer_color_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		multiplayer_color_block_block$2,
 		"multiplayer_color_block",
 		"multiplayer_color_block",
 		32,
 		multiplayer_color_block$2);
+
+	TAG_BLOCK_FROM_STRUCT(
+		multiplayer_color_block_block,
+		"multiplayer_color_block",
+		"multiplayer_color_block",
+		32,
+		multiplayer_color_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		multiplayer_constants_block_block,
@@ -12398,18 +12398,18 @@ namespace xbox360
 		vertex_shader_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
-		vertex_types_block_block,
-		"vertex_types_block",
-		"vertex_types_block",
-		31,
-		vertex_types_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		vertex_types_block_block$2,
 		"vertex_types_block",
 		"vertex_types_block",
 		1024,
 		vertex_types_block$2);
+
+	TAG_BLOCK_FROM_STRUCT(
+		vertex_types_block_block,
+		"vertex_types_block",
+		"vertex_types_block",
+		31,
+		vertex_types_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		vertices_block_block,
@@ -33238,25 +33238,6 @@ namespace xbox360
 	};
 	STRING_LIST(fluid_dynamics_flags, fluid_dynamics_flags_strings, _countof(fluid_dynamics_flags_strings));
 
-	#define FOG_LIGHT_STRUCT_DEFINITION$2_ID { 0x2AD3FD7A, 0xB5304EE7, 0x949D19DE, 0x8685A5BC }
-	TAG_STRUCT(
-		fog_light_struct_definition$2,
-		"fog_light_struct_definition",
-		"fog_light_struct_definition",
-		"s_fog_light_struct_definition$2",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		FOG_LIGHT_STRUCT_DEFINITION$2_ID)
-	{
-		{ _field_real, "pitch angle", nullptr, "degree" },
-		{ _field_real, "yaw angle", nullptr, "degree" },
-		{ _field_real, "angular radius", nullptr, "degree" },
-		{ _field_real_rgb_color, "tint color" },
-		{ _field_real, "tint color intensity" },
-		{ _field_real_vector_3d, "direction" },
-		{ _field_terminator }
-	};
-
 	#define FOG_LIGHT_STRUCT_DEFINITION_ID { 0x2EA4F208, 0x23EB43DA, 0x96CF1259, 0x7F716CD9 }
 	TAG_STRUCT(
 		fog_light_struct_definition,
@@ -33275,6 +33256,25 @@ namespace xbox360
 		{ _field_real, "angular falloff steepness" },
 		{ _field_real, "distance falloff steepness" },
 		{ _field_real, "nearby cutoff percentage" },
+		{ _field_terminator }
+	};
+
+	#define FOG_LIGHT_STRUCT_DEFINITION$2_ID { 0x2AD3FD7A, 0xB5304EE7, 0x949D19DE, 0x8685A5BC }
+	TAG_STRUCT(
+		fog_light_struct_definition$2,
+		"fog_light_struct_definition",
+		"fog_light_struct_definition",
+		"s_fog_light_struct_definition$2",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		FOG_LIGHT_STRUCT_DEFINITION$2_ID)
+	{
+		{ _field_real, "pitch angle", nullptr, "degree" },
+		{ _field_real, "yaw angle", nullptr, "degree" },
+		{ _field_real, "angular radius", nullptr, "degree" },
+		{ _field_real_rgb_color, "tint color" },
+		{ _field_real, "tint color intensity" },
+		{ _field_real_vector_3d, "direction" },
 		{ _field_terminator }
 	};
 
@@ -36636,6 +36636,20 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
+	#define GPU_DATA_STRUCT_ID { 0xF0F224FF, 0x7CD04586, 0x9698B35C, 0x7E98B715 }
+	TAG_STRUCT(
+		gpu_data_struct,
+		"gpu_data_struct",
+		"gpu_data_struct",
+		"s_gpu_data_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		GPU_DATA_STRUCT_ID)
+	{
+		{ _field_block, "m_variants", &blofeld::haloreach::xbox360::gpu_variants_block_block },
+		{ _field_terminator }
+	};
+
 	#define GPU_DATA_STRUCT$2_ID { 0x62F911D6, 0x9725493B, 0x8FFDB178, 0x608FC7B }
 	TAG_STRUCT(
 		gpu_data_struct$2,
@@ -36648,20 +36662,6 @@ namespace xbox360
 	{
 		{ _field_block, "runtime m_sprite", &blofeld::haloreach::xbox360::gpu_sprite_block_block },
 		{ _field_block, "runtime m_frames", &blofeld::haloreach::xbox360::gpu_variants_block_block },
-		{ _field_terminator }
-	};
-
-	#define GPU_DATA_STRUCT_ID { 0xF0F224FF, 0x7CD04586, 0x9698B35C, 0x7E98B715 }
-	TAG_STRUCT(
-		gpu_data_struct,
-		"gpu_data_struct",
-		"gpu_data_struct",
-		"s_gpu_data_struct",
-		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GPU_DATA_STRUCT_ID)
-	{
-		{ _field_block, "m_variants", &blofeld::haloreach::xbox360::gpu_variants_block_block },
 		{ _field_terminator }
 	};
 
@@ -41790,20 +41790,6 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_COLOR_BLOCK$2_ID { 0x7E9866A8, 0xDE8F426F, 0x9F08988D, 0xFED37A7C }
-	TAG_STRUCT(
-		multiplayer_color_block$2,
-		"multiplayer_color_block",
-		"multiplayer_color_block",
-		"s_multiplayer_color_block$2",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MULTIPLAYER_COLOR_BLOCK$2_ID)
-	{
-		{ _field_real_rgb_color, "color" },
-		{ _field_terminator }
-	};
-
 	#define MULTIPLAYER_COLOR_BLOCK_ID { 0xA6C9756, 0xF0E24866, 0xA708F3E9, 0xC9C41962 }
 	TAG_STRUCT(
 		multiplayer_color_block,
@@ -41813,6 +41799,20 @@ namespace xbox360
 		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_COLOR_BLOCK_ID)
+	{
+		{ _field_real_rgb_color, "color" },
+		{ _field_terminator }
+	};
+
+	#define MULTIPLAYER_COLOR_BLOCK$2_ID { 0x7E9866A8, 0xDE8F426F, 0x9F08988D, 0xFED37A7C }
+	TAG_STRUCT(
+		multiplayer_color_block$2,
+		"multiplayer_color_block",
+		"multiplayer_color_block",
+		"s_multiplayer_color_block$2",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		MULTIPLAYER_COLOR_BLOCK$2_ID)
 	{
 		{ _field_real_rgb_color, "color" },
 		{ _field_terminator }
@@ -55912,15 +55912,15 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	#define SOLO_FOG_PARAMETERS_STRUCT_DEFINITION$2_ID { 0x3751744A, 0xDB6F4C83, 0x8F32A181, 0x4CC479AE }
+	#define SOLO_FOG_PARAMETERS_STRUCT_DEFINITION_ID { 0xD82AB114, 0x9244998, 0x857CA148, 0x24F24947 }
 	TAG_STRUCT(
-		solo_fog_parameters_struct_definition$2,
+		solo_fog_parameters_struct_definition,
 		"solo_fog_parameters_struct_definition",
 		"solo_fog_parameters_struct_definition",
-		"s_solo_fog_parameters_struct_definition$2",
+		"s_solo_fog_parameters_struct_definition",
 		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SOLO_FOG_PARAMETERS_STRUCT_DEFINITION$2_ID)
+		SOLO_FOG_PARAMETERS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_real, "base height", nullptr, "world units" },
 		{ _field_real, "fog height", nullptr, "world units" },
@@ -55931,15 +55931,15 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	#define SOLO_FOG_PARAMETERS_STRUCT_DEFINITION_ID { 0xD82AB114, 0x9244998, 0x857CA148, 0x24F24947 }
+	#define SOLO_FOG_PARAMETERS_STRUCT_DEFINITION$2_ID { 0x3751744A, 0xDB6F4C83, 0x8F32A181, 0x4CC479AE }
 	TAG_STRUCT(
-		solo_fog_parameters_struct_definition,
+		solo_fog_parameters_struct_definition$2,
 		"solo_fog_parameters_struct_definition",
 		"solo_fog_parameters_struct_definition",
-		"s_solo_fog_parameters_struct_definition",
+		"s_solo_fog_parameters_struct_definition$2",
 		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SOLO_FOG_PARAMETERS_STRUCT_DEFINITION_ID)
+		SOLO_FOG_PARAMETERS_STRUCT_DEFINITION$2_ID)
 	{
 		{ _field_real, "base height", nullptr, "world units" },
 		{ _field_real, "fog height", nullptr, "world units" },
@@ -59333,6 +59333,39 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
+	#define STRUCTURE_LIGHTING_GENERIC_LIGHT_DEFINITION_BLOCK_ID { 0x6B0C4526, 0x60D4C6E, 0x886F9D53, 0x72240B9A }
+	TAG_STRUCT(
+		structure_lighting_generic_light_definition_block,
+		"structure_lighting_generic_light_definition_block",
+		"structure_lighting_generic_light_definition_block",
+		"s_structure_lighting_generic_light_definition_block",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		STRUCTURE_LIGHTING_GENERIC_LIGHT_DEFINITION_BLOCK_ID)
+	{
+		{ _field_string, "name" },
+		{ _field_long_flags, "flags", "for programmers", &blofeld::haloreach::xbox360::lightmap_quality_flags },
+		{ _field_long_integer, "final gather pitch sample", "Initial final gather ray numbers" },
+		{ _field_long_integer, "final gather maximum number of samples", "maximum final gather ray numbers after adaptive sampling" },
+		{ _field_real, "final gather deviance", "adaptive final gathering subdivision threshold.  This is the most important setting to increase the quality" },
+		{ _field_long_integer, "maximum number of starting photons", "starting photon number. (after bounces it increases depends on the albedo)" },
+		{ _field_long_integer, "multisample count", "multisample setting. (1x1, 2x2, 3x3 …). So our lighting is average over an area on the surface" },
+		{ _field_long_integer, "rays per solid angle for area light", "Number of rays for direct illumination of emmissive surface per solid angle" },
+		{ _field_long_integer, "rays per solid angle for sky light", "Number of rays for direct illumination of sky light" },
+		{ _field_long_integer, "rays per solid angle for the sun", "Number of rays for direct illumination of the sun" },
+		{ _field_long_integer, "minimum rays for the sun" },
+		{ _field_long_integer, "maximum rays for the sun" },
+		{ _field_real, "photon scaler for extra bsps", "Shoot less photons for neighbor bsps" },
+		{ _field_terminator }
+	};
+
+	STRINGS(lightmap_quality_flags)
+	{
+		"perform photon mapping",
+		"performa final gathering"
+	};
+	STRING_LIST(lightmap_quality_flags, lightmap_quality_flags_strings, _countof(lightmap_quality_flags_strings));
+
 	#define STRUCTURE_LIGHTING_GENERIC_LIGHT_DEFINITION_BLOCK$2_ID { 0x5CAD7A73, 0x815E4084, 0xBEC019F8, 0xB6D14D02 }
 	TAG_STRUCT(
 		structure_lighting_generic_light_definition_block$2,
@@ -59388,39 +59421,6 @@ namespace xbox360
 		"circle"
 	};
 	STRING_LIST(structure_lighting_generic_light_shape_enum, structure_lighting_generic_light_shape_enum_strings, _countof(structure_lighting_generic_light_shape_enum_strings));
-
-	#define STRUCTURE_LIGHTING_GENERIC_LIGHT_DEFINITION_BLOCK_ID { 0x6B0C4526, 0x60D4C6E, 0x886F9D53, 0x72240B9A }
-	TAG_STRUCT(
-		structure_lighting_generic_light_definition_block,
-		"structure_lighting_generic_light_definition_block",
-		"structure_lighting_generic_light_definition_block",
-		"s_structure_lighting_generic_light_definition_block",
-		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURE_LIGHTING_GENERIC_LIGHT_DEFINITION_BLOCK_ID)
-	{
-		{ _field_string, "name" },
-		{ _field_long_flags, "flags", "for programmers", &blofeld::haloreach::xbox360::lightmap_quality_flags },
-		{ _field_long_integer, "final gather pitch sample", "Initial final gather ray numbers" },
-		{ _field_long_integer, "final gather maximum number of samples", "maximum final gather ray numbers after adaptive sampling" },
-		{ _field_real, "final gather deviance", "adaptive final gathering subdivision threshold.  This is the most important setting to increase the quality" },
-		{ _field_long_integer, "maximum number of starting photons", "starting photon number. (after bounces it increases depends on the albedo)" },
-		{ _field_long_integer, "multisample count", "multisample setting. (1x1, 2x2, 3x3 …). So our lighting is average over an area on the surface" },
-		{ _field_long_integer, "rays per solid angle for area light", "Number of rays for direct illumination of emmissive surface per solid angle" },
-		{ _field_long_integer, "rays per solid angle for sky light", "Number of rays for direct illumination of sky light" },
-		{ _field_long_integer, "rays per solid angle for the sun", "Number of rays for direct illumination of the sun" },
-		{ _field_long_integer, "minimum rays for the sun" },
-		{ _field_long_integer, "maximum rays for the sun" },
-		{ _field_real, "photon scaler for extra bsps", "Shoot less photons for neighbor bsps" },
-		{ _field_terminator }
-	};
-
-	STRINGS(lightmap_quality_flags)
-	{
-		"perform photon mapping",
-		"performa final gathering"
-	};
-	STRING_LIST(lightmap_quality_flags, lightmap_quality_flags_strings, _countof(lightmap_quality_flags_strings));
 
 	#define STRUCTURE_LIGHTING_GENERIC_LIGHT_INSTANCE_BLOCK_ID { 0x9005BBF, 0x4E134B68, 0x9B53BFCC, 0x6CC50117 }
 	TAG_STRUCT(
@@ -62275,6 +62275,20 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
+	#define TORQUE_CURVE_STRUCT_ID { 0xA1B86A30, 0x21864A2C, 0xB26E5CA6, 0xF2DB9FC3 }
+	TAG_STRUCT(
+		torque_curve_struct,
+		"torque_curve_struct",
+		"torque_curve_struct",
+		"s_torque_curve_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		TORQUE_CURVE_STRUCT_ID)
+	{
+		{ _field_struct, "function", &blofeld::haloreach::xbox360::scalar_function_named_struct },
+		{ _field_terminator }
+	};
+
 	#define TORQUE_CURVE_STRUCT$2_ID { 0x1AFF241A, 0xC474D3C, 0xA9BBEF06, 0xE9734D22 }
 	TAG_STRUCT(
 		torque_curve_struct$2,
@@ -62292,20 +62306,6 @@ namespace xbox360
 		{ _field_real, "torque at max angular velocity", "generally 0 for loading torque and something less than max torque for cruising torque" },
 		{ _field_real, "torque at 2x max angular velocity" },
 		FIELD_USELESS_PAD("value", 8),
-		{ _field_terminator }
-	};
-
-	#define TORQUE_CURVE_STRUCT_ID { 0xA1B86A30, 0x21864A2C, 0xB26E5CA6, 0xF2DB9FC3 }
-	TAG_STRUCT(
-		torque_curve_struct,
-		"torque_curve_struct",
-		"torque_curve_struct",
-		"s_torque_curve_struct",
-		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		TORQUE_CURVE_STRUCT_ID)
-	{
-		{ _field_struct, "function", &blofeld::haloreach::xbox360::scalar_function_named_struct },
 		{ _field_terminator }
 	};
 
@@ -62621,22 +62621,6 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	#define UNDERWATER_SETTING_BLOCK$2_ID { 0x374A69ED, 0x97D24CE5, 0x900F5C79, 0xA3FD83B1 }
-	TAG_STRUCT(
-		underwater_setting_block$2,
-		"underwater_setting_block",
-		"underwater_setting_block",
-		"s_underwater_setting_block$2",
-		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		UNDERWATER_SETTING_BLOCK$2_ID)
-	{
-		{ _field_string_id, "Name" },
-		{ _field_real, "Murkiness" },
-		{ _field_real_rgb_color, "Fog Color" },
-		{ _field_terminator }
-	};
-
 	#define UNDERWATER_SETTING_BLOCK_ID { 0x48C345A4, 0xB5F0449A, 0xAA54D20B, 0x1295444A }
 	TAG_STRUCT(
 		underwater_setting_block,
@@ -62646,6 +62630,22 @@ namespace xbox360
 		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNDERWATER_SETTING_BLOCK_ID)
+	{
+		{ _field_string_id, "Name" },
+		{ _field_real, "Murkiness" },
+		{ _field_real_rgb_color, "Fog Color" },
+		{ _field_terminator }
+	};
+
+	#define UNDERWATER_SETTING_BLOCK$2_ID { 0x374A69ED, 0x97D24CE5, 0x900F5C79, 0xA3FD83B1 }
+	TAG_STRUCT(
+		underwater_setting_block$2,
+		"underwater_setting_block",
+		"underwater_setting_block",
+		"s_underwater_setting_block$2",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		UNDERWATER_SETTING_BLOCK$2_ID)
 	{
 		{ _field_string_id, "Name" },
 		{ _field_real, "Murkiness" },
@@ -65222,6 +65222,21 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
+	#define VERTEX_TYPES_BLOCK$2_ID { 0x179BB0D5, 0x3B834BE0, 0x81D71471, 0xB7FD5D61 }
+	TAG_STRUCT(
+		vertex_types_block$2,
+		"vertex_types_block",
+		"vertex_types_block",
+		"s_vertex_types_block$2",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		VERTEX_TYPES_BLOCK$2_ID)
+	{
+		{ _field_char_integer, "start index" },
+		{ _field_char_integer, "count" },
+		{ _field_terminator }
+	};
+
 	#define VERTEX_TYPES_BLOCK_ID { 0x10D75123, 0xB1E940D6, 0x93113433, 0x80D97C43 }
 	TAG_STRUCT(
 		vertex_types_block,
@@ -65272,21 +65287,6 @@ namespace xbox360
 		"light_volume_precompiled"
 	};
 	STRING_LIST(vertex_types_names_enum, vertex_types_names_enum_strings, _countof(vertex_types_names_enum_strings));
-
-	#define VERTEX_TYPES_BLOCK$2_ID { 0x179BB0D5, 0x3B834BE0, 0x81D71471, 0xB7FD5D61 }
-	TAG_STRUCT(
-		vertex_types_block$2,
-		"vertex_types_block",
-		"vertex_types_block",
-		"s_vertex_types_block$2",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		VERTEX_TYPES_BLOCK$2_ID)
-	{
-		{ _field_char_integer, "start index" },
-		{ _field_char_integer, "count" },
-		{ _field_terminator }
-	};
 
 	#define VERTICES_BLOCK_ID { 0x6C3F6A60, 0x1FCE4C6A, 0x8F89E265, 0xE56D2F60 }
 	TAG_STRUCT(
@@ -67594,7 +67594,7 @@ namespace xbox360
 		MAXIMUM_BITMAP_PIXELS_SIZE);
 
 	TAG_DATA(
-		code_block$2,
+		code_block,
 		"code_block",
 		10,
 		0,
@@ -67602,7 +67602,7 @@ namespace xbox360
 		UNSIGNED_SHORT_MAX);
 
 	TAG_DATA(
-		code_block,
+		code_block$2,
 		"code_block",
 		10,
 		0,
@@ -67642,20 +67642,20 @@ namespace xbox360
 		MAXIMUM_EDITOR_SCENARIO_DATA_SIZE);
 
 	TAG_DATA(
-		error_report_string_data,
-		"error_report_string_data",
-		2,
-		0,
-		8192,
-		MAXIMUM_ERROR_REPORT_STRING_LENGTH+1);
-
-	TAG_DATA(
 		error_report_string_data$2,
 		"error_report_string_data",
 		2,
 		0,
 		131072,
 		k_max_error_string_length);
+
+	TAG_DATA(
+		error_report_string_data,
+		"error_report_string_data",
+		2,
+		0,
+		8192,
+		MAXIMUM_ERROR_REPORT_STRING_LENGTH+1);
 
 	TAG_DATA(
 		function_definition_data,

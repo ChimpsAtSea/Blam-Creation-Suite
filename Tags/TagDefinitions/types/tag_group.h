@@ -12,17 +12,17 @@ namespace blofeld
 			const char* const name,
 			const char* const symbol_name,
 			const char* const filename,
-			long const line,
+			int32_t const line,
 			const char* const group_tag_macro_symbol,
-			unsigned long const group_tag,
-			unsigned long const version,
+			uint32_t const group_tag,
+			uint32_t const version,
 			const s_tag_block_definition& block_definition,
 			const s_tag_group* const parent_tag_group
 		);
 
 		const char* const name;
-		unsigned long const group_tag;
-		unsigned long const version;
+		uint32_t const group_tag;
+		uint32_t const version;
 		const s_tag_block_definition& block_definition;
 		const s_tag_group* const parent_tag_group;
 		char group_tag_short_string[8];
@@ -30,6 +30,6 @@ namespace blofeld
 		const char* const group_tag_macro_symbol;
 		const char* const symbol_name;
 		const char* const filename;
-		long const line;
+		int32_t const line;
 	};
 }

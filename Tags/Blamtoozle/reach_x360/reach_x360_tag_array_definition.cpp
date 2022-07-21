@@ -42,7 +42,7 @@ const char* c_reach_x360_tag_array_definition::get_code_symbol_name()
 	return code_symbol_name.c_str();
 }
 
-unsigned long c_reach_x360_tag_array_definition::get_element_count()
+uint32_t c_reach_x360_tag_array_definition::get_element_count()
 {
 	return array_definition.element_count;
 }

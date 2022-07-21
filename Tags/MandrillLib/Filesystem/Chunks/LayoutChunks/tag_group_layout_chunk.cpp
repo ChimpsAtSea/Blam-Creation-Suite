@@ -78,96 +78,96 @@ BCS_RESULT c_tag_group_layout_chunk::read_chunk(void* userdata, const void* data
 	return rs;
 }
 
-unsigned long c_tag_group_layout_chunk::get_tag_group_block_index() const
+uint32_t c_tag_group_layout_chunk::get_tag_group_block_index() const
 {
 	//if (layout_header_prechunk) return layout_header_prechunk->tag_group_block_index; // #TODO: how to get this???
 	if (layout_header_preinterop) return layout_header_preinterop->tag_group_block_index;
 	return 0;
 }
 
-unsigned long c_tag_group_layout_chunk::get_string_data_size() const
+uint32_t c_tag_group_layout_chunk::get_string_data_size() const
 {
 	if (layout_header_prechunk) return layout_header_prechunk->string_data_size;
 	if (layout_header_preinterop) return layout_header_preinterop->string_data_size;
 	return 0;
 }
 
-unsigned long c_tag_group_layout_chunk::get_string_offset_count() const
+uint32_t c_tag_group_layout_chunk::get_string_offset_count() const
 {
 	if (layout_header_prechunk) return layout_header_prechunk->string_offset_count;
 	if (layout_header_preinterop) return layout_header_preinterop->string_offset_count;
 	return 0;
 }
 
-unsigned long c_tag_group_layout_chunk::get_string_list_count() const
+uint32_t c_tag_group_layout_chunk::get_string_list_count() const
 {
 	if (layout_header_prechunk) return layout_header_prechunk->string_list_count;
 	if (layout_header_preinterop) return layout_header_preinterop->string_list_count;
 	return 0;
 }
 
-unsigned long c_tag_group_layout_chunk::get_custom_block_index_search_names_count() const
+uint32_t c_tag_group_layout_chunk::get_custom_block_index_search_names_count() const
 {
 	if (layout_header_prechunk) return layout_header_prechunk->custom_block_index_search_names_count;
 	if (layout_header_preinterop) return layout_header_preinterop->custom_block_index_search_names_count;
 	return 0;
 }
 
-unsigned long c_tag_group_layout_chunk::get_data_definition_name_count() const
+uint32_t c_tag_group_layout_chunk::get_data_definition_name_count() const
 {
 	if (layout_header_prechunk) return layout_header_prechunk->data_definition_name_count;
 	if (layout_header_preinterop) return layout_header_preinterop->data_definition_name_count;
 	return 0;
 }
 
-unsigned long c_tag_group_layout_chunk::get_array_definition_count() const
+uint32_t c_tag_group_layout_chunk::get_array_definition_count() const
 {
 	if (layout_header_prechunk) return layout_header_prechunk->array_definition_count;
 	if (layout_header_preinterop) return layout_header_preinterop->array_definition_count;
 	return 0;
 }
 
-unsigned long c_tag_group_layout_chunk::get_field_type_count() const
+uint32_t c_tag_group_layout_chunk::get_field_type_count() const
 {
 	if (layout_header_prechunk) return layout_header_prechunk->field_type_count;
 	if (layout_header_preinterop) return layout_header_preinterop->field_type_count;
 	return 0;
 }
 
-unsigned long c_tag_group_layout_chunk::get_field_count() const
+uint32_t c_tag_group_layout_chunk::get_field_count() const
 {
 	if (layout_header_prechunk) return layout_header_prechunk->field_count;
 	if (layout_header_preinterop) return layout_header_preinterop->field_count;
 	return 0;
 }
 
-unsigned long c_tag_group_layout_chunk::get_block_definition_count() const
+uint32_t c_tag_group_layout_chunk::get_block_definition_count() const
 {
 	if (layout_header_prechunk) return layout_header_prechunk->aggregate_definition_count;
 	if (layout_header_preinterop) return layout_header_preinterop->block_definition_count;
 	return 0;
 }
 
-unsigned long c_tag_group_layout_chunk::get_struct_definition_count() const
+uint32_t c_tag_group_layout_chunk::get_struct_definition_count() const
 {
 	if (layout_header_prechunk) return layout_header_prechunk->aggregate_definition_count;
 	if (layout_header_preinterop) return layout_header_preinterop->struct_definition_count;
 	return 0;
 }
 
-unsigned long c_tag_group_layout_chunk::get_resource_definition_count() const
+uint32_t c_tag_group_layout_chunk::get_resource_definition_count() const
 {
 	if (layout_header_preinterop) return layout_header_preinterop->resource_definition_count;
 	return 0;
 }
 
-unsigned long c_tag_group_layout_chunk::get_interop_definition_count() const
+uint32_t c_tag_group_layout_chunk::get_interop_definition_count() const
 {
 	if (layout_header_v3) return layout_header_v3->interop_definition_count;
 	return 0;
 }
 
-unsigned long c_tag_group_layout_chunk::get_aggregate_definition_count() const
+uint32_t c_tag_group_layout_chunk::get_aggregate_definition_count() const
 {
 	if (layout_header_prechunk) layout_header_prechunk->aggregate_definition_count;
 	return 0;

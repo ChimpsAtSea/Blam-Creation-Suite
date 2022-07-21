@@ -13,7 +13,7 @@ c_graphics_render_target::~c_graphics_render_target()
 BCS_RESULT graphics_swapchain_color_render_target_create(
 	c_graphics* graphics,
 	c_graphics_swap_chain* swap_chain,
-	unsigned long swap_chain_buffer_index,
+	uint32_t swap_chain_buffer_index,
 	float4 clear_color,
 	c_graphics_render_target*& render_target,
 	const char* debug_name)
@@ -38,8 +38,8 @@ BCS_RESULT graphics_swapchain_color_render_target_create(
 
 BCS_RESULT graphics_color_render_target_create(
 	c_graphics* graphics,
-	unsigned long width,
-	unsigned long height,
+	uint32_t width,
+	uint32_t height,
 	e_graphics_data_format format,
 	float4 clear_color,
 	c_graphics_render_target*& render_target,
@@ -61,8 +61,8 @@ BCS_RESULT graphics_color_render_target_create(
 
 BCS_RESULT graphics_depth_stencil_render_target_create(
 	c_graphics* graphics,
-	unsigned long width,
-	unsigned long height,
+	uint32_t width,
+	uint32_t height,
 	e_graphics_data_format format,
 	float clear_depth,
 	unsigned char stencil_value,

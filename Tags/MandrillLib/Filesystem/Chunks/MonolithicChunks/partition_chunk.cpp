@@ -79,14 +79,14 @@ BCS_RESULT c_partition_chunk::read_chunk(void* userdata, const void* data, bool 
 	data_array_persist_header = chunk_byteswap(*src_data_array_persist_header);
 	lruv_cache_blocks = new() s_lruv_cache_block_ex[data_array_persist_header.count];
 
-	for (unsigned long lruv_cache_block_index = 0; lruv_cache_block_index < data_array_persist_header.count; lruv_cache_block_index++)
+	for (uint32_t lruv_cache_block_index = 0; lruv_cache_block_index < data_array_persist_header.count; lruv_cache_block_index++)
 	{
 		s_lruv_cache_block_ex& lruv_cache_block_ex = lruv_cache_blocks[lruv_cache_block_index];
 		lruv_cache_block_ex.lruv_cache_block = src_lruv_cache_blocks[lruv_cache_block_index];
 		chunk_byteswap_inplace(lruv_cache_block_ex.lruv_cache_block);
 
-		lruv_cache_block_ex.size = static_cast<unsigned long long>(lruv_cache_block_ex.lruv_cache_block.size) * 512ull;
-		lruv_cache_block_ex.offset = static_cast<unsigned long long>(lruv_cache_block_ex.lruv_cache_block.offset) * 512ull;
+		lruv_cache_block_ex.size = static_cast<uint64_t>(lruv_cache_block_ex.lruv_cache_block.size) * 512ull;
+		lruv_cache_block_ex.offset = static_cast<uint64_t>(lruv_cache_block_ex.lruv_cache_block.offset) * 512ull;
 	}
 
 	return rs;

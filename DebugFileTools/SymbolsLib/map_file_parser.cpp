@@ -18,14 +18,14 @@ public:
 private:
 	void parse_mapping_file_lines(const wchar_t* mapping_filepath);
 	void parse_mapping_file(const char** excluded_libs, size_t excluded_libs_count);
-	static void parse_mapping_file_impl_a_callback(void* userdata, unsigned long long index);
-	static void parse_mapping_file_impl_b_callback(void* userdata, unsigned long long index);
-	void parse_mapping_file_impl_a(unsigned long long index);
-	void parse_mapping_file_impl_b(unsigned long long index);
+	static void parse_mapping_file_impl_a_callback(void* userdata, uint64_t index);
+	static void parse_mapping_file_impl_b_callback(void* userdata, uint64_t index);
+	void parse_mapping_file_impl_a(uint64_t index);
+	void parse_mapping_file_impl_b(uint64_t index);
 	void create_symbols_blob();
 
 	std::vector<char> symbols_blob;
-	unsigned long lines_count;
+	uint32_t lines_count;
 	std::vector<const char*> lines_vector;
 	const char** lines;
 	void* map_file = nullptr;
@@ -38,7 +38,7 @@ private:
 BCS_RESULT symbol_file_parser_create(
 	const wchar_t* mapping_filepath,
 	const char** excluded_libs,
-	unsigned long excluded_libs_count,
+	uint32_t excluded_libs_count,
 	t_symbol_file_parser*& symbol_file_parser
 )
 {
@@ -66,7 +66,7 @@ BCS_RESULT symbol_file_parser_write_output(t_symbol_file_parser* symbol_file_par
 	return BCS_S_OK;
 }
 
-BCS_RESULT symbol_file_parser_get_symbol_data(t_symbol_file_parser* symbol_file_parser, const char*& symbol_data, unsigned long& symbol_data_size)
+BCS_RESULT symbol_file_parser_get_symbol_data(t_symbol_file_parser* symbol_file_parser, const char*& symbol_data, uint32_t& symbol_data_size)
 {
 	BCS_VALIDATE_ARGUMENT(symbol_file_parser);
 
@@ -81,7 +81,7 @@ BCS_RESULT symbol_file_parser_get_symbol_data(t_symbol_file_parser* symbol_file_
 	return rs;
 }
 
-BCS_RESULT symbol_file_parser_get_symbol_data_size(t_symbol_file_parser* symbol_file_parser, unsigned long& symbol_data_size)
+BCS_RESULT symbol_file_parser_get_symbol_data_size(t_symbol_file_parser* symbol_file_parser, uint32_t& symbol_data_size)
 {
 	BCS_VALIDATE_ARGUMENT(symbol_file_parser);
 
@@ -139,7 +139,7 @@ t_symbol_file_parser::~t_symbol_file_parser()
 
 void t_symbol_file_parser::parse_mapping_file_lines(const wchar_t* mapping_filepath)
 {
-	unsigned long long map_file_size = 0;
+	uint64_t map_file_size = 0;
 
 	BCS_RESULT rs = BCS_S_OK;
 	if (BCS_FAILED(rs = filesystem_read_file_to_memory(mapping_filepath, map_file, map_file_size)))
@@ -177,8 +177,8 @@ void t_symbol_file_parser::parse_mapping_file_lines(const wchar_t* mapping_filep
 		char* current_read_position = start_read_position;
 		while (current_read_position < end_read_position)
 		{
-			constexpr unsigned long iteration_lines_count = 64 * 1024;
-			unsigned long lines_count = 0;
+			constexpr uint32_t iteration_lines_count = 64 * 1024;
+			uint32_t lines_count = 0;
 			char* lines_tmp[iteration_lines_count];
 			while (current_read_position < end_read_position && lines_count < iteration_lines_count)
 			{
@@ -224,12 +224,12 @@ static DWORD max_private_complete_symbol_name_length = 0;
 static DWORD max_private_symbol_name_length = 0;
 
 
-void t_symbol_file_parser::parse_mapping_file_impl_a_callback(void* userdata, unsigned long long index)
+void t_symbol_file_parser::parse_mapping_file_impl_a_callback(void* userdata, uint64_t index)
 {
 	reinterpret_cast<t_symbol_file_parser*>(userdata)->parse_mapping_file_impl_a(index);
 }
 
-void t_symbol_file_parser::parse_mapping_file_impl_a(unsigned long long line_index)
+void t_symbol_file_parser::parse_mapping_file_impl_a(uint64_t line_index)
 {
 	const char* public_symbol_string = lines[line_index];
 
@@ -319,12 +319,12 @@ void t_symbol_file_parser::parse_mapping_file_impl_a(unsigned long long line_ind
 	}
 }
 
-void t_symbol_file_parser::parse_mapping_file_impl_b_callback(void* userdata, unsigned long long index)
+void t_symbol_file_parser::parse_mapping_file_impl_b_callback(void* userdata, uint64_t index)
 {
 	reinterpret_cast<t_symbol_file_parser*>(userdata)->parse_mapping_file_impl_b(index);
 }
 
-void t_symbol_file_parser::parse_mapping_file_impl_b(unsigned long long line_index)
+void t_symbol_file_parser::parse_mapping_file_impl_b(uint64_t line_index)
 {
 	const char* static_symbol_string = lines[line_index];
 
@@ -389,8 +389,8 @@ void t_symbol_file_parser::parse_mapping_file_impl_b(unsigned long long line_ind
 
 void t_symbol_file_parser::parse_mapping_file(const char** excluded_libs, size_t excluded_libs_count)
 {
-	unsigned long thread_count = GetActiveProcessorCount(0);
-	unsigned long long current_line = 0;
+	uint32_t thread_count = GetActiveProcessorCount(0);
+	uint64_t current_line = 0;
 	temp_header.binary_name = lines[current_line++];
 	temp_header.timestamp_string = lines[current_line++];
 	const char* preferred_load_address_string = lines[current_line++];
@@ -418,7 +418,7 @@ void t_symbol_file_parser::parse_mapping_file(const char** excluded_libs, size_t
 	{
 		current_line++;
 
-		unsigned long long lines_start = current_line;
+		uint64_t lines_start = current_line;
 		{
 			const char* public_symbol_string = lines[current_line];
 			while (strstr(public_symbol_string, ":") == &public_symbol_string[4]) // is 4th character ':'
@@ -426,7 +426,7 @@ void t_symbol_file_parser::parse_mapping_file(const char** excluded_libs, size_t
 				public_symbol_string = lines[++current_line];
 			}
 		}
-		unsigned long long lines_end = current_line;
+		uint64_t lines_end = current_line;
 		
 		parallel_invoke(
 			lines_start, 
@@ -448,7 +448,7 @@ void t_symbol_file_parser::parse_mapping_file(const char** excluded_libs, size_t
 	{
 		current_line++;
 
-		unsigned long long lines_start = current_line;
+		uint64_t lines_start = current_line;
 		{
 			const char* static_symbol_string = lines[current_line];
 			while (strstr(static_symbol_string, ":") == &static_symbol_string[4]) // is 4th character ':'
@@ -456,7 +456,7 @@ void t_symbol_file_parser::parse_mapping_file(const char** excluded_libs, size_t
 				static_symbol_string = lines[++current_line];
 			}
 		}
-		unsigned long long lines_end = current_line;
+		uint64_t lines_end = current_line;
 
 		parallel_invoke(
 			lines_start,

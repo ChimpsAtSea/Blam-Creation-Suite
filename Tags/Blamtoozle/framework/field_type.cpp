@@ -7,19 +7,19 @@ const char* blamtoozle_field_type_to_string(blofeld::e_field field_type)
 	switch (field_type)
 	{
 		case _field_string:													return "string"							;
-		case _field_long_string:											return "long string"					;
+		case _field_long_string:											return "int32_t string"					;
 		case _field_string_id:												return "string id"						;
 		case _field_old_string_id:											return "old string id"					;
 		case _field_char_integer:											return "char integer"					;
 		case _field_short_integer:											return "short integer"					;
-		case _field_long_integer:											return "long integer"					;
+		case _field_long_integer:											return "int32_t integer"					;
 		case _field_int64_integer:											return "int64 integer"					;
 		case _field_angle:													return "angle"							;
 		case _field_tag:													return "tag"							;
 		case _field_char_enum:												return "char enum"						;
 		case _field_short_enum:												return "short enum"						;
-		case _field_long_enum:												return "long enum"						;
-		case _field_long_flags:												return "long flags"						;
+		case _field_long_enum:												return "int32_t enum"						;
+		case _field_long_flags:												return "int32_t flags"						;
 		case _field_word_flags:												return "word flags"						;
 		case _field_byte_flags:												return "byte flags"						;
 		case _field_point_2d:												return "point 2d"						;
@@ -47,15 +47,15 @@ const char* blamtoozle_field_type_to_string(blofeld::e_field field_type)
 		case _field_real_fraction_bounds:										return "fraction bounds"				;
 		case _field_tag_reference:											return "tag reference"					;
 		case _field_block:													return "block"							;
-		case _field_long_block_flags:										return "long block flags"				;
+		case _field_long_block_flags:										return "int32_t block flags"				;
 		case _field_word_block_flags:										return "word block flags"				;
 		case _field_byte_block_flags:										return "byte block flags"				;
 		case _field_char_block_index:										return "char block index"				;
 		case _field_char_block_index_custom_search:								return "custom char block index"		;
 		case _field_short_block_index:										return "short block index"				;
 		case _field_short_block_index_custom_search:								return "custom short block index"		;
-		case _field_long_block_index:										return "long block index"				;
-		case _field_long_block_index_custom_search:								return "custom long block index"		;
+		case _field_long_block_index:										return "int32_t block index"				;
+		case _field_long_block_index_custom_search:								return "custom int32_t block index"		;
 		case _field_data:													return "data"							;
 		case _field_vertex_buffer:											return "vertex buffer"					;
 		case _field_pad:													return "pad"							;

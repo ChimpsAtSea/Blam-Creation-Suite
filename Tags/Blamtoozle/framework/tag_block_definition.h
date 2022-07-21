@@ -14,7 +14,7 @@ public:
 	virtual const char* get_display_name() = 0;
 	virtual const char* get_name() = 0;
 	virtual const char* get_code_symbol_name() = 0;
-	virtual unsigned long get_max_count() = 0;
+	virtual uint32_t get_max_count() = 0;
 	virtual const char* get_max_count_string() = 0;
 	virtual c_blamtoozle_tag_struct_definition& get_struct_definition() = 0;
 

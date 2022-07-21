@@ -7,7 +7,7 @@ enum e_filesystem_write_mode
 	_filesystem_write_mode_append,
 };
 
-#define FILESYSTEM_DEBUG_ARGS DEBUG_ONLY(, const char* _debug_file_path = __builtin_FILE(), long _debug_line_number = __builtin_LINE())
+#define FILESYSTEM_DEBUG_ARGS DEBUG_ONLY(, const char* _debug_file_path = __builtin_FILE(), int32_t _debug_line_number = __builtin_LINE())
 
 BCS_DEBUG_API const char* filesystem_extract_filepath_filename(const char* filepath);
 BCS_DEBUG_API const wchar_t* filesystem_extract_filepath_filename(const wchar_t* filepath);
@@ -20,21 +20,21 @@ BCS_DEBUG_API BCS_RESULT filesystem_filepath_exists(const char* filepath);
 BCS_DEBUG_API BCS_RESULT filesystem_filepath_exists(const wchar_t* filepath);
 BCS_DEBUG_API BCS_RESULT filesystem_directory_exists(const char* filepath);
 BCS_DEBUG_API BCS_RESULT filesystem_directory_exists(const wchar_t* filepath);
-BCS_DEBUG_API BCS_RESULT filesystem_get_file_size(const char* filepath, unsigned long long& file_size);
-BCS_DEBUG_API BCS_RESULT filesystem_get_file_size(const wchar_t* filepath, unsigned long long& file_size);
-BCS_DEBUG_API BCS_RESULT filesystem_copy_file_to_buffer(const char* filepath, void* buffer, unsigned long long& buffer_size);
-BCS_DEBUG_API BCS_RESULT filesystem_copy_file_to_buffer(const wchar_t* filepath, void* buffer, unsigned long long& buffer_size);
-BCS_DEBUG_API BCS_RESULT filesystem_read_file_to_memory(const char* filepath, void*& buffer, unsigned long long& buffer_size FILESYSTEM_DEBUG_ARGS);
-BCS_DEBUG_API BCS_RESULT filesystem_read_file_to_memory(const wchar_t* filepath, void*& buffer, unsigned long long& buffer_size FILESYSTEM_DEBUG_ARGS);
-BCS_DEBUG_API BCS_RESULT filesystem_write_file_from_memory(const char* filepath, const void* buffer, unsigned long long buffer_size, e_filesystem_write_mode mode = _filesystem_write_mode_default);
-BCS_DEBUG_API BCS_RESULT filesystem_write_file_from_memory(const wchar_t* filepath, const void* buffer, unsigned long long buffer_size, e_filesystem_write_mode mode = _filesystem_write_mode_default );
+BCS_DEBUG_API BCS_RESULT filesystem_get_file_size(const char* filepath, uint64_t& file_size);
+BCS_DEBUG_API BCS_RESULT filesystem_get_file_size(const wchar_t* filepath, uint64_t& file_size);
+BCS_DEBUG_API BCS_RESULT filesystem_copy_file_to_buffer(const char* filepath, void* buffer, uint64_t& buffer_size);
+BCS_DEBUG_API BCS_RESULT filesystem_copy_file_to_buffer(const wchar_t* filepath, void* buffer, uint64_t& buffer_size);
+BCS_DEBUG_API BCS_RESULT filesystem_read_file_to_memory(const char* filepath, void*& buffer, uint64_t& buffer_size FILESYSTEM_DEBUG_ARGS);
+BCS_DEBUG_API BCS_RESULT filesystem_read_file_to_memory(const wchar_t* filepath, void*& buffer, uint64_t& buffer_size FILESYSTEM_DEBUG_ARGS);
+BCS_DEBUG_API BCS_RESULT filesystem_write_file_from_memory(const char* filepath, const void* buffer, uint64_t buffer_size, e_filesystem_write_mode mode = _filesystem_write_mode_default);
+BCS_DEBUG_API BCS_RESULT filesystem_write_file_from_memory(const wchar_t* filepath, const void* buffer, uint64_t buffer_size, e_filesystem_write_mode mode = _filesystem_write_mode_default );
 
 typedef struct
 {
 	bool read_only;
 	char* file_view_begin;
 	char* file_view_end;
-	unsigned long long file_size;
+	uint64_t file_size;
 
 } s_memory_mapped_file_info;
 

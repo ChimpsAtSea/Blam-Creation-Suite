@@ -8,11 +8,11 @@ struct s_imgui_async_file_dialog_handle;
 
 struct s_imgui_async_file_dialog_handle
 {
-	unsigned long ready_to_dispose : 1;
-	unsigned long user_cancelled : 1;
-	unsigned long error : 1;
-	unsigned long is_file_dialog : 1;
-	unsigned long is_folder_dialog : 1;
+	uint32_t ready_to_dispose : 1;
+	uint32_t user_cancelled : 1;
+	uint32_t error : 1;
+	uint32_t is_file_dialog : 1;
+	uint32_t is_folder_dialog : 1;
 	HANDLE thread_handle;
 	HRESULT thread_wait_result;
 	ImGuiID imgui_id;

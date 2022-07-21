@@ -39,7 +39,7 @@ protected:
 	h_tag& tag;
 	ImVec2 viewport_size;
 
-	void render_object(unsigned long level, h_prototype& object);
+	void render_object(uint32_t level, h_prototype& object);
 	bool render_flags_definition(void* field_data, const blofeld::s_tag_field& field);
 	bool render_enum_definition(void* data, const blofeld::s_tag_field& field);
 	void render_tag_group();
@@ -58,7 +58,7 @@ protected:
 	struct s_tag_struct_fields_instance
 	{
 		blofeld::s_tag_struct_definition* tag_struct_definition;
-		unsigned long num_tag_field_instance;
+		uint32_t num_tag_field_instance;
 		s_tag_field_instance tag_field_instances[];
 	};
 	std::vector<s_tag_struct_fields_instance*> fields_instances;

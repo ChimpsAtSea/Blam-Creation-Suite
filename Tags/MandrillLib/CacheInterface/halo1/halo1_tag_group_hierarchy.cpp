@@ -245,10 +245,10 @@
 //
 //namespace blofeld
 //{
-//	static constexpr long SHARED_CACHE_FILE_LAYOUT_TAG = 'smap';
-//	static constexpr long TAG_TEMPLATE_UNIT_TEST_TAG = 'uttt';
-//	static constexpr long TEST_TAG = 'ttag';
-//	static constexpr long SHARED_VARIABLES_TAG = 'shvr';
+//	static constexpr int32_t SHARED_CACHE_FILE_LAYOUT_TAG = 'smap';
+//	static constexpr int32_t TAG_TEMPLATE_UNIT_TEST_TAG = 'uttt';
+//	static constexpr int32_t TEST_TAG = 'ttag';
+//	static constexpr int32_t SHARED_VARIABLES_TAG = 'shvr';
 //}
 //
 //s_halo1_tag_group_hierarchy shared_cache_file_layout_group = { blofeld::SHARED_CACHE_FILE_LAYOUT_TAG, "shared_cache_file_layout" }; // #TODO unknown in blofeld

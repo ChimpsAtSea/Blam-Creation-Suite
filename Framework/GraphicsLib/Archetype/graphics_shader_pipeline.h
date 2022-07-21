@@ -17,9 +17,9 @@ public:
 BCS_DEBUG_API BCS_RESULT graphics_shader_pipeline_create(
 	c_graphics* graphics,
 	c_graphics_shader_binary** shader_binaries,
-	unsigned long num_shader_binaries,
+	uint32_t num_shader_binaries,
 	e_graphics_data_format* render_target_data_formats,
-	unsigned long num_render_targets,
+	uint32_t num_render_targets,
 	e_graphics_data_format* depth_data_format,
 	c_graphics_vertex_layout* vertex_layout,
 	c_graphics_shader_pipeline*& shader_pipeline,

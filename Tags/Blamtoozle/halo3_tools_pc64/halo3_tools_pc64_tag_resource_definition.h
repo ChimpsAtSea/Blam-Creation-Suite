@@ -5,12 +5,12 @@ class c_halo3_tools_pc64_tag_struct_definition;
 struct s_halo3_tools_pc64_tag_resource_definition
 {
 	ptr64 name_address;
-	unsigned long unknown8;
+	uint32_t unknown8;
 	ptr64 structure_definition_address;
 	ptr64 tag_resource_vtable;
 	ptr64 unknown20;
 	ptr64 file_path;
-	long line_number;
+	int32_t line_number;
 	ptr64 unknown30;
 };
 constexpr size_t k_halo3_tools_pc64_tag_resource_definition_size = sizeof(s_halo3_tools_pc64_tag_resource_definition);

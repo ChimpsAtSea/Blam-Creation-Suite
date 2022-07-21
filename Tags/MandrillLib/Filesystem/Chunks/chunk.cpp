@@ -48,8 +48,8 @@ BCS_RESULT c_chunk::add_child(c_chunk& chunk)
 	ASSERT(chunk.parent == nullptr || chunk.parent == this);
 	chunk.parent = this;
 
-	unsigned long old_child_count = num_children;
-	unsigned long new_child_count = old_child_count + 1;
+	uint32_t old_child_count = num_children;
+	uint32_t new_child_count = old_child_count + 1;
 
 	c_chunk** new_children = trivial_malloc(c_chunk*, new_child_count + 1);
 	memcpy(new_children, children, sizeof(*children) * old_child_count);
@@ -73,7 +73,7 @@ BCS_RESULT c_chunk::remove_child(c_chunk& chunk)
 {
 	if (num_children >= 0)
 	{
-		unsigned long new_child_count = num_children;
+		uint32_t new_child_count = num_children;
 		{
 			for (c_chunk** current_chunk = children; *current_chunk; current_chunk++)
 			{
@@ -90,8 +90,8 @@ BCS_RESULT c_chunk::remove_child(c_chunk& chunk)
 		{
 			c_chunk** new_children = trivial_malloc(c_chunk*, new_child_count + 1);
 			{
-				unsigned long destination_index = 0;
-				for (unsigned long child_index = 0; child_index < num_children; child_index++)
+				uint32_t destination_index = 0;
+				for (uint32_t child_index = 0; child_index < num_children; child_index++)
 				{
 					c_chunk* current_chunk = children[child_index];
 					if (current_chunk != &chunk)
@@ -114,7 +114,7 @@ BCS_RESULT c_chunk::remove_child(c_chunk& chunk)
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_chunk::get_children(c_chunk* const*& out_children, unsigned long& out_num_children)
+BCS_RESULT c_chunk::get_children(c_chunk* const*& out_children, uint32_t& out_num_children)
 {
 	if (children != nullptr)
 	{
@@ -134,7 +134,7 @@ c_chunk* const* c_chunk::get_children_unsafe() const
 	return children;
 }
 
-c_chunk* c_chunk::get_child_unsafe(unsigned long index) const
+c_chunk* c_chunk::get_child_unsafe(uint32_t index) const
 {
 	ASSERT(index < num_children);
 	return children[index];
@@ -184,7 +184,7 @@ const char* c_chunk::get_chunk_data_end() const
 	return static_cast<const char*>(chunk_data) + chunk_size;
 }
 
-BCS_RESULT c_chunk::append_data(const void* new_data, unsigned long new_data_size)
+BCS_RESULT c_chunk::append_data(const void* new_data, uint32_t new_data_size)
 {
 	if (!is_data_valid)
 	{
@@ -192,7 +192,7 @@ BCS_RESULT c_chunk::append_data(const void* new_data, unsigned long new_data_siz
 	}
 	else if (new_data_size > 0)
 	{
-		unsigned long data_size = chunk_size + new_data_size;
+		uint32_t data_size = chunk_size + new_data_size;
 		char* _chunk_data_temp = static_cast<char*>(tracked_malloc(data_size));
 
 		char* old_chunk_data = _chunk_data_temp;
@@ -209,7 +209,7 @@ BCS_RESULT c_chunk::append_data(const void* new_data, unsigned long new_data_siz
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_chunk::set_data(const void* data, unsigned long data_size)
+BCS_RESULT c_chunk::set_data(const void* data, uint32_t data_size)
 {
 	if (is_data_allocated)
 	{
@@ -228,7 +228,7 @@ BCS_RESULT c_chunk::set_data(const void* data, unsigned long data_size)
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_chunk::get_data(const void*& data, unsigned long& data_size)
+BCS_RESULT c_chunk::get_data(const void*& data, uint32_t& data_size)
 {
 	if (chunk_data == nullptr)
 	{
@@ -301,15 +301,15 @@ struct s_stack_chunk_list_entry
 using t_stack_chunk_list_entry = c_chunk;
 #pragma pack(push, pop)
 
-constexpr unsigned long _max_size = 0x80000;
-constexpr unsigned long _chunk_count = 1024;
-constexpr unsigned long k_fixed_chunk = 1;
-constexpr unsigned long k_dynamic_chunks = _max_size / _chunk_count;
+constexpr uint32_t _max_size = 0x80000;
+constexpr uint32_t _chunk_count = 1024;
+constexpr uint32_t k_fixed_chunk = 1;
+constexpr uint32_t k_dynamic_chunks = _max_size / _chunk_count;
 constexpr bool k_simple_alloc = __is_trivially_constructible(s_stack_chunk_list_entry) && __is_trivially_copyable(s_stack_chunk_list_entry);
 class c_dynamic_chunked_array
 {
 public:
-	unsigned long current_size;
+	uint32_t current_size;
 	s_stack_chunk_list_entry* entries[k_dynamic_chunks];
 	s_stack_chunk_list_entry fixed_entries[_chunk_count];
 
@@ -322,8 +322,8 @@ public:
 
 	~c_dynamic_chunked_array()
 	{
-		unsigned long chunks = current_size / _chunk_count;
-		for (unsigned long chunk_index = 1; chunk_index < chunks; chunk_index++)
+		uint32_t chunks = current_size / _chunk_count;
+		for (uint32_t chunk_index = 1; chunk_index < chunks; chunk_index++)
 		{
 			if constexpr (k_simple_alloc)
 			{
@@ -336,25 +336,25 @@ public:
 		}
 	}
 
-	unsigned long get_size()
+	uint32_t get_size()
 	{
 		return current_size;
 	}
 
-	s_stack_chunk_list_entry& operator[](unsigned long index)
+	s_stack_chunk_list_entry& operator[](uint32_t index)
 	{
 		ASSERT(index < current_size);
-		unsigned long chunk = index / _chunk_count;
-		unsigned long chunk_index = index % _chunk_count;
+		uint32_t chunk = index / _chunk_count;
+		uint32_t chunk_index = index % _chunk_count;
 
 		return entries[chunk][chunk_index];
 	}
 
 	s_stack_chunk_list_entry& emplace_back()
 	{
-		unsigned long index = current_size;
-		unsigned long chunk = index / _chunk_count;
-		unsigned long chunk_index = index % _chunk_count;
+		uint32_t index = current_size;
+		uint32_t chunk = index / _chunk_count;
+		uint32_t chunk_index = index % _chunk_count;
 
 		s_stack_chunk_list_entry*& entry = entries[chunk];
 		if (entry == nullptr)
@@ -396,8 +396,8 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 			chunk_byteswap_inplace(next_signature);
 
 			//const s_chunk_header_gen3* chunk_header_pointer = reinterpret_cast<const s_chunk_header_gen3*>(data_position);
-			//unsigned long next_signature = chunk_byteswap(chunk_header_pointer->signature);
-			//unsigned long chunk_size = chunk_byteswap(chunk_header_pointer->chunk_size) + sizeof(s_chunk_header_gen3);
+			//uint32_t next_signature = chunk_byteswap(chunk_header_pointer->signature);
+			//uint32_t chunk_size = chunk_byteswap(chunk_header_pointer->chunk_size) + sizeof(s_chunk_header_gen3);
 
 #define CHUNK_CTOR_EX(_signature, t_structure, ...) \
 		case (_signature): \
@@ -473,13 +473,13 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 #undef CHUNK_CTOR_EX
 		}
 
-		unsigned long chunk_list_length = chunk_list.size;
+		uint32_t chunk_list_length = chunk_list.size;
 		if (chunk_list_length > 0)
 		{
 			c_chunk** chunk_pointers = trivial_malloc(c_chunk*, chunk_list_length + 1);
 			chunk_pointers[chunk_list_length] = 0;
 
-			for (unsigned long chunk_index = 0; chunk_index < chunk_list_length; chunk_index++)
+			for (uint32_t chunk_index = 0; chunk_index < chunk_list_length; chunk_index++)
 			{
 				c_chunk* chunk = chunk_list[chunk_index];
 				chunk_pointers[chunk_index] = chunk;
@@ -506,17 +506,17 @@ BCS_RESULT c_chunk::read_child_chunks(void* userdata, bool use_read_only, const 
 
 void c_chunk::write_chunk(c_high_level_tag_file_writer& tag_file_writer)
 {
-	unsigned long chunk_file_data_size = chunk_size;
+	uint32_t chunk_file_data_size = chunk_size;
 
 	fwrite(&signature, sizeof(signature), 1, tag_file_writer.file_handle);
 	fwrite(&metadata, sizeof(metadata), 1, tag_file_writer.file_handle);
-	long chunk_size_pos = ftell(tag_file_writer.file_handle);
+	int32_t chunk_size_pos = ftell(tag_file_writer.file_handle);
 	fwrite(&chunk_file_data_size, sizeof(chunk_file_data_size), 1, tag_file_writer.file_handle);
 
 	write_chunk_data(tag_file_writer);
 	write_child_chunks(tag_file_writer);
 
-	long current_pos = ftell(tag_file_writer.file_handle);
+	int32_t current_pos = ftell(tag_file_writer.file_handle);
 	chunk_file_data_size = current_pos - chunk_size_pos - 4;
 
 	fseek(tag_file_writer.file_handle, chunk_size_pos, SEEK_SET);
@@ -537,10 +537,10 @@ void c_chunk::write_chunk_data(c_high_level_tag_file_writer& tag_file_writer)
 
 void c_chunk::write_child_chunks(c_high_level_tag_file_writer& tag_file_writer)
 {
-	unsigned long num_children;
+	uint32_t num_children;
 	c_chunk* const* children;
 	get_children(children, num_children);
-	for (unsigned long child_index = 0; child_index < num_children; child_index++)
+	for (uint32_t child_index = 0; child_index < num_children; child_index++)
 	{
 		c_chunk& child_chunk = *children[child_index];
 		child_chunk.write_chunk(tag_file_writer);
@@ -566,7 +566,7 @@ void c_chunk::log(c_tag_file_string_debugger* string_debugger) const
 
 void c_chunk::log_pad() const
 {
-	for (unsigned long i = 0; i < depth; i++)
+	for (uint32_t i = 0; i < depth; i++)
 	{
 		console_write_verbose("  ");
 	}
@@ -576,7 +576,7 @@ void c_chunk::log_signature() const
 {
 	union
 	{
-		unsigned long _signature_byteswapped;
+		uint32_t _signature_byteswapped;
 		char _signature[4];
 	};
 	_signature_byteswapped = _byteswap_ulong(signature);

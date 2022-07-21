@@ -11,7 +11,7 @@ c_infinite_module_file_reader::c_infinite_module_file_reader(const wchar_t* file
 	BCS_RESULT rs;
 
 
-	for (unsigned long file_index = 0; file_index < k_max_module_files; file_index++)
+	for (uint32_t file_index = 0; file_index < k_max_module_files; file_index++)
 	{
 		c_fixed_wide_path module_file_path;
 		if (file_index == 0)
@@ -49,13 +49,13 @@ c_infinite_module_file_reader::c_infinite_module_file_reader(const wchar_t* file
 
 c_infinite_module_file_reader::~c_infinite_module_file_reader()
 {
-	for (unsigned long file_index = 0; file_index < k_max_module_files; file_index++)
+	for (uint32_t file_index = 0; file_index < k_max_module_files; file_index++)
 	{
 		ASSERT_NO_THROW(BCS_SUCCEEDED(destroy_memory_mapped_file(files[file_index])));
 	}
 }
 
-BCS_RESULT c_infinite_module_file_reader::get_module_file_entry_structure_size(unsigned long& structure_size) const
+BCS_RESULT c_infinite_module_file_reader::get_module_file_entry_structure_size(uint32_t& structure_size) const
 {
 	if (engine_platform_build.build >= _build_infinite_HIFLTA_202700_21_09_06_0001)
 	{
@@ -70,7 +70,7 @@ BCS_RESULT c_infinite_module_file_reader::get_module_file_entry_structure_size(u
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT c_infinite_module_file_reader::get_string_buffer_fixup_offset_hack(unsigned long& string_buffer_fixup_offset_hack) const
+BCS_RESULT c_infinite_module_file_reader::get_string_buffer_fixup_offset_hack(uint32_t& string_buffer_fixup_offset_hack) const
 {
 	if (engine_platform_build.build >= _build_infinite_HIFLTA_202700_21_09_06_0001)
 	{
@@ -151,7 +151,7 @@ BCS_RESULT c_infinite_module_file_reader::get_buffer(e_cache_file_buffer_index b
 	{
 		if (buffer_index == _module_file_buffer_data1)
 		{
-			unsigned long file_info_index = buffer_index - _module_file_buffer_data0;
+			uint32_t file_info_index = buffer_index - _module_file_buffer_data0;
 			buffer_info.begin = file_infos[file_info_index].file_view_begin;
 			buffer_info.end = file_infos[file_info_index].file_view_end;
 			buffer_info.size = static_cast<unsigned long>(file_infos[file_info_index].file_size);
@@ -159,18 +159,18 @@ BCS_RESULT c_infinite_module_file_reader::get_buffer(e_cache_file_buffer_index b
 		else /*if (buffer_index == _module_file_buffer_data0)*/
 		{
 			// #TODO: This is pretty terrible??? Why is index 2 used now, but the data is inside of file 0
-			unsigned long file_info_index = 0; // _module_file_buffer_data0
+			uint32_t file_info_index = 0; // _module_file_buffer_data0
 			buffer_info.begin = file_infos[file_info_index].file_view_begin;
 			buffer_info.end = file_infos[file_info_index].file_view_end;
 			buffer_info.size = static_cast<unsigned long>(file_infos[file_info_index].file_size);
 
-			unsigned long file_entry_size;
+			uint32_t file_entry_size;
 			if (BCS_FAILED(rs = get_module_file_entry_structure_size(file_entry_size)))
 			{
 				return rs;
 			}
 
-			unsigned long string_buffer_fixup_offset_hack;
+			uint32_t string_buffer_fixup_offset_hack;
 			if (BCS_FAILED(rs = get_string_buffer_fixup_offset_hack(string_buffer_fixup_offset_hack)))
 			{
 				return rs;
@@ -238,7 +238,7 @@ BCS_RESULT c_infinite_module_file_reader::associate_cache_cluster(c_infinite_cac
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_module_file_reader::virtual_address_to_relative_offset(long long virtual_address, long& relative_offset) const
+BCS_RESULT c_infinite_module_file_reader::virtual_address_to_relative_offset(int64_t virtual_address, int32_t& relative_offset) const
 {
 	return BCS_E_UNSUPPORTED;
 	//BCS_RESULT rs = BCS_S_OK;
@@ -256,7 +256,7 @@ BCS_RESULT c_infinite_module_file_reader::virtual_address_to_relative_offset(lon
 	//return rs;
 }
 
-BCS_RESULT c_infinite_module_file_reader::page_offset_to_virtual_address(unsigned long page_offset, long long& virtual_address) const
+BCS_RESULT c_infinite_module_file_reader::page_offset_to_virtual_address(uint32_t page_offset, int64_t& virtual_address) const
 {
 	virtual_address = page_offset; // -cache_file_header->expected_base_address;
 
@@ -271,7 +271,7 @@ BCS_RESULT c_infinite_module_file_reader::get_blofeld_tag_groups(const blofeld::
 	return BCS_S_OK;
 }
 //
-//BCS_RESULT c_infinite_module_file_reader::get_cache_file_resource_instance(unsigned long index, const infinite::s_cache_file_resource_instance*& cache_file_resource_instance)
+//BCS_RESULT c_infinite_module_file_reader::get_cache_file_resource_instance(uint32_t index, const infinite::s_cache_file_resource_instance*& cache_file_resource_instance)
 //{
 //	BCS_RESULT rs = BCS_S_OK;
 //
@@ -287,7 +287,7 @@ BCS_RESULT c_infinite_module_file_reader::get_blofeld_tag_groups(const blofeld::
 //	return rs;
 //}
 //
-//BCS_RESULT c_infinite_module_file_reader::get_cache_file_resource_instance_data(unsigned long index, const void*& tag_instance_data)
+//BCS_RESULT c_infinite_module_file_reader::get_cache_file_resource_instance_data(uint32_t index, const void*& tag_instance_data)
 //{
 //	BCS_RESULT rs = BCS_S_OK;
 //
@@ -308,7 +308,7 @@ BCS_RESULT c_infinite_module_file_reader::get_blofeld_tag_groups(const blofeld::
 //	return rs;
 //}
 //
-//BCS_RESULT c_infinite_module_file_reader::get_cache_file_resource_instance_name(unsigned long index, const char*& tag_instance_name)
+//BCS_RESULT c_infinite_module_file_reader::get_cache_file_resource_instance_name(uint32_t index, const char*& tag_instance_name)
 //{
 //	BCS_RESULT rs = BCS_S_OK;
 //
@@ -330,7 +330,7 @@ BCS_RESULT c_infinite_module_file_reader::get_blofeld_tag_groups(const blofeld::
 //}
 
 
-unsigned long c_infinite_module_file_reader::get_field_size(blofeld::e_field field)
+uint32_t c_infinite_module_file_reader::get_field_size(blofeld::e_field field)
 {
 	using namespace blofeld;
 
@@ -349,7 +349,7 @@ unsigned long c_infinite_module_file_reader::get_field_size(blofeld::e_field fie
 	return get_blofeld_field_size(engine_platform_build.platform_type, field);
 }
 
-unsigned long c_infinite_module_file_reader::get_field_size(const blofeld::s_tag_field& field)
+uint32_t c_infinite_module_file_reader::get_field_size(const blofeld::s_tag_field& field)
 {
 	using namespace blofeld;
 
@@ -360,36 +360,36 @@ unsigned long c_infinite_module_file_reader::get_field_size(const blofeld::s_tag
 	case _field_skip:							return field.length;
 	case _field_struct:
 	{
-		unsigned long structure_size = this->calculate_struct_size(*field.struct_definition);
+		uint32_t structure_size = this->calculate_struct_size(*field.struct_definition);
 		return structure_size;
 	}
 	case _field_array:
 	{
-		unsigned long structure_size = this->calculate_struct_size(field.array_definition->struct_definition);
-		unsigned long array_element_count = field.array_definition->count(engine_platform_build);
-		unsigned long array_size = structure_size * array_element_count;
+		uint32_t structure_size = this->calculate_struct_size(field.array_definition->struct_definition);
+		uint32_t array_element_count = field.array_definition->count(engine_platform_build);
+		uint32_t array_size = structure_size * array_element_count;
 		return array_size;
 	}
 	default: return get_field_size(field.field_type);
 	}
 }
 
-unsigned long c_infinite_module_file_reader::calculate_struct_size(const blofeld::s_tag_struct_definition& struct_definition)
+uint32_t c_infinite_module_file_reader::calculate_struct_size(const blofeld::s_tag_struct_definition& struct_definition)
 {
 	using namespace blofeld;
 
-	unsigned long computed_size = 0;
+	uint32_t computed_size = 0;
 
 	for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 	{
-		unsigned long field_skip_count;
+		uint32_t field_skip_count;
 		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, field_skip_count))
 		{
 			current_field += field_skip_count;
 			continue;
 		}
 
-		unsigned long field_size = 0;
+		uint32_t field_size = 0;
 		switch (current_field->field_type)
 		{
 		case _field_useless_pad:
@@ -410,8 +410,8 @@ unsigned long c_infinite_module_file_reader::calculate_struct_size(const blofeld
 			REFERENCE_ASSERT(array_definition);
 			const s_tag_struct_definition& struct_definition = array_definition.struct_definition;
 			REFERENCE_ASSERT(struct_definition);
-			unsigned long struct_size = this->calculate_struct_size(struct_definition);
-			unsigned long array_data_size = struct_size * array_definition.count(engine_platform_build);
+			uint32_t struct_size = this->calculate_struct_size(struct_definition);
+			uint32_t array_data_size = struct_size * array_definition.count(engine_platform_build);
 			field_size = array_data_size;
 			break;
 		}
@@ -428,7 +428,7 @@ unsigned long c_infinite_module_file_reader::calculate_struct_size(const blofeld
 	return computed_size;
 }
 
-BCS_RESULT c_infinite_module_file_reader::data_offset_fixup(unsigned long long data_offset, unsigned long index, unsigned long long& fixed_offset)
+BCS_RESULT c_infinite_module_file_reader::data_offset_fixup(uint64_t data_offset, uint32_t index, uint64_t& fixed_offset)
 {
 	BCS_RESULT rs = BCS_S_OK;
 

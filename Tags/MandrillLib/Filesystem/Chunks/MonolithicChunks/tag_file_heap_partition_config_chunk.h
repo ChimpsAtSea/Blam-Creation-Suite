@@ -3,7 +3,7 @@
 class c_tag_file_heap_partition_config_chunk : public c_typed_chunk<'prpf', false>
 {
 public:
-	unsigned long string_length;
+	uint32_t string_length;
 	char* string;
 
 	c_tag_file_heap_partition_config_chunk(c_chunk& parent);

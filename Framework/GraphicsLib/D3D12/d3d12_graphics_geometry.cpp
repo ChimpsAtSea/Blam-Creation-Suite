@@ -3,9 +3,9 @@
 c_graphics_geometry_d3d12::c_graphics_geometry_d3d12(
 	c_graphics_d3d12& graphics,
 	c_graphics_buffer_d3d12* index_buffer,
-	unsigned long num_primitives,
+	uint32_t num_primitives,
 	c_graphics_buffer_d3d12** in_vertex_buffers,
-	unsigned long num_vertex_buffers,
+	uint32_t num_vertex_buffers,
 	c_graphics_vertex_layout_d3d12& vertex_layout,
 	const wchar_t* debug_name) :
 	graphics(graphics),
@@ -21,7 +21,7 @@ c_graphics_geometry_d3d12::c_graphics_geometry_d3d12(
 
 	vertex_buffers = new() c_graphics_buffer_d3d12 * [num_vertex_buffers];
 	vertex_buffer_views = new() D3D12_VERTEX_BUFFER_VIEW[num_vertex_buffers];
-	for (unsigned long vertex_buffer_index = 0; vertex_buffer_index < num_vertex_buffers; vertex_buffer_index++)
+	for (uint32_t vertex_buffer_index = 0; vertex_buffer_index < num_vertex_buffers; vertex_buffer_index++)
 	{
 		c_graphics_buffer_d3d12* vertex_buffer = in_vertex_buffers[vertex_buffer_index];
 		vertex_buffers[vertex_buffer_index] = vertex_buffer;
@@ -46,7 +46,7 @@ c_graphics_geometry_d3d12::~c_graphics_geometry_d3d12()
 	delete vertex_buffer_views;
 }
 
-void c_graphics_geometry_d3d12::render_geometry(unsigned long instance_count)
+void c_graphics_geometry_d3d12::render_geometry(uint32_t instance_count)
 {
 	graphics.command_list->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	graphics.command_list->IASetVertexBuffers(0, num_vertex_buffers, vertex_buffer_views);
@@ -64,9 +64,9 @@ void c_graphics_geometry_d3d12::render_geometry(unsigned long instance_count)
 BCS_RESULT graphics_d3d12_geometry_create(
 	c_graphics_d3d12* graphics,
 	c_graphics_buffer_d3d12* index_buffer,
-	unsigned long num_primitives,
+	uint32_t num_primitives,
 	c_graphics_buffer_d3d12** vertex_buffers,
-	unsigned long num_vertex_buffers,
+	uint32_t num_vertex_buffers,
 	c_graphics_vertex_layout_d3d12* vertex_layout,
 	c_graphics_geometry_d3d12*& geometry,
 	const char* debug_name)

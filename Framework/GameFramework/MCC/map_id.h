@@ -234,5 +234,5 @@ extern BCS_RESULT get_map_id_string(e_map_id map_id, const char** result);
 
 e_engine_type map_id_to_engine_type(e_map_id map_id);
 e_mcc_game_mode map_id_to_game_mode(e_map_id map_id);
-std::vector<signed int>& map_id_to_available_insertion_points(long map_id, bool is_firefight);
+std::vector<signed int>& map_id_to_available_insertion_points(int32_t map_id, bool is_firefight);
 

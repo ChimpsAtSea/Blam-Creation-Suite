@@ -3,7 +3,7 @@
 #include <blamlib/cseries/cseries.h>
 #include <blamlib/datatypes/static_array.h>
 
-template <typename t_element, const long k_maximum_count>
+template <typename t_element, const int k_maximum_count>
 class c_static_hash_table_data
 {
     struct s_data
@@ -13,7 +13,7 @@ class c_static_hash_table_data
     };
 
 private:
-    long m_total_count;
+    int m_total_count;
     c_static_array<s_data, k_maximum_count> m_data;
     c_static_array<short, k_maximum_count> m_original_hash_entry;
     c_static_array<short, k_maximum_count> m_hash_entry_count;
@@ -26,12 +26,12 @@ public:
         m_hash_entry_count.set_memory(NONE);
     }
 
-    long get_maximum_count() const
+    int get_maximum_count() const
     {
         return k_maximum_count;
     }
 
-    long get_total_count() const
+    int get_total_count() const
     {
         return m_total_count;
     }
@@ -46,22 +46,22 @@ public:
         m_total_count -= 1;
     }
 
-    s_data* get_data(long index)
+    s_data* get_data(int index)
     {
         return &m_data[index];
     }
 
-    s_data const* get_data(long index) const
+    s_data const* get_data(int index) const
     {
         return &m_data[index];
     }
 
-    t_element* get_element(long index)
+    t_element* get_element(int index)
     {
         return &m_data[index].element;
     }
 
-    t_element const* get_element(long index) const
+    t_element const* get_element(int index) const
     {
         return &m_data[index].element;
     }

@@ -11,7 +11,7 @@ void end_detours()
 	DetourTransactionCommit();
 }
 
-const char* GetDetourResultStr(LONG detourAttachResult)
+const char* GetDetourResultStr(int32_t detourAttachResult)
 {
 	switch (detourAttachResult)
 	{

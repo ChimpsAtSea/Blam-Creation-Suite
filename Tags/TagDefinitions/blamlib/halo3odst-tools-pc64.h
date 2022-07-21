@@ -7,604 +7,604 @@ namespace halo3odst
 namespace pc64
 {
 
-	static constexpr unsigned long ACHIEVEMENTS_TAG = 'achi';
+	static constexpr uint32_t ACHIEVEMENTS_TAG = 'achi';
 	extern s_tag_group achievements_group;
 
-	static constexpr unsigned long AI_DIALOGUE_GLOBALS_TAG = 'adlg';
+	static constexpr uint32_t AI_DIALOGUE_GLOBALS_TAG = 'adlg';
 	extern s_tag_group ai_dialogue_globals_group;
 
-	static constexpr unsigned long AI_GLOBALS_TAG = 'aigl';
+	static constexpr uint32_t AI_GLOBALS_TAG = 'aigl';
 	extern s_tag_group ai_globals_group;
 
-	static constexpr unsigned long AI_MISSION_DIALOGUE_TAG = 'mdlg';
+	static constexpr uint32_t AI_MISSION_DIALOGUE_TAG = 'mdlg';
 	extern s_tag_group ai_mission_dialogue_group;
 
-	static constexpr unsigned long ANTENNA_TAG = 'ant!';
+	static constexpr uint32_t ANTENNA_TAG = 'ant!';
 	extern s_tag_group antenna_group;
 
-	static constexpr unsigned long AREA_SCREEN_EFFECT_TAG = 'sefc';
+	static constexpr uint32_t AREA_SCREEN_EFFECT_TAG = 'sefc';
 	extern s_tag_group area_screen_effect_group;
 
-	static constexpr unsigned long BEAM_SYSTEM_TAG = 'beam';
+	static constexpr uint32_t BEAM_SYSTEM_TAG = 'beam';
 	extern s_tag_group beam_system_group;
 
-	static constexpr unsigned long BINK_TAG = 'bink';
+	static constexpr uint32_t BINK_TAG = 'bink';
 	extern s_tag_group bink_group;
 
-	static constexpr unsigned long BIPED_TAG = 'bipd';
+	static constexpr uint32_t BIPED_TAG = 'bipd';
 	extern s_tag_group biped_group;
 
-	static constexpr unsigned long BITMAP_TAG = 'bitm';
+	static constexpr uint32_t BITMAP_TAG = 'bitm';
 	extern s_tag_group bitmap_group;
 
-	static constexpr unsigned long BREAKABLE_SURFACE_TAG = 'bsdt';
+	static constexpr uint32_t BREAKABLE_SURFACE_TAG = 'bsdt';
 	extern s_tag_group breakable_surface_group;
 
-	static constexpr unsigned long CACHE_FILE_RESOURCE_GESTALT_TAG = 'zone';
+	static constexpr uint32_t CACHE_FILE_RESOURCE_GESTALT_TAG = 'zone';
 	extern s_tag_group cache_file_resource_gestalt_group;
 
-	static constexpr unsigned long CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG = 'play';
+	static constexpr uint32_t CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG = 'play';
 	extern s_tag_group cache_file_resource_layout_table_group;
 
-	static constexpr unsigned long CACHE_FILE_SOUND_TAG = '$#!+';
+	static constexpr uint32_t CACHE_FILE_SOUND_TAG = '$#!+';
 	extern s_tag_group cache_file_sound_group;
 
-	static constexpr unsigned long CAMERA_FX_SETTINGS_TAG = 'cfxs';
+	static constexpr uint32_t CAMERA_FX_SETTINGS_TAG = 'cfxs';
 	extern s_tag_group camera_fx_settings_group;
 
-	static constexpr unsigned long CAMERA_TRACK_TAG = 'trak';
+	static constexpr uint32_t CAMERA_TRACK_TAG = 'trak';
 	extern s_tag_group camera_track_group;
 
-	static constexpr unsigned long CELLULAR_AUTOMATA_TAG = 'devo';
+	static constexpr uint32_t CELLULAR_AUTOMATA_TAG = 'devo';
 	extern s_tag_group cellular_automata_group;
 
-	static constexpr unsigned long CELLULAR_AUTOMATA2D_TAG = 'whip';
+	static constexpr uint32_t CELLULAR_AUTOMATA2D_TAG = 'whip';
 	extern s_tag_group cellular_automata2d_group;
 
-	static constexpr unsigned long CHARACTER_TAG = 'char';
+	static constexpr uint32_t CHARACTER_TAG = 'char';
 	extern s_tag_group character_group;
 
-	static constexpr unsigned long CHOCOLATE_MOUNTAIN_NEW_TAG = 'chmt';
+	static constexpr uint32_t CHOCOLATE_MOUNTAIN_NEW_TAG = 'chmt';
 	extern s_tag_group chocolate_mountain_new_group;
 
-	static constexpr unsigned long CHUD_ANIMATION_DEFINITION_TAG = 'chad';
+	static constexpr uint32_t CHUD_ANIMATION_DEFINITION_TAG = 'chad';
 	extern s_tag_group chud_animation_definition_group;
 
-	static constexpr unsigned long CHUD_DEFINITION_TAG = 'chdt';
+	static constexpr uint32_t CHUD_DEFINITION_TAG = 'chdt';
 	extern s_tag_group chud_definition_group;
 
-	static constexpr unsigned long CHUD_GLOBALS_DEFINITION_TAG = 'chgd';
+	static constexpr uint32_t CHUD_GLOBALS_DEFINITION_TAG = 'chgd';
 	extern s_tag_group chud_globals_definition_group;
 
-	static constexpr unsigned long CINEMATIC_TAG = 'cine';
+	static constexpr uint32_t CINEMATIC_TAG = 'cine';
 	extern s_tag_group cinematic_group;
 
-	static constexpr unsigned long CINEMATIC_SCENE_TAG = 'cisc';
+	static constexpr uint32_t CINEMATIC_SCENE_TAG = 'cisc';
 	extern s_tag_group cinematic_scene_group;
 
-	static constexpr unsigned long CLOTH_TAG = 'clwd';
+	static constexpr uint32_t CLOTH_TAG = 'clwd';
 	extern s_tag_group cloth_group;
 
-	static constexpr unsigned long COLLISION_DAMAGE_TAG = 'cddf';
+	static constexpr uint32_t COLLISION_DAMAGE_TAG = 'cddf';
 	extern s_tag_group collision_damage_group;
 
-	static constexpr unsigned long COLLISION_MODEL_TAG = 'coll';
+	static constexpr uint32_t COLLISION_MODEL_TAG = 'coll';
 	extern s_tag_group collision_model_group;
 
-	static constexpr unsigned long COLOR_TABLE_TAG = 'colo';
+	static constexpr uint32_t COLOR_TABLE_TAG = 'colo';
 	extern s_tag_group color_table_group;
 
-	static constexpr unsigned long COMPUTE_SHADER_TAG = 'cmpu';
+	static constexpr uint32_t COMPUTE_SHADER_TAG = 'cmpu';
 	extern s_tag_group compute_shader_group;
 
-	static constexpr unsigned long CONTRAIL_SYSTEM_TAG = 'cntl';
+	static constexpr uint32_t CONTRAIL_SYSTEM_TAG = 'cntl';
 	extern s_tag_group contrail_system_group;
 
-	static constexpr unsigned long CORTANA_EFFECT_DEFINITION_TAG = 'crte';
+	static constexpr uint32_t CORTANA_EFFECT_DEFINITION_TAG = 'crte';
 	extern s_tag_group cortana_effect_definition_group;
 
-	static constexpr unsigned long CRATE_TAG = 'bloc';
+	static constexpr uint32_t CRATE_TAG = 'bloc';
 	extern s_tag_group crate_group;
 
-	static constexpr unsigned long CREATURE_TAG = 'crea';
+	static constexpr uint32_t CREATURE_TAG = 'crea';
 	extern s_tag_group creature_group;
 
-	static constexpr unsigned long DAMAGE_EFFECT_TAG = 'jpt!';
+	static constexpr uint32_t DAMAGE_EFFECT_TAG = 'jpt!';
 	extern s_tag_group damage_effect_group;
 
-	static constexpr unsigned long DAMAGE_RESPONSE_DEFINITION_TAG = 'drdf';
+	static constexpr uint32_t DAMAGE_RESPONSE_DEFINITION_TAG = 'drdf';
 	extern s_tag_group damage_response_definition_group;
 
-	static constexpr unsigned long DECAL_SYSTEM_TAG = 'decs';
+	static constexpr uint32_t DECAL_SYSTEM_TAG = 'decs';
 	extern s_tag_group decal_system_group;
 
-	static constexpr unsigned long DECORATOR_SET_TAG = 'dctr';
+	static constexpr uint32_t DECORATOR_SET_TAG = 'dctr';
 	extern s_tag_group decorator_set_group;
 
-	static constexpr unsigned long DETAIL_OBJECT_COLLECTION_TAG = 'dobc';
+	static constexpr uint32_t DETAIL_OBJECT_COLLECTION_TAG = 'dobc';
 	extern s_tag_group detail_object_collection_group;
 
-	static constexpr unsigned long DEVICE_TAG = 'devi';
+	static constexpr uint32_t DEVICE_TAG = 'devi';
 	extern s_tag_group device_group;
 
-	static constexpr unsigned long DEVICE_ARG_DEVICE_TAG = 'argd';
+	static constexpr uint32_t DEVICE_ARG_DEVICE_TAG = 'argd';
 	extern s_tag_group device_arg_device_group;
 
-	static constexpr unsigned long DEVICE_CONTROL_TAG = 'ctrl';
+	static constexpr uint32_t DEVICE_CONTROL_TAG = 'ctrl';
 	extern s_tag_group device_control_group;
 
-	static constexpr unsigned long DEVICE_MACHINE_TAG = 'mach';
+	static constexpr uint32_t DEVICE_MACHINE_TAG = 'mach';
 	extern s_tag_group device_machine_group;
 
-	static constexpr unsigned long DEVICE_TERMINAL_TAG = 'term';
+	static constexpr uint32_t DEVICE_TERMINAL_TAG = 'term';
 	extern s_tag_group device_terminal_group;
 
-	static constexpr unsigned long DIALOGUE_TAG = 'udlg';
+	static constexpr uint32_t DIALOGUE_TAG = 'udlg';
 	extern s_tag_group dialogue_group;
 
-	static constexpr unsigned long EFFECT_TAG = 'effe';
+	static constexpr uint32_t EFFECT_TAG = 'effe';
 	extern s_tag_group effect_group;
 
-	static constexpr unsigned long EFFECT_GLOBALS_TAG = 'effg';
+	static constexpr uint32_t EFFECT_GLOBALS_TAG = 'effg';
 	extern s_tag_group effect_globals_group;
 
-	static constexpr unsigned long EFFECT_SCENERY_TAG = 'efsc';
+	static constexpr uint32_t EFFECT_SCENERY_TAG = 'efsc';
 	extern s_tag_group effect_scenery_group;
 
-	static constexpr unsigned long EQUIPMENT_TAG = 'eqip';
+	static constexpr uint32_t EQUIPMENT_TAG = 'eqip';
 	extern s_tag_group equipment_group;
 
-	static constexpr unsigned long FLOCK_TAG = 'flck';
+	static constexpr uint32_t FLOCK_TAG = 'flck';
 	extern s_tag_group flock_group;
 
-	static constexpr unsigned long FLUID_DYNAMICS_TAG = 'fldy';
+	static constexpr uint32_t FLUID_DYNAMICS_TAG = 'fldy';
 	extern s_tag_group fluid_dynamics_group;
 
-	static constexpr unsigned long FORMATION_TAG = 'form';
+	static constexpr uint32_t FORMATION_TAG = 'form';
 	extern s_tag_group formation_group;
 
-	static constexpr unsigned long FRAGMENT_TAG = 'frag';
+	static constexpr uint32_t FRAGMENT_TAG = 'frag';
 	extern s_tag_group fragment_group;
 
-	static constexpr unsigned long GAME_ENGINE_SETTINGS_DEFINITION_TAG = 'wezr';
+	static constexpr uint32_t GAME_ENGINE_SETTINGS_DEFINITION_TAG = 'wezr';
 	extern s_tag_group game_engine_settings_definition_group;
 
-	static constexpr unsigned long GAME_PROGRESSION_TAG = 'gpdt';
+	static constexpr uint32_t GAME_PROGRESSION_TAG = 'gpdt';
 	extern s_tag_group game_progression_group;
 
-	static constexpr unsigned long GIANT_TAG = 'gint';
+	static constexpr uint32_t GIANT_TAG = 'gint';
 	extern s_tag_group giant_group;
 
-	static constexpr unsigned long GLOBAL_PIXEL_SHADER_TAG = 'glps';
+	static constexpr uint32_t GLOBAL_PIXEL_SHADER_TAG = 'glps';
 	extern s_tag_group global_pixel_shader_group;
 
-	static constexpr unsigned long GLOBAL_VERTEX_SHADER_TAG = 'glvs';
+	static constexpr uint32_t GLOBAL_VERTEX_SHADER_TAG = 'glvs';
 	extern s_tag_group global_vertex_shader_group;
 
-	static constexpr unsigned long GLOBALS_TAG = 'matg';
+	static constexpr uint32_t GLOBALS_TAG = 'matg';
 	extern s_tag_group globals_group;
 
-	static constexpr unsigned long GUI_BITMAP_WIDGET_DEFINITION_TAG = 'bmp3';
+	static constexpr uint32_t GUI_BITMAP_WIDGET_DEFINITION_TAG = 'bmp3';
 	extern s_tag_group gui_bitmap_widget_definition_group;
 
-	static constexpr unsigned long GUI_BUTTON_KEY_DEFINITION_TAG = 'bkey';
+	static constexpr uint32_t GUI_BUTTON_KEY_DEFINITION_TAG = 'bkey';
 	extern s_tag_group gui_button_key_definition_group;
 
-	static constexpr unsigned long GUI_DATASOURCE_DEFINITION_TAG = 'dsrc';
+	static constexpr uint32_t GUI_DATASOURCE_DEFINITION_TAG = 'dsrc';
 	extern s_tag_group gui_datasource_definition_group;
 
-	static constexpr unsigned long GUI_GROUP_WIDGET_DEFINITION_TAG = 'grup';
+	static constexpr uint32_t GUI_GROUP_WIDGET_DEFINITION_TAG = 'grup';
 	extern s_tag_group gui_group_widget_definition_group;
 
-	static constexpr unsigned long GUI_LIST_WIDGET_DEFINITION_TAG = 'lst3';
+	static constexpr uint32_t GUI_LIST_WIDGET_DEFINITION_TAG = 'lst3';
 	extern s_tag_group gui_list_widget_definition_group;
 
-	static constexpr unsigned long GUI_MODEL_WIDGET_DEFINITION_TAG = 'mdl3';
+	static constexpr uint32_t GUI_MODEL_WIDGET_DEFINITION_TAG = 'mdl3';
 	extern s_tag_group gui_model_widget_definition_group;
 
-	static constexpr unsigned long GUI_SCREEN_WIDGET_DEFINITION_TAG = 'scn3';
+	static constexpr uint32_t GUI_SCREEN_WIDGET_DEFINITION_TAG = 'scn3';
 	extern s_tag_group gui_screen_widget_definition_group;
 
-	static constexpr unsigned long GUI_SKIN_DEFINITION_TAG = 'skn3';
+	static constexpr uint32_t GUI_SKIN_DEFINITION_TAG = 'skn3';
 	extern s_tag_group gui_skin_definition_group;
 
-	static constexpr unsigned long GUI_TEXT_WIDGET_DEFINITION_TAG = 'txt3';
+	static constexpr uint32_t GUI_TEXT_WIDGET_DEFINITION_TAG = 'txt3';
 	extern s_tag_group gui_text_widget_definition_group;
 
-	static constexpr unsigned long GUI_WIDGET_ANIMATION_COLLECTION_DEFINITION_TAG = 'wacd';
+	static constexpr uint32_t GUI_WIDGET_ANIMATION_COLLECTION_DEFINITION_TAG = 'wacd';
 	extern s_tag_group gui_widget_animation_collection_definition_group;
 
-	static constexpr unsigned long GUI_WIDGET_ANIMATION_DEFINITION_TAG = 'wgan';
+	static constexpr uint32_t GUI_WIDGET_ANIMATION_DEFINITION_TAG = 'wgan';
 	extern s_tag_group gui_widget_animation_definition_group;
 
-	static constexpr unsigned long GUI_WIDGET_COLOR_ANIMATION_DEFINITION_TAG = 'wclr';
+	static constexpr uint32_t GUI_WIDGET_COLOR_ANIMATION_DEFINITION_TAG = 'wclr';
 	extern s_tag_group gui_widget_color_animation_definition_group;
 
-	static constexpr unsigned long GUI_WIDGET_FONT_ANIMATION_DEFINITION_TAG = 'wfon';
+	static constexpr uint32_t GUI_WIDGET_FONT_ANIMATION_DEFINITION_TAG = 'wfon';
 	extern s_tag_group gui_widget_font_animation_definition_group;
 
-	static constexpr unsigned long GUI_WIDGET_POSITION_ANIMATION_DEFINITION_TAG = 'wpos';
+	static constexpr uint32_t GUI_WIDGET_POSITION_ANIMATION_DEFINITION_TAG = 'wpos';
 	extern s_tag_group gui_widget_position_animation_definition_group;
 
-	static constexpr unsigned long GUI_WIDGET_ROTATION_ANIMATION_DEFINITION_TAG = 'wrot';
+	static constexpr uint32_t GUI_WIDGET_ROTATION_ANIMATION_DEFINITION_TAG = 'wrot';
 	extern s_tag_group gui_widget_rotation_animation_definition_group;
 
-	static constexpr unsigned long GUI_WIDGET_SCALE_ANIMATION_DEFINITION_TAG = 'wscl';
+	static constexpr uint32_t GUI_WIDGET_SCALE_ANIMATION_DEFINITION_TAG = 'wscl';
 	extern s_tag_group gui_widget_scale_animation_definition_group;
 
-	static constexpr unsigned long GUI_WIDGET_SPRITE_ANIMATION_DEFINITION_TAG = 'wspr';
+	static constexpr uint32_t GUI_WIDGET_SPRITE_ANIMATION_DEFINITION_TAG = 'wspr';
 	extern s_tag_group gui_widget_sprite_animation_definition_group;
 
-	static constexpr unsigned long GUI_WIDGET_TEXTURE_COORDINATE_ANIMATION_DEFINITION_TAG = 'wtuv';
+	static constexpr uint32_t GUI_WIDGET_TEXTURE_COORDINATE_ANIMATION_DEFINITION_TAG = 'wtuv';
 	extern s_tag_group gui_widget_texture_coordinate_animation_definition_group;
 
-	static constexpr unsigned long HLSL_INCLUDE_TAG = 'hlsl';
+	static constexpr uint32_t HLSL_INCLUDE_TAG = 'hlsl';
 	extern s_tag_group hlsl_include_group;
 
-	static constexpr unsigned long ITEM_TAG = 'item';
+	static constexpr uint32_t ITEM_TAG = 'item';
 	extern s_tag_group item_group;
 
-	static constexpr unsigned long ITEM_COLLECTION_TAG = 'itmc';
+	static constexpr uint32_t ITEM_COLLECTION_TAG = 'itmc';
 	extern s_tag_group item_collection_group;
 
-	static constexpr unsigned long LEAF_SYSTEM_TAG = 'lswd';
+	static constexpr uint32_t LEAF_SYSTEM_TAG = 'lswd';
 	extern s_tag_group leaf_system_group;
 
-	static constexpr unsigned long LENS_FLARE_TAG = 'lens';
+	static constexpr uint32_t LENS_FLARE_TAG = 'lens';
 	extern s_tag_group lens_flare_group;
 
-	static constexpr unsigned long LIGHT_TAG = 'ligh';
+	static constexpr uint32_t LIGHT_TAG = 'ligh';
 	extern s_tag_group light_group;
 
-	static constexpr unsigned long LIGHT_VOLUME_SYSTEM_TAG = 'ltvl';
+	static constexpr uint32_t LIGHT_VOLUME_SYSTEM_TAG = 'ltvl';
 	extern s_tag_group light_volume_system_group;
 
-	static constexpr unsigned long MATERIAL_EFFECTS_TAG = 'foot';
+	static constexpr uint32_t MATERIAL_EFFECTS_TAG = 'foot';
 	extern s_tag_group material_effects_group;
 
-	static constexpr unsigned long METER_TAG = 'metr';
+	static constexpr uint32_t METER_TAG = 'metr';
 	extern s_tag_group meter_group;
 
-	static constexpr unsigned long MODEL_TAG = 'hlmt';
+	static constexpr uint32_t MODEL_TAG = 'hlmt';
 	extern s_tag_group model_group;
 
-	static constexpr unsigned long MODEL_ANIMATION_GRAPH_TAG = 'jmad';
+	static constexpr uint32_t MODEL_ANIMATION_GRAPH_TAG = 'jmad';
 	extern s_tag_group model_animation_graph_group;
 
-	static constexpr unsigned long MUFFIN_TAG = 'mffn';
+	static constexpr uint32_t MUFFIN_TAG = 'mffn';
 	extern s_tag_group muffin_group;
 
-	static constexpr unsigned long MULTILINGUAL_UNICODE_STRING_LIST_TAG = 'unic';
+	static constexpr uint32_t MULTILINGUAL_UNICODE_STRING_LIST_TAG = 'unic';
 	extern s_tag_group multilingual_unicode_string_list_group;
 
-	static constexpr unsigned long MULTIPLAYER_GLOBALS_TAG = 'mulg';
+	static constexpr uint32_t MULTIPLAYER_GLOBALS_TAG = 'mulg';
 	extern s_tag_group multiplayer_globals_group;
 
-	static constexpr unsigned long MULTIPLAYER_SCENARIO_DESCRIPTION_TAG = 'mply';
+	static constexpr uint32_t MULTIPLAYER_SCENARIO_DESCRIPTION_TAG = 'mply';
 	extern s_tag_group multiplayer_scenario_description_group;
 
-	static constexpr unsigned long MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_TAG = 'goof';
+	static constexpr uint32_t MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_TAG = 'goof';
 	extern s_tag_group multiplayer_variant_settings_interface_definition_group;
 
-	static constexpr unsigned long NEW_CINEMATIC_LIGHTING_TAG = 'nclt';
+	static constexpr uint32_t NEW_CINEMATIC_LIGHTING_TAG = 'nclt';
 	extern s_tag_group new_cinematic_lighting_group;
 
-	static constexpr unsigned long OBJECT_TAG = 'obje';
+	static constexpr uint32_t OBJECT_TAG = 'obje';
 	extern s_tag_group object_group;
 
-	static constexpr unsigned long PARTICLE_TAG = 'prt3';
+	static constexpr uint32_t PARTICLE_TAG = 'prt3';
 	extern s_tag_group particle_group;
 
-	static constexpr unsigned long PARTICLE_EMITTER_CUSTOM_POINTS_TAG = 'pecp';
+	static constexpr uint32_t PARTICLE_EMITTER_CUSTOM_POINTS_TAG = 'pecp';
 	extern s_tag_group particle_emitter_custom_points_group;
 
-	static constexpr unsigned long PARTICLE_MODEL_TAG = 'pmdf';
+	static constexpr uint32_t PARTICLE_MODEL_TAG = 'pmdf';
 	extern s_tag_group particle_model_group;
 
-	static constexpr unsigned long PARTICLE_PHYSICS_TAG = 'pmov';
+	static constexpr uint32_t PARTICLE_PHYSICS_TAG = 'pmov';
 	extern s_tag_group particle_physics_group;
 
-	static constexpr unsigned long PATCHY_FOG_TAG = 'fpch';
+	static constexpr uint32_t PATCHY_FOG_TAG = 'fpch';
 	extern s_tag_group patchy_fog_group;
 
-	static constexpr unsigned long PERFORMANCE_THROTTLES_TAG = 'perf';
+	static constexpr uint32_t PERFORMANCE_THROTTLES_TAG = 'perf';
 	extern s_tag_group performance_throttles_group;
 
-	static constexpr unsigned long PHYSICS_MODEL_TAG = 'phmo';
+	static constexpr uint32_t PHYSICS_MODEL_TAG = 'phmo';
 	extern s_tag_group physics_model_group;
 
-	static constexpr unsigned long PIXEL_SHADER_TAG = 'pixl';
+	static constexpr uint32_t PIXEL_SHADER_TAG = 'pixl';
 	extern s_tag_group pixel_shader_group;
 
-	static constexpr unsigned long PLANAR_FOG_TAG = 'fog ';
+	static constexpr uint32_t PLANAR_FOG_TAG = 'fog ';
 	extern s_tag_group planar_fog_group;
 
-	static constexpr unsigned long POINT_PHYSICS_TAG = 'pphy';
+	static constexpr uint32_t POINT_PHYSICS_TAG = 'pphy';
 	extern s_tag_group point_physics_group;
 
-	static constexpr unsigned long PROJECTILE_TAG = 'proj';
+	static constexpr uint32_t PROJECTILE_TAG = 'proj';
 	extern s_tag_group projectile_group;
 
-	static constexpr unsigned long RASTERIZER_CACHE_FILE_GLOBALS_TAG = 'draw';
+	static constexpr uint32_t RASTERIZER_CACHE_FILE_GLOBALS_TAG = 'draw';
 	extern s_tag_group rasterizer_cache_file_globals_group;
 
-	static constexpr unsigned long RASTERIZER_GLOBALS_TAG = 'rasg';
+	static constexpr uint32_t RASTERIZER_GLOBALS_TAG = 'rasg';
 	extern s_tag_group rasterizer_globals_group;
 
-	static constexpr unsigned long RENDER_METHOD_TAG = 'rm  ';
+	static constexpr uint32_t RENDER_METHOD_TAG = 'rm  ';
 	extern s_tag_group render_method_group;
 
-	static constexpr unsigned long RENDER_METHOD_DEFINITION_TAG = 'rmdf';
+	static constexpr uint32_t RENDER_METHOD_DEFINITION_TAG = 'rmdf';
 	extern s_tag_group render_method_definition_group;
 
-	static constexpr unsigned long RENDER_METHOD_OPTION_TAG = 'rmop';
+	static constexpr uint32_t RENDER_METHOD_OPTION_TAG = 'rmop';
 	extern s_tag_group render_method_option_group;
 
-	static constexpr unsigned long RENDER_METHOD_TEMPLATE_TAG = 'rmt2';
+	static constexpr uint32_t RENDER_METHOD_TEMPLATE_TAG = 'rmt2';
 	extern s_tag_group render_method_template_group;
 
-	static constexpr unsigned long RENDER_MODEL_TAG = 'mode';
+	static constexpr uint32_t RENDER_MODEL_TAG = 'mode';
 	extern s_tag_group render_model_group;
 
-	static constexpr unsigned long RENDER_WATER_RIPPLE_TAG = 'rwrd';
+	static constexpr uint32_t RENDER_WATER_RIPPLE_TAG = 'rwrd';
 	extern s_tag_group render_water_ripple_group;
 
-	static constexpr unsigned long SANDBOX_TEXT_VALUE_PAIR_DEFINITION_TAG = 'jmrq';
+	static constexpr uint32_t SANDBOX_TEXT_VALUE_PAIR_DEFINITION_TAG = 'jmrq';
 	extern s_tag_group sandbox_text_value_pair_definition_group;
 
-	static constexpr unsigned long SCENARIO_TAG = 'scnr';
+	static constexpr uint32_t SCENARIO_TAG = 'scnr';
 	extern s_tag_group scenario_group;
 
-	static constexpr unsigned long SCENARIO_AI_RESOURCE_TAG = 'ai**';
+	static constexpr uint32_t SCENARIO_AI_RESOURCE_TAG = 'ai**';
 	extern s_tag_group scenario_ai_resource_group;
 
-	static constexpr unsigned long SCENARIO_BIPEDS_RESOURCE_TAG = '*ipd';
+	static constexpr uint32_t SCENARIO_BIPEDS_RESOURCE_TAG = '*ipd';
 	extern s_tag_group scenario_bipeds_resource_group;
 
-	static constexpr unsigned long SCENARIO_CINEMATICS_RESOURCE_TAG = 'cin*';
+	static constexpr uint32_t SCENARIO_CINEMATICS_RESOURCE_TAG = 'cin*';
 	extern s_tag_group scenario_cinematics_resource_group;
 
-	static constexpr unsigned long SCENARIO_CLUSTER_DATA_RESOURCE_TAG = 'clu*';
+	static constexpr uint32_t SCENARIO_CLUSTER_DATA_RESOURCE_TAG = 'clu*';
 	extern s_tag_group scenario_cluster_data_resource_group;
 
-	static constexpr unsigned long SCENARIO_COMMENTS_RESOURCE_TAG = '/**/';
+	static constexpr uint32_t SCENARIO_COMMENTS_RESOURCE_TAG = '/**/';
 	extern s_tag_group scenario_comments_resource_group;
 
-	static constexpr unsigned long SCENARIO_CREATURE_RESOURCE_TAG = '*rea';
+	static constexpr uint32_t SCENARIO_CREATURE_RESOURCE_TAG = '*rea';
 	extern s_tag_group scenario_creature_resource_group;
 
-	static constexpr unsigned long SCENARIO_CUBEMAP_RESOURCE_TAG = 'cub*';
+	static constexpr uint32_t SCENARIO_CUBEMAP_RESOURCE_TAG = 'cub*';
 	extern s_tag_group scenario_cubemap_resource_group;
 
-	static constexpr unsigned long SCENARIO_DECALS_RESOURCE_TAG = 'dec*';
+	static constexpr uint32_t SCENARIO_DECALS_RESOURCE_TAG = 'dec*';
 	extern s_tag_group scenario_decals_resource_group;
 
-	static constexpr unsigned long SCENARIO_DECORATORS_RESOURCE_TAG = 'dc*s';
+	static constexpr uint32_t SCENARIO_DECORATORS_RESOURCE_TAG = 'dc*s';
 	extern s_tag_group scenario_decorators_resource_group;
 
-	static constexpr unsigned long SCENARIO_DEVICES_RESOURCE_TAG = 'dgr*';
+	static constexpr uint32_t SCENARIO_DEVICES_RESOURCE_TAG = 'dgr*';
 	extern s_tag_group scenario_devices_resource_group;
 
-	static constexpr unsigned long SCENARIO_EFFECT_SCENERY_RESOURCE_TAG = '*fsc';
+	static constexpr uint32_t SCENARIO_EFFECT_SCENERY_RESOURCE_TAG = '*fsc';
 	extern s_tag_group scenario_effect_scenery_resource_group;
 
-	static constexpr unsigned long SCENARIO_EQUIPMENT_RESOURCE_TAG = '*qip';
+	static constexpr uint32_t SCENARIO_EQUIPMENT_RESOURCE_TAG = '*qip';
 	extern s_tag_group scenario_equipment_resource_group;
 
-	static constexpr unsigned long SCENARIO_FAUX_DATA_TAG = 'sFdT';
+	static constexpr uint32_t SCENARIO_FAUX_DATA_TAG = 'sFdT';
 	extern s_tag_group scenario_faux_data_group;
 
-	static constexpr unsigned long SCENARIO_HS_SOURCE_FILE_TAG = 'hsc*';
+	static constexpr uint32_t SCENARIO_HS_SOURCE_FILE_TAG = 'hsc*';
 	extern s_tag_group scenario_hs_source_file_group;
 
-	static constexpr unsigned long SCENARIO_LIGHTMAP_TAG = 'sLdT';
+	static constexpr uint32_t SCENARIO_LIGHTMAP_TAG = 'sLdT';
 	extern s_tag_group scenario_lightmap_group;
 
-	static constexpr unsigned long SCENARIO_LIGHTMAP_BSP_DATA_TAG = 'Lbsp';
+	static constexpr uint32_t SCENARIO_LIGHTMAP_BSP_DATA_TAG = 'Lbsp';
 	extern s_tag_group scenario_lightmap_bsp_data_group;
 
-	static constexpr unsigned long SCENARIO_LIGHTS_RESOURCE_TAG = '*igh';
+	static constexpr uint32_t SCENARIO_LIGHTS_RESOURCE_TAG = '*igh';
 	extern s_tag_group scenario_lights_resource_group;
 
-	static constexpr unsigned long SCENARIO_PDA_TAG = 'spda';
+	static constexpr uint32_t SCENARIO_PDA_TAG = 'spda';
 	extern s_tag_group scenario_pda_group;
 
-	static constexpr unsigned long SCENARIO_REQUIRED_RESOURCE_TAG = 'sdzg';
+	static constexpr uint32_t SCENARIO_REQUIRED_RESOURCE_TAG = 'sdzg';
 	extern s_tag_group scenario_required_resource_group;
 
-	static constexpr unsigned long SCENARIO_SCENERY_RESOURCE_TAG = '*cen';
+	static constexpr uint32_t SCENARIO_SCENERY_RESOURCE_TAG = '*cen';
 	extern s_tag_group scenario_scenery_resource_group;
 
-	static constexpr unsigned long SCENARIO_SKY_REFERENCES_RESOURCE_TAG = 'sky*';
+	static constexpr uint32_t SCENARIO_SKY_REFERENCES_RESOURCE_TAG = 'sky*';
 	extern s_tag_group scenario_sky_references_resource_group;
 
-	static constexpr unsigned long SCENARIO_SOUND_SCENERY_RESOURCE_TAG = '*sce';
+	static constexpr uint32_t SCENARIO_SOUND_SCENERY_RESOURCE_TAG = '*sce';
 	extern s_tag_group scenario_sound_scenery_resource_group;
 
-	static constexpr unsigned long SCENARIO_STRUCTURE_BSP_TAG = 'sbsp';
+	static constexpr uint32_t SCENARIO_STRUCTURE_BSP_TAG = 'sbsp';
 	extern s_tag_group scenario_structure_bsp_group;
 
-	static constexpr unsigned long SCENARIO_STRUCTURE_LIGHTING_INFO_TAG = 'stli';
+	static constexpr uint32_t SCENARIO_STRUCTURE_LIGHTING_INFO_TAG = 'stli';
 	extern s_tag_group scenario_structure_lighting_info_group;
 
-	static constexpr unsigned long SCENARIO_STRUCTURE_LIGHTING_RESOURCE_TAG = 'sslt';
+	static constexpr uint32_t SCENARIO_STRUCTURE_LIGHTING_RESOURCE_TAG = 'sslt';
 	extern s_tag_group scenario_structure_lighting_resource_group;
 
-	static constexpr unsigned long SCENARIO_TRIGGER_VOLUMES_RESOURCE_TAG = 'trg*';
+	static constexpr uint32_t SCENARIO_TRIGGER_VOLUMES_RESOURCE_TAG = 'trg*';
 	extern s_tag_group scenario_trigger_volumes_resource_group;
 
-	static constexpr unsigned long SCENARIO_VEHICLES_RESOURCE_TAG = '*ehi';
+	static constexpr uint32_t SCENARIO_VEHICLES_RESOURCE_TAG = '*ehi';
 	extern s_tag_group scenario_vehicles_resource_group;
 
-	static constexpr unsigned long SCENARIO_WEAPONS_RESOURCE_TAG = '*eap';
+	static constexpr uint32_t SCENARIO_WEAPONS_RESOURCE_TAG = '*eap';
 	extern s_tag_group scenario_weapons_resource_group;
 
-	static constexpr unsigned long SCENERY_TAG = 'scen';
+	static constexpr uint32_t SCENERY_TAG = 'scen';
 	extern s_tag_group scenery_group;
 
-	static constexpr unsigned long SCREEN_EFFECT_TAG = 'egor';
+	static constexpr uint32_t SCREEN_EFFECT_TAG = 'egor';
 	extern s_tag_group screen_effect_group;
 
-	static constexpr unsigned long SHADER_TAG = 'rmsh';
+	static constexpr uint32_t SHADER_TAG = 'rmsh';
 	extern s_tag_group shader_group;
 
-	static constexpr unsigned long SHADER_BEAM_TAG = 'rmb ';
+	static constexpr uint32_t SHADER_BEAM_TAG = 'rmb ';
 	extern s_tag_group shader_beam_group;
 
-	static constexpr unsigned long SHADER_BLACK_TAG = 'rmbk';
+	static constexpr uint32_t SHADER_BLACK_TAG = 'rmbk';
 	extern s_tag_group shader_black_group;
 
-	static constexpr unsigned long SHADER_CONTRAIL_TAG = 'rmc';
+	static constexpr uint32_t SHADER_CONTRAIL_TAG = 'rmc';
 	extern s_tag_group shader_contrail_group;
 
-	static constexpr unsigned long SHADER_CORTANA_TAG = 'rmct';
+	static constexpr uint32_t SHADER_CORTANA_TAG = 'rmct';
 	extern s_tag_group shader_cortana_group;
 
-	static constexpr unsigned long SHADER_CUSTOM_TAG = 'rmcs';
+	static constexpr uint32_t SHADER_CUSTOM_TAG = 'rmcs';
 	extern s_tag_group shader_custom_group;
 
-	static constexpr unsigned long SHADER_DECAL_TAG = 'rmd ';
+	static constexpr uint32_t SHADER_DECAL_TAG = 'rmd ';
 	extern s_tag_group shader_decal_group;
 
-	static constexpr unsigned long SHADER_FOLIAGE_TAG = 'rmfl';
+	static constexpr uint32_t SHADER_FOLIAGE_TAG = 'rmfl';
 	extern s_tag_group shader_foliage_group;
 
-	static constexpr unsigned long SHADER_HALOGRAM_TAG = 'rmhg';
+	static constexpr uint32_t SHADER_HALOGRAM_TAG = 'rmhg';
 	extern s_tag_group shader_halogram_group;
 
-	static constexpr unsigned long SHADER_LIGHT_VOLUME_TAG = 'rmlv';
+	static constexpr uint32_t SHADER_LIGHT_VOLUME_TAG = 'rmlv';
 	extern s_tag_group shader_light_volume_group;
 
-	static constexpr unsigned long SHADER_PARTICLE_TAG = 'rmp';
+	static constexpr uint32_t SHADER_PARTICLE_TAG = 'rmp';
 	extern s_tag_group shader_particle_group;
 
-	static constexpr unsigned long SHADER_SCREEN_TAG = 'rmss';
+	static constexpr uint32_t SHADER_SCREEN_TAG = 'rmss';
 	extern s_tag_group shader_screen_group;
 
-	static constexpr unsigned long SHADER_SKIN_TAG = 'rmsk';
+	static constexpr uint32_t SHADER_SKIN_TAG = 'rmsk';
 	extern s_tag_group shader_skin_group;
 
-	static constexpr unsigned long SHADER_TERRAIN_TAG = 'rmtr';
+	static constexpr uint32_t SHADER_TERRAIN_TAG = 'rmtr';
 	extern s_tag_group shader_terrain_group;
 
-	static constexpr unsigned long SHADER_WATER_TAG = 'rmw ';
+	static constexpr uint32_t SHADER_WATER_TAG = 'rmw ';
 	extern s_tag_group shader_water_group;
 
-	static constexpr unsigned long SHARED_CACHE_FILE_LAYOUT_TAG = 'smap';
+	static constexpr uint32_t SHARED_CACHE_FILE_LAYOUT_TAG = 'smap';
 	extern s_tag_group shared_cache_file_layout_group;
 
-	static constexpr unsigned long SHIELD_IMPACT_TAG = 'shit';
+	static constexpr uint32_t SHIELD_IMPACT_TAG = 'shit';
 	extern s_tag_group shield_impact_group;
 
-	static constexpr unsigned long SIMULATION_INTERPOLATION_TAG = 'siin';
+	static constexpr uint32_t SIMULATION_INTERPOLATION_TAG = 'siin';
 	extern s_tag_group simulation_interpolation_group;
 
-	static constexpr unsigned long SKY_ATM_PARAMETERS_TAG = 'skya';
+	static constexpr uint32_t SKY_ATM_PARAMETERS_TAG = 'skya';
 	extern s_tag_group sky_atm_parameters_group;
 
-	static constexpr unsigned long SOUND_TAG = 'snd!';
+	static constexpr uint32_t SOUND_TAG = 'snd!';
 	extern s_tag_group sound_group;
 
-	static constexpr unsigned long SOUND_CACHE_FILE_GESTALT_TAG = 'ugh!';
+	static constexpr uint32_t SOUND_CACHE_FILE_GESTALT_TAG = 'ugh!';
 	extern s_tag_group sound_cache_file_gestalt_group;
 
-	static constexpr unsigned long SOUND_CLASSES_TAG = 'sncl';
+	static constexpr uint32_t SOUND_CLASSES_TAG = 'sncl';
 	extern s_tag_group sound_classes_group;
 
-	static constexpr unsigned long SOUND_DIALOGUE_CONSTANTS_TAG = 'spk!';
+	static constexpr uint32_t SOUND_DIALOGUE_CONSTANTS_TAG = 'spk!';
 	extern s_tag_group sound_dialogue_constants_group;
 
-	static constexpr unsigned long SOUND_EFFECT_COLLECTION_TAG = 'sfx+';
+	static constexpr uint32_t SOUND_EFFECT_COLLECTION_TAG = 'sfx+';
 	extern s_tag_group sound_effect_collection_group;
 
-	static constexpr unsigned long SOUND_EFFECT_TEMPLATE_TAG = '<fx>';
+	static constexpr uint32_t SOUND_EFFECT_TEMPLATE_TAG = '<fx>';
 	extern s_tag_group sound_effect_template_group;
 
-	static constexpr unsigned long SOUND_ENVIRONMENT_TAG = 'snde';
+	static constexpr uint32_t SOUND_ENVIRONMENT_TAG = 'snde';
 	extern s_tag_group sound_environment_group;
 
-	static constexpr unsigned long SOUND_GLOBAL_PROPAGATION_TAG = 'sgp!';
+	static constexpr uint32_t SOUND_GLOBAL_PROPAGATION_TAG = 'sgp!';
 	extern s_tag_group sound_global_propagation_group;
 
-	static constexpr unsigned long SOUND_LOOPING_TAG = 'lsnd';
+	static constexpr uint32_t SOUND_LOOPING_TAG = 'lsnd';
 	extern s_tag_group sound_looping_group;
 
-	static constexpr unsigned long SOUND_MIX_TAG = 'snmx';
+	static constexpr uint32_t SOUND_MIX_TAG = 'snmx';
 	extern s_tag_group sound_mix_group;
 
-	static constexpr unsigned long SOUND_SCENERY_TAG = 'ssce';
+	static constexpr uint32_t SOUND_SCENERY_TAG = 'ssce';
 	extern s_tag_group sound_scenery_group;
 
-	static constexpr unsigned long SQUAD_TEMPLATE_TAG = 'sqtm';
+	static constexpr uint32_t SQUAD_TEMPLATE_TAG = 'sqtm';
 	extern s_tag_group squad_template_group;
 
-	static constexpr unsigned long STEREO_SYSTEM_TAG = 'BooM';
+	static constexpr uint32_t STEREO_SYSTEM_TAG = 'BooM';
 	extern s_tag_group stereo_system_group;
 
-	static constexpr unsigned long STRUCTURE_DESIGN_TAG = 'sddt';
+	static constexpr uint32_t STRUCTURE_DESIGN_TAG = 'sddt';
 	extern s_tag_group structure_design_group;
 
-	static constexpr unsigned long STRUCTURE_SEAMS_TAG = 'stse';
+	static constexpr uint32_t STRUCTURE_SEAMS_TAG = 'stse';
 	extern s_tag_group structure_seams_group;
 
-	static constexpr unsigned long STYLE_TAG = 'styl';
+	static constexpr uint32_t STYLE_TAG = 'styl';
 	extern s_tag_group style_group;
 
-	static constexpr unsigned long SURVIVAL_MODE_GLOBALS_TAG = 'smdt';
+	static constexpr uint32_t SURVIVAL_MODE_GLOBALS_TAG = 'smdt';
 	extern s_tag_group survival_mode_globals_group;
 
-	static constexpr unsigned long TAG_TEMPLATE_UNIT_TEST_TAG = 'uttt';
+	static constexpr uint32_t TAG_TEMPLATE_UNIT_TEST_TAG = 'uttt';
 	extern s_tag_group tag_template_unit_test_group;
 
-	static constexpr unsigned long TEST_TAG_TAG = 'ttag';
+	static constexpr uint32_t TEST_TAG_TAG = 'ttag';
 	extern s_tag_group test_tag_group;
 
-	static constexpr unsigned long TEXT_VALUE_PAIR_DEFINITION_TAG = 'sily';
+	static constexpr uint32_t TEXT_VALUE_PAIR_DEFINITION_TAG = 'sily';
 	extern s_tag_group text_value_pair_definition_group;
 
-	static constexpr unsigned long UNIT_TAG = 'unit';
+	static constexpr uint32_t UNIT_TAG = 'unit';
 	extern s_tag_group unit_group;
 
-	static constexpr unsigned long USER_INTERFACE_FOURTH_WALL_TIMING_DEFINITION_TAG = 'fwtg';
+	static constexpr uint32_t USER_INTERFACE_FOURTH_WALL_TIMING_DEFINITION_TAG = 'fwtg';
 	extern s_tag_group user_interface_fourth_wall_timing_definition_group;
 
-	static constexpr unsigned long USER_INTERFACE_GLOBALS_DEFINITION_TAG = 'wgtz';
+	static constexpr uint32_t USER_INTERFACE_GLOBALS_DEFINITION_TAG = 'wgtz';
 	extern s_tag_group user_interface_globals_definition_group;
 
-	static constexpr unsigned long USER_INTERFACE_SHARED_GLOBALS_DEFINITION_TAG = 'wigl';
+	static constexpr uint32_t USER_INTERFACE_SHARED_GLOBALS_DEFINITION_TAG = 'wigl';
 	extern s_tag_group user_interface_shared_globals_definition_group;
 
-	static constexpr unsigned long USER_INTERFACE_SOUNDS_DEFINITION_TAG = 'uise';
+	static constexpr uint32_t USER_INTERFACE_SOUNDS_DEFINITION_TAG = 'uise';
 	extern s_tag_group user_interface_sounds_definition_group;
 
-	static constexpr unsigned long VEHICLE_TAG = 'vehi';
+	static constexpr uint32_t VEHICLE_TAG = 'vehi';
 	extern s_tag_group vehicle_group;
 
-	static constexpr unsigned long VEHICLE_COLLECTION_TAG = 'vehc';
+	static constexpr uint32_t VEHICLE_COLLECTION_TAG = 'vehc';
 	extern s_tag_group vehicle_collection_group;
 
-	static constexpr unsigned long VERTEX_SHADER_TAG = 'vtsh';
+	static constexpr uint32_t VERTEX_SHADER_TAG = 'vtsh';
 	extern s_tag_group vertex_shader_group;
 
-	static constexpr unsigned long VISION_MODE_TAG = 'vmdx';
+	static constexpr uint32_t VISION_MODE_TAG = 'vmdx';
 	extern s_tag_group vision_mode_group;
 
-	static constexpr unsigned long WAVE_TEMPLATE_TAG = 'wave';
+	static constexpr uint32_t WAVE_TEMPLATE_TAG = 'wave';
 	extern s_tag_group wave_template_group;
 
-	static constexpr unsigned long WEAPON_TAG = 'weap';
+	static constexpr uint32_t WEAPON_TAG = 'weap';
 	extern s_tag_group weapon_group;
 
-	static constexpr unsigned long WIND_TAG = 'wind';
+	static constexpr uint32_t WIND_TAG = 'wind';
 	extern s_tag_group wind_group;
 
 	extern s_tag_block_definition achievements_block_group_block;
 
 	extern s_tag_block_definition additional_node_data_block_block;
 
-	extern s_tag_block_definition ai_deafening_encoded_pas_block_block;
-
 	extern s_tag_block_definition ai_deafening_encoded_pas_block_block$2;
+
+	extern s_tag_block_definition ai_deafening_encoded_pas_block_block;
 
 	extern s_tag_block_definition ai_dialogue_globals_block_group_block;
 
@@ -1284,9 +1284,9 @@ namespace pc64
 
 	extern s_tag_block_definition dont_use_me_scenario_environment_object_block_block;
 
-	extern s_tag_block_definition door_encoded_pas_block_block;
-
 	extern s_tag_block_definition door_encoded_pas_block_block$2;
+
+	extern s_tag_block_definition door_encoded_pas_block_block;
 
 	extern s_tag_block_definition dynamic_spawn_zone_overload_block_block;
 
@@ -1846,9 +1846,9 @@ namespace pc64
 
 	extern s_tag_block_definition material_textures_refs_block_block;
 
-	extern s_tag_block_definition materials_block_block;
-
 	extern s_tag_block_definition materials_block_block$2;
+
+	extern s_tag_block_definition materials_block_block;
 
 	extern s_tag_block_definition meter_block_group_block;
 
@@ -1922,9 +1922,9 @@ namespace pc64
 
 	extern s_tag_block_definition multilingual_unicode_string_reference_block_block;
 
-	extern s_tag_block_definition multiplayer_color_block_block;
-
 	extern s_tag_block_definition multiplayer_color_block_block$2;
+
+	extern s_tag_block_definition multiplayer_color_block_block;
 
 	extern s_tag_block_definition multiplayer_constants_block_block;
 
@@ -3034,9 +3034,9 @@ namespace pc64
 
 	extern s_tag_block_definition vertex_shader_block_group_block;
 
-	extern s_tag_block_definition vertex_types_block_block$2;
-
 	extern s_tag_block_definition vertex_types_block_block;
+
+	extern s_tag_block_definition vertex_types_block_block$2;
 
 	extern s_tag_block_definition vertices_block_block;
 
@@ -3192,9 +3192,9 @@ namespace pc64
 
 	extern s_tag_struct_definition additional_node_data_block;
 
-	extern s_tag_struct_definition ai_deafening_encoded_pas_block$2;
-
 	extern s_tag_struct_definition ai_deafening_encoded_pas_block;
+
+	extern s_tag_struct_definition ai_deafening_encoded_pas_block$2;
 
 	extern s_tag_struct_definition ai_dialogue_globals_struct_definition;
 
@@ -5329,9 +5329,9 @@ namespace pc64
 
 	extern s_tag_struct_definition multilingual_unicode_string_reference_block;
 
-	extern s_tag_struct_definition multiplayer_color_block;
-
 	extern s_tag_struct_definition multiplayer_color_block$2;
+
+	extern s_tag_struct_definition multiplayer_color_block;
 
 	extern s_tag_struct_definition multiplayer_constants_block;
 
@@ -7048,10 +7048,10 @@ namespace pc64
 
 	extern s_tag_struct_definition vertex_shader_block_struct;
 
+	extern s_tag_struct_definition vertex_types_block$2;
+
 	extern s_tag_struct_definition vertex_types_block;
 	extern s_string_list_definition vertex_types_names_enum;
-
-	extern s_tag_struct_definition vertex_types_block$2;
 
 	extern s_tag_struct_definition vertices_block;
 
@@ -7227,9 +7227,9 @@ namespace pc64
 
 	extern s_tag_data_definition editor_scenario_data_definition;
 
-	extern s_tag_data_definition error_report_string_data$2;
-
 	extern s_tag_data_definition error_report_string_data;
+
+	extern s_tag_data_definition error_report_string_data$2;
 
 	extern s_tag_data_definition faux_data_lightprobe_data;
 

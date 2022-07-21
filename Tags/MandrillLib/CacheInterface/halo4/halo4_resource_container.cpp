@@ -114,7 +114,7 @@ c_halo4_resource_container::~c_halo4_resource_container()
 
 }
 
-void c_halo4_resource_container::digest_page(c_halo4_cache_file_reader& cache_reader, unsigned long page_index, const char* page_data)
+void c_halo4_resource_container::digest_page(c_halo4_cache_file_reader& cache_reader, uint32_t page_index, const char* page_data)
 {
 
 }
@@ -125,7 +125,7 @@ c_halo4_bitmap_texture_interop_resource::c_halo4_bitmap_texture_interop_resource
 
 }
 
-void c_halo4_bitmap_texture_interop_resource::digest_page(c_halo4_cache_file_reader& cache_reader, unsigned long page_index, const char* page_data)
+void c_halo4_bitmap_texture_interop_resource::digest_page(c_halo4_cache_file_reader& cache_reader, uint32_t page_index, const char* page_data)
 {
 	using namespace blofeld::xbox360_gen3;
 
@@ -156,7 +156,7 @@ void c_halo4_bitmap_texture_interop_resource::digest_page(c_halo4_cache_file_rea
 			//s_render_texture_interop_definition_struct render_texture_interop_struct = *render_texture_interop_struct_data;
 			//byteswap_inplace(render_texture_interop_struct);
 
-			unsigned long sub_bitmap_index;
+			uint32_t sub_bitmap_index;
 			ASSERT(BCS_SUCCEEDED(get_sub_bitmap_index_by_resource_index(cache_reader, sub_bitmap_index)));
 
 			c_fixed_path filepath;
@@ -189,7 +189,7 @@ void c_halo4_bitmap_texture_interop_resource::digest_page(c_halo4_cache_file_rea
 	}
 }
 
-BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_resource_index(c_halo4_cache_file_reader& cache_reader, unsigned long& index) const
+BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_resource_index(c_halo4_cache_file_reader& cache_reader, uint32_t& index) const
 {
 	using namespace blofeld::xbox360_gen3;
 
@@ -215,12 +215,12 @@ BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_reso
 			return rs;
 		}
 
-		for (unsigned long hardware_texture_index = 0; hardware_texture_index < bitmap.hardware_textures_block.count; hardware_texture_index++)
+		for (uint32_t hardware_texture_index = 0; hardware_texture_index < bitmap.hardware_textures_block.count; hardware_texture_index++)
 		{
 			s_bitmap_texture_interop_block_struct_definition hardware_texture = hardware_textures_block_data[hardware_texture_index];
 			byteswap_inplace(hardware_texture);
 
-			unsigned long resource_index = hardware_texture.texture_resource.resource_handle.get_absolute_index();
+			uint32_t resource_index = hardware_texture.texture_resource.resource_handle.get_absolute_index();
 
 			if (resource_index == resource_priority_datas.resource_index)
 			{
@@ -238,12 +238,12 @@ BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_reso
 			return rs;
 		}
 
-		for (unsigned long stitchable_hardware_texture_index = 0; stitchable_hardware_texture_index < bitmap.stitchable_hardware_textures_block.count; stitchable_hardware_texture_index++)
+		for (uint32_t stitchable_hardware_texture_index = 0; stitchable_hardware_texture_index < bitmap.stitchable_hardware_textures_block.count; stitchable_hardware_texture_index++)
 		{
 			s_stitchable_bitmap_texture_interop_block_struct_definition stitchable_hardware_texture = stitchable_hardware_textures_block_data[stitchable_hardware_texture_index];
 			byteswap_inplace(stitchable_hardware_texture);
 
-			unsigned long resource_index = stitchable_hardware_texture.texture_resource.resource_handle.get_absolute_index();
+			uint32_t resource_index = stitchable_hardware_texture.texture_resource.resource_handle.get_absolute_index();
 
 			if (resource_index == resource_priority_datas.resource_index)
 			{
@@ -261,12 +261,12 @@ BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_reso
 			return rs;
 		}
 
-		for (unsigned long interleaved_hardware_texture_index = 0; interleaved_hardware_texture_index < bitmap.interleaved_hardware_textures_block.count; interleaved_hardware_texture_index++)
+		for (uint32_t interleaved_hardware_texture_index = 0; interleaved_hardware_texture_index < bitmap.interleaved_hardware_textures_block.count; interleaved_hardware_texture_index++)
 		{
 			s_bitmap_texture_interleaved_interop_block_struct_definition interleaved_hardware_texture = interleaved_hardware_textures_block_data[interleaved_hardware_texture_index];
 			byteswap_inplace(interleaved_hardware_texture);
 
-			unsigned long resource_index = interleaved_hardware_texture.interleaved_texture_resource.resource_handle.get_absolute_index();
+			uint32_t resource_index = interleaved_hardware_texture.interleaved_texture_resource.resource_handle.get_absolute_index();
 
 			if (resource_index == resource_priority_datas.resource_index)
 			{

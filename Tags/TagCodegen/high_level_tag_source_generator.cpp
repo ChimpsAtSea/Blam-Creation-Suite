@@ -81,14 +81,14 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_old_string_id:						return "h_string_id";
 	case _field_char_integer:						return "char";
 	case _field_short_integer:						return "short";
-	case _field_long_integer:						return "long";
-	case _field_int64_integer:						return "long long";
+	case _field_long_integer:						return "int32_t";
+	case _field_int64_integer:						return "int64_t";
 	case _field_angle:								return "angle";
 	case _field_tag:								return "tag";
 	case _field_char_enum:							return "char";
 	case _field_short_enum:							return "short";
-	case _field_long_enum:							return "long";
-	case _field_long_flags:							return "long";
+	case _field_long_enum:							return "int32_t";
+	case _field_long_flags:							return "int32_t";
 	case _field_word_flags:							return "word";
 	case _field_byte_flags:							return "byte";
 	case _field_point_2d:							return "s_point2d";
@@ -116,15 +116,15 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_real_fraction_bounds:				return "real_bounds";
 	case _field_tag_reference:						return "h_tag*";
 	case _field_block:								return "h_block";
-	case _field_long_block_flags:					return "long";
+	case _field_long_block_flags:					return "int32_t";
 	case _field_word_block_flags:					return "word";
 	case _field_byte_block_flags:					return "byte";
 	case _field_char_block_index:					return "char";
 	case _field_char_block_index_custom_search:		return "char";
 	case _field_short_block_index:					return "short";
 	case _field_short_block_index_custom_search:	return "short";
-	case _field_long_block_index:					return "long";
-	case _field_long_block_index_custom_search:		return "long";
+	case _field_long_block_index:					return "int32_t";
+	case _field_long_block_index_custom_search:		return "int32_t";
 	case _field_data:								return "h_data";
 	case _field_vertex_buffer:						return "s_tag_d3d_vertex_buffer";
 	case _field_pad:								return nullptr;	// dynamic
@@ -146,13 +146,13 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_embedded_tag:						return "h_tag*";
 	case _field_pointer: // #NONSTANDARD
 	{
-		unsigned long pointer_size;
+		uint32_t pointer_size;
 		ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(platform_type, &pointer_size)));
 
 		switch (pointer_size)
 		{
-		case 8: return "long long";
-		case 4: return "long";
+		case 8: return "int64_t";
+		case 4: return "int32_t";
 		default: FATAL_ERROR("bad pointer size");
 		}
 		break;
@@ -189,10 +189,10 @@ void c_high_level_tag_source_generator::generate_header()
 	{
 		struct
 		{
-			unsigned long engine_platform_build_hash;
-			long structure_index;
+			uint32_t engine_platform_build_hash;
+			int32_t structure_index;
 		};
-		unsigned long long structure_guid;
+		uint64_t structure_guid;
 	};
 	engine_platform_build_hash = XXH32(&engine_platform_build, sizeof(engine_platform_build), 0);
 	structure_index = -1;
@@ -206,7 +206,7 @@ void c_high_level_tag_source_generator::generate_header()
 		//	debug_point;
 		//}
 
-		unsigned long blofeld_field_list_size = 1;
+		uint32_t blofeld_field_list_size = 1;
 		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
 			const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_all);
@@ -256,7 +256,7 @@ void c_high_level_tag_source_generator::generate_header()
 
 		//if (struct_definition->runtime_flags.test(_tag_field_set_mandrill_has_versioning))
 		{
-			stream << indent << "\t\t" << "virtual unsigned long get_version() const override;" << std::endl;
+			stream << indent << "\t\t" << "virtual uint32_t get_version() const override;" << std::endl;
 		}
 		stream << indent << "\t\t" << "virtual void* get_field_data_unsafe(const blofeld::s_tag_field& field);" << std::endl;
 		stream << indent << "\t\t" << "virtual bool is_field_active(const blofeld::s_tag_field& field) const override;" << std::endl;
@@ -272,7 +272,7 @@ void c_high_level_tag_source_generator::generate_header()
 		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
 			const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_all);
-			unsigned long field_index = tag_field_iterator - struct_definition->fields;
+			uint32_t field_index = tag_field_iterator - struct_definition->fields;
 
 			if (tag_field.field_type >= k_number_of_blofeld_field_types)
 			{
@@ -410,10 +410,10 @@ void c_high_level_tag_source_generator::generate_forward_declare()
 	{
 		struct
 		{
-			unsigned long engine_platform_build_hash;
-			long structure_index;
+			uint32_t engine_platform_build_hash;
+			int32_t structure_index;
 		};
-		unsigned long long structure_guid;
+		uint64_t structure_guid;
 	};
 	engine_platform_build_hash = XXH32(&engine_platform_build, sizeof(engine_platform_build), 0);
 	structure_index = -1;
@@ -427,7 +427,7 @@ void c_high_level_tag_source_generator::generate_forward_declare()
 		//	debug_point;
 		//}
 
-		unsigned long blofeld_field_list_size = 1;
+		uint32_t blofeld_field_list_size = 1;
 		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
 			const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_all);
@@ -524,7 +524,7 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 	decrement_indent();
 }
 
-void c_high_level_tag_source_generator::generate_ctor_source(unsigned long source_index, unsigned long source_count)
+void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_index, uint32_t source_count)
 {
 	std::string namespace_without_semicolons = get_namespace(false);
 
@@ -536,7 +536,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(unsigned long sourc
 	begin_namespace_tree(stream, _namespace_tree_write_intellisense | _namespace_tree_write_warnings);
 
 	{
-		unsigned long structure_index = 0;
+		uint32_t structure_index = 0;
 		for (const blofeld::s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 		{
 			if ((structure_index++ % source_count) == source_index)
@@ -567,7 +567,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(unsigned long sourc
 
 	{
 		std::unordered_map<std::string, int> field_name_unique_counter;
-		unsigned long structure_index = 0;
+		uint32_t structure_index = 0;
 		for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 		{
 			if ((structure_index++ % source_count) == source_index)
@@ -619,7 +619,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(unsigned long sourc
 
 	{
 		std::unordered_map<std::string, int> field_name_unique_counter;
-		unsigned long structure_index = 0;
+		uint32_t structure_index = 0;
 		for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 		{
 			if ((structure_index++ % source_count) == source_index)
@@ -630,7 +630,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(unsigned long sourc
 				for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 				{
 					const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_all);
-					unsigned long field_index = tag_field_iterator - struct_definition->fields;
+					uint32_t field_index = tag_field_iterator - struct_definition->fields;
 
 					if (tag_field.field_type >= k_number_of_blofeld_field_types)
 					{
@@ -788,10 +788,10 @@ void c_high_level_tag_source_generator::generate_source_virtual()
 	{
 		struct
 		{
-			unsigned long engine_platform_build_hash;
-			long structure_index;
+			uint32_t engine_platform_build_hash;
+			int32_t structure_index;
 		};
-		unsigned long long structure_guid;
+		uint64_t structure_guid;
 	};
 	engine_platform_build_hash = XXH32(&engine_platform_build, sizeof(engine_platform_build), 0);
 	structure_index = -1;
@@ -805,7 +805,7 @@ void c_high_level_tag_source_generator::generate_source_virtual()
 		//	debug_point;
 		//}
 
-		unsigned long blofeld_field_list_count = 1;
+		uint32_t blofeld_field_list_count = 1;
 		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
 			const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_all);
@@ -847,7 +847,7 @@ void c_high_level_tag_source_generator::generate_source_virtual()
 				for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 				{
 					const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_all);
-					unsigned long field_index = tag_field_iterator - struct_definition->fields;
+					uint32_t field_index = tag_field_iterator - struct_definition->fields;
 
 					if (tag_field.field_type >= k_number_of_blofeld_field_types)
 					{
@@ -982,7 +982,7 @@ void c_high_level_tag_source_generator::generate_source_misc()
 
 			std::string high_level_structure_name = format_structure_symbol(*struct_definition);
 
-			unsigned long struct_version = 0;
+			uint32_t struct_version = 0;
 			if (struct_definition->runtime_flags.test(_tag_field_set_mandrill_has_versioning))
 			{
 				for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
@@ -999,7 +999,7 @@ void c_high_level_tag_source_generator::generate_source_misc()
 
 
 
-			stream << indent << "unsigned long " << high_level_structure_name << "::get_version() const" << std::endl;
+			stream << indent << "uint32_t " << high_level_structure_name << "::get_version() const" << std::endl;
 			stream << indent << "{" << std::endl;
 			increment_indent();
 			stream << indent << "return " << struct_version << ";" << std::endl;
@@ -1021,7 +1021,7 @@ void c_high_level_tag_source_generator::generate_source_misc()
 			for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 			{
 				const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_all);
-				unsigned long field_index = tag_field_iterator - struct_definition->fields;
+				uint32_t field_index = tag_field_iterator - struct_definition->fields;
 
 				if (tag_field.field_type >= k_number_of_blofeld_field_types)
 				{
@@ -1069,34 +1069,34 @@ void c_high_level_tag_source_generator::generate_source_misc()
 		std::string high_level_structure_name = format_structure_symbol(*struct_definition);
 
 
-		unsigned long field_count;
+		uint32_t field_count;
 		BCS_RESULT calculate_tag_field_count_result = calculate_tag_field_count(struct_definition->fields, field_count);
 		ASSERT(BCS_SUCCEEDED(calculate_tag_field_count_result));
 
-		unsigned long num_bitfields = __max(1ul, ROUND_UP_VALUE(field_count, 64) / 64);
-		unsigned long long* bitfields = new() unsigned long long[num_bitfields] {};
+		uint32_t num_bitfields = __max(1ul, ROUND_UP_VALUE(field_count, 64) / 64);
+		uint64_t* bitfields = new() uint64_t[num_bitfields] {};
 
 		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
 			const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_all);
-			unsigned long field_index = tag_field_iterator - struct_definition->fields;
+			uint32_t field_index = tag_field_iterator - struct_definition->fields;
 
-			unsigned long long bit_index = field_index & 0b111111;
-			unsigned long long bit_mask = 1llu << bit_index;
-			unsigned long long bitfield_index = field_index >> 6llu;
+			uint64_t bit_index = field_index & 0b111111;
+			uint64_t bit_mask = 1llu << bit_index;
+			uint64_t bitfield_index = field_index >> 6llu;
 			ASSERT(bitfield_index < num_bitfields);
 			bitfields[bitfield_index] |= bit_mask;
 		}
 
-		stream << indent << "static const unsigned long long k_" << high_level_structure_name << "_is_active_bits[] = { ";
+		stream << indent << "static const uint64_t k_" << high_level_structure_name << "_is_active_bits[] = { ";
 
-		for (unsigned long bitfield_index = 0; bitfield_index < num_bitfields; bitfield_index++)
+		for (uint32_t bitfield_index = 0; bitfield_index < num_bitfields; bitfield_index++)
 		{
 			if (bitfield_index > 0)
 			{
 				stream << ", ";
 			}
-			unsigned long long bitfield = bitfields[bitfield_index];
+			uint64_t bitfield = bitfields[bitfield_index];
 			stream << "0x" << std::hex << bitfield << std::dec;
 		}
 		stream << " };" << std::endl;

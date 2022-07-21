@@ -3,13 +3,13 @@
 struct s_basic_buffer32
 {
 	intptr32_t elements;
-	long size;
+	int32_t size;
 };
 
 struct s_basic_buffer64
 {
 	intptr64_t elements;
-	long long size;
+	int64_t size;
 };
 
 template<typename T>

@@ -41,7 +41,7 @@ c_monolithic_tag_project::c_monolithic_tag_project(
 	stopwatch.start();
 
 	void* tag_file_data;
-	unsigned long long tag_file_data_size;
+	uint64_t tag_file_data_size;
 	BCS_RESULT rs = BCS_S_OK;
 	if (BCS_FAILED(rs = filesystem_read_file_to_memory(blob_index_file_path, tag_file_data, tag_file_data_size)))
 	{
@@ -99,10 +99,10 @@ struct s_init_monolithic_tag_file_views_userdata
 {
 	c_monolithic_tag_project* _this;
 	BCS_RESULT error_result;
-	long load_finished;
+	uint32_t load_finished;
 };
 
-void c_monolithic_tag_project::init_monolithic_tag_file_views_impl(void* _userdata, unsigned long tag_partition_index)
+void c_monolithic_tag_project::init_monolithic_tag_file_views_impl(void* _userdata, uint32_t tag_partition_index)
 {
 	s_init_monolithic_tag_file_views_userdata* userdata = static_cast<s_init_monolithic_tag_file_views_userdata*>(_userdata);
 	c_monolithic_tag_project* _this = userdata->_this;
@@ -128,8 +128,8 @@ void c_monolithic_tag_project::init_monolithic_tag_file_views_impl(void* _userda
 
 	if (_this->status_interface)
 	{
-		unsigned long load_finished = _InterlockedIncrement(&userdata->load_finished);
-		_this->status_interface->set_status_bar_status(_status_interface_priority_low, INFINITY, "Loading monolithic tag blobs (%li/%lu)", load_finished, _this->num_tag_partitions);
+		uint32_t load_finished = atomic_incu32(&userdata->load_finished);
+		_this->status_interface->set_status_bar_status(_status_interface_priority_low, INFINITY, "Loading monolithic tag blobs (%u/%u)", load_finished, _this->num_tag_partitions);
 	}
 }
 
@@ -169,7 +169,7 @@ BCS_RESULT c_monolithic_tag_project::init_monolithic_cache_file_views()
 
 	num_cache_partitions = cache_partition_list_chunk->num_children;
 	cache_partition_views = new() c_monolithic_partition_view * [num_cache_partitions];
-	for (unsigned long cache_partition_index = 0; cache_partition_index < num_cache_partitions; cache_partition_index++)
+	for (uint32_t cache_partition_index = 0; cache_partition_index < num_cache_partitions; cache_partition_index++)
 	{
 		c_partition_chunk* partition_chunk = cache_partition_list_chunk->get_child_unsafe<c_partition_chunk>(cache_partition_index);
 		ASSERT(partition_chunk != nullptr);
@@ -194,7 +194,7 @@ BCS_RESULT c_monolithic_tag_project::deinit_monolithic_tag_file_views()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	for (unsigned long tag_partition_index = 0; tag_partition_index < num_tag_partitions; tag_partition_index++)
+	for (uint32_t tag_partition_index = 0; tag_partition_index < num_tag_partitions; tag_partition_index++)
 	{
 		c_monolithic_partition_view* partition_view = tag_partition_views[tag_partition_index];
 		delete partition_view;
@@ -209,7 +209,7 @@ BCS_RESULT c_monolithic_tag_project::deinit_monolithic_cache_file_views()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	for (unsigned long cache_partition_index = 0; cache_partition_index < num_cache_partitions; cache_partition_index++)
+	for (uint32_t cache_partition_index = 0; cache_partition_index < num_cache_partitions; cache_partition_index++)
 	{
 		c_monolithic_partition_view* partition_view = cache_partition_views[cache_partition_index];
 		delete partition_view;
@@ -220,7 +220,7 @@ BCS_RESULT c_monolithic_tag_project::deinit_monolithic_cache_file_views()
 	return rs;
 }
 
-BCS_RESULT c_monolithic_tag_project::parse_tag_blob(const void* tag_file_data, unsigned long long tag_file_data_size)
+BCS_RESULT c_monolithic_tag_project::parse_tag_blob(const void* tag_file_data, uint64_t tag_file_data_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -256,7 +256,7 @@ BCS_RESULT c_monolithic_tag_project::parse_tag_blob(const void* tag_file_data, u
 }
 
 BCS_RESULT c_monolithic_tag_project::get_tag_partition_view(
-	unsigned long tag_heap_entry_index,
+	uint32_t tag_heap_entry_index,
 	c_monolithic_partition_view*& tag_partition_view) const
 {
 	if (tag_heap_entry_index == 0xFFFFFFFF)
@@ -274,7 +274,7 @@ BCS_RESULT c_monolithic_tag_project::get_tag_partition_view(
 }
 
 BCS_RESULT c_monolithic_tag_project::get_cache_partition_view(
-	unsigned long cache_heap_entry_index,
+	uint32_t cache_heap_entry_index,
 	c_monolithic_partition_view*& cache_partition_view) const
 {
 	if (cache_heap_entry_index == 0xFFFFFFFF)
@@ -291,7 +291,7 @@ BCS_RESULT c_monolithic_tag_project::get_cache_partition_view(
 	}
 }
 
-BCS_RESULT c_monolithic_tag_project::read_tag(unsigned long index, h_tag*& out_high_level_tag, h_group*& out_tag_group) const
+BCS_RESULT c_monolithic_tag_project::read_tag(uint32_t index, h_tag*& out_high_level_tag, h_group*& out_tag_group) const
 {
 	s_compressed_tag_file_index_entry& tag_file_index_entry = tag_file_index_chunk->compressed_tag_file_index_entries[index];
 
@@ -313,7 +313,7 @@ BCS_RESULT c_monolithic_tag_project::read_tag(unsigned long index, h_tag*& out_h
 	unsigned short wide_block_index = DATUM_INDEX_TO_ABSOLUTE_INDEX(tag_file_index_entry.wide_block_index);
 	unsigned short wide_block_datum_index = DATUM_INDEX_TO_ABSOLUTE_INDEX(tag_file_index_entry.wide_block_datum_index);
 
-	unsigned long wide_data_cache_block_index = wide_block_index * 0xFFFFu + wide_block_datum_index;
+	uint32_t wide_data_cache_block_index = wide_block_index * 0xFFFFu + wide_block_datum_index;
 	ASSERT(wide_data_cache_block_index < tag_file_blocks_chunk->num_wide_data_cache_blocks);
 
 	s_wide_data_cache_block& wide_data_cache_block = tag_file_blocks_chunk->wide_data_cache_blocks[wide_data_cache_block_index];
@@ -430,7 +430,7 @@ union u_read_tags_callback_data
 	};
 };
 
-void c_monolithic_tag_project::read_tags_callback(u_read_tags_callback_data* callback_data_array, long index)
+void c_monolithic_tag_project::read_tags_callback(u_read_tags_callback_data* callback_data_array, int32_t index)
 {
 	u_read_tags_callback_data& callback_data = callback_data_array[index];
 	callback_data.result = callback_data.monolithic_tag_project->read_tag(index, callback_data.high_level_tag, callback_data.high_level_tag_group);
@@ -443,18 +443,18 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 	c_stopwatch stopwatch;
 	stopwatch.start();
 
-	unsigned long compressed_entry_count = tag_file_index_chunk->tag_file_index_header.compressed_entry_count;
+	uint32_t compressed_entry_count = tag_file_index_chunk->tag_file_index_header.compressed_entry_count;
 	const char* max_tag_index_string;
 	if (BCS_SUCCEEDED(command_line_get_argument("maxtagindex", max_tag_index_string)))
 	{
-		unsigned long max_tag_index = strtoul(max_tag_index_string, nullptr, 10);
+		uint32_t max_tag_index = strtoul(max_tag_index_string, nullptr, 10);
 		if (max_tag_index > 0)
 		{
 			compressed_entry_count = __min(max_tag_index, compressed_entry_count);
 		}
 	}
 	u_read_tags_callback_data* callback_data_array = new() u_read_tags_callback_data[compressed_entry_count];
-	for (unsigned long callback_data_index = 0; callback_data_index < compressed_entry_count; callback_data_index++)
+	for (uint32_t callback_data_index = 0; callback_data_index < compressed_entry_count; callback_data_index++)
 	{
 		u_read_tags_callback_data& callback_data = callback_data_array[callback_data_index];
 		callback_data.monolithic_tag_project = this;
@@ -464,7 +464,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 	const char* specific_tag_index_string;
 	if (BCS_SUCCEEDED(command_line_get_argument("specifictagindex", specific_tag_index_string)))
 	{
-		unsigned long specific_tag_index = strtoul(specific_tag_index_string, nullptr, 10);
+		uint32_t specific_tag_index = strtoul(specific_tag_index_string, nullptr, 10);
 
 		read_tags_callback(callback_data_array, specific_tag_index);
 	}
@@ -477,7 +477,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			callback_data_array);
 	}
 
-	for (unsigned long callback_data_index = 0; callback_data_index < compressed_entry_count; callback_data_index++)
+	for (uint32_t callback_data_index = 0; callback_data_index < compressed_entry_count; callback_data_index++)
 	{
 		u_read_tags_callback_data& callback_data = callback_data_array[callback_data_index];
 		if (BCS_FAILED(callback_data.result))
@@ -535,7 +535,7 @@ BCS_RESULT c_monolithic_tag_project::get_group_by_file_extension(const char* fil
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_monolithic_tag_project::get_tag_instances(h_tag* const*& tag_instances, unsigned long& tag_instance_count) const
+BCS_RESULT c_monolithic_tag_project::get_tag_instances(h_tag* const*& tag_instances, uint32_t& tag_instance_count) const
 {
 	tag_instances = tags.data();
 	tag_instance_count = static_cast<unsigned long>(tags.size());
@@ -543,7 +543,7 @@ BCS_RESULT c_monolithic_tag_project::get_tag_instances(h_tag* const*& tag_instan
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_monolithic_tag_project::get_tag_groups(h_group* const*& out_groups, unsigned long& out_group_count) const
+BCS_RESULT c_monolithic_tag_project::get_tag_groups(h_group* const*& out_groups, uint32_t& out_group_count) const
 {
 	out_groups = groups.data();
 	out_group_count = static_cast<unsigned long>(groups.size());

@@ -4,10 +4,10 @@ namespace blofeld
 {
 	struct s_tag_persistent_identifier
 	{
-		unsigned long identifier_part_0;
-		unsigned long identifier_part_1;
-		unsigned long identifier_part_2;
-		unsigned long identifier_part_3;
+		uint32_t identifier_part_0;
+		uint32_t identifier_part_1;
+		uint32_t identifier_part_2;
+		uint32_t identifier_part_3;
 
 		// #TODO: relocate this
 		//BCS_DEBUG_API bool operator==(const s_tag_persistent_identifier& value) const;

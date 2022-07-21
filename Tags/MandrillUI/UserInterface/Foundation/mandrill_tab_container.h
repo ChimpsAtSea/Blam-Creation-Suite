@@ -31,9 +31,9 @@ public:
 	c_typed_callback<t_on_closed_callback> on_closed;
 
 	inline c_mandrill_tab* get_parent() const { return parent; }
-	inline c_mandrill_tab* get_child(unsigned long index) const { return children[index]; }
+	inline c_mandrill_tab* get_child(uint32_t index) const { return children[index]; }
 	inline c_mandrill_tab*const* get_children() const { return children.data(); }
-	inline unsigned long get_child_count() const { return static_cast<unsigned long>(children.size()); }
+	inline uint32_t get_child_count() const { return static_cast<unsigned long>(children.size()); }
 
 protected:
 	bool _is_selected;

@@ -76,13 +76,13 @@
 
 union FP32
 {
-	unsigned long u;
+	uint32_t u;
 	float f;
 	struct
 	{
-		unsigned long Mantissa : 23;
-		unsigned long Exponent : 8;
-		unsigned long Sign : 1;
+		uint32_t Mantissa : 23;
+		uint32_t Exponent : 8;
+		uint32_t Sign : 1;
 	};
 };
 
@@ -91,9 +91,9 @@ union FP16
 	unsigned short u;
 	struct
 	{
-		unsigned long Mantissa : 10;
-		unsigned long Exponent : 5;
-		unsigned long Sign : 1;
+		uint32_t Mantissa : 10;
+		uint32_t Exponent : 5;
+		uint32_t Sign : 1;
 	};
 };
 
@@ -120,7 +120,7 @@ static FP16 _float_to_half(FP32 f)
 		{
 			if ((14 - newexp) <= 24) // Mantissa might be non-zero
 			{
-				unsigned long mant = f.Mantissa | 0x800000; // Hidden 1 bit
+				uint32_t mant = f.Mantissa | 0x800000; // Hidden 1 bit
 				o.Mantissa = mant >> (14 - newexp);
 				if ((mant >> (13 - newexp)) & 1) // Check for rounding
 					o.u++; // Round, might overflow into exp bit, but this is OK
@@ -143,11 +143,11 @@ static FP16 _float_to_half(FP32 f)
 static FP32 _half_to_float(FP16 h)
 {
 	static const FP32 magic = { 113 << 23 };
-	static const unsigned long shifted_exp = 0x7c00 << 13; // exponent mask after shift
+	static const uint32_t shifted_exp = 0x7c00 << 13; // exponent mask after shift
 	FP32 o;
 
 	o.u = (h.u & 0x7fff) << 13;     // exponent/mantissa bits
-	unsigned long exp = shifted_exp & o.u;   // just the exponent
+	uint32_t exp = shifted_exp & o.u;   // just the exponent
 	o.u += (127 - 15) << 23;        // exponent adjust
 
 	// handle exponent special cases

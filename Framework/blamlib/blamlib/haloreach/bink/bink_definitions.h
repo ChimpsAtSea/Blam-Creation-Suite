@@ -12,10 +12,10 @@ constexpr tag k_bink_group_tag = 'bink';
 
 struct s_bink_definition
 {
-	long frame_count;
+	int frame_count;
 	s_tag_resource resource;
 	s_tag_reference external_sound_track;
-	long : 32;
+	int : 32;
 };
 static_assert(sizeof(s_bink_definition) == 0x20);
 

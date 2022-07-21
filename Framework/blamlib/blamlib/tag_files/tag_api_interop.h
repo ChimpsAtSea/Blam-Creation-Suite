@@ -28,13 +28,13 @@ public:
 
 bool tag_interop_fixup_manually_for_cache(
 	s_tag_interop *interop_object,
-	long cache_file_type_index,
+	int cache_file_type_index,
 	c_aligned_allocator *allocator,
 	c_tag_interop_verifier *verifier);
 
 void tag_interop_teardown_manually_for_cache(
 	s_tag_interop *interop_object,
-	long cache_file_type_index,
+	int cache_file_type_index,
 	c_aligned_allocator *allocator);
 
 void *tag_interop_descriptor_get_with_size(

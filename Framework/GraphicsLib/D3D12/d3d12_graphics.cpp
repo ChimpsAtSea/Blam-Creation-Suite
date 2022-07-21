@@ -125,7 +125,7 @@ void c_graphics_d3d12::deinit_hardware()
 
 void c_graphics_d3d12::init_hardware_capabilities()
 {
-	for (unsigned long descriptor_heap_type = 0; descriptor_heap_type < D3D12_DESCRIPTOR_HEAP_TYPE_NUM_TYPES; descriptor_heap_type++)
+	for (uint32_t descriptor_heap_type = 0; descriptor_heap_type < D3D12_DESCRIPTOR_HEAP_TYPE_NUM_TYPES; descriptor_heap_type++)
 	{
 		descriptor_sizes[descriptor_heap_type] = device->GetDescriptorHandleIncrementSize(static_cast<D3D12_DESCRIPTOR_HEAP_TYPE>(descriptor_heap_type));
 	}
@@ -340,7 +340,7 @@ void c_graphics_d3d12::init_root_signature()
 	};
 
 	static D3D12_ROOT_PARAMETER root_parameters[_countof(descriptor_tables)] = {};
-	for (unsigned long index = 0; index < _countof(descriptor_tables); index++)
+	for (uint32_t index = 0; index < _countof(descriptor_tables); index++)
 	{
 		D3D12_ROOT_PARAMETER& root_parameter = root_parameters[index];
 		D3D12_ROOT_DESCRIPTOR_TABLE* descriptor_table = descriptor_tables[index];

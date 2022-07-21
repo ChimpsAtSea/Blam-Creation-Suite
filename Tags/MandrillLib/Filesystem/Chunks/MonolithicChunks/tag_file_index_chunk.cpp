@@ -29,7 +29,7 @@ BCS_RESULT c_tag_file_index_chunk::read_chunk(void* userdata, const void* data, 
 	compressed_tag_file_index_entries = new() s_compressed_tag_file_index_entry[tag_file_index_header.compressed_entry_count];
 	name_buffer = reinterpret_cast<const char*>(src_compressed_tag_file_index_entry + tag_file_index_header.compressed_entry_count);
 
-	for (unsigned long compressed_entry_index = 0; compressed_entry_index < tag_file_index_header.compressed_entry_count; compressed_entry_index++)
+	for (uint32_t compressed_entry_index = 0; compressed_entry_index < tag_file_index_header.compressed_entry_count; compressed_entry_index++)
 	{
 		s_compressed_tag_file_index_entry& compressed_tag_file_index_entry = compressed_tag_file_index_entries[compressed_entry_index];
 		compressed_tag_file_index_entry = src_compressed_tag_file_index_entry[compressed_entry_index];

@@ -2,7 +2,7 @@
 
 #include <blamlib/cseries/cseries.h>
 
-template <const long k_maximum_length>
+template <const int k_maximum_length>
 class c_static_string final
 {
 	static_assert(k_maximum_length > 0);
@@ -48,12 +48,12 @@ public:
 		return m_string;
 	}
 
-	static long max_length()
+	static int max_length()
 	{
 		return k_maximum_length;
 	}
 
-	unsigned long length() const
+	unsigned int length() const
 	{
 		return strlen(reinterpret_cast<const char*>(m_string));
 	}
@@ -95,10 +95,10 @@ public:
 
 		blamlib_assert(strncpy(temporary, m_string, k_maximum_length));
 
-		unsigned long old_length = length();
-		unsigned long new_length = 0;
+		unsigned int old_length = length();
+		unsigned int new_length = 0;
 
-		for (unsigned long i = 0; i < old_length; i++)
+		for (unsigned int i = 0; i < old_length; i++)
 			if (temporary[i] != c)
 				m_string[new_length++] = temporary[i];
 
@@ -109,9 +109,9 @@ public:
 
 	c_static_string& replace(char old_value, char new_value)
 	{
-		unsigned long total_length = length();
+		unsigned int total_length = length();
 
-		for (unsigned long i = 0; i < total_length; i++)
+		for (unsigned int i = 0; i < total_length; i++)
 			if (m_string[i] == old_value)
 				m_string[i] = new_value;
 
@@ -120,8 +120,8 @@ public:
 
 	c_static_string& strip_leading(char c)
 	{
-		unsigned long total_length = length();
-		unsigned long strip_length = 0;
+		unsigned int total_length = length();
+		unsigned int strip_length = 0;
 
 		while (strip_length < total_length && m_string[strip_length] == c)
 			strip_length++;
@@ -137,7 +137,7 @@ public:
 
 	c_static_string& strip_trailing(char c)
 	{
-		unsigned long total_length = length();
+		unsigned int total_length = length();
 
 		while (total_length > 0 && m_string[total_length - 1] == c)
 			m_string[total_length--] = '\0';
@@ -147,9 +147,9 @@ public:
 
 	c_static_string& to_lower()
 	{
-		unsigned long total_length = length();
+		unsigned int total_length = length();
 
-		for (unsigned long i = 0; i < total_length; i++)
+		for (unsigned int i = 0; i < total_length; i++)
 			m_string[i] = ascii_tolower(m_string[i]);
 
 		return *this;
@@ -157,14 +157,14 @@ public:
 
 	c_static_string& to_upper()
 	{
-		unsigned long total_length = length();
+		unsigned int total_length = length();
 
-		for (unsigned long i = 0; i < total_length; i++)
+		for (unsigned int i = 0; i < total_length; i++)
 			m_string[i] = ascii_toupper(m_string[i]);
 
 		return *this;
 	}
 };
 
-template <const long k_maximum_length>
+template <const int k_maximum_length>
 using s_static_string = c_static_string<k_maximum_length>;

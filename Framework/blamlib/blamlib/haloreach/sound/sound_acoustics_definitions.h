@@ -117,12 +117,12 @@ class __declspec(novtable) c_sector_accessor
 public:
 	virtual bool get_sector_position_value(
 		s_tag_block *positions_block,
-		long position_index,
+		int position_index,
 		real_point3d *out_position) = 0;
 
 	virtual bool get_sector_orientation_value(
 		s_tag_block *orientations_block,
-		long orientation_index,
+		int orientation_index,
 		real_euler_angles2d *out_orientation) = 0;
 };
 
@@ -132,12 +132,12 @@ class c_acoustic_sector_accessor final :
 public:
 	bool get_sector_position_value(
 		s_tag_block *positions_block,
-		long position_index,
+		int position_index,
 		real_point3d *out_position);
 
 	bool get_sector_orientation_value(
 		s_tag_block *orientations_block,
-		long orientation_index,
+		int orientation_index,
 		real_euler_angles2d *out_orientation);
 };
 

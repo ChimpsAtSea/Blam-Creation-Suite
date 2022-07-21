@@ -27,7 +27,7 @@ c_graphics_vertex_layout::~c_graphics_vertex_layout()
 BCS_DEBUG_API BCS_RESULT graphics_vertex_layout_create(
 	c_graphics* graphics,
 	s_graphics_vertex_layout_description* descriptions,
-	unsigned long num_layout_descriptions,
+	uint32_t num_layout_descriptions,
 	c_graphics_vertex_layout*& vertex_layout,
 	const char* debug_name)
 {

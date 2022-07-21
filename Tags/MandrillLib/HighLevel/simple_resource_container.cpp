@@ -12,7 +12,7 @@ c_simple_resource_container::~c_simple_resource_container()
 	ASSERT(reference_count == 0);
 }
 
-BCS_RESULT c_simple_resource_container::add_reference(const void*& buffer, unsigned long& buffer_size)
+BCS_RESULT c_simple_resource_container::add_reference(const void*& buffer, uint32_t& buffer_size)
 {
 	reference_count++;
 	ASSERT(reference_count >= 0);

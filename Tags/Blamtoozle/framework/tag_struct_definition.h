@@ -14,15 +14,15 @@ public:
 	virtual const char* get_name() = 0;
 	virtual const char* get_code_symbol_name() = 0;
 	virtual const char* get_structure_type_name() = 0;
-	virtual unsigned long get_alignment_bits() = 0;
+	virtual uint32_t get_alignment_bits() = 0;
 	virtual const char* get_file_path();
-	virtual long get_line_number();
+	virtual int32_t get_line_number();
 	virtual blofeld::s_tag_persistent_identifier& get_persistent_identifier() = 0;
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() = 0;
 
 	virtual bool is_legacy_struct();
 	virtual bool is_latest_structure_version();
-	virtual unsigned long get_structure_version();
+	virtual uint32_t get_structure_version();
 	virtual c_blamtoozle_tag_struct_definition* get_previous_struct_definition();
 	virtual c_blamtoozle_tag_struct_definition* get_next_struct_definition();
 	virtual c_blamtoozle_tag_struct_definition& get_latest_struct_definition();

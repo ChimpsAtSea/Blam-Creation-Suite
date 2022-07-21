@@ -3,7 +3,7 @@
 class c_build_identifier_chunk : public c_typed_chunk<'id#6', false>
 {
 public:
-	unsigned long long id;
+	uint64_t id;
 
 	c_build_identifier_chunk(c_chunk& parent);
 

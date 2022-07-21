@@ -29,15 +29,15 @@ public:
 
 	virtual BCS_RESULT get_group_by_group_tag(tag group_tag, h_group*& group) const override;
 	virtual BCS_RESULT get_group_by_file_extension(const char* file_extension, h_group*& group) const;
-	virtual BCS_RESULT get_tag_instances(h_tag* const*& tag_instances, unsigned long& tag_instance_count) const override;
-	virtual BCS_RESULT get_tag_groups(h_group* const*& groups, unsigned long& group_count) const override;
+	virtual BCS_RESULT get_tag_instances(h_tag* const*& tag_instances, uint32_t& tag_instance_count) const override;
+	virtual BCS_RESULT get_tag_groups(h_group* const*& groups, uint32_t& group_count) const override;
 
-	BCS_RESULT parse_tag_blob(const void* tag_file_data, unsigned long long tag_file_data_size);
+	BCS_RESULT parse_tag_blob(const void* tag_file_data, uint64_t tag_file_data_size);
 	BCS_RESULT read_tags();
 
 protected:
 	BCS_RESULT init_monolithic_tag_file_views_result;
-	static void init_monolithic_tag_file_views_impl(void* userdata, unsigned long index);
+	static void init_monolithic_tag_file_views_impl(void* userdata, uint32_t index);
 	BCS_RESULT init_monolithic_tag_file_views();
 	BCS_RESULT init_monolithic_cache_file_views();
 	BCS_RESULT deinit_monolithic_tag_file_views();
@@ -45,14 +45,14 @@ protected:
 	static void destroy_tags(h_tag*const* tags, size_t index);
 
 	BCS_RESULT get_tag_partition_view(
-		unsigned long tag_heap_entry_index,
+		uint32_t tag_heap_entry_index,
 		c_monolithic_partition_view*& tag_partition_view) const;
 	BCS_RESULT get_cache_partition_view(
-		unsigned long cache_heap_entry_index,
+		uint32_t cache_heap_entry_index,
 		c_monolithic_partition_view*& cache_partition_view) const;
 
-	BCS_RESULT read_tag(unsigned long index, h_tag*& out_tag, h_group*& out_tag_group) const;
-	static void read_tags_callback(u_read_tags_callback_data* userdata, long index);
+	BCS_RESULT read_tag(uint32_t index, h_tag*& out_tag, h_group*& out_tag_group) const;
+	static void read_tags_callback(u_read_tags_callback_data* userdata, int32_t index);
 
 	wchar_t root_directory[0x10000];
 	wchar_t tag_cache_directory[0x10000];
@@ -60,9 +60,9 @@ protected:
 	std::vector<h_group*> groups;
 	std::vector<h_tag*> tags;
 
-	unsigned long num_tag_partitions;
+	uint32_t num_tag_partitions;
 	c_monolithic_partition_view** tag_partition_views;
-	unsigned long num_cache_partitions;
+	uint32_t num_cache_partitions;
 	//t_memory_mapped_file** cache_memory_mapped_files;
 	//s_memory_mapped_file_info* cache_memory_mapped_file_infos;
 	c_monolithic_partition_view** cache_partition_views;

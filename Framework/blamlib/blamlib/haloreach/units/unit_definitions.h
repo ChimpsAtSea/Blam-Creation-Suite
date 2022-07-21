@@ -289,7 +289,7 @@ struct s_unit_seat
     string_id opening_function_name;
     string_id closing_function_name;
     string_id invisible_seat_region;
-    long runtime_invisible_seat_region_index;
+    int runtime_invisible_seat_region_index;
 };
 static_assert(sizeof(s_unit_seat) == 0x13C);
 

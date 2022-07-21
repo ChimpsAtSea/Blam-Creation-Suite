@@ -19,7 +19,7 @@ public:
 
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;
-	virtual unsigned long get_element_count() override;
+	virtual uint32_t get_element_count() override;
 	virtual const char* get_element_count_string() override;
 	virtual c_blamtoozle_tag_struct_definition& get_struct_definition() override;
 

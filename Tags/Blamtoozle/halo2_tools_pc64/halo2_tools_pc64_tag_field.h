@@ -29,8 +29,8 @@ public:
 	virtual const char* get_name() override;
 	virtual blofeld::e_field get_field_type() override;
 
-	virtual unsigned long get_padding() override;
-	virtual unsigned long get_skip_length() override;
+	virtual uint32_t get_padding() override;
+	virtual uint32_t get_skip_length() override;
 	virtual const char* get_explanation() override;
 	virtual blofeld::e_field_id get_field_id() override;
 
@@ -55,8 +55,8 @@ public:
 	c_halo2_tools_pc64_string_list_definition* string_list_definition;
 	c_halo2_tools_pc64_tag_data_definition* data_definition;
 	c_blamtoozle_tag_block_index_custom_search_definition* block_index_custom_search_definition;
-	unsigned long long padding;
-	unsigned long long skip_length;
+	uint64_t padding;
+	uint64_t skip_length;
 	const char* explanation;
 
 	blofeld::e_field_id field_id;

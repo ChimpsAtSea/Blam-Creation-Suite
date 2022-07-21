@@ -29,7 +29,7 @@ class c_gen2_tag_file_parse_context
 protected:
 	c_gen2_tag_file_parse_context(
 		const void* _tag_file_data,
-		unsigned long long _tag_file_data_size,
+		uint64_t _tag_file_data_size,
 		s_engine_platform_build _engine_platform_build);
 	c_gen2_tag_file_parse_context() = delete;
 	c_gen2_tag_file_parse_context(c_gen2_tag_file_parse_context const&) = delete;
@@ -46,35 +46,35 @@ public:
 	BCS_DEBUG_API static BCS_RESULT parse_gen2_tag_file_data(
 		h_tag*& tag_prototype,
 		const void* tag_file_data, 
-		unsigned long long tag_file_data_size, 
+		uint64_t tag_file_data_size, 
 		s_engine_platform_build engine_platform_build);
 
 protected:
 	//BCS_RESULT calculate_tag_struct_definition_size(
 	//	const blofeld::s_tag_struct_definition& struct_definition,
 	//	s_engine_platform_build engine_platform_build,
-	//	unsigned long& tag_struct_definition_size,
-	//	unsigned long tag_struct_version) const;
+	//	uint32_t& tag_struct_definition_size,
+	//	uint32_t tag_struct_version) const;
 	BCS_RESULT calculate_tag_struct_definition_size2(
 		const blofeld::s_tag_struct_definition& tag_struct_definition,
 		const char* struct_data_position,
 		const char* struct_data_expected_end,
 		const char* external_data_position,
-		unsigned long& tag_struct_size,
-		unsigned long& tag_struct_external_size,
-		unsigned long tag_struct_version) const;
+		uint32_t& tag_struct_size,
+		uint32_t& tag_struct_external_size,
+		uint32_t tag_struct_version) const;
 	BCS_RESULT calculate_tag_struct_definition_size_iterator(
 		const blofeld::s_tag_struct_definition& tag_struct_definition,
 		const char*& struct_data_position,
 		const char* struct_data_expected_end,
 		const char*& external_data_position,
-		unsigned long tag_struct_version) const;
+		uint32_t tag_struct_version) const;
 	BCS_RESULT traverse_tag_struct(
 		const char*& struct_data_position,
 		const char* struct_data_expected_end,
 		const char*& external_data_position,
 		h_prototype& prototype,
-		unsigned long struct_version) const;
+		uint32_t struct_version) const;
 	BCS_RESULT traverse_tag_block(const char*& global_data_position, h_block& block) const;
 	BCS_RESULT traverse_tag_group(h_tag& prototype) const;
 	tag get_group_tag() const;

@@ -1,3 +1,3 @@
 #include "templatelibrary-private-pch.h"
 
-unsigned long __benchmark_index = 0;
+uint32_t __benchmark_index = 0;

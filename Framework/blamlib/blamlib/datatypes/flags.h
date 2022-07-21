@@ -7,7 +7,7 @@
 template <
 	typename t_enum,
 	typename t_storage,
-	const long k_number_of_bits = sizeof(t_storage) * 8>
+	const int k_number_of_bits = sizeof(t_storage) * 8>
 class c_flags_no_init
 {
 	static_assert(__is_enum(t_enum));
@@ -17,7 +17,7 @@ protected:
 	t_storage m_stored;
 
 public:
-	static t_storage make_N_bit_mask_size_type(long num_bits)
+	static t_storage make_N_bit_mask_size_type(int num_bits)
 	{
 		return ~t_storage() >> (k_number_of_bits - num_bits);
 	}
@@ -94,7 +94,7 @@ public:
 template <
 	typename t_enum,
 	typename t_storage = __underlying_type(t_enum),
-	const long k_number_of_bits = sizeof(t_storage) * 8>
+	const int k_number_of_bits = sizeof(t_storage) * 8>
 class c_flags :
 	public c_flags_no_init<t_enum, t_storage, k_number_of_bits>
 {

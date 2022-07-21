@@ -14,7 +14,7 @@ c_blamtoozle_tag_field::~c_blamtoozle_tag_field()
 
 c_blamtoozle_tag_field_combined_fixup::c_blamtoozle_tag_field_combined_fixup(
 	c_blamtoozle_tag_group_definition& _group_definition,
-	unsigned long _count,
+	uint32_t _count,
 	e_blamtoozle_tag_field_combined_fixup_type _fixup_type) :
 	t_virtual(),
 	group_definition(_group_definition),

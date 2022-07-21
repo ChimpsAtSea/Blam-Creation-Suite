@@ -11,7 +11,7 @@ public:
 	virtual const char* get_name() = 0;
 	virtual const char* get_code_symbol_name() = 0;
 	virtual const char* get_file_path();
-	virtual long get_line_number();
+	virtual int32_t get_line_number();
 
 	using t_options = std::vector<const char*>;
 	t_options options;

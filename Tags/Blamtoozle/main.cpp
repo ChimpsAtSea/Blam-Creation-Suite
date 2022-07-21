@@ -58,7 +58,7 @@ int main()
 		}
 
 		ptr64 halo1_group_table_address;
-		unsigned long halo1_num_tag_layouts;
+		uint32_t halo1_num_tag_layouts;
 		parse_command_line_argument_ulonglong("halo1-tools-pc64-table-address", halo1_group_table_address);
 		parse_command_line_argument_ulong("halo1-tools-pc64-num-tag-layouts", halo1_num_tag_layouts);
 
@@ -92,7 +92,7 @@ int main()
 		}
 
 		ptr64 halo2_group_table_address;
-		unsigned long halo2_num_tag_layouts;
+		uint32_t halo2_num_tag_layouts;
 		parse_command_line_argument_ulonglong("halo2-tools-pc64-table-address", halo2_group_table_address);
 		parse_command_line_argument_ulong("halo2-tools-pc64-num-tag-layouts", halo2_num_tag_layouts);
 
@@ -129,7 +129,7 @@ int main()
 		}
 
 		ptr64 halo3_group_table_address;
-		unsigned long halo3_num_tag_layouts;
+		uint32_t halo3_num_tag_layouts;
 		parse_command_line_argument_ulonglong("halo3-tools-pc64-table-address", halo3_group_table_address);
 		parse_command_line_argument_ulong("halo3-tools-pc64-num-tag-layouts", halo3_num_tag_layouts);
 
@@ -166,7 +166,7 @@ int main()
 		}
 
 		ptr64 halo3odst_group_table_address;
-		unsigned long halo3odst_num_tag_layouts;
+		uint32_t halo3odst_num_tag_layouts;
 		parse_command_line_argument_ulonglong("halo3odst-tools-pc64-table-address", halo3odst_group_table_address);
 		parse_command_line_argument_ulong("halo3odst-tools-pc64-num-tag-layouts", halo3odst_num_tag_layouts);
 
@@ -203,7 +203,7 @@ int main()
 		}
 
 		ptr32 haloreach_x360_group_table_address;
-		unsigned long haloreach_x360_num_tag_layouts;
+		uint32_t haloreach_x360_num_tag_layouts;
 		parse_command_line_argument_ulong("haloreach-tagtest-xbox360-table-address", haloreach_x360_group_table_address);
 		parse_command_line_argument_ulong("haloreach-tagtest-xbox360-num-tag-layouts", haloreach_x360_num_tag_layouts);
 
@@ -240,7 +240,7 @@ int main()
 		}
 
 		ptr32 halo4_x360_group_table_address;
-		unsigned long halo4_x360_num_tag_layouts;
+		uint32_t halo4_x360_num_tag_layouts;
 		parse_command_line_argument_ulong("halo4-tagtest-xbox360-table-address", halo4_x360_group_table_address);
 		parse_command_line_argument_ulong("halo4-tagtest-xbox360-num-tag-layouts", halo4_x360_num_tag_layouts);
 

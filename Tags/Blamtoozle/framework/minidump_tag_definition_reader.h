@@ -21,7 +21,7 @@ public:
 		void* minidump_data;
 		const MINIDUMP_HEADER* minidump_header;
 	};
-	unsigned long long minidump_data_size;
+	uint64_t minidump_data_size;
 
 	const MINIDUMP_DIRECTORY* minidump_directories;
 	const MINIDUMP_DIRECTORY* minidump_memory_list_directory;

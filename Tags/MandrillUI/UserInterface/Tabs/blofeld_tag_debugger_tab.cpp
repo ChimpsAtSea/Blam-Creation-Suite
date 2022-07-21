@@ -42,7 +42,7 @@
 //	ImGui::SameLine();
 //	if (show_field_offsets)
 //	{
-//		unsigned long offset = use_absolute_offsets ? result->absolute_offset : result->field_offset;
+//		uint32_t offset = use_absolute_offsets ? result->absolute_offset : result->field_offset;
 //		ImGui::Text("0x%X | %s %s", offset, blofeld::field_to_string(field.field_type), field.name);
 //	}
 //	else
@@ -51,7 +51,7 @@
 //	}
 //}
 //
-//void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_type, unsigned long count, int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result, bool use_hex, const char* format)
+//void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result, bool use_hex, const char* format)
 //{
 //	ImGuiInputTextFlags flags = ImGuiInputTextFlags_ReadOnly;
 //	if ((show_hex_values || use_hex))
@@ -310,11 +310,11 @@
 //	render_field_name_and_information(field, result);
 //}
 //
-//unsigned long argb_to_abgr(unsigned long argb_color)
+//uint32_t argb_to_abgr(uint32_t argb_color)
 //{
-//	unsigned long bgra_color = _byteswap_ulong(argb_color);
-//	unsigned long Xbgr_color = bgra_color >> 8;
-//	unsigned long abgr_color = argb_color & 0xFF00FF00 | Xbgr_color & 0x00FF00FF;
+//	uint32_t bgra_color = _byteswap_ulong(argb_color);
+//	uint32_t Xbgr_color = bgra_color >> 8;
+//	uint32_t abgr_color = argb_color & 0xFF00FF00 | Xbgr_color & 0x00FF00FF;
 //	return abgr_color;
 //}
 //
@@ -323,8 +323,8 @@
 //	if (&tag_interface != &this->tag_interface) return;
 //	ImGui::Dummy({ result->level * indent_size, 0.0f });
 //	ImGui::SameLine();
-//	unsigned long argb_color = *reinterpret_cast<unsigned long*>(data);
-//	unsigned long abgr_color = argb_to_abgr(argb_color);
+//	uint32_t argb_color = *reinterpret_cast<uint32_t*>(data);
+//	uint32_t abgr_color = argb_to_abgr(argb_color);
 //	ImVec4 float_color = ImGui::ColorConvertU32ToFloat4(abgr_color);
 //	ImGui::ColorEdit3("", &float_color.x, ImGuiColorEditFlags_Uint8);
 //	render_field_name_and_information(field, result);
@@ -334,8 +334,8 @@
 //	if (&tag_interface != &this->tag_interface) return;
 //	ImGui::Dummy({ result->level * indent_size, 0.0f });
 //	ImGui::SameLine();
-//	unsigned long argb_color = *reinterpret_cast<unsigned long*>(data);
-//	unsigned long abgr_color = argb_to_abgr(argb_color);
+//	uint32_t argb_color = *reinterpret_cast<uint32_t*>(data);
+//	uint32_t abgr_color = argb_to_abgr(argb_color);
 //	ImVec4 float_color = ImGui::ColorConvertU32ToFloat4(abgr_color);
 //	ImGui::ColorEdit4("", &float_color.x, ImGuiColorEditFlags_Uint8);
 //	render_field_name_and_information(field, result);
@@ -630,9 +630,9 @@
 //	render_field_name_and_information(field, result);
 //
 //	s_tag_resource& tag_resource = *reinterpret_cast<s_tag_resource*>(data);
-//	unsigned long absolute_index = tag_resource.resource_handle.get_absolute_index();
-//	unsigned long identifier = tag_resource.resource_handle.get_identifier();
-//	unsigned long definition_address = tag_resource.definition_address;
+//	uint32_t absolute_index = tag_resource.resource_handle.get_absolute_index();
+//	uint32_t identifier = tag_resource.resource_handle.get_identifier();
+//	uint32_t definition_address = tag_resource.definition_address;
 //
 //	ImGui::SameLine();
 //
@@ -688,7 +688,7 @@
 //{
 //	if (&tag_interface != &this->tag_interface) return;
 //
-//	unsigned long pointer_size = get_platform_pointer_size(get_cache_file().get_platform_type());
+//	uint32_t pointer_size = get_platform_pointer_size(get_cache_file().get_platform_type());
 //	switch (pointer_size)
 //	{
 //	case 8:
@@ -820,7 +820,7 @@
 //
 //	validator->field_render_callback.unregister_callback_by_key(this);
 //
-//	for (unsigned long field_type = 0; field_type < blofeld::k_number_of_blofeld_field_types; field_type++)
+//	for (uint32_t field_type = 0; field_type < blofeld::k_number_of_blofeld_field_types; field_type++)
 //	{
 //		validator->field_type_render_callbacks[field_type].unregister_callback_by_key(this);
 //	}*/

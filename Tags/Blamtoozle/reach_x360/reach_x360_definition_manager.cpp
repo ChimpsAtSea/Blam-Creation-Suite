@@ -32,10 +32,10 @@ c_reach_x360_tag_definition_manager::~c_reach_x360_tag_definition_manager()
 {
 }
 
-void c_reach_x360_tag_definition_manager::traverse(ptr32 group_table_address, unsigned long num_tag_layouts)
+void c_reach_x360_tag_definition_manager::traverse(ptr32 group_table_address, uint32_t num_tag_layouts)
 {
 	const ptr32* groups = va_to_pointer2<ptr32>(group_table_address);
-	for (unsigned long tag_group_index = 0; tag_group_index < num_tag_layouts; tag_group_index++)
+	for (uint32_t tag_group_index = 0; tag_group_index < num_tag_layouts; tag_group_index++)
 	{
 		ptr32 group_pointer = groups[tag_group_index];
 		byteswap_inplace(group_pointer);

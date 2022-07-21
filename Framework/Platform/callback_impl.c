@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "callback.h"
 
 #ifdef _WIN64
@@ -8,10 +9,10 @@
 
 void execute_callback_list(
 	s_callback* callback_manager,
-	unsigned long long register1,
-	unsigned long long register2,
-	unsigned long long register3,
-	unsigned long long stack)
+	uint64_t register1,
+	uint64_t register2,
+	uint64_t register3,
+	uint64_t stack)
 {
 	s_callback_entry* entry = callback_manager->entry;
 	while (entry)
@@ -52,4 +53,3 @@ void execute_callback_list(
 #undef execute_callback
 #undef userdata
 }
-

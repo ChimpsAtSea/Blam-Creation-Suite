@@ -52,7 +52,7 @@ const char* c_halo2_tools_pc64_tag_array_struct_definition::get_structure_type_n
 	return code_type_name.c_str();
 }
 
-unsigned long c_halo2_tools_pc64_tag_array_struct_definition::get_alignment_bits()
+uint32_t c_halo2_tools_pc64_tag_array_struct_definition::get_alignment_bits()
 {
 	// #TODO: calculate this
 	return 0;

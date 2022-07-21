@@ -17,9 +17,9 @@ struct s_airstrike_battery
 	real launch_warmup; // seconds to wait before launching the strike
 	real launch_arrival; // seconds to wait until the launch site marker is removed
 	real launch_cooldown; // seconds to wait before the next launch will be ready
-	real launch_duration; // how long a launch should take to fire all rounds
-	long shots_per_launch; // number of rounds to fire per launch
-	long default_shot_count; // default number of rounds in the battery
+	real launch_duration; // how int a launch should take to fire all rounds
+	int shots_per_launch; // number of rounds to fire per launch
+	int default_shot_count; // default number of rounds in the battery
 	s_tag_reference fire_effect; // the effect that will be created when the strike fires
 	c_typed_tag_block<real_point2d> fire_offsets; // offsets on the x/y plane from the sky the strike fires from
 	s_tag_reference affected_weapon; // the weapon affected by the strike

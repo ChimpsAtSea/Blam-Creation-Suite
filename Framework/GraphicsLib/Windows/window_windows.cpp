@@ -4,8 +4,8 @@ c_window_windows::c_window_windows(
 	const char* window_title,
 	const char* window_id,
 	e_window_icon window_icon_type,
-	unsigned long init_width,
-	unsigned long init_height,
+	uint32_t init_width,
+	uint32_t init_height,
 	float4 background_color,
 	const char* debug_name) :
 	window_handle(NULL),
@@ -140,8 +140,8 @@ LRESULT c_window_windows::window_procedure(HWND window_handle, UINT message, WPA
 	{
 	case WM_SIZE:
 	{
-		unsigned long new_width = LOWORD(lparam);
-		unsigned long new_height = HIWORD(lparam);
+		uint32_t new_width = LOWORD(lparam);
+		uint32_t new_height = HIWORD(lparam);
 		set_size(new_width, new_height);
 	}
 	break;
@@ -169,8 +169,8 @@ BCS_RESULT window_windows_create(
 	const char* window_title,
 	const char* window_id,
 	e_window_icon window_icon,
-	unsigned long width,
-	unsigned long height,
+	uint32_t width,
+	uint32_t height,
 	float4 background_color,
 	c_window_windows*& window,
 	const char* debug_name)

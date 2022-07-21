@@ -32,7 +32,7 @@ template<> BCS_DEBUG_API void byteswap_inplace<s_tag_interop>(s_tag_interop& val
 
 template<> BCS_DEBUG_API void byteswap_inplace<c_datum_handle>(c_datum_handle& value)
 {
-	byteswap_inplace(*reinterpret_cast<unsigned long*>(&value));
+	byteswap_inplace(*reinterpret_cast<uint32_t*>(&value));
 }
 
 template<> BCS_DEBUG_API void byteswap_inplace<s_tag_resource>(s_tag_resource& value)
@@ -43,7 +43,7 @@ template<> BCS_DEBUG_API void byteswap_inplace<s_tag_resource>(s_tag_resource& v
 
 template<> BCS_DEBUG_API void byteswap_inplace<float>(float& value)
 {
-	byteswap_inplace(*reinterpret_cast<unsigned long*>(&value));
+	byteswap_inplace(*reinterpret_cast<uint32_t*>(&value));
 }
 
 template<> BCS_DEBUG_API void byteswap_inplace<real_point2d>(real_point2d& value)
@@ -194,7 +194,7 @@ template<> BCS_DEBUG_API void byteswap_inplace<c_old_string_id>(c_old_string_id&
 template<> BCS_DEBUG_API void byteswap_inplace<c_tag_resource_fixup>(c_tag_resource_fixup& value)
 {
 	static_assert(sizeof(c_tag_resource_fixup) == sizeof(unsigned long));
-	byteswap_inplace(*reinterpret_cast<unsigned long*>(&value));
+	byteswap_inplace(*reinterpret_cast<uint32_t*>(&value));
 }
 
 template<> BCS_DEBUG_API void byteswap_inplace<s_tag_d3d_vertex_buffer>(s_tag_d3d_vertex_buffer& value)

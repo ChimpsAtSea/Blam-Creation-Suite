@@ -12,7 +12,7 @@ class c_custom_tool_render_model;
 //	c_blofeld_tag_editor_tab(c_tag_interface& tag_interface, c_mandrill_tab& parent);
 //	virtual ~c_blofeld_tag_editor_tab();
 //
-//	unsigned long copy_data_recursively(const char* const local_tag_memory, char* const game_tag_memory, const blofeld::s_tag_struct_definition& struct_definition);
+//	uint32_t copy_data_recursively(const char* const local_tag_memory, char* const game_tag_memory, const blofeld::s_tag_struct_definition& struct_definition);
 //	c_tag_interface& get_tag_interface() const { return tag_interface; }
 //	c_cache_file& get_cache_file() const { return tag_interface.get_cache_file(); }
 //
@@ -33,11 +33,11 @@ class c_custom_tool_render_model;
 //	c_cache_file& cache_file;
 //	ImVec2 viewport_size;
 //
-//	unsigned long render_tag_struct_definition(int level, char* data, const blofeld::s_tag_struct_definition& struct_definition);
+//	uint32_t render_tag_struct_definition(int level, char* data, const blofeld::s_tag_struct_definition& struct_definition);
 //	void render_flags_definition(void* field_data, const blofeld::s_tag_field& field);
 //	void render_enum_definition(void* data, const blofeld::s_tag_field& field);
 //	void render_data(s_tag_data& data, const blofeld::s_tag_field& field);
-//	unsigned long render_tag_group(char* data, const blofeld::s_tag_group& group);
+//	uint32_t render_tag_group(char* data, const blofeld::s_tag_group& group);
 //
 //	c_custom_tool_render_model* custom_tool;
 //};

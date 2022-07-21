@@ -10,6 +10,6 @@ public:
 	BCS_DEBUG_API float get_miliseconds() const;
 
 private:
-	long long time_point_start;
-	long long time_point_stop;
+	int64_t time_point_start;
+	int64_t time_point_stop;
 };

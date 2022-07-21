@@ -49,7 +49,7 @@ namespace blamlib
 		string_id name;
 		c_tag_block_index<s_mesh, short> first_mesh;
 		short mesh_count;
-		long instance_masks[k_number_of_render_model_permutation_instance_bitvectors];
+		int instance_masks[k_number_of_render_model_permutation_instance_bitvectors];
 	};
 	static_assert(sizeof(s_render_model_permutation) == 0x18);
 
@@ -222,12 +222,12 @@ namespace blamlib
 		string_id name;
 		c_flags<e_render_model_flags, word> flags;
 		word version;
-		long runtime_import_info_checksum;
+		int runtime_import_info_checksum;
 		c_typed_tag_block<s_render_model_region> regions;
-		long unknown18;
+		int unknown18;
 		c_tag_block_index<s_mesh, long> instance_mesh;
 		c_typed_tag_block<s_render_model_instance_placement> instance_placements;
-		long node_list_checksum;
+		int node_list_checksum;
 		c_typed_tag_block<s_render_model_node> nodes;
 		c_typed_tag_block<s_render_model_marker_group> marker_groups;
 		c_typed_tag_block<s_geometry_material> materials;

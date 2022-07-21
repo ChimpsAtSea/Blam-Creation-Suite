@@ -118,12 +118,12 @@ blofeld::e_field c_halo4_x360_tag_field::get_field_type()
 	return field_type;
 }
 
-unsigned long c_halo4_x360_tag_field::get_padding()
+uint32_t c_halo4_x360_tag_field::get_padding()
 {
 	return padding;
 }
 
-unsigned long c_halo4_x360_tag_field::get_skip_length()
+uint32_t c_halo4_x360_tag_field::get_skip_length()
 {
 	return skip_length;
 }

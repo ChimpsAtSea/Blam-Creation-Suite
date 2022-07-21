@@ -14,7 +14,7 @@ struct s_jetwash_definition
 {
 	string_id marker;
 	real radius;
-	long maximum_traces;
+	int maximum_traces;
 	real maximum_emission_length;
 	real_bounds trace_yaw_angle;
 	real_bounds trace_pitch_angle;

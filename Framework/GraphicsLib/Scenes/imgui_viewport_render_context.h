@@ -18,17 +18,17 @@ public:
 	virtual BCS_RESULT get_window(c_window*& window) override;
 	virtual BCS_RESULT get_imgui_context(c_imgui_context*& imgui_context) override;
 	virtual BCS_RESULT get_graphics(c_graphics*& graphics) override;
-	virtual unsigned long get_width() override;
-	virtual unsigned long get_height() override;
+	virtual uint32_t get_width() override;
+	virtual uint32_t get_height() override;
 	virtual float get_width_float() override;
 	virtual float get_height_float() override;
 
-	static void __cdecl viewport_size_changed(c_imgui_viewport_render_context& _this, unsigned long width, unsigned long height);
+	static void __cdecl viewport_size_changed(c_imgui_viewport_render_context& _this, uint32_t width, uint32_t height);
 	static void __cdecl render_pass_render(c_imgui_viewport_render_context& _this);
-	static void __cdecl swap_chain_resize_finish(c_imgui_viewport_render_context& _this, unsigned long width, unsigned long height);
+	static void __cdecl swap_chain_resize_finish(c_imgui_viewport_render_context& _this, uint32_t width, uint32_t height);
 	
 
-	static constexpr unsigned long swap_chain_frames = 4;
+	static constexpr uint32_t swap_chain_frames = 4;
 
 	c_render_context& parent_render_context;
 	c_viewport& viewport;

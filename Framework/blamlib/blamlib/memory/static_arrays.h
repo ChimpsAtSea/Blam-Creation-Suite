@@ -8,13 +8,13 @@
 #include <blamlib/datatypes/static_hash_table_data.h>
 #include <blamlib/datatypes/static_string.h>
 
-template <const long k_maximum_count>
+template <const int k_maximum_count>
 class c_static_bitarray final
 {
 	static_assert(k_maximum_count > 0);
 
 private:
-	long m_bit_vector[BIT_VECTOR_SIZE_IN_LONGS(k_maximum_count)];
+	int m_bit_vector[BIT_VECTOR_SIZE_IN_LONGS(k_maximum_count)];
 
 public:
 	void clear()
@@ -22,26 +22,26 @@ public:
 		memset(m_bit_vector, 0, BIT_VECTOR_SIZE_IN_BYTES(k_maximum_count));
 	}
 
-	void set(long bit_index, bool m_value)
+	void set(int bit_index, bool m_value)
 	{
 		blamlib_assert(VALID_INDEX(bit_index, k_maximum_count));
 		BIT_VECTOR_SET_FLAG(m_bit_vector, bit_index, m_value);
 	}
 
-	bool test(long bit_index) const
+	bool test(int bit_index) const
 	{
 		blamlib_assert(VALID_INDEX(bit_index, k_maximum_count));
 		return BIT_VECTOR_TEST_FLAG(m_bit_vector, bit_index);
 	}
 
-	bool operator[](long bit_index) const
+	bool operator[](int bit_index) const
 	{
 		blamlib_assert(VALID_INDEX(bit_index, k_maximum_count));
 		return test(bit_index);
 	}
 };
 
-template <const long k_maximum_count>
+template <const int k_maximum_count>
 class c_static_wchar_string
 {
 	static_assert(k_maximum_count > 0);
@@ -66,13 +66,13 @@ public:
 	}
 };
 
-template <typename t_storage, const long k_number_of_bits>
+template <typename t_storage, const int k_number_of_bits>
 class c_big_flags_typed_no_init
 {
 public:
-	static constexpr long k_number_of_storage_bits = sizeof(t_storage) * 8;
-	static constexpr long k_storage_bit_shift = k_number_of_storage_bits == 64 ? 6 : k_number_of_storage_bits == 32 ? 5 : k_number_of_storage_bits == 16 ? 4 : 3;
-	static constexpr long k_number_of_storage_elements = (k_number_of_bits + k_number_of_storage_bits - 1) / k_number_of_storage_bits;
+	static constexpr int k_number_of_storage_bits = sizeof(t_storage) * 8;
+	static constexpr int k_storage_bit_shift = k_number_of_storage_bits == 64 ? 6 : k_number_of_storage_bits == 32 ? 5 : k_number_of_storage_bits == 16 ? 4 : 3;
+	static constexpr int k_number_of_storage_elements = (k_number_of_bits + k_number_of_storage_bits - 1) / k_number_of_storage_bits;
 protected:
 	t_storage m_storage[k_number_of_storage_elements];
 
@@ -80,16 +80,16 @@ public:
 	// TODO
 };
 
-template <typename t_storage, const long k_number_of_bits>
+template <typename t_storage, const int k_number_of_bits>
 class c_big_flags_typed :
 	public c_big_flags_typed_no_init<t_storage, k_number_of_bits>
 {
 
 };
 
-template <const long k_number_of_bits>
+template <const int k_number_of_bits>
 class c_big_flags :
-	public c_big_flags_typed<long, k_number_of_bits>
+	public c_big_flags_typed<int, k_number_of_bits>
 {
 
 };

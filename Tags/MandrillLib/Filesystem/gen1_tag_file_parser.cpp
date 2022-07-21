@@ -17,7 +17,7 @@ template<> void byteswap_inplace(s_single_tag_file_header_v1& value)
 static BCS_RESULT calculate_tag_struct_definition_size(
 	const blofeld::s_tag_struct_definition& struct_definition,
 	s_engine_platform_build engine_platform_build,
-	unsigned long& tag_struct_definition_size)
+	uint32_t& tag_struct_definition_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -27,7 +27,7 @@ static BCS_RESULT calculate_tag_struct_definition_size(
 	{
 		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 
-		unsigned long field_size;
+		uint32_t field_size;
 		switch (tag_field.field_type)
 		{
 		case blofeld::_field_struct:
@@ -70,7 +70,7 @@ static bool tag_struct_definition_has_external_data(
 	{
 		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 
-		unsigned long field_size;
+		uint32_t field_size;
 		switch (tag_field.field_type)
 		{
 		case blofeld::_field_tag_reference:
@@ -84,7 +84,7 @@ static bool tag_struct_definition_has_external_data(
 
 c_gen1_tag_file_parse_context::c_gen1_tag_file_parse_context(
 	const void* _tag_file_data, 
-	unsigned long long _tag_file_data_size, 
+	uint64_t _tag_file_data_size, 
 	s_engine_platform_build _engine_platform_build) :
 	is_big_endian(),
 	is_little_endian(),
@@ -184,7 +184,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_struct_data(const char*& 
 			h_enumerable* tag_field_array_data = prototype.get_field_data<h_enumerable>(tag_field);
 			ASSERT(tag_field_array_data != nullptr);
 
-			for (unsigned long array_index = 0; array_index < tag_field_array_data->size(); array_index++)
+			for (uint32_t array_index = 0; array_index < tag_field_array_data->size(); array_index++)
 			{
 				h_prototype& array_entry = tag_field_array_data->get(array_index);
 
@@ -239,7 +239,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_struct_data(const char*& 
 		case blofeld::_field_long_block_index:
 		case blofeld::_field_long_block_index_custom_search:
 		{
-			unsigned long field_size;
+			uint32_t field_size;
 			if (BCS_FAILED(rs = blofeld::get_blofeld_tag_file_field_size(tag_field.field_type, engine_platform_build, field_size)))
 			{
 				return rs;
@@ -297,7 +297,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 			h_block* tag_field_block_data = prototype.get_field_data<h_block>(tag_field);
 			ASSERT(tag_field_block_data != nullptr);
 
-			for (unsigned long block_index = 0; block_index < tag_field_block_data->size(); block_index++)
+			for (uint32_t block_index = 0; block_index < tag_field_block_data->size(); block_index++)
 			{
 				h_prototype& block_entry = tag_field_block_data->get(block_index);
 				traverse_tag_struct_data(global_data_position, block_entry);
@@ -306,7 +306,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 			bool has_external_data = tag_struct_definition_has_external_data(tag_field_block_data->get_tag_struct_definition(), engine_platform_build);
 			if (has_external_data)
 			{
-				for (unsigned long block_index = 0; block_index < tag_field_block_data->size(); block_index++)
+				for (uint32_t block_index = 0; block_index < tag_field_block_data->size(); block_index++)
 				{
 					h_prototype& block_entry = tag_field_block_data->get(block_index);
 					traverse_tag_external_data(global_data_position, block_entry);
@@ -339,7 +339,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 			if (tag_reference.name_length > 0)
 			{
 				tag_reference_path = global_data_position;
-				unsigned long tag_reference_file_path_bytes = strlen(global_data_position) + 1;
+				uint32_t tag_reference_file_path_bytes = strlen(global_data_position) + 1;
 				ASSERT(tag_reference_file_path_bytes == (tag_reference.name_length + 1));
 				global_data_position += tag_reference_file_path_bytes;
 			}
@@ -351,7 +351,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 			h_enumerable* tag_field_array_data = prototype.get_field_data<h_enumerable>(tag_field);
 			ASSERT(tag_field_array_data != nullptr);
 
-			for (unsigned long array_index = 0; array_index < tag_field_array_data->size(); array_index++)
+			for (uint32_t array_index = 0; array_index < tag_field_array_data->size(); array_index++)
 			{
 				h_prototype& array_entry = tag_field_array_data->get(array_index);
 
@@ -426,7 +426,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_tag*& tag_p
 {
 	BCS_RESULT rs = BCS_S_OK;
 	void* tag_file_data;
-	unsigned long long tag_file_data_size;
+	uint64_t tag_file_data_size;
 	if (BCS_FAILED(rs = filesystem_read_file_to_memory(tag_file_path, tag_file_data, tag_file_data_size)))
 	{
 		return rs;
@@ -439,7 +439,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_tag*& tag_p
 	return rs;
 }
 
-BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_tag*& tag_prototype, const void* tag_file_data, unsigned long long tag_file_data_size, s_engine_platform_build engine_platform_build)
+BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_tag*& tag_prototype, const void* tag_file_data, uint64_t tag_file_data_size, s_engine_platform_build engine_platform_build)
 {
 	BCS_RESULT rs = BCS_S_OK;
 

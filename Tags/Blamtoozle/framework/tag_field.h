@@ -22,8 +22,8 @@ public:
 	virtual const char* get_name() = 0;
 	virtual blofeld::e_field get_field_type() = 0;
 
-	virtual unsigned long get_padding() = 0;
-	virtual unsigned long get_skip_length() = 0;
+	virtual uint32_t get_padding() = 0;
+	virtual uint32_t get_skip_length() = 0;
 	virtual const char* get_explanation() = 0;
 	virtual blofeld::e_field_id get_field_id() = 0;
 
@@ -51,12 +51,12 @@ class c_blamtoozle_tag_field_combined_fixup :
 {
 public:
 	c_blamtoozle_tag_group_definition& group_definition;
-	unsigned long count;
+	uint32_t count;
 	e_blamtoozle_tag_field_combined_fixup_type fixup_type;
 
 	c_blamtoozle_tag_field_combined_fixup(
 		c_blamtoozle_tag_group_definition& group_definition,
-		unsigned long count,
+		uint32_t count,
 		e_blamtoozle_tag_field_combined_fixup_type fixup_type);
 	virtual ~c_blamtoozle_tag_field_combined_fixup();
 };

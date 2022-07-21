@@ -24,8 +24,8 @@ public:
 	std::string get_platform_namespace(bool semicolon_suffix);
 	std::string get_namespace(bool semicolon_suffix);
 
-	void begin_namespace_tree(std::stringstream& stream, unsigned long tree_write_options);
-	void end_namespace_tree(std::stringstream& stream, unsigned long tree_write_options);
+	void begin_namespace_tree(std::stringstream& stream, uint32_t tree_write_options);
+	void end_namespace_tree(std::stringstream& stream, uint32_t tree_write_options);
 
 	void write_field_description_comment(std::stringstream& stream, const blofeld::s_tag_field& tag_field);
 

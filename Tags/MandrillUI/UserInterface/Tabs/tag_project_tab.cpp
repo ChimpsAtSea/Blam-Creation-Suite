@@ -7,11 +7,11 @@
 static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_project, bool export_wav, bool export_xma)
 {
 	h_tag* const* tag_instances;
-	unsigned long tag_instance_count;
+	uint32_t tag_instance_count;
 	tag_project.get_tag_instances(tag_instances, tag_instance_count);
 
 	blofeld::halo3::pc64::h_sound_cache_file_gestalt_struct_definition* sound_cache_file_gestalt = nullptr;
-	for (unsigned long tag_instance_index = 0; tag_instance_index < tag_instance_count; tag_instance_index++)
+	for (uint32_t tag_instance_index = 0; tag_instance_index < tag_instance_count; tag_instance_index++)
 	{
 		h_tag& tag = *tag_instances[tag_instance_index];
 
@@ -23,7 +23,7 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 	}
 	ASSERT(sound_cache_file_gestalt != nullptr);
 
-	for (unsigned long tag_instance_index = 0; tag_instance_index < tag_instance_count; tag_instance_index++)
+	for (uint32_t tag_instance_index = 0; tag_instance_index < tag_instance_count; tag_instance_index++)
 	{
 		h_tag& tag = *tag_instances[tag_instance_index];
 
@@ -38,30 +38,30 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 			if (resource)
 			{
 				const void* resource_buffer;
-				unsigned long resource_buffer_size;
+				uint32_t resource_buffer_size;
 				if (BCS_SUCCEEDED(resource->add_reference(resource_buffer, resource_buffer_size)))
 				{
 					using namespace blofeld::halo3::pc64;
 
 					blofeld::halo3::pc64::h_sound_gestalt_codec_block& codec = sound_cache_file_gestalt->codecs_block[cache_file_sound->codec_index];
 					
-					unsigned long const pitch_range_start_index = cache_file_sound->first_pitch_range_index.value;
-					unsigned long const pitch_range_end_index = pitch_range_start_index + cache_file_sound->pitch_range_count.value;
-					for (unsigned long pitch_range_index = pitch_range_start_index; pitch_range_index < pitch_range_end_index; pitch_range_index++)
+					uint32_t const pitch_range_start_index = cache_file_sound->first_pitch_range_index.value;
+					uint32_t const pitch_range_end_index = pitch_range_start_index + cache_file_sound->pitch_range_count.value;
+					for (uint32_t pitch_range_index = pitch_range_start_index; pitch_range_index < pitch_range_end_index; pitch_range_index++)
 					{
 						blofeld::halo3::pc64::h_sound_gestalt_pitch_ranges_block& pitch_range = sound_cache_file_gestalt->pitch_ranges_block[pitch_range_index];
 
 						h_string_id pitch_range_name = sound_cache_file_gestalt->import_names_block[pitch_range.name.value].import_name.value;
-						unsigned long encoded_first_permutation_and_counts = pitch_range.encoded_first_permutation_and_counts.value;
+						uint32_t encoded_first_permutation_and_counts = pitch_range.encoded_first_permutation_and_counts.value;
 
-						unsigned long permutation_start_index = (encoded_first_permutation_and_counts >> 0) & 0x000FFFFF;
-						unsigned long total_permutation_count = (encoded_first_permutation_and_counts >> 20) & 0x3F;
-						unsigned long required_only_permutation_count = (encoded_first_permutation_and_counts >> 26) & 0x3F;
+						uint32_t permutation_start_index = (encoded_first_permutation_and_counts >> 0) & 0x000FFFFF;
+						uint32_t total_permutation_count = (encoded_first_permutation_and_counts >> 20) & 0x3F;
+						uint32_t required_only_permutation_count = (encoded_first_permutation_and_counts >> 26) & 0x3F;
 
 						debug_point;
 
-						unsigned long const permutation_end_index = permutation_start_index + total_permutation_count;
-						for (unsigned long permutation_index = permutation_start_index; permutation_index < permutation_end_index; permutation_index++)
+						uint32_t const permutation_end_index = permutation_start_index + total_permutation_count;
+						for (uint32_t permutation_index = permutation_start_index; permutation_index < permutation_end_index; permutation_index++)
 						{
 							blofeld::halo3::pc64::h_sound_gestalt_permutations_block& permutation = sound_cache_file_gestalt->permutations_block[permutation_index];
 							h_string_id permutation_name = sound_cache_file_gestalt->import_names_block[permutation.name].import_name.value;
@@ -71,25 +71,25 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 							const char* _tag_filepath = tag.get_file_path();
 							const char* _permutation_name = permutation_name.get_string();
 
-							unsigned long const chunk_count = permutation.chunk_count.value;
+							uint32_t const chunk_count = permutation.chunk_count.value;
 							if (chunk_count == 1)
 							{
-								unsigned long const chunk_start_index = permutation.first_chunk_index.value;
-								unsigned long const chunk_end_index = chunk_start_index + chunk_count;
-								for (unsigned long chunk_index = chunk_start_index; chunk_index < chunk_end_index; chunk_index++)
+								uint32_t const chunk_start_index = permutation.first_chunk_index.value;
+								uint32_t const chunk_end_index = chunk_start_index + chunk_count;
+								for (uint32_t chunk_index = chunk_start_index; chunk_index < chunk_end_index; chunk_index++)
 								{
 									blofeld::halo3::pc64::h_sound_permutation_chunk_block& chunk = sound_cache_file_gestalt->chunks_block[chunk_index];
 
 									c_long_designator<6, 0> size_and_flags;
 									size_and_flags.set_raw_designator(chunk.encoded_size_and_flags.value);
-									unsigned long sample_size = size_and_flags.get_primary_index();
-									unsigned long flags = size_and_flags.get_secondary_index();
-									unsigned long file_offset = chunk.file_offset.value;
+									uint32_t sample_size = size_and_flags.get_primary_index();
+									uint32_t flags = size_and_flags.get_secondary_index();
+									uint32_t file_offset = chunk.file_offset.value;
 
 									const char* sample_data_start = static_cast<const char*>(resource_buffer) + file_offset;
 									const char* sample_data_end = sample_data_start + sample_size;
 
-									long number_of_channels = 0;
+									int32_t number_of_channels = 0;
 									switch (codec.encoding.value)
 									{
 									case _sound_encoding_enum_mono:
@@ -109,7 +109,7 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 										break;
 									}
 
-									long samples_per_second = 0;
+									int32_t samples_per_second = 0;
 									switch (codec.sample_rate.value)
 									{
 									case _sound_sample_rate_enum__22khz:
@@ -126,15 +126,15 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 										break;
 									}
 
-									long riff_chunk_id = byteswap('RIFF');
-									long riff_chunk_size = 0;
-									long riff_chunk_data = byteswap('WAVE');
+									int32_t riff_chunk_id = byteswap('RIFF');
+									int32_t riff_chunk_size = 0;
+									int32_t riff_chunk_data = byteswap('WAVE');
 
-									long format_chunk_id = byteswap('fmt ');
-									long format_chunk_size = sizeof(XMA2WAVEFORMATEX);
+									int32_t format_chunk_id = byteswap('fmt ');
+									int32_t format_chunk_size = sizeof(XMA2WAVEFORMATEX);
 
-									long data_chunk_header = byteswap('data');
-									long data_chunk_size = sample_size;
+									int32_t data_chunk_header = byteswap('data');
+									int32_t data_chunk_size = sample_size;
 									XMA2WAVEFORMATEX xma2_wave_format = {};
 
 									riff_chunk_size += sizeof(riff_chunk_data);
@@ -168,7 +168,7 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 										xma2_wave_format.BlockCount = static_cast<WORD>(sample_size / 2048);					// XMA blocks in file (and entries in its seek table)
 									}
 									char* xma_file_data;
-									unsigned long xma_file_data_size = 0;
+									uint32_t xma_file_data_size = 0;
 									{
 #define enqueue_size(size) xma_file_data_size += (size)
 										enqueue_size(sizeof(riff_chunk_id));
@@ -203,7 +203,7 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 									if (export_wav)
 									{
 										void* wave_file_data;
-										unsigned long long wave_file_data_size;
+										uint64_t wave_file_data_size;
 										BCS_RESULT decode_rs = decode_xma2_to_wav(xma_file_data, xma_file_data_size, wave_file_data, wave_file_data_size);
 										if (BCS_SUCCEEDED(decode_rs))
 										{
@@ -270,10 +270,10 @@ c_tag_project_tab::c_tag_project_tab(const wchar_t* filepath, c_tag_project& tag
 	sound_export_xma()
 {
 	const char* tag_filepaths[128] = {};
-	unsigned long num_tag_filepaths = _countof(tag_filepaths);
+	uint32_t num_tag_filepaths = _countof(tag_filepaths);
 	if (BCS_SUCCEEDED(command_line_get_arguments("autotag", tag_filepaths, num_tag_filepaths)) && num_tag_filepaths > 0)
 	{
-		for (unsigned long tag_filepath_index = 0; tag_filepath_index < num_tag_filepaths; tag_filepath_index++)
+		for (uint32_t tag_filepath_index = 0; tag_filepath_index < num_tag_filepaths; tag_filepath_index++)
 		{
 			const char* tag_filepath = tag_filepaths[tag_filepath_index];
 			open_tag_by_search_name(tag_filepath);
@@ -305,10 +305,10 @@ c_tag_project& c_tag_project_tab::get_tag_project() const
 void c_tag_project_tab::open_tag_by_search_name(const char* tag_name)
 {
 	h_tag* const* tag_instances = nullptr;
-	unsigned long num_tag_instances = 0;
+	uint32_t num_tag_instances = 0;
 	if (BCS_SUCCEEDED(tag_project.get_tag_instances(tag_instances, num_tag_instances)))
 	{
-		for (unsigned long tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
+		for (uint32_t tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
 		{
 			h_tag* tag = tag_instances[tag_instance_index];
 			if (_stricmp(tag_name, tag->get_file_path()) == 0)
@@ -317,7 +317,7 @@ void c_tag_project_tab::open_tag_by_search_name(const char* tag_name)
 				return;
 			}
 		}
-		for (unsigned long tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
+		for (uint32_t tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
 		{
 			h_tag* tag = tag_instances[tag_instance_index];
 			if (_stricmp(tag_name, tag->get_file_name()) == 0)
@@ -377,10 +377,10 @@ void c_tag_project_tab::render_search_box()
 void c_tag_project_tab::render_tags_list_search()
 {
 	h_tag* const* tag_instances = nullptr;
-	unsigned long num_tag_instances = 0;
+	uint32_t num_tag_instances = 0;
 	if (BCS_SUCCEEDED(tag_project.get_tag_instances(tag_instances, num_tag_instances)))
 	{
-		for (unsigned long tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
+		for (uint32_t tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
 		{
 			h_tag* tag = tag_instances[tag_instance_index];
 			//const char* tag_path_group_id = tag_interface.get_path_with_group_id_cstr();
@@ -428,13 +428,13 @@ void c_tag_project_tab::render_tags_list_search()
 void c_tag_project_tab::render_tags_list_tree()
 {
 	h_group* const* groups;
-	unsigned long group_count;
+	uint32_t group_count;
 	if (BCS_SUCCEEDED(tag_project.get_tag_groups(groups, group_count)))
 	{
-		for (unsigned long group_index = 0; group_index < group_count; group_index++)
+		for (uint32_t group_index = 0; group_index < group_count; group_index++)
 		{
 			h_group* group = groups[group_index];
-			const unsigned long tag_interfaces_count = static_cast<unsigned long>(group->tags.size());
+			const uint32_t tag_interfaces_count = static_cast<unsigned long>(group->tags.size());
 
 			const char* group_name = group->tag_group.name;
 			const char* group_short_name = group->tag_group.group_tag_short_string;

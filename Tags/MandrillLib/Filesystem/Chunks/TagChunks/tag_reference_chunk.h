@@ -16,5 +16,5 @@ public:
 	void read_data();
 
 protected:
-	virtual BCS_RESULT set_data(const void* data, unsigned long data_size) override;
+	virtual BCS_RESULT set_data(const void* data, uint32_t data_size) override;
 };

@@ -34,13 +34,13 @@ struct s_render_method_postprocess_definition
 	s_tag_block shader_maps; // TODO
 	s_tag_block arguments; // TODO
 	s_tag_block unknown1; // TODO
-	long unknown2;
+	int unknown2;
 	s_tag_block unknown3; // TODO
 	s_tag_block unknown4; // TODO
 	s_tag_block unknown5; // TODO
 	s_tag_block functions; // TODO
-	long unknown6;
-	long unknown7;
+	int unknown6;
+	int unknown7;
 	real unknown8;
 	short unknown9;
 	short unknown10;
@@ -70,8 +70,8 @@ struct s_render_method_postprocess_definition
 	short unknown34;
 	short unknown35;
 	short unknown36;
-	long resource_index;
-	long : 32;
+	int resource_index;
+	int : 32;
 };
 static_assert(sizeof(s_render_method_postprocess_definition) == 0xB4);
 
@@ -90,15 +90,15 @@ public:
 	c_typed_tag_block<s_render_method_option_reference> options;
 	c_typed_tag_block<s_render_method_import_data> import_data;
 	c_typed_tag_block<s_render_method_postprocess_definition> postprocess_definitions;
-	long unknown54;
-	long unknown58;
+	int unknown54;
+	int unknown58;
 	c_typed_tag_block<s_render_method_unknown> unknown5C;
 	c_enum<e_function_variable_type, char> input_variable;
 	c_enum<e_function_variable_type, char> range_variable;
 	c_enum<e_function_output_modifier, char> output_modifier;
 	c_enum<e_function_variable_type, char> output_modifier_input;
 	real runtime_m_constant_value;
-	long runtime_m_index;
+	int runtime_m_index;
 };
 static_assert(sizeof(c_render_method) == 0x64);
 

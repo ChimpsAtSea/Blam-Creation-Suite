@@ -8181,18 +8181,18 @@ namespace xbox360
 		instantaneous_damage_repsonse_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		int_block_block,
-		"int_block",
-		"int_block",
-		1024,
-		int_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		int_block_block$2,
 		"int_block",
 		"int_block",
 		1024,
 		int_block$2);
+
+	TAG_BLOCK_FROM_STRUCT(
+		int_block_block,
+		"int_block",
+		"int_block",
+		1024,
+		int_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		interface_tag_references_block,
@@ -9098,18 +9098,18 @@ namespace xbox360
 		multiplayereffects_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
-		multiplayer_color_block_block$2,
-		"multiplayer_color_block",
-		"multiplayer_color_block",
-		32,
-		multiplayer_color_block$2);
-
-	TAG_BLOCK_FROM_STRUCT(
 		multiplayer_color_block_block,
 		"multiplayer_color_block",
 		"multiplayer_color_block",
 		32,
 		multiplayer_color_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		multiplayer_color_block_block$2,
+		"multiplayer_color_block",
+		"multiplayer_color_block",
+		32,
+		multiplayer_color_block$2);
 
 	TAG_BLOCK_FROM_STRUCT(
 		multiplayer_constants_block_block,
@@ -13550,18 +13550,18 @@ namespace xbox360
 		subpart_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		super_node_mappings_block_block,
-		"super_node_mappings_block",
-		"super_node_mappings_block",
-		2048,
-		super_node_mappings_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		super_node_mappings_block_block$2,
 		"super_node_mappings_block",
 		"super_node_mappings_block",
 		32767,
 		super_node_mappings_block$2);
+
+	TAG_BLOCK_FROM_STRUCT(
+		super_node_mappings_block_block,
+		"super_node_mappings_block",
+		"super_node_mappings_block",
+		2048,
+		super_node_mappings_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		super_node_recursable_masks_block_block,
@@ -55094,21 +55094,6 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	#define REAL_VECTOR4D_BLOCK$2_ID { 0x97A81143, 0x6C1C43F9, 0x9055F558, 0xC20B4CF1 }
-	TAG_STRUCT(
-		real_vector4d_block$2,
-		"real_vector4d_block",
-		"real_vector4d_block",
-		"s_real_vector4d_block$2",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		REAL_VECTOR4D_BLOCK$2_ID)
-	{
-		{ _field_real_vector_3d, "vector" },
-		{ _field_real, "vector w" },
-		{ _field_terminator }
-	};
-
 	#define REAL_VECTOR4D_BLOCK_ID { 0xFF9E024C, 0x7D184C50, 0x90D73F8E, 0x22EF3A5D }
 	TAG_STRUCT(
 		real_vector4d_block,
@@ -55118,6 +55103,21 @@ namespace xbox360
 		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		REAL_VECTOR4D_BLOCK_ID)
+	{
+		{ _field_real_vector_3d, "vector" },
+		{ _field_real, "vector w" },
+		{ _field_terminator }
+	};
+
+	#define REAL_VECTOR4D_BLOCK$2_ID { 0x97A81143, 0x6C1C43F9, 0x9055F558, 0xC20B4CF1 }
+	TAG_STRUCT(
+		real_vector4d_block$2,
+		"real_vector4d_block",
+		"real_vector4d_block",
+		"s_real_vector4d_block$2",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		REAL_VECTOR4D_BLOCK$2_ID)
 	{
 		{ _field_real_vector_3d, "vector" },
 		{ _field_real, "vector w" },
@@ -56928,20 +56928,6 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	#define RUNTIME_QUERYABLE_PROPERTIES_STRUCT_DEFINITION_ID { 0xC5470BA, 0x5AEE4BEC, 0xBEC72F30, 0x8902CAC }
-	TAG_STRUCT(
-		runtime_queryable_properties_struct_definition,
-		"runtime_queryable_properties",
-		"runtime_queryable_properties",
-		"s_runtime_queryable_properties",
-		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		RUNTIME_QUERYABLE_PROPERTIES_STRUCT_DEFINITION_ID)
-	{
-		{ _field_short_block_index, "index", &blofeld::halo4::xbox360::g_null_block_block },
-		{ _field_terminator }
-	};
-
 	#define RUNTIME_QUERYABLE_PROPERTIES$3_ID { 0xC7C8D371, 0x1E1A4BB1, 0xBE9FC430, 0xBEC7DEBE }
 	TAG_STRUCT(
 		runtime_queryable_properties$3,
@@ -56951,6 +56937,20 @@ namespace xbox360
 		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RUNTIME_QUERYABLE_PROPERTIES$3_ID)
+	{
+		{ _field_short_block_index, "index", &blofeld::halo4::xbox360::g_null_block_block },
+		{ _field_terminator }
+	};
+
+	#define RUNTIME_QUERYABLE_PROPERTIES_STRUCT_DEFINITION_ID { 0xC5470BA, 0x5AEE4BEC, 0xBEC72F30, 0x8902CAC }
+	TAG_STRUCT(
+		runtime_queryable_properties_struct_definition,
+		"runtime_queryable_properties",
+		"runtime_queryable_properties",
+		"s_runtime_queryable_properties",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		RUNTIME_QUERYABLE_PROPERTIES_STRUCT_DEFINITION_ID)
 	{
 		{ _field_short_block_index, "index", &blofeld::halo4::xbox360::g_null_block_block },
 		{ _field_terminator }
@@ -70425,6 +70425,20 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
+	#define TORQUE_CURVE_STRUCT_ID { 0xA1B86A30, 0x21864A2C, 0xB26E5CA6, 0xF2DB9FC3 }
+	TAG_STRUCT(
+		torque_curve_struct,
+		"torque_curve_struct",
+		"torque_curve_struct",
+		"s_torque_curve_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		TORQUE_CURVE_STRUCT_ID)
+	{
+		{ _field_struct, "function", &blofeld::halo4::xbox360::scalar_function_named_struct },
+		{ _field_terminator }
+	};
+
 	#define TORQUE_CURVE_STRUCT$2_ID { 0x1AFF241A, 0xC474D3C, 0xA9BBEF06, 0xE9734D22 }
 	TAG_STRUCT(
 		torque_curve_struct$2,
@@ -70442,20 +70456,6 @@ namespace xbox360
 		{ _field_real, "torque at max angular velocity", "generally 0 for loading torque and something less than max torque for cruising torque" },
 		{ _field_real, "torque at 2x max angular velocity" },
 		FIELD_USELESS_PAD("value", 8),
-		{ _field_terminator }
-	};
-
-	#define TORQUE_CURVE_STRUCT_ID { 0xA1B86A30, 0x21864A2C, 0xB26E5CA6, 0xF2DB9FC3 }
-	TAG_STRUCT(
-		torque_curve_struct,
-		"torque_curve_struct",
-		"torque_curve_struct",
-		"s_torque_curve_struct",
-		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		TORQUE_CURVE_STRUCT_ID)
-	{
-		{ _field_struct, "function", &blofeld::halo4::xbox360::scalar_function_named_struct },
 		{ _field_terminator }
 	};
 
@@ -76746,20 +76746,20 @@ namespace xbox360
 		MAXIMUM_BITMAP_PIXELS_SIZE);
 
 	TAG_DATA(
-		code_block$2,
-		"code_block",
-		10,
-		0,
-		65535,
-		UNSIGNED_SHORT_MAX);
-
-	TAG_DATA(
 		code_block,
 		"code_block",
 		10,
 		0,
 		262140,
 		UNSIGNED_SHORT_MAX*4);
+
+	TAG_DATA(
+		code_block$2,
+		"code_block",
+		10,
+		0,
+		65535,
+		UNSIGNED_SHORT_MAX);
 
 	TAG_DATA(
 		compiled_effect_data,

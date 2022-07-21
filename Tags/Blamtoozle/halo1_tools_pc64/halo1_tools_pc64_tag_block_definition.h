@@ -7,11 +7,11 @@ struct s_halo1_tools_pc64_tag_block_definition
 {
 	ptr32 display_name_address;
 	ptr32 name_address;
-	unsigned long flags;
-	unsigned long max_count;
+	uint32_t flags;
+	uint32_t max_count;
 	ptr32 max_count_string_address;
-	unsigned long structure_size;
-	unsigned long _unknown1;
+	uint32_t structure_size;
+	uint32_t _unknown1;
 	ptr32 fields_address;
 	ptr32 unknown20;
 	ptr32 unknown24;
@@ -40,7 +40,7 @@ public:
 	virtual const char* get_display_name() override;
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;
-	virtual unsigned long get_max_count() override;
+	virtual uint32_t get_max_count() override;
 	virtual const char* get_max_count_string() override;
 	virtual c_blamtoozle_tag_struct_definition& get_struct_definition() override;
 	virtual void associate_tag_group_definition(c_blamtoozle_tag_group_definition* tag_group_definition) override;

@@ -8,4 +8,4 @@ struct s_xbox360_device_entry
 
 BCS_DEBUG_API BCS_RESULT init_xbox360_device_manager();
 BCS_DEBUG_API BCS_RESULT deinit_xbox360_device_manager();
-BCS_DEBUG_API BCS_RESULT xbox360_device_manager_get_devices(s_xbox360_device_entry const*& devices, unsigned long& device_count);
+BCS_DEBUG_API BCS_RESULT xbox360_device_manager_get_devices(s_xbox360_device_entry const*& devices, uint32_t& device_count);

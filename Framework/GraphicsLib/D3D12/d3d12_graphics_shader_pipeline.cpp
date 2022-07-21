@@ -3,9 +3,9 @@
 c_graphics_shader_pipeline_d3d12::c_graphics_shader_pipeline_d3d12(
 	c_graphics_d3d12& graphics,
 	c_graphics_shader_binary_d3d12** shader_binaries,
-	unsigned long num_shader_binaries,
+	uint32_t num_shader_binaries,
 	e_graphics_data_format* render_target_data_formats,
-	unsigned long num_render_targets,
+	uint32_t num_render_targets,
 	e_graphics_data_format* depth_data_format,
 	c_graphics_vertex_layout_d3d12& vertex_layout,
 	const wchar_t* debug_name) :
@@ -28,7 +28,7 @@ c_graphics_shader_pipeline_d3d12::c_graphics_shader_pipeline_d3d12(
 	pipeline_state_description.SampleDesc.Count = 1;
 	pipeline_state_description.RasterizerState.CullMode = D3D12_CULL_MODE_FRONT;
 
-	for (unsigned long render_target_index = 0; render_target_index < num_render_targets; render_target_index++)
+	for (uint32_t render_target_index = 0; render_target_index < num_render_targets; render_target_index++)
 	{
 		e_graphics_data_format graphics_data_format = render_target_data_formats[render_target_index];
 		DXGI_FORMAT dxgi_format;
@@ -80,9 +80,9 @@ void c_graphics_shader_pipeline_d3d12::bind()
 BCS_RESULT graphics_d3d12_shader_pipeline_create(
 	c_graphics_d3d12* graphics,
 	c_graphics_shader_binary_d3d12** shader_binaries,
-	unsigned long num_shader_binaries,
+	uint32_t num_shader_binaries,
 	e_graphics_data_format* render_target_data_formats,
-	unsigned long num_render_targets,
+	uint32_t num_render_targets,
 	e_graphics_data_format* depth_data_format,
 	c_graphics_vertex_layout_d3d12* vertex_layout,
 	c_graphics_shader_pipeline_d3d12*& shader_pipeline,

@@ -20,7 +20,7 @@ constexpr bool is_same<t_type, t_type> = true;
 
 Examples:
 
-    static_assert(is_any<int, char, short, long, int>); // passes
+    static_assert(is_any<int, char, short, int, int>); // passes
 
     static_assert(is_any<int, char, short, long>); // fails
 
@@ -70,7 +70,7 @@ constexpr bool is_template_of<t_template_type, t_template_type<t_types...>> = tr
 
 Example:
 	
-	template <typename t_element, const long k_maximum_count>
+	template <typename t_element, const int k_maximum_count>
 	class c_static_container { };
 
 	static_assert(is_ranged_template_of<c_static_container, c_static_container<int, 32>>);
@@ -80,5 +80,5 @@ Example:
 template <template <typename, const long> typename t_template_type, typename t_type>
 constexpr bool is_ranged_template_of = false;
 
-template <template <typename, const long> typename t_template_type, typename t_type, const long k_value>
+template <template <typename, const long> typename t_template_type, typename t_type, const int k_value>
 constexpr bool is_ranged_template_of<t_template_type, t_template_type<t_type, k_value>> = true;

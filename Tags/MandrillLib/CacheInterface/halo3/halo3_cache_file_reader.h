@@ -16,8 +16,8 @@ public:
 	virtual BCS_RESULT associate_cache_cluster(c_cache_cluster& cache_cluster);
 	virtual BCS_RESULT associate_cache_cluster(c_halo3_cache_cluster& cache_cluster);
 
-	virtual BCS_RESULT virtual_address_to_relative_offset(long long virtual_address, long& relative_offset) const;
-	virtual BCS_RESULT page_offset_to_virtual_address(unsigned long page_offset, long long& virtual_address) const;
+	virtual BCS_RESULT virtual_address_to_relative_offset(int64_t virtual_address, int32_t& relative_offset) const;
+	virtual BCS_RESULT page_offset_to_virtual_address(uint32_t page_offset, int64_t& virtual_address) const;
 
 	virtual BCS_RESULT get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const;
 
@@ -27,15 +27,15 @@ public:
 	s_memory_mapped_file_info file_info;
 	c_halo3_cache_cluster* cache_cluster;
 
-	BCS_RESULT get_tags_header_relative_offset(long& tags_header_relative_offset) const;
-	BCS_RESULT get_file_count(long& file_count) const;
-	BCS_RESULT get_string_id_index_buffer_count(long& string_id_index_buffer_count) const;
-	BCS_RESULT get_string_id_index_buffer_offset(long& string_id_index_buffer_offset) const;
-	BCS_RESULT get_string_id_string_storage_offset(long& string_id_string_storage_offset) const;
-	BCS_RESULT get_string_id_string_storage_size(long& string_id_string_storage_size) const;
-	BCS_RESULT get_file_table_indices_offset(long& file_table_indices_offset) const;
-	BCS_RESULT get_file_table_offset(long& file_table_offset) const;
-	BCS_RESULT get_file_table_length(long& file_table_length) const;
+	BCS_RESULT get_tags_header_relative_offset(int32_t& tags_header_relative_offset) const;
+	BCS_RESULT get_file_count(int32_t& file_count) const;
+	BCS_RESULT get_string_id_index_buffer_count(int32_t& string_id_index_buffer_count) const;
+	BCS_RESULT get_string_id_index_buffer_offset(int32_t& string_id_index_buffer_offset) const;
+	BCS_RESULT get_string_id_string_storage_offset(int32_t& string_id_string_storage_offset) const;
+	BCS_RESULT get_string_id_string_storage_size(int32_t& string_id_string_storage_size) const;
+	BCS_RESULT get_file_table_indices_offset(int32_t& file_table_indices_offset) const;
+	BCS_RESULT get_file_table_offset(int32_t& file_table_offset) const;
+	BCS_RESULT get_file_table_length(int32_t& file_table_length) const;
 
 	template<typename t_element>
 	void byteswap_inplace(t_element& value)

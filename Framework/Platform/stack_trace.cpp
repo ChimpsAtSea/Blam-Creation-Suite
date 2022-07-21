@@ -27,7 +27,7 @@ static UINT64 file_get_image_base_address(LPCWSTR filename)
 	return result;
 };
 
-void write_stack_back_trace(const char* calling_function, unsigned long depth, unsigned long size)
+void write_stack_back_trace(const char* calling_function, uint32_t depth, uint32_t size)
 {
 	depth++;
 	console_write_line("TRACE(%s)\n{", calling_function);

@@ -68,7 +68,7 @@ const char* c_halo1_tools_pc64_tag_struct_definition::get_structure_type_name()
 	return code_type_name.c_str();
 }
 
-unsigned long c_halo1_tools_pc64_tag_struct_definition::get_alignment_bits()
+uint32_t c_halo1_tools_pc64_tag_struct_definition::get_alignment_bits()
 {
 	return 0;
 }

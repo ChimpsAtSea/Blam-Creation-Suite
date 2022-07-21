@@ -7,10 +7,10 @@ struct s_symbol_file_instance
 	HMODULE module_handle;
 	c_runtime_symbols* runtime_symbols;
 	void* symbol_binary_buffer;
-	unsigned long long symbol_binary_buffer_size;
+	uint64_t symbol_binary_buffer_size;
 };
 
-static unsigned long num_symbol_file_instances;
+static uint32_t num_symbol_file_instances;
 static s_symbol_file_instance symbol_file_instances[64];
 
 static BCS_RESULT symbol_manager_get_module_handle_by_pointer(const void* pointer, HMODULE& module_handle)
@@ -30,7 +30,7 @@ static BCS_RESULT symbol_manager_get_symbol_file_instance_by_module_handle(HMODU
 {
 	// #TODO: replace this with a map function?
 
-	for (unsigned long symbol_file_instance_index = 0; symbol_file_instance_index < num_symbol_file_instances; symbol_file_instance_index++)
+	for (uint32_t symbol_file_instance_index = 0; symbol_file_instance_index < num_symbol_file_instances; symbol_file_instance_index++)
 	{
 		s_symbol_file_instance& symbol_file_instance = symbol_file_instances[symbol_file_instance_index];
 
@@ -50,7 +50,7 @@ static BCS_RESULT symbol_manager_load_symbol_file_instance_by_module_handle(HMOD
 	strcat(symbol_binary_filepath, ".sym");
 
 	void* symbol_binary_buffer;
-	unsigned long long symbol_binary_buffer_size;
+	uint64_t symbol_binary_buffer_size;
 	if (BCS_FAILED(filesystem_read_file_to_memory(symbol_binary_filepath, symbol_binary_buffer, symbol_binary_buffer_size)))
 	{
 		BCS_FAIL_RETURN(resources_read_resource_to_memory(_bcs_resource_type_symbols_blob, symbol_binary_buffer, symbol_binary_buffer_size));
@@ -60,7 +60,7 @@ static BCS_RESULT symbol_manager_load_symbol_file_instance_by_module_handle(HMOD
 		console_write_line_with_debug("Loaded '%s' runtime symbols.", symbol_binary_filepath);
 	}
 
-	unsigned long symbol_file_instance_index = num_symbol_file_instances++;
+	uint32_t symbol_file_instance_index = num_symbol_file_instances++;
 	if (symbol_file_instance_index >= _countof(symbol_file_instances))
 	{
 		return BCS_E_OUT_OF_RANGE;
@@ -80,7 +80,7 @@ static BCS_RESULT symbol_manager_load_symbol_file_instance_by_module_handle(HMOD
 
 BCS_DEBUG_API BCS_RESULT symbol_manager_cleanup()
 {
-	for (unsigned long symbol_file_instance_index = 0; symbol_file_instance_index < num_symbol_file_instances; symbol_file_instance_index++)
+	for (uint32_t symbol_file_instance_index = 0; symbol_file_instance_index < num_symbol_file_instances; symbol_file_instance_index++)
 	{
 		s_symbol_file_instance& symbol_file_instance = symbol_file_instances[symbol_file_instance_index];
 		delete symbol_file_instance.runtime_symbols;
@@ -108,7 +108,7 @@ BCS_RESULT symbol_manager_get_public_symbol_by_pointer(const void* pointer, s_sy
 	return BCS_S_OK;
 }
 
-BCS_DEBUG_API BCS_RESULT symbol_manager_get_public_symbol_by_rva_plus_base(const void* module_instance, unsigned long long rva_plus_base, s_symbol_file_public*& public_symbol)
+BCS_DEBUG_API BCS_RESULT symbol_manager_get_public_symbol_by_rva_plus_base(const void* module_instance, uint64_t rva_plus_base, s_symbol_file_public*& public_symbol)
 {
 	return BCS_E_NOT_IMPLEMENTED;
 }

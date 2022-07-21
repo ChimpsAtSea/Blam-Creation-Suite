@@ -59,18 +59,18 @@ enum e_graphics_data_format
 
 #endif
 
-c_type_1(unsigned long, bool);
-c_type_2(unsigned long, bool);
-c_type_3(unsigned long, bool);
-c_type_4(unsigned long, bool);
-c_type_1(long, int);
-c_type_2(long, int);
-c_type_3(long, int);
-c_type_4(long, int);
-c_type_1(unsigned long, uint);
-c_type_2(unsigned long, uint);
-c_type_3(unsigned long, uint);
-c_type_4(unsigned long, uint);
+c_type_1(uint32_t, bool);
+c_type_2(uint32_t, bool);
+c_type_3(uint32_t, bool);
+c_type_4(uint32_t, bool);
+c_type_1(int32_t, int);
+c_type_2(int32_t, int);
+c_type_3(int32_t, int);
+c_type_4(int32_t, int);
+c_type_1(uint32_t, uint);
+c_type_2(uint32_t, uint);
+c_type_3(uint32_t, uint);
+c_type_4(uint32_t, uint);
 c_type_1(float, float);
 c_type_2(float, float);
 c_type_3(float, float);

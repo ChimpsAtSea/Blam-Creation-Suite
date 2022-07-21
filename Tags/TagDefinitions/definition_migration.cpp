@@ -55,12 +55,12 @@ bool definition_migration_compare_string_list(
 	const s_string_list_definition& new_string_list_definition,
 	s_engine_platform_build engine_platform_build)
 {
-	unsigned long old_string_list_count = old_string_list_definition.get_count(engine_platform_build);
-	unsigned long new_string_list_count = new_string_list_definition.get_count(engine_platform_build);
+	uint32_t old_string_list_count = old_string_list_definition.get_count(engine_platform_build);
+	uint32_t new_string_list_count = new_string_list_definition.get_count(engine_platform_build);
 
 	if (old_string_list_count == new_string_list_count)
 	{
-		for (unsigned long string_index = 0; string_index < old_string_list_count; string_index++)
+		for (uint32_t string_index = 0; string_index < old_string_list_count; string_index++)
 		{
 			const char* old_string = old_string_list_definition.get_string(engine_platform_build, string_index);
 			const char* new_string = new_string_list_definition.get_string(engine_platform_build, string_index);
@@ -122,13 +122,13 @@ bool definition_migration_compare_struct(
 		const s_tag_field* new_field_iter = new_struct_definition.fields;
 		for(;; old_field_iter++, new_field_iter++)
 		{
-			unsigned long old_field_skip_count;
+			uint32_t old_field_skip_count;
 			while (execute_tag_field_versioning(*old_field_iter, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, old_field_skip_count))
 			{
 				old_field_iter += old_field_skip_count;
 				old_field_iter++; // skip the version field
 			}
-			unsigned long new_field_skip_count;
+			uint32_t new_field_skip_count;
 			while (execute_tag_field_versioning(*new_field_iter, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, new_field_skip_count))
 			{
 				new_field_iter += new_field_skip_count;
@@ -326,8 +326,8 @@ bool definition_migration_compare_block(
 {
 	bool result = false;
 
-	unsigned long old_block_count = old_block_definition.max_count(engine_platform_build);
-	unsigned long new_block_count = new_block_definition.max_count(engine_platform_build);
+	uint32_t old_block_count = old_block_definition.max_count(engine_platform_build);
+	uint32_t new_block_count = new_block_definition.max_count(engine_platform_build);
 	if (old_block_count != new_block_count)
 	{
 		DEFINITION_ERROR_OLD(_definition_error_code_block_count_mismatch, old_block_definition.filename, old_block_definition.line, "%u -> %u", old_block_count, new_block_count);

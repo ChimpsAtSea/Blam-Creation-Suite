@@ -35,14 +35,14 @@ enum : unsigned short
 	k_uint16_bits = 16Ui16,
 };
 
-enum : long
+enum : int
 {
 	k_int32_max = 2147483647i32,
 	k_int32_min = -k_int32_max - 1i32,
 	k_int32_bits = 32i32,
 };
 
-enum : unsigned long
+enum : unsigned int
 {
 	k_uint32_max = 4294967295Ui32,
 	k_uint32_bits = 32Ui32,
@@ -74,22 +74,22 @@ static_assert(sizeof(byte) == 0x1);
 typedef unsigned short word;
 static_assert(sizeof(word) == 0x2);
 
-typedef unsigned long dword;
+typedef unsigned int dword;
 static_assert(sizeof(dword) == 0x4);
 
 typedef unsigned long long qword;
 static_assert(sizeof(qword) == 0x8);
 
-typedef unsigned long tag;
+typedef unsigned int tag;
 static_assert(sizeof(tag) == 0x4);
 
-typedef long intptr32_t;
+typedef int intptr32_t;
 static_assert(sizeof(intptr32_t) == 0x4);
 
 typedef long long intptr64_t;
 static_assert(sizeof(intptr64_t) == 0x8);
 
-typedef unsigned long uintptr32_t;
+typedef unsigned int uintptr32_t;
 static_assert(sizeof(intptr32_t) == 0x4);
 
 typedef unsigned long long uintptr64_t;

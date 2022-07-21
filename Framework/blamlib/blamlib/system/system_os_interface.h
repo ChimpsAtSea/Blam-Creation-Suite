@@ -26,7 +26,7 @@ void system_exit_application(
 bool system_get_operating_system_version(
 	s_operating_system_version *out_version);
 
-long system_execute_command(
+int system_execute_command(
 	char const *command);
 
 void system_register_halt_function(

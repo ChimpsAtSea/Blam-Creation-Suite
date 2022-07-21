@@ -16,12 +16,12 @@ public:
 	c_halo3_tag_reader(c_halo3_cache_cluster& cache_cluster, c_halo3_cache_file_reader& cache_reader);
 	~c_halo3_tag_reader();
 
-	BCS_RESULT page_offset_to_pointer(long page_offset, const void*& data);
-	BCS_RESULT get_tag_groups(c_halo3_tag_group**& tag_groups, unsigned long& tag_group_count);
-	virtual BCS_RESULT get_tag_groups(c_tag_group**& tag_groups, unsigned long& tag_group_count) override;
-	BCS_RESULT get_tag_instances(c_halo3_tag_instance**& tag_instances, unsigned long& tag_instance_count);
-	virtual BCS_RESULT get_tag_instances(c_tag_instance**& tag_instances, unsigned long& tag_instance_count) override;
-	virtual BCS_RESULT get_tag_instance_by_cache_file_tag_index(unsigned long cache_file_tag_index, c_tag_instance*& tag_instance) override;
+	BCS_RESULT page_offset_to_pointer(int32_t page_offset, const void*& data);
+	BCS_RESULT get_tag_groups(c_halo3_tag_group**& tag_groups, uint32_t& tag_group_count);
+	virtual BCS_RESULT get_tag_groups(c_tag_group**& tag_groups, uint32_t& tag_group_count) override;
+	BCS_RESULT get_tag_instances(c_halo3_tag_instance**& tag_instances, uint32_t& tag_instance_count);
+	virtual BCS_RESULT get_tag_instances(c_tag_instance**& tag_instances, uint32_t& tag_instance_count) override;
+	virtual BCS_RESULT get_tag_instance_by_cache_file_tag_index(uint32_t cache_file_tag_index, c_tag_instance*& tag_instance) override;
 
 private:
 	struct s_halo3_tag_group_info
@@ -35,8 +35,8 @@ private:
 	struct s_halo3_tag_instance_info
 	{
 		::halo3::s_cache_file_tag_instance instance;
-		unsigned long absolute_index;
-		unsigned long identifier;
+		uint32_t absolute_index;
+		uint32_t identifier;
 		const char* instance_name;
 		const void* instance_data;
 		s_halo3_tag_group_info* group_info;
@@ -60,7 +60,7 @@ private:
 
 	using t_tag_groups = std::vector<c_halo3_tag_group*>;
 	using t_tag_instances = std::vector<c_halo3_tag_instance*>;
-	using t_tag_instances_by_index = std::unordered_map<unsigned long, c_halo3_tag_instance*>;
+	using t_tag_instances_by_index = std::unordered_map<uint32_t, c_halo3_tag_instance*>;
 
 	t_tag_groups tag_groups;
 	t_tag_instances tag_instances;
@@ -70,7 +70,7 @@ private:
 	using t_tag_instance_infos = std::vector<s_halo3_tag_instance_info>;
 	using t_tag_global_instance_infos = std::vector<s_halo3_tag_global_instance_info>;
 	using t_tag_interop_infos = std::vector<::halo3::s_cache_file_tag_interop>;
-	using t_tag_instance_infos_by_index = std::unordered_map<unsigned long, s_halo3_tag_global_instance_info*>;
+	using t_tag_instance_infos_by_index = std::unordered_map<uint32_t, s_halo3_tag_global_instance_info*>;
 
 	t_tag_group_infos tag_group_infos;
 	t_tag_instance_infos tag_instance_infos;
@@ -80,10 +80,10 @@ private:
 	e_halo3_interop_type* _interop_type_index_to_halo3_interop_type;
 	c_halo3_interop_container** interop_containers;
 	c_halo3_cache_file_reader** _shared_file_index_to_cache_file_reader;
-	unsigned long _shared_file_count;
+	uint32_t _shared_file_count;
 
 	h_resource** high_level_resources;
-	unsigned long num_high_level_resources;
+	uint32_t num_high_level_resources;
 
 	BCS_RESULT read_tags_header();
 	BCS_RESULT read_tag_groups();
@@ -100,21 +100,21 @@ private:
 
 	BCS_RESULT init_interop_table();
 	BCS_RESULT init_interops();
-	BCS_RESULT interop_type_index_to_halo3_interop_type(long type_index, e_halo3_interop_type& interop_type);
+	BCS_RESULT interop_type_index_to_halo3_interop_type(int32_t type_index, e_halo3_interop_type& interop_type);
 
 	BCS_RESULT init_resource_table();
 	BCS_RESULT init_resources();
 
 	BCS_RESULT init_shared_files_table();
-	BCS_RESULT shared_file_index_to_cache_file_reader(long shared_file_index, c_halo3_cache_file_reader*& cache_file_reader);
+	BCS_RESULT shared_file_index_to_cache_file_reader(int32_t shared_file_index, c_halo3_cache_file_reader*& cache_file_reader);
 
-	BCS_RESULT get_interop_container_by_type_and_descriptor(e_halo3_interop_type interop_type, unsigned long descriptor, c_halo3_interop_container*& interop_container);
+	BCS_RESULT get_interop_container_by_type_and_descriptor(e_halo3_interop_type interop_type, uint32_t descriptor, c_halo3_interop_container*& interop_container);
 
-	BCS_RESULT get_compression_codec_by_index(long codec_index, e_halo3_compression_codec& compression_codec);
+	BCS_RESULT get_compression_codec_by_index(int32_t codec_index, e_halo3_compression_codec& compression_codec);
 
 	BCS_RESULT get_global_instance_info(tag group_tag, const s_halo3_tag_global_instance_info*& global_instance_info);
-	BCS_RESULT get_instance_info_by_tag_index(unsigned long tag_index, const s_halo3_tag_instance_info*& instance_info);
-	BCS_RESULT get_tag_instance_info_by_tag_index(unsigned long tag_index, c_halo3_tag_instance*& instance_info);
+	BCS_RESULT get_instance_info_by_tag_index(uint32_t tag_index, const s_halo3_tag_instance_info*& instance_info);
+	BCS_RESULT get_tag_instance_info_by_tag_index(uint32_t tag_index, c_halo3_tag_instance*& instance_info);
 
 protected:
 	BCS_RESULT get_tag_groups_section(::halo3::s_section& tag_groups);

@@ -19,14 +19,14 @@ c_infinite_string_id_manager::~c_infinite_string_id_manager()
 
 BCS_RESULT c_infinite_string_id_manager::commit_string(const char* string)
 {
-	unsigned long string_id;
+	uint32_t string_id;
 	return commit_string(string, string_id);
 }
 
-BCS_RESULT c_infinite_string_id_manager::commit_string(const char* string, unsigned long& string_id)
+BCS_RESULT c_infinite_string_id_manager::commit_string(const char* string, uint32_t& string_id)
 {
-	unsigned long string_length = static_cast<unsigned long>(strlen(string));
-	unsigned long string_entry_size = sizeof(unsigned long) + string_length + 1;
+	uint32_t string_length = static_cast<unsigned long>(strlen(string));
+	uint32_t string_entry_size = sizeof(unsigned long) + string_length + 1;
 
 	s_infinite_string_id_entry* string_id_entry = new(new char[string_entry_size]) s_infinite_string_id_entry;
 	MurmurHash3_x86_32(string, string_length, 0, &string_id_entry->hash);
@@ -38,7 +38,7 @@ BCS_RESULT c_infinite_string_id_manager::commit_string(const char* string, unsig
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_string_id_manager::find_string(unsigned long string_id, const char*& string)
+BCS_RESULT c_infinite_string_id_manager::find_string(uint32_t string_id, const char*& string)
 {
 	t_hash_to_string::const_iterator search = hash_to_string.find(string_id);
 	if (search != hash_to_string.end())

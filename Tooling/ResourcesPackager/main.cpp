@@ -124,7 +124,7 @@ static BCS_RESULT resources_package_symbols()
 	}
 
 	const char* symbol_file_data;
-	unsigned long symbol_file_data_size;
+	uint32_t symbol_file_data_size;
 	BCS_RESULT assign_symbol_data_result = BCS_S_OK;
 	if (BCS_SUCCEEDED(assign_symbol_data_result = symbol_file_parser_get_symbol_data(symbol_file_parser, symbol_file_data, symbol_file_data_size)))
 	{

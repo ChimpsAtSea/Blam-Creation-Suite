@@ -9,7 +9,7 @@ public:
 	BCS_DEBUG_API bool try_lock();
 	BCS_DEBUG_API void unlock();
 private:
-	volatile long lock_value;
+	volatile int32_t lock_value;
 };
 
 class c_atomic_lock_guard

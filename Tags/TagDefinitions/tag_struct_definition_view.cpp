@@ -2,6 +2,8 @@
 
 using namespace blofeld;
 
+using t_iterate_structure_fields_callback = void(const s_tag_struct_definition& struct_definition, void* userdata_pointer);
+
 c_tag_struct_definition_view::c_tag_struct_definition_view(s_engine_platform_build engine_platform_build, const blofeld::s_tag_group* tag_group) :
 	engine_platform_build(engine_platform_build),
 	tag_group(tag_group),
@@ -19,7 +21,7 @@ const s_tag_struct_definition** c_tag_struct_definition_view::get_tag_struct_def
 	return structures.data();
 }
 
-unsigned long c_tag_struct_definition_view::get_num_tag_struct_definitions()
+uint32_t c_tag_struct_definition_view::get_num_tag_struct_definitions()
 {
 	return static_cast<unsigned long>(structures.size() - 1);
 }
@@ -57,7 +59,7 @@ static void iterate_structure_fields_impl(
 
 	for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 	{
-		unsigned long field_skip_count;
+		uint32_t field_skip_count;
 		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_all, field_skip_count))
 		{
 			current_field += field_skip_count;

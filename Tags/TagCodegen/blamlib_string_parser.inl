@@ -306,7 +306,7 @@ void c_blamlib_string_parser_v2::fixup_flags(char* string)
 	char* const flags_search_start = string;
 	char* const flags_search_end = string + length;
 
-	unsigned long flags_found = 0;
+	uint32_t flags_found = 0;
 	char* flags_search_position = flags_search_end;
 	while (
 		flags_search_position > flags_search_start

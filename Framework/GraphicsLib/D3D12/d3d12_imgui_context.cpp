@@ -60,7 +60,7 @@ void c_imgui_context_d3d12::init_imgui_font()
 		default_font_configuration.PixelSnapH = true;
 
 		void* default_font_resource_data;
-		unsigned long long default_font_resource_data_size;
+		uint64_t default_font_resource_data_size;
 		BCS_RESULT resource_read_result = resources_read_resource_to_memory(_bcs_resource_type_font_cousine_regular, default_font_resource_data, default_font_resource_data_size);
 		ASSERT(BCS_SUCCEEDED(resource_read_result));
 
@@ -73,7 +73,7 @@ void c_imgui_context_d3d12::init_imgui_font()
 		font_awesome_regular_font_configuration.PixelSnapH = true;
 
 		void* font_awesome_regular_font_resource_data;
-		unsigned long long font_awesome_regular_font_resource_data_size;
+		uint64_t font_awesome_regular_font_resource_data_size;
 		BCS_RESULT resource_read_result = resources_read_resource_to_memory(_bcs_resource_type_font_font_awesome_regular, font_awesome_regular_font_resource_data, font_awesome_regular_font_resource_data_size);
 		ASSERT(BCS_SUCCEEDED(resource_read_result));
 
@@ -95,7 +95,7 @@ void c_imgui_context_d3d12::init_imgui_font()
 		font_awesome_brands_font_configuration.PixelSnapH = true;
 
 		void* font_awesome_brands_font_resource_data;
-		unsigned long long font_awesome_brands_font_resource_data_size;
+		uint64_t font_awesome_brands_font_resource_data_size;
 		BCS_RESULT resource_read_result = resources_read_resource_to_memory(_bcs_resource_type_font_font_awesome_brands, font_awesome_brands_font_resource_data, font_awesome_brands_font_resource_data_size);
 		ASSERT(BCS_SUCCEEDED(resource_read_result));
 

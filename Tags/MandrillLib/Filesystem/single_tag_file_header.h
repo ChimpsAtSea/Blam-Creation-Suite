@@ -2,22 +2,22 @@
 
 struct s_single_tag_file_header
 {
-	unsigned long unknown0;
-	unsigned long unknown4;
-	unsigned long unknown8;
-	unsigned long unknownC;
-	unsigned long unknown10;
-	unsigned long unknown14;
-	unsigned long unknown18;
-	unsigned long unknown1C;
+	uint32_t unknown0;
+	uint32_t unknown4;
+	uint32_t unknown8;
+	uint32_t unknownC;
+	uint32_t unknown10;
+	uint32_t unknown14;
+	uint32_t unknown18;
+	uint32_t unknown1C;
 
-	unsigned long unknown20;
-	unsigned long unknown24; // 1
-	unsigned long unknown28; // 1
-	unsigned long unknown2C; // ULONG_MAX
+	uint32_t unknown20;
+	uint32_t unknown24; // 1
+	uint32_t unknown28; // 1
+	uint32_t unknown2C; // ULONG_MAX
 
 	tag group_tag;
-	unsigned long group_version; // 2
-	unsigned long crc32; // hash?
-	unsigned long blam; // 'BLAM'
+	uint32_t group_version; // 2
+	uint32_t crc32; // hash?
+	uint32_t blam; // 'BLAM'
 };

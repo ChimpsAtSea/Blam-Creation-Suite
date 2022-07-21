@@ -3,9 +3,9 @@
 struct s_halo3_tools_pc64_tag_data_definition
 {
 	ptr64 name_address;
-	unsigned long flags;
-	unsigned long alignment_bit;
-	unsigned long maximum_element_count;
+	uint32_t flags;
+	uint32_t alignment_bit;
+	uint32_t maximum_element_count;
 	ptr64 maximum_element_count_string_address;
 	ptr64 unknown_procedure0;
 	ptr64 unknown_procedure1;
@@ -32,9 +32,9 @@ public:
 
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;
-	virtual unsigned long get_flags() override;
-	virtual unsigned long get_alignment_bits() override;
-	virtual unsigned long get_maximum_element_count() override;
+	virtual uint32_t get_flags() override;
+	virtual uint32_t get_alignment_bits() override;
+	virtual uint32_t get_maximum_element_count() override;
 	virtual const char* get_maximum_element_count_string() override;
 
 protected:

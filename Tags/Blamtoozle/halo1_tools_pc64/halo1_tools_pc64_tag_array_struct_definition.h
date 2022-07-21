@@ -23,7 +23,7 @@ public:
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;
 	virtual const char* get_structure_type_name() override;
-	virtual unsigned long get_alignment_bits() override;
+	virtual uint32_t get_alignment_bits() override;
 	virtual blofeld::s_tag_persistent_identifier& get_persistent_identifier() override;
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() override;
 

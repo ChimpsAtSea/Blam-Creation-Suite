@@ -2,14 +2,14 @@
 
 struct s_partitioned_heap_entry_list_header
 {
-	unsigned long count;
-	unsigned long maximum_count;
+	uint32_t count;
+	uint32_t maximum_count;
 };
 
 struct s_partitioned_heap_entry
 {
-	unsigned long partition_index;
-	unsigned long heap_datum;
+	uint32_t partition_index;
+	uint32_t heap_datum;
 };
 
 class c_partitioned_heap_entry_list_chunk : public c_typed_chunk<'hpls', false>

@@ -54,8 +54,8 @@ static_assert(sizeof(s_cloth_vertex) == 0x14);
 struct s_cloth_link
 {
 	real default_distance;
-	long indices[2];
-	long : 32;
+	int indices[2];
+	int : 32;
 };
 static_assert(sizeof(s_cloth_link) == 0x10);
 
@@ -90,6 +90,6 @@ struct s_cloth_definition
 	c_typed_tag_block<short> strip_indices;
 	c_typed_tag_block<s_cloth_link> links;
 
-	long : 32;
+	int : 32;
 };
 static_assert(sizeof(s_cloth_definition) == 0x98);

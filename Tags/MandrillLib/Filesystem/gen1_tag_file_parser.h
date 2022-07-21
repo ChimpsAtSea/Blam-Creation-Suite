@@ -5,10 +5,10 @@ struct s_single_tag_file_header_v1
 	tag tag_id_unused;
 	char tag_name_unused[32];
 	tag group_tag;
-	unsigned long crc32;
-	unsigned long data_offset;
-	unsigned long unused30;
-	unsigned long unused34;
+	uint32_t crc32;
+	uint32_t data_offset;
+	uint32_t unused30;
+	uint32_t unused34;
 	unsigned short group_version;
 	unsigned char unused3A;
 	unsigned char unused3B;
@@ -22,7 +22,7 @@ class c_gen1_tag_file_parse_context
 protected:
 	c_gen1_tag_file_parse_context(
 		const void* _tag_file_data,
-		unsigned long long _tag_file_data_size,
+		uint64_t _tag_file_data_size,
 		s_engine_platform_build _engine_platform_build);
 	c_gen1_tag_file_parse_context() = delete;
 	c_gen1_tag_file_parse_context(c_gen1_tag_file_parse_context const&) = delete;
@@ -38,7 +38,7 @@ public:
 	BCS_DEBUG_API static BCS_RESULT parse_gen1_tag_file_data(
 		h_tag*& tag_prototype,
 		const void* tag_file_data, 
-		unsigned long long tag_file_data_size, 
+		uint64_t tag_file_data_size, 
 		s_engine_platform_build engine_platform_build);
 
 protected:

@@ -2,6 +2,62 @@
 
 using namespace blofeld;
 
+
+static uint32_t calculate_struct_size(s_engine_platform_build engine_platform_build, const blofeld::s_tag_struct_definition& struct_definition)
+{
+	using namespace blofeld;
+
+	uint32_t computed_size = 0;
+
+	for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
+	{
+		uint32_t field_skip_count;
+		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, field_skip_count))
+		{
+			current_field += field_skip_count;
+			continue;
+		}
+
+		uint32_t field_size = 0;
+		switch (current_field->field_type)
+		{
+		case _field_useless_pad:
+			//computed_size += current_field->padding;
+			break;
+		case _field_pad:
+			field_size = current_field->padding;
+			break;
+		case _field_skip:
+			field_size = current_field->length;
+			break;
+		case _field_struct:
+			field_size = calculate_struct_size(engine_platform_build , *current_field->struct_definition);
+			break;
+		case _field_array:
+		{
+			const s_tag_array_definition& array_definition = *current_field->array_definition;
+			REFERENCE_ASSERT(array_definition);
+			const s_tag_struct_definition& struct_definition = array_definition.struct_definition;
+			REFERENCE_ASSERT(struct_definition);
+			uint32_t struct_size = calculate_struct_size(engine_platform_build, struct_definition);
+			uint32_t array_data_size = struct_size * array_definition.count(engine_platform_build);
+			field_size = array_data_size;
+			break;
+		}
+		default:
+			field_size = blofeld::get_blofeld_field_size(engine_platform_build.platform_type, current_field->field_type);
+			break;
+		}
+
+		computed_size += field_size;
+	}
+
+	//ASSERT((computed_size % (1u << struct_definition.alignment_bits)) == 0);
+
+	return computed_size;
+}
+
+
 c_low_level_tag_source_generator::c_low_level_tag_source_generator(s_engine_platform_build _engine_platform_build) :
 	c_source_generator_base(_engine_platform_build),
 	output_directory(),
@@ -49,14 +105,14 @@ const char* c_low_level_tag_source_generator::field_type_to_low_level_source_typ
 	case _field_old_string_id:						return "c_old_string_id";
 	case _field_char_integer:						return "char";
 	case _field_short_integer:						return "short";
-	case _field_long_integer:						return "long";
-	case _field_int64_integer:						return "long long";
+	case _field_long_integer:						return "int32_t";
+	case _field_int64_integer:						return "int64_t";
 	case _field_angle:								return "angle";
 	case _field_tag:								return "tag";
 	case _field_char_enum:							return "char";
-	case _field_short_enum:								return "short";
-	case _field_long_enum:							return "long";
-	case _field_long_flags:							return "long";
+	case _field_short_enum:							return "short";
+	case _field_long_enum:							return "int32_t";
+	case _field_long_flags:							return "int32_t";
 	case _field_word_flags:							return "word";
 	case _field_byte_flags:							return "byte";
 	case _field_point_2d:							return "s_point2d";
@@ -78,21 +134,21 @@ const char* c_low_level_tag_source_generator::field_type_to_low_level_source_typ
 	case _field_real_argb_color:					return "argb_color";
 	case _field_real_hsv_color:						return "real_hsv_color";
 	case _field_real_ahsv_color:					return "real_ahsv_color";
-	case _field_short_integer_bounds:						return "short_bounds";
+	case _field_short_integer_bounds:				return "short_bounds";
 	case _field_angle_bounds:						return "angle_bounds";
 	case _field_real_bounds:						return "real_bounds";
 	case _field_real_fraction_bounds:				return "real_bounds";
 	case _field_tag_reference:						return "s_tag_reference";
 	case _field_block:								return "s_tag_block";
-	case _field_long_block_flags:					return "long";
+	case _field_long_block_flags:					return "int32_t";
 	case _field_word_block_flags:					return "word";
 	case _field_byte_block_flags:					return "byte";
 	case _field_char_block_index:					return "char";
-	case _field_char_block_index_custom_search:			return "char";
+	case _field_char_block_index_custom_search:		return "char";
 	case _field_short_block_index:					return "short";
-	case _field_short_block_index_custom_search:			return "short";
-	case _field_long_block_index:					return "long";
-	case _field_long_block_index_custom_search:			return "long";
+	case _field_short_block_index_custom_search:	return "short";
+	case _field_long_block_index:					return "int32_t";
+	case _field_long_block_index_custom_search:		return "int32_t";
 	case _field_data:								return "s_tag_data";
 	case _field_vertex_buffer:						return "s_tag_d3d_vertex_buffer";
 	case _field_pad:								return nullptr;	// dynamic
@@ -103,7 +159,7 @@ const char* c_low_level_tag_source_generator::field_type_to_low_level_source_typ
 	case _field_custom:								return nullptr;	// empty
 	case _field_struct:								return nullptr;	// dynamic
 	case _field_array:								return nullptr;	// dynamic
-	case _field_pageable_resource:							return "s_tag_resource";
+	case _field_pageable_resource:					return "s_tag_resource";
 	case _field_api_interop:						return "s_tag_interop";
 	case _field_terminator:							return nullptr;	// empty
 	case _field_byte_integer:						return "byte";
@@ -114,13 +170,13 @@ const char* c_low_level_tag_source_generator::field_type_to_low_level_source_typ
 	case _field_embedded_tag:						return "s_tag_reference";
 	case _field_pointer: // #NONSTANDARD
 	{
-		unsigned long pointer_size;
+		uint32_t pointer_size;
 		ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(platform_type, &pointer_size)));
 
 		switch (pointer_size)
 		{
-		case 8: return "long long";
-		case 4: return "long";
+		case 8: return "int64_t";
+		case 4: return "int32_t";
 		default: FATAL_ERROR("bad pointer size");
 		}
 		break;
@@ -233,7 +289,7 @@ void c_low_level_tag_source_generator::generate_header()
 				}
 				case _field_array:
 				{
-					unsigned long count = tag_field.array_definition->count(engine_platform_build);
+					uint32_t count = tag_field.array_definition->count(engine_platform_build);
 					if (count == 0)
 					{
 						debug_point;
@@ -243,7 +299,7 @@ void c_low_level_tag_source_generator::generate_header()
 				}
 				case _field_struct:
 				{
-					unsigned long field_struct_size = calculate_struct_size(engine_platform_build, *tag_field.struct_definition);
+					uint32_t field_struct_size = calculate_struct_size(engine_platform_build, *tag_field.struct_definition);
 					if (field_struct_size > 0)
 					{
 						stream << indent << "" << tag_field.struct_definition->struct_name << " " << field_formatter.code_name.c_str() << ";";
@@ -273,8 +329,8 @@ void c_low_level_tag_source_generator::generate_header()
 						std::vector<unsigned long> group_tags;
 						if (tag_field.tag_reference_definition)
 						{
-							long group_tag = tag_field.tag_reference_definition->group_tag;
-							unsigned long group_tag_count = tag_field.tag_reference_definition->group_tag;
+							int32_t group_tag = tag_field.tag_reference_definition->group_tag;
+							uint32_t group_tag_count = tag_field.tag_reference_definition->group_tag;
 
 							if (tag_field.tag_reference_definition->group_tag != INVALID_TAG)
 							{
@@ -282,7 +338,7 @@ void c_low_level_tag_source_generator::generate_header()
 							}
 							else if (tag_field.tag_reference_definition->group_tags)
 							{
-								for (const unsigned long* current_group_tag = tag_field.tag_reference_definition->group_tags; *current_group_tag != INVALID_TAG; current_group_tag++)
+								for (const uint32_t* current_group_tag = tag_field.tag_reference_definition->group_tags; *current_group_tag != INVALID_TAG; current_group_tag++)
 								{
 									group_tags.push_back(*current_group_tag);
 								}
@@ -359,7 +415,7 @@ void c_low_level_tag_source_generator::generate_header()
 				{
 
 					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
-					stream << indent << "c_flags<e_" << string_list.name << ", long, k_" << string_list.name << "_count> " << field_formatter.code_name.data << ";";
+					stream << indent << "c_flags<e_" << string_list.name << ", int32_t, k_" << string_list.name << "_count> " << field_formatter.code_name.data << ";";
 
 					break;
 				}
@@ -410,7 +466,7 @@ void c_low_level_tag_source_generator::generate_header()
 		decrement_indent();
 		stream << indent << "};" << std::endl;
 
-		unsigned long struct_size = calculate_struct_size(engine_platform_build, *struct_definition);
+		uint32_t struct_size = calculate_struct_size(engine_platform_build, *struct_definition);
 		stream << indent << "static_assert(sizeof(" << struct_definition->struct_name << ") == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct " << struct_definition->struct_name << " is invalid size\");" << std::endl;
 
 		stream << indent << std::endl;
@@ -501,7 +557,7 @@ void c_low_level_tag_source_generator::generate_ida_header()
 				}
 				case _field_array:
 				{
-					unsigned long count = tag_field.array_definition->count(engine_platform_build);
+					uint32_t count = tag_field.array_definition->count(engine_platform_build);
 					if (count == 0)
 					{
 						debug_point;
@@ -511,7 +567,7 @@ void c_low_level_tag_source_generator::generate_ida_header()
 				}
 				case _field_struct:
 				{
-					unsigned long field_struct_size = calculate_struct_size(engine_platform_build, *tag_field.struct_definition);
+					uint32_t field_struct_size = calculate_struct_size(engine_platform_build, *tag_field.struct_definition);
 					if (field_struct_size > 0)
 					{
 						stream << indent << "" << tag_field.struct_definition->struct_name << " " << field_formatter.code_name.c_str() << ";";
@@ -547,7 +603,7 @@ void c_low_level_tag_source_generator::generate_ida_header()
 				case _field_long_enum:
 				{
 					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
-					stream << indent << "long " << field_formatter.code_name.data << "; // e_" << string_list.name;
+					stream << indent << "int32_t " << field_formatter.code_name.data << "; // e_" << string_list.name;
 					break;
 				}
 				case _field_byte_flags:
@@ -566,7 +622,7 @@ void c_low_level_tag_source_generator::generate_ida_header()
 				{
 
 					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
-					stream << indent << "long " << field_formatter.code_name.data << "; // " << string_list.name;
+					stream << indent << "int32_t " << field_formatter.code_name.data << "; // " << string_list.name;
 
 					break;
 				}
@@ -648,7 +704,7 @@ void c_low_level_tag_source_generator::generate_source()
 		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
 			const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
-			unsigned long field_index = tag_field_iterator - struct_definition->fields;
+			uint32_t field_index = tag_field_iterator - struct_definition->fields;
 
 			c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
 				tag_field.name,
@@ -672,7 +728,7 @@ void c_low_level_tag_source_generator::generate_source()
 					break;
 				case _field_struct:
 				{
-					unsigned long field_struct_size = calculate_struct_size(engine_platform_build, *tag_field.struct_definition);
+					uint32_t field_struct_size = calculate_struct_size(engine_platform_build, *tag_field.struct_definition);
 					if (field_struct_size == 0)
 					{
 						stream << indent << "// byteswap_inplace(value." << field_formatter.code_name.c_str() << "); // empty struct" << std::endl;
@@ -711,13 +767,13 @@ void c_low_level_tag_source_generator::generate_enum_header()
 	{
 		string_list_value_unique_counter.clear();
 
-		unsigned long count = string_list_definition->get_count(engine_platform_build);
+		uint32_t count = string_list_definition->get_count(engine_platform_build);
 
 		stream << indent << "enum e_" << string_list_definition->name << " : long" << std::endl;
 		stream << indent << "{" << std::endl;
 
 		increment_indent();
-		for (unsigned long string_index = 0; string_index < count; string_index++)
+		for (uint32_t string_index = 0; string_index < count; string_index++)
 		{
 			const char* string = string_list_definition->get_string(engine_platform_build, string_index);
 			c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(string, false, &string_list_value_unique_counter);

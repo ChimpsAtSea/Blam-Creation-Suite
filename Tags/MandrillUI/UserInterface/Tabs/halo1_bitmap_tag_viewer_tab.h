@@ -25,7 +25,7 @@ protected:
 	virtual void render_game_layer_impl() override final;
 
 	void render_bitmap_enumerable(h_enumerable& enumerable);
-	void render_bitmap(long index, blofeld::halo1::pc64::h_bitmap_data& bitmap_data);
+	void render_bitmap(int32_t index, blofeld::halo1::pc64::h_bitmap_data& bitmap_data);
 
 	c_tag_project& tag_project;
 	blofeld::halo1::pc64::h_bitmap_definition& halo1_bitmap_tag;

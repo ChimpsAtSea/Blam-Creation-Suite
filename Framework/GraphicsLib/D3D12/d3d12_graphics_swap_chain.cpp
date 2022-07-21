@@ -4,7 +4,7 @@ c_graphics_swap_chain_d3d12::c_graphics_swap_chain_d3d12(
 	c_graphics_d3d12& graphics,
 	c_imgui_viewport_render_context& imgui_viewport_render_context,
 	c_viewport& viewport,
-	unsigned long num_back_buffers,
+	uint32_t num_back_buffers,
 	const char* debug_name) :
 	graphics(graphics),
 	viewport(viewport),
@@ -34,7 +34,7 @@ c_graphics_swap_chain_d3d12::c_graphics_swap_chain_d3d12(
 c_graphics_swap_chain_d3d12::c_graphics_swap_chain_d3d12(
 		c_graphics_d3d12& graphics,
 		c_window_windows& window,
-		unsigned long num_back_buffers,
+		uint32_t num_back_buffers,
 		const char* debug_name) :
 	graphics(graphics),
 	viewport(window),
@@ -105,7 +105,7 @@ void c_graphics_swap_chain_d3d12::present()
 	}
 }
 
-void c_graphics_swap_chain_d3d12::window_resize_event(c_graphics_swap_chain_d3d12& _this, unsigned long width, unsigned long height)
+void c_graphics_swap_chain_d3d12::window_resize_event(c_graphics_swap_chain_d3d12& _this, uint32_t width, uint32_t height)
 {
 	console_write_line(__FUNCTION__);
 	_this.graphics.wait_for_frame_to_complete_cpu();
@@ -136,7 +136,7 @@ void c_graphics_swap_chain_d3d12::window_resize_event(c_graphics_swap_chain_d3d1
 	_this.graphics.wait_for_frame_to_complete_cpu();
 }
 
-unsigned long c_graphics_swap_chain_d3d12::get_current_back_buffer_index()
+uint32_t c_graphics_swap_chain_d3d12::get_current_back_buffer_index()
 {
 	return current_back_buffer_index;
 }
@@ -144,7 +144,7 @@ unsigned long c_graphics_swap_chain_d3d12::get_current_back_buffer_index()
 BCS_DEBUG_API BCS_RESULT graphics_d3d12_swap_chain_create(
 	c_graphics_d3d12* graphics,
 	c_window_windows* window,
-	unsigned long num_back_buffers,
+	uint32_t num_back_buffers,
 	c_graphics_swap_chain_d3d12*& swap_chain,
 	const char* debug_name)
 {
@@ -170,7 +170,7 @@ BCS_DEBUG_API BCS_RESULT graphics_d3d12_swap_chain_create(
 BCS_DEBUG_API BCS_RESULT graphics_d3d12_swap_chain_create(
 	c_graphics_d3d12* graphics,
 	c_imgui_viewport_render_context* imgui_viewport_render_context,
-	unsigned long num_back_buffers,
+	uint32_t num_back_buffers,
 	c_graphics_swap_chain_d3d12*& swap_chain,
 	const char* debug_name)
 {

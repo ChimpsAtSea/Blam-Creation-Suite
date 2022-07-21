@@ -10,10 +10,10 @@ typedef struct _callback_entry s_callback_entry;
 typedef struct _callback_entry
 {
 	void* callback;
-	unsigned long num_userdata;
+	uint32_t num_userdata;
 	void* userdata[8];
 	s_callback_entry* next_entry;
-	unsigned long long unique_id;
+	uint64_t unique_id;
 } s_callback_entry;
 
 typedef struct _callback
@@ -27,7 +27,7 @@ protected:
 
 #ifdef __cplusplus
 
-enum t_callback_handle : unsigned long long {};
+enum t_callback_handle : uint64_t {};
 
 class c_callback :
 	public s_callback
@@ -49,7 +49,7 @@ public:
 	BCS_DEBUG_API BCS_RESULT remove_callback(t_callback_handle callback_handle);
 
 protected:
-	static unsigned long long next_unique_id;
+	static uint64_t next_unique_id;
 };
 
 template<typename T>

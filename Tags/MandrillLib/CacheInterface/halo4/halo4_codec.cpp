@@ -34,7 +34,7 @@ int h4_codec_inflate_lzx_xbox360(const void* compressed_buffer, size_t compresse
 	size_t remaining_input_bytes = 0;
 	unsigned short compressed_input_size = 0;
 	unsigned short uncompressed_output_size = 0;
-	unsigned long bytes_decoded = 0;
+	uint32_t bytes_decoded = 0;
 
 	if (compressed_buffer_size > 5)
 	{

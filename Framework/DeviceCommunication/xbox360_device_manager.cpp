@@ -6,7 +6,7 @@ static HKEY xbox_shell_consoles_key;
 static DWORD num_consoles;
 static s_xbox360_device_entry* consoles;
 
-BCS_RESULT read_console_info(unsigned long index, wchar_t* console_value_name_buffer, unsigned long name_buffer_length)
+BCS_RESULT read_console_info(uint32_t index, wchar_t* console_value_name_buffer, uint32_t name_buffer_length)
 {
 	DWORD console_value_type;
 	DWORD console_value;
@@ -89,7 +89,7 @@ BCS_RESULT init_xbox360_device_manager()
 	}
 
 	consoles = new() s_xbox360_device_entry[num_consoles];
-	for (unsigned long console_index = 0; console_index < num_consoles; console_index++)
+	for (uint32_t console_index = 0; console_index < num_consoles; console_index++)
 	{
 		s_xbox360_device_entry& device_entry = consoles[console_index];
 
@@ -116,7 +116,7 @@ BCS_RESULT deinit_xbox360_device_manager()
 	return rs;
 }
 
-BCS_RESULT xbox360_device_manager_get_devices(s_xbox360_device_entry const*& out_devices, unsigned long& device_count)
+BCS_RESULT xbox360_device_manager_get_devices(s_xbox360_device_entry const*& out_devices, uint32_t& device_count)
 {
 	out_devices = consoles;
 	device_count = static_cast<unsigned long>(num_consoles);

@@ -176,7 +176,7 @@ char *csnzprintf(
 	return buffer;
 }
 
-long cvsnzprintf(
+int cvsnzprintf(
 	char *buffer,
 	unsigned int size,
 	char const *format,

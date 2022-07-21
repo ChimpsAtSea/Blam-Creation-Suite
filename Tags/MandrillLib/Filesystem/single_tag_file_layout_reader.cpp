@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-#define make_64bit_persistent_id(persistent_identifier) (reinterpret_cast<const long long*>(&persistent_identifier)[0] ^ reinterpret_cast<const long long*>(&persistent_identifier)[1])
+#define make_64bit_persistent_id(persistent_identifier) (reinterpret_cast<const int64_t*>(&persistent_identifier)[0] ^ reinterpret_cast<const int64_t*>(&persistent_identifier)[1])
 
 c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_file_header& header, const void* tag_file_data) :
 	root_chunk(),
@@ -65,7 +65,7 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 	{
 		aggregate_entries = new() s_tag_persist_aggregate_fixup[tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count];
 
-		for (unsigned long aggregate_index = 0; aggregate_index < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count; aggregate_index++)
+		for (uint32_t aggregate_index = 0; aggregate_index < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count; aggregate_index++)
 		{
 			s_tag_persist_aggregate_prechunk& aggregate = get_aggregate_by_index(aggregate_index);
 			s_tag_persist_aggregate_fixup& aggregate_fixup = aggregate_entries[aggregate_index];
@@ -88,7 +88,7 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 			console_write_line("ERROR> Prechunk Definition Tag Group Base Structure Persistent Identifier Not Found! Attempting crazyness!");
 		}
 
-		/*for (unsigned long i = 0; i < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count; i++)
+		/*for (uint32_t i = 0; i < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count; i++)
 		{
 			s_tag_persist_aggregate_prechunk& aggregate = get_aggregate_by_index(i);
 
@@ -96,7 +96,7 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 
 			console_write_line("%s", structure_name);
 
-			for (unsigned long field_index = aggregate.fields_start_index;; field_index++)
+			for (uint32_t field_index = aggregate.fields_start_index;; field_index++)
 			{
 				s_tag_persist_field& field = get_field_by_index(field_index);
 				const char* field_name = get_string_by_string_character_index(field.string_character_index);
@@ -168,28 +168,28 @@ c_single_tag_file_layout_reader::~c_single_tag_file_layout_reader()
 	delete[] field_type_to_blofeld_field_type;
 }
 
-unsigned long c_single_tag_file_layout_reader::get_structure_size_by_index(unsigned long structure_index)
+uint32_t c_single_tag_file_layout_reader::get_structure_size_by_index(uint32_t structure_index)
 {
 	return structure_precomputed_info_by_index[structure_index].structure_size;
 }
 
-unsigned long c_single_tag_file_layout_reader::get_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry)
+uint32_t c_single_tag_file_layout_reader::get_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry)
 {
-	long long _64bit_id = make_64bit_persistent_id(structure_entry.persistent_identifier);
+	int64_t _64bit_id = make_64bit_persistent_id(structure_entry.persistent_identifier);
 	const s_structure_precomputed_info* structure_precomputed_info;
 	bool success = structure_precomputed_info_by_persistent_identifier.fetch_ref(&_64bit_id, sizeof(_64bit_id), structure_precomputed_info);
 	ASSERT(success);
 	return structure_precomputed_info->structure_size;
 }
 
-unsigned long c_single_tag_file_layout_reader::get_structure_expected_children_by_index(unsigned long structure_index)
+uint32_t c_single_tag_file_layout_reader::get_structure_expected_children_by_index(uint32_t structure_index)
 {
 	return structure_precomputed_info_by_index[structure_index].expected_children;
 }
 
-unsigned long c_single_tag_file_layout_reader::get_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry)
+uint32_t c_single_tag_file_layout_reader::get_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry)
 {
-	long long _64bit_id = make_64bit_persistent_id(structure_entry.persistent_identifier);
+	int64_t _64bit_id = make_64bit_persistent_id(structure_entry.persistent_identifier);
 	const s_structure_precomputed_info* structure_precomputed_info;
 	bool success = structure_precomputed_info_by_persistent_identifier.fetch_ref(&_64bit_id, sizeof(_64bit_id), structure_precomputed_info);
 	ASSERT(success);
@@ -198,47 +198,47 @@ unsigned long c_single_tag_file_layout_reader::get_structure_expected_children_b
 
 void c_single_tag_file_layout_reader::calculate_structure_size_and_children()
 {
-	unsigned long structure_count = get_struct_definition_count();
+	uint32_t structure_count = get_struct_definition_count();
 	structure_precomputed_info_by_index = new() s_structure_precomputed_info[structure_count];
 
-	for (unsigned long structure_index = 0; structure_index < structure_count; structure_index++)
+	for (uint32_t structure_index = 0; structure_index < structure_count; structure_index++)
 	{
 		s_tag_persist_struct_definition& structure_entry = get_struct_definition_by_index(structure_index);
 
-		unsigned long structure_size = _calculate_structure_size_by_index(structure_index);
-		unsigned long expected_children = _calculate_structure_expected_children_by_index(structure_index);
+		uint32_t structure_size = _calculate_structure_size_by_index(structure_index);
+		uint32_t expected_children = _calculate_structure_expected_children_by_index(structure_index);
 
 		s_structure_precomputed_info& structure_precomputed_info = structure_precomputed_info_by_index[structure_index];
 		structure_precomputed_info.structure_size = structure_size;
 		structure_precomputed_info.expected_children = expected_children;
 
-		long long _64bit_id = make_64bit_persistent_id(structure_entry.persistent_identifier);
+		int64_t _64bit_id = make_64bit_persistent_id(structure_entry.persistent_identifier);
 		structure_precomputed_info_by_persistent_identifier.enqueue(&_64bit_id, sizeof(_64bit_id), structure_precomputed_info);
 	}
 }
 
-unsigned long c_single_tag_file_layout_reader::_calculate_structure_size_by_index(unsigned long structure_index) const
+uint32_t c_single_tag_file_layout_reader::_calculate_structure_size_by_index(uint32_t structure_index) const
 {
 	s_tag_persist_struct_definition& struct_definition = get_struct_definition_by_index(structure_index);
 	return _calculate_structure_size_by_entry(struct_definition);
 }
 
-unsigned long c_single_tag_file_layout_reader::_calculate_structure_expected_children_by_index(unsigned long structure_index) const
+uint32_t c_single_tag_file_layout_reader::_calculate_structure_expected_children_by_index(uint32_t structure_index) const
 {
 	s_tag_persist_struct_definition& struct_definition = get_struct_definition_by_index(structure_index);
 	return _calculate_structure_expected_children_by_entry(struct_definition);
 }
 
-unsigned long c_single_tag_file_layout_reader::_calculate_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry) const
+uint32_t c_single_tag_file_layout_reader::_calculate_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry) const
 {
-	unsigned long structure_size = 0;
-	for (unsigned long field_index = structure_entry.fields_start_index;; field_index++)
+	uint32_t structure_size = 0;
+	for (uint32_t field_index = structure_entry.fields_start_index;; field_index++)
 	{
 
 		s_tag_persist_field& field_entry = get_field_by_index(field_index);
 		s_tag_persist_field_type& field_type = get_field_type_by_index(field_entry.field_type_index);
 
-		unsigned long field_size = field_type.size;
+		uint32_t field_size = field_type.size;
 		if (field_size == 0)
 		{
 			blofeld::e_field blofeld_field_type = get_blofeld_type_by_field_type_index(field_entry.field_type_index);
@@ -252,7 +252,7 @@ unsigned long c_single_tag_file_layout_reader::_calculate_structure_size_by_entr
 			{
 			case blofeld::_field_struct:
 			{
-				unsigned long structure_size = _calculate_structure_size_by_index(field_entry.metadata);
+				uint32_t structure_size = _calculate_structure_size_by_index(field_entry.metadata);
 				field_size = structure_size;
 			}
 			break;
@@ -260,14 +260,14 @@ unsigned long c_single_tag_file_layout_reader::_calculate_structure_size_by_entr
 			{
 				s_tag_persist_array_definition& array_entry = get_array_definition_by_index(field_entry.metadata);
 				//s_tag_persist_array_definition& array_entry = array_definitions_chunk->entries[field_entry.metadata];
-				unsigned long array_structure_size = _calculate_structure_size_by_index(array_entry.structure_entry_index);
-				unsigned long array_size = array_structure_size * array_entry.count;
+				uint32_t array_structure_size = _calculate_structure_size_by_index(array_entry.structure_entry_index);
+				uint32_t array_size = array_structure_size * array_entry.count;
 				field_size = array_size;
 			}
 			break;
 			case blofeld::_field_pad:
 			{
-				unsigned long pad_size = field_entry.metadata;
+				uint32_t pad_size = field_entry.metadata;
 				field_size = pad_size;
 			}
 			break;
@@ -284,10 +284,10 @@ end:;
 	return structure_size;
 }
 
-unsigned long c_single_tag_file_layout_reader::_calculate_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry) const
+uint32_t c_single_tag_file_layout_reader::_calculate_structure_expected_children_by_entry(const s_tag_persist_struct_definition& structure_entry) const
 {
-	unsigned long child_entry_count = 0;
-	for (unsigned long field_index = structure_entry.fields_start_index;; field_index++)
+	uint32_t child_entry_count = 0;
+	for (uint32_t field_index = structure_entry.fields_start_index;; field_index++)
 	{
 
 		s_tag_persist_field& field_entry = get_field_by_index(field_index);
@@ -345,7 +345,7 @@ void c_single_tag_file_layout_reader::init_custom_block_index_search_name_by_ind
 	}
 }
 
-const char* c_single_tag_file_layout_reader::get_custom_block_index_search_name_by_index(unsigned long custom_block_index_search_name_index) const
+const char* c_single_tag_file_layout_reader::get_custom_block_index_search_name_by_index(uint32_t custom_block_index_search_name_index) const
 {
 	ASSERT(custom_block_index_search_name_index < custom_block_index_search_name_by_index_count);
 	return get_string_by_string_character_index(custom_block_index_search_name_by_index[custom_block_index_search_name_index]);
@@ -365,7 +365,7 @@ void  c_single_tag_file_layout_reader::init_data_definition_name_by_index()
 	}
 }
 
-const char* c_single_tag_file_layout_reader::get_data_definition_name_by_index(unsigned long data_definition_index) const
+const char* c_single_tag_file_layout_reader::get_data_definition_name_by_index(uint32_t data_definition_index) const
 {
 	ASSERT(data_definition_index < data_definition_name_by_index_count);
 	return get_string_by_string_character_index(data_definition_name_by_index[data_definition_index]);
@@ -383,14 +383,14 @@ void c_single_tag_file_layout_reader::init_block_definition_by_index()
 		block_definition_by_index_count = tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count;
 		block_definition_by_index = trivial_malloc(s_tag_persist_block_definition, block_definition_by_index_count);
 
-		for (unsigned long block_index = 0; block_index < block_definition_by_index_count; block_index++)
+		for (uint32_t block_index = 0; block_index < block_definition_by_index_count; block_index++)
 		{
 			block_definition_by_index[block_index] = aggregate_entries[block_index].block_definition;
 		}
 	}
 }
 
-s_tag_persist_block_definition& c_single_tag_file_layout_reader::get_block_definition_by_index(unsigned long index) const
+s_tag_persist_block_definition& c_single_tag_file_layout_reader::get_block_definition_by_index(uint32_t index) const
 {
 	ASSERT(index < block_definition_by_index_count);
 	return block_definition_by_index[index];
@@ -408,7 +408,7 @@ void c_single_tag_file_layout_reader::init_struct_definition_count()
 	}
 }
 
-unsigned long c_single_tag_file_layout_reader::get_struct_definition_count() const
+uint32_t c_single_tag_file_layout_reader::get_struct_definition_count() const
 {
 	return struct_definition_count;
 }
@@ -425,14 +425,14 @@ void c_single_tag_file_layout_reader::init_struct_definition_by_index()
 		struct_definition_by_index_count = tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count;
 		struct_definition_by_index = trivial_malloc(s_tag_persist_struct_definition, struct_definition_by_index_count);
 
-		for (unsigned long struct_index = 0; struct_index < block_definition_by_index_count; struct_index++)
+		for (uint32_t struct_index = 0; struct_index < block_definition_by_index_count; struct_index++)
 		{
 			struct_definition_by_index[struct_index] = aggregate_entries[struct_index].struct_definition;
 		}
 	}
 }
 
-s_tag_persist_struct_definition& c_single_tag_file_layout_reader::get_struct_definition_by_index(unsigned long index) const
+s_tag_persist_struct_definition& c_single_tag_file_layout_reader::get_struct_definition_by_index(uint32_t index) const
 {
 	ASSERT(index < struct_definition_by_index_count);
 	return struct_definition_by_index[index];
@@ -452,7 +452,7 @@ void c_single_tag_file_layout_reader::init_array_definition_by_index()
 	}
 }
 
-s_tag_persist_array_definition& c_single_tag_file_layout_reader::get_array_definition_by_index(unsigned long index) const
+s_tag_persist_array_definition& c_single_tag_file_layout_reader::get_array_definition_by_index(uint32_t index) const
 {
 	ASSERT(index < array_definition_by_index_count);
 	return array_definition_by_index[index];
@@ -473,7 +473,7 @@ void c_single_tag_file_layout_reader::init_resource_definition_by_index()
 	}
 }
 
-s_tag_persist_resource_definition& c_single_tag_file_layout_reader::get_resource_definition_by_index(unsigned long index) const
+s_tag_persist_resource_definition& c_single_tag_file_layout_reader::get_resource_definition_by_index(uint32_t index) const
 {
 	ASSERT(index < resource_definition_by_index_count);
 	return resource_definition_by_index[index];
@@ -494,13 +494,13 @@ void c_single_tag_file_layout_reader::init_interop_definition_by_index()
 	}
 }
 
-s_tag_persist_interop_definition& c_single_tag_file_layout_reader::get_interop_definition_by_index(unsigned long index) const
+s_tag_persist_interop_definition& c_single_tag_file_layout_reader::get_interop_definition_by_index(uint32_t index) const
 {
 	ASSERT(index < interop_definition_by_index_count);
 	return interop_definition_by_index[index];
 }
 
-s_tag_persist_aggregate_prechunk& c_single_tag_file_layout_reader::get_aggregate_by_index(unsigned long index) const
+s_tag_persist_aggregate_prechunk& c_single_tag_file_layout_reader::get_aggregate_by_index(uint32_t index) const
 {
 	ASSERT(tag_layout_prechunk_chunk != nullptr);
 	return tag_layout_prechunk_chunk->aggregate_definitions[index];
@@ -520,7 +520,7 @@ void c_single_tag_file_layout_reader::init_field_by_index()
 	}
 }
 
-s_tag_persist_field& c_single_tag_file_layout_reader::get_field_by_index(unsigned long index) const
+s_tag_persist_field& c_single_tag_file_layout_reader::get_field_by_index(uint32_t index) const
 {
 	ASSERT(index < field_by_index_count);
 	return field_by_index[index];
@@ -540,13 +540,13 @@ void c_single_tag_file_layout_reader::init_field_type_by_index()
 	}
 }
 
-s_tag_persist_field_type& c_single_tag_file_layout_reader::get_field_type_by_index(unsigned long index) const
+s_tag_persist_field_type& c_single_tag_file_layout_reader::get_field_type_by_index(uint32_t index) const
 {
 	ASSERT(index < field_type_by_index_count);
 	return field_type_by_index[index];
 }
 
-blofeld::e_field c_single_tag_file_layout_reader::get_blofeld_type_by_field_type_index(unsigned long field_type_index) const
+blofeld::e_field c_single_tag_file_layout_reader::get_blofeld_type_by_field_type_index(uint32_t field_type_index) const
 {
 	ASSERT(field_type_index < field_type_to_blofeld_field_type_count);
 	blofeld::e_field field_type = field_type_to_blofeld_field_type[field_type_index];
@@ -557,7 +557,7 @@ void c_single_tag_file_layout_reader::init_structure_type_to_blofeld_type_lookup
 {
 	field_type_to_blofeld_field_type_count = tag_group_layout_chunk->get_field_type_count();
 	field_type_to_blofeld_field_type = new blofeld::e_field[field_type_to_blofeld_field_type_count];
-	for (unsigned long field_type_index = 0; field_type_index < field_type_to_blofeld_field_type_count; field_type_index++)
+	for (uint32_t field_type_index = 0; field_type_index < field_type_to_blofeld_field_type_count; field_type_index++)
 	{
 		s_tag_persist_field_type& field_type = get_field_type_by_index(field_type_index);
 

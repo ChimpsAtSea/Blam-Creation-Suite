@@ -31,10 +31,10 @@ BCS_DEBUG_API BCS_RESULT graphics_texture_create(
 BCS_DEBUG_API BCS_RESULT graphics_texture_create(
 	c_graphics* graphics,
 	void* texture_binary, 
-	unsigned long* texture_binary_size,
+	uint32_t* texture_binary_size,
 	e_graphics_data_format pixel_format,
-	unsigned long width,
-	unsigned long height,
+	uint32_t width,
+	uint32_t height,
 	c_graphics_texture*& texture,
 	const char* debug_name = nullptr);
 BCS_DEBUG_API BCS_RESULT graphics_texture_destroy(c_graphics_texture* texture);

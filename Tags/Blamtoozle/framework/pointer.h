@@ -1,4 +1,4 @@
 #pragma once
 
-using ptr32 = unsigned long;
-using ptr64 = unsigned long long;
+using ptr32 = uint32_t;
+using ptr64 = uint64_t;

@@ -40,8 +40,8 @@ struct s_object_type_definition
 	unsigned short placement_block_size;
 	unsigned short flags;
 	short : 16;
-	long : 32;
-	long : 32;
+	int : 32;
+	int : 32;
 	c_mover_definition_data *mover_definition;
 	void(*initialize)();
 	void(*dispose)();

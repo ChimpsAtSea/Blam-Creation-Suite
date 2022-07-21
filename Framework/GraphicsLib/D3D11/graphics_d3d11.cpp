@@ -401,7 +401,7 @@
 //	s_swap_chain->Present(1, 0);
 //}
 //
-//void c_render::RequestResize(unsigned long width, unsigned long height)
+//void c_render::RequestResize(uint32_t width, uint32_t height)
 //{
 //	resize_requested = true;
 //}

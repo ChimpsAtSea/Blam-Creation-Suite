@@ -55,7 +55,7 @@ public:
 	{
 		real_bounds range; // the absolute target exposure is clamped to this range
 		real auto_exposure_screen_brightness; // [0.0001-1] how bright you want the screen to be - auto-exposure will make it happen
-		real auto_exposure_delay; // [0.1-1] seconds; how long to wait before auto-exposure kicks in to adjust the exposure
+		real auto_exposure_delay; // [0.1-1] seconds; how int to wait before auto-exposure kicks in to adjust the exposure
 	};
 	static_assert(sizeof(s_real_exposure_parameter) == 0x20);
 

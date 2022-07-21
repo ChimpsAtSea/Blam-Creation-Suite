@@ -31,7 +31,7 @@ namespace blamlib
 	struct s_geometry_material
 	{
 		s_tag_reference render_method;
-		long unknown10;
+		int unknown10;
 		real unknown14;
 		real unknown18;
 		char unknown1C;
@@ -106,8 +106,8 @@ namespace blamlib
 	{
 		c_tag_block_index<s_geometry_material, short> material_index;
 		c_tag_block_index<s_sorting_position, short> transparent_sorting_index;
-		long index_start;
-		long index_count;
+		int index_start;
+		int index_count;
 		short subpart_start;
 		short subpart_count;
 		c_enum<e_part_type, char> part_type;
@@ -120,8 +120,8 @@ namespace blamlib
 
 	struct s_subpart
 	{
-		long index_start;
-		long index_count;
+		int index_start;
+		int index_count;
 		c_tag_block_index<s_part, short> part_index;
 		word budget_vertex_count;
 		dword analytical_light_index;
@@ -235,10 +235,10 @@ namespace blamlib
 		char unknown34;
 		c_typed_tag_block<s_instance_bucket> instance_buckets;
 		c_typed_tag_block<s_water_instance_start> water_instance_start;
-		long unknown4C;
-		long unknown50;
-		long unknown54;
-		long unknown58;
+		int unknown4C;
+		int unknown50;
+		int unknown54;
+		int unknown58;
 	};
 	static_assert(sizeof(s_mesh) == 0x5C);
 
@@ -259,8 +259,8 @@ namespace blamlib
 		real_bounds position_z;
 		real_bounds texcoord_u;
 		real_bounds texcoord_v;
-		long : 32;
-		long : 32;
+		int : 32;
+		int : 32;
 	};
 	static_assert(sizeof(s_compression_info) == 0x34);
 
@@ -305,7 +305,7 @@ namespace blamlib
 
 	struct s_per_instance_lod_datum_index
 	{
-		long index;
+		int index;
 	};
 	static_assert(sizeof(s_per_instance_lod_datum_index) == 0x4);
 
@@ -319,7 +319,7 @@ namespace blamlib
 
 	struct s_geometry_unknown4
 	{
-		long index;
+		int index;
 	};
 	static_assert(sizeof(s_geometry_unknown4) == 0x4);
 
@@ -373,7 +373,7 @@ namespace blamlib
 
 	struct s_render_geometry_api_vertex_buffer
 	{
-		long count;
+		int count;
 		c_enum<e_vertex_buffer_type, short> format;
 		short vertex_size;
 		s_tag_data data;
@@ -389,7 +389,7 @@ namespace blamlib
 	struct s_render_geometry_api_index_buffer
 	{
 		c_enum<e_index_buffer_type, long> format;
-		long unknown;
+		int unknown;
 		s_tag_data data;
 	};
 	static_assert(sizeof(s_render_geometry_api_index_buffer) == 0x1C);

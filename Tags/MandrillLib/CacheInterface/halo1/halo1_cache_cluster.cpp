@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-c_halo1_cache_cluster::c_halo1_cache_cluster(c_halo1_cache_file_reader** cache_readers, unsigned long cache_reader_count, s_engine_platform_build engine_platform_build) :
+c_halo1_cache_cluster::c_halo1_cache_cluster(c_halo1_cache_file_reader** cache_readers, uint32_t cache_reader_count, s_engine_platform_build engine_platform_build) :
 	engine_platform_build(engine_platform_build),
 	cache_readers(cache_readers, cache_readers + cache_reader_count),
 	debug_readers(),
@@ -13,7 +13,7 @@ c_halo1_cache_cluster::c_halo1_cache_cluster(c_halo1_cache_file_reader** cache_r
 
 	
 
-	for (unsigned long cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
+	for (uint32_t cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
 	{
 		c_halo1_cache_file_reader* cache_reader = cache_readers[cache_reader_index];
 		BCS_VALIDATE_ARGUMENT_THROW(cache_reader);
@@ -22,7 +22,7 @@ c_halo1_cache_cluster::c_halo1_cache_cluster(c_halo1_cache_file_reader** cache_r
 	}
 
 	s_cache_file_buffer_info temp_info;
-	for (unsigned long cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
+	for (uint32_t cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
 	{
 		c_halo1_cache_file_reader* cache_reader = cache_readers[cache_reader_index];
 		BCS_VALIDATE_ARGUMENT_THROW(cache_reader);
@@ -169,14 +169,14 @@ BCS_RESULT c_halo1_cache_cluster::get_engine_platform_build(s_engine_platform_bu
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo1_cache_cluster::get_cache_readers(c_cache_file_reader* const*& cache_readers, unsigned long& cache_reader_count) const
+BCS_RESULT c_halo1_cache_cluster::get_cache_readers(c_cache_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const
 {
 	cache_readers = reinterpret_cast<c_cache_file_reader* const*>(this->cache_readers.data());
 	cache_reader_count = static_cast<unsigned long>(this->cache_readers.size());
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo1_cache_cluster::get_cache_readers(c_halo1_cache_file_reader* const*& cache_readers, unsigned long& cache_reader_count) const
+BCS_RESULT c_halo1_cache_cluster::get_cache_readers(c_halo1_cache_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const
 {
 	cache_readers = this->cache_readers.data();
 	cache_reader_count = static_cast<unsigned long>(this->cache_readers.size());

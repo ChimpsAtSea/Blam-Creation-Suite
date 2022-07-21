@@ -68,7 +68,7 @@ const char* c_reach_x360_tag_group_definition::get_group_tag_macro_name()
 	return group_tag_macro_name.c_str();
 }
 
-unsigned long c_reach_x360_tag_group_definition::get_version()
+uint32_t c_reach_x360_tag_group_definition::get_version()
 {
 	return group_definition.version;
 }

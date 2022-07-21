@@ -13,7 +13,7 @@ public:
 	virtual const char* get_name() = 0;
 	virtual const char* get_code_symbol_name() = 0;
 	virtual const char* get_group_tag_macro_name() = 0;
-	virtual unsigned long get_version() = 0;
+	virtual uint32_t get_version() = 0;
 	virtual tag get_group_tag() = 0;
 	virtual tag get_parent_group_tag() = 0;
 	virtual c_blamtoozle_tag_block_definition& get_block_definition() = 0;

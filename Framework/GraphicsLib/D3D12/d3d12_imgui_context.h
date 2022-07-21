@@ -19,7 +19,7 @@ public:
 
 	ImGuiContext* imgui_context;
 	ImFont* imgui_font;
-	unsigned long imgui_srv_descriptor_index;
+	uint32_t imgui_srv_descriptor_index;
 	D3D12_CPU_DESCRIPTOR_HANDLE imgui_srv_cpu_descriptor_handle;
 	D3D12_GPU_DESCRIPTOR_HANDLE imgui_srv_gpu_descriptor_handle;
 	t_callback_handle window_procedure_callback_handle;

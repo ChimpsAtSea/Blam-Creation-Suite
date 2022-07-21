@@ -3,8 +3,8 @@
 struct s_halo1_tools_pc64_tag_data_definition
 {
 	ptr32 name_address;
-	unsigned long flags;
-	unsigned long maximum_element_count;
+	uint32_t flags;
+	uint32_t maximum_element_count;
 	ptr32 unknown_procedure0;
 };
 constexpr size_t k_halo1_tools_pc64_tag_data_definition_size = sizeof(s_halo1_tools_pc64_tag_data_definition);
@@ -25,9 +25,9 @@ public:
 
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;
-	virtual unsigned long get_flags() override;
-	virtual unsigned long get_alignment_bits() override;
-	virtual unsigned long get_maximum_element_count() override;
+	virtual uint32_t get_flags() override;
+	virtual uint32_t get_alignment_bits() override;
+	virtual uint32_t get_maximum_element_count() override;
 	virtual const char* get_maximum_element_count_string() override;
 
 protected:

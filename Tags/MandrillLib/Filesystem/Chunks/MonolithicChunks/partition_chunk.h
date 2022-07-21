@@ -2,36 +2,36 @@
 
 struct s_partition_header
 {
-	unsigned long file_index;
+	uint32_t file_index;
 };
 
 struct s_lruv_persist_header
 {
 	char name[32];
 
-	unsigned long __unknown20;
+	uint32_t __unknown20;
 
-	unsigned long page_size_bits;
+	uint32_t page_size_bits;
 
-	unsigned long __unknown_count24;
-	unsigned long __unknown_count28;
+	uint32_t __unknown_count24;
+	uint32_t __unknown_count28;
 
-	unsigned long first_datum;
-	unsigned long last_datum;
+	uint32_t first_datum;
+	uint32_t last_datum;
 
-	unsigned long signature;
+	uint32_t signature;
 };
 
 struct s_lruv_cache_block
 {
-	unsigned long current_datum;
-	unsigned long unknown_datum;
+	uint32_t current_datum;
+	uint32_t unknown_datum;
 
-	unsigned long size;
-	unsigned long offset;
+	uint32_t size;
+	uint32_t offset;
 
-	unsigned long next_datum;
-	unsigned long previous_datum;
+	uint32_t next_datum;
+	uint32_t previous_datum;
 
 	s_datum_footer footer;
 };
@@ -39,8 +39,8 @@ struct s_lruv_cache_block
 struct s_lruv_cache_block_ex
 {
 	s_lruv_cache_block lruv_cache_block;
-	unsigned long long size;
-	unsigned long long offset;
+	uint64_t size;
+	uint64_t offset;
 };
 
 class c_partition_chunk : public c_typed_chunk<'part', false>

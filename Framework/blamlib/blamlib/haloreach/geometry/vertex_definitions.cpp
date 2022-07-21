@@ -243,7 +243,7 @@ s_vertex_definition *vertex_definition_get(
 
 bool vertex_definition_try_get_element(
 	s_vertex_definition *definition,
-	long element_index,
+	int element_index,
 	void **out_address)
 {
 	blamlib_assert(definition);
@@ -264,7 +264,7 @@ bool vertex_definition_try_get_element(
 	}
 }
 
-long vertex_element_get_size(
+int vertex_element_get_size(
 	void *element_address)
 {
 	blamlib_assert(element_address);

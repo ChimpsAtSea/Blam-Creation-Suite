@@ -1,4 +1,6 @@
 add_library(Platform ${BCS_LIBRARY_TYPE}
+	atomic.h
+	atomic.cpp
 	aes128.h
 	banned.h
 	bcs_api.h
@@ -16,6 +18,7 @@ add_library(Platform ${BCS_LIBRARY_TYPE}
 	float16.h
 	integral_limits.h
 	intrinsics.h
+	intrinsics.cpp
 	keys.h
 	macros.h
 	memory_tracking.h
@@ -48,7 +51,6 @@ add_library(Platform ${BCS_LIBRARY_TYPE}
 	float16.cpp
 	keys.cpp
 	memory_tracking.cpp
-	#platform-private-pch.cpp
 	platform.cpp
 	process_module.cpp
 	resources.cpp

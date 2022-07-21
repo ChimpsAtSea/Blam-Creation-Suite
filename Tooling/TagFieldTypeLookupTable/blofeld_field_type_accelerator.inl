@@ -11,7 +11,7 @@ c_blofeld_field_type_accelerator::c_blofeld_field_type_accelerator() :
     }
 
     BCS_RESULT rs = BCS_S_OK;
-    for (unsigned long field_index = 0; field_index < blofeld::k_number_of_blofeld_field_types; field_index++)
+    for (uint32_t field_index = 0; field_index < blofeld::k_number_of_blofeld_field_types; field_index++)
     {
         blofeld::e_field field_type = static_cast<blofeld::e_field>(field_index);
         const char* tag_field_type;
@@ -21,7 +21,7 @@ c_blofeld_field_type_accelerator::c_blofeld_field_type_accelerator() :
         }
 
         blofeld_field_type_accelerator_hash(hash, tag_field_type, k_accelerator_seed);
-        unsigned long index = hash & k_accelerator_bit_mask;
+        uint32_t index = hash & k_accelerator_bit_mask;
 
         ASSERT(index < _countof(field_type_by_index));
 
@@ -34,14 +34,14 @@ c_blofeld_field_type_accelerator::c_blofeld_field_type_accelerator() :
 BCS_RESULT c_blofeld_field_type_accelerator::get_value(const char* tag_field_type, e_field& field)
 {
     blofeld_field_type_accelerator_hash(hash, tag_field_type, k_accelerator_seed);
-    unsigned long index = hash & k_accelerator_bit_mask;
+    uint32_t index = hash & k_accelerator_bit_mask;
     
     e_field field_type = static_cast<e_field>(field_type_by_index[index]);
     if (field_type >= k_number_of_blofeld_field_types) [[unlikely]]
     {
         return BCS_E_FAIL;
     }
-    unsigned long expected_hash = hash_by_field_type[field_type];
+    uint32_t expected_hash = hash_by_field_type[field_type];
     if (expected_hash != hash) [[unlikely]]
     {
         return BCS_E_FAIL;

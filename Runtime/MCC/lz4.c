@@ -257,7 +257,7 @@ static const int LZ4_minLength = (MFLIMIT+1);
   typedef unsigned short      U16;
   typedef unsigned int        U32;
   typedef   signed int        S32;
-  typedef unsigned long long  U64;
+  typedef uint64_t  U64;
   typedef size_t              uptrval;   /* generally true, except OpenVMS-64 */
 #endif
 
@@ -469,7 +469,7 @@ static unsigned LZ4_NbCommonBytes (reg_t val)
     if (LZ4_isLittleEndian()) {
         if (sizeof(val)==8) {
 #       if defined(_MSC_VER) && defined(_WIN64) && !defined(LZ4_FORCE_SW_BITCOUNT)
-            unsigned long r = 0;
+            uint32_t r = 0;
             _BitScanForward64( &r, (U64)val );
             return (int)(r>>3);
 #       elif (defined(__clang__) || (defined(__GNUC__) && (__GNUC__>=3))) && !defined(LZ4_FORCE_SW_BITCOUNT)
@@ -483,11 +483,11 @@ static unsigned LZ4_NbCommonBytes (reg_t val)
                                                      2, 6, 5, 5, 3, 4, 5, 6,
                                                      7, 1, 2, 4, 6, 4, 4, 5,
                                                      7, 2, 6, 5, 7, 6, 7, 7 };
-            return DeBruijnBytePos[((U64)((val & -(long long)val) * 0x0218A392CDABBD3FULL)) >> 58];
+            return DeBruijnBytePos[((U64)((val & -(int64_t)val) * 0x0218A392CDABBD3FULL)) >> 58];
 #       endif
         } else /* 32 bits */ {
 #       if defined(_MSC_VER) && !defined(LZ4_FORCE_SW_BITCOUNT)
-            unsigned long r;
+            uint32_t r;
             _BitScanForward( &r, (U32)val );
             return (int)(r>>3);
 #       elif (defined(__clang__) || (defined(__GNUC__) && (__GNUC__>=3))) && !defined(LZ4_FORCE_SW_BITCOUNT)
@@ -503,7 +503,7 @@ static unsigned LZ4_NbCommonBytes (reg_t val)
     } else   /* Big Endian CPU */ {
         if (sizeof(val)==8) {   /* 64-bits */
 #       if defined(_MSC_VER) && defined(_WIN64) && !defined(LZ4_FORCE_SW_BITCOUNT)
-            unsigned long r = 0;
+            uint32_t r = 0;
             _BitScanReverse64( &r, val );
             return (unsigned)(r>>3);
 #       elif (defined(__clang__) || (defined(__GNUC__) && (__GNUC__>=3))) && !defined(LZ4_FORCE_SW_BITCOUNT)
@@ -520,7 +520,7 @@ static unsigned LZ4_NbCommonBytes (reg_t val)
 #       endif
         } else /* 32 bits */ {
 #       if defined(_MSC_VER) && !defined(LZ4_FORCE_SW_BITCOUNT)
-            unsigned long r = 0;
+            uint32_t r = 0;
             _BitScanReverse( &r, (unsigned long)val );
             return (unsigned)(r>>3);
 #       elif (defined(__clang__) || (defined(__GNUC__) && (__GNUC__>=3))) && !defined(LZ4_FORCE_SW_BITCOUNT)
@@ -1039,7 +1039,7 @@ _next_match:
             if ((outputDirective) &&    /* Check output buffer overflow */
                 (unlikely(op + (1 + LASTLITERALS) + (matchCode+240)/255 > olimit)) ) {
                 if (outputDirective == fillOutput) {
-                    /* Match description too long : reduce it */
+                    /* Match description too int32_t : reduce it */
                     U32 newMatchCode = 15 /* in token */ - 1 /* to avoid needing a zero byte */ + ((U32)(olimit - op) - 1 - LASTLITERALS) * 255;
                     ip -= matchCode - newMatchCode;
                     assert(newMatchCode < matchCode);
@@ -1713,7 +1713,7 @@ LZ4_decompress_generic(
             goto safe_decode;
         }
 
-        /* Fast loop : decode sequences as long as output < iend-FASTLOOP_SAFE_DISTANCE */
+        /* Fast loop : decode sequences as int32_t as output < iend-FASTLOOP_SAFE_DISTANCE */
         while (1) {
             /* Main fastloop assertion: We can always wildcopy FASTLOOP_SAFE_DISTANCE */
             assert(oend - op >= FASTLOOP_SAFE_DISTANCE);

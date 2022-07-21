@@ -76,7 +76,7 @@ std::string c_source_generator_base::get_namespace(bool semicolon_suffix)
 	return stream.str();
 }
 
-void c_source_generator_base::begin_namespace_tree(std::stringstream& stream, unsigned long tree_write_options)
+void c_source_generator_base::begin_namespace_tree(std::stringstream& stream, uint32_t tree_write_options)
 {
 	if (tree_write_options & _namespace_tree_write_intellisense)
 	{
@@ -124,7 +124,7 @@ void c_source_generator_base::begin_namespace_tree(std::stringstream& stream, un
 	}
 }
 
-void c_source_generator_base::end_namespace_tree(std::stringstream& stream, unsigned long tree_write_options)
+void c_source_generator_base::end_namespace_tree(std::stringstream& stream, uint32_t tree_write_options)
 {
 	if (tree_write_options)
 	{

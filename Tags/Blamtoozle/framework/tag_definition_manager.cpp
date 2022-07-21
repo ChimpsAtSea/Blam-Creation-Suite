@@ -95,7 +95,7 @@ void c_blamtoozle_tag_definition_manager::format_code_symbol_name_uid(std::strin
 {
 	format_code_symbol_name(code_symbol_name);
 
-	unsigned long existing_count = ++code_symbol_counts[code_symbol_name];
+	uint32_t existing_count = ++code_symbol_counts[code_symbol_name];
 	if (existing_count > 1)
 	{
 		code_symbol_name += "$";

@@ -37,6 +37,6 @@ struct s_crate_definition : s_object_definition
 	c_flags<e_crate_flags, word> crate_flags;
 	short : 16;
 	c_typed_tag_block<s_campaign_metagame_bucket> campaign_metagame_bucket;
-	long self_destruction_timer;
+	int self_destruction_timer;
 };
 static_assert(sizeof(s_crate_definition) == sizeof(s_object_definition) + 0x14);

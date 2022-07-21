@@ -257,7 +257,7 @@ struct s_game_engine_player_traits_movement
 	c_enum<e_player_trait_movement_gravity_multiplier_choices, char> gravity_multiplier;
 	c_enum<e_player_trait_movement_vehicle_usage_choices, char> vehicle_usage;
 	c_enum<e_player_trait_movement_double_jump_choices, char> double_jump;
-	long override_jump_height_percentage; // -1 is unchanged, 0-400 is the percentage of the default jump height
+	int override_jump_height_percentage; // -1 is unchanged, 0-400 is the percentage of the default jump height
 };
 static_assert(sizeof(s_game_engine_player_traits_movement) == 0x8);
 

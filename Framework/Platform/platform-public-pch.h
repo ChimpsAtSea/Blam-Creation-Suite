@@ -6,6 +6,7 @@
 #include "banned.h"
 #endif
 
+#include <stdint.h>
 #include <vadefs.h>
 #include <xxhash/xxhash.h>
 #include <xxhash/xxhash_cx.h>
@@ -15,6 +16,7 @@ using namespace xxhash::literals;
 #include "bcs_api.h"
 
 #include "intrinsics.h"
+#include "atomic.h"
 #include "macros.h"
 #include "memory_tracking.h"
 #include "crc32.h"

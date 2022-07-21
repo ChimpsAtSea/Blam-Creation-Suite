@@ -73,7 +73,7 @@ c_function_hook_base* c_function_hook_base::init_node(s_engine_platform_build en
 
 		if (hook)
 		{
-			LONG result = create_hook(engine_platform_build.engine_type, offset, function_name, hook, base);
+			int32_t result = create_hook(engine_platform_build.engine_type, offset, function_name, hook, base);
 			ASSERT(result == 0);
 		}
 		else

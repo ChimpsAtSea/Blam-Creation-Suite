@@ -33,7 +33,7 @@ constexpr float MANDRILL_THEME_DEFAULT_TEXT_ALPHA = 0.78f;
 
 struct s_parent_entry
 {
-	unsigned long index;
+	uint32_t index;
 	const char* name;
 };
 
@@ -51,7 +51,7 @@ void draw_parents(s_parent_entry* entry_start, s_parent_entry* entry_end)
 
 
 
-		unsigned long previous_index = 0;
+		uint32_t previous_index = 0;
 		bool display_table = false;
 		for (s_parent_entry* entry = entry_start; entry < entry_end; entry++)
 		{

@@ -1,7 +1,7 @@
 #include "mandrilllib-private-pch.h"
 #include "infinite_cache_cluster.h"
 
-c_infinite_cache_cluster::c_infinite_cache_cluster(c_infinite_module_file_reader** cache_readers, unsigned long cache_reader_count, s_engine_platform_build engine_platform_build) :
+c_infinite_cache_cluster::c_infinite_cache_cluster(c_infinite_module_file_reader** cache_readers, uint32_t cache_reader_count, s_engine_platform_build engine_platform_build) :
 	engine_platform_build(engine_platform_build),
 	cache_readers(cache_readers, cache_readers + cache_reader_count),
 	debug_readers(),
@@ -14,7 +14,7 @@ c_infinite_cache_cluster::c_infinite_cache_cluster(c_infinite_module_file_reader
 
 
 
-	for (unsigned long cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
+	for (uint32_t cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
 	{
 		c_infinite_module_file_reader* cache_reader = cache_readers[cache_reader_index];
 		BCS_VALIDATE_ARGUMENT_THROW(cache_reader);
@@ -23,7 +23,7 @@ c_infinite_cache_cluster::c_infinite_cache_cluster(c_infinite_module_file_reader
 	}
 
 	// #TODO: multithread this
-	for (unsigned long cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
+	for (uint32_t cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
 	{
 		s_cache_file_buffer_info temp_info;
 
@@ -94,7 +94,7 @@ c_infinite_cache_cluster::c_infinite_cache_cluster(c_infinite_module_file_reader
 		}
 	}
 
-	unsigned long duplicate_id_count = 0;
+	uint32_t duplicate_id_count = 0;
 	for (c_infinite_module_file_reader* module_file_reader : this->cache_readers)
 	{
 		c_infinite_tag_reader* tag_reader;
@@ -102,16 +102,16 @@ c_infinite_cache_cluster::c_infinite_cache_cluster(c_infinite_module_file_reader
 		if (BCS_SUCCEEDED(rs = get_tag_reader(*module_file_reader, tag_reader)))
 		{
 			c_infinite_tag_instance** tag_instances;
-			unsigned long num_tag_instances;
+			uint32_t num_tag_instances;
 			if (BCS_FAILED(rs = tag_reader->get_tag_instances(tag_instances, num_tag_instances)))
 			{
 				throw rs;
 			}
 
-			for (unsigned long tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
+			for (uint32_t tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
 			{
 				c_infinite_tag_instance& tag_instance = *tag_instances[tag_instance_index];
-				long global_tag_id;
+				int32_t global_tag_id;
 				if (BCS_FAILED(rs = tag_instance.get_global_tag_id(global_tag_id)))
 				{
 					throw rs;
@@ -208,21 +208,21 @@ BCS_RESULT c_infinite_cache_cluster::get_engine_platform_build(s_engine_platform
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_cache_cluster::get_cache_readers(c_cache_file_reader* const*& cache_readers, unsigned long& cache_reader_count) const
+BCS_RESULT c_infinite_cache_cluster::get_cache_readers(c_cache_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const
 {
 	cache_readers = reinterpret_cast<c_cache_file_reader* const*>(this->cache_readers.data());
 	cache_reader_count = static_cast<unsigned long>(this->cache_readers.size());
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_cache_cluster::get_cache_readers(c_infinite_module_file_reader* const*& cache_readers, unsigned long& cache_reader_count) const
+BCS_RESULT c_infinite_cache_cluster::get_cache_readers(c_infinite_module_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const
 {
 	cache_readers = this->cache_readers.data();
 	cache_reader_count = static_cast<unsigned long>(this->cache_readers.size());
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id64(long long global_tag_id, c_tag_instance*& tag_instance)
+BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id64(int64_t global_tag_id, c_tag_instance*& tag_instance)
 {
 	t_tag_instances_by_global_id64::const_iterator search = tag_instances_by_global_id64.find(global_tag_id);
 	if (search != tag_instances_by_global_id64.end())
@@ -233,7 +233,7 @@ BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id64(long lo
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id64_and_group_tag(long long global_tag_id, tag group_tag, c_tag_instance*& tag_instance)
+BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id64_and_group_tag(int64_t global_tag_id, tag group_tag, c_tag_instance*& tag_instance)
 {
 	t_tag_instances_by_global_id64::const_iterator search = tag_instances_by_global_id64.find(global_tag_id);
 	if (search != tag_instances_by_global_id64.end())
@@ -244,7 +244,7 @@ BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id64_and_gro
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id(long global_tag_id, c_tag_instance*& tag_instance)
+BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id(int32_t global_tag_id, c_tag_instance*& tag_instance)
 {
 	t_tag_instances_by_global_id::const_iterator search = tag_instances_by_global_id.find(global_tag_id);
 	if (search != tag_instances_by_global_id.end())
@@ -269,7 +269,7 @@ BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id(long glob
 	//return rs;
 }
 
-BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id_and_group_tag(long global_tag_id, tag group_tag, c_tag_instance*& tag_instance)
+BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id_and_group_tag(int32_t global_tag_id, tag group_tag, c_tag_instance*& tag_instance)
 {
 	t_tag_instances_by_global_id::const_iterator search = tag_instances_by_global_id.find(global_tag_id);
 	if (search != tag_instances_by_global_id.end())

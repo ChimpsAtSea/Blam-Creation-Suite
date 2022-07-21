@@ -59,9 +59,9 @@ c_lisp_node::c_lisp_node(c_lisp_node* parent) :
 	if (parent) parent->arguments.push_back(this);
 }
 
-unsigned long c_lisp_node::get_line_count(const char* const root_start_position, const char* const traversal_position)
+uint32_t c_lisp_node::get_line_count(const char* const root_start_position, const char* const traversal_position)
 {
-	unsigned long line_count = 1;
+	uint32_t line_count = 1;
 
 	const char* const start_position = root_start_position;
 	const char* const end_position = traversal_position;
@@ -108,8 +108,8 @@ const char* c_lisp_node::traverse(
 	bool found_node = false;
 	bool skip_extra_character = false;
 
-	unsigned long line_count_start = get_line_count(root_start_position, traversal_position);
-	unsigned long line_count = line_count_start;
+	uint32_t line_count_start = get_line_count(root_start_position, traversal_position);
+	uint32_t line_count = line_count_start;
 	while (traversal_position < traversal_end_position && !finished_searching)
 	{
 		LISP_AST_DEBUG(std::string prefix_search_debug = { traversal_start_position, traversal_position });
@@ -254,7 +254,7 @@ const char* c_lisp_node::traverse(
 			}
 			else
 			{
-				unsigned long last_begin_statement_line_count = get_line_count(root_start_position, last_begin_statement_position);
+				uint32_t last_begin_statement_line_count = get_line_count(root_start_position, last_begin_statement_position);
 				errors.push_back({ last_begin_statement_line_count, 0, _lisp_error_type_missing_end_parenthesis, "syntax error : missing ')'" });
 			}
 		}

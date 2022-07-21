@@ -33,9 +33,9 @@ enum e_halo2_tools_pc64_tag_field_set_bit : unsigned long
 struct s_halo2_tools_pc64_byte_swap_definition
 {
 	ptr32 name;
-	unsigned long size;
+	uint32_t size;
 	ptr32 codes;
-	unsigned long signature;
+	uint32_t signature;
 	bool should_byteswap;
 	bool padding1;
 	bool padding2;
@@ -47,11 +47,11 @@ static_assert(k_halo2_tools_pc64_byte_swap_definition_size == 20);
 struct s_halo2_tools_pc64_tag_struct_runtime
 {
 	s_halo2_tools_pc64_byte_swap_definition byte_swap_definition;
-	unsigned long structure_size;
-	c_flags<e_halo2_tools_pc64_tag_field_set_bit, long, k_num_halo2_tools_pc64_runtime_flags> flags;
+	uint32_t structure_size;
+	c_flags<e_halo2_tools_pc64_tag_field_set_bit, int32_t, k_num_halo2_tools_pc64_runtime_flags> flags;
 	ptr32 combined_fields;
-	unsigned long cache_file_struct_size;
-	unsigned long num_combined_fields; // unsure where this is
+	uint32_t cache_file_struct_size;
+	uint32_t num_combined_fields; // unsure where this is
 };
 constexpr size_t k_halo2_tools_pc64_tag_struct_runtime_size = sizeof(s_halo2_tools_pc64_tag_struct_runtime);
 static_assert(k_halo2_tools_pc64_tag_struct_runtime_size == 40);
@@ -59,13 +59,13 @@ static_assert(k_halo2_tools_pc64_tag_struct_runtime_size == 40);
 struct s_halo2_tools_pc64_tag_struct_type
 {
 	ptr32 fields_address;
-	long unknown4;
+	int32_t unknown4;
 	ptr32 upgrade_procedure;
-	long unknown10;
-	long unknown14;
-	unsigned long structure_size;
-	unsigned long alignment_bits;
-	long unknown20;
+	int32_t unknown10;
+	int32_t unknown14;
+	uint32_t structure_size;
+	uint32_t alignment_bits;
+	int32_t unknown20;
 	ptr32 original_fields;
 	ptr32 structure_size_string_address;
 };
@@ -110,13 +110,13 @@ public:
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;
 	virtual const char* get_structure_type_name() override;
-	virtual unsigned long get_alignment_bits() override;
+	virtual uint32_t get_alignment_bits() override;
 	virtual blofeld::s_tag_persistent_identifier& get_persistent_identifier() override;
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() override;
 
 	virtual bool is_legacy_struct() override;
 	virtual bool is_latest_structure_version() override;
-	virtual unsigned long get_structure_version() override;
+	virtual uint32_t get_structure_version() override;
 	virtual c_blamtoozle_tag_struct_definition* get_previous_struct_definition() override;
 	virtual c_blamtoozle_tag_struct_definition* get_next_struct_definition() override;
 	virtual c_blamtoozle_tag_struct_definition& get_latest_struct_definition() override;
@@ -132,7 +132,7 @@ protected:
 	bool conflict_handled;
 	c_halo2_tools_pc64_tag_struct_definition* previous_version_struct_definition;
 	c_halo2_tools_pc64_tag_struct_definition* next_version_struct_definition;
-	unsigned long structure_version;
+	uint32_t structure_version;
 
 	void generate_structure_names();
 };

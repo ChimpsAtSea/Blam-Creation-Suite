@@ -153,7 +153,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 		{
 			union
 			{
-				unsigned long long _byteswap_group_tag;
+				uint64_t _byteswap_group_tag;
 				char _group_tag_str[sizeof(_byteswap_group_tag)];
 			};
 			_byteswap_group_tag = _byteswap_ulong(group_definition->get_group_tag());
@@ -163,7 +163,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 				group_tag_string++;
 			}
 
-			stream << "\tstatic constexpr unsigned long " << group_definition->get_group_tag_macro_name() << " = '" << group_tag_string << "';" << std::endl;
+			stream << "\tstatic constexpr uint32_t " << group_definition->get_group_tag_macro_name() << " = '" << group_tag_string << "';" << std::endl;
 			stream << "\t" << "extern s_tag_group " << group_definition->get_code_symbol_name() << ";" << std::endl;
 			//stream << "\t" << "extern s_tag_group " << group_definition->get_display_name() << "_group;" << std::endl;
 
@@ -310,7 +310,7 @@ void c_blamtoozle_source_generator::write_string_list_source(std::stringstream& 
 		{
 			stream << "\tSTRINGS(" << string_list_definition.get_code_symbol_name() << ")" << std::endl;
 			stream << "\t{" << std::endl;
-			for (unsigned long i = 0; i < string_list_definition.options.size(); i++)
+			for (uint32_t i = 0; i < string_list_definition.options.size(); i++)
 			{
 				const char* option = string_list_definition.options[i];
 				std::string escaped_option = escape_string(option);
@@ -1665,7 +1665,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 
 void c_blamtoozle_source_generator::write_tag_field_flags(std::stringstream& stream, c_blamlib_string_parser_v2& string_parser)
 {
-	unsigned long flags_written = 0;
+	uint32_t flags_written = 0;
 
 	if (string_parser.flag_unknown0)
 	{

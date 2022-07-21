@@ -48,7 +48,7 @@ function(bcs_set_compile_properties TARGET_NAME)
 		IMGUI_USER_CONFIG="imgui_user_config.h")
 		
 	target_compile_features(${TARGET_NAME} PRIVATE
-		cxx_std_20)
+		cxx_std_23)
 		
 	target_include_directories(${TARGET_NAME} PRIVATE
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}

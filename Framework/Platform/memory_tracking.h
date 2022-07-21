@@ -6,9 +6,9 @@
 BCS_DEBUG_API void print_memory_allocations();
 BCS_DEBUG_API void write_memory_allocations();
 
-BCS_DEBUG_API extern void* _tracked_aligned_malloc(size_t size, size_t alignment, const char* filepath = __builtin_FILE(), long line = __builtin_LINE());
+BCS_DEBUG_API extern void* _tracked_aligned_malloc(size_t size, size_t alignment, const char* filepath = __builtin_FILE(), int32_t line = __builtin_LINE());
 BCS_DEBUG_API extern void  _tracked_aligned_free(void* allocated_memory);
-BCS_DEBUG_API extern void* _tracked_malloc(size_t size, const char* filepath = __builtin_FILE(), long line = __builtin_LINE());
+BCS_DEBUG_API extern void* _tracked_malloc(size_t size, const char* filepath = __builtin_FILE(), int32_t line = __builtin_LINE());
 BCS_DEBUG_API extern void  _tracked_free(const void* allocated_memory);
 BCS_DEBUG_API extern void  _untracked_free(const void* allocated_memory);
 BCS_DEBUG_API extern void  memory_collect();
@@ -23,9 +23,9 @@ BCS_DEBUG_API extern void  untracked_free(const void* allocated_memory);
 
 #else
 
-BCS_DEBUG_API extern void* (*tracked_aligned_malloc_ptr)(size_t size, size_t alignment, const char* filepath, long line);
+BCS_DEBUG_API extern void* (*tracked_aligned_malloc_ptr)(size_t size, size_t alignment, const char* filepath, int32_t line);
 BCS_DEBUG_API extern void  (*tracked_aligned_free_ptr)(void* allocated_memory);
-BCS_DEBUG_API extern void* (*tracked_malloc_ptr)(size_t size, const char* filepath, long line);
+BCS_DEBUG_API extern void* (*tracked_malloc_ptr)(size_t size, const char* filepath, int32_t line);
 BCS_DEBUG_API extern void  (*tracked_free_ptr)(const void* allocated_memory);
 BCS_DEBUG_API extern void  (*untracked_free_ptr)(const void* allocated_memory);
 

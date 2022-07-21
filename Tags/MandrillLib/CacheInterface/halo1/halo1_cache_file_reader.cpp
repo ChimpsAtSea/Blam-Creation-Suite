@@ -190,7 +190,7 @@ BCS_RESULT c_halo1_cache_file_reader::associate_cache_cluster(c_halo1_cache_clus
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo1_cache_file_reader::virtual_address_to_relative_offset(long long virtual_address, long& relative_offset) const
+BCS_RESULT c_halo1_cache_file_reader::virtual_address_to_relative_offset(int64_t virtual_address, int32_t& relative_offset) const
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -207,7 +207,7 @@ BCS_RESULT c_halo1_cache_file_reader::virtual_address_to_relative_offset(long lo
 	return rs;
 }
 
-BCS_RESULT c_halo1_cache_file_reader::page_offset_to_virtual_address(unsigned long page_offset, long long& virtual_address) const
+BCS_RESULT c_halo1_cache_file_reader::page_offset_to_virtual_address(uint32_t page_offset, int64_t& virtual_address) const
 {
 	virtual_address = page_offset; // -cache_file_header->expected_base_address;
 
@@ -222,7 +222,7 @@ BCS_RESULT c_halo1_cache_file_reader::get_blofeld_tag_groups(const blofeld::s_ta
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo1_cache_file_reader::get_cache_file_resource_instance(unsigned long index, const halo1::s_cache_file_resource_instance*& cache_file_resource_instance)
+BCS_RESULT c_halo1_cache_file_reader::get_cache_file_resource_instance(uint32_t index, const halo1::s_cache_file_resource_instance*& cache_file_resource_instance)
 {
 	if (!is_resource_file)
 	{
@@ -247,7 +247,7 @@ BCS_RESULT c_halo1_cache_file_reader::get_cache_file_resource_instance(unsigned 
 	return rs;
 }
 
-BCS_RESULT c_halo1_cache_file_reader::get_cache_file_resource_instance_data(unsigned long index, const void*& tag_instance_data)
+BCS_RESULT c_halo1_cache_file_reader::get_cache_file_resource_instance_data(uint32_t index, const void*& tag_instance_data)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -268,7 +268,7 @@ BCS_RESULT c_halo1_cache_file_reader::get_cache_file_resource_instance_data(unsi
 	return rs;
 }
 
-BCS_RESULT c_halo1_cache_file_reader::get_cache_file_resource_instance_name(unsigned long index, const char*& tag_instance_name)
+BCS_RESULT c_halo1_cache_file_reader::get_cache_file_resource_instance_name(uint32_t index, const char*& tag_instance_name)
 {
 	BCS_RESULT rs = BCS_S_OK;
 

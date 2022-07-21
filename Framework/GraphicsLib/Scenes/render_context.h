@@ -16,8 +16,8 @@ public:
 	virtual BCS_RESULT get_window(c_window*& _window) = 0;
 	virtual BCS_RESULT get_imgui_context(c_imgui_context*& imgui_context) = 0;
 	virtual BCS_RESULT get_graphics(c_graphics*& graphics) = 0;
-	virtual unsigned long get_width() = 0;
-	virtual unsigned long get_height() = 0;
+	virtual uint32_t get_width() = 0;
+	virtual uint32_t get_height() = 0;
 	virtual float get_width_float() = 0;
 	virtual float get_height_float() = 0;
 

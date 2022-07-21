@@ -1,6 +1,6 @@
 #include "platform-private-pch.h"
 
-#define FILESYSTEM_DEBUG_ARGS DEBUG_ONLY(, const char* _debug_file_path, long _debug_line_number)
+#define FILESYSTEM_DEBUG_ARGS DEBUG_ONLY(, const char* _debug_file_path, int32_t _debug_line_number)
 
 const char* filesystem_extract_filepath_filename(const char* filepath)
 {
@@ -84,7 +84,7 @@ BCS_RESULT filesystem_directory_exists(const wchar_t* filepath)
 	return BCS_E_FAIL;
 }
 
-BCS_RESULT filesystem_get_file_size(const char* filepath, unsigned long long& out_file_size)
+BCS_RESULT filesystem_get_file_size(const char* filepath, uint64_t& out_file_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -115,7 +115,7 @@ BCS_RESULT filesystem_get_file_size(const char* filepath, unsigned long long& ou
 	return rs;
 }
 
-BCS_RESULT filesystem_get_file_size(const wchar_t* filepath, unsigned long long& out_file_size)
+BCS_RESULT filesystem_get_file_size(const wchar_t* filepath, uint64_t& out_file_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -146,7 +146,7 @@ BCS_RESULT filesystem_get_file_size(const wchar_t* filepath, unsigned long long&
 	return rs;
 }
 
-static BCS_RESULT filesystem_copy_memory_mapped_file_to_buffer(t_memory_mapped_file* file, void* buffer, unsigned long long& buffer_size)
+static BCS_RESULT filesystem_copy_memory_mapped_file_to_buffer(t_memory_mapped_file* file, void* buffer, uint64_t& buffer_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -156,7 +156,7 @@ static BCS_RESULT filesystem_copy_memory_mapped_file_to_buffer(t_memory_mapped_f
 		return rs;
 	}
 
-	unsigned long long read_bytes = __min(buffer_size, file_info.file_size);
+	uint64_t read_bytes = __min(buffer_size, file_info.file_size);
 	memcpy(buffer, file_info.file_view_begin, read_bytes);
 	buffer_size = read_bytes;
 
@@ -168,7 +168,7 @@ static BCS_RESULT filesystem_copy_memory_mapped_file_to_buffer(t_memory_mapped_f
 	return rs;
 }
 
-BCS_RESULT filesystem_copy_file_to_buffer(const char* filepath, void* buffer, unsigned long long& buffer_size)
+BCS_RESULT filesystem_copy_file_to_buffer(const char* filepath, void* buffer, uint64_t& buffer_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -186,7 +186,7 @@ BCS_RESULT filesystem_copy_file_to_buffer(const char* filepath, void* buffer, un
 	return rs;
 }
 
-BCS_RESULT filesystem_copy_file_to_buffer(const wchar_t* filepath, void* buffer, unsigned long long& buffer_size)
+BCS_RESULT filesystem_copy_file_to_buffer(const wchar_t* filepath, void* buffer, uint64_t& buffer_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -204,7 +204,7 @@ BCS_RESULT filesystem_copy_file_to_buffer(const wchar_t* filepath, void* buffer,
 	return rs;
 }
 
-static BCS_RESULT filesystem_read_file_to_memory(HANDLE file_handle, void*& buffer, unsigned long long& buffer_size FILESYSTEM_DEBUG_ARGS)
+static BCS_RESULT filesystem_read_file_to_memory(HANDLE file_handle, void*& buffer, uint64_t& buffer_size FILESYSTEM_DEBUG_ARGS)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -225,7 +225,7 @@ static BCS_RESULT filesystem_read_file_to_memory(HANDLE file_handle, void*& buff
 			static_cast<char*>(tracked_malloc(buffer_size));
 #endif
 		buffer = file_data_buffer;
-		unsigned long long number_of_bytes_remaining = file_size.QuadPart;
+		uint64_t number_of_bytes_remaining = file_size.QuadPart;
 		while (number_of_bytes_remaining > 0)
 		{
 			DWORD number_of_bytes_to_read = static_cast<DWORD>(__min(number_of_bytes_remaining, 0x40000000)); // max 1GiB per iteration
@@ -257,7 +257,7 @@ static BCS_RESULT filesystem_read_file_to_memory(HANDLE file_handle, void*& buff
 	return rs;
 }
 
-BCS_RESULT filesystem_read_file_to_memory(const char* filepath, void*& buffer, unsigned long long& buffer_size FILESYSTEM_DEBUG_ARGS)
+BCS_RESULT filesystem_read_file_to_memory(const char* filepath, void*& buffer, uint64_t& buffer_size FILESYSTEM_DEBUG_ARGS)
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
 	//BCS_FAIL_RETURN(filesystem_filepath_exists(filepath));
@@ -279,7 +279,7 @@ BCS_RESULT filesystem_read_file_to_memory(const char* filepath, void*& buffer, u
 	return filesystem_read_file_to_memory(file_handle, buffer, buffer_size DEBUG_ONLY(, _debug_file_path, _debug_line_number));
 }
 
-BCS_RESULT filesystem_read_file_to_memory(const wchar_t* filepath, void*& buffer, unsigned long long& buffer_size FILESYSTEM_DEBUG_ARGS)
+BCS_RESULT filesystem_read_file_to_memory(const wchar_t* filepath, void*& buffer, uint64_t& buffer_size FILESYSTEM_DEBUG_ARGS)
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
 	//BCS_FAIL_RETURN(filesystem_filepath_exists(filepath));
@@ -300,12 +300,12 @@ BCS_RESULT filesystem_read_file_to_memory(const wchar_t* filepath, void*& buffer
 	return filesystem_read_file_to_memory(file_handle, buffer, buffer_size DEBUG_ONLY(, _debug_file_path, _debug_line_number));
 }
 
-static BCS_RESULT filesystem_write_file_from_memory(HANDLE file_handle, const void* buffer, unsigned long long buffer_size)
+static BCS_RESULT filesystem_write_file_from_memory(HANDLE file_handle, const void* buffer, uint64_t buffer_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
 	const char* file_data_buffer = static_cast<const char*>(buffer);
-	unsigned long long number_of_bytes_remaining = buffer_size;
+	uint64_t number_of_bytes_remaining = buffer_size;
 	while (number_of_bytes_remaining > 0)
 	{
 		DWORD number_of_bytes_to_read = static_cast<DWORD>(__min(number_of_bytes_remaining, 0x40000000)); // max 1GiB per iteration
@@ -336,7 +336,7 @@ static BCS_RESULT filesystem_write_file_from_memory(HANDLE file_handle, const vo
 	return rs;
 }
 
-BCS_RESULT filesystem_write_file_from_memory(const char* filepath, const void* buffer, unsigned long long buffer_size, e_filesystem_write_mode mode)
+BCS_RESULT filesystem_write_file_from_memory(const char* filepath, const void* buffer, uint64_t buffer_size, e_filesystem_write_mode mode)
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
 	//BCS_FAIL_RETURN(filesystem_filepath_exists(filepath));
@@ -404,7 +404,7 @@ BCS_RESULT filesystem_write_file_from_memory(const char* filepath, const void* b
 	return filesystem_write_file_from_memory(file_handle, buffer, buffer_size);
 }
 
-BCS_RESULT filesystem_write_file_from_memory(const wchar_t* filepath, const void* buffer, unsigned long long buffer_size, e_filesystem_write_mode mode)
+BCS_RESULT filesystem_write_file_from_memory(const wchar_t* filepath, const void* buffer, uint64_t buffer_size, e_filesystem_write_mode mode)
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
 	//BCS_FAIL_RETURN(filesystem_filepath_exists(filepath));
@@ -556,7 +556,7 @@ BCS_RESULT get_memory_mapped_file_info(t_memory_mapped_file* file, s_memory_mapp
 	file_info.read_only = file->is_read_only;
 	file_info.file_view_begin = static_cast<char*>(file->file_view);
 	file_info.file_view_end = reinterpret_cast<char*>(reinterpret_cast<uintptr_t>(file->file_view) + static_cast<uintptr_t>(file->file_size));
-	file_info.file_size = static_cast<unsigned long long>(file->file_size);
+	file_info.file_size = static_cast<uint64_t>(file->file_size);
 
 	return BCS_S_OK;
 }

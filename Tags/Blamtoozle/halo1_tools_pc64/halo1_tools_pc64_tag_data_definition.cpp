@@ -37,17 +37,17 @@ const char* c_halo1_tools_pc64_tag_data_definition::get_code_symbol_name()
 	return code_symbol_name.c_str();
 }
 
-unsigned long c_halo1_tools_pc64_tag_data_definition::get_flags()
+uint32_t c_halo1_tools_pc64_tag_data_definition::get_flags()
 {
 	return data_definition.flags;
 }
 
-unsigned long c_halo1_tools_pc64_tag_data_definition::get_alignment_bits()
+uint32_t c_halo1_tools_pc64_tag_data_definition::get_alignment_bits()
 {
 	return 0;
 }
 
-unsigned long c_halo1_tools_pc64_tag_data_definition::get_maximum_element_count()
+uint32_t c_halo1_tools_pc64_tag_data_definition::get_maximum_element_count()
 {
 	return data_definition.maximum_element_count;
 }

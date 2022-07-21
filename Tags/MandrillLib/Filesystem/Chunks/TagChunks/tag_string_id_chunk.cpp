@@ -36,7 +36,7 @@ BCS_RESULT c_tag_string_id_chunk::set_string(const char* string)
 	return set_data(string, static_cast<unsigned long>(strlen(string)));
 }
 
-BCS_RESULT c_tag_string_id_chunk::set_data(const void* data, unsigned long data_size)
+BCS_RESULT c_tag_string_id_chunk::set_data(const void* data, uint32_t data_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 

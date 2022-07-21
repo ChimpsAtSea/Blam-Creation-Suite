@@ -13,7 +13,7 @@ c_graphics_swap_chain::~c_graphics_swap_chain()
 BCS_DEBUG_API BCS_RESULT graphics_swap_chain_create(
 	c_graphics* graphics,
 	c_window* window,
-	unsigned long num_back_buffers,
+	uint32_t num_back_buffers,
 	c_graphics_swap_chain*& swap_chain,
 	const char* debug_name)
 {
@@ -37,7 +37,7 @@ BCS_DEBUG_API BCS_RESULT graphics_swap_chain_create(
 BCS_DEBUG_API BCS_RESULT graphics_swap_chain_create(
 	c_graphics* graphics,
 	c_imgui_viewport_render_context* imgui_viewport_render_context,
-	unsigned long num_back_buffers,
+	uint32_t num_back_buffers,
 	c_graphics_swap_chain*& swap_chain,
 	const char* debug_name)
 {

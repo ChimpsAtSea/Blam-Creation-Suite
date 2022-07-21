@@ -18,7 +18,7 @@ BCS_DEBUG_API BCS_RESULT graphics_shader_binary_create(
 BCS_DEBUG_API BCS_RESULT graphics_shader_binary_create(
 	c_graphics* graphics,
 	void* shader_binary_data, 
-	unsigned long shader_binary_data_size,
+	uint32_t shader_binary_data_size,
 	c_graphics_shader_binary*& shader_binary,
 	const char* debug_name = nullptr);
 BCS_DEBUG_API BCS_RESULT graphics_shader_binary_create(

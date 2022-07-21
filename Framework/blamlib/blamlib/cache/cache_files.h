@@ -23,9 +23,9 @@ namespace blamlib
 	struct s_cache_file_header
 	{
 		tag header_signature;
-		long file_version;
-		long file_length;
-		long file_compressed_length;
+		int file_version;
+		int file_length;
+		int file_compressed_length;
 	};
 
 }

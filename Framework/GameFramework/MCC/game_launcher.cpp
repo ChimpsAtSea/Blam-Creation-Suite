@@ -89,7 +89,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 		k_number_of_required_dlls
 	};
 
-	unsigned long required_dll_mask = 0U;
+	uint32_t required_dll_mask = 0U;
 
 	if (PathFileExistsA("haloreach\\haloreach.dll"))
 	{
@@ -177,7 +177,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 	g_halo3_map_ids.push_back(_map_id_mainmenu);
 	g_halo3odst_map_ids.push_back(_map_id_mainmenu);
 
-	for (long i = 0; i < k_number_of_map_ids; i++)
+	for (int32_t i = 0; i < k_number_of_map_ids; i++)
 	{
 		e_map_id map_id = static_cast<e_map_id>(i);
 		e_engine_type engine_type = map_id_to_engine_type(map_id);

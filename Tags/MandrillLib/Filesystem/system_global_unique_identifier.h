@@ -2,5 +2,5 @@
 
 struct s_system_global_unique_identifier
 {
-	unsigned long data[4];
+	uint32_t data[4];
 };

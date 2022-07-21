@@ -4,8 +4,8 @@
 
 void *tag_block_get_element_with_size(
 	s_tag_block *block,
-	unsigned long element_index,
-	[[maybe_unused]] unsigned long element_size)
+	unsigned int element_index,
+	[[maybe_unused]] unsigned int element_size)
 {
 	blamlib_assert(block);
 	blamlib_assert(block->address);
@@ -31,9 +31,9 @@ void *tag_block_get_element_with_size(
 
 void *tag_block_get_range_with_size(
 	[[maybe_unused]] s_tag_block *block,
-	[[maybe_unused]] long first_element_index,
-	[[maybe_unused]] long element_count,
-	[[maybe_unused]] long element_size)
+	[[maybe_unused]] int first_element_index,
+	[[maybe_unused]] int element_count,
+	[[maybe_unused]] int element_size)
 {
 	//
 	// TODO
@@ -44,10 +44,10 @@ void *tag_block_get_range_with_size(
 
 void *tag_block_get_element_within_range_with_size(
 	[[maybe_unused]] s_tag_block *block,
-	[[maybe_unused]] long first_element_index,
-	[[maybe_unused]] long inner_element_index,
-	[[maybe_unused]] long element_count,
-	[[maybe_unused]] long element_size)
+	[[maybe_unused]] int first_element_index,
+	[[maybe_unused]] int inner_element_index,
+	[[maybe_unused]] int element_count,
+	[[maybe_unused]] int element_size)
 {
 	//
 	// TODO
@@ -58,8 +58,8 @@ void *tag_block_get_element_within_range_with_size(
 
 void *tag_data_get_pointer(
 	[[maybe_unused]] s_tag_data *data,
-	[[maybe_unused]] long offset,
-	[[maybe_unused]] long size)
+	[[maybe_unused]] int offset,
+	[[maybe_unused]] int size)
 {
 	//
 	// TODO

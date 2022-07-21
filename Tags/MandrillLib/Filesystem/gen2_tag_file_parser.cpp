@@ -5,7 +5,7 @@ struct s_field_set_header_v1
 	blofeld::e_field_id signature;
 	unsigned short struct_version;
 	short element_count;
-	long element_size;
+	int32_t element_size;
 };
 
 template<> void byteswap_inplace(s_field_set_header_v1& value)
@@ -19,9 +19,9 @@ template<> void byteswap_inplace(s_field_set_header_v1& value)
 struct s_field_set_header_v2
 {
 	blofeld::e_field_id signature;
-	unsigned long struct_version;
-	long element_count;
-	long element_size;
+	uint32_t struct_version;
+	int32_t element_count;
+	int32_t element_size;
 
 	s_field_set_header_v2& operator=(s_field_set_header_v1 const& field_set_header_v1)
 	{
@@ -41,8 +41,8 @@ template<> void byteswap_inplace(s_field_set_header_v2& value)
 	byteswap_inplace(value.element_size);
 }
 
-long indent = -1;
-#define indent_write(string, ...) if(BCS_SUCCEEDED(command_line_has_argument("verbose"))) { for(long i=0;i<indent;i++) { console_write("|  ");  } console_write_line(string, __VA_ARGS__); } (void)(0)
+int32_t indent = -1;
+#define indent_write(string, ...) if(BCS_SUCCEEDED(command_line_has_argument("verbose"))) { for(int32_t i=0;i<indent;i++) { console_write("|  ");  } console_write_line(string, __VA_ARGS__); } (void)(0)
 //#define indent_write(...) 
 
 BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size2(
@@ -50,11 +50,11 @@ BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size2(
 	const char* const struct_data_start,
 	const char* struct_data_expected_end,
 	const char* const external_data_start,
-	unsigned long& tag_struct_size,
-	unsigned long& tag_struct_external_size,
-	unsigned long tag_struct_version) const
+	uint32_t& tag_struct_size,
+	uint32_t& tag_struct_external_size,
+	uint32_t tag_struct_version) const
 {
-	unsigned long tag_struct_definition_size = 0;
+	uint32_t tag_struct_definition_size = 0;
 	const char* struct_data_end = struct_data_start;
 	const char* external_data_end = external_data_start;
 	BCS_RESULT rs = calculate_tag_struct_definition_size_iterator(
@@ -76,7 +76,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size_i
 	const char*& struct_data_position,
 	const char* struct_data_expected_end,
 	const char*& external_data_position,
-	unsigned long tag_struct_version) const
+	uint32_t tag_struct_version) const
 {
 	indent++;
 	indent_write("STRUCT> 0x%X 0x%X %s [version:%u]", (int)(struct_data_position - tag_file_structure_data_start), (int)(external_data_position - tag_file_structure_data_start), tag_struct_definition.name, tag_struct_version);
@@ -133,8 +133,8 @@ BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size_i
 			indent++;
 			indent_write("ARRAYY> 0x%X 0x%X %s", (int)(struct_data_position - tag_file_structure_data_start), (int)(external_data_position - tag_file_structure_data_start), tag_field.array_definition->name);
 
-			unsigned long array_element_count = tag_field.array_definition->count(engine_platform_build);
-			for (unsigned long array_index = 0; array_index < array_element_count; array_index++)
+			uint32_t array_element_count = tag_field.array_definition->count(engine_platform_build);
+			for (uint32_t array_index = 0; array_index < array_element_count; array_index++)
 			{
 				if (BCS_FAILED(rs = calculate_tag_struct_definition_size_iterator(
 					tag_field.array_definition->struct_definition,
@@ -175,7 +175,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size_i
 			{
 				return rs;
 			}
-			unsigned long tag_struct_size = struct_data_position - field_struct_data_start;
+			uint32_t tag_struct_size = struct_data_position - field_struct_data_start;
 			ASSERT(field_set_header.element_size == tag_struct_size);
 			debug_point;
 		}
@@ -227,7 +227,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size_i
 				{
 					debug_point;
 				}
-				for (unsigned long block_index = 0; block_index < field_set_header.element_count; block_index++)
+				for (uint32_t block_index = 0; block_index < field_set_header.element_count; block_index++)
 				{
 					const char* const block_entry_data_start = block_data_start + field_set_header.element_size * block_index;
 					const char* const block_entry_data_end = block_entry_data_start + field_set_header.element_size;
@@ -303,7 +303,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size_i
 		{
 			string_id _string_id = advance_read(string_id);
 
-			unsigned long string_id_length = _string_id >> 24;
+			uint32_t string_id_length = _string_id >> 24;
 			if (string_id_length > 0)
 			{
 				external_data_position += string_id_length;
@@ -315,7 +315,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size_i
 		{
 			s_tag_d3d_vertex_buffer d3d_vertex_buffer = advance_read(s_tag_d3d_vertex_buffer);
 
-			unsigned long checksum = 0;
+			uint32_t checksum = 0;
 			for (auto x : d3d_vertex_buffer.data) checksum += (unsigned long)x;
 			ASSERT(checksum == 0); // #TODO: Map this out
 
@@ -369,7 +369,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size_i
 		case blofeld::_field_long_block_index:
 		case blofeld::_field_long_block_index_custom_search:
 		{
-			unsigned long field_size;
+			uint32_t field_size;
 			if (BCS_FAILED(rs = blofeld::get_blofeld_tag_file_field_size(tag_field.field_type, engine_platform_build, field_size)))
 			{
 				return rs;
@@ -423,7 +423,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size_i
 static bool tag_struct_definition_has_external_data(
 	const blofeld::s_tag_struct_definition& struct_definition,
 	s_engine_platform_build engine_platform_build,
-	unsigned long struct_version)
+	uint32_t struct_version)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -431,7 +431,7 @@ static bool tag_struct_definition_has_external_data(
 	{
 		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning(struct_definition, tag_field_iterator, engine_platform_build, struct_version);
 
-		unsigned long field_size;
+		uint32_t field_size;
 		switch (tag_field.field_type)
 		{
 		case blofeld::_field_tag_reference:
@@ -448,7 +448,7 @@ static bool tag_struct_definition_has_external_data(
 
 c_gen2_tag_file_parse_context::c_gen2_tag_file_parse_context(
 	const void* _tag_file_data,
-	unsigned long long _tag_file_data_size,
+	uint64_t _tag_file_data_size,
 	s_engine_platform_build _engine_platform_build) :
 	is_big_endian(),
 	is_little_endian(),
@@ -540,15 +540,15 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_block(const char*& global
 	global_data_position = block_data_end;
 
 	block.resize(field_set_header.element_count);
-	for (unsigned long block_index = 0; block_index < field_set_header.element_count; block_index++)
+	for (uint32_t block_index = 0; block_index < field_set_header.element_count; block_index++)
 	{
 		h_prototype& block_entry = block.get(block_index);
 
 		const char* const block_entry_data_start = block_data_start + field_set_header.element_size * block_index;
 		const char* const block_entry_data_end = block_entry_data_start + field_set_header.element_size;
 
-		unsigned long tag_struct_size2;
-		unsigned long tag_struct_ext_size2;
+		uint32_t tag_struct_size2;
+		uint32_t tag_struct_ext_size2;
 		if (BCS_FAILED(rs = calculate_tag_struct_definition_size2(
 			tag_struct_definition,
 			block_data_position,
@@ -580,9 +580,9 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_struct(
 	const char* struct_data_expected_end,
 	const char*& external_data_position,
 	h_prototype& prototype,
-	unsigned long struct_version) const
+	uint32_t struct_version) const
 {
-	unsigned long prototype_version = prototype.get_version();
+	uint32_t prototype_version = prototype.get_version();
 	if (struct_version != prototype_version)
 	{
 		//console_write_line("Missing structure upgrade for %s from %lu -> %lu", prototype.get_blofeld_struct_definition().name, struct_version, prototype_version);
@@ -639,8 +639,8 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_struct(
 			h_enumerable* tag_field_enumerable = prototype.get_field_data<h_enumerable>(tag_field);
 			ASSERT(tag_field_enumerable != nullptr);
 
-			unsigned long array_element_count = tag_field.array_definition->count(engine_platform_build);
-			for (unsigned long array_index = 0; array_index < array_element_count; array_index++)
+			uint32_t array_element_count = tag_field.array_definition->count(engine_platform_build);
+			for (uint32_t array_index = 0; array_index < array_element_count; array_index++)
 			{
 				h_prototype& prototype = tag_field_enumerable->get(array_index);
 				if (BCS_FAILED(rs = traverse_tag_struct(struct_data_position, nullptr, external_data_position, prototype, tag_field_version_max)))
@@ -660,8 +660,8 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_struct(
 			const char* const field_struct_data_start = struct_data_position;
 			const char* const field_struct_data_end = field_struct_data_start + field_set_header.element_size;
 
-			unsigned long tag_struct_size2;
-			unsigned long tag_struct_ext_size2;
+			uint32_t tag_struct_size2;
+			uint32_t tag_struct_ext_size2;
 			if (BCS_FAILED(rs = calculate_tag_struct_definition_size2(
 				*tag_field.struct_definition,
 				struct_data_position,
@@ -767,7 +767,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_struct(
 			ASSERT(tag_field_string_id != nullptr);
 			string_id _string_id = advance_read(string_id);
 
-			unsigned long string_id_length = _string_id >> 24;
+			uint32_t string_id_length = _string_id >> 24;
 			if (string_id_length > 0)
 			{
 				tag_field_string_id->set_string(external_data_position, external_data_position + string_id_length);
@@ -783,7 +783,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_struct(
 			//ASSERT(tag_field_block_data != nullptr);
 			s_tag_d3d_vertex_buffer d3d_vertex_buffer = advance_read(s_tag_d3d_vertex_buffer);
 
-			unsigned long checksum = 0;
+			uint32_t checksum = 0;
 			for (auto x : d3d_vertex_buffer.data) checksum += (unsigned long)x;
 			ASSERT(checksum == 0); // #TODO: Map this out
 
@@ -837,7 +837,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_struct(
 		case blofeld::_field_long_block_index:
 		case blofeld::_field_long_block_index_custom_search:
 		{
-			unsigned long field_size;
+			uint32_t field_size;
 			if (BCS_FAILED(rs = blofeld::get_blofeld_tag_file_field_size(tag_field.field_type, engine_platform_build, field_size)))
 			{
 				return rs;
@@ -931,8 +931,8 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_group(h_tag& prototype) c
 
 
 
-	unsigned long tag_struct_size2;
-	unsigned long tag_struct_ext_size2;
+	uint32_t tag_struct_size2;
+	uint32_t tag_struct_ext_size2;
 	if (BCS_FAILED(rs = calculate_tag_struct_definition_size2(
 		tag_struct_definition,
 		group_data_position,
@@ -976,7 +976,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::parse_gen2_tag_file_data(h_tag*& tag_p
 {
 	BCS_RESULT rs = BCS_S_OK;
 	void* tag_file_data;
-	unsigned long long tag_file_data_size;
+	uint64_t tag_file_data_size;
 	if (BCS_FAILED(rs = filesystem_read_file_to_memory(tag_file_path, tag_file_data, tag_file_data_size)))
 	{
 		return rs;
@@ -993,7 +993,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::parse_gen2_tag_file_data(h_tag*& tag_p
 	return rs;
 }
 
-BCS_RESULT c_gen2_tag_file_parse_context::parse_gen2_tag_file_data(h_tag*& tag_prototype, const void* tag_file_data, unsigned long long tag_file_data_size, s_engine_platform_build engine_platform_build)
+BCS_RESULT c_gen2_tag_file_parse_context::parse_gen2_tag_file_data(h_tag*& tag_prototype, const void* tag_file_data, uint64_t tag_file_data_size, s_engine_platform_build engine_platform_build)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -1008,7 +1008,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::parse_gen2_tag_file_data(h_tag*& tag_p
 			union
 			{
 				char group_tag_str[5];
-				unsigned long long byteswap_group_tag;
+				uint64_t byteswap_group_tag;
 			};
 			byteswap_group_tag = ::byteswap(group_tag);
 			console_write_line("Unknown tag group %s", group_tag_str);

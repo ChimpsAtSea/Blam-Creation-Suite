@@ -13,7 +13,7 @@ namespace blofeld
 			const char* name,
 			const char* struct_name,
 			const char* filename,
-			long const line,
+			int32_t const line,
 			s_tag_persistent_identifier persistent_identifier,
 			s_tag_field* fields,
 			int alignment_bits = 0
@@ -24,7 +24,7 @@ namespace blofeld
 			const char* name,
 			const char* struct_name,
 			const char* filename,
-			long const line,
+			int32_t const line,
 			c_flags<e_tag_field_set_bit> runtime_flags,
 			c_tag_memory_attributes const memory_attributes,
 			s_tag_persistent_identifier persistent_identifier,

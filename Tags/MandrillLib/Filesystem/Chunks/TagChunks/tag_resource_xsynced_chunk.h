@@ -10,11 +10,11 @@ public:
 
 struct s_monolithic_resource_xsync_state_v0
 {
-	long cache_location_offset;
-	long cache_location_size;
-	long control_data_size;
-	long control_fixup_count;
-	long unknown20; // type or interop_usage_count?
+	int32_t cache_location_offset;
+	int32_t cache_location_size;
+	int32_t control_data_size;
+	int32_t control_fixup_count;
+	int32_t unknown20; // type or interop_usage_count?
 	c_tag_resource_fixup_v0 root_address;
 };
 static constexpr size_t k_monolithic_resource_xsync_state_v0_size = sizeof(s_monolithic_resource_xsync_state_v0);
@@ -22,15 +22,15 @@ static_assert(k_monolithic_resource_xsync_state_v0_size == 0x18);
 
 struct s_monolithic_resource_xsync_state_v1
 {
-	long cache_location_offset;
-	long cache_location_size;
-	long optional_location_offset;
-	long optional_location_size;
-	long control_data_size;
-	long control_fixup_count;
-	long unknown18; // unknown
-	long unknown1C; // unknown
-	long interop_usage_count;
+	int32_t cache_location_offset;
+	int32_t cache_location_size;
+	int32_t optional_location_offset;
+	int32_t optional_location_size;
+	int32_t control_data_size;
+	int32_t control_fixup_count;
+	int32_t unknown18; // unknown
+	int32_t unknown1C; // unknown
+	int32_t interop_usage_count;
 	c_tag_resource_fixup root_address;
 };
 static constexpr size_t k_monolithic_resource_xsync_state_v1_size = sizeof(s_monolithic_resource_xsync_state_v1);
@@ -38,14 +38,14 @@ static_assert(k_monolithic_resource_xsync_state_v1_size == 0x28);
 
 struct s_monolithic_resource_xsync_state_v2
 {
-	long cache_location_offset;
-	long cache_location_size;
-	long optional_location_offset;
-	long optional_location_size;
-	long control_align_bits;
-	long control_data_size;
-	long control_fixup_count;
-	long interop_usage_count;
+	int32_t cache_location_offset;
+	int32_t cache_location_size;
+	int32_t optional_location_offset;
+	int32_t optional_location_size;
+	int32_t control_align_bits;
+	int32_t control_data_size;
+	int32_t control_fixup_count;
+	int32_t interop_usage_count;
 	c_tag_resource_fixup root_address;
 };
 static constexpr size_t k_monolithic_resource_xsync_state_v2_size = sizeof(s_monolithic_resource_xsync_state_v2);

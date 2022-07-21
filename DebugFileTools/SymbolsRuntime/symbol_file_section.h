@@ -4,8 +4,8 @@
 struct s_symbol_file_section
 {
 	unsigned short section_index;
-	unsigned long rva;
-	unsigned long length;
+	uint32_t rva;
+	uint32_t length;
 	union
 	{
 		uintptr_t name_string_offset;

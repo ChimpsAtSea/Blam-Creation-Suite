@@ -28,7 +28,7 @@ c_blamtoozle_minidump_tag_definition_reader::c_blamtoozle_minidump_tag_definitio
 
 	minidump_directories = get_minidump_pointer(MINIDUMP_DIRECTORY, minidump_header->StreamDirectoryRva);
 
-	for (unsigned long minidump_stream_index = 0; minidump_stream_index < minidump_header->NumberOfStreams; minidump_stream_index++)
+	for (uint32_t minidump_stream_index = 0; minidump_stream_index < minidump_header->NumberOfStreams; minidump_stream_index++)
 	{
 		const MINIDUMP_DIRECTORY& minidump_directory = minidump_directories[minidump_stream_index];
 		MINIDUMP_STREAM_TYPE stream_type = static_cast<MINIDUMP_STREAM_TYPE>(minidump_directory.StreamType);
@@ -76,7 +76,7 @@ const char* c_blamtoozle_minidump_tag_definition_reader::va_to_pointer(ptr64 add
 		const MINIDUMP_MEMORY_DESCRIPTOR* minidump_address_memory = nullptr;
 		RVA minidump_address_memory_rva = ~RVA();
 
-		for (unsigned long minidump_memory_index = 0; minidump_memory_index < minidump_memory_list->NumberOfMemoryRanges; minidump_memory_index++)
+		for (uint32_t minidump_memory_index = 0; minidump_memory_index < minidump_memory_list->NumberOfMemoryRanges; minidump_memory_index++)
 		{
 			const MINIDUMP_MEMORY_DESCRIPTOR& minidump_memory = minidump_memory_list->MemoryRanges[minidump_memory_index];
 			RVA minidump_memory_rva = minidump_memory.Memory.Rva;
@@ -106,7 +106,7 @@ const char* c_blamtoozle_minidump_tag_definition_reader::va_to_pointer(ptr64 add
 		RVA64 minidump_address_memory64_rva = ~RVA64();
 
 		RVA64 minidump_memory64_rva = minidump_memory64_list->BaseRva;
-		for (unsigned long minidump_memory64_index = 0; minidump_memory64_index < minidump_memory64_list->NumberOfMemoryRanges; minidump_memory64_index++)
+		for (uint32_t minidump_memory64_index = 0; minidump_memory64_index < minidump_memory64_list->NumberOfMemoryRanges; minidump_memory64_index++)
 		{
 			const MINIDUMP_MEMORY_DESCRIPTOR64& minidump_memory64 = minidump_memory64_list->MemoryRanges[minidump_memory64_index];
 

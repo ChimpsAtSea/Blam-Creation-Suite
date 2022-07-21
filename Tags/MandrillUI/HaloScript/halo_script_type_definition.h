@@ -437,13 +437,13 @@ public:
 	c_hs_enum_value(const c_hs_enum_value&) = delete;
 	c_hs_enum_value& operator=(const c_hs_enum_value&) = delete;
 
-	c_hs_enum_value(const char* name, unsigned long value) :
+	c_hs_enum_value(const char* name, uint32_t value) :
 		value(value),
 		name(name)
 	{
 	}
 
-	unsigned long value;
+	uint32_t value;
 	const char* name;
 };
 
@@ -462,7 +462,7 @@ public:
 		flags_raw |= _hs_type_flag_enum;
 	}
 
-	c_hs_type_definition(const char* name, uint8_t opcode, e_hs_type type, e_hs_underlying_type underlying_type, unsigned long _tag_group, uint8_t flags = {}) :
+	c_hs_type_definition(const char* name, uint8_t opcode, e_hs_type type, e_hs_underlying_type underlying_type, uint32_t _tag_group, uint8_t flags = {}) :
 		c_hs_type_definition(name, opcode, type, underlying_type, flags)
 	{
 		tag_group = _tag_group;
@@ -505,7 +505,7 @@ public:
 	e_hs_underlying_type underlying_type;
 	uint16_t cast_from_types_count;
 	uint16_t enums_count;
-	unsigned long tag_group;
+	uint32_t tag_group;
 	const c_hs_type_definition** cast_from_types;
 	const c_hs_enum_value* enums;
 	const char* name;

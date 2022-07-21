@@ -28,8 +28,8 @@
 //	void set_post_message_thread_id(HANDLE thread_handle);
 //	bool is_focused();
 //
-//	inline unsigned long get_width_integer() const { return width_integer; }
-//	inline unsigned long get_height_integer() const { return height_integer; }
+//	inline uint32_t get_width_integer() const { return width_integer; }
+//	inline uint32_t get_height_integer() const { return height_integer; }
 //	inline float get_width_float() const { return width_float; }
 //	inline float get_height_float() const { return height_float; }
 //	inline float get_aspect_ratio() const { return aspect_ratio; }
@@ -38,7 +38,7 @@
 //	c_callback<LRESULT(HWND, UINT, WPARAM, LPARAM)> on_window_procedure;
 //	c_callback<void()> on_update;
 //	c_callback<void()> on_destroy;
-//	c_callback<void(unsigned long width, unsigned long height)> on_resize;
+//	c_callback<void(uint32_t width, uint32_t height)> on_resize;
 //
 //protected:
 //
@@ -51,8 +51,8 @@
 //	HWND window_handle;
 //	HANDLE post_message_thread_handle;
 //	DWORD post_message_thread_id;
-//	unsigned long width_integer;
-//	unsigned long height_integer;
+//	uint32_t width_integer;
+//	uint32_t height_integer;
 //	float width_float;
 //	float height_float;
 //	float aspect_ratio;

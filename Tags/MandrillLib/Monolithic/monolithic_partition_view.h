@@ -15,7 +15,7 @@ public:
 
 	const wchar_t* partition_filepath;		
 	void* buffer;
-	unsigned long long buffer_size;
+	uint64_t buffer_size;
 	e_monolithic_partition_view_type partition_view_type;
 	t_memory_mapped_file* tag_memory_mapped_file;
 	s_memory_mapped_file_info tag_memory_mapped_file_info;

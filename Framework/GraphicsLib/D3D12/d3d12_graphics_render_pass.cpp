@@ -5,10 +5,10 @@ c_graphics_render_pass_d3d12::c_graphics_render_pass_d3d12(
 	c_viewport& viewport,
 	c_graphics_render_target_d3d12** _color_render_targets,
 	c_graphics_render_target_d3d12** _depth_render_targets,
-	unsigned long num_color_render_targets,
-	unsigned long num_depth_render_targets,
-	unsigned long num_render_target_per_frame,
-	unsigned long num_render_target_frames,
+	uint32_t num_color_render_targets,
+	uint32_t num_depth_render_targets,
+	uint32_t num_render_target_per_frame,
+	uint32_t num_render_target_frames,
 	const wchar_t* debug_name) :
 	graphics(graphics),
 	color_render_targets(),
@@ -24,7 +24,7 @@ c_graphics_render_pass_d3d12::c_graphics_render_pass_d3d12(
 	d3d12_viewport(),
 	scissor_rectangle()
 {
-	unsigned long expected_num_color_render_targets = num_render_target_per_frame * num_render_target_frames;
+	uint32_t expected_num_color_render_targets = num_render_target_per_frame * num_render_target_frames;
 
 	BCS_VALIDATE_ARGUMENT_THROW(_color_render_targets);
 	BCS_VALIDATE_ARGUMENT_THROW(_depth_render_targets);
@@ -35,7 +35,7 @@ c_graphics_render_pass_d3d12::c_graphics_render_pass_d3d12(
 	BCS_VALIDATE_ARGUMENT_THROW(num_depth_render_targets >= 1);
 
 	color_render_targets = new() c_graphics_render_target_d3d12 * [num_color_render_targets];
-	for (unsigned long color_render_target_index = 0; color_render_target_index < num_color_render_targets; color_render_target_index++)
+	for (uint32_t color_render_target_index = 0; color_render_target_index < num_color_render_targets; color_render_target_index++)
 	{
 		c_graphics_render_target_d3d12* color_render_target = _color_render_targets[color_render_target_index];
 
@@ -48,7 +48,7 @@ c_graphics_render_pass_d3d12::c_graphics_render_pass_d3d12(
 	}
 
 	depth_render_targets = new() c_graphics_render_target_d3d12 * [num_depth_render_targets];
-	for (unsigned long depth_render_target_index = 0; depth_render_target_index < num_depth_render_targets; depth_render_target_index++)
+	for (uint32_t depth_render_target_index = 0; depth_render_target_index < num_depth_render_targets; depth_render_target_index++)
 	{
 		c_graphics_render_target_d3d12* depth_render_target = _depth_render_targets[depth_render_target_index];
 
@@ -86,7 +86,7 @@ void c_graphics_render_pass_d3d12::setup_viewport()
 BCS_RESULT c_graphics_render_pass_d3d12::init_descriptor_handles()
 {
 	color_render_target_cpu_handles = new() D3D12_CPU_DESCRIPTOR_HANDLE[num_color_render_targets];
-	for (unsigned long color_render_target_index = 0; color_render_target_index < num_color_render_targets; color_render_target_index++)
+	for (uint32_t color_render_target_index = 0; color_render_target_index < num_color_render_targets; color_render_target_index++)
 	{
 		c_graphics_render_target_d3d12* color_render_target = color_render_targets[color_render_target_index];
 
@@ -99,7 +99,7 @@ BCS_RESULT c_graphics_render_pass_d3d12::init_descriptor_handles()
 	}
 
 	depth_render_target_cpu_handles = new() D3D12_CPU_DESCRIPTOR_HANDLE[num_depth_render_targets];
-	for (unsigned long depth_render_target_index = 0; depth_render_target_index < num_depth_render_targets; depth_render_target_index++)
+	for (uint32_t depth_render_target_index = 0; depth_render_target_index < num_depth_render_targets; depth_render_target_index++)
 	{
 		c_graphics_render_target_d3d12* depth_render_target = depth_render_targets[depth_render_target_index];
 
@@ -121,7 +121,7 @@ BCS_RESULT c_graphics_render_pass_d3d12::deinit_descriptor_handles()
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_graphics_render_pass_d3d12::resize(unsigned long width, unsigned height)
+BCS_RESULT c_graphics_render_pass_d3d12::resize(uint32_t width, unsigned height)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	if (BCS_FAILED(rs = deinit_descriptor_handles()))
@@ -137,7 +137,7 @@ BCS_RESULT c_graphics_render_pass_d3d12::resize(unsigned long width, unsigned he
 
 void c_graphics_render_pass_d3d12::transition_color_render_targets(D3D12_RESOURCE_STATES before, D3D12_RESOURCE_STATES after)
 {
-	for (unsigned long render_target_offset = 0; render_target_offset < num_render_target_per_frame; render_target_offset++)
+	for (uint32_t render_target_offset = 0; render_target_offset < num_render_target_per_frame; render_target_offset++)
 	{
 		c_graphics_render_target_d3d12* color_render_target = color_render_targets[current_render_target_start_index + render_target_offset];
 
@@ -180,7 +180,7 @@ void c_graphics_render_pass_d3d12::render(c_graphics_swap_chain* swap_chain)
 
 	bind_render_targets();
 
-	for (unsigned long render_target_offset = 0; render_target_offset < num_render_target_per_frame; render_target_offset++)
+	for (uint32_t render_target_offset = 0; render_target_offset < num_render_target_per_frame; render_target_offset++)
 	{
 		c_graphics_render_target_d3d12* color_render_target = color_render_targets[current_render_target_start_index + render_target_offset];
 
@@ -204,10 +204,10 @@ BCS_RESULT graphics_d3d12_render_pass_create(
 	c_viewport* viewport,
 	c_graphics_render_target_d3d12** color_render_targets,
 	c_graphics_render_target_d3d12** depth_render_targets,
-	unsigned long num_color_render_targets,
-	unsigned long num_depth_render_targets,
-	unsigned long num_render_target_per_frame,
-	unsigned long num_render_target_frames,
+	uint32_t num_color_render_targets,
+	uint32_t num_depth_render_targets,
+	uint32_t num_render_target_per_frame,
+	uint32_t num_render_target_frames,
 	c_graphics_render_pass_d3d12*& render_pass,
 	const char* debug_name)
 {

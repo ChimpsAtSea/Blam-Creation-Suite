@@ -13,8 +13,8 @@ c_graphics_buffer::~c_graphics_buffer()
 BCS_RESULT graphics_buffer_create(
 	c_graphics* graphics,
 	e_graphics_buffer_type buffer_type,
-	unsigned long element_size,
-	unsigned long element_count,
+	uint32_t element_size,
+	uint32_t element_count,
 	c_graphics_buffer*& buffer,
 	const char* debug_name)
 {
@@ -34,7 +34,7 @@ BCS_RESULT graphics_buffer_create(
 BCS_RESULT graphics_buffer_create(
 	c_graphics* graphics,
 	e_graphics_buffer_type buffer_type,
-	unsigned long buffer_size,
+	uint32_t buffer_size,
 	c_graphics_buffer*& buffer,
 	const char* debug_name)
 {

@@ -11,8 +11,8 @@ BCS_RESULT blofeld::calculate_versioned_tag_field_count(
 	const s_tag_field* tag_fields,
 	s_engine_platform_build engine_platform_build,
 	tag group_tag,
-	unsigned long struct_version,
-	unsigned long& field_count)
+	uint32_t struct_version,
+	uint32_t& field_count)
 {
 	field_count = 0;
 	for (const s_tag_field* tag_field_iterator = tag_fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
@@ -26,7 +26,7 @@ BCS_RESULT blofeld::calculate_versioned_tag_field_count(
 
 BCS_RESULT blofeld::calculate_tag_field_count(
 	const s_tag_field* tag_fields,
-	unsigned long& field_count)
+	uint32_t& field_count)
 {
 	field_count = 0;
 	for (const s_tag_field* tag_field_iterator = tag_fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)

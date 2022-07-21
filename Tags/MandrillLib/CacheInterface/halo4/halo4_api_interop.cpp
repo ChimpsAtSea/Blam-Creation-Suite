@@ -87,7 +87,7 @@ const s_halo4_tag_interop_info halo4_tag_interop_infos[k_num_halo4_interop_types
 	PolyartIndexBufferInterop,
 };
 
-c_halo4_interop_container::c_halo4_interop_container(e_halo4_interop_type type, unsigned long descriptor, const void* data) :
+c_halo4_interop_container::c_halo4_interop_container(e_halo4_interop_type type, uint32_t descriptor, const void* data) :
 	h_interop(),
 	type(type),
 	descriptor(descriptor),
@@ -101,7 +101,7 @@ c_halo4_interop_container::~c_halo4_interop_container()
 
 }
 
-c_halo4_vectorart_vertex_buffer_interop::c_halo4_vectorart_vertex_buffer_interop(c_halo4_tag_reader& tag_reader, unsigned long descriptor, const void* data) :
+c_halo4_vectorart_vertex_buffer_interop::c_halo4_vectorart_vertex_buffer_interop(c_halo4_tag_reader& tag_reader, uint32_t descriptor, const void* data) :
 	c_halo4_interop_container(_halo4_vectorart_vertex_buffer_interop, descriptor, data),
 	vertex_data(),
 	vertex_data_size()
@@ -128,7 +128,7 @@ c_halo4_vectorart_vertex_buffer_interop::~c_halo4_vectorart_vertex_buffer_intero
 
 }
 
-c_halo4_polyart_vertex_buffer_interop::c_halo4_polyart_vertex_buffer_interop(c_halo4_tag_reader& tag_reader, unsigned long descriptor, const void* data) :
+c_halo4_polyart_vertex_buffer_interop::c_halo4_polyart_vertex_buffer_interop(c_halo4_tag_reader& tag_reader, uint32_t descriptor, const void* data) :
 	c_halo4_interop_container(_halo4_polyart_vertex_buffer_interop, descriptor, data),
 	vertex_data(),
 	vertex_data_size(),
@@ -157,7 +157,7 @@ c_halo4_polyart_vertex_buffer_interop::~c_halo4_polyart_vertex_buffer_interop()
 	delete vertex_data;
 }
 
-c_halo4_polyart_index_buffer_interop::c_halo4_polyart_index_buffer_interop(c_halo4_tag_reader& tag_reader, unsigned long descriptor, const void* data) :
+c_halo4_polyart_index_buffer_interop::c_halo4_polyart_index_buffer_interop(c_halo4_tag_reader& tag_reader, uint32_t descriptor, const void* data) :
 	c_halo4_interop_container(_halo4_polyart_index_buffer_interop, descriptor, data),
 	index_data(),
 	index_data_size()

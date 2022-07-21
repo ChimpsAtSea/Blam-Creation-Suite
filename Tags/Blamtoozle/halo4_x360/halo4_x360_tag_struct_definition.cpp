@@ -152,7 +152,7 @@ c_blamtoozle_tag_struct_definition& c_halo4_x360_tag_struct_definition::get_late
 	return *this;
 }
 
-unsigned long c_halo4_x360_tag_struct_definition::get_structure_version()
+uint32_t c_halo4_x360_tag_struct_definition::get_structure_version()
 {
 	return struct_definition.type.legacy.legacy_version;
 }
@@ -177,7 +177,7 @@ const char* c_halo4_x360_tag_struct_definition::get_structure_type_name()
 	return code_type_name.c_str();
 }
 
-unsigned long c_halo4_x360_tag_struct_definition::get_alignment_bits()
+uint32_t c_halo4_x360_tag_struct_definition::get_alignment_bits()
 {
 	return struct_definition.type.alignment_bits;
 }
@@ -187,7 +187,7 @@ const char* c_halo4_x360_tag_struct_definition::get_file_path()
 	return file_path;
 }
 
-long c_halo4_x360_tag_struct_definition::get_line_number()
+int32_t c_halo4_x360_tag_struct_definition::get_line_number()
 {
 	return struct_definition.type.line_number;
 }

@@ -23,18 +23,18 @@ namespace DirectX
 
 #pragma pack(push,1)
 
-const unsigned long DDS_MAGIC = 0x20534444; // "DDS "
+const uint32_t DDS_MAGIC = 0x20534444; // "DDS "
 
 struct DDS_PIXELFORMAT
 {
-    unsigned long    size;
-    unsigned long    flags;
-    unsigned long    fourCC;
-    unsigned long    RGBBitCount;
-    unsigned long    RBitMask;
-    unsigned long    GBitMask;
-    unsigned long    BBitMask;
-    unsigned long    ABitMask;
+    uint32_t    size;
+    uint32_t    flags;
+    uint32_t    fourCC;
+    uint32_t    RGBBitCount;
+    uint32_t    RBitMask;
+    uint32_t    GBitMask;
+    uint32_t    BBitMask;
+    uint32_t    ABitMask;
 };
 
 #define DDS_FOURCC      0x00000004  // DDPF_FOURCC
@@ -207,29 +207,29 @@ enum DDS_ALPHA_MODE
 
 struct DDS_HEADER
 {
-    unsigned long        size;
-    unsigned long        flags;
-    unsigned long        height;
-    unsigned long        width;
-    unsigned long        pitchOrLinearSize;
-    unsigned long        depth; // only if DDS_HEADER_FLAGS_VOLUME is set in flags
-    unsigned long        mipMapCount;
-    unsigned long        reserved1[11];
+    uint32_t        size;
+    uint32_t        flags;
+    uint32_t        height;
+    uint32_t        width;
+    uint32_t        pitchOrLinearSize;
+    uint32_t        depth; // only if DDS_HEADER_FLAGS_VOLUME is set in flags
+    uint32_t        mipMapCount;
+    uint32_t        reserved1[11];
     DDS_PIXELFORMAT ddspf;
-    unsigned long        caps;
-    unsigned long        caps2;
-    unsigned long        caps3;
-    unsigned long        caps4;
-    unsigned long        reserved2;
+    uint32_t        caps;
+    uint32_t        caps2;
+    uint32_t        caps3;
+    uint32_t        caps4;
+    uint32_t        reserved2;
 };
 
 struct DDS_HEADER_DXT10
 {
     DXGI_FORMAT     dxgiFormat;
-    unsigned long        resourceDimension;
-    unsigned long        miscFlag; // see D3D11_RESOURCE_MISC_FLAG
-    unsigned long        arraySize;
-    unsigned long        miscFlags2; // see DDS_MISC_FLAGS2
+    uint32_t        resourceDimension;
+    uint32_t        miscFlag; // see D3D11_RESOURCE_MISC_FLAG
+    uint32_t        arraySize;
+    uint32_t        miscFlags2; // see DDS_MISC_FLAGS2
 };
 
 #pragma pack(pop)
