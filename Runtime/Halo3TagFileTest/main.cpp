@@ -1,19 +1,5 @@
 #include "halo3tagfiletest-private-pch.h"
 
-
-#ifdef _DEBUG
-static constexpr const char window_title[] = "Halo 3 Tag File Test Debug";
-#else
-static constexpr const char window_title[] = "Halo 3 Tag File Test";
-#endif
-
-static c_window* window;
-static c_render_context* window_render_context;
-static c_mandrill_user_interface* mandrill_user_interface;
-
-static float4 graphics_background_color = { 0.16f, 0.10f, 0.16f, 1.0f };
-static float4 window_background_color = { 0.130f, 0.141f, 0.167f, 1.0f };
-
 #include <Generated/high_level_halo3_pc64/highlevel-halo3-pc64-public-pch.h>
 #include <Generated/high_level_halo3odst_pc64/highlevel-halo3odst-pc64-public-pch.h>
 
