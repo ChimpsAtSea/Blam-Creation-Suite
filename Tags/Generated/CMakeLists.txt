@@ -125,5 +125,6 @@ bcs_tag_project_platforms("Halo3ODST" "halo3odst" "pc64")
 bcs_tag_project_platforms("Halo4" "halo4" "xbox360")
 bcs_tag_project_platforms("HaloReach" "haloreach" "xbox360")
 bcs_tag_project_platforms("Stubbs" "stubbs" "pc64")
+bcs_tag_project_platforms("Infinite" "infinite" "pc64")
 
 set(BCS_GENERATED_TAG_PROJECTS ${BCS_GENERATED_TAG_PROJECTS} PARENT_SCOPE)
