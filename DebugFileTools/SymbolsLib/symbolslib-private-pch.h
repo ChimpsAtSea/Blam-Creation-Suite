@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <dbghelp.h>
 #include <vector>
+#include <algorithm>
 #include <mutex>
 
 #include <Platform\platform-public-pch.h>
