@@ -24,20 +24,15 @@
 #ifdef BLOFELD_DLL_EXPORT
 #include <Platform\platform-exports-pch.h>
 #endif
-#define s_tag_block_definition BCS_DEBUG_API s_tag_block_definition
-#define s_tag_struct_definition BCS_DEBUG_API s_tag_struct_definition
-#define s_tag_data_definition BCS_DEBUG_API s_tag_data_definition
-#define s_tag_group BCS_DEBUG_API s_tag_group
-//#include "blofeld/tag_groups.h"
+#define extern BCS_DEBUG_API extern
+
 #include "slipspace/infinite_flight1.h"
 #include "slipspace/infinite_flight2.h"
 #include "slipspace/infinite_release.h"
 #include "slipspace/infinite.h"
 
-//#include "blamlib/haloreach_tags_test_x360.h"
-//#include "blamlib/halo3_tools.h"
-//#include "blamlib/halo2_tools.h"
-//#include "blamlib/halo1_tools.h"
+// #TODO: Fix this
+namespace blofeld { namespace infinite { namespace pc64 { using namespace blofeld::infinite; } } }
 
 #include "blamlib/halo1-tools-pc64.h"
 #include "blamlib/halo2-tools-pc64.h"
@@ -46,10 +41,7 @@
 #include "blamlib/halo4-tagtest-xbox360.h"
 #include "blamlib/haloreach-tagtest-xbox360.h"
 
-#undef s_tag_block_definition
-#undef s_tag_struct_definition
-#undef s_tag_data_definition
-#undef s_tag_group
+#undef extern
 #endif
 #include "tag_groups/tag_groups.h"
 
