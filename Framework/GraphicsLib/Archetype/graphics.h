@@ -14,12 +14,12 @@ protected:
 public:
 	virtual ~c_graphics();
 
-	virtual void render_frame() = 0;
+	virtual BCS_RESULT render_frame() = 0;
 
-	using t_present_callback_d3d12 = void();
+	using t_present_callback_d3d12 = BCS_RESULT();
 	c_typed_callback<t_present_callback_d3d12> present_callback;
 
-	using t_render_callback_d3d12 = void();
+	using t_render_callback_d3d12 = BCS_RESULT();
 	c_typed_callback<t_render_callback_d3d12> render_callback;
 };
 

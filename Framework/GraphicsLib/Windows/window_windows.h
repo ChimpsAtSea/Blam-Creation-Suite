@@ -17,6 +17,7 @@ public:
 		uint32_t width,
 		uint32_t height,
 		float4 background_color,
+		bool allow_adapter_recovery,
 		const char* debug_name);
 	~c_window_windows();
 
@@ -37,7 +38,9 @@ public:
 		HINSTANCE instance_handle;
 	};
 	const wchar_t* window_class_name;
-	bool is_open;
+	float4 background_color;
+	bool is_open : 1;
+	bool allow_adapter_recovery : 1;
 };
 
 BCS_RESULT window_windows_create(
@@ -47,6 +50,7 @@ BCS_RESULT window_windows_create(
 	uint32_t width, 
 	uint32_t height,
 	float4 background_color,
+	bool allow_adapter_recovery,
 	c_window_windows*& window,
 	const char* debug_name);
 BCS_RESULT window_windows_destroy(c_window_windows* window);

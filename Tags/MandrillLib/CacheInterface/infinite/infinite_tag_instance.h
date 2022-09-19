@@ -3,12 +3,12 @@
 class c_infinite_tag_reader;
 class c_infinite_tag_group;
 class c_infinite_ucs_reader;
-class c_module_file_transplant;
+class c_infinite_high_level_moule_file_transplant;
 
 class c_infinite_tag_instance : public c_tag_instance
 {
 public:
-	friend class c_module_file_transplant;
+	friend class c_infinite_high_level_moule_file_transplant;
 	friend class c_infinite_tag_reader;
 
 	c_infinite_tag_instance(

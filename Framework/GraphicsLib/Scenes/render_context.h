@@ -11,7 +11,7 @@ protected:
 public:
 	virtual ~c_render_context();
 
-	virtual void render() = 0;
+	virtual BCS_RESULT render() = 0;
 	virtual BCS_RESULT get_viewport(c_viewport*& viewport) = 0;
 	virtual BCS_RESULT get_window(c_window*& _window) = 0;
 	virtual BCS_RESULT get_imgui_context(c_imgui_context*& imgui_context) = 0;
@@ -24,6 +24,8 @@ public:
 	using t_on_render_callback = void();
 	c_typed_callback<t_on_render_callback> on_render_background;
 	c_typed_callback<t_on_render_callback> on_render_foreground;
+	c_typed_callback<t_on_render_callback> on_device_lost;
+	c_typed_callback<t_on_render_callback> on_device_recover;
 };
 
 BCS_DEBUG_API BCS_RESULT render_context_window_create(

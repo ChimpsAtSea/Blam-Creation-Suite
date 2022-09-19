@@ -8,12 +8,34 @@ c_window_render_context::c_window_render_context(
 	imgui_context(),
 	depth_render_target(),
 	swap_chain(),
-	swap_chain_render_targets(),
-	render_pass()
+	render_pass(),
+	graphics_create_result(),
+	window_resize_handle(),
+	graphics_render_handle(),
+	render_pass_render_handle(),
+	render_imgui_handle(),
+	graphics_present_handle(),
+	swap_chain_resize_finish_handle(),
+	background_color(background_color)
 {
-	BCS_FAIL_THROW(graphics_create(_graphics_architecture_d3d12, true, graphics));
-	BCS_FAIL_THROW(graphics_imgui_context_create(&window, graphics, imgui_context));
-	BCS_FAIL_THROW(graphics_depth_stencil_render_target_create(
+	BCS_RESULT init_render_context_result = init_render_context();
+	BCS_FAIL_THROW(init_render_context_result);
+}
+
+c_window_render_context::~c_window_render_context()
+{
+	BCS_RESULT window_on_size_changed = window.on_size_changed.remove_callback(window_resize_handle);
+	BCS_FAIL_THROW(window_on_size_changed);
+
+	BCS_RESULT deinit_render_context_result = deinit_render_context();
+	BCS_FAIL_THROW(window_on_size_changed);
+}
+
+BCS_RESULT c_window_render_context::init_render_context()
+{
+	BCS_FAIL_RETURN(graphics_create(_graphics_architecture_d3d12, true, graphics));
+	BCS_FAIL_RETURN(graphics_imgui_context_create(&window, graphics, imgui_context));
+	BCS_FAIL_RETURN(graphics_depth_stencil_render_target_create(
 		graphics,
 		window.width,
 		window.height,
@@ -21,11 +43,11 @@ c_window_render_context::c_window_render_context(
 		0.0f,
 		0,
 		depth_render_target));
-	BCS_FAIL_THROW(graphics_swap_chain_create(graphics, &window, swap_chain_frames, swap_chain));
+	BCS_FAIL_RETURN(graphics_swap_chain_create(graphics, &window, swap_chain_frames, swap_chain));
 
 	for (uint32_t swap_chain_index = 0; swap_chain_index < swap_chain_frames; swap_chain_index++)
 	{
-		BCS_FAIL_THROW(graphics_swapchain_color_render_target_create(
+		BCS_FAIL_RETURN(graphics_swapchain_color_render_target_create(
 			graphics,
 			swap_chain,
 			swap_chain_index,
@@ -33,7 +55,7 @@ c_window_render_context::c_window_render_context(
 			swap_chain_render_targets[swap_chain_index]));
 	}
 
-	BCS_FAIL_THROW(graphics_render_pass_create(
+	BCS_FAIL_RETURN(graphics_render_pass_create(
 		graphics,
 		&window,
 		swap_chain_render_targets,
@@ -44,29 +66,29 @@ c_window_render_context::c_window_render_context(
 		swap_chain_frames,
 		render_pass));
 
-	BCS_FAIL_THROW(window.on_size_changed.add_callback(window_resize, this, window_resize_handle));
-	BCS_FAIL_THROW(graphics->present_callback.add_callback(graphics_present, this, graphics_present_handle));
-	BCS_FAIL_THROW(graphics->render_callback.add_callback(graphics_render, this, graphics_render_handle));
-	BCS_FAIL_THROW(render_pass->render_callback.add_callback(render_pass_render, this, render_pass_render_handle));
-	BCS_FAIL_THROW(imgui_context->render_callback.add_callback(render_imgui, this, render_imgui_handle));
-	BCS_FAIL_THROW(swap_chain->on_resize_finish.add_callback(swap_chain_resize_finish, this, swap_chain_resize_finish_handle));
+	BCS_FAIL_RETURN(window.on_size_changed.add_callback(window_resize, this, window_resize_handle));
+	BCS_FAIL_RETURN(graphics->present_callback.add_callback(graphics_present, this, graphics_present_handle));
+	BCS_FAIL_RETURN(graphics->render_callback.add_callback(graphics_render, this, graphics_render_handle));
+	BCS_FAIL_RETURN(render_pass->render_callback.add_callback(render_pass_render, this, render_pass_render_handle));
+	BCS_FAIL_RETURN(imgui_context->render_callback.add_callback(render_imgui, this, render_imgui_handle));
+	BCS_FAIL_RETURN(swap_chain->on_resize_finish.add_callback(swap_chain_resize_finish, this, swap_chain_resize_finish_handle));
+
+	return BCS_S_OK;
 }
 
-c_window_render_context::~c_window_render_context()
+BCS_RESULT c_window_render_context::deinit_render_context()
 {
-	BCS_RESULT window_on_size_changed = window.on_size_changed.remove_callback(window_resize_handle);
 	BCS_RESULT graphics_present_callback = graphics->present_callback.remove_callback(graphics_present_handle);
 	BCS_RESULT graphics_render_callback = graphics->render_callback.remove_callback(graphics_render_handle);
 	BCS_RESULT render_pass_render_callback = render_pass->render_callback.remove_callback(render_pass_render_handle);
 	BCS_RESULT imgui_context_render_callback = imgui_context->render_callback.remove_callback(render_imgui_handle);
 	BCS_RESULT swap_chain_on_resize_finish = swap_chain->on_resize_finish.remove_callback(swap_chain_resize_finish_handle);
 
-	BCS_FAIL_THROW(window_on_size_changed);
-	BCS_FAIL_THROW(graphics_present_callback);
-	BCS_FAIL_THROW(graphics_render_callback);
-	BCS_FAIL_THROW(render_pass_render_callback);
-	BCS_FAIL_THROW(imgui_context_render_callback);
-	BCS_FAIL_THROW(swap_chain_on_resize_finish);
+	BCS_FAIL_RETURN(graphics_present_callback);
+	BCS_FAIL_RETURN(graphics_render_callback);
+	BCS_FAIL_RETURN(render_pass_render_callback);
+	BCS_FAIL_RETURN(imgui_context_render_callback);
+	BCS_FAIL_RETURN(swap_chain_on_resize_finish);
 
 	BCS_RESULT render_pass_destroy_result = graphics_render_pass_destroy(render_pass);
 	for (uint32_t swap_chain_index = 0; swap_chain_index < swap_chain_frames; swap_chain_index++)
@@ -79,20 +101,40 @@ c_window_render_context::~c_window_render_context()
 	BCS_RESULT imgui_context_destroy_result = graphics_imgui_context_destroy(imgui_context);
 	BCS_RESULT graphics_destroy_result = graphics_destroy(graphics);
 
-	BCS_FAIL_THROW(render_pass_destroy_result);
-	BCS_FAIL_THROW(swap_chain_destroy_result);
-	BCS_FAIL_THROW(depth_render_target_destroy_result);
-	BCS_FAIL_THROW(imgui_context_destroy_result);
-	BCS_FAIL_THROW(graphics_destroy_result);
+	BCS_FAIL_RETURN(render_pass_destroy_result);
+	BCS_FAIL_RETURN(swap_chain_destroy_result);
+	BCS_FAIL_RETURN(depth_render_target_destroy_result);
+	BCS_FAIL_RETURN(imgui_context_destroy_result);
+	BCS_FAIL_RETURN(graphics_destroy_result);
+
+	return BCS_S_OK;
 }
 
-void c_window_render_context::render()
+BCS_RESULT c_window_render_context::render()
 {
+	BCS_RESULT rs = BCS_S_OK;
+
 	while (window.update())
 	{
-		graphics->render_frame();
+		if (BCS_FAILED(rs = graphics->render_frame()))
+		{
+			if (rs == BCS_E_GRAPHICS_DEVICE_LOST)
+			{
+				on_device_lost();
+				// attempt to recover to a usable GPU device
+				BCS_RESULT rs1 = deinit_render_context();
+				BCS_RESULT rs2 = init_render_context();
+				on_device_recover();
+			}
+			else
+			{
+				return rs;
+			}
+		}
 		Sleep(1);
 	}
+
+	return rs;
 }
 
 BCS_RESULT c_window_render_context::get_viewport(c_viewport*& out_viewport)
@@ -162,9 +204,16 @@ void c_window_render_context::render_imgui(c_window_render_context& _this)
 	_this.on_render_foreground();
 }
 
-void c_window_render_context::graphics_present(c_window_render_context& _this)
+BCS_RESULT c_window_render_context::graphics_present(c_window_render_context& _this)
 {
-	_this.swap_chain->present();
+	BCS_RESULT rs = BCS_S_OK;
+
+	if (BCS_FAILED(rs = _this.swap_chain->present()))
+	{
+		return rs;
+	}
+
+	return rs;
 }
 
 void c_window_render_context::swap_chain_resize_finish(c_window_render_context& _this, uint32_t width, unsigned height)

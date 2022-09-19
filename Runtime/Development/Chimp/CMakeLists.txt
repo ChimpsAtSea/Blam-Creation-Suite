@@ -16,4 +16,4 @@ set_property(TARGET Chimp PROPERTY VS_DOTNET_REFERENCES
 	"System")
 
 set_target_properties(Chimp PROPERTIES
-	FOLDER "Runtime")
+	FOLDER "Runtime/Development")

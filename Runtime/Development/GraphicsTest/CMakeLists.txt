@@ -13,4 +13,4 @@ target_precompile_headers(GraphicsTest PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:graphicstest-private-pch.h>")
 	
 set_target_properties(GraphicsTest PROPERTIES
-	FOLDER "Runtime")
+	FOLDER "Runtime/Development")

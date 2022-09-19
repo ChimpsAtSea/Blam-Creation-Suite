@@ -9,7 +9,10 @@ public:
 		float4 background_color);
 	~c_window_render_context();
 
-	virtual void render() override;
+	BCS_RESULT init_render_context();
+	BCS_RESULT deinit_render_context();
+
+	virtual BCS_RESULT render() override;
 	virtual BCS_RESULT get_viewport(c_viewport*& viewport) override;
 	virtual BCS_RESULT get_window(c_window*& window) override;
 	virtual BCS_RESULT get_imgui_context(c_imgui_context*& imgui_context) override;
@@ -39,11 +42,13 @@ public:
 	t_callback_handle graphics_present_handle;
 	t_callback_handle swap_chain_resize_finish_handle;
 
+	float4 background_color;
+
 	static void __cdecl window_resize(c_window_render_context& _this, uint32_t width, uint32_t height);
 	static void __cdecl graphics_render(c_window_render_context& _this);
 	static void __cdecl render_pass_render(c_window_render_context& _this);
 	static void __cdecl render_imgui(c_window_render_context& _this);
-	static void __cdecl graphics_present(c_window_render_context& _this);
+	static BCS_RESULT __cdecl graphics_present(c_window_render_context& _this);
 	static void __cdecl swap_chain_resize_finish(c_window_render_context& _this, uint32_t width, unsigned height);
 };
 

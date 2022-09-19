@@ -61,7 +61,7 @@ BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filepath, s_
 	}
 
 	bool is_big_endian = false;
-	if(header.header_signature == _byteswap_ulong('head'))
+	if (header.header_signature == _byteswap_ulong('head'))
 	{
 		is_big_endian = true;
 		byteswap_inplace(header);
@@ -196,6 +196,7 @@ BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_bui
 	{
 		switch (engine_platform_build.engine_type)
 		{
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO_1) || defined(BCS_BUILD_HIGH_LEVEL_STUBBS)
 		case _engine_type_stubbs:
 		case _engine_type_halo1:
 		{
@@ -209,22 +210,29 @@ BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_bui
 			}
 		}
 		break;
+#endif
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO_3)
 		case _engine_type_halo3:
 		{
 			*cache_file = new() c_halo3_cache_file_reader(filepath, engine_platform_build);
 			return BCS_S_OK;
 		}
 		break;
-		// #TODO: generate xbox360 version of halo 4 high/virtual/low
-		/*case _engine_type_halo4:
-			if (engine_platform_build.platform_type == _platform_type_xbox_360)
-			{
-				*cache_file = new() c_halo4_cache_file_reader(filepath, engine_platform_build);
-				return BCS_S_OK;
-			}
-			*/
+#endif
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO_4)
+		case _engine_type_halo4:
+		{
+			//if (engine_platform_build.platform_type == _platform_type_xbox_360)
+			//{
+			//	*cache_file = new() c_halo4_cache_file_reader(filepath, engine_platform_build);
+			//	return BCS_S_OK;
+			//}
+		}
 		break;
+#endif
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO_INFINITE)
 		case _engine_type_infinite:
+		{
 			if (engine_platform_build.platform_type == _platform_type_pc_64bit)
 			{
 				*cache_file = new() c_infinite_module_file_reader(filepath, engine_platform_build);
@@ -232,8 +240,8 @@ BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_bui
 			}
 			break;
 		}
-
-
+#endif
+		}
 	}
 	catch (BCS_RESULT error_result)
 	{
@@ -289,30 +297,38 @@ BCS_RESULT create_cache_cluster(c_cache_file_reader** cache_readers, uint32_t ca
 
 	try
 	{
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO_1)
 		if (c_halo1_cache_file_reader* halo1_cache_file = dynamic_cast<c_halo1_cache_file_reader*>(*cache_readers))
 		{
 			*cache_cluster = new() c_halo1_cache_cluster(reinterpret_cast<c_halo1_cache_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
 
 			return BCS_S_OK;
 		}
+#endif
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO_3)
 		if (c_halo3_cache_file_reader* halo3_cache_file = dynamic_cast<c_halo3_cache_file_reader*>(*cache_readers))
 		{
 			*cache_cluster = new() c_halo3_cache_cluster(reinterpret_cast<c_halo3_cache_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
 
 			return BCS_S_OK;
 		}
+#endif
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO_4)
 		/*if (c_halo4_cache_file_reader* halo4_cache_file = dynamic_cast<c_halo4_cache_file_reader*>(*cache_readers))
 		{
 			*cache_cluster = new() c_halo4_cache_cluster(reinterpret_cast<c_halo4_cache_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
 
 			return BCS_S_OK;
 		}*/
+#endif
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO_INFINITE)
 		if (c_infinite_module_file_reader* infinite_module_file = dynamic_cast<c_infinite_module_file_reader*>(*cache_readers))
 		{
 			*cache_cluster = new() c_infinite_cache_cluster(reinterpret_cast<c_infinite_module_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
 
 			return BCS_S_OK;
 		}
+#endif
 	}
 	catch (BCS_RESULT error_result)
 	{
@@ -342,18 +358,22 @@ BCS_RESULT get_cache_file_debug_reader(c_cache_cluster* cache_cluster, c_cache_f
 	BCS_VALIDATE_ARGUMENT(debug_reader);
 
 	BCS_RESULT result = BCS_E_NOT_IMPLEMENTED;
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO_3)
 	if (c_halo3_cache_cluster* halo3_cache_cluster = dynamic_cast<c_halo3_cache_cluster*>(cache_cluster))
 	{
 		result = halo3_cache_cluster->get_debug_reader(
 			*static_cast<c_halo3_cache_file_reader*>(cache_reader),
 			*reinterpret_cast<c_halo3_debug_reader**>(debug_reader));
 	}
+#endif
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO_4)
 	/*if (c_halo4_cache_cluster* halo4_cache_cluster = dynamic_cast<c_halo4_cache_cluster*>(cache_cluster))
 	{
 		result = halo4_cache_cluster->get_debug_reader(
 			*static_cast<c_halo4_cache_file_reader*>(cache_reader),
 			*reinterpret_cast<c_halo4_debug_reader**>(debug_reader));
 	}*/
+#endif
 	return result;
 }
 

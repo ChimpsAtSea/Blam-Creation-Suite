@@ -13,4 +13,4 @@ target_precompile_headers(Halo2CacheFileBuilderTest PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:halo2cachefilebuildertest-private-pch.h>")
 	
 set_target_properties(Halo2CacheFileBuilderTest PROPERTIES
-	FOLDER "Runtime")
+	FOLDER "Runtime/Development")

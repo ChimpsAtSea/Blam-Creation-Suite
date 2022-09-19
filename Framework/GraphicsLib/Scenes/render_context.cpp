@@ -1,6 +1,10 @@
 #include "graphicslib-private-pch.h"
 
-c_render_context::c_render_context()
+c_render_context::c_render_context() :
+	on_render_background(),
+	on_render_foreground(),
+	on_device_lost(),
+	on_device_recover()
 {
 
 }

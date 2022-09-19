@@ -36,7 +36,9 @@ protected:
 
 	c_custom_tool_render_model* custom_tool;
 	c_model_preview_test* model_preview_test;
+#if defined(BCS_BUILD_ENGINE_HALO_REACH)
 	c_haloreach_bitmap_test* haloreach_bitmap_test;
+#endif
 	bool show_bitmap_export_file_dialog;
 	t_imgui_async_file_dialog_handle file_browser;
 

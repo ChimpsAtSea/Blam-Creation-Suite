@@ -13,6 +13,62 @@ static c_mandrill_user_interface* mandrill_user_interface;
 static float4 graphics_background_color = { 0.16f, 0.10f, 0.16f, 1.0f };
 static float4 window_background_color = { 0.130f, 0.141f, 0.167f, 1.0f };
 
+//BCS_RESULT window_register_callbacks()
+//{
+//	BCS_RESULT rs = BCS_S_OK;
+//
+//	c_imgui_context* imgui_context;
+//	if (BCS_FAILED(rs = rs = window_render_context->get_imgui_context(imgui_context)))
+//	{
+//		return rs;
+//	}
+//
+//	if (BCS_FAILED(rs = imgui_context->render_callback.add_callback(render_user_interface, render_user_interface_handle)))
+//	{
+//		return rs;
+//	}
+//
+//	return rs;
+//}
+//
+//BCS_RESULT window_unregister_callbacks()
+//{
+//	BCS_RESULT rs = BCS_S_OK;
+//
+//	c_imgui_context* imgui_context;
+//	if (BCS_FAILED(rs = rs = window_render_context->get_imgui_context(imgui_context)))
+//	{
+//		return rs;
+//	}
+//
+//	if (BCS_FAILED(rs = imgui_context->render_callback.remove_callback(render_user_interface_handle)))
+//	{
+//		return rs;
+//	}
+//
+//	return rs;
+//}
+//
+//BCS_RESULT register_device_recovery_callbacks()
+//{
+//	BCS_RESULT rs = BCS_S_OK;
+//
+//	BCS_FAIL_RETURN(rs = window_render_context->on_device_lost.add_callback(window_unregister_callbacks, render_on_device_lost_handle));
+//	BCS_FAIL_RETURN(rs = window_render_context->on_device_recover.add_callback(window_register_callbacks, render_on_device_recover_handle));
+//
+//	return rs;
+//}
+//
+//BCS_RESULT unregister_device_recovery_callbacks()
+//{
+//	BCS_RESULT rs = BCS_S_OK;
+//
+//	BCS_FAIL_RETURN(rs = window_render_context->on_device_lost.remove_callback(render_on_device_lost_handle));
+//	BCS_FAIL_RETURN(rs = window_render_context->on_device_recover.remove_callback(render_on_device_recover_handle));
+//
+//	return rs;
+//}
+
 int WINAPI wWinMain(
 	_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
@@ -28,7 +84,7 @@ int WINAPI wWinMain(
 	BCS_RESULT console_result = init_console();
 	BCS_RESULT device_communication_result = init_device_communication();
 	if(BCS_SUCCEEDED(console_result)) console_result = BCS_SUCCEEDED(command_line_has_argument("commandline")) ? alloc_console("Mandrill") : BCS_S_OK;
-	BCS_RESULT window_create_result = window_create(window_title, "mandrill", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, window);
+	BCS_RESULT window_create_result = window_create(window_title, "mandrill", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, true, window);
 	BCS_RESULT render_context_window_create_result = render_context_window_create(*window, graphics_background_color, window_render_context);
 
 	mandrill_user_interface = new() c_mandrill_user_interface(

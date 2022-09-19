@@ -28,6 +28,7 @@ BCS_DEBUG_API BCS_RESULT window_create(
 	uint32_t width, 
 	uint32_t height,
 	float4 background_color,
+	bool allow_adapter_recovery,
 	c_window*& window,
 	const char* debug_name = nullptr);
 BCS_DEBUG_API BCS_RESULT window_destroy(c_window* window);

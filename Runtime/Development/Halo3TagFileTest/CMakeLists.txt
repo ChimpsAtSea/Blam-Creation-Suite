@@ -13,4 +13,4 @@ target_precompile_headers(Halo3TagFileTest PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:halo3tagfiletest-private-pch.h>")
 	
 set_target_properties(Halo3TagFileTest PROPERTIES
-	FOLDER "Runtime")
+	FOLDER "Runtime/Development")

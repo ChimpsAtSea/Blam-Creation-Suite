@@ -16,10 +16,29 @@ typedef struct _callback_entry
 	uint64_t unique_id;
 } s_callback_entry;
 
+#ifdef __cplusplus
+typedef struct _callback s_callback;
+extern "C" BCS_DEBUG_API intptr_t execute_callback_list(s_callback* callback, ...);
+
+template<typename t_result = void, typename ...t_args>
+inline t_result execute_callback_list2(s_callback * callback, t_args ...args)
+{
+	return reinterpret_cast<t_result(*)(s_callback * callback, ...)>(execute_callback_list)(callback, args...);
+}
+
+#endif
+
 typedef struct _callback
 {
 #ifdef __cplusplus
-	void operator()(...);
+	intptr_t operator()(...);
+
+	template<typename t_result = void, typename ...t_args>
+	t_result call(t_args ...args)
+	{
+		return execute_callback_list2<t_result>(this, args...);
+		//return static_cast<t_result>(execute_callback_list(this, args));
+	}
 protected:
 #endif
 	s_callback_entry* entry;

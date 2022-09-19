@@ -26,72 +26,12 @@ add_library(MandrillLib ${BCS_LIBRARY_TYPE}
 	CacheInterface/cache_byteswap.h
 	CacheInterface/gen3/gen3_cache_file_header.cpp
 	CacheInterface/gen3/gen3_cache_file_header.h
-	CacheInterface/halo1/halo1_cache_cluster.cpp
-	CacheInterface/halo1/halo1_cache_cluster.h
 	CacheInterface/halo1/halo1_cache_file_header.cpp
 	CacheInterface/halo1/halo1_cache_file_header.h
-	CacheInterface/halo1/halo1_cache_file_reader.cpp
-	CacheInterface/halo1/halo1_cache_file_reader.h
-	CacheInterface/halo1/halo1_debug_reader.cpp
-	CacheInterface/halo1/halo1_debug_reader.h
-	CacheInterface/halo1/halo1_localization_reader.cpp
-	CacheInterface/halo1/halo1_localization_reader.h
-	CacheInterface/halo1/halo1_resource_reader.cpp
-	CacheInterface/halo1/halo1_resource_reader.h
-	CacheInterface/halo1/halo1_tag_group.cpp
-	CacheInterface/halo1/halo1_tag_group.h
-	CacheInterface/halo1/halo1_tag_group_hierarchy.cpp
-	CacheInterface/halo1/halo1_tag_group_hierarchy.h
-	CacheInterface/halo1/halo1_tag_instance.cpp
-	CacheInterface/halo1/halo1_tag_instance.h
-	CacheInterface/halo1/halo1_tag_reader.cpp
-	CacheInterface/halo1/halo1_tag_reader.h
-	CacheInterface/halo3/halo3_api_interop.cpp
-	CacheInterface/halo3/halo3_api_interop.h
-	CacheInterface/halo3/halo3_cache_cluster.cpp
-	CacheInterface/halo3/halo3_cache_cluster.h
 	CacheInterface/halo3/halo3_cache_file_header.cpp
 	CacheInterface/halo3/halo3_cache_file_header.h
-	CacheInterface/halo3/halo3_cache_file_reader.cpp
-	CacheInterface/halo3/halo3_cache_file_reader.h
-	CacheInterface/halo3/halo3_codec.cpp
-	CacheInterface/halo3/halo3_codec.h
-	CacheInterface/halo3/halo3_debug_reader.cpp
-	CacheInterface/halo3/halo3_debug_reader.h
-	CacheInterface/halo3/halo3_localization_reader.cpp
-	CacheInterface/halo3/halo3_localization_reader.h
-	CacheInterface/halo3/halo3_resource_reader.cpp
-	CacheInterface/halo3/halo3_resource_reader.h
-	CacheInterface/halo3/halo3_tag_group.cpp
-	CacheInterface/halo3/halo3_tag_group.h
-	CacheInterface/halo3/halo3_tag_instance.cpp
-	CacheInterface/halo3/halo3_tag_instance.h
-	CacheInterface/halo3/halo3_tag_reader.cpp
-	CacheInterface/halo3/halo3_tag_reader.h
-	CacheInterface/infinite/infinite_cache_cluster.cpp
-	CacheInterface/infinite/infinite_cache_cluster.h
 	CacheInterface/infinite/infinite_cache_file_header.cpp
 	CacheInterface/infinite/infinite_cache_file_header.h
-	CacheInterface/infinite/infinite_cache_file_reader.cpp
-	CacheInterface/infinite/infinite_cache_file_reader.h
-	CacheInterface/infinite/infinite_debug_reader.cpp
-	CacheInterface/infinite/infinite_debug_reader.h
-	CacheInterface/infinite/infinite_file_entry_block_map.cpp
-	CacheInterface/infinite/infinite_file_entry_block_map.h
-	CacheInterface/infinite/infinite_generic_module_file_entry.cpp
-	CacheInterface/infinite/infinite_generic_module_file_entry.h
-	CacheInterface/infinite/infinite_localization_reader.cpp
-	CacheInterface/infinite/infinite_localization_reader.h
-	CacheInterface/infinite/infinite_resource_reader.cpp
-	CacheInterface/infinite/infinite_resource_reader.h
-	CacheInterface/infinite/infinite_tag_group.cpp
-	CacheInterface/infinite/infinite_tag_group.h
-	CacheInterface/infinite/infinite_tag_instance.cpp
-	CacheInterface/infinite/infinite_tag_instance.h
-	CacheInterface/infinite/infinite_tag_reader.cpp
-	CacheInterface/infinite/infinite_tag_reader.h
-	CacheInterface/infinite/infinite_ucs_reader.cpp
-	CacheInterface/infinite/infinite_ucs_reader.h
 	Filesystem/Chunks/LayoutChunks/array_definitions_chunk.cpp
 	Filesystem/Chunks/LayoutChunks/array_definitions_chunk.h
 	Filesystem/Chunks/LayoutChunks/block_definitions_chunk.cpp
@@ -225,6 +165,8 @@ add_library(MandrillLib ${BCS_LIBRARY_TYPE}
 	HighLevel/string_id_manager.h
 	HighLevel/tag_project.cpp
 	HighLevel/tag_project.h
+	HighLevel/infinite_high_level_moule_file_transplant.h
+	HighLevel/infinite_high_level_moule_file_transplant.cpp
 	Monolithic/Monolithic.h
 	Monolithic/monolithic_partition_view.cpp
 	Monolithic/monolithic_partition_view.h
@@ -239,7 +181,7 @@ add_library(MandrillLib ${BCS_LIBRARY_TYPE}
 	status_interface.h
 	tag_file_reader_stack.cpp
 	tag_file_reader_stack.h)
-
+		
 bcs_set_common_properties(MandrillLib)
 
 target_link_libraries(MandrillLib PUBLIC
@@ -257,6 +199,100 @@ target_link_libraries(MandrillLib PUBLIC
 	xxhash
 	zlib
 	${BCS_GENERATED_TAG_PROJECTS})
+
+if(${BCS_BUILD_HIGH_LEVEL_HALO_1})
+	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_1)
+	target_sources(MandrillLib PRIVATE
+	CacheInterface/halo1/halo1_cache_cluster.cpp
+	CacheInterface/halo1/halo1_cache_cluster.h
+	CacheInterface/halo1/halo1_cache_file_reader.cpp
+	CacheInterface/halo1/halo1_cache_file_reader.h
+	CacheInterface/halo1/halo1_debug_reader.cpp
+	CacheInterface/halo1/halo1_debug_reader.h
+	CacheInterface/halo1/halo1_localization_reader.cpp
+	CacheInterface/halo1/halo1_localization_reader.h
+	CacheInterface/halo1/halo1_resource_reader.cpp
+	CacheInterface/halo1/halo1_resource_reader.h
+	CacheInterface/halo1/halo1_tag_group.cpp
+	CacheInterface/halo1/halo1_tag_group.h
+	CacheInterface/halo1/halo1_tag_group_hierarchy.cpp
+	CacheInterface/halo1/halo1_tag_group_hierarchy.h
+	CacheInterface/halo1/halo1_tag_instance.cpp
+	CacheInterface/halo1/halo1_tag_instance.h
+	CacheInterface/halo1/halo1_tag_reader.cpp
+	CacheInterface/halo1/halo1_tag_reader.h)
+endif()
+if(${BCS_BUILD_HIGH_LEVEL_HALO_2})
+	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_2)
+endif()
+if(${BCS_BUILD_HIGH_LEVEL_HALO_3})
+	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_3)
+	target_sources(MandrillLib PRIVATE
+	CacheInterface/halo3/halo3_api_interop.cpp
+	CacheInterface/halo3/halo3_api_interop.h
+	CacheInterface/halo3/halo3_cache_cluster.cpp
+	CacheInterface/halo3/halo3_cache_cluster.h
+	CacheInterface/halo3/halo3_cache_file_reader.cpp
+	CacheInterface/halo3/halo3_cache_file_reader.h
+	CacheInterface/halo3/halo3_codec.cpp
+	CacheInterface/halo3/halo3_codec.h
+	CacheInterface/halo3/halo3_debug_reader.cpp
+	CacheInterface/halo3/halo3_debug_reader.h
+	CacheInterface/halo3/halo3_localization_reader.cpp
+	CacheInterface/halo3/halo3_localization_reader.h
+	CacheInterface/halo3/halo3_resource_reader.cpp
+	CacheInterface/halo3/halo3_resource_reader.h
+	CacheInterface/halo3/halo3_tag_group.cpp
+	CacheInterface/halo3/halo3_tag_group.h
+	CacheInterface/halo3/halo3_tag_instance.cpp
+	CacheInterface/halo3/halo3_tag_instance.h
+	CacheInterface/halo3/halo3_tag_reader.cpp
+	CacheInterface/halo3/halo3_tag_reader.h)
+endif()
+if(${BCS_BUILD_HIGH_LEVEL_HALO_3_ODST})
+	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_3_ODST)
+endif()
+if(${BCS_BUILD_HIGH_LEVEL_HALO_REACH})
+	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_REACH)
+endif()
+if(${BCS_BUILD_HIGH_LEVEL_HALO_4})
+	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_4)
+endif()
+if(${BCS_BUILD_HIGH_LEVEL_HALO_GROUNDHOG})
+	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_GROUNDHOG)
+endif()
+if(${BCS_BUILD_HIGH_LEVEL_HALO_5})
+	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_5)
+endif()
+if(${BCS_BUILD_HIGH_LEVEL_HALO_INFINITE})
+	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_INFINITE)
+	target_sources(MandrillLib PRIVATE
+	CacheInterface/infinite/infinite_cache_cluster.cpp
+	CacheInterface/infinite/infinite_cache_cluster.h
+	CacheInterface/infinite/infinite_cache_file_reader.cpp
+	CacheInterface/infinite/infinite_cache_file_reader.h
+	CacheInterface/infinite/infinite_debug_reader.cpp
+	CacheInterface/infinite/infinite_debug_reader.h
+	CacheInterface/infinite/infinite_file_entry_block_map.cpp
+	CacheInterface/infinite/infinite_file_entry_block_map.h
+	CacheInterface/infinite/infinite_generic_module_file_entry.cpp
+	CacheInterface/infinite/infinite_generic_module_file_entry.h
+	CacheInterface/infinite/infinite_localization_reader.cpp
+	CacheInterface/infinite/infinite_localization_reader.h
+	CacheInterface/infinite/infinite_resource_reader.cpp
+	CacheInterface/infinite/infinite_resource_reader.h
+	CacheInterface/infinite/infinite_tag_group.cpp
+	CacheInterface/infinite/infinite_tag_group.h
+	CacheInterface/infinite/infinite_tag_instance.cpp
+	CacheInterface/infinite/infinite_tag_instance.h
+	CacheInterface/infinite/infinite_tag_reader.cpp
+	CacheInterface/infinite/infinite_tag_reader.h
+	CacheInterface/infinite/infinite_ucs_reader.cpp
+	CacheInterface/infinite/infinite_ucs_reader.h)
+endif()
+if(${BCS_BUILD_HIGH_LEVEL_STUBBS})
+	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_STUBBS)
+endif()
 
 target_precompile_headers(MandrillLib PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:mandrilllib-private-pch.h>")

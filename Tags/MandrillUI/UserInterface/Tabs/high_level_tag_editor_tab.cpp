@@ -16,7 +16,9 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_pro
 	viewport_size(),
 	custom_tool(nullptr),
 	model_preview_test(nullptr),
+#if defined(BCS_BUILD_ENGINE_HALO_REACH)
 	haloreach_bitmap_test(nullptr),
+#endif
 	show_bitmap_export_file_dialog(),
 	file_browser(),
 	fields_instances(),
@@ -92,10 +94,12 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_pro
 
 c_high_level_tag_editor_tab::~c_high_level_tag_editor_tab()
 {
+#if defined(BCS_BUILD_ENGINE_HALO_REACH)
 	if (haloreach_bitmap_test)
 	{
 		delete haloreach_bitmap_test;
 	}
+#endif
 	if (model_preview_test)
 	{
 		delete model_preview_test;
@@ -288,6 +292,7 @@ bool c_high_level_tag_editor_tab::render_menu_gui_impl(e_menu_render_type menu_r
 {
 	if (menu_render_type == _menu_render_type_root_file && is_selected())
 	{
+#if defined(BCS_BUILD_ENGINE_HALO_REACH)
 		if (haloreach_bitmap_test)
 		{
 			if (ImGui::MenuItem("Export Tag"))
@@ -297,6 +302,7 @@ bool c_high_level_tag_editor_tab::render_menu_gui_impl(e_menu_render_type menu_r
 
 			ImGui::Separator();
 		}
+#endif
 	}
 	return true;
 }
@@ -309,10 +315,12 @@ void c_high_level_tag_editor_tab::render_file_dialogue_gui_impl()
 		{
 			const char* filepath = ImGui::AsyncFileDialogGetFilepathMultiByte();
 
+#if defined(BCS_BUILD_ENGINE_HALO_REACH)
 			if (haloreach_bitmap_test)
 			{
 				haloreach_bitmap_test->_export(filepath);
 			}
+#endif
 
 			debug_point;
 		}
@@ -335,10 +343,14 @@ void c_high_level_tag_editor_tab::render_tag_group()
 	{
 		model_preview_test->draw_ui();
 	}*/
+
+#if defined(BCS_BUILD_ENGINE_HALO_REACH)
 	if (haloreach_bitmap_test)
 	{
 		haloreach_bitmap_test->draw_ui();
 	}
+#endif
+
 	render_indent = -1;
 	render_prototype(tag_prototype);
 	ASSERT(render_indent == -1);

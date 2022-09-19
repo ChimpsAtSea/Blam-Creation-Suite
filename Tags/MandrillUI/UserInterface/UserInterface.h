@@ -15,9 +15,15 @@
 #include "Tabs\high_level_tag_editor_tab.h"
 #include "Tabs\halo_script_editor.h"
 #include "Tabs\tag_project_configurator_tab.h"
-#include "Tabs\halo1_bitmap_tag_viewer_tab.h"
 
+#ifdef BCS_BUILD_ENGINE_HALO_1
+#include "Tabs\Halo1\halo1_bitmap_tag_viewer_tab.h"
+#endif
+#ifdef BCS_BUILD_ENGINE_HALO_REACH
+#include "Editors\haloreach_bitmap_test.h"
+#endif
+#ifdef BCS_BUILD_ENGINE_HALO_INFINITE
 //#include "Editors\model_preview_test.h"
 //#include "Editors\infinite_tag_model.h"
 //#include "Editors\infinite_tag_mesh.h"
-#include "Editors\haloreach_bitmap_test.h"
+#endif

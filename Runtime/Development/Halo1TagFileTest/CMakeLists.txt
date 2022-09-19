@@ -13,4 +13,4 @@ target_precompile_headers(Halo1TagFileTest PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:halo1tagfiletest-private-pch.h>")
 	
 set_target_properties(Halo1TagFileTest PROPERTIES
-	FOLDER "Runtime")
+	FOLDER "Runtime/Development")

@@ -13,14 +13,6 @@ add_library(MandrillUI ${BCS_LIBRARY_TYPE}
 	HaloScript/halo_script_type_definition.h
 	HaloScript/lisp_ast_parser.cpp
 	HaloScript/lisp_ast_parser.h
-	UserInterface/Editors/haloreach_bitmap_test.cpp
-	UserInterface/Editors/haloreach_bitmap_test.h
-	#UserInterface/Editors/infinite_tag_mesh.cpp
-	#UserInterface/Editors/infinite_tag_mesh.h
-	#UserInterface/Editors/infinite_tag_model.cpp
-	#UserInterface/Editors/infinite_tag_model.h
-	#UserInterface/Editors/model_preview_test.cpp
-	#UserInterface/Editors/model_preview_test.h
 	UserInterface/Editors/surface.cpp
 	UserInterface/Editors/surface.h
 	UserInterface/Foundation/mandrill_event_queue.cpp
@@ -35,8 +27,6 @@ add_library(MandrillUI ${BCS_LIBRARY_TYPE}
 	UserInterface/Tabs/blofeld_tag_debugger_tab.h
 	UserInterface/Tabs/blofeld_tag_editor.cpp
 	UserInterface/Tabs/blofeld_tag_editor.h
-	UserInterface/Tabs/halo1_bitmap_tag_viewer_tab.cpp
-	UserInterface/Tabs/halo1_bitmap_tag_viewer_tab.h
 	UserInterface/Tabs/halo_script_editor.cpp
 	UserInterface/Tabs/halo_script_editor.h
 	UserInterface/Tabs/high_level_tag_editor_tab.cpp
@@ -53,6 +43,51 @@ add_library(MandrillUI ${BCS_LIBRARY_TYPE}
 	UserInterface/shader_profile.h
 	mandrillui-private-pch.h
 	mandrillui-public-pch.h)
+	
+if(${BCS_BUILD_ENGINE_HALO_1})
+	add_compile_definitions(BCS_BUILD_ENGINE_HALO_1)
+	target_sources(MandrillUI PRIVATE
+		UserInterface/Tabs/Halo1/halo1_bitmap_tag_viewer_tab.cpp
+		UserInterface/Tabs/Halo1/halo1_bitmap_tag_viewer_tab.h)
+endif()
+if(${BCS_BUILD_ENGINE_HALO_2})
+	add_compile_definitions(BCS_BUILD_ENGINE_HALO_2)
+endif()
+if(${BCS_BUILD_ENGINE_HALO_3})
+	add_compile_definitions(BCS_BUILD_ENGINE_HALO_3)
+endif()
+if(${BCS_BUILD_ENGINE_HALO_3_ODST})
+	add_compile_definitions(BCS_BUILD_ENGINE_HALO_3_ODST)
+endif()
+if(${BCS_BUILD_ENGINE_HALO_REACH})
+	add_compile_definitions(BCS_BUILD_ENGINE_HALO_REACH)
+	target_sources(MandrillUI PRIVATE
+		UserInterface/Editors/haloreach_bitmap_test.cpp
+		UserInterface/Editors/haloreach_bitmap_test.h)
+endif()
+if(${BCS_BUILD_ENGINE_HALO_4})
+	add_compile_definitions(BCS_BUILD_ENGINE_HALO_4)
+endif()
+if(${BCS_BUILD_ENGINE_HALO_GROUNDHOG})
+	add_compile_definitions(BCS_BUILD_ENGINE_HALO_GROUNDHOG)
+endif()
+if(${BCS_BUILD_ENGINE_HALO_5})
+	add_compile_definitions(BCS_BUILD_ENGINE_HALO_5)
+endif()
+if(${BCS_BUILD_ENGINE_HALO_INFINITE})
+	add_compile_definitions(BCS_BUILD_ENGINE_HALO_INFINITE)
+	target_sources(MandrillUI PRIVATE
+		#UserInterface/Editors/infinite_tag_mesh.cpp
+		#UserInterface/Editors/infinite_tag_mesh.h
+		#UserInterface/Editors/infinite_tag_model.cpp
+		#UserInterface/Editors/infinite_tag_model.h
+		#UserInterface/Editors/model_preview_test.cpp
+		#UserInterface/Editors/model_preview_test.h
+		)
+endif()
+if(${BCS_BUILD_HIGH_LEVEL_STUBBS})
+	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_STUBBS)
+endif()
 
 bcs_set_common_properties(MandrillUI)
 

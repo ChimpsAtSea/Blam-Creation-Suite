@@ -14,14 +14,14 @@ public:
 	virtual ~c_graphics_d3d12();
 
 	BCS_RESULT get_hardware_adapter(
-		IDXGIFactory4* dxgi_factory, 
-		D3D_FEATURE_LEVEL feature_level, 
+		D3D_FEATURE_LEVEL minimum_feature_level,
+		bool prefer_high_performance,
 		IDXGIAdapter1** dxgi_adapter_out, 
 		ID3D12Device8** device_out);
 
 	void init_debug_layer();
 	void deinit_debug_layer();
-	void init_hardware();
+	BCS_RESULT init_hardware();
 	void deinit_hardware();
 	void init_hardware_capabilities();
 	void deinit_hardware_capabilities();
@@ -38,17 +38,17 @@ public:
 	void init_root_signature();
 	void deinit_root_signature();
 
-	void ready_command_list();
+	HRESULT ready_command_list();
 	void create_command_list();
-	void finish_command_list();
+	HRESULT finish_command_list();
 	void submit_command_list();
-	void wait_for_frame_to_complete_cpu();
+	BCS_RESULT wait_for_frame_to_complete_cpu();
 	void transition_resource(
 		ID3D12Resource* resource, 
 		D3D12_RESOURCE_STATES before, 
 		D3D12_RESOURCE_STATES after);
 
-	virtual void render_frame() override;
+	virtual BCS_RESULT render_frame() override;
 
 	ID3D12Device8* device;
 
@@ -58,8 +58,13 @@ public:
 
 	ID3D12Debug* debug_interface;
 	IDXGIDebug1* dxgi_debug_interface;
+
+
+	IDXGIFactory6* dxgi_factory6;
+	IDXGIFactory5* dxgi_factory5;
 	IDXGIFactory4* dxgi_factory;
 	IDXGIAdapter1* dxgi_adapter;
+	D3D_FEATURE_LEVEL feature_level;
 
 	ID3D12CommandAllocator* command_allocator;
 	ID3D12CommandQueue* command_queue;

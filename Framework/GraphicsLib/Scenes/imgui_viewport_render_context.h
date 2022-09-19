@@ -12,8 +12,8 @@ public:
 		float4 clear_color);
 	~c_imgui_viewport_render_context();
 
-	virtual void render() override;
-	virtual void present();
+	virtual BCS_RESULT render() override;
+	virtual BCS_RESULT present();
 	virtual BCS_RESULT get_viewport(c_viewport*& viewport) override;
 	virtual BCS_RESULT get_window(c_window*& window) override;
 	virtual BCS_RESULT get_imgui_context(c_imgui_context*& imgui_context) override;

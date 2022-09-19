@@ -23,7 +23,7 @@ public:
 		const char* debug_name);
 	virtual ~c_graphics_swap_chain_d3d12();
 
-	virtual void present() override;
+	virtual BCS_RESULT present() override;
 	virtual uint32_t get_current_back_buffer_index() override;
 
 	static void window_resize_event(c_graphics_swap_chain_d3d12& _this, uint32_t width, uint32_t height);

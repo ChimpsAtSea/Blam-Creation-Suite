@@ -7,13 +7,16 @@ c_window_windows::c_window_windows(
 	uint32_t init_width,
 	uint32_t init_height,
 	float4 background_color,
+	bool allow_adapter_recovery,
 	const char* debug_name) :
 	window_handle(NULL),
 	window_brush(NULL),
 	window_icon(NULL),
 	process_module(),
 	window_class_name(),
-	is_open(true)
+	background_color(background_color),
+	is_open(true),
+	allow_adapter_recovery(allow_adapter_recovery)
 {
 	BCS_FAIL_THROW(get_process_module(process_module));
 
@@ -172,6 +175,7 @@ BCS_RESULT window_windows_create(
 	uint32_t width,
 	uint32_t height,
 	float4 background_color,
+	bool allow_adapter_recovery,
 	c_window_windows*& window,
 	const char* debug_name)
 {
@@ -184,6 +188,7 @@ BCS_RESULT window_windows_create(
 			width,
 			height,
 			background_color,
+			allow_adapter_recovery,
 			debug_name);
 	}
 	catch (BCS_RESULT rs)

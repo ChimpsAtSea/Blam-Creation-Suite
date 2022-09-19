@@ -2,31 +2,34 @@
 #include "callback.h"
 
 #ifdef _WIN64
-#pragma comment(linker, "/export:??R_callback@@QEAAXZZ=execute_callback_list") // s_callback::operator()(...)
+#pragma comment(linker, "/export:??R_callback@@QEAAXZZ=execute_callback_list") // void s_callback::operator()(...)
+#pragma comment(linker, "/export:??R_callback@@QEAA_JZZ=execute_callback_list") // intptr_t s_callback::operator()(...)
 #else
-#pragma comment(linker, "/export:??R_callback@@QAAXZZ=_execute_callback_list") // s_callback::operator()(...)
+#pragma comment(linker, "/export:??R_callback@@QAAXZZ=_execute_callback_list") // void s_callback::operator()(...)
 #endif
 
-void execute_callback_list(
-	s_callback* callback_manager,
+__declspec(dllexport) intptr_t execute_callback_list(
+	s_callback* callback,
 	uint64_t register1,
 	uint64_t register2,
 	uint64_t register3,
 	uint64_t stack)
 {
-	s_callback_entry* entry = callback_manager->entry;
+	intptr_t result = 0;
+
+	s_callback_entry* entry = callback->entry;
 	while (entry)
 	{
-		void(*callback)() = entry->callback;
+		intptr_t(*callback)() = entry->callback;
 
 #define execute_callback()										\
-		callback(												\
+		result = callback(												\
 		register1, register2, register3, (&stack)[0], 			\
 		(&stack)[1], (&stack)[2], (&stack)[3], (&stack)[4],		\
 		(&stack)[5], (&stack)[6], (&stack)[7], (&stack)[8],		\
 		(&stack)[9], (&stack)[10], (&stack)[11], (&stack)[12])
 #define execute_userdata_callback(...)							\
-		callback(__VA_ARGS__, 									\
+		result = callback(__VA_ARGS__, 									\
 		register1, register2, register3, (&stack)[0], 			\
 		(&stack)[1], (&stack)[2], (&stack)[3], (&stack)[4],		\
 		(&stack)[5], (&stack)[6], (&stack)[7], (&stack)[8],		\
@@ -52,4 +55,6 @@ void execute_callback_list(
 
 #undef execute_callback
 #undef userdata
+
+	return result;
 }

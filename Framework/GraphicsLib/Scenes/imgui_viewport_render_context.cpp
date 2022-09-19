@@ -62,18 +62,23 @@ c_imgui_viewport_render_context::~c_imgui_viewport_render_context()
 	BCS_FAIL_THROW(remove_callback_result);
 }
 
-void c_imgui_viewport_render_context::render()
+BCS_RESULT c_imgui_viewport_render_context::render()
 {
+	BCS_RESULT rs = BCS_S_OK;
+
 	ImGuiContext* old_context = ImGui::GetCurrentContext();
 	{
-		ImGuiContext* new_context;
-	
 		c_imgui_context* imgui_context;
-		BCS_RESULT get_imgui_context_result = parent_render_context.get_imgui_context(imgui_context);
-		ASSERT(BCS_SUCCEEDED(get_imgui_context_result));
-	
-		BCS_RESULT get_imgui_context_result2 = imgui_context->get_context(new_context);
-		ASSERT(BCS_SUCCEEDED(get_imgui_context_result));
+		if (BCS_FAILED(rs = parent_render_context.get_imgui_context(imgui_context)))
+		{
+			return rs;
+		}
+
+		ImGuiContext* new_context;
+		if (BCS_FAILED(rs = imgui_context->get_context(new_context)))
+		{
+			return rs;
+		}
 	
 		ImGui::SetCurrentContext(new_context);
 	
@@ -93,8 +98,10 @@ void c_imgui_viewport_render_context::render()
 	ImGui::SetCurrentContext(old_context);
 }
 
-void c_imgui_viewport_render_context::present()
+BCS_RESULT c_imgui_viewport_render_context::present()
 {
+	BCS_RESULT rs = BCS_S_OK;
+
 	uint32_t backbuffer_index = swap_chain->get_current_back_buffer_index();
 	c_graphics_render_target* backbuffer = swap_chain_render_targets[backbuffer_index];
 
@@ -107,6 +114,8 @@ void c_imgui_viewport_render_context::present()
 
 		ImGui::Image(display_handle, content_region);
 	}
+
+	return rs;
 }
 
 BCS_RESULT c_imgui_viewport_render_context::get_viewport(c_viewport*& out_viewport)

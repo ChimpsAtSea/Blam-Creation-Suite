@@ -783,6 +783,7 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 		c_tag_struct_chunk* tag_struct_chunk = new() c_tag_struct_chunk(*tag_resource_exploded_chunk);
 
 		h_prototype* object = h_prototype::create_high_level_object(tag_resource_definition.struct_definition, engine_platform_build);
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_3
 		if (blofeld::halo3::pc64::h_sound_resource_definition_struct* sound_resource_definition_struct = dynamic_cast<decltype(sound_resource_definition_struct)>(object))
 		{
 			sound_resource_definition_struct->sample_data.insert(
@@ -790,7 +791,8 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 				static_cast<const char*>(simple_resource_container->data.data()), 
 				static_cast<const char*>(simple_resource_container->data.data()) + simple_resource_container->data.size());
 		}
-		else 
+		else
+#endif
 		{
 			throw; // not implemented
 		}

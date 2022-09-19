@@ -22,6 +22,7 @@ using namespace xxhash::literals;
 #include "crc32.h"
 #include "integral_limits.h"
 #include "bcs_assert.h"
+#include "bcs_result.h"
 #include "bcs_result_handle.h"
 #include "callback.h"
 #include "debug_point.h"

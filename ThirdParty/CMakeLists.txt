@@ -11,7 +11,15 @@ add_custom_target(VcPkgBootstrap ALL
 
 set(VCPKG_TRIPLETS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg-custom-triplets/")
 add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/VcPkg.stamp
-    COMMAND ${VCPKG} install "curl:${VCPKG_TRIPLET}" "rapidjson:${VCPKG_TRIPLET}" "ffmpeg[core,avcodec,swresample]:${VCPKG_TRIPLET}" "mimalloc:${VCPKG_TRIPLET}" "--overlay-triplets=${VCPKG_TRIPLETS_DIR}" --recurse
+    COMMAND ${VCPKG} install 
+	"curl:${VCPKG_TRIPLET}" 
+	"rapidjson:${VCPKG_TRIPLET}" 
+	"ffmpeg[core,avcodec,swresample]:${VCPKG_TRIPLET}" 
+	"mimalloc:${VCPKG_TRIPLET}" 
+	"directxtex:${VCPKG_TRIPLET}" 
+	"directxmesh:${VCPKG_TRIPLET}" 
+	"--overlay-triplets=${VCPKG_TRIPLETS_DIR}" 
+	--recurse
     COMMAND ${CMAKE_COMMAND} -E touch "${CMAKE_BINARY_DIR}/VcPkg.stamp")
 
 add_custom_target(VcPkg ALL

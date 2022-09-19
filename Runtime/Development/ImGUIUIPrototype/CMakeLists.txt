@@ -14,4 +14,4 @@ target_precompile_headers(ImGUIUIPrototype PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:imguiuiprototype-private-pch.h>")
 	
 set_target_properties(ImGUIUIPrototype PROPERTIES
-	FOLDER "Runtime")
+	FOLDER "Runtime/Development")

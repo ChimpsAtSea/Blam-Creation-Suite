@@ -13,8 +13,11 @@ c_graphics_d3d12::c_graphics_d3d12(bool use_debug_layer) :
 	fence_value(0),
 	debug_interface(nullptr),
 	dxgi_debug_interface(nullptr),
+	dxgi_factory6(nullptr),
+	dxgi_factory5(nullptr),
 	dxgi_factory(nullptr),
 	dxgi_adapter(nullptr),
+	feature_level(),
 	cbv_srv_uav_descriptor_heap_allocator_gpu(nullptr),
 	cbv_srv_uav_descriptor_heap_allocator_cpu(nullptr),
 	sampler_descriptor_heap_allocator_gpu(nullptr),
@@ -96,13 +99,53 @@ void c_graphics_d3d12::deinit_debug_layer()
 	}
 }
 
-void c_graphics_d3d12::init_hardware()
+BCS_RESULT c_graphics_d3d12::init_hardware()
 {
-	HRESULT create_dxgi_factory_result = CreateDXGIFactory1(IID_PPV_ARGS(&dxgi_factory));
-	ASSERT(SUCCEEDED(create_dxgi_factory_result));
+	HRESULT create_dxgi_factory_result = S_OK;
 
-	BCS_RESULT get_hardware_adapter_result = get_hardware_adapter(dxgi_factory, D3D_FEATURE_LEVEL_12_1, &dxgi_adapter, &device);
-	ASSERT(BCS_SUCCEEDED(get_hardware_adapter_result));
+	create_dxgi_factory_result = CreateDXGIFactory1(IID_PPV_ARGS(&dxgi_factory6));
+	if (SUCCEEDED(create_dxgi_factory_result))
+	{
+		// get factory5 interface
+		if (FAILED(create_dxgi_factory_result = dxgi_factory6->QueryInterface(IID_PPV_ARGS(&dxgi_factory5))))
+		{
+			return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(create_dxgi_factory_result);
+		}
+		// get factory4 interface
+		if (FAILED(create_dxgi_factory_result = dxgi_factory6->QueryInterface(IID_PPV_ARGS(&dxgi_factory))))
+		{
+			return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(create_dxgi_factory_result);
+		}
+		goto create_dxgi_factory_succeeded;
+	}
+	else create_dxgi_factory_result = CreateDXGIFactory1(IID_PPV_ARGS(&dxgi_factory5));
+	if (SUCCEEDED(create_dxgi_factory_result))
+	{
+		// get factory4 interface
+		if (FAILED(create_dxgi_factory_result = dxgi_factory5->QueryInterface(IID_PPV_ARGS(&dxgi_factory))))
+		{
+			return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(create_dxgi_factory_result);
+		}
+		goto create_dxgi_factory_succeeded;
+	}
+	else create_dxgi_factory_result = CreateDXGIFactory1(IID_PPV_ARGS(&dxgi_factory));
+	if (FAILED(create_dxgi_factory_result))
+	{
+		return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(create_dxgi_factory_result);
+	}
+	create_dxgi_factory_succeeded:
+	ASSERT(dxgi_factory != nullptr);
+
+	BCS_RESULT get_hardware_adapter_result = get_hardware_adapter(
+		D3D_FEATURE_LEVEL_12_0, 
+		true, 
+		&dxgi_adapter, 
+		&device);
+	if (BCS_FAILED(get_hardware_adapter_result))
+	{
+		return get_hardware_adapter_result;
+	}
+
 	ASSERT(dxgi_adapter != nullptr);
 	ASSERT(device != nullptr);
 }
@@ -119,6 +162,14 @@ void c_graphics_d3d12::deinit_hardware()
 	}
 	ASSERT(device_reference_count == 0);
 
+	if (dxgi_factory6 != nullptr)
+	{
+		dxgi_factory6->Release();
+	}
+	if (dxgi_factory5 != nullptr)
+	{
+		dxgi_factory5->Release();
+	}
 	ULONG dxgi_factory_reference_count = dxgi_factory->Release();
 	ASSERT(dxgi_factory_reference_count == 0);
 }
@@ -215,21 +266,25 @@ void c_graphics_d3d12::deinit_command_list()
 	ASSERT(command_list_reference_count == 0);
 }
 
-
-void c_graphics_d3d12::ready_command_list()
+HRESULT c_graphics_d3d12::ready_command_list()
 {
 	// Command list allocators can only be reset when the associated 
 	// command lists have finished execution on the GPU; apps should use 
 	// fences to determine GPU execution progress.
-
 	HRESULT command_allocator_reset_result = command_allocator->Reset();
-	ASSERT(SUCCEEDED(command_allocator_reset_result));
+	if (FAILED(command_allocator_reset_result))
+	{
+		return command_allocator_reset_result;
+	}
 
 	// However, when ExecuteCommandList() is called on a particular command 
 	// list, that command list can then be reset at any time and must be before 
 	// re-recording.
 	HRESULT command_list_reset_result = command_list->Reset(command_allocator, nullptr);
-	ASSERT(SUCCEEDED(command_list_reset_result));
+	if (FAILED(command_allocator_reset_result))
+	{
+		return command_allocator_reset_result;
+	}
 }
 
 void c_graphics_d3d12::create_command_list()
@@ -240,10 +295,15 @@ void c_graphics_d3d12::create_command_list()
 	render_callback();
 }
 
-void c_graphics_d3d12::finish_command_list()
+HRESULT c_graphics_d3d12::finish_command_list()
 {
 	HRESULT command_list_close_result = command_list->Close();
-	ASSERT(SUCCEEDED(command_list_close_result));
+	if (FAILED(command_list_close_result))
+	{
+		return command_list_close_result;
+	}
+
+	return S_OK;
 }
 
 void c_graphics_d3d12::submit_command_list()
@@ -253,18 +313,41 @@ void c_graphics_d3d12::submit_command_list()
 	command_queue->ExecuteCommandLists(_countof(command_lists), command_lists);
 }
 
-void c_graphics_d3d12::render_frame()
+BCS_RESULT c_graphics_d3d12::render_frame()
 {
-	ready_command_list();
+	BCS_RESULT rs = BCS_S_OK;
+
+	HRESULT ready_command_list_result = ready_command_list();
+	if (FAILED(ready_command_list_result))
+	{
+		return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(ready_command_list_result);
+	}
+
 	create_command_list();
-	finish_command_list();
+
+	HRESULT finish_command_list_result = finish_command_list();
+	if (FAILED(finish_command_list_result))
+	{
+		return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(finish_command_list_result);
+	}
+
 	submit_command_list();
-	present_callback();
-	wait_for_frame_to_complete_cpu();
+
+	if (BCS_FAILED(rs = present_callback.call<BCS_RESULT>()))
+	{
+		return rs;
+	}
+
+	if (BCS_FAILED(rs = wait_for_frame_to_complete_cpu()))
+	{
+		return rs;
+	}
 }
 
-void c_graphics_d3d12::wait_for_frame_to_complete_cpu()
+BCS_RESULT c_graphics_d3d12::wait_for_frame_to_complete_cpu()
 {
+	BCS_RESULT rs = BCS_S_OK;
+
 	// WAITING FOR THE FRAME TO COMPLETE BEFORE CONTINUING IS NOT BEST PRACTICE.
 	// This is code implemented as such for simplicity. More advanced samples 
 	// illustrate how to use fences for efficient resource usage.
@@ -272,16 +355,24 @@ void c_graphics_d3d12::wait_for_frame_to_complete_cpu()
 	// Signal and increment the fence value.
 	const UINT64 current_fence_value = fence_value;
 	HRESULT command_queue_signal_result = command_queue->Signal(fence, current_fence_value);
-	ASSERT(SUCCEEDED(command_queue_signal_result));
+	if (FAILED(command_queue_signal_result))
+	{
+		return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(command_queue_signal_result);
+	}
 	fence_value++;
 
 	// Wait until the previous frame is finished.
 	if (fence->GetCompletedValue() < current_fence_value)
 	{
 		HRESULT command_queue_set_event_on_completion_result = fence->SetEventOnCompletion(current_fence_value, fence_event);
-		ASSERT(SUCCEEDED(command_queue_set_event_on_completion_result));
+		if (FAILED(command_queue_signal_result))
+		{
+			return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(command_queue_set_event_on_completion_result);
+		}
 		WaitForSingleObject(fence_event, INFINITE);
 	}
+
+	return rs;
 }
 
 void c_graphics_d3d12::init_synchronization_objects()
@@ -332,7 +423,7 @@ void c_graphics_d3d12::init_root_signature()
 	static D3D12_ROOT_DESCRIPTOR_TABLE descriptor_table_uav_1 = {};
 	descriptor_table_uav_1.NumDescriptorRanges = 1;
 	descriptor_table_uav_1.pDescriptorRanges = &descriptor_range_uav_1;
-	
+
 	static D3D12_ROOT_DESCRIPTOR_TABLE* descriptor_tables[] =
 	{
 		&descriptor_table_uav_0,
@@ -354,7 +445,7 @@ void c_graphics_d3d12::init_root_signature()
 	root_signature_description.Init(
 		_countof(root_parameters),
 		root_parameters,
-		0, 
+		0,
 		nullptr,
 		D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT | // we can deny shader stages here for better performance
 		D3D12_ROOT_SIGNATURE_FLAG_DENY_HULL_SHADER_ROOT_ACCESS |
@@ -382,8 +473,8 @@ void c_graphics_d3d12::deinit_root_signature()
 }
 
 void c_graphics_d3d12::transition_resource(
-	ID3D12Resource* resource, 
-	D3D12_RESOURCE_STATES before, 
+	ID3D12Resource* resource,
+	D3D12_RESOURCE_STATES before,
 	D3D12_RESOURCE_STATES after)
 {
 	D3D12_RESOURCE_BARRIER readback_barrier{};
@@ -397,14 +488,35 @@ void c_graphics_d3d12::transition_resource(
 	command_list->ResourceBarrier(1, &readback_barrier);
 }
 
-BCS_RESULT c_graphics_d3d12::get_hardware_adapter(IDXGIFactory4* dxgi_factory, D3D_FEATURE_LEVEL feature_level, IDXGIAdapter1** dxgi_adapter_out, ID3D12Device8** device_out)
+BCS_RESULT c_graphics_d3d12::get_hardware_adapter(D3D_FEATURE_LEVEL minimum_feature_level, bool prefer_high_performance, IDXGIAdapter1** dxgi_adapter_out, ID3D12Device8** device_out)
 {
 	*dxgi_adapter_out = nullptr;
 	*device_out = nullptr;
 	for (UINT adapter_index = 0; ; ++adapter_index)
 	{
 		IDXGIAdapter1* dxgi_adapter = nullptr;
-		if (DXGI_ERROR_NOT_FOUND == dxgi_factory->EnumAdapters1(adapter_index, &dxgi_adapter))
+
+		HRESULT enum_adapters_result = DXGI_ERROR_NOT_FOUND;
+		if (dxgi_factory6 != nullptr)
+		{
+			DXGI_GPU_PREFERENCE gpu_preference = DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE;
+			// #TODO: Read setting for minimum performance gpu
+			// #NOTE: Prefer an onboard GPU to prevent nuking main GPU performance
+			// #NOTE: COMPUTE will need to be aware of the avilable adapter interfaces
+			//			and user should be able to configure workload adapter indices
+			if (!prefer_high_performance)
+			{
+				gpu_preference = DXGI_GPU_PREFERENCE_MINIMUM_POWER;
+			}
+
+			enum_adapters_result = dxgi_factory6->EnumAdapterByGpuPreference(adapter_index, gpu_preference, IID_PPV_ARGS(&dxgi_adapter));
+		}
+		else
+		{
+			enum_adapters_result = dxgi_factory->EnumAdapters1(adapter_index, &dxgi_adapter);
+		}
+
+		if (enum_adapters_result == DXGI_ERROR_NOT_FOUND)
 		{
 			// No more adapters to enumerate.
 			break;
@@ -412,14 +524,37 @@ BCS_RESULT c_graphics_d3d12::get_hardware_adapter(IDXGIFactory4* dxgi_factory, D
 
 		DXGI_ADAPTER_DESC1 adapter_description{};
 		dxgi_adapter->GetDesc1(&adapter_description);
-		console_write_line_verbose("Adapter %u '%S'", adapter_index, adapter_description.Description);
+		console_write_verbose("Adapter %u '%S'", adapter_index, adapter_description.Description);
 
 		ID3D12Device8* device = nullptr;
-		HRESULT create_device_result = D3D12CreateDevice(
-			dxgi_adapter,
+		
+		HRESULT create_device_result = E_FAIL;
+
+		static constexpr D3D_FEATURE_LEVEL requested_feature_levels[] =
+		{
+			D3D_FEATURE_LEVEL_12_2,
 			D3D_FEATURE_LEVEL_12_1,
-			IID_PPV_ARGS(&device)
-		);
+			D3D_FEATURE_LEVEL_12_0
+		};
+		for (D3D_FEATURE_LEVEL request_feature_level : requested_feature_levels)
+		{
+			if (FAILED(create_device_result) && request_feature_level >= minimum_feature_level)
+			{
+				create_device_result = D3D12CreateDevice(dxgi_adapter, request_feature_level, IID_PPV_ARGS(&device));
+				if (SUCCEEDED(create_device_result))
+				{
+					int major = request_feature_level >> 12 & 0xF;
+					int minor = request_feature_level >> 8 & 0xF;
+					console_write_line_verbose(" using D3D_FEATURE_LEVEL_%i_%i", major, minor);
+					feature_level = request_feature_level;
+					break;
+				}
+			}
+		}
+		if (FAILED(create_device_result))
+		{
+			console_write_line_verbose(" unsupported");
+		}
 		if (SUCCEEDED(create_device_result))
 		{
 			device->CheckFeatureSupport(D3D12_FEATURE_D3D12_OPTIONS, &options, sizeof(options));
@@ -443,11 +578,12 @@ BCS_RESULT c_graphics_d3d12::get_hardware_adapter(IDXGIFactory4* dxgi_factory, D
 			{
 				UINT device_reference_count = device->Release();
 				ASSERT(device_reference_count == 0);
-
-				UINT dxgi_adapter_reference_count = dxgi_adapter->Release();
-				ASSERT(dxgi_adapter_reference_count == 0);
 			}
 		}
+
+		UINT dxgi_adapter_reference_count = dxgi_adapter->Release();
+		ASSERT(dxgi_adapter_reference_count == 0);
+
 	}
 	return BCS_E_FAIL; // failed to find a suitable device
 }

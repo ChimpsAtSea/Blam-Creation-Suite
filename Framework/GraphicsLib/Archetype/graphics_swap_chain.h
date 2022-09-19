@@ -11,7 +11,7 @@ protected:
 public:
 	virtual ~c_graphics_swap_chain();
 
-	virtual void present() = 0;
+	virtual BCS_RESULT present() = 0;
 	virtual uint32_t get_current_back_buffer_index() = 0;
 
 	using t_graphics_resize_event = void(uint32_t width, uint32_t height);
