@@ -87,6 +87,9 @@ c_graphics_swap_chain_d3d12::c_graphics_swap_chain_d3d12(
 
 c_graphics_swap_chain_d3d12::~c_graphics_swap_chain_d3d12()
 {
+	BCS_RESULT rs = viewport.on_size_changed.remove_callback(window_resize_callback_handle);
+	BCS_FAIL_THROW(rs);
+
 	ULONG dxgi_swap_chain_reference_count = dxgi_swap_chain->Release();
 	ASSERT(dxgi_swap_chain_reference_count == 0);
 }
@@ -98,17 +101,6 @@ BCS_RESULT c_graphics_swap_chain_d3d12::present()
 	if (dxgi_swap_chain)
 	{
 		HRESULT present_result = dxgi_swap_chain->Present(1, 0);
-		if (FAILED(present_result))
-		{
-			switch (present_result)
-			{
-			case DXGI_ERROR_DEVICE_REMOVED:
-			case DXGI_ERROR_DEVICE_RESET:
-				return BCS_E_GRAPHICS_DEVICE_LOST;
-			default:
-				return BCS_E_GRAPHICS_HRESULT_ERROR;
-			}
-		}
 		current_back_buffer_index = dxgi_swap_chain->GetCurrentBackBufferIndex();
 	}
 	else if(imgui_viewport_render_context)

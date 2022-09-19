@@ -20,16 +20,16 @@ __declspec(dllexport) intptr_t execute_callback_list(
 	s_callback_entry* entry = callback->entry;
 	while (entry)
 	{
-		intptr_t(*callback)() = entry->callback;
+		intptr_t(*callback_procedure)() = entry->callback;
 
 #define execute_callback()										\
-		result = callback(												\
+		result = callback_procedure(												\
 		register1, register2, register3, (&stack)[0], 			\
 		(&stack)[1], (&stack)[2], (&stack)[3], (&stack)[4],		\
 		(&stack)[5], (&stack)[6], (&stack)[7], (&stack)[8],		\
 		(&stack)[9], (&stack)[10], (&stack)[11], (&stack)[12])
 #define execute_userdata_callback(...)							\
-		result = callback(__VA_ARGS__, 									\
+		result = callback_procedure(__VA_ARGS__, 									\
 		register1, register2, register3, (&stack)[0], 			\
 		(&stack)[1], (&stack)[2], (&stack)[3], (&stack)[4],		\
 		(&stack)[5], (&stack)[6], (&stack)[7], (&stack)[8],		\

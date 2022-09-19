@@ -22,6 +22,7 @@ public:
 	~c_window_windows();
 
 	virtual bool update() override;
+	virtual bool allow_adapter_recovery() override;
 
 	static LRESULT CALLBACK window_procedure_callback(HWND window_handle, UINT message, WPARAM wparam, LPARAM lparam);
 	LRESULT window_procedure(HWND window_handle, UINT message, WPARAM wparam, LPARAM lparam);
@@ -40,7 +41,7 @@ public:
 	const wchar_t* window_class_name;
 	float4 background_color;
 	bool is_open : 1;
-	bool allow_adapter_recovery : 1;
+	bool adapter_recovery_enabled : 1;
 };
 
 BCS_RESULT window_windows_create(

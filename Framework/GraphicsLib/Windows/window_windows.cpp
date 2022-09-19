@@ -16,7 +16,7 @@ c_window_windows::c_window_windows(
 	window_class_name(),
 	background_color(background_color),
 	is_open(true),
-	allow_adapter_recovery(allow_adapter_recovery)
+	adapter_recovery_enabled(allow_adapter_recovery)
 {
 	BCS_FAIL_THROW(get_process_module(process_module));
 
@@ -121,6 +121,11 @@ bool c_window_windows::update()
 		DispatchMessage(&window_message);
 	}
 	return is_open;
+}
+
+bool c_window_windows::allow_adapter_recovery()
+{
+	return adapter_recovery_enabled;
 }
 
 LRESULT CALLBACK c_window_windows::window_procedure_callback(HWND window_handle, UINT message, WPARAM wparam, LPARAM lparam)

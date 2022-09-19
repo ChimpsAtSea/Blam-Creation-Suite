@@ -38,6 +38,9 @@ public:
 	void init_root_signature();
 	void deinit_root_signature();
 
+	HRESULT last_error;
+	BCS_RESULT hresult_to_bcs_result(HRESULT result);
+
 	HRESULT ready_command_list();
 	void create_command_list();
 	HRESULT finish_command_list();

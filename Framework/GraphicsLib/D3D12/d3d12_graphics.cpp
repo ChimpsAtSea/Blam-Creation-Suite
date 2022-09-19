@@ -109,12 +109,12 @@ BCS_RESULT c_graphics_d3d12::init_hardware()
 		// get factory5 interface
 		if (FAILED(create_dxgi_factory_result = dxgi_factory6->QueryInterface(IID_PPV_ARGS(&dxgi_factory5))))
 		{
-			return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(create_dxgi_factory_result);
+			return hresult_to_bcs_result(create_dxgi_factory_result);
 		}
 		// get factory4 interface
 		if (FAILED(create_dxgi_factory_result = dxgi_factory6->QueryInterface(IID_PPV_ARGS(&dxgi_factory))))
 		{
-			return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(create_dxgi_factory_result);
+			return hresult_to_bcs_result(create_dxgi_factory_result);
 		}
 		goto create_dxgi_factory_succeeded;
 	}
@@ -124,14 +124,14 @@ BCS_RESULT c_graphics_d3d12::init_hardware()
 		// get factory4 interface
 		if (FAILED(create_dxgi_factory_result = dxgi_factory5->QueryInterface(IID_PPV_ARGS(&dxgi_factory))))
 		{
-			return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(create_dxgi_factory_result);
+			return hresult_to_bcs_result(create_dxgi_factory_result);
 		}
 		goto create_dxgi_factory_succeeded;
 	}
 	else create_dxgi_factory_result = CreateDXGIFactory1(IID_PPV_ARGS(&dxgi_factory));
 	if (FAILED(create_dxgi_factory_result))
 	{
-		return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(create_dxgi_factory_result);
+		return hresult_to_bcs_result(create_dxgi_factory_result);
 	}
 	create_dxgi_factory_succeeded:
 	ASSERT(dxgi_factory != nullptr);
@@ -266,6 +266,23 @@ void c_graphics_d3d12::deinit_command_list()
 	ASSERT(command_list_reference_count == 0);
 }
 
+BCS_RESULT c_graphics_d3d12::hresult_to_bcs_result(HRESULT result)
+{
+	if (FAILED(result))
+	{
+		last_error = result;
+		switch (result)
+		{
+		case DXGI_ERROR_DEVICE_REMOVED:
+		case DXGI_ERROR_DEVICE_RESET:
+			return BCS_E_GRAPHICS_DEVICE_LOST;
+		default:
+			return BCS_E_GRAPHICS_HRESULT_ERROR;
+		}
+	}
+	return BCS_S_GRAPHICS_HRESULT_OK;
+}
+
 HRESULT c_graphics_d3d12::ready_command_list()
 {
 	// Command list allocators can only be reset when the associated 
@@ -320,7 +337,7 @@ BCS_RESULT c_graphics_d3d12::render_frame()
 	HRESULT ready_command_list_result = ready_command_list();
 	if (FAILED(ready_command_list_result))
 	{
-		return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(ready_command_list_result);
+		return hresult_to_bcs_result(ready_command_list_result);
 	}
 
 	create_command_list();
@@ -328,7 +345,7 @@ BCS_RESULT c_graphics_d3d12::render_frame()
 	HRESULT finish_command_list_result = finish_command_list();
 	if (FAILED(finish_command_list_result))
 	{
-		return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(finish_command_list_result);
+		return hresult_to_bcs_result(finish_command_list_result);
 	}
 
 	submit_command_list();
@@ -357,7 +374,7 @@ BCS_RESULT c_graphics_d3d12::wait_for_frame_to_complete_cpu()
 	HRESULT command_queue_signal_result = command_queue->Signal(fence, current_fence_value);
 	if (FAILED(command_queue_signal_result))
 	{
-		return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(command_queue_signal_result);
+		return hresult_to_bcs_result(command_queue_signal_result);
 	}
 	fence_value++;
 
@@ -367,7 +384,7 @@ BCS_RESULT c_graphics_d3d12::wait_for_frame_to_complete_cpu()
 		HRESULT command_queue_set_event_on_completion_result = fence->SetEventOnCompletion(current_fence_value, fence_event);
 		if (FAILED(command_queue_signal_result))
 		{
-			return BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(command_queue_set_event_on_completion_result);
+			return hresult_to_bcs_result(command_queue_set_event_on_completion_result);
 		}
 		WaitForSingleObject(fence_event, INFINITE);
 	}
@@ -392,7 +409,8 @@ void c_graphics_d3d12::init_synchronization_objects()
 	// Wait for the command list to execute; we are reusing the same command 
 	// list in our main loop but for now, we just want to wait for setup to 
 	// complete before continuing.
-	wait_for_frame_to_complete_cpu();
+	BCS_RESULT wait_for_frame_to_complete_result = wait_for_frame_to_complete_cpu();
+	ASSERT(BCS_SUCCEEDED(wait_for_frame_to_complete_result));
 }
 
 void c_graphics_d3d12::deinit_synchronization_objects()

@@ -19,6 +19,7 @@ protected:
 public:
 	virtual ~c_window();
 	virtual bool update() = 0;
+	virtual bool allow_adapter_recovery() = 0;
 };
 
 BCS_DEBUG_API BCS_RESULT window_create(

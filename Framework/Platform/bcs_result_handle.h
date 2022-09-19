@@ -21,7 +21,6 @@ BCS_DEBUG_API const char* bcs_result_get_string(BCS_RESULT result);
 
 #define BCS_FAILED(result) (static_cast<BCS_RESULT>(result) < 0)
 #define BCS_SUCCEEDED(result) (static_cast<BCS_RESULT>(result) >= 0)
-#define BCS_GRAPHICS_HRESULT_TO_BCS_RESULT(hresult) (FAILED(hresult) ? (BCS_E_GRAPHICS_HRESULT_ERROR) : (BCS_S_GRAPHICS_HRESULT_OK)) 
 
 #define BCS_VALIDATE_ARGUMENT_THROW(expression) \
 	if(!(expression)) \
