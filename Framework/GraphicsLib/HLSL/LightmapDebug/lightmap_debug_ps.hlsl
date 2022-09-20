@@ -5,6 +5,7 @@ PixelOutput main(VertexOutput input) : SV_Target
 	PixelOutput output;
 
 	output.Position = input.Position;
+	output.Color = input.Color;
 	output.Normal = input.Normal;
 	output.Tangent = input.Tangent;
 	output.Binormal = input.Binormal;

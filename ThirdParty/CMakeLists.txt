@@ -18,6 +18,8 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/VcPkg.stamp
 	"mimalloc:${VCPKG_TRIPLET}" 
 	"directxtex:${VCPKG_TRIPLET}" 
 	"directxmesh:${VCPKG_TRIPLET}" 
+	"uvatlas:${VCPKG_TRIPLET}" 
+	"assimp:${VCPKG_TRIPLET}" 
 	"--overlay-triplets=${VCPKG_TRIPLETS_DIR}" 
 	--recurse
     COMMAND ${CMAKE_COMMAND} -E touch "${CMAKE_BINARY_DIR}/VcPkg.stamp")
