@@ -103,7 +103,10 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 		L"c_graphics_d3d12::rtv_descriptor_heap_allocator_cpu"
 	);
 
-	dxgi_format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	// dxgi_format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	BCS_RESULT graphics_data_format_to_dxgi_format_result = graphics_data_format_to_dxgi_format(format, dxgi_format);
+	BCS_FAIL_THROW(graphics_data_format_to_dxgi_format_result);
+
 	clear_value.Format = dxgi_format;
 	clear_value.Color[0] = clear_color.x;
 	clear_value.Color[1] = clear_color.y;
@@ -171,7 +174,9 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 		L"c_graphics_d3d12::rtv_descriptor_heap_allocator_cpu"
 	);
 
-	dxgi_format = DXGI_FORMAT_D32_FLOAT;
+	// dxgi_format = DXGI_FORMAT_D32_FLOAT;
+	BCS_RESULT graphics_data_format_to_dxgi_format_result = graphics_data_format_to_dxgi_format(format, dxgi_format);
+	BCS_FAIL_THROW(graphics_data_format_to_dxgi_format_result);
 
 	depth_stencil_view_description.Format = dxgi_format;
 	depth_stencil_view_description.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D;

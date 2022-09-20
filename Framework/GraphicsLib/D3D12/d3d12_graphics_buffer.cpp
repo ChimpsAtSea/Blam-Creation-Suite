@@ -73,6 +73,11 @@ BCS_RESULT c_graphics_buffer_d3d12::write_data(const void* buffer, uint32_t buff
 	return BCS_S_OK;
 }
 
+BCS_RESULT c_graphics_buffer_d3d12::write_data(const void* buffer, uint32_t element_size, uint32_t element_count)
+{
+	return write_data(buffer, element_size * element_count);
+}
+
 BCS_RESULT c_graphics_buffer_d3d12::read_data(void* buffer, uint32_t buffer_size)
 {
 	return BCS_E_NOT_IMPLEMENTED;
