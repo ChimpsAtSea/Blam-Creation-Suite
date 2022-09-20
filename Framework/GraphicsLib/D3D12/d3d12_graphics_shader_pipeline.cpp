@@ -27,6 +27,7 @@ c_graphics_shader_pipeline_d3d12::c_graphics_shader_pipeline_d3d12(
 	pipeline_state_description.NumRenderTargets = num_render_targets;
 	pipeline_state_description.SampleDesc.Count = 1;
 	pipeline_state_description.RasterizerState.CullMode = D3D12_CULL_MODE_FRONT;
+	pipeline_state_description.RasterizerState.FrontCounterClockwise = FALSE;
 
 	for (uint32_t render_target_index = 0; render_target_index < num_render_targets; render_target_index++)
 	{
@@ -69,7 +70,8 @@ c_graphics_shader_pipeline_d3d12::c_graphics_shader_pipeline_d3d12(
 
 c_graphics_shader_pipeline_d3d12::~c_graphics_shader_pipeline_d3d12()
 {
-
+	UINT pipeline_state_reference_count = pipeline_state->Release();
+	ASSERT(pipeline_state_reference_count == 0);
 }
 
 void c_graphics_shader_pipeline_d3d12::bind()

@@ -33,7 +33,14 @@ c_window_render_context::~c_window_render_context()
 
 BCS_RESULT c_window_render_context::init_render_context()
 {
-	BCS_FAIL_RETURN(graphics_create(_graphics_architecture_d3d12, true, graphics));
+	bool use_debug_layer = BCS_SUCCEEDED(command_line_has_argument("graphicsdebug"));
+	bool use_cpu_rendering = BCS_SUCCEEDED(command_line_has_argument("forcecpurendering"));
+	e_graphics_architecture graphics_architecture = _graphics_architecture_d3d12;
+	if (use_cpu_rendering)
+	{
+		graphics_architecture = _graphics_architecture_d3d12_cpu;
+	}
+	BCS_FAIL_RETURN(graphics_create(graphics_architecture, use_debug_layer, graphics));
 	BCS_FAIL_RETURN(graphics_imgui_context_create(&window, graphics, imgui_context));
 	BCS_FAIL_RETURN(graphics_depth_stencil_render_target_create(
 		graphics,

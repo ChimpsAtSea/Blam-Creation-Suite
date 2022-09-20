@@ -1,6 +1,6 @@
 #include "graphicslib-private-pch.h"
 
-c_graphics_d3d12::c_graphics_d3d12(bool use_debug_layer) :
+c_graphics_d3d12::c_graphics_d3d12(bool use_debug_layer, bool force_cpu_rendering) :
 	c_graphics(),
 	device(),
 	descriptor_sizes(),
@@ -35,7 +35,7 @@ c_graphics_d3d12::c_graphics_d3d12(bool use_debug_layer) :
 	{
 		init_debug_layer();
 	}
-	init_hardware();
+	init_hardware(force_cpu_rendering);
 	init_hardware_capabilities();
 	init_descriptor_heap_allocator();
 	init_command_queue();
@@ -99,7 +99,7 @@ void c_graphics_d3d12::deinit_debug_layer()
 	}
 }
 
-BCS_RESULT c_graphics_d3d12::init_hardware()
+BCS_RESULT c_graphics_d3d12::init_hardware(bool force_cpu_rendering)
 {
 	HRESULT create_dxgi_factory_result = S_OK;
 
@@ -136,11 +136,24 @@ BCS_RESULT c_graphics_d3d12::init_hardware()
 	create_dxgi_factory_succeeded:
 	ASSERT(dxgi_factory != nullptr);
 
-	BCS_RESULT get_hardware_adapter_result = get_hardware_adapter(
-		D3D_FEATURE_LEVEL_12_0, 
-		true, 
-		&dxgi_adapter, 
-		&device);
+	BCS_RESULT get_hardware_adapter_result;
+	if (force_cpu_rendering)
+	{
+		get_hardware_adapter_result = get_cpu_hardware_adapter(
+			D3D_FEATURE_LEVEL_12_0,
+			&dxgi_adapter,
+			&device);
+	}
+	else
+	{
+		get_hardware_adapter_result = get_hardware_adapter(
+			D3D_FEATURE_LEVEL_12_0,
+			true,
+			&dxgi_adapter,
+			&device);
+	}
+
+
 	if (BCS_FAILED(get_hardware_adapter_result))
 	{
 		return get_hardware_adapter_result;
@@ -490,6 +503,28 @@ void c_graphics_d3d12::deinit_root_signature()
 	ASSERT(root_signature_reference_count == 0);
 }
 
+void c_graphics_d3d12::set_object_debug_name(const wchar_t* debug_name, const wchar_t* internal_name, ID3D12Object* d3d12_object)
+{
+	if (debug_name == nullptr || *debug_name == 0)
+	{
+		d3d12_object->SetName(internal_name);
+	}
+	else if(debug_name != nullptr && internal_name == nullptr)
+	{
+		d3d12_object->SetName(debug_name);
+	}
+	else
+	{
+		int characters = _snwprintf(nullptr, 0, L"%s (%s)", debug_name, internal_name);
+		int buffer_length = characters + 1;
+		wchar_t* name_buffer = new(alloca(sizeof(wchar_t) * buffer_length)) wchar_t[buffer_length];
+		int characters_written = _snwprintf(name_buffer, buffer_length, L"%s (%s)", debug_name, internal_name);
+		name_buffer[characters_written] = 0; // ensure null terminated
+		ASSERT(characters == characters_written);
+		d3d12_object->SetName(name_buffer);
+	}
+}
+
 void c_graphics_d3d12::transition_resource(
 	ID3D12Resource* resource,
 	D3D12_RESOURCE_STATES before,
@@ -510,7 +545,7 @@ BCS_RESULT c_graphics_d3d12::get_hardware_adapter(D3D_FEATURE_LEVEL minimum_feat
 {
 	*dxgi_adapter_out = nullptr;
 	*device_out = nullptr;
-	for (UINT adapter_index = 0; ; ++adapter_index)
+	for (UINT adapter_index = 0; ; adapter_index++)
 	{
 		IDXGIAdapter1* dxgi_adapter = nullptr;
 
@@ -606,11 +641,72 @@ BCS_RESULT c_graphics_d3d12::get_hardware_adapter(D3D_FEATURE_LEVEL minimum_feat
 	return BCS_E_FAIL; // failed to find a suitable device
 }
 
-BCS_RESULT graphics_d3d12_create(bool use_debug_layer, c_graphics_d3d12*& graphics)
+BCS_RESULT c_graphics_d3d12::get_cpu_hardware_adapter(D3D_FEATURE_LEVEL requested_feature_level, IDXGIAdapter1** dxgi_adapter_out, ID3D12Device8** device_out)
+{
+	*dxgi_adapter_out = nullptr;
+	*device_out = nullptr;
+	for (UINT adapter_index = 0; ; ++adapter_index)
+	{
+		IDXGIAdapter1* dxgi_adapter = nullptr;
+
+		HRESULT enum_adapters_result = dxgi_factory->EnumAdapters1(adapter_index, &dxgi_adapter);
+
+		DXGI_ADAPTER_DESC1 adapter_description{};
+		dxgi_adapter->GetDesc1(&adapter_description);
+
+		bool is_microsoft_basic_render_device = adapter_description.VendorId == 0x1414 && adapter_description.DeviceId == 0x008c;
+		if (is_microsoft_basic_render_device)
+		{
+			console_write_verbose("Adapter %u '%S'", adapter_index, adapter_description.Description);
+
+			HRESULT create_device_result = D3D12CreateDevice(dxgi_adapter, requested_feature_level, IID_PPV_ARGS(&device));
+			if (FAILED(create_device_result))
+			{
+				console_write_line_verbose(" unsupported");
+			}
+			if (SUCCEEDED(create_device_result))
+			{
+				int major = requested_feature_level >> 12 & 0xF;
+				int minor = requested_feature_level >> 8 & 0xF;
+				console_write_line_verbose(" using D3D_FEATURE_LEVEL_%i_%i", major, minor);
+				feature_level = requested_feature_level;
+
+				device->CheckFeatureSupport(D3D12_FEATURE_D3D12_OPTIONS, &options, sizeof(options));
+				device->CheckFeatureSupport(D3D12_FEATURE_D3D12_OPTIONS1, &options1, sizeof(options1));
+				device->CheckFeatureSupport(D3D12_FEATURE_D3D12_OPTIONS2, &options2, sizeof(options2));
+				device->CheckFeatureSupport(D3D12_FEATURE_D3D12_OPTIONS3, &options3, sizeof(options3));
+				device->CheckFeatureSupport(D3D12_FEATURE_D3D12_OPTIONS4, &options4, sizeof(options4));
+				device->CheckFeatureSupport(D3D12_FEATURE_D3D12_OPTIONS5, &options5, sizeof(options5));
+				device->CheckFeatureSupport(D3D12_FEATURE_D3D12_OPTIONS6, &options6, sizeof(options6));
+				device->CheckFeatureSupport(D3D12_FEATURE_D3D12_OPTIONS7, &options7, sizeof(options7));
+				device->CheckFeatureSupport(D3D12_FEATURE_D3D12_OPTIONS8, &options8, sizeof(options8));
+
+				bool is_valid_device = true;
+				if (is_valid_device)
+				{
+					*device_out = device;
+					*dxgi_adapter_out = dxgi_adapter;
+					return BCS_S_OK;
+				}
+				else
+				{
+					UINT device_reference_count = device->Release();
+					ASSERT(device_reference_count == 0);
+				}
+			}
+		}
+
+		UINT dxgi_adapter_reference_count = dxgi_adapter->Release();
+		ASSERT(dxgi_adapter_reference_count == 0);
+	}
+	return BCS_E_FAIL;
+}
+
+BCS_RESULT graphics_d3d12_create(bool use_debug_layer, bool force_cpu_rendering, c_graphics_d3d12*& graphics)
 {
 	try
 	{
-		graphics = new() c_graphics_d3d12(use_debug_layer);
+		graphics = new() c_graphics_d3d12(use_debug_layer, force_cpu_rendering);
 	}
 	catch (BCS_RESULT rs)
 	{

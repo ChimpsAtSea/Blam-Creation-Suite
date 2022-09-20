@@ -5,7 +5,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	c_graphics_swap_chain_d3d12& swap_chain,
 	uint32_t swap_chain_buffer_index,
 	float4 clear_color,
-	const char* debug_name) :
+	const wchar_t* debug_name) :
 	render_target_type(_graphics_render_target_type_d3d12_swapchain),
 	graphics(graphics),
 	resource(),
@@ -23,7 +23,8 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	srv_cpu_descriptor_handle(),
 	srv_gpu_descriptor_handle(),
 	swap_chain_resize_start_handle(),
-	swap_chain_resize_finish_handle()
+	swap_chain_resize_finish_handle(),
+	debug_name(debug_name ? wcsdup(debug_name) : nullptr)
 {
 	descriptor_heap_cpu = new() c_descriptor_heap_d3d12(
 		graphics,
@@ -73,7 +74,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	uint32_t height,
 	e_graphics_data_format format,
 	float4 clear_color,
-	const char* debug_name,
+	const wchar_t* debug_name,
 	bool shared) :
 	render_target_type(_graphics_render_target_type_d3d12_color),
 	graphics(graphics),
@@ -91,7 +92,8 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	srv_cpu_descriptor_handle(),
 	srv_gpu_descriptor_handle(),
 	swap_chain_resize_start_handle(),
-	swap_chain_resize_finish_handle()
+	swap_chain_resize_finish_handle(),
+	debug_name(debug_name ? wcsdup(debug_name) : nullptr)
 {
 	descriptor_heap_cpu = new() c_descriptor_heap_d3d12(
 		graphics,
@@ -140,7 +142,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	e_graphics_data_format format,
 	float clear_depth,
 	unsigned char stencil_value,
-	const char* debug_name,
+	const wchar_t* debug_name,
 	bool shared) :
 	render_target_type(_graphics_render_target_type_d3d12_depth_stencil),
 	graphics(graphics),
@@ -158,7 +160,8 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	srv_cpu_descriptor_handle(),
 	srv_gpu_descriptor_handle(),
 	swap_chain_resize_start_handle(),
-	swap_chain_resize_finish_handle()
+	swap_chain_resize_finish_handle(),
+	debug_name(debug_name ? wcsdup(debug_name) : nullptr)
 {
 	descriptor_heap_cpu = new() c_descriptor_heap_d3d12(
 		graphics,
@@ -209,6 +212,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 
 c_graphics_render_target_d3d12::~c_graphics_render_target_d3d12()
 {
+	untracked_free(debug_name);
 	deinit_resource();
 	delete descriptor_heap_cpu;
 
@@ -227,10 +231,27 @@ void c_graphics_render_target_d3d12::init_resource()
 		HRESULT get_buffer_result = swap_chain->dxgi_swap_chain->GetBuffer(swap_chain_buffer_index, IID_PPV_ARGS(&resource));
 		ASSERT(SUCCEEDED(get_buffer_result));
 
-		wchar_t name_buffer[512];
-		_snwprintf(name_buffer, 512, L"swap chain buffer %u", swap_chain_buffer_index);
-		resource->SetName(name_buffer);
+		wchar_t* name_buffer;
+		if (debug_name != nullptr && *debug_name != 0)
+		{
+			int characters = _snwprintf(nullptr, 0, L"%s {swap chain buffer %u}", debug_name, swap_chain_buffer_index);
+			int buffer_length = characters + 1;
+			name_buffer = new(alloca(sizeof(wchar_t) * buffer_length)) wchar_t[buffer_length];
+			int characters_written = _snwprintf(name_buffer, buffer_length, L"%s {swap chain buffer %u}", debug_name, swap_chain_buffer_index);
+			name_buffer[characters_written] = 0; // ensure null terminated
+			ASSERT(characters == characters_written);
+		}
+		else
+		{
+			int characters = _snwprintf(nullptr, 0, L"swap chain buffer %u", debug_name, swap_chain_buffer_index);
+			int buffer_length = characters + 1;
+			name_buffer = new(alloca(sizeof(wchar_t) * buffer_length)) wchar_t[buffer_length];
+			int characters_written = _snwprintf(name_buffer, buffer_length, L"swap chain buffer %u", debug_name, swap_chain_buffer_index);
+			name_buffer[characters_written] = 0; // ensure null terminated
+			ASSERT(characters == characters_written);
+		}
 
+		c_graphics_d3d12::set_object_debug_name(name_buffer, L"c_graphics_render_target_d3d12::resource", resource);
 	}
 	else
 	{
@@ -243,7 +264,7 @@ void c_graphics_render_target_d3d12::init_resource()
 			IID_PPV_ARGS(&resource)
 		);
 		ASSERT(SUCCEEDED(create_committed_resource_result));
-		resource->SetName(L"c_graphics_render_target_d3d12::resource");
+		c_graphics_d3d12::set_object_debug_name(debug_name, L"c_graphics_render_target_d3d12::resource", resource);
 	}
 
 	switch (render_target_type)
@@ -354,6 +375,7 @@ BCS_RESULT graphics_d3d12_swapchain_color_render_target_create(
 	c_graphics_render_target_d3d12*& render_target,
 	const char* debug_name)
 {
+	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
 	try
 	{
 		render_target = new() c_graphics_render_target_d3d12(
@@ -361,7 +383,7 @@ BCS_RESULT graphics_d3d12_swapchain_color_render_target_create(
 			*swap_chain,
 			swap_chain_buffer_index,
 			clear_color,
-			debug_name);
+			debug_name_wc);
 	}
 	catch (BCS_RESULT rs)
 	{
@@ -383,6 +405,7 @@ BCS_RESULT graphics_d3d12_color_render_target_create(
 	const char* debug_name,
 	bool shared)
 {
+	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
 	try
 	{
 		render_target = new() c_graphics_render_target_d3d12(
@@ -391,7 +414,7 @@ BCS_RESULT graphics_d3d12_color_render_target_create(
 			height,
 			format,
 			clear_color,
-			debug_name,
+			debug_name_wc,
 			shared);
 	}
 	catch (BCS_RESULT rs)
@@ -416,6 +439,7 @@ BCS_RESULT graphics_d3d12_depth_stencil_render_target_create(
 	const char* debug_name,
 	bool shared)
 {
+	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
 	try
 	{
 		render_target = new() c_graphics_render_target_d3d12(
@@ -425,7 +449,7 @@ BCS_RESULT graphics_d3d12_depth_stencil_render_target_create(
 			format,
 			clear_depth,
 			stencil_value,
-			debug_name,
+			debug_name_wc,
 			shared);
 	}
 	catch (BCS_RESULT rs)

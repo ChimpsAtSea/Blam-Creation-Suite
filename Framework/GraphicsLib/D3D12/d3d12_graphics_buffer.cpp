@@ -5,7 +5,7 @@ c_graphics_buffer_d3d12::c_graphics_buffer_d3d12(
 	e_graphics_buffer_type buffer_type,
 	uint32_t element_size,
 	uint32_t element_count,
-	const wchar_t* name) :
+	const wchar_t* debug_name) :
 	graphics(graphics),
 	buffer_type(buffer_type),
 	upload_heap(nullptr),
@@ -17,7 +17,7 @@ c_graphics_buffer_d3d12::c_graphics_buffer_d3d12(
 	element_count(element_count),
 	data_size(element_size* element_count)
 {
-	init_buffer(name);
+	init_buffer(debug_name);
 	init_descriptor_heap();
 }
 
@@ -106,7 +106,7 @@ uint32_t c_graphics_buffer_d3d12::get_gpu_descriptor_heap_index() const
 	return shader_visible_descriptor_heap_index;
 }
 
-void c_graphics_buffer_d3d12::init_buffer(const wchar_t* name)
+void c_graphics_buffer_d3d12::init_buffer(const wchar_t* debug_name)
 {
 	CD3DX12_HEAP_PROPERTIES const upload_heap_properties(D3D12_HEAP_TYPE_UPLOAD);
 	CD3DX12_RESOURCE_DESC const upload_heap_resource_description = CD3DX12_RESOURCE_DESC::Buffer(ALIGN(data_size, 256));
@@ -118,18 +118,21 @@ void c_graphics_buffer_d3d12::init_buffer(const wchar_t* name)
 		nullptr, // we do not have use an optimized clear value for constant buffers
 		IID_PPV_ARGS(&upload_heap));
 	ASSERT(SUCCEEDED(create_commited_resource_result));
-	upload_heap->SetName(L"c_graphics_buffer_d3d12::upload_heap");
 
 	switch (buffer_type)
 	{
 	case _graphics_buffer_type_generic:
 	{
+		c_graphics_d3d12::set_object_debug_name(debug_name, L"c_graphics_buffer_d3d12::upload_heap/gpu_resource [generic]", upload_heap);
+
 		gpu_resource_state = D3D12_RESOURCE_STATE_GENERIC_READ;
 		gpu_resource = upload_heap; // same buffer can be used
 	}
 	break;
 	case _graphics_buffer_type_unordered_access_view:
 	{
+		c_graphics_d3d12::set_object_debug_name(debug_name, L"c_graphics_buffer_d3d12::upload_heap [uav]", upload_heap);
+
 		CD3DX12_HEAP_PROPERTIES const default_heap_properties(D3D12_HEAP_TYPE_DEFAULT);
 
 		gpu_resource_state = D3D12_RESOURCE_STATE_UNORDERED_ACCESS;
@@ -143,7 +146,7 @@ void c_graphics_buffer_d3d12::init_buffer(const wchar_t* name)
 			nullptr,
 			IID_PPV_ARGS(&gpu_resource));
 		ASSERT(SUCCEEDED(create_comitted_resource_result));
-		gpu_resource->SetName(L"c_graphics_buffer_d3d12::gpu_resource");
+		c_graphics_d3d12::set_object_debug_name(debug_name, L"c_graphics_buffer_d3d12::gpu_resource [uav]", gpu_resource);
 	}
 	break;
 	}
@@ -162,6 +165,7 @@ void c_graphics_buffer_d3d12::deinit_buffer()
 		// same buffer is used
 		//gpu_resource_reference_count = gpu_resource->Release();
 	}
+	break;
 	case _graphics_buffer_type_unordered_access_view:
 	{
 		gpu_resource_reference_count = gpu_resource->Release();

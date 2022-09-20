@@ -10,7 +10,7 @@ public:
 	c_graphics_d3d12() = delete;
 	c_graphics_d3d12(const c_graphics_d3d12&) = delete;
 	c_graphics_d3d12& operator=(const c_graphics_d3d12&) = delete;
-	c_graphics_d3d12(bool use_debug_layer);
+	c_graphics_d3d12(bool use_debug_layer, bool force_cpu_rendering);
 	virtual ~c_graphics_d3d12();
 
 	BCS_RESULT get_hardware_adapter(
@@ -19,9 +19,14 @@ public:
 		IDXGIAdapter1** dxgi_adapter_out, 
 		ID3D12Device8** device_out);
 
+	BCS_RESULT get_cpu_hardware_adapter(
+		D3D_FEATURE_LEVEL feature_level,
+		IDXGIAdapter1** dxgi_adapter_out,
+		ID3D12Device8** device_out);
+
 	void init_debug_layer();
 	void deinit_debug_layer();
-	BCS_RESULT init_hardware();
+	BCS_RESULT init_hardware(bool force_cpu_rendering);
 	void deinit_hardware();
 	void init_hardware_capabilities();
 	void deinit_hardware_capabilities();
@@ -37,6 +42,8 @@ public:
 	void deinit_synchronization_objects();
 	void init_root_signature();
 	void deinit_root_signature();
+
+	static void set_object_debug_name(const wchar_t* debug_name, const wchar_t* internal_name, ID3D12Object* d3d12_object);
 
 	HRESULT last_error;
 	BCS_RESULT hresult_to_bcs_result(HRESULT result);
@@ -101,5 +108,5 @@ public:
 	D3D12_FEATURE_DATA_D3D12_OPTIONS8 options8;
 };
 
-BCS_RESULT graphics_d3d12_create(bool use_debug_layer, c_graphics_d3d12*& graphics);
+BCS_RESULT graphics_d3d12_create(bool use_debug_layer, bool force_cpu_rendering, c_graphics_d3d12*& graphics);
 BCS_RESULT graphics_d3d12_destroy(c_graphics_d3d12* graphics);

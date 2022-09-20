@@ -22,7 +22,7 @@ enum e_graphics_data_format
 #define c_type_2(type, name) union name##2                                  \
 {                                                                           \
     name##2() :data{ } {}                                                   \
-    name##2(type x, type) :data{ x,y } {}                                   \
+    name##2(type x, type y) :data{ x,y } {}                                 \
     name##2(name##1 value) :data{ value.x, value.x } {}                     \
     type data[2];                                                           \
     struct { type x, y; };                                                  \

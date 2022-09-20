@@ -18,6 +18,7 @@ add_library(TemplateLibrary ${BCS_LIBRARY_TYPE}
 	thread_safe_queue.h
 	virtual.h
 	xxhash_cx.h
+	member_to_static_function.h
 	
 	atomic_lock.cpp
 	benchmark.cpp

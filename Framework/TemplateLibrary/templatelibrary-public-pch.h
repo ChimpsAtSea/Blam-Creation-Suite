@@ -11,6 +11,7 @@
 #include "virtual.h"
 #include "byteswap.h"
 #include "binary_search.h"
+#include "member_to_static_function.h"
 #include "compile_time_accumulator.h"
 #include "stopwatch.h"
 #include "stack_string.h"

@@ -4,7 +4,8 @@ enum e_graphics_architecture
 {
 	_graphics_architecture_null,
 	_graphics_architecture_d3d11,
-	_graphics_architecture_d3d12
+	_graphics_architecture_d3d12,
+	_graphics_architecture_d3d12_cpu
 };
 
 class c_graphics

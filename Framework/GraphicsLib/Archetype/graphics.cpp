@@ -21,7 +21,13 @@ BCS_RESULT graphics_create(
 		{
 		case _graphics_architecture_d3d12:
 			return graphics_d3d12_create(
-				use_debug_layer, 
+				use_debug_layer,
+				false,
+				*reinterpret_cast<c_graphics_d3d12**>(&graphics));
+		case _graphics_architecture_d3d12_cpu:
+			return graphics_d3d12_create(
+				use_debug_layer,
+				true,
 				*reinterpret_cast<c_graphics_d3d12**>(&graphics));
 		}
 	}

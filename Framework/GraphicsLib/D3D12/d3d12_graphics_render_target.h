@@ -23,14 +23,14 @@ public:
 		c_graphics_swap_chain_d3d12& swap_chain,
 		uint32_t swap_chain_buffer_index,
 		float4 clear_color,
-		const char* debug_name);
+		const wchar_t* debug_name);
 	c_graphics_render_target_d3d12(
 		c_graphics_d3d12& graphics,
 		uint32_t width,
 		uint32_t height,
 		e_graphics_data_format format,
 		float4 clear_color,
-		const char* debug_name,
+		const wchar_t* debug_name,
 		bool shared);
 	c_graphics_render_target_d3d12(
 		c_graphics_d3d12& graphics,
@@ -39,7 +39,7 @@ public:
 		e_graphics_data_format format,
 		float clear_depth,
 		unsigned char stencil_value,
-		const char* debug_name,
+		const wchar_t* debug_name,
 		bool shared);
 	virtual ~c_graphics_render_target_d3d12();
 
@@ -58,6 +58,8 @@ public:
 	c_graphics_swap_chain_d3d12* swap_chain;
 	uint32_t swap_chain_buffer_index;
 	c_descriptor_heap_d3d12* descriptor_heap_cpu;
+
+	const wchar_t* debug_name;
 
 	D3D12_CLEAR_VALUE clear_value;
 	D3D12_DEPTH_STENCIL_VIEW_DESC depth_stencil_view_description;

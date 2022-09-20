@@ -7,17 +7,12 @@ static c_window* window;
 static c_render_context* window_render_context;
 
 t_callback_handle render_user_interface_handle;
+t_callback_handle render_graphics_handle;
 t_callback_handle render_on_device_lost_handle;
 t_callback_handle render_on_device_recover_handle;
+c_graphics* graphics;
 
-void render_user_interface()
-{
-	if (ImGui::Begin("Texture Test"))
-	{
-		ImGui::Text("Hello World");
-	}
-	ImGui::End();
-}
+c_lightmap lightmap;
 
 BCS_RESULT window_register_callbacks()
 {
@@ -29,7 +24,18 @@ BCS_RESULT window_register_callbacks()
 		return rs;
 	}
 
-	if (BCS_FAILED(rs = imgui_context->render_callback.add_callback(render_user_interface, render_user_interface_handle)))
+	if (BCS_FAILED(rs = imgui_context->render_callback.add_callback(
+		member_to_static_function(&c_lightmap::render_user_interface),
+		&lightmap,
+		render_user_interface_handle)))
+	{
+		return rs;
+	}
+
+	if (BCS_FAILED(rs = graphics->render_callback.add_callback(
+		member_to_static_function(&c_lightmap::render_graphics),
+		&lightmap,
+		render_graphics_handle)))
 	{
 		return rs;
 	}
@@ -48,6 +54,11 @@ BCS_RESULT window_unregister_callbacks()
 	}
 
 	if (BCS_FAILED(rs = imgui_context->render_callback.remove_callback(render_user_interface_handle)))
+	{
+		return rs;
+	}
+
+	if (BCS_FAILED(rs = graphics->render_callback.remove_callback(render_graphics_handle)))
 	{
 		return rs;
 	}
@@ -87,10 +98,18 @@ int main()
 	BCS_RESULT rs2 = window_create("Lightmap Research", "lightmapresearch", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, true, window);
 	BCS_RESULT rs3 = render_context_window_create(*window, graphics_background_color, window_render_context);
 
+	BCS_RESULT rs8 = window_render_context->get_graphics(graphics);
+
 	BCS_RESULT rs4 = register_device_recovery_callbacks();
 	BCS_RESULT rs5 = window_register_callbacks();
 
+	ASSERT(BCS_SUCCEEDED(rs8));
+
+	lightmap.init(*graphics);
+
 	BCS_RESULT render_result = window_render_context->render();
+
+	lightmap.deinit(*graphics);
 
 	BCS_RESULT rs6 = window_unregister_callbacks();
 	BCS_RESULT rs7 = unregister_device_recovery_callbacks();

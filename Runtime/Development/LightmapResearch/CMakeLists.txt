@@ -1,6 +1,8 @@
 add_executable(LightmapResearch WIN32
 	lightmapresearch-private-pch.h
-	main.cpp)
+	main.cpp
+	lightmap.h
+	lightmap.cpp)
 
 bcs_set_common_properties(LightmapResearch)
 bcs_set_post_build_shared_lib_dep_copy(LightmapResearch)

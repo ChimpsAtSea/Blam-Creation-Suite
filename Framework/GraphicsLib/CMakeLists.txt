@@ -127,7 +127,11 @@ add_library(GraphicsLib ${BCS_LIBRARY_TYPE}
     HLSL/generic_infinite_vertex_shader.hlsl
     HLSL/vertex_layout_p.hlsl
     HLSL/vertex_layout_pc.hlsl
-    HLSL/vertex_layout_ptcn.hlsl)
+    HLSL/vertex_layout_ptcn.hlsl
+	
+	HLSL/LightmapDebug/lightmap_debug_vs.hlsl
+	HLSL/LightmapDebug/lightmap_debug_ps.hlsl
+	HLSL/LightmapDebug/lightmap_debug.hlsli)
 
 bcs_set_common_properties(GraphicsLib)
 
@@ -157,6 +161,18 @@ set_source_files_properties(
     HLSL/vertex_layout_p.hlsl
     HLSL/vertex_layout_pc.hlsl
     HLSL/vertex_layout_ptcn.hlsl
+	PROPERTIES VS_SHADER_MODEL 5.1)
+	
+#Lightmap Debug
+set_source_files_properties(
+	HLSL/LightmapDebug/lightmap_debug_vs.hlsl
+	PROPERTIES VS_SHADER_TYPE Vertex)
+set_source_files_properties(
+	HLSL/LightmapDebug/lightmap_debug_ps.hlsl
+	PROPERTIES VS_SHADER_TYPE Pixel)
+set_source_files_properties(
+	HLSL/LightmapDebug/lightmap_debug_vs.hlsl
+	HLSL/LightmapDebug/lightmap_debug_ps.hlsl
 	PROPERTIES VS_SHADER_MODEL 5.1)
 
 target_link_libraries(GraphicsLib PRIVATE
