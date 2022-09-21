@@ -19,10 +19,16 @@ struct VertexOutput {
 };
 
 struct PixelOutput {
-	float3 Position		: SV_Target0;
+	//float3 Position	: SV_Target0;
+	//float4 Color		: SV_Target1;
+	//float3 Normal		: SV_Target2;
+	//float3 Tangent	: SV_Target3;
+	//float3 Binormal	: SV_Target4;
+	//float2 UV			: SV_Target5;
+	float4 Position		: SV_Target0;
 	float4 Color		: SV_Target1;
-	float3 Normal		: SV_Target2;
-	float3 Tangent		: SV_Target3;
-	float3 Binormal		: SV_Target4;
+	float4 Normal		: SV_Target2;
+	float4 Tangent		: SV_Target3;
+	float4 Binormal		: SV_Target4;
 	float2 UV			: SV_Target5;
 };

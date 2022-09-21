@@ -12,6 +12,7 @@ public:
 	virtual BCS_RESULT resize(uint32_t width, uint32_t height) = 0;
 	virtual BCS_RESULT clear_render_target() = 0;
 	virtual BCS_RESULT get_ui_image_display_handle(void*& display_handle) = 0;
+	virtual e_graphics_data_format get_graphics_data_format() = 0;
 
 	using t_graphics_resize_callback = void(uint32_t width, uint32_t height);
 	c_typed_callback<t_graphics_resize_callback> on_resize;

@@ -76,12 +76,14 @@ if(BCS_BUILD_SHARED_LIBRARIES)
 	add_custom_command(TARGET Platform POST_BUILD
 		COMMAND
 		"${CMAKE_COMMAND}" -E copy_if_different
-		"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc.dll"
+		$<$<CONFIG:DEBUG>:"${VCPKG_DEBUG_BIN_DIR}/mimalloc-debug.dll">
+		$<$<NOT:$<CONFIG:DEBUG>>:"${VCPKG_RELEASE_BIN_DIR}/mimalloc.dll">
 		"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc-redirect.dll"
 		"$<TARGET_FILE_DIR:Platform>")
 	
 	install(FILES
-		"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc.dll"
+		$<$<CONFIG:DEBUG>:"${VCPKG_DEBUG_BIN_DIR}/mimalloc-debug.dll">
+		$<$<NOT:$<CONFIG:DEBUG>>:"${VCPKG_RELEASE_BIN_DIR}/mimalloc.dll">
 		"${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin/mimalloc-redirect.dll"
 		DESTINATION bin)
 endif()
@@ -105,7 +107,7 @@ target_link_libraries(Platform PRIVATE
 	Version
 	Shlwapi
 	Dbghelp
-	$<$<CONFIG:DEBUG>:mimalloc>
+	$<$<CONFIG:DEBUG>:mimalloc-debug>
 	$<$<NOT:$<CONFIG:DEBUG>>:mimalloc-static>)
 
 target_link_libraries(Platform PUBLIC

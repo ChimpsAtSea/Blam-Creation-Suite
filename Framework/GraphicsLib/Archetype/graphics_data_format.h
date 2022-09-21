@@ -3,12 +3,16 @@
 enum e_graphics_data_format
 {
     _graphics_data_format_unspecified,
+    _graphics_data_format_r8_unorm,
+    _graphics_data_format_r8g8_unorm,
     _graphics_data_format_r8g8b8a8_unorm,
     _graphics_data_format_r32g32_float,
     _graphics_data_format_r32g32b32_float,
     _graphics_data_format_r32g32b32a32_float,
     _graphics_data_format_depth_float32,
 };
+
+BCS_DEBUG_API const char* graphics_data_format_to_string(e_graphics_data_format graphics_data_format);
 
 #ifdef __cplusplus
 

@@ -24,6 +24,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	srv_gpu_descriptor_handle(),
 	swap_chain_resize_start_handle(),
 	swap_chain_resize_finish_handle(),
+	graphics_data_format(_graphics_data_format_r8g8b8a8_unorm), // #TODO: HDR support?
 	debug_name(debug_name ? wcsdup(debug_name) : nullptr)
 {
 	descriptor_heap_cpu = new() c_descriptor_heap_d3d12(
@@ -34,7 +35,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 		L"c_graphics_d3d12::rtv_descriptor_heap_allocator_cpu"
 	);
 
-	dxgi_format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	dxgi_format = DXGI_FORMAT_R8G8B8A8_UNORM; // #TODO: HDR support?
 	clear_value.Format = dxgi_format;
 	clear_value.Color[0] = clear_color.x;
 	clear_value.Color[1] = clear_color.y;
@@ -72,7 +73,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	c_graphics_d3d12& graphics,
 	uint32_t width,
 	uint32_t height,
-	e_graphics_data_format format,
+	e_graphics_data_format _graphics_data_format,
 	float4 clear_color,
 	const wchar_t* debug_name,
 	bool shared) :
@@ -93,6 +94,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	srv_gpu_descriptor_handle(),
 	swap_chain_resize_start_handle(),
 	swap_chain_resize_finish_handle(),
+	graphics_data_format(_graphics_data_format),
 	debug_name(debug_name ? wcsdup(debug_name) : nullptr)
 {
 	descriptor_heap_cpu = new() c_descriptor_heap_d3d12(
@@ -103,9 +105,51 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 		L"c_graphics_d3d12::rtv_descriptor_heap_allocator_cpu"
 	);
 
-	// dxgi_format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	BCS_RESULT graphics_data_format_to_dxgi_format_result = graphics_data_format_to_dxgi_format(format, dxgi_format);
-	BCS_FAIL_THROW(graphics_data_format_to_dxgi_format_result);
+	bool retry_format = false;
+	BCS_RESULT format_support_result = BCS_S_OK;
+	do
+	{
+		// dxgi_format = DXGI_FORMAT_R8G8B8A8_UNORM;
+		BCS_RESULT graphics_data_format_to_dxgi_format_result = graphics_data_format_to_dxgi_format(graphics_data_format, dxgi_format);
+		BCS_FAIL_THROW(graphics_data_format_to_dxgi_format_result);
+
+		D3D12_FEATURE_DATA_FORMAT_SUPPORT query_format_support = {};
+		query_format_support.Format = dxgi_format;
+		HRESULT check_feature_support_result = graphics.device->CheckFeatureSupport(D3D12_FEATURE_FORMAT_SUPPORT, &query_format_support, sizeof(query_format_support));
+		BCS_FAIL_THROW(graphics.hresult_to_bcs_result(check_feature_support_result));
+
+		if ((query_format_support.Support1 & D3D12_FORMAT_SUPPORT1_RENDER_TARGET) == 0)
+		{
+			const char* graphics_data_format_string = graphics_data_format_to_string(graphics_data_format);
+			console_write_verbose("Failed to create render target. Unsupported texture format %s.", graphics_data_format_string);
+			format_support_result = BCS_E_UNSUPPORTED;
+
+			retry_format = false;
+#define BCS_RETRY_FORMAT(old_format, new_format) if (graphics_data_format == old_format) { graphics_data_format = new_format; retry_format = true; }
+
+			BCS_RETRY_FORMAT(_graphics_data_format_r32g32_float, _graphics_data_format_r32g32b32_float);
+			BCS_RETRY_FORMAT(_graphics_data_format_r32g32b32_float, _graphics_data_format_r32g32b32a32_float);
+
+			if (retry_format)
+			{
+				const char* graphics_data_format_string = graphics_data_format_to_string(graphics_data_format);
+				console_write_line_verbose(" Attempting to use %s", graphics_data_format_string);
+			}
+			else
+			{
+				console_write_line("");
+			}
+		}
+		else
+		{
+			retry_format = false;
+			format_support_result = BCS_S_OK;
+		}
+
+	} while (retry_format);
+	BCS_FAIL_THROW(format_support_result);
+
+
 
 	clear_value.Format = dxgi_format;
 	clear_value.Color[0] = clear_color.x;
@@ -142,7 +186,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	c_graphics_d3d12& graphics,
 	uint32_t width,
 	uint32_t height,
-	e_graphics_data_format format,
+	e_graphics_data_format _graphics_data_format,
 	float clear_depth,
 	unsigned char stencil_value,
 	const wchar_t* debug_name,
@@ -164,6 +208,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	srv_gpu_descriptor_handle(),
 	swap_chain_resize_start_handle(),
 	swap_chain_resize_finish_handle(),
+	graphics_data_format(_graphics_data_format),
 	debug_name(debug_name ? wcsdup(debug_name) : nullptr)
 {
 	descriptor_heap_cpu = new() c_descriptor_heap_d3d12(
@@ -175,8 +220,20 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	);
 
 	// dxgi_format = DXGI_FORMAT_D32_FLOAT;
-	BCS_RESULT graphics_data_format_to_dxgi_format_result = graphics_data_format_to_dxgi_format(format, dxgi_format);
+	BCS_RESULT graphics_data_format_to_dxgi_format_result = graphics_data_format_to_dxgi_format(graphics_data_format, dxgi_format);
 	BCS_FAIL_THROW(graphics_data_format_to_dxgi_format_result);
+
+	D3D12_FEATURE_DATA_FORMAT_SUPPORT query_format_support = {};
+	query_format_support.Format = dxgi_format;
+	HRESULT check_feature_support_result = graphics.device->CheckFeatureSupport(D3D12_FEATURE_FORMAT_SUPPORT, &query_format_support, sizeof(query_format_support));
+	BCS_FAIL_THROW(graphics.hresult_to_bcs_result(check_feature_support_result));
+
+	if ((query_format_support.Support1 & D3D12_FORMAT_SUPPORT1_DEPTH_STENCIL) == 0)
+	{
+		const char* graphics_data_format_string = graphics_data_format_to_string(graphics_data_format);
+		console_write_line_verbose("Failed to create render target. Unsupported texture format %s", graphics_data_format_string);
+		BCS_FAIL_THROW(BCS_E_UNSUPPORTED);
+	}
 
 	depth_stencil_view_description.Format = dxgi_format;
 	depth_stencil_view_description.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D;
@@ -316,6 +373,11 @@ void c_graphics_render_target_d3d12::deinit_resource()
 	{
 		ASSERT(resource_reference_count == 0);
 	}
+}
+
+e_graphics_data_format c_graphics_render_target_d3d12::get_graphics_data_format()
+{
+	return graphics_data_format;
 }
 
 BCS_RESULT c_graphics_render_target_d3d12::resize(uint32_t width, uint32_t height)

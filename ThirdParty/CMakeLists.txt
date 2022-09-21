@@ -1,6 +1,22 @@
 set(VCPKG_TRIPLET "x64-windows-$<$<CONFIG:DEBUG>:debug>$<$<NOT:$<CONFIG:DEBUG>>:release>$<$<STREQUAL:${BCS_BUILD_SHARED_LIBRARIES},TRUE>:-shared>-bcs" CACHE INTERNAL "")
 set(VCPKG_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg" CACHE INTERNAL "")
 set(VCPKG "${VCPKG_DIR}/vcpkg.exe" CACHE INTERNAL "")
+set(VCPKG_INSTALLED_DIR "${VCPKG_DIR}/installed/${VCPKG_TRIPLET}" CACHE INTERNAL "")
+set(VCPKG_INCLUDE_DIR "${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/include" CACHE INTERNAL "")
+set(VCPKG_DEBUG_LIB_DIR "${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/debug/lib" CACHE INTERNAL "")
+set(VCPKG_DEBUG_BIN_DIR "${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/debug/bin" CACHE INTERNAL "")
+set(VCPKG_RELEASE_LIB_DIR "${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/lib" CACHE INTERNAL "")
+set(VCPKG_RELEASE_BIN_DIR "${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin" CACHE INTERNAL "")
+
+if(NOT CONFIG MATCHES DEBUG)
+	message("Using vcpkg debug")
+	set(VCPKG_LIB_DIR "${VCPKG_DEBUG_LIB_DIR}" CACHE INTERNAL "")
+	set(VCPKG_BIN_DIR "${VCPKG_DEBUG_BIN_DIR}" CACHE INTERNAL "")
+else()
+	message("Using vcpkg release")
+	set(VCPKG_LIB_DIR "${VCPKG_LIB_DIR}" CACHE INTERNAL "")
+	set(VCPKG_BIN_DIR "${VCPKG_BIN_DIR}" CACHE INTERNAL "")
+endif()
 
 add_custom_command(OUTPUT ${VCPKG}
     COMMAND cmd /c "${VCPKG_DIR}/bootstrap-vcpkg.bat -disableMetrics")
@@ -35,11 +51,11 @@ set_target_properties(VcPkg VcPkgBootstrap PROPERTIES
 
 function(bcs_use_vcpkg_directories TARGET_NAME)
 	target_include_directories(${TARGET_NAME} PUBLIC
-		${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/include)
+		${VCPKG_INCLUDE_DIR})
 	
 	target_link_directories(${TARGET_NAME} PUBLIC
-		${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/lib)
-
+		${VCPKG_LIB_DIR})
+	
 	add_dependencies(${TARGET_NAME} VcPkg)
 endfunction()
 

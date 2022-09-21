@@ -48,6 +48,7 @@ public:
 	virtual BCS_RESULT resize(uint32_t width, uint32_t height) override;
 	virtual BCS_RESULT clear_render_target() override;
 	virtual BCS_RESULT get_ui_image_display_handle(void*& display_handle) override;
+	virtual e_graphics_data_format get_graphics_data_format() override;
 
 	static void swap_chain_resize_start(c_graphics_render_target_d3d12& _this, uint32_t width, uint32_t height);
 	static void swap_chain_resize_finish(c_graphics_render_target_d3d12& _this, uint32_t width, uint32_t height);
@@ -58,8 +59,6 @@ public:
 	c_graphics_swap_chain_d3d12* swap_chain;
 	uint32_t swap_chain_buffer_index;
 	c_descriptor_heap_d3d12* descriptor_heap_cpu;
-
-	const wchar_t* debug_name;
 
 	D3D12_CLEAR_VALUE clear_value;
 	D3D12_DEPTH_STENCIL_VIEW_DESC depth_stencil_view_description;
@@ -76,6 +75,9 @@ public:
 
 	t_callback_handle swap_chain_resize_start_handle;
 	t_callback_handle swap_chain_resize_finish_handle;
+
+	e_graphics_data_format graphics_data_format;
+	const wchar_t* debug_name;
 };
 
 BCS_DEBUG_API BCS_RESULT graphics_d3d12_swapchain_color_render_target_create(
