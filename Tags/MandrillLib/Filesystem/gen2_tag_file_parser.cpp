@@ -42,7 +42,7 @@ template<> void byteswap_inplace(s_field_set_header_v2& value)
 }
 
 int32_t indent = -1;
-#define indent_write(string, ...) if(BCS_SUCCEEDED(command_line_has_argument("verbose"))) { for(int32_t i=0;i<indent;i++) { console_write("|  ");  } console_write_line(string, __VA_ARGS__); } (void)(0)
+#define indent_write(string, ...) if(BCS_SUCCEEDED(command_line_has_argument_internal("verbose"))) { for(int32_t i=0;i<indent;i++) { console_write("|  ");  } console_write_line(string, __VA_ARGS__); } (void)(0)
 //#define indent_write(...) 
 
 BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size2(

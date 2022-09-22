@@ -61,6 +61,9 @@ function(bcs_set_compile_properties TARGET_NAME)
 	target_compile_features(${TARGET_NAME} PRIVATE
 		cxx_std_23)
 		
+	target_link_directories(${TARGET_NAME} PRIVATE
+		${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
+	
 	target_include_directories(${TARGET_NAME} PRIVATE
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/Framework
@@ -71,6 +74,7 @@ function(bcs_set_compile_properties TARGET_NAME)
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/ThirdParty
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/ThirdParty/imgui
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/ThirdParty/IconFontCppHeaders
+		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/ThirdParty/xatlas/source/xatlas
 		${CMAKE_CURRENT_FUNCTION_LIST_DIR}/Tags
 		${CMAKE_BINARY_DIR}/Tags)
 	

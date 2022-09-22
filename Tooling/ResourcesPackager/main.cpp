@@ -7,7 +7,7 @@
 #include <SymbolsLib\symbolslib-public-pch.h>
 
 #define CHECK_ARGUMENT(argument) \
-	if (BCS_FAILED(rs = command_line_has_argument(argument))) \
+	if (BCS_FAILED(rs = command_line_has_argument_internal(argument))) \
 	{ \
 		console_write_line("ResourcesPackager> missing argument -" argument); \
 		return rs; \
@@ -234,11 +234,11 @@ int main()
 	CHECK_ARGUMENT("outputdir");
 	CHECK_ARGUMENT("resources");
 
-	bool mandrill = BCS_SUCCEEDED(command_line_has_argument("mandrill"));
-	bool gameframework = BCS_SUCCEEDED(command_line_has_argument("gameframework"));
-	bool package_symbols = BCS_SUCCEEDED(command_line_has_argument("packagesymbols"));
-	bool package_shaders = BCS_SUCCEEDED(command_line_has_argument("packageshaders"));
-	bool package_viewport_shaders = BCS_SUCCEEDED(command_line_has_argument("packageviewportshaders"));
+	bool mandrill = BCS_SUCCEEDED(command_line_has_argument_internal("mandrill"));
+	bool gameframework = BCS_SUCCEEDED(command_line_has_argument_internal("gameframework"));
+	bool package_symbols = BCS_SUCCEEDED(command_line_has_argument_internal("packagesymbols"));
+	bool package_shaders = BCS_SUCCEEDED(command_line_has_argument_internal("packageshaders"));
+	bool package_viewport_shaders = BCS_SUCCEEDED(command_line_has_argument_internal("packageviewportshaders"));
 
 	package_symbols |= gameframework;
 	package_shaders |= gameframework;

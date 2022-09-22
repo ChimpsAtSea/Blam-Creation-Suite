@@ -94,8 +94,8 @@ int main()
 	BCS_RESULT platform_result = init_platform();
 	BCS_RESULT command_line_result = init_command_line();
 	BCS_RESULT console_result = init_console();
-	if (BCS_SUCCEEDED(console_result)) console_result = BCS_SUCCEEDED(command_line_has_argument("commandline")) ? alloc_console("Lightmap Research") : BCS_S_OK;
-	BCS_RESULT rs2 = window_create("Lightmap Research", "lightmapresearch", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, true, window);
+	if (BCS_SUCCEEDED(console_result)) console_result = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("Lightmap Research") : BCS_S_OK;
+	BCS_RESULT rs2 = window_create("Lightmap Research", "lightmapresearch", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, true, true, window);
 	BCS_RESULT rs3 = render_context_window_create(*window, graphics_background_color, window_render_context);
 
 	BCS_RESULT rs8 = window_render_context->get_graphics(graphics);
@@ -130,12 +130,12 @@ cleanup:
 	return 0;
 }
 
-struct HINSTANCE__;
-int __stdcall wWinMain(
-	void* hInstance,
-	void* hPrevInstance,
-	const wchar_t* lpCmdLine,
-	int nShowCmd
+#include <Windows.h>
+int WINAPI wWinMain(
+	_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPWSTR lpCmdLine,
+	_In_ int nShowCmd
 )
 {
 	return main();

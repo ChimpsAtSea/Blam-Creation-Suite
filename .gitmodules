@@ -25,3 +25,6 @@
 [submodule "ThirdParty/DirectX-Headers"]
 	path = ThirdParty/DirectX-Headers
 	url = https://github.com/microsoft/DirectX-Headers.git
+[submodule "ThirdParty/xatlas"]
+	path = ThirdParty/xatlas
+	url = https://github.com/ChimpsAtSea/xatlas.git

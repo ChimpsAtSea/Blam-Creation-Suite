@@ -17,6 +17,7 @@ BCS_RESULT window_create(
 	uint32_t width,
 	uint32_t height,
 	float4 background_color,
+	bool is_primary_window,
 	bool allow_adapter_recovery,
 	c_window*& window,
 	const char* debug_name)
@@ -29,6 +30,7 @@ BCS_RESULT window_create(
 		width,
 		height, 
 		background_color,
+		is_primary_window,
 		allow_adapter_recovery,
 		*reinterpret_cast<c_window_windows**>(&window),
 		debug_name);

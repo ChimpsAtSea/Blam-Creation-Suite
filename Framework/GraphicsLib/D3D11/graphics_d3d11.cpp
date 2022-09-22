@@ -186,7 +186,7 @@
 //	}
 //
 //	UINT createDeviceFlags = 0;
-//	if (BCS_SUCCEEDED(command_line_has_argument("d3ddebug")))
+//	if (BCS_SUCCEEDED(command_line_has_argument_internal("d3ddebug")))
 //	{
 //		createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
 //	}

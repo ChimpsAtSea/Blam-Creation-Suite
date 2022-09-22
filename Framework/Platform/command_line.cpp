@@ -251,7 +251,7 @@ BCS_RESULT command_line_get_arguments(const char* argument, const char** values_
 	return BCS_S_OK;
 }
 
-BCS_RESULT command_line_has_argument(const char* argument)
+BCS_RESULT command_line_has_argument_internal(const char* argument)
 {
 	uint32_t argument_length = static_cast<unsigned long>(strlen(argument));
 
@@ -331,7 +331,7 @@ BCS_RESULT command_line_get_arguments(const wchar_t* argument, const wchar_t** v
 	return BCS_S_OK;
 }
 
-BCS_RESULT command_line_has_argument(const wchar_t* argument)
+BCS_RESULT command_line_has_argument_internal(const wchar_t* argument)
 {
 	uint32_t argument_length = static_cast<unsigned long>(wcslen(argument));
 	for (int argument_index = 0; argument_index < command_line_arguments_count; argument_index++)
@@ -344,4 +344,14 @@ BCS_RESULT command_line_has_argument(const wchar_t* argument)
 		}
 	}
 	return BCS_E_NOT_FOUND;
+}
+
+bool command_line_has_argument(const wchar_t* argument)
+{
+	return BCS_SUCCEEDED(command_line_has_argument_internal(argument));
+}
+
+bool command_line_has_argument(const char* argument)
+{
+	return BCS_SUCCEEDED(command_line_has_argument_internal(argument));
 }

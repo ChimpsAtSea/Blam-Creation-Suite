@@ -80,7 +80,7 @@ c_halo_script_editor::c_halo_script_editor(c_mandrill_tab& parent) :
 	//source_code_editor(),
 	//source_code_editor_language(TextEditor::LanguageDefinition::HaloScript()),
 	//compiler_output(),
-	show_compiler_output(BCS_SUCCEEDED(command_line_has_argument("showhscompileroutput")))
+	show_compiler_output(BCS_SUCCEEDED(command_line_has_argument_internal("showhscompileroutput")))
 {
 	//source_code_editor.SetLanguageDefinition(source_code_editor_language);
 	//compiler_output.SetLanguageDefinition(TextEditor::LanguageDefinition::PlainText());

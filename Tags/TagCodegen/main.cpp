@@ -15,7 +15,7 @@ BCS_RESULT create_low_level(s_engine_platform_build engine_platform_build)
 		c_stopwatch stopwatch;
 		stopwatch.start();
 		c_low_level_tag_source_generator low_level_tag_source_generator(engine_platform_build);
-		if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+		if (BCS_SUCCEEDED(command_line_has_argument_internal("verbose")))
 		{
 			console_write_line("Generating low level header (%s)", engine_name);
 		}
@@ -24,7 +24,7 @@ BCS_RESULT create_low_level(s_engine_platform_build engine_platform_build)
 		low_level_tag_source_generator.generate_source();
 		low_level_tag_source_generator.generate_enum_header();
 		stopwatch.stop();
-		if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+		if (BCS_SUCCEEDED(command_line_has_argument_internal("verbose")))
 		{
 			console_write_line("Finished generating low level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
 		}
@@ -62,7 +62,7 @@ BCS_RESULT create_high_level(s_engine_platform_build engine_platform_build)
 			console_write_line("Generating high level header (%s)", engine_name);
 			high_level_tag_source_generator.generate_header();
 			stopwatch.stop();
-			if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+			if (BCS_SUCCEEDED(command_line_has_argument_internal("verbose")))
 			{
 				console_write_line("Finished generating high level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
 			}
@@ -74,7 +74,7 @@ BCS_RESULT create_high_level(s_engine_platform_build engine_platform_build)
 			console_write_line("Generating high level forward declare header (%s)", engine_name);
 			high_level_tag_source_generator.generate_forward_declare();
 			stopwatch.stop();
-			if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+			if (BCS_SUCCEEDED(command_line_has_argument_internal("verbose")))
 			{
 				console_write_line("Finished generating high level forward declare header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
 			}
@@ -105,13 +105,13 @@ BCS_RESULT create_high_level_ctor(s_engine_platform_build engine_platform_build,
 		c_stopwatch stopwatch;
 		stopwatch.start();
 		c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
-		if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+		if (BCS_SUCCEEDED(command_line_has_argument_internal("verbose")))
 		{
 			console_write_line("Generating high level source ctor:%u (%s)", source_index, engine_name);
 		}
 		high_level_tag_source_generator.generate_ctor_source(source_index, k_ctor_source_count);
 		stopwatch.stop();
-		if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+		if (BCS_SUCCEEDED(command_line_has_argument_internal("verbose")))
 		{
 			console_write_line("Finished generating high level source ctor:%u (%s) %.2fms", source_index, engine_name, stopwatch.get_miliseconds());
 		}
@@ -140,13 +140,13 @@ BCS_RESULT create_high_level_virtual(s_engine_platform_build engine_platform_bui
 		c_stopwatch stopwatch;
 		stopwatch.start();
 		c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
-		if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+		if (BCS_SUCCEEDED(command_line_has_argument_internal("verbose")))
 		{
 			console_write_line("Generating high level source virtual functions (%s)", engine_name);
 		}
 		high_level_tag_source_generator.generate_source_virtual();
 		stopwatch.stop();
-		if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+		if (BCS_SUCCEEDED(command_line_has_argument_internal("verbose")))
 		{
 			console_write_line("Finished generating high level source virtual functions (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
 		}
@@ -175,13 +175,13 @@ BCS_RESULT create_high_level_misc(s_engine_platform_build engine_platform_build)
 		c_stopwatch stopwatch;
 		stopwatch.start();
 		c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
-		if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+		if (BCS_SUCCEEDED(command_line_has_argument_internal("verbose")))
 		{
 			console_write_line("Generating high level source misc (%s)", engine_name);
 		}
 		high_level_tag_source_generator.generate_source_misc();
 		stopwatch.stop();
-		if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+		if (BCS_SUCCEEDED(command_line_has_argument_internal("verbose")))
 		{
 			console_write_line("Finished generating high level source misc (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
 		}
@@ -299,7 +299,7 @@ BCS_RESULT create_source_file()
 	}
 
 	stopwatch.stop();
-	if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+	if (BCS_SUCCEEDED(command_line_has_argument_internal("verbose")))
 	{
 		console_write_line("Finished generating tag code %.2fms", stopwatch.get_miliseconds());
 	}
@@ -313,7 +313,7 @@ int main()
 	init_console();
 	init_command_line();
 
-	if (!BCS_SUCCEEDED(command_line_has_argument("output")))
+	if (!BCS_SUCCEEDED(command_line_has_argument_internal("output")))
 	{
 		return BCS_E_COMMAND_LINE_MISSING;
 	}

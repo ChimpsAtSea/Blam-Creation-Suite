@@ -6,6 +6,7 @@ struct VertexInput {
 	float3 Tangent		: TANGENT;
 	float3 Binormal		: BINORMAL;
 	float2 UV			: TEXCOORD0;
+	float2 LightmapUV	: TEXCOORD1;
 };
 
 struct VertexOutput {

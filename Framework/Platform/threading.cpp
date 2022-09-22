@@ -164,7 +164,7 @@ static void _parallel_invoke_single_threaded(uint64_t start, uint64_t end, t_par
 }
 
 #define PARALLEL_INVOKE_FIRST_RUN_FIXUP(target_pointer, single_threaded_function, multi_threaded_function)	\
-	if (BCS_SUCCEEDED(command_line_has_argument("singlethreaded"))) target_pointer = single_threaded_function; \
+	if (BCS_SUCCEEDED(command_line_has_argument_internal("singlethreaded"))) target_pointer = single_threaded_function; \
 	else target_pointer = multi_threaded_function;
 
 static void _parallel_invoke_first_run(int32_t start, int32_t end, t_parallel_invoke_long_func parallel_invoke_func, void* userdata)

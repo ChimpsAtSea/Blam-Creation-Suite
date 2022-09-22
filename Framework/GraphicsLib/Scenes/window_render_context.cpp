@@ -33,8 +33,8 @@ c_window_render_context::~c_window_render_context()
 
 BCS_RESULT c_window_render_context::init_render_context()
 {
-	bool use_debug_layer = BCS_SUCCEEDED(command_line_has_argument("graphicsdebug"));
-	bool use_cpu_rendering = BCS_SUCCEEDED(command_line_has_argument("forcecpurendering"));
+	bool use_debug_layer = BCS_SUCCEEDED(command_line_has_argument_internal("graphicsdebug"));
+	bool use_cpu_rendering = BCS_SUCCEEDED(command_line_has_argument_internal("forcecpurendering"));
 	e_graphics_architecture graphics_architecture = _graphics_architecture_d3d12;
 	if (use_cpu_rendering)
 	{

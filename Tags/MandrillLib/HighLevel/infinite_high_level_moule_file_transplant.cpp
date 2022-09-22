@@ -310,7 +310,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 				h_resource*& resource_storage = *reinterpret_cast<decltype(&resource_storage)>(high_level_field_data);
 
 
-				if (BCS_SUCCEEDED(command_line_has_argument("loadinfiniteresources")))
+				if (BCS_SUCCEEDED(command_line_has_argument_internal("loadinfiniteresources")))
 				{
 					if (c_infinite_tag_instance* infinite_tag_instance = dynamic_cast<c_infinite_tag_instance*>(&tag_instance))
 					{

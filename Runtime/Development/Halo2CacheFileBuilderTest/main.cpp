@@ -7,7 +7,7 @@ int main()
 	BCS_FAIL_RETURN(register_process_module_by_pointer(main));
 	BCS_RESULT rs0 = init_command_line();
 	BCS_RESULT rs1 = init_console();
-	if (BCS_SUCCEEDED(rs1)) rs1 = BCS_SUCCEEDED(command_line_has_argument("commandline")) ? alloc_console("Halo 2 Cache File Builder Test Console") : BCS_S_OK;
+	if (BCS_SUCCEEDED(rs1)) rs1 = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("Halo 2 Cache File Builder Test Console") : BCS_S_OK;
 
 	BCS_RESULT rs = BCS_S_OK;
 

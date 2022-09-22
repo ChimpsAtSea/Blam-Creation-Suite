@@ -83,8 +83,8 @@ int WINAPI wWinMain(
 	BCS_RESULT command_line_result = init_command_line(lpCmdLine);
 	BCS_RESULT console_result = init_console();
 	BCS_RESULT device_communication_result = init_device_communication();
-	if(BCS_SUCCEEDED(console_result)) console_result = BCS_SUCCEEDED(command_line_has_argument("commandline")) ? alloc_console("Mandrill") : BCS_S_OK;
-	BCS_RESULT window_create_result = window_create(window_title, "mandrill", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, true, window);
+	if(BCS_SUCCEEDED(console_result)) console_result = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("Mandrill") : BCS_S_OK;
+	BCS_RESULT window_create_result = window_create(window_title, "mandrill", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, true, true, window);
 	BCS_RESULT render_context_window_create_result = render_context_window_create(*window, graphics_background_color, window_render_context);
 
 	mandrill_user_interface = new() c_mandrill_user_interface(
@@ -112,7 +112,7 @@ int WINAPI wWinMain(
 	BCS_RESULT symbol_manager_cleanup_result = symbol_manager_cleanup();
 	BCS_FAIL_RETURN(symbol_manager_cleanup_result);
 
-	if (BCS_SUCCEEDED(command_line_has_argument("writememoryallocations")) || c_mandrill_user_interface::get_write_memory_allocations_at_exit_setting())
+	if (BCS_SUCCEEDED(command_line_has_argument_internal("writememoryallocations")) || c_mandrill_user_interface::get_write_memory_allocations_at_exit_setting())
 	{
 		write_memory_allocations();
 	}

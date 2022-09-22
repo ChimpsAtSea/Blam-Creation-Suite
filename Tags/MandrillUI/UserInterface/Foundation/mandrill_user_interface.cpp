@@ -37,7 +37,7 @@ c_mandrill_user_interface::c_mandrill_user_interface(c_render_context& imgui_vie
 	mandrill_theme_var_count(0),
 	file_browser()
 {
-	show_console_bar |= BCS_SUCCEEDED(command_line_has_argument("console"));
+	show_console_bar |= BCS_SUCCEEDED(command_line_has_argument_internal("console"));
 
 	c_fixed_path previous_file_path;
 	settings_read_string(_settings_section_mandrill, k_previous_open_filepath_setting, previous_file_path.str(), previous_file_path.capacity(), "");

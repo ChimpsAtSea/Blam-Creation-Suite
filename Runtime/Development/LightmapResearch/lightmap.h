@@ -14,7 +14,7 @@ public:
 	c_graphics_render_target*& color_render_target = render_targets[1];
 	c_graphics_render_target*& normal_render_target = render_targets[2];
 	c_graphics_render_target*& tangent_render_target = render_targets[3];
-	c_graphics_render_target*& binormal_render_target = render_targets[4];
+	c_graphics_render_target*& bitangent_render_target = render_targets[4];
 	c_graphics_render_target*& uv_render_target = render_targets[5];
 	c_viewport* viewport;
 	c_graphics_render_pass* render_pass;
@@ -27,5 +27,6 @@ public:
 	void deinit(c_graphics& graphics);
 	void render_graphics();
 	void render_pass_callback();
+	void render_texture_preview();
 	void render_user_interface();
 };

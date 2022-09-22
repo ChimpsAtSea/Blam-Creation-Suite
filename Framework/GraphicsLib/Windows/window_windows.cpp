@@ -7,6 +7,7 @@ c_window_windows::c_window_windows(
 	uint32_t init_width,
 	uint32_t init_height,
 	float4 background_color,
+	bool is_primary_window,
 	bool allow_adapter_recovery,
 	const char* debug_name) :
 	window_handle(NULL),
@@ -22,6 +23,11 @@ c_window_windows::c_window_windows(
 
 	BCS_CHAR_TO_WIDECHAR_STACK(window_title, window_title_wc);
 	BCS_CHAR_TO_WIDECHAR_HEAP(window_id, window_id_wc);
+
+	STARTUPINFOW startup_info = {};
+	startup_info.cb = sizeof(startup_info);
+	GetStartupInfoW(&startup_info);
+
 	window_class_name = window_id_wc;
 
 	unsigned char background_red = static_cast<unsigned char>(background_color.x * 255.0f);
@@ -54,23 +60,46 @@ c_window_windows::c_window_windows(
 		RegisterClassW(&window_class);
 	}
 
-	if (init_width == ULONG_MAX)
+	SetProcessDPIAware();
+
+	int start_x = CW_USEDEFAULT;
+	int start_y = CW_USEDEFAULT;
+	int show_window = SW_SHOW;
+	if (init_width == 0 || init_width == ULONG_MAX)
 	{
 		init_width = CW_USEDEFAULT;
 	}
-	if (init_height == ULONG_MAX)
+	if (init_height == 0 || init_height == ULONG_MAX)
 	{
 		init_height = CW_USEDEFAULT;
 	}
 
-	SetProcessDPIAware();
+	if (is_primary_window)
+	{
+		if (startup_info.dwFlags & STARTF_USEPOSITION)
+		{
+			start_x = startup_info.dwY;
+			start_y = startup_info.dwX;
+			init_width = startup_info.dwXSize;
+			init_height = startup_info.dwYSize;
+			
+		}
+		if (startup_info.dwFlags & STARTF_USESHOWWINDOW)
+		{
+			show_window = startup_info.wShowWindow;
+		}
+		else if (command_line_has_argument("maximize"))
+		{
+			show_window = SW_MAXIMIZE;
+		}
+	}
 
 	window_handle = CreateWindowExW(
 		0,                              // Optional window styles.
 		window_id_wc,					// Window class
 		window_title_wc,				// Window text
 		WS_OVERLAPPEDWINDOW,            // Window style
-		CW_USEDEFAULT, CW_USEDEFAULT,	// Position
+		start_x, start_y,				// Position
 		init_width, init_height,		// Size
 		NULL,							// Parent window    
 		NULL,							// Menu
@@ -79,8 +108,7 @@ c_window_windows::c_window_windows(
 	);
 
 	SetWindowLongPtrW(window_handle, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
-
-	ShowWindow(window_handle, SW_SHOW);
+	ShowWindow(window_handle, show_window);
 
 	RECT window_rectangle;
 	if (GetClientRect(window_handle, &window_rectangle))
@@ -180,6 +208,7 @@ BCS_RESULT window_windows_create(
 	uint32_t width,
 	uint32_t height,
 	float4 background_color,
+	bool is_primary_window,
 	bool allow_adapter_recovery,
 	c_window_windows*& window,
 	const char* debug_name)
@@ -193,6 +222,7 @@ BCS_RESULT window_windows_create(
 			width,
 			height,
 			background_color,
+			is_primary_window,
 			allow_adapter_recovery,
 			debug_name);
 	}

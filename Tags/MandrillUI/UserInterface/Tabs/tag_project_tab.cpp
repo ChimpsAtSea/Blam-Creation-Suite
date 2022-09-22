@@ -282,8 +282,8 @@ c_tag_project_tab::c_tag_project_tab(const wchar_t* filepath, c_tag_project& tag
 
 	if (tag_project.engine_platform_build.engine_type == _engine_type_halo3)
 	{
-		bool export_wav = BCS_SUCCEEDED(command_line_has_argument("autoexportsoundswav"));
-		bool export_xma = BCS_SUCCEEDED(command_line_has_argument("autoexportsoundsxma"));
+		bool export_wav = BCS_SUCCEEDED(command_line_has_argument_internal("autoexportsoundswav"));
+		bool export_xma = BCS_SUCCEEDED(command_line_has_argument_internal("autoexportsoundsxma"));
 		if (export_wav || export_xma)
 		{
 			export_sounds(L"", tag_project, export_wav, export_xma);

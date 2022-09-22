@@ -223,7 +223,7 @@ void c_tag_project_configurator_tab::render_impl()
 	ImGui::SameLine();
 
 	bool auto_proceed = false;
-	if (BCS_SUCCEEDED(command_line_has_argument("autoprojectinit")))
+	if (BCS_SUCCEEDED(command_line_has_argument_internal("autoprojectinit")))
 	{
 #define AUTO_PROJECT_INIT_STEP(_step) else if (step == _step) { static bool run_once = auto_proceed = true; }
 		if (false) {}

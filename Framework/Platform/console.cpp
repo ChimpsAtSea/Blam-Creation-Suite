@@ -6,8 +6,8 @@ static bool console_info = false;
 
 BCS_RESULT init_console()
 {
-	console_verbose = BCS_SUCCEEDED(command_line_has_argument("verbose"));
-	console_info = BCS_SUCCEEDED(command_line_has_argument("info"));
+	console_verbose = BCS_SUCCEEDED(command_line_has_argument_internal("verbose"));
+	console_info = BCS_SUCCEEDED(command_line_has_argument_internal("info"));
 	//console_mutex = CreateMutexA(NULL, FALSE, "console mutex");
 
 	return BCS_S_OK;

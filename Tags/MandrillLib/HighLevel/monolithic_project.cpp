@@ -116,7 +116,7 @@ void c_monolithic_tag_project::init_monolithic_tag_file_views_impl(void* _userda
 	swprintf(partition_filepath, _countof(partition_filepath), L"%sblobs\\tags_%i", _this->tag_cache_directory, partition_chunk->partition_header.file_index);
 
 	c_monolithic_partition_view* partition_view;
-	if (BCS_SUCCEEDED(command_line_has_argument("loadblobsmemory")))
+	if (BCS_SUCCEEDED(command_line_has_argument_internal("loadblobsmemory")))
 	{
 		partition_view = new() c_monolithic_partition_view(partition_filepath, _monolithic_partition_view_type_memory);
 	}
