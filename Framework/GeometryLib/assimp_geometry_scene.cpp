@@ -16,7 +16,7 @@ c_assimp_geometry_scene::c_assimp_geometry_scene(const char* filepath) :
 	if (assimp_scene == nullptr)
 	{
 		const char* error_string = aiGetErrorString();
-		console_write_line_verbose("Failed to import assimp scene '%' reason '%s'", filepath, error_string);
+		console_write_line_verbose("Failed to import assimp scene '%s' reason '%s'", filepath, error_string);
 		throw BCS_E_FATAL;
 	}
 	if (assimp_scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE)

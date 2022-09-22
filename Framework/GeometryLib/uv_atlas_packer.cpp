@@ -53,7 +53,7 @@ BCS_RESULT uv_atlas_packer_bake(h_uv_atlas_packer& uv_atlas_packer_handle)
 	{
 		c_geometry_mesh* geometry_mesh = uv_atlas_packer->geometry_mesh_entries[geometry_mesh_index];
 
-		geometry_mesh->degenerate_texcoord_hack();
+		//geometry_mesh->degenerate_texcoord_hack();
 
 		xatlasUvMeshDecl xatlas_uvmesh_decl;
 		xatlasUvMeshDeclInit(&xatlas_uvmesh_decl);
