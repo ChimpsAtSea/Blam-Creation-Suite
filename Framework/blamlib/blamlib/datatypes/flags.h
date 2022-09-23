@@ -38,7 +38,6 @@ public:
 		t_storage mask = make_mask_with_all_valid_bits_on_size_type();
 		c_flags_no_init result;
 		result.set_unsafe((~m_stored) & mask);
-		*this = c_flags_no_init;
 		return result;
 	}
 

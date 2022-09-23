@@ -330,7 +330,7 @@ void c_high_level_tag_source_generator::generate_header()
 				{
 					const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
 
-					stream << indent << "\t\t" << "h_field<c_flags<e_" << string_list.name << ", dword>, " << high_level_structure_name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
+					stream << indent << "\t\t" << "h_field_flags<e_" << string_list.name << ", " << high_level_structure_name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
 				}
 				break;
 				case _field_char_enum:
@@ -658,60 +658,42 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 					{
 						std::string high_level_structure_name = format_structure_symbol(*struct_definition);
 
+
+						std::stringstream field_type_stream;
+						std::stringstream field_type_stream2;
+						
 						switch (tag_field.field_type)
 						{
 						case _field_array:
 						{
 							std::string field_source_type = format_structure_symbol(tag_field.array_definition->struct_definition);
 							stream << "using t_" << high_level_structure_name << "_" << field_formatter.code_name.c_str() << " = " << "h_typed_array<" << get_namespace(true) << field_source_type << ", " << tag_field.array_definition->count(engine_platform_build) << ">;" << std::endl;
-							stream << "h_field_func_impl(t_" << high_level_structure_name << "_" << field_formatter.code_name.c_str() << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl2(t_" << high_level_structure_name << "_" << field_formatter.code_name.c_str() << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl3(t_" << high_level_structure_name << "_" << field_formatter.code_name.c_str() << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
+
+							field_type_stream << "t_" << high_level_structure_name << "_" << field_formatter.code_name.c_str();
 							break;
 						}
 						case _field_struct:
 						{
 							std::string field_source_type = format_structure_symbol(*tag_field.struct_definition);
-							stream << "h_field_func_impl(" << get_namespace(true) << field_source_type << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl2(" << get_namespace(true) << field_source_type << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl3(" << get_namespace(true) << field_source_type << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
+
+							field_type_stream << get_namespace(true) << field_source_type;
 							break;
 						}
 						case _field_block:
 						{
 							std::string field_source_type = format_structure_symbol(tag_field.block_definition->struct_definition);
-							stream << "h_field_func_impl(h_typed_block<" << get_namespace(true) << field_source_type << ">, " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl2(h_typed_block<" << get_namespace(true) << field_source_type << ">, " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl3(h_typed_block<" << get_namespace(true) << field_source_type << ">, " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
+
+							field_type_stream << "h_typed_block<" << get_namespace(true) << field_source_type << ">";
 							break;
 						}
 						case _field_data:
 						{
-							stream << "h_field_func_impl(h_data, " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl2(h_data, " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl3(h_data, " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
+							field_type_stream << "h_data";
 							break;
 						}
 						case _field_tag_reference:
 						{
-							stream << "h_field_func_impl(h_tag*, " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl2(h_tag*, " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl3(h_tag*, " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
+							field_type_stream << "h_tag*";
 							break;
 						}
 						case _field_long_flags:
@@ -719,13 +701,9 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 						case _field_byte_flags:
 						{
 							const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
-							stream << "using t_" << high_level_structure_name << "_" << field_formatter.code_name.c_str() << " = c_flags<" << get_namespace(true) << "e_" << string_list.name << ", dword>;" << std::endl;
-							stream << "h_field_func_impl(t_" << high_level_structure_name << "_" << field_formatter.code_name.c_str() << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl2(t_" << high_level_structure_name << "_" << field_formatter.code_name.c_str() << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl3(t_" << high_level_structure_name << "_" << field_formatter.code_name.c_str() << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
+							stream << "using t_" << high_level_structure_name << "_" << field_formatter.code_name.c_str() << " = c_flags<" << get_namespace(true) << "e_" << string_list.name << ", qword>;" << std::endl;
+							field_type_stream << "t_" << high_level_structure_name << "_" << field_formatter.code_name.c_str();
+							field_type_stream2 << get_namespace(true) << "e_" << string_list.name;
 							break;
 						}
 						case _field_char_enum:
@@ -733,26 +711,54 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 						case _field_long_enum:
 						{
 							const blofeld::s_string_list_definition& string_list = *tag_field.string_list_definition;
-							stream << "h_field_func_impl(" << get_namespace(true) << "e_" << string_list.name << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl2(" << get_namespace(true) << "e_" << string_list.name << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl3(" << get_namespace(true) << "e_" << string_list.name << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
+							field_type_stream << get_namespace(true) << "e_" << string_list.name;
+
 							break;
 						}
 						default:
 						{
 							const char* field_source_type = field_type_to_high_level_source_type(engine_platform_build.platform_type, tag_field.field_type);
 							ASSERT(field_source_type != nullptr);
-							stream << "h_field_func_impl(" << field_source_type << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl2(" << field_source_type << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
-							stream << "h_field_func_impl3(" << field_source_type << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-							stream << std::endl;
+							field_type_stream << field_source_type;
+							break;
 						}
 						}
+
+						std::stringstream args_stream;
+						args_stream << field_type_stream.str() << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str();
+						std::string args = args_stream.str();
+
+						stream << "h_field_func_impl_cast_const(" << args << ");" << std::endl;
+						stream << "h_field_func_impl_cast(" << args << ");" << std::endl;
+						stream << "h_field_func_impl_rvalue_assignment(" << args << ");" << std::endl;
+						stream << "h_field_func_impl_lvalue_assignment(" << args << ");" << std::endl;
+						stream << "h_field_func_impl_rvalue_equality(" << args << ");" << std::endl;
+						stream << "h_field_func_impl_lvalue_equality(" << args << ");" << std::endl;
+						stream << "h_field_func_impl_rvalue_inequality(" << args << ");" << std::endl;
+						stream << "h_field_func_impl_lvalue_inequality(" << args << ");" << std::endl;
+
+						switch (tag_field.field_type)
+						{
+						case _field_long_flags:
+						case _field_word_flags:
+						case _field_byte_flags:
+						{
+							std::stringstream flags_args_stream;
+							flags_args_stream << field_type_stream2.str() << ", " << get_namespace(true) << high_level_structure_name << ", " << field_index << ", " << field_formatter.code_name.c_str();
+							std::string flags_args = flags_args_stream.str();
+
+							stream << "h_field_enum_func_impl_or(" << flags_args << ");" << std::endl;
+							stream << "h_field_enum_func_impl_is_clear(" << flags_args << ");" << std::endl;
+							stream << "h_field_enum_func_impl_xor(" << flags_args << ");" << std::endl;
+							stream << "h_field_enum_func_impl_clear(" << flags_args << ");" << std::endl;
+							stream << "h_field_enum_func_impl_test(" << flags_args << ");" << std::endl;
+							stream << "h_field_enum_func_impl_set(" << flags_args << ");" << std::endl;
+							stream << "h_field_enum_func_impl_valid(" << flags_args << ");" << std::endl;
+
+							break;
+						}
+						}
+
 					}
 
 				}
@@ -1047,7 +1053,19 @@ void c_high_level_tag_source_generator::generate_source_misc()
 
 				if (!custom_structure_codegen(_custom_structure_codegen_high_level_get_field_data_func, stream, indent.c_str(), &field_formatter, *struct_definition, tag_field, namespace_without_semicolons.c_str()))
 				{
-					stream << indent << "case " << field_index << ": return &" << field_formatter.code_name.c_str() << ";" << std::endl;
+					switch (tag_field.field_type)
+					{
+					case _field_array:
+					case _field_struct:
+					case _field_data:
+					case _field_tag_reference:
+					case _field_block:
+						stream << indent << "case " << field_index << ": return &" << field_formatter.code_name.c_str() << ";" << std::endl;
+						break;
+					default:
+						stream << indent << "case " << field_index << ": return &" << field_formatter.code_name.c_str() << ".value;" << std::endl;
+						break;
+					}
 				}
 			}
 			stream << indent << "default: return nullptr;" << std::endl;
@@ -1074,7 +1092,7 @@ void c_high_level_tag_source_generator::generate_source_misc()
 		ASSERT(BCS_SUCCEEDED(calculate_tag_field_count_result));
 
 		uint32_t num_bitfields = __max(1ul, ROUND_UP_VALUE(field_count, 64) / 64);
-		uint64_t* bitfields = new() uint64_t[num_bitfields] {};
+		uint64_t* bitfields = new() uint64_t[num_bitfields]{};
 
 		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{

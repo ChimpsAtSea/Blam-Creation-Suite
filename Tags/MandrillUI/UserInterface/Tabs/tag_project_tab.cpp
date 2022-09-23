@@ -45,14 +45,14 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 
 					blofeld::halo3::pc64::h_sound_gestalt_codec_block& codec = sound_cache_file_gestalt->codecs_block[cache_file_sound->codec_index];
 					
-					uint32_t const pitch_range_start_index = cache_file_sound->first_pitch_range_index.value;
-					uint32_t const pitch_range_end_index = pitch_range_start_index + cache_file_sound->pitch_range_count.value;
+					uint32_t const pitch_range_start_index = cache_file_sound->first_pitch_range_index;
+					uint32_t const pitch_range_end_index = pitch_range_start_index + cache_file_sound->pitch_range_count;
 					for (uint32_t pitch_range_index = pitch_range_start_index; pitch_range_index < pitch_range_end_index; pitch_range_index++)
 					{
 						blofeld::halo3::pc64::h_sound_gestalt_pitch_ranges_block& pitch_range = sound_cache_file_gestalt->pitch_ranges_block[pitch_range_index];
 
-						h_string_id pitch_range_name = sound_cache_file_gestalt->import_names_block[pitch_range.name.value].import_name.value;
-						uint32_t encoded_first_permutation_and_counts = pitch_range.encoded_first_permutation_and_counts.value;
+						h_string_id pitch_range_name = sound_cache_file_gestalt->import_names_block[pitch_range.name].import_name;
+						uint32_t encoded_first_permutation_and_counts = pitch_range.encoded_first_permutation_and_counts;
 
 						uint32_t permutation_start_index = (encoded_first_permutation_and_counts >> 0) & 0x000FFFFF;
 						uint32_t total_permutation_count = (encoded_first_permutation_and_counts >> 20) & 0x3F;
@@ -64,33 +64,33 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 						for (uint32_t permutation_index = permutation_start_index; permutation_index < permutation_end_index; permutation_index++)
 						{
 							blofeld::halo3::pc64::h_sound_gestalt_permutations_block& permutation = sound_cache_file_gestalt->permutations_block[permutation_index];
-							h_string_id permutation_name = sound_cache_file_gestalt->import_names_block[permutation.name].import_name.value;
+							h_string_id permutation_name = sound_cache_file_gestalt->import_names_block[permutation.name].import_name;
 
 							debug_point;
 
 							const char* _tag_filepath = tag.get_file_path();
 							const char* _permutation_name = permutation_name.get_string();
 
-							uint32_t const chunk_count = permutation.chunk_count.value;
+							uint32_t const chunk_count = permutation.chunk_count;
 							if (chunk_count == 1)
 							{
-								uint32_t const chunk_start_index = permutation.first_chunk_index.value;
+								uint32_t const chunk_start_index = permutation.first_chunk_index;
 								uint32_t const chunk_end_index = chunk_start_index + chunk_count;
 								for (uint32_t chunk_index = chunk_start_index; chunk_index < chunk_end_index; chunk_index++)
 								{
 									blofeld::halo3::pc64::h_sound_permutation_chunk_block& chunk = sound_cache_file_gestalt->chunks_block[chunk_index];
 
 									c_long_designator<6, 0> size_and_flags;
-									size_and_flags.set_raw_designator(chunk.encoded_size_and_flags.value);
+									size_and_flags.set_raw_designator(chunk.encoded_size_and_flags);
 									uint32_t sample_size = size_and_flags.get_primary_index();
 									uint32_t flags = size_and_flags.get_secondary_index();
-									uint32_t file_offset = chunk.file_offset.value;
+									uint32_t file_offset = chunk.file_offset;
 
 									const char* sample_data_start = static_cast<const char*>(resource_buffer) + file_offset;
 									const char* sample_data_end = sample_data_start + sample_size;
 
 									int32_t number_of_channels = 0;
-									switch (codec.encoding.value)
+									switch (codec.encoding)
 									{
 									case _sound_encoding_enum_mono:
 										number_of_channels = 1;
@@ -110,7 +110,7 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 									}
 
 									int32_t samples_per_second = 0;
-									switch (codec.sample_rate.value)
+									switch (codec.sample_rate)
 									{
 									case _sound_sample_rate_enum__22khz:
 										samples_per_second = 22050;
@@ -157,10 +157,10 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 										xma2_wave_format.NumStreams = 1;														// Number of audio streams (1 or 2 channels each)
 										xma2_wave_format.ChannelMask = 0;														// Spatial positions of the channels in this file,
 																																// stored as SPEAKER_xxx values (see audiodefs.h)
-										xma2_wave_format.SamplesEncoded = permutation.uncompressed_sample_count.value;			// Total number of PCM samples the file decodes to
+										xma2_wave_format.SamplesEncoded = permutation.uncompressed_sample_count;			// Total number of PCM samples the file decodes to
 										xma2_wave_format.BytesPerBlock = 2048;													// XMA block size (but the last one may be shorter)
-										xma2_wave_format.PlayBegin = chunk.xma2_source_buffer_sample_start.value;				// First valid sample in the decoded audio
-										xma2_wave_format.PlayLength = chunk.xma2_source_buffer_sample_end.value;				// Length of the valid part of the decoded audio
+										xma2_wave_format.PlayBegin = chunk.xma2_source_buffer_sample_start;				// First valid sample in the decoded audio
+										xma2_wave_format.PlayLength = chunk.xma2_source_buffer_sample_end;				// Length of the valid part of the decoded audio
 										xma2_wave_format.LoopBegin = 0;															// Beginning of the loop region in decoded sample terms
 										xma2_wave_format.LoopLength = 0;														// Length of the loop region in decoded sample terms
 										xma2_wave_format.LoopCount = 0;															// Number of loop repetitions; 255 = infinite

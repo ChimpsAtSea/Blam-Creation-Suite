@@ -381,6 +381,9 @@ void c_lightmap::init(c_graphics& graphics)
 	BCS_FAIL_THROW(create_render_pass_result);
 
 	render_pass->render_callback.add_callback(member_to_static_function(&c_lightmap::render_pass_callback), this, render_pass_callback_handle);
+
+	BCS_RESULT geometry_scene_destroy_result = geometry_scene_destroy(geometry_scene);
+	BCS_FAIL_THROW(geometry_scene_destroy_result);
 }
 
 void c_lightmap::deinit(c_graphics& graphics)

@@ -11,4 +11,4 @@ public:
 };
 
 BCS_DEBUG_API BCS_RESULT load_geometry_scene_from_file(const char* filepath, c_geometry_scene*& geometry_scene);
-BCS_DEBUG_API BCS_RESULT destroy_geometry_scene(c_geometry_scene* geometry_scene);
+BCS_DEBUG_API BCS_RESULT geometry_scene_destroy(c_geometry_scene* geometry_scene);

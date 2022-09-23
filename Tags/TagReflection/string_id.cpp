@@ -11,6 +11,12 @@ h_string_id::h_string_id(const char* _string) :
 	set_string(_string);
 }
 
+h_string_id::h_string_id(h_string_id const& string_id) :
+	string()
+{
+	set_string(string_id.string);
+}
+
 h_string_id::~h_string_id()
 {
 	clear();
@@ -51,4 +57,34 @@ void h_string_id::clear()
 		untracked_free(string);
 		string = nullptr;
 	}
+}
+
+h_string_id& h_string_id::operator=(h_string_id const& value)
+{
+	set_string(value.string);
+	return *this;
+}
+
+h_string_id& h_string_id::operator=(const char* const& value)
+{
+	set_string(value);
+	return *this;
+}
+
+bool h_string_id::operator==(h_string_id const& value) const
+{
+	if (string != nullptr && value.string != nullptr)
+	{
+		return strcmp(string, value.string);
+	}
+	return string == value.string;
+}
+
+bool h_string_id::operator==(const char* const& _value) const
+{
+	if (string != nullptr && _value != nullptr)
+	{
+		return strcmp(string, _value);
+	}
+	return string == _value;
 }

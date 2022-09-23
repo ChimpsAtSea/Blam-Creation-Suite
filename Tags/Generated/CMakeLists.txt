@@ -88,6 +88,9 @@ function(bcs_high_level_tag_project TARGET_NAME PCH_NAME GEN_ENGINE GEN_PLATFORM
 	
 	target_link_libraries(${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT} PRIVATE
 		blamlib Platform TemplateLibrary TagDefinitions TagReflection LowLevel_${TARGET_NAME}_${GEN_PLATFORM})
+
+	target_compile_definitions(${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT} PRIVATE
+		BCS_IS_HIGH_LEVEL_BUILD_PROJECT)
 		
 	target_precompile_headers(${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT} PRIVATE
 		"$<$<COMPILE_LANGUAGE:CXX>:${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${PCH_NAME}-private-pch.h>")

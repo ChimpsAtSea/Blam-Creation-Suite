@@ -35,6 +35,9 @@ add_library(TagReflection STATIC
 
 bcs_set_common_properties(TagReflection)
 
+target_compile_definitions(TagReflection PRIVATE
+	BCS_IS_HIGH_LEVEL_BUILD_PROJECT)
+
 target_link_libraries(TagReflection PUBLIC
 	blamlib Platform TemplateLibrary Shared SymbolsLib TagDefinitions)
 	

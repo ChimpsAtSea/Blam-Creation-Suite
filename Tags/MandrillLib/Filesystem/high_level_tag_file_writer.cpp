@@ -28,6 +28,10 @@ c_high_level_tag_file_writer::c_high_level_tag_file_writer(s_engine_platform_bui
 	binary_data_chunk()
 {
 	file_handle = fopen(_filepath, "wb");
+	if (file_handle == nullptr)
+	{
+		throw BCS_E_FILE_NOT_FOUND;
+	}
 
 	init_chunks();
 
@@ -657,7 +661,26 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 		{
 			const blofeld::s_tag_array_definition& array_definition = *field.array_definition;
 			uint32_t structure_size = calculate_structure_size(array_definition.struct_definition);
-			field_size = structure_size * array_definition.count(engine_platform_build);
+			const h_enumerable& enumerable = *static_cast<const h_enumerable*>(src_field_data);
+
+			unsigned int array_size = array_definition.count(engine_platform_build);
+
+			ASSERT(tag_struct_chunk != nullptr);
+			ASSERT(array_size == enumerable.size());
+
+			char* dst_array_field_data = dst_field_data;
+			for (unsigned int index = 0; index < array_size; index++)
+			{
+				const h_prototype& prototype = enumerable[index];
+
+				serialize_tag_struct(prototype, dst_array_field_data, tag_struct_chunk);
+
+				dst_array_field_data += structure_size;
+			}
+
+			field_size = structure_size * array_size;
+
+			debug_point;
 		}
 		break;
 		case blofeld::_field_pad:
