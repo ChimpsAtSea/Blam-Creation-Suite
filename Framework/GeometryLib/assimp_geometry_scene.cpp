@@ -1,4 +1,4 @@
-#include "geometrylib-public-pch.h"
+#include "geometrylib-private-pch.h"
 
 c_assimp_geometry_scene::c_assimp_geometry_scene(const char* filepath) :
 	c_geometry_scene(),

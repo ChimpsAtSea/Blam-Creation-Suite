@@ -11,6 +11,7 @@ public:
 	std::vector<c_assimp_geometry_mesh*> assimp_meshes;
 
 	c_assimp_geometry_scene(const char* filepath);
+	c_assimp_geometry_scene(c_assimp_geometry_scene& const) = delete;
 	virtual ~c_assimp_geometry_scene();
 
 	virtual unsigned int get_num_meshes() const override;

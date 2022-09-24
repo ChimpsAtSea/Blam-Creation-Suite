@@ -32,6 +32,8 @@ public:
 	virtual bool operator==(t_field_type const& _value);
 	virtual bool operator!=(t_field_type const&& _value);
 	virtual bool operator!=(t_field_type const& _value);
+	virtual t_field_type const* operator->() const;
+	virtual t_field_type* operator->();
 
 #ifdef BCS_IS_HIGH_LEVEL_BUILD_PROJECT
 public:
@@ -184,7 +186,6 @@ bool h_field<t_field_type, t_parent_type, _field_index>::operator==(t_field_type
 	}																																		\
 }
 
-
 #define h_field_func_impl_rvalue_inequality(t_field_type, t_parent_type, _field_index, _field_name)											\
 bool h_field<t_field_type, t_parent_type, _field_index>::operator!=(t_field_type const&& _value)											\
 {																																			\
@@ -201,7 +202,6 @@ bool h_field<t_field_type, t_parent_type, _field_index>::operator!=(t_field_type
 	}																																		\
 }
 
-
 #define h_field_func_impl_lvalue_inequality(t_field_type, t_parent_type, _field_index, _field_name)											\
 bool h_field<t_field_type, t_parent_type, _field_index>::operator!=(t_field_type const& _value)												\
 {																																			\
@@ -216,6 +216,18 @@ bool h_field<t_field_type, t_parent_type, _field_index>::operator!=(t_field_type
 	{																																		\
 		return memcmp(&value, &_value, sizeof(value)) != 0;																					\
 	}																																		\
+}
+
+#define h_field_func_impl_pointer_const(t_field_type, t_parent_type, _field_index, _field_name)												\
+t_field_type const* h_field<t_field_type, t_parent_type, _field_index>::operator->() const													\
+{																																			\
+	return &value;																															\
+}
+
+#define h_field_func_impl_pointer(t_field_type, t_parent_type, _field_index, _field_name)													\
+t_field_type* h_field<t_field_type, t_parent_type, _field_index>::operator->()																\
+{																																			\
+	return &value;																															\
 }
 
 #define h_field_enum_func_impl_rvalue_assignment(t_enum, t_parent_type, _field_index, _field_name)																							\

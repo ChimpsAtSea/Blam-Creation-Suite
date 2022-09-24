@@ -513,6 +513,13 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 
 				break;
 			}
+			case _field_char_block_index:
+			case _field_short_block_index:
+			case _field_long_block_index:
+			{
+				stream << indent << field_formatter.code_name.c_str() << "(-1)";
+				break;
+			}
 			default:
 			{
 				stream << indent << field_formatter.code_name.c_str() << "()";
@@ -661,7 +668,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 
 						std::stringstream field_type_stream;
 						std::stringstream field_type_stream2;
-						
+
 						switch (tag_field.field_type)
 						{
 						case _field_array:
@@ -736,7 +743,9 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 						stream << "h_field_func_impl_lvalue_equality(" << args << ");" << std::endl;
 						stream << "h_field_func_impl_rvalue_inequality(" << args << ");" << std::endl;
 						stream << "h_field_func_impl_lvalue_inequality(" << args << ");" << std::endl;
-
+						stream << "h_field_func_impl_pointer_const(" << args << ");" << std::endl;
+						stream << "h_field_func_impl_pointer(" << args << ");" << std::endl;
+						
 						switch (tag_field.field_type)
 						{
 						case _field_long_flags:
