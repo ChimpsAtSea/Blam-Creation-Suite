@@ -36,7 +36,7 @@ c_assimp_geometry_scene::c_assimp_geometry_scene(const char* filepath) :
 		else
 		{
 			const char* mesh_name = assimp_mesh->mName.C_Str();
-			console_write_line_verbose("Warning: Discarding assimp mesh '%' as primitive type is not exclusively aiPrimitiveType_TRIANGLE", mesh_name);
+			console_write_line_verbose("Warning: Discarding assimp mesh data '%s' as primitive type is not exclusively aiPrimitiveType_TRIANGLE", mesh_name);
 			debug_point;
 		}
 	}
