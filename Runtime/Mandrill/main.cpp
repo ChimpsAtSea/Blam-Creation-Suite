@@ -96,6 +96,8 @@ int WINAPI wWinMain(
 
 	delete mandrill_user_interface;
 
+	bool write_memory_allocations = command_line_has_argument("writememoryallocations");
+
 	if (BCS_SUCCEEDED(render_context_window_create_result)) render_context_window_create_result = render_context_destroy(window_render_context);
 	if (BCS_SUCCEEDED(window_create_result)) window_create_result = window_destroy(window);
 	if (BCS_SUCCEEDED(console_result)) console_result = deinit_console();
@@ -112,9 +114,9 @@ int WINAPI wWinMain(
 	BCS_RESULT symbol_manager_cleanup_result = symbol_manager_cleanup();
 	BCS_FAIL_RETURN(symbol_manager_cleanup_result);
 
-	if (BCS_SUCCEEDED(command_line_has_argument_internal("writememoryallocations")) || c_mandrill_user_interface::get_write_memory_allocations_at_exit_setting())
+	if (write_memory_allocations || c_mandrill_user_interface::get_write_memory_allocations_at_exit_setting())
 	{
-		write_memory_allocations();
+		::write_memory_allocations();
 	}
 	if (console_is_verbose())
 	{
