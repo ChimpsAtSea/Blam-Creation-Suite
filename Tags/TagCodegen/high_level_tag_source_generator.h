@@ -13,6 +13,10 @@ public:
 	void generate_ctor_source(uint32_t source_index, uint32_t source_count);
 	void generate_source_virtual();
 	void generate_source_misc();
+	void generate_function_get_blofeld_field_list(std::stringstream& stream, const blofeld::s_tag_struct_definition& struct_definition);
+	void generate_function_get_blofeld_field_list_deprecated(std::stringstream& stream, const blofeld::s_tag_struct_definition& struct_definition);
+	void generate_function_get_version(std::stringstream& stream, const blofeld::s_tag_struct_definition& struct_definition);
+	void generate_function_get_field_data_unsafe(std::stringstream& stream, const blofeld::s_tag_struct_definition& struct_definition, bool is_const);
 
 	std::string output_directory;
 	std::string output_header_file_path;
@@ -22,6 +26,7 @@ public:
 	std::string output_misc_file_path;
 
 	const blofeld::s_tag_group* get_tag_struct_tag_group(const blofeld::s_tag_struct_definition& tag_struct_definition);
+	unsigned int get_tag_struct_version(const blofeld::s_tag_struct_definition& tag_struct_definition);
 	std::string format_structure_symbol(const blofeld::s_tag_struct_definition& struct_definition);
 	static const char* field_type_to_high_level_source_type(e_platform_type platform_type, blofeld::e_field field_type);
 };

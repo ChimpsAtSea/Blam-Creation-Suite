@@ -81,7 +81,7 @@ namespace blofeld
 
 #define tag_field_iterator_versioning(_tag_struct_definition_ref, _tag_field_iterator, _engine_platform_build, struct_version) \
 	*_tag_field_iterator; \
-	if (_tag_struct_definition_ref.runtime_flags.test(blofeld::_tag_field_set_mandrill_has_versioning)) \
+	if ((_tag_struct_definition_ref).runtime_flags.test(blofeld::_tag_field_set_mandrill_has_versioning)) \
 	{ \
 		uint32_t _field_skip_count; \
 		if (execute_tag_field_versioning(*_tag_field_iterator, _engine_platform_build, struct_version, _field_skip_count)) \

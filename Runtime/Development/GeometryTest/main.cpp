@@ -1,10 +1,6 @@
 #include "geometrytest-private-pch.h"
 
-static float4 graphics_background_color = { 0.16f, 0.10f, 0.16f, 1.0f };
-static float4 window_background_color = { 0.130f, 0.141f, 0.167f, 1.0f };
-
-static c_window* window;
-static c_render_context* window_render_context;
+using namespace blofeld::halo3::pc64;
 
 int main()
 {
@@ -17,21 +13,19 @@ int main()
 
 	s_engine_platform_build engine_platform_build = { _engine_type_halo3, _platform_type_pc_64bit, _build_halo3_guerilla };
 
-	const blofeld::s_tag_group* model_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, blofeld::halo3::pc64::MODEL_TAG);
+	const blofeld::s_tag_group* model_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, MODEL_TAG);
 	h_group* model_high_level_group = new() h_group(engine_platform_build, *model_tag_group);
 
-	const blofeld::s_tag_group* render_model_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, blofeld::halo3::pc64::RENDER_MODEL_TAG);
+	const blofeld::s_tag_group* render_model_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, RENDER_MODEL_TAG);
 	h_group* render_model_high_level_group = new() h_group(engine_platform_build, *render_model_tag_group);
 	
 	h_tag& model_tag = model_high_level_group->create_tag_instance("geometrytest");
 	h_tag& render_model_tag = render_model_high_level_group->create_tag_instance("geometrytest");
 
-	blofeld::halo3::pc64::h_model_block_struct* model = dynamic_cast<decltype(model)>(&model_tag);
-	blofeld::halo3::pc64::h_render_model_block_struct* render_model = dynamic_cast<decltype(render_model)>(&render_model_tag);
+	h_model_block_struct* model = dynamic_cast<decltype(model)>(&model_tag);
+	h_render_model_block_struct* render_model = dynamic_cast<decltype(render_model)>(&render_model_tag);
 
 	model->render_model.set_tag(render_model);
-
-
 
 	const char* model_path;
 	BCS_RESULT get_command_line_argument_result = command_line_get_argument("modelpath", model_path);
@@ -41,10 +35,7 @@ int main()
 	BCS_RESULT load_geometry_scene_from_file_result = load_geometry_scene_from_file(model_path, geometry_scene);
 	BCS_FAIL_THROW(load_geometry_scene_from_file_result);
 
-
 	auto& runtime_region = model->runtime_regions_block.emplace_back();
-
-	using namespace blofeld::halo3::pc64;
 
 	render_model->name = "geometry_test";
 

@@ -15,23 +15,16 @@ public:
 
 	BCS_DEBUG_API static h_prototype* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition, s_engine_platform_build engine_platform_build);
 
+	virtual const void* get_field_data_unsafe(const blofeld::s_tag_field& field) const = 0;
 	virtual void* get_field_data_unsafe(const blofeld::s_tag_field& field) = 0;
-	inline const void* get_field_data_unsafe(const blofeld::s_tag_field& field) const
-	{
-		return const_cast<h_prototype*>(this)->get_field_data_unsafe(field);
-	}
-	virtual bool is_field_active(const blofeld::s_tag_field& field) const = 0;
 	virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const = 0;
-	virtual const blofeld::s_tag_field* const* get_blofeld_field_list() const = 0;
-	virtual bool operator==(h_prototype const& value) const;
-
 	virtual uint32_t get_version() const = 0;
+	virtual const blofeld::s_tag_field* const* get_blofeld_field_list() const = 0;
+	virtual const blofeld::s_tag_field* const* get_blofeld_field_list_deprecated() const = 0;
+	virtual bool is_field_active(const blofeld::s_tag_field& field) const = 0;
 
-	template<typename T>
-	T* get_field_data_unsafe(const blofeld::s_tag_field& field)
-	{
-		return static_cast<T*>(get_field_data_unsafe(field));
-	}
+	virtual bool operator==(h_prototype const& value) const;
+	virtual bool operator!=(h_prototype const& value) const;
 
 	template<typename T>
 	T* get_field_data(const blofeld::s_tag_field& field)
@@ -54,17 +47,4 @@ public:
 		throw;
 		return nullptr;
 	}
-
-
-
-
-
-
-
-
-
-
-
-	//protected:
-	//	h_prototype(h_prototype const&) = default;
 };

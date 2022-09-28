@@ -7,14 +7,14 @@ bcs_set_post_build_shared_lib_dep_copy(GeometryTest)
 bcs_link_platform_resources(GeometryTest)
 
 target_link_libraries(GeometryTest PRIVATE
-	Platform 
+	Platform
 	TemplateLibrary
 	GraphicsLib
 	GeometryLib
-	blamlib 
-	DeviceCommunication 
-	MandrillLib 
-	SymbolsLib 
+	blamlib
+	DeviceCommunication
+	MandrillLib
+	SymbolsLib
 	${BCS_GENERATED_TAG_PROJECTS})
 
 target_precompile_headers(GeometryTest PRIVATE

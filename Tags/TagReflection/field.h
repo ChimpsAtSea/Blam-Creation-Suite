@@ -11,7 +11,7 @@ public:
 	explicit h_field() = delete;
 	explicit h_field(h_field const& field) = delete;
 	explicit h_field(t_field_type const& _value) = delete;
-	explicit h_field(t_field_type const&& _value) = delete;
+	explicit h_field(t_field_type&& _value) = delete;
 	virtual ~h_field();
 
 #else
@@ -19,21 +19,27 @@ public:
 	explicit h_field() : value() {}
 	explicit h_field(h_field const& field) : value(field.value) {}
 	explicit h_field(t_field_type const& _value) : value(_value) {}
-	explicit h_field(t_field_type const&& _value) : value(_value) {}
+	explicit h_field(t_field_type&& _value) : value(_value) {}
 	virtual ~h_field() = default;
 
 #endif
 
 	virtual operator t_field_type const& () const;
 	virtual operator t_field_type& ();
-	virtual h_field& operator=(t_field_type const&& _value);
 	virtual h_field& operator=(t_field_type const& _value);
-	virtual bool operator==(t_field_type const&& _value);
+	virtual h_field& operator=(t_field_type&& _value);
 	virtual bool operator==(t_field_type const& _value);
-	virtual bool operator!=(t_field_type const&& _value);
+	virtual bool operator==(t_field_type&& _value);
 	virtual bool operator!=(t_field_type const& _value);
+	virtual bool operator!=(t_field_type&& _value);
 	virtual t_field_type const* operator->() const;
 	virtual t_field_type* operator->();
+
+	template<typename t_parent_type, uint32_t _field_index>
+	bool operator==(h_field<t_field_type, t_parent_type, _field_index>& field)
+	{
+		return operator==(field.operator t_field_type &());
+	}
 
 #ifdef BCS_IS_HIGH_LEVEL_BUILD_PROJECT
 public:
@@ -57,9 +63,9 @@ public:
 	explicit h_field_flags(h_field_flags const& field) = delete;
 	explicit h_field_flags(t_enum const& field) = delete;
 	explicit h_field_flags(t_flags const& _value) = delete;
-	explicit h_field_flags(t_flags const&& _value) = delete;
+	explicit h_field_flags(t_flags&& _value) = delete;
 	explicit h_field_flags(t_flags_no_init const& _value) = delete;
-	explicit h_field_flags(t_flags_no_init const&& _value) = delete;
+	explicit h_field_flags(t_flags_no_init&& _value) = delete;
 	virtual ~h_field_flags();
 
 #else
@@ -68,9 +74,9 @@ public:
 	explicit h_field_flags(h_field_flags const& field) : t_field(field.value) {}
 	explicit h_field_flags(t_enum const& _value) : t_field(_value) {}
 	explicit h_field_flags(t_flags const& _value) : t_field(_value) {}
-	explicit h_field_flags(t_flags const&& _value) : t_field(_value) {}
+	explicit h_field_flags(t_flags&& _value) : t_field(_value) {}
 	explicit h_field_flags(t_flags_no_init const& _value) : t_field(_value) {}
-	explicit h_field_flags(t_flags_no_init const&& _value) : t_field(_value) {}
+	explicit h_field_flags(t_flags_no_init&& _value) : t_field(_value) {}
 	virtual ~h_field_flags() = default;
 
 #endif
@@ -101,7 +107,7 @@ h_field<t_field_type, t_parent_type, _field_index>::operator t_field_type& ()			
 }
 
 #define h_field_func_impl_rvalue_assignment(t_field_type, t_parent_type, _field_index, _field_name)												\
-h_field<t_field_type, t_parent_type, _field_index>& h_field<t_field_type, t_parent_type, _field_index>::operator=(t_field_type const&& _value)	\
+h_field<t_field_type, t_parent_type, _field_index>& h_field<t_field_type, t_parent_type, _field_index>::operator=(t_field_type&& _value)	\
 {																																				\
 	constexpr uint32_t _field_offset = offsetof(t_parent_type, _field_name);																	\
 	h_type* _type = reinterpret_cast<h_type*>(reinterpret_cast<uintptr_t>(this) - _field_offset);												\
@@ -155,7 +161,7 @@ h_field<t_field_type, t_parent_type, _field_index>& h_field<t_field_type, t_pare
 }
 
 #define h_field_func_impl_rvalue_equality(t_field_type, t_parent_type, _field_index, _field_name)											\
-bool h_field<t_field_type, t_parent_type, _field_index>::operator==(t_field_type const&& _value)											\
+bool h_field<t_field_type, t_parent_type, _field_index>::operator==(t_field_type&& _value)											\
 {																																			\
 	if constexpr (																															\
 		std::is_arithmetic_v<t_field_type> ||																								\
@@ -187,7 +193,7 @@ bool h_field<t_field_type, t_parent_type, _field_index>::operator==(t_field_type
 }
 
 #define h_field_func_impl_rvalue_inequality(t_field_type, t_parent_type, _field_index, _field_name)											\
-bool h_field<t_field_type, t_parent_type, _field_index>::operator!=(t_field_type const&& _value)											\
+bool h_field<t_field_type, t_parent_type, _field_index>::operator!=(t_field_type&& _value)											\
 {																																			\
 	if constexpr (																															\
 		std::is_arithmetic_v<t_field_type> ||																								\

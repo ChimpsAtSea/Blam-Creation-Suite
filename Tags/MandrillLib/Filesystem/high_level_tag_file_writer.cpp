@@ -618,17 +618,18 @@ void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_t
 			tag_block_chunk.add_child(*tag_struct_chunk);
 		}
 
-		serialize_tag_struct(object, structure_data, tag_struct_chunk);
-
-		
+		char* out_structure_data_position = structure_data + structure_size; // expected position
+		serialize_tag_struct(object, structure_data, tag_struct_chunk, &out_structure_data_position);
+		auto structure_size_written = out_structure_data_position - structure_data;
+		ASSERT(structure_size_written == structure_size);
 	}
 
 	tag_block_chunk.append_data(block_data, block_data_size);
 }
 
-void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& object, char* const structure_data, c_tag_struct_chunk* tag_struct_chunk)
+void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& object, char* const structure_data, c_tag_struct_chunk* tag_struct_chunk, char** out_structure_data_position)
 {
-	char* dst_field_data = structure_data;
+	char* structure_data_position = structure_data;
 	uint32_t field_index = 0;
 	for (const blofeld::s_tag_field* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++, field_index++)
 	{
@@ -652,7 +653,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 			c_tag_struct_chunk* _tag_struct_chunk = new() c_tag_struct_chunk(*static_cast<c_chunk*>(tag_struct_chunk));
 			tag_struct_chunk->add_child(*_tag_struct_chunk);
 
-			serialize_tag_struct(object, dst_field_data, _tag_struct_chunk);
+			serialize_tag_struct(object, structure_data_position, _tag_struct_chunk);
 
 			
 		}
@@ -668,7 +669,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 			ASSERT(tag_struct_chunk != nullptr);
 			ASSERT(array_size == enumerable.size());
 
-			char* dst_array_field_data = dst_field_data;
+			char* dst_array_field_data = structure_data_position;
 			for (unsigned int index = 0; index < array_size; index++)
 			{
 				const h_prototype& prototype = enumerable[index];
@@ -687,7 +688,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 		{
 			uint32_t pad_size = field.padding;
 			field_size = pad_size;
-			memset(dst_field_data, 0, field_size);
+			memset(structure_data_position, 0, field_size);
 		}
 		break;
 		case blofeld::_field_block:
@@ -696,7 +697,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 			ASSERT(tag_struct_chunk != nullptr);
 			serialize_tag_block(block, *tag_struct_chunk);
 
-			s_tag_block* tag_block = reinterpret_cast<s_tag_block*>(dst_field_data);
+			s_tag_block* tag_block = reinterpret_cast<s_tag_block*>(structure_data_position);
 			DEBUG_ONLY(memset(tag_block, 0xBB, sizeof(*tag_block)));
 
 			tag_block->count = block.size();
@@ -712,7 +713,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 			ASSERT(tag_struct_chunk != nullptr);
 			serialize_tag_data(data, *tag_struct_chunk);
 
-			s_tag_data* tag_data = reinterpret_cast<s_tag_data*>(dst_field_data);
+			s_tag_data* tag_data = reinterpret_cast<s_tag_data*>(structure_data_position);
 			DEBUG_ONLY(memset(tag_data, 0xCC, sizeof(*tag_data)));
 
 			tag_data->size = static_cast<long>(data.size());
@@ -728,7 +729,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 			const h_string_id& string_id = *static_cast<const h_string_id*>(src_field_data);
 			ASSERT(tag_struct_chunk != nullptr);
 			serialize_string_id(string_id, *tag_struct_chunk);
-			memset(dst_field_data, 0, field_size);
+			memset(structure_data_position, 0, field_size);
 		}
 		break;
 		case blofeld::_field_pageable_resource:
@@ -740,11 +741,11 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 
 			serialize_tag_resource(resource, *field.tag_resource_definition, *tag_struct_chunk);
 
-			memset(dst_field_data, 0, field_size);
+			memset(structure_data_position, 0, field_size);
 
 			if (resource != nullptr)
 			{
-				s_tag_resource* tag_resource = reinterpret_cast<s_tag_resource*>(dst_field_data);
+				s_tag_resource* tag_resource = reinterpret_cast<s_tag_resource*>(structure_data_position);
 				tag_resource->resource_handle = 0;
 
 				
@@ -759,7 +760,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 
 			serialize_tag_reference(reference, *field.tag_reference_definition, *tag_struct_chunk);
 
-			s_tag_reference* tag_reference = reinterpret_cast<s_tag_reference*>(dst_field_data);
+			s_tag_reference* tag_reference = reinterpret_cast<s_tag_reference*>(structure_data_position);
 			DEBUG_ONLY(memset(tag_reference, 0xBB, sizeof(*tag_reference)));
 
 			tag_reference->group_tag = 0;
@@ -773,13 +774,17 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 			break;
 		default:
 		{
-			memcpy(dst_field_data, src_field_data, field_size);
+			memcpy(structure_data_position, src_field_data, field_size);
 		}
 		break;
 		}
 
 		ASSERT(field_size != ULONG_MAX);
-		dst_field_data += field_size;
+		structure_data_position += field_size;
+	}
+	if (out_structure_data_position)
+	{
+		*out_structure_data_position = structure_data_position;
 	}
 }
 

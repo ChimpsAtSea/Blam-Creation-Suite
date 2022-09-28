@@ -1972,7 +1972,7 @@ bool c_high_level_tag_editor_tab::render_prototype(h_prototype& prototype)
 	bool result = false;
 
 	render_indent++;
-	for (const s_tag_field* const* _field_iterator = prototype.get_blofeld_field_list(); *_field_iterator != nullptr; _field_iterator++)
+	for (const s_tag_field* const* _field_iterator = prototype.get_blofeld_field_list_deprecated(); *_field_iterator != nullptr; _field_iterator++)
 	{
 		const s_tag_field& field = **_field_iterator;
 

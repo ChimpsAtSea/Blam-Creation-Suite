@@ -71,6 +71,23 @@ const blofeld::s_tag_group* c_high_level_tag_source_generator::get_tag_struct_ta
 	return nullptr;
 }
 
+unsigned int c_high_level_tag_source_generator::get_tag_struct_version(const blofeld::s_tag_struct_definition& struct_definition)
+{
+	uint32_t struct_version = 0;
+	if (struct_definition.runtime_flags.test(_tag_field_set_mandrill_has_versioning))
+	{
+		for (const s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+		{
+			const s_tag_field& tag_field = *tag_field_iterator;
+			if (tag_field.field_type == _field_version && tag_field.versioning.mode == _struct_version_mode_greater_or_equal)
+			{
+				struct_version = __max(struct_version, tag_field.versioning.struct_version);
+			}
+		}
+	}
+	return struct_version;
+}
+
 const char* c_high_level_tag_source_generator::field_type_to_high_level_source_type(e_platform_type platform_type, blofeld::e_field field_type)
 {
 	switch (field_type)
@@ -258,10 +275,12 @@ void c_high_level_tag_source_generator::generate_header()
 		{
 			stream << indent << "\t\t" << "virtual uint32_t get_version() const override;" << std::endl;
 		}
-		stream << indent << "\t\t" << "virtual void* get_field_data_unsafe(const blofeld::s_tag_field& field);" << std::endl;
+		stream << indent << "\t\t" << "virtual const void* get_field_data_unsafe(const blofeld::s_tag_field& field) const override;" << std::endl;
+		stream << indent << "\t\t" << "virtual void* get_field_data_unsafe(const blofeld::s_tag_field& field) override;" << std::endl;
 		stream << indent << "\t\t" << "virtual bool is_field_active(const blofeld::s_tag_field& field) const override;" << std::endl;
 		stream << indent << "\t\t" << "virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const override;" << std::endl;
 		stream << indent << "\t\t" << "virtual const blofeld::s_tag_field* const* get_blofeld_field_list() const override;" << std::endl;
+		stream << indent << "\t\t" << "virtual const blofeld::s_tag_field* const* get_blofeld_field_list_deprecated() const override;" << std::endl;
 
 		stream << std::endl;
 
@@ -820,18 +839,7 @@ void c_high_level_tag_source_generator::generate_source_virtual()
 		//	debug_point;
 		//}
 
-		uint32_t blofeld_field_list_count = 1;
-		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
-		{
-			const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_all);
 
-			if (tag_field.field_type >= k_number_of_blofeld_field_types)
-			{
-				continue;
-			}
-
-			blofeld_field_list_count++;
-		}
 
 		std::string high_level_structure_name = format_structure_symbol(*struct_definition);
 
@@ -853,31 +861,8 @@ void c_high_level_tag_source_generator::generate_source_virtual()
 		stream << indent << "}" << std::endl;
 		stream << std::endl;
 
-		stream << indent << "const blofeld::s_tag_field* const* " << high_level_structure_name << "::get_blofeld_field_list() const" << std::endl;
-		stream << indent << "{" << std::endl;
-		{
-			stream << indent << "\t" << "static const blofeld::s_tag_field* const blofeld_field_list[" << blofeld_field_list_count << "] = " << std::endl;
-			stream << indent << "\t" << "{" << std::endl;
-			{
-				for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
-				{
-					const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_all);
-					uint32_t field_index = tag_field_iterator - struct_definition->fields;
-
-					if (tag_field.field_type >= k_number_of_blofeld_field_types)
-					{
-						continue;
-					}
-
-					stream << indent << "\t\t" << struct_definition->symbol->symbol_name << ".fields" << " + " << field_index << "," << std::endl;
-				}
-			}
-			stream << indent << "\t\t" << "nullptr" << std::endl;
-			stream << indent << "\t" << "};" << std::endl;
-		}
-		stream << indent << "\treturn blofeld_field_list;" << std::endl;
-		stream << indent << "}" << std::endl;
-		stream << std::endl;
+		generate_function_get_blofeld_field_list(stream, *struct_definition);
+		generate_function_get_blofeld_field_list_deprecated(stream, *struct_definition);
 	}
 
 	end_namespace_tree(stream, _namespace_tree_write_namespace | _namespace_tree_write_warnings | _namespace_tree_write_intellisense);
@@ -990,102 +975,13 @@ void c_high_level_tag_source_generator::generate_source_misc()
 	stream << std::endl;
 
 	{
-		std::unordered_map<std::string, int> field_name_unique_counter;
 		for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 		{
 			const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
 
-			std::string high_level_structure_name = format_structure_symbol(*struct_definition);
-
-			uint32_t struct_version = 0;
-			if (struct_definition->runtime_flags.test(_tag_field_set_mandrill_has_versioning))
-			{
-				for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
-				{
-					const s_tag_field& tag_field = *tag_field_iterator;
-					if (tag_field.field_type == _field_version && tag_field.versioning.mode == _struct_version_mode_greater_or_equal)
-					{
-						struct_version = tag_field.versioning.struct_version;
-					}
-				}
-			}
-
-			// #TODO: This is hacky as heck, figure out a better way or make it more clear in the code
-
-
-
-			stream << indent << "uint32_t " << high_level_structure_name << "::get_version() const" << std::endl;
-			stream << indent << "{" << std::endl;
-			increment_indent();
-			stream << indent << "return " << struct_version << ";" << std::endl;
-			decrement_indent();
-			stream << indent << "}" << std::endl;
-
-			stream << indent << "void* " << high_level_structure_name << "::get_field_data_unsafe(const blofeld::s_tag_field& field)" << std::endl;
-			stream << indent << "{" << std::endl;
-			increment_indent();
-			stream << indent << "intptr_t const _index = &field - " << struct_definition->symbol->symbol_name << ".fields;" << std::endl;
-			stream << indent << "DEBUG_ASSERT(_index >= 0);" << std::endl;
-			stream << std::endl;
-			stream << indent << "switch (_index)" << std::endl;
-			stream << indent << "{" << std::endl;
-			increment_indent();
-
-
-			field_name_unique_counter.clear();
-			for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
-			{
-				const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_all);
-				uint32_t field_index = tag_field_iterator - struct_definition->fields;
-
-				if (tag_field.field_type >= k_number_of_blofeld_field_types)
-				{
-					continue;
-				}
-
-				switch (tag_field.field_type)
-				{
-				case _field_pad:
-				case _field_skip:
-				case _field_useless_pad:
-				case _field_custom:
-				case _field_terminator:
-				case _field_explanation:
-				case _field_non_cache_runtime_value:
-					continue;
-				}
-
-				c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
-					tag_field.name,
-					tag_field.field_type == blofeld::_field_block,
-					&field_name_unique_counter);
-
-				if (!custom_structure_codegen(_custom_structure_codegen_high_level_get_field_data_func, stream, indent.c_str(), &field_formatter, *struct_definition, tag_field, namespace_without_semicolons.c_str()))
-				{
-					switch (tag_field.field_type)
-					{
-					case _field_array:
-					case _field_struct:
-					case _field_data:
-					case _field_tag_reference:
-					case _field_block:
-						stream << indent << "case " << field_index << ": return &" << field_formatter.code_name.c_str() << ";" << std::endl;
-						break;
-					default:
-						stream << indent << "case " << field_index << ": return &" << field_formatter.code_name.c_str() << ".value;" << std::endl;
-						break;
-					}
-				}
-			}
-			stream << indent << "default: return nullptr;" << std::endl;
-
-			decrement_indent();
-			stream << indent << "}" << std::endl;
-			stream << std::endl;
-
-			decrement_indent();
-			stream << indent << "}" << std::endl;
-			stream << std::endl;
+			generate_function_get_version(stream, *struct_definition);
+			generate_function_get_field_data_unsafe(stream, *struct_definition, false);
+			generate_function_get_field_data_unsafe(stream, *struct_definition, true);
 		}
 	}
 
@@ -1147,4 +1043,191 @@ void c_high_level_tag_source_generator::generate_source_misc()
 	std::string source_code = stream.str();
 	BCS_RESULT rs = write_output_with_logging(output_misc_file_path.c_str(), source_code.data(), source_code.size());
 	ASSERT(BCS_SUCCEEDED(rs));
+}
+
+void c_high_level_tag_source_generator::generate_function_get_blofeld_field_list(std::stringstream& stream, const blofeld::s_tag_struct_definition& struct_definition)
+{
+	std::string high_level_structure_name = format_structure_symbol(struct_definition);
+
+	uint32_t blofeld_field_list_count = 1;
+	for (const s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+	{
+		const s_tag_field& tag_field = tag_field_iterator_versioning(struct_definition, tag_field_iterator, engine_platform_build, tag_field_version_max);
+
+		if (tag_field.field_type >= k_number_of_blofeld_field_types)
+		{
+			continue;
+		}
+
+		blofeld_field_list_count++;
+	}
+
+	stream << indent << "const blofeld::s_tag_field* const* " << high_level_structure_name << "::get_blofeld_field_list() const" << std::endl;
+	stream << indent << "{" << std::endl;
+	{
+		stream << indent << "\t" << "static const blofeld::s_tag_field* const blofeld_field_list[" << blofeld_field_list_count << "] = " << std::endl;
+		stream << indent << "\t" << "{" << std::endl;
+		{
+			for (const s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+			{
+				const s_tag_field& tag_field = tag_field_iterator_versioning(struct_definition, tag_field_iterator, engine_platform_build, tag_field_version_max);
+				uint32_t field_index = tag_field_iterator - struct_definition.fields;
+
+				if (tag_field.field_type >= k_number_of_blofeld_field_types)
+				{
+					continue;
+				}
+
+				stream << indent << "\t\t" << struct_definition.symbol->symbol_name << ".fields" << " + " << field_index << "," << std::endl;
+			}
+		}
+		stream << indent << "\t\t" << "nullptr" << std::endl;
+		stream << indent << "\t" << "};" << std::endl;
+	}
+	stream << indent << "\treturn blofeld_field_list;" << std::endl;
+	stream << indent << "}" << std::endl;
+	stream << std::endl;
+}
+
+void c_high_level_tag_source_generator::generate_function_get_blofeld_field_list_deprecated(std::stringstream& stream, const blofeld::s_tag_struct_definition& struct_definition)
+{
+	std::string high_level_structure_name = format_structure_symbol(struct_definition);
+
+	uint32_t blofeld_field_list_count = 1;
+	for (const s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+	{
+		const s_tag_field& tag_field = tag_field_iterator_versioning(struct_definition, tag_field_iterator, engine_platform_build, tag_field_version_all);
+
+		if (tag_field.field_type >= k_number_of_blofeld_field_types)
+		{
+			continue;
+		}
+
+		blofeld_field_list_count++;
+	}
+
+	stream << indent << "const blofeld::s_tag_field* const* " << high_level_structure_name << "::get_blofeld_field_list_deprecated() const" << std::endl;
+	stream << indent << "{" << std::endl;
+	{
+		stream << indent << "\t" << "static const blofeld::s_tag_field* const blofeld_field_list[" << blofeld_field_list_count << "] = " << std::endl;
+		stream << indent << "\t" << "{" << std::endl;
+		{
+			for (const s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+			{
+				const s_tag_field& tag_field = tag_field_iterator_versioning(struct_definition, tag_field_iterator, engine_platform_build, tag_field_version_all);
+				uint32_t field_index = tag_field_iterator - struct_definition.fields;
+
+				if (tag_field.field_type >= k_number_of_blofeld_field_types)
+				{
+					continue;
+				}
+
+				stream << indent << "\t\t" << struct_definition.symbol->symbol_name << ".fields" << " + " << field_index << "," << std::endl;
+			}
+		}
+		stream << indent << "\t\t" << "nullptr" << std::endl;
+		stream << indent << "\t" << "};" << std::endl;
+	}
+	stream << indent << "\treturn blofeld_field_list;" << std::endl;
+	stream << indent << "}" << std::endl;
+	stream << std::endl;
+}
+
+void c_high_level_tag_source_generator::generate_function_get_version(std::stringstream& stream, const blofeld::s_tag_struct_definition& struct_definition)
+{
+	// #TODO: This is hacky as heck, figure out a better way or make it more clear in the code
+
+	std::string high_level_structure_name = format_structure_symbol(struct_definition);
+	unsigned int struct_version = get_tag_struct_version(struct_definition);
+
+	stream << indent << "uint32_t " << high_level_structure_name << "::get_version() const" << std::endl;
+	stream << indent << "{" << std::endl;
+	increment_indent();
+	stream << indent << "return " << struct_version << ";" << std::endl;
+	decrement_indent();
+	stream << indent << "}" << std::endl;
+}
+
+void c_high_level_tag_source_generator::generate_function_get_field_data_unsafe(std::stringstream& stream, const s_tag_struct_definition& struct_definition, bool is_const)
+{
+	std::unordered_map<std::string, int> field_name_unique_counter;
+	std::string high_level_structure_name = format_structure_symbol(struct_definition);
+	std::string namespace_without_semicolons = get_namespace(false);
+
+	stream << indent;
+	if (is_const) stream << "const ";
+	stream << "void* " << high_level_structure_name << "::get_field_data_unsafe(const blofeld::s_tag_field& field)";
+	if (is_const) stream << " const";
+	stream << std::endl;
+	stream << indent << "{" << std::endl;
+	increment_indent();
+	stream << indent << "intptr_t const _index = &field - " << struct_definition.symbol->symbol_name << ".fields;" << std::endl;
+	stream << indent << "DEBUG_ASSERT(_index >= 0);" << std::endl;
+	stream << std::endl;
+	stream << indent << "switch (_index)" << std::endl;
+	stream << indent << "{" << std::endl;
+	increment_indent();
+
+
+	field_name_unique_counter.clear();
+	for (const s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+	{
+		const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_all);
+		uint32_t field_index = tag_field_iterator - struct_definition.fields;
+
+		if (tag_field.field_type >= k_number_of_blofeld_field_types)
+		{
+			continue;
+		}
+
+		switch (tag_field.field_type)
+		{
+		case _field_pad:
+		case _field_skip:
+		case _field_useless_pad:
+		case _field_custom:
+		case _field_terminator:
+		case _field_explanation:
+		case _field_non_cache_runtime_value:
+			continue;
+		}
+
+		c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
+			tag_field.name,
+			tag_field.field_type == blofeld::_field_block,
+			&field_name_unique_counter);
+
+		if (!custom_structure_codegen(
+			_custom_structure_codegen_high_level_get_field_data_func, 
+			stream, 
+			indent.c_str(), 
+			&field_formatter, 
+			struct_definition, 
+			tag_field, 
+			namespace_without_semicolons.c_str()))
+		{
+			switch (tag_field.field_type)
+			{
+			case _field_array:
+			case _field_struct:
+			case _field_data:
+			case _field_tag_reference:
+			case _field_block:
+				stream << indent << "case " << field_index << ": return &" << field_formatter.code_name.c_str() << ";" << std::endl;
+				break;
+			default:
+				stream << indent << "case " << field_index << ": return &" << field_formatter.code_name.c_str() << ".value;" << std::endl;
+				break;
+			}
+		}
+	}
+	stream << indent << "default: return nullptr;" << std::endl;
+
+	decrement_indent();
+	stream << indent << "}" << std::endl;
+	stream << std::endl;
+
+	decrement_indent();
+	stream << indent << "}" << std::endl;
+	stream << std::endl;
 }
