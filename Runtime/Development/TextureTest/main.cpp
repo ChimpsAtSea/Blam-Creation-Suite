@@ -22,13 +22,13 @@ static constexpr s_type_lookup<e_bitmap_formats, s_graphics_data_format_lookup> 
 	texture_format(_bitmap_formats_unused3, _graphics_data_format_unspecified, _graphics_data_format_unspecified),
 	texture_format(_bitmap_formats_a1r5g5b5, _graphics_data_format_b5g5r5a1_unorm, _graphics_data_format_b5g5r5a1_unorm),
 	texture_format(_bitmap_formats_a4r4g4b4, _graphics_data_format_b4g4r4a4_unorm, _graphics_data_format_b4g4r4a4_unorm),
-	texture_format(_bitmap_formats_x8r8g8b8, _graphics_data_format_b8g8r8x8_unorm, _graphics_data_format_b8g8r8x8_unorm),
-	texture_format(_bitmap_formats_a8r8g8b8, _graphics_data_format_b8g8r8a8_unorm, _graphics_data_format_b8g8r8a8_unorm),
+	texture_format(_bitmap_formats_x8r8g8b8, _graphics_data_format_b8g8r8x8_unorm, _graphics_data_format_b8g8r8x8_unorm_srgb),
+	texture_format(_bitmap_formats_a8r8g8b8, _graphics_data_format_b8g8r8a8_unorm, _graphics_data_format_b8g8r8a8_unorm_srgb),
 	texture_format(_bitmap_formats_unused4, _graphics_data_format_unspecified, _graphics_data_format_unspecified),
 	texture_format(_bitmap_formats_unused5, _graphics_data_format_unspecified, _graphics_data_format_unspecified),
-	texture_format(_bitmap_formats_dxt1, _graphics_data_format_bc1_unorm, _graphics_data_format_bc1_unorm),
-	texture_format(_bitmap_formats_dxt3, _graphics_data_format_bc2_unorm, _graphics_data_format_bc2_unorm),
-	texture_format(_bitmap_formats_dxt5, _graphics_data_format_bc3_unorm, _graphics_data_format_bc3_unorm),
+	texture_format(_bitmap_formats_dxt1, _graphics_data_format_bc1_unorm, _graphics_data_format_bc1_unorm_srgb),
+	texture_format(_bitmap_formats_dxt3, _graphics_data_format_bc2_unorm, _graphics_data_format_bc2_unorm_srgb),
+	texture_format(_bitmap_formats_dxt5, _graphics_data_format_bc3_unorm, _graphics_data_format_bc3_unorm_srgb),
 	texture_format(_bitmap_formats_a4r4g4b4_font, _graphics_data_format_b4g4r4a4_unorm, _graphics_data_format_b4g4r4a4_unorm),
 	texture_format(_bitmap_formats_unused7, _graphics_data_format_unspecified, _graphics_data_format_unspecified),
 	texture_format(_bitmap_formats_unused8, _graphics_data_format_unspecified, _graphics_data_format_unspecified),
@@ -38,7 +38,7 @@ static constexpr s_type_lookup<e_bitmap_formats, s_graphics_data_format_lookup> 
 	texture_format(_bitmap_formats_g8b8, _graphics_data_format_unspecified, _graphics_data_format_unspecified),
 	texture_format(_bitmap_formats_abgrfp32, _graphics_data_format_r32g32b32a32_float, _graphics_data_format_r32g32b32a32_float),
 	texture_format(_bitmap_formats_abgrfp16, _graphics_data_format_r16g16b16a16_float, _graphics_data_format_r16g16b16a16_float),
-	texture_format(_bitmap_formats_q8w8v8u8, _graphics_data_format_r8g8b8a8_unorm, _graphics_data_format_r8g8b8a8_unorm),
+	texture_format(_bitmap_formats_q8w8v8u8, _graphics_data_format_r8g8b8a8_unorm, _graphics_data_format_r8g8b8a8_unorm_srgb),
 	texture_format(_bitmap_formats_a2r10g10b10, _graphics_data_format_r10g10b10a2_unorm, _graphics_data_format_r10g10b10a2_unorm),
 	texture_format(_bitmap_formats_a16b16g16r16, _graphics_data_format_r16g16b16a16_uint, _graphics_data_format_r16g16b16a16_uint),
 	texture_format(_bitmap_formats_v16u16, _graphics_data_format_r16g16_float, _graphics_data_format_r16g16_float),
@@ -172,6 +172,7 @@ int main()
 		ASSERT(BCS_SUCCEEDED(graphics_data_format_to_halo3_bitmap_format_result));
 	}
 
+
 	// textures of size 1x1x1 are invalid
 	// #NOTE: Anything except a 1x1 is counted as valid, by default the tools resize to a 4x4 for some reason
 	if (width == 1 && height == 1 && depth == 1)
@@ -190,6 +191,15 @@ int main()
 
 		num_mips = texture->get_num_mips();
 	}
+
+	BCS_RESULT convert_to_graphics_data_format_result = texture->convert_to_graphics_data_format(_graphics_data_format_bc3_unorm_srgb);
+	ASSERT(BCS_SUCCEEDED(convert_to_graphics_data_format_result));
+
+	BCS_RESULT get_graphics_data_format_result2 = texture->get_graphics_data_format(graphics_data_format);
+	ASSERT(BCS_SUCCEEDED(get_graphics_data_format_result2));
+
+	BCS_RESULT graphics_data_format_to_halo3_bitmap_format_result2 = graphics_data_format_to_halo3_bitmap_format(graphics_data_format, bitmap_format);
+	ASSERT(BCS_SUCCEEDED(graphics_data_format_to_halo3_bitmap_format_result2));
 
 	s_engine_platform_build engine_platform_build = { _engine_type_halo3, _platform_type_pc_64bit, _build_halo3_guerilla };
 

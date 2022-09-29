@@ -83,12 +83,6 @@ BCS_RESULT c_directxtex_texture::get_layer_data(unsigned int layer, unsigned int
 		return BCS_E_FATAL;
 	}
 
-	if (layer == 1 && mip == 0)
-	{
-		HRESULT hr = DirectX::SaveToWICFile(*image, DirectX::WIC_FLAGS_NONE, GUID_ContainerFormatPng, L"wicfiletest.png");
-		debug_point;
-	}
-
 	pixel_data = reinterpret_cast<const char*>(image->pixels);
 	pixel_data_size = image->slicePitch;
 
@@ -120,7 +114,13 @@ BCS_RESULT c_directxtex_texture::resize(unsigned int width, unsigned int height,
 	if (FAILED(convert_result))
 	{
 		delete resized_scratch_image;
-		return BCS_E_FAIL;
+		switch (convert_result)
+		{
+		case HRESULT_FROM_WIN32(ERROR_NOT_SUPPORTED):
+			return BCS_E_NOT_SUPPORTED;
+		default:
+			return BCS_E_FAIL;
+		}
 	}
 	else
 	{
@@ -149,26 +149,96 @@ BCS_RESULT c_directxtex_texture::convert_to_graphics_data_format(e_graphics_data
 	}
 
 	DirectX::TEX_FILTER_FLAGS texture_filter_flags = DirectX::TEX_FILTER_DEFAULT;
-	DirectX::ScratchImage* converted_scratch_image = new() DirectX::ScratchImage();
+	DirectX::TEX_COMPRESS_FLAGS texture_compress_flags = DirectX::TEX_COMPRESS_SRGB;
 
-	HRESULT convert_result = DirectX::Convert(
-		scratch_image_images,
-		scratch_image_image_count,
-		scratch_image_metadata,
-		dxgi_format,
-		texture_filter_flags,
-		0.0f,
-		*converted_scratch_image);
-	if (FAILED(convert_result))
+	bool is_source_compressed = DirectX::IsCompressed(scratch_image_metadata.format);
+	bool is_destination_compressed = DirectX::IsCompressed(dxgi_format);
+
+	if (is_source_compressed)
 	{
-		delete converted_scratch_image;
-		return BCS_E_FAIL;
+		DirectX::ScratchImage* decompressed_scratch_image = new() DirectX::ScratchImage();
+		HRESULT decompress_result = DirectX::Decompress(
+			scratch_image_images,
+			scratch_image_image_count,
+			scratch_image_metadata,
+			DXGI_FORMAT_R32G32B32A32_FLOAT,
+			*decompressed_scratch_image);
+		if (FAILED(decompress_result))
+		{
+			delete decompressed_scratch_image;
+			switch (decompress_result)
+			{
+			case HRESULT_FROM_WIN32(ERROR_NOT_SUPPORTED):
+				return BCS_E_NOT_SUPPORTED;
+			default:
+				return BCS_E_FAIL;
+			}
+		}
+		else
+		{
+			delete scratch_image;
+			scratch_image = decompressed_scratch_image;
+			return BCS_S_OK;
+		}
+	}
+
+	if (is_destination_compressed)
+	{
+		DirectX::ScratchImage* compressed_scratch_image = new() DirectX::ScratchImage();
+		HRESULT compress_result = DirectX::Compress(
+			scratch_image_images,
+			scratch_image_image_count,
+			scratch_image_metadata,
+			dxgi_format,
+			texture_compress_flags,
+			0.0f,
+			*compressed_scratch_image);
+		if (FAILED(compress_result))
+		{
+			delete compressed_scratch_image;
+			switch (compress_result)
+			{
+			case HRESULT_FROM_WIN32(ERROR_NOT_SUPPORTED):
+				return BCS_E_NOT_SUPPORTED;
+			default:
+				return BCS_E_FAIL;
+			}
+		}
+		else
+		{
+			delete scratch_image;
+			scratch_image = compressed_scratch_image;
+			return BCS_S_OK;
+		}
 	}
 	else
 	{
-		delete scratch_image;
-		scratch_image = converted_scratch_image;
-		return BCS_S_OK;
+		DirectX::ScratchImage* converted_scratch_image = new() DirectX::ScratchImage();
+		HRESULT convert_result = DirectX::Convert(
+			scratch_image_images,
+			scratch_image_image_count,
+			scratch_image_metadata,
+			dxgi_format,
+			texture_filter_flags,
+			0.0f,
+			*converted_scratch_image);
+		if (FAILED(convert_result))
+		{
+			delete converted_scratch_image;
+			switch (convert_result)
+			{
+			case HRESULT_FROM_WIN32(ERROR_NOT_SUPPORTED):
+				return BCS_E_NOT_SUPPORTED;
+			default:
+				return BCS_E_FAIL;
+			}
+		}
+		else
+		{
+			delete scratch_image;
+			scratch_image = converted_scratch_image;
+			return BCS_S_OK;
+		}
 	}
 }
 
@@ -194,7 +264,13 @@ BCS_RESULT c_directxtex_texture::generate_mips(unsigned int num_mip_levels_overr
 	if (FAILED(generate_mip_maps_result))
 	{
 		delete mip_chain_scratch_image;
-		return BCS_E_FAIL;
+		switch (generate_mip_maps_result)
+		{
+		case HRESULT_FROM_WIN32(ERROR_NOT_SUPPORTED):
+			return BCS_E_NOT_SUPPORTED;
+		default:
+			return BCS_E_FAIL;
+		}
 	}
 	else
 	{
