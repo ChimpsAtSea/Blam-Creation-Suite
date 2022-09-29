@@ -21,6 +21,7 @@ public:
 	h_tag& get_tag() const { return tag_prototype; }
 
 protected:
+	static constexpr float k_field_description_line_wrap_ratio = 0.40f;
 	static constexpr float k_field_display_name_width = 400.0f;
 
 	virtual void render_impl() override final;
@@ -62,6 +63,9 @@ public:
 	int render_indent;
 	static constexpr float render_indent_amount = 25.0f;
 
+	void render_tooltip(const char* string);
+	bool render_byte_color_picker(bool alpha, void* color_data, const char* field_units);
+	bool render_real_color_picker(bool alpha, bool hsv, void* color_data, const char* field_units);
 	bool render_prototype(h_prototype& prototype);
 
 	typedef bool(c_high_level_tag_editor_tab::* t_render_field_function)(const blofeld::s_tag_field& field, void* _field_data);
