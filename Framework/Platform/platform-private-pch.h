@@ -28,5 +28,6 @@
 #ifdef __cplusplus
 
 #include "platform-public-pch.h"
+#include <TemplateLibrary/string_lookup.h>
 
 #endif

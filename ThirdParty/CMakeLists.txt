@@ -32,12 +32,14 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/VcPkg.stamp
 	"rapidjson:${VCPKG_TRIPLET}" 
 	"ffmpeg[core,avcodec,swresample]:${VCPKG_TRIPLET}" 
 	"mimalloc:${VCPKG_TRIPLET}" 
-	"directxtex:${VCPKG_TRIPLET}" 
+	"directxtex[dx12]:${VCPKG_TRIPLET}" 
 	"directxmesh:${VCPKG_TRIPLET}" 
 	"uvatlas:${VCPKG_TRIPLET}" 
 	"assimp:${VCPKG_TRIPLET}" 
 	"freeimage:${VCPKG_TRIPLET}"
 	"--overlay-triplets=${VCPKG_TRIPLETS_DIR}" 
+	--disable-metrics
+	--no-binarycaching
 	--recurse
     COMMAND ${CMAKE_COMMAND} -E touch "${CMAKE_BINARY_DIR}/VcPkg.stamp")
 

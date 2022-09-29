@@ -2,7 +2,6 @@ add_library(GraphicsLib ${BCS_LIBRARY_TYPE}
 	D3D12/d3d12_graphics.cpp
 	D3D12/d3d12_graphics_buffer.cpp
 	D3D12/d3d12_graphics_camera.cpp
-	D3D12/d3d12_graphics_data_format.cpp
 	D3D12/d3d12_graphics_geometry.cpp
 	D3D12/d3d12_graphics_render_instance.cpp
 	D3D12/d3d12_graphics_render_pass.cpp
@@ -66,7 +65,6 @@ add_library(GraphicsLib ${BCS_LIBRARY_TYPE}
     D3D12/d3d12_graphics.h
     D3D12/d3d12_graphics_buffer.h
     D3D12/d3d12_graphics_camera.h
-    D3D12/d3d12_graphics_data_format.h
     D3D12/d3d12_graphics_geometry.h
     D3D12/d3d12_graphics_render_instance.h
     D3D12/d3d12_graphics_render_pass.h

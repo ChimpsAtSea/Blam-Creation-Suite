@@ -33,7 +33,7 @@ c_filesystem_tag_project::c_filesystem_tag_project(
 		wchar_t* filepath_without_extension = wcsdup(relative_filepath);
 		filesystem_remove_filepath_extension(filepath_without_extension);
 
-		BCS_WIDECHAR_TO_CHAR_STACK(filepath_without_extension, filepath_without_extension_mb);
+		BCS_WIDECHAR_TO_CHAR_HEAP(filepath_without_extension, filepath_without_extension_mb);
 
 		c_stopwatch stopwatch;
 		stopwatch.start();
@@ -81,6 +81,8 @@ c_filesystem_tag_project::c_filesystem_tag_project(
 		{
 			status_interface->set_status_bar_status(_status_interface_priority_low, 15.0f, "Read tag %S (%.2f ms)", relative_filepath, ms);
 		}
+
+		tracked_free(filepath_without_extension_mb);
 	}
 
 	resolve_unqualified_tags();

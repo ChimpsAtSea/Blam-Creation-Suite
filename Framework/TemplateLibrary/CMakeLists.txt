@@ -19,7 +19,7 @@ add_library(TemplateLibrary ${BCS_LIBRARY_TYPE}
 	virtual.h
 	xxhash_cx.h
 	member_to_static_function.h
-	
+	string_lookup.h
 	atomic_lock.cpp
 	benchmark.cpp
 	bitfield_allocator.cpp

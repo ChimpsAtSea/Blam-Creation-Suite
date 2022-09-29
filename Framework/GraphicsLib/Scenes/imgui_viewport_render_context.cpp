@@ -21,7 +21,7 @@ c_imgui_viewport_render_context::c_imgui_viewport_render_context(
 		graphics,
 		viewport.width,
 		viewport.height,
-		_graphics_data_format_depth_float32,
+		_graphics_data_format_d32_float,
 		0.0f,
 		0,
 		depth_render_target));

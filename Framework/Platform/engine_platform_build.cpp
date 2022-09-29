@@ -9,37 +9,17 @@ using namespace xxhash::literals;
 #define MAKE_TOOL_VERSION(a, b, c, d, file_description, product_name) (MAKE_FILE_VERSION(a, b, c, d) ^ (file_description##product_name##_xxh64))
 #define HASH_VERSION(a) (a)
 
-enum e_engine_type_string_type
+enum e_type_string_type
 {
-	_engine_type_string_type_default,
-	_engine_type_string_type_pretty,
-	_engine_type_string_type_folder,
-	_engine_type_string_type_source,
-	k_num__engine_type_string_types
+	_type_string_type_type_string,
+	_type_string_type_namespace,
+	_type_string_type_pretty_name,
+	k_num_engine_type_string_types
 };
 
-template<typename t_enum>
-struct s_string_lookup
+static constexpr s_string_lookup<e_engine_type, k_num_engine_type_string_types> engine_string_lookup[] =
 {
-	t_enum _enum;
-	const char* type_string;
-	const char* _namespace;
-	const char* pretty_name;
-};
-
-template <typename t_enum, std::size_t num_lookup_elements>
-constexpr bool is_string_lookup_valid(s_string_lookup<t_enum> const(&lookup)[num_lookup_elements])
-{
-	for (size_t index = 0; index < num_lookup_elements; index++)
-	{
-		if (lookup[index]._enum != index) return false;
-	}
-	return true;
-}
-
-static constexpr s_string_lookup<e_engine_type> engine_string_lookup[] =
-{
-#define engine_type_type_string_pair(engine_type, _namespace, pretty_name) { engine_type, #engine_type, _namespace, pretty_name }
+#define engine_type_type_string_pair(engine_type, _namespace, pretty_name) { engine_type, { #engine_type, _namespace, pretty_name } }
 	engine_type_type_string_pair(_engine_type_not_set, "notset", "Not Set"),
 	engine_type_type_string_pair(_engine_type_mcc, "mcc", "Master Chief Collection"),
 	engine_type_type_string_pair(_engine_type_halo1, "halo1", "Halo 1"),
@@ -56,13 +36,13 @@ static constexpr s_string_lookup<e_engine_type> engine_string_lookup[] =
 #undef engine_type_type_string_pair
 };
 static_assert(_countof(engine_string_lookup) == k_number_of_engine_types);
-static_assert(is_string_lookup_valid(engine_string_lookup));
+static_assert(is_enum_lookup_valid(engine_string_lookup));
 
 BCS_RESULT get_engine_type_string(e_engine_type engine_type, const char*& engine_type_string)
 {
 	BCS_VALIDATE_ARGUMENT(engine_type < k_number_of_engine_types);
 
-	engine_type_string = engine_string_lookup[engine_type].type_string;
+	engine_type_string = engine_string_lookup[engine_type].strings[_type_string_type_type_string];
 
 	return BCS_S_OK;
 }
@@ -71,7 +51,7 @@ BCS_RESULT get_engine_type_namespace(e_engine_type engine_type, const char*& nam
 {
 	BCS_VALIDATE_ARGUMENT(engine_type < k_number_of_engine_types);
 
-	namespace_name = engine_string_lookup[engine_type]._namespace;
+	namespace_name = engine_string_lookup[engine_type].strings[_type_string_type_namespace];
 
 	return BCS_S_OK;
 }
@@ -80,28 +60,14 @@ BCS_RESULT get_engine_type_pretty_string(e_engine_type engine_type, const char*&
 {
 	BCS_VALIDATE_ARGUMENT(engine_type < k_number_of_engine_types);
 
-	pretty_name = engine_string_lookup[engine_type].pretty_name;
+	pretty_name = engine_string_lookup[engine_type].strings[_type_string_type_pretty_name];
 
 	return BCS_S_OK;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-static constexpr s_string_lookup<e_platform_type> platform_string_lookup[] =
+static constexpr s_string_lookup<e_platform_type, k_num_engine_type_string_types> platform_string_lookup[] =
 {
-#define platform_type_string_pair(platform_type, _namespace, pretty_name) { platform_type, #platform_type, _namespace, pretty_name }
+#define platform_type_string_pair(platform_type, _namespace, pretty_name) { platform_type, { #platform_type, _namespace, pretty_name } }
 		platform_type_string_pair(_platform_type_not_set, "notset", "Not Set"),
 		platform_type_string_pair(_platform_type_xbox, "xbox", "Xbox"),
 		platform_type_string_pair(_platform_type_xbox_360, "xbox360", "Xbox 360"),
@@ -111,13 +77,13 @@ static constexpr s_string_lookup<e_platform_type> platform_string_lookup[] =
 #undef platform_type_string_pair
 };
 static_assert(_countof(platform_string_lookup) == k_number_of_platform_types);
-static_assert(is_string_lookup_valid(platform_string_lookup));
+static_assert(is_enum_lookup_valid(platform_string_lookup));
 
 BCS_RESULT get_platform_type_string(e_platform_type platform_type, const char*& platform_type_string)
 {
 	BCS_VALIDATE_ARGUMENT(platform_type < k_number_of_platform_types);
 
-	platform_type_string = platform_string_lookup[platform_type].type_string;
+	platform_type_string = platform_string_lookup[platform_type].strings[_type_string_type_type_string];
 
 	return BCS_S_OK;
 }
@@ -126,7 +92,7 @@ BCS_RESULT get_platform_type_namespace(e_platform_type platform_type, const char
 {
 	BCS_VALIDATE_ARGUMENT(platform_type < k_number_of_platform_types);
 
-	namespace_name = platform_string_lookup[platform_type]._namespace;
+	namespace_name = platform_string_lookup[platform_type].strings[_type_string_type_namespace];
 
 	return BCS_S_OK;
 }
@@ -135,39 +101,10 @@ BCS_RESULT get_platform_type_pretty_string(e_platform_type platform_type, const 
 {
 	BCS_VALIDATE_ARGUMENT(platform_type < k_number_of_platform_types);
 
-	pretty_name = platform_string_lookup[platform_type].pretty_name;
+	pretty_name = platform_string_lookup[platform_type].strings[_type_string_type_pretty_name];
 
 	return BCS_S_OK;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 struct s_build_and_id
 {

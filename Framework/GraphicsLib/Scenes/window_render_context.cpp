@@ -46,7 +46,7 @@ BCS_RESULT c_window_render_context::init_render_context()
 		graphics,
 		window.width,
 		window.height,
-		_graphics_data_format_depth_float32,
+		_graphics_data_format_d32_float,
 		0.0f,
 		0,
 		depth_render_target));

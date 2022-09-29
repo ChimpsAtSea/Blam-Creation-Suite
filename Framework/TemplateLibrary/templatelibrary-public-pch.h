@@ -26,3 +26,4 @@
 #include "runtime_task.h"
 #include "inplace_wrapper.h"
 #include "hybrid_chunked_resizable_array.h"
+#include "string_lookup.h"

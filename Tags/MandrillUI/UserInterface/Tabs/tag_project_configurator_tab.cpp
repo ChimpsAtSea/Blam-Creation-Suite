@@ -552,6 +552,7 @@ void c_tag_project_configurator_tab::create_tag_project_tab()
 	ASSERT(!runtime_task->is_running());
 	if (c_mandrill_user_interface* mandrill_user_interface = search_parent_tab_type<c_mandrill_user_interface>())
 	{
+		ASSERT(tag_project != nullptr);
 		c_tag_project_tab* tag_project_tab = new() c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
 		mandrill_user_interface->add_tab(*tag_project_tab);
 		mandrill_user_interface->set_next_selected_tab(*tag_project_tab);
