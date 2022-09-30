@@ -39,23 +39,48 @@ int main()
 
 	render_model->name = "geometry_test";
 
-	auto& region = render_model->regions_block.emplace_back();
-	region.name = "base";
+	unsigned int num_meshes = geometry_scene->get_num_meshes();
+	for (unsigned int mesh_index = 0; mesh_index < num_meshes; mesh_index++)
+	{
+		c_geometry_mesh* geometry_mesh = geometry_scene->get_mesh(mesh_index);
 
-	auto& permutation = region.permutations_block.emplace_back();
-	permutation.name = "main";
-	permutation.mesh_index = 0;
-	permutation.mesh_count = 1;
+		auto& region = render_model->regions_block.emplace_back();
+		region.name = geometry_mesh->get_name();;
+
+		auto& permutation = region.permutations_block.emplace_back();
+		permutation.name = "main";
+		permutation.mesh_index = mesh_index;
+		permutation.mesh_count = 1;
+	}
 
 	auto& node = render_model->nodes_block.emplace_back();
 	node.name = "geometry_test";
+
+
 	node.default_translation = { 0.0f, 0.0f, 0.0f };
 	node.default_rotation = { 0.0f, 0.0f, 0.0f, 1.0f };
-	node.inverse_forward = { 1.0f, 1.0f, 0.0f };
-	node.inverse_left = { 0.0f, 0.0f, 1.0f };
-	node.inverse_up = { 0.0f, 0.0f, 0.0f };
-	node.inverse_position = { 1.0f, 0.0f, 0.0f };
-	node.inverse_scale = 0.0f;
+
+	/* Old Mistakes Die Hard
+	 Be aware that the displayed inverse matrix below is incorrect.
+	 The inverse scale value should come before the inverse matrix. Currently the first value of the inverse matrix is the inverse scale and the inverse scale is the final value of the inverse position.
+	 i.e. The actual field order should have been:
+	   *inverse scale
+	   *inverse forward
+	   *inverse left
+	   *inverse up
+	   *inverse position*/
+
+	real inverse_scale = 1.0f;
+	real_vector3d inverse_forward = { 1.0f, 0.0f, 0.0f };
+	real_vector3d inverse_left = { 0.0f, 1.0f, 0.0f };
+	real_vector3d inverse_up = { 0.0f, 0.0f, 1.0f };
+	real_point3d inverse_position = { 0.0f, 0.0f, 0.0f };
+
+	node.inverse_forward = { inverse_scale, inverse_forward.i, inverse_forward.j };
+	node.inverse_left = { inverse_forward.k, inverse_left.i, inverse_left.j };
+	node.inverse_up = { inverse_left.k, inverse_up.i, inverse_up.j };
+	node.inverse_position = { inverse_up.k, inverse_position.x, inverse_position.y };
+	node.inverse_scale = inverse_position.z;
 
 	auto& material = render_model->materials_block.emplace_back();
 	material.render_method.set_unqualified_file_path_without_extension(SHADER_TAG, "geometrytest");
@@ -65,14 +90,12 @@ int main()
 
 	render_model->render_geometry.runtime_flags.set(_render_geometry_flags_version_2, true);
 
-	unsigned int num_meshes = geometry_scene->get_num_meshes();
-	unsigned int num_indices = 0;
 	unsigned int num_vertex_buffers = 0;
 
-	float3 position_minimum;
-	float3 position_maximum;
-	float2 texcoord_minimum;
-	float2 texcoord_maximum;
+	float3 position_minimum = { INFINITY, INFINITY, INFINITY };
+	float3 position_maximum = { -INFINITY, -INFINITY, -INFINITY };
+	float2 texcoord_minimum = { INFINITY, INFINITY };
+	float2 texcoord_maximum = { -INFINITY, -INFINITY };
 	for (unsigned int mesh_index = 0; mesh_index < num_meshes; mesh_index++)
 	{
 		c_geometry_mesh* geometry_mesh = geometry_scene->get_mesh(mesh_index);
@@ -81,12 +104,7 @@ int main()
 		const float2* texture_coordinate_set = geometry_mesh->get_texture_coordinate_set(0);
 		unsigned int geometry_vertex_count = geometry_mesh->get_vertex_count();
 
-		position_minimum = positions[0];
-		position_maximum = positions[0];
-		texcoord_minimum = texture_coordinate_set[0];
-		texcoord_maximum = texture_coordinate_set[0];
-
-		for (unsigned int vertex_index = 1; vertex_index < geometry_vertex_count; vertex_index++)
+		for (unsigned int vertex_index = 0; vertex_index < geometry_vertex_count; vertex_index++)
 		{
 			const float3& position = positions[vertex_index];
 			const float2& texcoord = texture_coordinate_set[vertex_index];
@@ -104,6 +122,7 @@ int main()
 		c_geometry_mesh* geometry_mesh = geometry_scene->get_mesh(mesh_index);
 		unsigned int geometry_vertex_count = geometry_mesh->get_vertex_count();
 		unsigned int geometry_indice_count = geometry_mesh->get_index_count();
+		unsigned int num_indices = 0;
 
 		auto& mesh = render_geometry.meshes_block.emplace_back();
 
@@ -125,6 +144,7 @@ int main()
 		subpart.part_index = 0;
 
 		mesh.vertex_buffer_indices[0].vertex_buffer_index = mesh_index; // #TODO?
+		mesh.vertex_buffer_indices[0].vertex_buffer_index = 0;
 		mesh.index_buffer_index = -1;
 		mesh.index_buffer_tessellation = -1;
 		mesh.rigid_node_index = 0;

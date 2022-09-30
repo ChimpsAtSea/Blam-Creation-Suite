@@ -9,6 +9,7 @@ public:
 	unsigned int num_faces;
 	unsigned int num_indices;
 	unsigned int num_vertices;
+	const char* name;
 	float3* positions;
 	float3* normals;
 	float3* tangents;
@@ -34,6 +35,7 @@ public:
 	virtual unsigned int get_vertex_count() const override;
 	virtual unsigned int get_index_count() const override;
 	virtual unsigned int get_face_count() const override;
+	virtual const char* get_name() const override;
 	virtual const float3* get_positions() const override;
 	virtual const float3* get_normals() const override;
 	virtual const float3* get_tangents() const override;

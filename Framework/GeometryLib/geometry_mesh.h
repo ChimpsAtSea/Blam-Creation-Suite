@@ -17,6 +17,7 @@ public:
 	virtual unsigned int get_vertex_count() const = 0;
 	virtual unsigned int get_index_count() const = 0;
 	virtual unsigned int get_face_count() const = 0;
+	virtual const char* get_name() const = 0;
 	virtual const float3* get_positions() const = 0;
 	virtual const float3* get_normals() const = 0;
 	virtual const float3* get_tangents() const = 0;

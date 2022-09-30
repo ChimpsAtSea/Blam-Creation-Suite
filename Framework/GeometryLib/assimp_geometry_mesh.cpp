@@ -14,6 +14,9 @@ c_assimp_geometry_mesh::c_assimp_geometry_mesh(c_assimp_geometry_scene& _assimp_
 	num_indices = num_faces * k_num_vertices_per_polygon;
 	num_vertices = _assimp_mesh->mNumVertices;
 
+	const char* assimp_mesh_name = _assimp_mesh->mName.C_Str();
+	name = strdup(assimp_mesh_name);
+
 	BCS_RESULT init_indices_result = init_indices(*_assimp_mesh);
 	BCS_FAIL_THROW(init_indices_result);
 
@@ -335,6 +338,7 @@ void c_assimp_geometry_mesh::degenerate_texcoord_hack()
 
 void c_assimp_geometry_mesh_data::deinit_geometry()
 {
+	untracked_free(name);
 	delete[] positions;
 	delete[] normals;
 	delete[] tangents;
@@ -364,6 +368,11 @@ unsigned int c_assimp_geometry_mesh::get_index_count() const
 unsigned int c_assimp_geometry_mesh::get_face_count() const
 {
 	return num_faces;
+}
+
+const char* c_assimp_geometry_mesh::get_name() const
+{
+	return name;
 }
 
 const float3* c_assimp_geometry_mesh::get_positions() const
@@ -446,6 +455,8 @@ BCS_RESULT c_assimp_geometry_mesh::resize_vertex_count(unsigned int new_num_vert
 		new_geometry_mesh_data.num_indices = num_indices;
 		new_geometry_mesh_data.mesh_indices_uint = mesh_indices_uint;
 		new_geometry_mesh_data.mesh_indices_ushort = mesh_indices_ushort;
+
+		new_geometry_mesh_data.name = strdup(name);
 
 		new_geometry_mesh_data.positions = new() float3[new_geometry_mesh_data.num_vertices]{};
 		if (new_geometry_mesh_data.positions == nullptr)
