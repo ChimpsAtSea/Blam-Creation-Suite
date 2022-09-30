@@ -467,7 +467,7 @@ void c_single_tag_file_layout_reader::init_resource_definition_by_index()
 	}
 	else
 	{
-		FATAL_ERROR("Not sure what to do here yet");
+		//FATAL_ERROR("Not sure what to do here yet");
 		//resource_definition_by_index = ;
 		//resource_definition_by_index_count = ;
 	}
@@ -488,7 +488,7 @@ void c_single_tag_file_layout_reader::init_interop_definition_by_index()
 	}
 	else
 	{
-		FATAL_ERROR("Not sure what to do here yet");
+		//FATAL_ERROR("Not sure what to do here yet");
 		//interop_definition_by_index = ;
 		//interop_definition_by_index_count = ;
 	}

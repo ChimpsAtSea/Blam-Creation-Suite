@@ -904,6 +904,13 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_group(h_tag& prototype) c
 {
 	BCS_RESULT rs = BCS_S_OK;
 
+	if (tag_file_header.group_version != prototype.get_version())
+	{
+		console_write_line("Skipping gen2 tag file version upgrade");
+		debug_point; // #TODO: version upgrading
+		return BCS_S_OK;
+	}
+
 	const char* global_data_position = tag_file_structure_data_start;
 
 #define advance_read(t_type) \

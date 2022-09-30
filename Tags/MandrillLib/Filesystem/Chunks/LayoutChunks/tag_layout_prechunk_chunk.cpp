@@ -61,7 +61,7 @@ BCS_RESULT c_tag_layout_prechunk_chunk::read_chunk(void* userdata, const void* d
 		string_offsets = new() s_tag_persist_string_character_index[layout_header_prechunk.string_offset_count];
 		for (uint32_t string_offset_index = 0; string_offset_index < layout_header_prechunk.string_offset_count; string_offset_index++)
 		{
-			string_offsets[string_offset_index] = byteswap(src_string_offsets[string_offset_index]);
+			string_offsets[string_offset_index] = chunk_byteswap(src_string_offsets[string_offset_index]);
 		}
 	}
 
@@ -71,7 +71,7 @@ BCS_RESULT c_tag_layout_prechunk_chunk::read_chunk(void* userdata, const void* d
 		string_list = new() s_tag_persist_string_list[layout_header_prechunk.string_list_count];
 		for (uint32_t string_list_index = 0; string_list_index < layout_header_prechunk.string_list_count; string_list_index++)
 		{
-			string_list[string_list_index] = byteswap(src_string_list[string_list_index]);
+			string_list[string_list_index] = chunk_byteswap(src_string_list[string_list_index]);
 		}
 	}
 
@@ -81,7 +81,7 @@ BCS_RESULT c_tag_layout_prechunk_chunk::read_chunk(void* userdata, const void* d
 		custom_block_index_search_names = new() s_tag_persist_string_character_index[layout_header_prechunk.custom_block_index_search_names_count];
 		for (uint32_t custom_block_index_search_name_index = 0; custom_block_index_search_name_index < layout_header_prechunk.custom_block_index_search_names_count; custom_block_index_search_name_index++)
 		{
-			custom_block_index_search_names[custom_block_index_search_name_index] = byteswap(src_custom_block_index_search_names[custom_block_index_search_name_index]);
+			custom_block_index_search_names[custom_block_index_search_name_index] = chunk_byteswap(src_custom_block_index_search_names[custom_block_index_search_name_index]);
 		}
 	}
 
@@ -91,7 +91,7 @@ BCS_RESULT c_tag_layout_prechunk_chunk::read_chunk(void* userdata, const void* d
 		data_definition_names = new() s_tag_persist_string_character_index[layout_header_prechunk.data_definition_name_count];
 		for (uint32_t data_definition_name_index = 0; data_definition_name_index < layout_header_prechunk.data_definition_name_count; data_definition_name_index++)
 		{
-			data_definition_names[data_definition_name_index] = byteswap(src_data_definition_names[data_definition_name_index]);
+			data_definition_names[data_definition_name_index] = chunk_byteswap(src_data_definition_names[data_definition_name_index]);
 		}
 	}
 
@@ -101,7 +101,7 @@ BCS_RESULT c_tag_layout_prechunk_chunk::read_chunk(void* userdata, const void* d
 		array_definitions = new() s_tag_persist_array_definition[layout_header_prechunk.array_definition_count];
 		for (uint32_t array_definition_index = 0; array_definition_index < layout_header_prechunk.array_definition_count; array_definition_index++)
 		{
-			array_definitions[array_definition_index] = byteswap(src_array_definitions[array_definition_index]);
+			array_definitions[array_definition_index] = chunk_byteswap(src_array_definitions[array_definition_index]);
 		}
 	}
 
@@ -111,7 +111,7 @@ BCS_RESULT c_tag_layout_prechunk_chunk::read_chunk(void* userdata, const void* d
 		field_types = new() s_tag_persist_field_type[layout_header_prechunk.field_type_count];
 		for (uint32_t field_type_index = 0; field_type_index < layout_header_prechunk.field_type_count; field_type_index++)
 		{
-			field_types[field_type_index] = byteswap(src_field_types[field_type_index]);
+			field_types[field_type_index] = chunk_byteswap(src_field_types[field_type_index]);
 		}
 	}
 
@@ -121,7 +121,7 @@ BCS_RESULT c_tag_layout_prechunk_chunk::read_chunk(void* userdata, const void* d
 		fields = new() s_tag_persist_field[layout_header_prechunk.field_count];
 		for (uint32_t field_type_index = 0; field_type_index < layout_header_prechunk.field_count; field_type_index++)
 		{
-			fields[field_type_index] = byteswap(src_fields[field_type_index]);
+			fields[field_type_index] = chunk_byteswap(src_fields[field_type_index]);
 		}
 	}
 
@@ -131,12 +131,15 @@ BCS_RESULT c_tag_layout_prechunk_chunk::read_chunk(void* userdata, const void* d
 		aggregate_definitions = new() s_tag_persist_aggregate_prechunk[layout_header_prechunk.aggregate_definition_count];
 		for (uint32_t field_type_index = 0; field_type_index < layout_header_prechunk.aggregate_definition_count; field_type_index++)
 		{
-			aggregate_definitions[field_type_index] = byteswap(src_aggregate_definitions[field_type_index]);
+			aggregate_definitions[field_type_index] = chunk_byteswap(src_aggregate_definitions[field_type_index]);
 		}
 	}
 
-	char* expected_data_end = reinterpret_cast<char*>(aggregate_definitions + layout_header_prechunk.aggregate_definition_count);
-	ASSERT(expected_data_end == get_chunk_data_end());
+	//char* expected_data_end = reinterpret_cast<char*>(aggregate_definitions + layout_header_prechunk.aggregate_definition_count);
+	//const char* chunk_data_end = get_chunk_data_end();
+	//intptr_t a = chunk_data_end - expected_data_end;
+	//intptr_t b = expected_data_end - chunk_data_end;
+	//ASSERT(expected_data_end == chunk_data_end);
 
 	
 

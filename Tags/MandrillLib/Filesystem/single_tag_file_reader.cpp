@@ -74,11 +74,12 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	struct_entries_data = new s_single_tag_file_reader_structure_entry[struct_definition_count];
 	structure_entries_data_count = struct_definition_count;
 
-	uint32_t blofeld_structure_count = tag_structs_view.get_num_tag_struct_definitions();
-	uint32_t tag_file_structure_count = layout_reader.structure_definitions_chunk->entry_count;
-	ASSERT(blofeld_structure_count >= tag_file_structure_count);
-
-
+	if (layout_reader.structure_definitions_chunk)
+	{
+		uint32_t blofeld_structure_count = tag_structs_view.get_num_tag_struct_definitions();
+		uint32_t tag_file_structure_count = layout_reader.structure_definitions_chunk->entry_count;
+		ASSERT(blofeld_structure_count >= tag_file_structure_count);
+	}
 
 	for (uint32_t structure_entry_index = 0; structure_entry_index < layout_reader.tag_group_layout_chunk->get_struct_definition_count(); structure_entry_index++)
 	{
@@ -99,7 +100,12 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 		{
 			const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag({ _engine_type_halo3 }, header.group_tag);
 			struct_definition = &tag_group->block_definition.struct_definition;
+
+
+			const char* structure_name = layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
+			ASSERT(tag_group->block_definition.struct_definition.persistent_identifier == structure_entry.persistent_identifier);
 		}
+		ASSERT(struct_definition != nullptr);
 
 		if (struct_definition != nullptr)
 		{
@@ -255,6 +261,16 @@ BCS_RESULT c_single_tag_file_reader::get_tag_struct_definition_by_persistent_ide
 	bool success = tag_struct_definitions_lookup_table.fetch(&_64bit_id, sizeof(_64bit_id), struct_definition);
 	if (!success) [[unlikely]]
 	{
+		for (const blofeld::s_tag_struct_definition** struct_definition_iter = tag_struct_definitions; *struct_definition_iter; struct_definition_iter++)
+		{
+			const blofeld::s_tag_struct_definition& current_struct_definition = **struct_definition_iter;
+			if (current_struct_definition.persistent_identifier == persistent_identifier)
+			{
+				throw; // shouldn't reach here
+			}
+		}
+
+
 		return BCS_E_FAIL;
 	}
 	return BCS_S_OK;
@@ -288,7 +304,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 			c_chunk* source_chunk = nullptr;
 			ASSERT(structure_chunk != nullptr);
 
-			void* high_level_field_data;
+			void* high_level_field_data = nullptr;
 			if (transpose.can_transpose)
 			{
 				const blofeld::s_tag_field& blofeld_field = *transpose.blofeld_tag_field;
@@ -390,8 +406,31 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 
 				if (transpose.can_transpose)
 				{
-					h_string_id& string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
-					string_id_storage = field_tag_string_id_chunk->string;
+					switch (transpose.blofeld_tag_field->field_type)
+					{
+					case blofeld::_field_old_string_id:
+					case blofeld::_field_string_id:
+					{
+						h_string_id& string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
+						string_id_storage = field_tag_string_id_chunk->string;
+					}
+					break;
+					case blofeld::_field_string:
+					{
+						c_fixed_string_32& string_storage = *reinterpret_cast<decltype(&string_storage)>(high_level_field_data);
+						string_storage = field_tag_string_id_chunk->string;
+					}
+					break;
+					case blofeld::_field_long_string:
+					{
+						c_fixed_string_256& long_string_storage = *reinterpret_cast<decltype(&long_string_storage)>(high_level_field_data);
+						long_string_storage = field_tag_string_id_chunk->string;
+					}
+					break;
+					}
+
+
+					debug_point;
 				}
 			}
 			break;

@@ -249,7 +249,7 @@ BCS_RESULT c_chunk::read_chunk_header(void* userdata, const void* header_data)
 
 	s_chunk_header_gen3 chunk_header = *chunk_header_pointer;
 	chunk_byteswap_inplace(chunk_header);
-	ASSERT(chunk_header.signature == signature);
+	ASSERT(chunk_header.signature == signature || signature == c_tag_layout_prechunk_chunk::k_signature);
 
 	metadata = chunk_header.metadata;
 	chunk_size = chunk_header.chunk_size;

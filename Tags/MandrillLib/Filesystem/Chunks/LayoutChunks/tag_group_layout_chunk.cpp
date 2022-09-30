@@ -40,9 +40,9 @@ BCS_RESULT c_tag_group_layout_chunk::read_chunk(void* userdata, const void* data
 
 		// #HACK: The same data for this chunk is passed down to the child. This means that the child chunk has the same data
 		// begin and end positions as this current chunk.
-		FATAL_ERROR("TODO: RESTORE THIS");
-		//c_tag_layout_prechunk_chunk* layout_prechunk_chunk = new() c_tag_layout_prechunk_chunk(chunk_data, *this);
-		//children = new() c_chunk * [2]{ layout_prechunk_chunk, nullptr };
+		c_tag_layout_prechunk_chunk* layout_prechunk_chunk = new() c_tag_layout_prechunk_chunk(/*chunk_data, */*this);
+		add_child(*layout_prechunk_chunk);
+		layout_prechunk_chunk->read_chunk(userdata, data, use_read_only, true);
 	}
 	break;
 	case _tag_persist_layout_version_preinterop:

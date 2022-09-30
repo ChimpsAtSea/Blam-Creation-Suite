@@ -55,15 +55,12 @@ c_filesystem_tag_project::c_filesystem_tag_project(
 		}
 		if (engine_platform_build.engine_type == _engine_type_halo3)
 		{
-			if (strcmp(candidate.group->tag_group.name, "vehicle_group") == 0)
+			if (h_tag* high_level_tag = try_parse_tag_file(filepath))
 			{
-				if (h_tag* high_level_tag = try_parse_tag_file(filepath))
-				{
 
-					candidate.group->associate_tag_instance(*high_level_tag);
-					high_level_tag->generate_filepaths(filepath_without_extension_mb);
-					tags.push_back(high_level_tag);
-				}
+				candidate.group->associate_tag_instance(*high_level_tag);
+				high_level_tag->generate_filepaths(filepath_without_extension_mb);
+				tags.push_back(high_level_tag);
 			}
 		}
 		if (tag_prototype != nullptr)
