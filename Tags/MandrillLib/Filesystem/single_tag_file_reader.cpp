@@ -18,7 +18,7 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	tag_struct_definitions(),
 	struct_entries_data(nullptr),
 	structure_entries_data_count(0),
-	tag_struct_definitions_lookup_table(),
+	//tag_struct_definitions_lookup_table(),
 	engine_platform_build(engine_platform_build),
 	tag_structs_view(tag_structs_view_wrapper),
 	tag_structs_view_wrapper(),
@@ -62,31 +62,22 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 	//struct_entries_data = new() s_single_tag_file_reader_structure_entry[layout_reader.tag_group_layout_chunk->get_struct_definition_count()];
 
 
-	for (const blofeld::s_tag_struct_definition** struct_definition_iter = tag_struct_definitions; *struct_definition_iter; struct_definition_iter++)
+	/*for (const blofeld::s_tag_struct_definition** struct_definition_iter = tag_struct_definitions; *struct_definition_iter; struct_definition_iter++)
 	{
 		const blofeld::s_tag_struct_definition& struct_definition = **struct_definition_iter;
 		int64_t _64bit_id = make_64bit_persistent_id(struct_definition.persistent_identifier);
 		tag_struct_definitions_lookup_table.enqueue(&_64bit_id, sizeof(_64bit_id), &struct_definition);
-	}
+	}*/
 
 	uint32_t struct_definition_count = layout_reader.tag_group_layout_chunk->get_struct_definition_count();
 	ASSERT(struct_definition_count > 0);
 	struct_entries_data = new s_single_tag_file_reader_structure_entry[struct_definition_count];
 	structure_entries_data_count = struct_definition_count;
 
-	if (layout_reader.structure_definitions_chunk)
-	{
-		uint32_t blofeld_structure_count = tag_structs_view.get_num_tag_struct_definitions();
-		uint32_t tag_file_structure_count = layout_reader.structure_definitions_chunk->entry_count;
-		ASSERT(blofeld_structure_count >= tag_file_structure_count);
-	}
-
 	for (uint32_t structure_entry_index = 0; structure_entry_index < layout_reader.tag_group_layout_chunk->get_struct_definition_count(); structure_entry_index++)
 	{
 		s_single_tag_file_reader_structure_entry& reader_structure_entry = struct_entries_data[structure_entry_index];
 		const s_tag_persist_struct_definition& structure_entry = layout_reader.get_struct_definition_by_index(structure_entry_index);
-
-		//const char* structure_name = layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
 
 		const blofeld::s_tag_struct_definition* struct_definition = nullptr;
 
@@ -96,29 +87,28 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 			reader_structure_entry.struct_definition_entry = &structure_entry;
 			reader_structure_entry.persistent_identifier = structure_entry.persistent_identifier;
 		}
-		else if (structure_entry_index == 0 && layout_reader.tag_layout_prechunk_chunk != nullptr)
-		{
-			const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag({ _engine_type_halo3 }, header.group_tag);
-			struct_definition = &tag_group->block_definition.struct_definition;
-
-
-			const char* structure_name = layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
-			ASSERT(tag_group->block_definition.struct_definition.persistent_identifier == structure_entry.persistent_identifier);
-		}
-		ASSERT(struct_definition != nullptr);
-
-		if (struct_definition != nullptr)
-		{
-			reader_structure_entry.tag_struct_definition = struct_definition;
-			reader_structure_entry.struct_definition_entry = &structure_entry;
-			reader_structure_entry.persistent_identifier = structure_entry.persistent_identifier;
-		}
 		else
 		{
-			memset(&reader_structure_entry, 0, sizeof(reader_structure_entry));
-		}
+			const char* structure_name = layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
 
+			console_write_line_verbose(
+				"Failed to structure '%s' [0x%08X 0x%08X 0x%08X 0x%08X]",
+				structure_name,
+				structure_entry.persistent_identifier.identifier_part_0,
+				structure_entry.persistent_identifier.identifier_part_1,
+				structure_entry.persistent_identifier.identifier_part_2,
+				structure_entry.persistent_identifier.identifier_part_3);
+
+			throw BCS_E_UNSUPPORTED;
+		}
 	}
+
+	//if (layout_reader.structure_definitions_chunk)
+	//{
+	//	uint32_t blofeld_structure_count = tag_structs_view.get_num_tag_struct_definitions();
+	//	uint32_t tag_file_structure_count = layout_reader.structure_definitions_chunk->entry_count;
+	//	ASSERT(blofeld_structure_count >= tag_file_structure_count);
+	//}
 
 	for (uint32_t structure_entry_index = 0; structure_entry_index < layout_reader.tag_group_layout_chunk->get_struct_definition_count(); structure_entry_index++)
 	{
@@ -257,7 +247,7 @@ c_single_tag_file_reader::~c_single_tag_file_reader()
 
 BCS_RESULT c_single_tag_file_reader::get_tag_struct_definition_by_persistent_identifier(const blofeld::s_tag_persistent_identifier& persistent_identifier, const blofeld::s_tag_struct_definition*& struct_definition) const
 {
-	int64_t _64bit_id = make_64bit_persistent_id(persistent_identifier);
+	/*int64_t _64bit_id = make_64bit_persistent_id(persistent_identifier);
 	bool success = tag_struct_definitions_lookup_table.fetch(&_64bit_id, sizeof(_64bit_id), struct_definition);
 	if (!success) [[unlikely]]
 	{
@@ -273,7 +263,19 @@ BCS_RESULT c_single_tag_file_reader::get_tag_struct_definition_by_persistent_ide
 
 		return BCS_E_FAIL;
 	}
-	return BCS_S_OK;
+	return BCS_S_OK;*/
+
+	for (const blofeld::s_tag_struct_definition** struct_definition_iter = tag_struct_definitions; *struct_definition_iter; struct_definition_iter++)
+	{
+		const blofeld::s_tag_struct_definition& current_struct_definition = **struct_definition_iter;
+		if (current_struct_definition.persistent_identifier == persistent_identifier)
+		{
+			struct_definition = &current_struct_definition;
+			return BCS_S_OK;
+		}
+	}
+
+	return BCS_E_FAIL;
 }
 
 const blofeld::s_tag_struct_definition& c_single_tag_file_reader::get_tag_struct_definition_by_index(uint32_t index) const
@@ -522,7 +524,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 			case blofeld::_field_pad:
 			{
 				uint32_t pad_size = transpose.field_metadata;
-				ASSERT(pad_size == blofeld_field.padding);
+				//ASSERT(pad_size == blofeld_field.padding);
 				field_size = pad_size;
 			}
 			break;
@@ -595,4 +597,67 @@ BCS_RESULT c_single_tag_file_reader::parse_high_level_object(h_tag*& out_high_le
 
 	out_high_level_tag = high_level_tag;
 	return BCS_S_OK;
+}
+
+void c_single_tag_file_reader::read_structure_metadata(
+	s_tag_persist_struct_definition& structure_entry,
+	t_tag_file_reader_metadata_stack& metadata_stack)
+{
+	// #NOTE: If this is required, shove the structure_entry_index into the functiona and lookup via that
+	// lookup up via entry/persistent_id is expensive
+	// uint32_t expected_children =layout_reader.get_structure_expected_children_by_entry(structure_entry);
+
+	uint32_t metadata_child_index = 0;
+
+	for (uint32_t field_index = structure_entry.fields_start_index;; field_index++)
+	{
+		s_tag_persist_field& field_entry =layout_reader.get_field_by_index(field_index);
+		s_tag_persist_field_type& field_type =layout_reader.get_field_type_by_index(field_entry.field_type_index);
+		blofeld::e_field blofeld_field_type =layout_reader.get_blofeld_type_by_field_type_index(field_entry.field_type_index);
+
+		if (field_type.has_child_chunk)
+		{
+			switch (blofeld_field_type)
+			{
+			case blofeld::_field_struct:
+			{
+				uint32_t structure_entry_index = field_entry.metadata;
+				s_tag_persist_struct_definition& structure_entry =layout_reader.get_struct_definition_by_index(structure_entry_index);
+				read_structure_metadata(structure_entry, metadata_stack);
+			}
+			break;
+			case blofeld::_field_pageable_resource:
+			{
+				uint32_t resource_entry_index = field_entry.metadata;
+				s_tag_persist_resource_definition& resource_entry =layout_reader.get_resource_definition_by_index(resource_entry_index);
+				DEBUG_ONLY(const char* resource_name =layout_reader.get_string_by_string_character_index(resource_entry.string_character_index));
+				DEBUG_ONLY(const char* resource_field_name =layout_reader.get_string_by_string_character_index(field_entry.string_character_index));
+				DEBUG_ONLY(const char* resource_type_name =layout_reader.get_string_by_string_character_index(field_type.string_character_index));
+				t_tag_file_reader_metadata_entry& metadata_entry = metadata_stack._push();
+				metadata_entry.id = field_entry.metadata;
+				metadata_entry.entry_type = _tag_file_reader_metadata_entry_type_resource;
+				DEBUG_ONLY(metadata_entry.resource_definition = &resource_entry);
+				DEBUG_ONLY(metadata_entry.block_entry = nullptr);
+				DEBUG_ONLY(metadata_entry.definition_name = resource_name);
+			}
+			break;
+			case blofeld::_field_block:
+			{
+				s_tag_persist_block_definition& block_entry =layout_reader.get_block_definition_by_index(field_entry.metadata);
+				DEBUG_ONLY(const char* block_name =layout_reader.get_string_by_string_character_index(block_entry.string_character_index));
+				t_tag_file_reader_metadata_entry& metadata_entry = metadata_stack._push();
+				metadata_entry.id = field_entry.metadata;
+				metadata_entry.entry_type = _tag_file_reader_metadata_entry_type_block;
+				DEBUG_ONLY(metadata_entry.resource_definition = nullptr);
+				DEBUG_ONLY(metadata_entry.block_entry = &block_entry);
+				DEBUG_ONLY(metadata_entry.definition_name = block_name);
+			}
+			break;
+			}
+		}
+		else if (blofeld_field_type == blofeld::_field_terminator)
+		{
+			return;
+		}
+	}
 }

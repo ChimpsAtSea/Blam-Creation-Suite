@@ -44,11 +44,15 @@ BCS_RESULT c_tag_block_chunk::read_chunk(void* userdata, const void* data, bool 
 	const s_tag_block_chunk_header* src_tag_block_chunk_header = reinterpret_cast<const s_tag_block_chunk_header*>(chunk_data_start);
 	tag_block_chunk_header = chunk_byteswap(*src_tag_block_chunk_header);
 
-	
-
 	t_tag_file_reader_metadata_entry& _metadata_entry = reader.metadata_stack._pop_unsafe();
 	uint32_t current_block_index = _metadata_entry.id;
 	e_tag_file_reader_metadata_entry_type entry_type = _metadata_entry.entry_type;
+
+	if (entry_type != _tag_file_reader_metadata_entry_type_block)
+	{
+		console_write_line("Unexpected tag file reader metadata");
+		return BCS_E_FATAL;
+	}
 	ASSERT(entry_type == _tag_file_reader_metadata_entry_type_block);
 
 	block_entry = &reader.layout_reader.get_block_definition_by_index(current_block_index);
@@ -139,64 +143,8 @@ void c_tag_block_chunk::read_tag_block_structures(c_single_tag_file_reader& read
 	t_tag_file_reader_metadata_stack metadata_stack;
 	for (uint32_t block_index = 0; block_index < tag_block_chunk_header.count; block_index++)
 	{
-		read_structure_metadata(reader, *structure_entry, metadata_stack);
+		reader.read_structure_metadata(*structure_entry, metadata_stack);
 		reader.metadata_stack.copy_from(metadata_stack);
-	}
-}
-
-void c_tag_block_chunk::read_structure_metadata(
-	c_single_tag_file_reader& reader,
-	s_tag_persist_struct_definition& structure_entry,
-	t_tag_file_reader_metadata_stack& metadata_stack) const
-{
-	// #NOTE: If this is required, shove the structure_entry_index into the functiona and lookup via that
-	// lookup up via entry/persistent_id is expensive
-	// uint32_t expected_children = reader.layout_reader.get_structure_expected_children_by_entry(structure_entry);
-
-	uint32_t metadata_child_index = 0;
-
-	for (uint32_t field_index = structure_entry.fields_start_index;; field_index++)
-	{
-		s_tag_persist_field& field_entry = reader.layout_reader.get_field_by_index(field_index);
-		s_tag_persist_field_type& field_type = reader.layout_reader.get_field_type_by_index(field_entry.field_type_index);
-		blofeld::e_field blofeld_field_type = reader.layout_reader.get_blofeld_type_by_field_type_index(field_entry.field_type_index);
-
-		if (field_type.has_child_chunk)
-		{
-			switch (blofeld_field_type)
-			{
-			case blofeld::_field_struct:
-			{
-				uint32_t structure_entry_index = field_entry.metadata;
-				s_tag_persist_struct_definition& structure_entry = reader.layout_reader.get_struct_definition_by_index(structure_entry_index);
-				read_structure_metadata(reader, structure_entry, metadata_stack);
-			}
-			break;
-			case blofeld::_field_pageable_resource:
-			{
-				uint32_t resource_entry_index = field_entry.metadata;
-				s_tag_persist_resource_definition& resource_entry = reader.layout_reader.get_resource_definition_by_index(resource_entry_index);
-				// const char* resource_name = reader.layout_reader.get_string_by_string_character_index(resource_entry.string_character_index);
-				t_tag_file_reader_metadata_entry& metadata_entry = metadata_stack._push();
-				metadata_entry.id = field_entry.metadata;
-				metadata_entry.entry_type = _tag_file_reader_metadata_entry_type_resource;
-			}
-			break;
-			case blofeld::_field_block:
-			{
-				s_tag_persist_block_definition& block_entry = reader.layout_reader.get_block_definition_by_index(field_entry.metadata);
-				// const char* block_name = reader.layout_reader.get_string_by_string_character_index(block_entry.string_character_index);
-				t_tag_file_reader_metadata_entry& metadata_entry = metadata_stack._push();
-				metadata_entry.id = field_entry.metadata;
-				metadata_entry.entry_type = _tag_file_reader_metadata_entry_type_block;
-			}
-			break;
-			}
-		}
-		else if (blofeld_field_type == blofeld::_field_terminator)
-		{
-			return;
-		}
 	}
 }
 

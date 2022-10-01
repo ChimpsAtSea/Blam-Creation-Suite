@@ -118,8 +118,8 @@ void t_tag_file_reader_metadata_stack::_pop(t_tag_file_reader_metadata_entry& va
 
 t_tag_file_reader_metadata_entry& t_tag_file_reader_metadata_stack::_pop_unsafe()
 {
-	//ASSERT(stack_length > 0);
-	//ASSERT(stack_head->entry_count > 0);
+	ASSERT(stack_length > 0);
+	ASSERT(stack_head->entry_count > 0);
 	int32_t entry_index = --stack_head->entry_count;
 	//ASSERT(entry_index >= 0);
 	stack_length--;

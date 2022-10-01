@@ -46,6 +46,11 @@ struct t_tag_file_reader_metadata_entry
 {
 	e_tag_file_reader_metadata_entry_type entry_type;
 	uint32_t id;
+#ifdef _DEBUG
+	s_tag_persist_resource_definition* resource_definition;
+	s_tag_persist_block_definition* block_entry;
+	const char* definition_name;
+#endif
 };
 
 #include "tag_file_reader_stack.h"
@@ -64,7 +69,7 @@ public:
 	const blofeld::s_tag_struct_definition** tag_struct_definitions;
 	s_single_tag_file_reader_structure_entry* struct_entries_data;
 	uint32_t structure_entries_data_count;
-	c_fast_byte_lookup<const blofeld::s_tag_struct_definition*, 4096, 1024> tag_struct_definitions_lookup_table;
+	//c_fast_byte_lookup<const blofeld::s_tag_struct_definition*, 4096, 1024> tag_struct_definitions_lookup_table;
 
 	//using t_tag_struct_definition_table = std::unordered_map<XXH64_hash_t, const blofeld::s_tag_struct_definition*>;
 	//s_single_tag_file_reader_structure_entry* struct_entries_data;
@@ -111,5 +116,8 @@ public:
 		const blofeld::s_tag_struct_definition*& tag_struct_definition) const;
 
 	const blofeld::s_tag_struct_definition& get_tag_struct_definition_by_index(uint32_t index) const;
-	
+
+	void read_structure_metadata(
+		s_tag_persist_struct_definition& structure_entry,
+		t_tag_file_reader_metadata_stack& metadata_stack);
 };
