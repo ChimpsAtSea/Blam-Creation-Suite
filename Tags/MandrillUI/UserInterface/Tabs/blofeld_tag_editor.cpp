@@ -314,6 +314,7 @@
 //
 //	case blofeld::_field_angle:
 //	case blofeld::_field_real_fraction:
+//	case blofeld::_field_real_slider:
 //	case blofeld::_field_real: components = 1; data_type = ImGuiDataType_Float; return true;
 //
 //	case blofeld::_field_half: components = 1; data_type = ImGuiDataType_Float; return true;
@@ -1532,6 +1533,7 @@
 //		case blofeld::_field_argb_color:
 //
 //		case blofeld::_field_real:
+//		case blofeld::_field_real_slider:
 //		case blofeld::_field_real_fraction:
 //		case blofeld::_field_real_point_2d:
 //		case blofeld::_field_real_point_3d:

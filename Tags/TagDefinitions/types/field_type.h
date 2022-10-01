@@ -37,6 +37,7 @@ namespace blofeld
 		_field_rgb_color,
 		_field_argb_color,
 		_field_real,
+		_field_real_slider,
 		_field_real_fraction,
 		_field_real_point_2d,
 		_field_real_point_3d,

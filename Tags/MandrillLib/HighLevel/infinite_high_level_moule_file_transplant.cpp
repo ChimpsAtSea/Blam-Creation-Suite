@@ -58,6 +58,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			case _field_rgb_color:						basic_memory_read(::pixel32);
 			case _field_argb_color:						basic_memory_read(::pixel32);
 			case _field_real:							basic_memory_read(::real);
+			case _field_real_slider:					basic_memory_read(::real);
 			case _field_real_fraction:					basic_memory_read(::real_fraction);
 			case _field_real_point_2d:					basic_memory_read(::real_point2d);
 			case _field_real_point_3d:					basic_memory_read(::real_point3d);

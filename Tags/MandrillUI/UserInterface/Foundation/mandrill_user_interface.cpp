@@ -584,15 +584,27 @@ bool c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 			if (ImGui::BeginMenuBar()) {
 				ImGui::TextUnformatted(get_status_bar_text());
 
+				float percentage = 100.0f * get_status_bar_percentage();
+				char percentage_buffer[32] = {};
+				if (percentage >= 0)
+				{
+					snprintf(percentage_buffer, _countof(percentage_buffer), "%.0f%%", percentage);
+				}
+
+				ImVec2 percentage_size = ImGui::CalcTextSize(percentage_buffer);
 				static ImVec2 gamepad_size;
 				static ImVec2 terminal_size;
 
 				ImVec2 start_cursor_pos = ImGui::GetCursorPos();
 				float content_region_width = ImGui::GetContentRegionAvail().x;
 				start_cursor_pos.x += content_region_width;
+				start_cursor_pos.x -= percentage_size.x;
 				start_cursor_pos.x -= gamepad_size.x;
 				start_cursor_pos.x -= terminal_size.x;
 				ImGui::SetCursorPosX(start_cursor_pos.x);
+
+				ImGui::TextUnformatted(percentage_buffer);
+				ImVec2 percentage_buffer_end_pos = ImGui::GetCursorPos();
 
 				if (ImGui::BeginMenu(ICON_FA_NETWORK_WIRED))
 				{
@@ -624,7 +636,7 @@ bool c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 				}
 				ImVec2 terminal_end_pos = ImGui::GetCursorPos();
 
-				gamepad_size = gamepad_end_pos - start_cursor_pos;
+				gamepad_size = gamepad_end_pos - percentage_buffer_end_pos;
 				terminal_size = terminal_end_pos - gamepad_end_pos;
 
 				ImGui::EndMenuBar();

@@ -25,73 +25,8 @@ c_filesystem_tag_project::c_filesystem_tag_project(
 	float miliseconds = stopwatch.get_miliseconds();
 
 	stopwatch.start();
-	for (auto& candidate : candidates)
-	{
-		const wchar_t* filepath = candidate.filepath;
-		const wchar_t* relative_filepath = candidate.relative_filepath;
 
-		wchar_t* filepath_without_extension = wcsdup(relative_filepath);
-		filesystem_remove_filepath_extension(filepath_without_extension);
-
-		BCS_WIDECHAR_TO_CHAR_HEAP(filepath_without_extension, filepath_without_extension_mb);
-
-		c_stopwatch stopwatch;
-		stopwatch.start();
-
-		h_tag* tag_prototype = nullptr;
-		if (engine_platform_build.engine_type == _engine_type_halo1)
-		{
-			if (BCS_FAILED(c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(tag_prototype, filepath, engine_platform_build)))
-			{
-				continue;
-			}
-		}
-		if (engine_platform_build.engine_type == _engine_type_halo2)
-		{
-			if (BCS_FAILED(c_gen2_tag_file_parse_context::parse_gen2_tag_file_data(tag_prototype, filepath, engine_platform_build)))
-			{
-				continue;
-			}
-		}
-		if (engine_platform_build.engine_type == _engine_type_halo3)
-		{
-			try
-			{
-				if (h_tag* high_level_tag = try_parse_tag_file(filepath))
-				{
-
-					candidate.group->associate_tag_instance(*high_level_tag);
-					high_level_tag->generate_filepaths(filepath_without_extension_mb);
-					tags.push_back(high_level_tag);
-				}
-			}
-			catch (BCS_RESULT rs)
-			{
-				console_write_line("Failed to parse '%S'", filepath);
-			}
-			catch (...)
-			{
-				console_write_line("Failed to parse '%S'", filepath);
-			}
-		}
-		if (tag_prototype != nullptr)
-		{
-			candidate.group->associate_tag_instance(*tag_prototype);
-			tag_prototype->generate_filepaths(filepath_without_extension_mb);
-			tags.push_back(tag_prototype);
-		}
-
-		//tracked_free(filepath_without_extension);
-
-		stopwatch.stop();
-		float ms = stopwatch.get_miliseconds();
-		if (status_interface)
-		{
-			status_interface->set_status_bar_status(_status_interface_priority_low, 15.0f, "Read tag %S (%.2f ms)", relative_filepath, ms);
-		}
-
-		tracked_free(filepath_without_extension_mb);
-	}
+	read_tags();
 
 	resolve_unqualified_tags();
 
@@ -115,6 +50,10 @@ c_filesystem_tag_project::~c_filesystem_tag_project()
 
 void c_filesystem_tag_project::try_open_tag_files()
 {
+	if (status_interface)
+	{
+		status_interface->set_status_bar_status(_status_interface_priority_low, INFINITY, "Traversing tag directory");
+	}
 	filesystem_traverse_directory_folders(
 		tags_directory,
 		[](void* userdata_pointer, const wchar_t* directory, const wchar_t* relative_directory)
@@ -143,6 +82,11 @@ void c_filesystem_tag_project::try_open_tag_files()
 			return true;
 		},
 		this);
+
+	if (status_interface)
+	{
+		status_interface->set_status_bar_status(_status_interface_priority_medium, 5.0f, "Finished traversing tag directory");
+	}
 }
 
 void c_filesystem_tag_project::try_open_single_tag_file(const wchar_t* filepath, const wchar_t* relative_filepath)
@@ -163,56 +107,253 @@ void c_filesystem_tag_project::try_open_single_tag_file(const wchar_t* filepath,
 	}
 
 	candidates.push_back({ group, _wcsdup(filepath), _wcsdup(relative_filepath) });
-
-	
 }
 
-h_tag* c_filesystem_tag_project::try_parse_tag_file(const wchar_t* filepath)
+BCS_RESULT c_filesystem_tag_project::read_tag_gen3(const wchar_t* filepath, h_tag*& out_high_level_tag) const
 {
-	void* tag_file_data;
-	uint64_t tag_file_data_size;
+	BCS_VALIDATE_ARGUMENT(filepath);
 
-	s_single_tag_file_header* header_data;
-	c_single_tag_file_layout_reader* layout_reader;
-	c_single_tag_file_reader* reader;
+	BCS_RESULT rs = BCS_S_OK;
+	void* tag_file_data = nullptr;
+	h_tag* high_level_tag = nullptr;
+	try
+	{
+		uint64_t tag_file_data_size;
+		if (BCS_FAILED(rs = filesystem_read_file_to_memory(filepath, tag_file_data, tag_file_data_size)))
+		{
+			throw rs;
+		}
 
-	BCS_FAIL_THROW(filesystem_read_file_to_memory(filepath, tag_file_data, tag_file_data_size));
-	ASSERT(tag_file_data_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
-	header_data = static_cast<s_single_tag_file_header*>(tag_file_data);
-	ASSERT(header_data->blam == 'BLAM');
+		DEBUG_ASSERT(tag_file_data_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
+		if (tag_file_data_size < (sizeof(s_single_tag_file_header) + sizeof(tag)))
+		{
+			throw BCS_S_CONTINUE;
+		}
 
-	static constexpr tag k_tag_file_root_data_stream_tag = 'tag!';
-	tag root_node_tag = *reinterpret_cast<tag*>(header_data + 1);
-	bool is_little_endian_tag = root_node_tag == k_tag_file_root_data_stream_tag;
-	bool is_big_endian_tag = byteswap(root_node_tag) == k_tag_file_root_data_stream_tag;
-	ASSERT(is_little_endian_tag || is_big_endian_tag);
+		s_single_tag_file_header* header_data = static_cast<s_single_tag_file_header*>(tag_file_data);
+
+		DEBUG_ASSERT(header_data->blam == 'BLAM');
+		if (header_data->blam != 'BLAM')
+		{
+			throw BCS_E_UNSUPPORTED;
+		}
+
+		static constexpr tag k_tag_file_root_data_stream_tag = 'tag!';
+		tag root_node_tag = *reinterpret_cast<tag*>(header_data + 1);
+		bool is_little_endian_tag = root_node_tag == k_tag_file_root_data_stream_tag;
+		bool is_big_endian_tag = byteswap(root_node_tag) == k_tag_file_root_data_stream_tag;
+		ASSERT(is_little_endian_tag || is_big_endian_tag);
+
+		c_single_tag_file_layout_reader* layout_reader = new() c_single_tag_file_layout_reader(*header_data, header_data);
+		c_single_tag_file_reader* reader = new() c_single_tag_file_reader(
+			*header_data,
+			engine_platform_build,
+			is_big_endian_tag,
+			*layout_reader,
+			*layout_reader->binary_data_chunk,
+			nullptr,
+			nullptr);
+
+		reader->parse_high_level_object(high_level_tag);
+
+		out_high_level_tag = high_level_tag;
+
+		delete reader;
+		delete layout_reader;
+	}
+	catch (BCS_RESULT _rs)
+	{
+		rs = _rs;
+	}
+	catch (...)
+	{
+		rs = BCS_E_FATAL;
+	}
+
+	tracked_free(tag_file_data);
+
+	if (BCS_FAILED(rs))
+	{
+		delete high_level_tag;
+	}
+
+	return rs;
+}
+
+BCS_RESULT c_filesystem_tag_project::read_tag(const wchar_t* filepath, const wchar_t* relative_filepath, h_tag*& out_high_level_tag, h_group*& out_tag_group) const
+{
+	BCS_VALIDATE_ARGUMENT(filepath);
+	out_tag_group = nullptr;
+	out_high_level_tag = nullptr;
 
 	c_stopwatch s;
 	s.start();
 
-	layout_reader = new() c_single_tag_file_layout_reader(*header_data, header_data);
+	if (status_interface)
+	{
+		status_interface->set_status_bar_status(_status_interface_priority_medium, 15.0f, "Reading tag file %s", relative_filepath);
+	}
 
-	reader = new() c_single_tag_file_reader(
-		*header_data,
-		engine_platform_build,
-		is_big_endian_tag,
-		*layout_reader,
-		*layout_reader->binary_data_chunk,
-		nullptr,
-		nullptr);
+	BCS_RESULT rs = BCS_S_OK;
+	h_tag* high_level_tag = nullptr;
+	if (engine_platform_build.engine_type == _engine_type_halo1)
+	{
+		if (BCS_FAILED(rs = c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(high_level_tag, filepath, engine_platform_build)))
+		{
+			return BCS_S_CONTINUE;
+			return rs;
+		}
+	}
+	else if (engine_platform_build.engine_type == _engine_type_halo2)
+	{
+		if (BCS_FAILED(rs = c_gen2_tag_file_parse_context::parse_gen2_tag_file_data(high_level_tag, filepath, engine_platform_build)))
+		{
+			return BCS_S_CONTINUE;
+			return rs;
+		}
+	}
+	else if (engine_platform_build.engine_type == _engine_type_halo3)
+	{
+		// #TODO: Standardize
+		if (BCS_FAILED(rs = read_tag_gen3(filepath, high_level_tag)))
+		{
+			return BCS_S_CONTINUE;
+			return rs;
+		}
+	}
+	else
+	{
+		return BCS_E_UNSUPPORTED;
+	}
+
+	wchar_t* filepath_without_extension = wcsdup(relative_filepath);
+	filesystem_remove_filepath_extension(filepath_without_extension);
+	BCS_WIDECHAR_TO_CHAR_HEAP(filepath_without_extension, filepath_without_extension_mb);
+	high_level_tag->generate_filepaths(filepath_without_extension_mb);
 
 	s.stop();
 	float ms = s.get_miliseconds();
-	console_write_line("Processed chunks in %.2f ms", ms);
 
-	//tag_group_layout_chunk->log(layout_reader->string_data_chunk);
-	//binary_data_chunk->log(layout_reader->string_data_chunk);
+	console_write_line_info("Read tag %s (%.2f ms)", high_level_tag->get_file_path(), ms);
+	if (status_interface)
+	{
+		status_interface->set_status_bar_status(_status_interface_priority_medium, 15.0f, "Read tag %s (%.2f ms)", high_level_tag->get_file_path(), ms);
+	}
 
-	h_tag* high_level_tag;
-	reader->parse_high_level_object(high_level_tag);
-	
+	untracked_free(filepath_without_extension);
+	tracked_free(filepath_without_extension_mb);
 
-	return high_level_tag;
+	const blofeld::s_tag_group& blofeld_tag_group = high_level_tag->get_blofeld_group_definition();
+	h_group* tag_group;
+	if (BCS_FAILED(rs = get_group_by_group_tag(blofeld_tag_group.group_tag, tag_group)))
+	{
+		delete high_level_tag;
+		return BCS_E_UNSUPPORTED;
+	}
+
+	out_high_level_tag = high_level_tag;
+	out_tag_group = tag_group;
+
+	return rs;
+}
+
+struct s_filesystem_tag_project_read_tags_callback_data
+{
+	union
+	{
+		struct // params
+		{
+			c_filesystem_tag_project* filesystem_tag_project;
+			const wchar_t* filepath;
+			const wchar_t* relative_filepath;
+			volatile uint32_t* num_completed_tags;
+			uint32_t num_tags;
+		};
+		struct // results
+		{
+			h_tag* high_level_tag;
+			h_group* high_level_tag_group;
+		};
+	};
+	BCS_RESULT result;
+};
+
+void c_filesystem_tag_project::read_tags_callback(s_filesystem_tag_project_read_tags_callback_data* callback_data_array, int32_t index)
+{
+	s_filesystem_tag_project_read_tags_callback_data& callback_data = callback_data_array[index];
+	c_status_interface* status_interface = callback_data.filesystem_tag_project->status_interface;
+	callback_data.result = callback_data.filesystem_tag_project->read_tag(callback_data.filepath, callback_data.relative_filepath, callback_data.high_level_tag, callback_data.high_level_tag_group);
+	if (status_interface)
+	{
+		uint32_t num_completed_tags = atomic_addu32(callback_data.num_completed_tags, 1);
+		status_interface->set_status_bar_load_percentage(float(num_completed_tags) / float(callback_data.num_tags));
+	}
+}
+
+BCS_RESULT c_filesystem_tag_project::read_tags()
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	c_stopwatch stopwatch;
+	stopwatch.start();
+
+	uint32_t candidate_entry_count = static_cast<uint32_t>(candidates.size());
+	volatile uint32_t num_completed_tags = 0;
+	s_filesystem_tag_project_read_tags_callback_data* callback_data_array = new() s_filesystem_tag_project_read_tags_callback_data[candidate_entry_count];
+	for (uint32_t callback_data_index = 0; callback_data_index < candidate_entry_count; callback_data_index++)
+	{
+		s_filesystem_tag_project_read_tags_callback_data& callback_data = callback_data_array[callback_data_index];
+		callback_data.filesystem_tag_project = this;
+		callback_data.filepath = candidates[callback_data_index].filepath;
+		callback_data.relative_filepath = candidates[callback_data_index].relative_filepath;
+		callback_data.num_tags = candidate_entry_count;
+		callback_data.num_completed_tags = &num_completed_tags;
+		callback_data.result = BCS_S_CONTINUE;
+	}
+
+	const char* specific_tag_index_string;
+	if (BCS_SUCCEEDED(command_line_get_argument("specifictagindex", specific_tag_index_string)))
+	{
+		uint32_t specific_tag_index = strtoul(specific_tag_index_string, nullptr, 10);
+
+		read_tags_callback(callback_data_array, specific_tag_index);
+	}
+	else
+	{
+		parallel_invoke(
+			0,
+			candidate_entry_count,
+			reinterpret_cast<t_parallel_invoke_long_func>(read_tags_callback),
+			callback_data_array);
+	}
+
+	for (uint32_t callback_data_index = 0; callback_data_index < candidate_entry_count; callback_data_index++)
+	{
+		s_filesystem_tag_project_read_tags_callback_data& callback_data = callback_data_array[callback_data_index];
+		if (BCS_FAILED(callback_data.result) && callback_data.result != BCS_E_UNSUPPORTED)
+		{
+			rs = callback_data.result;
+		}
+		else if (callback_data.result == BCS_S_OK)
+		{
+			ASSERT(callback_data.high_level_tag != nullptr);
+			ASSERT(callback_data.high_level_tag_group != nullptr);
+
+			// #TODO: can this be done inside and made thread safe? is that worth it?
+			callback_data.high_level_tag_group->associate_tag_instance(*callback_data.high_level_tag);
+			tags.push_back(callback_data.high_level_tag);
+		}
+	}
+	delete[] callback_data_array;
+
+	stopwatch.stop();
+	if (status_interface)
+	{
+		status_interface->set_status_bar_status(_status_interface_priority_low, 5.0f, "Finished creating project %S %0.2fms", tags_directory, stopwatch.get_miliseconds());
+		status_interface->clear_status_bar_load_percentage();
+	}
+
+	return rs;
 }
 
 BCS_RESULT c_filesystem_tag_project::get_group_by_group_tag(tag group_tag, h_group*& group) const

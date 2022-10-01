@@ -753,6 +753,7 @@
 //	register_validation_callback(blofeld::_field_rgb_color, render_field_rgb_color);
 //	register_validation_callback(blofeld::_field_argb_color, render_field_argb_color);
 //	register_validation_callback(blofeld::_field_real, render_field_real);
+//	register_validation_callback(blofeld::_field_real_slider, render_field_real);
 //	register_validation_callback(blofeld::_field_real_fraction, render_field_real_fraction);
 //	register_validation_callback(blofeld::_field_real_point_2d, render_field_real_point_2d);
 //	register_validation_callback(blofeld::_field_real_point_3d, render_field_real_point_3d);

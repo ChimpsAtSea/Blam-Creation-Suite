@@ -19,7 +19,7 @@ namespace blofeld
 		static constexpr uint32_t k_accelerator_bits = 10lu;
 		static constexpr uint32_t k_accelerator_table_size = 1lu << k_accelerator_bits;
 		static constexpr uint32_t k_accelerator_bit_mask = k_accelerator_table_size - 1;
-		static constexpr uint32_t k_expected_fields_count = 71lu;
+		static constexpr uint32_t k_expected_fields_count = 72lu;
 #ifndef ALLOW_BLOFELD_FIELD_TYPE_ACCELERATOR_OUT_OF_DATE
 		static_assert(k_number_of_blofeld_field_types == k_expected_fields_count);
 #endif

@@ -11,6 +11,9 @@ class c_status_interface
 {
 public:
 	virtual const char* get_status_bar_text() = 0;
+	virtual float get_status_bar_percentage() = 0;
 	virtual void set_status_bar_status(e_status_interface_priority priority, float time, const char* status, ...) = 0;
+	virtual void set_status_bar_load_percentage(float percentage) = 0;
+	virtual void clear_status_bar_load_percentage() = 0;
 	virtual void wait_status_bar_idle() = 0;
 };

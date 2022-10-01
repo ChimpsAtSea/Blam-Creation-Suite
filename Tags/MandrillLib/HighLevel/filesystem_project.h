@@ -2,6 +2,7 @@
 
 class c_high_level_cache_cluster_transplant;
 class h_tag;
+struct s_filesystem_tag_project_read_tags_callback_data;
 
 class c_filesystem_tag_project :
 	public c_tag_project
@@ -20,9 +21,13 @@ public:
 
 	void try_open_tag_files();
 	void try_open_single_tag_file(const wchar_t* filepath, const wchar_t* relative_filepath);
-	h_tag* try_parse_tag_file(const wchar_t* filepath);
 
+	BCS_RESULT read_tags();
 protected:
+	BCS_RESULT read_tag(const wchar_t* filepath, const wchar_t* relative_filepath, h_tag*& out_tag, h_group*& out_tag_group) const;
+	BCS_RESULT read_tag_gen3(const wchar_t* filepath, h_tag*& out_tag) const;
+	static void read_tags_callback(s_filesystem_tag_project_read_tags_callback_data* userdata, int32_t index);
+
 	wchar_t tags_directory[0x10000u];
 	std::vector<h_group*> groups;
 	std::vector<h_tag*> tags;

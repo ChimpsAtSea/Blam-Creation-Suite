@@ -8,75 +8,76 @@ uint32_t blofeld::get_blofeld_field_size(e_platform_type platform_type, e_field 
 {
 	switch (field)
 	{
-	case _field_string:							return sizeof(::c_static_string<32>);
-	case _field_long_string:					return sizeof(::c_static_string<256>);
-	case _field_string_id:						return sizeof(string_id);
-	case _field_old_string_id:					return sizeof(::c_old_string_id);
-	case _field_char_integer:					return sizeof(char);
-	case _field_short_integer:					return sizeof(short);
-	case _field_long_integer:					return sizeof(long);
-	case _field_int64_integer:					return sizeof(int64_t);
-	case _field_angle:							return sizeof(angle);
-	case _field_tag:							return sizeof(tag);
-	case _field_char_enum:						return sizeof(char);
+	case _field_string:								return sizeof(::c_static_string<32>);
+	case _field_long_string:						return sizeof(::c_static_string<256>);
+	case _field_string_id:							return sizeof(string_id);
+	case _field_old_string_id:						return sizeof(::c_old_string_id);
+	case _field_char_integer:						return sizeof(char);
+	case _field_short_integer:						return sizeof(short);
+	case _field_long_integer:						return sizeof(long);
+	case _field_int64_integer:						return sizeof(int64_t);
+	case _field_angle:								return sizeof(angle);
+	case _field_tag:								return sizeof(tag);
+	case _field_char_enum:							return sizeof(char);
 	case _field_short_enum:							return sizeof(short);
-	case _field_long_enum:						return sizeof(long);
-	case _field_long_flags:						return sizeof(long);
-	case _field_word_flags:						return sizeof(word);
-	case _field_byte_flags:						return sizeof(byte);
-	case _field_point_2d:						return sizeof(::s_point2d);
-	case _field_rectangle_2d:					return sizeof(::s_rectangle2d);
-	case _field_rgb_color:						return sizeof(::pixel32);
-	case _field_argb_color:						return sizeof(::pixel32);
-	case _field_real:							return sizeof(::real);
-	case _field_real_fraction:					return sizeof(::real_fraction);
-	case _field_real_point_2d:					return sizeof(::real_point2d);
-	case _field_real_point_3d:					return sizeof(::real_point3d);
-	case _field_real_vector_2d:					return sizeof(::real_vector2d);
-	case _field_real_vector_3d:					return sizeof(::real_vector3d);
-	case _field_real_quaternion:				return sizeof(::real_quaternion);
-	case _field_real_euler_angles_2d:			return sizeof(::real_euler_angles2d);
-	case _field_real_euler_angles_3d:			return sizeof(::real_euler_angles3d);
-	case _field_real_plane_2d:					return sizeof(::real_plane2d);
-	case _field_real_plane_3d:					return sizeof(::real_plane3d);
-	case _field_real_rgb_color:					return sizeof(::rgb_color);
-	case _field_real_argb_color:				return sizeof(::argb_color);
-	case _field_real_hsv_color:					return sizeof(::real_hsv_color);
-	case _field_real_ahsv_color:				return sizeof(::real_ahsv_color);
-	case _field_short_integer_bounds:					return sizeof(::short_bounds);
-	case _field_angle_bounds:					return sizeof(::angle_bounds);
-	case _field_real_bounds:					return sizeof(::real_bounds);
-	case _field_real_fraction_bounds:			return sizeof(::real_fraction_bounds);
-	case _field_tag_reference:					return sizeof(::s_tag_reference);
-	case _field_block:							return sizeof(::s_tag_block);
-	case _field_long_block_flags:				return sizeof(long);
-	case _field_word_block_flags:				return sizeof(word);
-	case _field_byte_block_flags:				return sizeof(byte);
-	case _field_char_block_index:				return sizeof(char);
+	case _field_long_enum:							return sizeof(long);
+	case _field_long_flags:							return sizeof(long);
+	case _field_word_flags:							return sizeof(word);
+	case _field_byte_flags:							return sizeof(byte);
+	case _field_point_2d:							return sizeof(::s_point2d);
+	case _field_rectangle_2d:						return sizeof(::s_rectangle2d);
+	case _field_rgb_color:							return sizeof(::pixel32);
+	case _field_argb_color:							return sizeof(::pixel32);
+	case _field_real:								return sizeof(::real);
+	case _field_real_slider:						return sizeof(::real);
+	case _field_real_fraction:						return sizeof(::real_fraction);
+	case _field_real_point_2d:						return sizeof(::real_point2d);
+	case _field_real_point_3d:						return sizeof(::real_point3d);
+	case _field_real_vector_2d:						return sizeof(::real_vector2d);
+	case _field_real_vector_3d:						return sizeof(::real_vector3d);
+	case _field_real_quaternion:					return sizeof(::real_quaternion);
+	case _field_real_euler_angles_2d:				return sizeof(::real_euler_angles2d);
+	case _field_real_euler_angles_3d:				return sizeof(::real_euler_angles3d);
+	case _field_real_plane_2d:						return sizeof(::real_plane2d);
+	case _field_real_plane_3d:						return sizeof(::real_plane3d);
+	case _field_real_rgb_color:						return sizeof(::rgb_color);
+	case _field_real_argb_color:					return sizeof(::argb_color);
+	case _field_real_hsv_color:						return sizeof(::real_hsv_color);
+	case _field_real_ahsv_color:					return sizeof(::real_ahsv_color);
+	case _field_short_integer_bounds:				return sizeof(::short_bounds);
+	case _field_angle_bounds:						return sizeof(::angle_bounds);
+	case _field_real_bounds:						return sizeof(::real_bounds);
+	case _field_real_fraction_bounds:				return sizeof(::real_fraction_bounds);
+	case _field_tag_reference:						return sizeof(::s_tag_reference);
+	case _field_block:								return sizeof(::s_tag_block);
+	case _field_long_block_flags:					return sizeof(long);
+	case _field_word_block_flags:					return sizeof(word);
+	case _field_byte_block_flags:					return sizeof(byte);
+	case _field_char_block_index:					return sizeof(char);
 	case _field_char_block_index_custom_search:		return sizeof(char);
-	case _field_short_block_index:				return sizeof(short);
-	case _field_short_block_index_custom_search:		return sizeof(short);
-	case _field_long_block_index:				return sizeof(long);
+	case _field_short_block_index:					return sizeof(short);
+	case _field_short_block_index_custom_search:	return sizeof(short);
+	case _field_long_block_index:					return sizeof(long);
 	case _field_long_block_index_custom_search:		return sizeof(long);
-	case _field_data:							return sizeof(::s_tag_data);
-	case _field_vertex_buffer:					return sizeof(::s_tag_d3d_vertex_buffer);
-	case _field_pad:							return 0;	// dynamic
-	case _field_useless_pad:					return 0;	// dynamic
-	case _field_skip:							return 0;	// dynamic
-	case _field_non_cache_runtime_value:		return 0;	// empty
-	case _field_explanation:					return 0;	// empty
-	case _field_custom:							return 0;	// empty
-	case _field_struct:							return 0;	// dynamic
-	case _field_array:							return 0;	// dynamic
-	case _field_pageable_resource:						return sizeof(::s_tag_resource);
-	case _field_api_interop:					return sizeof(::s_tag_interop);
-	case _field_terminator:						return 0;	// empty
-	case _field_byte_integer:					return sizeof(byte);
-	case _field_word_integer:					return sizeof(word);
-	case _field_dword_integer:					return sizeof(dword);
-	case _field_qword_integer:					return sizeof(qword);
-	case _field_embedded_tag:					return sizeof(::s_tag_reference);
-	case _field_data_path:						return sizeof(::c_static_string<256>);
+	case _field_data:								return sizeof(::s_tag_data);
+	case _field_vertex_buffer:						return sizeof(::s_tag_d3d_vertex_buffer);
+	case _field_pad:								return 0;	// dynamic
+	case _field_useless_pad:						return 0;	// dynamic
+	case _field_skip:								return 0;	// dynamic
+	case _field_non_cache_runtime_value:			return 0;	// empty
+	case _field_explanation:						return 0;	// empty
+	case _field_custom:								return 0;	// empty
+	case _field_struct:								return 0;	// dynamic
+	case _field_array:								return 0;	// dynamic
+	case _field_pageable_resource:					return sizeof(::s_tag_resource);
+	case _field_api_interop:						return sizeof(::s_tag_interop);
+	case _field_terminator:							return 0;	// empty
+	case _field_byte_integer:						return sizeof(byte);
+	case _field_word_integer:						return sizeof(word);
+	case _field_dword_integer:						return sizeof(dword);
+	case _field_qword_integer:						return sizeof(qword);
+	case _field_embedded_tag:						return sizeof(::s_tag_reference);
+	case _field_data_path:							return sizeof(::c_static_string<256>);
 	case _field_pointer:
 	{
 		uint32_t pointer_size;
@@ -125,6 +126,7 @@ BCS_RESULT blofeld::byteswap_field_data_inplace(e_field field, void* data, s_eng
 	FIELD_BYTESWAP(_field_rgb_color, ::pixel32);
 	FIELD_BYTESWAP(_field_argb_color, ::pixel32);
 	FIELD_BYTESWAP(_field_real, ::real);
+	FIELD_BYTESWAP(_field_real_slider, ::real);
 	FIELD_BYTESWAP(_field_real_fraction, ::real_fraction);
 	FIELD_BYTESWAP(_field_real_point_2d, ::real_point2d);
 	FIELD_BYTESWAP(_field_real_point_3d, ::real_point3d);
@@ -220,6 +222,7 @@ BCS_RESULT blofeld::get_blofeld_tag_file_field_size(e_field field, s_engine_plat
 	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_rgb_color, sizeof(::pixel32));
 	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_argb_color, sizeof(::pixel32));
 	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real, sizeof(::real));
+	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_slider, sizeof(::real));
 	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_fraction, sizeof(::real_fraction));
 	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_point_2d, sizeof(::real_point2d));
 	FIELD_TO_TAG_FILE_FIELD_SIZE(_field_real_point_3d, sizeof(::real_point3d));

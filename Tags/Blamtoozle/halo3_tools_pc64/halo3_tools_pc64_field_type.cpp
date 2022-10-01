@@ -25,7 +25,7 @@ blofeld::e_field halo3_tools_pc64_field_type_to_generic_field_type(e_halo3_tools
 	case _halo3_tools_pc64_field_rgb_color:												return blofeld::_field_rgb_color;
 	case _halo3_tools_pc64_field_argb_color:											return blofeld::_field_argb_color;
 	case _halo3_tools_pc64_field_real:													return blofeld::_field_real;
-	case _halo3_tools_pc64_field_real_slider:											return blofeld::_field_real;
+	case _halo3_tools_pc64_field_real_slider:											return blofeld::_field_real_slider;
 	case _halo3_tools_pc64_field_real_fraction:											return blofeld::_field_real_fraction;
 	case _halo3_tools_pc64_field_real_point_2d:											return blofeld::_field_real_point_2d;
 	case _halo3_tools_pc64_field_real_point_3d:											return blofeld::_field_real_point_3d;

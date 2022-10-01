@@ -13,6 +13,7 @@ c_tag_layout_prechunk_chunk::c_tag_layout_prechunk_chunk(c_chunk& parent) :
 	layout_header_prechunk(),
 	string_data(),
 	string_offsets(),
+	string_list(),
 	custom_block_index_search_names(),
 	data_definition_names(),
 	array_definitions(),

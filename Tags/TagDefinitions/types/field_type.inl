@@ -29,6 +29,7 @@ static s_field_to_tagfile_field_type const k_field_to_tagfile_field_type[]
 		FIELD_TO_TAG_FIELD_TYPE(_field_rgb_color, "rgb color"),
 		FIELD_TO_TAG_FIELD_TYPE(_field_argb_color, "argb color"),
 		FIELD_TO_TAG_FIELD_TYPE(_field_real, "real"),
+		FIELD_TO_TAG_FIELD_TYPE(_field_real_slider, "real slider"),
 		FIELD_TO_TAG_FIELD_TYPE(_field_real_fraction, "real fraction"),
 		FIELD_TO_TAG_FIELD_TYPE(_field_real_point_2d, "real point 2d"),
 		FIELD_TO_TAG_FIELD_TYPE(_field_real_point_3d, "real point 3d"),

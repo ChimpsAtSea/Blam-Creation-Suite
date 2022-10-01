@@ -113,6 +113,7 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_rgb_color:							return "pixel32";
 	case _field_argb_color:							return "pixel32";
 	case _field_real:								return "real";
+	case _field_real_slider:						return "real";
 	case _field_real_fraction:						return "real_fraction";
 	case _field_real_point_2d:						return "real_point2d";
 	case _field_real_point_3d:						return "real_point3d";

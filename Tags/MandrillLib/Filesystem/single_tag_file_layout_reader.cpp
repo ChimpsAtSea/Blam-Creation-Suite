@@ -177,7 +177,9 @@ uint32_t c_single_tag_file_layout_reader::get_structure_size_by_entry(const s_ta
 {
 	int64_t _64bit_id = make_64bit_persistent_id(structure_entry.persistent_identifier);
 	const s_structure_precomputed_info* structure_precomputed_info;
-	bool success = structure_precomputed_info_by_persistent_identifier.fetch_ref(&_64bit_id, sizeof(_64bit_id), structure_precomputed_info);
+	// #TODO: Investigate
+	//bool success = structure_precomputed_info_by_persistent_identifier.fetch_ref(&_64bit_id, sizeof(_64bit_id), structure_precomputed_info);
+	bool success = structure_precomputed_info_by_persistent_identifier.fetch_ref(&structure_entry.persistent_identifier, sizeof(structure_entry.persistent_identifier), structure_precomputed_info);
 	ASSERT(success);
 	return structure_precomputed_info->structure_size;
 }
@@ -191,7 +193,9 @@ uint32_t c_single_tag_file_layout_reader::get_structure_expected_children_by_ent
 {
 	int64_t _64bit_id = make_64bit_persistent_id(structure_entry.persistent_identifier);
 	const s_structure_precomputed_info* structure_precomputed_info;
-	bool success = structure_precomputed_info_by_persistent_identifier.fetch_ref(&_64bit_id, sizeof(_64bit_id), structure_precomputed_info);
+	// #TODO: Investigate
+	//bool success = structure_precomputed_info_by_persistent_identifier.fetch_ref(&_64bit_id, sizeof(_64bit_id), structure_precomputed_info);
+	bool success = structure_precomputed_info_by_persistent_identifier.fetch_ref(&structure_entry.persistent_identifier, sizeof(structure_entry.persistent_identifier), structure_precomputed_info);
 	ASSERT(success);
 	return structure_precomputed_info->expected_children;
 }
@@ -212,8 +216,10 @@ void c_single_tag_file_layout_reader::calculate_structure_size_and_children()
 		structure_precomputed_info.structure_size = structure_size;
 		structure_precomputed_info.expected_children = expected_children;
 
-		int64_t _64bit_id = make_64bit_persistent_id(structure_entry.persistent_identifier);
-		structure_precomputed_info_by_persistent_identifier.enqueue(&_64bit_id, sizeof(_64bit_id), structure_precomputed_info);
+		// #TODO: Investigate
+		//int64_t _64bit_id = make_64bit_persistent_id(structure_entry.persistent_identifier);
+		//structure_precomputed_info_by_persistent_identifier.enqueue(&_64bit_id, sizeof(_64bit_id), structure_precomputed_info);
+		structure_precomputed_info_by_persistent_identifier.enqueue(&structure_entry.persistent_identifier, sizeof(structure_entry.persistent_identifier), structure_precomputed_info);
 	}
 }
 
@@ -544,7 +550,7 @@ blofeld::e_field c_single_tag_file_layout_reader::get_blofeld_type_by_field_type
 void c_single_tag_file_layout_reader::init_structure_type_to_blofeld_type_lookup()
 {
 	field_type_to_blofeld_field_type_count = tag_group_layout_chunk->get_field_type_count();
-	field_type_to_blofeld_field_type = new blofeld::e_field[field_type_to_blofeld_field_type_count];
+	field_type_to_blofeld_field_type = new() blofeld::e_field[field_type_to_blofeld_field_type_count];
 	for (uint32_t field_type_index = 0; field_type_index < field_type_to_blofeld_field_type_count; field_type_index++)
 	{
 		s_tag_persist_field_type& field_type = get_field_type_by_index(field_type_index);

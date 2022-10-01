@@ -5,7 +5,7 @@ class c_monolithic_partition_view;
 
 class h_tag;
 
-union u_read_tags_callback_data;
+struct s_monolithic_tag_project_read_tags_callback_data;
 
 class c_chunk;
 class c_tag_file_index_chunk;
@@ -52,7 +52,7 @@ protected:
 		c_monolithic_partition_view*& cache_partition_view) const;
 
 	BCS_RESULT read_tag(uint32_t index, h_tag*& out_tag, h_group*& out_tag_group) const;
-	static void read_tags_callback(u_read_tags_callback_data* userdata, int32_t index);
+	static void read_tags_callback(s_monolithic_tag_project_read_tags_callback_data* userdata, int32_t index);
 
 	wchar_t root_directory[0x10000];
 	wchar_t tag_cache_directory[0x10000];

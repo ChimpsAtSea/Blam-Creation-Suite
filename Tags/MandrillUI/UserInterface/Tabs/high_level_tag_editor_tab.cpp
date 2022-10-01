@@ -1958,6 +1958,7 @@ static constexpr s_field_render_function_lookup field_render_function_lookup[] =
 		field_render_function_lookup(_field_rgb_color, c_high_level_tag_editor_tab::render_rgb_color_field),
 		field_render_function_lookup(_field_argb_color, c_high_level_tag_editor_tab::render_argb_color_field),
 		field_render_function_lookup(_field_real, c_high_level_tag_editor_tab::render_real_field),
+		field_render_function_lookup(_field_real_slider, c_high_level_tag_editor_tab::render_real_field),
 		field_render_function_lookup(_field_real_fraction, c_high_level_tag_editor_tab::render_real_fraction_field),
 		field_render_function_lookup(_field_real_point_2d, c_high_level_tag_editor_tab::render_real_point_2d_field),
 		field_render_function_lookup(_field_real_point_3d, c_high_level_tag_editor_tab::render_real_point_3d_field),

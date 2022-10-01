@@ -387,7 +387,6 @@ BCS_RESULT c_monolithic_tag_project::read_tag(uint32_t index, h_tag*& out_high_l
 
 	s.stop();
 	float ms = s.get_miliseconds();
-	console_write_line_verbose("Processed chunks in %.2f ms", ms);
 
 	if (high_level_tag != nullptr)
 	{
@@ -416,23 +415,26 @@ BCS_RESULT c_monolithic_tag_project::read_tag(uint32_t index, h_tag*& out_high_l
 	return BCS_S_CONTINUE;
 }
 
-union u_read_tags_callback_data
+struct s_monolithic_tag_project_read_tags_callback_data
 {
-	struct // params
+	union
 	{
-		c_monolithic_tag_project* monolithic_tag_project;
+		struct // params
+		{
+			c_monolithic_tag_project* monolithic_tag_project;
+		};
+		struct // results
+		{
+			h_tag* high_level_tag;
+			h_group* high_level_tag_group;
+		};
 	};
-	struct // results
-	{
-		h_tag* high_level_tag;
-		h_group* high_level_tag_group;
-		BCS_RESULT result;
-	};
+	BCS_RESULT result;
 };
 
-void c_monolithic_tag_project::read_tags_callback(u_read_tags_callback_data* callback_data_array, int32_t index)
+void c_monolithic_tag_project::read_tags_callback(s_monolithic_tag_project_read_tags_callback_data* callback_data_array, int32_t index)
 {
-	u_read_tags_callback_data& callback_data = callback_data_array[index];
+	s_monolithic_tag_project_read_tags_callback_data& callback_data = callback_data_array[index];
 	callback_data.result = callback_data.monolithic_tag_project->read_tag(index, callback_data.high_level_tag, callback_data.high_level_tag_group);
 }
 
@@ -453,10 +455,10 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			compressed_entry_count = __min(max_tag_index, compressed_entry_count);
 		}
 	}
-	u_read_tags_callback_data* callback_data_array = new() u_read_tags_callback_data[compressed_entry_count];
+	s_monolithic_tag_project_read_tags_callback_data* callback_data_array = new() s_monolithic_tag_project_read_tags_callback_data[compressed_entry_count];
 	for (uint32_t callback_data_index = 0; callback_data_index < compressed_entry_count; callback_data_index++)
 	{
-		u_read_tags_callback_data& callback_data = callback_data_array[callback_data_index];
+		s_monolithic_tag_project_read_tags_callback_data& callback_data = callback_data_array[callback_data_index];
 		callback_data.monolithic_tag_project = this;
 		callback_data.result = BCS_S_CONTINUE;
 	}
@@ -479,7 +481,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 
 	for (uint32_t callback_data_index = 0; callback_data_index < compressed_entry_count; callback_data_index++)
 	{
-		u_read_tags_callback_data& callback_data = callback_data_array[callback_data_index];
+		s_monolithic_tag_project_read_tags_callback_data& callback_data = callback_data_array[callback_data_index];
 		if (BCS_FAILED(callback_data.result))
 		{
 			rs = callback_data.result;
