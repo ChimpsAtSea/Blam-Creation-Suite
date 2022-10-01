@@ -1,5 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+
 c_infinite_string_id_manager::c_infinite_string_id_manager() :
 	c_string_id_manager(),
 	string_id_entries(),
@@ -6004,3 +6006,5 @@ void c_infinite_string_id_manager::init_haloreach_temp_strings()
 	commit_string("mouse_wheel_up");
 	commit_string("mouse_wheel_down");
 }
+
+#endif

@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+
 class c_infinite_string_id_manager :
 	public c_string_id_manager
 {
@@ -25,3 +27,5 @@ public:
 	t_string_id_entries string_id_entries;
 	t_hash_to_string hash_to_string;
 };
+
+#endif
