@@ -374,7 +374,7 @@ void c_high_level_tag_editor_tab::render_inline_field_start(const blofeld::s_tag
 		{
 			if (ImGui::IsItemHovered())
 			{
-				ImGui::SetTooltip(field.description);
+				render_tooltip(field.description);
 			}
 			ImGui::PopStyleColor();
 		}
@@ -800,42 +800,20 @@ bool c_high_level_tag_editor_tab::render_rectangle_2d_field(const blofeld::s_tag
 
 bool c_high_level_tag_editor_tab::render_rgb_color_field(const blofeld::s_tag_field& field, void* _field_data)
 {
-	pixel32& color = *static_cast<pixel32*>(_field_data);
-
-	rgb_color real_argb;
-	real_argb.red = static_cast<real>(color.red) / 255.0f;
-	real_argb.green = static_cast<real>(color.green) / 255.0f;
-	real_argb.blue = static_cast<real>(color.blue) / 255.0f;
-
-	if (render_real_rgb_color_field(field, &real_argb))
-	{
-		color.red = static_cast<byte>(real_argb.red * 255.0f);
-		color.green = static_cast<byte>(real_argb.green * 255.0f);
-		color.blue = static_cast<byte>(real_argb.blue * 255.0f);
-		return true;
-	}
-	return false;
+	render_inline_field_start(field);
+	ImGui::SetNextItemWidth(400.0f);
+	bool result = render_byte_color_picker(false, _field_data, safe_string(field.units));
+	render_inline_field_end();
+	return result;
 }
 
 bool c_high_level_tag_editor_tab::render_argb_color_field(const blofeld::s_tag_field& field, void* _field_data)
 {
-	pixel32& color = *static_cast<pixel32*>(_field_data);
-
-	argb_color real_argb;
-	real_argb.red = static_cast<real>(color.red) / 255.0f;
-	real_argb.green = static_cast<real>(color.green) / 255.0f;
-	real_argb.blue = static_cast<real>(color.blue) / 255.0f;
-	real_argb.alpha = static_cast<real>(color.alpha) / 255.0f;
-
-	if (render_real_argb_color_field(field, &real_argb))
-	{
-		color.red = static_cast<byte>(real_argb.red * 255.0f);
-		color.green = static_cast<byte>(real_argb.green * 255.0f);
-		color.blue = static_cast<byte>(real_argb.blue * 255.0f);
-		color.alpha = static_cast<byte>(real_argb.alpha * 255.0f);
-		return true;
-	}
-	return false;	
+	render_inline_field_start(field);
+	ImGui::SetNextItemWidth(400.0f);
+	bool result = render_byte_color_picker(true, _field_data, safe_string(field.units));
+	render_inline_field_end();
+	return result;
 }
 
 bool c_high_level_tag_editor_tab::render_real_field(const blofeld::s_tag_field& field, void* _field_data)
@@ -948,44 +926,36 @@ bool c_high_level_tag_editor_tab::render_real_plane_3d_field(const blofeld::s_ta
 
 bool c_high_level_tag_editor_tab::render_real_rgb_color_field(const blofeld::s_tag_field& field, void* _field_data)
 {
-	rgb_color color = *static_cast<rgb_color*>(_field_data);
-
 	render_inline_field_start(field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::ColorEdit3(safe_string(field.units), &color.red);
+	bool result = render_real_color_picker(false, false, _field_data, safe_string(field.units));
 	render_inline_field_end();
 	return result;
 }
 
 bool c_high_level_tag_editor_tab::render_real_argb_color_field(const blofeld::s_tag_field& field, void* _field_data)
 {
-	argb_color color = *static_cast<argb_color*>(_field_data);
-
 	render_inline_field_start(field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::ColorEdit4(safe_string(field.units), &color.red);
+	bool result = render_real_color_picker(true, false, _field_data, safe_string(field.units));
 	render_inline_field_end();
 	return result;
 }
 
 bool c_high_level_tag_editor_tab::render_real_hsv_color_field(const blofeld::s_tag_field& field, void* _field_data)
 {
-	rgb_color color = *static_cast<rgb_color*>(_field_data);
-
 	render_inline_field_start(field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::ColorEdit3(safe_string(field.units), &color.red, ImGuiColorEditFlags_DisplayHSV);
+	bool result = render_real_color_picker(false, true, _field_data, safe_string(field.units));
 	render_inline_field_end();
 	return result;
 }
 
 bool c_high_level_tag_editor_tab::render_real_ahsv_color_field(const blofeld::s_tag_field& field, void* _field_data)
 {
-	argb_color color = *static_cast<argb_color*>(_field_data);
-
 	render_inline_field_start(field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::ColorEdit4(safe_string(field.units), &color.red, ImGuiColorEditFlags_DisplayHSV);
+	bool result = render_real_color_picker(true, true, _field_data, safe_string(field.units));
 	render_inline_field_end();
 	return result;
 }
@@ -1070,7 +1040,7 @@ bool c_high_level_tag_editor_tab::render_tag_reference_field(const blofeld::s_ta
 		{
 			if (ImGui::IsItemHovered())
 			{
-				ImGui::SetTooltip(field.description);
+				render_tooltip(field.description);
 			}
 			ImGui::PopStyleColor();
 		}
@@ -1167,7 +1137,7 @@ bool c_high_level_tag_editor_tab::render_tag_reference_field(const blofeld::s_ta
 
 		if (*tag_instance_name && ImGui::IsItemHovered())
 		{
-			ImGui::SetTooltip(tag_instance_name);
+			render_tooltip(tag_instance_name);
 		}
 		if (combo_active)
 		{
@@ -1218,7 +1188,7 @@ bool c_high_level_tag_editor_tab::render_tag_reference_field(const blofeld::s_ta
 		}
 		else if (ImGui::IsItemHovered())
 		{
-			ImGui::SetTooltip("Opens this tag in a new tab");
+			render_tooltip("Opens this tag in a new tab");
 		}
 
 		//ImGui::SameLine();
@@ -1234,7 +1204,7 @@ bool c_high_level_tag_editor_tab::render_tag_reference_field(const blofeld::s_ta
 		}
 		else if (ImGui::IsItemHovered())
 		{
-			ImGui::SetTooltip("Nulls this tag reference");
+			render_tooltip("Nulls this tag reference");
 		}
 
 		if (tag == nullptr)
@@ -1402,9 +1372,7 @@ bool c_high_level_tag_editor_tab::render_explanation_field(const blofeld::s_tag_
 	const char* description = field.description;
 	if (description && ImGui::IsItemHovered())
 	{
-		ImGui::BeginTooltipEx(0, ImGuiTooltipFlags_OverridePreviousTooltip);
-		ImGui::TextUnformatted(description);
-		ImGui::EndTooltip();
+		render_tooltip(description);
 	}
 	return false;
 }
@@ -1870,6 +1838,84 @@ bool c_high_level_tag_editor_tab::render_embedded_tag_field(const blofeld::s_tag
 bool c_high_level_tag_editor_tab::render_pointer_field(const blofeld::s_tag_field& field, void* _field_data)
 {
 	return false;
+}
+
+void c_high_level_tag_editor_tab::render_tooltip(const char* string)
+{
+	ImGuiIO& io = ImGui::GetIO();
+
+	ImGui::BeginTooltipEx(ImGuiTooltipFlags_OverridePreviousTooltip, 0);
+	ImGui::PushTextWrapPos(io.DisplaySize.x * k_field_description_line_wrap_ratio);
+	ImGui::TextWrapped(string);
+	ImGui::PopTextWrapPos();
+	ImGui::EndTooltip();
+}
+
+bool c_high_level_tag_editor_tab::render_byte_color_picker(bool alpha, void* color_data, const char* field_units)
+{
+	ImGuiColorEditFlags edit_flags = ImGuiColorEditFlags_Uint8;
+	byte* field_byte_color = static_cast<byte*>(color_data);
+	real components[4];
+
+	edit_flags |= alpha ? ImGuiColorEditFlags_AlphaPreviewHalf | ImGuiColorEditFlags_AlphaBar : 0;
+
+	components[0] = static_cast<real>(field_byte_color[0 + alpha]) * (1.0f / 255.0f);
+	components[1] = static_cast<real>(field_byte_color[1 + alpha]) * (1.0f / 255.0f);
+	components[2] = static_cast<real>(field_byte_color[2 + alpha]) * (1.0f / 255.0f);
+	if (alpha)
+	{
+		components[3] = static_cast<real>(field_byte_color[0]) * (1.0f / 255.0f);
+	}
+
+	bool edited = alpha ? ImGui::ColorEdit4(field_units, components, edit_flags)
+		: ImGui::ColorEdit3(field_units, components, edit_flags);
+
+	if (edited)
+	{
+		field_byte_color[0 + alpha] = components[0] * 255.0f;
+		field_byte_color[1 + alpha] = components[1] * 255.0f;
+		field_byte_color[2 + alpha] = components[2] * 255.0f;
+		if (alpha)
+		{
+			field_byte_color[0] = components[3] * 255.0f;
+		}
+	}
+
+	return edited;
+}
+
+bool c_high_level_tag_editor_tab::render_real_color_picker(bool alpha, bool hsv, void* color_data, const char* field_units)
+{
+	ImGuiColorEditFlags edit_flags = ImGuiColorEditFlags_Float;
+	real* field_real_color = static_cast<real*>(color_data);
+	real components[4];
+
+	edit_flags |= hsv ? ImGuiColorEditFlags_DisplayHSV : 0;
+	edit_flags |= alpha ? ImGuiColorEditFlags_AlphaPreviewHalf | ImGuiColorEditFlags_AlphaBar : 0;
+
+	components[0] = field_real_color[0 + alpha];
+	components[1] = field_real_color[1 + alpha];
+	components[2] = field_real_color[2 + alpha];
+	if (alpha)
+	{
+		components[3] = field_real_color[0];
+	}
+
+	bool edited = alpha ? ImGui::ColorEdit4(field_units, components, edit_flags)
+		: ImGui::ColorEdit3(field_units, components, edit_flags);
+
+	if (edited)
+	{
+		field_real_color[0 + alpha] = components[0];
+		field_real_color[1 + alpha] = components[1];
+		field_real_color[2 + alpha] = components[2];
+		if (alpha)
+		{
+			field_real_color[0] = components[3];
+		}
+	}
+
+	return edited;
 }
 
 struct s_field_render_function_lookup
