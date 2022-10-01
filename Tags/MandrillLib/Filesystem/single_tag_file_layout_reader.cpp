@@ -460,16 +460,10 @@ s_tag_persist_array_definition& c_single_tag_file_layout_reader::get_array_defin
 
 void c_single_tag_file_layout_reader::init_resource_definition_by_index()
 {
-	if (tag_layout_prechunk_chunk == nullptr)
+	if (tag_group_layout_chunk->layout_header_preinterop != nullptr)
 	{
 		resource_definition_by_index = resource_definitions_chunk->entries;
 		resource_definition_by_index_count = resource_definitions_chunk->entry_count;
-	}
-	else
-	{
-		//FATAL_ERROR("Not sure what to do here yet");
-		//resource_definition_by_index = ;
-		//resource_definition_by_index_count = ;
 	}
 }
 
@@ -481,16 +475,10 @@ s_tag_persist_resource_definition& c_single_tag_file_layout_reader::get_resource
 
 void c_single_tag_file_layout_reader::init_interop_definition_by_index()
 {
-	if (tag_layout_prechunk_chunk == nullptr)
+	if (tag_group_layout_chunk->layout_header_v3 != nullptr)
 	{
 		interop_definition_by_index = interop_definitions_chunk->entries;
 		interop_definition_by_index_count = interop_definitions_chunk->entry_count;
-	}
-	else
-	{
-		//FATAL_ERROR("Not sure what to do here yet");
-		//interop_definition_by_index = ;
-		//interop_definition_by_index_count = ;
 	}
 }
 
