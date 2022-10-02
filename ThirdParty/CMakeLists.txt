@@ -84,9 +84,9 @@ set_target_properties(DirectX-Guids PROPERTIES
 
 set(BUILD_TESTING OFF)
 set(BUILD_SHARED_LIBS OFF)
-add_subdirectory(pugixml)
+add_subdirectory(pugixml EXCLUDE_FROM_ALL)
 
-set_target_properties(pugixml-shared pugixml-static pugixml PROPERTIES
+set_target_properties(pugixml PROPERTIES
 	FOLDER "ThirdParty")
 
 add_subdirectory(zlib)

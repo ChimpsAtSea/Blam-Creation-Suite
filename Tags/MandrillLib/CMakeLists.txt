@@ -195,7 +195,7 @@ target_link_libraries(MandrillLib PUBLIC
 	Oozle
 	lzxlib
 	blamlib
-	pugixml-static
+	pugixml
 	xxhash
 	zlib
 	${BCS_GENERATED_TAG_PROJECTS})
