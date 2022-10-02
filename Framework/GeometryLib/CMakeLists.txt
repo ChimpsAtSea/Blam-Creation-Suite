@@ -22,15 +22,15 @@ target_link_libraries(GeometryLib PRIVATE
 	$<$<CONFIG:DEBUG>:assimp-vc143-mtd>
 	$<$<NOT:$<CONFIG:DEBUG>>:assimp-vc143-mt>
 	DirectXMesh
-	uvatlas)
+	uvatlas
+	xatlas)
+
+add_dependencies(GeometryLib xatlas)
 	
 target_link_directories(GeometryLib PRIVATE
 	${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 
 if(BCS_BUILD_SHARED_LIBRARIES)
-	target_link_libraries(GeometryLib PRIVATE
-		xatlas.lib)
-
 	add_custom_command(TARGET GeometryLib POST_BUILD
 		COMMAND
 		"${CMAKE_COMMAND}" -E copy_if_different
@@ -56,10 +56,6 @@ if(BCS_BUILD_SHARED_LIBRARIES)
 		"${VCPKG_RELEASE_BIN_DIR}/jpeg62.dll"
 		"${VCPKG_RELEASE_BIN_DIR}/bz2.dll"
 		DESTINATION bin)
-else()
-	target_link_libraries(GeometryLib PRIVATE
-		xatlas_static.lib)
-		
 endif()
 
 
