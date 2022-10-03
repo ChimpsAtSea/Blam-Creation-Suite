@@ -36,7 +36,7 @@ c_filesystem_tag_project::c_filesystem_tag_project(
 	if (status_interface)
 	{
 		status_interface->wait_status_bar_idle();
-		status_interface->set_status_bar_status(_status_interface_priority_low, 15.0f, "Finished reading tags (%.2f ms)", tag_parse_time);
+		status_interface->set_status_bar_status(_status_interface_priority_medium, 15.0f, "Finished reading tags (%.2f ms)", tag_parse_time);
 	}
 }
 
