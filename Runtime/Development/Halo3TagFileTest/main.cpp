@@ -37,6 +37,8 @@ int main()
 
 			debug_point;
 		}
+
+		delete tag;
 	}
 
 	if (BCS_SUCCEEDED(rs1)) rs1 = deinit_console();

@@ -512,6 +512,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 				}
 			}
 			break;
+			default: FATAL_ERROR("Unhandled field type");
 			}
 		}
 		else if (transpose.can_transpose)
@@ -537,7 +538,89 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 				field_size = array_size;
 			}
 			break;
-			default:
+			case blofeld::_field_old_string_id:
+			case blofeld::_field_string_id:
+			case blofeld::_field_string:
+			case blofeld::_field_long_string:
+			{
+				// #TODO: Is this string null terminated? Making that assumption.
+				ASSERT(strlen(structure_data_position) < field_size); 
+
+				switch (transpose.blofeld_tag_field->field_type)
+				{
+				case blofeld::_field_old_string_id:
+				case blofeld::_field_string_id:
+				{
+					h_string_id& string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
+					string_id_storage = structure_data_position;
+				}
+				break;
+				case blofeld::_field_string:
+				{
+					c_fixed_string_32& string_storage = *reinterpret_cast<decltype(&string_storage)>(high_level_field_data);
+					string_storage = structure_data_position;
+				}
+				break;
+				case blofeld::_field_long_string:
+				{
+					c_fixed_string_256& long_string_storage = *reinterpret_cast<decltype(&long_string_storage)>(high_level_field_data);
+					long_string_storage = structure_data_position;
+				}
+				break;
+				}
+
+				debug_point;
+			}
+			break;
+			case blofeld::_field_char_integer:
+			case blofeld::_field_short_integer:
+			case blofeld::_field_long_integer:
+			case blofeld::_field_int64_integer:
+			case blofeld::_field_angle:
+			case blofeld::_field_tag:
+			case blofeld::_field_char_enum:
+			case blofeld::_field_short_enum:
+			case blofeld::_field_long_enum:
+			case blofeld::_field_long_flags:
+			case blofeld::_field_word_flags:
+			case blofeld::_field_byte_flags:
+			case blofeld::_field_point_2d:
+			case blofeld::_field_rectangle_2d:
+			case blofeld::_field_rgb_color:
+			case blofeld::_field_argb_color:
+			case blofeld::_field_real:
+			case blofeld::_field_real_slider:
+			case blofeld::_field_real_fraction:
+			case blofeld::_field_real_point_2d:
+			case blofeld::_field_real_point_3d:
+			case blofeld::_field_real_vector_2d:
+			case blofeld::_field_real_vector_3d:
+			case blofeld::_field_real_quaternion:
+			case blofeld::_field_real_euler_angles_2d:
+			case blofeld::_field_real_euler_angles_3d:
+			case blofeld::_field_real_plane_2d:
+			case blofeld::_field_real_plane_3d:
+			case blofeld::_field_real_rgb_color:
+			case blofeld::_field_real_argb_color:
+			case blofeld::_field_real_hsv_color:
+			case blofeld::_field_real_ahsv_color:
+			case blofeld::_field_short_integer_bounds:
+			case blofeld::_field_angle_bounds:
+			case blofeld::_field_real_bounds:
+			case blofeld::_field_real_fraction_bounds:
+			case blofeld::_field_long_block_flags:
+			case blofeld::_field_word_block_flags:
+			case blofeld::_field_byte_block_flags:
+			case blofeld::_field_char_block_index:
+			case blofeld::_field_char_block_index_custom_search:
+			case blofeld::_field_short_block_index:
+			case blofeld::_field_short_block_index_custom_search:
+			case blofeld::_field_long_block_index:
+			case blofeld::_field_long_block_index_custom_search:
+			case blofeld::_field_byte_integer:
+			case blofeld::_field_word_integer:
+			case blofeld::_field_dword_integer:
+			case blofeld::_field_qword_integer:
 			{
 				memcpy(high_level_field_data, structure_data_position, field_size);
 				if (is_big_endian)
@@ -546,6 +629,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 				}
 			}
 			break;
+			default: FATAL_ERROR("Unhandled field type");
 			}
 		}
 
