@@ -2,6 +2,8 @@
 
 using namespace tbb;
 
+static uint32_t max_threads = UINT_MAX;
+static uint32_t processors_thread_count = 1;
 #define MINIMUM_PARALLEL_THREADS 4
 
 uint32_t get_processors_thread_count()
@@ -114,17 +116,19 @@ static void _parallel_invoke_multi_threaded(t_index_type start, t_index_type end
 	worker_userdata.index = start;
 	worker_userdata.end = end;
 
-	// #TODO: Create a task system for this and queue jobs
-
-	uint32_t processors_thread_count = get_processors_thread_count();
-	uint32_t thread_count = static_cast<unsigned long>(__min(static_cast<uint64_t>(job_count), __max(processors_thread_count, MINIMUM_PARALLEL_THREADS))) - 1;
-
-	if (job_count <= 1)
+	if (job_count == 1) // dont bother spawning threads for a single task
 	{
 		_parallel_invoke_multi_threaded_worker<t_index_type>(&worker_userdata);
 	}
 	else
 	{
+		// #TODO: Create a task system for this and queue jobs
+
+		uint32_t thread_count = job_count;
+		thread_count = __min(thread_count, processors_thread_count); // don't exceed hardware threads or go too low
+		thread_count = __min(thread_count, max_threads); // can't exceet command line max threads
+		thread_count = __max(thread_count, MINIMUM_PARALLEL_THREADS); // must have atleast minimum parallel threads to hide sync IO latency
+
 		HANDLE* threads = new(alloca(sizeof(HANDLE) * thread_count)) HANDLE[thread_count];
 		for (size_t thread_index = 0; thread_index < thread_count; thread_index++)
 		{
@@ -164,7 +168,9 @@ static void _parallel_invoke_single_threaded(uint64_t start, uint64_t end, t_par
 }
 
 #define PARALLEL_INVOKE_FIRST_RUN_FIXUP(target_pointer, single_threaded_function, multi_threaded_function)	\
-	if (BCS_SUCCEEDED(command_line_has_argument_internal("singlethreaded"))) target_pointer = single_threaded_function; \
+	processors_thread_count = get_processors_thread_count(); \
+	if (BCS_FAILED(command_line_get_argument_ulong("maxthreads", max_threads))) { max_threads = UINT_MAX; } \
+	if (BCS_SUCCEEDED(command_line_has_argument_internal("singlethreaded")) || max_threads == 1) target_pointer = single_threaded_function; \
 	else target_pointer = multi_threaded_function;
 
 static void _parallel_invoke_first_run(int32_t start, int32_t end, t_parallel_invoke_long_func parallel_invoke_func, void* userdata)
