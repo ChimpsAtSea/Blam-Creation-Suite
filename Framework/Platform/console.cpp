@@ -63,11 +63,18 @@ BCS_RESULT console_write(const char* format, ...)
 
 BCS_RESULT console_write_line(const char* format, ...)
 {
+	size_t format_length = strlen(format);
+	char* format2 = static_cast<char*>(tracked_malloca(format_length + 2));
+	memcpy(format2, format, format_length);
+	format2[format_length] = '\n';
+	format2[format_length + 1] = 0;
+
 	va_list args;
 	va_start(args, format);
-	vprintf(format, args);
+	vprintf(format2, args);
 	va_end(args);
-	puts("");
+
+	tracked_freea(format2);
 
 	return BCS_S_OK;
 }
