@@ -91,8 +91,8 @@ c_single_tag_file_reader::c_single_tag_file_reader(
 		{
 			const char* structure_name = layout_reader.get_string_by_string_character_index(structure_entry.string_character_index);
 
-			console_write_line_verbose(
-				"Failed to structure '%s' [0x%08X 0x%08X 0x%08X 0x%08X]",
+			console_write_line(
+				"Failed to find structure '%s' [0x%08X 0x%08X 0x%08X 0x%08X]",
 				structure_name,
 				structure_entry.persistent_identifier.identifier_part_0,
 				structure_entry.persistent_identifier.identifier_part_1,
@@ -521,6 +521,7 @@ BCS_RESULT c_single_tag_file_reader::read_tag_struct_to_high_level_object_ref(
 
 			switch (blofeld_field.field_type)
 			{
+			case blofeld::_field_skip:
 			case blofeld::_field_pad:
 			{
 				uint32_t pad_size = transpose.field_metadata;

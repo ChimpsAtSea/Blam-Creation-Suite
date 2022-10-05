@@ -71,6 +71,8 @@ BCS_RESULT c_tag_block_chunk::read_chunk(void* userdata, const void* data, bool 
 
 	read_tag_block_structures(reader);
 
+	DEBUG_ONLY(const char* structure_name = reader.layout_reader.get_string_by_string_character_index(structure_entry->string_character_index));
+
 	bool has_children = block_child_chunk_data_position < chunk_data_end;
 	if (has_children)
 	{

@@ -298,6 +298,7 @@ void c_high_level_tag_file_writer::enqueue_field(const blofeld::s_tag_field& fie
 	case blofeld::_field_long_flags:
 		tag_persist_field.metadata = enqueue_string_list_definition(*field.string_list_definition);
 		break;
+	case blofeld::_field_skip:
 	case blofeld::_field_pad:
 		tag_persist_field.metadata = field.padding;
 		break;
@@ -684,6 +685,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 			debug_point;
 		}
 		break;
+		case blofeld::_field_skip:
 		case blofeld::_field_pad:
 		{
 			uint32_t pad_size = field.padding;
@@ -946,6 +948,7 @@ uint32_t c_high_level_tag_file_writer::calculate_structure_size(const blofeld::s
 			field_size = structure_size * array_definition.count(engine_platform_build);
 		}
 		break;
+		case blofeld::_field_skip:
 		case blofeld::_field_pad:
 		{
 			uint32_t pad_size = current_field->padding;

@@ -82,10 +82,14 @@ c_single_tag_file_layout_reader::c_single_tag_file_layout_reader(s_single_tag_fi
 		s_tag_persist_aggregate_prechunk& tag_group_aggregate = get_aggregate_by_index(0);
 
 		const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag({ _engine_type_halo3 }, header.group_tag);
-		//ASSERT(tag_group_aggregate.persistent_identifier == tag_group->block_definition.struct_definition.persistent_identifier);
-		if (tag_group_aggregate.persistent_identifier == tag_group->block_definition.struct_definition.persistent_identifier)
+		if (tag_group_aggregate.persistent_identifier != tag_group->block_definition.struct_definition.persistent_identifier)
 		{
-			console_write_line("ERROR> Prechunk Definition Tag Group Base Structure Persistent Identifier Not Found! Attempting crazyness!");
+			console_write_line(
+				"Failed to find prechunk structure [0x%08X 0x%08X 0x%08X 0x%08X]",
+				tag_group_aggregate.persistent_identifier.identifier_part_0,
+				tag_group_aggregate.persistent_identifier.identifier_part_1,
+				tag_group_aggregate.persistent_identifier.identifier_part_2,
+				tag_group_aggregate.persistent_identifier.identifier_part_3);
 		}
 
 		/*for (uint32_t i = 0; i < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count; i++)
@@ -209,10 +213,16 @@ void c_single_tag_file_layout_reader::calculate_structure_size_and_children()
 	{
 		s_tag_persist_struct_definition& structure_entry = get_struct_definition_by_index(structure_index);
 
+		DEBUG_ONLY(const char* structure_name = get_string_by_string_character_index(structure_entry.string_character_index));
+		if (strcmp(structure_name, "tag_import_file_block") == 0)
+		{
+			debug_point;
+		}
 		uint32_t structure_size = _calculate_structure_size_by_index(structure_index);
 		uint32_t expected_children = _calculate_structure_expected_children_by_index(structure_index);
 
 		s_structure_precomputed_info& structure_precomputed_info = structure_precomputed_info_by_index[structure_index];
+		DEBUG_ONLY(structure_precomputed_info.name = structure_name);
 		structure_precomputed_info.structure_size = structure_size;
 		structure_precomputed_info.expected_children = expected_children;
 
@@ -243,7 +253,8 @@ uint32_t c_single_tag_file_layout_reader::_calculate_structure_size_by_entry(con
 
 		s_tag_persist_field& field_entry = get_field_by_index(field_index);
 		s_tag_persist_field_type& field_type = get_field_type_by_index(field_entry.field_type_index);
-
+		DEBUG_ONLY(const char* field_name = get_string_by_string_character_index(field_entry.string_character_index));
+		DEBUG_ONLY(const char* field_type_name = get_string_by_string_character_index(field_type.string_character_index));
 		uint32_t field_size = field_type.size;
 		if (field_size == 0)
 		{
@@ -271,6 +282,7 @@ uint32_t c_single_tag_file_layout_reader::_calculate_structure_size_by_entry(con
 				field_size = array_size;
 			}
 			break;
+			case blofeld::_field_skip:
 			case blofeld::_field_pad:
 			{
 				uint32_t pad_size = field_entry.metadata;

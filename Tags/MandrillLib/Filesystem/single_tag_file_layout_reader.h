@@ -65,6 +65,7 @@ protected:
 	using t_persistent_id_to_ulong_map = std::unordered_map<XXH64_hash_t, unsigned long>;
 	struct s_structure_precomputed_info
 	{
+		DEBUG_ONLY(const char* name);
 		uint32_t structure_size;
 		uint32_t expected_children;
 	};
