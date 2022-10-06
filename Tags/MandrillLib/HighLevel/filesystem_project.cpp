@@ -191,7 +191,7 @@ BCS_RESULT c_filesystem_tag_project::read_tag(const wchar_t* filepath, const wch
 
 	if (status_interface)
 	{
-		status_interface->set_status_bar_status(_status_interface_priority_medium, 15.0f, "Reading tag file %s", relative_filepath);
+		status_interface->set_status_bar_status(_status_interface_priority_medium, 15.0f, "Reading tag file %S", relative_filepath);
 	}
 
 	BCS_RESULT rs = BCS_S_OK;
