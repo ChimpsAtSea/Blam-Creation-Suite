@@ -112,10 +112,12 @@ int main()
 			position_maximum = { __max(position_maximum.x, position.x), __max(position_maximum.y, position.y), __max(position_maximum.z, position.z) };
 			texcoord_minimum = { __min(texcoord_minimum.x, texcoord.x), __min(texcoord_minimum.y, -texcoord.y) };
 			texcoord_maximum = { __max(texcoord_maximum.x, texcoord.x), __max(texcoord_maximum.y, -texcoord.y) };
+
 		}
 	}
 	float3 position_range = { position_maximum.x - position_minimum.x, position_maximum.y - position_minimum.y, position_maximum.z - position_minimum.z };
 	float2 texcoord_range = { texcoord_maximum.x - texcoord_minimum.x, texcoord_maximum.y - texcoord_minimum.y };
+
 
 	for (unsigned int mesh_index = 0; mesh_index < num_meshes; mesh_index++)
 	{
@@ -148,7 +150,6 @@ int main()
 		mesh.index_buffer_index = -1;
 		mesh.index_buffer_tessellation = -1;
 		mesh.rigid_node_index = 0;
-		//mesh.prt_vertex_type = _mesh_transfer_vertex_type_definition_prt_ambient;
 		mesh.prt_vertex_type = _mesh_transfer_vertex_type_definition_no_prt;
 		mesh.index_buffer_type = _mesh_index_buffer_type_definition_triangle_list;
 		mesh.vertex_type = _mesh_vertex_type_definition_rigid;
@@ -205,6 +206,73 @@ int main()
 
 		mesh_temporary.flags.set(_per_mesh_raw_data_flags_indices_are_triangle_lists, true);
 
+		mesh.prt_vertex_type = _mesh_transfer_vertex_type_definition_prt_ambient;
+
+		if (mesh.prt_vertex_type > _mesh_transfer_vertex_type_definition_no_prt)
+		{
+			struct s_render_geometry_user_data_prt_info
+			{
+				unsigned int unknown0;
+				unsigned int unknown4;
+				unsigned int num_coefficients;
+				unsigned int unknownC;
+				unsigned int unknown10;
+			};
+			s_render_geometry_user_data_prt_info prt_info = {};
+
+			prt_info.unknown0 = 3;
+			prt_info.unknown4 = 0;
+			int order = 0;
+			switch (mesh.prt_vertex_type)
+			{
+			case _mesh_transfer_vertex_type_definition_no_prt:
+				prt_info.num_coefficients = 0;
+				order = 0;
+				break;
+			case _mesh_transfer_vertex_type_definition_prt_ambient:
+				prt_info.num_coefficients = 1;
+				order = 0;
+				break;
+			case _mesh_transfer_vertex_type_definition_prt_linear:
+				prt_info.num_coefficients = 4;
+				order = 1;
+				break;
+			case _mesh_transfer_vertex_type_definition_prt_quadratic:
+				prt_info.num_coefficients = 9;
+				order = 2;
+				break;
+			}
+			prt_info.unknownC = 0;
+			prt_info.unknown10 = 0;
+
+			auto& ptr_user_data = render_geometry.user_data_block.emplace_back();
+			ptr_user_data.user_data.insert(ptr_user_data.user_data.end(), reinterpret_cast<char*>(&prt_info), reinterpret_cast<char*>(&prt_info + 1));
+			ptr_user_data.user_data_header.data_type = _render_geometry_user_data_type_definition_prt_info;
+			ptr_user_data.user_data_header.data_count = 1;
+			ptr_user_data.user_data_header.data_size = sizeof(prt_info);
+
+			h_sh_baker sh_baker;
+			create_sh_baker_cpu(sh_baker, order);
+			sh_baker_bake(sh_baker, geometry_mesh);
+			const float3* const* coefficients;
+			unsigned int num_coefficients;
+			sh_baker_get(sh_baker, coefficients, num_coefficients);
+
+			auto& prt_data_block = render_geometry.per_mesh_prt_data_block.emplace_back();
+
+			for (unsigned int vertex_index = 0; vertex_index < geometry_vertex_count; vertex_index++)
+			{
+				for (unsigned int coefficient_index = 0; coefficient_index < prt_info.num_coefficients; coefficient_index++)
+				{
+					float3 coefficient = coefficients[coefficient_index][vertex_index];
+					const char* pca_data_start = reinterpret_cast<const char*>(&coefficient);
+					const char* pca_data_end = reinterpret_cast<const char*>(&coefficient + 1);
+					prt_data_block.mesh_pca_data.insert(prt_data_block.mesh_pca_data.end(), pca_data_start, pca_data_end);
+				}
+			}
+			ASSERT(prt_data_block.mesh_pca_data.size() == (sizeof(float) * 3 * prt_info.num_coefficients * geometry_vertex_count));
+			destroy_sh_baker(sh_baker);
+		}
 	}
 
 	auto& compression_info = render_geometry.compression_info_block.emplace_back();

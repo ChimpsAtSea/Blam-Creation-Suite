@@ -1,6 +1,8 @@
 add_library(GeometryLib ${BCS_LIBRARY_TYPE}
 	uv_atlas_packer.h
 	uv_atlas_packer.cpp
+	sh_baker_cpu.h
+	sh_baker_cpu.cpp
 	geometry_scene.h
 	geometry_scene.cpp
 	geometry_mesh.h
