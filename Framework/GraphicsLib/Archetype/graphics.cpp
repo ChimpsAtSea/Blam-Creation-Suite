@@ -23,10 +23,18 @@ BCS_RESULT graphics_create(
 			return graphics_d3d12_create(
 				use_debug_layer,
 				false,
+				false,
 				*reinterpret_cast<c_graphics_d3d12**>(&graphics));
-		case _graphics_architecture_d3d12_cpu:
+		case _graphics_architecture_d3d12_force_cpu:
 			return graphics_d3d12_create(
 				use_debug_layer,
+				true,
+				false,
+				*reinterpret_cast<c_graphics_d3d12**>(&graphics));
+		case _graphics_architecture_d3d12_raytracing:
+			return graphics_d3d12_create(
+				use_debug_layer,
+				false,
 				true,
 				*reinterpret_cast<c_graphics_d3d12**>(&graphics));
 		}

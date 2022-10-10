@@ -38,7 +38,7 @@ BCS_RESULT c_window_render_context::init_render_context()
 	e_graphics_architecture graphics_architecture = _graphics_architecture_d3d12;
 	if (use_cpu_rendering)
 	{
-		graphics_architecture = _graphics_architecture_d3d12_cpu;
+		graphics_architecture = _graphics_architecture_d3d12_force_cpu;
 	}
 	BCS_FAIL_RETURN(graphics_create(graphics_architecture, use_debug_layer, graphics));
 	BCS_FAIL_RETURN(graphics_imgui_context_create(&window, graphics, imgui_context));

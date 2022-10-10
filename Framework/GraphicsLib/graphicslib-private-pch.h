@@ -19,6 +19,7 @@
 #include <dxgidebug.h>
 #include <d3d12.h>
 #include <directx\d3dx12.h>
+#include <D3D12RaytracingFallback.h>
 
 #define PLATFORM_ENABLE_THROW_NEW
 #include <Platform\platform-public-pch.h>

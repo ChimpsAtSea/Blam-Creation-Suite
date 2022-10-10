@@ -10,12 +10,14 @@ public:
 	c_graphics_d3d12() = delete;
 	c_graphics_d3d12(const c_graphics_d3d12&) = delete;
 	c_graphics_d3d12& operator=(const c_graphics_d3d12&) = delete;
-	c_graphics_d3d12(bool use_debug_layer, bool force_cpu_rendering);
+	c_graphics_d3d12(bool use_debug_layer, bool force_cpu_rendering, bool require_ray_tracing_support);
 	virtual ~c_graphics_d3d12();
 
 	BCS_RESULT get_hardware_adapter(
 		D3D_FEATURE_LEVEL minimum_feature_level,
 		bool prefer_high_performance,
+		bool require_ray_tracing_support,
+		bool require_shader_model_6_2_support,
 		IDXGIAdapter1** dxgi_adapter_out, 
 		ID3D12Device8** device_out);
 
@@ -26,8 +28,10 @@ public:
 
 	void init_debug_layer();
 	void deinit_debug_layer();
-	BCS_RESULT init_hardware(bool force_cpu_rendering);
+	BCS_RESULT init_hardware(bool force_cpu_rendering, bool require_ray_tracing_support);
 	void deinit_hardware();
+	BCS_RESULT init_raytracing_fallback_layer();
+	void deinit_raytracing_fallback_layer();
 	void init_hardware_capabilities();
 	void deinit_hardware_capabilities();
 	void init_descriptor_heap_allocator();
@@ -61,6 +65,14 @@ public:
 	virtual BCS_RESULT render_frame() override;
 
 	ID3D12Device8* device;
+
+	// raytracing fallback layer
+	bool raytracing_fallback_layer_supported;
+	bool raytracing_fallback_layer_native_supported;
+	bool raytracing_fallback_layer_fallback_supported;
+	bool raytracing_fallback_layer_initialized;
+	ID3D12RaytracingFallbackDevice* d3d12_raytracing_fallback_device;
+	ID3D12RaytracingFallbackCommandList* d3d12_raytracing_command_list;
 
 	HANDLE fence_event;
 	ID3D12Fence* fence;
@@ -106,7 +118,8 @@ public:
 	D3D12_FEATURE_DATA_D3D12_OPTIONS6 options6;
 	D3D12_FEATURE_DATA_D3D12_OPTIONS7 options7;
 	D3D12_FEATURE_DATA_D3D12_OPTIONS8 options8;
+	D3D12_FEATURE_DATA_SHADER_MODEL shader_model;
 };
 
-BCS_RESULT graphics_d3d12_create(bool use_debug_layer, bool force_cpu_rendering, c_graphics_d3d12*& graphics);
+BCS_RESULT graphics_d3d12_create(bool use_debug_layer, bool force_cpu_rendering, bool require_ray_tracing_support, c_graphics_d3d12*& graphics);
 BCS_RESULT graphics_d3d12_destroy(c_graphics_d3d12* graphics);
