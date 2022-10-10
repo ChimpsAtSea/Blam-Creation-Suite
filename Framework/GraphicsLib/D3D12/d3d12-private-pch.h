@@ -11,6 +11,7 @@
 #include "d3d12_graphics_swap_chain.h"
 #include "d3d12_graphics_camera.h"
 #include "d3d12_graphics_vertex_layout.h"
+#include "d3d12_graphics_root_signature.h"
 #include "d3d12_graphics_render_instance.h"
 #include "d3d12_graphics.h"
 

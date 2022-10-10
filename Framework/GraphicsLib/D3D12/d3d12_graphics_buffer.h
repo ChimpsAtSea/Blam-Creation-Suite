@@ -14,7 +14,7 @@ public:
 		e_graphics_buffer_type buffer_type,
 		uint32_t element_size,
 		uint32_t element_count,
-		const wchar_t* name = nullptr);
+		const wchar_t* debug_name = nullptr);
 	virtual ~c_graphics_buffer_d3d12();
 
 	D3D12_GPU_DESCRIPTOR_HANDLE get_gpu_descriptor_handle() const;
@@ -27,7 +27,7 @@ public:
 	uint32_t get_gpu_descriptor_heap_index() const;
 
 protected:
-	void init_buffer(const wchar_t* name);
+	void init_buffer(const wchar_t* debug_name);
 	void deinit_buffer();
 	void init_descriptor_heap();
 	void deinit_descriptor_heap();

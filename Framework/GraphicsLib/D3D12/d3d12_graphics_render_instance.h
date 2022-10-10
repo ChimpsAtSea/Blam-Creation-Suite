@@ -20,7 +20,7 @@ public:
 	c_graphics_render_instance_d3d12& operator=(const c_graphics_render_instance_d3d12&) = delete;
 	explicit c_graphics_render_instance_d3d12(
 		c_graphics_d3d12& graphics,
-		const wchar_t* name = nullptr);
+		const wchar_t* debug_name = nullptr);
 	virtual ~c_graphics_render_instance_d3d12();
 
 	virtual void update_buffers() override;

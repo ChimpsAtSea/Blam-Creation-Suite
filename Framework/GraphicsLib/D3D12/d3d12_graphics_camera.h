@@ -24,7 +24,7 @@ public:
 	explicit c_graphics_camera_d3d12(
 		c_graphics_d3d12& graphics,
 		c_viewport& viewport,
-		const wchar_t* name = nullptr);
+		const wchar_t* debug_name = nullptr);
 	virtual ~c_graphics_camera_d3d12();
 
 	virtual void update_buffers() override;

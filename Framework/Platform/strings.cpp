@@ -76,3 +76,34 @@ void* memmem(const void* haystack, size_t haystack_length, const void* const nee
 	}
 	return nullptr;
 }
+
+char* ltrim(char* const string)
+{
+	const char* left_trimmed = string;
+	if (left_trimmed != nullptr)
+	{
+		while (isspace(*left_trimmed))
+		{
+			left_trimmed++;
+		}
+	}
+
+	strcpy(string, left_trimmed);
+
+	return string;
+}
+
+char* rtrim(char* const string)
+{
+	char* back = string + strlen(string);
+	while (isspace(*--back));
+	*(back + 1) = '\0';
+	return string;
+}
+
+char* trim(char* const string)
+{
+	ltrim(string);
+	rtrim(string);
+	return string;
+}

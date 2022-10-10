@@ -5,9 +5,9 @@ c_descriptor_heap_allocator_d3d12::c_descriptor_heap_allocator_d3d12(
 	D3D12_DESCRIPTOR_HEAP_TYPE type,
 	D3D12_DESCRIPTOR_HEAP_FLAGS flags,
 	UINT num_descriptors,
-	const wchar_t* name) :
+	const wchar_t* debug_name) :
 	c_bitfield_allocator(num_descriptors),
-	c_descriptor_heap_d3d12(graphics, type, flags, num_descriptors, name)
+	c_descriptor_heap_d3d12(graphics, type, flags, num_descriptors, debug_name)
 {
 }
 

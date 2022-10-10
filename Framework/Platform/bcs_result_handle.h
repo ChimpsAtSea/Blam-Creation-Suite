@@ -44,16 +44,20 @@ BCS_DEBUG_API const char* bcs_result_get_string(BCS_RESULT result);
 	} while (false)
 
 #define BCS_FAIL_THROW(expression) \
-	BCS_RESULT COMBINE(__bcs_result_, __LINE__) = (expression); \
-	if (BCS_FAILED(COMBINE(__bcs_result_, __LINE__))) \
-	{ \
+	do { \
+		BCS_RESULT COMBINE(__bcs_result_, __LINE__) = (expression); \
+		if (BCS_FAILED(COMBINE(__bcs_result_, __LINE__))) \
+		{ \
 		throw COMBINE(__bcs_result_, __LINE__); \
-	}
+		} \
+	} while (false)
 
 #define BCS_FAIL_THROW_DBG(expression) \
-	BCS_RESULT COMBINE(__bcs_result_, __LINE__) = (expression); \
-	if (BCS_FAILED(COMBINE(__bcs_result_, __LINE__))) \
-	{ \
-		debug_break; \
-		throw COMBINE(__bcs_result_, __LINE__); \
-	}
+	do { \
+		BCS_RESULT COMBINE(__bcs_result_, __LINE__) = (expression); \
+		if (BCS_FAILED(COMBINE(__bcs_result_, __LINE__))) \
+		{ \
+			debug_break; \
+			throw COMBINE(__bcs_result_, __LINE__); \
+		} \
+	} while (false)

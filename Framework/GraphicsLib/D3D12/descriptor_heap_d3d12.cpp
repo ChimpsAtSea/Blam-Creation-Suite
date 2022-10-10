@@ -1,6 +1,6 @@
 #include "graphicslib-private-pch.h"
 
-c_descriptor_heap_d3d12::c_descriptor_heap_d3d12(c_graphics_d3d12& graphics, D3D12_DESCRIPTOR_HEAP_TYPE type, D3D12_DESCRIPTOR_HEAP_FLAGS flags, UINT num_descriptors, const wchar_t* name) :
+c_descriptor_heap_d3d12::c_descriptor_heap_d3d12(c_graphics_d3d12& graphics, D3D12_DESCRIPTOR_HEAP_TYPE type, D3D12_DESCRIPTOR_HEAP_FLAGS flags, UINT num_descriptors, const wchar_t* debug_name) :
 	graphics(graphics),
 	descriptor_heap(nullptr),
 	type(type),
@@ -19,7 +19,7 @@ c_descriptor_heap_d3d12::c_descriptor_heap_d3d12(c_graphics_d3d12& graphics, D3D
 	render_target_view_heap_descriptor.Flags = flags;
 	HRESULT create_desctiptor_heap_result = graphics.device->CreateDescriptorHeap(&render_target_view_heap_descriptor, IID_PPV_ARGS(&descriptor_heap));
 	ASSERT(SUCCEEDED(create_desctiptor_heap_result));
-	descriptor_heap->SetName(name);
+	graphics.set_object_debug_name(debug_name, L"c_descriptor_heap_d3d12::descriptor_heap", descriptor_heap);
 
 	cpu_descriptor_handle = descriptor_heap->GetCPUDescriptorHandleForHeapStart();
 	gpu_descriptor_handle = descriptor_heap->GetGPUDescriptorHandleForHeapStart();

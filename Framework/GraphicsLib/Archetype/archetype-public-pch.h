@@ -11,6 +11,7 @@
 #include "graphics_swap_chain.h"
 #include "graphics_camera.h"
 #include "graphics_vertex_layout.h"
+#include "graphics_register_layout.h"
 #include "graphics_render_instance.h"
 #include "graphics.h"
 

@@ -14,7 +14,7 @@ public:
 		D3D12_DESCRIPTOR_HEAP_TYPE type,
 		D3D12_DESCRIPTOR_HEAP_FLAGS flags,
 		UINT num_descriptors,
-		const wchar_t* name);
+		const wchar_t* debug_name);
 	~c_descriptor_heap_allocator_d3d12();
 
 	D3D12_CPU_DESCRIPTOR_HANDLE allocate_cpu_descriptor_handle();

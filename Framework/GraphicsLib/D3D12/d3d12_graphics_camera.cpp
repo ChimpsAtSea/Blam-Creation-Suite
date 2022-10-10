@@ -3,7 +3,7 @@
 c_graphics_camera_d3d12::c_graphics_camera_d3d12(
 	c_graphics_d3d12& graphics,
 	c_viewport& viewport,
-	const wchar_t* name) :
+	const wchar_t* debug_name) :
 	c_graphics_camera(),
 	s_camera_state_d3d12(),
 	graphics(graphics),

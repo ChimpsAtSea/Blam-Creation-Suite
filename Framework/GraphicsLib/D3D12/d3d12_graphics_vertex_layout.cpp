@@ -4,7 +4,7 @@ c_graphics_vertex_layout_d3d12::c_graphics_vertex_layout_d3d12(
 	c_graphics_d3d12& graphics,
 	s_graphics_vertex_layout_description* descriptions,
 	uint32_t num_descriptions,
-	const wchar_t* name) :
+	const wchar_t* debug_name) :
 	graphics(graphics),
 	vertex_layout_descriptions(),
 	num_layout_descriptions(num_descriptions)

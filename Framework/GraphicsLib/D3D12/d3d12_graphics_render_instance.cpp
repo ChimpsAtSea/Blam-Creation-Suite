@@ -2,7 +2,7 @@
 
 c_graphics_render_instance_d3d12::c_graphics_render_instance_d3d12(
 	c_graphics_d3d12& graphics,
-	const wchar_t* name) :
+	const wchar_t* debug_name) :
 	c_graphics_render_instance(),
 	s_render_instance_state_d3d12(),
 	graphics(graphics),

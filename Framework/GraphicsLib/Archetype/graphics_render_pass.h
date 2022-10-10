@@ -16,7 +16,7 @@ public:
 	virtual void render(c_graphics_swap_chain* swap_chain = nullptr) = 0;
 
 	using t_render_callback_d3d12 = void();
-	c_typed_callback<t_render_callback_d3d12> render_callback;;
+	c_typed_callback<t_render_callback_d3d12> render_callback;
 };
 
 BCS_DEBUG_API BCS_RESULT graphics_render_pass_create(
