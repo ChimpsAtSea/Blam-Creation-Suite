@@ -28,3 +28,6 @@
 [submodule "ThirdParty/xatlas"]
 	path = ThirdParty/xatlas
 	url = https://github.com/ChimpsAtSea/xatlas.git
+[submodule "ThirdParty/D3D12RaytracingFallback"]
+	path = ThirdParty/D3D12RaytracingFallback
+	url = https://github.com/ChimpsAtSea/D3D12RaytracingFallback.git
