@@ -15,9 +15,6 @@ add_library(GraphicsLib ${BCS_LIBRARY_TYPE}
 	D3D12/descriptor_heap_d3d12.cpp
 	D3D12/d3d12_imgui_context.cpp
 	
-	D3D11/graphics_d3d11.cpp
-	D3D11/legacy_window.cpp
-	
 	Archetype/graphics.cpp
 	Archetype/graphics_camera.cpp
 	Archetype/graphics_render_instance.cpp
@@ -55,10 +52,6 @@ add_library(GraphicsLib ${BCS_LIBRARY_TYPE}
     Archetype/graphics_camera.h
     Archetype/graphics_render_instance.h
     Archetype/viewport.h
-	
-    D3D11/d3d11-private-pch.h
-    D3D11/graphics_d3d11.h
-    D3D11/legacy_window.h
 	
     D3D12/d3d12_gpu_data_structures.h
     D3D12/d3d12-private-pch.h
