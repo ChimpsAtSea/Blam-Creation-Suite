@@ -20,6 +20,7 @@ enum e_bcs_resource_type
 	_bcs_resource_type_generic_infinite_pixel_shader,
 	_bcs_resource_type_generic_lightmap_debug_vertex_shader,
 	_bcs_resource_type_generic_lightmap_debug_pixel_shader,
+	_bcs_resource_type_generic_lightmap_compute_test_shader,
 	_bcs_resource_type_symbols_blob,
 	k_number_of_bcs_resource_types
 };

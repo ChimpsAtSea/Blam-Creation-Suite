@@ -14,7 +14,12 @@ public:
 	virtual void bind() = 0;
 };
 
-BCS_DEBUG_API BCS_RESULT graphics_shader_pipeline_create(
+BCS_DEBUG_API BCS_RESULT graphics_shader_pipeline_compute_create(
+	c_graphics* graphics,
+	c_graphics_shader_binary* shader_binary,
+	c_graphics_shader_pipeline*& shader_pipeline,
+	const char* debug_name = nullptr);
+BCS_DEBUG_API BCS_RESULT graphics_shader_pipeline_graphics_create(
 	c_graphics* graphics,
 	c_graphics_shader_binary** shader_binaries,
 	uint32_t num_shader_binaries,

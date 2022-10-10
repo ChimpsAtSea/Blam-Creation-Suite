@@ -127,6 +127,7 @@ add_library(GraphicsLib ${BCS_LIBRARY_TYPE}
     HLSL/vertex_layout_pc.hlsl
     HLSL/vertex_layout_ptcn.hlsl
 	
+	HLSL/LightmapDebug/lightmap_compute_test_cs.hlsl
 	HLSL/LightmapDebug/lightmap_debug_vs.hlsl
 	HLSL/LightmapDebug/lightmap_debug_ps.hlsl
 	HLSL/LightmapDebug/lightmap_debug.hlsli)
@@ -163,15 +164,19 @@ set_source_files_properties(
 	
 #Lightmap Debug
 set_source_files_properties(
+	HLSL/LightmapDebug/lightmap_compute_test_cs.hlsl
+	PROPERTIES VS_SHADER_TYPE Compute)
+set_source_files_properties(
 	HLSL/LightmapDebug/lightmap_debug_vs.hlsl
 	PROPERTIES VS_SHADER_TYPE Vertex)
 set_source_files_properties(
 	HLSL/LightmapDebug/lightmap_debug_ps.hlsl
 	PROPERTIES VS_SHADER_TYPE Pixel)
 set_source_files_properties(
+	HLSL/LightmapDebug/lightmap_compute_test_cs.hlsl
 	HLSL/LightmapDebug/lightmap_debug_vs.hlsl
 	HLSL/LightmapDebug/lightmap_debug_ps.hlsl
-	PROPERTIES VS_SHADER_MODEL 5.1)
+	PROPERTIES VS_SHADER_MODEL 6.2)
 
 target_link_libraries(GraphicsLib PRIVATE
 	blamlib Platform TemplateLibrary xxhash imgui d3d11 d3d12 DirectX-Headers dxgi dxguid Shcore winpixeventruntime d3d12raytracingfallback directxshadercompiler)

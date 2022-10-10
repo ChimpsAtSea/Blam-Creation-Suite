@@ -31,7 +31,8 @@ public:
 BCS_DEBUG_API BCS_RESULT render_context_window_create(
 	c_window& window,
 	float4 background_color,
-	c_render_context*& render_context);
+	c_render_context*& render_context,
+	c_graphics* existing_graphics_context = nullptr);
 BCS_DEBUG_API BCS_RESULT render_context_imgui_create(
 	c_render_context& parent_render_context,
 	c_viewport& viewport,

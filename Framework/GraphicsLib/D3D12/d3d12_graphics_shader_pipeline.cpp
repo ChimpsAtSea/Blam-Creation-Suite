@@ -1,6 +1,65 @@
 #include "graphicslib-private-pch.h"
 
 c_graphics_shader_pipeline_d3d12::c_graphics_shader_pipeline_d3d12(
+	c_graphics_d3d12& _graphics,
+	const wchar_t* _debug_name) :
+	graphics(_graphics),
+	pipeline_state(),
+	debug_name(wcsdup(_debug_name))
+{
+
+}
+
+c_graphics_shader_pipeline_d3d12::~c_graphics_shader_pipeline_d3d12()
+{
+	untracked_free(debug_name);
+}
+
+void c_graphics_shader_pipeline_d3d12::bind()
+{
+	graphics.command_list->SetPipelineState(pipeline_state);
+}
+
+c_graphics_shader_pipeline_compute_d3d12::c_graphics_shader_pipeline_compute_d3d12(
+	c_graphics_d3d12& graphics,
+	c_graphics_shader_binary_d3d12* shader_binary,
+	const wchar_t* debug_name) :
+	c_graphics_shader_pipeline_d3d12(graphics, debug_name),
+	pipeline_state_description()
+{
+	BCS_VALIDATE_ARGUMENT_THROW(shader_binary);
+
+	pipeline_state_description.pRootSignature = graphics.root_signature;
+	pipeline_state_description.NodeMask = 0;
+	pipeline_state_description.CachedPSO = {};
+
+	pipeline_state_description.Flags = D3D12_PIPELINE_STATE_FLAG_NONE;
+	if (graphics.adapter_description.Flags & DXGI_ADAPTER_FLAG_SOFTWARE)
+	{
+		pipeline_state_description.Flags = pipeline_state_description.Flags | D3D12_PIPELINE_STATE_FLAG_TOOL_DEBUG;
+	}
+
+	// #TODO: detect the correct types of shader binaries
+	pipeline_state_description.CS.pShaderBytecode = shader_binary->shader_binary_data;
+	pipeline_state_description.CS.BytecodeLength = shader_binary->shader_binary_data_size;
+
+	HRESULT create_graphics_pipeline_state_result = graphics.device->CreateComputePipelineState(&pipeline_state_description, IID_PPV_ARGS(&pipeline_state));
+	if (FAILED(create_graphics_pipeline_state_result))
+	{
+		throw BCS_E_FAIL;
+	}
+	graphics.set_object_debug_name(debug_name, L"c_graphics_shader_pipeline_compute_d3d12::pipeline_state", pipeline_state);
+
+	debug_point;
+}
+
+c_graphics_shader_pipeline_compute_d3d12::~c_graphics_shader_pipeline_compute_d3d12()
+{
+	UINT pipeline_state_reference_count = pipeline_state->Release();
+	ASSERT(pipeline_state_reference_count == 0);
+}
+
+c_graphics_shader_pipeline_graphics_d3d12::c_graphics_shader_pipeline_graphics_d3d12(
 	c_graphics_d3d12& graphics,
 	c_graphics_shader_binary_d3d12** shader_binaries,
 	uint32_t num_shader_binaries,
@@ -9,8 +68,7 @@ c_graphics_shader_pipeline_d3d12::c_graphics_shader_pipeline_d3d12(
 	e_graphics_data_format* depth_data_format,
 	c_graphics_vertex_layout_d3d12& vertex_layout,
 	const wchar_t* debug_name) :
-	graphics(graphics),
-	pipeline_state(),
+	c_graphics_shader_pipeline_d3d12(graphics, debug_name),
 	pipeline_state_description()
 {
 	BCS_VALIDATE_ARGUMENT_THROW(shader_binaries);
@@ -63,23 +121,43 @@ c_graphics_shader_pipeline_d3d12::c_graphics_shader_pipeline_d3d12(
 	{
 		throw BCS_E_FAIL;
 	}
-	pipeline_state->SetName(debug_name ? debug_name : L"c_graphics_shader_pipeline_d3d12::pipeline_state");
+	graphics.set_object_debug_name(debug_name, L"c_graphics_shader_pipeline_graphics_d3d12::pipeline_state", pipeline_state);
 
 	debug_point;
 }
 
-c_graphics_shader_pipeline_d3d12::~c_graphics_shader_pipeline_d3d12()
+c_graphics_shader_pipeline_graphics_d3d12::~c_graphics_shader_pipeline_graphics_d3d12()
 {
 	UINT pipeline_state_reference_count = pipeline_state->Release();
 	ASSERT(pipeline_state_reference_count == 0);
 }
 
-void c_graphics_shader_pipeline_d3d12::bind()
+BCS_RESULT graphics_d3d12_shader_pipeline_compute_create(
+	c_graphics_d3d12* graphics,
+	c_graphics_shader_binary_d3d12* shader_binary,
+	c_graphics_shader_pipeline_compute_d3d12*& shader_pipeline,
+	const char* debug_name)
 {
-	graphics.command_list->SetPipelineState(pipeline_state);
+	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
+	try
+	{
+		shader_pipeline = new() c_graphics_shader_pipeline_compute_d3d12(
+			*graphics,
+			shader_binary,
+			debug_name_wc);
+	}
+	catch (BCS_RESULT rs)
+	{
+		return rs;
+	}
+	catch (...)
+	{
+		return BCS_E_FAIL;
+	}
+	return BCS_S_OK;
 }
 
-BCS_RESULT graphics_d3d12_shader_pipeline_create(
+BCS_RESULT graphics_d3d12_shader_pipeline_graphics_create(
 	c_graphics_d3d12* graphics,
 	c_graphics_shader_binary_d3d12** shader_binaries,
 	uint32_t num_shader_binaries,
@@ -87,13 +165,13 @@ BCS_RESULT graphics_d3d12_shader_pipeline_create(
 	uint32_t num_render_targets,
 	e_graphics_data_format* depth_data_format,
 	c_graphics_vertex_layout_d3d12* vertex_layout,
-	c_graphics_shader_pipeline_d3d12*& shader_pipeline,
+	c_graphics_shader_pipeline_graphics_d3d12*& shader_pipeline,
 	const char* debug_name)
 {
 	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
 	try
 	{
-		shader_pipeline = new() c_graphics_shader_pipeline_d3d12(
+		shader_pipeline = new() c_graphics_shader_pipeline_graphics_d3d12(
 			*graphics,
 			shader_binaries,
 			num_shader_binaries,
@@ -114,7 +192,7 @@ BCS_RESULT graphics_d3d12_shader_pipeline_create(
 	return BCS_S_OK;
 }
 
-BCS_RESULT graphics_d3d12_shader_pipeline_destroy(c_graphics_shader_pipeline_d3d12* shader_pipeline)
+BCS_RESULT graphics_d3d12_shader_pipeline_destroy(c_graphics_shader_pipeline_graphics_d3d12* shader_pipeline)
 {
 	try
 	{

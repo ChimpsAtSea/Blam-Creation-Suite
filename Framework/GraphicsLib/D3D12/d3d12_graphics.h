@@ -18,13 +18,15 @@ public:
 		bool prefer_high_performance,
 		bool require_ray_tracing_support,
 		bool require_shader_model_6_2_support,
-		IDXGIAdapter1** dxgi_adapter_out, 
-		ID3D12Device8** device_out);
+		IDXGIAdapter1*& dxgi_adapter_out,
+		DXGI_ADAPTER_DESC1& adapter_description_out,
+		ID3D12Device8*& device_out);
 
 	BCS_RESULT get_cpu_hardware_adapter(
 		D3D_FEATURE_LEVEL feature_level,
-		IDXGIAdapter1** dxgi_adapter_out,
-		ID3D12Device8** device_out);
+		IDXGIAdapter1*& dxgi_adapter_out,
+		DXGI_ADAPTER_DESC1& adapter_description_out,
+		ID3D12Device8*& device_out);
 
 	void init_debug_layer();
 	void deinit_debug_layer();
@@ -49,7 +51,6 @@ public:
 
 	static void set_object_debug_name(const wchar_t* debug_name, const wchar_t* internal_name, ID3D12Object* d3d12_object);
 
-	HRESULT last_error;
 	BCS_RESULT hresult_to_bcs_result(HRESULT result);
 
 	HRESULT ready_command_list();
@@ -63,6 +64,7 @@ public:
 		D3D12_RESOURCE_STATES after);
 
 	virtual BCS_RESULT render_frame() override;
+	virtual BCS_RESULT dispatch(uint32_t x = 1, uint32_t y = 1, uint32_t z = 1) override;
 
 	ID3D12Device8* device;
 
@@ -80,7 +82,7 @@ public:
 
 	ID3D12Debug* debug_interface;
 	IDXGIDebug1* dxgi_debug_interface;
-
+	DXGI_ADAPTER_DESC1 adapter_description;
 
 	IDXGIFactory6* dxgi_factory6;
 	IDXGIFactory5* dxgi_factory5;
@@ -119,6 +121,8 @@ public:
 	D3D12_FEATURE_DATA_D3D12_OPTIONS7 options7;
 	D3D12_FEATURE_DATA_D3D12_OPTIONS8 options8;
 	D3D12_FEATURE_DATA_SHADER_MODEL shader_model;
+
+	HRESULT last_error;
 };
 
 BCS_RESULT graphics_d3d12_create(bool use_debug_layer, bool force_cpu_rendering, bool require_ray_tracing_support, c_graphics_d3d12*& graphics);

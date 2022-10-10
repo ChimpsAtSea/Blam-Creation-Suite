@@ -17,12 +17,14 @@ c_render_context::~c_render_context()
 BCS_RESULT render_context_window_create(
 	c_window& window,
 	float4 background_color,
-	c_render_context*& render_context)
+	c_render_context*& render_context,
+	c_graphics* existing_graphics_context)
 {
 	return window_render_context_window_create(
 		window,
 		background_color,
-		*reinterpret_cast<c_window_render_context**>(&render_context));
+		*reinterpret_cast<c_window_render_context**>(&render_context),
+		existing_graphics_context);
 }
 
 BCS_RESULT render_context_imgui_create(

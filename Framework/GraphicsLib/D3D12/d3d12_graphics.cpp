@@ -36,7 +36,8 @@ c_graphics_d3d12::c_graphics_d3d12(bool use_debug_layer, bool force_cpu_renderin
 	options6(),
 	options7(),
 	options8(),
-	shader_model()
+	shader_model(),
+	last_error(S_OK)
 {
 	if (use_debug_layer)
 	{
@@ -144,8 +145,9 @@ create_dxgi_factory_succeeded:
 	{
 		get_hardware_adapter_result = get_cpu_hardware_adapter(
 			D3D_FEATURE_LEVEL_12_0,
-			&dxgi_adapter,
-			&device);
+			dxgi_adapter,
+			adapter_description,
+			device);
 	}
 	else
 	{
@@ -154,8 +156,9 @@ create_dxgi_factory_succeeded:
 			true,
 			require_ray_tracing_support,
 			false,
-			&dxgi_adapter,
-			&device);
+			dxgi_adapter,
+			adapter_description,
+			device);
 		if (require_ray_tracing_support)
 		{
 			if (BCS_SUCCEEDED(get_hardware_adapter_result))
@@ -168,8 +171,9 @@ create_dxgi_factory_succeeded:
 				true,
 				false,
 				true,
-				&dxgi_adapter,
-				&device)))
+				dxgi_adapter,
+				adapter_description,
+				device)))
 			{
 				raytracing_fallback_layer_supported = true;
 				raytracing_fallback_layer_fallback_supported = true;
@@ -455,6 +459,12 @@ BCS_RESULT c_graphics_d3d12::render_frame()
 	}
 }
 
+BCS_RESULT c_graphics_d3d12::dispatch(uint32_t x, uint32_t y, uint32_t z)
+{
+	command_list->Dispatch(x, y, z);
+	return BCS_S_OK;
+}
+
 BCS_RESULT c_graphics_d3d12::wait_for_frame_to_complete_cpu()
 {
 	BCS_RESULT rs = BCS_S_OK;
@@ -627,11 +637,13 @@ BCS_RESULT c_graphics_d3d12::get_hardware_adapter(
 	bool prefer_high_performance,
 	bool require_ray_tracing_support,
 	bool require_shader_model_6_2_support,
-	IDXGIAdapter1** dxgi_adapter_out,
-	ID3D12Device8** device_out)
+	IDXGIAdapter1*& dxgi_adapter_out,
+	DXGI_ADAPTER_DESC1& adapter_description_out,
+	ID3D12Device8*& device_out)
 {
-	*dxgi_adapter_out = nullptr;
-	*device_out = nullptr;
+	dxgi_adapter_out = nullptr;
+	adapter_description_out = {};
+	device_out = nullptr;
 	for (UINT adapter_index = 0; ; adapter_index++)
 	{
 		IDXGIAdapter1* dxgi_adapter = nullptr;
@@ -724,8 +736,9 @@ BCS_RESULT c_graphics_d3d12::get_hardware_adapter(
 
 			if (is_valid_device)
 			{
-				*device_out = device;
-				*dxgi_adapter_out = dxgi_adapter;
+				device_out = device;
+				adapter_description_out = adapter_description;
+				dxgi_adapter_out = dxgi_adapter;
 				return BCS_S_OK;
 			}
 			else
@@ -742,10 +755,15 @@ BCS_RESULT c_graphics_d3d12::get_hardware_adapter(
 	return BCS_E_FAIL; // failed to find a suitable device
 }
 
-BCS_RESULT c_graphics_d3d12::get_cpu_hardware_adapter(D3D_FEATURE_LEVEL requested_feature_level, IDXGIAdapter1** dxgi_adapter_out, ID3D12Device8** device_out)
+BCS_RESULT c_graphics_d3d12::get_cpu_hardware_adapter(
+	D3D_FEATURE_LEVEL requested_feature_level,
+	IDXGIAdapter1*& dxgi_adapter_out,
+	DXGI_ADAPTER_DESC1& adapter_description_out,
+	ID3D12Device8*& device_out)
 {
-	*dxgi_adapter_out = nullptr;
-	*device_out = nullptr;
+	dxgi_adapter_out = nullptr;
+	adapter_description_out = {};
+	device_out = nullptr;
 	for (UINT adapter_index = 0; ; ++adapter_index)
 	{
 		IDXGIAdapter1* dxgi_adapter = nullptr;
@@ -785,8 +803,9 @@ BCS_RESULT c_graphics_d3d12::get_cpu_hardware_adapter(D3D_FEATURE_LEVEL requeste
 				bool is_valid_device = true;
 				if (is_valid_device)
 				{
-					*device_out = device;
-					*dxgi_adapter_out = dxgi_adapter;
+					device_out = device;
+					adapter_description_out = adapter_description;
+					dxgi_adapter_out = dxgi_adapter;
 					return BCS_S_OK;
 				}
 				else

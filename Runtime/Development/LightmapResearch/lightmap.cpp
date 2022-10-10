@@ -1,13 +1,25 @@
 #include "lightmapresearch-private-pch.h"
 
+#define position_render_target render_targets[0]
+#define color_render_target render_targets[1]
+#define normal_render_target render_targets[2]
+#define tangent_render_target render_targets[3]
+#define bitangent_render_target render_targets[4]
+#define uv_render_target render_targets[5]
 
-
-
-
-uint32_t viewport_width = 2048;
-uint32_t viewport_height = 2048;
-
-c_lightmap::c_lightmap()
+c_lightmap::c_lightmap(c_graphics& _graphics, uint32_t resolution) :
+	graphics(_graphics),
+	lightmap_render_meshes(),
+	vertex_layout(),
+	uv_space_shader_pipeline(),
+	compute_test_shader_pipeline(),
+	render_instance(),
+	render_targets(),
+	viewport(),
+	render_pass(),
+	render_pass_callback_handle(),
+	viewport_width(resolution),
+	viewport_height(resolution)
 {
 
 }
@@ -169,7 +181,7 @@ public:
 	}
 };
 
-void c_lightmap::init(c_graphics& graphics)
+void c_lightmap::init()
 {
 	const char* model_path;
 	BCS_RESULT get_command_line_argument_result = command_line_get_argument("modelpath", model_path);
@@ -293,20 +305,6 @@ void c_lightmap::init(c_graphics& graphics)
 		lightmap_render_meshes.push_back(lightmap_render_mesh);
 	}
 
-
-	c_graphics_shader_binary* graphics_shader_binaries[2];
-	BCS_RESULT vertex_shader_binary_result = graphics_shader_binary_create(
-		&graphics,
-		_bcs_resource_type_generic_lightmap_debug_vertex_shader,
-		graphics_shader_binaries[0]);
-	BCS_FAIL_THROW(vertex_shader_binary_result);
-
-	BCS_RESULT pixel_shader_binary_result = graphics_shader_binary_create(
-		&graphics,
-		_bcs_resource_type_generic_lightmap_debug_pixel_shader,
-		graphics_shader_binaries[1]);
-	BCS_FAIL_THROW(pixel_shader_binary_result);
-
 	float4 render_target_clear_color = { 0.0f, 0.0f, 0.0f, 1.0f };
 
 	BCS_RESULT create_position_render_target_result = graphics_color_render_target_create(&graphics, viewport_width, viewport_height, _graphics_data_format_r32g32b32_float, render_target_clear_color, position_render_target, "position_render_target");
@@ -334,7 +332,22 @@ void c_lightmap::init(c_graphics& graphics)
 	};
 	e_graphics_data_format depth_target_format = _graphics_data_format_unspecified;
 
-	BCS_RESULT shader_pipeline_result = graphics_shader_pipeline_create(
+	c_graphics_shader_binary* _lightmap_debug_vertex_shader;
+	BCS_RESULT vertex_shader_binary_result = graphics_shader_binary_create(
+		&graphics,
+		_bcs_resource_type_generic_lightmap_debug_vertex_shader,
+		_lightmap_debug_vertex_shader);
+	BCS_FAIL_THROW(vertex_shader_binary_result);
+
+	c_graphics_shader_binary* lightmap_debug_pixel_shader;
+	BCS_RESULT pixel_shader_binary_result = graphics_shader_binary_create(
+		&graphics,
+		_bcs_resource_type_generic_lightmap_debug_pixel_shader,
+		lightmap_debug_pixel_shader);
+	BCS_FAIL_THROW(pixel_shader_binary_result);
+
+	c_graphics_shader_binary* graphics_shader_binaries[2] = { _lightmap_debug_vertex_shader, lightmap_debug_pixel_shader };
+	BCS_RESULT uv_space_shader_pipeline_result = graphics_shader_pipeline_graphics_create(
 		&graphics,
 		graphics_shader_binaries,
 		_countof(graphics_shader_binaries),
@@ -342,8 +355,23 @@ void c_lightmap::init(c_graphics& graphics)
 		_countof(render_target_formats),
 		&depth_target_format,
 		vertex_layout,
-		shader_pipeline);
-	BCS_FAIL_THROW(shader_pipeline_result);
+		uv_space_shader_pipeline);
+	BCS_FAIL_THROW(uv_space_shader_pipeline_result);
+
+
+	c_graphics_shader_binary* lightmap_compute_test_shader_binary;
+	BCS_RESULT lightmap_compute_test_shader_binary_result = graphics_shader_binary_create(
+		&graphics,
+		_bcs_resource_type_generic_lightmap_compute_test_shader,
+		lightmap_compute_test_shader_binary);
+	BCS_FAIL_THROW(lightmap_compute_test_shader_binary_result);
+
+	BCS_RESULT compute_test_shader_pipeline_result = graphics_shader_pipeline_compute_create(
+		&graphics,
+		lightmap_compute_test_shader_binary,
+		compute_test_shader_pipeline);
+	BCS_FAIL_THROW(compute_test_shader_pipeline_result);
+
 
 	BCS_RESULT model_instance_create_result = graphics_render_instance_create(&graphics, render_instance);
 	BCS_FAIL_THROW(model_instance_create_result);
@@ -386,7 +414,7 @@ void c_lightmap::init(c_graphics& graphics)
 	BCS_FAIL_THROW(geometry_scene_destroy_result);
 }
 
-void c_lightmap::deinit(c_graphics& graphics)
+void c_lightmap::deinit()
 {
 	BCS_RESULT destroy_render_pass = graphics_render_pass_destroy(render_pass);
 
@@ -400,7 +428,7 @@ void c_lightmap::deinit(c_graphics& graphics)
 	BCS_RESULT destroy_uv_render_target_result = graphics_render_target_destroy(uv_render_target);
 
 	BCS_RESULT destroy_model_instance_result = graphics_render_instance_destroy(render_instance);
-	BCS_RESULT destroy_shader_pipeline_result = graphics_shader_pipeline_destroy(shader_pipeline);
+	BCS_RESULT destroy_shader_pipeline_result = graphics_shader_pipeline_destroy(uv_space_shader_pipeline);
 	for (c_lightmap_render_mesh* lightmap_render_mesh : lightmap_render_meshes)
 	{
 		delete lightmap_render_mesh;
@@ -415,7 +443,7 @@ void c_lightmap::render_graphics()
 
 void c_lightmap::render_pass_callback()
 {
-	shader_pipeline->bind();
+	uv_space_shader_pipeline->bind();
 
 	c_graphics_buffer* render_instance_buffer;
 	render_instance->get_graphics_buffer(render_instance_buffer);
@@ -427,6 +455,12 @@ void c_lightmap::render_pass_callback()
 	{
 		lightmap_render_mesh->geometry->render_geometry();
 	}
+
+	compute_test_shader_pipeline->bind();
+
+	graphics.dispatch(viewport_width, viewport_height);
+
+	debug_point;
 }
 
 void c_lightmap::render_texture_preview()

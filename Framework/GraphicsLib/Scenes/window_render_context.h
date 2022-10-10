@@ -6,9 +6,12 @@ class c_window_render_context :
 public:
 	c_window_render_context(
 		c_window& window,
-		float4 background_color);
+		float4 background_color,
+		c_graphics* existing_graphics_context);
 	~c_window_render_context();
 
+	BCS_RESULT init_graphics();
+	BCS_RESULT deinit_graphics();
 	BCS_RESULT init_render_context();
 	BCS_RESULT deinit_render_context();
 
@@ -26,14 +29,13 @@ public:
 
 	c_window& window;
 	c_graphics* graphics;
+	bool is_graphics_owner;
 	c_imgui_context* imgui_context;
 
 	c_graphics_render_target* depth_render_target;
 	c_graphics_swap_chain* swap_chain;
 	c_graphics_render_target* swap_chain_render_targets[swap_chain_frames];
 	c_graphics_render_pass* render_pass;
-
-	BCS_RESULT graphics_create_result;
 
 	t_callback_handle window_resize_handle;
 	t_callback_handle graphics_render_handle;
@@ -55,5 +57,6 @@ public:
 BCS_RESULT window_render_context_window_create(
 	c_window& window,
 	float4 background_color,
-	c_window_render_context*& render_context);
+	c_window_render_context*& render_context,
+	c_graphics* existing_graphics_context = nullptr);
 BCS_RESULT window_render_context_destroy(c_window_render_context* render_context);

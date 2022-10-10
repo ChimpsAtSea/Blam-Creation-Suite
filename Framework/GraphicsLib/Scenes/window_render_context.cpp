@@ -2,14 +2,15 @@
 
 c_window_render_context::c_window_render_context(
 	c_window& window,
-	float4 background_color) :
+	float4 background_color,
+	c_graphics* existing_graphics_context) :
 	window(window),
-	graphics(),
+	graphics(existing_graphics_context),
+	is_graphics_owner(false),
 	imgui_context(),
 	depth_render_target(),
 	swap_chain(),
 	render_pass(),
-	graphics_create_result(),
 	window_resize_handle(),
 	graphics_render_handle(),
 	render_pass_render_handle(),
@@ -18,6 +19,8 @@ c_window_render_context::c_window_render_context(
 	swap_chain_resize_finish_handle(),
 	background_color(background_color)
 {
+	BCS_RESULT init_graphics_result = init_graphics();
+	BCS_FAIL_THROW(init_graphics_result);
 	BCS_RESULT init_render_context_result = init_render_context();
 	BCS_FAIL_THROW(init_render_context_result);
 }
@@ -29,10 +32,19 @@ c_window_render_context::~c_window_render_context()
 
 	BCS_RESULT deinit_render_context_result = deinit_render_context();
 	BCS_FAIL_THROW(window_on_size_changed);
+
+	BCS_RESULT deinit_graphics_result = deinit_graphics();
+	BCS_FAIL_THROW(deinit_graphics_result);
 }
 
-BCS_RESULT c_window_render_context::init_render_context()
+BCS_RESULT c_window_render_context::init_graphics()
 {
+	BCS_RESULT rs = BCS_S_OK;
+	if (graphics != nullptr)
+	{
+		return rs;
+	}
+
 	bool use_debug_layer = BCS_SUCCEEDED(command_line_has_argument_internal("graphicsdebug"));
 	bool use_cpu_rendering = BCS_SUCCEEDED(command_line_has_argument_internal("forcecpurendering"));
 	e_graphics_architecture graphics_architecture = _graphics_architecture_d3d12;
@@ -40,7 +52,33 @@ BCS_RESULT c_window_render_context::init_render_context()
 	{
 		graphics_architecture = _graphics_architecture_d3d12_force_cpu;
 	}
-	BCS_FAIL_RETURN(graphics_create(graphics_architecture, use_debug_layer, graphics));
+
+	if (BCS_FAILED(rs = graphics_create(graphics_architecture, use_debug_layer, graphics)))
+	{
+		return rs;
+	}
+
+	is_graphics_owner = true;
+
+	return rs;
+}
+
+BCS_RESULT c_window_render_context::deinit_graphics()
+{
+	BCS_RESULT rs = BCS_S_OK;
+	if (!is_graphics_owner)
+	{
+		return rs;
+	}
+
+	BCS_RESULT graphics_destroy_result = graphics_destroy(graphics);
+	BCS_FAIL_RETURN(graphics_destroy_result);
+
+	return rs;
+}
+
+BCS_RESULT c_window_render_context::init_render_context()
+{
 	BCS_FAIL_RETURN(graphics_imgui_context_create(&window, graphics, imgui_context));
 	BCS_FAIL_RETURN(graphics_depth_stencil_render_target_create(
 		graphics,
@@ -106,13 +144,11 @@ BCS_RESULT c_window_render_context::deinit_render_context()
 	BCS_RESULT swap_chain_destroy_result = graphics_swap_chain_destroy(swap_chain);
 	BCS_RESULT depth_render_target_destroy_result = graphics_render_target_destroy(depth_render_target);
 	BCS_RESULT imgui_context_destroy_result = graphics_imgui_context_destroy(imgui_context);
-	BCS_RESULT graphics_destroy_result = graphics_destroy(graphics);
 
 	BCS_FAIL_RETURN(render_pass_destroy_result);
 	BCS_FAIL_RETURN(swap_chain_destroy_result);
 	BCS_FAIL_RETURN(depth_render_target_destroy_result);
 	BCS_FAIL_RETURN(imgui_context_destroy_result);
-	BCS_FAIL_RETURN(graphics_destroy_result);
 
 	return BCS_S_OK;
 }
@@ -231,13 +267,15 @@ void c_window_render_context::swap_chain_resize_finish(c_window_render_context& 
 BCS_RESULT window_render_context_window_create(
 	c_window& window,
 	float4 background_color,
-	c_window_render_context*& render_context)
+	c_window_render_context*& render_context,
+	c_graphics* existing_graphics_context)
 {
 	try
 	{
 		render_context = new() c_window_render_context(
 			window, 
-			background_color);
+			background_color,
+			existing_graphics_context);
 	}
 	catch (BCS_RESULT rs)
 	{
