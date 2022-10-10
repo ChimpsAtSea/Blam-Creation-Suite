@@ -15,6 +15,39 @@ enum e_graphics_register_layout_semantic
 
 BCS_DEBUG_API const char* register_layout_semantic_to_string(e_graphics_register_layout_semantic register_layout_semantic);
 
+enum e_graphics_sampler_filter : unsigned char
+{
+	_graphics_sampler_filter_min_mag_mip_point,
+	_graphics_sampler_filter_min_mag_point_mip_linear,
+	_graphics_sampler_filter_min_point_mag_linear_mip_point,
+	_graphics_sampler_filter_min_point_mag_mip_linear,
+	_graphics_sampler_filter_min_linear_mag_mip_point,
+	_graphics_sampler_filter_min_linear_mag_point_mip_linear,
+	_graphics_sampler_filter_min_mag_linear_mip_point,
+	_graphics_sampler_filter_min_mag_mip_linear,
+	_graphics_sampler_filter_anisotropic,
+};
+
+enum e_graphics_texture_address : unsigned char
+{
+	_graphics_texture_address_mode_wrap,
+	_graphics_texture_address_mode_mirror,
+	_graphics_texture_address_mode_clamp,
+	_graphics_texture_address_mode_border,
+	_graphics_texture_address_mode_mirror_once
+};
+
+struct s_graphics_sampler_layout_description
+{
+	e_graphics_sampler_filter filter;
+	e_graphics_texture_address texture_adress_u;
+	e_graphics_texture_address texture_adress_v;
+	e_graphics_texture_address texture_adress_w;
+	unsigned char anisotropy;
+	float minimum_mip;
+	float maximum_mip;
+};
+
 struct s_graphics_register_layout_description
 {
 	e_graphics_register_layout_semantic semantic;
@@ -23,6 +56,7 @@ struct s_graphics_register_layout_description
 	uint16_t register_space;
 	uint8_t num_32_bit_values;
 	bool use_table;
+	s_graphics_sampler_layout_description* sampler_layout_description;
 };
 
 class c_graphics;

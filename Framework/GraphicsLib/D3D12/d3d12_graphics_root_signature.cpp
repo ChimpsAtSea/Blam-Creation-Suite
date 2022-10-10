@@ -82,7 +82,7 @@ BCS_RESULT c_graphics_root_signature_init_data_d3d12::preprocess_register_layout
 				console_write_line("Can't use 32bit constant inside of descriptor table");
 				return BCS_E_INVALID_ARGUMENT;
 			default:
-				BCS_FAIL_THROW(BCS_E_UNSUPPORTED);
+				return BCS_E_UNSUPPORTED;
 			}
 		}
 		else
@@ -226,7 +226,7 @@ BCS_RESULT c_graphics_root_signature_init_data_d3d12::init_descriptor_table_root
 					break;
 				case _graphics_register_layout_32bit_constant:
 				default:
-					BCS_FAIL_THROW(BCS_E_UNSUPPORTED);
+					return BCS_E_UNSUPPORTED;
 				}
 
 				descriptor_range.NumDescriptors = register_layout_description.register_count;
@@ -268,6 +268,120 @@ BCS_RESULT c_graphics_root_signature_init_data_d3d12::init_descriptor_root_descr
 				{
 					D3D12_STATIC_SAMPLER_DESC& static_sampler = *static_samplers_position;
 
+					if (register_layout_description.sampler_layout_description == nullptr)
+					{
+						console_write_line("Sampler layout description must be supplied");
+						return BCS_E_INVALID_ARGUMENT;
+					}
+
+					s_graphics_sampler_layout_description& sampler_layout_description = *register_layout_description.sampler_layout_description;
+
+					switch (sampler_layout_description.filter)
+					{
+						case _graphics_sampler_filter_min_mag_mip_point:
+							static_sampler.Filter = D3D12_FILTER_MIN_MAG_MIP_POINT;
+							break;
+						case _graphics_sampler_filter_min_mag_point_mip_linear:
+							static_sampler.Filter = D3D12_FILTER_MIN_MAG_POINT_MIP_LINEAR;
+							break;
+						case _graphics_sampler_filter_min_point_mag_linear_mip_point:
+							static_sampler.Filter = D3D12_FILTER_MIN_POINT_MAG_LINEAR_MIP_POINT;
+							break;
+						case _graphics_sampler_filter_min_point_mag_mip_linear:
+							static_sampler.Filter = D3D12_FILTER_MIN_POINT_MAG_MIP_LINEAR;
+							break;
+						case _graphics_sampler_filter_min_linear_mag_mip_point:
+							static_sampler.Filter = D3D12_FILTER_MIN_LINEAR_MAG_MIP_POINT;
+							break;
+						case _graphics_sampler_filter_min_linear_mag_point_mip_linear:
+							static_sampler.Filter = D3D12_FILTER_MIN_LINEAR_MAG_POINT_MIP_LINEAR;
+							break;
+						case _graphics_sampler_filter_min_mag_linear_mip_point:
+							static_sampler.Filter = D3D12_FILTER_MIN_MAG_LINEAR_MIP_POINT;
+							break;
+						case _graphics_sampler_filter_min_mag_mip_linear:
+							static_sampler.Filter = D3D12_FILTER_MIN_MAG_MIP_LINEAR;
+							break;
+						case _graphics_sampler_filter_anisotropic:
+							static_sampler.Filter = D3D12_FILTER_ANISOTROPIC;
+							break;
+						default:
+							return BCS_E_UNSUPPORTED;
+					}
+
+					switch (sampler_layout_description.texture_adress_u)
+					{
+					case _graphics_texture_address_mode_wrap:
+						static_sampler.AddressU = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+						break;
+					case _graphics_texture_address_mode_mirror:
+						static_sampler.AddressU = D3D12_TEXTURE_ADDRESS_MODE_MIRROR;
+						break;
+					case _graphics_texture_address_mode_clamp:
+						static_sampler.AddressU = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+						break;
+					case _graphics_texture_address_mode_border:
+						static_sampler.AddressU = D3D12_TEXTURE_ADDRESS_MODE_BORDER;
+						break;
+					case _graphics_texture_address_mode_mirror_once:
+						static_sampler.AddressU = D3D12_TEXTURE_ADDRESS_MODE_MIRROR_ONCE;
+						break;
+					default:
+						return BCS_E_UNSUPPORTED;
+					}
+
+					switch (sampler_layout_description.texture_adress_v)
+					{
+					case _graphics_texture_address_mode_wrap:
+						static_sampler.AddressV = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+						break;
+					case _graphics_texture_address_mode_mirror:
+						static_sampler.AddressV = D3D12_TEXTURE_ADDRESS_MODE_MIRROR;
+						break;
+					case _graphics_texture_address_mode_clamp:
+						static_sampler.AddressV = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+						break;
+					case _graphics_texture_address_mode_border:
+						static_sampler.AddressV = D3D12_TEXTURE_ADDRESS_MODE_BORDER;
+						break;
+					case _graphics_texture_address_mode_mirror_once:
+						static_sampler.AddressV = D3D12_TEXTURE_ADDRESS_MODE_MIRROR_ONCE;
+						break;
+					default:
+						return BCS_E_UNSUPPORTED;
+					}
+
+					switch (sampler_layout_description.texture_adress_w)
+					{
+					case _graphics_texture_address_mode_wrap:
+						static_sampler.AddressW = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+						break;
+					case _graphics_texture_address_mode_mirror:
+						static_sampler.AddressW = D3D12_TEXTURE_ADDRESS_MODE_MIRROR;
+						break;
+					case _graphics_texture_address_mode_clamp:
+						static_sampler.AddressW = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+						break;
+					case _graphics_texture_address_mode_border:
+						static_sampler.AddressW = D3D12_TEXTURE_ADDRESS_MODE_BORDER;
+						break;
+					case _graphics_texture_address_mode_mirror_once:
+						static_sampler.AddressW = D3D12_TEXTURE_ADDRESS_MODE_MIRROR_ONCE;
+						break;
+					default:
+						return BCS_E_UNSUPPORTED;
+					}
+
+					static_sampler.MipLODBias = 0.0f; // #TODO: Should this be exposed?
+					static_sampler.MaxAnisotropy = __clamp(sampler_layout_description.anisotropy, 0, 16);
+					static_sampler.ComparisonFunc = D3D12_COMPARISON_FUNC_ALWAYS;
+					static_sampler.BorderColor = D3D12_STATIC_BORDER_COLOR_TRANSPARENT_BLACK;
+					static_sampler.MinLOD = __clamp(sampler_layout_description.minimum_mip, 0.0f, 64.0f);
+					static_sampler.MaxLOD = __clamp(sampler_layout_description.maximum_mip, 0.0f, 64.0f);
+					static_sampler.ShaderRegister = shader_register;
+					static_sampler.RegisterSpace = register_layout_description.register_space;
+					static_sampler.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+
 					static_samplers_position++;
 				}
 				else
@@ -280,26 +394,30 @@ BCS_RESULT c_graphics_root_signature_init_data_d3d12::init_descriptor_root_descr
 						root_parameter.ParameterType = D3D12_ROOT_PARAMETER_TYPE_SRV;
 						root_parameter.Descriptor.ShaderRegister = shader_register;
 						root_parameter.Descriptor.RegisterSpace = register_layout_description.register_space;
+						root_parameter.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
 						break;
 					case _graphics_register_layout_unordered_access:
 						root_parameter.ParameterType = D3D12_ROOT_PARAMETER_TYPE_UAV;
 						root_parameter.Descriptor.ShaderRegister = shader_register;
 						root_parameter.Descriptor.RegisterSpace = register_layout_description.register_space;
+						root_parameter.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
 						break;
 					case _graphics_register_layout_constant_buffer:
 						root_parameter.ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
 						root_parameter.Descriptor.ShaderRegister = shader_register;
 						root_parameter.Descriptor.RegisterSpace = register_layout_description.register_space;
+						root_parameter.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
 						break;
 					case _graphics_register_layout_32bit_constant:
 						root_parameter.ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
 						root_parameter.Constants.ShaderRegister = shader_register;
 						root_parameter.Constants.RegisterSpace = register_layout_description.register_space;
 						root_parameter.Constants.Num32BitValues = register_layout_description.num_32_bit_values;
+						root_parameter.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
 						break;
 					case _graphics_register_layout_sampler:
 					default:
-						BCS_FAIL_THROW(BCS_E_UNSUPPORTED);
+						return BCS_E_UNSUPPORTED;
 					}
 
 					root_patameters_position++;
