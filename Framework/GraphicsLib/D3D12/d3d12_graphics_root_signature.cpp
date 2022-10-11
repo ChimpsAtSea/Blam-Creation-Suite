@@ -1,7 +1,15 @@
 #include "graphicslib-private-pch.h"
 
-c_graphics_root_signature_init_data_d3d12::c_graphics_root_signature_init_data_d3d12() :
-	root_patameters(),
+c_graphics_root_signature_d3d12::c_graphics_root_signature_d3d12(
+	c_graphics_d3d12& graphics,
+	s_graphics_register_layout_description const* _register_layout_descriptions,
+	uint32_t _num_register_layout_descriptions,
+	const wchar_t* debug_name) :
+	c_graphics_register_layout(),
+	graphics(graphics),
+	register_layout_descriptions(nullptr),
+	num_register_layout_descriptions(_num_register_layout_descriptions),
+	root_parameters(),
 	descriptor_ranges(),
 	static_samplers(),
 	root_signature_description(),
@@ -13,56 +21,58 @@ c_graphics_root_signature_init_data_d3d12::c_graphics_root_signature_init_data_d
 	total_root_parameters(),
 	total_descriptor_table_ranges()
 {
-
-}
-
-c_graphics_root_signature_init_data_d3d12::~c_graphics_root_signature_init_data_d3d12()
-{
-	delete[] root_patameters;
-	delete[] descriptor_ranges;
-	delete[] static_samplers;
-}
-
-c_graphics_root_signature_d3d12::c_graphics_root_signature_d3d12(
-	c_graphics_d3d12& graphics,
-	s_graphics_register_layout_description* register_layout_descriptions,
-	uint32_t num_layout_descriptions,
-	const wchar_t* debug_name) :
-	c_graphics_register_layout(),
-	DEBUG_ONLY(c_graphics_root_signature_init_data_d3d12(),)
-	graphics(graphics)
-{
 #ifdef _DEBUG
-	c_graphics_root_signature_init_data_d3d12& init_data = *this;
+	c_graphics_root_signature_d3d12& init_data = *this;
 #else
-	c_graphics_root_signature_init_data_d3d12 init_data;
+	c_graphics_root_signature_d3d12 init_data;
 #endif
 
-	BCS_RESULT preprocess_register_layout_descriptions_result = init_data.preprocess_register_layout_descriptions(register_layout_descriptions, num_layout_descriptions);
-	BCS_FAIL_THROW(preprocess_register_layout_descriptions_result);
+	if (num_register_layout_descriptions > 0)
+	{
+		register_layout_descriptions = new() s_graphics_register_layout_description[num_register_layout_descriptions];
+		memcpy(register_layout_descriptions, _register_layout_descriptions, sizeof(*register_layout_descriptions) * num_register_layout_descriptions);
 
-	BCS_RESULT init_root_signature_description_result = init_data.init_root_signature_description(register_layout_descriptions, num_layout_descriptions);
-	BCS_FAIL_THROW(init_root_signature_description_result);
+		BCS_RESULT preprocess_register_layout_descriptions_result = init_data.preprocess_register_layout_descriptions();
+		if (BCS_FAILED(preprocess_register_layout_descriptions_result))
+		{
+			delete[] register_layout_descriptions;
+		}
+		BCS_FAIL_THROW(preprocess_register_layout_descriptions_result);
 
-	BCS_RESULT create_root_descriptor_result = init_root_descriptor(init_data, debug_name);
+		BCS_RESULT init_root_signature_description_result = init_data.init_root_signature_description();
+		if (BCS_FAILED(init_root_signature_description_result))
+		{
+			delete[] register_layout_descriptions;
+		}
+		BCS_FAIL_THROW(init_root_signature_description_result);
+	}
+
+	BCS_RESULT create_root_descriptor_result = init_root_descriptor(debug_name);
+	if (BCS_FAILED(create_root_descriptor_result))
+	{
+		if (register_layout_descriptions)
+		{
+			delete[] register_layout_descriptions;
+		}
+	}
 	BCS_FAIL_THROW(create_root_descriptor_result);
 }
 
 c_graphics_root_signature_d3d12::~c_graphics_root_signature_d3d12()
 {
-
+	delete[] root_parameters;
+	delete[] descriptor_ranges;
+	delete[] static_samplers;
 }
 
-BCS_RESULT c_graphics_root_signature_init_data_d3d12::preprocess_register_layout_descriptions(
-	s_graphics_register_layout_description* register_layout_descriptions,
-	uint32_t num_layout_descriptions)
+BCS_RESULT c_graphics_root_signature_d3d12::preprocess_register_layout_descriptions()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
 	unsigned int num_root_parameters[num_graphics_register_layouts] = {};
 	descriptor_table_bitmask = 0;
 
-	for (unsigned int layout_descriptor_index = 0; layout_descriptor_index < num_layout_descriptions; layout_descriptor_index++)
+	for (unsigned int layout_descriptor_index = 0; layout_descriptor_index < num_register_layout_descriptions; layout_descriptor_index++)
 	{
 		s_graphics_register_layout_description& register_layout_description = register_layout_descriptions[layout_descriptor_index];
 
@@ -121,29 +131,27 @@ BCS_RESULT c_graphics_root_signature_init_data_d3d12::preprocess_register_layout
 	return rs;
 }
 
-BCS_RESULT c_graphics_root_signature_init_data_d3d12::init_root_signature_description(
-	s_graphics_register_layout_description* register_layout_descriptions,
-	uint32_t num_layout_descriptions)
+BCS_RESULT c_graphics_root_signature_d3d12::init_root_signature_description()
 {
-	root_patameters = new() D3D12_ROOT_PARAMETER[total_root_parameters]{};
+	root_parameters = new() D3D12_ROOT_PARAMETER[total_root_parameters]{};
 	descriptor_ranges = new() D3D12_DESCRIPTOR_RANGE[total_descriptor_table_ranges];
 	static_samplers = new() D3D12_STATIC_SAMPLER_DESC[total_static_samplers]{};
 
 	BCS_RESULT rs = BCS_S_OK;
 
-	if (BCS_FAILED(rs = init_descriptor_table_root_descriptors(register_layout_descriptions, num_layout_descriptions)))
+	if (BCS_FAILED(rs = init_descriptor_table_root_descriptors()))
 	{
 		goto cleanup;
 	}
 
-	if (BCS_FAILED(rs = init_descriptor_root_descriptors(register_layout_descriptions, num_layout_descriptions)))
+	if (BCS_FAILED(rs = init_descriptor_root_descriptors()))
 	{
 		goto cleanup;
 	}
 
 	root_signature_description = {};
 	root_signature_description.NumParameters = total_root_parameters;
-	root_signature_description.pParameters = root_patameters;
+	root_signature_description.pParameters = root_parameters;
 	root_signature_description.NumStaticSamplers = total_static_samplers;
 	root_signature_description.pStaticSamplers = static_samplers;
 	root_signature_description.Flags = D3D12_ROOT_SIGNATURE_FLAG_NONE;
@@ -153,16 +161,14 @@ BCS_RESULT c_graphics_root_signature_init_data_d3d12::init_root_signature_descri
 
 cleanup:
 
-	delete[] root_patameters;
+	delete[] root_parameters;
 	delete[] descriptor_ranges;
 	delete[] static_samplers;
 
 	return rs;
 }
 
-BCS_RESULT c_graphics_root_signature_init_data_d3d12::init_descriptor_table_root_descriptors(
-	s_graphics_register_layout_description* register_layout_descriptions,
-	uint32_t num_layout_descriptions)
+BCS_RESULT c_graphics_root_signature_d3d12::init_descriptor_table_root_descriptors()
 {
 	if (descriptor_table_bitmask == 0)
 	{
@@ -179,7 +185,7 @@ BCS_RESULT c_graphics_root_signature_init_data_d3d12::init_descriptor_table_root
 		{
 			if (unsigned int num_descriptor_table_range_entries = num_descriptor_table_ranges[register_layout_index])
 			{
-				D3D12_ROOT_PARAMETER* descriptor_table_root_parameter = root_patameters + indirection_index;
+				D3D12_ROOT_PARAMETER* descriptor_table_root_parameter = root_parameters + indirection_index;
 
 				descriptor_table_root_parameters_indirection[register_layout_index] = descriptor_table_root_parameter;
 				descriptor_ranges_indirection[register_layout_index] = descriptor_ranges_position;
@@ -202,7 +208,7 @@ BCS_RESULT c_graphics_root_signature_init_data_d3d12::init_descriptor_table_root
 	{
 		unsigned int descriptor_table_layout_descriptor_index = 0;
 		unsigned int descriptor_table_range_offsets[num_graphics_register_layouts] = {};
-		for (unsigned int layout_descriptor_index = 0; layout_descriptor_index < num_layout_descriptions; layout_descriptor_index++)
+		for (unsigned int layout_descriptor_index = 0; layout_descriptor_index < num_register_layout_descriptions; layout_descriptor_index++)
 		{
 			s_graphics_register_layout_description& register_layout_description = register_layout_descriptions[layout_descriptor_index];
 			if (register_layout_description.use_table)
@@ -243,20 +249,18 @@ BCS_RESULT c_graphics_root_signature_init_data_d3d12::init_descriptor_table_root
 	}
 }
 
-BCS_RESULT c_graphics_root_signature_init_data_d3d12::init_descriptor_root_descriptors(
-	s_graphics_register_layout_description* register_layout_descriptions,
-	uint32_t num_layout_descriptions)
+BCS_RESULT c_graphics_root_signature_d3d12::init_descriptor_root_descriptors()
 {
 	if (num_descriptor_root_parameters == 0)
 	{
 		return BCS_S_OK;
 	}
 
-	D3D12_ROOT_PARAMETER* root_patameters_position = root_patameters + num_descriptor_table_root_parameters;
+	D3D12_ROOT_PARAMETER* root_parameters_position = root_parameters + num_descriptor_table_root_parameters;
 	D3D12_STATIC_SAMPLER_DESC* static_samplers_position = static_samplers;
 	debug_point;
 
-	for (unsigned int layout_descriptor_index = 0; layout_descriptor_index < num_layout_descriptions; layout_descriptor_index++)
+	for (unsigned int layout_descriptor_index = 0; layout_descriptor_index < num_register_layout_descriptions; layout_descriptor_index++)
 	{
 		s_graphics_register_layout_description& register_layout_description = register_layout_descriptions[layout_descriptor_index];
 		if (!register_layout_description.use_table)
@@ -278,35 +282,35 @@ BCS_RESULT c_graphics_root_signature_init_data_d3d12::init_descriptor_root_descr
 
 					switch (sampler_layout_description.filter)
 					{
-						case _graphics_sampler_filter_min_mag_mip_point:
-							static_sampler.Filter = D3D12_FILTER_MIN_MAG_MIP_POINT;
-							break;
-						case _graphics_sampler_filter_min_mag_point_mip_linear:
-							static_sampler.Filter = D3D12_FILTER_MIN_MAG_POINT_MIP_LINEAR;
-							break;
-						case _graphics_sampler_filter_min_point_mag_linear_mip_point:
-							static_sampler.Filter = D3D12_FILTER_MIN_POINT_MAG_LINEAR_MIP_POINT;
-							break;
-						case _graphics_sampler_filter_min_point_mag_mip_linear:
-							static_sampler.Filter = D3D12_FILTER_MIN_POINT_MAG_MIP_LINEAR;
-							break;
-						case _graphics_sampler_filter_min_linear_mag_mip_point:
-							static_sampler.Filter = D3D12_FILTER_MIN_LINEAR_MAG_MIP_POINT;
-							break;
-						case _graphics_sampler_filter_min_linear_mag_point_mip_linear:
-							static_sampler.Filter = D3D12_FILTER_MIN_LINEAR_MAG_POINT_MIP_LINEAR;
-							break;
-						case _graphics_sampler_filter_min_mag_linear_mip_point:
-							static_sampler.Filter = D3D12_FILTER_MIN_MAG_LINEAR_MIP_POINT;
-							break;
-						case _graphics_sampler_filter_min_mag_mip_linear:
-							static_sampler.Filter = D3D12_FILTER_MIN_MAG_MIP_LINEAR;
-							break;
-						case _graphics_sampler_filter_anisotropic:
-							static_sampler.Filter = D3D12_FILTER_ANISOTROPIC;
-							break;
-						default:
-							return BCS_E_UNSUPPORTED;
+					case _graphics_sampler_filter_min_mag_mip_point:
+						static_sampler.Filter = D3D12_FILTER_MIN_MAG_MIP_POINT;
+						break;
+					case _graphics_sampler_filter_min_mag_point_mip_linear:
+						static_sampler.Filter = D3D12_FILTER_MIN_MAG_POINT_MIP_LINEAR;
+						break;
+					case _graphics_sampler_filter_min_point_mag_linear_mip_point:
+						static_sampler.Filter = D3D12_FILTER_MIN_POINT_MAG_LINEAR_MIP_POINT;
+						break;
+					case _graphics_sampler_filter_min_point_mag_mip_linear:
+						static_sampler.Filter = D3D12_FILTER_MIN_POINT_MAG_MIP_LINEAR;
+						break;
+					case _graphics_sampler_filter_min_linear_mag_mip_point:
+						static_sampler.Filter = D3D12_FILTER_MIN_LINEAR_MAG_MIP_POINT;
+						break;
+					case _graphics_sampler_filter_min_linear_mag_point_mip_linear:
+						static_sampler.Filter = D3D12_FILTER_MIN_LINEAR_MAG_POINT_MIP_LINEAR;
+						break;
+					case _graphics_sampler_filter_min_mag_linear_mip_point:
+						static_sampler.Filter = D3D12_FILTER_MIN_MAG_LINEAR_MIP_POINT;
+						break;
+					case _graphics_sampler_filter_min_mag_mip_linear:
+						static_sampler.Filter = D3D12_FILTER_MIN_MAG_MIP_LINEAR;
+						break;
+					case _graphics_sampler_filter_anisotropic:
+						static_sampler.Filter = D3D12_FILTER_ANISOTROPIC;
+						break;
+					default:
+						return BCS_E_UNSUPPORTED;
 					}
 
 					switch (sampler_layout_description.texture_adress_u)
@@ -386,7 +390,7 @@ BCS_RESULT c_graphics_root_signature_init_data_d3d12::init_descriptor_root_descr
 				}
 				else
 				{
-					D3D12_ROOT_PARAMETER& root_parameter = *root_patameters_position;
+					D3D12_ROOT_PARAMETER& root_parameter = *root_parameters_position;
 
 					switch (register_layout_description.semantic)
 					{
@@ -420,7 +424,7 @@ BCS_RESULT c_graphics_root_signature_init_data_d3d12::init_descriptor_root_descr
 						return BCS_E_UNSUPPORTED;
 					}
 
-					root_patameters_position++;
+					root_parameters_position++;
 				}
 			}
 		}
@@ -428,13 +432,13 @@ BCS_RESULT c_graphics_root_signature_init_data_d3d12::init_descriptor_root_descr
 	debug_point;
 }
 
-BCS_RESULT c_graphics_root_signature_d3d12::init_root_descriptor(c_graphics_root_signature_init_data_d3d12& init_data, const wchar_t* debug_name)
+BCS_RESULT c_graphics_root_signature_d3d12::init_root_descriptor(const wchar_t* debug_name)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
 	ID3DBlob* root_signature_blob = nullptr;
 	ID3DBlob* root_signature_error_blob = nullptr;
-	HRESULT serialize_root_signature_result = D3D12SerializeRootSignature(&init_data.root_signature_description, D3D_ROOT_SIGNATURE_VERSION_1_0, &root_signature_blob, &root_signature_error_blob);
+	HRESULT serialize_root_signature_result = D3D12SerializeRootSignature(&root_signature_description, D3D_ROOT_SIGNATURE_VERSION_1_0, &root_signature_blob, &root_signature_error_blob);
 	if (root_signature_error_blob)
 	{
 		// #TODO: Handle the error
@@ -467,9 +471,216 @@ BCS_RESULT c_graphics_root_signature_d3d12::init_root_descriptor(c_graphics_root
 	return rs;
 }
 
+void c_graphics_root_signature_d3d12::bind_compute() const
+{
+	graphics.command_list->SetComputeRootSignature(root_signature);
+}
+
+void c_graphics_root_signature_d3d12::bind_graphics() const
+{
+	graphics.command_list->SetGraphicsRootSignature(root_signature);
+}
+
+BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_buffer(
+	D3D12_ROOT_PARAMETER_TYPE target_root_parameter_type,
+	unsigned int target_register_index,
+	unsigned int target_register_space,
+	c_graphics_buffer_d3d12& graphics_buffer) const
+{
+	// try to find a root parameter first as a fastpath
+	for (unsigned int root_parameter_index = 0; root_parameter_index < total_root_parameters; root_parameter_index++)
+	{
+		D3D12_ROOT_PARAMETER& root_parameter = root_parameters[root_parameter_index];
+
+		if (root_parameter.ParameterType == target_root_parameter_type)
+		{
+			switch (root_parameter.ParameterType)
+			{
+			case D3D12_ROOT_PARAMETER_TYPE_CBV:
+			{
+				if (root_parameter.Descriptor.RegisterSpace == target_register_space && root_parameter.Descriptor.ShaderRegister == target_register_index)
+				{
+					D3D12_GPU_VIRTUAL_ADDRESS gpu_virtual_address = graphics_buffer.gpu_resource->GetGPUVirtualAddress();
+					graphics.command_list->SetGraphicsRootConstantBufferView(root_parameter_index, gpu_virtual_address);
+				}
+			}
+			return BCS_S_OK;
+			case D3D12_ROOT_PARAMETER_TYPE_SRV:
+			{
+				if (root_parameter.Descriptor.RegisterSpace == target_register_space && root_parameter.Descriptor.ShaderRegister == target_register_index)
+				{
+					D3D12_GPU_VIRTUAL_ADDRESS gpu_virtual_address = graphics_buffer.gpu_resource->GetGPUVirtualAddress();
+					graphics.command_list->SetGraphicsRootShaderResourceView(root_parameter_index, gpu_virtual_address);
+				}
+			}
+			return BCS_S_OK;
+			case D3D12_ROOT_PARAMETER_TYPE_UAV:
+			{
+				if (root_parameter.Descriptor.RegisterSpace == target_register_space && root_parameter.Descriptor.ShaderRegister == target_register_index)
+				{
+					D3D12_GPU_VIRTUAL_ADDRESS gpu_virtual_address = graphics_buffer.gpu_resource->GetGPUVirtualAddress();
+					graphics.command_list->SetGraphicsRootUnorderedAccessView(root_parameter_index, gpu_virtual_address);
+				}
+			}
+			return BCS_S_OK;
+			}
+		}
+	}
+
+	return BCS_E_NOT_FOUND;
+}
+
+BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_table_buffer(
+	D3D12_DESCRIPTOR_RANGE_TYPE target_descriptor_range_type,
+	unsigned int target_register_index,
+	unsigned int target_register_space,
+	c_graphics_buffer_d3d12& graphics_buffer) const
+{
+	// try to find a descriptor range slow path
+	for (unsigned int root_parameter_index = 0; root_parameter_index < total_root_parameters; root_parameter_index++)
+	{
+		D3D12_ROOT_PARAMETER& root_parameter = root_parameters[root_parameter_index];
+		if (root_parameter.ParameterType == D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE)
+		{
+			unsigned int const num_descripor_ranges = root_parameter.DescriptorTable.NumDescriptorRanges;
+			for (unsigned int descriptor_range_index = 0; descriptor_range_index < num_descripor_ranges; descriptor_range_index++)
+			{
+				const D3D12_DESCRIPTOR_RANGE& descriptor_range = root_parameter.DescriptorTable.pDescriptorRanges[descriptor_range_index];
+
+				if (descriptor_range.RangeType == target_descriptor_range_type)
+				{
+					if (
+						descriptor_range.RegisterSpace == target_register_space &&
+						descriptor_range.BaseShaderRegister >= target_register_index &&
+						(descriptor_range.BaseShaderRegister + descriptor_range.NumDescriptors) > target_register_index)
+					{
+						switch (descriptor_range.RangeType)
+						{
+						case D3D12_DESCRIPTOR_RANGE_TYPE_SRV:
+						case D3D12_DESCRIPTOR_RANGE_TYPE_UAV:
+						case D3D12_DESCRIPTOR_RANGE_TYPE_CBV:
+						{
+							D3D12_GPU_DESCRIPTOR_HANDLE descriptor_handle = graphics_buffer.get_gpu_descriptor_handle();
+							graphics.command_list->SetGraphicsRootDescriptorTable(root_parameter_index, descriptor_handle);
+						}
+						return BCS_S_OK;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return BCS_E_NOT_FOUND;
+}
+
+BCS_RESULT c_graphics_root_signature_d3d12::bind_buffer(
+	unsigned int register_layout_description_index,
+	unsigned int register_layout_offset,
+	c_graphics_buffer& _graphics_buffer) const
+{
+	c_graphics_buffer_d3d12& graphics_buffer = reinterpret_cast<c_graphics_buffer_d3d12&>(_graphics_buffer);
+
+	if (register_layout_description_index >= num_register_layout_descriptions)
+	{
+		return BCS_E_OUT_OF_RANGE;
+	}
+
+	s_graphics_register_layout_description& register_layout_description = register_layout_descriptions[register_layout_description_index];
+
+	unsigned int const target_register_index = register_layout_description.register_index + register_layout_offset;
+	unsigned int const target_register_space = register_layout_description.register_space;
+
+	if (register_layout_description.use_table)
+	{
+		D3D12_DESCRIPTOR_RANGE_TYPE target_descriptor_range_type;
+		switch (register_layout_description.semantic)
+		{
+		case _graphics_register_layout_unordered_access:
+			target_descriptor_range_type = D3D12_DESCRIPTOR_RANGE_TYPE_UAV;
+			break;
+		case _graphics_register_layout_constant_buffer:
+			target_descriptor_range_type = D3D12_DESCRIPTOR_RANGE_TYPE_CBV;
+			break;
+		default:
+			return BCS_E_UNSUPPORTED;
+		}
+
+		BCS_RESULT bind_descriptor_table_buffer_result = bind_descriptor_table_buffer(target_descriptor_range_type, target_register_index, target_register_space, graphics_buffer);
+		return bind_descriptor_table_buffer_result;
+	}
+	else
+	{
+		D3D12_ROOT_PARAMETER_TYPE target_root_parameter_type;
+		switch (register_layout_description.semantic)
+		{
+		case _graphics_register_layout_unordered_access:
+			target_root_parameter_type = D3D12_ROOT_PARAMETER_TYPE_UAV;
+			break;
+		case _graphics_register_layout_constant_buffer:
+			target_root_parameter_type = D3D12_ROOT_PARAMETER_TYPE_CBV;
+			break;
+		default:
+			return BCS_E_UNSUPPORTED;
+		}
+
+		BCS_RESULT bind_descriptor_table_buffer_result = bind_descriptor_buffer(target_root_parameter_type, target_register_index, target_register_space, graphics_buffer);
+		return bind_descriptor_table_buffer_result;
+	}
+}
+
+BCS_RESULT c_graphics_root_signature_d3d12::bind_buffer(
+	e_graphics_register_layout_semantic semantic,
+	unsigned int target_register_index,
+	unsigned int target_register_space,
+	c_graphics_buffer& _graphics_buffer) const
+{
+	c_graphics_buffer_d3d12& graphics_buffer = reinterpret_cast<c_graphics_buffer_d3d12&>(_graphics_buffer);
+
+	// #TODO: Accelerate using a binary search. Encode the register index, register space, and type into an index.
+
+	BCS_RESULT rs = BCS_E_FAIL;
+
+	if(BCS_FAILED(rs))
+	{
+		D3D12_ROOT_PARAMETER_TYPE target_root_parameter_type;
+		switch (semantic)
+		{
+		case _graphics_register_layout_unordered_access:
+			target_root_parameter_type = D3D12_ROOT_PARAMETER_TYPE_UAV;
+			break;
+		case _graphics_register_layout_constant_buffer:
+			target_root_parameter_type = D3D12_ROOT_PARAMETER_TYPE_CBV;
+			break;
+		default:
+			return BCS_E_UNSUPPORTED;
+		}
+		rs = bind_descriptor_buffer(target_root_parameter_type, target_register_index, target_register_space, graphics_buffer);
+	}
+	if (BCS_FAILED(rs))
+	{
+		D3D12_DESCRIPTOR_RANGE_TYPE target_descriptor_range_type;
+		switch (semantic)
+		{
+		case _graphics_register_layout_unordered_access:
+			target_descriptor_range_type = D3D12_DESCRIPTOR_RANGE_TYPE_UAV;
+			break;
+		case _graphics_register_layout_constant_buffer:
+			target_descriptor_range_type = D3D12_DESCRIPTOR_RANGE_TYPE_CBV;
+			break;
+		default:
+			return BCS_E_UNSUPPORTED;
+		}
+
+		rs = bind_descriptor_table_buffer(target_descriptor_range_type, target_register_index, target_register_space, graphics_buffer);
+	}
+
+	return rs;
+}
+
 BCS_RESULT graphics_d3d12_root_signature_create(
 	c_graphics_d3d12* graphics,
-	s_graphics_register_layout_description* descriptions,
+	s_graphics_register_layout_description const* register_layout_descriptions,
 	uint32_t num_layout_descriptions,
 	c_graphics_root_signature_d3d12*& root_signature,
 	const char* debug_name)
@@ -479,7 +690,7 @@ BCS_RESULT graphics_d3d12_root_signature_create(
 	{
 		root_signature = new() c_graphics_root_signature_d3d12(
 			*graphics,
-			descriptions,
+			register_layout_descriptions,
 			num_layout_descriptions,
 			debug_name_wc
 		);

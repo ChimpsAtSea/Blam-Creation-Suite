@@ -46,8 +46,6 @@ public:
 	void deinit_command_list();
 	void init_synchronization_objects();
 	void deinit_synchronization_objects();
-	void init_root_signature();
-	void deinit_root_signature();
 
 	static void set_object_debug_name(const wchar_t* debug_name, const wchar_t* internal_name, ID3D12Object* d3d12_object);
 
@@ -92,7 +90,6 @@ public:
 
 	ID3D12CommandAllocator* command_allocator;
 	ID3D12CommandQueue* command_queue;
-	ID3D12RootSignature* root_signature;
 	ID3D12GraphicsCommandList1* command_list;
 
 	union

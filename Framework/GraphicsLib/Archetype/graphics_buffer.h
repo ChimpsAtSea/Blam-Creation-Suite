@@ -17,7 +17,6 @@ public:
 	virtual BCS_RESULT write_data(const void* buffer, uint32_t buffer_size) = 0;
 	virtual BCS_RESULT write_data(const void* buffer, uint32_t element_size, uint32_t element_count) = 0;
 	virtual BCS_RESULT read_data(void* buffer, uint32_t buffer_size) = 0;
-	virtual void bind(uint32_t index) = 0;
 };
 
 BCS_DEBUG_API BCS_RESULT graphics_buffer_create(

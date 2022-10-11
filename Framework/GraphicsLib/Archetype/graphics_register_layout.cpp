@@ -29,7 +29,7 @@ c_graphics_register_layout::~c_graphics_register_layout()
 
 BCS_DEBUG_API BCS_RESULT graphics_register_layout_create(
 	c_graphics* graphics,
-	s_graphics_register_layout_description* descriptions,
+	s_graphics_register_layout_description const* register_layout_descriptions,
 	uint32_t num_layout_descriptions,
 	c_graphics_register_layout*& register_layout,
 	const char* debug_name)
@@ -38,7 +38,7 @@ BCS_DEBUG_API BCS_RESULT graphics_register_layout_create(
 	{
 		return graphics_d3d12_root_signature_create(
 			graphics_d3d12,
-			descriptions,
+			register_layout_descriptions,
 			num_layout_descriptions,
 			*reinterpret_cast<c_graphics_root_signature_d3d12**>(&register_layout),
 			debug_name);

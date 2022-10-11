@@ -100,12 +100,6 @@ BCS_RESULT c_graphics_buffer_d3d12::read_data(void* buffer, uint32_t buffer_size
 	return BCS_S_OK;
 }
 
-void c_graphics_buffer_d3d12::bind(uint32_t index)
-{
-	D3D12_GPU_DESCRIPTOR_HANDLE descriptor_handle = get_gpu_descriptor_handle();
-	graphics.command_list->SetGraphicsRootDescriptorTable(index, descriptor_handle);
-}
-
 uint32_t c_graphics_buffer_d3d12::get_gpu_descriptor_heap_index() const
 {
 	return shader_visible_descriptor_heap_index;

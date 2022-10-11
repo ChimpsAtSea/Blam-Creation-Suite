@@ -12,14 +12,19 @@ c_graphics_shader_pipeline::~c_graphics_shader_pipeline()
 
 BCS_RESULT graphics_shader_pipeline_compute_create(
 	c_graphics* graphics,
+	c_graphics_register_layout* register_layout,
 	c_graphics_shader_binary* shader_binary,
 	c_graphics_shader_pipeline*& shader_pipeline,
 	const char* debug_name)
 {
+	BCS_VALIDATE_ARGUMENT(graphics);
+	BCS_VALIDATE_ARGUMENT(register_layout);
+
 	if (c_graphics_d3d12* graphics_d3d12 = dynamic_cast<c_graphics_d3d12*>(graphics))
 	{
 		return graphics_d3d12_shader_pipeline_compute_create(
 			graphics_d3d12,
+			dynamic_cast<c_graphics_root_signature_d3d12*>(register_layout),
 			reinterpret_cast<c_graphics_shader_binary_d3d12*>(shader_binary),
 			*reinterpret_cast<c_graphics_shader_pipeline_compute_d3d12**>(&shader_pipeline),
 			debug_name);
@@ -29,6 +34,7 @@ BCS_RESULT graphics_shader_pipeline_compute_create(
 
 BCS_RESULT graphics_shader_pipeline_graphics_create(
 	c_graphics* graphics,
+	c_graphics_register_layout* register_layout,
 	c_graphics_shader_binary** shader_binaries,
 	uint32_t num_shader_binaries,
 	e_graphics_data_format* render_target_data_formats,
@@ -38,10 +44,14 @@ BCS_RESULT graphics_shader_pipeline_graphics_create(
 	c_graphics_shader_pipeline*& shader_pipeline,
 	const char* debug_name)
 {
+	BCS_VALIDATE_ARGUMENT(graphics);
+	BCS_VALIDATE_ARGUMENT(register_layout);
+
 	if (c_graphics_d3d12* graphics_d3d12 = dynamic_cast<c_graphics_d3d12*>(graphics))
 	{
 		return graphics_d3d12_shader_pipeline_graphics_create(
 			graphics_d3d12,
+			dynamic_cast<c_graphics_root_signature_d3d12*>(register_layout),
 			reinterpret_cast<c_graphics_shader_binary_d3d12**>(shader_binaries),
 			num_shader_binaries,
 			render_target_data_formats,

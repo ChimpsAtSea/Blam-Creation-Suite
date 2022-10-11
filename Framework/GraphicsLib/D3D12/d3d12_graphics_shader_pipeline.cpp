@@ -2,8 +2,10 @@
 
 c_graphics_shader_pipeline_d3d12::c_graphics_shader_pipeline_d3d12(
 	c_graphics_d3d12& _graphics,
+	c_graphics_root_signature_d3d12& _root_signature,
 	const wchar_t* _debug_name) :
 	graphics(_graphics),
+	root_signature(_root_signature),
 	pipeline_state(),
 	debug_name(wcsdup(_debug_name))
 {
@@ -22,14 +24,15 @@ void c_graphics_shader_pipeline_d3d12::bind()
 
 c_graphics_shader_pipeline_compute_d3d12::c_graphics_shader_pipeline_compute_d3d12(
 	c_graphics_d3d12& graphics,
+	c_graphics_root_signature_d3d12& root_signature,
 	c_graphics_shader_binary_d3d12* shader_binary,
 	const wchar_t* debug_name) :
-	c_graphics_shader_pipeline_d3d12(graphics, debug_name),
+	c_graphics_shader_pipeline_d3d12(graphics, root_signature, debug_name),
 	pipeline_state_description()
 {
 	BCS_VALIDATE_ARGUMENT_THROW(shader_binary);
 
-	pipeline_state_description.pRootSignature = graphics.root_signature;
+	pipeline_state_description.pRootSignature = root_signature.root_signature;
 	pipeline_state_description.NodeMask = 0;
 	pipeline_state_description.CachedPSO = {};
 
@@ -61,6 +64,7 @@ c_graphics_shader_pipeline_compute_d3d12::~c_graphics_shader_pipeline_compute_d3
 
 c_graphics_shader_pipeline_graphics_d3d12::c_graphics_shader_pipeline_graphics_d3d12(
 	c_graphics_d3d12& graphics,
+	c_graphics_root_signature_d3d12& root_signature,
 	c_graphics_shader_binary_d3d12** shader_binaries,
 	uint32_t num_shader_binaries,
 	e_graphics_data_format* render_target_data_formats,
@@ -68,14 +72,14 @@ c_graphics_shader_pipeline_graphics_d3d12::c_graphics_shader_pipeline_graphics_d
 	e_graphics_data_format* depth_data_format,
 	c_graphics_vertex_layout_d3d12& vertex_layout,
 	const wchar_t* debug_name) :
-	c_graphics_shader_pipeline_d3d12(graphics, debug_name),
+	c_graphics_shader_pipeline_d3d12(graphics, root_signature, debug_name),
 	pipeline_state_description()
 {
 	BCS_VALIDATE_ARGUMENT_THROW(shader_binaries);
 	BCS_VALIDATE_ARGUMENT_THROW(num_shader_binaries > 0);
 	BCS_VALIDATE_ARGUMENT_THROW(num_render_targets <= 8);
 
-	pipeline_state_description.pRootSignature = graphics.root_signature;
+	pipeline_state_description.pRootSignature = root_signature.root_signature;
 	pipeline_state_description.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
 	pipeline_state_description.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
 	pipeline_state_description.DepthStencilState = CD3DX12_DEPTH_STENCIL_DESC1(D3D12_DEFAULT);
@@ -134,15 +138,20 @@ c_graphics_shader_pipeline_graphics_d3d12::~c_graphics_shader_pipeline_graphics_
 
 BCS_RESULT graphics_d3d12_shader_pipeline_compute_create(
 	c_graphics_d3d12* graphics,
+	c_graphics_root_signature_d3d12* root_signature,
 	c_graphics_shader_binary_d3d12* shader_binary,
 	c_graphics_shader_pipeline_compute_d3d12*& shader_pipeline,
 	const char* debug_name)
 {
+	BCS_VALIDATE_ARGUMENT(graphics);
+	BCS_VALIDATE_ARGUMENT(root_signature);
+
 	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
 	try
 	{
 		shader_pipeline = new() c_graphics_shader_pipeline_compute_d3d12(
 			*graphics,
+			*root_signature,
 			shader_binary,
 			debug_name_wc);
 	}
@@ -159,6 +168,7 @@ BCS_RESULT graphics_d3d12_shader_pipeline_compute_create(
 
 BCS_RESULT graphics_d3d12_shader_pipeline_graphics_create(
 	c_graphics_d3d12* graphics,
+	c_graphics_root_signature_d3d12* root_signature,
 	c_graphics_shader_binary_d3d12** shader_binaries,
 	uint32_t num_shader_binaries,
 	e_graphics_data_format* render_target_data_formats,
@@ -168,11 +178,15 @@ BCS_RESULT graphics_d3d12_shader_pipeline_graphics_create(
 	c_graphics_shader_pipeline_graphics_d3d12*& shader_pipeline,
 	const char* debug_name)
 {
+	BCS_VALIDATE_ARGUMENT(graphics);
+	BCS_VALIDATE_ARGUMENT(root_signature);
+
 	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
 	try
 	{
 		shader_pipeline = new() c_graphics_shader_pipeline_graphics_d3d12(
 			*graphics,
+			*root_signature,
 			shader_binaries,
 			num_shader_binaries,
 			render_target_data_formats,

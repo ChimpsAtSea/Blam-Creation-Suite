@@ -21,6 +21,9 @@ public:
 	uint32_t viewport_width;
 	uint32_t viewport_height;
 
+	c_graphics_register_layout* graphics_register_layout;
+	c_graphics_register_layout* compute_register_layout;
+
 	void init();
 	void deinit();
 	void render_graphics();
