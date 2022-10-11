@@ -429,10 +429,8 @@ void c_graphics_d3d12::submit_command_list()
 	command_queue->ExecuteCommandLists(_countof(command_lists), command_lists);
 }
 
-BCS_RESULT c_graphics_d3d12::render_frame()
+BCS_RESULT c_graphics_d3d12::begin()
 {
-	BCS_RESULT rs = BCS_S_OK;
-
 	HRESULT ready_command_list_result = ready_command_list();
 	if (FAILED(ready_command_list_result))
 	{
@@ -440,6 +438,13 @@ BCS_RESULT c_graphics_d3d12::render_frame()
 	}
 
 	create_command_list();
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_graphics_d3d12::end()
+{
+	BCS_RESULT rs = BCS_S_OK;
 
 	HRESULT finish_command_list_result = finish_command_list();
 	if (FAILED(finish_command_list_result))
@@ -455,6 +460,23 @@ BCS_RESULT c_graphics_d3d12::render_frame()
 	}
 
 	if (BCS_FAILED(rs = wait_for_frame_to_complete_cpu()))
+	{
+		return rs;
+	}
+
+	return rs;
+}
+
+BCS_RESULT c_graphics_d3d12::execute()
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	if (BCS_FAILED(rs = begin()))
+	{
+		return rs;
+	}
+
+	if (BCS_FAILED(rs = end()))
 	{
 		return rs;
 	}

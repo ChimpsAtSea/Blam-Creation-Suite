@@ -16,7 +16,9 @@ protected:
 public:
 	virtual ~c_graphics();
 
-	virtual BCS_RESULT render_frame() = 0;
+	virtual BCS_RESULT begin() = 0;
+	virtual BCS_RESULT end() = 0;
+	virtual BCS_RESULT execute() = 0;
 	virtual BCS_RESULT dispatch(uint32_t x = 1, uint32_t y = 1, uint32_t z = 1) = 0;
 
 	using t_present_callback_d3d12 = BCS_RESULT();

@@ -128,7 +128,7 @@ void c_graphics_camera_d3d12::update_buffers()
 	dxmatrix_to_float4x4(dx_view_perspective, view_perspective);
 
 	r_camera_d3d12& camera_gpu_data = static_cast<r_camera_d3d12&>(*this);
-	graphics_buffer->write_data(&camera_gpu_data, sizeof(r_camera_d3d12));
+	graphics_buffer->write_data(&camera_gpu_data, sizeof(r_camera_d3d12), 0);
 
 	current_camera_hash = XXH64(&camera_data, sizeof(s_camera_state_d3d12), 0);
 	camera_hash = current_camera_hash;

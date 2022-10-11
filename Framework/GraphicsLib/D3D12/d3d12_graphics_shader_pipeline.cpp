@@ -206,7 +206,7 @@ BCS_RESULT graphics_d3d12_shader_pipeline_graphics_create(
 	return BCS_S_OK;
 }
 
-BCS_RESULT graphics_d3d12_shader_pipeline_destroy(c_graphics_shader_pipeline_graphics_d3d12* shader_pipeline)
+BCS_RESULT graphics_d3d12_shader_pipeline_destroy(c_graphics_shader_pipeline_d3d12* shader_pipeline)
 {
 	try
 	{

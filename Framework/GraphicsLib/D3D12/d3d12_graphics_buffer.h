@@ -20,9 +20,11 @@ public:
 	D3D12_GPU_DESCRIPTOR_HANDLE get_gpu_descriptor_handle() const;
 	ID3D12Resource* get_resource() const;
 	uint32_t get_data_size() const;
-	virtual BCS_RESULT write_data(const void* buffer, uint32_t buffer_size) override;
-	virtual BCS_RESULT write_data(const void* buffer, uint32_t element_size, uint32_t element_count) override;
-	virtual BCS_RESULT read_data(void* buffer, uint32_t buffer_size) override;
+	virtual BCS_RESULT write_data(const void* buffer, uint32_t buffer_size, uint32_t buffer_offset) override;
+	virtual BCS_RESULT write_data(const void* buffer, uint32_t element_size, uint32_t element_count, uint32_t element_offset) override;
+	virtual BCS_RESULT read_data(void* buffer, uint32_t buffer_size, uint32_t buffer_offset) override;
+	virtual BCS_RESULT read_data(void* buffer, uint32_t element_size, uint32_t element_count, uint32_t element_offset) override;
+	virtual BCS_RESULT copy_readback() override;
 	uint32_t get_gpu_descriptor_heap_index() const;
 
 protected:
@@ -36,6 +38,7 @@ public:
 	e_graphics_buffer_type buffer_type;
 
 	ID3D12Resource* upload_heap; // #WARN: Can be same resource as gpu_resource
+	ID3D12Resource* readback_heap; // #WARN: Can be same resource as gpu_resource
 	ID3D12Resource* gpu_resource; // #WARN: Can be same resource as upload_heap
 
 	D3D12_RESOURCE_STATES gpu_resource_state;

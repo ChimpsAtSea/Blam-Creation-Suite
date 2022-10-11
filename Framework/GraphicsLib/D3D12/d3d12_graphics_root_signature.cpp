@@ -63,9 +63,13 @@ c_graphics_root_signature_d3d12::c_graphics_root_signature_d3d12(
 
 c_graphics_root_signature_d3d12::~c_graphics_root_signature_d3d12()
 {
+	delete[] register_layout_descriptions;
 	delete[] root_parameters;
 	delete[] descriptor_ranges;
 	delete[] static_samplers;
+
+	UINT root_signature_reference_count = root_signature->Release();
+	ASSERT(root_signature_reference_count == 0);
 }
 
 BCS_RESULT c_graphics_root_signature_d3d12::preprocess_register_layout_descriptions()

@@ -167,3 +167,5 @@ if(${BCS_BUILD_HIGH_LEVEL_HALO_3})
 	add_subdirectory(Runtime/Development/Halo3TagFileTest)
 endif()
 add_subdirectory(Runtime/Development/Chimp)
+
+add_subdirectory(Runtime/Tests/ComputeTest)

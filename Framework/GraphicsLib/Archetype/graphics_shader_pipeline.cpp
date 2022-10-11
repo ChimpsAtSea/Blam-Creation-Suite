@@ -66,7 +66,7 @@ BCS_RESULT graphics_shader_pipeline_graphics_create(
 
 BCS_RESULT graphics_shader_pipeline_destroy(c_graphics_shader_pipeline* shader_pipeline)
 {
-	if (c_graphics_shader_pipeline_graphics_d3d12* shader_pipeline_d3d12 = dynamic_cast<c_graphics_shader_pipeline_graphics_d3d12*>(shader_pipeline))
+	if (c_graphics_shader_pipeline_d3d12* shader_pipeline_d3d12 = dynamic_cast<c_graphics_shader_pipeline_d3d12*>(shader_pipeline))
 	{
 		return graphics_d3d12_shader_pipeline_destroy(shader_pipeline_d3d12);
 	}

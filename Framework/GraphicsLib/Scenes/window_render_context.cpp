@@ -159,7 +159,7 @@ BCS_RESULT c_window_render_context::render()
 
 	while (window.update())
 	{
-		if (BCS_FAILED(rs = graphics->render_frame()))
+		if (BCS_FAILED(rs = graphics->execute()))
 		{
 			if (rs == BCS_E_GRAPHICS_DEVICE_LOST && window.allow_adapter_recovery())
 			{

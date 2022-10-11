@@ -61,7 +61,9 @@ public:
 		D3D12_RESOURCE_STATES before, 
 		D3D12_RESOURCE_STATES after);
 
-	virtual BCS_RESULT render_frame() override;
+	virtual BCS_RESULT begin() override;
+	virtual BCS_RESULT end() override;
+	virtual BCS_RESULT execute() override;
 	virtual BCS_RESULT dispatch(uint32_t x = 1, uint32_t y = 1, uint32_t z = 1) override;
 
 	ID3D12Device8* device;

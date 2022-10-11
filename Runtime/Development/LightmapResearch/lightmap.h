@@ -20,6 +20,7 @@ public:
 	t_callback_handle render_pass_callback_handle;
 	uint32_t viewport_width;
 	uint32_t viewport_height;
+	c_graphics_buffer* compute_test_buffer;
 
 	c_graphics_register_layout* graphics_register_layout;
 	c_graphics_register_layout* compute_register_layout;

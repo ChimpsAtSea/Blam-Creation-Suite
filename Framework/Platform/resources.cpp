@@ -136,46 +136,100 @@ BCS_RESULT resources_get_resource_filename(e_bcs_resource_type type, const char*
 	return BCS_S_OK;
 }
 
-BCS_RESULT resources_get_resource_size(e_bcs_resource_type type, uint64_t& resource_size)
+BCS_RESULT resources_get_local_resource_size(const char* filename, uint64_t& resource_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
-	const char* filename;
-	if (BCS_SUCCEEDED(rs = resources_get_resource_filename(type, filename)))
-	{
-		void* process_module;
-		if (BCS_SUCCEEDED(rs = get_process_module(process_module)))
-		{
-			char resource_local_filepath[MAX_PATH];
-			GetModuleFileNameA(static_cast<HMODULE>(process_module), resource_local_filepath, _countof(resource_local_filepath));
-			PathRemoveFileSpecA(resource_local_filepath);
-			strcat(resource_local_filepath, "\\");
-			strcat(resource_local_filepath, filename);
 
-			if (BCS_FAILED(rs = filesystem_filepath_exists(resource_local_filepath)))
+	void* process_module;
+	if (BCS_SUCCEEDED(rs = get_process_module(process_module)))
+	{
+		char resource_local_filepath[MAX_PATH];
+		GetModuleFileNameA(static_cast<HMODULE>(process_module), resource_local_filepath, _countof(resource_local_filepath));
+		PathRemoveFileSpecA(resource_local_filepath);
+		strcat(resource_local_filepath, "\\");
+		strcat(resource_local_filepath, filename);
+
+		if (BCS_FAILED(rs = filesystem_filepath_exists(resource_local_filepath)))
+		{
+			return rs;
+		}
+		else
+		{
+			uint64_t local_resource_file_size;
+			if (BCS_FAILED(rs = filesystem_get_file_size(resource_local_filepath, local_resource_file_size)))
 			{
 				return rs;
 			}
-			else
+
+			if (local_resource_file_size >= ULONG_MAX)
 			{
-				uint64_t local_resource_file_size;
-				if (BCS_FAILED(rs = filesystem_get_file_size(resource_local_filepath, local_resource_file_size)))
-				{
-					return rs;
-				}
+				return BCS_E_FAIL;
+			}
 
-				if (local_resource_file_size >= ULONG_MAX)
-				{
-					return BCS_E_FAIL;
-				}
+			resource_size = static_cast<unsigned long>(local_resource_file_size);
 
-				resource_size = static_cast<unsigned long>(local_resource_file_size);
+			return rs;
+		}
 
+		return rs;
+	}
+	return rs;
+}
+
+BCS_RESULT resources_copy_local_resource_to_buffer(const char* filename, void* buffer, uint64_t& buffer_size)
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	void* process_module;
+	if (BCS_SUCCEEDED(rs = get_process_module(process_module)))
+	{
+		char resource_local_filepath[MAX_PATH];
+		GetModuleFileNameA(static_cast<HMODULE>(process_module), resource_local_filepath, _countof(resource_local_filepath));
+		PathRemoveFileSpecA(resource_local_filepath);
+		strcat(resource_local_filepath, "\\");
+		strcat(resource_local_filepath, filename);
+
+		if (BCS_FAILED(rs = filesystem_filepath_exists(resource_local_filepath)))
+		{
+			return rs;
+		}
+		else
+		{
+			uint64_t local_resource_size;
+			if (BCS_FAILED(rs = filesystem_get_file_size(resource_local_filepath, local_resource_size)))
+			{
+				return rs;
+			}
+
+			uint64_t read_data_size = __min(local_resource_size, buffer_size);
+			if (read_data_size >= ULONG_MAX)
+			{
+				return BCS_E_FAIL;
+			}
+
+			if (BCS_FAILED(rs = filesystem_copy_file_to_buffer(resource_local_filepath, buffer, read_data_size)))
+			{
 				return rs;
 			}
 
 			return rs;
 		}
 		return rs;
+	}
+
+	return rs;
+}
+
+BCS_RESULT resources_get_resource_size(e_bcs_resource_type type, uint64_t& resource_size)
+{
+	BCS_RESULT rs = BCS_S_OK;
+	const char* filename;
+	if (BCS_SUCCEEDED(rs = resources_get_resource_filename(type, filename)))
+	{
+		if (BCS_SUCCEEDED(rs = resources_get_local_resource_size(filename, resource_size)))
+		{
+			return rs;
+		}
 	}
 
 	HRSRC resource_handle;
@@ -206,44 +260,10 @@ BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buf
 	const char* filename;
 	if (BCS_SUCCEEDED(rs = resources_get_resource_filename(type, filename)))
 	{
-		void* process_module;
-		if (BCS_SUCCEEDED(rs = get_process_module(process_module)))
+		if (BCS_SUCCEEDED(rs = resources_copy_local_resource_to_buffer(filename, buffer, buffer_size)))
 		{
-			char resource_local_filepath[MAX_PATH];
-			GetModuleFileNameA(static_cast<HMODULE>(process_module), resource_local_filepath, _countof(resource_local_filepath));
-			PathRemoveFileSpecA(resource_local_filepath);
-			strcat(resource_local_filepath, "\\");
-			strcat(resource_local_filepath, filename);
-
-			if (BCS_FAILED(rs = filesystem_filepath_exists(resource_local_filepath)))
-			{
-				return rs;
-			}
-			else
-			{
-				uint64_t local_resource_size;
-				if (BCS_FAILED(rs = filesystem_get_file_size(resource_local_filepath, local_resource_size)))
-				{
-					return rs;
-				}
-
-				uint64_t read_data_size = __min(local_resource_size, buffer_size);
-				if (read_data_size >= ULONG_MAX)
-				{
-					return BCS_E_FAIL;
-				}
-
-				if (BCS_FAILED(rs = filesystem_copy_file_to_buffer(resource_local_filepath, buffer, read_data_size)))
-				{
-					return rs;
-				}
-
-				return rs;
-			}
 			return rs;
 		}
-
-		return rs;
 	}
 
 	HRSRC resource_handle;
@@ -293,6 +313,29 @@ BCS_RESULT resources_read_resource_to_memory(e_bcs_resource_type type, void*& ou
 
 	void* buffer = tracked_malloc(buffer_size);
 	if (BCS_FAILED(rs = resources_copy_resource_to_buffer(type, buffer, buffer_size)))
+	{
+		tracked_free(buffer);
+		return rs;
+	}
+
+	out_buffer = buffer;
+	out_buffer_size = buffer_size;
+
+	return rs;
+}
+
+BCS_RESULT resources_read_local_resource_to_memory(const char* filename, void*& out_buffer, uint64_t& out_buffer_size)
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	uint64_t buffer_size;
+	if (BCS_FAILED(rs = resources_get_local_resource_size(filename, buffer_size)))
+	{
+		return rs;
+	}
+
+	void* buffer = tracked_malloc(buffer_size);
+	if (BCS_FAILED(rs = resources_copy_local_resource_to_buffer(filename, buffer, buffer_size)))
 	{
 		tracked_free(buffer);
 		return rs;

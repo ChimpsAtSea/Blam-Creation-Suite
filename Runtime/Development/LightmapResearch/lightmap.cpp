@@ -348,20 +348,20 @@ void c_lightmap::init()
 		lightmap_debug_pixel_shader);
 	BCS_FAIL_THROW(pixel_shader_binary_result);
 
-	s_graphics_register_layout_description register_layouts[1];
-	register_layouts[0].semantic = _graphics_register_layout_unordered_access;
-	register_layouts[0].register_index = 0;
-	register_layouts[0].register_count = 1;
-	register_layouts[0].register_space = 0;
-	register_layouts[0].num_32_bit_values = 0;
-	register_layouts[0].use_table = true;
-	register_layouts[0].sampler_layout_description = 0;
+	s_graphics_register_layout_description graphics_register_layouts[1];
+	graphics_register_layouts[0].semantic = _graphics_register_layout_unordered_access;
+	graphics_register_layouts[0].register_index = 0;
+	graphics_register_layouts[0].register_count = 1;
+	graphics_register_layouts[0].register_space = 0;
+	graphics_register_layouts[0].num_32_bit_values = 0;
+	graphics_register_layouts[0].use_table = true;
+	graphics_register_layouts[0].sampler_layout_description = 0;
 
 	BCS_RESULT graphics_register_layout_result = graphics_register_layout_create(
 		&graphics,
 		_graphics_register_layout_type_graphics,
-		register_layouts, 
-		_countof(register_layouts), 
+		graphics_register_layouts,
+		_countof(graphics_register_layouts),
 		graphics_register_layout, 
 		"graphics_register_layout");
 	BCS_FAIL_THROW(graphics_register_layout_result);
@@ -387,11 +387,20 @@ void c_lightmap::init()
 		lightmap_compute_test_shader_binary);
 	BCS_FAIL_THROW(lightmap_compute_test_shader_binary_result);
 
+	s_graphics_register_layout_description compute_register_layouts[1];
+	compute_register_layouts[0].semantic = _graphics_register_layout_unordered_access;
+	compute_register_layouts[0].register_index = 0;
+	compute_register_layouts[0].register_count = 1;
+	compute_register_layouts[0].register_space = 0;
+	compute_register_layouts[0].num_32_bit_values = 0;
+	compute_register_layouts[0].use_table = true;
+	compute_register_layouts[0].sampler_layout_description = 0;
+
 	BCS_RESULT compute_register_layout_result = graphics_register_layout_create(
 		&graphics,
 		_graphics_register_layout_type_compute,
-		nullptr, 
-		0, 
+		compute_register_layouts,
+		_countof(compute_register_layouts),
 		compute_register_layout, 
 		"compute_register_layout");
 	BCS_FAIL_THROW(compute_register_layout_result);
@@ -403,6 +412,8 @@ void c_lightmap::init()
 		compute_test_shader_pipeline);
 	BCS_FAIL_THROW(compute_test_shader_pipeline_result);
 
+	BCS_RESULT graphics_buffer_create_result = graphics_buffer_create(&graphics, _graphics_buffer_type_unordered_access_view, 512 * sizeof(float4), compute_test_buffer, "compute_test_buffer");
+	BCS_FAIL_THROW(graphics_buffer_create_result);
 
 	BCS_RESULT model_instance_create_result = graphics_render_instance_create(&graphics, render_instance);
 	BCS_FAIL_THROW(model_instance_create_result);
@@ -492,6 +503,7 @@ void c_lightmap::render_pass_callback()
 
 	compute_register_layout->bind();
 	compute_test_shader_pipeline->bind();
+	compute_register_layout->bind_buffer(0, 0, *compute_test_buffer);
 	graphics.dispatch(viewport_width, viewport_height);
 
 	debug_point;

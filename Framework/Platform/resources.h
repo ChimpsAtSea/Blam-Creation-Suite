@@ -40,3 +40,7 @@ BCS_DEBUG_API BCS_RESULT resources_read_resource_to_memory(e_bcs_resource_type t
 BCS_DEBUG_API BCS_RESULT resources_set_resource_data(e_bcs_resource_type type, const void* buffer, uint64_t buffer_size);
 BCS_DEBUG_API BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const char* target_filepath, const void* buffer, uint64_t buffer_size);
 BCS_DEBUG_API BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const char* target_filepath, const char* resource_filepath);
+
+BCS_DEBUG_API BCS_RESULT resources_get_local_resource_size(const char* filename, uint64_t& resource_size);
+BCS_DEBUG_API BCS_RESULT resources_copy_local_resource_to_buffer(const char* filename, void* buffer, uint64_t& buffer_size);
+BCS_DEBUG_API BCS_RESULT resources_read_local_resource_to_memory(const char* filename, void*& buffer, uint64_t& buffer_size);

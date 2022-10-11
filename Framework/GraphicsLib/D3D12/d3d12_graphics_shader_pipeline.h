@@ -73,4 +73,4 @@ BCS_RESULT graphics_d3d12_shader_pipeline_graphics_create(
 	c_graphics_vertex_layout_d3d12* vertex_layout,
 	c_graphics_shader_pipeline_graphics_d3d12*& shader_pipeline,
 	const char* debug_name = nullptr);
-BCS_RESULT graphics_d3d12_shader_pipeline_destroy(c_graphics_shader_pipeline_graphics_d3d12* shader_pipeline);
+BCS_RESULT graphics_d3d12_shader_pipeline_destroy(c_graphics_shader_pipeline_d3d12* shader_pipeline);

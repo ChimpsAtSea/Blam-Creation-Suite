@@ -80,7 +80,7 @@ void c_graphics_render_instance_d3d12::update_buffers()
 	dxmatrix_to_float4x4(dx_transform, transform);
 
 	r_render_instance_d3d12& render_instance_gpu_data = static_cast<r_render_instance_d3d12&>(*this);
-	graphics_buffer->write_data(&render_instance_gpu_data, sizeof(r_render_instance_d3d12));
+	graphics_buffer->write_data(&render_instance_gpu_data, sizeof(r_render_instance_d3d12), 0);
 
 	current_render_instance_hash = XXH64(&render_instance_data, sizeof(s_render_instance_state_d3d12), 0);
 	render_instance_hash = current_render_instance_hash;

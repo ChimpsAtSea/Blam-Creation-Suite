@@ -146,6 +146,7 @@ set_source_files_properties(
 	PROPERTIES
 	VS_SHADER_MODEL 6.2
 	VS_SHADER_ENABLE_DEBUG true
+	VS_SHADER_DISABLE_OPTIMIZATIONS true
 	VS_SHADER_FLAGS "-Qembed_debug")
 	
 #Lightmap Debug
@@ -168,6 +169,7 @@ set_source_files_properties(
 	PROPERTIES
 	VS_SHADER_MODEL 6.2
 	VS_SHADER_ENABLE_DEBUG true
+	VS_SHADER_DISABLE_OPTIMIZATIONS true
 	VS_SHADER_FLAGS "-Qembed_debug")
 	
 	
