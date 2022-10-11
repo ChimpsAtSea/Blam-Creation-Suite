@@ -143,23 +143,34 @@ set_source_files_properties(
     HLSL/vertex_layout_p.hlsl
     HLSL/vertex_layout_pc.hlsl
     HLSL/vertex_layout_ptcn.hlsl
-	PROPERTIES VS_SHADER_MODEL 5.1)
+	PROPERTIES
+	VS_SHADER_MODEL 6.2
+	VS_SHADER_ENABLE_DEBUG true
+	VS_SHADER_FLAGS "-Qembed_debug")
 	
 #Lightmap Debug
 set_source_files_properties(
 	HLSL/LightmapDebug/lightmap_compute_test_cs.hlsl
 	PROPERTIES VS_SHADER_TYPE Compute)
+
 set_source_files_properties(
 	HLSL/LightmapDebug/lightmap_debug_vs.hlsl
 	PROPERTIES VS_SHADER_TYPE Vertex)
+
 set_source_files_properties(
 	HLSL/LightmapDebug/lightmap_debug_ps.hlsl
 	PROPERTIES VS_SHADER_TYPE Pixel)
+
 set_source_files_properties(
 	HLSL/LightmapDebug/lightmap_compute_test_cs.hlsl
 	HLSL/LightmapDebug/lightmap_debug_vs.hlsl
 	HLSL/LightmapDebug/lightmap_debug_ps.hlsl
-	PROPERTIES VS_SHADER_MODEL 6.2)
+	PROPERTIES
+	VS_SHADER_MODEL 6.2
+	VS_SHADER_ENABLE_DEBUG true
+	VS_SHADER_FLAGS "-Qembed_debug")
+	
+	
 
 target_link_libraries(GraphicsLib PRIVATE
 	blamlib Platform TemplateLibrary xxhash imgui d3d11 d3d12 DirectX-Headers dxgi dxguid Shcore winpixeventruntime d3d12raytracingfallback directxshadercompiler)

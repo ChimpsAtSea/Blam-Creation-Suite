@@ -98,7 +98,16 @@ set_source_files_properties(
 set_source_files_properties(
 	!Resources/HLSL/BoxShaderPS.hlsl
 	!Resources/HLSL/BoxShaderVS.hlsl
-	PROPERTIES VS_SHADER_MODEL 5.1)
+	PROPERTIES
+	VS_SHADER_MODEL 6.2
+	VS_SHADER_ENABLE_DEBUG true
+	VS_SHADER_FLAGS "-Qembed_debug")
+
+set_source_files_properties(
+	!Resources/HLSL/BoxShaderPS.hlsl
+	!Resources/HLSL/BoxShaderVS.hlsl
+	PROPERTIES
+	VS_SHADER_FLAGS "-Qembed_debug")
 
 bcs_use_vcpkg_directories(Platform)
 
