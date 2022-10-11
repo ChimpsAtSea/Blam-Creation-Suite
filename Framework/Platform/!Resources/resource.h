@@ -3,7 +3,7 @@
 // Used by Resource.rc
 //
 
-typedef enum
+typedef enum _RESOURCE_IDS
 {
 	#define IDI_ICON_APPLICATION 100
 	#define IDI_ICON_BLAM_CREATION_SUITE 101
@@ -25,7 +25,7 @@ typedef enum
 	IDR_GENERIC_LIGHTMAP_DEBUG_VERTEX_SHADER,
 	IDR_GENERIC_LIGHTMAP_DEBUG_PIXEL_SHADER,
 	IDR_GENERIC_LIGHTMAP_COMPUTE_TEST_SHADER,
-};
+} RESOURCE_IDS;
 
 // Next default values for new objects
 // 

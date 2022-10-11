@@ -96,6 +96,8 @@ BCS_RESULT c_imgui_viewport_render_context::render()
 		}
 	}
 	ImGui::SetCurrentContext(old_context);
+
+	return rs;
 }
 
 BCS_RESULT c_imgui_viewport_render_context::present()

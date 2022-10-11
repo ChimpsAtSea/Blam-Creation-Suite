@@ -343,7 +343,6 @@ void c_assimp_geometry_mesh_data::deinit_geometry()
 	delete[] normals;
 	delete[] tangents;
 	delete[] bitangents;
-	delete[] texture_coordinate_sets;
 	for (float2* texture_coordinates_buffer : texture_coordinate_sets)
 	{
 		delete[] texture_coordinates_buffer;
@@ -352,6 +351,8 @@ void c_assimp_geometry_mesh_data::deinit_geometry()
 	{
 		delete[] colors_buffer;
 	}
+	delete[] mesh_indices_ushort;
+	delete[] mesh_indices_uint;
 }
 
 

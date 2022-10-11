@@ -736,7 +736,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 		break;
 		case blofeld::_field_pageable_resource:
 		{
-			const h_resource* const& resource = *static_cast<const h_resource* const*>(src_field_data);
+			h_resource const* const& resource = *static_cast<h_resource const* const*>(src_field_data);
 
 			ASSERT(tag_struct_chunk != nullptr);
 			ASSERT(field.tag_resource_definition != nullptr);
@@ -756,7 +756,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 		break;
 		case blofeld::_field_tag_reference:
 		{
-			const h_tag_reference const& reference = *static_cast<const h_tag_reference const*>(src_field_data);
+			h_tag_reference const& reference = *static_cast<h_tag_reference const*>(src_field_data);
 
 			ASSERT(tag_struct_chunk != nullptr);
 

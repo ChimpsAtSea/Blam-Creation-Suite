@@ -250,6 +250,8 @@ BCS_RESULT c_graphics_root_signature_d3d12::init_descriptor_table_root_descripto
 		}
 		debug_point;
 	}
+
+	return BCS_S_OK;
 }
 
 BCS_RESULT c_graphics_root_signature_d3d12::init_descriptor_root_descriptors()
@@ -433,6 +435,8 @@ BCS_RESULT c_graphics_root_signature_d3d12::init_descriptor_root_descriptors()
 		}
 	}
 	debug_point;
+
+	return BCS_S_OK;
 }
 
 BCS_RESULT c_graphics_root_signature_d3d12::init_root_descriptor(const wchar_t* debug_name)

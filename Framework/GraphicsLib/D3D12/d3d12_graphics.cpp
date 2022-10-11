@@ -194,6 +194,8 @@ create_dxgi_factory_succeeded:
 
 	ASSERT(dxgi_adapter != nullptr);
 	ASSERT(device != nullptr);
+
+	return BCS_S_OK;
 }
 
 void c_graphics_d3d12::deinit_hardware()
@@ -397,6 +399,8 @@ HRESULT c_graphics_d3d12::ready_command_list()
 	{
 		return command_allocator_reset_result;
 	}
+
+	return BCS_S_OK;
 }
 
 void c_graphics_d3d12::create_command_list()
@@ -454,6 +458,8 @@ BCS_RESULT c_graphics_d3d12::render_frame()
 	{
 		return rs;
 	}
+
+	return rs;
 }
 
 BCS_RESULT c_graphics_d3d12::dispatch(uint32_t x, uint32_t y, uint32_t z)
