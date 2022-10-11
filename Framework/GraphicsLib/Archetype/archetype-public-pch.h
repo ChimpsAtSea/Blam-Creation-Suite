@@ -5,6 +5,7 @@
 #include "graphics_geometry.h"
 #include "graphics_render_target.h"
 #include "graphics_render_pass.h"
+#include "graphics_compute_pass.h"
 #include "graphics_shader_pipeline.h"
 #include "graphics_shader_binary.h"
 #include "graphics_buffer.h"

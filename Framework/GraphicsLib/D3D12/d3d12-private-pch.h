@@ -5,6 +5,7 @@
 #include "d3d12_graphics_geometry.h"
 #include "d3d12_graphics_render_target.h"
 #include "d3d12_graphics_render_pass.h"
+#include "d3d12_graphics_compute_pass.h"
 #include "d3d12_graphics_shader_pipeline.h"
 #include "d3d12_graphics_shader_binary.h"
 #include "d3d12_graphics_buffer.h"

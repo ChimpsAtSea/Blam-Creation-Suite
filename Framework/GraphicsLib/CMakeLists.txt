@@ -6,6 +6,8 @@ add_library(GraphicsLib ${BCS_LIBRARY_TYPE}
 	Archetype/graphics_buffer.h
 	Archetype/graphics_camera.cpp
 	Archetype/graphics_camera.h
+	Archetype/graphics_compute_pass.cpp
+	Archetype/graphics_compute_pass.h
 	Archetype/graphics_data_format.cpp
 	Archetype/graphics_data_format.h
 	Archetype/graphics_geometry.cpp
@@ -42,6 +44,8 @@ add_library(GraphicsLib ${BCS_LIBRARY_TYPE}
 	D3D12/d3d12_graphics_buffer.h
 	D3D12/d3d12_graphics_camera.cpp
 	D3D12/d3d12_graphics_camera.h
+	D3D12/d3d12_graphics_compute_pass.cpp
+	D3D12/d3d12_graphics_compute_pass.h
 	D3D12/d3d12_graphics_geometry.cpp
 	D3D12/d3d12_graphics_geometry.h
 	D3D12/d3d12_graphics_render_instance.cpp
