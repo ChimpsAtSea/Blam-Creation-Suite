@@ -1,6 +1,6 @@
 #include "lightmap_debug.hlsli"
 
-PixelOutput main(VertexOutput input) : SV_Target
+PixelOutput main(VertexOutput input)
 {
 	PixelOutput output;
 
