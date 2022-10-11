@@ -64,7 +64,9 @@ public:
 	virtual BCS_RESULT begin() override;
 	virtual BCS_RESULT end() override;
 	virtual BCS_RESULT execute() override;
-	virtual BCS_RESULT dispatch(uint32_t x = 1, uint32_t y = 1, uint32_t z = 1) override;
+	virtual void dispatch(uint32_t x = 1, uint32_t y = 1, uint32_t z = 1) override;
+	virtual BCS_RESULT start_debug_capture() override;
+	virtual BCS_RESULT end_debug_capture() override;
 
 	ID3D12Device8* device;
 

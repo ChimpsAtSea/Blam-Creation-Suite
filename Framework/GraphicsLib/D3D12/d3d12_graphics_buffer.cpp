@@ -114,7 +114,7 @@ BCS_RESULT c_graphics_buffer_d3d12::read_data(void* buffer, uint32_t element_siz
 	return read_data(buffer, element_count * element_size, element_offset * element_size);
 }
 
-BCS_RESULT c_graphics_buffer_d3d12::copy_readback()
+void c_graphics_buffer_d3d12::copy_readback()
 {
 	if (readback_heap != gpu_resource)
 	{
@@ -124,7 +124,6 @@ BCS_RESULT c_graphics_buffer_d3d12::copy_readback()
 
 		graphics.transition_resource(gpu_resource, D3D12_RESOURCE_STATE_COPY_SOURCE, D3D12_RESOURCE_STATE_UNORDERED_ACCESS);
 	}
-	return BCS_S_OK;
 }
 
 uint32_t c_graphics_buffer_d3d12::get_gpu_descriptor_heap_index() const

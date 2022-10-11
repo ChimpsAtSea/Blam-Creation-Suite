@@ -20,8 +20,7 @@ bcs_set_common_properties(ComputeTest)
 target_link_libraries(ComputeTest PRIVATE
 	Platform
 	TemplateLibrary
-	GraphicsLib
-	winpixeventruntime)
+	GraphicsLib)
 
 target_precompile_headers(ComputeTest PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:computetest-private-pch.h>")

@@ -267,8 +267,11 @@ BCS_RESULT c_graphics_d3d12::init_raytracing_fallback_layer()
 
 void c_graphics_d3d12::deinit_raytracing_fallback_layer()
 {
-	ULONG d3d12_raytracing_fallback_device_reference_count = d3d12_raytracing_fallback_device->Release();
-	ASSERT(d3d12_raytracing_fallback_device_reference_count == 0);
+	if (d3d12_raytracing_fallback_device != nullptr)
+	{
+		ULONG d3d12_raytracing_fallback_device_reference_count = d3d12_raytracing_fallback_device->Release();
+		ASSERT(d3d12_raytracing_fallback_device_reference_count == 0);
+	}
 }
 
 void c_graphics_d3d12::init_hardware_capabilities()
@@ -484,9 +487,28 @@ BCS_RESULT c_graphics_d3d12::execute()
 	return rs;
 }
 
-BCS_RESULT c_graphics_d3d12::dispatch(uint32_t x, uint32_t y, uint32_t z)
+void c_graphics_d3d12::dispatch(uint32_t x, uint32_t y, uint32_t z)
 {
 	command_list->Dispatch(x, y, z);
+}
+
+BCS_RESULT c_graphics_d3d12::start_debug_capture()
+{
+	HRESULT hrs = PIXBeginCapture(PIX_CAPTURE_GPU, 0);
+	if (FAILED(hrs))
+	{
+		return BCS_E_GRAPHICS_HRESULT_ERROR;
+	}
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_graphics_d3d12::end_debug_capture()
+{
+	HRESULT hrs = PIXEndCapture(false);
+	if (FAILED(hrs))
+	{
+		return BCS_E_GRAPHICS_HRESULT_ERROR;
+	}
 	return BCS_S_OK;
 }
 

@@ -175,7 +175,21 @@ set_source_files_properties(
 	
 
 target_link_libraries(GraphicsLib PRIVATE
-	blamlib Platform TemplateLibrary xxhash imgui d3d11 d3d12 DirectX-Headers dxgi dxguid Shcore winpixeventruntime d3d12raytracingfallback directxshadercompiler)
+	blamlib
+	Platform
+	TemplateLibrary
+	xxhash
+	imgui
+	d3d11
+	d3d12
+	DirectX-Headers
+	dxgi
+	dxguid
+	Shcore
+	winpixeventruntime
+	d3d12raytracingfallback
+	directxshadercompiler
+	winpixeventruntime)
 
 target_precompile_headers(GraphicsLib PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:graphicslib-private-pch.h>")

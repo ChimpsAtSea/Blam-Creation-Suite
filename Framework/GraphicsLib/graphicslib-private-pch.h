@@ -37,3 +37,6 @@
 #include "Scenes\window_render_context.h"
 
 #include <DirectXMath.h>
+
+#define USE_PIX
+#include <pix3.h>

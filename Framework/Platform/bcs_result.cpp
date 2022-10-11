@@ -2,9 +2,19 @@
 
 BCS_RESULT bcs_result_to_string(BCS_RESULT bcs_result, const char*& bcs_result_string_mb, const wchar_t*& bcs_result_string_wc)
 {
-#define BCS_RESULT_TO_STRING(bcs_result) case bcs_result: bcs_result_string_mb = #bcs_result; bcs_result_string_wc = L"" #bcs_result; break
+#define BCS_RESULT_TO_STRING(bcs_result) case bcs_result: bcs_result_string_mb = #bcs_result; bcs_result_string_wc = L"" #bcs_result; return BCS_S_OK
 	switch (bcs_result)
 	{
+		BCS_RESULT_TO_STRING(BCS_E_NOT_RUN);
+		BCS_RESULT_TO_STRING(BCS_E_FILE_NOT_FOUND);
+		BCS_RESULT_TO_STRING(BCS_E_OUT_OF_MEMORY);
+		BCS_RESULT_TO_STRING(BCS_E_GRAPHICS_HRESULT_ERROR);
+		BCS_RESULT_TO_STRING(BCS_E_GRAPHICS_DEVICE_LOST);
+		BCS_RESULT_TO_STRING(BCS_E_NOT_SUPPORTED);
+		BCS_RESULT_TO_STRING(BCS_E_PROCEDURE_NOT_FOUND);
+		BCS_RESULT_TO_STRING(BCS_E_MODULE_NOT_FOUND);
+		BCS_RESULT_TO_STRING(BCS_E_CLEANUP_FAIL);
+		BCS_RESULT_TO_STRING(BCS_E_COMMAND_LINE_MISSING);
 		BCS_RESULT_TO_STRING(BCS_E_DATA_ALREADY_MAPPED);
 		BCS_RESULT_TO_STRING(BCS_E_DATA_NOT_MAPPED);
 		BCS_RESULT_TO_STRING(BCS_E_MISSING_RESOURCE);
@@ -18,6 +28,9 @@ BCS_RESULT bcs_result_to_string(BCS_RESULT bcs_result, const char*& bcs_result_s
 		BCS_RESULT_TO_STRING(BCS_E_FAIL);
 		BCS_RESULT_TO_STRING(BCS_S_OK);
 		BCS_RESULT_TO_STRING(BCS_S_SEARCH_STOP);
+		BCS_RESULT_TO_STRING(BCS_S_NO_CHANGES_MADE);
+		BCS_RESULT_TO_STRING(BCS_S_CONTINUE);
+		BCS_RESULT_TO_STRING(BCS_S_GRAPHICS_HRESULT_OK);
 	}
 	return BCS_E_FAIL;
 #undef BCS_RESULT_TO_STRING

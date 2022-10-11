@@ -24,7 +24,7 @@ public:
 	virtual BCS_RESULT write_data(const void* buffer, uint32_t element_size, uint32_t element_count, uint32_t element_offset) override;
 	virtual BCS_RESULT read_data(void* buffer, uint32_t buffer_size, uint32_t buffer_offset) override;
 	virtual BCS_RESULT read_data(void* buffer, uint32_t element_size, uint32_t element_count, uint32_t element_offset) override;
-	virtual BCS_RESULT copy_readback() override;
+	virtual void copy_readback() override;
 	uint32_t get_gpu_descriptor_heap_index() const;
 
 protected:
