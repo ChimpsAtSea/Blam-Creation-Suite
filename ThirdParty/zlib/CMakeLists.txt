@@ -95,6 +95,12 @@ add_library(zlib STATIC
 
 bcs_set_common_properties(zlib)
 
+if (MSVC)
+	target_compile_options(zlib PRIVATE
+		"/wd4127"
+		"/wd4131")
+endif()
+
 target_sources(zlib PRIVATE
     ${CMAKE_CURRENT_BINARY_DIR}/zconf.h)
 
