@@ -11,6 +11,7 @@ public:
 	c_graphics_root_signature_d3d12& operator=(const c_graphics_root_signature_d3d12&) = delete;
 	explicit c_graphics_root_signature_d3d12(
 		c_graphics_d3d12& graphics,
+		e_graphics_register_layout_type root_signature_type,
 		s_graphics_register_layout_description const* register_layout_descriptions,
 		uint32_t num_register_layout_descriptions,
 		const wchar_t* debug_name = nullptr);
@@ -18,6 +19,7 @@ public:
 
 	c_graphics_d3d12& graphics;
 	ID3D12RootSignature* root_signature;
+	e_graphics_register_layout_type root_signature_type;
 
 	s_graphics_register_layout_description* register_layout_descriptions;
 	uint32_t num_register_layout_descriptions;
@@ -38,8 +40,7 @@ public:
 	BCS_RESULT init_descriptor_table_root_descriptors();
 	BCS_RESULT init_descriptor_root_descriptors();
 	BCS_RESULT init_root_descriptor(const wchar_t* debug_name);
-	virtual void bind_graphics() const override;
-	virtual void bind_compute() const override;
+	virtual BCS_RESULT bind() const override;
 
 	BCS_RESULT bind_descriptor_buffer(
 		D3D12_ROOT_PARAMETER_TYPE target_root_parameter_type,
@@ -66,6 +67,7 @@ public:
 
 BCS_RESULT graphics_d3d12_root_signature_create(
 	c_graphics_d3d12* graphics,
+	e_graphics_register_layout_type root_signature_type,
 	s_graphics_register_layout_description const* register_layout_descriptions,
 	uint32_t num_layout_descriptions,
 	c_graphics_root_signature_d3d12*& root_signature,

@@ -357,7 +357,13 @@ void c_lightmap::init()
 	register_layouts[0].use_table = true;
 	register_layouts[0].sampler_layout_description = 0;
 
-	BCS_RESULT graphics_register_layout_result = graphics_register_layout_create(&graphics, register_layouts, _countof(register_layouts), graphics_register_layout, "graphics_register_layout");
+	BCS_RESULT graphics_register_layout_result = graphics_register_layout_create(
+		&graphics,
+		_graphics_register_layout_type_graphics,
+		register_layouts, 
+		_countof(register_layouts), 
+		graphics_register_layout, 
+		"graphics_register_layout");
 	BCS_FAIL_THROW(graphics_register_layout_result);
 
 	c_graphics_shader_binary* graphics_shader_binaries[2] = { _lightmap_debug_vertex_shader, lightmap_debug_pixel_shader };
@@ -381,7 +387,13 @@ void c_lightmap::init()
 		lightmap_compute_test_shader_binary);
 	BCS_FAIL_THROW(lightmap_compute_test_shader_binary_result);
 
-	BCS_RESULT compute_register_layout_result = graphics_register_layout_create(&graphics, nullptr, 0, compute_register_layout, "compute_register_layout");
+	BCS_RESULT compute_register_layout_result = graphics_register_layout_create(
+		&graphics,
+		_graphics_register_layout_type_compute,
+		nullptr, 
+		0, 
+		compute_register_layout, 
+		"compute_register_layout");
 	BCS_FAIL_THROW(compute_register_layout_result);
 
 	BCS_RESULT compute_test_shader_pipeline_result = graphics_shader_pipeline_compute_create(
@@ -462,7 +474,7 @@ void c_lightmap::render_graphics()
 
 void c_lightmap::render_pass_callback()
 {
-	graphics_register_layout->bind_graphics();
+	graphics_register_layout->bind();
 	uv_space_shader_pipeline->bind();
 
 
@@ -478,7 +490,7 @@ void c_lightmap::render_pass_callback()
 		lightmap_render_mesh->geometry->render_geometry();
 	}
 
-	compute_register_layout->bind_compute();
+	compute_register_layout->bind();
 	compute_test_shader_pipeline->bind();
 	graphics.dispatch(viewport_width, viewport_height);
 

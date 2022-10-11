@@ -15,6 +15,12 @@ enum e_graphics_register_layout_semantic
 
 BCS_DEBUG_API const char* register_layout_semantic_to_string(e_graphics_register_layout_semantic register_layout_semantic);
 
+enum e_graphics_register_layout_type : unsigned char
+{
+	_graphics_register_layout_type_graphics,
+	_graphics_register_layout_type_compute,
+};
+
 enum e_graphics_sampler_filter : unsigned char
 {
 	_graphics_sampler_filter_min_mag_mip_point,
@@ -69,8 +75,7 @@ protected:
 public:
 	virtual ~c_graphics_register_layout();
 
-	virtual void bind_graphics() const = 0;
-	virtual void bind_compute() const = 0;
+	virtual BCS_RESULT bind() const = 0;
 
 	virtual BCS_RESULT bind_buffer(
 		unsigned int register_layout_description_index,
@@ -85,6 +90,7 @@ public:
 
 BCS_DEBUG_API BCS_RESULT graphics_register_layout_create(
 	c_graphics* graphics,
+	e_graphics_register_layout_type root_signature_type,
 	s_graphics_register_layout_description const* register_layout_descriptions,
 	uint32_t num_layout_descriptions,
 	c_graphics_register_layout*& register_layout,

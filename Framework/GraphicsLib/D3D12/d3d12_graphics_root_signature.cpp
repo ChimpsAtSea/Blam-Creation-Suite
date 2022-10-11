@@ -2,11 +2,14 @@
 
 c_graphics_root_signature_d3d12::c_graphics_root_signature_d3d12(
 	c_graphics_d3d12& graphics,
+	e_graphics_register_layout_type _root_signature_type,
 	s_graphics_register_layout_description const* _register_layout_descriptions,
 	uint32_t _num_register_layout_descriptions,
 	const wchar_t* debug_name) :
 	c_graphics_register_layout(),
 	graphics(graphics),
+	root_signature(),
+	root_signature_type(_root_signature_type),
 	register_layout_descriptions(nullptr),
 	num_register_layout_descriptions(_num_register_layout_descriptions),
 	root_parameters(),
@@ -471,14 +474,20 @@ BCS_RESULT c_graphics_root_signature_d3d12::init_root_descriptor(const wchar_t* 
 	return rs;
 }
 
-void c_graphics_root_signature_d3d12::bind_compute() const
+BCS_RESULT c_graphics_root_signature_d3d12::bind() const
 {
-	graphics.command_list->SetComputeRootSignature(root_signature);
-}
-
-void c_graphics_root_signature_d3d12::bind_graphics() const
-{
-	graphics.command_list->SetGraphicsRootSignature(root_signature);
+	switch (root_signature_type)
+	{
+	case _graphics_register_layout_type_graphics:
+		graphics.command_list->SetGraphicsRootSignature(root_signature);
+		break;
+	case _graphics_register_layout_type_compute:
+		graphics.command_list->SetComputeRootSignature(root_signature);
+		break;
+	default:
+		return BCS_E_UNSUPPORTED;
+	}
+	return BCS_S_OK;
 }
 
 BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_buffer(
@@ -501,7 +510,17 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_buffer(
 				if (root_parameter.Descriptor.RegisterSpace == target_register_space && root_parameter.Descriptor.ShaderRegister == target_register_index)
 				{
 					D3D12_GPU_VIRTUAL_ADDRESS gpu_virtual_address = graphics_buffer.gpu_resource->GetGPUVirtualAddress();
-					graphics.command_list->SetGraphicsRootConstantBufferView(root_parameter_index, gpu_virtual_address);
+					switch (root_signature_type)
+					{
+					case _graphics_register_layout_type_graphics:
+						graphics.command_list->SetGraphicsRootConstantBufferView(root_parameter_index, gpu_virtual_address);
+						break;
+					case _graphics_register_layout_type_compute:
+						graphics.command_list->SetComputeRootConstantBufferView(root_parameter_index, gpu_virtual_address);
+						break;
+					default:
+						return BCS_E_UNSUPPORTED;
+					}
 				}
 			}
 			return BCS_S_OK;
@@ -510,7 +529,17 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_buffer(
 				if (root_parameter.Descriptor.RegisterSpace == target_register_space && root_parameter.Descriptor.ShaderRegister == target_register_index)
 				{
 					D3D12_GPU_VIRTUAL_ADDRESS gpu_virtual_address = graphics_buffer.gpu_resource->GetGPUVirtualAddress();
-					graphics.command_list->SetGraphicsRootShaderResourceView(root_parameter_index, gpu_virtual_address);
+					switch (root_signature_type)
+					{
+					case _graphics_register_layout_type_graphics:
+						graphics.command_list->SetGraphicsRootShaderResourceView(root_parameter_index, gpu_virtual_address);
+						break;
+					case _graphics_register_layout_type_compute:
+						graphics.command_list->SetComputeRootShaderResourceView(root_parameter_index, gpu_virtual_address);
+						break;
+					default:
+						return BCS_E_UNSUPPORTED;
+					}
 				}
 			}
 			return BCS_S_OK;
@@ -519,7 +548,17 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_buffer(
 				if (root_parameter.Descriptor.RegisterSpace == target_register_space && root_parameter.Descriptor.ShaderRegister == target_register_index)
 				{
 					D3D12_GPU_VIRTUAL_ADDRESS gpu_virtual_address = graphics_buffer.gpu_resource->GetGPUVirtualAddress();
-					graphics.command_list->SetGraphicsRootUnorderedAccessView(root_parameter_index, gpu_virtual_address);
+					switch (root_signature_type)
+					{
+					case _graphics_register_layout_type_graphics:
+						graphics.command_list->SetGraphicsRootUnorderedAccessView(root_parameter_index, gpu_virtual_address);
+						break;
+					case _graphics_register_layout_type_compute:
+						graphics.command_list->SetComputeRootUnorderedAccessView(root_parameter_index, gpu_virtual_address);
+						break;
+					default:
+						return BCS_E_UNSUPPORTED;
+					}
 				}
 			}
 			return BCS_S_OK;
@@ -561,7 +600,17 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_table_buffer(
 						case D3D12_DESCRIPTOR_RANGE_TYPE_CBV:
 						{
 							D3D12_GPU_DESCRIPTOR_HANDLE descriptor_handle = graphics_buffer.get_gpu_descriptor_handle();
-							graphics.command_list->SetGraphicsRootDescriptorTable(root_parameter_index, descriptor_handle);
+							switch (root_signature_type)
+							{
+							case _graphics_register_layout_type_graphics:
+								graphics.command_list->SetGraphicsRootDescriptorTable(root_parameter_index, descriptor_handle);
+								break;
+							case _graphics_register_layout_type_compute:
+								graphics.command_list->SetComputeRootDescriptorTable(root_parameter_index, descriptor_handle);
+								break;
+							default:
+								return BCS_E_UNSUPPORTED;
+							}
 						}
 						return BCS_S_OK;
 						}
@@ -680,6 +729,7 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_buffer(
 
 BCS_RESULT graphics_d3d12_root_signature_create(
 	c_graphics_d3d12* graphics,
+	e_graphics_register_layout_type root_signature_type,
 	s_graphics_register_layout_description const* register_layout_descriptions,
 	uint32_t num_layout_descriptions,
 	c_graphics_root_signature_d3d12*& root_signature,
@@ -690,6 +740,7 @@ BCS_RESULT graphics_d3d12_root_signature_create(
 	{
 		root_signature = new() c_graphics_root_signature_d3d12(
 			*graphics,
+			root_signature_type,
 			register_layout_descriptions,
 			num_layout_descriptions,
 			debug_name_wc
