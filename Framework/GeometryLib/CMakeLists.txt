@@ -1,6 +1,4 @@
 add_library(GeometryLib ${BCS_LIBRARY_TYPE}
-	sh_baker_cpu.h
-	sh_baker_cpu.cpp
 	assimp_geometry_mesh.cpp
 	assimp_geometry_mesh.h
 	assimp_geometry_scene.cpp
@@ -11,6 +9,12 @@ add_library(GeometryLib ${BCS_LIBRARY_TYPE}
 	geometry_scene.h
 	geometrylib-private-pch.h
 	geometrylib-public-pch.h
+	radiance_transfer.cpp
+	radiance_transfer.h
+	radiance_transfer_cpu.cpp
+	radiance_transfer_cpu.h
+	radiance_transfer_gpu.cpp
+	radiance_transfer_gpu.h
 	uv_atlas_packer.cpp
 	uv_atlas_packer.h)
 

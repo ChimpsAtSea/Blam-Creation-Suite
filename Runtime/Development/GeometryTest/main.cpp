@@ -116,6 +116,32 @@ int main()
 	float3 position_range = { position_maximum.x - position_minimum.x, position_maximum.y - position_minimum.y, position_maximum.z - position_minimum.z };
 	float2 texcoord_range = { texcoord_maximum.x - texcoord_minimum.x, texcoord_maximum.y - texcoord_minimum.y };
 
+	e_mesh_transfer_vertex_type_definition vertex_type_definition = _mesh_transfer_vertex_type_definition_prt_quadratic;
+
+	int order = 0;
+#define vertex_type_definition_order(_mesh_transfer_vertex_type_definition, _order) if(vertex_type_definition == _mesh_transfer_vertex_type_definition) order = _order;
+	vertex_type_definition_order(_mesh_transfer_vertex_type_definition_no_prt, 0);
+	vertex_type_definition_order(_mesh_transfer_vertex_type_definition_prt_ambient, 0);
+	vertex_type_definition_order(_mesh_transfer_vertex_type_definition_prt_linear, 1);
+	vertex_type_definition_order(_mesh_transfer_vertex_type_definition_prt_quadratic, 2);
+#undef vertex_type_definition_order
+
+
+
+	c_radiance_transfer_engine* radiance_transfer_engine;
+	BCS_RESULT radiance_transfer_create_result = radiance_transfer_create(_radiance_transfer_engine_cpu, order, 20, true, false, radiance_transfer_engine);
+	ASSERT(BCS_SUCCEEDED(radiance_transfer_create_result));
+
+	for (unsigned int mesh_index = 0; mesh_index < num_meshes; mesh_index++)
+	{
+		c_geometry_mesh* geometry_mesh = geometry_scene->get_mesh(mesh_index);
+
+		BCS_RESULT radiance_transfer_add_mesh_result = radiance_transfer_add_mesh(radiance_transfer_engine, geometry_mesh);
+		ASSERT(BCS_SUCCEEDED(radiance_transfer_add_mesh_result));
+	}
+
+	BCS_RESULT radiance_transfer_bake_result = radiance_transfer_bake(radiance_transfer_engine);
+	ASSERT(BCS_SUCCEEDED(radiance_transfer_bake_result));
 
 	for (unsigned int mesh_index = 0; mesh_index < num_meshes; mesh_index++)
 	{
@@ -148,7 +174,7 @@ int main()
 		mesh.index_buffer_index = -1;
 		mesh.index_buffer_tessellation = -1;
 		mesh.rigid_node_index = 0;
-		mesh.prt_vertex_type = _mesh_transfer_vertex_type_definition_no_prt;
+		mesh.prt_vertex_type = vertex_type_definition;
 		mesh.index_buffer_type = _mesh_index_buffer_type_definition_triangle_list;
 		mesh.vertex_type = _mesh_vertex_type_definition_rigid;
 
@@ -204,8 +230,6 @@ int main()
 
 		mesh_temporary.flags.set(_per_mesh_raw_data_flags_indices_are_triangle_lists, true);
 
-		mesh.prt_vertex_type = _mesh_transfer_vertex_type_definition_prt_ambient;
-
 		if (mesh.prt_vertex_type > _mesh_transfer_vertex_type_definition_no_prt)
 		{
 			struct s_render_geometry_user_data_prt_info
@@ -243,35 +267,54 @@ int main()
 			prt_info.unknownC = 0;
 			prt_info.unknown10 = 0;
 
-			auto& ptr_user_data = render_geometry.user_data_block.emplace_back();
-			ptr_user_data.user_data.insert(ptr_user_data.user_data.end(), reinterpret_cast<char*>(&prt_info), reinterpret_cast<char*>(&prt_info + 1));
-			ptr_user_data.user_data_header.data_type = _render_geometry_user_data_type_definition_prt_info;
-			ptr_user_data.user_data_header.data_count = 1;
-			ptr_user_data.user_data_header.data_size = sizeof(prt_info);
+			auto& prt_user_data = render_geometry.user_data_block.emplace_back();
+			prt_user_data.user_data.insert(prt_user_data.user_data.end(), reinterpret_cast<char*>(&prt_info), reinterpret_cast<char*>(&prt_info + 1));
+			prt_user_data.user_data_header.data_type = _render_geometry_user_data_type_definition_prt_info;
+			prt_user_data.user_data_header.data_count = 1;
+			prt_user_data.user_data_header.data_size = sizeof(prt_info);
 
-			h_sh_baker sh_baker;
-			create_sh_baker_cpu(sh_baker, order);
-			sh_baker_bake(sh_baker, geometry_mesh);
-			const float3* const* coefficients;
-			unsigned int num_coefficients;
-			sh_baker_get(sh_baker, coefficients, num_coefficients);
+			float const* const* surface_coefficient_planes;
+			float const* const* subsurface_coefficient_planes;
+			unsigned int num_coefficient_planes;
+			BCS_RESULT radiance_transfer_read_result = radiance_transfer_read(radiance_transfer_engine, geometry_mesh, surface_coefficient_planes, subsurface_coefficient_planes, num_coefficient_planes);
+			ASSERT(BCS_SUCCEEDED(radiance_transfer_read_result));
+			ASSERT(num_coefficient_planes == prt_info.num_coefficients);
 
 			auto& prt_data_block = render_geometry.per_mesh_prt_data_block.emplace_back();
 
 			for (unsigned int vertex_index = 0; vertex_index < geometry_vertex_count; vertex_index++)
 			{
+				// red
 				for (unsigned int coefficient_index = 0; coefficient_index < prt_info.num_coefficients; coefficient_index++)
 				{
-					float3 coefficient = coefficients[coefficient_index][vertex_index];
+					float coefficient = surface_coefficient_planes[coefficient_index][vertex_index];
+					const char* pca_data_start = reinterpret_cast<const char*>(&coefficient);
+					const char* pca_data_end = reinterpret_cast<const char*>(&coefficient + 1);
+					prt_data_block.mesh_pca_data.insert(prt_data_block.mesh_pca_data.end(), pca_data_start, pca_data_end);
+				}
+				// green
+				for (unsigned int coefficient_index = 0; coefficient_index < prt_info.num_coefficients; coefficient_index++)
+				{
+					float coefficient = surface_coefficient_planes[coefficient_index][vertex_index];
+					const char* pca_data_start = reinterpret_cast<const char*>(&coefficient);
+					const char* pca_data_end = reinterpret_cast<const char*>(&coefficient + 1);
+					prt_data_block.mesh_pca_data.insert(prt_data_block.mesh_pca_data.end(), pca_data_start, pca_data_end);
+				}
+				// blue
+				for (unsigned int coefficient_index = 0; coefficient_index < prt_info.num_coefficients; coefficient_index++)
+				{
+					float coefficient = surface_coefficient_planes[coefficient_index][vertex_index];
 					const char* pca_data_start = reinterpret_cast<const char*>(&coefficient);
 					const char* pca_data_end = reinterpret_cast<const char*>(&coefficient + 1);
 					prt_data_block.mesh_pca_data.insert(prt_data_block.mesh_pca_data.end(), pca_data_start, pca_data_end);
 				}
 			}
-			ASSERT(prt_data_block.mesh_pca_data.size() == (sizeof(float) * 3 * prt_info.num_coefficients * geometry_vertex_count));
-			destroy_sh_baker(sh_baker);
+			ASSERT(prt_data_block.mesh_pca_data.size() == (sizeof(float3) * prt_info.num_coefficients * geometry_vertex_count));
 		}
 	}
+
+	BCS_RESULT radiance_transfer_destroy_result = radiance_transfer_destroy(radiance_transfer_engine);
+	ASSERT(BCS_SUCCEEDED(radiance_transfer_destroy_result));
 
 	auto& compression_info = render_geometry.compression_info_block.emplace_back();
 

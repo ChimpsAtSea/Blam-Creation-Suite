@@ -18,6 +18,8 @@
 #include <Platform/platform-exports-pch.h>
 
 #include "geometrylib-public-pch.h"
+#include "radiance_transfer_cpu.h"
+#include "radiance_transfer_gpu.h"
 
 #include "assimp_geometry_scene.h"
 #include "assimp_geometry_mesh.h"
