@@ -80,6 +80,12 @@ void* tracked_malloc_firstrun(size_t size, const char* filepath, int32_t line)
 	return tracked_malloc_ptr(size, filepath, line);
 }
 
+void* tracked_realloc_firstrun(void* memory, size_t size, const char* filepath, int32_t line)
+{
+	MEMORY_TRACKING_FIRST_RUN_FIXUP(tracked_realloc_ptr, _tracked_realloc, mi_realloc);
+	return tracked_realloc_ptr(memory, size, filepath, line);
+}
+
 void  tracked_free_firstrun(const void* allocated_memory)
 {
 	MEMORY_TRACKING_FIRST_RUN_FIXUP(tracked_free_ptr, _tracked_free, mi_free);
@@ -95,8 +101,65 @@ void  untracked_free_firstrun(const void* allocated_memory)
 void* (*tracked_aligned_malloc_ptr)(size_t size, size_t alignment, const char* filepath, int32_t line) = tracked_aligned_malloc_firstrun;
 void  (*tracked_aligned_free_ptr)(void* allocated_memory) = tracked_aligned_free_firstrun;
 void* (*tracked_malloc_ptr)(size_t size, const char* filepath, int32_t line) = tracked_malloc_firstrun;
+void* (*tracked_realloc_ptr)(void* memory, size_t size, const char* filepath, int32_t line) = tracked_realloc_firstrun;
 void  (*tracked_free_ptr)(const void* allocated_memory) = tracked_free_firstrun;
 void  (*untracked_free_ptr)(const void* allocated_memory) = untracked_free_firstrun;
+
+void add_tracked_memory_record(
+	s_tracked_memory_entry* tracked_memory_entry, 
+	size_t allocated_memory_size, 
+	size_t tracking_memory_size)
+{
+	DWORD thread_id = GetCurrentThreadId();
+	while (atomic_cmpxchg32(&tracked_memory_entries_spin_lock, thread_id, 0));
+	s_tracked_memory_entry* previous = tracked_memory_entries;
+	tracked_memory_entries = tracked_memory_entry;
+	tracked_memory_entry->previous = previous;
+	if (previous)
+	{
+		previous->next = tracked_memory_entry;
+	}
+
+	int32_t lock_release_result = atomic_xchg32(&tracked_memory_entries_spin_lock, 0);
+	if (lock_release_result != thread_id) throw;
+
+	atomic_add64(&tracked_memory_stats.allocated_memory, allocated_memory_size);
+	atomic_add64(&tracked_memory_stats.tracked_allocated_memory, tracking_memory_size);
+	atomic_inc32(&tracked_memory_stats.allocation_count);
+
+	atomic_add64(&allocated_memory, allocated_memory_size);
+	atomic_add64(&tracked_allocated_memory, tracking_memory_size);
+	atomic_inc32(&allocation_count);
+}
+
+void remove_tracked_memory_record(s_tracked_memory_entry* tracked_memory_entry)
+{
+	DWORD thread_id = GetCurrentThreadId();
+	while (atomic_cmpxchg32(&tracked_memory_entries_spin_lock, thread_id, 0));
+	if (tracked_memory_entry->previous)
+	{
+		tracked_memory_entry->previous->next = tracked_memory_entry->next;
+	}
+	if (tracked_memory_entry->next)
+	{
+		tracked_memory_entry->next->previous = tracked_memory_entry->previous;
+	}
+	if (tracked_memory_entries == tracked_memory_entry)
+	{
+		tracked_memory_entries = tracked_memory_entry->previous;
+	}
+
+	int32_t lock_release_result = atomic_cmpxchg32(&tracked_memory_entries_spin_lock, 0, thread_id);
+	if (lock_release_result != thread_id) throw;
+
+	atomic_add64(&tracked_memory_stats.allocated_memory, -static_cast<LONG64>(tracked_memory_entry->allocated_memory_aligned_size));
+	atomic_add64(&tracked_memory_stats.tracked_allocated_memory, -static_cast<LONG64>(tracked_memory_entry->tracking_memory_aligned_size));
+	atomic_add32(&tracked_memory_stats.allocation_count, -1);
+
+	atomic_add64(&allocated_memory, -static_cast<LONG64>(tracked_memory_entry->allocated_memory_aligned_size));
+	atomic_add64(&tracked_allocated_memory, -static_cast<LONG64>(tracked_memory_entry->tracking_memory_aligned_size));
+	atomic_add32(&allocation_count, -1);
+}
 
 void* _tracked_aligned_malloc(size_t size, size_t alignment, const char* filepath, int32_t line)
 {
@@ -113,6 +176,7 @@ void* _tracked_aligned_malloc(size_t size, size_t alignment, const char* filepat
 	memset(tracked_memory, 'T', tracking_memory_aligned_size);
 	PVOID* stack_frames_memory = static_cast<PVOID*>(tracked_memory);
 	void* memory = static_cast<void*>(reinterpret_cast<char*>(stack_frames_memory) + tracking_memory_aligned_size);
+
 	s_tracked_memory_entry* tracked_memory_entry = static_cast<s_tracked_memory_entry*>(memory) - 1;
 
 	tracked_memory_entry->next = nullptr;
@@ -129,26 +193,7 @@ void* _tracked_aligned_malloc(size_t size, size_t alignment, const char* filepat
 	tracked_memory_entry->filepath = filepath;
 	tracked_memory_entry->line = line;
 
-	DWORD thread_id = GetCurrentThreadId();
-	while (atomic_cmpxchg32(&tracked_memory_entries_spin_lock, thread_id, 0));
-	s_tracked_memory_entry* previous = tracked_memory_entries;
-	tracked_memory_entries = tracked_memory_entry;
-	tracked_memory_entry->previous = previous;
-	if (previous)
-	{
-		previous->next = tracked_memory_entry;
-	}
-
-	int32_t lock_release_result = atomic_xchg32(&tracked_memory_entries_spin_lock, 0);
-	if (lock_release_result != thread_id) throw;
-
-	atomic_add64(&tracked_memory_stats.allocated_memory, allocated_memory_aligned_size);
-	atomic_add64(&tracked_memory_stats.tracked_allocated_memory, tracking_memory_aligned_size);
-	atomic_inc32(&tracked_memory_stats.allocation_count);
-
-	atomic_add64(&allocated_memory, allocated_memory_aligned_size);
-	atomic_add64(&tracked_allocated_memory, tracking_memory_aligned_size);
-	atomic_inc32(&allocation_count);
+	add_tracked_memory_record(tracked_memory_entry, allocated_memory_aligned_size, tracking_memory_aligned_size);
 
 	return memory;
 }
@@ -158,36 +203,9 @@ void _tracked_aligned_free(void* pointer)
 	if (pointer)
 	{
 		s_tracked_memory_entry* tracked_memory_entry = static_cast<s_tracked_memory_entry*>(pointer) - 1;
-
-		DWORD thread_id = GetCurrentThreadId();
-		while (atomic_cmpxchg32(&tracked_memory_entries_spin_lock, thread_id, 0));
-		if (tracked_memory_entry->previous)
-		{
-			tracked_memory_entry->previous->next = tracked_memory_entry->next;
-		}
-		if (tracked_memory_entry->next)
-		{
-			tracked_memory_entry->next->previous = tracked_memory_entry->previous;
-		}
-		if (tracked_memory_entries == tracked_memory_entry)
-		{
-			tracked_memory_entries = tracked_memory_entry->previous;
-		}
-
-		int32_t lock_release_result = atomic_cmpxchg32(&tracked_memory_entries_spin_lock, 0, thread_id);
-		if (lock_release_result != thread_id) throw;
-
-		atomic_add64(&tracked_memory_stats.allocated_memory, -static_cast<LONG64>(tracked_memory_entry->allocated_memory_aligned_size));
-		atomic_add64(&tracked_memory_stats.tracked_allocated_memory, -static_cast<LONG64>(tracked_memory_entry->tracking_memory_aligned_size));
-		atomic_add32(&tracked_memory_stats.allocation_count, -1);
-
-		atomic_add64(&allocated_memory, -static_cast<LONG64>(tracked_memory_entry->allocated_memory_aligned_size));
-		atomic_add64(&tracked_allocated_memory, -static_cast<LONG64>(tracked_memory_entry->tracking_memory_aligned_size));
-		atomic_add32(&allocation_count, -1);
+		remove_tracked_memory_record(tracked_memory_entry);
 
 		mi_free(tracked_memory_entry->tracked_memory);
-		
-		debug_point;
 	}
 }
 
@@ -224,31 +242,53 @@ void* _tracked_malloc(size_t size, const char* filepath, int32_t line)
 	tracked_memory_entry->filepath = filepath;
 	tracked_memory_entry->line = line;
 
-	DWORD thread_id = GetCurrentThreadId();
-	uint64_t spins = 0;
-	static uint64_t max_spins = 0;
-	while (atomic_cmpxchg32(&tracked_memory_entries_spin_lock, thread_id, 0)) spins++;
-	max_spins = __max(max_spins, spins);
+	add_tracked_memory_record(tracked_memory_entry, allocated_memory_aligned_size, tracking_memory_aligned_size);
 
-	s_tracked_memory_entry* previous = tracked_memory_entries;
-	tracked_memory_entries = tracked_memory_entry;
-	tracked_memory_entry->previous = previous;
-	if (previous)
+
+	return memory;
+}
+
+void* _tracked_realloc(void* old_memory, size_t size, const char* filepath, int32_t line)
+{
+	if (old_memory)
 	{
-		previous->next = tracked_memory_entry;
+		s_tracked_memory_entry* tracked_memory_entry = static_cast<s_tracked_memory_entry*>(old_memory) - 1;
+		old_memory = tracked_memory_entry->tracked_memory; // point to the original memory
+		remove_tracked_memory_record(tracked_memory_entry);
 	}
 
-	int32_t lock_release_result = atomic_xchg32(&tracked_memory_entries_spin_lock, 0);
-	if (lock_release_result != thread_id) throw;
+	size_t alignment = 1;
 
-	atomic_add64(&tracked_memory_stats.allocated_memory, allocated_memory_aligned_size);
-	atomic_add64(&tracked_memory_stats.tracked_allocated_memory, tracking_memory_aligned_size);
-	atomic_inc32(&tracked_memory_stats.allocation_count);
+	PVOID stack_frames[USHRT_MAX];
+	unsigned short num_stack_frames = CaptureStackBackTrace(1, USHRT_MAX, stack_frames, NULL);
 
-	atomic_add64(&allocated_memory, allocated_memory_aligned_size);
-	atomic_add64(&tracked_allocated_memory, tracking_memory_aligned_size);
-	atomic_inc32(&allocation_count);
+	size_t stack_trace_size = sizeof(PVOID) * num_stack_frames;
+	size_t tracking_memory_size = sizeof(s_tracked_memory_entry) + stack_trace_size;
+	size_t tracking_memory_aligned_size = ROUNDUP(tracking_memory_size, __max(16, alignment)) + 16;
+	size_t allocated_memory_aligned_size = ROUNDUP(size, alignment);
+	size_t total_memory_aligned_size = allocated_memory_aligned_size + tracking_memory_aligned_size;
 
+	void* tracked_memory = mi_realloc(old_memory, total_memory_aligned_size);
+
+	PVOID* stack_frames_memory = static_cast<PVOID*>(tracked_memory);
+	void* memory = static_cast<void*>(reinterpret_cast<char*>(stack_frames_memory) + tracking_memory_aligned_size);
+	s_tracked_memory_entry* tracked_memory_entry = static_cast<s_tracked_memory_entry*>(memory) - 1;
+
+	tracked_memory_entry->next = nullptr;
+	tracked_memory_entry->previous = nullptr;
+	tracked_memory_entry->tracked_memory = tracked_memory;
+	tracked_memory_entry->memory = memory;
+	tracked_memory_entry->tracking_memory_size = tracking_memory_size;
+	tracked_memory_entry->tracking_memory_aligned_size = tracking_memory_aligned_size;
+	tracked_memory_entry->allocated_memory_aligned_size = allocated_memory_aligned_size;
+	tracked_memory_entry->total_memory_aligned_size = total_memory_aligned_size;
+	tracked_memory_entry->stack_frames = stack_frames_memory;
+	tracked_memory_entry->num_stack_frames = num_stack_frames;
+	memcpy(tracked_memory_entry->stack_frames, stack_frames, stack_trace_size);
+	tracked_memory_entry->filepath = filepath;
+	tracked_memory_entry->line = line;
+
+	add_tracked_memory_record(tracked_memory_entry, allocated_memory_aligned_size, tracking_memory_aligned_size);
 
 	return memory;
 }
