@@ -1,18 +1,18 @@
 add_library(GeometryLib ${BCS_LIBRARY_TYPE}
-	uv_atlas_packer.h
-	uv_atlas_packer.cpp
 	sh_baker_cpu.h
 	sh_baker_cpu.cpp
-	geometry_scene.h
-	geometry_scene.cpp
-	geometry_mesh.h
-	geometry_mesh.cpp
-	assimp_geometry_scene.h
-	assimp_geometry_scene.cpp
-	assimp_geometry_mesh.h
 	assimp_geometry_mesh.cpp
-    geometrylib-private-pch.h
-    geometrylib-public-pch.h)
+	assimp_geometry_mesh.h
+	assimp_geometry_scene.cpp
+	assimp_geometry_scene.h
+	geometry_mesh.cpp
+	geometry_mesh.h
+	geometry_scene.cpp
+	geometry_scene.h
+	geometrylib-private-pch.h
+	geometrylib-public-pch.h
+	uv_atlas_packer.cpp
+	uv_atlas_packer.h)
 
 bcs_set_common_properties(GeometryLib)
 

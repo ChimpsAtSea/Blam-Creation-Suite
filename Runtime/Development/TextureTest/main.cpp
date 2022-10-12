@@ -85,8 +85,6 @@ BCS_RESULT halo3_bitmap_format_to_graphics_data_format(e_bitmap_formats bitmap_f
 
 int main()
 {
-	const wchar_t* launch_filepath_command_line_argument = nullptr; // #TODO: implement this with the command line API
-
 	BCS_FAIL_RETURN(register_process_module_by_pointer(main));
 	BCS_RESULT rs0 = init_platform();
 	BCS_RESULT rs1 = init_command_line();

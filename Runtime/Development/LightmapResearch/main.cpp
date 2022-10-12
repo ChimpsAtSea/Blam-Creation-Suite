@@ -88,8 +88,6 @@ BCS_RESULT unregister_device_recovery_callbacks()
 
 int main()
 {
-	const wchar_t* launch_filepath_command_line_argument = nullptr; // #TODO: implement this with the command line API
-
 	BCS_FAIL_RETURN(register_process_module_by_pointer(main));
 	BCS_RESULT platform_result = init_platform();
 	BCS_RESULT command_line_result = init_command_line();

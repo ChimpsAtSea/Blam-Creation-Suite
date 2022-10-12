@@ -597,8 +597,6 @@ int WINAPI wWinMain(
 	_In_ int nShowCmd
 )
 {
-	const wchar_t* launch_filepath_command_line_argument = nullptr; // #TODO: implement this with the command line API
-
 	BCS_FAIL_RETURN(register_process_module_by_pointer(wWinMain));
 	BCS_RESULT rs0 = init_command_line(lpCmdLine);
 	BCS_RESULT rs1 = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? init_console() : BCS_S_OK;

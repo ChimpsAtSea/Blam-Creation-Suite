@@ -8,8 +8,6 @@ static c_render_context* window_render_context;
 
 int main()
 {
-	const wchar_t* launch_filepath_command_line_argument = nullptr; // #TODO: implement this with the command line API
-
 	BCS_FAIL_RETURN(register_process_module_by_pointer(main));
 	BCS_RESULT rs2 = window_create("Graphics Test", "graphicstest", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, true, false, window);
 	BCS_RESULT rs3 = render_context_window_create(*window, graphics_background_color, window_render_context);
