@@ -3,10 +3,11 @@
 c_graphics_d3d12::c_graphics_d3d12(bool use_debug_layer, bool force_cpu_rendering, bool require_ray_tracing_support) :
 	c_graphics(),
 	device(),
-	raytracing_fallback_layer_supported(),
-	raytracing_fallback_layer_native_supported(),
-	raytracing_fallback_layer_fallback_supported(),
-	raytracing_fallback_layer_initialized(),
+	experimental_shader_models_enabled(false),
+	raytracing_supported(false),
+	raytracing_fallback_layer_native_supported(false),
+	raytracing_fallback_layer_fallback_supported(false),
+	raytracing_fallback_layer_initialized(false),
 	d3d12_raytracing_fallback_device(),
 	d3d12_raytracing_command_list(),
 	descriptor_sizes(),
@@ -36,32 +37,41 @@ c_graphics_d3d12::c_graphics_d3d12(bool use_debug_layer, bool force_cpu_renderin
 	options7(),
 	options8(),
 	shader_model(),
-	last_error(S_OK)
+	last_error(S_OK),
+	bound_shader_pipeline(nullptr)
 {
 	if (use_debug_layer)
 	{
 		init_debug_layer();
 	}
+
+	BCS_RESULT init_experimental_features_result = init_experimental_features();
+	if (BCS_SUCCEEDED(init_experimental_features_result))
+	{
+		console_write_line("Enabled experimental D3D12 features");
+		experimental_shader_models_enabled = true;
+	}
+
 	BCS_RESULT init_hardware_result = init_hardware(force_cpu_rendering, require_ray_tracing_support);
 	BCS_FAIL_THROW(init_hardware_result);
+	init_raytracing_fallback_layer();
 	init_hardware_capabilities();
 	init_descriptor_heap_allocator();
 	init_command_queue();
 	init_command_allocator();
 	init_command_list();
 	init_synchronization_objects();
-	init_raytracing_fallback_layer();
 }
 
 c_graphics_d3d12::~c_graphics_d3d12()
 {
-	deinit_raytracing_fallback_layer();
 	deinit_synchronization_objects();
 	deinit_command_list();
 	deinit_command_allocator();
 	deinit_command_queue();
 	deinit_descriptor_heap_allocator();
 	deinit_hardware_capabilities();
+	deinit_raytracing_fallback_layer();
 	deinit_hardware();
 	deinit_debug_layer();
 }
@@ -100,8 +110,24 @@ void c_graphics_d3d12::deinit_debug_layer()
 	}
 }
 
+BCS_RESULT c_graphics_d3d12::init_experimental_features()
+{
+	static UUID experimental_features[] = 
+	{ 
+		D3D12ExperimentalShaderModels 
+	};
+	static HRESULT enable_experimental_features_result = D3D12EnableExperimentalFeatures(_countof(experimental_features), experimental_features, nullptr, nullptr);
+	if (FAILED(enable_experimental_features_result))
+	{
+		return BCS_E_GRAPHICS_HRESULT_ERROR;
+	}
+	return BCS_S_OK;
+}
+
 BCS_RESULT c_graphics_d3d12::init_hardware(bool force_cpu_rendering, bool require_ray_tracing_support)
 {
+	BCS_RESULT rs = BCS_S_OK;
+
 	HRESULT create_dxgi_factory_result = S_OK;
 
 	create_dxgi_factory_result = CreateDXGIFactory1(IID_PPV_ARGS(&dxgi_factory6));
@@ -160,10 +186,10 @@ create_dxgi_factory_succeeded:
 		{
 			if (BCS_SUCCEEDED(get_hardware_adapter_result))
 			{
-				raytracing_fallback_layer_supported = true;
+				raytracing_supported = true;
 				raytracing_fallback_layer_native_supported = true;
 			}
-			else if (BCS_SUCCEEDED(get_hardware_adapter_result = get_hardware_adapter(
+			else if (experimental_shader_models_enabled && BCS_SUCCEEDED(get_hardware_adapter_result = get_hardware_adapter(
 				D3D_FEATURE_LEVEL_12_0,
 				true,
 				false,
@@ -172,17 +198,19 @@ create_dxgi_factory_succeeded:
 				adapter_description,
 				device)))
 			{
-				raytracing_fallback_layer_supported = true;
+				raytracing_supported = true;
 				raytracing_fallback_layer_fallback_supported = true;
 			}
 			else
 			{
-				raytracing_fallback_layer_supported = false;
+				rs = BCS_E_UNSUPPORTED;
+				raytracing_supported = false;
 			}
 		}
 		else
 		{
-			raytracing_fallback_layer_supported = false;
+			rs = BCS_E_UNSUPPORTED;
+			raytracing_supported = false;
 		}
 	}
 
@@ -195,7 +223,7 @@ create_dxgi_factory_succeeded:
 	ASSERT(dxgi_adapter != nullptr);
 	ASSERT(device != nullptr);
 
-	return BCS_S_OK;
+	return rs;
 }
 
 void c_graphics_d3d12::deinit_hardware()
@@ -230,7 +258,7 @@ void c_graphics_d3d12::deinit_hardware()
 
 BCS_RESULT c_graphics_d3d12::init_raytracing_fallback_layer()
 {
-	if (!raytracing_fallback_layer_supported)
+	if (!raytracing_supported)
 	{
 		return BCS_S_OK;
 	}
@@ -358,10 +386,21 @@ void c_graphics_d3d12::init_command_list()
 	// Command lists are created in the recording state, but there is nothing
 	// to record yet. The main loop expects it to be closed, so close it now.
 	command_list->Close();
+
+	if (d3d12_raytracing_fallback_device != nullptr)
+	{
+		d3d12_raytracing_fallback_device->QueryRaytracingCommandList(command_list, IID_PPV_ARGS(&d3d12_raytracing_command_list));
+		ASSERT(d3d12_raytracing_command_list != nullptr);
+	}
 }
 
 void c_graphics_d3d12::deinit_command_list()
 {
+	if (d3d12_raytracing_command_list != nullptr)
+	{
+		ULONG raytracing_command_list_reference_count = d3d12_raytracing_command_list->Release();
+		ASSERT(raytracing_command_list_reference_count == 0);
+	}
 	ULONG command_list_reference_count = command_list->Release();
 	ASSERT(command_list_reference_count == 0);
 }
@@ -409,7 +448,14 @@ HRESULT c_graphics_d3d12::ready_command_list()
 void c_graphics_d3d12::create_command_list()
 {
 	//command_list->SetGraphicsRootSignature(nullptr);
-	command_list->SetDescriptorHeaps(1, &cbv_srv_uav_descriptor_heap_allocator_gpu->descriptor_heap);
+	if (d3d12_raytracing_command_list)
+	{
+		d3d12_raytracing_command_list->SetDescriptorHeaps(1, &cbv_srv_uav_descriptor_heap_allocator_gpu->descriptor_heap);
+	}
+	else
+	{
+		command_list->SetDescriptorHeaps(1, &cbv_srv_uav_descriptor_heap_allocator_gpu->descriptor_heap);
+	}
 
 	render_callback();
 }
@@ -485,11 +531,6 @@ BCS_RESULT c_graphics_d3d12::execute()
 	}
 
 	return rs;
-}
-
-void c_graphics_d3d12::dispatch(uint32_t x, uint32_t y, uint32_t z)
-{
-	command_list->Dispatch(x, y, z);
 }
 
 BCS_RESULT c_graphics_d3d12::start_debug_capture()

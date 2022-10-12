@@ -30,6 +30,7 @@ public:
 
 	void init_debug_layer();
 	void deinit_debug_layer();
+	static BCS_RESULT init_experimental_features();
 	BCS_RESULT init_hardware(bool force_cpu_rendering, bool require_ray_tracing_support);
 	void deinit_hardware();
 	BCS_RESULT init_raytracing_fallback_layer();
@@ -64,14 +65,14 @@ public:
 	virtual BCS_RESULT begin() override;
 	virtual BCS_RESULT end() override;
 	virtual BCS_RESULT execute() override;
-	virtual void dispatch(uint32_t x = 1, uint32_t y = 1, uint32_t z = 1) override;
 	virtual BCS_RESULT start_debug_capture() override;
 	virtual BCS_RESULT end_debug_capture() override;
 
 	ID3D12Device8* device;
 
 	// raytracing fallback layer
-	bool raytracing_fallback_layer_supported;
+	bool experimental_shader_models_enabled;
+	bool raytracing_supported;
 	bool raytracing_fallback_layer_native_supported;
 	bool raytracing_fallback_layer_fallback_supported;
 	bool raytracing_fallback_layer_initialized;
@@ -94,7 +95,7 @@ public:
 
 	ID3D12CommandAllocator* command_allocator;
 	ID3D12CommandQueue* command_queue;
-	ID3D12GraphicsCommandList1* command_list;
+	ID3D12GraphicsCommandList4* command_list;
 
 	union
 	{
@@ -124,6 +125,9 @@ public:
 	D3D12_FEATURE_DATA_SHADER_MODEL shader_model;
 
 	HRESULT last_error;
+
+	// binding tracking
+	c_graphics_shader_pipeline_d3d12* bound_shader_pipeline;
 };
 
 BCS_RESULT graphics_d3d12_create(bool use_debug_layer, bool force_cpu_rendering, bool require_ray_tracing_support, c_graphics_d3d12*& graphics);

@@ -163,6 +163,10 @@ BCS_RESULT c_graphics_root_signature_d3d12::init_root_signature_description()
 	root_signature_description.pStaticSamplers = static_samplers;
 	root_signature_description.Flags = D3D12_ROOT_SIGNATURE_FLAG_NONE;
 	root_signature_description.Flags = root_signature_description.Flags | D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
+	if (root_signature_type == _graphics_register_layout_type_local_raytracing)
+	{
+		root_signature_description.Flags = root_signature_description.Flags | D3D12_ROOT_SIGNATURE_FLAG_LOCAL_ROOT_SIGNATURE;
+	}
 
 	return rs;
 
@@ -449,7 +453,17 @@ BCS_RESULT c_graphics_root_signature_d3d12::init_root_descriptor(const wchar_t* 
 
 	ID3DBlob* root_signature_blob = nullptr;
 	ID3DBlob* root_signature_error_blob = nullptr;
-	HRESULT serialize_root_signature_result = D3D12SerializeRootSignature(&root_signature_description, D3D_ROOT_SIGNATURE_VERSION_1_0, &root_signature_blob, &root_signature_error_blob);
+
+	HRESULT serialize_root_signature_result;
+	if (graphics.d3d12_raytracing_fallback_device != nullptr)
+	{
+		serialize_root_signature_result = graphics.d3d12_raytracing_fallback_device->D3D12SerializeRootSignature(&root_signature_description, D3D_ROOT_SIGNATURE_VERSION_1_0, &root_signature_blob, &root_signature_error_blob);
+	}
+	else
+	{
+		serialize_root_signature_result = D3D12SerializeRootSignature(&root_signature_description, D3D_ROOT_SIGNATURE_VERSION_1_0, &root_signature_blob, &root_signature_error_blob);
+	}
+
 	if (root_signature_error_blob)
 	{
 		// #TODO: Handle the error
@@ -473,7 +487,16 @@ BCS_RESULT c_graphics_root_signature_d3d12::init_root_descriptor(const wchar_t* 
 		root_signature_error_blob->Release();
 	}
 	ASSERT(SUCCEEDED(serialize_root_signature_result));
-	HRESULT create_root_signature_result = graphics.device->CreateRootSignature(0, root_signature_blob->GetBufferPointer(), root_signature_blob->GetBufferSize(), IID_PPV_ARGS(&root_signature));
+	HRESULT create_root_signature_result;
+	if (graphics.d3d12_raytracing_fallback_device != nullptr)
+	{
+		create_root_signature_result = graphics.d3d12_raytracing_fallback_device->CreateRootSignature(0, root_signature_blob->GetBufferPointer(), root_signature_blob->GetBufferSize(), IID_PPV_ARGS(&root_signature));
+	}
+	else
+	{
+		create_root_signature_result = graphics.device->CreateRootSignature(0, root_signature_blob->GetBufferPointer(), root_signature_blob->GetBufferSize(), IID_PPV_ARGS(&root_signature));
+	}
+	
 	ASSERT(SUCCEEDED(create_root_signature_result));
 	root_signature_blob->Release();
 
@@ -490,6 +513,8 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind() const
 		graphics.command_list->SetGraphicsRootSignature(root_signature);
 		break;
 	case _graphics_register_layout_type_compute:
+	case _graphics_register_layout_type_global_raytracing:
+	case _graphics_register_layout_type_local_raytracing:
 		graphics.command_list->SetComputeRootSignature(root_signature);
 		break;
 	default:
@@ -524,6 +549,8 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_buffer(
 						graphics.command_list->SetGraphicsRootConstantBufferView(root_parameter_index, gpu_virtual_address);
 						break;
 					case _graphics_register_layout_type_compute:
+					case _graphics_register_layout_type_global_raytracing:
+					case _graphics_register_layout_type_local_raytracing:
 						graphics.command_list->SetComputeRootConstantBufferView(root_parameter_index, gpu_virtual_address);
 						break;
 					default:
@@ -543,6 +570,8 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_buffer(
 						graphics.command_list->SetGraphicsRootShaderResourceView(root_parameter_index, gpu_virtual_address);
 						break;
 					case _graphics_register_layout_type_compute:
+					case _graphics_register_layout_type_global_raytracing:
+					case _graphics_register_layout_type_local_raytracing:
 						graphics.command_list->SetComputeRootShaderResourceView(root_parameter_index, gpu_virtual_address);
 						break;
 					default:
@@ -562,6 +591,8 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_buffer(
 						graphics.command_list->SetGraphicsRootUnorderedAccessView(root_parameter_index, gpu_virtual_address);
 						break;
 					case _graphics_register_layout_type_compute:
+					case _graphics_register_layout_type_global_raytracing:
+					case _graphics_register_layout_type_local_raytracing:
 						graphics.command_list->SetComputeRootUnorderedAccessView(root_parameter_index, gpu_virtual_address);
 						break;
 					default:
@@ -614,6 +645,8 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_table_buffer(
 								graphics.command_list->SetGraphicsRootDescriptorTable(root_parameter_index, descriptor_handle);
 								break;
 							case _graphics_register_layout_type_compute:
+							case _graphics_register_layout_type_global_raytracing:
+							case _graphics_register_layout_type_local_raytracing:
 								graphics.command_list->SetComputeRootDescriptorTable(root_parameter_index, descriptor_handle);
 								break;
 							default:

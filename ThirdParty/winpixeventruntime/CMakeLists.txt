@@ -32,14 +32,17 @@ add_custom_command(
 add_library(winpixeventruntime INTERFACE)
 add_dependencies(winpixeventruntime winpixeventruntime_external)
 add_dependencies(winpixeventruntime "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/WinPixEventRuntime.dll")
-
-target_link_directories(winpixeventruntime INTERFACE
-	"${WINPIXEVENTRUNTIME_BINARY_DIRECTORY}")
-
+target_link_directories(winpixeventruntime INTERFACE "${WINPIXEVENTRUNTIME_BINARY_DIRECTORY}")
 target_link_libraries(winpixeventruntime INTERFACE WinPixEventRuntime.lib)
-
-
 target_include_directories(winpixeventruntime INTERFACE 
+	"${WINPIXEVENTRUNTIME_INCLUDE_DIRECTORY}"
+	"${WINPIXEVENTRUNTIME_INCLUDE_DIRECTORY}/WinPixEventRuntime")
+
+add_library(winpixeventruntime_binaryonly INTERFACE)
+add_dependencies(winpixeventruntime_binaryonly winpixeventruntime_external)
+add_dependencies(winpixeventruntime_binaryonly "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/WinPixEventRuntime.dll")
+target_link_directories(winpixeventruntime_binaryonly INTERFACE "${WINPIXEVENTRUNTIME_BINARY_DIRECTORY}")
+target_include_directories(winpixeventruntime_binaryonly INTERFACE 
 	"${WINPIXEVENTRUNTIME_INCLUDE_DIRECTORY}"
 	"${WINPIXEVENTRUNTIME_INCLUDE_DIRECTORY}/WinPixEventRuntime")
 

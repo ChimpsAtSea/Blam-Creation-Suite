@@ -53,68 +53,68 @@ void bcs_test_validate(BCS_RESULT rs, const char* name)
 
 BCS_RESULT graphics_compute_test_init()
 {
-				if (BCS_SUCCEEDED(graphics_create_result = graphics_create(_graphics_architecture_d3d12, true, graphics)))
+	if (BCS_SUCCEEDED(graphics_create_result = graphics_create(_graphics_architecture_d3d12, true, graphics)))
+	{
+		if (BCS_SUCCEEDED(graphics_start_debug_capture_result = graphics->start_debug_capture()))
+		{
+			console_write_line("Signaling debug frame");
+		}
+
+		if (BCS_SUCCEEDED(read_compute_shader_binary_result = resources_read_local_resource_to_memory(
+			"computeshader.cso",
+			compute_shader_binary_data,
+			compute_shader_binary_size)))
+		{
+			if (BCS_SUCCEEDED(compute_test_shader_binary_result = graphics_shader_binary_create(
+				graphics,
+				compute_shader_binary_data,
+				compute_shader_binary_size,
+				compute_test_shader_binary)))
+			{
+				s_graphics_register_layout_description compute_register_layouts[1];
+				compute_register_layouts[0].semantic = _graphics_register_layout_unordered_access;
+				compute_register_layouts[0].register_index = 0;
+				compute_register_layouts[0].register_count = 1;
+				compute_register_layouts[0].register_space = 0;
+				compute_register_layouts[0].num_32_bit_values = 0;
+				compute_register_layouts[0].use_table = true;
+				compute_register_layouts[0].sampler_layout_description = nullptr;
+
+				if (BCS_SUCCEEDED(compute_register_layout_result = graphics_register_layout_create(
+					graphics,
+					_graphics_register_layout_type_compute,
+					compute_register_layouts,
+					_countof(compute_register_layouts),
+					compute_register_layout,
+					"compute_register_layout")))
 				{
-					if (BCS_SUCCEEDED(graphics_start_debug_capture_result = graphics->start_debug_capture()))
+					if (BCS_SUCCEEDED(compute_test_shader_pipeline_result = graphics_shader_pipeline_compute_create(
+						graphics,
+						compute_register_layout,
+						compute_test_shader_binary,
+						compute_test_shader_pipeline)))
 					{
-						console_write_line("Signaling debug frame");
-					}
-
-					if (BCS_SUCCEEDED(read_compute_shader_binary_result = resources_read_local_resource_to_memory(
-						"computeshader.cso", 
-						compute_shader_binary_data, 
-						compute_shader_binary_size)))
-					{
-						if (BCS_SUCCEEDED(compute_test_shader_binary_result = graphics_shader_binary_create(
+						if (BCS_SUCCEEDED(read_write_buffer_create_result = graphics_buffer_create(
 							graphics,
-							compute_shader_binary_data,
-							compute_shader_binary_size,
-							compute_test_shader_binary)))
+							_graphics_buffer_type_unordered_access_view,
+							k_dispatch_size * sizeof(unsigned int),
+							read_write_buffer,
+							"read_write_buffer")))
 						{
-							s_graphics_register_layout_description compute_register_layouts[1];
-							compute_register_layouts[0].semantic = _graphics_register_layout_unordered_access;
-							compute_register_layouts[0].register_index = 0;
-							compute_register_layouts[0].register_count = 1;
-							compute_register_layouts[0].register_space = 0;
-							compute_register_layouts[0].num_32_bit_values = 0;
-							compute_register_layouts[0].use_table = true;
-							compute_register_layouts[0].sampler_layout_description = 0;
-
-							if (BCS_SUCCEEDED(compute_register_layout_result = graphics_register_layout_create(
-								graphics,
-								_graphics_register_layout_type_compute,
-								compute_register_layouts,
-								_countof(compute_register_layouts),
-								compute_register_layout,
-								"compute_register_layout")))
-							{
-								if (BCS_SUCCEEDED(compute_test_shader_pipeline_result = graphics_shader_pipeline_compute_create(
-									graphics,
-									compute_register_layout,
-									compute_test_shader_binary,
-									compute_test_shader_pipeline)))
-								{
-									if (BCS_SUCCEEDED(read_write_buffer_create_result = graphics_buffer_create(
-										graphics,
-										_graphics_buffer_type_unordered_access_view,
-										512 * sizeof(float4),
-										read_write_buffer,
-										"read_write_buffer")))
-									{
-										// finished
-									}
-								}
-							}
+							// finished
 						}
 					}
 				}
+			}
+		}
+	}
 
-	BCS_TEST_VALIDATE(read_write_buffer_create_result);
-	BCS_TEST_VALIDATE(compute_test_shader_pipeline_result);
-	BCS_TEST_VALIDATE(compute_register_layout_result);
-	BCS_TEST_VALIDATE(compute_test_shader_binary_result);
-	BCS_TEST_VALIDATE(read_compute_shader_binary_result);
 	BCS_TEST_VALIDATE(graphics_create_result);
+	BCS_TEST_VALIDATE(read_compute_shader_binary_result);
+	BCS_TEST_VALIDATE(compute_test_shader_binary_result);
+	BCS_TEST_VALIDATE(compute_register_layout_result);
+	BCS_TEST_VALIDATE(compute_test_shader_pipeline_result);
+	BCS_TEST_VALIDATE(read_write_buffer_create_result);
 
 	return BCS_S_OK;
 }
@@ -137,7 +137,7 @@ BCS_RESULT graphics_compute_test_execute()
 
 				if (BCS_SUCCEEDED(compute_register_layout_bind_buffers_result = compute_register_layout->bind_buffer(0, 0, *read_write_buffer)))
 				{
-					graphics->dispatch(k_dispatch_size);
+					compute_test_shader_pipeline->dispatch(k_dispatch_size);
 
 					read_write_buffer->copy_readback();
 
@@ -146,15 +146,17 @@ BCS_RESULT graphics_compute_test_execute()
 						// finished
 					}
 				}
+
+				compute_test_shader_pipeline->unbind();
 			}
 		}
 	}
 
-	BCS_TEST_VALIDATE(graphics_end_result);
-	BCS_TEST_VALIDATE(compute_register_layout_bind_buffers_result);
-	BCS_TEST_VALIDATE(compute_register_layout_bind_result);
-	BCS_TEST_VALIDATE(write_data_result);
 	BCS_TEST_VALIDATE(graphics_begin_result);
+	BCS_TEST_VALIDATE(write_data_result);
+	BCS_TEST_VALIDATE(compute_register_layout_bind_result);
+	BCS_TEST_VALIDATE(compute_register_layout_bind_buffers_result);
+	BCS_TEST_VALIDATE(graphics_end_result);
 
 	return BCS_S_OK;
 }
@@ -229,9 +231,9 @@ BCS_RESULT graphics_compute_test()
 		console_write_line("Successfully deinitialised");
 	}
 
-	BCS_TEST_VALIDATE(graphics_compute_test_validate_result);
-	BCS_TEST_VALIDATE(graphics_compute_test_execute_result);
 	BCS_TEST_VALIDATE(graphics_compute_test_init_result);
+	BCS_TEST_VALIDATE(graphics_compute_test_execute_result);
+	BCS_TEST_VALIDATE(graphics_compute_test_validate_result);
 	BCS_TEST_VALIDATE(graphics_compute_test_deinit_result);
 
 	return BCS_S_OK;

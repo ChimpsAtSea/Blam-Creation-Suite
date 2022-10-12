@@ -19,7 +19,6 @@ public:
 	virtual BCS_RESULT begin() = 0;
 	virtual BCS_RESULT end() = 0;
 	virtual BCS_RESULT execute() = 0;
-	virtual void dispatch(uint32_t x = 1, uint32_t y = 1, uint32_t z = 1) = 0;
 	virtual BCS_RESULT start_debug_capture() = 0;
 	virtual BCS_RESULT end_debug_capture() = 0;
 

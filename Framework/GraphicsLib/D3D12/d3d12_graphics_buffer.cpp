@@ -66,11 +66,13 @@ BCS_RESULT c_graphics_buffer_d3d12::write_data(const void* buffer, uint32_t buff
 
 	if (upload_heap != gpu_resource)
 	{
-		graphics.transition_resource(gpu_resource, D3D12_RESOURCE_STATE_UNORDERED_ACCESS, D3D12_RESOURCE_STATE_COPY_DEST);
+		graphics.transition_resource(gpu_resource, gpu_resource_state, D3D12_RESOURCE_STATE_COPY_DEST);
+		gpu_resource_state = D3D12_RESOURCE_STATE_COPY_DEST;
 
 		graphics.command_list->CopyResource(gpu_resource, upload_heap);
 
-		graphics.transition_resource(gpu_resource, D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_UNORDERED_ACCESS);
+		graphics.transition_resource(gpu_resource, gpu_resource_state, D3D12_RESOURCE_STATE_UNORDERED_ACCESS);
+		gpu_resource_state = D3D12_RESOURCE_STATE_UNORDERED_ACCESS;
 	}
 
 	return BCS_S_OK;
@@ -118,11 +120,13 @@ void c_graphics_buffer_d3d12::copy_readback()
 {
 	if (readback_heap != gpu_resource)
 	{
-		graphics.transition_resource(gpu_resource, D3D12_RESOURCE_STATE_UNORDERED_ACCESS, D3D12_RESOURCE_STATE_COPY_SOURCE);
+		graphics.transition_resource(gpu_resource, gpu_resource_state, D3D12_RESOURCE_STATE_COPY_SOURCE);
+		gpu_resource_state = D3D12_RESOURCE_STATE_COPY_SOURCE;
 
 		graphics.command_list->CopyResource(readback_heap, gpu_resource);
 
-		graphics.transition_resource(gpu_resource, D3D12_RESOURCE_STATE_COPY_SOURCE, D3D12_RESOURCE_STATE_UNORDERED_ACCESS);
+		graphics.transition_resource(gpu_resource, gpu_resource_state, D3D12_RESOURCE_STATE_UNORDERED_ACCESS);
+		gpu_resource_state = D3D12_RESOURCE_STATE_UNORDERED_ACCESS;
 	}
 }
 
@@ -188,7 +192,7 @@ void c_graphics_buffer_d3d12::init_buffer(const wchar_t* debug_name)
 
 		CD3DX12_HEAP_PROPERTIES const default_heap_properties(D3D12_HEAP_TYPE_DEFAULT);
 
-		gpu_resource_state = D3D12_RESOURCE_STATE_UNORDERED_ACCESS;
+		gpu_resource_state = D3D12_RESOURCE_STATE_COMMON;
 
 		CD3DX12_RESOURCE_DESC const uav_resource_resource_description = CD3DX12_RESOURCE_DESC::Buffer(ALIGN(data_size, 256), D3D12_RESOURCE_FLAG_ALLOW_UNORDERED_ACCESS);
 		HRESULT create_comitted_resource_result = graphics.device->CreateCommittedResource(

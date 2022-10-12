@@ -355,7 +355,7 @@ void c_lightmap::init()
 	graphics_register_layouts[0].register_space = 0;
 	graphics_register_layouts[0].num_32_bit_values = 0;
 	graphics_register_layouts[0].use_table = true;
-	graphics_register_layouts[0].sampler_layout_description = 0;
+	graphics_register_layouts[0].sampler_layout_description = nullptr;
 
 	BCS_RESULT graphics_register_layout_result = graphics_register_layout_create(
 		&graphics,
@@ -394,7 +394,7 @@ void c_lightmap::init()
 	compute_register_layouts[0].register_space = 0;
 	compute_register_layouts[0].num_32_bit_values = 0;
 	compute_register_layouts[0].use_table = true;
-	compute_register_layouts[0].sampler_layout_description = 0;
+	compute_register_layouts[0].sampler_layout_description = nullptr;
 
 	BCS_RESULT compute_register_layout_result = graphics_register_layout_create(
 		&graphics,
@@ -504,7 +504,7 @@ void c_lightmap::render_pass_callback()
 	compute_register_layout->bind();
 	compute_test_shader_pipeline->bind();
 	compute_register_layout->bind_buffer(0, 0, *compute_test_buffer);
-	graphics.dispatch(viewport_width, viewport_height);
+	compute_test_shader_pipeline->dispatch(viewport_width, viewport_height);
 
 	debug_point;
 }

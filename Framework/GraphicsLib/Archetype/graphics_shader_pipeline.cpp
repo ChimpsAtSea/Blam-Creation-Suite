@@ -10,6 +10,40 @@ c_graphics_shader_pipeline::~c_graphics_shader_pipeline()
 
 }
 
+BCS_RESULT graphics_shader_pipeline_raytracing_create(
+	c_graphics* graphics,
+	c_graphics_register_layout* global_register_layout,
+	c_graphics_register_layout* local_register_layout,
+	c_graphics_shader_binary* shader_binary,
+	const wchar_t* raygen_shader_name,
+	const wchar_t* closest_hit_shader_name,
+	const wchar_t* miss_shader_name,
+	const wchar_t* hit_group_name,
+	c_graphics_shader_pipeline*& shader_pipeline,
+	const char* debug_name)
+{
+	BCS_VALIDATE_ARGUMENT(graphics);
+	BCS_VALIDATE_ARGUMENT(global_register_layout);
+	BCS_VALIDATE_ARGUMENT(local_register_layout);
+	BCS_VALIDATE_ARGUMENT(shader_binary);
+
+	if (c_graphics_d3d12* graphics_d3d12 = dynamic_cast<c_graphics_d3d12*>(graphics))
+	{
+		return graphics_d3d12_shader_pipeline_raytracing_create(
+			graphics_d3d12,
+			dynamic_cast<c_graphics_root_signature_d3d12*>(global_register_layout),
+			dynamic_cast<c_graphics_root_signature_d3d12*>(local_register_layout),
+			reinterpret_cast<c_graphics_shader_binary_d3d12*>(shader_binary),
+			raygen_shader_name,
+			closest_hit_shader_name,
+			miss_shader_name,
+			hit_group_name,
+			*reinterpret_cast<c_graphics_shader_pipeline_raytracing_d3d12**>(&shader_pipeline),
+			debug_name);
+	}
+	return BCS_E_UNSUPPORTED;
+}
+
 BCS_RESULT graphics_shader_pipeline_compute_create(
 	c_graphics* graphics,
 	c_graphics_register_layout* register_layout,
@@ -19,6 +53,7 @@ BCS_RESULT graphics_shader_pipeline_compute_create(
 {
 	BCS_VALIDATE_ARGUMENT(graphics);
 	BCS_VALIDATE_ARGUMENT(register_layout);
+	BCS_VALIDATE_ARGUMENT(shader_binary);
 
 	if (c_graphics_d3d12* graphics_d3d12 = dynamic_cast<c_graphics_d3d12*>(graphics))
 	{

@@ -19,6 +19,8 @@ enum e_graphics_register_layout_type : unsigned char
 {
 	_graphics_register_layout_type_graphics,
 	_graphics_register_layout_type_compute,
+	_graphics_register_layout_type_global_raytracing,
+	_graphics_register_layout_type_local_raytracing,
 };
 
 enum e_graphics_sampler_filter : unsigned char

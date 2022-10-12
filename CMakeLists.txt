@@ -169,3 +169,4 @@ endif()
 add_subdirectory(Runtime/Development/Chimp)
 
 add_subdirectory(Runtime/Tests/ComputeTest)
+add_subdirectory(Runtime/Tests/RaytraceTest)
