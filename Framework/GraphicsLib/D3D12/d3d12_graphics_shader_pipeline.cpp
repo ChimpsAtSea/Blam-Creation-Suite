@@ -165,7 +165,7 @@ c_graphics_shader_pipeline_graphics_d3d12::~c_graphics_shader_pipeline_graphics_
 c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytracing_d3d12(
 	c_graphics_d3d12& _graphics,
 	c_graphics_root_signature_d3d12& _global_root_signature,
-	c_graphics_root_signature_d3d12& _local_root_signature,
+	c_graphics_root_signature_d3d12* _local_root_signature,
 	c_graphics_shader_binary_d3d12& shader_binary,
 	const wchar_t* _raygen_shader_name,
 	const wchar_t* _closest_hit_shader_name,
@@ -203,8 +203,8 @@ c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytraci
 	D3D12_STATE_SUBOBJECT& state_subobject_raytracing_shader_config = state_subobjects[2];
 	D3D12_STATE_SUBOBJECT& state_subobject_global_root_signature = state_subobjects[3];
 	D3D12_STATE_SUBOBJECT& state_subobject_raytracing_pipeline_config = state_subobjects[4];
-	D3D12_STATE_SUBOBJECT& state_subobject_local_root_signature = state_subobjects[5];
-	D3D12_STATE_SUBOBJECT& state_subobject_subobject_to_exports_association = state_subobjects[6];
+	//D3D12_STATE_SUBOBJECT& state_subobject_local_root_signature = state_subobjects[5];
+	//D3D12_STATE_SUBOBJECT& state_subobject_subobject_to_exports_association = state_subobjects[6];
 
 	{
 		// DXIL library
@@ -338,10 +338,7 @@ c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytraci
 	state_object_description.pSubobjects = state_subobjects;
 
 	HRESULT hrs = graphics.d3d12_raytracing_fallback_device->CreateStateObject(&state_object_description, IID_PPV_ARGS(&raytracing_fallback_state_object));
-	if (FAILED(hrs))
-	{
-		throw BCS_E_GRAPHICS_HRESULT_ERROR;
-	}
+	BCS_FAIL_THROW(graphics.hresult_to_bcs_result(hrs));
 
 	shader_identifier_size = graphics.d3d12_raytracing_fallback_device->GetShaderIdentifierSize();
 
@@ -559,7 +556,6 @@ BCS_RESULT graphics_d3d12_shader_pipeline_raytracing_create(
 {
 	BCS_VALIDATE_ARGUMENT(graphics);
 	BCS_VALIDATE_ARGUMENT(global_root_signature);
-	BCS_VALIDATE_ARGUMENT(local_root_signature);
 	BCS_VALIDATE_ARGUMENT(shader_binary);
 
 	BCS_CHAR_TO_WIDECHAR_STACK(debug_name, debug_name_wc);
@@ -568,7 +564,7 @@ BCS_RESULT graphics_d3d12_shader_pipeline_raytracing_create(
 		shader_pipeline = new() c_graphics_shader_pipeline_raytracing_d3d12(
 			*graphics,
 			*global_root_signature,
-			*local_root_signature,
+			local_root_signature,
 			*shader_binary,
 			raygen_shader_name,
 			closest_hit_shader_name,

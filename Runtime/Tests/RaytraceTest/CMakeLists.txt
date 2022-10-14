@@ -13,7 +13,7 @@ set_source_files_properties(
 	VS_SHADER_MODEL 6.3
 	VS_SHADER_ENABLE_DEBUG true
 	VS_SHADER_DISABLE_OPTIMIZATIONS true
-	VS_SHADER_FLAGS "-Qembed_debug -Vd")
+	VS_SHADER_FLAGS "-Qembed_debug")
 
 bcs_set_common_properties(RaytraceTest)
 

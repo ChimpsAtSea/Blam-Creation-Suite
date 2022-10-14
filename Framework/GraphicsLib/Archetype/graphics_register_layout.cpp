@@ -50,6 +50,8 @@ BCS_DEBUG_API BCS_RESULT graphics_register_layout_create(
 
 BCS_DEBUG_API BCS_RESULT graphics_register_layout_destroy(c_graphics_register_layout* register_layout)
 {
+	BCS_VALIDATE_ARGUMENT(register_layout != nullptr);
+
 	if (c_graphics_root_signature_d3d12* root_signature_d3d12 = dynamic_cast<c_graphics_root_signature_d3d12*>(register_layout))
 	{
 		return graphics_d3d12_root_signature_destroy(root_signature_d3d12);

@@ -54,10 +54,7 @@ BCS_RESULT c_graphics_buffer_d3d12::write_data(const void* buffer, uint32_t buff
 	void* gpu_buffer_data;
 	CD3DX12_RANGE read_range(0, 0);	// We do not intend to read from this resource on the CPU.
 	HRESULT map_result = upload_heap->Map(0, &read_range, &gpu_buffer_data);
-	if (FAILED(map_result))
-	{
-		return BCS_E_FAIL;
-	}
+	BCS_FAIL_RETURN(graphics.hresult_to_bcs_result(map_result));
 
 	char* gpu_buffer_data_position = static_cast<char*>(gpu_buffer_data) + buffer_offset;
 	memcpy(gpu_buffer_data_position, buffer, buffer_size);
@@ -98,10 +95,7 @@ BCS_RESULT c_graphics_buffer_d3d12::read_data(void* buffer, uint32_t buffer_size
 	void* gpu_buffer_data;
 	CD3DX12_RANGE read_range(0, 0);	// We do not intend to read from this resource on the CPU.
 	HRESULT map_result = readback_heap->Map(0, &read_range, &gpu_buffer_data);
-	if (FAILED(map_result))
-	{
-		return BCS_E_FAIL;
-	}
+	BCS_FAIL_RETURN(graphics.hresult_to_bcs_result(map_result));
 
 	char* gpu_buffer_data_position = static_cast<char*>(gpu_buffer_data) + buffer_offset;
 	memcpy(buffer, gpu_buffer_data_position, buffer_size);
@@ -114,6 +108,65 @@ BCS_RESULT c_graphics_buffer_d3d12::read_data(void* buffer, uint32_t buffer_size
 BCS_RESULT c_graphics_buffer_d3d12::read_data(void* buffer, uint32_t element_size, uint32_t element_count, uint32_t element_offset)
 {
 	return read_data(buffer, element_count * element_size, element_offset * element_size);
+}
+
+BCS_RESULT c_graphics_buffer_d3d12::map_data_read_begin(void*& gpu_buffer_data)
+{
+	if (readback_heap == nullptr)
+	{
+		return BCS_E_UNSUPPORTED;
+	}
+
+	CD3DX12_RANGE read_range(0, 0);	// We do not intend to read from this resource on the CPU.
+	HRESULT map_result = readback_heap->Map(0, &read_range, &gpu_buffer_data);
+	BCS_FAIL_RETURN(graphics.hresult_to_bcs_result(map_result));
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_graphics_buffer_d3d12::map_data_read_end(void* gpu_buffer_data)
+{
+	readback_heap->Unmap(0, nullptr);
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_graphics_buffer_d3d12::map_data_write_begin(void*& gpu_buffer_data)
+{
+	if (upload_heap == nullptr)
+	{
+		return BCS_E_UNSUPPORTED;
+	}
+
+	CD3DX12_RANGE read_range(0, 0);	// We do not intend to read from this resource on the CPU.
+	HRESULT map_result = upload_heap->Map(0, &read_range, &gpu_buffer_data);
+	BCS_FAIL_RETURN(graphics.hresult_to_bcs_result(map_result));
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_graphics_buffer_d3d12::map_data_write_end(void* gpu_buffer_data)
+{
+	BCS_VALIDATE_ARGUMENT(gpu_buffer_data);
+	if (upload_heap == nullptr)
+	{
+		return BCS_E_UNSUPPORTED;
+	}
+
+	upload_heap->Unmap(0, nullptr);
+
+	if (upload_heap != gpu_resource)
+	{
+		graphics.transition_resource(gpu_resource, gpu_resource_state, D3D12_RESOURCE_STATE_COPY_DEST);
+		gpu_resource_state = D3D12_RESOURCE_STATE_COPY_DEST;
+
+		graphics.command_list->CopyResource(gpu_resource, upload_heap);
+
+		graphics.transition_resource(gpu_resource, gpu_resource_state, D3D12_RESOURCE_STATE_UNORDERED_ACCESS);
+		gpu_resource_state = D3D12_RESOURCE_STATE_UNORDERED_ACCESS;
+	}
+
+	return BCS_S_OK;
 }
 
 void c_graphics_buffer_d3d12::copy_readback()

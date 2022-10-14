@@ -45,8 +45,8 @@ c_graphics_d3d12::c_graphics_d3d12(bool use_debug_layer, bool force_cpu_renderin
 		init_debug_layer();
 	}
 
-	BCS_RESULT init_experimental_features_result = init_experimental_features();
-	if (BCS_SUCCEEDED(init_experimental_features_result))
+	HRESULT init_experimental_features_result = init_experimental_features();
+	if (SUCCEEDED(init_experimental_features_result))
 	{
 		console_write_line("Enabled experimental D3D12 features");
 		experimental_shader_models_enabled = true;
@@ -110,18 +110,14 @@ void c_graphics_d3d12::deinit_debug_layer()
 	}
 }
 
-BCS_RESULT c_graphics_d3d12::init_experimental_features()
+HRESULT c_graphics_d3d12::init_experimental_features()
 {
 	static UUID experimental_features[] = 
 	{ 
 		D3D12ExperimentalShaderModels 
 	};
 	static HRESULT enable_experimental_features_result = D3D12EnableExperimentalFeatures(_countof(experimental_features), experimental_features, nullptr, nullptr);
-	if (FAILED(enable_experimental_features_result))
-	{
-		return BCS_E_GRAPHICS_HRESULT_ERROR;
-	}
-	return BCS_S_OK;
+	return enable_experimental_features_result;
 }
 
 BCS_RESULT c_graphics_d3d12::init_hardware(bool force_cpu_rendering, bool require_ray_tracing_support)
@@ -276,14 +272,11 @@ BCS_RESULT c_graphics_d3d12::init_raytracing_fallback_layer()
 	try
 	{
 		HRESULT d3d12_create_raytracing_fallback_device = D3D12CreateRaytracingFallbackDevice(device, create_raytracing_fallback_device_flags, 0, IID_PPV_ARGS(&d3d12_raytracing_fallback_device));
-		if (FAILED(d3d12_create_raytracing_fallback_device))
-		{
-			return BCS_E_GRAPHICS_HRESULT_ERROR;
-		}
+		BCS_FAIL_RETURN(hresult_to_bcs_result(d3d12_create_raytracing_fallback_device));
 	}
 	catch (HRESULT hrs)
 	{
-		return BCS_E_GRAPHICS_HRESULT_ERROR;
+		return hresult_to_bcs_result(hrs);
 	}
 	catch (...)
 	{
@@ -536,20 +529,45 @@ BCS_RESULT c_graphics_d3d12::execute()
 BCS_RESULT c_graphics_d3d12::start_debug_capture()
 {
 	HRESULT hrs = PIXBeginCapture(PIX_CAPTURE_GPU, 0);
-	if (FAILED(hrs))
-	{
-		return BCS_E_GRAPHICS_HRESULT_ERROR;
-	}
+	BCS_FAIL_RETURN(hresult_to_bcs_result(hrs));
 	return BCS_S_OK;
 }
 
 BCS_RESULT c_graphics_d3d12::end_debug_capture()
 {
 	HRESULT hrs = PIXEndCapture(false);
-	if (FAILED(hrs))
-	{
-		return BCS_E_GRAPHICS_HRESULT_ERROR;
-	}
+	BCS_FAIL_RETURN(hresult_to_bcs_result(hrs));
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_graphics_d3d12::start_debug_event(const char* event_name)
+{
+	//PIXBeginEvent(command_list, PIX_COLOR_DEFAULT, event_name);
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_graphics_d3d12::start_debug_event_ex(const char* event_name_format, ...)
+{
+	va_list virtual_argument_list;
+	va_start(virtual_argument_list, event_name_format);
+	BCS_RESULT rs = start_debug_event_vargs(event_name_format, virtual_argument_list);
+	va_end(virtual_argument_list);
+	return rs;
+}
+
+BCS_RESULT c_graphics_d3d12::start_debug_event_vargs(const char* event_name_format, va_list& virtual_argument_list)
+{
+	int buffer_size = vsnprintf(nullptr, 0, event_name_format, virtual_argument_list);
+	char* buffer = trivial_alloca(char, buffer_size + 1);
+	ASSERT(vsnprintf(buffer, buffer_size + 1, event_name_format, virtual_argument_list) == buffer_size);
+	buffer[buffer_size] = 0;
+	//PIXBeginEvent(command_list, PIX_COLOR_DEFAULT, buffer);
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_graphics_d3d12::end_debug_event()
+{
+	//PIXEndEvent(command_list);
 	return BCS_S_OK;
 }
 

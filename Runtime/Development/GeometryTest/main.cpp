@@ -129,7 +129,7 @@ int main()
 
 
 	c_radiance_transfer_engine* radiance_transfer_engine;
-	BCS_RESULT radiance_transfer_create_result = radiance_transfer_create(_radiance_transfer_engine_cpu, order, 20, true, false, radiance_transfer_engine);
+	BCS_RESULT radiance_transfer_create_result = radiance_transfer_create(_radiance_transfer_engine_gpu, order, 20, false, false, radiance_transfer_engine);
 	ASSERT(BCS_SUCCEEDED(radiance_transfer_create_result));
 
 	for (unsigned int mesh_index = 0; mesh_index < num_meshes; mesh_index++)

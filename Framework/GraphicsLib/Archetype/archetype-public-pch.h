@@ -14,6 +14,7 @@
 #include "graphics_vertex_layout.h"
 #include "graphics_register_layout.h"
 #include "graphics_render_instance.h"
+#include "graphics_event.h"
 #include "graphics.h"
 
 #include "imgui_context.h"

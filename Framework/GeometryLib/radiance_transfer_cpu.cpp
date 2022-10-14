@@ -1,17 +1,15 @@
 #include "geometrylib-private-pch.h"
 
-#define PI 3.14159265358979323846
-#define fastrand(seed) ((((*seed) = (214013u * (*seed) + 2531011u)) >> 16u) & 0x7FFFu)
-#define fastrandf(seed) ((float)(fastrand(seed)) / 0x7FFFu)
-
+// #TODO: Find a home for these
 #define dot(a, b) ( (a).x * (b).x + (a).y * (b).y + (a).z * (b).z )
 #define cross(v1, v2) float3{ (v1).y * (v2).z - (v1).z * (v2).y, (v1).z * (v2).x - (v1).x * (v2).z, (v1).x * (v2).y - (v1).y * (v2).x }
-static float3 operator-(const float3& a, const float3& b)
-{
-	return { a.x - b.x, a.y - b.y, a.z - b.z };
-}
+static float3 operator-(const float3& a, const float3& b) { return { a.x - b.x, a.y - b.y, a.z - b.z }; }
 
-c_radiance_transfer_engine_cpu::c_radiance_transfer_engine_cpu(unsigned int _order, unsigned short _resolution, bool _use_shadows, bool _calculate_subsurface) :
+c_radiance_transfer_engine_cpu::c_radiance_transfer_engine_cpu(
+	unsigned int _order, 
+	unsigned short _resolution, 
+	bool _use_shadows, 
+	bool _calculate_subsurface) :
 	c_radiance_transfer_engine(),
 	geometry_meshes(),
 	num_geometry_meshes(),
@@ -79,8 +77,8 @@ void c_radiance_transfer_engine_cpu::init_samples()
 			float3& sample = *samples_position;
 			float* _sample_sh_coefficients = sample_sh_coefficients_position;
 
-			float r0 = fastrandf(&seed);
-			float r1 = fastrandf(&seed);
+			float r0 = float(xorshift32(seed)) / UINT_MAX;
+			float r1 = float(xorshift32(seed)) / UINT_MAX;
 
 			float a = ((float)i + r0) / (float)resolution;
 			float b = ((float)j + r1) / (float)resolution;
@@ -105,7 +103,6 @@ void c_radiance_transfer_engine_cpu::deinit_samples()
 	trivial_free(samples);
 	trivial_free(sample_sh_coefficients);
 }
-
 
 BCS_RESULT c_radiance_transfer_engine_cpu::add_mesh(c_geometry_mesh& geometry_mesh)
 {
@@ -192,7 +189,6 @@ BCS_RESULT c_radiance_transfer_engine_cpu::read(
 	const float* const*& out_subsurface_coefficient_planes,
 	unsigned int& out_num_coefficient_planes)
 {
-
 	for (unsigned int geometry_index = 0; geometry_index < num_geometries; geometry_index++)
 	{
 		c_radiance_transfer_geometry_cpu& geometry = geometries[geometry_index];
@@ -349,17 +345,14 @@ void c_radiance_transfer_engine_cpu::calculate_spherical_harmonic_coefficient(c_
 		sample_sh_coefficients_position += num_coefficient_planes;
 	}
 
-	constexpr float weight = 4.0f * PI;
-	float scale = weight / num_samples;
+	float scale = 4.0f / num_samples;
 	for (unsigned int coefficient_plane_index = 0; coefficient_plane_index < num_coefficient_planes; coefficient_plane_index++)
 	{
 		geometry.surface_coefficient_planes[coefficient_plane_index][vertex_index] *= scale;
-		geometry.surface_coefficient_planes[coefficient_plane_index][vertex_index] /= PI;
 
 		if (calculate_subsurface)
 		{
 			geometry.subsurface_coefficient_planes[coefficient_plane_index][vertex_index] *= scale;
-			geometry.subsurface_coefficient_planes[coefficient_plane_index][vertex_index] /= PI;
 		}
 	}
 }

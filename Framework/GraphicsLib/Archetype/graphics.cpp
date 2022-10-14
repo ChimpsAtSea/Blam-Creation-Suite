@@ -52,6 +52,8 @@ BCS_RESULT graphics_create(
 
 BCS_RESULT graphics_destroy(c_graphics* graphics)
 {
+	BCS_VALIDATE_ARGUMENT(graphics != nullptr);
+
 	if (c_graphics_d3d12* graphics_d3d12 = dynamic_cast<c_graphics_d3d12*>(graphics))
 	{
 		return graphics_d3d12_destroy(graphics_d3d12);

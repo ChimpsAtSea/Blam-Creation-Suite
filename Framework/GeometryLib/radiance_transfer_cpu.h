@@ -38,7 +38,7 @@ public:
 		c_geometry_mesh& geometry_mesh,
 		const float* const*& surface_coefficient_planes,
 		const float* const*& subsurface_coefficient_planes,
-		unsigned int& num_coefficients) override;
+		unsigned int& num_coefficient_planes) override;
 
 protected:
 	void init_samples();

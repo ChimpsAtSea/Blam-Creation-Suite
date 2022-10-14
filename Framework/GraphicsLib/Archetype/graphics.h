@@ -21,6 +21,10 @@ public:
 	virtual BCS_RESULT execute() = 0;
 	virtual BCS_RESULT start_debug_capture() = 0;
 	virtual BCS_RESULT end_debug_capture() = 0;
+	virtual BCS_RESULT start_debug_event(const char* event_name) = 0;
+	virtual BCS_RESULT start_debug_event_ex(const char* event_name_format, ...) = 0;
+	virtual BCS_RESULT start_debug_event_vargs(const char* event_name_format, va_list& virtual_argument_list) = 0;
+	virtual BCS_RESULT end_debug_event() = 0;
 
 	using t_present_callback_d3d12 = BCS_RESULT();
 	c_typed_callback<t_present_callback_d3d12> present_callback;

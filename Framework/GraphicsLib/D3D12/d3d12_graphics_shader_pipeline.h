@@ -82,7 +82,7 @@ public:
 	c_graphics_shader_pipeline_raytracing_d3d12(
 		c_graphics_d3d12& graphics,
 		c_graphics_root_signature_d3d12& global_root_signature,
-		c_graphics_root_signature_d3d12& local_root_signature,
+		c_graphics_root_signature_d3d12* local_root_signature,
 		c_graphics_shader_binary_d3d12& shader_binary,
 		const wchar_t* raygen_shader_name,
 		const wchar_t* closest_hit_shader_name,
@@ -97,7 +97,7 @@ public:
 	virtual BCS_RESULT dispatch_rays(uint32_t x = 1, uint32_t y = 1, uint32_t z = 1) override;
 
 	c_graphics_root_signature_d3d12& global_root_signature;
-	c_graphics_root_signature_d3d12& local_root_signature;
+	c_graphics_root_signature_d3d12* local_root_signature;
 	ID3D12RaytracingFallbackStateObject* raytracing_fallback_state_object;
 	D3D12_STATE_OBJECT_DESC state_object_description;
 

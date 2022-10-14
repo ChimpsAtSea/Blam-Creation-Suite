@@ -10,6 +10,8 @@ add_library(GraphicsLib ${BCS_LIBRARY_TYPE}
 	Archetype/graphics_compute_pass.h
 	Archetype/graphics_data_format.cpp
 	Archetype/graphics_data_format.h
+	Archetype/graphics_event.cpp
+	Archetype/graphics_event.h
 	Archetype/graphics_geometry.cpp
 	Archetype/graphics_geometry.h
 	Archetype/graphics_register_layout.cpp
@@ -76,6 +78,8 @@ add_library(GraphicsLib ${BCS_LIBRARY_TYPE}
 	HLSL/LightmapDebug/lightmap_debug.hlsli
 	HLSL/LightmapDebug/lightmap_debug_ps.hlsl
 	HLSL/LightmapDebug/lightmap_debug_vs.hlsl
+	HLSL/RadianceTransfer/radiance_transfer.hlsl
+	HLSL/RadianceTransfer/radiance_transfer.hlsli
 	HLSL/cpp_types.hlsli
 	HLSL/debug_shader.hlsl
 	HLSL/default_shader.hlsl
@@ -148,6 +152,20 @@ set_source_files_properties(
 	VS_SHADER_ENABLE_DEBUG true
 	VS_SHADER_DISABLE_OPTIMIZATIONS true
 	VS_SHADER_FLAGS "-Qembed_debug")
+
+#Radiance Transfer
+
+set_source_files_properties(
+	HLSL/RadianceTransfer/radiance_transfer.hlsl
+	PROPERTIES VS_SHADER_TYPE Library)
+
+set_source_files_properties(
+	HLSL/RadianceTransfer/radiance_transfer.hlsl
+	PROPERTIES
+	VS_SHADER_MODEL 6.3
+	VS_SHADER_ENABLE_DEBUG true
+	VS_SHADER_DISABLE_OPTIMIZATIONS true
+	VS_SHADER_FLAGS "-Qembed_debug -denorm preserve")
 	
 #Lightmap Debug
 set_source_files_properties(

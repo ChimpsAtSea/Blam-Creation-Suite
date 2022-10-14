@@ -197,6 +197,10 @@ c_type_1(float, float);
 c_type_2(float, float);
 c_type_3(float, float);
 c_type_4(float, float);
+c_type_1(double, double);
+c_type_2(double, double);
+c_type_3(double, double);
+c_type_4(double, double);
 
 typedef union
 {

@@ -65,6 +65,8 @@ BCS_RESULT graphics_shader_binary_create(
 
 BCS_RESULT graphics_shader_binary_destroy(c_graphics_shader_binary* shader_binary)
 {
+	BCS_VALIDATE_ARGUMENT(shader_binary != nullptr);
+
 	if (c_graphics_shader_binary_d3d12* shader_binary_d3d12 = dynamic_cast<c_graphics_shader_binary_d3d12*>(shader_binary))
 	{
 		return graphics_d3d12_shader_binary_destroy(shader_binary_d3d12);

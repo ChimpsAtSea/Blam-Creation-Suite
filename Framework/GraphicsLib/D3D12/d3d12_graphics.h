@@ -30,7 +30,7 @@ public:
 
 	void init_debug_layer();
 	void deinit_debug_layer();
-	static BCS_RESULT init_experimental_features();
+	static HRESULT init_experimental_features();
 	BCS_RESULT init_hardware(bool force_cpu_rendering, bool require_ray_tracing_support);
 	void deinit_hardware();
 	BCS_RESULT init_raytracing_fallback_layer();
@@ -67,6 +67,10 @@ public:
 	virtual BCS_RESULT execute() override;
 	virtual BCS_RESULT start_debug_capture() override;
 	virtual BCS_RESULT end_debug_capture() override;
+	virtual BCS_RESULT start_debug_event(const char* event_name) override;
+	virtual BCS_RESULT start_debug_event_ex(const char* event_name_format, ...) override;
+	virtual BCS_RESULT start_debug_event_vargs(const char* event_name_format, va_list& virtual_argument_list) override;
+	virtual BCS_RESULT end_debug_event() override;
 
 	ID3D12Device8* device;
 

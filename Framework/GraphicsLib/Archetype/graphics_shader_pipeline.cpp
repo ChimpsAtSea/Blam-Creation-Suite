@@ -24,11 +24,13 @@ BCS_RESULT graphics_shader_pipeline_raytracing_create(
 {
 	BCS_VALIDATE_ARGUMENT(graphics);
 	BCS_VALIDATE_ARGUMENT(global_register_layout);
-	BCS_VALIDATE_ARGUMENT(local_register_layout);
 	BCS_VALIDATE_ARGUMENT(shader_binary);
 
 	if (c_graphics_d3d12* graphics_d3d12 = dynamic_cast<c_graphics_d3d12*>(graphics))
 	{
+		c_graphics_root_signature_d3d12* d3d12_local_register_layout = dynamic_cast<c_graphics_root_signature_d3d12*>(local_register_layout);
+		BCS_VALIDATE_ARGUMENT(local_register_layout == d3d12_local_register_layout);
+
 		return graphics_d3d12_shader_pipeline_raytracing_create(
 			graphics_d3d12,
 			dynamic_cast<c_graphics_root_signature_d3d12*>(global_register_layout),
@@ -101,6 +103,8 @@ BCS_RESULT graphics_shader_pipeline_graphics_create(
 
 BCS_RESULT graphics_shader_pipeline_destroy(c_graphics_shader_pipeline* shader_pipeline)
 {
+	BCS_VALIDATE_ARGUMENT(shader_pipeline != nullptr);
+
 	if (c_graphics_shader_pipeline_d3d12* shader_pipeline_d3d12 = dynamic_cast<c_graphics_shader_pipeline_d3d12*>(shader_pipeline))
 	{
 		return graphics_d3d12_shader_pipeline_destroy(shader_pipeline_d3d12);

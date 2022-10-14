@@ -58,6 +58,14 @@ if (COMBINE(__runonceflag_, __LINE__) == false) \
 
 #define DEG2RAD 0.01745329251f
 #define RAD2DEG 57.2957795131f
+#define PI 3.14159265358979323846
+
+#ifdef __INTELLISENSE__
+uint32_t xorshift32(uint32_t& seed);
+#else
+#define xorshift32(seed) (seed ^= 0xAAAAAAAA, seed ^= seed << 13, seed ^= seed >> 17, seed ^= seed << 5, seed)
+#endif
+
 #define ALIGN(n, b) ( (b)==0 ? (n) : ( ((n)+(b)-1) - (((n)-1)%(b)) ) )
 
 #define ROUND_UP_VALUE(value, alignment) ((((value) + (alignment) - 1) / (alignment)) * (alignment))

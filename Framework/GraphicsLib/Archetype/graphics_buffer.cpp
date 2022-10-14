@@ -52,6 +52,8 @@ BCS_RESULT graphics_buffer_create(
 
 BCS_RESULT graphics_buffer_destroy(c_graphics_buffer* buffer)
 {
+	BCS_VALIDATE_ARGUMENT(buffer != nullptr);
+
 	if (c_graphics_buffer_d3d12* buffer_d3d12 = dynamic_cast<c_graphics_buffer_d3d12*>(buffer))
 	{
 		return graphics_d3d12_buffer_destroy(buffer_d3d12);
